@@ -1,0 +1,475 @@
+{
+ "cours": 6757,
+ "ecrans": {
+  "accroche": {
+   "kicker": "Le plan qui bouge",
+   "texte": "À chaque point M, une image M′ selon une règle.",
+   "type": "phrase"
+  },
+  "applications": {
+   "kicker": "À quoi ça sert",
+   "texte": "Chemin le plus court, lieux, constructions : les transformations servent.",
+   "type": "phrase"
+  },
+  "def_espace": {
+   "kicker": "Droite et plan de l'espace",
+   "tex": [
+    "(AB) : \\text{une droite, deux points distincts}",
+    "(ABC) : \\text{un plan, trois points non alignés}",
+    "\\text{représentation : parallélogramme en perspective}"
+   ],
+   "titre": "Deux points, trois points",
+   "type": "etape"
+  },
+  "droite_plan": {
+   "kicker": "Une droite et un plan",
+   "tex": [
+    "d \\subset P : \\text{incluse}",
+    "\\text{sécante : un point commun unique}",
+    "\\text{parallèle : aucun point commun}"
+   ],
+   "titre": "Trois positions possibles",
+   "type": "etape"
+  },
+  "droites_copl": {
+   "kicker": "Deux droites coplanaires",
+   "tex": [
+    "\\text{sécantes : un point commun unique}",
+    "\\text{parallèles : coplanaires, aucun point commun}",
+    "(AB) \\text{ et } (BC) : \\text{sécantes en } B",
+    "(AB) \\parallel (DC)"
+   ],
+   "titre": "Sécantes ou parallèles, dans un même plan",
+   "type": "etape"
+  },
+  "droites_gauches": {
+   "kicker": "Deux droites non coplanaires",
+   "texte": "Dans le cube, (AB) et (CG) : ni sécantes, ni parallèles.",
+   "type": "phrase"
+  },
+  "ex_axiale": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Exemple : symétrique d'un triangle",
+   "tex": [
+    "\\text{perpendiculaire à } \\Delta \\text{ par chaque sommet}",
+    "\\text{reporter la distance de l'autre côté}",
+    "A \\rightarrow A', \\; B \\rightarrow B', \\; C \\rightarrow C'"
+   ],
+   "titre": "Trois gestes pour trois sommets",
+   "type": "etape"
+  },
+  "ex_cube_plan": {
+   "kicker": "Exemple : le plan d'une face du cube",
+   "texte": "Cube ABCDEFGH : (ABC) est la face inférieure.",
+   "type": "phrase"
+  },
+  "ex_droite_plan": {
+   "kicker": "Exemple : (EH) parallèle à (ABC)",
+   "tex": [
+    "(EH) \\parallel (AB)",
+    "(AB) \\subset (ABC)",
+    "\\text{donc } (EH) \\parallel (ABC)"
+   ],
+   "titre": "Parallèle à une droite du plan, hors du plan",
+   "type": "etape"
+  },
+  "ex_homothetie": {
+   "kicker": "Exemple chiffré : homothétie de rapport deux",
+   "tex": [
+    "AB = 3 \\ \\text{cm} \\qquad k = 2",
+    "A'B' = 2 \\times AB = 6 \\ \\text{cm}",
+    "(A'B') \\parallel (AB)"
+   ],
+   "titre": "Trois centimètres deviennent six centimètres",
+   "type": "etape"
+  },
+  "ex_plans_par": {
+   "kicker": "Exemple : plans parallèles",
+   "tex": [
+    "(AB) \\parallel (EF) \\qquad (BC) \\parallel (FG)",
+    "(AB), (BC) \\text{ sécantes en } B",
+    "\\text{donc } (ABC) \\parallel (EFG)"
+   ],
+   "titre": "Le critère vérifié sur le cube",
+   "type": "etape"
+  },
+  "ex_plans_sec": {
+   "kicker": "Exemple : plans sécants",
+   "texte": "Dans le cube, (ABC) et (ABE) se coupent selon (AB).",
+   "type": "phrase"
+  },
+  "ex_rotation": {
+   "kicker": "Exemple : triangle équilatéral",
+   "tex": [
+    "OA = OB = OC",
+    "\\widehat{AOB} = 120^{\\circ}",
+    "r(O, 120^{\\circ})(A) = B"
+   ],
+   "titre": "Un tour de cent vingt degrés",
+   "type": "etape"
+  },
+  "ex_translation": {
+   "kicker": "Exemple : image d'un cercle",
+   "tex": [
+    "A \\xrightarrow{t_{\\overrightarrow{AB}}} B",
+    "r = 3 \\ \\text{cm}",
+    "r' = r = 3 \\ \\text{cm}"
+   ],
+   "titre": "Le centre glisse, le rayon reste",
+   "type": "etape"
+  },
+  "homothetie": {
+   "kicker": "Homothétie",
+   "note": "k positif : même côté de O ; k négatif : côtés opposés.",
+   "tex": "\\overrightarrow{OM'} = k \\, \\overrightarrow{OM} \\quad k \\neq 0",
+   "type": "formule"
+  },
+  "intro_espace": {
+   "kicker": "Passer dans l'espace",
+   "texte": "Cube, pavé, pyramide : les solides pour voir droites et plans.",
+   "type": "phrase"
+  },
+  "methode": {
+   "kicker": "Méthode : lire un solide",
+   "tex": [
+    "\\text{arêtes : segments de droites}",
+    "\\text{faces : portions de plans}",
+    "\\text{sommets : points d'intersection}"
+   ],
+   "titre": "Arêtes, faces, sommets",
+   "type": "etape"
+  },
+  "plans": {
+   "kicker": "Deux plans",
+   "tex": [
+    "\\text{sécants : une droite commune}",
+    "\\text{strictement parallèles : aucun point commun}",
+    "\\text{confondus : tous les points communs}",
+    "\\text{critère : droites sécantes parallèles}"
+   ],
+   "titre": "Sécants ou parallèles",
+   "type": "etape"
+  },
+  "prop_axiale": {
+   "kicker": "Propriétés de la symétrie axiale",
+   "tex": [
+    "\\text{isométrie : } M'N' = MN",
+    "\\text{involutive : } s_{\\Delta} \\circ s_{\\Delta} = Id",
+    "\\text{conserve alignement, angles et aires}"
+   ],
+   "titre": "Une isométrie involutive",
+   "type": "etape"
+  },
+  "prop_centrale": {
+   "kicker": "Propriétés de la symétrie centrale",
+   "tex": [
+    "\\text{isométrie et involutive : } s_O \\circ s_O = Id",
+    "(A'B') \\parallel (AB) \\quad A'B' = AB",
+    "\\text{cercle image : même rayon}"
+   ],
+   "titre": "Une droite devient une droite parallèle",
+   "type": "etape"
+  },
+  "prop_homothetie": {
+   "kicker": "Propriétés de l'homothétie",
+   "tex": [
+    "k = 1 : \\text{identité} \\qquad k = -1 : \\text{symétrie centrale}",
+    "A'B' = |k| \\cdot AB",
+    "\\text{cercle : rayon } |k| \\cdot r",
+    "h(O,k) \\circ h(O,k') = h(O, kk')"
+   ],
+   "titre": "Les formes restent, les longueurs changent",
+   "type": "etape"
+  },
+  "prop_rotation": {
+   "kicker": "Propriétés de la rotation",
+   "tex": [
+    "\\text{isométrie, orientation conservée}",
+    "r(O, \\theta)(O) = O",
+    "r(O, \\theta) \\circ r(O, \\theta') = r(O, \\theta + \\theta')",
+    "r(O, 0) = Id \\qquad r(O, \\pi) = s_O"
+   ],
+   "titre": "Le centre ne bouge pas",
+   "type": "etape"
+  },
+  "prop_translation": {
+   "kicker": "Propriétés de la translation",
+   "tex": [
+    "\\text{isométrie : distances, angles et aires conservés}",
+    "t_{\\vec{u}} \\circ t_{\\vec{v}} = t_{\\vec{u}+\\vec{v}}",
+    "t_{\\vec{u}}^{-1} = t_{-\\vec{u}}"
+   ],
+   "titre": "Un glissement qui conserve tout",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Symétrie axiale : axe, médiatrice du segment",
+    "Symétrie centrale : centre, milieu du segment",
+    "Translation : glissement par un vecteur u",
+    "Homothétie : rapport k, longueurs fois |k|",
+    "Rotation : centre O, angle, distances gardées"
+   ],
+   "kicker": "Transformations : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Droite : deux points ; plan : trois points",
+    "Deux droites : sécantes, parallèles, gauches",
+    "Droite et plan : incluse, sécante, parallèle",
+    "Deux plans : sécants ou parallèles",
+    "Cube : arêtes, faces, sommets pour vérifier"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "rotation": {
+   "kicker": "Rotation",
+   "note": "Sens positif : sens trigonométrique, inverse des aiguilles.",
+   "tex": "OM' = OM \\qquad \\widehat{MOM'} = \\theta",
+   "type": "formule"
+  },
+  "sym_axiale": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "symetrie_fig"
+   },
+   "kicker": "Symétrie orthogonale, ou axiale",
+   "note": "Si M est sur l'axe, il est invariant.",
+   "tex": "s_{\\Delta}(M) = M' \\quad \\Delta \\text{ médiatrice de } [MM']",
+   "type": "formule"
+  },
+  "sym_centrale": {
+   "kicker": "Symétrie centrale",
+   "note": "O est le milieu du segment [MM'].",
+   "tex": "\\overrightarrow{OM'} = -\\overrightarrow{OM}",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "symetrie_fig"
+   },
+   "kicker": "Mathématique · Géométrie",
+   "sous": "Cinq transformations du plan, puis droites et plans de l'espace, observés sur le cube",
+   "titre": "Les transformations du plan et les positions dans l'espace",
+   "type": "titre"
+  },
+  "translation": {
+   "kicker": "Translation",
+   "note": "Chaque point glisse du même vecteur u.",
+   "tex": "\\overrightarrow{MM'} = \\vec{u}",
+   "type": "formule"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Symétries et translation"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : l'homothétie et la rotation. Nous verrons comment un rapport multiplie les longueurs, comment un angle fait tourner les figures, puis à quoi servent toutes ces transformations.",
+    "texte": "Partie 2 : homothétie, rotation et applications."
+   },
+   "sous_titre": "Homothétie, rotation et applications"
+  },
+  {
+   "debut": "p19",
+   "pont": {
+    "dit": "Partie trois : la géométrie de l'espace. Nous passons du plan au cube : droites et plans, et leurs positions relatives, sécantes, parallèles ou gauches.",
+    "texte": "Partie 3 : droites et plans de l'espace."
+   },
+   "sous_titre": "Droites et plans de l'espace"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de géométrie, en deux volets. D'abord, les transformations du plan : symétries, translation, homothétie et rotation. Ensuite, la géométrie de l'espace : droites et plans, et leurs positions relatives, observées sur le cube. Deux chapitres, une même démarche : définir, construire, puis vérifier sur une figure.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Deux volets : transformer le plan, situer dans l'espace."
+  },
+  {
+   "dit": "Commençons par une idée simple. Une transformation du plan associe à chaque point M un point image, noté M prime, selon une règle précise. Certaines conservent toutes les distances : on les appelle des isométries. D'autres conservent les formes mais changent les longueurs. Retenir la règle de chacune, c'est savoir construire son image.",
+   "ecran": "accroche",
+   "id": "p02",
+   "texte": "Une règle précise pour chaque point M."
+  },
+  {
+   "dit": "Première transformation : la symétrie orthogonale, ou symétrie axiale, d'axe delta. Elle associe à tout point M un point M prime tel que l'axe delta soit la médiatrice du segment M M prime. Autrement dit, l'axe coupe ce segment en son milieu, à angle droit. Si le point M est déjà sur l'axe, il reste fixe : il est son propre symétrique.",
+   "ecran": "sym_axiale",
+   "id": "p03",
+   "texte": "L'axe delta est la médiatrice de [MM′]."
+  },
+  {
+   "dit": "Cette symétrie a trois propriétés à retenir. C'est une isométrie : elle conserve les distances, donc la distance entre les images égale la distance entre les points de départ. Elle conserve aussi l'alignement, les angles et les aires. Enfin, elle est involutive : appliquée deux fois, elle ramène au point initial, comme un aller-retour.",
+   "ecran": "prop_axiale",
+   "id": "p04",
+   "texte": "Isométrie, involutive : deux fois, on revient."
+  },
+  {
+   "dit": "Construisons le symétrique d'un triangle A B C par rapport à une droite delta. Pour chaque sommet, on trace la perpendiculaire à delta qui passe par ce sommet. Puis on reporte la distance de l'autre côté de l'axe, à égale distance : on obtient A prime, B prime et C prime. Il ne reste qu'à relier ces trois points pour obtenir le triangle symétrique.",
+   "ecran": "ex_axiale",
+   "id": "p05",
+   "texte": "Perpendiculaire, report, relier : le triangle image."
+  },
+  {
+   "dit": "Deuxième transformation : la symétrie centrale, de centre O. Elle associe à tout point M un point M prime tel que O soit le milieu du segment M M prime. En vecteurs, le vecteur O M prime est l'opposé du vecteur O M : même longueur, sens contraire. Le centre O lui-même reste fixe.",
+   "ecran": "sym_centrale",
+   "id": "p06",
+   "texte": "O est le milieu de [MM′] : vecteurs opposés."
+  },
+  {
+   "dit": "Comme la symétrie axiale, la symétrie centrale est une isométrie et elle est involutive : deux fois de suite, on revient au départ. Elle a une propriété de plus : elle transforme une droite en une droite parallèle. Un segment A B devient ainsi un segment A prime B prime de même longueur, parallèle au premier. Un cercle devient un cercle de même rayon.",
+   "ecran": "prop_centrale",
+   "id": "p07",
+   "texte": "Une droite devient une droite parallèle."
+  },
+  {
+   "dit": "Troisième transformation : la translation de vecteur u. Elle associe à tout point M un point M prime tel que le vecteur M M prime soit égal au vecteur u. Autrement dit, chaque point glisse de la même façon : même direction, même sens, même longueur. C'est le glissement le plus simple du plan.",
+   "ecran": "translation",
+   "id": "p08",
+   "texte": "Tout le plan glisse du même vecteur u."
+  },
+  {
+   "dit": "La translation est une isométrie : distances, angles et aires sont conservés. Elle transforme une droite en une droite parallèle, et un segment en un segment de même vecteur. Deux translations se composent en additionnant leurs vecteurs, et la réciproque d'une translation de vecteur u est la translation de vecteur opposé.",
+   "ecran": "prop_translation",
+   "id": "p09",
+   "texte": "Composer, c'est additionner les vecteurs."
+  },
+  {
+   "dit": "Exemple : construisons l'image d'un cercle par la translation de vecteur A B. Le cercle a pour centre A et pour rayon trois centimètres. Par cette translation, le centre A devient le point B, puisque le vecteur A B est bien le vecteur de la translation. L'image est donc le cercle de centre B et de même rayon, trois centimètres : une isométrie ne change pas le rayon.",
+   "ecran": "ex_translation",
+   "id": "p10",
+   "texte": "Cercle de centre A, rayon 3 cm : image en B, même rayon."
+  },
+  {
+   "dit": "Quatrième transformation : l'homothétie de centre O et de rapport k, avec k différent de zéro. Elle associe à tout point M un point M prime tel que le vecteur O M prime soit égal à k fois le vecteur O M. Si k est positif, M prime est du même côté de O que M ; si k est négatif, ils sont de part et d'autre de O.",
+   "ecran": "homothetie",
+   "id": "p11",
+   "texte": "Vecteur OM′ = k × vecteur OM, k non nul."
+  },
+  {
+   "dit": "L'homothétie conserve l'alignement et les angles, mais elle n'est une isométrie que si la valeur absolue de k vaut un. Pour k égal à un, c'est l'identité ; pour k égal à moins un, c'est la symétrie centrale. Elle transforme une droite en une droite parallèle, un segment A B en un segment de longueur égale à la valeur absolue de k fois A B, et un cercle de rayon r en un cercle de rayon égal à la valeur absolue de k fois r.",
+   "ecran": "prop_homothetie",
+   "id": "p12",
+   "texte": "Formes gardées, longueurs multipliées par |k|."
+  },
+  {
+   "dit": "Exemple chiffré, pas à pas. On veut l'image d'un segment A B de trois centimètres par l'homothétie de centre O et de rapport deux. On construit A prime tel que le vecteur O A prime soit égal à deux fois le vecteur O A : on prolonge O A au-delà de A en doublant la distance. On fait de même pour B prime. L'image est le segment A prime B prime, parallèle à A B, et sa longueur vaut deux fois trois centimètres, soit six centimètres.",
+   "ecran": "ex_homothetie",
+   "id": "p13",
+   "texte": "AB = 3 cm, k = 2 : A′B′ = 6 cm, parallèle."
+  },
+  {
+   "dit": "Cinquième transformation : la rotation de centre O et d'angle thêta, dans un plan orienté. Elle associe à tout point M un point M prime tel que la distance O M prime soit égale à O M, et que l'angle orienté M O M prime soit égal à thêta. Par convention, le sens positif est le sens trigonométrique, inverse des aiguilles d'une montre.",
+   "ecran": "rotation",
+   "id": "p14",
+   "texte": "OM′ = OM, angle orienté = thêta."
+  },
+  {
+   "dit": "La rotation est une isométrie : elle conserve distances, angles et aires, ainsi que l'orientation du plan. Son centre O est invariant. Deux rotations de même centre se composent en additionnant leurs angles, et la réciproque d'une rotation d'angle thêta est la rotation d'angle opposé. Cas particuliers : un angle nul donne l'identité, et un angle plat donne la symétrie centrale.",
+   "ecran": "prop_rotation",
+   "id": "p15",
+   "texte": "Centre fixe, angles qui s'additionnent."
+  },
+  {
+   "dit": "Exemple : soit A B C un triangle équilatéral direct, de centre O. Déterminons l'image de A par la rotation de centre O et d'angle cent vingt degrés. Dans un triangle équilatéral, le centre O est aussi le centre du cercle circonscrit, donc les distances O A, O B et O C sont égales, et les angles au centre valent cent vingt degrés. L'image de A est donc le point B.",
+   "ecran": "ex_rotation",
+   "id": "p16",
+   "texte": "Triangle équilatéral, 120° : A devient B."
+  },
+  {
+   "dit": "À quoi servent ces transformations ? D'abord à construire : choisir la bonne transformation pour obtenir une figure image. Ensuite aux lieux géométriques : l'image d'un cercle par une isométrie est un cercle de même rayon. Enfin, la symétrie axiale donne le chemin le plus court entre deux points en passant par une droite : on remplace un détour par son symétrique.",
+   "ecran": "applications",
+   "id": "p17",
+   "texte": "Trois usages : construire, lieux, chemins."
+  },
+  {
+   "dit": "Récapitulons les transformations du plan. Symétrie axiale : un axe, médiatrice du segment. Symétrie centrale : un centre, milieu du segment. Translation : un glissement par un vecteur. Homothétie : un centre et un rapport, qui multiplie les longueurs. Rotation : un centre et un angle, qui conserve les distances. Cinq règles, cinq constructions.",
+   "ecran": "recap1",
+   "id": "p18",
+   "texte": "L'essentiel des transformations du plan."
+  },
+  {
+   "dit": "Passons au second volet : la géométrie de l'espace. L'espace est l'ensemble de tous les points, et on l'observe à travers des solides familiers : le cube, le pavé droit, la pyramide, le cône, le cylindre et la sphère. Leurs arêtes, leurs faces et leurs sommets nous donnent des droites, des plans et des points concrets pour raisonner.",
+   "ecran": "intro_espace",
+   "id": "p19",
+   "texte": "Des solides concrets pour raisonner."
+  },
+  {
+   "dit": "D'abord, les objets de base. Une droite de l'espace est un ensemble infini de points alignés, sans épaisseur, qui s'étend à l'infini dans les deux directions : deux points distincts déterminent une droite et une seule, notée par exemple A B entre parenthèses. Un plan est une surface plane illimitée, sans épaisseur : trois points non alignés déterminent un plan et un seul, noté par exemple A B C entre parenthèses.",
+   "ecran": "def_espace",
+   "id": "p20",
+   "texte": "Droite : 2 points ; plan : 3 points non alignés."
+  },
+  {
+   "dit": "Exemple sur le cube A B C D E F G H. Le plan A B C entre parenthèses est la face inférieure du cube. Les points A, B et C ne sont pas alignés : ils déterminent bien un plan unique, qui contient toute la face A B C D. C'est le réflexe à prendre : nommer la face, c'est nommer le plan.",
+   "ecran": "ex_cube_plan",
+   "id": "p21",
+   "texte": "Nommer la face, c’est nommer le plan."
+  },
+  {
+   "dit": "Passons aux positions relatives de deux droites. Deux droites sont coplanaires si elles sont contenues dans un même plan. Dans ce cas, soit elles sont sécantes, avec un seul point commun, comme les droites A B et B C du cube, sécantes en B ; soit elles sont parallèles, sans point commun, comme A B et D C, ou confondues.",
+   "ecran": "droites_copl",
+   "id": "p22",
+   "texte": "Coplanaires : sécantes en un point, ou parallèles."
+  },
+  {
+   "dit": "Mais dans l'espace, deux droites peuvent n'être ni sécantes ni parallèles : on les dit non coplanaires, ou gauches. Dans le cube, la droite A B, arête de la face inférieure, et la droite C G, arête verticale, n'ont aucun point commun, des directions différentes, et aucun plan commun. Ni sécantes, ni parallèles : c'est le cas nouveau de l'espace.",
+   "ecran": "droites_gauches",
+   "id": "p23",
+   "texte": "Le cas nouveau : les droites gauches."
+  },
+  {
+   "dit": "Une droite et un plan ont trois positions possibles. La droite peut être incluse dans le plan, si tous ses points appartiennent au plan : il suffit pour cela que deux de ses points distincts y appartiennent. Elle peut être sécante au plan, avec un seul point commun. Ou elle peut être parallèle au plan, sans aucun point commun : c'est le parallélisme strict.",
+   "ecran": "droite_plan",
+   "id": "p24",
+   "texte": "Incluse, sécante en un point, ou parallèle."
+  },
+  {
+   "dit": "Exemple : dans le cube, montrons que la droite E H est parallèle au plan A B C. La droite E H est parallèle à la droite A B, qui est contenue dans le plan A B C, et E H elle-même n'est pas contenue dans ce plan. Une droite parallèle à une droite du plan, sans y être contenue, est parallèle au plan : la conclusion suit.",
+   "ecran": "ex_droite_plan",
+   "id": "p25",
+   "texte": "(EH) ∥ (AB) ⊂ (ABC) : donc (EH) ∥ (ABC)."
+  },
+  {
+   "dit": "Enfin, deux plans ont trois positions possibles. Ils peuvent être sécants : leur intersection est alors une droite, appelée droite d'intersection. Ils peuvent être strictement parallèles, sans aucun point commun, ou confondus, avec tous leurs points en commun. Critère utile : deux plans sont parallèles si deux droites sécantes de l'un sont respectivement parallèles à deux droites sécantes de l'autre.",
+   "ecran": "plans",
+   "id": "p26",
+   "texte": "Sécants, strictement parallèles, ou confondus."
+  },
+  {
+   "dit": "Exemple de plans sécants dans le cube : le plan A B C, face inférieure, et le plan A B E se coupent selon la droite A B. Les deux plans partagent les points A et B : leur intersection est bien la droite qui passe par ces deux points. Retenez le réflexe : deux points communs, c'est la droite d'intersection.",
+   "ecran": "ex_plans_sec",
+   "id": "p27",
+   "texte": "Deux points communs : la droite d’intersection."
+  },
+  {
+   "dit": "Exemple de plans parallèles : les plans A B C et E F G du cube sont strictement parallèles. En effet, la droite A B est parallèle à E F, et la droite B C est parallèle à F G, avec A B et B C sécantes en B, E F et F G sécantes en F. Le critère est vérifié : les deux plans sont parallèles, sans point commun.",
+   "ecran": "ex_plans_par",
+   "id": "p28",
+   "texte": "(ABC) ∥ (EFG) : critère vérifié sur le cube."
+  },
+  {
+   "dit": "Méthode générale pour étudier ces positions : appuyez-vous toujours sur un solide usuel, cube, pavé droit ou pyramide. Lisez les arêtes comme des segments de droites, les faces comme des portions de plans, et les sommets comme des points d'intersection. Cette approche concrète permet de visualiser chaque position, puis de la justifier avec les définitions et les critères du cours.",
+   "ecran": "methode",
+   "id": "p29",
+   "texte": "Arêtes, faces, sommets : lire le solide."
+  },
+  {
+   "dit": "Récapitulons la géométrie de l'espace. Une droite est déterminée par deux points, un plan par trois points non alignés. Deux droites sont sécantes, parallèles ou gauches. Une droite et un plan sont inclus, sécants ou parallèles. Deux plans sont sécants ou parallèles. Et pour vérifier, on lit le cube : arêtes, faces, sommets.",
+   "ecran": "recap_final",
+   "id": "p30",
+   "texte": "L'essentiel de la géométrie de l'espace."
+  }
+ ],
+ "titre": "Les transformations du plan et les positions dans l'espace"
+}
