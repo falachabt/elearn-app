@@ -1,0 +1,362 @@
+{
+  "cours": 7298,
+  "titre": "Barycentres et lignes de niveaux",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Barycentres",
+      "titre": "Barycentres et lignes de niveaux",
+      "sous": "Le point d'équilibre des masses, puis les ensembles définis par les distances"
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Plusieurs points, des masses, un seul point d'équilibre.",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 150
+      }
+    },
+    "def": {
+      "type": "formule",
+      "kicker": "Définition · le barycentre",
+      "tex": "\\sum_{i=1}^{n} \\alpha_i \\overrightarrow{G A_i} = \\vec{0}",
+      "note": "G existe si et seulement si la somme des coefficients est non nulle"
+    },
+    "iso": {
+      "type": "phrase",
+      "kicker": "Cas particulier · l'isobarycentre",
+      "texte": "Masses égales : milieu, centre de gravité du triangle."
+    },
+    "homogeneite": {
+      "type": "formule",
+      "kicker": "Propriété · homogénéité",
+      "tex": "G\\{(A_i, \\alpha_i)\\} = G\\{(A_i, k\\alpha_i)\\}, \\quad k \\neq 0",
+      "note": "Multiplier toutes les masses par k ne déplace pas G"
+    },
+    "reduction": {
+      "type": "formule",
+      "kicker": "Propriété · réduction vectorielle",
+      "tex": "\\sum_{i=1}^{n} \\alpha_i \\overrightarrow{M A_i} = \\left(\\sum_{i=1}^{n} \\alpha_i\\right) \\overrightarrow{M G}",
+      "note": "Une somme de vecteurs devient un seul vecteur",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 120
+      }
+    },
+    "coordonnees": {
+      "type": "etape",
+      "kicker": "Coordonnées du barycentre",
+      "titre": "Trois moyennes pondérées",
+      "tex": [
+        "x_G = \\tfrac{\\sum \\alpha_i x_i}{\\sum \\alpha_i}",
+        "y_G = \\tfrac{\\sum \\alpha_i y_i}{\\sum \\alpha_i}",
+        "z_G = \\tfrac{\\sum \\alpha_i z_i}{\\sum \\alpha_i}"
+      ]
+    },
+    "ex_coord": {
+      "type": "etape",
+      "kicker": "Exemple résolu · coordonnées",
+      "titre": "A(1,0,0), B(0,2,0), C(0,0,3) ; masses 2, 3, 1",
+      "tex": [
+        "x_G = \\tfrac{2 \\times 1 + 3 \\times 0 + 1 \\times 0}{6} = \\tfrac{1}{3}",
+        "y_G = \\tfrac{2 \\times 0 + 3 \\times 2 + 1 \\times 0}{6} = 1",
+        "z_G = \\tfrac{2 \\times 0 + 3 \\times 0 + 1 \\times 3}{6} = \\tfrac{1}{2}"
+      ]
+    },
+    "associativite": {
+      "type": "etape",
+      "kicker": "Propriété · associativité",
+      "titre": "Remplacer un sous-groupe par son barycentre",
+      "tex": [
+        "H = \\text{bary}\\{(A_1, \\alpha_1), (A_2, \\alpha_2)\\}",
+        "G = \\text{bary}\\{(H, \\alpha_1 + \\alpha_2), (A_3, \\alpha_3), \\dots\\}"
+      ]
+    },
+    "ex_partiel": {
+      "type": "etape",
+      "kicker": "Exemple résolu · barycentre partiel",
+      "titre": "Regrouper A et B dans le triangle ABC",
+      "tex": [
+        "G = \\text{bary}\\{(A, 1), (B, 1), (C, 2)\\}",
+        "I \\text{ milieu de } [AB]",
+        "G = \\text{bary}\\{(I, 2), (C, 2)\\}",
+        "G = \\text{milieu de } [IC]"
+      ]
+    },
+    "medianes": {
+      "type": "phrase",
+      "kicker": "Application · concours des médianes",
+      "texte": "L'isobarycentre appartient aux trois médianes."
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : à retenir",
+      "etapes": [
+        "Barycentre : somme pondérée nulle en G",
+        "Isobarycentre : milieu, centre de gravité",
+        "Homogénéité : masses fois k, G inchangé",
+        "Réduction : une somme, un seul vecteur MG",
+        "Associativité : regrouper, même G"
+      ]
+    },
+    "def_niveau": {
+      "type": "formule",
+      "kicker": "Définition · ligne de niveau",
+      "tex": "\\mathcal{L}_k = \\{M \\mid f(M) = k\\}",
+      "note": "Tous les points M où la fonction f vaut exactement k"
+    },
+    "distance": {
+      "type": "etape",
+      "kicker": "Ligne de niveau · la distance",
+      "titre": "f(M) = MA, A fixé",
+      "tex": [
+        "k < 0 : \\mathcal{L}_k = \\varnothing",
+        "k = 0 : \\mathcal{L}_k = \\{A\\}",
+        "k > 0 : \\text{sphère de centre } A, \\text{ rayon } k"
+      ]
+    },
+    "scalaire": {
+      "type": "formule",
+      "kicker": "Ligne de niveau · produit scalaire",
+      "tex": "\\overrightarrow{M A} \\cdot \\overrightarrow{M B} = M I^2 - \\frac{A B^2}{4}",
+      "note": "I milieu de [AB] : une sphère de centre I"
+    },
+    "somme_ponderee": {
+      "type": "formule",
+      "kicker": "Réduction · somme pondérée de carrés",
+      "tex": "f(M) = \\sum \\alpha_i M A_i^2 = \\lambda M G^2 + f(G)",
+      "note": "λ somme des coefficients : sphères centrées en G"
+    },
+    "methode": {
+      "type": "etape",
+      "kicker": "Méthode générale",
+      "titre": "Réduire, écrire, comparer",
+      "tex": [
+        "\\text{1. réduire } f(M) \\text{ autour de } G",
+        "\\text{2. écrire } f(M) = \\lambda M G^2 + c",
+        "\\text{3. comparer } k \\text{ et } c, \\text{ signe de } \\tfrac{k - c}{\\lambda}"
+      ]
+    },
+    "ex_somme": {
+      "type": "etape",
+      "kicker": "Exemple résolu · somme de carrés",
+      "titre": "AB vaut quatre, MA² + MB² égale k",
+      "tex": [
+        "MA^2 + MB^2 = 2 M I^2 + \\tfrac{AB^2}{2} = 2 M I^2 + 8",
+        "M I^2 = \\tfrac{k - 8}{2}",
+        "k < 8 : \\varnothing \\quad k = 8 : \\{I\\}",
+        "k > 8 : \\text{sphère}"
+      ]
+    },
+    "contraste": {
+      "type": "phrase",
+      "kicker": "Ne pas confondre",
+      "texte": "Somme de carrés : sphère. Différence : plan."
+    },
+    "difference": {
+      "type": "formule",
+      "kicker": "Ligne de niveau · différence de carrés",
+      "tex": "M A^2 - M B^2 = 2\\, \\overrightarrow{M I} \\cdot \\overrightarrow{B A}",
+      "note": "Condition linéaire : droite dans le plan, plan dans l'espace"
+    },
+    "ex_difference": {
+      "type": "etape",
+      "kicker": "Exemple résolu · différence de carrés",
+      "titre": "A à l'origine, B d'abscisse quatre",
+      "tex": [
+        "E_0 : MA^2 = MB^2 \\Rightarrow x = 2 \\text{ (médiateur)}",
+        "2 \\times (-4)(2 - x) = 8 \\iff x = 3",
+        "E_8 : \\text{plan } x = 3, \\text{ parallèle au médiateur}"
+      ]
+    },
+    "cas_general": {
+      "type": "formule",
+      "kicker": "Cas général · signes quelconques",
+      "tex": "M G^2 = \\frac{k - c}{\\alpha}, \\quad \\alpha = \\sum \\alpha_i \\neq 0",
+      "note": "Signe du quotient : positif sphère, nul point G, négatif vide"
+    },
+    "ex_signes": {
+      "type": "etape",
+      "kicker": "Exemple résolu · signes mélangés",
+      "titre": "Deux MA², moins MB², plus MC², égale cinq",
+      "tex": [
+        "2MA^2 - MB^2 + MC^2 = 5, \\quad \\alpha = 2, \\ c = 3",
+        "M G^2 = \\tfrac{5 - 3}{2} = 1",
+        "\\text{cercle de centre } G, \\text{ rayon } 1"
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Réduire autour du barycentre G",
+        "Somme de carrés : sphère centrée en G",
+        "Différence de carrés : droite ou plan",
+        "Produit scalaire : sphère centrée au milieu",
+        "Comparer k et c, signe du quotient"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux barycentres et aux lignes de niveaux. Un même outil, la réduction autour d'un point bien choisi, situera d'abord le barycentre d'un système pondéré, puis révélera la forme des ensembles définis par des distances.",
+      "texte": "Barycentres et lignes de niveaux."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "dit": "L'idée de départ tient en une phrase. Quand plusieurs points portent des masses différentes, il existe un point d'équilibre unique, le barycentre, et toute expression pondérée construite sur ces points se réécrit autour de lui, bien plus simplement.",
+      "texte": "Un point d'équilibre pour tous les calculs."
+    },
+    {
+      "id": "p03",
+      "ecran": "def",
+      "dit": "Prenons des points a un, a deux, jusqu'à a n, affectés de coefficients alpha un, alpha deux, jusqu'à alpha n, de somme non nulle. Le barycentre gé est l'unique point tel que la somme des alpha i fois les vecteurs gé a i est le vecteur nul. Les coefficients sont les masses.",
+      "texte": "La somme pondérée s'annule en G."
+    },
+    {
+      "id": "p04",
+      "ecran": "iso",
+      "dit": "Si tous les coefficients sont égaux et non nuls, le barycentre prend un nom particulier : c'est l'isobarycentre. Pour deux points, c'est le milieu du segment. Pour trois points non alignés, c'est le centre de gravité du triangle, point de concours des médianes.",
+      "texte": "Masses égales : l'isobarycentre."
+    },
+    {
+      "id": "p05",
+      "ecran": "homogeneite",
+      "dit": "Première propriété, l'homogénéité. Multiplier tous les coefficients par un même nombre ka non nul ne déplace pas le barycentre. Seules comptent les proportions entre les masses, jamais leur échelle commune.",
+      "texte": "Proportions des masses, pas leur échelle."
+    },
+    {
+      "id": "p06",
+      "ecran": "reduction",
+      "dit": "Deuxième propriété, la réduction vectorielle, la plus utile du cours. Pour tout point èm, la somme des alpha i fois les vecteurs èm a i vaut la somme des coefficients multipliée par le vecteur èm gé. Plusieurs vecteurs deviennent un seul.",
+      "texte": "Toute somme se réduit à un seul vecteur MG."
+    },
+    {
+      "id": "p07",
+      "ecran": "coordonnees",
+      "dit": "Dans un repère, les coordonnées du barycentre sont des moyennes pondérées. L'abscisse de gé est la somme des alpha i fois les abscisses des points, divisée par la somme des coefficients. Même calcul pour l'ordonnée et la troisième coordonnée.",
+      "texte": "Coordonnées de G : moyennes pondérées."
+    },
+    {
+      "id": "p08",
+      "ecran": "ex_coord",
+      "dit": "Premier exemple. Le point a a pour coordonnées un, zéro, zéro, bé zéro, deux, zéro, et cé zéro, zéro, trois. On cherche le barycentre du système a coefficient deux, bé coefficient trois, cé coefficient un. La somme vaut six, donc gé existe : abscisse un tiers, ordonnée un, troisième coordonnée un demi.",
+      "texte": "Exemple : G de coordonnées un tiers, un, un demi."
+    },
+    {
+      "id": "p09",
+      "ecran": "associativite",
+      "dit": "Troisième propriété, l'associativité, dite aussi barycentre partiel. Si hache est le barycentre de a un et a deux, avec une somme de coefficients non nulle, gé est aussi le barycentre du système où hache, affecté de la somme des deux coefficients, remplace les deux points.",
+      "texte": "Regrouper sans changer le barycentre global."
+    },
+    {
+      "id": "p10",
+      "ecran": "ex_partiel",
+      "dit": "Exemple de regroupement. Dans un triangle a bé cé, gé est le barycentre de a coefficient un, bé coefficient un et cé coefficient deux. On regroupe a et bé : leur barycentre partiel est i, milieu de a bé, affecté du coefficient deux. Gé est alors le milieu du segment i cé, sur la médiane issue de cé.",
+      "texte": "Exemple : G milieu de IC, sur la médiane."
+    },
+    {
+      "id": "p11",
+      "ecran": "medianes",
+      "dit": "Le même geste prouve un résultat célèbre. L'isobarycentre d'un triangle, obtenu en regroupant deux sommets, se trouve sur la médiane issue du troisième. Répété pour les trois paires, le raisonnement montre que les trois médianes concourent en gé, aux deux tiers depuis chaque sommet.",
+      "texte": "Les trois médianes concourent en G."
+    },
+    {
+      "id": "p12",
+      "ecran": "recap1",
+      "dit": "Retenons la première partie. Le barycentre annule la somme vectorielle pondérée, l'isobarycentre est le cas des masses égales, multiplier les masses ne déplace pas gé, la réduction ramène toute somme à un seul vecteur, et le regroupement remplace un sous-groupe par son barycentre partiel.",
+      "texte": "Barycentre : à retenir."
+    },
+    {
+      "id": "p13",
+      "ecran": "def_niveau",
+      "dit": "Une ligne de niveau répond à une question simple : où sont les points èm tels que f de èm égale un réel fixé ka. Cet ensemble, noté elle indice ka, réunit tous les points où f prend exactement la valeur ka. Connaître toutes ses lignes de niveau, c'est connaître la géométrie de la fonction.",
+      "texte": "Ligne de niveau : les points où f vaut k."
+    },
+    {
+      "id": "p14",
+      "ecran": "distance",
+      "dit": "Premier cas classique, la distance à un point fixe a. Si ka est négatif, l'ensemble est vide. Si ka vaut zéro, seul le point a convient. Si ka est strictement positif, on obtient la sphère de centre a et de rayon ka, dans l'espace, ou le cercle dans le plan.",
+      "texte": "Distance à A : vide, point ou sphère."
+    },
+    {
+      "id": "p15",
+      "ecran": "scalaire",
+      "dit": "Deuxième cas, le produit scalaire des vecteurs èm a et èm bé. Avec i, milieu de a bé, ce produit se réécrit èm i au carré moins a bé au carré sur quatre. La ligne de niveau est donc une sphère de centre i, dès que ka plus a bé au carré sur quatre est positif.",
+      "texte": "Produit scalaire : sphère de centre le milieu."
+    },
+    {
+      "id": "p16",
+      "ecran": "somme_ponderee",
+      "dit": "Troisième cas, le cœur du chapitre : une somme pondérée de carrés de distances. Sa réduction autour du barycentre gé donne lambda fois èm gé au carré plus la valeur de la fonction en gé, où lambda est la somme des coefficients. Les lignes de niveau sont des sphères centrées en gé.",
+      "texte": "Somme pondérée : sphères centrées en G."
+    },
+    {
+      "id": "p17",
+      "ecran": "methode",
+      "dit": "La méthode générale tient en trois gestes. Réduire l'expression en faisant apparaître le barycentre du système associé. L'écrire sous la forme lambda fois èm gé au carré plus une constante. Puis comparer ka à cette constante, en tenant compte du signe du quotient, pour conclure.",
+      "texte": "Réduire, écrire, comparer."
+    },
+    {
+      "id": "p18",
+      "ecran": "ex_somme",
+      "dit": "Exemple résolu. Deux points a et bé sont distants de quatre, et l'on cherche les points èm tels que èm a au carré plus èm bé au carré égale ka. Avec i le milieu de a bé, la réduction donne deux fois èm i au carré plus huit. Ka inférieur à huit : ensemble vide. Ka égal huit : le seul point i. Ka supérieur à huit : une sphère de centre i, de rayon la racine carrée du quotient de ka moins huit par deux.",
+      "texte": "Exemple : seuil huit, sphère de centre I."
+    },
+    {
+      "id": "p19",
+      "ecran": "contraste",
+      "dit": "Attention à ne pas confondre les deux familles. Une somme de carrés de distances conduit à une sphère, un point ou l'ensemble vide. Une différence de carrés conduit toujours à une droite dans le plan ou à un plan dans l'espace, jamais à une sphère.",
+      "texte": "Somme : sphère. Différence : plan."
+    },
+    {
+      "id": "p20",
+      "ecran": "difference",
+      "dit": "Pour une différence, le calcul change de nature. Èm a au carré moins èm bé au carré se factorise en un produit scalaire : deux fois le vecteur èm i, scalaire le vecteur bé a, où i est le milieu de a bé. La condition devient linéaire en les coordonnées de èm, d'où la droite ou le plan.",
+      "texte": "Différence de carrés : condition linéaire."
+    },
+    {
+      "id": "p21",
+      "ecran": "ex_difference",
+      "dit": "Exemple dans l'espace. Le point a est à l'origine et bé a pour abscisse quatre. Les points à égale distance de a et de bé forment le plan médiateur de a bé, perpendiculaire à la droite a bé, passant par i, d'équation ixe égale deux. Pour une différence égale à huit, le même calcul donne ixe égale trois, un plan parallèle au médiateur.",
+      "texte": "Exemple : plan médiateur, puis plan parallèle."
+    },
+    {
+      "id": "p22",
+      "ecran": "cas_general",
+      "dit": "Le cas général autorise des coefficients de signes quelconques, pourvu que leur somme alpha soit non nulle. La réduction donne èm gé au carré égal au quotient de ka moins la constante du système par alpha. Signe du quotient : positif, une sphère ou un cercle de centre gé ; nul, le seul point gé ; négatif, l'ensemble vide.",
+      "texte": "Signes quelconques : le signe du quotient décide."
+    },
+    {
+      "id": "p23",
+      "ecran": "ex_signes",
+      "dit": "Dernier exemple, avec des signes mélangés. On cherche les points èm tels que deux fois èm a au carré, moins èm bé au carré, plus èm cé au carré, égale cinq. La somme des coefficients vaut deux et la constante vaut trois. Alors èm gé au carré vaut cinq moins trois, divisé par deux, soit un : l'ensemble est le cercle de centre gé et de rayon un.",
+      "texte": "Exemple : cercle de centre G, rayon un."
+    },
+    {
+      "id": "p24",
+      "ecran": "recap_final",
+      "dit": "Pour conclure, un seul réflexe domine tout le cours. Devant toute somme pondérée de vecteurs ou de carrés de distances, faites apparaître le barycentre, global ou partiel, puis réduisez. La somme devient une sphère, la différence un plan, et le problème finit par une comparaison de deux nombres.",
+      "texte": "Réduire autour de G : le réflexe du cours."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Le barycentre : définition, propriétés et regroupement"
+    },
+    {
+      "debut": "p13",
+      "sous_titre": "Les lignes de niveau : sommes, différences et cas général",
+      "pont": {
+        "texte": "Partie 2 : les lignes de niveau.",
+        "dit": "Partie deux, les lignes de niveaux. Après le point d'équilibre, place aux ensembles définis par une égalité : chaque expression se réduira autour de son barycentre, et la forme se lira directement, sphère, point, plan ou ensemble vide."
+      }
+    }
+  ]
+}
