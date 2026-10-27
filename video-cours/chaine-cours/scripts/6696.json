@@ -1,0 +1,332 @@
+{
+ "cours": 6696,
+ "titre": "Statistiques : population, effectifs et fréquences",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématiques · Statistiques",
+   "titre": "Statistiques : effectifs et fréquences",
+   "sous": "Décrire une population : compter, organiser, comparer",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Statistiques",
+   "texte": "Regrouper, compter, comparer : le programme des statistiques.",
+   "anim": {
+    "nom": "distribution_bars_fig",
+    "hauteur": 170
+   }
+  },
+  "defs": {
+   "type": "etape",
+   "kicker": "Vocabulaire des statistiques",
+   "titre": "Population et caractère",
+   "tex": [
+    "\\text{population : l'ensemble étudié}",
+    "\\text{caractère : la propriété observée}"
+   ]
+  },
+  "modalites": {
+   "type": "etape",
+   "kicker": "Vocabulaire des statistiques",
+   "titre": "Les modalités : les valeurs possibles",
+   "tex": [
+    "\\text{caractère : la couleur des yeux}",
+    "\\text{modalités : bleu, marron, vert, noisette}"
+   ]
+  },
+  "effectifs_def": {
+   "type": "etape",
+   "kicker": "Vocabulaire des statistiques",
+   "titre": "Les effectifs de l'exemple",
+   "tex": [
+    "N = 25 \\qquad \\text{yeux bleus} : 8"
+   ]
+  },
+  "transition_tableau": {
+   "type": "phrase",
+   "kicker": "Le tableau des effectifs",
+   "texte": "Organiser les comptes : une ligne par modalité."
+  },
+  "tableau": {
+   "type": "etape",
+   "kicker": "Le tableau des effectifs",
+   "titre": "Le tableau des effectifs",
+   "tex": [
+    "\\text{Bleu : } 10 \\qquad \\text{Marron : } 7",
+    "\\text{Vert : } 5 \\qquad \\text{Noisette : } 3",
+    "10 + 7 + 5 + 3 = 25"
+   ]
+  },
+  "lecture_tableau": {
+   "type": "phrase",
+   "kicker": "Le tableau des effectifs",
+   "texte": "Le bleu en tête : dix voix sur vingt-cinq.",
+   "anim": {
+    "nom": "distribution_bars_fig",
+    "hauteur": 200
+   }
+  },
+  "somme_effectifs": {
+   "type": "formule",
+   "kicker": "Le tableau des effectifs",
+   "tex": "N = e_1 + e_2 + e_3 + e_4",
+   "note": "La somme des effectifs redonne l'effectif total."
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Population, caractère, modalités",
+    "Effectif : le nombre d'individus concernés",
+    "Tableau : une ligne par modalité",
+    "Somme des effectifs : l'effectif total"
+   ]
+  },
+  "frequence": {
+   "type": "formule",
+   "kicker": "Les fréquences",
+   "tex": "f = \\frac{\\text{effectif de la modalité}}{\\text{effectif total}}",
+   "note": "Une part du total, entre zéro et un."
+  },
+  "proprietes": {
+   "type": "phrase",
+   "kicker": "Les fréquences",
+   "texte": "Des parts entre 0 et 1, qui totalisent 1.",
+   "anim": {
+    "nom": "camembert_fig",
+    "hauteur": 190
+   }
+  },
+  "freq1": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Fréquences : bleu et marron",
+   "tex": [
+    "f_{\\text{bleu}} = \\tfrac{10}{25} = \\tfrac{2}{5} = 0{,}4",
+    "f_{\\text{marron}} = \\tfrac{7}{25} = 0{,}28"
+   ]
+  },
+  "freq2": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Fréquences : vert et noisette",
+   "tex": [
+    "f_{\\text{vert}} = \\tfrac{5}{25} = \\tfrac{1}{5} = 0{,}2",
+    "f_{\\text{noisette}} = \\tfrac{3}{25} = 0{,}12"
+   ]
+  },
+  "verif_freq": {
+   "type": "etape",
+   "kicker": "Les fréquences",
+   "titre": "Vérifier : la somme des fréquences",
+   "tex": [
+    "0{,}4 + 0{,}28 + 0{,}2 + 0{,}12 = 1"
+   ]
+  },
+  "fraction_decimal": {
+   "type": "phrase",
+   "kicker": "Les fréquences",
+   "texte": "Fraction : la valeur exacte. Décimal : la comparaison facile."
+  },
+  "pourcentage_note": {
+   "type": "phrase",
+   "kicker": "Les fréquences",
+   "texte": "En pourcentage : multiplier la fréquence par cent."
+  },
+  "methode1": {
+   "type": "etape",
+   "kicker": "Méthode : construire un tableau",
+   "titre": "Construire le tableau : premiers pas",
+   "tex": [
+    "\\text{un : population, caractère, modalités}",
+    "\\text{deux : compter chaque effectif}",
+    "\\text{trois : vérifier la somme des effectifs}"
+   ]
+  },
+  "methode2": {
+   "type": "etape",
+   "kicker": "Méthode : construire un tableau",
+   "titre": "Construire le tableau : les vérifications",
+   "tex": [
+    "\\text{quatre : calculer les fréquences}",
+    "\\text{cinq : vérifier la somme des fréquences}"
+   ]
+  },
+  "tableau_type": {
+   "type": "formule",
+   "kicker": "Synthèse : le tableau type",
+   "tex": "f_i = \\frac{e_i}{N}",
+   "note": "Chaque modalité : son effectif e divisé par le total N."
+  },
+  "synthese": {
+   "type": "phrase",
+   "kicker": "Synthèse",
+   "texte": "Décrire une population : nommer, compter, convertir, contrôler."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Population : l'ensemble étudié",
+    "Caractère : la propriété observée",
+    "Modalités : les valeurs possibles",
+    "Fréquence : effectif divisé par total",
+    "Contrôles : sommes égales au total et à un"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de statistiques, le chapitre qui apprend à décrire un ensemble de données au lieu de les subir. Nous poserons d'abord le vocabulaire : population, caractère, modalités et effectifs. Puis nous organiserons les données dans un tableau, avant de calculer les fréquences, ces parts qui permettent de comparer et de vérifier nos résultats.",
+   "texte": "Statistiques : décrire une population en nombres.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "À quoi servent les statistiques ? À transformer une liste désordonnée d'observations en information lisible. Plutôt que de retenir vingt-cinq réponses une à une, on les regroupe, on compte combien de fois chaque réponse apparaît, et l'on obtient un portrait fidèle du groupe étudié. Tout commence par trois mots de vocabulaire.",
+   "texte": "Des réponses en vrac à un portrait du groupe.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "La population, c'est l'ensemble étudié : ce peut être les élèves d'une classe, les habitants d'une ville ou les pièces produites par une usine. Le caractère, c'est la propriété que l'on observe sur cette population : une couleur, une taille, une note, selon ce que l'on cherche à décrire.",
+   "texte": "Population : qui on étudie. Caractère : ce qu'on observe.",
+   "ecran": "defs"
+  },
+  {
+   "id": "p04",
+   "dit": "Les modalités sont les différentes valeurs possibles que peut prendre le caractère. Prenons un exemple fil rouge : dans une classe de vingt-cinq élèves, on étudie la couleur des yeux. Le caractère est la couleur des yeux, et ses modalités sont bleu, marron, vert et noisette : quatre réponses possibles, pas une de plus.",
+   "texte": "Exemple : la couleur des yeux, quatre modalités.",
+   "ecran": "modalites"
+  },
+  {
+   "id": "p05",
+   "dit": "Viennent ensuite les effectifs. L'effectif de la population est le nombre total d'individus étudiés : ici, vingt-cinq élèves. L'effectif d'une modalité est le nombre d'individus qui possèdent cette modalité : si huit élèves ont les yeux bleus, l'effectif de la modalité bleu est huit.",
+   "texte": "Effectif total : 25. Yeux bleus : 8 élèves.",
+   "ecran": "effectifs_def"
+  },
+  {
+   "id": "p06",
+   "dit": "Compter modalité par modalité ne suffit pas : il faut organiser ces nombres pour les lire d'un coup d'œil. C'est le rôle du tableau des effectifs, qui présente, pour chaque modalité, le nombre d'individus concernés. Construisons celui de notre classe, à partir d'un second sondage : la couleur d'yeux préférée des élèves.",
+   "texte": "Le tableau des effectifs organise les comptes.",
+   "ecran": "transition_tableau"
+  },
+  {
+   "id": "p07",
+   "dit": "Voici les résultats du sondage : dix élèves préfèrent le bleu, sept le marron, cinq le vert et trois la couleur noisette. Le tableau range ces quatre effectifs en face de leurs modalités, et une ligne total rappelle l'effectif de la population. Attention à ne pas confondre avec l'exemple précédent : ici, le bleu compte dix voix, car la question portait sur la couleur préférée.",
+   "texte": "Préférences : bleu 10, marron 7, vert 5, noisette 3.",
+   "ecran": "tableau"
+  },
+  {
+   "id": "p08",
+   "dit": "Un bon tableau se lit comme une histoire. Ici, le bleu arrive nettement en tête des préférences, suivi du marron, tandis que la couleur noisette ferme la marche. Ce classement immédiat, impossible à deviner dans la liste brute des réponses, est exactement ce que le tableau rend visible.",
+   "texte": "Le tableau révèle le classement des préférences.",
+   "ecran": "lecture_tableau"
+  },
+  {
+   "id": "p09",
+   "dit": "Premier contrôle, à ne jamais sauter : la somme des effectifs de toutes les modalités doit redonner l'effectif total de la population. Dix plus sept plus cinq plus trois font vingt-cinq : notre tableau est cohérent. Si la somme ne tombe pas juste, c'est qu'une réponse a été oubliée ou comptée deux fois.",
+   "texte": "Contrôle : 10 + 7 + 5 + 3 = 25, le total est bon.",
+   "ecran": "somme_effectifs"
+  },
+  {
+   "id": "p10",
+   "dit": "Récapitulons. Une population est l'ensemble étudié, un caractère la propriété observée, et les modalités ses valeurs possibles. L'effectif d'une modalité compte les individus concernés, et la somme de tous les effectifs redonne l'effectif total. Il ne reste qu'à transformer ces comptes en parts : ce sera la partie deux.",
+   "texte": "Vocabulaire et effectifs : l'essentiel.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p11",
+   "dit": "La fréquence d'une modalité est le quotient de son effectif par l'effectif total de la population. C'est une part : elle dit quelle fraction du groupe possède la modalité étudiée. Elle s'écrit au choix sous forme de fraction ou sous forme de nombre décimal, les deux écritures disent exactement la même chose.",
+   "texte": "f = effectif de la modalité / effectif total.",
+   "ecran": "frequence"
+  },
+  {
+   "id": "p12",
+   "dit": "Deux propriétés gouvernent les fréquences. D'abord, une fréquence est toujours comprise entre zéro et un : zéro si personne ne possède la modalité, un si tout le monde la possède. Ensuite, la somme des fréquences de toutes les modalités vaut exactement un : les parts, mises bout à bout, reconstituent le tout, comme les parts d'un camembert.",
+   "texte": "Chaque fréquence entre 0 et 1 ; leur somme vaut 1.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p13",
+   "dit": "Calculons les fréquences de notre tableau. Pour le bleu : dix divisé par vingt-cinq, qui se simplifie en deux cinquièmes, soit zéro virgule quatre. Pour le marron : sept divisé par vingt-cinq, soit zéro virgule vingt-huit. Le bleu représente donc la plus grosse part des préférences de la classe.",
+   "texte": "Bleu : 10/25 = 0,4. Marron : 7/25 = 0,28.",
+   "ecran": "freq1"
+  },
+  {
+   "id": "p14",
+   "dit": "Pour le vert : cinq divisé par vingt-cinq, qui se simplifie en un cinquième, soit zéro virgule deux. Pour la couleur noisette : trois divisé par vingt-cinq, soit zéro virgule douze. Notre tableau est maintenant complet : chaque modalité possède son effectif et sa fréquence, en fraction et en décimal.",
+   "texte": "Vert : 5/25 = 0,2. Noisette : 3/25 = 0,12.",
+   "ecran": "freq2"
+  },
+  {
+   "id": "p15",
+   "dit": "Deuxième contrôle, symétrique du premier : la somme des fréquences doit valoir un. Zéro virgule quatre, plus zéro virgule vingt-huit, plus zéro virgule deux, plus zéro virgule douze : le total fait exactement un. Ce contrôle tout simple attrape la plupart des erreurs de calcul ou d'arrondi.",
+   "texte": "Contrôle : 0,4 + 0,28 + 0,2 + 0,12 = 1.",
+   "ecran": "verif_freq"
+  },
+  {
+   "id": "p16",
+   "dit": "Fraction ou décimal, comment choisir ? La fraction garde la valeur exacte et montre le rapport au total : deux cinquièmes se lit immédiatement comme deux parts sur cinq. Le décimal, lui, facilite les comparaisons et les classements : zéro virgule vingt-huit est visiblement plus grand que zéro virgule douze. Un bon tableau donne souvent les deux.",
+   "texte": "Deux écritures, une même part : choisir selon l'usage.",
+   "ecran": "fraction_decimal"
+  },
+  {
+   "id": "p17",
+   "dit": "Petite remarque pour aller plus loin : en multipliant une fréquence par cent, on l'exprime en pourcentage. Zéro virgule quatre devient alors quarante pour cent. Ce n'est pas exigé au programme de cinquième, mais c'est une lecture très utile des tableaux, et vous la rencontrerez partout dans les médias.",
+   "texte": "0,4 lu en pourcentage : quarante pour cent.",
+   "ecran": "pourcentage_note"
+  },
+  {
+   "id": "p18",
+   "dit": "Il est temps de ranger tout cela en méthode. Pour construire un tableau complet, première étape : identifier la population, le caractère et ses modalités. Deuxième étape : compter les effectifs, modalité par modalité, sans oublier personne. Troisième étape : vérifier que la somme des effectifs redonne bien l'effectif total.",
+   "texte": "Méthode : identifier, compter, vérifier les effectifs.",
+   "ecran": "methode1"
+  },
+  {
+   "id": "p19",
+   "dit": "Quatrième étape : calculer chaque fréquence en divisant l'effectif de la modalité par l'effectif total. Cinquième et dernière étape : vérifier que la somme des fréquences vaut un. Ces deux vérifications, sur les effectifs puis sur les fréquences, sont vos garde-fous : un tableau contrôlé est un tableau fiable.",
+   "texte": "Méthode : fréquences, puis le contrôle final.",
+   "ecran": "methode2"
+  },
+  {
+   "id": "p20",
+   "dit": "Voici le tableau type à garder en tête : chaque ligne associe une modalité, son effectif et sa fréquence, c'est-à-dire son effectif divisé par le total, noté N. Les modalités se notent m indice un, m indice deux, et leurs effectifs e indice un, e indice deux. Toute étude statistique élémentaire tient dans ce schéma.",
+   "texte": "Tableau type : modalité, effectif, fréquence e/N.",
+   "ecran": "tableau_type"
+  },
+  {
+   "id": "p21",
+   "dit": "Vous savez désormais décrire une population de bout en bout : nommer ce que l'on étudie, compter proprement, organiser en tableau, convertir en fréquences et contrôler par les deux sommes. C'est la grammaire de base des statistiques, celle qui servira pour tous les chapitres suivants, diagrammes compris.",
+   "texte": "Décrire, compter, convertir, contrôler : acquis.",
+   "ecran": "synthese"
+  },
+  {
+   "id": "p22",
+   "dit": "À retenir pour terminer. La population est l'ensemble étudié, le caractère la propriété observée et les modalités ses valeurs possibles. La fréquence est le quotient de l'effectif par l'effectif total. La somme des effectifs donne le total, et la somme des fréquences vaut toujours un : deux contrôles à ne jamais oublier.",
+   "texte": "L'essentiel des statistiques en cinq points.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Vocabulaire et tableau des effectifs"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Les fréquences et la méthode complète",
+   "pont": {
+    "texte": "Partie 2 : des effectifs aux fréquences.",
+    "dit": "Partie deux : les fréquences. Nous allons convertir chaque effectif en une part du total, vérifier que ces parts se recomposent parfaitement, puis suivre une méthode complète, en cinq étapes, pour construire un tableau de statistiques sans faute."
+   }
+  }
+ ]
+}
