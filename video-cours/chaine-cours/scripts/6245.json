@@ -1,0 +1,398 @@
+{
+ "cours": 6245,
+ "titre": "De l'ADN à la protéine : l'expression d'un gène",
+ "matiere": "Biologie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Biologie · Expression génétique",
+   "titre": "De l'ADN à la protéine : l'expression d'un gène",
+   "sous": "Double hélice, transcription, traduction : le chemin d'un gène vers sa protéine"
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Le livre de la vie",
+   "texte": "Chaque cellule porte le même livre : l'ADN. Chaque gène en est un chapitre."
+  },
+  "nucleotide": {
+   "type": "etape",
+   "kicker": "La brique de base : le nucléotide",
+   "tex": [
+    "\\text{sucre : désoxyribose}",
+    "\\text{phosphate}",
+    "\\text{base : A, T, C ou G}"
+   ],
+   "titre": "Trois pièces assemblées"
+  },
+  "chargaff": {
+   "type": "formule",
+   "kicker": "La règle de Chargaff",
+   "tex": "A = T \\qquad G \\equiv C",
+   "note": "Autant de A que de T, autant de G que de C."
+  },
+  "helice": {
+   "type": "etape",
+   "kicker": "La double hélice",
+   "tex": [
+    "\\text{deux brins antiparallèles}",
+    "\\text{A lié à T : deux liaisons}",
+    "\\text{G lié à C : trois liaisons}"
+   ],
+   "titre": "Un escalier en colimaçon"
+  },
+  "gene": {
+   "type": "etape",
+   "kicker": "Du chromosome au gène",
+   "tex": [
+    "\\text{chromosome : ADN compacté}",
+    "\\text{gène : séquence codante}",
+    "\\text{exons : un et demi pour cent}"
+   ],
+   "titre": "Trois niveaux d'organisation"
+  },
+  "exemple_brin": {
+   "type": "etape",
+   "kicker": "Exemple : écrire le brin complémentaire",
+   "tex": [
+    "5'\\text{-}A\\text{-}T\\text{-}G\\text{-}C\\text{-}C\\text{-}T\\text{-}3'",
+    "3'\\text{-}T\\text{-}A\\text{-}C\\text{-}G\\text{-}G\\text{-}A\\text{-}5'"
+   ],
+   "titre": "Chaque base appelle son complément"
+  },
+  "pourquoi_transcrire": {
+   "type": "phrase",
+   "kicker": "Pourquoi un intermédiaire",
+   "texte": "L'ADN reste dans le noyau : il envoie une copie de travail, l'ARN messager."
+  },
+  "transcription_acteurs": {
+   "type": "etape",
+   "kicker": "Les acteurs de la transcription",
+   "tex": [
+    "\\text{matrice : un brin d'ADN}",
+    "\\text{enzyme : ARN polymérase}",
+    "\\text{départ : le promoteur}"
+   ],
+   "titre": "Trois acteurs, un seul message"
+  },
+  "transcription_actes": {
+   "type": "etape",
+   "kicker": "La transcription en trois actes",
+   "tex": [
+    "\\text{initiation : ouverture}",
+    "\\text{élongation : copie}",
+    "\\text{terminaison : signal de fin}"
+   ],
+   "titre": "Copier sans modifier l'original"
+  },
+  "maturation": {
+   "type": "etape",
+   "kicker": "La maturation de l'ARN messager",
+   "tex": [
+    "\\text{coiffe en cinq prime}",
+    "\\text{épissage : introns retirés}",
+    "\\text{queue poly-A : stabilité}"
+   ],
+   "titre": "Du brouillon au message final"
+  },
+  "arn_types": {
+   "type": "etape",
+   "kicker": "Les ARN, une équipe complète",
+   "tex": [
+    "\\text{ARNm : le message}",
+    "\\text{ARNt : le traducteur}",
+    "\\text{ARNr : la machine}"
+   ],
+   "titre": "Trois ARN, trois métiers"
+  },
+  "code": {
+   "type": "etape",
+   "kicker": "Le code génétique",
+   "tex": [
+    "\\text{triplet = un codon}",
+    "\\text{soixante-quatre codons}",
+    "\\text{vingt acides aminés}"
+   ],
+   "titre": "Un dictionnaire presque universel"
+  },
+  "codons_cles": {
+   "type": "formule",
+   "kicker": "Les codons à connaître",
+   "tex": "AUG \\qquad UAA,\\ UAG,\\ UGA",
+   "note": "Un départ, trois signaux d'arrêt."
+  },
+  "ribosome": {
+   "type": "etape",
+   "kicker": "Le ribosome, usine d'assemblage",
+   "tex": [
+    "\\text{deux sous-unités}",
+    "\\text{petite : lecture du message}",
+    "\\text{grande : liaison peptidique}"
+   ],
+   "titre": "Une machine faite d'ARN"
+  },
+  "arnt": {
+   "type": "etape",
+   "kicker": "L'ARNt, adaptateur bilingue",
+   "tex": [
+    "\\text{forme en trèfle}",
+    "\\text{anticodon : lecture du codon}",
+    "\\text{acide aminé porté}"
+   ],
+   "titre": "Un bout lit, l'autre porte"
+  },
+  "traduction_actes": {
+   "type": "etape",
+   "kicker": "La traduction en trois actes",
+   "tex": [
+    "\\text{initiation sur AUG}",
+    "\\text{élongation : un à un}",
+    "\\text{terminaison sur un stop}"
+   ],
+   "titre": "Assembler, puis libérer"
+  },
+  "vitesse": {
+   "type": "phrase",
+   "kicker": "Une cadence impressionnante",
+   "texte": "Chez la bactérie, quinze à vingt acides aminés par seconde s'enchaînent."
+  },
+  "repliement": {
+   "type": "etape",
+   "kicker": "Après la chaîne, la forme",
+   "tex": [
+    "\\text{chaîne : structure primaire}",
+    "\\text{repliement : forme active}",
+    "\\text{chaperonnes : aide au pliage}"
+   ],
+   "titre": "La forme fait la fonction"
+  },
+  "operon": {
+   "type": "etape",
+   "kicker": "Le contrôle : l'opéron lactose",
+   "tex": [
+    "\\text{sans lactose : répresseur actif}",
+    "\\text{avec lactose : gènes libérés}",
+    "\\text{un interrupteur cellulaire}"
+   ],
+   "titre": "Un gène ne s'exprime que si besoin"
+  },
+  "mutations": {
+   "type": "etape",
+   "kicker": "Les mutations, erreurs de copie",
+   "tex": [
+    "\\text{substitution : une lettre}",
+    "\\text{délétion : décalage du cadre}",
+    "\\text{insertion : décalage du cadre}"
+   ],
+   "titre": "Trois façons de changer le message"
+  },
+  "drepanocytose": {
+   "type": "formule",
+   "kicker": "Exemple : la drépanocytose",
+   "tex": "\\text{GAG} \\rightarrow \\text{GTG} \\qquad \\text{Glu} \\rightarrow \\text{Val}",
+   "note": "Une seule lettre change, le globule se déforme."
+  },
+  "mucoviscidose": {
+   "type": "etape",
+   "kicker": "Exemple : la mucoviscidose",
+   "tex": [
+    "\\text{un codon perdu : phénylalanine}",
+    "\\text{canal chlorure bloqué}",
+    "\\text{mucus épais caractéristique}"
+   ],
+   "titre": "Soixante-dix pour cent des cas environ"
+  },
+  "therapie": {
+   "type": "phrase",
+   "kicker": "De la lecture à la thérapie",
+   "texte": "CRISPR, thérapies antisens : corriger ou moduler le message, jamais à la légère."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "ADN : double hélice, A lié à T, G lié à C",
+    "Transcription : copie en ARN messager",
+    "Maturation : coiffe, épissage, queue",
+    "Traduction : codons lus par le ribosome",
+    "Régulation et mutations : le message se contrôle"
+   ]
+  },
+  "cloture": {
+   "type": "phrase",
+   "kicker": "À retenir",
+   "texte": "Un gène, un message, une protéine : l'expression génétique, c'est ce chemin."
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Un gène, c'est une séquence d'ADN qui porte les instructions pour fabriquer une protéine. Tout commence dans le noyau, avec une molécule en double hélice que deux chercheurs, Watson et Crick, ont décrite en mille neuf cent cinquante-trois.",
+   "texte": "ADN : le livre d'instructions de la cellule.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Imaginez une bibliothèque qui contiendrait toutes les instructions pour construire un être vivant. Chaque chromosome en serait un livre, chaque gène un chapitre, chaque lettre une base chimique. Cette bibliothèque, c'est l'ADN.",
+   "texte": "Chromosome, gène, base : trois échelles, un même livre.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "La brique de base de l'ADN s'appelle un nucléotide. Elle assemble un sucre, le désoxyribose, un groupe phosphate, et une base parmi quatre : adénine, thymine, cytosine ou guanine.",
+   "texte": "Sucre, phosphate, base : la brique de l'ADN.",
+   "ecran": "nucleotide"
+  },
+  {
+   "id": "p04",
+   "dit": "Erwin Chargaff a remarqué une régularité : dans un ADN, il y a autant d'adénine que de thymine, et autant de guanine que de cytosine. La séquence d'un brin détermine donc celle de l'autre.",
+   "texte": "Autant de A que de T, autant de G que de C.",
+   "ecran": "chargaff"
+  },
+  {
+   "id": "p05",
+   "dit": "Les deux brins s'enroulent en double hélice, dans des sens opposés. L'adénine se lie à la thymine par deux liaisons hydrogène, la guanine à la cytosine par trois liaisons. Plus il y a de paires G et C, plus la molécule tient.",
+   "texte": "Deux brins opposés, des liaisons qui tiennent la paire.",
+   "ecran": "helice"
+  },
+  {
+   "id": "p06",
+   "dit": "Dans une cellule, l'ADN est compacté avec des protéines, les histones, pour former les chromosomes. Un gène est une portion de cet ADN qui code pour une protéine. Fait surprenant : chez l'humain, les parties codantes ne représentent qu'environ un et demi pour cent du génome.",
+   "texte": "Chromosome, gène, exon : l'essentiel tient en peu de place.",
+   "ecran": "gene"
+  },
+  {
+   "id": "p07",
+   "dit": "Vérifions la règle sur un exemple. Prenez le brin A, T, G, C, C, T. Son complément s'écrit T, A, C, G, G, A, lu dans l'autre sens. Chaque base appelle son complément, sans exception.",
+   "texte": "A T G C C T devient T A C G G A : la règle appliquée.",
+   "ecran": "exemple_brin"
+  },
+  {
+   "id": "p08",
+   "dit": "L'ADN ne quitte jamais le noyau. Pour fabriquer une protéine dans le cytoplasme, la cellule envoie donc une copie de travail : l'ARN messager. C'est la transcription, le premier acte de l'expression.",
+   "texte": "L'original reste au noyau, la copie voyage.",
+   "ecran": "pourquoi_transcrire"
+  },
+  {
+   "id": "p09",
+   "dit": "Trois acteurs entrent en scène. La matrice, c'est un brin d'ADN lu comme modèle. L'enzyme, l'ARN polymérase, synthétise la copie. Le départ est marqué par une région particulière, le promoteur, reconnue avec des facteurs de transcription.",
+   "texte": "Matrice, polymérase, promoteur : le trio de la copie.",
+   "ecran": "transcription_acteurs"
+  },
+  {
+   "id": "p10",
+   "dit": "La transcription se joue en trois actes. L'initiation ouvre la double hélice au promoteur. L'élongation allonge la copie, base après base, en remplaçant la thymine par l'uracile. La terminaison arrête la copie sur un signal de fin.",
+   "texte": "Ouvrir, copier, arrêter : les trois actes.",
+   "ecran": "transcription_actes"
+  },
+  {
+   "id": "p11",
+   "dit": "Chez les eucaryotes, la copie brute doit encore mûrir. Une coiffe protège son extrémité cinq prime. L'épissage retire les introns et ne garde que les exons, souvent en plusieurs versions. Une queue polyadénine stabilise le message.",
+   "texte": "Coiffe, épissage, queue : le message devient lisible.",
+   "ecran": "maturation"
+  },
+  {
+   "id": "p12",
+   "dit": "L'ARN messager n'est pas seul. L'ARN de transfert apporte les acides aminés. L'ARN ribosomique construit le ribosome et porte même la réaction chimique. Les petits ARN non codants, eux, règlent finement le message.",
+   "texte": "Message, traducteur, machine : chacun son métier.",
+   "ecran": "arn_types"
+  },
+  {
+   "id": "p13",
+   "dit": "Voici le dictionnaire : le code génétique. Chaque triplet de bases de l'ARN messager, un codon, désigne un acide aminé. Avec quatre bases prises trois par trois, on obtient soixante-quatre codons pour vingt acides aminés : le code est donc redondant, plusieurs codons pour un même acide aminé.",
+   "texte": "Soixante-quatre codons, vingt acides aminés.",
+   "ecran": "code"
+  },
+  {
+   "id": "p14",
+   "dit": "Deux codons méritent d'être connus par cœur. Le codon A U G lance la traduction et code pour la méthionine. Les codons U A A, U A G et U G A ne codent pour aucun acide aminé : ce sont les signaux d'arrêt.",
+   "texte": "A U G démarre, trois codons arrêtent.",
+   "ecran": "codons_cles"
+  },
+  {
+   "id": "p15",
+   "dit": "Passons à la traduction, dans le cytoplasme. Le ribosome est l'usine : une petite sous-unité lit le message, une grande sous-unité forme les liaisons peptidiques entre acides aminés. Chez les eucaryotes, on les note quarante S et soixante S.",
+   "texte": "Petite sous-unité lit, grande sous-unité soude.",
+   "ecran": "ribosome"
+  },
+  {
+   "id": "p16",
+   "dit": "L'ARN de transfert a une forme de trèfle. D'un côté, son anticodon lit le codon du message. De l'autre, il porte l'acide aminé correspondant. C'est lui qui traduit, lettre par lettre, le langage des nucléotides en langage des protéines.",
+   "texte": "Anticodon d'un côté, acide aminé de l'autre.",
+   "ecran": "arnt"
+  },
+  {
+   "id": "p17",
+   "dit": "La traduction, elle aussi, se joue en trois actes. L'initiation assemble le ribosome sur le codon de départ. L'élongation ajoute les acides aminés un par un, en consommant de l'énergie. La terminaison libère la chaîne quand un codon d'arrêt arrive.",
+   "texte": "Assembler, allonger, libérer : la chaîne est née.",
+   "ecran": "traduction_actes"
+  },
+  {
+   "id": "p18",
+   "dit": "La cadence est impressionnante : chez la bactérie Escherichia coli, le ribosome ajoute environ quinze à vingt acides aminés par seconde. Une protéine de quelques centaines d'acides aminés est donc assemblée en quelques secondes.",
+   "texte": "Quinze à vingt ajouts par seconde chez la bactérie.",
+   "ecran": "vitesse"
+  },
+  {
+   "id": "p19",
+   "dit": "Une chaîne d'acides aminés n'est pas encore une protéine. Elle se replie dans l'espace, parfois aidée par des protéines chaperonnes, pour adopter sa forme active. C'est cette forme qui lui permet de fonctionner.",
+   "texte": "La chaîne se plie, la fonction apparaît.",
+   "ecran": "repliement"
+  },
+  {
+   "id": "p20",
+   "dit": "Tout gène ne s'exprime pas tout le temps. Chez la bactérie, l'opéron lactose en est le modèle : sans lactose, un répresseur bloque les gènes. Avec du lactose, le répresseur se détache et les gènes s'expriment. La cellule ne produit que ce dont elle a besoin.",
+   "texte": "Sans lactose, bloqué. Avec lactose, exprimé.",
+   "ecran": "operon"
+  },
+  {
+   "id": "p21",
+   "dit": "Une erreur de copie peut changer le message. Une substitution remplace une lettre. Une délétion ou une insertion décale tout le cadre de lecture qui suit. Selon l'endroit, la protéine peut rester normale, être altérée, ou disparaître.",
+   "texte": "Substitution, délétion, insertion : trois erreurs possibles.",
+   "ecran": "mutations"
+  },
+  {
+   "id": "p22",
+   "dit": "Exemple célèbre : la drépanocytose. Dans le gène de la bêta-globine, le codon G A G devient G T G. L'acide glutamique est remplacé par la valine. L'hémoglobine devient moins soluble quand l'oxygène manque, et les globules rouges se déforment.",
+   "texte": "G A G devient G T G : un acide aminé change tout.",
+   "ecran": "drepanocytose"
+  },
+  {
+   "id": "p23",
+   "dit": "Autre exemple : la mucoviscidose. Dans environ soixante-dix pour cent des cas, un codon de phénylalanine est perdu dans le gène CFTR. La protéine, un canal chlorure, n'atteint pas correctement la membrane, et le mucus devient épais.",
+   "texte": "Un codon perdu, un canal absent, un mucus épais.",
+   "ecran": "mucoviscidose"
+  },
+  {
+   "id": "p24",
+   "dit": "Comprendre ce chemin ouvre des thérapies : corriger un gène avec des outils comme CRISPR, ou moduler un message avec des ARN interférents. Mais chaque intervention sur le livre de la vie engage une responsabilité, scientifique et éthique.",
+   "texte": "Lire le code permet de le réparer, avec prudence.",
+   "ecran": "therapie"
+  },
+  {
+   "id": "p25",
+   "dit": "Récapitulons. L'ADN est une double hélice où A s'apparie avec T et G avec C. La transcription en fait une copie ARN messager, maturée par coiffe, épissage et queue. La traduction lit les codons au ribosome pour assembler la protéine.",
+   "texte": "Double hélice, copie, traduction : le chemin complet.",
+   "ecran": "recap"
+  },
+  {
+   "id": "p26",
+   "dit": "Retenez l'essentiel : un gène s'exprime en trois temps, transcription, maturation, traduction. Le message peut être régulé à chaque étape, et une seule lettre changée peut changer une vie.",
+   "texte": "Transcrire, traduire, réguler : l'expression génétique.",
+   "ecran": "cloture"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'ADN et la transcription : du gène au message"
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "La traduction et la régulation : du message à la protéine",
+   "pont": {
+    "dit": "Partie deux : la traduction et la régulation. Nous suivrons le message jusqu'au ribosome, où les codons deviennent des acides aminés, avant de voir comment la cellule décide d'exprimer un gène, et ce qui se passe quand une lettre du message change.",
+    "texte": "Partie 2 : traduction, régulation et mutations."
+   }
+  }
+ ]
+}
