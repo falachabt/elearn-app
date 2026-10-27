@@ -1,0 +1,483 @@
+{
+  "cours": 7314,
+  "titre": "Logarithme et exponentielle : les fonctions réciproques",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Fonctions usuelles",
+      "titre": "Logarithme et exponentielle : les fonctions réciproques",
+      "sous": "Définitions, propriétés algébriques, limites, dérivées, équations et inéquations",
+      "anim": {
+        "nom": "exponentielle_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Deux fonctions inverses : le logarithme défait ce que l'exponentielle construit.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 150
+      }
+    },
+    "def_ln": {
+      "type": "formule",
+      "kicker": "Définition · le logarithme népérien",
+      "tex": "\\ln(1) = 0 \\qquad (\\ln x)' = \\frac{1}{x} \\quad (x > 0)",
+      "note": "Primitive de la fonction inverse qui s'annule en un"
+    },
+    "valeurs_ln": {
+      "type": "etape",
+      "kicker": "Le logarithme en trois repères",
+      "titre": "Domaine, sens et valeurs de référence",
+      "tex": [
+        "D_{\\ln} = \\left]0,\\ +\\infty\\right[",
+        "\\ln \\text{ strictement croissante}",
+        "\\ln 1 = 0 \\qquad \\ln e = 1"
+      ]
+    },
+    "proprietes_ln1": {
+      "type": "etape",
+      "kicker": "Propriétés algébriques · produits et quotients",
+      "titre": "Pour a et b strictement positifs",
+      "tex": [
+        "\\ln(ab) = \\ln a + \\ln b",
+        "\\ln\\left(\\tfrac{a}{b}\\right) = \\ln a - \\ln b",
+        "\\ln\\left(\\tfrac{1}{a}\\right) = -\\ln a"
+      ]
+    },
+    "proprietes_ln2": {
+      "type": "etape",
+      "kicker": "Propriétés algébriques · puissances et racines",
+      "titre": "L'exposant devient un coefficient",
+      "tex": [
+        "\\ln(a^n) = n \\ln a",
+        "\\ln(\\sqrt{a}) = \\tfrac{1}{2} \\ln a"
+      ]
+    },
+    "ex_simpl_ln": {
+      "type": "etape",
+      "kicker": "Exemple résolu · simplifier",
+      "titre": "Tout ramener au logarithme de deux",
+      "tex": [
+        "A = \\ln 8 - 2\\ln 2 + \\ln\\left(\\tfrac{1}{2}\\right)",
+        "A = 3\\ln 2 - 2\\ln 2 - \\ln 2",
+        "A = 0"
+      ]
+    },
+    "limites_ln": {
+      "type": "formule",
+      "kicker": "Limites usuelles du logarithme",
+      "tex": "\\lim_{x \\to +\\infty} \\ln x = +\\infty \\qquad \\lim_{x \\to 0^+} \\ln x = -\\infty",
+      "note": "La courbe monte sans borne et plonge près de zéro"
+    },
+    "croissances_ln": {
+      "type": "etape",
+      "kicker": "Croissances comparées · le logarithme perd",
+      "titre": "Devant les puissances de x, le logarithme est négligeable",
+      "tex": [
+        "\\lim_{x \\to +\\infty} \\tfrac{\\ln x}{x} = 0",
+        "\\lim_{x \\to 0^+} x \\ln x = 0"
+      ]
+    },
+    "ex_lim_ln": {
+      "type": "etape",
+      "kicker": "Exemple résolu · limite",
+      "titre": "Factoriser pour utiliser la croissance comparée",
+      "tex": [
+        "\\tfrac{\\ln x}{x^2} = \\tfrac{\\ln x}{x} \\times \\tfrac{1}{x}",
+        "\\tfrac{\\ln x}{x} \\to 0 \\quad \\text{et} \\quad \\tfrac{1}{x} \\to 0",
+        "\\lim_{x \\to +\\infty} \\tfrac{\\ln x}{x^2} = 0"
+      ]
+    },
+    "derivee_ln": {
+      "type": "formule",
+      "kicker": "Dérivée du logarithme et de sa composée",
+      "tex": "(\\ln x)' = \\frac{1}{x} \\qquad (\\ln u)' = \\frac{u'}{u}",
+      "note": "Valable pour u strictement positive"
+    },
+    "ex_der_ln": {
+      "type": "etape",
+      "kicker": "Exemple résolu · dériver un logarithme composé",
+      "titre": "Identifier u, dériver u, diviser",
+      "tex": [
+        "u(x) = 3x^2 + 1 \\qquad u'(x) = 6x",
+        "f'(x) = \\tfrac{u'(x)}{u(x)}",
+        "f'(x) = \\tfrac{6x}{3x^2 + 1}"
+      ]
+    },
+    "equations_ln": {
+      "type": "etape",
+      "kicker": "Équations en logarithme",
+      "titre": "La bijection efface le logarithme, après conditions",
+      "tex": [
+        "\\ln x = k \\iff x = e^k",
+        "\\ln A = \\ln B \\iff A = B",
+        "A > 0 \\quad \\text{et} \\quad B > 0"
+      ]
+    },
+    "ex_eq_ln": {
+      "type": "etape",
+      "kicker": "Exemple résolu · équation",
+      "titre": "Conditions d'abord, égalité ensuite",
+      "tex": [
+        "2x - 1 > 0 \\ \\text{et} \\ x + 3 > 0 \\iff x > \\tfrac{1}{2}",
+        "2x - 1 = x + 3 \\iff x = 4",
+        "4 > \\tfrac{1}{2} \\qquad S = \\{4\\}"
+      ]
+    },
+    "ex_ineq_ln": {
+      "type": "etape",
+      "kicker": "Exemple résolu · inéquation",
+      "titre": "Comparer à ln un, puis croiser avec la condition",
+      "tex": [
+        "x + 2 > 0 \\iff x > -2",
+        "\\ln(x+2) < \\ln 1 \\iff x+2 < 1 \\iff x < -1",
+        "S = \\left]-2,\\ -1\\right["
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : à retenir",
+      "etapes": [
+        "ln définie sur ]0, +∞[, croissante",
+        "ln 1 = 0 et ln e = 1",
+        "Produits en sommes, puissances en facteurs",
+        "(ln u)' = u' / u, avec u positive",
+        "Équations : conditions, puis bijection"
+      ]
+    },
+    "def_exp": {
+      "type": "formule",
+      "kicker": "Définition · l'exponentielle népérienne",
+      "tex": "\\begin{aligned} \\exp' &= \\exp \\qquad \\exp(0) = 1 \\\\ \\exp(x) &= e^x \\end{aligned}",
+      "note": "L'unique fonction égale à sa dérivée qui vaut un en zéro",
+      "anim": {
+        "nom": "exponentielle_fig",
+        "hauteur": 140
+      }
+    },
+    "proprietes_exp": {
+      "type": "etape",
+      "kicker": "Propriétés algébriques de l'exponentielle",
+      "titre": "Les sommes d'exposants deviennent des produits",
+      "tex": [
+        "e^{a+b} = e^a \\times e^b",
+        "e^{a-b} = \\tfrac{e^a}{e^b}",
+        "e^{-a} = \\tfrac{1}{e^a}",
+        "e^{na} = (e^a)^n"
+      ]
+    },
+    "ex_simpl_exp": {
+      "type": "etape",
+      "kicker": "Exemple résolu · simplifier",
+      "titre": "Additionner les exposants, puis simplifier",
+      "tex": [
+        "A = \\tfrac{e^{3x} \\times e^{-x}}{e^{2x}} = \\tfrac{e^{3x - x}}{e^{2x}}",
+        "A = \\tfrac{e^{2x}}{e^{2x}} = 1"
+      ]
+    },
+    "limites_exp": {
+      "type": "etape",
+      "kicker": "Limites de référence de l'exponentielle",
+      "titre": "Explosion à droite, écrasement à gauche",
+      "tex": [
+        "\\lim_{x \\to +\\infty} e^x = +\\infty",
+        "\\lim_{x \\to -\\infty} e^x = 0"
+      ]
+    },
+    "croissances_exp": {
+      "type": "etape",
+      "kicker": "Croissances comparées · l'exponentielle gagne",
+      "titre": "Elle écrase toute puissance de x",
+      "tex": [
+        "\\lim_{x \\to +\\infty} \\tfrac{e^x}{x} = +\\infty",
+        "\\lim_{x \\to -\\infty} x\\, e^x = 0"
+      ]
+    },
+    "ex_lim_exp": {
+      "type": "etape",
+      "kicker": "Exemple résolu · limite",
+      "titre": "Diviser par l'exponentielle pour isoler le rapport connu",
+      "tex": [
+        "\\tfrac{e^x - x}{e^x} = 1 - \\tfrac{x}{e^x}",
+        "\\tfrac{x}{e^x} \\to 0 \\quad \\text{quand} \\quad x \\to +\\infty",
+        "\\lim_{x \\to +\\infty} \\tfrac{e^x - x}{e^x} = 1"
+      ]
+    },
+    "derivee_exp": {
+      "type": "formule",
+      "kicker": "Dérivée de l'exponentielle et de sa composée",
+      "tex": "(e^x)' = e^x \\qquad (e^u)' = u' \\, e^u",
+      "note": "La seule fonction égale à sa propre dérivée"
+    },
+    "ex_der_exp": {
+      "type": "etape",
+      "kicker": "Exemple résolu · dériver une exponentielle composée",
+      "titre": "L'exposant se dérive et passe devant",
+      "tex": [
+        "u(x) = 3x^2 + 1 \\qquad u'(x) = 6x",
+        "f'(x) = u'(x) \\, e^{u(x)}",
+        "f'(x) = 6x \\, e^{3x^2 + 1}"
+      ]
+    },
+    "variations_exp": {
+      "type": "phrase",
+      "kicker": "Variations de l'exponentielle",
+      "texte": "Toujours positive, donc strictement croissante sur tout l'ensemble des réels.",
+      "anim": {
+        "nom": "exponentielle_fig",
+        "hauteur": 170
+      }
+    },
+    "equations_exp": {
+      "type": "etape",
+      "kicker": "Équations et inéquations en exponentielle",
+      "titre": "La croissance stricte compare les exposants",
+      "tex": [
+        "e^x = k \\iff x = \\ln k \\quad (k > 0)",
+        "e^x = e^y \\iff x = y",
+        "e^x < e^y \\iff x < y"
+      ]
+    },
+    "ex_eq_exp": {
+      "type": "etape",
+      "kicker": "Exemple résolu · équation",
+      "titre": "Passer au logarithme pour libérer l'exposant",
+      "tex": [
+        "e^{2x - 1} = 3 \\iff 2x - 1 = \\ln 3",
+        "x = \\tfrac{1 + \\ln 3}{2}"
+      ]
+    },
+    "ex_ineq_exp": {
+      "type": "etape",
+      "kicker": "Exemple résolu · inéquation",
+      "titre": "Comparer les exposants, puis signe d'un produit",
+      "tex": [
+        "e^{x^2} \\leq e^{3x} \\iff x^2 \\leq 3x",
+        "x^2 - 3x = x(x - 3) \\leq 0",
+        "x \\in [0,\\ 3]"
+      ]
+    },
+    "changement_var": {
+      "type": "etape",
+      "kicker": "Méthode · changement de variable",
+      "titre": "Poser grand X égal exponentielle de x",
+      "tex": [
+        "X = e^x \\quad (X > 0)",
+        "X^2 - 3X + 2 = 0 \\iff X = 1 \\ \\text{ou} \\ X = 2",
+        "e^x = 1 \\iff x = 0",
+        "e^x = 2 \\iff x = \\ln 2"
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "ln et exp : réciproques, croissantes",
+        "ln : produits en sommes ; exp : l'inverse",
+        "Limites et croissances comparées connues",
+        "(ln u)' = u'/u et (e^u)' = u' e^u",
+        "Équations : bijection, changement de variable"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "dit": "Bienvenue dans ce cours consacré aux deux fonctions réciproques au cœur de l'analyse : le logarithme népérien et l'exponentielle. Définitions, propriétés, limites, dérivées, équations et inéquations, pour l'une puis pour l'autre.",
+      "texte": "Logarithme et exponentielle : les réciproques."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "dit": "L'idée directrice est une inversion. L'exponentielle transforme une somme en produit, le logarithme transforme un produit en somme. Chacune défait l'autre, et ce va-et-vient résout les équations où l'inconnue se cache dans un logarithme ou un exposant.",
+      "texte": "Deux inverses : l'une construit, l'autre défait."
+    },
+    {
+      "id": "p03",
+      "ecran": "def_ln",
+      "dit": "La fonction logarithme népérien, notée ln, est la primitive, sur l'intervalle ouvert zéro plus l'infini, de la fonction qui à ixe associe un sur ixe, et qui s'annule en un. Sa dérivée est donc un sur ixe, pour ixe strictement positif, et logarithme de un vaut zéro.",
+      "texte": "ln : primitive de 1/x qui s'annule en 1."
+    },
+    {
+      "id": "p04",
+      "ecran": "valeurs_ln",
+      "dit": "Trois repères. Le logarithme n'est défini que pour les nombres strictement positifs. Il est strictement croissant sur son domaine. Et deux valeurs sont à connaître par cœur : logarithme de un vaut zéro, logarithme de e vaut un, où e vaut environ deux virgule sept cent dix-huit.",
+      "texte": "Domaine ]0, +∞[, croissante, ln 1 = 0, ln e = 1."
+    },
+    {
+      "id": "p05",
+      "ecran": "proprietes_ln1",
+      "dit": "Les propriétés algébriques, pour a et bé strictement positifs. Le logarithme d'un produit est la somme des logarithmes. Celui d'un quotient est la différence des logarithmes. Et celui de l'inverse est l'opposé du logarithme.",
+      "texte": "ln(ab) = ln a + ln b : le produit devient somme."
+    },
+    {
+      "id": "p06",
+      "ecran": "proprietes_ln2",
+      "dit": "Deux autres propriétés. Le logarithme d'une puissance : l'exposant descend et devient un coefficient devant le logarithme. Et le logarithme d'une racine carrée vaut la moitié du logarithme, car la racine est une puissance un demi.",
+      "texte": "ln(aⁿ) = n ln a : l'exposant devient coefficient."
+    },
+    {
+      "id": "p07",
+      "ecran": "ex_simpl_ln",
+      "dit": "Exemple : simplifier grand A égal logarithme de huit, moins deux fois le logarithme de deux, plus le logarithme d'un demi. Huit est deux au cube : son logarithme vaut trois fois logarithme de deux. Le logarithme d'un demi est l'opposé de celui de deux. Total : trois moins deux moins un, zéro.",
+      "texte": "Exemple : tout en ln 2, total zéro."
+    },
+    {
+      "id": "p08",
+      "ecran": "limites_ln",
+      "dit": "Les limites aux bornes. Quand ixe tend vers plus l'infini, le logarithme tend vers plus l'infini, mais lentement. Quand ixe tend vers zéro par la droite, il plonge vers moins l'infini : asymptote verticale en zéro.",
+      "texte": "ln → +∞ à droite, ln → −∞ près de 0."
+    },
+    {
+      "id": "p09",
+      "ecran": "croissances_ln",
+      "dit": "Les croissances comparées mesurent cette lenteur. En plus l'infini, le logarithme de ixe sur ixe tend vers zéro : les puissances écrasent le logarithme. En zéro, ixe fois logarithme de ixe tend aussi vers zéro.",
+      "texte": "Croissances comparées : ln x / x → 0."
+    },
+    {
+      "id": "p10",
+      "ecran": "ex_lim_ln",
+      "dit": "Exemple : la limite, en plus l'infini, du logarithme de ixe sur ixe au carré. On réécrit ce quotient comme le produit du logarithme de ixe sur ixe par un sur ixe. Chaque facteur tend vers zéro, le premier par croissance comparée. Le produit tend donc vers zéro.",
+      "texte": "Exemple : ln x / x² → 0 par factorisation."
+    },
+    {
+      "id": "p11",
+      "ecran": "derivee_ln",
+      "dit": "Deux formules de dérivation. La dérivée du logarithme de ixe est un sur ixe. Et pour u strictement positive, la dérivée du logarithme de u de ixe est u prime sur u : la dérivée de l'intérieur, divisée par l'intérieur.",
+      "texte": "(ln u)' = u'/u : la formule de la composée."
+    },
+    {
+      "id": "p12",
+      "ecran": "ex_der_ln",
+      "dit": "Exemple : dériver f de ixe égal logarithme de trois ixe au carré plus un. On pose u de ixe égal trois ixe au carré plus un, de dérivée six ixe. La formule u prime sur u donne six ixe sur trois ixe au carré plus un.",
+      "texte": "Exemple : f'(x) = 6x / (3x² + 1)."
+    },
+    {
+      "id": "p13",
+      "ecran": "equations_ln",
+      "dit": "Pour résoudre, on utilise la bijection du logarithme. L'équation logarithme de ixe égal ka a pour unique solution ixe égal exponentielle de ka. Et deux logarithmes sont égaux exactement quand leurs arguments sont égaux, si ces arguments sont strictement positifs.",
+      "texte": "ln x = k ⟺ x = eᵏ ; ln A = ln B ⟺ A = B."
+    },
+    {
+      "id": "p14",
+      "ecran": "ex_eq_ln",
+      "dit": "Exemple : logarithme de deux ixe moins un égal logarithme de ixe plus trois. Conditions d'abord : ixe supérieur à un demi. Égalité des arguments ensuite : deux ixe moins un égal ixe plus trois, donc ixe égal quatre. Quatre respecte la condition : c'est l'unique solution.",
+      "texte": "Exemple : condition x > 1/2, solution x = 4."
+    },
+    {
+      "id": "p15",
+      "ecran": "ex_ineq_ln",
+      "dit": "Inéquation : logarithme de ixe plus deux inférieur à zéro. Condition : ixe supérieur à moins deux. Zéro est le logarithme de un, et la fonction est croissante, donc ixe plus deux inférieur à un, soit ixe inférieur à moins un. Solutions : l'intervalle ouvert moins deux, moins un.",
+      "texte": "Exemple : S = ]−2, −1[, condition croisée."
+    },
+    {
+      "id": "p16",
+      "ecran": "recap1",
+      "dit": "Retenons le logarithme : défini et croissant sur zéro plus l'infini, produits en sommes, puissances en coefficients, dérivée composée u prime sur u, et équations par la bijection, conditions toujours posées d'abord.",
+      "texte": "Logarithme : à retenir avant l'exponentielle."
+    },
+    {
+      "id": "p17",
+      "ecran": "def_exp",
+      "dit": "L'exponentielle népérienne, notée exp, est l'unique fonction dérivable sur les réels, égale à sa propre dérivée et valant un en zéro. On la note e puissance ixe. Pour tout réel ixe, elle est strictement positive.",
+      "texte": "exp : égale à sa dérivée, exp(0) = 1, toujours > 0."
+    },
+    {
+      "id": "p18",
+      "ecran": "proprietes_exp",
+      "dit": "Les propriétés de l'exponentielle sont le miroir de celles du logarithme, pour a et bé réels. Exponentielle d'une somme : produit des exponentielles. D'une différence : quotient. De moins a : inverse. De èn fois a : puissance èn de l'exponentielle de a.",
+      "texte": "eᵃ⁺ᵇ = eᵃ × eᵇ : la somme devient produit."
+    },
+    {
+      "id": "p19",
+      "ecran": "ex_simpl_exp",
+      "dit": "Exemple : simplifier grand A égal exponentielle de trois ixe fois exponentielle de moins ixe, divisé par exponentielle de deux ixe. Au numérateur, les exposants s'ajoutent : deux ixe. Le quotient par exponentielle de deux ixe vaut un.",
+      "texte": "Exemple : exposants additionnés, A = 1."
+    },
+    {
+      "id": "p20",
+      "ecran": "limites_exp",
+      "dit": "Les limites de référence. En plus l'infini, l'exponentielle tend vers plus l'infini, plus vite que toute puissance. En moins l'infini, elle tend vers zéro : l'axe des abscisses est asymptote horizontale à gauche.",
+      "texte": "exp → +∞ à droite, exp → 0 à gauche."
+    },
+    {
+      "id": "p21",
+      "ecran": "croissances_exp",
+      "dit": "Les croissances comparées confirment cette domination. En plus l'infini, exponentielle de ixe sur ixe tend vers plus l'infini. En moins l'infini, ixe fois exponentielle de ixe tend vers zéro.",
+      "texte": "Croissances comparées : eˣ / x → +∞."
+    },
+    {
+      "id": "p22",
+      "ecran": "ex_lim_exp",
+      "dit": "Exemple : la limite, en plus l'infini, du quotient d'exponentielle de ixe moins ixe par exponentielle de ixe. On divise terme à terme : un moins ixe sur exponentielle de ixe. Ce quotient tend vers zéro par croissance comparée. La limite vaut donc un.",
+      "texte": "Exemple : (eˣ − x) / eˣ → 1."
+    },
+    {
+      "id": "p23",
+      "ecran": "derivee_exp",
+      "dit": "La dérivation tient en une ligne. La dérivée d'exponentielle de ixe est exponentielle de ixe. Et pour u dérivable, la dérivée d'exponentielle de u est u prime fois exponentielle de u : l'exposant se dérive et passe devant.",
+      "texte": "(eᵘ)' = u' eᵘ : l'exposant dérivé passe devant."
+    },
+    {
+      "id": "p24",
+      "ecran": "ex_der_exp",
+      "dit": "Exemple : dériver f de ixe égal exponentielle de trois ixe au carré plus un. L'exposant vaut trois ixe au carré plus un, sa dérivée est six ixe. Résultat : six ixe fois exponentielle de trois ixe au carré plus un.",
+      "texte": "Exemple : f'(x) = 6x e^(3x² + 1)."
+    },
+    {
+      "id": "p25",
+      "ecran": "variations_exp",
+      "dit": "Exponentielle de ixe est strictement positive, donc sa dérivée, qui lui est égale, aussi. L'exponentielle est strictement croissante sur les réels : comparer deux exponentielles revient à comparer leurs exposants, dans le même ordre.",
+      "texte": "exp > 0 partout, donc strictement croissante."
+    },
+    {
+      "id": "p26",
+      "ecran": "equations_exp",
+      "dit": "La croissance stricte donne les règles. L'équation exponentielle de ixe égal ka, pour ka positif, a pour solution ixe égal logarithme de ka. Deux exponentielles sont égales exactement quand leurs exposants le sont, et l'ordre est le même sur les exposants.",
+      "texte": "eˣ = k ⟺ x = ln k ; ordre conservé sur les exposants."
+    },
+    {
+      "id": "p27",
+      "ecran": "ex_eq_exp",
+      "dit": "Premier exemple : exponentielle de deux ixe moins un égal trois. On passe au logarithme : deux ixe moins un égal logarithme de trois. On isole ixe : un plus logarithme de trois, divisé par deux.",
+      "texte": "Exemple : x = (1 + ln 3) / 2."
+    },
+    {
+      "id": "p28",
+      "ecran": "ex_ineq_exp",
+      "dit": "Inéquation : exponentielle de ixe au carré inférieure ou égale à exponentielle de trois ixe. On compare les exposants : ixe au carré inférieur ou égal à trois ixe. En factorisant, ixe fois ixe moins trois est négatif entre zéro et trois : solutions, le segment zéro, trois.",
+      "texte": "Exemple : exposants comparés, x ∈ [0, 3]."
+    },
+    {
+      "id": "p29",
+      "ecran": "changement_var",
+      "dit": "Changement de variable : pour exponentielle de deux ixe moins trois exponentielle de ixe plus deux égal zéro, on pose grand X égal exponentielle de ixe, positif. On obtient grand X au carré moins trois grand X plus deux égal zéro, de solutions un et deux. Retour à ixe : zéro et logarithme de deux.",
+      "texte": "Changement de variable : X = eˣ, retour x = 0, ln 2."
+    },
+    {
+      "id": "p30",
+      "ecran": "recap_final",
+      "dit": "Pour conclure : logarithme et exponentielle sont réciproques et croissantes. Produits en sommes d'un côté, sommes en produits de l'autre. Limites, croissances comparées et dérivées composées se connaissent par cœur, et les équations se résolvent par bijection ou changement de variable.",
+      "texte": "Ln et exp : l'essentiel du cours à retenir."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Le logarithme népérien : propriétés, limites, équations"
+    },
+    {
+      "debut": "p17",
+      "sous_titre": "L'exponentielle : propriétés, limites, équations",
+      "pont": {
+        "texte": "Partie 2 : l'exponentielle, réciproque du logarithme.",
+        "dit": "Partie deux, l'exponentielle, la réciproque du logarithme : égale à sa dérivée, propriétés en miroir, et des équations qui se résolvent en repassant par le logarithme."
+      }
+    }
+  ]
+}
