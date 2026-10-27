@@ -160,7 +160,7 @@ export function ListeTests() {
                 accessibilityRole="button"
                 accessibilityLabel={`${t(CLE_NUMERO_LIGNE[type], { numero: test.numero })}. ${libelleStatut}`}
                 disabled={enCours !== null}
-                onPress={() => (test.fini ? router.push({ pathname: '/certification/test-detail', params: { kind: type, id: test.id } } as never) : void lancer(test, exam, reglagesOk))}
+                onPress={() => (test.fini ? router.push({ pathname: '/certification/test-detail', params: { kind: type, id: test.id, ...(type === 'mini' && test.part ? { partie: String(test.part) } : {}) } } as never) : void lancer(test, exam, reglagesOk))}
                 decalage={3}
                 rayon={rayon.l}
               >
