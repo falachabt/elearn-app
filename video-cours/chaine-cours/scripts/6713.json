@@ -1,0 +1,374 @@
+{
+ "cours": 6713,
+ "titre": "Proportionnalité et statistiques descriptives",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Proportionnalité et statistiques",
+   "titre": "Proportionnalité et statistiques descriptives",
+   "sous": "Comparer des rapports, des effectifs et des fréquences avec les mêmes réflexes",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 230
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Deux chapitres, un réflexe",
+   "texte": "Adapter une recette, comparer des prix, résumer une enquête : partout, on compare des rapports."
+  },
+  "suites_def": {
+   "type": "phrase",
+   "kicker": "Suites proportionnelles",
+   "texte": "Deux suites sont proportionnelles si l'on passe de l'une à l'autre en multipliant toujours par le même nombre.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 170
+   }
+  },
+  "exemple_thermometre": {
+   "type": "etape",
+   "kicker": "Exemple · un thermomètre",
+   "titre": "Température et hauteur de liquide",
+   "tex": [
+    "20 \\div 5 = 4 \\qquad 50 \\div 5 = 10",
+    "100 \\div 5 = 20",
+    "\\text{coefficient} = \\tfrac{1}{5}"
+   ]
+  },
+  "tableau_def": {
+   "type": "phrase",
+   "kicker": "Tableau de proportionnalité",
+   "texte": "Un tableau à deux lignes qui présente côte à côte les valeurs de deux suites proportionnelles."
+  },
+  "produit_croix": {
+   "type": "formule",
+   "kicker": "Produit en croix",
+   "tex": "\\frac{a}{b} = \\frac{c}{d} \\iff a \\times d = b \\times c",
+   "note": "Les produits en diagonale sont égaux : c'est la règle du produit en croix"
+  },
+  "exemple_pommes": {
+   "type": "etape",
+   "kicker": "Exemple · des pommes",
+   "titre": "Trois kilos de pommes pour six euros",
+   "tex": [
+    "3 \\text{ kg} \\to 6 \\text{ euros}, \\quad 5 \\text{ kg} \\to x",
+    "3x = 6 \\times 5 = 30",
+    "x = \\tfrac{30}{3} = 10 \\text{ euros}"
+   ]
+  },
+  "proprietes": {
+   "type": "phrase",
+   "kicker": "Deux propriétés utiles",
+   "texte": "Additivité : le correspondant d'une somme est la somme des correspondants. Multiplication : le correspondant d'un produit suit le même facteur."
+  },
+  "exemple_farine": {
+   "type": "etape",
+   "kicker": "Exemple · une recette",
+   "titre": "Une recette de farine à adapter",
+   "tex": [
+    "4 \\to 300 \\text{ g de farine}",
+    "12 = 3 \\times 4 \\to 3 \\times 300 = 900 \\text{ g}",
+    "8 = 4 + 4 \\to 300 + 300 = 600 \\text{ g}"
+   ]
+  },
+  "justifier": {
+   "type": "phrase",
+   "kicker": "Justifier une proportionnalité",
+   "texte": "Vérifier que le coefficient est le même pour tous les couples, ou que tous les produits en croix sont égaux."
+  },
+  "exemple_cycliste": {
+   "type": "etape",
+   "kicker": "Exemple · un cycliste",
+   "titre": "Un cycliste à vitesse régulière",
+   "tex": [
+    "\\tfrac{12}{30} = 0{,}4 \\text{ km/min}",
+    "\\tfrac{20}{50} = 0{,}4 \\text{ km/min}"
+   ]
+  },
+  "graphique": {
+   "type": "phrase",
+   "kicker": "Le signe graphique",
+   "texte": "Des points alignés sur une droite qui passe par l'origine : voilà la signature graphique de la proportionnalité."
+  },
+  "methode_probleme": {
+   "type": "phrase",
+   "kicker": "Méthode générale",
+   "texte": "Identifier les deux suites, construire le tableau, trouver le coefficient ou le produit en croix, puis calculer."
+  },
+  "exemple_sirop": {
+   "type": "etape",
+   "kicker": "Exemple · un sirop",
+   "titre": "Un sirop dosé au paracétamol",
+   "tex": [
+    "5 \\text{ mL} \\to 250 \\text{ mg}, \\quad 12 \\text{ mL} \\to x",
+    "5x = 250 \\times 12 = 3000",
+    "x = \\tfrac{3000}{5} = 600 \\text{ mg}"
+   ]
+  },
+  "vocabulaire": {
+   "type": "phrase",
+   "kicker": "Vocabulaire statistique",
+   "texte": "Population : l'ensemble étudié. Individu : un élément. Caractère : la propriété étudiée, quantitative ou qualitative."
+  },
+  "frequence": {
+   "type": "formule",
+   "kicker": "Effectif et fréquence",
+   "tex": "f = \\frac{\\text{effectif de la valeur}}{N}",
+   "note": "En pourcentage : multiplier la fréquence par cent",
+   "anim": {
+    "nom": "camembert_fig",
+    "hauteur": 170
+   }
+  },
+  "enquete": {
+   "type": "phrase",
+   "kicker": "Une enquête en classe",
+   "texte": "25 élèves interrogés sur leur nombre de frères et sœurs : 0, 1, 2, 1, 3, 0, 1, 2, 1, 0, 2, 1, 1, 0, 3, 1, 2, 1, 0, 1, 2, 1, 1, 0, 2."
+  },
+  "tableau_stats": {
+   "type": "etape",
+   "kicker": "Tableau statistique",
+   "titre": "Effectifs et fréquences de l'enquête",
+   "tex": [
+    "x_i : 0 \\quad 1 \\quad 2 \\quad 3",
+    "n_i : 6 \\quad 11 \\quad 6 \\quad 2",
+    "f_i : 24\\% \\quad 44\\% \\quad 24\\% \\quad 8\\%",
+    "N = 6 + 11 + 6 + 2 = 25"
+   ]
+  },
+  "completer_tableau": {
+   "type": "phrase",
+   "kicker": "Compléter un tableau",
+   "texte": "Un effectif manquant se retrouve en soustrayant les effectifs connus de l'effectif total, puis on calcule sa fréquence."
+  },
+  "mode": {
+   "type": "phrase",
+   "kicker": "Le mode",
+   "texte": "Le mode est la valeur la plus fréquente : ici la valeur 1, avec un effectif de 11 élèves.",
+   "anim": {
+    "nom": "distribution_bars_fig",
+    "hauteur": 170
+   }
+  },
+  "moyenne_formule": {
+   "type": "formule",
+   "kicker": "La moyenne",
+   "tex": "\\bar{x} = \\frac{n_1 x_1 + n_2 x_2 + \\dots + n_p x_p}{N}",
+   "note": "Chaque valeur est pondérée par son effectif"
+  },
+  "moyenne_calcul": {
+   "type": "etape",
+   "kicker": "Exemple · la moyenne",
+   "titre": "La moyenne de l'enquête, pas à pas",
+   "tex": [
+    "6 \\times 0 = 0 \\qquad 11 \\times 1 = 11",
+    "6 \\times 2 = 12 \\qquad 2 \\times 3 = 6",
+    "\\bar{x} = \\tfrac{29}{25} = 1{,}16"
+   ]
+  },
+  "diagrammes": {
+   "type": "phrase",
+   "kicker": "Diagrammes statistiques",
+   "texte": "À bâtons ou à bandes, verticales ou horizontales : la hauteur de chaque bâton est proportionnelle à l'effectif.",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 200
+   }
+  },
+  "lire_diagramme": {
+   "type": "phrase",
+   "kicker": "Lire un diagramme",
+   "texte": "Repérer la valeur la plus fréquente, comparer les effectifs, retrouver l'effectif total en additionnant les hauteurs."
+  },
+  "esprit_critique": {
+   "type": "phrase",
+   "kicker": "Esprit critique",
+   "texte": "Vérifier la source des données, contrôler que les pourcentages totalisent cent pour cent et que les effectifs correspondent au total annoncé."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Proportionnalité : un coefficient constant",
+    "Produit en croix : a × d = b × c",
+    "Fréquence : effectif divisé par N",
+    "Mode : la valeur la plus fréquente",
+    "Moyenne : somme pondérée divisée par N"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours qui réunit deux chapitres : la proportionnalité et les statistiques descriptives. D'un côté, comparer des grandeurs qui grandissent ensemble ; de l'autre, résumer des données par des effectifs, des fréquences, un mode et une moyenne.",
+   "texte": "Proportionnalité et statistiques descriptives",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Adapter une recette au nombre d'invités, comparer le prix au kilo, résumer une enquête : dans toutes ces situations, on compare des rapports. Ce réflexe unique traverse tout le cours, de la proportionnalité jusqu'aux statistiques.",
+   "texte": "Deux chapitres, un même réflexe : comparer des rapports",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Deux suites de nombres sont proportionnelles lorsque l'on peut passer de l'une à l'autre en multipliant, ou en divisant, toujours par le même nombre non nul. Ce nombre s'appelle le coefficient de proportionnalité : c'est lui la signature d'une situation proportionnelle.",
+   "texte": "Passer d'une suite à l'autre par un même coefficient",
+   "ecran": "suites_def"
+  },
+  {
+   "id": "p04",
+   "dit": "Premier exemple : un thermomètre où la hauteur du liquide suit la température. Pour vingt degrés, quatre centimètres ; pour cinquante degrés, dix centimètres ; pour cent degrés, vingt centimètres. On divise par cinq à chaque fois : le coefficient vaut un cinquième.",
+   "texte": "Diviser par 5 : le coefficient vaut 1/5",
+   "ecran": "exemple_thermometre"
+  },
+  {
+   "id": "p05",
+   "dit": "Pour présenter ces correspondances, on utilise un tableau de proportionnalité : un tableau à deux lignes, ou deux colonnes, qui représente les deux suites côte à côte. Chaque colonne associe une valeur de la première suite à sa correspondante dans la seconde.",
+   "texte": "Un tableau à deux lignes pour deux suites",
+   "ecran": "tableau_def"
+  },
+  {
+   "id": "p06",
+   "dit": "Dans un tableau de proportionnalité, les produits en croix sont égaux. Si a, b, c et d sont les quatre nombres du tableau, alors a sur b égale c sur d exactement quand a fois d égale b fois c. C'est l'outil central pour trouver une valeur manquante.",
+   "texte": "a/b = c/d équivaut à a × d = b × c",
+   "ecran": "produit_croix"
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple : trois kilogrammes de pommes coûtent six euros, combien coûtent cinq kilogrammes ? Le produit en croix donne trois fois x égale six fois cinq, donc trois x égale trente, et x égale dix. Cinq kilogrammes coûtent dix euros.",
+   "texte": "Produit en croix : 5 kg coûtent 10 euros",
+   "ecran": "exemple_pommes"
+  },
+  {
+   "id": "p08",
+   "dit": "Deux propriétés permettent de compléter un tableau sans tout recalculer. L'additivité : le correspondant d'une somme est la somme des correspondants. Et la multiplication : le correspondant d'un terme multiplié par un nombre k est le correspondant de ce terme, multiplié lui aussi par k.",
+   "texte": "Somme des correspondants, produit des correspondants",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p09",
+   "dit": "Une recette pour quatre personnes demande trois cents grammes de farine. Pour douze personnes, soit trois fois quatre, la multiplication donne neuf cents grammes. Pour huit personnes, soit quatre plus quatre, l'additivité donne six cents grammes.",
+   "texte": "12 personnes : 900 g ; 8 personnes : 600 g",
+   "ecran": "exemple_farine"
+  },
+  {
+   "id": "p10",
+   "dit": "Comment justifier qu'une situation est bien proportionnelle ? Il faut vérifier que le coefficient est constant entre toutes les valeurs, ou, ce qui revient au même, que les produits en croix sont égaux pour tous les couples de valeurs. Un seul contre-exemple suffit à faire tomber la proportionnalité.",
+   "texte": "Un coefficient constant, ou des produits en croix égaux",
+   "ecran": "justifier"
+  },
+  {
+   "id": "p11",
+   "dit": "Un cycliste parcourt douze kilomètres en trente minutes, puis vingt kilomètres en cinquante minutes. Le premier rapport vaut douze sur trente, soit zéro virgule quatre kilomètre par minute ; le second vaut vingt sur cinquante, soit aussi zéro virgule quatre. Le coefficient est le même : la distance est proportionnelle au temps.",
+   "texte": "12/30 = 20/50 = 0,4 : situation proportionnelle",
+   "ecran": "exemple_cycliste"
+  },
+  {
+   "id": "p12",
+   "dit": "Il existe aussi un signe graphique : si les points correspondants sont alignés sur une droite passant par l'origine, les deux suites sont proportionnelles. Exemple : deux virgule cinq habitants par logement donnent vingt-cinq habitants pour dix logements et cinquante pour vingt, avec le même rapport.",
+   "texte": "Des points alignés sur une droite par l'origine",
+   "ecran": "graphique"
+  },
+  {
+   "id": "p13",
+   "dit": "Face à un problème concret, la méthode générale tient en quatre temps : identifier les deux suites de nombres, vérifier ou construire le tableau de proportionnalité, déterminer le coefficient ou utiliser le produit en croix, puis calculer la valeur recherchée.",
+   "texte": "Identifier, construire, choisir l'outil, calculer",
+   "ecran": "methode_probleme"
+  },
+  {
+   "id": "p14",
+   "dit": "Dernier exemple : un sirop contient deux cent cinquante milligrammes de paracétamol dans cinq millilitres. Quelle quantité dans douze millilitres ? Le produit en croix donne x égale trois mille divisé par cinq, soit six cents milligrammes.",
+   "texte": "Produit en croix : 600 mg dans 12 mL",
+   "ecran": "exemple_sirop"
+  },
+  {
+   "id": "p15",
+   "dit": "Place aux statistiques. La population est l'ensemble étudié, un individu est un élément de cette population, et le caractère est la propriété observée sur chaque individu. Si le caractère prend des valeurs numériques, comme une taille ou une note, il est quantitatif ; sinon, comme une couleur ou un sport préféré, il est qualitatif.",
+   "texte": "Population, individu, caractère quantitatif ou qualitatif",
+   "ecran": "vocabulaire"
+  },
+  {
+   "id": "p16",
+   "dit": "L'effectif d'une valeur est le nombre d'individus qui présentent cette valeur, et l'effectif total, noté grand N, est la somme de tous les effectifs. La fréquence d'une valeur est son effectif divisé par l'effectif total ; multipliée par cent, elle devient un pourcentage.",
+   "texte": "Fréquence = effectif de la valeur / N",
+   "ecran": "frequence"
+  },
+  {
+   "id": "p17",
+   "dit": "Notre fil rouge : on interroge vingt-cinq élèves sur leur nombre de frères et sœurs. Les réponses brutes mélangent des zéros, des uns, des deux et des trois, sans aucun quatre. Pour y voir clair, il faut organiser ces données dans un tableau, valeur par valeur.",
+   "texte": "25 élèves, des réponses à organiser",
+   "ecran": "enquete"
+  },
+  {
+   "id": "p18",
+   "dit": "Comptons : zéro apparaît six fois, un apparaît onze fois, deux apparaît six fois et trois apparaît deux fois. Total : vingt-cinq élèves, le compte est bon. Les fréquences suivent : vingt-quatre pour cent, quarante-quatre pour cent, vingt-quatre pour cent et huit pour cent.",
+   "texte": "Effectifs 6, 11, 6, 2 ; fréquences 24 %, 44 %, 24 %, 8 %",
+   "ecran": "tableau_stats"
+  },
+  {
+   "id": "p19",
+   "dit": "Petit réflexe utile : si un effectif manque dans un tableau, on le retrouve en soustrayant les effectifs connus de l'effectif total. On calcule ensuite sa fréquence comme les autres, en divisant par l'effectif total.",
+   "texte": "Effectif manquant = total moins les effectifs connus",
+   "ecran": "completer_tableau"
+  },
+  {
+   "id": "p20",
+   "dit": "Le mode d'une série statistique est la valeur qui possède le plus grand effectif. Dans notre enquête, c'est la valeur un, avec onze élèves : le mode est donc un. Attention, une série peut avoir plusieurs modes si deux valeurs partagent l'effectif maximal, ou aucun si tous les effectifs sont égaux.",
+   "texte": "Le mode de l'enquête est 1",
+   "ecran": "mode"
+  },
+  {
+   "id": "p21",
+   "dit": "La moyenne, notée x barre, résume la série en un seul nombre. On additionne chaque valeur multipliée par son effectif, puis on divise par l'effectif total. Chaque valeur compte autant de fois qu'elle apparaît : c'est une moyenne pondérée.",
+   "texte": "x̄ = somme des nᵢxᵢ divisée par N",
+   "ecran": "moyenne_formule"
+  },
+  {
+   "id": "p22",
+   "dit": "Calculons la moyenne de l'enquête : six fois zéro donne zéro, onze fois un donne onze, six fois deux donne douze et deux fois trois donne six. La somme vaut vingt-neuf, divisée par vingt-cinq élèves : la moyenne vaut vingt-neuf sur vingt-cinq, soit un virgule seize frère ou sœur en moyenne.",
+   "texte": "Moyenne = 29/25 = 1,16",
+   "ecran": "moyenne_calcul"
+  },
+  {
+   "id": "p23",
+   "dit": "Pour montrer une série, on dessine un diagramme à bâtons : chaque valeur reçoit un bâton dont la hauteur est proportionnelle à son effectif. Le diagramme à bandes fait la même chose, en vertical ou en horizontal. Ici, les bâtons montent à six, onze, six et deux.",
+   "texte": "Des bâtons de hauteurs 6, 11, 6 et 2",
+   "ecran": "diagrammes"
+  },
+  {
+   "id": "p24",
+   "dit": "Lire un diagramme, c'est d'abord identifier la valeur au plus grand effectif, qui est le mode, puis comparer les effectifs entre eux, et enfin estimer l'effectif total en additionnant les hauteurs des bâtons ou les longueurs des bandes. Trois gestes qui transforment une image en information.",
+   "texte": "Mode, comparaisons, effectif total",
+   "ecran": "lire_diagramme"
+  },
+  {
+   "id": "p25",
+   "dit": "Dernier réflexe : garder l'esprit critique devant des nombres. Vérifier la source et la méthode de collecte, contrôler la cohérence, par exemple que les pourcentages totalisent cent pour cent, et comparer les représentations pour repérer une erreur.",
+   "texte": "Source, cohérence, comparaison des représentations",
+   "ecran": "esprit_critique"
+  },
+  {
+   "id": "p26",
+   "dit": "Pour terminer, retenez l'essentiel : deux suites sont proportionnelles quand leur rapport est constant, le produit en croix trouve la valeur manquante, et une série statistique se résume par ses effectifs, ses fréquences, son mode et sa moyenne, avant d'être montrée en diagramme.",
+   "texte": "L'essentiel : coefficient, produit en croix, effectifs, mode, moyenne",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Proportionnalité : coefficient, tableau et produit en croix"
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "Statistiques : effectifs, fréquences, mode et moyenne",
+   "pont": {
+    "texte": "Partie 2 : statistiques, effectifs, fréquences, mode et moyenne.",
+    "dit": "Partie deux : les statistiques descriptives. Nous allons organiser les réponses d'une enquête en tableau, calculer des fréquences, repérer le mode, calculer une moyenne et lire des diagrammes avec un œil critique."
+   }
+  }
+ ]
+}
