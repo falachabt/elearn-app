@@ -1,0 +1,419 @@
+{
+ "cours": 7348,
+ "titre": "Limites en l'infini et limites de suites : asymptotes, comparaison et encadrement",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Limites",
+   "titre": "Limites en l'infini et limites de suites",
+   "sous": "Asymptotes horizontales, formes indéterminées, théorèmes de comparaison et suites convergentes",
+   "anim": {
+    "nom": "suite_convergente_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Étendre la notion de limite : que devient f(x) quand x grandit sans borne, et uₙ quand n grandit ?"
+  },
+  "lim_finie": {
+   "type": "formule",
+   "kicker": "Limite finie en l'infini",
+   "tex": "\\lim_{x \\to +\\infty} f(x) = l",
+   "note": "Tout intervalle contenant l contient les f(x) pour x assez grand : asymptote horizontale y = l.",
+   "anim": {
+    "nom": "asymptote_horizontale_fig",
+    "hauteur": 180
+   }
+  },
+  "ref_inv": {
+   "type": "etape",
+   "kicker": "Limites de référence · les inverses",
+   "titre": "Des inverses qui tendent vers zéro",
+   "tex": [
+    "\\lim_{x \\to +\\infty} \\frac{1}{x} = 0",
+    "\\lim_{x \\to -\\infty} \\frac{1}{x} = 0",
+    "\\lim_{x \\to +\\infty} \\frac{1}{\\sqrt{x}} = 0"
+   ]
+  },
+  "lim_inf": {
+   "type": "formule",
+   "kicker": "Limite infinie en l'infini",
+   "tex": "\\lim_{x \\to +\\infty} f(x) = +\\infty",
+   "note": "f(x) devient aussi grand que l'on veut, pour x suffisamment grand."
+  },
+  "ref_puiss": {
+   "type": "etape",
+   "kicker": "Limites de référence · les puissances",
+   "titre": "Des puissances qui tendent vers plus l'infini",
+   "tex": [
+    "\\lim_{x \\to +\\infty} x = +\\infty",
+    "\\lim_{x \\to +\\infty} x^2 = +\\infty",
+    "\\lim_{x \\to +\\infty} \\sqrt{x} = +\\infty"
+   ]
+  },
+  "operations": {
+   "type": "etape",
+   "kicker": "Opérations sur les limites",
+   "titre": "Les règles usuelles, et leurs pièges",
+   "tex": [
+    "\\text{somme, produit, quotient : usuels}",
+    "+\\infty - \\infty \\qquad 0 \\times \\infty",
+    "\\frac{\\infty}{\\infty} \\qquad \\frac{0}{0} \\quad \\text{: indéterminées}"
+   ]
+  },
+  "ex_q1": {
+   "type": "etape",
+   "kicker": "Exemple · lever une indétermination",
+   "titre": "Factoriser par le terme dominant",
+   "tex": [
+    "\\lim_{x \\to +\\infty} \\tfrac{2x^2 - 3x + 1}{x^2 + 5}",
+    "\\tfrac{x^2\\left(2 - \\tfrac{3}{x} + \\tfrac{1}{x^2}\\right)}{x^2\\left(1 + \\tfrac{5}{x^2}\\right)}",
+    "= \\tfrac{2 - \\tfrac{3}{x} + \\tfrac{1}{x^2}}{1 + \\tfrac{5}{x^2}}"
+   ]
+  },
+  "ex_q2": {
+   "type": "etape",
+   "kicker": "Exemple · la limite du quotient",
+   "titre": "Les termes en un sur x tendent vers zéro",
+   "tex": [
+    "\\frac{1}{x} \\to 0 \\qquad \\frac{1}{x^2} \\to 0",
+    "\\lim_{x \\to +\\infty} \\frac{2x^2 - 3x + 1}{x^2 + 5} = 2"
+   ]
+  },
+  "gendarmes_f": {
+   "type": "formule",
+   "kicker": "Théorème d'encadrement · les gendarmes",
+   "tex": "g(x) \\leq f(x) \\leq h(x) \\implies \\lim f = l",
+   "note": "Si g et h tendent toutes deux vers l en plus l'infini, alors f aussi : elle est coincée.",
+   "anim": {
+    "nom": "gendarmes_fonction_fig",
+    "hauteur": 180
+   }
+  },
+  "comp_inf": {
+   "type": "etape",
+   "kicker": "Théorème de comparaison vers l'infini",
+   "titre": "Être au-dessus d'une fonction qui explose",
+   "tex": [
+    "f(x) \\geq g(x), \\ \\lim g = +\\infty",
+    "\\implies \\lim f = +\\infty",
+    "f(x) \\leq g(x), \\ \\lim g = -\\infty",
+    "\\implies \\lim f = -\\infty"
+   ]
+  },
+  "ex_sin": {
+   "type": "etape",
+   "kicker": "Exemple · encadrer sinus x sur x",
+   "titre": "Le sinus reste coincé entre moins un et un",
+   "tex": [
+    "-1 \\leq \\sin x \\leq 1 \\qquad (x > 0)",
+    "-\\frac{1}{x} \\leq \\frac{\\sin x}{x} \\leq \\frac{1}{x}"
+   ],
+   "anim": {
+    "nom": "gendarmes_fonction_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_sin_fin": {
+   "type": "etape",
+   "kicker": "Exemple · conclusion par encadrement",
+   "titre": "Les deux bornes tendent vers zéro",
+   "tex": [
+    "\\lim_{x \\to +\\infty} -\\frac{1}{x} = 0 \\qquad \\lim_{x \\to +\\infty} \\frac{1}{x} = 0",
+    "\\lim_{x \\to +\\infty} \\frac{\\sin x}{x} = 0"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Fonctions : l'essentiel",
+   "etapes": [
+    "Limite finie : asymptote horizontale",
+    "Forme indéterminée : factoriser",
+    "Encadrement : coincer entre deux bornes",
+    "Comparaison : entraîner vers l'infini"
+   ]
+  },
+  "suite_def": {
+   "type": "phrase",
+   "kicker": "Limites de suites · le cadre",
+   "texte": "Une suite est une fonction de ℕ dans ℝ : on étudie uₙ quand n tend vers plus l'infini.",
+   "anim": {
+    "nom": "nuage_suite_fig",
+    "hauteur": 200
+   }
+  },
+  "suite_lim_finie": {
+   "type": "formule",
+   "kicker": "Suite convergente · limite finie",
+   "tex": "\\lim_{n \\to +\\infty} u_n = l",
+   "note": "Tout intervalle contenant l contient tous les termes à partir d'un certain rang.",
+   "anim": {
+    "nom": "bande_epsilon_fig",
+    "hauteur": 170
+   }
+  },
+  "suite_lim_inf": {
+   "type": "formule",
+   "kicker": "Suite divergente · limite infinie",
+   "tex": "\\lim_{n \\to +\\infty} u_n = +\\infty",
+   "note": "uₙ devient aussi grand que l'on veut, à partir d'un certain rang."
+  },
+  "suite_ref": {
+   "type": "etape",
+   "kicker": "Limites de référence des suites",
+   "titre": "Les inverses tendent vers zéro, les puissances explosent",
+   "tex": [
+    "\\lim \\frac{1}{n} = 0 \\qquad \\lim \\frac{1}{n^2} = 0",
+    "\\lim n = +\\infty \\qquad \\lim n^2 = +\\infty"
+   ]
+  },
+  "geo_q": {
+   "type": "etape",
+   "kicker": "La suite géométrique de raison q",
+   "titre": "Tout dépend de la position de q",
+   "tex": [
+    "|q| < 1 : \\lim q^n = 0",
+    "q > 1 : \\lim q^n = +\\infty",
+    "q = 1 : q^n = 1 \\text{, limite un}",
+    "q \\leq -1 : \\text{pas de limite}"
+   ]
+  },
+  "gendarmes_suite": {
+   "type": "etape",
+   "kicker": "Encadrement pour les suites",
+   "titre": "Coincée entre deux suites de même limite",
+   "tex": [
+    "v_n \\leq u_n \\leq w_n",
+    "\\lim v_n = \\lim w_n = l \\implies \\lim u_n = l"
+   ],
+   "anim": {
+    "nom": "gendarmes_fig",
+    "hauteur": 140
+   }
+  },
+  "comp_suite": {
+   "type": "etape",
+   "kicker": "Comparaison pour les suites",
+   "titre": "Au-dessus d'une suite qui explose",
+   "tex": [
+    "u_n \\geq v_n, \\ \\lim v_n = +\\infty",
+    "\\implies \\lim u_n = +\\infty"
+   ]
+  },
+  "ex_suite": {
+   "type": "etape",
+   "kicker": "Exemple · limite d'un quotient de suites",
+   "titre": "Factoriser par n au carré, le terme dominant",
+   "tex": [
+    "u_n = \\frac{3n^2 + 2n - 1}{n^2 + 4}",
+    "= \\frac{3 + \\frac{2}{n} - \\frac{1}{n^2}}{1 + \\frac{4}{n^2}}"
+   ]
+  },
+  "ex_suite_fin": {
+   "type": "etape",
+   "kicker": "Exemple · conclusion",
+   "titre": "Les termes en un sur n tendent vers zéro",
+   "tex": [
+    "\\frac{1}{n} \\to 0 \\qquad \\frac{1}{n^2} \\to 0",
+    "\\lim_{n \\to +\\infty} u_n = \\frac{3}{1} = 3"
+   ]
+  },
+  "suite_geo_ex": {
+   "type": "etape",
+   "kicker": "Exemple · suite géométrique",
+   "titre": "Une raison de module inférieur à un",
+   "tex": [
+    "u_n = 5 \\times \\left(\\frac{2}{3}\\right)^n",
+    "\\left|\\frac{2}{3}\\right| < 1 \\implies \\lim u_n = 5 \\times 0 = 0"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "En l'infini : asymptote horizontale",
+    "Indéterminée : terme dominant",
+    "Gendarmes : coincer, puis conclure",
+    "Suites : mêmes réflexes qu'en x",
+    "Géométrique : tout dépend de q"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours qui étend la notion de limite. Nous étudierons d'abord le comportement d'une fonction quand ixe tend vers l'infini, avec les asymptotes horizontales, les opérations et les formes indéterminées, puis les théorèmes de comparaison et d'encadrement, avant d'appliquer exactement les mêmes idées aux suites numériques.",
+   "texte": "Limites en l'infini, comparaison, puis limites de suites."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Le fil rouge est une question simple : que deviennent les valeurs d'une fonction quand la variable grandit sans borne, et que deviennent les termes d'une suite quand le rang grandit ? Répondre, c'est décrire un comportement à l'horizon, sans jamais atteindre l'infini, mais en s'en approchant autant qu'on le veut.",
+   "texte": "Décrire le comportement quand la variable grandit sans borne."
+  },
+  {
+   "id": "p03",
+   "ecran": "lim_finie",
+   "dit": "Soit une fonction définie sur un intervalle qui s'étend vers plus l'infini. On dit qu'elle admet pour limite un réel, noté elle, quand ixe tend vers plus l'infini, si tout intervalle ouvert contenant elle contient toutes les valeurs de la fonction pour ixe suffisamment grand. On définit de façon analogue la limite quand ixe tend vers moins l'infini.",
+   "texte": "Limite l en +∞ : les f(x) finissent dans tout intervalle autour de l."
+  },
+  {
+   "id": "p04",
+   "ecran": "ref_inv",
+   "dit": "Graphiquement, cette limite finie se lit comme une asymptote horizontale : la droite d'équation igrec égale elle accompagne la courbe au loin, qui s'en approche sans cesse. Les limites de référence à connaître par cœur sont celles des inverses : un sur ixe tend vers zéro en plus l'infini comme en moins l'infini, et un sur racine de ixe tend aussi vers zéro en plus l'infini.",
+   "texte": "Asymptote horizontale y = l ; 1/x et 1/√x tendent vers 0."
+  },
+  {
+   "id": "p05",
+   "ecran": "lim_inf",
+   "dit": "À l'opposé, on dit qu'une fonction tend vers plus l'infini quand ixe tend vers plus l'infini si ses valeurs deviennent aussi grandes que l'on veut, dès que ixe est suffisamment grand. Il n'y a alors aucune asymptote horizontale : la courbe s'échappe vers le haut, et la limite décrit cette fuite, sans plafond.",
+   "texte": "Limite +∞ : f(x) dépasse toute valeur fixée."
+  },
+  {
+   "id": "p06",
+   "ecran": "ref_puiss",
+   "dit": "Les limites de référence du côté infini sont celles des puissances usuelles : en plus l'infini, ixe tend vers plus l'infini, ixe au carré tend vers plus l'infini, et racine de ixe tend elle aussi vers plus l'infini, simplement plus lentement. Ces trois comportements servent de points de comparaison pour toutes les autres fonctions.",
+   "texte": "x, x² et √x tendent vers +∞ en +∞."
+  },
+  {
+   "id": "p07",
+   "ecran": "operations",
+   "dit": "Pour calculer, les règles usuelles sur les sommes, les produits et les quotients de limites s'appliquent, à condition d'éviter quatre formes indéterminées, où le calcul direct ne conclut pas : plus l'infini moins l'infini, zéro fois l'infini, l'infini sur l'infini et zéro sur zéro. Devant l'une d'elles, il faut transformer l'expression avant de conclure.",
+   "texte": "Quatre formes indéterminées à lever avant de conclure."
+  },
+  {
+   "id": "p08",
+   "ecran": "ex_q1",
+   "dit": "Exemple résolu : calculer la limite en plus l'infini du quotient de deux ixe au carré moins trois ixe plus un par ixe au carré plus cinq. C'est une forme indéterminée du type infini sur infini. Le réflexe est de factoriser par le terme dominant, ixe au carré, au numérateur comme au dénominateur, puis de simplifier par ixe au carré, qui n'est jamais nul pour ixe grand.",
+   "texte": "Forme ∞/∞ : factoriser par x², puis simplifier."
+  },
+  {
+   "id": "p09",
+   "ecran": "ex_q2",
+   "dit": "Après simplification, il reste au numérateur deux moins trois sur ixe plus un sur ixe au carré, et au dénominateur un plus cinq sur ixe au carré. Or un sur ixe et un sur ixe au carré tendent vers zéro en plus l'infini. Le quotient tend donc vers deux sur un, c'est-à-dire deux : la courbe admet la droite d'équation igrec égale deux pour asymptote horizontale.",
+   "texte": "Les termes en 1/x s'effacent : la limite vaut 2."
+  },
+  {
+   "id": "p10",
+   "ecran": "gendarmes_f",
+   "dit": "Quand le calcul direct résiste, on compare. Le théorème d'encadrement, dit théorème des gendarmes, affirme ceci : si, pour ixe suffisamment grand, une fonction est coincée entre deux autres fonctions qui tendent toutes deux vers la même limite elle en plus l'infini, alors elle tend elle aussi vers elle. Coincée entre deux gendarmes qui se rejoignent, elle n'a nulle part où fuir.",
+   "texte": "Gendarmes : coincée entre deux fonctions de même limite."
+  },
+  {
+   "id": "p11",
+   "ecran": "comp_inf",
+   "dit": "Le théorème de comparaison vers l'infini sert, lui, à prouver une fuite. Si une fonction reste au-dessus d'une autre fonction qui tend vers plus l'infini, alors elle tend elle aussi vers plus l'infini, entraînée par celle du dessous. Symétriquement, rester sous une fonction qui tend vers moins l'infini force à tendre vers moins l'infini.",
+   "texte": "Comparaison : être entraîné vers +∞ ou vers −∞."
+  },
+  {
+   "id": "p12",
+   "ecran": "ex_sin",
+   "dit": "Exemple résolu par encadrement : déterminer la limite en plus l'infini de sinus ixe sur ixe. Le sinus oscille et n'a pas de limite, mais il reste toujours coincé entre moins un et un. Pour ixe strictement positif, en divisant par ixe, on obtient moins un sur ixe, inférieur ou égal à sinus ixe sur ixe, lui-même inférieur ou égal à un sur ixe.",
+   "texte": "Encadrer sin x / x entre −1/x et 1/x."
+  },
+  {
+   "id": "p13",
+   "ecran": "ex_sin_fin",
+   "dit": "Or moins un sur ixe et un sur ixe tendent toutes deux vers zéro en plus l'infini. D'après le théorème d'encadrement, sinus ixe sur ixe tend donc vers zéro. Retenez le geste : quand une expression oscille, on l'encadre par deux expressions simples dont on connaît la limite, et les gendarmes font le reste du travail.",
+   "texte": "Les deux bornes tendent vers 0 : sin x / x aussi."
+  },
+  {
+   "id": "p14",
+   "ecran": "recap1",
+   "dit": "Récapitulons le volet des fonctions. Une limite finie en l'infini se lit comme une asymptote horizontale. Les opérations usuelles calculent la plupart des limites, sauf devant une forme indéterminée, que l'on lève le plus souvent en factorisant par le terme dominant. Et quand le calcul direct résiste, l'encadrement et la comparaison concluent sans calculer directement.",
+   "texte": "L'essentiel du volet fonctions."
+  },
+  {
+   "id": "p15",
+   "ecran": "suite_def",
+   "dit": "Passons aux suites. Une suite est une fonction des entiers naturels vers les réels : à chaque rang ène, elle associe un terme. Toutes les notions précédentes se transportent : on étudie le comportement des termes quand le rang tend vers plus l'infini, avec les mêmes idées de limite finie, de limite infinie, de comparaison et d'encadrement.",
+   "texte": "Une suite : des termes indexés par n, à étudier en +∞."
+  },
+  {
+   "id": "p16",
+   "ecran": "suite_lim_finie",
+   "dit": "Une suite converge vers un réel elle si tout intervalle ouvert contenant elle contient tous les termes de la suite à partir d'un certain rang. Autrement dit, passé un rang assez grand, aucun terme ne sort plus de la bande autour de elle, aussi étroite soit-elle. C'est exactement la même définition que pour les fonctions, avec un rang à la place d'un seuil sur ixe.",
+   "texte": "Convergence : tous les termes dans la bande, après un rang."
+  },
+  {
+   "id": "p17",
+   "ecran": "suite_lim_inf",
+   "dit": "Une suite tend vers plus l'infini si ses termes deviennent aussi grands que l'on veut à partir d'un certain rang : quel que soit le seuil fixé, même immense, tous les termes finissent par le dépasser et rester au-dessus. Une telle suite ne converge pas, on dit qu'elle diverge vers plus l'infini.",
+   "texte": "Limite +∞ pour une suite : dépasser tout seuil."
+  },
+  {
+   "id": "p18",
+   "ecran": "suite_ref",
+   "dit": "Les limites de référence des suites ressemblent trait pour trait à celles des fonctions : un sur ène et un sur ène au carré tendent vers zéro, tandis que ène et ène au carré tendent vers plus l'infini. Ce sont les étalons auxquels on compare les autres suites, exactement comme ixe et ses puissances servaient d'étalons pour les fonctions.",
+   "texte": "1/n et 1/n² vers 0 ; n et n² vers +∞."
+  },
+  {
+   "id": "p19",
+   "ecran": "geo_q",
+   "dit": "Le cas des puissances d'un réel, noté ku, mérite un tableau complet. Si la valeur absolue de ku est strictement inférieure à un, ku puissance ène tend vers zéro. Si ku est strictement supérieur à un, ku puissance ène tend vers plus l'infini. Si ku vaut un, la suite est constante et vaut un. Et si ku est inférieur ou égal à moins un, la suite n'a pas de limite, car elle oscille en changeant de signe.",
+   "texte": "qⁿ : 0 si |q| < 1, +∞ si q > 1, pas de limite si q ≤ −1."
+  },
+  {
+   "id": "p20",
+   "ecran": "gendarmes_suite",
+   "dit": "Les théorèmes de comparaison se transportent mot pour mot aux suites. Pour l'encadrement : si, à partir d'un certain rang, une suite est coincée entre deux suites qui tendent toutes deux vers la même limite elle, alors elle tend elle aussi vers elle. La figure le montre : coincée entre une borne basse et une borne haute qui se rejoignent, la suite n'a d'autre choix que de les suivre.",
+   "texte": "Gendarmes pour les suites : vₙ ≤ uₙ ≤ wₙ."
+  },
+  {
+   "id": "p21",
+   "ecran": "comp_suite",
+   "dit": "Pour la comparaison vers l'infini, même transport : si, à partir d'un certain rang, une suite reste au-dessus d'une suite qui tend vers plus l'infini, alors elle tend elle aussi vers plus l'infini. Ces deux théorèmes sont souvent la seule voie quand la suite est définie par un encadrement ou par une expression que l'on ne sait pas calculer directement.",
+   "texte": "Comparaison pour les suites : entraînée vers +∞."
+  },
+  {
+   "id": "p22",
+   "ecran": "ex_suite",
+   "dit": "Exemple résolu pour les suites : calculer la limite du quotient de trois ène au carré plus deux ène moins un par ène au carré plus quatre. On applique le même réflexe que pour les fonctions : factoriser par le terme dominant, ici ène au carré, au numérateur comme au dénominateur, puis simplifier par ène au carré.",
+   "texte": "Quotient de suites : factoriser par n²."
+  },
+  {
+   "id": "p23",
+   "ecran": "ex_suite_fin",
+   "dit": "Après simplification, il reste trois plus deux sur ène moins un sur ène au carré, divisé par un plus quatre sur ène au carré. Or un sur ène et un sur ène au carré tendent vers zéro. La limite vaut donc trois sur un, c'est-à-dire trois. Même forme indéterminée que pour les fonctions, même factorisation, même conclusion : le parallèle est total.",
+   "texte": "La limite de uₙ vaut 3."
+  },
+  {
+   "id": "p24",
+   "ecran": "suite_geo_ex",
+   "dit": "Dernier exemple : la suite géométrique de premier terme cinq et de raison deux tiers, dont le terme général est cinq fois deux tiers puissance ène. La valeur absolue de deux tiers est strictement inférieure à un, donc deux tiers puissance ène tend vers zéro, et la suite entière tend vers cinq fois zéro, c'est-à-dire zéro. La raison décide de tout, le premier terme ne fait que mettre à l'échelle.",
+   "texte": "Raison 2/3 : la suite géométrique tend vers 0."
+  },
+  {
+   "id": "p25",
+   "ecran": "recap",
+   "dit": "Pour finir, retenez le parallélisme complet entre fonctions et suites. En l'infini, une limite finie donne une asymptote horizontale, une forme indéterminée se lève par le terme dominant, et les gendarmes concluent par encadrement. Pour les suites, les définitions, les références et les théorèmes sont les mêmes, et pour une suite géométrique, tout dépend de la position de la raison par rapport à un et à moins un.",
+   "texte": "L'essentiel du cours en cinq réflexes."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Limites de fonctions en l'infini : asymptotes, opérations et terme dominant"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Comparaison et encadrement, puis les suites : définitions",
+   "pont": {
+    "texte": "Partie 2 : comparer et encadrer, puis ouvrir le volet des suites.",
+    "dit": "Partie deux : comparer et encadrer. Nous prouverons des limites sans calcul direct, grâce aux théorèmes de comparaison et d'encadrement, puis nous ouvrirons le second volet du cours, les limites de suites, avec leurs définitions."
+   }
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Références des suites, suites géométriques et exemples résolus",
+   "pont": {
+    "texte": "Partie 3 : références des suites, raison géométrique et exemples.",
+    "dit": "Partie trois : les références des suites et les exemples résolus. Nous rappellerons les limites usuelles, nous traiterons le cas complet des suites géométriques selon leur raison, puis nous appliquerons la comparaison et la factorisation sur des exemples."
+   }
+  }
+ ]
+}
