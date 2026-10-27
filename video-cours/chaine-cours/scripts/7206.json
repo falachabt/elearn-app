@@ -1,0 +1,390 @@
+{
+ "cours": 7206,
+ "ecrans": {
+  "accroche": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "grille_des_fig"
+   },
+   "kicker": "Pourquoi compter par le raisonnement",
+   "texte": "Énumérer un par un : immense, et une omission fausse tout.",
+   "type": "phrase"
+  },
+  "bureau": {
+   "kicker": "Le bureau : les fonctions comptent",
+   "note": "Président, secrétaire, trésorier : trois fonctions distinctes.",
+   "tex": "A_{12}^3 = 12 \\times 11 \\times 10 = 1320",
+   "type": "formule"
+  },
+  "choisir": {
+   "kicker": "Choisir la bonne technique",
+   "tex": [
+    "\\text{tous rangés} \\qquad n!",
+    "\\text{choix ordonné} \\qquad A_n^p",
+    "\\text{choix non ordonné} \\qquad \\binom{n}{p}"
+   ],
+   "titre": "Trois situations, trois formules",
+   "type": "etape"
+  },
+  "comite": {
+   "kicker": "Le comité : sans fonction",
+   "note": "Sans fonction, l'ordre ne compte plus : on divise par six.",
+   "tex": "\\binom{12}{3} = \\frac{12 \\times 11 \\times 10}{6} = 220",
+   "type": "formule"
+  },
+  "decision": {
+   "kicker": "L'arbre de décision",
+   "tex": [
+    "\\text{tous les éléments ?} \\qquad n!",
+    "\\text{ordre compte ?} \\qquad A_n^p",
+    "\\text{sinon} \\qquad \\binom{n}{p}"
+   ],
+   "titre": "Une seule question tranche presque tout",
+   "type": "etape"
+  },
+  "def_arr": {
+   "kicker": "Les arrangements",
+   "tex": [
+    "\\text{choisir p éléments parmi n}",
+    "\\text{l'ordre compte, sans répétition}",
+    "\\text{exemple : un président et un trésorier}"
+   ],
+   "titre": "Choisir peu d'éléments, dans un ordre",
+   "type": "etape"
+  },
+  "def_comb": {
+   "kicker": "Les combinaisons",
+   "tex": [
+    "\\text{choisir p éléments parmi n}",
+    "\\text{aucun ordre, sans répétition}",
+    "\\text{exemple : trois délégués, sans fonction}"
+   ],
+   "titre": "Choisir peu d'éléments, sans ordre",
+   "type": "etape"
+  },
+  "def_perm": {
+   "kicker": "Les permutations",
+   "tex": [
+    "\\text{tous les éléments, chacun une fois}",
+    "\\text{l'ordre compte : chaque rangement est différent}",
+    "\\text{exemple : ranger des livres sur une étagère}"
+   ],
+   "titre": "Ranger tous les éléments, dans un ordre",
+   "type": "etape"
+  },
+  "enonce_bureau": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "urne_fig"
+   },
+   "kicker": "Exemple résolu : le bureau de classe",
+   "texte": "Douze élèves, un bureau de trois : l'ordre change tout.",
+   "type": "phrase"
+  },
+  "ex_arr": {
+   "kicker": "Exemple : président et trésorier",
+   "note": "Dix personnes, deux fonctions distinctes : quatre-vingt-dix choix.",
+   "tex": "A_{10}^2 = 10 \\times 9 = 90",
+   "type": "formule"
+  },
+  "ex_comb": {
+   "kicker": "Exemple : trois délégués parmi huit",
+   "tex": "\\binom{8}{3} = \\frac{8!}{3!\\,5!} = \\frac{8 \\times 7 \\times 6}{6} = 56",
+   "type": "formule"
+  },
+  "ex_fact": {
+   "kicker": "Exemple : factorielle de cinq",
+   "tex": "5! = 5 \\times 4 \\times 3 \\times 2 \\times 1 = 120",
+   "type": "formule"
+  },
+  "ex_perm": {
+   "kicker": "Exemple : quatre livres",
+   "note": "Quatre livres différents : vingt-quatre rangements possibles.",
+   "tex": "4! = 24",
+   "type": "formule"
+  },
+  "factorielle": {
+   "kicker": "La factorielle",
+   "tex": [
+    "n! = 1 \\times 2 \\times \\cdots \\times n",
+    "0! = 1"
+   ],
+   "titre": "Le produit de un jusqu'à n",
+   "type": "etape"
+  },
+  "form_arr": {
+   "kicker": "Nombre d'arrangements",
+   "tex": "A_n^p = \\frac{n!}{(n-p)!} = n(n-1)\\cdots(n-p+1)",
+   "type": "formule"
+  },
+  "form_comb": {
+   "kicker": "Nombre de combinaisons",
+   "tex": "\\binom{n}{p} = \\frac{n!}{p!\\,(n-p)!} = \\frac{A_n^p}{p!}",
+   "type": "formule"
+  },
+  "form_perm": {
+   "kicker": "Nombre de permutations",
+   "tex": "P_n = n!",
+   "type": "formule"
+  },
+  "lien": {
+   "kicker": "Le lien entre les deux formules",
+   "note": "Chaque combinaison donne autant d'arrangements que d'ordres.",
+   "tex": "A_n^p = p! \\times \\binom{n}{p}",
+   "type": "formule"
+  },
+  "menu": {
+   "kicker": "Exemple : le menu",
+   "note": "Trois entrées, quatre plats, deux desserts : vingt-quatre menus.",
+   "tex": "3 \\times 4 \\times 2 = 24",
+   "type": "formule"
+  },
+  "methode": {
+   "kicker": "Méthode de résolution",
+   "tex": [
+    "\\text{1. découper la situation en étapes}",
+    "\\text{2. l'ordre compte-t-il ?}",
+    "\\text{3. y a-t-il des répétitions ?}",
+    "\\text{4. appliquer la formule adaptée}"
+   ],
+   "titre": "Quatre réflexes avant de calculer",
+   "type": "etape"
+  },
+  "principe": {
+   "kicker": "Principe fondamental du dénombrement",
+   "note": "k étapes successives, n indice i possibilités à la i-ième étape.",
+   "tex": "n_1 \\times n_2 \\times \\cdots \\times n_k",
+   "type": "formule"
+  },
+  "prop_comb": {
+   "kicker": "Propriétés des combinaisons",
+   "tex": [
+    "\\tbinom{n}{0} = \\tbinom{n}{n} = 1",
+    "\\tbinom{n}{p} = \\tbinom{n}{n-p}",
+    "\\tbinom{n}{p} = \\tbinom{n-1}{p-1} + \\tbinom{n-1}{p}"
+   ],
+   "titre": "Symétrie et relation de Pascal",
+   "type": "etape"
+  },
+  "propriete_fact": {
+   "kicker": "Propriété de la factorielle",
+   "note": "Utile pour simplifier les quotients de factorielles.",
+   "tex": "n! = n \\times (n-1)!",
+   "type": "formule"
+  },
+  "recap1": {
+   "etapes": [
+    "Multiplier les choix : n1 × n2 × … × nk",
+    "Factorielle : n! = 1 × 2 × … × n, 0! = 1",
+    "Permutation : ranger tous les éléments",
+    "Permutations : P indice n égale factorielle n",
+    "Exemple : 4 livres donnent 24 rangements"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Multiplier les choix : n1 × n2 × … × nk",
+    "Factorielle et permutations : n!",
+    "Ordre compte : arrangement A",
+    "Ordre indifférent : combinaison C",
+    "Bureau : 1320 ; comité : 220"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "grille_des_fig"
+   },
+   "kicker": "Mathématique · Dénombrement",
+   "sous": "Principe multiplicatif, factorielle, permutations, arrangements, combinaisons",
+   "titre": "Dénombrement : compter sans énumérer",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Compter sans énumérer : principe, factorielle, permutations"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : les arrangements et les combinaisons, là où tout se joue sur l'ordre. On choisit une partie des éléments, avec ou sans ordre, puis on apprend à choisir la bonne formule grâce aux propriétés des combinaisons.",
+    "texte": "Partie 2 : arrangements, combinaisons, choisir."
+   },
+   "sous_titre": "Arrangements et combinaisons : l'ordre décide de la formule"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : la méthode et l'exemple qui tranche. Quatre réflexes, un bureau de classe décliné en deux questions, et la remarque clé qui relie arrangements et combinaisons.",
+    "texte": "Partie 3 : méthode et exemple résolu."
+   },
+   "sous_titre": "Méthode et exemple résolu : le bureau de classe"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de dénombrement, l'art de compter sans énumérer. Compter les menus possibles, les rangements de livres ou les bureaux d'une classe : énumérer un par un serait interminable, et c'est là que les formules prennent le relais. Nous verrons d'abord le principe qui multiplie les choix, puis la factorielle et les permutations, et enfin les arrangements et les combinaisons, avec la question qui décide de tout : l'ordre compte-t-il ?",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Compter sans énumérer : les formules prennent le relais."
+  },
+  {
+   "dit": "Imaginez que vous deviez écrire toutes les façons de ranger quatre livres différents sur une étagère, ou tous les bureaux possibles d'une classe de douze élèves. La liste serait immense, et une seule omission fausserait le total. Le dénombrement évite cette énumération : il compte les possibilités par le raisonnement, en identifiant les étapes, les choix et le rôle de l'ordre.",
+   "ecran": "accroche",
+   "id": "p02",
+   "texte": "Énumérer un par un : immense, et une omission fausse tout."
+  },
+  {
+   "dit": "Le point de départ est le principe fondamental du dénombrement. Si une situation se décompose en étapes successives, et si chaque étape offre un certain nombre de possibilités, alors le nombre total de résultats est le produit de tous ces nombres. On ne les additionne pas : chaque choix d'une étape se combine avec chaque choix de la suivante, et c'est cette multiplication en chaîne qui donne le total.",
+   "ecran": "principe",
+   "id": "p03",
+   "texte": "Étapes successives : on multiplie, on n'additionne pas."
+  },
+  {
+   "dit": "Premier exemple, celui du menu. Trois entrées, quatre plats, deux desserts : trois choix, puis quatre, puis deux. Le principe multiplicatif donne trois fois quatre fois deux, soit vingt-quatre menus différents. Retenez l'image : à chaque étape, les possibilités se multiplient, elles ne s'ajoutent pas.",
+   "ecran": "menu",
+   "id": "p04",
+   "texte": "Trois entrées, quatre plats, deux desserts : 24 menus."
+  },
+  {
+   "dit": "Deuxième outil, la factorielle. Pour un entier supérieur ou égal à un, la factorielle de cet entier est le produit de tous les entiers de un jusqu'à lui. Par convention, la factorielle de zéro vaut un : ce choix rend les formules cohérentes, notamment quand on ne choisit aucun élément.",
+   "ecran": "factorielle",
+   "id": "p05",
+   "texte": "Factorielle : le produit de 1 jusqu'à n, et 0! = 1."
+  },
+  {
+   "dit": "La factorielle se calcule de proche en proche : la factorielle d'un entier est cet entier fois la factorielle de l'entier précédent. Cette propriété est précieuse pour simplifier les quotients de factorielles, qui apparaissent dans toutes les formules qui suivent : beaucoup de facteurs se simplifient avant même de calculer.",
+   "ecran": "propriete_fact",
+   "id": "p06",
+   "texte": "De proche en proche : n! = n × (n − 1)!"
+  },
+  {
+   "dit": "Appliquons-la : la factorielle de cinq est cinq fois quatre fois trois fois deux fois un, soit cent vingt. Ce nombre reviendra souvent : il compte, par exemple, les rangements de cinq objets différents.",
+   "ecran": "ex_fact",
+   "id": "p07",
+   "texte": "5! = 120 : le calcul pas à pas."
+  },
+  {
+   "dit": "Passons aux permutations. Une permutation d'un ensemble est un rangement ordonné de tous ses éléments : tous sont utilisés, chacun une seule fois, et l'ordre compte, car deux rangements qui diffèrent par l'ordre de deux éléments sont deux permutations différentes.",
+   "ecran": "def_perm",
+   "id": "p08",
+   "texte": "Permutation : tous les éléments, dans un ordre."
+  },
+  {
+   "dit": "Le nombre de permutations se lit directement sur la factorielle : pour un ensemble de n éléments, il y a factorielle de n permutations. Le raisonnement est celui du principe multiplicatif : n choix pour la première place, puis n moins un pour la suivante, et ainsi de suite jusqu'à la dernière.",
+   "ecran": "form_perm",
+   "id": "p09",
+   "texte": "n places, n choix puis n − 1 : factorielle n."
+  },
+  {
+   "dit": "Exemple : ranger quatre livres différents sur une étagère. Quatre choix pour la première place, trois pour la deuxième, deux pour la troisième, un pour la dernière : factorielle de quatre, soit vingt-quatre rangements possibles.",
+   "ecran": "ex_perm",
+   "id": "p10",
+   "texte": "Quatre livres sur une étagère : 24 rangements."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Multiplier les choix successifs donne le total ; la factorielle compacte le produit de un jusqu'à n, avec la convention que zéro factorielle vaut un ; et ranger tous les éléments d'un ensemble, c'est une permutation, dont le nombre est factorielle de n.",
+   "ecran": "recap1",
+   "id": "p11",
+   "texte": "L'essentiel de la partie 1."
+  },
+  {
+   "dit": "Deuxième partie : quand on ne range pas tout. Un arrangement est un rangement ordonné d'une partie seulement des éléments : on choisit p éléments parmi n, sans répétition, et l'ordre de ces p éléments compte, comme pour des fonctions distinctes.",
+   "ecran": "def_arr",
+   "id": "p12",
+   "texte": "Arrangement : choisir peu, dans un ordre."
+  },
+  {
+   "dit": "Le nombre d'arrangements se calcule de deux façons équivalentes. D'abord par le quotient des factorielles : factorielle de n divisée par factorielle de n moins p. Ensuite par le produit direct : n fois n moins un, et ainsi de suite, sur p facteurs. Les deux écritures disent la même chose : les premiers facteurs de factorielle de n, les autres s'étant simplifiés.",
+   "ecran": "form_arr",
+   "id": "p13",
+   "texte": "Deux écritures, un seul nombre : quotient ou produit."
+  },
+  {
+   "dit": "Exemple : élire un président et un trésorier parmi dix personnes. Les deux fonctions sont distinctes, donc l'ordre compte : dix choix pour le président, neuf pour le trésorier, soit quatre-vingt-dix couples possibles. Si les deux postes avaient été identiques, le résultat aurait été différent : c'est l'objet de la notion suivante.",
+   "ecran": "ex_arr",
+   "id": "p14",
+   "texte": "Président et trésorier : 10 × 9 = 90 choix."
+  },
+  {
+   "dit": "Une combinaison est un choix sans ordre : un sous-ensemble de p éléments parmi n, sans répétition, où l'ordre des éléments choisis n'a aucune importance. Choisir trois délégués sans leur attribuer de fonction, c'est une combinaison : le groupe formé est le même, quel que soit l'ordre dans lequel on cite ses membres.",
+   "ecran": "def_comb",
+   "id": "p15",
+   "texte": "Combinaison : un sous-ensemble, sans ordre."
+  },
+  {
+   "dit": "Le nombre de combinaisons est le quotient de factorielle de n par le produit de factorielle de p et de factorielle de n moins p. Il est aussi égal au nombre d'arrangements divisé par factorielle de p : on part des choix ordonnés, puis on oublie l'ordre en divisant par le nombre d'ordres possibles des p éléments.",
+   "ecran": "form_comb",
+   "id": "p16",
+   "texte": "Arrangements divisés par les ordres : la combinaison."
+  },
+  {
+   "dit": "Trois propriétés méritent d'être retenues. Choisir aucun élément ou les choisir tous ne laisse qu'une seule possibilité. La symétrie : choisir p éléments revient à choisir les n moins p éléments qu'on laisse de côté. Et la relation de Pascal : le nombre de combinaisons se décompose en somme de deux combinaisons de l'étage précédent, ce qui construit le triangle de Pascal.",
+   "ecran": "prop_comb",
+   "id": "p17",
+   "texte": "Symétrie et Pascal : les trois propriétés clés."
+  },
+  {
+   "dit": "Exemple : choisir trois délégués parmi huit élèves, sans fonction distincte. La formule donne factorielle de huit divisée par factorielle de trois fois factorielle de cinq. Après simplification, il reste huit fois sept fois six divisé par six, soit cinquante-six groupes possibles.",
+   "ecran": "ex_comb",
+   "id": "p18",
+   "texte": "Trois délégués parmi huit : 56 groupes."
+  },
+  {
+   "dit": "Le tableau de choix tient en trois lignes. On range tous les éléments : factorielle de n. On choisit p éléments et l'ordre compte : arrangement. On choisit p éléments et l'ordre ne compte pas : combinaison. Devant un énoncé, commencez toujours par situer la situation dans ce tableau.",
+   "ecran": "choisir",
+   "id": "p19",
+   "texte": "Trois situations, trois formules : le tableau."
+  },
+  {
+   "dit": "La méthode complète tient en quatre réflexes. D'abord, découper la situation en étapes. Ensuite, décider si l'ordre compte. Puis repérer les répétitions éventuelles : ici, les éléments sont distincts et ne se répètent pas. Enfin, appliquer le principe multiplicatif ou la formule adaptée. C'est cette discipline, plus que le calcul, qui fait réussir les exercices de dénombrement.",
+   "ecran": "methode",
+   "id": "p20",
+   "texte": "Quatre réflexes avant tout calcul."
+  },
+  {
+   "dit": "Mettons la méthode à l'épreuve avec l'exemple résolu de la leçon. Une classe de douze élèves doit former un bureau de trois membres : un président, un secrétaire et un trésorier. Les fonctions sont distinctes, donc l'ordre compte : c'est le premier réflexe qui tranche, avant tout calcul.",
+   "ecran": "enonce_bureau",
+   "id": "p21",
+   "texte": "Un bureau de trois parmi douze : le cas test."
+  },
+  {
+   "dit": "Le bureau relève donc des arrangements : arrangement de trois parmi douze. Douze choix pour le président, onze pour le secrétaire, dix pour le trésorier : douze fois onze fois dix, soit mille trois cent vingt bureaux possibles.",
+   "ecran": "bureau",
+   "id": "p22",
+   "texte": "Fonctions distinctes : 12 × 11 × 10 = 1320."
+  },
+  {
+   "dit": "Changeons la question : on veut seulement un comité de trois élèves, sans fonction. L'ordre ne compte plus, c'est une combinaison. On reprend le même produit, douze fois onze fois dix, mais on le divise par factorielle de trois, soit six : le résultat est deux cent vingt comités possibles, bien moins que les bureaux.",
+   "ecran": "comite",
+   "id": "p23",
+   "texte": "Sans fonction : on divise par 6, il reste 220."
+  },
+  {
+   "dit": "Le lien entre les deux résultats est la remarque clé du chapitre : le nombre d'arrangements est factorielle de p fois le nombre de combinaisons. Chaque combinaison de trois élèves peut en effet s'ordonner de factorielle de trois façons, soit six ordres : six fois deux cent vingt redonne bien mille trois cent vingt.",
+   "ecran": "lien",
+   "id": "p24",
+   "texte": "Chaque groupe s'ordonne de 6 façons : 6 × 220 = 1320."
+  },
+  {
+   "dit": "Pour conclure la méthode, retenez l'arbre de décision. Tous les éléments sont rangés : factorielle. On en choisit une partie et l'ordre compte : arrangement. Sinon, c'est une combinaison. Une seule question, l'ordre compte-t-il, tranche presque tous les exercices du chapitre.",
+   "ecran": "decision",
+   "id": "p25",
+   "texte": "Une question tranche tout : l'ordre compte-t-il ?"
+  },
+  {
+   "dit": "Pour finir, l'essentiel du cours. Multiplier les choix successifs, factorielle et permutations pour ranger tous les éléments, arrangement quand l'ordre compte, combinaison quand il ne compte pas. Et l'exemple à garder en tête : dans une classe de douze élèves, mille trois cent vingt bureaux possibles, mais seulement deux cent vingt comités.",
+   "ecran": "recap_final",
+   "id": "p26",
+   "texte": "L'essentiel : ordre ou pas, la formule suit."
+  }
+ ],
+ "titre": "Dénombrement : compter sans énumérer"
+}
