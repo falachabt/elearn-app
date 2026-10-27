@@ -1,0 +1,552 @@
+{
+ "cours": 6237,
+ "ecrans": {
+  "classification": {
+   "kicker": "Exercice de classification, pas à pas",
+   "tex": [
+    "\\text{cinquante pour cent, mille deux cents}",
+    "\\text{degrés : basaltique, fluide}",
+    "\\text{soixante-dix pour cent, huit cents}",
+    "\\text{degrés : rhyolitique, plinien}"
+   ],
+   "titre": "Deux magmas, deux éruptions opposées",
+   "type": "etape"
+  },
+  "contexte_dorsale": {
+   "kicker": "Contexte 1 : les dorsales",
+   "tex": [
+    "\\text{décompression du manteau péridotitique}",
+    "\\text{fusion partielle de dix à vingt pour cent}",
+    "\\text{basalte tholéiitique, effusif, sous-marin}",
+    "\\text{laves en coussins, croûte océanique}"
+   ],
+   "titre": "Le volcanisme le plus productif de la planète",
+   "type": "etape"
+  },
+  "contexte_point_chaud": {
+   "kicker": "Contexte 3 : les points chauds",
+   "tex": [
+    "\\text{panache mantellique profond, quasi fixe}",
+    "\\text{basalte alcalin, riche en sodium}",
+    "\\text{et potassium, fusion partielle faible}",
+    "\\text{Hawaï, Trapps du Deccan, plateaux}"
+   ],
+   "titre": "Un panache perce la plaque, en intraplaque",
+   "type": "etape"
+  },
+  "contexte_rift": {
+   "kicker": "Contexte 4 : le rift continental",
+   "tex": [
+    "\\text{étirement et amincissement de la croûte}",
+    "\\text{décompression, comme aux dorsales}",
+    "\\text{magmas très variés, du basalte}",
+    "\\text{alcalin à la rhyolite, Rift Est-Africain}"
+   ],
+   "titre": "Le stade initial d'un nouvel océan",
+   "type": "etape"
+  },
+  "contexte_subduction": {
+   "kicker": "Contexte 2 : les zones de subduction",
+   "tex": [
+    "\\text{eau de la plaque plongeante, hydratation}",
+    "\\text{le solidus du manteau s'abaisse}",
+    "\\text{andésite, différenciation, contamination}",
+    "\\text{arcs insulaires et continentaux, explosifs}"
+   ],
+   "titre": "L'eau fait fondre le manteau, sans le chauffer",
+   "type": "etape"
+  },
+  "differentiation": {
+   "kicker": "La différenciation magmatique",
+   "tex": [
+    "C_L = C_0 \\times F^{(D-1)}",
+    "\\text{les premiers minéraux cristallisent}",
+    "\\text{et sédimentent : olivine, pyroxène}",
+    "\\text{le liquide restant s'enrichit en silice}"
+   ],
+   "titre": "Un basalte peut devenir andésite, puis rhyolite",
+   "type": "etape"
+  },
+  "familles": {
+   "kicker": "Les trois familles de magmas",
+   "tex": [
+    "\\text{basaltique : 45 à 52 pour cent de silice}",
+    "\\text{andésitique : 52 à 63 pour cent}",
+    "\\text{rhyolitique : plus de 63 pour cent}",
+    "\\text{températures et viscosités opposées}"
+   ],
+   "titre": "La silice décide de presque tout",
+   "type": "etape"
+  },
+  "flottabilite": {
+   "kicker": "La poussée d'Archimède",
+   "note": "V volume, densités roche et magma, g pesanteur.",
+   "tex": "F_b = V \\cdot (\\rho_r - \\rho_m) \\cdot g",
+   "type": "formule"
+  },
+  "gaz": {
+   "kicker": "Les gaz, moteur des explosions",
+   "tex": [
+    "\\text{vapeur d'eau, de cinquante à}",
+    "\\text{quatre-vingt-dix pour cent du volume}",
+    "\\text{dioxyde de carbone, dioxyde de soufre}",
+    "\\text{solubilité chute, pression baisse}"
+   ],
+   "titre": "Pression qui baisse, bulles qui naissent",
+   "type": "etape"
+  },
+  "geothermie": {
+   "kicker": "La géothermie, chaleur utile",
+   "tex": [
+    "\\text{gradient moyen : trente degrés}",
+    "\\text{par kilomètre, cent près d'une chambre}",
+    "\\text{Islande : trente pour cent de l'électricité}",
+    "\\text{et 90 % du chauffage urbain}"
+   ],
+   "titre": "Vapeur, eau chaude, électricité et chauffage",
+   "type": "etape"
+  },
+  "magma_def": {
+   "kicker": "Qu'est-ce qu'un magma ?",
+   "tex": [
+    "\\text{un système silicaté à haute température}",
+    "\\text{liquide, cristaux et gaz dissous}",
+    "\\text{trois paramètres clés : composition,}",
+    "\\text{température, teneur en gaz}"
+   ],
+   "titre": "Pas une roche liquide simple, un système",
+   "type": "etape"
+  },
+  "magmatisme_volcanisme": {
+   "kicker": "Magmatisme et volcanisme, à distinguer",
+   "tex": [
+    "\\text{magmatisme : la cause profonde,}",
+    "\\text{formation, évolution, remontée}",
+    "\\text{volcanisme : l'effet visible en surface,}",
+    "\\text{extrusion et édifices volcaniques}"
+   ],
+   "titre": "La cause en profondeur, l'effet en surface",
+   "type": "etape"
+  },
+  "mecanismes_genese": {
+   "kicker": "Les trois mécanismes de genèse",
+   "tex": [
+    "\\text{décompression : la pression baisse,}",
+    "\\text{le solidus est franchi, aux dorsales}",
+    "\\text{volatils : l'eau abaisse le solidus}",
+    "\\text{chaleur : panache chaud, plus rare}"
+   ],
+   "titre": "Décompression, eau, chaleur",
+   "type": "etape"
+  },
+  "produits_gaz": {
+   "kicker": "Les produits : d'abord les gaz",
+   "tex": [
+    "\\text{vapeur d'eau, dioxyde de carbone}",
+    "\\text{dioxyde de soufre, sulfure d'hydrogène}",
+    "\\text{une hausse du dioxyde de soufre}",
+    "\\text{peut annoncer une remontée de magma}"
+   ],
+   "titre": "Surveiller les gaz, c'est surveiller le volcan",
+   "type": "etape"
+  },
+  "produits_laves": {
+   "kicker": "Les produits : les laves",
+   "tex": [
+    "\\text{lave : le magma débarrassé de ses gaz}",
+    "\\text{pahoehoe : surface lisse, cordée}",
+    "\\text{aa : surface rugueuse, en blocs}",
+    "\\text{pillow lava : coussins, sous l'eau}"
+   ],
+   "titre": "La viscosité se lit dans la forme de la coulée",
+   "type": "etape"
+  },
+  "produits_pyro": {
+   "kicker": "Les produits : les pyroclastites",
+   "tex": [
+    "\\text{cendres : moins de deux millimètres}",
+    "\\text{lapilli : de deux à soixante-quatre}",
+    "\\text{millimètres, bombes et blocs :}",
+    "\\text{plus de soixante-quatre millimètres}"
+   ],
+   "titre": "Cendres, lapilli, bombes et blocs",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Magmatisme : la cause ; volcanisme : l'effet",
+    "Décompression, eau, chaleur : 3 genèses",
+    "Basalte 45-52 %, andésite, rhyolite 63 %",
+    "Dorsale, subduction, point chaud, rift",
+    "Différenciation : le liquide s'enrichit"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Viscosité et gaz commandent le style",
+    "Hawaïen, strombolien, vulcanien, plinien",
+    "50 % SiO₂, 1 200 °C : basaltique fluide",
+    "70 % SiO₂, 800 °C : rhyolite explosive",
+    "VEI : volume et hauteur du panache"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Magma : composition, température, gaz",
+    "Viscosité et gaz font le style éruptif",
+    "VEI 0 à 8, de Kilauea à Toba",
+    "Géothermie, sols, métaux : des ressources",
+    "Surveillance : sismicité, gaz, déformation"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "regime_eruptif": {
+   "kicker": "Le régime éruptif, en une formule",
+   "note": "Plus de gaz et de viscosité, moins de perméabilité : plus d'explosivité.",
+   "tex": "\\text{Régime} \\propto \\tfrac{\\text{gaz} \\times \\text{viscosité}}{\\text{perméabilité}}",
+   "type": "formule"
+  },
+  "risques": {
+   "kicker": "Les dangers, directs et indirects",
+   "tex": [
+    "\\text{coulées de lave, projections balistiques}",
+    "\\text{coulées pyroclastiques, plus de}",
+    "\\text{cinq cents degrés, plus de cent}",
+    "\\text{kilomètres par heure, lahars, gaz}"
+   ],
+   "titre": "Lahars, tsunamis volcaniques, climat",
+   "type": "etape"
+  },
+  "sols_ressources": {
+   "kicker": "Sols et ressources volcaniques",
+   "tex": [
+    "\\text{cendres et lapilli, sols riches}",
+    "\\text{en phosphore, potassium, calcium}",
+    "\\text{porphyres cuprifères, or, argent}",
+    "\\text{pierre ponce, basalte, tuf, géothermie}"
+   ],
+   "titre": "Andosols fertiles, métaux, matériaux",
+   "type": "etape"
+  },
+  "surveillance": {
+   "kicker": "Surveiller pour prévenir",
+   "tex": [
+    "\\text{sismicité : essaims, puis trémor}",
+    "\\text{déformation : gonflement, GPS, InSAR}",
+    "\\text{gaz : rapport dioxyde de soufre}",
+    "\\text{sur dioxyde de carbone, thermie}"
+   ],
+   "titre": "Quatre signaux avant l'éruption",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "SVT · Magmatisme et volcanisme",
+   "sous": "Du magma en profondeur à l'éruption en surface : composition, viscosité et gaz décident de tout",
+   "titre": "Magmatisme et volcanisme : du magma à l'éruption",
+   "type": "titre",
+   "anim": {
+    "nom": "volcan_fig",
+    "hauteur": 250
+   }
+  },
+  "types_eruptifs": {
+   "kicker": "Quatre types, du calme au cataclysmique",
+   "tex": [
+    "\\text{hawaïen : basaltique fluide, coulées}",
+    "\\text{strombolien : rythme, bombes, Etna}",
+    "\\text{vulcanien : bouchon visqueux, explosion}",
+    "\\text{plinien : colonne, nuées, Vésuve, 79}"
+   ],
+   "titre": "Hawaïen, strombolien, vulcanien, plinien",
+   "type": "etape"
+  },
+  "vei": {
+   "kicker": "L'indice d'explosivité volcanique, VEI",
+   "tex": [
+    "\\text{de zéro à huit, volume et hauteur}",
+    "\\text{du panache, téphras émis}",
+    "\\text{Saint Helens, 1980 : cinq}",
+    "\\text{Pinatubo, 1991 : six, Toba : huit}"
+   ],
+   "titre": "Un chiffre pour comparer les éruptions",
+   "type": "etape"
+  },
+  "viscosite": {
+   "kicker": "La viscosité, le frein décisif",
+   "tex": [
+    "\\text{basalte : fluide, de l'ordre de}",
+    "\\text{dix à mille pascal-secondes}",
+    "\\text{rhyolite : pâteuse, jusqu'à mille}",
+    "\\text{milliards de pascal-secondes}"
+   ],
+   "titre": "Onze ordres de grandeur entre deux magmas",
+   "type": "etape"
+  },
+  "mecanismes_genese2": {
+   "kicker": "Pourquoi la fusion est partielle",
+   "tex": [
+    "\\text{la péridotite, plusieurs minéraux}",
+    "\\text{les plus fusibles fondent d'abord :}",
+    "\\text{silice et alcalins, potassium, sodium}",
+    "\\text{résidu plus riche en magnésium et fer}"
+   ],
+   "titre": "Un extrait liquide, un résidu solide",
+   "type": "etape"
+  },
+  "types_eruptifs2": {
+   "kicker": "Deux cas extrêmes",
+   "tex": [
+    "\\text{phréato-magmatique : eau et magma,}",
+    "\\text{vaporisation explosive, maars}",
+    "\\text{super-éruption : plus de mille}",
+    "\\text{kilomètres cubes, Toba, Yellowstone}"
+   ],
+   "titre": "Quand l'eau rencontre le magma, ou le colossal",
+   "type": "etape"
+  },
+  "produits_pyro2": {
+   "kicker": "Les dépôts pyroclastiques",
+   "tex": [
+    "\\text{téphras : tous les dépôts aériens}",
+    "\\text{ignimbrites : massives, souvent soudées}",
+    "\\text{écoulements à plus de cinq cents}",
+    "\\text{degrés, Saint-Pierre, 1902}"
+   ],
+   "titre": "Des dépôts qui racontent l'explosion",
+   "type": "etape"
+  },
+  "risques2": {
+   "kicker": "Le paradoxe du risque",
+   "tex": [
+    "\\text{Nevado del Ruiz, 1985, indice trois}",
+    "\\text{lahar, vingt-trois mille morts à Armero}",
+    "\\text{une éruption modeste, une catastrophe}",
+    "\\text{majeure : communication et urbanisme}"
+   ],
+   "titre": "L'aléa ne fait pas le risque, seul",
+   "type": "etape"
+  },
+  "composition_basalte": {
+   "kicker": "La recette d'un basalte",
+   "tex": [
+    "\\text{silice : environ 50 %}",
+    "\\text{alumine : environ 15 %}",
+    "\\text{fer, magnésium, calcium : 10 %}",
+    "\\text{autres oxydes : environ 5 %}"
+   ],
+   "titre": "Cinquante, quinze, dix, dix, cinq",
+   "type": "etape"
+  }
+ },
+ "matiere": "SVT",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Magma, genèse et trois familles"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : comment un magma devient une éruption, et comment on classe les éruptions. Nous verrons la viscosité et les gaz, les quatre types d'éruptions du plus calme au plus cataclysmique, et un exercice de classification résolu pas à pas.",
+    "texte": "Partie 2 : viscosité, gaz, types d'éruptions."
+   },
+   "sous_titre": "Viscosité, gaz et types d'éruptions"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : les produits volcaniques, l'indice d'explosivité, les risques et les ressources. Nous verrons les gaz, les pyroclastites et les laves, l'échelle VEI, les dangers et la surveillance, avant de finir par la géothermie, les sols fertiles et les métaux.",
+    "texte": "Partie 3 : produits, VEI, risques, ressources."
+   },
+   "sous_titre": "Produits, VEI, risques et ressources"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur le magmatisme et le volcanisme, deux mots qu'il ne faut jamais confondre. Imaginez-vous au bord du cratère du Nyiragongo, au Congo : sous vos pieds, un lac de lave rouge orangé bouillonne. Ce spectacle n'est que la partie émergée d'un processus colossal qui façonne notre monde depuis des milliards d'années. Nous verrons d'abord ce qu'est un magma et comment il naît, puis pourquoi les éruptions sont tantôt calmes et tantôt cataclysmiques, et enfin ce que les volcans produisent, risquent et offrent.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Du magma profond à l'éruption visible."
+  },
+  {
+   "dit": "Distinguons d'abord la cause et l'effet. Le magmatisme est le processus générateur : il englobe la formation, l'évolution et la remontée d'un magma, depuis la fusion partielle des roches du manteau ou de la croûte jusqu'à son intrusion ou son extrusion. Le volcanisme, lui, est la manifestation de surface : l'arrivée du magma et des gaz, et la construction des édifices volcaniques. Le magmatisme prépare, le volcanisme sert, parfois avec des explosions de gaz et des débordements de coulées.",
+   "ecran": "magmatisme_volcanisme",
+   "id": "p02",
+   "texte": "Magmatisme : la cause ; volcanisme : l'effet."
+  },
+  {
+   "dit": "Qu'est-ce qu'un magma, au juste ? Ce n'est pas une simple roche liquide. C'est un système naturel à haute température, essentiellement silicaté et chargé en gaz dissous, capable de migrer. Trois paramètres clés décideront de son comportement : sa composition chimique, sa température et sa teneur en gaz, les volatils. Changez l'un de ces trois paramètres, et vous changez le style de l'éruption. C'est la leçon centrale de tout ce cours.",
+   "ecran": "magma_def",
+   "id": "p03",
+   "texte": "Magma : liquide, cristaux et gaz dissous."
+  },
+  {
+   "dit": "Regardons la recette d'un magma basaltique, le plus courant. Il contient environ cinquante pour cent de silice, environ quinze pour cent d'alumine, environ dix pour cent d'oxydes de fer, environ dix pour cent d'oxyde de magnésium, environ dix pour cent d'oxyde de calcium, et environ cinq pour cent d'autres oxydes. La silice structure le magma et contrôle sa viscosité : plus il y a de silice, plus le magma est visqueux, plus il retient ses gaz, et plus l'éruption risque d'être explosive.",
+   "ecran": "composition_basalte",
+   "id": "p04",
+   "texte": "Basalte : 50 % de silice, le reste en oxydes."
+  },
+  {
+   "dit": "La Terre solide ne fond pas facilement, et elle ne fond presque jamais entièrement. Trois mécanismes permettent de générer du magma. Premier mécanisme, la décompression : une portion de manteau remonte, la pression baisse, et la température de fusion baisse avec elle, si bien que la roche franchit son solidus et entre en fusion partielle. C'est le mécanisme principal aux dorsales. Deuxième mécanisme, l'apport de volatils : l'eau abaisse considérablement la température de fusion, de plusieurs centaines de degrés. Troisième mécanisme, l'apport de chaleur, par un panache chaud : c'est le plus intuitif, mais le moins courant à l'échelle globale.",
+   "ecran": "mecanismes_genese",
+   "id": "p05",
+   "texte": "Décompression, eau, chaleur : trois genèses."
+  },
+  {
+   "dit": "Pourquoi la fusion est-elle presque toujours partielle ? Parce qu'une roche du manteau, comme la péridotite, est un assemblage de plusieurs minéraux qui n'ont pas tous la même température de fusion. Les premiers à fondre sont les minéraux riches en silice et en alcalins, comme le potassium et le sodium. Le liquide formé a donc une composition différente de la roche source, et laisse derrière lui un résidu plus riche en magnésium et en fer. C'est la fusion partielle, comparable à un café : l'eau chaude extrait certains composés et laisse le marc.",
+   "ecran": "mecanismes_genese2",
+   "id": "p06",
+   "texte": "Fusion partielle : un extrait, pas une fonte totale."
+  },
+  {
+   "dit": "Une fois formé, le magma doit remonter, et ce n'est pas gagné. La poussée d'Archimède l'aide : le magma, moins dense que la roche encaissante, est flottant, comme une bulle dans l'eau. Mais la viscosité freine, et la résistance mécanique de l'encaissant aussi. Deux destins sont possibles. Si les forces résistantes l'emportent, le magma cristallise en profondeur et forme des plutons, comme les batholites de granite : c'est le magmatisme caché, l'ossature des continents. Si les forces motrices l'emportent, le magma atteint la surface et devient de la lave.",
+   "ecran": "flottabilite",
+   "id": "p07",
+   "texte": "Flottant, mais freiné : intrusion ou extrusion."
+  },
+  {
+   "dit": "Avant l'éruption, le magma s'accumule souvent dans des chambres magmatiques. Contrairement à l'image d'une caverne de lave liquide, il s'agit le plus souvent d'une bouillie de cristaux : cinquante à quatre-vingts pour cent de cristaux baignant dans du liquide interstitiel. Là, le magma évolue. C'est la différenciation magmatique, et son mécanisme principal est la cristallisation fractionnée : les minéraux les plus denses, olivine et pyroxène, cristallisent en premier et sédimentent, si bien que le liquide restant s'enrichit en silice. Un magma basaltique peut ainsi évoluer vers une andésite, puis vers une rhyolite.",
+   "ecran": "differentiation",
+   "id": "p08",
+   "texte": "Chambre magmatique : une bouillie de cristaux."
+  },
+  {
+   "dit": "Venons-en aux trois grandes familles, la carte d'identité des magmas. Les magmas basaltiques, ou basiques, sont issus de la fusion du manteau péridotitique : quarante-cinq à cinquante-deux pour cent de silice, température élevée entre mille cent et mille deux cent cinquante degrés, roches sombres, fluides. Les magmas andésitiques, ou intermédiaires, ont cinquante-deux à soixante-trois pour cent de silice, entre neuf cents et mille cent degrés, roches grises. Les magmas rhyolitiques, ou acides, dépassent soixante-trois pour cent de silice, entre sept cents et neuf cents degrés, roches claires, très visqueux.",
+   "ecran": "familles",
+   "id": "p09",
+   "texte": "Basalte, andésite, rhyolite : la silice tranche."
+  },
+  {
+   "dit": "Premier contexte géodynamique : les dorsales océaniques, en divergence. Le manteau remonte par décompression, sans perte de chaleur, et fond partiellement à dix ou vingt pour cent. On obtient un basalte tholéiitique, pauvre en éléments incompatibles, qui s'épanche en laves en coussins sous l'eau ou en intrusions de gabbro. C'est le volcanisme le plus productif de la planète, mais largement sous-marin, donc peu spectaculaire pour nous. Et la question qui tue : pourquoi le lieu le plus productif n'est-il pas le plus dangereux ? Parce que son magma est fluide et pauvre en gaz.",
+   "ecran": "contexte_dorsale",
+   "id": "p10",
+   "texte": "Dorsale : décompression, basalte, coussins."
+  },
+  {
+   "dit": "Deuxième contexte : les zones de subduction, en convergence. Ici, ce n'est pas la décompression qui domine, mais l'eau. La plaque plongeante entraîne de l'eau, qui hydrate le manteau situé au-dessus et abaisse considérablement son point de fusion. La fusion partielle est faible, et le magma primaire basaltique évolue fortement en traversant l'épaisse croûte continentale, par différenciation et contamination. Résultat : des magmas andésitiques, des volcans explosifs en arcs insulaires comme le Japon ou les Antilles, ou en arcs continentaux comme les Andes, et en profondeur de grands batholites granitiques.",
+   "ecran": "contexte_subduction",
+   "id": "p11",
+   "texte": "Subduction : l'eau fait fondre le manteau."
+  },
+  {
+   "dit": "Troisième et quatrième contextes, pour compléter la carte. Les points chauds, en intraplaque : des panaches mantelliques profonds remontent, fondent par décompression, et donnent souvent un basalte alcalin, riche en sodium et en potassium, avec une fusion partielle faible en profondeur. On obtient des plateaux basaltiques comme les Trapps du Deccan, ou des alignements d'îles comme Hawaï. Et le rift continental, stade initial d'un nouvel océan : l'étirement amincit la croûte, le manteau fond par décompression, et les magmas sont très variés, du basalte alcalin à la rhyolite, comme dans le Rift Est-Africain.",
+   "ecran": "contexte_point_chaud",
+   "id": "p12",
+   "texte": "Point chaud et rift : panache et étirement."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Le magmatisme est la cause en profondeur, le volcanisme l'effet en surface. Un magma naît par décompression, par apport d'eau ou par apport de chaleur, presque toujours en fusion partielle. Les trois familles se distinguent par la silice : basalte de quarante-cinq à cinquante-deux pour cent, andésite jusqu'à soixante-trois, rhyolite au-delà. Et le contexte géodynamique orchestre tout : dorsale, subduction, point chaud ou rift.",
+   "ecran": "recap1",
+   "id": "p13",
+   "texte": "L'essentiel de la partie 1."
+  },
+  {
+   "dit": "Passons à la physique de l'éruption, avec le paramètre décisif : la viscosité. C'est la résistance du magma à l'écoulement. Elle dépend de la composition, surtout de la silice, qui forme des chaînes polymériques complexes, de la température, et de la charge en cristaux et en bulles. L'écart est vertigineux : un basalte fluide a une viscosité de l'ordre de dix à mille pascal-secondes, comme du miel chaud, tandis qu'une rhyolite pâteuse peut atteindre mille milliards de pascal-secondes, comme du beurre de cacahuète. Onze ordres de grandeur entre deux magmas, c'est ce qui sépare une coulée tranquille d'une explosion.",
+   "ecran": "viscosite",
+   "id": "p14",
+   "texte": "Viscosité : de 10 à 10¹² Pa·s, tout change."
+  },
+  {
+   "dit": "Deuxième acteur décisif : les gaz dissous. Les gaz volcaniques sont d'abord de la vapeur d'eau, de cinquante à quatre-vingt-dix pour cent du volume total, puis du dioxyde de carbone, du dioxyde de soufre, et d'autres gaz comme le sulfure d'hydrogène. La règle est simple : la solubilité d'un gaz dans un liquide diminue quand la pression baisse. Lors de la remontée, la pression lithostatique diminue, les gaz exsudent et forment des bulles. Si le magma est visqueux et piège ces bulles, la pression interne augmente jusqu'à la rupture. C'est l'explosion.",
+   "ecran": "gaz",
+   "id": "p15",
+   "texte": "Pression qui baisse : les bulles naissent, ça explose."
+  },
+  {
+   "dit": "On peut résumer le régime éruptif en une formule de bon sens : le régime est proportionnel à la teneur en gaz multipliée par la viscosité, divisée par la perméabilité du conduit. Un magma peu visqueux et pauvre en gaz donne une éruption effusive, car les gaz s'échappent librement. Le même basalte, riche en gaz et remonté trop vite pour dégazer progressivement, peut devenir explosif. À l'inverse, une rhyolite très visqueuse retient si bien ses gaz qu'elle conduit presque inévitablement à une explosion violente dès que la pression dépasse la résistance de la roche.",
+   "ecran": "regime_eruptif",
+   "id": "p16",
+   "texte": "Régime ∝ gaz × viscosité / perméabilité."
+  },
+  {
+   "dit": "Classons les éruptions par ordre croissant d'explosivité, avec leurs volcans emblématiques. Le type hawaïen : magma basaltique très fluide et pauvre en gaz, coulées dominantes, comme au Kilauea à Hawaï ou au Piton de la Fournaise à La Réunion. Le type strombolien : magma basaltique à andésitique, viscosité modérée, libération rythmique des gaz, comme au Stromboli ou à l'Etna, le phare de la Méditerranée. Le type vulcanien : magma visqueux andésitique formant un bouchon solide, dont la rupture violente projette des blocs. Le type plinien : magma très visqueux et riche en gaz, fragmentation complète, colonne gigantesque, comme le Vésuve en soixante-dix-neuf, le Mont Saint Helens en mille neuf cent quatre-vingts, ou le Pinatubo en mille neuf cent quatre-vingt-onze.",
+   "ecran": "types_eruptifs",
+   "id": "p17",
+   "texte": "Hawaïen, strombolien, vulcanien, plinien."
+  },
+  {
+   "dit": "Ajoutons deux cas extrêmes. Les éruptions phréato-magmatiques : l'interaction entre l'eau et le magma vaporise l'eau de façon explosive, et donne des maars et des anneaux de tuf. Et les super-éruptions, d'indice d'explosivité sept ou huit : plus de mille kilomètres cubes de matériaux émis, comme Toba en Indonésie il y a environ soixante-quatorze mille ans, ou Yellowstone aux États-Unis. Leurs conséquences sont planétaires : hivers volcaniques prolongés, effondrement des récoltes, impacts majeurs sur la biosphère.",
+   "ecran": "types_eruptifs2",
+   "id": "p18",
+   "texte": "Phréato-magmatique et super-éruptions."
+  },
+  {
+   "dit": "Résolvons un exercice de classification, pas à pas, comme à l'examen. Premier cas : un magma à cinquante pour cent de silice, à mille deux cents degrés. Cinquante pour cent, c'est dans la gamme du basalte, quarante-cinq à cinquante-deux pour cent, et mille deux cents degrés, c'est chaud : magma basaltique, fluide, pauvre en gaz piégés, donc éruption hawaïenne, coulées tranquilles. Deuxième cas : un magma à soixante-dix pour cent de silice, à huit cents degrés. Soixante-dix pour cent, c'est au-delà de soixante-trois pour cent, donc rhyolitique, et huit cents degrés, c'est relativement froid : magma très visqueux, gaz piégés, donc éruption plinienne, colonne et nuées ardentes. Même question, deux réponses opposées, décidées par la silice et la température.",
+   "ecran": "classification",
+   "id": "p19",
+   "texte": "50 % et 1 200 °C : hawaïen ; 70 % : plinien."
+  },
+  {
+   "dit": "Un dernier outil de comparaison : l'indice d'explosivité volcanique, noté VEI, de zéro à huit. Il classe les éruptions selon le volume de téphras émis et la hauteur de la colonne éruptive. Zéro, non explosive, comme Kilauea au quotidien. Un, douce, comme Stromboli. Trois, sévère, comme le Nevado del Ruiz en mille neuf cent quatre-vingt-cinq. Quatre, cataclysmique, comme l'Eyjafjallajökull en deux mille dix. Cinq, paroxysmique, comme le Mont Saint Helens en mille neuf cent quatre-vingts. Six, colossale, comme le Pinatubo en mille neuf cent quatre-vingt-onze. Sept, super-colossale, comme Tambora en mille huit cent quinze. Huit, comme Toba.",
+   "ecran": "vei",
+   "id": "p20",
+   "texte": "VEI 0 à 8 : volume et hauteur du panache."
+  },
+  {
+   "dit": "Récapitulons cette deuxième partie. La viscosité et la teneur en gaz commandent le style éruptif, du plus calme au plus cataclysmique. Hawaïen, strombolien, vulcanien, plinien : quatre types à connaître, avec leurs volcans. L'exercice est résolu : cinquante pour cent de silice à mille deux cents degrés donne un basalte fluide et une éruption hawaïenne, soixante-dix pour cent à huit cents degrés donne une rhyolite explosive et une éruption plinienne. Et l'indice VEI permet de comparer toutes les éruptions sur une même échelle, de zéro à huit.",
+   "ecran": "recap2",
+   "id": "p21",
+   "texte": "L'essentiel de la partie 2."
+  },
+  {
+   "dit": "Passons aux produits volcaniques, en commençant par l'invisible : les gaz. Avant même la lave, ce sont les gaz qui s'échappent, et ils constituent le moteur des éruptions explosives. Le mélange typique, par ordre d'abondance, est la vapeur d'eau, puis le dioxyde de carbone, un gaz lourd et dangereux, responsable de morts par asphyxie comme au lac Nyos au Cameroun en mille neuf cent quatre-vingt-six, puis le dioxyde de soufre, à l'origine des odeurs et des aérosols qui peuvent refroidir le climat. Surveiller les gaz en temps réel, c'est surveiller le volcan : une hausse du dioxyde de soufre peut annoncer la remontée d'un magma frais.",
+   "ecran": "produits_gaz",
+   "id": "p22",
+   "texte": "Gaz : H₂O, CO₂, SO₂, signaux d'alerte."
+  },
+  {
+   "dit": "Deuxième famille de produits : les solides, les pyroclastites, du grec feu et brisé. Quand un magma riche en gaz se fragmente violemment, il génère une pluie de fragments classés par taille. Les cendres volcaniques mesurent moins de deux millimètres : une poussière fine de verre et de minéraux, qui peut parcourir des milliers de kilomètres, perturber le trafic aérien comme l'Eyjafjallajökull en deux mille dix, et fertiliser les sols. Les lapilli mesurent de deux à soixante-quatre millimètres. Les bombes et les blocs dépassent soixante-quatre millimètres : les bombes, encore plastiques à l'éjection, prennent une forme aérodynamique, tandis que les blocs sont des fragments anguleux de roche ancienne.",
+   "ecran": "produits_pyro",
+   "id": "p23",
+   "texte": "Cendres < 2 mm, lapilli, bombes, blocs."
+  },
+  {
+   "dit": "Ces fragments s'accumulent en dépôts aux propriétés distinctes. Les téphras désignent tous les dépôts de fragments éjectés dans l'air. Les ignimbrites sont des dépôts massifs, souvent soudés, issus d'écoulements pyroclastiques : des mélanges de cendres, de gaz et de blocs à plus de cinq cents degrés qui dévalent les pentes à plusieurs centaines de kilomètres par heure. Ce sont parmi les phénomènes volcaniques les plus destructeurs, comme à Saint-Pierre en Martinique en mille neuf cent deux. Les nuées ardentes désignent historiquement les écoulements de type péléen, issus d'un dôme écroulé.",
+   "ecran": "produits_pyro2",
+   "id": "p24",
+   "texte": "Téphras, ignimbrites, nuées ardentes."
+  },
+  {
+   "dit": "Troisième famille : les laves, c'est-à-dire le magma débarrassé d'une grande partie de ses gaz, arrivé en surface. La viscosité se lit directement dans les formes de la coulée. Une lave basaltique fluide donne des coulées en tunnels, dites pahoehoe, à surface lisse et cordée, qui se déplacent en tubes, ou des coulées en gratons, dites aa, à surface rugueuse et clinkérée, qui avancent en blocs. Sous l'eau, elle donne des laves en coussins, les pillow lavas, preuve d'un volcanisme sous-marin. Une lave andésitique donne des coulées plus épaisses et courtes, souvent associées à des dômes. Une lave rhyolitique forme rarement des coulées étendues : elle s'empile en dômes.",
+   "ecran": "produits_laves",
+   "id": "p25",
+   "texte": "Pahoehoe, aa, pillow lava : la forme dit tout."
+  },
+  {
+   "dit": "Les produits secondaires comptent aussi. Les lahars sont des coulées de boue volcanique dévastatrices, mélanges d'eau et de cendres, qui peuvent survenir des années après l'éruption et parcourir de longues distances, comme au Nevado del Ruiz en Colombie en mille neuf cent quatre-vingt-cinq, où vingt-trois mille personnes sont mortes à Armero. Les gaz lacustres, comme le dioxyde de carbone accumulé dans les lacs de cratère, peuvent provoquer un dégazage limnique mortel. Et les fumerolles, solfatares et mares de boue sont des manifestations post-éruptives de dégazage résiduel, et des sources d'énergie géothermique.",
+   "ecran": "risques",
+   "id": "p26",
+   "texte": "Lahars, gaz lacustres, fumerolles."
+  },
+  {
+   "dit": "Revenons aux dangers, classés. Dangers directs : coulées de lave, qui détruisent par incinération et enfouissement ; projections balistiques, propulsées à plusieurs centaines de mètres par seconde ; coulées pyroclastiques, à plus de cinq cents degrés et plus de cent kilomètres par heure ; lahars ; gaz asphyxiants dans les dépressions. Dangers indirects : tsunamis volcaniques par effondrement de flanc, changements climatiques par les aérosols sulfatés, famines par destruction des récoltes. Le paradoxe du Nevado del Ruiz est instructif : une éruption modeste, d'indice trois, a causé une catastrophe majeure, parce que la communication et l'urbanisme ont failli. L'aléa n'est pas proportionnel au risque.",
+   "ecran": "risques2",
+   "id": "p27",
+   "texte": "Aléa modeste, catastrophe : Ruiz, 1985."
+  },
+  {
+   "dit": "Comment surveille-t-on un volcan ? Quatre signaux précurseurs, à suivre ensemble. La sismicité : des essaims de séismes liés à la fracturation, puis le trémor, lié à l'écoulement du magma. La déformation : le gonflement de l'édifice, mesuré par positionnement par satellite, interférométrie radar ou inclinomètres. Les émissions gazeuses : leur composition et leur flux, notamment le rapport entre dioxyde de soufre et dioxyde de carbone. La thermie : la température des fumerolles et les anomalies de surface vues par satellite. Aucun signal seul ne suffit, mais leur convergence permet d'élever le niveau d'alerte, de l'activité de fond à l'éruption imminente.",
+   "ecran": "surveillance",
+   "id": "p28",
+   "texte": "Sismicité, déformation, gaz, thermie."
+  },
+  {
+   "dit": "Terminons par les bienfaits, car le volcanisme n'est pas que destructeur. L'énergie géothermique exploite la chaleur interne : le gradient géothermique moyen est d'environ trente degrés par kilomètre, mais il peut atteindre cent degrés par kilomètre près d'une chambre magmatique. En Islande, environ trente pour cent de l'électricité et quatre-vingt-dix pour cent du chauffage urbain proviennent de la géothermie. Les sols volcaniques, les andosols, retiennent bien l'eau et sont riches en phosphore, potassium et calcium : ils portent les vignobles de l'Etna, de Santorin et des Canaries, et les caféiers d'Amérique centrale. Et les processus magmatiques concentrent des métaux : porphyres cuprifères du Chili et du Pérou, or et argent épithermaux, sulfures massifs des fonds océaniques.",
+   "ecran": "geothermie",
+   "id": "p29",
+   "texte": "Géothermie, andosols, cuivre, or."
+  },
+  {
+   "dit": "Pour conclure : un magma se définit par sa composition, sa température et ses gaz. La silice règle la viscosité, la viscosité et les gaz règlent le style éruptif, du hawaïen calme au plinien cataclysmique. Les produits racontent le contexte : gaz, pyroclastites classées par taille, laves dont la forme trahit la viscosité. L'indice VEI, de zéro à huit, permet de comparer Kilauea et Toba. Et la surveillance, par la sismicité, la déformation, les gaz et la thermie, transforme la connaissance en prévention pour les huit cents millions de personnes qui vivent près de volcans actifs.",
+   "ecran": "recap_final",
+   "id": "p30",
+   "texte": "Composition, viscosité, gaz : tout s'explique."
+  }
+ ],
+ "titre": "Magmatisme et volcanisme : du magma à l'éruption"
+}
