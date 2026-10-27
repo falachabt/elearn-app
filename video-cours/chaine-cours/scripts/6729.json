@@ -1,0 +1,335 @@
+{
+ "cours": 6729,
+ "ecrans": {
+  "choix": {
+   "kicker": "Synthèse · choisir sa méthode",
+   "tex": [
+    "\\text{substitution : une inconnue facile à isoler}",
+    "\\text{combinaisons : une élimination facile}"
+   ],
+   "titre": "Quelle méthode choisir ?",
+   "type": "etape"
+  },
+  "comb_principe": {
+   "kicker": "Résoudre · les combinaisons",
+   "tex": [
+    "\\text{additionner ou soustraire}",
+    "\\text{des multiples des équations}",
+    "\\text{une inconnue disparaît}",
+    "\\text{remplacer la valeur trouvée}"
+   ],
+   "titre": "Les combinaisons, en trois gestes",
+   "type": "etape"
+  },
+  "controle": {
+   "kicker": "Le contrôle final",
+   "tex": [
+    "\\text{vérifier le couple dans les deux équations}",
+    "\\text{respecter l'ordre : d'abord x, ensuite y}",
+    "\\text{conclure par le couple, entre parenthèses}"
+   ],
+   "titre": "Le réflexe qui sauve des points",
+   "type": "etape"
+  },
+  "couple": {
+   "kicker": "Le couple solution",
+   "note": "On remplace x par x0 et y par y0 : l'égalité doit rester vraie.",
+   "tex": "a x_0 + b y_0 = c",
+   "type": "formule"
+  },
+  "definition": {
+   "kicker": "L'équation du premier degré",
+   "note": "a et b non tous deux nuls : sans inconnue, plus d'équation.",
+   "tex": "ax + by = c",
+   "type": "formule"
+  },
+  "droite": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "droites_affines_fig"
+   },
+   "kicker": "La représentation graphique",
+   "note": "Si b ≠ 0 : les solutions forment une droite, voici son équation réduite.",
+   "tex": "y = -\\frac{a}{b}\\,x + \\frac{c}{b}",
+   "type": "formule"
+  },
+  "ex_comb": {
+   "kicker": "Exemple · combinaisons pas à pas",
+   "tex": [
+    "\\textstyle 2x + 3y = 7 \\quad (1) \\qquad 5x - 3y = 1 \\quad (2)",
+    "7x = 8 \\quad \\Rightarrow \\quad x = \\tfrac{8}{7}",
+    "\\tfrac{16}{7} + 3y = 7 \\Rightarrow 3y = \\tfrac{33}{7}",
+    "(x\\,;\\,y) = \\left(\\tfrac{8}{7}\\,;\\,\\tfrac{11}{7}\\right)"
+   ],
+   "titre": "Le système 2x + 3y = 7 et 5x − 3y = 1",
+   "type": "etape"
+  },
+  "ex_droite": {
+   "kicker": "Exemple · tracer la droite",
+   "tex": [
+    "2x - 3y = 6 \\quad \\Rightarrow \\quad y = \\tfrac{2}{3}\\,x - 2",
+    "(0\\,;\\,-2) \\qquad (3\\,;\\,0)"
+   ],
+   "titre": "La droite de 2x − 3y = 6, par ses deux points",
+   "type": "etape"
+  },
+  "ex_subst": {
+   "kicker": "Exemple · substitution pas à pas",
+   "tex": [
+    "x + 2y = 5 \\qquad (1) \\qquad 3x - y = 1 \\qquad (2)",
+    "x = 5 - 2y \\quad \\Rightarrow \\quad 3(5 - 2y) - y = 1",
+    "15 - 7y = 1 \\quad \\Rightarrow \\quad y = 2",
+    "x = 5 - 2 \\times 2 = 1 \\quad \\Rightarrow \\quad (1\\,;\\,2)"
+   ],
+   "titre": "Le système x + 2y = 5 et 3x − y = 1",
+   "type": "etape"
+  },
+  "ex_verif": {
+   "kicker": "Exemple · tester et trouver des solutions",
+   "tex": [
+    "2x - 3y = 6",
+    "(0\\,;\\,-2) : \\quad 2 \\times 0 - 3 \\times (-2) = 6",
+    "x = 3 : \\quad 6 - 3y = 6 \\quad \\Rightarrow \\quad y = 0",
+    "(3\\,;\\,0) \\text{ est aussi solution}"
+   ],
+   "titre": "L'équation 2x − 3y = 6 au banc d'essai",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Deux inconnues liées par une égalité : une infinité de couples conviennent, jusqu'à ce qu'une seconde condition vienne tout verrouiller.",
+   "type": "phrase"
+  },
+  "methode": {
+   "etapes": [
+    "Nommer les inconnues x et y",
+    "Traduire chaque condition en équation",
+    "Résoudre le système obtenu",
+    "Interpréter la solution dans le contexte"
+   ],
+   "kicker": "Problèmes · la démarche générale",
+   "type": "recap"
+  },
+  "probleme": {
+   "kicker": "Exemple · le théâtre, mise en équation",
+   "tex": [
+    "2x + 3y = 45 \\qquad x + 4y = 40",
+    "\\text{x : prix adulte} \\qquad \\text{y : prix enfant}"
+   ],
+   "titre": "Deux familles, deux passages en caisse",
+   "type": "etape"
+  },
+  "probleme2": {
+   "kicker": "Exemple · le théâtre, résolution",
+   "tex": [
+    "x = 40 - 4y",
+    "2(40 - 4y) + 3y = 45 \\quad \\Rightarrow \\quad 80 - 5y = 45",
+    "-5y = -35 \\quad \\Rightarrow \\quad y = 7",
+    "x = 40 - 4 \\times 7 = 12"
+   ],
+   "titre": "Résolution et vérification",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Une équation ax + by = c : une droite",
+    "Un système : deux équations en même temps",
+    "Substitution : exprimer, remplacer, résoudre",
+    "Combinaisons : éliminer une inconnue",
+    "Problème : nommer, traduire, résoudre, conclure"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "subst_principe": {
+   "kicker": "Résoudre · la substitution",
+   "tex": [
+    "\\text{exprimer une inconnue dans une équation}",
+    "\\text{la remplacer dans l'autre équation}",
+    "\\text{résoudre, puis revenir}",
+    "\\text{à la première inconnue}"
+   ],
+   "titre": "La substitution, en trois gestes",
+   "type": "etape"
+  },
+  "systeme": {
+   "kicker": "Le système de deux équations",
+   "tex": [
+    "ax + by = c \\qquad (1)",
+    "a'x + b'y = d \\qquad (2)"
+   ],
+   "titre": "Deux équations à vérifier en même temps",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "droites_trois_cas_fig"
+   },
+   "kicker": "Mathématique · Équations à deux inconnues",
+   "sous": "Une équation dessine une droite ; deux équations se résolvent par substitution ou par combinaisons",
+   "titre": "Deux inconnues, deux équations : les systèmes du premier degré",
+   "type": "titre"
+  },
+  "trois_cas": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "droites_trois_cas_fig"
+   },
+   "kicker": "Deux droites, trois rencontres possibles",
+   "texte": "Sécantes : une solution. Parallèles : aucune. Confondues : une infinité.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Une équation, une droite, un système — et la substitution"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : les combinaisons et la mise en problème. Après la substitution, voici l'autre grande méthode de résolution, fondée sur l'élimination, puis les critères pour choisir entre les deux, et enfin un problème complet, de l'énoncé jusqu'à la vérification.",
+    "texte": "Partie 2 : combinaisons et problème du théâtre."
+   },
+   "sous_titre": "Combinaisons, choix de méthode et problème concret"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux équations et aux systèmes à deux inconnues. Une seule équation à deux inconnues dessine une droite entière de solutions ; avec deux équations, on apprend à isoler le couple qui les vérifie toutes les deux, par substitution ou par combinaisons, puis à résoudre un problème concret du quotidien.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Deux inconnues, deux équations : trouver le couple solution."
+  },
+  {
+   "dit": "Point de départ : une équation peut lier deux inconnues, ici ixe et igrec. Contrairement aux équations à une seule inconnue, elle admet en général une infinité de couples solutions. Toute la question devient alors : comment décrire ces couples, puis comment en isoler un seul quand une seconde équation s'ajoute ? C'est le programme de ce cours.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Une équation, deux inconnues : une infinité de couples."
+  },
+  {
+   "dit": "Définition : une équation du premier degré à deux inconnues s'écrit a ixe plus b igrec égale c, où a, b et c sont des réels donnés. Une seule condition : a et b ne sont pas tous les deux nuls, sinon il ne resterait aucune inconnue dans l'équation.",
+   "ecran": "definition",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "ax + by = c, avec a et b non tous deux nuls."
+  },
+  {
+   "dit": "Un couple de réels, noté ixe zéro, igrec zéro, est solution de l'équation quand il vérifie l'égalité : a fois ixe zéro plus b fois igrec zéro égale c. Autrement dit, on remplace ixe et igrec par ces deux valeurs, et l'égalité doit rester vraie. Toute la suite repose sur ce test tout simple.",
+   "ecran": "couple",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Solution : le couple qui rend l'égalité vraie."
+  },
+  {
+   "dit": "Premier exemple : deux ixe moins trois igrec égale six. Le couple zéro, moins deux, est-il solution ? On remplace : deux fois zéro, moins trois fois moins deux, cela donne six : oui, ce couple convient. Cherchons-en un autre : pour ixe égale trois, l'équation devient six moins trois igrec égale six, donc igrec égale zéro. Le couple trois, zéro est lui aussi solution.",
+   "ecran": "ex_verif",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "2x − 3y = 6 : (0 ; −2) et (3 ; 0) conviennent."
+  },
+  {
+   "dit": "Que voit-on si l'on place dans un repère tous les points dont les coordonnées sont solutions ? Une droite, toujours. Et quand b est différent de zéro, on peut isoler igrec : l'équation réduite de cette droite est igrec égale moins a sur b, fois ixe, plus c sur b. Chaque solution devient un point de la droite, et réciproquement.",
+   "ecran": "droite",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Toutes les solutions alignées : une droite."
+  },
+  {
+   "dit": "Appliquons cela à notre équation, deux ixe moins trois igrec égale six. En isolant igrec, on obtient igrec égale deux tiers de ixe, moins deux. Nous connaissons déjà deux de ses points : zéro, moins deux, et trois, zéro. Deux points suffisent pour tracer une droite : la voilà, c'est l'ensemble complet des solutions de l'équation.",
+   "ecran": "ex_droite",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "y = (2/3)x − 2 : deux points, une droite."
+  },
+  {
+   "dit": "Passons au système : deux équations du premier degré, écrites ensemble, que le couple solution doit vérifier en même temps. Résoudre le système, c'est trouver tous les couples qui satisfont les deux équations à la fois. Graphiquement, ce sont les coordonnées des points communs aux deux droites, leurs points d'intersection.",
+   "ecran": "systeme",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Un système : deux équations, un couple commun."
+  },
+  {
+   "dit": "Deux droites du plan ne se rencontrent pas toujours de la même façon. Si elles sont sécantes, elles se croisent en un seul point : le système a une unique solution. Si elles sont parallèles et distinctes, aucun point commun : aucune solution. Et si elles sont confondues, tous leurs points sont communs : une infinité de solutions. Nos deux méthodes de calcul retrouveront toujours l'un de ces trois cas.",
+   "ecran": "trois_cas",
+   "id": "p09",
+   "pause_apres": 0.7,
+   "texte": "Sécantes, parallèles, confondues : trois cas."
+  },
+  {
+   "dit": "Première méthode de résolution : la substitution. Le principe tient en trois gestes. On exprime une inconnue en fonction de l'autre grâce à une des équations. On remplace cette expression dans l'autre équation, qui ne contient plus qu'une seule inconnue. On la résout, puis on revient à la première expression pour obtenir la seconde inconnue.",
+   "ecran": "subst_principe",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Substitution : exprimer, remplacer, résoudre."
+  },
+  {
+   "dit": "Exemple complet : ixe plus deux igrec égale cinq, et trois ixe moins igrec égale un. Dans la première équation, ixe s'isole facilement : ixe égale cinq moins deux igrec. On remplace dans la seconde : trois fois cinq moins deux igrec, moins igrec, égale un, soit quinze moins sept igrec égale un. Donc sept igrec égale quatorze, igrec égale deux, puis ixe égale cinq moins quatre, c'est-à-dire un. L'unique solution est le couple un, deux.",
+   "ecran": "ex_subst",
+   "id": "p11",
+   "pause_apres": 0.7,
+   "texte": "Substitution : la solution est (1 ; 2)."
+  },
+  {
+   "dit": "Deuxième méthode : les combinaisons. Cette fois, on ne remplace rien : on additionne ou on soustrait des multiples des deux équations, choisis pour faire disparaître une des inconnues. Il reste une équation à une seule inconnue, facile à résoudre, puis on remplace la valeur trouvée dans une des équations de départ pour obtenir l'autre inconnue.",
+   "ecran": "comb_principe",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Combinaisons : éliminer une inconnue d'un coup."
+  },
+  {
+   "dit": "Exemple : deux ixe plus trois igrec égale sept, et cinq ixe moins trois igrec égale un. Les coefficients de igrec sont opposés : en additionnant les deux équations, igrec disparaît et il vient sept ixe égale huit, donc ixe égale huit septièmes. On remplace dans la première : seize septièmes plus trois igrec égale sept, d'où trois igrec égale trente-trois septièmes, et igrec égale onze septièmes.",
+   "ecran": "ex_comb",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Combinaisons : la solution est (8/7 ; 11/7)."
+  },
+  {
+   "dit": "Comment choisir entre les deux méthodes ? La synthèse est simple. Privilégiez la substitution quand une inconnue a pour coefficient un : elle s'isole sans fraction. Privilégiez les combinaisons quand les coefficients se prêtent à l'élimination, par exemple des coefficients opposés comme dans l'exemple précédent. Et la lecture graphique reste un excellent contrôle : la solution se lit au point d'intersection.",
+   "ecran": "choix",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Coefficient 1 : substitution. Opposés : combinaisons."
+  },
+  {
+   "dit": "Un réflexe avant de conclure : vérifiez toujours le couple obtenu dans les deux équations de départ, pas seulement dans celle qui a servi au calcul. Et respectez l'ordre du couple : la première coordonnée est toujours ixe, la seconde toujours igrec. Inverser les deux, c'est proposer une autre réponse, presque toujours fausse.",
+   "ecran": "controle",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Contrôle final : tester le couple dans les deux équations."
+  },
+  {
+   "dit": "Reste l'usage le plus fréquent en exercice : un problème concret qui se ramène à un système. La démarche générale tient en quatre temps : identifier les deux inconnues et les nommer, traduire chaque condition de l'énoncé par une équation, résoudre le système obtenu, puis interpréter la solution dans le contexte, sans oublier de la vérifier.",
+   "ecran": "methode",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Problème vers système : la démarche en quatre temps."
+  },
+  {
+   "dit": "L'exemple du théâtre : deux familles passent à la caisse. La première, deux adultes et trois enfants, paie quarante-cinq euros ; la seconde, un adulte et quatre enfants, paie quarante euros. On note ixe le prix d'une place adulte et igrec celui d'une place enfant : les deux passages en caisse donnent deux ixe plus trois igrec égale quarante-cinq, et ixe plus quatre igrec égale quarante.",
+   "ecran": "probleme",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Théâtre : 2x + 3y = 45 et x + 4y = 40."
+  },
+  {
+   "dit": "On résout par substitution : la seconde équation donne ixe égale quarante moins quatre igrec. Reporté dans la première, cela donne quatre-vingts moins cinq igrec égale quarante-cinq, donc igrec égale sept. Puis ixe égale quarante moins vingt-huit, c'est-à-dire douze. Vérification : deux fois douze plus trois fois sept font bien quarante-cinq, et douze plus quatre fois sept font quarante. Une place adulte coûte douze euros, une place enfant sept euros.",
+   "ecran": "probleme2",
+   "id": "p18",
+   "pause_apres": 0.7,
+   "texte": "Résolu : adulte 12 euros, enfant 7 euros, vérifié."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement de ce cours. Une équation du premier degré à deux inconnues a pour solutions les points d'une droite. Un système réunit deux équations à vérifier ensemble. Pour le résoudre, la substitution remplace, les combinaisons éliminent. Et devant un problème, on nomme les inconnues, on traduit, on résout, puis on interprète et on vérifie.",
+   "ecran": "recap",
+   "id": "p19",
+   "pause_apres": 0.5,
+   "texte": "À retenir : droite, système, deux méthodes."
+  }
+ ],
+ "titre": "Deux inconnues, deux équations : les systèmes du premier degré"
+}
