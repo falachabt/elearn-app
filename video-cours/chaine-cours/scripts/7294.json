@@ -1,0 +1,405 @@
+{
+ "cours": 7294,
+ "titre": "Fonctions polynômes : limites, dérivée, variations et factorisation",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Fonctions polynômes",
+   "titre": "Fonctions polynômes : limites, dérivée, variations et factorisation",
+   "sous": "Le terme dominant et la dérivée pour les variations, la racine évidente et la factorisation pour le signe",
+   "anim": {
+    "nom": "courbe_cubique_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Deux questions, deux outils : la dérivée pour les variations, la factorisation pour le signe.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 200
+   }
+  },
+  "definition": {
+   "type": "etape",
+   "kicker": "Définition · fonction polynôme",
+   "titre": "La forme générale, du degré n au terme constant",
+   "tex": [
+    "f(x) = a_n x^n + a_{n-1} x^{n-1} + \\cdots",
+    "\\qquad + a_1 x + a_0 \\qquad a_n \\neq 0"
+   ]
+  },
+  "limites": {
+   "type": "formule",
+   "kicker": "Limites en l'infini",
+   "tex": "\\lim_{x \\to \\pm\\infty} f(x) = \\lim_{x \\to \\pm\\infty} a_n x^n",
+   "note": "On lit la limite sur le seul terme de plus haut degré",
+   "anim": {
+    "nom": "courbe_cubique_fig",
+    "hauteur": 150
+   }
+  },
+  "table_limites": {
+   "type": "etape",
+   "kicker": "Limites selon la parité et le signe",
+   "titre": "Quatre cas, une seule règle",
+   "tex": [
+    "n \\text{ pair}, a_n > 0 : +\\infty \\text{ des deux côtés}",
+    "n \\text{ pair}, a_n < 0 : -\\infty \\text{ des deux côtés}",
+    "n \\text{ impair}, a_n > 0 : -\\infty \\text{ puis } +\\infty",
+    "n \\text{ impair}, a_n < 0 : +\\infty \\text{ puis } -\\infty"
+   ]
+  },
+  "ex_limites": {
+   "type": "etape",
+   "kicker": "Exemple · limites",
+   "titre": "Degré impair, coefficient négatif",
+   "tex": [
+    "f(x) = -2x^3 + 5x^2 - 7",
+    "\\lim_{x \\to +\\infty} f(x) = -\\infty \\qquad \\lim_{x \\to -\\infty} f(x) = +\\infty"
+   ]
+  },
+  "derivee_def": {
+   "type": "formule",
+   "kicker": "Dérivée · le nombre dérivé",
+   "tex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a + h) - f(a)}{h}",
+   "note": "La limite du taux d'accroissement, quand elle existe et est finie"
+  },
+  "derivee_regles": {
+   "type": "etape",
+   "kicker": "Dérivée · les formules à connaître",
+   "titre": "Dériver terme à terme",
+   "tex": [
+    "(x^n)' = n\\,x^{n-1} \\qquad (k)' = 0",
+    "(u + v)' = u' + v' \\qquad (k\\,u)' = k\\,u'",
+    "f'(x) = n\\,a_n x^{n-1} + \\cdots + a_1"
+   ]
+  },
+  "ex_derivee": {
+   "type": "etape",
+   "kicker": "Exemple · dériver",
+   "titre": "Chaque terme perd un degré",
+   "tex": [
+    "f(x) = 3x^3 - 6x^2 + 2x - 1",
+    "f'(x) = 9x^2 - 12x + 2"
+   ]
+  },
+  "lien_variations": {
+   "type": "etape",
+   "kicker": "Variations · le rôle de la dérivée",
+   "titre": "Le signe de la dérivée donne le sens de variation",
+   "tex": [
+    "f'(x) > 0 \\;\\Rightarrow\\; f \\text{ croissante}",
+    "f'(x) < 0 \\;\\Rightarrow\\; f \\text{ décroissante}",
+    "f'(x) = 0 \\;\\Rightarrow\\; f \\text{ constante}"
+   ]
+  },
+  "methode_var": {
+   "type": "etape",
+   "kicker": "Méthode · tableau de variation",
+   "titre": "Trois gestes avant le tracé",
+   "tex": [
+    "\\text{1. calculer } f'(x)",
+    "\\text{2. étudier le signe de } f'(x)",
+    "\\text{3. tableau : flèches et valeurs aux bornes}"
+   ]
+  },
+  "ex_var_derivee": {
+   "type": "etape",
+   "kicker": "Exemple résolu · dérivée et signe",
+   "titre": "Une cubique étudiée pas à pas",
+   "tex": [
+    "f(x) = x^3 - 3x + 1",
+    "f'(x) = 3x^2 - 3 = 3(x - 1)(x + 1)",
+    "f' > 0 \\text{ hors de } [-1; 1]",
+    "f' < 0 \\text{ entre } -1 \\text{ et } 1"
+   ]
+  },
+  "ex_var_valeurs": {
+   "type": "etape",
+   "kicker": "Exemple résolu · extremums",
+   "titre": "Maximum trois en moins un, minimum moins un en un",
+   "tex": [
+    "f(-1) = 3 \\qquad f(1) = -1",
+    "-\\infty \\; \\nearrow \\; 3 \\; \\searrow \\; -1 \\; \\nearrow \\; +\\infty"
+   ]
+  },
+  "courbe": {
+   "type": "phrase",
+   "kicker": "Courbe représentative",
+   "texte": "Extremums (−1 ; 3) et (1 ; −1), ordonnée à l'origine 1 : une allure en S."
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Limite en l'infini : le terme dominant",
+    "Dérivée : (xⁿ)′ = n·xⁿ⁻¹, terme à terme",
+    "Le signe de f' donne les variations",
+    "La courbe suit le tableau de variation"
+   ]
+  },
+  "racine_def": {
+   "type": "formule",
+   "kicker": "Racine d'un polynôme",
+   "tex": "P(a) = 0 \\;\\Rightarrow\\; P(x) = (x - a)\\,Q(x)",
+   "note": "Degré de Q : un de moins que le degré de P"
+  },
+  "racine_evidente": {
+   "type": "etape",
+   "kicker": "Recherche d'une racine évidente",
+   "titre": "Tester les petites valeurs entières",
+   "tex": [
+    "P(x) = x^3 - 2x^2 - 5x + 6",
+    "P(1) = 1 - 2 - 5 + 6 = 0",
+    "\\text{donc } (x - 1) \\text{ divise } P(x)"
+   ]
+  },
+  "identification": {
+   "type": "etape",
+   "kicker": "Factorisation par identification",
+   "titre": "Développer, puis identifier les coefficients",
+   "tex": [
+    "P(x) = (x - 1)(x^2 + bx + c)",
+    "= x^3 + (b - 1)x^2 + (c - b)x - c",
+    "b = -1, \\quad c = -6"
+   ],
+   "anim": {
+    "nom": "horner_fig",
+    "hauteur": 130
+   }
+  },
+  "discriminant": {
+   "type": "etape",
+   "kicker": "Factoriser le trinôme restant",
+   "titre": "Le discriminant termine la factorisation",
+   "tex": [
+    "x^2 - x - 6 : \\Delta = 1 + 24 = 25",
+    "x = \\tfrac{1 \\pm 5}{2} : 3 \\text{ et } -2",
+    "P(x) = (x - 1)(x - 3)(x + 2)"
+   ],
+   "anim": {
+    "nom": "factorisation_fig",
+    "hauteur": 130
+   }
+  },
+  "verification": {
+   "type": "phrase",
+   "kicker": "Vérification",
+   "texte": "Contrôle en 0 : P(0) = 6, et (0−1)(0−3)(0+2) = 6. La factorisation est juste."
+  },
+  "signe_regle": {
+   "type": "etape",
+   "kicker": "Signe d'un polynôme factorisé",
+   "titre": "Le produit des signes, facteur par facteur",
+   "tex": [
+    "\\text{facteur : change de signe en racine}",
+    "\\text{nombre pair de négatifs : } +",
+    "\\text{nombre impair de négatifs : } -"
+   ]
+  },
+  "tableau_signe": {
+   "type": "etape",
+   "kicker": "Exemple · tableau de signes",
+   "titre": "Le signe alterne à chaque racine simple",
+   "tex": [
+    "x : -\\infty \\quad -2 \\quad 1 \\quad 3 \\quad +\\infty",
+    "P(x) : - \\quad 0 \\quad + \\quad 0 \\quad - \\quad 0 \\quad +"
+   ]
+  },
+  "equations": {
+   "type": "etape",
+   "kicker": "Équations et inéquations",
+   "titre": "Le tableau de signes répond à tout",
+   "tex": [
+    "P(x) = 0 \\iff x \\in \\{-2; 1; 3\\}",
+    "P(x) \\geq 0 \\iff x \\in [-2; 1] \\cup [3; +\\infty["
+   ]
+  },
+  "ex_inequation": {
+   "type": "formule",
+   "kicker": "Exemple résolu · inéquation",
+   "tex": "x^3 - 2x^2 - 5x + 6 < 0",
+   "note": "Solution : les intervalles où le tableau affiche un signe moins"
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Racine évidente : tester −2, −1, 0, 1, 2",
+    "Identification : factoriser par (x − a)",
+    "Trinôme restant : le discriminant",
+    "Signe : produit des signes des facteurs",
+    "Dérivée : variations · factorisation : signe"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux fonctions polynômes. Nous verrons d'abord les limites en l'infini, la dérivée et le tableau de variation, qui donnent la courbe. Puis nous apprendrons à factoriser un polynôme de degré trois grâce à une racine évidente, pour résoudre équations et inéquations.",
+   "texte": "Polynômes : variations par la dérivée, signe par la factorisation.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Deux questions reviennent sans cesse sur les polynômes. Comment la fonction varie-t-elle, et quel est son signe ? La première se règle avec la dérivée, la seconde avec la factorisation. Ce cours construit les deux outils, chacun avec son exemple résolu.",
+   "texte": "Deux questions, deux outils : dérivée et factorisation.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Une fonction polynôme est définie sur tous les réels par une somme de puissances de x, à coefficients réels, dont le terme de plus haut degré a un coefficient non nul. Ce plus haut degré est le degré du polynôme, et son coefficient est le coefficient dominant : ils pilotent presque tout le cours.",
+   "texte": "f(x) = aₙxⁿ + … + a₀ : degré n, coefficient dominant aₙ.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Première règle : la limite d'un polynôme en l'infini est celle de son terme de plus haut degré, tous les autres devenant négligeables devant lui. Il suffit donc de connaître le comportement d'un monôme, selon la parité du degré et le signe du coefficient dominant.",
+   "texte": "À l'infini : la limite de aₙxⁿ, rien d'autre.",
+   "ecran": "limites"
+  },
+  {
+   "id": "p05",
+   "dit": "Les quatre cas se retiennent d'un coup d'œil. Degré pair et coefficient positif : plus l'infini des deux côtés. Degré pair et coefficient négatif : moins l'infini des deux côtés. Degré impair et coefficient positif : de moins l'infini vers plus l'infini. Degré impair et coefficient négatif : l'inverse.",
+   "texte": "Quatre cas : parité du degré, signe de aₙ.",
+   "ecran": "table_limites"
+  },
+  {
+   "id": "p06",
+   "dit": "Exemple. Pour moins deux x au cube plus cinq x au carré moins sept, le terme dominant est moins deux x au cube, de degré impair et de coefficient négatif. La limite en plus l'infini vaut donc moins l'infini, et en moins l'infini, plus l'infini. Le terme en x au carré ne change rien au verdict.",
+   "texte": "Exemple : −2x³ impose −∞ à droite, +∞ à gauche.",
+   "ecran": "ex_limites"
+  },
+  {
+   "id": "p07",
+   "dit": "Passons à la dérivée. Une fonction est dérivable en un point si son taux d'accroissement admet une limite finie quand l'accroissement tend vers zéro : cette limite est le nombre dérivé. Pour un polynôme, cette limite existe en tout point, sans exception.",
+   "texte": "Le nombre dérivé : limite du taux d'accroissement.",
+   "ecran": "derivee_def"
+  },
+  {
+   "id": "p08",
+   "dit": "Les formules à connaître sont courtes. La dérivée de x puissance n est n fois x puissance n moins un. Celle d'une constante est nulle. Une somme se dérive terme à terme, et une constante multiplicative se conserve. La dérivée d'un polynôme s'écrit donc en abaissant chaque exposant d'une unité.",
+   "texte": "(xⁿ)′ = n·xⁿ⁻¹ : dériver terme à terme.",
+   "ecran": "derivee_regles"
+  },
+  {
+   "id": "p09",
+   "dit": "Application immédiate. Pour trois x au cube moins six x au carré plus deux x moins un, la dérivée vaut neuf x au carré moins douze x plus deux. Le terme constant a disparu, et chaque coefficient a été multiplié par l'exposant de son terme.",
+   "texte": "Exemple : f′(x) = 9x² − 12x + 2.",
+   "ecran": "ex_derivee"
+  },
+  {
+   "id": "p10",
+   "dit": "Le lien avec les variations est le cœur de l'étude. Dérivée strictement positive sur un intervalle : la fonction y est croissante. Strictement négative : elle y est décroissante. Nulle partout : elle est constante. Tout le tableau de variation découle de ces trois phrases.",
+   "texte": "Le signe de f′ donne le sens de variation.",
+   "ecran": "lien_variations"
+  },
+  {
+   "id": "p11",
+   "dit": "La méthode tient alors en trois gestes. Calculer la dérivée. Étudier son signe, en cherchant ses racines et en appliquant les règles de signe connues, notamment pour un trinôme. Puis dresser le tableau de variation, avec des flèches dans le bon sens et les valeurs aux bornes et aux extremums.",
+   "texte": "Méthode : dérivée, signe, tableau.",
+   "ecran": "methode_var"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple résolu. Soit f de x égale x au cube moins trois x plus un. Sa dérivée vaut trois x au carré moins trois, soit trois fois x moins un fois x plus un. Elle est positive en dehors de l'intervalle de moins un à un, où la fonction croît, et négative entre moins un et un, où elle décroît.",
+   "texte": "Exemple : f(x) = x³ − 3x + 1, f′(x) = 3(x−1)(x+1).",
+   "ecran": "ex_var_derivee"
+  },
+  {
+   "id": "p13",
+   "dit": "Les valeurs aux points critiques sont trois en moins un, un maximum local, et moins un en un, un minimum local. Le tableau se lit donc ainsi : la fonction monte de moins l'infini jusqu'à trois, descend jusqu'à moins un, puis remonte vers plus l'infini.",
+   "texte": "Maximum 3 en −1, minimum −1 en 1.",
+   "ecran": "ex_var_valeurs"
+  },
+  {
+   "id": "p14",
+   "dit": "La courbe se construit à partir du tableau. On place les deux extremums, en moins un et trois, puis en un et moins un, et le point d'intersection avec l'axe des ordonnées, zéro et un. On relie en respectant les flèches et les limites : une allure en esse, avec deux changements de sens.",
+   "texte": "Une courbe en S, fidèle au tableau de variation.",
+   "ecran": "courbe"
+  },
+  {
+   "id": "p15",
+   "dit": "Récapitulons cette première partie. La limite d'un polynôme en l'infini est celle de son terme dominant. Sa dérivée se calcule terme à terme avec la règle des puissances. Son signe donne les variations, résumées dans le tableau, et la courbe se construit à partir de ce tableau.",
+   "texte": "Partie 1 : l'essentiel sur limites et variations.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p16",
+   "dit": "Pour résoudre une équation polynomiale de degré trois ou plus, ou étudier un signe, la dérivée ne suffit plus : il faut factoriser le polynôme lui-même. Définition : un réel a est une racine si P de a vaut zéro. Alors le polynôme est divisible par x moins a.",
+   "texte": "P(a) = 0 : alors (x − a) divise P(x).",
+   "ecran": "racine_def"
+  },
+  {
+   "id": "p17",
+   "dit": "On cherche d'abord une racine évidente, parmi les petites valeurs entières : moins deux, moins un, zéro, un, deux. Pour P de x égale x au cube moins deux x au carré moins cinq x plus six, on teste un : un moins deux moins cinq plus six vaut zéro. Un est racine, et x moins un divise le polynôme.",
+   "texte": "Racine évidente : P(1) = 0 pour x³ − 2x² − 5x + 6.",
+   "ecran": "racine_evidente"
+  },
+  {
+   "id": "p18",
+   "dit": "On factorise alors par identification. On écrit le polynôme comme le produit de x moins un par un trinôme de coefficients inconnus, b et c. En développant, on obtient x au cube, plus b moins un fois x au carré, plus c moins b fois x, moins c. L'identification donne b égale moins un et c égale moins six, et le coefficient de x, moins cinq, confirme.",
+   "texte": "Identification : b = −1, c = −6, contrôle −5.",
+   "ecran": "identification"
+  },
+  {
+   "id": "p19",
+   "dit": "Reste le trinôme, x au carré moins x moins six. Son discriminant vaut un plus vingt-quatre, vingt-cinq. Les racines sont trois et moins deux. Le trinôme vaut donc x moins trois fois x plus deux, et le polynôme complet : x moins un, x moins trois et x plus deux.",
+   "texte": "Δ = 25 : P(x) = (x−1)(x−3)(x+2).",
+   "ecran": "discriminant"
+  },
+  {
+   "id": "p20",
+   "dit": "Un réflexe avant d'aller plus loin : toujours vérifier une factorisation, en redéveloppant ou en contrôlant la valeur en un point qui n'est pas une racine. En zéro, le polynôme vaut six, et le produit des trois facteurs vaut aussi six : moins un fois moins trois fois deux. La factorisation est juste.",
+   "texte": "Contrôle en 0 : 6 = 6, factorisation vérifiée.",
+   "ecran": "verification"
+  },
+  {
+   "id": "p21",
+   "dit": "Le signe d'un produit de facteurs affines s'obtient facteur par facteur. Chaque facteur change de signe en sa racine. Le signe du produit suit alors la règle des signes : un nombre pair de facteurs négatifs donne un produit positif, un nombre impair donne un produit négatif.",
+   "texte": "Signe d'un produit : compter les facteurs négatifs.",
+   "ecran": "signe_regle"
+  },
+  {
+   "id": "p22",
+   "dit": "Pour notre polynôme, les facteurs s'annulent en moins deux, un et trois. Le tableau donne : négatif avant moins deux, positif entre moins deux et un, négatif entre un et trois, positif après trois. Contrôle gratuit : le coefficient dominant est positif, et le signe à droite du tableau est bien positif.",
+   "texte": "Tableau : −, 0, +, 0, −, 0, +.",
+   "ecran": "tableau_signe"
+  },
+  {
+   "id": "p23",
+   "dit": "Tout se lit dans le tableau. L'équation P de x égale zéro a pour solutions moins deux, un et trois. L'inéquation P de x positif ou nul garde les intervalles de signe plus, bornes incluses : de moins deux à un, puis à partir de trois.",
+   "texte": "P(x) = 0 : {−2 ; 1 ; 3} · P(x) ≥ 0 : [−2 ; 1] ∪ [3 ; +∞[.",
+   "ecran": "equations"
+  },
+  {
+   "id": "p24",
+   "dit": "Dernier exemple, offert par le même tableau. Résoudre x au cube moins deux x au carré moins cinq x plus six strictement négatif revient à garder les intervalles de signe moins : avant moins deux, et entre un et trois. Aucun nouveau calcul : la factorisation a tout payé d'avance.",
+   "texte": "P(x) < 0 sur ]−∞ ; −2[ ∪ ]1 ; 3[.",
+   "ecran": "ex_inequation"
+  },
+  {
+   "id": "p25",
+   "dit": "Pour finir, retenez la chaîne complète. Une racine évidente se cherche parmi les petites valeurs entières. L'identification factorise par x moins a, le discriminant termine le trinôme restant, et le tableau de signes résout équations et inéquations. La dérivée donne les variations, la factorisation les zéros et le signe : les deux outils se complètent.",
+   "texte": "Variations par la dérivée, signe par la factorisation.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Limites, dérivée et variations d'un polynôme"
+  },
+  {
+   "debut": "p16",
+   "sous_titre": "Racine évidente, factorisation et signe",
+   "pont": {
+    "texte": "Partie 2 : racine évidente, factorisation et tableau de signes.",
+    "dit": "Partie deux, factoriser pour connaître le signe. Une racine évidente, une identification, un discriminant, et le tableau de signes résout équations et inéquations."
+   }
+  }
+ ]
+}
