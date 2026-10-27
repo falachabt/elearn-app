@@ -1,0 +1,439 @@
+{
+ "cours": 7245,
+ "ecrans": {
+  "casdelta": {
+   "kicker": "Équations du second degré · discriminant",
+   "tex": [
+    "\\Delta > 0 : x_1 = \\tfrac{-b - \\sqrt{\\Delta}}{2a}",
+    "\\Delta > 0 : x_2 = \\tfrac{-b + \\sqrt{\\Delta}}{2a}",
+    "\\Delta = 0 : x_0 = \\tfrac{-b}{2a}",
+    "\\Delta < 0 : S = \\emptyset"
+   ],
+   "titre": "Trois cas selon le signe de delta",
+   "type": "etape"
+  },
+  "casinf": {
+   "kicker": "Systèmes · cas particuliers",
+   "note": "Tout couple (x, 1 − x) est solution.",
+   "tex": "\\begin{cases} x + y = 1 \\\\ 2x + 2y = 2 \\end{cases}",
+   "type": "formule"
+  },
+  "cassans": {
+   "kicker": "Systèmes · cas particuliers",
+   "note": "Même coefficient directeur −1, ordonnées différentes.",
+   "tex": "\\begin{cases} x + y = 1 \\\\ x + y = 3 \\end{cases}",
+   "type": "formule"
+  },
+  "comb1": {
+   "kicker": "Systèmes · combinaison",
+   "tex": [
+    "\\begin{cases} 3x + 2y = 12 \\\\ 5x - 2y = 4 \\end{cases}",
+    "8x = 16 \\iff x = 2"
+   ],
+   "titre": "Des coefficients opposés en y",
+   "type": "etape"
+  },
+  "comb2": {
+   "kicker": "Systèmes · combinaison",
+   "tex": [
+    "3 \\times 2 + 2y = 12 \\iff y = 3",
+    "(x, y) = (2, 3)",
+    "5 \\times 2 - 2 \\times 3 = 4"
+   ],
+   "titre": "Reporter, puis vérifier",
+   "type": "etape"
+  },
+  "def1": {
+   "kicker": "Équations du premier degré · définition",
+   "tex": "ax + b = 0 \\quad \\text{avec } a \\neq 0",
+   "type": "formule"
+  },
+  "def2": {
+   "kicker": "Équations du second degré · définition",
+   "tex": [
+    "ax^2 + bx + c = 0 \\quad a \\neq 0",
+    "\\Delta = b^2 - 4ac"
+   ],
+   "titre": "La forme générale et le discriminant",
+   "type": "etape"
+  },
+  "ex1a": {
+   "kicker": "Exemple · premier degré",
+   "tex": [
+    "3x - 5 = 7x + 11",
+    "3x - 7x = 11 + 5",
+    "-4x = 16"
+   ],
+   "titre": "Regrouper, puis simplifier",
+   "type": "etape"
+  },
+  "ex1b": {
+   "kicker": "Exemple · premier degré",
+   "tex": [
+    "x = -4",
+    "3 \\times (-4) - 5 = -17",
+    "7 \\times (-4) + 11 = -17"
+   ],
+   "titre": "Diviser, puis vérifier",
+   "type": "etape"
+  },
+  "ex2a": {
+   "kicker": "Exemple · second degré",
+   "tex": [
+    "x^2 - 5x + 6 = 0",
+    "a = 1, \\quad b = -5, \\quad c = 6",
+    "\\Delta = (-5)^2 - 4 \\times 1 \\times 6",
+    "= 25 - 24 = 1 > 0"
+   ],
+   "titre": "Calculer delta d'abord",
+   "type": "etape"
+  },
+  "ex2b": {
+   "kicker": "Exemple · second degré",
+   "tex": [
+    "x_1 = \\tfrac{5 - 1}{2} = 2 \\qquad x_2 = \\tfrac{5 + 1}{2} = 3",
+    "S = \\{2, 3\\}",
+    "2^2 - 5 \\times 2 + 6 = 0"
+   ],
+   "titre": "Deux racines, vérifiées",
+   "type": "etape"
+  },
+  "exineq1": {
+   "kicker": "Exemple · inéquation du premier degré",
+   "tex": [
+    "-2x + 3 \\leq 7",
+    "-2x \\leq 4",
+    "x \\geq -2 \\qquad S = [-2, +\\infty["
+   ],
+   "titre": "Diviser par un négatif : sens renversé",
+   "type": "etape"
+  },
+  "exineq2": {
+   "kicker": "Exemple · inéquation du second degré",
+   "tex": [
+    "x^2 - 5x + 6 \\leq 0",
+    "x_1 = 2 \\qquad x_2 = 3 \\qquad a = 1 > 0",
+    "S = [2, 3]"
+   ],
+   "titre": "Négatif entre les racines",
+   "type": "etape"
+  },
+  "graph": {
+   "kicker": "Systèmes · lecture graphique",
+   "tex": [
+    "D : 3x + 2y = 12",
+    "D' : 5x - 2y = 4",
+    "D \\cap D' = \\{(2, 3)\\}"
+   ],
+   "titre": "La solution est le point d'intersection",
+   "type": "etape"
+  },
+  "ineq1": {
+   "kicker": "Inéquations du premier degré · règle",
+   "tex": [
+    "ax + b > 0 \\qquad ax + b \\geq 0",
+    "ax + b < 0 \\qquad ax + b \\leq 0"
+   ],
+   "titre": "Un facteur négatif renverse le sens",
+   "type": "etape"
+  },
+  "ineq2": {
+   "kicker": "Inéquations du second degré · méthode",
+   "texte": "Dehors : signe de a. Entre les racines : signe opposé.",
+   "type": "phrase"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Égalité, inégalité, système : trois questions, une méthode.",
+   "type": "phrase"
+  },
+  "methode": {
+   "etapes": [
+    "Choisir : substitution ou combinaison",
+    "Éliminer une inconnue",
+    "Reporter, puis conclure",
+    "Vérifier dans les deux équations"
+   ],
+   "kicker": "Systèmes · méthode générale",
+   "type": "recap"
+  },
+  "pieges": {
+   "etapes": [
+    "Diviser : vérifier le diviseur non nul",
+    "Facteur négatif : sens renversé",
+    "Couple : vérifier les deux équations"
+   ],
+   "kicker": "Pièges à éviter",
+   "type": "recap"
+  },
+  "probmise": {
+   "kicker": "Problème · le rectangle",
+   "tex": [
+    "2(x + \\ell) = 30 \\iff x + \\ell = 15",
+    "\\ell = 15 - x",
+    "15 - x \\geq 2x"
+   ],
+   "titre": "Traduire l'énoncé en inéquation",
+   "type": "etape"
+  },
+  "probres": {
+   "kicker": "Problème · le rectangle",
+   "tex": [
+    "15 \\geq 3x \\iff x \\leq 5",
+    "x > 0",
+    "S = ]0, 5]"
+   ],
+   "titre": "Résoudre, puis interpréter",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Premier degré : isoler x",
+    "Second degré : delta décide",
+    "Inéquation : sens et signe du trinôme",
+    "Systèmes : substituer, combiner, vérifier",
+    "Problème : traduire, résoudre, interpréter"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "regles1": {
+   "kicker": "Équations du premier degré · opérations",
+   "tex": [
+    "ax + b = 0 \\iff ax = -b",
+    "x = -\\tfrac{b}{a} \\qquad a \\neq 0"
+   ],
+   "titre": "Deux opérations qui conservent les solutions",
+   "type": "etape"
+  },
+  "subst1": {
+   "kicker": "Systèmes · substitution",
+   "tex": [
+    "\\begin{cases} x + y = 5 \\\\ 2x - y = 1 \\end{cases}",
+    "y = 5 - x"
+   ],
+   "titre": "Exprimer, puis remplacer",
+   "type": "etape"
+  },
+  "subst2": {
+   "kicker": "Systèmes · substitution",
+   "tex": [
+    "2x - (5 - x) = 1 \\iff 3x - 5 = 1",
+    "x = 2 \\qquad y = 5 - 2 = 3",
+    "2 + 3 = 5 \\qquad 2 \\times 2 - 3 = 1"
+   ],
+   "titre": "Résoudre, puis vérifier",
+   "type": "etape"
+  },
+  "sysdef": {
+   "kicker": "Systèmes · définition",
+   "tex": [
+    "\\begin{cases} ax + by = c \\\\ a'x + b'y = c' \\end{cases}",
+    "(x, y) \\in \\mathbb{R} \\times \\mathbb{R}"
+   ],
+   "titre": "Deux égalités, un même couple",
+   "type": "etape"
+  },
+  "tableau": {
+   "etapes": [
+    "Sécantes : une solution unique",
+    "Parallèles distinctes : aucune solution",
+    "Confondues : une infinité de solutions"
+   ],
+   "kicker": "Systèmes · positions relatives",
+   "type": "recap"
+  },
+  "titre": {
+   "kicker": "Mathématique · Équations et systèmes",
+   "sous": "Premier et second degré, systèmes à deux inconnues, problèmes concrets",
+   "titre": "Équations, inéquations et systèmes",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Équations et inéquations du premier et du second degré"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux, les systèmes à deux inconnues, par substitution et combinaison, puis un problème de rectangle.",
+    "texte": "Partie 2 : systèmes, graphique et problème concret."
+   },
+   "sous_titre": "Systèmes à deux inconnues et problème concret"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux équations, aux inéquations et aux systèmes. Nous résoudrons pas à pas des équations du premier et du second degré, des inéquations, puis des systèmes à deux inconnues, avant un problème concret.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Équations, inéquations, systèmes : résoudre pas à pas."
+  },
+  {
+   "dit": "Le fil rouge est simple. Une équation cherche les valeurs qui rendent une égalité vraie, une inéquation celles qui rendent une inégalité vraie, un système les couples qui vérifient plusieurs égalités à la fois. On transforme sans changer les solutions, puis on vérifie.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Trois questions, une même démarche : transformer, vérifier."
+  },
+  {
+   "dit": "Commençons par le premier degré. Une équation du premier degré à une inconnue ixe se ramène à a fois ixe plus b égale zéro, avec a différent de zéro. Résoudre, c'est trouver les ixe qui rendent cette égalité vraie.",
+   "ecran": "def1",
+   "id": "p03",
+   "texte": "ax + b = 0 : isoler l'inconnue."
+  },
+  {
+   "dit": "Pour résoudre sans changer les solutions, on peut ajouter ou retrancher un même nombre aux deux membres, et multiplier ou diviser les deux membres par un même nombre non nul. On regroupe les ixe d'un côté et les nombres connus de l'autre.",
+   "ecran": "regles1",
+   "id": "p04",
+   "texte": "Mêmes opérations des deux côtés, solutions inchangées."
+  },
+  {
+   "dit": "Premier exemple, pas à pas. Résoudre trois ixe moins cinq égale sept ixe plus onze. On regroupe les ixe à gauche et les nombres à droite. Trois ixe moins sept ixe égale onze plus cinq, donc moins quatre ixe égale seize.",
+   "ecran": "ex1a",
+   "id": "p05",
+   "texte": "Regrouper : les x à gauche, les nombres à droite."
+  },
+  {
+   "dit": "On divise ensuite par moins quatre, un nombre non nul, et ixe égale moins quatre. Vérifions. À gauche, trois fois moins quatre moins cinq donne moins dix-sept. À droite, sept fois moins quatre plus onze donne aussi moins dix-sept. La solution est moins quatre.",
+   "ecran": "ex1b",
+   "id": "p06",
+   "texte": "x = −4, vérifiée à gauche comme à droite."
+  },
+  {
+   "dit": "Passons au second degré. Une équation du second degré s'écrit a ixe au carré plus b ixe plus c égale zéro, avec a différent de zéro. L'outil central est le discriminant delta, qui vaut b au carré moins quatre a c. Son signe décide du nombre de solutions.",
+   "ecran": "def2",
+   "id": "p07",
+   "texte": "ax² + bx + c = 0 : delta décide."
+  },
+  {
+   "dit": "Si delta est strictement positif, il y a deux solutions distinctes, en ajoutant ou en retranchant sa racine carrée. Si delta est nul, il y a une seule solution, dite double. Si delta est strictement négatif, il n'y a aucune solution réelle.",
+   "ecran": "casdelta",
+   "id": "p08",
+   "texte": "Δ > 0, Δ = 0, Δ < 0 : trois destins."
+  },
+  {
+   "dit": "Exemple du second degré. Résoudre ixe au carré moins cinq ixe plus six égale zéro. Ici a vaut un, b vaut moins cinq et c vaut six. Le discriminant vaut moins cinq au carré moins quatre fois un fois six, soit vingt-cinq moins vingt-quatre, donc un, positif.",
+   "ecran": "ex2a",
+   "id": "p09",
+   "texte": "Δ = 1 : deux racines à venir."
+  },
+  {
+   "dit": "Comme delta vaut un, sa racine carrée vaut un. La première solution vaut cinq moins un sur deux, soit deux. La seconde vaut cinq plus un sur deux, soit trois. Vérification pour deux, quatre moins dix plus six égale zéro. Les solutions sont deux et trois.",
+   "ecran": "ex2b",
+   "id": "p10",
+   "texte": "Racines 2 et 3, vérifiées."
+  },
+  {
+   "dit": "Une inéquation du premier degré se ramène à a ixe plus b supérieur à zéro, avec a différent de zéro. Ajouter ou retrancher un nombre ne change pas le sens, et multiplier ou diviser par un positif non plus. Mais un facteur négatif renverse le sens.",
+   "ecran": "ineq1",
+   "id": "p11",
+   "texte": "Facteur négatif : le sens bascule."
+  },
+  {
+   "dit": "Exemple. Résoudre moins deux ixe plus trois inférieur ou égal à sept. On retranche trois des deux côtés, et moins deux ixe devient inférieur ou égal à quatre. On divise par moins deux, un nombre négatif, donc le sens se renverse. Ixe est supérieur ou égal à moins deux, moins deux inclus.",
+   "ecran": "exineq1",
+   "id": "p12",
+   "texte": "x ≥ −2 : division par −2, sens renversé."
+  },
+  {
+   "dit": "Pour une inéquation du second degré, on étudie le signe du trinôme. On calcule d'abord delta et les racines éventuelles. Le trinôme a le signe de a à l'extérieur des racines, et le signe opposé à a entre les racines. Sans racine, il garde le signe de a partout.",
+   "ecran": "ineq2",
+   "id": "p13",
+   "texte": "Dehors : signe de a. Entre : signe opposé."
+  },
+  {
+   "dit": "Exemple. Résoudre ixe au carré moins cinq ixe plus six inférieur ou égal à zéro. Les racines sont connues, deux et trois. Ici a vaut un, donc positif, et le trinôme est négatif entre les racines. La solution est l'intervalle fermé de deux à trois.",
+   "ecran": "exineq2",
+   "id": "p14",
+   "texte": "[2, 3] : négatif entre les racines."
+  },
+  {
+   "dit": "Un système de deux équations à deux inconnues ixe et igrec regroupe deux égalités que le couple doit vérifier en même temps. Une solution est un couple qui vérifie les deux équations à la fois. Soit une solution unique, soit une infinité de solutions, soit aucune solution.",
+   "ecran": "sysdef",
+   "id": "p15",
+   "texte": "Un couple, deux égalités à la fois."
+  },
+  {
+   "dit": "Première méthode, la substitution. On exprime une inconnue en fonction de l'autre à partir d'une équation, puis on la remplace dans la seconde. Prenons ixe plus igrec égale cinq et deux ixe moins igrec égale un. De la première, igrec égale cinq moins ixe.",
+   "ecran": "subst1",
+   "id": "p16",
+   "texte": "Substitution : exprimer, puis remplacer."
+  },
+  {
+   "dit": "En remplaçant dans la seconde, deux ixe moins la quantité cinq moins ixe égale un, soit trois ixe moins cinq égale un, donc ixe égale deux, puis igrec égale trois. Vérification, deux plus trois égale cinq, et deux fois deux moins trois égale un.",
+   "ecran": "subst2",
+   "id": "p17",
+   "texte": "x = 2, y = 3 : couple vérifié."
+  },
+  {
+   "dit": "Deuxième méthode, la combinaison. On additionne les équations membre à membre, après les avoir multipliées si besoin, pour éliminer une inconnue. Ici, les coefficients de igrec sont opposés. En additionnant les deux équations, on obtient huit ixe égale seize, donc ixe égale deux.",
+   "ecran": "comb1",
+   "id": "p18",
+   "texte": "Coefficients opposés : additionner élimine y."
+  },
+  {
+   "dit": "On reporte ixe égale deux dans la première équation. Trois fois deux plus deux igrec égale douze, donc igrec égale trois. Vérification dans la seconde, cinq fois deux moins deux fois trois égale quatre.",
+   "ecran": "comb2",
+   "id": "p19",
+   "texte": "Reporter, conclure, vérifier deux fois."
+  },
+  {
+   "dit": "Chaque équation est celle d'une droite dans le plan. Résoudre le système, c'est chercher le point commun aux deux droites. Pour le système précédent, les deux droites se coupent au point de coordonnées deux trois, la solution trouvée par le calcul.",
+   "ecran": "graph",
+   "id": "p20",
+   "texte": "Deux droites, un point commun : la solution."
+  },
+  {
+   "dit": "Les positions relatives des deux droites disent tout. Sécantes, un seul point commun, une solution unique. Parallèles et distinctes, aucun point commun, aucune solution. Confondues, une infinité de points communs, une infinité de solutions.",
+   "ecran": "tableau",
+   "id": "p21",
+   "texte": "Sécantes, parallèles, confondues : 1, 0, ∞."
+  },
+  {
+   "dit": "Premier cas particulier, un système sans solution. Ixe plus igrec égale un, et ixe plus igrec égale trois. Les droites ont le même coefficient directeur moins un, mais des ordonnées différentes. Parallèles et distinctes, aucun couple ne convient.",
+   "ecran": "cassans",
+   "id": "p22",
+   "texte": "Parallèles distinctes : aucun couple."
+  },
+  {
+   "dit": "Second cas particulier, une infinité de solutions. Ixe plus igrec égale un, et deux ixe plus deux igrec égale deux. La seconde équation est le double de la première, donc les droites sont confondues. Tout couple ixe et un moins ixe est solution, avec ixe réel.",
+   "ecran": "casinf",
+   "id": "p23",
+   "texte": "Confondues : tous les couples (x, 1−x)."
+  },
+  {
+   "dit": "Méthode générale, en quatre temps. Choisir la méthode la plus rapide, substitution si un coefficient vaut un ou moins un, combinaison sinon. Éliminer une inconnue, puis reporter pour trouver l'autre. Vérifier le couple dans les deux équations, et lire le point d'intersection.",
+   "ecran": "methode",
+   "id": "p24",
+   "texte": "Choisir, éliminer, reporter, vérifier."
+  },
+  {
+   "dit": "Passons à un problème concret. Un rectangle a un périmètre de trente centimètres. On note ixe sa largeur, et on veut que sa longueur soit au moins le double de sa largeur. Le demi-périmètre vaut quinze, donc la longueur vaut quinze moins ixe, et la condition s'écrit quinze moins ixe supérieur ou égal à deux ixe.",
+   "ecran": "probmise",
+   "id": "p25",
+   "texte": "Périmètre 30 cm : longueur = 15 − x."
+  },
+  {
+   "dit": "On regroupe, quinze supérieur ou égal à trois ixe, donc ixe inférieur ou égal à cinq. Comme une largeur est strictement positive, la solution est l'intervalle ouvert en zéro et fermé en cinq. La largeur ne dépasse donc pas cinq centimètres.",
+   "ecran": "probres",
+   "id": "p26",
+   "texte": "]0, 5] : largeur positive, au plus 5 cm."
+  },
+  {
+   "dit": "Trois pièges à éviter. Ne jamais diviser par un nombre sans vérifier qu'il est non nul. Ne jamais oublier de renverser le sens d'une inégalité quand on multiplie ou divise par un négatif. Et vérifier un couple dans les deux équations, pas une seule.",
+   "ecran": "pieges",
+   "id": "p27",
+   "texte": "Non nul, sens renversé, double vérification."
+  },
+  {
+   "dit": "Pour finir, retenez l'essentiel. Au premier degré, on isole ixe. Au second degré, delta décide. Pour les inéquations, le sens et le signe du trinôme décident. Pour les systèmes, substitution ou combinaison, puis vérification. Pour un problème, traduire, résoudre, interpréter.",
+   "ecran": "recap",
+   "id": "p28",
+   "texte": "Équations, inéquations, systèmes : à retenir."
+  }
+ ],
+ "titre": "Équations, inéquations et systèmes"
+}
