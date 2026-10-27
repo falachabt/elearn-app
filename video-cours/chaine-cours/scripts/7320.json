@@ -1,0 +1,425 @@
+{
+ "cours": 7320,
+ "ecrans": {
+  "balayage": {
+   "kicker": "Méthode · encadrer une solution",
+   "tex": [
+    "\\text{1. continuité et changement de signe}",
+    "\\text{2. calculer la fonction aux bornes}",
+    "\\text{3. dichotomie : partager, tester le signe}",
+    "\\text{4. encadrer à la précision voulue}"
+   ],
+   "titre": "Vérifier, borner, partager, resserrer",
+   "type": "etape"
+  },
+  "coincidence": {
+   "kicker": "Quand les deux côtés coïncident",
+   "note": "Les deux limites latérales doivent exister et être égales",
+   "tex": "\\lim_{x \\to a^-} f(x) = \\lim_{x \\to a^+} f(x) = L",
+   "type": "formule"
+  },
+  "conditions": {
+   "kicker": "Continuité en un point · trois exigences",
+   "tex": [
+    "\\text{1. } f \\text{ définie en } a",
+    "\\text{2. la limite en } a \\text{ existe}",
+    "\\text{3. cette limite vaut } f(a)"
+   ],
+   "titre": "Définie, limite existante, limite égale à l'image",
+   "type": "etape"
+  },
+  "continuite": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "La continuité en un point",
+   "note": "Une seule égalité résume la définition",
+   "tex": "\\lim_{x \\to a} f(x) = f(a)",
+   "type": "formule"
+  },
+  "corollaire": {
+   "kicker": "Corollaire du théorème des valeurs intermédiaires",
+   "tex": [
+    "f(a) \\times f(b) < 0",
+    "\\exists c \\in ]a, b[,\\ f(c) = 0"
+   ],
+   "titre": "Signes contraires aux bornes : un zéro à l'intérieur",
+   "type": "etape"
+  },
+  "def_limite": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Limite en un point",
+   "note": "La fonction est définie au voisinage de a, sauf peut-être en a",
+   "tex": "\\lim_{x \\to a} f(x) = L",
+   "type": "formule"
+  },
+  "derivable": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Continuité et dérivabilité",
+   "texte": "Dérivable implique continue ; la valeur absolue casse la réciproque.",
+   "type": "phrase"
+  },
+  "ex_continuite": {
+   "kicker": "Exemple résolu · prolonger en zéro",
+   "tex": [
+    "\\lim_{x \\to 0} \\tfrac{\\sin x}{x} = 1",
+    "f(0) = 1",
+    "\\text{limite} = f(0) \\text{ : continue en } 0"
+   ],
+   "titre": "Sinus sur ixe, avec la valeur un en zéro",
+   "type": "etape"
+  },
+  "ex_limite": {
+   "kicker": "Exemple résolu · lever une indétermination",
+   "tex": [
+    "\\tfrac{x^2 - 4}{x - 2} = \\tfrac{(x - 2)(x + 2)}{x - 2}",
+    "\\tfrac{x^2 - 4}{x - 2} = x + 2 \\quad (x \\neq 2)",
+    "\\lim_{x \\to 2} \\tfrac{x^2 - 4}{x - 2} = 4"
+   ],
+   "titre": "Ixe carré moins quatre sur ixe moins deux",
+   "type": "etape"
+  },
+  "ex_tvi_bornes": {
+   "kicker": "Exemple résolu · les valeurs aux bornes",
+   "tex": [
+    "f(x) = x^3 + x - 1 \\text{, continue sur } [0, 1]",
+    "f(0) = -1 < 0",
+    "f(1) = 1 + 1 - 1 = 1 > 0"
+   ],
+   "titre": "Négative en zéro, positive en un",
+   "type": "etape"
+  },
+  "ex_tvi_conclusion": {
+   "kicker": "Exemple résolu · existence, puis unicité",
+   "tex": [
+    "\\exists c \\in ]0, 1[,\\ f(c) = 0",
+    "f \\text{ strictement croissante : } c \\text{ unique}"
+   ],
+   "titre": "Un zéro, et un seul, entre zéro et un",
+   "type": "etape"
+  },
+  "ex_valeur_absolue": {
+   "kicker": "Exemple résolu · deux limites latérales différentes",
+   "tex": [
+    "x > 0 : f(x) = 1 \\qquad x < 0 : f(x) = -1",
+    "\\lim_{x \\to 0^+} f(x) = 1 \\qquad \\lim_{x \\to 0^-} f(x) = -1",
+    "1 \\neq -1 \\text{ : pas de limite en } 0"
+   ],
+   "titre": "Valeur absolue de ixe sur ixe",
+   "type": "etape"
+  },
+  "formes": {
+   "kicker": "Les formes indéterminées",
+   "note": "On lève l'indétermination : factoriser, simplifier, conjuguée",
+   "tex": "\\frac{0}{0} \\qquad \\frac{\\infty}{\\infty} \\qquad 0 \\times \\infty \\qquad \\infty - \\infty",
+   "type": "formule"
+  },
+  "gauche_droite": {
+   "kicker": "Limites à gauche et à droite",
+   "note": "Moins : par valeurs inférieures ; plus : par valeurs supérieures",
+   "tex": "\\lim_{x \\to a^-} f(x) \\qquad \\lim_{x \\to a^+} f(x)",
+   "type": "formule"
+  },
+  "intervalle": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Continue sur un intervalle",
+   "texte": "Continue en chaque point : un tracé sans rupture ni saut.",
+   "type": "phrase"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "branche_infinie_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Approcher un point sans forcément l'atteindre.",
+   "type": "phrase"
+  },
+  "methode_limite": {
+   "kicker": "La méthode en quatre gestes",
+   "tex": [
+    "\\text{1. substituer et repérer la forme}",
+    "\\text{2. factoriser ou simplifier}",
+    "\\text{3. quantité conjuguée si racines}",
+    "\\text{4. conclure avec la forme simplifiée}"
+   ],
+   "titre": "Substituer, transformer, simplifier, conclure",
+   "type": "etape"
+  },
+  "operations": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "branche_infinie_fig"
+   },
+   "kicker": "Opérations sur les limites",
+   "texte": "Sommes, produits, quotients : on combine, sauf indétermination.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Limite : f(x) proche de L, x proche de a",
+    "Formes indéterminées : factoriser, simplifier",
+    "Gauche et droite égales, sinon pas de limite",
+    "Continue en a : limite égale à f(a)",
+    "TVI : continuité et signes, solution assurée"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "recap1": {
+   "etapes": [
+    "Limite : f(x) proche de L, x proche de a",
+    "Opérations : combiner, sauf indétermination",
+    "Lever la forme : factoriser, simplifier",
+    "Gauche égale droite, sinon pas de limite"
+   ],
+   "kicker": "Partie 1 : à retenir",
+   "type": "recap"
+  },
+  "reflexe": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Le réflexe latéral",
+   "texte": "Une formule de chaque côté : calculer les deux limites.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Mathématique · Analyse",
+   "sous": "Limites, formes indéterminées, continuité et théorème des valeurs intermédiaires",
+   "titre": "Limites et continuité",
+   "type": "titre"
+  },
+  "tvi": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Théorème des valeurs intermédiaires",
+   "note": "K entre les deux valeurs aux bornes : il est atteint quelque part",
+   "tex": "\\exists c \\in [a, b],\\ f(c) = k",
+   "type": "formule"
+  },
+  "unicite": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Le cas d'unicité",
+   "texte": "Strictement monotone : la valeur n'est atteinte qu'une fois.",
+   "type": "phrase"
+  },
+  "usuelles": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "hyperbole_fig"
+   },
+   "kicker": "Deux limites usuelles",
+   "tex": [
+    "\\lim_{x \\to 0} \\tfrac{\\sin x}{x} = 1",
+    "\\lim_{x \\to +\\infty} \\tfrac{1}{x} = 0"
+   ],
+   "titre": "Sinus sur ixe en zéro, un sur ixe à l'infini",
+   "type": "etape"
+  },
+  "usuelles_fonctions": {
+   "kicker": "Les fonctions continues usuelles",
+   "tex": [
+    "\\text{polynômes, sinus, cosinus : sur } \\mathbb{R}",
+    "\\text{rationnelles : sur leur domaine}",
+    "\\text{somme, produit, quotient, composée}"
+   ],
+   "titre": "Continues, et leurs combinaisons aussi",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Limites, formes indéterminées et limites latérales"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux, la continuité et le théorème des valeurs intermédiaires. Nous allons exiger qu'une limite coïncide avec la valeur de la fonction, puis utiliser cette continuité pour garantir qu'une équation possède une solution, et même parfois une seule.",
+    "texte": "Partie 2 : continuité et théorème des valeurs intermédiaires."
+   },
+   "sous_titre": "Continuité et théorème des valeurs intermédiaires"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux limites et à la continuité. Nous verrons ce que signifie approcher une valeur, comment traiter les formes indéterminées, puis comment la continuité garantit qu'une équation possède une solution, par au théorème des valeurs intermédiaires.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Limites et continuité : le programme."
+  },
+  {
+   "dit": "L'idée de départ est un mouvement. On fait approcher la variable ixe d'un point a, sans forcément l'atteindre, et l'on regarde vers quelle valeur la fonction èf de ixe se rapproche. Tout le cours rendra ce regard précis, puis l'utilisera.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Approcher sans forcément atteindre."
+  },
+  {
+   "dit": "On dit que la fonction èf admet une limite èle en a lorsque èf de ixe s'approche de èle dès que ixe s'approche de a. La fonction doit être définie au voisinage de a, sauf éventuellement en a : la limite décrit l'approche, pas nécessairement la valeur au point.",
+   "ecran": "def_limite",
+   "id": "p03",
+   "texte": "lim f(x) = L quand x tend vers a."
+  },
+  {
+   "dit": "Deux limites usuelles sont à connaître par cœur. Quand ixe tend vers zéro, le quotient de sinus ixe par ixe tend vers un : numérateur et dénominateur deviennent minuscules ensemble. Et quand ixe tend vers plus l'infini, un sur ixe tend vers zéro.",
+   "ecran": "usuelles",
+   "id": "p04",
+   "texte": "sin x / x → 1 en 0 ; 1 / x → 0 à l'infini."
+  },
+  {
+   "dit": "Les opérations se combinent naturellement : limite d'une somme, somme des limites ; limite d'un produit, produit des limites ; limite d'un quotient, quotient des limites, tant que le dénominateur ne tend pas vers zéro. La plupart des limites sont alors immédiates, par substitution.",
+   "ecran": "operations",
+   "id": "p05",
+   "texte": "Sommes, produits, quotients : on combine."
+  },
+  {
+   "dit": "Mais quatre formes résistent à la substitution : zéro sur zéro, infini sur infini, zéro fois infini, et infini moins infini. Ce sont les formes indéterminées : le calcul direct ne dit rien. On les lève par factorisation, simplification, ou multiplication par la quantité conjuguée.",
+   "ecran": "formes",
+   "id": "p06",
+   "texte": "0/0, ∞/∞, 0 × ∞, ∞ − ∞ : rien n'est décidé."
+  },
+  {
+   "dit": "La méthode tient en quatre gestes. Substituer d'abord, pour repérer si la forme est directe ou indéterminée. Si elle est indéterminée, factoriser ou simplifier. En présence de racines, multiplier par la quantité conjuguée. Puis conclure avec la forme transformée.",
+   "ecran": "methode_limite",
+   "id": "p07",
+   "texte": "Substituer, factoriser, simplifier, conclure."
+  },
+  {
+   "dit": "Exemple résolu : la limite, quand ixe tend vers deux, du quotient de ixe carré moins quatre par ixe moins deux. En deux, numérateur et dénominateur valent zéro : forme indéterminée. On factorise en ixe moins deux fois ixe plus deux, on simplifie par ixe moins deux, licite car ixe diffère de deux pendant l'approche, et il reste ixe plus deux, de limite quatre.",
+   "ecran": "ex_limite",
+   "id": "p08",
+   "texte": "Exemple : la limite en 2 vaut 4."
+  },
+  {
+   "dit": "On peut aussi approcher le point a d'un seul côté. Par valeurs inférieures, ixe reste sous a et s'en rapproche : c'est la limite à gauche. Par valeurs supérieures, ixe reste au-dessus : c'est la limite à droite. Ces deux approches n'aboutissent pas toujours au même endroit.",
+   "ecran": "gauche_droite",
+   "id": "p09",
+   "texte": "À gauche par en dessous, à droite par au-dessus."
+  },
+  {
+   "dit": "La propriété qui relie les trois notions est une équivalence. La fonction admet une limite èle en a si et seulement si ses limites à gauche et à droite existent toutes les deux et valent èle. Un seul côté différent, et la limite globale disparaît.",
+   "ecran": "coincidence",
+   "id": "p10",
+   "texte": "Limite globale = deux limites latérales égales."
+  },
+  {
+   "dit": "Exemple avec la fonction valeur absolue de ixe divisée par ixe. Pour ixe positif, ce quotient vaut un ; pour ixe négatif, moins un. La limite à droite en zéro vaut donc un, celle à gauche moins un : elles diffèrent, et la fonction n'admet pas de limite en zéro.",
+   "ecran": "ex_valeur_absolue",
+   "id": "p11",
+   "texte": "|x| / x : 1 à droite, −1 à gauche, pas de limite."
+  },
+  {
+   "dit": "Ce contre-exemple montre le réflexe à garder : chaque fois qu'une expression change de formule selon le signe de ixe, on calcule séparément les deux limites latérales avant de conclure. C'est aussi le premier test d'une étude de continuité.",
+   "ecran": "reflexe",
+   "id": "p12",
+   "texte": "Expression qui change selon le côté : séparer."
+  },
+  {
+   "dit": "Retenons cette première partie. Une limite décrit une approche, les opérations la combinent quand aucune forme indéterminée ne bloque, et ces formes se lèvent par factorisation ou simplification. La limite globale existe exactement quand les limites latérales coïncident.",
+   "ecran": "recap1",
+   "id": "p13",
+   "texte": "Partie 1 : limites maîtrisées."
+  },
+  {
+   "dit": "Une fonction èf est continue en a si sa limite en a existe et vaut exactement èf de a, la valeur au point. Trois choses donc : la fonction est définie en a, la limite en a existe, et elle égale l'image du point. Graphiquement, la courbe se trace sans rupture ni saut en ce point.",
+   "ecran": "continuite",
+   "id": "p14",
+   "texte": "Continue en a : limite = f(a)."
+  },
+  {
+   "dit": "Vérifions ces trois exigences une à une, car chacune peut faire échouer la continuité. Définie en a d'abord : sans valeur au point, rien à comparer. Limite existante ensuite : les deux côtés doivent coïncider. Égalité enfin : sinon, un trou reste dans la courbe.",
+   "ecran": "conditions",
+   "id": "p15",
+   "texte": "Définie, limite existante, égalité : trois tests."
+  },
+  {
+   "dit": "Une fonction est continue sur un intervalle si elle est continue en chaque point de cet intervalle. Son tracé s'y fait d'un seul geste, sans lever le crayon : pas de trou, pas de saut. C'est cette image qui rendra le théorème des valeurs intermédiaires presque évident.",
+   "ecran": "intervalle",
+   "id": "p16",
+   "texte": "Sur un intervalle : continue partout, tracé continu."
+  },
+  {
+   "dit": "Les fonctions usuelles offrent de solides garanties. Polynômes, sinus et cosinus sont continus sur les réels. Les rationnelles sont continues sur leur ensemble de définition. Et somme, produit, quotient à dénominateur non nul et composée restent continus.",
+   "ecran": "usuelles_fonctions",
+   "id": "p17",
+   "texte": "Usuelles continues, combinaisons continues."
+  },
+  {
+   "dit": "Continuité et dérivabilité sont liées dans un seul sens. Toute fonction dérivable en un point y est continue : la dérivabilité est l'exigence la plus forte. La réciproque est fausse : la valeur absolue est continue en zéro, mais y forme un angle et n'y est pas dérivable.",
+   "ecran": "derivable",
+   "id": "p18",
+   "texte": "Dérivable ⇒ continue ; l'inverse est faux."
+  },
+  {
+   "dit": "Exemple résolu : la continuité en zéro d'une fonction définie par sinus ixe sur ixe pour ixe non nul, et par un en zéro. D'après la limite usuelle, le quotient tend vers un. Cette limite vaut exactement la valeur en zéro, un : la fonction est continue en zéro, le trou apparent est comblé.",
+   "ecran": "ex_continuite",
+   "id": "p19",
+   "texte": "Exemple : limite 1 = f(0), continue en 0."
+  },
+  {
+   "dit": "Voici le théorème des valeurs intermédiaires. Si une fonction est continue sur un intervalle fermé de bornes a et bé, et si un réel ka est compris entre les valeurs aux bornes, alors il existe au moins un réel cé dans l'intervalle tel que l'image de cé vaut ka. Une courbe sans rupture traverse toutes les hauteurs intermédiaires.",
+   "ecran": "tvi",
+   "id": "p20",
+   "texte": "TVI : toute valeur intermédiaire est atteinte."
+  },
+  {
+   "dit": "Le corollaire le plus utilisé vise l'équation èf de ixe égale zéro. Si la fonction est continue et si ses valeurs aux bornes sont de signes contraires, leur produit étant strictement négatif, alors il existe au moins une solution strictement entre les bornes. Le changement de signe force le passage par zéro.",
+   "ecran": "corollaire",
+   "id": "p21",
+   "texte": "Signes contraires : un zéro garanti à l'intérieur."
+  },
+  {
+   "dit": "Le théorème donne l'existence, pas l'unicité. Mais si la fonction est strictement monotone sur l'intervalle, toujours croissante ou toujours décroissante, elle ne traverse chaque hauteur qu'une fois : la solution est alors unique.",
+   "ecran": "unicite",
+   "id": "p22",
+   "texte": "Strictement monotone : la solution est unique."
+  },
+  {
+   "dit": "Exemple complet : montrer que l'équation ixe au cube plus ixe moins un égale zéro admet une unique solution entre zéro et un. La fonction est un polynôme, donc continue. En zéro, elle vaut moins un ; en un, elle vaut un. Les signes sont contraires.",
+   "ecran": "ex_tvi_bornes",
+   "id": "p23",
+   "texte": "f(0) = −1, f(1) = 1 : les signes sont contraires."
+  },
+  {
+   "dit": "Le corollaire donne alors un réel cé strictement entre zéro et un dont l'image vaut zéro : c'est une solution. De plus, la fonction est strictement croissante, comme somme de deux fonctions croissantes, ixe au cube et ixe. La solution est donc unique.",
+   "ecran": "ex_tvi_conclusion",
+   "id": "p24",
+   "texte": "Le TVI donne le zéro, la monotonie l'unicité."
+  },
+  {
+   "dit": "Reste à approcher cette solution. La méthode par balayage vérifie d'abord la continuité et le changement de signe d'une fonction auxiliaire, la fonction de départ moins la valeur visée. On calcule ses valeurs aux bornes, puis on resserre par dichotomie, en gardant le côté où le signe change, jusqu'à la précision voulue.",
+   "ecran": "balayage",
+   "id": "p25",
+   "texte": "Balayage et dichotomie : encadrer à volonté."
+  },
+  {
+   "dit": "Pour conclure. Une limite décrit une approche, les formes indéterminées se lèvent par transformation, et les limites latérales décident de l'existence. La continuité exige que la limite égale la valeur au point. Et le théorème des valeurs intermédiaires transforme un changement de signe en certitude.",
+   "ecran": "recap",
+   "id": "p26",
+   "texte": "Limites, continuité, TVI : à retenir."
+  }
+ ],
+ "titre": "Limites et continuité"
+}
