@@ -76,7 +76,7 @@ describe('actionsCredits service', () => {
 
     expect(res).toBe(true);
     expect(Linking.openURL).toHaveBeenCalledWith('https://elearnprepa.com?token=user-123');
-    expect(onSucces).toHaveBeenCalledWith(10);
+    expect(onSucces).toHaveBeenCalledWith(3);
 
     // L'état est rangé par élève.
     const etat = await lireEtatActionsQuotidiennes(dateMock, { utilisateurId: 'user-123' });
@@ -211,7 +211,7 @@ describe('actions du jour : le serveur fait foi', () => {
     const res = await executerActionQuotidienne('instagram', { client, utilisateurId: 'u1', onSucces, maintenant: jour });
     expect(res).toBe(true);
     expect(rpc).toHaveBeenCalledWith('claim_daily_action', { p_action_code: 'instagram' });
-    expect(onSucces).toHaveBeenCalledWith(5);
+    expect(onSucces).toHaveBeenCalledWith(2);
     expect((await lireEtatActionsQuotidiennes(jour, { utilisateurId: 'u1' })).instagram).toBe(true);
   });
 });
