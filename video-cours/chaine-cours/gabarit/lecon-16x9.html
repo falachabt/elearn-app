@@ -6742,6 +6742,142 @@ const FIG = {
       mot(250, 192, '(P)', { t: 21, c: '#10B981' }) + mot(716, 106, "(P')", { t: 21, c: '#1A75FF' }) +
       mot(772, 246, 'Δ', { t: 21, a: 'start' }) + mot(496, 288, '(d)', { t: 19, c: '#E8604C', a: 'end' }));
   },
+  plante_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      trait(150, 240, 850, 240, p, { w: 3 }) +
+      trait(500, 240, 500, 110, p, { w: 4.5 }) +
+      `<circle cx="500" cy="80" r="11" fill="#E8604C"/>` +
+      `<circle cx="500" cy="54" r="13" fill="none" stroke="#E8604C" stroke-width="3"/>` +
+      `<circle cx="525" cy="70" r="13" fill="none" stroke="#E8604C" stroke-width="3"/>` +
+      `<circle cx="516" cy="96" r="13" fill="none" stroke="#E8604C" stroke-width="3"/>` +
+      `<circle cx="484" cy="96" r="13" fill="none" stroke="#E8604C" stroke-width="3"/>` +
+      `<circle cx="475" cy="70" r="13" fill="none" stroke="#E8604C" stroke-width="3"/>` +
+      `<ellipse cx="405" cy="155" rx="62" ry="27" fill="none" stroke="#10B981" stroke-width="4" transform="rotate(-25 405 155)"/>` +
+      `<ellipse cx="595" cy="190" rx="62" ry="27" fill="none" stroke="#10B981" stroke-width="4" transform="rotate(25 595 190)"/>` +
+      trait(500, 240, 435, 285, p, { w: 3.5 }) + trait(500, 240, 565, 285, p, { w: 3.5 }) + trait(500, 240, 500, 288, p, { w: 3.5 }) +
+      mot(650, 70, "fleur") + mot(240, 105, "feuille") + mot(530, 145, "tige", { a: 'start' }) + mot(660, 290, "racine"));
+  },
+  feuille_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      trait(180, 210, 360, 175, p, { w: 4 }) +
+      `<ellipse cx="640" cy="150" rx="260" ry="75" fill="none" stroke="#10B981" stroke-width="4" transform="rotate(-6 640 150)"/>` +
+      trait(360, 175, 880, 140, p, { w: 3.5 }) +
+      trait(480, 168, 450, 110, p, { w: 2.5 }) + trait(600, 158, 575, 100, p, { w: 2.5 }) + trait(720, 148, 700, 95, p, { w: 2.5 }) +
+      trait(520, 163, 545, 220, p, { w: 2.5 }) + trait(660, 152, 685, 210, p, { w: 2.5 }) +
+      `<circle cx="700" cy="205" r="8" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      mot(640, 60, "limbe") + mot(200, 250, "pétiole") + mot(880, 120, "nervure", { a: 'end' }) + mot(700, 250, "stomate") +
+      mot(500, 292, "le limbe capte la lumière, le pétiole oriente", { t: 19 }));
+  },
+  racine_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      trait(150, 70, 850, 70, p, { w: 3 }) +
+      trait(500, 70, 500, 270, p, { w: 4.5 }) +
+      trait(500, 120, 400, 170, p, { w: 3.5 }) + trait(500, 150, 600, 200, p, { w: 3.5 }) +
+      trait(500, 200, 420, 245, p, { w: 3.5 }) + trait(500, 230, 580, 262, p, { w: 3.5 }) +
+      `<ellipse cx="500" cy="272" rx="16" ry="10" fill="none" stroke="currentColor" stroke-width="3.5"/>` +
+      trait(484, 280, 380, 288, p, { w: 2.5 }) +
+      mot(350, 102, "pivot", { a: 'end' }) + mot(640, 120, "racines secondaires", { a: 'start' }) +
+      mot(640, 250, "zone pilifère", { a: 'start' }) + mot(360, 290, "coiffe", { a: 'end' }));
+  },
+  profil_sol_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      trait(180, 50, 180, 250, p, { w: 3 }) +
+      `<rect x="180" y="50" width="380" height="50" fill="#B8860B" fill-opacity=".18" stroke="currentColor" stroke-width="3"/>` +
+      `<rect x="180" y="100" width="380" height="50" fill="#8B5A2B" fill-opacity=".22" stroke="currentColor" stroke-width="3"/>` +
+      `<rect x="180" y="150" width="380" height="50" fill="#B8860B" fill-opacity=".12" stroke="currentColor" stroke-width="3"/>` +
+      `<rect x="180" y="200" width="380" height="50" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-width="3"/>` +
+      `<circle cx="280" cy="225" r="9" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      `<circle cx="420" cy="228" r="12" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      mot(580, 80, "litière", { a: 'start' }) + mot(580, 130, "humus", { a: 'start' }) +
+      mot(580, 180, "horizon d'altération", { a: 'start' }) + mot(580, 230, "roche mère", { a: 'start' }) +
+      mot(500, 292, "du sol vivant à la roche mère", { t: 19 }));
+  },
+  strates_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<rect x="150" y="60" width="700" height="50" fill="#B8860B" fill-opacity=".18" stroke="currentColor" stroke-width="3"/>` +
+      `<rect x="150" y="110" width="700" height="50" fill="#8B5A2B" fill-opacity=".20" stroke="currentColor" stroke-width="3"/>` +
+      `<rect x="150" y="160" width="700" height="50" fill="#1A75FF" fill-opacity=".12" stroke="currentColor" stroke-width="3"/>` +
+      `<rect x="150" y="210" width="700" height="50" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-width="3"/>` +
+      trait(880, 60, 880, 260, p, { w: 3 }) + pointe(880, 268, 90) +
+      mot(500, 92, "dépôt récent") + mot(500, 142, "compaction") + mot(500, 192, "cimentation") + mot(500, 242, "roche sédimentaire") +
+      mot(880, 290, "temps"));
+  },
+  tige_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<circle cx="430" cy="160" r="115" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      `<circle cx="430" cy="160" r="88" fill="none" stroke="currentColor" stroke-width="3.5"/>` +
+      `<circle cx="430" cy="160" r="60" fill="none" stroke="#10B981" stroke-width="3.5"/>` +
+      `<circle cx="430" cy="160" r="34" fill="none" stroke="#E8604C" stroke-width="3.5"/>` +
+      `<circle cx="430" cy="160" r="6" fill="currentColor"/>` +
+      trait(511, 79, 620, 70, p, { w: 2.5 }) + trait(513, 130, 620, 120, p, { w: 2.5 }) + trait(486, 181, 620, 190, p, { w: 2.5 }) +
+      trait(406, 184, 320, 248, p, { w: 2.5 }) + trait(430, 194, 430, 285, p, { w: 2.5 }) +
+      mot(640, 72, "épiderme", { a: 'start' }) + mot(640, 122, "cortex", { a: 'start' }) + mot(640, 192, "phloème", { a: 'start' }) +
+      mot(300, 250, "xylème", { a: 'end' }) + mot(430, 298, "moelle"));
+  },
+  fleur_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      trait(500, 290, 500, 230, p, { w: 4 }) +
+      `<ellipse cx="500" cy="82" rx="32" ry="48" fill="none" stroke="#E8604C" stroke-width="3.5"/>` +
+      `<ellipse cx="428" cy="128" rx="30" ry="46" fill="none" stroke="#E8604C" stroke-width="3.5" transform="rotate(-50 428 128)"/>` +
+      `<ellipse cx="572" cy="128" rx="30" ry="46" fill="none" stroke="#E8604C" stroke-width="3.5" transform="rotate(50 572 128)"/>` +
+      `<ellipse cx="460" cy="205" rx="26" ry="16" fill="none" stroke="#10B981" stroke-width="3.5" transform="rotate(-20 460 205)"/>` +
+      `<ellipse cx="540" cy="205" rx="26" ry="16" fill="none" stroke="#10B981" stroke-width="3.5" transform="rotate(20 540 205)"/>` +
+      trait(500, 150, 500, 110, p, { w: 3.5 }) + `<circle cx="500" cy="104" r="8" fill="#E8604C"/>` +
+      trait(500, 150, 430, 110, p, { w: 3 }) + `<circle cx="425" cy="105" r="9" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      trait(500, 150, 570, 110, p, { w: 3 }) + `<circle cx="575" cy="105" r="9" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      trait(500, 150, 440, 190, p, { w: 3 }) + `<circle cx="435" cy="195" r="9" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      trait(500, 150, 560, 190, p, { w: 3 }) + `<circle cx="565" cy="195" r="9" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      trait(532, 90, 680, 82, p, { w: 2.5 }) + trait(584, 105, 680, 145, p, { w: 2.5 }) +
+      trait(470, 104, 320, 82, p, { w: 2.5 }) + trait(455, 210, 320, 228, p, { w: 2.5 }) +
+      mot(700, 84, "pétale", { a: 'start' }) + mot(700, 147, "étamine", { a: 'start' }) +
+      mot(300, 84, "pistil", { a: 'end' }) + mot(300, 230, "sépale", { a: 'end' }));
+  },
+  plaques_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      trait(120, 180, 880, 180, p, { w: 2.5, tiret: '7 6' }) +
+      trait(120, 150, 420, 150, p, { w: 9 }) + trait(580, 150, 770, 150, p, { w: 9 }) +
+      trait(770, 150, 880, 235, p, { w: 9 }) +
+      trait(500, 230, 500, 160, p, { w: 3.5 }) + pointe(500, 152, -90) +
+      trait(420, 130, 360, 130, p, { w: 3 }) + pointe(352, 130, 180) +
+      trait(580, 130, 640, 130, p, { w: 3 }) + pointe(648, 130, 0) +
+      mot(500, 110, "dorsale") + mot(250, 120, "plaque océanique") + mot(675, 118, "plaque continentale", { t: 24 }) +
+      mot(860, 262, "subduction") + mot(500, 262, "manteau"));
+  },
+  volcan_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      trait(340, 240, 480, 95, p, { w: 4.5 }) + trait(520, 95, 660, 240, p, { w: 4.5 }) +
+      trait(500, 240, 500, 100, p, { w: 4 }) +
+      `<ellipse cx="500" cy="265" rx="110" ry="18" fill="#E8604C" fill-opacity=".18" stroke="#E8604C" stroke-width="3"/>` +
+      trait(530, 110, 640, 235, p, { c: '#E8604C', w: 4 }) +
+      `<circle cx="480" cy="60" r="10" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      `<circle cx="505" cy="45" r="13" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      `<circle cx="530" cy="62" r="9" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      trait(530, 95, 650, 82, p, { w: 2.5 }) + trait(585, 170, 650, 198, p, { w: 2.5 }) +
+      trait(495, 170, 320, 148, p, { w: 2.5 }) + trait(390, 265, 320, 268, p, { w: 2.5 }) +
+      mot(660, 84, "cratère", { a: 'start' }) + mot(660, 200, "coulée", { a: 'start' }) +
+      mot(300, 150, "cheminée", { a: 'end' }) + mot(300, 270, "chambre magmatique", { a: 'end' }));
+  },
+  cycle_roches_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<circle cx="250" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      `<circle cx="750" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      `<circle cx="500" cy="215" r="50" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      trait(305, 100, 690, 100, p, { w: 3 }) + pointe(698, 100, 0) +
+      trait(715, 135, 535, 180, p, { w: 3 }) + pointe(527, 182, 166) +
+      trait(465, 180, 285, 135, p, { w: 3 }) + pointe(277, 133, -166) +
+      mot(500, 80, "érosion") + mot(250, 175, "magmatique") + mot(750, 175, "sédimentaire") +
+      mot(700, 215, "enfouissement") + mot(300, 215, "fusion") + mot(500, 290, "métamorphique"));
+  },
 
 };
 
