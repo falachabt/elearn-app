@@ -1,0 +1,439 @@
+{
+ "cours": 6746,
+ "titre": "Des ensembles de nombres au calcul algébrique",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Nombres réels et calcul algébrique",
+   "titre": "Des ensembles de nombres au calcul algébrique",
+   "sous": "Ensembles, radicaux, puissances, puis développer, factoriser et simplifier",
+   "anim": {
+    "nom": "inclusion_numeriques_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Deux questions avant tout calcul : quel est ce nombre, et quelle règle s'applique à lui ?"
+  },
+  "ensembles": {
+   "type": "etape",
+   "kicker": "Les ensembles de nombres",
+   "titre": "N naturels, Z relatifs, D décimaux, Q rationnels, R réels",
+   "tex": [
+    "\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{D}",
+    "\\mathbb{D} \\subset \\mathbb{Q} \\subset \\mathbb{R}",
+    "\\mathbb{D} : \\tfrac{a}{10^n}, \\; a \\in \\mathbb{Z}",
+    "\\mathbb{Q} : \\tfrac{p}{q}, \\; q \\neq 0"
+   ]
+  },
+  "ex_ensembles": {
+   "type": "etape",
+   "kicker": "Exemple · classer deux fractions",
+   "titre": "Décimal ou seulement rationnel",
+   "tex": [
+    "\\tfrac{3}{4} = \\tfrac{75}{100} = 0{,}75 \\in \\mathbb{D}",
+    "\\tfrac{2}{3} = 0{,}666\\ldots \\in \\mathbb{Q}"
+   ]
+  },
+  "racines": {
+   "type": "formule",
+   "kicker": "Racines carrées · les règles",
+   "tex": "\\sqrt{a \\times b} = \\sqrt{a} \\times \\sqrt{b}",
+   "note": "√(a/b) = √a/√b et √(a²) = |a| ; piège : √(a+b) ≠ √a + √b."
+  },
+  "ex_radicaux": {
+   "type": "etape",
+   "kicker": "Exemple · réduire au même radical",
+   "titre": "Extraire les carrés cachés, puis additionner",
+   "tex": [
+    "\\sqrt{50} = 5\\sqrt{2} \\qquad \\sqrt{18} = 3\\sqrt{2}",
+    "\\sqrt{50} + \\sqrt{18} = 8\\sqrt{2}"
+   ]
+  },
+  "denominateur": {
+   "type": "etape",
+   "kicker": "Chasser le radical du dénominateur",
+   "titre": "Multiplier par le radical, ou par le conjugué",
+   "tex": [
+    "\\tfrac{3}{\\sqrt{2}} = \\tfrac{3\\sqrt{2}}{2}",
+    "\\tfrac{1}{1 + \\sqrt{3}} = \\tfrac{1 - \\sqrt{3}}{1 - 3}",
+    "= \\tfrac{\\sqrt{3} - 1}{2}"
+   ]
+  },
+  "comparaison": {
+   "type": "formule",
+   "kicker": "Comparer deux réels",
+   "tex": "a > b \\iff a - b > 0",
+   "note": "Comparer, c'est étudier le signe de la différence a − b."
+  },
+  "encadrement": {
+   "type": "etape",
+   "kicker": "Encadrer un nombre",
+   "titre": "Ordre deux : deux décimaux, un écart d'un centième",
+   "tex": [
+    "\\pi = 3{,}14159\\ldots",
+    "3{,}14 \\leq \\pi \\leq 3{,}15",
+    "b - a = 10^{-2} = 0{,}01"
+   ]
+  },
+  "intervalles": {
+   "type": "etape",
+   "kicker": "Les intervalles",
+   "titre": "Le crochet dit si la borne est incluse",
+   "tex": [
+    "[a\\,;\\,b] : a \\leq x \\leq b",
+    "]a\\,;\\,b[ : a < x < b",
+    "[-2\\,;\\,5[ : -2 \\leq x < 5"
+   ],
+   "anim": {
+    "nom": "droite_numerique_fig",
+    "hauteur": 120
+   }
+  },
+  "valeur_absolue": {
+   "type": "etape",
+   "kicker": "La valeur absolue",
+   "titre": "Une distance à zéro, toujours positive",
+   "tex": [
+    "|a| = a \\quad \\text{si } a \\geq 0",
+    "|a| = -a \\quad \\text{si } a < 0"
+   ]
+  },
+  "puissances_def": {
+   "type": "formule",
+   "kicker": "Puissances · la définition",
+   "tex": "a^{-n} = \\frac{1}{a^n}",
+   "note": "a non nul ; a puissance zéro vaut 1. Un exposant négatif inverse."
+  },
+  "puissances_props": {
+   "type": "etape",
+   "kicker": "Puissances · les règles de calcul",
+   "titre": "Même base : on joue sur les exposants",
+   "tex": [
+    "a^m \\times a^n = a^{m + n}",
+    "\\tfrac{a^m}{a^n} = a^{m - n} \\qquad (a^m)^n = a^{mn}",
+    "(a \\times b)^n = a^n \\times b^n",
+    "2^{-3} \\times 2^5 = 2^{-3 + 5} = 2^2 = 4"
+   ],
+   "note": "Et (a/b)ⁿ = aⁿ/bⁿ : la puissance se distribue aussi sur un quotient."
+  },
+  "calcul_approche": {
+   "type": "etape",
+   "kicker": "Calcul approché et écriture scientifique",
+   "titre": "Un seul chiffre non nul avant la virgule",
+   "tex": [
+    "a \\times 10^n, \\quad 1 \\leq a < 10",
+    "0{,}00045 = 4{,}5 \\times 10^{-4}",
+    "\\text{défaut} : 3{,}141 \\qquad \\text{arrondi} : 3{,}142"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Les nombres réels : l'essentiel",
+   "etapes": [
+    "N ⊂ Z ⊂ D ⊂ Q ⊂ R : emboîtés",
+    "Radicaux : même radical pour additionner",
+    "Comparer : étudier le signe de a − b",
+    "Intervalles : crochets selon l'inclusion",
+    "Puissances : additionner les exposants"
+   ]
+  },
+  "developper": {
+   "type": "etape",
+   "kicker": "Développer · la distributivité",
+   "titre": "Transformer un produit en une somme",
+   "tex": [
+    "k(a + b) = ka + kb",
+    "(a + b)(c + d) = ac + ad + bc + bd"
+   ]
+  },
+  "ex_developper": {
+   "type": "etape",
+   "kicker": "Exemple · développer et réduire",
+   "titre": "Double distributivité, puis regrouper par degré",
+   "tex": [
+    "P(x) = (2x + 1)(3x - 2) + (x - 1)^2",
+    "= 6x^2 - x - 2 + x^2 - 2x + 1",
+    "= 7x^2 - 3x - 1"
+   ]
+  },
+  "identites": {
+   "type": "etape",
+   "kicker": "Les identités remarquables",
+   "titre": "Carrés et différence de carrés",
+   "tex": [
+    "(a + b)^2 = a^2 + 2ab + b^2",
+    "(a - b)^2 = a^2 - 2ab + b^2",
+    "(a + b)(a - b) = a^2 - b^2"
+   ]
+  },
+  "cubes": {
+   "type": "formule",
+   "kicker": "Identités du troisième degré",
+   "tex": "a^3 - b^3 = (a - b)(a^2 + ab + b^2)",
+   "note": "Et (a + b)³ = a³ + 3a²b + 3ab² + b³ : coefficients 1, 3, 3, 1."
+  },
+  "ex_identite": {
+   "type": "etape",
+   "kicker": "Exemple · un carré bien mené",
+   "titre": "Reconnaître la forme avant de calculer",
+   "tex": [
+    "Q(x) = (2x - 3)^2",
+    "= (2x)^2 - 2(2x)(3) + 3^2",
+    "= 4x^2 - 12x + 9"
+   ]
+  },
+  "factoriser": {
+   "type": "formule",
+   "kicker": "Factoriser · le geste inverse",
+   "tex": "ka + kb = k(a + b)",
+   "note": "Repérer ce qui multiplie tous les termes, puis le mettre en facteur."
+  },
+  "ex_factoriser": {
+   "type": "etape",
+   "kicker": "Exemple · deux outils, deux factorisations",
+   "titre": "Facteur commun, puis différence de carrés",
+   "tex": [
+    "R(x) = 6x^2 + 4x = 2x(3x + 2)",
+    "S(x) = 9x^2 - 25 = (3x - 5)(3x + 5)"
+   ],
+   "anim": {
+    "nom": "factorisation_fig",
+    "hauteur": 170
+   }
+  },
+  "factorisation_complete": {
+   "type": "etape",
+   "kicker": "Factorisation complète · le regroupement",
+   "titre": "Faire apparaître un facteur commun caché",
+   "tex": [
+    "T(x) = x^3 - 2x^2 - x + 2",
+    "= (x - 2)(x^2 - 1)",
+    "= (x - 2)(x - 1)(x + 1)"
+   ]
+  },
+  "fraction_rationnelle": {
+   "type": "etape",
+   "kicker": "Simplifier une fraction rationnelle",
+   "titre": "Factoriser d'abord, simplifier ensuite",
+   "tex": [
+    "F(x) = \\tfrac{x^2 - 9}{x^2 + 3x}",
+    "= \\tfrac{(x - 3)(x + 3)}{x(x + 3)}",
+    "= \\tfrac{x - 3}{x}, \\quad x \\neq 0 \\text{ et } x \\neq -3"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Développer : distributivité, puis réduire",
+    "Identités : carrés, cubes, différence",
+    "Factoriser : facteur commun ou identité",
+    "Fraction : factoriser avant de simplifier",
+    "Valeurs interdites : toujours les écrire"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux nombres réels et au calcul algébrique. Nous partirons des ensembles de nombres et de leurs inclusions, nous travaillerons les racines carrées, la comparaison, les intervalles et les puissances, puis nous passerons aux expressions littérales : développer, factoriser et simplifier.",
+   "texte": "Nombres réels et calcul algébrique : le programme.",
+   "ecran": "titre",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge de ce cours tient en deux questions. D'abord, quel est le nombre devant nous : un entier, un décimal, un rationnel, un réel ? Ensuite, quelle règle de calcul s'applique à lui, et comment l'appliquer sans faute ? Répondre à ces deux questions avant de calculer évite la plupart des erreurs.",
+   "texte": "Identifier le nombre, puis choisir la règle.",
+   "ecran": "intro",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "dit": "Il existe cinq grandes familles de nombres, emboîtées comme des poupées russes. Les entiers naturels, positifs ou nuls. Les entiers relatifs, qui ajoutent les négatifs. Les décimaux, qui s'écrivent comme une fraction dont le dénominateur est une puissance de dix. Les rationnels, fractions de deux entiers. Et les réels, qui rassemblent tous les nombres. Chaque famille contient entièrement la précédente.",
+   "texte": "Cinq familles emboîtées, des naturels aux réels.",
+   "ecran": "ensembles",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "dit": "Deux exemples pour apprendre à classer. Trois quarts égale soixante quinze centièmes, soit zéro virgule soixante quinze : son écriture décimale se termine, c'est un décimal. Deux tiers, en revanche, donne zéro virgule six six six, avec un chiffre six qui se répète sans fin : le développement est illimité et périodique. C'est donc un rationnel, mais pas un décimal.",
+   "texte": "3/4 est décimal ; 2/3 est rationnel non décimal.",
+   "ecran": "ex_ensembles",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "dit": "La racine carrée transforme bien les produits et les quotients : la racine d'un produit est le produit des racines, et la racine d'un quotient est le quotient des racines, pour des nombres positifs. En revanche, elle ne transforme jamais les sommes : la racine d'une somme n'est pas la somme des racines, c'est le piège classique du chapitre. Retenez aussi que la racine d'un carré redonne la valeur absolue.",
+   "texte": "Produits oui, sommes non : le piège des racines.",
+   "ecran": "racines",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "dit": "Exemple résolu : simplifier racine de cinquante plus racine de dix huit. On cherche les carrés cachés : cinquante, c'est vingt cinq fois deux, donc racine de cinquante vaut cinq racines de deux. Dix huit, c'est neuf fois deux, donc trois racines de deux. Les deux radicaux sont maintenant identiques : on additionne les coefficients, cinq plus trois, et le résultat est huit racines de deux.",
+   "texte": "√50 + √18 = 8√2 : même radical, on additionne.",
+   "ecran": "ex_radicaux",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p07",
+   "dit": "Un dénominateur ne doit pas garder de radical. Si le dénominateur est une simple racine, on multiplie le numérateur et le dénominateur par cette racine : trois sur racine de deux devient trois racines de deux sur deux. Si le dénominateur est une somme avec une racine, on multiplie par le conjugué : un sur un plus racine de trois devient racine de trois moins un, le tout sur deux.",
+   "texte": "Dénominateur : radical simple ou conjugué.",
+   "ecran": "denominateur",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "dit": "Pour comparer deux nombres réels, il existe une méthode qui marche toujours : calculer la différence et étudier son signe. Si la différence est positive, le premier nombre est le plus grand. Si elle est négative, il est le plus petit. Ordonner plusieurs nombres revient alors à les comparer deux à deux, patiemment, jusqu'à obtenir l'ordre complet.",
+   "texte": "Comparer : le signe de la différence décide.",
+   "ecran": "comparaison",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "dit": "Encadrer un nombre, c'est le placer entre deux valeurs proches. Pour pi, dont le début est trois virgule quatorze mille cent cinquante neuf, un encadrement par deux décimaux d'ordre deux s'écrit : trois virgule quatorze est inférieur ou égal à pi, lui même inférieur ou égal à trois virgule quinze. L'écart entre les deux bornes vaut un centième, exactement la précision annoncée par l'ordre choisi.",
+   "texte": "Encadrer π à l'ordre 2 : 3,14 et 3,15.",
+   "ecran": "encadrement",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "dit": "Un intervalle rassemble tous les réels compris entre deux bornes. Crochet tourné vers l'intérieur : la borne est incluse, l'intervalle est fermé. Crochet tourné vers l'extérieur : la borne est exclue. Ainsi, appartenir à l'intervalle fermé en moins deux et ouvert en cinq signifie être supérieur ou égal à moins deux et strictement inférieur à cinq. Sur une droite graduée, on lit ces ensembles d'un seul coup d'œil.",
+   "texte": "Le crochet dit si la borne est incluse.",
+   "ecran": "intervalles",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p11",
+   "dit": "La valeur absolue d'un nombre est sa distance à zéro sur la droite graduée : elle est donc toujours positive ou nulle. Concrètement, la valeur absolue d'un nombre positif est le nombre lui même, et celle d'un nombre négatif est son opposé. La valeur absolue de moins sept vaut sept, celle de trois vaut trois. C'est elle qui explique pourquoi la racine d'un carré redonne le nombre sans son signe.",
+   "texte": "|−7| = 7 : une distance à zéro.",
+   "ecran": "valeur_absolue",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p12",
+   "dit": "Une puissance compte des facteurs identiques : a puissance n est le produit de n facteurs égaux à a. Deux cas particuliers à connaître par cœur : toute base non nulle à la puissance zéro vaut un, et une puissance négative inverse la puissance positive correspondante. Ainsi, deux puissance moins trois est l'inverse de deux puissance trois.",
+   "texte": "Exposant négatif : inverser la puissance.",
+   "ecran": "puissances_def",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p13",
+   "dit": "Les règles de calcul tiennent en quelques lignes. Pour multiplier deux puissances de la même base, on additionne les exposants ; pour les diviser, on les soustrait ; pour élever une puissance à une autre puissance, on les multiplie. Et une puissance se distribue sur un produit comme sur un quotient. Application immédiate : deux puissance moins trois fois deux puissance cinq donne deux puissance deux, c'est à dire quatre.",
+   "texte": "Les exposants s'additionnent, se soustraient, se multiplient.",
+   "ecran": "puissances_props",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "dit": "Quand la valeur exacte est inaccessible, on travaille avec des valeurs approchées. L'écriture scientifique place un seul chiffre non nul avant la virgule : zéro virgule zéro zéro zéro quarante cinq s'écrit quatre virgule cinq fois dix puissance moins quatre. Tronquer donne une approximation par défaut ; l'arrondi, lui, choisit la valeur la plus proche : pour trois virgule quatorze mille cent cinquante neuf, l'approximation d'ordre trois par défaut est trois virgule cent quarante et un, et l'arrondi est trois virgule cent quarante deux.",
+   "texte": "Écriture scientifique, approximation, arrondi.",
+   "ecran": "calcul_approche",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "dit": "Récapitulons le bloc des nombres réels. Les ensembles de nombres sont emboîtés, des naturels aux réels. Les radicaux se simplifient en extrayant les carrés, et s'additionnent quand ils sont identiques. Comparer, c'est étudier le signe d'une différence. Les intervalles et la valeur absolue décrivent des ensembles et des distances. Et les puissances obéissent à des règles d'exposants simples et sûres.",
+   "texte": "Les nombres réels : l'essentiel du bloc.",
+   "ecran": "recap1",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p16",
+   "dit": "Développer, c'est transformer un produit en une somme. L'outil est la distributivité : k multipliant une somme distribue le facteur sur chaque terme. Pour un produit de deux sommes, chaque terme de la première multiplie chaque terme de la seconde : c'est la double distributivité. Après le développement, on réduit en regroupant les termes de même degré.",
+   "texte": "Développer : distribuer, puis réduire.",
+   "ecran": "developper",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple complet : développer et réduire le produit de deux x plus un par trois x moins deux, auquel on ajoute le carré de x moins un. La double distributivité donne six x carré, moins quatre x, plus trois x, moins deux. Le carré donne x carré, moins deux x, plus un. On regroupe : sept x carré, moins trois x, moins un. L'expression est ordonnée par degrés décroissants.",
+   "texte": "(2x + 1)(3x − 2) + (x − 1)² = 7x² − 3x − 1.",
+   "ecran": "ex_developper",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p18",
+   "dit": "Trois identités remarquables suffisent pour développer vite et juste les carrés et les différences. Le carré d'une somme : le carré du premier, plus le double produit, plus le carré du second. Le carré d'une différence : pareil, avec un moins devant le double produit. Et le produit d'une somme par la différence correspondante donne une différence de deux carrés. Le double produit est le terme que tout le monde oublie : vérifiez le toujours.",
+   "texte": "Le double produit : le terme à ne jamais oublier.",
+   "ecran": "identites",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p19",
+   "dit": "Au degré trois, la même logique continue. Le cube d'une somme déploie quatre termes, avec les coefficients un, trois, trois, un. Surtout, la différence de deux cubes se factorise : a cube moins b cube égale a moins b, multiplié par a carré plus a b plus b carré. Cette factorisation servira dans la suite du cours, quand il faudra écrire les polynômes en produits.",
+   "texte": "a³ − b³ : une factorisation à connaître.",
+   "ecran": "cubes",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p20",
+   "dit": "Application : développer le carré de deux x moins trois. On reconnaît le carré d'une différence, avec a égal à deux x et b égal à trois. Le carré de deux x donne quatre x carré. Le double produit donne deux fois deux x fois trois, soit douze x, avec le signe moins. Le carré de trois donne neuf. Résultat : quatre x carré, moins douze x, plus neuf.",
+   "texte": "(2x − 3)² = 4x² − 12x + 9.",
+   "ecran": "ex_identite",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p21",
+   "dit": "Factoriser est le geste exactement inverse de développer : transformer une somme en un produit de facteurs. Premier outil, le facteur commun : si un même facteur multiplie chaque terme, on le place devant une parenthèse qui rassemble le reste. Deuxième outil, les identités remarquables lues de droite à gauche. Toute la difficulté est de repérer la forme cachée avant de se lancer.",
+   "texte": "Factoriser : le chemin inverse de développer.",
+   "ecran": "factoriser",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p22",
+   "dit": "Deux exemples, un par outil. Six x carré plus quatre x : le facteur commun est deux x, et la factorisation donne deux x multiplié par trois x plus deux. Neuf x carré moins vingt cinq : c'est une différence de deux carrés, le carré de trois x et le carré de cinq, donc le produit de trois x moins cinq par trois x plus cinq.",
+   "texte": "Facteur commun, puis différence de carrés.",
+   "ecran": "ex_factoriser",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p23",
+   "dit": "Pour factoriser complètement un polynôme de degré trois, on regroupe intelligemment. Pour x cube moins deux x carré moins x plus deux, les deux premiers termes partagent x carré facteur de x moins deux, et les deux derniers donnent moins un facteur de x moins deux. Le facteur commun x moins deux apparaît : il reste x carré moins un, une différence de carrés. Au final, trois facteurs du premier degré : x moins deux, x moins un et x plus un.",
+   "texte": "Regrouper pour faire apparaître le facteur commun.",
+   "ecran": "factorisation_complete",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p24",
+   "dit": "Une fraction rationnelle est le quotient de deux polynômes. Pour la simplifier, on factorise le numérateur et le dénominateur, on repère les facteurs communs, puis on les élimine. Exemple : x carré moins neuf sur x carré plus trois x. En haut, une différence de carrés ; en bas, x facteur de x plus trois. Le facteur x plus trois se simplifie, et il reste x moins trois sur x. Mais attention : les valeurs qui annulaient le dénominateur de départ, zéro et moins trois, restent interdites.",
+   "texte": "Simplifier, sans oublier les valeurs interdites.",
+   "ecran": "fraction_rationnelle",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p25",
+   "dit": "Pour conclure ce cours, gardez la chaîne complète. Développer distribue les produits en sommes, grâce à la distributivité et aux identités remarquables. Factoriser fait le chemin inverse, par le facteur commun, les identités ou le regroupement. Et simplifier une fraction rationnelle n'est que l'enchaînement des deux, à condition de ne jamais oublier les valeurs interdites.",
+   "texte": "Développer, factoriser, simplifier : à retenir.",
+   "ecran": "recap_final",
+   "pause_apres": 0.6
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Ensembles de nombres, racines et encadrements"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Intervalles, puissances et premiers développements",
+   "pont": {
+    "texte": "Partie 2 : intervalles, puissances, développer.",
+    "dit": "Partie deux : intervalles, valeur absolue et puissances, pour finir le tour des nombres réels, avant un premier pas dans le calcul algébrique avec le développement des produits."
+   }
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Identités remarquables, factorisation et fractions rationnelles",
+   "pont": {
+    "texte": "Partie 3 : identités, factoriser, simplifier.",
+    "dit": "Partie trois : les identités remarquables, dans les deux sens. Développer vite grâce à elles, factoriser en les reconnaissant, factoriser complètement un polynôme, puis simplifier les fractions rationnelles."
+   }
+  }
+ ]
+}
