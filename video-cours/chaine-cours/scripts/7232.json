@@ -1,0 +1,304 @@
+{
+ "cours": 7232,
+ "ecrans": {
+  "axe": {
+   "kicker": "L'idée de départ",
+   "texte": "Plier le long de (d) : les deux moitiés se superposent.",
+   "type": "phrase"
+  },
+  "axes_figures": {
+   "kicker": "Axes des figures usuelles",
+   "note": "L'axe de l'isocèle est aussi bissectrice et médiane.",
+   "tex": [
+    "\\text{rectangle : deux axes}",
+    "\\text{les médiatrices des côtés}",
+    "\\text{isocèle : un seul axe}",
+    "\\text{la médiatrice de la base}"
+   ],
+   "titre": "Rectangle et triangle isocèle",
+   "type": "etape"
+  },
+  "cas": {
+   "kicker": "Cas particulier",
+   "note": "Sur l'axe, le point est son propre symétrique.",
+   "tex": "M \\in (d) \\Rightarrow M' = M",
+   "type": "formule"
+  },
+  "conservations": {
+   "kicker": "Ce qui ne change pas",
+   "tex": [
+    "\\text{longueurs : } A'B' = AB",
+    "\\text{angles : même mesure}",
+    "\\text{aires, alignement : conservés}",
+    "\\text{milieux : conservés}"
+   ],
+   "titre": "Cinq conservations",
+   "type": "etape"
+  },
+  "construction": {
+   "kicker": "Construction pas à pas",
+   "tex": [
+    "\\text{perpendiculaire à } (d) \\text{ par } M",
+    "\\text{elle coupe } (d) \\text{ en } H",
+    "\\text{reporter } MH \\text{ de l'autre côté :}",
+    "HM' = HM"
+   ],
+   "titre": "Deux gestes suffisent",
+   "type": "etape"
+  },
+  "def_point": {
+   "kicker": "Symétrique d'un point",
+   "note": "La droite (d) partage le segment en deux moitiés égales.",
+   "tex": [
+    "M' \\text{ symétrique de } M \\iff",
+    "(d) \\text{ médiatrice de } [MM']"
+   ],
+   "type": "etape"
+  },
+  "distinction": {
+   "kicker": "Ne pas confondre",
+   "note": "Axe d'un côté, symétrique de l'autre.",
+   "tex": "(d) \\text{ est une droite} \\qquad M' \\text{ est un point}",
+   "type": "formule"
+  },
+  "exemple_mediatrice": {
+   "kicker": "Exemple résolu · la médiatrice",
+   "tex": [
+    "AB = 6\\ \\text{cm}",
+    "IA = IB = 3\\ \\text{cm}",
+    "\\text{tout point de la médiatrice : } MA = MB"
+   ],
+   "titre": "Un segment de six centimètres",
+   "type": "etape"
+  },
+  "exemple_point": {
+   "kicker": "Exemple résolu · le point",
+   "tex": [
+    "MH = 3\\ \\text{cm}",
+    "HM' = 3\\ \\text{cm}",
+    "(d) \\perp (MM')"
+   ],
+   "titre": "Trois centimètres au-dessus, trois en dessous",
+   "type": "etape"
+  },
+  "exemple_triangle": {
+   "kicker": "Exemple résolu · le triangle",
+   "tex": [
+    "A'B' = 5\\ \\text{cm} \\qquad A'C' = 4\\ \\text{cm}",
+    "\\widehat{B'A'C'} = 60^{\\circ}",
+    "\\text{longueurs et angles conservés}"
+   ],
+   "titre": "Cinq, quatre, soixante degrés",
+   "type": "etape"
+  },
+  "exemples_axes": {
+   "kicker": "Combien d'axes ?",
+   "tex": [
+    "\\text{carré : quatre axes}",
+    "\\text{cercle : une infinité d'axes}",
+    "\\text{triangle équilatéral : trois axes}"
+   ],
+   "titre": "Trois figures, trois réponses",
+   "type": "etape"
+  },
+  "figure_triangle": {
+   "kicker": "Symétrique d'une figure",
+   "tex": [
+    "A \\rightarrow A' \\qquad B \\rightarrow B'",
+    "C \\rightarrow C'",
+    "\\text{triangle } A'B'C' \\text{ symétrique de } ABC"
+   ],
+   "titre": "Point par point",
+   "type": "etape"
+  },
+  "mediatrice_def": {
+   "kicker": "La médiatrice",
+   "note": "Perpendiculaire au segment, passant par son milieu.",
+   "tex": [
+    "\\text{médiatrice de } [AB] :",
+    "\\perp [AB] \\text{ en son milieu}"
+   ],
+   "type": "etape"
+  },
+  "mediatrice_prop": {
+   "kicker": "Propriété fondamentale",
+   "note": "Égale distance de A et de B, dans les deux sens.",
+   "tex": [
+    "M \\in \\text{médiatrice de } [AB]",
+    "\\iff MA = MB"
+   ],
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Axe (d) : le pliage superpose les deux moitiés",
+    "Symétrique de M : (d) médiatrice de [MM']",
+    "Construction : perpendiculaire, puis report",
+    "Sur (d), M est son propre symétrique",
+    "Médiatrice : MA = MB, dans les deux sens"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Symétrie axiale : pliage le long de (d)",
+    "M' : (d) médiatrice de [MM']",
+    "Conservations : longueurs, angles, aires",
+    "Alignement et milieux conservés",
+    "Rectangle : 2 axes ; isocèle : 1 axe"
+   ],
+   "kicker": "L'essentiel du cours",
+   "type": "recap"
+  },
+  "reconnaitre": {
+   "kicker": "Reconnaître un axe",
+   "texte": "Un axe, c'est une figure qui se superpose à elle-même.",
+   "type": "phrase"
+  },
+  "segment": {
+   "kicker": "Symétrique d'un segment",
+   "note": "On symétrise chaque extrémité, puis on joint.",
+   "tex": "[A'B'] \\text{ symétrique de } [AB]",
+   "type": "formule"
+  },
+  "titre": {
+   "kicker": "Mathématique · Symétrie axiale",
+   "sous": "Le symétrique d'un point, la médiatrice, et tout ce qui ne change pas",
+   "titre": "La symétrie axiale : plier, superposer, conserver",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Axe, symétrique d'un point et médiatrice"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : du point à la figure. Nous construirons le symétrique d'un segment puis d'un triangle, nous passerons en revue tout ce que la symétrie conserve, et nous apprendrons à reconnaître un axe de symétrie sur les figures usuelles.",
+    "texte": "Partie 2 : figures, conservations et axes usuels."
+   },
+   "sous_titre": "Figures, conservations et axes usuels"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré à la symétrie axiale. Imaginez une feuille que l'on plie le long d'une droite : si les deux moitiés se superposent exactement, cette droite est un axe de symétrie. Nous verrons d'abord ce qu'est le symétrique d'un point et comment le construire, puis la médiatrice qui rend cette construction possible, et enfin le symétrique d'une figure et tout ce que la symétrie conserve.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Plier, superposer, conserver : le programme."
+  },
+  {
+   "dit": "Commençons par l'idée de départ. Une droite est un axe de symétrie d'une figure lorsque le pliage le long de cette droite superpose exactement les deux parties de la figure. Le pliage est le bon geste mental : il ne s'agit pas d'une ressemblance approximative, mais d'une superposition parfaite, point par point.",
+   "ecran": "axe",
+   "id": "p02",
+   "texte": "Le pliage qui superpose parfaitement."
+  },
+  {
+   "dit": "Quelques figures pour fixer l'idée. Un carré possède quatre axes de symétrie : ses deux diagonales et les médiatrices de ses côtés. Un cercle, lui, en possède une infinité, car tout diamètre est un axe. Un triangle équilatéral en possède trois, un par sommet.",
+   "ecran": "exemples_axes",
+   "id": "p03",
+   "texte": "Carré : 4 axes · cercle : une infinité · équilatéral : 3."
+  },
+  {
+   "dit": "Venons-en au symétrique d'un point. Le symétrique d'un point M par rapport à une droite d est le point M prime tel que la droite d soit la médiatrice du segment joignant M à M prime. Autrement dit, la droite d coupe ce segment en son milieu et à angle droit : c'est cette double condition qui définit la symétrie.",
+   "ecran": "def_point",
+   "id": "p04",
+   "texte": "M′ défini par la médiatrice de [MM′]."
+  },
+  {
+   "dit": "Un cas particulier mérite d'être retenu. Si le point M se trouve déjà sur la droite d, alors son symétrique est lui-même : M prime est égal à M. Un point de l'axe ne bouge pas par la symétrie, il est invariant.",
+   "ecran": "cas",
+   "id": "p05",
+   "texte": "Sur l'axe, M′ = M."
+  },
+  {
+   "dit": "Construire le symétrique d'un point demande seulement deux gestes. Premier geste : tracer la droite perpendiculaire à la droite d qui passe par M ; elle coupe la droite d en un point que l'on appelle H. Deuxième geste : reporter la longueur M H de l'autre côté de la droite d, et placer M prime sur cette même perpendiculaire, de sorte que H M prime soit égale à H M.",
+   "ecran": "construction",
+   "id": "p06",
+   "texte": "Perpendiculaire, puis report de MH."
+  },
+  {
+   "dit": "Appliquons cette construction à un exemple chiffré. Prenons une droite d horizontale et un point M situé à trois centimètres au-dessus de la droite d. La perpendiculaire à la droite d passant par M coupe la droite d en H. On place alors M prime à trois centimètres sous la droite d, sur cette même perpendiculaire. On obtient bien M H égale à H M prime égale à trois centimètres, et la droite d est perpendiculaire au segment M M prime : la droite d est donc la médiatrice de ce segment, et M prime est le symétrique de M.",
+   "ecran": "exemple_point",
+   "id": "p07",
+   "texte": "3 cm au-dessus, 3 cm en dessous."
+  },
+  {
+   "dit": "Cette construction repose sur un objet qu'il faut définir proprement : la médiatrice d'un segment. La médiatrice d'un segment A B est la droite perpendiculaire à ce segment qui passe par son milieu. Perpendiculaire et milieu : retenez ces deux mots, ils résument toute la définition.",
+   "ecran": "mediatrice_def",
+   "id": "p08",
+   "texte": "Médiatrice : perpendiculaire au milieu."
+  },
+  {
+   "dit": "La médiatrice possède une propriété fondamentale, qui va dans les deux sens. Un point appartient à la médiatrice d'un segment A B si et seulement si il est à égale distance de A et de B. En symboles, M appartient à la médiatrice si et seulement si M A est égale à M B. C'est cette équivalence qui fait de la médiatrice un outil de construction et de preuve.",
+   "ecran": "mediatrice_prop",
+   "id": "p09",
+   "texte": "M sur la médiatrice ⟺ MA = MB."
+  },
+  {
+   "dit": "Vérifions cette propriété sur un exemple chiffré. Prenons deux points A et B tels que le segment A B mesure six centimètres. Son milieu, que l'on appelle I, vérifie I A égale à I B égale à trois centimètres. La droite perpendiculaire au segment A B passant par I est donc la médiatrice de ce segment, et tout point M de cette droite vérifie M A égale à M B.",
+   "ecran": "exemple_mediatrice",
+   "id": "p10",
+   "texte": "AB = 6 cm, I milieu, IA = IB = 3 cm."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Un axe de symétrie est une droite le long de laquelle le pliage superpose exactement les deux moitiés d'une figure. Le symétrique d'un point M est le point M prime tel que la droite d soit la médiatrice du segment M M prime. Pour le construire, on trace la perpendiculaire à la droite d passant par M, puis on reporte la distance de l'autre côté. Sur l'axe lui-même, un point est son propre symétrique, et un point de la médiatrice d'un segment est toujours à égale distance de ses extrémités.",
+   "ecran": "recap1",
+   "id": "p11",
+   "texte": "L'essentiel de la partie 1."
+  },
+  {
+   "dit": "Passons maintenant du point à la figure. Le symétrique d'un segment A B par rapport à une droite d est le segment A prime B prime, où A prime et B prime sont les symétriques respectifs de A et de B. La règle est simple : on symétrise les extrémités, puis on joint les images.",
+   "ecran": "segment",
+   "id": "p12",
+   "texte": "[AB] devient [A′B′]."
+  },
+  {
+   "dit": "La même règle s'étend à une figure entière. Le symétrique d'une figure s'obtient en construisant le symétrique de chacun de ses points. Pour un triangle A B C, on construit donc A prime, B prime et C prime, symétriques respectifs de A, de B et de C, et le triangle A prime B prime C prime est le symétrique du triangle A B C.",
+   "ecran": "figure_triangle",
+   "id": "p13",
+   "texte": "Point par point : A′, B′, C′."
+  },
+  {
+   "dit": "La symétrie axiale est remarquable parce qu'elle conserve presque tout. Elle conserve les longueurs : le symétrique d'un segment a la même longueur que le segment de départ. Elle conserve les angles : un angle et son symétrique ont la même mesure. Elle conserve les aires : une figure et son symétrique ont la même aire. Elle conserve aussi l'alignement, puisque des points alignés ont des symétriques alignés, et les milieux, puisque le symétrique du milieu d'un segment est le milieu du segment symétrique.",
+   "ecran": "conservations",
+   "id": "p14",
+   "texte": "Cinq conservations, aucune perte."
+  },
+  {
+   "dit": "Vérifions ces conservations sur un exemple chiffré. Prenons un triangle A B C tel que A B mesure cinq centimètres, A C mesure quatre centimètres, et l'angle B A C mesure soixante degrés. Son symétrique A prime B prime C prime vérifie alors A prime B prime égale à cinq centimètres, A prime C prime égale à quatre centimètres, et l'angle B prime A prime C prime égale à soixante degrés : les longueurs et les angles sont bien conservés.",
+   "ecran": "exemple_triangle",
+   "id": "p15",
+   "texte": "5 cm, 4 cm, 60° : tout est conservé."
+  },
+  {
+   "dit": "Reste une question pratique : comment reconnaître un axe de symétrie ? Une figure admet une droite d comme axe de symétrie si son symétrique par rapport à cette droite est elle-même, c'est-à-dire si la figure se superpose à elle-même par pliage. Chercher un axe, c'est donc chercher un pliage qui laisse la figure inchangée.",
+   "ecran": "reconnaitre",
+   "id": "p16",
+   "texte": "Un axe, c'est un pliage qui ne change rien."
+  },
+  {
+   "dit": "Deux figures usuelles illustrent ce critère. Un rectangle a deux axes de symétrie : les médiatrices de ses côtés. Un triangle isocèle, lui, n'a qu'un seul axe de symétrie : la médiatrice de sa base, qui est aussi la bissectrice de l'angle au sommet et la médiane issue de ce sommet.",
+   "ecran": "axes_figures",
+   "id": "p17",
+   "texte": "Rectangle : 2 axes · isocèle : 1 axe."
+  },
+  {
+   "dit": "Avant de conclure, ne confondez pas deux mots. L'axe de symétrie est une droite, la droite d le long de laquelle on plie. Le symétrique, lui, est un point, un segment ou une figure : c'est l'image obtenue après le pliage. Garder cette distinction, c'est éviter la confusion la plus fréquente sur ce chapitre.",
+   "ecran": "distinction",
+   "id": "p18",
+   "texte": "L'axe est une droite, le symétrique une image."
+  },
+  {
+   "dit": "Pour conclure ce cours : la symétrie axiale, c'est le pliage le long d'une droite d qui superpose exactement les deux moitiés d'une figure. Le symétrique d'un point M est le point M prime tel que la droite d soit la médiatrice du segment M M prime. La symétrie conserve les longueurs, les angles, les aires, l'alignement et les milieux. Et pour reconnaître un axe, souvenez-vous des cas usuels : un rectangle en a deux, un triangle isocèle un seul, un carré quatre, et un cercle une infinité.",
+   "ecran": "recap_final",
+   "id": "p19",
+   "texte": "L'essentiel du cours."
+  }
+ ],
+ "titre": "La symétrie axiale : plier, superposer, conserver"
+}
