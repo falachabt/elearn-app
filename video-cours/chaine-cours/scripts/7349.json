@@ -1,0 +1,274 @@
+{
+ "cours": 7349,
+ "titre": "Logarithme népérien : équations, inéquations et courbes",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Logarithme népérien",
+   "titre": "Logarithme népérien : équations, inéquations et courbes",
+   "sous": "Domaine d'abord, propriétés ensuite : résoudre, étudier, tracer",
+   "anim": {
+    "nom": "log_courbes_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un seul réflexe avant tout calcul avec un logarithme : le domaine de validité."
+  },
+  "rappels": {
+   "type": "etape",
+   "kicker": "Rappels essentiels",
+   "titre": "Les propriétés qui servent partout, pour a et b strictement positifs",
+   "tex": [
+    "\\ln(ab) = \\ln a + \\ln b \\quad \\ln\\tfrac{a}{b} = \\ln a - \\ln b",
+    "\\ln(a^{n}) = n \\ln a \\qquad \\ln 1 = 0, \\ \\ln e = 1",
+    "\\ln a = \\ln b \\iff a = b",
+    "\\ln a < \\ln b \\iff a < b"
+   ]
+  },
+  "methode_eq": {
+   "type": "etape",
+   "kicker": "Équations logarithmiques · la méthode",
+   "titre": "Trois étapes, toujours dans le même ordre",
+   "tex": [
+    "\\text{un : domaine, arguments } > 0",
+    "\\text{deux : regrouper en un seul } \\ln",
+    "\\text{trois : résoudre, puis vérifier}"
+   ]
+  },
+  "ex_eq": {
+   "type": "etape",
+   "kicker": "Exemple résolu · une équation",
+   "titre": "Deux candidats, une seule solution",
+   "tex": [
+    "\\ln(x-1) + \\ln(x+3) = \\ln 5, \\ x > 1",
+    "\\ln\\big((x-1)(x+3)\\big) = \\ln 5",
+    "x^{2} + 2x - 8 = 0",
+    "x = 2 \\ \\text{ou} \\ x = -4 \\qquad S = \\{2\\}"
+   ]
+  },
+  "methode_ineq": {
+   "type": "formule",
+   "kicker": "Inéquations logarithmiques · le principe",
+   "tex": "\\ln A \\le \\ln B \\iff A \\le B \\quad (A, B > 0)",
+   "note": "La stricte croissance de ln conserve l'ordre, à condition que A et B soient positifs."
+  },
+  "ex_ineq": {
+   "type": "etape",
+   "kicker": "Exemple résolu · une inéquation",
+   "titre": "Croissance de ln, puis intersection avec le domaine",
+   "tex": [
+    "\\ln(2x-1) \\le \\ln(x+4), \\ x > \\tfrac{1}{2}",
+    "2x - 1 \\le x + 4 \\iff x \\le 5",
+    "S = \\left]\\tfrac{1}{2}\\,;\\,5\\right]"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Le domaine d'abord, toujours",
+    "Regrouper : ln d'un produit, un seul ln",
+    "La croissance conserve l'ordre",
+    "Vérifier chaque solution dans le domaine"
+   ]
+  },
+  "demarche": {
+   "type": "etape",
+   "kicker": "Étudier une fonction avec un logarithme",
+   "titre": "La démarche type, en quatre temps",
+   "tex": [
+    "f(x) = \\ln(u(x)) \\qquad \\text{domaine : } u(x) > 0",
+    "f'(x) = \\tfrac{u'(x)}{u(x)}",
+    "\\text{limites aux bornes, puis variations}",
+    "\\text{tableau de variations, extremums}"
+   ]
+  },
+  "limites_f": {
+   "type": "etape",
+   "kicker": "Exemple · les limites de x moins ln x",
+   "titre": "Deux fois plus l'infini, pour deux raisons différentes",
+   "tex": [
+    "\\lim_{x \\to 0^{+}} f(x) = +\\infty \\qquad -\\ln x \\to +\\infty",
+    "f(x) = x\\left(1 - \\tfrac{\\ln x}{x}\\right) \\to +\\infty"
+   ]
+  },
+  "ex_fonction": {
+   "type": "etape",
+   "kicker": "Exemple · dérivée et signe",
+   "titre": "Un minimum se prépare",
+   "tex": [
+    "f(x) = x - \\ln x \\qquad f'(x) = 1 - \\tfrac{1}{x} = \\tfrac{x-1}{x}",
+    "\\text{décroissante sur } ]0\\,;\\,1[, \\ \\text{croissante après}",
+    "\\text{minimum en } 1 : \\quad f(1) = 1"
+   ]
+  },
+  "tableau_f": {
+   "type": "etape",
+   "kicker": "Exemple · le tableau de variations",
+   "titre": "Elle descend de plus l'infini, touche un, et remonte",
+   "tex": [
+    "f'(x) : \\quad - \\quad 0 \\quad +",
+    "f(x) : \\ +\\infty \\ \\searrow \\ 1 \\ \\nearrow \\ +\\infty",
+    "\\text{minimum global : } f(1) = 1"
+   ]
+  },
+  "courbe_ln": {
+   "type": "formule",
+   "kicker": "La courbe du logarithme",
+   "tex": "y = \\ln x \\qquad (1\\,;\\,0), \\ (e\\,;\\,1)",
+   "note": "Asymptote verticale en 0 : l'axe des ordonnées ; croissance lente vers +∞.",
+   "anim": {
+    "nom": "log_courbes_fig",
+    "hauteur": 150
+   }
+  },
+  "transformations": {
+   "type": "etape",
+   "kicker": "Transformations de la courbe",
+   "titre": "Quatre gestes pour déformer la courbe de ln",
+   "tex": [
+    "\\ln(x - a) : \\text{ translation horizontale}",
+    "\\ln x + b : \\text{ translation verticale}",
+    "-\\ln x : \\text{ symétrie, axe des abscisses}",
+    "\\ln(-x) : \\text{ symétrie, axe des ordonnées}"
+   ]
+  },
+  "ex_translation": {
+   "type": "etape",
+   "kicker": "Exemple résolu · tracer ln de x moins deux",
+   "titre": "La courbe de ln, décalée de deux vers la droite",
+   "tex": [
+    "g(x) = \\ln(x - 2) \\qquad \\text{domaine : } x > 2",
+    "\\text{translation de } 2 \\text{ vers la droite}",
+    "(3\\,;\\,0) \\quad (2 + e\\,;\\,1) \\quad \\text{asymptote } x = 2"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Domaine de validité : avant tout calcul",
+    "Un seul logarithme, puis les arguments",
+    "ln conserve l'ordre : A ≤ B",
+    "Étude : dériver u′/u, tableau, extremum",
+    "Courbes : translations et symétries de ln"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré au logarithme népérien, à ses équations, à ses inéquations et à ses courbes. Nous rappellerons d'abord les propriétés indispensables, puis nous résoudrons pas à pas une équation et une inéquation, avant d'étudier complètement une fonction contenant un logarithme et de tracer ses courbes par transformations.",
+   "texte": "Équations, inéquations, étude et courbes de ln.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Un seul réflexe commande tout ce chapitre : avant le moindre calcul, déterminer le domaine de validité, car un logarithme n'existe que pour un argument strictement positif. Toutes les erreurs classiques viennent de là : regrouper des logarithmes hors domaine, ou garder une solution que le domaine interdit. La méthode qui suit est construite pour ne jamais tomber dans ce piège.",
+   "texte": "D'abord le domaine, ensuite les calculs.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Rappelons les propriétés qui servent partout, pour des nombres strictement positifs. Le logarithme d'un produit est la somme des logarithmes ; celui d'un quotient, leur différence ; et le logarithme d'une puissance fait descendre l'exposant devant. Deux valeurs à connaître par cœur : le logarithme de un vaut zéro, et celui de e vaut un. Enfin, la fonction est strictement croissante : égalité ou ordre sur les logarithmes équivalent à égalité ou ordre sur les arguments.",
+   "texte": "Produit, quotient, puissance : les trois propriétés.",
+   "ecran": "rappels"
+  },
+  {
+   "id": "p04",
+   "dit": "Voici la méthode de résolution d'une équation contenant un logarithme, en trois étapes. Premièrement, le domaine : chaque argument doit être strictement positif. Deuxièmement, on regroupe les logarithmes en un seul grâce aux propriétés, ou l'on pose grand X égale le logarithme de x quand l'équation s'y prête. Troisièmement, on résout, puis l'on vérifie que chaque solution appartient bien au domaine.",
+   "texte": "Domaine, regrouper, résoudre, vérifier.",
+   "ecran": "methode_eq"
+  },
+  {
+   "id": "p05",
+   "dit": "Exemple résolu : l'équation où le logarithme de x moins un, plus le logarithme de x plus trois, égale le logarithme de cinq. Le domaine impose x supérieur à un. On regroupe en le logarithme du produit, puis l'on égale les arguments : le produit vaut cinq, ce qui donne une équation du second degré dont les racines sont deux et moins quatre. Seul deux appartient au domaine : l'ensemble des solutions contient uniquement deux.",
+   "texte": "ln(x−1) + ln(x+3) = ln 5 : S = {2}, −4 est rejeté.",
+   "ecran": "ex_eq"
+  },
+  {
+   "id": "p06",
+   "dit": "Pour une inéquation, on s'appuie sur la stricte croissance du logarithme : comparer deux logarithmes revient à comparer leurs arguments, dans le même ordre, à condition que ces arguments soient positifs. Le domaine reste donc la première étape, et il faudra, à la fin, ne garder que la partie de la solution qui lui appartient. Attention aussi si l'on compose avec une fonction décroissante, qui renverserait l'ordre.",
+   "texte": "ln A ≤ ln B ⇔ A ≤ B : l'ordre est conservé.",
+   "ecran": "methode_ineq"
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple résolu : le logarithme de deux x moins un est inférieur ou égal au logarithme de x plus quatre. Le domaine impose x supérieur à un demi. Par croissance du logarithme, l'inégalité passe aux arguments : deux x moins un inférieur ou égal à x plus quatre, donc x inférieur ou égal à cinq. En combinant avec le domaine, les solutions forment l'intervalle ouvert en un demi et fermé en cinq.",
+   "texte": "Domaine x > 1/2, puis x ≤ 5 : S = ]1/2 ; 5].",
+   "ecran": "ex_ineq"
+  },
+  {
+   "id": "p08",
+   "dit": "Récapitulons cette première partie. Toujours commencer par le domaine de validité ; utiliser les propriétés algébriques pour regrouper les logarithmes en un seul ; exploiter la stricte croissance pour passer des logarithmes aux arguments ; et ne jamais oublier de vérifier que les solutions obtenues appartiennent au domaine. Ces quatre gestes résolvent l'essentiel des équations et inéquations du chapitre.",
+   "texte": "L'essentiel de la partie 1 : la méthode en 4 gestes.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p09",
+   "dit": "Passons à l'étude des fonctions contenant un logarithme, de la forme logarithme de u de x. La démarche type comporte quatre temps : déterminer le domaine en résolvant u de x strictement positif ; calculer les limites aux bornes, avec les deux limites de référence du logarithme ; dériver, la dérivée étant u prime sur u ; puis dresser le tableau de variations et repérer les extremums éventuels.",
+   "texte": "Étudier ln(u(x)) : domaine, limites, u′/u, tableau.",
+   "ecran": "demarche"
+  },
+  {
+   "id": "p10",
+   "dit": "Illustrons avec la fonction qui envoie x sur x moins le logarithme de x, définie sur les réels strictement positifs. En zéro, x tend vers zéro mais moins le logarithme de x tend vers plus l'infini, donc la fonction tend vers plus l'infini. En plus l'infini, on factorise par x : comme le quotient du logarithme par x tend vers zéro, la parenthèse tend vers un, et la fonction tend encore vers plus l'infini.",
+   "texte": "x − ln x tend vers +∞ aux deux bornes.",
+   "ecran": "limites_f"
+  },
+  {
+   "id": "p11",
+   "dit": "La dérivée de cette fonction est un, moins un sur x, c'est-à-dire x moins un, sur x. Sur l'intervalle zéro un, le numérateur est négatif et la dérivée aussi : la fonction décroît. Après un, la dérivée devient positive : la fonction croît. Le changement de sens a lieu en un, où la fonction vaut un moins le logarithme de un, c'est-à-dire un : c'est un minimum.",
+   "texte": "f′(x) = (x−1)/x : décroissante puis croissante.",
+   "ecran": "ex_fonction"
+  },
+  {
+   "id": "p12",
+   "dit": "Le tableau de variations résume l'étude : la fonction part de plus l'infini en zéro, décroît jusqu'à la valeur un atteinte en un, puis croît vers plus l'infini. Le point de coordonnées un et un est donc le minimum global de la fonction sur son domaine. Ce tableau, lu avec les limites, suffit à esquisser la courbe et à répondre à la plupart des questions d'un exercice.",
+   "texte": "Tableau : +∞ ↘ 1 ↗ +∞, minimum global 1 en x = 1.",
+   "ecran": "tableau_f"
+  },
+  {
+   "id": "p13",
+   "dit": "Venons aux courbes. Celle du logarithme népérien passe par le point de coordonnées un et zéro, puis par celui de coordonnées e et un. Elle admet l'axe des ordonnées comme asymptote verticale, car le logarithme tend vers moins l'infini en zéro, et elle croît ensuite lentement vers plus l'infini. Sur la figure, comparez-la aux logarithmes d'autres bases : toutes passent par un et zéro, et toutes n'existent que pour x strictement positif.",
+   "texte": "y = ln x : par (1 ; 0) et (e ; 1), asymptote x = 0.",
+   "ecran": "courbe_ln"
+  },
+  {
+   "id": "p14",
+   "dit": "Quatre transformations permettent de tracer les autres courbes logarithmiques à partir de celle-ci. Le logarithme de x moins a translate la courbe horizontalement de a ; ajouter b au logarithme la translate verticalement de b ; l'opposé du logarithme donne la symétrie par rapport à l'axe des abscisses ; et le logarithme de moins x, défini sur les négatifs, donne la symétrie par rapport à l'axe des ordonnées.",
+   "texte": "Translations et symétries : quatre gestes de tracé.",
+   "ecran": "transformations"
+  },
+  {
+   "id": "p15",
+   "dit": "Exemple : tracer la fonction qui envoie x sur le logarithme de x moins deux, définie pour x supérieur à deux. Sa courbe s'obtient en translatant celle du logarithme de deux unités vers la droite. Elle passe donc par le point de coordonnées trois et zéro, puis par celui de coordonnées deux plus e et un, et elle admet la droite d'équation x égale deux comme asymptote verticale.",
+   "texte": "ln(x−2) : ln décalée, asymptote x = 2.",
+   "ecran": "ex_translation"
+  },
+  {
+   "id": "p16",
+   "dit": "Pour conclure, retenez la chaîne complète : commencer par le domaine de validité, regrouper les logarithmes grâce à leurs propriétés, passer aux arguments grâce à la stricte croissance, étudier les fonctions en dérivant puis en dressant le tableau de variations, et obtenir toutes les courbes par translations ou symétries de la courbe du logarithme.",
+   "texte": "À retenir : domaine, propriétés, croissance, courbes.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Équations et inéquations logarithmiques"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "Étude de fonctions et courbes logarithmiques",
+   "pont": {
+    "texte": "Partie 2 : étudier une fonction avec ln, puis tracer les courbes logarithmiques.",
+    "dit": "Partie deux : l'étude des fonctions et les courbes. Nous appliquerons la démarche complète à la fonction x moins logarithme de x, puis nous tracerons la courbe du logarithme et toutes celles qui s'en déduisent par translations et par symétries."
+   }
+  }
+ ]
+}
