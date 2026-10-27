@@ -1,0 +1,434 @@
+{
+ "cours": 6754,
+ "ecrans": {
+  "bilan1": {
+   "kicker": "Fin de la première partie",
+   "tex": [
+    "\\text{organiser : tableau, effectifs, fréquences, ECC, FCC}",
+    "\\text{représenter : diagramme adapté au caractère}",
+    "\\text{ensuite : résumer par la position et la dispersion}"
+   ],
+   "titre": "Organiser, puis représenter",
+   "type": "etape"
+  },
+  "caractere": {
+   "kicker": "Le vocabulaire de base",
+   "tex": [
+    "\\text{caractère qualitatif : couleur, profession}",
+    "\\text{caractère quantitatif : taille, âge}",
+    "\\text{modalité : la valeur prise par le caractère}"
+   ],
+   "titre": "Qu'étudie-t-on sur chacun ?",
+   "type": "etape"
+  },
+  "centre": {
+   "kicker": "Position · les classes",
+   "note": "Pour les classes : on remplace chaque classe par son centre.",
+   "tex": "c_i = \\frac{\\text{borne inf} + \\text{borne sup}}{2}",
+   "type": "formule"
+  },
+  "circulaire": {
+   "kicker": "Représenter · le diagramme circulaire",
+   "note": "Modalité un : neuf sur vingt-quatre, soit cent trente-cinq degrés.",
+   "tex": "\\text{angle} = \\frac{n_i}{N} \\times 360^{\\circ}",
+   "type": "formule"
+  },
+  "cumules": {
+   "kicker": "Cumuler",
+   "tex": [
+    "\\text{ECC : somme des effectifs jusqu'à la modalité}",
+    "\\text{FCC : somme des fréquences correspondantes}"
+   ],
+   "titre": "Lire une répartition en train de se remplir",
+   "type": "etape"
+  },
+  "diagrammes": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "Représenter",
+   "tex": [
+    "\\text{qualitatif : bandes, circulaire, semi-circulaire}",
+    "\\text{quantitatif discret : bâtons}",
+    "\\text{quantitatif continu : histogramme}"
+   ],
+   "titre": "Le bon graphique dépend du caractère",
+   "type": "etape"
+  },
+  "ecart_moyen": {
+   "kicker": "Dispersion · l'écart moyen",
+   "note": "Moyenne des écarts absolus à la moyenne.",
+   "tex": "\\text{EM} = \\frac{\\sum_{i=1}^{p} n_i |x_i - \\bar{x}|}{N}",
+   "type": "formule"
+  },
+  "ecart_type": {
+   "kicker": "Dispersion · l'écart-type",
+   "note": "Même unité que les valeurs : il se lit directement.",
+   "tex": "\\sigma = \\sqrt{V}",
+   "type": "formule"
+  },
+  "effectif": {
+   "kicker": "Compter",
+   "note": "Effectif : individus présentant la modalité ; total = somme des effectifs.",
+   "tex": "N = n_1 + n_2 + \\cdots + n_p",
+   "type": "formule"
+  },
+  "ex_dispersion": {
+   "kicker": "Exemple résolu · dispersion",
+   "tex": [
+    "\\bar{x} = 4 \\qquad x_i - \\bar{x} : -2,\\ 0,\\ 2",
+    "(x_i - \\bar{x})^2 : 4,\\ 0,\\ 4",
+    "V = \\tfrac{4+0+4}{3} = \\tfrac{8}{3} \\approx 2{,}67 \\qquad \\sigma \\approx 1{,}63",
+    "\\text{EM} = \\tfrac{2+0+2}{3} = \\tfrac{4}{3} \\approx 1{,}33"
+   ],
+   "titre": "Trois valeurs, tout le calcul",
+   "type": "etape"
+  },
+  "ex_serie": {
+   "kicker": "Exemple résolu · médiane et moyenne",
+   "tex": [
+    "2,\\ 3,\\ 5,\\ 7,\\ 8,\\ 8,\\ 9 \\qquad N = 7",
+    "\\text{rang médian : } \\tfrac{7+1}{2} = 4 \\qquad M = 7",
+    "\\bar{x} = \\tfrac{2+3+5+7+8+8+9}{7} = \\tfrac{42}{7} = 6",
+    "\\text{mode : } 8 \\text{ (deux fois)}"
+   ],
+   "titre": "Sept valeurs, trois résumés",
+   "type": "etape"
+  },
+  "freq_mod1": {
+   "kicker": "Exemple résolu · une fréquence",
+   "note": "Modalité un : neuf élèves sur vingt-quatre.",
+   "tex": "f = \\frac{9}{24} = 0{,}375 = 37{,}5\\,\\%",
+   "type": "formule"
+  },
+  "frequence": {
+   "kicker": "Comparer",
+   "note": "Entre zéro et un, ou en pourcentage : multiplier par cent.",
+   "tex": "f_i = \\frac{n_i}{N}",
+   "type": "formule"
+  },
+  "histogramme": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "Représenter · l'histogramme",
+   "texte": "Histogramme : des rectangles dont la hauteur suit l'effectif, à amplitude égale.",
+   "type": "phrase"
+  },
+  "intro": {
+   "kicker": "Pourquoi décrire ?",
+   "texte": "Décrire avant d'expliquer : résumer une population entière en quelques nombres.",
+   "type": "phrase"
+  },
+  "mediane_classes": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "Position · médiane en classes",
+   "texte": "En classes : interpolation linéaire dans la classe où la cumulée atteint un demi.",
+   "type": "phrase"
+  },
+  "mediane_def": {
+   "kicker": "Position · la médiane",
+   "note": "La médiane partage la population en deux parts égales.",
+   "tex": "\\#\\{x_i \\le M\\} \\ge \\frac{N}{2} \\quad \\text{et} \\quad \\#\\{x_i \\ge M\\} \\ge \\frac{N}{2}",
+   "type": "formule"
+  },
+  "mediane_discret": {
+   "kicker": "Position · médiane discrète",
+   "tex": [
+    "\\text{effectif impair : valeur de rang } \\frac{N+1}{2}",
+    "\\text{effectif pair : entre les rangs } \\frac{N}{2} \\text{ et } \\frac{N}{2}+1"
+   ],
+   "titre": "Deux cas selon la parité de l'effectif",
+   "type": "etape"
+  },
+  "methode": {
+   "kicker": "Méthode · les quatre gestes",
+   "tex": [
+    "\\text{organiser : tableau, effectifs, fréquences, ECC, FCC}",
+    "\\text{représenter : diagramme adapté au caractère}",
+    "\\text{position : mode, moyenne, médiane}",
+    "\\text{dispersion : écart moyen, variance, écart-type}"
+   ],
+   "titre": "Dans l'ordre, à chaque exercice",
+   "type": "etape"
+  },
+  "mode": {
+   "kicker": "Position · le mode",
+   "tex": [
+    "\\text{mode : modalité de plus grand effectif}",
+    "\\text{classe modale : classe de plus grand effectif}"
+   ],
+   "titre": "La valeur la plus fréquente",
+   "type": "etape"
+  },
+  "moyenne": {
+   "kicker": "Position · la moyenne",
+   "note": "Chaque valeur pèse selon son effectif : moyenne pondérée.",
+   "tex": "\\bar{x} = \\frac{\\sum_{i=1}^{p} n_i x_i}{N}",
+   "type": "formule"
+  },
+  "population": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "venn"
+   },
+   "kicker": "Le vocabulaire de base",
+   "tex": [
+    "\\text{population : l'ensemble étudié}",
+    "\\text{individu : un élément de cet ensemble}",
+    "\\text{exemple : une classe, et ses élèves}"
+   ],
+   "titre": "Qui étudie-t-on ?",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Population, caractère, modalité : nommer.",
+    "Effectif, fréquence, cumulés : organiser.",
+    "Diagramme adapté au type de caractère.",
+    "Mode, moyenne, médiane : situer le centre.",
+    "Variance, écart-type : mesurer l'étalement."
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "somme_freq": {
+   "kicker": "Exemple résolu · vérification",
+   "note": "Les fréquences se somment à un : vérification utile.",
+   "tex": "0{,}25 + 0{,}375 + 0{,}208 + 0{,}125 + 0{,}042 = 1",
+   "type": "formule"
+  },
+  "tableau": {
+   "kicker": "Exemple résolu · le tableau complet",
+   "tex": [
+    "n_i : 6,\\ 9,\\ 5,\\ 3,\\ 1",
+    "N = 24",
+    "\\text{ECC : } 6,\\ 15,\\ 20,\\ 23,\\ 24",
+    "f_i : 0{,}25 ;\\ 0{,}375 ;\\ 0{,}208 ;\\ 0{,}125 ;\\ 0{,}042"
+   ],
+   "titre": "Une classe, cinq modalités",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "Mathématique · Statistique descriptive",
+   "sous": "D'une enquête à l'interprétation : effectifs, graphiques, position et dispersion",
+   "titre": "Statistique descriptive : organiser, résumer, interpréter",
+   "type": "titre"
+  },
+  "variance": {
+   "kicker": "Dispersion · la variance",
+   "note": "Carrés des écarts : les grands écarts pèsent plus lourd.",
+   "tex": "V = \\frac{\\sum_{i=1}^{p} n_i (x_i - \\bar{x})^2}{N}",
+   "type": "formule"
+  },
+  "variance_simple": {
+   "kicker": "Dispersion · calculer plus vite",
+   "note": "Moyenne des carrés moins le carré de la moyenne.",
+   "tex": "V = \\frac{\\sum_{i=1}^{p} n_i x_i^2}{N} - \\bar{x}^2",
+   "type": "formule"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Vocabulaire, tableaux et fréquences"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : représenter la série, puis la situer. Nous choisirons le diagramme adapté à chaque type de caractère, avant de définir le mode, la moyenne et la médiane, jusqu'à un exemple résolu qui les réunit.",
+    "texte": "Partie 2 : graphiques, mode, moyenne et médiane."
+   },
+   "sous_titre": "Graphiques et caractéristiques de position"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : mesurer la dispersion, puis fixer la méthode. Nous définirons l'écart moyen, la variance et l'écart-type, nous résoudrons un exemple complet, et nous terminerons par la méthode en quatre gestes et le récapitulatif.",
+    "texte": "Partie 3 : dispersion, méthode et récapitulatif."
+   },
+   "sous_titre": "Dispersion, méthode et récapitulatif"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de statistique descriptive, l'art de résumer une population entière en quelques nombres bien choisis. Nous partirons d'une enquête simple, nous organiserons ses résultats dans un tableau, nous choisirons le bon graphique, puis nous résumerons la série par sa position et par sa dispersion, avant de finir par une méthode en quatre gestes et un récapitulatif.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Résumer une population entière en quelques nombres."
+  },
+  {
+   "dit": "La statistique descriptive ne cherche pas à expliquer pourquoi les valeurs sont ce qu'elles sont, ni à prévoir l'avenir. Elle décrit : elle compte, elle organise, elle représente et elle résume. C'est la première étape de toute étude de données, et c'est elle qui rend les comparaisons possibles.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Décrire, ce n'est pas encore expliquer."
+  },
+  {
+   "dit": "Tout commence par le vocabulaire. La population est l'ensemble étudié, par exemple tous les élèves d'une classe. Chaque élément de cet ensemble est un individu : un élève, un seul, avec ses propres réponses. Sans ces deux mots posés clairement, aucun tableau ne veut rien dire.",
+   "ecran": "population",
+   "id": "p03",
+   "texte": "Population et individu : poser les mots d'abord."
+  },
+  {
+   "dit": "Sur chaque individu, on étudie une propriété : c'est le caractère. Il est qualitatif quand il se décrit par des mots, comme la couleur préférée ou la profession, et quantitatif quand il se mesure par des nombres, comme la taille ou l'âge. Chaque valeur prise par le caractère s'appelle une modalité.",
+   "ecran": "caractere",
+   "id": "p04",
+   "texte": "Qualitatif ou quantitatif : deux natures de caractère."
+  },
+  {
+   "dit": "Compter, ensuite. L'effectif d'une modalité est le nombre d'individus qui la présentent. En additionnant les effectifs de toutes les modalités, on obtient l'effectif total, noté par la lettre grand N. C'est le dénominateur de presque tous les calculs qui suivent.",
+   "ecran": "effectif",
+   "id": "p05",
+   "texte": "Effectif total : la somme de tous les effectifs."
+  },
+  {
+   "dit": "Pour comparer des populations de tailles différentes, le brut ne suffit pas : on passe à la fréquence. La fréquence d'une modalité est son effectif divisé par l'effectif total. C'est donc un nombre entre zéro et un, que l'on peut aussi exprimer en pourcentage en multipliant par cent.",
+   "ecran": "frequence",
+   "id": "p06",
+   "texte": "Fréquence : la part de chaque modalité."
+  },
+  {
+   "dit": "Deux outils cumulent l'information au fil des modalités rangées dans l'ordre croissant. L'effectif cumulé croissant additionne les effectifs des modalités inférieures ou égales à celle que l'on regarde. La fréquence cumulée croissante fait la même chose avec les fréquences : elle dit quelle proportion de la population on a déjà couverte.",
+   "ecran": "cumules",
+   "id": "p07",
+   "texte": "Cumulés : voir la répartition se remplir."
+  },
+  {
+   "dit": "Passons à l'exemple résolu de la leçon. Une classe de vingt-quatre élèves est interrogée sur le nombre de frères et sœurs. Six élèves déclarent zéro, neuf déclarent un, cinq déclarent deux, trois déclarent trois et un seul déclare quatre. Les effectifs cumulés croissants se lisent de gauche à droite : six, puis quinze, puis vingt, puis vingt-trois, puis vingt-quatre.",
+   "ecran": "tableau",
+   "id": "p08",
+   "texte": "Vingt-quatre élèves, cinq modalités : le tableau se remplit."
+  },
+  {
+   "dit": "Les fréquences de ce tableau valent vingt-cinq centièmes, trente-sept virgule cinq centièmes, environ vingt virgule huit centièmes, douze virgule cinq centièmes et environ quatre virgule deux centièmes. Additionnez-les : vous retrouvez un. Cette vérification toute simple détecte immédiatement une erreur de calcul.",
+   "ecran": "somme_freq",
+   "id": "p09",
+   "texte": "La somme des fréquences fait un : vérifiez toujours."
+  },
+  {
+   "dit": "Regardons une modalité de près. La fréquence de la modalité un vaut neuf divisé par vingt-quatre, soit zéro virgule trois cent soixante-quinze, c'est-à-dire trente-sept virgule cinq pour cent. Plus d'un tiers des élèves de la classe ont donc exactement un frère ou une sœur.",
+   "ecran": "freq_mod1",
+   "id": "p10",
+   "texte": "Neuf sur vingt-quatre : trente-sept virgule cinq pour cent."
+  },
+  {
+   "dit": "Un tableau bien rempli ne suffit pas : il faut le bon graphique, et le choix dépend du type de caractère. Pour un caractère qualitatif, on prend un diagramme à bandes, circulaire ou semi-circulaire. Pour un caractère quantitatif discret, un diagramme à bâtons. Pour un caractère quantitatif continu regroupé en classes, un histogramme.",
+   "ecran": "diagrammes",
+   "id": "p11",
+   "texte": "Un graphique par type de caractère, jamais au hasard."
+  },
+  {
+   "dit": "Dans un diagramme circulaire, l'angle de chaque secteur est proportionnel à l'effectif : on multiplie la fréquence de la modalité par trois cent soixante degrés. Pour notre modalité un, neuf sur vingt-quatre de trois cent soixante degrés donnent cent trente-cinq degrés, soit plus du tiers du disque.",
+   "ecran": "circulaire",
+   "id": "p12",
+   "texte": "Circulaire : fréquence fois trois cent soixante degrés."
+  },
+  {
+   "dit": "L'histogramme, lui, est réservé aux classes. Quand les classes ont toutes la même amplitude, les rectangles ont une hauteur proportionnelle à l'effectif, ou à la fréquence. Deux classes de même largeur se comparent donc d'un coup d'œil, par la hauteur de leurs rectangles.",
+   "ecran": "histogramme",
+   "id": "p13",
+   "texte": "Histogramme : hauteur proportionnelle à l'effectif."
+  },
+  {
+   "dit": "Première moitié du parcours accomplie : nous savons organiser une série dans un tableau d'effectifs, de fréquences et de cumulés, et la représenter par le diagramme adapté à son caractère. Il reste l'essentiel : résumer la série par quelques nombres, sa position d'abord, sa dispersion ensuite.",
+   "ecran": "bilan1",
+   "id": "p14",
+   "texte": "Organiser et représenter : première moitié acquise."
+  },
+  {
+   "dit": "Première caractéristique de position : le mode. C'est la modalité qui a le plus grand effectif, celle que l'on rencontre le plus souvent. Quand les valeurs sont regroupées en classes, on parle de classe modale : la classe de plus grand effectif.",
+   "ecran": "mode",
+   "id": "p15",
+   "texte": "Le mode : la valeur la plus fréquente."
+  },
+  {
+   "dit": "Deuxième caractéristique : la moyenne. On multiplie chaque valeur par son effectif, on additionne tout, puis on divise par l'effectif total. Chaque valeur pèse donc selon le nombre d'individus qui la portent : c'est une moyenne pondérée, le centre de gravité de la série.",
+   "ecran": "moyenne",
+   "id": "p16",
+   "texte": "La moyenne : chaque valeur pèse selon son effectif."
+  },
+  {
+   "dit": "Quand les valeurs sont regroupées en classes, on ne connaît plus chaque valeur exacte : on remplace chaque classe par son centre, la moyenne de ses deux bornes. La moyenne se calcule alors avec ces centres, comme si toute la classe était concentrée en son milieu.",
+   "ecran": "centre",
+   "id": "p17",
+   "texte": "En classes : le centre remplace la classe entière."
+  },
+  {
+   "dit": "Troisième caractéristique de position : la médiane. C'est un nombre tel qu'au moins la moitié de la population lui est inférieure ou égale, et au moins la moitié lui est supérieure ou égale. Autrement dit, elle partage la population en deux parts égales, une moitié en dessous, une moitié au-dessus.",
+   "ecran": "mediane_def",
+   "id": "p18",
+   "texte": "La médiane : la valeur qui coupe en deux moitiés."
+  },
+  {
+   "dit": "En pratique, pour une série discrète rangée dans l'ordre, tout dépend de la parité de l'effectif total. S'il est impair, la médiane est la valeur de rang obtenu en ajoutant un à l'effectif total puis en divisant par deux : la valeur centrale. S'il est pair, tout nombre entre les deux valeurs centrales convient, et l'on prend souvent leur moyenne.",
+   "ecran": "mediane_discret",
+   "id": "p19",
+   "texte": "Effectif impair ou pair : deux règles de rang."
+  },
+  {
+   "dit": "Pour des valeurs regroupées en classes, on ne peut plus désigner une valeur observée : on détermine la médiane par interpolation linéaire, dans la classe où la fréquence cumulée croissante atteint un demi. C'est dans cette classe que la population bascule d'une moitié à l'autre.",
+   "ecran": "mediane_classes",
+   "id": "p20",
+   "texte": "En classes : interpoler là où la cumulée atteint un demi."
+  },
+  {
+   "dit": "Exemple résolu, avec la série deux, trois, cinq, sept, huit, huit et neuf, soit sept valeurs. L'effectif est impair, le rang médian vaut quatre, et la quatrième valeur est sept : la médiane vaut sept. La moyenne vaut la somme des valeurs, quarante-deux, divisée par sept, soit six. Et le mode est huit, la seule valeur qui apparaît deux fois.",
+   "ecran": "ex_serie",
+   "id": "p21",
+   "texte": "Sept valeurs : médiane sept, moyenne six, mode huit."
+  },
+  {
+   "dit": "Passons à la dispersion, c'est-à-dire à l'étalement autour de la moyenne. Premier outil : l'écart moyen. Pour chaque valeur, on prend la valeur absolue de son écart à la moyenne, on pondère par l'effectif, on additionne, puis on divise par l'effectif total. C'est l'écart moyen en valeur absolue.",
+   "ecran": "ecart_moyen",
+   "id": "p22",
+   "texte": "Écart moyen : l'écart absolu moyen à la moyenne."
+  },
+  {
+   "dit": "Deuxième outil, le plus utilisé : la variance. Même principe, mais on élève chaque écart au carré avant de pondérer et de diviser par l'effectif total. Le carré a un effet : les grands écarts pèsent beaucoup plus lourd que les petits, et la variance est donc très sensible aux valeurs extrêmes.",
+   "ecran": "variance",
+   "id": "p23",
+   "texte": "Variance : la moyenne des écarts au carré."
+  },
+  {
+   "dit": "Il existe une formule de calcul plus rapide pour la variance : la moyenne des carrés des valeurs, pondérée par les effectifs, moins le carré de la moyenne. Elle évite de calculer chaque écart un par un, et elle donne exactement le même résultat.",
+   "ecran": "variance_simple",
+   "id": "p24",
+   "texte": "Variance rapide : moyenne des carrés moins carré de la moyenne."
+  },
+  {
+   "dit": "Troisième outil : l'écart-type, noté par la lettre grecque sigma, qui est tout simplement la racine carrée de la variance. Il a un avantage décisif : il s'exprime dans la même unité que les valeurs étudiées, donc il se lit directement. Plus il est grand, plus les valeurs sont éparpillées autour de la moyenne.",
+   "ecran": "ecart_type",
+   "id": "p25",
+   "texte": "Écart-type : la racine de la variance, dans la bonne unité."
+  },
+  {
+   "dit": "Exemple résolu, avec la série deux, quatre et six. La moyenne vaut quatre. Les écarts à la moyenne sont moins deux, zéro et deux, leurs carrés sont quatre, zéro et quatre. La variance vaut donc huit tiers, environ deux virgule soixante-sept, et l'écart-type environ un virgule soixante-trois. L'écart moyen, lui, vaut quatre tiers, environ un virgule trente-trois.",
+   "ecran": "ex_dispersion",
+   "id": "p26",
+   "texte": "Deux, quatre, six : variance huit tiers, écart-type un virgule soixante-trois."
+  },
+  {
+   "dit": "Voici la méthode complète, dans l'ordre, à appliquer à chaque exercice. D'abord, organiser : construire le tableau des effectifs, des fréquences, des effectifs cumulés et des fréquences cumulées. Ensuite, représenter : choisir le diagramme adapté au type de caractère. Puis situer la position : mode, moyenne, médiane. Enfin, mesurer la dispersion : écart moyen, variance, écart-type.",
+   "ecran": "methode",
+   "id": "p27",
+   "texte": "Quatre gestes, dans l'ordre : organiser, représenter, situer, mesurer."
+  },
+  {
+   "dit": "Récapitulons. Nommez d'abord la population, le caractère et ses modalités. Organisez ensuite effectifs, fréquences et cumulés. Choisissez le diagramme adapté au type de caractère. Situez le centre avec le mode, la moyenne et la médiane. Mesurez enfin l'étalement avec la variance et l'écart-type. Et pour interpréter : une moyenne proche de la médiane annonce une distribution équilibrée, un écart-type faible annonce des valeurs homogènes.",
+   "ecran": "recap",
+   "id": "p28",
+   "texte": "Le résumé en cinq gestes : organiser, situer, mesurer."
+  }
+ ],
+ "titre": "Statistique descriptive : organiser, résumer, interpréter"
+}
