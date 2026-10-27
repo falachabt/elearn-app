@@ -1,0 +1,194 @@
+{
+ "cours": 6704,
+ "titre": "Repérage sur un quadrillage : abscisse, ordonnée et couple de coordonnées",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Repérage",
+   "titre": "Repérage sur un quadrillage : le couple de coordonnées",
+   "sous": "Abscisse, ordonnée : lire et placer un point grâce à deux nombres"
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Sur un quadrillage, un seul nombre ne suffit plus : il en faut deux."
+  },
+  "couple_def": {
+   "type": "formule",
+   "kicker": "Le couple de coordonnées",
+   "tex": "M\\,(x \\,;\\, y)",
+   "note": "Premier nombre : l'abscisse x · second nombre : l'ordonnée y."
+  },
+  "ordre_piege": {
+   "type": "etape",
+   "kicker": "L'ordre compte",
+   "titre": "Deux couples, deux points différents",
+   "tex": [
+    "(2 \\,;\\, 3) \\neq (3 \\,;\\, 2)"
+   ]
+  },
+  "origine": {
+   "type": "phrase",
+   "kicker": "L'origine du quadrillage",
+   "texte": "L'origine a pour coordonnées zéro, zéro."
+  },
+  "lire_methode": {
+   "type": "phrase",
+   "kicker": "Lire les coordonnées",
+   "texte": "D'abord la colonne, ensuite la ligne."
+  },
+  "lire_ex": {
+   "type": "etape",
+   "kicker": "Exemple · lire un point",
+   "titre": "Le point A sur le quadrillage",
+   "tex": [
+    "x = 4 \\qquad y = 3",
+    "A(4 \\,;\\, 3)"
+   ]
+  },
+  "placer_methode": {
+   "type": "phrase",
+   "kicker": "Placer un point",
+   "texte": "Partir de l'origine, avancer, monter, marquer."
+  },
+  "placer_ex": {
+   "type": "etape",
+   "kicker": "Exemple · placer un point",
+   "titre": "Le point B, colonne deux, ligne cinq",
+   "tex": [
+    "B(2 \\,;\\, 5)",
+    "\\text{2 vers la droite, puis 5 vers le haut}"
+   ]
+  },
+  "particuliers": {
+   "type": "phrase",
+   "kicker": "Points particuliers",
+   "texte": "Même colonne : même abscisse · même ligne : même ordonnée."
+  },
+  "application": {
+   "type": "etape",
+   "kicker": "Application rapide",
+   "titre": "Lire un point, en placer un autre",
+   "tex": [
+    "C(5 \\,;\\, 2)",
+    "D(3 \\,;\\, 1)"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Couple : abscisse d'abord, ordonnée ensuite",
+    "Lire : colonne puis ligne",
+    "Placer : colonnes puis lignes, depuis l'origine",
+    "Même colonne : même abscisse"
+   ]
+  },
+  "cloture": {
+   "type": "phrase",
+   "kicker": "Pour finir",
+   "texte": "Deux nombres bien ordonnés situent n'importe quel point."
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de repérage sur un quadrillage. Sur une droite, un seul nombre suffisait pour situer un point. Sur un quadrillage, qui est une surface à deux dimensions, il faut deux nombres : l'abscisse et l'ordonnée, réunis dans un couple de coordonnées. Nous verrons ce vocabulaire, puis comment lire les coordonnées d'un point déjà placé, puis comment placer un point dont on connaît le couple, et nous finirons par les points particuliers et une application rapide.",
+   "texte": "Deux nombres pour situer un point du quadrillage.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Pourquoi deux nombres ? Parce qu'un point du quadrillage peut se déplacer dans deux directions indépendantes : horizontalement et verticalement. Un seul nombre ne dirait qu'une des deux positions. Le couple de coordonnées donne les deux, dans un ordre précis que nous allons définir.",
+   "texte": "Horizontal et vertical : deux informations à donner.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Sur un quadrillage, on repère un point grâce à deux nombres appelés ses coordonnées. Ces deux nombres forment un couple de coordonnées, noté entre parenthèses et séparés par un point-virgule. Le premier nombre, noté x, s'appelle l'abscisse du point : c'est sa position horizontale. Le second nombre, noté y, s'appelle l'ordonnée du point : c'est sa position verticale.",
+   "texte": "Couple de x et y : abscisse, puis ordonnée.",
+   "ecran": "couple_def"
+  },
+  {
+   "id": "p04",
+   "dit": "Remarque importante : l'ordre des nombres dans le couple est essentiel. Le couple deux, trois n'est pas le même que le couple trois, deux : ils désignent deux points différents du quadrillage. Inverser les deux nombres, c'est changer de point. L'abscisse vient donc toujours en premier, et l'ordonnée toujours en second.",
+   "texte": "Deux, trois et trois, deux : deux points différents.",
+   "ecran": "ordre_piege"
+  },
+  {
+   "id": "p05",
+   "dit": "Les coordonnées se lisent par rapport à une origine, le point de coordonnées zéro, zéro, souvent située en bas à gauche du quadrillage. À partir de cette origine, on se déplace horizontalement, vers la droite, pour l'abscisse, et verticalement, vers le haut, pour l'ordonnée.",
+   "texte": "Origine en bas à gauche : zéro, zéro.",
+   "ecran": "origine"
+  },
+  {
+   "id": "p06",
+   "dit": "Voyons maintenant comment lire le couple de coordonnées d'un point placé sur un quadrillage. La méthode compte trois temps : on repère d'abord la position horizontale du point, c'est son abscisse ; on repère ensuite sa position verticale, c'est son ordonnée ; et on écrit le couple, abscisse en premier, ordonnée en second.",
+   "texte": "Lire : horizontale, verticale, puis écrire le couple.",
+   "ecran": "lire_methode"
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple résolu : lisons les coordonnées du point A sur le quadrillage. Le point A se trouve à quatre unités vers la droite de l'origine, donc son abscisse vaut quatre. Il se trouve à trois unités vers le haut de l'origine, donc son ordonnée vaut trois. On écrit : A a pour couple de coordonnées quatre, trois.",
+   "texte": "A : quatre à droite, trois en haut.",
+   "ecran": "lire_ex"
+  },
+  {
+   "id": "p08",
+   "dit": "Opération inverse : placer un point dont on connaît le couple de coordonnées. Pour placer le point M de coordonnées x, y, on part de l'origine du quadrillage, on se déplace horizontalement de x unités, vers la droite si x est positif, puis verticalement de y unités, vers le haut si y est positif, et on marque le point obtenu en le nommant.",
+   "texte": "Placer : origine, déplacement horizontal, vertical, point.",
+   "ecran": "placer_methode"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple résolu : plaçons le point B de coordonnées deux, cinq. On part de l'origine, le point zéro, zéro. On se déplace de deux unités horizontalement vers la droite, c'est l'abscisse. On se déplace ensuite de cinq unités verticalement vers le haut, c'est l'ordonnée. Le point B est alors placé à l'intersection de la colonne deux et de la ligne cinq, et on le nomme.",
+   "texte": "B : colonne deux, ligne cinq.",
+   "ecran": "placer_ex"
+  },
+  {
+   "id": "p10",
+   "dit": "Quelques points particuliers à connaître. Le point d'origine du quadrillage a pour coordonnées zéro, zéro. Un point situé sur la même ligne verticale qu'un autre point a la même abscisse que lui. Et un point situé sur la même ligne horizontale qu'un autre point a la même ordonnée que lui. Ces deux remarques permettent de contrôler rapidement une lecture de coordonnées.",
+   "texte": "Même colonne : même abscisse · même ligne : même ordonnée.",
+   "ecran": "particuliers"
+  },
+  {
+   "id": "p11",
+   "dit": "Le point méthode tient en deux phrases jumelles. Pour lire les coordonnées d'un point, on lit d'abord la colonne, c'est l'abscisse, puis la ligne, c'est l'ordonnée. Pour placer un point, on compte d'abord les colonnes, puis les lignes. Dans les deux sens, l'abscisse passe toujours avant l'ordonnée.",
+   "texte": "Toujours la colonne avant la ligne.",
+   "ecran": "lire_methode"
+  },
+  {
+   "id": "p12",
+   "dit": "Application rapide pour vérifier que tout est en place. Le point C situé à cinq unités à droite et deux unités en haut de l'origine a pour coordonnées cinq, deux. Et pour placer le point D de coordonnées trois, un, on se déplace de trois unités vers la droite, puis d'une unité vers le haut.",
+   "texte": "C : cinq, deux · D : trois à droite, un en haut.",
+   "ecran": "application"
+  },
+  {
+   "id": "p13",
+   "dit": "Récapitulons. Un point du quadrillage est repéré par un couple de coordonnées, l'abscisse en premier et l'ordonnée en second. Pour lire, on prend la colonne puis la ligne ; pour placer, on compte les colonnes puis les lignes depuis l'origine. Et deux points d'une même colonne partagent leur abscisse, deux points d'une même ligne partagent leur ordonnée.",
+   "texte": "Abscisse d'abord, toujours.",
+   "ecran": "recap"
+  },
+  {
+   "id": "p14",
+   "dit": "Tu sais maintenant lire et placer un point sur un quadrillage avec précision. Cette compétence est indispensable pour la géométrie repérée, qui sera approfondie dans les années suivantes, avec les axes gradués et les repères du plan.",
+   "texte": "Le quadrillage prépare la géométrie repérée.",
+   "ecran": "cloture"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le couple de coordonnées et la lecture d'un point"
+  },
+  {
+   "debut": "p08",
+   "sous_titre": "Placer un point, points particuliers et application",
+   "pont": {
+    "texte": "Partie 2 : placer un point et points particuliers.",
+    "dit": "Partie deux : placer un point sur le quadrillage. Après avoir appris à lire les coordonnées d'un point déjà placé, nous ferons l'opération inverse : partir d'un couple de coordonnées et construire le point, avant les points particuliers et une application rapide."
+   }
+  }
+ ]
+}
