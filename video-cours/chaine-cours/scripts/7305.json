@@ -1,0 +1,412 @@
+{
+  "cours": 7305,
+  "ecrans": {
+    "bayes": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Formule de Bayes",
+      "note": "Le dénominateur se calcule par les probabilités totales",
+      "tex": "P(B_k \\mid A) = \\frac{P(A \\mid B_k) \\cdot P(B_k)}{P(A)}",
+      "type": "formule"
+    },
+    "def_cond": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "venn"
+      },
+      "kicker": "Définition · probabilité conditionnelle",
+      "note": "B déjà réalisé, avec P(B) strictement positif",
+      "tex": "P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}",
+      "type": "formule"
+    },
+    "ecart_type": {
+      "kicker": "Écart-type",
+      "note": "La dispersion, dans la même unité que X",
+      "tex": "\\sigma(X) = \\sqrt{V(X)}",
+      "type": "formule"
+    },
+    "esperance": {
+      "kicker": "Espérance mathématique",
+      "note": "La valeur moyenne sur un grand nombre d'expériences",
+      "tex": "E(X) = \\sum_{i=1}^{n} x_i \\cdot p_i",
+      "type": "formule"
+    },
+    "ex_bayes": {
+      "kicker": "Exemple résolu · Bayes",
+      "tex": [
+        "P(B_2 \\mid A) = \\tfrac{0{,}05 \\times 0{,}4}{0{,}032}",
+        "P(B_2 \\mid A) = \\tfrac{0{,}020}{0{,}032} = 0{,}625"
+      ],
+      "titre": "La pièce est défectueuse : vient-elle de la deuxième machine ?",
+      "type": "etape"
+    },
+    "ex_de_esperance": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Exemple résolu · le dé, espérance",
+      "tex": [
+        "E(X) = \\tfrac{1+2+3+4+5+6}{6}",
+        "E(X) = \\tfrac{21}{6} = 3{,}5"
+      ],
+      "titre": "La moyenne du dé équilibré",
+      "type": "etape"
+    },
+    "ex_de_loi": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Exemple · le dé équilibré",
+      "note": "Pour k de un à six : six faces équiprobables",
+      "tex": "P(X = k) = \\frac{1}{6}",
+      "type": "formule"
+    },
+    "ex_de_variance": {
+      "kicker": "Exemple résolu · le dé, variance",
+      "tex": [
+        "E(X^2) = \\tfrac{91}{6} \\approx 15{,}17",
+        "V(X) = \\tfrac{91}{6} - 3{,}5^2 = \\tfrac{35}{12}",
+        "V(X) \\approx 2{,}92 \\qquad \\sigma(X) \\approx 1{,}71"
+      ],
+      "titre": "König-Huygens, pas à pas",
+      "type": "etape"
+    },
+    "ex_machines": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Exemple résolu · probabilités totales",
+      "tex": [
+        "P(A) = 0{,}02 \\times 0{,}6 + 0{,}05 \\times 0{,}4",
+        "P(A) = 0{,}012 + 0{,}020 = 0{,}032"
+      ],
+      "titre": "Deux machines, des pièces parfois défectueuses",
+      "type": "etape"
+    },
+    "ex_urne": {
+      "anim": {
+        "hauteur": 110,
+        "nom": "urne_fig"
+      },
+      "kicker": "Exemple résolu · tirages sans remise",
+      "tex": [
+        "P(B) = \\tfrac{3}{5}",
+        "P(A \\mid B) = \\tfrac{2}{4} = 0{,}5",
+        "P(A \\cap B) = \\tfrac{3}{5} \\times \\tfrac{2}{4} = 0{,}3"
+      ],
+      "titre": "Trois rouges, deux blanches, deux tirages",
+      "type": "etape"
+    },
+    "independance": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "venn"
+      },
+      "kicker": "Indépendance",
+      "note": "Équivaut à P(A sachant B) égale P(A)",
+      "tex": "P(A \\cap B) = P(A) \\cdot P(B)",
+      "type": "formule"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "urne_fig"
+      },
+      "kicker": "Introduction",
+      "texte": "Savoir qu'un événement a eu lieu change les probabilités des autres.",
+      "type": "phrase"
+    },
+    "konig": {
+      "kicker": "Formule de König-Huygens",
+      "note": "La formule pratique, celle des calculs",
+      "tex": "V(X) = E(X^2) - \\big(E(X)\\big)^2",
+      "type": "formule"
+    },
+    "loi": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Loi de probabilité",
+      "tex": [
+        "P(X = x_i) = p_i",
+        "\\sum_{i=1}^{n} p_i = 1 \\qquad p_i \\geq 0"
+      ],
+      "titre": "Les valeurs et leurs probabilités, en tableau",
+      "type": "etape"
+    },
+    "multiplication": {
+      "kicker": "Formule de multiplication",
+      "note": "Lire l'arbre dans le sens des branches",
+      "tex": "\\begin{aligned} P(A \\cap B) &= P(B) \\cdot P(A \\mid B) \\\\ &= P(A) \\cdot P(B \\mid A) \\end{aligned}",
+      "type": "formule"
+    },
+    "partition": {
+      "anim": {
+        "hauteur": 110,
+        "nom": "venn"
+      },
+      "kicker": "Partition · système complet",
+      "tex": [
+        "B_i \\cap B_j = \\varnothing \\quad (i \\neq j)",
+        "B_1 \\cup \\cdots \\cup B_n = \\Omega",
+        "P(B_i) > 0"
+      ],
+      "titre": "Découper l'univers sans trou ni recouvrement",
+      "type": "etape"
+    },
+    "prop_esperance": {
+      "kicker": "Propriétés de l'espérance",
+      "tex": [
+        "E(aX + b) = a E(X) + b",
+        "E(X + Y) = E(X) + E(Y)"
+      ],
+      "titre": "Linéaire, toujours",
+      "type": "etape"
+    },
+    "prop_variance": {
+      "kicker": "Propriétés de la variance",
+      "tex": [
+        "V(aX + b) = a^2 V(X)",
+        "V(X) \\geq 0"
+      ],
+      "titre": "Toujours positive, quadratique en a",
+      "type": "etape"
+    },
+    "recap1": {
+      "etapes": [
+        "Conditionnelle : P(A|B) = P(A∩B) / P(B)",
+        "Indépendance : P(A∩B) = P(A) × P(B)",
+        "Totales : sommer selon une partition",
+        "Bayes : inverser le conditionnement"
+      ],
+      "kicker": "Partie 1 : à retenir",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Conditionnelle : P(A|B) = P(A∩B) / P(B)",
+        "Indépendance : P(A∩B) = P(A) × P(B)",
+        "Totales et Bayes : décomposer, inverser",
+        "Espérance : E(X) = Σ xᵢ pᵢ",
+        "Variance V(X), écart-type σ = √V(X)"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "repartition": {
+      "kicker": "Fonction de répartition",
+      "note": "La probabilité cumulée jusqu'au seuil x",
+      "tex": "F(x) = P(X \\leq x)",
+      "type": "formule"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 240,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Mathématique · Probabilités",
+      "sous": "Conditionner, décomposer avec les probabilités totales, inverser avec Bayes, puis résumer une loi par son espérance et sa variance",
+      "titre": "Probabilités conditionnelles et variables aléatoires",
+      "type": "titre"
+    },
+    "totales": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Formule des probabilités totales",
+      "note": "Sommer sur toutes les branches qui mènent à A",
+      "tex": "P(A) = \\sum_{i=1}^{n} P(A \\mid B_i) \\cdot P(B_i)",
+      "type": "formule"
+    },
+    "var_def": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Variable aléatoire discrète",
+      "texte": "À chaque issue, un nombre : le résultat devient une grandeur.",
+      "type": "phrase"
+    },
+    "variance_def": {
+      "kicker": "Variance · définition",
+      "note": "La moyenne des carrés des écarts à la moyenne",
+      "tex": "V(X) = E\\big[(X - E(X))^2\\big]",
+      "type": "formule"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Probabilités conditionnelles, totales et Bayes"
+    },
+    {
+      "debut": "p13",
+      "pont": {
+        "dit": "Partie deux, les variables aléatoires discrètes. Place aux lois de probabilité et à leurs trois résumés : espérance, variance et écart-type.",
+        "texte": "Partie 2 : loi, espérance, variance, écart-type."
+      },
+      "sous_titre": "Variable aléatoire discrète : espérance, variance, écart-type"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux probabilités conditionnelles et aux variables aléatoires discrètes. D'abord, comment une information nouvelle modifie une probabilité, avec l'indépendance, les probabilités totales et Bayes. Ensuite, comment résumer une loi par son espérance, sa variance et son écart-type.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Conditionner, inverser, puis résumer une loi."
+    },
+    {
+      "dit": "L'idée de départ est simple. Une probabilité se calcule dans un univers donné. Mais si l'on apprend qu'un événement est déjà réalisé, l'univers se réduit à cet événement, et toutes les probabilités se recalculent à l'intérieur. C'est exactement cela, conditionner.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "Une information nouvelle réduit l'univers."
+    },
+    {
+      "dit": "Soient a et bé deux événements d'un univers oméga, avec la probabilité de bé strictement positive. La probabilité de a sachant bé est le quotient de la probabilité de a inter bé par la probabilité de bé. On ne regarde que les issues de bé, et parmi elles, la part de celles qui sont aussi dans a.",
+      "ecran": "def_cond",
+      "id": "p03",
+      "texte": "P(A | B) : la part de A à l'intérieur de B."
+    },
+    {
+      "dit": "Premier exemple. Un sac contient trois boules rouges et deux blanches. On tire deux boules sans remise. Bé est l'événement la première boule est rouge, a est l'événement la deuxième boule est rouge. Sachant bé, il reste quatre boules dont deux rouges, donc la probabilité de a sachant bé vaut deux sur quatre, zéro virgule cinq. Et la probabilité de a inter bé vaut trois cinquièmes fois deux quarts, zéro virgule trois.",
+      "ecran": "ex_urne",
+      "id": "p04",
+      "texte": "Sans remise : P(A | B) = 0,5."
+    },
+    {
+      "dit": "En réarrangeant la définition, on obtient la formule de multiplication. La probabilité de a inter bé égale la probabilité de bé fois la probabilité de a sachant bé, et symétriquement, la probabilité de a fois la probabilité de bé sachant a. Sur un arbre, on suit les branches en multipliant.",
+      "ecran": "multiplication",
+      "id": "p05",
+      "texte": "Inter = première branche × branche conditionnelle."
+    },
+    {
+      "dit": "Cas particulier décisif : l'indépendance. Deux événements a et bé sont indépendants quand la probabilité de leur intersection égale le produit de leurs probabilités. Autrement dit, savoir que bé est réalisé ne change rien à la probabilité de a : la probabilité de a sachant bé égale la probabilité de a.",
+      "ecran": "independance",
+      "id": "p06",
+      "texte": "Indépendants : savoir B ne change rien à A."
+    },
+    {
+      "dit": "Pour aller plus loin, il faut découper l'univers. Des événements bé un, bé deux, jusqu'à bé èn forment une partition, un système complet, quand ils sont deux à deux incompatibles, quand leur réunion remplit l'univers, et quand chacun a une probabilité strictement positive. Aucun trou, aucun recouvrement.",
+      "ecran": "partition",
+      "id": "p07",
+      "texte": "Partition : incompatibles, réunion complète."
+    },
+    {
+      "dit": "Voici la formule des probabilités totales. Pour tout événement a, sa probabilité égale la somme, sur toutes les pièces de la partition, de la probabilité de a sachant bé i, multipliée par la probabilité de bé i. On décompose a selon chaque cas possible, puis on additionne les contributions.",
+      "ecran": "totales",
+      "id": "p08",
+      "texte": "Probabilités totales : décomposer, puis sommer."
+    },
+    {
+      "dit": "Exemple. Deux machines produisent des pièces. La première fournit soixante pour cent de la production, avec deux pour cent de défectueuses. La seconde fournit quarante pour cent, avec cinq pour cent de défectueuses. La probabilité qu'une pièce soit défectueuse vaut zéro virgule zéro deux fois zéro virgule six, plus zéro virgule zéro cinq fois zéro virgule quatre, soit zéro virgule zéro trois deux.",
+      "ecran": "ex_machines",
+      "id": "p09",
+      "texte": "Défaut : 0,02 × 0,6 + 0,05 × 0,4 = 0,032."
+    },
+    {
+      "dit": "La formule de Bayes inverse le conditionnement. Connaissant la probabilité de a sachant bé ka, elle donne la probabilité de bé ka sachant a : c'est la probabilité de a sachant bé ka, fois la probabilité de bé ka, le tout divisé par la probabilité de a, que les probabilités totales permettent de calculer.",
+      "ecran": "bayes",
+      "id": "p10",
+      "texte": "Bayes : passer de P(A | B) à P(B | A)."
+    },
+    {
+      "dit": "Suite de l'exemple. La pièce tirée est défectueuse : quelle est la probabilité qu'elle vienne de la deuxième machine. On divise sa contribution, zéro virgule zéro cinq fois zéro virgule quatre, par la probabilité totale du défaut. Le résultat vaut zéro virgule six deux cinq : le défaut désigne la deuxième machine dans près de deux cas sur trois.",
+      "ecran": "ex_bayes",
+      "id": "p11",
+      "texte": "Bayes : P(B₂ | A) = 0,625."
+    },
+    {
+      "dit": "Retenons la première partie. La probabilité conditionnelle restreint l'univers à l'événement connu. L'indépendance dit que le produit suffit. Les probabilités totales décomposent selon une partition, et Bayes inverse le conditionnement.",
+      "ecran": "recap1",
+      "id": "p12",
+      "texte": "Partie 1 : à retenir."
+    },
+    {
+      "dit": "Passons à la variable aléatoire discrète. C'est une fonction qui associe un nombre réel à chaque issue de l'univers. L'ensemble de ses valeurs est fini, ou dénombrable. Au lieu de décrire des événements avec des mots, on manipule des nombres, et le calcul devient possible.",
+      "ecran": "var_def",
+      "id": "p13",
+      "texte": "Une variable aléatoire : des nombres sur les issues."
+    },
+    {
+      "dit": "La loi de probabilité de iks associe à chaque valeur iks i sa probabilité pé i, celle de l'événement iks égale iks i. On la présente en tableau, valeurs sur une ligne, probabilités en dessous. Deux contrôles : chaque probabilité est positive ou nulle, et leur somme vaut exactement un.",
+      "ecran": "loi",
+      "id": "p14",
+      "texte": "Loi : les pᵢ positifs, de somme 1."
+    },
+    {
+      "dit": "La fonction de répartition, notée grand èf, donne en chaque seuil iks la probabilité que la variable soit inférieure ou égale à ce seuil. Elle cumule les probabilités de toutes les valeurs jusqu'au seuil, et croît de zéro jusqu'à un.",
+      "ecran": "repartition",
+      "id": "p15",
+      "texte": "Répartition F(x) : le cumul jusqu'à x."
+    },
+    {
+      "dit": "Exemple fil rouge de cette partie : on lance un dé équilibré, et iks est le numéro obtenu. Chaque face a la même probabilité, un sixième, pour les valeurs de un à six. Une loi uniforme, la plus simple qui soit, et pourtant déjà riche à résumer.",
+      "ecran": "ex_de_loi",
+      "id": "p16",
+      "texte": "Le dé : P(X = k) = 1/6, de 1 à 6."
+    },
+    {
+      "dit": "Premier résumé d'une loi : l'espérance mathématique. Elle vaut la somme des valeurs multipliées par leurs probabilités. C'est la valeur moyenne que l'on obtient sur un grand nombre d'expériences répétées, le centre de gravité de la loi.",
+      "ecran": "esperance",
+      "id": "p17",
+      "texte": "Espérance : la moyenne pondérée des valeurs."
+    },
+    {
+      "dit": "L'espérance est linéaire. L'espérance de a iks plus bé égale a fois l'espérance de iks, plus bé. Et l'espérance d'une somme de deux variables égale toujours la somme de leurs espérances, même sans aucune indépendance entre elles.",
+      "ecran": "prop_esperance",
+      "id": "p18",
+      "texte": "Linéarité : E(aX + b) = aE(X) + b."
+    },
+    {
+      "dit": "Deuxième résumé : la variance, qui mesure la dispersion autour de l'espérance. Par définition, c'est l'espérance du carré de l'écart entre la variable et sa moyenne. Plus la variance est grande, plus les valeurs s'étalent loin du centre.",
+      "ecran": "variance_def",
+      "id": "p19",
+      "texte": "Variance : la dispersion autour de E(X)."
+    },
+    {
+      "dit": "Pour calculer sans peine, on utilise la formule de König-Huygens. La variance égale l'espérance du carré de la variable, moins le carré de l'espérance. Il suffit donc de calculer deux moyennes pondérées, avec les valeurs, puis avec leurs carrés, et de soustraire.",
+      "ecran": "konig",
+      "id": "p20",
+      "texte": "König-Huygens : V = E(X²) − (E(X))²."
+    },
+    {
+      "dit": "Deux propriétés de la variance à retenir. Ajouter une constante bé ne change rien à la dispersion, la translation ne compte pas. Multiplier la variable par a multiplie la variance par a au carré. Et bien sûr, une variance est toujours positive ou nulle.",
+      "ecran": "prop_variance",
+      "id": "p21",
+      "texte": "V(aX + b) = a²V(X) : le b disparaît."
+    },
+    {
+      "dit": "L'écart-type, noté sigma de iks, est la racine carrée de la variance. Son avantage : il s'exprime dans la même unité que la variable, là où la variance parle en unités au carré. C'est lui que l'on cite pour annoncer une dispersion lisible.",
+      "ecran": "ecart_type",
+      "id": "p22",
+      "texte": "Écart-type σ : la dispersion dans l'unité de X."
+    },
+    {
+      "dit": "Exemple complet, le dé équilibré. Son espérance vaut la somme de un à six, divisée par six, parce que chaque face pèse un sixième. Vingt et un divisé par six, cela donne trois virgule cinq. Le centre de la loi est entre le trois et le quatre, comme on s'y attendait.",
+      "ecran": "ex_de_esperance",
+      "id": "p23",
+      "texte": "Dé : E(X) = 21/6 = 3,5."
+    },
+    {
+      "dit": "Continuons avec König-Huygens. L'espérance du carré vaut la somme des carrés de un à six, quatre-vingt-onze, divisée par six, soit environ quinze virgule dix-sept. On retranche le carré de l'espérance. La variance vaut trente-cinq douzièmes, environ deux virgule quatre-vingt-douze. L'écart-type, sa racine carrée, vaut environ un virgule soixante et onze.",
+      "ecran": "ex_de_variance",
+      "id": "p24",
+      "texte": "Dé : V ≈ 2,92 et σ ≈ 1,71."
+    },
+    {
+      "dit": "Pour conclure. Conditionner, c'est restreindre l'univers, et Bayes inverse le conditionnement après une décomposition par les probabilités totales. Une variable aléatoire discrète se résume par trois nombres : l'espérance pour le centre, la variance et l'écart-type pour la dispersion.",
+      "ecran": "recap_final",
+      "id": "p25",
+      "texte": "Probabilités et variable aléatoire : à retenir."
+    }
+  ],
+  "titre": "Probabilités conditionnelles et variables aléatoires discrètes"
+}
