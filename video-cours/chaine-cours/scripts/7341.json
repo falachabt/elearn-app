@@ -1,0 +1,273 @@
+{
+ "cours": 7341,
+ "titre": "Systèmes d'équations linéaires à deux inconnues : substitution, combinaison et lecture graphique",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Systèmes linéaires",
+   "titre": "Systèmes d'équations linéaires à deux inconnues",
+   "sous": "Substitution, combinaison linéaire et lecture graphique : deux équations, un couple solution",
+   "anim": {
+    "nom": "droites_trois_cas_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Deux équations à satisfaire en même temps : chercher le couple qui vérifie les deux à la fois."
+  },
+  "def_eq": {
+   "type": "formule",
+   "kicker": "Équation linéaire à deux inconnues",
+   "tex": "ax + by = c \\qquad (a, b) \\neq (0, 0)",
+   "note": "a, b et c sont des réels donnés : l'équation est du premier degré en x et en y."
+  },
+  "def_sys": {
+   "type": "etape",
+   "kicker": "Le système et sa solution",
+   "titre": "Deux équations, satisfaites simultanément",
+   "tex": [
+    "\\begin{cases} ax + by = c \\\\ a'x + b'y = c' \\end{cases}",
+    "(x_0, y_0) \\text{ vérifie les deux équations}"
+   ]
+  },
+  "subst_principe": {
+   "type": "etape",
+   "kicker": "Méthode de substitution · le principe",
+   "titre": "Exprimer, remplacer, résoudre",
+   "tex": [
+    "\\text{exprimer une inconnue}",
+    "\\text{la remplacer dans l'autre}",
+    "\\text{résoudre, puis reporter}"
+   ]
+  },
+  "subst_ex": {
+   "type": "etape",
+   "kicker": "Exemple · substitution",
+   "titre": "Exprimer x, puis remplacer dans la seconde",
+   "tex": [
+    "\\begin{cases} x + 2y = 7 \\\\ 3x - y = 7 \\end{cases}",
+    "x = 7 - 2y",
+    "3(7 - 2y) - y = 7 \\iff -7y = -14"
+   ]
+  },
+  "subst_fin": {
+   "type": "etape",
+   "kicker": "Exemple · substitution, la fin",
+   "titre": "Reporter pour trouver x",
+   "tex": [
+    "y = 2 \\qquad x = 7 - 2 \\times 2 = 3",
+    "(x, y) = (3, 2)"
+   ]
+  },
+  "recap_subst": {
+   "type": "recap",
+   "kicker": "Substitution : l'essentiel",
+   "etapes": [
+    "Exprimer une inconnue en fonction de l'autre",
+    "Remplacer dans la seconde équation",
+    "Résoudre, reporter, vérifier le couple"
+   ]
+  },
+  "comb_principe": {
+   "type": "etape",
+   "kicker": "Méthode de combinaison linéaire · le principe",
+   "titre": "Multiplier, additionner, éliminer",
+   "tex": [
+    "\\text{multiplier par des réels bien choisis}",
+    "\\text{additionner membre à membre}",
+    "\\text{une inconnue disparaît : on élimine}"
+   ]
+  },
+  "comb_ex": {
+   "type": "etape",
+   "kicker": "Exemple · combinaison linéaire",
+   "titre": "Les coefficients de y sont opposés",
+   "tex": [
+    "\\begin{cases} 2x + 3y = 12 \\\\ 5x - 3y = 9 \\end{cases}",
+    "(2x + 3y) + (5x - 3y) = 12 + 9",
+    "7x = 21 \\iff x = 3"
+   ]
+  },
+  "comb_fin": {
+   "type": "etape",
+   "kicker": "Exemple · combinaison, la fin",
+   "titre": "Reporter dans la première équation",
+   "tex": [
+    "6 + 3y = 12 \\iff y = 2",
+    "(x, y) = (3, 2)"
+   ]
+  },
+  "choix": {
+   "type": "phrase",
+   "kicker": "Choisir sa méthode",
+   "texte": "Deux techniques équivalentes : le choix dépend de la simplicité des calculs, et le couple se vérifie toujours."
+  },
+  "geo_droite": {
+   "type": "formule",
+   "kicker": "Interprétation graphique",
+   "tex": "ax + by = c \\quad \\text{: une droite du plan}",
+   "note": "Résoudre le système, c'est chercher les points communs aux deux droites D et D'."
+  },
+  "trois_cas": {
+   "type": "etape",
+   "kicker": "Les trois cas graphiques",
+   "titre": "Sécantes, parallèles distinctes, confondues",
+   "tex": [
+    "\\text{sécantes : un point commun}",
+    "\\text{parallèles distinctes : aucun point}",
+    "\\text{confondues : une infinité de points}"
+   ],
+   "anim": {
+    "nom": "droites_trois_cas_fig",
+    "hauteur": 140
+   }
+  },
+  "geo_ex": {
+   "type": "formule",
+   "kicker": "Exemple graphique",
+   "tex": "\\begin{cases} x + y = 3 \\\\ x - y = 1 \\end{cases} \\quad (2, 1)",
+   "note": "Le point d'intersection des droites y = −x + 3 et y = x − 1 : le couple deux, un."
+  },
+  "cas_part": {
+   "type": "etape",
+   "kicker": "Les cas sans solution unique, en exemples",
+   "titre": "Parallèles distinctes ou droites confondues",
+   "tex": [
+    "\\begin{cases} x + y = 2 \\\\ x + y = 5 \\end{cases} \\text{ : aucune solution}",
+    "\\begin{cases} x + y = 2 \\\\ 2x + 2y = 4 \\end{cases} \\text{ : infinité}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Un système : deux équations à la fois",
+    "Substitution : exprimer puis remplacer",
+    "Combinaison : éliminer une inconnue",
+    "Graphique : le point d'intersection",
+    "Toujours vérifier le couple trouvé"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours consacré aux systèmes d'équations linéaires à deux inconnues. Nous définirons ce qu'est un système et ce qu'est un couple solution, puis nous apprendrons deux méthodes de résolution, la substitution et la combinaison linéaire, avant de lire la réponse graphiquement, comme le point d'intersection de deux droites.",
+   "texte": "Systèmes à deux inconnues : substitution, combinaison, graphique."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Le fil rouge tient en une phrase : un système demande de satisfaire deux équations en même temps. Toute la difficulté est donc de transformer le système sans changer ses solutions, jusqu'à isoler une inconnue, puis l'autre, et de toujours vérifier le couple obtenu dans les deux équations de départ.",
+   "texte": "Satisfaire les deux équations en même temps."
+  },
+  {
+   "id": "p03",
+   "ecran": "def_eq",
+   "dit": "Commençons par une seule équation. Une équation linéaire à deux inconnues ixe et igrec est une équation de la forme a fois ixe plus b fois igrec égale c, où a, b et c sont des réels donnés. On demande que a et b ne soient pas tous les deux nuls, sinon il ne resterait aucune inconnue dans l'équation.",
+   "texte": "ax + by = c, avec a et b non tous nuls."
+  },
+  {
+   "id": "p04",
+   "ecran": "def_sys",
+   "dit": "Un système d'équations linéaires à deux inconnues est un ensemble de deux équations linéaires que l'on doit satisfaire simultanément. Un couple de réels est solution du système s'il vérifie les deux équations à la fois. Résoudre le système, c'est trouver tous les couples solutions, sans en oublier aucun.",
+   "texte": "Un couple solution vérifie les deux équations à la fois."
+  },
+  {
+   "id": "p05",
+   "ecran": "subst_principe",
+   "dit": "Première méthode : la substitution. Son principe tient en trois gestes. On exprime d'abord une inconnue en fonction de l'autre dans l'une des équations. On remplace ensuite cette expression dans la seconde équation, qui ne contient alors plus qu'une seule inconnue. On résout cette équation, puis on reporte la valeur trouvée pour obtenir l'autre inconnue.",
+   "texte": "Substitution : exprimer, remplacer, résoudre, reporter."
+  },
+  {
+   "id": "p06",
+   "ecran": "subst_ex",
+   "dit": "Exemple résolu par substitution. Le système est ixe plus deux igrec égale sept, et trois ixe moins igrec égale sept. De la première équation, on tire ixe égale sept moins deux igrec. En reportant cette expression dans la seconde, on obtient trois fois sept moins deux igrec, moins igrec, égale sept, donc vingt et un moins sept igrec égale sept, puis moins sept igrec égale moins quatorze.",
+   "texte": "x = 7 − 2y, reporté : −7y = −14."
+  },
+  {
+   "id": "p07",
+   "ecran": "subst_fin",
+   "dit": "On en déduit igrec égale deux. Il ne reste qu'à reporter cette valeur dans l'expression de ixe : ixe égale sept moins deux fois deux, c'est-à-dire trois. Le couple solution est donc trois, deux. Vérification rapide : trois plus deux fois deux vaut bien sept, et trois fois trois moins deux vaut bien sept aussi.",
+   "texte": "y = 2, puis x = 3 : le couple (3, 2)."
+  },
+  {
+   "id": "p08",
+   "ecran": "recap_subst",
+   "dit": "Retenons la mécanique de la substitution : exprimer une inconnue, la remplacer dans l'autre équation, résoudre l'équation à une inconnue ainsi obtenue, reporter pour trouver la seconde inconnue, puis vérifier le couple dans les deux équations de départ. C'est ce dernier contrôle qui protège des erreurs de calcul.",
+   "texte": "Substitution : exprimer, remplacer, vérifier."
+  },
+  {
+   "id": "p09",
+   "ecran": "comb_principe",
+   "dit": "Deuxième méthode : la combinaison linéaire. On multiplie chaque équation par un réel bien choisi, puis on additionne les deux équations membre à membre. Si les coefficients d'une inconnue deviennent opposés, cette inconnue disparaît dans la somme : on l'a éliminée, et il ne reste qu'une équation à une seule inconnue, facile à résoudre.",
+   "texte": "Combinaison : multiplier, additionner, éliminer."
+  },
+  {
+   "id": "p10",
+   "ecran": "comb_ex",
+   "dit": "Exemple résolu par combinaison. Le système est deux ixe plus trois igrec égale douze, et cinq ixe moins trois igrec égale neuf. Ici, les coefficients de igrec sont déjà opposés, trois et moins trois : aucune multiplication préalable n'est nécessaire. En additionnant membre à membre, les igrec s'annulent et il vient sept ixe égale vingt et un, donc ixe égale trois.",
+   "texte": "Les y s'annulent : 7x = 21, donc x = 3."
+  },
+  {
+   "id": "p11",
+   "ecran": "comb_fin",
+   "dit": "On reporte ixe égale trois dans la première équation : six plus trois igrec égale douze, donc trois igrec égale six et igrec égale deux. Le couple solution est encore trois, deux. Remarque importante : si les coefficients ne sont pas opposés au départ, on multiplie d'abord une ou les deux équations par des réels convenables pour les rendre opposés, puis on additionne.",
+   "texte": "Report dans la première : y = 2, couple (3, 2)."
+  },
+  {
+   "id": "p12",
+   "ecran": "choix",
+   "dit": "Les deux méthodes sont équivalentes : chacune transforme le système en un système qui a exactement les mêmes solutions, jusqu'à isoler une inconnue. La substitution est naturelle quand une inconnue s'exprime simplement, la combinaison quand des coefficients sont déjà opposés ou faciles à rendre opposés. Le choix dépend uniquement de la simplicité des calculs.",
+   "texte": "Deux méthodes équivalentes : choisir la plus simple."
+  },
+  {
+   "id": "p13",
+   "ecran": "geo_droite",
+   "dit": "Changeons maintenant de regard, avec l'interprétation graphique. Dans le plan muni d'un repère, l'équation a fois ixe plus b fois igrec égale c est celle d'une droite. Résoudre le système revient donc à chercher les points d'intersection des deux droites associées aux deux équations : chaque point commun donne un couple solution, et réciproquement.",
+   "texte": "Chaque équation est une droite : chercher l'intersection."
+  },
+  {
+   "id": "p14",
+   "ecran": "trois_cas",
+   "dit": "Deux droites du plan ne peuvent se rencontrer que de trois façons. Si elles sont sécantes, elles ont un seul point commun et le système admet une solution unique. Si elles sont parallèles et distinctes, elles n'ont aucun point commun et le système n'admet aucune solution. Si elles sont confondues, elles ont une infinité de points communs et le système admet une infinité de solutions.",
+   "texte": "Sécantes, parallèles, confondues : 1, 0, une infinité."
+  },
+  {
+   "id": "p15",
+   "ecran": "geo_ex",
+   "dit": "Exemple graphique : le système ixe plus igrec égale trois et ixe moins igrec égale un a pour solution le couple deux, un. Graphiquement, c'est exactement le point d'intersection des deux droites d'équations igrec égale moins ixe plus trois et igrec égale ixe moins un. Le calcul et le dessin racontent la même histoire, vue sous deux angles différents.",
+   "texte": "Intersection des deux droites : le point (2, 1)."
+  },
+  {
+   "id": "p16",
+   "ecran": "cas_part",
+   "dit": "Illustrons les deux cas sans solution unique. Le système ixe plus igrec égale deux et ixe plus igrec égale cinq est impossible, car une même somme ne peut pas valoir deux et cinq à la fois : les droites sont parallèles et distinctes, il n'y a aucune solution. À l'inverse, ixe plus igrec égale deux et deux ixe plus deux igrec égale quatre disent la même chose : les droites sont confondues, et tout couple dont la somme vaut deux est solution.",
+   "texte": "Aucune solution, ou une infinité : deux exemples."
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "dit": "Pour finir, retenez l'enchaînement complet. Un système linéaire à deux inconnues admet zéro, une ou une infinité de solutions. La substitution exprime puis remplace, la combinaison élimine une inconnue, et la lecture graphique voit la solution comme le point d'intersection de deux droites. Dans tous les cas, on termine par la vérification du couple trouvé dans les deux équations de départ.",
+   "texte": "L'essentiel du cours en cinq réflexes."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définitions et méthode de substitution"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "Combinaison linéaire et lecture graphique",
+   "pont": {
+    "texte": "Partie 2 : la combinaison linéaire, puis la lecture graphique.",
+    "dit": "Partie deux : la combinaison linéaire, puis la lecture graphique. Nous éliminerons une inconnue en additionnant les équations, nous comparerons les deux méthodes, et nous lirons enfin les solutions comme des points d'intersection de droites."
+   }
+  }
+ ]
+}
