@@ -1,0 +1,421 @@
+{
+ "cours": 6246,
+ "titre": "Le système nerveux : organisation et fonctions",
+ "matiere": "Biologie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Biologie · Système nerveux",
+   "titre": "Le système nerveux : organisation et fonctions",
+   "sous": "Du neurone au réseau : recevoir, intégrer, répondre"
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Le maître d'orchestre",
+   "texte": "Recevoir le monde, décider, répondre : tout passe par le système nerveux."
+  },
+  "deux_echelles": {
+   "type": "etape",
+   "kicker": "Deux échelles d'organisation",
+   "tex": [
+    "\\text{central : encéphale, moelle}",
+    "\\text{périphérique : nerfs, ganglions}"
+   ],
+   "titre": "Quartier général et voies de liaison"
+  },
+  "snc": {
+   "type": "etape",
+   "kicker": "Le système nerveux central",
+   "tex": [
+    "\\text{encéphale : cerveau, cervelet}",
+    "\\text{tronc cérébral : vital}",
+    "\\text{moelle : conduction, réflexes}"
+   ],
+   "titre": "Protégé par le crâne et la colonne"
+  },
+  "snp": {
+   "type": "etape",
+   "kicker": "Le système nerveux périphérique",
+   "tex": [
+    "\\text{nerfs spinaux : trente et une paires}",
+    "\\text{nerfs crâniens : douze paires}",
+    "\\text{ganglions : relais de tri}"
+   ],
+   "titre": "Trente et une plus douze paires"
+  },
+  "somatique_autonome": {
+   "type": "etape",
+   "kicker": "Volontaire et automatique",
+   "tex": [
+    "\\text{somatique : mouvements voulus}",
+    "\\text{autonome : vie interne}",
+    "\\text{sympathique, parasympathique}"
+   ],
+   "titre": "Deux régimes de commande"
+  },
+  "neurone": {
+   "type": "etape",
+   "kicker": "Le neurone, unité de base",
+   "tex": [
+    "\\text{dendrites : réception}",
+    "\\text{corps cellulaire : intégration}",
+    "\\text{axone : conduction}"
+   ],
+   "titre": "Recevoir, intégrer, transmettre"
+  },
+  "cellules_gliales": {
+   "type": "etape",
+   "kicker": "Les cellules compagnes",
+   "tex": [
+    "\\text{Schwann : myéline hors centre}",
+    "\\text{oligodendrocytes : myéline au centre}",
+    "\\text{myéline : isolant électrique}"
+   ],
+   "titre": "L'isolant qui accélère"
+  },
+  "oeil_ecran": {
+   "type": "phrase",
+   "kicker": "Voir, c'est déjà du nerveux",
+   "texte": "L'œil concentre la lumière sur la rétine : le signal devient influx.",
+   "anim": {
+    "nom": "oeil",
+    "hauteur": 220
+   }
+  },
+  "repos": {
+   "type": "etape",
+   "kicker": "Le potentiel de repos",
+   "tex": [
+    "\\text{intérieur négatif}",
+    "\\text{pompe : trois sodium dehors}",
+    "\\text{deux potassium dedans}"
+   ],
+   "titre": "Un déséquilibre entretenu"
+  },
+  "seuil": {
+   "type": "formule",
+   "kicker": "Le seuil de déclenchement",
+   "tex": "V_{repos} \\approx -70\\ \\text{mV} \\qquad V_{seuil} \\approx -55\\ \\text{mV}",
+   "note": "Quinze millivolts d'écart, et tout bascule."
+  },
+  "potentiel_action": {
+   "type": "etape",
+   "kicker": "Le potentiel d'action en quatre temps",
+   "tex": [
+    "\\text{dépolarisation : sodium entrant}",
+    "\\text{pic : polarité inversée}",
+    "\\text{repolarisation : potassium sortant}",
+    "\\text{retour au repos}"
+   ],
+   "titre": "Un signal bref et stéréotypé"
+  },
+  "tout_ou_rien": {
+   "type": "etape",
+   "kicker": "La loi du tout ou rien",
+   "tex": [
+    "\\text{sous le seuil : rien}",
+    "\\text{au seuil : signal maximal}",
+    "\\text{intensité codée en fréquence}"
+   ],
+   "titre": "L'amplitude ne varie pas, la fréquence oui"
+  },
+  "saltatoire": {
+   "type": "etape",
+   "kicker": "La conduction saltatoire",
+   "tex": [
+    "120\\ \\text{m/s}",
+    "2\\ \\text{m/s}"
+   ],
+   "titre": "Soixante fois plus vite avec myéline"
+  },
+  "synapse": {
+   "type": "etape",
+   "kicker": "La synapse, zone de passage",
+   "tex": [
+    "\\text{bouton : vésicules messagères}",
+    "\\text{fente : vingt à quarante nanomètres}",
+    "\\text{membrane : récepteurs}"
+   ],
+   "titre": "Trois pièces, un passage chimique"
+  },
+  "transmission": {
+   "type": "etape",
+   "kicker": "La transmission synaptique",
+   "tex": [
+    "\\text{arrivée du signal}",
+    "\\text{calcium : exocytose}",
+    "\\text{fixation sur récepteurs}"
+   ],
+   "titre": "L'électricité devient chimie"
+  },
+  "ppse_ppsi": {
+   "type": "etape",
+   "kicker": "Exciter ou inhiber",
+   "tex": [
+    "\\text{PPSE : rapproche du seuil}",
+    "\\text{PPSI : éloigne du seuil}",
+    "\\text{glutamate excite, GABA inhibe}"
+   ],
+   "titre": "Deux signes, une décision"
+  },
+  "sommation": {
+   "type": "phrase",
+   "kicker": "La décision du neurone",
+   "texte": "Des milliers de signaux s'additionnent au cône d'émergence : le neurone déclenche ou se tait."
+  },
+  "reflexe": {
+   "type": "etape",
+   "kicker": "L'arc réflexe",
+   "tex": [
+    "\\text{capteur : étirement détecté}",
+    "\\text{moelle : relais direct}",
+    "\\text{muscle : réponse immédiate}"
+   ],
+   "titre": "Réagir sans attendre le cerveau"
+  },
+  "perception": {
+   "type": "etape",
+   "kicker": "La perception : le flux montant",
+   "tex": [
+    "\\text{récepteurs : monde en signaux}",
+    "\\text{voies ascendantes}",
+    "\\text{cortex : interprétation}"
+   ],
+   "titre": "Du capteur à la conscience"
+  },
+  "motricite": {
+   "type": "etape",
+   "kicker": "La motricité : le flux descendant",
+   "tex": [
+    "\\text{cortex : intention}",
+    "\\text{voies descendantes}",
+    "\\text{motoneurone : muscle}"
+   ],
+   "titre": "De l'idée au geste"
+  },
+  "autonome_detail": {
+   "type": "etape",
+   "kicker": "Le pilote automatique",
+   "tex": [
+    "\\text{sympathique : mobilisation}",
+    "\\text{parasympathique : récupération}",
+    "\\text{rythme cardiaque, digestion}"
+   ],
+   "titre": "Deux pédales, un équilibre"
+  },
+  "plasticite": {
+   "type": "etape",
+   "kicker": "La plasticité synaptique",
+   "tex": [
+    "\\text{PLT : connexion renforcée}",
+    "\\text{DLT : connexion affaiblie}",
+    "\\text{base de la mémoire}"
+   ],
+   "titre": "Le réseau se sculpte par l'usage"
+  },
+  "pathologies": {
+   "type": "phrase",
+   "kicker": "Quand le circuit déraille",
+   "texte": "Sclérose en plaques, Alzheimer, Parkinson : chaque maladie raconte un maillon du circuit."
+  },
+  "echelle": {
+   "type": "phrase",
+   "kicker": "Quatre-vingt-six milliards de neurones",
+   "texte": "Quatre-vingt-six milliards de neurones, chacun relié à des milliers d'autres : la complexité naît du nombre."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Central et périphérique : deux échelles",
+    "Neurone : dendrites, soma, axone",
+    "Seuil franchi : potentiel d'action",
+    "Synapse : chimie entre deux signaux",
+    "Sommation : la décision du neurone"
+   ]
+  },
+  "cloture": {
+   "type": "phrase",
+   "kicker": "À retenir",
+   "texte": "Recevoir, intégrer, répondre : le système nerveux est un réseau qui décide."
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Le système nerveux est le maître d'orchestre de l'organisme. Il reçoit les informations du monde et du corps, les intègre, puis commande une réponse adaptée, du battement du cœur au geste le plus précis.",
+   "texte": "Un réseau qui reçoit, décide et commande.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Imaginez un réseau de communication plus rapide que n'importe quel ordinateur, tissé dans votre propre corps. Ce réseau, c'est le système nerveux, et ses unités de base sont les neurones.",
+   "texte": "Plus rapide qu'un ordinateur, tissé en vous.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "L'organisation se lit à deux échelles. Le système nerveux central, encéphale et moelle épinière, protégé par les os, intègre et décide. Le système nerveux périphérique, nerfs et ganglions, relie ce centre au reste du corps.",
+   "texte": "Centre qui décide, périphérie qui relie.",
+   "ecran": "deux_echelles"
+  },
+  {
+   "id": "p04",
+   "dit": "Le central se compose de l'encéphale, cerveau, cervelet et tronc cérébral, et de la moelle épinière. Le tronc cérébral pilote les fonctions vitales, comme le rythme cardiaque et la respiration. Le cervelet coordonne les gestes et l'équilibre.",
+   "texte": "Encéphale et moelle : le quartier général.",
+   "ecran": "snc"
+  },
+  {
+   "id": "p05",
+   "dit": "Le périphérique, ce sont les nerfs et les ganglions. On compte trente et une paires de nerfs spinaux, qui sortent de la moelle, et douze paires de nerfs crâniens, qui sortent directement de l'encéphale. Les ganglions sont des relais, des carrefours de tri.",
+   "texte": "Trente et une paires spinales, douze paires crâniennes.",
+   "ecran": "snp"
+  },
+  {
+   "id": "p06",
+   "dit": "Une seconde division est fonctionnelle. Le système somatique commande les mouvements volontaires, comme lever le bras. Le système autonome, lui, gère la vie interne sans y penser, avec deux branches opposées, sympathique et parasympathique.",
+   "texte": "Volontaire d'un côté, automatique de l'autre.",
+   "ecran": "somatique_autonome"
+  },
+  {
+   "id": "p07",
+   "dit": "L'unité de base, c'est le neurone. Les dendrites reçoivent les signaux. Le corps cellulaire les intègre. L'axone, parfois très long, conduit le signal vers sa cible. Un neurone sensoriel reçoit, un neurone moteur commande, un interneurone relie.",
+   "texte": "Dendrites, corps cellulaire, axone : trois rôles.",
+   "ecran": "neurone"
+  },
+  {
+   "id": "p08",
+   "dit": "Le neurone n'est pas seul. Des cellules gliales l'accompagnent. Les cellules de Schwann, hors du centre, et les oligodendrocytes, dans le centre, fabriquent la myéline, une gaine isolante enroulée autour de l'axone. C'est elle qui accélère la conduction.",
+   "texte": "Myéline : l'isolant qui fait gagner du temps.",
+   "ecran": "cellules_gliales"
+  },
+  {
+   "id": "p09",
+   "dit": "Prenez la vision. L'œil concentre la lumière sur la rétine, où des photorécepteurs la traduisent en signal nerveux. Voir, c'est déjà du système nerveux : un objet du monde devient un message électrique.",
+   "texte": "Objet, cristallin, rétine : la vision en schéma.",
+   "ecran": "oeil_ecran"
+  },
+  {
+   "id": "p10",
+   "dit": "Au repos, la membrane du neurone est polarisée : l'intérieur est négatif par rapport à l'extérieur. Une pompe, la pompe sodium potassium, entretient ce déséquilibre en expulsant trois ions sodium pour deux ions potassium qui entrent.",
+   "texte": "Trois sodium dehors, deux potassium dedans.",
+   "ecran": "repos"
+  },
+  {
+   "id": "p11",
+   "dit": "Le potentiel de repos vaut environ moins soixante-dix millivolts. Si les signaux reçus dépolarisent la membrane jusqu'à environ moins cinquante-cinq millivolts, le seuil est franchi et un potentiel d'action démarre.",
+   "texte": "Moins soixante-dix au repos, moins cinquante-cinq au seuil.",
+   "ecran": "seuil"
+  },
+  {
+   "id": "p12",
+   "dit": "Le potentiel d'action se déroule en quatre temps. Des canaux sodium s'ouvrent, le sodium entre et la polarité s'inverse : c'est la dépolarisation. Puis les canaux sodium se ferment, les canaux potassium s'ouvrent, le potassium sort : c'est la repolarisation, suivie d'un bref passage sous le repos.",
+   "texte": "Sodium entre, potassium sort : le signal est né.",
+   "ecran": "potentiel_action"
+  },
+  {
+   "id": "p13",
+   "dit": "Ce signal obéit à la loi du tout ou rien : sous le seuil, rien ne part ; au seuil, le signal part à amplitude maximale, toujours la même. Un stimulus fort ne donne pas un signal plus grand, mais des signaux plus fréquents.",
+   "texte": "Rien ou tout, jamais à moitié.",
+   "ecran": "tout_ou_rien"
+  },
+  {
+   "id": "p14",
+   "dit": "Dans un axone myélinisé, le signal ne se régénère qu'aux nœuds de Ranvier, les espaces sans myéline : il saute de nœud en nœud. Résultat mesuré dans les leçons : jusqu'à cent vingt mètres par seconde, contre deux mètres par seconde pour un axone non myélinisé de même diamètre.",
+   "texte": "Cent vingt contre deux mètres par seconde.",
+   "ecran": "saltatoire"
+  },
+  {
+   "id": "p15",
+   "dit": "Entre deux neurones, le signal traverse une synapse. Le bouton présynaptique contient des vésicules remplies de neurotransmetteurs. La fente synaptique, large de vingt à quarante nanomètres, sépare les deux membranes. La membrane postsynaptique porte les récepteurs.",
+   "texte": "Bouton, fente, récepteurs : le lieu du passage.",
+   "ecran": "synapse"
+  },
+  {
+   "id": "p16",
+   "dit": "La transmission se joue en quelques étapes. Le potentiel d'action arrive au bouton, des canaux calciques s'ouvrent, le calcium déclenche l'exocytose des vésicules. Les neurotransmetteurs se fixent sur les récepteurs postsynaptiques, puis le signal s'arrête par recapture ou dégradation.",
+   "texte": "Calcium déclencheur, messager libéré, signal arrêté.",
+   "ecran": "transmission"
+  },
+  {
+   "id": "p17",
+   "dit": "La réponse postsynaptique est graduée, locale, et de deux signes. Un potentiel excitateur rapproche du seuil, par exemple avec le glutamate. Un potentiel inhibiteur éloigne du seuil, par exemple avec le GABA ou la glycine.",
+   "texte": "Exciter rapproche du seuil, inhiber en éloigne.",
+   "ecran": "ppse_ppsi"
+  },
+  {
+   "id": "p18",
+   "dit": "Un neurone reçoit en permanence des milliers de signaux excitateurs et inhibiteurs. Au cône d'émergence de l'axone, ils s'additionnent dans le temps et dans l'espace. Si la somme dépasse le seuil, le neurone déclenche un potentiel d'action.",
+   "texte": "Des milliers de signaux, une seule décision.",
+   "ecran": "sommation"
+  },
+  {
+   "id": "p19",
+   "dit": "Certaines réponses ne passent même pas par le cerveau. Dans l'arc réflexe, un capteur détecte un étirement, la moelle relaye directement, le muscle répond aussitôt. C'est la décision locale et rapide, qui protège avant même que l'on y pense.",
+   "texte": "Capteur, moelle, muscle : le réflexe en trois temps.",
+   "ecran": "reflexe"
+  },
+  {
+   "id": "p20",
+   "dit": "La perception, c'est le flux montant. Des récepteurs traduisent le monde en signaux, les voies ascendantes les portent jusqu'au cortex, qui les interprète. Une même lumière devient alors une forme, un visage, un souvenir.",
+   "texte": "Du capteur au cortex : percevoir.",
+   "ecran": "perception"
+  },
+  {
+   "id": "p21",
+   "dit": "La motricité, c'est le flux descendant. Le cortex formule une intention, les voies descendantes la portent jusqu'au motoneurone, qui commande le muscle. Entre les deux, des boucles de rétroaction corrigent le geste en cours.",
+   "texte": "Du cortex au muscle : agir.",
+   "ecran": "motricite"
+  },
+  {
+   "id": "p22",
+   "dit": "Le système autonome est le pilote automatique. La branche sympathique mobilise : cœur plus rapide, énergie disponible. La branche parasympathique récupère : digestion, repos. Leur équilibre permanent maintient la vie interne stable.",
+   "texte": "Sympathique mobilise, parasympathique récupère.",
+   "ecran": "autonome_detail"
+  },
+  {
+   "id": "p23",
+   "dit": "Les connexions ne sont pas figées : c'est la plasticité synaptique. Une stimulation répétée à haute fréquence renforce durablement une synapse, c'est la potentialisation à long terme. Une stimulation faible peut l'affaiblir. C'est là, croit-on, que se loge la mémoire.",
+   "texte": "Renforcer ou affaiblir : le réseau apprend.",
+   "ecran": "plasticite"
+  },
+  {
+   "id": "p24",
+   "dit": "Quand le circuit déraille, on le voit. La sclérose en plaques détruit la myéline et ralentit les signaux. La maladie d'Alzheimer s'accompagne d'un déficit en acétylcholine. La maladie de Parkinson, d'une perte de neurones à dopamine.",
+   "texte": "Myéline, acétylcholine, dopamine : trois maillons fragiles.",
+   "ecran": "pathologies"
+  },
+  {
+   "id": "p25",
+   "dit": "Pour finir, l'échelle : le cerveau humain contient environ quatre-vingt-six milliards de neurones, chacun pouvant établir des milliers de connexions. La perception, le mouvement et la pensée émergent de cette immense conversation.",
+   "texte": "Quatre-vingt-six milliards de neurones en conversation.",
+   "ecran": "echelle"
+  },
+  {
+   "id": "p26",
+   "dit": "Récapitulons. Deux échelles, centrale et périphérique. Un neurone en trois parties, dendrites, corps cellulaire, axone. Un seuil franchi qui déclenche un potentiel d'action. Une synapse chimique entre deux signaux. Une sommation qui décide.",
+   "texte": "Organisation, neurone, seuil, synapse, décision.",
+   "ecran": "recap"
+  },
+  {
+   "id": "p27",
+   "dit": "Retenez le triptyque : recevoir, intégrer, répondre. Le système nerveux ne se contente pas de transmettre : il choisit, il apprend, il s'adapte. C'est ce choix permanent qui fait un comportement.",
+   "texte": "Recevoir, intégrer, répondre.",
+   "ecran": "cloture"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Organisation et neurone : l'architecture du réseau"
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "Synapse et fonctions : le passage chimique et le comportement",
+   "pont": {
+    "dit": "Partie deux : la synapse et les fonctions. Nous verrons comment le signal traverse la synapse par chimie, comment un neurone décide, et comment perception, motricité et régulation s'assemblent en un comportement.",
+    "texte": "Partie 2 : synapse, décision et fonctions."
+   }
+  }
+ ]
+}
