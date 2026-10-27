@@ -58,11 +58,11 @@ const DEMO_STATS = __DEV__ && process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1';
 /** Coûts d'exemple de la démo TOEIC (outil de développement, sans session) : copie de `credit_actions` pour l'affichage seul. */
 const COUTS_DEMO: Partial<Record<ActionCredit, number>> = {
   cert_explanation: 1,
-  cert_mock_mini_ten: 1,
-  cert_mock_mini_twenty: 2,
-  cert_mock_half: 8,
-  cert_mock_full: 15,
-  cert_mock_review: 3,
+  cert_mock_mini_ten: 3,
+  cert_mock_mini_twenty: 4,
+  cert_mock_half: 12,
+  cert_mock_full: 20,
+  cert_mock_review: 5,
 };
 const SOLDE_DEMO: Solde = {
   total: 25,

@@ -1822,9 +1822,9 @@ export const fr = {
       parrainage: 'Inviter des amis',
     },
     actionsSousTitres: {
-      site_web: 'Gagne 10 crédits en visitant notre site en ligne',
-      facebook: 'Gagne 5 crédits en visitant la page Facebook',
-      instagram: 'Gagne 5 crédits en visitant le compte Instagram',
+      site_web: 'Gagne 3 crédits en visitant notre site en ligne',
+      facebook: 'Gagne 2 crédits en visitant la page Facebook',
+      instagram: 'Gagne 2 crédits en visitant le compte Instagram',
       parrainage: 'Partage ton code parrainage pour accumuler des crédits',
     },
     transactionKinds: {

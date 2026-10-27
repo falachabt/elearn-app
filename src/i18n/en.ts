@@ -1821,9 +1821,9 @@ export const en: Textes = {
       parrainage: 'Invite Friends',
     },
     actionsSousTitres: {
-      site_web: 'Earn 10 credits by visiting our website',
-      facebook: 'Earn 5 credits by visiting our Facebook page',
-      instagram: 'Earn 5 credits by visiting our Instagram account',
+      site_web: 'Earn 3 credits by visiting our website',
+      facebook: 'Earn 2 credits by visiting our Facebook page',
+      instagram: 'Earn 2 credits by visiting our Instagram account',
       parrainage: 'Share your referral code to accumulate credits',
     },
     transactionKinds: {
