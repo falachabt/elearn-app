@@ -1,0 +1,459 @@
+{
+  "cours": 7260,
+  "titre": "Fonctions : images, variations et dérivées",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Fonctions",
+      "titre": "Fonctions : images, variations et dérivées",
+      "sous": "Lire une courbe, puis la dérivée : le signe qui commande les variations",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 250
+      }
+    },
+    "objectifs": {
+      "type": "phrase",
+      "kicker": "Objectifs du cours",
+      "texte": "Images, domaine, variations, dérivée : le programme.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 150
+      }
+    },
+    "def_fonction": {
+      "type": "formule",
+      "kicker": "Définition · la fonction",
+      "tex": "x \\mapsto f(x)",
+      "note": "x : antécédent ; f(x) : image, toujours unique",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 120
+      }
+    },
+    "ex_image": {
+      "type": "etape",
+      "kicker": "Exemple résolu · image et antécédent",
+      "titre": "La fonction deux x plus un",
+      "tex": [
+        "f(x) = 2x + 1",
+        "f(3) = 2 \\times 3 + 1 = 7",
+        "2x + 1 = 7 \\Rightarrow x = 3"
+      ]
+    },
+    "domaine": {
+      "type": "formule",
+      "kicker": "Le domaine de définition",
+      "tex": "D_f = \\{x \\in \\mathbb{R} \\mid f(x) \\text{ existe}\\}",
+      "note": "Deux pièges : dénominateur non nul, racine positive ou nulle"
+    },
+    "ex_domaine": {
+      "type": "etape",
+      "kicker": "Exemple résolu · deux domaines",
+      "titre": "Un quotient, une racine carrée",
+      "tex": [
+        "f(x) = \\tfrac{1}{x-2} : x - 2 \\neq 0",
+        "D_f = \\mathbb{R} \\setminus \\{2\\}",
+        "g(x) = \\sqrt{x+3} : x \\geq -3"
+      ]
+    },
+    "courbe": {
+      "type": "formule",
+      "kicker": "La courbe représentative",
+      "tex": "M(x\\,;\\,f(x)) \\in C_f",
+      "note": "Abscisses : les x du domaine ; ordonnées : leurs images",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 110
+      }
+    },
+    "lecture": {
+      "type": "phrase",
+      "kicker": "Lire sur la courbe",
+      "texte": "Image : abscisse vers ordonnée. Antécédent : le trajet inverse.",
+      "anim": {
+        "nom": "tangente_courbe_fig",
+        "hauteur": 230
+      }
+    },
+    "ex_parabole": {
+      "type": "etape",
+      "kicker": "Exemple résolu · la parabole",
+      "titre": "Le carré, ses points, ses antécédents",
+      "tex": [
+        "f(x) = x^2 : (0\\,;\\,0),\\ (1\\,;\\,1),\\ (-2\\,;\\,4)",
+        "A(3\\,;\\,9) \\in C_f \\text{ car } f(3) = 9",
+        "x^2 = 4 \\Rightarrow x = 2 \\text{ ou } x = -2"
+      ],
+      "anim": {
+        "nom": "parabole_fig",
+        "hauteur": 215
+      }
+    },
+    "variations_def": {
+      "type": "etape",
+      "kicker": "Croissante, décroissante, constante",
+      "titre": "Comparer les images quand x grandit",
+      "tex": [
+        "a < b \\Rightarrow f(a) \\leq f(b) : \\text{croissante}",
+        "a < b \\Rightarrow f(a) \\geq f(b) : \\text{décroissante}",
+        "f(a) = f(b) : \\text{constante}"
+      ]
+    },
+    "ex_variations": {
+      "type": "etape",
+      "kicker": "Exemple · variations du carré",
+      "titre": "Elle descend, puis elle remonte",
+      "tex": [
+        "x^2 \\text{ décroissante sur } ]-\\infty\\,;\\,0]",
+        "[0\\,;\\,+\\infty[ \\text{ : croissante}",
+        "\\text{minimum } 0 \\text{ en } x = 0"
+      ]
+    },
+    "methode_lecture": {
+      "type": "etape",
+      "kicker": "Méthode · lire une courbe",
+      "titre": "Quatre gestes, dans l'ordre",
+      "tex": [
+        "\\text{1. domaine : projection abscisses}",
+        "\\text{2. points remarquables, extremums}",
+        "\\text{3. sens de variation}",
+        "\\text{4. tableau de variations}"
+      ]
+    },
+    "ex_lecture": {
+      "type": "etape",
+      "kicker": "Exemple résolu · lecture complète",
+      "titre": "Elle monte, culmine, redescend",
+      "tex": [
+        "D_f = [-2\\,;\\,4]",
+        "\\text{croissante sur } [-2\\,;\\,1]",
+        "\\text{décroissante sur } [1\\,;\\,4] \\quad \\text{max } 3 \\text{ en } 1"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : à retenir",
+      "etapes": [
+        "Image unique, antécédents possibles",
+        "Domaine : dénominateur, racine carrée",
+        "Courbe : points de coordonnées (x ; f(x))",
+        "Croissante : les images suivent l'ordre",
+        "Tableau de variations : flèches, extremums"
+      ]
+    },
+    "nb_derive": {
+      "type": "formule",
+      "kicker": "Le nombre dérivé",
+      "tex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a+h) - f(a)}{h}",
+      "note": "La limite du taux d'accroissement, si elle existe et est finie",
+      "anim": {
+        "nom": "derive_fig",
+        "hauteur": 120
+      }
+    },
+    "ex_derive": {
+      "type": "etape",
+      "kicker": "Exemple résolu · dériver en un point",
+      "titre": "Le carré en un : la limite pas à pas",
+      "tex": [
+        "\\tfrac{f(1+h) - f(1)}{h} = \\tfrac{(1+h)^2 - 1}{h}",
+        "= \\tfrac{2h + h^2}{h} = 2 + h",
+        "h \\to 0 : f'(1) = 2"
+      ]
+    },
+    "tangente": {
+      "type": "formule",
+      "kicker": "La tangente à la courbe",
+      "tex": "y = f'(a)(x - a) + f(a)",
+      "note": "f'(a) : coefficient directeur ; exemple du carré : y = 2x − 1",
+      "anim": {
+        "nom": "tangente_courbe_fig",
+        "hauteur": 170
+      }
+    },
+    "usuelles": {
+      "type": "etape",
+      "kicker": "Dérivées des fonctions usuelles",
+      "titre": "Cinq lignes à connaître par cœur",
+      "tex": [
+        "k \\to 0 \\qquad x \\to 1",
+        "x^n \\to n x^{n-1}",
+        "\\tfrac{1}{x} \\to -\\tfrac{1}{x^2} \\qquad \\sqrt{x} \\to \\tfrac{1}{2\\sqrt{x}}"
+      ]
+    },
+    "operations": {
+      "type": "etape",
+      "kicker": "Opérations sur les dérivées",
+      "titre": "Somme, produit, quotient",
+      "tex": [
+        "(u + v)' = u' + v'",
+        "(ku)' = k u'",
+        "(uv)' = u'v + u v'",
+        "\\left(\\tfrac{u}{v}\\right)' = \\tfrac{u'v - uv'}{v^2}"
+      ]
+    },
+    "ex_quotient": {
+      "type": "etape",
+      "kicker": "Exemple résolu · dériver un quotient",
+      "titre": "Deux x plus un, sur x moins trois",
+      "tex": [
+        "f(x) = \\tfrac{2x+1}{x-3}",
+        "f'(x) = \\tfrac{2(x-3) - (2x+1)}{(x-3)^2}",
+        "f'(x) = \\tfrac{-7}{(x-3)^2}"
+      ]
+    },
+    "lien_signe": {
+      "type": "etape",
+      "kicker": "Le signe commande les variations",
+      "titre": "Dérivée positive, fonction qui monte",
+      "tex": [
+        "f'(x) > 0 : \\text{ strictement croissante}",
+        "f'(x) < 0 : \\text{ strictement décroissante}",
+        "f'(x) = 0 : \\text{ constante}"
+      ],
+      "anim": {
+        "nom": "derive_fig",
+        "hauteur": 100
+      }
+    },
+    "extremum": {
+      "type": "phrase",
+      "kicker": "Extremum local",
+      "texte": "f' s'annule et change de signe : un extremum.",
+      "anim": {
+        "nom": "derive_fig",
+        "hauteur": 150
+      }
+    },
+    "methode_etude": {
+      "type": "etape",
+      "kicker": "Méthode · étudier une fonction",
+      "titre": "Du domaine à la courbe, en cinq pas",
+      "tex": [
+        "\\text{1. domaine } D_f \\text{, 2. calculer } f'(x)",
+        "\\text{3. signe de } f' \\text{, 4. tableau de variations}",
+        "\\text{5. limites, points, tangentes, tracé}"
+      ]
+    },
+    "ex_etude_f": {
+      "type": "etape",
+      "kicker": "Exemple complet · la dérivée",
+      "titre": "x cube moins trois x plus un",
+      "tex": [
+        "f(x) = x^3 - 3x + 1",
+        "f'(x) = 3x^2 - 3 = 3(x-1)(x+1)",
+        "f'(x) = 0 \\Rightarrow x = -1 \\text{ ou } x = 1"
+      ]
+    },
+    "ex_etude_signe": {
+      "type": "etape",
+      "kicker": "Exemple complet · signe et valeurs",
+      "titre": "Plus, moins, plus : deux extremums",
+      "tex": [
+        "f' : + \\text{ sur } ]-\\infty\\,;\\,-1[ \\text{, } - \\text{ sur } ]-1\\,;\\,1[",
+        "f(-1) = 3 \\qquad f(1) = -1",
+        "\\text{max local } 3 \\text{ en } -1 \\text{, min local } -1 \\text{ en } 1"
+      ]
+    },
+    "ex_etude_trace": {
+      "type": "phrase",
+      "kicker": "Exemple complet · le tracé",
+      "texte": "Monte, redescend, remonte : l'allure en S.",
+      "anim": {
+        "nom": "tangente_courbe_fig",
+        "hauteur": 150
+      }
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Nombre dérivé : limite du taux, tangente",
+        "Usuelles et opérations : dériver vite",
+        "Signe de f' : les variations de f",
+        "Extremum : f' change de signe",
+        "Étude : domaine, dérivée, tableau, tracé"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux fonctions. D'abord les généralités : image, antécédent, domaine et lecture de courbe. Puis la dérivée, l'outil qui donne les variations sans tracer toute la courbe.",
+      "texte": "Fonctions : images, variations et dérivées.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "À la fin de ce cours, vous saurez calculer une image et un antécédent, déterminer un domaine de définition, lire les variations sur une courbe, dériver les fonctions usuelles, et mener l'étude complète d'une fonction jusqu'à son tracé.",
+      "texte": "Objectif : de la lecture de courbe à l'étude complète.",
+      "ecran": "objectifs"
+    },
+    {
+      "id": "p03",
+      "dit": "Une fonction est un procédé qui, à chaque nombre x d'un ensemble de départ, associe au plus un nombre, noté f de x : c'est l'image de x, et x est son antécédent. Un nombre peut avoir plusieurs antécédents, mais une image est toujours unique.",
+      "texte": "x a une seule image : f(x). Plusieurs antécédents possibles.",
+      "ecran": "def_fonction"
+    },
+    {
+      "id": "p04",
+      "dit": "Premier exemple. Soit f de x égale deux x plus un. L'image de trois vaut deux fois trois plus un, soit sept. Pour l'antécédent de sept, on résout deux x plus un égale sept, et l'on trouve x égale trois.",
+      "texte": "Exemple : image de 3 → 7 ; antécédent de 7 → 3.",
+      "ecran": "ex_image"
+    },
+    {
+      "id": "p05",
+      "dit": "Le domaine de définition est l'ensemble des réels pour lesquels l'expression se calcule. Deux cas à surveiller : un dénominateur doit rester non nul, et l'expression sous une racine carrée doit être positive ou nulle.",
+      "texte": "Le domaine : là où le calcul est possible.",
+      "ecran": "domaine"
+    },
+    {
+      "id": "p06",
+      "dit": "Exemple. Pour f de x égale un sur x moins deux, il faut x moins deux différent de zéro : le domaine exclut deux. Pour g de x égale racine de x plus trois, il faut x plus trois positif ou nul : le domaine commence à moins trois.",
+      "texte": "Exemples : exclure 2 ; commencer à −3.",
+      "ecran": "ex_domaine"
+    },
+    {
+      "id": "p07",
+      "dit": "Dans un repère, la courbe d'une fonction rassemble tous les points de coordonnées x et f de x, pour x dans le domaine. Chaque point de la courbe lit donc un antécédent en abscisse et son image en ordonnée.",
+      "texte": "La courbe : tous les points (x ; f(x)).",
+      "ecran": "courbe"
+    },
+    {
+      "id": "p08",
+      "dit": "Lire sur la courbe se fait dans les deux sens. Pour une image, on part de x sur l'axe des abscisses, on rejoint la courbe, puis on lit l'ordonnée. Pour un antécédent, on fait le trajet inverse, de l'ordonnée vers l'abscisse.",
+      "texte": "Sur la courbe : deux trajets, deux lectures.",
+      "ecran": "lecture"
+    },
+    {
+      "id": "p09",
+      "dit": "Exemple avec f de x égale x au carré, dont la courbe est une parabole. Elle passe par l'origine, par le point d'abscisse un et d'ordonnée un, et par le point d'abscisse moins deux et d'ordonnée quatre. Le point de coordonnées trois et neuf est sur la courbe, car f de trois vaut neuf. Les antécédents de quatre sont deux et moins deux.",
+      "texte": "Parabole : 4 a deux antécédents, 2 et −2.",
+      "ecran": "ex_parabole"
+    },
+    {
+      "id": "p10",
+      "dit": "Le sens de variation compare les images quand x grandit. Sur un intervalle, la fonction est croissante si les images gardent l'ordre, décroissante si elles l'inversent, et constante si toutes les images sont égales.",
+      "texte": "Croissante, décroissante, constante : comparer les images.",
+      "ecran": "variations_def"
+    },
+    {
+      "id": "p11",
+      "dit": "Exemple : la fonction carré est décroissante avant zéro, de moins l'infini jusqu'à zéro, puis croissante après zéro. Son tableau de variations montre une flèche qui descend jusqu'au minimum zéro, puis une flèche qui remonte.",
+      "texte": "x² : décroissante puis croissante, minimum 0.",
+      "ecran": "ex_variations"
+    },
+    {
+      "id": "p12",
+      "dit": "Pour étudier une fonction depuis sa courbe, quatre gestes. D'abord le domaine, par projection sur l'axe des abscisses. Puis les points remarquables : intersections avec les axes et extremums. Ensuite le sens de variation. Enfin, le tableau de variations qui résume tout.",
+      "texte": "Méthode courbe : domaine, points, variations, tableau.",
+      "ecran": "methode_lecture"
+    },
+    {
+      "id": "p13",
+      "dit": "Dernier exemple de lecture. Une courbe définie de moins deux à quatre monte du point de coordonnées moins deux et moins un jusqu'au point d'abscisse un et d'ordonnée trois, puis redescend jusqu'à quatre et zéro. Elle est croissante puis décroissante, avec un maximum de trois, atteint en un.",
+      "texte": "Lecture : maximum 3 en x = 1, sur [−2 ; 4].",
+      "ecran": "ex_lecture"
+    },
+    {
+      "id": "p14",
+      "dit": "Retenons cette première partie : une image unique pour chaque antécédent, un domaine gardé par les dénominateurs et les racines, une courbe qui se lit dans les deux sens, et des variations résumées par des flèches dans un tableau.",
+      "texte": "Partie 1 : à retenir.",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p15",
+      "dit": "Le nombre dérivé de f en a, noté f prime de a, est la limite, quand hache tend vers zéro, du taux d'accroissement : f de a plus hache moins f de a, le tout divisé par hache. Si cette limite existe et est finie, la fonction est dérivable en a.",
+      "texte": "f'(a) : limite du taux d'accroissement.",
+      "ecran": "nb_derive"
+    },
+    {
+      "id": "p16",
+      "dit": "Exemple : f de x égale x au carré, en a égale un. Le taux vaut, après développement, deux hache plus hache au carré, divisé par hache, soit deux plus hache. Quand hache tend vers zéro, il tend vers deux : le nombre dérivé en un vaut deux.",
+      "texte": "Exemple : pour x² en 1, f'(1) = 2.",
+      "ecran": "ex_derive"
+    },
+    {
+      "id": "p17",
+      "dit": "Graphiquement, le nombre dérivé est le coefficient directeur de la tangente à la courbe au point d'abscisse a. Son équation s'écrit : y égale f prime de a, facteur de x moins a, plus f de a. Pour le carré en un, la tangente est la droite d'équation y égale deux x moins un.",
+      "texte": "La tangente : pente f'(a), équation complète.",
+      "ecran": "tangente"
+    },
+    {
+      "id": "p18",
+      "dit": "Les dérivées usuelles se retiennent en cinq lignes. Une constante se dérive en zéro. La fonction x se dérive en un. La fonction x puissance èn se dérive en èn fois x puissance èn moins un. L'inverse de x se dérive en moins un sur x au carré. Et la racine carrée se dérive en un sur deux racines de x.",
+      "texte": "Usuelles : constante, x, puissances, inverse, racine.",
+      "ecran": "usuelles"
+    },
+    {
+      "id": "p19",
+      "dit": "Les opérations dérivent règle par règle. La dérivée d'une somme est la somme des dérivées. Un facteur constant sort de la dérivée. Pour un produit : u prime fois v, plus u fois v prime. Pour un quotient : u prime fois v moins u fois v prime, le tout sur v au carré.",
+      "texte": "Opérations : somme, constante, produit, quotient.",
+      "ecran": "operations"
+    },
+    {
+      "id": "p20",
+      "dit": "Exemple : dériver f de x égale deux x plus un, sur x moins trois. La règle du quotient donne, au numérateur, deux fois x moins trois, moins deux x plus un, et au dénominateur x moins trois au carré. Tout se simplifie en moins sept sur x moins trois au carré.",
+      "texte": "Exemple quotient : f'(x) = −7 / (x − 3)².",
+      "ecran": "ex_quotient"
+    },
+    {
+      "id": "p21",
+      "dit": "Le lien central de ce chapitre : sur un intervalle où la fonction est dérivable, le signe de la dérivée donne le sens de variation. Dérivée strictement positive : fonction strictement croissante. Dérivée strictement négative : fonction strictement décroissante. Dérivée nulle partout : fonction constante.",
+      "texte": "Signe de f' positif : f monte. Négatif : f descend.",
+      "ecran": "lien_signe"
+    },
+    {
+      "id": "p22",
+      "dit": "Conséquence directe : si la dérivée s'annule en un point en changeant de signe, la fonction y admet un extremum local. Un maximum quand la dérivée passe du plus au moins, un minimum quand elle passe du moins au plus.",
+      "texte": "f' change de signe : extremum local.",
+      "ecran": "extremum"
+    },
+    {
+      "id": "p23",
+      "dit": "La méthode d'étude complète tient en cinq pas. Déterminer le domaine. Calculer la dérivée et étudier son signe. Dresser le tableau de variation, avec les valeurs aux extremums. Calculer les limites aux bornes si nécessaire. Puis placer les points remarquables et tracer la courbe.",
+      "texte": "Étude : domaine, dérivée, signe, tableau, tracé.",
+      "ecran": "methode_etude"
+    },
+    {
+      "id": "p24",
+      "dit": "Exemple complet : étudier f de x égale x au cube moins trois x plus un, définie sur tous les réels. Sa dérivée vaut trois x au carré moins trois, soit trois, facteur de x moins un et de x plus un. Elle s'annule en moins un et en un.",
+      "texte": "Exemple complet : f'(x) = 3(x − 1)(x + 1).",
+      "ecran": "ex_etude_f"
+    },
+    {
+      "id": "p25",
+      "dit": "Le signe de la dérivée est positif avant moins un, négatif entre moins un et un, puis positif après un. Les valeurs : f de moins un vaut trois, f de un vaut moins un. La fonction admet donc un maximum local de trois en moins un, et un minimum local de moins un en un.",
+      "texte": "Signe + − + : max 3 en −1, min −1 en 1.",
+      "ecran": "ex_etude_signe"
+    },
+    {
+      "id": "p26",
+      "dit": "Pour le tracé, on place le maximum et le minimum. La fonction monte vers le point de coordonnées moins un et trois, redescend vers le point d'abscisse un et d'ordonnée moins un, puis remonte. Sa tangente en zéro a pour équation y égale moins trois x plus un. Les limites sont moins l'infini à gauche, plus l'infini à droite.",
+      "texte": "Tracé : allure en S, deux points placés.",
+      "ecran": "ex_etude_trace"
+    },
+    {
+      "id": "p27",
+      "dit": "Pour conclure : le nombre dérivé est une limite et la pente d'une tangente, les formules usuelles et les opérations permettent de dériver, le signe de la dérivée commande les variations et ses changements de signe signalent les extremums, jusqu'au tableau et au tracé.",
+      "texte": "Dérivée, signe, variations : à retenir.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Généralités : image, domaine, courbe et variations"
+    },
+    {
+      "debut": "p15",
+      "sous_titre": "La dérivée : calcul, signe et étude complète",
+      "pont": {
+        "texte": "Partie 2 : la dérivée, du nombre dérivé à l'étude complète.",
+        "dit": "Partie deux : la dérivée. Nous passons de la lecture de la courbe au calcul : le nombre dérivé, les formules de dérivation, puis le signe de la dérivée qui commande toutes les variations."
+      }
+    }
+  ]
+}
