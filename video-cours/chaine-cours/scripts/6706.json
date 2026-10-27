@@ -1,0 +1,403 @@
+{
+ "cours": 6706,
+ "titre": "Prismes droits, sphère et boule : aires et volumes",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Solides de l'espace",
+   "titre": "Prismes droits, sphère et boule",
+   "sous": "Patron, aires et volumes : les formules qui décrivent les solides",
+   "anim": {
+    "nom": "sphere_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Deux familles de solides : le prisme droit, puis la sphère et la boule."
+  },
+  "prisme_def": {
+   "type": "etape",
+   "kicker": "Le prisme droit · définition",
+   "titre": "Deux bases, des faces rectangles",
+   "tex": [
+    "\\text{deux bases : polygones superposables}",
+    "\\text{des bases parallèles entre elles}",
+    "\\text{faces latérales : des rectangles}"
+   ]
+  },
+  "hauteur": {
+   "type": "formule",
+   "kicker": "Le prisme droit · la hauteur",
+   "tex": "h\\ :\\ \\text{distance entre les deux bases}",
+   "note": "Toutes les arêtes latérales ont même longueur : c'est la hauteur h."
+  },
+  "comptage": {
+   "type": "etape",
+   "kicker": "Le prisme droit · compter les éléments",
+   "titre": "Tout dépend du nombre de côtés",
+   "tex": [
+    "n = \\text{nombre de côtés de la base}",
+    "\\text{faces latérales} = n \\qquad \\text{sommets} = 2n",
+    "\\text{arêtes} = 2n + n = 3n"
+   ]
+  },
+  "ex_comptage": {
+   "type": "etape",
+   "kicker": "Exemple · base triangulaire",
+   "titre": "Base triangulaire : compter",
+   "tex": [
+    "\\text{faces latérales} = 3 \\qquad \\text{sommets} = 6",
+    "\\text{arêtes} = 3 \\times 3 = 9"
+   ],
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 150
+   }
+  },
+  "patron_def": {
+   "type": "phrase",
+   "kicker": "Le patron d'un prisme droit",
+   "texte": "Un patron : le solide déplié à plat, qui se replie sans chevauchement."
+  },
+  "patron_ex": {
+   "type": "etape",
+   "kicker": "Exemple · patron triangulaire",
+   "titre": "La bande latérale, pièce centrale",
+   "tex": [
+    "\\text{bande} : 3 + 4 + 5 = 12\\ \\text{cm}",
+    "\\text{largeur de la bande} = h = 4\\ \\text{cm}",
+    "\\text{un triangle collé de chaque côté}"
+   ]
+  },
+  "aire_lat_formule": {
+   "type": "formule",
+   "kicker": "Aire latérale du prisme",
+   "tex": "A_{\\text{lat}} = P_{\\text{base}} \\times h",
+   "note": "Le périmètre de la base, multiplié par la hauteur du prisme."
+  },
+  "ex_aire_lat": {
+   "type": "etape",
+   "kicker": "Exemple · aire latérale",
+   "titre": "Base rectangulaire, hauteur sept",
+   "tex": [
+    "P_{\\text{base}} = 2 \\times (5 + 3) = 16\\ \\text{cm}",
+    "A_{\\text{lat}} = 16 \\times 7 = 112\\ \\text{cm}^2"
+   ]
+  },
+  "aire_tot_formule": {
+   "type": "formule",
+   "kicker": "Aire totale du prisme",
+   "tex": "A_{\\text{tot}} = A_{\\text{lat}} + 2 \\times A_{\\text{base}}",
+   "note": "L'aire latérale, plus les deux bases : on compte tout le solide."
+  },
+  "ex_aire_tot": {
+   "type": "etape",
+   "kicker": "Exemple · aire totale",
+   "titre": "On ajoute les deux bases",
+   "tex": [
+    "A_{\\text{base}} = 5 \\times 3 = 15\\ \\text{cm}^2",
+    "A_{\\text{tot}} = 112 + 2 \\times 15 = 142\\ \\text{cm}^2"
+   ]
+  },
+  "volume_formule": {
+   "type": "formule",
+   "kicker": "Volume du prisme droit",
+   "tex": "V = A_{\\text{base}} \\times h",
+   "note": "L'aire de la base, multipliée par la hauteur : le volume suit."
+  },
+  "ex_volume": {
+   "type": "etape",
+   "kicker": "Exemple · volume du prisme",
+   "titre": "Base triangulaire, hauteur dix",
+   "tex": [
+    "A_{\\text{base}} = 6\\ \\text{cm}^2 \\qquad h = 10\\ \\text{cm}",
+    "V = 6 \\times 10 = 60\\ \\text{cm}^3"
+   ]
+  },
+  "methode_prisme": {
+   "type": "etape",
+   "kicker": "Méthode générale · prisme",
+   "titre": "Quatre pas, toujours les mêmes",
+   "tex": [
+    "\\text{identifier la base : périmètre et aire}",
+    "\\text{identifier la hauteur } h \\text{ du prisme}",
+    "\\text{appliquer la formule, vérifier les unités}"
+   ]
+  },
+  "sphere_def": {
+   "type": "formule",
+   "kicker": "La sphère · définition",
+   "tex": "OM = r",
+   "note": "La sphère est une surface creuse, comme une bulle de savon.",
+   "anim": {
+    "nom": "sphere_fig",
+    "hauteur": 200
+   }
+  },
+  "boule_def": {
+   "type": "formule",
+   "kicker": "La boule · définition",
+   "tex": "OM \\leqslant r",
+   "note": "La boule est un solide plein, comme une balle de pétanque."
+  },
+  "diametre": {
+   "type": "etape",
+   "kicker": "Centre, rayon et diamètre",
+   "titre": "Le diamètre vaut deux rayons",
+   "tex": [
+    "d = 2r",
+    "r = 3\\ \\text{cm} \\quad \\Rightarrow \\quad d = 6\\ \\text{cm}"
+   ],
+   "anim": {
+    "nom": "sphere_fig",
+    "hauteur": 140
+   }
+  },
+  "aire_sphere": {
+   "type": "formule",
+   "kicker": "Aire d'une sphère",
+   "tex": "\\mathcal{A} = 4\\pi r^2",
+   "note": "L'aire ne dépend que du rayon, et s'exprime en unités carrées."
+  },
+  "ex_aire_sphere": {
+   "type": "etape",
+   "kicker": "Exemple · aire d'une sphère",
+   "titre": "Rayon de cinq centimètres",
+   "tex": [
+    "\\mathcal{A} = 4\\pi \\times 5^2",
+    "\\mathcal{A} = 4\\pi \\times 25 = 100\\pi",
+    "\\mathcal{A} \\approx 314{,}16\\ \\text{cm}^2"
+   ]
+  },
+  "volume_boule": {
+   "type": "formule",
+   "kicker": "Volume d'une boule",
+   "tex": "\\mathcal{V} = \\frac{4}{3}\\pi r^3",
+   "note": "Le volume ne dépend que du rayon, en unités cubiques."
+  },
+  "ex_volume_boule": {
+   "type": "etape",
+   "kicker": "Exemple · volume d'une boule",
+   "titre": "Rayon de six centimètres",
+   "tex": [
+    "\\mathcal{V} = \\tfrac{4}{3}\\pi \\times 6^3",
+    "\\mathcal{V} = \\tfrac{4}{3}\\pi \\times 216 = 288\\pi",
+    "\\mathcal{V} \\approx 904{,}78\\ \\text{cm}^3"
+   ]
+  },
+  "rayon_formules": {
+   "type": "etape",
+   "kicker": "Retrouver le rayon",
+   "titre": "Inverser les deux formules",
+   "tex": [
+    "r = \\sqrt{\\tfrac{\\mathcal{A}}{4\\pi}}",
+    "r = \\sqrt[3]{\\tfrac{3\\mathcal{V}}{4\\pi}}"
+   ]
+  },
+  "ex_rayon": {
+   "type": "etape",
+   "kicker": "Exemple · retrouver le rayon",
+   "titre": "Une aire donnée, un rayon à trouver",
+   "tex": [
+    "r = \\sqrt{\\tfrac{144\\pi}{4\\pi}} = \\sqrt{36}",
+    "r = 6\\ \\text{cm}"
+   ]
+  },
+  "unites": {
+   "type": "etape",
+   "kicker": "Les unités, sans confusion",
+   "titre": "Carrées, cubiques, ou simples",
+   "tex": [
+    "\\text{aire : unités carrées, comme cm}^2",
+    "\\text{volume : unités cubiques, comme cm}^3",
+    "\\text{rayon retrouvé : racine carrée ou cubique}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Prisme : bases parallèles, faces rectangles",
+    "Aire latérale : périmètre de base fois h",
+    "Volume du prisme : aire de base fois h",
+    "Aire de la sphère : 4πr²",
+    "Volume de la boule : (4/3)πr³"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de géométrie dans l'espace. Nous allons décrire deux familles de solides, les prismes droits puis la sphère et la boule, et calculer leurs aires et leurs volumes avec des formules simples.",
+   "texte": "Prismes droits, sphère et boule : aires et volumes",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil conducteur est le même pour tous ces solides : tout part de la base ou du rayon. Savoir identifier la base et le rayon suffit à rendre chaque formule simple.",
+   "texte": "Deux familles, un même fil : la base ou le rayon",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par le prisme droit. C'est un solide qui possède deux bases : des polygones superposables, de même forme et de mêmes dimensions, et parallèles entre eux. Les faces qui relient les bases, les faces latérales, sont toutes des rectangles.",
+   "texte": "Deux bases superposables et parallèles, des faces latérales rectangles",
+   "ecran": "prisme_def"
+  },
+  {
+   "id": "p04",
+   "dit": "La base donne son nom au prisme : base triangulaire, base rectangulaire, et ainsi de suite. Le segment qui joint deux sommets correspondants des bases s'appelle une arête latérale. Dans un prisme droit, toutes ces arêtes sont perpendiculaires aux bases et ont la même longueur : c'est la hauteur du prisme.",
+   "texte": "L'arête latérale, perpendiculaire aux bases, donne la hauteur h",
+   "ecran": "hauteur"
+  },
+  {
+   "id": "p05",
+   "dit": "Une propriété évite de compter un par un. Si la base possède un certain nombre de côtés, le nombre de faces latérales est exactement ce nombre. Le nombre de sommets vaut le double, car chaque base apporte les siens, et le nombre d'arêtes vaut le triple : les deux bases en fournissent le double, les arêtes latérales complètent.",
+   "texte": "Faces latérales : n · Sommets : 2n · Arêtes : 3n",
+   "ecran": "comptage"
+  },
+  {
+   "id": "p06",
+   "dit": "Appliquons cela au prisme à base triangulaire. La base a trois côtés, donc le prisme a trois faces latérales. Il a deux fois trois, c'est-à-dire six sommets, et trois fois trois, c'est-à-dire neuf arêtes. Retiens ce réflexe : la forme de la base commande tout le décompte.",
+   "texte": "Base triangulaire : 3 faces latérales, 6 sommets, 9 arêtes",
+   "ecran": "ex_comptage"
+  },
+  {
+   "id": "p07",
+   "dit": "Pour fabriquer un prisme, on passe par son patron. Un patron est une figure plane qui, une fois découpée et pliée le long des arêtes, reconstitue le solide, sans aucun chevauchement. Le patron d'un prisme réunit les deux bases et les faces latérales, disposées en une bande continue.",
+   "texte": "Le patron : déplier le solide à plat pour pouvoir le reconstruire",
+   "ecran": "patron_def"
+  },
+  {
+   "id": "p08",
+   "dit": "Prenons un prisme à base triangulaire, de hauteur quatre centimètres, dont la base a des côtés de trois, quatre et cinq centimètres. On dessine la bande latérale : un rectangle de largeur quatre centimètres et de longueur trois plus quatre plus cinq, soit douze centimètres. Puis on colle un triangle de chaque côté de la bande, côté contre côté correspondant.",
+   "texte": "Bande de 12 cm sur 4 cm, un triangle collé de chaque côté",
+   "ecran": "patron_ex"
+  },
+  {
+   "id": "p09",
+   "dit": "Passons aux mesures. L'aire latérale est la somme des aires des faces latérales, donc de tous les rectangles. Déroulée, la bande latérale forme un seul rectangle, de longueur le périmètre de la base et de largeur la hauteur : l'aire latérale vaut donc périmètre de la base fois hauteur.",
+   "texte": "Aire latérale = périmètre de la base × hauteur",
+   "ecran": "aire_lat_formule"
+  },
+  {
+   "id": "p10",
+   "dit": "Exemple : un prisme à base rectangulaire de longueur cinq centimètres et de largeur trois centimètres, avec une hauteur de sept centimètres. Le périmètre de la base vaut deux fois cinq plus trois, c'est-à-dire seize centimètres. L'aire latérale vaut alors seize fois sept, soit cent douze centimètres carrés.",
+   "texte": "Périmètre 16 cm, aire latérale 112 cm²",
+   "ecran": "ex_aire_lat"
+  },
+  {
+   "id": "p11",
+   "dit": "L'aire totale va un pas plus loin : elle compte toute la surface du solide. On prend l'aire latérale, et on ajoute l'aire des deux bases, qui sont identiques. D'où la formule : aire totale égale aire latérale plus deux fois l'aire de la base.",
+   "texte": "Aire totale = aire latérale + 2 × aire de la base",
+   "ecran": "aire_tot_formule"
+  },
+  {
+   "id": "p12",
+   "dit": "Reprenons cet exemple. L'aire de la base vaut cinq fois trois, c'est-à-dire quinze centimètres carrés. L'aire totale vaut donc cent douze, plus deux fois quinze, c'est-à-dire cent quarante-deux centimètres carrés. Note le double comptage : il y a deux bases, jamais une seule.",
+   "texte": "Aire totale : 112 + 30 = 142 cm²",
+   "ecran": "ex_aire_tot"
+  },
+  {
+   "id": "p13",
+   "dit": "Le volume mesure l'espace occupé par le solide. Pour un prisme droit, la formule est remarquablement simple : volume égale aire de la base fois hauteur. Imagine un empilement : la base se répète, tranche après tranche, sur toute la hauteur du prisme.",
+   "texte": "Volume = aire de la base × hauteur",
+   "ecran": "volume_formule"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple : un prisme à base triangulaire dont la base a une aire de six centimètres carrés, avec une hauteur de dix centimètres. Le volume vaut six fois dix, c'est-à-dire soixante centimètres cubes. Attention à l'unité : un volume s'exprime toujours en unités cubiques.",
+   "texte": "Volume : 6 × 10 = 60 cm³",
+   "ecran": "ex_volume"
+  },
+  {
+   "id": "p15",
+   "dit": "Avant de changer de solide, fixons la méthode. D'abord, identifier la forme de la base et calculer son périmètre et son aire. Ensuite, repérer la hauteur, toujours perpendiculaire aux bases. Puis appliquer la formule demandée, et enfin vérifier les unités.",
+   "texte": "Méthode : base, hauteur, formule, unités",
+   "ecran": "methode_prisme"
+  },
+  {
+   "id": "p16",
+   "dit": "Changeons complètement de forme avec la sphère. Une sphère est l'ensemble de tous les points de l'espace situés exactement à cette distance du centre. Le diamètre, qui joint deux points opposés en passant par le centre, vaut deux fois le rayon.",
+   "texte": "Sphère : tous les points à la distance r du centre O",
+   "ecran": "sphere_def"
+  },
+  {
+   "id": "p17",
+   "dit": "Une boule est l'ensemble des points dont la distance au centre est inférieure ou égale au rayon : tout l'intérieur est donc compris. Retiens la différence clé : la sphère est une surface creuse, comme une bulle de savon, tandis que la boule est un solide plein, comme une balle de pétanque.",
+   "texte": "Sphère creuse, boule pleine : ne jamais les confondre",
+   "ecran": "boule_def"
+  },
+  {
+   "id": "p18",
+   "dit": "Un petit calcul pour ancrer le vocabulaire : si une sphère a un rayon de trois centimètres, son diamètre vaut deux fois trois, c'est-à-dire six centimètres. Centre, rayon et diamètre sont les trois mots à manier sans hésiter, car toutes les formules qui suivent ne parlent que du rayon.",
+   "texte": "Rayon 3 cm, donc diamètre 6 cm",
+   "ecran": "diametre"
+  },
+  {
+   "id": "p19",
+   "dit": "L'aire d'une sphère suit une formule à connaître par cœur : quatre pi fois le rayon au carré. Elle ne dépend que du rayon : double le rayon, et l'aire est multipliée par quatre. Et comme toute aire, elle s'exprime en unités carrées.",
+   "texte": "Aire de la sphère : 4πr²",
+   "ecran": "aire_sphere"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple : une sphère de rayon cinq centimètres. Son aire vaut quatre pi fois cinq au carré, c'est-à-dire quatre pi fois vingt-cinq, donc cent pi. En valeur approchée, environ trois cent quatorze virgule seize centimètres carrés. Garde la valeur exacte en pi le plus longtemps possible, et n'approche qu'à la fin.",
+   "texte": "Aire : 100π, environ 314,16 cm²",
+   "ecran": "ex_aire_sphere"
+  },
+  {
+   "id": "p21",
+   "dit": "Le volume d'une boule répond à la formule : quatre tiers de pi fois le rayon au cube. Le tiers et le cube sont les pièges classiques de cette formule.",
+   "texte": "Volume de la boule : (4/3)πr³",
+   "ecran": "volume_boule"
+  },
+  {
+   "id": "p22",
+   "dit": "Exemple : une boule de rayon six centimètres. Son volume vaut quatre tiers de pi fois six au cube, c'est-à-dire quatre tiers de pi fois deux cent seize : deux cent quatre-vingt-huit pi, soit environ neuf cent quatre virgule soixante-dix-huit centimètres cubes.",
+   "texte": "Volume : 288π, environ 904,78 cm³",
+   "ecran": "ex_volume_boule"
+  },
+  {
+   "id": "p23",
+   "dit": "On peut aussi remonter le calcul : retrouver le rayon quand on connaît l'aire ou le volume. Depuis l'aire, le rayon est la racine carrée de l'aire divisée par quatre pi. Depuis le volume, c'est la racine cubique de trois fois le volume, divisé par quatre pi.",
+   "texte": "Retrouver r : racine carrée depuis l'aire, racine cubique depuis le volume",
+   "ecran": "rayon_formules"
+  },
+  {
+   "id": "p24",
+   "dit": "Exemple : une sphère a une aire de cent quarante-quatre pi centimètres carrés. Son rayon est la racine carrée de cent quarante-quatre pi divisé par quatre pi. Les pi se simplifient, il reste la racine carrée de trente-six, c'est-à-dire six. Le rayon de cette sphère est donc de six centimètres.",
+   "texte": "Aire 144π, donc rayon 6 cm",
+   "ecran": "ex_rayon"
+  },
+  {
+   "id": "p25",
+   "dit": "Dernier garde-fou : les unités racontent la grandeur. Une aire vit en unités carrées, un volume en unités cubiques, et une longueur en unités simples. Si ton calcul d'aire se termine en centimètres cubes, ou ton volume en centimètres carrés, c'est le signal immédiat qu'une formule a été confondue avec une autre.",
+   "texte": "Aires en cm², volumes en cm³, longueurs en cm",
+   "ecran": "unites"
+  },
+  {
+   "id": "p26",
+   "dit": "Résumons. Le prisme droit aligne deux bases parallèles et des faces rectangles, et son comptage suit le nombre de côtés de la base. Son aire latérale vaut périmètre de base fois hauteur, son volume, aire de base fois hauteur. Côté sphère et boule, tout dépend du rayon : quatre pi r au carré pour l'aire, quatre tiers de pi r au cube pour le volume.",
+   "texte": "Prisme, sphère, boule : tout part de la base ou du rayon",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les prismes droits : patron, aires et volume"
+  },
+  {
+   "debut": "p16",
+   "sous_titre": "Sphère et boule : aire, volume et rayon",
+   "pont": {
+    "texte": "Partie 2 · Sphère et boule",
+    "dit": "Partie deux : la sphère et la boule. Après les solides à faces planes, place aux solides parfaitement ronds, où une seule mesure, le rayon, décide de tout."
+   }
+  }
+ ]
+}
