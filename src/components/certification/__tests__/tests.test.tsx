@@ -11,7 +11,7 @@ import { LIGNES_SEED } from '@/services/certification/__tests__/fixtures';
 import { JOUR } from '@/services/certification/__tests__/fixturesRevision';
 import { ecrireMini, lancerMini, lireMini, repondreMini, type EtatMini } from '@/services/certification/miniTest';
 import { lireReglages } from '@/services/certification/reglages';
-import type { TentativeListee } from '@/services/certification/types';
+import type { FinTentative, TentativeListee } from '@/services/certification/types';
 import { enregistrerProfil } from '@/services/profil';
 import { ForcerSombre, useTheme } from '@/theme/ThemeProvider';
 
@@ -481,6 +481,53 @@ describe('bilan réduit', () => {
     await ecrireMini({ ...e, termine: true });
     await monter(<BilanMini />, 'sombre');
     expect((await screen.findAllByText('3 sur 3')).length).toBeGreaterThan(0);
+  });
+});
+
+describe('bilan des tests composés (définitions)', () => {
+  /** Un état de test composé déjà terminé : la fin est celle que le serveur renvoie pour le type (voir cert_attempt_finish). */
+  async function semerDef(kind: 'reading' | 'full' | 'mixed', fin: Pick<FinTentative, 'kind' | 'estimated' | 'score' | 'score_min' | 'score_max'>, meilleurAvant: number | null = null): Promise<void> {
+    const e = await semer({ partie: null, reponses: 0 });
+    const finComplete: FinTentative = {
+      status: 'finished', attempt_id: e.tentative.attempt_id, replay: false, results: [],
+      per_part: { '5': { answered: 30, correct: 18 }, '6': { answered: 16, correct: 10 }, '7': { answered: 54, correct: 32 } },
+      ...fin,
+    };
+    await ecrireMini({ ...e, termine: true, definition: { id: 'def-1', kind, meilleurAvant }, fin: finComplete });
+  }
+
+  it('demi-test lecture : le score exact du serveur s’affiche, pas « Pas encore de score »', async () => {
+    // Forme réelle d’une fin de demi-test : `score` rempli (score de section), fourchette toujours vide.
+    await semerDef('reading', { kind: 'half_reading', estimated: true, score: 300, score_min: null, score_max: null });
+    await monter(<BilanMini />);
+    expect(await screen.findByText('300')).toBeTruthy();
+    expect(screen.getByText(t.tests.bilanDef.premier)).toBeTruthy();
+    expect(await screen.findByText(t.tests.bilanDef.surMax.replace('{{max}}', '495'))).toBeTruthy();
+    expect(screen.queryByText(t.tests.listes.pasDeScore)).toBeNull();
+  });
+
+  it('demi-test lecture sous le meilleur précédent : la tentative s’affiche et le meilleur reste', async () => {
+    await semerDef('reading', { kind: 'half_reading', estimated: true, score: 300, score_min: null, score_max: null }, 350);
+    await monter(<BilanMini />);
+    expect(await screen.findByText('300')).toBeTruthy();
+    expect(screen.getByText(t.tests.bilanDef.tentative)).toBeTruthy();
+    expect(await screen.findByText(t.tests.bilanDef.reste.replace('{{score}}', '350').replace('{{max}}', '495'))).toBeTruthy();
+  });
+
+  it('test complet : le score exact s’affiche sur l’échelle totale', async () => {
+    await semerDef('full', { kind: 'full', estimated: true, score: 745, score_min: null, score_max: null });
+    await monter(<BilanMini />);
+    expect(await screen.findByText('745')).toBeTruthy();
+    expect(await screen.findByText(t.tests.bilanDef.surMax.replace('{{max}}', '990'))).toBeTruthy();
+    expect(screen.queryByText(t.tests.listes.pasDeScore)).toBeNull();
+  });
+
+  it('mixte : l’estimation ponctuelle s’affiche, jamais la borne haute de la fourchette', async () => {
+    await semerDef('mixed', { kind: 'mini', estimated: true, score: 520, score_min: 480, score_max: 560 });
+    await monter(<BilanMini />);
+    expect(await screen.findByText('520')).toBeTruthy();
+    expect(screen.queryByText('560')).toBeNull();
+    expect(await screen.findByText(t.tests.bilanDef.surMax.replace('{{max}}', '990'))).toBeTruthy();
   });
 });
 

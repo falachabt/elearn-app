@@ -10,11 +10,12 @@ import { Carte } from '../Carte';
  * Bilan d'un test composé (maquette v39, TOEIC-V34-BILAN). Quand le test bat le meilleur précédent (ou premier test),
  * le gros chiffre est ce score, avec « ancien meilleur X ». Sinon le gros chiffre est la tentative, et dessous
  * « Ton meilleur reste X sur Y » : le meilleur ne baisse jamais.
+ * `score` est le score de la tentative (valeur exacte du serveur) — jamais la borne haute d'une fourchette.
  */
-export function BilanDefinition({ scoreMax, meilleurAvant, max }: { scoreMax: number | null; meilleurAvant: number | null; max: number | null }) {
+export function BilanDefinition({ score, meilleurAvant, max }: { score: number | null; meilleurAvant: number | null; max: number | null }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const nouveau = scoreMax !== null && (meilleurAvant === null || scoreMax > meilleurAvant);
+  const nouveau = score !== null && (meilleurAvant === null || score > meilleurAvant);
   const titre = nouveau
     ? t(meilleurAvant === null ? 'certification.tests.bilanDef.premier' : 'certification.tests.bilanDef.nouveau')
     : t('certification.tests.bilanDef.tentative');
@@ -29,9 +30,9 @@ export function BilanDefinition({ scoreMax, meilleurAvant, max }: { scoreMax: nu
       <Carte style={{ gap: espace[1] }}>
         <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{titre}</Text>
         <Text style={[typo.donnee, { color: theme.texte.principal, fontSize: 52, lineHeight: 58 }]}>
-          {scoreMax === null ? t('certification.tests.listes.pasDeScore') : String(scoreMax)}
+          {score === null ? t('certification.tests.listes.pasDeScore') : String(score)}
         </Text>
-        {nouveau && scoreMax !== null && max !== null ? (
+        {nouveau && score !== null && max !== null ? (
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.tests.bilanDef.surMax', { max })}</Text>
         ) : null}
         {nouveau && meilleurAvant !== null ? (

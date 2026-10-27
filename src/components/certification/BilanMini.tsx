@@ -98,12 +98,18 @@ export function BilanMini() {
   const sections = scoresSections(fin.per_part);
   const statuts = statutsDesQuestions(etat.tentative.questions.map((q) => q.id), fin.results);
   const def = etat.definition;
-  const maxDef = def ? (def.kind === 'full' ? maxScore : maxScore === null ? null : maxScore / 2) : null;
+  // Échelle du score de la définition : totale pour le test complet et le mixte (score sur 990), moitié pour les
+  // demi-tests écoute et lecture (score de section sur 495).
+  const maxDef = def ? (def.kind === 'full' || def.kind === 'mixed' ? maxScore : maxScore === null ? null : maxScore / 2) : null;
+  // Score de la tentative : la valeur exacte du serveur quand elle existe. Demi-tests et test complet la portent
+  // dans `score` et leur fourchette reste toujours vide ; le mixte porte son estimation ponctuelle dans `score`
+  // aussi. La borne haute `score_max` n'est qu'un repli pour d'anciens `fin` sans `score` : ce n'est pas un score.
+  const scoreTentative = fin.score ?? fin.score_max;
 
   if (def) {
     const refaire = async () => {
       const exam = etat.exam;
-      const meilleur = Math.max(def.meilleurAvant ?? 0, fin.score_max ?? 0) || null;
+      const meilleur = Math.max(def.meilleurAvant ?? 0, scoreTentative ?? 0) || null;
       const res = await lancerDefTest(exam, def.id, def.kind, meilleur);
       if (res.statut === 'demarre') router.replace('/certification/mini-test' as never);
       else if (res.statut === 'compte_requis') router.push('/compte/creer');
@@ -126,7 +132,7 @@ export function BilanMini() {
           </View>
         }
       >
-        <BilanDefinition scoreMax={fin.score_max} meilleurAvant={def.meilleurAvant} max={maxDef} />
+        <BilanDefinition score={scoreTentative} meilleurAvant={def.meilleurAvant} max={maxDef} />
       </Ecran>
     );
   }
