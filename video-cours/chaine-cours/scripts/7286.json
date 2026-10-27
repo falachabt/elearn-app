@@ -1,0 +1,505 @@
+{
+ "cours": 7286,
+ "titre": "Équations, inéquations et systèmes linéaires : du premier degré au pivot de Gauss",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Équations et systèmes linéaires",
+   "titre": "Équations, inéquations et systèmes linéaires",
+   "sous": "Du premier degré aux tableaux de signes, puis le pivot de Gauss à deux et trois inconnues",
+   "anim": {
+    "nom": "droites_trois_cas_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Résoudre : chercher toutes les valeurs qui rendent une égalité ou une inégalité vraie."
+  },
+  "eqdef": {
+   "type": "phrase",
+   "kicker": "Équations · définitions",
+   "texte": "Une équation : une égalité avec une inconnue. Résoudre : trouver l'ensemble S des solutions."
+  },
+  "axb": {
+   "type": "formule",
+   "kicker": "Équation du premier degré",
+   "tex": "ax + b = 0 \\quad a \\neq 0",
+   "note": "Si a ≠ 0 : solution unique x = −b/a, lue où la droite coupe l'axe des abscisses.",
+   "anim": {
+    "nom": "droite_racine_fig",
+    "hauteur": 180
+   }
+  },
+  "axb_cas": {
+   "type": "etape",
+   "kicker": "Équation du premier degré · les trois cas",
+   "titre": "Trois cas selon a et b",
+   "tex": [
+    "a \\neq 0 : x = -\\tfrac{b}{a}, \\quad S = \\{-\\tfrac{b}{a}\\}",
+    "a = 0,\\ b = 0 : S = \\mathbb{R}",
+    "a = 0,\\ b \\neq 0 : S = \\emptyset"
+   ]
+  },
+  "ex_lin": {
+   "type": "etape",
+   "kicker": "Exemple · premier degré",
+   "titre": "Regrouper, diviser, conclure",
+   "tex": [
+    "3x - 7 = 5x + 1",
+    "3x - 5x = 1 + 7 \\iff -2x = 8",
+    "x = -4 \\qquad S = \\{-4\\}"
+   ]
+  },
+  "produit": {
+   "type": "formule",
+   "kicker": "Équation produit",
+   "tex": "\\begin{aligned} &A(x) \\times B(x) = 0 \\\\ &\\iff A(x) = 0 \\ \\text{ou} \\ B(x) = 0 \\end{aligned}",
+   "note": "Un produit est nul si et seulement si l'un de ses facteurs est nul."
+  },
+  "ex_prod": {
+   "type": "etape",
+   "kicker": "Exemple · équation produit",
+   "titre": "Chaque facteur séparément",
+   "tex": [
+    "(2x - 6)(x + 5) = 0",
+    "2x - 6 = 0 \\iff x = 3",
+    "x + 5 = 0 \\iff x = -5",
+    "S = \\{-5, 3\\}"
+   ]
+  },
+  "quotient": {
+   "type": "formule",
+   "kicker": "Équation quotient",
+   "tex": "\\frac{A(x)}{B(x)} = 0 \\iff A(x) = 0 \\ \\text{et} \\ B(x) \\neq 0",
+   "note": "D'abord les valeurs interdites : celles qui annulent le dénominateur."
+  },
+  "ex_quot": {
+   "type": "etape",
+   "kicker": "Exemple · équation quotient",
+   "titre": "Valeur interdite d'abord, numérateur ensuite",
+   "tex": [
+    "\\frac{x - 1}{x + 2} = 0 \\qquad x \\neq -2",
+    "x - 1 = 0 \\iff x = 1 \\qquad S = \\{1\\}"
+   ]
+  },
+  "abs": {
+   "type": "etape",
+   "kicker": "Valeur absolue et racine carrée",
+   "titre": "Distinguer les cas selon le signe",
+   "tex": [
+    "|X| = k \\ (k \\geq 0)",
+    "X = k \\ \\text{ou} \\ X = -k",
+    "\\sqrt{X} = k \\ (k \\geq 0) \\iff X = k^2",
+    "|2x - 3| = 5 \\iff x = 4 \\ \\text{ou} \\ x = -1"
+   ]
+  },
+  "ineq_regle": {
+   "type": "phrase",
+   "kicker": "Inéquations du premier degré · la règle",
+   "texte": "Comme une équation, plus une règle : un facteur négatif renverse le sens."
+  },
+  "ineq_ex": {
+   "type": "etape",
+   "kicker": "Exemple · inéquation du premier degré",
+   "titre": "Diviser par un négatif : le sens se renverse",
+   "tex": [
+    "-2x + 4 \\leq 0",
+    "-2x \\leq -4",
+    "x \\geq 2 \\qquad S = [2, +\\infty["
+   ]
+  },
+  "tab_signe": {
+   "type": "etape",
+   "kicker": "Inéquations produit · tableau de signes",
+   "titre": "Le signe de chaque facteur, puis celui du produit",
+   "tex": [
+    "(x - 1)(x + 3) \\geq 0 \\qquad \\text{racines : } -3 \\text{ et } 1",
+    "\\text{produit : } + \\quad 0 \\quad - \\quad 0 \\quad +",
+    "S = ]-\\infty, -3] \\cup [1, +\\infty["
+   ]
+  },
+  "quot_ineq": {
+   "type": "etape",
+   "kicker": "Inéquations quotient · tableau de signes",
+   "titre": "La valeur interdite reste exclue",
+   "tex": [
+    "\\frac{x + 1}{x - 2} < 0 \\qquad \\text{interdit : } x = 2",
+    "S = ]-1, 2["
+   ]
+  },
+  "trino_signe": {
+   "type": "etape",
+   "kicker": "Signe du trinôme",
+   "titre": "Le discriminant commande le signe",
+   "tex": [
+    "\\Delta > 0 : a \\text{ dehors, } -a \\text{ dedans}",
+    "\\Delta = 0 : \\text{signe de } a, \\text{ nul en } x_0 = -\\tfrac{b}{2a}",
+    "\\Delta < 0 : \\text{signe de } a \\text{ partout}"
+   ]
+  },
+  "ex_trino": {
+   "type": "etape",
+   "kicker": "Exemple · signe du trinôme",
+   "titre": "Positif à l'extérieur des racines",
+   "tex": [
+    "x^2 - 3x + 2 \\geq 0",
+    "\\Delta = 1 > 0",
+    "x_1 = 1, \\ x_2 = 2, \\ a = 1 > 0",
+    "S = ]-\\infty, 1] \\cup [2, +\\infty["
+   ]
+  },
+  "sys_ineq": {
+   "type": "etape",
+   "kicker": "Système d'inéquations",
+   "titre": "Intersecter les ensembles de solutions",
+   "tex": [
+    "\\begin{cases} x - 1 > 0 \\\\ 2x \\leq 6 \\end{cases} \\iff \\begin{cases} x > 1 \\\\ x \\leq 3 \\end{cases}",
+    "S = ]1, 3]"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Premier volet : l'essentiel",
+   "etapes": [
+    "Équation : ramener à un membre nul",
+    "Produit nul ou quotient : cas séparés",
+    "Inéquation : tableau de signes",
+    "Sens renversé si facteur négatif"
+   ]
+  },
+  "sysdef": {
+   "type": "etape",
+   "kicker": "Systèmes linéaires · forme générale",
+   "titre": "La forme générale dans l'espace",
+   "tex": [
+    "\\begin{cases} a_1 x + b_1 y + c_1 z = d_1 \\\\ a_2 x + b_2 y + c_2 z = d_2 \\\\ a_3 x + b_3 y + c_3 z = d_3 \\end{cases}",
+    "(x, y, z) \\text{ vérifie les trois équations}"
+   ]
+  },
+  "vocab": {
+   "type": "phrase",
+   "kicker": "Systèmes linéaires · vocabulaire",
+   "texte": "Compatible ou incompatible, équivalent ou non : le vocabulaire des systèmes."
+  },
+  "matrice_intro": {
+   "type": "phrase",
+   "kicker": "La matrice augmentée",
+   "texte": "Les coefficients dans un tableau, les seconds membres derrière une barre : la matrice augmentée.",
+   "anim": {
+    "nom": "matrice_fig",
+    "hauteur": 220
+   }
+  },
+  "gauss_principe": {
+   "type": "recap",
+   "kicker": "Pivot de Gauss · les étapes",
+   "etapes": [
+    "Choisir un pivot non nul",
+    "Éliminer par combinaison linéaire",
+    "Répéter sur le sous-système",
+    "Remonter par substitution"
+   ]
+  },
+  "gauss_ex1": {
+   "type": "etape",
+   "kicker": "Exemple de Gauss · le départ",
+   "titre": "Le système de départ et son pivot",
+   "tex": [
+    "\\begin{cases} x + y + z = 6 \\\\ 2x - y + z = 3 \\\\ x + 2y - z = 2 \\end{cases}"
+   ]
+  },
+  "gauss_ex2": {
+   "type": "etape",
+   "kicker": "Exemple de Gauss · première élimination",
+   "titre": "Éliminer x des deux dernières lignes",
+   "tex": [
+    "L_2 \\leftarrow L_2 - 2L_1 \\qquad L_3 \\leftarrow L_3 - L_1",
+    "\\begin{cases} x + y + z = 6 \\\\ -3y - z = -9 \\\\ y - 2z = -4 \\end{cases}"
+   ]
+  },
+  "gauss_ex3": {
+   "type": "etape",
+   "kicker": "Exemple de Gauss · second pivot",
+   "titre": "Éliminer y : le système devient triangulaire",
+   "tex": [
+    "L_3 \\leftarrow L_3 + \\tfrac{1}{3} L_2",
+    "\\begin{cases} x + y + z = 6 \\\\ -3y - z = -9 \\\\ -\\tfrac{7}{3} z = -7 \\end{cases}"
+   ]
+  },
+  "gauss_ex4": {
+   "type": "etape",
+   "kicker": "Exemple de Gauss · remontée",
+   "titre": "Remonter de z vers x",
+   "tex": [
+    "z = 3",
+    "-3y - 3 = -9 \\iff y = 2",
+    "x + 2 + 3 = 6 \\iff x = 1",
+    "(x, y, z) = (1, 2, 3)"
+   ]
+  },
+  "geo2": {
+   "type": "etape",
+   "kicker": "Lecture géométrique · dans le plan",
+   "titre": "Deux droites : trois positions possibles",
+   "tex": [
+    "\\text{sécantes : un point commun}",
+    "\\text{parallèles distinctes : aucun point}",
+    "\\text{confondues : une infinité de points}"
+   ],
+   "anim": {
+    "nom": "droites_trois_cas_fig",
+    "hauteur": 140
+   }
+  },
+  "geo2_ex": {
+   "type": "formule",
+   "kicker": "Lecture géométrique · exemple",
+   "tex": "\\begin{cases} x + y = 3 \\\\ x - y = 1 \\end{cases} \\quad \\text{solution : } (2, 1)",
+   "note": "Deux droites sécantes : un seul point commun, le couple solution."
+  },
+  "geo3": {
+   "type": "phrase",
+   "kicker": "Lecture géométrique · dans l'espace",
+   "texte": "Dans l'espace, chaque équation est un plan : un point commun, une droite, un plan, ou le vide."
+  },
+  "cas_inc": {
+   "type": "etape",
+   "kicker": "Cas particuliers · système incompatible",
+   "titre": "Une ligne impossible signale l'impasse",
+   "tex": [
+    "\\begin{cases} x + y = 2 \\\\ 2x + 2y = 5 \\end{cases} \\Rightarrow \\begin{cases} x + y = 2 \\\\ 0 = 1 \\end{cases}",
+    "S = \\emptyset \\quad \\text{droites strictement parallèles}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Premier degré : isoler, séparer les cas",
+    "Produit nul, quotient : valeurs interdites",
+    "Inéquation : signes, sens renversé si négatif",
+    "Trinôme : signe de a dehors, opposé dedans",
+    "Gauss : échelonner, remonter, vérifier"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours consacré aux équations, aux inéquations et aux systèmes linéaires. Nous partirons des équations du premier degré, avec les produits, les quotients, la valeur absolue et les tableaux de signes, puis nous résoudrons des systèmes à deux ou trois inconnues par le pivot de Gauss.",
+   "texte": "Équations, inéquations, systèmes linéaires : résoudre pas à pas."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Le fil rouge est simple : résoudre, c'est chercher toutes les valeurs qui rendent une égalité ou une inégalité vraie. On transforme l'écriture sans changer l'ensemble des solutions, et l'on vérifie toujours à quel ensemble appartiennent les réponses.",
+   "texte": "Transformer sans changer les solutions, puis vérifier."
+  },
+  {
+   "id": "p03",
+   "ecran": "eqdef",
+   "dit": "Une équation est une égalité qui contient une inconnue, notée ixe. Résoudre dans l'ensemble des réels, c'est trouver toutes les valeurs de ixe pour lesquelles l'égalité est vraie : elles forment l'ensemble des solutions. Deux équations sont équivalentes quand elles ont exactement le même ensemble de solutions.",
+   "texte": "Résoudre : trouver toutes les valeurs qui rendent l'égalité vraie."
+  },
+  {
+   "id": "p04",
+   "ecran": "axb",
+   "dit": "Toute équation du premier degré se ramène à la forme a fois ixe plus b égale zéro. La droite qui représente la fonction affine associée coupe l'axe des abscisses en un seul point : son abscisse est la solution cherchée, moins b sur a, lorsque a est différent de zéro.",
+   "texte": "ax + b = 0 : la solution se lit sur l'axe des abscisses."
+  },
+  {
+   "id": "p05",
+   "ecran": "axb_cas",
+   "dit": "Trois cas se présentent. Si a est différent de zéro, unique solution : moins b sur a. Si a et b sont nuls, tout réel est solution. Si a est nul et b non nul, aucune solution. Pour transformer sans changer les solutions, on ajoute le même nombre aux deux membres, ou on les multiplie par un même nombre non nul.",
+   "texte": "Trois cas : une solution, tous les réels, ou aucune."
+  },
+  {
+   "id": "p06",
+   "ecran": "ex_lin",
+   "dit": "Premier exemple, pas à pas : résoudre trois ixe moins sept égale cinq ixe plus un. On regroupe les ixe à gauche et les nombres à droite : trois ixe moins cinq ixe égale un plus sept, donc moins deux ixe égale huit, et ixe égale moins quatre. L'ensemble des solutions contient le seul nombre moins quatre.",
+   "texte": "Regrouper, diviser : x = −4."
+  },
+  {
+   "id": "p07",
+   "ecran": "produit",
+   "dit": "Une équation produit se ramène à un produit égal à zéro. Or un produit de facteurs est nul si et seulement si l'un des facteurs est nul. On résout donc séparément chaque facteur égal à zéro, puis on rassemble les solutions trouvées.",
+   "texte": "Produit nul : au moins un facteur est nul."
+  },
+  {
+   "id": "p08",
+   "ecran": "ex_prod",
+   "dit": "Exemple : le produit de deux ixe moins six par ixe plus cinq égale zéro. Le premier facteur s'annule pour ixe égale trois, le second pour ixe égale moins cinq. Les solutions sont moins cinq et trois.",
+   "texte": "Chaque facteur donne une solution : −5 et 3."
+  },
+  {
+   "id": "p09",
+   "ecran": "quotient",
+   "dit": "Pour un quotient, la règle est double : le quotient est nul si le numérateur est nul, à condition que le dénominateur ne le soit pas. Avant tout calcul, on repère donc les valeurs interdites, celles qui annulent le dénominateur.",
+   "texte": "Quotient nul : numérateur nul, dénominateur non nul."
+  },
+  {
+   "id": "p10",
+   "ecran": "ex_quot",
+   "dit": "Exemple : la fraction de numérateur ixe moins un et de dénominateur ixe plus deux égale zéro. La valeur interdite est moins deux. Le numérateur s'annule pour ixe égale un, qui est autorisé : la seule solution est donc un.",
+   "texte": "Valeur interdite −2 écartée : solution x = 1."
+  },
+  {
+   "id": "p11",
+   "ecran": "abs",
+   "dit": "La valeur absolue de grand ixe égale k : si k est strictement négatif, aucune solution ; sinon, grand ixe vaut k ou moins k. Pour une racine carrée, racine de grand ixe égale k exige aussi k positif ou nul, et grand ixe vaut alors k au carré. Exemple : la valeur absolue de deux ixe moins trois égale cinq donne deux ixe moins trois égale cinq ou moins cinq, donc ixe égale quatre ou moins un.",
+   "texte": "Valeur absolue : deux cas, X = k ou X = −k."
+  },
+  {
+   "id": "p12",
+   "ecran": "ineq_regle",
+   "dit": "Une inéquation se résout comme une équation, avec une règle supplémentaire décisive : multiplier ou diviser les deux membres par un nombre strictement négatif change le sens de l'inégalité. Oublier ce renversement est l'erreur la plus fréquente du chapitre.",
+   "texte": "Facteur négatif : le sens de l'inégalité se renverse."
+  },
+  {
+   "id": "p13",
+   "ecran": "ineq_ex",
+   "dit": "Exemple : résoudre moins deux ixe plus quatre inférieur ou égal à zéro. On retranche quatre : moins deux ixe devient inférieur ou égal à moins quatre. On divise par moins deux, un nombre négatif, donc le sens se renverse : ixe est supérieur ou égal à deux. Les solutions forment l'intervalle fermé en deux et ouvert vers plus l'infini.",
+   "texte": "Division par −2 : x ≥ 2, intervalle [2, +∞[."
+  },
+  {
+   "id": "p14",
+   "ecran": "tab_signe",
+   "dit": "Pour un produit ou un quotient, on étudie le signe de chaque facteur dans un tableau de signes : même signe, résultat positif ; signes contraires, résultat négatif. Exemple : le produit de ixe moins un par ixe plus trois est positif ou nul à l'extérieur des racines moins trois et un, et les solutions sont les réels inférieurs ou égaux à moins trois, ou supérieurs ou égaux à un.",
+   "texte": "Tableau de signes : positif à l'extérieur des racines."
+  },
+  {
+   "id": "p15",
+   "ecran": "quot_ineq",
+   "dit": "Pour un quotient, on dresse le même tableau, mais la valeur qui annule le dénominateur reste toujours exclue, avec un intervalle ouvert. Exemple : la fraction de numérateur ixe plus un et de dénominateur ixe moins deux est strictement négative entre la racine moins un et la valeur interdite deux : les solutions sont les réels strictement compris entre moins un et deux.",
+   "texte": "Quotient négatif entre −1 et 2, borne 2 exclue."
+  },
+  {
+   "id": "p16",
+   "ecran": "trino_signe",
+   "dit": "Dernière pièce de ce volet : le signe d'un trinôme du second degré. On calcule son discriminant, delta égale b au carré moins quatre a c. S'il est strictement positif, le trinôme est du signe de a à l'extérieur de ses deux racines et du signe opposé entre elles. S'il est nul, le trinôme garde le signe de a et ne s'annule qu'en sa racine double. S'il est négatif, le trinôme garde partout le signe de a.",
+   "texte": "Signe du trinôme : delta et a décident."
+  },
+  {
+   "id": "p17",
+   "ecran": "ex_trino",
+   "dit": "Exemple : résoudre ixe au carré moins trois ixe plus deux supérieur ou égal à zéro. Le discriminant vaut un, les racines sont un et deux, et a vaut un, donc est positif. Le trinôme est positif ou nul à l'extérieur des racines : les solutions sont les réels inférieurs ou égaux à un, ou supérieurs ou égaux à deux.",
+   "texte": "Racines 1 et 2 : positif ou nul à l'extérieur."
+  },
+  {
+   "id": "p18",
+   "ecran": "sys_ineq",
+   "dit": "Résoudre un système d'inéquations, c'est intersecter les ensembles de solutions : il faut satisfaire toutes les inégalités à la fois. Exemple : ixe moins un strictement positif donne ixe strictement supérieur à un, et deux ixe inférieur ou égal à six donne ixe inférieur ou égal à trois. L'intersection est l'intervalle ouvert en un et fermé en trois.",
+   "texte": "Système d'inéquations : intersecter, ici ]1, 3]."
+  },
+  {
+   "id": "p19",
+   "ecran": "recap1",
+   "dit": "Récapitulons ce premier volet. Une équation se ramène à un membre nul : on factorise, on sépare les cas produit et quotient, on exclut les valeurs interdites. Une inéquation demande une étude de signes, et son sens se renverse quand on multiplie par un négatif. Retenez aussi le signe du trinôme, qui servira dans tout le chapitre.",
+   "texte": "L'essentiel du premier volet."
+  },
+  {
+   "id": "p20",
+   "ecran": "sysdef",
+   "dit": "Un système linéaire rassemble plusieurs équations du premier degré à plusieurs inconnues : deux inconnues ixe et igrec dans le plan, trois inconnues ixe, igrec et zède dans l'espace. Une solution est un couple, ou un triplet, qui vérifie toutes les équations en même temps. Résoudre, c'est déterminer toutes les solutions.",
+   "texte": "Un couple ou un triplet qui vérifie tout à la fois."
+  },
+  {
+   "id": "p21",
+   "ecran": "vocab",
+   "dit": "Le vocabulaire compte. Un système est compatible s'il admet au moins une solution, unique ou en infinité ; il est incompatible s'il n'en admet aucune. Deux systèmes sont équivalents s'ils ont le même ensemble de solutions, et trois opérations conservent cet ensemble : échanger deux équations, multiplier une équation par un réel non nul, et ajouter à une équation une combinaison des autres.",
+   "texte": "Compatible, incompatible, équivalent : trois mots clés."
+  },
+  {
+   "id": "p22",
+   "ecran": "matrice_intro",
+   "dit": "Pour appliquer ces opérations sans recopier les inconnues à chaque ligne, on écrit le système sous forme de matrice augmentée : les coefficients dans un tableau, les seconds membres séparés par une barre verticale. Chaque ligne de la matrice est une équation, chaque colonne correspond à une inconnue.",
+   "texte": "La matrice augmentée : le système en tableau."
+  },
+  {
+   "id": "p23",
+   "ecran": "gauss_principe",
+   "dit": "La méthode du pivot de Gauss suit quatre étapes. On choisit d'abord un pivot, un coefficient non nul de la première inconnue. On élimine ensuite cette inconnue des autres lignes par combinaison linéaire. On répète l'opération sur le sous-système restant, jusqu'à obtenir un système triangulaire. Il ne reste qu'à remonter par substitution, de la dernière inconnue vers la première.",
+   "texte": "Pivot, élimination, triangle, remontée."
+  },
+  {
+   "id": "p24",
+   "ecran": "gauss_ex1",
+   "dit": "Exemple complet dans l'espace. Premier système : ixe plus igrec plus zède égale six ; deux ixe moins igrec plus zède égale trois ; ixe plus deux igrec moins zède égale deux. Le pivot est le coefficient de ixe dans la première ligne, qui vaut un.",
+   "texte": "Le système de départ : pivot égal à un."
+  },
+  {
+   "id": "p25",
+   "ecran": "gauss_ex2",
+   "dit": "On élimine ixe des deux autres lignes. La deuxième ligne devient la deuxième moins deux fois la première : il reste moins trois igrec moins zède égale moins neuf. La troisième devient la troisième moins la première : il reste igrec moins deux zède égale moins quatre. ixe n'apparaît plus que dans la première ligne.",
+   "texte": "Après élimination : x n'apparaît plus qu'en première ligne."
+  },
+  {
+   "id": "p26",
+   "ecran": "gauss_ex3",
+   "dit": "Second pivot : le coefficient moins trois de igrec dans la deuxième ligne. On remplace la troisième ligne par la troisième plus un tiers de la deuxième : igrec disparaît, et il reste moins sept tiers de zède égale moins sept. Le système est triangulaire.",
+   "texte": "Système triangulaire : plus que z dans la dernière ligne."
+  },
+  {
+   "id": "p27",
+   "ecran": "gauss_ex4",
+   "dit": "On remonte. La dernière ligne donne zède égale trois. Reporté dans la deuxième, moins trois igrec moins trois égale moins neuf, donc igrec égale deux. Reporté dans la première, ixe plus deux plus trois égale six, donc ixe égale un. La solution unique est le triplet un, deux, trois, et la vérification dans la deuxième équation donne deux moins deux plus trois égale trois.",
+   "texte": "Remontée : (x, y, z) = (1, 2, 3), vérifié."
+  },
+  {
+   "id": "p28",
+   "ecran": "geo2",
+   "dit": "Lisons ce résultat géométriquement. Dans le plan, chaque équation est une droite. Si les droites sont sécantes, un seul point commun : une solution unique. Si elles sont parallèles et distinctes, aucun point commun : aucune solution. Si elles sont confondues, une infinité de points communs : une infinité de solutions.",
+   "texte": "Sécantes, parallèles, confondues : 1, 0, une infinité."
+  },
+  {
+   "id": "p29",
+   "ecran": "geo2_ex",
+   "dit": "Exemple dans le plan : ixe plus igrec égale trois et ixe moins igrec égale un. Les deux droites se coupent au point de coordonnées deux et un : le couple deux, un est l'unique solution du système, ce que le calcul confirme.",
+   "texte": "Intersection des deux droites : le point (2, 1)."
+  },
+  {
+   "id": "p30",
+   "ecran": "geo3",
+   "dit": "Dans l'espace, chaque équation représente un plan. Les solutions sont les points communs aux trois plans : un seul point, comme dans notre exemple de Gauss où les trois plans se coupent au point de coordonnées un, deux, trois ; ou une droite, voire un plan entier, s'il y a une infinité de solutions ; ou rien du tout si les plans n'ont aucun point commun.",
+   "texte": "Trois plans : un point, une droite, un plan, ou le vide."
+  },
+  {
+   "id": "p31",
+   "ecran": "cas_inc",
+   "dit": "Comment reconnaître les cas sans solution unique pendant l'échelonnement ? Une ligne qui devient zéro égale un nombre non nul signale un système incompatible. Exemple : ixe plus igrec égale deux et deux ixe plus deux igrec égale cinq conduisent à zéro égale un : les deux droites sont strictement parallèles. Au contraire, une ligne zéro égale zéro révèle une équation redondante et une infinité de solutions.",
+   "texte": "0 = 1 : incompatible. 0 = 0 : infinité de solutions."
+  },
+  {
+   "id": "p32",
+   "ecran": "recap",
+   "dit": "Pour finir, retenez l'enchaînement complet. Au premier degré, on isole l'inconnue et l'on sépare les cas. Pour les inéquations, on étudie les signes et l'on surveille le renversement de sens. Pour les systèmes, le pivot de Gauss échelonne puis remonte, et la géométrie des droites et des plans dit à l'avance combien de solutions attendre.",
+   "texte": "L'essentiel du cours en cinq réflexes."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Équations du premier degré : produit, quotient, valeur absolue"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Inéquations, tableaux de signes, puis les systèmes linéaires",
+   "pont": {
+    "texte": "Partie 2 : inéquations et tableaux de signes, puis les systèmes linéaires.",
+    "dit": "Partie deux : les inéquations d'abord, avec le renversement de sens et les tableaux de signes, puis le signe du trinôme et un système d'inéquations. Nous ouvrirons ensuite le second grand bloc du cours : les systèmes linéaires, leurs définitions et la matrice augmentée."
+   }
+  },
+  {
+   "debut": "p23",
+   "sous_titre": "Le pivot de Gauss : méthode, exemple complet et géométrie",
+   "pont": {
+    "texte": "Partie 3 : le pivot de Gauss en action, puis la lecture géométrique.",
+    "dit": "Partie trois : le pivot de Gauss en action. Nous appliquerons la méthode pas à pas sur un système à trois inconnues, avant de lire géométriquement les solutions, entre droites du plan et plans de l'espace, et de traiter les cas sans solution unique."
+   }
+  }
+ ]
+}
