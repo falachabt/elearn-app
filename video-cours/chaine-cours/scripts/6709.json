@@ -1,0 +1,621 @@
+{
+ "cours": 6709,
+ "titre": "Nombres rationnels : diviseurs, opérations, ordre et puissances",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Arithmétique et nombres rationnels",
+   "titre": "Nombres rationnels : diviseurs, opérations, ordre et puissances",
+   "sous": "Facteurs premiers, plus grand diviseur commun, plus petit multiple commun, calcul et écriture scientifique"
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un outil pour tout le cours : décomposer en facteurs premiers."
+  },
+  "premier": {
+   "type": "etape",
+   "kicker": "Les nombres premiers",
+   "titre": "Deux diviseurs, pas un de plus",
+   "tex": [
+    "\\text{premier : exactement deux diviseurs}",
+    "1\\ \\text{et lui-même}"
+   ]
+  },
+  "decomp_methode": {
+   "type": "etape",
+   "kicker": "Décomposer en facteurs premiers",
+   "titre": "Diviser par les premiers, dans l'ordre",
+   "tex": [
+    "\\text{diviser par } 2, \\text{ puis } 3, \\text{ puis } 5, \\dots",
+    "\\text{continuer jusqu'à obtenir } 1",
+    "\\text{regrouper en puissances}"
+   ]
+  },
+  "decomp_ex": {
+   "type": "etape",
+   "kicker": "Exemple · décomposer un nombre",
+   "titre": "Décomposer en facteurs premiers",
+   "tex": [
+    "360 = 2 \\times 180 = 2^2 \\times 90",
+    "360 = 2^3 \\times 45 = 2^3 \\times 3 \\times 15",
+    "360 = 2^3 \\times 3^2 \\times 5"
+   ]
+  },
+  "pgdc_def": {
+   "type": "formule",
+   "kicker": "Le plus grand diviseur commun",
+   "tex": "\\text{PGDC}(a; b)",
+   "note": "Le plus grand entier qui divise à la fois a et b."
+  },
+  "pgdc_regle": {
+   "type": "etape",
+   "kicker": "Calculer le plus grand diviseur commun",
+   "titre": "Commun, avec le plus petit exposant",
+   "tex": [
+    "\\text{facteurs premiers communs seulement}",
+    "\\text{chacun avec le plus petit exposant}"
+   ]
+  },
+  "pgdc_ex": {
+   "type": "etape",
+   "kicker": "Exemple · un diviseur commun",
+   "titre": "Le plus grand diviseur commun pas à pas",
+   "tex": [
+    "360 = 2^3 \\times 3^2 \\times 5",
+    "84 = 2^2 \\times 3 \\times 7",
+    "\\text{PGDC} = 2^2 \\times 3 = 12"
+   ]
+  },
+  "ppmc_def": {
+   "type": "formule",
+   "kicker": "Le plus petit multiple commun",
+   "tex": "\\text{PPMC}(a; b)",
+   "note": "Le plus petit entier positif, multiple commun de a et de b."
+  },
+  "ppmc_regle": {
+   "type": "etape",
+   "kicker": "Calculer le plus petit multiple commun",
+   "titre": "Tous, avec le plus grand exposant",
+   "tex": [
+    "\\text{tous les facteurs premiers présents}",
+    "\\text{chacun avec le plus grand exposant}"
+   ]
+  },
+  "ppmc_ex": {
+   "type": "etape",
+   "kicker": "Exemple · un multiple commun",
+   "titre": "Le plus petit multiple commun pas à pas",
+   "tex": [
+    "360 = 2^3 \\times 3^2 \\times 5",
+    "84 = 2^2 \\times 3 \\times 7",
+    "\\text{PPMC} = 2^3 \\times 3^2 \\times 5 \\times 7",
+    "\\text{PPMC} = 2520"
+   ]
+  },
+  "lien": {
+   "type": "formule",
+   "kicker": "Le lien entre les deux",
+   "tex": "\\text{PGDC}(a; b) \\times \\text{PPMC}(a; b) = a \\times b",
+   "note": "Contrôle : 12 × 2520 = 30240 = 360 × 84."
+  },
+  "carreleur": {
+   "type": "etape",
+   "kicker": "Problème · le partage équitable",
+   "titre": "Découper sans perte, au plus grand",
+   "tex": [
+    "\\text{côté} = \\text{PGDC}(360; 84) = 12\\ \\text{cm}",
+    "360 \\div 12 = 30 \\qquad 84 \\div 12 = 7",
+    "30 \\times 7 = 210\\ \\text{carrés par dalle}"
+   ]
+  },
+  "marches": {
+   "type": "etape",
+   "kicker": "Problème · les phénomènes périodiques",
+   "titre": "Quand deux rendez-vous coïncident",
+   "tex": [
+    "12 = 2^2 \\times 3 \\qquad 18 = 2 \\times 3^2",
+    "\\text{PPMC}(12; 18) = 2^2 \\times 3^2 = 36",
+    "\\text{réponse : } 36\\ \\text{jours}"
+   ]
+  },
+  "rationnel_def": {
+   "type": "formule",
+   "kicker": "Les nombres rationnels · définition",
+   "tex": "\\frac{a}{b}, \\quad a \\in \\mathbb{Z}, \\quad b \\in \\mathbb{N}^*",
+   "note": "Exemples : −3/7, 5 = 5/1 et 0,75 = 3/4 sont rationnels."
+  },
+  "ensembles": {
+   "type": "formule",
+   "kicker": "Les ensembles de nombres",
+   "tex": "\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{D} \\subset \\mathbb{Q}",
+   "note": "Naturels, puis relatifs, puis décimaux, puis rationnels."
+  },
+  "decimal_critere": {
+   "type": "etape",
+   "kicker": "Quand un rationnel est-il décimal ?",
+   "titre": "Le dénominateur décide, après simplification",
+   "tex": [
+    "\\text{décimal} \\iff \\text{dénominateur} = 2^n \\times 5^m",
+    "\\text{aucun autre facteur premier admis}"
+   ]
+  },
+  "decimal_ex": {
+   "type": "etape",
+   "kicker": "Exemple · décimal ou non ?",
+   "titre": "Deux fractions, deux verdicts",
+   "tex": [
+    "\\tfrac{7}{20} = \\tfrac{35}{100} = 0{,}35 : \\text{décimal}",
+    "6 = 2 \\times 3 : \\text{le facteur } 3 \\text{ bloque}",
+    "\\tfrac{7}{6} = 1{,}1666\\dots : \\text{non décimal}"
+   ]
+  },
+  "irreductible": {
+   "type": "formule",
+   "kicker": "La forme irréductible",
+   "tex": "\\text{PGDC}(a; b) = 1 \\iff \\tfrac{a}{b}\\ \\text{irréductible}",
+   "note": "Numérateur et dénominateur premiers entre eux : on ne simplifie plus."
+  },
+  "simplification_ex": {
+   "type": "etape",
+   "kicker": "Exemple · simplifier une fraction",
+   "titre": "Diviser par le plus grand diviseur commun",
+   "tex": [
+    "42 = 2 \\times 3 \\times 7 \\qquad 56 = 2^3 \\times 7",
+    "\\text{PGDC}(42; 56) = 2 \\times 7 = 14",
+    "\\tfrac{42}{56} = \\tfrac{42 \\div 14}{56 \\div 14} = \\tfrac{3}{4}"
+   ]
+  },
+  "meme_denominateur": {
+   "type": "etape",
+   "kicker": "Réduire au même dénominateur",
+   "titre": "Le multiple commun comme dénominateur",
+   "tex": [
+    "\\text{PPMC}(4; 6) = 12",
+    "\\tfrac{3}{4} = \\tfrac{9}{12}",
+    "\\tfrac{5}{6} = \\tfrac{10}{12}"
+   ]
+  },
+  "addition": {
+   "type": "etape",
+   "kicker": "Additionner des fractions",
+   "titre": "Même dénominateur, puis on additionne",
+   "tex": [
+    "\\text{même dénominateur, puis numérateurs}",
+    "\\tfrac{2}{3} + \\tfrac{3}{5} = \\tfrac{10}{15} + \\tfrac{9}{15}",
+    "\\tfrac{10}{15} + \\tfrac{9}{15} = \\tfrac{19}{15}"
+   ]
+  },
+  "multiplication": {
+   "type": "formule",
+   "kicker": "Multiplier des fractions",
+   "tex": "\\frac{a}{b} \\times \\frac{c}{d} = \\frac{a \\times c}{b \\times d}",
+   "note": "Exemple : 2/3 × 5/7 = 10/21, en ligne directe."
+  },
+  "division": {
+   "type": "formule",
+   "kicker": "Diviser des fractions",
+   "tex": "\\frac{a}{b} \\div \\frac{c}{d} = \\frac{a}{b} \\times \\frac{d}{c}",
+   "note": "Diviser, c'est multiplier par l'inverse : 3/4 ÷ 2/5 = 15/8."
+  },
+  "calcul_complet": {
+   "type": "etape",
+   "kicker": "Exemple · un calcul complet",
+   "titre": "Parenthèses, multiplication, soustraction",
+   "tex": [
+    "\\tfrac{3}{4} - \\tfrac{1}{3} = \\tfrac{5}{12}",
+    "\\tfrac{5}{12} \\times 2 = \\tfrac{5}{6}",
+    "A = \\tfrac{1}{2} - \\tfrac{5}{6} = -\\tfrac{1}{3}"
+   ]
+  },
+  "comparaison_regle": {
+   "type": "etape",
+   "kicker": "Comparer deux rationnels",
+   "titre": "Le signe de la différence décide",
+   "tex": [
+    "a = b \\iff a - b = 0",
+    "a < b \\iff a - b < 0",
+    "a > b \\iff a - b > 0",
+    "\\text{calculer la différence, lire son signe}"
+   ]
+  },
+  "ordre_mult": {
+   "type": "etape",
+   "kicker": "L'ordre et les opérations",
+   "titre": "Multiplier par un négatif inverse l'ordre",
+   "tex": [
+    "a < b \\Rightarrow a + c < b + c",
+    "c > 0 : a < b \\Rightarrow ac < bc",
+    "c < 0 : a < b \\Rightarrow ac > bc"
+   ]
+  },
+  "comparaison_ex": {
+   "type": "etape",
+   "kicker": "Exemple · comparer deux fractions",
+   "titre": "La différence tranche la question",
+   "tex": [
+    "\\tfrac{3}{4} - \\tfrac{5}{6} = \\tfrac{-2}{24}",
+    "\\tfrac{3}{4} - \\tfrac{5}{6} = -\\tfrac{1}{12}",
+    "\\text{donc } \\tfrac{3}{4} < \\tfrac{5}{6}"
+   ]
+  },
+  "ranger_ex": {
+   "type": "etape",
+   "kicker": "Exemple · ranger des rationnels",
+   "titre": "Même dénominateur, numérateurs rangés",
+   "tex": [
+    "\\tfrac{2}{3} = \\tfrac{4}{6}",
+    "-\\tfrac{1}{2} = -\\tfrac{3}{6}",
+    "\\text{numérateurs} : -3 < 4 < 5",
+    "-\\tfrac{1}{2} < \\tfrac{2}{3} < \\tfrac{5}{6}"
+   ]
+  },
+  "troncature": {
+   "type": "etape",
+   "kicker": "Troncature et arrondi",
+   "titre": "Tronquer ou arrondir à un ordre donné",
+   "tex": [
+    "x = \\tfrac{22}{7} \\approx 3{,}142857",
+    "\\text{troncature à } 10^{-3} : 3{,}142",
+    "\\text{arrondi à } 10^{-3} : 3{,}143"
+   ]
+  },
+  "encadrement_def": {
+   "type": "formule",
+   "kicker": "Encadrer un nombre",
+   "tex": "u \\leqslant x \\leqslant v",
+   "note": "Deux bornes u et v, et une amplitude égale à v moins u."
+  },
+  "encadrement_ex": {
+   "type": "etape",
+   "kicker": "Exemple · encadrer une fraction",
+   "titre": "Par des entiers, puis au dixième",
+   "tex": [
+    "5 < \\tfrac{17}{3} < 6",
+    "5{,}6 \\leqslant \\tfrac{17}{3} \\leqslant 5{,}7",
+    "\\text{amplitude} : 0{,}1 = 10^{-1}"
+   ]
+  },
+  "encadrer_ops": {
+   "type": "etape",
+   "kicker": "Encadrer une somme, un produit",
+   "titre": "Ajouter conserve, le négatif inverse",
+   "tex": [
+    "2{,}3 \\leqslant b \\leqslant 2{,}4",
+    "5{,}3 \\leqslant 3 + b \\leqslant 5{,}4",
+    "-4{,}8 \\leqslant -2b \\leqslant -4{,}6"
+   ]
+  },
+  "puissances_def": {
+   "type": "etape",
+   "kicker": "Puissances d'un rationnel",
+   "titre": "Positif, nul ou négatif : trois cas",
+   "tex": [
+    "a^n = a \\times a \\times \\dots \\times a",
+    "a^0 = 1 \\qquad a^{-n} = \\tfrac{1}{a^n}",
+    "\\left( \\tfrac{a}{b} \\right)^n = \\tfrac{a^n}{b^n}"
+   ]
+  },
+  "puissance_ex": {
+   "type": "etape",
+   "kicker": "Exemple · exposant négatif",
+   "titre": "L'exposant négatif renverse la fraction",
+   "tex": [
+    "\\left( \\tfrac{2}{3} \\right)^{-2} = \\tfrac{2^{-2}}{3^{-2}}",
+    "\\tfrac{2^{-2}}{3^{-2}} = \\tfrac{3^2}{2^2} = \\tfrac{9}{4}"
+   ]
+  },
+  "puissances_prop": {
+   "type": "etape",
+   "kicker": "Propriétés des puissances",
+   "titre": "Les exposants se calculent",
+   "tex": [
+    "a^n \\times a^m = a^{n+m}",
+    "\\tfrac{a^n}{a^m} = a^{n-m} \\qquad (a^n)^m = a^{nm}",
+    "(a \\times b)^n = a^n \\times b^n"
+   ]
+  },
+  "puissances_ex": {
+   "type": "etape",
+   "kicker": "Exemple · simplifier avec les puissances",
+   "titre": "Trois propriétés en un seul calcul",
+   "tex": [
+    "A = \\tfrac{5^3 \\times 5^{-2}}{5^4} = \\tfrac{5^1}{5^4}",
+    "A = 5^{1-4} = 5^{-3}",
+    "A = \\tfrac{1}{125}"
+   ]
+  },
+  "scientifique": {
+   "type": "formule",
+   "kicker": "L'écriture scientifique",
+   "tex": "N = a \\times 10^n, \\quad 1 \\leqslant a < 10",
+   "note": "Un seul chiffre non nul avant la virgule, puis une puissance de dix."
+  },
+  "scientifique_ex": {
+   "type": "etape",
+   "kicker": "Exemples · écriture scientifique",
+   "titre": "Décaler la virgule fixe l'exposant",
+   "tex": [
+    "0{,}000245 = 2{,}45 \\times 10^{-4}",
+    "325{,}7 = 3257 \\times 10^{-1}",
+    "\\text{décaler à droite : exposant négatif}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Comparer : le signe de la différence",
+    "Négatif multiplicateur : ordre inversé",
+    "Encadrer : deux bornes, une amplitude",
+    "Puissances : les exposants se combinent",
+    "Scientifique : un chiffre avant la virgule"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux nombres rationnels. Nous partirons des facteurs premiers pour construire le plus grand diviseur commun et le plus petit multiple commun, puis nous calculerons avec les fractions, nous les comparerons, nous les encadrerons, et nous terminerons par les puissances et l'écriture scientifique.",
+   "texte": "Facteurs premiers, diviseurs, opérations, ordre et puissances",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Un seul outil traverse tout le cours : la décomposition en facteurs premiers. Elle sert à partager au plus grand, à faire coïncider des phénomènes périodiques, à simplifier les fractions et même à décider si un nombre est décimal. Apprends-la bien : tout le reste en découle presque mécaniquement.",
+   "texte": "La décomposition en facteurs premiers sert partout",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Rappelons d'abord ce qu'est un nombre premier : un entier naturel qui possède exactement deux diviseurs, un et lui-même. Deux, trois, cinq, sept, onze et treize sont premiers, alors que quatre, six ou neuf ne le sont pas, car ils admettent d'autres diviseurs. Cette famille courte est la brique de base de toute l'arithmétique.",
+   "texte": "Premier : exactement deux diviseurs, 1 et lui-même",
+   "ecran": "premier"
+  },
+  {
+   "id": "p04",
+   "dit": "La propriété fondamentale affirme que tout entier supérieur à un s'écrit de manière unique comme un produit de nombres premiers. La méthode est régulière : on divise successivement par les nombres premiers dans l'ordre croissant, deux, puis trois, puis cinq, et ainsi de suite, jusqu'à obtenir un. Ensuite, on regroupe les facteurs égaux sous forme de puissances.",
+   "texte": "Diviser par 2, 3, 5… jusqu'à 1, puis regrouper en puissances",
+   "ecran": "decomp_methode"
+  },
+  {
+   "id": "p05",
+   "dit": "Décomposons trois cent soixante. On divise par deux et il reste cent quatre-vingts, encore par deux et il reste quatre-vingt-dix, encore par deux et il reste quarante-cinq. Quarante-cinq se divise par trois, puis encore par trois, puis par cinq. Au final, trois cent soixante vaut deux puissance trois fois trois au carré fois cinq, et cette écriture est unique.",
+   "texte": "360 = 2³ × 3² × 5",
+   "ecran": "decomp_ex"
+  },
+  {
+   "id": "p06",
+   "dit": "Le plus grand diviseur commun de deux entiers est, comme son nom l'indique, le plus grand entier qui divise à la fois les deux nombres. C'est l'outil des partages équitables : si un entier divise deux quantités, il les découpe toutes les deux sans reste, et le plus grand de ces diviseurs donne le découpage le plus grand possible.",
+   "texte": "PGDC : le plus grand diviseur commun aux deux nombres",
+   "ecran": "pgdc_def"
+  },
+  {
+   "id": "p07",
+   "dit": "Le calcul découle des décompositions : on ne garde que les facteurs premiers communs aux deux nombres, et chacun avec le plus petit exposant présent dans les deux décompositions. Un facteur absent d'un côté disparaît complètement, car il ne peut pas diviser l'autre nombre. Cette règle du plus petit exposant est le cœur du calcul.",
+   "texte": "PGDC : facteurs communs, plus petit exposant",
+   "ecran": "pgdc_regle"
+  },
+  {
+   "id": "p08",
+   "dit": "Calculons le plus grand diviseur commun de trois cent soixante et de quatre-vingt-quatre. Leurs décompositions partagent les facteurs deux et trois. Les plus petits exposants sont deux pour le facteur deux, et un pour le facteur trois. Le résultat vaut donc deux au carré fois trois, c'est-à-dire quatre fois trois : douze. Vérification : douze divise bien les deux nombres de départ.",
+   "texte": "PGDC(360 ; 84) = 2² × 3 = 12",
+   "ecran": "pgdc_ex"
+  },
+  {
+   "id": "p09",
+   "dit": "Le plus petit multiple commun joue le rôle symétrique : c'est le plus petit entier strictement positif qui est multiple à la fois des deux nombres. Là où le diviseur commun découpe, le multiple commun fait se rencontrer : c'est l'outil des phénomènes qui se répètent et que l'on veut voir coïncider au plus tôt.",
+   "texte": "PPMC : le plus petit multiple commun aux deux nombres",
+   "ecran": "ppmc_def"
+  },
+  {
+   "id": "p10",
+   "dit": "La règle de calcul est le miroir de la précédente : on prend tous les facteurs premiers présents dans au moins une des deux décompositions, et chacun avec le plus grand exposant rencontré. Tous les facteurs, le plus grand exposant : compare bien avec la règle du diviseur commun, qui ne gardait que les facteurs communs avec le plus petit exposant.",
+   "texte": "PPMC : tous les facteurs, plus grand exposant",
+   "ecran": "ppmc_regle"
+  },
+  {
+   "id": "p11",
+   "dit": "Pour trois cent soixante et quatre-vingt-quatre, les facteurs présents sont deux, trois, cinq et sept. Les plus grands exposants sont trois pour deux, deux pour trois, un pour cinq et un pour sept. Le produit donne huit fois neuf fois cinq fois sept, c'est-à-dire deux mille cinq cent vingt. Vérification : ce nombre se divise exactement par les deux nombres de départ.",
+   "texte": "PPMC(360 ; 84) = 2520",
+   "ecran": "ppmc_ex"
+  },
+  {
+   "id": "p12",
+   "dit": "Une relation précieuse relie les deux résultats : le produit du plus grand diviseur commun par le plus petit multiple commun égale toujours le produit des deux nombres de départ. Ici, douze fois deux mille cinq cent vingt donne trente mille deux cent quarante, exactement comme trois cent soixante fois quatre-vingt-quatre. Utilise cette relation comme contrôle systématique de tes deux calculs.",
+   "texte": "PGDC × PPMC = a × b : le contrôle à toujours faire",
+   "ecran": "lien"
+  },
+  {
+   "id": "p13",
+   "dit": "Premier problème concret : un carreleur veut découper une dalle de trois cent soixante centimètres sur quatre-vingt-quatre en carrés identiques, les plus grands possibles, sans perte. Le côté du carré doit diviser les deux dimensions, et au maximum : c'est donc le plus grand diviseur commun, douze centimètres. On obtient trente carrés sur la longueur et sept sur la largeur, soit deux cent dix carrés par dalle.",
+   "texte": "Carreleur : des carrés de 12 cm, 210 par dalle",
+   "ecran": "carreleur"
+  },
+  {
+   "id": "p14",
+   "dit": "Deuxième problème : deux marchés se tiennent sur la même place, l'un tous les douze jours, l'autre tous les dix-huit jours, et ils coïncident aujourd'hui. Le délai cherché doit être un multiple commun des deux périodes, et le plus petit possible : c'est le plus petit multiple commun. Douze vaut deux au carré fois trois, dix-huit vaut deux fois trois au carré, et le résultat vaut trente-six : ils coïncideront à nouveau dans trente-six jours.",
+   "texte": "Marchés : prochaine coïncidence dans 36 jours",
+   "ecran": "marches"
+  },
+  {
+   "id": "p15",
+   "dit": "Passons aux nombres rationnels. Un nombre rationnel est un nombre qui peut s'écrire comme une fraction, avec un numérateur entier relatif et un dénominateur entier naturel non nul. Moins trois septièmes est rationnel, cinq aussi car il vaut cinq sur un, et zéro virgule soixante-quinze aussi car il vaut trois quarts. L'ensemble des rationnels se note avec la lettre Q dans la notation des ensembles.",
+   "texte": "Un rationnel s'écrit a/b, avec b non nul",
+   "ecran": "rationnel_def"
+  },
+  {
+   "id": "p16",
+   "dit": "Les ensembles de nombres s'emboîtent comme des poupées. Les entiers naturels sont contenus dans les entiers relatifs, eux-mêmes contenus dans les nombres décimaux, eux-mêmes contenus dans les nombres rationnels. Chaque étage ajoute de nouvelles possibilités : les signes négatifs, puis les écritures décimales finies, puis toutes les fractions, y compris celles dont l'écriture décimale ne se termine jamais.",
+   "texte": "N ⊂ Z ⊂ D ⊂ Q : des ensembles emboîtés",
+   "ecran": "ensembles"
+  },
+  {
+   "id": "p17",
+   "dit": "Quand un rationnel est-il décimal, c'est-à-dire quand son écriture décimale se termine-t-elle ? La réponse se lit sur le dénominateur, après simplification de la fraction : il ne doit contenir, comme facteurs premiers, que des deux et des cinq. Le moindre autre facteur, comme un trois ou un sept, rend l'écriture infinie et périodique.",
+   "texte": "Décimal si le dénominateur ne contient que des 2 et des 5",
+   "ecran": "decimal_critere"
+  },
+  {
+   "id": "p18",
+   "dit": "Vérifions sur deux exemples. Sept vingtièmes est décimal : vingt vaut deux au carré fois cinq, et en multipliant haut et bas par cinq on obtient trente-cinq centièmes, c'est-à-dire zéro virgule trente-cinq. En revanche, sept sixièmes ne l'est pas : six contient le facteur trois, impossible à éliminer, et la division donne un virgule un six six six qui se répète sans fin.",
+   "texte": "7/20 = 0,35 décimal · 7/6 = 1,1666… non décimal",
+   "ecran": "decimal_ex"
+  },
+  {
+   "id": "p19",
+   "dit": "Une fraction est irréductible lorsque son numérateur et son dénominateur sont premiers entre eux, c'est-à-dire lorsque leur plus grand diviseur commun vaut un. On ne peut alors plus la simplifier. Pour simplifier une fraction quelconque, la méthode la plus sûre est de diviser le numérateur et le dénominateur par leur plus grand diviseur commun, en une seule étape.",
+   "texte": "Irréductible : PGDC du haut et du bas égal à 1",
+   "ecran": "irreductible"
+  },
+  {
+   "id": "p20",
+   "dit": "Simplifions quarante-deux cinquante-sixièmes. Quarante-deux vaut deux fois trois fois sept, et cinquante-six vaut deux puissance trois fois sept. Leur plus grand diviseur commun vaut deux fois sept, c'est-à-dire quatorze. En divisant haut et bas par quatorze, on obtient trois quarts, qui est bien irréductible puisque trois et quatre sont premiers entre eux.",
+   "texte": "42/56 = 3/4, en divisant par le PGDC 14",
+   "ecran": "simplification_ex"
+  },
+  {
+   "id": "p21",
+   "dit": "Pour additionner ou comparer des fractions, on les réduit au même dénominateur. Le meilleur choix est le plus petit multiple commun des dénominateurs, car il garde les nombres petits. Pour quatre et six, ce multiple vaut douze : trois quarts devient neuf douzièmes, et cinq sixièmes devient dix douzièmes. Le produit des dénominateurs marcherait aussi, mais avec des nombres inutilement gros.",
+   "texte": "Même dénominateur : viser le PPMC, ici 12",
+   "ecran": "meme_denominateur"
+  },
+  {
+   "id": "p22",
+   "dit": "La règle d'addition suit naturellement : une fois les fractions au même dénominateur, on additionne les numérateurs et on conserve le dénominateur commun. Pour deux tiers plus trois cinquièmes, le dénominateur commun quinze donne dix quinzièmes plus neuf quinzièmes, c'est-à-dire dix-neuf quinzièmes. La soustraction suit exactement la même démarche, avec des numérateurs soustraits.",
+   "texte": "Addition : même dénominateur, numérateurs additionnés",
+   "ecran": "addition"
+  },
+  {
+   "id": "p23",
+   "dit": "La multiplication est plus directe : on multiplie les numérateurs entre eux et les dénominateurs entre eux, sans aucun dénominateur commun à chercher. Deux tiers fois cinq septièmes donne donc dix vingt et unièmes. Pense à simplifier avant de multiplier quand un facteur commun apparaît en diagonale : les calculs restent petits et les erreurs se voient tout de suite.",
+   "texte": "Multiplication : numérateurs × numérateurs, dénominateurs × dénominateurs",
+   "ecran": "multiplication"
+  },
+  {
+   "id": "p24",
+   "dit": "Pour diviser, un mot suffit : inverse. L'inverse d'une fraction non nulle s'obtient en échangeant numérateur et dénominateur, et diviser par une fraction revient à multiplier par son inverse. Trois quarts divisé par deux cinquièmes devient donc trois quarts fois cinq demis, c'est-à-dire quinze huitièmes. Ne confonds jamais inverse et opposé : l'opposé change le signe, l'inverse retourne la fraction.",
+   "texte": "Diviser = multiplier par l'inverse",
+   "ecran": "division"
+  },
+  {
+   "id": "p25",
+   "dit": "Assemblons tout dans un calcul complet, avec parenthèses et priorités. On calcule d'abord la parenthèse : trois quarts moins un tiers donne cinq douzièmes. Puis la multiplication : cinq douzièmes fois deux donne cinq sixièmes. Enfin la soustraction : un demi moins cinq sixièmes donne moins un tiers. Chaque étape s'écrit, dans l'ordre, et le résultat final se relit sans effort.",
+   "texte": "Un calcul complet : parenthèses, puis ×, puis −",
+   "ecran": "calcul_complet"
+  },
+  {
+   "id": "p26",
+   "dit": "Comparer deux rationnels revient à regarder le signe de leur différence. Si la différence est nulle, les nombres sont égaux. Si elle est négative, le premier nombre est le plus petit. Si elle est positive, le premier est le plus grand. Cette méthode par la différence est générale : elle fonctionne pour toutes les fractions, sans exception ni cas particulier à mémoriser.",
+   "texte": "Comparer : calculer a − b et lire son signe",
+   "ecran": "comparaison_regle"
+  },
+  {
+   "id": "p27",
+   "dit": "L'ordre réagit de façon prévisible aux opérations. Ajouter le même nombre des deux côtés conserve l'ordre. Multiplier par un nombre positif conserve aussi l'ordre. Mais multiplier par un nombre négatif inverse l'ordre : c'est le piège le plus classique du chapitre. Dès qu'un facteur négatif traverse une inégalité, le sens de l'inégalité doit être retourné.",
+   "texte": "Ajouter conserve l'ordre, multiplier par un négatif l'inverse",
+   "ecran": "ordre_mult"
+  },
+  {
+   "id": "p28",
+   "dit": "Comparons trois quarts et cinq sixièmes par la méthode de la différence. Trois quarts moins cinq sixièmes vaut dix-huit moins vingt, le tout sur vingt-quatre, c'est-à-dire moins deux vingt-quatrièmes, ou encore moins un douzième. La différence est négative, donc trois quarts est strictement inférieur à cinq sixièmes. La conclusion suit le signe, sans hésitation possible.",
+   "texte": "3/4 − 5/6 = −1/12, donc 3/4 < 5/6",
+   "ecran": "comparaison_ex"
+  },
+  {
+   "id": "p29",
+   "dit": "Pour ranger plusieurs rationnels, la méthode la plus sûre reste le dénominateur commun positif : on compare alors simplement les numérateurs. Pour deux tiers, moins un demi et cinq sixièmes, le dénominateur six donne quatre sixièmes, moins trois sixièmes et cinq sixièmes. Les numérateurs se rangent de moins trois à cinq, donc moins un demi vient avant deux tiers, qui vient avant cinq sixièmes.",
+   "texte": "Ordre croissant : −1/2 < 2/3 < 5/6",
+   "ecran": "ranger_ex"
+  },
+  {
+   "id": "p30",
+   "dit": "Tronquer et arrondir sont deux façons différentes d'approcher un nombre. La troncature à un ordre donné coupe les décimales au-delà du rang choisi, sans regarder la suite. L'arrondi choisit, lui, le décimal le plus proche avec le nombre de décimales voulu. Pour vingt-deux septièmes, à l'ordre du millième, la troncature donne trois virgule cent quarante-deux, et l'arrondi trois virgule cent quarante-trois.",
+   "texte": "Troncature à 10⁻³ : 3,142 · Arrondi : 3,143",
+   "ecran": "troncature"
+  },
+  {
+   "id": "p31",
+   "dit": "Encadrer un nombre, c'est l'enfermer entre deux bornes : un nombre inférieur ou égal, et un nombre supérieur ou égal. La différence entre les deux bornes s'appelle l'amplitude de l'encadrement : plus elle est petite, plus l'encadrement est précis. On peut encadrer par des entiers, au dixième, au centième, selon la précision demandée par le problème.",
+   "texte": "Encadrer : u ≤ x ≤ v, d'amplitude v − u",
+   "ecran": "encadrement_def"
+  },
+  {
+   "id": "p32",
+   "dit": "Encadrons dix-sept tiers. Sa valeur est cinq virgule six six six qui se répète, donc il se place entre les entiers cinq et six. Au dixième près, les bornes se resserrent : cinq virgule six et cinq virgule sept l'encadrent, avec une amplitude d'un dixième. Remarque que la borne basse est la troncature et la borne haute, son successeur au même ordre.",
+   "texte": "5 < 17/3 < 6, puis 5,6 ≤ 17/3 ≤ 5,7",
+   "ecran": "encadrement_ex"
+  },
+  {
+   "id": "p33",
+   "dit": "Un encadrement se transporte à travers les opérations, en respectant les règles de l'ordre. Si un nombre est encadré entre deux virgule trois et deux virgule quatre, alors en ajoutant trois des deux côtés, la somme est encadrée entre cinq virgule trois et cinq virgule quatre. En multipliant par moins deux, l'ordre s'inverse : le produit est encadré entre moins quatre virgule huit et moins quatre virgule six.",
+   "texte": "Encadrer 3 + b et −2b à partir de 2,3 ≤ b ≤ 2,4",
+   "ecran": "encadrer_ops"
+  },
+  {
+   "id": "p34",
+   "dit": "Une puissance d'un nombre rationnel répète la multiplication : la puissance d'exposant un entier positif est le produit du nombre par lui-même, autant de fois que l'indique l'exposant. L'exposant zéro donne toujours un, pour un nombre non nul. Et un exposant négatif donne l'inverse de la puissance positive correspondante. Pour une fraction, la puissance s'applique au numérateur et au dénominateur séparément.",
+   "texte": "a⁰ = 1 et a puissance −n = inverse de a puissance n",
+   "ecran": "puissances_def"
+  },
+  {
+   "id": "p35",
+   "dit": "Exemple : deux tiers élevé à la puissance moins deux. On applique la puissance au numérateur et au dénominateur, ce qui donne deux puissance moins deux sur trois puissance moins deux. Les exposants négatifs renversent chaque côté, et l'on obtient trois au carré sur deux au carré, c'est-à-dire neuf quarts. Un exposant négatif sur une fraction revient donc à retourner la fraction puis à élever au positif.",
+   "texte": "(2/3) puissance −2 = 9/4",
+   "ecran": "puissance_ex"
+  },
+  {
+   "id": "p36",
+   "dit": "Les propriétés des puissances transforment les calculs en jeux d'exposants. Un produit de puissances de même base additionne les exposants. Un quotient les soustrait. Une puissance de puissance les multiplie. Et la puissance d'un produit se distribue sur chaque facteur. Ces règles exigent des bases non nulles dès que des exposants négatifs ou nuls interviennent.",
+   "texte": "Produit : exposants ajoutés · Quotient : soustraits · Puissance : multipliés",
+   "ecran": "puissances_prop"
+  },
+  {
+   "id": "p37",
+   "dit": "Simplifions une expression qui mélange les trois règles : cinq puissance trois fois cinq puissance moins deux, le tout divisé par cinq puissance quatre. Le numérateur combine ses exposants : trois plus moins deux donne un. Le quotient soustrait ensuite : un moins quatre donne moins trois. Le résultat est cinq puissance moins trois, c'est-à-dire un sur cent vingt-cinq.",
+   "texte": "5³ × 5⁻² / 5⁴ = 5⁻³ = 1/125",
+   "ecran": "puissances_ex"
+  },
+  {
+   "id": "p38",
+   "dit": "L'écriture scientifique donne aux très grands et aux très petits nombres une forme lisible et comparable : un nombre décimal avec exactement un chiffre non nul avant la virgule, multiplié par une puissance de dix. L'exposant de dix indique immédiatement l'ordre de grandeur, ce qui permet de comparer deux nombres d'un coup d'œil, avant même tout calcul.",
+   "texte": "Écriture scientifique : a × 10ⁿ, avec 1 ≤ a < 10",
+   "ecran": "scientifique"
+  },
+  {
+   "id": "p39",
+   "dit": "Deux exemples pour fixer le geste. Un nombre très petit, qui s'écrit avec trois zéros après la virgule avant ses chiffres significatifs, devient deux virgule quarante-cinq fois dix puissance moins quatre : la virgule a glissé de quatre rangs vers la droite, d'où l'exposant négatif. À l'inverse, trois cent vingt-cinq virgule sept s'écrit trois mille deux cent cinquante-sept fois dix puissance moins un. Décaler la virgule et compter les rangs : tout est là.",
+   "texte": "0,000245 = 2,45 × 10⁻⁴ · 325,7 = 3257 × 10⁻¹",
+   "ecran": "scientifique_ex"
+  },
+  {
+   "id": "p40",
+   "dit": "Résumons cette dernière partie. Comparer passe par le signe de la différence, et le passage d'un facteur négatif inverse toujours les inégalités. Encadrer donne des bornes dont l'amplitude mesure la précision. Les puissances se manipulent par leurs exposants, qui s'ajoutent, se soustraient ou se multiplient. Et l'écriture scientifique termine le cours : un seul chiffre avant la virgule, puis la puissance de dix qui porte l'ordre de grandeur.",
+   "texte": "Comparer, encadrer, puissances, écriture scientifique",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Facteurs premiers, plus grand diviseur commun et plus petit multiple commun"
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "Les nombres rationnels et leurs opérations",
+   "pont": {
+    "texte": "Partie 2 · Les nombres rationnels et leurs opérations",
+    "dit": "Partie deux : les nombres rationnels et leurs opérations. Les diviseurs et multiples de la première partie deviennent maintenant des outils de calcul sur les fractions."
+   }
+  },
+  {
+   "debut": "p26",
+   "sous_titre": "Comparer, encadrer, puissances et écriture scientifique",
+   "pont": {
+    "texte": "Partie 3 · Comparer, encadrer et puissances",
+    "dit": "Partie trois : comparer, encadrer, et calculer avec les puissances. Nous terminerons par l'écriture scientifique, qui donne leur forme la plus lisible aux nombres très grands comme aux très petits."
+   }
+  }
+ ]
+}
