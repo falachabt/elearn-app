@@ -1,0 +1,355 @@
+{
+ "cours": 6355,
+ "ecrans": {
+  "concepts": {
+   "kicker": "Le vocabulaire de base",
+   "tex": [
+    "\\text{gène : un facteur héréditaire discret}",
+    "\\text{allèle : une version d'un même gène}",
+    "\\text{génotype : les allèles portés}",
+    "\\text{phénotype : le caractère observé}"
+   ],
+   "titre": "Quatre mots à ne plus confondre",
+   "type": "etape"
+  },
+  "conseil": {
+   "type": "recap",
+   "kicker": "Application : le conseil génétique",
+   "etapes": [
+    "maladie récessive, Aa × Aa : 1/4 d'enfant atteint",
+    "maladie dominante, Aa × aa : 1/2 d'enfant atteint",
+    "maladie dominante, AA × aa : tous les enfants atteints"
+   ]
+  },
+  "dihybride": {
+   "type": "recap",
+   "kicker": "Le croisement dihybride",
+   "etapes": [
+    "parents purs : JJRR × jjrr",
+    "première génération : 100% de JjRr",
+    "deux caractères à la fois, un seul résultat visible"
+   ]
+  },
+  "dominance": {
+   "type": "recap",
+   "kicker": "Dominance et récessivité",
+   "etapes": [
+    "dominant : il s'exprime chez VV et chez Vv",
+    "récessif : il ne s'exprime que chez vv",
+    "homozygote : deux allèles identiques",
+    "hétérozygote : deux allèles différents"
+   ]
+  },
+  "f2": {
+   "type": "recap",
+   "kicker": "Exemple chiffré : la deuxième génération",
+   "etapes": [
+    "929 plants comptés en deuxième génération",
+    "705 à fleurs violettes, soit environ 75%",
+    "224 à fleurs blanches, soit environ 25%",
+    "rapport observé : environ 3 violets pour 1 blanc"
+   ]
+  },
+  "f2_dihybride": {
+   "kicker": "La deuxième génération dihybride",
+   "tex": [
+    "\\text{rond et jaune : } 9 \\text{ cases}",
+    "\\text{rond et vert : } 3 \\text{ cases}",
+    "\\text{ridé et jaune : } 3 \\text{ cases}",
+    "\\text{ridé et vert : } 1 \\text{ case}"
+   ],
+   "titre": "Seize cases, quatre phénotypes",
+   "type": "etape"
+  },
+  "gametes": {
+   "kicker": "Les gamètes du double hétérozygote",
+   "note": "Chaque gamète reçoit un seul allèle de chaque gène",
+   "tex": "JjRr \\ \\rightarrow \\ JR, \\ Jr, \\ jR, \\ jr \\qquad \\text{chacun } \\tfrac{1}{4}",
+   "type": "formule"
+  },
+  "genotype_pheno": {
+   "type": "recap",
+   "kicker": "Génotype et phénotype",
+   "etapes": [
+    "JJ et Jj : même phénotype, graines jaunes",
+    "jj seul : phénotype vert",
+    "le phénotype cache donc parfois le génotype",
+    "et l'environnement module l'expression"
+   ]
+  },
+  "intro": {
+   "kicker": "Le jardinier de Brno",
+   "texte": "Trente mille plants de pois, une méthode, une révolution.",
+   "type": "phrase",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 200
+   }
+  },
+  "limites": {
+   "type": "recap",
+   "kicker": "Au-delà du modèle simple",
+   "etapes": [
+    "gènes liés : pas d'indépendance",
+    "dominance incomplète : l'hétérozygote est intermédiaire",
+    "codominance : les deux allèles s'expriment",
+    "exemples : fleur rose, groupe sanguin AB"
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode en quatre gestes",
+   "etapes": [
+    "décoder : caractères, allèles, dominance",
+    "déduire les génotypes des parents",
+    "lister les gamètes et leurs probabilités",
+    "combiner, puis traduire en phénotypes"
+   ]
+  },
+  "pois": {
+   "type": "recap",
+   "kicker": "Pourquoi le pois ?",
+   "etapes": [
+    "caractères contrastés et faciles à observer",
+    "plusieurs générations par an",
+    "autofécondation et croisements contrôlés",
+    "lignées pures : le même caractère à chaque génération"
+   ]
+  },
+  "pre": {
+   "type": "recap",
+   "kicker": "Avant Mendel",
+   "etapes": [
+    "hérédité par mélange : les caractères se diluent",
+    "préformationnisme : l'organisme déjà formé dans le gamète",
+    "caractères acquis : transmis selon Lamarck"
+   ]
+  },
+  "produit": {
+   "kicker": "Pourquoi neuf, trois, trois, un ?",
+   "note": "Le produit de deux rapports trois pour un",
+   "tex": "(3:1) \\times (3:1) = 9:3:3:1",
+   "type": "formule"
+  },
+  "punnett": {
+   "kicker": "L'échiquier de Punnett",
+   "tex": [
+    "\\text{croisement : } Vv \\times Vv",
+    "\\text{génotypes : } \\tfrac{1}{4} \\ VV, \\ \\tfrac{1}{2} \\ Vv, \\ \\tfrac{1}{4} \\ vv",
+    "\\text{phénotypes : } \\tfrac{3}{4} \\text{ violets, } \\tfrac{1}{4} \\text{ blancs}"
+   ],
+   "titre": "Une grille, toutes les combinaisons",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Un gène, deux allèles, une ségrégation",
+    "Dominant masque, récessif réapparaît",
+    "Monohybride : 3 pour 1 en deuxième génération",
+    "Dihybride : 9, 3, 3, 1 si indépendants",
+    "Punnett prédit, le test-cross vérifie"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "redecouverte": {
+   "kicker": "La redécouverte",
+   "texte": "Publié en 1866, ignoré, puis redécouvert en 1900.",
+   "type": "phrase",
+   "anim": {
+    "nom": "fleur_fig",
+    "hauteur": 200
+   }
+  },
+  "segregation": {
+   "kicker": "Première loi : la ségrégation",
+   "note": "Chaque gamète ne reçoit qu'un seul allèle de la paire",
+   "tex": "Aa \\ \\rightarrow \\ \\tfrac{1}{2} \\ A, \\ \\tfrac{1}{2} \\ a",
+   "type": "formule"
+  },
+  "testcross": {
+   "type": "recap",
+   "kicker": "Le test-cross",
+   "etapes": [
+    "parent dominant inconnu croisé avec aa",
+    "si le parent est AA : 100% de dominants",
+    "si le parent est Aa : moitié dominants, moitié récessifs",
+    "un seul récessif dans la descendance trahit Aa"
+   ]
+  },
+  "testcross_dihybride": {
+   "kicker": "La preuve de l'indépendance",
+   "note": "Croiser le double hétérozygote avec le double récessif",
+   "tex": "JjRr \\times jjrr \\ \\rightarrow \\ 1:1:1:1",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "fleur_fig"
+   },
+   "kicker": "Biologie · Les lois de Mendel",
+   "sous": "Compter les pois pour découvrir les lois de l'hérédité",
+   "titre": "Les lois de Mendel : compter pour prédire l'hérédité",
+   "type": "titre"
+  }
+ },
+ "matiere": "Biologie",
+ "phrases": [
+  {
+   "dit": "Bienvenue dans le jardin de Brno, au milieu du dix-neuvième siècle. Un moine augustinien, Gregor Mendel, y cultive près de trente mille plants de pois, entre mille huit cent cinquante-six et mille huit cent soixante-trois. En comptant chaque graine et chaque fleur, il va découvrir les lois de l'hérédité, là où ses prédécesseurs ne faisaient que décrire. Nous suivrons sa méthode : d'abord un seul caractère, puis deux, et enfin les limites du modèle.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Mendel : compter les pois, découvrir les lois."
+  },
+  {
+   "dit": "Imaginez ce jardinier patient, professeur de physique et d'histoire naturelle, qui transforme un potager en laboratoire. Il choisit le pois pour de bonnes raisons, que nous verrons, et il commence par construire des lignées pures : des plants qui, autofécondés génération après génération, ne donnent toujours que le même caractère.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Un moine, un jardin, trente mille plants."
+  },
+  {
+   "dit": "Avant lui, trois idées dominaient, sans jamais être mesurées. L'hérédité par mélange imaginait les caractères des parents se diluant comme des fluides. Le préformationnisme supposait l'organisme déjà complet dans le gamète. Et la théorie des caractères acquis, associée à Lamarck, affirmait que ce qu'un individu acquiert pendant sa vie se transmet à ses enfants. Aucune de ces théories n'expliquait qu'un caractère puisse disparaître puis réapparaître plusieurs générations plus tard.",
+   "ecran": "pre",
+   "id": "p03",
+   "texte": "Mélange, préformation, acquis : sans mesures."
+  },
+  {
+   "dit": "Pourquoi le pois est-il un si bon choix ? Ses caractères sont contrastés et faciles à observer : couleur et forme des graines, couleur des fleurs, taille des plants. Il se reproduit vite, plusieurs générations par an. Ses fleurs se prêtent à la castration manuelle, ce qui permet d'éviter l'autopollinisation et de contrôler les croisements. Et surtout, on peut obtenir des lignées pures : une lignée à fleurs violettes ne donne, par autofécondation, que des fleurs violettes.",
+   "ecran": "pois",
+   "id": "p04",
+   "texte": "Pois : contrasté, rapide, croisable à volonté."
+  },
+  {
+   "dit": "Voici l'expérience fondatrice. Mendel croise une lignée pure à fleurs violettes avec une lignée pure à fleurs blanches. En première génération, cent pour cent des plants ont des fleurs violettes : le blanc semble avoir disparu. Il laisse alors ces hybrides s'autoféconder. En deuxième génération, sur neuf cent vingt-neuf plants comptés, il obtient sept cent cinq plants à fleurs violettes, soit environ soixante-quinze pour cent, et deux cent vingt-quatre à fleurs blanches, soit environ vingt-cinq pour cent. Le blanc n'avait pas disparu : il était seulement caché, et le rapport est remarquablement proche de trois pour un.",
+   "ecran": "f2",
+   "id": "p05",
+   "texte": "929 plants : 705 violets, 224 blancs, ≈ 3:1."
+  },
+  {
+   "dit": "De ces comptages naît un vocabulaire qu'il faut fixer. Le gène, que Mendel appelait facteur, est une entité discrète qui contrôle un caractère. L'allèle est une version d'un même gène : par exemple violet ou blanc pour la couleur des fleurs. Le génotype est l'ensemble des allèles portés par un individu. Le phénotype est le caractère observé, le résultat visible de ce génotype, parfois modulé par l'environnement.",
+   "ecran": "concepts",
+   "id": "p06",
+   "texte": "Gène, allèle, génotype, phénotype."
+  },
+  {
+   "dit": "Première loi, la loi de ségrégation. Chaque individu possède deux allèles pour chaque gène, un hérité de chaque parent. Lors de la formation des gamètes, les deux allèles de la paire se séparent, de sorte que chaque gamète ne reçoit qu'un seul allèle. Un individu hétérozygote produit donc deux types de gamètes, en proportions égales : la moitié porte un allèle, l'autre moitié porte l'autre.",
+   "ecran": "segregation",
+   "id": "p07",
+   "texte": "Séparer la paire : un allèle par gamète."
+  },
+  {
+   "dit": "Deuxième idée, la dominance. Dans un hétérozygote, un allèle peut masquer l'expression de l'autre. L'allèle dominant s'exprime à la fois chez l'homozygote dominant et chez l'hétérozygote ; l'allèle récessif ne s'exprime que chez l'homozygote récessif. Attention : la dominance n'est pas une propriété absolue d'un allèle, c'est une relation entre deux allèles pour un caractère donné. Et le récessif masqué n'est ni perdu ni inactif : il reste dans le génotype et peut être transmis.",
+   "ecran": "dominance",
+   "id": "p08",
+   "texte": "Dominant s'exprime, récessif se cache."
+  },
+  {
+   "dit": "Pour prédire une descendance, on utilise l'échiquier de Punnett, formalisé après Mendel par le généticien britannique Reginald Punnett. Prenons deux hétérozygotes pour la couleur des fleurs, violet dominant sur blanc. Chaque parent produit deux types de gamètes. La grille deux par deux donne trois génotypes : un quart de plants violets homozygotes, la moitié d'hétérozygotes, un quart de blancs homozygotes, soit un rapport d'un pour deux pour un. Pour les phénotypes, trois quarts de violets contre un quart de blancs : le fameux trois pour un.",
+   "ecran": "punnett",
+   "id": "p09",
+   "texte": "Vv × Vv : génotypes 1:2:1, phénotypes 3:1."
+  },
+  {
+   "dit": "Retenez la méthode générale, en quatre gestes. D'abord décoder : identifier les caractères, les allèles et la relation de dominance. Ensuite déduire les génotypes des parents à partir de leurs phénotypes. Puis lister tous les gamètes possibles de chaque parent, avec leurs probabilités. Enfin combiner, avec un échiquier ou les règles des probabilités, et traduire les génotypes obtenus en phénotypes. C'est cette méthode qui transforme la génétique en science prédictive.",
+   "ecran": "methode",
+   "id": "p10",
+   "texte": "Décoder, déduire, gamètes, combiner."
+  },
+  {
+   "dit": "Mais comment savoir si un individu au phénotype dominant est homozygote ou hétérozygote ? On le croise avec un homozygote récessif : c'est le test-cross. Si le parent testé est homozygote dominant, toute la descendance est hétérozygote et montre le phénotype dominant. S'il est hétérozygote, la descendance se partage moitié-moitié entre phénotype dominant et phénotype récessif. L'apparition d'un seul individu récessif suffit donc à trahir l'hétérozygotie du parent testé.",
+   "ecran": "testcross",
+   "id": "p11",
+   "texte": "Test-cross : croiser avec aa pour révéler Aa."
+  },
+  {
+   "dit": "Passons à deux caractères à la fois. Mendel croise des parents purs pour deux caractères : graines jaunes et lisses d'un côté, vertes et ridées de l'autre. Toute la première génération est double hétérozygote, jaune et lisse : les deux dominants s'expriment, les deux récessifs sont masqués. La question décisive est de savoir comment ces deux paires d'allèles se comportent ensuite, lors de la formation des gamètes.",
+   "ecran": "dihybride",
+   "id": "p12",
+   "texte": "Deux caractères purs, une génération uniforme."
+  },
+  {
+   "dit": "Deuxième loi, la loi de l'assortiment indépendant. Lors de la formation des gamètes, la ségrégation des allèles d'un gène se fait indépendamment de celle d'un autre gène. Un double hétérozygote produit donc quatre types de gamètes, en proportions égales : chaque combinaison d'un allèle de chaque gène a une probabilité d'un quart. Précision essentielle : cette loi ne vaut que si les gènes sont sur des chromosomes différents, ou très éloignés sur un même chromosome. Mendel a eu la chance de travailler sur des caractères indépendants.",
+   "ecran": "gametes",
+   "id": "p13",
+   "texte": "Quatre gamètes équiprobables, si indépendants."
+  },
+  {
+   "dit": "L'autofécondation de ces doubles hétérozygotes donne une grille de seize cases, et quatre phénotypes. Neuf cases rondes et jaunes, trois cases rondes et vertes, trois cases ridées et jaunes, et une seule case ridée et verte. C'est le rapport légendaire neuf, trois, trois, un, la signature d'une transmission indépendante de deux gènes à dominance complète.",
+   "ecran": "f2_dihybride",
+   "id": "p14",
+   "texte": "16 cases : 9, 3, 3, 1."
+  },
+  {
+   "dit": "Et ce rapport n'a rien de magique : c'est le produit de deux rapports monohybrides. Trois quarts de jaunes contre un quart de verts, multipliés par trois quarts de lisses contre un quart de ridés, donnent neuf seizièmes de jaunes lisses, trois seizièmes de jaunes ridés, trois seizièmes de verts lisses et un seizième de verts ridés. Comprendre ce produit, c'est comprendre pourquoi les lois de Mendel sont des lois de probabilités.",
+   "ecran": "produit",
+   "id": "p15",
+   "texte": "(3:1) × (3:1) = 9:3:3:1."
+  },
+  {
+   "dit": "La preuve la plus nette de l'indépendance est le test-cross dihybride. Croisez le double hétérozygote avec le double récessif : vous obtenez les quatre phénotypes en proportions égales, un, un, un, un. Si les proportions s'écartent nettement de cette égalité, c'est un indice que les gènes sont liés, situés proches l'un de l'autre sur le même chromosome, et qu'ils tendent à être transmis ensemble.",
+   "ecran": "testcross_dihybride",
+   "id": "p16",
+   "texte": "Double test-cross : 1:1:1:1 prouve l'indépendance."
+  },
+  {
+   "dit": "Mais le modèle simple a ses limites, et Mendel lui-même ne les ignorait pas. Si deux gènes sont liés, ils ne s'assortissent plus indépendamment. Si la dominance est incomplète, l'hétérozygote montre un phénotype intermédiaire : une fleur rouge croisée avec une fleur blanche donne des fleurs roses, et le rapport phénotypique redevient un, deux, un. Et en codominance, les deux allèles s'expriment pleinement ensemble, comme pour les groupes sanguins AB. Le modèle mendélien reste le socle, mais la nature ajoute des nuances.",
+   "ecran": "limites",
+   "id": "p17",
+   "texte": "Liés, incomplets, codominants : les nuances."
+  },
+  {
+   "dit": "Revenons à la distinction la plus piégeuse : génotype et phénotype. Deux génotypes différents peuvent donner le même phénotype : un pois jaune peut être homozygote ou hétérozygote, et seul un croisement test le révèlera. Inversement, le phénotype dépend aussi de l'environnement : la couleur d'une fleur d'hortensia varie avec l'acidité du sol, et la taille d'un individu dépend de ses gènes et de sa nutrition. Le phénotype est le produit du génotype et du milieu, jamais une simple lecture du génotype.",
+   "ecran": "genotype_pheno",
+   "id": "p18",
+   "texte": "Même phénotype, génotypes différents."
+  },
+  {
+   "dit": "Appliquons tout cela au conseil génétique, l'usage le plus humain des lois de Mendel. Pour une maladie récessive, deux parents porteurs sains ont un risque d'un quart d'avoir un enfant atteint, à chaque naissance, indépendamment des précédentes. Pour une maladie dominante, un parent hétérozygote atteint croisé avec un parent sain a un risque d'une moitié d'avoir un enfant atteint. Et si le parent atteint est homozygote, tous ses enfants reçoivent l'allèle et expriment le caractère. Ces fractions simples guident des décisions familiales majeures.",
+   "ecran": "conseil",
+   "id": "p19",
+   "texte": "Risques : 1/4 récessif, 1/2 dominant."
+  },
+  {
+   "dit": "Ironie de l'histoire : présenté en mille huit cent soixante-cinq, publié en mille huit cent soixante-six, le travail de Mendel resta ignoré de son vivant, car la biologie de l'époque était descriptive et les mathématiques en biologie inhabituelles. Il fallut attendre mille neuf cents pour que trois botanistes, Hugo de Vries, Carl Correns et Erich von Tschermak, redécouvrent indépendamment ses lois. Cette année-là marque la naissance officielle de la génétique.",
+   "ecran": "redecouverte",
+   "id": "p20",
+   "texte": "1866 ignoré, 1900 redécouvert."
+  },
+  {
+   "dit": "Récapitulons. Un gène porte deux allèles, qui se séparent dans les gamètes. L'allèle dominant masque le récessif, qui réapparaît en deuxième génération. En monohybride, on obtient trois pour un ; en dihybride indépendant, neuf, trois, trois, un. L'échiquier de Punnett prédit, le test-cross vérifie, et la méthode en quatre gestes s'applique à tous les problèmes mendéliens.",
+   "ecran": "recap",
+   "id": "p21",
+   "texte": "Séparer, masquer, compter, prédire."
+  },
+  {
+   "dit": "Mendel n'avait ni gènes ni chromosomes sous les yeux : il n'avait que des pois, des chiffres et de la patience. Et c'est en comptant qu'il a transformé l'hérédité, d'un mystère descriptif, en une science prédictive qui sert encore aujourd'hui, du champ à la clinique.",
+   "ecran": "recap",
+   "id": "p22",
+   "texte": "Des pois comptés, une science prédictive."
+  }
+ ],
+ "titre": "Les lois de Mendel : compter pour prédire l'hérédité",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Mendel, le pois et la ségrégation"
+  },
+  {
+   "debut": "p08",
+   "pont": {
+    "dit": "Partie deux : la dominance, l'échiquier de Punnett et le dihybride. Nous verrons qui masque qui, comment construire la grille qui prédit une descendance, comment tester un génotype inconnu, puis comment deux caractères indépendants donnent le rapport neuf, trois, trois, un.",
+    "texte": "Partie 2 : dominance, Punnett et dihybride."
+   },
+   "sous_titre": "Dominance, Punnett et dihybride"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie trois : comprendre le rapport neuf, trois, trois, un, puis dépasser le modèle simple. Nous expliquerons le produit des rapports, nous prouverons l'indépendance par le test-cross, nous verrons les limites du modèle, et nous appliquerons les lois au conseil génétique.",
+    "texte": "Partie 3 : comprendre, tester et appliquer."
+   },
+   "sous_titre": "Comprendre, tester et appliquer"
+  }
+ ]
+}
