@@ -1,0 +1,446 @@
+{
+ "cours": 6711,
+ "titre": "Calcul littéral, équations et inéquations du premier degré",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Calcul littéral",
+   "titre": "Calcul littéral, équations et inéquations du premier degré",
+   "sous": "Développer, factoriser, puis résoudre : les lettres deviennent des outils",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 230
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Pourquoi des lettres",
+   "texte": "Une lettre remplace un nombre inconnu : on calcule avec elle comme avec un nombre."
+  },
+  "definition": {
+   "type": "etape",
+   "kicker": "Expression littérale",
+   "titre": "Une, deux ou trois variables",
+   "tex": [
+    "3x + 5",
+    "2ab - 7",
+    "x + y + z"
+   ]
+  },
+  "valeur_exemple": {
+   "type": "etape",
+   "kicker": "Calculer une valeur",
+   "titre": "Remplacer, puis calculer",
+   "tex": [
+    "A = 2x^2 - 3y + 1, \\quad x = -4, \\; y = 2",
+    "A = 2 \\times (-4)^2 - 3 \\times 2 + 1",
+    "A = 2 \\times 16 - 6 + 1 = 27"
+   ]
+  },
+  "developper_def": {
+   "type": "phrase",
+   "kicker": "Développer",
+   "texte": "Développer, c'est transformer un produit en somme en supprimant les parenthèses."
+  },
+  "distributivite": {
+   "type": "formule",
+   "kicker": "Distributivité simple",
+   "tex": "a(b + c) = ab + ac",
+   "note": "Avec un moins, même geste : a(b - c) = ab - ac"
+  },
+  "exemple_distributivite": {
+   "type": "etape",
+   "kicker": "Exemple · distributivité",
+   "titre": "Distribuer le facteur devant",
+   "tex": [
+    "B = 3x(2x - 5)",
+    "B = 3x \\times 2x - 3x \\times 5",
+    "B = 6x^2 - 15x"
+   ]
+  },
+  "double_distributivite": {
+   "type": "formule",
+   "kicker": "Double distributivité",
+   "tex": "(a + b)(c + d) = ac + ad + bc + bd",
+   "note": "Chaque terme d'une parenthèse multiplie chaque terme de l'autre"
+  },
+  "exemple_double": {
+   "type": "etape",
+   "kicker": "Exemple · double distributivité",
+   "titre": "Développer puis réduire",
+   "tex": [
+    "C = (x + 3)(2x - 1)",
+    "C = 2x^2 - x + 6x - 3",
+    "C = 2x^2 + 5x - 3"
+   ]
+  },
+  "identites": {
+   "type": "etape",
+   "kicker": "Identités remarquables",
+   "titre": "Les trois identités remarquables",
+   "tex": [
+    "(a + b)^2 = a^2 + 2ab + b^2",
+    "(a - b)^2 = a^2 - 2ab + b^2",
+    "a^2 - b^2 = (a + b)(a - b)"
+   ]
+  },
+  "exemple_identite_dev": {
+   "type": "etape",
+   "kicker": "Exemple · identité",
+   "titre": "Développer un carré",
+   "tex": [
+    "D = (3x - 4)^2",
+    "D = (3x)^2 - 2 \\times 3x \\times 4 + 4^2",
+    "D = 9x^2 - 24x + 16"
+   ]
+  },
+  "factoriser_def": {
+   "type": "phrase",
+   "kicker": "Factoriser",
+   "texte": "Factoriser, c'est le chemin inverse : transformer une somme en produit de facteurs."
+  },
+  "facteur_commun": {
+   "type": "formule",
+   "kicker": "Facteur commun",
+   "tex": "ka + kb = k(a + b)",
+   "note": "Le facteur k, présent dans chaque terme, passe devant la parenthèse"
+  },
+  "exemple_facteur_commun": {
+   "type": "etape",
+   "kicker": "Exemple · facteur commun",
+   "titre": "Repérer ce qui se répète",
+   "tex": [
+    "F = 12x^2 - 18x",
+    "F = 6x \\times 2x - 6x \\times 3",
+    "F = 6x(2x - 3)"
+   ]
+  },
+  "exemple_difference": {
+   "type": "etape",
+   "kicker": "Exemple · différence de carrés",
+   "titre": "Reconnaître a au carré moins b au carré",
+   "tex": [
+    "E = 25x^2 - 49",
+    "E = (5x)^2 - 7^2",
+    "E = (5x + 7)(5x - 7)"
+   ]
+  },
+  "exemple_carre_parfait": {
+   "type": "etape",
+   "kicker": "Exemple · carré parfait",
+   "titre": "Reconnaître un carré déguisé",
+   "tex": [
+    "G = 9x^2 + 12x + 4",
+    "G = (3x)^2 + 2 \\times 3x \\times 2 + 2^2",
+    "G = (3x + 2)^2"
+   ]
+  },
+  "strategie": {
+   "type": "phrase",
+   "kicker": "Stratégie de factorisation",
+   "texte": "D'abord un facteur commun évident, ensuite une identité remarquable."
+  },
+  "rectangle": {
+   "type": "etape",
+   "kicker": "Application · un rectangle",
+   "titre": "Rectangle : largeur x, longueur x + 5",
+   "tex": [
+    "P = 2(x + x + 5) = 4x + 10",
+    "A = x(x + 5) = x^2 + 5x",
+    "x = 3 : A = 9 + 15 = 24 \\text{ cm}^2"
+   ]
+  },
+  "equation_def": {
+   "type": "phrase",
+   "kicker": "Équations du premier degré",
+   "texte": "Une équation est une égalité avec une inconnue : résoudre, c'est trouver ses solutions."
+  },
+  "proprietes_eq": {
+   "type": "phrase",
+   "kicker": "Les deux propriétés",
+   "texte": "Ajouter ou soustraire le même nombre des deux côtés ; multiplier ou diviser par un nombre non nul."
+  },
+  "methode_eq": {
+   "type": "etape",
+   "kicker": "Méthode · équation",
+   "titre": "Résoudre en deux gestes",
+   "tex": [
+    "ax + b = 0",
+    "ax = -b",
+    "x = -\\tfrac{b}{a}"
+   ]
+  },
+  "exemple_eq": {
+   "type": "etape",
+   "kicker": "Exemple · équation",
+   "titre": "Isoler l'inconnue, puis vérifier",
+   "tex": [
+    "3x - 6 = 0",
+    "3x = 6",
+    "x = 2 \\quad \\text{et} \\quad 3 \\times 2 - 6 = 0"
+   ]
+  },
+  "verification": {
+   "type": "etape",
+   "kicker": "Vérifier une solution",
+   "titre": "Tester une valeur candidate",
+   "tex": [
+    "4x + 1 = 3, \\quad x = \\tfrac{1}{2}",
+    "4 \\times \\tfrac{1}{2} + 1 = 2 + 1 = 3"
+   ]
+  },
+  "inequation_def": {
+   "type": "phrase",
+   "kicker": "Inéquations du premier degré",
+   "texte": "Une inéquation est une inégalité avec une inconnue : ses solutions forment un ensemble de nombres."
+  },
+  "piege_signe": {
+   "type": "phrase",
+   "kicker": "Le piège du signe",
+   "texte": "Multiplier ou diviser par un nombre strictement négatif renverse le sens de l'inégalité."
+  },
+  "exemple_ineq_pos": {
+   "type": "etape",
+   "kicker": "Exemple · inéquation",
+   "titre": "Diviser par un positif : rien ne change",
+   "tex": [
+    "2x - 4 \\geq 0",
+    "2x \\geq 4",
+    "x \\geq 2"
+   ]
+  },
+  "exemple_ineq_neg": {
+   "type": "etape",
+   "kicker": "Exemple · inéquation",
+   "titre": "Diviser par un négatif renverse le sens",
+   "tex": [
+    "-3x + 6 < 0",
+    "-3x < -6",
+    "x > 2"
+   ]
+  },
+  "probleme_methode": {
+   "type": "phrase",
+   "kicker": "Résoudre un problème",
+   "texte": "Choisir l'inconnue, traduire, résoudre, vérifier la cohérence, puis conclure par une phrase."
+  },
+  "exemple_probleme": {
+   "type": "etape",
+   "kicker": "Exemple · problème",
+   "titre": "Un périmètre d'au moins vingt centimètres",
+   "tex": [
+    "P = 2(x + 3) = 2x + 6",
+    "2x + 6 \\geq 20",
+    "2x \\geq 14 \\quad \\text{donc} \\quad x \\geq 7"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Développer : distributivité et identités",
+    "Factoriser : facteur commun ou identité",
+    "Équation : isoler x, puis vérifier",
+    "Inéquation : un négatif renverse le sens",
+    "Problème : traduire, résoudre, conclure"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de calcul littéral, consacré aux expressions avec des lettres, puis aux équations et aux inéquations du premier degré. Nous apprendrons à développer, à factoriser et à résoudre, avec des exemples calculés pas à pas.",
+   "texte": "Calcul littéral, équations et inéquations du premier degré",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Pourquoi écrire des lettres en mathématiques ? Parce qu'une lettre peut remplacer n'importe quel nombre : on raisonne une fois pour toutes, puis on remplace la lettre par la valeur du problème. C'est le point de départ de tout le cours.",
+   "texte": "Une lettre pour tous les nombres",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Une expression littérale contient une ou plusieurs lettres, appelées variables, qui représentent des nombres. Avec une variable : trois x plus cinq. Avec deux variables : deux a b moins sept. Avec trois variables : x plus y plus z.",
+   "texte": "Expression littérale : des lettres qui représentent des nombres",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Pour calculer la valeur d'une expression, on remplace chaque variable par sa valeur, puis on calcule en respectant les priorités. Exemple : pour x égal moins quatre et y égal deux, A vaut deux fois seize, moins six, plus un, donc vingt-sept.",
+   "texte": "Remplacer chaque lettre par sa valeur : A vaut 27",
+   "ecran": "valeur_exemple"
+  },
+  {
+   "id": "p05",
+   "dit": "Développer une expression, c'est la transformer en une somme de termes en supprimant les parenthèses. Le premier outil est la distributivité : un facteur devant une parenthèse se distribue sur chaque terme de la parenthèse.",
+   "texte": "Développer : supprimer les parenthèses",
+   "ecran": "developper_def"
+  },
+  {
+   "id": "p06",
+   "dit": "Voici la distributivité simple : a facteur de b plus c égale a b plus a c. Avec une soustraction, a facteur de b moins c égale a b moins a c. Le facteur a touche successivement b, puis c, sans oublier le signe qui les sépare.",
+   "texte": "a(b + c) = ab + ac",
+   "ecran": "distributivite"
+  },
+  {
+   "id": "p07",
+   "dit": "Appliquons : développer B égal trois x facteur de deux x moins cinq. Trois x fois deux x donne six x au carré, et trois x fois moins cinq donne moins quinze x. Au final, B égale six x au carré moins quinze x.",
+   "texte": "B = 6x² - 15x",
+   "ecran": "exemple_distributivite"
+  },
+  {
+   "id": "p08",
+   "dit": "Quand les deux facteurs sont des sommes, on utilise la double distributivité : a plus b, facteur de c plus d, égale a c plus a d plus b c plus b d. Chaque terme d'une parenthèse multiplie chaque terme de l'autre : quatre produits en tout.",
+   "texte": "(a + b)(c + d) = ac + ad + bc + bd",
+   "ecran": "double_distributivite"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple : développer et réduire C égal x plus trois, facteur de deux x moins un. Les quatre produits donnent deux x au carré, moins x, plus six x, moins trois. On regroupe les termes en x : C égale deux x au carré plus cinq x moins trois.",
+   "texte": "C = 2x² + 5x - 3",
+   "ecran": "exemple_double"
+  },
+  {
+   "id": "p10",
+   "dit": "Trois raccourcis à connaître par cœur : les identités remarquables. A plus b au carré égale a au carré plus deux a b plus b au carré. A moins b au carré égale a au carré moins deux a b plus b au carré. Et a au carré moins b au carré se factorise en a plus b facteur de a moins b.",
+   "texte": "Les trois identités remarquables",
+   "ecran": "identites"
+  },
+  {
+   "id": "p11",
+   "dit": "Développer D égal trois x moins quatre, le tout au carré. Deuxième identité, avec a égal trois x et b égal quatre : neuf x au carré, moins deux fois trois x fois quatre, plus seize, donc neuf x au carré moins vingt-quatre x plus seize.",
+   "texte": "D = 9x² - 24x + 16",
+   "ecran": "exemple_identite_dev"
+  },
+  {
+   "id": "p12",
+   "dit": "Factoriser, c'est le chemin inverse de développer : transformer une somme en un produit de facteurs. Deux voies possibles : repérer un facteur commun à tous les termes, ou reconnaître une identité remarquable écrite à l'envers.",
+   "texte": "Factoriser : transformer une somme en produit",
+   "ecran": "factoriser_def"
+  },
+  {
+   "id": "p13",
+   "dit": "Si le même facteur k apparaît dans chaque terme, on le place devant une parenthèse : k a plus k b égale k facteur de a plus b, et de même avec un moins. On repère le facteur commun, puis on note ce qui reste de chaque terme.",
+   "texte": "ka + kb = k(a + b)",
+   "ecran": "facteur_commun"
+  },
+  {
+   "id": "p14",
+   "dit": "Factoriser F égal douze x au carré moins dix-huit x. Le facteur commun est six x, car douze x au carré vaut six x fois deux x, et dix-huit x vaut six x fois trois. Il reste deux x moins trois dans la parenthèse.",
+   "texte": "F = 6x(2x - 3)",
+   "ecran": "exemple_facteur_commun"
+  },
+  {
+   "id": "p15",
+   "dit": "Factoriser E égal vingt-cinq x au carré moins quarante-neuf. C'est une différence de carrés : cinq x au carré d'un côté, sept au carré de l'autre. Donc E égale cinq x plus sept, facteur de cinq x moins sept.",
+   "texte": "E = (5x + 7)(5x - 7)",
+   "ecran": "exemple_difference"
+  },
+  {
+   "id": "p16",
+   "dit": "Dernier exemple : G égal neuf x au carré plus douze x plus quatre. Neuf x au carré est le carré de trois x, quatre est le carré de deux, et le double produit vaut bien douze x. C'est donc le carré de trois x plus deux.",
+   "texte": "G = (3x + 2)²",
+   "ecran": "exemple_carre_parfait"
+  },
+  {
+   "id": "p17",
+   "dit": "Retenez la stratégie : pour factoriser, on cherche d'abord un facteur commun évident ; s'il n'y en a pas, on cherche une identité remarquable, différence de carrés ou carré parfait. Cet ordre évite de manquer la factorisation la plus simple.",
+   "texte": "Facteur commun d'abord, identité ensuite",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p18",
+   "dit": "Application concrète : un rectangle a pour largeur x et pour longueur x plus cinq. Son périmètre vaut quatre x plus dix, et son aire vaut x au carré plus cinq x. Si x vaut trois centimètres, l'aire vaut vingt-quatre centimètres carrés.",
+   "texte": "Périmètre 4x + 10, aire x² + 5x, aire 24 cm² si x = 3",
+   "ecran": "rectangle"
+  },
+  {
+   "id": "p19",
+   "dit": "Passons aux équations du premier degré. Une équation est une égalité où figure une lettre, appelée inconnue, le plus souvent notée x. Résoudre, c'est trouver toutes les valeurs de l'inconnue qui rendent l'égalité vraie : ce sont les solutions.",
+   "texte": "Équation : une égalité, une inconnue, des solutions",
+   "ecran": "equation_def"
+  },
+  {
+   "id": "p20",
+   "dit": "Deux propriétés transforment une équation sans changer ses solutions. On peut ajouter ou soustraire un même nombre aux deux membres. Et on peut multiplier ou diviser les deux membres par un même nombre non nul. Le but : isoler l'inconnue.",
+   "texte": "Deux gestes qui conservent les solutions",
+   "ecran": "proprietes_eq"
+  },
+  {
+   "id": "p21",
+   "dit": "Pour une équation de la forme a x plus b égal zéro, avec a non nul, deux gestes suffisent : on soustrait b des deux côtés, ce qui donne a x égal moins b, puis on divise par a, ce qui donne x égal moins b sur a.",
+   "texte": "ax + b = 0 donne x = -b/a",
+   "ecran": "methode_eq"
+  },
+  {
+   "id": "p22",
+   "dit": "Résoudre trois x moins six égal zéro. On ajoute six aux deux membres : trois x égale six. On divise par trois : x égale deux. Vérification : trois fois deux moins six égale zéro, donc deux est bien la solution.",
+   "texte": "3x - 6 = 0 : la solution est 2",
+   "ecran": "exemple_eq"
+  },
+  {
+   "id": "p23",
+   "dit": "Vérifier qu'un nombre est solution est un réflexe à garder : on remplace l'inconnue par ce nombre dans chaque membre. Un demi est-il solution de quatre x plus un égal trois ? Le premier membre vaut deux plus un, donc trois : oui, c'est une solution.",
+   "texte": "Vérifier : remplacer et calculer chaque membre",
+   "ecran": "verification"
+  },
+  {
+   "id": "p24",
+   "dit": "Une inéquation ressemble à une équation, mais l'égalité devient une inégalité : supérieur ou égal, inférieur ou égal, ou strict. Résoudre, c'est trouver toutes les valeurs qui rendent l'inégalité vraie : elles forment un ensemble de solutions.",
+   "texte": "Inéquation : un ensemble de solutions",
+   "ecran": "inequation_def"
+  },
+  {
+   "id": "p25",
+   "dit": "Ajouter ou soustraire un même nombre conserve les solutions, et multiplier ou diviser par un nombre strictement positif conserve le sens. Mais attention au piège : multiplier ou diviser par un nombre strictement négatif renverse le sens de l'inéquation.",
+   "texte": "Diviser par un négatif renverse le sens",
+   "ecran": "piege_signe"
+  },
+  {
+   "id": "p26",
+   "dit": "Exemple sans piège : deux x moins quatre supérieur ou égal à zéro. On ajoute quatre, puis on divise par deux, un nombre positif : le sens est conservé, x est supérieur ou égal à deux. Les solutions sont tous les nombres à partir de deux.",
+   "texte": "2x - 4 ≥ 0 : x ≥ 2",
+   "ecran": "exemple_ineq_pos"
+  },
+  {
+   "id": "p27",
+   "dit": "Exemple avec piège : moins trois x plus six strictement inférieur à zéro. On soustrait six, puis on divise par moins trois, un nombre négatif : on renverse le sens, et x devient strictement supérieur à deux.",
+   "texte": "-3x + 6 < 0 : x > 2, sens renversé",
+   "ecran": "exemple_ineq_neg"
+  },
+  {
+   "id": "p28",
+   "dit": "Face à un problème, la démarche tient en cinq temps : choisir l'inconnue, traduire l'énoncé par une équation ou une inéquation, résoudre, vérifier que la solution est cohérente, puis conclure par une phrase-réponse.",
+   "texte": "Problème : choisir, traduire, résoudre, vérifier, conclure",
+   "ecran": "probleme_methode"
+  },
+  {
+   "id": "p29",
+   "dit": "Dernier exemple : un rectangle de longueur x centimètres et de largeur trois centimètres a un périmètre supérieur ou égal à vingt centimètres. Deux x plus six supérieur ou égal à vingt donne x supérieur ou égal à sept : la longueur mesure au moins sept centimètres.",
+   "texte": "Périmètre ≥ 20 cm : longueur ≥ 7 cm",
+   "ecran": "exemple_probleme"
+  },
+  {
+   "id": "p30",
+   "dit": "Pour terminer, retenez l'essentiel : développer grâce à la distributivité et aux identités, factoriser en cherchant d'abord un facteur commun, isoler l'inconnue dans une équation et toujours vérifier, et ne jamais oublier qu'un négatif renverse le sens d'une inéquation.",
+   "texte": "L'essentiel du cours en cinq points",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Expressions littérales : développer et factoriser"
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Application, équations et inéquations",
+   "pont": {
+    "texte": "Partie 2 : application, équations et inéquations du premier degré.",
+    "dit": "Partie deux : appliquer, puis résoudre. Nous mettrons d'abord le calcul littéral au service d'un rectangle, avant de résoudre des équations, puis des inéquations du premier degré, et de terminer par un problème complet."
+   }
+  }
+ ]
+}
