@@ -1,0 +1,397 @@
+{
+ "cours": 7212,
+ "titre": "Équations, inéquations et systèmes linéaires",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Équations, inéquations et systèmes",
+   "titre": "Équations, inéquations et systèmes linéaires",
+   "sous": "Du premier degré aux systèmes : résoudre, représenter, modéliser",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Résoudre, ce n'est pas deviner : c'est décrire tout un ensemble de solutions.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 200
+   }
+  },
+  "intervalles": {
+   "type": "etape",
+   "kicker": "Intervalles de R",
+   "titre": "Crochets fermés ou ouverts : bornes incluses ou exclues",
+   "tex": [
+    "[a;b] : a \\leq x \\leq b \\qquad ]a;b[ : a < x < b",
+    "[a;+\\infty[ : x \\geq a \\qquad ]-\\infty;a] : x \\leq a",
+    "]a;+\\infty[ : x > a"
+   ]
+  },
+  "intersection": {
+   "type": "etape",
+   "kicker": "Intersection et réunion",
+   "titre": "Combiner deux intervalles, comme deux ensembles",
+   "tex": [
+    "]-2;3] \\cap [0;5[ = [0;3]",
+    "x \\in I \\cap J : x \\in I \\text{ et } x \\in J",
+    "x \\in I \\cup J : x \\in I \\text{ ou } x \\in J"
+   ]
+  },
+  "equation": {
+   "type": "formule",
+   "kicker": "Équations du premier degré",
+   "tex": "ax + b = 0 \\quad a \\neq 0 \\qquad x = -\\frac{b}{a}",
+   "note": "Une seule solution dès que a est non nul."
+  },
+  "ex_equation": {
+   "type": "etape",
+   "kicker": "Exemple résolu · équation",
+   "titre": "Regrouper les ixe, regrouper les nombres, diviser",
+   "tex": [
+    "3x - 7 = 5x + 1",
+    "3x - 5x = 1 + 7 \\qquad -2x = 8",
+    "x = -4 \\qquad S = \\{-4\\}"
+   ]
+  },
+  "regle": {
+   "type": "formule",
+   "kicker": "Inéquations · la règle essentielle",
+   "tex": "x < y \\implies -x > -y",
+   "note": "Multiplier ou diviser par un négatif inverse le sens."
+  },
+  "ex_inequation": {
+   "type": "etape",
+   "kicker": "Exemple résolu · inéquation",
+   "titre": "Diviser par un négatif : le sens bascule",
+   "tex": [
+    "-2x + 5 \\leq 11",
+    "-2x \\leq 6",
+    "x \\geq -3 \\qquad S = [-3;+\\infty["
+   ]
+  },
+  "droite": {
+   "type": "formule",
+   "kicker": "Représentation sur une droite graduée",
+   "tex": "S = [-3;+\\infty[",
+   "note": "Borne incluse : crochet fermé, hachures vers la droite."
+  },
+  "tableau": {
+   "type": "etape",
+   "kicker": "Tableaux de signes",
+   "titre": "Un facteur par ligne, un intervalle par colonne",
+   "tex": [
+    "x \\qquad -\\infty \\qquad -3 \\qquad 1 \\qquad +\\infty",
+    "x + 3 : - \\qquad 0 \\qquad + \\qquad +",
+    "x - 1 : - \\qquad - \\qquad 0 \\qquad +",
+    "\\text{produit} : + \\qquad 0 \\qquad - \\qquad 0 \\qquad +"
+   ]
+  },
+  "ex_tableau": {
+   "type": "etape",
+   "kicker": "Exemple résolu · tableau de signes",
+   "titre": "Positif à l'extérieur des zéros, négatif entre les deux",
+   "tex": [
+    "S = ]-\\infty;-3] \\cup [1;+\\infty["
+   ]
+  },
+  "val_abs": {
+   "type": "formule",
+   "kicker": "Valeur absolue · définition",
+   "tex": "|x| = \\begin{cases} x & \\text{si } x \\geq 0 \\\\ -x & \\text{si } x < 0 \\end{cases}",
+   "note": "Distance de x à zéro sur la droite graduée."
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Valeur absolue · propriétés",
+   "titre": "Positive, nulle en zéro, et un encadrement clé",
+   "tex": [
+    "|x| \\geq 0 \\qquad |x| = 0 \\iff x = 0",
+    "|x| = |y| \\iff x = y \\text{ ou } x = -y",
+    "|x - a| : \\text{distance de } x \\text{ à } a"
+   ]
+  },
+  "ex_abs": {
+   "type": "etape",
+   "kicker": "Exemple résolu · valeur absolue",
+   "titre": "À distance cinq de deux : deux positions possibles",
+   "tex": [
+    "|x - 2| = 5",
+    "x - 2 = 5 \\quad \\text{ou} \\quad x - 2 = -5",
+    "x = 7 \\quad \\text{ou} \\quad x = -3 \\qquad S = \\{-3;7\\}"
+   ]
+  },
+  "abs_ineq": {
+   "type": "etape",
+   "kicker": "Exemple résolu · inéquation avec valeur absolue",
+   "titre": "Une valeur absolue bornée devient un encadrement",
+   "tex": [
+    "|x + 1| \\leq 3 \\iff -3 \\leq x + 1 \\leq 3",
+    "-4 \\leq x \\leq 2 \\qquad S = [-4;2]"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Première leçon · à retenir",
+   "etapes": [
+    "Intervalles : crochets ouverts ou fermés",
+    "Équation : x = -b/a, une seule solution",
+    "Par un négatif : le sens de l'inégalité change",
+    "Tableau de signes : signe de chaque facteur",
+    "Valeur absolue : distance à zéro"
+   ]
+  },
+  "systeme": {
+   "type": "etape",
+   "kicker": "Systèmes · définition",
+   "titre": "Un système : deux équations à résoudre ensemble",
+   "tex": [
+    "ax + by = c",
+    "a'x + b'y = c'"
+   ]
+  },
+  "substitution": {
+   "type": "etape",
+   "kicker": "Méthode de substitution",
+   "titre": "Isoler une inconnue, puis remplacer dans l'autre équation",
+   "tex": [
+    "x + y = 7 \\qquad 2x - y = 2",
+    "y = 7 - x",
+    "2x - (7 - x) = 2 \\qquad 3x = 9",
+    "x = 3 \\qquad y = 4 \\qquad S = \\{(3;4)\\}"
+   ]
+  },
+  "combinaison": {
+   "type": "etape",
+   "kicker": "Méthode de combinaison",
+   "titre": "Des coefficients opposés : l'addition élimine une inconnue",
+   "tex": [
+    "3x + 2y = 12 \\qquad 5x - 2y = 4",
+    "(1) + (2) : 8x = 16 \\qquad x = 2",
+    "(1) : 6 + 2y = 12 \\qquad y = 3 \\qquad S = \\{(2;3)\\}"
+   ]
+  },
+  "graphique": {
+   "type": "etape",
+   "kicker": "Interprétation graphique",
+   "titre": "La solution est le point d'intersection des deux droites",
+   "tex": [
+    "D_1 : y = -x + 7 \\qquad D_2 : y = 2x - 2",
+    "\\text{sécantes} : \\text{un couple} \\qquad \\text{parallèles distinctes} : \\text{aucun}",
+    "\\text{confondues} : \\text{une infinité de couples}"
+   ]
+  },
+  "modelisation": {
+   "type": "recap",
+   "kicker": "Modélisation de problèmes",
+   "etapes": [
+    "Choisir les inconnues et les nommer",
+    "Traduire chaque contrainte en équation",
+    "Résoudre par substitution ou combinaison",
+    "Vérifier : unités, signes, réalisme"
+   ]
+  },
+  "cinema_pose": {
+   "type": "etape",
+   "kicker": "Problème concret · le cinéma",
+   "titre": "Inconnues : ixe places adultes, igrec places enfants",
+   "tex": [
+    "x + y = 200",
+    "8x + 5y = 1315"
+   ]
+  },
+  "cinema_resol": {
+   "type": "etape",
+   "kicker": "Problème concret · résolution et vérification",
+   "titre": "Substituer, résoudre, puis vérifier les deux contraintes",
+   "tex": [
+    "y = 200 - x",
+    "8x + 5(200 - x) = 1315 \\qquad 3x = 315 \\qquad x = 105",
+    "y = 95 \\qquad 8 \\times 105 + 5 \\times 95 = 1315"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Substitution : isoler, puis remplacer",
+    "Combinaison : éliminer par addition",
+    "Graphique : l'intersection des deux droites",
+    "Modéliser : inconnues, équations, vérification",
+    "Toujours vérifier dans les deux équations"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux équations, aux inéquations et aux systèmes linéaires. Nous allons d'abord résoudre dans les réels, représenter les solutions sur une droite graduée et manier les intervalles, puis résoudre des systèmes à deux inconnues, par le calcul, par le graphique et par la modélisation d'un problème concret.",
+   "texte": "Équations, inéquations et systèmes : résoudre et représenter.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge est simple : résoudre, ce n'est pas deviner une valeur, c'est décrire tout l'ensemble des valeurs qui conviennent. Une équation donne souvent une seule valeur, une inéquation donne tout un intervalle, et un système donne un couple. À chaque fois, la même discipline : isoler, discuter le signe, puis vérifier.",
+   "texte": "Résoudre, c'est décrire tout l'ensemble des solutions.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par les intervalles, les ensembles de réels compris entre deux bornes. Crochet fermé, la borne est incluse. Crochet ouvert, elle est exclue. Ainsi, l'intervalle fermé de a à b contient tous les réels entre a et b, bornes comprises, tandis que l'intervalle ouvert les exclut toutes les deux. Vers l'infini, on écrit un crochet ouvert, car l'infini n'est jamais atteint.",
+   "texte": "Intervalles : la borne incluse ou exclue se lit au crochet.",
+   "ecran": "intervalles"
+  },
+  {
+   "id": "p04",
+   "dit": "Les intervalles se combinent comme des ensembles. L'intersection ne garde que les réels qui appartiennent aux deux intervalles à la fois. La réunion garde ceux qui appartiennent à l'un ou à l'autre. Exemple : l'intersection de l'intervalle de moins deux exclu à trois inclus avec l'intervalle de zéro inclus à cinq exclu ne garde que les réels de zéro à trois inclus.",
+   "texte": "Intersection : les deux à la fois ; réunion : l'un ou l'autre.",
+   "ecran": "intersection"
+  },
+  {
+   "id": "p05",
+   "dit": "Passons aux équations du premier degré. Une telle équation s'écrit avec un coefficient devant ixe, plus une constante, égal à zéro, avec un coefficient de ixe non nul. On isole ixe en regroupant les termes, et l'on obtient une solution unique : moins la constante, divisée par le coefficient de ixe.",
+   "texte": "Premier degré : une seule solution, moins b sur a.",
+   "ecran": "equation"
+  },
+  {
+   "id": "p06",
+   "dit": "Exemple, pas à pas. Résoudre trois ixe moins sept égale cinq ixe plus un. On regroupe les ixe à gauche et les nombres à droite : trois ixe moins cinq ixe égale un plus sept, soit moins deux ixe égale huit. On divise par moins deux : ixe égale moins quatre. L'ensemble des solutions ne contient que moins quatre.",
+   "texte": "Regrouper, puis diviser : moins quatre.",
+   "ecran": "ex_equation"
+  },
+  {
+   "id": "p07",
+   "dit": "Pour une inéquation, on isole ixe presque comme pour une équation, avec une règle essentielle qu'il ne faut jamais oublier. Multiplier ou diviser les deux membres par un nombre négatif inverse le sens de l'inégalité. Un inférieur ou égal devient un supérieur ou égal, et réciproquement. C'est là que se joue la plupart des erreurs.",
+   "texte": "Par un négatif, le sens bascule.",
+   "ecran": "regle"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple. Résoudre moins deux ixe plus cinq inférieur ou égal à onze. On retranche cinq : moins deux ixe est inférieur ou égal à six. On divise par moins deux, un nombre négatif, donc le sens change : ixe est supérieur ou égal à moins trois. L'ensemble des solutions est l'intervalle de moins trois inclus à plus l'infini.",
+   "texte": "Diviser par moins deux : l'inégalité se retourne.",
+   "ecran": "ex_inequation"
+  },
+  {
+   "id": "p09",
+   "dit": "Représentons cette solution sur une droite graduée. On place la borne moins trois, avec un crochet fermé, car moins trois est inclus. Puis on hachure toute la demi-droite située à droite, vers plus l'infini. Un crochet ouvert, au contraire, marquerait une borne exclue, avec un point vide. La figure se lit d'un coup d'œil : tout ce qui est hachuré convient.",
+   "texte": "Moins trois inclus, hachures vers la droite.",
+   "ecran": "droite"
+  },
+  {
+   "id": "p10",
+   "dit": "Pour un produit ou un quotient de facteurs du premier degré, on dresse un tableau de signes. Chaque facteur s'annule en une valeur, qui découpe la droite en intervalles. On note le signe de chaque facteur sur chaque intervalle, puis on applique la règle des signes : plus par moins donne moins, moins par moins donne plus.",
+   "texte": "Un tableau, un signe par facteur et par intervalle.",
+   "ecran": "tableau"
+  },
+  {
+   "id": "p11",
+   "dit": "Exemple. Résoudre le produit ixe moins un par ixe plus trois supérieur ou égal à zéro. Le premier facteur s'annule en un, le second en moins trois. À gauche de moins trois, les deux facteurs sont négatifs, le produit est positif. Entre moins trois et un, les signes diffèrent, le produit est négatif. À droite de un, il est positif. Comme l'inégalité est large, les zéros sont inclus : l'ensemble des solutions réunit les intervalles de moins l'infini à moins trois inclus et de un inclus à plus l'infini.",
+   "texte": "Produit positif dehors, négatif entre les zéros.",
+   "ecran": "ex_tableau"
+  },
+  {
+   "id": "p12",
+   "dit": "La valeur absolue d'un réel mesure sa distance à zéro sur la droite graduée. Si le réel est positif ou nul, sa valeur absolue est lui-même. S'il est négatif, sa valeur absolue est son opposé. Ainsi, la valeur absolue de moins cinq vaut cinq, et celle de cinq vaut aussi cinq : la distance ne retient pas le signe.",
+   "texte": "Valeur absolue : la distance à zéro, sans le signe.",
+   "ecran": "val_abs"
+  },
+  {
+   "id": "p13",
+   "dit": "Trois propriétés à connaître. Une valeur absolue est toujours positive ou nulle, et elle ne s'annule qu'en zéro. Deux réels ont la même valeur absolue quand ils sont égaux ou opposés. Enfin, dire que la valeur absolue de ixe est inférieure ou égale à un nombre positif a, c'est dire que ixe est coincé entre moins a et a. Plus généralement, la valeur absolue de ixe moins a mesure la distance entre ixe et a.",
+   "texte": "Coincé entre moins a et a : l'encadrement clé.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple. Résoudre la valeur absolue de ixe moins deux égale cinq. Un réel à distance cinq de deux se trouve à cinq unités à droite ou à cinq unités à gauche : ixe moins deux vaut cinq ou ixe moins deux vaut moins cinq. On obtient ixe égale sept ou ixe égale moins trois. L'ensemble des solutions contient donc moins trois et sept.",
+   "texte": "À distance cinq de deux : sept ou moins trois.",
+   "ecran": "ex_abs"
+  },
+  {
+   "id": "p15",
+   "dit": "Même idée pour une inéquation. Dire que la valeur absolue de ixe plus un est inférieure ou égale à trois, c'est dire que ixe plus un est coincé entre moins trois et trois. On retranche un partout : ixe est compris entre moins quatre et deux. L'ensemble des solutions est l'intervalle fermé de moins quatre à deux.",
+   "texte": "Entre moins quatre et deux, bornes comprises.",
+   "ecran": "abs_ineq"
+  },
+  {
+   "id": "p16",
+   "dit": "Récapitulons cette première leçon. Un intervalle se lit à ses crochets : fermé, la borne est incluse, ouvert, elle est exclue. Une équation du premier degré admet une seule solution. Diviser par un négatif inverse une inégalité. Un tableau de signes décompose un produit facteur par facteur. Et la valeur absolue mesure une distance, ce qui transforme bien des équations en deux cas simples.",
+   "texte": "Première leçon : l'essentiel à retenir.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p17",
+   "dit": "Deuxième leçon : les systèmes d'équations linéaires à deux inconnues. Un système réunit deux équations, chacune de la forme un coefficient fois ixe plus un coefficient fois igrec égale une constante. Résoudre le système, c'est trouver tous les couples qui vérifient les deux équations en même temps. Il peut n'y avoir qu'un seul couple, une infinité de couples, ou aucun.",
+   "texte": "Deux équations, un couple à trouver.",
+   "ecran": "systeme"
+  },
+  {
+   "id": "p18",
+   "dit": "Première méthode : la substitution. On exprime une inconnue en fonction de l'autre grâce à une équation, puis on remplace dans la seconde. Exemple : ixe plus igrec égale sept, et deux ixe moins igrec égale deux. De la première équation, igrec égale sept moins ixe. En remplaçant dans la seconde, deux ixe moins sept plus ixe égale deux, soit trois ixe égale neuf : ixe égale trois, puis igrec égale quatre. Le couple solution est trois, quatre.",
+   "texte": "Isoler igrec, remplacer, conclure : trois, quatre.",
+   "ecran": "substitution"
+  },
+  {
+   "id": "p19",
+   "dit": "Deuxième méthode : la combinaison, ou élimination. On multiplie chaque équation par un nombre bien choisi pour que les coefficients d'une inconnue deviennent opposés, puis on additionne membre à membre. Exemple : trois ixe plus deux igrec égale douze, et cinq ixe moins deux igrec égale quatre. Les coefficients de igrec sont déjà opposés : en additionnant, huit ixe égale seize, donc ixe égale deux. Dans la première équation, six plus deux igrec égale douze, donc igrec égale trois. Le couple solution est deux, trois.",
+   "texte": "Des coefficients opposés : l'addition élimine.",
+   "ecran": "combinaison"
+  },
+  {
+   "id": "p20",
+   "dit": "Chaque équation du système est l'équation d'une droite dans le plan. Résoudre le système, c'est chercher l'intersection des deux droites. Trois cas sont possibles : droites sécantes, un seul couple solution ; droites parallèles distinctes, aucune solution ; droites confondues, une infinité de couples. Reprenons le premier exemple : les droites ont pour équations igrec égale moins ixe plus sept et igrec égale deux ixe moins deux. Leurs coefficients directeurs, moins un et deux, diffèrent : les droites sont sécantes, et leur point d'intersection est bien le couple trois, quatre.",
+   "texte": "Sécantes, parallèles ou confondues : trois destins.",
+   "ecran": "graphique"
+  },
+  {
+   "id": "p21",
+   "dit": "Dernière démarche : modéliser un problème. Quatre gestes, dans l'ordre. Choisir les inconnues et préciser ce qu'elles représentent. Traduire chaque contrainte par une équation linéaire. Résoudre le système par substitution ou combinaison. Enfin, vérifier la cohérence avec l'énoncé : les unités, les signes, le réalisme du résultat.",
+   "texte": "Modéliser : inconnues, équations, vérification.",
+   "ecran": "modelisation"
+  },
+  {
+   "id": "p22",
+   "dit": "Exemple concret, au cinéma. Deux cents billets sont vendus. Une place adulte coûte huit euros, une place enfant cinq euros, et la recette totale est de mille trois cent quinze euros. Combien de places de chaque type ont été vendues ? On note ixe le nombre de places adultes et igrec le nombre de places enfants. Le nombre total de billets donne ixe plus igrec égale deux cents. La recette donne huit ixe plus cinq igrec égale mille trois cent quinze.",
+   "texte": "Deux cents billets, mille trois cent quinze euros de recette.",
+   "ecran": "cinema_pose"
+  },
+  {
+   "id": "p23",
+   "dit": "Résolvons par substitution. De la première équation, igrec égale deux cents moins ixe. En remplaçant dans la seconde, huit ixe plus cinq fois deux cents moins ixe égale mille trois cent quinze, soit trois ixe plus mille égale mille trois cent quinze. Donc trois ixe égale trois cent quinze, et ixe égale cent cinq. Alors igrec égale quatre-vingt-quinze. Vérification : cent cinq plus quatre-vingt-quinze font bien deux cents, et huit fois cent cinq plus cinq fois quatre-vingt-quinze font huit cent quarante plus quatre cent soixante-quinze, soit mille trois cent quinze. Le cinéma a vendu cent cinq places adultes et quatre-vingt-quinze places enfants.",
+   "texte": "Cent cinq adultes, quatre-vingt-quinze enfants : vérifié.",
+   "ecran": "cinema_resol"
+  },
+  {
+   "id": "p24",
+   "dit": "Pour finir, retenez l'essentiel. Pour une inconnue, intervalles, signe et valeur absolue font presque tout. Pour deux inconnues, deux méthodes au choix : substitution, en isolant puis en remplaçant, ou combinaison, en éliminant par addition. Graphiquement, la solution est le point d'intersection des deux droites. Et devant un problème, modélisez d'abord, calculez ensuite, vérifiez toujours dans les deux équations de départ.",
+   "texte": "Tout le cours : l'essentiel à retenir.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Intervalles, équations et inéquations du premier degré"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Tableaux de signes et valeur absolue",
+   "pont": {
+    "texte": "Partie 2 : tableaux de signes et valeur absolue.",
+    "dit": "Partie deux : les tableaux de signes et la valeur absolue. Nous dresserons le tableau d'un produit, puis nous mesurerons des distances sur la droite graduée pour résoudre équations et inéquations avec valeur absolue."
+   }
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Systèmes à deux inconnues et modélisation",
+   "pont": {
+    "texte": "Partie 3 : systèmes, graphique et modélisation.",
+    "dit": "Partie trois : les systèmes à deux inconnues. Deux méthodes de résolution, substitution et combinaison, l'interprétation graphique par les droites, et un problème concret de billetterie résolu jusqu'à la vérification."
+   }
+  }
+ ]
+}
