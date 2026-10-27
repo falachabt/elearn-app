@@ -1,0 +1,373 @@
+{
+ "cours": 7290,
+ "titre": "Fonctions polynômes et rationnelles : limites, dérivée et étude complète",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Fonctions polynômes et rationnelles",
+   "titre": "Fonctions polynômes et rationnelles : limites, dérivée et étude complète",
+   "sous": "Le terme dominant, la dérivée et le tableau de variation, puis le domaine et les asymptotes",
+   "anim": {
+    "nom": "courbe_cubique_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Deux familles, une même méthode : limites, dérivée, tableau, courbe.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 200
+   }
+  },
+  "limites_poly": {
+   "type": "formule",
+   "kicker": "Limites d'un polynôme en l'infini",
+   "tex": "\\lim_{x \\to \\pm\\infty} P(x) = \\lim_{x \\to \\pm\\infty} a_n x^n",
+   "note": "Degré pair : même limite des deux côtés · degré impair : limites opposées",
+   "anim": {
+    "nom": "courbe_cubique_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_limites": {
+   "type": "etape",
+   "kicker": "Exemple · limites d'une cubique",
+   "titre": "Le terme dominant décide de tout",
+   "tex": [
+    "P(x) = -2x^3 + 5x - 1",
+    "\\lim_{x \\to +\\infty} P(x) = -\\infty",
+    "\\lim_{x \\to -\\infty} P(x) = +\\infty"
+   ]
+  },
+  "continuite": {
+   "type": "formule",
+   "kicker": "Continuité en un point",
+   "tex": "\\lim_{x \\to a} P(x) = P(a)",
+   "note": "Vérifié en deux : la limite de x carré moins trois x plus deux vaut zéro, comme P de deux",
+   "anim": {
+    "nom": "discontinuites_fig",
+    "hauteur": 170
+   }
+  },
+  "derivee_regles": {
+   "type": "etape",
+   "kicker": "Dérivée d'un polynôme",
+   "titre": "Dériver terme à terme",
+   "tex": [
+    "(x^n)' = n\\,x^{n-1}",
+    "(k)' = 0 \\qquad (u + v)' = u' + v'",
+    "\\text{tout polynôme est dérivable sur } \\mathbb{R}"
+   ]
+  },
+  "ex_derivee": {
+   "type": "etape",
+   "kicker": "Exemple · dériver un polynôme",
+   "titre": "Chaque terme perd un degré",
+   "tex": [
+    "P(x) = 2x^3 - 5x^2 + 4x - 7",
+    "P'(x) = 6x^2 - 10x + 4"
+   ]
+  },
+  "lien_variations": {
+   "type": "etape",
+   "kicker": "Dérivée et variations",
+   "titre": "Le signe de la dérivée donne le sens de variation",
+   "tex": [
+    "P'(x) > 0 \\;\\Rightarrow\\; P \\text{ croissante}",
+    "P'(x) < 0 \\;\\Rightarrow\\; P \\text{ décroissante}",
+    "P' \\text{ s'annule, signe changeant}",
+    "\\Rightarrow \\text{extremum local}"
+   ]
+  },
+  "methode_etude": {
+   "type": "etape",
+   "kicker": "Méthode · étude complète d'un polynôme",
+   "titre": "Sept gestes, toujours dans le même ordre",
+   "tex": [
+    "\\text{1. domaine : } \\mathbb{R} \\qquad \\text{2. limites en } \\pm\\infty",
+    "\\text{3. dérivée } P'(x) \\qquad \\text{4. signe de } P'",
+    "\\text{5. tableau de variation}",
+    "\\text{6. extremums et points} \\qquad \\text{7. courbe}"
+   ]
+  },
+  "ex_etude_derivee": {
+   "type": "etape",
+   "kicker": "Exemple résolu · la dérivée et son signe",
+   "titre": "Une cubique étudiée de bout en bout",
+   "tex": [
+    "f(x) = x^3 - 3x + 2",
+    "f'(x) = 3x^2 - 3 = 3(x - 1)(x + 1)",
+    "f' > 0 \\text{ hors de } [-1; 1]",
+    "f' < 0 \\text{ entre } -1 \\text{ et } 1"
+   ]
+  },
+  "ex_etude_valeurs": {
+   "type": "etape",
+   "kicker": "Exemple résolu · extremums et tableau",
+   "titre": "Maximum quatre en moins un, minimum zéro en un",
+   "tex": [
+    "f(-1) = 4 \\qquad f(1) = 0",
+    "-\\infty \\; \\nearrow \\; 4 \\; \\searrow \\; 0 \\; \\nearrow \\; +\\infty"
+   ]
+  },
+  "ex_etude_courbe": {
+   "type": "phrase",
+   "kicker": "Exemple résolu · la courbe",
+   "texte": "Zéros en −2 et en 1, point (0 ; 2), sommet (−1 ; 4) : la cubique est tracée."
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Limite en l'infini : le terme dominant",
+    "Continuité et dérivabilité sur R : automatiques",
+    "Le signe de P' donne les variations",
+    "Tableau, extremums, points : la courbe suit"
+   ]
+  },
+  "def_rat": {
+   "type": "formule",
+   "kicker": "Définition · fonction rationnelle",
+   "tex": "\\begin{aligned} &f(x) = \\frac{P(x)}{Q(x)} \\\\ &D_f = \\{x \\in \\mathbb{R} \\mid Q(x) \\neq 0\\} \\end{aligned}",
+   "note": "Exemple : deux x plus un sur x moins trois, définie hors de trois"
+  },
+  "limites_rat": {
+   "type": "etape",
+   "kicker": "Limites d'une rationnelle en l'infini",
+   "titre": "Comparer les degrés du haut et du bas",
+   "tex": [
+    "\\deg P < \\deg Q : \\lim f = 0",
+    "\\deg P = \\deg Q : \\lim f = \\tfrac{a}{b}",
+    "\\deg P = \\deg Q + 1 : \\text{asymptote oblique}"
+   ]
+  },
+  "ex_asympt_h": {
+   "type": "formule",
+   "kicker": "Exemple · asymptote horizontale",
+   "tex": "f(x) = \\frac{2x^2 + 1}{x^2 - 4} \\qquad \\lim_{x \\to \\pm\\infty} f(x) = 2",
+   "note": "Degrés égaux : le rapport des coefficients dominants vaut deux, asymptote y égale deux",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 150
+   }
+  },
+  "asympt_v": {
+   "type": "formule",
+   "kicker": "Asymptote verticale",
+   "tex": "\\lim_{x \\to 3^+} \\frac{1}{x - 3} = +\\infty \\qquad \\lim_{x \\to 3^-} \\frac{1}{x - 3} = -\\infty",
+   "note": "Dénominateur nul, numérateur non nul en trois : la droite x égale trois est asymptote verticale"
+  },
+  "derivee_quotient": {
+   "type": "formule",
+   "kicker": "Dérivée d'un quotient",
+   "tex": "f'(x) = \\frac{P'(x)\\,Q(x) - P(x)\\,Q'(x)}{[Q(x)]^2}",
+   "note": "Dérivable sur tout son domaine : le dénominateur ne s'y annule jamais"
+  },
+  "ex_derivee_rat": {
+   "type": "etape",
+   "kicker": "Exemple · dériver une rationnelle",
+   "titre": "Un numérateur constant : le signe est immédiat",
+   "tex": [
+    "f(x) = \\tfrac{2x + 1}{x - 3}",
+    "f'(x) = \\tfrac{2(x - 3) - (2x + 1)}{(x - 3)^2} = \\tfrac{-7}{(x - 3)^2} < 0"
+   ]
+  },
+  "tableau_rat": {
+   "type": "etape",
+   "kicker": "Exemple · tableau de variation",
+   "titre": "Décroissante sur chaque intervalle du domaine",
+   "tex": [
+    "x : -\\infty \\qquad 3 \\qquad +\\infty",
+    "f : 2 \\; \\searrow \\; -\\infty \\;|\\; +\\infty \\; \\searrow \\; 2"
+   ]
+  },
+  "courbe_rat": {
+   "type": "etape",
+   "kicker": "Exemple · la courbe et ses asymptotes",
+   "titre": "Une hyperbole de part et d'autre de ses asymptotes",
+   "tex": [
+    "\\text{asymptotes : } x = 3 \\text{ et } y = 2",
+    "f(x) = 0 \\iff x = -\\tfrac{1}{2} \\qquad f(0) = -\\tfrac{1}{3}"
+   ]
+  },
+  "methode_rat": {
+   "type": "etape",
+   "kicker": "Méthode de synthèse · fonction rationnelle",
+   "titre": "Six gestes pour étudier un quotient",
+   "tex": [
+    "\\text{1. domaine, 2. limites aux bornes}",
+    "\\text{3. asymptotes, 4. dérivée et son signe}",
+    "\\text{5. tableau de variation}",
+    "\\text{6. points et courbe}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Polynôme : terme dominant, dérivée, tableau",
+    "Rationnelle : domaine hors zéros de Q",
+    "Degrés comparés : asymptote en l'infini",
+    "Dénominateur nul : asymptote verticale",
+    "Dérivée du quotient, puis la courbe"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré à l'étude complète des fonctions polynômes et des fonctions rationnelles. Pour les polynômes, nous verrons les limites, la continuité, la dérivée et le tableau de variation. Pour les rationnelles, le domaine, les asymptotes et la même étude par la dérivée.",
+   "texte": "Polynômes et rationnelles : l'étude complète, de la limite à la courbe.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil du cours tient en une méthode qui ne change jamais. On commence par les limites, on calcule la dérivée, on lit son signe dans un tableau de variation, et la courbe se dessine presque toute seule. Seule différence entre les deux familles : une rationnelle possède des valeurs interdites, et donc des asymptotes.",
+   "texte": "Deux familles, une méthode : limites, dérivée, tableau, courbe.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par les limites en l'infini. La limite d'un polynôme en plus l'infini et en moins l'infini est celle de son terme de plus haut degré. Si le degré est pair, les deux limites sont les mêmes, au signe du coefficient dominant près. Si le degré est impair, elles sont opposées.",
+   "texte": "À l'infini, seul le terme dominant compte.",
+   "ecran": "limites_poly"
+  },
+  {
+   "id": "p04",
+   "dit": "Exemple immédiat. Pour P de x égale moins deux x au cube plus cinq x moins un, le terme dominant est moins deux x au cube. La limite en plus l'infini vaut donc moins l'infini, et la limite en moins l'infini vaut plus l'infini. Aucun autre terme n'a son mot à dire.",
+   "texte": "Exemple : −2x³ impose −∞ à droite, +∞ à gauche.",
+   "ecran": "ex_limites"
+  },
+  {
+   "id": "p05",
+   "dit": "En un point, tout est plus simple encore. La limite d'un polynôme quand x tend vers a est tout simplement P de a : le polynôme est continu en tout point, donc continu sur l'ensemble des réels. Pour x au carré moins trois x plus deux, la limite en deux vaut quatre moins six plus deux, zéro, exactement la valeur en deux.",
+   "texte": "Continuité : la limite en a vaut P(a), partout.",
+   "ecran": "continuite"
+  },
+  {
+   "id": "p06",
+   "dit": "Un polynôme est aussi dérivable partout. Le nombre dérivé en a est la limite du taux d'accroissement quand h tend vers zéro, et les règles de calcul sont minimales : la dérivée de x puissance n est n fois x puissance n moins un, celle d'une constante est nulle, et une somme se dérive terme à terme.",
+   "texte": "Dériver : (xⁿ)′ = n·xⁿ⁻¹, terme à terme.",
+   "ecran": "derivee_regles"
+  },
+  {
+   "id": "p07",
+   "dit": "Application. Pour P de x égale deux x au cube moins cinq x au carré plus quatre x moins sept, la dérivée vaut six x au carré moins dix x plus quatre. Chaque exposant descend en facteur, chaque terme perd un degré, et le terme constant disparaît.",
+   "texte": "Exemple : P′(x) = 6x² − 10x + 4.",
+   "ecran": "ex_derivee"
+  },
+  {
+   "id": "p08",
+   "dit": "Le signe de la dérivée commande les variations. Positive sur un intervalle, la fonction est strictement croissante. Négative, elle est strictement décroissante. Nulle partout, elle est constante. Et si la dérivée s'annule en changeant de signe en un point, la fonction y admet un extremum local.",
+   "texte": "Le signe de P′ donne le sens de variation.",
+   "ecran": "lien_variations"
+  },
+  {
+   "id": "p09",
+   "dit": "Voici donc la méthode complète d'étude d'un polynôme, en sept gestes. Le domaine, toujours l'ensemble des réels. Les limites en l'infini. Le calcul de la dérivée. Son signe, en résolvant l'équation dérivée égale zéro. Le tableau de variation. Les valeurs remarquables. Et enfin le tracé de la courbe.",
+   "texte": "La méthode en sept gestes, toujours dans le même ordre.",
+   "ecran": "methode_etude"
+  },
+  {
+   "id": "p10",
+   "dit": "Exemple résolu, de bout en bout. Soit f de x égale x au cube moins trois x plus deux. Son terme dominant donne moins l'infini en moins l'infini et plus l'infini en plus l'infini. Sa dérivée vaut trois x au carré moins trois, soit trois fois x moins un fois x plus un, positive en dehors de l'intervalle de moins un à un, négative entre moins un et un.",
+   "texte": "Exemple : f(x) = x³ − 3x + 2, f′(x) = 3(x−1)(x+1).",
+   "ecran": "ex_etude_derivee"
+  },
+  {
+   "id": "p11",
+   "dit": "Les valeurs aux points critiques complètent le tableau. En moins un, f vaut quatre : c'est un maximum local. En un, f vaut zéro : c'est un minimum local. La fonction monte donc de moins l'infini jusqu'à quatre, descend jusqu'à zéro, puis remonte vers plus l'infini.",
+   "texte": "Maximum 4 en −1, minimum 0 en 1.",
+   "ecran": "ex_etude_valeurs"
+  },
+  {
+   "id": "p12",
+   "dit": "Pour tracer, quelques points suffisent. La courbe passe par le point de coordonnées zéro et deux, elle coupe l'axe des abscisses en moins deux, et elle touche cet axe en un, là où la tangente est horizontale puisque c'est un minimum. Elle monte jusqu'au point de coordonnées moins un et quatre, descend jusqu'en un, puis remonte : allure typique d'une cubique de coefficient dominant positif.",
+   "texte": "Points utiles : (−2 ; 0), (0 ; 2), (−1 ; 4), (1 ; 0).",
+   "ecran": "ex_etude_courbe"
+  },
+  {
+   "id": "p13",
+   "dit": "Récapitulons cette première partie. La limite d'un polynôme en l'infini est celle de son terme dominant. Continuité et dérivabilité sont automatiques sur tous les réels. Le signe de la dérivée donne les variations et les extremums, et le tableau, complété de quelques points, suffit à tracer la courbe.",
+   "texte": "Partie 1 : l'essentiel sur les polynômes.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p14",
+   "dit": "Une fonction rationnelle est le quotient de deux polynômes, P de x sur Q de x. Son domaine de définition est l'ensemble des réels où le dénominateur ne s'annule pas. Pour deux x plus un sur x moins trois, la valeur interdite est trois, et le domaine est l'ensemble des réels privés de trois.",
+   "texte": "F(x) = P(x)/Q(x) : domaine hors zéros de Q.",
+   "ecran": "def_rat"
+  },
+  {
+   "id": "p15",
+   "dit": "En l'infini, tout se joue sur la comparaison des degrés. Si le numérateur est de degré inférieur, la limite est zéro et l'axe des abscisses est asymptote horizontale. Si les degrés sont égaux, la limite est le quotient des coefficients dominants. Si le numérateur dépasse le dénominateur d'un degré, on obtient une asymptote oblique.",
+   "texte": "En l'infini : comparer les degrés de P et de Q.",
+   "ecran": "limites_rat"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple. Pour deux x au carré plus un sur x au carré moins quatre, les degrés sont égaux et les coefficients dominants valent deux et un. La limite en l'infini vaut donc deux, et la droite d'équation y égale deux est une asymptote horizontale, que la courbe épouse au loin.",
+   "texte": "Exemple : limite 2, asymptote horizontale y = 2.",
+   "ecran": "ex_asympt_h"
+  },
+  {
+   "id": "p17",
+   "dit": "Près d'une valeur interdite, le comportement change du tout au tout. Si le dénominateur s'annule en a sans que le numérateur s'y annule, la limite est infinie et la droite d'équation x égale a est une asymptote verticale. Pour un sur x moins trois, la limite à droite de trois vaut plus l'infini, et à gauche, moins l'infini.",
+   "texte": "Valeur interdite : asymptote verticale x = a.",
+   "ecran": "asympt_v"
+  },
+  {
+   "id": "p18",
+   "dit": "Une fonction rationnelle est dérivable sur tout son domaine, avec la formule du quotient : la dérivée du numérateur fois le dénominateur, moins le numérateur fois la dérivée du dénominateur, le tout sur le dénominateur au carré. Le carré au dénominateur ne s'annule jamais sur le domaine, tout est cohérent.",
+   "texte": "Dérivée du quotient : (P′Q − PQ′)/Q².",
+   "ecran": "derivee_quotient"
+  },
+  {
+   "id": "p19",
+   "dit": "Reprenons f de x égale deux x plus un sur x moins trois. La formule donne, au numérateur, deux fois x moins trois, moins deux x plus un, soit moins sept. La dérivée vaut donc moins sept sur x moins trois au carré. Ce carré est strictement positif sur le domaine, la dérivée est donc strictement négative.",
+   "texte": "Exemple : f′(x) = −7/(x−3)², toujours négative.",
+   "ecran": "ex_derivee_rat"
+  },
+  {
+   "id": "p20",
+   "dit": "Le tableau de variation rassemble tout. La fonction décroît sur chaque intervalle de son domaine, de la valeur deux, limite en moins l'infini, vers moins l'infini à gauche de trois, puis de plus l'infini à droite de trois en redescendant vers deux. La double barre en trois rappelle que la fonction n'y existe pas.",
+   "texte": "Décroissante sur ]−∞ ; 3[ et sur ]3 ; +∞[.",
+   "ecran": "tableau_rat"
+  },
+  {
+   "id": "p21",
+   "dit": "La courbe complète l'étude. C'est une hyperbole décroissante sur chaque intervalle, de part et d'autre de ses deux asymptotes, la verticale d'équation x égale trois et l'horizontale d'équation y égale deux. Elle coupe l'axe des abscisses en moins un demi, et l'axe des ordonnées en moins un tiers.",
+   "texte": "Hyperbole : asymptotes x = 3 et y = 2.",
+   "ecran": "courbe_rat"
+  },
+  {
+   "id": "p22",
+   "dit": "La méthode de synthèse, pour toute fonction rationnelle, suit six gestes. Déterminer le domaine. Calculer les limites aux bornes et aux valeurs interdites. En déduire les asymptotes. Calculer la dérivée et étudier son signe. Dresser le tableau de variation. Puis placer les points remarquables et tracer la courbe avec ses asymptotes.",
+   "texte": "La méthode rationnelle en six gestes.",
+   "ecran": "methode_rat"
+  },
+  {
+   "id": "p23",
+   "dit": "Pour finir, retenez l'enchaînement des deux familles. Un polynôme s'étudie par son terme dominant, sa dérivée et son tableau. Une rationnelle commence par son domaine, hors des zéros du dénominateur. La comparaison des degrés donne l'asymptote en l'infini, le dénominateur nul donne l'asymptote verticale, et la dérivée du quotient achève l'étude.",
+   "texte": "Polynômes et rationnelles : à retenir.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Fonctions polynômes : limites, dérivée et étude complète"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Fonctions rationnelles : domaine, asymptotes et dérivée",
+   "pont": {
+    "texte": "Partie 2 : fonctions rationnelles, domaine et asymptotes.",
+    "dit": "Partie deux, les fonctions rationnelles. Un quotient de deux polynômes, un domaine à déterminer avant tout, des asymptotes verticales et horizontales à repérer, et la dérivée du quotient pour achever l'étude."
+   }
+  }
+ ]
+}
