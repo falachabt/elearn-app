@@ -6504,6 +6504,245 @@ const FIG = {
       mot(540, 100, '4 cm', { t: 18, c: '#E8604C', a: 'start' }) + mot(505, 138, '3 cm', { t: 18, c: '#E8604C', a: 'start' }));
   },
 
+  aire_courbe_fig(t) {
+    return svgBoite(
+      `<path d="M 380 240 L 380 205 C 480 190 580 130 700 78 L 700 240 Z" fill="#1A75FF" fill-opacity=".22"/>` +
+      `<line x1="180" y1="240" x2="842" y2="240" stroke="currentColor" stroke-width="3"/>` + pointe(842, 240, 0) +
+      `<line x1="300" y1="262" x2="300" y2="28" stroke="currentColor" stroke-width="3"/>` + pointe(300, 28, -90) +
+      `<path d="M 380 205 C 480 190 580 130 700 78" fill="none" stroke="#1A75FF" stroke-width="4"/>` +
+      `<line x1="380" y1="205" x2="380" y2="240" stroke="currentColor" stroke-width="2.5" stroke-dasharray="7 6"/>` +
+      `<line x1="700" y1="78" x2="700" y2="240" stroke="currentColor" stroke-width="2.5" stroke-dasharray="7 6"/>` +
+      mot(380, 264, 'a', { t: 21 }) + mot(700, 264, 'b', { t: 21 }) +
+      mot(718, 72, 'f', { t: 22, c: '#1A75FF', a: 'start' }) +
+      mot(854, 246, 'x', { t: 21, a: 'start' }) + mot(288, 22, 'y', { t: 21, a: 'end' }) +
+      mot(500, 292, 'A = ∫ f(x) dx', { t: 20 }));
+  },
+  exp_croissante_fig(t) {
+    const pts = [];
+    for (let X = -2; X <= 1.61; X += 0.2) pts.push(`${Math.round(350 + 110 * X)},${Math.round(230 - 42 * Math.exp(X))}`);
+    return svgBoite(
+      `<line x1="120" y1="230" x2="330" y2="230" stroke="currentColor" stroke-width="2.5" stroke-dasharray="7 6"/>` +
+      `<line x1="330" y1="230" x2="706" y2="230" stroke="currentColor" stroke-width="3"/>` + pointe(706, 230, 0) +
+      `<line x1="350" y1="252" x2="350" y2="20" stroke="currentColor" stroke-width="3"/>` + pointe(350, 20, -90) +
+      `<polyline points="${pts.join(' ')}" fill="none" stroke="#E8604C" stroke-width="4" stroke-linejoin="round"/>` +
+      `<circle cx="350" cy="188" r="6" fill="#E8604C"/><circle cx="460" cy="116" r="6" fill="#E8604C"/>` +
+      mot(334, 193, '1', { t: 20, a: 'end' }) + mot(478, 110, 'e', { t: 21, c: '#E8604C', a: 'start' }) +
+      mot(600, 74, 'y = e^x', { t: 22, c: '#E8604C', a: 'start' }) +
+      mot(718, 236, 'x', { t: 21, a: 'start' }) + mot(338, 16, 'y', { t: 21, a: 'end' }));
+  },
+  puissances_fig(t) {
+    const courbe = f => {
+      const pts = [];
+      for (let X = 0; X <= 1.251; X += 0.0625) pts.push(`${Math.round(330 + 260 * X)},${Math.round(240 - 130 * f(X))}`);
+      return pts.join(' ');
+    };
+    return svgBoite(
+      `<line x1="200" y1="240" x2="716" y2="240" stroke="currentColor" stroke-width="3"/>` + pointe(716, 240, 0) +
+      `<line x1="330" y1="262" x2="330" y2="24" stroke="currentColor" stroke-width="3"/>` + pointe(330, 24, -90) +
+      `<polyline points="${courbe(x => x * x)}" fill="none" stroke="#E8604C" stroke-width="4" stroke-linejoin="round"/>` +
+      `<polyline points="${courbe(x => Math.sqrt(x))}" fill="none" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>` +
+      `<line x1="330" y1="240" x2="655" y2="78" stroke="currentColor" stroke-width="3"/>` +
+      `<line x1="590" y1="110" x2="590" y2="240" stroke="currentColor" stroke-width="2" stroke-dasharray="6 6"/>` +
+      `<line x1="330" y1="110" x2="590" y2="110" stroke="currentColor" stroke-width="2" stroke-dasharray="6 6"/>` +
+      `<circle cx="590" cy="110" r="5" fill="currentColor"/>` +
+      mot(590, 264, '1', { t: 19 }) + mot(316, 114, '1', { t: 19, a: 'end' }) +
+      mot(668, 44, 'y = x²', { t: 19, c: '#E8604C', a: 'start' }) +
+      mot(668, 82, 'y = x', { t: 19, a: 'start' }) +
+      mot(668, 112, 'y = √x', { t: 19, c: '#1A75FF', a: 'start' }) +
+      mot(728, 246, 'x', { t: 20, a: 'start' }));
+  },
+  pascal_fig(t) {
+    const lignes = [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1]];
+    let corps = '';
+    lignes.forEach((row, n) => {
+      row.forEach((v, k) => {
+        const x = Math.round(500 + (k - n / 2) * 92), y = 42 + n * 46;
+        corps += mot(x, y + 8, String(v), { t: 23 });
+      });
+    });
+    return svgBoite(
+      `<line x1="500" y1="206" x2="464" y2="188" stroke="#E8604C" stroke-width="3"/>` +
+      `<line x1="500" y1="206" x2="536" y2="188" stroke="#E8604C" stroke-width="3"/>` +
+      `<circle cx="500" cy="232" r="21" fill="none" stroke="#E8604C" stroke-width="3.5"/>` + corps);
+  },
+  arbre_urne_fig(t) {
+    const p = prog(t);
+    const seg = (x1, y1, x2, y2) => trait(x1, y1, x2, y2, p, { w: 3.5 });
+    return svgBoite(
+      seg(140, 150, 430, 70) + seg(140, 150, 430, 230) +
+      seg(430, 70, 720, 35) + seg(430, 70, 720, 105) + seg(430, 230, 720, 195) + seg(430, 230, 720, 265) +
+      `<circle cx="140" cy="150" r="6" fill="currentColor"/>` +
+      mot(430, 20, '1er tirage', { t: 18 }) + mot(720, 14, '2e tirage', { t: 18 }) +
+      mot(448, 76, 'R1', { t: 21, c: '#E8604C', a: 'start' }) + mot(448, 236, 'V1', { t: 21, c: '#10B981', a: 'start' }) +
+      mot(738, 41, 'R2', { t: 20, c: '#E8604C', a: 'start' }) + mot(738, 111, 'V2', { t: 20, c: '#10B981', a: 'start' }) +
+      mot(738, 201, 'R2', { t: 20, c: '#E8604C', a: 'start' }) + mot(738, 271, 'V2', { t: 20, c: '#10B981', a: 'start' }) +
+      mot(282, 92, '3/5', { t: 19 }) + mot(282, 208, '2/5', { t: 19 }) +
+      mot(575, 40, '2/4', { t: 18 }) + mot(575, 100, '2/4', { t: 18 }) +
+      mot(575, 200, '3/4', { t: 18 }) + mot(575, 260, '1/4', { t: 18 }));
+  },
+  urne_32_fig(t) {
+    const boule = (x, y, c) => `<circle cx="${x}" cy="${y}" r="21" fill="${c}"/>`;
+    return svgBoite(
+      `<path d="M 380 92 L 620 92 C 610 200 560 252 500 252 C 440 252 390 200 380 92 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>` +
+      boule(452, 148, '#E8604C') + boule(522, 138, '#E8604C') + boule(488, 198, '#E8604C') +
+      boule(552, 182, '#10B981') + boule(428, 196, '#10B981') +
+      mot(700, 146, '3 rouges', { t: 22, c: '#E8604C', a: 'start' }) +
+      mot(700, 186, '2 vertes', { t: 22, c: '#10B981', a: 'start' }) +
+      mot(500, 288, 'tirage sans remise', { t: 19 }));
+  },
+  binomiale_hist_fig(t) {
+    const hs = [1, 5, 10, 10, 5, 1];
+    let corps = `<line x1="230" y1="250" x2="806" y2="250" stroke="currentColor" stroke-width="3"/>`;
+    hs.forEach((h, k) => {
+      const x = 260 + k * 88, haut = h * 17;
+      corps += `<rect x="${x}" y="${250 - haut}" width="62" height="${haut}" fill="${k === 3 ? '#E8604C' : '#1A75FF'}" fill-opacity=".85"/>` +
+        mot(x + 31, 240 - haut, String(h), { t: 18 }) + mot(x + 31, 274, String(k), { t: 19 });
+    });
+    return svgBoite(corps + mot(800, 56, 'P(X = 3) = 5/16', { t: 20, c: '#E8604C', a: 'end' }) + mot(818, 256, 'k', { t: 20, a: 'start' }));
+  },
+  barycentre_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      trait(240, 150, 780, 150, p, { w: 4 }) +
+      pointe(300, 150, 180, '#E8604C') + pointe(600, 150, 0, '#E8604C') +
+      `<circle cx="240" cy="150" r="6" fill="currentColor"/><circle cx="780" cy="150" r="6" fill="currentColor"/><circle cx="420" cy="150" r="7" fill="#E8604C"/>` +
+      mot(240, 118, 'A', { t: 22 }) + mot(240, 192, '(A, 2)', { t: 19 }) +
+      mot(780, 118, 'B', { t: 22 }) + mot(780, 192, '(B, 1)', { t: 19 }) +
+      mot(420, 118, 'G', { t: 22, c: '#E8604C' }) +
+      mot(510, 244, '2·GA + GB = 0', { t: 20 }));
+  },
+  gravite_fig(t) {
+    const p = prog(t);
+    const seg = (x1, y1, x2, y2, o) => trait(x1, y1, x2, y2, p, o || { w: 4 });
+    return svgBoite(
+      seg(500, 40, 300, 250) + seg(300, 250, 700, 250) + seg(700, 250, 500, 40) +
+      seg(500, 40, 500, 250, { c: '#E8604C', w: 3.5 }) +
+      seg(300, 250, 600, 145, { w: 2.5, tiret: '7 6' }) + seg(700, 250, 400, 145, { w: 2.5, tiret: '7 6' }) +
+      `<line x1="488" y1="88" x2="512" y2="88" stroke="#E8604C" stroke-width="3.5"/>` +
+      `<line x1="488" y1="132" x2="512" y2="132" stroke="#E8604C" stroke-width="3.5"/>` +
+      `<line x1="488" y1="215" x2="512" y2="215" stroke="#E8604C" stroke-width="3.5"/>` +
+      `<line x1="400" y1="240" x2="400" y2="260" stroke="currentColor" stroke-width="3.5"/>` +
+      `<line x1="600" y1="240" x2="600" y2="260" stroke="currentColor" stroke-width="3.5"/>` +
+      `<circle cx="500" cy="180" r="6" fill="#E8604C"/>` +
+      mot(500, 24, 'A', { t: 22 }) + mot(282, 272, 'B', { t: 22, a: 'end' }) + mot(718, 272, 'C', { t: 22, a: 'start' }) +
+      mot(500, 278, 'I', { t: 20 }) + mot(524, 172, 'G', { t: 21, c: '#E8604C', a: 'start' }));
+  },
+  associativite_fig(t) {
+    const p = prog(t);
+    const seg = (x1, y1, x2, y2, o) => trait(x1, y1, x2, y2, p, o || { w: 4 });
+    return svgBoite(
+      seg(280, 230, 560, 230) + seg(560, 230, 430, 60) + seg(430, 60, 280, 230) +
+      seg(392, 230, 430, 60, { c: '#1A75FF', w: 3.5 }) +
+      `<circle cx="392" cy="230" r="6" fill="currentColor"/><circle cx="413" cy="136" r="6" fill="#E8604C"/>` +
+      mot(262, 254, 'A', { t: 21, a: 'end' }) + mot(578, 254, 'B', { t: 21, a: 'start' }) + mot(430, 42, 'C', { t: 21 }) +
+      mot(392, 258, 'H', { t: 20 }) + mot(431, 128, 'G', { t: 20, c: '#E8604C', a: 'start' }) +
+      mot(700, 118, 'H : barycentre de A et B', { t: 17, a: 'start' }) +
+      mot(700, 146, 'G : barycentre de H et C', { t: 17, a: 'start' }));
+  },
+  asymptote_horizontale_fig(t) {
+    const pts = [];
+    for (let sx = 270; sx <= 860; sx += 15) pts.push(`${sx},${Math.round(105 + 140 * Math.exp(-(sx - 270) / 170))}`);
+    return svgBoite(
+      `<line x1="200" y1="105" x2="880" y2="105" stroke="#1A75FF" stroke-width="2.5" stroke-dasharray="8 7"/>` +
+      `<line x1="170" y1="250" x2="880" y2="250" stroke="currentColor" stroke-width="3"/>` + pointe(880, 250, 0) +
+      `<line x1="250" y1="262" x2="250" y2="30" stroke="currentColor" stroke-width="3"/>` + pointe(250, 30, -90) +
+      `<polyline points="${pts.join(' ')}" fill="none" stroke="#E8604C" stroke-width="4" stroke-linejoin="round"/>` +
+      mot(700, 92, 'y = l', { t: 21, c: '#1A75FF' }) +
+      mot(892, 256, 'x', { t: 21, a: 'start' }) + mot(238, 24, 'y', { t: 21, a: 'end' }));
+  },
+  gendarmes_fonction_fig(t) {
+    const env = X => 135 / (X + 0.9);
+    const ligne = f => {
+      const pts = [];
+      for (let X = 0.2; X <= 6.01; X += 0.2) pts.push(`${Math.round(190 + 118 * X)},${Math.round(f(X))}`);
+      return pts.join(' ');
+    };
+    return svgBoite(
+      `<line x1="160" y1="150" x2="918" y2="150" stroke="currentColor" stroke-width="2.5" stroke-dasharray="8 7"/>` + pointe(918, 150, 0) +
+      `<polyline points="${ligne(X => 150 - env(X))}" fill="none" stroke="#1A75FF" stroke-width="3.5"/>` +
+      `<polyline points="${ligne(X => 150 + env(X))}" fill="none" stroke="#1A75FF" stroke-width="3.5"/>` +
+      `<polyline points="${ligne(X => 150 - env(X) * Math.sin(2.4 * X) * 0.92)}" fill="none" stroke="#E8604C" stroke-width="3.5"/>` +
+      mot(806, 100, 'y = 1/x', { t: 19, c: '#1A75FF', a: 'start' }) +
+      mot(806, 208, 'y = -1/x', { t: 19, c: '#1A75FF', a: 'start' }) +
+      mot(520, 108, 'sin x / x', { t: 19, c: '#E8604C' }));
+  },
+  tangente_ln_fig(t) {
+    const pts = [];
+    for (let X = 0.35; X <= 4.41; X += 0.15) pts.push(`${Math.round(380 + 95 * X)},${Math.round(230 - 62 * Math.log(X))}`);
+    const p = prog(t);
+    return svgBoite(
+      `<line x1="200" y1="230" x2="862" y2="230" stroke="currentColor" stroke-width="3"/>` + pointe(862, 230, 0) +
+      `<line x1="380" y1="282" x2="380" y2="28" stroke="currentColor" stroke-width="2.5" stroke-dasharray="8 7"/>` +
+      `<polyline points="${pts.join(' ')}" fill="none" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>` +
+      trait(430, 259, 640, 122, p, { c: '#E8604C', w: 3.5 }) +
+      `<circle cx="475" cy="230" r="6" fill="#E8604C"/><circle cx="638" cy="168" r="6" fill="#1A75FF"/>` +
+      mot(475, 256, '1', { t: 19 }) + mot(622, 160, 'e', { t: 20, c: '#1A75FF', a: 'end' }) + mot(366, 172, '1', { t: 19, a: 'end' }) +
+      mot(792, 118, 'ln x', { t: 21, c: '#1A75FF', a: 'start' }) +
+      mot(664, 106, 'y = x - 1', { t: 19, c: '#E8604C', a: 'start' }) +
+      mot(874, 236, 'x', { t: 20, a: 'start' }));
+  },
+  sphere_geo_fig(t) {
+    return svgBoite(
+      `<circle cx="500" cy="150" r="105" fill="none" stroke="currentColor" stroke-width="4.5"/>` +
+      `<ellipse cx="500" cy="150" rx="105" ry="34" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="7 6"/>` +
+      `<ellipse cx="500" cy="150" rx="34" ry="105" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="7 6"/>` +
+      `<line x1="500" y1="150" x2="568" y2="70" stroke="#E8604C" stroke-width="4"/>` +
+      `<circle cx="500" cy="150" r="5" fill="currentColor"/><circle cx="568" cy="70" r="6" fill="#E8604C"/>` +
+      mot(476, 160, 'Ω', { t: 23, a: 'end' }) + mot(586, 62, 'M', { t: 22, c: '#E8604C', a: 'start' }) +
+      mot(548, 100, 'R', { t: 21, c: '#E8604C', a: 'start' }));
+  },
+  tableau_variations_7338_fig(t) {
+    const grille =
+      `<rect x="170" y="58" width="660" height="182" fill="none" stroke="currentColor" stroke-width="3.5"/>` +
+      `<line x1="250" y1="58" x2="250" y2="240" stroke="currentColor" stroke-width="3"/>` +
+      `<line x1="170" y1="104" x2="830" y2="104" stroke="currentColor" stroke-width="3"/>` +
+      `<line x1="170" y1="150" x2="830" y2="150" stroke="currentColor" stroke-width="3"/>`;
+    return svgBoite(grille +
+      mot(210, 90, 'x', { t: 21 }) + mot(210, 136, "f'(x)", { t: 19 }) + mot(210, 202, 'f(x)', { t: 19 }) +
+      mot(305, 90, '-∞', { t: 20 }) + mot(450, 90, '-1', { t: 20 }) + mot(620, 90, '1', { t: 20 }) + mot(790, 90, '+∞', { t: 20 }) +
+      mot(375, 136, '+', { t: 22 }) + mot(450, 136, '0', { t: 20 }) + mot(535, 136, '−', { t: 22 }) + mot(620, 136, '0', { t: 20 }) + mot(725, 136, '+', { t: 22 }) +
+      `<line x1="292" y1="218" x2="428" y2="168" stroke="#1A75FF" stroke-width="3.5"/>` + pointe(428, 168, -32, '#1A75FF') +
+      `<line x1="472" y1="168" x2="598" y2="218" stroke="#E8604C" stroke-width="3.5"/>` + pointe(598, 218, 32, '#E8604C') +
+      `<line x1="642" y1="218" x2="800" y2="164" stroke="#1A75FF" stroke-width="3.5"/>` + pointe(800, 164, -32, '#1A75FF') +
+      mot(450, 160, '2', { t: 20 }) + mot(620, 234, '-2', { t: 20 }));
+  },
+
+  sphere_secante_fig(t) {
+    return svgBoite(
+      `<polygon points="330,205 700,160 790,215 420,262" fill="#1A75FF" fill-opacity=".14" stroke="#1A75FF" stroke-width="3" stroke-linejoin="round"/>` +
+      `<circle cx="500" cy="140" r="105" fill="none" stroke="currentColor" stroke-width="4.5"/>` +
+      `<ellipse cx="512" cy="212" rx="88" ry="20" fill="none" stroke="#1A75FF" stroke-width="3.5"/>` +
+      `<line x1="500" y1="140" x2="512" y2="212" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6"/>` +
+      `<line x1="500" y1="140" x2="600" y2="212" stroke="#E8604C" stroke-width="4"/>` +
+      `<line x1="512" y1="212" x2="600" y2="212" stroke="#10B981" stroke-width="4"/>` +
+      `<circle cx="500" cy="140" r="5" fill="currentColor"/><circle cx="512" cy="212" r="5" fill="currentColor"/><circle cx="600" cy="212" r="5" fill="#E8604C"/>` +
+      mot(474, 132, 'Ω', { t: 22, a: 'end' }) + mot(628, 176, 'R', { t: 21, c: '#E8604C', a: 'start' }) +
+      mot(556, 238, 'r', { t: 21, c: '#10B981' }) + mot(494, 182, 'd', { t: 20, a: 'end' }) +
+      mot(738, 268, '(P)', { t: 20, c: '#1A75FF', a: 'start' }));
+  },
+  sphere_tangente_fig(t) {
+    return svgBoite(
+      `<polygon points="330,52 700,52 772,96 402,96" fill="#1A75FF" fill-opacity=".14" stroke="#1A75FF" stroke-width="3" stroke-linejoin="round"/>` +
+      `<circle cx="500" cy="180" r="105" fill="none" stroke="currentColor" stroke-width="4.5"/>` +
+      `<ellipse cx="500" cy="180" rx="105" ry="30" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="7 6"/>` +
+      `<line x1="500" y1="180" x2="500" y2="75" stroke="#E8604C" stroke-width="4"/>` +
+      `<polyline points="500,96 521,96 521,75" fill="none" stroke="#E8604C" stroke-width="3"/>` +
+      `<circle cx="500" cy="180" r="5" fill="currentColor"/><circle cx="500" cy="75" r="6" fill="#E8604C"/>` +
+      mot(476, 190, 'Ω', { t: 22, a: 'end' }) + mot(520, 68, 'M₀', { t: 21, c: '#E8604C', a: 'start' }) +
+      mot(478, 132, 'R', { t: 21, c: '#E8604C', a: 'end' }) +
+      mot(730, 116, '(P)', { t: 20, c: '#1A75FF', a: 'start' }));
+  },
+  plans_perpendiculaires_fig(t) {
+    return svgBoite(
+      `<polygon points="480,30 760,70 760,250 480,210" fill="#1A75FF" fill-opacity=".13" stroke="#1A75FF" stroke-width="3" stroke-linejoin="round"/>` +
+      `<polygon points="160,170 480,210 760,250 440,292" fill="#10B981" fill-opacity=".13" stroke="#10B981" stroke-width="3" stroke-linejoin="round"/>` +
+      `<line x1="480" y1="210" x2="760" y2="250" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="600" y1="228" x2="520" y2="272" stroke="#E8604C" stroke-width="4"/>` +
+      `<polyline points="614,231 602,238 588,235" fill="none" stroke="#E8604C" stroke-width="3"/>` +
+      mot(250, 192, '(P)', { t: 21, c: '#10B981' }) + mot(716, 106, "(P')", { t: 21, c: '#1A75FF' }) +
+      mot(772, 246, 'Δ', { t: 21, a: 'start' }) + mot(496, 288, '(d)', { t: 19, c: '#E8604C', a: 'end' }));
+  },
+
 };
 
 Object.assign(ANIMS, FIG);
