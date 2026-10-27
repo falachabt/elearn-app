@@ -1,0 +1,317 @@
+{
+  "cours": 7258,
+  "titre": "Triangles : reconnaître, construire et utiliser",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Géométrie",
+      "titre": "Triangles : reconnaître, construire et utiliser",
+      "sous": "Inégalité triangulaire, construction au compas, droites remarquables et aire",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 250
+      }
+    },
+    "objectifs": {
+      "type": "phrase",
+      "kicker": "Objectifs du cours",
+      "texte": "Reconnaître, construire, droites remarquables, aire.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 150
+      }
+    },
+    "def": {
+      "type": "phrase",
+      "kicker": "Définition · le triangle",
+      "texte": "Polygone à trois côtés, trois sommets, trois angles.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 180
+      }
+    },
+    "types": {
+      "type": "etape",
+      "kicker": "Trois familles à reconnaître",
+      "titre": "Isocèle, équilatéral, rectangle",
+      "tex": [
+        "\\text{isocèle : deux côtés de même longueur}",
+        "\\text{équilatéral : trois côtés égaux}",
+        "\\text{rectangle : un angle droit}"
+      ]
+    },
+    "notations": {
+      "type": "formule",
+      "kicker": "Vocabulaire · côtés et angles",
+      "tex": "AB,\\ BC,\\ CA \\qquad \\widehat{A},\\ \\widehat{B},\\ \\widehat{C}",
+      "note": "Côtés [AB], [BC], [CA] ; angles nommés par leur sommet"
+    },
+    "inegalite": {
+      "type": "formule",
+      "kicker": "Inégalité triangulaire",
+      "tex": "AB < AC + CB",
+      "note": "Chaque côté est inférieur à la somme des deux autres"
+    },
+    "existence": {
+      "type": "formule",
+      "kicker": "Condition d'existence",
+      "tex": "c < a + b",
+      "note": "c : la plus grande des trois longueurs"
+    },
+    "ex_non": {
+      "type": "etape",
+      "kicker": "Exemple résolu · existence",
+      "titre": "Trois, quatre, huit : impossible",
+      "tex": [
+        "3 + 4 = 7 < 8",
+        "\\text{inégalité fausse : pas de triangle}"
+      ]
+    },
+    "ex_oui": {
+      "type": "etape",
+      "kicker": "Exemple résolu · existence",
+      "titre": "Trois, quatre, cinq : il existe",
+      "tex": [
+        "3 + 4 = 7 > 5",
+        "3 + 5 = 8 > 4",
+        "4 + 5 = 9 > 3"
+      ]
+    },
+    "construction": {
+      "type": "phrase",
+      "kicker": "Construction · le principe",
+      "texte": "Base d'abord, puis deux arcs de cercle au compas.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 150
+      }
+    },
+    "ex_construction": {
+      "type": "etape",
+      "kicker": "Exemple résolu · construire",
+      "titre": "Côtés cinq, quatre et trois centimètres",
+      "tex": [
+        "[AB] = 5\\ \\text{cm}",
+        "\\text{arc : centre } A,\\ r = 4\\ \\text{cm}",
+        "\\text{arc : centre } B,\\ r = 3\\ \\text{cm}",
+        "C = \\text{intersection des deux arcs}"
+      ]
+    },
+    "mediatrice": {
+      "type": "phrase",
+      "kicker": "Droites remarquables · médiatrices",
+      "texte": "Perpendiculaire au milieu : les trois se coupent en O.",
+      "anim": {
+        "nom": "mediatrice_exemple_fig",
+        "hauteur": 230
+      }
+    },
+    "hauteur": {
+      "type": "phrase",
+      "kicker": "Droites remarquables · hauteurs",
+      "texte": "Par un sommet, perpendiculaire au côté opposé : H.",
+      "anim": {
+        "nom": "triangle_hauteur_fig",
+        "hauteur": 230
+      }
+    },
+    "mediane": {
+      "type": "phrase",
+      "kicker": "Droites remarquables · médianes",
+      "texte": "Sommet vers milieu opposé : concours en G, aux deux tiers.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 150
+      }
+    },
+    "bissectrice": {
+      "type": "phrase",
+      "kicker": "Droites remarquables · bissectrices",
+      "texte": "Elle partage un angle en deux angles égaux.",
+      "anim": {
+        "nom": "bissectrice_fig",
+        "hauteur": 230
+      }
+    },
+    "centres": {
+      "type": "etape",
+      "kicker": "Quatre droites, quatre points",
+      "titre": "Chaque famille a son point de concours",
+      "tex": [
+        "\\text{médiatrices} \\to O \\text{, centre circonscrit}",
+        "\\text{hauteurs} \\to \\text{orthocentre}",
+        "\\text{médianes} \\to \\text{centre de gravité } G",
+        "\\text{bissectrices} \\to I \\text{, centre inscrit}"
+      ]
+    },
+    "ex_mediane": {
+      "type": "formule",
+      "kicker": "Exemple résolu · médiane",
+      "tex": "AG = \\frac{2}{3} AI",
+      "note": "I milieu de [BC] ; (AI) médiane issue de A"
+    },
+    "aire": {
+      "type": "formule",
+      "kicker": "Aire du triangle",
+      "tex": "\\mathcal{A} = \\frac{b \\times h}{2}",
+      "note": "b : base choisie ; h : hauteur perpendiculaire à cette base"
+    },
+    "ex_aire": {
+      "type": "etape",
+      "kicker": "Exemple résolu · aire",
+      "titre": "Base six centimètres, hauteur quatre",
+      "tex": [
+        "\\mathcal{A} = \\tfrac{6 \\times 4}{2} = \\tfrac{24}{2}",
+        "\\mathcal{A} = 12\\ \\text{cm}^2"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Triangle : 3 côtés, 3 sommets, 3 angles",
+        "Plus grand côté < somme des deux autres",
+        "Construction : base, puis deux arcs au compas",
+        "Quatre droites concourantes, quatre centres",
+        "Aire : base × hauteur, divisée par deux"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Triangles : reconnaître, construire et utiliser.",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux triangles : les reconnaître, tester si trois longueurs peuvent en former un, les construire au compas, puis utiliser leurs droites remarquables et calculer leur aire."
+    },
+    {
+      "id": "p02",
+      "ecran": "objectifs",
+      "texte": "Objectif : décrire, tester, tracer, calculer.",
+      "dit": "À la fin de ce cours, vous saurez nommer les côtés et les angles d'un triangle, reconnaître un triangle isocèle, équilatéral ou rectangle, appliquer l'inégalité triangulaire, tracer les droites remarquables et calculer une aire."
+    },
+    {
+      "id": "p03",
+      "ecran": "def",
+      "texte": "Trois côtés, trois sommets, trois angles.",
+      "dit": "Un triangle est un polygone à trois côtés. Il possède donc trois sommets et trois angles. C'est la figure de base de la géométrie plane, celle que tout le cours apprend à décrire et à construire."
+    },
+    {
+      "id": "p04",
+      "ecran": "types",
+      "texte": "Isocèle, équilatéral, rectangle : trois familles.",
+      "dit": "Trois familles particulières sont à reconnaître au premier coup d'œil. Un triangle isocèle a deux côtés de même longueur. Un triangle équilatéral a ses trois côtés de même longueur. Un triangle rectangle possède un angle droit."
+    },
+    {
+      "id": "p05",
+      "ecran": "notations",
+      "texte": "Côtés [AB], [BC], [CA] ; angles Â, B̂, Ĉ.",
+      "dit": "Dans un triangle a bé cé, les côtés sont les segments a bé, bé cé et a cé. Les angles sont l'angle a, l'angle bé et l'angle cé, chacun nommé d'après son sommet."
+    },
+    {
+      "id": "p06",
+      "ecran": "inegalite",
+      "texte": "Chaque côté < somme des deux autres.",
+      "dit": "Voici la propriété centrale du cours, l'inégalité triangulaire. Dans tout triangle, la longueur de chaque côté est inférieure à la somme des longueurs des deux autres côtés."
+    },
+    {
+      "id": "p07",
+      "ecran": "existence",
+      "texte": "Un seul contrôle : le plus grand côté.",
+      "dit": "Cette inégalité devient un test d'existence. Trois longueurs peuvent former un triangle si et seulement si la plus grande est strictement inférieure à la somme des deux autres. Un seul contrôle suffit, celui du plus grand côté."
+    },
+    {
+      "id": "p08",
+      "ecran": "ex_non",
+      "texte": "3 + 4 = 7 < 8 : ce triangle n'existe pas.",
+      "dit": "Premier test : peut-on construire un triangle de côtés trois, quatre et huit centimètres ? Le plus grand côté vaut huit. Or trois plus quatre font sept, inférieur à huit. L'inégalité n'est pas respectée : ce triangle n'existe pas."
+    },
+    {
+      "id": "p09",
+      "ecran": "ex_oui",
+      "texte": "3, 4, 5 : les trois contrôles passent.",
+      "dit": "Deuxième test, avec trois, quatre et cinq centimètres. Le plus grand côté vaut cinq, et trois plus quatre font sept, supérieur à cinq. Les autres contrôles passent aussi : le triangle existe."
+    },
+    {
+      "id": "p10",
+      "ecran": "construction",
+      "texte": "Le troisième sommet : intersection de deux arcs.",
+      "dit": "Quand le triangle existe, on le construit au compas en connaissant ses trois côtés. On trace d'abord le plus grand côté. Le troisième sommet est ensuite à l'intersection de deux arcs de cercle, un arc par côté restant."
+    },
+    {
+      "id": "p11",
+      "ecran": "ex_construction",
+      "texte": "AB = 5, arcs de 4 et de 3 : C à l'intersection.",
+      "dit": "Exemple : construire le triangle a bé cé avec a bé cinq centimètres, a cé quatre centimètres et bé cé trois centimètres. On trace le segment a bé. On trace un arc de centre a et de rayon quatre, puis un arc de centre bé et de rayon trois. Leur intersection est le point cé."
+    },
+    {
+      "id": "p12",
+      "ecran": "mediatrice",
+      "texte": "Médiatrices : concours au centre du cercle circonscrit.",
+      "dit": "Passons aux droites remarquables. La médiatrice d'un segment est la droite perpendiculaire à ce segment en son milieu. Les trois médiatrices se coupent en un seul point, le centre du cercle circonscrit, qui passe par les trois sommets."
+    },
+    {
+      "id": "p13",
+      "ecran": "hauteur",
+      "texte": "Hauteurs : concours à l'orthocentre.",
+      "dit": "Une hauteur est une droite qui passe par un sommet et qui est perpendiculaire au côté opposé. Les trois hauteurs se coupent en un seul point, appelé orthocentre. C'est aussi la hauteur qui servira à calculer l'aire."
+    },
+    {
+      "id": "p14",
+      "ecran": "mediane",
+      "texte": "Médianes : concours en G, aux deux tiers.",
+      "dit": "Une médiane relie un sommet au milieu du côté opposé. Les trois médianes se coupent au centre de gravité, noté gé, situé aux deux tiers de chaque médiane en partant du sommet."
+    },
+    {
+      "id": "p15",
+      "ecran": "bissectrice",
+      "texte": "Bissectrices : concours au centre du cercle inscrit.",
+      "dit": "Une bissectrice partage un angle en deux angles égaux. Les trois bissectrices se coupent en un seul point, le centre du cercle inscrit, tangent aux trois côtés."
+    },
+    {
+      "id": "p16",
+      "ecran": "centres",
+      "texte": "Quatre familles, quatre points de concours.",
+      "dit": "Retenons l'organisation complète : les médiatrices donnent le centre du cercle circonscrit, les hauteurs donnent l'orthocentre, les médianes donnent le centre de gravité et les bissectrices donnent le centre du cercle inscrit."
+    },
+    {
+      "id": "p17",
+      "ecran": "ex_mediane",
+      "texte": "AG = 2/3 de AI : le rapport des deux tiers.",
+      "dit": "Exemple : dans un triangle a bé cé, i est le milieu du côté bé cé. La droite a i est donc la médiane issue de a. Si gé est le centre de gravité, alors a gé vaut les deux tiers de a i."
+    },
+    {
+      "id": "p18",
+      "ecran": "aire",
+      "texte": "A = base × hauteur / 2.",
+      "dit": "Dernière formule du cours, l'aire d'un triangle. On choisit un côté comme base, on prend la hauteur associée, perpendiculaire à cette base, et l'aire vaut base fois hauteur, le tout divisé par deux."
+    },
+    {
+      "id": "p19",
+      "ecran": "ex_aire",
+      "texte": "Base 6, hauteur 4 : A = 12 cm².",
+      "dit": "Exemple : un triangle a une base de six centimètres et une hauteur de quatre centimètres. Son aire vaut six fois quatre divisé par deux, soit douze centimètres carrés. Une aire s'exprime toujours au carré."
+    },
+    {
+      "id": "p20",
+      "ecran": "recap",
+      "texte": "Triangles : à retenir.",
+      "dit": "Pour finir, retenez l'enchaînement. Un triangle a trois côtés et trois angles. Il n'existe que si le plus grand côté est inférieur à la somme des deux autres. Il se construit au compas, ses quatre droites remarquables sont concourantes, et son aire vaut base fois hauteur sur deux."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Reconnaître et construire un triangle"
+    },
+    {
+      "debut": "p12",
+      "pont": {
+        "dit": "Nous retrouvons notre triangle et ses trois sommets A, B et C. Après les constructions, nous découvrons maintenant ses droites remarquables : la médiatrice d'un côté, la hauteur issue d'un sommet, la bissectrice d'un angle, puis les points où elles se rencontrent.",
+        "texte": "Partie 2 : les droites remarquables du triangle."
+      },
+      "sous_titre": "Les droites remarquables du triangle"
+    }
+  ]
+}
