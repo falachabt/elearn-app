@@ -1,0 +1,326 @@
+{
+  "cours": 7254,
+  "titre": "Pyramides et cônes : volumes et aires",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Géométrie dans l'espace",
+      "titre": "Pyramides et cônes : volumes et aires",
+      "sous": "Base, sommet et hauteur : deux solides pointus, un même facteur un tiers",
+      "anim": {
+        "nom": "pyramide_fig",
+        "hauteur": 250
+      }
+    },
+    "objectifs": {
+      "type": "phrase",
+      "kicker": "Objectifs du cours",
+      "texte": "Reconnaître, calculer un volume, calculer une aire totale.",
+      "anim": {
+        "nom": "pyramide_fig",
+        "hauteur": 230
+      }
+    },
+    "pyr_def": {
+      "type": "phrase",
+      "kicker": "La pyramide · définition",
+      "texte": "Une base polygonale, des triangles, un sommet commun S.",
+      "anim": {
+        "nom": "pyramide_fig",
+        "hauteur": 230
+      }
+    },
+    "pyr_reg": {
+      "type": "phrase",
+      "kicker": "Hauteur et pyramide régulière",
+      "texte": "Hauteur : de S au plan de la base, perpendiculaire.",
+      "anim": {
+        "nom": "pyramide_fig",
+        "hauteur": 230
+      }
+    },
+    "vol_pyr": {
+      "type": "formule",
+      "kicker": "Volume de la pyramide",
+      "tex": "V = \\frac{\\mathcal{B} \\times h}{3}",
+      "note": "B : aire de la base ; h : hauteur.",
+      "anim": {
+        "nom": "pyramide_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_vol_pyr": {
+      "type": "etape",
+      "kicker": "Exemple résolu · volume",
+      "titre": "Base carrée de côté six, hauteur neuf",
+      "tex": [
+        "\\mathcal{B} = 6^2 = 36 \\text{ cm}^2",
+        "V = \\tfrac{36 \\times 9}{3} = \\tfrac{324}{3}",
+        "V = 108 \\text{ cm}^3"
+      ]
+    },
+    "aires_pyr": {
+      "type": "formule",
+      "kicker": "Aires de la pyramide",
+      "tex": "\\mathcal{A}_T = \\mathcal{A}_L + \\mathcal{B}",
+      "note": "Latérale : somme des aires des triangles.",
+      "anim": {
+        "nom": "pyramide_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_aires_pyr": {
+      "type": "etape",
+      "kicker": "Exemple résolu · aires",
+      "titre": "Faces triangulaires d'apothème cinq",
+      "tex": [
+        "\\text{une face} = \\tfrac{6 \\times 5}{2} = 15 \\text{ cm}^2",
+        "\\mathcal{A}_L = 4 \\times 15 = 60 \\text{ cm}^2",
+        "\\mathcal{A}_T = 60 + 36 = 96 \\text{ cm}^2"
+      ]
+    },
+    "cone_def": {
+      "type": "phrase",
+      "kicker": "Le cône · définition",
+      "texte": "Un triangle rectangle qui tourne : le cône de révolution.",
+      "anim": {
+        "nom": "cone_fig",
+        "hauteur": 230
+      }
+    },
+    "cone_vocab": {
+      "type": "etape",
+      "kicker": "Le cône · vocabulaire",
+      "titre": "Rayon, hauteur et génératrice",
+      "tex": [
+        "\\text{base : disque de rayon } r",
+        "\\text{sommet } S \\text{, hauteur } h",
+        "\\text{génératrice } g \\text{ : du sommet au cercle}"
+      ],
+      "anim": {
+        "nom": "cone_fig",
+        "hauteur": 215
+      }
+    },
+    "pythagore": {
+      "type": "formule",
+      "kicker": "Hauteur, rayon, génératrice",
+      "tex": "g^2 = h^2 + r^2",
+      "note": "Le triangle rectangle du cône, par Pythagore.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 150
+      }
+    },
+    "vol_cone": {
+      "type": "formule",
+      "kicker": "Volume du cône",
+      "tex": "V = \\frac{\\pi r^2 h}{3}",
+      "note": "Même facteur un tiers que la pyramide.",
+      "anim": {
+        "nom": "cone_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_vol_cone": {
+      "type": "etape",
+      "kicker": "Exemple résolu · volume du cône",
+      "titre": "Rayon trois, hauteur quatre",
+      "tex": [
+        "V = \\tfrac{\\pi \\times 3^2 \\times 4}{3} = \\tfrac{36\\pi}{3}",
+        "V = 12\\pi",
+        "V \\approx 37{,}7 \\text{ cm}^3"
+      ]
+    },
+    "aires_cone": {
+      "type": "formule",
+      "kicker": "Aires du cône",
+      "tex": "\\mathcal{A}_L = \\pi r g \\qquad \\mathcal{A}_T = \\pi r g + \\pi r^2",
+      "note": "Totale : latérale plus le disque de base.",
+      "anim": {
+        "nom": "cone_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_gen": {
+      "type": "etape",
+      "kicker": "Exemple résolu · la génératrice",
+      "titre": "Rayon trois, hauteur quatre, par Pythagore",
+      "tex": [
+        "g = \\sqrt{3^2 + 4^2} = \\sqrt{25}",
+        "g = 5 \\text{ cm}"
+      ]
+    },
+    "ex_aires_cone": {
+      "type": "etape",
+      "kicker": "Exemple résolu · aires du cône",
+      "titre": "Rayon trois, génératrice cinq",
+      "tex": [
+        "\\mathcal{A}_L = \\pi \\times 3 \\times 5 = 15\\pi",
+        "\\mathcal{A}_L \\approx 47{,}1 \\text{ cm}^2",
+        "\\mathcal{A}_T = 15\\pi + 9\\pi = 24\\pi \\approx 75{,}4 \\text{ cm}^2"
+      ]
+    },
+    "vigilance": {
+      "type": "phrase",
+      "kicker": "Points de vigilance",
+      "texte": "Hauteur perpendiculaire, génératrice oblique : deux rôles.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 130
+      }
+    },
+    "tableau": {
+      "type": "etape",
+      "kicker": "Synthèse · les deux solides",
+      "titre": "Volumes et aires, côte à côte",
+      "tex": [
+        "\\text{Pyramide : } V = \\tfrac{\\mathcal{B} h}{3}",
+        "\\text{Cône : } V = \\tfrac{\\pi r^2 h}{3} \\qquad \\mathcal{A}_L = \\pi r g",
+        "\\mathcal{A}_T = \\mathcal{A}_L + \\text{aire de la base}"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Pyramide : volume B fois h sur trois",
+        "Cône : volume pi r carré h sur trois",
+        "Pythagore : g carré, h carré plus r carré",
+        "Aire totale : latérale plus base",
+        "Hauteur et génératrice : à distinguer"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux pyramides et aux cônes. Deux solides pointus, un sommet, une base et une hauteur : nous allons calculer leurs volumes et leurs aires, pas à pas.",
+      "texte": "Pyramides et cônes : volumes et aires.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "À la fin de ce cours, vous saurez reconnaître une pyramide et un cône, calculer leur volume avec le facteur un tiers, et calculer leur aire totale en ajoutant l'aire latérale et l'aire de la base.",
+      "texte": "Objectif : volume et aire totale des deux solides.",
+      "ecran": "objectifs"
+    },
+    {
+      "id": "p03",
+      "dit": "Une pyramide est un solide dont une face est un polygone, appelé la base, et dont les autres faces sont des triangles ayant un sommet commun, noté ès, le sommet de la pyramide. Toutes les faces latérales se rejoignent donc en ce point.",
+      "texte": "La pyramide : une base, des triangles, un sommet S.",
+      "ecran": "pyr_def"
+    },
+    {
+      "id": "p04",
+      "dit": "La hauteur, notée hache, est la distance entre le sommet et le plan de la base : elle est perpendiculaire à la base. Une pyramide est régulière quand sa base est un polygone régulier et que sa hauteur passe par le centre de la base. Ses faces latérales sont alors des triangles isocèles superposables.",
+      "texte": "Hauteur perpendiculaire ; régulière si la base l'est.",
+      "ecran": "pyr_reg"
+    },
+    {
+      "id": "p05",
+      "dit": "Le volume d'une pyramide vaut l'aire de la base multipliée par la hauteur, le tout divisé par trois. Le facteur un tiers est la signature des solides pointus : à base et hauteur égales, la pyramide contient trois fois moins qu'un prisme.",
+      "texte": "Volume pyramide : base fois hauteur, divisé par trois.",
+      "ecran": "vol_pyr"
+    },
+    {
+      "id": "p06",
+      "dit": "Exemple résolu : une pyramide à base carrée de côté six centimètres a une hauteur de neuf centimètres. L'aire de la base vaut six au carré, trente-six centimètres carrés. Le volume vaut trente-six fois neuf divisé par trois, soit cent huit centimètres cubes.",
+      "texte": "Exemple volume : cent huit centimètres cubes.",
+      "ecran": "ex_vol_pyr"
+    },
+    {
+      "id": "p07",
+      "dit": "L'aire latérale d'une pyramide est la somme des aires de ses faces latérales, les triangles. L'aire totale s'obtient en ajoutant l'aire de la base à cette aire latérale. Retenez la logique : recouvrir le solide, c'est additionner toutes ses faces.",
+      "texte": "Aire totale : aire latérale plus aire de la base.",
+      "ecran": "aires_pyr"
+    },
+    {
+      "id": "p08",
+      "dit": "Exemple résolu : reprenons la pyramide régulière à base carrée de côté six centimètres. Chaque face latérale est un triangle de base six et de hauteur, appelée apothème, cinq centimètres. Son aire vaut quinze centimètres carrés. Quatre faces donnent soixante, et avec la base, l'aire totale vaut quatre-vingt-seize centimètres carrés.",
+      "texte": "Exemple aires : totale quatre-vingt-seize centimètres carrés.",
+      "ecran": "ex_aires_pyr"
+    },
+    {
+      "id": "p09",
+      "dit": "Passons au cône. Un cône de révolution est engendré par la rotation d'un triangle rectangle autour d'un de ses côtés. On obtient un solide pointu dont la base n'est plus un polygone, mais un disque.",
+      "texte": "Le cône : un triangle rectangle qui tourne.",
+      "ecran": "cone_def"
+    },
+    {
+      "id": "p10",
+      "dit": "Le vocabulaire du cône reprend celui de la pyramide. La base est un disque de rayon èr. Le sommet est noté ès. La hauteur hache est la distance du sommet au centre de la base. Et la génératrice, notée gé, joint le sommet à un point du cercle de base.",
+      "texte": "Cône : rayon r, hauteur h, génératrice g.",
+      "ecran": "cone_vocab"
+    },
+    {
+      "id": "p11",
+      "dit": "La génératrice, la hauteur et le rayon forment un triangle rectangle. Le théorème de Pythagore les relie donc : le carré de la génératrice vaut le carré de la hauteur plus le carré du rayon. C'est le pont qui permet de passer de l'une à l'autre.",
+      "texte": "Pythagore : g au carré, h au carré plus r au carré.",
+      "ecran": "pythagore"
+    },
+    {
+      "id": "p12",
+      "dit": "Le volume d'un cône vaut pi fois le rayon au carré fois la hauteur, le tout divisé par trois. On retrouve le même facteur un tiers que pour la pyramide, avec simplement l'aire du disque de base, pi fois le rayon au carré.",
+      "texte": "Volume cône : pi r carré h, divisé par trois.",
+      "ecran": "vol_cone"
+    },
+    {
+      "id": "p13",
+      "dit": "Exemple résolu : un cône a pour rayon trois centimètres et pour hauteur quatre centimètres. Son volume vaut pi fois neuf fois quatre, divisé par trois, soit douze pi, environ trente-sept virgule sept centimètres cubes.",
+      "texte": "Exemple volume cône : environ trente-sept virgule sept.",
+      "ecran": "ex_vol_cone"
+    },
+    {
+      "id": "p14",
+      "dit": "L'aire latérale d'un cône vaut pi fois le rayon fois la génératrice. Attention, c'est la génératrice qui intervient ici, pas la hauteur. L'aire totale s'obtient en ajoutant l'aire du disque de base, pi fois le rayon au carré.",
+      "texte": "Aires cône : latérale avec g, totale avec la base.",
+      "ecran": "aires_cone"
+    },
+    {
+      "id": "p15",
+      "dit": "Exemple résolu, première étape : reprenons le cône de rayon trois centimètres et de hauteur quatre centimètres. Sa génératrice vaut la racine carrée de trois au carré plus quatre au carré, soit la racine carrée de vingt-cinq, donc cinq centimètres.",
+      "texte": "Exemple génératrice : cinq centimètres par Pythagore.",
+      "ecran": "ex_gen"
+    },
+    {
+      "id": "p16",
+      "dit": "Deuxième étape : l'aire latérale vaut pi fois trois fois cinq, soit quinze pi, environ quarante-sept virgule un centimètres carrés. L'aire totale ajoute le disque de base, neuf pi. Au total, vingt-quatre pi, environ soixante-quinze virgule quatre centimètres carrés.",
+      "texte": "Exemple aires cône : totale environ soixante-quinze virgule quatre.",
+      "ecran": "ex_aires_cone"
+    },
+    {
+      "id": "p17",
+      "dit": "Trois points de vigilance pour finir. La hauteur est toujours perpendiculaire à la base. Dans un cône, il ne faut pas confondre la hauteur et la génératrice : Pythagore fait le lien. Et le facteur un tiers distingue ces solides du cylindre et du prisme de mêmes base et hauteur.",
+      "texte": "Vigilance : hauteur, génératrice et facteur un tiers.",
+      "ecran": "vigilance"
+    },
+    {
+      "id": "p18",
+      "dit": "Rassemblons les formules des deux solides. Pyramide : volume égal à l'aire de la base fois la hauteur, divisé par trois. Cône : volume égal à pi fois le rayon au carré fois la hauteur, divisé par trois, et aire latérale égale à pi fois le rayon fois la génératrice. Dans les deux cas, l'aire totale ajoute la base.",
+      "texte": "Synthèse : les formules des deux solides côte à côte.",
+      "ecran": "tableau"
+    },
+    {
+      "id": "p19",
+      "dit": "Pour conclure : une pyramide et un cône ont un sommet, une base et une hauteur perpendiculaire. Leur volume partage le facteur un tiers. Leur aire totale additionne l'aire latérale et la base. Et dans le cône, Pythagore relie rayon, hauteur et génératrice.",
+      "texte": "Pyramides et cônes : à retenir.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "La pyramide : volume et aires"
+    },
+    {
+      "debut": "p09",
+      "sous_titre": "Le cône : volume et aires",
+      "pont": {
+        "texte": "Partie 2 : le cône de révolution.",
+        "dit": "Partie deux, le cône de révolution. Après la pyramide, nous retrouvons les mêmes questions pour un solide à base circulaire : volume, aire latérale, aire totale, et un rôle nouveau pour le théorème de Pythagore."
+      }
+    }
+  ]
+}
