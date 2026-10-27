@@ -1,0 +1,466 @@
+{
+ "cours": 7321,
+ "titre": "Arithmétique dans les entiers relatifs : divisibilité, PGCD et PPCM",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Arithmétique",
+   "titre": "Arithmétique dans les entiers relatifs",
+   "sous": "Divisibilité et division euclidienne, congruences et critères, puis PGCD, PPCM et nombres premiers entre eux",
+   "anim": {
+    "nom": "euclide_fig",
+    "hauteur": 230
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Partager, regrouper, comparer des restes : l'arithmétique des entiers.",
+   "anim": {
+    "nom": "crible_fig",
+    "hauteur": 150
+   }
+  },
+  "def_div": {
+   "type": "formule",
+   "kicker": "Définition · divisibilité",
+   "tex": "a \\mid b \\iff b = ka,\\quad k \\in \\mathbb{Z}",
+   "note": "a divise b, b est un multiple de a",
+   "anim": {
+    "nom": "diviseurs_parfaits_fig",
+    "hauteur": 130
+   }
+  },
+  "props_div": {
+   "type": "etape",
+   "kicker": "Propriétés de la divisibilité",
+   "titre": "Quatre réflexes à connaître",
+   "tex": [
+    "a \\mid a,\\quad 1 \\mid a,\\quad a \\mid 0",
+    "a \\mid b,\\ b \\mid c \\Rightarrow a \\mid c",
+    "a \\mid b,\\ a \\mid c \\Rightarrow a \\mid (bu + cv)",
+    "a \\mid b,\\ b \\mid a \\Rightarrow a = \\pm b"
+   ]
+  },
+  "ex_comb": {
+   "type": "etape",
+   "kicker": "Exemple · combinaison linéaire",
+   "titre": "Trois divise douze et quinze, donc neuf",
+   "tex": [
+    "12 = 3 \\times 4 \\Rightarrow 3 \\mid 12",
+    "3 \\mid 15",
+    "3 \\mid (12 \\times 2 - 15) = 9"
+   ]
+  },
+  "div_euc": {
+   "type": "formule",
+   "kicker": "Division euclidienne",
+   "tex": "a = bq + r,\\quad 0 \\leq r < |b|",
+   "note": "q : quotient, r : reste, couple unique"
+  },
+  "ex_neg": {
+   "type": "etape",
+   "kicker": "Exemple · dividende négatif",
+   "titre": "Moins dix-sept divisé par cinq",
+   "tex": [
+    "-17 = 5 \\times (-4) + 3",
+    "q = -4,\\quad r = 3",
+    "0 \\leq 3 < 5"
+   ]
+  },
+  "lien_div": {
+   "type": "formule",
+   "kicker": "Le lien avec la divisibilité",
+   "tex": "b \\mid a \\iff r = 0",
+   "note": "Reste nul : la division tombe juste"
+  },
+  "def_cong": {
+   "type": "formule",
+   "kicker": "Définition · congruence",
+   "tex": "a \\equiv b \\pmod{n} \\iff n \\mid (a - b)",
+   "note": "Même reste dans la division par n",
+   "anim": {
+    "nom": "modulo_fig",
+    "hauteur": 140
+   }
+  },
+  "props_cong": {
+   "type": "etape",
+   "kicker": "Propriétés des congruences",
+   "titre": "On calcule comme avec des égalités, modulo n",
+   "tex": [
+    "a \\equiv b,\\ c \\equiv d \\Rightarrow a + c \\equiv b + d",
+    "a \\equiv b,\\ c \\equiv d \\Rightarrow ac \\equiv bd",
+    "a \\equiv b \\Rightarrow a^k \\equiv b^k"
+   ]
+  },
+  "ex_puiss": {
+   "type": "etape",
+   "kicker": "Exemple · grande puissance",
+   "titre": "Le reste de sept puissance cent modulo cinq",
+   "tex": [
+    "7 \\equiv 2 \\pmod{5}",
+    "2^4 = 16 \\equiv 1 \\pmod{5}",
+    "7^{100} \\equiv (2^4)^{25} \\equiv 1 \\pmod{5}"
+   ]
+  },
+  "crit1": {
+   "type": "etape",
+   "kicker": "Critères de divisibilité · le dernier chiffre",
+   "titre": "Par deux, par cinq, par quatre",
+   "tex": [
+    "\\text{par } 2 : a_0 \\in \\{0, 2, 4, 6, 8\\}",
+    "\\text{par } 5 : a_0 \\in \\{0, 5\\}",
+    "\\text{par } 4 : 4 \\mid \\overline{a_1 a_0}"
+   ]
+  },
+  "crit2": {
+   "type": "etape",
+   "kicker": "Critères de divisibilité · les sommes",
+   "titre": "Par trois, par neuf, par onze",
+   "tex": [
+    "10 \\equiv 1 \\pmod{3},\\quad 10 \\equiv 1 \\pmod{9}",
+    "N \\equiv a_0 + \\cdots + a_n \\pmod{3}",
+    "10 \\equiv -1 \\pmod{11} : \\text{somme alternée}"
+   ]
+  },
+  "ex_crit": {
+   "type": "etape",
+   "kicker": "Exemple · tester quatre mille sept cent vingt-cinq",
+   "titre": "Neuf oui, onze non, cinq oui",
+   "tex": [
+    "4 + 7 + 2 + 5 = 18 \\Rightarrow 9 \\mid 4725",
+    "5 - 2 + 7 - 4 = 6 \\Rightarrow 11 \\nmid 4725",
+    "a_0 = 5 \\Rightarrow 5 \\mid 4725,\\ 2 \\nmid 4725"
+   ]
+  },
+  "ex_eq": {
+   "type": "etape",
+   "kicker": "Méthode · équation modulo n",
+   "titre": "Trois x congru à un, modulo sept",
+   "tex": [
+    "3x \\equiv 1 \\pmod{7}",
+    "x = 5 : 3 \\times 5 = 15 \\equiv 1 \\pmod{7}",
+    "x \\equiv 5 \\pmod{7},\\quad x = 5 + 7k"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : à retenir",
+   "etapes": [
+    "Divisibilité : a | b signifie b = ka",
+    "Division : a = bq + r, 0 ≤ r < |b|",
+    "Congruence : n divise a − b",
+    "Critères : dernier chiffre, somme, alternée"
+   ]
+  },
+  "vocab": {
+   "type": "phrase",
+   "kicker": "Vocabulaire · commun",
+   "texte": "Commun : qui divise les deux, ou multiple des deux.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 150
+   }
+  },
+  "def_pgcd": {
+   "type": "formule",
+   "kicker": "Définition · PGCD",
+   "tex": "\\mathrm{PGCD}(a, b) = a \\wedge b",
+   "note": "Le plus grand diviseur commun à a et à b"
+  },
+  "euclide": {
+   "type": "formule",
+   "kicker": "Algorithme d'Euclide",
+   "tex": "\\mathrm{PGCD}(a, b) = \\mathrm{PGCD}(b, r)",
+   "note": "r : reste de a par b ; on répète jusqu'au reste nul",
+   "anim": {
+    "nom": "euclide_fig",
+    "hauteur": 140
+   }
+  },
+  "ex_euclide": {
+   "type": "etape",
+   "kicker": "Exemple résolu · algorithme d'Euclide",
+   "titre": "PGCD de deux cent cinquante-deux et cent cinq",
+   "tex": [
+    "252 = 105 \\times 2 + 42",
+    "105 = 42 \\times 2 + 21",
+    "42 = 21 \\times 2 + 0",
+    "\\text{PGCD} = 21, \\text{ dernier reste non nul}"
+   ]
+  },
+  "def_ppcm": {
+   "type": "formule",
+   "kicker": "Définition · PPCM",
+   "tex": "\\mathrm{PPCM}(a, b) = a \\vee b",
+   "note": "Le plus petit multiple commun strictement positif"
+  },
+  "relation": {
+   "type": "formule",
+   "kicker": "La relation fondamentale",
+   "tex": "(a \\wedge b)(a \\vee b) = |ab|",
+   "note": "PGCD fois PPCM égale la valeur absolue du produit"
+  },
+  "ex_ppcm": {
+   "type": "etape",
+   "kicker": "Exemple résolu · PPCM",
+   "titre": "De deux cent cinquante-deux et cent cinq",
+   "tex": [
+    "\\text{PPCM} = \\tfrac{252 \\times 105}{21} = 1260",
+    "1260 = 252 \\times 5 = 105 \\times 12"
+   ]
+  },
+  "premiers": {
+   "type": "formule",
+   "kicker": "Nombres premiers entre eux",
+   "tex": "a \\wedge b = 1",
+   "note": "Aucun diviseur commun autre que un"
+  },
+  "bezout_gauss": {
+   "type": "etape",
+   "kicker": "Bézout et Gauss",
+   "titre": "Deux théorèmes pour les nombres premiers entre eux",
+   "tex": [
+    "\\text{Bézout : } au + bv = 1",
+    "\\text{Gauss : } a \\mid bc,\\ a \\wedge b = 1 \\Rightarrow a \\mid c"
+   ]
+  },
+  "ex_premiers": {
+   "type": "etape",
+   "kicker": "Exemple résolu · premiers entre eux",
+   "titre": "Trente-cinq et douze, par Euclide",
+   "tex": [
+    "35 = 12 \\times 2 + 11",
+    "12 = 11 \\times 1 + 1",
+    "11 = 1 \\times 11 + 0",
+    "\\text{PGCD} = 1,\\quad \\text{PPCM} = 420"
+   ]
+  },
+  "decomp": {
+   "type": "etape",
+   "kicker": "Décomposition en facteurs premiers",
+   "titre": "Trois cent soixante et quatre-vingt-quatre",
+   "tex": [
+    "360 = 2^3 \\times 3^2 \\times 5",
+    "84 = 2^2 \\times 3 \\times 7"
+   ],
+   "anim": {
+    "nom": "divisions_fig",
+    "hauteur": 130
+   }
+  },
+  "ex_decomp": {
+   "type": "etape",
+   "kicker": "Exemple · lire PGCD et PPCM",
+   "titre": "Plus petit exposant, plus grand exposant",
+   "tex": [
+    "\\text{PGCD} = 2^2 \\times 3 = 12",
+    "\\text{PPCM} = 2^3 \\times 3^2 \\times 5 \\times 7 = 2520",
+    "12 \\times 2520 = 30240 = 360 \\times 84"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "PGCD : plus grand diviseur commun",
+    "Euclide : PGCD(a, b) = PGCD(b, reste)",
+    "PPCM : plus petit multiple commun",
+    "PGCD × PPCM = |a × b|",
+    "Premiers entre eux : PGCD égal à un"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours d'arithmétique consacré aux entiers relatifs. Au programme : la divisibilité et la division euclidienne, les congruences et leurs critères, puis le plus grand commun diviseur, le plus petit commun multiple et les nombres premiers entre eux.",
+   "texte": "Arithmétique : divisibilité, PGCD et PPCM.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "L'arithmétique étudie les entiers et leurs partages. Trois questions reviennent sans cesse : un entier en divise-t-il un autre, quel reste laisse une division, et que partagent deux entiers comme diviseurs ou comme multiples.",
+   "texte": "Partager, diviser, comparer les restes.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par le mot central. Un entier a divise un entier b lorsqu'il existe un entier relatif k tel que b égale k fois a. Dans ce cas, b est un multiple de a, et a est un diviseur de b.",
+   "texte": "a | b signifie : b = ka.",
+   "ecran": "def_div"
+  },
+  {
+   "id": "p04",
+   "dit": "Quatre propriétés structurent les calculs. Tout entier se divise lui-même, un divise tout entier, et tout entier divise zéro. La divisibilité est transitive. Elle passe aux combinaisons linéaires : si a divise b et c, il divise toute combinaison de b et c à coefficients entiers. Enfin, si a divise b et b divise a, alors a et b sont égaux ou opposés.",
+   "texte": "Transitivité et combinaisons linéaires.",
+   "ecran": "props_div"
+  },
+  {
+   "id": "p05",
+   "dit": "Un exemple de combinaison. Trois divise douze, car douze égale trois fois quatre. Trois divise aussi quinze. Donc trois divise la combinaison douze fois deux, moins quinze, c'est-à-dire neuf. Un diviseur commun se retrouve dans toutes les combinaisons.",
+   "texte": "3 | 12 et 3 | 15, donc 3 | 9.",
+   "ecran": "ex_comb"
+  },
+  {
+   "id": "p06",
+   "dit": "Passons à la division euclidienne. Pour tout entier a et tout entier b non nul, il existe un unique couple, un quotient q et un reste r, tel que a égale b fois q plus r, avec un reste positif ou nul et strictement inférieur à la valeur absolue de b.",
+   "texte": "a = bq + r, avec 0 ≤ r < |b|.",
+   "ecran": "div_euc"
+  },
+  {
+   "id": "p07",
+   "dit": "Attention au cas négatif, c'est le piège classique. Moins dix-sept égale cinq fois moins quatre, plus trois. Le quotient vaut moins quatre et le reste vaut trois. Le reste est toujours positif ou nul : un reste de moins deux est interdit.",
+   "texte": "−17 par 5 : q = −4, r = 3.",
+   "ecran": "ex_neg"
+  },
+  {
+   "id": "p08",
+   "dit": "La division euclidienne dit aussi la divisibilité. Un entier b divise un entier a exactement lorsque le reste de la division de a par b est nul. Division qui tombe juste et divisibilité sont deux lectures du même fait.",
+   "texte": "b | a si et seulement si le reste est nul.",
+   "ecran": "lien_div"
+  },
+  {
+   "id": "p09",
+   "dit": "Changeons de regard avec les congruences. Fixons un entier naturel non nul n. Deux entiers a et b sont congrus modulo n lorsque n divise leur différence. Autrement dit, ils laissent le même reste dans la division par n.",
+   "texte": "a ≡ b (mod n) : même reste modulo n.",
+   "ecran": "def_cong"
+  },
+  {
+   "id": "p10",
+   "dit": "La congruence se comporte presque comme une égalité. Elle est réflexive, symétrique et transitive. Surtout, elle est compatible avec l'addition et la multiplication : sommes et produits de nombres congrus sont congrus, et les puissances aussi.",
+   "texte": "Addition, produit, puissances : tout passe.",
+   "ecran": "props_cong"
+  },
+  {
+   "id": "p11",
+   "dit": "Exemple complet : le reste de sept puissance cent dans la division par cinq. Sept est congru à deux modulo cinq, donc sept puissance cent est congru à deux puissance cent. Or deux puissance quatre égale seize, congru à un. Le reste cherché est donc un.",
+   "texte": "7¹⁰⁰ modulo 5 : le reste vaut 1.",
+   "ecran": "ex_puiss"
+  },
+  {
+   "id": "p12",
+   "dit": "Les congruences donnent les critères de divisibilité, qui lisent un entier chiffre par chiffre. Pour deux et pour cinq, seul le dernier chiffre compte : pair pour deux, zéro ou cinq pour cinq. Pour quatre, les deux derniers chiffres forment un nombre divisible par quatre.",
+   "texte": "Par 2, 5, 4 : regarder la fin du nombre.",
+   "ecran": "crit1"
+  },
+  {
+   "id": "p13",
+   "dit": "Pour trois et pour neuf, on additionne tous les chiffres : le nombre est divisible par trois, respectivement par neuf, exactement quand cette somme l'est. Pour onze, on forme la somme alternée des chiffres, plus, moins, plus, moins, et on teste sa divisibilité par onze.",
+   "texte": "Par 3 et 9 : la somme ; par 11 : l'alternée.",
+   "ecran": "crit2"
+  },
+  {
+   "id": "p14",
+   "dit": "Testons quatre mille sept cent vingt-cinq. La somme de ses chiffres vaut dix-huit, divisible par neuf : neuf divise donc le nombre. La somme alternée vaut six, non divisible par onze : onze ne divise pas le nombre. Le dernier chiffre est cinq : cinq divise le nombre, deux ne le divise pas.",
+   "texte": "4725 : divisible par 9 et 5, pas par 11 ni 2.",
+   "ecran": "ex_crit"
+  },
+  {
+   "id": "p15",
+   "dit": "Dernière méthode de cette partie : résoudre trois x congru à un, modulo sept. On teste les classes de zéro à six. Pour x égal à cinq, trois fois cinq égale quinze, congru à un. Les solutions sont les entiers congrus à cinq modulo sept.",
+   "texte": "3x ≡ 1 (mod 7) : x ≡ 5 (mod 7).",
+   "ecran": "ex_eq"
+  },
+  {
+   "id": "p16",
+   "dit": "Retenons cette première partie. La divisibilité décrit les multiples exacts, la division euclidienne ajoute un reste toujours positif et plus petit que le diviseur, la congruence compare les restes, et les critères lisent la divisibilité sur les chiffres.",
+   "texte": "Partie 1 : divisibilité et congruences.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p17",
+   "dit": "Deuxième partie : ce que deux entiers partagent. Un diviseur commun de a et de b divise à la fois a et b. Un multiple commun est multiple à la fois de a et de b. Les deux notions suivantes choisissent le plus grand d'un côté, le plus petit de l'autre.",
+   "texte": "Diviseur commun, multiple commun.",
+   "ecran": "vocab"
+  },
+  {
+   "id": "p18",
+   "dit": "Le plus grand commun diviseur de a et de b, noté PGCD, est le plus grand entier naturel qui divise à la fois a et b. Il ne change pas si l'on change les signes ou l'ordre des nombres, et tout diviseur commun des deux nombres divise aussi leur PGCD.",
+   "texte": "PGCD : le plus grand diviseur commun.",
+   "ecran": "def_pgcd"
+  },
+  {
+   "id": "p19",
+   "dit": "Pour calculer un PGCD, l'outil est l'algorithme d'Euclide : le PGCD de a et de b égale le PGCD de b et du reste de la division de a par b. On remplace le couple par un couple plus petit, jusqu'à obtenir un reste nul.",
+   "texte": "Euclide : remplacer par le reste, répéter.",
+   "ecran": "euclide"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple résolu : le PGCD de deux cent cinquante-deux et de cent cinq. Deux cent cinquante-deux égale cent cinq fois deux, plus quarante-deux. Cent cinq égale quarante-deux fois deux, plus vingt et un. Le dernier reste non nul, vingt et un, est le PGCD.",
+   "texte": "PGCD(252, 105) = 21, par Euclide.",
+   "ecran": "ex_euclide"
+  },
+  {
+   "id": "p21",
+   "dit": "De l'autre côté, le plus petit commun multiple de a et de b, noté PPCM, est le plus petit entier naturel strictement positif multiple à la fois de a et de b. Tout multiple commun des deux nombres est un multiple de leur PPCM.",
+   "texte": "PPCM : le plus petit multiple commun positif.",
+   "ecran": "def_ppcm"
+  },
+  {
+   "id": "p22",
+   "dit": "PGCD et PPCM sont liés par une relation fondamentale, à connaître par cœur : leur produit égale la valeur absolue du produit des deux entiers. Connaître l'un des deux, c'est calculer l'autre par une division.",
+   "texte": "PGCD × PPCM = |a × b|.",
+   "ecran": "relation"
+  },
+  {
+   "id": "p23",
+   "dit": "Application avec nos deux nombres. Le PPCM égale leur produit divisé par leur PGCD, vingt et un. On obtient mille deux cent soixante. Vérification : c'est deux cent cinquante-deux fois cinq, et aussi cent cinq fois douze.",
+   "texte": "PPCM(252, 105) = 1260.",
+   "ecran": "ex_ppcm"
+  },
+  {
+   "id": "p24",
+   "dit": "Cas extrême et très utile : deux entiers sont premiers entre eux lorsque leur PGCD vaut un. Ils n'ont aucun diviseur commun autre que un, et leur PPCM égale la valeur absolue de leur produit.",
+   "texte": "Premiers entre eux : PGCD égal à 1.",
+   "ecran": "premiers"
+  },
+  {
+   "id": "p25",
+   "dit": "Deux théorèmes décrivent cette situation. Bézout : a et b sont premiers entre eux exactement lorsqu'il existe deux entiers u et v tels que a fois u, plus b fois v, égale un. Gauss : si a divise le produit de b par c, et si a est premier avec b, alors a divise c.",
+   "texte": "Bézout : au + bv = 1 ; Gauss : a | c.",
+   "ecran": "bezout_gauss"
+  },
+  {
+   "id": "p26",
+   "dit": "Exemple : trente-cinq et douze sont-ils premiers entre eux. Trente-cinq égale douze fois deux, plus onze. Douze égale onze fois un, plus un. Le PGCD vaut un : ils sont premiers entre eux, et leur PPCM vaut quatre cent vingt.",
+   "texte": "35 et 12 : PGCD 1, PPCM 420.",
+   "ecran": "ex_premiers"
+  },
+  {
+   "id": "p27",
+   "dit": "Deuxième méthode, par décomposition en facteurs premiers. Trois cent soixante égale deux puissance trois, fois trois au carré, fois cinq. Quatre-vingt-quatre égale deux au carré, fois trois, fois sept. On lit alors PGCD et PPCM sur les exposants.",
+   "texte": "360 = 2³ × 3² × 5 ; 84 = 2² × 3 × 7.",
+   "ecran": "decomp"
+  },
+  {
+   "id": "p28",
+   "dit": "Pour le PGCD, on garde les facteurs communs avec le plus petit exposant : deux au carré, fois trois, égale douze. Pour le PPCM, tous les facteurs avec le plus grand exposant : deux mille cinq cent vingt. Contrôle : leur produit redonne celui des deux nombres.",
+   "texte": "PGCD 12, PPCM 2520 : produit vérifié.",
+   "ecran": "ex_decomp"
+  },
+  {
+   "id": "p29",
+   "dit": "Pour conclure. Le PGCD est le plus grand diviseur commun, calculé par Euclide ou par les facteurs premiers. Le PPCM est le plus petit multiple commun, lié au PGCD par le produit des deux nombres. Et deux entiers sont premiers entre eux quand leur PGCD vaut un, ce que Bézout et Gauss exploitent.",
+   "texte": "PGCD, PPCM, premiers entre eux : à retenir.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Divisibilité, division euclidienne et congruences"
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "PGCD, PPCM et nombres premiers entre eux",
+   "pont": {
+    "texte": "Partie 2 : PGCD, PPCM et premiers entre eux.",
+    "dit": "Partie deux : le plus grand commun diviseur et le plus petit commun multiple. Nous comparons ce que deux entiers partagent, comme diviseurs et comme multiples."
+   }
+  }
+ ]
+}
