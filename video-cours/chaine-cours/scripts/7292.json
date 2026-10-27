@@ -1,0 +1,495 @@
+{
+ "cours": 7292,
+ "ecrans": {
+  "addition": {
+   "kicker": "Formules d'addition",
+   "tex": [
+    "\\cos(a+b) = \\cos a \\cos b - \\sin a \\sin b",
+    "\\cos(a-b) = \\cos a \\cos b + \\sin a \\sin b",
+    "\\sin(a+b) = \\sin a \\cos b + \\cos a \\sin b",
+    "\\sin(a-b) = \\sin a \\cos b - \\cos a \\sin b"
+   ],
+   "titre": "Somme et différence de deux angles",
+   "type": "etape"
+  },
+  "angle_def": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "vecteurs_angle_fig"
+   },
+   "kicker": "Angles orientés · définition",
+   "note": "Sens positif : antihoraire. Sens négatif : horaire. Égalité à un tour près, modulo deux pi.",
+   "tex": "(\\vec{u}, \\vec{v})",
+   "type": "formule"
+  },
+  "associes": {
+   "kicker": "Angles associés",
+   "tex": [
+    "\\cos(\\pi \\pm x) = -\\cos x",
+    "\\sin(\\pi - x) = \\sin x \\quad \\sin(\\pi + x) = -\\sin x",
+    "\\cos(\\tfrac{\\pi}{2} - x) = \\sin x",
+    "\\sin(\\tfrac{\\pi}{2} - x) = \\cos x"
+   ],
+   "titre": "Ramener un angle à un angle connu",
+   "type": "etape"
+  },
+  "cercle": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "cercle_trigo_fig"
+   },
+   "kicker": "Cercle trigonométrique",
+   "note": "Cercle de centre O et de rayon un, parcouru dans le sens antihoraire.",
+   "tex": "\\cos x = \\text{abscisse}, \\quad \\sin x = \\text{ordonnée}",
+   "type": "formule"
+  },
+  "chasles": {
+   "kicker": "Relation de Chasles",
+   "note": "Le vecteur du milieu sert de relais : on additionne les deux rotations.",
+   "tex": "(\\vec{u}, \\vec{v}) + (\\vec{v}, \\vec{w}) = (\\vec{u}, \\vec{w}) \\quad [2\\pi]",
+   "type": "formule"
+  },
+  "composee": {
+   "kicker": "Exemple · se ramener à un type connu",
+   "tex": [
+    "2x = x - \\tfrac{\\pi}{6} + 2k\\pi",
+    "2x = -(x - \\tfrac{\\pi}{6}) + 2k\\pi",
+    "x = \\tfrac{11\\pi}{6} \\qquad x = \\tfrac{\\pi}{18} + \\tfrac{2k\\pi}{3}",
+    "\\text{sur } [0, 2\\pi[ : \\tfrac{11\\pi}{6}, \\tfrac{\\pi}{18}, \\tfrac{13\\pi}{18}, \\tfrac{25\\pi}{18}"
+   ],
+   "titre": "Deux cas, quatre solutions au total",
+   "type": "etape"
+  },
+  "duplication": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "sinusoide"
+   },
+   "kicker": "Formules de duplication",
+   "tex": [
+    "\\cos 2a = \\cos^2 a - \\sin^2 a",
+    "\\cos 2a = 2\\cos^2 a - 1 = 1 - 2\\sin^2 a",
+    "\\sin 2a = 2 \\sin a \\cos a"
+   ],
+   "titre": "Le double d'un angle",
+   "type": "etape"
+  },
+  "eq_cos": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "cercle_trigo_fig"
+   },
+   "kicker": "Équation cosinus égal cosinus",
+   "note": "Même cosinus : angles égaux ou opposés, à un tour près.",
+   "tex": "\\begin{aligned} &\\cos x = \\cos a \\iff x = a + 2k\\pi \\\\ &\\text{ou } x = -a + 2k\\pi \\end{aligned}",
+   "type": "formule"
+  },
+  "eq_sin": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "cercle_trigo_fig"
+   },
+   "kicker": "Équation sinus égal sinus",
+   "note": "Même sinus : angles égaux ou supplémentaires, à un tour près.",
+   "tex": "\\begin{aligned} &\\sin x = \\sin a \\iff x = a + 2k\\pi \\\\ &\\text{ou } x = \\pi - a + 2k\\pi \\end{aligned}",
+   "type": "formule"
+  },
+  "eq_tan": {
+   "kicker": "Équation tangente égale tangente",
+   "note": "Période pi : une seule famille de solutions suffit.",
+   "tex": "\\begin{aligned} &\\tan x = \\tan a \\iff x = a + k\\pi \\\\ &\\text{avec } x, a \\neq \\tfrac{\\pi}{2} + k\\pi \\end{aligned}",
+   "type": "formule"
+  },
+  "ex_chasles": {
+   "kicker": "Exemple · Chasles",
+   "tex": [
+    "(\\vec{u}, \\vec{v}) = \\tfrac{\\pi}{4} \\qquad (\\vec{v}, \\vec{w}) = \\tfrac{\\pi}{3}",
+    "(\\vec{u}, \\vec{w}) = \\tfrac{\\pi}{4} + \\tfrac{\\pi}{3} = \\tfrac{7\\pi}{12}"
+   ],
+   "titre": "Additionner deux angles orientés",
+   "type": "etape"
+  },
+  "ex_cos_associe": {
+   "kicker": "Exemple · angles associés",
+   "tex": [
+    "\\tfrac{5\\pi}{6} = \\pi - \\tfrac{\\pi}{6}",
+    "\\cos\\tfrac{5\\pi}{6} = -\\cos\\tfrac{\\pi}{6} = -\\tfrac{\\sqrt{3}}{2}"
+   ],
+   "titre": "Un supplément qui change le signe du cosinus",
+   "type": "etape"
+  },
+  "ex_eq_cos": {
+   "kicker": "Exemple · équation en cosinus",
+   "tex": [
+    "\\cos x = \\tfrac{1}{2}, \\quad \\cos\\tfrac{\\pi}{3} = \\tfrac{1}{2}",
+    "x = \\tfrac{\\pi}{3} + 2k\\pi \\qquad x = -\\tfrac{\\pi}{3} + 2k\\pi",
+    "\\text{sur } [0, 2\\pi[ : \\quad x = \\tfrac{\\pi}{3} \\quad \\text{ou} \\quad x = \\tfrac{5\\pi}{3}"
+   ],
+   "titre": "Reconnaître l'angle, puis filtrer sur l'intervalle",
+   "type": "etape"
+  },
+  "ex_eq_sin": {
+   "kicker": "Exemple · équation en sinus",
+   "tex": [
+    "\\sin x = \\tfrac{\\sqrt{2}}{2}, \\quad \\sin\\tfrac{\\pi}{4} = \\tfrac{\\sqrt{2}}{2}",
+    "x = \\tfrac{\\pi}{4} + 2k\\pi \\qquad x = \\tfrac{3\\pi}{4} + 2k\\pi",
+    "\\text{sur } [0, 2\\pi[ : \\quad x = \\tfrac{\\pi}{4} \\quad \\text{ou} \\quad x = \\tfrac{3\\pi}{4}"
+   ],
+   "titre": "Le supplémentaire donne la seconde solution",
+   "type": "etape"
+  },
+  "ex_eq_tan": {
+   "kicker": "Exemple · équation en tangente",
+   "tex": [
+    "\\tan x = \\sqrt{3}, \\quad \\tan\\tfrac{\\pi}{3} = \\sqrt{3}",
+    "x = \\tfrac{\\pi}{3} + k\\pi",
+    "\\text{sur } ]-\\pi, \\pi] : \\quad x = \\tfrac{\\pi}{3} \\quad \\text{ou} \\quad x = -\\tfrac{2\\pi}{3}"
+   ],
+   "titre": "Une famille, deux valeurs sur l'intervalle",
+   "type": "etape"
+  },
+  "ex_pi12": {
+   "kicker": "Exemple · addition",
+   "tex": [
+    "\\tfrac{\\pi}{12} = \\tfrac{\\pi}{3} - \\tfrac{\\pi}{4}",
+    "\\cos\\tfrac{\\pi}{12} = \\tfrac{1}{2} \\cdot \\tfrac{\\sqrt{2}}{2} + \\tfrac{\\sqrt{3}}{2} \\cdot \\tfrac{\\sqrt{2}}{2}",
+    "\\cos\\tfrac{\\pi}{12} = \\tfrac{\\sqrt{2} + \\sqrt{6}}{4}"
+   ],
+   "titre": "Un angle inconnu décomposé en deux angles connus",
+   "type": "etape"
+  },
+  "ex_sin": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "cercle_trigo_fig"
+   },
+   "kicker": "Exemple · lire sur le cercle",
+   "tex": [
+    "\\sin x = \\tfrac{1}{2} \\quad \\text{sur } [0, 2\\pi]",
+    "x = \\tfrac{\\pi}{6} \\qquad x = \\pi - \\tfrac{\\pi}{6} = \\tfrac{5\\pi}{6}"
+   ],
+   "titre": "Deux points pour un même sinus",
+   "type": "etape"
+  },
+  "ineq_cos": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "cercle_trigo_fig"
+   },
+   "kicker": "Inéquation en cosinus",
+   "tex": [
+    "\\cos x \\ge \\tfrac{1}{2} \\quad \\text{sur } [0, 2\\pi[",
+    "\\mathcal{S} = \\left[0, \\tfrac{\\pi}{3}\\right] \\cup \\left[\\tfrac{5\\pi}{3}, 2\\pi\\right["
+   ],
+   "titre": "Lire l'arc solution sur le cercle",
+   "type": "etape"
+  },
+  "ineq_sin": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "cercle_trigo_fig"
+   },
+   "kicker": "Inéquation en sinus",
+   "tex": [
+    "\\sin x < \\tfrac{\\sqrt{2}}{2} \\quad \\text{sur } [0, 2\\pi[",
+    "\\mathcal{S} = \\left[0, \\tfrac{\\pi}{4}\\right[ \\cup \\left]\\tfrac{3\\pi}{4}, 2\\pi\\right["
+   ],
+   "titre": "Le complémentaire de l'arc interdit",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "cercle_trigo_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Un seul outil traverse tout le cours : le cercle trigonométrique, pour lire, calculer et résoudre.",
+   "type": "phrase"
+  },
+  "parite": {
+   "kicker": "Parité et périodicité",
+   "tex": [
+    "\\cos(-x) = \\cos x \\qquad \\sin(-x) = -\\sin x",
+    "\\tan(-x) = -\\tan x",
+    "\\cos, \\sin : \\text{période } 2\\pi",
+    "\\tan : \\text{période } \\pi"
+   ],
+   "titre": "Paire, impaires, et leurs périodes",
+   "type": "etape"
+  },
+  "piege": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "cercle_trigo_fig"
+   },
+   "kicker": "Le piège à éviter",
+   "texte": "Ne jamais diviser par une expression qui peut s'annuler : on perdrait des solutions.",
+   "type": "phrase"
+  },
+  "proprietes": {
+   "kicker": "Propriétés fondamentales",
+   "tex": [
+    "-1 \\le \\cos x \\le 1 \\qquad -1 \\le \\sin x \\le 1",
+    "\\cos^2 x + \\sin^2 x = 1",
+    "\\cos(x + 2k\\pi) = \\cos x \\qquad k \\in \\mathbb{Z}"
+   ],
+   "titre": "Encadrement, identité et tour complet",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "cos = cos : égal ou opposé, plus deux k pi",
+    "sin = sin : égal ou supplémentaire, plus deux k pi",
+    "tan = tan : égal, plus k pi",
+    "Inéquations : lire l'arc sur le cercle"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "recap1": {
+   "etapes": [
+    "Angle orienté : signe selon le sens, modulo 2π",
+    "Cercle : cosinus = abscisse, sinus = ordonnée",
+    "Angles associés : ramener à un angle connu",
+    "Addition et duplication : calculer l'inconnu"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "tangente": {
+   "kicker": "La fonction tangente",
+   "note": "Tangente : période pi. Cosinus et sinus : période deux pi.",
+   "tex": "\\tan x = \\frac{\\sin x}{\\cos x}, \\qquad \\cos x \\neq 0",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "cercle_trigo_fig"
+   },
+   "kicker": "Mathématique · Trigonométrie",
+   "sous": "Angles orientés, cercle trigonométrique, angles associés, formules et résolution des équations",
+   "titre": "Trigonométrie et angles orientés : cercle, formules et équations",
+   "type": "titre"
+  },
+  "transformation": {
+   "kicker": "Formules de transformation",
+   "tex": [
+    "\\cos p + \\cos q = 2\\cos\\tfrac{p+q}{2} \\cos\\tfrac{p-q}{2}",
+    "\\sin p + \\sin q = 2\\sin\\tfrac{p+q}{2} \\cos\\tfrac{p-q}{2}"
+   ],
+   "titre": "Factoriser une somme de cosinus ou de sinus",
+   "type": "etape"
+  },
+  "valeurs": {
+   "kicker": "Valeurs remarquables",
+   "tex": [
+    "x : \\quad 0 \\qquad \\tfrac{\\pi}{6} \\qquad \\tfrac{\\pi}{4} \\qquad \\tfrac{\\pi}{3} \\qquad \\tfrac{\\pi}{2}",
+    "\\cos x : \\quad 1 \\qquad \\tfrac{\\sqrt{3}}{2} \\qquad \\tfrac{\\sqrt{2}}{2} \\qquad \\tfrac{1}{2} \\qquad 0",
+    "\\sin x : \\quad 0 \\qquad \\tfrac{1}{2} \\qquad \\tfrac{\\sqrt{2}}{2} \\qquad \\tfrac{\\sqrt{3}}{2} \\qquad 1"
+   ],
+   "titre": "Les cinq angles à connaître par cœur",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Angles orientés et cercle trigonométrique"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : les fonctions trigonométriques et les formules. Après la tangente et les questions de parité et de périodicité, les angles associés ramèneront tout aux angles connus, puis les formules d addition, de duplication et de transformation ouvriront les calculs composés.",
+    "texte": "Partie 2 : tangente, parité, angles associés et grandes formules."
+   },
+   "sous_titre": "Fonctions, angles associés et formules"
+  },
+  {
+   "debut": "p19",
+   "pont": {
+    "dit": "Partie trois : résoudre les équations et les inéquations. Chaque équation se ramène à un des trois types, cosinus, sinus ou tangente, et chaque inéquation se lit directement sur le cercle trigonométrique.",
+    "texte": "Partie 3 : résoudre équations et inéquations trigonométriques."
+   },
+   "sous_titre": "Équations et inéquations trigonométriques"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de trigonométrie et d'angles orientés. Nous partirons des angles entre vecteurs et du cercle trigonométrique, nous apprendrons à calculer avec les angles associés et les grandes formules, puis nous résoudrons les équations et les inéquations trigonométriques.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Cercle, formules, équations : le programme du cours."
+  },
+  {
+   "dit": "Le fil rouge est simple : presque tout se lit sur le cercle trigonométrique. Une valeur de cosinus ou de sinus, un angle associé, une équation à résoudre : à chaque fois, placer le point sur le cercle fait apparaître la réponse et évite les erreurs de signe.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Le cercle trigonométrique : l'outil central."
+  },
+  {
+   "dit": "Un angle orienté est défini par un couple de vecteurs non nuls, u puis v. Sa mesure dépend du sens de rotation : elle est positive quand on tourne dans le sens antihoraire, négative dans le sens horaire. Deux mesures qui diffèrent d'un nombre entier de tours représentent le même angle : on dit qu'elles sont égales modulo deux pi.",
+   "ecran": "angle_def",
+   "id": "p03",
+   "texte": "Angle orienté : le sens donne le signe."
+  },
+  {
+   "dit": "La relation de Chasles permet d'additionner les angles orientés en passant par un vecteur relais : l'angle de u à v, plus l'angle de v à w, égale l'angle de u à w. Le vecteur du milieu disparaît, exactement comme dans la relation de Chasles des vecteurs.",
+   "ecran": "chasles",
+   "id": "p04",
+   "texte": "Chasles : le vecteur du milieu sert de relais."
+  },
+  {
+   "dit": "Exemple : si l'angle de u à v vaut pi sur quatre et l'angle de v à w vaut pi sur trois, alors l'angle de u à w vaut pi sur quatre plus pi sur trois, soit sept pi sur douze. On additionne les fractions en les ramenant au même dénominateur.",
+   "ecran": "ex_chasles",
+   "id": "p05",
+   "texte": "Pi sur quatre plus pi sur trois : sept pi sur douze."
+  },
+  {
+   "dit": "Le cercle trigonométrique est le cercle de centre O et de rayon un, orienté dans le sens antihoraire. Tout réel x s'enroule sur ce cercle en un point M. On définit alors le cosinus de x comme l'abscisse de M, et le sinus de x comme l'ordonnée de M. Retenez cette image : cosinus horizontal, sinus vertical.",
+   "ecran": "cercle",
+   "id": "p06",
+   "texte": "Cosinus : abscisse de M. Sinus : ordonnée de M."
+  },
+  {
+   "dit": "Trois propriétés fondamentales suivent immédiatement. Le cosinus et le sinus restent toujours entre moins un et un. Leurs carrés se complètent : cosinus carré plus sinus carré égale un, c'est le théorème de Pythagore lu sur le cercle. Et ajouter un tour complet, deux pi, ne change ni le cosinus ni le sinus.",
+   "ecran": "proprietes",
+   "id": "p07",
+   "texte": "Cosinus carré plus sinus carré égale un."
+  },
+  {
+   "dit": "Cinq angles remarquables suffisent pour presque tous les calculs : zéro, pi sur six, pi sur quatre, pi sur trois et pi sur deux. Leurs cosinus descendent de un à zéro, leurs sinus montent de zéro à un, avec les valeurs un demi, racine de deux sur deux et racine de trois sur deux. Ce tableau se reconstruit en quelques secondes sur le cercle.",
+   "ecran": "valeurs",
+   "id": "p08",
+   "texte": "Cinq angles remarquables à connaître par cœur."
+  },
+  {
+   "dit": "Premier usage : résoudre sinus x égale un demi sur un tour complet. Le sinus vaut un demi pour pi sur six, et aussi pour son supplémentaire, pi moins pi sur six, soit cinq pi sur six. Deux points du cercle ont la même ordonnée : voilà pourquoi une équation en sinus donne presque toujours deux familles de solutions.",
+   "ecran": "ex_sin",
+   "id": "p09",
+   "texte": "Sinus égal à un demi : pi sur six et cinq pi sur six."
+  },
+  {
+   "dit": "La tangente complète le trio : pour tout x dont le cosinus n'est pas nul, tangente x égale sinus x divisé par cosinus x. Sa période est plus courte que celle du cosinus et du sinus : pi au lieu de deux pi, car un demi-tour suffit à retrouver la même tangente.",
+   "ecran": "tangente",
+   "id": "p10",
+   "texte": "Tangente : sinus divisé par cosinus, période pi."
+  },
+  {
+   "dit": "Côté parité, le cosinus est une fonction paire : changer x en moins x ne change pas son cosinus. Le sinus et la tangente sont impairs : ils changent de signe. Côté périodicité, cosinus et sinus se répètent tous les deux pi, la tangente tous les pi.",
+   "ecran": "parite",
+   "id": "p11",
+   "texte": "Cosinus pair, sinus et tangente impairs."
+  },
+  {
+   "dit": "Les angles associés ramènent un angle quelconque à un angle du tableau. Le supplémentaire, pi moins x, change le signe du cosinus mais conserve le sinus. L'angle pi plus x change le signe des deux. Et le complémentaire, pi sur deux moins x, échange cosinus et sinus.",
+   "ecran": "associes",
+   "id": "p12",
+   "texte": "Supplémentaire, complémentaire : échanger ou changer de signe."
+  },
+  {
+   "dit": "Exemple : calculer le cosinus de cinq pi sur six. On écrit cinq pi sur six comme pi moins pi sur six. Son cosinus est donc l'opposé du cosinus de pi sur six, soit moins racine de trois sur deux. Aucun calcul nouveau : juste une réduction à un angle connu.",
+   "ecran": "ex_cos_associe",
+   "id": "p13",
+   "texte": "Cosinus de cinq pi sur six : moins racine de trois sur deux."
+  },
+  {
+   "dit": "Les formules d'addition donnent le cosinus et le sinus d'une somme ou d'une différence. Pour le cosinus, les fonctions se mélangent avec un signe moins dans le cas de la somme. Pour le sinus, on croise sinus et cosinus en conservant le signe de l'opération. Ces quatre formules sont la boîte à outils de tout le chapitre.",
+   "ecran": "addition",
+   "id": "p14",
+   "texte": "Addition : calculer une somme d'angles inconnue."
+  },
+  {
+   "dit": "En prenant les deux angles égaux, on obtient les formules de duplication. Le cosinus du double vaut cosinus carré moins sinus carré, et aussi deux cosinus carré moins un, ou un moins deux sinus carré. Le sinus du double vaut deux fois sinus fois cosinus. Trois écritures au choix, selon la quantité que l'on veut faire apparaître.",
+   "ecran": "duplication",
+   "id": "p15",
+   "texte": "Duplication : cosinus deux a, trois écritures."
+  },
+  {
+   "dit": "Application : calculer le cosinus de pi sur douze, un angle absent du tableau. On le décompose en pi sur trois moins pi sur quatre, deux angles connus, puis on applique la formule de la différence. Le calcul donne racine de deux plus racine de six, le tout divisé par quatre.",
+   "ecran": "ex_pi12",
+   "id": "p16",
+   "texte": "Cosinus de pi sur douze : racine de deux plus racine de six sur quatre."
+  },
+  {
+   "dit": "Dans l'autre sens, les formules de transformation factorisent une somme. Cosinus p plus cosinus q devient un produit de deux cosinus, ceux de la demi-somme et de la demi-différence. Même principe pour les sinus. Factoriser sert à résoudre des équations et à linéariser des expressions.",
+   "ecran": "transformation",
+   "id": "p17",
+   "texte": "Transformer une somme en produit : factoriser."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Un angle orienté se mesure avec un signe, à un tour près. Sur le cercle, le cosinus se lit en abscisse et le sinus en ordonnée. Les angles associés ramènent les calculs aux cinq angles remarquables, et les formules d'addition et de duplication ouvrent l'accès aux angles composés.",
+   "ecran": "recap1",
+   "id": "p18",
+   "texte": "L'essentiel de la partie un."
+  },
+  {
+   "dit": "Passons aux équations. Premier type : cosinus x égale cosinus a. Deux angles ont le même cosinus exactement quand ils sont égaux ou opposés, à un nombre entier de tours près. Il y a donc toujours deux familles de solutions à écrire, avec un entier relatif k.",
+   "ecran": "eq_cos",
+   "id": "p19",
+   "texte": "Cosinus égal cosinus : égal ou opposé."
+  },
+  {
+   "dit": "Exemple : résoudre cosinus x égale un demi sur un tour, en partant de zéro inclus. On reconnaît le cosinus de pi sur trois. Les deux familles donnent pi sur trois, et moins pi sur trois ramené dans l'intervalle, soit cinq pi sur trois. Deux solutions, ni plus ni moins.",
+   "ecran": "ex_eq_cos",
+   "id": "p20",
+   "texte": "Cosinus égal à un demi : pi sur trois et cinq pi sur trois."
+  },
+  {
+   "dit": "Deuxième type : sinus x égale sinus a. Deux angles ont le même sinus quand ils sont égaux ou supplémentaires, à un tour près. La seconde famille s'écrit donc pi moins a, plus deux k pi. C'est le supplémentaire, déjà rencontré sur le cercle, qui fournit la seconde solution.",
+   "ecran": "eq_sin",
+   "id": "p21",
+   "texte": "Sinus égal sinus : égal ou supplémentaire."
+  },
+  {
+   "dit": "Exemple : résoudre sinus x égale racine de deux sur deux. On reconnaît le sinus de pi sur quatre. La seconde famille donne pi moins pi sur quatre, soit trois pi sur quatre. Sur un tour, les solutions sont donc pi sur quatre et trois pi sur quatre.",
+   "ecran": "ex_eq_sin",
+   "id": "p22",
+   "texte": "Sinus égal à racine de deux sur deux : deux solutions."
+  },
+  {
+   "dit": "Troisième type : tangente x égale tangente a, pour des angles différents d'un droit plus un multiple de pi. Comme la tangente est de période pi, une seule famille suffit : x égale a plus k pi. C'est le seul des trois types à ne donner qu'une famille.",
+   "ecran": "eq_tan",
+   "id": "p23",
+   "texte": "Tangente égale tangente : une seule famille, plus k pi."
+  },
+  {
+   "dit": "Exemple : résoudre tangente x égale racine de trois, entre moins pi exclu et pi inclus. On reconnaît la tangente de pi sur trois. En retranchant pi, on obtient la seconde valeur dans l'intervalle : moins deux pi sur trois. Les solutions sont pi sur trois et moins deux pi sur trois.",
+   "ecran": "ex_eq_tan",
+   "id": "p24",
+   "texte": "Tangente égale à racine de trois : pi sur trois et moins deux pi sur trois."
+  },
+  {
+   "dit": "Reste le cas général : une équation composée, comme cosinus de deux x égale cosinus de x moins pi sur six. On applique le type cosinus égal cosinus aux deux expressions entières. Le premier cas donne onze pi sur six sur l'intervalle. Le second cas, après division par trois, donne trois valeurs espacées de deux pi sur trois. Au total, quatre solutions.",
+   "ecran": "composee",
+   "id": "p25",
+   "texte": "Équation composée : appliquer le type aux expressions entières."
+  },
+  {
+   "dit": "Un piège classique à retenir avant les inéquations : ne divisez jamais les deux membres d'une équation trigonométrique par une expression qui peut s'annuler. Vous perdriez toutes les solutions où elle vaut zéro. La bonne méthode reste toujours de se ramener à un des trois types connus.",
+   "ecran": "piege",
+   "id": "p26",
+   "texte": "Ne jamais diviser par une expression qui peut s'annuler."
+  },
+  {
+   "dit": "Pour les inéquations, oubliez l'algèbre : placez tout sur le cercle. Pour cosinus x supérieur ou égal à un demi, on cherche les points dont l'abscisse dépasse un demi. L'arc solution part de zéro, va jusqu'à pi sur trois, puis reprend à cinq pi sur trois jusqu'au tour complet.",
+   "ecran": "ineq_cos",
+   "id": "p27",
+   "texte": "Cosinus au moins un demi : l'arc autour de zéro."
+  },
+  {
+   "dit": "Même lecture pour sinus x strictement inférieur à racine de deux sur deux. L'ordonnée reste sous ce seuil partout, sauf sur l'arc compris entre pi sur quatre et trois pi sur quatre. La solution est donc le complémentaire de cet arc, avec des bornes ouvertes du côté de l'inégalité stricte.",
+   "ecran": "ineq_sin",
+   "id": "p28",
+   "texte": "Sinus sous le seuil : tout sauf l'arc du haut."
+  },
+  {
+   "dit": "Pour finir, retenez la méthode complète. Toute équation se ramène à cosinus égal cosinus, sinus égal sinus ou tangente égale tangente, avec leurs familles de solutions. Et pour toute inéquation, le cercle trigonométrique reste l'outil le plus sûr : il rend l'ensemble des solutions visible, sans risque d'erreur de signe.",
+   "ecran": "recap",
+   "id": "p29",
+   "texte": "Trois types d'équations, le cercle pour les inéquations."
+  }
+ ],
+ "titre": "Trigonométrie et angles orientés : cercle, formules et équations"
+}
