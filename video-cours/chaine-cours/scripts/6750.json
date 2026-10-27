@@ -1,0 +1,286 @@
+{
+ "cours": 6750,
+ "titre": "Diagrammes et arbres : Venn, tableaux et choix",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Diagrammes et dénombrement",
+   "titre": "Diagrammes et arbres : Venn, tableaux et choix",
+   "sous": "Quatre outils pour visualiser, croiser et compter : Venn, tableau, arbre de choix, arbre des parties",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un bon schéma vaut un long calcul : chaque situation a son diagramme."
+  },
+  "venn_def": {
+   "type": "phrase",
+   "kicker": "Le diagramme de Venn",
+   "texte": "Des courbes fermées pour les ensembles, des zones communes pour les intersections.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 200
+   }
+  },
+  "venn_donnees": {
+   "type": "etape",
+   "kicker": "Exemple · football et basketball",
+   "titre": "Trente élèves, deux sports",
+   "tex": [
+    "|F| = 18 \\qquad |B| = 12",
+    "|F \\cap B| = 5"
+   ]
+  },
+  "venn_zones": {
+   "type": "etape",
+   "kicker": "Exemple · les trois zones",
+   "titre": "On remplit en commençant par l'intersection",
+   "tex": [
+    "\\text{football seul : } 18 - 5 = 13",
+    "\\text{basketball seul : } 12 - 5 = 7",
+    "\\text{les deux sports : } 5"
+   ],
+   "anim": {
+    "nom": "venn",
+    "hauteur": 120
+   }
+  },
+  "venn_bilan": {
+   "type": "formule",
+   "kicker": "Exemple · le bilan",
+   "tex": "13 + 7 + 5 = 25 \\qquad 30 - 25 = 5",
+   "note": "Vingt-cinq élèves pratiquent au moins un sport, cinq aucun des deux."
+  },
+  "tableau_def": {
+   "type": "phrase",
+   "kicker": "Le tableau à double entrée",
+   "texte": "Lignes : un critère. Colonnes : un second critère. Cases : les effectifs croisés."
+  },
+  "tableau_grille": {
+   "type": "etape",
+   "kicker": "Exemple · transport et résidence",
+   "titre": "Quatre-vingts personnes interrogées",
+   "tex": [
+    "\\text{Ville} \\qquad \\text{Campagne} \\qquad \\text{Total}",
+    "\\text{Vélo : } 25 \\qquad 10 \\qquad 35",
+    "\\text{Voiture : } 15 \\qquad 30 \\qquad 45",
+    "\\text{Total : } 40 \\qquad 40 \\qquad 80"
+   ]
+  },
+  "tableau_lecture": {
+   "type": "etape",
+   "kicker": "Lire le tableau",
+   "titre": "Une case, une ligne, une colonne",
+   "tex": [
+    "\\text{ville et vélo : } 25",
+    "\\text{ligne Vélo : } 35 \\text{ cyclistes}",
+    "\\text{citadins en voiture : } 15"
+   ]
+  },
+  "arbre_def": {
+   "type": "phrase",
+   "kicker": "L'arbre de choix",
+   "texte": "Un niveau par étape de choix, une branche par possibilité : on compte les chemins."
+  },
+  "arbre_regle": {
+   "type": "formule",
+   "kicker": "La règle du produit",
+   "tex": "N = n_1 \\times n_2 \\times n_3",
+   "note": "Au plus trois étapes dans ce chapitre : on multiplie les nombres de choix."
+  },
+  "arbre_menu": {
+   "type": "etape",
+   "kicker": "Exemple · composer un menu",
+   "titre": "Trois niveaux successifs",
+   "tex": [
+    "\\text{entrées : } 2 \\qquad \\text{plats : } 3",
+    "\\text{desserts : } 2"
+   ]
+  },
+  "arbre_calcul": {
+   "type": "formule",
+   "kicker": "Exemple · le nombre de menus",
+   "tex": "2 \\times 3 \\times 2 = 12",
+   "note": "Douze chemins dans l'arbre, donc douze menus complets différents."
+  },
+  "parties_def": {
+   "type": "phrase",
+   "kicker": "L'arbre des parties",
+   "texte": "À chaque élément, une question : dedans ou dehors ? Deux branches, oui ou non."
+  },
+  "parties_regle": {
+   "type": "formule",
+   "kicker": "Compter les sous-ensembles",
+   "tex": "N = 2^n",
+   "note": "Un ensemble de n éléments possède deux puissance n parties."
+  },
+  "parties_ex": {
+   "type": "etape",
+   "kicker": "Exemple · trois options facultatives",
+   "titre": "Choisir, ou ne pas choisir, trois fois",
+   "tex": [
+    "2^3 = 8 \\text{ choix possibles}"
+   ]
+  },
+  "parties_liste": {
+   "type": "etape",
+   "kicker": "Exemple · les huit choix",
+   "titre": "De aucune option aux trois options",
+   "tex": [
+    "\\text{aucune ; } A \\text{ ; } B \\text{ ; } C",
+    "A \\text{ et } B \\text{ ; } A \\text{ et } C",
+    "B \\text{ et } C \\text{ ; } A,\\ B \\text{ et } C"
+   ]
+  },
+  "choix_outil": {
+   "type": "phrase",
+   "kicker": "Synthèse · choisir le bon outil",
+   "texte": "Intersections : Venn. Deux critères : tableau. Choix successifs : arbre. Sous-ensembles : arbre des parties."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Venn : remplir par l'intersection",
+    "Tableau : cases et marges se lisent",
+    "Arbre de choix : on multiplie",
+    "Arbre des parties : deux puissance n"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux diagrammes et aux arbres. Nous allons apprendre à réaliser, lire et interpréter quatre outils : le diagramme de Venn, le tableau à double entrée, l'arbre de choix et l'arbre des parties, puis à les utiliser pour résoudre des problèmes simples de la vie courante.",
+   "texte": "Venn, tableau, arbres : quatre outils pour compter juste.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le principe commun est simple : avant de calculer, on dessine la situation. Un bon schéma rend visibles les intersections, les croisements et les enchaînements de choix. Toute la difficulté consiste ensuite à choisir le bon outil selon la question posée.",
+   "texte": "Dessiner d'abord, calculer ensuite.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Premier outil : le diagramme de Venn. C'est une représentation schématique d'ensembles à l'aide de courbes fermées, souvent des cercles. Chaque ensemble occupe une région, et les zones communes à plusieurs régions correspondent aux éléments qui appartiennent à plusieurs ensembles à la fois. Il visualise l'inclusion, l'intersection et la réunion.",
+   "texte": "Venn : les zones communes montrent les intersections.",
+   "ecran": "venn_def"
+  },
+  {
+   "id": "p04",
+   "dit": "Exemple : dans une classe de trente élèves, dix-huit pratiquent le football, douze le basketball, et cinq pratiquent les deux sports. On note eff l'ensemble des footballeurs et bé celui des basketteurs. Leur intersection, les élèves qui font les deux, compte cinq élèves.",
+   "texte": "30 élèves : 18 au football, 12 au basket, 5 aux deux.",
+   "ecran": "venn_donnees"
+  },
+  {
+   "id": "p05",
+   "dit": "On remplit le diagramme en commençant toujours par l'intersection. Football uniquement : dix-huit moins cinq, treize élèves. Basketball uniquement : douze moins cinq, sept élèves. Et au centre, les cinq qui pratiquent les deux sports.",
+   "texte": "Football seul : 13. Basket seul : 7. Les deux : 5.",
+   "ecran": "venn_zones"
+  },
+  {
+   "id": "p06",
+   "dit": "Vérification : treize plus sept plus cinq font vingt-cinq élèves qui pratiquent au moins un sport. Sur trente élèves, il en reste donc cinq qui ne pratiquent aucun de ces deux sports. Ce contrôle final, par le complémentaire, doit devenir un réflexe.",
+   "texte": "Au moins un sport : 25. Aucun des deux : 5.",
+   "ecran": "venn_bilan"
+  },
+  {
+   "id": "p07",
+   "dit": "Deuxième outil : le tableau à double entrée. Ses lignes correspondent à un premier critère, ses colonnes à un second. Chaque case contient l'effectif du croisement des deux critères, et les totaux placés en bas et à droite, les marges, redonnent les effectifs de chaque catégorie prise isolément.",
+   "texte": "Un tableau croise deux critères, case par case.",
+   "ecran": "tableau_def"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple : on interroge quatre-vingts personnes sur leur moyen de transport, vélo ou voiture, et leur lieu de résidence, ville ou campagne. Vingt-cinq citadins utilisent le vélo, dix campagnards aussi ; quinze citadins prennent la voiture, trente campagnards également. Les marges totalisent trente-cinq cyclistes, quarante-cinq automobilistes, quarante citadins et quarante campagnards.",
+   "texte": "80 personnes : transport croisé avec résidence.",
+   "ecran": "tableau_grille"
+  },
+  {
+   "id": "p09",
+   "dit": "Lire un tableau, c'est savoir où regarder. Une case répond à une question croisée : vingt-cinq personnes habitent en ville et utilisent le vélo. Une marge répond à une question simple : le total de la ligne Vélo donne trente-cinq cyclistes. Question d'entraînement : combien de citadins utilisent la voiture ? Réponse : quinze, à l'intersection de la colonne Ville et de la ligne Voiture.",
+   "texte": "Case = question croisée, marge = question simple.",
+   "ecran": "tableau_lecture"
+  },
+  {
+   "id": "p10",
+   "dit": "Troisième outil : l'arbre de choix, ou arbre de dénombrement. Chaque branche qui part d'un noeud représente un choix possible, et chaque niveau de l'arbre correspond à une étape du choix. Un chemin complet, de la racine jusqu'au bout d'une branche, décrit une issue complète de l'expérience.",
+   "texte": "L'arbre de choix : un niveau par étape, un chemin par issue.",
+   "ecran": "arbre_def"
+  },
+  {
+   "id": "p11",
+   "dit": "La propriété centrale : le nombre total d'issues est le produit des nombres de choix à chaque niveau. Si la première étape offre n un possibilités, la deuxième n deux et la troisième n trois, le total vaut n un fois n deux fois n trois. Dans ce chapitre, on se limite à des arbres d'au plus trois étapes.",
+   "texte": "Total des issues : le produit des choix par niveau.",
+   "ecran": "arbre_regle"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple : un menu propose deux entrées, salade ou soupe, trois plats, poisson, viande ou végétarien, et deux desserts, fruit ou gâteau. L'arbre comporte donc trois niveaux : deux branches d'entrées, puis trois branches de plats sous chaque entrée, puis deux branches de desserts sous chaque plat.",
+   "texte": "Menu : 2 entrées, 3 plats, 2 desserts.",
+   "ecran": "arbre_menu"
+  },
+  {
+   "id": "p13",
+   "dit": "On applique la règle du produit : deux fois trois fois deux font douze. Il existe donc douze repas différents. Chaque chemin de l'arbre correspond à un menu complet distinct : inutile de les énumérer un par un, le produit les compte tous.",
+   "texte": "2 × 3 × 2 = 12 menus différents.",
+   "ecran": "arbre_calcul"
+  },
+  {
+   "id": "p14",
+   "dit": "Quatrième outil : l'arbre des parties. C'est un cas particulier d'arbre de choix où, à chaque étape, on décide d'inclure ou non un élément donné dans une sélection. Chaque noeud ne possède donc que deux branches : oui, l'élément est choisi, ou non, il ne l'est pas.",
+   "texte": "Arbre des parties : oui ou non, pour chaque élément.",
+   "ecran": "parties_def"
+  },
+  {
+   "id": "p15",
+   "dit": "Conséquence immédiate : pour un ensemble de n éléments, l'arbre comporte n niveaux à deux branches, et le nombre total de parties, c'est-à-dire de sous-ensembles possibles, vaut deux puissance n. Dans ce chapitre, on reste là aussi à trois éléments au maximum.",
+   "texte": "n éléments → 2^n sous-ensembles possibles.",
+   "ecran": "parties_regle"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple : un étudiant doit choisir, parmi trois options facultatives appelées a, bé et cé, lesquelles il souhaite suivre. Il peut n'en choisir aucune, une seule, deux, ou les trois. L'arbre des parties comporte trois étapes successives, chacune avec ses deux branches, choisir ou ne pas choisir.",
+   "texte": "3 options, chacune prise ou laissée.",
+   "ecran": "parties_ex"
+  },
+  {
+   "id": "p17",
+   "dit": "Le calcul donne deux puissance trois, soit huit choix possibles. Les voici : aucune option ; a seule ; bé seule ; cé seule ; a et bé ; a et cé ; bé et cé ; enfin a, bé et cé ensemble. L'arbre permet de visualiser ces huit chemins distincts sans en oublier aucun.",
+   "texte": "2³ = 8 choix : de « aucune » à « toutes ».",
+   "ecran": "parties_liste"
+  },
+  {
+   "id": "p18",
+   "dit": "Synthèse : comment choisir le bon outil ? Pour étudier les intersections entre catégories, prenez un diagramme de Venn. Pour croiser deux critères avec des effectifs, prenez un tableau à double entrée. Pour compter les issues d'une succession de choix, dessinez un arbre de choix. Et pour compter les sous-ensembles, utilisez l'arbre des parties.",
+   "texte": "La situation décide de l'outil, pas l'habitude.",
+   "ecran": "choix_outil"
+  },
+  {
+   "id": "p19",
+   "dit": "Pour finir, retenez l'essentiel. Venn se remplit en commençant par l'intersection, puis on contrôle par le total. Le tableau se lit par ses cases et ses marges. L'arbre de choix compte par un produit, et l'arbre des parties par une puissance de deux. Quatre schémas, quatre réflexes : à vous de les appliquer aux problèmes de la vie courante.",
+   "texte": "Quatre schémas, quatre réflexes de comptage.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Diagramme de Venn et tableau à double entrée"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Arbre de choix et arbre des parties",
+   "pont": {
+    "texte": "Partie 2 : arbre de choix et arbre des parties.",
+    "dit": "Partie deux : les arbres. Nous compterons d'abord les issues d'une succession de choix avec l'arbre de choix et la règle du produit, puis les sous-ensembles d'un ensemble avec l'arbre des parties et les puissances de deux."
+   }
+  }
+ ]
+}
