@@ -1,0 +1,316 @@
+{
+ "cours": 7235,
+ "ecrans": {
+  "coplanaires": {
+   "kicker": "Coplanaires ou non",
+   "tex": [
+    "\\text{coplanaires : un même plan les contient}",
+    "\\text{non coplanaires : aucun plan commun}"
+   ],
+   "titre": "Un même plan, ou aucun",
+   "type": "etape"
+  },
+  "critere": {
+   "kicker": "Critère de parallélisme, droite et plan",
+   "note": "Si d est parallèle à une droite du plan, d est parallèle au plan.",
+   "tex": "d \\parallel d', \\quad d' \\subset \\mathcal{P} \\implies d \\parallel \\mathcal{P}",
+   "type": "formule"
+  },
+  "def_droite": {
+   "kicker": "La droite : définition",
+   "tex": [
+    "\\text{ensemble infini de points alignés}",
+    "\\text{illimitée, sans épaisseur}"
+   ],
+   "titre": "Une droite, en deux idées",
+   "type": "etape"
+  },
+  "deux_plans": {
+   "kicker": "Deux plans distincts",
+   "tex": [
+    "\\text{parallèles : aucun point commun}",
+    "\\text{sécants : une droite commune}"
+   ],
+   "titre": "Deux cas seulement",
+   "type": "etape"
+  },
+  "droite_deux_points": {
+   "kicker": "Déterminer une droite, première façon",
+   "note": "La droite passant par deux points distincts A et B.",
+   "tex": "(AB)",
+   "type": "formule"
+  },
+  "droite_plan": {
+   "kicker": "Positions relatives d'une droite et d'un plan",
+   "tex": [
+    "\\text{la droite perce le plan : un point}",
+    "\\text{la droite est dans le plan : incluse}",
+    "\\text{la droite est hors du plan : aucun point}"
+   ],
+   "titre": "Trois cas pour une droite et un plan",
+   "type": "etape"
+  },
+  "droite_vecteur": {
+   "kicker": "Déterminer une droite, deuxième façon",
+   "note": "A : un point ; u : un vecteur directeur non nul.",
+   "tex": "\\overrightarrow{AM} = k\\vec{u}, \\quad \\vec{u} \\neq \\vec{0}, \\quad k \\in \\mathbb{R}",
+   "type": "formule"
+  },
+  "ex_conclusion": {
+   "kicker": "Exemple résolu, conclusion",
+   "tex": [
+    "\\text{critère : } (AE) \\parallel (BCG)",
+    "A \\notin (BCG) \\implies (AE) \\cap (BCG) = \\varnothing"
+   ],
+   "titre": "Appliquer le critère",
+   "type": "etape"
+  },
+  "ex_coplanaires": {
+   "kicker": "Exemple dans le cube, premier cas",
+   "tex": [
+    "(AB) \\parallel (EF), \\quad (GH) \\parallel (EF)",
+    "\\text{donc } (AB) \\parallel (GH)",
+    "\\text{deux parallèles : elles sont coplanaires}"
+   ],
+   "titre": "Dans le cube : A B et G H",
+   "type": "etape"
+  },
+  "ex_mise_en_place": {
+   "kicker": "Exemple résolu, première étape",
+   "tex": [
+    "(BF) \\subset (BCG)",
+    "(AE) \\parallel (BF)",
+    "\\text{deux arêtes verticales du cube}"
+   ],
+   "titre": "Repérer une droite du plan",
+   "type": "etape"
+  },
+  "ex_plans": {
+   "kicker": "Exemple dans le cube, les plans",
+   "tex": [
+    "(ABC) \\parallel (EFG) \\text{ : faces opposées}",
+    "(ABC) \\text{ et } (BCG) \\text{ sécants}",
+    "\\text{intersection : la droite } (BC)"
+   ],
+   "titre": "Dans le cube : les plans",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Le décor : l'espace à trois dimensions",
+   "texte": "Dans l'espace, deux droites peuvent ne jamais se rencontrer sans être parallèles.",
+   "type": "phrase"
+  },
+  "methode": {
+   "kicker": "La méthode générale",
+   "tex": [
+    "\\text{chercher les points communs}",
+    "\\text{appliquer les critères de parallélisme}"
+   ],
+   "titre": "Deux gestes, dans l'ordre",
+   "type": "etape"
+  },
+  "non_coplanaires": {
+   "kicker": "Exemple dans le cube, deuxième cas",
+   "tex": [
+    "\\text{(AB) et (CG) :}",
+    "\\text{aucune face ne les contient}",
+    "\\text{ni sécantes, ni parallèles}"
+   ],
+   "titre": "Dans le cube : A B et C G",
+   "type": "etape"
+  },
+  "plan_determinations": {
+   "kicker": "Le plan : définition",
+   "tex": [
+    "\\text{trois points non alignés}",
+    "\\text{une droite et un point extérieur}",
+    "\\text{deux droites sécantes}",
+    "\\text{deux droites parallèles distinctes}"
+   ],
+   "titre": "Quatre façons de fixer un plan",
+   "type": "etape"
+  },
+  "plan_vecteurs": {
+   "kicker": "Déterminer un plan avec des vecteurs",
+   "note": "Les vecteurs u et v sont non colinéaires.",
+   "tex": "\\overrightarrow{AM} = s\\vec{u} + t\\vec{v}, \\quad s, t \\in \\mathbb{R}",
+   "type": "formule"
+  },
+  "positions_droites": {
+   "kicker": "Positions relatives de deux droites",
+   "tex": [
+    "\\text{sécantes : un point commun}",
+    "\\text{parallèles distinctes : aucun point}",
+    "\\text{confondues : une infinité de points}",
+    "\\text{non coplanaires : aucun point}"
+   ],
+   "titre": "Le tableau des quatre cas",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Une droite : deux points ou un vecteur",
+    "Un plan : trois points ou deux vecteurs",
+    "Deux droites : quatre positions possibles",
+    "Deux plans : parallèles ou sécants",
+    "Prouver : une droite parallèle dans le plan"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "theoreme_plans": {
+   "kicker": "Théorème de parallélisme, deux plans",
+   "tex": [
+    "\\text{deux sécantes de } \\mathcal{P}",
+    "\\text{parallèles à deux sécantes de } \\mathcal{P}'",
+    "\\mathcal{P} \\parallel \\mathcal{P}'"
+   ],
+   "titre": "Deux directions parallèles suffisent",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Mathématique · Géométrie dans l'espace",
+   "sous": "Définitions, critères de parallélisme et positions relatives, illustrés dans un cube",
+   "titre": "Droites et plans de l'espace : leurs positions relatives",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de géométrie dans l'espace. Nous allons apprendre à décrire les droites et les plans de l'espace, et surtout à dire comment ils se placent les uns par rapport aux autres : est-ce qu'ils se coupent, est-ce qu'ils sont parallèles, ou est-ce qu'ils n'ont rien en commun du tout. Tout se jouera dans un cube, notre terrain de jeu pour voir ces positions.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Géométrie dans l'espace : droites, plans, positions."
+  },
+  {
+   "dit": "Commençons par une image simple. Dans le plan, deux droites finissent toujours par se couper, sauf si elles sont parallèles. Dans l'espace, une troisième possibilité apparaît : deux droites peuvent ne jamais se rencontrer sans être parallèles. C'est toute la nouveauté de ce cours, et c'est elle qui rend les positions relatives plus riches qu'en géométrie plane.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Dans l'espace, une troisième possibilité apparaît."
+  },
+  {
+   "dit": "D'abord, qu'est-ce qu'une droite de l'espace. C'est un ensemble infini de points alignés. Elle est illimitée : elle se prolonge sans fin dans les deux sens, et elle n'a pas d'épaisseur. Retenez cette image : une droite, c'est un fil tendu à l'infini, sans largeur.",
+   "ecran": "def_droite",
+   "id": "p03",
+   "texte": "Une droite : un fil tendu à l'infini."
+  },
+  {
+   "dit": "Comment déterminer une droite, c'est-à-dire comment la désigner sans ambiguïté. Première façon : deux points distincts suffisent. Par deux points distincts A et B, il passe une droite unique, que l'on note la droite A B.",
+   "ecran": "droite_deux_points",
+   "id": "p04",
+   "texte": "Deux points distincts : une droite unique."
+  },
+  {
+   "dit": "Deuxième façon : un point et une direction. On se donne un point A et un vecteur directeur u, qui doit être non nul, car un vecteur nul ne donne aucune direction. La droite est alors l'ensemble des points M tels que le vecteur A M soit un multiple de u : A M égale k fois u, où k parcourt tous les nombres réels. Quand k varie, M parcourt toute la droite.",
+   "ecran": "droite_vecteur",
+   "id": "p05",
+   "texte": "AM égale k fois u : un point et une direction."
+  },
+  {
+   "dit": "Deux droites de l'espace sont dites coplanaires quand elles appartiennent à un même plan, quand un seul plan les contient toutes les deux. Sinon, elles sont non coplanaires : aucun plan ne les contient ensemble. C'est le cas nouveau de l'espace, impossible dans un plan.",
+   "ecran": "coplanaires",
+   "id": "p06",
+   "texte": "Coplanaires : un même plan les contient."
+  },
+  {
+   "dit": "Vérifions-le dans un cube, que nous noterons A B C D E F G H, avec la base A B C D en bas et la face E F G H en haut. Les droites A B et G H sont-elles coplanaires ? La droite A B est parallèle à la droite E F, et la droite G H est aussi parallèle à la droite E F. Deux droites parallèles à une même troisième sont parallèles entre elles, donc A B et G H sont parallèles, et deux droites parallèles définissent un plan : elles sont coplanaires.",
+   "ecran": "ex_coplanaires",
+   "id": "p07",
+   "texte": "Cube : AB parallèle à GH, donc coplanaires."
+  },
+  {
+   "dit": "En revanche, les droites A B et C G ne sont pas coplanaires. Aucune face du cube ne les contient en même temps : A B court le long de la base, tandis que C G est une arête verticale. Elles ne se coupent jamais, et elles ne sont pas parallèles non plus. C'est le troisième cas de position relative, celui qui n'existe que dans l'espace.",
+   "ecran": "non_coplanaires",
+   "id": "p08",
+   "texte": "AB et CG : ni sécantes, ni parallèles."
+  },
+  {
+   "dit": "Passons aux plans. Un plan est une surface plane illimitée, comme un sol qui s'étendrait à l'infini dans toutes les directions. Il est déterminé de façon unique de quatre manières : par trois points non alignés, par une droite et un point extérieur à cette droite, par deux droites sécantes, ou par deux droites parallèles distinctes.",
+   "ecran": "plan_determinations",
+   "id": "p09",
+   "texte": "Un plan : quatre façons de le déterminer."
+  },
+  {
+   "dit": "Comme pour les droites, on peut aussi définir un plan avec des vecteurs. On se donne un point A et deux vecteurs u et v non colinéaires, c'est-à-dire qui ne pointent pas dans la même direction. Le plan est alors l'ensemble des points M tels que le vecteur A M s'écrive comme une combinaison des deux vecteurs : A M égale s fois u plus t fois v, où s et t parcourent tous les nombres réels.",
+   "ecran": "plan_vecteurs",
+   "id": "p10",
+   "texte": "AM égale s fois u plus t fois v : deux directions."
+  },
+  {
+   "dit": "Que peut-il arriver à deux plans distincts de l'espace. Seulement deux cas : soit ils sont parallèles, et alors ils n'ont aucun point commun, soit ils sont sécants, et alors ils se coupent selon une droite entière, leur droite d'intersection.",
+   "ecran": "deux_plans",
+   "id": "p11",
+   "texte": "Deux plans : parallèles ou sécants."
+  },
+  {
+   "dit": "Reprenons le cube. La face A B C D définit le plan A B C, et la face E F G H définit le plan E F G. Ces deux faces sont opposées et parallèles, donc les plans A B C et E F G sont parallèles : aucun point commun. En revanche, le plan A B C et le plan B C G, celui de la face B C G F, se coupent selon la droite B C, leur arête commune.",
+   "ecran": "ex_plans",
+   "id": "p12",
+   "texte": "Cube : ABC parallèle à EFG, ABC coupe BCG selon BC."
+  },
+  {
+   "dit": "Résumons les quatre positions possibles de deux droites. Premier cas : elles sont sécantes, avec exactement un point commun. Deuxième cas : elles sont parallèles distinctes, sans aucun point commun. Troisième cas : elles sont confondues, avec une infinité de points communs. Quatrième cas : elles sont non coplanaires, sans aucun point commun non plus. Dans les trois premiers cas, les droites sont coplanaires ; dans le dernier, elles ne le sont pas.",
+   "ecran": "positions_droites",
+   "id": "p13",
+   "texte": "Deux droites : quatre positions possibles."
+  },
+  {
+   "dit": "Et pour une droite et un plan. Trois cas là aussi. Soit la droite perce le plan : ils sont sécants en un point unique. Soit la droite est contenue dans le plan : elle y est incluse. Soit la droite reste entièrement hors du plan : leur intersection est vide. Les deux derniers cas se résument en un seul mot : la droite est parallèle au plan, incluse ou extérieure.",
+   "ecran": "droite_plan",
+   "id": "p14",
+   "texte": "Droite et plan : percé, inclus ou extérieur."
+  },
+  {
+   "dit": "Comment prouver qu'une droite est parallèle à un plan, sans tester tous les points. Voici le critère clé : si une droite est parallèle à une droite contenue dans le plan, alors elle est parallèle au plan, ou incluse dans ce plan. Il suffit donc de trouver, dans le plan, une droite parallèle à la nôtre.",
+   "ecran": "critere",
+   "id": "p15",
+   "texte": "Critère : parallèle à une droite du plan."
+  },
+  {
+   "dit": "Le même principe vaut pour deux plans. Si deux droites sécantes d'un plan sont respectivement parallèles à deux droites sécantes d'un autre plan, alors les deux plans sont parallèles. Deux directions parallèles dans chaque plan suffisent à rendre les plans parallèles.",
+   "ecran": "theoreme_plans",
+   "id": "p16",
+   "texte": "Théorème : deux directions parallèles suffisent."
+  },
+  {
+   "dit": "Appliquons le critère dans le cube, avec la droite A E et le plan B C G. D'abord, repérons une droite du plan : la droite B F est contenue dans le plan B C G, car elle borde la face B C G F. Ensuite, comparons les directions : A E et B F sont deux arêtes verticales du cube, donc elles sont parallèles.",
+   "ecran": "ex_mise_en_place",
+   "id": "p17",
+   "texte": "Exemple : BF est dans BCG, AE parallèle à BF."
+  },
+  {
+   "dit": "Le critère s'applique : la droite A E est parallèle au plan B C G. Reste à préciser si elle y est incluse ou extérieure. Le point A n'appartient pas au plan B C G, donc la droite A E n'est pas incluse dans ce plan. Conclusion : leur intersection est vide, la droite passe à côté du plan sans jamais le toucher.",
+   "ecran": "ex_conclusion",
+   "id": "p18",
+   "texte": "Conclusion : AE parallèle à BCG, intersection vide."
+  },
+  {
+   "dit": "La méthode générale tient en deux gestes. D'abord, chercher les points communs : combien y en a-t-il, un seul, une infinité, ou aucun. Ensuite, utiliser les critères de parallélisme : une droite parallèle à une droite du plan, ou deux directions parallèles entre deux plans. Les points communs disent la position, les critères la prouvent.",
+   "ecran": "methode",
+   "id": "p19",
+   "texte": "Méthode : points communs, puis critères."
+  },
+  {
+   "dit": "Récapitulons. Une droite se définit par deux points, ou par un point et un vecteur directeur. Un plan se définit par trois points non alignés, ou par un point et deux vecteurs non colinéaires. Deux droites sont sécantes, parallèles, confondues ou non coplanaires. Deux plans sont parallèles ou sécants selon une droite. Et pour prouver un parallélisme, on cherche une droite parallèle dans le plan.",
+   "ecran": "recap",
+   "id": "p20",
+   "texte": "L'essentiel : droites, plans et positions relatives."
+  }
+ ],
+ "titre": "Droites et plans de l'espace : leurs positions relatives",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définitions : droites et plans de l'espace"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Positions relatives et critères de parallélisme",
+   "pont": {
+    "dit": "Partie deux : les positions relatives. Nous verrons ce qui arrive à deux plans, puis le tableau des positions de deux droites, le cas d'une droite et d'un plan, et les deux critères de parallélisme, avant de résoudre un exemple complet dans le cube.",
+    "texte": "Partie 2 : positions relatives et critères."
+   }
+  }
+ ]
+}
