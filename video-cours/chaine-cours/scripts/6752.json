@@ -1,0 +1,297 @@
+{
+ "cours": 6752,
+ "titre": "Généralités sur les fonctions : images, variations et fonctions de référence",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Généralités sur les fonctions",
+   "titre": "Généralités sur les fonctions : images, variations et références",
+   "sous": "Ensemble de définition, taux d'accroissement, fonctions de référence et optimisation",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Une fonction transforme des nombres : encore faut-il savoir lesquels, en quoi, et comment ses valeurs évoluent."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition · la fonction",
+   "tex": "f : D \\to \\mathbb{R}, \\quad x \\mapsto f(x)",
+   "note": "À chaque x de D, au plus un y : c'est f(x). Hors de D_f, f n'existe pas."
+  },
+  "vocabulaire": {
+   "type": "etape",
+   "kicker": "Le vocabulaire",
+   "titre": "Image, antécédent et courbe : trois mots, trois rôles",
+   "tex": [
+    "f(x) = y : \\quad y \\text{ image de } x",
+    "x \\text{ antécédent de } y",
+    "C_f = \\{ M(x;\\, f(x)),\\ x \\in D_f \\}"
+   ]
+  },
+  "egalite": {
+   "type": "etape",
+   "kicker": "Égalité de deux fonctions",
+   "titre": "Même domaine et mêmes valeurs, sinon rien",
+   "tex": [
+    "f(x) = \\frac{x^2 - 1}{x - 1} \\qquad g(x) = x + 1",
+    "f(x) = \\frac{(x-1)(x+1)}{x-1} = x + 1",
+    "D_f = \\mathbb{R} \\setminus \\{1\\}, \\quad D_g = \\mathbb{R}"
+   ]
+  },
+  "images_def": {
+   "type": "etape",
+   "kicker": "Image directe et image réciproque",
+   "titre": "Dans un sens, puis dans l'autre",
+   "tex": [
+    "f(J) = \\{ f(x) : x \\in J \\}",
+    "f^{-1}(K) = \\{ x \\in D_f : f(x) \\in K \\}"
+   ]
+  },
+  "ex_images": {
+   "type": "etape",
+   "kicker": "Exemple · la fonction carrée",
+   "titre": "Lire les deux images sur la parabole",
+   "tex": [
+    "f(x) = x^2 \\qquad f([-2;\\, 1]) = [0;\\, 4]",
+    "f^{-1}([1;\\, 4]) = [-2;\\, -1] \\cup [1;\\, 2]"
+   ]
+  },
+  "taux": {
+   "type": "formule",
+   "kicker": "Le taux d'accroissement",
+   "tex": "\\tau = \\frac{f(x_2) - f(x_1)}{x_2 - x_1}",
+   "note": "x₁ ≠ x₂. Son signe dit tout : positif, la fonction monte ; négatif, elle descend."
+  },
+  "variations": {
+   "type": "etape",
+   "kicker": "Sens de variation",
+   "titre": "Le signe du taux décide du sens",
+   "tex": [
+    "x_1 < x_2 \\text{ et } \\tau \\geq 0 : \\text{ croissante}",
+    "x_1 < x_2 \\text{ et } \\tau \\leq 0 : \\text{ décroissante}"
+   ]
+  },
+  "ex_taux": {
+   "type": "etape",
+   "kicker": "Exemple · prouver une croissance",
+   "titre": "Le carré sur les réels positifs",
+   "tex": [
+    "\\tau = \\tfrac{x_2^2 - x_1^2}{x_2 - x_1} = x_1 + x_2",
+    "x_1, x_2 \\geq 0 \\Rightarrow \\tau > 0"
+   ]
+  },
+  "affine": {
+   "type": "etape",
+   "kicker": "Fonction de référence · affine",
+   "titre": "Une droite, un coefficient directeur",
+   "tex": [
+    "f(x) = ax + b \\qquad D_f = \\mathbb{R}",
+    "a > 0 \\text{ croissante} \\qquad a < 0 \\text{ décroissante}",
+    "|x| : \\text{ affine par morceaux}"
+   ]
+  },
+  "carree": {
+   "type": "etape",
+   "kicker": "Fonction de référence · carrée",
+   "titre": "Une parabole de sommet l'origine",
+   "tex": [
+    "f(x) = ax^2 \\qquad D_f = \\mathbb{R}",
+    "a > 0 : \\text{ décroît puis croît}",
+    "\\text{sommet } O(0;\\, 0)"
+   ]
+  },
+  "racine": {
+   "type": "etape",
+   "kicker": "Fonction de référence · racine carrée",
+   "titre": "Une demi-parabole, un domaine restreint",
+   "tex": [
+    "f(x) = \\sqrt{ax}",
+    "a > 0 : D_f = [0;\\, +\\infty[",
+    "a < 0 : D_f = ]-\\infty;\\, 0]"
+   ]
+  },
+  "inverse": {
+   "type": "etape",
+   "kicker": "Fonction de référence · inverse",
+   "titre": "Une hyperbole en deux branches",
+   "tex": [
+    "f(x) = \\tfrac{a}{x} \\qquad D_f = \\mathbb{R}^*",
+    "a > 0 : \\text{ décroissante par branche}",
+    "a < 0 : \\text{ croissante par branche}"
+   ],
+   "anim": {
+    "nom": "hyperbole_fig",
+    "hauteur": 130
+   }
+  },
+  "cube": {
+   "type": "etape",
+   "kicker": "Fonction de référence · cube",
+   "titre": "Une cubique qui traverse l'origine",
+   "tex": [
+    "f(x) = ax^3 \\qquad D_f = \\mathbb{R}",
+    "a > 0 : \\text{ croissante sur } \\mathbb{R}",
+    "a < 0 : \\text{ décroissante sur } \\mathbb{R}"
+   ]
+  },
+  "trace": {
+   "type": "etape",
+   "kicker": "Tracer point par point",
+   "titre": "Tableau de valeurs, points, puis courbe",
+   "tex": [
+    "f(-1) = 2 \\qquad f(-0{,}5) = 0{,}5",
+    "f(0) = 0 \\qquad f(1) = 2 \\qquad f(2) = 8"
+   ]
+  },
+  "probleme": {
+   "type": "etape",
+   "kicker": "Problème · le rectangle de périmètre fixé",
+   "titre": "L'aire devient une fonction de la longueur",
+   "tex": [
+    "A(x) = x(10 - x) = -x^2 + 10x",
+    "x \\in [0;\\, 10] \\qquad A_{max} = 25"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Image unique, antécédents possibles",
+    "f(J) se lit, f⁻¹(K) se remonte",
+    "Le signe de τ donne le sens",
+    "Références : droite, parabole, hyperbole",
+    "Optimiser : modéliser, puis le sommet"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Fonctions : images, variations et références.",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux généralités sur les fonctions. Nous poserons le vocabulaire des images et des antécédents, nous lirons les images directes et réciproques sur la courbe, nous comprendrons les variations grâce au taux d'accroissement, puis nous passerons en revue les fonctions de référence avant un problème d'optimisation complet."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "texte": "Trois questions : quels nombres, quelles images, quelle évolution.",
+   "dit": "Une fonction est une machine qui transforme des nombres, avec une condition stricte : à chaque nombre de départ autorisé correspond au plus une image. Savoir sur quels nombres elle fonctionne, quelles valeurs elle produit et comment ses résultats évoluent, voilà les trois questions qui organisent ce cours."
+  },
+  {
+   "id": "p03",
+   "ecran": "definition",
+   "texte": "f associe à chaque x de D au plus un f(x).",
+   "dit": "Définissons proprement. Une fonction numérique ef d'une variable réelle ixe associe à tout réel ixe d'un ensemble D au plus un réel igrec, noté ef de ixe. L'ensemble de définition rassemble les réels pour lesquels ef de ixe existe. En dehors, la fonction n'a aucun sens, et tout calcul qui l'ignore est faux dès le départ."
+  },
+  {
+   "id": "p04",
+   "ecran": "vocabulaire",
+   "texte": "Image unique, antécédents : ne pas confondre les rôles.",
+   "dit": "Le vocabulaire doit devenir un réflexe. Si ef de ixe égale igrec, igrec est l'image de ixe par ef, et ixe est un antécédent de igrec. Attention à l'asymétrie : une image est unique quand elle existe, mais un même igrec peut avoir zéro, un ou plusieurs antécédents. La courbe représentative rassemble tous les points M de coordonnées ixe et ef de ixe, quand ixe parcourt l'ensemble de définition."
+  },
+  {
+   "id": "p05",
+   "ecran": "egalite",
+   "texte": "Égales sur un intervalle : même domaine, mêmes valeurs.",
+   "dit": "Deux fonctions sont égales sur un intervalle seulement si elles y ont le même ensemble de définition et la même valeur en chaque point. Prenez ef de ixe égale ixe carré moins un, sur ixe moins un, et gé de ixe égale ixe plus un. Hors de un, le numérateur se factorise et se simplifie : elles coïncident. Mais ef n'est pas définie en un, alors que gé y vaut deux : sur tous les réels, elles ne sont pas égales."
+  },
+  {
+   "id": "p06",
+   "ecran": "images_def",
+   "texte": "f(J) : les sorties. f⁻¹(K) : les entrées qui y mènent.",
+   "dit": "Passons aux images d'intervalles. L'image directe d'un intervalle J, notée ef de J, est l'ensemble des images des points de J. L'image réciproque d'un intervalle K est l'ensemble des antécédents dont l'image tombe dans K. Graphiquement, pour l'image directe, on projette J sur l'axe des abscisses puis on lit les ordonnées sur la courbe ; pour l'image réciproque, on fait le chemin inverse."
+  },
+  {
+   "id": "p07",
+   "ecran": "ex_images",
+   "texte": "x² : f([−2 ; 1]) = [0 ; 4], antécédents de [1 ; 4] des deux côtés.",
+   "dit": "Exemple avec la fonction carrée. Sur l'intervalle de moins deux à un, elle décroît de quatre à zéro entre moins deux et zéro, puis croît de zéro à un : l'image directe est l'intervalle de zéro à quatre. Pour l'image réciproque de un à quatre, on résout ixe carré entre un et quatre : la valeur absolue de ixe est entre un et deux, d'où deux intervalles symétriques, de moins deux à moins un, et de un à deux."
+  },
+  {
+   "id": "p08",
+   "ecran": "taux",
+   "texte": "τ : la variation des images divisée par celle des abscisses.",
+   "dit": "Pour décider si une fonction monte ou descend, l'outil central est le taux d'accroissement entre deux abscisses distinctes, ixe un et ixe deux : la différence des images divisée par la différence des abscisses. C'est la pente de la droite qui joint les deux points de la courbe. Tout le sens de variation tient ensuite dans le signe de ce taux."
+  },
+  {
+   "id": "p09",
+   "ecran": "variations",
+   "texte": "τ ≥ 0 : croissante. τ ≤ 0 : décroissante.",
+   "dit": "Le théorème est net. Une fonction est croissante sur un intervalle si les images suivent l'ordre des abscisses : ixe un plus petit que ixe deux donne image de ixe un inférieure ou égale à image de ixe deux, ce qui équivaut à un taux toujours positif ou nul. Elle est décroissante si les images renversent l'ordre, donc si le taux est toujours négatif ou nul. Réflexe : pour prouver un sens de variation sans dérivée, on calcule le taux et on étudie son signe."
+  },
+  {
+   "id": "p10",
+   "ecran": "ex_taux",
+   "texte": "Pour x² sur les positifs : τ = x₁ + x₂ > 0.",
+   "dit": "Application : la fonction carrée sur les réels positifs ou nuls. Le taux vaut ixe deux carré moins ixe un carré, divisé par ixe deux moins ixe un. Le numérateur est une identité remarquable : il se factorise, le dénominateur se simplifie, et le taux vaut ixe un plus ixe deux. Cette somme est strictement positive pour deux abscisses distinctes et positives : la fonction carrée est donc croissante sur cet intervalle."
+  },
+  {
+   "id": "p11",
+   "ecran": "affine",
+   "texte": "Affine : une droite, le signe de a décide.",
+   "dit": "Première référence : la fonction affine, ef de ixe égale a ixe plus b, définie sur tous les réels. Sa courbe est une droite de coefficient directeur a : croissante si a est positif, décroissante si a est négatif. Cas à connaître : les fonctions affines par morceaux, définies par des expressions différentes selon les intervalles, comme la valeur absolue, qui vaut moins ixe à gauche de zéro et ixe à droite."
+  },
+  {
+   "id": "p12",
+   "ecran": "carree",
+   "texte": "Carrée : parabole, sommet en O, décroît puis croît.",
+   "dit": "Deuxième référence : la fonction carrée généralisée, ef de ixe égale a ixe carré, définie sur tous les réels. Sa courbe est une parabole de sommet l'origine. Si a est positif, elle décroît sur les réels négatifs puis croît sur les positifs : le sommet est un minimum. Si a est négatif, variations inversées et sommet maximum. C'est la forme du problème final."
+  },
+  {
+   "id": "p13",
+   "ecran": "racine",
+   "texte": "Racine carrée : définie seulement d'un côté de zéro.",
+   "dit": "Troisième référence : la racine carrée, ef de ixe égale racine de a ixe. Son domaine dépend du signe de a : réels positifs ou nuls si a est positif, réels négatifs ou nuls si a est négatif, car on ne prend jamais la racine d'un négatif. Sa courbe est une demi-parabole, croissante si a est positif, décroissante si a est négatif."
+  },
+  {
+   "id": "p14",
+   "ecran": "inverse",
+   "texte": "Inverse : hyperbole, zéro toujours exclu.",
+   "dit": "Quatrième référence : la fonction inverse, ef de ixe égale a sur ixe, définie sur tous les réels sauf zéro. Sa courbe est une hyperbole en deux branches. Si a est positif, elle est décroissante sur chaque branche séparément ; si a est négatif, croissante sur chaque branche. Piège classique : on ne dit jamais qu'elle est décroissante sur la réunion des deux branches, car zéro coupe le domaine en deux."
+  },
+  {
+   "id": "p15",
+   "ecran": "cube",
+   "texte": "Cube : définie partout, monotone sur tout ℝ.",
+   "dit": "Cinquième référence : la fonction cube, ef de ixe égale a ixe au cube, définie sur tous les réels. Sa courbe, une cubique, traverse l'origine en s'aplatissant. Croissante sur tous les réels si a est positif, décroissante si a est négatif, elle ne change jamais de sens : chaque valeur a exactement un antécédent."
+  },
+  {
+   "id": "p16",
+   "ecran": "trace",
+   "texte": "Tracer : tableau de valeurs, points placés, courbe reliée.",
+   "dit": "Pour tracer une courbe sur un intervalle borné, trois temps : un tableau de valeurs avec un pas adapté, les points placés dans un repère, puis le tracé en respectant le sens de variation. Pour ef de ixe égale deux ixe carré, entre moins un et deux : moins un donne deux, moins zéro virgule cinq donne zéro virgule cinq, zéro donne zéro, un donne deux, un virgule cinq donne quatre virgule cinq et deux donne huit. Reliés, ces points dessinent la parabole."
+  },
+  {
+   "id": "p17",
+   "ecran": "probleme",
+   "texte": "Rectangle de périmètre 20 m : A(x) = x(10 − x), max 25 m².",
+   "dit": "Terminons par un vrai problème. Un rectangle a un périmètre de vingt mètres ; on appelle ixe sa longueur. Le demi-périmètre vaut dix, donc l'autre côté vaut dix moins ixe, et l'aire vaut A de ixe égale ixe fois dix moins ixe, soit moins ixe carré plus dix ixe, pour ixe entre zéro et dix. Cette parabole tournée vers le bas a son sommet pour ixe égal à cinq : l'aire maximale vaut vingt-cinq mètres carrés, pour un carré de côté cinq mètres. Démarche générale : identifier la variable et son domaine, traduire par une fonction, puis conclure avec ses variations."
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "L'essentiel des fonctions en cinq réflexes.",
+   "dit": "Pour finir, retenez l'enchaînement. Une fonction associe à chaque abscisse autorisée au plus une image, mais une image peut avoir plusieurs antécédents. Les images directes se lisent sur la courbe, les réciproques se remontent. Le signe du taux donne le sens de variation. Les références, affine, carrée, racine, inverse et cube, fournissent les modèles. Et tout problème suit la même route : modéliser, étudier, conclure."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Images, antécédents et sens de variation"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Fonctions de référence et optimisation",
+   "pont": {
+    "texte": "Partie 2 : fonctions de référence et problème d'optimisation.",
+    "dit": "Partie deux : les fonctions de référence et leur utilisation. Nous passerons en revue l'affine, la carrée, la racine carrée, l'inverse et le cube, avec pour chacune son domaine, sa courbe et ses variations, avant de tracer point par point et de résoudre le problème du rectangle."
+   }
+  }
+ ]
+}
