@@ -1,0 +1,326 @@
+{
+ "cours": 7226,
+ "ecrans": {
+  "carres": {
+   "kicker": "Carrés parfaits à connaître",
+   "tex": [
+    "1^2 = 1 \\qquad 2^2 = 4 \\qquad 3^2 = 9",
+    "4^2 = 16 \\qquad 5^2 = 25",
+    "6^2 = 36 \\qquad 7^2 = 49 \\qquad 8^2 = 64",
+    "9^2 = 81 \\qquad 10^2 = 100"
+   ],
+   "titre": "De un au carré à dix au carré",
+   "type": "etape"
+  },
+  "consequences": {
+   "kicker": "Conséquences immédiates",
+   "tex": [
+    "\\sqrt{a} \\text{ existe si } a \\geq 0",
+    "\\left(\\sqrt{a}\\right)^2 = a \\qquad a \\geq 0"
+   ],
+   "titre": "Existence et carré d'une racine",
+   "type": "etape"
+  },
+  "definition": {
+   "kicker": "Définition",
+   "note": "b est le nombre positif ou nul dont le carré vaut a.",
+   "tex": "\\sqrt{a} = b \\iff b \\geq 0 \\text{ et } b^2 = a",
+   "type": "formule"
+  },
+  "denominateur": {
+   "kicker": "Exemple résolu · rendre un dénominateur entier",
+   "tex": [
+    "\\frac{6}{\\sqrt{3}} = \\frac{6 \\times \\sqrt{3}}{\\sqrt{3} \\times \\sqrt{3}}",
+    "= \\frac{6\\sqrt{3}}{3}",
+    "= 2\\sqrt{3}"
+   ],
+   "titre": "Multiplier par la racine du dénominateur",
+   "type": "etape"
+  },
+  "developper": {
+   "kicker": "Exemple résolu · développer et réduire",
+   "tex": [
+    "B = \\left(2 + \\sqrt{3}\\right)^2",
+    "= 4 + 4\\sqrt{3} + 3",
+    "= 7 + 4\\sqrt{3}"
+   ],
+   "titre": "Identité remarquable, puis racine au carré",
+   "type": "etape"
+  },
+  "equation": {
+   "kicker": "Équation en carré",
+   "note": "Pour a strictement positif : deux solutions opposées.",
+   "tex": "x^2 = a \\iff x = \\sqrt{a} \\text{ ou } x = -\\sqrt{a}",
+   "type": "formule"
+  },
+  "exemple1": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\sqrt{49} = 7 \\qquad 7 \\geq 0 \\text{ et } 7^2 = 49",
+    "\\sqrt{0} = 0",
+    "\\sqrt{-9} \\text{ n'existe pas} \\qquad -9 < 0"
+   ],
+   "titre": "Trois cas : un carré parfait, zéro, un négatif",
+   "type": "etape"
+  },
+  "exemple_eq": {
+   "kicker": "Exemple résolu · une équation",
+   "tex": [
+    "x^2 = 5",
+    "x = \\sqrt{5} \\qquad x = -\\sqrt{5}"
+   ],
+   "titre": "Deux solutions, forme exacte",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "L'inverse du carré : retrouver le nombre de départ.",
+   "type": "phrase"
+  },
+  "methode": {
+   "kicker": "Méthode de simplification",
+   "texte": "Chercher le plus grand carré parfait qui divise le nombre.",
+   "type": "phrase"
+  },
+  "piege": {
+   "kicker": "Attention · le piège classique",
+   "tex": [
+    "\\sqrt{9 + 16} = \\sqrt{25} = 5",
+    "\\sqrt{9} + \\sqrt{16} = 3 + 4 = 7"
+   ],
+   "titre": "Aucune règle pour une somme",
+   "type": "etape"
+  },
+  "produit": {
+   "kicker": "Opérations · le produit",
+   "note": "Pour a et b positifs ou nuls : la racine se sépare.",
+   "tex": "\\sqrt{a \\times b} = \\sqrt{a} \\times \\sqrt{b}",
+   "type": "formule"
+  },
+  "quotient": {
+   "kicker": "Opérations · le quotient",
+   "note": "b différent de zéro ; a et b positifs ou nuls.",
+   "tex": "\\sqrt{\\frac{a}{b}} = \\frac{\\sqrt{a}}{\\sqrt{b}}",
+   "type": "formule"
+  },
+  "quotient72": {
+   "kicker": "Exemple résolu · simplifier un quotient",
+   "tex": [
+    "\\frac{\\sqrt{72}}{\\sqrt{2}} = \\sqrt{\\frac{72}{2}}",
+    "= \\sqrt{36} = 6"
+   ],
+   "titre": "Regrouper d'abord, puis simplifier",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Définition : b positif, et b au carré vaut a",
+    "Existe si a positif ou nul ; (√a)² = a",
+    "Racine d'un carré : √(a²) = |a|",
+    "Produit et quotient se séparent",
+    "Somme : aucune règle simple"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Simplifier : plus grand carré parfait",
+    "Regrouper les racines semblables",
+    "Développer, puis (√a)² = a",
+    "Rendre le dénominateur entier",
+    "x² = a : deux solutions opposées"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "somme": {
+   "kicker": "Exemple résolu · réduire une somme",
+   "tex": [
+    "A = \\sqrt{12} + \\sqrt{75} - \\sqrt{27}",
+    "= 2\\sqrt{3} + 5\\sqrt{3} - 3\\sqrt{3}",
+    "= 4\\sqrt{3}"
+   ],
+   "titre": "Simplifier chaque terme, puis regrouper",
+   "type": "etape"
+  },
+  "sqrt50": {
+   "kicker": "Exemple résolu · simplifier une racine",
+   "tex": [
+    "\\sqrt{50} = \\sqrt{25 \\times 2}",
+    "= \\sqrt{25} \\times \\sqrt{2}",
+    "= 5\\sqrt{2}"
+   ],
+   "titre": "La racine de cinquante, pas à pas",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Mathématique · Les racines carrées",
+   "sous": "Définition, règles de calcul et simplifications, de la définition à l'équation",
+   "titre": "Les racines carrées",
+   "type": "titre"
+  },
+  "valeur_abs": {
+   "kicker": "Le piège du signe",
+   "tex": [
+    "\\sqrt{a^2} = |a|",
+    "\\sqrt{5^2} = 5 \\qquad \\sqrt{(-3)^2} = 3"
+   ],
+   "titre": "La racine d'un carré vaut la valeur absolue",
+   "type": "etape"
+  },
+  "verification": {
+   "kicker": "Contrôle · vérifier une simplification",
+   "tex": [
+    "\\left(5\\sqrt{2}\\right)^2 = 25 \\times 2 = 50",
+    "\\left(2\\sqrt{3}\\right)^2 = 4 \\times 3 = 12"
+   ],
+   "titre": "Élever le résultat au carré",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définition, existence et règles de calcul"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : simplifier des expressions avec des racines. Nous verrons la méthode du plus grand carré parfait, la réduction d'une somme, le développement d'un carré, la façon de rendre un dénominateur entier, puis la résolution d'une équation en carré.",
+    "texte": "Partie 2 : simplifier, développer et résoudre."
+   },
+   "sous_titre": "Simplifier, développer et résoudre"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux racines carrées : ce qu'est une racine carrée, quand elle existe, comment la calculer et la simplifier, et comment résoudre une équation en carré.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Racines carrées : définition, calcul et simplification."
+  },
+  {
+   "dit": "La racine carrée est l'opération inverse du carré. Élever un nombre au carré, c'est le multiplier par lui-même ; prendre sa racine carrée, c'est retrouver le nombre positif dont le carré redonne ce nombre. C'est un outil de tous les jours en géométrie et en calcul, à condition de connaître ses règles et ses pièges.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "L'inverse du carré : retrouver le nombre de départ."
+  },
+  {
+   "dit": "Définition : la racine carrée d'un nombre a est le nombre positif, noté racine de a, dont le carré vaut a. Autrement dit, racine de a égale b exactement quand b est positif ou nul et que b au carré vaut a. Le mot positif inclut ici zéro, puisque zéro au carré vaut zéro.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "√a = b : b positif, b² = a."
+  },
+  {
+   "dit": "Première conséquence : une racine carrée n'existe que si le nombre sous la racine est positif ou nul, car un carré n'est jamais négatif. Deuxième conséquence : élever une racine au carré annule la racine, racine de a au carré vaut a, pour tout a positif ou nul.",
+   "ecran": "consequences",
+   "id": "p04",
+   "texte": "Existe si a ≥ 0 ; (√a)² = a."
+  },
+  {
+   "dit": "Troisième conséquence, la plus piégée : la racine d'un carré n'est pas toujours le nombre de départ, c'est sa valeur absolue. La racine de cinq au carré vaut cinq, mais la racine de moins trois au carré vaut trois, et non moins trois, car une racine est toujours positive ou nulle.",
+   "ecran": "valeur_abs",
+   "id": "p05",
+   "texte": "√(a²) = |a| : le piège du signe."
+  },
+  {
+   "dit": "Pour reconnaître vite une racine, il faut connaître les carrés parfaits par cœur : un, quatre, neuf, seize, vingt-cinq, trente-six, quarante-neuf, soixante-quatre, quatre-vingt-un et cent. Leurs racines sont donc un, deux, trois, quatre, cinq, six, sept, huit, neuf et dix, dans le même ordre.",
+   "ecran": "carres",
+   "id": "p06",
+   "texte": "Carrés parfaits de 1 à 10 : à connaître par cœur."
+  },
+  {
+   "dit": "Premier exemple, en trois cas. La racine de quarante-neuf vaut sept, car sept est positif et sept au carré vaut quarante-neuf. La racine de zéro vaut zéro. En revanche, la racine de moins neuf n'existe pas, car moins neuf est strictement négatif.",
+   "ecran": "exemple1",
+   "id": "p07",
+   "texte": "√49 = 7, √0 = 0, √(−9) impossible."
+  },
+  {
+   "dit": "Passons aux opérations. Pour deux nombres positifs ou nuls, la racine d'un produit se sépare en produit de racines : la racine de a fois b vaut la racine de a fois la racine de b. C'est cette règle qui permet presque toutes les simplifications.",
+   "ecran": "produit",
+   "id": "p08",
+   "texte": "√(ab) = √a · √b : la règle du produit."
+  },
+  {
+   "dit": "Même règle pour un quotient : la racine de a sur b vaut la racine de a sur la racine de b, à condition que b ne soit pas nul. Retenez les deux conditions ensemble : les nombres sous les racines doivent être positifs ou nuls, et le dénominateur ne doit jamais être nul.",
+   "ecran": "quotient",
+   "id": "p09",
+   "texte": "√(a/b) = √a / √b, b ≠ 0."
+  },
+  {
+   "dit": "Attention, il n'y a aucune règle simple pour une somme. En général, la racine d'une somme n'est pas la somme des racines. La preuve en chiffres : la racine de neuf plus seize vaut la racine de vingt-cinq, soit cinq, alors que la racine de neuf plus la racine de seize vaut trois plus quatre, soit sept. Cinq n'est pas sept : ne séparez jamais une somme sous une racine.",
+   "ecran": "piege",
+   "id": "p10",
+   "texte": "√(9+16) = 5, pas 7 : jamais de somme séparée."
+  },
+  {
+   "dit": "Récapitulons cette première partie : une racine carrée est définie par un nombre positif ou nul dont le carré vaut le nombre de départ ; elle n'existe que pour un nombre positif ou nul ; élever une racine au carré redonne le nombre ; la racine d'un carré vaut la valeur absolue ; enfin, produits et quotients se séparent, mais jamais les sommes.",
+   "ecran": "recap1",
+   "id": "p11",
+   "texte": "Partie 1 : définition, existence et règles."
+  },
+  {
+   "dit": "Voici la méthode de simplification : on cherche le plus grand carré parfait qui divise le nombre sous la racine, puis on sépare le produit grâce à la règle du produit. Le carré parfait sort de la racine, le reste y demeure. C'est un réflexe à appliquer systématiquement avant tout regroupement.",
+   "ecran": "methode",
+   "id": "p12",
+   "texte": "Méthode : le plus grand carré parfait diviseur."
+  },
+  {
+   "dit": "Appliquons-la à la racine de cinquante. Cinquante vaut vingt-cinq fois deux, et vingt-cinq est un carré parfait. La racine de cinquante vaut donc la racine de vingt-cinq fois la racine de deux, soit cinq racine de deux. Vérifiez mentalement : cinq racine de deux au carré vaut vingt-cinq fois deux, soit cinquante.",
+   "ecran": "sqrt50",
+   "id": "p13",
+   "texte": "√50 = 5√2, pas à pas."
+  },
+  {
+   "dit": "Même réflexe pour un quotient : la racine de soixante-douze sur la racine de deux se regroupe d'abord en une seule racine, celle de soixante-douze sur deux. Soixante-douze sur deux vaut trente-six, un carré parfait, et la racine de trente-six vaut six. Le résultat est un entier, sans aucune racine restante.",
+   "ecran": "quotient72",
+   "id": "p14",
+   "texte": "√72 / √2 = 6 : regrouper d'abord."
+  },
+  {
+   "dit": "Réduire une somme de racines demande deux temps : simplifier chaque terme séparément, puis regrouper ceux qui portent la même racine, comme on regroupe les termes en x en algèbre. Ici, la racine de douze devient deux racine de trois, celle de soixante-quinze cinq racine de trois, celle de vingt-sept trois racine de trois. Deux plus cinq moins trois font quatre : le résultat est quatre racine de trois.",
+   "ecran": "somme",
+   "id": "p15",
+   "texte": "A = 4√3 : simplifier, puis regrouper."
+  },
+  {
+   "dit": "Pour développer, on utilise les identités remarquables, puis on simplifie grâce à la règle racine au carré égale le nombre. Le carré de deux plus racine de trois donne quatre, plus deux fois deux racine de trois, plus trois. Quatre plus trois font sept : le résultat est sept plus quatre racine de trois.",
+   "ecran": "developper",
+   "id": "p16",
+   "texte": "B = 7 + 4√3 : identité remarquable."
+  },
+  {
+   "dit": "Pour rendre un dénominateur entier, on multiplie le numérateur et le dénominateur par la racine qui se trouve au dénominateur. Six sur racine de trois devient ainsi six racine de trois sur racine de trois fois racine de trois, soit six racine de trois sur trois, et la division par trois donne deux racine de trois.",
+   "ecran": "denominateur",
+   "id": "p17",
+   "texte": "6/√3 = 2√3 : dénominateur entier."
+  },
+  {
+   "dit": "Venons-en aux équations. Pour un nombre a strictement positif, l'équation x au carré égale a admet deux solutions opposées : racine de a et moins racine de a. C'est logique : un nombre positif et son opposé ont le même carré. Oublier la solution négative est l'erreur la plus fréquente sur ce type d'équation.",
+   "ecran": "equation",
+   "id": "p18",
+   "texte": "x² = a : deux solutions opposées."
+  },
+  {
+   "dit": "Exemple : l'équation x au carré égale cinq admet deux solutions, racine de cinq et moins racine de cinq. Notez que racine de cinq ne se simplifie pas, car aucun carré parfait autre que un ne divise cinq : on laisse donc la réponse sous forme exacte, avec la racine.",
+   "ecran": "exemple_eq",
+   "id": "p19",
+   "texte": "x² = 5 : ±√5, forme exacte."
+  },
+  {
+   "dit": "Dernier réflexe : contrôler une simplification en élevant le résultat au carré, on doit retrouver le nombre de départ. Cinq racine de deux au carré vaut vingt-cinq fois deux, soit cinquante. Deux racine de trois au carré vaut quatre fois trois, soit douze. Si le contrôle échoue, c'est que la simplification est fausse.",
+   "ecran": "verification",
+   "id": "p20",
+   "texte": "Contrôle : élever au carré pour vérifier."
+  },
+  {
+   "dit": "Pour finir, retenez la méthode en cinq gestes : simplifier chaque racine par le plus grand carré parfait, regrouper les racines semblables, développer avec les identités remarquables puis appliquer racine au carré, rendre le dénominateur entier, et pour une équation en carré, ne jamais oublier la solution négative.",
+   "ecran": "recap_final",
+   "id": "p21",
+   "texte": "À retenir : la méthode en cinq gestes."
+  }
+ ],
+ "titre": "Les racines carrées"
+}
