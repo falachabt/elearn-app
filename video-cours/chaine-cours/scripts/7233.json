@@ -1,0 +1,414 @@
+{
+ "cours": 7233,
+ "titre": "Séries statistiques : position, dispersion et boîtes",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Statistiques descriptives",
+   "titre": "Séries statistiques : position, dispersion et boîtes",
+   "sous": "Effectifs, moyenne, médiane, quartiles : décrire une série en quelques nombres",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Une série, c'est des données sur une population, et un caractère à étudier."
+  },
+  "vocab": {
+   "type": "etape",
+   "kicker": "Vocabulaire de base",
+   "titre": "Trois mots pour organiser une série",
+   "tex": [
+    "\\text{série : données recueillies}",
+    "\\text{sur une population}",
+    "\\text{caractère : quantitatif ou qualitatif}",
+    "\\text{valeurs distinctes : } x_1, x_2, \\ldots, x_k"
+   ]
+  },
+  "vocab_formules": {
+   "type": "formule",
+   "kicker": "Effectif et fréquence",
+   "tex": "N = n_1 + n_2 + \\cdots + n_k \\qquad f_i = \\frac{n_i}{N}",
+   "note": "Somme des fréquences : un, soit cent pour cent."
+  },
+  "exemple_tableau": {
+   "type": "etape",
+   "kicker": "Exemple · notes de vingt élèves",
+   "titre": "Effectifs, fréquences, et contrôle de la somme",
+   "tex": [
+    "x_i : 8, 10, 12, 14, 16 \\qquad n_i : 2, 5, 7, 4, 2",
+    "f_i : 0{,}10, 0{,}25, 0{,}35, 0{,}20, 0{,}10",
+    "\\sum f_i = 1 \\qquad 2+5+7+4+2 = 20"
+   ]
+  },
+  "graphiques": {
+   "type": "phrase",
+   "kicker": "Représentations graphiques",
+   "texte": "Bâtons, histogramme ou secteurs : le graphique dépend du caractère.",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 200
+   }
+  },
+  "moyenne": {
+   "type": "formule",
+   "kicker": "Paramètre de position · la moyenne",
+   "tex": "\\bar{x} = \\frac{n_1 x_1 + n_2 x_2 + \\cdots + n_k x_k}{N} = \\sum_{i=1}^{k} f_i x_i",
+   "note": "Pondérée par les effectifs, ou par les fréquences."
+  },
+  "moyenne_exemple": {
+   "type": "etape",
+   "kicker": "Exemple · la moyenne, pas à pas",
+   "titre": "La somme pondérée, puis la division par vingt",
+   "tex": [
+    "\\bar{x} = \\tfrac{2\\times 8 + 5\\times 10 + 7\\times 12 + 4\\times 14 + 2\\times 16}{20}",
+    "= \\tfrac{238}{20} = 11{,}9"
+   ]
+  },
+  "mediane": {
+   "type": "etape",
+   "kicker": "Paramètre de position · la médiane",
+   "titre": "La valeur qui partage la série en deux moitiés",
+   "tex": [
+    "N \\text{ impair : rang } \\tfrac{N+1}{2}",
+    "N \\text{ pair : moyenne des rangs } \\tfrac{N}{2} \\text{ et } \\tfrac{N}{2}+1"
+   ]
+  },
+  "mediane_exemple": {
+   "type": "formule",
+   "kicker": "Exemple · la médiane de la classe",
+   "tex": "Me = 12",
+   "note": "Dixième et onzième valeurs : douze et douze."
+  },
+  "robustesse": {
+   "type": "etape",
+   "kicker": "Moyenne contre médiane",
+   "titre": "Qui bouge quand une valeur extrême arrive ?",
+   "tex": [
+    "\\text{moyenne : tirée vers la valeur extrême}",
+    "\\text{médiane : elle ne regarde que le milieu}"
+   ]
+  },
+  "etendue": {
+   "type": "formule",
+   "kicker": "Paramètre de dispersion · l'étendue",
+   "tex": "E = x_{\\max} - x_{\\min} = 16 - 8 = 8",
+   "note": "La plus grande valeur moins la plus petite."
+  },
+  "variance": {
+   "type": "formule",
+   "kicker": "Paramètre de dispersion · la variance",
+   "tex": "V = \\frac{1}{N}\\sum_{i=1}^{k} n_i (x_i - \\bar{x})^2",
+   "note": "Moyenne des carrés des écarts à la moyenne."
+  },
+  "ecart_type": {
+   "type": "etape",
+   "kicker": "Exemple · l'écart-type, pas à pas",
+   "titre": "De la variance à l'écart-type",
+   "tex": [
+    "V \\approx \\tfrac{99{,}8}{20} \\approx 4{,}99",
+    "\\sigma = \\sqrt{V} \\approx 2{,}23",
+    "\\sigma \\text{ petit : série groupée}",
+    "\\text{autour de la moyenne}"
+   ]
+  },
+  "quartiles": {
+   "type": "etape",
+   "kicker": "Quartiles · définitions",
+   "titre": "Quatre groupes de même effectif",
+   "tex": [
+    "Q_1 \\text{ : premier quart}",
+    "Q_2 = Me \\text{ : la moitié}",
+    "Q_3 \\text{ : trois quarts}"
+   ]
+  },
+  "quartiles_methode": {
+   "type": "etape",
+   "kicker": "Quartiles · la méthode des rangs",
+   "titre": "Compter à partir de la série ordonnée",
+   "tex": [
+    "Q_1 \\text{ : rang } \\lceil \\tfrac{n}{4} \\rceil",
+    "Q_3 \\text{ : rang } \\lceil \\tfrac{3n}{4} \\rceil"
+   ]
+  },
+  "quartiles_exemple": {
+   "type": "etape",
+   "kicker": "Exemple · douze notes ordonnées",
+   "titre": "Premier quartile neuf, troisième quartile treize",
+   "tex": [
+    "n = 12 \\qquad \\tfrac{12}{4} = 3 \\qquad Q_1 = 9",
+    "\\tfrac{3\\times 12}{4} = 9 \\qquad Q_3 = 13",
+    "Me = \\tfrac{11+12}{2} = 11{,}5"
+   ]
+  },
+  "ecart_interquartile": {
+   "type": "formule",
+   "kicker": "Dispersion robuste · l'écart interquartile",
+   "tex": "EI = Q_3 - Q_1 = 13 - 9 = 4",
+   "note": "La moitié centrale tient dans un intervalle de largeur quatre."
+  },
+  "boite_chiffres": {
+   "type": "etape",
+   "kicker": "Diagramme en boîte · le résumé à cinq chiffres",
+   "titre": "Cinq nombres pour toute une série",
+   "tex": [
+    "\\min = 6 \\qquad Q_1 = 9 \\qquad Me = 11{,}5",
+    "Q_3 = 13 \\qquad \\max = 17"
+   ]
+  },
+  "construction_boite": {
+   "type": "etape",
+   "kicker": "Diagramme en boîte · construction",
+   "titre": "L'axe, puis le rectangle et son trait",
+   "tex": [
+    "\\text{axe gradué, puis rectangle de } Q_1 \\text{ à } Q_3",
+    "\\text{trait vertical au niveau de la médiane}"
+   ]
+  },
+  "construction_moustaches": {
+   "type": "etape",
+   "kicker": "Diagramme en boîte · les moustaches",
+   "titre": "Deux segments jusqu'aux extrêmes",
+   "tex": [
+    "\\text{deux segments jusqu'au}",
+    "\\text{minimum et au maximum}",
+    "\\text{boîte de neuf à treize}",
+    "\\text{moustaches : six et dix-sept}"
+   ]
+  },
+  "lecture_boite": {
+   "type": "etape",
+   "kicker": "Lire un diagramme en boîte",
+   "titre": "Position, dispersion, symétrie",
+   "tex": [
+    "\\text{position : la médiane}",
+    "\\text{dispersion : largeur de la boîte}",
+    "\\text{longueur totale}",
+    "\\text{symétrie : boîte centrée}",
+    "\\text{moustaches comparables}"
+   ]
+  },
+  "comparaison": {
+   "type": "etape",
+   "kicker": "Comparer deux séries",
+   "titre": "Deux boîtes sur le même axe",
+   "tex": [
+    "\\text{même axe gradué pour les deux séries}",
+    "\\text{boîte étroite : série plus homogène}",
+    "\\text{médiane haute :}",
+    "\\text{série globalement plus forte}"
+   ]
+  },
+  "methode_analyse": {
+   "type": "recap",
+   "kicker": "Analyser une série · la méthode",
+   "etapes": [
+    "Organiser : tableau effectifs et fréquences",
+    "Représenter : bâtons, histogramme, secteurs",
+    "Calculer : position et dispersion",
+    "Interpréter : comparer, juger l'homogénéité"
+   ]
+  },
+  "interpretation": {
+   "type": "formule",
+   "kicker": "Interprétation · la classe de vingt élèves",
+   "tex": "\\bar{x} = 11{,}9 \\qquad Me = 12 \\qquad \\sigma \\approx 2{,}23",
+   "note": "Moyenne proche de la médiane, dispersion modérée."
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Effectifs, fréquences : la somme vaut un",
+    "Moyenne 11,9 ; médiane 12 ; écart-type 2,23",
+    "Quartiles : neuf, onze virgule cinq, treize",
+    "Écart interquartile quatre, boîte neuf à treize",
+    "Comparer sur le même axe : boîte et médiane"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux séries statistiques. Nous allons apprendre à décrire une série de données en quelques nombres bien choisis : ses effectifs et ses fréquences, sa moyenne et sa médiane, sa dispersion, puis ses quartiles et son diagramme en boîte.",
+   "texte": "Séries statistiques : décrire en quelques nombres.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Une série statistique est un ensemble de données recueillies sur une population, par exemple les notes d'une classe. Le caractère étudié peut être quantitatif, quand il se mesure par un nombre, comme une note, ou qualitatif, quand il décrit une qualité, comme une couleur préférée.",
+   "texte": "Population, données, caractère : le vocabulaire de départ.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Pour une série à valeurs distinctes, trois mots suffisent. L'effectif d'une valeur est le nombre d'individus qui prennent cette valeur. L'effectif total est la somme de tous les effectifs. La fréquence d'une valeur est son effectif divisé par l'effectif total, et elle peut s'exprimer en décimal ou en pourcentage.",
+   "texte": "Effectif, effectif total, fréquence : trois définitions.",
+   "ecran": "vocab"
+  },
+  {
+   "id": "p04",
+   "dit": "Regardons les formules. L'effectif total est la somme de tous les effectifs. La fréquence d'une valeur est son effectif divisé par l'effectif total. Et la somme de toutes les fréquences vaut toujours un : c'est le premier contrôle à faire sur un tableau.",
+   "texte": "Fréquences : la somme vaut toujours un.",
+   "ecran": "vocab_formules"
+  },
+  {
+   "id": "p05",
+   "dit": "Prenons les notes d'une classe de vingt élèves. Huit apparaît deux fois, dix cinq fois, douze sept fois, quatorze quatre fois et seize deux fois. Les fréquences valent donc dix centièmes, vingt-cinq centièmes, trente-cinq centièmes, vingt centièmes et dix centièmes. Leur somme vaut un : le contrôle est bon, aucun élève n'a été oublié ni compté deux fois.",
+   "texte": "Vingt élèves : effectifs deux, cinq, sept, quatre, deux.",
+   "ecran": "exemple_tableau"
+  },
+  {
+   "id": "p06",
+   "dit": "Avant tout calcul, on regarde la série. Le diagramme en bâtons convient à un caractère discret : chaque bâton monte à la hauteur de son effectif. L'histogramme convient à un caractère continu regroupé en classes. Le diagramme circulaire découpe un disque en secteurs dont l'angle est proportionnel à la fréquence, chaque fréquence étant multipliée par trois cent soixante degrés.",
+   "texte": "Bâtons, histogramme, secteurs : choisir selon le caractère.",
+   "ecran": "graphiques"
+  },
+  {
+   "id": "p07",
+   "dit": "Premier paramètre de position : la moyenne. On multiplie chaque valeur par son effectif, on additionne, puis on divise par l'effectif total. Autrement dit, on pondère chaque valeur par sa fréquence et on additionne : la moyenne est le centre de gravité de la série.",
+   "texte": "La moyenne : pondérer, additionner, diviser.",
+   "ecran": "moyenne"
+  },
+  {
+   "id": "p08",
+   "dit": "Appliquons la formule aux notes de la classe. Deux fois huit, plus cinq fois dix, plus sept fois douze, plus quatre fois quatorze, plus deux fois seize : la somme vaut deux cent trente-huit. Divisée par vingt élèves, la moyenne vaut onze virgule neuf. Retenez ce nombre, nous le comparerons bientôt à la médiane.",
+   "texte": "Deux cent trente-huit divisé par vingt : onze virgule neuf.",
+   "ecran": "moyenne_exemple"
+  },
+  {
+   "id": "p09",
+   "dit": "Deuxième paramètre de position : la médiane. C'est la valeur qui partage la population en deux groupes d'effectifs égaux, la moitié des valeurs en dessous, la moitié au-dessus. Pour la trouver, on range la série par ordre croissant. Si l'effectif total est impair, on prend la valeur du milieu. S'il est pair, on prend la moyenne des deux valeurs centrales.",
+   "texte": "La médiane : le milieu de la série ordonnée.",
+   "ecran": "mediane"
+  },
+  {
+   "id": "p10",
+   "dit": "Sur les notes de la classe, rangées par ordre croissant, la dixième et la onzième valeurs valent toutes les deux douze. La médiane vaut donc douze, très proche de la moyenne onze virgule neuf.",
+   "texte": "Dixième et onzième valeurs : douze et douze.",
+   "ecran": "mediane_exemple"
+  },
+  {
+   "id": "p11",
+   "dit": "Moyenne et médiane ne réagissent pas pareil aux valeurs extrêmes. Une note exceptionnellement haute tire la moyenne vers le haut, alors que la médiane, qui ne regarde que le milieu de la série, bouge à peine. Quand moyenne et médiane s'éloignent, soupçonnez quelques valeurs extrêmes.",
+   "texte": "Valeur extrême : la moyenne bouge, la médiane presque pas.",
+   "ecran": "robustesse"
+  },
+  {
+   "id": "p12",
+   "dit": "Passons à la dispersion, qui mesure l'étalement de la série. L'étendue est la différence entre la plus grande et la plus petite valeur. Ici, seize moins huit : l'étendue vaut huit. Simple à calculer, elle a un défaut : une seule valeur extrême suffit à la gonfler.",
+   "texte": "Étendue : seize moins huit, soit huit.",
+   "ecran": "etendue"
+  },
+  {
+   "id": "p13",
+   "dit": "Pour mesurer finement la dispersion, on utilise la variance puis l'écart-type. La variance est la moyenne des carrés des écarts à la moyenne : on mesure chaque écart à la moyenne, on le met au carré pour éviter que les écarts positifs et négatifs ne se compensent, puis on fait la moyenne. L'écart-type est la racine carrée de la variance, et il s'exprime dans la même unité que les valeurs.",
+   "texte": "Variance, puis racine carrée : l'écart-type.",
+   "ecran": "variance"
+  },
+  {
+   "id": "p14",
+   "dit": "Reprenons la classe, avec la moyenne exacte onze virgule neuf. Les écarts au carré, pondérés par les effectifs, totalisent environ quatre-vingt-dix-neuf virgule huit. Divisés par vingt, ils donnent une variance d'environ quatre virgule quatre-vingt-dix-neuf. Sa racine carrée, l'écart-type, vaut environ deux virgule vingt-trois : les notes restent assez groupées autour de la moyenne.",
+   "texte": "Variance quatre virgule quatre-vingt-dix-neuf, écart-type deux virgule vingt-trois.",
+   "ecran": "ecart_type"
+  },
+  {
+   "id": "p15",
+   "dit": "Les quartiles affinent la médiane : ils partagent la série ordonnée en quatre groupes de même effectif. Le premier quartile est la valeur en dessous ou au niveau de laquelle se trouvent au moins un quart des valeurs. Le deuxième quartile n'est autre que la médiane. Le troisième quartile est la valeur en dessous ou au niveau de laquelle se trouvent au moins trois quarts des valeurs.",
+   "texte": "Quatre groupes : premier quartile, médiane, troisième quartile.",
+   "ecran": "quartiles"
+  },
+  {
+   "id": "p16",
+   "dit": "Pour les trouver, on range la série par ordre croissant, puis on compte. Le premier quartile est la valeur dont le rang est le quart de l'effectif, arrondi à l'entier supérieur. Le troisième quartile est la valeur dont le rang est les trois quarts de l'effectif, arrondi de la même façon.",
+   "texte": "Rangs : quart et trois quarts, arrondis au-dessus.",
+   "ecran": "quartiles_methode"
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple avec douze notes rangées par ordre croissant, de six à dix-sept. Le quart de douze vaut trois : la troisième valeur est neuf, premier quartile. Les trois quarts de douze valent neuf : la neuvième valeur est treize, troisième quartile. Et la médiane, moyenne de la sixième valeur onze et de la septième valeur douze, vaut onze virgule cinq.",
+   "texte": "Douze notes : quartiles neuf et treize, médiane onze virgule cinq.",
+   "ecran": "quartiles_exemple"
+  },
+  {
+   "id": "p18",
+   "dit": "L'écart interquartile est la différence entre le troisième et le premier quartile. Ici, treize moins neuf : il vaut quatre. Il mesure la dispersion de la moitié centrale de la série, les cinquante pour cent de valeurs les plus typiques. Comme il ignore le quart le plus faible et le quart le plus fort, il est peu sensible aux valeurs extrêmes, contrairement à l'étendue.",
+   "texte": "Treize moins neuf : écart interquartile quatre.",
+   "ecran": "ecart_interquartile"
+  },
+  {
+   "id": "p19",
+   "dit": "Le diagramme en boîte résume toute une série en cinq nombres seulement : le minimum, le premier quartile, la médiane, le troisième quartile et le maximum. Pour notre série de douze notes : minimum six, premier quartile neuf, médiane onze virgule cinq, troisième quartile treize, maximum dix-sept.",
+   "texte": "Cinq nombres : minimum, quartiles, médiane, maximum.",
+   "ecran": "boite_chiffres"
+  },
+  {
+   "id": "p20",
+   "dit": "Pour le construire, on trace d'abord un axe gradué adapté aux valeurs. Puis on dessine un rectangle, la boîte, qui va du premier au troisième quartile, et on y trace un trait vertical au niveau de la médiane. La boîte de notre exemple s'étend donc de neuf à treize, avec un trait à onze virgule cinq.",
+   "texte": "Axe, rectangle de neuf à treize, trait à onze virgule cinq.",
+   "ecran": "construction_boite"
+  },
+  {
+   "id": "p21",
+   "dit": "Enfin, on prolonge la boîte par deux segments, les moustaches, qui rejoignent le minimum et le maximum. Ici, la moustache de gauche descend jusqu'à six, celle de droite monte jusqu'à dix-sept. En un coup d'œil, la boîte et ses moustaches montrent où se concentre la série et jusqu'où elle s'étale.",
+   "texte": "Moustaches : jusqu'à six d'un côté, dix-sept de l'autre.",
+   "ecran": "construction_moustaches"
+  },
+  {
+   "id": "p22",
+   "dit": "Savoir lire une boîte, c'est lire trois choses à la fois. Sa position, donnée par la médiane : plus la boîte est haute sur l'axe, plus la série est forte. Sa dispersion : la largeur de la boîte est l'écart interquartile, sa longueur totale est l'étendue. Et sa symétrie : une boîte centrée, avec des moustaches de longueurs comparables, signale une distribution plutôt symétrique.",
+   "texte": "Position, dispersion, symétrie : les trois lectures.",
+   "ecran": "lecture_boite"
+  },
+  {
+   "id": "p23",
+   "dit": "Pour comparer deux séries, on trace leurs deux boîtes sur le même axe gradué, jamais sur des axes séparés. La série dont la boîte est la plus étroite est la plus homogène. Celle dont la médiane est la plus élevée est globalement la plus forte. Deux boîtes côte à côte valent mieux qu'un long tableau de nombres.",
+   "texte": "Même axe : boîte étroite et médiane haute.",
+   "ecran": "comparaison"
+  },
+  {
+   "id": "p24",
+   "dit": "Analyser une série, c'est quatre temps dans l'ordre : organiser les données dans un tableau d'effectifs et de fréquences, représenter la série par le graphique adapté, calculer les paramètres de position et de dispersion, et enfin interpréter, en comparant moyenne et médiane et en jugeant l'homogénéité grâce à l'écart-type et à l'écart interquartile.",
+   "texte": "Organiser, représenter, calculer, interpréter.",
+   "ecran": "methode_analyse"
+  },
+  {
+   "id": "p25",
+   "dit": "Revenons à la classe de vingt élèves : moyenne onze virgule neuf, médiane douze, écart-type environ deux virgule vingt-trois. Moyenne et médiane presque égales : la distribution est équilibrée, sans valeur extrême qui la déséquilibre. Un écart-type d'environ deux virgule vingt-trois autour d'une moyenne proche de douze traduit une dispersion modérée.",
+   "texte": "Classe de vingt élèves : centre douze, dispersion modérée.",
+   "ecran": "interpretation"
+  },
+  {
+   "id": "p26",
+   "dit": "Pour finir, retenez l'essentiel. Les effectifs et les fréquences organisent la série, et leurs fréquences totalisent un. La moyenne et la médiane situent son centre, l'écart-type et l'étendue mesurent sa dispersion. Les quartiles découpent la série en quatre, l'écart interquartile résume sa moitié centrale, et la boîte à moustaches en donne l'image en cinq nombres.",
+   "texte": "Séries statistiques : à retenir.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Vocabulaire, graphiques, moyenne et médiane"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Médiane, dispersion et quartiles",
+   "pont": {
+    "texte": "Partie 2 : médiane, dispersion et quartiles.",
+    "dit": "Partie deux : de la médiane aux quartiles, en passant par la dispersion. Nous comparerons moyenne et médiane, nous mesurerons l'étalement de la série, puis nous la partagerons en quatre groupes de même effectif."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "Diagramme en boîte, comparaisons et méthode d'analyse",
+   "pont": {
+    "texte": "Partie 3 : boîte à moustaches et méthode d'analyse.",
+    "dit": "Partie trois : le diagramme en boîte et la méthode d'analyse. Nous résumerons une série en cinq nombres, nous apprendrons à lire et à comparer les boîtes, puis nous appliquerons la méthode en quatre temps à la classe de vingt élèves."
+   }
+  }
+ ]
+}
