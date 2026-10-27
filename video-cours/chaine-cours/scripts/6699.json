@@ -1,0 +1,508 @@
+{
+ "cours": 6699,
+ "titre": "Polygones particuliers et symétries : trapèze, parallélogramme, réguliers, symétries axiale et centrale",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Polygones et symétries",
+   "titre": "Polygones particuliers et symétries",
+   "sous": "Trapèze, parallélogramme, polygones réguliers, puis symétries axiale et centrale",
+   "anim": {
+    "nom": "symetrie_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Des figures fermées par des segments, et deux façons de les transformer sans les déformer.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 140
+   }
+  },
+  "def_polygone": {
+   "type": "etape",
+   "kicker": "Qu'est-ce qu'un polygone ?",
+   "titre": "Une figure fermée, des segments",
+   "tex": [
+    "n\\ \\text{côtés},\\quad n\\ \\text{sommets},\\quad n\\ \\text{angles}",
+    "\\text{on le nomme en citant}",
+    "\\text{ses sommets dans l'ordre}"
+   ]
+  },
+  "angles_consecutifs": {
+   "type": "phrase",
+   "kicker": "Angles consécutifs",
+   "texte": "Deux angles consécutifs partagent un même côté du polygone.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 140
+   }
+  },
+  "trapeze_def": {
+   "type": "etape",
+   "kicker": "Le trapèze",
+   "titre": "Deux côtés opposés parallèles",
+   "tex": [
+    "\\text{un quadrilatère, deux côtés parallèles}",
+    "\\text{ces deux côtés sont les bases}"
+   ]
+  },
+  "trapeze_isocele": {
+   "type": "phrase",
+   "kicker": "Le trapèze isocèle",
+   "texte": "Côtés non parallèles égaux, et un axe de symétrie par les milieux des bases."
+  },
+  "aire_trapeze": {
+   "type": "formule",
+   "kicker": "Aire du trapèze",
+   "tex": "A = \\frac{(B + b) \\times h}{2}",
+   "note": "B et b : les deux bases · h : distance entre les bases"
+  },
+  "ex_trapeze": {
+   "type": "etape",
+   "kicker": "Exemple · aire d'un trapèze",
+   "titre": "Bases huit et cinq, hauteur quatre",
+   "tex": [
+    "A = \\tfrac{(8 + 5) \\times 4}{2}",
+    "A = \\tfrac{52}{2} = 26\\ \\text{cm}^2"
+   ]
+  },
+  "parallelo_def": {
+   "type": "etape",
+   "kicker": "Le parallélogramme",
+   "titre": "Côtés opposés parallèles deux à deux",
+   "tex": [
+    "\\text{côtés opposés parallèles deux à deux}",
+    "\\text{quatre côtés, deux paires de parallèles}"
+   ]
+  },
+  "parallelo_props": {
+   "type": "etape",
+   "kicker": "Propriétés du parallélogramme",
+   "titre": "Quatre propriétés à connaître",
+   "tex": [
+    "\\text{côtés opposés de même longueur}",
+    "\\text{angles opposés de même mesure}",
+    "\\text{diagonales coupées en leur milieu}",
+    "\\text{angles consécutifs supplémentaires}"
+   ]
+  },
+  "aire_parallelo": {
+   "type": "formule",
+   "kicker": "Aire du parallélogramme",
+   "tex": "A = b \\times h",
+   "note": "b : un côté · h : la hauteur relative à ce côté"
+  },
+  "ex_parallelo": {
+   "type": "etape",
+   "kicker": "Exemple · aire d'un parallélogramme",
+   "titre": "Côté sept, hauteur trois",
+   "tex": [
+    "A = 7 \\times 3",
+    "A = 21\\ \\text{cm}^2"
+   ]
+  },
+  "regulier_def": {
+   "type": "phrase",
+   "kicker": "Polygones réguliers",
+   "texte": "Tous les côtés égaux, tous les angles égaux : voilà un polygone régulier.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 140
+   }
+  },
+  "angle_centre": {
+   "type": "formule",
+   "kicker": "L'angle au centre",
+   "tex": "\\alpha = \\frac{360^\\circ}{n}",
+   "note": "n : nombre de côtés · deux rayons consécutifs"
+  },
+  "trois_reguliers": {
+   "type": "etape",
+   "kicker": "Trois réguliers à connaître",
+   "titre": "Pentagone, hexagone, octogone",
+   "tex": [
+    "\\text{pentagone : } \\tfrac{360^\\circ}{5} = 72^\\circ",
+    "\\text{hexagone : } \\tfrac{360^\\circ}{6} = 60^\\circ",
+    "\\text{octogone : } \\tfrac{360^\\circ}{8} = 45^\\circ"
+   ]
+  },
+  "construction_regulier": {
+   "type": "etape",
+   "kicker": "Construire un polygone régulier",
+   "titre": "Le cercle et les angles égaux",
+   "tex": [
+    "\\text{tracer un cercle de centre } O",
+    "\\text{reporter des angles de } \\tfrac{360^\\circ}{n}",
+    "\\text{relier les points obtenus sur le cercle}"
+   ]
+  },
+  "symetries_polygones": {
+   "type": "etape",
+   "kicker": "Symétries des polygones",
+   "titre": "Compter les axes de symétrie",
+   "tex": [
+    "\\text{trapèze isocèle : un axe}",
+    "\\text{hexagone régulier : six axes}",
+    "\\text{octogone régulier : huit axes}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 · À retenir",
+   "etapes": [
+    "Trapèze : deux bases parallèles",
+    "Parallélogramme : côtés opposés parallèles",
+    "Régulier : côtés et angles tous égaux",
+    "Angle au centre : 360° divisé par n"
+   ]
+  },
+  "intro_symetries": {
+   "type": "phrase",
+   "kicker": "Les symétries",
+   "texte": "Deux miroirs : une droite pour la symétrie axiale, un point pour la symétrie centrale.",
+   "anim": {
+    "nom": "mediatrice_exemple_fig",
+    "hauteur": 140
+   }
+  },
+  "sym_axiale_def": {
+   "type": "etape",
+   "kicker": "Symétrie axiale · définition",
+   "titre": "L'axe est la médiatrice",
+   "tex": [
+    "(d) \\perp (AA')",
+    "(d)\\ \\text{coupe } [AA']\\ \\text{en son milieu}"
+   ],
+   "anim": {
+    "nom": "mediatrice_exemple_fig",
+    "hauteur": 120
+   }
+  },
+  "sym_axiale_construction": {
+   "type": "etape",
+   "kicker": "Construire le symétrique d'un point",
+   "titre": "Perpendiculaire, puis report",
+   "tex": [
+    "\\text{tracer la perpendiculaire à } (d)",
+    "\\text{reporter la distance de l'autre côté}",
+    "\\text{au compas, à égale distance de } (d)"
+   ]
+  },
+  "ex_axiale": {
+   "type": "etape",
+   "kicker": "Exemple · symétrie axiale",
+   "titre": "Un point à trois centimètres de l'axe",
+   "tex": [
+    "HA = HA' = 3\\ \\text{cm}",
+    "H\\ \\text{: pied sur } (d)"
+   ]
+  },
+  "images_axiale": {
+   "type": "etape",
+   "kicker": "Images par symétrie axiale",
+   "titre": "Chaque figure a son image",
+   "tex": [
+    "\\text{droite} \\rightarrow \\text{droite}",
+    "\\text{segment } [BC] \\rightarrow [B'C']",
+    "\\text{cercle} \\rightarrow \\text{cercle de même rayon}"
+   ]
+  },
+  "sym_centrale_def": {
+   "type": "etape",
+   "kicker": "Symétrie centrale · définition",
+   "titre": "Le centre est le milieu",
+   "tex": [
+    "O\\ \\text{milieu de } [AA']",
+    "AO = OA'"
+   ]
+  },
+  "sym_centrale_construction": {
+   "type": "etape",
+   "kicker": "Construire par symétrie centrale",
+   "titre": "Prolonger, puis reporter",
+   "tex": [
+    "\\text{tracer la demi-droite } [AO)",
+    "\\text{reporter } AO\\ \\text{au-delà de } O"
+   ]
+  },
+  "ex_centrale": {
+   "type": "etape",
+   "kicker": "Exemple · symétrie centrale",
+   "titre": "Une distance de quatre centimètres",
+   "tex": [
+    "AO = OA' = 4\\ \\text{cm}"
+   ]
+  },
+  "images_centrale": {
+   "type": "etape",
+   "kicker": "Images par symétrie centrale",
+   "titre": "Le parallélisme en plus",
+   "tex": [
+    "\\text{droite} \\rightarrow \\text{droite parallèle}",
+    "B'C' = BC\\ \\text{et}\\ (B'C') \\parallel (BC)",
+    "\\text{cercle} \\rightarrow \\text{cercle de même rayon}"
+   ]
+  },
+  "conservations": {
+   "type": "etape",
+   "kicker": "Propriétés de conservation",
+   "titre": "Ce qu'aucune symétrie ne change",
+   "tex": [
+    "A'B' = AB",
+    "\\widehat{BAC} = \\widehat{B'A'C'}",
+    "\\text{alignement et parallélisme conservés}"
+   ]
+  },
+  "ex_conservation": {
+   "type": "etape",
+   "kicker": "Exemple · conservation",
+   "titre": "Distances et orthogonalité",
+   "tex": [
+    "A'B' = AB = 5\\ \\text{cm}",
+    "(AB) \\perp (BC) \\Rightarrow (A'B') \\perp (B'C')"
+   ]
+  },
+  "axe_centre_figure": {
+   "type": "phrase",
+   "kicker": "Axe ou centre d'une figure",
+   "texte": "Une figure a un axe ou un centre si la symétrie la laisse globalement inchangée.",
+   "anim": {
+    "nom": "cercle_trigo_fig",
+    "hauteur": 140
+   }
+  },
+  "exemples_symetrie_figure": {
+   "type": "etape",
+   "kicker": "Exemples · axes et centres",
+   "titre": "Trois figures à reconnaître",
+   "tex": [
+    "\\text{triangle isocèle : un axe}",
+    "\\text{parallélogramme : un centre}",
+    "\\text{rectangle : deux axes et un centre}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Axiale : l'axe est médiatrice de AA'",
+    "Centrale : le centre est milieu de AA'",
+    "Les symétries conservent distances",
+    "Elles conservent aussi les angles",
+    "Cercle : une infinité d'axes"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de géométrie. Nous étudierons les polygones particuliers, le trapèze, le parallélogramme et les polygones réguliers, puis les deux symétries du plan, la symétrie axiale et la symétrie centrale.",
+   "texte": "Polygones particuliers et symétries",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Un polygone est une figure plane fermée, composée de segments de droite. Ces segments sont ses côtés, et leurs points de rencontre sont ses sommets. Tout le cours consiste à reconnaître ces figures et à les transformer sans les déformer.",
+   "texte": "Une figure fermée, faite de segments",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Un polygone à un certain nombre de côtés possède exactement autant de sommets et autant d'angles. Pour le nommer, on cite ses sommets dans l'ordre, en suivant le tour de la figure.",
+   "texte": "Autant de côtés que de sommets et d'angles",
+   "ecran": "def_polygone"
+  },
+  {
+   "id": "p04",
+   "dit": "Deux angles d'un polygone sont dits consécutifs lorsqu'ils partagent un même côté. Ce petit mot de vocabulaire reviendra dans les propriétés du parallélogramme.",
+   "texte": "Deux angles consécutifs partagent un côté",
+   "ecran": "angles_consecutifs"
+  },
+  {
+   "id": "p05",
+   "dit": "Commençons par le trapèze : c'est un quadrilatère qui possède deux côtés opposés parallèles. Ces deux côtés parallèles portent un nom particulier, ce sont les bases du trapèze.",
+   "texte": "Le trapèze et ses deux bases",
+   "ecran": "trapeze_def"
+  },
+  {
+   "id": "p06",
+   "dit": "Un trapèze isocèle est un trapèze dont les deux côtés non parallèles ont la même longueur. Il possède un axe de symétrie, qui passe par les milieux de ses deux bases.",
+   "texte": "Trapèze isocèle : un axe de symétrie",
+   "ecran": "trapeze_isocele"
+  },
+  {
+   "id": "p07",
+   "dit": "L'aire d'un trapèze se calcule en ajoutant les deux bases, en multipliant par la hauteur, puis en divisant par deux. La hauteur est la distance entre les deux bases.",
+   "texte": "Aire du trapèze : bases, hauteur, divisé par deux",
+   "ecran": "aire_trapeze"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple du cours : un trapèze a pour bases huit centimètres et cinq centimètres, et une hauteur de quatre centimètres. On ajoute huit et cinq, on multiplie par quatre, on divise par deux : l'aire vaut vingt-six centimètres carrés.",
+   "texte": "Exemple : une aire de 26 cm²",
+   "ecran": "ex_trapeze"
+  },
+  {
+   "id": "p09",
+   "dit": "Le parallélogramme est un quadrilatère dont les côtés opposés sont parallèles deux à deux. C'est la figure centrale de ce chapitre, et ses propriétés servent partout.",
+   "texte": "Le parallélogramme, figure centrale",
+   "ecran": "parallelo_def"
+  },
+  {
+   "id": "p10",
+   "dit": "Retenez quatre propriétés : les côtés opposés ont la même longueur, les angles opposés ont la même mesure, les diagonales se coupent en leur milieu, et les angles consécutifs sont supplémentaires, leur somme vaut cent quatre-vingts degrés.",
+   "texte": "Quatre propriétés du parallélogramme",
+   "ecran": "parallelo_props"
+  },
+  {
+   "id": "p11",
+   "dit": "L'aire d'un parallélogramme est simple : on multiplie la longueur d'un côté par la hauteur relative à ce côté. Attention, la hauteur n'est pas le côté voisin, c'est la distance perpendiculaire.",
+   "texte": "Aire : côté fois hauteur relative",
+   "ecran": "aire_parallelo"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple du cours : un parallélogramme a un côté de sept centimètres et une hauteur de trois centimètres. Sept fois trois : son aire vaut vingt et un centimètres carrés.",
+   "texte": "Exemple : une aire de 21 cm²",
+   "ecran": "ex_parallelo"
+  },
+  {
+   "id": "p13",
+   "dit": "Un polygone régulier est un polygone dont tous les côtés ont la même longueur et tous les angles la même mesure. Le pentagone, l'hexagone et l'octogone réguliers sont ceux à connaître.",
+   "texte": "Régulier : tout est égal",
+   "ecran": "regulier_def"
+  },
+  {
+   "id": "p14",
+   "dit": "Dans un polygone régulier, l'angle au centre formé par deux rayons consécutifs se calcule très simplement : on divise trois cent soixante degrés par le nombre de côtés. C'est la clé de toutes les constructions.",
+   "texte": "Angle au centre : 360° divisé par n",
+   "ecran": "angle_centre"
+  },
+  {
+   "id": "p15",
+   "dit": "Appliquons la formule. Pour le pentagone régulier, trois cent soixante divisé par cinq donne soixante-douze degrés. Pour l'hexagone, soixante degrés. Pour l'octogone, quarante-cinq degrés.",
+   "texte": "72°, 60°, 45° : trois angles à retenir",
+   "ecran": "trois_reguliers"
+  },
+  {
+   "id": "p16",
+   "dit": "Pour construire un polygone régulier, on trace un cercle, on reporte autour de son centre des angles égaux à l'angle au centre, puis on relie les points obtenus sur le cercle. Pour l'octogone, on reporte huit angles de quarante-cinq degrés.",
+   "texte": "Construire : cercle, angles égaux, relier",
+   "ecran": "construction_regulier"
+  },
+  {
+   "id": "p17",
+   "dit": "Les polygones réguliers ont aussi leurs symétries : le trapèze isocèle possède un axe, l'hexagone régulier en possède six, et l'octogone régulier en possède huit, en plus d'un centre de symétrie pour ces deux derniers.",
+   "texte": "Compter les axes de symétrie",
+   "ecran": "symetries_polygones"
+  },
+  {
+   "id": "p18",
+   "dit": "Résumons cette première partie : le trapèze a deux bases parallèles, le parallélogramme a ses côtés opposés parallèles deux à deux, un polygone régulier a tout égal, et son angle au centre vaut trois cent soixante degrés divisé par le nombre de côtés.",
+   "texte": "Partie 1 : l'essentiel à retenir",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p19",
+   "dit": "Passons aux symétries. Deux points sont symétriques par rapport à une droite si cette droite est la médiatrice du segment qui les joint : elle lui est perpendiculaire et elle le coupe en son milieu.",
+   "texte": "Symétrie axiale : l'axe est médiatrice",
+   "ecran": "intro_symetries"
+  },
+  {
+   "id": "p20",
+   "dit": "Le point image s'obtient donc de l'autre côté de la droite, à la même distance. Si le point de départ est sur la droite elle-même, il est son propre symétrique : on dit qu'il est invariant.",
+   "texte": "L'image : même distance, autre côté",
+   "ecran": "sym_axiale_def"
+  },
+  {
+   "id": "p21",
+   "dit": "Pour construire le symétrique d'un point, on trace la perpendiculaire à l'axe passant par ce point, puis on reporte sa distance à l'axe de l'autre côté, à l'aide du compas.",
+   "texte": "Construction : perpendiculaire puis report",
+   "ecran": "sym_axiale_construction"
+  },
+  {
+   "id": "p22",
+   "dit": "Exemple du cours : un point est situé à trois centimètres de l'axe. Sa perpendiculaire coupe l'axe en un point intermédiaire, et on place le symétrique sur cette perpendiculaire, à trois centimètres de l'axe, de l'autre côté.",
+   "texte": "Exemple : 3 cm de chaque côté de l'axe",
+   "ecran": "ex_axiale"
+  },
+  {
+   "id": "p23",
+   "dit": "L'image d'une figure se construit point par point : une droite donne une droite, un segment donne un segment porté par les images de ses extrémités, et un cercle donne un cercle de même rayon, dont le centre est l'image du centre.",
+   "texte": "Images : droite, segment, cercle",
+   "ecran": "images_axiale"
+  },
+  {
+   "id": "p24",
+   "dit": "La symétrie centrale change de miroir : deux points sont symétriques par rapport à un point lorsque ce point est le milieu du segment qui les joint. Ce point est le centre de symétrie, et il est son propre image.",
+   "texte": "Symétrie centrale : le centre est milieu",
+   "ecran": "sym_centrale_def"
+  },
+  {
+   "id": "p25",
+   "dit": "Pour construire l'image d'un point par symétrie centrale, on trace la demi-droite qui part du point et passe par le centre, puis on reporte la même distance au-delà du centre.",
+   "texte": "Construction : prolonger puis reporter",
+   "ecran": "sym_centrale_construction"
+  },
+  {
+   "id": "p26",
+   "dit": "Exemple du cours : la distance du point au centre vaut quatre centimètres. On place donc son image sur la même demi-droite, au-delà du centre, à quatre centimètres du centre lui aussi.",
+   "texte": "Exemple : 4 cm de chaque côté du centre",
+   "ecran": "ex_centrale"
+  },
+  {
+   "id": "p27",
+   "dit": "Par symétrie centrale, l'image d'une droite est une droite qui lui est parallèle, et l'image d'un segment est un segment parallèle et de même longueur. Un cercle donne toujours un cercle de même rayon.",
+   "texte": "Images centrales : le parallélisme apparaît",
+   "ecran": "images_centrale"
+  },
+  {
+   "id": "p28",
+   "dit": "Les deux symétries partagent de grandes propriétés de conservation : elles conservent les distances, les angles, l'alignement, le parallélisme et l'orthogonalité. Une figure et son image sont donc superposables.",
+   "texte": "Conservation : distances et angles",
+   "ecran": "conservations"
+  },
+  {
+   "id": "p29",
+   "dit": "Exemple : si un segment mesure cinq centimètres, son image mesure aussi cinq centimètres. Et si deux côtés sont perpendiculaires dans la figure de départ, leurs images restent perpendiculaires dans la figure d'arrivée.",
+   "texte": "Exemple : 5 cm conservés, angles droits conservés",
+   "ecran": "ex_conservation"
+  },
+  {
+   "id": "p30",
+   "dit": "On dit qu'une figure admet un axe de symétrie si la symétrie d'axe la laisse globalement invariante : chaque point de la figure a son image sur la figure. Même idée pour un centre de symétrie, avec la symétrie centrale.",
+   "texte": "Axe ou centre : la figure reste inchangée",
+   "ecran": "axe_centre_figure"
+  },
+  {
+   "id": "p31",
+   "dit": "Quelques exemples à connaître : un triangle isocèle admet un axe, la médiatrice de sa base ; un parallélogramme admet un centre, le point d'intersection de ses diagonales ; un rectangle admet deux axes et un centre ; et un cercle admet une infinité d'axes, toutes les droites par son centre.",
+   "texte": "Isocèle, parallélogramme, rectangle, cercle",
+   "ecran": "exemples_symetrie_figure"
+  },
+  {
+   "id": "p32",
+   "dit": "Pour terminer, retenez les deux définitions par la médiatrice et par le milieu, les constructions au compas, et les conservations : distances, angles, alignement et parallélisme ne changent jamais par symétrie.",
+   "texte": "Les symétries en un coup d'œil",
+   "ecran": "recap2"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Polygones particuliers et réguliers"
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "Symétries axiale et centrale",
+   "pont": {
+    "texte": "Partie 2 : les symétries axiale et centrale, et leurs conservations.",
+    "dit": "Partie deux : les symétries. Après les polygones, voici les deux transformations du cours, la symétrie axiale et la symétrie centrale, avec tout ce qu'elles conservent."
+   }
+  }
+ ]
+}
