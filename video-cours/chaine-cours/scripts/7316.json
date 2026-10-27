@@ -1,0 +1,428 @@
+{
+  "cours": 7316,
+  "titre": "Dérivées et étude complète de fonctions",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Analyse",
+      "titre": "Dérivées et étude complète de fonctions",
+      "sous": "Nombre dérivé, tangente, théorèmes, variations, asymptotes et tracé complet",
+      "anim": {
+        "nom": "derive_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "De la pente en un point au portrait complet d'une courbe : la dérivée mène toute l'étude.",
+      "anim": {
+        "nom": "derive_fig",
+        "hauteur": 150
+      }
+    },
+    "def_nombre": {
+      "type": "formule",
+      "kicker": "Définition · le nombre dérivé",
+      "tex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a + h) - f(a)}{h}",
+      "note": "La limite du taux d'accroissement, quand elle existe et est finie"
+    },
+    "gauche_droite": {
+      "type": "etape",
+      "kicker": "Dérivabilité à gauche et à droite",
+      "titre": "Deux côtés, une seule valeur exigée",
+      "tex": [
+        "h < 0 \\ : \\ f'_g(a) \\qquad h > 0 \\ : \\ f'_d(a)",
+        "f \\text{ dérivable en } a \\iff f'_g(a) = f'_d(a)"
+      ]
+    },
+    "ex_abs": {
+      "type": "etape",
+      "kicker": "Exemple résolu · la valeur absolue en zéro",
+      "titre": "Deux pentes différentes : un point anguleux",
+      "tex": [
+        "f(x) = |x| \\qquad f'_g(0) = -1",
+        "f'_d(0) = 1 \\qquad f'_g(0) \\neq f'_d(0)",
+        "f \\text{ non dérivable en } 0"
+      ]
+    },
+    "tangente": {
+      "type": "formule",
+      "kicker": "La tangente à la courbe",
+      "tex": "y = f'(a)(x - a) + f(a)",
+      "note": "f prime de a : coefficient directeur de la tangente au point d'abscisse a",
+      "anim": {
+        "nom": "tangente_courbe_fig",
+        "hauteur": 140
+      }
+    },
+    "tangente_vert": {
+      "type": "phrase",
+      "kicker": "Cas limite · tangente verticale",
+      "texte": "Taux d'accroissement infini : la tangente devient verticale au point considéré.",
+      "anim": {
+        "nom": "tangente_courbe_fig",
+        "hauteur": 140
+      }
+    },
+    "fonction_derivee": {
+      "type": "phrase",
+      "kicker": "De nombre dérivé à fonction dérivée",
+      "texte": "Dérivable en tout point : les nombres dérivés forment la fonction dérivée f prime.",
+      "anim": {
+        "nom": "derive_fig",
+        "hauteur": 150
+      }
+    },
+    "usuelles": {
+      "type": "etape",
+      "kicker": "Dérivées usuelles à connaître",
+      "titre": "Constante, puissance, inverse, racine",
+      "tex": [
+        "(k)' = 0 \\qquad (x^n)' = n x^{n-1}",
+        "\\left(\\tfrac{1}{x}\\right)' = -\\tfrac{1}{x^2}",
+        "(\\sqrt{x})' = \\tfrac{1}{2\\sqrt{x}}",
+        "(\\sin x)' = \\cos x \\qquad (\\cos x)' = -\\sin x"
+      ]
+    },
+    "operations": {
+      "type": "etape",
+      "kicker": "Règles d'opérations",
+      "titre": "Somme, produit, quotient, composée",
+      "tex": [
+        "(u + v)' = u' + v'",
+        "(uv)' = u'v + uv'",
+        "\\left(\\tfrac{u}{v}\\right)' = \\tfrac{u'v - uv'}{v^2}",
+        "(u \\circ v)' = v' \\cdot (u' \\circ v)"
+      ]
+    },
+    "ex_quotient": {
+      "type": "etape",
+      "kicker": "Exemple résolu · dériver un quotient",
+      "titre": "Appliquer la règle du quotient, puis simplifier",
+      "tex": [
+        "f(x) = \\tfrac{x}{x^2 + 1}",
+        "f'(x) = \\tfrac{(x^2 + 1) - x(2x)}{(x^2 + 1)^2}",
+        "f'(x) = \\tfrac{1 - x^2}{(x^2 + 1)^2}"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : à retenir",
+      "etapes": [
+        "Nombre dérivé : limite du taux d'accroissement",
+        "Tangente : y = f'(a)(x − a) + f(a)",
+        "Gauche et droite égales, sinon point anguleux",
+        "Usuelles et opérations : produit, quotient"
+      ]
+    },
+    "rolle": {
+      "type": "etape",
+      "kicker": "Théorème de Rolle",
+      "titre": "Mêmes valeurs aux bornes : une tangente horizontale dedans",
+      "tex": [
+        "f \\text{ continue sur } [a, b], \\ \\text{dérivable sur } ]a, b[",
+        "f(a) = f(b) \\Rightarrow \\exists c \\in ]a, b[, \\ f'(c) = 0"
+      ]
+    },
+    "taf": {
+      "type": "formule",
+      "kicker": "Théorème des accroissements finis",
+      "tex": "f(b) - f(a) = f'(c)(b - a)",
+      "note": "Quelque part, la pente instantanée égale la pente moyenne"
+    },
+    "ex_taf": {
+      "type": "etape",
+      "kicker": "Exemple résolu · accroissements finis",
+      "titre": "Le carré sur le segment zéro, deux",
+      "tex": [
+        "\\tfrac{f(2) - f(0)}{2 - 0} = \\tfrac{4 - 0}{2} = 2",
+        "f'(c) = 2c = 2 \\iff c = 1",
+        "c = 1 \\in ]0,\\ 2["
+      ]
+    },
+    "signe_variations": {
+      "type": "etape",
+      "kicker": "Signe de la dérivée et variations",
+      "titre": "Le signe de f prime commande le sens de f",
+      "tex": [
+        "f' \\geq 0 \\Rightarrow f \\text{ croissante}",
+        "f' \\leq 0 \\Rightarrow f \\text{ décroissante}",
+        "f' = 0 \\Rightarrow f \\text{ constante}"
+      ]
+    },
+    "extremum": {
+      "type": "phrase",
+      "kicker": "Extremums locaux",
+      "texte": "f prime s'annule en changeant de signe : maximum si plus puis moins, minimum si moins puis plus.",
+      "anim": {
+        "nom": "derive_fig",
+        "hauteur": 140
+      }
+    },
+    "ex_extremum": {
+      "type": "etape",
+      "kicker": "Exemple résolu · extremums d'un polynôme",
+      "titre": "Factoriser la dérivée pour lire son signe",
+      "tex": [
+        "f(x) = x^3 - 3x \\qquad f'(x) = 3x^2 - 3",
+        "f'(x) = 3(x - 1)(x + 1)",
+        "\\text{max en } -1 : f(-1) = 2",
+        "\\text{min en } 1 : f(1) = -2"
+      ]
+    },
+    "asymptotes": {
+      "type": "etape",
+      "kicker": "Asymptotes · les trois types",
+      "titre": "Verticale, horizontale, oblique",
+      "tex": [
+        "x = a \\ : \\ \\lim_{x \\to a} f(x) = \\pm \\infty",
+        "y = \\ell \\ : \\ \\lim_{x \\to \\pm \\infty} f(x) = \\ell",
+        "y = ax + b \\ : \\ \\lim [f(x) - (ax + b)] = 0"
+      ]
+    },
+    "branche_parabolique": {
+      "type": "phrase",
+      "kicker": "Branches infinies",
+      "texte": "f de x sur x tend vers l'infini : branche parabolique dans la direction de l'axe des ordonnées.",
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 150
+      }
+    },
+    "methode": {
+      "type": "etape",
+      "kicker": "Méthode · l'étude complète en cinq gestes",
+      "titre": "Du domaine au tracé, toujours dans le même ordre",
+      "tex": [
+        "\\text{1. ensemble de définition}",
+        "\\text{2. dérivée et signe de } f'",
+        "\\text{3. tableau de variation et limites}",
+        "\\text{4. asymptotes et branches infinies}",
+        "\\text{5. points remarquables et tracé}"
+      ]
+    },
+    "etude_intro": {
+      "type": "phrase",
+      "kicker": "Étude complète · l'exemple du cours",
+      "texte": "Une fraction rationnelle à étudier de bout en bout : domaine, dérivée, extremums, asymptotes.",
+      "anim": {
+        "nom": "hyperbole_fig",
+        "hauteur": 150
+      }
+    },
+    "ex_etude_der": {
+      "type": "etape",
+      "kicker": "Exemple · réécriture et dérivée",
+      "titre": "Séparer la fraction pour dériver facilement",
+      "tex": [
+        "f(x) = \\tfrac{x^2 + 1}{x} = x + \\tfrac{1}{x}",
+        "f'(x) = 1 - \\tfrac{1}{x^2} = \\tfrac{x^2 - 1}{x^2}"
+      ]
+    },
+    "ex_etude_extr": {
+      "type": "etape",
+      "kicker": "Exemple · signe et extremums",
+      "titre": "Le signe de la dérivée est celui de x carré moins un",
+      "tex": [
+        "f' \\text{ s'annule en } -1 \\text{ et en } 1",
+        "\\text{max local en } -1 : f(-1) = -2",
+        "\\text{min local en } 1 : f(1) = 2"
+      ]
+    },
+    "ex_etude_asympt": {
+      "type": "etape",
+      "kicker": "Exemple · asymptotes",
+      "titre": "Une verticale, une oblique",
+      "tex": [
+        "x = 0 \\ : \\ \\text{asymptote verticale}",
+        "f(x) - x = \\tfrac{1}{x} \\to 0",
+        "y = x \\ : \\ \\text{asymptote oblique en } \\pm \\infty"
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Signe de f prime : sens de variation de f",
+        "Rolle et TAF : un point c où f prime parle",
+        "Extremum : f' s'annule et change de signe",
+        "Asymptotes : verticale, horizontale, oblique",
+        "Étude complète : domaine, signe, tableau, tracé"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "dit": "Bienvenue dans ce cours consacré aux dérivées et à l'étude complète des fonctions. Du nombre dérivé en un point à la fonction dérivée et ses règles, puis la dérivée commandera tout le reste : variations, extremums, asymptotes et tracé.",
+      "texte": "Dérivées et étude complète de fonctions."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "dit": "L'idée directrice : la dérivée mesure la pente locale d'une courbe, et cette pente, connue partout, raconte la fonction entière. Où elle est positive, négative ou nulle, la fonction monte, descend ou culmine.",
+      "texte": "La pente locale raconte la fonction entière."
+    },
+    {
+      "id": "p03",
+      "ecran": "def_nombre",
+      "dit": "Soit f une fonction définie sur un intervalle grand I, et a un point de cet intervalle. Le nombre dérivé de f en a est la limite, quand hache tend vers zéro, du taux d'accroissement : f de a plus hache moins f de a, le tout divisé par hache. Quand cette limite existe et est finie, f est dérivable en a.",
+      "texte": "f'(a) : limite du taux d'accroissement."
+    },
+    {
+      "id": "p04",
+      "ecran": "gauche_droite",
+      "dit": "On peut approcher a par la gauche, avec hache négatif, ou par la droite, avec hache positif. Cela donne deux nombres dérivés, à gauche et à droite. La fonction est dérivable en a exactement quand ces deux nombres existent et sont égaux : la pente doit être la même des deux côtés.",
+      "texte": "Dérivable ⟺ gauche et droite égales."
+    },
+    {
+      "id": "p05",
+      "ecran": "ex_abs",
+      "dit": "Exemple : la fonction valeur absolue en zéro. À gauche de zéro, la pente vaut moins un. À droite, elle vaut plus un. Les deux nombres dérivés sont différents, donc la fonction n'est pas dérivable en zéro : sa courbe forme un point anguleux, un coude sans tangente unique.",
+      "texte": "|x| en 0 : −1 à gauche, +1 à droite, pas dérivable."
+    },
+    {
+      "id": "p06",
+      "ecran": "tangente",
+      "dit": "Géométriquement, le nombre dérivé f prime de a est le coefficient directeur de la tangente à la courbe au point d'abscisse a. L'équation de cette tangente s'écrit : y égal f prime de a fois ixe moins a, plus f de a. C'est la droite qui épouse la courbe au voisinage du point.",
+      "texte": "Tangente : y = f'(a)(x − a) + f(a)."
+    },
+    {
+      "id": "p07",
+      "ecran": "tangente_vert",
+      "dit": "Cas limite : si le taux d'accroissement tend vers plus ou moins l'infini, il n'y a pas de nombre dérivé fini, mais la courbe admet quand même une tangente, verticale, au point considéré. La pente devient infinie, la droite se dresse.",
+      "texte": "Taux infini : tangente verticale."
+    },
+    {
+      "id": "p08",
+      "ecran": "fonction_derivee",
+      "dit": "Quand une fonction est dérivable en tout point d'un intervalle, les nombres dérivés obtenus forment une nouvelle fonction, la fonction dérivée, notée f prime, qui à chaque ixe associe f prime de ixe. C'est elle que l'on calcule par les formules, avant d'étudier son signe.",
+      "texte": "Les nombres dérivés forment la fonction f'."
+    },
+    {
+      "id": "p09",
+      "ecran": "usuelles",
+      "dit": "Les dérivées usuelles sont à connaître par cœur. Une constante se dérive en zéro. Ixe puissance èn se dérive en èn fois ixe puissance èn moins un. L'inverse de ixe se dérive en moins un sur ixe au carré. La racine carrée se dérive en un sur deux racine de ixe. Le sinus se dérive en cosinus, et le cosinus en moins sinus.",
+      "texte": "Usuelles : puissances, inverse, racine, sin, cos."
+    },
+    {
+      "id": "p10",
+      "ecran": "operations",
+      "dit": "Quatre règles combinent ces briques. La dérivée d'une somme est la somme des dérivées. Celle d'un produit : u prime vé plus u vé prime. Celle d'un quotient : u prime vé moins u vé prime, le tout sur vé au carré. Et pour une composée : la dérivée de l'intérieur multiplie la dérivée de l'extérieur composée.",
+      "texte": "Somme, produit, quotient, composée : 4 règles."
+    },
+    {
+      "id": "p11",
+      "ecran": "ex_quotient",
+      "dit": "Exemple : dériver f de ixe égal ixe sur ixe au carré plus un, par la règle du quotient. Le numérateur devient : ixe au carré plus un, moins ixe fois deux ixe. Après simplification, un moins ixe au carré, sur ixe au carré plus un, le tout au carré.",
+      "texte": "Exemple : f'(x) = (1 − x²) / (x² + 1)²."
+    },
+    {
+      "id": "p12",
+      "ecran": "recap1",
+      "dit": "Retenons la première partie : le nombre dérivé est la limite du taux d'accroissement et la pente de la tangente. Il faut l'égalité des dérivées à gauche et à droite pour être dérivable. Les dérivées usuelles et les quatre règles d'opérations permettent ensuite de calculer toute fonction dérivée.",
+      "texte": "Nombre dérivé, tangente, calculs : à retenir."
+    },
+    {
+      "id": "p13",
+      "ecran": "rolle",
+      "dit": "Le théorème de Rolle affirme ceci : si f est continue sur le segment a bé, dérivable sur l'intervalle ouvert, et si f de a égale f de bé, alors il existe au moins un point cé strictement entre a et bé où la dérivée s'annule. Entre deux points à même hauteur, il y a toujours un sommet ou un creux à tangente horizontale.",
+      "texte": "Rolle : f(a) = f(b) ⟹ un c avec f'(c) = 0."
+    },
+    {
+      "id": "p14",
+      "ecran": "taf",
+      "dit": "Le théorème des accroissements finis généralise Rolle. Si f est continue sur le segment a bé et dérivable sur l'intervalle ouvert, il existe un point cé intérieur tel que f de bé moins f de a égale f prime de cé fois bé moins a : quelque part, la pente instantanée égale la pente moyenne.",
+      "texte": "TAF : f(b) − f(a) = f'(c)(b − a)."
+    },
+    {
+      "id": "p15",
+      "ecran": "ex_taf",
+      "dit": "Exemple : f de ixe égal ixe au carré sur le segment zéro, deux. La pente moyenne vaut f de deux moins f de zéro, divisé par deux, soit deux. La dérivée, deux ixe, vaut deux pour ixe égal un : le point cé égal un, bien intérieur, vérifie le théorème.",
+      "texte": "Exemple TAF : pente moyenne 2, c = 1."
+    },
+    {
+      "id": "p16",
+      "ecran": "signe_variations",
+      "dit": "Le théorème des accroissements finis donne le lien fondamental entre le signe de la dérivée et les variations. Dérivée positive ou nulle sur un intervalle : fonction croissante. Dérivée négative ou nulle : fonction décroissante. Dérivée identiquement nulle : fonction constante.",
+      "texte": "Signe de f' : variations de f."
+    },
+    {
+      "id": "p17",
+      "ecran": "extremum",
+      "dit": "Pour repérer un extremum local, on cherche les points où la dérivée s'annule en changeant de signe. Si elle passe du positif au négatif, la fonction monte puis descend : c'est un maximum local. Si elle passe du négatif au positif, la fonction descend puis monte : c'est un minimum local. Un simple zéro sans changement de signe ne donne aucun extremum.",
+      "texte": "Extremum : f' s'annule en changeant de signe."
+    },
+    {
+      "id": "p18",
+      "ecran": "ex_extremum",
+      "dit": "Exemple : f de ixe égal ixe au cube moins trois ixe. Sa dérivée est trois ixe au carré moins trois, qui se factorise en trois fois ixe moins un fois ixe plus un. Elle s'annule en moins un et en un, avec les bons changements de signe : maximum local en moins un, de valeur deux, et minimum local en un, de valeur moins deux.",
+      "texte": "Exemple : max 2 en −1, min −2 en 1."
+    },
+    {
+      "id": "p19",
+      "ecran": "asymptotes",
+      "dit": "Quand la fonction s'échappe, on décrit ses asymptotes. Asymptote verticale d'équation ixe égal a si la fonction tend vers l'infini en a. Asymptote horizontale d'équation y égal èl si la fonction tend vers èl à l'infini. Asymptote oblique d'équation y égal a ixe plus bé si l'écart entre la fonction et la droite tend vers zéro.",
+      "texte": "Asymptotes : verticale, horizontale, oblique."
+    },
+    {
+      "id": "p20",
+      "ecran": "branche_parabolique",
+      "dit": "Dernier cas de branche infinie : si le quotient de f de ixe par ixe tend vers plus ou moins l'infini, la courbe s'éloigne dans la direction de l'axe des ordonnées, de plus en plus raide. On parle de branche parabolique de direction verticale.",
+      "texte": "Branche parabolique : direction de l'axe des y."
+    },
+    {
+      "id": "p21",
+      "ecran": "methode",
+      "dit": "Voici la méthode d'étude complète, toujours dans le même ordre. Ensemble de définition. Dérivée et signe. Tableau de variation, extremums et limites. Asymptotes et branches infinies. Points remarquables et tracé.",
+      "texte": "Méthode : domaine, dérivée, tableau, asymptotes, tracé."
+    },
+    {
+      "id": "p22",
+      "ecran": "etude_intro",
+      "dit": "Application complète, avec la fonction f de ixe égal ixe au carré plus un, le tout sur ixe, définie sur l'ensemble des réels privé de zéro. Nous allons lui appliquer la méthode pas à pas : réécriture, dérivée, signe, extremums, asymptotes, et portrait final.",
+      "texte": "Étude complète : f(x) = (x² + 1) / x."
+    },
+    {
+      "id": "p23",
+      "ecran": "ex_etude_der",
+      "dit": "Première étape, réécrire pour dériver simplement : f de ixe égal ixe plus un sur ixe. Sa dérivée vaut un moins un sur ixe au carré, soit ixe au carré moins un sur ixe au carré. Le dénominateur est toujours positif, le signe de la dérivée est donc celui de ixe au carré moins un.",
+      "texte": "Réécriture : f'(x) = (x² − 1) / x²."
+    },
+    {
+      "id": "p24",
+      "ecran": "ex_etude_extr",
+      "dit": "La dérivée s'annule en moins un et en un. L'étude de signe donne un maximum local en moins un, de valeur moins deux, et un minimum local en un, de valeur deux. Le tableau de variation rassemble ces résultats avec les limites : moins l'infini et plus l'infini de chaque côté de zéro et aux infinis.",
+      "texte": "Extremums : max −2 en −1, min 2 en 1."
+    },
+    {
+      "id": "p25",
+      "ecran": "ex_etude_asympt",
+      "dit": "Dernière étape, les asymptotes. En zéro, la fonction tend vers l'infini : la droite d'équation ixe égal zéro est asymptote verticale. Et l'écart entre f de ixe et ixe vaut un sur ixe, qui tend vers zéro à l'infini : la droite d'équation y égal ixe est asymptote oblique. La courbe obtenue est une hyperbole.",
+      "texte": "Asymptotes : x = 0 verticale, y = x oblique."
+    },
+    {
+      "id": "p26",
+      "ecran": "recap_final",
+      "dit": "Pour conclure : le signe de la dérivée commande les variations, ses zéros avec changement de signe donnent les extremums, les asymptotes décrivent les bouts de la courbe, et la méthode enchaîne définition, dérivée, tableau, asymptotes et tracé.",
+      "texte": "Dérivées et étude complète : à retenir."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Nombre dérivé, tangente et calcul des dérivées"
+    },
+    {
+      "debut": "p13",
+      "sous_titre": "Théorèmes, variations, asymptotes et étude complète",
+      "pont": {
+        "texte": "Partie 2 : des théorèmes à l'étude complète.",
+        "dit": "Partie deux, des théorèmes à l'étude complète : Rolle, les accroissements finis, le signe de la dérivée, les extremums, les asymptotes, et une étude menée de bout en bout."
+      }
+    }
+  ]
+}
