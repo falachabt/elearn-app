@@ -1,0 +1,442 @@
+{
+  "cours": 7253,
+  "titre": "Dénombrement et probabilités",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Dénombrement et probabilités",
+      "titre": "Dénombrement et probabilités",
+      "sous": "Compter sans tout énumérer, puis calculer une probabilité en équiprobabilité",
+      "anim": {
+        "nom": "urne_fig",
+        "hauteur": 250
+      }
+    },
+    "objectifs": {
+      "type": "phrase",
+      "kicker": "Objectifs du cours",
+      "texte": "Compter juste, puis transformer un comptage en probabilité.",
+      "anim": {
+        "nom": "grille_des_fig",
+        "hauteur": 150
+      }
+    },
+    "denombrer": {
+      "type": "phrase",
+      "kicker": "Dénombrer",
+      "texte": "Compter sans énumérer une à une toutes les issues.",
+      "anim": {
+        "nom": "grille_des_fig",
+        "hauteur": 150
+      }
+    },
+    "additif": {
+      "type": "formule",
+      "kicker": "Principe additif",
+      "tex": "N = m + n",
+      "note": "Ou : cas incompatibles, on additionne."
+    },
+    "multiplicatif": {
+      "type": "formule",
+      "kicker": "Principe multiplicatif",
+      "tex": "N = n_1 \\times n_2 \\times \\cdots \\times n_k",
+      "note": "Étapes successives : on multiplie les nombres de choix."
+    },
+    "ex_code": {
+      "type": "etape",
+      "kicker": "Exemple résolu · le code",
+      "titre": "Deux lettres, puis trois chiffres, répétitions permises",
+      "tex": [
+        "26^2 \\times 10^3 = 676 \\times 1000",
+        "= 676000 \\text{ codes}"
+      ]
+    },
+    "arrangements": {
+      "type": "formule",
+      "kicker": "Arrangements · formule",
+      "tex": "A_n^p = \\frac{n!}{(n-p)!}",
+      "note": "Ordre important, sans répétition.",
+      "anim": {
+        "nom": "arbre_fig",
+        "hauteur": 140
+      }
+    },
+    "ex_podium": {
+      "type": "etape",
+      "kicker": "Exemple résolu · podium",
+      "titre": "Trois places ordonnées pour huit coureurs",
+      "tex": [
+        "A_8^3 = 8 \\times 7 \\times 6",
+        "= 336 \\text{ podiums}"
+      ]
+    },
+    "permutations": {
+      "type": "formule",
+      "kicker": "Permutations · formule",
+      "tex": "P_n = n! \\qquad A_n^n = n!",
+      "note": "Tous les éléments, chacun une seule fois."
+    },
+    "perm_rep": {
+      "type": "etape",
+      "kicker": "Exemple résolu · ANANAS",
+      "titre": "Six lettres, avec des répétitions",
+      "tex": [
+        "\\tfrac{6!}{3!\\,2!\\,1!} = \\tfrac{720}{12}",
+        "= 60 \\text{ mots distincts}",
+        "\\text{A trois fois, N deux fois, S une fois}"
+      ]
+    },
+    "combinaisons": {
+      "type": "formule",
+      "kicker": "Combinaisons · formule",
+      "tex": "\\binom{n}{p} = \\frac{n!}{p!\\,(n-p)!}",
+      "note": "Ordre indifférent : on divise par les ordres possibles."
+    },
+    "proprietes": {
+      "type": "etape",
+      "kicker": "Combinaisons · propriétés utiles",
+      "titre": "Symétrie et relation de Pascal",
+      "tex": [
+        "\\tbinom{n}{0} = \\tbinom{n}{n} = 1 \\qquad \\tbinom{n}{1} = n",
+        "\\tbinom{n}{p} = \\tbinom{n}{n-p}",
+        "\\tbinom{n}{p} = \\tbinom{n-1}{p-1} + \\tbinom{n-1}{p}"
+      ]
+    },
+    "ex_groupes": {
+      "type": "etape",
+      "kicker": "Exemple résolu · groupes",
+      "titre": "Quatre élèves choisis parmi trente",
+      "tex": [
+        "\\binom{30}{4} = \\tfrac{30 \\times 29 \\times 28 \\times 27}{4!}",
+        "= \\tfrac{657720}{24} = 27405",
+        "\\text{groupes possibles}"
+      ]
+    },
+    "comparaison": {
+      "type": "etape",
+      "kicker": "Choisir la bonne méthode",
+      "titre": "Mêmes chevaux, deux questions différentes",
+      "tex": [
+        "A_{10}^3 = 10 \\times 9 \\times 8 = 720",
+        "\\binom{10}{3} = 120"
+      ]
+    },
+    "methode": {
+      "type": "etape",
+      "kicker": "La démarche en quatre gestes",
+      "titre": "Ordre, répétition, étapes, cas",
+      "tex": [
+        "\\text{1. ordre : arrangement ou combinaison}",
+        "\\text{2. répétition possible ou non}",
+        "\\text{3. étapes : principe multiplicatif}",
+        "\\text{4. cas distincts : principe additif}"
+      ]
+    },
+    "ex_comite_den": {
+      "type": "etape",
+      "kicker": "Exemple résolu · le comité",
+      "titre": "Deux femmes et un homme, sans ordre",
+      "tex": [
+        "\\binom{5}{2} \\times \\binom{4}{1} = 10 \\times 4",
+        "= 40 \\text{ comités}"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : à retenir",
+      "etapes": [
+        "Additif : ou, on additionne",
+        "Multiplicatif : étapes, on multiplie",
+        "Arrangement : ordre, sans répétition",
+        "Permutation : tous les éléments, n!",
+        "Combinaison : ordre indifférent"
+      ]
+    },
+    "univers": {
+      "type": "phrase",
+      "kicker": "Vocabulaire des probabilités",
+      "texte": "Univers, issues et événements : le vocabulaire de départ.",
+      "anim": {
+        "nom": "venn",
+        "hauteur": 170
+      }
+    },
+    "ex_de": {
+      "type": "phrase",
+      "kicker": "Exemple · le dé à six faces",
+      "texte": "Un dé : six issues, trois paires.",
+      "anim": {
+        "nom": "grille_des_fig",
+        "hauteur": 150
+      }
+    },
+    "equiprob": {
+      "type": "formule",
+      "kicker": "Probabilité en équiprobabilité",
+      "tex": "P(A) = \\frac{\\text{card}(A)}{\\text{card}(\\Omega)}",
+      "note": "Cas favorables sur cas possibles."
+    },
+    "ex_roi": {
+      "type": "etape",
+      "kicker": "Exemple résolu · tirer un roi",
+      "titre": "Un jeu de trente-deux cartes",
+      "tex": [
+        "\\text{card}(\\Omega) = 32 \\qquad \\text{rois} = 4",
+        "P = \\tfrac{4}{32} = \\tfrac{1}{8}"
+      ]
+    },
+    "proba_comite": {
+      "type": "etape",
+      "kicker": "Exemple résolu · probabilité du comité",
+      "titre": "Le dénombrement sert la probabilité",
+      "tex": [
+        "\\text{card}(\\Omega) = \\binom{9}{3} = 84",
+        "\\text{favorables} = \\binom{5}{2} \\times \\binom{4}{1} = 40",
+        "P = \\tfrac{40}{84} = \\tfrac{10}{21}"
+      ]
+    },
+    "contraire": {
+      "type": "formule",
+      "kicker": "Événement contraire",
+      "tex": "P(\\bar{A}) = 1 - P(A)",
+      "note": "Exemple du comité : un moins dix sur vingt et un."
+    },
+    "reunion": {
+      "type": "formule",
+      "kicker": "Réunion et intersection",
+      "tex": "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+      "note": "Incompatibles : l'intersection vaut zéro.",
+      "anim": {
+        "nom": "venn",
+        "hauteur": 140
+      }
+    },
+    "ex_de_reunion": {
+      "type": "etape",
+      "kicker": "Exemple résolu · pair ou plus de quatre",
+      "titre": "Un dé équilibré, deux événements",
+      "tex": [
+        "P(A) = \\tfrac{3}{6} = \\tfrac{1}{2} \\qquad P(B) = \\tfrac{2}{6} = \\tfrac{1}{3}",
+        "A \\cap B = \\{6\\} \\qquad P(A \\cap B) = \\tfrac{1}{6}",
+        "P(A \\cup B) = \\tfrac{1}{2} + \\tfrac{1}{3} - \\tfrac{1}{6} = \\tfrac{2}{3}"
+      ]
+    },
+    "methode_proba": {
+      "type": "etape",
+      "kicker": "Méthode générale",
+      "titre": "De l'univers au quotient, en quatre temps",
+      "tex": [
+        "\\text{1. définir l'univers, cas équiprobables}",
+        "\\text{2. dénombrer les cas possibles}",
+        "\\text{3. dénombrer les cas favorables}",
+        "\\text{4. quotient, puis vérifier entre zéro et un}"
+      ]
+    },
+    "ex_delegues": {
+      "type": "etape",
+      "kicker": "Exemple résolu · les délégués",
+      "titre": "Trois délégués parmi dix élèves",
+      "tex": [
+        "\\binom{10}{3} = 120 \\qquad \\binom{9}{2} = 36",
+        "P = \\tfrac{36}{120} = \\tfrac{3}{10}",
+        "\\text{Awa parmi les délégués}"
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Probabilité : favorables sur possibles",
+        "Dénombrer : ordre et répétition",
+        "Contraire : un moins la probabilité",
+        "Réunion : somme moins intersection",
+        "Toujours vérifier : entre zéro et un"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré au dénombrement et aux probabilités. Nous allons apprendre à compter des possibilités sans toutes les énumérer, puis à transformer ce comptage en probabilité.",
+      "texte": "Dénombrement et probabilités : compter, puis évaluer une chance.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "À la fin de ce cours, vous saurez choisir entre un arrangement, une permutation et une combinaison, appliquer les deux principes de comptage, et calculer une probabilité simple en situation d'équiprobabilité.",
+      "texte": "Objectif : compter juste, puis calculer une probabilité.",
+      "ecran": "objectifs"
+    },
+    {
+      "id": "p03",
+      "dit": "Dénombrer, c'est compter le nombre d'issues possibles d'une situation sans les énumérer une à une. Deux principes organisent tout le cours : additionner quand les cas s'excluent, multiplier quand les étapes s'enchaînent.",
+      "texte": "Compter sans tout lister : additionner ou multiplier.",
+      "ecran": "denombrer"
+    },
+    {
+      "id": "p04",
+      "dit": "Le principe additif concerne le mot ou. Si une situation se réalise de èm façons ou de èn façons incompatibles, le nombre total de possibilités est èm plus èn. Exemple : trois entrées ou quatre desserts, pour un seul plat, donnent sept possibilités.",
+      "texte": "Principe additif : ou, donc on additionne.",
+      "ecran": "additif"
+    },
+    {
+      "id": "p05",
+      "dit": "Le principe multiplicatif concerne les étapes successives. Si la première étape a un certain nombre d'issues, la deuxième un autre, et ainsi de suite, le nombre total de résultats est le produit de tous ces nombres.",
+      "texte": "Principe multiplicatif : des étapes, donc un produit.",
+      "ecran": "multiplicatif"
+    },
+    {
+      "id": "p06",
+      "dit": "Exemple : un code formé de deux lettres parmi vingt-six, suivies de trois chiffres parmi dix, avec répétition possible. Pour les lettres, vingt-six au carré. Pour les chiffres, dix au cube. Au total, six cent soixante-seize mille codes.",
+      "texte": "Exemple du code : six cent soixante-seize mille possibilités.",
+      "ecran": "ex_code"
+    },
+    {
+      "id": "p07",
+      "dit": "Un arrangement de pé éléments choisis parmi èn est une liste ordonnée de pé éléments distincts. L'ordre compte et il n'y a pas de répétition. Son nombre vaut factorielle èn divisée par factorielle de èn moins pé.",
+      "texte": "Arrangement : une liste ordonnée, sans répétition.",
+      "ecran": "arrangements"
+    },
+    {
+      "id": "p08",
+      "dit": "Exemple : combien de podiums différents, premier, deuxième et troisième, peut-on former avec huit coureurs ? C'est un arrangement de trois parmi huit : huit fois sept fois six, soit trois cent trente-six podiums.",
+      "texte": "Exemple podium : trois cent trente-six possibilités.",
+      "ecran": "ex_podium"
+    },
+    {
+      "id": "p09",
+      "dit": "Une permutation de èn éléments est un arrangement qui utilise tous les éléments, chacun une seule fois. Il y en a factorielle èn. Exemple : aligner cinq livres différents sur une étagère peut se faire de cent vingt façons.",
+      "texte": "Permutation : tous les éléments, factorielle èn façons.",
+      "ecran": "permutations"
+    },
+    {
+      "id": "p10",
+      "dit": "Quand certains objets sont identiques, permuter deux exemplaires identiques ne crée rien de nouveau : on divise par les factorielles des répétitions. Pour le mot ananas, six factorielle divisée par trois factorielle fois deux factorielle donne soixante mots distincts.",
+      "texte": "ANANAS : soixante mots distincts, répétitions déduites.",
+      "ecran": "perm_rep"
+    },
+    {
+      "id": "p11",
+      "dit": "Une combinaison de pé éléments choisis parmi èn est un sous-ensemble de pé éléments. Contrairement à l'arrangement, l'ordre ne compte pas. Son nombre vaut factorielle èn divisée par factorielle pé fois factorielle de èn moins pé.",
+      "texte": "Combinaison : un sous-ensemble, l'ordre ne compte pas.",
+      "ecran": "combinaisons"
+    },
+    {
+      "id": "p12",
+      "dit": "Quatre propriétés servent sans cesse. Choisir zéro élément ou tout choisir ne donne qu'une seule possibilité. Choisir un élément donne èn possibilités. Choisir pé éléments ou choisir les èn moins pé autres revient au même. Et la relation de Pascal additionne deux choix voisins.",
+      "texte": "Symétrie et Pascal : les raccourcis des combinaisons.",
+      "ecran": "proprietes"
+    },
+    {
+      "id": "p13",
+      "dit": "Exemple : combien de groupes de quatre élèves peut-on former dans une classe de trente ? L'ordre des élèves dans le groupe ne compte pas : c'est une combinaison de quatre parmi trente, soit vingt-sept mille quatre cent cinq groupes.",
+      "texte": "Exemple groupes : vingt-sept mille quatre cent cinq.",
+      "ecran": "ex_groupes"
+    },
+    {
+      "id": "p14",
+      "dit": "Même situation, deux réponses selon la question. Dans une course de dix chevaux, le nombre de podiums ordonnés est un arrangement, sept cent vingt. Le nombre de tiercés sans ordre est une combinaison, cent vingt. Tout dépend si l'ordre compte.",
+      "texte": "Podium sept cent vingt, tiercé cent vingt : l'ordre décide.",
+      "ecran": "comparaison"
+    },
+    {
+      "id": "p15",
+      "dit": "La démarche tient en quatre gestes. Se demander si l'ordre intervient. Repérer si une répétition est possible. Décomposer en étapes et multiplier. Puis additionner les cas incompatibles. Cette grille de lecture choisit l'outil à votre place.",
+      "texte": "La démarche : ordre, répétition, étapes, cas.",
+      "ecran": "methode"
+    },
+    {
+      "id": "p16",
+      "dit": "Dernier comptage avant les probabilités : un comité de trois personnes tiré parmi cinq femmes et quatre hommes, avec exactement deux femmes et un homme. On choisit les femmes, puis l'homme, et on multiplie : dix fois quatre, soit quarante comités.",
+      "texte": "Exemple comité : quarante comités favorables.",
+      "ecran": "ex_comite_den"
+    },
+    {
+      "id": "p17",
+      "dit": "Retenons cette première partie : additionner pour des cas incompatibles, multiplier pour des étapes, un arrangement quand l'ordre compte sans répétition, une combinaison quand l'ordre ne compte pas.",
+      "texte": "Partie dénombrement : à retenir.",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p18",
+      "dit": "Passons au vocabulaire des probabilités. Une expérience aléatoire est une expérience dont on ne peut pas prévoir le résultat, mais dont on connaît tous les résultats possibles. Leur ensemble est l'univers, noté oméga. Chaque résultat est une issue, et un événement est un ensemble d'issues.",
+      "texte": "Univers oméga, issues et événements : le vocabulaire.",
+      "ecran": "univers"
+    },
+    {
+      "id": "p19",
+      "dit": "Exemple fondateur : on lance un dé à six faces. L'univers contient les nombres de un à six. L'événement obtenir un nombre pair correspond aux issues deux, quatre et six. Tout le cours consiste ensuite à mesurer la part de ces issues favorables.",
+      "texte": "Le dé : l'événement pair regroupe deux, quatre, six.",
+      "ecran": "ex_de"
+    },
+    {
+      "id": "p20",
+      "dit": "Quand toutes les issues ont la même chance de se réaliser, on est en équiprobabilité. La probabilité d'un événement a est alors le nombre de cas favorables divisé par le nombre de cas possibles. Elle est toujours comprise entre zéro et un.",
+      "texte": "Équiprobabilité : favorables divisés par possibles.",
+      "ecran": "equiprob"
+    },
+    {
+      "id": "p21",
+      "dit": "Exemple résolu : on tire une carte au hasard dans un jeu de trente-deux cartes. Quelle est la probabilité d'obtenir un roi ? Il y a trente-deux cas possibles et quatre rois favorables. La probabilité vaut quatre sur trente-deux, soit un huitième.",
+      "texte": "Exemple du roi : probabilité un huitième.",
+      "ecran": "ex_roi"
+    },
+    {
+      "id": "p22",
+      "dit": "Quand l'univers est grand, le dénombrement calcule les deux cardinaux. Reprenons le comité de trois personnes parmi neuf : quatre-vingt-quatre comités possibles, quarante favorables avec deux femmes et un homme. La probabilité vaut quarante sur quatre-vingt-quatre, soit dix sur vingt et un.",
+      "texte": "Comité : probabilité dix sur vingt et un.",
+      "ecran": "proba_comite"
+    },
+    {
+      "id": "p23",
+      "dit": "L'événement contraire d'un événement a, noté a barre, se réalise exactement quand a ne se réalise pas. Sa probabilité vaut un moins celle de a. Pour le comité, le contraire de deux femmes et un homme a donc pour probabilité onze sur vingt et un.",
+      "texte": "Contraire : un moins la probabilité de l'événement.",
+      "ecran": "contraire"
+    },
+    {
+      "id": "p24",
+      "dit": "Pour deux événements a et bé, la réunion a union bé se réalise si a ou bé se réalise, et l'intersection a inter bé si les deux se réalisent ensemble. La probabilité de la réunion vaut la somme des probabilités, moins celle de l'intersection, comptée deux fois.",
+      "texte": "Réunion et intersection : ne pas compter deux fois.",
+      "ecran": "reunion"
+    },
+    {
+      "id": "p25",
+      "dit": "Exemple résolu avec un dé équilibré. A est l'événement pair, de probabilité un demi. Bé est l'événement supérieur à quatre, de probabilité un tiers. Leur intersection est l'issue six, de probabilité un sixième. La réunion vaut donc un demi plus un tiers moins un sixième, soit deux tiers.",
+      "texte": "Exemple du dé : réunion de probabilité deux tiers.",
+      "ecran": "ex_de_reunion"
+    },
+    {
+      "id": "p26",
+      "dit": "La méthode générale tient en cinq temps : définir l'univers et vérifier l'équiprobabilité, dénombrer les cas possibles, dénombrer les cas favorables, calculer le quotient, puis vérifier que le résultat reste entre zéro et un.",
+      "texte": "Méthode : univers, deux comptages, quotient, contrôle.",
+      "ecran": "methode_proba"
+    },
+    {
+      "id": "p27",
+      "dit": "Dernier exemple : on choisit trois délégués parmi dix élèves. Quelle est la probabilité qu'une élève précise, Awa, en fasse partie ? Cent vingt choix possibles. Awa étant choisie, il reste deux délégués à choisir parmi neuf élèves, trente-six choix. La probabilité vaut trente-six sur cent vingt, soit trois dixièmes.",
+      "texte": "Exemple Awa : probabilité trois dixièmes.",
+      "ecran": "ex_delegues"
+    },
+    {
+      "id": "p28",
+      "dit": "Pour conclure : une probabilité en équiprobabilité est un quotient de deux comptages. Le dénombrement fournit ces comptages, à condition de trancher d'abord la question de l'ordre et de la répétition. Le contraire et la réunion complètent la boîte à outils.",
+      "texte": "Dénombrer, diviser, vérifier : à retenir.",
+      "ecran": "recap_final"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Dénombrer : principes, arrangements et combinaisons"
+    },
+    {
+      "debut": "p18",
+      "sous_titre": "Probabilités en équiprobabilité",
+      "pont": {
+        "texte": "Partie 2 : des comptages aux probabilités.",
+        "dit": "Partie deux, les probabilités. Après avoir appris à compter les possibilités, nous allons mesurer la part des cas favorables : univers, équiprobabilité, événement contraire et réunion d'événements."
+      }
+    }
+  ]
+}
