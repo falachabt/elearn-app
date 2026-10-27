@@ -1,0 +1,362 @@
+{
+  "cours": 7264,
+  "ecrans": {
+    "coefficient": {
+      "kicker": "Le coefficient de proportionnalité",
+      "note": "Le prix d'un stylo, le prix d'un kilo : souvent un prix unitaire.",
+      "tex": "k = \\frac{y}{x} \\qquad y = k x",
+      "type": "formule",
+      "anim": {
+        "nom": "tableau_proportionnalite_fig",
+        "hauteur": 215
+      }
+    },
+    "contre": {
+      "kicker": "Un contre-exemple",
+      "texte": "Âge et taille d'un enfant : pas de coefficient constant.",
+      "type": "phrase"
+    },
+    "definition": {
+      "anim": {
+        "hauteur": 180,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Définition",
+      "note": "k : le coefficient de proportionnalité, le même pour tous les couples.",
+      "tex": "y = k \\times x",
+      "type": "formule"
+    },
+    "echelle_def": {
+      "kicker": "Les échelles",
+      "note": "Une échelle est un coefficient de proportionnalité entre plan et réel.",
+      "tex": "\\text{Échelle} = \\frac{\\text{distance sur le plan}}{\\text{distance réelle}}",
+      "type": "formule",
+      "anim": {
+        "nom": "conversion",
+        "hauteur": 215
+      }
+    },
+    "ex_echelle": {
+      "kicker": "Exemple résolu · lire une carte",
+      "tex": [
+        "4 \\times 25\\,000 = 100\\,000 \\text{ cm}",
+        "100\\,000 \\text{ cm} = 1 \\text{ km}"
+      ],
+      "titre": "Quatre centimètres sur une carte au un sur vingt-cinq mille",
+      "type": "etape"
+    },
+    "ex_pommes": {
+      "kicker": "Exemple résolu · les pommes",
+      "tex": [
+        "\\text{pour un kilo : } \\tfrac{12}{5} = 2{,}4 \\text{ euros}",
+        "\\text{pour huit kilos : } 8 \\times 2{,}4 = 19{,}2 \\text{ euros}"
+      ],
+      "titre": "Cinq kilos pour douze euros, et pour huit kilos",
+      "type": "etape"
+    },
+    "ex_soldes": {
+      "kicker": "Exemple résolu · les soldes",
+      "tex": [
+        "\\text{réduction : } \\tfrac{25}{100} \\times 80 = 20 \\text{ euros}",
+        "\\text{prix final : } 80 - 20 = 60 \\text{ euros}"
+      ],
+      "titre": "Un article à quatre-vingts euros, soldé à moins vingt-cinq pour cent",
+      "type": "etape"
+    },
+    "ex_stylos": {
+      "kicker": "Exemple résolu · appliquer le coefficient",
+      "tex": [
+        "7 \\times 2{,}5 = 17{,}5 \\text{ euros}",
+        "12 \\times 2{,}5 = 30 \\text{ euros}"
+      ],
+      "titre": "Sept stylos, puis douze stylos",
+      "type": "etape"
+    },
+    "ex_stylos_k": {
+      "kicker": "Exemple résolu · le coefficient",
+      "tex": [
+        "k = \\tfrac{10}{4} = 2{,}5 \\text{ euros par stylo}"
+      ],
+      "titre": "Quatre stylos pour dix euros",
+      "type": "etape"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Introduction",
+      "texte": "Quand une grandeur grandit, l'autre suit au même rythme.",
+      "type": "phrase"
+    },
+    "methode_verif": {
+      "kicker": "Méthode de vérification",
+      "tex": [
+        "\\text{1. calculer plusieurs quotients}",
+        "\\text{2. tous égaux : proportionnalité}",
+        "\\text{3. un seul différent : pas proportionnel}"
+      ],
+      "titre": "Tester avant de calculer",
+      "type": "etape"
+    },
+    "pct_coeffs": {
+      "kicker": "Augmenter ou diminuer d'un pourcentage",
+      "tex": [
+        "\\text{augmenter : } \\times \\left(1 + \\tfrac{p}{100}\\right)",
+        "\\text{diminuer : } \\times \\left(1 - \\tfrac{p}{100}\\right)"
+      ],
+      "titre": "Un seul coefficient multiplicateur",
+      "type": "etape"
+    },
+    "pct_formule": {
+      "kicker": "Calculer un pourcentage d'une quantité",
+      "note": "p : le taux en pour cent ; Q : la quantité de départ.",
+      "tex": "\\text{Valeur} = \\frac{p}{100} \\times Q",
+      "type": "formule"
+    },
+    "pct_intro": {
+      "anim": {
+        "hauteur": 190,
+        "nom": "camembert_fig"
+      },
+      "kicker": "Les pourcentages",
+      "texte": "Un pourcentage : une part rapportée à cent.",
+      "type": "phrase"
+    },
+    "produit_croix": {
+      "kicker": "Le produit en croix",
+      "note": "Le même résultat, sans écrire l'étape de l'unité.",
+      "tex": "\\frac{12}{5} = \\frac{x}{8} \\qquad x = \\frac{12 \\times 8}{5} = 19{,}2",
+      "type": "formule",
+      "anim": {
+        "nom": "quatrieme_proportionnelle_fig",
+        "hauteur": 215
+      }
+    },
+    "quotients": {
+      "kicker": "Reconnaître · le test des quotients",
+      "tex": [
+        "\\tfrac{6}{2} = 3 \\qquad \\tfrac{15}{5} = 3",
+        "\\tfrac{24}{8} = 3",
+        "\\text{quotients égaux : proportionnalité}"
+      ],
+      "titre": "Trois quotients, un seul résultat",
+      "type": "etape"
+    },
+    "recap": {
+      "etapes": [
+        "Quotients tous égaux : proportionnalité",
+        "Coefficient : y = k × x, toujours le même",
+        "Règle de trois : par l'unité, puis multiplier",
+        "Pourcentage : p sur cent fois la quantité",
+        "Échelle : plan sur réel, dans la même unité"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "regle_def": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "La règle de trois",
+      "texte": "Trois valeurs connues, une quatrième à retrouver.",
+      "type": "phrase"
+    },
+    "regle_methode": {
+      "kicker": "La règle de trois · les deux gestes",
+      "tex": [
+        "\\text{1. diviser pour obtenir la valeur pour un}",
+        "\\text{2. multiplier par la quantité cherchée}"
+      ],
+      "titre": "Passer par l'unité, puis multiplier",
+      "type": "etape",
+      "anim": {
+        "nom": "quatrieme_proportionnelle_fig",
+        "hauteur": 215
+      }
+    },
+    "tableau": {
+      "kicker": "Reconnaître · un tableau",
+      "tex": [
+        "\\text{Quantité (kg) : } 2 \\quad 5 \\quad 8",
+        "\\text{Prix (euros) : } 6 \\quad 15 \\quad 24"
+      ],
+      "titre": "Quantités de pommes et prix correspondants",
+      "type": "etape",
+      "anim": {
+        "nom": "tableau_proportionnalite_fig",
+        "hauteur": 215
+      }
+    },
+    "titre": {
+      "anim": {
+        "nom": "tableau_proportionnalite_fig",
+        "hauteur": 250
+      },
+      "kicker": "Mathématique · Proportionnalité",
+      "sous": "Reconnaître un tableau de proportionnalité, retrouver une valeur manquante, appliquer un pourcentage et lire une échelle",
+      "titre": "Proportionnalité et règle de trois : coefficient, pourcentages et échelles",
+      "type": "titre"
+    },
+    "unite": {
+      "kicker": "La condition des échelles",
+      "texte": "Plan et réel dans la même unité, avant tout calcul.",
+      "type": "phrase",
+      "anim": {
+        "nom": "conversion",
+        "hauteur": 230
+      }
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Reconnaître une proportionnalité et son coefficient"
+    },
+    {
+      "debut": "p11",
+      "pont": {
+        "dit": "Partie deux : la règle de trois, les pourcentages et les échelles. Le coefficient est trouvé, il reste à retrouver une valeur manquante, puis à reconnaître le même coefficient sous ses deux déguisements.",
+        "texte": "Partie 2 : règle de trois, pourcentages et échelles."
+      },
+      "sous_titre": "Règle de trois, pourcentages et échelles"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématiques consacré à la proportionnalité et à la règle de trois. Nous allons reconnaître ces situations, calculer avec leur coefficient, puis appliquer la même idée aux pourcentages et aux échelles.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Proportionnalité et règle de trois : le cours en un coup d'œil."
+    },
+    {
+      "dit": "Dans la vie courante, beaucoup de grandeurs avancent ensemble au même rythme : le prix avec la quantité achetée, la distance sur une carte avec la distance réelle. Quand ce rythme est constant, on parle de proportionnalité.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "Deux grandeurs qui avancent au même rythme constant."
+    },
+    {
+      "dit": "Deux grandeurs sont proportionnelles lorsque les valeurs de l'une s'obtiennent en multipliant les valeurs de l'autre par un même nombre. Ce nombre constant est le coefficient de proportionnalité : c'est lui qui fait tout le lien entre les deux grandeurs.",
+      "ecran": "definition",
+      "id": "p03",
+      "texte": "Un même multiplicateur pour passer d'une grandeur à l'autre."
+    },
+    {
+      "dit": "Premier tableau : deux, cinq et huit kilogrammes de pommes coûtent respectivement six, quinze et vingt-quatre euros. La question est simple : ce tableau est-il un tableau de proportionnalité, autrement dit le prix au kilo est-il le même partout.",
+      "ecran": "tableau",
+      "id": "p04",
+      "texte": "Pommes : 2, 5, 8 kilos pour 6, 15, 24 euros."
+    },
+    {
+      "dit": "Pour trancher, on calcule les quotients du prix par la quantité. Six divisé par deux vaut trois, quinze divisé par cinq vaut trois, vingt-quatre divisé par huit vaut trois. Tous les quotients sont égaux : le tableau est bien un tableau de proportionnalité, avec un prix de trois euros le kilo.",
+      "ecran": "quotients",
+      "id": "p05",
+      "texte": "Trois quotients égaux à 3 : proportionnalité vérifiée."
+    },
+    {
+      "dit": "Attention, toutes les situations ne sont pas proportionnelles. La taille et l'âge d'un enfant, par exemple, ne le sont pas : un enfant de deux ans ne mesure pas le double d'un enfant d'un an. Sans quotients tous égaux, il n'y a ni coefficient, ni règle de trois applicable.",
+      "ecran": "contre",
+      "id": "p06",
+      "texte": "Âge et taille : un rythme qui n'est pas constant."
+    },
+    {
+      "dit": "La méthode de vérification tient donc en un test : calculer plusieurs quotients entre valeurs correspondantes. S'ils sont tous égaux, la situation est proportionnelle et l'on peut calculer. Si un seul quotient diffère, la situation n'est pas proportionnelle, et il faut changer d'outil.",
+      "ecran": "methode_verif",
+      "id": "p07",
+      "texte": "Tester les quotients avant tout calcul."
+    },
+    {
+      "dit": "Le coefficient de proportionnalité est le nombre par lequel on multiplie chaque valeur de la première grandeur pour obtenir la valeur correspondante de la seconde. On le retrouve en divisant une valeur de la seconde grandeur par la valeur correspondante de la première.",
+      "ecran": "coefficient",
+      "id": "p08",
+      "texte": "Coefficient : diviser pour le trouver, multiplier pour l'utiliser."
+    },
+    {
+      "dit": "Exemple : quatre stylos coûtent dix euros. Le coefficient est dix divisé par quatre, soit deux virgule cinq. Chaque stylo coûte donc deux euros et cinquante centimes, et ce prix unitaire va servir pour toutes les autres quantités.",
+      "ecran": "ex_stylos_k",
+      "id": "p09",
+      "texte": "Quatre stylos, dix euros : coefficient 2,5."
+    },
+    {
+      "dit": "Appliquons ce coefficient. Pour sept stylos : sept fois deux virgule cinq, soit dix-sept euros et cinquante centimes. Pour douze stylos : douze fois deux virgule cinq, soit trente euros. Une seule multiplication par quantité, grâce au coefficient déjà trouvé.",
+      "ecran": "ex_stylos",
+      "id": "p10",
+      "texte": "Sept stylos : 17,5 euros. Douze stylos : 30 euros."
+    },
+    {
+      "dit": "La règle de trois permet de trouver une quatrième valeur quand on en connaît trois, dans une situation de proportionnalité. Trois valeurs sont données, une seule manque : c'est exactement le problème des pommes et des stylos, posé en méthode générale.",
+      "ecran": "regle_def",
+      "id": "p11",
+      "texte": "Trois valeurs connues, la quatrième à retrouver."
+    },
+    {
+      "dit": "La méthode comporte deux gestes. D'abord, calculer la valeur correspondant à l'unité, par une division : c'est le passage par l'unité. Ensuite, multiplier ce résultat par la quantité cherchée. Division, puis multiplication : l'ordre ne change jamais.",
+      "ecran": "regle_methode",
+      "id": "p12",
+      "texte": "Diviser pour l'unité, multiplier pour la quantité."
+    },
+    {
+      "dit": "Exemple complet : cinq kilogrammes de pommes coûtent douze euros, combien coûtent huit kilogrammes. Pour un kilo : douze divisé par cinq, soit deux virgule quatre euros. Pour huit kilos : huit fois deux virgule quatre, soit dix-neuf virgule deux euros.",
+      "ecran": "ex_pommes",
+      "id": "p13",
+      "texte": "Huit kilos de pommes : 19,2 euros, par l'unité."
+    },
+    {
+      "dit": "On peut aussi poser directement le produit en croix. Douze sur cinq égale la valeur cherchée sur huit, donc la valeur cherchée vaut douze fois huit, divisé par cinq : dix-neuf virgule deux euros. Même résultat, en court-circuitant l'étape de l'unité.",
+      "ecran": "produit_croix",
+      "id": "p14",
+      "texte": "Produit en croix : 12 × 8 / 5 = 19,2 euros."
+    },
+    {
+      "dit": "Premier déguisement du coefficient : le pourcentage. Un pourcentage est une proportion dont le coefficient est une fraction de dénominateur cent. Dire vingt-cinq pour cent, c'est dire vingt-cinq sur cent de la quantité considérée.",
+      "ecran": "pct_intro",
+      "id": "p15",
+      "texte": "Un pourcentage : un coefficient sur cent."
+    },
+    {
+      "dit": "Pour calculer un pourcentage d'une quantité, on multiplie la quantité par le taux divisé par cent. Le taux donne la part, la quantité donne le tout : le produit donne la valeur cherchée, dans la même unité que la quantité de départ.",
+      "ecran": "pct_formule",
+      "id": "p16",
+      "texte": "Taux sur cent, fois la quantité : la part cherchée."
+    },
+    {
+      "dit": "Exemple : un article coûte quatre-vingts euros, il est soldé à moins vingt-cinq pour cent. La réduction vaut vingt-cinq sur cent fois quatre-vingts, soit vingt euros. Le prix final vaut quatre-vingts moins vingt : soixante euros à payer.",
+      "ecran": "ex_soldes",
+      "id": "p17",
+      "texte": "Soldes : 20 euros de moins, prix final 60 euros."
+    },
+    {
+      "dit": "On peut aller plus vite avec un coefficient unique. Augmenter une quantité d'un certain pourcentage revient à la multiplier par un plus le taux sur cent. La diminuer revient à la multiplier par un moins le taux sur cent. Un seul calcul remplace la part puis l'addition ou la soustraction.",
+      "ecran": "pct_coeffs",
+      "id": "p18",
+      "texte": "Augmenter ou diminuer : un seul coefficient multiplicateur."
+    },
+    {
+      "dit": "Deuxième déguisement : l'échelle d'un plan ou d'une carte. C'est le coefficient de proportionnalité entre la distance mesurée sur le plan et la distance réelle : l'échelle est le quotient de la distance sur le plan par la distance réelle correspondante.",
+      "ecran": "echelle_def",
+      "id": "p19",
+      "texte": "Échelle : distance du plan divisée par distance réelle."
+    },
+    {
+      "dit": "Une condition avant tout calcul d'échelle : exprimer la distance sur le plan et la distance réelle dans la même unité. Sans cette conversion préalable, le quotient n'a aucun sens, et la distance retrouvée sera fausse d'un facteur dix, cent ou mille.",
+      "ecran": "unite",
+      "id": "p20",
+      "texte": "Même unité des deux côtés, sinon quotient faux."
+    },
+    {
+      "dit": "Exemple : sur une carte à l'échelle un sur vingt-cinq mille, deux villes sont séparées de quatre centimètres. La distance réelle vaut quatre fois vingt-cinq mille centimètres, soit cent mille centimètres, c'est-à-dire un kilomètre entre les deux villes.",
+      "ecran": "ex_echelle",
+      "id": "p21",
+      "texte": "4 cm sur la carte : 1 km en réalité."
+    },
+    {
+      "dit": "Pour finir, retenez l'enchaînement complet. Des quotients tous égaux signalent la proportionnalité. Le coefficient permet de passer d'une grandeur à l'autre. La règle de trois retrouve une valeur manquante en passant par l'unité. Et pourcentages et échelles sont deux visages du même coefficient.",
+      "ecran": "recap",
+      "id": "p22",
+      "texte": "Quotients, coefficient, règle de trois, pourcentages, échelles."
+    }
+  ],
+  "titre": "Proportionnalité et règle de trois : coefficient, pourcentages et échelles"
+}
