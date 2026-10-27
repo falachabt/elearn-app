@@ -1,0 +1,442 @@
+{
+ "cours": 6244,
+ "ecrans": {
+  "alleles": {
+   "kicker": "Les allèles",
+   "tex": [
+    "\\text{ABO : trois allèles } I^A, I^B, i",
+    "\\text{un allèle par gamète, deux par individu}"
+   ],
+   "titre": "Les variantes d'un gène",
+   "type": "etape"
+  },
+  "aneuploidies": {
+   "kicker": "Le nombre déraille",
+   "tex": [
+    "\\text{monosomie : perte, Turner } 45,\\mathrm{X}",
+    "\\text{trisomie : gain, Down } 47,+21",
+    "\\text{fréquence Down : } 1/700"
+   ],
+   "titre": "Monosomie, trisomie",
+   "type": "etape"
+  },
+  "appariement": {
+   "kicker": "L'appariement complémentaire",
+   "note": "Liaisons hydrogène : deux pour A-T, trois pour G-C",
+   "tex": "\\mathrm{A} \\text{-} \\mathrm{T} \\;(2) \\qquad \\mathrm{G} \\text{-} \\mathrm{C} \\;(3)",
+   "type": "formule"
+  },
+  "bases": {
+   "kicker": "Les quatre lettres",
+   "tex": [
+    "\\text{purines, deux cycles : A, G}",
+    "\\text{pyrimidines, un cycle : T, C}"
+   ],
+   "titre": "Purines et pyrimidines",
+   "type": "etape"
+  },
+  "chargaff": {
+   "kicker": "Les règles de Chargaff",
+   "tex": [
+    "[A] = [T]",
+    "[G] = [C]",
+    "[A]+[G] = [T]+[C]"
+   ],
+   "titre": "Des quantités égales",
+   "type": "etape"
+  },
+  "chargaff_exemple": {
+   "kicker": "Exercice : déduire les taux",
+   "note": "Adénine trente pour cent, le reste se partage",
+   "tex": "A = 30\\,\\% \\Rightarrow T = 30\\,\\%, \\quad G = C = 20\\,\\%",
+   "type": "formule"
+  },
+  "chromatine": {
+   "kicker": "Deux états de chromatine",
+   "tex": [
+    "\\text{euchromatine : décondensée, active}",
+    "\\text{hétérochromatine : dense, silencieuse}"
+   ],
+   "titre": "Active ou silencieuse",
+   "type": "etape"
+  },
+  "chromosome": {
+   "kicker": "Le chromosome métaphasique",
+   "tex": [
+    "\\text{deux chromatides sœurs, un centromère}",
+    "\\text{bras court p, bras long q}",
+    "\\text{télomères aux deux extrémités}"
+   ],
+   "titre": "Sœurs, centromère, bras, télomères",
+   "type": "etape"
+  },
+  "codon": {
+   "kicker": "Lire par codons",
+   "tex": [
+    "\\text{codon : trois nucléotides}",
+    "\\text{insuline : gène INS, chromosome } 11",
+    "\\text{insuline : } 51 \\text{ acides aminés}"
+   ],
+   "titre": "Trois lettres, un acide aminé",
+   "type": "etape"
+  },
+  "compaction": {
+   "kicker": "L'emballage hiérarchique",
+   "tex": [
+    "\\text{nucléosome : } 11\\,\\text{nm}",
+    "\\text{fibre : } 30\\,\\text{nm}",
+    "\\text{boucles : } 20\\,000\\text{-}100\\,000 \\text{ pb}",
+    "\\text{métaphase : compaction } \\approx 10\\,000 \\times"
+   ],
+   "titre": "De onze nanomètres à dix mille fois",
+   "type": "etape"
+  },
+  "dogme": {
+   "kicker": "Le dogme central",
+   "tex": [
+    "\\text{ADN} \\rightarrow \\text{ARN}",
+    "\\text{ARN} \\rightarrow \\text{protéine}"
+   ],
+   "type": "etape",
+   "titre": "Transcription dans le noyau, traduction au cytoplasme"
+  },
+  "dosage": {
+   "kicker": "L'effet dosage",
+   "note": "Trisomie : expression une fois et demie",
+   "tex": "E_{\\text{gène}} \\propto \\frac{N_{\\text{copies}}}{2} \\times E_{\\text{normale}}",
+   "type": "formule"
+  },
+  "fidelite": {
+   "kicker": "Trois filtres de fidélité",
+   "texte": "Trois filtres : une erreur sur 10¹⁰.",
+   "type": "phrase"
+  },
+  "gene": {
+   "kicker": "Définir : le gène",
+   "texte": "Gène : une séquence, une fonction.",
+   "type": "phrase"
+  },
+  "helice": {
+   "kicker": "La double hélice",
+   "tex": [
+    "\\text{deux chaînes antiparallèles}",
+    "\\text{squelettes sucre-phosphate dehors}",
+    "\\text{bases empilées dedans}"
+   ],
+   "titre": "Deux chaînes, un escalier torsadé",
+   "type": "etape"
+  },
+  "nucleosome": {
+   "kicker": "Le nucléosome",
+   "tex": [
+    "146 \\text{ pb} \\approx 1{,}7 \\text{ tour}",
+    "\\text{octamère } \\mathrm{H2A, H2B, H3, H4}"
+   ],
+   "type": "etape",
+   "titre": "Collier de perles : fibre de onze nanomètres"
+  },
+  "nucleotide": {
+   "kicker": "La brique : le nucléotide",
+   "tex": [
+    "\\text{sucre : désoxyribose, cinq carbones}",
+    "\\text{lien : groupement phosphate}",
+    "\\text{lettre : base A, T, G ou C}"
+   ],
+   "titre": "Trois parties",
+   "type": "etape"
+  },
+  "okazaki": {
+   "kicker": "Continu et discontinu",
+   "tex": [
+    "\\text{brin continu : synthèse directe}",
+    "\\text{brin discontinu : fragments d'Okazaki}"
+   ],
+   "titre": "Deux brins, deux rythmes",
+   "type": "etape"
+  },
+  "parametres": {
+   "kicker": "Les paramètres de l'hélice B",
+   "tex": [
+    "\\text{diamètre } \\approx 2\\,\\text{nm}",
+    "\\text{pas } \\approx 3{,}4\\,\\text{nm par tour}",
+    "10{,}4 \\text{ paires de bases par tour}"
+   ],
+   "titre": "Deux nanomètres, dix virgule quatre bases",
+   "type": "etape"
+  },
+  "phosphodiester": {
+   "kicker": "Assemblage : la liaison phosphodiester",
+   "tex": [
+    "\\text{phosphate (C5')} + \\text{OH (C3')}",
+    "\\rightarrow \\text{liaison} + \\mathrm{H_2O}"
+   ],
+   "type": "etape",
+   "titre": "Phosphate et hydroxyle, une molécule d'eau éliminée"
+  },
+  "polymerases": {
+   "kicker": "Copier, relire, sceller",
+   "tex": [
+    "\\text{polymérase : synthèse } 5' \\rightarrow 3'",
+    "\\text{relecture : exonucléase } 3' \\rightarrow 5'",
+    "\\text{ligase : scelle les fragments}"
+   ],
+   "titre": "Trois métiers",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Nucléotide : sucre, phosphate, base",
+    "Hélice : A-T, G-C, antiparallèle",
+    "Réplication semi-conservative fidèle",
+    "Gène : ADN, ARN, protéine",
+    "Chromosome : compaction dix mille fois"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "regulation": {
+   "kicker": "Au-delà du code",
+   "texte": "Au-delà du code : la régulation.",
+   "type": "phrase"
+  },
+  "replication": {
+   "kicker": "Le principe semi-conservatif",
+   "texte": "Semi-conservative : un brin ancien, un neuf.",
+   "type": "phrase"
+  },
+  "replisome": {
+   "kicker": "La machine à copier",
+   "tex": [
+    "\\text{hélicase : ouvre les brins}",
+    "\\text{SSB : stabilisent les brins}",
+    "\\text{topoisomérase : démêle}",
+    "\\text{primase : amorce d'ARN}"
+   ],
+   "titre": "Quatre acteurs à la fourche",
+   "type": "etape"
+  },
+  "structurales": {
+   "kicker": "Les variations structurales",
+   "tex": [
+    "\\text{délétion : segment perdu}",
+    "\\text{duplication : segment doublé}",
+    "\\text{inversion : segment retourné}",
+    "\\text{translocation : échange}"
+   ],
+   "titre": "Quatre réarrangements",
+   "type": "etape"
+  },
+  "synthese": {
+   "kicker": "Synthèse du cours",
+   "texte": "Stocker, copier, commander, emballer.",
+   "type": "phrase"
+  },
+  "telomeres": {
+   "kicker": "Les extrémités fragiles",
+   "tex": [
+    "\\text{télomères : répétitions TTAGGG}",
+    "\\text{télomérase : rallonge l'extrémité } 3'"
+   ],
+   "titre": "Protéger les bouts",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Biologie · ADN, gènes et chromosomes",
+   "sous": "La molécule, sa copie, ses gènes et son emballage",
+   "titre": "ADN, gènes et chromosomes : le code, ses mots et ses livres",
+   "type": "titre"
+  }
+ },
+ "matiere": "Biologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La molécule et sa copie fidèle"
+  },
+  {
+   "debut": "p16",
+   "pont": {
+    "dit": "Partie deux : des gènes aux chromosomes. Nous définirons le gène et son flux vers la protéine, puis nous emballerons l'ADN du nucléosome au chromosome métaphasique, avant de voir ce qui se passe quand le nombre ou la structure déraille.",
+    "texte": "Partie 2 : gènes, chromosomes, variations."
+   },
+   "sous_titre": "Gènes, chromosomes et variations"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur l'ADN, les gènes et les chromosomes, le code, ses mots et ses livres. Deux mètres d'information tiennent dans un noyau de quelques micromètres : découvrons la molécule, sa copie, ses gènes et son emballage.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "ADN, gènes, chromosomes : le code du vivant."
+  },
+  {
+   "dit": "La brique de base est le nucléotide, en trois parties : un sucre, le désoxyribose, un groupement phosphate et une base azotée. Le désoxyribose a perdu un oxygène sur son carbone deux prime : c'est le désoxy qui distingue l'ADN de l'ARN.",
+   "ecran": "nucleotide",
+   "id": "p02",
+   "texte": "Nucléotide : sucre, phosphate, base."
+  },
+  {
+   "dit": "Les bases forment deux familles : les purines à deux cycles, adénine et guanine, et les pyrimidines à un cycle, thymine et cytosine. C'est la base, fixée sur le carbone un prime, qui porte l'information.",
+   "ecran": "bases",
+   "id": "p03",
+   "texte": "Purines A, G ; pyrimidines T, C."
+  },
+  {
+   "dit": "Les nucléotides s'enchaînent par une liaison phosphodiester, entre le phosphate d'un nucléotide et l'hydroxyle du carbone trois prime du suivant, avec élimination d'une molécule d'eau. La chaîne gagne ainsi une polarité, de cinq prime vers trois prime.",
+   "ecran": "phosphodiester",
+   "id": "p04",
+   "texte": "Liaison phosphodiester : la chaîne polarisée."
+  },
+  {
+   "dit": "Avant la double hélice, Chargaff avait mesuré une régularité : la quantité d'adénine égale celle de thymine, et celle de guanine égale celle de cytosine. Les purines totales égalent donc les pyrimidines totales.",
+   "ecran": "chargaff",
+   "id": "p05",
+   "texte": "Chargaff : A = T, G = C."
+  },
+  {
+   "dit": "Exercice : si un ADN contient trente pour cent d'adénine, il contient trente pour cent de thymine. Il reste quarante pour cent à partager : vingt pour cent de guanine et vingt pour cent de cytosine.",
+   "ecran": "chargaff_exemple",
+   "id": "p06",
+   "texte": "A = 30 %, T = 30 %, G = C = 20 %."
+  },
+  {
+   "dit": "En mille neuf cent cinquante-trois, Watson et Crick proposent la double hélice : deux chaînes antiparallèles, squelettes à l'extérieur, bases empilées à l'intérieur comme les marches d'un escalier en colimaçon.",
+   "ecran": "helice",
+   "id": "p07",
+   "texte": "Double hélice : deux chaînes antiparallèles."
+  },
+  {
+   "dit": "L'appariement est strict : l'adénine s'apparie à la thymine par deux liaisons hydrogène, la guanine à la cytosine par trois. La séquence d'une chaîne détermine donc automatiquement celle de l'autre.",
+   "ecran": "appariement",
+   "id": "p08",
+   "texte": "A-T : 2 liaisons ; G-C : 3 liaisons."
+  },
+  {
+   "dit": "L'hélice B, la forme courante, mesure environ deux nanomètres de diamètre, avance de trois virgule quatre nanomètres par tour, avec dix virgule quatre paires de bases par tour, soit zéro virgule trente-quatre nanomètre par base.",
+   "ecran": "parametres",
+   "id": "p09",
+   "texte": "Hélice B : 2 nm, 3,4 nm, 10,4 pb."
+  },
+  {
+   "dit": "Cette complémentarité contient son mode de copie : chaque brin sert de modèle à un brin neuf. Meselson et Stahl l'ont prouvé en mille neuf cent cinquante-huit : la réplication est semi-conservative, un brin ancien et un brin neuf par molécule fille.",
+   "ecran": "replication",
+   "id": "p10",
+   "texte": "Semi-conservative : un brin ancien, un neuf."
+  },
+  {
+   "dit": "À la fourche de réplication, l'hélicase ouvre la fermeture éclair, les protéines SSB stabilisent les brins, la topoisomérase démêle les supertours, et la primase pose une amorce d'ARN pour lancer la synthèse.",
+   "ecran": "replisome",
+   "id": "p11",
+   "texte": "Hélicase, SSB, topoisomérase, primase."
+  },
+  {
+   "dit": "L'ADN polymérase allonge l'amorce dans le sens cinq prime vers trois prime, avec relecture immédiate de ses erreurs. Une seconde polymérase remplace les amorces, puis la ligase scelle les coupures.",
+   "ecran": "polymerases",
+   "id": "p12",
+   "texte": "Polymérase, relecture, ligase."
+  },
+  {
+   "dit": "Sur le brin continu, la synthèse file sans interruption ; sur le brin discontinu, elle procède par fragments d'Okazaki, de cent à deux cents nucléotides chez les eucaryotes, mille à deux mille chez les procaryotes.",
+   "ecran": "okazaki",
+   "id": "p13",
+   "texte": "Brin continu, brin discontinu d'Okazaki."
+  },
+  {
+   "dit": "La fidélité est extraordinaire : sélection des bonnes paires, relecture immédiate, puis réparation des mésappariements. Le taux d'erreur tombe à environ une erreur pour dix milliards de nucléotides incorporés.",
+   "ecran": "fidelite",
+   "id": "p14",
+   "texte": "Trois filtres : une erreur sur 10¹⁰."
+  },
+  {
+   "dit": "Aux extrémités, le problème du brin retardé raccourcit les chromosomes à chaque division. Les télomères, des répétitions TTAGGG, et la télomérase, active dans les cellules souches et la plupart des cancers, compensent cette érosion.",
+   "ecran": "telomeres",
+   "id": "p15",
+   "texte": "Télomères TTAGGG, télomérase."
+  },
+  {
+   "dit": "Passons du support au message : un gène est une séquence d'ADN qui code le plus souvent une protéine ou un ARN fonctionnel. Mendel en postulait déjà les facteurs, sans connaître leur nature, au dix-neuvième siècle.",
+   "ecran": "gene",
+   "id": "p16",
+   "texte": "Gène : une séquence, une fonction."
+  },
+  {
+   "dit": "Le dogme central résume le flux : l'ADN est transcrit en ARN messager dans le noyau, puis traduit en protéine dans le cytoplasme. Dans l'ARN, la thymine est remplacée par l'uracile.",
+   "ecran": "dogme",
+   "id": "p17",
+   "texte": "ADN, ARN, protéine."
+  },
+  {
+   "dit": "La lecture se fait par codons de trois nucléotides, un code redondant mais sans ambiguïté. Le gène de l'insuline, sur le chromosome onze, aboutit ainsi à une hormone de cinquante et un acides aminés.",
+   "ecran": "codon",
+   "id": "p18",
+   "texte": "Codon de 3 lettres ; insuline : 51 acides aminés."
+  },
+  {
+   "dit": "Chaque gène existe en variantes, les allèles : le groupe sanguin ABO en possède trois principaux, et leur combinaison sur les deux homologues décide du phénotype. À chaque méiose, chaque gamète ne reçoit qu'un allèle par gène.",
+   "ecran": "alleles",
+   "id": "p19",
+   "texte": "Allèles : les variantes d'un gène."
+  },
+  {
+   "dit": "Mais un gène ne fait pas une protéine à lui seul : promoteurs, amplificateurs et ARN régulateurs commandent quand et où il s'exprime. La méthylation de l'ADN et les marques des histones ajoutent même une couche épigénétique, parfois transmise.",
+   "ecran": "regulation",
+   "id": "p20",
+   "texte": "Au-delà du code : la régulation."
+  },
+  {
+   "dit": "Revenons à l'emballage : cent quarante-six paires de bases s'enroulent environ une virgule sept fois autour d'un octamère de huit histones, deux copies de chacune des histones H deux A, H deux B, H trois et H quatre.",
+   "ecran": "nucleosome",
+   "id": "p21",
+   "texte": "Nucléosome : 146 pb, 8 histones."
+  },
+  {
+   "dit": "La fibre de trente nanomètres s'organise en boucles de vingt mille à cent mille paires de bases, ancrées à la charpente nucléaire. En métaphase, la compaction totale atteint environ dix mille fois.",
+   "ecran": "compaction",
+   "id": "p22",
+   "texte": "11 nm, 30 nm, boucles, métaphase."
+  },
+  {
+   "dit": "Toute la chromatine n'est pas égale : l'euchromatine, décondensée, porte les gènes actifs ; l'hétérochromatine, très dense, les fait taire. Chez les femelles mammifères, un chromosome X entier est ainsi inactivé en corps de Barr.",
+   "ecran": "chromatine",
+   "id": "p23",
+   "texte": "Euchromatine active, hétérochromatine silencieuse."
+  },
+  {
+   "dit": "Le chromosome métaphasique porte deux chromatides sœurs liées par le centromère, un bras court et un bras long, et des télomères protecteurs aux extrémités. Le caryotype humain normal compte quarante-six chromosomes.",
+   "ecran": "chromosome",
+   "id": "p24",
+   "texte": "Chromatides, centromère, bras p et q."
+  },
+  {
+   "dit": "Quand la non-disjonction échoue à séparer, le nombre déraille : monosomie par perte, trisomie par gain, comme la trisomie vingt et un, une fois sur sept cents naissances, ou le syndrome de Turner, avec un seul chromosome X.",
+   "ecran": "aneuploidies",
+   "id": "p25",
+   "texte": "Monosomie, trisomie : le nombre déraille."
+  },
+  {
+   "dit": "Sans changer le nombre, la structure peut aussi varier : délétion d'un segment, duplication, inversion à cent quatre-vingts degrés, ou translocation entre chromosomes non homologues. La translocation robertsonienne explique une partie des Down familiaux.",
+   "ecran": "structurales",
+   "id": "p26",
+   "texte": "Délétion, duplication, inversion, translocation."
+  },
+  {
+   "dit": "L'effet passe souvent par le dosage : l'expression d'un gène suit à peu près son nombre de copies divisé par deux. Une trisomie porte donc l'expression à une fois et demie la normale.",
+   "ecran": "dosage",
+   "id": "p27",
+   "texte": "Dosage : l'expression suit les copies."
+  },
+  {
+   "dit": "Synthèse : la double hélice stocke, la réplication transmet fidèlement, les gènes commandent les protéines, et les chromosomes emballent le tout. La même machinerie explique le diagnostic prénatal, les thérapies géniques et l'histoire évolutive des espèces.",
+   "ecran": "synthese",
+   "id": "p28",
+   "texte": "Stocker, copier, commander, emballer."
+  },
+  {
+   "dit": "Retenons l'essentiel : nucléotide en trois parties, hélice complémentaire et antiparallèle, réplication semi-conservative, gène transcrit puis traduit, chromosome compacté dix mille fois.",
+   "ecran": "recap",
+   "id": "p29",
+   "texte": "Nucléotide, hélice, copie, gène, chromosome."
+  }
+ ],
+ "titre": "ADN, gènes et chromosomes : le code, ses mots et ses livres"
+}
