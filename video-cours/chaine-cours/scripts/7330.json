@@ -1,0 +1,566 @@
+{
+ "cours": 7330,
+ "ecrans": {
+  "angle": {
+   "kicker": "Angles entre droites et plans",
+   "note": "Deux plans : leurs normales. Deux droites : leurs directeurs. La valeur absolue donne l'angle aigu.",
+   "tex": "\\cos\\theta = \\frac{|\\vec{u} \\cdot \\vec{v}|}{|\\vec{u}|\\,|\\vec{v}|}",
+   "type": "formule"
+  },
+  "complete": {
+   "kicker": "Forme développée · compléter le carré",
+   "tex": [
+    "x^2 + y^2 + z^2 - 4x + 2y - 6 = 0",
+    "(x-2)^2 - 4 + (y+1)^2 - 1 + z^2 - 6 = 0",
+    "(x-2)^2 + (y+1)^2 + z^2 = 11",
+    "\\Omega(2, -1, 0) \\qquad R = \\sqrt{11}"
+   ],
+   "titre": "Retrouver le centre et le rayon",
+   "type": "etape"
+  },
+  "dist_droite": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "distance_point_droite_fig"
+   },
+   "kicker": "Distance d'un point à une droite",
+   "note": "L'aire du parallélogramme divisée par la base : c'est la hauteur, la distance cherchée.",
+   "tex": "d(M_0, \\mathcal{D}) = \\frac{|\\overrightarrow{AM_0} \\wedge \\vec{u}|}{|\\vec{u}|}",
+   "type": "formule"
+  },
+  "dist_plan": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "plan_espace_fig"
+   },
+   "kicker": "Distance d'un point à un plan",
+   "note": "On évalue l'équation du plan au point, en valeur absolue, et on divise par la norme de la normale.",
+   "tex": "d(M_0, \\mathcal{P}) = \\frac{|ax_0 + by_0 + cz_0 + d|}{\\sqrt{a^2+b^2+c^2}}",
+   "type": "formule"
+  },
+  "droite": {
+   "kicker": "Représentation paramétrique d'une droite",
+   "tex": [
+    "\\overrightarrow{AM} = t\\,\\vec{u}, \\quad t \\in \\mathbb{R}",
+    "x = x_A + at \\qquad y = y_A + bt",
+    "z = z_A + ct"
+   ],
+   "titre": "Un point, un vecteur directeur, un paramètre",
+   "type": "etape"
+  },
+  "ex_coord": {
+   "kicker": "Exemple · coordonnées et distance",
+   "tex": [
+    "A(1, 2, -1) \\qquad B(3, 0, 4)",
+    "\\overrightarrow{AB} = (2, -2, 5)",
+    "AB = \\sqrt{4 + 4 + 25} = \\sqrt{33}"
+   ],
+   "titre": "Deux points, un vecteur, une distance",
+   "type": "etape"
+  },
+  "ex_dist_droite": {
+   "kicker": "Exemple · distance à une droite",
+   "tex": [
+    "\\overrightarrow{AM_0} = (2, 3, 0) \\qquad \\vec{u}(1, 0, 0)",
+    "\\overrightarrow{AM_0} \\wedge \\vec{u} = (0, 0, -3)",
+    "d = \\frac{3}{1} = 3"
+   ],
+   "titre": "Un produit vectoriel, une norme, un quotient",
+   "type": "etape"
+  },
+  "ex_dist_plan": {
+   "kicker": "Exemple · distance au plan",
+   "tex": [
+    "d = \\frac{|2(1) - 2 + 2(3) - 4|}{\\sqrt{4 + 1 + 4}}",
+    "= \\frac{|2|}{3} = \\frac{2}{3}"
+   ],
+   "titre": "Le point et le plan de la leçon",
+   "type": "etape"
+  },
+  "ex_distance": {
+   "kicker": "Exemple · une distance toute simple",
+   "tex": [
+    "A(1, 2, -1) \\qquad B(4, 6, -1)",
+    "AB = \\sqrt{3^2 + 4^2 + 0^2} = \\sqrt{25} = 5"
+   ],
+   "titre": "La formule de la distance, appliquée",
+   "type": "etape"
+  },
+  "ex_droite": {
+   "kicker": "Exemple · une droite en paramétrique",
+   "tex": [
+    "A(1, 0, 2) \\qquad \\vec{u}(2, -1, 3)",
+    "x = 1 + 2t \\qquad y = -t",
+    "z = 2 + 3t"
+   ],
+   "titre": "On remplace point et directeur dans le système",
+   "type": "etape"
+  },
+  "ex_plan": {
+   "kicker": "Exemple · équation d'un plan",
+   "tex": [
+    "A(1, 1, 0) \\qquad \\vec{n}(2, -1, 1)",
+    "2(x-1) - (y-1) + z = 0",
+    "2x - y + z - 1 = 0"
+   ],
+   "titre": "Un point et une normale suffisent",
+   "type": "etape"
+  },
+  "ex_scalaire": {
+   "kicker": "Exemple · tester une orthogonalité",
+   "tex": [
+    "\\overrightarrow{AB}(2, -1, 2) \\qquad \\overrightarrow{AC}(-1, 2, 1)",
+    "\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = -2 - 2 + 2 = -2",
+    "\\neq 0 : \\text{ non orthogonaux}"
+   ],
+   "titre": "Le produit scalaire tranche",
+   "type": "etape"
+  },
+  "ex_sphere": {
+   "kicker": "Exemple · écrire une équation de sphère",
+   "tex": [
+    "\\Omega(1, -2, 0) \\qquad R = 3",
+    "(x-1)^2 + (y+2)^2 + z^2 = 9"
+   ],
+   "titre": "On remplace centre et rayon dans la forme réduite",
+   "type": "etape",
+   "anim": {
+    "nom": "sphere_secante_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_vectoriel": {
+   "kicker": "Exemple · un produit vectoriel complet",
+   "tex": [
+    "\\vec{u}(1, 2, 0) \\qquad \\vec{v}(0, 1, 3)",
+    "\\vec{u} \\wedge \\vec{v} = (6 - 0,\\ 0 - 3,\\ 1 - 0)",
+    "= (6, -3, 1)",
+    "\\text{aire} = \\sqrt{36 + 9 + 1} = \\sqrt{46}"
+   ],
+   "titre": "Trois croisements, puis la norme pour l'aire",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "plan_espace_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Dans l'espace, tout devient calcul : un point, un vecteur directeur, un vecteur normal.",
+   "type": "phrase"
+  },
+  "ortho": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "orthogonalite_fig"
+   },
+   "kicker": "Orthogonalité · le critère",
+   "note": "Symétrique, bilinéaire, et le produit d'un vecteur par lui-même vaut sa norme au carré.",
+   "tex": "\\vec{u} \\perp \\vec{v} \\iff \\vec{u} \\cdot \\vec{v} = 0",
+   "type": "formule"
+  },
+  "percement": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "percement_fig"
+   },
+   "kicker": "Exemple · la droite perce le plan",
+   "tex": [
+    "\\mathcal{D} : (1+t,\\ 1+t,\\ 1+t), \\quad \\vec{u}(1, 1, 1)",
+    "\\vec{u} \\cdot \\vec{n} = 3 \\neq 0 : \\text{ la droite perce le plan}",
+    "3(1+t) - 3 = 0 \\Rightarrow t = 0, \\quad I(1, 1, 1)"
+   ],
+   "titre": "On remplace, on résout en t, on conclut",
+   "type": "etape"
+  },
+  "plan": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "plan_espace_fig"
+   },
+   "kicker": "Équation cartésienne d'un plan",
+   "note": "M est dans le plan si et seulement si le vecteur AM est orthogonal à la normale n(a, b, c).",
+   "tex": "ax + by + cz + d = 0",
+   "type": "formule"
+  },
+  "pos_droite_sphere": {
+   "kicker": "Sphère et droite · même réflexe",
+   "tex": [
+    "d(\\Omega, \\mathcal{D}) > R : \\text{ extérieure}",
+    "d(\\Omega, \\mathcal{D}) = R : \\text{ tangente}",
+    "d(\\Omega, \\mathcal{D}) < R : \\text{ deux points}"
+   ],
+   "titre": "La distance du centre à la droite, comparée au rayon",
+   "type": "etape",
+   "anim": {
+    "nom": "sphere_geo_fig",
+    "hauteur": 130
+   }
+  },
+  "pos_sphere": {
+   "kicker": "Sphère et plan · les trois cas",
+   "tex": [
+    "d > R : \\text{ disjoint} \\qquad d = R : \\text{ tangent}",
+    "d < R : \\text{ un cercle, } r = \\sqrt{R^2 - d^2}",
+    "d = \\sqrt{3} < 5 \\Rightarrow r = \\sqrt{25 - 3} = \\sqrt{22}"
+   ],
+   "titre": "Comparer la distance du centre au rayon",
+   "type": "etape",
+   "anim": {
+    "nom": "sphere_geo_fig",
+    "hauteur": 130
+   }
+  },
+  "positions": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "plans_secants_fig"
+   },
+   "kicker": "Positions relatives",
+   "tex": [
+    "\\text{plans parallèles} \\iff \\vec{n} \\text{ et } \\vec{n}' \\text{ colinéaires}",
+    "\\text{sinon : sécants suivant une droite}",
+    "\\vec{u} \\cdot \\vec{n} = 0 \\iff \\text{droite parallèle au plan}"
+   ],
+   "titre": "Parallèle ou sécant : les vecteurs décident",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Point + repère : coordonnées et distance",
+    "Droite : point + directeur, paramétrique",
+    "Plan : point + normale, ax + by + cz + d = 0",
+    "Produit vectoriel : normale, aire, volume"
+   ],
+   "kicker": "À retenir · droites, plans, produit vectoriel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Produit scalaire nul : orthogonalité",
+    "Distance au plan : valeur absolue sur norme",
+    "Distance à une droite : produit vectoriel",
+    "Sphère : compléter le carré, centre, rayon",
+    "Position : comparer la distance au rayon"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "repere": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "repere3d_fig"
+   },
+   "kicker": "Coordonnées dans l'espace",
+   "tex": [
+    "\\overrightarrow{OM} = x\\vec{i} + y\\vec{j} + z\\vec{k}",
+    "\\overrightarrow{AB} = (x_B-x_A,\\ y_B-y_A,\\ z_B-z_A)",
+    "AB = \\sqrt{(\\Delta x)^2 + (\\Delta y)^2 + (\\Delta z)^2}"
+   ],
+   "titre": "Un repère orthonormé, trois coordonnées",
+   "type": "etape"
+  },
+  "scalaire": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "vecteurs_angle_fig"
+   },
+   "kicker": "Produit scalaire · définition",
+   "note": "On multiplie les coordonnées homologues et on additionne : le résultat est un nombre réel.",
+   "tex": "\\vec{u} \\cdot \\vec{v} = xx' + yy' + zz'",
+   "type": "formule"
+  },
+  "scalaire_geo": {
+   "kicker": "Produit scalaire · forme géométrique",
+   "note": "Thêta : l'angle des deux vecteurs. Et la norme : racine de x carré plus y carré plus z carré.",
+   "tex": "\\vec{u} \\cdot \\vec{v} = |\\vec{u}|\\,|\\vec{v}| \\cos\\theta",
+   "type": "formule"
+  },
+  "sphere": {
+   "kicker": "La sphère · définition et équation",
+   "note": "Tous les points à distance R du centre oméga, de coordonnées a, b, c : c'est l'équation réduite.",
+   "tex": "(x-a)^2 + (y-b)^2 + (z-c)^2 = R^2",
+   "type": "formule",
+   "anim": {
+    "nom": "sphere_geo_fig",
+    "hauteur": 180
+   }
+  },
+  "tangent": {
+   "kicker": "Plan tangent à une sphère",
+   "tex": [
+    "M_0(2, 0, 0), \\quad \\Omega(0, 0, 0), \\quad R = 2",
+    "\\vec{\\Omega M_0} = (2, 0, 0)",
+    "2(x-2) = 0 \\quad \\text{soit } x = 2"
+   ],
+   "titre": "Le rayon au point de contact est la normale",
+   "type": "etape",
+   "anim": {
+    "nom": "sphere_tangente_fig",
+    "hauteur": 150
+   }
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "repere3d_fig"
+   },
+   "kicker": "Mathématique · Géométrie analytique de l'espace",
+   "sous": "Coordonnées, représentations paramétriques, équations de plans, distances et sphère",
+   "titre": "Géométrie analytique de l'espace : droites, plans, produits et sphère",
+   "type": "titre"
+  },
+  "vectoriel": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "produit_vectoriel_fig"
+   },
+   "kicker": "Produit vectoriel · définition",
+   "note": "Chaque coordonnée croise les deux autres : y z prime moins z y prime, et on tourne.",
+   "tex": "\\vec{u} \\wedge \\vec{v} = (yz' - zy',\\ zx' - xz',\\ xy' - yx')",
+   "type": "formule"
+  },
+  "vectoriel_prop": {
+   "kicker": "Produit vectoriel · propriétés",
+   "tex": [
+    "\\vec{u} \\wedge \\vec{v} = -\\vec{v} \\wedge \\vec{u}",
+    "\\vec{u} \\wedge \\vec{v} = \\vec{0} \\iff \\vec{u}, \\vec{v} \\text{ colinéaires}",
+    "\\vec{u} \\wedge \\vec{v} \\text{ orthogonal à } \\vec{u} \\text{ et } \\vec{v}"
+   ],
+   "titre": "Antisymétrique, nul si colinéaires, orthogonal aux deux",
+   "type": "etape"
+  },
+  "vectoriel_usages": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "produit_vectoriel_fig"
+   },
+   "kicker": "Produit vectoriel · interprétations",
+   "tex": [
+    "|\\vec{u} \\wedge \\vec{v}| = |\\vec{u}|\\,|\\vec{v}| \\sin\\theta \\text{ : aire}",
+    "\\vec{u}, \\vec{v} \\text{ dirigent un plan} \\Rightarrow \\vec{u} \\wedge \\vec{v} \\text{ normal}",
+    "V = |(\\vec{u} \\wedge \\vec{v}) \\cdot \\vec{w}| \\text{ : volume}"
+   ],
+   "titre": "Une aire, une normale, un volume",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Coordonnées, droites et plans"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : le produit vectoriel et le produit scalaire. Nous allons fabriquer un vecteur orthogonal à deux autres, mesurer une aire et un volume, puis tester l'orthogonalité par un seul calcul et en tirer les angles.",
+    "texte": "Partie 2 : produit vectoriel et produit scalaire."
+   },
+   "sous_titre": "Produit vectoriel et produit scalaire"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : les distances et la sphère. Nous allons mesurer la distance d'un point à un plan, puis à une droite, avant de décrire la sphère, ses équations et ses positions relatives par rapport aux plans et aux droites.",
+    "texte": "Partie 3 : distances et sphère."
+   },
+   "sous_titre": "Distances et sphère"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de géométrie analytique de l'espace. Nous allons décrire les points, les droites et les plans par des calculs : coordonnées dans un repère, représentation paramétrique d'une droite, équation cartésienne d'un plan, produit vectoriel, produit scalaire, distances, et pour finir la sphère.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Droites, plans, produits et sphère : tout par le calcul."
+  },
+  {
+   "dit": "Le principe directeur tient en une phrase : dans l'espace, chaque objet géométrique se code par des nombres. Un point, ce sont trois coordonnées. Une droite, ce sont un point et un vecteur directeur. Un plan, ce sont un point et un vecteur normal. Tout le cours consiste à traduire les questions de géométrie en calculs sur ces nombres.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Un point, un directeur, une normale : tout se code."
+  },
+  {
+   "dit": "L'espace est muni d'un repère orthonormé, d'origine grand o et de vecteurs de base i, j et k. À tout point m correspond un unique triplet de coordonnées, ixe, igrec et zède : le vecteur o m est la somme de ixe fois i, igrec fois j et zède fois k. Entre deux points, le vecteur a b s'obtient en soustrayant les coordonnées, et la distance a b est la racine carrée de la somme des carrés de ces différences.",
+   "ecran": "repere",
+   "id": "p03",
+   "texte": "Repère orthonormé : coordonnées, vecteur AB, distance."
+  },
+  {
+   "dit": "Premier exemple. Le point a a pour coordonnées un, deux et moins un ; le point b, trois, zéro et quatre. Le vecteur a b a donc pour coordonnées deux, moins deux et cinq. Sa norme, la distance a b, vaut racine carrée de quatre plus quatre plus vingt-cinq, c'est-à-dire racine carrée de trente-trois.",
+   "ecran": "ex_coord",
+   "id": "p04",
+   "texte": "AB = (2, −2, 5) et AB = √33."
+  },
+  {
+   "dit": "Une droite se décrit par un point et un vecteur directeur non nul. Un point m est sur la droite passant par a et dirigée par u si et seulement si le vecteur a m est un multiple du vecteur u : a m égale t fois u, avec t un nombre réel quelconque. En coordonnées, cela donne le système paramétrique affiché : chaque coordonnée de m est celle de a, plus t fois la coordonnée correspondante de u.",
+   "ecran": "droite",
+   "id": "p05",
+   "texte": "Droite : AM = t·u, un système paramétrique."
+  },
+  {
+   "dit": "Exemple : la droite passant par le point a de coordonnées un, zéro et deux, dirigée par le vecteur u de coordonnées deux, moins un et trois. Son système paramétrique s'écrit : ixe égale un plus deux t, igrec égale moins t, et zède égale deux plus trois t. Chaque valeur de t donne un point de la droite, et réciproquement.",
+   "ecran": "ex_droite",
+   "id": "p06",
+   "texte": "x = 1 + 2t, y = −t, z = 2 + 3t."
+  },
+  {
+   "dit": "Un plan, lui, se décrit par un point et un vecteur normal, un vecteur orthogonal à toutes les directions du plan. Un point m appartient au plan si et seulement si le produit scalaire du vecteur a m par la normale est nul. En développant, on obtient l'équation cartésienne : a ixe plus b igrec plus c zède plus d égale zéro, où a, b et c sont exactement les coordonnées de la normale.",
+   "ecran": "plan",
+   "id": "p07",
+   "texte": "Plan : ax + by + cz + d = 0, normale (a, b, c)."
+  },
+  {
+   "dit": "Exemple : le plan passant par le point a de coordonnées un, un et zéro, de normale de coordonnées deux, moins un et un. L'orthogonalité s'écrit : deux fois ixe moins un, moins igrec moins un, plus zède, le tout égal à zéro. En développant, on obtient l'équation du plan : deux ixe moins igrec plus zède moins un égale zéro.",
+   "ecran": "ex_plan",
+   "id": "p08",
+   "texte": "2(x − 1) − (y − 1) + z = 0, soit 2x − y + z − 1 = 0."
+  },
+  {
+   "dit": "Deux plans sont parallèles si et seulement si leurs vecteurs normaux sont colinéaires ; sinon, ils se coupent suivant une droite. Une droite et un plan sont parallèles si et seulement si le vecteur directeur de la droite est orthogonal au vecteur normal du plan, c'est-à-dire si leur produit scalaire est nul. Dans tous les cas, ce sont les vecteurs qui décident de la position.",
+   "ecran": "positions",
+   "id": "p09",
+   "texte": "Parallèle ou sécant : les vecteurs décident."
+  },
+  {
+   "dit": "Exemple complet : le plan d'équation ixe plus igrec plus zède moins trois égale zéro, et la droite de représentation paramétrique ixe, igrec et zède égaux à un plus t. Le produit scalaire du directeur par la normale vaut trois : il n'est pas nul, la droite n'est pas parallèle au plan, elle le perce. On remplace les coordonnées paramétriques dans l'équation du plan : on obtient t égal à zéro, et le point d'intersection a pour coordonnées un, un et un.",
+   "ecran": "percement",
+   "id": "p10",
+   "texte": "u · n = 3 ≠ 0 : la droite perce le plan en (1, 1, 1)."
+  },
+  {
+   "dit": "Voici un nouvel outil : le produit vectoriel de deux vecteurs u et v. C'est un vecteur, dont les coordonnées se calculent en croisant celles des deux facteurs : igrec zède prime moins zède igrec prime, puis zède ixe prime moins ixe zède prime, puis ixe igrec prime moins igrec ixe prime. Retenez le mouvement : chaque coordonnée croise les deux autres, en tournant.",
+   "ecran": "vectoriel",
+   "id": "p11",
+   "texte": "u ∧ v : trois coordonnées croisées."
+  },
+  {
+   "dit": "Trois propriétés à connaître. Le produit vectoriel est antisymétrique : échanger les deux vecteurs change son signe. Il est nul si et seulement si les deux vecteurs sont colinéaires. Et surtout, le produit vectoriel de u et v est orthogonal à u et orthogonal à v : c'est ce qui en fait un outil précieux pour fabriquer des vecteurs normaux.",
+   "ecran": "vectoriel_prop",
+   "id": "p12",
+   "texte": "Antisymétrique, nul si colinéaires, orthogonal aux deux."
+  },
+  {
+   "dit": "Exemple : u a pour coordonnées un, deux et zéro ; v, zéro, un et trois. Le produit vectoriel se calcule coordonnée par coordonnée : deux fois trois moins zéro fois un, soit six ; zéro fois zéro moins un fois trois, soit moins trois ; un fois un moins deux fois zéro, soit un. Le résultat a donc pour coordonnées six, moins trois et un, et sa norme vaut racine carrée de quarante-six.",
+   "ecran": "ex_vectoriel",
+   "id": "p13",
+   "texte": "u ∧ v = (6, −3, 1), de norme √46."
+  },
+  {
+   "dit": "À quoi sert ce vecteur ? Sa norme est l'aire du parallélogramme construit sur u et v : le produit des normes, multiplié par le sinus de l'angle des deux vecteurs. Si u et v dirigent un plan, leur produit vectoriel en est un vecteur normal. Et le volume du parallélépipède construit sur trois vecteurs est la valeur absolue du produit scalaire du produit vectoriel des deux premiers par le troisième.",
+   "ecran": "vectoriel_usages",
+   "id": "p14",
+   "texte": "‖u ∧ v‖ : une aire ; u ∧ v : une normale ; un volume."
+  },
+  {
+   "dit": "Récapitulons ce premier bloc. Un point se repère par trois coordonnées, et la distance se calcule par une racine de somme de carrés. Une droite se donne par un point et un vecteur directeur, sous forme paramétrique. Un plan se donne par un point et un vecteur normal, sous forme d'équation cartésienne. Et le produit vectoriel fabrique un vecteur orthogonal aux deux facteurs, dont la norme est une aire.",
+   "ecran": "recap1",
+   "id": "p15",
+   "texte": "Droites, plans, produit vectoriel : à retenir."
+  },
+  {
+   "dit": "Le produit scalaire de deux vecteurs de l'espace se calcule comme dans le plan, avec une coordonnée de plus : ixe ixe prime plus igrec igrec prime plus zède zède prime. On multiplie les coordonnées homologues et on additionne. Le résultat est un nombre réel, positif, négatif ou nul, qui mesure à quel point les deux vecteurs pointent dans le même sens.",
+   "ecran": "scalaire",
+   "id": "p16",
+   "texte": "u · v = xx′ + yy′ + zz′ : un nombre réel."
+  },
+  {
+   "dit": "Le même produit scalaire admet une forme géométrique : c'est le produit des normes des deux vecteurs par le cosinus de leur angle. Les deux formes disent la même chose : la forme analytique sert à calculer dès que l'on a les coordonnées, la forme géométrique sert à raisonner sur les angles et les projections. La norme d'un vecteur, elle, est la racine carrée de la somme des carrés de ses coordonnées.",
+   "ecran": "scalaire_geo",
+   "id": "p17",
+   "texte": "u · v = ‖u‖ ‖v‖ cos θ : la forme géométrique."
+  },
+  {
+   "dit": "La propriété capitale du produit scalaire : deux vecteurs sont orthogonaux si et seulement si leur produit scalaire est nul. C'est le test d'orthogonalité universel de ce cours. Le produit scalaire est symétrique, bilinéaire, et le produit d'un vecteur par lui-même vaut le carré de sa norme. Toute question d'angle droit se ramènera donc à un calcul de produit scalaire.",
+   "ecran": "ortho",
+   "id": "p18",
+   "texte": "Orthogonaux si et seulement si u · v = 0."
+  },
+  {
+   "dit": "Exemple : les points a, b et c ont pour coordonnées un zéro deux, trois moins un quatre, et zéro deux trois. Le vecteur a b a pour coordonnées deux, moins un et deux ; le vecteur a c, moins un, deux et un. Leur produit scalaire vaut moins deux, moins deux, plus deux, c'est-à-dire moins deux. Il n'est pas nul : les deux vecteurs ne sont pas orthogonaux, et le triangle n'est pas rectangle en a.",
+   "ecran": "ex_scalaire",
+   "id": "p19",
+   "texte": "AB · AC = −2 ≠ 0 : pas d'angle droit en A."
+  },
+  {
+   "dit": "Petit exemple de distance, pour garder la formule en main : le point a a pour coordonnées un, deux et moins un ; le point b, quatre, six et moins un. Les différences de coordonnées sont trois, quatre et zéro. La distance a b vaut donc racine carrée de neuf plus seize, c'est-à-dire racine carrée de vingt-cinq, soit cinq. On reconnaît le triplet pythagoricien trois, quatre, cinq, relevé dans l'espace.",
+   "ecran": "ex_distance",
+   "id": "p20",
+   "texte": "AB = √(9 + 16) = 5 : le triplet 3, 4, 5."
+  },
+  {
+   "dit": "Le produit scalaire donne aussi les angles. Le cosinus de l'angle de deux vecteurs est la valeur absolue de leur produit scalaire, divisée par le produit de leurs normes. Pour l'angle de deux plans, on applique la formule à leurs vecteurs normaux ; pour l'angle de deux droites, à leurs vecteurs directeurs. La valeur absolue garantit que l'on obtient l'angle aigu, entre zéro et quatre-vingt-dix degrés.",
+   "ecran": "angle",
+   "id": "p21",
+   "texte": "cos θ : comparer normales ou directeurs."
+  },
+  {
+   "dit": "La distance d'un point à un plan se calcule par une formule directe. On remplace les coordonnées du point dans le premier membre de l'équation du plan, on prend la valeur absolue, et on divise par la norme du vecteur normal, c'est-à-dire la racine carrée de a carré plus b carré plus c carré. C'est la longueur du segment perpendiculaire abaissé du point sur le plan.",
+   "ecran": "dist_plan",
+   "id": "p22",
+   "texte": "Distance point-plan : la formule directe."
+  },
+  {
+   "dit": "Exemple : la distance du point de coordonnées un, deux et trois au plan d'équation deux ixe moins igrec plus deux zède moins quatre égale zéro. Le numérateur vaut la valeur absolue de deux, moins deux, plus six, moins quatre, c'est-à-dire deux. Le dénominateur vaut racine carrée de quatre plus un plus quatre, c'est-à-dire trois. La distance est donc de deux tiers.",
+   "ecran": "ex_dist_plan",
+   "id": "p23",
+   "texte": "d = |2| / 3 = 2/3."
+  },
+  {
+   "dit": "La distance d'un point à une droite utilise, elle, le produit vectoriel. On prend un point a de la droite et son vecteur directeur u : la distance est la norme du produit vectoriel du vecteur a m zéro par u, divisée par la norme de u. L'idée géométrique : la norme du produit vectoriel est l'aire d'un parallélogramme ; divisée par la base, elle donne la hauteur, et cette hauteur est la distance cherchée.",
+   "ecran": "dist_droite",
+   "id": "p24",
+   "texte": "Distance point-droite : un produit vectoriel."
+  },
+  {
+   "dit": "Exemple : la droite passe par l'origine et a pour vecteur directeur le vecteur de coordonnées un, zéro et zéro, c'est l'axe des abscisses. Le point m zéro a pour coordonnées deux, trois et zéro. Le produit vectoriel du vecteur a m zéro par u a pour coordonnées zéro, zéro et moins trois ; sa norme vaut trois. La distance du point à la droite vaut donc trois sur un, c'est-à-dire trois : c'est bien l'ordonnée du point.",
+   "ecran": "ex_dist_droite",
+   "id": "p25",
+   "texte": "d = 3 / 1 = 3 : la hauteur au-dessus de l'axe."
+  },
+  {
+   "dit": "Dernier objet du cours : la sphère. La sphère de centre oméga et de rayon grand r est l'ensemble des points situés à la distance r du centre. Cette définition donne immédiatement son équation réduite : ixe moins a, le tout au carré, plus igrec moins b au carré, plus zède moins c au carré, égale r au carré, où a, b et c sont les coordonnées du centre.",
+   "ecran": "sphere",
+   "id": "p26",
+   "texte": "Sphère : centre Ω, rayon R, équation réduite."
+  },
+  {
+   "dit": "Exemple immédiat : la sphère de centre oméga de coordonnées un, moins deux et zéro, et de rayon trois. Son équation réduite s'écrit : ixe moins un au carré, plus igrec plus deux au carré, plus zède au carré, égale neuf, le carré du rayon. Écrire une équation de sphère, c'est donc simplement remplacer le centre et le rayon dans la forme réduite.",
+   "ecran": "ex_sphere",
+   "id": "p27",
+   "texte": "Centre (1, −2, 0), rayon 3 : (x − 1)² + (y + 2)² + z² = 9."
+  },
+  {
+   "dit": "Problème inverse, très fréquent : on donne l'équation développée, ixe carré plus igrec carré plus zède carré moins quatre ixe plus deux igrec moins six égale zéro, et il faut retrouver le centre et le rayon. La méthode : compléter le carré pour chaque variable. Ixe carré moins quatre ixe devient ixe moins deux au carré, moins quatre ; igrec carré plus deux igrec devient igrec plus un au carré, moins un. Tout regrouper donne un second membre égal à onze : le centre a pour coordonnées deux, moins un et zéro, et le rayon vaut racine carrée de onze. Attention : si le second membre obtenu est négatif ou nul, il n'y a pas de sphère.",
+   "ecran": "complete",
+   "id": "p28",
+   "texte": "Compléter le carré : centre (2, −1, 0), rayon √11."
+  },
+  {
+   "dit": "Pour situer un plan par rapport à une sphère, on compare la distance du centre au plan avec le rayon. Si la distance dépasse le rayon, le plan ne coupe pas la sphère. Si elle lui est égale, le plan est tangent, en un seul point. Si elle est plus petite, le plan coupe la sphère selon un cercle, dont le rayon s'obtient par Pythagore. Exemple : centre à l'origine, rayon cinq, et un plan dont la distance à l'origine vaut racine carrée de trois : le cercle d'intersection a pour rayon racine carrée de vingt-cinq moins trois, soit racine carrée de vingt-deux.",
+   "ecran": "pos_sphere",
+   "id": "p29",
+   "texte": "d contre R : disjoint, tangent ou cercle."
+  },
+  {
+   "dit": "Cas particulier du plan tangent : si un point m zéro appartient à la sphère, le plan tangent en ce point est le plan passant par m zéro et de vecteur normal le vecteur oméga m zéro, car le rayon est perpendiculaire au plan tangent. Exemple : pour la sphère de centre l'origine et de rayon deux, au point de coordonnées deux, zéro et zéro, la normale est le vecteur de coordonnées deux, zéro et zéro, et le plan tangent a pour équation ixe égale deux.",
+   "ecran": "tangent",
+   "id": "p30",
+   "texte": "Plan tangent : le rayon sert de normale, x = 2."
+  },
+  {
+   "dit": "Pour une droite et une sphère, le principe est exactement le même : on calcule la distance du centre à la droite, avec la formule au produit vectoriel, puis on la compare au rayon. Distance supérieure au rayon : la droite est extérieure. Distance égale au rayon : la droite est tangente. Distance inférieure au rayon : la droite coupe la sphère en deux points. Un seul réflexe pour toutes les positions relatives.",
+   "ecran": "pos_droite_sphere",
+   "id": "p31",
+   "texte": "Droite et sphère : comparer d(Ω, D) et R."
+  },
+  {
+   "dit": "Pour finir, retenez la boîte à outils complète. Le produit scalaire nul teste l'orthogonalité et donne les angles par son cosinus. La distance d'un point à un plan utilise directement le vecteur normal ; celle d'un point à une droite passe par le produit vectoriel. Une sphère se lit par complétion du carré, qui donne son centre et son rayon. Et toute position relative se décide en comparant une distance au rayon.",
+   "ecran": "recap_final",
+   "id": "p32",
+   "texte": "La boîte à outils complète du cours."
+  }
+ ],
+ "titre": "Géométrie analytique de l'espace : droites, plans, produits et sphère"
+}
