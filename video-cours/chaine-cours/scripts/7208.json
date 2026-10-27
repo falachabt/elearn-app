@@ -1,0 +1,411 @@
+{
+ "cours": 7208,
+ "ecrans": {
+  "decomposition_theoreme": {
+   "kicker": "La décomposition en facteurs premiers",
+   "note": "Une décomposition unique, à l'ordre des facteurs près.",
+   "tex": "n \\ge 2 : n = p_1 \\times p_2 \\times \\dots \\times p_k",
+   "type": "formule"
+  },
+  "decompositions": {
+   "kicker": "Simplifier 180 sur 126",
+   "tex": [
+    "180 = 2^2 \\times 3^2 \\times 5",
+    "126 = 2 \\times 3^2 \\times 7"
+   ],
+   "titre": "Les deux décompositions d'abord",
+   "type": "etape"
+  },
+  "definition": {
+   "kicker": "La définition",
+   "note": "Exactement deux diviseurs, ni plus ni moins.",
+   "tex": "n \\text{ premier} \\iff n > 1 \\text{ et diviseurs } = 1 \\text{ et } n",
+   "type": "formule"
+  },
+  "ex97_a": {
+   "kicker": "Exemple résolu : 97 est-il premier ?",
+   "tex": [
+    "\\sqrt{97} \\approx 9{,}8",
+    "\\text{premiers à tester : } 2,\\ 3,\\ 5,\\ 7"
+   ],
+   "titre": "D'abord, cadrer les essais",
+   "type": "etape"
+  },
+  "ex97_b": {
+   "kicker": "Exemple résolu : 97 est-il premier ?",
+   "tex": [
+    "97 \\text{ impair : pas divisible par } 2",
+    "9 + 7 = 16 : \\text{ pas multiple de } 3",
+    "97 \\text{ ne finit ni par } 0 \\text{ ni par } 5",
+    "97 = 7 \\times 13 + 6 : \\text{ reste } 6"
+   ],
+   "titre": "Quatre essais, quatre échecs",
+   "type": "etape"
+  },
+  "ex97_conclusion": {
+   "kicker": "Exemple résolu : 97 est-il premier ?",
+   "note": "Aucun diviseur premier jusqu'à sa racine carrée.",
+   "tex": "97 \\text{ est premier}",
+   "type": "formule"
+  },
+  "exemple_35_18": {
+   "kicker": "Exemple : 35 et 18",
+   "tex": [
+    "35 = 5 \\times 7",
+    "18 = 2 \\times 3^2",
+    "\\text{PGCD}(35,\\ 18) = 1 : \\tfrac{35}{18} \\text{ irréductible}"
+   ],
+   "titre": "Rien en commun, donc fraction irréductible",
+   "type": "etape"
+  },
+  "exemples": {
+   "kicker": "Premiers, et non premiers",
+   "tex": [
+    "2,\\ 3,\\ 5,\\ 7,\\ 11,\\ 13,\\ 17,\\ 19,\\ 23,\\ \\dots",
+    "1 \\text{ : un seul diviseur, pas premier}",
+    "6 : 1,\\ 2,\\ 3,\\ 6 \\text{ : quatre diviseurs}"
+   ],
+   "titre": "Quelques nombres pour fixer la définition",
+   "type": "etape"
+  },
+  "methode180": {
+   "kicker": "La méthode, sur 180",
+   "tex": [
+    "180 \\div 2 = 90",
+    "90 \\div 2 = 45",
+    "45 \\div 3 = 15",
+    "15 \\div 3 = 5,\\ 5 \\div 5 = 1"
+   ],
+   "titre": "Diviser par les plus petits premiers possibles",
+   "type": "etape"
+  },
+  "methode_fraction": {
+   "kicker": "Simplifier une fraction",
+   "tex": [
+    "1. \\text{ décomposer numérateur et dénominateur}",
+    "2. \\text{ barrer les facteurs communs}"
+   ],
+   "titre": "La méthode en deux gestes",
+   "type": "etape"
+  },
+  "pgcd_exemple": {
+   "kicker": "Le PGCD de 180 et 126",
+   "tex": [
+    "\\text{PGCD}(180,\\ 126) = 2^1 \\times 3^2",
+    "= 18"
+   ],
+   "titre": "Communs : deux et trois, aux petits exposants",
+   "type": "etape"
+  },
+  "pgcd_regle": {
+   "kicker": "Le PGCD",
+   "tex": [
+    "\\text{PGCD : plus grand diviseur commun}",
+    "\\text{facteurs communs, plus petits exposants}"
+   ],
+   "titre": "Plus grand commun diviseur",
+   "type": "etape"
+  },
+  "pourquoi_racine": {
+   "kicker": "Pourquoi s'arrêter à la racine ?",
+   "tex": [
+    "n = a \\times b,\\ a \\le b \\Rightarrow a \\le \\sqrt{n}",
+    "\\text{un diviseur premier } \\le \\sqrt{n} \\text{ suffit}"
+   ],
+   "titre": "Un diviseur suffit à trahir un nombre composé",
+   "type": "etape"
+  },
+  "ppcm_exemple": {
+   "kicker": "Le PPCM de 180 et 126",
+   "note": "Contrôle : 4 × 9 × 5 × 7 = 1 260.",
+   "tex": "\\text{PPCM}(180,\\ 126) = 2^2 \\times 3^2 \\times 5 \\times 7 = 1260",
+   "type": "formule"
+  },
+  "ppcm_regle": {
+   "kicker": "Le PPCM",
+   "tex": [
+    "\\text{PPCM : plus petit multiple commun non nul}",
+    "\\text{tous les facteurs, plus grands exposants}"
+   ],
+   "titre": "Plus petit commun multiple",
+   "type": "etape"
+  },
+  "premiers_entre_eux": {
+   "kicker": "Deux nombres premiers entre eux",
+   "note": "Aucun facteur premier commun entre les deux.",
+   "tex": "\\text{PGCD}(a,\\ b) = 1 \\iff a,\\ b \\text{ premiers entre eux}",
+   "type": "formule"
+  },
+  "propriete": {
+   "kicker": "Une propriété utile",
+   "tex": [
+    "n > 1 \\Rightarrow \\text{ au moins un diviseur premier}",
+    "2 \\text{ : le seul nombre premier pair}"
+   ],
+   "titre": "Tout entier supérieur à un cache un premier",
+   "type": "etape"
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Le point sur la décomposition",
+   "etapes": [
+    "Décomposition unique en facteurs premiers",
+    "Diviser par les plus petits premiers",
+    "180 = 2² × 3² × 5",
+    "Une carte d'identité du nombre",
+    "Elle servira à tous les calculs"
+   ]
+  },
+  "recap_final": {
+   "etapes": [
+    "180 = 2² × 3² × 5 ; 126 = 2 × 3² × 7",
+    "180/126 simplifiée : 10/7",
+    "PGCD(180, 126) = 18",
+    "PPCM(180, 126) = 1 260",
+    "PGCD = 1 : premiers entre eux"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "relation": {
+   "kicker": "PGCD et PPCM se répondent",
+   "tex": [
+    "\\text{PGCD} \\times \\text{PPCM} = a \\times b",
+    "18 \\times 1260 = 180 \\times 126 = 22680"
+   ],
+   "titre": "Une relation à vérifier sur l'exemple",
+   "type": "etape"
+  },
+  "resultat180": {
+   "kicker": "La méthode, sur 180",
+   "note": "Contrôle : 4 × 9 × 5 = 180.",
+   "tex": "180 = 2^2 \\times 3^2 \\times 5",
+   "type": "formule"
+  },
+  "simplification": {
+   "kicker": "Simplifier 180 sur 126",
+   "tex": [
+    "\\tfrac{180}{126} = \\tfrac{2^2 \\times 3^2 \\times 5}{2 \\times 3^2 \\times 7}",
+    "= \\tfrac{2 \\times 5}{7}",
+    "= \\tfrac{10}{7}"
+   ],
+   "titre": "On simplifie par deux et par neuf",
+   "type": "etape"
+  },
+  "test_regle": {
+   "kicker": "Reconnaître un nombre premier",
+   "note": "Si aucun ne divise n, alors n est premier.",
+   "tex": "\\text{tester les premiers } p \\le \\sqrt{n}",
+   "type": "formule"
+  },
+  "titre": {
+   "kicker": "Mathématique · Nombres premiers",
+   "sous": "Reconnaître un nombre premier, le décomposer, puis s'en servir pour simplifier une fraction et calculer un PGCD et un PPCM",
+   "titre": "Nombres premiers : décomposer, simplifier, PGCD et PPCM",
+   "type": "titre"
+  },
+  "usages": {
+   "kicker": "Utiliser les nombres premiers",
+   "tex": [
+    "\\text{simplifier une fraction}",
+    "\\text{calculer un PGCD}",
+    "\\text{calculer un PPCM}"
+   ],
+   "titre": "Trois usages directs de la décomposition",
+   "type": "etape"
+  },
+  "recap_p1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Premier : deux diviseurs, un et lui-même",
+    "Tester les premiers jusqu'à la racine",
+    "Quatre-vingt-dix-sept est premier",
+    "Un entier cache un diviseur premier",
+    "Deux : seul premier pair"
+   ]
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Reconnaître un nombre premier : définition et test"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Décomposer un entier et simplifier une fraction",
+   "pont": {
+    "dit": "Partie deux : décomposer un entier, puis simplifier une fraction. Nous établirons le théorème de décomposition, nous décomposerons cent quatre-vingts pas à pas, puis nous utiliserons les décompositions pour simplifier une fraction.",
+    "texte": "Partie 2 : décomposer et simplifier."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "PGCD, PPCM et nombres premiers entre eux",
+   "pont": {
+    "dit": "Partie trois : PGCD, PPCM et nombres premiers entre eux. Nous calculerons le plus grand commun diviseur et le plus petit commun multiple de cent quatre-vingts et de cent vingt-six, nous vérifierons leur relation, puis nous reconnaîtrons deux nombres premiers entre eux.",
+    "texte": "Partie 3 : PGCD, PPCM, premiers entre eux."
+   }
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur les nombres premiers, ces briques de base de tous les entiers. Un nombre premier ne se laisse découper que de deux façons, et c'est cette rareté qui le rend si utile. Nous allons apprendre à reconnaître un nombre premier, à décomposer un entier en produit de facteurs premiers, puis à nous servir de cette décomposition pour simplifier une fraction et pour calculer un plus grand commun diviseur et un plus petit commun multiple.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Les briques de base de tous les entiers."
+  },
+  {
+   "dit": "Commençons par la définition. Un nombre premier est un entier naturel strictement supérieur à un qui possède exactement deux diviseurs, un et lui-même. Ni un de plus, ni un de moins. C'est cette exigence très stricte qui élimine la plupart des entiers et qui ne garde que les nombres vraiment indécomposables.",
+   "ecran": "definition",
+   "id": "p02",
+   "texte": "Une exigence stricte, qui élimine presque tout."
+  },
+  {
+   "dit": "Regardons quelques cas. Deux, trois, cinq, sept, onze, treize, dix-sept, dix-neuf, vingt-trois, et ainsi de suite, sont premiers. En revanche, un n'est pas premier, car il n'a qu'un seul diviseur, lui-même. Et six n'est pas premier non plus, car ses diviseurs sont un, deux, trois et six, soit quatre diviseurs, bien trop pour la définition.",
+   "ecran": "exemples",
+   "id": "p03",
+   "texte": "Premiers d'un côté, exclus de l'autre."
+  },
+  {
+   "dit": "Une propriété rassure tout de suite. Tout entier supérieur à un admet au moins un diviseur premier. Autrement dit, aucun entier ne passe entre les mailles : on peut toujours amorcer une décomposition par un nombre premier. Retenez aussi un cas particulier : deux est le seul nombre premier pair, puisque tous les autres nombres pairs sont divisibles par deux.",
+   "ecran": "propriete",
+   "id": "p04",
+   "texte": "Aucun entier ne passe entre les mailles."
+  },
+  {
+   "dit": "Comment reconnaître un nombre premier sans tout essayer ? La règle est simple : pour tester si un entier est premier, on essaie de le diviser par tous les nombres premiers inférieurs ou égaux à sa racine carrée. S'il n'y a aucun diviseur parmi eux, alors le nombre est premier. On s'arrête à la racine, on ne va pas jusqu'au nombre lui-même.",
+   "ecran": "test_regle",
+   "id": "p05",
+   "texte": "S'arrêter à la racine, pas au nombre lui-même."
+  },
+  {
+   "dit": "Pourquoi la racine carrée suffit-elle ? Imaginez un nombre composé, écrit comme le produit de deux facteurs, le premier inférieur ou égal au second. Alors le premier facteur est forcément inférieur ou égal à la racine carrée du nombre. Donc, si un nombre a un diviseur, il en a un premier qui ne dépasse pas sa racine carrée. Chercher au-delà serait du travail inutile.",
+   "ecran": "pourquoi_racine",
+   "id": "p06",
+   "texte": "Un diviseur trahit toujours le nombre composé."
+  },
+  {
+   "dit": "Appliquons la règle à un exemple complet. Quatre-vingt-dix-sept est-il premier ? Sa racine carrée vaut environ neuf virgule huit. Il suffit donc de tester les nombres premiers inférieurs ou égaux à neuf, c'est-à-dire deux, trois, cinq et sept. Quatre essais seulement, pour un nombre proche de cent : la méthode est vraiment économique.",
+   "ecran": "ex97_a",
+   "id": "p07",
+   "texte": "Quatre essais pour trancher sur quatre-vingt-dix-sept."
+  },
+  {
+   "dit": "Faisons les quatre essais. Quatre-vingt-dix-sept est impair, donc il n'est pas divisible par deux. La somme de ses chiffres vaut seize, qui n'est pas un multiple de trois, donc il n'est pas divisible par trois. Il ne se termine ni par zéro ni par cinq, donc il n'est pas divisible par cinq. Enfin, la division par sept donne treize et un reste de six, car sept fois treize plus six égale quatre-vingt-dix-sept. Quatre essais, quatre échecs.",
+   "ecran": "ex97_b",
+   "id": "p08",
+   "texte": "Impair, somme seize, reste six : rien ne passe."
+  },
+  {
+   "dit": "Conclusion de l'exemple : aucun nombre premier jusqu'à la racine carrée ne divise quatre-vingt-dix-sept, donc quatre-vingt-dix-sept est premier. Retenez la démarche, pas seulement le résultat : cadrer les essais par la racine, tester dans l'ordre, conclure seulement quand tous les essais ont échoué.",
+   "ecran": "ex97_conclusion",
+   "id": "p09",
+   "texte": "La démarche compte autant que le résultat."
+  },
+  {
+   "id": "p10",
+   "dit": "Récapitulons cette première partie. Un nombre premier a exactement deux diviseurs, un et lui-même. Pour le reconnaître, on teste les nombres premiers jusqu'à sa racine carrée. Quatre-vingt-dix-sept, testé ainsi, est premier. Et tout entier supérieur à un cache au moins un diviseur premier, avec un cas particulier : deux est le seul premier pair.",
+   "texte": "Le bilan de la première partie.",
+   "ecran": "recap_p1"
+  },
+  {
+   "dit": "Passons au théorème central du cours. Tout entier supérieur ou égal à deux se décompose de façon unique en produit de facteurs premiers. Unique veut dire que, à l'ordre des facteurs près, il n'existe qu'une seule décomposition possible. C'est cette unicité qui fait de la décomposition une véritable carte d'identité du nombre.",
+   "ecran": "decomposition_theoreme",
+   "id": "p11",
+   "texte": "Une carte d'identité unique pour chaque entier."
+  },
+  {
+   "dit": "La méthode est mécanique : on divise le nombre successivement par les plus petits nombres premiers possibles. Pour cent quatre-vingts, on divise par deux, on obtient quatre-vingt-dix. On divise encore par deux, on obtient quarante-cinq. On divise par trois, on obtient quinze. On divise encore par trois, on obtient cinq. On divise par cinq, on obtient un. La descente est terminée.",
+   "ecran": "methode180",
+   "id": "p12",
+   "texte": "Une descente, toujours par le plus petit premier."
+  },
+  {
+   "dit": "En regroupant les facteurs égaux, cent quatre-vingts s'écrit deux au carré fois trois au carré fois cinq. Vérifions en sens inverse : quatre fois neuf fois cinq égale bien cent quatre-vingts. La décomposition est correcte, et elle va maintenant nous servir pour tous les calculs de la deuxième partie.",
+   "ecran": "resultat180",
+   "id": "p13",
+   "texte": "Regrouper, puis vérifier en sens inverse."
+  },
+  {
+   "dit": "Faisons le point sur la décomposition. Tout entier supérieur ou égal à deux se décompose de façon unique en facteurs premiers. La méthode divise par les plus petits premiers possibles, et cent quatre-vingts, par exemple, vaut deux au carré fois trois au carré fois cinq. Cette carte d'identité va maintenant servir à tous les calculs.",
+   "ecran": "recap1",
+   "id": "p14",
+   "texte": "Le point sur la décomposition."
+  },
+  {
+   "dit": "Deuxième partie : que faire de ces décompositions ? Les nombres premiers ne sont pas un simple jeu de reconnaissance, ils sont un outil de calcul. Avec les décompositions, on peut simplifier une fraction sans tâtonner, trouver le plus grand commun diviseur de deux nombres, et trouver aussi leur plus petit commun multiple.",
+   "ecran": "usages",
+   "id": "p15",
+   "texte": "De la reconnaissance à l'outil de calcul."
+  },
+  {
+   "dit": "Premier usage : simplifier une fraction. La méthode tient en deux gestes. D'abord, on décompose le numérateur et le dénominateur en produit de facteurs premiers. Ensuite, on simplifie, c'est-à-dire qu'on barre les facteurs communs au numérateur et au dénominateur. Il ne reste alors que ce qui n'a pas pu se simplifier.",
+   "ecran": "methode_fraction",
+   "id": "p16",
+   "texte": "Décomposer, barrer, il ne reste que l'essentiel."
+  },
+  {
+   "dit": "Appliquons-la à la fraction cent quatre-vingts sur cent vingt-six. Nous connaissons déjà la décomposition de cent quatre-vingts : deux au carré fois trois au carré fois cinq. Celle de cent vingt-six se trouve de la même façon : deux fois trois au carré fois sept, car deux fois neuf fois sept égale bien cent vingt-six.",
+   "ecran": "decompositions",
+   "id": "p17",
+   "texte": "Les deux cartes d'identité, posées côte à côte."
+  },
+  {
+   "dit": "Écrivons maintenant la fraction avec ces décompositions, puis simplifions. Au numérateur et au dénominateur, on retrouve un facteur deux et un facteur neuf, c'est-à-dire trois au carré. On les barre des deux côtés. Il reste, au numérateur, deux fois cinq, et au dénominateur, sept. La fraction simplifiée vaut donc dix sur sept, et elle est irréductible.",
+   "ecran": "simplification",
+   "id": "p18",
+   "texte": "Deux et neuf barrés des deux côtés : dix sur sept."
+  },
+  {
+   "dit": "Deuxième usage : le plus grand commun diviseur, le PGCD. Le PGCD de deux entiers est le plus grand entier qui divise les deux. Avec les décompositions, la règle est limpide : on prend les facteurs premiers communs aux deux nombres, et on les affecte du plus petit exposant rencontré.",
+   "ecran": "pgcd_regle",
+   "id": "p19",
+   "texte": "Communs, et toujours au plus petit exposant."
+  },
+  {
+   "dit": "Cherchons le PGCD de cent quatre-vingts et de cent vingt-six. Les facteurs premiers communs sont deux et trois. Pour deux, le plus petit exposant est un. Pour trois, le plus petit exposant est deux. Le PGCD vaut donc deux fois trois au carré, soit deux fois neuf, c'est-à-dire dix-huit.",
+   "ecran": "pgcd_exemple",
+   "id": "p20",
+   "texte": "Deux et trois en commun : le compte est dix-huit."
+  },
+  {
+   "dit": "Troisième usage : le plus petit commun multiple, le PPCM. Le PPCM de deux entiers est le plus petit entier non nul qui est multiple des deux. Avec les décompositions, la règle est symétrique de la précédente : on prend tous les facteurs premiers présents, dans l'un ou l'autre nombre, et on les affecte du plus grand exposant rencontré.",
+   "ecran": "ppcm_regle",
+   "id": "p21",
+   "texte": "Tous les facteurs, au plus grand exposant."
+  },
+  {
+   "dit": "Calculons le PPCM de cent quatre-vingts et de cent vingt-six. On prend deux au carré, trois au carré, cinq et sept, en choisissant à chaque fois le plus grand exposant. Le produit vaut mille deux cent soixante. C'est bien un multiple des deux nombres, et c'est le plus petit possible.",
+   "ecran": "ppcm_exemple",
+   "id": "p22",
+   "texte": "Quatre facteurs réunis : mille deux cent soixante."
+  },
+  {
+   "dit": "PGCD et PPCM ne sont pas indépendants : leur produit égale le produit des deux nombres de départ. Vérifions sur notre exemple : dix-huit fois mille deux cent soixante égale vingt-deux mille six cent quatre-vingts, et cent quatre-vingts fois cent vingt-six égale aussi vingt-deux mille six cent quatre-vingts. La relation est vérifiée, c'est un excellent contrôle de calcul.",
+   "ecran": "relation",
+   "id": "p23",
+   "texte": "Deux produits égaux : le contrôle est passé."
+  },
+  {
+   "dit": "Dernier cas à connaître : deux entiers sont dits premiers entre eux si leur PGCD vaut un. Autrement dit, ils n'ont aucun facteur premier commun. Ce n'est pas une propriété de chaque nombre pris isolément, c'est une relation entre les deux nombres : deux nombres premiers entre eux peuvent très bien ne pas être premiers du tout.",
+   "ecran": "premiers_entre_eux",
+   "id": "p24",
+   "texte": "Premiers entre eux : une relation, pas une nature."
+  },
+  {
+   "dit": "Vérifions sur trente-cinq et dix-huit. Trente-cinq se décompose en cinq fois sept. Dix-huit se décompose en deux fois trois au carré. Aucun facteur premier n'est commun aux deux décompositions, donc leur PGCD vaut un : trente-cinq et dix-huit sont premiers entre eux. Conséquence immédiate : la fraction trente-cinq sur dix-huit est déjà irréductible.",
+   "ecran": "exemple_35_18",
+   "id": "p25",
+   "texte": "Rien en commun : la fraction est déjà irréductible."
+  },
+  {
+   "dit": "Pour conclure, retenez le fil du cours. Décomposer, c'est donner à chaque nombre sa carte d'identité en facteurs premiers. Avec ces cartes, simplifier une fraction devient un jeu de barrages, comme cent quatre-vingts sur cent vingt-six qui devient dix sur sept. Le PGCD prend les facteurs communs aux petits exposants, le PPCM prend tous les facteurs aux grands exposants, et quand le PGCD vaut un, les deux nombres sont premiers entre eux.",
+   "ecran": "recap_final",
+   "id": "p26",
+   "texte": "Le bilan : décomposer puis calculer."
+  }
+ ],
+ "titre": "Nombres premiers : décomposer, simplifier, PGCD et PPCM"
+}
