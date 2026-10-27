@@ -13,6 +13,7 @@ import { obtenirReglages } from '@/services/certification/etat';
 import type { Reglages } from '@/services/certification/reglages';
 import { lireProfil } from '@/services/profil';
 import type { DefTest, TypeDefTest } from '@/services/certification/types';
+import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -20,6 +21,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
+import { FeuilleCreditsInsuffisants, FeuilleErreurDemarrage } from './FeuillesDemarrageTest';
 import { EnteteToeic, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
@@ -39,9 +41,11 @@ export function DetailTest() {
   const { theme } = useTheme();
   const { kind, id, partie: partieParam } = useLocalSearchParams<{ kind?: string; id?: string; partie?: string }>();
   const type: TypeDefTest = TYPES.includes(kind as TypeDefTest) ? (kind as TypeDefTest) : 'listening';
-  const { garde, banniere } = useGardeReseau();
+  const { garde, banniere, horsLigne } = useGardeReseau();
+  const { couts } = useCredits();
   const [enCours, setEnCours] = useState(false);
   const [codeEchec, setCodeEchec] = useState<string | null>(null);
+  const [insuffisant, setInsuffisant] = useState<{ cout: number | null; solde: number | null } | null>(null);
 
   const { etat } = useChargement(async () => {
     const exam = (await lireProfil())?.exam ?? 'toeic';
@@ -59,20 +63,40 @@ export function DetailTest() {
   });
 
   const autre = async () => {
-    const res = await lancerAutreTest(exam, type);
-    if (res?.statut === 'demarre') router.replace('/certification/mini-test' as never);
-    else if (res?.statut === 'compte_requis') router.push('/compte/creer');
-    else router.replace({ pathname: '/certification/liste-tests', params: { kind: type } } as never);
+    if (enCours) return;
+    setEnCours(true);
+    setCodeEchec(null);
+    setInsuffisant(null);
+    try {
+      const res = await garde(() => lancerAutreTest(exam, type));
+      if (!res) {
+        // Coupé par la garde réseau : la bannière explique, on ne bouge pas. En ligne, un résultat
+        // vide dit qu'aucun autre test du type n'est à faire : la liste du type fait foi.
+        if (!horsLigne) router.replace({ pathname: '/certification/liste-tests', params: { kind: type } } as never);
+        return;
+      }
+      if (res.statut === 'demarre') router.replace('/certification/mini-test' as never);
+      else if (res.statut === 'compte_requis') router.push('/compte/creer');
+      else if (res.statut === 'insuffisant') setInsuffisant({ cout: res.cout, solde: res.solde });
+    } catch (erreur) {
+      // Avant ce correctif, l'échec du lancement remontait sans être attrapé : le bouton semblait
+      // mort (terrain du 27 octobre 2026 — le test conseillé, un mixte non fait, était refusé par
+      // le serveur et rien ne s'affichait). Un blocage s'explique, par la feuille du bas.
+      setCodeEchec(signalerErreurDemarrage('test', 'TST', erreur));
+    } finally {
+      setEnCours(false);
+    }
   };
   const refaire = async (test: DefTest, exam: string, reglages: Reglages | null) => {
     if (enCours) return;
     setEnCours(true);
     setCodeEchec(null);
+    setInsuffisant(null);
     try {
       const res = (await garde(() => lancerDefTest(exam, test.id, test.kind, test.meilleurScoreMax, test.part, reglages))) ?? null;
       if (!res) return;
       if (res.statut === 'compte_requis') router.push('/compte/creer');
-      else if (res.statut === 'insuffisant') setCodeEchec('insuffisant');
+      else if (res.statut === 'insuffisant') setInsuffisant({ cout: res.cout, solde: res.solde });
       else router.replace('/certification/mini-test' as never);
     } catch (erreur) {
       setCodeEchec(signalerErreurDemarrage('test', 'TST', erreur));
@@ -120,11 +144,18 @@ export function DetailTest() {
             <Bouton
               libelle={t('certification.tests.detail.autre')}
               variante="secondaire"
+              desactive={enCours}
               onPress={() => void autre()}
             />
           </View>
-          {codeEchec === 'insuffisant' ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.creditsInsuffisants')}</Text> : null}
-          {codeEchec && codeEchec !== 'insuffisant' ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.mini.erreurCode', { code: codeEchec })}</Text> : null}
+          {/* Un démarrage refusé s'explique par une feuille du bas, pas par un petit texte sous les
+              boutons (terrain du 27 octobre 2026 : boutons du détail d'un mixte perçus comme morts). */}
+          <FeuilleErreurDemarrage code={codeEchec} onFermer={() => setCodeEchec(null)} />
+          <FeuilleCreditsInsuffisants
+            blocage={insuffisant}
+            coutRepli={(type === 'mixed' ? couts.cert_mock_mini_twenty : type === 'mini' ? couts.cert_mock_mini_ten : type === 'full' ? couts.cert_mock_full : couts.cert_mock_half) ?? 0}
+            onFermer={() => setInsuffisant(null)}
+          />
         </>
       ) : null}
     </Ecran>

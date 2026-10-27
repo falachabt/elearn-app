@@ -24,6 +24,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Appui } from '../Appui';
+import { FeuilleCreditsInsuffisants, FeuilleErreurDemarrage } from './FeuillesDemarrageTest';
 import { stylePartie } from './partiesStyle';
 import { EnteteToeic, Squelette } from './ui';
 import { useChargement } from './useChargement';
@@ -60,7 +61,7 @@ export function ListeTests() {
   const { garde, banniere } = useGardeReseau();
   const [enCours, setEnCours] = useState<string | null>(null);
   const [codeEchec, setCodeEchec] = useState<string | null>(null);
-  const [manque, setManque] = useState(false);
+  const [insuffisant, setInsuffisant] = useState<{ cout: number | null; solde: number | null } | null>(null);
 
   useEffect(() => {
     if (choixManquant) router.replace('/certification/choix-partie' as never);
@@ -77,12 +78,12 @@ export function ListeTests() {
     if (enCours) return;
     setEnCours(test.id);
     setCodeEchec(null);
-    setManque(false);
+    setInsuffisant(null);
     try {
       const res = (await garde(() => lancerDefTest(exam, test.id, test.kind, test.meilleurScoreMax, test.part, reglages))) ?? null;
       if (!res) return;
       if (res.statut === 'compte_requis') router.push('/compte/creer');
-      else if (res.statut === 'insuffisant') setManque(true);
+      else if (res.statut === 'insuffisant') setInsuffisant({ cout: res.cout, solde: res.solde });
       else {
         suivre('cert_mock_started', { kind: test.kind });
         router.replace('/certification/mini-test' as never);
@@ -153,6 +154,10 @@ export function ListeTests() {
             const statut = statutLigne(test);
             const estConseille = conseille?.id === test.id;
             const libelleStatut = t(`certification.tests.listes.statut.${statut}`);
+            // Échelle du meilleur score : un mini se lit sur ses questions (un compte de bonnes
+            // réponses) ; un mixte se lit sur le total, comme au détail et au bilan — le nombre de
+            // questions pris pour échelle donnait « Meilleur : 550 sur 20 » (terrain du 27 octobre 2026).
+            const maxMeilleur = type === 'mixed' ? (reglagesOk?.objectifMax ?? null) : test.questions;
             
             return (
               <Appui
@@ -182,8 +187,8 @@ export function ListeTests() {
                     <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
                       {test.meilleurScoreMax === null
                         ? t('certification.tests.listes.pasDeScoreLigne')
-                        : parMini
-                          ? t('certification.tests.listes.meilleurSur', { score: test.meilleurScoreMax, max: test.questions })
+                        : parMini && maxMeilleur !== null
+                          ? t('certification.tests.listes.meilleurSur', { score: test.meilleurScoreMax, max: maxMeilleur })
                           : t('certification.tests.listes.meilleur', { score: test.meilleurScoreMax })}
                       {' · '}
                       {t('certification.tests.listes.tentatives', { n: test.tentatives })}
@@ -199,8 +204,10 @@ export function ListeTests() {
               </Appui>
             );
           })}
-          {manque ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.creditsInsuffisants')}</Text> : null}
-          {codeEchec ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.mini.erreurCode', { code: codeEchec })}</Text> : null}
+          {/* Un démarrage refusé s'explique par une feuille du bas, jamais par un petit texte sous la
+              liste que l'élève ne voit pas (mixtes non faits inertes au toucher, terrain du 27 octobre 2026). */}
+          <FeuilleErreurDemarrage code={codeEchec} onFermer={() => setCodeEchec(null)} />
+          <FeuilleCreditsInsuffisants blocage={insuffisant} coutRepli={coutListe ?? 0} onFermer={() => setInsuffisant(null)} />
         </>
       ) : null}
       {etat.phase === 'erreur' ? <Bouton libelle={t('certification.reessayer')} onPress={recharger} /> : null}

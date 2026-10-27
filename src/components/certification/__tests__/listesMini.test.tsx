@@ -129,13 +129,15 @@ describe('départ depuis la liste d’un mini-test (v39)', () => {
     expect(await screen.findByText(`12 questions · ${fr.credits.coutUn} hors Pass`)).toBeTruthy();
   });
 
-  it('crédits insuffisants : le serveur refuse, aucun test ne s’ouvre', async () => {
+  it('crédits insuffisants : le serveur refuse, la feuille des crédits explique, aucun test ne s’ouvre', async () => {
     mockParams = { kind: 'mini', partie: '5' };
     const demarrer = jest.fn(async (_clientUuid: string, _defId: string, _exam: string, _jour: string) => ({ status: 'insufficient' as const, tentative: null, cout: 1, solde: 0 }));
     definirApi({ ...fausse.api, listerDefsTests: async (_e, type) => LIGNES.filter((l) => !type || l.kind === type), demarrerDefTest: demarrer });
     await monter(<ListeTests />);
     fireEvent.press(await screen.findByTestId('ligne-mini-4'));
-    expect(await screen.findByText(fr.certification.tests.creditsInsuffisants)).toBeTruthy();
+    // Un blocage se présente par une feuille du bas qui dit la raison (plus le petit texte sous la liste).
+    expect(await screen.findByText(fr.certification.mini.insuffisantTexte)).toBeTruthy();
+    expect(screen.getByText(fr.certification.mini.insuffisantTitre.replace('{{cout}}', fr.credits.coutUn))).toBeTruthy();
     expect(demarrer.mock.calls[0]?.[1]).toBe('d');
     expect(demarrer.mock.calls[0]?.[2]).toBe('toeic');
     expect(router.push).not.toHaveBeenCalledWith('/certification/mini-test');
@@ -152,6 +154,54 @@ describe('départ depuis la liste d’un mini-test (v39)', () => {
     await monter(<ListeTests />);
     fireEvent.press(await screen.findByTestId('ligne-mini-5'));
     await screen.findByTestId('ligne-mini-5');
+    expect(router.replace).toHaveBeenCalledWith('/certification/mini-test');
+  });
+});
+
+describe('liste des mixtes : échelle du meilleur et départ (terrain du 27 octobre 2026)', () => {
+  const mixtes: DefTest[] = [
+    { ...mini('x1', null, 1, { questions: 20, fini: true, tentatives: 1, meilleurScoreMax: 550, nouvellesQuestions: 0 }), kind: 'mixed' },
+    { ...mini('x2', null, 2, { questions: 20 }), kind: 'mixed' },
+  ];
+  const installerMixtes = (demarrerDefTest?: unknown) => {
+    installer(mixtes);
+    if (demarrerDefTest) {
+      definirApi({
+        ...fausse.api,
+        listerDefsTests: async (_e, type) => mixtes.filter((l) => !type || l.kind === type),
+        demarrerDefTest: demarrerDefTest as never,
+      });
+    }
+  };
+
+  it('le meilleur d’un mixte se lit sur le total (990), jamais sur ses 20 questions', async () => {
+    mockParams = { kind: 'mixed' };
+    installerMixtes();
+    await monter(<ListeTests />);
+    expect(await screen.findByText(/Meilleur : 550 sur 990/)).toBeTruthy();
+    expect(screen.queryByText(/sur 20/)).toBeNull();
+  });
+
+  it('un mixte non fait refusé par le serveur : la feuille dit la raison, avec le code vu sur le terrain (TST-UM17)', async () => {
+    mockParams = { kind: 'mixed' };
+    installerMixtes(async () => {
+      throw new Error('contenu indisponible');
+    });
+    await monter(<ListeTests />);
+    fireEvent.press(await screen.findByTestId('ligne-mixed-2'));
+    // Avant le correctif, le code d'échec partait en petit texte sous la liste, hors écran :
+    // toucher un mixte non fait semblait ne rien faire.
+    expect(await screen.findByText(fr.certification.mini.erreurTitre)).toBeTruthy();
+    expect(screen.getByText(fr.certification.mini.erreurCode.replace('{{code}}', 'TST-UM17'))).toBeTruthy();
+    expect(router.replace).not.toHaveBeenCalledWith('/certification/mini-test');
+  });
+
+  it('un mixte non fait accepté démarre', async () => {
+    mockParams = { kind: 'mixed' };
+    installerMixtes(async (clientUuid: string) => fausse.api.demarrerMini(clientUuid, 'toeic', null, 20, '2030-06-01'));
+    await monter(<ListeTests />);
+    fireEvent.press(await screen.findByTestId('ligne-mixed-2'));
+    await screen.findByTestId('ligne-mixed-2');
     expect(router.replace).toHaveBeenCalledWith('/certification/mini-test');
   });
 });
