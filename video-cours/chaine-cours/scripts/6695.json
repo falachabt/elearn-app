@@ -1,0 +1,391 @@
+{
+ "cours": 6695,
+ "titre": "La proportionnalité en action : vitesse, pourcentages, échelles et graphiques",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématiques · La proportionnalité",
+   "titre": "La proportionnalité en action",
+   "sous": "Vitesse, masse volumique, débit, pourcentages, échelles et graphiques",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 240
+   }
+  },
+  "coeff": {
+   "type": "etape",
+   "kicker": "Le coefficient de proportionnalité",
+   "titre": "Un même nombre d'une ligne à l'autre",
+   "tex": [
+    "x_1 \\qquad x_2 \\qquad x_3",
+    "k\\,x_1 \\qquad k\\,x_2 \\qquad k\\,x_3"
+   ]
+  },
+  "trois_quotients": {
+   "type": "phrase",
+   "kicker": "Coefficients particuliers",
+   "texte": "Trois quotients du quotidien : vitesse, masse volumique, débit."
+  },
+  "vitesse": {
+   "type": "formule",
+   "kicker": "La vitesse moyenne",
+   "tex": "v = \\frac{d}{t}",
+   "note": "v en km/h, d en km, t en heures — ou en m/s."
+  },
+  "ex_voiture": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Exemple : la voiture et sa vitesse",
+   "tex": [
+    "v = \\tfrac{d}{t} = \\tfrac{240}{3}",
+    "v = 80\\ \\text{km/h}"
+   ]
+  },
+  "rho_contexte": {
+   "type": "phrase",
+   "kicker": "La masse volumique",
+   "texte": "La masse volumique : la signature d'un matériau."
+  },
+  "rho": {
+   "type": "formule",
+   "kicker": "La masse volumique",
+   "tex": "\\rho = \\frac{m}{V}",
+   "note": "ρ en g/cm³, m en g, V en cm³ — ou en kg/m³."
+  },
+  "ex_fer": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Exemple : la masse volumique du fer",
+   "tex": [
+    "\\rho = \\tfrac{m}{V} = \\tfrac{78}{10}",
+    "\\rho = 7{,}8\\ \\text{g/cm}^3"
+   ]
+  },
+  "debit": {
+   "type": "formule",
+   "kicker": "Le débit",
+   "tex": "D = \\frac{V}{t}",
+   "note": "D en L/min, V en litres, t en minutes."
+  },
+  "ex_robinet": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Exemple : le débit du robinet",
+   "tex": [
+    "D = \\tfrac{V}{t} = \\tfrac{12}{4}",
+    "D = 3\\ \\text{L/min}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Vitesse : v = d / t, en km/h ou m/s",
+    "Masse volumique : ρ = m / V",
+    "Débit : D = V / t, en L/min ou m³/h",
+    "Trois quotients, un même coefficient"
+   ]
+  },
+  "pourcentage": {
+   "type": "formule",
+   "kicker": "Les pourcentages",
+   "tex": "p\\ \\%\\ \\text{de}\\ Q = Q \\times \\frac{p}{100}",
+   "note": "Multiplier par p sur cent : le coefficient du pourcentage."
+  },
+  "camembert": {
+   "type": "phrase",
+   "kicker": "Les pourcentages",
+   "texte": "Soixante pour cent : soixante parts sur cent.",
+   "anim": {
+    "nom": "camembert_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_filles": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Exemple : les filles de la classe",
+   "tex": [
+    "25 \\times \\tfrac{60}{100} = 25 \\times 0{,}6",
+    "= 15\\ \\text{filles}"
+   ]
+  },
+  "echelle": {
+   "type": "formule",
+   "kicker": "L'échelle d'un plan",
+   "tex": "e = \\frac{L_{\\text{plan}}}{L_{\\text{réelle}}}",
+   "note": "Les deux longueurs dans la même unité."
+  },
+  "ex_echelle100": {
+   "type": "etape",
+   "kicker": "Lire une échelle",
+   "titre": "Lire une échelle : un sur cent",
+   "tex": [
+    "e = \\tfrac{1}{100}",
+    "1\\ \\text{cm} \\to 100\\ \\text{cm} = 1\\ \\text{m}"
+   ]
+  },
+  "ex_carte": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Exemple : la distance sur la carte",
+   "tex": [
+    "d_{\\text{réelle}} = 4 \\times 50\\,000",
+    "= 200\\,000\\ \\text{cm} = 2\\ \\text{km}"
+   ]
+  },
+  "transition_graph": {
+   "type": "phrase",
+   "kicker": "Représentation graphique",
+   "texte": "Voir la proportionnalité : placer les points dans un repère."
+  },
+  "propriete_droite": {
+   "type": "phrase",
+   "kicker": "Représentation graphique",
+   "texte": "Des points alignés, une droite qui passe par l'origine."
+  },
+  "tableau_td": {
+   "type": "etape",
+   "kicker": "Représenter dans un quadrillage",
+   "titre": "Le tableau temps et distance",
+   "tex": [
+    "t\\ (\\text{s}) : 0 \\quad 1 \\quad 2 \\quad 3",
+    "d\\ (\\text{m}) : 0 \\quad 2 \\quad 4 \\quad 6"
+   ]
+  },
+  "points": {
+   "type": "etape",
+   "kicker": "Représenter dans un quadrillage",
+   "titre": "Des points alignés par l'origine",
+   "tex": [
+    "(0\\,;\\,0) \\qquad (1\\,;\\,2)",
+    "(2\\,;\\,4) \\qquad (3\\,;\\,6)",
+    "d = 2\\,t"
+   ]
+  },
+  "critere": {
+   "type": "etape",
+   "kicker": "Identifier un graphique",
+   "titre": "Reconnaître : les deux vérifications",
+   "tex": [
+    "\\text{un : les points sont alignés}",
+    "\\text{deux : la droite passe par l'origine}"
+   ]
+  },
+  "lecture": {
+   "type": "etape",
+   "kicker": "Exploiter un graphique",
+   "titre": "Lire une valeur sur la droite",
+   "tex": [
+    "t = 2{,}5\\ \\text{s}",
+    "d = 2 \\times 2{,}5 = 5\\ \\text{m}"
+   ]
+  },
+  "ex_tickets": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Exemple : le prix des tickets",
+   "tex": [
+    "1 \\to 1{,}8 \\qquad 2 \\to 3{,}6",
+    "3 \\to 5{,}4 \\qquad 5 \\to 9"
+   ]
+  },
+  "synthese": {
+   "type": "phrase",
+   "kicker": "Synthèse",
+   "texte": "La réciproque : toute droite par l'origine signale une proportionnalité."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Des quotients : vitesse, masse volumique, débit",
+    "Pourcentage : multiplier par p sur cent",
+    "Échelle : longueurs dans la même unité",
+    "Graphique : une droite par l'origine",
+    "Réciproque : la droite signale la proportion"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré à la proportionnalité, une idée que vous croisez partout sans toujours la nommer. Nous verrons d'abord trois coefficients particuliers, la vitesse, la masse volumique et le débit, puis les pourcentages et les échelles, et enfin la façon de reconnaître une situation de proportionnalité sur un graphique.",
+   "texte": "Proportionnalité : un même coefficient, partout.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Tout commence par une définition : un tableau est un tableau de proportionnalité lorsque l'on passe d'une ligne à l'autre en multipliant, ou en divisant, par un même nombre. Ce nombre, toujours le même, s'appelle le coefficient de proportionnalité : c'est lui le personnage principal de ce cours.",
+   "texte": "Un tableau, un nombre : le coefficient de proportionnalité.",
+   "ecran": "coeff"
+  },
+  {
+   "id": "p03",
+   "dit": "Premier acte : les coefficients particuliers. Dans la vie courante, trois grandeurs se calculent exactement comme un coefficient de proportionnalité : la vitesse d'un déplacement, la masse volumique d'un matériau et le débit d'un écoulement. À chaque fois, le même réflexe : un quotient, deux grandeurs divisées l'une par l'autre.",
+   "texte": "Vitesse, masse volumique, débit : trois quotients.",
+   "ecran": "trois_quotients"
+  },
+  {
+   "id": "p04",
+   "dit": "La vitesse moyenne, notée v, est le quotient de la distance parcourue par la durée du trajet. Si la distance est en kilomètres et la durée en heures, la vitesse s'exprime en kilomètres par heure ; on peut aussi travailler en mètres et en secondes, et la vitesse est alors en mètres par seconde.",
+   "texte": "v = d / t : la distance divisée par la durée.",
+   "ecran": "vitesse"
+  },
+  {
+   "id": "p05",
+   "dit": "Premier exemple : une voiture parcourt deux cent quarante kilomètres en trois heures. Sa vitesse moyenne est le quotient de la distance par la durée, c'est-à-dire deux cent quarante divisé par trois. Le résultat est quatre-vingts : la voiture roule à quatre-vingts kilomètres par heure en moyenne.",
+   "texte": "240 km en 3 h : vitesse moyenne de 80 km/h.",
+   "ecran": "ex_voiture"
+  },
+  {
+   "id": "p06",
+   "dit": "Deuxième coefficient : la masse volumique, notée par la lettre grecque rhô. Elle raconte à quel point la matière est concentrée dans un objet : à volume égal, un matériau de grande masse volumique pèse plus lourd qu'un matériau léger. C'est elle qui permet d'identifier une substance à partir d'une simple pesée et d'une mesure de volume.",
+   "texte": "La masse volumique identifie un matériau.",
+   "ecran": "rho_contexte"
+  },
+  {
+   "id": "p07",
+   "dit": "Par définition, la masse volumique d'un corps est le quotient de sa masse par son volume. La masse se mesure en grammes ou en kilogrammes, le volume en centimètres cubes ou en mètres cubes, et la masse volumique s'exprime alors en grammes par centimètre cube ou en kilogrammes par mètre cube.",
+   "texte": "ρ = m / V : la masse divisée par le volume.",
+   "ecran": "rho"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple : un morceau de fer a une masse de soixante-dix-huit grammes et un volume de dix centimètres cubes. Sa masse volumique vaut soixante-dix-huit divisé par dix, soit sept virgule huit grammes par centimètre cube. Retenez ce nombre : c'est la signature du fer, chaque matériau possède la sienne.",
+   "texte": "Fer : 78 g pour 10 cm³, masse volumique de 7,8 g/cm³.",
+   "ecran": "ex_fer"
+  },
+  {
+   "id": "p09",
+   "dit": "Troisième coefficient : le débit d'un fluide, noté D. C'est le quotient du volume écoulé par la durée de l'écoulement. Selon les situations, le volume se mesure en litres ou en mètres cubes, la durée en minutes ou en heures, et le débit s'exprime en litres par minute ou en mètres cubes par heure.",
+   "texte": "D = V / t : le volume divisé par la durée.",
+   "ecran": "debit"
+  },
+  {
+   "id": "p10",
+   "dit": "Exemple : un robinet laisse couler douze litres d'eau en quatre minutes. Son débit vaut douze divisé par quatre, soit trois litres par minute. Autrement dit, chaque minute qui passe, trois nouveaux litres s'écoulent : voilà exactement ce que décrit un débit.",
+   "texte": "Robinet : 12 L en 4 min, débit de 3 L/min.",
+   "ecran": "ex_robinet"
+  },
+  {
+   "id": "p11",
+   "dit": "Récapitulons ce premier acte. Vitesse, masse volumique et débit sont trois quotients : une distance ou un volume divisé par une durée, une masse divisée par un volume. À chaque fois, deux grandeurs sont proportionnelles, et le quotient constant joue le rôle de coefficient de proportionnalité.",
+   "texte": "Trois quotients à retenir.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p12",
+   "dit": "Un pourcentage est encore un coefficient de proportionnalité. Dire qu'une part représente un certain pourcentage d'un tout, c'est annoncer combien d'unités on prend pour cent unités au total. Concrètement, calculer un pourcentage d'une quantité, c'est multiplier cette quantité par le pourcentage divisé par cent.",
+   "texte": "Pourcentage : multiplier par p divisé par 100.",
+   "ecran": "pourcentage"
+  },
+  {
+   "id": "p13",
+   "dit": "Pour visualiser un pourcentage, imaginez un camembert partagé en cent parts égales : prendre soixante pour cent d'une quantité, c'est en prendre soixante parts sur les cent. La part prélevée et le tout restent proportionnels, avec pour coefficient soixante divisé par cent, c'est-à-dire zéro virgule six.",
+   "texte": "60 % = 60 parts sur 100 = coefficient 0,6.",
+   "ecran": "camembert"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple : dans une classe de vingt-cinq élèves, soixante pour cent sont des filles. On multiplie vingt-cinq par soixante divisé par cent, ce qui revient à multiplier par zéro virgule six. Le calcul donne quinze : il y a quinze filles dans la classe.",
+   "texte": "25 élèves, 60 % de filles : 15 filles.",
+   "ecran": "ex_filles"
+  },
+  {
+   "id": "p15",
+   "dit": "Passons aux plans et aux cartes. L'échelle d'un plan est le quotient de la longueur mesurée sur le plan par la longueur réelle correspondante. Attention, condition indispensable : les deux longueurs doivent être exprimées dans la même unité, sinon le quotient ne veut rien dire.",
+   "texte": "Échelle : longueur du plan divisée par longueur réelle.",
+   "ecran": "echelle"
+  },
+  {
+   "id": "p16",
+   "dit": "Une échelle de un sur cent signifie qu'un centimètre sur le plan représente cent centimètres en réalité, c'est-à-dire un mètre. Le plan est donc une réduction fidèle : toutes les longueurs réelles ont été divisées par le même nombre, cent. C'est encore une proportionnalité.",
+   "texte": "Échelle 1/100 : 1 cm sur le plan = 1 m réel.",
+   "ecran": "ex_echelle100"
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple : sur une carte à l'échelle un sur cinquante mille, deux villes sont distantes de quatre centimètres. La distance réelle vaut quatre multiplié par cinquante mille, soit deux cent mille centimètres. Convertie, cette distance donne deux kilomètres : les deux villes sont à deux kilomètres l'une de l'autre.",
+   "texte": "Carte au 1/50 000 : 4 cm = 2 km réels.",
+   "ecran": "ex_carte"
+  },
+  {
+   "id": "p18",
+   "dit": "Dernier acte : voir la proportionnalité. Un tableau de nombres ne saute pas toujours aux yeux, mais un graphique, lui, ne ment pas. Nous allons placer les points d'une situation dans un repère, et découvrir la forme très particulière qu'ils dessinent lorsque les grandeurs sont proportionnelles.",
+   "texte": "Place aux graphiques : la proportionnalité se voit.",
+   "ecran": "transition_graph"
+  },
+  {
+   "id": "p19",
+   "dit": "Voici la propriété centrale du chapitre : une situation de proportionnalité se représente graphiquement par des points alignés sur une droite qui passe par l'origine du repère. Ni une courbe, ni une droite quelconque : une droite, et qui passe par l'origine. Ces deux conditions sont la signature visuelle de la proportionnalité.",
+   "texte": "Signature : points alignés, droite par l'origine.",
+   "ecran": "propriete_droite"
+  },
+  {
+   "id": "p20",
+   "dit": "Pour construire ce graphique, on place dans un repère les points correspondant aux valeurs du tableau, puis on les relie. Prenons un objet qui se déplace à vitesse constante de deux mètres par seconde : au bout d'une seconde, il a parcouru deux mètres ; au bout de deux secondes, quatre mètres ; au bout de trois secondes, six mètres.",
+   "texte": "Vitesse constante de 2 m/s : le tableau des valeurs.",
+   "ecran": "tableau_td"
+  },
+  {
+   "id": "p21",
+   "dit": "Plaçons ces points : zéro et zéro, un et deux, deux et quatre, trois et six. Ils sont parfaitement alignés, et leur droite passe par l'origine du repère. Cette droite confirme la proportionnalité entre la distance parcourue et le temps écoulé, avec pour coefficient la vitesse, deux mètres par seconde.",
+   "texte": "Points (0 ; 0), (1 ; 2), (2 ; 4), (3 ; 6) : alignés.",
+   "ecran": "points"
+  },
+  {
+   "id": "p22",
+   "dit": "Pour reconnaître une situation de proportionnalité sur un graphique, deux vérifications suffisent. Premièrement, les points sont-ils alignés ? Deuxièmement, la droite obtenue passe-t-elle par l'origine du repère ? Si les deux réponses sont oui, la situation est proportionnelle, et l'on peut lire les valeurs cherchées directement sur la droite.",
+   "texte": "Deux tests : alignement, passage par l'origine.",
+   "ecran": "critere"
+  },
+  {
+   "id": "p23",
+   "dit": "La lecture graphique sert aussi à calculer. Pour trouver la distance parcourue en deux secondes et demie par notre objet, on repère le point de la droite dont l'abscisse vaut deux et demi, et on lit son ordonnée : cinq mètres. Le calcul confirme : deux multiplié par deux et demi donne bien cinq.",
+   "texte": "À 2,5 s, on lit 5 m sur la droite.",
+   "ecran": "lecture"
+  },
+  {
+   "id": "p24",
+   "dit": "Dernier exemple : le prix des tickets de métro, à un euro et quatre-vingts centimes le ticket. Un ticket coûte un virgule huit euro, deux tickets trois virgule six, trois tickets cinq virgule quatre : les points sont alignés sur une droite par l'origine. Pour cinq tickets, on lit sur la droite, ou on calcule cinq multiplié par un virgule huit : neuf euros.",
+   "texte": "Tickets à 1,80 € : 5 tickets coûtent 9 €.",
+   "ecran": "ex_tickets"
+  },
+  {
+   "id": "p25",
+   "dit": "Et la propriété fonctionne dans les deux sens : réciproquement, tout graphique formé d'une droite passant par l'origine traduit une situation de proportionnalité. Droite par l'origine d'un côté, coefficient constant de l'autre : c'est le même phénomène, vu en nombres ou vu en image.",
+   "texte": "Réciproque vraie : la droite révèle la proportion.",
+   "ecran": "synthese"
+  },
+  {
+   "id": "p26",
+   "dit": "À retenir pour terminer. La vitesse, la masse volumique et le débit sont des quotients qui servent de coefficients de proportionnalité. Un pourcentage et une échelle sont deux autres visages du même coefficient. Et sur un graphique, la proportionnalité se reconnaît à sa signature : une droite qui passe par l'origine.",
+   "texte": "L'essentiel : des quotients, une droite par l'origine.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Trois coefficients particuliers : vitesse, masse volumique et débit"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Pourcentages, échelles et la signature graphique",
+   "pont": {
+    "texte": "Partie 2 : pourcentages, échelles et graphiques.",
+    "dit": "Partie deux : les pourcentages, les échelles et les graphiques. Nous retrouverons le même coefficient sous deux déguisements très concrets, le pour cent et l'échelle d'un plan, avant d'apprendre à reconnaître la proportionnalité d'un seul coup d'œil, sur un graphique."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "Construire, reconnaître et exploiter un graphique",
+   "pont": {
+    "texte": "Partie 3 : construire et exploiter le graphique.",
+    "dit": "Partie trois : construire et exploiter le graphique. Nous placerons les points d'une situation de proportionnalité dans un repère, nous vérifierons les deux conditions de la droite signature, puis nous lirons sur elle les valeurs cherchées, jusqu'à l'exemple des tickets de métro."
+   }
+  }
+ ]
+}
