@@ -1,0 +1,405 @@
+{
+  "cours": 7271,
+  "ecrans": {
+    "alkashi": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "triangle_fig"
+      },
+      "kicker": "Théorème d'Al-Kashi",
+      "note": "Dans tout triangle ABC, quelconque ou non",
+      "tex": "BC^2 = AB^2 + AC^2 - 2 \\times AB \\times AC \\times \\cos \\widehat{BAC}",
+      "type": "formule"
+    },
+    "autre": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "triangle_fig"
+      },
+      "kicker": "Expression · par les longueurs",
+      "note": "Quand on connaît les trois longueurs du triangle",
+      "tex": "\\vec{AB} \\cdot \\vec{AC} = \\frac{1}{2} \\left( |\\vec{AB}|^2 + |\\vec{AC}|^2 - |\\vec{BC}|^2 \\right)",
+      "type": "formule"
+    },
+    "cas_nul": {
+      "kicker": "Cas du vecteur nul",
+      "note": "Sans longueur ni angle, le produit est nul",
+      "tex": "\\vec{u} = \\vec{0} \\text{ ou } \\vec{v} = \\vec{0} \\Rightarrow \\vec{u} \\cdot \\vec{v} = 0",
+      "type": "formule"
+    },
+    "cercle": {
+      "kicker": "Équation d'un cercle",
+      "note": "Centre Ω(a, b), rayon r ; M(x, y) est sur le cercle",
+      "tex": "(x - a)^2 + (y - b)^2 = r^2",
+      "type": "formule",
+      "anim": {
+        "nom": "cercle_rayon_fig",
+        "hauteur": 215
+      }
+    },
+    "coords": {
+      "kicker": "Expression · coordonnées",
+      "note": "Uniquement dans un repère orthonormé",
+      "tex": "\\vec{u}(x, y), \\ \\vec{v}(x', y') \\Rightarrow \\vec{u} \\cdot \\vec{v} = xx' + yy'",
+      "type": "formule"
+    },
+    "def": {
+      "kicker": "Définition · produit scalaire",
+      "note": "u et v non nuls ; le résultat est un réel, pas un vecteur",
+      "tex": "\\vec{u} \\cdot \\vec{v} = |\\vec{u}| \\, |\\vec{v}| \\cos(\\vec{u}, \\vec{v})",
+      "type": "formule",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 215
+      }
+    },
+    "distance": {
+      "kicker": "Distance entre deux points",
+      "note": "La distance, c'est la norme du vecteur AB",
+      "tex": "AB = |\\vec{AB}| = \\sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}",
+      "type": "formule"
+    },
+    "ex_alkashi": {
+      "kicker": "Exemple résolu · Al-Kashi",
+      "tex": [
+        "BC^2 = 4^2 + 5^2 - 2 \\times 4 \\times 5 \\times \\tfrac{1}{2}",
+        "BC^2 = 16 + 25 - 20 = 21",
+        "BC = \\sqrt{21}"
+      ],
+      "titre": "AB quatre, AC cinq, angle soixante degrés",
+      "type": "etape"
+    },
+    "ex_coords": {
+      "kicker": "Exemple résolu · coordonnées",
+      "tex": [
+        "\\vec{AB}(3, 4), \\quad \\vec{AC}(-2, 3)",
+        "\\vec{AB} \\cdot \\vec{AC} = 3 \\times (-2) + 4 \\times 3",
+        "= -6 + 12 = 6"
+      ],
+      "titre": "A(1, 2), B(4, 6), C(-1, 5)",
+      "type": "etape"
+    },
+    "ex_distance": {
+      "kicker": "Exemple résolu · distance",
+      "tex": [
+        "AB = \\sqrt{(3 - (-1))^2 + (5 - 2)^2}",
+        "AB = \\sqrt{16 + 9} = \\sqrt{25}",
+        "AB = 5"
+      ],
+      "titre": "A(-1, 2) et B(3, 5)",
+      "type": "etape"
+    },
+    "ex_rectangle": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "triangle_fig"
+      },
+      "kicker": "Exemple résolu · triangle rectangle ?",
+      "tex": [
+        "\\vec{AB}(3, 1), \\quad \\vec{AC}(1, 4)",
+        "\\vec{AB} \\cdot \\vec{AC} = 3 \\times 1 + 1 \\times 4 = 7",
+        "7 \\neq 0"
+      ],
+      "titre": "A origine, B(3, 1), C(1, 4)",
+      "type": "etape"
+    },
+    "ex_somme": {
+      "kicker": "Exemple résolu · norme d'une somme",
+      "tex": [
+        "|\\vec{u} + \\vec{v}|^2 = 3^2 + 2 \\times 6 + 5^2",
+        "= 9 + 12 + 25 = 46",
+        "|\\vec{u} + \\vec{v}| = \\sqrt{46}"
+      ],
+      "titre": "Normes trois et cinq, produit six",
+      "type": "etape"
+    },
+    "identites": {
+      "kicker": "Identités remarquables",
+      "tex": [
+        "|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2 \\vec{u} \\cdot \\vec{v} + |\\vec{v}|^2",
+        "|\\vec{u} - \\vec{v}|^2 = |\\vec{u}|^2 - 2 \\vec{u} \\cdot \\vec{v} + |\\vec{v}|^2"
+      ],
+      "titre": "Le carré d'une somme, le carré d'une différence",
+      "type": "etape"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "vecteurs"
+      },
+      "kicker": "Introduction",
+      "texte": "Deux vecteurs, un seul nombre réel : le produit scalaire.",
+      "type": "phrase"
+    },
+    "methode": {
+      "kicker": "Méthode · choisir son expression",
+      "tex": [
+        "\\text{coordonnées : } xx' + yy'",
+        "\\text{angle connu : normes et } \\cos(\\vec{u}, \\vec{v})",
+        "\\text{trois longueurs : Al-Kashi}",
+        "\\text{orthogonalité : } \\vec{u} \\cdot \\vec{v} = 0"
+      ],
+      "titre": "Selon les données de l'énoncé",
+      "type": "etape"
+    },
+    "normal": {
+      "kicker": "Vecteur normal à une droite",
+      "tex": [
+        "d : ax + by + c = 0",
+        "\\vec{n}(a, b) \\text{ : normal}",
+        "\\vec{d}(-b, a), \\quad \\vec{n} \\cdot \\vec{d} = 0"
+      ],
+      "titre": "Normal et directeur sont orthogonaux",
+      "type": "etape"
+    },
+    "norme": {
+      "kicker": "Norme d'un vecteur",
+      "note": "La longueur du vecteur, toujours positive",
+      "tex": "|\\vec{u}| = \\sqrt{\\vec{u} \\cdot \\vec{u}} = \\sqrt{x^2 + y^2}",
+      "type": "formule",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 215
+      }
+    },
+    "ortho": {
+      "kicker": "Orthogonalité · le test",
+      "note": "En coordonnées : xx' + yy' = 0",
+      "tex": "\\vec{u} \\perp \\vec{v} \\iff \\vec{u} \\cdot \\vec{v} = 0",
+      "type": "formule"
+    },
+    "polarisation": {
+      "kicker": "Formule de polarisation",
+      "note": "Retrouver le produit à partir de trois normes",
+      "tex": "\\vec{u} \\cdot \\vec{v} = \\frac{1}{2} \\left( |\\vec{u} + \\vec{v}|^2 - |\\vec{u}|^2 - |\\vec{v}|^2 \\right)",
+      "type": "formule"
+    },
+    "prop_norme": {
+      "kicker": "Propriétés des normes",
+      "tex": [
+        "|k\\vec{u}| = |k| \\, |\\vec{u}|",
+        "|\\vec{u} + \\vec{v}| \\leq |\\vec{u}| + |\\vec{v}|"
+      ],
+      "titre": "Homogénéité et inégalité triangulaire",
+      "type": "etape"
+    },
+    "proprietes": {
+      "kicker": "Propriétés du produit scalaire",
+      "tex": [
+        "\\vec{u} \\cdot \\vec{v} = \\vec{v} \\cdot \\vec{u}",
+        "(k\\vec{u}) \\cdot \\vec{v} = k (\\vec{u} \\cdot \\vec{v})",
+        "\\vec{u} \\cdot (\\vec{v} + \\vec{w}) = \\vec{u} \\cdot \\vec{v} + \\vec{u} \\cdot \\vec{w}",
+        "\\vec{u} \\cdot \\vec{u} \\geq 0"
+      ],
+      "titre": "Symétrie, bilinéarité, positivité",
+      "type": "etape"
+    },
+    "pythgen": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "triangle_fig"
+      },
+      "kicker": "Al-Kashi généralise Pythagore",
+      "texte": "Angle droit : le cosinus s'annule, Al-Kashi devient Pythagore.",
+      "type": "phrase"
+    },
+    "recap1": {
+      "etapes": [
+        "Un réel : normes fois cosinus de l'angle",
+        "Coordonnées : xx' + yy', repère orthonormé",
+        "Carré d'une somme : le double produit",
+        "Polarisation : le produit par les carrés"
+      ],
+      "kicker": "Partie 1 : à retenir",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Orthogonalité : produit scalaire nul",
+        "Norme et distance : une racine carrée",
+        "Cercle : (x-a)² + (y-b)² = r²",
+        "Al-Kashi : Pythagore pour tout triangle"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 250,
+        "nom": "vecteurs"
+      },
+      "kicker": "Mathématique · Produit scalaire",
+      "sous": "Deux vecteurs et un angle donnent un nombre : orthogonalité, longueurs et cercles",
+      "titre": "Le produit scalaire et ses applications",
+      "type": "titre"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définition, expressions et identités"
+    },
+    {
+      "debut": "p13",
+      "pont": {
+        "dit": "Partie deux : les applications géométriques. Nous allons tester l'orthogonalité avec un produit nul, mesurer des distances, écrire l'équation d'un cercle et terminer par le théorème d'Al-Kashi, le Pythagore des triangles quelconques.",
+        "texte": "Partie 2 : orthogonalité, distances, cercle, Al-Kashi."
+      },
+      "sous_titre": "Orthogonalité, distances, cercle et Al-Kashi"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématiques consacré au produit scalaire et à ses applications géométriques : deux vecteurs et un angle donnent un seul nombre réel, qui sert à tester l'orthogonalité, calculer des longueurs et décrire des cercles.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Produit scalaire et applications géométriques."
+    },
+    {
+      "dit": "L'idée de départ tient en une phrase : le produit scalaire associe à deux vecteurs un nombre réel. Ce n'est donc pas un vecteur, et c'est ce nombre, positif, négatif ou nul selon l'angle, qui porte toute l'information sur la position des deux vecteurs l'un par rapport à l'autre.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "Deux vecteurs, un seul nombre réel."
+    },
+    {
+      "dit": "Soient deux vecteurs non nuls, u et vé. Leur produit scalaire est le réel obtenu en multipliant la norme de u, la norme de vé et le cosinus de l'angle formé par u et vé. Tout repose donc sur trois ingrédients : deux longueurs et un angle.",
+      "ecran": "def",
+      "id": "p03",
+      "texte": "Normes fois cosinus de l'angle : la définition."
+    },
+    {
+      "dit": "Cas particulier immédiat : si l'un des deux vecteurs est le vecteur nul, le produit scalaire vaut zéro. Il n'y a ni longueur ni angle à mesurer, et la convention est simplement que le résultat est nul, quelle que soit l'autre vecteur.",
+      "ecran": "cas_nul",
+      "id": "p04",
+      "texte": "Un vecteur nul : produit nul."
+    },
+    {
+      "dit": "Dans un repère orthonormé, le calcul devient très simple. Si u a pour coordonnées x et y, et vé a pour coordonnées x prime et y prime, alors le produit scalaire vaut x fois x prime, plus y fois y prime. Deux multiplications, une addition, et aucun angle à connaître.",
+      "ecran": "coords",
+      "id": "p05",
+      "texte": "Coordonnées : xx' + yy'."
+    },
+    {
+      "dit": "Exemple résolu. Le point a a pour coordonnées un et deux, le point bé quatre et six, le point cé moins un et cinq. Le vecteur a bé a pour coordonnées trois et quatre, et le vecteur a cé moins deux et trois. Leur produit scalaire vaut trois fois moins deux, plus quatre fois trois, soit moins six plus douze, donc six.",
+      "ecran": "ex_coords",
+      "id": "p06",
+      "texte": "Exemple : AB · AC = 6."
+    },
+    {
+      "dit": "Troisième expression, utile quand on connaît les longueurs. Pour trois points distincts a, bé et cé, le produit scalaire des vecteurs a bé et a cé vaut la moitié d'une différence : le carré de la longueur a bé, plus le carré de la longueur a cé, moins le carré de la longueur bé cé, le tout divisé par deux.",
+      "ecran": "autre",
+      "id": "p07",
+      "texte": "Trois longueurs suffisent."
+    },
+    {
+      "dit": "Le produit scalaire a trois propriétés à retenir. Il est symétrique : échanger u et vé ne change pas le résultat. Il est bilinéaire : on peut sortir un coefficient réel d'un facteur, et distribuer sur une somme de vecteurs. Et il est positif : le produit d'un vecteur par lui-même est toujours positif ou nul, et nul seulement pour le vecteur nul.",
+      "ecran": "proprietes",
+      "id": "p08",
+      "texte": "Symétrie, bilinéarité, positivité."
+    },
+    {
+      "dit": "Les identités remarquables ont leur version vectorielle. La norme de la somme u plus vé, élevée au carré, vaut la norme de u au carré, plus deux fois le produit scalaire, plus la norme de vé au carré. Pour la différence u moins vé, le terme central change simplement de signe et devient négatif.",
+      "ecran": "identites",
+      "id": "p09",
+      "texte": "Carré d'une somme, carré d'une différence."
+    },
+    {
+      "dit": "En isolant le terme central de l'identité précédente, on obtient la formule de polarisation : le produit scalaire vaut la moitié du carré de la norme de la somme, diminué des carrés des normes de u et de vé. Elle sert à retrouver un produit scalaire quand on ne connaît que des normes.",
+      "ecran": "polarisation",
+      "id": "p10",
+      "texte": "Polarisation : le produit par les normes."
+    },
+    {
+      "dit": "Exemple résolu. La norme de u vaut trois, celle de vé vaut cinq, et leur produit scalaire vaut six. Le carré de la norme de la somme vaut neuf, plus deux fois six, plus vingt-cinq, soit quarante-six. La norme de la somme est donc la racine carrée de quarante-six.",
+      "ecran": "ex_somme",
+      "id": "p11",
+      "texte": "Exemple : norme de la somme, racine de 46."
+    },
+    {
+      "dit": "Retenons cette première partie. Le produit scalaire est un réel : normes multipliées par le cosinus de l'angle, ou, en coordonnées, x fois x prime plus y fois y prime. Ses identités transforment les carrés de normes en produits scalaires, et réciproquement.",
+      "ecran": "recap1",
+      "id": "p12",
+      "texte": "Définition et expressions : à retenir."
+    },
+    {
+      "dit": "Deux vecteurs sont orthogonaux exactement quand leur produit scalaire est nul. En coordonnées, dans un repère orthonormé, cela se lit : x fois x prime, plus y fois y prime, égal à zéro. C'est le test d'orthogonalité le plus rapide qui soit : un seul calcul, une seule réponse.",
+      "ecran": "ortho",
+      "id": "p13",
+      "texte": "Orthogonaux si et seulement si produit nul."
+    },
+    {
+      "dit": "Exemple résolu. Le point a est l'origine, bé a pour coordonnées trois et un, cé un et quatre. Le vecteur a bé a pour coordonnées trois et un, le vecteur a cé un et quatre. Leur produit scalaire vaut trois fois un, plus un fois quatre, soit sept. Sept n'est pas zéro, donc le triangle a bé cé n'est pas rectangle en a.",
+      "ecran": "ex_rectangle",
+      "id": "p14",
+      "texte": "Exemple : produit 7, pas rectangle en A."
+    },
+    {
+      "dit": "Dernier outil d'orthogonalité : le vecteur normal. Une droite d'équation a x plus bé y plus cé égal à zéro admet pour vecteur normal le vecteur de coordonnées a et bé, et pour vecteur directeur celui de coordonnées moins bé et a. Les deux sont orthogonaux, et leur produit scalaire est nul.",
+      "ecran": "normal",
+      "id": "p15",
+      "texte": "n(a, b) normal à la droite d'équation."
+    },
+    {
+      "dit": "Passons aux normes. La norme d'un vecteur u est la racine carrée de son produit scalaire par lui-même. En coordonnées, c'est la racine carrée de x au carré plus y au carré : on retrouve la longueur du vecteur, toujours positive ou nulle.",
+      "ecran": "norme",
+      "id": "p16",
+      "texte": "Norme : racine du produit par lui-même."
+    },
+    {
+      "dit": "Deux propriétés gouvernent les normes. Multiplier un vecteur par un réel ka multiplie sa norme par la valeur absolue de ka. Et la norme d'une somme ne dépasse jamais la somme des normes : c'est l'inégalité triangulaire, car le plus court chemin entre deux points reste la ligne droite.",
+      "ecran": "prop_norme",
+      "id": "p17",
+      "texte": "Valeur absolue et inégalité triangulaire."
+    },
+    {
+      "dit": "La distance entre deux points a et bé est tout simplement la norme du vecteur a bé. En coordonnées, elle vaut la racine carrée du carré de l'écart des abscisses, plus le carré de l'écart des ordonnées. C'est le théorème de Pythagore, déguisé en formule de distance.",
+      "ecran": "distance",
+      "id": "p18",
+      "texte": "Distance AB : la norme du vecteur AB."
+    },
+    {
+      "dit": "Exemple résolu. Le point a a pour coordonnées moins un et deux, le point bé trois et cinq. L'écart des abscisses vaut quatre, celui des ordonnées vaut trois. La distance a bé vaut donc la racine carrée de seize plus neuf, soit la racine carrée de vingt-cinq, donc cinq.",
+      "ecran": "ex_distance",
+      "id": "p19",
+      "texte": "Exemple : AB = 5."
+    },
+    {
+      "dit": "Le produit scalaire mène aussi aux cercles. Le cercle de centre oméga, de coordonnées a et bé, et de rayon r, est l'ensemble des points èm de coordonnées x et y dont la distance à oméga vaut exactement r. En élevant cette distance au carré, on obtient l'équation du cercle : x moins a, au carré, plus y moins bé, au carré, égal à r au carré.",
+      "ecran": "cercle",
+      "id": "p20",
+      "texte": "Cercle : distance à Ω constante, égale à r."
+    },
+    {
+      "dit": "Terminons par le théorème d'Al-Kashi, obtenu en développant le vecteur bé cé comme somme des vecteurs bé a et a cé. Dans tout triangle a bé cé, le carré de bé cé vaut la somme des carrés de a bé et de a cé, moins deux fois le produit des longueurs a bé et a cé par le cosinus de l'angle en a.",
+      "ecran": "alkashi",
+      "id": "p21",
+      "texte": "Al-Kashi : un côté par les deux autres et l'angle."
+    },
+    {
+      "dit": "Exemple résolu. Dans un triangle a bé cé, la longueur a bé vaut quatre, a cé vaut cinq, et l'angle en a vaut soixante degrés, dont le cosinus vaut un demi. Le carré de bé cé vaut seize plus vingt-cinq, moins deux fois quatre fois cinq fois un demi, soit quarante et un moins vingt, donc vingt et un. La longueur bé cé est la racine carrée de vingt et un.",
+      "ecran": "ex_alkashi",
+      "id": "p22",
+      "texte": "Exemple : BC, racine carrée de 21."
+    },
+    {
+      "dit": "Le lien avec Pythagore est immédiat. Si l'angle en a est un angle droit, son cosinus est nul, le dernier terme disparaît, et la formule d'Al-Kashi devient exactement le théorème de Pythagore. Al-Kashi est donc Pythagore, valable pour tous les triangles, et pas seulement pour les rectangles.",
+      "ecran": "pythgen",
+      "id": "p23",
+      "texte": "Angle droit : Al-Kashi devient Pythagore."
+    },
+    {
+      "dit": "Devant un exercice, choisissez l'expression selon les données. Des coordonnées : le calcul x fois x prime plus y fois y prime. Un angle connu : les normes et le cosinus. Trois longueurs, ou un côté à trouver dans un triangle : Al-Kashi. Et pour prouver une orthogonalité, visez toujours un produit scalaire nul.",
+      "ecran": "methode",
+      "id": "p24",
+      "texte": "Choisir l'expression selon les données."
+    },
+    {
+      "dit": "Pour conclure ce cours. Le produit scalaire teste l'orthogonalité quand il est nul, il donne les normes et les distances par une racine carrée, il écrit l'équation des cercles, et le théorème d'Al-Kashi prolonge Pythagore à tous les triangles. Un seul nombre, et quatre usages géométriques.",
+      "ecran": "recap_final",
+      "id": "p25",
+      "texte": "Produit scalaire : à retenir."
+    }
+  ],
+  "titre": "Le produit scalaire et ses applications géométriques"
+}
