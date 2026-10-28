@@ -1,0 +1,506 @@
+{
+ "cours": 6283,
+ "ecrans": {
+  "agregation": {
+   "kicker": "Agréger, pivoter",
+   "tex": [
+    "\\text{agg : mean, std, sum, count}",
+    "\\text{pivot-table : lignes, colonnes}",
+    "\\text{values : la mesure}",
+    "\\text{margins : totaux}"
+   ],
+   "titre": "Du groupe au tableau croisé",
+   "type": "etape"
+  },
+  "anatomie": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "matrice_fig"
+   },
+   "kicker": "L'anatomie d'une table",
+   "texte": "Lignes = observations, colonnes = variables, en-têtes = noms.",
+   "type": "phrase"
+  },
+  "chargement": {
+   "kicker": "Charger : read, Excel, JSON",
+   "tex": [
+    "\\text{read-excel, feuille par nom}",
+    "\\text{read-json, liste de dictionnaires}",
+    "\\text{read-clipboard, depuis Excel}",
+    "\\text{json-normalize, JSON imbriqué}"
+   ],
+   "titre": "Une fonction par source",
+   "type": "etape"
+  },
+  "colonnes": {
+   "kicker": "Créer des colonnes",
+   "tex": [
+    "\\text{map : élément par élément}",
+    "\\text{apply : ligne ou colonne}",
+    "\\text{assign : plusieurs colonnes}",
+    "\\text{vectorisé : plus rapide que apply}"
+   ],
+   "titre": "Map, apply, assign",
+   "type": "etape"
+  },
+  "correlation": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "nuage_points_fig"
+   },
+   "kicker": "Corrélation, pas causalité",
+   "texte": "Surface et prix : r égale 0,65, corrélation forte, pas preuve de cause.",
+   "type": "phrase"
+  },
+  "csv_europe": {
+   "kicker": "Charger un CSV européen",
+   "tex": [
+    "\\text{sep : point-virgule}",
+    "\\text{decimal : virgule}",
+    "\\text{encoding : latin-1}",
+    "\\text{na-values : NA, N/A}"
+   ],
+   "titre": "Les options qui évitent les pièges",
+   "type": "etape"
+  },
+  "distribution": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "distribution_bars_fig"
+   },
+   "kicker": "Describe et distribution",
+   "texte": "Describe résume, value-counts distribue : compter, moyenner, comparer.",
+   "type": "phrase"
+  },
+  "doublons": {
+   "kicker": "Doublons et texte sale",
+   "tex": [
+    "\\text{drop-duplicates, garder le premier}",
+    "\\text{strip, lower : espaces, casse}",
+    "\\text{replace : Paris, PARIS, Paris}",
+    "\\text{copie : jamais sans copy}"
+   ],
+   "titre": "Standardiser avant de compter",
+   "type": "etape"
+  },
+  "encodage": {
+   "kicker": "Coder le texte, remodeler",
+   "tex": [
+    "\\text{map : S, M, L, XL vers 0-3}",
+    "\\text{get-dummies : une colonne par couleur}",
+    "\\text{pivot : long vers large}",
+    "\\text{melt : large vers long}"
+   ],
+   "titre": "Les algorithmes ne lisent pas",
+   "type": "etape"
+  },
+  "etudiants": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "matrice_fig"
+   },
+   "kicker": "Premier DataFrame",
+   "texte": "Cinq étudiants : Alice, Bob, Clara, David, Eva, notes et spécialités.",
+   "type": "phrase"
+  },
+  "exemple_ventes": {
+   "kicker": "Exemple : journal des ventes",
+   "note": "Chiffre d'affaires total : somme sur toutes les lignes",
+   "tex": "\\text{CA} = \\sum \\text{quantité} \\times \\text{prix unitaire}",
+   "type": "formule"
+  },
+  "exploration2": {
+   "kicker": "Premier diagnostic",
+   "tex": [
+    "\\text{shape : 1000 lignes, 15 colonnes}",
+    "\\text{head, tail : bouts de table}",
+    "\\text{unique : valeurs distinctes}",
+    "\\text{value-counts : fréquences}"
+   ],
+   "titre": "Forme, aperçu, fréquences",
+   "type": "etape"
+  },
+  "explorer": {
+   "kicker": "Explorer d'abord",
+   "tex": [
+    "\\text{head : premières lignes}",
+    "\\text{info : structure et types}",
+    "\\text{describe : statistiques}",
+    "\\text{shape : lignes, colonnes}"
+   ],
+   "titre": "Regarder avant de calculer",
+   "type": "etape"
+  },
+  "filtrage": {
+   "kicker": "Filtrage booléen",
+   "tex": [
+    "\\text{et : esperluette, parenthèses}",
+    "\\text{ou : barre verticale}",
+    "\\text{non : tilde}",
+    "\\text{query : syntaxe lisible}"
+   ],
+   "titre": "Et, ou, non : les parenthèses d'abord",
+   "type": "etape"
+  },
+  "formats": {
+   "kicker": "Les formats de données",
+   "tex": [
+    "\\text{CSV, Excel : tabulaires}",
+    "\\text{JSON, XML : semi-structurés}",
+    "\\text{Parquet, HDF5 : binaires rapides}"
+   ],
+   "titre": "Structuré, semi-structuré, binaire",
+   "type": "etape"
+  },
+  "groupby": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "arbre_fig"
+   },
+   "kicker": "Groupby : split, apply, combine",
+   "texte": "Séparer par ville, calculer par groupe, recombiner : split, apply, combine.",
+   "type": "phrase"
+  },
+  "index": {
+   "kicker": "Indexation : loc et iloc",
+   "tex": [
+    "\\text{index par défaut : 0, 1, 2}",
+    "\\text{loc : accès par label}",
+    "\\text{iloc : accès par position}",
+    "\\text{index personnalisé : ET001}"
+   ],
+   "titre": "Label ou position, ne pas confondre",
+   "type": "etape"
+  },
+  "install": {
+   "kicker": "Installer pandas",
+   "tex": [
+    "\\text{pip install pandas}",
+    "\\text{conda install pandas}",
+    "\\text{import pandas as pd}"
+   ],
+   "titre": "Trois façons d'installer",
+   "type": "etape"
+  },
+  "manquantes": {
+   "kicker": "Valeurs manquantes",
+   "tex": [
+    "\\text{isnull : compter par colonne}",
+    "\\text{dropna : supprimer}",
+    "\\text{fillna : imputer}",
+    "\\text{médiane du groupe, pas globale}"
+   ],
+   "titre": "Compter, puis décider",
+   "type": "etape"
+  },
+  "nettoyage": {
+   "kicker": "Pourquoi nettoyer ?",
+   "tex": [
+    "\\text{valeurs manquantes}",
+    "\\text{doublons, incohérences}",
+    "\\text{aberrantes, mauvais types}",
+    "\\text{échelles disparates}"
+   ],
+   "titre": "80 % du temps, avant d'analyser",
+   "type": "etape"
+  },
+  "normalisation": {
+   "kicker": "Normaliser, standardiser",
+   "note": "Standardisation : x moins mu, sur sigma ; moyenne nulle, écart-type un",
+   "tex": "x_{norm} = \\frac{x - x_{min}}{x_{max} - x_{min}}",
+   "type": "formule"
+  },
+  "outliers": {
+   "kicker": "Aberrantes : la règle IQR",
+   "note": "IQR = troisième quartile moins premier quartile ; z-score au-delà de 3, suspect",
+   "tex": "[Q_1 - 1{,}5 \\times IQR,\\; Q_3 + 1{,}5 \\times IQR]",
+   "type": "formule"
+  },
+  "pandas": {
+   "kicker": "Définir : pandas",
+   "tex": [
+    "\\text{panel data : données structurées}",
+    "\\text{Wes McKinney, 2008}",
+    "\\text{né de la finance quantitative}"
+   ],
+   "titre": "Panel data, pas l'animal",
+   "type": "etape"
+  },
+  "pieges_chargement": {
+   "etapes": [
+    "Encodage : essayer utf-8, latin-1, cp1252",
+    "Séparateur décimal : decimal virgule, milliers point",
+    "Dates : parse-dates à l'import, sinon to-datetime",
+    "Gros fichiers : lire par blocs avec chunksize",
+    "Toujours regarder : head, sample, histogramme rapide"
+   ],
+   "kicker": "Pièges du chargement",
+   "type": "recap"
+  },
+  "recap": {
+   "etapes": [
+    "Charger : CSV, Excel, JSON, avec les bonnes options",
+    "Explorer : head, info, describe, value-counts",
+    "Nettoyer : manquantes, doublons, aberrantes, texte",
+    "Transformer : filtrer, grouper, pivoter, agréger",
+    "Visualiser : courbe, histogramme, nuage, boîte"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "series": {
+   "kicker": "Series et DataFrame",
+   "tex": [
+    "\\text{Series : une seule colonne}",
+    "\\text{DataFrame : tableau à 2 dimensions}",
+    "\\text{chaque colonne est une Series}"
+   ],
+   "titre": "Une colonne, une table",
+   "type": "etape"
+  },
+  "stats": {
+   "kicker": "Décrire : centre et dispersion",
+   "note": "Moyenne sensible aux extrêmes, médiane robuste, mode le plus fréquent",
+   "tex": "\\sigma = \\sqrt{\\frac{1}{n-1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2}",
+   "type": "formule"
+  },
+  "temporel": {
+   "kicker": "Temps : rolling et mois",
+   "tex": [
+    "\\text{rolling 7 jours : moyenne mobile}",
+    "\\text{rolling 30 jours : tendance}",
+    "\\text{groupby mois : saisonnalité}",
+    "\\text{resample : agréger par période}"
+   ],
+   "titre": "Lisser pour voir la tendance",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "matrice_fig"
+   },
+   "kicker": "Informatique · Python et pandas",
+   "sous": "De la table brute au récit : charger, nettoyer, transformer, agréger, visualiser",
+   "titre": "Traitement de données avec Python et pandas",
+   "type": "titre"
+  },
+  "visualisation": {
+   "kicker": "Visualiser avec matplotlib",
+   "tex": [
+    "\\text{plot : courbe, série temporelle}",
+    "\\text{hist : distribution}",
+    "\\text{scatter : relation entre deux variables}",
+    "\\text{box : distribution par groupe}"
+   ],
+   "titre": "Figure, axes, artistes",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Pandas, tables et chargement des données"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "texte": "Partie 2 : explorer, nettoyer, mettre en forme.",
+    "dit": "Partie deux : nous explorerons les données chargées, puis nous les nettoierons, valeurs manquantes, doublons, aberrantes et texte, avant de les mettre en forme par normalisation et encodage."
+   },
+   "sous_titre": "Exploration, nettoyage et mise en forme"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "texte": "Partie 3 : filtrer, agréger, visualiser, conclure.",
+    "dit": "Partie trois : nous filtrerons et transformerons les colonnes, puis nous regrouperons et agrégerons avec groupby et les tables pivots, avant de visualiser, d'interpréter les corrélations et de conclure avec le projet immobilier."
+   },
+   "sous_titre": "Filtrage, agrégation, visualisation et projet"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de traitement de données avec Python et pandas. Relevés bancaires, scores sportifs, feuilles de calcul : partout, des lignes et des colonnes. Nous allons apprendre à les charger, les nettoyer, les transformer, les agréger et les visualiser, de la table brute au récit.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "De la table brute au récit des données."
+  },
+  {
+   "dit": "Pandas n'est pas l'animal : son nom vient de panel data, des données structurées dans le temps. Créé par Wes McKinney en deux mille huit, il est né d'une frustration en finance quantitative : les outils Python de l'époque étaient fragmentés. Il repose sur trois principes : une syntaxe claire, la vitesse grâce au C sous le capot, et l'intégration avec NumPy, Matplotlib et scikit-learn.",
+   "ecran": "pandas",
+   "id": "p02",
+   "texte": "Pandas : panel data, 2008, finance."
+  },
+  {
+   "dit": "Regardez la figure : une matrice, avec ses lignes et ses colonnes, comme un DataFrame. Chaque ligne est une observation, chaque colonne une variable, et la première ligne porte les en-têtes, les noms des colonnes. Le coefficient a indice i j se lit : ligne i, colonne j. C'est toute l'anatomie des données tabulaires.",
+   "ecran": "anatomie",
+   "id": "p03",
+   "texte": "Lignes = observations, colonnes = variables."
+  },
+  {
+   "dit": "Pandas a deux structures fondamentales. La Series est une colonne seule, avec son index. Le DataFrame est un tableau à deux dimensions, composé de Series. Extraire une colonne d'un DataFrame donne donc une Series, sur laquelle on peut calculer une moyenne, une médiane ou un écart-type.",
+   "ecran": "series",
+   "id": "p04",
+   "texte": "Series : une colonne ; DataFrame : la table."
+  },
+  {
+   "dit": "Pour installer pandas, deux voies : pip install pandas, le gestionnaire standard, ou conda install pandas, recommandé pour la science des données. On peut ajouter NumPy, Matplotlib et Jupyter. Dans le code, on importe pandas sous l'alias p d, la convention universelle, et on vérifie la version installée.",
+   "ecran": "install",
+   "id": "p05",
+   "texte": "pip, conda, puis import pandas as pd."
+  },
+  {
+   "dit": "Premier DataFrame, à partir d'un dictionnaire : cinq étudiants, Alice, Bob, Clara, David et Eva, avec leur âge, leurs notes de mathématiques et de physique, et leur spécialité. Une ligne par étudiant, une colonne par variable : la table s'affiche aussitôt, indexée de zéro à quatre.",
+   "ecran": "etudiants",
+   "id": "p06",
+   "texte": "Cinq étudiants, notes et spécialités."
+  },
+  {
+   "dit": "Avant tout calcul, on explore. Head montre les premières lignes, info révèle la structure, les types et les valeurs non nulles, describe résume les statistiques, et shape donne les dimensions : lignes puis colonnes. C'est le réflexe de base, à appliquer à chaque nouveau jeu de données.",
+   "ecran": "explorer",
+   "id": "p07",
+   "texte": "Head, info, describe : regarder d'abord."
+  },
+  {
+   "dit": "Par défaut, l'index numérique commence à zéro, mais on peut le personnaliser, par exemple ET zéro zéro un à ET zéro zéro cinq. Loc accède par label : loc de ET zéro zéro trois donne l'étudiant correspondant. Iloc accède par position : iloc deux donne la troisième ligne. Ne confondez jamais les deux.",
+   "ecran": "index",
+   "id": "p08",
+   "texte": "Loc par label, iloc par position."
+  },
+  {
+   "dit": "Les données arrivent sous plusieurs formats. CSV et Excel sont tabulaires, le CSV léger et universel, Excel avec feuilles multiples et formules. JSON et XML sont semi-structurés, le JSON étant la langue des API web. Parquet et HDF5 sont binaires, optimisés pour les très gros volumes. Le choix du format n'est jamais anodin.",
+   "ecran": "formats",
+   "id": "p09",
+   "texte": "CSV, Excel, JSON, Parquet : choisir."
+  },
+  {
+   "dit": "Le chargement le plus courant passe par read c s v. Pour un fichier européen, on précise le séparateur point-virgule, l'encodage latin un pour les accents, le séparateur décimal virgule, et les valeurs à lire comme manquantes, comme N A ou N slash A. Sans ces options, les nombres deviennent du texte.",
+   "ecran": "csv_europe",
+   "id": "p10",
+   "texte": "CSV européen : point-virgule, virgule, latin-1."
+  },
+  {
+   "dit": "Pour Excel, read excel prend le nom de la feuille, ou son numéro, ou toutes les feuilles dans un dictionnaire. Pour JSON, read json lit un fichier ou une chaîne, et json normalize aplatit les structures imbriquées. Et read clipboard récupère une copie faite dans Excel ou Sheets, séparée par des tabulations.",
+   "ecran": "chargement",
+   "id": "p11",
+   "texte": "Excel, JSON, presse-papiers : une fonction par source."
+  },
+  {
+   "dit": "Une fois chargé, on diagnostique : shape donne lignes et colonnes, par exemple mille lignes et quinze colonnes, head et tail montrent les deux bouts de la table, unique liste les valeurs distinctes d'une colonne, et value counts donne leur distribution, en effectifs ou en proportions. C'est l'examen préliminaire.",
+   "ecran": "exploration2",
+   "id": "p12",
+   "texte": "Shape, head, tail, value-counts."
+  },
+  {
+   "dit": "Regardez les barres : une distribution, avec sa courbe cumulée. Describe résume les colonnes numériques : effectif, moyenne, écart-type, minimum, quartiles et maximum, et avec l'option all, il ajoute les catégorielles : effectif, nombre de valeurs uniques, valeur la plus fréquente et sa fréquence. La corrélation, elle, ne se calcule que sur le numérique.",
+   "ecran": "distribution",
+   "id": "p13",
+   "texte": "Describe résume, value-counts distribue."
+  },
+  {
+   "dit": "Exemple concret, un journal des ventes : on charge avec les dates analysées, on diagnostique avec shape, info et head, puis on analyse. Le chiffre d'affaires d'une ligne vaut la quantité multipliée par le prix unitaire, et le total est la somme sur toutes les lignes. On repère ensuite le top des produits et la répartition par mois.",
+   "ecran": "exemple_ventes",
+   "id": "p14",
+   "texte": "Chiffre d'affaires = quantité × prix, sommé."
+  },
+  {
+   "dit": "Les pièges du chargement, à retenir. L'encodage d'abord : en cas d'erreur unicode, essayez utf huit, latin un, ou cp douze cent cinquante-deux. Ensuite la décimale européenne, puis les dates, à analyser dès l'import. Pour les gros fichiers, lisez par blocs. Et ne faites jamais confiance à describe seul : regardez les données.",
+   "ecran": "pieges_chargement",
+   "id": "p15",
+   "texte": "Encodage, décimale, dates, mémoire : les pièges."
+  },
+  {
+   "dit": "Passons au nettoyage : selon une étude célèbre, les data scientists passent environ quatre-vingts pour cent de leur temps à collecter, nettoyer et organiser, contre vingt pour cent à analyser. Les sept maux : valeurs manquantes, aberrantes, incohérences de format, doublons, erreurs de typage, échelles disparates et structure inadaptée.",
+   "ecran": "nettoyage",
+   "id": "p16",
+   "texte": "Nettoyer : 80 % du travail, avant d'analyser."
+  },
+  {
+   "dit": "Les valeurs manquantes s'écrivent N a N. On les compte par colonne avec isnull, puis on décide : supprimer avec dropna, ou imputer avec fillna. Mieux qu'une moyenne globale : imputer la médiane du groupe, par exemple le salaire médian par département. Une absence peut signifier une erreur, un refus ou une question inapplicable.",
+   "ecran": "manquantes",
+   "id": "p17",
+   "texte": "Isnull compte, dropna supprime, fillna impute."
+  },
+  {
+   "dit": "Les doublons exacts se détectent avec duplicated et se suppriment avec drop duplicates, en gardant la première occurrence. Pour le texte, on standardise : strip enlève les espaces, lower met en minuscule, et replace unifie Paris, Paris avec espace et PARIS. Et règle d'or : travaillez sur une copie, sinon vous modifiez l'original.",
+   "ecran": "doublons",
+   "id": "p18",
+   "texte": "Doublons, casse, espaces : standardiser."
+  },
+  {
+   "dit": "Une valeur aberrante n'est pas forcément une erreur, mais elle fausse les statistiques. La règle de l'intervalle interquartile : l'écart interquartile vaut le troisième quartile moins le premier, et tout ce qui sort de premier quartile moins un virgule cinq fois cet écart à troisième quartile plus un virgule cinq fois cet écart est suspect. Au-delà d'un z-score de trois en valeur absolue, même vigilance.",
+   "ecran": "outliers",
+   "id": "p19",
+   "texte": "IQR : en dehors de Q1 moins 1,5 IQR, suspect."
+  },
+  {
+   "dit": "Pour comparer des échelles différentes, on remet les variables à la même échelle. La normalisation min-max ramène entre zéro et un : x moins son minimum, sur son maximum moins son minimum. La standardisation z-score centre et réduit : x moins la moyenne, sur l'écart-type, pour une moyenne nulle et un écart-type de un.",
+   "ecran": "normalisation",
+   "id": "p20",
+   "texte": "Min-max entre 0 et 1, z-score centré réduit."
+  },
+  {
+   "dit": "Les algorithmes ne comprennent pas le texte : il faut coder. Map convertit les catégories ordonnées, comme S, M, L, XL vers zéro, un, deux, trois. Get dummies crée une colonne zéro-un par catégorie, pour les nominales sans ordre. Pivot passe du format long au large, melt fait l'inverse. Choisissez la structure selon l'analyse.",
+   "ecran": "encodage",
+   "id": "p21",
+   "texte": "Map, get-dummies, pivot, melt."
+  },
+  {
+   "dit": "Le filtrage booléen combine des conditions : et avec l'esperluette, ou avec la barre verticale, non avec le tilde, toujours entre parenthèses. Exemple météo : température inférieure à douze et précipitations supérieures à quinze. Isin sélectionne une liste de valeurs, between une plage, et query offre une syntaxe plus lisible.",
+   "ecran": "filtrage",
+   "id": "p22",
+   "texte": "Et, ou, non : parenthèses obligatoires."
+  },
+  {
+   "dit": "Pour créer des colonnes, trois outils. Map transforme élément par élément, pour une Series. Apply applique une fonction à une ligne ou une colonne, par exemple catégoriser les précipitations en faible, modérée ou forte. Assign crée plusieurs colonnes d'un coup. Et préférez les opérations vectorisées, bien plus rapides qu'un apply.",
+   "ecran": "colonnes",
+   "id": "p23",
+   "texte": "Map, apply, assign : trois niveaux."
+  },
+  {
+   "dit": "Regardez l'arbre : il se divise en branches, comme un groupby. Split : on sépare le DataFrame par ville. Apply : on applique une fonction à chaque groupe. Combine : on recombine les résultats. Par ville, on obtient alors moyenne, écart-type et effectif des températures, ou la somme des précipitations. C'est la puissance du regroupement.",
+   "ecran": "groupby",
+   "id": "p24",
+   "texte": "Split, apply, combine : le groupby."
+  },
+  {
+   "dit": "Au-delà du groupby simple, agg applique plusieurs fonctions : moyenne, écart-type, somme, effectif. La table pivot croise deux dimensions, par exemple le salaire moyen par département et tranche d'âge, avec fill value zéro pour les cases vides et margins pour ajouter les totaux. On passe ainsi du groupe au tableau croisé multidimensionnel.",
+   "ecran": "agregation",
+   "id": "p25",
+   "texte": "Agg, pivot-table, margins : le tableau croisé."
+  },
+  {
+   "dit": "Décrire, c'est mesurer le centre et la dispersion. La moyenne est sensible aux extrêmes, la médiane, valeur centrale, y résiste, le mode est la valeur la plus fréquente. L'écart-type, à l'écran, est la racine de la moyenne des carrés des écarts à la moyenne. L'intervalle interquartile, lui, résiste aux extrêmes, et le coefficient de variation rapporte l'écart-type à la moyenne, en pour cent.",
+   "ecran": "stats",
+   "id": "p26",
+   "texte": "Sigma : racine de la moyenne des carrés des écarts."
+  },
+  {
+   "dit": "Pour les séries temporelles, on agrège par mois ou par période, et on lisse avec les moyennes mobiles : rolling sept jours et rolling trente jours sur les ventes quotidiennes. La courbe brute tremble, les moyennes mobiles révèlent la tendance et la saisonnalité. Attention : agréger avant de nettoyer fausse tout, et un groupe de dix observations ne pèse pas comme un groupe de mille.",
+   "ecran": "temporel",
+   "id": "p27",
+   "texte": "Rolling 7 et 30 jours : lisser la tendance."
+  },
+  {
+   "dit": "Un graphique vaut mieux qu'un tableau de chiffres : il montre la tendance saisonnière, les années exceptionnelles et les points aberrants d'un coup d'œil. Matplotlib s'organise en figure, la toile, axes, le cadre, et artistes, les éléments tracés. Avec pandas, la méthode plot trace directement : courbe, histogramme, nuage de points ou boîte à moustaches, en une ligne.",
+   "ecran": "visualisation",
+   "id": "p28",
+   "texte": "Figure, axes, artistes : l'atelier matplotlib."
+  },
+  {
+   "dit": "Regardez le nuage de points : trois panneaux, trois relations possibles, croissante, décroissante ou sans structure. Dans le projet immobilier, la corrélation entre surface et prix vaut zéro virgule soixante-cinq : forte, mais ce n'est pas une preuve de cause. Glaces et noyades montent ensemble l'été, sans que l'une cause l'autre : méfiez-vous des corrélations illusoires.",
+   "ecran": "correlation",
+   "id": "p29",
+   "texte": "Surface-prix : r = 0,65, corrélation, pas cause."
+  },
+  {
+   "dit": "Récapitulons tout le parcours, illustré par le projet immobilier de vingt mille ventes. Charger avec les bonnes options, explorer avec head, info et describe, nettoyer manquantes, doublons et aberrantes, transformer par filtrage, groupby et pivot, puis visualiser. Résultat du projet : la surface habitable est le premier facteur du prix, avec une élasticité proche de zéro virgule quatre-vingt-cinq. À vous de raconter, à votre tour, ce que disent vos données.",
+   "ecran": "recap",
+   "id": "p30",
+   "texte": "Charger, explorer, nettoyer, transformer, visualiser."
+  }
+ ],
+ "titre": "Traitement de données avec Python et pandas"
+}
