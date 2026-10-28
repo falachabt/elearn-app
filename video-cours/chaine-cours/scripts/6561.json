@@ -1,334 +1,334 @@
 {
-  "cours": 6561,
-  "titre": "Limites et continuité d'une fonction réelle",
-  "matiere": "Mathématique",
-  "ecrans": {
-    "titre": {
-      "type": "titre",
-      "kicker": "Mathématique · Terminale",
-      "titre": "Limites et continuité d'une fonction réelle",
-      "sous": "Définitions rigoureuses, formes indéterminées, prolongement et théorème des valeurs intermédiaires",
-      "anim": {
-        "nom": "graphe_fig",
-        "hauteur": 250
-      }
-    },
-    "intro": {
-      "type": "phrase",
-      "kicker": "Introduction",
-      "texte": "Approcher un point sans l'atteindre : toute la leçon tient dans ce geste, qui fonde les limites, puis la continuité.",
-      "anim": {
-        "nom": "graphe_fig",
-        "hauteur": 180
-      }
-    },
-    "exemple_intuitif": {
-      "type": "etape",
-      "kicker": "L'idée intuitive · un trou dans la courbe",
-      "titre": "Absente en un, tendue vers deux",
-      "tex": [
-        "f(x) = \\tfrac{x^2-1}{x-1} = x+1 \\quad (x \\ne 1)",
-        "\\lim_{x\\to1} f(x) = 2 \\qquad f(1) \\text{ n'existe pas}"
-      ],
-      "anim": {
-        "nom": "fleche_fonction",
-        "hauteur": 130
-      }
-    },
-    "def_formelle": {
-      "type": "formule",
-      "kicker": "Définition formelle · epsilon et delta",
-      "tex": "|x-x_0| < \\delta \\;\\Rightarrow\\; |f(x)-L| < \\varepsilon",
-      "note": "Pour tout epsilon, un delta existe : assez près force les valeurs près de L.",
-      "anim": {
-        "nom": "bande_epsilon_fig",
-        "hauteur": 150
-      }
-    },
-    "preuve_epsilon": {
-      "type": "etape",
-      "kicker": "Exemple · prouver une limite proprement",
-      "titre": "Prouver une limite avec epsilon et delta",
-      "tex": [
-        "|(3x+1)-7| = 3|x-2|",
-        "\\delta = \\tfrac{\\varepsilon}{3}",
-        "3|x-2| < \\varepsilon \\quad \\text{si } |x-2|<\\delta"
-      ]
-    },
-    "autres_limites": {
-      "type": "phrase",
-      "kicker": "Les autres régimes de limites",
-      "texte": "Limite infinie en un point, limite finie à l'infini, limite infinie à l'infini : dépasser tout seuil, ou rester sous tout epsilon, dès que la variable est assez proche ou assez loin.",
-      "anim": {
-        "nom": "hyperbole_fig",
-        "hauteur": 140
-      }
-    },
-    "gauche_droite": {
-      "type": "etape",
-      "kicker": "Limites à gauche et à droite",
-      "titre": "Un sur ixe en zéro : les deux côtés",
-      "tex": [
-        "\\lim_{x\\to0^+} \\tfrac{1}{x} = +\\infty",
-        "\\lim_{x\\to0^-} \\tfrac{1}{x} = -\\infty"
-      ],
-      "anim": {
-        "nom": "hyperbole_fig",
-        "hauteur": 140
-      }
-    },
-    "formes_indet": {
-      "type": "phrase",
-      "kicker": "Formes indéterminées",
-      "texte": "Quatre formes indéterminées : zéro sur zéro, infini sur infini, infini moins infini, zéro fois infini. Aucune ne conclut : il faut transformer l'expression.",
-      "anim": {
-        "nom": "graphe_fig",
-        "hauteur": 150
-      }
-    },
-    "methodes_rat": {
-      "type": "formule",
-      "kicker": "Lever une indétermination · à l'infini",
-      "tex": "\\lim_{x \\to +\\infty} \\frac{2x^2 + 3x - 1}{x^2 - x + 5} = 2",
-      "note": "Factoriser haut et bas par ixe carré : reste deux sur un, les dominants."
-    },
-    "conjuguee": {
-      "type": "etape",
-      "kicker": "Lever une indétermination · la conjuguée",
-      "titre": "Quantité conjuguée : la racine se simplifie",
-      "tex": [
-        "\\sqrt{x^2+x} - x = \\tfrac{x}{\\sqrt{x^2+x}+x}",
-        "\\sqrt{x^2+x} = x\\sqrt{1+\\tfrac{1}{x}} \\quad (x>0)",
-        "\\lim_{x\\to+\\infty} \\left(\\sqrt{x^2+x}-x\\right) = \\tfrac{1}{2}"
-      ]
-    },
-    "gendarmes": {
-      "type": "formule",
-      "kicker": "Théorèmes de comparaison",
-      "tex": "g(x) \\le f(x) \\le h(x) \\;\\Rightarrow\\; \\lim f = L",
-      "note": "Entre deux fonctions de même limite, f suit le mouvement.",
-      "anim": {
-        "nom": "gendarmes_fig",
-        "hauteur": 140
-      }
-    },
-    "continuite": {
-      "type": "formule",
-      "kicker": "Continuité en un point",
-      "tex": "\\lim_{x \\to x_0} f(x) = f(x_0)",
-      "note": "La valeur existe, la limite existe, elles coïncident : continuité au point.",
-      "anim": {
-        "nom": "discontinuites_fig",
-        "hauteur": 150
-      }
-    },
-    "proprietes": {
-      "type": "phrase",
-      "kicker": "Continuité · les opérations",
-      "texte": "Somme, produit, quotient au dénominateur non nul et composée de fonctions continues restent continues : la continuité se transporte par les opérations usuelles.",
-      "anim": {
-        "nom": "exponentielle_fig",
-        "hauteur": 140
-      }
-    },
-    "prolongement": {
-      "type": "formule",
-      "kicker": "Prolongement par continuité",
-      "tex": "g(1) = 2 \\qquad g(x) = x + 1",
-      "note": "Non définie en un, limite deux en un : on bouche le trou par deux.",
-      "anim": {
-        "nom": "graphe_fig",
-        "hauteur": 140
-      }
-    },
-    "tvi": {
-      "type": "formule",
-      "kicker": "Théorème des valeurs intermédiaires",
-      "tex": "\\exists c \\in [a,b], \\quad f(c) = k",
-      "note": "f continue sur le segment, k entre les valeurs aux bornes : k est atteint.",
-      "anim": {
-        "nom": "graphe_fig",
-        "hauteur": 180
-      }
-    },
-    "bijection": {
-      "type": "etape",
-      "kicker": "Corollaire · la stricte monotonie",
-      "titre": "Continue et strictement monotone : bijection",
-      "tex": [
-        "k \\text{ entre } f(a) \\text{ et } f(b)",
-        "\\exists! \\, c \\in [a, b] \\quad f(c) = k"
-      ],
-      "anim": {
-        "nom": "graphe_fig",
-        "hauteur": 130
-      }
-    },
-    "tvi_exemple1": {
-      "type": "etape",
-      "kicker": "Exemple résolu · le théorème de la bijection",
-      "titre": "L'exemple du TVI : préparer le terrain",
-      "tex": [
-        "f(x) = x^3 + x - 1 \\quad f'(x) = 3x^2 + 1 > 0",
-        "f(0) = -1 \\qquad f(1) = 1"
-      ],
-      "anim": {
-        "nom": "tableau_variations_fig",
-        "hauteur": 130
-      }
-    },
-    "tvi_exemple2": {
-      "type": "etape",
-      "kicker": "Exemple résolu · conclure",
-      "titre": "Conclusion : une unique solution alpha",
-      "tex": [
-        "-1 < 0 < 1 \\qquad f(0) < 0 < f(1)",
-        "\\exists! \\, \\alpha \\in ]0,1[ \\quad f(\\alpha)=0"
-      ],
-      "anim": {
-        "nom": "tableau_variations_fig",
-        "hauteur": 130
-      }
-    },
-    "recap": {
-      "type": "recap",
-      "kicker": "À retenir",
-      "etapes": [
-        "Limite : approcher sans atteindre",
-        "Epsilon-delta : quantifier le rapprochement",
-        "Indéterminée : factoriser ou conjuguer",
-        "Continuité plus monotonie : le TVI conclut"
-      ]
-    }
+ "cours": 6561,
+ "ecrans": {
+  "autres_limites": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "hyperbole_fig"
+   },
+   "kicker": "Les autres régimes de limites",
+   "texte": "Limite infinie en un point, limite finie à l'infini, limite infinie à l'infini : dépasser tout seuil, ou rester sous tout epsilon, dès que la variable est assez proche ou assez loin.",
+   "type": "phrase"
   },
-  "phrases": [
-    {
-      "id": "p01",
-      "dit": "Bienvenue dans cette leçon de terminale consacrée aux limites et à la continuité des fonctions numériques d'une variable réelle : définitions rigoureuses, formes indéterminées, prolongement par continuité et théorème des valeurs intermédiaires, jusqu'à un exemple résolu pas à pas.",
-      "texte": "Limites et continuité : le programme de la leçon.",
-      "ecran": "titre"
-    },
-    {
-      "id": "p02",
-      "dit": "Une limite décrit un comportement d'approche : quand la variable se rapproche d'un point, sans forcément l'atteindre, les valeurs de la fonction se resserrent autour d'un nombre. C'est ce geste, approcher sans atteindre, qui permettra ensuite de parler de continuité sans trou ni saut.",
-      "texte": "Approcher sans atteindre : l'idée de limite.",
-      "ecran": "intro"
-    },
-    {
-      "id": "p03",
-      "dit": "Premier exemple : le quotient de ixe carré moins un par ixe moins un. En un, le dénominateur s'annule : la fonction n'existe pas. Mais hors de un, le quotient se simplifie en ixe plus un, et quand ixe s'approche de un, les valeurs s'approchent de deux. La limite en un vaut donc deux, malgré le trou.",
-      "texte": "Un trou en un, une limite égale à deux.",
-      "ecran": "exemple_intuitif"
-    },
-    {
-      "id": "p04",
-      "dit": "La définition formelle quantifie ce rapprochement : pour toute marge d'erreur epsilon, aussi petite soit-elle, il existe une proximité delta telle que toute variable à distance moindre de la cible donne des valeurs à distance moindre qu'epsilon de la limite. Epsilon se choisit d'abord, delta se construit ensuite.",
-      "texte": "Epsilon d'abord, delta ensuite : la définition.",
-      "ecran": "def_formelle"
-    },
-    {
-      "id": "p05",
-      "dit": "Exemple de preuve : la limite de trois ixe plus un, quand ixe tend vers deux, vaut sept. L'écart des valeurs à sept vaut trois fois l'écart de ixe à deux : il suffit donc de prendre delta égal à epsilon sur trois pour forcer l'écart final sous epsilon. La preuve est un aller-retour entre les deux écarts.",
-      "texte": "Trois ixe plus un tend vers sept : delta vaut epsilon sur trois.",
-      "ecran": "preuve_epsilon"
-    },
-    {
-      "id": "p06",
-      "dit": "Les mêmes idées se déclinent : une limite peut être infinie en un point fini, finie quand la variable part à l'infini, ou infinie à l'infini. Dans chaque régime, on remplace la proximité par le dépassement d'un seuil : dépasser tout nombre donné, dès que la variable est assez proche du point ou assez loin vers l'infini.",
-      "texte": "Trois autres régimes : seuils contre proximités.",
-      "ecran": "autres_limites"
-    },
-    {
-      "id": "p07",
-      "dit": "En un point, il faut regarder les deux côtés séparément. Pour la fonction inverse, à droite de zéro les valeurs explosent vers plus l'infini, à gauche elles plongent vers moins l'infini. Les deux limites latérales diffèrent : la fonction n'admet donc pas de limite en zéro, et sa courbe présente deux branches opposées.",
-      "texte": "L'inverse en zéro : pas de limite globale.",
-      "ecran": "gauche_droite"
-    },
-    {
-      "id": "p08",
-      "dit": "Certains calculs directs ne concluent pas : zéro sur zéro, infini sur infini, infini moins infini et zéro fois infini sont les quatre formes indéterminées. Le mot indéterminée est un ordre de travail : transformer l'expression, par factorisation, par quantité conjuguée ou par comparaison, jusqu'à faire apparaître la réponse.",
-      "texte": "Quatre formes indéterminées : transformer avant de conclure.",
-      "ecran": "formes_indet"
-    },
-    {
-      "id": "p09",
-      "dit": "À l'infini, la factorisation par le terme dominant tranche. Pour le quotient de deux ixe carré plus trois ixe moins un par ixe carré moins ixe plus cinq, on factorise haut et bas par ixe carré : tous les termes en un sur ixe disparaissent, et il reste le rapport des coefficients dominants, deux sur un. La limite vaut deux.",
-      "texte": "À l'infini : le rapport des termes dominants, deux.",
-      "ecran": "methodes_rat"
-    },
-    {
-      "id": "p10",
-      "dit": "Avec des racines, la quantité conjuguée fait le travail. La différence entre la racine de ixe carré plus ixe et ixe, multipliée et divisée par sa conjuguée, devient un quotient simple. En factorisant ixe dans la racine, licite car ixe est positif, on obtient une limite de un demi.",
-      "texte": "Quantité conjuguée : la limite vaut un demi.",
-      "ecran": "conjuguee"
-    },
-    {
-      "id": "p11",
-      "dit": "Dernier outil de comparaison : si une fonction est coincée entre deux fonctions qui tendent vers la même limite, elle tend vers cette même limite, c'est le théorème des gendarmes. En version majoration, une fonction au-dessus d'une fonction qui tend vers plus l'infini y tend aussi. Encadrer, c'est souvent conclure sans calculer exactement.",
-      "texte": "Gendarmes : encadrer pour conclure.",
-      "ecran": "gendarmes"
-    },
-    {
-      "id": "p12",
-      "dit": "La continuité en un point repose sur trois exigences qui se résument en une égalité : la fonction est définie au point, sa limite au point existe, et cette limite égale sa valeur. Géométriquement, la courbe ne présente ni trou, ni saut, ni rupture : elle se trace sans lever le crayon.",
-      "texte": "Continue en un point : la limite égale la valeur.",
-      "ecran": "continuite"
-    },
-    {
-      "id": "p13",
-      "dit": "Les fonctions usuelles sont continues là où elles sont définies : polynômes et exponentielles partout, fonctions rationnelles et logarithmes sur leur domaine. Et la continuité se transporte : somme, produit, quotient au dénominateur non nul et composée de fonctions continues restent des fonctions continues.",
-      "texte": "La continuité se transporte par les opérations.",
-      "ecran": "proprietes"
-    },
-    {
-      "id": "p14",
-      "dit": "Quand une fonction n'est pas définie en un point mais y possède une limite finie, on peut boucher le trou : le prolongement par continuité donne au point la valeur de la limite. Notre premier exemple se prolonge ainsi en un par la valeur deux, et le prolongement n'est autre que ixe plus un, continu sur toute la droite.",
-      "texte": "Prolonger : donner au trou la valeur de la limite.",
-      "ecran": "prolongement"
-    },
-    {
-      "id": "p15",
-      "dit": "Le théorème des valeurs intermédiaires transforme la continuité en existence : une fonction continue sur un segment prend toutes les valeurs comprises entre ses valeurs aux deux bornes. Graphiquement, sa courbe ne peut pas sauter par-dessus une droite horizontale intermédiaire : elle la coupe au moins une fois.",
-      "texte": "TVI : toute valeur intermédiaire est atteinte.",
-      "ecran": "tvi"
-    },
-    {
-      "id": "p16",
-      "dit": "Si, de plus, la fonction est strictement monotone, la valeur n'est atteinte qu'une seule fois : c'est le corollaire de la bijection, qui donne existence et unicité d'un seul coup. C'est l'outil complet pour les équations : continuité, stricte monotonie, valeurs aux bornes, et la solution unique est localisée.",
-      "texte": "Stricte monotonie : existence et unicité ensemble.",
-      "ecran": "bijection"
-    },
-    {
-      "id": "p17",
-      "dit": "Exemple résolu : montrer que ixe cube plus ixe moins un s'annule une unique fois entre zéro et un. La fonction est un polynôme, donc continue partout. Sa dérivée, trois ixe carré plus un, est strictement positive : la fonction est strictement croissante. Il reste à lire ses valeurs aux bornes.",
-      "texte": "Préparer le TVI : continuité et stricte croissance.",
-      "ecran": "tvi_exemple1"
-    },
-    {
-      "id": "p18",
-      "dit": "En zéro, la fonction vaut moins un ; en un, elle vaut un. Zéro est donc strictement entre les deux valeurs : le corollaire du théorème des valeurs intermédiaires donne un unique réel alpha, entre zéro et un, où la fonction s'annule. Existence par le théorème, unicité par la stricte croissance : le schéma est complet.",
-      "texte": "Une unique solution alpha entre zéro et un.",
-      "ecran": "tvi_exemple2"
-    },
-    {
-      "id": "p19",
-      "dit": "Pour finir, retenez l'enchaînement de la leçon : approcher pour définir la limite, quantifier avec epsilon et delta, transformer les formes indéterminées, exiger l'égalité pour la continuité, puis conclure par le théorème des valeurs intermédiaires, renforcé par la stricte monotonie quand l'unicité compte.",
-      "texte": "Limites et continuité : à retenir.",
-      "ecran": "recap"
-    }
-  ],
-  "parties": [
-    {
-      "debut": "p01",
-      "sous_titre": "Les limites : intuition, définition et calculs"
-    },
-    {
-      "debut": "p12",
-      "sous_titre": "Continuité, prolongement et théorème des valeurs intermédiaires",
-      "pont": {
-        "texte": "Partie 2 : continuité, prolongement et TVI.",
-        "dit": "Partie deux : continuité, prolongement et théorème des valeurs intermédiaires. La limite devient une égalité avec la valeur, le trou éventuel se bouche, et le théorème des valeurs intermédiaires transforme la continuité en existence de solutions."
-      }
-    }
-  ]
+  "bijection": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Corollaire · la stricte monotonie",
+   "tex": [
+    "k \\text{ entre } f(a) \\text{ et } f(b)",
+    "\\exists! \\, c \\in [a, b] \\quad f(c) = k"
+   ],
+   "titre": "Continue et strictement monotone : bijection",
+   "type": "etape"
+  },
+  "conjuguee": {
+   "kicker": "Lever une indétermination · la conjuguée",
+   "tex": [
+    "\\sqrt{x^2+x} - x = \\tfrac{x}{\\sqrt{x^2+x}+x}",
+    "\\sqrt{x^2+x} = x\\sqrt{1+\\tfrac{1}{x}} \\quad (x>0)",
+    "\\lim_{x\\to+\\infty} \\left(\\sqrt{x^2+x}-x\\right) = \\tfrac{1}{2}"
+   ],
+   "titre": "Quantité conjuguée : la racine se simplifie",
+   "type": "etape"
+  },
+  "continuite": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Continuité en un point",
+   "note": "La valeur existe, la limite existe, elles coïncident : continuité au point.",
+   "tex": "\\lim_{x \\to x_0} f(x) = f(x_0)",
+   "type": "formule"
+  },
+  "def_formelle": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "bande_epsilon_fig"
+   },
+   "kicker": "Définition formelle · epsilon et delta",
+   "note": "Pour tout epsilon, un delta existe : assez près force les valeurs près de L.",
+   "tex": "|x-x_0| < \\delta \\;\\Rightarrow\\; |f(x)-L| < \\varepsilon",
+   "type": "formule"
+  },
+  "exemple_intuitif": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "L'idée intuitive · un trou dans la courbe",
+   "tex": [
+    "f(x) = \\tfrac{x^2-1}{x-1} = x+1 \\quad (x \\ne 1)",
+    "\\lim_{x\\to1} f(x) = 2 \\qquad f(1) \\text{ n'existe pas}"
+   ],
+   "titre": "Absente en un, tendue vers deux",
+   "type": "etape"
+  },
+  "formes_indet": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Formes indéterminées",
+   "texte": "Quatre formes indéterminées : zéro sur zéro, infini sur infini, infini moins infini, zéro fois infini. Aucune ne conclut : il faut transformer l'expression.",
+   "type": "phrase"
+  },
+  "gauche_droite": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "hyperbole_fig"
+   },
+   "kicker": "Limites à gauche et à droite",
+   "tex": [
+    "\\lim_{x\\to0^+} \\tfrac{1}{x} = +\\infty",
+    "\\lim_{x\\to0^-} \\tfrac{1}{x} = -\\infty"
+   ],
+   "titre": "Un sur ixe en zéro : les deux côtés",
+   "type": "etape"
+  },
+  "gendarmes": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "gendarmes_fig"
+   },
+   "kicker": "Théorèmes de comparaison",
+   "note": "Entre deux fonctions de même limite, f suit le mouvement.",
+   "tex": "g(x) \\le f(x) \\le h(x) \\;\\Rightarrow\\; \\lim f = L",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "asymptote_horizontale_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Approcher un point sans l'atteindre : toute la leçon tient dans ce geste, qui fonde les limites, puis la continuité.",
+   "type": "phrase"
+  },
+  "methodes_rat": {
+   "kicker": "Lever une indétermination · à l'infini",
+   "note": "Factoriser haut et bas par ixe carré : reste deux sur un, les dominants.",
+   "tex": "\\lim_{x \\to +\\infty} \\frac{2x^2 + 3x - 1}{x^2 - x + 5} = 2",
+   "type": "formule"
+  },
+  "preuve_epsilon": {
+   "kicker": "Exemple · prouver une limite proprement",
+   "tex": [
+    "|(3x+1)-7| = 3|x-2|",
+    "\\delta = \\tfrac{\\varepsilon}{3}",
+    "3|x-2| < \\varepsilon \\quad \\text{si } |x-2|<\\delta"
+   ],
+   "titre": "Prouver une limite avec epsilon et delta",
+   "type": "etape"
+  },
+  "prolongement": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Prolongement par continuité",
+   "note": "Non définie en un, limite deux en un : on bouche le trou par deux.",
+   "tex": "g(1) = 2 \\qquad g(x) = x + 1",
+   "type": "formule"
+  },
+  "proprietes": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "exp_croissante_fig"
+   },
+   "kicker": "Continuité · les opérations",
+   "texte": "Somme, produit, quotient au dénominateur non nul et composée de fonctions continues restent continues : la continuité se transporte par les opérations usuelles.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Limite : approcher sans atteindre",
+    "Epsilon-delta : quantifier le rapprochement",
+    "Indéterminée : factoriser ou conjuguer",
+    "Continuité plus monotonie : le TVI conclut"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "branche_infinie_fig"
+   },
+   "kicker": "Mathématique · Terminale",
+   "sous": "Définitions rigoureuses, formes indéterminées, prolongement et théorème des valeurs intermédiaires",
+   "titre": "Limites et continuité d'une fonction réelle",
+   "type": "titre"
+  },
+  "tvi": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "lecture_graphique_fig"
+   },
+   "kicker": "Théorème des valeurs intermédiaires",
+   "note": "f continue sur le segment, k entre les valeurs aux bornes : k est atteint.",
+   "tex": "\\exists c \\in [a,b], \\quad f(c) = k",
+   "type": "formule"
+  },
+  "tvi_exemple1": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "tableau_variations_fig"
+   },
+   "kicker": "Exemple résolu · le théorème de la bijection",
+   "tex": [
+    "f(x) = x^3 + x - 1 \\quad f'(x) = 3x^2 + 1 > 0",
+    "f(0) = -1 \\qquad f(1) = 1"
+   ],
+   "titre": "L'exemple du TVI : préparer le terrain",
+   "type": "etape"
+  },
+  "tvi_exemple2": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "tableau_variations_fig"
+   },
+   "kicker": "Exemple résolu · conclure",
+   "tex": [
+    "-1 < 0 < 1 \\qquad f(0) < 0 < f(1)",
+    "\\exists! \\, \\alpha \\in ]0,1[ \\quad f(\\alpha)=0"
+   ],
+   "titre": "Conclusion : une unique solution alpha",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les limites : intuition, définition et calculs"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : continuité, prolongement et théorème des valeurs intermédiaires. La limite devient une égalité avec la valeur, le trou éventuel se bouche, et le théorème des valeurs intermédiaires transforme la continuité en existence de solutions.",
+    "texte": "Partie 2 : continuité, prolongement et TVI."
+   },
+   "sous_titre": "Continuité, prolongement et théorème des valeurs intermédiaires"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans cette leçon de terminale consacrée aux limites et à la continuité des fonctions numériques d'une variable réelle : définitions rigoureuses, formes indéterminées, prolongement par continuité et théorème des valeurs intermédiaires, jusqu'à un exemple résolu pas à pas.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Limites et continuité : le programme de la leçon."
+  },
+  {
+   "dit": "Une limite décrit un comportement d'approche : quand la variable se rapproche d'un point, sans forcément l'atteindre, les valeurs de la fonction se resserrent autour d'un nombre. C'est ce geste, approcher sans atteindre, qui permettra ensuite de parler de continuité sans trou ni saut.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Approcher sans atteindre : l'idée de limite."
+  },
+  {
+   "dit": "Premier exemple : le quotient de ixe carré moins un par ixe moins un. En un, le dénominateur s'annule : la fonction n'existe pas. Mais hors de un, le quotient se simplifie en ixe plus un, et quand ixe s'approche de un, les valeurs s'approchent de deux. La limite en un vaut donc deux, malgré le trou.",
+   "ecran": "exemple_intuitif",
+   "id": "p03",
+   "texte": "Un trou en un, une limite égale à deux."
+  },
+  {
+   "dit": "La définition formelle quantifie ce rapprochement : pour toute marge d'erreur epsilon, aussi petite soit-elle, il existe une proximité delta telle que toute variable à distance moindre de la cible donne des valeurs à distance moindre qu'epsilon de la limite. Epsilon se choisit d'abord, delta se construit ensuite.",
+   "ecran": "def_formelle",
+   "id": "p04",
+   "texte": "Epsilon d'abord, delta ensuite : la définition."
+  },
+  {
+   "dit": "Exemple de preuve : la limite de trois ixe plus un, quand ixe tend vers deux, vaut sept. L'écart des valeurs à sept vaut trois fois l'écart de ixe à deux : il suffit donc de prendre delta égal à epsilon sur trois pour forcer l'écart final sous epsilon. La preuve est un aller-retour entre les deux écarts.",
+   "ecran": "preuve_epsilon",
+   "id": "p05",
+   "texte": "Trois ixe plus un tend vers sept : delta vaut epsilon sur trois."
+  },
+  {
+   "dit": "Les mêmes idées se déclinent : une limite peut être infinie en un point fini, finie quand la variable part à l'infini, ou infinie à l'infini. Dans chaque régime, on remplace la proximité par le dépassement d'un seuil : dépasser tout nombre donné, dès que la variable est assez proche du point ou assez loin vers l'infini.",
+   "ecran": "autres_limites",
+   "id": "p06",
+   "texte": "Trois autres régimes : seuils contre proximités."
+  },
+  {
+   "dit": "En un point, il faut regarder les deux côtés séparément. Pour la fonction inverse, à droite de zéro les valeurs explosent vers plus l'infini, à gauche elles plongent vers moins l'infini. Les deux limites latérales diffèrent : la fonction n'admet donc pas de limite en zéro, et sa courbe présente deux branches opposées.",
+   "ecran": "gauche_droite",
+   "id": "p07",
+   "texte": "L'inverse en zéro : pas de limite globale."
+  },
+  {
+   "dit": "Certains calculs directs ne concluent pas : zéro sur zéro, infini sur infini, infini moins infini et zéro fois infini sont les quatre formes indéterminées. Le mot indéterminée est un ordre de travail : transformer l'expression, par factorisation, par quantité conjuguée ou par comparaison, jusqu'à faire apparaître la réponse.",
+   "ecran": "formes_indet",
+   "id": "p08",
+   "texte": "Quatre formes indéterminées : transformer avant de conclure."
+  },
+  {
+   "dit": "À l'infini, la factorisation par le terme dominant tranche. Pour le quotient de deux ixe carré plus trois ixe moins un par ixe carré moins ixe plus cinq, on factorise haut et bas par ixe carré : tous les termes en un sur ixe disparaissent, et il reste le rapport des coefficients dominants, deux sur un. La limite vaut deux.",
+   "ecran": "methodes_rat",
+   "id": "p09",
+   "texte": "À l'infini : le rapport des termes dominants, deux."
+  },
+  {
+   "dit": "Avec des racines, la quantité conjuguée fait le travail. La différence entre la racine de ixe carré plus ixe et ixe, multipliée et divisée par sa conjuguée, devient un quotient simple. En factorisant ixe dans la racine, licite car ixe est positif, on obtient une limite de un demi.",
+   "ecran": "conjuguee",
+   "id": "p10",
+   "texte": "Quantité conjuguée : la limite vaut un demi."
+  },
+  {
+   "dit": "Dernier outil de comparaison : si une fonction est coincée entre deux fonctions qui tendent vers la même limite, elle tend vers cette même limite, c'est le théorème des gendarmes. En version majoration, une fonction au-dessus d'une fonction qui tend vers plus l'infini y tend aussi. Encadrer, c'est souvent conclure sans calculer exactement.",
+   "ecran": "gendarmes",
+   "id": "p11",
+   "texte": "Gendarmes : encadrer pour conclure."
+  },
+  {
+   "dit": "La continuité en un point repose sur trois exigences qui se résument en une égalité : la fonction est définie au point, sa limite au point existe, et cette limite égale sa valeur. Géométriquement, la courbe ne présente ni trou, ni saut, ni rupture : elle se trace sans lever le crayon.",
+   "ecran": "continuite",
+   "id": "p12",
+   "texte": "Continue en un point : la limite égale la valeur."
+  },
+  {
+   "dit": "Les fonctions usuelles sont continues là où elles sont définies : polynômes et exponentielles partout, fonctions rationnelles et logarithmes sur leur domaine. Et la continuité se transporte : somme, produit, quotient au dénominateur non nul et composée de fonctions continues restent des fonctions continues.",
+   "ecran": "proprietes",
+   "id": "p13",
+   "texte": "La continuité se transporte par les opérations."
+  },
+  {
+   "dit": "Quand une fonction n'est pas définie en un point mais y possède une limite finie, on peut boucher le trou : le prolongement par continuité donne au point la valeur de la limite. Notre premier exemple se prolonge ainsi en un par la valeur deux, et le prolongement n'est autre que ixe plus un, continu sur toute la droite.",
+   "ecran": "prolongement",
+   "id": "p14",
+   "texte": "Prolonger : donner au trou la valeur de la limite."
+  },
+  {
+   "dit": "Le théorème des valeurs intermédiaires transforme la continuité en existence : une fonction continue sur un segment prend toutes les valeurs comprises entre ses valeurs aux deux bornes. Graphiquement, sa courbe ne peut pas sauter par-dessus une droite horizontale intermédiaire : elle la coupe au moins une fois.",
+   "ecran": "tvi",
+   "id": "p15",
+   "texte": "TVI : toute valeur intermédiaire est atteinte."
+  },
+  {
+   "dit": "Si, de plus, la fonction est strictement monotone, la valeur n'est atteinte qu'une seule fois : c'est le corollaire de la bijection, qui donne existence et unicité d'un seul coup. C'est l'outil complet pour les équations : continuité, stricte monotonie, valeurs aux bornes, et la solution unique est localisée.",
+   "ecran": "bijection",
+   "id": "p16",
+   "texte": "Stricte monotonie : existence et unicité ensemble."
+  },
+  {
+   "dit": "Exemple résolu : montrer que ixe cube plus ixe moins un s'annule une unique fois entre zéro et un. La fonction est un polynôme, donc continue partout. Sa dérivée, trois ixe carré plus un, est strictement positive : la fonction est strictement croissante. Il reste à lire ses valeurs aux bornes.",
+   "ecran": "tvi_exemple1",
+   "id": "p17",
+   "texte": "Préparer le TVI : continuité et stricte croissance."
+  },
+  {
+   "dit": "En zéro, la fonction vaut moins un ; en un, elle vaut un. Zéro est donc strictement entre les deux valeurs : le corollaire du théorème des valeurs intermédiaires donne un unique réel alpha, entre zéro et un, où la fonction s'annule. Existence par le théorème, unicité par la stricte croissance : le schéma est complet.",
+   "ecran": "tvi_exemple2",
+   "id": "p18",
+   "texte": "Une unique solution alpha entre zéro et un."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement de la leçon : approcher pour définir la limite, quantifier avec epsilon et delta, transformer les formes indéterminées, exiger l'égalité pour la continuité, puis conclure par le théorème des valeurs intermédiaires, renforcé par la stricte monotonie quand l'unicité compte.",
+   "ecran": "recap",
+   "id": "p19",
+   "texte": "Limites et continuité : à retenir."
+  }
+ ],
+ "titre": "Limites et continuité d'une fonction réelle"
 }
