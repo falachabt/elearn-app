@@ -9204,8 +9204,9 @@ const FIG = {
       `<path d="M 618,238 A 82,82 0 0 1 492,232" fill="none" stroke="#E8604C" stroke-width="4"/>` + pointe(484, 230, 235, '#E8604C') +
       mot(348, 290, 'roue motrice', { t: 20, c: '#1A75FF' }) +
       mot(556, 290, 'roue menée', { t: 20, c: '#E8604C' }) +
-      mot(790, 140, 'engrenées : elles tournent', { t: 20, a: 'start' }) +
-      mot(790, 170, 'en sens contraires', { t: 20, a: 'start' }));
+      mot(738, 118, 'engrenées :', { t: 19, a: 'start' }) +
+      mot(738, 144, 'elles tournent', { t: 19, a: 'start' }) +
+      mot(738, 170, 'en sens contraires', { t: 19, a: 'start' }));
   },
   champ_fil_fig(t) {
     const p = prog(t);
@@ -9320,7 +9321,7 @@ const FIG = {
       `<circle cx="250" cy="142" r="31" fill="#10B981" fill-opacity=".5"/>` +
       mot(205, 272, 'les plantes', { t: 20 }) +
       trait(430, 66, 262, 108, p, { c: '#10B981', w: 5 }) + pointe(254, 112, 140, '#10B981') +
-      mot(300, 62, 'photosynthèse : absorbé', { t: 18, c: '#10B981', a: 'start' }) +
+      mot(352, 132, 'photosynthèse', { t: 19, c: '#10B981' }) +
       `<rect x="742" y="182" width="118" height="58" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-width="4"/>` +
       `<rect x="772" y="128" width="30" height="54" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-width="4"/>` +
       `<circle cx="787" cy="112" r="11" fill="currentColor" opacity=".35"/>` +
@@ -9357,8 +9358,8 @@ const FIG = {
       mot(430, 232, 'la matrice, au centre', { t: 19 }) +
       `<path d="M 392,128 A 46,40 0 1 1 392,176" fill="none" stroke="#1A75FF" stroke-width="4" stroke-dasharray="8 6"/>` +
       pointe(388, 182, 115, '#1A75FF') +
-      mot(700, 96, 'le cycle de Krebs', { t: 20, c: '#1A75FF', a: 'start' }) +
-      trait(600, 128, 692, 104, p, { w: 3, c: '#1A75FF' }) +
+      trait(646, 146, 696, 146, p, { w: 3, c: '#1A75FF' }) +
+      mot(706, 154, 'le cycle de Krebs', { t: 20, c: '#1A75FF', a: 'start' }) +
       trait(648, 168, 730, 196, p, { c: '#10B981', w: 5 }) + pointe(738, 199, 25, '#10B981') +
       mot(748, 190, 'énergie (ATP)', { t: 20, c: '#10B981', a: 'start' }) +
       trait(648, 128, 730, 96, p, { w: 4 }) + pointe(738, 93, -25, 'currentColor') +
