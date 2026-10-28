@@ -1,0 +1,552 @@
+{
+ "cours": 6838,
+ "titre": "Technologies et environnement",
+ "matiere": "Biologie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Biologie · Environnement",
+   "titre": "Technologies et environnement",
+   "sous": "Conserver les fruits, produire des biocarburants, valoriser les déchets",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 250
+   }
+  },
+  "pourquoi": {
+   "type": "phrase",
+   "kicker": "Pourquoi transformer et conserver ?",
+   "texte": "Fruits périssables : eau et sucres nourrissent les microbes.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "mangue": {
+   "type": "phrase",
+   "kicker": "La mangue, fruit climatérique",
+   "texte": "Elle mûrit après la récolte, et se dégrade en quelques jours.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "sechage": {
+   "type": "phrase",
+   "kicker": "Le séchage de la mangue",
+   "texte": "Tranches fines, air chaud 50-60 °C, environ 80 % d'eau en moins.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "confiture": {
+   "type": "phrase",
+   "kicker": "La confiture de mangue",
+   "texte": "Le sucre déshydrate les microbes par pression osmotique.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "jus": {
+   "type": "phrase",
+   "kicker": "Jus et nectar",
+   "texte": "Pressées, puis pasteurisées vers 85 °C.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "sechage_calc": {
+   "type": "formule",
+   "kicker": "Séchage : le calcul",
+   "tex": "2 - 0{,}42 = 1{,}58",
+   "note": "Deux kilogrammes de mangue fraîche à quatre-vingt-deux pour cent d'eau, séchée à quinze pour cent d'eau : masse finale environ zéro virgule quarante-deux kilogramme, eau éliminée un virgule cinquante-huit kilogramme."
+  },
+  "tomate": {
+   "type": "phrase",
+   "kicker": "La tomate",
+   "texte": "Environ 94 % d'eau, peu acide, sensible au froid.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "sterilisation": {
+   "type": "phrase",
+   "kicker": "La stérilisation de la tomate",
+   "texte": "Bocaux hermétiques, plus de 100 °C, généralement 115-120 °C.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "concentre": {
+   "type": "phrase",
+   "kicker": "Le concentré de tomate",
+   "texte": "Le jus chauffé s'épaissit : double ou triple concentré.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "congelation": {
+   "type": "phrase",
+   "kicker": "La congélation",
+   "texte": "À -18 °C ou moins : le froid suspend, sans détruire.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "comparaison": {
+   "type": "phrase",
+   "kicker": "Fraîche, stérilisée, congelée",
+   "texte": "La stérilisation conserve le plus longtemps.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "principes": {
+   "type": "phrase",
+   "kicker": "Quatre principes communs",
+   "texte": "Enlever l'eau, chauffer, sucrer ou saler, refroidir.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "biocarburant": {
+   "type": "phrase",
+   "kicker": "Qu'est-ce qu'un biocarburant ?",
+   "texte": "Un carburant de biomasse, renouvelable à l'échelle humaine.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "bilan_carbone": {
+   "type": "phrase",
+   "kicker": "Un bilan carbone quasi neutre",
+   "texte": "Le CO₂ émis égale le CO₂ absorbé par la plante.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "generations": {
+   "type": "phrase",
+   "kicker": "Les générations",
+   "texte": "Deuxième et troisième : ne pas concurrencer l'alimentation.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "bioethanol1": {
+   "type": "phrase",
+   "kicker": "Bioéthanol : extraction et fermentation",
+   "texte": "Sucres extraits, puis levures : éthanol et CO₂.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "bioethanol2": {
+   "type": "phrase",
+   "kicker": "Bioéthanol : distillation et déshydratation",
+   "texte": "L'éthanol s'évapore à 78 °C, puis on élimine l'eau restante.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "bioethanol_calc": {
+   "type": "formule",
+   "kicker": "Bioéthanol : le calcul",
+   "tex": "11112 \\times 46 = 511152",
+   "note": "Mille kilogrammes de glucose : environ cinq mille cinq cent cinquante-six moles de glucose, qui donnent onze mille cent douze moles d'éthanol, soit environ cinq cent onze kilogrammes."
+  },
+  "biodiesel1": {
+   "type": "phrase",
+   "kicker": "Biodiesel : huile et raffinage",
+   "texte": "Colza, tournesol, palme ou graisses animales.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "biodiesel2": {
+   "type": "phrase",
+   "kicker": "Biodiesel : la transestérification",
+   "texte": "Huile plus méthanol, catalyseur : biodiesel et glycérine.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "biodiesel_calc": {
+   "type": "formule",
+   "kicker": "Biodiesel : le calcul",
+   "tex": "92352 \\times 0{,}90 = 83117",
+   "note": "Cent litres de triglycéride à quatre-vingt-dix pour cent de rendement : masse théorique quatre-vingt-douze mille trois cent cinquante-deux grammes, masse obtenue environ quatre-vingt-trois kilogrammes."
+  },
+  "gen23": {
+   "type": "phrase",
+   "kicker": "Deuxième et troisième générations",
+   "texte": "Bois et paille gazéifiés, algues en bassins.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "bilan_bio": {
+   "type": "phrase",
+   "kicker": "Bilan et limites des biocarburants",
+   "texte": "Première génération répandue, mais concurrence alimentaire.",
+   "anim": {
+    "nom": "plante_fig",
+    "hauteur": 220
+   }
+  },
+  "papier": {
+   "type": "phrase",
+   "kicker": "Le papier usagé, deux valorisations",
+   "texte": "Brûlé pour l'énergie, ou recyclé en nouveaux produits.",
+   "anim": {
+    "nom": "boite_carton_fig",
+    "hauteur": 220
+   }
+  },
+  "chaine_energie": {
+   "type": "phrase",
+   "kicker": "Du papier à l'électricité",
+   "texte": "Four, chaudière, vapeur, turbine, alternateur.",
+   "anim": {
+    "nom": "boite_carton_fig",
+    "hauteur": 220
+   }
+  },
+  "papier_calc": {
+   "type": "formule",
+   "kicker": "Papier brûlé : le calcul",
+   "tex": "16000 \\times 0{,}25 = 4000",
+   "note": "Une tonne de papier dégage environ seize mille mégajoules ; à vingt-cinq pour cent de rendement, quatre mille mégajoules d'électricité, de quoi alimenter environ cent foyers pendant une journée."
+  },
+  "pulpage": {
+   "type": "phrase",
+   "kicker": "Le pulpage du papier",
+   "texte": "Tri, pâte, épuration, blanchiment, feuille, découpe.",
+   "anim": {
+    "nom": "boite_carton_fig",
+    "hauteur": 220
+   }
+  },
+  "papier_hyg": {
+   "type": "formule",
+   "kicker": "Papier hygiénique recyclé : le calcul",
+   "tex": "\\frac{600}{1{,}2} = 500",
+   "note": "Un kilogramme de papier hygiénique recyclé demande environ un virgule deux kilogramme de vieux papiers ; six cents kilogrammes collectés donnent cinq cents kilogrammes."
+  },
+  "plastique": {
+   "type": "phrase",
+   "kicker": "Les plastiques",
+   "texte": "Pétrochimiques, non biodégradables : recycler économise le fossile.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "bouteilles": {
+   "type": "phrase",
+   "kicker": "Recycler les bouteilles en PET",
+   "texte": "Tri, broyage, lavage, densité, granulés, nouvelles bouteilles.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "pet_calc": {
+   "type": "formule",
+   "kicker": "Bouteilles PET : le calcul",
+   "tex": "2000 \\times 0{,}90 = 1800",
+   "note": "Deux tonnes de bouteilles par heure à quatre-vingt-dix pour cent de rendement donnent mille huit cents kilogrammes de granulés par heure, soit un virgule huit tonne."
+  },
+  "paves": {
+   "type": "phrase",
+   "kicker": "Les pavés de plastique",
+   "texte": "Plastiques non recyclables en bouteilles, fondus et moulés.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "paves_calc": {
+   "type": "formule",
+   "kicker": "Pavés : le calcul",
+   "tex": "0{,}20 \\times 0{,}10 = 0{,}02",
+   "note": "Un pavé de vingt centimètres sur dix centimètres sur cinq centimètres a un volume de zéro virgule zéro zéro un mètre cube ; cinq cents kilogrammes donnent cinq cents pavés, couvrant dix mètres carrés."
+  },
+  "avantages": {
+   "type": "phrase",
+   "kicker": "Les avantages de la valorisation",
+   "texte": "Recycler coûte 2 à 10 fois moins d'énergie que produire du neuf.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "L'essentiel à retenir",
+   "etapes": [
+    "Fruits : eau, chaleur, froid et sucre contre les micro-organismes ; séchage de la mangue, un virgule cinquante-huit kilogramme d'eau éliminée",
+    "Biocarburants : bioéthanol par fermentation, biodiesel par transestérification, générations deux et trois non alimentaires",
+    "Déchets : papier brûlé ou recyclé, plastique en bouteilles ou en pavés",
+    "Valoriser, c'est transformer des déchets en ressources et économiser de l'énergie"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Trois technologies au service de l'environnement.",
+   "dit": "Bienvenue dans ce cours sur les technologies et l'environnement. Nous verrons comment transformer et conserver les fruits, avec la mangue et la tomate, puis comment produire des biocarburants, et enfin comment valoriser les déchets de papier et de plastique."
+  },
+  {
+   "id": "p02",
+   "ecran": "pourquoi",
+   "texte": "Fruits périssables : eau et sucres nourrissent les microbes.",
+   "dit": "Les fruits de saison, comme la mangue et la tomate, sont des produits périssables. Leur forte teneur en eau et en sucres favorise le développement de micro-organismes, bactéries, moisissures et levures, qui accélèrent leur dégradation. La transformation et la conservation visent à prolonger leur durée de consommation en inhibant ces micro-organismes, tout en préservant au maximum leurs qualités nutritionnelles, les vitamines et les minéraux, et leurs qualités gustatives."
+  },
+  {
+   "id": "p03",
+   "ecran": "mangue",
+   "texte": "Elle mûrit après la récolte, et se dégrade en quelques jours.",
+   "dit": "La mangue est un fruit climatérique : elle continue de mûrir après la récolte. Elle est très fragile et mûrit rapidement à température ambiante. Sans traitement, elle se dégrade en quelques jours. La transformation permet de valoriser les excédents de production et de consommer ce fruit toute l'année."
+  },
+  {
+   "id": "p04",
+   "ecran": "sechage",
+   "texte": "Tranches fines, air chaud 50-60 °C, environ 80 % d'eau en moins.",
+   "dit": "Le séchage : la mangue est coupée en tranches fines, puis déshydratée par circulation d'air chaud, entre cinquante et soixante degrés Celsius. L'élimination de l'eau, environ quatre-vingts pour cent de sa masse, empêche la prolifération des micro-organismes. On obtient des chips de mangue ou de la mangue séchée."
+  },
+  {
+   "id": "p05",
+   "ecran": "confiture",
+   "texte": "Le sucre déshydrate les microbes par pression osmotique.",
+   "dit": "La fabrication de confiture : les morceaux de mangue sont cuits avec du sucre. Le sucre crée une pression osmotique élevée qui déshydrate les cellules microbiennes et les tue. La cuisson détruit également les micro-organismes présents."
+  },
+  {
+   "id": "p06",
+   "ecran": "jus",
+   "texte": "Pressées, puis pasteurisées vers 85 °C.",
+   "dit": "La production de jus et de nectar : les mangues sont pressées, puis le jus est pasteurisé, chauffé à environ quatre-vingt-cinq degrés Celsius pendant quelques minutes, pour détruire les germes pathogènes."
+  },
+  {
+   "id": "p07",
+   "ecran": "sechage_calc",
+   "texte": "1,58 kg d'eau éliminée, soit 79 % de la masse initiale.",
+   "dit": "Exemple résolu : on souhaite sécher deux kilogrammes de mangue fraîche contenant quatre-vingt-deux pour cent d'eau, pour obtenir une mangue séchée contenant quinze pour cent d'eau. La masse d'eau initiale est de deux fois zéro virgule quatre-vingt-deux, soit un virgule soixante-quatre kilogramme. La masse de matière sèche est de deux moins un virgule soixante-quatre, soit zéro virgule trente-six kilogramme, et cette masse reste constante. Dans le produit final, la matière sèche représente cent moins quinze, soit quatre-vingt-cinq pour cent de la masse totale. La masse finale est donc de zéro virgule trente-six divisé par zéro virgule quatre-vingt-cinq, soit environ zéro virgule quarante-deux kilogramme. La masse d'eau éliminée est de deux moins zéro virgule quarante-deux, soit un virgule cinquante-huit kilogramme, environ soixante-dix-neuf pour cent de la masse initiale."
+  },
+  {
+   "id": "p08",
+   "ecran": "tomate",
+   "texte": "Environ 94 % d'eau, peu acide, sensible au froid.",
+   "dit": "La tomate est un fruit très riche en eau, environ quatre-vingt-quatorze pour cent, et peu acide. Elle est très sensible aux attaques microbiennes et à la détérioration par le froid, le choc thermique. Sa transformation permet de la conserver sous diverses formes."
+  },
+  {
+   "id": "p09",
+   "ecran": "sterilisation",
+   "texte": "Bocaux hermétiques, plus de 100 °C, généralement 115-120 °C.",
+   "dit": "La stérilisation, ou appertisation : les tomates pelées ou en purée sont placées dans des bocaux hermétiques, puis chauffées à plus de cent degrés Celsius, généralement cent quinze à cent vingt degrés Celsius, sous pression. Ce traitement thermique détruit tous les micro-organismes et leurs spores. C'est la technique utilisée pour les conserves de tomates pelées, le concentré de tomate et les sauces."
+  },
+  {
+   "id": "p10",
+   "ecran": "concentre",
+   "texte": "Le jus chauffé s'épaissit : double ou triple concentré.",
+   "dit": "La fabrication de concentré : le jus de tomate est chauffé pour évaporer une grande partie de son eau. On obtient un produit épais, double ou triple concentré, qui se conserve mieux car sa teneur en eau est réduite et son acidité est concentrée."
+  },
+  {
+   "id": "p11",
+   "ecran": "congelation",
+   "texte": "À -18 °C ou moins : le froid suspend, sans détruire.",
+   "dit": "La congélation : la tomate, coupée, en sauce ou en dés, est surgelée à très basse température, moins dix-huit degrés Celsius ou moins. Le froid ralentit fortement l'activité des micro-organismes et les réactions enzymatiques, sans toutefois les détruire."
+  },
+  {
+   "id": "p12",
+   "ecran": "comparaison",
+   "texte": "La stérilisation conserve le plus longtemps.",
+   "dit": "Exemple résolu, comparaison des durées de conservation : la stérilisation offre la conservation la plus longue car elle élimine définitivement les micro-organismes, tandis que la congélation ne fait que suspendre leur activité."
+  },
+  {
+   "id": "p13",
+   "ecran": "principes",
+   "texte": "Enlever l'eau, chauffer, sucrer ou saler, refroidir.",
+   "dit": "Les techniques de conservation des fruits reposent sur quatre grands principes : l'élimination de l'eau, par le séchage et le concentré, car les micro-organismes ne peuvent pas se développer sans eau ; le traitement thermique, par la pasteurisation et la stérilisation, car la chaleur détruit les micro-organismes ; l'ajout de sucre ou de sel, comme dans la confiture, car la pression osmotique élevée empêche la croissance microbienne ; et l'action du froid, par la réfrigération et la congélation, car le froid ralentit ou stoppe l'activité microbienne. La transformation des fruits de saison permet de réduire le gaspillage alimentaire, de garantir une disponibilité toute l'année et d'offrir une diversité de produits dérivés, confitures, jus, conserves et fruits séchés. Chaque technique présente des avantages et des limites en termes de durée de conservation, de coût énergétique et de préservation des qualités nutritionnelles."
+  },
+  {
+   "id": "p14",
+   "ecran": "biocarburant",
+   "texte": "Un carburant de biomasse, renouvelable à l'échelle humaine.",
+   "dit": "Un biocarburant est un carburant produit à partir de biomasse, c'est-à-dire de matière organique d'origine végétale ou animale, plantes, algues, déchets agricoles ou organiques. Contrairement aux énergies fossiles, le pétrole, le charbon et le gaz naturel, qui mettent des millions d'années à se former, la biomasse se renouvelle rapidement à l'échelle humaine : on parle donc d'énergie renouvelable. Les biocarburants sont utilisés principalement pour les transports, en remplacement total ou partiel de l'essence ou du gazole."
+  },
+  {
+   "id": "p15",
+   "ecran": "bilan_carbone",
+   "texte": "Le CO₂ émis égale le CO₂ absorbé par la plante.",
+   "dit": "Le dioxyde de carbone émis lors de la combustion d'un biocarburant correspond au dioxyde de carbone absorbé par la plante pendant sa croissance. Le bilan carbone est donc considéré comme quasi neutre, contrairement aux carburants fossiles qui libèrent du carbone stocké depuis des millions d'années."
+  },
+  {
+   "id": "p16",
+   "ecran": "generations",
+   "texte": "Deuxième et troisième : ne pas concurrencer l'alimentation.",
+   "dit": "On distingue les biocarburants selon leur génération et leur matière première. L'enjeu des deuxième et troisième générations est d'éviter la concurrence avec l'alimentation humaine et animale."
+  },
+  {
+   "id": "p17",
+   "ecran": "bioethanol1",
+   "texte": "Sucres extraits, puis levures : éthanol et CO₂.",
+   "dit": "Le bioéthanol est un alcool obtenu par fermentation de sucres ou de l'amidon de plantes riches en glucides, la betterave, la canne à sucre, le blé et le maïs. Les étapes clés commencent par l'extraction des sucres : les sucres simples sont extraits directement, pour la betterave, ou l'amidon est transformé en sucres par hydrolyse enzymatique, pour les céréales. Puis vient la fermentation alcoolique : des levures, des micro-organismes, transforment les sucres en éthanol et en dioxyde de carbone, en l'absence d'oxygène."
+  },
+  {
+   "id": "p18",
+   "ecran": "bioethanol2",
+   "texte": "L'éthanol s'évapore à 78 °C, puis on élimine l'eau restante.",
+   "dit": "Ensuite, la distillation : le mélange obtenu, environ dix pour cent d'éthanol, est chauffé ; l'éthanol s'évapore à soixante-dix-huit degrés Celsius, une température d'ébullition inférieure à celle de l'eau, cent degrés Celsius. On le récupère par condensation, ce qui le concentre. Enfin, la déshydratation : on élimine l'eau restante pour obtenir un bioéthanol presque pur, à plus de quatre-vingt-dix-neuf pour cent, utilisable dans les moteurs essence, incorporé à l'essence ou en E quatre-vingt-cinq."
+  },
+  {
+   "id": "p19",
+   "ecran": "bioethanol_calc",
+   "texte": "511 kg d'éthanol à partir de 1 000 kg de glucose.",
+   "dit": "Exemple résolu : une distillerie traite mille kilogrammes de glucose issu de betteraves, et la fermentation est complète. Les masses molaires sont de cent quatre-vingts grammes par mole pour le glucose, et de quarante-six grammes par mole pour l'éthanol. La quantité de glucose est de mille fois mille grammes divisés par cent quatre-vingts grammes par mole, soit environ cinq mille cinq cent cinquante-six moles. D'après l'équation, une mole de glucose donne deux moles d'éthanol : la quantité d'éthanol est donc de deux fois cinq mille cinq cent cinquante-six, soit onze mille cent douze moles. La masse d'éthanol est de onze mille cent douze fois quarante-six, soit environ cinq cent onze mille cent cinquante-deux grammes, c'est-à-dire environ cinq cent onze kilogrammes."
+  },
+  {
+   "id": "p20",
+   "ecran": "biodiesel1",
+   "texte": "Colza, tournesol, palme ou graisses animales.",
+   "dit": "Le biodiesel est un ester d'acides gras obtenu à partir d'huiles végétales, le colza, le tournesol et la palme, ou de graisses animales. Les étapes clés commencent par l'extraction et le pressage des graines oléagineuses pour obtenir l'huile brute, puis par le raffinage de l'huile, qui élimine les impuretés et les acides gras libres."
+  },
+  {
+   "id": "p21",
+   "ecran": "biodiesel2",
+   "texte": "Huile plus méthanol, catalyseur : biodiesel et glycérine.",
+   "dit": "Puis vient la transestérification : l'huile, un triglycéride, réagit avec un alcool, le méthanol, en présence d'un catalyseur, de la soude ou de la potasse. Cette réaction produit du biodiesel, des esters méthyliques, et de la glycérine, un sous-produit valorisé en cosmétique ou en pharmacie. Enfin, la séparation et la purification : les deux phases se séparent, le biodiesel est plus léger, on le lave et on le déshydrate avant son utilisation dans les moteurs diesel."
+  },
+  {
+   "id": "p22",
+   "ecran": "biodiesel_calc",
+   "texte": "Environ 83 kg de biodiesel, à 90 % de rendement.",
+   "dit": "Exemple résolu : on transestérifie cent litres de triglycéride, de masse volumique neuf cent vingt grammes par litre, avec un excès de méthanol, et la réaction a un rendement de quatre-vingt-dix pour cent. La masse de triglycéride est de cent fois neuf cent vingt, soit quatre-vingt-douze mille grammes. Sa quantité est de quatre-vingt-douze mille divisé par huit cent quatre-vingt-cinq, soit environ cent quatre moles. Une mole de triglycéride donne trois moles de biodiesel : la quantité théorique de biodiesel est de trois fois cent quatre, soit trois cent douze moles. La masse théorique est de trois cent douze fois deux cent quatre-vingt-seize, soit quatre-vingt-douze mille trois cent cinquante-deux grammes. Avec quatre-vingt-dix pour cent de rendement, on obtient environ quatre-vingt-trois mille cent dix-sept grammes, soit environ quatre-vingt-trois kilogrammes."
+  },
+  {
+   "id": "p23",
+   "ecran": "gen23",
+   "texte": "Bois et paille gazéifiés, algues en bassins.",
+   "dit": "Pour la deuxième génération, par voie thermochimique, la biomasse lignocellulosique, le bois et la paille, est chauffée à haute température, par gazéification, pour produire un gaz de synthèse, un mélange de monoxyde de carbone et de dihydrogène, transformé ensuite en carburant liquide par synthèse de Fischer-Tropsch. Une voie biochimique, hydrolyse enzymatique puis fermentation, produit aussi du bioéthanol cellulosique. Pour la troisième génération, les algues sont cultivées en bassins, puis leur huile est extraite et transformée en biodiesel par transestérification. Cette filière est encore expérimentale."
+  },
+  {
+   "id": "p24",
+   "ecran": "bilan_bio",
+   "texte": "Première génération répandue, mais concurrence alimentaire.",
+   "dit": "Bilan et limites : les biocarburants de première génération sont les plus répandus, incorporés dans l'essence et le gazole. Leur production peut entrer en compétition avec la production alimentaire, par l'utilisation de terres agricoles, d'eau et d'engrais. Les générations deux et trois visent à utiliser des ressources non alimentaires ou des déchets, mais leurs coûts de production restent élevés."
+  },
+  {
+   "id": "p25",
+   "ecran": "papier",
+   "texte": "Brûlé pour l'énergie, ou recyclé en nouveaux produits.",
+   "dit": "Le papier usagé peut être valorisé de deux manières complémentaires : par incinération pour produire de l'énergie, ou par recyclage pour fabriquer de nouveaux produits. Le papier est un matériau combustible car il est composé de fibres de cellulose. Son incinération dans des usines spécialisées, les unités de valorisation énergétique, libère de la chaleur."
+  },
+  {
+   "id": "p26",
+   "ecran": "chaine_energie",
+   "texte": "Four, chaudière, vapeur, turbine, alternateur.",
+   "dit": "Le principe de fonctionnement est le suivant : le papier est brûlé dans un four à haute température ; la chaleur dégagée chauffe une chaudière remplie d'eau ; l'eau se transforme en vapeur sous pression ; la vapeur entraîne une turbine reliée à un alternateur ; et l'alternateur produit de l'électricité."
+  },
+  {
+   "id": "p27",
+   "ecran": "papier_calc",
+   "texte": "4 000 MJ électriques, environ 100 foyers pendant une journée.",
+   "dit": "Exemple résolu : une tonne de papier brûlé dégage environ seize mille mégajoules. Si le rendement de l'usine est de vingt-cinq pour cent, l'énergie électrique produite est de seize mille fois zéro virgule vingt-cinq, soit quatre mille mégajoules. Cette énergie peut alimenter environ cent foyers pendant une journée."
+  },
+  {
+   "id": "p28",
+   "ecran": "pulpage",
+   "texte": "Tri, pâte, épuration, blanchiment, feuille, découpe.",
+   "dit": "Le recyclage du papier suit un procédé appelé pulpage. D'abord, le tri et la collecte : les papiers usagés sont séparés des autres déchets. Ensuite, la mise en pâte : les papiers sont mélangés à de l'eau chaude dans un pulpeur. Puis l'épuration : la pâte est filtrée pour éliminer les encres, les agrafes et les impuretés, c'est le désencrage. Puis le blanchiment : la pâte est blanchie, sans chlore pour limiter la pollution. Puis la formation de la feuille : la pâte est étalée sur une toile, pressée puis séchée. Enfin, l'enroulage et la découpe : le papier est enroulé puis découpé selon l'usage final. Ce procédé permet de fabriquer des serviettes jetables, du papier hygiénique, qui nécessite des fibres souples et absorbantes, et du papier-cadeau, qui nécessite un calandrage pour le rendre lisse et brillant."
+  },
+  {
+   "id": "p29",
+   "ecran": "papier_hyg",
+   "texte": "600 kg collectés donnent 500 kg de papier hygiénique.",
+   "dit": "Exemple résolu : pour fabriquer un kilogramme de papier hygiénique recyclé, il faut environ un virgule deux kilogramme de vieux papiers. Avec six cents kilogrammes de papiers collectés, on obtient six cents divisé par un virgule deux, soit cinq cents kilogrammes de papier hygiénique."
+  },
+  {
+   "id": "p30",
+   "ecran": "plastique",
+   "texte": "Pétrochimiques, non biodégradables : recycler économise le fossile.",
+   "dit": "Les plastiques sont des matériaux pétrochimiques non biodégradables. Leur recyclage évite l'enfouissement et économise les ressources fossiles."
+  },
+  {
+   "id": "p31",
+   "ecran": "bouteilles",
+   "texte": "Tri, broyage, lavage, densité, granulés, nouvelles bouteilles.",
+   "dit": "Le recyclage des bouteilles en plastique, en P E T, le polyéthylène téréphtalate, suit plusieurs étapes. Le tri : la séparation des bouteilles par type de plastique, identifié par le code d'identification, P E T, P E H D, et les autres. Le broyage : les bouteilles sont broyées en fines paillettes. Le lavage : les paillettes sont lavées à l'eau chaude avec des détergents pour éliminer les résidus. La séparation par densité : les plastiques plus légers, comme les bouchons en P E H D, flottent et sont séparés. Le séchage et la décontamination : un chauffage à haute température pour éliminer les impuretés. La refusion et l'extrusion : les paillettes fondues sont transformées en granulés. Ces granulés sont ensuite fondus et soufflés dans des moules pour créer de nouvelles bouteilles identiques aux originales. Ce processus peut être répété plusieurs fois, c'est le recyclage en boucle."
+  },
+  {
+   "id": "p32",
+   "ecran": "pet_calc",
+   "texte": "1,8 tonne de granulés par heure.",
+   "dit": "Exemple résolu : une usine traite deux tonnes de bouteilles en P E T par heure. Le rendement du recyclage est de quatre-vingt-dix pour cent. La masse de granulés recyclés produite par heure est de deux mille kilogrammes fois zéro virgule quatre-vingt-dix, soit mille huit cents kilogrammes, c'est-à-dire un virgule huit tonne."
+  },
+  {
+   "id": "p33",
+   "ecran": "paves",
+   "texte": "Plastiques non recyclables en bouteilles, fondus et moulés.",
+   "dit": "Les déchets plastiques non recyclables en bouteilles, les mélanges de plastiques et les plastiques souillés, peuvent être valorisés en pavés pour la construction. Les étapes sont la collecte et le tri grossier, qui éliminent les déchets non plastiques, le broyage, qui réduit en fragments de quelques centimètres, la fusion, un chauffage à environ cent quatre-vingts à deux cents degrés Celsius dans un malaxeur, le moulage, où le plastique fondu est versé dans des moules rectangulaires, la compression et le refroidissement, où les pavés sont pressés puis refroidis, et le démoulage, où les pavés solides sont extraits et prêts à l'emploi. Les pavés obtenus sont résistants, imperméables et utilisés pour les trottoirs, les allées ou les aménagements urbains."
+  },
+  {
+   "id": "p34",
+   "ecran": "paves_calc",
+   "texte": "500 pavés, couvrant 10 m².",
+   "dit": "Exemple résolu : avec un kilogramme de déchets plastiques, on fabrique un pavé de dimensions vingt centimètres sur dix centimètres sur cinq centimètres, soit un volume de zéro virgule vingt fois zéro virgule dix fois zéro virgule zéro cinq, c'est-à-dire zéro virgule zéro zéro un mètre cube. Avec cinq cents kilogrammes de plastiques, on produit cinq cents pavés couvrant une surface de cinq cents fois zéro virgule vingt fois zéro virgule dix, soit dix mètres carrés."
+  },
+  {
+   "id": "p35",
+   "ecran": "avantages",
+   "texte": "Recycler coûte 2 à 10 fois moins d'énergie que produire du neuf.",
+   "dit": "La valorisation des déchets, du papier et du plastique, présente des avantages environnementaux, économiques et sociaux. Pour le bilan énergétique du recyclage : recycler le papier consomme deux à trois fois moins d'énergie que produire du papier neuf ; recycler le plastique consomme cinq à dix fois moins d'énergie que produire du plastique vierge ; et l'incinération des déchets non recyclables produit de l'énergie tout en réduisant leur volume de quatre-vingt-dix pour cent. La valorisation s'inscrit dans une démarche de développement durable : elle transforme des déchets en ressources, en matières ou en énergie, réduit la pression sur les ressources naturelles et limite l'impact environnemental des activités humaines."
+  },
+  {
+   "id": "p36",
+   "ecran": "recap",
+   "texte": "Fruits, biocarburants, déchets : l'essentiel.",
+   "dit": "Retenons l'essentiel : pour les fruits, on joue sur l'eau, la chaleur, le froid et le sucre, avec le séchage de la mangue qui élimine un virgule cinquante-huit kilogramme d'eau ; pour les biocarburants, le bioéthanol naît de la fermentation et le biodiesel de la transestérification, avec des deuxième et troisième générations qui évitent la concurrence alimentaire ; et pour les déchets, le papier se brûle ou se recycle, le plastique redevient bouteille ou pavé, et valoriser, c'est économiser de l'énergie et des ressources."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Transformer et conserver les fruits"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Les biocarburants",
+   "pont": {
+    "texte": "Partie 2 : les biocarburants, du bilan carbone aux générations.",
+    "dit": "Partie deux : les biocarburants, leur bilan carbone, le bioéthanol, le biodiesel et les générations deux et trois."
+   }
+  },
+  {
+   "debut": "p25",
+   "sous_titre": "Valoriser les déchets",
+   "pont": {
+    "texte": "Partie 3 : valoriser le papier et le plastique.",
+    "dit": "Partie trois : la valorisation des déchets, le papier brûlé ou recyclé, puis le plastique en bouteilles ou en pavés."
+   }
+  }
+ ]
+}
