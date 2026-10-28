@@ -1,0 +1,523 @@
+{
+ "cours": 6644,
+ "ecrans": {
+  "animations": {
+   "kicker": "Les animations",
+   "tex": [
+    "\\text{entrée : fondu, apparition}",
+    "\\text{emphase : clignotement, rotation}",
+    "\\text{sortie : l'objet disparaît}",
+    "\\text{paramètres : déclencheur, durée}"
+   ],
+   "titre": "Entrée, emphase, sortie",
+   "type": "etape"
+  },
+  "antivirus": {
+   "kicker": "Antivirus et mises à jour",
+   "tex": [
+    "\\text{signatures : virus connus}",
+    "\\text{heuristique : comportements}",
+    "\\text{mises à jour : chaque jour}",
+    "\\text{système : failles corrigées}"
+   ],
+   "titre": "Détecter, puis tenir à jour",
+   "type": "etape"
+  },
+  "auth": {
+   "kicker": "Authentifier un utilisateur",
+   "tex": [
+    "\\text{sait : mot de passe, code PIN}",
+    "\\text{possède : carte, téléphone}",
+    "\\text{est : empreinte, visage}",
+    "\\text{facteurs combinés : 2FA}"
+   ],
+   "titre": "Savoir, posséder, être",
+   "type": "etape"
+  },
+  "bonnespratiques": {
+   "kicker": "Bonnes pratiques",
+   "tex": [
+    "\\text{sauvegardes régulières}",
+    "\\text{méfiance : pièces jointes}",
+    "\\text{pare-feu avec l'antivirus}",
+    "\\text{compression ZIP, RAR}"
+   ],
+   "titre": "Sauvegarder, se méfier, se protéger",
+   "type": "etape"
+  },
+  "cesar": {
+   "kicker": "Exemple résolu : le chiffre de César",
+   "note": "Déchiffrement : décaler de moins trois rangs",
+   "tex": "\\text{BONJOUR} \\xrightarrow{+3} \\text{ERQMRXU}",
+   "type": "formule"
+  },
+  "chiffrement": {
+   "kicker": "Chiffrer et déchiffrer",
+   "note": "Déchiffrement : M = D indice K de C ; symétrique : même clé ; asymétrique : publique chiffre, privée déchiffre",
+   "tex": "C = E_K(M)",
+   "type": "formule"
+  },
+  "comptes": {
+   "kicker": "Les comptes utilisateurs",
+   "tex": [
+    "\\text{administrateur : tous les droits}",
+    "\\text{standard : opérations courantes}",
+    "\\text{admin : crée, modifie, supprime}",
+    "\\text{standard : dégâts limités}"
+   ],
+   "titre": "Administrateur ou standard",
+   "type": "etape"
+  },
+  "diapo": {
+   "kicker": "PréAO : diapositive et diaporama",
+   "tex": [
+    "\\text{diapositive : une page}",
+    "\\text{mise en page : zones prédéfinies}",
+    "\\text{diaporama : ensemble ordonné}",
+    "\\text{intro, développement, conclusion}"
+   ],
+   "titre": "Une page, un ensemble ordonné",
+   "type": "etape"
+  },
+  "disque500": {
+   "kicker": "Exemple résolu : un disque de 500 Go",
+   "note": "C : Windows, D : logiciels, E : données personnelles",
+   "tex": "100 + 150 + 250 = 500\\,\\text{Go}",
+   "type": "formule"
+  },
+  "facture": {
+   "kicker": "Créer une facture",
+   "tex": [
+    "\\text{en-tête : numéro, date, vendeur, client}",
+    "\\text{articles : désignation, quantité}",
+    "\\text{montant} = \\text{quantité} \\times \\text{prix unitaire}",
+    "\\text{TVA} = \\text{sous-total} \\times 20\\,\\%",
+    "\\text{TTC} = \\text{sous-total} + \\text{TVA}"
+   ],
+   "titre": "En-tête, articles, totaux",
+   "type": "etape"
+  },
+  "fondsformats": {
+   "kicker": "Fonds sonores et formats",
+   "tex": [
+    "\\text{fonds sonores : MP3, WAV, OGG}",
+    "\\text{jouer auto, boucler, clic}",
+    "\\text{formats : pptx, odp, key}",
+    "\\text{PDF, MP4 : diffusion libre}"
+   ],
+   "titre": "Du son, et trois formats d'enregistrement",
+   "type": "etape"
+  },
+  "formatage": {
+   "kicker": "Le formatage",
+   "tex": [
+    "\\text{rapide : efface la table}",
+    "\\text{complet : vérifie, plus lent}",
+    "\\text{exFAT : film de 8 Go}",
+    "\\text{attention : tout est effacé}"
+   ],
+   "titre": "Rapide ou complet, toujours destructeur",
+   "type": "etape"
+  },
+  "formules": {
+   "kicker": "Saisir une formule",
+   "note": "Plage A1:C3 : neuf cellules, du coin haut-gauche au coin bas-droite",
+   "tex": "=A1+B1",
+   "type": "formule"
+  },
+  "graphique": {
+   "kicker": "Insérer un graphique",
+   "tex": [
+    "\\text{sélectionner valeurs et étiquettes}",
+    "\\text{histogramme, courbe, secteur}",
+    "\\text{personnaliser : titre, axes}",
+    "\\text{exemple : courbe, A1:B13}"
+   ],
+   "titre": "Sélectionner, choisir, personnaliser",
+   "type": "etape"
+  },
+  "gravure": {
+   "kicker": "Graver des données",
+   "tex": [
+    "\\text{CD-R, DVD-R : une seule gravure}",
+    "\\text{CD-RW, DVD-RW : réinscriptibles}",
+    "\\text{insérer, choisir, ajouter}",
+    "\\text{lancer et attendre la fin}"
+   ],
+   "titre": "Supports optiques et procédure",
+   "type": "etape"
+  },
+  "impression": {
+   "kicker": "Zone d'impression",
+   "tex": [
+    "\\text{sélectionner la plage à imprimer}",
+    "\\text{Zone d'impression, Définir}",
+    "\\text{aperçu, orientation, échelle}",
+    "\\text{titres répétés, en-tête figé}"
+   ],
+   "titre": "Définir, vérifier, imprimer",
+   "type": "etape"
+  },
+  "mdp": {
+   "kicker": "Exemple résolu : deux mots de passe",
+   "note": "Second candidat : treize caractères, quatre types, robuste",
+   "tex": "L = 10 < 12 \\Rightarrow \\text{insuffisant}",
+   "type": "formule"
+  },
+  "methode": {
+   "kicker": "Une présentation complète",
+   "tex": [
+    "\\text{analyser : public, objectif, message}",
+    "\\text{plan : introduction, parties, conclusion}",
+    "\\text{une idée par diapositive, textes courts}",
+    "\\text{paramétrage sobre, vérification finale}"
+   ],
+   "titre": "Six étapes et une règle d'or",
+   "type": "etape"
+  },
+  "modediapo": {
+   "kicker": "Le mode diaporama",
+   "tex": [
+    "\\text{F5 : première diapositive}",
+    "\\text{Maj+F5 : diapositive courante}",
+    "\\text{clic : avancer, haut : reculer}",
+    "\\text{B noir, W blanc, Échap}"
+   ],
+   "titre": "Plein écran, touches essentielles",
+   "type": "etape"
+  },
+  "objets": {
+   "kicker": "Enrichir une diapositive",
+   "tex": [
+    "\\text{texte : zones, puces, numérotation}",
+    "\\text{illustrations : images, formes}",
+    "\\text{données : tableaux, graphiques}",
+    "\\text{médias : vidéo, audio}"
+   ],
+   "titre": "Texte, illustrations, données, médias",
+   "type": "etape"
+  },
+  "partition": {
+   "kicker": "Partitionner un disque dur",
+   "tex": [
+    "\\text{primaire : démarrage, quatre maximum}",
+    "\\text{étendue : logiques multiples}",
+    "\\text{logique : dans une étendue}",
+    "\\text{utilité : séparer système et données}"
+   ],
+   "titre": "Trois types, une utilité",
+   "type": "etape"
+  },
+  "peripheriques": {
+   "kicker": "Les périphériques",
+   "tex": [
+    "\\text{entrée : scanner, souris, clavier}",
+    "\\text{sortie : imprimante, écran}",
+    "\\text{entrée-sortie : disque externe}",
+    "\\text{entrée-sortie : multifonction}"
+   ],
+   "titre": "Entrée, sortie, entrée-sortie",
+   "type": "etape"
+  },
+  "piliers": {
+   "kicker": "La sécurité informatique",
+   "tex": [
+    "\\text{confidentialité : autorisés seuls}",
+    "\\text{intégrité : données non altérées}",
+    "\\text{disponibilité : accès quand il faut}",
+    "\\text{avantages : confiance et continuité}"
+   ],
+   "titre": "Trois piliers, cinq avantages",
+   "type": "etape"
+  },
+  "pilote": {
+   "kicker": "Le pilote, ou driver",
+   "tex": [
+    "\\text{connecter : USB, HDMI, Wi-Fi}",
+    "\\text{détection automatique, Plug and Play}",
+    "\\text{pilote : CD ou site fabricant}",
+    "\\text{contrôle : Gestionnaire}"
+   ],
+   "titre": "Quatre gestes pour installer",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Matériel : périphériques, partitions, gravure",
+    "Sécurité : trois piliers, mots de passe, antivirus",
+    "Chiffrement : même clé, ou publique et privée",
+    "Tableur : formules, facture, graphique",
+    "Présentation : une idée par diapositive"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "references": {
+   "kicker": "Exemple résolu : une remise de 5 %",
+   "note": "Relative : elle s'adapte à la copie ; absolue : elle reste constante",
+   "tex": "=B2*\\$C\\$1 \\rightarrow =B3*\\$C\\$1",
+   "type": "formule"
+  },
+  "si": {
+   "kicker": "Exemple résolu : une remise conditionnelle",
+   "note": "RECHERCHEV cherche une valeur dans la première colonne d'une table",
+   "tex": "=SI(B2 \\geq 1000; B2 \\times 0{,}9; B2)",
+   "type": "formule"
+  },
+  "sommesi": {
+   "kicker": "SOMME.SI et NB.SI",
+   "tex": [
+    "\\text{SOMME.SI : somme sous critère}",
+    "\\text{NB.SI : compte sous critère}",
+    "\\text{exemple : ventes au-delà de 100 €}",
+    "\\text{exemple : clients de Lyon}"
+   ],
+   "titre": "Somme ou compte, sous critère",
+   "type": "etape"
+  },
+  "supports": {
+   "kicker": "Supports amovibles",
+   "tex": [
+    "\\text{insérer dans le port adapté}",
+    "\\text{attendre la détection automatique}",
+    "\\text{fermer les fichiers, puis éjecter}",
+    "\\text{attendre la confirmation}"
+   ],
+   "titre": "Connecter, puis éjecter",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "matrice_fig"
+   },
+   "kicker": "Informatique · Pratique et créations numériques",
+   "sous": "Périphériques, partitions, sécurité, tableur et diaporama : les gestes essentiels du numérique",
+   "titre": "Informatique pratique : matériel, sécurité, tableur et présentation",
+   "type": "titre"
+  },
+  "transitions": {
+   "kicker": "Les transitions",
+   "tex": [
+    "\\text{fondu, poussée, volet, ciseau, morphose}",
+    "\\text{durée, son d'accompagnement}",
+    "\\text{clic ou automatique}",
+    "\\text{exemple : fondu, une seconde}"
+   ],
+   "titre": "D'une diapositive à la suivante",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Matériel et premiers piliers de sécurité"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : authentification, chiffrement et tableur. Nous verrons comment vérifier une identité et chiffrer un message, puis nous construirons des formules, des fonctions conditionnelles et une facture.",
+    "texte": "Partie 2 : authentification, chiffrement, tableur."
+   },
+   "sous_titre": "Authentification, chiffrement et tableur"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : la présentation assistée par ordinateur. Nous créerons un diaporama, de la diapositive aux animations, aux transitions et au mode de présentation.",
+    "texte": "Partie 3 : diaporama, animations, transitions."
+   },
+   "sous_titre": "Présentation assistée par ordinateur"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'informatique pratique et de créations numériques. Nous allons installer un périphérique, partitionner un disque, sécuriser nos données, construire un tableur, puis créer un diaporama efficace.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Matériel, sécurité, tableur, présentation."
+  },
+  {
+   "dit": "Un périphérique est un dispositif connecté à l'unité centrale, qui permet l'échange de données. En entrée : le scanner, la souris et le clavier ; en sortie : l'imprimante, le vidéoprojecteur et l'écran ; en entrée-sortie : le disque dur externe et l'imprimante multifonction.",
+   "ecran": "peripheriques",
+   "id": "p02",
+   "texte": "Périphérique : entrée, sortie, entrée-sortie."
+  },
+  {
+   "dit": "Un pilote est un logiciel qui permet au système d'exploitation de communiquer avec un périphérique ; sans pilote, le matériel ne fonctionne pas correctement. On connecte le périphérique, le système le détecte automatiquement, on installe le pilote depuis le cédérom fourni ou le site du fabricant, puis on vérifie dans le Gestionnaire de périphériques.",
+   "ecran": "pilote",
+   "id": "p03",
+   "texte": "Sans pilote, le matériel ne fonctionne pas."
+  },
+  {
+   "dit": "Partitionner, c'est diviser logiquement un disque dur physique en plusieurs parties, dont chacune apparaît comme un disque indépendant. Cela permet de séparer le système d'exploitation des données personnelles, d'installer plusieurs systèmes sur un même disque, et de protéger les données, car une partition corrompue n'affecte pas les autres.",
+   "ecran": "partition",
+   "id": "p04",
+   "texte": "Partitionner : diviser un disque en disques logiques."
+  },
+  {
+   "dit": "Exemple résolu : un disque de cinq cents gigaoctets est partitionné en trois parties, C de cent gigaoctets pour Windows, D de cent cinquante gigaoctets pour les logiciels, et E de deux cent cinquante gigaoctets pour les données personnelles. On peut ainsi réinstaller Windows sans perdre les données des partitions D et E.",
+   "ecran": "disque500",
+   "id": "p05",
+   "texte": "Disque de 500 Go : 100, 150, 250."
+  },
+  {
+   "dit": "Un support amovible, clé U S B, disque dur externe ou carte S D, se connecte via un port U S B : on l'insère dans le port adapté et on attend la détection automatique. Pour le retirer, on ferme tous les fichiers ouverts, on utilise l'option Éjecter le périphérique, et on attend le message de confirmation avant de débrancher.",
+   "ecran": "supports",
+   "id": "p06",
+   "texte": "Clé USB, disque externe, carte SD : éjecter d'abord."
+  },
+  {
+   "dit": "Le formatage prépare un support de stockage à recevoir des données, en créant un système de fichiers. Le formatage rapide efface seulement la table des fichiers, sans vérifier les secteurs ; le formatage complet vérifie et marque les secteurs défectueux, mais il est plus lent. Exemple : formater une clé de seize gigaoctets en exFAT pour y copier un film de huit gigaoctets, impossible avec F A T trente-deux, limité à quatre gigaoctets par fichier. Attention, le formatage efface toutes les données existantes, et le partitionnement comme le formatage exigent de la prudence.",
+   "ecran": "formatage",
+   "id": "p07",
+   "texte": "Formater : préparer un support, en effaçant tout."
+  },
+  {
+   "dit": "La gravure consiste à enregistrer des données sur un support optique, C D, D V D ou Blu-ray, à l'aide d'un graveur et d'un logiciel dédié. Les C D-R et D V D-R ne se gravent qu'une fois, tandis que les C D-RW et D V D-RW sont réinscriptibles. On insère le disque vierge, on ouvre le logiciel, on choisit le type de disque, données, audio ou vidéo, on ajoute les fichiers, puis on lance la gravure et on attend la fin.",
+   "ecran": "gravure",
+   "id": "p08",
+   "texte": "Graver : écrire sur CD, DVD ou Blu-ray."
+  },
+  {
+   "dit": "La sécurité informatique regroupe les moyens techniques, organisationnels et juridiques qui protègent les systèmes d'information contre les menaces internes et externes. Elle repose sur trois piliers : la confidentialité, seules les personnes autorisées accèdent aux données ; l'intégrité, les données ne sont ni altérées ni modifiées sans autorisation ; et la disponibilité, l'accès maintenu quand l'utilisateur en a besoin. Ses avantages : protéger les données personnelles et professionnelles, préserver la réputation d'une organisation, assurer la continuité des activités, respecter les réglementations en vigueur et renforcer la confiance des utilisateurs et des clients.",
+   "ecran": "piliers",
+   "id": "p09",
+   "texte": "Sécurité : confidentialité, intégrité, disponibilité."
+  },
+  {
+   "dit": "Un compte utilisateur définit l'identité numérique d'une personne sur un système. Le compte administrateur dispose de tous les droits : installer des logiciels, gérer les autres comptes, modifier les paramètres système ; le compte standard se limite aux opérations courantes. L'administrateur crée, modifie et supprime les comptes, et utiliser un compte standard au quotidien limite les dégâts en cas d'infection ou d'attaque.",
+   "ecran": "comptes",
+   "id": "p10",
+   "texte": "Compte administrateur ou compte standard."
+  },
+  {
+   "dit": "Un mot de passe robuste comporte au minimum douze caractères, combinant majuscules, minuscules, chiffres et caractères spéciaux, sans informations personnelles évidentes comme une date de naissance ou un prénom. Exemple résolu : un candidat de dix caractères, fait seulement de minuscules et de chiffres, est insuffisant ; un second candidat de treize caractères, mêlant les quatre types de caractères et sans information personnelle directe, est robuste.",
+   "ecran": "mdp",
+   "id": "p11",
+   "texte": "Mot de passe robuste : douze caractères minimum."
+  },
+  {
+   "dit": "L'authentification vérifie l'identité d'un utilisateur, à partir de trois facteurs : ce que l'on sait, mot de passe ou code P I N ; ce que l'on possède, carte à puce ou téléphone recevant un code ; et ce que l'on est, empreinte digitale ou reconnaissance faciale. Combiner plusieurs facteurs, c'est la double authentification, qui renforce considérablement la sécurité. Dans le même esprit, un logiciel de bureautique peut chiffrer un fichier par mot de passe, le rendant illisible sans ce mot de passe à chaque ouverture, même sur un autre poste.",
+   "ecran": "auth",
+   "id": "p12",
+   "texte": "Authentification : savoir, posséder, être."
+  },
+  {
+   "dit": "Un antivirus détecte, bloque et élimine les programmes malveillants : virus, vers, chevaux de Troie et rançongiciels. Il compare les fichiers à une base de signatures de virus connus, et il repère aussi les comportements suspects par analyse heuristique. Sa mise à jour est indispensable, car de nouveaux virus apparaissent chaque jour ; un antivirus non mis à jour ne reconnaît pas les menaces récentes, et les mises à jour du système corrigent les failles exploitées par les attaquants.",
+   "ecran": "antivirus",
+   "id": "p13",
+   "texte": "Antivirus : signatures, heuristique, mises à jour."
+  },
+  {
+   "dit": "La cryptographie est la science des écritures secrètes. Le chiffrement transforme un texte clair M en un texte chiffré C à l'aide d'une clé K, et le déchiffrement fait l'opération inverse. En chiffrement symétrique, la même clé sert au chiffrement et au déchiffrement ; en chiffrement asymétrique, une clé publique chiffre et une clé privée déchiffre.",
+   "ecran": "chiffrement",
+   "id": "p14",
+   "texte": "Chiffrement : C égale E indice K de M."
+  },
+  {
+   "dit": "Exemple résolu : le chiffrement de César décale chaque lettre de n positions dans l'alphabet. Avec un texte clair BONJOUR et un décalage de trois, B devient E, O devient R, N devient Q, J devient M, O devient R, U devient X et R devient U : on obtient E R Q M R X U. Le déchiffrement consiste à décaler de moins trois rangs.",
+   "ecran": "cesar",
+   "id": "p15",
+   "texte": "César : BONJOUR devient ERQMRXU."
+  },
+  {
+   "dit": "Quelques bonnes pratiques pour conclure ce tour de la sécurité : effectuer des sauvegardes régulières sur des supports externes, se méfier des pièces jointes et des liens suspects, et utiliser un pare-feu en complément de l'antivirus. La compression, aux formats Z I P ou R A R, réduit la taille d'un fichier, facilite son stockage et son transfert, et peut se combiner au chiffrement pour protéger les données tout en optimisant l'espace.",
+   "ecran": "bonnespratiques",
+   "id": "p16",
+   "texte": "Sauvegardes, méfiance, pare-feu."
+  },
+  {
+   "dit": "Passons au tableur. Une formule est une expression mathématique qui commence par le signe égal et utilise des opérateurs et des références de cellules : égal A un plus B un additionne le contenu des cellules A un et B un. Une plage est un ensemble rectangulaire de cellules, désigné par la cellule en haut à gauche et celle en bas à droite, séparées par deux points.",
+   "ecran": "formules",
+   "id": "p17",
+   "texte": "Une formule commence par le signe égal."
+  },
+  {
+   "dit": "Exemple résolu : une remise de cinq pour cent est appliquée à un prix en B deux. La formule égal B deux fois dollar C dollar un, où C un contient zéro virgule zéro cinq, copiée vers B trois, devient égal B trois fois dollar C dollar un : la référence relative B deux s'adapte, tandis que la référence absolue dollar C dollar un reste constante.",
+   "ecran": "references",
+   "id": "p18",
+   "texte": "Relative : elle s'adapte ; absolue : elle reste."
+  },
+  {
+   "dit": "Deux fonctions conditionnelles : SOMME point SI additionne les valeurs d'une plage uniquement si elles satisfont un critère, et NB point SI compte le nombre de cellules répondant à un critère. Exemple : pour totaliser les ventes dont le montant dépasse cent euros, on écrit égal SOMME point SI, de B deux à B cinquante, critère supérieur à cent, somme de C deux à C cinquante ; et pour compter les clients de Lyon, on écrit égal NB point SI, de A deux à A cent, critère Lyon.",
+   "ecran": "sommesi",
+   "id": "p19",
+   "texte": "SOMME.SI additionne sous critère, NB.SI compte."
+  },
+  {
+   "dit": "La fonction SI exécute un test logique et renvoie une valeur si le test est vrai, une autre s'il est faux. Exemple résolu : pour une remise conditionnelle sur le montant en B deux, on écrit égal SI, B deux supérieur ou égal à mille, alors B deux fois zéro virgule neuf, sinon B deux. La fonction RECHERCHEV, elle, recherche une valeur dans la première colonne d'une table.",
+   "ecran": "si",
+   "id": "p20",
+   "texte": "SI : un test, deux résultats possibles."
+  },
+  {
+   "dit": "Une facture comprend un en-tête, avec le numéro, la date et les coordonnées du vendeur et du client ; un tableau d'articles, avec la désignation, la quantité, le prix unitaire et le montant, égal à la quantité fois le prix unitaire ; puis les totaux : le sous-total, somme de la colonne montant, la T V A, égale au sous-total fois le taux, et le total T T C, égal au sous-total plus la T V A. Exemple : trois articles en lignes cinq à sept, T V A de vingt pour cent en B dix, montant de la ligne cinq égal à C cinq fois D cinq, sous-total en B huit égal à la somme de E cinq à E sept, T V A en B neuf égal à B huit fois dollar B dollar dix, et total T T C en B onze égal à B huit plus B neuf.",
+   "ecran": "facture",
+   "id": "p21",
+   "texte": "Facture : en-tête, articles, totaux."
+  },
+  {
+   "dit": "Pour insérer un graphique, on sélectionne la plage de données à représenter, valeurs et étiquettes, puis dans l'onglet Insertion on choisit le type, histogramme, courbe ou secteur, et on personnalise le titre, la légende et les axes. Exemple résolu : pour représenter l'évolution du chiffre d'affaires mensuel, mois en A deux à A treize et montants en B deux à B treize, on sélectionne A un à B treize et on insère un graphique de type Courbe.",
+   "ecran": "graphique",
+   "id": "p22",
+   "texte": "Graphique : sélectionner, choisir, personnaliser."
+  },
+  {
+   "dit": "La zone d'impression est la plage de cellules qui sera imprimée : on la sélectionne, puis on va dans l'onglet Mise en page, Zone d'impression, Définir. Avant d'imprimer, on vérifie l'aperçu, on choisit l'orientation portrait ou paysage, on ajuste l'échelle à une page si nécessaire, et on répète les titres en figeant la ligne d'en-tête sur chaque page. Exemple : pour une facture occupant les cellules A un à F quarante, on sélectionne cette plage, on définit la zone, on passe en Aperçu pour vérifier, puis on lance l'impression.",
+   "ecran": "impression",
+   "id": "p23",
+   "texte": "Zone d'impression : définir, vérifier, imprimer."
+  },
+  {
+   "dit": "Passons à la présentation assistée par ordinateur, la PréAO, l'ensemble des outils qui permettent de créer des diaporamas. Une diapositive est une page individuelle d'une présentation, qui peut contenir du texte, des images, des formes, des tableaux, des graphiques, des vidéos ou des sons, avec une mise en page prédéfinie, par exemple titre plus contenu ou deux colonnes. Un diaporama est l'ensemble ordonné des diapositives, présenté en plein écran, suivant une structure logique : introduction, développement, conclusion.",
+   "ecran": "diapo",
+   "id": "p24",
+   "texte": "Diapositive : une page ; diaporama : l'ensemble."
+  },
+  {
+   "dit": "Pour ajouter une diapositive, on utilise la commande Nouvelle diapositive, puis on choisit une mise en page adaptée au contenu. Exemple résolu : pour la première diapositive d'un exposé sur le changement climatique, on choisit la mise en page Diapositive de titre, avec le titre Impacts du réchauffement et le sous-titre Cours d'Informatique, Première. Chaque diapositive peut ensuite recevoir du texte, des illustrations comme des images, des formes ou des captures d'écran, des données comme des tableaux ou des graphiques, et des médias comme des vidéos ou des clips audio.",
+   "ecran": "objets",
+   "id": "p25",
+   "texte": "Objets : texte, illustrations, données, médias."
+  },
+  {
+   "dit": "Une animation est un effet appliqué à un objet à l'intérieur d'une diapositive : elle contrôle son apparition, sa mise en évidence ou sa disparition. En entrée, l'objet apparaît, par fondu, apparition ou déplacement ; en emphase, l'objet existant est mis en valeur, par clignotement ou rotation ; en sortie, l'objet disparaît. On règle le déclencheur, au clic ou après la précédente, la durée en secondes, le délai et la direction. Exemple : sur la diapositive deux, une animation d'entrée Fondu est appliquée à l'image Graphique des températures, déclenchée après la précédente, pendant deux secondes.",
+   "ecran": "animations",
+   "id": "p26",
+   "texte": "Animation : un effet sur un objet."
+  },
+  {
+   "dit": "Une transition, elle, est un effet visuel appliqué à la diapositive entière, lors du passage à la suivante : fondu, poussée, volet, ciseau ou morphose. On en règle la durée en secondes, par exemple zéro virgule cinq seconde, le son d'accompagnement, et le déclenchement, au clic ou automatique après un délai. Exemple : une transition Fondu d'une seconde entre les diapositives un et deux, déclenchée automatiquement après cinq secondes.",
+   "ecran": "transitions",
+   "id": "p27",
+   "texte": "Transition : un effet sur toute la diapositive."
+  },
+  {
+   "dit": "Un fond sonore est un fichier audio, aux formats M P trois, WAV ou O G G, inséré dans une diapositive ou appliqué à une transition : il peut jouer automatiquement à l'ouverture, boucler en continu jusqu'au changement de diapositive, ou s'arrêter au clic. Pour l'enregistrement, on trouve les formats p p t x, o d p et key, le format P D F pour une diffusion sans modification possible, et le format M P quatre pour une lecture sans logiciel de PréAO.",
+   "ecran": "fondsformats",
+   "id": "p28",
+   "texte": "Son : MP3, WAV, OGG ; formats : pptx, odp, key."
+  },
+  {
+   "dit": "Le mode diaporama est la visualisation plein écran de la présentation. On démarre avec la touche F cinq depuis la première diapositive, ou Majuscule plus F cinq depuis la diapositive courante. On avance d'un clic ou avec les flèches directionnelles, on recule avec la flèche haut, et les raccourcis utiles sont B pour un écran noir, W pour un écran blanc, et Échap pour quitter le diaporama.",
+   "ecran": "modediapo",
+   "id": "p29",
+   "texte": "Mode diaporama : F5, Maj+F5, B, W, Échap."
+  },
+  {
+   "dit": "Une présentation complète suit six étapes : analyser le sujet, en identifiant le public, l'objectif et le message principal ; structurer le plan, introduction, deux ou trois parties, conclusion ; créer les diapositives, une idée principale par diapositive et des textes courts ; ajouter des objets pertinents ; paramétrer avec modération, animations et transitions sobres, cohérentes et de courte durée ; puis vérifier en testant le mode diaporama, en corrigeant les fautes et en contrôlant l'orthographe. Règle d'or : la présentation doit soutenir le discours, pas le remplacer ; un excès d'animations ou de texte nuit à la clarté du message.",
+   "ecran": "methode",
+   "id": "p30",
+   "texte": "Méthode : analyser, structurer, créer, vérifier."
+  },
+  {
+   "dit": "Retenons l'essentiel : côté matériel, périphériques, partitions, supports amovibles et gravure ; côté sécurité, confidentialité, intégrité et disponibilité, mots de passe robustes, double authentification et antivirus à jour ; côté chiffrement, une même clé ou une clé publique et une clé privée ; côté tableur, formules, références, facture, graphique et impression ; et côté présentation, une idée par diapositive et des effets sobres, pour soutenir le discours sans le remplacer.",
+   "ecran": "recap",
+   "id": "p31",
+   "texte": "Matériel, sécurité, tableur, présentation."
+  }
+ ],
+ "titre": "Informatique pratique : matériel, sécurité, tableur et présentation"
+}
