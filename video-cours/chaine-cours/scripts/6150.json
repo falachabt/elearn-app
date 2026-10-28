@@ -37,19 +37,19 @@
    "type": "formule"
   },
   "degre1": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "droite_racine_fig"
+   },
    "kicker": "Le premier degré",
    "note": "Principe de la balance : toute opération faite d'un côté se fait aussi de l'autre.",
    "tex": "ax + b = 0 \\quad (a \\neq 0) \\quad \\Rightarrow \\quad x = -\\frac{b}{a}",
-   "type": "formule",
-   "anim": {
-    "nom": "droite_racine_fig",
-    "hauteur": 180
-   }
+   "type": "formule"
   },
   "detection": {
    "anim": {
     "hauteur": 130,
-    "nom": "derive_fig"
+    "nom": "derivee_fig"
    },
    "kicker": "Détecter : le polynôme dérivé",
    "tex": [
@@ -104,15 +104,26 @@
    "type": "etape"
   },
   "facto_intro": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
    "kicker": "Degrés supérieurs : la stratégie",
    "texte": "Pas de formule simple au-delà : on factorise, on divise, on fait baisser le degré, un facteur à la fois.",
-   "type": "phrase",
-   "anim": {
-    "nom": "fleche_fonction",
-    "hauteur": 170
-   }
+   "type": "phrase"
   },
   "horner": {
+   "anim": {
+    "a": 1,
+    "coeffs": [
+     1,
+     -4,
+     5,
+     -2
+    ],
+    "hauteur": 130,
+    "nom": "horner_fig"
+   },
    "kicker": "Diviser vite : le schéma de Horner",
    "tex": [
     "P(x) = x^3 - 4x^2 + 5x - 2 \\qquad P(1) = 0",
@@ -120,18 +131,7 @@
     "P(x) = (x - 1)(x^2 - 3x + 2)"
    ],
    "titre": "Évaluer et diviser par (x − r) en un seul tableau",
-   "type": "etape",
-   "anim": {
-    "nom": "horner_fig",
-    "hauteur": 130,
-    "coeffs": [
-     1,
-     -4,
-     5,
-     -2
-    ],
-    "a": 1
-   }
+   "type": "etape"
   },
   "identites": {
    "kicker": "Identités remarquables avancées",
@@ -140,13 +140,13 @@
    "type": "formule"
   },
   "intro": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "parabole_fig"
+   },
    "kicker": "Introduction",
    "texte": "Une trajectoire de balle, un budget, une aire à partager : derrière ces problèmes, une même forme, P(x) = 0.",
-   "type": "phrase",
-   "anim": {
-    "nom": "parabole_fig",
-    "hauteur": 170
-   }
+   "type": "phrase"
   },
   "jardin": {
    "kicker": "Exemple : compléter le carré",
