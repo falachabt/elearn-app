@@ -2,6 +2,10 @@
  "cours": 6162,
  "ecrans": {
   "boite": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "boite_carton_fig"
+   },
    "kicker": "Synthèse · la boîte en carton",
    "tex": [
     "V(x) = x(30-2x)^2 = 4x^3 - 120x^2 + 900x",
@@ -9,11 +13,7 @@
     "x = 5 \\ \\text{cm} \\qquad V(5) = 2000 \\ \\text{cm}^3"
    ],
    "titre": "Découper, replier, maximiser le volume",
-   "type": "etape",
-   "anim": {
-    "nom": "boite_carton_fig",
-    "hauteur": 130
-   }
+   "type": "etape"
   },
   "conserve_calcul": {
    "kicker": "La boîte de conserve · le calcul",
@@ -55,6 +55,10 @@
    "type": "etape"
   },
   "enclos": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "enclos_fig"
+   },
    "kicker": "Optimisation · l'enclos contre un mur",
    "tex": [
     "A(x) = x(100 - 2x) \\qquad x \\in [0, 50]",
@@ -62,11 +66,7 @@
     "y = 50 \\ \\text{m} \\qquad A(25) = 1250 \\ \\text{m}^2"
    ],
    "titre": "Cent mètres de clôture, un mur en cadeau",
-   "type": "etape",
-   "anim": {
-    "nom": "enclos_fig",
-    "hauteur": 130
-   }
+   "type": "etape"
   },
   "ex_cubique": {
    "anim": {
@@ -104,8 +104,8 @@
   },
   "ex_variations": {
    "anim": {
-    "nom": "tableau_variations_fig",
-    "hauteur": 140
+    "hauteur": 140,
+    "nom": "tableau_variations_fig"
    },
    "kicker": "Exemple · tableau de variations",
    "tex": [
@@ -169,7 +169,7 @@
   "pointe": {
    "anim": {
     "hauteur": 140,
-    "nom": "graphe_fig"
+    "nom": "point_anguleux_fig"
    },
    "kicker": "Continue ne veut pas dire dérivable",
    "texte": "La valeur absolue en 0 : une pointe, deux pentes, aucune tangente unique.",
@@ -178,7 +178,7 @@
   "population": {
    "anim": {
     "hauteur": 140,
-    "nom": "graphe_fig"
+    "nom": "derivee_fig"
    },
    "kicker": "Application · croissance d'une population",
    "tex": [
@@ -253,7 +253,7 @@
   "signe": {
    "anim": {
     "hauteur": 150,
-    "nom": "graphe_fig"
+    "nom": "tableau_variations_fig"
    },
    "kicker": "Signe de la dérivée et variations",
    "tex": [
@@ -298,7 +298,7 @@
   "titre": {
    "anim": {
     "hauteur": 250,
-    "nom": "derive_fig"
+    "nom": "derivee_fig"
    },
    "kicker": "Mathématique · Applications de la dérivation",
    "sous": "Du taux instantané au tableau de variations, puis aux décisions d'optimisation",
