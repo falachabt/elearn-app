@@ -7308,19 +7308,20 @@ const FIG = {
   },
   drosophile_fig(t, o) {
     return svgBoite(
-      '<ellipse cx="440" cy="105" rx="105" ry="42" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(-18 440 105)"/>' +
-      '<ellipse cx="455" cy="205" rx="105" ry="42" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(18 455 205)"/>' +
-      '<ellipse cx="520" cy="155" rx="105" ry="58" fill="none" stroke="currentColor" stroke-width="4"/>' +
-      '<circle cx="645" cy="140" r="38" fill="none" stroke="currentColor" stroke-width="4"/>' +
-      '<circle cx="658" cy="132" r="14" fill="#E8604C"/>' +
-      trait(565, 195, 520, 245, prog(t), { c: "currentColor", w: 3 }) +
-      trait(600, 200, 575, 252, prog(t), { c: "currentColor", w: 3 }) +
-      trait(480, 195, 430, 242, prog(t), { c: "currentColor", w: 3 }) +
-      trait(645, 115, 690, 75, prog(t), { c: "currentColor", w: 2 }) +
-      trait(650, 108, 705, 88, prog(t), { c: "currentColor", w: 2 }) +
-      mot(230, 62, "la drosophile de Morgan", { t: 20 }) +
-      trait(360, 70, 480, 105, prog(t), { c: "currentColor", w: 2 }) +
-      mot(730, 245, "15 % de recombinants = 15 cM", { t: 19 })
+      '<ellipse cx="478" cy="96" rx="92" ry="27" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="3" transform="rotate(-16 478 96)"/>' +
+      '<ellipse cx="520" cy="160" rx="100" ry="46" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<path d="M 478 122 Q 488 160 478 198" fill="none" stroke="currentColor" stroke-width="2.5"/>' +
+      '<path d="M 522 116 Q 532 160 522 204" fill="none" stroke="currentColor" stroke-width="2.5"/>' +
+      '<circle cx="652" cy="148" r="37" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<circle cx="664" cy="140" r="13" fill="#E8604C"/>' +
+      trait(470, 200, 435, 248, prog(t), { c: "currentColor", w: 3 }) +
+      trait(525, 204, 505, 254, prog(t), { c: "currentColor", w: 3 }) +
+      trait(580, 198, 590, 248, prog(t), { c: "currentColor", w: 3 }) +
+      trait(652, 118, 692, 82, prog(t), { c: "currentColor", w: 2 }) +
+      trait(662, 114, 712, 94, prog(t), { c: "currentColor", w: 2 }) +
+      mot(225, 58, "la drosophile de Morgan", { t: 20 }) +
+      trait(345, 66, 440, 92, prog(t), { c: "currentColor", w: 2 }) +
+      mot(735, 252, "15 % de recombinants = 15 cM", { t: 19 })
     );
   },
   spermatogenese_fig(t, o) {
@@ -8375,7 +8376,7 @@ const FIG = {
       fleche(812, 120, 812, 172) +
       fleche(670, 209, 642, 209) + fleche(358, 209, 330, 209) +
       mot(500, 160, "", { t: 18 }) +
-      mot(188, 283, "une méthode en six étapes, toujours dans le même ordre", { t: 18 }));
+      mot(500, 283, "une méthode en six étapes, toujours dans le même ordre", { t: 18 }));
   },
   courbe_temperature_fig(t) {
     return svgBoite(
