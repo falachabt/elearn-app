@@ -1,0 +1,380 @@
+{
+  "cours": 7356,
+  "ecrans": {
+    "aimant": {
+      "kicker": "L'aimant : rappel",
+      "texte": "Deux pôles, Nord et Sud : mêmes noms se repoussent, noms contraires s'attirent.",
+      "type": "phrase"
+    },
+    "alternateur": {
+      "kicker": "L'alternateur",
+      "texte": "Un aimant qui tourne devant une bobine fixe : la tension induite est alternative.",
+      "type": "phrase"
+    },
+    "bobine": {
+      "kicker": "La bobine",
+      "texte": "Un enroulement de fil conducteur : parcourue par un courant, elle devient un aimant.",
+      "type": "phrase"
+    },
+    "centrales": {
+      "kicker": "Les centrales électriques",
+      "texte": "Vapeur, eau, vent : la turbine tourne, l'alternateur convertit en électricité.",
+      "type": "phrase"
+    },
+    "chaine": {
+      "kicker": "Chaîne énergétique",
+      "texte": "Source, puis énergie mécanique de la turbine, puis énergie électrique.",
+      "type": "phrase"
+    },
+    "conditions": {
+      "etapes": [
+        "Un champ magnétique variable au niveau de la bobine.",
+        "Un circuit conducteur soumis à cette variation.",
+        "Champ constant : aucune tension, pas d'induction."
+      ],
+      "kicker": "Conditions de l'induction",
+      "type": "recap"
+    },
+    "definition_induction": {
+      "kicker": "L'induction électromagnétique",
+      "texte": "Une tension apparaît aux bornes d'une bobine soumise à un champ magnétique variable.",
+      "type": "phrase"
+    },
+    "dynamo": {
+      "kicker": "Exemple résolu : la dynamo",
+      "note": "10 tours par seconde : une tension alternative de fréquence 10 Hz.",
+      "tex": "f = 10\\ \\text{Hz}",
+      "type": "formule"
+    },
+    "exemple_induction": {
+      "kicker": "Exemple résolu : pôle Nord approché",
+      "texte": "Approche : +0,5 V ; éloignement : −0,5 V ; immobile : 0 V.",
+      "type": "phrase"
+    },
+    "exemple_oscillo": {
+      "kicker": "Exemple résolu : oscillogramme",
+      "note": "Motif de 4 divisions à 5 ms/div : T = 20 ms, f = 50 Hz.",
+      "tex": "T = 4 \\times 5 = 20\\ \\text{ms} = 0{,}020\\ \\text{s}",
+      "type": "formule"
+    },
+    "exemple_oscillo2": {
+      "kicker": "Exemple résolu : deuxième oscillogramme",
+      "note": "Motif de 5 divisions à 2 ms/div : T = 10 ms, f = 100 Hz.",
+      "tex": "T = 5 \\times 2 = 10\\ \\text{ms} = 0{,}010\\ \\text{s}",
+      "type": "formule"
+    },
+    "exemple_turbine": {
+      "kicker": "Exemple résolu : la turbine",
+      "note": "3 tours par seconde : chaque tour donne une période, donc f = 3 Hz.",
+      "tex": "f = 3\\ \\text{Hz}",
+      "type": "formule"
+    },
+    "frequence": {
+      "kicker": "Période et fréquence",
+      "note": "f = 1 ÷ T, avec T en secondes et f en hertz ; inversement proportionnelles.",
+      "tex": "f = \\dfrac{1}{T} \\quad \\text{et} \\quad T = \\dfrac{1}{f}",
+      "type": "formule"
+    },
+    "induction_mouvement": {
+      "kicker": "Aimant en mouvement",
+      "texte": "Aimant qui s'approche ou s'éloigne : tension détectée ; immobile : tension nulle.",
+      "type": "phrase"
+    },
+    "mouvement_relatif": {
+      "kicker": "Le mouvement relatif",
+      "texte": "Bouger l'aimant ou bouger la bobine : le résultat est le même.",
+      "type": "phrase"
+    },
+    "observations": {
+      "kicker": "Observations clés",
+      "texte": "Approche et éloignement : signes opposés ; mouvement plus rapide : tension plus grande.",
+      "type": "phrase"
+    },
+    "oscilloscope": {
+      "kicker": "L'oscilloscope",
+      "texte": "Sonde en dérivation, base de temps réglée, motif compté en divisions.",
+      "type": "phrase"
+    },
+    "recap": {
+      "etapes": [
+        "Tension alternative : signe qui change, période T, fréquence f = 1 ÷ T.",
+        "Alternateur : aimant, bobine, mouvement relatif.",
+        "Conversion d'énergie mécanique en énergie électrique."
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "recap_induction": {
+      "etapes": [
+        "Aimant : pôles Nord et Sud, champ orienté Nord vers Sud.",
+        "Bobine sous courant : un aimant, face Nord et face Sud.",
+        "Induction : tension seulement pendant le mouvement relatif."
+      ],
+      "kicker": "À retenir : l'induction",
+      "type": "recap"
+    },
+    "secteur": {
+      "kicker": "La tension du secteur",
+      "note": "En France : tension sinusoïdale, valeur efficace 230 V, fréquence 50 Hz.",
+      "tex": "U_{\\text{eff}} = 230\\ \\text{V} \\quad ; \\quad f = 50\\ \\text{Hz}",
+      "type": "formule"
+    },
+    "sens": {
+      "kicker": "Le sens de la tension induite",
+      "texte": "Approcher par le pôle Nord ou par le pôle Sud : des tensions de signes opposés.",
+      "type": "phrase"
+    },
+    "sinusoidale": {
+      "kicker": "Alternative et sinusoïdale",
+      "texte": "Valeurs positives puis négatives, courbe lisse et symétrique, qui se répète.",
+      "type": "phrase"
+    },
+    "tension_alt": {
+      "kicker": "La tension alternative",
+      "texte": "Une tension alternative change périodiquement de signe au cours du temps.",
+      "type": "phrase"
+    },
+    "titre": {
+      "kicker": "Sciences Physiques et Technologie · Électricité",
+      "sous": "Induction, tension alternative, alternateur",
+      "titre": "Aimant, bobine et tension alternative",
+      "type": "titre"
+    },
+    "bobine_2": {
+      "kicker": "La bobine",
+      "texte": "Un enroulement de fil conducteur : parcourue par un courant, elle devient un aimant.",
+      "type": "phrase"
+    },
+    "exemple_induction_2": {
+      "kicker": "Exemple résolu : pôle Nord approché",
+      "texte": "Approche : +0,5 V ; éloignement : −0,5 V ; immobile : 0 V.",
+      "type": "phrase"
+    },
+    "sinusoidale_2": {
+      "kicker": "Alternative et sinusoïdale",
+      "texte": "Valeurs positives puis négatives, courbe lisse et symétrique, qui se répète.",
+      "type": "phrase"
+    },
+    "tension_alt_2": {
+      "kicker": "La tension alternative",
+      "texte": "Une tension alternative change périodiquement de signe au cours du temps.",
+      "type": "phrase"
+    },
+    "alternateur_2": {
+      "kicker": "L'alternateur",
+      "texte": "Un aimant qui tourne devant une bobine fixe : la tension induite est alternative.",
+      "type": "phrase"
+    },
+    "alternateur_3": {
+      "kicker": "L'alternateur",
+      "texte": "Un aimant qui tourne devant une bobine fixe : la tension induite est alternative.",
+      "type": "phrase"
+    }
+  },
+  "matiere": "Sciences Physiques et Technologie",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Aimant, bobine et induction"
+    },
+    {
+      "debut": "p14",
+      "pont": {
+        "dit": "Partie deux : la tension alternative sinusoïdale, sa période et sa fréquence, et la lecture d'un oscillogramme. Nous définirons d'abord la tension alternative, puis nous mesurerons période et fréquence.",
+        "texte": "Partie 2 : tension alternative, période et fréquence."
+      },
+      "sous_titre": "Tension alternative, période et fréquence"
+    },
+    {
+      "debut": "p24",
+      "pont": {
+        "dit": "Partie trois : l'alternateur et la production d'énergie électrique. Nous verrons comment la rotation d'un aimant devant une bobine produit la tension alternative, de la dynamo de vélo aux centrales électriques.",
+        "texte": "Partie 3 : l'alternateur et les centrales."
+      },
+      "sous_titre": "Alternateur et production d'énergie"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours sur l'aimant, la bobine et la tension alternative. Nous allons d'abord comprendre l'induction, ce phénomène qui fait apparaître une tension quand un aimant bouge près d'une bobine, puis nous étudierons la tension alternative, celle de nos prises de courant, et comment l'alternateur la produit.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Induction, puis tension alternative."
+    },
+    {
+      "dit": "Rappel sur l'aimant : un aimant possède deux pôles, un pôle Nord, noté n, et un pôle Sud, noté s. Deux pôles de même nom se repoussent, deux pôles de noms contraires s'attirent. Un aimant crée autour de lui un champ magnétique, invisible, représenté par des lignes de champ orientées du pôle Nord vers le pôle Sud, à l'extérieur de l'aimant.",
+      "ecran": "aimant",
+      "id": "p02",
+      "texte": "Nord, Sud : attire ou repousse."
+    },
+    {
+      "dit": "La bobine, elle, est un enroulement de fil conducteur, souvent du cuivre, formant une hélice. Ses bornes sont les deux extrémités du fil. Une bobine crée elle aussi un champ magnétique lorsqu'elle est parcourue par un courant électrique : elle se comporte alors comme un aimant, avec une face Nord et une face Sud.",
+      "ecran": "bobine",
+      "id": "p03",
+      "texte": "La bobine sous courant devient un aimant."
+    },
+    {
+      "dit": "Première interaction : une bobine parcourue par un courant continu crée un champ magnétique. Elle attire ou repousse un aimant placé à proximité, selon le sens du courant et l'orientation des pôles. La bobine aimantée se comporte vraiment comme un aimant.",
+      "ecran": "bobine_2",
+      "id": "p04",
+      "texte": "Bobine aimantée : elle attire ou repousse."
+    },
+    {
+      "dit": "Deuxième interaction, la plus importante : si on approche ou si on éloigne un aimant d'une bobine non alimentée, un voltmètre branché à ses bornes détecte une tension électrique. Cette tension n'apparaît que si l'aimant est en mouvement par rapport à la bobine, par approche, éloignement ou déplacement latéral.",
+      "ecran": "induction_mouvement",
+      "id": "p05",
+      "texte": "Aimant en mouvement : une tension apparaît."
+    },
+    {
+      "dit": "Les observations clés sont à retenir : un aimant immobile donne une tension nulle ; un aimant qui s'approche donne une tension d'un certain signe ; un aimant qui s'éloigne donne une tension de signe opposé ; et un mouvement plus rapide donne une tension plus grande.",
+      "ecran": "observations",
+      "id": "p06",
+      "texte": "Immobile : rien ; vite : plus grand."
+    },
+    {
+      "dit": "On peut aussi déplacer la bobine par rapport à un aimant fixe : le résultat est identique. Ce qui compte, ce n'est pas qui bouge, c'est le mouvement relatif entre l'aimant et la bobine.",
+      "ecran": "mouvement_relatif",
+      "id": "p07",
+      "texte": "C'est le mouvement relatif qui compte."
+    },
+    {
+      "dit": "Voici la définition : l'induction électromagnétique est le phénomène par lequel une tension électrique apparaît aux bornes d'une bobine lorsqu'elle est soumise à une variation du champ magnétique qui la traverse. Cette variation est produite par un mouvement relatif entre l'aimant et la bobine.",
+      "ecran": "definition_induction",
+      "id": "p08",
+      "texte": "Induction : tension par champ variable."
+    },
+    {
+      "dit": "Deux conditions doivent être réunies pour l'induction : un champ magnétique variable au niveau de la bobine, par un aimant en mouvement ou par un courant variable dans une bobine voisine, et un circuit conducteur, la bobine, soumis à cette variation. Si le champ magnétique est constant, avec un aimant immobile, aucune tension n'apparaît.",
+      "ecran": "conditions",
+      "id": "p09",
+      "texte": "Deux conditions, sinon rien."
+    },
+    {
+      "dit": "Le sens de la tension induite dépend du sens du mouvement relatif. Approcher l'aimant par le pôle Nord ou par le pôle Sud donne des tensions de signes opposés. Ce phénomène est réversible : l'énergie mécanique du mouvement se transforme en énergie électrique.",
+      "ecran": "sens",
+      "id": "p10",
+      "texte": "Nord ou Sud : signes opposés."
+    },
+    {
+      "dit": "Exemple résolu : on approche rapidement le pôle Nord d'un aimant droit de l'une des faces d'une bobine reliée à un voltmètre. L'aimant est en mouvement, donc le champ magnétique traversant la bobine varie, et le voltmètre affiche une tension, par exemple plus zéro virgule cinq volts.",
+      "ecran": "exemple_induction",
+      "id": "p11",
+      "texte": "Approche rapide : +0,5 V."
+    },
+    {
+      "dit": "On éloigne ensuite l'aimant : le voltmètre affiche une tension de signe opposé, par exemple moins zéro virgule cinq volts. Et si on immobilise l'aimant, le voltmètre revient à zéro volt. Conclusion : une tension n'apparaît que pendant le mouvement relatif entre l'aimant et la bobine.",
+      "ecran": "exemple_induction_2",
+      "id": "p12",
+      "texte": "Éloignement : −0,5 V ; immobile : 0 V."
+    },
+    {
+      "dit": "L'induction électromagnétique est à la base du fonctionnement des alternateurs et des dynamos : c'est la conversion d'énergie mécanique en énergie électrique. C'est ce pont entre mouvement et électricité que nous allons exploiter dans la deuxième partie.",
+      "ecran": "recap_induction",
+      "id": "p13",
+      "texte": "Induction : la base des alternateurs."
+    },
+    {
+      "dit": "D'où vient l'électricité du secteur ? L'énergie électrique utilisée dans les habitations provient d'alternateurs situés dans les centrales électriques. La tension délivrée par le secteur est une tension alternative : elle change de signe et de valeur au cours du temps. Comment est-elle produite ?",
+      "ecran": "alternateur",
+      "id": "p14",
+      "texte": "D'où vient l'électricité du secteur ?"
+    },
+    {
+      "dit": "Une tension est dite alternative lorsqu'elle change périodiquement de signe au cours du temps : elle est tantôt positive, tantôt négative. Elle est sinusoïdale lorsque sa variation en fonction du temps décrit une sinusoïde, une courbe qui monte puis descend de façon régulière et symétrique, en se répétant identique à elle-même.",
+      "ecran": "sinusoidale",
+      "id": "p15",
+      "texte": "Alternative : signe qui change, courbe sinusoïdale."
+    },
+    {
+      "dit": "Sur un oscillogramme, une tension sinusoïdale se reconnaît à sa forme d'onde lisse et arrondie, avec des alternances positives et négatives identiques. Cette forme est très différente de celle d'une tension continue, une ligne horizontale, ou d'une tension crénelée, en créneaux.",
+      "ecran": "sinusoidale_2",
+      "id": "p16",
+      "texte": "Sinusoïde lisse, pas créneaux."
+    },
+    {
+      "dit": "La tension alternative est périodique : elle se répète identique à elle-même au bout d'une durée appelée période, notée té, en secondes. Sa fréquence, notée f, est le nombre de périodes par seconde : f égale un divisé par té, exprimée en hertz. Sa valeur maximale se lit sur l'oscillogramme.",
+      "ecran": "tension_alt",
+      "id": "p17",
+      "texte": "Période T, fréquence f = 1 ÷ T."
+    },
+    {
+      "dit": "La période té est la durée d'un motif élémentaire, la durée au bout de laquelle la tension reprend la même valeur en évoluant dans le même sens. Elle se mesure sur l'oscillogramme entre deux sommets identiques consécutifs, et s'exprime en secondes ou en millisecondes.",
+      "ecran": "tension_alt_2",
+      "id": "p18",
+      "texte": "T : durée d'un motif, entre deux sommets."
+    },
+    {
+      "dit": "La fréquence f est le nombre de périodes, ou de motifs, par seconde, en hertz. La période et la fréquence sont inversement proportionnelles : f égale un divisé par té, et té égale un divisé par f, avec té en secondes et f en hertz.",
+      "ecran": "frequence",
+      "id": "p19",
+      "texte": "f et T : inversement proportionnelles."
+    },
+    {
+      "dit": "En France, le secteur délivre une tension alternative sinusoïdale de valeur efficace deux cent trente volts et de fréquence cinquante hertz. C'est la valeur que vous retrouvez sur vos prises : deux cent trente volts, cinquante hertz.",
+      "ecran": "secteur",
+      "id": "p20",
+      "texte": "Secteur : 230 V efficaces, 50 Hz."
+    },
+    {
+      "dit": "Premier exemple résolu, lecture d'un oscillogramme : un motif se répète toutes les quatre divisions horizontales, et la base de temps est réglée sur cinq millisecondes par division. La période vaut quatre fois cinq, soit vingt millisecondes, soit zéro virgule zéro vingt secondes. La fréquence vaut un divisé par zéro virgule zéro vingt, soit cinquante hertz.",
+      "ecran": "exemple_oscillo",
+      "id": "p21",
+      "texte": "4 divisions à 5 ms/div : 20 ms, 50 Hz."
+    },
+    {
+      "dit": "L'oscilloscope est l'appareil qui permet de visualiser une tension et de mesurer sa période. La sonde est branchée en dérivation, en parallèle, aux bornes du générateur ou du dipôle étudié. On règle la base de temps, en millisecondes par division, qui fixe la durée représentée par une division horizontale. La période se lit en comptant le nombre de divisions d'un motif, puis en multipliant par la base de temps.",
+      "ecran": "oscilloscope",
+      "id": "p22",
+      "texte": "Oscilloscope : sonde, base de temps, divisions."
+    },
+    {
+      "dit": "Deuxième exemple résolu : un oscillogramme montre une tension sinusoïdale, la base de temps vaut deux millisecondes par division, et un motif occupe cinq divisions. La période vaut cinq fois deux millisecondes, soit dix millisecondes, soit zéro virgule zéro dix secondes, et la fréquence vaut un divisé par zéro virgule zéro dix, soit cent hertz.",
+      "ecran": "exemple_oscillo2",
+      "id": "p23",
+      "texte": "5 divisions à 2 ms/div : 10 ms, 100 Hz."
+    },
+    {
+      "dit": "Passons à l'alternateur, le principe de production. Un alternateur convertit de l'énergie mécanique, un mouvement, en énergie électrique. Il produit une tension alternative grâce à deux phénomènes couplés : un aimant, le rotor, crée un champ magnétique et tourne, tandis qu'une bobine, le stator, conducteur fixe placé dans ce champ, est le siège d'une tension induite lorsque le champ magnétique varie à ses bornes.",
+      "ecran": "alternateur_2",
+      "id": "p24",
+      "texte": "Rotor qui tourne, stator qui reçoit."
+    },
+    {
+      "dit": "La rotation provoque une variation continue du flux magnétique traversant la bobine : une tension alternative apparaît aux bornes de la bobine. Sans mouvement relatif entre l'aimant et la bobine, aucune tension n'apparaît : c'est le point clé à retenir, le même que pour l'induction.",
+      "ecran": "alternateur_3",
+      "id": "p25",
+      "texte": "Rotation continue, tension alternative."
+    },
+    {
+      "dit": "Exemple résolu : une roue de vélo équipée d'une dynamo tourne à dix tours par seconde. La dynamo contient un aimant tournant devant une bobine fixe. C'est un alternateur : l'aimant tourne devant la bobine, le champ magnétique varie constamment à ses bornes, la tension produite est donc alternative, elle change de signe à chaque demi-tour, et sa fréquence vaut dix hertz.",
+      "ecran": "dynamo",
+      "id": "p26",
+      "texte": "Dynamo à 10 tours/s : 10 Hz."
+    },
+    {
+      "dit": "Dans une centrale électrique, un alternateur est entraîné par une turbine mise en mouvement par de la vapeur d'eau, pour les centrales thermiques et nucléaires, par de l'eau en mouvement, pour les centrales hydrauliques, ou par du vent, pour les éoliennes. Le principe reste toujours le même : une source d'énergie fournit l'énergie mécanique qui fait tourner l'alternateur, lequel fournit l'énergie électrique sous forme de tension alternative.",
+      "ecran": "centrales",
+      "id": "p27",
+      "texte": "Vapeur, eau, vent : même principe."
+    },
+    {
+      "dit": "La chaîne énergétique se résume ainsi : énergie de la source, puis énergie mécanique de la turbine, puis énergie électrique de l'alternateur. Trois maillons, toujours dans cet ordre.",
+      "ecran": "chaine",
+      "id": "p28",
+      "texte": "Source, mécanique, électrique."
+    },
+    {
+      "dit": "Dernier exemple résolu : dans une centrale hydraulique, l'eau d'un barrage fait tourner une turbine à trois tours par seconde. Chaque tour de l'aimant produit une période complète de tension, donc la fréquence vaut trois hertz. Un tour, une période : le lien est direct.",
+      "ecran": "exemple_turbine",
+      "id": "p29",
+      "texte": "Turbine à 3 tours/s : 3 Hz."
+    },
+    {
+      "dit": "Pour conclure : une tension alternative change de signe au cours du temps, elle est périodique, caractérisée par sa période té, sa fréquence f égale un divisé par té, et sa valeur maximale ; un alternateur produit une tension alternative grâce au mouvement relatif d'un aimant et d'une bobine ; et la production d'énergie électrique repose toujours sur la conversion d'énergie mécanique en énergie électrique par un alternateur.",
+      "ecran": "recap",
+      "id": "p30",
+      "texte": "Alternative, alternateur, conversion : retenu."
+    }
+  ],
+  "titre": "Aimant, bobine et tension alternative"
+}
