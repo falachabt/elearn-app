@@ -4,7 +4,7 @@
   "applications": {
    "anim": {
     "hauteur": 140,
-    "nom": "graphe_fig"
+    "nom": "derivee_fig"
    },
    "kicker": "Applications · physique, économie, ingénierie",
    "texte": "Newton et la force, coûts marginaux croissants, courbure des poutres : f'' travaille partout.",
@@ -22,8 +22,8 @@
   },
   "convexite": {
    "anim": {
-    "nom": "convexite_fig",
-    "hauteur": 190
+    "hauteur": 190,
+    "nom": "convexite_fig"
    },
    "kicker": "Convexité et concavité",
    "note": "Convexe : courbe sous ses cordes, au-dessus de ses tangentes.",
@@ -57,7 +57,7 @@
   "dl_exp": {
    "anim": {
     "hauteur": 140,
-    "nom": "exponentielle_fig"
+    "nom": "exp_croissante_fig"
    },
    "kicker": "Développement limité · l'exponentielle",
    "tex": [
@@ -69,14 +69,14 @@
    "type": "etape"
   },
   "dl_formule": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "parabole_osculatrice_fig"
+   },
    "kicker": "Le développement limité d'ordre deux",
    "note": "La parabole qui épouse la courbe : position, pente, courbure.",
    "tex": "f(x) = f(a) + f'(a)(x-a) + \\frac{f''(a)}{2}(x-a)^2 + o((x-a)^2)",
-   "type": "formule",
-   "anim": {
-    "nom": "parabole_osculatrice_fig",
-    "hauteur": 190
-   }
+   "type": "formule"
   },
   "dl_log": {
    "anim": {
@@ -122,6 +122,10 @@
    "type": "etape"
   },
   "ex_inflexion": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "inflexion_fig"
+   },
    "kicker": "Exemple · le point où la courbure bascule",
    "tex": [
     "f(x) = x^3 - 3x^2 + 2 \\qquad f''(x) = 6x - 6",
@@ -129,16 +133,12 @@
     "\\text{inflexion en } (1\\,;\\,0)"
    ],
    "titre": "Concave, puis convexe : le point d'inflexion",
-   "type": "etape",
-   "anim": {
-    "nom": "inflexion_fig",
-    "hauteur": 130
-   }
+   "type": "etape"
   },
   "intro": {
    "anim": {
     "hauteur": 140,
-    "nom": "derive_fig"
+    "nom": "derivee_fig"
    },
    "kicker": "Introduction",
    "texte": "La pente ne suffit pas : il faut savoir comment la pente elle-même évolue.",
@@ -212,6 +212,10 @@
    "type": "formule"
   },
   "position_tangente": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "parabole_osculatrice_fig"
+   },
    "kicker": "Position par rapport à la tangente",
    "tex": [
     "f''(a) > 0 : \\text{courbe au-dessus de sa tangente}",
@@ -219,11 +223,7 @@
     "f'(a) = 0,\\ f''(a) > 0 \\Rightarrow \\text{minimum local}"
    ],
    "titre": "Lire la position, prouver le test des extremums",
-   "type": "etape",
-   "anim": {
-    "nom": "parabole_osculatrice_fig",
-    "hauteur": 130
-   }
+   "type": "etape"
   },
   "rationnelle_inf": {
    "kicker": "Exemple · une rationnelle à trois inflexions",
