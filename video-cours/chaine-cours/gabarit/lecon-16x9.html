@@ -7768,8 +7768,8 @@ const FIG = {
     s += pointe(244, 172, 180, "#E8604C");
     s += mot(310, 198, "glucagon : faire libérer", { t: 17, c: "#E8604C" });
     s += '<path d="M 760 105 Q 845 95 860 140 Q 845 195 775 188 Q 735 182 738 145 Q 740 112 760 105 Z" fill="#10B981" fill-opacity=".2" stroke="#10B981" stroke-width="4"/>';
-    s += mot(800, 138, "foie", { t: 20, c: "#10B981" });
-    s += mot(800, 164, "stocke ou libère", { t: 16, c: "#10B981" });
+    s += mot(800, 152, "foie", { t: 20, c: "#10B981" });
+    s += mot(800, 222, "stocke ou libère", { t: 17, c: "#10B981" });
     s += trait(620, 150, 732, 150, prog(t), { w: 3, tiret: "7 6" });
     return svgBoite(s + mot(500, 272, "le glucose est régulé en permanence", { t: 19 }));
   },
@@ -7779,13 +7779,13 @@ const FIG = {
     s += pointe(920, 252, 0, "currentColor");
     s += trait(120, 252, 120, 30, prog(t), { w: 4 });
     s += pointe(120, 30, -90, "currentColor");
-    s += mot(90, 36, "glycémie (g/L)", { t: 17, a: "end" });
+    s += mot(112, 18, "glycémie", { t: 17, a: "end" });
     s += mot(940, 256, "temps", { t: 18, a: "start" });
     s += trait(120, 161, 900, 161, prog(t), { w: 2, tiret: "7 6", c: "#B8860B" });
     s += trait(120, 116, 900, 116, prog(t), { w: 2, tiret: "7 6", c: "#B8860B" });
     s += mot(132, 154, "0,7", { t: 17, a: "start", c: "#B8860B" });
     s += mot(132, 109, "1,1", { t: 17, a: "start", c: "#B8860B" });
-    s += mot(905, 138, "zone normale", { t: 16, a: "start", c: "#B8860B" });
+    s += mot(995, 138, "zone normale", { t: 16, a: "end", c: "#B8860B" });
     s += '<polyline points="130,139 300,139 380,132 450,71 540,88 660,122 800,128 900,128" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>';
     s += mot(450, 52, "1,5 après le repas", { t: 18, c: "#E8604C" });
     s += mot(250, 122, "0,9 à jeun", { t: 17 });
