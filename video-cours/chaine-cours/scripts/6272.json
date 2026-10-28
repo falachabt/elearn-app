@@ -1,0 +1,579 @@
+{
+ "cours": 6272,
+ "ecrans": {
+  "ameliorer": {
+   "kicker": "Au-delà de l'enregistreur",
+   "tex": [
+    "\\text{défaut : plages fixes A1 à E1}",
+    "\\text{variable derniereColonne}",
+    "\\text{travailler sans Select, direct}",
+    "\\text{MsgBox : un retour clair}"
+   ],
+   "titre": "Une macro qui s'adapte",
+   "type": "etape"
+  },
+  "appel_offres": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Exemple : un appel d'offres",
+   "texte": "Ancienne méthode : versions éparpillées ; méthode collaborative : un document unique.",
+   "type": "phrase"
+  },
+  "bonnes_pratiques": {
+   "kicker": "Code propre et lisible",
+   "tex": [
+    "\\text{nommage explicite, jamais Macro 1}",
+    "\\text{indentation par tabulation}",
+    "\\text{commenter le pourquoi, pas le quoi}",
+    "\\text{Option Explicit, déclaration forcée}"
+   ],
+   "titre": "Écrire pour être relu",
+   "type": "etape"
+  },
+  "checklist": {
+   "kicker": "Avant de commencer",
+   "tex": [
+    "\\text{identifier une douleur récurrente}",
+    "\\text{cartographier le processus manuel}",
+    "\\text{évaluer l'outil disponible}",
+    "\\text{adopter une posture de constructeur}"
+   ],
+   "titre": "La checklist de démarrage",
+   "type": "etape"
+  },
+  "choix_suite": {
+   "kicker": "Choisir sa suite",
+   "tex": [
+    "\\text{processus : agilité ou analyse ?}",
+    "\\text{infrastructure : annuaire, serveurs}",
+    "\\text{compétences, courbe d'apprentissage}",
+    "\\text{hors ligne : les applis de bureau}"
+   ],
+   "titre": "Quatre questions stratégiques",
+   "type": "etape"
+  },
+  "code_genere": {
+   "kicker": "Lire le code généré",
+   "tex": [
+    "\\text{Sub, End Sub : début et fin}",
+    "\\text{commentaires ignorés à l'exécution}",
+    "\\text{.Select, souvent, pas toujours optimal}",
+    "\\text{ActiveCell, Date : cellule, jour}"
+   ],
+   "titre": "Ce que l'enregistreur a écrit",
+   "type": "etape"
+  },
+  "developpeur": {
+   "kicker": "Excel : le ruban Développeur",
+   "tex": [
+    "\\text{Fichier, Options, Personnaliser}",
+    "\\text{cocher « Développeur », puis OK}",
+    "\\text{Enregistrer, Arrêter, Macros}",
+    "\\text{Visual Basic, Création, Exécuter}"
+   ],
+   "titre": "Votre portail vers l'automatisation",
+   "type": "etape"
+  },
+  "enregistrer": {
+   "kicker": "Enregistrer, puis rejouer",
+   "tex": [
+    "\\text{nom : MiseEnFormeRapportVentes}",
+    "\\text{raccourci : Contrôle, Majuscule, V}",
+    "\\text{stockée dans « Ce classeur »}",
+    "\\text{lecture : la séquence est rejouée}"
+   ],
+   "titre": "La bande enregistrée",
+   "type": "etape"
+  },
+  "evenements": {
+   "kicker": "Word : événements et contrôles",
+   "tex": [
+    "\\text{avant fermeture : vérifier les marqueurs}",
+    "\\text{titre, date, liste déroulante}",
+    "\\text{Interne, Client, Direction, Technique}",
+    "\\text{annuler si un marqueur subsiste}"
+   ],
+   "titre": "Le document prend l'initiative",
+   "type": "etape"
+  },
+  "exemples_auto": {
+   "kicker": "L'automatisation en action",
+   "tex": [
+    "\\text{Excel : import CSV et mise en forme}",
+    "\\text{Word : cent pages uniformisées}",
+    "\\text{courriel : tri, catégories, archives}",
+    "\\text{automatisation transparente, documentée}"
+   ],
+   "titre": "Un clic, et c'est fait",
+   "type": "etape"
+  },
+  "formules_dynamiques": {
+   "kicker": "Formules dynamiques modernes",
+   "tex": [
+    "\\text{XLOOKUP, successeur de RECHERCHEV}",
+    "\\text{FILTRE, LET : critères, calculs nommés}",
+    "\\text{tableaux déversés : SORT, UNIQUE}",
+    "\\text{relations multi-tables, sans RECHERCHEV}"
+   ],
+   "titre": "Le modèle de données remplace les détours",
+   "type": "etape"
+  },
+  "google": {
+   "kicker": "Google Workspace",
+   "tex": [
+    "\\text{Docs, Sheets, Slides, Drive}",
+    "\\text{édition simultanée, curseurs en direct}",
+    "\\text{historique, versions nommées}",
+    "\\text{mentions, IMPORTDATA, IMPORTRANGE}"
+   ],
+   "titre": "La collaboration née dans le navigateur",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Le paradoxe de la bureautique",
+   "tex": [
+    "\\text{trente minutes de copier-coller}",
+    "\\text{trois versions renvoyées par courriel}",
+    "\\text{un après-midi à fusionner les retours}",
+    "\\text{la machine fait le répétitif}"
+   ],
+   "titre": "Des outils puissants, utilisés au minimum",
+   "type": "etape"
+  },
+  "lot_word": {
+   "kicker": "Word : traitement par lots",
+   "tex": [
+    "\\text{parcourir tous les Word du dossier}",
+    "\\text{Titre 1 en seize, Calibri onze}",
+    "\\text{champs mis à jour, pied de page}",
+    "\\text{VBA local, Scripts dans le cloud}"
+   ],
+   "titre": "Un dossier entier, en une passe",
+   "type": "etape"
+  },
+  "microsoft": {
+   "kicker": "Microsoft 365",
+   "tex": [
+    "\\text{Word, Excel, PowerPoint, OneDrive}",
+    "\\text{co-édition, bouton Partager, SharePoint}",
+    "\\text{commentaires résolus, mentions, Teams}",
+    "\\text{Power Automate : des flux sans code}"
+   ],
+   "titre": "La puissance du bureau, étendue au cloud",
+   "type": "etape"
+  },
+  "modele_g": {
+   "kicker": "Modéliser le gain de productivité",
+   "note": "k : complexité des tâches ; alpha et bêta supérieurs à 1",
+   "tex": "G = k \\cdot (A^{\\alpha} + C^{\\beta})",
+   "type": "formule"
+  },
+  "modeles": {
+   "kicker": "Les modèles : des usines à documents",
+   "tex": [
+    "\\text{dotx, dotm : styles, en-têtes, logos}",
+    "\\text{styles, table des matières automatique}",
+    "\\text{volet de navigation, export PDF, HTML}",
+    "\\text{champs REF, STYLEREF, PAGEREF}"
+   ],
+   "titre": "Un moule, mille documents conformes",
+   "type": "etape"
+  },
+  "objet_document": {
+   "kicker": "Word : l'objet Document",
+   "tex": [
+    "\\text{Application, Documents, Document}",
+    "\\text{Sections, Paragraphes, Tables, Signets}",
+    "\\text{plus de cent caractères, jaune}",
+    "\\text{moins de cinquante, turquoise}"
+   ],
+   "titre": "Tout est objet",
+   "type": "etape"
+  },
+  "piliers_collab": {
+   "kicker": "Les quatre piliers de la collaboration",
+   "tex": [
+    "\\text{source de vérité unique, dans le cloud}",
+    "\\text{visibilité en temps réel, curseurs}",
+    "\\text{communication contextuelle ciblée}",
+    "\\text{accès granulaires et historique complet}"
+   ],
+   "titre": "Un actif commun, sans chaos",
+   "type": "etape"
+  },
+  "powerquery_tcd": {
+   "kicker": "Power Query et tableaux croisés",
+   "tex": [
+    "\\text{trois lignes supprimées, colonnes gardées}",
+    "\\text{date typée, colonne Trimestre ajoutée}",
+    "\\text{TCD : produit en lignes}",
+    "\\text{trimestre en colonnes, CA en valeurs}",
+    "\\text{un TCD ne modifie jamais ses sources}"
+   ],
+   "titre": "Nettoyer une fois, actualiser toujours",
+   "type": "etape"
+  },
+  "pyramide": {
+   "kicker": "La pyramide des compétences",
+   "tex": [
+    "\\text{niveau 1 : fondamentaux, saisie}",
+    "\\text{niveau 2 : fonctions avancées}",
+    "\\text{niveau 3 : analyse et synthèse}",
+    "\\text{niveau 4 : innover, concevoir}"
+   ],
+   "titre": "Du niveau 2 au niveau 4",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Automatiser si c'est répété, structuré et source d'erreurs",
+    "Collaborer sur une source unique, visible et tracée",
+    "Macros Excel et scripts Word : enregistrer, lire, améliorer",
+    "Styles et modèles : la structure qui fait le document",
+    "Données : importer, nettoyer, croiser, décider"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "regle_trois": {
+   "kicker": "Automatiser : la règle des trois",
+   "tex": [
+    "\\text{répétée au moins trois fois}",
+    "\\text{processus logique et structuré}",
+    "\\text{exécution manuelle source d'erreurs}",
+    "\\text{but : augmenter la réflexion}"
+   ],
+   "titre": "Trois conditions pour automatiser",
+   "type": "etape"
+  },
+  "roi": {
+   "kicker": "Le projet final : le retour sur investissement",
+   "note": "Économie 2115, développement 900 : ROI 135 % la première année",
+   "tex": "C_{ancien} = 2610, \\quad C_{nouveau} = 495",
+   "type": "formule"
+  },
+  "scenario_ventes": {
+   "kicker": "Première macro : le scénario",
+   "tex": [
+    "\\text{insérer une ligne vide en haut}",
+    "\\text{écrire le titre en A1, fusionner A1 à E1}",
+    "\\text{appliquer le style Titre 1}",
+    "\\text{gras sur les en-têtes, ligne 2}",
+    "\\text{bordures, largeurs ajustées}"
+   ],
+   "titre": "Sept gestes, chaque jour, dans le même ordre",
+   "type": "etape"
+  },
+  "securite": {
+   "kicker": "La sécurité des macros",
+   "tex": [
+    "\\text{désactivées toutes : inutilisable}",
+    "\\text{désactivées avec notification}",
+    "\\text{activées toutes : dangereux, à éviter}",
+    "\\text{signature numérique professionnelle}"
+   ],
+   "titre": "Trois niveaux, un seul recommandé",
+   "type": "etape"
+  },
+  "sources": {
+   "kicker": "Faire entrer les données",
+   "tex": [
+    "\\text{fichiers textes : CSV, délimiteurs}",
+    "\\text{bases de données : ODBC, requêtes SQL}",
+    "\\text{pages web : WEBSERVICE, FILTREXML}",
+    "\\text{IMPORTDATA, IMPORTFEED, IMPORTHTML}"
+   ],
+   "titre": "Quatre familles de sources",
+   "type": "etape"
+  },
+  "structures": {
+   "kicker": "Structures de contrôle",
+   "tex": [
+    "\\text{Si, Alors, Sinon : vert, jaune, rouge}",
+    "\\text{Pour, de 2 à 100 : Paris plus 20 %}",
+    "\\text{Tant que non vide : avancer}",
+    "\\text{InputBox saisit, MsgBox informe}"
+   ],
+   "titre": "Décider et répéter",
+   "type": "etape"
+  },
+  "styles": {
+   "kicker": "Les styles : la sémantique visuelle",
+   "tex": [
+    "\\text{Titre 1 : un titre de section}",
+    "\\text{changer le style change tout}",
+    "\\text{Titre 2 hérite de Titre 1}",
+    "\\text{numérotation auto, style suivant}"
+   ],
+   "titre": "Titre 1 dit ce que c'est, pas comment c'est",
+   "type": "etape"
+  },
+  "synergie_auto": {
+   "kicker": "L'automatisation sert la collaboration",
+   "tex": [
+    "\\text{notifications automatisées}",
+    "\\text{rapports de suivi automatiques}",
+    "\\text{export PDF, lien aux relecteurs}"
+   ],
+   "titre": "Le cercle vertueux, premier sens",
+   "type": "etape"
+  },
+  "synergie_collab": {
+   "kicker": "La collaboration éclaire l'automatisation",
+   "tex": [
+    "\\text{macros partagées en bibliothèque}",
+    "\\text{tests collectifs en conditions réelles}",
+    "\\text{cas limites imprévus par le créateur}"
+   ],
+   "titre": "Le cercle vertueux, second sens",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Informatique · Bureautique avancée",
+   "sous": "Macros Excel, scripts Word, suites collaboratives et projet complet : laisser la machine faire le répétitif",
+   "titre": "Bureautique avancée : automatisation et collaboration",
+   "type": "titre"
+  },
+  "visicalc": {
+   "kicker": "Le point de départ",
+   "tex": [
+    "\\text{premier tableur : VisiCalc, 1979}",
+    "\\text{« killer app » des ordinateurs}",
+    "\\text{il automatisait les calculs financiers}",
+    "\\text{première pierre de l'automatisation}"
+   ],
+   "titre": "VisiCalc, 1979 : le déclic",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les deux piliers : automatisation et collaboration"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : les macros Excel et les scripts Word. Après les principes, passons à la pratique : enregistrer une macro, lire son code, la rendre robuste, puis transposer la même logique dans Word, avec ses objets, ses événements et ses traitements par lots.",
+    "texte": "Partie 2 : macros Excel et scripts Word."
+   },
+   "sous_titre": "Macros Excel et scripts Word"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : les suites collaboratives, les styles et les modèles, l'intégration des données, et le projet final chiffré. Après l'automatisation, voici l'écosystème complet, et la preuve par les chiffres que le jeu en vaut la peine.",
+    "texte": "Partie 3 : suites, styles, données et projet final."
+   },
+   "sous_titre": "Suites collaboratives, styles, données et projet final"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de bureautique avancée : automatisation et collaboration. Vous passez peut-être trente minutes à copier-coller un rapport, puis l'après-midi à fusionner trois versions envoyées par courriel : nous allons apprendre à laisser la machine faire le répétitif, pour vous concentrer sur l'analyse et la création.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "La machine fait le répétitif, vous créez."
+  },
+  {
+   "dit": "Ce scénario illustre le paradoxe de la bureautique moderne : des outils puissants, mais souvent utilisés de manière rudimentaire, qui transforment des professionnels créatifs en opérateurs de saisie. Brisons ce cycle, et transformons le poste de travail en centre de productivité intelligente.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Outils puissants, usage rudimentaire."
+  },
+  {
+   "dit": "Tout commence en mille neuf cent soixante-dix-neuf avec VisiCalc, le premier tableur électronique, qualifié d'application décisive qui justifia à elle seule l'achat d'ordinateurs personnels par les entreprises : il automatisait déjà des calculs financiers répétitifs, posant la première pierre de l'automatisation en bureautique.",
+   "ecran": "visicalc",
+   "id": "p03",
+   "texte": "VisiCalc, 1979 : le premier tableur."
+  },
+  {
+   "dit": "L'automatisation consiste à déléguer à l'ordinateur les séquences d'actions prévisibles et répétitives. Une tâche est candidate si elle est répétée au moins trois fois de manière identique, si elle suit un processus logique et structuré, et si son exécution manuelle est source d'erreurs ou de perte de temps. Son but n'est pas de remplacer la réflexion, mais de l'augmenter.",
+   "ecran": "regle_trois",
+   "id": "p04",
+   "texte": "Automatiser ? La règle des trois."
+  },
+  {
+   "dit": "Concrètement, dans Excel, une macro importe d'un clic des données brutes d'un fichier CSV, nettoie les doublons, applique un formatage conditionnel et génère un tableau de bord. Dans Word, un script parcourt un document de cent pages, uniformise les titres et génère la table des matières. Et une règle de boîte mail trie, catégorise et archive les messages selon l'expéditeur et le sujet.",
+   "ecran": "exemples_auto",
+   "id": "p05",
+   "texte": "Excel, Word, courriel : un clic suffit."
+  },
+  {
+   "dit": "La collaboration moderne va bien au-delà de l'échange de fichiers par courriel : c'est travailler simultanément, de manière synchrone ou asynchrone, sur un actif informationnel commun. Elle repose sur quatre piliers : une source de vérité unique hébergée dans le cloud, une visibilité en temps réel avec curseurs colorés, une communication contextuelle par commentaires ciblés, et une gestion fine des accès couplée à un historique complet des versions.",
+   "ecran": "piliers_collab",
+   "id": "p06",
+   "texte": "Collaborer : quatre piliers."
+  },
+  {
+   "dit": "Prenons la rédaction d'un appel d'offres. Ancienne méthode : le chef de projet envoie un premier jet par courriel, chaque expert renvoie sa version annotée, puis fusion manuelle, conflits et perte d'information. Méthode collaborative : un document unique dans le cloud, des experts qui travaillent simultanément sur leurs sections, des commentaires pour poser des questions, et un responsable juridique en lecture seule qui suit l'avancement.",
+   "ecran": "appel_offres",
+   "id": "p07",
+   "texte": "Appel d'offres : fini, les versions éparpillées."
+  },
+  {
+   "dit": "Automatisation et collaboration s'alimentent l'une l'autre. Un script peut alerter toute l'équipe par courriel quand une cellule critique d'un tableau partagé est mise à jour, compiler automatiquement l'activité des contributeurs depuis l'historique, ou encore formater la dernière version d'un document, l'exporter en PDF, la déposer dans un dossier partagé et envoyer le lien aux relecteurs.",
+   "ecran": "synergie_auto",
+   "id": "p08",
+   "texte": "L'automatisation sert la collaboration."
+  },
+  {
+   "dit": "Dans l'autre sens, une macro utile créée par un membre de l'équipe peut être partagée, documentée et améliorée collectivement dans une bibliothèque d'entreprise, et un nouveau processus automatisé testé en conditions réelles par plusieurs utilisateurs révèle des cas limites que son créateur n'avait pas prévus.",
+   "ecran": "synergie_collab",
+   "id": "p09",
+   "texte": "La collaboration améliore l'automatisation."
+  },
+  {
+   "dit": "On peut même modéliser le gain de productivité, noté gé, comme un facteur ka, lié à la complexité des tâches, multiplié par la somme de l'automatisation à la puissance alpha et de la collaboration à la puissance bêta, deux coefficients généralement supérieurs à un : l'idée est que les bénéfices ne sont pas simplement additifs, mais potentiellement exponentiels quand les deux leviers sont actionnés de concert.",
+   "ecran": "modele_g",
+   "id": "p10",
+   "texte": "Gain : G = k(A^α + C^β)."
+  },
+  {
+   "dit": "Visualisez la pyramide des compétences : au niveau un, les fondamentaux, saisie et mise en forme basique ; au niveau deux, l'application, fonctions avancées et tableaux croisés ; au niveau trois, l'analyse et la synthèse ; au niveau quatre, l'innovation, concevoir des solutions d'automatisation et de collaboration. Ce cours vous fait passer du niveau deux au niveau quatre.",
+   "ecran": "pyramide",
+   "id": "p11",
+   "texte": "De l'application à l'innovation."
+  },
+  {
+   "dit": "Avant la technique, préparez-vous : identifiez une première douleur récurrente, comme un rapport hebdomadaire fastidieux, cartographiez le processus manuel actuel étape par étape, car un processus ne peut être automatisé que s'il est parfaitement compris, évaluez l'outil de collaboration disponible dans votre organisation, et adoptez une posture de constructeur, qui voit chaque problème comme un processus potentiellement optimisable.",
+   "ecran": "checklist",
+   "id": "p12",
+   "texte": "Démarrer : identifier, cartographier, évaluer."
+  },
+  {
+   "dit": "Passons à la pratique avec les macros Excel, écrites en Visual Basic for Applications, le langage intégré à la suite Office. D'abord, rendez visible l'onglet Développeur : Fichier, Options, Personnaliser le ruban, cochez la case Développeur, puis OK. Vous y trouvez Enregistrer une macro, Arrêter l'enregistrement, la liste des Macros, l'éditeur Visual Basic, le Mode Création et Exécuter.",
+   "ecran": "developpeur",
+   "id": "p13",
+   "texte": "Développeur : le portail VBA."
+  },
+  {
+   "dit": "Scénario pratique : chaque jour, vous recevez un fichier de ventes brutes et vous répétez sept gestes, insérer une ligne vide en haut pour un titre, écrire le titre en première cellule, fusionner les cellules de A un à E un, appliquer le style Titre un, mettre en gras les en-têtes de la ligne deux, appliquer des bordures à tout le tableau, puis ajuster la largeur des colonnes.",
+   "ecran": "scenario_ventes",
+   "id": "p14",
+   "texte": "Sept gestes quotidiens à automatiser."
+  },
+  {
+   "dit": "Pensez à un enregistreur : vous appuyez sur enregistrer, vous effectuez la série d'actions, puis vous appuyez sur stop, et la macro est la bande enregistrée. Nommez-la Mise en forme rapport ventes, choisissez le raccourci contrôle, majuscule, vé, stockez-la dans ce classeur, effectuez scrupuleusement les sept étapes, puis arrêtez l'enregistrement : un appui sur le raccourci rejoue ensuite toute la séquence.",
+   "ecran": "enregistrer",
+   "id": "p15",
+   "texte": "Enregistrer, agir, arrêter, rejouer."
+  },
+  {
+   "dit": "Ouvrez l'éditeur avec Alt et F onze : le code généré commence par Sub et se termine par End Sub, les lignes commençant par une apostrophe sont des commentaires ignorés à l'exécution, la méthode Select est souvent utilisée par l'enregistreur mais n'est pas toujours optimale, ActiveCell désigne la cellule sélectionnée, et la fonction Date renvoie la date du jour.",
+   "ecran": "code_genere",
+   "id": "p16",
+   "texte": "Lire le code : Sub, commentaires, Select."
+  },
+  {
+   "dit": "L'enregistreur est un outil génial pour apprendre, mais il est bête : il enregistre tout, y compris les erreurs, et produit un code redondant. Surtout, notre macro agit toujours sur les mêmes plages : avec dix colonnes, elle échoue. La version améliorée stocke la dernière colonne dans une variable, la trouve en simulant contrôle flèche vers la gauche, travaille directement sur les objets sans Select, et termine par une boîte de message de confirmation.",
+   "ecran": "ameliorer",
+   "id": "p17",
+   "texte": "L'enregistreur est bête : améliorez."
+  },
+  {
+   "dit": "Deux structures changent tout. La condition : si la valeur dépasse dix mille, la cellule devient verte, si elle dépasse cinq mille, jaune, sinon rouge. La boucle Pour, quand on connaît le nombre d'itérations : de la ligne deux à la ligne cent, si la région est Paris, la valeur est majorée de vingt pour cent. Et la boucle Tant que, quand la fin est inconnue : tant que la cellule n'est pas vide, traiter puis avancer d'une ligne.",
+   "ecran": "structures",
+   "id": "p18",
+   "texte": "Si, Pour, Tant que : décider, répéter."
+  },
+  {
+   "dit": "Pour un code propre et lisible, nommez explicitement, Calculer marge brute plutôt que Macro un, indentez avec la tabulation pour structurer, commentez le pourquoi et non le quoi, puisque le code dit déjà ce qu'il fait, et placez Option Explicit en haut du module pour forcer la déclaration des variables et éviter les fautes de frappe. Ajoutez une boîte de saisie pour demander une valeur, et une boîte de message pour informer ou poser une question.",
+   "ecran": "bonnes_pratiques",
+   "id": "p19",
+   "texte": "Code propre : nommer, indenter, commenter."
+  },
+  {
+   "dit": "Attention à la sécurité : les macros peuvent contenir du code malveillant. Désactivées toutes, c'est sécurisé mais inutilisable ; désactivées avec notification, c'est le niveau recommandé, une barre d'avertissement vous laisse activer le contenu si vous faites confiance à la source ; activées toutes, c'est dangereux et à éviter. Pour une distribution professionnelle, signez numériquement votre projet avec un certificat.",
+   "ecran": "securite",
+   "id": "p20",
+   "texte": "Sécurité : notification recommandée."
+  },
+  {
+   "dit": "Dans Word, tout est objet : l'application Word contient la collection des documents, chaque document contient ses sections, paragraphes, mots, caractères, tableaux, formes et signets. Par exemple, un script peut parcourir tous les paragraphes, surligner en jaune ceux de plus de cent caractères, en turquoise ceux de moins de cinquante, puis afficher les deux comptes dans une boîte de message.",
+   "ecran": "objet_document",
+   "id": "p21",
+   "texte": "Word : tout est objet."
+  },
+  {
+   "dit": "Les événements laissent le document prendre l'initiative : à la fermeture, le script peut vérifier si le texte à compléter subsiste, demander confirmation, et annuler la fermeture pour naviguer vers le premier marqueur. Et les contrôles de contenu créent des modèles intelligents : un contrôle de titre, un contrôle de date au format français, et une liste déroulante pour le type de rapport, Interne, Client, Direction ou Technique.",
+   "ecran": "evenements",
+   "id": "p22",
+   "texte": "Événements et contrôles Word."
+  },
+  {
+   "dit": "Pour traiter tout un dossier, le script choisit le dossier, ouvre chaque document Word l'un après l'autre, applique la standardisation, sauvegarde et ferme : Titre un en taille seize et gras, texte normal en Calibri onze, champs mis à jour, pied de page standard. Et pour l'avenir, sachez que Visual Basic reste puissant en local, tandis qu'Office Scripts, basé sur TypeScript, porte l'automatisation dans le cloud de Microsoft trois cent soixante-cinq.",
+   "ecran": "lot_word",
+   "id": "p23",
+   "texte": "Par lots, et vers le cloud."
+  },
+  {
+   "dit": "Côté collaboration, Google Workspace est né d'une philosophie simple : le web comme plateforme. Docs pour rédiger, Sheets pour le budget en temps réel, Slides pour présenter en parallèle, Forms pour les inscriptions, Drive comme dépôt central. Atouts : édition simultanée avec curseurs en direct, mode Suggestions qui ne détruit pas l'original, historique des versions nommées, mentions par arobase, et fonctions qui relient les feuilles entre elles.",
+   "ecran": "google",
+   "id": "p24",
+   "texte": "Google : tout dans le navigateur."
+  },
+  {
+   "dit": "Microsoft trois cent soixante-cinq adopte une approche hybride : des applications de bureau riches, des versions cloud, et OneDrive ou SharePoint pour synchroniser et partager. Le bouton Partager génère un lien, les participants apparaissent en haut, les commentaires marqués résolus restent consultables, Teams fédère conversations, fichiers et réunions, et Power Automate crée des flux d'approbation, comme pour les congés, sans écrire une ligne de code.",
+   "ecran": "microsoft",
+   "id": "p25",
+   "texte": "Microsoft 365 : bureau plus cloud."
+  },
+  {
+   "dit": "Comment décider entre les deux suites ? Quel est votre processus métier principal : la rédaction collaborative et l'agilité, ou l'analyse de données lourde et les documents structurés ? Quelle est votre infrastructure existante : annuaire, messagerie, serveurs ? Quel est le niveau de compétence de vos utilisateurs ? Et avez-vous besoin d'un accès hors ligne complet, où les applications de bureau offrent une expérience plus riche ? Souvent, les deux coexistent dans la même organisation.",
+   "ecran": "choix_suite",
+   "id": "p26",
+   "texte": "Choisir : quatre questions."
+  },
+  {
+   "dit": "Changeons d'échelle avec les styles et les modèles, l'architecture invisible du document. Un style n'est pas un simple aspect : appliquer Titre un, c'est déclarer que ceci est le titre principal d'une section. Dans un rapport de quatre-vingts pages, changer la charte graphique ne demande alors que la modification d'un seul style, au lieu de centaines de fragments. Et Titre deux hérite de Titre un, avec une taille quatorze, une numérotation automatique, et le style Normal qui suit.",
+   "ecran": "styles",
+   "id": "p27",
+   "texte": "Style : une déclaration sémantique."
+  },
+  {
+   "dit": "Un modèle est un document moule : il contient les styles personnalisés, les textes et graphiques répétitifs comme les en-têtes, pieds de page, logos et clauses, les macros éventuelles et la mise en page. Dès que les styles sont appliqués, la chaîne s'enclenche : table des matières générée automatiquement, navigation par glisser-déposer des titres, export propre vers PDF ou HTML, et champs dynamiques qui répètent un titre ou affichent un numéro de page à jour.",
+   "ecran": "modeles",
+   "id": "p28",
+   "texte": "Modèle : un moule, des documents conformes."
+  },
+  {
+   "dit": "Le tableur moderne n'est plus une grille isolée, mais un centre névralgique qui ingère des données de partout : fichiers textes comme le CSV, dont on définit les délimiteurs et les formats de colonnes, bases de données comme Access ou MySQL via des connecteurs ou du SQL, pages web via des fonctions d'extraction, et services en ligne via des API interrogées directement par des fonctions d'import de données, de flux, de tableaux ou de contenu XML.",
+   "ecran": "sources",
+   "id": "p29",
+   "texte": "Sources : CSV, bases, web, API."
+  },
+  {
+   "dit": "Power Query enregistre chaque étape de transformation dans un script rejouable : pour un rapport de ventes hebdomadaire en CSV, supprimer les trois premières lignes, ne garder que la date, le produit, la quantité et le chiffre d'affaires, typer la date, ajouter une colonne Trimestre, puis charger le résultat. La semaine suivante, il suffit de déposer le nouveau fichier et d'actualiser. Ensuite, le tableau croisé dynamique résume tout : produit en lignes, trimestre en colonnes, chiffre d'affaires en valeurs, filtrable par région, sans jamais modifier les données sources.",
+   "ecran": "powerquery_tcd",
+   "id": "p30",
+   "texte": "Power Query, puis tableau croisé."
+  },
+  {
+   "dit": "Enfin, les formules dynamiques modernes changent la donne : XLOOKUP, le successeur de RECHERCHEV, recherche dans n'importe quelle direction, FILTRE renvoie dynamiquement les lignes qui correspondent à vos critères, LET nomme les calculs intermédiaires pour des formules lisibles, et les tableaux déversés débordent automatiquement dans les cellules adjacentes. Mieux : en chargeant plusieurs tables dans le modèle de données et en les reliant par leurs identifiants, on crée des synthèses multi-tables sans RECHERCHEV complexes.",
+   "ecran": "formules_dynamiques",
+   "id": "p31",
+   "texte": "Formules dynamiques : XLOOKUP, FILTRE, LET."
+  },
+  {
+   "dit": "Le projet final rassemble tout : chez Innovatech Solutions, un analyste consacre quinze heures par trimestre à consolider, nettoyer et formater des données venues de cinq départements. À quarante-cinq dollars de l'heure et quatre rapports par an, l'ancien processus coûte deux mille six cent dix dollars par an, le nouveau quatre cent quatre-vingt-quinze, soit une économie de deux mille cent quinze dollars. Retirez neuf cents dollars de développement, vingt heures, et le retour sur investissement de la première année atteint cent trente-cinq pour cent.",
+   "ecran": "roi",
+   "id": "p32",
+   "texte": "Projet final : ROI de 135 %."
+  },
+  {
+   "dit": "Retenons l'essentiel : automatisez ce qui est répété, structuré et source d'erreurs, collaborez sur une source unique, visible et tracée, enregistrez vos macros puis lisez et améliorez leur code, structurez vos documents par des styles et des modèles, et faites de vos données un flux, importer, nettoyer, croiser, décider. La bureautique avancée, ce n'est plus savoir utiliser des outils, c'est savoir les faire travailler pour vous.",
+   "ecran": "recap",
+   "id": "p33",
+   "texte": "Automatiser, collaborer, structurer, décider."
+  }
+ ],
+ "titre": "Bureautique avancée : automatisation et collaboration"
+}
