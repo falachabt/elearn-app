@@ -1,0 +1,442 @@
+{
+ "cours": 6388,
+ "ecrans": {
+  "amat": {
+   "kicker": "Mesurer : le temps d'accès moyen",
+   "note": "H : taux de succès dans le cache ; T pen : temps pour aller au niveau inférieur",
+   "tex": "\\text{AMAT} = T_{\\text{cache}} + (1 - H) \\times T_{\\text{pen}}",
+   "type": "formule"
+  },
+  "avenir": {
+   "kicker": "Et demain ?",
+   "tex": [
+    "\\text{multi-cœurs, GPU, NPU}",
+    "\\text{calcul près de la mémoire}",
+    "\\text{neuromorphique, quantique en horizon}"
+   ],
+   "titre": "Parallélisme et spécialisation",
+   "type": "etape"
+  },
+  "bases": {
+   "kicker": "Le langage de la machine",
+   "tex": [
+    "\\text{binaire : base 2}",
+    "\\text{octal : base 8, groupes de 3 bits}",
+    "\\text{hexadécimal : base 16, groupes de 4 bits}"
+   ],
+   "titre": "Binaire, octal, hexadécimal",
+   "type": "etape"
+  },
+  "bus": {
+   "kicker": "Les bus système",
+   "tex": [
+    "\\text{données : 32 ou 64 bits}",
+    "\\text{adresses : l'emplacement}",
+    "\\text{contrôle : les signaux}"
+   ],
+   "titre": "Trois autoroutes, trois rôles",
+   "type": "etape"
+  },
+  "composants": {
+   "kicker": "Les quatre composants",
+   "tex": [
+    "\\text{CPU : le processeur}",
+    "\\text{mémoire principale}",
+    "\\text{périphériques d'entrée-sortie}",
+    "\\text{bus système}"
+   ],
+   "titre": "Processeur, mémoire, entrées-sorties, bus",
+   "type": "etape"
+  },
+  "conversion": {
+   "kicker": "Exemple : convertir",
+   "note": "Un zéro un un en base deux : huit plus zéro plus deux plus un",
+   "tex": "(1011)_2 = 11_{10}",
+   "type": "formule"
+  },
+  "cpu": {
+   "kicker": "Le processeur : le cerveau",
+   "tex": [
+    "\\text{UC : le chef d'orchestre}",
+    "\\text{UAL : le calculateur}",
+    "\\text{registres : mémoire interne}"
+   ],
+   "titre": "Unité de contrôle, unité de calcul, registres",
+   "type": "etape"
+  },
+  "cycle": {
+   "kicker": "Le battement de cœur du processeur",
+   "tex": [
+    "\\text{fetch : récupérer l'instruction}",
+    "\\text{decode : la comprendre}",
+    "\\text{execute : calculer}",
+    "\\text{write back : écrire le résultat}"
+   ],
+   "titre": "Fetch, decode, execute, write back",
+   "type": "etape"
+  },
+  "debit_memoire": {
+   "kicker": "Exemple chiffré : le débit mémoire",
+   "note": "DDR4-3200 sur un bus de soixante-quatre bits, deux transferts par cycle",
+   "tex": "3200\\,\\text{MHz} \\times 64\\,\\text{bits} \\times 2 \\approx 51{,}2\\,\\text{Go/s}",
+   "type": "formule"
+  },
+  "def_archi": {
+   "kicker": "Définir : l'architecture",
+   "tex": [
+    "\\text{composants matériels organisés}",
+    "\\text{instructions des programmes exécutées}",
+    "\\text{catalogue, rayons, bureau, couloirs}"
+   ],
+   "titre": "Organiser le matériel pour exécuter le logiciel",
+   "type": "etape"
+  },
+  "exemple_add": {
+   "kicker": "Exemple : une addition",
+   "note": "R un reçoit la somme de R deux et R trois",
+   "tex": "R_1 = R_2 + R_3",
+   "type": "formule"
+  },
+  "hierarchie": {
+   "kicker": "La pyramide mémoire",
+   "tex": [
+    "\\text{registres, puis caches L1, L2, L3}",
+    "\\text{RAM : volatile, travail en cours}",
+    "\\text{SSD, HDD : non volatile, persistant}"
+   ],
+   "titre": "Vite et petit en haut, vaste en bas",
+   "type": "etape"
+  },
+  "horloge": {
+   "kicker": "L'horloge rythme tout",
+   "note": "Trois virgule cinq gigahertz : trois virgule cinq milliards de cycles par seconde",
+   "tex": "3{,}5\\,\\text{GHz} = 3{,}5 \\times 10^9\\,\\text{cycles/s}",
+   "type": "formule"
+  },
+  "interruptions": {
+   "kicker": "Réagir au monde extérieur",
+   "tex": [
+    "\\text{le périphérique signale}",
+    "\\text{le CPU sauvegarde le contexte}",
+    "\\text{gestionnaire, puis reprise}"
+   ],
+   "titre": "L'interruption, sans polling",
+   "type": "etape"
+  },
+  "localite": {
+   "kicker": "Pourquoi la hiérarchie marche",
+   "tex": [
+    "\\text{temporelle : on réutilise}",
+    "\\text{spatiale : on accède au voisinage}",
+    "\\text{donc on anticipe, on met en cache}"
+   ],
+   "titre": "Le principe de localité",
+   "type": "etape"
+  },
+  "modes_es": {
+   "kicker": "Trois modes d'échanges",
+   "tex": [
+    "\\text{polling : le CPU attend en boucle}",
+    "\\text{interruption : le CPU est prévenu}",
+    "\\text{DMA : transfert direct, CPU libre}"
+   ],
+   "titre": "Polling, interruption, DMA",
+   "type": "etape"
+  },
+  "moyenne": {
+   "kicker": "Exemple résolu : la moyenne",
+   "note": "Cinq plus sept égale douze, douze divisé par deux égale six",
+   "tex": "\\frac{5 + 7}{2} = 6",
+   "type": "formule"
+  },
+  "multicoeurs": {
+   "kicker": "Les multi-cœurs",
+   "tex": [
+    "\\text{un cœur = UC, UAL, registres}",
+    "\\text{quad-core : quatre cerveaux}",
+    "\\text{parallèle si le logiciel répartit}"
+   ],
+   "titre": "Plusieurs cerveaux sur une même puce",
+   "type": "etape"
+  },
+  "mur_memoire": {
+   "kicker": "La fréquence ne fait pas tout",
+   "tex": [
+    "\\text{5 GHz peut perdre contre 4 GHz}",
+    "\\text{si le bus système est saturé}",
+    "\\text{accès séquentiel plus rapide}"
+   ],
+   "titre": "Le mur de la mémoire",
+   "type": "etape"
+  },
+  "peripheriques": {
+   "kicker": "Les périphériques",
+   "tex": [
+    "\\text{entrée : clavier, souris, micro}",
+    "\\text{sortie : écran, imprimante}",
+    "\\text{stockage : HDD, SSD, clé USB}"
+   ],
+   "titre": "Entrer, sortir, stocker",
+   "type": "etape"
+  },
+  "piliers": {
+   "kicker": "Les quatre piliers",
+   "tex": [
+    "\\text{programme stocké en mémoire}",
+    "\\text{exécution séquentielle}",
+    "\\text{bus unique : le goulot}",
+    "\\text{rôles séparés}"
+   ],
+   "titre": "Programme stocké, exécution séquentielle",
+   "type": "etape"
+  },
+  "pipeline": {
+   "kicker": "Le pipeline : la chaîne de montage",
+   "tex": [
+    "\\text{instruction N : exécution}",
+    "\\text{instruction N+1 : décodage}",
+    "\\text{instruction N+2 : chargement}"
+   ],
+   "titre": "Trois instructions à la fois, à des stades différents",
+   "type": "etape"
+  },
+  "portes": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "portes_logiques_fig"
+   },
+   "kicker": "L'unité de calcul décide en binaire",
+   "texte": "L'UAL calcule et décide avec des zéros et des uns : NON, ET, OU.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Von Neumann : programme stocké",
+    "CPU : contrôle, calcul, registres",
+    "Mémoire : hiérarchie et localité",
+    "Bus, périphériques, cycle",
+    "Binaire et performance"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "registres": {
+   "kicker": "Les registres",
+   "tex": [
+    "\\text{accumulateur, PC, IR}",
+    "\\text{accès en 1 cycle}",
+    "\\text{RAM : 10 à 100 cycles et plus}"
+   ],
+   "titre": "Petits, mais ultra-rapides",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "portes_logiques_fig"
+   },
+   "kicker": "Informatique · Architecture d'un ordinateur",
+   "sous": "Von Neumann, processeur, mémoire, bus : comment la machine exécute un programme",
+   "titre": "Architecture d'un ordinateur : composants et fonctionnement",
+   "type": "titre"
+  },
+  "von_neumann": {
+   "kicker": "Le plan fondateur",
+   "tex": [
+    "\\text{1945 : John von Neumann}",
+    "\\text{modèle encore dominant}",
+    "\\text{quatre composants interconnectés}"
+   ],
+   "titre": "Von Neumann, mille neuf cent quarante-cinq",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Von Neumann et le processeur"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : la mémoire et les routes de la machine, puis le cycle qui fait battre le processeur. Nous verrons la hiérarchie mémoire, les bus, le cycle d'exécution, le pipeline et les multi-cœurs.",
+    "texte": "Partie 2 : mémoire, bus, cycle, pipeline, multi-cœurs."
+   },
+   "sous_titre": "Mémoire, bus et cycle d'exécution"
+  },
+  {
+   "debut": "p19",
+   "pont": {
+    "dit": "Partie trois : le langage et la performance. Nous lirons le binaire, nous mesurerons le temps d'accès, nous suivrons les interruptions et les échanges, puis nous regarderons vers l'avenir.",
+    "texte": "Partie 3 : binaire, performances, échanges, avenir."
+   },
+   "sous_titre": "Binaire, performances et avenir"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur l'architecture d'un ordinateur : ses composants et son fonctionnement. Nous allons ouvrir la machine, nommer chaque quartier de cette cité miniature, puis suivre une instruction, du clic jusqu'au résultat.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Architecture d'un ordinateur : ses composants, son fonctionnement."
+  },
+  {
+   "dit": "L'architecture d'un ordinateur, c'est l'art d'organiser les composants matériels pour qu'ils exécutent efficacement les instructions des programmes. Pensez à une bibliothèque : le catalogue sait où trouver l'information, les rayons stockent les livres, le bureau du bibliothécaire traite les demandes, et les couloirs font circuler le public.",
+   "ecran": "def_archi",
+   "id": "p02",
+   "texte": "Architecture : organiser le matériel pour exécuter le logiciel."
+  },
+  {
+   "dit": "En mille neuf cent quarante-cinq, le mathématicien John von Neumann formalise une architecture dont les principes dominent encore aujourd'hui. Quatre composants principaux, interconnectés, suffisent à décrire la machine : nous allons les nommer un par un.",
+   "ecran": "von_neumann",
+   "id": "p03",
+   "texte": "Von Neumann, 1945 : le plan qui dure encore."
+  },
+  {
+   "dit": "Premier composant, l'unité centrale de traitement, le processeur. Deuxième, la mémoire principale, le plan de travail. Troisième, les périphériques d'entrée et de sortie, les sens et la voix de la machine. Quatrième, le bus système, le réseau de routes qui relie tout le reste.",
+   "ecran": "composants",
+   "id": "p04",
+   "texte": "Quatre composants : CPU, mémoire, entrées-sorties, bus."
+  },
+  {
+   "dit": "Quatre piliers portent ce modèle. Le programme stocké : instructions et données résident dans la même mémoire, si bien que la machine peut modifier son propre programme. L'exécution séquentielle : les instructions se suivent l'une après l'autre. Le bus unique, simple mais potentiellement goulot d'étranglement. Et des rôles nettement séparés : calculer, stocker, communiquer.",
+   "ecran": "piliers",
+   "id": "p05",
+   "texte": "Programme stocké, exécution séquentielle, bus unique."
+  },
+  {
+   "dit": "Le processeur est le cerveau de la machine. Il se décompose en trois parties : l'unité de contrôle, le chef d'orchestre qui décode les instructions et coordonne les autres unités ; l'unité arithmétique et logique, le calculateur ; et les registres, sa mémoire interne ultra-rapide.",
+   "ecran": "cpu",
+   "id": "p06",
+   "texte": "CPU : contrôle, calcul, registres."
+  },
+  {
+   "dit": "Regardez ces trois portes de base, elles sont au cœur du calculateur. La porte NON inverse un bit, la porte ET ne sort un que si ses deux entrées valent un, la porte OU sort un dès qu'une entrée vaut un. Avec ces trois décisions élémentaires, l'unité arithmétique et logique additionne, compare et choisit.",
+   "ecran": "portes",
+   "id": "p07",
+   "texte": "L'UAL calcule et décide avec des zéros et des uns : NON, ET, OU."
+  },
+  {
+   "dit": "Les registres sont de petites zones de stockage temporaire, directement dans le processeur. Leur accès prend un seul cycle d'horloge, contre dix à cent cycles et plus pour la mémoire vive. Parmi eux, l'accumulateur, le compteur ordinal, qui pointe vers l'instruction suivante, et le registre d'instruction, qui la retient.",
+   "ecran": "registres",
+   "id": "p08",
+   "texte": "Registres : accès en un cycle, contre dix à cent pour la RAM."
+  },
+  {
+   "dit": "L'horloge génère le signal cadencé qui rythme toutes les opérations du processeur. Sa fréquence, en hertz, dit combien d'opérations élémentaires la machine peut théoriquement effectuer par seconde. Une fréquence de trois virgule cinq gigahertz, c'est trois virgule cinq milliards de cycles d'horloge par seconde.",
+   "ecran": "horloge",
+   "id": "p09",
+   "texte": "Horloge : 3,5 GHz, soit 3,5 milliards de cycles par seconde."
+  },
+  {
+   "dit": "La hiérarchie mémoire ne fonctionne que grâce à deux observations, le principe de localité. Localité temporelle : une donnée récemment utilisée a de fortes chances d'être réutilisée. Localité spatiale : les données proches d'une donnée utilisée ont de fortes chances d'être utilisées à leur tour. On peut donc anticiper, et copier à l'avance le probablement utile vers le rapide et le petit.",
+   "ecran": "localite",
+   "id": "p10",
+   "texte": "Localité : on réutilise, on accède au voisinage."
+  },
+  {
+   "dit": "Voici la pyramide. En haut, les registres, puis les caches de niveau un, deux et trois, petits mais extrêmement rapides. Au milieu, la mémoire vive, la mémoire de travail, volatile : son contenu disparaît à l'extinction. En bas, le stockage secondaire, disques durs et disques SSD, non volatile, vaste mais lent, qui garde les données même éteint.",
+   "ecran": "hierarchie",
+   "id": "p11",
+   "texte": "Registres, caches, RAM, SSD : la pyramide mémoire."
+  },
+  {
+   "dit": "Les périphériques relient la machine au monde. En entrée, le clavier, la souris, le microphone et les capteurs convertissent des actions physiques en signaux numériques. En sortie, l'écran, l'imprimante et les haut-parleurs font l'inverse. En stockage, les disques durs, les disques SSD et les clés USB conservent les données de façon permanente.",
+   "ecran": "peripheriques",
+   "id": "p12",
+   "texte": "Entrée, sortie, stockage : les interfaces avec le monde."
+  },
+  {
+   "dit": "Les bus sont les autoroutes de l'information : des ensembles de fils qui transportent les échanges entre composants. Le bus de données transporte les données, aujourd'hui sur trente-deux ou soixante-quatre bits. Le bus d'adresses précise l'emplacement mémoire concerné. Le bus de contrôle transmet les signaux de synchronisation et de commande.",
+   "ecran": "bus",
+   "id": "p13",
+   "texte": "Bus : données, adresses, contrôle."
+  },
+  {
+   "dit": "Le débit d'un bus mémoire se calcule : fréquence, multipliée par largeur, multipliée par transferts par cycle. Exemple tiré du cours : une mémoire DDR quatre à trois mille deux cents mégahertz, sur un bus de soixante-quatre bits, avec deux transferts par cycle, donne environ cinquante et un virgule deux gigaoctets par seconde.",
+   "ecran": "debit_memoire",
+   "id": "p14",
+   "texte": "Débit mémoire : fréquence, largeur, transferts par cycle."
+  },
+  {
+   "dit": "Chaque instruction suit le même cycle, en quatre temps. Fetch, la récupération : le compteur ordinal envoie l'adresse, la mémoire renvoie l'instruction. Decode, le décodage : l'unité de contrôle identifie l'opération et ses opérandes. Execute, l'exécution : l'unité de calcul opère. Write back, l'écriture : le résultat est stocké dans le registre de destination, et les indicateurs sont mis à jour.",
+   "ecran": "cycle",
+   "id": "p15",
+   "texte": "Fetch, decode, execute, write back : la danse de l'instruction."
+  },
+  {
+   "dit": "Exemple concret, l'instruction d'addition ADD R un, R deux, R trois, qui signifie R un égale R deux plus R trois. Fetch : l'instruction est lue à l'adresse pointée par le compteur ordinal. Decode : l'unité de contrôle reconnaît une addition, avec R deux et R trois comme sources et R un comme destination. Execute : l'unité de calcul additionne. Write back : le résultat est stocké dans R un.",
+   "ecran": "exemple_add",
+   "id": "p16",
+   "texte": "ADD : R1 reçoit R2 plus R3."
+  },
+  {
+   "dit": "Le cycle séquentiel est inefficace, les processeurs modernes le pipelinent, comme une chaîne de montage. Pendant que l'instruction N est à l'étape d'exécution, l'instruction N plus un est en décodage, et l'instruction N plus deux est en chargement. Plusieurs instructions avancent donc simultanément, chacune à un stade différent, et le débit augmente considérablement.",
+   "ecran": "pipeline",
+   "id": "p17",
+   "texte": "Pipeline : trois instructions à la fois, à des stades différents."
+  },
+  {
+   "dit": "Un cœur est un processeur complet : unité de contrôle, unité de calcul, registres. Placer plusieurs cœurs sur une même puce permet une vraie exécution parallèle de plusieurs fils d'instructions. Un processeur dit quad-core possède quatre cerveaux indépendants, qui travaillent simultanément, à condition que le logiciel soit conçu pour répartir le travail.",
+   "ecran": "multicoeurs",
+   "id": "p18",
+   "texte": "Un cœur, un processeur complet ; quatre cœurs, quatre cerveaux."
+  },
+  {
+   "dit": "La machine ne comprend que deux états, zéro et un, toute information doit être encodée en binaire. Pour lire ces suites plus commodément, on regroupe les bits : par trois pour l'octal, la base huit, de zéro à sept ; par quatre pour l'hexadécimal, la base seize, de zéro à neuf puis de A à F.",
+   "ecran": "bases",
+   "id": "p19",
+   "texte": "Binaire, octal, hexadécimal : trois bases pour les mêmes bits."
+  },
+  {
+   "dit": "Convertissons un zéro un un en base deux. Un fois deux puissance trois, soit huit, plus zéro fois deux puissance deux, plus un fois deux puissance un, soit deux, plus un fois deux puissance zéro, soit un : huit plus zéro plus deux plus un égale onze en base dix.",
+   "ecran": "conversion",
+   "id": "p20",
+   "texte": "Un zéro un un en base deux égale onze en base dix."
+  },
+  {
+   "dit": "La performance d'un système mémoire se mesure d'abord par son taux de succès dans le cache. Le temps d'accès moyen, noté AMAT, s'en déduit : temps d'accès au cache, plus un moins le taux de succès, multiplié par le temps de pénalité, c'est-à-dire le temps pour aller chercher la donnée au niveau inférieur.",
+   "ecran": "amat",
+   "id": "p21",
+   "texte": "AMAT : cache plus échecs multipliés par la pénalité."
+  },
+  {
+   "dit": "Le mythe de la fréquence tombe ici : un processeur à cinq gigahertz peut être moins performant qu'un processeur à quatre gigahertz si son bus système est saturé. C'est le mur de la mémoire, l'un des grands défis de l'informatique moderne. Et pour la même raison, un accès mémoire séquentiel est plus rapide qu'un accès aléatoire, grâce à la précharge qui exploite la localité spatiale.",
+   "ecran": "mur_memoire",
+   "id": "p22",
+   "texte": "Cinq gigahertz peut perdre contre quatre si le bus sature."
+  },
+  {
+   "dit": "Que se passe-t-il quand vous appuyez sur une touche pendant un calcul lourd ? Le périphérique génère un signal d'interruption sur le bus de contrôle. À la fin de son instruction en cours, le processeur suspend le programme, sauvegarde son état, consulte le vecteur d'interruptions pour trouver le gestionnaire, l'exécute, puis reprend exactement où il s'était arrêté. Plus besoin d'interroger chaque périphérique en permanence.",
+   "ecran": "interruptions",
+   "id": "p23",
+   "texte": "Interruption : signal, sauvegarde, gestionnaire, reprise."
+  },
+  {
+   "dit": "Trois modes coordonnent processeur et périphériques. L'entrée-sortie programmée, ou polling : le processeur interroge le contrôleur en boucle, simple mais gaspilleur. L'entrée-sortie par interruptions : le périphérique prévient quand il est prêt, le processeur travaille entre-temps. L'accès direct à la mémoire, le DMA : un contrôleur spécialisé transfère les masses de données directement entre périphérique et mémoire, le processeur est libéré, il n'est prévenu qu'à la fin.",
+   "ecran": "modes_es",
+   "id": "p24",
+   "texte": "Polling, interruption, DMA : trois philosophies d'échanges."
+  },
+  {
+   "dit": "Suivons un programme qui calcule la moyenne de deux nombres. Allocation mémoire pour les variables, initialisation avec cinq et sept, chargement depuis la mémoire vive vers les registres, puis calcul : l'unité de calcul additionne cinq et sept, soit douze, puis divise douze par deux, soit six. Le résultat six est écrit dans la variable moyenne, et zéro est placé dans le registre de retour.",
+   "ecran": "moyenne",
+   "id": "p25",
+   "texte": "Moyenne de cinq et sept : douze divisé par deux égale six."
+  },
+  {
+   "dit": "Et demain ? La loi de Moore, le doublement des transistors environ tous les deux ans, approche ses limites physiques. Les voies nouvelles sont le parallélisme massif, avec des processeurs à plusieurs cœurs et des processeurs graphiques à des milliers de cœurs, la spécialisation, avec des accélérateurs dédiés à l'intelligence artificielle, et le calcul directement au sein de la mémoire, pour éviter les transferts coûteux. Les architectures neuromorphiques et quantiques restent, pour l'instant, à l'horizon.",
+   "ecran": "avenir",
+   "id": "p26",
+   "texte": "Demain : parallélisme, spécialisation, calcul près de la mémoire."
+  },
+  {
+   "dit": "Retenons l'essentiel. L'ordinateur est une machine séquentielle qui exécute des instructions stockées, selon le modèle de von Neumann. La hiérarchie mémoire équilibre vitesse, capacité et coût. Le cycle fetch, decode, execute est le battement de cœur du processeur. Toutes les données sont finalement représentées en binaire. Et les performances dépendent de l'interaction harmonieuse de tous les composants.",
+   "ecran": "recap",
+   "id": "p27",
+   "texte": "Von Neumann, CPU, mémoire, bus, cycle, performance."
+  }
+ ],
+ "titre": "Architecture d'un ordinateur : composants et fonctionnement"
+}
