@@ -1,0 +1,272 @@
+{
+ "cours": 7310,
+ "ecrans": {
+  "aiguille": {
+   "kicker": "Les effets observables",
+   "tex": [
+    "\\text{éclairage d'une lampe}",
+    "\\text{échauffement d'un conducteur}",
+    "\\text{déviation d'une aiguille}"
+   ],
+   "titre": "Invisible, mais observable",
+   "type": "etape"
+  },
+  "alternatif": {
+   "kicker": "Pourquoi alternatif ?",
+   "texte": "Alternatif : le courant change de sens.",
+   "type": "phrase"
+  },
+  "cause": {
+   "kicker": "La tension, cause du courant",
+   "texte": "Sans tension, pas de courant.",
+   "type": "phrase"
+  },
+  "courant": {
+   "kicker": "Le courant électrique",
+   "texte": "Courant : déplacement ordonné de porteurs de charge.",
+   "type": "phrase"
+  },
+  "dangers_surtension": {
+   "kicker": "Les dangers de la surtension",
+   "tex": [
+    "\\text{échauffement excessif}",
+    "\\text{risque d'incendie}",
+    "\\text{destruction du matériel}"
+   ],
+   "titre": "Trop de tension détruit",
+   "type": "etape"
+  },
+  "electrocution": {
+   "kicker": "Le contact direct",
+   "texte": "Contact 230 V : le corps devient conducteur.",
+   "type": "phrase"
+  },
+  "exemple_pile": {
+   "kicker": "Exemple : pile et lampe",
+   "texte": "Électrons de - vers + ; courant de + vers -.",
+   "type": "phrase"
+  },
+  "lampe12": {
+   "kicker": "Exemple : une lampe de 12 V",
+   "tex": [
+    "\\text{sous } 6\\,\\text{V : éclairage faible}",
+    "\\text{sous } 12\\,\\text{V : éclairage normal}",
+    "\\text{sous } 24\\,\\text{V : elle grille}"
+   ],
+   "titre": "Trois tensions, trois éclairages",
+   "type": "etape"
+  },
+  "nominale": {
+   "kicker": "La tension nominale",
+   "texte": "Nominale : la tension prévue pour l'appareil.",
+   "type": "phrase"
+  },
+  "orage": {
+   "kicker": "Exemple : l'orage et la surtension",
+   "texte": "Appareil 230 V recevant 400 V : il grille.",
+   "type": "phrase"
+  },
+  "protection": {
+   "kicker": "Se protéger des variations",
+   "texte": "Parafoudre, disjoncteur : ils protègent l'installation.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Courant : électrons de - vers +, sens conventionnel de + vers -",
+    "Tension U en volts : cause du courant, mesurée en dérivation",
+    "Nominale : fonctionnement normal ; sinon sous-tension ou surtension",
+    "Secteur : 230 V efficaces, 50 Hz, alternatif",
+    "Variations : appareils détruits, électrocution possible"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "regle": {
+   "kicker": "La règle des tensions",
+   "texte": "Nominale : normal ; dessous, dessus : danger.",
+   "type": "phrase"
+  },
+  "secteur": {
+   "kicker": "La tension du secteur en France",
+   "note": "Tension alternative sinusoïdale, valeur efficace.",
+   "tex": "U = 230\\,\\text{V} \\quad ; \\quad f = 50\\,\\text{Hz}",
+   "type": "formule"
+  },
+  "sens": {
+   "kicker": "Deux sens à ne pas confondre",
+   "tex": [
+    "\\text{conventionnel : +} \\rightarrow \\text{-, extérieur}",
+    "\\text{sens réel des électrons : opposé}"
+   ],
+   "titre": "Convention contre réalité",
+   "type": "etape"
+  },
+  "sous_tension": {
+   "kicker": "Les effets de la sous-tension",
+   "tex": [
+    "\\text{moteurs qui forcent}",
+    "\\text{éclairage insuffisant}"
+   ],
+   "titre": "Pas assez de tension, mauvais fonctionnement",
+   "type": "etape"
+  },
+  "tension": {
+   "kicker": "La tension électrique",
+   "note": "Différence de potentiel entre deux points, en volts.",
+   "tex": "U_{AB} = V_A - V_B",
+   "type": "formule"
+  },
+  "tension_pile": {
+   "kicker": "Exemple : une pile plate",
+   "note": "Cette tension est la cause du courant qui traverse le circuit.",
+   "tex": "U = 4{,}5\\,\\text{V}",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "circuit"
+   },
+   "kicker": "Sciences Physiques et Technologie · Courant et tension",
+   "sous": "Sens du courant, tension nominale, secteur 230 V : comprendre ce qui pousse les électrons",
+   "titre": "Courant électrique et tension : ce qui pousse les électrons",
+   "type": "titre"
+  },
+  "voltmètre": {
+   "kicker": "Mesurer la tension",
+   "texte": "Voltmètre en dérivation, entre les deux points.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Courant, tension et tension nominale"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur le courant électrique et la tension. Nous allons suivre les électrons dans un fil, mesurer la tension qui les pousse, puis comprendre pourquoi un appareil grille quand on lui donne trop de tension.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Courant et tension : ce qui pousse les électrons."
+  },
+  {
+   "dit": "Le courant électrique est un déplacement ordonné de porteurs de charge, des électrons dans un métal, dans un conducteur. Ce déplacement est dû à un générateur qui met les électrons en mouvement.",
+   "ecran": "courant",
+   "id": "p02",
+   "texte": "Courant : déplacement ordonné de porteurs de charge."
+  },
+  {
+   "dit": "Deux sens à ne pas confondre. Le sens conventionnel du courant va de la borne positive vers la borne négative du générateur, à l'extérieur de celui-ci. Le sens réel des électrons est opposé au sens conventionnel.",
+   "ecran": "sens",
+   "id": "p03",
+   "texte": "Convention : + vers - ; électrons : sens opposé."
+  },
+  {
+   "dit": "Le courant électrique ne se voit pas, mais ses effets sont observables : l'éclairage d'une lampe, l'échauffement d'un conducteur et la déviation d'une aiguille.",
+   "ecran": "aiguille",
+   "id": "p04",
+   "texte": "Invisible, mais observable : lampe, chaleur, aiguille."
+  },
+  {
+   "dit": "Exemple : une pile reliée à une lampe par deux fils. Les électrons circulent du pôle négatif vers le pôle positif dans le circuit extérieur, mais le courant conventionnel est représenté du pôle positif vers le pôle négatif.",
+   "ecran": "exemple_pile",
+   "id": "p05",
+   "texte": "Électrons de - vers + ; courant de + vers -."
+  },
+  {
+   "dit": "La tension électrique entre deux points d'un circuit est la différence de potentiel électrique entre ces deux points. Elle se note U et s'exprime en volts.",
+   "ecran": "tension",
+   "id": "p06",
+   "texte": "Tension U : différence de potentiel, en volts."
+  },
+  {
+   "dit": "La tension se mesure avec un voltmètre, branché en dérivation, en parallèle, entre les deux points. On mesure donc aux bornes, sans couper le circuit.",
+   "ecran": "voltmètre",
+   "id": "p07",
+   "texte": "Voltmètre en dérivation, entre les deux points."
+  },
+  {
+   "dit": "La tension représente la poussée qui met les électrons en mouvement : sans tension, pas de courant. C'est la cause, le courant est l'effet.",
+   "ecran": "cause",
+   "id": "p08",
+   "texte": "Sans tension, pas de courant."
+  },
+  {
+   "dit": "Exemple : aux bornes d'une pile plate, on mesure une tension de quatre virgule cinq volts. Cette tension est la cause du courant qui traverse le circuit.",
+   "ecran": "tension_pile",
+   "id": "p09",
+   "texte": "Pile plate : U = 4,5 V."
+  },
+  {
+   "dit": "La tension nominale est la tension pour laquelle un appareil a été conçu pour fonctionner normalement. Elle est indiquée sur la plaque signalétique de l'appareil. Par exemple, deux cent trente volts pour un appareil domestique.",
+   "ecran": "nominale",
+   "id": "p10",
+   "texte": "Nominale : la tension prévue pour l'appareil."
+  },
+  {
+   "dit": "Exemple : une lampe de tension nominale douze volts. Alimentée sous six volts, en sous-tension, elle éclaire faiblement. Alimentée sous douze volts, son éclairage est normal. Alimentée sous vingt-quatre volts, en surtension, elle s'échauffe puis grille.",
+   "ecran": "lampe12",
+   "id": "p11",
+   "texte": "Lampe 12 V : 6 V faible, 12 V normal, 24 V grille."
+  },
+  {
+   "dit": "Retenons la règle : un appareil fonctionne normalement à sa tension nominale. En dessous, c'est la sous-tension ; au-dessus, la surtension, dangereuse.",
+   "ecran": "regle",
+   "id": "p12",
+   "texte": "Nominale : normal ; dessous : sous-tension ; dessus : surtension."
+  },
+  {
+   "dit": "Passons au courant du secteur. En France, la tension du secteur est une tension alternative sinusoïdale de valeur efficace deux cent trente volts et de fréquence cinquante hertz.",
+   "ecran": "secteur",
+   "id": "p13",
+   "texte": "Secteur : 230 V efficaces, 50 Hz, alternatif."
+  },
+  {
+   "dit": "Elle change de signe au cours du temps : le courant circule alternativement dans les deux sens. C'est le sens du mot alternatif.",
+   "ecran": "alternatif",
+   "id": "p14",
+   "texte": "Alternatif : le courant change de sens."
+  },
+  {
+   "dit": "La surtension provoque un échauffement excessif des conducteurs et des appareils, avec un risque d'incendie ou de destruction du matériel.",
+   "ecran": "dangers_surtension",
+   "id": "p15",
+   "texte": "Surtension : échauffement, incendie, destruction."
+  },
+  {
+   "dit": "La sous-tension, elle, donne un mauvais fonctionnement des appareils : des moteurs qui forcent et un éclairage insuffisant.",
+   "ecran": "sous_tension",
+   "id": "p16",
+   "texte": "Sous-tension : moteurs qui forcent, lumière faible."
+  },
+  {
+   "dit": "Le contact direct avec une tension élevée, deux cent trente volts, présente un risque d'électrocution, car le corps humain devient conducteur.",
+   "ecran": "electrocution",
+   "id": "p17",
+   "texte": "Contact 230 V : le corps devient conducteur."
+  },
+  {
+   "dit": "Exemple : un orage provoque une surtension sur une installation domestique. Un appareil prévu pour deux cent trente volts reçoit quatre cents volts et grille.",
+   "ecran": "orage",
+   "id": "p18",
+   "texte": "Orage : appareil 230 V recevant 400 V, il grille."
+  },
+  {
+   "dit": "Un parafoudre ou un disjoncteur protège l'installation contre ces variations. La protection se place avant le dommage.",
+   "ecran": "protection",
+   "id": "p19",
+   "texte": "Parafoudre, disjoncteur : ils protègent l'installation."
+  },
+  {
+   "dit": "Retenons l'essentiel : le courant est un déplacement de porteurs de charge, de sens conventionnel de plus vers moins à l'extérieur du générateur ; la tension U, en volts, est la cause du courant et se mesure en dérivation ; un appareil fonctionne normalement à sa tension nominale ; et le secteur délivre deux cent trente volts efficaces à cinquante hertz, dont les variations présentent des risques.",
+   "ecran": "recap",
+   "id": "p20",
+   "texte": "Courant, tension, nominale, secteur, dangers."
+  }
+ ],
+ "titre": "Courant électrique et tension : ce qui pousse les électrons"
+}
