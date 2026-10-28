@@ -1,0 +1,391 @@
+{
+ "cours": 6511,
+ "ecrans": {
+  "annulation": {
+   "etapes": [
+    "Formel : bezugnehmend auf unseren Termin am 20. Mai um 10 Uhr.",
+    "Formel : proposer un nouveau rendez-vous, s'excuser des Unannehmlichkeiten.",
+    "Informel : total ärgerlich, Lass uns schnell einen neuen Termin ausmachen."
+   ],
+   "kicker": "Même scénario, deux registres",
+   "type": "recap"
+  },
+  "appel_formel": {
+   "kicker": "Appels formels",
+   "tex": [
+    "\\text{Sehr geehrte Frau Dr. Schmidt,}",
+    "\\text{Sehr geehrter Herr Dr. Bauer,}",
+    "\\text{Sehr geehrte Damen und Herren,}"
+   ],
+   "titre": "Précision et respect, jamais deviné",
+   "type": "etape"
+  },
+  "appel_informel": {
+   "kicker": "Appels informels",
+   "tex": [
+    "\\text{Liebe Anna,}",
+    "\\text{Lieber Tom,}",
+    "\\text{Hallo zusammen,}"
+   ],
+   "titre": "Prénom et chaleur, jamais Sie",
+   "type": "etape"
+  },
+  "appel_transition": {
+   "kicker": "L'appel de transition",
+   "tex": [
+    "\\text{Liebe Frau Schmidt,}",
+    "\\text{Lieber Herr Schmidt,}"
+   ],
+   "titre": "Entre formel et informel, après échanges",
+   "type": "etape"
+  },
+  "arbre": {
+   "etapes": [
+    "Destinataire connu personnellement ? Relation hiérarchique ou professionnelle stricte ?",
+    "Oui, hiérarchique : Sehr geehrte plus titre et nom.",
+    "Non : Liebe ou Hallo plus prénom.",
+    "Inconnu : Sehr geehrte Damen und Herren, ou Sehr geehrte Frau plus nom."
+   ],
+   "kicker": "Arbre de décision de l'appel",
+   "type": "recap"
+  },
+  "cinq_elements": {
+   "kicker": "Cinq éléments universels",
+   "tex": [
+    "\\text{Briefkopf}",
+    "\\text{Anrede}",
+    "\\text{Brieftext}",
+    "\\text{Grußformel}",
+    "\\text{Unterschrift}"
+   ],
+   "titre": "En-tête, appel, corps, clôture, signature",
+   "type": "etape"
+  },
+  "cloture_formel": {
+   "kicker": "Clôture formelle",
+   "tex": [
+    "\\text{Mit freundlichen Grüßen}",
+    "\\text{Max Mustermann}"
+   ],
+   "titre": "Pas de virgule après la formule, nom tapé sous la signature",
+   "type": "etape"
+  },
+  "cloture_informel": {
+   "kicker": "Clôtures informelles",
+   "tex": [
+    "\\text{Viele Grüße,}",
+    "\\text{Liebe Grüße,}",
+    "\\text{Dein Max}"
+   ],
+   "titre": "Chaleur et prénom seul",
+   "type": "etape"
+  },
+  "conges": {
+   "etapes": [
+    "Informel : poser trois semaines en août, en famille à la mer.",
+    "Formel : Urlaubsgenehmigung für drei Wochen im August beantragen.",
+    "Formel : prüfen la compatibilité, demander Verfahrensweg et Formulare."
+   ],
+   "kicker": "Transformation : des congés au formel",
+   "type": "recap"
+  },
+  "corps_formel": {
+   "etapes": [
+    "Introduction et référence : Mit Bezug auf Ihr Schreiben vom...",
+    "Développement logique, connecteurs formels, darüber hinaus, folglich.",
+    "Conclusion orientée : Ich würde mich freuen, von Ihnen zu hören."
+   ],
+   "kicker": "Corps formel en trois mouvements",
+   "type": "recap"
+  },
+  "corps_informel": {
+   "etapes": [
+    "Nouvelles personnelles, réactions à celles du destinataire, questions.",
+    "Projets et sentiments, ton narratif et subjectif.",
+    "Structure souple, mais pas le chaos : un début et une fin."
+   ],
+   "kicker": "Corps informel : la conversation écrite",
+   "type": "recap"
+  },
+  "deux_empires": {
+   "kicker": "Deux empires, deux lois",
+   "tex": [
+    "\\text{formell}",
+    "\\text{informell}"
+   ],
+   "titre": "Protocole d'un côté, proximité de l'autre",
+   "type": "etape"
+  },
+  "email": {
+   "etapes": [
+    "Premier contact : Sehr geehrte, Mit freundlichen Grüßen.",
+    "Après quelques échanges : Liebe Frau X, Viele Grüße.",
+    "L'initiative du registre informel vient du supérieur ou du contact établi."
+   ],
+   "kicker": "L'e-mail professionnel assoupli",
+   "type": "recap"
+  },
+  "entete_formel": {
+   "etapes": [
+    "Vos coordonnées, puis l'adresse du destinataire.",
+    "Lieu et date : Berlin, den 15. Mai 2024, den facultatif mais courant.",
+    "Ligne Betreff : l'objet, concise, souvent en gras."
+   ],
+   "kicker": "En-tête formel",
+   "type": "recap"
+  },
+  "entete_informel": {
+   "kicker": "En-tête informel",
+   "tex": [
+    "\\text{Berlin, 15.05.24}"
+   ],
+   "titre": "Lieu et date simplifiés, destinataire omis",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Le ton fait la musique",
+   "texte": "Der Ton macht die Musik : la forme est déjà un fond.",
+   "type": "phrase"
+  },
+  "pieges": {
+   "etapes": [
+    "Mélange des registres : Sehr geehrte dans une lettre à un ami.",
+    "Inversion des adresses, chaos des dates, Betreff oublié.",
+    "Traduction mot à mot : Cordialement n'est pas Herzlichst, très intime."
+   ],
+   "kicker": "Pièges à éviter",
+   "type": "recap"
+  },
+  "recap": {
+   "etapes": [
+    "Formel : Sie, structure rigide, Sehr geehrte, Mit freundlichen Grüßen.",
+    "Informel : du, prénom, Liebe, Viele Grüße, signature prénom seul.",
+    "Cinq éléments toujours : en-tête, appel, corps, clôture, signature.",
+    "Cohérence : le niveau de formalité de l'appel égale celui de la clôture."
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "regle_duzen": {
+   "kicker": "Le passage au du",
+   "tex": [
+    "\\text{Wollen wir uns duzen?}"
+   ],
+   "titre": "En cas de doute, toujours Sie",
+   "type": "etape"
+  },
+  "relecture": {
+   "kicker": "Relecture en trois temps",
+   "tex": [
+    "\\text{Structurelle}",
+    "\\text{Linguistique}",
+    "\\text{Contextuelle}"
+   ],
+   "titre": "Checkliste froide, filtre de cohérence, mise en situation",
+   "type": "etape"
+  },
+  "sie_du": {
+   "kicker": "Sie ou du : la grammaire du respect",
+   "tex": [
+    "\\text{Sie}",
+    "\\text{du}"
+   ],
+   "titre": "Distance d'un côté, intimité de l'autre",
+   "type": "etape"
+  },
+  "testdaf": {
+   "etapes": [
+    "Formel : à la fondation, résultat et gratitude, 120 à 150 mots.",
+    "Informel : au professeur, enthousiasme et nostalgie.",
+    "Différences : date, clôture, signature, temps verbaux, abréviations."
+   ],
+   "kicker": "Cas pratique : réussir le TestDaF",
+   "type": "recap"
+  },
+  "titre": {
+   "kicker": "Allemand · Correspondance",
+   "sous": "Lettre formelle et informelle : Sie ou du, cinq éléments, formules d'appel et de clôture",
+   "titre": "Écrire une lettre formelle et informelle",
+   "type": "titre"
+  },
+  "usages": {
+   "etapes": [
+    "Professionnel : Bewerbung, Anschreiben, premier filtre de sélection.",
+    "Administratif : Behörden, communication structurée et respectueuse.",
+    "Privé : Glückwunschkarte, liens renforcés par les bonnes tournures."
+   ],
+   "kicker": "Pourquoi maîtriser cet art",
+   "type": "recap"
+  }
+ },
+ "matiere": "Allemand",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Deux registres, Sie et du, cinq éléments, en-tête"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Appels, corps et clôtures",
+   "pont": {
+    "dit": "Partie 2 : les appels formels, informels et de transition, puis le corps et les clôtures des deux registres.",
+    "texte": "Partie 2 : appels, corps, clôtures."
+   }
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Exemples comparés, pièges et relecture",
+   "pont": {
+    "dit": "Partie 3 : les mêmes scénarios dans les deux registres, les pièges, l'e-mail professionnel et la relecture en trois temps.",
+    "texte": "Partie 3 : exemples, pièges, relecture."
+   }
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur la lettre en allemand, formelle et informelle. Imaginez une porte : celle d'une université, d'une entreprise ou de la maison d'un ami. La manière dont vous frappez, c'est-à-dire la lettre que vous écrivez, révèle immédiatement votre compréhension de la culture, du respect et des hiérarchies sociales. Leitmotiv des leçons : Der Ton macht die Musik, c'est le ton qui fait la musique.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Der Ton macht die Musik : la forme est déjà un fond."
+  },
+  {
+   "dit": "En allemand, la forme est déjà un fond : chaque virgule, chaque formule, chaque placement a une signification. Une lettre bien rédigée est votre ambassadeur silencieux, et une erreur de formule dans une candidature peut signifier un rejet immédiat.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Der Ton macht die Musik : la forme est déjà un fond."
+  },
+  {
+   "dit": "Les lettres se divisent en deux empires. La lettre formelle, der formelle Brief : entreprises, institutions, autorités, personnes inconnues ou relations strictement professionnelles, ton objectif, impersonnel et respectueux, pour transmettre une information, faire une demande officielle ou postuler. La lettre informelle, der informelle Brief : amis, famille, proches, ton subjectif, personnel et chaleureux, pour donner des nouvelles, raconter, remercier ou inviter.",
+   "ecran": "deux_empires",
+   "id": "p03",
+   "texte": "Formel : protocole. Informel : proximité."
+  },
+  {
+   "dit": "La distinction Sie et du est la pierre angulaire de l'interaction sociale. Sie marque une barrière de respect et de distance : inconnus, supérieurs, clients, c'est le vous de politesse. Du indique l'intimité, le même cercle, amis, famille, collègues très proches, c'est le tu. Avec Sie, on conjugue à la troisième personne du pluriel, même pour une seule personne : Sie sind, Sie haben, können Sie.",
+   "ecran": "sie_du",
+   "id": "p04",
+   "texte": "Sie : distance. Du : intimité."
+  },
+  {
+   "dit": "Règle d'or des leçons : en cas de doute, utilisez toujours Sie. Il est bien plus grave de tutoyer par erreur que de vouvoyer inutilement. Le passage au du est souvent proposé explicitement : Wollen wir uns duzen, voulons-nous nous tutoyer ? Et Sie, Ihnen, Ihr s'écrivent toujours avec une majuscule dans la correspondance, marque de respect orthographique.",
+   "ecran": "regle_duzen",
+   "id": "p05",
+   "texte": "En cas de doute, toujours Sie."
+  },
+  {
+   "dit": "Pourquoi maîtriser cet art aujourd'hui ? Dans le monde professionnel, une candidature, die Bewerbung, ou une lettre de motivation, das Anschreiben, aux normes est souvent le premier filtre de sélection. Dans les démarches administratives, les autorités, les Behörden, attendent une communication structurée. Dans la sphère privée, une carte de vœux, eine Glückwunschkarte, avec les bonnes tournures renforce les liens.",
+   "ecran": "usages",
+   "id": "p06",
+   "texte": "Bewerbung, Behörden, Glückwunschkarte."
+  },
+  {
+   "dit": "Toute lettre, formelle ou informelle, repose sur cinq piliers, son ADN : l'en-tête, der Briefkopf ; la formule d'appel, die Anrede ; le corps, der Brieftext ; la formule de clôture, die Grußformel ; et la signature, die Unterschrift. Retenez la checklist mentale : où et quand, à qui je parle, qu'est-ce que je veux dire, comment je dis au revoir, qui le dit.",
+   "ecran": "cinq_elements",
+   "id": "p07",
+   "texte": "En-tête, appel, corps, clôture, signature."
+  },
+  {
+   "dit": "L'en-tête formel se compose, dans l'ordre : vos coordonnées, l'adresse du destinataire, le lieu et la date, puis la ligne de référence. Le format classique de la date est Berlin, den 15. Mai 2024, le den est facultatif mais très courant. La ligne Betreff, concise, souvent en gras ou soulignée, résume l'objet : par exemple Betreff: Bewerbung um eine Stelle als Projektmanager. Sans objet précis, une lettre professionnelle est souvent considérée comme incomplète.",
+   "ecran": "entete_formel",
+   "id": "p08",
+   "texte": "En-tête formel : adresses, date, Betreff."
+  },
+  {
+   "dit": "L'en-tête informel est simplifié : le lieu et la date en haut à droite, souvent Berlin, 15.05.24, et l'adresse du destinataire généralement omise, car la relation est établie et l'information déjà connue.",
+   "ecran": "entete_informel",
+   "id": "p09",
+   "texte": "Berlin, 15.05.24 : lieu et date simplifiés."
+  },
+  {
+   "dit": "L'appel formel exige la précision : on ne devine pas, on vérifie. Sehr geehrte Frau Dr. Schmidt, Sehr geehrter Herr Dr. Bauer, et pour un groupe ou un destinataire inconnu, Sehr geehrte Damen und Herren. Exemple des leçons : Sehr geehrte Frau Dr. Schmidt, ich beziehe mich auf unsere Korrespondenz vom 15. April betreffend...",
+   "ecran": "appel_formel",
+   "id": "p10",
+   "texte": "Sehr geehrte Frau Dr. Schmidt, Sehr geehrte Damen und Herren."
+  },
+  {
+   "dit": "L'appel informel joue la proximité : Liebe Anna, Lieber Tom, Hallo zusammen pour plusieurs, Liebe Oma pour la famille. Point de grammaire essentiel : la formule d'appel est toujours suivie d'une virgule en allemand, et la première phrase qui suit commence par une minuscule. C'est une règle stricte, qui diffère du français et de l'anglais.",
+   "ecran": "appel_informel",
+   "id": "p11",
+   "texte": "Liebe Anna, Lieber Tom, Hallo zusammen."
+  },
+  {
+   "dit": "Entre les deux, l'appel de transition : Liebe Frau Schmidt, Lieber Herr Schmidt, avec le nom de famille mais sans Sehr geehrte. Il apparaît après quelques échanges, quand la relation s'est détendue, et son usage est un baromètre de la relation.",
+   "ecran": "appel_transition",
+   "id": "p12",
+   "texte": "Liebe Frau Schmidt : l'appel de transition."
+  },
+  {
+   "dit": "Pour choisir votre appel, suivez l'arbre de décision des leçons : connaissez-vous personnellement le destinataire ? Si oui, la relation est-elle hiérarchique ou professionnelle stricte ? Si oui, Sehr geehrte ; sinon, Hallo ou Liebe plus le prénom. Si non, Sehr geehrte Damen und Herren si le destinataire est inconnu, ou Sehr geehrte Frau plus le nom si le nom est connu.",
+   "ecran": "arbre",
+   "id": "p13",
+   "texte": "Arbre de décision : connu, hiérarchique, inconnu."
+  },
+  {
+   "dit": "Le corps formel suit une progression rhétorique : introduction et référence, Mit Bezug auf Ihr Schreiben vom, en référence à votre courrier du ; développement principal, faits et arguments en paragraphes clairs, avec des connecteurs formels comme darüber hinaus, folglich, aus diesem Grund ; puis conclusion orientée, comme Ich würde mich freuen, von Ihnen zu hören, je serais heureux d'avoir de vos nouvelles.",
+   "ecran": "corps_formel",
+   "id": "p14",
+   "texte": "Corps formel : référence, développement, conclusion."
+  },
+  {
+   "dit": "Le corps informel est plus libre, mais reste organisé : nouvelles personnelles, réaction à celles du destinataire, questions, projets. Le ton est narratif et subjectif, avec des phrases plus courtes, des points d'exclamation, des abréviations courantes comme z.B. ou usw., et des mots de liaison simples, und, aber, dann, also. La souplesse n'est pas le chaos : une lettre sans début ni fin est désagréable à lire.",
+   "ecran": "corps_informel",
+   "id": "p15",
+   "texte": "Corps informel : nouvelles, réactions, projets."
+  },
+  {
+   "dit": "La clôture formelle doit être en cohérence avec l'appel. Mit freundlichen Grüßen, puis un espace de quatre lignes pour la signature manuscrite, puis votre nom tapé, Max Mustermann. Selon le chapitre sur la lettre formelle, on ne met pas de virgule après la formule de politesse : Mit freundlichen Grüßen avec une virgule y est signalé comme une erreur courante d'apprenant.",
+   "ecran": "cloture_formel",
+   "id": "p16",
+   "texte": "Mit freundlichen Grüßen, signature, nom tapé."
+  },
+  {
+   "dit": "Les clôtures informelles offrent toute une gamme : Viele Grüße, Liebe Grüße, Herzliche Grüße, puis le prénom seul, Dein Max. Pour les très proches : Viele liebe Grüße und bis bald, Alles Liebe, ou Ganz liebe Grüße und umarme dich fest. Exemple des leçons : Bitte schreib mir bald und erzähl mehr ! Viele liebe Grüße, Deine Sandra.",
+   "ecran": "cloture_informel",
+   "id": "p17",
+   "texte": "Viele Grüße, Dein Max : chaleur et prénom seul."
+  },
+  {
+   "dit": "Comparez l'annulation d'un rendez-vous dans les deux registres. Formel, à un médecin : Sehr geehrter Herr Dr. Bauer, bezugnehmend auf unseren Termin am 20. Mai um 10 Uhr muss ich diesen leider absagen. Ein dringender beruflicher Termin ist dazwischengekommen. Puis une demande polie de nouveau rendez-vous et des excuses pour les Unannehmlichkeiten, les désagréments. Informel, à un ami : Lieber Thomas, leider muss ich unseren Termin nächsten Montag absagen. Etwas Dringendes ist auf der Arbeit dazwischengekommen, total ärgerlich ! Lass uns bitte schnell einen neuen Termin ausmachen.",
+   "ecran": "annulation",
+   "id": "p18",
+   "texte": "Annuler : bezugnehmend contre total ärgerlich."
+  },
+  {
+   "dit": "Exercice de transformation : un message informel demande trois semaines de vacances en août en famille à la mer. Version formelle aux ressources humaines : Sehr geehrte Damen und Herren der Personalabteilung, hiermit möchte ich formell eine Urlaubsgenehmigung für drei Wochen im August beantragen. Puis prier de vérifier la compatibilité avec les plannings, et demander le Verfahrensweg, la procédure, et les Formulare nécessaires. Objectivation, dépersonnalisation, structuration logique : d'abord la demande, puis la justification, enfin la question procédurale.",
+   "ecran": "conges",
+   "id": "p19",
+   "texte": "Congés : de l'informel au formel, demande structurée."
+  },
+  {
+   "dit": "Cas pratique complet, après la réussite du TestDaF : deux lettres de 120 à 150 mots. Formelle, à la fondation qui a accordé la bourse : annoncer le résultat, exprimer la gratitude, perspectives futures, avec lieu et date, Betreff, Mit freundlichen Grüßen et nom complet. Informelle, à l'ancien professeur : partager la nouvelle avec enthousiasme et nostalgie, date simplifiée, Viele Grüße ou Herzliche Grüße, prénom seul. Autres différences : plus de parfaits et de prétérits en formel, plus de présent en informel, aucune abréviation en formel.",
+   "ecran": "testdaf",
+   "id": "p20",
+   "texte": "TestDaF : fondation formelle, professeur informel."
+  },
+  {
+   "dit": "Trois pièges à éviter. Le mélange des registres : utiliser Sehr geehrte ou Mit freundlichen Grüßen dans une lettre à un ami crée une dissonance stylistique, et utiliser Sie dans une lettre informelle serait perçu comme une mise à distance froide. Les faux-pas structurels : inversion des adresses, chaos des dates, Betreff oublié. Et la traduction mot à mot : Bien à vous n'est pas Schön an Sie, et Cordialement n'est pas toujours Herzlichst, qui est très intime.",
+   "ecran": "pieges",
+   "id": "p21",
+   "texte": "Pièges : mélange, inversion, traduction mot à mot."
+  },
+  {
+   "dit": "Dans les e-mails professionnels, les codes s'assouplissent sans disparaître : Sehr geehrte suivi de Mit freundlichen Grüßen reste la norme pour un premier contact, puis on évolue vers Liebe Frau X et Viele Grüße. L'initiative du passage à un registre plus informel doit généralement venir de la personne hiérarchiquement supérieure ou du contact établi. Et la lettre papier formelle reste reine pour les actes juridiques et les candidatures soignées, la Bewerbungsmappe.",
+   "ecran": "email",
+   "id": "p22",
+   "texte": "E-mail : d'abord Sehr geehrte, puis Liebe Frau X."
+  },
+  {
+   "dit": "Enfin, la relecture en trois temps, sans vous fier à une seule relecture : structurelle, la checkliste froide des éléments objectifs ; linguistique, le filtre de cohérence ; contextuelle, la mise en situation. Et pour les lettres formelles, le garde-fou systématique : Ort, den Datum, Betreff, Sehr geehrte, Einleitung, Hauptteil, Schluss, Mit freundlichen Grüßen.",
+   "ecran": "relecture",
+   "id": "p23",
+   "texte": "Relecture : structurelle, linguistique, contextuelle."
+  },
+  {
+   "dit": "Retenons l'essentiel : en formel, Sie, structure rigide, Sehr geehrte, Mit freundlichen Grüßen, nom complet ; en informel, du, prénom, Liebe, Viele Grüße, prénom seul ; toujours les cinq éléments, en-tête, appel, corps, clôture, signature ; et la règle de l'harmonie, le niveau de formalité de l'appel égale celui de la clôture. Un appel à huit sur dix suivi d'une conclusion à trois sur dix crée une dissonance qui distrait le lecteur.",
+   "ecran": "recap",
+   "id": "p24",
+   "texte": "Formel contre informel, cinq éléments, harmonie."
+  }
+ ],
+ "titre": "Écrire une lettre formelle et informelle"
+}
