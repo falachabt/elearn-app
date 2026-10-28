@@ -1,0 +1,514 @@
+{
+ "cours": 6267,
+ "ecrans": {
+  "abstraction": {
+   "kicker": "Rôle 2 : l'abstraction",
+   "tex": [
+    "\\text{appels système : interface uniforme}",
+    "\\text{portable, disque indifférent}",
+    "\\text{disque dur ou flash : même programme}"
+   ],
+   "titre": "Les appels système, machine étendue",
+   "type": "etape"
+  },
+  "adressage": {
+   "kicker": "Mémoire : adresses logiques",
+   "tex": [
+    "\\text{chaque processus part de zéro}",
+    "\\text{MMU : logique vers physique}",
+    "\\text{séparés : aucune lecture croisée}"
+   ],
+   "titre": "La MMU traduit, la MMU protège",
+   "type": "etape"
+  },
+  "allocation_journal": {
+   "kicker": "Allouer, et tenir un journal",
+   "tex": [
+    "\\text{contiguë : rapide, mais fragmentée}",
+    "\\text{chaînée : accès direct lent}",
+    "\\text{indexée : le compromis efficace}",
+    "\\text{journal : rejouer ou annuler}"
+   ],
+   "titre": "Trois allocations, un filet de sécurité",
+   "type": "etape"
+  },
+  "anatomie": {
+   "kicker": "Anatomie fonctionnelle",
+   "tex": [
+    "\\text{processus et processeur}",
+    "\\text{gestion de la mémoire vive}",
+    "\\text{système de fichiers, le disque}",
+    "\\text{entrées-sorties, périphériques}"
+   ],
+   "titre": "Quatre sous-systèmes sous le capot",
+   "type": "etape"
+  },
+  "avenir": {
+   "kicker": "Au-delà du bureau",
+   "tex": [
+    "\\text{serveurs et cloud : Linux en maître}",
+    "\\text{mobile : Android ouvert, iOS intégré}",
+    "\\text{embarqué : voitures, box, TV}",
+    "\\text{conteneurs : appli et dépendances}"
+   ],
+   "titre": "Serveurs, mobiles, conteneurs",
+   "type": "etape"
+  },
+  "compromis": {
+   "kicker": "Comparer : une question de compromis",
+   "tex": [
+    "\\text{Linux : liberté et personnalisation}",
+    "\\text{Windows : compatibilité inégalée}",
+    "\\text{macOS : cohérence et stabilité}",
+    "\\text{choisir, c'est voter pour un modèle}"
+   ],
+   "titre": "Ouvert, compatible, ou cohérent",
+   "type": "etape"
+  },
+  "convergence": {
+   "kicker": "Les trois géants bougent",
+   "tex": [
+    "\\text{Windows intègre des outils libres}",
+    "\\text{Linux gagne en convivialité}",
+    "\\text{macOS renforce son socle UNIX}"
+   ],
+   "titre": "Des frontières qui s'estompent",
+   "type": "etape"
+  },
+  "dac_mac": {
+   "kicker": "Contrôle d'accès et mots de passe",
+   "tex": [
+    "\\text{propriétaire, groupe, autres : rwx}",
+    "\\text{DAC : le propriétaire décide}",
+    "\\text{MAC : la politique centrale décide}",
+    "\\text{jamais de mot de passe en clair}"
+   ],
+   "titre": "Qui peut quoi, et preuve sans secret",
+   "type": "etape"
+  },
+  "definition": {
+   "kicker": "Définir : le système d'exploitation",
+   "tex": [
+    "\\text{entre l'utilisateur et le matériel}",
+    "\\text{premier logiciel chargé au démarrage}",
+    "\\text{actif jusqu'à l'extinction}"
+   ],
+   "titre": "Un intermédiaire, premier et permanent",
+   "type": "etape"
+  },
+  "etats": {
+   "kicker": "Le cycle de vie d'un processus",
+   "tex": [
+    "\\text{Nouveau} \\rightarrow \\text{Prêt}",
+    "\\text{Prêt} \\rightarrow \\text{En exécution}",
+    "\\text{En exécution} \\rightarrow \\text{En attente}",
+    "\\text{En attente} \\rightarrow \\text{Prêt, jamais direct}",
+    "\\text{En exécution} \\rightarrow \\text{Terminé}"
+   ],
+   "titre": "Cinq états, jamais de raccourci",
+   "type": "etape"
+  },
+  "familles_fs": {
+   "kicker": "Quatre familles de systèmes de fichiers",
+   "tex": [
+    "\\text{Windows : NTFS, journalisé}",
+    "\\text{Linux : ext4, inodes, journalisé}",
+    "\\text{macOS : APFS, optimisé flash}",
+    "\\text{universel : 4 Go maximum par fichier}"
+   ],
+   "titre": "Journalisés, ou universels",
+   "type": "etape"
+  },
+  "fichiers": {
+   "kicker": "Le système de fichiers",
+   "tex": [
+    "\\text{inode : carte d'identité}",
+    "\\text{arbre à racine unique}",
+    "\\text{chemin absolu, depuis la racine}",
+    "\\text{chemin relatif, dossier courant}"
+   ],
+   "titre": "Le bibliothécaire du disque",
+   "type": "etape"
+  },
+  "hachage": {
+   "kicker": "Le hachage des mots de passe",
+   "note": "On compare deux hachages, jamais les mots de passe eux-mêmes",
+   "tex": [
+    "\\text{stocké} = H(\\text{mot de passe})",
+    "\\text{accès si } H(\\text{saisi}) = \\text{stocké}"
+   ],
+   "titre": "Comparer des hachages, pas des secrets",
+   "type": "etape"
+  },
+  "linux": {
+   "kicker": "Famille 2 : Linux",
+   "tex": [
+    "\\text{1991 : noyau de Linus Torvalds}",
+    "\\text{quatre libertés du logiciel libre}",
+    "\\text{distributions, paquets}",
+    "\\text{serveurs, cloud, téléphones Android}"
+   ],
+   "titre": "Le noyau libre, mille visages",
+   "type": "etape"
+  },
+  "macos": {
+   "kicker": "Famille 3 : macOS",
+   "tex": [
+    "\\text{2001 : base UNIX, NeXTSTEP}",
+    "\\text{matériel et système co-conçus}",
+    "\\text{2020 : processeurs Apple Silicon}",
+    "\\text{Dock, gestes, Handoff avec l'iPhone}"
+   ],
+   "titre": "L'intégration verticale d'Apple",
+   "type": "etape"
+  },
+  "metriques": {
+   "kicker": "Mesurer l'ordonnancement",
+   "tex": [
+    "T_{\\text{rotation}} = t_{\\text{fin}} - t_{\\text{arrivée}}",
+    "T_{\\text{attente}} = T_{\\text{rotation}} - T_{\\text{exécution}}",
+    "T_{\\text{réponse}} = t_{\\text{début}} - t_{\\text{arrivée}}"
+   ],
+   "titre": "Trois temps à minimiser",
+   "type": "etape"
+  },
+  "modes": {
+   "kicker": "Sécurité : deux modes de processeur",
+   "tex": [
+    "\\text{mode noyau : tout permis, système seul}",
+    "\\text{mode utilisateur : restreint}",
+    "\\text{passage : appel système seul}",
+    "\\text{privilège minimum}"
+   ],
+   "titre": "Noyau privilégié, utilisateur restreint",
+   "type": "etape"
+  },
+  "objectifs": {
+   "kicker": "Deux objectifs primordiaux",
+   "tex": [
+    "\\text{abstraction : masquer la complexité}",
+    "\\text{simplicité : cliquer sur Enregistrer}",
+    "\\text{gestion : ressources limitées}",
+    "\\text{optimisation : efficace et équitable}"
+   ],
+   "titre": "Simplifier, et gérer les ressources",
+   "type": "etape"
+  },
+  "pagination": {
+   "kicker": "La pagination, standard moderne",
+   "tex": [
+    "\\text{page de 4 Ko : 20 bits, 12 bits}",
+    "\\text{table des pages : la carte de traduction}",
+    "\\text{fini la fragmentation externe}",
+    "\\text{fragmentation interne : 2,9 Ko perdus}"
+   ],
+   "titre": "Des pages, pas des blocs entiers",
+   "type": "etape"
+  },
+  "processus": {
+   "kicker": "Le processus : une entité vivante",
+   "tex": [
+    "\\text{programme : la recette, statique}",
+    "\\text{processus : l'exécution, dynamique}",
+    "\\text{compteur, registres, mémoire}",
+    "\\text{carte d'identité : le PCB, le PID}"
+   ],
+   "titre": "Recette, et cuisine en action",
+   "type": "etape"
+  },
+  "protection_interfaces": {
+   "kicker": "Rôles 3 et 4 : protéger, interfacer",
+   "tex": [
+    "\\text{protection : isoler les programmes}",
+    "\\text{sécurité : login et droits d'accès}",
+    "\\text{ligne de commande : texte, puissante}",
+    "\\text{graphique : fenêtres et pointeur}"
+   ],
+   "titre": "Pare-feu interne, deux interfaces",
+   "type": "etape"
+  },
+  "ressources": {
+   "kicker": "Rôle 1 : gérer les ressources",
+   "tex": [
+    "\\text{processeur : qui, quand, combien}",
+    "\\text{mémoire vive : une part pour chacun}",
+    "\\text{disque, réseau, imprimante, webcam}",
+    "\\text{multitâche : l'illusion du parallèle}"
+   ],
+   "titre": "Un ordonnanceur, des millisecondes",
+   "type": "etape"
+  },
+  "retenir": {
+   "kicker": "À retenir",
+   "tex": [
+    "\\text{définition : intermédiaire premier}",
+    "\\text{processus, mémoire, fichiers}",
+    "\\text{protéger sans paralyser : l'équilibre}",
+    "\\text{choisir, c'est choisir un modèle}"
+   ],
+   "titre": "Un chef d'orchestre, quatre rôles",
+   "type": "etape"
+  },
+  "roles": {
+   "kicker": "Les quatre rôles cardinaux",
+   "tex": [
+    "\\text{1. gestionnaire de ressources}",
+    "\\text{2. fournisseur d'abstraction}",
+    "\\text{3. contrôleur de sécurité}",
+    "\\text{4. interface utilisateur}"
+   ],
+   "titre": "Gérer, abstraire, protéger, interfacer",
+   "type": "etape"
+  },
+  "synchronisation": {
+   "kicker": "Synchroniser : éviter le chaos",
+   "tex": [
+    "\\text{lire, incrémenter, écrire}",
+    "\\text{un entrelacement, une perte}",
+    "\\text{exclusion, progrès, attente bornée}",
+    "\\text{sémaphores, verrous, conditions}"
+   ],
+   "titre": "La section critique, en exclusivité",
+   "type": "etape"
+  },
+  "threads": {
+   "kicker": "Le thread : léger et agile",
+   "tex": [
+    "\\text{mémoire et code partagés}",
+    "\\text{compteur, pile et registres propres}",
+    "\\text{création et commutation plus rapides}",
+    "\\text{navigateur : interface et rendu}"
+   ],
+   "titre": "Des chaînes dans la même usine",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Informatique · Systèmes d'exploitation",
+   "sous": "Le chef d'orchestre invisible : définition, familles, processus, mémoire, fichiers et sécurité",
+   "titre": "Introduction aux systèmes d'exploitation",
+   "type": "titre"
+  },
+  "virtuelle": {
+   "kicker": "La mémoire virtuelle",
+   "tex": [
+    "\\text{pages actives en mémoire vive}",
+    "\\text{pages inactives sur le disque, swap}",
+    "\\text{défaut de page : le système recharge}",
+    "\\text{trop de swap : tout ralentit}"
+   ],
+   "titre": "L'illusion de l'abondance",
+   "type": "etape"
+  },
+  "windows": {
+   "kicker": "Famille 1 : Windows",
+   "tex": [
+    "\\text{1985 : première interface graphique}",
+    "\\text{1995 : menu Démarrer}",
+    "\\text{plus de 70\\,\\% du bureau}",
+    "\\text{rétrocompatibilité et plug and play}"
+   ],
+   "titre": "Le colosse de la compatibilité",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définition, rôles et trois familles"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : les rouages internes. Nous ouvrirons l'anatomie du système, puis les processus et leurs états, les threads, les mesures de l'ordonnancement, la synchronisation, et enfin la mémoire, de l'adressage logique à la mémoire virtuelle.",
+    "texte": "Partie 2 : anatomie, processus, mémoire."
+   },
+   "sous_titre": "Anatomie, processus et mémoire"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : fichiers, sécurité et avenir. Nous verrons l'anatomie d'un fichier, les familles de systèmes de fichiers, l'allocation et le journal, puis les deux modes du processeur, le contrôle d'accès, le hachage des mots de passe, et les systèmes de demain.",
+    "texte": "Partie 3 : fichiers, sécurité, avenir."
+   },
+   "sous_titre": "Fichiers, sécurité et avenir"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'introduction aux systèmes d'exploitation, le chef d'orchestre invisible de votre ordinateur. Nous découvrirons ce qu'il est, ses quatre rôles, les trois grandes familles, puis ses rouages : processus, mémoire, fichiers et sécurité.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Le chef d'orchestre invisible de la machine."
+  },
+  {
+   "dit": "Un système d'exploitation est un ensemble de programmes qui sert d'intermédiaire entre vous, ou vos applications, et le matériel. C'est le premier logiciel chargé quand vous allumez la machine, et il reste actif en arrière-plan jusqu'à son extinction.",
+   "ecran": "definition",
+   "id": "p02",
+   "texte": "Intermédiaire entre vous et le matériel."
+  },
+  {
+   "dit": "Il poursuit deux objectifs, parfois en tension. D'abord l'abstraction et la simplicité : vous n'avez pas besoin de savoir écrire un bit sur un disque pour enregistrer un fichier, vous cliquez sur Enregistrer. Ensuite la gestion des ressources limitées, partagées efficacement et équitablement.",
+   "ecran": "objectifs",
+   "id": "p03",
+   "texte": "Simplifier, et gérer les ressources limitées."
+  },
+  {
+   "dit": "Ses responsabilités se regroupent en quatre grands rôles. Le gestionnaire de ressources, le fournisseur d'abstraction, le contrôleur de sécurité et de protection, et enfin l'interface utilisateur, le rôle le plus visible de tous.",
+   "ecran": "roles",
+   "id": "p04",
+   "texte": "Gérer, abstraire, protéger, interfacer."
+  },
+  {
+   "dit": "Premier rôle, le plus fondamental : décider quel programme utilise le processeur, quand, et pendant combien de temps, quelle mémoire vive revient à chacun, et qui accède au disque ou à l'imprimante. Avec vingt onglets, un montage vidéo et un jeu pour quatre cœurs seulement, l'ordonnanceur donne quelques millisecondes à chaque tâche, créant l'illusion du parallèle.",
+   "ecran": "ressources",
+   "id": "p05",
+   "texte": "Quatre cœurs, vingt onglets : l'ordonnanceur arbitre."
+  },
+  {
+   "dit": "Deuxième rôle : fournir une interface simplifiée et uniforme, les appels système. Grâce à eux, un développeur écrit un programme portable, qui fonctionne sur tout ordinateur du même système, sans se soucier de savoir si le disque est un disque dur classique ou un disque à mémoire flash.",
+   "ecran": "abstraction",
+   "id": "p06",
+   "texte": "Appels système : une machine étendue."
+  },
+  {
+   "dit": "Troisième rôle : empêcher un programme d'accéder à la mémoire ou aux fichiers d'un autre, authentifier les utilisateurs par login et mot de passe, et contrôler chaque accès en lecture, en écriture ou en exécution. Quatrième rôle : l'interface, en ligne de commande textuelle, ou graphique, avec fenêtres, icônes, menus et pointeur.",
+   "ecran": "protection_interfaces",
+   "id": "p07",
+   "texte": "Isoler les programmes, parler à l'humain."
+  },
+  {
+   "dit": "Premier géant : Windows, né d'un système en ligne de commande austère. Mille neuf cent quatre-vingt-cinq voit la première interface graphique, mille neuf cent quatre-vingt-quinze apporte le menu Démarrer et la barre des tâches. Aujourd'hui plus de soixante-dix pour cent du bureau, une rétrocompatibilité quasi fanatique, et le plug and play : branchez une imprimante, elle est reconnue.",
+   "ecran": "windows",
+   "id": "p08",
+   "texte": "Windows : 1985, 1995, et la compatibilité."
+  },
+  {
+   "dit": "Deuxième géant : Linux n'est pas un système unique, c'est un noyau, créé en mille neuf cent quatre-vingt-onze par Linus Torvalds, alors étudiant finlandais. Il porte les quatre libertés du logiciel libre : exécuter, étudier, redistribuer et partager ses versions modifiées. Distribué en distributions, installé par gestionnaire de paquets, il fait tourner serveurs, cloud et téléphones Android.",
+   "ecran": "linux",
+   "id": "p09",
+   "texte": "Linux : un noyau libre, des distributions."
+  },
+  {
+   "dit": "Troisième géant : macOS, le système d'Apple, qui parie en deux mille un sur une base UNIX. Sa philosophie est l'intégration verticale : matériel, système et logiciels conçus ensemble pour fonctionner en harmonie. Son apogée : les processeurs Apple Silicon de deux mille vingt, et la continuité avec l'iPhone, comme commencer un courriel sur le téléphone et le retrouver ouvert sur le Mac.",
+   "ecran": "macos",
+   "id": "p10",
+   "texte": "macOS : matériel et logiciel co-conçus."
+  },
+  {
+   "dit": "Au fond, chaque famille incarne un compromis. Linux offre la liberté et la personnalisation, au prix d'une courbe d'apprentissage. Windows offre une compatibilité inégalée, au prix de la complexité historique. macOS offre cohérence et stabilité, au prix de la liberté. Choisir un système, ce n'est donc pas neutre : c'est voter pour un modèle.",
+   "ecran": "compromis",
+   "id": "p11",
+   "texte": "Liberté, compatibilité, ou cohérence."
+  },
+  {
+   "dit": "Pour remplir ces rôles, le système se structure en sous-systèmes : la gestion des processus et du processeur, la gestion de la mémoire vive, le système de fichiers sur le disque, et la gestion des entrées et sorties vers les périphériques. Ce sont les quatre rouages que nous allons maintenant ouvrir, un par un.",
+   "ecran": "anatomie",
+   "id": "p12",
+   "texte": "Sous le capot : quatre sous-systèmes."
+  },
+  {
+   "dit": "Et ces trois géants ne sont pas figés : Windows intègre de plus en plus d'outils libres, Linux gagne en convivialité, et macOS renforce son socle UNIX tout en verrouillant son matériel. Le paysage bouge, et c'est ce mouvement qui rend le sujet passionnant.",
+   "ecran": "convergence",
+   "id": "p13",
+   "texte": "Trois géants qui se rapprochent."
+  },
+  {
+   "dit": "Entrons dans le premier rouage : le processus. Un programme n'est qu'une recette statique ; le processus, c'est son exécution concrète, une entité dynamique dotée de ses propres ressources : compteur ordinal, registres, espace mémoire et fichiers ouverts. Le système tient sa carte d'identité, le bloc de contrôle, repéré par un numéro unique.",
+   "ecran": "processus",
+   "id": "p14",
+   "texte": "Programme : la recette. Processus : la cuisine."
+  },
+  {
+   "dit": "La vie d'un processus suit un cycle : nouveau à sa création, prêt quand il ne lui manque que le processeur, en exécution quand il est traité, en attente quand il attend une ressource, terminé quand tout est fini. Et retenez la règle d'équité : un processus en attente repasse toujours par l'état prêt, jamais directement en exécution.",
+   "ecran": "etats",
+   "id": "p15",
+   "texte": "Nouveau, prêt, en exécution, en attente, terminé."
+  },
+  {
+   "dit": "Plus léger encore : le thread, ou fil d'exécution. Si le processus est l'usine entière, le thread est une chaîne de montage à l'intérieur. Les threads d'un même processus partagent mémoire et code, mais chacun possède son compteur, sa pile et ses registres. Un navigateur en use plusieurs : interface, rendu de la page, téléchargement des images en parallèle.",
+   "ecran": "threads",
+   "id": "p16",
+   "texte": "Un thread : une chaîne dans la même usine."
+  },
+  {
+   "dit": "Pour juger un ordonnanceur, trois mesures. Le temps de rotation, de la soumission à la fin. Le temps d'attente, passé dans l'état prêt. Le temps de réponse, jusqu'à la première exécution, crucial pour l'interactivité. L'objectif : minimiser leurs moyennes, sans sacrifier l'équité.",
+   "ecran": "metriques",
+   "id": "p17",
+   "texte": "Trois temps : rotation, attente, réponse."
+  },
+  {
+   "dit": "Quand plusieurs threads partagent une ressource, gare à la compétition : deux threads qui incrémentent le même compteur lisent, incrémentent puis écrivent, et un mauvais entrelacement peut perdre une incrémentation. La solution : rendre l'accès exclusif dans la section critique, avec sémaphores, verrous, et variables de condition.",
+   "ecran": "synchronisation",
+   "id": "p18",
+   "texte": "Section critique : un seul à la fois."
+  },
+  {
+   "dit": "Deuxième rouage, la mémoire. Chaque processus voit son propre espace d'adressage logique, qui commence à zéro, sans voir les adresses physiques réelles. L'unité de gestion de la mémoire traduit chaque adresse logique en adresse physique, et cette séparation protège : un processus ne peut ni lire ni écrire dans la mémoire d'un autre.",
+   "ecran": "adressage",
+   "id": "p19",
+   "texte": "Adresses logiques traduites par la MMU."
+  },
+  {
+   "dit": "La pagination découpe la mémoire en pages de quatre kilooctets : vingt bits pour le numéro de page, douze bits pour le décalage dans la page. La table des pages associe chaque page logique à son cadre physique. Adieu la fragmentation externe des anciens blocs contigus ; reste un prix : pour cinq virgule un kilooctets demandés, deux pages soit huit kilooctets sont allouées, et deux virgule neuf kilooctets sont perdus.",
+   "ecran": "pagination",
+   "id": "p20",
+   "texte": "Pages de 4 Ko : fini les trous entre blocs."
+  },
+  {
+   "dit": "La mémoire virtuelle pousse l'illusion plus loin : chaque processus croit disposer d'un espace vaste et privé, plus grand que la mémoire physique. Les pages actives restent en mémoire vive, les inactives partent sur le disque, dans le fichier d'échange. Quand une page manque, c'est le défaut de page, et le système la recharge. Mais si la mémoire est trop insuffisante, le système passe son temps à échanger : c'est le thrashing, tout ralentit.",
+   "ecran": "virtuelle",
+   "id": "p21",
+   "texte": "Mémoire virtuelle : pages actives en RAM."
+  },
+  {
+   "dit": "Troisième rouage, les fichiers. Un fichier n'est pas qu'un bloc de données : ses métadonnées, sa carte d'identité, vivent séparément, dans un inode sur les systèmes de type UNIX. Les fichiers s'organisent en arbre hiérarchique, avec une racine unique : chemin absolu depuis la racine, ou chemin relatif depuis le dossier courant.",
+   "ecran": "fichiers",
+   "id": "p22",
+   "texte": "Fichier : données plus carte d'identité."
+  },
+  {
+   "dit": "Chaque famille a son système de fichiers : Windows utilise son format journalisé, Linux le format ext quatre à inodes, Apple un format optimisé pour la mémoire flash, avec copies instantanées et chiffrement natif. Pour les clés et cartes partagées entre tous les systèmes, un format universel, simple, mais limité à quatre gigaoctets par fichier.",
+   "ecran": "familles_fs",
+   "id": "p23",
+   "texte": "NTFS, ext4, APFS, et le format universel."
+  },
+  {
+   "dit": "Comment placer les blocs d'un fichier ? Contigus : rapide en lecture, mais fragmenté. En liste chaînée : sans fragmentation, mais l'accès direct est très lent. Indexés : le compromis efficace. Et pour la fiabilité, le journal : avant d'écrire les métadonnées, l'opération est notée, puis rejouée ou annulée après un crash, sans scanner tout le disque.",
+   "ecran": "allocation_journal",
+   "id": "p24",
+   "texte": "Placer les blocs, journaliser les changements."
+  },
+  {
+   "dit": "Quatrième rouage, la sécurité. Le processeur possède deux modes : le mode noyau, privilégié, réservé au système, avec accès direct au matériel ; et le mode utilisateur, restreint, pour toutes les applications. On ne passe de l'un à l'autre que par un appel système contrôlé. Et la règle d'or : le privilège minimum, juste ce qu'il faut pour la tâche.",
+   "ecran": "modes",
+   "id": "p25",
+   "texte": "Deux modes : noyau tout-puissant, utilisateur restreint."
+  },
+  {
+   "dit": "Qui peut lire ce fichier ? Sous le modèle classique, le propriétaire décide : lecture, écriture et exécution pour lui, lecture et exécution pour son groupe, lecture seule pour les autres. Sous le modèle obligatoire, c'est une politique centrale qui décide, même contre le propriétaire, comme dans les environnements militaires.",
+   "ecran": "dac_mac",
+   "id": "p26",
+   "texte": "Propriétaire, groupe, autres : qui peut quoi."
+  },
+  {
+   "dit": "Dernier verrou : les mots de passe ne sont jamais stockés en clair. Le système stocke un hachage, et à la connexion, il hache le mot de passe saisi puis compare les deux hachages. Avec des fonctions lentes, comme bcrypt ou argon deux, la force brute devient extrêmement coûteuse.",
+   "ecran": "hachage",
+   "id": "p27",
+   "texte": "On ne stocke jamais un mot de passe en clair."
+  },
+  {
+   "dit": "Et demain ? Linux règne déjà sur serveurs et cloud, Android et iOS se partagent le mobile, des systèmes minimalistes animent voitures, box et télévisions. La virtualisation empile les systèmes, les conteneurs n'isolent que l'application et ses dépendances, et les unikernels ne compilent que le strict nécessaire.",
+   "ecran": "avenir",
+   "id": "p28",
+   "texte": "Le système se fragmente, se miniaturise."
+  },
+  {
+   "dit": "Retenons l'essentiel : le système d'exploitation est l'intermédiaire premier et permanent entre vous et le matériel. Il gère processus, mémoire et fichiers, il protège sans paralyser, et choisir un système, c'est choisir un modèle. Sans lui, il n'y a que du bruit ; avec lui, la symphonie.",
+   "ecran": "retenir",
+   "id": "p29",
+   "texte": "Retenez : intermédiaire, rouages, équilibre."
+  }
+ ],
+ "titre": "Introduction aux systèmes d'exploitation"
+}
