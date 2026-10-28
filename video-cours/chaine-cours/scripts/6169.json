@@ -92,13 +92,13 @@
    "type": "etape"
   },
   "intro": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "vecteurs"
+   },
    "kicker": "Pourquoi le second ordre ?",
    "texte": "Accélération, courbure, retour d'un ressort : dès qu'une force dépend de la position ou de la vitesse, la dérivée seconde entre en scène.",
-   "type": "phrase",
-   "anim": {
-    "nom": "vecteurs",
-    "hauteur": 150
-   }
+   "type": "phrase"
   },
   "lagrange": {
    "kicker": "Variation des constantes : le système de Lagrange",
@@ -159,13 +159,13 @@
    "type": "formule"
   },
   "resonance_forcee": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "sinusoide"
+   },
    "kicker": "La résonance forcée",
    "texte": "Exciter un système à sa pulsation propre : sans amortissement, l'amplitude croît linéairement avec le temps.",
-   "type": "phrase",
-   "anim": {
-    "nom": "sinusoide",
-    "hauteur": 180
-   }
+   "type": "phrase"
   },
   "rlc_ci": {
    "kicker": "Synthèse RLC : les conditions initiales",
@@ -248,13 +248,13 @@
    "type": "etape"
   },
   "variation_principe": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "primitives_famille_fig"
+   },
    "kicker": "L'idée de Lagrange",
    "texte": "Rendre variables les constantes de la solution homogène : la réponse libre devient le vocabulaire de la réponse forcée.",
-   "type": "phrase",
-   "anim": {
-    "nom": "derive_fig",
-    "hauteur": 150
-   }
+   "type": "phrase"
   }
  },
  "matiere": "Mathématique",
@@ -265,19 +265,19 @@
   },
   {
    "debut": "p10",
-   "sous_titre": "Cauchy, RLC et solutions particulières",
    "pont": {
-    "texte": "Partie 2 : Cauchy, RLC et solutions particulières.",
-    "dit": "Partie deux : compléter l'équation homogène, puis attaquer le second membre. Un problème de Cauchy complet et les régimes du circuit résistance-bobine-condensateur bouclent le monde libre. Ensuite, place au forçage : la variation des constantes de Lagrange, puis la devinette des coefficients indéterminés, avec son piège signature, la résonance."
-   }
+    "dit": "Partie deux : compléter l'équation homogène, puis attaquer le second membre. Un problème de Cauchy complet et les régimes du circuit résistance-bobine-condensateur bouclent le monde libre. Ensuite, place au forçage : la variation des constantes de Lagrange, puis la devinette des coefficients indéterminés, avec son piège signature, la résonance.",
+    "texte": "Partie 2 : Cauchy, RLC et solutions particulières."
+   },
+   "sous_titre": "Cauchy, RLC et solutions particulières"
   },
   {
    "debut": "p19",
-   "sous_titre": "La physique des solutions : oscillateurs et résonance",
    "pont": {
-    "texte": "Partie 3 : oscillateurs, suspension, circuit et résonance.",
-    "dit": "Partie trois : la physique des solutions. Oscillations forcées, oscillateur harmonique, amortissement et suspension de voiture, circuit complet en régime critique et résonance forcée : nous lirons chaque solution comme un physicien, en séparant ce qui s'éteint, le transitoire, de ce qui persiste, le permanent."
-   }
+    "dit": "Partie trois : la physique des solutions. Oscillations forcées, oscillateur harmonique, amortissement et suspension de voiture, circuit complet en régime critique et résonance forcée : nous lirons chaque solution comme un physicien, en séparant ce qui s'éteint, le transitoire, de ce qui persiste, le permanent.",
+    "texte": "Partie 3 : oscillateurs, suspension, circuit et résonance."
+   },
+   "sous_titre": "La physique des solutions : oscillateurs et résonance"
   }
  ],
  "phrases": [
