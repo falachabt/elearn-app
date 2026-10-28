@@ -4,7 +4,7 @@
   "aire_surface": {
    "anim": {
     "hauteur": 150,
-    "nom": "sphere_fig"
+    "nom": "revolution_fig"
    },
    "kicker": "Aire d'une surface de révolution",
    "note": "Chaque petit arc engendre une bande de rayon |y|.",
@@ -68,19 +68,23 @@
    "type": "formule"
   },
   "cycloide_classique": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "cycloide_fig"
+   },
    "kicker": "Courbe classique · la cycloïde",
    "tex": [
     "x = r(t - \\sin t),\\ y = r(1 - \\cos t)",
     "t = 0 : \\text{rebroussement} \\qquad t = \\pi : \\text{sommet horizontal}"
    ],
    "titre": "Le point d'un cercle qui roule sans glisser",
-   "type": "etape",
-   "anim": {
-    "nom": "cycloide_fig",
-    "hauteur": 150
-   }
+   "type": "etape"
   },
   "cycloide_longueur": {
+   "anim": {
+    "hauteur": 95,
+    "nom": "cycloide_fig"
+   },
    "kicker": "Exemple résolu · arche de cycloïde",
    "tex": [
     "x' = r(1 - \\cos t),\\ y' = r\\sin t",
@@ -88,11 +92,7 @@
     "L = \\int_0^{2\\pi} 2r\\sin(t/2)\\, dt = 8r"
    ],
    "titre": "Une arche vaut quatre diamètres",
-   "type": "etape",
-   "anim": {
-    "nom": "cycloide_fig",
-    "hauteur": 95
-   }
+   "type": "etape"
   },
   "definition": {
    "anim": {
@@ -182,7 +182,7 @@
   "pente": {
    "anim": {
     "hauteur": 200,
-    "nom": "derive_fig"
+    "nom": "tangente_courbe_fig"
    },
    "kicker": "La pente de la tangente",
    "note": "Rapport des deux dérivées, si x'(t) est non nul.",
@@ -219,7 +219,7 @@
   "revolution": {
    "anim": {
     "hauteur": 200,
-    "nom": "sphere_fig"
+    "nom": "revolution_fig"
    },
    "kicker": "Les surfaces de révolution",
    "texte": "Tourner une courbe autour d'un axe : la demi-circonférence engendre la sphère.",
