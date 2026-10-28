@@ -1,0 +1,309 @@
+{
+ "cours": 6824,
+ "titre": "Production de contenus numériques",
+ "matiere": "Informatique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Informatique · Contenus numériques",
+   "titre": "Production de contenus numériques",
+   "sous": "Traitement de texte, tableur, infographie et publication assistée"
+  },
+  "saisie": {
+   "type": "etape",
+   "kicker": "Traitement de texte efficace",
+   "titre": "Saisir, mettre en forme, structurer",
+   "tex": [
+    "\\text{copier, couper, coller}",
+    "\\text{rechercher et remplacer}",
+    "\\text{police, taille, gras, italique}",
+    "\\text{couleur, souligné}"
+   ]
+  },
+  "paragraphes": {
+   "type": "etape",
+   "kicker": "La mise en forme des paragraphes",
+   "titre": "Alignement, interligne, retraits",
+   "tex": [
+    "\\text{gauche, droite, centré, justifié}",
+    "\\text{interligne et retraits}",
+    "\\text{puces et numérotation}"
+   ]
+  },
+  "styles": {
+   "type": "etape",
+   "kicker": "Les styles : la cohérence visuelle",
+   "titre": "Formats prédéfinis nommés",
+   "tex": [
+    "\\text{Titre 1, Titre 2, Normal}",
+    "\\text{modifier un style, tout suit}",
+    "\\text{exemple : rapport en Titre 1}",
+    "\\text{puis table des matières auto}"
+   ]
+  },
+  "forme_page": {
+   "type": "etape",
+   "kicker": "Mise en forme ou mise en page ?",
+   "titre": "Attributs, ou organisation générale",
+   "tex": [
+    "\\text{forme : police, taille, couleur}",
+    "\\text{page : marges, orientation}",
+    "\\text{en-têtes et pieds de page}",
+    "\\text{numérotation, colonnes}"
+   ]
+  },
+  "ex_page": {
+   "type": "etape",
+   "kicker": "Exemple : une mise en page standard",
+   "titre": "Marges, portrait, pied de page",
+   "tex": [
+    "\\text{marges de 2,5 centimètres}",
+    "\\text{orientation portrait}",
+    "\\text{pied de page : numéro de page}"
+   ]
+  },
+  "tables": {
+   "type": "etape",
+   "kicker": "Les tables automatiques",
+   "titre": "Trois tables générées",
+   "tex": [
+    "\\text{table des matières : titres}",
+    "\\text{liste des tableaux}",
+    "\\text{liste des figures : images}",
+    "\\text{et graphiques}"
+   ]
+  },
+  "procedure": {
+   "type": "etape",
+   "kicker": "Procédure : styles, légendes, insertion",
+   "titre": "Par le menu Références",
+   "tex": [
+    "\\text{appliquer les styles de titres}",
+    "\\text{légender tableaux et figures}",
+    "\\text{menu Références, Table}",
+    "\\text{des matières ou Insérer une table}"
+   ]
+  },
+  "ex_memoire": {
+   "type": "etape",
+   "kicker": "Exemple : un mémoire de 20 pages",
+   "titre": "Trois sections, trois lignes de table",
+   "tex": [
+    "\\text{3 sections stylées Titre 1}",
+    "\\text{table générée automatiquement}",
+    "\\text{les 3 sections et leurs pages}"
+   ]
+  },
+  "tableur": {
+   "type": "etape",
+   "kicker": "Le tableur : grille de cellules",
+   "titre": "Cellule, plage, feuille",
+   "tex": [
+    "\\text{cellule : ligne plus colonne}",
+    "\\text{plage : A1 deux-points C5}",
+    "\\text{feuille : page du classeur}"
+   ]
+  },
+  "ex_b3": {
+   "type": "formule",
+   "kicker": "Exemple : B3 et la plage A1:C5",
+   "tex": "A1\\!:\\!C5 = 15 \\text{ cellules}",
+   "note": "Dans la cellule B3, on saisit la valeur 15 ; la plage A1 à C5 désigne 15 cellules, 3 colonnes fois 5 lignes"
+  },
+  "fonctions": {
+   "type": "etape",
+   "kicker": "Fonctions prédéfinies",
+   "titre": "Formules intégrées, dès le signe égal",
+   "tex": [
+    "\\text{SOMME, MOYENNE, MAX}",
+    "\\text{MIN, NB}",
+    "\\text{syntaxe : commence par égal}",
+    "\\text{=SOMME(A1:A10) additionne}"
+   ]
+  },
+  "mfc": {
+   "type": "etape",
+   "kicker": "La mise en forme conditionnelle",
+   "titre": "Un format automatique selon la condition",
+   "tex": [
+    "\\text{notes sur 20 : moins de 10}",
+    "\\text{la cellule devient rouge}",
+    "\\text{10 ou plus : elle devient verte}"
+   ]
+  },
+  "ex_moy": {
+   "type": "formule",
+   "kicker": "Exemple : moyenne de la classe",
+   "tex": "=MOYENNE(B2\\!:\\!B20)",
+   "note": "La formule calcule la moyenne des notes de la classe, de la ligne 2 à la ligne 20"
+  },
+  "infographie": {
+   "type": "etape",
+   "kicker": "L'infographie",
+   "titre": "Créer et traiter des images numériques",
+   "tex": [
+    "\\text{photo : image matricielle}",
+    "\\text{modifiable avec GIMP}",
+    "\\text{logo : image vectorielle}",
+    "\\text{redimensionnable sans perte, Inkscape}"
+   ]
+  },
+  "pao": {
+   "type": "etape",
+   "kicker": "La publication assistée par ordinateur",
+   "titre": "Texte, images, son, vidéo, pro",
+   "tex": [
+    "\\text{affiches, brochures, magazines}",
+    "\\text{outils : Scribus, Publisher}",
+    "\\text{et InDesign}",
+    "\\text{contrôle précis de la disposition}"
+   ]
+  },
+  "ex_affiche": {
+   "type": "etape",
+   "kicker": "Exemple : une affiche avec Scribus",
+   "titre": "Image, titre, cadre de texte",
+   "tex": [
+    "\\text{importer une image}",
+    "\\text{titre en gros caractères}",
+    "\\text{texte descriptif dans un cadre}",
+    "\\text{séparé}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Traitement de texte : styles, tables automatiques, mise en page",
+    "Tableur : cellules, plages, fonctions dès le signe égal",
+    "Mise en forme conditionnelle : le format suit la condition",
+    "Infographie : matricielle avec GIMP, vectorielle avec Inkscape",
+    "PAO : disposition précise, Scribus, Publisher, InDesign"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Texte, calcul, image, publication.",
+   "dit": "Bienvenue dans ce cours sur la production de contenus numériques. Du rapport au tableur, de l'image à l'affiche, nous verrons comment produire des documents variés et professionnels avec les bons outils."
+  },
+  {
+   "id": "p02",
+   "ecran": "saisie",
+   "texte": "Traitement de texte : saisir et modifier.",
+   "dit": "Un logiciel de traitement de texte permet de créer, modifier et mettre en forme des documents écrits. Pour une utilisation efficace, il faut maîtriser la saisie et la modification : copier, couper, coller, rechercher et remplacer ; et la mise en forme du texte : police, taille, gras, italique, souligné et couleur."
+  },
+  {
+   "id": "p03",
+   "ecran": "paragraphes",
+   "texte": "Paragraphes : alignement, interligne, puces.",
+   "dit": "La mise en forme des paragraphes, elle, concerne l'alignement, à gauche, à droite, centré ou justifié, l'interligne, les retraits, les puces et la numérotation."
+  },
+  {
+   "id": "p04",
+   "ecran": "styles",
+   "texte": "Styles : Titre 1, Titre 2, Normal.",
+   "dit": "Les styles sont des ensembles de formats prédéfinis, Titre un, Titre deux, Normal, qui garantissent une cohérence visuelle. Exemple résolu : pour créer un rapport, on applique le style « Titre 1 » aux titres de sections et « Normal » au corps du texte, ce qui permettra ensuite de générer automatiquement la table des matières."
+  },
+  {
+   "id": "p05",
+   "ecran": "forme_page",
+   "texte": "Forme ou page : deux niveaux distincts.",
+   "dit": "Ne confondez pas mise en forme et mise en page. La mise en forme, c'est appliquer des attributs visuels au contenu : police, taille, couleur, style. La mise en page, c'est l'organisation générale du document : marges, orientation, en-têtes et pieds de page, numérotation des pages, colonnes."
+  },
+  {
+   "id": "p06",
+   "ecran": "ex_page",
+   "texte": "Page standard : marges 2,5, portrait, numéro.",
+   "dit": "Exemple résolu : un document avec des marges de deux virgule cinq centimètres, une orientation portrait et un pied de page contenant le numéro de page illustre une mise en page standard."
+  },
+  {
+   "id": "p07",
+   "ecran": "tables",
+   "texte": "Trois tables automatiques.",
+   "dit": "Le traitement de texte peut générer automatiquement la table des matières, liste des titres et sous-titres avec leurs numéros de page, la liste des tableaux, inventaire des tableaux du document, et la liste des figures, inventaire des images et graphiques."
+  },
+  {
+   "id": "p08",
+   "ecran": "procedure",
+   "texte": "Procédure : styles, légendes, Références.",
+   "dit": "Procédure : après avoir appliqué les styles de titres et ajouté des légendes aux tableaux et aux figures, on insère la table via le menu « Références », puis « Table des matières » ou « Insérer une table »."
+  },
+  {
+   "id": "p09",
+   "ecran": "ex_memoire",
+   "texte": "Mémoire de vingt pages, trois sections.",
+   "dit": "Exemple résolu : un mémoire de vingt pages avec trois sections stylées « Titre 1 » génère une table des matières listant ces trois sections avec leurs pages respectives."
+  },
+  {
+   "id": "p10",
+   "ecran": "tableur",
+   "texte": "Tableur : cellule, plage, feuille.",
+   "dit": "Passons au tableur : un logiciel organisé en feuilles de calcul. Chaque feuille est une grille de cellules identifiées par une référence, ou adresse, colonne plus ligne, par exemple B trois. Une cellule est l'intersection d'une ligne et d'une colonne ; une plage de cellules est un ensemble rectangulaire de cellules désigné par l'adresse de la première et de la dernière cellule séparées par deux points, par exemple A un à C cinq ; et une feuille de calcul est une page du classeur contenant les données."
+  },
+  {
+   "id": "p11",
+   "ecran": "ex_b3",
+   "texte": "B trois vaut quinze, A1:C5 vaut quinze cellules.",
+   "dit": "Exemple résolu : dans la cellule B trois, on saisit la valeur quinze. La plage A un à C cinq désigne quinze cellules, trois colonnes fois cinq lignes."
+  },
+  {
+   "id": "p12",
+   "ecran": "fonctions",
+   "texte": "Fonctions : SOMME, MOYENNE, MAX, MIN, NB.",
+   "dit": "Les fonctions prédéfinies sont des formules intégrées effectuant des calculs. Exemples courants : SOMME, MOYENNE, MAX, MIN, NB. La syntaxe commence toujours par le signe égal. Exemple : égal SOMME de A un à A dix additionne les valeurs de A un à A dix."
+  },
+  {
+   "id": "p13",
+   "ecran": "mfc",
+   "texte": "Conditionnelle : rouge sous dix, vert sinon.",
+   "dit": "La mise en forme conditionnelle applique automatiquement un format, couleur ou police, à une cellule si une condition est remplie. Exemple résolu : pour une colonne de notes sur vingt, on applique une mise en forme conditionnelle : si la cellule est inférieure à dix, elle devient rouge ; si elle est supérieure ou égale à dix, elle devient verte."
+  },
+  {
+   "id": "p14",
+   "ecran": "ex_moy",
+   "texte": "Moyenne de la classe : de B2 à B20.",
+   "dit": "Et la formule égal MOYENNE de B deux à B vingt calcule la moyenne de la classe."
+  },
+  {
+   "id": "p15",
+   "ecran": "infographie",
+   "texte": "Infographie : matricielle ou vectorielle.",
+   "dit": "L'infographie regroupe l'ensemble des techniques de création et de traitement d'images numériques. Exemple résolu : une photo prise par un appareil est une image matricielle modifiable avec GIMP ; un logo créé avec Inkscape est une image vectorielle redimensionnable sans perte de qualité."
+  },
+  {
+   "id": "p16",
+   "ecran": "pao",
+   "texte": "PAO : Scribus, Publisher, InDesign.",
+   "dit": "Enfin, la publication assistée par ordinateur, la PAO, désigne l'ensemble des logiciels permettant de réaliser des documents élaborés combinant texte, images, son et vidéo pour une impression ou une diffusion professionnelle : affiches, brochures, magazines. Ses outils : Scribus, Publisher, InDesign. Différence avec le traitement de texte : la PAO offre un contrôle précis sur la disposition des éléments graphiques."
+  },
+  {
+   "id": "p17",
+   "ecran": "ex_affiche",
+   "texte": "Affiche de spectacle avec Scribus.",
+   "dit": "Exemple résolu : un élève crée une affiche de spectacle avec Scribus : il importe une image, ajoute un titre en gros caractères et place le texte descriptif dans un cadre séparé."
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Texte, tableur, image, publication : la panoplie.",
+   "dit": "En synthèse, la maîtrise de ces outils permet de produire des contenus numériques variés et professionnels, du simple rapport au document illustré complexe : traitement de texte avec styles et tables automatiques, tableur avec cellules, plages et fonctions, infographie matricielle ou vectorielle, et PAO pour une disposition précise."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Traitement de texte et tables automatiques"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "texte": "Partie 2 : tableur, infographie et PAO.",
+    "dit": "Partie deux : le tableur, l'infographie et la publication assistée. Nous définirons la grille du tableur et ses fonctions, puis les deux familles d'images et les outils de la PAO."
+   },
+   "sous_titre": "Tableur, infographie et PAO"
+  }
+ ]
+}
