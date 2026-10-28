@@ -4,7 +4,7 @@
   "analyse_intro": {
    "anim": {
     "hauteur": 170,
-    "nom": "melange"
+    "nom": "analyseur_combustion_fig"
    },
    "kicker": "Identifier une molécule inconnue",
    "texte": "Un échantillon inconnu, prélevé dans un sol ou synthétisé au laboratoire : l'analyse élémentaire donne la proportion de chaque élément qu'il contient.",
@@ -30,15 +30,19 @@
    "type": "etape"
   },
   "chaines": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "chaine_carbonee_fig"
+   },
    "kicker": "Des chaînes à l'infini",
    "texte": "Le carbone se lie à lui-même : chaînes linéaires, ramifiées ou cycliques. Autour de lui gravitent l'oxygène, l'azote, le soufre et les halogènes.",
-   "type": "phrase",
-   "anim": {
-    "nom": "chaine_carbonee_fig",
-    "hauteur": 180
-   }
+   "type": "phrase"
   },
   "combustion": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "analyseur_combustion_fig"
+   },
    "kicker": "L'analyse par combustion",
    "tex": [
     "\\mathrm{C_2H_5OH} + 3\\,\\mathrm{O_2} \\rightarrow 2\\,\\mathrm{CO_2} + 3\\,\\mathrm{H_2O}",
@@ -46,11 +50,7 @@
     "\\mathrm{H_2O} \\Rightarrow \\mathrm{H}"
    ],
    "titre": "Brûler pour révéler",
-   "type": "etape",
-   "anim": {
-    "nom": "analyseur_combustion_fig",
-    "hauteur": 120
-   }
+   "type": "etape"
   },
   "definition": {
    "kicker": "Qu'est-ce que la chimie organique ?",
@@ -111,6 +111,10 @@
    "type": "etape"
   },
   "formule_developpee": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "formule_developpee_fig"
+   },
    "kicker": "La formule développée",
    "tex": [
     "\\mathrm{C-C} : 1",
@@ -118,11 +122,7 @@
     "\\text{total : 7 liaisons}"
    ],
    "titre": "L'éthane, liaison par liaison",
-   "type": "etape",
-   "anim": {
-    "nom": "formule_developpee_fig",
-    "hauteur": 120
-   }
+   "type": "etape"
   },
   "formule_molecule": {
    "kicker": "La version « molécule »",
