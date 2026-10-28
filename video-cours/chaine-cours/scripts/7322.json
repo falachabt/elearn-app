@@ -1,0 +1,428 @@
+{
+ "cours": 7322,
+ "ecrans": {
+  "air_composition": {
+   "kicker": "L'air, un mélange de gaz",
+   "tex": [
+    "\\text{diazote } \\mathrm{N_2} \\approx 78\\,\\%",
+    "\\text{dioxygène } \\mathrm{O_2} \\approx 21\\,\\%",
+    "\\text{autres gaz} \\approx 1\\,\\%"
+   ],
+   "titre": "78 % de diazote, 21 % de dioxygène",
+   "type": "etape"
+  },
+  "air_isolant": {
+   "kicker": "5. L'air comme isolant",
+   "tex": [
+    "\\text{laine de verre : air emprisonné}",
+    "\\text{double vitrage : couche d'air}"
+   ],
+   "titre": "L'air immobile isole de la chaleur",
+   "type": "etape"
+  },
+  "air_souffler": {
+   "kicker": "3. Souffler et nettoyer",
+   "tex": [
+    "\\text{sèche-cheveux : air chaud}",
+    "\\text{soufflette : chasse la poussière}",
+    "\\text{voiles : le vent pousse le bateau}"
+   ],
+   "titre": "L'air en mouvement pousse et sèche",
+   "type": "etape"
+  },
+  "bougie_bocal": {
+   "kicker": "Exemple : bougie sous bocal",
+   "texte": "Sans dioxygène, la flamme s'éteint en quelques secondes.",
+   "type": "phrase"
+  },
+  "bougie_verre": {
+   "kicker": "Exemple : bougie sous verre",
+   "texte": "Le dioxygène enfermé est consommé, la flamme s'éteint.",
+   "type": "phrase"
+  },
+  "butane_equation": {
+   "kicker": "Équation du butane",
+   "note": "Deux fois quatre égale huit atomes de carbone de chaque côté : les atomes sont conservés.",
+   "tex": "2\\,\\mathrm{C_4H_{10}} + 13\\,\\mathrm{O_2} \\rightarrow 8\\,\\mathrm{CO_2} + 10\\,\\mathrm{H_2O}",
+   "type": "formule"
+  },
+  "butane_produits": {
+   "kicker": "Produits de la combustion du butane",
+   "tex": [
+    "\\text{buée : eau } \\mathrm{H_2O}",
+    "\\text{gaz qui trouble l'eau de chaux : } \\mathrm{CO_2}"
+   ],
+   "titre": "Eau et dioxyde de carbone",
+   "type": "etape"
+  },
+  "charbon_equation": {
+   "kicker": "Équation du charbon",
+   "note": "Un atome de carbone et deux atomes d'oxygène de chaque côté.",
+   "tex": "\\mathrm{C} + \\mathrm{O_2} \\rightarrow \\mathrm{CO_2}",
+   "type": "formule"
+  },
+  "charbon_experience": {
+   "kicker": "Charbon dans l'air",
+   "texte": "Le charbon incandescent rougit, puis se consume.",
+   "type": "phrase"
+  },
+  "charbon_masse": {
+   "kicker": "Exemple : masse de CO₂ formé",
+   "note": "Six grammes de carbone et seize grammes de dioxygène consommés donnent vingt-deux grammes de dioxyde de carbone.",
+   "tex": "m_{\\mathrm{CO_2}} = 6{,}0 + 16{,}0 = 22{,}0\\ \\text{g}",
+   "type": "formule"
+  },
+  "combustion_definition": {
+   "kicker": "Qu'est-ce qu'une combustion ?",
+   "texte": "Une transformation qui dégage chaleur et souvent lumière.",
+   "type": "phrase"
+  },
+  "combustion_incomplete": {
+   "kicker": "Combustion complète et incomplète",
+   "tex": [
+    "\\text{complète : flamme bleue, } \\mathrm{CO_2} + \\mathrm{H_2O}",
+    "\\text{incomplète : flamme jaune, suie, } \\mathrm{CO}"
+   ],
+   "titre": "Bleue ou jaune : le signe du danger",
+   "type": "etape"
+  },
+  "dangers_prevention": {
+   "kicker": "Prévenir les trois dangers",
+   "tex": [
+    "\\text{aérer, entretenir les appareils}",
+    "\\text{ne jamais boucher les aérations}",
+    "\\text{détecteur de CO, fuite : pas d'étincelle}"
+   ],
+   "titre": "Aérer, entretenir, ne pas enflammer",
+   "type": "etape"
+  },
+  "explosion": {
+   "kicker": "Danger 3 : l'explosion",
+   "texte": "Un mélange gaz-air enflammé explose violemment.",
+   "type": "phrase"
+  },
+  "explosion_exemple": {
+   "kicker": "Exemple : fuite de gaz en cuisine",
+   "texte": "Fuite de gaz, étincelle d'interrupteur : explosion.",
+   "type": "phrase"
+  },
+  "gonfler": {
+   "kicker": "2. Gonfler et propulser",
+   "tex": [
+    "\\text{pneus : air comprimé pour rouler}",
+    "\\text{ballon : air pour rebondir}"
+   ],
+   "titre": "L'air comprimé gonfle et propulse",
+   "type": "etape"
+  },
+  "incendie_prevention": {
+   "kicker": "Éteindre un incendie",
+   "tex": [
+    "\\text{couper le gaz : combustible}",
+    "\\text{étouffer : comburant}",
+    "\\text{refroidir à l'eau : chaleur}"
+   ],
+   "titre": "Supprimer un côté du triangle",
+   "type": "etape"
+  },
+  "intoxication": {
+   "kicker": "Danger 2 : le monoxyde de carbone",
+   "texte": "Un gaz incolore, inodore, très toxique.",
+   "type": "phrase"
+  },
+  "intoxication_exemple": {
+   "kicker": "Exemple : flamme jaune en pièce fermée",
+   "texte": "Flamme jaune : manque de dioxygène, CO libéré.",
+   "type": "phrase"
+  },
+  "pneu_pression": {
+   "kicker": "Exemple : pression d'un pneu",
+   "note": "Environ 2,2 bar : trop gonflé, le pneu éclate.",
+   "tex": "p \\approx 2{,}2\\ \\text{bar}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Air : mélange de gaz, 78 % de diazote, 21 % de dioxygène, compressible",
+    "Usages : respirer, gonfler, souffler, brûler, isoler",
+    "Combustions : charbon et butane, atomes conservés, test à l'eau de chaux",
+    "Dangers : incendie, monoxyde de carbone, explosion — aérer et entretenir"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "respiration": {
+   "kicker": "1. Respirer : un usage vital",
+   "texte": "La respiration consomme O₂ et rejette CO₂.",
+   "type": "phrase"
+  },
+  "respiration_quantite": {
+   "kicker": "Exemple : air inspiré au repos",
+   "note": "Six litres par minute, soit environ 360 litres par heure.",
+   "tex": "6 \\times 60 = 360\\ \\text{L/h}",
+   "type": "formule"
+  },
+  "seringue": {
+   "kicker": "Exemple : la seringue bouchée",
+   "note": "Vingt millilitres d'air comprimés à dix millilitres : même quantité d'air, volume réduit.",
+   "tex": "20\\ \\text{mL} \\rightarrow 10\\ \\text{mL}",
+   "type": "formule",
+   "anim": {
+    "nom": "piston",
+    "hauteur": 220
+   }
+  },
+  "titre": {
+   "anim": {
+    "nom": "melange",
+    "hauteur": 250
+   },
+   "kicker": "Sciences Physiques et Technologie · Chimie",
+   "sous": "L'air qui nous entoure, les combustions qu'il permet, les dangers qu'il faut prévenir",
+   "titre": "L'air, ses usages et les combustions",
+   "type": "titre"
+  },
+  "triangle_feu": {
+   "kicker": "Danger 1 : le triangle du feu",
+   "tex": [
+    "\\text{un combustible}",
+    "\\text{un comburant : le dioxygène}",
+    "\\text{une source de chaleur}"
+   ],
+   "titre": "Trois éléments réunis, sinon pas de feu",
+   "type": "etape"
+  },
+  "usages_intro": {
+   "kicker": "Les usages de l'air",
+   "tex": [
+    "\\text{respirer, gonfler, souffler}",
+    "\\text{brûler, isoler}"
+   ],
+   "titre": "Cinq usages à classer",
+   "type": "etape"
+  },
+  "ventilateur": {
+   "kicker": "Exemple : le ventilateur",
+   "texte": "L'air déplacé refroidit en accélérant l'évaporation.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'air : composition, compressibilité et usages"
+  },
+  {
+   "debut": "p16",
+   "pont": {
+    "dit": "Partie deux : les combustions du charbon de bois et du butane, avec leurs équations et la conservation des atomes.",
+    "texte": "Partie 2 : combustions du charbon et du butane."
+   },
+   "sous_titre": "Combustions du charbon et du butane"
+  },
+  {
+   "debut": "p26",
+   "pont": {
+    "dit": "Partie trois : les trois dangers de la combustion, l'incendie, le monoxyde de carbone et l'explosion, et la prévention.",
+    "texte": "Partie 3 : dangers et prévention."
+   },
+   "sous_titre": "Dangers et prévention"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur l'air, ses usages et les combustions. L'air n'est pas un corps pur : c'est un mélange de gaz qui nous fait respirer, qui gonfle nos pneus et qui permet à nos feux de brûler, mais qu'il faut aussi savoir maîtriser.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "L'air : un mélange de gaz utile, à maîtriser."
+  },
+  {
+   "dit": "L'air qui nous entoure est composé principalement de diazote, environ soixante-dix-huit pour cent du volume, de dioxygène, environ vingt et un pour cent, et d'autres gaz, argon, dioxyde de carbone et vapeur d'eau, pour environ un pour cent.",
+   "ecran": "air_composition",
+   "id": "p02",
+   "texte": "78 % de diazote, 21 % de dioxygène."
+  },
+  {
+   "dit": "L'air est incolore, sans couleur, et inodore, sans odeur. Il est indispensable à la vie : sans lui, ni les êtres humains, ni les animaux, ni les plantes ne pourraient vivre.",
+   "ecran": "usages_intro",
+   "id": "p03",
+   "texte": "Incolore, inodore, indispensable à la vie."
+  },
+  {
+   "dit": "Contrairement à l'eau, l'air peut être comprimé : on peut réduire le volume qu'il occupe en le poussant dans un espace plus petit. C'est ce qui se passe dans une pompe à vélo ou une bouteille de plongée.",
+   "ecran": "seringue",
+   "id": "p04",
+   "texte": "Contrairement à l'eau, l'air se comprime."
+  },
+  {
+   "dit": "Exemple résolu : une seringue bouchée contient vingt millilitres d'air. En poussant le piston, on peut réduire ce volume à dix millilitres : l'air est compressé. Le volume a diminué, mais la quantité d'air reste la même.",
+   "ecran": "seringue",
+   "id": "p05",
+   "texte": "20 mL comprimés à 10 mL : même quantité d'air."
+  },
+  {
+   "dit": "L'air a de très nombreux usages, que l'on peut classer en quelques grandes catégories : respirer, gonfler et propulser, souffler et nettoyer, brûler, et isoler.",
+   "ecran": "usages_intro",
+   "id": "p06",
+   "texte": "Cinq usages : respirer, gonfler, souffler, brûler, isoler."
+  },
+  {
+   "dit": "Premier usage, vital : respirer. Tous les êtres vivants ont besoin de l'air pour respirer. La respiration consomme du dioxygène et rejette du dioxyde de carbone.",
+   "ecran": "respiration",
+   "id": "p07",
+   "texte": "Respirer : consommer O₂, rejeter CO₂."
+  },
+  {
+   "dit": "Exemple résolu : un être humain au repos inspire environ six litres d'air par minute. En une heure, il inspire donc environ six fois soixante, soit trois cent soixante litres d'air. Le dioxygène contenu dans cet air est utilisé par les poumons, puis transporté par le sang vers les organes.",
+   "ecran": "respiration_quantite",
+   "id": "p08",
+   "texte": "Au repos : 6 L par minute, 360 L par heure."
+  },
+  {
+   "dit": "Deuxième usage : se déplacer, gonfler et propulser. L'air comprimé sert à gonfler des objets, des pneus de voiture pour rouler, un ballon de football pour être rebondissant, et à propulser des véhicules.",
+   "ecran": "gonfler",
+   "id": "p09",
+   "texte": "Pneus, ballons : l'air comprimé gonfle et propulse."
+  },
+  {
+   "dit": "Exemple résolu : un pneu de voiture est gonflé à une pression d'environ deux virgule deux bars. Si on le gonfle trop, il éclate : l'air est compressible, mais dans une limite.",
+   "ecran": "pneu_pression",
+   "id": "p10",
+   "texte": "Pneu : environ 2,2 bar, pas davantage."
+  },
+  {
+   "dit": "Troisième usage : souffler et nettoyer. L'air en mouvement, vent ou souffle, permet de pousser, de sécher ou de nettoyer : le sèche-cheveux, dont l'air chaud chassé par le ventilateur sèche les cheveux ; la soufflette, qui chasse la poussière des claviers ; les voiles de bateau, que le vent pousse.",
+   "ecran": "air_souffler",
+   "id": "p11",
+   "texte": "Sèche-cheveux, soufflette, voiles : l'air pousse."
+  },
+  {
+   "dit": "Exemple : un ventilateur tourne et met l'air en mouvement. L'air déplacé crée un courant d'air qui refroidit la peau en accélérant l'évaporation de la sueur.",
+   "ecran": "ventilateur",
+   "id": "p12",
+   "texte": "Le ventilateur refroidit en accélérant l'évaporation."
+  },
+  {
+   "dit": "Quatrième usage : l'air dans l'industrie et la combustion. L'air est utilisé pour brûler des combustibles, pour le chauffage et les moteurs : le dioxygène de l'air est nécessaire à la combustion. Exemple : une bougie s'éteint si on la recouvre d'un verre, car le dioxygène enfermé est consommé par la flamme, puis il n'y en a plus assez. Sans air, pas de combustion.",
+   "ecran": "bougie_verre",
+   "id": "p13",
+   "texte": "Sans air, pas de combustion : la bougie s'éteint."
+  },
+  {
+   "dit": "Cinquième usage : l'air comme isolant. L'air immobile est un bon isolant thermique. C'est pourquoi on utilise la laine de verre, qui contient de l'air, pour isoler les maisons, et le double vitrage, qui contient une couche d'air, pour limiter les pertes de chaleur.",
+   "ecran": "air_isolant",
+   "id": "p14",
+   "texte": "Laine de verre, double vitrage : l'air isole."
+  },
+  {
+   "dit": "Exemple : un manteau en duvet emprisonne de l'air entre ses plumes. Cet air immobile empêche le froid de passer : on a chaud. Retenons donc : l'air est un mélange de gaz, environ soixante-dix-huit pour cent de diazote et vingt et un pour cent de dioxygène ; il est incolore, inodore et compressible ; et le dioxygène de l'air est indispensable à la respiration et à la combustion.",
+   "ecran": "air_isolant",
+   "id": "p15",
+   "texte": "Duvet, laine de verre : l'air immobile isole."
+  },
+  {
+   "dit": "Une combustion est une transformation chimique qui dégage de la chaleur, et souvent de la lumière. Elle nécessite un combustible et un comburant. Dans l'air, le comburant est le dioxygène. Nous étudions ici deux combustibles courants : le charbon de bois, solide, et le butane, gaz.",
+   "ecran": "combustion_definition",
+   "id": "p16",
+   "texte": "Combustion : combustible + dioxygène, chaleur et lumière."
+  },
+  {
+   "dit": "Commençons par le charbon de bois. On introduit un morceau de charbon incandescent dans un flacon contenant de l'air. Le charbon continue de brûler : il devient rouge, puis se consume. Après combustion, il reste moins de charbon qu'au départ : une partie a disparu.",
+   "ecran": "charbon_experience",
+   "id": "p17",
+   "texte": "Le charbon incandescent rougit, puis se consume."
+  },
+  {
+   "dit": "Un gaz se forme : il trouble l'eau de chaux. Ce test caractérise le dioxyde de carbone. De la chaleur est libérée. Le charbon de bois est essentiellement du carbone : il réagit avec le dioxygène de l'air pour former du dioxyde de carbone.",
+   "ecran": "charbon_equation",
+   "id": "p18",
+   "texte": "Carbone + dioxygène → dioxyde de carbone."
+  },
+  {
+   "dit": "Les réactifs, qui disparaissent, sont le carbone et le dioxygène ; le produit, qui apparaît, est le dioxyde de carbone. Cette combustion est complète lorsque le dioxygène est suffisant : le seul produit est le dioxyde de carbone.",
+   "ecran": "charbon_equation",
+   "id": "p19",
+   "texte": "Réactifs : C et O₂ ; produit : CO₂."
+  },
+  {
+   "dit": "Lors d'une réaction chimique, les atomes se conservent : le nombre d'atomes de chaque élément est identique avant et après. Ici, un atome de carbone et deux atomes d'oxygène de chaque côté.",
+   "ecran": "charbon_equation",
+   "id": "p20",
+   "texte": "Les atomes se conservent de chaque côté."
+  },
+  {
+   "dit": "Exemple résolu : on brûle six grammes de carbone dans suffisamment de dioxygène. Quelle masse de dioxyde de carbone obtient-on ? D'après l'équation, tout le carbone se retrouve dans le dioxyde de carbone. La masse se conserve : si seize grammes de dioxygène sont consommés, la masse de dioxyde de carbone vaut six plus seize, soit vingt-deux grammes.",
+   "ecran": "charbon_masse",
+   "id": "p21",
+   "texte": "6,0 g + 16,0 g = 22,0 g de CO₂."
+  },
+  {
+   "dit": "Passons au butane, le gaz contenu dans les briquets et les bouteilles de gaz, de formule C indice quatre H indice dix. On approche une flamme à la sortie d'un briquet : le butane brûle avec une flamme bleue, en dégageant de la chaleur.",
+   "ecran": "butane_produits",
+   "id": "p22",
+   "texte": "Butane : flamme bleue, chaleur dégagée."
+  },
+  {
+   "dit": "En plaçant un récipient froid au-dessus de la flamme, on observe de la buée, c'est de l'eau, et un gaz qui trouble l'eau de chaux, c'est du dioxyde de carbone. Le butane réagit donc avec le dioxygène de l'air pour former du dioxyde de carbone et de l'eau.",
+   "ecran": "butane_produits",
+   "id": "p23",
+   "texte": "Buée : H₂O ; eau de chaux troublée : CO₂."
+  },
+  {
+   "dit": "L'équation équilibrée s'écrit : deux C indice quatre H indice dix plus treize O indice deux donnent huit CO indice deux plus dix H indice deux O. Vérifions pour le carbone : à gauche, deux fois quatre, soit huit atomes de carbone ; à droite, huit fois un, soit huit atomes de carbone. Les atomes de carbone sont bien conservés.",
+   "ecran": "butane_equation",
+   "id": "p24",
+   "texte": "2 C₄H₁₀ + 13 O₂ → 8 CO₂ + 10 H₂O."
+  },
+  {
+   "dit": "Attention à la nuance entre complète et incomplète. Complète, quand le dioxygène est suffisant : flamme bleue, produits dioxyde de carbone et eau. Incomplète, quand le dioxygène est insuffisant : flamme jaune, formation de carbone, la suie noire, et de monoxyde de carbone, un gaz toxique et mortel.",
+   "ecran": "combustion_incomplete",
+   "id": "p25",
+   "texte": "Bleue ou jaune : le signe du danger."
+  },
+  {
+   "dit": "Une combustion est une réaction utile mais risquée, indispensable pour le chauffage, la cuisson et les moteurs, mais qui présente trois dangers principaux : l'incendie, l'intoxication au monoxyde de carbone et l'explosion.",
+   "ecran": "triangle_feu",
+   "id": "p26",
+   "texte": "Utile, mais trois dangers : feu, CO, explosion."
+  },
+  {
+   "dit": "Premier danger, l'incendie, et son triangle du feu : pour qu'une combustion se déclenche, trois éléments doivent être réunis simultanément, un combustible, un comburant, le dioxygène de l'air, et une source de chaleur, flamme, étincelle ou surface chaude. Si l'un des trois manque, le feu ne peut ni démarrer ni se poursuivre.",
+   "ecran": "triangle_feu",
+   "id": "p27",
+   "texte": "Triangle du feu : combustible, comburant, chaleur."
+  },
+  {
+   "dit": "Exemple : une bougie est allumée puis recouverte d'un bocal hermétique. La flamme s'éteint après quelques secondes, car le dioxygène enfermé est consommé. On a supprimé un côté du triangle du feu. Pour éviter ou éteindre un incendie, on supprime donc un élément : couper le gaz, c'est le combustible ; étouffer avec une couverture, c'est le comburant ; refroidir avec de l'eau, c'est la chaleur.",
+   "ecran": "bougie_bocal",
+   "id": "p28",
+   "texte": "Sans dioxygène, la flamme s'éteint en quelques secondes."
+  },
+  {
+   "dit": "Deuxième danger, l'intoxication au monoxyde de carbone. Lorsque la combustion se fait avec trop peu de dioxygène, elle est dite incomplète et produit un gaz incolore et inodore très toxique, le monoxyde de carbone. Ce gaz se fixe dans le sang à la place du dioxygène et peut provoquer maux de tête, malaise, voire la mort.",
+   "ecran": "intoxication",
+   "id": "p29",
+   "texte": "Un gaz incolore, inodore, très toxique."
+  },
+  {
+   "dit": "Exemple : un appareil de chauffage mal entretenu fonctionne dans une pièce fermée, et sa flamme devient jaune au lieu de bleue. La flamme jaune signale un manque de dioxygène : la combustion devient incomplète et libère du monoxyde de carbone. Il faut aérer la pièce et faire entretenir l'appareil. D'où la prévention : aérer régulièrement, faire entretenir les appareils, ne jamais boucher les grilles d'aération, installer un détecteur de monoxyde de carbone.",
+   "ecran": "intoxication_exemple",
+   "id": "p30",
+   "texte": "Flamme jaune : manque de dioxygène, CO libéré."
+  },
+  {
+   "dit": "Troisième danger, l'explosion. Certains combustibles, comme le gaz de ville ou le butane, forment avec l'air un mélange explosif. Si ce mélange est enflammé par une étincelle, la combustion est si rapide qu'elle produit une explosion violente. Exemple : une fuite de gaz se produit dans une cuisine, une personne actionne un interrupteur et une étincelle jaillit. Le gaz s'est mélangé à l'air : le mélange est explosif, et l'étincelle suffit à déclencher l'explosion. En cas de fuite, il faut fermer le gaz, ouvrir les fenêtres et ne provoquer aucune flamme ni étincelle.",
+   "ecran": "explosion",
+   "id": "p31",
+   "texte": "Un mélange gaz-air enflammé explose violemment."
+  },
+  {
+   "dit": "Retenons l'essentiel. L'air est un mélange de gaz, environ soixante-dix-huit pour cent de diazote et vingt et un pour cent de dioxygène, incolore, inodore et compressible, aux usages nombreux : respirer, gonfler, souffler, brûler, isoler. Les combustions du charbon et du butane conservent les atomes, et le dioxyde de carbone se reconnaît au test de l'eau de chaux. Et toute combustion est à surveiller : bien alimentée en dioxygène et bien entretenue, elle reste utile ; mal maîtrisée, elle devient dangereuse.",
+   "ecran": "recap",
+   "id": "p32",
+   "texte": "Air, combustions, dangers : le récapitulatif."
+  }
+ ],
+ "titre": "L'air, ses usages et les combustions"
+}
