@@ -1,0 +1,466 @@
+{
+ "cours": 6370,
+ "ecrans": {
+  "avantageuses": {
+   "kicker": "Mutations avantageuses",
+   "tex": [
+    "\\text{résistance aux antibiotiques}",
+    "\\text{persistance de la lactase}",
+    "\\text{vision trichromatique des primates}"
+   ],
+   "titre": "Rares, mais décisives",
+   "type": "etape"
+  },
+  "balance": {
+   "kicker": "La sélection balancée",
+   "note": "Fréquences des allèles HbA et HbS : l'avantage de l'hétérozygote maintient l'allèle dans les zones impaludées",
+   "tex": "p + q = 1",
+   "type": "formule"
+  },
+  "ccr5": {
+   "kicker": "Un autre avantage",
+   "note": "Délétion de 32 paires de bases : les homozygotes sont quasi résistants au VIH",
+   "tex": "\\text{CCR5-} \\Delta 32",
+   "type": "formule"
+  },
+  "chimiques": {
+   "kicker": "Mutagènes chimiques et biologiques",
+   "tex": [
+    "\\text{agent moutarde, benzopyrène}",
+    "\\text{5-bromouracile, analogue de base}",
+    "\\text{virus intégrés, transposons}"
+   ],
+   "titre": "Molécules et gènes sauteurs",
+   "type": "etape"
+  },
+  "def_mutation": {
+   "kicker": "Définir : la mutation",
+   "tex": [
+    "\\text{stable et héréditaire}",
+    "\\text{séquence A, T, C, G modifiée}",
+    "\\text{nouvel allèle créé}"
+   ],
+   "titre": "Un changement stable du texte génétique",
+   "type": "etape"
+  },
+  "dogme": {
+   "kicker": "Du gène à la protéine",
+   "tex": [
+    "\\text{ADN} \\rightarrow \\text{ARN messager}",
+    "\\text{ARN messager} \\rightarrow \\text{protéine}",
+    "\\text{protéine} \\rightarrow \\text{fonction}"
+   ],
+   "titre": "Le flux de l'information",
+   "type": "etape"
+  },
+  "drepano": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "microscope_fig"
+   },
+   "kicker": "La drépanocytose, cas d'école",
+   "texte": "Hémoglobine S qui polymérise : le globule rouge devient faucille.",
+   "type": "phrase"
+  },
+  "enphase": {
+   "kicker": "Indel en phase",
+   "note": "Mucoviscidose : trois nucléotides perdus, une phénylalanine en moins, en position 508",
+   "tex": "\\Delta \\text{F508}",
+   "type": "formule"
+  },
+  "fauxsens": {
+   "kicker": "Mutation faux-sens",
+   "note": "Acide glutamique remplacé par la valine, en position six",
+   "tex": "\\text{GAG} \\rightarrow \\text{GTG}",
+   "type": "formule"
+  },
+  "frameshift": {
+   "kicker": "Décalage du cadre de lecture",
+   "tex": [
+    "\\text{indel non multiple de 3}",
+    "\\text{tous les codons en aval changent}",
+    "\\text{stop prématuré fréquent}"
+   ],
+   "titre": "Perdre une lettre décale tout",
+   "type": "etape"
+  },
+  "gain": {
+   "kicker": "Gains de fonction",
+   "tex": [
+    "\\text{RAS : signal toujours actif}",
+    "\\text{Huntington : expansion CAG}",
+    "\\text{agrégation toxique}"
+   ],
+   "titre": "Quand la protéine s'emballe",
+   "type": "etape"
+  },
+  "genotypes": {
+   "kicker": "Trois génotypes, trois destins",
+   "tex": [
+    "\\text{HbA / HbA : sain}",
+    "\\text{HbA / HbS : porteur sain}",
+    "\\text{HbS / HbS : malade}"
+   ],
+   "titre": "Sain, porteur, malade",
+   "type": "etape"
+  },
+  "histoire": {
+   "kicker": "Quatre dates repères",
+   "tex": [
+    "1865 : \\text{Mendel, facteurs discrets}",
+    "1901 : \\text{de Vries nomme la mutation}",
+    "1927 : \\text{Muller, rayons X sur drosophile}",
+    "1953 : \\text{Watson et Crick, double hélice}"
+   ],
+   "titre": "De Mendel à la double hélice",
+   "type": "etape"
+  },
+  "neutres": {
+   "kicker": "Mutations neutres",
+   "tex": [
+    "64 \\text{ codons pour 20 acides aminés}",
+    "98\\,\\% \\text{ du génome non codant}",
+    "\\text{horloge moléculaire de Kimura}"
+   ],
+   "titre": "Le bruit de fond de l'évolution",
+   "type": "etape"
+  },
+  "nonsens": {
+   "kicker": "Mutation non-sens",
+   "note": "La sérine devient un codon stop prématuré : protéine tronquée",
+   "tex": "\\text{UCA} \\rightarrow \\text{UAA}",
+   "type": "formule"
+  },
+  "physiques": {
+   "kicker": "Mutagènes physiques",
+   "tex": [
+    "\\text{UV : dimères de thymine}",
+    "\\text{rayons X, gamma : cassures}",
+    "\\text{simple-brin ou double-brin}"
+   ],
+   "titre": "Rayons qui cassent et déforment",
+   "type": "etape"
+  },
+  "rarete": {
+   "kicker": "Une erreur rare",
+   "note": "Taux par paire de bases et par génération, chez l'humain",
+   "tex": "10^{-9} < \\tau < 10^{-8}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Mutation : changement stable et héréditaire de l'ADN",
+    "Ponctuelle, indel ou chromosomique : l'échelle change tout",
+    "Causes spontanées ou mutagènes, réparation avant fixation",
+    "Drépanocytose : une lettre, une protéine, une maladie, un avantage",
+    "Neutre, délétère ou avantageuse selon le contexte"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "reparation": {
+   "kicker": "La cellule se défend",
+   "tex": [
+    "\\text{excision de base}",
+    "\\text{excision de nucléotides}",
+    "\\text{recombinaison}"
+   ],
+   "titre": "Réparer avant de copier",
+   "type": "etape"
+  },
+  "risque": {
+   "kicker": "L'équation du risque",
+   "note": "La mutation n'est fixée que si la lésion n'est pas réparée avant la réplication",
+   "tex": [
+    "P(\\text{mutation}) = P(\\text{lésion}) \\times",
+    "\\left[1 - P(\\text{réparation})\\right]"
+   ],
+   "titre": "Lésion, réparation, fixation",
+   "type": "etape"
+  },
+  "silencieuse": {
+   "kicker": "Mutation silencieuse",
+   "note": "Les deux codons donnent l'alanine : la protéine ne change pas",
+   "tex": "\\text{GCU} \\rightarrow \\text{GCC}",
+   "type": "formule"
+  },
+  "spontanees": {
+   "kicker": "Causes spontanées",
+   "tex": [
+    "\\text{polymérase : mésappariement}",
+    "\\text{déamination : C} \\rightarrow \\text{U}",
+    "\\text{tautomérie : appariement modifié}",
+    "\\text{glissement sur répétitions}"
+   ],
+   "titre": "Les erreurs de la machinerie",
+   "type": "etape"
+  },
+  "structures": {
+   "kicker": "Quatre niveaux de structure",
+   "tex": [
+    "\\text{primaire : séquence linéaire}",
+    "\\text{secondaire : hélices alpha, feuillets bêta}",
+    "\\text{tertiaire : forme en trois dimensions}",
+    "\\text{quaternaire : plusieurs sous-unités}"
+   ],
+   "titre": "La forme fait la fonction",
+   "type": "etape"
+  },
+  "substitution": {
+   "kicker": "Mutations ponctuelles",
+   "tex": [
+    "\\text{ATG, CCA, TAG, GTC}",
+    "\\text{ATG, CTA, TAG, GTC}",
+    "\\text{un C devient un T}"
+   ],
+   "titre": "Une seule base remplacée",
+   "type": "etape"
+  },
+  "synthese": {
+   "kicker": "Sans mutation, rien ne bouge",
+   "tex": [
+    "\\text{pas de variabilité}",
+    "\\text{pas de sélection}",
+    "\\text{pas d'évolution}"
+   ],
+   "titre": "La faute, point de départ de tout",
+   "type": "etape"
+  },
+  "taux": {
+   "kicker": "Combien de nouveautés ?",
+   "note": "Nouvelles mutations par individu et par génération, par rapport à ses parents",
+   "tex": "60 \\text{ à } 100",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "microscope_fig"
+   },
+   "kicker": "Biologie · Mutations",
+   "sous": "Définition, types, causes et destins : de la lettre changée à l'évolution",
+   "titre": "Mutations : les fautes de frappe qui font évoluer le vivant",
+   "type": "titre"
+  },
+  "transitions": {
+   "kicker": "Transitions et transversions",
+   "tex": [
+    "\\text{transition : A} \\leftrightarrow \\text{G, C} \\leftrightarrow \\text{T}",
+    "\\text{transversion : purine} \\leftrightarrow \\text{pyrimidine}"
+   ],
+   "titre": "Deux façons de substituer",
+   "type": "etape"
+  },
+  "chromo": {
+   "kicker": "Mutations chromosomiques",
+   "tex": [
+    "\\text{délétion : un fragment perdu}",
+    "\\text{duplication : un segment en double}",
+    "\\text{inversion : un segment retourné}",
+    "\\text{translocation : échange entre chromosomes}"
+   ],
+   "titre": "Des chapitres entiers remaniés",
+   "type": "etape"
+  }
+ },
+ "matiere": "Biologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir et classer les mutations"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : les causes des mutations, puis de la lésion à la protéine. Nous verrons les erreurs spontanées, les mutagènes physiques et chimiques, et comment la drépanocytose transforme une lettre en maladie.",
+    "texte": "Partie 2 : causes, réparation et drépanocytose."
+   },
+   "sous_titre": "Causes, réparation et drépanocytose"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : les destins des mutations. Nous verrons pourquoi la plupart sont neutres, comment quelques-unes deviennent des innovations, et pourquoi le taux de mutation est un compromis.",
+    "texte": "Partie 3 : destins neutres, avantageux et compromis."
+   },
+   "sous_titre": "Destins neutres, avantageux et compromis"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur les mutations, les sources de la variabilité génétique. Imaginez le génome comme un livre immense, copié des milliards de fois : est-il surprenant que des fautes de frappe s'y glissent parfois ?",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Un livre copié des milliards de fois : des fautes s'y glissent."
+  },
+  {
+   "dit": "Une mutation est une modification stable et héréditaire de la séquence nucléotidique de l'ADN. Elle change l'ordre des lettres A, T, C et G, et elle crée une nouvelle version d'un gène, qu'on appelle un allèle.",
+   "ecran": "def_mutation",
+   "id": "p02",
+   "texte": "Mutation : modification stable et héréditaire de l'ADN."
+  },
+  {
+   "dit": "Ces fautes sont aléatoires, non dirigées par les besoins de l'organisme, et seules celles des cellules germinales se transmettent à la descendance. Elles sont rares : chez l'humain, le taux spontané vaut environ dix puissance moins huit à dix puissance moins neuf par paire de bases et par génération.",
+   "ecran": "rarete",
+   "id": "p03",
+   "texte": "Taux humain : entre dix puissance moins neuf et dix puissance moins huit."
+  },
+  {
+   "dit": "L'idée a mûri en un siècle. En mille huit cent soixante-cinq, Mendel postule des facteurs discrets. En mille neuf cent un, de Vries nomme la mutation. En mille neuf cent vingt-sept, Muller montre que les rayons X induisent des mutations chez la drosophile, ce qui lui vaudra le prix Nobel en mille neuf cent quarante-six. En mille neuf cent cinquante-trois, Watson et Crick révèlent la double hélice.",
+   "ecran": "histoire",
+   "id": "p04",
+   "texte": "Mendel, de Vries, Muller, Watson et Crick : quatre jalons."
+  },
+  {
+   "dit": "Commençons par les plus simples, les mutations ponctuelles : une seule paire de bases est remplacée par une autre. Dans la séquence normale, un C devient un T, et tout le reste du texte reste en place.",
+   "ecran": "substitution",
+   "id": "p05",
+   "texte": "Ponctuelle : un C devient un T, le reste suit."
+  },
+  {
+   "dit": "On distingue les transitions, qui remplacent une purine par une purine ou une pyrimidine par une pyrimidine, et les transversions, qui passent d'une purine à une pyrimidine ou l'inverse. Les transitions sont les plus courantes, en partie parce que la cytosine se désamine spontanément.",
+   "ecran": "transitions",
+   "id": "p06",
+   "texte": "Transition : même famille ; transversion : on change de famille."
+  },
+  {
+   "dit": "Premier destin possible : la mutation silencieuse. Le code génétique est dégénéré, plusieurs codons codent le même acide aminé. Passer de G C U à G C C ne change rien : l'alanine est toujours incorporée.",
+   "ecran": "silencieuse",
+   "id": "p07",
+   "texte": "G C U devient G C C : toujours l'alanine."
+  },
+  {
+   "dit": "Deuxième destin : la mutation faux-sens. Dans le gène de la bêta-globine, le codon G A G devient G T G : l'acide glutamique en position six est remplacé par la valine. C'est la mutation de la drépanocytose.",
+   "ecran": "fauxsens",
+   "id": "p08",
+   "texte": "G A G devient G T G : glutamique remplacé par valine."
+  },
+  {
+   "dit": "Troisième destin : la mutation non-sens. Un codon pour la sérine, U C A, devient un codon stop, U A A. La synthèse s'arrête trop tôt, la protéine est tronquée et généralement non fonctionnelle, comme dans certaines formes de la maladie de Duchenne.",
+   "ecran": "nonsens",
+   "id": "p09",
+   "texte": "U C A devient U A A : un stop prématuré."
+  },
+  {
+   "dit": "Plus brutales encore, les insertions et délétions, les indels. Le code se lit par triplets, sans ponctuation : si on ajoute ou retire un nombre de nucléotides qui n'est pas multiple de trois, tout le cadre de lecture en aval décale, et la protéine qui en sort est presque toujours non fonctionnelle.",
+   "ecran": "frameshift",
+   "id": "p10",
+   "texte": "Indel non multiple de trois : tout le cadre décale."
+  },
+  {
+   "dit": "À l'inverse, un indel multiple de trois ne décale pas le cadre : il ajoute ou retire simplement un ou plusieurs acides aminés. La cause la plus fréquente de la mucoviscidose est ainsi une délétion de trois nucléotides, qui fait perdre la phénylalanine en position cinq cent huit de la protéine C F T R.",
+   "ecran": "enphase",
+   "id": "p11",
+   "texte": "Delta F 508 : trois nucléotides perdus, un acide aminé en moins."
+  },
+  {
+   "dit": "Pourquoi ces fautes surviennent-elles ? D'abord spontanément : la polymérase insère parfois un mauvais nucléotide malgré sa relecture, la cytosine se désamine en uracile, une forme tautomère rare change les appariements, et la machinerie glisse sur les séquences répétées, comme les microsatellites.",
+   "ecran": "spontanees",
+   "id": "p12",
+   "texte": "Erreurs de copie, déamination, tautomérie, glissement."
+  },
+  {
+   "dit": "À une échelle encore plus grande, les mutations chromosomiques, visibles au microscope, remanient des segments entiers : une délétion arrache un fragment, comme celle du bras court du chromosome cinq dans le cri du chat ; une duplication double un segment, moteur de l'évolution des globines ; une inversion retourne un segment ; une translocation échange du matériel entre chromosomes non homologues. On y ajoute les anomalies de nombre : l'aneuploïdie, un chromosome en plus ou en moins, et la polyploïdie, le jeu complet multiplié, fréquente chez les plantes.",
+   "ecran": "chromo",
+   "id": "p12b",
+   "texte": "Chromosomiques : délétion, duplication, inversion, translocation."
+  },
+  {
+   "dit": "Ensuite, les mutagènes physiques. Les ultraviolets créent des dimères de thymine, deux thymines voisines liées anormalement, qui déforment l'hélice et bloquent la réplication. Les rayonnements ionisants, eux, cassent les brins, parfois les deux à la fois, et la réparation de ces cassures doubles est sujette à erreurs.",
+   "ecran": "physiques",
+   "id": "p13",
+   "texte": "U V : dimères de thymine ; ionisants : cassures de brins."
+  },
+  {
+   "dit": "Enfin, les mutagènes chimiques et biologiques : l'agent moutarde, le benzopyrène de la fumée de cigarette, les analogues de bases comme la cinq-bromouracile, mais aussi les virus qui s'intègrent au génome et les transposons, ces gènes sauteurs qui s'insèrent dans un gène.",
+   "ecran": "chimiques",
+   "id": "p14",
+   "texte": "Moutarde, benzopyrène, analogues de bases, virus, transposons."
+  },
+  {
+   "dit": "Il faut bien distinguer la lésion, la réparation et la mutation fixée. Une mutation n'est définitive que si la lésion n'est pas réparée avant la réplication suivante : la probabilité de mutation vaut la probabilité de lésion, multipliée par un moins la probabilité de réparation avant réplication.",
+   "ecran": "risque",
+   "id": "p15",
+   "texte": "Mutation fixée = lésion non réparée avant la réplication."
+  },
+  {
+   "dit": "La cellule n'est pas sans défense : elle dispose de plusieurs systèmes de réparation, par excision de base, par excision de nucléotides ou par recombinaison. Face à une lésion illisible, la polymérase peut aussi insérer un nucléotide au hasard, et c'est alors que la faute se fixe.",
+   "ecran": "reparation",
+   "id": "p16",
+   "texte": "Réparer avant de copier, sinon la faute se fixe."
+  },
+  {
+   "dit": "Quel est l'effet sur la protéine ? Rappelons le flux de l'information : l'ADN est transcrit en ARN messager, traduit en protéine, et la protéine assure une fonction. La séquence nucléotidique détermine la séquence d'acides aminés, et donc la forme, et donc la fonction.",
+   "ecran": "dogme",
+   "id": "p17",
+   "texte": "A D N, A R N messager, protéine, fonction."
+  },
+  {
+   "dit": "La protéine s'organise en quatre niveaux : la séquence linéaire, les plissements locaux en hélices alpha et feuillets bêta, la forme globale en trois dimensions, puis l'association de plusieurs chaînes. Une mutation qui perturbe un niveau peut déstabiliser tout l'édifice.",
+   "ecran": "structures",
+   "id": "p18",
+   "texte": "Primaire, secondaire, tertiaire, quaternaire."
+  },
+  {
+   "dit": "Revenons à la drépanocytose. La valine, hydrophobe, crée un point collant à la surface de l'hémoglobine S. En faible oxygène, l'hémoglobine polymérise en fibres rigides qui déforment le globule rouge en faucille : anémie, crises douloureuses, sensibilité aux infections.",
+   "ecran": "drepano",
+   "id": "p19",
+   "texte": "Hémoglobine S : fibres rigides, globules en faucille."
+  },
+  {
+   "dit": "La maladie est autosomique récessive. Un individu sain produit uniquement de l'hémoglobine A, un porteur sain produit un mélange d'hémoglobines A et S et reste généralement asymptomatique, et un homozygote malade produit majoritairement de l'hémoglobine S.",
+   "ecran": "genotypes",
+   "id": "p20",
+   "texte": "Sain, porteur sain, malade : trois génotypes."
+  },
+  {
+   "dit": "Et pourtant l'allèle S persiste : c'est la sélection balancée. En zone impaludée, les hétérozygotes survivent mieux au paludisme que les homozygotes sains, ce qui compense la perte des homozygotes malades. Sur un plateau de la balance, la mortalité des malades ; sur l'autre, la survie des porteurs.",
+   "ecran": "balance",
+   "id": "p21",
+   "texte": "p plus q égale un : la balance tient l'allèle S."
+  },
+  {
+   "dit": "La plupart des mutations fixées sont en fait neutres. Le code est dégénéré : soixante-quatre codons pour vingt acides aminés seulement. De plus, environ quatre-vingt-dix-huit pour cent du génome ne code pas pour des protéines. Ces mutations silencieuses, fixées au hasard par dérive, servent d'horloge moléculaire.",
+   "ecran": "neutres",
+   "id": "p22",
+   "texte": "Soixante-quatre codons, vingt acides aminés : beaucoup de silence."
+  },
+  {
+   "dit": "Les mutations avantageuses sont rares, mais décisives. La résistance aux antibiotiques et aux pesticides en est la démonstration accélérée. La persistance de la lactase à l'âge adulte a suivi la domestication du bétail. Et la vision trichromatique des primates est née d'une duplication de gène suivie de mutations divergentes.",
+   "ecran": "avantageuses",
+   "id": "p23",
+   "texte": "Antibiotiques, lactase, vision des couleurs : trois innovations."
+  },
+  {
+   "dit": "Autre exemple, la délétion C C R 5 delta trente-deux : trente-deux paires de bases perdues dans le gène du corécepteur C C R 5, qui rend la protéine non fonctionnelle. Le V I H a besoin de ce corécepteur pour entrer dans la cellule : les homozygotes sont quasi résistants à l'infection.",
+   "ecran": "ccr5",
+   "id": "p24",
+   "texte": "C C R 5 delta 32 : trente-deux paires de bases en moins."
+  },
+  {
+   "dit": "Toutes les mutations ne font pas perdre une fonction : certaines en donnent une nouvelle, souvent pathologique. Une mutation de R A S en position douze bloque son activité et la laisse constitutivement active, envoyant sans arrêt un signal de prolifération. Dans la maladie de Huntington, une expansion de triplets C A G rend la protéine toxique et agrégée.",
+   "ecran": "gain",
+   "id": "p25",
+   "texte": "R A S bloqué actif, Huntington : le gain de fonction tue."
+  },
+  {
+   "dit": "Le taux de mutation est un compromis : trop élevé, il menace l'information génétique ; trop faible, il limite l'adaptation. Chez l'humain, environ soixante à cent nouvelles mutations apparaissent dans le génome de chaque individu par rapport à ses parents.",
+   "ecran": "taux",
+   "id": "p26",
+   "texte": "Soixante à cent nouveautés par individu, à chaque génération."
+  },
+  {
+   "dit": "Conclusion : sans mutations, pas de différences entre individus, pas de matière première pour la sélection naturelle, pas d'évolution à long terme, et une vulnérabilité extrême face aux changements d'environnement. La faute de frappe est le point de départ de toute la diversité du vivant.",
+   "ecran": "synthese",
+   "id": "p27",
+   "texte": "Sans mutation, pas de variabilité, pas de sélection, pas d'évolution."
+  },
+  {
+   "dit": "Retenons l'essentiel : une mutation est un changement stable et héréditaire de l'ADN ; son effet dépend de son échelle, ponctuelle, indel ou chromosomique ; elle naît d'erreurs spontanées ou de mutagènes et ne se fixe que si elle échappe à la réparation ; la drépanocytose montre qu'une seule lettre peut faire une maladie et un avantage ; et son destin, neutre, délétère ou avantageux, dépend toujours du contexte.",
+   "ecran": "recap",
+   "id": "p28",
+   "texte": "Définition, types, causes, drépanocytose, destins."
+  }
+ ],
+ "titre": "Mutations : les fautes de frappe qui font évoluer le vivant"
+}
