@@ -18,18 +18,18 @@
    "type": "formule"
   },
   "catalyseur": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "profil_energie_fig"
+   },
    "kicker": "Le catalyseur",
    "texte": "Un catalyseur accélère la réaction sans être consommé : il ouvre un autre chemin, d'énergie d'activation plus faible, sans déplacer l'équilibre.",
-   "type": "phrase",
-   "anim": {
-    "nom": "profil_energie_fig",
-    "hauteur": 180
-   }
+   "type": "phrase"
   },
   "concentration": {
    "anim": {
     "hauteur": 170,
-    "nom": "melange"
+    "nom": "agitation"
    },
    "kicker": "La concentration",
    "texte": "Plus la concentration est élevée, plus les molécules sont nombreuses dans un même volume : les collisions sont plus fréquentes, et la réaction avance plus vite.",
@@ -76,13 +76,13 @@
    "type": "etape"
   },
   "distribution_boltzmann": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "distribution_boltzmann_fig"
+   },
    "kicker": "La distribution des énergies",
    "texte": "À température plus élevée, la distribution des énergies s'étale : la proportion de molécules capables de franchir l'énergie d'activation grandit nettement.",
-   "type": "phrase",
-   "anim": {
-    "nom": "distribution_boltzmann_fig",
-    "hauteur": 180
-   }
+   "type": "phrase"
   },
   "etape_limitante": {
    "kicker": "L'étape cinétiquement déterminante",
@@ -216,6 +216,10 @@
    "type": "recap"
   },
   "moyenne_instantanee": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "courbe_concentration_fig"
+   },
    "kicker": "Moyenne ou instantanée",
    "tex": [
     "v_{\\mathrm{moy}} = \\tfrac{\\Delta [C]}{\\Delta t}",
@@ -223,11 +227,7 @@
     "\\text{pente de la tangente en ce point}"
    ],
    "titre": "La pente de la tangente",
-   "type": "etape",
-   "anim": {
-    "nom": "courbe_concentration_fig",
-    "hauteur": 110
-   }
+   "type": "etape"
   },
   "ordres_exemple": {
    "kicker": "Lire une loi de vitesse",
