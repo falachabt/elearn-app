@@ -1,0 +1,427 @@
+{
+ "cours": 7374,
+ "titre": "Tectonique des plaques et dynamique du globe",
+ "matiere": "Biologie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Biologie · Géologie",
+   "titre": "Tectonique des plaques et dynamique du globe",
+   "sous": "De l'intérieur de la Terre aux dorsales, de la subduction au cycle des roches",
+   "anim": {
+    "nom": "plaques_fig",
+    "hauteur": 250
+   }
+  },
+  "enveloppes": {
+   "type": "phrase",
+   "kicker": "Trois enveloppes concentriques",
+   "texte": "Composition, densité et état distincts pour chaque enveloppe.",
+   "anim": {
+    "nom": "discontinuites_fig",
+    "hauteur": 220
+   }
+  },
+  "moho": {
+   "type": "formule",
+   "kicker": "La discontinuité de Moho",
+   "tex": "6\\ \\text{km/s} \\rightarrow 8\\ \\text{km/s}",
+   "note": "De la croûte au manteau supérieur"
+  },
+  "ondes": {
+   "type": "phrase",
+   "kicker": "Ondes P et ondes S",
+   "texte": "Ondes P longitudinales, ondes S transversales.",
+   "anim": {
+    "nom": "types_ondes",
+    "hauteur": 220
+   }
+  },
+  "snell": {
+   "type": "formule",
+   "kicker": "Loi de Snell-Descartes sismique",
+   "tex": "\\frac{\\sin\\theta_1}{v_1} = \\frac{\\sin\\theta_2}{v_2}",
+   "note": "Angle d'incidence et vitesse dans chaque milieu"
+  },
+  "ombre": {
+   "type": "phrase",
+   "kicker": "Zone d'ombre : cent trois à cent quarante-trois degrés",
+   "texte": "Aucune onde S reçue : le noyau externe est liquide.",
+   "anim": {
+    "nom": "sismogramme",
+    "hauteur": 220
+   }
+  },
+  "gradient": {
+   "type": "etape",
+   "kicker": "Température et pression vers le centre",
+   "titre": "Le gradient géothermique et la pression moyenne",
+   "tex": [
+    "25\\text{-}30\\ \\text{K/km}",
+    "30\\ \\text{MPa/km}"
+   ]
+  },
+  "transitions": {
+   "type": "phrase",
+   "kicker": "Olivine, wadsleyite, ringwoodite, pérovskite",
+   "texte": "Les changements de phase modifient la vitesse des ondes.",
+   "anim": {
+    "nom": "pression_profondeur_fig",
+    "hauteur": 220
+   }
+  },
+  "dynamo": {
+   "type": "phrase",
+   "kicker": "Dynamo : fer liquide, convection, Coriolis",
+   "texte": "Un champ d'environ dix puissance moins cinq teslas en surface.",
+   "anim": {
+    "nom": "convection_fig",
+    "hauteur": 220
+   }
+  },
+  "wegener": {
+   "type": "phrase",
+   "kicker": "Wegener, 1912 : la Pangée se fragmente",
+   "texte": "Un supercontinent, des continents qui dérivent.",
+   "anim": {
+    "nom": "strates_fig",
+    "hauteur": 220
+   }
+  },
+  "preuves": {
+   "type": "phrase",
+   "kicker": "Trois arguments de Wegener",
+   "texte": "Fossiles, chaînes, climats : trois arguments, un mécanisme manquant.",
+   "anim": {
+    "nom": "strates_fig",
+    "hauteur": 220
+   }
+  },
+  "hess": {
+   "type": "phrase",
+   "kicker": "Hess, 1960 : la dorsale crée de la croûte",
+   "texte": "Le magma monte, se solidifie, la croûte s'étale.",
+   "anim": {
+    "nom": "volcan_fig",
+    "hauteur": 220
+   }
+  },
+  "vine": {
+   "type": "phrase",
+   "kicker": "Vine et Matthews, 1963 : anomalies symétriques",
+   "texte": "Des bandes magnétiques symétriques de part et d'autre de la dorsale.",
+   "anim": {
+    "nom": "plaques_fig",
+    "hauteur": 220
+   }
+  },
+  "subduction": {
+   "type": "phrase",
+   "kicker": "Subduction : la plaque dense plonge",
+   "texte": "Fosse, plan de Wadati-Benioff, prisme d'accrétion, arc volcanique.",
+   "anim": {
+    "nom": "plaques_fig",
+    "hauteur": 220
+   }
+  },
+  "densites": {
+   "type": "formule",
+   "kicker": "Pourquoi l'océanique subducte",
+   "tex": "\\rho_o > \\rho_c",
+   "note": "Océanique : 3 grammes par centimètre cube ; continentale : 2,7"
+  },
+  "pression": {
+   "kicker": "Pression à trente kilomètres de profondeur",
+   "titre": "Soit environ 8,8 gigapascals : les schistes bleus commencent",
+   "tex": [
+    "P = 3000 \\times 9{,}81 \\times 30000",
+    "= 8{,}829 \\times 10^{8}\\ \\text{Pa}"
+   ],
+   "type": "etape"
+  },
+  "collision": {
+   "type": "phrase",
+   "kicker": "Collision : pas de fosse, des montagnes",
+   "texte": "Obduction d'ophiolites, Himalaya, Alpes.",
+   "anim": {
+    "nom": "strates_fig",
+    "hauteur": 220
+   }
+  },
+  "metamorphisme": {
+   "type": "phrase",
+   "kicker": "Trois faciès métamorphiques repères",
+   "texte": "Métamorphisme : transformer sans fondre, sous T et P.",
+   "anim": {
+    "nom": "strates_fig",
+    "hauteur": 220
+   }
+  },
+  "marqueurs": {
+   "type": "etape",
+   "kicker": "Deux couples de minéraux marqueurs",
+   "titre": "Grenat et omphacite, chlorite et albite",
+   "tex": [
+    "\\text{grenat} + \\text{omphacite}",
+    "\\text{chlorite} + \\text{albite}"
+   ]
+  },
+  "deshydratation": {
+   "type": "phrase",
+   "kicker": "Déshydratation du slab : l'eau fait fondre le manteau",
+   "texte": "Omphacite vers quartz plus eau, puis arc volcanique.",
+   "anim": {
+    "nom": "volcan_fig",
+    "hauteur": 220
+   }
+  },
+  "magma": {
+   "type": "phrase",
+   "kicker": "Fusion partielle, jamais totale",
+   "texte": "La composition dépend de F, P, T et de l'eau.",
+   "anim": {
+    "nom": "volcan_fig",
+    "hauteur": 220
+   }
+  },
+  "eau": {
+   "type": "formule",
+   "kicker": "L'eau abaisse la solidus",
+   "tex": "T_{\\text{solidus}} = T_{\\text{dry}} - \\Delta T_{H_2O}",
+   "note": "Baisse de 100 à 300 °C selon la teneur en eau"
+  },
+  "granodiorite": {
+   "type": "phrase",
+   "kicker": "Granodiorite : fusion à huit cent cinquante degrés, un gigapascal",
+   "texte": "Andésitique puis granodiorite, silice soixante-trois à soixante-huit pour cent.",
+   "anim": {
+    "nom": "volcan_fig",
+    "hauteur": 220
+   }
+  },
+  "signatures": {
+   "type": "phrase",
+   "kicker": "Signatures d'un arc de subduction",
+   "texte": "Arc de subduction : niobium et tantale appauvris.",
+   "anim": {
+    "nom": "volcan_fig",
+    "hauteur": 220
+   }
+  },
+  "cycle": {
+   "type": "phrase",
+   "kicker": "Le cycle des roches en cinq temps",
+   "texte": "Cycle des roches : cinq temps, piloté par la convection.",
+   "anim": {
+    "nom": "cycle_roches_fig",
+    "hauteur": 220
+   }
+  },
+  "boucle": {
+   "type": "phrase",
+   "kicker": "La boucle complète d'une marge de subduction",
+   "texte": "Eau, arc volcanique, érosion, sédiments, subduction, fusion.",
+   "anim": {
+    "nom": "cycle_roches_fig",
+    "hauteur": 220
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Intérieur : Moho, ondes P et S, zone d'ombre, noyau externe liquide",
+    "Wegener puis Hess : Pangée, dorsales, anomalies magnétiques symétriques",
+    "Subduction : plaque dense, fosse, plan de Wadati-Benioff, 8,8 GPa à 30 km",
+    "Magmatisme : fusion partielle, eau qui abaisse la solidus, arc volcanique",
+    "Cycle des roches : magmatisme, érosion, sédimentation, métamorphisme, recyclage"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "De l'intérieur de la Terre au cycle des roches : la dynamique du globe.",
+   "dit": "Bienvenue dans ce cours de géologie sur la tectonique des plaques et la dynamique du globe. Nous verrons la structure interne de la Terre, la dérive des continents devenue tectonique des plaques, puis la subduction, le magmatisme, le métamorphisme et le cycle des roches."
+  },
+  {
+   "id": "p02",
+   "ecran": "enveloppes",
+   "texte": "La Terre : trois enveloppes concentriques.",
+   "dit": "La Terre se compose de trois grandes enveloppes concentriques, chacune caractérisée par une composition chimique, une densité et un état d'agrégation distincts."
+  },
+  {
+   "id": "p03",
+   "ecran": "moho",
+   "texte": "Moho : la vitesse passe de six à huit kilomètres par seconde.",
+   "dit": "On appelle discontinuité de Moho la surface qui sépare la croûte du manteau, marquée par une augmentation brutale de la vitesse des ondes sismiques, d'environ six kilomètres par seconde dans la croûte à environ huit kilomètres par seconde dans le manteau supérieur."
+  },
+  {
+   "id": "p04",
+   "ecran": "ondes",
+   "texte": "Ondes P longitudinales, ondes S transversales.",
+   "dit": "Les séismes génèrent des ondes qui se propagent dans l'intérieur terrestre, et leur analyse permet d'inférer la structure en profondeur. Les ondes P, primaires, sont longitudinales et peuvent traverser solides et liquides. Les ondes S, secondaires, sont transversales, ne se propagent que dans les solides, et sont absentes dans le noyau externe liquide."
+  },
+  {
+   "id": "p05",
+   "ecran": "snell",
+   "texte": "Réfraction sismique : sinus sur vitesse, constant.",
+   "dit": "Loi de Snell-Descartes pour la réfraction sismique : le sinus de l'angle un divisé par la vitesse un est égal au sinus de l'angle deux divisé par la vitesse deux, où thêta est l'angle d'incidence et v la vitesse de l'onde dans le milieu."
+  },
+  {
+   "id": "p06",
+   "ecran": "ombre",
+   "texte": "Zone d'ombre : cent trois à cent quarante-trois degrés.",
+   "dit": "Zone d'ombre sismique : entre cent trois et cent quarante-trois degrés de distance épicentrale, aucune onde S n'est reçue, et les ondes P sont fortement atténuées. Cela atteste de l'état liquide du noyau externe."
+  },
+  {
+   "id": "p07",
+   "ecran": "gradient",
+   "texte": "Température et pression augmentent vers le centre.",
+   "dit": "La température et la pression augmentent progressivement vers le centre. Le gradient géothermique moyen est d'environ vingt-cinq à trente kelvins par kilomètre dans la croûte et le manteau supérieur, et la pression moyenne est d'environ trente mégapascals par kilomètre."
+  },
+  {
+   "id": "p08",
+   "ecran": "transitions",
+   "texte": "Dans le manteau profond, les minéraux changent de phase.",
+   "dit": "Transitions de phase dans le manteau profond : l'olivine se transforme en wadsleyite, puis en ringwoodite, puis en pérovskite et magnésiowüstite, sous l'effet de la température et de la pression. Ces changements de structure modifient la vitesse des ondes et soutiennent les mouvements de convection du manteau."
+  },
+  {
+   "id": "p09",
+   "ecran": "dynamo",
+   "texte": "Dynamo : le fer liquide fabrique le champ magnétique.",
+   "dit": "Le champ magnétique global, d'environ dix puissance moins cinq teslas à la surface, provient du mouvement du fer liquide conducteur dans le noyau externe. Les mouvements convectifs, couplés à la rotation terrestre par l'effet Coriolis, génèrent des courants électriques qui produisent un champ magnétique par auto-génération. Les inversions de polarité enregistrées dans les roches océaniques confirment la théorie de la tectonique des plaques et la propagation des dorsales."
+  },
+  {
+   "id": "p10",
+   "ecran": "wegener",
+   "texte": "Wegener, 1912 : les continents ont dérivé depuis la Pangée.",
+   "dit": "Au début du vingtième siècle, Alfred Wegener propose en mille neuf cent douze l'hypothèse de la dérive des continents : les continents ont été unis en un supercontinent, la Pangée, qui s'est fragmenté et a dérivé vers leurs positions actuelles, comme des radeaux sur un océan."
+  },
+  {
+   "id": "p11",
+   "ecran": "preuves",
+   "texte": "Fossiles, chaînes, climats : trois arguments, un mécanisme manquant.",
+   "dit": "Wegener avançait plusieurs arguments : des correspondances de genres fossiles, Glossopteris et Mesosaurus, sur des continents aujourd'hui séparés par l'océan ; l'alignement des chaînes montagneuses, avec une continuité géologique entre les Andes et les montagnes du sud de l'Afrique ; et des restes de plantes tropicales découverts dans des régions polaires actuelles. Ces observations étaient solides, mais Wegener manquait d'un mécanisme physique explicatif, et sa théorie fut longtemps rejetée."
+  },
+  {
+   "id": "p12",
+   "ecran": "hess",
+   "texte": "Hess, 1960 : à la dorsale, du magma neuf devient croûte.",
+   "dit": "Dans les années mille neuf cent cinquante à mille neuf cent soixante, de nouvelles données géophysiques permettent de valider et d'étendre l'hypothèse de Wegener. Harry Hess propose en mille neuf cent soixante le concept de dorsale médio-océanique : le magma monte, se solidifie et crée de nouvelles croûtes océaniques, c'est l'expansion océanique."
+  },
+  {
+   "id": "p13",
+   "ecran": "vine",
+   "texte": "Anomalies magnétiques symétriques : la preuve de l'expansion.",
+   "dit": "Théorème de Vine et Matthews, mille neuf cent soixante-trois : les anomalies magnétiques symétriques par rapport aux dorsales océaniques attestent de la création de nouvelle croûte et de son déplacement progressif. Les relevés de paléomagnétisme montrent que les roches océaniques plus anciennes sont plus éloignées de la dorsale, preuve d'un déplacement continu."
+  },
+  {
+   "id": "p14",
+   "ecran": "subduction",
+   "texte": "Subduction : la plaque océanique dense plonge dans l'asthénosphère.",
+   "dit": "La subduction est le processus par lequel une plaque lithosphérique océanique, plus dense, plonge sous une plaque plus légère, océanique ou continentale, dans l'asthénosphère. Ce mouvement crée une zone de convergence marquée par une fosse océanique, un plan de Wadati-Benioff, un prisme d'accrétion et un arc volcanique."
+  },
+  {
+   "id": "p15",
+   "ecran": "densites",
+   "texte": "Trois contre deux virgule sept : l'océanique plonge.",
+   "dit": "Loi fondamentale : la densité de la plaque océanique, environ trois grammes par centimètre cube, dépasse celle de la plaque continentale, environ deux virgule sept grammes par centimètre cube. La plaque océanique subducte donc sous la plaque continentale."
+  },
+  {
+   "id": "p16",
+   "ecran": "pression",
+   "texte": "À trente kilomètres : huit virgule huit gigapascals.",
+   "dit": "Exemple résolu : la pression lithostatique à trente kilomètres de profondeur vaut la densité multipliée par g multiplié par h, soit trois mille kilogrammes par mètre cube, fois neuf virgule quatre-vingt-un, fois trente mille mètres, ce qui donne huit virgule huit cent vingt-neuf fois dix puissance huit pascals, soit environ huit virgule huit gigapascals. À cette pression, les schistes bleus, faciès de métamorphisme à haute pression et basse température, commencent à se former."
+  },
+  {
+   "id": "p17",
+   "ecran": "collision",
+   "texte": "Collision : obduction d'ophiolites, puis chaînes de montagnes.",
+   "dit": "Piège classique : ne pas confondre la zone de subduction avec la zone de collision. La subduction se caractérise par une fosse océanique et un plan de Wadati-Benioff ; la collision se produit lorsque les deux plaques se rencontrent sans subduction, avec obduction d'ophiolites et formation de chaînes montagneuses. La subduction se poursuit jusqu'à ce que la plaque océanique soit complètement engloutie, puis les fragments de croûte océanique sont poussés sur la plaque continentale, et la collision des plaques continentales crée des chaînes comme l'Himalaya ou les Alpes."
+  },
+  {
+   "id": "p18",
+   "ecran": "metamorphisme",
+   "texte": "Métamorphisme : transformer sans fondre, sous T et P.",
+   "dit": "Le métamorphisme transforme les roches existantes sans fusion totale, sous l'effet de températures et de pressions élevées, souvent en présence de fluides. Le métamorphisme hydrothermal, par circulation d'eau chaude à basse pression, modifie la composition chimique des roches. Le métamorphisme de subduction, à haute pression et basse température, forme les faciès schistes bleus et éclogites."
+  },
+  {
+   "id": "p19",
+   "ecran": "marqueurs",
+   "texte": "Faciès repères : éclogite, amphibolite, schistes verts.",
+   "dit": "Conditions repères : faciès de basse pression et haute température, température supérieure à six cents degrés et pression inférieure à trois kilobars, comme le faciès granulitique des marges continentales étendues ; faciès haute pression et température modérée, pression supérieure à huit kilobars et température d'environ cinq cents à six cents degrés, comme l'éclogite de subduction profonde ; faciès de transition, amphibolite entre cinq cents et sept cents degrés et quatre à dix kilobars, et schistes verts en dessous de cinq cents degrés et de quatre kilobars. Marqueurs : grenat plus omphacite pour l'éclogite, chlorite plus albite pour les schistes verts."
+  },
+  {
+   "id": "p20",
+   "ecran": "deshydratation",
+   "texte": "La plaque qui plonge libère son eau, et le manteau fond.",
+   "dit": "La plaque plongeante contient de l'eau dans ses minéraux hydratés. À mesure qu'elle descend, la pression et la température augmentent, provoquant la déshydratation des minéraux, par exemple l'omphacite qui donne du quartz plus de l'eau. L'eau libérée abaisse le point de fusion du manteau sus-jacent, créant un magma qui monte vers la surface et forme un arc volcanique."
+  },
+  {
+   "id": "p21",
+   "ecran": "magma",
+   "texte": "Le magmatisme naît d'une fusion partielle.",
+   "dit": "Le magmatisme naît de la fusion partielle du manteau ou de la croûte terrestre. Cette fusion n'est jamais totale ; elle produit un magma dont la composition dépend de la proportion fondue, de la pression, de la température et de la présence de volatils, principalement l'eau."
+  },
+  {
+   "id": "p22",
+   "ecran": "eau",
+   "texte": "L'eau abaisse la solidus de cent à trois cents degrés.",
+   "dit": "Rôle de l'eau : l'eau abaisse la solidus, la température de début de fusion, des roches du manteau. La baisse peut représenter de cent à trois cents degrés selon la teneur en eau. Ce mécanisme, appelé fusion fluxée, est dominant aux limites convergentes."
+  },
+  {
+   "id": "p23",
+   "ecran": "granodiorite",
+   "texte": "Granodiorite : huit cent cinquante degrés, un gigapascal, silice soixante-trois à soixante-huit.",
+   "dit": "Exemple de marge continentale convergente : le slab océanique froid et hydraté libère de l'eau sous forme de fluides supercritiques, qui s'injectent dans le manteau supérieur. La fusion fluxée abaisse la solidus de la péridotite d'environ cent cinquante degrés, permettant la fusion partielle à environ huit cent cinquante degrés et un gigapascal. La fusion partielle donne un magma andésitique à rhyolitique, qui évolue par assimilation partielle de croûte continentale âgée vers une granodiorite, avec un rapport de silice d'environ soixante-trois à soixante-huit pour cent en masse."
+  },
+  {
+   "id": "p24",
+   "ecran": "signatures",
+   "texte": "Arc de subduction : niobium et tantale appauvris.",
+   "dit": "Signatures géochimiques attendues : déplétion en niobium et tantale, éléments retenus dans le slab, et enrichissement en éléments mobiles transportés par l'eau, potassium, rubidium et baryum. Le rapport strontium quatre-vingt-sept sur strontium quatre-vingt-six est élevé, et le rapport néodyme cent quarante-trois sur néodyme cent quarante-quatre est bas, caractéristiques d'une croûte ancienne. Un arc subductionnel montre aussi niobium et tantale appauvris par rapport au manteau moyen. Le style éruptif, effusif ou explosif, contrôle la morphologie des reliefs et la dispersion des produits."
+  },
+  {
+   "id": "p25",
+   "ecran": "cycle",
+   "texte": "Cycle des roches : cinq temps, piloté par la convection.",
+   "dit": "Le cycle des roches n'est pas linéaire mais systémique, piloté par la convection interne et le mouvement des plaques. Magmatisme, avec injection de magma dans la croûte ou en surface ; érosion physique et chimique, puis transport par l'eau ou le vent ; sédimentation, avec accumulation en bassins continentaux ou océaniques ; métamorphisme, dans les chaînes de montagnes ou lors de la subduction ; et recyclage, les roches métamorphiques ou sédimentaires pouvant fondre à nouveau."
+  },
+  {
+   "id": "p26",
+   "ecran": "boucle",
+   "texte": "La boucle d'une marge de subduction, du slab au nouveau magma.",
+   "dit": "Exemple global : dans une marge de subduction, le slab libère de l'eau, ce qui donne une fusion fluxée puis un arc volcanique ; l'érosion des volcans donne des sédiments dans le bassin d'accrétion ; une subduction ultérieure métamorphise ces sédiments ; une possible fusion partielle donne de nouveaux magmas, et le cycle continue."
+  },
+  {
+   "id": "p27",
+   "ecran": "recap",
+   "texte": "Retenons l'essentiel : intérieur, dorsales, subduction, cycle.",
+   "dit": "Retenons l'essentiel : l'intérieur se lit par les ondes, Moho, zone d'ombre et noyau externe liquide ; Wegener puis Hess et Vine et Matthews établissent la tectonique des plaques par les dorsales et les anomalies magnétiques ; la plaque océanique dense subducte, avec fosse, plan de Wadati-Benioff et pression de huit virgule huit gigapascals à trente kilomètres ; l'eau abaisse la solidus et crée les magmas d'arc ; et le cycle des roches boucle magmatisme, érosion, sédimentation, métamorphisme et recyclage."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Structure interne, Wegener et expansion océanique"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Subduction, collision et métamorphisme",
+   "pont": {
+    "texte": "Partie 2 : subduction, collision et métamorphisme.",
+    "dit": "Partie deux : les zones de convergence. Nous verrons la subduction et ses densités, la pression à trente kilomètres, la collision, les faciès métamorphiques et la déshydratation du slab."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Magmatisme, eau et cycle des roches",
+   "pont": {
+    "texte": "Partie 3 : magmatisme, eau et cycle des roches.",
+    "dit": "Partie trois : le magmatisme et le cycle des roches. Nous verrons la fusion partielle, le rôle de l'eau, la granodiorite et ses signatures, puis la boucle complète du cycle des roches."
+   }
+  }
+ ]
+}
