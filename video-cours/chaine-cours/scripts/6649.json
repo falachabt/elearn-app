@@ -1,0 +1,476 @@
+{
+ "cours": 6649,
+ "ecrans": {
+  "affiche": {
+   "kicker": "Multimédia, infographie, graphisme",
+   "tex": [
+    "\\text{Multimédia : données combinées, support unique}",
+    "\\text{Infographie : images numériques par ordinateur}",
+    "\\text{Graphisme : communication visuelle, affiches}"
+   ],
+   "titre": "Une affiche, trois métiers",
+   "type": "etape"
+  },
+  "attributs": {
+   "kicker": "Attributs et extensions de fichiers",
+   "tex": [
+    "\\text{Attributs : nom, taille, type, dates}",
+    "\\text{Texte : txt, docx, odt}",
+    "\\text{Images, vidéo, audio, exécutable exe}"
+   ],
+   "titre": "Nom, taille, type, format",
+   "type": "etape"
+  },
+  "compression": {
+   "kicker": "Compression et décompression",
+   "note": "Exemple : compresser un dossier de 50 Mo en .zip donne une taille de 20 Mo. Pour décompresser : clic droit, puis Extraire ici.",
+   "tex": "50 \\text{ Mo} \\rightarrow 20 \\text{ Mo}",
+   "type": "formule"
+  },
+  "defaillances": {
+   "kicker": "Les facteurs de défaillance du disque",
+   "tex": [
+    "\\text{Chocs, vibrations, surchauffe}",
+    "\\text{Surtensions, usure mécanique}",
+    "\\text{Malwares, erreurs logicielles}"
+   ],
+   "titre": "Cinq menaces pour un disque",
+   "type": "etape"
+  },
+  "disque_entretien": {
+   "kicker": "Nettoyer, défragmenter, partitionner",
+   "tex": [
+    "\\text{Nettoyer : temporaires et cache}",
+    "\\text{Défragmenter : regrouper en contigu}",
+    "\\text{Partitionner : C système, D données}"
+   ],
+   "titre": "Trois gestes d'entretien",
+   "type": "etape"
+  },
+  "domaines": {
+   "kicker": "Les domaines de l'infographie",
+   "tex": [
+    "\\text{Publicité, cinéma, jeux vidéo}",
+    "\\text{Médecine, architecture, cartographie}",
+    "\\text{Éducation : supports visuels de cours}"
+   ],
+   "titre": "De l'affiche à l'IRM",
+   "type": "etape"
+  },
+  "formatage": {
+   "kicker": "Formatage et sauvegarde",
+   "tex": [
+    "\\text{Formater : préparer, tout efface}",
+    "\\text{Sauvegarder : copie externe ou cloud}",
+    "\\text{Exemple : clé USB en FAT32}"
+   ],
+   "titre": "Effacer ou protéger",
+   "type": "etape"
+  },
+  "formule_quad": {
+   "kicker": "La formule quadratique",
+   "note": "Pour insérer des formules scientifiques dans un document texte, on utilise l'éditeur d'équations intégré au logiciel, équation dans Word, formule dans LibreOffice.",
+   "tex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+   "type": "formule"
+  },
+  "gimp": {
+   "kicker": "Le traitement d'image avec GIMP",
+   "tex": [
+    "\\text{Sélection, recadrage, couleurs}",
+    "\\text{Retouche, calques, texte}",
+    "\\text{Détourer : baguette, inverser, calque}"
+   ],
+   "titre": "Sélectionner, retoucher, superposer",
+   "type": "etape"
+  },
+  "graphiques": {
+   "kicker": "L'insertion de graphiques",
+   "tex": [
+    "\\text{Sélectionner la plage de données}",
+    "\\text{Insérer, choisir le type}",
+    "\\text{Histogramme, courbe, secteur}"
+   ],
+   "titre": "Des données au visuel",
+   "type": "etape"
+  },
+  "materiel_info": {
+   "kicker": "Les besoins matériels en infographie",
+   "tex": [
+    "\\text{Processeur rapide, RAM 8 Go minimum}",
+    "\\text{Écran Full HD calibré, carte dédiée}",
+    "\\text{Tablette, scanner, SSD, imprimante}"
+   ],
+   "titre": "Puissance, écran, stockage",
+   "type": "etape"
+  },
+  "montage_video": {
+   "kicker": "Le montage vidéo",
+   "tex": [
+    "\\text{Vidéo : 25 images par seconde}",
+    "\\text{Importer, découper, transition}",
+    "\\text{Texte, musique, export MP4}"
+   ],
+   "titre": "Des images qui bougent",
+   "type": "etape"
+  },
+  "multimedia_compression": {
+   "kicker": "La compression multimédia",
+   "note": "Exemple : un fichier WAV de 10 Mo compressé en MP3 de 1 Mo a un taux de compression de 10 divisé par 1, soit 10.",
+   "tex": "T = \\frac{10}{1} = 10",
+   "type": "formule"
+  },
+  "numerisation": {
+   "kicker": "La numérisation d'une image",
+   "note": "Avec n bits, on obtient 2 puissance n couleurs. Exemple : 24 bits donnent 2 puissance 24, soit 16 777 216 couleurs. Une image de 800 sur 600 pixels en 24 bits occupe 800 fois 600 fois 24, soit 11 520 000 bits, soit 1,44 Mo.",
+   "tex": "C = 2^n",
+   "type": "formule"
+  },
+  "objets_diapo": {
+   "kicker": "Créer une diapositive, ajouter des objets",
+   "tex": [
+    "\\text{Modèles : titre, titre et contenu}",
+    "\\text{Objets : texte, image, forme, tableau}",
+    "\\text{Graphique, vidéo, son}"
+   ],
+   "titre": "Modèle, puis objets",
+   "type": "etape"
+  },
+  "pilotes": {
+   "kicker": "Pilotes, utilitaires, installations",
+   "tex": [
+    "\\text{Pilote : système vers périphérique}",
+    "\\text{Utilitaire : antivirus, nettoyage}",
+    "\\text{Installer, désinstaller, mettre à jour}"
+   ],
+   "titre": "Faire dialoguer le matériel",
+   "type": "etape"
+  },
+  "ports_materiel": {
+   "kicker": "Ports, disque dur, mémoire vive",
+   "tex": [
+    "\\text{Port : interface vers un périphérique}",
+    "\\text{Disque : câble SATA, alimentation, BIOS}",
+    "\\text{RAM : slot DIMM, encoche, déclic}"
+   ],
+   "titre": "Brancher sans forcer",
+   "type": "etape"
+  },
+  "preao_def": {
+   "kicker": "La PréAO",
+   "tex": [
+    "\\text{PréAO : présentations visuelles}",
+    "\\text{PowerPoint, Impress, Slides, Canva}",
+    "\\text{Diapositive : une page, diaporama : plein écran}"
+   ],
+   "titre": "Présenter en plein écran",
+   "type": "etape"
+  },
+  "rapport": {
+   "kicker": "Le traitement de texte et le rapport",
+   "tex": [
+    "\\text{Word, Writer, Docs, Pages}",
+    "\\text{Garde, sommaire, sections, conclusion}",
+    "\\text{Saisie, mise en forme, pagination, PDF}"
+   ],
+   "titre": "Créer, mettre en forme, exporter",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Matériel et logiciels : ports, pilotes, fichiers, disque, entretien, sécurité.",
+    "Bureautique : traitement de texte, PréAO, tableur, formules, fonctions, graphiques, systèmes d'équations.",
+    "Multimédia : infographie, numérisation, compression, GIMP, montage vidéo."
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "scan_config": {
+   "kicker": "Sécurité, scan, poste de travail",
+   "tex": [
+    "\\text{Scanner : antivirus contre les malwares}",
+    "\\text{Clé inconnue : analyse rapide Defender}",
+    "\\text{Poste : écran, fond, langue, réseau}"
+   ],
+   "titre": "Analyser avant d'ouvrir",
+   "type": "etape"
+  },
+  "systeme_eq": {
+   "kicker": "Exemple : un système de deux équations",
+   "note": "Résoudre le système 2x plus 3y égal 8 et x moins y égal moins 1. La solution est x égal 1, y égal 2. Vérification : 2 fois 1 plus 3 fois 2 égal 8, et 1 moins 2 égal moins 1. La solution est correcte.",
+   "tex": "\\begin{cases} 2x + 3y = 8 \\\\ x - y = -1 \\end{cases}",
+   "type": "formule"
+  },
+  "tableur_def": {
+   "kicker": "Le tableur et ses références",
+   "tex": [
+    "\\text{Excel, Calc, Sheets : cellules et calculs}",
+    "\\text{Cellule : A1, B3, colonne et ligne}",
+    "\\text{Plage : A1 deux points B4}"
+   ],
+   "titre": "Une grille qui calcule",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Informatique · Matériel, bureautique et multimédia",
+   "sous": "Configurer un ordinateur, produire des documents, créer des images et des vidéos",
+   "titre": "Informatique et médias numériques",
+   "type": "titre"
+  },
+  "transitions": {
+   "kicker": "Animations, transitions, diaporama",
+   "tex": [
+    "\\text{Animation : dans une diapositive}",
+    "\\text{Transition : entre deux diapositives}",
+    "\\text{Diaporama : clic ou Entrée, Échap pour quitter}"
+   ],
+   "titre": "Bouger dedans, passer entre",
+   "type": "etape"
+  },
+  "types_images": {
+   "kicker": "Les deux types d'images numériques",
+   "tex": [
+    "\\text{Photo 4000 sur 3000 : matricielle}",
+    "\\text{Logo géométrique : vectoriel}",
+    "\\text{Agrandi 10 fois, le logo reste net}"
+   ],
+   "titre": "Photo ou logo",
+   "type": "etape"
+  },
+  "formule_cellule": {
+   "kicker": "Saisir une formule",
+   "note": "Dans la cellule C1, égal A1 plus B1. Les références mettent à jour le résultat si les sources changent.",
+   "tex": "=A1+B1",
+   "titre": "Égal, références, opérateurs",
+   "type": "formule"
+  },
+  "fonction_moyenne": {
+   "kicker": "Une fonction prédéfinie",
+   "note": "Moyenne des notes en A1 deux points A4, calculée dans la cellule A5.",
+   "tex": "=MOYENNE(A1:A4)",
+   "titre": "MOYENNE sur une plage",
+   "type": "formule"
+  },
+  "diaporama_20s": {
+   "kicker": "Exemple : un diaporama animé",
+   "note": "10 photos, 2 secondes chacune, transition fondu, musique de fond, export MP4. Durée totale : 20 secondes.",
+   "tex": "10 \\times 2 = 20 \\text{ s}",
+   "type": "formule"
+  },
+  "synthese_multi": {
+   "kicker": "Synthèse du multimédia",
+   "tex": [
+    "\\text{Multimédia : images, sons, vidéos}",
+    "\\text{Outils : GIMP, OpenShot}",
+    "\\text{Format et compression : optimiser}"
+   ],
+   "titre": "Créer, choisir, diffuser",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Matériel et logiciels : brancher, gérer, entretenir"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : la bureautique. Nous produirons un rapport en traitement de texte, nous créerons un diaporama en PréAO, puis nous calculerons et nous représenterons des données dans un tableur.",
+    "texte": "Partie 2 : la bureautique."
+   },
+   "sous_titre": "Bureautique : texte, présentation, tableur"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : le multimédia. Nous définirons l'infographie et ses domaines, puis nous numériserons, compresserons et retoucherons des images, avant de monter une vidéo.",
+    "texte": "Partie 3 : le multimédia."
+   },
+   "sous_titre": "Multimédia : images, compression, montage"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'informatique en trois volets : le matériel et les logiciels d'un ordinateur, la bureautique, puis le multimédia. Nous allons brancher un disque, produire un rapport, calculer dans un tableur, et monter une vidéo.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Matériel, bureautique, multimédia."
+  },
+  {
+   "dit": "Un port est une interface de connexion permettant de relier un périphérique à l'ordinateur. La carte mère est le circuit principal reliant tous les composants. Pour connecter un disque dur : relier le câble SATA de la carte mère au disque dur, brancher le câble d'alimentation SATA provenant de l'alimentation, puis vérifier la reconnaissance dans le BIOS ou UEFI. Pour la mémoire vive, RAM, insérer la barrette dans le slot DIMM correspondant en respectant l'encoche, jusqu'au déclic des clips de fixation.",
+   "ecran": "ports_materiel",
+   "id": "p02",
+   "texte": "Ports, carte mère, disque, mémoire vive."
+  },
+  {
+   "dit": "Un pilote, driver, est un logiciel permettant au système d'exploitation de communiquer avec un périphérique. Un utilitaire est un logiciel d'aide à la gestion du système : antivirus, nettoyage, compression. Pour installer : exécuter le fichier d'installation, suivre les étapes, accepter la licence. Pour désinstaller : passer par le Panneau de configuration, puis Programmes et fonctionnalités. Pour mettre à jour : télécharger et appliquer les correctifs, sécurité et fonctionnalités, qui corrigent les failles et améliorent la compatibilité. Exemple résolu : installer LibreOffice, télécharger le fichier point exe, l'exécuter, choisir Installation complète, cliquer Suivant jusqu'à la fin.",
+   "ecran": "pilotes",
+   "id": "p03",
+   "texte": "Pilote, utilitaire, installer, mettre à jour."
+  },
+  {
+   "dit": "Les attributs d'un fichier sont : nom, taille, type, date de création ou de modification, lecture seule, caché. Les extensions indiquent le format : texte, point txt, point docx, point odt ; image, point jpg, point png, point gif ; vidéo, point mp4, point avi ; audio, point mp3, point wav ; exécutable, point exe.",
+   "ecran": "attributs",
+   "id": "p04",
+   "texte": "Attributs et extensions : le format en un coup d'œil."
+  },
+  {
+   "dit": "La compression réduit la taille d'un fichier pour faciliter le stockage et le transfert. Formats courants : point zip, point rar. Exemple résolu : compresser un dossier de 50 Mo en point zip donne une taille obtenue de 20 Mo. Pour décompresser : clic droit, puis Extraire ici.",
+   "ecran": "compression",
+   "id": "p05",
+   "texte": "Compresser pour stocker, extraire pour ouvrir."
+  },
+  {
+   "dit": "Les facteurs de défaillance d'un disque dur sont les chocs physiques et les vibrations, la surchauffe, les surtensions électriques, l'usure mécanique des plateaux et des têtes de lecture, et les malwares et erreurs logicielles.",
+   "ecran": "defaillances",
+   "id": "p06",
+   "texte": "Chocs, chaleur, surtension, usure, malwares."
+  },
+  {
+   "dit": "Trois gestes d'entretien. Nettoyer : supprimer fichiers temporaires et cache, avec l'utilitaire Nettoyage de disque. Défragmenter : regrouper les fragments de fichiers pour accélérer la lecture, en réorganisant les données de manière contiguë sur le disque. Partitionner : diviser le disque en zones logiques distinctes, par exemple la partition C pour le système et D pour les données.",
+   "ecran": "disque_entretien",
+   "id": "p07",
+   "texte": "Nettoyer, défragmenter, partitionner."
+  },
+  {
+   "dit": "Le formatage est la préparation d'un support, par création d'un système de fichiers, et il efface toutes les données. La sauvegarde est une copie de sécurité des données sur un support externe, disque dur externe ou cloud. Exemple résolu : formater une clé USB en FAT32, clic droit sur la clé, puis Formater, choisir FAT32, puis Démarrer.",
+   "ecran": "formatage",
+   "id": "p08",
+   "texte": "Formater efface, sauvegarder protège."
+  },
+  {
+   "dit": "Scanner un support de stockage consiste à analyser le support avec un antivirus pour détecter les malwares. Exemple résolu : brancher une clé USB inconnue, lancer Windows Defender, puis Analyse rapide, aucun virus détecté. Enfin, l'utilisateur doit configurer son poste : résolution d'écran, fond d'écran, raccourcis, langue du clavier, connexion réseau. Cette configuration initiale conditionne la production de documents dans un cadre professionnel ou scolaire.",
+   "ecran": "scan_config",
+   "id": "p09",
+   "texte": "Scanner d'abord, configurer son poste."
+  },
+  {
+   "dit": "Deuxième volet, la bureautique. Un traitement de texte est un logiciel permettant de créer, modifier et mettre en forme des documents textuels. Exemples : Microsoft Word, LibreOffice Writer, Google Docs, Pages d'Apple. Un rapport est un document structuré comportant généralement une page de garde avec titre, auteur et date, un sommaire, des sections et sous-sections numérotées, une conclusion et une bibliographie. Les étapes de production sont : saisie du texte, mise en forme avec police, paragraphe et style, insertion d'éléments visuels, pagination, enregistrement et exportation en PDF.",
+   "ecran": "rapport",
+   "id": "p10",
+   "texte": "Traitement de texte : du rapport au PDF."
+  },
+  {
+   "dit": "Pour insérer des formules scientifiques dans un document texte, on utilise l'éditeur d'équations intégré au logiciel, équation dans Word, formule dans LibreOffice. Exemple résolu : insérer la formule quadratique, x égal moins b plus ou moins racine carrée de b au carré moins 4ac, le tout divisé par 2a.",
+   "ecran": "formule_quad",
+   "id": "p11",
+   "texte": "Formules scientifiques : l'éditeur d'équations."
+  },
+  {
+   "dit": "La PréAO, Présentation Assistée par Ordinateur, désigne l'ensemble des outils permettant de créer des présentations visuelles. Exemples : Microsoft PowerPoint, LibreOffice Impress, Google Slides, Canva. Une diapositive est une page individuelle d'une présentation contenant du texte, des images, des graphiques. Un diaporama est le mode de visualisation plein écran des diapositives successives.",
+   "ecran": "preao_def",
+   "id": "p12",
+   "texte": "PréAO : diapositive, diaporama."
+  },
+  {
+   "dit": "Une diapositive se crée via un modèle, une mise en page prédéfinie. Les modèles courants incluent la diapositive de titre, titre et contenu, deux contenus, et d'autres. Les objets insérables dans une diapositive sont : zones de texte, images, formes, tableaux, graphiques, vidéos, sons.",
+   "ecran": "objets_diapo",
+   "id": "p13",
+   "texte": "Modèle, puis texte, image, forme, tableau."
+  },
+  {
+   "dit": "Une animation est un effet appliqué aux objets à l'intérieur d'une diapositive : apparition, disparition, déplacement. Une transition est un effet visuel appliqué au changement entre deux diapositives. Les effets regroupent les paramètres d'animation : durée, déclencheur, répétition. La visualisation en mode diaporama permet de projeter les diapositives en plein écran. Navigation : clic ou touche Entrée pour avancer, Échap pour quitter.",
+   "ecran": "transitions",
+   "id": "p14",
+   "texte": "Animation dedans, transition entre, Échap pour sortir."
+  },
+  {
+   "dit": "Troisième outil, le tableur. Un tableur est un logiciel organisé en cellules permettant d'effectuer des calculs et de créer des graphiques. Exemples : Microsoft Excel, LibreOffice Calc, Google Sheets. Une cellule est l'intersection d'une ligne et d'une colonne, et son adresse, ou référence, est notée par la lettre de la colonne suivie du numéro de ligne : A1, B3. Une plage de cellules est un ensemble rectangulaire de cellules, noté par la référence de la première et de la dernière cellule séparées par deux points : A1 deux points B4.",
+   "ecran": "tableur_def",
+   "id": "p15",
+   "texte": "Cellule A1, plage A1 deux points B4."
+  },
+  {
+   "dit": "Une formule commence toujours par le signe égal. Elle peut combiner des valeurs, des références et des opérateurs : plus, moins, fois, divisé. Exemple résolu : dans la cellule C1, saisir la formule pour additionner A1 et B1, égal A1 plus B1. L'intérêt d'utiliser des références plutôt que des valeurs est la mise à jour automatique du résultat si les cellules source sont modifiées.",
+   "ecran": "formule_cellule",
+   "id": "p16",
+   "texte": "Formule : égal, références, mise à jour auto."
+  },
+  {
+   "dit": "Une fonction est une formule préprogrammée. Exemple résolu : calculer la moyenne des notes en A1 deux points A4 dans la cellule A5, avec égal MOYENNE, parenthèse, A1 deux points A4.",
+   "ecran": "fonction_moyenne",
+   "id": "p17",
+   "texte": "Fonction MOYENNE : une formule prête."
+  },
+  {
+   "dit": "Un graphique est une représentation visuelle de données d'une plage. Étapes : sélectionner la plage, insérer un graphique, choisir le type, histogramme, courbe ou secteur, puis personnaliser.",
+   "ecran": "graphiques",
+   "id": "p18",
+   "texte": "Plage, type, personnalisation : un graphique."
+  },
+  {
+   "dit": "Le tableur permet de résoudre un système linéaire par la méthode matricielle ou par essais successifs. Exemple résolu : résoudre le système 2x plus 3y égal 8, et x moins y égal moins 1. Vérification : 2 fois 1 plus 3 fois 2 égal 8, et 1 moins 2 égal moins 1. La solution est correcte : x égal 1, y égal 2.",
+   "ecran": "systeme_eq",
+   "id": "p19",
+   "texte": "Système résolu : x égal 1, y égal 2."
+  },
+  {
+   "dit": "Troisième volet, le multimédia. Le multimédia est l'ensemble de techniques et de contenus combinant plusieurs types de données numériques, texte, image, son, vidéo, animation, sur un support unique. L'infographie est le domaine de l'informatique qui traite de la création, du traitement et de la manipulation d'images numériques par ordinateur. Le graphisme est la discipline artistique appliquée à la communication visuelle, affiches, logos, interfaces. L'infographe travaille sur les images numériques ; le graphiste crée des supports de communication. Exemple résolu : une affiche publicitaire combinant une photo retouchée, infographie, un logo vectoriel, graphisme, et un texte est un support multimédia.",
+   "ecran": "affiche",
+   "id": "p20",
+   "texte": "Affiche : photo, logo, texte, un support."
+  },
+  {
+   "dit": "Les domaines d'application de l'infographie sont la publicité et le marketing, affiches et bannières web ; le cinéma et l'animation, effets spéciaux et films 3D ; les jeux vidéo, environnements et personnages ; la médecine, imagerie médicale comme l'IRM et le scanner ; l'architecture, plans et maquettes virtuelles ; la cartographie, SIG et GPS ; et l'éducation, supports de cours visuels.",
+   "ecran": "domaines",
+   "id": "p21",
+   "texte": "De la pub à l'IRM : sept domaines."
+  },
+  {
+   "dit": "Deux types d'images numériques. Exemple résolu : une photo de 4000 sur 3000 pixels est une image matricielle. Un logo constitué de formes géométriques est vectoriel : agrandi 10 fois, il reste net.",
+   "ecran": "types_images",
+   "id": "p22",
+   "texte": "Photo matricielle, logo vectoriel."
+  },
+  {
+   "dit": "La numérisation est la conversion d'un signal analogique, image, son ou vidéo, en données numériques binaires. La qualité d'une image numérisée dépend de la résolution, nombre de pixels, en points par pouce, et de la profondeur de couleur, nombre de bits par pixel. Avec n bits, on obtient 2 puissance n couleurs. Exemple : 24 bits donnent 2 puissance 24, soit 16 777 216 couleurs. Exemple résolu : une image de 800 sur 600 pixels en 24 bits occupe 800 fois 600 fois 24, soit 11 520 000 bits, soit 1,44 Mo.",
+   "ecran": "numerisation",
+   "id": "p23",
+   "texte": "Numériser : résolution, profondeur, 2 puissance n."
+  },
+  {
+   "dit": "Pour les formats, exemple résolu : un clip vidéo en MP4 est lisible sur smartphone ; sa version AVI peut être incompatible avec certains lecteurs. Côté matériel, il faut un ordinateur avec processeur rapide, RAM de 8 Go minimum et carte graphique dédiée ; un écran haute définition, au moins Full HD, calibré en couleurs ; des périphériques d'entrée, souris, tablette graphique, scanner, appareil photo ou smartphone ; un stockage, disque dur externe ou SSD pour les fichiers volumineux ; et des périphériques de sortie, imprimante et vidéoprojecteur.",
+   "ecran": "materiel_info",
+   "id": "p24",
+   "texte": "MP4 lisible partout, matériel à la hauteur."
+  },
+  {
+   "dit": "La compression est la réduction de la taille d'un fichier pour faciliter le stockage et la transmission. La compression avec perte supprime des données imperceptibles, avec une qualité réduite : JPEG, MP3, MP4. La compression sans perte conserve toutes les données, avec un fichier plus lourd : PNG, WAV, ZIP. Le taux de compression est le rapport entre taille originale et taille compressée. Exemple résolu : un fichier WAV de 10 Mo compressé en MP3 de 1 Mo a un taux de 10 divisé par 1, soit 10.",
+   "ecran": "multimedia_compression",
+   "id": "p25",
+   "texte": "Avec perte JPEG, sans perte PNG, taux 10."
+  },
+  {
+   "dit": "Le traitement d'image avec GIMP utilise la sélection, rectangle, ellipse, baguette magique ; le recadrage, suppression des zones inutiles ; le réglage des couleurs, luminosité, contraste, saturation ; la retouche, tampon de clonage, correcteur ; les calques, superposition d'images indépendantes ; et le texte, ajout de légendes. Exemple résolu : pour détourer un objet d'une photo, sélectionner avec la baguette magique, inverser la sélection, copier sur un nouveau calque transparent.",
+   "ecran": "gimp",
+   "id": "p26",
+   "texte": "GIMP : sélectionner, recadrer, calquer."
+  },
+  {
+   "dit": "Une vidéo est une suite d'images fixes, 25 images par seconde, affichées rapidement pour créer l'illusion du mouvement. Les étapes d'un montage vidéo sont : l'importation des médias, images, vidéos et sons, sur la timeline ; le découpage des scènes, supprimer les passages inutiles ; la transition entre les scènes, fondu ou coupe ; l'ajout de texte, musique et effets ; et l'exportation au format choisi, MP4.",
+   "ecran": "montage_video",
+   "id": "p27",
+   "texte": "Montage : importer, couper, fondre, exporter."
+  },
+  {
+   "dit": "Exemple résolu : pour créer un diaporama animé, importer 10 photos sur la timeline, 2 secondes chacune, ajouter une transition fondu entre chaque, insérer une musique de fond, exporter en MP4. Durée totale : 10 fois 2, soit 20 secondes.",
+   "ecran": "diaporama_20s",
+   "id": "p28",
+   "texte": "10 photos, 2 secondes : 20 secondes."
+  },
+  {
+   "dit": "En synthèse, le multimédia combine images, sons et vidéos. L'infographie permet de créer et traiter ces contenus avec des outils adaptés, GIMP et OpenShot. Le choix du format et la compression sont essentiels pour optimiser le stockage et la diffusion. Un support de communication, affiche ou vidéo, s'élabore en respectant ces principes.",
+   "ecran": "synthese_multi",
+   "id": "p29",
+   "texte": "Format, compression, outils : les bons choix."
+  },
+  {
+   "dit": "Récapitulons. Côté matériel et logiciels : ports, carte mère, pilotes, fichiers et leurs extensions, disque et son entretien, formatage, sauvegarde et scan antivirus. Côté bureautique : traitement de texte et rapport, PréAO et diaporama, tableur avec formules, fonctions, graphiques et systèmes d'équations. Côté multimédia : infographie et graphisme, numérisation, compression avec ou sans perte, retouche avec GIMP et montage vidéo.",
+   "ecran": "recap",
+   "id": "p30",
+   "texte": "Matériel, bureautique, multimédia : à retenir."
+  }
+ ],
+ "titre": "Informatique et médias numériques"
+}
