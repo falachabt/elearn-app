@@ -1,0 +1,385 @@
+{
+ "cours": 6803,
+ "ecrans": {
+  "adaptateur_fonctions": {
+   "kicker": "L'adaptateur : trois fonctions",
+   "tex": [
+    "\\text{abaisser : } 230 \\text{ V vers } 5 \\text{ ou } 12 \\text{ V}",
+    "\\text{redresser : alternatif vers continu}",
+    "\\text{filtrer : tension stabilisée}"
+   ],
+   "titre": "Abaisser, redresser, filtrer",
+   "type": "etape"
+  },
+  "alternateur": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "sinusoide"
+   },
+   "kicker": "Produire : l'alternateur",
+   "texte": "Bobine qui tourne, mécanique en électrique.",
+   "type": "phrase"
+  },
+  "caracteristiques": {
+   "kicker": "Trois caractéristiques à retenir",
+   "tex": [
+    "\\text{U}_{max} : \\text{valeur la plus élevée}",
+    "\\text{T : durée d'un cycle}",
+    "\\text{f : cycles par seconde}"
+   ],
+   "titre": "Maximum, période, fréquence",
+   "type": "etape"
+  },
+  "circuit_dom": {
+   "kicker": "Le circuit domestique",
+   "tex": [
+    "\\text{compteur : énergie mesurée}",
+    "\\text{disjoncteur général : protège}",
+    "\\text{divisionnaires : chaque circuit}",
+    "\\text{terre : fuites évacuées}"
+   ],
+   "titre": "Compteur, général, divisionnaires, terre",
+   "type": "etape"
+  },
+  "conversion": {
+   "kicker": "Convertir : kilowattheure et joule",
+   "note": "Un kilowattheure, c'est trois millions six cent mille joules",
+   "tex": "1\\,\\text{kWh} = 3{,}6 \\times 10^6\\,\\text{J}",
+   "type": "formule"
+  },
+  "couleurs": {
+   "kicker": "Fils et sécurité : les codes",
+   "tex": [
+    "\\text{phase rouge, neutre bleu}",
+    "\\text{terre vert et jaune}",
+    "\\text{puissance souscrite à respecter}"
+   ],
+   "titre": "Rouge, bleu, vert et jaune",
+   "type": "etape"
+  },
+  "def_adaptateur": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "adaptateur"
+   },
+   "kicker": "L'adaptateur secteur",
+   "texte": "Du 230 volts alternatif au continu faible.",
+   "type": "phrase"
+  },
+  "def_ca": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "sinusoide"
+   },
+   "kicker": "Le courant alternatif",
+   "texte": "Un sens qui change périodiquement.",
+   "type": "phrase"
+  },
+  "def_energie": {
+   "kicker": "L'énergie électrique",
+   "note": "Secondes pour les joules, heures pour les wattheures",
+   "tex": "E = P \\times t",
+   "type": "formule"
+  },
+  "def_machine": {
+   "kicker": "Définir : une machine simple",
+   "tex": [
+    "\\text{modifie l'intensité}",
+    "\\text{modifie la direction}",
+    "\\text{d'une force}"
+   ],
+   "titre": "Intensité ou direction d'une force",
+   "type": "etape"
+  },
+  "def_puissance": {
+   "kicker": "La puissance électrique",
+   "note": "Énergie consommée ou produite par unité de temps",
+   "tex": "P = U \\times I",
+   "type": "formule"
+  },
+  "def_sinus": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "sinusoide"
+   },
+   "kicker": "La tension sinusoïdale",
+   "texte": "Entre un maximum positif et un maximum négatif.",
+   "type": "phrase"
+  },
+  "energie_exemple": {
+   "kicker": "Exercice : un radiateur de 1500 watts",
+   "note": "Quatre heures de fonctionnement",
+   "tex": "E = 1500 \\times 4 = 6000\\,\\text{Wh} = 6\\,\\text{kWh}",
+   "type": "formule"
+  },
+  "frequence": {
+   "kicker": "Fréquence et période",
+   "note": "f en hertz, T en secondes",
+   "tex": "f = \\frac{1}{T}",
+   "type": "formule"
+  },
+  "frequence_exemple": {
+   "kicker": "Exercice : une période de 20 millisecondes",
+   "note": "Vingt millisecondes, c'est zéro virgule zéro vingt seconde",
+   "tex": "f = \\frac{1}{0{,}020} = 50\\,\\text{Hz}",
+   "type": "formule"
+  },
+  "levier_exemple": {
+   "kicker": "Exercice : soulever 200 newtons",
+   "note": "Charge 200 N à 0,5 m, force 50 N",
+   "tex": "50 \\times d = 200 \\times 0{,}5 \\Rightarrow d = 2\\,\\text{m}",
+   "type": "formule"
+  },
+  "levier_formule": {
+   "kicker": "La relation fondamentale du levier",
+   "note": "F : force, d : distance au pivot",
+   "tex": "F_1 \\times d_1 = F_2 \\times d_2",
+   "type": "formule"
+  },
+  "protection": {
+   "kicker": "Protéger chaque circuit",
+   "tex": [
+    "\\text{disjoncteur adapté à l'intensité}",
+    "\\text{chaque circuit protégé}",
+    "\\text{puissance souscrite respectée}"
+   ],
+   "titre": "Adapté, protégé, souscrit",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Levier : force fois distance, des deux côtés",
+    "Alternatif : sens qui change, fréquence un sur période",
+    "Sinusoïdale : efficace vaut maximum sur racine de deux",
+    "Énergie : puissance fois temps",
+    "Adaptateur : abaisser, redresser, filtrer"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "levier"
+   },
+   "kicker": "Sciences Physiques et Technologie · Machines et énergie électrique",
+   "sous": "Levier, courant alternatif, puissance et adaptateur : de la force à la prise",
+   "titre": "Machines simples et énergie électrique",
+   "type": "titre"
+  },
+  "tp": {
+   "kicker": "TP : l'alternateur de bicyclette",
+   "tex": [
+    "\\text{tension variable dans le temps}",
+    "\\text{plus vite : tension plus élevée}",
+    "\\text{sens inversé à chaque demi-tour}"
+   ],
+   "titre": "Tourner plus vite, tension plus forte",
+   "type": "etape"
+  },
+  "transfo": {
+   "kicker": "Le transformateur : spires et tensions",
+   "note": "U : tensions, N : nombres de spires",
+   "tex": "\\frac{U_1}{U_2} = \\frac{N_1}{N_2}",
+   "type": "formule"
+  },
+  "transfo_exemple": {
+   "kicker": "Exercice : 4600 spires au primaire",
+   "note": "Primaire sur le secteur 230 V, 200 spires au secondaire",
+   "tex": "U_2 = 230 \\times \\frac{200}{4600} = 10\\,\\text{V}",
+   "type": "formule"
+  },
+  "ueff": {
+   "kicker": "La tension efficace",
+   "note": "La continue équivalente, même effet thermique",
+   "tex": "U_{eff} = \\frac{U_{max}}{\\sqrt{2}} \\approx 0{,}707 \\times U_{max}",
+   "type": "formule"
+  },
+  "ueff_exemple": {
+   "kicker": "Exercice : le secteur français",
+   "note": "Tension efficace 230 V",
+   "tex": "U_{max} = 230 \\times 1{,}414 \\approx 325\\,\\text{V}",
+   "type": "formule"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Levier, courant alternatif et tensions sinusoïdales"
+  },
+  {
+   "debut": "p16",
+   "pont": {
+    "dit": "Partie deux : la puissance et l'énergie électrique, puis l'adaptateur secteur et le circuit domestique. Nous passerons de la formule qui facture l'électricité à l'objet qui alimente nos téléphones et à la sécurité de nos maisons.",
+    "texte": "Partie 2 : puissance, énergie, adaptateur et circuit domestique."
+   },
+   "sous_titre": "Puissance, énergie, adaptateur et circuit domestique"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur les machines simples et l'énergie électrique. Nous partirons du levier, puis nous produirons du courant alternatif, nous lirons ses tensions sinusoïdales, et nous finirons par l'adaptateur qui alimente nos appareils.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Du levier à la prise : force et électricité."
+  },
+  {
+   "dit": "Une machine simple est un dispositif qui permet de modifier l'intensité ou la direction d'une force. Elle ne crée pas d'énergie, elle rend la force plus utile.",
+   "ecran": "def_machine",
+   "id": "p02",
+   "texte": "Machine simple : force modifiée, pas créée."
+  },
+  {
+   "dit": "Pour le levier, la relation fondamentale s'écrit : la première force fois sa distance au pivot égale la deuxième force fois sa distance au pivot. Plus on s'éloigne du pivot, moins la force nécessaire est grande.",
+   "ecran": "levier_formule",
+   "id": "p03",
+   "texte": "Force fois distance, des deux côtés du pivot."
+  },
+  {
+   "dit": "Exercice résolu : une charge de deux cents newtons est posée à zéro virgule cinq mètre du pivot. À quelle distance faut-il appliquer une force de cinquante newtons pour la soulever ? Cinquante fois d égale deux cents fois zéro virgule cinq, donc d vaut deux mètres, de l'autre côté du pivot.",
+   "ecran": "levier_exemple",
+   "id": "p04",
+   "texte": "Cinquante newtons à deux mètres : soulevé."
+  },
+  {
+   "dit": "Passons à l'électricité : le courant alternatif est un courant électrique dont le sens change périodiquement. Il ne va pas toujours dans le même sens, il alterne.",
+   "ecran": "def_ca",
+   "id": "p05",
+   "texte": "Alternatif : un sens qui change sans cesse."
+  },
+  {
+   "dit": "Le courant alternatif est produit par des alternateurs, qui convertissent l'énergie mécanique en énergie électrique. Le principe repose sur la rotation d'une bobine dans un champ magnétique, ou l'inverse.",
+   "ecran": "alternateur",
+   "id": "p06",
+   "texte": "Alternateur : mécanique en électrique."
+  },
+  {
+   "dit": "La fréquence est le nombre de périodes par seconde, mesurée en hertz. Elle vaut un divisé par la période, la période étant exprimée en secondes.",
+   "ecran": "frequence",
+   "id": "p07",
+   "texte": "Fréquence : un divisé par la période."
+  },
+  {
+   "dit": "Exercice : un alternateur produit une tension dont la période est de vingt millisecondes. Sa fréquence vaut un divisé par zéro virgule zéro vingt, soit cinquante hertz, la fréquence du secteur.",
+   "ecran": "frequence_exemple",
+   "id": "p08",
+   "texte": "Vingt millisecondes : cinquante hertz."
+  },
+  {
+   "dit": "En travaux pratiques, on relie un voltmètre aux bornes d'un alternateur de bicyclette, puis on fait tourner la manivelle lentement, puis rapidement, en observant le multimètre en mode alternatif.",
+   "ecran": "tp",
+   "id": "p09",
+   "texte": "TP : manivelle lente, puis rapide."
+  },
+  {
+   "dit": "On observe alors trois choses : la tension mesurée varie au cours du temps ; plus la rotation est rapide, plus la tension est élevée ; et le courant change de sens à chaque demi-tour.",
+   "ecran": "tp",
+   "id": "p10",
+   "texte": "Variable, plus forte si rapide, sens inversé."
+  },
+  {
+   "dit": "Une tension alternative sinusoïdale varie entre une valeur maximale positive et une valeur maximale négative, de façon périodique et régulière. C'est la forme du courant du secteur.",
+   "ecran": "def_sinus",
+   "id": "p11",
+   "texte": "Sinusoïdale : régulière, entre deux maximums."
+  },
+  {
+   "dit": "Ses caractéristiques sont trois : la tension maximale, valeur la plus élevée atteinte ; la période, durée d'un cycle complet en secondes ; et la fréquence, nombre de cycles par seconde en hertz.",
+   "ecran": "caracteristiques",
+   "id": "p12",
+   "texte": "Maximum, période, fréquence : le trio."
+  },
+  {
+   "dit": "La tension efficace est la tension continue équivalente qui produirait le même effet thermique. Elle vaut la tension maximale divisée par racine carrée de deux, soit environ zéro virgule sept zéro sept fois le maximum.",
+   "ecran": "ueff",
+   "id": "p13",
+   "texte": "Efficace : maximum divisé par racine de deux."
+  },
+  {
+   "dit": "Exercice : le secteur français a une tension efficace de deux cent trente volts. Sa tension maximale vaut donc deux cent trente fois un virgule quatre un quatre, soit environ trois cent vingt-cinq volts.",
+   "ecran": "ueff_exemple",
+   "id": "p14",
+   "texte": "Deux cent trente efficaces : trois cent vingt-cinq en crête."
+  },
+  {
+   "dit": "Retenons le passage : la tension que l'on annonce, deux cent trente volts, est l'efficace ; la crête réelle, trois cent vingt-cinq volts, est celle que subissent les composants.",
+   "ecran": "ueff",
+   "id": "p15",
+   "texte": "Annoncée efficace, subie en crête."
+  },
+  {
+   "dit": "La puissance électrique est l'énergie électrique consommée ou produite par unité de temps, en watts. Elle vaut la tension fois l'intensité, tension en volts et intensité en ampères.",
+   "ecran": "def_puissance",
+   "id": "p16",
+   "texte": "Puissance : tension fois intensité."
+  },
+  {
+   "dit": "L'énergie électrique, elle, représente le travail que peut fournir le courant. Elle s'exprime en joules ou en kilowattheures, et vaut la puissance fois le temps : secondes pour obtenir des joules, heures pour obtenir des wattheures.",
+   "ecran": "def_energie",
+   "id": "p17",
+   "texte": "Énergie : puissance fois temps."
+  },
+  {
+   "dit": "La conversion à connaître : un kilowattheure vaut trois virgule six fois dix puissance six joules, soit trois millions six cent mille joules. C'est l'unité de la facture d'électricité.",
+   "ecran": "conversion",
+   "id": "p18",
+   "texte": "Un kilowattheure : trois millions six cent mille joules."
+  },
+  {
+   "dit": "Exercice : un radiateur électrique de mille cinq cents watts fonctionne pendant quatre heures. L'énergie consommée vaut mille cinq cents fois quatre, soit six mille wattheures, donc six kilowattheures.",
+   "ecran": "energie_exemple",
+   "id": "p19",
+   "texte": "Mille cinq cents watts, quatre heures : six kilowattheures."
+  },
+  {
+   "dit": "L'adaptateur secteur, ou transformateur, convertit la tension alternative du secteur, deux cent trente volts, en une tension continue et de faible valeur, adaptée aux appareils électroniques.",
+   "ecran": "def_adaptateur",
+   "id": "p20",
+   "texte": "Adaptateur : du secteur au continu faible."
+  },
+  {
+   "dit": "Il remplit trois fonctions : la transformation, qui abaisse la tension de deux cent trente volts vers une tension plus faible, comme cinq ou douze volts ; le redressement, qui convertit l'alternatif en continu ; et le filtrage, qui stabilise la tension de sortie.",
+   "ecran": "adaptateur_fonctions",
+   "id": "p21",
+   "texte": "Abaisser, redresser, filtrer."
+  },
+  {
+   "dit": "Le transformateur utilise deux enroulements autour d'un noyau magnétique. La relation entre les tensions et les nombres de spires s'écrit : tension primaire sur tension secondaire égale nombre de spires primaire sur nombre de spires secondaire.",
+   "ecran": "transfo",
+   "id": "p22",
+   "texte": "Tensions et spires : le même rapport."
+  },
+  {
+   "dit": "Exercice : un adaptateur possède quatre mille six cents spires au primaire et deux cents spires au secondaire. Branché sur le secteur à deux cent trente volts, sa tension de sortie vaut deux cent trente fois deux cents sur quatre mille six cents, soit dix volts.",
+   "ecran": "transfo_exemple",
+   "id": "p23",
+   "texte": "Quatre mille six cents et deux cents spires : dix volts."
+  },
+  {
+   "dit": "Le circuit électrique domestique s'organise ainsi : le compteur mesure l'énergie consommée, le disjoncteur général protège l'installation contre les surcharges et les courts-circuits, les disjoncteurs divisionnaires protègent chaque circuit individuel, et la prise de terre évacue les courants de fuite pour la sécurité.",
+   "ecran": "circuit_dom",
+   "id": "p24",
+   "texte": "Compteur, disjoncteurs, terre."
+  },
+  {
+   "dit": "Chaque circuit est protégé par un disjoncteur adapté à son intensité, et les fils sont normalisés : phase rouge, neutre bleu, terre vert et jaune. La puissance totale ne doit pas dépasser la puissance souscrite du compteur.",
+   "ecran": "couleurs",
+   "id": "p25",
+   "texte": "Rouge, bleu, vert et jaune : les codes."
+  },
+  {
+   "dit": "Pour protéger une installation, il faut donc un disjoncteur adapté à chaque circuit, et jamais plus de puissance que celle souscrite : la sécurité domestique tient à ces deux règles simples.",
+   "ecran": "protection",
+   "id": "p26",
+   "texte": "Disjoncteur adapté, puissance souscrite respectée."
+  },
+  {
+   "dit": "Retenons l'essentiel : le levier équilibre force fois distance ; l'alternatif change de sens à la fréquence un sur période ; l'efficace vaut le maximum sur racine de deux ; l'énergie est la puissance fois le temps ; et l'adaptateur abaisse, redresse et filtre.",
+   "ecran": "recap",
+   "id": "p27",
+   "texte": "Levier, alternatif, efficace, énergie, adaptateur."
+  }
+ ],
+ "titre": "Machines simples et énergie électrique"
+}
