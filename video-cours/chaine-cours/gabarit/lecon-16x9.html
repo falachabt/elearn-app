@@ -6879,6 +6879,1537 @@ const FIG = {
       mot(700, 215, "enfouissement") + mot(300, 215, "fusion") + mot(500, 290, "métamorphique"));
   },
 
+  cellule_fig(t, o) {
+    return svgBoite(
+      '<ellipse cx="500" cy="150" rx="360" ry="112" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<circle cx="520" cy="150" r="56" fill="none" stroke="#1A75FF" stroke-width="4"/>' +
+      '<circle cx="520" cy="150" r="18" fill="#1A75FF"/>' +
+      '<ellipse cx="300" cy="105" rx="42" ry="16" fill="none" stroke="#E8604C" stroke-width="4" transform="rotate(-20 300 105)"/>' +
+      '<ellipse cx="700" cy="195" rx="42" ry="16" fill="none" stroke="#E8604C" stroke-width="4" transform="rotate(15 700 195)"/>' +
+      '<ellipse cx="690" cy="95" rx="34" ry="13" fill="none" stroke="#E8604C" stroke-width="3" transform="rotate(25 690 95)"/>' +
+      '<circle cx="360" cy="185" r="4" fill="currentColor"/><circle cx="385" cy="175" r="4" fill="currentColor"/><circle cx="640" cy="130" r="4" fill="currentColor"/><circle cx="410" cy="120" r="4" fill="currentColor"/><circle cx="610" cy="205" r="4" fill="currentColor"/>' +
+      trait(250, 55, 330, 38, prog(t), { c: "currentColor", w: 2 }) +
+      mot(250, 28, "membrane", { t: 19, a: "end" }) +
+      mot(215, 266, "cytoplasme", { t: 19 }) +
+      trait(520, 95, 520, 58, prog(t), { c: "#1A75FF", w: 2 }) +
+      mot(520, 26, "noyau", { t: 19, c: "#1A75FF" }) +
+      trait(700, 215, 760, 245, prog(t), { c: "#E8604C", w: 2 }) +
+      mot(765, 262, "mitochondrie", { t: 19, c: "#E8604C", a: "start" })
+    );
+  },
+  microscope_elec_fig(t, o) {
+    return svgBoite(
+      '<rect x="455" y="18" width="90" height="42" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<rect x="475" y="60" width="50" height="105" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      trait(485, 165, 430, 205, prog(t), { c: "#B8860B", w: 3 }) +
+      trait(515, 165, 570, 205, prog(t), { c: "#B8860B", w: 3 }) +
+      trait(500, 165, 500, 205, prog(t), { c: "#B8860B", w: 3 }) +
+      trait(400, 208, 600, 208, prog(t), { c: "currentColor", w: 5 }) +
+      '<rect x="380" y="232" width="240" height="52" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<ellipse cx="500" cy="258" rx="55" ry="18" fill="none" stroke="#10B981" stroke-width="3"/><circle cx="500" cy="258" r="8" fill="#10B981"/>' +
+      mot(430, 42, "canon à électrons", { t: 19, a: "end" }) +
+      trait(455, 38, 435, 40, prog(t), { c: "currentColor", w: 2 }) +
+      mot(250, 150, "faisceau d'électrons", { t: 19, c: "#B8860B" }) +
+      trait(390, 150, 455, 140, prog(t), { c: "#B8860B", w: 2 }) +
+      mot(700, 208, "échantillon", { t: 19, a: "start" }) +
+      trait(600, 208, 690, 208, prog(t), { c: "currentColor", w: 2 }) +
+      mot(700, 262, "écran", { t: 19, a: "start" }) +
+      trait(620, 258, 690, 260, prog(t), { c: "currentColor", w: 2 })
+    );
+  },
+  niveaux_organisation_fig(t, o) {
+    return svgBoite(
+      '<rect x="55" y="55" width="175" height="145" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      '<circle cx="142" cy="127" r="52" fill="none" stroke="#1A75FF" stroke-width="4"/><circle cx="142" cy="127" r="18" fill="#1A75FF"/>' +
+      trait(230, 127, 275, 127, prog(t), { c: "currentColor", w: 4 }) + pointe(282, 127, 0, "currentColor") +
+      '<rect x="290" y="55" width="175" height="145" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      '<circle cx="330" cy="95" r="20" fill="none" stroke="#10B981" stroke-width="3"/><circle cx="377" cy="95" r="20" fill="none" stroke="#10B981" stroke-width="3"/><circle cx="424" cy="95" r="20" fill="none" stroke="#10B981" stroke-width="3"/><circle cx="330" cy="142" r="20" fill="none" stroke="#10B981" stroke-width="3"/><circle cx="377" cy="142" r="20" fill="none" stroke="#10B981" stroke-width="3"/><circle cx="424" cy="142" r="20" fill="none" stroke="#10B981" stroke-width="3"/><circle cx="353" cy="172" r="16" fill="none" stroke="#10B981" stroke-width="3"/><circle cx="400" cy="172" r="16" fill="none" stroke="#10B981" stroke-width="3"/>' +
+      trait(465, 127, 510, 127, prog(t), { c: "currentColor", w: 4 }) + pointe(517, 127, 0, "currentColor") +
+      '<rect x="525" y="55" width="175" height="145" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      '<path d="M612 82 C 655 82 672 115 655 145 C 642 168 620 182 612 190 C 604 182 582 168 569 145 C 552 115 569 82 612 82 Z" fill="none" stroke="#E8604C" stroke-width="4"/>' +
+      trait(700, 127, 745, 127, prog(t), { c: "currentColor", w: 4 }) + pointe(752, 127, 0, "currentColor") +
+      '<rect x="760" y="55" width="175" height="145" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      '<circle cx="847" cy="88" r="20" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      trait(847, 108, 847, 160, prog(t), { c: "currentColor", w: 5 }) +
+      trait(847, 122, 805, 145, prog(t), { c: "currentColor", w: 4 }) +
+      trait(847, 122, 889, 145, prog(t), { c: "currentColor", w: 4 }) +
+      trait(847, 160, 822, 192, prog(t), { c: "currentColor", w: 4 }) +
+      trait(847, 160, 872, 192, prog(t), { c: "currentColor", w: 4 }) +
+      mot(142, 232, "cellule", { t: 20 }) +
+      mot(377, 232, "tissu", { t: 20 }) +
+      mot(612, 232, "organe", { t: 20 }) +
+      mot(847, 232, "organisme", { t: 20 })
+    );
+  },
+  elements_masse_fig(t, o) {
+    return svgBoite(
+      mot(215, 62, "Oxygène", { t: 20, a: "end" }) +
+      '<rect x="240" y="42" width="585" height="30" fill="#1A75FF"/>' +
+      mot(845, 64, "65 %", { t: 20, a: "start" }) +
+      mot(215, 122, "Carbone", { t: 20, a: "end" }) +
+      '<rect x="240" y="102" width="162" height="30" fill="#E8604C"/>' +
+      mot(422, 124, "18 %", { t: 20, a: "start" }) +
+      mot(215, 182, "Hydrogène", { t: 20, a: "end" }) +
+      '<rect x="240" y="162" width="90" height="30" fill="#10B981"/>' +
+      mot(350, 184, "10 %", { t: 20, a: "start" }) +
+      mot(215, 242, "Azote", { t: 20, a: "end" }) +
+      '<rect x="240" y="222" width="27" height="30" fill="#B8860B"/>' +
+      mot(287, 244, "3 %", { t: 20, a: "start" }) +
+      mot(500, 288, "environ 96 % de la masse du corps", { t: 18 })
+    );
+  },
+  muscle_niveaux_fig(t, o) {
+    return svgBoite(
+      '<rect x="35" y="50" width="195" height="145" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      trait(55, 85, 210, 85, prog(t), { c: "#1A75FF", w: 2 }) +
+      trait(55, 105, 210, 105, prog(t), { c: "#1A75FF", w: 2 }) +
+      trait(55, 145, 210, 145, prog(t), { c: "#1A75FF", w: 2 }) +
+      trait(55, 122, 210, 122, prog(t), { c: "#E8604C", w: 7 }) +
+      trait(55, 165, 210, 165, prog(t), { c: "#E8604C", w: 7 }) +
+      trait(230, 122, 262, 122, prog(t), { c: "currentColor", w: 4 }) + pointe(269, 122, 0, "currentColor") +
+      '<rect x="277" y="50" width="195" height="145" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      '<rect x="305" y="90" width="140" height="62" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      trait(330, 90, 330, 152, prog(t), { c: "#E8604C", w: 3 }) +
+      trait(360, 90, 360, 152, prog(t), { c: "#E8604C", w: 3 }) +
+      trait(390, 90, 390, 152, prog(t), { c: "#E8604C", w: 3 }) +
+      trait(420, 90, 420, 152, prog(t), { c: "#E8604C", w: 3 }) +
+      trait(472, 122, 504, 122, prog(t), { c: "currentColor", w: 4 }) + pointe(511, 122, 0, "currentColor") +
+      '<rect x="519" y="50" width="195" height="145" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      trait(545, 90, 685, 90, prog(t), { c: "#10B981", w: 6 }) +
+      trait(545, 115, 685, 115, prog(t), { c: "#10B981", w: 6 }) +
+      trait(545, 140, 685, 140, prog(t), { c: "#10B981", w: 6 }) +
+      trait(545, 165, 685, 165, prog(t), { c: "#10B981", w: 6 }) +
+      trait(714, 122, 746, 122, prog(t), { c: "currentColor", w: 4 }) + pointe(753, 122, 0, "currentColor") +
+      '<rect x="761" y="50" width="205" height="145" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      '<path d="M790 122 C 830 88 900 88 940 122 C 900 156 830 156 790 122 Z" fill="none" stroke="#E8604C" stroke-width="4"/>' +
+      trait(790, 122, 762, 105, prog(t), { c: "currentColor", w: 3 }) +
+      trait(940, 122, 965, 105, prog(t), { c: "currentColor", w: 3 }) +
+      mot(132, 222, "actine et myosine", { t: 18 }) +
+      mot(132, 248, "filaments", { t: 18 }) +
+      mot(374, 222, "fibre", { t: 19 }) +
+      mot(616, 222, "tissu", { t: 19 }) +
+      mot(863, 222, "muscle", { t: 19 }) +
+      mot(863, 248, "l'organe", { t: 18 })
+    );
+  },
+  agressivite_fig(t, o) {
+    return svgBoite(
+      '<circle cx="240" cy="95" r="42" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<path d="M165 215 C 175 155 305 155 315 215" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<circle cx="760" cy="95" r="42" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<path d="M685 215 C 695 155 825 155 835 215" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<path d="M500 55 L 465 120 L 500 120 L 460 200" fill="none" stroke="#E8604C" stroke-width="6"/>' +
+      '<path d="M545 75 L 520 125 L 548 125 L 515 180" fill="none" stroke="#E8604C" stroke-width="5"/>' +
+      mot(240, 262, "frustration, menace", { t: 20 }) +
+      mot(760, 262, "réponse hostile", { t: 20 })
+    );
+  },
+  dominance_fig(t, o) {
+    return svgBoite(
+      '<rect x="390" y="185" width="220" height="55" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<rect x="440" y="135" width="120" height="50" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<rect x="180" y="200" width="180" height="40" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      '<rect x="640" y="200" width="180" height="40" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      '<circle cx="500" cy="72" r="24" fill="none" stroke="#E8604C" stroke-width="4"/>' +
+      trait(500, 96, 500, 133, prog(t), { c: "#E8604C", w: 5 }) +
+      '<circle cx="270" cy="140" r="22" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      trait(270, 162, 270, 198, prog(t), { c: "currentColor", w: 5 }) +
+      '<circle cx="730" cy="140" r="22" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      trait(730, 162, 730, 198, prog(t), { c: "currentColor", w: 5 }) +
+      mot(500, 28, "le dominant", { t: 20, c: "#E8604C" }) +
+      mot(270, 105, "les subordonnés", { t: 18 }) +
+      mot(730, 105, "les subordonnés", { t: 18 }) +
+      mot(500, 272, "une hiérarchie stable", { t: 19 })
+    );
+  },
+  emotion_fig(t, o) {
+    return svgBoite(
+      '<circle cx="270" cy="125" r="72" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<circle cx="245" cy="110" r="6" fill="currentColor"/><circle cx="295" cy="110" r="6" fill="currentColor"/>' +
+      '<path d="M240 150 C 258 168 282 168 300 150" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<circle cx="730" cy="125" r="72" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<circle cx="705" cy="110" r="6" fill="currentColor"/><circle cx="755" cy="110" r="6" fill="currentColor"/>' +
+      '<path d="M700 150 C 718 168 742 168 760 150" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<path d="M500 92 C 478 62 425 78 432 112 C 437 138 472 158 500 182 C 528 158 563 138 568 112 C 575 78 522 62 500 92 Z" fill="#E8604C"/>' +
+      mot(500, 248, "empathie : partager une émotion", { t: 20 })
+    );
+  },
+  relations_fig(t, o) {
+    return svgBoite(
+      '<circle cx="500" cy="62" r="26" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      trait(500, 88, 500, 112, prog(t), { c: "currentColor", w: 5 }) +
+      '<circle cx="255" cy="205" r="26" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      trait(255, 231, 255, 252, prog(t), { c: "currentColor", w: 5 }) +
+      '<circle cx="745" cy="205" r="26" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      trait(745, 231, 745, 252, prog(t), { c: "currentColor", w: 5 }) +
+      trait(470, 105, 300, 180, prog(t), { c: "#E8604C", w: 3 }) + pointe(292, 186, 140, "#E8604C") + pointe(478, 99, -40, "#E8604C") +
+      trait(530, 105, 700, 180, prog(t), { c: "#1A75FF", w: 3 }) + pointe(708, 186, 40, "#1A75FF") + pointe(522, 99, -140, "#1A75FF") +
+      trait(290, 218, 710, 218, prog(t), { c: "#10B981", w: 3 }) + pointe(718, 218, 0, "#10B981") + pointe(282, 218, 180, "#10B981") +
+      mot(500, 22, "Dominance", { t: 19, c: "#1A75FF" }) +
+      mot(140, 160, "Agressivité", { t: 19, c: "#E8604C" }) +
+      mot(862, 160, "Émotion", { t: 19, c: "#10B981" }) +
+      mot(500, 288, "trois relations intriquées", { t: 18 })
+    );
+  },
+  caryotype_fig(t, o) {
+    let s = "";
+    const xs = [100, 215, 330];
+    const hs = [100, 86, 74];
+    for (let i = 0; i < 3; i++) {
+      s += '<rect x="' + (xs[i] - 16) + '" y="' + (125 - hs[i] / 2) + '" width="12" height="' + hs[i] + '" rx="6" fill="none" stroke="#1A75FF" stroke-width="3"/>';
+      s += '<rect x="' + (xs[i] + 4) + '" y="' + (125 - hs[i] / 2) + '" width="12" height="' + hs[i] + '" rx="6" fill="none" stroke="#1A75FF" stroke-width="3"/>';
+      s += mot(xs[i], 205, String(i + 1), { t: 19 });
+    }
+    s += mot(440, 132, "…", { t: 26 });
+    if (o && o.trisomie) {
+      s += '<rect x="548" y="72" width="12" height="58" rx="6" fill="none" stroke="#E8604C" stroke-width="3"/>';
+      s += '<rect x="568" y="72" width="12" height="58" rx="6" fill="none" stroke="#E8604C" stroke-width="3"/>';
+      s += '<rect x="588" y="72" width="12" height="58" rx="6" fill="none" stroke="#E8604C" stroke-width="3"/>';
+      s += '<rect x="538" y="60" width="74" height="84" fill="none" stroke="#E8604C" stroke-width="3"/>';
+      s += mot(575, 168, "21", { t: 19, c: "#E8604C" });
+      s += '<rect x="688" y="78" width="12" height="52" rx="6" fill="none" stroke="#1A75FF" stroke-width="3"/>';
+      s += '<rect x="708" y="78" width="12" height="52" rx="6" fill="none" stroke="#1A75FF" stroke-width="3"/>';
+      s += mot(704, 168, "22", { t: 19 });
+      s += mot(500, 248, "47 chromosomes : trisomie 21", { t: 20, c: "#E8604C" });
+    } else {
+      s += '<rect x="548" y="78" width="12" height="52" rx="6" fill="none" stroke="#1A75FF" stroke-width="3"/>';
+      s += '<rect x="568" y="78" width="12" height="52" rx="6" fill="none" stroke="#1A75FF" stroke-width="3"/>';
+      s += mot(564, 168, "22", { t: 19 });
+      s += '<rect x="688" y="82" width="12" height="46" rx="6" fill="none" stroke="#10B981" stroke-width="3"/>';
+      s += '<rect x="708" y="82" width="12" height="46" rx="6" fill="none" stroke="#10B981" stroke-width="3"/>';
+      s += '<rect x="676" y="68" width="58" height="76" fill="none" stroke="currentColor" stroke-width="3"/>';
+      s += mot(705, 168, "23", { t: 19 });
+      s += mot(500, 248, "XX : gonosomes", { t: 20, c: "#10B981" });
+    }
+    return svgBoite(s);
+  },
+  chromosome_x_fig(t, o) {
+    return svgBoite(
+      trait(330, 40, 430, 245, prog(t), { c: "#1A75FF", w: 17 }) +
+      trait(430, 40, 330, 245, prog(t), { c: "#1A75FF", w: 17 }) +
+      '<circle cx="398" cy="92" r="13" fill="#E8604C"/>' +
+      trait(411, 92, 505, 62, prog(t), { c: "#E8604C", w: 2 }) +
+      mot(515, 58, "gène", { t: 21, c: "#E8604C", a: "start" }) +
+      mot(380, 270, "chromosome X", { t: 20, c: "#1A75FF" }) +
+      trait(690, 55, 745, 130, prog(t), { c: "#B8860B", w: 14 }) +
+      trait(800, 55, 745, 130, prog(t), { c: "#B8860B", w: 14 }) +
+      trait(745, 130, 745, 205, prog(t), { c: "#B8860B", w: 14 }) +
+      mot(745, 245, "chromosome Y", { t: 19, c: "#B8860B" }) +
+      mot(745, 42, "pas d'équivalent sur Y", { t: 18, c: "#E8604C" }) +
+      mot(500, 292, "chez l'homme, le gène est seul : hémizygotie", { t: 17 })
+    );
+  },
+  pedigree_fig(t, o) {
+    let s = "";
+    s += '<rect x="330" y="35" width="52" height="52" fill="none" stroke="currentColor" stroke-width="4"/>';
+    s += '<circle cx="618" cy="61" r="27" fill="none" stroke="currentColor" stroke-width="4"/>';
+    if (o && o.mode === "recessif") {
+      s += '<circle cx="618" cy="61" r="6" fill="currentColor"/>';
+    }
+    s += trait(382, 61, 591, 61, prog(t), { c: "currentColor", w: 3 });
+    s += trait(486, 61, 486, 115, prog(t), { c: "currentColor", w: 3 });
+    s += trait(190, 115, 790, 115, prog(t), { c: "currentColor", w: 3 });
+    s += trait(190, 115, 190, 145, prog(t), { c: "currentColor", w: 3 });
+    s += trait(390, 115, 390, 145, prog(t), { c: "currentColor", w: 3 });
+    s += trait(590, 115, 590, 145, prog(t), { c: "currentColor", w: 3 });
+    s += trait(790, 115, 790, 145, prog(t), { c: "currentColor", w: 3 });
+    s += '<rect x="164" y="145" width="52" height="52" fill="currentColor"/>';
+    s += '<circle cx="390" cy="171" r="27" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="390" cy="171" r="6" fill="currentColor"/>';
+    s += '<rect x="564" y="145" width="52" height="52" fill="none" stroke="currentColor" stroke-width="4"/>';
+    s += '<circle cx="790" cy="171" r="27" fill="none" stroke="currentColor" stroke-width="4"/>';
+    s += mot(356, 24, "père", { t: 18 });
+    s += mot(618, 24, "mère", { t: 18 });
+    s += mot(190, 228, "fils", { t: 17 });
+    s += mot(390, 228, "fille", { t: 17 });
+    s += mot(590, 228, "fils", { t: 17 });
+    s += mot(790, 228, "fille", { t: 17 });
+    s += mot(500, 272, "noir : atteint", { t: 19 });
+    return svgBoite(s);
+  },
+  meiose_fig(t, o) {
+    return svgBoite(
+      '<circle cx="170" cy="135" r="82" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<rect x="128" y="82" width="11" height="72" rx="5" fill="#E8604C"/><rect x="145" y="82" width="11" height="72" rx="5" fill="#E8604C"/>' +
+      '<rect x="178" y="98" width="10" height="52" rx="5" fill="#1A75FF"/><rect x="194" y="98" width="10" height="52" rx="5" fill="#1A75FF"/>' +
+      trait(258, 135, 305, 135, prog(t), { c: "currentColor", w: 4 }) + pointe(312, 135, 0, "currentColor") +
+      '<circle cx="395" cy="88" r="48" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      '<rect x="378" y="58" width="9" height="50" rx="4" fill="#E8604C"/><rect x="391" y="58" width="9" height="50" rx="4" fill="#E8604C"/>' +
+      '<circle cx="395" cy="190" r="48" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      '<rect x="378" y="164" width="9" height="42" rx="4" fill="#1A75FF"/><rect x="391" y="164" width="9" height="42" rx="4" fill="#1A75FF"/>' +
+      trait(450, 135, 497, 135, prog(t), { c: "currentColor", w: 4 }) + pointe(504, 135, 0, "currentColor") +
+      '<circle cx="590" cy="72" r="36" fill="none" stroke="currentColor" stroke-width="3"/><rect x="584" y="48" width="10" height="46" rx="5" fill="#E8604C"/>' +
+      '<circle cx="700" cy="72" r="36" fill="none" stroke="currentColor" stroke-width="3"/><rect x="694" y="48" width="10" height="46" rx="5" fill="#1A75FF"/>' +
+      '<circle cx="590" cy="190" r="36" fill="none" stroke="currentColor" stroke-width="3"/><rect x="584" y="166" width="10" height="46" rx="5" fill="#1A75FF"/>' +
+      '<circle cx="700" cy="190" r="36" fill="none" stroke="currentColor" stroke-width="3"/><rect x="694" y="166" width="10" height="46" rx="5" fill="#E8604C"/>' +
+      mot(170, 248, "2n", { t: 22 }) +
+      mot(395, 272, "n", { t: 22 }) +
+      mot(810, 135, "4 cellules haploïdes", { t: 19, a: "start" })
+    );
+  },
+  crossing_over_fig(t, o) {
+    return svgBoite(
+      '<rect x="175" y="45" width="16" height="165" rx="8" fill="#E8604C"/>' +
+      '<rect x="215" y="45" width="16" height="165" rx="8" fill="#1A75FF"/>' +
+      '<rect x="255" y="45" width="16" height="165" rx="8" fill="#E8604C"/>' +
+      '<rect x="295" y="45" width="16" height="165" rx="8" fill="#1A75FF"/>' +
+      '<circle cx="243" cy="128" r="17" fill="none" stroke="#B8860B" stroke-width="4"/>' +
+      trait(320, 128, 390, 128, prog(t), { c: "currentColor", w: 4 }) + pointe(397, 128, 0, "currentColor") +
+      trait(520, 50, 520, 118, prog(t), { c: "#E8604C", w: 15 }) +
+      trait(520, 118, 520, 208, prog(t), { c: "#1A75FF", w: 15 }) +
+      trait(575, 50, 575, 118, prog(t), { c: "#1A75FF", w: 15 }) +
+      trait(575, 118, 575, 208, prog(t), { c: "#E8604C", w: 15 }) +
+      trait(660, 50, 660, 208, prog(t), { c: "#E8604C", w: 15 }) +
+      trait(715, 50, 715, 208, prog(t), { c: "#1A75FF", w: 15 }) +
+      mot(243, 248, "homologues", { t: 19 }) +
+      mot(120, 128, "chiasma", { t: 19, c: "#B8860B", a: "end" }) +
+      trait(138, 128, 222, 128, prog(t), { c: "#B8860B", w: 2 }) +
+      mot(615, 248, "chromatides recombinées", { t: 19 })
+    );
+  },
+  brassage_inter_fig(t, o) {
+    return svgBoite(
+      '<rect x="90" y="35" width="330" height="150" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      trait(255, 50, 255, 170, prog(t), { c: "currentColor", w: 3, tiret: "7 6" }) +
+      trait(185, 75, 185, 140, prog(t), { c: "#E8604C", w: 13 }) +
+      trait(205, 75, 205, 140, prog(t), { c: "#1A75FF", w: 13 }) +
+      trait(300, 85, 300, 132, prog(t), { c: "#1A75FF", w: 13 }) +
+      trait(318, 85, 318, 132, prog(t), { c: "#E8604C", w: 13 }) +
+      mot(255, 212, "ou", { t: 20 }) +
+      '<rect x="580" y="35" width="330" height="150" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      trait(745, 50, 745, 170, prog(t), { c: "currentColor", w: 3, tiret: "7 6" }) +
+      trait(675, 75, 675, 140, prog(t), { c: "#1A75FF", w: 13 }) +
+      trait(695, 75, 695, 140, prog(t), { c: "#E8604C", w: 13 }) +
+      trait(790, 85, 790, 132, prog(t), { c: "#1A75FF", w: 13 }) +
+      trait(808, 85, 808, 132, prog(t), { c: "#E8604C", w: 13 }) +
+      '<circle cx="330" cy="255" r="24" fill="none" stroke="currentColor" stroke-width="3"/><rect x="325" y="238" width="9" height="34" rx="4" fill="#E8604C"/>' +
+      '<circle cx="445" cy="255" r="24" fill="none" stroke="currentColor" stroke-width="3"/><rect x="440" y="238" width="9" height="34" rx="4" fill="#1A75FF"/>' +
+      '<circle cx="560" cy="255" r="24" fill="none" stroke="currentColor" stroke-width="3"/><rect x="555" y="238" width="9" height="34" rx="4" fill="#E8604C"/>' +
+      '<circle cx="675" cy="255" r="24" fill="none" stroke="currentColor" stroke-width="3"/><rect x="670" y="238" width="9" height="34" rx="4" fill="#1A75FF"/>' +
+      mot(500, 292, "l'orientation est aléatoire", { t: 18 })
+    );
+  },
+  genes_lies_fig(t, o) {
+    return svgBoite(
+      '<rect x="205" y="45" width="18" height="180" rx="9" fill="none" stroke="#1A75FF" stroke-width="4"/>' +
+      '<rect x="232" y="45" width="18" height="180" rx="9" fill="none" stroke="#1A75FF" stroke-width="4"/>' +
+      '<circle cx="227" cy="95" r="11" fill="#E8604C"/>' +
+      '<circle cx="227" cy="128" r="11" fill="#10B981"/>' +
+      trait(245, 95, 320, 82, prog(t), { c: "#E8604C", w: 2 }) +
+      mot(330, 82, "A", { t: 21, c: "#E8604C", a: "start" }) +
+      trait(245, 128, 320, 140, prog(t), { c: "#10B981", w: 2 }) +
+      mot(330, 144, "B", { t: 21, c: "#10B981", a: "start" }) +
+      mot(227, 262, "gènes liés", { t: 20 }) +
+      trait(390, 135, 500, 135, prog(t), { c: "currentColor", w: 4 }) + pointe(507, 135, 0, "currentColor") +
+      '<circle cx="620" cy="95" r="42" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      mot(620, 103, "AB", { t: 22 }) +
+      '<circle cx="620" cy="195" r="42" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      mot(620, 203, "ab", { t: 22 }) +
+      mot(620, 42, "2 gamètes seulement", { t: 18 }) +
+      mot(830, 145, "transmis ensemble", { t: 19 })
+    );
+  },
+  echiquier_fig(t, o) {
+    let s = "";
+    if (o && o.mono) {
+      const gam = ["A", "a"];
+      const gx = 330, gy = 62, cw = 150, ch = 82;
+      for (let c = 0; c < 2; c++) s += mot(gx + cw * c + cw / 2, 38, gam[c], { t: 21 });
+      for (let r = 0; r < 2; r++) {
+        s += mot(gx - 32, gy + ch * r + ch / 2 + 7, gam[r], { t: 21 });
+        for (let c = 0; c < 2; c++) {
+          s += '<rect x="' + (gx + cw * c) + '" y="' + (gy + ch * r) + '" width="' + cw + '" height="' + ch + '" fill="none" stroke="currentColor" stroke-width="3"/>';
+          s += mot(gx + cw * c + cw / 2, gy + ch * r + ch / 2 + 8, gam[r] + gam[c], { t: 22 });
+        }
+      }
+      s += mot(500, 272, "échiquier de croisement", { t: 20 });
+    } else {
+      const gam = ["AB", "Ab", "aB", "ab"];
+      const gx = 300, gy = 55, cw = 100, ch = 50;
+      for (let c = 0; c < 4; c++) s += mot(gx + cw * c + cw / 2, 32, gam[c], { t: 18 });
+      for (let r = 0; r < 4; r++) {
+        s += mot(gx - 32, gy + ch * r + ch / 2 + 6, gam[r], { t: 18 });
+        for (let c = 0; c < 4; c++) {
+          s += '<rect x="' + (gx + cw * c) + '" y="' + (gy + ch * r) + '" width="' + cw + '" height="' + ch + '" fill="none" stroke="currentColor" stroke-width="2"/>';
+          s += mot(gx + cw * c + cw / 2, gy + ch * r + ch / 2 + 6, gam[r][0] + gam[c][0] + gam[r][1] + gam[c][1], { t: 17 });
+        }
+      }
+      s += mot(500, 285, "échiquier de croisement", { t: 19 });
+    }
+    return svgBoite(s);
+  },
+  fourche_fig(t, o) {
+    return svgBoite(
+      '<circle cx="80" cy="150" r="8" fill="currentColor"/>' +
+      trait(88, 150, 250, 75, prog(t), { c: "currentColor", w: 3 }) +
+      trait(88, 150, 250, 225, prog(t), { c: "currentColor", w: 3 }) +
+      mot(262, 82, "A", { t: 20, a: "start" }) +
+      mot(262, 232, "a", { t: 20, a: "start" }) +
+      trait(285, 75, 450, 42, prog(t), { c: "currentColor", w: 3 }) +
+      trait(285, 75, 450, 108, prog(t), { c: "currentColor", w: 3 }) +
+      trait(285, 225, 450, 192, prog(t), { c: "currentColor", w: 3 }) +
+      trait(285, 225, 450, 258, prog(t), { c: "currentColor", w: 3 }) +
+      mot(462, 49, "B", { t: 19, a: "start" }) +
+      mot(462, 115, "b", { t: 19, a: "start" }) +
+      mot(462, 199, "B", { t: 19, a: "start" }) +
+      mot(462, 265, "b", { t: 19, a: "start" }) +
+      trait(490, 42, 650, 28, prog(t), { c: "currentColor", w: 2 }) +
+      trait(490, 42, 650, 58, prog(t), { c: "currentColor", w: 2 }) +
+      trait(490, 108, 650, 94, prog(t), { c: "currentColor", w: 2 }) +
+      trait(490, 108, 650, 124, prog(t), { c: "currentColor", w: 2 }) +
+      trait(490, 192, 650, 178, prog(t), { c: "currentColor", w: 2 }) +
+      trait(490, 192, 650, 208, prog(t), { c: "currentColor", w: 2 }) +
+      trait(490, 258, 650, 244, prog(t), { c: "currentColor", w: 2 }) +
+      trait(490, 258, 650, 274, prog(t), { c: "currentColor", w: 2 }) +
+      mot(672, 35, "ABC", { t: 17, a: "start" }) +
+      mot(672, 65, "ABc", { t: 17, a: "start" }) +
+      mot(672, 101, "AbC", { t: 17, a: "start" }) +
+      mot(672, 131, "Abc", { t: 17, a: "start" }) +
+      mot(672, 185, "aBC", { t: 17, a: "start" }) +
+      mot(672, 215, "aBc", { t: 17, a: "start" }) +
+      mot(672, 251, "abC", { t: 17, a: "start" }) +
+      mot(672, 281, "abc", { t: 17, a: "start" }) +
+      mot(205, 28, "caractère 1", { t: 17 }) +
+      mot(420, 28, "caractère 2", { t: 17 }) +
+      mot(610, 15, "caractère 3", { t: 17 }) +
+      mot(880, 150, "2 × 2 × 2 = 8", { t: 19 }) +
+      mot(880, 178, "gamètes différents", { t: 17 })
+    );
+  },
+  mutation_fig(t, o) {
+    return svgBoite(
+      trait(120, 95, 880, 95, prog(t), { c: "#1A75FF", w: 5 }) +
+      trait(120, 185, 880, 185, prog(t), { c: "#1A75FF", w: 5 }) +
+      trait(220, 95, 220, 185, prog(t), { c: "currentColor", w: 4 }) +
+      trait(340, 95, 340, 185, prog(t), { c: "currentColor", w: 4 }) +
+      trait(460, 95, 460, 185, prog(t), { c: "currentColor", w: 4 }) +
+      trait(580, 95, 580, 185, prog(t), { c: "#E8604C", w: 7 }) +
+      trait(700, 95, 700, 185, prog(t), { c: "currentColor", w: 4 }) +
+      trait(800, 95, 800, 185, prog(t), { c: "currentColor", w: 4 }) +
+      mot(220, 72, "A", { t: 20 }) + mot(220, 222, "T", { t: 20 }) +
+      mot(340, 72, "G", { t: 20 }) + mot(340, 222, "C", { t: 20 }) +
+      mot(460, 72, "T", { t: 20 }) + mot(460, 222, "A", { t: 20 }) +
+      mot(580, 72, "A", { t: 20, c: "#E8604C" }) + mot(580, 222, "C", { t: 20, c: "#E8604C" }) +
+      mot(700, 72, "C", { t: 20 }) + mot(700, 222, "G", { t: 20 }) +
+      mot(800, 72, "G", { t: 20 }) + mot(800, 222, "C", { t: 20 }) +
+      mot(500, 272, "un seul nucléotide changé : mutation ponctuelle", { t: 17 })
+    );
+  },
+  globule_falciforme_fig(t, o) {
+    return svgBoite(
+      '<circle cx="270" cy="135" r="78" fill="none" stroke="#E8604C" stroke-width="5"/>' +
+      '<ellipse cx="270" cy="135" rx="38" ry="26" fill="none" stroke="#E8604C" stroke-width="3"/>' +
+      mot(270, 248, "normal", { t: 20 }) +
+      '<path d="M640 55 C 760 70 830 140 845 215 C 760 185 690 150 640 55 Z" fill="none" stroke="#E8604C" stroke-width="5"/>' +
+      '<path d="M670 85 C 740 105 795 150 815 195" fill="none" stroke="#E8604C" stroke-width="3"/>' +
+      mot(745, 248, "falciforme", { t: 20, c: "#E8604C" }) +
+      trait(365, 135, 610, 135, prog(t), { c: "currentColor", w: 3 }) + pointe(617, 135, 0, "currentColor") +
+      mot(500, 288, "il peut boucher les petits vaisseaux", { t: 18 })
+    );
+  },
+  drosophile_fig(t, o) {
+    return svgBoite(
+      '<ellipse cx="440" cy="105" rx="105" ry="42" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(-18 440 105)"/>' +
+      '<ellipse cx="455" cy="205" rx="105" ry="42" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(18 455 205)"/>' +
+      '<ellipse cx="520" cy="155" rx="105" ry="58" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<circle cx="645" cy="140" r="38" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<circle cx="658" cy="132" r="14" fill="#E8604C"/>' +
+      trait(565, 195, 520, 245, prog(t), { c: "currentColor", w: 3 }) +
+      trait(600, 200, 575, 252, prog(t), { c: "currentColor", w: 3 }) +
+      trait(480, 195, 430, 242, prog(t), { c: "currentColor", w: 3 }) +
+      trait(645, 115, 690, 75, prog(t), { c: "currentColor", w: 2 }) +
+      trait(650, 108, 705, 88, prog(t), { c: "currentColor", w: 2 }) +
+      mot(230, 62, "la drosophile de Morgan", { t: 20 }) +
+      trait(360, 70, 480, 105, prog(t), { c: "currentColor", w: 2 }) +
+      mot(730, 245, "15 % de recombinants = 15 cM", { t: 19 })
+    );
+  },
+  spermatogenese_fig(t, o) {
+    if (o && o.ovo) {
+      return svgBoite(
+        '<circle cx="220" cy="145" r="82" fill="none" stroke="currentColor" stroke-width="4"/>' +
+        '<circle cx="220" cy="145" r="26" fill="none" stroke="#1A75FF" stroke-width="3"/>' +
+        mot(220, 262, "une grosse cellule", { t: 18 }) +
+        trait(310, 145, 395, 145, prog(t), { c: "currentColor", w: 4 }) + pointe(402, 145, 0, "currentColor") +
+        '<circle cx="590" cy="155" r="72" fill="none" stroke="#10B981" stroke-width="4"/>' +
+        '<circle cx="570" cy="140" r="20" fill="none" stroke="#1A75FF" stroke-width="3"/>' +
+        '<circle cx="720" cy="72" r="24" fill="none" stroke="currentColor" stroke-width="3"/>' +
+        '<circle cx="762" cy="115" r="19" fill="none" stroke="currentColor" stroke-width="3"/>' +
+        mot(590, 262, "ovule", { t: 20, c: "#10B981" }) +
+        mot(800, 72, "globules polaires", { t: 18, a: "start" }) +
+        trait(748, 78, 788, 74, prog(t), { c: "currentColor", w: 2 })
+      );
+    }
+    return svgBoite(
+      '<circle cx="150" cy="145" r="58" fill="none" stroke="currentColor" stroke-width="4"/>' +
+      '<circle cx="150" cy="145" r="20" fill="none" stroke="#1A75FF" stroke-width="3"/>' +
+      mot(150, 238, "spermatogonie", { t: 18 }) +
+      trait(215, 145, 330, 145, prog(t), { c: "currentColor", w: 4 }) + pointe(337, 145, 0, "currentColor") +
+      mot(276, 118, "mitose, méiose", { t: 17 }) +
+      '<ellipse cx="480" cy="62" rx="26" ry="17" fill="none" stroke="#1A75FF" stroke-width="4"/><path d="M506 62 C 560 45 610 75 665 58" fill="none" stroke="#1A75FF" stroke-width="3"/>' +
+      '<ellipse cx="480" cy="128" rx="26" ry="17" fill="none" stroke="#1A75FF" stroke-width="4"/><path d="M506 128 C 560 111 610 141 665 124" fill="none" stroke="#1A75FF" stroke-width="3"/>' +
+      '<ellipse cx="480" cy="194" rx="26" ry="17" fill="none" stroke="#1A75FF" stroke-width="4"/><path d="M506 194 C 560 177 610 207 665 190" fill="none" stroke="#1A75FF" stroke-width="3"/>' +
+      '<ellipse cx="480" cy="255" rx="26" ry="17" fill="none" stroke="#1A75FF" stroke-width="4"/><path d="M506 255 C 560 238 610 268 665 251" fill="none" stroke="#1A75FF" stroke-width="3"/>' +
+      mot(800, 150, "4 spermatozoïdes", { t: 20, c: "#1A75FF" })
+    );
+  },
+  fecondation_fig(t, o) {
+    return svgBoite(
+      '<circle cx="430" cy="150" r="118" fill="none" stroke="currentColor" stroke-width="5"/>' +
+      '<circle cx="370" cy="105" r="26" fill="none" stroke="#B8860B" stroke-width="3"/>' +
+      '<circle cx="400" cy="180" r="24" fill="none" stroke="#1A75FF" stroke-width="3"/>' +
+      '<circle cx="470" cy="180" r="24" fill="none" stroke="#E8604C" stroke-width="3"/>' +
+      mot(400, 185, "♀", { t: 18, c: "#1A75FF" }) +
+      mot(470, 185, "♂", { t: 18, c: "#E8604C" }) +
+      '<ellipse cx="535" cy="105" rx="30" ry="19" fill="none" stroke="#1A75FF" stroke-width="4" transform="rotate(-25 535 105)"/>' +
+      '<path d="M558 92 C 640 55 720 105 800 70 C 850 48 900 78 950 58" fill="none" stroke="#1A75FF" stroke-width="4"/>' +
+      mot(430, 42, "ovocyte", { t: 20 }) +
+      mot(760, 150, "spermatozoïde", { t: 19, c: "#1A75FF" }) +
+      mot(435, 245, "deux pronoyaux", { t: 18 }) +
+      mot(500, 292, "fécondation : la diploïdie 2n est restaurée", { t: 17 })
+    );
+  },
+  moelle_fig(t, o) {
+    let s = "";
+    s += '<path d="M 120 55 L 250 55 Q 300 55 300 95 Q 300 125 270 140 Q 300 155 300 185 Q 300 225 250 225 L 120 225 Q 70 225 70 185 Q 70 155 100 140 Q 70 125 70 95 Q 70 55 120 55 Z" fill="#E8604C" fill-opacity=".18" stroke="currentColor" stroke-width="4"/>';
+    s += '<ellipse cx="185" cy="140" rx="62" ry="48" fill="#E8604C" fill-opacity=".55"/>';
+    s += mot(185, 268, "moelle osseuse rouge", { t: 19, c: "#E8604C" });
+    s += '<circle cx="430" cy="150" r="30" fill="#FFD83D" fill-opacity=".5" stroke="#B8860B" stroke-width="4"/>';
+    s += mot(430, 110, "cellule souche", { t: 19, c: "#B8860B" });
+    s += trait(330, 140, 398, 140, prog(t), { c: "#B8860B", w: 4 });
+    s += pointe(402, 140, 0, "#B8860B");
+    s += trait(462, 132, 610, 72, prog(t), { c: "#1A75FF", w: 4 });
+    s += pointe(614, 70, -28, "#1A75FF");
+    s += trait(462, 168, 610, 228, prog(t), { c: "#10B981", w: 4 });
+    s += pointe(614, 230, 28, "#10B981");
+    s += mot(800, 72, "lignée lymphoïde : B, T", { t: 19, c: "#1A75FF" });
+    s += mot(812, 230, "lignée myéloïde : phagocytes", { t: 19, c: "#10B981" });
+    return svgBoite(s);
+  },
+  organes_lymphoides_fig(t, o) {
+    let s = "";
+    s += '<circle cx="430" cy="42" r="28" fill="none" stroke="currentColor" stroke-width="4"/>';
+    s += trait(430, 70, 430, 215, prog(t), { w: 4 });
+    s += trait(430, 95, 365, 135, prog(t), { w: 4 });
+    s += trait(430, 95, 495, 135, prog(t), { w: 4 });
+    s += trait(430, 215, 400, 285, prog(t), { w: 4 });
+    s += trait(430, 215, 460, 285, prog(t), { w: 4 });
+    s += '<circle cx="430" cy="118" r="9" fill="#E8604C"/>';
+    s += '<circle cx="402" cy="78" r="7" fill="#1A75FF"/>';
+    s += '<circle cx="378" cy="128" r="7" fill="#1A75FF"/>';
+    s += '<circle cx="482" cy="128" r="7" fill="#1A75FF"/>';
+    s += '<circle cx="468" cy="168" r="10" fill="#10B981"/>';
+    s += '<circle cx="438" cy="248" r="7" fill="#E8604C"/>';
+    s += mot(560, 118, "thymus", { t: 19, a: "start", c: "#E8604C" });
+    s += mot(250, 80, "ganglions", { t: 19, a: "end", c: "#1A75FF" });
+    s += mot(560, 168, "rate", { t: 19, a: "start", c: "#10B981" });
+    s += mot(560, 248, "moelle (os)", { t: 19, a: "start", c: "#E8604C" });
+    s += trait(440, 118, 552, 118, prog(t), { w: 2, c: "#E8604C" });
+    s += trait(410, 78, 258, 78, prog(t), { w: 2, c: "#1A75FF" });
+    s += trait(478, 168, 552, 168, prog(t), { w: 2, c: "#10B981" });
+    s += trait(445, 248, 552, 248, prog(t), { w: 2, c: "#E8604C" });
+    return svgBoite(s + mot(500, 20, "centraux : production ; périphériques : rencontre", { t: 18 }));
+  },
+  cmh_fig(t, o) {
+    let s = "";
+    s += trait(40, 190, 960, 190, prog(t), { w: 6 });
+    s += trait(40, 204, 960, 204, prog(t), { w: 3, tiret: "8 6" });
+    s += mot(500, 232, "membrane de la cellule", { t: 18 });
+    s += '<rect x="215" y="130" width="18" height="60" fill="#1A75FF"/>';
+    s += '<rect x="252" y="130" width="18" height="60" fill="#1A75FF"/>';
+    s += trait(215, 130, 270, 130, prog(t), { w: 5, c: "#1A75FF" });
+    s += '<circle cx="242" cy="118" r="11" fill="#E8604C"/>';
+    s += mot(242, 92, "peptide", { t: 18, c: "#E8604C" });
+    s += mot(242, 268, "classe I : toutes les cellules", { t: 19, c: "#1A75FF" });
+    s += '<rect x="695" y="130" width="18" height="60" fill="#10B981"/>';
+    s += '<rect x="745" y="130" width="18" height="60" fill="#10B981"/>';
+    s += '<path d="M 695 130 Q 729 105 763 130" fill="none" stroke="#10B981" stroke-width="5"/>';
+    s += '<circle cx="729" cy="118" r="11" fill="#E8604C"/>';
+    s += '<path d="M 700 62 L 718 88 M 758 62 L 740 88" stroke="#B8860B" stroke-width="5" fill="none"/>';
+    s += '<circle cx="729" cy="52" r="16" fill="none" stroke="#B8860B" stroke-width="4"/>';
+    s += mot(729, 24, "récepteur T", { t: 18, c: "#B8860B" });
+    s += mot(729, 268, "classe II : les présentatrices", { t: 19, c: "#10B981" });
+    return svgBoite(s);
+  },
+  bcr_tcr_fig(t, o) {
+    let s = "";
+    s += '<circle cx="210" cy="145" r="62" fill="#1A75FF" fill-opacity=".12" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(210, 150, "B", { t: 24, c: "#1A75FF" });
+    s += trait(158, 102, 138, 76, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(138, 76, 124, 60, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(138, 76, 152, 60, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(262, 102, 282, 76, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(282, 76, 268, 60, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(282, 76, 296, 60, prog(t), { w: 4, c: "#1A75FF" });
+    s += '<polygon points="138,28 146,44 162,44 150,54 154,70 138,60 122,70 126,54 114,44 130,44" fill="#E8604C"/>';
+    s += mot(255, 268, "BCR : l’antigène natif, direct", { t: 18, c: "#1A75FF" });
+    s += '<rect x="610" y="185" width="240" height="55" fill="currentColor" fill-opacity=".15" stroke="currentColor" stroke-width="3"/>';
+    s += '<rect x="705" y="150" width="16" height="35" fill="#10B981"/>';
+    s += '<rect x="739" y="150" width="16" height="35" fill="#10B981"/>';
+    s += '<circle cx="730" cy="142" r="9" fill="#E8604C"/>';
+    s += '<circle cx="730" cy="105" r="55" fill="#B8860B" fill-opacity=".12" stroke="#B8860B" stroke-width="4"/>';
+    s += mot(730, 110, "T", { t: 24, c: "#B8860B" });
+    s += trait(714, 148, 722, 132, prog(t), { w: 4, c: "#B8860B" });
+    s += trait(746, 148, 738, 132, prog(t), { w: 4, c: "#B8860B" });
+    s += mot(730, 268, "TCR : le peptide présenté", { t: 19, c: "#B8860B" });
+    s += mot(730, 222, "CMH", { t: 17, c: "#10B981" });
+    return svgBoite(s);
+  },
+  inflammation_fig(t, o) {
+    let s = "";
+    s += '<path d="M 40 92 L 960 92 L 960 168 L 40 168 Z" fill="#E8604C" fill-opacity=".22" stroke="#E8604C" stroke-width="6"/>';
+    s += '<circle cx="180" cy="130" r="17" fill="#E8604C" fill-opacity=".6"/>';
+    s += '<circle cx="300" cy="130" r="17" fill="#E8604C" fill-opacity=".6"/>';
+    s += '<circle cx="760" cy="130" r="17" fill="#E8604C" fill-opacity=".6"/>';
+    s += '<circle cx="500" cy="150" r="26" fill="#FFD83D" fill-opacity=".55" stroke="#B8860B" stroke-width="4"/>';
+    s += '<circle cx="500" cy="150" r="10" fill="#B8860B" fill-opacity=".5"/>';
+    s += trait(500, 178, 500, 218, prog(t), { w: 4, c: "#B8860B" });
+    s += pointe(500, 222, 90, "#B8860B");
+    s += '<circle cx="430" cy="248" r="10" fill="#10B981"/>';
+    s += '<circle cx="500" cy="258" r="10" fill="#10B981"/>';
+    s += '<circle cx="570" cy="248" r="10" fill="#10B981"/>';
+    s += mot(180, 62, "vasodilatation", { t: 20, c: "#E8604C" });
+    s += trait(230, 68, 300, 88, prog(t), { w: 3, c: "#E8604C" });
+    s += mot(760, 210, "les phagocytes arrivent", { t: 19, c: "#B8860B" });
+    return svgBoite(s + mot(500, 292, "rougeur, chaleur, œdème, douleur", { t: 20 }));
+  },
+  phagocytose_fig(t, o) {
+    let s = "";
+    s += '<circle cx="135" cy="135" r="58" fill="#1A75FF" fill-opacity=".10" stroke="#1A75FF" stroke-width="4"/>';
+    s += '<circle cx="205" cy="110" r="13" fill="#E8604C"/>';
+    s += '<circle cx="375" cy="135" r="58" fill="#1A75FF" fill-opacity=".10" stroke="#1A75FF" stroke-width="4"/>';
+    s += '<path d="M 330 105 Q 375 80 395 118" fill="none" stroke="#1A75FF" stroke-width="5"/>';
+    s += '<path d="M 330 165 Q 375 190 395 152" fill="none" stroke="#1A75FF" stroke-width="5"/>';
+    s += '<circle cx="375" cy="135" r="14" fill="#E8604C"/>';
+    s += '<circle cx="615" cy="135" r="58" fill="#1A75FF" fill-opacity=".10" stroke="#1A75FF" stroke-width="4"/>';
+    s += '<circle cx="615" cy="135" r="30" fill="none" stroke="#B8860B" stroke-width="4"/>';
+    s += '<circle cx="615" cy="135" r="13" fill="#E8604C"/>';
+    s += '<circle cx="855" cy="135" r="58" fill="#1A75FF" fill-opacity=".10" stroke="#1A75FF" stroke-width="4"/>';
+    s += '<circle cx="840" cy="125" r="6" fill="#E8604C"/>';
+    s += '<circle cx="862" cy="142" r="5" fill="#E8604C"/>';
+    s += '<circle cx="848" cy="152" r="4" fill="#E8604C"/>';
+    s += '<circle cx="870" cy="122" r="4" fill="#E8604C"/>';
+    s += trait(205, 135, 292, 135, prog(t), { w: 4 });
+    s += pointe(296, 135, 0, "currentColor");
+    s += trait(445, 135, 532, 135, prog(t), { w: 4 });
+    s += pointe(536, 135, 0, "currentColor");
+    s += trait(685, 135, 772, 135, prog(t), { w: 4 });
+    s += pointe(776, 135, 0, "currentColor");
+    s += mot(135, 238, "adhésion", { t: 20 });
+    s += mot(375, 238, "ingestion", { t: 20 });
+    s += mot(615, 238, "digestion", { t: 20 });
+    s += mot(855, 238, "rejet", { t: 20 });
+    s += mot(500, 42, "la phagocytose, en 4 temps", { t: 20 });
+    return svgBoite(s);
+  },
+  anticorps_fig(t, o) {
+    let s = "";
+    s += '<ellipse cx="320" cy="135" rx="72" ry="50" fill="#E8604C" fill-opacity=".3" stroke="#E8604C" stroke-width="4"/>';
+    s += mot(320, 140, "bactérie", { t: 18, c: "#E8604C" });
+    s += trait(262, 98, 244, 72, prog(t), { w: 4, c: "#10B981" });
+    s += trait(244, 72, 232, 56, prog(t), { w: 4, c: "#10B981" });
+    s += trait(244, 72, 258, 58, prog(t), { w: 4, c: "#10B981" });
+    s += trait(378, 98, 396, 72, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(396, 72, 384, 56, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(396, 72, 410, 58, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(320, 185, 320, 214, prog(t), { w: 4, c: "#10B981" });
+    s += trait(320, 214, 306, 228, prog(t), { w: 4, c: "#10B981" });
+    s += trait(320, 214, 334, 228, prog(t), { w: 4, c: "#10B981" });
+    s += '<ellipse cx="660" cy="115" rx="48" ry="34" fill="#E8604C" fill-opacity=".3" stroke="#E8604C" stroke-width="3"/>';
+    s += '<ellipse cx="730" cy="150" rx="48" ry="34" fill="#E8604C" fill-opacity=".3" stroke="#E8604C" stroke-width="3"/>';
+    s += '<ellipse cx="655" cy="168" rx="48" ry="34" fill="#E8604C" fill-opacity=".3" stroke="#E8604C" stroke-width="3"/>';
+    s += trait(690, 128, 706, 142, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(672, 150, 668, 132, prog(t), { w: 4, c: "#10B981" });
+    s += mot(200, 268, "neutraliser", { t: 19, c: "#10B981" });
+    s += mot(500, 268, "agglutiner", { t: 19, c: "#1A75FF" });
+    s += mot(800, 268, "opsoniser", { t: 19, c: "#B8860B" });
+    s += mot(500, 36, "les anticorps en Y marquent la cible", { t: 20 });
+    return svgBoite(s);
+  },
+  cytotoxique_fig(t, o) {
+    let s = "";
+    s += '<circle cx="270" cy="145" r="82" fill="#E8604C" fill-opacity=".12" stroke="#E8604C" stroke-width="4"/>';
+    s += '<circle cx="240" cy="120" r="10" fill="#E8604C"/>';
+    s += '<circle cx="295" cy="150" r="10" fill="#E8604C"/>';
+    s += '<circle cx="255" cy="175" r="10" fill="#E8604C"/>';
+    s += mot(270, 262, "cellule infectée", { t: 19, c: "#E8604C" });
+    s += '<circle cx="440" cy="145" r="46" fill="#1A75FF" fill-opacity=".15" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(440, 150, "T", { t: 24, c: "#1A75FF" });
+    s += '<circle cx="382" cy="128" r="6" fill="#E8604C"/>';
+    s += '<circle cx="390" cy="152" r="6" fill="#E8604C"/>';
+    s += '<circle cx="378" cy="168" r="6" fill="#E8604C"/>';
+    s += mot(440, 52, "perforines et granzymes", { t: 19, c: "#E8604C" });
+    s += trait(430, 60, 392, 118, prog(t), { w: 2, c: "#E8604C" });
+    s += trait(500, 145, 592, 145, prog(t), { w: 4 });
+    s += pointe(596, 145, 0, "currentColor");
+    s += '<path d="M 700 85 L 745 110 L 720 140 L 760 160 L 725 205 L 690 168 L 660 190 L 668 140 L 645 112 Z" fill="#E8604C" fill-opacity=".15" stroke="#E8604C" stroke-width="4"/>';
+    s += mot(705, 262, "apoptose", { t: 20, c: "#E8604C" });
+    return svgBoite(s);
+  },
+  memoire_immunitaire_fig(t, o) {
+    let s = "";
+    s += trait(120, 250, 920, 250, prog(t), { w: 4 });
+    s += pointe(920, 250, 0, "currentColor");
+    s += trait(120, 250, 120, 35, prog(t), { w: 4 });
+    s += pointe(120, 35, -90, "currentColor");
+    s += mot(940, 254, "temps", { t: 19, a: "start" });
+    s += mot(100, 28, "anticorps", { t: 19, a: "end" });
+    s += '<polyline points="130,242 260,232 400,214 540,204 640,200" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>';
+    s += '<polyline points="560,242 610,120 660,62 760,58 880,78" fill="none" stroke="#10B981" stroke-width="5" stroke-linejoin="round"/>';
+    s += trait(560, 250, 560, 90, prog(t), { w: 2, tiret: "7 6" });
+    s += mot(340, 182, "réponse primaire", { t: 19, c: "#1A75FF" });
+    s += mot(770, 40, "réponse secondaire", { t: 19, c: "#10B981" });
+    s += mot(560, 272, "2e contact", { t: 17 });
+    return svgBoite(s);
+  },
+  vaccin_fig(t, o) {
+    let s = "";
+    s += trait(120, 70, 300, 170, prog(t), { w: 10, c: "#1A75FF" });
+    s += '<rect x="92" y="42" width="70" height="34" rx="8" fill="none" stroke="#1A75FF" stroke-width="4" transform="rotate(48 127 59)"/>';
+    s += trait(300, 170, 348, 200, prog(t), { w: 3 });
+    s += pointe(352, 202, 48, "currentColor");
+    s += mot(150, 232, "seringue", { t: 19, c: "#1A75FF" });
+    s += '<polygon points="430,92 440,112 462,112 446,126 452,148 430,136 408,148 414,126 398,112 420,112" fill="#FFD83D" stroke="#B8860B" stroke-width="3"/>';
+    s += trait(402, 92, 458, 150, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(458, 92, 402, 150, prog(t), { w: 4, c: "#E8604C" });
+    s += mot(430, 182, "antigène atténué", { t: 18, c: "#B8860B" });
+    s += trait(478, 125, 612, 125, prog(t), { w: 4 });
+    s += pointe(616, 125, 0, "currentColor");
+    s += '<circle cx="730" cy="125" r="52" fill="#10B981" fill-opacity=".15" stroke="#10B981" stroke-width="4"/>';
+    s += '<polygon points="730,92 737,108 754,108 741,118 746,134 730,124 714,134 719,118 706,108 723,108" fill="#10B981"/>';
+    s += mot(730, 208, "cellule mémoire", { t: 19, c: "#10B981" });
+    return svgBoite(s + mot(500, 278, "un antigène sans la maladie", { t: 20 }));
+  },
+  vih_fig(t, o) {
+    let s = "";
+    s += '<circle cx="270" cy="140" r="58" fill="#E8604C" fill-opacity=".18" stroke="#E8604C" stroke-width="4"/>';
+    s += trait(270, 82, 270, 58, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(322, 102, 340, 84, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(328, 140, 354, 140, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(322, 178, 340, 196, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(270, 198, 270, 222, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(218, 178, 200, 196, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(212, 140, 186, 140, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(218, 102, 200, 84, prog(t), { w: 4, c: "#E8604C" });
+    s += '<circle cx="270" cy="52" r="8" fill="#E8604C"/>';
+    s += '<circle cx="346" cy="78" r="8" fill="#E8604C"/>';
+    s += '<circle cx="360" cy="140" r="8" fill="#E8604C"/>';
+    s += '<circle cx="270" cy="228" r="8" fill="#E8604C"/>';
+    s += '<circle cx="180" cy="140" r="8" fill="#E8604C"/>';
+    s += mot(270, 140, "VIH", { t: 24, c: "#E8604C" });
+    s += trait(380, 140, 542, 140, prog(t), { w: 5, c: "#E8604C" });
+    s += pointe(546, 140, 0, "#E8604C");
+    s += '<circle cx="660" cy="140" r="62" fill="#1A75FF" fill-opacity=".12" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(660, 132, "lymphocyte T4", { t: 19, c: "#1A75FF" });
+    s += mot(660, 160, "(CD4)", { t: 19, c: "#1A75FF" });
+    return svgBoite(s + mot(500, 278, "il infecte les coordinateurs de la défense", { t: 19 }));
+  },
+  autoimmun_fig(t, o) {
+    let s = "";
+    s += '<circle cx="470" cy="125" r="30" fill="#FFD83D" fill-opacity=".45" stroke="#B8860B" stroke-width="3"/>';
+    s += '<circle cx="525" cy="125" r="30" fill="#FFD83D" fill-opacity=".45" stroke="#B8860B" stroke-width="3"/>';
+    s += '<circle cx="497" cy="168" r="30" fill="#FFD83D" fill-opacity=".45" stroke="#B8860B" stroke-width="3"/>';
+    s += '<circle cx="445" cy="168" r="26" fill="#FFD83D" fill-opacity=".45" stroke="#B8860B" stroke-width="3"/>';
+    s += '<circle cx="550" cy="168" r="26" fill="#FFD83D" fill-opacity=".45" stroke="#B8860B" stroke-width="3"/>';
+    s += '<circle cx="330" cy="100" r="30" fill="#1A75FF" fill-opacity=".15" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(330, 105, "T", { t: 20, c: "#1A75FF" });
+    s += trait(362, 108, 428, 122, prog(t), { w: 4, c: "#1A75FF" });
+    s += pointe(432, 123, 18, "#1A75FF");
+    s += '<circle cx="665" cy="100" r="30" fill="#1A75FF" fill-opacity=".15" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(665, 105, "B", { t: 20, c: "#1A75FF" });
+    s += trait(633, 108, 568, 122, prog(t), { w: 4, c: "#E8604C" });
+    s += pointe(564, 123, 162, "#E8604C");
+    s += trait(610, 72, 596, 52, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(596, 52, 584, 38, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(596, 52, 610, 40, prog(t), { w: 4, c: "#E8604C" });
+    s += mot(500, 42, "le soi pris pour du non-soi", { t: 21, c: "#E8604C" });
+    return svgBoite(s + mot(500, 262, "exemple : les cellules bêta du pancréas", { t: 18 }));
+  },
+  allergie_fig(t, o) {
+    let s = "";
+    s += '<circle cx="260" cy="135" r="52" fill="#FFD83D" fill-opacity=".5" stroke="#B8860B" stroke-width="4"/>';
+    s += trait(260, 83, 260, 62, prog(t), { w: 3, c: "#B8860B" });
+    s += trait(300, 102, 316, 86, prog(t), { w: 3, c: "#B8860B" });
+    s += trait(312, 135, 334, 135, prog(t), { w: 3, c: "#B8860B" });
+    s += trait(300, 168, 316, 184, prog(t), { w: 3, c: "#B8860B" });
+    s += trait(220, 168, 204, 184, prog(t), { w: 3, c: "#B8860B" });
+    s += trait(208, 135, 186, 135, prog(t), { w: 3, c: "#B8860B" });
+    s += trait(220, 102, 204, 86, prog(t), { w: 3, c: "#B8860B" });
+    s += mot(260, 232, "pollen", { t: 20, c: "#B8860B" });
+    s += trait(330, 135, 452, 135, prog(t), { w: 4 });
+    s += pointe(456, 135, 0, "currentColor");
+    s += '<circle cx="620" cy="140" r="66" fill="#E8604C" fill-opacity=".12" stroke="#E8604C" stroke-width="4"/>';
+    s += mot(620, 145, "mastocyte", { t: 18, c: "#E8604C" });
+    s += trait(576, 92, 560, 68, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(560, 68, 548, 54, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(560, 68, 574, 56, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(664, 92, 680, 68, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(680, 68, 668, 54, prog(t), { w: 4, c: "#1A75FF" });
+    s += trait(680, 68, 694, 56, prog(t), { w: 4, c: "#1A75FF" });
+    s += '<circle cx="740" cy="100" r="7" fill="#E8604C"/>';
+    s += '<circle cx="762" cy="140" r="7" fill="#E8604C"/>';
+    s += '<circle cx="738" cy="182" r="7" fill="#E8604C"/>';
+    s += '<circle cx="712" cy="72" r="6" fill="#E8604C"/>';
+    s += mot(810, 140, "histamine", { t: 20, c: "#E8604C" });
+    s += trait(770, 140, 742, 140, prog(t), { w: 2, c: "#E8604C" });
+    return svgBoite(s);
+  },
+  greffe_fig(t, o) {
+    let s = "";
+    s += '<path d="M 500 62 Q 585 62 585 140 Q 585 218 500 218 Q 448 218 448 168 Q 448 140 472 140 Q 448 140 448 112 Q 448 62 500 62 Z" fill="#E8604C" fill-opacity=".25" stroke="#E8604C" stroke-width="4"/>';
+    s += mot(517, 145, "rein", { t: 20, c: "#E8604C" });
+    s += mot(500, 262, "greffon : du non-soi", { t: 20, c: "#E8604C" });
+    s += '<circle cx="330" cy="90" r="30" fill="#1A75FF" fill-opacity=".15" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(330, 95, "T", { t: 20, c: "#1A75FF" });
+    s += trait(362, 100, 438, 122, prog(t), { w: 4, c: "#1A75FF" });
+    s += pointe(442, 123, 24, "#1A75FF");
+    s += '<circle cx="670" cy="90" r="30" fill="#1A75FF" fill-opacity=".15" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(670, 95, "T", { t: 20, c: "#1A75FF" });
+    s += trait(638, 100, 592, 118, prog(t), { w: 4, c: "#1A75FF" });
+    s += pointe(588, 119, 156, "#1A75FF");
+    s += '<circle cx="330" cy="195" r="30" fill="#1A75FF" fill-opacity=".15" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(330, 200, "T", { t: 20, c: "#1A75FF" });
+    s += trait(362, 188, 438, 168, prog(t), { w: 4, c: "#1A75FF" });
+    s += pointe(442, 167, -24, "#1A75FF");
+    s += '<circle cx="670" cy="195" r="30" fill="#1A75FF" fill-opacity=".15" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(670, 200, "T", { t: 20, c: "#1A75FF" });
+    s += trait(638, 188, 592, 172, prog(t), { w: 4, c: "#1A75FF" });
+    s += pointe(588, 171, -156, "#1A75FF");
+    return svgBoite(s + mot(500, 32, "le rejet de greffe", { t: 21 }));
+  },
+  equilibre_alimentaire_fig(t, o) {
+    let s = "";
+    s += trait(500, 62, 500, 190, prog(t), { w: 6 });
+    s += '<polygon points="500,190 462,232 538,232" fill="currentColor" fill-opacity=".7"/>';
+    s += trait(220, 232, 780, 232, prog(t), { w: 5 });
+    s += trait(250, 78, 750, 78, prog(t), { w: 6 });
+    s += '<circle cx="500" cy="70" r="10" fill="currentColor"/>';
+    s += trait(250, 78, 218, 122, prog(t), { w: 3 });
+    s += trait(250, 78, 282, 122, prog(t), { w: 3 });
+    s += '<path d="M 192 122 Q 250 158 308 122 Z" fill="#1A75FF" fill-opacity=".25" stroke="#1A75FF" stroke-width="4"/>';
+    s += trait(750, 78, 718, 122, prog(t), { w: 3 });
+    s += trait(750, 78, 782, 122, prog(t), { w: 3 });
+    s += '<path d="M 692 122 Q 750 158 808 122 Z" fill="#10B981" fill-opacity=".25" stroke="#10B981" stroke-width="4"/>';
+    s += mot(250, 182, "apports", { t: 20, c: "#1A75FF" });
+    s += mot(750, 182, "besoins", { t: 20, c: "#10B981" });
+    s += mot(185, 272, "trop peu : carence", { t: 18, c: "#E8604C" });
+    s += mot(500, 272, "juste assez : équilibre", { t: 18 });
+    s += mot(815, 272, "trop : excès", { t: 18, c: "#B8860B" });
+    return svgBoite(s);
+  },
+  rachitisme_fig(t, o) {
+    let s = "";
+    s += '<circle cx="130" cy="52" r="24" fill="#FFD83D" fill-opacity=".45" stroke="#B8860B" stroke-width="3"/>';
+    s += trait(130, 14, 130, 24, prog(t), { w: 3, c: "#B8860B" });
+    s += trait(92, 52, 102, 52, prog(t), { w: 3, c: "#B8860B" });
+    s += trait(168, 52, 158, 52, prog(t), { w: 3, c: "#B8860B" });
+    s += trait(103, 25, 110, 32, prog(t), { w: 3, c: "#B8860B" });
+    s += trait(157, 25, 150, 32, prog(t), { w: 3, c: "#B8860B" });
+    s += mot(130, 102, "soleil faible", { t: 17, c: "#B8860B" });
+    s += '<circle cx="500" cy="48" r="27" fill="none" stroke="currentColor" stroke-width="4"/>';
+    s += trait(500, 75, 500, 155, prog(t), { w: 5 });
+    s += trait(500, 95, 445, 130, prog(t), { w: 4 });
+    s += trait(500, 95, 555, 130, prog(t), { w: 4 });
+    s += '<path d="M 492 155 Q 415 200 455 275" fill="none" stroke="currentColor" stroke-width="6"/>';
+    s += '<path d="M 508 155 Q 585 200 545 275" fill="none" stroke="currentColor" stroke-width="6"/>';
+    s += mot(500, 130, "", { t: 18 });
+    return svgBoite(s + mot(640, 278, "manque de vitamine D et de calcium", { t: 19, c: "#E8604C" }));
+  },
+  axe_hpg_fig(t, o) {
+    const femme = o && o.femme;
+    const gonade = femme ? "ovaire : œstrogènes, progestérone" : "testicule : testostérone";
+    let s = "";
+    s += '<rect x="320" y="28" width="360" height="52" rx="10" fill="#1A75FF" fill-opacity=".14" stroke="#1A75FF" stroke-width="3"/>';
+    s += mot(500, 62, "hypothalamus : GnRH", { t: 20, c: "#1A75FF" });
+    s += trait(500, 80, 500, 108, prog(t), { w: 4 });
+    s += pointe(500, 112, 90, "currentColor");
+    s += '<rect x="320" y="114" width="360" height="52" rx="10" fill="#10B981" fill-opacity=".14" stroke="#10B981" stroke-width="3"/>';
+    s += mot(500, 148, "hypophyse : LH et FSH", { t: 20, c: "#10B981" });
+    s += trait(500, 166, 500, 194, prog(t), { w: 4 });
+    s += pointe(500, 198, 90, "currentColor");
+    s += '<rect x="290" y="200" width="420" height="52" rx="10" fill="#B8860B" fill-opacity=".14" stroke="#B8860B" stroke-width="3"/>';
+    s += mot(500, 234, gonade, { t: 18, c: "#B8860B" });
+    s += trait(770, 226, 770, 54, prog(t), { w: 5, c: "#E8604C" });
+    s += pointe(770, 50, -90, "#E8604C");
+    s += trait(710, 226, 770, 226, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(680, 54, 770, 54, prog(t), { w: 4, c: "#E8604C" });
+    s += mot(792, 130, "−", { t: 30, a: "start", c: "#E8604C" });
+    s += mot(792, 168, "rétrocontrôle", { t: 18, a: "start", c: "#E8604C" });
+    s += mot(792, 194, "négatif", { t: 18, a: "start", c: "#E8604C" });
+    return svgBoite(s);
+  },
+  cycle_menstruel_fig(t, o) {
+    let s = "";
+    s += '<polyline points="100,168 220,160 340,150 430,92 470,72 500,150 560,168 880,168" fill="none" stroke="#E8604C" stroke-width="4" stroke-linejoin="round"/>';
+    s += '<polyline points="100,172 480,172 560,168 640,120 720,108 800,128 880,166" fill="none" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>';
+    s += mot(250, 62, "œstrogènes", { t: 18, c: "#E8604C" });
+    s += mot(730, 78, "progestérone", { t: 18, c: "#1A75FF" });
+    s += '<rect x="100" y="198" width="370" height="42" fill="#1A75FF" fill-opacity=".22" stroke="#1A75FF" stroke-width="3"/>';
+    s += '<rect x="470" y="198" width="30" height="42" fill="#E8604C" fill-opacity=".5" stroke="#E8604C" stroke-width="3"/>';
+    s += '<rect x="500" y="198" width="400" height="42" fill="#10B981" fill-opacity=".22" stroke="#10B981" stroke-width="3"/>';
+    s += mot(285, 226, "phase folliculaire", { t: 18, c: "#1A75FF" });
+    s += mot(700, 226, "phase lutéale", { t: 18, c: "#10B981" });
+    s += mot(485, 188, "ovulation : jour 14", { t: 18, c: "#E8604C" });
+    s += trait(485, 198, 485, 178, prog(t), { w: 3, c: "#E8604C" });
+    s += mot(100, 264, "jour 1", { t: 17, a: "start" });
+    s += mot(900, 264, "jour 28", { t: 17, a: "end" });
+    return svgBoite(s);
+  },
+  glycemie_fig(t, o) {
+    let s = "";
+    s += '<path d="M 380 118 L 620 118 L 620 182 L 380 182 Z" fill="#E8604C" fill-opacity=".18" stroke="#E8604C" stroke-width="4"/>';
+    s += mot(500, 144, "glucose du sang", { t: 19, c: "#E8604C" });
+    s += mot(500, 168, "environ 1 g/L", { t: 18, c: "#E8604C" });
+    s += '<ellipse cx="175" cy="150" rx="72" ry="42" fill="#FFD83D" fill-opacity=".4" stroke="#B8860B" stroke-width="4"/>';
+    s += mot(175, 144, "pancréas", { t: 19, c: "#B8860B" });
+    s += mot(175, 168, "îlots", { t: 16, c: "#B8860B" });
+    s += trait(248, 128, 372, 128, prog(t), { w: 4, c: "#10B981" });
+    s += pointe(376, 128, 0, "#10B981");
+    s += mot(310, 108, "insuline : faire stocker", { t: 17, c: "#10B981" });
+    s += trait(372, 172, 248, 172, prog(t), { w: 4, c: "#E8604C" });
+    s += pointe(244, 172, 180, "#E8604C");
+    s += mot(310, 198, "glucagon : faire libérer", { t: 17, c: "#E8604C" });
+    s += '<path d="M 760 105 Q 845 95 860 140 Q 845 195 775 188 Q 735 182 738 145 Q 740 112 760 105 Z" fill="#10B981" fill-opacity=".2" stroke="#10B981" stroke-width="4"/>';
+    s += mot(800, 138, "foie", { t: 20, c: "#10B981" });
+    s += mot(800, 164, "stocke ou libère", { t: 16, c: "#10B981" });
+    s += trait(620, 150, 732, 150, prog(t), { w: 3, tiret: "7 6" });
+    return svgBoite(s + mot(500, 272, "le glucose est régulé en permanence", { t: 19 }));
+  },
+  courbe_glycemie_fig(t, o) {
+    let s = "";
+    s += trait(120, 252, 920, 252, prog(t), { w: 4 });
+    s += pointe(920, 252, 0, "currentColor");
+    s += trait(120, 252, 120, 30, prog(t), { w: 4 });
+    s += pointe(120, 30, -90, "currentColor");
+    s += mot(90, 36, "glycémie (g/L)", { t: 17, a: "end" });
+    s += mot(940, 256, "temps", { t: 18, a: "start" });
+    s += trait(120, 161, 900, 161, prog(t), { w: 2, tiret: "7 6", c: "#B8860B" });
+    s += trait(120, 116, 900, 116, prog(t), { w: 2, tiret: "7 6", c: "#B8860B" });
+    s += mot(132, 154, "0,7", { t: 17, a: "start", c: "#B8860B" });
+    s += mot(132, 109, "1,1", { t: 17, a: "start", c: "#B8860B" });
+    s += mot(905, 138, "zone normale", { t: 16, a: "start", c: "#B8860B" });
+    s += '<polyline points="130,139 300,139 380,132 450,71 540,88 660,122 800,128 900,128" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>';
+    s += mot(450, 52, "1,5 après le repas", { t: 18, c: "#E8604C" });
+    s += mot(250, 122, "0,9 à jeun", { t: 17 });
+    s += mot(760, 106, "retour en 2 à 3 h", { t: 17, c: "#10B981" });
+    s += trait(360, 210, 360, 252, prog(t), { w: 2, tiret: "6 5" });
+    s += mot(360, 272, "repas", { t: 17 });
+    return svgBoite(s);
+  },
+  tensiometre_fig(t, o) {
+    let s = "";
+    s += '<rect x="90" y="128" width="430" height="44" rx="20" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-width="3"/>';
+    s += '<rect x="285" y="102" width="130" height="96" rx="12" fill="#1A75FF" fill-opacity=".3" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(350, 156, "brassard", { t: 18, c: "#1A75FF" });
+    s += '<circle cx="350" cy="222" r="17" fill="none" stroke="currentColor" stroke-width="4"/>';
+    s += trait(350, 198, 350, 205, prog(t), { w: 3 });
+    s += mot(350, 272, "bruits de Korotkoff", { t: 18 });
+    s += '<path d="M 415 130 Q 560 90 640 118" fill="none" stroke="currentColor" stroke-width="4"/>';
+    s += '<circle cx="730" cy="140" r="68" fill="white" fill-opacity=".4" stroke="currentColor" stroke-width="4"/>';
+    s += trait(730, 140, 762, 96, prog(t), { w: 4, c: "#E8604C" });
+    s += pointe(764, 94, -54, "#E8604C");
+    s += '<circle cx="730" cy="140" r="7" fill="currentColor"/>';
+    s += trait(682, 104, 690, 114, prog(t), { w: 3 });
+    s += trait(730, 76, 730, 88, prog(t), { w: 3 });
+    s += trait(778, 104, 770, 114, prog(t), { w: 3 });
+    s += mot(798, 92, "12", { t: 22, c: "#E8604C" });
+    s += mot(730, 238, "manomètre", { t: 19 });
+    s += mot(150, 100, "bras", { t: 18 });
+    return svgBoite(s);
+  },
+  appareil_repro_fig(t, o) {
+    let s = "";
+    s += trait(500, 28, 500, 272, prog(t), { w: 2, tiret: "8 6" });
+    s += mot(250, 32, "chez l’homme", { t: 20, c: "#1A75FF" });
+    s += '<ellipse cx="180" cy="215" rx="42" ry="30" fill="#1A75FF" fill-opacity=".18" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(180, 268, "testicule", { t: 17, c: "#1A75FF" });
+    s += '<path d="M 222 200 Q 258 185 248 160 Q 240 142 222 148" fill="none" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(310, 148, "épididyme", { t: 16, c: "#1A75FF" });
+    s += trait(235, 195, 300, 110, prog(t), { w: 4, c: "#1A75FF" });
+    s += mot(345, 102, "canal déférent", { t: 16, c: "#1A75FF" });
+    s += trait(300, 110, 385, 110, prog(t), { w: 5 });
+    s += trait(300, 122, 385, 122, prog(t), { w: 3, tiret: "6 5" });
+    s += mot(390, 140, "urètre", { t: 16 });
+    s += mot(750, 32, "chez la femme", { t: 20, c: "#E8604C" });
+    s += '<ellipse cx="640" cy="105" rx="34" ry="24" fill="#E8604C" fill-opacity=".2" stroke="#E8604C" stroke-width="4"/>';
+    s += mot(640, 66, "ovaire", { t: 17, c: "#E8604C" });
+    s += '<path d="M 674 100 Q 740 72 782 108" fill="none" stroke="#E8604C" stroke-width="5"/>';
+    s += mot(760, 62, "trompe", { t: 17, c: "#E8604C" });
+    s += '<path d="M 760 108 L 800 108 L 792 185 L 728 185 L 720 108 Z" fill="#E8604C" fill-opacity=".15" stroke="#E8604C" stroke-width="4"/>';
+    s += mot(760, 150, "utérus", { t: 17, c: "#E8604C" });
+    s += trait(760, 185, 760, 232, prog(t), { w: 4, c: "#E8604C" });
+    s += mot(760, 256, "vagin", { t: 16, c: "#E8604C" });
+    return svgBoite(s);
+  },
+  pma_fig(t, o) {
+    let s = "";
+    s += '<circle cx="500" cy="148" r="118" fill="white" fill-opacity=".35" stroke="currentColor" stroke-width="4"/>';
+    s += '<circle cx="500" cy="148" r="48" fill="#FFD83D" fill-opacity=".4" stroke="#B8860B" stroke-width="4"/>';
+    s += '<circle cx="500" cy="148" r="18" fill="#B8860B" fill-opacity=".4"/>';
+    s += mot(500, 152, "", { t: 16 });
+    s += trait(120, 105, 438, 138, prog(t), { w: 9, c: "#1A75FF" });
+    s += mot(180, 78, "pipette de maintien", { t: 17, c: "#1A75FF" });
+    s += trait(880, 105, 552, 144, prog(t), { w: 3, c: "#E8604C" });
+    s += pointe(548, 145, 174, "#E8604C");
+    s += '<ellipse cx="565" cy="143" rx="10" ry="6" fill="#E8604C"/>';
+    s += mot(820, 78, "aiguille", { t: 17, c: "#E8604C" });
+    s += mot(500, 292, "ICSI : un spermatozoïde injecté", { t: 20 });
+    s += mot(830, 262, "fécondation in vitro", { t: 17, a: "end" });
+    s += mot(170, 262, "ovocyte", { t: 17, a: "start", c: "#B8860B" });
+    s += trait(300, 240, 452, 178, prog(t), { w: 2, c: "#B8860B" });
+    return svgBoite(s);
+  },
+  contraception_fig(t, o) {
+    let s = "";
+    if (o && o.barriere) {
+      s += '<path d="M 445 42 L 555 42 L 548 205 L 452 205 Z" fill="#1A75FF" fill-opacity=".15" stroke="#1A75FF" stroke-width="4"/>';
+      s += '<circle cx="500" cy="42" r="16" fill="none" stroke="#1A75FF" stroke-width="4"/>';
+      s += '<rect x="438" y="205" width="124" height="22" rx="10" fill="none" stroke="#1A75FF" stroke-width="4"/>';
+      s += mot(500, 262, "barrière : bloque les spermatozoïdes", { t: 18, c: "#1A75FF" });
+      s += mot(500, 288, "et les IST", { t: 18, c: "#1A75FF" });
+      s += mot(500, 22, "préservatif", { t: 20 });
+    } else {
+      s += '<rect x="130" y="62" width="250" height="160" rx="14" fill="white" fill-opacity=".4" stroke="currentColor" stroke-width="3"/>';
+      for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) s += '<circle cx="' + (172 + c * 56) + '" cy="' + (102 + r * 52) + '" r="17" fill="#FFD83D" fill-opacity=".5" stroke="#B8860B" stroke-width="2"/>';
+      s += '<circle cx="284" cy="154" r="24" fill="none" stroke="#E8604C" stroke-width="4"/>';
+      s += mot(255, 252, "plaquette de pilule", { t: 18 });
+      s += trait(400, 142, 592, 142, prog(t), { w: 4, c: "#E8604C" });
+      s += pointe(596, 142, 0, "#E8604C");
+      s += trait(490, 118, 520, 166, prog(t), { w: 5, c: "#E8604C" });
+      s += '<ellipse cx="700" cy="142" rx="58" ry="40" fill="#E8604C" fill-opacity=".15" stroke="#E8604C" stroke-width="4"/>';
+      s += mot(700, 147, "ovaire", { t: 19, c: "#E8604C" });
+      s += mot(500, 288, "la pilule bloque l’ovulation", { t: 19 });
+    }
+    return svgBoite(s);
+  },
+  spermatozoides_fig(t, o) {
+    let s = "";
+    s += '<ellipse cx="185" cy="72" rx="30" ry="19" fill="#1A75FF" fill-opacity=".3" stroke="#1A75FF" stroke-width="3"/>';
+    s += '<path d="M 215 72 Q 265 55 300 72 Q 335 89 375 72" fill="none" stroke="#1A75FF" stroke-width="4"/>';
+    s += '<ellipse cx="185" cy="142" rx="30" ry="19" fill="#1A75FF" fill-opacity=".3" stroke="#1A75FF" stroke-width="3"/>';
+    s += '<path d="M 215 142 Q 265 125 300 142 Q 335 159 375 142" fill="none" stroke="#1A75FF" stroke-width="4"/>';
+    s += '<ellipse cx="185" cy="212" rx="30" ry="19" fill="#1A75FF" fill-opacity=".3" stroke="#1A75FF" stroke-width="3"/>';
+    s += '<path d="M 215 212 Q 265 195 300 212 Q 335 229 375 212" fill="none" stroke="#1A75FF" stroke-width="4"/>';
+    s += mot(255, 272, "normaux", { t: 20, c: "#1A75FF" });
+    s += '<ellipse cx="665" cy="95" rx="24" ry="17" fill="#E8604C" fill-opacity=".3" stroke="#E8604C" stroke-width="3"/>';
+    s += '<ellipse cx="705" cy="95" rx="24" ry="17" fill="#E8604C" fill-opacity=".3" stroke="#E8604C" stroke-width="3"/>';
+    s += '<path d="M 729 95 Q 765 82 800 95" fill="none" stroke="#E8604C" stroke-width="4"/>';
+    s += trait(640, 62, 730, 132, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(730, 62, 640, 132, prog(t), { w: 4, c: "#E8604C" });
+    s += '<ellipse cx="685" cy="195" rx="28" ry="18" fill="#E8604C" fill-opacity=".3" stroke="#E8604C" stroke-width="3"/>';
+    s += trait(713, 195, 748, 195, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(648, 162, 738, 232, prog(t), { w: 4, c: "#E8604C" });
+    s += trait(738, 162, 648, 232, prog(t), { w: 4, c: "#E8604C" });
+    s += mot(720, 272, "anormaux", { t: 20, c: "#E8604C" });
+    s += mot(685, 42, "double tête, flagelle court", { t: 17, c: "#E8604C" });
+    return svgBoite(s);
+  },
+  neurone_fig(t, o) {
+    if (o && o.types) {
+      let corps = '';
+      const centres = [200, 500, 800];
+      for (const cx of centres) {
+        corps += trait(cx - 40, 110, cx - 85, 75, prog(t), { w: 3, c: '#1A75FF' });
+        corps += trait(cx - 45, 140, cx - 90, 140, prog(t), { w: 3, c: '#1A75FF' });
+        corps += trait(cx - 40, 170, cx - 85, 205, prog(t), { w: 3, c: '#1A75FF' });
+        corps += `<circle cx="${cx}" cy="140" r="34" fill="#FFD83D" fill-opacity=".35" stroke="currentColor" stroke-width="4"/>`;
+        corps += `<circle cx="${cx}" cy="140" r="12" fill="#B8860B"/>`;
+        corps += trait(cx + 34, 140, cx + 105, 140, prog(t), { w: 5 });
+        corps += `<circle cx="${cx + 118}" cy="125" r="9" fill="#10B981"/><circle cx="${cx + 124}" cy="152" r="9" fill="#10B981"/>`;
+      }
+      corps += mot(200, 245, 'sensitif', { t: 20, c: '#1A75FF' });
+      corps += mot(500, 245, 'moteur', { t: 20, c: '#E8604C' });
+      corps += mot(800, 245, 'interneurone', { t: 20, c: '#10B981' });
+      return svgBoite(corps + mot(500, 35, 'trois types de neurones', { t: 20 }));
+    }
+    let corps = '';
+    corps += trait(325, 135, 240, 70, prog(t), { w: 4, c: '#1A75FF' });
+    corps += trait(240, 70, 195, 45, prog(t), { w: 3, c: '#1A75FF' });
+    corps += trait(240, 70, 205, 95, prog(t), { w: 3, c: '#1A75FF' });
+    corps += trait(319, 150, 215, 150, prog(t), { w: 4, c: '#1A75FF' });
+    corps += trait(325, 165, 240, 230, prog(t), { w: 4, c: '#1A75FF' });
+    corps += trait(240, 230, 200, 255, prog(t), { w: 3, c: '#1A75FF' });
+    corps += trait(240, 230, 195, 205, prog(t), { w: 3, c: '#1A75FF' });
+    corps += `<circle cx="365" cy="150" r="46" fill="#FFD83D" fill-opacity=".3" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<circle cx="365" cy="150" r="17" fill="#B8860B"/>`;
+    corps += trait(411, 150, 845, 150, prog(t), { w: 5 });
+    corps += `<rect x="470" y="131" width="62" height="38" fill="#B8860B" fill-opacity=".45" stroke="#B8860B" stroke-width="3"/>`;
+    corps += `<rect x="575" y="131" width="62" height="38" fill="#B8860B" fill-opacity=".45" stroke="#B8860B" stroke-width="3"/>`;
+    corps += `<rect x="680" y="131" width="62" height="38" fill="#B8860B" fill-opacity=".45" stroke="#B8860B" stroke-width="3"/>`;
+    corps += trait(845, 150, 862, 122, prog(t), { w: 3, c: '#10B981' });
+    corps += trait(845, 150, 868, 150, prog(t), { w: 3, c: '#10B981' });
+    corps += trait(845, 150, 862, 178, prog(t), { w: 3, c: '#10B981' });
+    corps += `<circle cx="868" cy="116" r="11" fill="#10B981"/><circle cx="876" cy="150" r="11" fill="#10B981"/><circle cx="868" cy="184" r="11" fill="#10B981"/>`;
+    corps += mot(215, 30, 'dendrites', { t: 19, c: '#1A75FF' });
+    corps += mot(365, 232, 'soma', { t: 19 });
+    corps += mot(620, 108, 'axone', { t: 19 });
+    corps += mot(606, 212, 'myéline', { t: 19, c: '#B8860B' });
+    corps += mot(872, 72, 'boutons terminaux', { t: 18, c: '#10B981' });
+    return svgBoite(corps);
+  },
+  synapse_fig(t, o) {
+    let corps = '';
+    corps += trait(500, 12, 500, 30, prog(t), { w: 6 });
+    corps += `<ellipse cx="500" cy="78" rx="165" ry="54" fill="#1A75FF" fill-opacity=".12" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<circle cx="420" cy="58" r="11" fill="white" stroke="#1A75FF" stroke-width="3"/>`;
+    corps += `<circle cx="468" cy="86" r="11" fill="white" stroke="#1A75FF" stroke-width="3"/>`;
+    corps += `<circle cx="545" cy="52" r="11" fill="white" stroke="#1A75FF" stroke-width="3"/>`;
+    corps += `<circle cx="592" cy="84" r="11" fill="white" stroke="#1A75FF" stroke-width="3"/>`;
+    corps += `<ellipse cx="500" cy="102" rx="27" ry="11" fill="#E8604C" fill-opacity=".45" stroke="#E8604C" stroke-width="2"/>`;
+    corps += trait(300, 208, 700, 208, prog(t), { w: 6 });
+    corps += trait(300, 224, 700, 224, prog(t), { w: 3 });
+    corps += `<path d="M 392 208 L 392 186 L 408 186 L 408 208" fill="none" stroke="#10B981" stroke-width="4"/>`;
+    corps += `<path d="M 492 208 L 492 186 L 508 186 L 508 208" fill="none" stroke="#10B981" stroke-width="4"/>`;
+    corps += `<path d="M 592 208 L 592 186 L 608 186 L 608 208" fill="none" stroke="#10B981" stroke-width="4"/>`;
+    corps += trait(400, 140, 400, 172, prog(t), { w: 3, c: '#E8604C' }) + pointe(400, 176, 90, '#E8604C');
+    corps += trait(500, 148, 500, 172, prog(t), { w: 3, c: '#E8604C' }) + pointe(500, 176, 90, '#E8604C');
+    corps += trait(600, 140, 600, 172, prog(t), { w: 3, c: '#E8604C' }) + pointe(600, 176, 90, '#E8604C');
+    corps += `<circle cx="400" cy="132" r="7" fill="#E8604C"/><circle cx="500" cy="140" r="7" fill="#E8604C"/><circle cx="600" cy="132" r="7" fill="#E8604C"/>`;
+    corps += mot(215, 62, 'vésicules', { t: 19, c: '#1A75FF' });
+    corps += mot(838, 168, 'fente synaptique', { t: 18 });
+    corps += mot(500, 262, 'récepteurs', { t: 19, c: '#10B981' });
+    corps += mot(215, 120, 'bouton présynaptique', { t: 17 });
+    return svgBoite(corps);
+  },
+  synapse_electrique_fig(t, o) {
+    let corps = '';
+    corps += `<rect x="300" y="25" width="400" height="105" fill="#1A75FF" fill-opacity=".1" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<rect x="300" y="170" width="400" height="105" fill="#10B981" fill-opacity=".1" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<rect x="362" y="128" width="20" height="44" fill="#1A75FF"/>`;
+    corps += `<rect x="490" y="128" width="20" height="44" fill="#1A75FF"/>`;
+    corps += `<rect x="618" y="128" width="20" height="44" fill="#1A75FF"/>`;
+    corps += trait(430, 136, 430, 162, prog(t), { w: 4, c: '#E8604C' }) + pointe(430, 166, 90, '#E8604C');
+    corps += trait(565, 164, 565, 138, prog(t), { w: 4, c: '#E8604C' }) + pointe(565, 134, -90, '#E8604C');
+    corps += mot(500, 82, 'neurone 1', { t: 18 });
+    corps += mot(500, 228, 'neurone 2', { t: 18 });
+    corps += mot(148, 138, 'jonctions', { t: 18, c: '#1A75FF' });
+    corps += mot(148, 164, 'communicantes', { t: 18, c: '#1A75FF' });
+    corps += mot(852, 138, 'rapide, dans', { t: 18, c: '#E8604C' });
+    corps += mot(852, 164, 'les deux sens', { t: 18, c: '#E8604C' });
+    return svgBoite(corps);
+  },
+  potentiel_action_fig(t, o) {
+    let corps = '';
+    corps += trait(110, 260, 905, 260, prog(t), { w: 4 }) + pointe(905, 260, 0, 'currentColor');
+    corps += trait(120, 260, 120, 28, prog(t), { w: 4 }) + pointe(120, 28, -90, 'currentColor');
+    corps += mot(895, 286, 'temps', { t: 19, a: 'end' });
+    corps += mot(92, 40, 'mV', { t: 19, a: 'end' });
+    corps += trait(140, 168, 880, 168, prog(t), { w: 3, c: '#B8860B', tiret: '7 6' });
+    corps += mot(872, 154, 'seuil −55', { t: 18, a: 'end', c: '#B8860B' });
+    corps += `<path d="M 140 190 L 350 190 L 425 55 L 485 208 L 535 190 L 880 190" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>`;
+    corps += mot(240, 172, 'repos : −70', { t: 18 });
+    corps += mot(425, 38, '+30', { t: 19, c: '#E8604C' });
+    corps += mot(492, 242, 'hyperpolarisation', { t: 18, c: '#E8604C' });
+    return svgBoite(corps);
+  },
+  pompe_sodium_fig(t, o) {
+    let corps = '';
+    corps += `<rect x="140" y="138" width="720" height="26" fill="#FFD83D" fill-opacity=".35" stroke="currentColor" stroke-width="2"/>`;
+    corps += trait(140, 138, 860, 138, prog(t), { w: 3 }) + trait(140, 164, 860, 164, prog(t), { w: 3 });
+    corps += `<rect x="455" y="104" width="90" height="96" rx="18" fill="#1A75FF" fill-opacity=".3" stroke="#1A75FF" stroke-width="4"/>`;
+    corps += trait(468, 104, 468, 76, prog(t), { w: 4, c: '#E8604C' }) + pointe(468, 72, -90, '#E8604C');
+    corps += trait(500, 104, 500, 76, prog(t), { w: 4, c: '#E8604C' }) + pointe(500, 72, -90, '#E8604C');
+    corps += trait(532, 104, 532, 76, prog(t), { w: 4, c: '#E8604C' }) + pointe(532, 72, -90, '#E8604C');
+    corps += `<circle cx="468" cy="58" r="9" fill="#E8604C"/><circle cx="500" cy="52" r="9" fill="#E8604C"/><circle cx="532" cy="58" r="9" fill="#E8604C"/>`;
+    corps += trait(482, 200, 482, 226, prog(t), { w: 4, c: '#1A75FF' }) + pointe(482, 230, 90, '#1A75FF');
+    corps += trait(518, 200, 518, 226, prog(t), { w: 4, c: '#1A75FF' }) + pointe(518, 230, 90, '#1A75FF');
+    corps += `<circle cx="482" cy="246" r="9" fill="#1A75FF"/><circle cx="518" cy="246" r="9" fill="#1A75FF"/>`;
+    corps += mot(580, 62, '3 Na+', { t: 21, a: 'start', c: '#E8604C' });
+    corps += mot(580, 252, '2 K+', { t: 21, a: 'start', c: '#1A75FF' });
+    corps += mot(215, 122, 'extérieur', { t: 17, a: 'start' });
+    corps += mot(215, 196, 'intérieur', { t: 17, a: 'start' });
+    return svgBoite(corps + mot(500, 30, 'la pompe sodium-potassium', { t: 20 }));
+  },
+  sommation_fig(t, o) {
+    let corps = '';
+    corps += trait(330, 88, 378, 118, prog(t), { w: 4 });
+    corps += trait(312, 150, 362, 150, prog(t), { w: 4 });
+    corps += trait(330, 212, 378, 182, prog(t), { w: 4 });
+    corps += trait(392, 66, 408, 94, prog(t), { w: 4 });
+    corps += `<circle cx="420" cy="150" r="58" fill="#FFD83D" fill-opacity=".3" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<circle cx="420" cy="150" r="18" fill="#B8860B"/>`;
+    corps += `<circle cx="318" cy="78" r="17" fill="#E8604C"/><circle cx="296" cy="150" r="17" fill="#1A75FF"/><circle cx="318" cy="222" r="17" fill="#E8604C"/><circle cx="386" cy="52" r="17" fill="#1A75FF"/>`;
+    corps += mot(318, 85, '+', { t: 20, c: 'white' });
+    corps += mot(296, 157, '−', { t: 20, c: 'white' });
+    corps += mot(318, 229, '+', { t: 20, c: 'white' });
+    corps += mot(386, 59, '−', { t: 20, c: 'white' });
+    corps += `<polygon points="478,132 522,150 478,168" fill="#B8860B"/>`;
+    corps += trait(522, 150, 830, 150, prog(t), { w: 5 });
+    corps += `<path d="M 648 102 L 616 148 L 644 148 L 610 200 L 672 138 L 642 138 L 672 102 Z" fill="#FFD83D" stroke="#B8860B" stroke-width="2"/>`;
+    corps += mot(500, 282, 'sommations au cône', { t: 19 });
+    corps += mot(712, 72, 'seuil atteint : le signal part', { t: 18, c: '#B8860B' });
+    corps += mot(420, 245, 'soma', { t: 18 });
+    return svgBoite(corps);
+  },
+  arc_reflexe_fig(t, o) {
+    if (o && o.volontaire) {
+      let corps = '';
+      corps += `<ellipse cx="215" cy="68" rx="95" ry="42" fill="#E8604C" fill-opacity=".15" stroke="currentColor" stroke-width="4"/>`;
+      corps += mot(215, 74, 'cerveau', { t: 19 });
+      corps += trait(215, 110, 215, 182, prog(t), { w: 5, c: '#E8604C' }) + pointe(215, 188, 90, '#E8604C');
+      corps += mot(338, 150, 'voie pyramidale', { t: 18, c: '#E8604C' });
+      corps += `<rect x="188" y="190" width="54" height="66" fill="#1A75FF" fill-opacity=".2" stroke="currentColor" stroke-width="3"/>`;
+      corps += mot(300, 228, 'moelle', { t: 18, a: 'start' });
+      corps += trait(242, 223, 722, 223, prog(t), { w: 5, c: '#10B981' }) + pointe(728, 223, 0, '#10B981');
+      corps += `<ellipse cx="802" cy="223" rx="72" ry="34" fill="#10B981" fill-opacity=".25" stroke="#10B981" stroke-width="3"/>`;
+      corps += mot(802, 229, 'muscle', { t: 18 });
+      corps += mot(560, 192, 'nerf moteur', { t: 17, c: '#10B981' });
+      return svgBoite(corps + mot(560, 40, 'le mouvement volontaire', { t: 20 }));
+    }
+    let corps = '';
+    corps += `<ellipse cx="140" cy="150" rx="75" ry="48" fill="#E8604C" fill-opacity=".15" stroke="currentColor" stroke-width="3"/>`;
+    corps += `<ellipse cx="140" cy="150" rx="36" ry="14" fill="#B8860B" fill-opacity=".5" stroke="#B8860B" stroke-width="2"/>`;
+    corps += mot(140, 238, 'récepteur : fuseau', { t: 17 });
+    corps += trait(205, 118, 425, 98, prog(t), { w: 4, c: '#1A75FF' }) + pointe(432, 97, -13, '#1A75FF');
+    corps += mot(315, 72, 'nerf sensitif', { t: 18, c: '#1A75FF' });
+    corps += `<rect x="440" y="70" width="130" height="160" rx="55" fill="#FFD83D" fill-opacity=".2" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<path d="M 472 102 L 505 140 L 538 102 L 538 198 L 505 160 L 472 198 Z" fill="#B8860B" fill-opacity=".45"/>`;
+    corps += mot(505, 44, 'racine postérieure : sensitive', { t: 17 });
+    corps += mot(505, 264, 'racine antérieure : motrice', { t: 17 });
+    corps += trait(562, 185, 742, 160, prog(t), { w: 4, c: '#E8604C' }) + pointe(750, 159, -8, '#E8604C');
+    corps += mot(655, 208, 'nerf moteur', { t: 17, c: '#E8604C' });
+    corps += `<ellipse cx="832" cy="150" rx="64" ry="38" fill="#10B981" fill-opacity=".25" stroke="#10B981" stroke-width="3"/>`;
+    corps += trait(795, 132, 870, 168, prog(t), { w: 3, c: '#10B981' });
+    corps += trait(795, 168, 870, 132, prog(t), { w: 3, c: '#10B981' });
+    corps += mot(832, 228, 'muscle contracté', { t: 17 });
+    return svgBoite(corps);
+  },
+  cerveau_fig(t, o) {
+    let corps = '';
+    corps += `<path d="M 230 210 C 150 190 130 110 190 70 C 230 35 320 30 380 50 C 460 25 580 40 640 85 C 720 105 740 180 680 215 C 560 245 350 240 230 210 Z" fill="#E8604C" fill-opacity=".1" stroke="currentColor" stroke-width="4"/>`;
+    corps += trait(468, 55, 454, 212, prog(t), { w: 4, c: '#1A75FF' });
+    corps += mot(462, 34, 'sillon central', { t: 18, c: '#1A75FF' });
+    corps += mot(300, 140, 'aire motrice (frontal)', { t: 18 });
+    corps += mot(612, 140, 'aire sensitive (pariétal)', { t: 18 });
+    corps += `<ellipse cx="700" cy="254" rx="55" ry="21" fill="#10B981" fill-opacity=".2" stroke="#10B981" stroke-width="3"/>`;
+    corps += trait(678, 238, 678, 270, prog(t), { w: 2, c: '#10B981' });
+    corps += trait(700, 235, 700, 273, prog(t), { w: 2, c: '#10B981' });
+    corps += trait(722, 238, 722, 270, prog(t), { w: 2, c: '#10B981' });
+    corps += mot(792, 260, 'cervelet', { t: 18, a: 'start', c: '#10B981' });
+    corps += trait(612, 222, 612, 260, prog(t), { w: 12, c: '#B8860B' });
+    corps += mot(560, 288, 'bulbe', { t: 18, a: 'end', c: '#B8860B' });
+    return svgBoite(corps);
+  },
+  nerf_coupe_fig(t, o) {
+    let corps = '';
+    corps += `<circle cx="480" cy="150" r="118" fill="#FFD83D" fill-opacity=".08" stroke="currentColor" stroke-width="5"/>`;
+    const faisceaux = [[420, 115], [548, 105], [482, 198]];
+    const decalages = [[0, 0], [-18, -12], [18, -10], [-12, 16], [16, 14]];
+    for (const [fx, fy] of faisceaux) {
+      corps += `<circle cx="${fx}" cy="${fy}" r="40" fill="#1A75FF" fill-opacity=".08" stroke="#1A75FF" stroke-width="4"/>`;
+      for (const [dx, dy] of decalages) {
+        corps += `<circle cx="${fx + dx}" cy="${fy + dy}" r="8" fill="white" stroke="#B8860B" stroke-width="2"/><circle cx="${fx + dx}" cy="${fy + dy}" r="3" fill="#B8860B"/>`;
+      }
+    }
+    corps += trait(330, 52, 398, 74, prog(t), { w: 2, tiret: '5 4' });
+    corps += mot(150, 46, 'épinèvre', { t: 19 });
+    corps += trait(588, 105, 748, 108, prog(t), { w: 2, c: '#1A75FF', tiret: '5 4' });
+    corps += mot(758, 114, 'périnèvre', { t: 19, a: 'start', c: '#1A75FF' });
+    corps += trait(522, 198, 748, 200, prog(t), { w: 2, tiret: '5 4' });
+    corps += mot(758, 206, 'fibres myélinisées', { t: 18, a: 'start' });
+    corps += mot(480, 292, 'coupe transversale du nerf', { t: 19 });
+    return svgBoite(corps);
+  },
+  intensite_duree_fig(t, o) {
+    let corps = '';
+    corps += trait(110, 245, 920, 245, prog(t), { w: 4 }) + pointe(920, 245, 0, 'currentColor');
+    corps += trait(150, 275, 150, 30, prog(t), { w: 4 }) + pointe(150, 30, -90, 'currentColor');
+    corps += mot(905, 272, 'durée', { t: 19, a: 'end' });
+    corps += mot(122, 44, 'intensité', { t: 18, a: 'end' });
+    corps += trait(150, 238, 905, 238, prog(t), { w: 3, c: '#B8860B', tiret: '7 6' });
+    corps += mot(892, 222, 'rhéobase', { t: 18, a: 'end', c: '#B8860B' });
+    corps += `<path d="M 175 45 C 260 148 380 205 560 224 C 700 234 820 236 905 237" fill="none" stroke="#E8604C" stroke-width="5"/>`;
+    corps += trait(150, 182, 300, 182, prog(t), { w: 2, c: '#1A75FF', tiret: '5 4' });
+    corps += mot(140, 170, '2 × rhéobase', { t: 17, a: 'end', c: '#1A75FF' });
+    corps += trait(300, 182, 300, 245, prog(t), { w: 3, c: '#1A75FF', tiret: '7 6' });
+    corps += `<circle cx="300" cy="182" r="8" fill="#1A75FF" stroke="white" stroke-width="2"/>`;
+    corps += mot(300, 270, 'chronaxie', { t: 18, c: '#1A75FF' });
+    return svgBoite(corps);
+  },
+  sarcomere_fig(t, o) {
+    let corps = '';
+    corps += trait(250, 55, 250, 245, prog(t), { w: 8, c: '#1A75FF' });
+    corps += trait(750, 55, 750, 245, prog(t), { w: 8, c: '#1A75FF' });
+    corps += mot(250, 34, 'strie Z', { t: 18, c: '#1A75FF' });
+    corps += mot(750, 34, 'strie Z', { t: 18, c: '#1A75FF' });
+    for (const y of [95, 135, 175, 215]) {
+      corps += trait(254, y, 520, y, prog(t), { w: 3, c: '#10B981' });
+      corps += trait(746, y, 480, y, prog(t), { w: 3, c: '#10B981' });
+    }
+    for (const y of [115, 155, 195]) {
+      corps += trait(400, y, 600, y, prog(t), { w: 9, c: '#E8604C' });
+      corps += trait(450, y, 464, y - 13, prog(t), { w: 3, c: '#E8604C' });
+      corps += trait(500, y, 514, y + 13, prog(t), { w: 3, c: '#E8604C' });
+      corps += trait(550, y, 564, y - 13, prog(t), { w: 3, c: '#E8604C' });
+    }
+    corps += mot(272, 82, 'actine', { t: 17, a: 'start', c: '#10B981' });
+    corps += mot(625, 150, 'myosine', { t: 17, a: 'start', c: '#E8604C' });
+    corps += trait(320, 262, 425, 262, prog(t), { w: 4, c: '#B8860B' }) + pointe(432, 262, 0, '#B8860B');
+    corps += trait(680, 262, 575, 262, prog(t), { w: 4, c: '#B8860B' }) + pointe(568, 262, 180, '#B8860B');
+    return svgBoite(corps + mot(500, 290, 'glissement : le sarcomère se raccourcit', { t: 18 }));
+  },
+  filieres_fig(t, o) {
+    let corps = '';
+    corps += trait(120, 262, 940, 262, prog(t), { w: 4 }) + pointe(940, 262, 0, 'currentColor');
+    corps += mot(930, 288, "durée de l'effort", { t: 18, a: 'end' });
+    corps += mot(150, 44, 'phosphocréatine : les premières secondes', { t: 17, a: 'start', c: '#E8604C' });
+    corps += `<rect x="150" y="52" width="170" height="36" fill="#E8604C" fill-opacity=".7"/>`;
+    corps += mot(330, 114, "glycolyse : lactate, jusqu'à ~2 minutes", { t: 17, a: 'start', c: '#B8860B' });
+    corps += `<rect x="330" y="122" width="250" height="36" fill="#B8860B" fill-opacity=".65"/>`;
+    corps += mot(560, 184, 'respiration aérobie : dominante après 10 minutes', { t: 17, a: 'start', c: '#10B981' });
+    corps += `<rect x="560" y="192" width="330" height="36" fill="#10B981" fill-opacity=".6"/>`;
+    return svgBoite(corps);
+  },
+  membrane_echanges_fig(t, o) {
+    let corps = '';
+    corps += trait(485, 25, 485, 268, prog(t), { w: 5 }) + trait(515, 25, 515, 268, prog(t), { w: 5 });
+    corps += `<circle cx="210" cy="90" r="7" fill="currentColor"/><circle cx="320" cy="200" r="7" fill="currentColor"/><circle cx="260" cy="245" r="7" fill="currentColor"/><circle cx="390" cy="115" r="7" fill="currentColor"/>`;
+    corps += `<circle cx="610" cy="55" r="7" fill="#E8604C"/><circle cx="690" cy="95" r="7" fill="#E8604C"/><circle cx="790" cy="60" r="7" fill="#E8604C"/><circle cx="880" cy="100" r="7" fill="#E8604C"/><circle cx="640" cy="150" r="7" fill="#E8604C"/><circle cx="740" cy="180" r="7" fill="#E8604C"/><circle cx="850" cy="160" r="7" fill="#E8604C"/><circle cx="680" cy="230" r="7" fill="#E8604C"/><circle cx="800" cy="245" r="7" fill="#E8604C"/><circle cx="900" cy="220" r="7" fill="#E8604C"/>`;
+    corps += trait(420, 65, 556, 65, prog(t), { w: 4, c: '#10B981' }) + pointe(562, 65, 0, '#10B981');
+    corps += `<circle cx="500" cy="65" r="9" fill="#10B981"/>`;
+    corps += mot(215, 65, 'diffusion simple', { t: 18, c: '#10B981' });
+    corps += `<rect x="478" y="124" width="44" height="52" fill="#1A75FF" fill-opacity=".35" stroke="#1A75FF" stroke-width="3"/>`;
+    corps += trait(420, 150, 556, 150, prog(t), { w: 4, c: '#1A75FF' }) + pointe(562, 150, 0, '#1A75FF');
+    corps += `<circle cx="500" cy="150" r="9" fill="#1A75FF"/>`;
+    corps += mot(200, 150, 'diffusion facilitée', { t: 18, c: '#1A75FF' });
+    corps += `<rect x="472" y="214" width="56" height="54" fill="#E8604C" fill-opacity=".3" stroke="#E8604C" stroke-width="3"/>`;
+    corps += mot(500, 200, 'ATP', { t: 18, c: '#B8860B' });
+    corps += trait(428, 241, 552, 241, prog(t), { w: 4, c: '#E8604C' }) + pointe(558, 241, 0, '#E8604C');
+    corps += `<circle cx="545" cy="241" r="9" fill="#E8604C"/>`;
+    corps += mot(192, 241, 'transport actif', { t: 18, c: '#E8604C' });
+    corps += mot(300, 292, 'peu concentré', { t: 17 });
+    corps += mot(730, 292, 'très concentré', { t: 17 });
+    return svgBoite(corps);
+  },
+  osmose_fig(t, o) {
+    let corps = '';
+    corps += `<rect x="250" y="50" width="500" height="210" fill="none" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<rect x="254" y="120" width="242" height="136" fill="#1A75FF" fill-opacity=".15"/>`;
+    corps += `<rect x="504" y="85" width="242" height="171" fill="#1A75FF" fill-opacity=".15"/>`;
+    corps += trait(500, 50, 500, 260, prog(t), { w: 4, c: '#1A75FF', tiret: '8 6' });
+    corps += `<circle cx="330" cy="180" r="7" fill="#E8604C"/><circle cx="420" cy="215" r="7" fill="#E8604C"/>`;
+    corps += `<circle cx="560" cy="130" r="7" fill="#E8604C"/><circle cx="640" cy="165" r="7" fill="#E8604C"/><circle cx="700" cy="125" r="7" fill="#E8604C"/><circle cx="590" cy="210" r="7" fill="#E8604C"/><circle cx="680" cy="225" r="7" fill="#E8604C"/><circle cx="720" cy="185" r="7" fill="#E8604C"/>`;
+    corps += trait(345, 160, 462, 160, prog(t), { w: 5, c: '#1A75FF' }) + pointe(468, 160, 0, '#1A75FF');
+    corps += mot(375, 138, "l'eau passe", { t: 17, c: '#1A75FF' });
+    corps += mot(375, 285, 'hypotonique', { t: 18, c: '#1A75FF' });
+    corps += mot(625, 285, 'hypertonique', { t: 18, c: '#E8604C' });
+    corps += mot(500, 30, 'membrane semi-perméable', { t: 17 });
+    return svgBoite(corps);
+  },
+  endocytose_fig(t, o) {
+    if (o && o.exo) {
+      let corps = '';
+      corps += trait(200, 190, 800, 190, prog(t), { w: 6 });
+      corps += `<circle cx="500" cy="150" r="38" fill="#FFD83D" fill-opacity=".4" stroke="currentColor" stroke-width="3"/>`;
+      corps += `<circle cx="486" cy="144" r="6" fill="#E8604C"/><circle cx="514" cy="158" r="6" fill="#E8604C"/>`;
+      corps += trait(500, 196, 500, 214, prog(t), { w: 3, c: '#E8604C' }) + pointe(500, 218, 90, '#E8604C');
+      corps += `<circle cx="468" cy="228" r="6" fill="#E8604C"/><circle cx="500" cy="246" r="6" fill="#E8604C"/><circle cx="534" cy="230" r="6" fill="#E8604C"/>`;
+      corps += mot(500, 62, 'exocytose', { t: 21 });
+      corps += mot(215, 172, 'intérieur', { t: 17, a: 'start' });
+      corps += mot(215, 216, 'extérieur', { t: 17, a: 'start' });
+      return svgBoite(corps + mot(500, 285, 'la vésicule fusionne, le contenu sort', { t: 18 }));
+    }
+    let corps = '';
+    corps += mot(200, 62, '1', { t: 20 });
+    corps += mot(500, 62, '2', { t: 20 });
+    corps += mot(800, 62, '3', { t: 20 });
+    corps += trait(110, 140, 290, 140, prog(t), { w: 5 });
+    corps += `<circle cx="200" cy="118" r="16" fill="#E8604C"/>`;
+    corps += trait(312, 140, 378, 140, prog(t), { w: 4 }) + pointe(384, 140, 0, 'currentColor');
+    corps += `<path d="M 410 140 L 463 140 A 37 37 0 0 0 537 140 L 590 140" fill="none" stroke="currentColor" stroke-width="5"/>`;
+    corps += `<circle cx="500" cy="152" r="15" fill="#E8604C"/>`;
+    corps += trait(612, 140, 678, 140, prog(t), { w: 4 }) + pointe(684, 140, 0, 'currentColor');
+    corps += trait(710, 140, 890, 140, prog(t), { w: 5 });
+    corps += `<circle cx="800" cy="196" r="25" fill="#FFD83D" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>`;
+    corps += `<circle cx="800" cy="196" r="10" fill="#E8604C"/>`;
+    corps += mot(500, 32, 'endocytose', { t: 21 });
+    return svgBoite(corps + mot(500, 285, "la vésicule se forme à l'intérieur", { t: 18 }));
+  },
+  assainissement_fig(t, o) {
+    let corps = '';
+    corps += `<path d="M 92 148 L 150 104 L 208 148 L 208 196 L 92 196 Z" fill="#B8860B" fill-opacity=".2" stroke="currentColor" stroke-width="3"/>`;
+    corps += `<rect x="132" y="162" width="34" height="34" fill="white" stroke="currentColor" stroke-width="2"/>`;
+    corps += mot(150, 232, 'maison', { t: 18 });
+    corps += trait(216, 148, 272, 148, prog(t), { w: 4 }) + pointe(278, 148, 0, 'currentColor');
+    corps += trait(292, 132, 428, 132, prog(t), { w: 5, c: '#1A75FF' });
+    corps += trait(292, 164, 428, 164, prog(t), { w: 5, c: '#1A75FF' });
+    corps += mot(360, 232, 'collecte', { t: 19 });
+    corps += mot(360, 105, 'égout', { t: 17, c: '#1A75FF' });
+    corps += trait(436, 148, 492, 148, prog(t), { w: 4 }) + pointe(498, 148, 0, 'currentColor');
+    corps += `<circle cx="552" cy="150" r="33" fill="#1A75FF" fill-opacity=".2" stroke="#1A75FF" stroke-width="3"/>`;
+    corps += `<circle cx="628" cy="150" r="33" fill="#1A75FF" fill-opacity=".2" stroke="#1A75FF" stroke-width="3"/>`;
+    corps += mot(590, 72, "station d'épuration", { t: 18 });
+    corps += mot(590, 232, 'traitement', { t: 19 });
+    corps += trait(668, 148, 724, 148, prog(t), { w: 4 }) + pointe(730, 148, 0, 'currentColor');
+    corps += `<path d="M 742 178 Q 788 158 834 178 T 926 178" fill="none" stroke="#1A75FF" stroke-width="4"/>`;
+    corps += `<path d="M 742 196 Q 788 176 834 196 T 926 196" fill="none" stroke="#1A75FF" stroke-width="3"/>`;
+    corps += `<ellipse cx="834" cy="138" rx="27" ry="12" fill="#10B981"/>`;
+    corps += `<path d="M 858 138 L 878 126 L 878 150 Z" fill="#10B981"/>`;
+    corps += `<circle cx="822" cy="135" r="3" fill="white"/>`;
+    corps += mot(834, 232, 'rejet propre', { t: 19, c: '#10B981' });
+    return svgBoite(corps);
+  },
+  cholera_fig(t, o) {
+    let corps = '';
+    corps += trait(118, 122, 378, 122, prog(t), { w: 5, c: '#E8604C' }) + pointe(384, 122, 0, '#E8604C');
+    corps += mot(205, 94, 'déchets fécaux', { t: 18, c: '#E8604C' });
+    corps += `<path d="M 400 55 L 620 55 L 590 255 L 430 255 Z" fill="#1A75FF" fill-opacity=".08" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<path d="M 413 102 L 607 102 L 590 240 L 430 240 Z" fill="#1A75FF" fill-opacity=".18"/>`;
+    corps += `<path d="M 458 142 q 20 -16 34 0 q -18 6 -34 0 Z" fill="#E8604C"/>`;
+    corps += `<path d="M 520 182 q 20 -16 34 0 q -18 6 -34 0 Z" fill="#E8604C"/>`;
+    corps += `<path d="M 472 214 q 20 -16 34 0 q -18 6 -34 0 Z" fill="#E8604C"/>`;
+    corps += `<path d="M 545 128 q 16 -13 28 0 q -15 5 -28 0 Z" fill="#E8604C"/>`;
+    corps += mot(730, 130, 'vibrions', { t: 18, a: 'start', c: '#E8604C' });
+    return svgBoite(corps + mot(500, 285, "le vibrion du choléra dans l'eau souillée", { t: 18 }));
+  },
+  fermentation_fig(t, o) {
+    let corps = '';
+    corps += `<path d="M 360 72 L 640 72 L 620 260 L 380 260 Z" fill="#B8860B" fill-opacity=".1" stroke="currentColor" stroke-width="4"/>`;
+    corps += trait(348, 72, 652, 72, prog(t), { w: 6 });
+    corps += `<ellipse cx="442" cy="202" rx="19" ry="12" fill="#FFD83D" stroke="#B8860B" stroke-width="2"/>`;
+    corps += `<ellipse cx="522" cy="228" rx="19" ry="12" fill="#FFD83D" stroke="#B8860B" stroke-width="2"/>`;
+    corps += `<ellipse cx="572" cy="188" rx="19" ry="12" fill="#FFD83D" stroke="#B8860B" stroke-width="2"/>`;
+    corps += mot(500, 168, 'levures', { t: 17, c: '#B8860B' });
+    corps += `<circle cx="472" cy="140" r="6" fill="#1A75FF" fill-opacity=".55"/><circle cx="512" cy="115" r="8" fill="#1A75FF" fill-opacity=".55"/><circle cx="552" cy="92" r="5" fill="#1A75FF" fill-opacity=".55"/>`;
+    corps += trait(182, 122, 344, 122, prog(t), { w: 5, c: '#10B981' }) + pointe(350, 122, 0, '#10B981');
+    corps += mot(185, 96, 'glucose', { t: 19, c: '#10B981' });
+    corps += trait(656, 122, 798, 122, prog(t), { w: 5, c: '#E8604C' }) + pointe(804, 122, 0, '#E8604C');
+    corps += mot(816, 96, 'éthanol', { t: 19, a: 'start', c: '#E8604C' });
+    corps += trait(598, 70, 598, 38, prog(t), { w: 4, c: '#1A75FF' }) + pointe(598, 33, -90, '#1A75FF');
+    corps += mot(622, 42, 'CO2', { t: 19, a: 'start', c: '#1A75FF' });
+    return svgBoite(corps + mot(500, 290, 'sans oxygène', { t: 19 }));
+  },
+  biogaz_fig(t, o) {
+    let corps = '';
+    corps += `<path d="M 380 260 L 380 152 A 120 72 0 0 1 620 152 L 620 260 Z" fill="#10B981" fill-opacity=".12" stroke="currentColor" stroke-width="4"/>`;
+    corps += mot(500, 215, 'digesteur', { t: 19 });
+    corps += trait(172, 202, 364, 202, prog(t), { w: 5, c: '#B8860B' }) + pointe(370, 202, 0, '#B8860B');
+    corps += mot(172, 172, 'déchets organiques', { t: 17 });
+    corps += trait(500, 78, 500, 44, prog(t), { w: 4, c: '#E8604C' });
+    corps += trait(500, 44, 664, 44, prog(t), { w: 4, c: '#E8604C' });
+    corps += `<path d="M 700 14 C 719 40 713 63 700 74 C 687 63 681 40 700 14 Z" fill="#FFD83D" stroke="#E8604C" stroke-width="2"/>`;
+    corps += mot(700, 106, 'biogaz : chaleur et électricité', { t: 17, c: '#E8604C' });
+    corps += trait(620, 246, 756, 246, prog(t), { w: 5, c: '#10B981' }) + pointe(762, 246, 0, '#10B981');
+    corps += mot(772, 222, 'digestat : un engrais', { t: 17, a: 'start', c: '#10B981' });
+    return svgBoite(corps);
+  },
+  distillation_fig(t, o) {
+    let corps = '';
+    corps += `<circle cx="215" cy="196" r="46" fill="#1A75FF" fill-opacity=".1" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<path d="M 176 214 A 46 46 0 0 0 254 214 Z" fill="#1A75FF" fill-opacity=".3"/>`;
+    corps += `<rect x="204" y="96" width="22" height="58" fill="white" stroke="currentColor" stroke-width="3"/>`;
+    corps += `<path d="M 215 252 C 229 272 225 284 215 288 C 205 284 201 272 215 252 Z" fill="#FFD83D" stroke="#E8604C" stroke-width="2"/>`;
+    corps += mot(118, 200, 'ballon', { t: 17, a: 'end' });
+    corps += trait(215, 96, 215, 48, prog(t), { w: 6 });
+    corps += mot(215, 32, 'colonne', { t: 17 });
+    corps += trait(218, 52, 296, 62, prog(t), { w: 5 });
+    corps += trait(300, 58, 640, 138, prog(t), { w: 4, c: '#1A75FF' });
+    corps += trait(300, 84, 640, 164, prog(t), { w: 4, c: '#1A75FF' });
+    corps += trait(300, 58, 300, 84, prog(t), { w: 4, c: '#1A75FF' });
+    corps += trait(640, 138, 640, 164, prog(t), { w: 4, c: '#1A75FF' });
+    corps += mot(470, 192, 'eau froide', { t: 16, c: '#1A75FF' });
+    corps += mot(470, 44, 'condenseur', { t: 17, c: '#1A75FF' });
+    corps += trait(640, 152, 692, 164, prog(t), { w: 4 });
+    corps += `<circle cx="700" cy="182" r="4" fill="#10B981"/>`;
+    corps += `<path d="M 686 166 L 714 166 L 714 196 L 744 244 A 9 9 0 0 1 736 258 L 664 258 A 9 9 0 0 1 656 244 L 686 196 Z" fill="#10B981" fill-opacity=".12" stroke="currentColor" stroke-width="3"/>`;
+    return svgBoite(corps + mot(700, 285, "éthanol : il s'évapore à 78 °C", { t: 17 }));
+  },
+  transesterification_fig(t, o) {
+    let corps = '';
+    corps += `<rect x="126" y="96" width="26" height="26" fill="white" stroke="currentColor" stroke-width="3"/>`;
+    corps += `<rect x="104" y="122" width="70" height="78" rx="10" fill="#FFD83D" fill-opacity=".55" stroke="currentColor" stroke-width="3"/>`;
+    corps += mot(139, 234, 'huile', { t: 19 });
+    corps += mot(232, 162, '+', { t: 26 });
+    corps += `<rect x="306" y="96" width="26" height="26" fill="white" stroke="currentColor" stroke-width="3"/>`;
+    corps += `<rect x="284" y="122" width="70" height="78" rx="10" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>`;
+    corps += mot(319, 234, 'méthanol', { t: 19 });
+    corps += trait(392, 152, 540, 152, prog(t), { w: 5 }) + pointe(546, 152, 0, 'currentColor');
+    corps += mot(469, 122, 'catalyseur', { t: 18 });
+    corps += `<rect x="632" y="96" width="26" height="26" fill="white" stroke="currentColor" stroke-width="3"/>`;
+    corps += `<rect x="610" y="122" width="70" height="78" rx="10" fill="#10B981" fill-opacity=".4" stroke="currentColor" stroke-width="3"/>`;
+    corps += mot(645, 234, 'biodiesel', { t: 19 });
+    corps += mot(728, 162, '+', { t: 26 });
+    corps += `<rect x="838" y="96" width="26" height="26" fill="white" stroke="currentColor" stroke-width="3"/>`;
+    corps += `<rect x="816" y="122" width="70" height="78" rx="10" fill="#E8604C" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>`;
+    corps += mot(851, 234, 'glycérine', { t: 19 });
+    return svgBoite(corps + mot(500, 282, 'huile + méthanol → biodiesel + glycérine', { t: 18 }));
+  },
+  recyclage_plastique_fig(t, o) {
+    let corps = '';
+    corps += `<path d="M 245 80 Q 500 14 742 78" fill="none" stroke="currentColor" stroke-width="4"/>`;
+    corps += pointe(748, 79, 12, 'currentColor');
+    corps += `<path d="M 848 128 Q 884 186 850 232" fill="none" stroke="currentColor" stroke-width="4"/>`;
+    corps += pointe(848, 236, 96, 'currentColor');
+    corps += `<path d="M 742 244 Q 500 292 258 244" fill="none" stroke="currentColor" stroke-width="4"/>`;
+    corps += pointe(252, 243, 186, 'currentColor');
+    corps += `<path d="M 152 234 Q 116 186 150 130" fill="none" stroke="currentColor" stroke-width="4"/>`;
+    corps += pointe(152, 126, -84, 'currentColor');
+    corps += `<path d="M 186 44 L 214 44 L 214 60 L 227 76 L 227 124 L 173 124 L 173 76 L 186 60 Z" fill="#1A75FF" fill-opacity=".25" stroke="currentColor" stroke-width="3"/>`;
+    corps += mot(200, 150, 'bouteille', { t: 17 });
+    corps += `<circle cx="752" cy="66" r="7" fill="#1A75FF"/><circle cx="786" cy="52" r="6" fill="#1A75FF"/><circle cx="820" cy="70" r="7" fill="#1A75FF"/><circle cx="770" cy="94" r="6" fill="#1A75FF"/><circle cx="806" cy="102" r="7" fill="#1A75FF"/><circle cx="842" cy="92" r="6" fill="#1A75FF"/>`;
+    corps += mot(800, 150, 'tri, broyage, lavage', { t: 17 });
+    corps += `<circle cx="766" cy="204" r="6" fill="#B8860B"/><circle cx="800" cy="204" r="6" fill="#B8860B"/><circle cx="834" cy="204" r="6" fill="#B8860B"/><circle cx="766" cy="230" r="6" fill="#B8860B"/><circle cx="800" cy="230" r="6" fill="#B8860B"/><circle cx="834" cy="230" r="6" fill="#B8860B"/>`;
+    corps += mot(800, 272, 'granulés', { t: 17 });
+    corps += `<path d="M 186 182 L 214 182 L 214 198 L 227 214 L 227 262 L 173 262 L 173 214 L 186 198 Z" fill="#10B981" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>`;
+    corps += mot(200, 288, 'nouvelle bouteille', { t: 16 });
+    return svgBoite(corps + mot(500, 168, "recycler économise l'énergie", { t: 18 }));
+  },
+  accompagnement_fig(t) {
+    const pers = (x, c) =>
+      `<circle cx="${x}" cy="105" r="34" fill="none" stroke="${c}" stroke-width="5"/>` +
+      `<path d="M ${x - 58} 218 Q ${x} 148 ${x + 58} 218" fill="none" stroke="${c}" stroke-width="5"/>`;
+    return svgBoite(
+      pers(268, 'currentColor') + pers(732, 'currentColor') +
+      trait(322, 168, 618, 138, prog(t), { c: '#10B981', w: 5 }) + pointe(628, 137, -8, '#10B981') +
+      `<path d="M 500 62 C 470 96, 470 118, 500 148 C 530 118, 530 96, 500 62 Z" fill="#E8604C" fill-opacity=".85"/>` +
+      `<path d="M 500 148 L 482 196 M 500 148 L 518 196" stroke="#E8604C" stroke-width="7" fill="none"/>` +
+      mot(500, 240, "écouter, soutenir, sans stigmatiser", { t: 20, c: '#E8604C' }) +
+      mot(500, 276, "le soutien fait partie du soin", { t: 19 }));
+  },
+  etapes_methode_fig(t) {
+    const boite = (x, y, n, texte) =>
+      `<rect x="${x}" y="${y}" width="272" height="62" fill="none" stroke="currentColor" stroke-width="3.5"/>` +
+      mot(x + 136, y + 39, n + " · " + texte, { t: 18 });
+    const fleche = (x1, y1, x2, y2) => trait(x1, y1, x2, y2, prog(t), { w: 3.5 }) + pointe(x2, y2, Math.round(Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI));
+    return svgBoite(
+      boite(52, 52, "1", "observer l'arbre") + boite(364, 52, "2", "le mode d'hérédité") + boite(676, 52, "3", "les génotypes") +
+      boite(52, 178, "4", "les gamètes") + boite(364, 178, "5", "l'échiquier") + boite(676, 178, "6", "conclure") +
+      fleche(330, 83, 358, 83) + fleche(642, 83, 670, 83) +
+      fleche(812, 120, 812, 172) +
+      fleche(670, 209, 642, 209) + fleche(358, 209, 330, 209) +
+      mot(500, 160, "", { t: 18 }) +
+      mot(188, 283, "une méthode en six étapes, toujours dans le même ordre", { t: 18 }));
+  },
+  courbe_temperature_fig(t) {
+    return svgBoite(
+      trait(140, 248, 880, 248, prog(t), { w: 4 }) + pointe(888, 248, 0) +
+      trait(140, 248, 140, 52, prog(t), { w: 4 }) + pointe(140, 44, -90) +
+      mot(896, 276, "jours du cycle", { t: 18, a: 'start' }) +
+      mot(112, 150, "température", { t: 18, a: 'end' }) +
+      trait(520, 248, 520, 70, prog(t), { w: 2.5, tiret: '6 5', c: '#E8604C' }) +
+      mot(520, 64, "ovulation", { t: 18, c: '#E8604C' }) +
+      `<path d="M 148 196 L 300 200 L 460 194 L 520 190 L 580 118 L 720 112 L 872 116" fill="none" stroke="#1A75FF" stroke-width="4.5"/>` +
+      mot(300, 168, "36,5 °C", { t: 18, c: '#1A75FF' }) +
+      mot(716, 88, "37,0 °C", { t: 18, c: '#1A75FF' }) +
+      mot(700, 160, "le décalage thermique", { t: 18 }) +
+      mot(500, 288, "un des trois signes de fertilité", { t: 19 }));
+  },
+  barrieres_fig(t) {
+    return svgBoite(
+      trait(90, 108, 330, 108, prog(t), { w: 6 }) + trait(90, 132, 330, 132, prog(t), { w: 3, c: '#B8860B' }) +
+      `<circle cx="210" cy="66" r="17" fill="none" stroke="#E8604C" stroke-width="4"/>` +
+      trait(210, 50, 210, 34, prog(t), { w: 3, c: '#E8604C' }) + trait(196, 56, 184, 44, prog(t), { w: 3, c: '#E8604C' }) + trait(224, 56, 236, 44, prog(t), { w: 3, c: '#E8604C' }) +
+      trait(178, 160, 242, 196, prog(t), { w: 4, c: '#E8604C' }) + trait(242, 160, 178, 196, prog(t), { w: 4, c: '#E8604C' }) +
+      mot(210, 238, "la peau", { t: 20 }) +
+      trait(410, 132, 650, 132, prog(t), { w: 4 }) +
+      `<path d="M 410 108 Q 445 88 480 108 Q 515 128 550 108 Q 585 88 620 108 Q 640 118 650 108" fill="none" stroke="#1A75FF" stroke-width="4"/>` +
+      trait(448, 132, 448, 100, prog(t), { w: 3 }) + trait(500, 132, 500, 100, prog(t), { w: 3 }) + trait(552, 132, 552, 100, prog(t), { w: 3 }) + trait(604, 132, 604, 100, prog(t), { w: 3 }) +
+      `<circle cx="500" cy="66" r="13" fill="none" stroke="#E8604C" stroke-width="3.5"/>` + `<circle cx="586" cy="76" r="10" fill="none" stroke="#E8604C" stroke-width="3.5"/>` +
+      mot(530, 238, "les muqueuses et leurs cils", { t: 20 }) +
+      `<path d="M 790 52 C 762 96, 748 116, 748 140 A 42 42 0 0 0 832 140 C 832 116, 818 96, 790 52 Z" fill="#10B981" fill-opacity=".3" stroke="#10B981" stroke-width="4"/>` +
+      mot(790, 210, "les sécrétions", { t: 20 }) +
+      mot(790, 238, "larmes, acidité", { t: 18 }) +
+      mot(500, 284, "trois barrières naturelles", { t: 20 }));
+  },
 };
 
 Object.assign(ANIMS, FIG);
