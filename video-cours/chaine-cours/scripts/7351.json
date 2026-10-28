@@ -1,0 +1,254 @@
+{
+  "cours": 7351,
+  "ecrans": {
+    "altitude": {
+      "kicker": "Altitude et météo",
+      "texte": "Moins d'air au-dessus, moins de pression ; pression haute : beau temps, basse : mauvais temps.",
+      "type": "phrase"
+    },
+    "aneroide": {
+      "kicker": "Le baromètre anéroïde",
+      "texte": "Une boîte métallique déformable : ses déformations se lisent sur un cadran.",
+      "type": "phrase"
+    },
+    "barometre": {
+      "anim": {
+        "hauteur": 220,
+        "nom": "barometre_torricelli_fig"
+      },
+      "kicker": "Le baromètre à mercure",
+      "texte": "Un tube de mercure retourné dans une cuve : la hauteur de mercure mesure la pression.",
+      "type": "phrase"
+    },
+    "definition": {
+      "kicker": "Définition",
+      "texte": "La pression atmosphérique est la pression de l'air de l'atmosphère sur les corps.",
+      "type": "phrase"
+    },
+    "directions": {
+      "kicker": "Dans toutes les directions",
+      "texte": "L'air nous presse de partout, de façon équilibrée : c'est pourquoi on ne la sent pas.",
+      "type": "phrase"
+    },
+    "exemple_hpa": {
+      "kicker": "Exemple résolu : 985 hPa",
+      "note": "985 hPa = 985 × 100 Pa = 9,85 × 10⁴ Pa.",
+      "tex": "985\\ \\text{hPa} = 985 \\times 100\\ \\text{Pa} = 9{,}85 \\times 10^{4}\\ \\text{Pa}",
+      "type": "formule"
+    },
+    "exemple_montblanc": {
+      "kicker": "Exemple résolu : le mont Blanc",
+      "note": "Au sommet, environ 560 hPa, contre 1 013 hPa au niveau de la mer.",
+      "tex": "P_{\\text{mer}} > P_{\\text{sommet}} \\quad (1013 > 560)",
+      "type": "formule"
+    },
+    "experience": {
+      "kicker": "L'expérience du verre retourné",
+      "texte": "Verre plein, feuille rigide, on retourne : l'eau ne coule pas, la feuille reste collée.",
+      "type": "phrase"
+    },
+    "intro": {
+      "kicker": "L'atmosphère",
+      "texte": "L'air entoure la Terre, il a une masse, et il appuie sur tout ce qu'il recouvre.",
+      "type": "phrase"
+    },
+    "recap": {
+      "etapes": [
+        "L'air appuie sur les corps : c'est la pression atmosphérique.",
+        "Elle se mesure en pascals, avec un baromètre.",
+        "Elle baisse avec l'altitude et varie avec la météo."
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "reference": {
+      "kicker": "Valeur de référence",
+      "note": "Au niveau de la mer, à 0 °C, la pression normale vaut 1 013 hPa.",
+      "tex": "P_{\\text{atm}} \\approx 1{,}013 \\times 10^{5}\\ \\text{Pa} \\approx 1013\\ \\text{hPa}",
+      "type": "formule"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 220,
+        "nom": "barometre_torricelli_fig"
+      },
+      "kicker": "Sciences Physiques et Technologie · Air",
+      "sous": "Définition, mesure, variations avec l'altitude",
+      "titre": "La pression atmosphérique",
+      "type": "titre"
+    },
+    "unites": {
+      "kicker": "Unités de pression",
+      "tex": [
+        "1\\ \\text{hPa} = 100\\ \\text{Pa}",
+        "76\\ \\text{cm de mercure} \\leftrightarrow 1013\\ \\text{hPa}"
+      ],
+      "titre": "Pascals et hectopascals",
+      "type": "etape"
+    },
+    "experience_2": {
+      "kicker": "L'expérience du verre retourné",
+      "texte": "Verre plein, feuille rigide, on retourne : l'eau ne coule pas, la feuille reste collée.",
+      "type": "phrase"
+    },
+    "barometre_2": {
+      "anim": {
+        "hauteur": 220,
+        "nom": "barometre_torricelli_fig"
+      },
+      "kicker": "Le baromètre à mercure",
+      "texte": "Un tube de mercure retourné dans une cuve : la hauteur de mercure mesure la pression.",
+      "type": "phrase"
+    },
+    "altitude_2": {
+      "kicker": "Altitude et météo",
+      "texte": "Moins d'air au-dessus, moins de pression ; pression haute : beau temps, basse : mauvais temps.",
+      "type": "phrase"
+    },
+    "exemple_montblanc_2": {
+      "kicker": "Exemple résolu : le mont Blanc",
+      "note": "Au sommet, environ 560 hPa, contre 1 013 hPa au niveau de la mer.",
+      "tex": "P_{\\text{mer}} > P_{\\text{sommet}} \\quad (1013 > 560)",
+      "type": "formule"
+    },
+    "intro2": {
+      "kicker": "Au programme",
+      "texte": "Définition, expérience, mesure, variations avec l'altitude et la météo.",
+      "type": "phrase"
+    },
+    "reference2": {
+      "kicker": "Valeur de référence",
+      "texte": "Environ 1 013 hPa au niveau de la mer.",
+      "type": "phrase"
+    },
+    "altitude3": {
+      "kicker": "Altitude et pression",
+      "texte": "Moins de masse d'air au-dessus, moins de pression.",
+      "type": "phrase"
+    }
+  },
+  "matiere": "Sciences Physiques et Technologie",
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours sur la pression atmosphérique. Nous allons comprendre ce qu'elle est, et comment on la met en évidence.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "L'air qui nous entoure appuie sur nous."
+    },
+    {
+      "dit": "Nous verrons ensuite comment on la mesure, et pourquoi elle change avec l'altitude et avec la météo.",
+      "ecran": "intro2",
+      "id": "p01b",
+      "texte": "Définition, mesure, variations."
+    },
+    {
+      "dit": "L'atmosphère est la couche d'air qui entoure la Terre. Cet air, bien que très léger, possède une masse. Il appuie donc sur tout ce qui se trouve à la surface de la Terre : c'est la pression atmosphérique.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "L'air a une masse, donc il appuie."
+    },
+    {
+      "dit": "Plus précisément, la pression atmosphérique est la pression exercée par l'air de l'atmosphère sur les corps situés à sa surface. Ce n'est pas un poids posé sur nous, c'est une pression, exercée par l'air tout autour.",
+      "ecran": "definition",
+      "id": "p03",
+      "texte": "Pression de l'air sur les corps."
+    },
+    {
+      "dit": "Une expérience simple la met en évidence. On remplit un verre d'eau à ras bord, on pose une feuille de papier rigide dessus, puis on retourne le verre rapidement. L'eau ne coule pas, et la feuille reste collée au verre.",
+      "ecran": "experience",
+      "id": "p04",
+      "texte": "Le verre retourné qui ne coule pas."
+    },
+    {
+      "dit": "Pourquoi l'eau ne coule-t-elle pas ? Parce que la pression atmosphérique, qui s'exerce sur la feuille par en dessous, est plus grande que la pression exercée par l'eau vers le bas. L'air pousse la feuille contre le verre plus fort que l'eau ne la pousse vers le bas.",
+      "ecran": "experience_2",
+      "id": "p05",
+      "texte": "L'air pousse plus fort que l'eau."
+    },
+    {
+      "dit": "Passons à la mesure. L'unité légale de pression est le pascal, de symbole P a. Comme le pascal est une petite unité, on utilise souvent l'hectopascal : un hectopascal vaut cent pascals. En météo, on parle presque toujours en hectopascals.",
+      "ecran": "unites",
+      "id": "p06",
+      "texte": "Pascal, et hectopascal : 1 hPa = 100 Pa."
+    },
+    {
+      "dit": "La pression atmosphérique se mesure avec un baromètre. Il en existe deux types courants. Le baromètre à mercure est un tube rempli de mercure, retourné dans une cuve : la hauteur de mercure qui reste dans le tube mesure la pression de l'air.",
+      "ecran": "barometre",
+      "id": "p07",
+      "texte": "Baromètre à mercure : hauteur mesurée."
+    },
+    {
+      "dit": "Le deuxième type est le baromètre anéroïde, aussi appelé baromètre métallique. C'est une boîte métallique déformable, dont les déformations traduisent les variations de pression sur un cadran, comme une aiguille qui bouge.",
+      "ecran": "aneroide",
+      "id": "p08",
+      "texte": "Baromètre anéroïde : boîte et cadran."
+    },
+    {
+      "dit": "La valeur de référence est à connaître : au niveau de la mer et à zéro degré Celsius, la pression atmosphérique normale vaut environ un virgule zéro treize fois dix puissance cinq pascals.",
+      "ecran": "reference",
+      "id": "p09",
+      "texte": "Pression normale : 1 013 hPa."
+    },
+    {
+      "dit": "Cela fait environ mille treize hectopascals, la valeur que l'on retrouve sur les cartes météo au niveau de la mer.",
+      "ecran": "reference2",
+      "id": "p09b",
+      "texte": "Soit environ 1 013 hPa."
+    },
+    {
+      "dit": "Cette valeur correspond à une colonne de mercure de soixante-seize centimètres de hauteur. C'est la fameuse hauteur du baromètre de Torricelli : la colonne de mercure équilibre exactement la pression de l'air.",
+      "ecran": "barometre_2",
+      "id": "p10",
+      "texte": "76 cm de mercure : la référence."
+    },
+    {
+      "dit": "Exemple résolu : un élève lit sur un baromètre une pression de neuf cent quatre-vingt-cinq hectopascals. Pour l'exprimer en pascals, on multiplie par cent : neuf cent quatre-vingt-cinq fois cent pascals, soit neuf virgule quatre-vingt-cinq fois dix puissance quatre pascals.",
+      "ecran": "exemple_hpa",
+      "id": "p11",
+      "texte": "985 hPa = 98 500 Pa."
+    },
+    {
+      "dit": "Ce qu'il faut retenir ensuite, c'est que la pression atmosphérique diminue quand l'altitude augmente. En altitude, l'air est moins dense, il y a moins d'air au-dessus de nous, donc il appuie moins fort.",
+      "ecran": "altitude",
+      "id": "p12",
+      "texte": "Plus haut, moins d'air, moins de pression."
+    },
+    {
+      "dit": "C'est une conséquence directe de la définition : moins de masse d'air au-dessus d'un point, moins de pression exercée en ce point.",
+      "ecran": "altitude3",
+      "id": "p12b",
+      "texte": "Moins de masse d'air, moins de pression."
+    },
+    {
+      "dit": "Elle varie aussi avec la météo : une pression élevée annonce souvent du beau temps, une pression basse annonce souvent du mauvais temps. C'est pour cela que les bulletins météo parlent de hautes et de basses pressions.",
+      "ecran": "altitude_2",
+      "id": "p13",
+      "texte": "Haute pression : beau temps ; basse : mauvais."
+    },
+    {
+      "dit": "Enfin, la pression atmosphérique s'exerce dans toutes les directions, pas seulement vers le bas. C'est pour cela qu'on ne la ressent pas : elle nous presse de partout, de façon équilibrée, et les pressions se compensent.",
+      "ecran": "directions",
+      "id": "p14",
+      "texte": "Pressée de partout, donc pas ressentie."
+    },
+    {
+      "dit": "Dernier exemple résolu, pour vérifier : au sommet du mont Blanc, à quatre mille huit cents mètres d'altitude, la pression atmosphérique vaut environ cinq cent soixante hectopascals. Comparons-la à la pression au niveau de la mer.",
+      "ecran": "exemple_montblanc",
+      "id": "p15",
+      "texte": "Mont Blanc : environ 560 hPa."
+    },
+    {
+      "dit": "Au niveau de la mer, la pression vaut environ mille treize hectopascals, ce qui est supérieur aux cinq cent soixante hectopascals du sommet. La pression au sommet est donc environ deux fois plus faible qu'au niveau de la mer, ce qui confirme qu'elle diminue avec l'altitude.",
+      "ecran": "exemple_montblanc_2",
+      "id": "p16",
+      "texte": "1 013 > 560 : elle baisse en altitude."
+    },
+    {
+      "dit": "Pour conclure : l'air appuie sur les corps, c'est la pression atmosphérique ; elle se mesure en pascals, avec un baromètre, et vaut environ mille treize hectopascals au niveau de la mer ; elle baisse avec l'altitude, varie avec la météo, et s'exerce dans toutes les directions.",
+      "ecran": "recap",
+      "id": "p17",
+      "texte": "Définition, mesure, variations : retenu."
+    }
+  ],
+  "titre": "La pression atmosphérique"
+}
