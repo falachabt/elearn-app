@@ -7071,6 +7071,15 @@ const FIG = {
       s += '<rect x="708" y="78" width="12" height="52" rx="6" fill="none" stroke="#1A75FF" stroke-width="3"/>';
       s += mot(704, 168, "22", { t: 19 });
       s += mot(500, 248, "47 chromosomes : trisomie 21", { t: 20, c: "#E8604C" });
+    } else if (o && o.xy) {
+      s += '<rect x="548" y="78" width="12" height="52" rx="6" fill="none" stroke="#1A75FF" stroke-width="3"/>';
+      s += '<rect x="568" y="78" width="12" height="52" rx="6" fill="none" stroke="#1A75FF" stroke-width="3"/>';
+      s += mot(564, 168, "22", { t: 19 });
+      s += '<rect x="688" y="82" width="12" height="46" rx="6" fill="none" stroke="#10B981" stroke-width="3"/>';
+      s += '<rect x="708" y="94" width="12" height="34" rx="6" fill="none" stroke="#B8860B" stroke-width="3"/>';
+      s += '<rect x="676" y="68" width="58" height="76" fill="none" stroke="currentColor" stroke-width="3"/>';
+      s += mot(705, 168, "23", { t: 19 });
+      s += mot(500, 248, "XY : gonosomes", { t: 20, c: "#10B981" });
     } else {
       s += '<rect x="548" y="78" width="12" height="52" rx="6" fill="none" stroke="#1A75FF" stroke-width="3"/>';
       s += '<rect x="568" y="78" width="12" height="52" rx="6" fill="none" stroke="#1A75FF" stroke-width="3"/>';
