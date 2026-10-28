@@ -1,0 +1,390 @@
+{
+ "cours": 6373,
+ "ecrans": {
+  "additivite": {
+   "kicker": "Trois gènes, une carte simple",
+   "note": "La distance calculée dépasse l'observée : les doubles crossing-overs ont effacé une partie des recombinaisons",
+   "tex": [
+    "\\text{a — 8 cM — b — 12 cM — c}",
+    "\\text{calculé : 20 cM}",
+    "\\text{observé : 18 %}"
+   ],
+   "titre": "Huit plus douze, mais dix-huit observé",
+   "type": "etape"
+  },
+  "applications": {
+   "kicker": "Applications : recherche et sélection",
+   "tex": [
+    "\\text{gènes de maladies, QTL}",
+    "\\text{sélection animale et végétale}",
+    "\\text{marqueurs assistés}"
+   ],
+   "titre": "De la carte au champ et à la clinique",
+   "type": "etape"
+  },
+  "carte_physique": {
+   "kicker": "Cartes physiques : l'autre échelle",
+   "tex": [
+    "\\text{cartes de restriction}",
+    "\\text{contigs BAC, YAC}",
+    "\\text{Projet Génome Humain, 2003}"
+   ],
+   "titre": "En paires de bases, pas en probabilités",
+   "type": "etape"
+  },
+  "cm": {
+   "kicker": "Le centimorgan",
+   "note": "Unité nommée en l'honneur de Thomas Hunt Morgan",
+   "tex": "1\\,\\% \\text{ de recombinaison} = 1\\,\\text{cM}",
+   "type": "formule"
+  },
+  "coincidence": {
+   "kicker": "Coïncidence et interférence",
+   "note": "Attendus trois virgule soixante-deux individus, observés douze : une interférence négative inhabituelle, possible point chaud",
+   "tex": [
+    "C = \\frac{\\text{observé}}{\\text{attendu}} = 3{,}31",
+    "I = 1 - C = -2{,}31"
+   ],
+   "titre": "Quand un crossing-over en appelle un autre",
+   "type": "etape"
+  },
+  "croisement_test": {
+   "kicker": "Le croisement de test",
+   "tex": [
+    "\\text{hétérozygote} \\times \\text{homozygote récessif}",
+    "\\text{chaque phénotype révèle un gamète}",
+    "\\text{parentaux nombreux, recombinés rares}"
+   ],
+   "titre": "La loupe du cartographe",
+   "type": "etape"
+  },
+  "diagnostic": {
+   "kicker": "Du diagnostic indirect au direct",
+   "tex": [
+    "\\text{marqueurs liés : présymptomatique}",
+    "\\text{localisation : 5 à 10 cM}",
+    "\\text{séquençage : variant direct}"
+   ],
+   "titre": "D'abord la région, puis le gène",
+   "type": "etape"
+  },
+  "doubles": {
+   "kicker": "Doubles crossing-overs",
+   "tex": [
+    "\\text{A — 20 cM — B — 30 cM — C}",
+    "\\text{A-C n'est pas forcément 50 cM}",
+    "\\text{deux échanges s'annulent}"
+   ],
+   "titre": "Le piège des grandes distances",
+   "type": "etape"
+  },
+  "exemple_droso": {
+   "kicker": "Un croisement de test chez la drosophile",
+   "tex": [
+    "\\text{420 gris, longues : parental}",
+    "\\text{430 noir, vestigiales : parental}",
+    "\\text{75 + 75 : recombinants}"
+   ],
+   "titre": "Quatre phénotypes, un calcul",
+   "type": "etape"
+  },
+  "gametes": {
+   "kicker": "Parentaux et recombinés",
+   "tex": [
+    "\\text{parentaux : combinaisons d'origine}",
+    "\\text{recombinés : segments échangés}",
+    "\\text{proportion = mesure de distance}"
+   ],
+   "titre": "Deux sortes de gamètes",
+   "type": "etape"
+  },
+  "gwas": {
+   "kicker": "Au-delà des familles",
+   "tex": [
+    "\\text{polymorphismes d'ADN}",
+    "\\text{phénotype + multi-omiques}",
+    "\\text{prédiction et médecine personnalisée}"
+   ],
+   "titre": "De la carte au risque individuel",
+   "type": "etape"
+  },
+  "interference": {
+   "kicker": "L'interférence positive",
+   "tex": [
+    "\\text{un crossing-over freine le voisin}",
+    "\\text{recombinaisons non indépendantes}",
+    "\\text{Haldane, Kosambi : approximations}"
+   ],
+   "titre": "Un événement gêne le suivant",
+   "type": "etape"
+  },
+  "liaison": {
+   "kicker": "Liaison : la limite de Mendel",
+   "tex": [
+    "\\text{Mendel : assortiment indépendant}",
+    "\\text{limite : gènes sur un même chromosome}",
+    "\\text{ils ségrègent ensemble}"
+   ],
+   "titre": "Quand l'indépendance s'arrête",
+   "type": "etape"
+  },
+  "limites": {
+   "kicker": "Ce que la carte ne dit pas",
+   "tex": [
+    "\\text{elle dit : ordre et distance estimée}",
+    "\\text{elle ne dit pas : distance en paires de bases}",
+    "\\text{points chauds et froids, mur de 0,5 cM}"
+   ],
+   "titre": "Une carte de probabilités",
+   "type": "etape"
+  },
+  "mendel": {
+   "kicker": "Mendel, puis le chromosome",
+   "texte": "Les facteurs discrets de Mendel ont trouvé leur support physique : les chromosomes, où les gènes s'alignent comme des perles sur un fil.",
+   "type": "phrase"
+  },
+  "morgan": {
+   "kicker": "Morgan et la drosophile",
+   "tex": [
+    "\\text{white : couleur des yeux}",
+    "\\text{yellow : couleur du corps}",
+    "\\text{miniature : taille des ailes}"
+   ],
+   "titre": "Six gènes, une première carte",
+   "type": "etape"
+  },
+  "parental_recombine": {
+   "kicker": "Crossing-over en prophase I",
+   "tex": [
+    "\\text{homologues appariés}",
+    "\\text{cassure, jonctions de Holliday}",
+    "\\text{deux plans de résolution}"
+   ],
+   "titre": "Échanger ou non, selon la coupure",
+   "type": "etape"
+  },
+  "premiere_carte": {
+   "kicker": "Sturtevant, 1913",
+   "tex": [
+    "\\text{RF A-B : 8 %}",
+    "\\text{RF B-C : 3 %}",
+    "\\text{RF A-C : 11 %}"
+   ],
+   "titre": "Huit plus trois égale onze",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Liaison : même chromosome",
+    "Crossing-over en prophase I",
+    "Fréquence : recombinants / total",
+    "Centimorgan : 1 % = 1 cM",
+    "Trois points : corriger les doubles"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "rf": {
+   "kicker": "La fréquence de recombinaison",
+   "note": "Elle est proportionnelle à la distance physique entre les deux gènes",
+   "tex": "\\text{RF} = \\frac{\\text{recombinants}}{\\text{total}} \\times 100\\,\\%",
+   "type": "formule"
+  },
+  "rf_calc": {
+   "kicker": "Le calcul pas à pas",
+   "note": "Cent cinquante recombinants sur mille descendants",
+   "tex": "\\text{RF} = \\frac{150}{1000} \\times 100\\,\\% = 15\\,\\%",
+   "type": "formule"
+  },
+  "rf_max": {
+   "kicker": "La limite de cinquante pour cent",
+   "tex": [
+    "\\text{RF proche de 0 % : étroitement liés}",
+    "\\text{RF de 50 % : indépendants ou très loin}",
+    "\\text{seuls les nombres impairs recombinent}"
+   ],
+   "titre": "Zéro, ou cinquante, jamais plus",
+   "type": "etape"
+  },
+  "sturtevant": {
+   "kicker": "L'intuition de Sturtevant",
+   "texte": "Étudiant dans le laboratoire de Morgan, Sturtevant comprend que la fréquence de recombinaison est proportionnelle à la distance entre deux gènes.",
+   "type": "phrase"
+  },
+  "titre": {
+   "kicker": "Biologie · Cartes génétiques",
+   "sous": "Liaison, crossing-over et recombinaison : mesurer des distances pour dessiner le génome",
+   "titre": "Cartes génétiques : liaison et recombinaison, mesurer l'invisible",
+   "type": "titre"
+  },
+  "trois_points": {
+   "kicker": "Cartographie à trois points",
+   "note": "Ordre A, C, B : les distances s'additionnent, sauf l'écart dû aux doubles crossing-overs",
+   "tex": [
+    "\\text{A-C : 17,0 cM}",
+    "\\text{C-B : 17,75 cM}",
+    "\\text{A-B : 34,75 cM, direct 32,75}"
+   ],
+   "titre": "La méthode reine",
+   "type": "etape"
+  }
+ },
+ "matiere": "Biologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Liaison, crossing-over et fréquence de recombinaison"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : de Sturtevant à la cartographie à trois points. Nous verrons comment les fréquences ordonnent les gènes, et pourquoi les grandes distances ne s'additionnent pas.",
+    "texte": "Partie 2 : Sturtevant et cartographie à trois points."
+   },
+   "sous_titre": "Sturtevant et cartographie à trois points"
+  },
+  {
+   "debut": "p16",
+   "pont": {
+    "dit": "Partie trois : interférence, limites et applications. Nous verrons comment mesurer l'interférence, ce qu'une carte ne dit pas, et comment elle guide le diagnostic et la sélection.",
+    "texte": "Partie 3 : interférence, limites et applications."
+   },
+   "sous_titre": "Interférence, limites et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur les cartes génétiques, ou comment mesurer l'invisible. Le grand mystère de l'hérédité a commencé avec Mendel, mais sa loi d'assortiment indépendant a une limite : elle suppose que les gènes se transmettent indépendamment les uns des autres.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Mendel et l'assortiment indépendant : une limite à découvrir."
+  },
+  {
+   "dit": "La limite apparaît quand deux gènes sont portés par le même chromosome : ils sont liés, ils tendent à ségrègent ensemble, au lieu de se séparer indépendamment. Les facteurs discrets de Mendel ont alors trouvé leur support physique : les chromosomes, où les gènes s'alignent comme des perles sur un fil.",
+   "ecran": "liaison",
+   "id": "p02",
+   "texte": "Même chromosome : les gènes ségrègent ensemble."
+  },
+  {
+   "dit": "Le mécanisme qui brise cette liaison est le crossing-over, en prophase un de la méiose. Les chromosomes homologues s'apparient, une chromatide subit une cassure double-brin, envahit la chromatide homologue non sœur, et des jonctions de Holliday se forment. Selon le plan de résolution, les chromatides restent parentales ou échangent leurs segments.",
+   "ecran": "parental_recombine",
+   "id": "p03",
+   "texte": "Prophase un : cassure, jonctions de Holliday, deux résolutions."
+  },
+  {
+   "dit": "Le résultat se lit dans les gamètes. Les gamètes parentaux portent les combinaisons d'origine. Les gamètes recombinés portent des segments échangés. La proportion de gamètes recombinés mesure donc la liaison : plus elle est forte, plus la liaison est faible.",
+   "ecran": "gametes",
+   "id": "p04",
+   "texte": "Parentaux d'origine, recombinés échangés : la proportion mesure la liaison."
+  },
+  {
+   "dit": "Comment observer un événement de méiose dans une descendance ? Par le croisement de test, la loupe du cartographe : on croise un hétérozygote avec un homozygote récessif, pour que chaque phénotype de la descendance révèle directement le gamète reçu de l'hétérozygote.",
+   "ecran": "croisement_test",
+   "id": "p05",
+   "texte": "Hétérozygote croisé avec homozygote récessif : chaque phénotype révèle un gamète."
+  },
+  {
+   "dit": "Prenons un croisement de test chez la drosophile, pour la couleur du corps et la taille des ailes. On obtient quatre cent vingt descendants gris à ailes longues, parentaux, quatre cent trente noirs à ailes vestigiales, parentaux, et soixante-quinze plus soixante-quinze recombinants, gris à ailes vestigiales et noirs à ailes longues.",
+   "ecran": "exemple_droso",
+   "id": "p06",
+   "texte": "Quatre cent vingt et quatre cent trente parentaux, soixante-quinze plus soixante-quinze recombinants."
+  },
+  {
+   "dit": "La fréquence de recombinaison se calcule simplement : le nombre de descendants recombinants divisé par le nombre total de descendants, multiplié par cent pour cent. Ici, cent cinquante recombinants sur mille descendants donnent quinze pour cent.",
+   "ecran": "rf_calc",
+   "id": "p07",
+   "texte": "Cent cinquante sur mille : quinze pour cent de recombinaison."
+  },
+  {
+   "dit": "La fréquence de recombinaison est proportionnelle à la distance physique entre les deux gènes : plus ils sont éloignés, plus un crossing-over a de chances de se produire entre eux. Un centimorgan, unité nommée en l'honneur de Thomas Hunt Morgan, est la distance pour laquelle la fréquence attendue de recombinaison vaut un pour cent. Quinze pour cent, c'est donc quinze centimorgans.",
+   "ecran": "cm",
+   "id": "p08",
+   "texte": "Un pour cent égale un centimorgan : quinze pour cent, quinze centimorgans."
+  },
+  {
+   "dit": "Aux extrêmes, la lecture est claire. Des gènes très proches ont une fréquence proche de zéro pour cent : ils sont étroitement liés et ségrègent presque toujours ensemble. À l'autre bout, la fréquence maximale est de cinquante pour cent : au-delà, seuls les nombres impairs de crossing-overs produisent des gamètes recombinés, et une fréquence de cinquante pour cent peut aussi bien signifier des chromosomes différents que des gènes très éloignés sur le même chromosome.",
+   "ecran": "rf_max",
+   "id": "p09",
+   "texte": "Proche de zéro : liés ; cinquante pour cent : indépendants ou très loin."
+  },
+  {
+   "dit": "En mille neuf cent treize, Alfred Sturtevant, alors étudiant dans le laboratoire de Morgan, a l'intuition géniale : mesurer les fréquences entre plusieurs paires de gènes permet de les ordonner et d'estimer leurs distances relatives. Avec huit pour cent entre A et B, trois pour cent entre B et C, et onze pour cent entre A et C, l'ordre est A, B, C, et les distances s'additionnent.",
+   "ecran": "premiere_carte",
+   "id": "p10",
+   "texte": "Sturtevant 1913 : huit plus trois égale onze, l'ordre est A, B, C."
+  },
+  {
+   "dit": "Sturtevant applique ce principe à six gènes liés au sexe chez la drosophile, et trace la toute première carte génétique de l'histoire, avec les gènes white pour la couleur des yeux, yellow pour la couleur du corps et miniature pour la taille des ailes, alignés sur une ligne avec leurs distances estimées. C'est la preuve tangible que les gènes sont disposés linéairement sur les chromosomes.",
+   "ecran": "morgan",
+   "id": "p11",
+   "texte": "Première carte : white, yellow, miniature, alignés sur une ligne."
+  },
+  {
+   "dit": "Prenons maintenant trois gènes liés, a, b et c, avec trois croisements deux à deux. La distance a-b vaut huit centimorgans, b-c douze centimorgans, donc a-c calculée vaut vingt centimorgans. Mais on n'observe que dix-huit pour cent : l'écart de deux centimorgans vient des doubles crossing-overs entre a et c, qui ont produit des gamètes d'apparence parentale et sous-estimé la recombinaison.",
+   "ecran": "additivite",
+   "id": "p12",
+   "texte": "Huit plus douze égale vingt, mais on observe dix-huit : les doubles crossing-overs effacent."
+  },
+  {
+   "dit": "C'est le piège des grandes distances, et la raison d'être de la cartographie à trois points, la méthode reine. Prenons l'exemple complet des leçons : sur mille deux cents descendants, la fréquence A-C vaut dix-sept centimorgans, C-B dix-sept virgule soixante-quinze, donc A-B vaut trente-quatre virgule soixante-quinze par addition, contre trente-deux virgule soixante-quinze en mesure directe. L'ordre est A, C, B, et l'écart mesure les doubles crossing-overs non détectés.",
+   "ecran": "trois_points",
+   "id": "p13",
+   "texte": "Trois points : dix-sept plus dix-sept virgule soixante-quinze égale trente-quatre virgule soixante-quinze."
+  },
+  {
+   "dit": "Pourquoi les grandes distances ne s'additionnent-elles pas ? Imaginez A et B distants de vingt centimorgans, B et C de trente : A-C n'est pas forcément cinquante. Deux crossing-overs entre les mêmes chromatides échangent les allèles extrêmes mais remettent le gène du milieu dans sa configuration d'origine : le gamète paraît parental, et la recombinaison est sous-estimée.",
+   "ecran": "doubles",
+   "id": "p14",
+   "texte": "Vingt plus trente ne fait pas forcément cinquante : deux échanges s'annulent."
+  },
+  {
+   "dit": "On quantifie cet effet par le coefficient de coïncidence, le nombre de doubles recombinés observés divisé par le nombre attendu si les événements étaient indépendants, et par l'interférence, un moins le coefficient. Dans l'exemple des leçons, on attendait trois virgule soixante-deux individus, on en observe douze : le coefficient vaut environ trois virgule trente et un, l'interférence moins deux virgule trente et un, une interférence négative forte et inhabituelle, qui suggère un point chaud de recombinaison ou un biais dans les données.",
+   "ecran": "coincidence",
+   "id": "p15",
+   "texte": "Observés douze, attendus trois virgule soixante-deux : coïncidence trois virgule trente et un."
+  },
+  {
+   "dit": "Le plus souvent, l'interférence est positive : un crossing-over réduit la probabilité qu'un second se produise à proximité, les recombinaisons ne sont pas totalement indépendantes. C'est une bénédiction mitigée : elle simplifie l'interprétation des croisements à trois points, mais elle complique la conversion précise des fréquences en distances, et les fonctions de Haldane ou de Kosambi ne sont que des approximations.",
+   "ecran": "interference",
+   "id": "p16",
+   "texte": "Interférence positive : un crossing-over freine le suivant."
+  },
+  {
+   "dit": "Il faut aussi connaître les limites de la carte. Elle dit l'ordre relatif des gènes et une estimation de leur distance, fondée sur une probabilité. Elle ne dit pas la distance physique exacte en paires de bases, car la recombinaison n'est pas uniforme : il existe des points chauds et des points froids, et la résolution classique bute sur un mur d'environ zéro virgule cinq centimorgan.",
+   "ecran": "limites",
+   "id": "p17",
+   "texte": "Ordre et distance estimée oui, paires de bases exactes non."
+  },
+  {
+   "dit": "À quoi servent ces cartes, une fois tracées ? D'abord, à chasser les gènes de maladies par analyse de liaison : à l'ère de la cartographie, de mille neuf cent quatre-vingts à deux mille, on localisait une région de cinq à dix centimorgans, puis on identifiait le gène par clonage positionnel. Ensuite, au diagnostic indirect : un marqueur lié permet un diagnostic présymptomatique avant même de connaître le gène, puis le séquençage apporte le diagnostic direct, par le variant lui-même.",
+   "ecran": "diagnostic",
+   "id": "p18",
+   "texte": "Région de cinq à dix centimorgans, puis variant direct par séquençage."
+  },
+  {
+   "dit": "Les cartes servent aussi au conseil génétique et à l'estimation des risques dans les familles, et au-delà des maladies monogéniques, aux caractères complexes : les QTL, régions associées à des caractères quantitatifs, et les études d'association pangénomique, qui cherchent des variants associés sans passer par les familles. En sélection animale et végétale, les marqueurs assistent le choix des reproducteurs.",
+   "ecran": "applications",
+   "id": "p19",
+   "texte": "Conseil génétique, QTL, association pangénomique, sélection assistée."
+  },
+  {
+   "dit": "Enfin, la carte génétique a trouvé son complément : la carte physique, en paires de bases absolues. Cartes de restriction, assemblage de clones qui se chevauchent, BAC et YAC, puis séquençage à haut débit. Le Projet Génome Humain, achevé en deux mille trois, a fourni la carte physique ultime : la séquence de référence complète.",
+   "ecran": "carte_physique",
+   "id": "p20",
+   "texte": "Restriction, contigs, séquençage : le Projet Génome Humain en deux mille trois."
+  },
+  {
+   "dit": "La cartographie moderne ne s'arrête pas là : des phénotypes aux polymorphismes d'ADN, les marqueurs moléculaires ont remplacé les caractères visibles, et l'avenir intégratif combine phénotype et données multi-omiques, pour une carte génétique fonctionnelle, une prédiction du risque et une médecine personnalisée. Mais l'idée de Sturtevant reste le point de départ : compter des recombinaisons pour ordonner des gènes.",
+   "ecran": "gwas",
+   "id": "p21",
+   "texte": "Polymorphismes, multi-omiques, médecine personnalisée : toujours compter pour ordonner."
+  },
+  {
+   "dit": "Retenons l'essentiel : les gènes d'un même chromosome sont liés et ségrègent ensemble ; le crossing-over de prophase un brise cette liaison ; la fréquence de recombinaison, recombinants divisés par total, mesure la distance, un pour cent valant un centimorgan ; les doubles crossing-overs et l'interférence obligent à corriger les grandes distances, par la cartographie à trois points ; et ces cartes, de la localisation des maladies à la sélection, restent l'outil qui a ouvert le génome.",
+   "ecran": "recap",
+   "id": "p22",
+   "texte": "Liaison, crossing-over, fréquence, centimorgan, trois points, applications."
+  }
+ ],
+ "titre": "Cartes génétiques : liaison et recombinaison, mesurer l'invisible"
+}
