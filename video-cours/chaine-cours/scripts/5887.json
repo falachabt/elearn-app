@@ -44,18 +44,18 @@
    "type": "formule"
   },
   "dominos": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "dominos_fig"
+   },
    "kicker": "La récurrence · la métaphore des dominos",
    "texte": "Un premier domino qui tombe, et chaque domino qui entraîne le suivant : toute la rangée tombe.",
-   "type": "phrase",
-   "anim": {
-    "nom": "dominos_fig",
-    "hauteur": 190
-   }
+   "type": "phrase"
   },
   "geo_def": {
    "anim": {
     "hauteur": 170,
-    "nom": "exponentielle_fig"
+    "nom": "nuage_suite_fig"
    },
    "kicker": "Suites géométriques · définition",
    "note": "Exemple : 2, 6, 18, 54... la raison vaut 3 : la croissance devient exponentielle.",
@@ -81,7 +81,7 @@
   "interets": {
    "anim": {
     "hauteur": 170,
-    "nom": "exponentielle_fig"
+    "nom": "capitalisation_fig"
    },
    "kicker": "Finance · les intérêts composés",
    "note": "Après 10 ans : 1 628,89 euros. Après 20 ans : 2 653,30 euros, soit le capital multiplié par 2,65.",
@@ -110,13 +110,13 @@
    "type": "etape"
   },
   "limite_intuition": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "suite_convergente_fig"
+   },
    "kicker": "Limite d'une suite · intuition",
    "texte": "Quand n grandit, les termes se resserrent autour d'une valeur : c'est la limite.",
-   "type": "phrase",
-   "anim": {
-    "nom": "suite_convergente_fig",
-    "hauteur": 190
-   }
+   "type": "phrase"
   },
   "limite_proprietes": {
    "kicker": "Limites · opérations",
@@ -192,14 +192,14 @@
    "type": "etape"
   },
   "sigma": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "escalier_sommes_fig"
+   },
    "kicker": "Sommes partielles et notation sigma",
    "note": "Sₙ est la somme partielle. Si elle tend vers une limite quand n grandit, la série converge.",
    "tex": "S_n = \\sum_{k=1}^{n} a_k = a_1 + a_2 + \\cdots + a_n",
-   "type": "formule",
-   "anim": {
-    "nom": "escalier_sommes_fig",
-    "hauteur": 170
-   }
+   "type": "formule"
   },
   "somme_arith": {
    "kicker": "Somme d'une suite arithmétique",
@@ -236,7 +236,7 @@
   "titre": {
    "anim": {
     "hauteur": 250,
-    "nom": "exponentielle_fig"
+    "nom": "nuage_suite_fig"
    },
    "kicker": "Mathématique · Suites numériques",
    "sous": "Arithmétiques, géométriques, limites, récurrence : les formules et les sommes qui comptent",
