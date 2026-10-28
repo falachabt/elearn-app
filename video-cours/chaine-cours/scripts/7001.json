@@ -1,0 +1,476 @@
+{
+ "cours": 7001,
+ "ecrans": {
+  "aide": {
+   "kicker": "Ayudar : aider par les questions",
+   "tex": [
+    "\\text{¿Puedo ayudarte?}",
+    "\\text{¿Necesitas ayuda?}",
+    "\\text{¿En qué puedo ayudarte?}"
+   ],
+   "titre": "Puis-je t'aider ? As-tu besoin d'aide ?",
+   "type": "etape"
+  },
+  "aide_reponse": {
+   "kicker": "Répondre à une demande d'aide",
+   "tex": [
+    "\\text{Claro que sí, te ayudo.}",
+    "\\text{Gracias por tu ayuda.}"
+   ],
+   "titre": "Bien sûr, je t'aide ; merci pour ton aide",
+   "type": "etape"
+  },
+  "caractere": {
+   "kicker": "Décrire : le caractère",
+   "tex": [
+    "\\text{simpático/a, antipático/a}",
+    "\\text{tímido/a, hablador/a}",
+    "\\text{tranquilo/a, alegre}"
+   ],
+   "titre": "Sympathique, timide, bavard, calme, gai",
+   "type": "etape"
+  },
+  "comparatifs": {
+   "kicker": "Comparer deux personnes",
+   "tex": [
+    "\\text{más... que}",
+    "\\text{menos... que}",
+    "\\text{tan... como}"
+   ],
+   "titre": "Plus que, moins que, aussi que",
+   "type": "etape"
+  },
+  "comparer_ex": {
+   "kicker": "Exemple résolu : mère et fille",
+   "tex": [
+    "\\text{La madre es más joven}",
+    "\\text{que la abuela.}",
+    "\\text{La hija es menos tímida.}"
+   ],
+   "titre": "Plus jeune, aussi sympathique, moins timide",
+   "type": "etape"
+  },
+  "coutumes": {
+   "kicker": "Una costumbre : les scripts culturels",
+   "tex": [
+    "\\text{¿Cómo estás? — Bien, gracias.}",
+    "\\text{¿Cómo te llamas? — Me llamo...}",
+    "\\text{¿Quieres algo? — No, gracias.}"
+   ],
+   "titre": "La question n'attend pas toujours une information",
+   "type": "etape"
+  },
+  "coutumes_def": {
+   "kicker": "Una costumbre : définition",
+   "texte": "Une pratique régulière propre à un groupe, avec des échanges codifiés.",
+   "type": "phrase"
+  },
+  "erreurs": {
+   "kicker": "Erreurs à éviter en décrivant",
+   "tex": [
+    "\\text{Es 20 años → Tiene 20 años.}",
+    "\\text{Es altos → Son altos.}",
+    "\\text{Es alegre / Está contento hoy.}"
+   ],
+   "titre": "L'âge avec tener, l'accord, ser contre estar",
+   "type": "etape"
+  },
+  "exemple_aide": {
+   "kicker": "Exemple résolu : aider avec les papiers",
+   "tex": [
+    "\\text{¿Puedes ayudarme con los papeles?}",
+    "\\text{Sí, claro. ¿Qué necesitas?}"
+   ],
+   "titre": "Oui, puis une nouvelle question pour préciser",
+   "type": "etape"
+  },
+  "exemple_origine": {
+   "kicker": "Exemple résolu : d'où viens-tu ?",
+   "tex": [
+    "\\text{¿De dónde eres?}",
+    "\\text{Soy de Colombia.}"
+   ],
+   "titre": "La question en ser, la réponse en ser",
+   "type": "etape"
+  },
+  "exemple_pourquoi": {
+   "kicker": "Exemple résolu : pourquoi es-tu venu ?",
+   "tex": [
+    "\\text{¿Por qué has venido a España?}",
+    "\\text{He venido porque busco trabajo.}"
+   ],
+   "titre": "La réponse reprend le verbe, avec porque",
+   "type": "etape"
+  },
+  "grandpere": {
+   "kicker": "Exemple résolu : le grand-père Antonio",
+   "tex": [
+    "\\text{Mi abuelo se llama Antonio.}",
+    "\\text{Es viejo: tiene 78 años.}",
+    "\\text{Es bajo y delgado, muy simpático.}"
+   ],
+   "titre": "Ser pour les qualités, tener pour l'âge",
+   "type": "etape"
+  },
+  "grille": {
+   "kicker": "Grille d'analyse du texte support",
+   "tex": [
+    "\\text{mots interrogatifs}",
+    "\\text{marqueurs de réponse}",
+    "\\text{questions réelles ou rituelles}"
+   ],
+   "titre": "Identifier, repérer, distinguer",
+   "type": "etape"
+  },
+  "identite": {
+   "kicker": "Décrire : l'identité",
+   "tex": [
+    "\\text{Se llama...}",
+    "\\text{Es...}",
+    "\\text{Tiene ... años.}"
+   ],
+   "titre": "Il s'appelle, il est, il a un âge",
+   "type": "etape"
+  },
+  "interrogatifs": {
+   "kicker": "Les mots interrogatifs",
+   "tex": [
+    "\\text{qué, quién, dónde, cuándo}",
+    "\\text{cómo, por qué, cuánto, cuál}"
+   ],
+   "titre": "Toujours accentués, en espagnol",
+   "type": "etape"
+  },
+  "methode_portrait": {
+   "kicker": "Méthode : construire un retrato",
+   "tex": [
+    "\\text{présenter}",
+    "\\text{physique, puis caractère}",
+    "\\text{comparer ou nuancer}"
+   ],
+   "titre": "Identité, physique, caractère, comparaison",
+   "type": "etape"
+  },
+  "physique": {
+   "kicker": "Décrire : le physique",
+   "tex": [
+    "\\text{alto/a, bajo/a}",
+    "\\text{delgado/a, gordo/a}",
+    "\\text{moreno/a, rubio/a}"
+   ],
+   "titre": "Grand, petit, mince, gros, brun, blond",
+   "type": "etape"
+  },
+  "physique2": {
+   "kicker": "Décrire : yeux et cheveux",
+   "tex": [
+    "\\text{los ojos azules, verdes, negros}",
+    "\\text{el pelo corto, largo, rizado}"
+   ],
+   "titre": "Les yeux et les cheveux du portrait",
+   "type": "etape"
+  },
+  "portrait_def": {
+   "kicker": "Un retrato : définition",
+   "texte": "Un portrait : description écrite ou peinte d'une personne.",
+   "type": "phrase"
+  },
+  "preguntar": {
+   "kicker": "Preguntar et contestar",
+   "tex": [
+    "\\text{preguntar : demander}",
+    "\\text{contestar : répondre}"
+   ],
+   "titre": "Celui qui demande ne connaît pas la réponse",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Preguntar et contestar sont deux actes complémentaires et asymétriques : demande contre fourniture d'information.",
+    "Les mots interrogatifs portent toujours l'accent écrit : qué, quién, dónde, cuándo, cómo, por qué, cuánto, cuál.",
+    "Ayudar est souvent le but pragmatique de l'échange question-réponse.",
+    "Décrire, c'est combiner ser pour les qualités, tener pour l'âge et les traits, llevar pour les vêtements ; l'âge se dit toujours avec tener."
+   ],
+   "kicker": "Synthèse du chapitre",
+   "type": "recap"
+  },
+  "retour": {
+   "kicker": "La réponse qui relance l'échange",
+   "texte": "Bien, gracias, ¿y tú ? : la politesse renvoie la question.",
+   "type": "phrase"
+  },
+  "ser_estar": {
+   "kicker": "Ser contre estar : ne pas confondre",
+   "tex": [
+    "\\text{Es alegre : de nature}",
+    "\\text{Está contento hoy : aujourd'hui}"
+   ],
+   "titre": "Durable avec ser, passager avec estar",
+   "type": "etape"
+  },
+  "ser_vieux": {
+   "kicker": "L'âge : ser viejo contre ser joven",
+   "tex": [
+    "\\text{Es viejo / Es vieja}",
+    "\\text{Son viejos / Son viejas}"
+   ],
+   "titre": "Adjectifs accordés en genre et en nombre",
+   "type": "etape"
+  },
+  "support": {
+   "kicker": "Le texte support : un immigrant colombien",
+   "texte": "Ayudando a un inmigrante colombiano, page soixante.",
+   "type": "phrase"
+  },
+  "tener_age": {
+   "kicker": "L'âge se dit avec tener",
+   "tex": [
+    "\\text{Tiene 15 años.}",
+    "\\text{jamais : Es 15 años.}"
+   ],
+   "titre": "Il a quinze ans, jamais il est quinze ans",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Espagnol · Poser des questions et décrire",
+   "sous": "Preguntar et contestar, puis le portrait",
+   "titre": "Poser des questions et décrire",
+   "type": "titre"
+  },
+  "asymetrie": {
+   "kicker": "Preguntar et contestar : l'asymétrie",
+   "tex": [
+    "\\text{demande d'information}",
+    "\\text{fourniture d'information}"
+   ],
+   "titre": "Demander d'un côté, fournir de l'autre",
+   "type": "etape"
+  },
+  "support2": {
+   "kicker": "Application : repérer dans le texte",
+   "tex": [
+    "\\text{questions de l'hispanophone}",
+    "\\text{réponses de l'immigrant}",
+    "\\text{actes d'aide}"
+   ],
+   "titre": "Qui demande, qui répond, qui aide",
+   "type": "etape"
+  },
+  "portrait_def2": {
+   "kicker": "Un retrato : trois informations",
+   "tex": [
+    "\\text{l'identité}",
+    "\\text{le physique}",
+    "\\text{le caractère}"
+   ],
+   "titre": "Identité, physique, caractère",
+   "type": "etape"
+  }
+ },
+ "matiere": "Espagnol",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Poser des questions, répondre, aider"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : appliquer la grille d'analyse au texte support, puis décrire une personne, le portrait, avec ser et tener.",
+    "texte": "Partie 2 : texte support et portrait."
+   },
+   "sous_titre": "Texte support et portrait"
+  },
+  {
+   "debut": "p25",
+   "pont": {
+    "dit": "Partie trois : comparer deux personnes, construire un retrato pas à pas, et éviter les erreurs classiques.",
+    "texte": "Partie 3 : comparatifs, méthode et erreurs."
+   },
+   "sous_titre": "Comparatifs, méthode et erreurs"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'espagnol consacré à poser des questions et à décrire. Deux actes de parole complémentaires d'abord, preguntar et contestar, puis le portrait d'une personne. Le texte support de la première leçon est Ayudando a un inmigrante colombiano, page soixante ; celui de la seconde, Mi familia.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Poser des questions, répondre, décrire."
+  },
+  {
+   "dit": "Premier acte, preguntar, demander, contre contestar, répondre. Preguntar, c'est émettre une demande d'information : le locuteur ne connaît pas la réponse. Contestar, c'est fournir l'information demandée : le locuteur comble le manque d'information.",
+   "ecran": "preguntar",
+   "id": "p02",
+   "texte": "Demander contre répondre : deux rôles."
+  },
+  {
+   "dit": "Ces deux actes sont asymétriques : celui qui questionne est en position de demande ; celui qui répond est en position de fournisseur d'information. Les marqueurs linguistiques diffèrent : ponctuation, intonation, verbes, structures.",
+   "ecran": "asymetrie",
+   "id": "p03",
+   "texte": "Asymétrie : demande d'un côté, information de l'autre."
+  },
+  {
+   "dit": "Exemple résolu, tiré de la leçon. ¿De dónde eres ? D'où es-tu ? C'est la pregunta, la question. Soy de Colombia. Je suis de Colombie. C'est la respuesta, la réponse. La question utilise le verbe ser à la deuxième personne et un mot interrogatif, de dónde ; la réponse reprend le verbe à la première personne et fournit l'information.",
+   "ecran": "exemple_origine",
+   "id": "p04",
+   "texte": "¿De dónde eres ? Soy de Colombia."
+  },
+  {
+   "dit": "Les expressions pour poser des questions reposent d'abord sur les mots interrogatifs. Les mots interrogatifs espagnols portent toujours l'accent écrit : qué, quién, dónde, cuándo, cómo, por qué, cuánto, cuál. L'accent écrit fait partie du mot interrogatif, il ne s'oublie pas.",
+   "ecran": "interrogatifs",
+   "id": "p05",
+   "texte": "Qué, quién, dónde, cuándo, cómo, por qué, cuánto, cuál."
+  },
+  {
+   "dit": "Exemple résolu pour répondre : ¿Por qué has venido a España ? Pourquoi es-tu venu en Espagne ? Réponse : He venido porque busco trabajo. Je suis venu parce que je cherche du travail. La réponse reprend le verbe, he venido, et introduit la cause avec porque, parce que.",
+   "ecran": "exemple_pourquoi",
+   "id": "p06",
+   "texte": "He venido porque busco trabajo."
+  },
+  {
+   "dit": "Ayudar, aider, est un acte lié à la question. Aider, c'est répondre à un besoin exprimé ou implicite. Le texte support Ayudando a un inmigrante colombiano illustre cette dynamique : un hispanophone aide un nouvel arrivant en lui posant des questions et en répondant aux siennes.",
+   "ecran": "support",
+   "id": "p07",
+   "texte": "Aider un immigrant colombien, par questions et réponses."
+  },
+  {
+   "dit": "Les structures utiles pour aider, données par la leçon : ¿Puedo ayudarte ? Puis-je t'aider ? ¿Necesitas ayuda ? As-tu besoin d'aide ? ¿En qué puedo ayudarte ? En quoi puis-je t'aider ? Et les réponses : Claro que sí, te ayudo, bien sûr, je t'aide ; Gracias por tu ayuda, merci pour ton aide.",
+   "ecran": "aide",
+   "id": "p08",
+   "texte": "¿Puedo ayudarte ? ¿Necesitas ayuda ?"
+  },
+  {
+   "dit": "Les réponses à une demande d'aide, en détail : Claro que sí, te ayudo, bien sûr, je t'aide ; et, côté remerciement, Gracias por tu ayuda, merci pour ton aide. L'aide se dit, puis se remercie.",
+   "ecran": "aide_reponse",
+   "id": "p09",
+   "texte": "Claro que sí, te ayudo. Gracias por tu ayuda."
+  },
+  {
+   "dit": "Exemple résolu d'aide en échange de questions-réponses. ¿Puedes ayudarme con los papeles ? Peux-tu m'aider avec les papiers ? Réponse : Sí, claro. ¿Qué necesitas exactamente ? Oui, bien sûr. De quoi as-tu besoin exactement ? La réponse affirmative, sí, claro, ouvre une nouvelle question pour préciser le besoin : l'aide se construit par un échange de questions-réponses.",
+   "ecran": "exemple_aide",
+   "id": "p10",
+   "texte": "Sí, claro. ¿Qué necesitas exactamente ?"
+  },
+  {
+   "dit": "Autre notion, una costumbre, une habitude, une coutume : une pratique régulière propre à un groupe. Dans le monde hispanique, certaines coutumes impliquent des échanges codifiés de questions-réponses.",
+   "ecran": "coutumes_def",
+   "id": "p11",
+   "texte": "Une coutume : une pratique régulière, des échanges codifiés."
+  },
+  {
+   "dit": "Exemples de costumbres, donnés par la leçon. Saluer en demandant ¿Cómo estás ? Réponse attendue : Bien, gracias, ¿y tú ? Se présenter : ¿Cómo te llamas ? Me llamo, suivi du prénom. Offrir de l'aide : ¿Quieres algo ? Non, merci : No, gracias. Ces échanges suivent des scripts culturels.",
+   "ecran": "coutumes",
+   "id": "p12",
+   "texte": "Saluer, se présenter, offrir : des scripts codifiés."
+  },
+  {
+   "dit": "Exemple résolu de costumbre : ¿Cómo estás ? Bien, gracias, ¿y tú ? Bien. La question ¿Cómo estás ? est une formule de politesse ; la réponse inclut une reformulation de la question, ¿y tú ?, pour maintenir l'échange. Ces échanges suivent des scripts culturels : la question n'attend pas toujours une information réelle, mais remplit une fonction sociale.",
+   "ecran": "retour",
+   "id": "p13",
+   "texte": "Bien, gracias, ¿y tú ? : la politesse renvoie la question."
+  },
+  {
+   "dit": "Application au texte support, Ayudando a un inmigrante colombiano, page soixante. Il faut y repérer : un, les questions posées par le personnage hispanophone, souvent pour connaître la situation de l'immigrant ; deux, les réponses de l'immigrant colombien, informations sur son origine et ses besoins ; trois, les actes d'aide, ayudar, qui découlent de ces échanges.",
+   "ecran": "support2",
+   "id": "p14",
+   "texte": "Repérer questions, réponses et actes d'aide dans le texte."
+  },
+  {
+   "dit": "La grille d'analyse de la leçon, pour ce texte : identifier les mots interrogatifs utilisés ; repérer les marqueurs de réponse affirmative et négative ; distinguer les questions d'information réelle des questions rituelles, les costumbres. Trois gestes de lecture, dans l'ordre.",
+   "ecran": "grille",
+   "id": "p15",
+   "texte": "Identifier, repérer, distinguer."
+  },
+  {
+   "dit": "Deuxième partie : décrire une personne. À la fin de ce chapitre, tu sauras décrire une personne, physique, âge, caractère, en espagnol, employer les verbes ser et tener à bon escient, et distinguer les contraires essentiels comme ser viejo ou vieja contre ser joven.",
+   "ecran": "portrait_def",
+   "id": "p16",
+   "texte": "Décrire : physique, âge, caractère."
+  },
+  {
+   "dit": "D'abord, un retrato. Un retrato est un portrait : une description écrite ou peinte d'une personne. Pour décrire, on combine trois types d'informations : l'identité, le physique et le caractère.",
+   "ecran": "portrait_def2",
+   "id": "p17",
+   "texte": "Un retrato : un portrait, écrit ou peint."
+  },
+  {
+   "dit": "L'identité d'abord : Se llama, il ou elle s'appelle ; Es, il ou elle est ; Tiene, suivi d'un nombre, años, il ou elle a un âge. Trois formules pour ouvrir tout portrait.",
+   "ecran": "identite",
+   "id": "p18",
+   "texte": "Se llama, Es, Tiene años : ouvrir un portrait."
+  },
+  {
+   "dit": "Le physique ensuite : alto ou alta, grand ; bajo ou baja, petit ; delgado ou delgada, mince ; gordo ou gorda, gros ; moreno ou morena, brun ; rubio ou rubia, blond. Les adjectifs s'accordent en genre avec la personne décrite.",
+   "ecran": "physique",
+   "id": "p19",
+   "texte": "Alto, bajo, delgado, gordo, moreno, rubio."
+  },
+  {
+   "dit": "Le physique encore, yeux et cheveux : los ojos azules, verdes ou negros, les yeux bleus, verts ou noirs ; el pelo corto, largo ou rizado, les cheveux courts, longs ou bouclés. On combine ser pour la qualité et tener pour le trait possédé, comme dans l'exemple du grand-père.",
+   "ecran": "physique2",
+   "id": "p20",
+   "texte": "Yeux bleus, verts, noirs ; cheveux courts, longs, bouclés."
+  },
+  {
+   "dit": "Le caractère enfin : simpático ou simpática, sympathique ; antipático ou antipática, antipathique ; tímido ou tímida, timide ; hablador ou habladora, bavard ; tranquilo ou tranquila, calme ; alegre, gai. Même accord en genre que pour le physique.",
+   "ecran": "caractere",
+   "id": "p21",
+   "texte": "Sympathique, timide, bavard, calme, gai."
+  },
+  {
+   "dit": "Le point grammatical central : l'âge. Attention à la structure : l'âge ne se dit pas avec ser, mais avec tener. Tiene 15 años, il ou elle a quinze ans, jamais Es 15 años. En revanche, Es joven, il ou elle est jeune, ou Es viejo ou vieja, il ou elle est vieux ou vieille : ici, ser exprime une caractéristique, pas un âge chiffré.",
+   "ecran": "tener_age",
+   "id": "p22",
+   "texte": "L'âge avec tener, jamais avec ser."
+  },
+  {
+   "dit": "Ser viejo ou vieja s'oppose à ser joven, être jeune. Ce sont des adjectifs qualificatifs qui s'accordent en genre et en nombre : Es viejo, Es vieja, Son viejos, Son viejas. Vieux, vieille, vieux au pluriel, vieilles au pluriel.",
+   "ecran": "ser_vieux",
+   "id": "p23",
+   "texte": "Viejo contre joven, accordés en genre et en nombre."
+  },
+  {
+   "dit": "Exemple résolu : décris le grand-père de la famille du texte Mi familia. Mi abuelo se llama Antonio. Es viejo: tiene 78 años. Es bajo y delgado, tiene el pelo blanco y los ojos marrones. Es muy tranquilo y simpático. On remarque : ser plus adjectif, es viejo, es bajo ; tener plus âge, tiene 78 años ; et tener plus nom, tiene el pelo blanco.",
+   "ecran": "grandpere",
+   "id": "p24",
+   "texte": "Antonio, 78 ans, petit, mince, calme, sympathique."
+  },
+  {
+   "dit": "Les comparatifs utiles, pour opposer deux personnes : más, suivi d'un adjectif, que, plus que ; menos, suivi d'un adjectif, que, moins que ; tan, suivi d'un adjectif, como, aussi que. Exemple de la leçon : Mi hermano es más alto que yo, pero es menos hablador que mi hermana. Mon frère est plus grand que moi, mais il est moins bavard que ma sœur.",
+   "ecran": "comparatifs",
+   "id": "p25",
+   "texte": "Más que, menos que, tan como."
+  },
+  {
+   "dit": "Exemple résolu : compare la mère et la fille du texte. La madre es más joven que la abuela, pero es tan simpática como ella. La fille, elle, est moins timide que sa mère : La hija es menos tímida que su madre. Plus jeune, aussi sympathique, moins timide : les trois comparatifs en deux phrases.",
+   "ecran": "comparer_ex",
+   "id": "p26",
+   "texte": "Plus jeune, aussi sympathique, moins timide."
+  },
+  {
+   "dit": "Méthode pour construire un retrato, en quatre temps : un, présenter, Se llama, Es, Tiene años ; deux, décrire le physique, Es alto ou alta, tiene los ojos, lleva, suivi d'un vêtement ; trois, décrire le caractère, Es simpático ou simpática, hablador ou habladora ; quatre, comparer ou nuancer, Es más ou menos que, Parece, il ou elle semble.",
+   "ecran": "methode_portrait",
+   "id": "p27",
+   "texte": "Présenter, physique, caractère, comparer."
+  },
+  {
+   "dit": "Les erreurs à éviter, listées par la leçon : dire l'âge avec ser, Es 20 años, alors qu'il faut Tiene 20 años ; oublier l'accord, Es altos, alors qu'il faut Son altos ; et confondre ser, état durable, et estar, état passager : Es alegre, gai de nature, contre Está contento hoy, content aujourd'hui.",
+   "ecran": "erreurs",
+   "id": "p28",
+   "texte": "Âge avec tener, accord, ser contre estar."
+  },
+  {
+   "dit": "Le contraste ser contre estar mérite d'être isolé : Es alegre dit une nature, quelqu'un est gai en général ; Está contento hoy dit un état d'aujourd'hui, quelqu'un est content aujourd'hui. Durable d'un côté, passager de l'autre.",
+   "ecran": "ser_estar",
+   "id": "p29",
+   "texte": "Es alegre, de nature ; Está contento hoy, aujourd'hui."
+  },
+  {
+   "dit": "Synthèse du chapitre. Preguntar et contestar sont deux actes complémentaires et asymétriques. Les expressions pour poser des questions incluent les mots interrogatifs accentués, les questions totales et partielles, les formules de politesse. Les expressions pour répondre incluent affirmations, négations, reprises verbales, nuances. Ayudar est souvent le but pragmatique de l'échange question-réponse. Una costumbre est un script culturel où questions et réponses ont une fonction sociale codifiée. Et décrire, c'est combiner ser, tener et llevar, avec l'âge toujours avec tener.",
+   "ecran": "recap",
+   "id": "p30",
+   "texte": "Questions, réponses, aide, coutumes, portrait."
+  }
+ ],
+ "titre": "Poser des questions et décrire"
+}
