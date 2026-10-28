@@ -19,6 +19,13 @@ Plan établi le 08/10/2026 à partir des App Review Guidelines d'Apple (develope
 | 1.2 | Si contenu d'élèves visible par d'autres (questions, entraide, classement) : signalement, blocage, contact publié. | À vérifier avec le parcours G avant la soumission. |
 | 5.1.4 | Public mineur : politique claire, pas d'analytique tierce intrusive. | À relire avec la politique de confidentialité. |
 
+## 1 bis. Rejet du build 18 (28 octobre 2026) et correctifs
+
+Revue du 28/10/2026 (iPad Air 11-inch M3) : deux motifs seulement, **5.1.1(iv)** (bouton « Allow » de l'écran d'accès caméra à remplacer par « Continue »/« Next ») et **2.5.4** (mode « audio » dans `UIBackgroundModes` sans usage démontré). Aucun motif 3.1.1 cette fois.
+
+- **2.5.4, cause réelle** : `app.json` ne déclarait que `remote-notification`, mais l'`Info.plist` **généré** contenait aussi « audio », réinjecté par deux plugins Expo : `expo-audio` (`enableBackgroundPlayback` vaut `true` par défaut quand il n'est pas précisé) et `expo-video` (`supportsPictureInPicture: true`). Vérifié par `npx expo prebuild --platform ios` : avant correctif `['remote-notification', 'audio']`, après correctif `['remote-notification']`. L'app ne joue jamais en arrière-plan (`shouldPlayInBackground: false` dans `LecteurAudio.tsx` et `retours.ts`, aucun usage du picture-in-picture) : retrait, pas de justification. La note de relecture du build 18 affirmait le retrait du mode : elle décrivait la configuration écrite à la main, pas le binaire — ne plus jamais affirmer un `Info.plist` sans prebuild de contrôle.
+- **5.1.1(iv)** : deux écrans de demande caméra avaient un bouton « Allow »/« Autoriser » (correction photo et photos des annales) ; les deux passent à « Continuer »/« Continue », titres reformulés. Garde-fou : test dans `src/__tests__/app-json.test.ts`.
+
 ## 2. Fait dans cette branche
 - Apple dans le parcours de sauvegarde du score invité (règle 4.8) et test.
 - `services/achatsIntegres.ts` : configuration RevenueCat, prix lus chez Apple, achat, restauration, attente de l'accès créé par le serveur. Tests Jest.

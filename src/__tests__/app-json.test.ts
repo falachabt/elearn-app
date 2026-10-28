@@ -107,6 +107,20 @@ describe('app.json : configuration native', () => {
     expect(expo.android.blockedPermissions).toContain('android.permission.RECORD_AUDIO');
   });
 
+  it('aucun mode audio en arrière-plan (App Store 2.5.4) : ni déclaré, ni réinjecté par un plugin', () => {
+    // Le build 18 a été rejeté pour ce motif alors que app.json semblait propre : expo-audio ajoute « audio » à
+    // UIBackgroundModes tant que enableBackgroundPlayback n'est pas explicitement false (défaut true), et expo-video
+    // fait de même quand le picture-in-picture est actif. L'app ne joue jamais en arrière-plan
+    // (shouldPlayInBackground: false partout) : ces deux réglages doivent rester éteints.
+    expect(expo.ios.infoPlist.UIBackgroundModes).toEqual(['remote-notification']);
+    const video = expo.plugins.find((p: unknown) => nomPlugin(p) === 'expo-video');
+    expect(video[1].supportsBackgroundPlayback).toBe(false);
+    expect(video[1].supportsPictureInPicture).toBe(false);
+    const audio = expo.plugins.find((p: unknown) => nomPlugin(p) === 'expo-audio');
+    expect(audio[1].enableBackgroundPlayback).toBe(false);
+    expect(audio[1].enableBackgroundRecording).toBe(false);
+  });
+
   it('lien profond, thème automatique et son de notification', () => {
     expect(expo.scheme).toBe('elearnprepa');
     expect(expo.userInterfaceStyle).toBe('automatic');

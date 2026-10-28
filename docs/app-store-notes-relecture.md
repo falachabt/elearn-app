@@ -31,7 +31,7 @@ The app does not use background audio. Background modes are limited to remote no
 **Contact**
 Support: support@elearnprepa.com
 
-**Notes on the previous rejection (3.1.0, build 17)**
-- 2.5.4: the background audio mode has been removed from the Info.plist. The app declares only remote-notification.
-- 5.1.1(v): browsing the annales catalogue and free content no longer requires an account. [Benny to confirm the exact screen Apple referred to, if different.]
-- 3.1.1: paid digital content on iOS is only available through in-app purchase (see above). External payment paths are hidden on iOS.
+**Notes on the previous rejections**
+- Build 17 (3.1.0) — 5.1.1(v): browsing the annales catalogue and free content no longer requires an account. 3.1.1: paid digital content on iOS is only available through in-app purchase (see above); external payment paths are hidden on iOS.
+- Build 18 (3.1.0, reviewed 28 Oct 2026) — 5.1.1(iv): the camera pre-permission screens (photo correction and exam-paper sheets) no longer use an "Allow" button: the button now reads "Continue", as requested, on both screens and in both app languages.
+- Build 18 — 2.5.4: the previous submission stated that the background audio mode had been removed. That was only true of the hand-written configuration: two Expo config plugins silently added the "audio" background mode back during the build (expo-audio enables background playback by default, and expo-video adds it when picture-in-picture is on). Both are now explicitly disabled in the app configuration, and the generated Info.plist has been verified directly: it declares only "remote-notification". The app never plays audio or video in the background (its audio players are configured with background playback off).
