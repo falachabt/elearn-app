@@ -82,6 +82,16 @@
    "titre": "Des flux continus, un équilibre fragile",
    "type": "etape"
   },
+  "glucose_charpente": {
+   "kicker": "Le glucose, charpente carbonée",
+   "tex": [
+    "\\text{carbone, hydrogène}",
+    "\\text{chaînes, cycles}",
+    "\\text{protéines, lipides}"
+   ],
+   "titre": "La charpente porte énergie et information",
+   "type": "etape"
+  },
   "humain_solutions": {
    "kicker": "Humain et hydrogène durable",
    "tex": [
@@ -126,7 +136,7 @@
   "photosynthese": {
    "anim": {
     "hauteur": 220,
-    "nom": "lewis_co2_fig"
+    "nom": "feuille_fig"
    },
    "kicker": "La photosynthèse",
    "note": "Le carbone atmosphérique devient glucose, l'hydrogène de l'eau suit.",
@@ -180,16 +190,6 @@
    "sous": "Carbone, hydrogène, photosynthèse, respiration et décomposition : les mécanismes qui font circuler la matière",
    "titre": "Carbone et hydrogène : les mécanismes du vivant",
    "type": "titre"
-  },
-  "glucose_charpente": {
-   "kicker": "Le glucose, charpente carbonée",
-   "tex": [
-    "\\text{carbone, hydrogène}",
-    "\\text{chaînes, cycles}",
-    "\\text{protéines, lipides}"
-   ],
-   "titre": "La charpente porte énergie et information",
-   "type": "etape"
   }
  },
  "matiere": "Biologie",
@@ -200,19 +200,19 @@
   },
   {
    "debut": "p07",
-   "sous_titre": "Hydrogène et photosynthèse",
    "pont": {
     "dit": "Partie deux : l'hydrogène et la photosynthèse. Après le carbone, suivons l'élément le plus léger, presque toujours lié, puis la photosynthèse en deux phases, qui fixe le carbone et l'hydrogène dans le glucose.",
     "texte": "Partie 2 : hydrogène et photosynthèse."
-   }
+   },
+   "sous_titre": "Hydrogène et photosynthèse"
   },
   {
    "debut": "p12",
-   "sous_titre": "Respiration, décomposition et hydrogène durable",
    "pont": {
     "dit": "Partie trois : la respiration et la décomposition. Après la fixation par la photosynthèse, nous libérons l'énergie du glucose, étape par étape, puis nous suivons les décomposeurs qui recyclent la matière morte, avant de mesurer l'empreinte humaine.",
     "texte": "Partie 3 : respiration, décomposition et hydrogène durable."
-   }
+   },
+   "sous_titre": "Respiration, décomposition et hydrogène durable"
   }
  ],
  "phrases": [
