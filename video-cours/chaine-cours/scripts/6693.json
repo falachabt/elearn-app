@@ -1,290 +1,167 @@
 {
  "cours": 6693,
- "titre": "Expressions littérales et équations du premier degré",
- "matiere": "Mathématique",
  "ecrans": {
-  "titre": {
-   "type": "titre",
-   "kicker": "Mathématique · Calcul littéral",
-   "titre": "Expressions littérales et équations du premier degré",
-   "sous": "Calculer avec une lettre, puis trouver l'inconnue : les deux premiers pas de l'algèbre",
-   "anim": {
-    "nom": "fleche_fonction",
-    "hauteur": 240
-   }
+  "eq_add": {
+   "kicker": "Équations · forme a + x = b",
+   "note": "On soustrait a des deux côtés de l'égalité pour isoler l'inconnue.",
+   "tex": "a + x = b \\quad \\Longrightarrow \\quad x = b - a",
+   "type": "formule"
   },
-  "intro": {
-   "type": "phrase",
-   "kicker": "Introduction",
-   "texte": "Une lettre peut représenter un nombre : c'est le début de l'algèbre, et la clé des problèmes."
-  },
-  "expr_def": {
-   "type": "phrase",
-   "kicker": "Les expressions littérales",
-   "texte": "Une expression littérale contient des lettres, les variables, qui représentent des nombres."
-  },
-  "expr_ex": {
-   "type": "formule",
-   "kicker": "Exemple · une expression",
-   "tex": "3x + 2",
-   "note": "Trois ixe plus deux : une expression littérale, où ixe est la variable.",
-   "anim": {
-    "nom": "fleche_fonction",
-    "hauteur": 150
-   }
-  },
-  "valeur_def": {
-   "type": "phrase",
-   "kicker": "Valeur d'une expression",
-   "texte": "Calculer une valeur : remplacer la lettre par le nombre donné, puis effectuer le calcul."
-  },
-  "ex_valeur": {
-   "type": "etape",
-   "kicker": "Exemple · calculer une valeur",
-   "titre": "Remplacer, puis calculer",
-   "tex": [
-    "A = 2x + 5 \\qquad x = 3",
-    "A = 2 \\times 3 + 5",
-    "A = 6 + 5 = 11"
-   ]
+  "eq_mult": {
+   "kicker": "Équations · forme ax = b",
+   "note": "On divise les deux côtés par a, différent de zéro, pour isoler l'inconnue.",
+   "tex": "ax = b \\quad \\Longrightarrow \\quad x = \\frac{b}{a}",
+   "type": "formule"
   },
   "equation_def": {
-   "type": "phrase",
    "kicker": "Qu'est-ce qu'une équation ?",
-   "texte": "Une équation est une égalité avec une inconnue : résoudre, c'est la rendre vraie."
-  },
-  "familles": {
-   "type": "phrase",
-   "kicker": "Deux familles d'équations",
-   "texte": "Deux formes de base : a + x = b et ax = b. Chacune a son geste de résolution."
-  },
-  "eq_add": {
-   "type": "formule",
-   "kicker": "Équations · forme a + x = b",
-   "tex": "a + x = b \\quad \\Longrightarrow \\quad x = b - a",
-   "note": "On soustrait a des deux côtés de l'égalité pour isoler l'inconnue."
+   "texte": "Une équation est une égalité avec une inconnue : résoudre, c'est la rendre vraie.",
+   "type": "phrase"
   },
   "ex_add": {
-   "type": "etape",
    "kicker": "Exemple · forme a + x = b",
-   "titre": "Soustraire des deux côtés",
    "tex": [
     "7 + x = 15",
     "7 + x - 7 = 15 - 7",
     "x = 8"
-   ]
-  },
-  "verif_add": {
-   "type": "etape",
-   "kicker": "Vérification · forme a + x = b",
-   "titre": "Remplacer pour contrôler",
-   "tex": [
-    "7 + 8 = 15",
-    "\\text{l'égalité est vraie : solution } x = 8"
-   ]
-  },
-  "eq_mult": {
-   "type": "formule",
-   "kicker": "Équations · forme ax = b",
-   "tex": "ax = b \\quad \\Longrightarrow \\quad x = \\frac{b}{a}",
-   "note": "On divise les deux côtés par a, différent de zéro, pour isoler l'inconnue."
+   ],
+   "titre": "Soustraire des deux côtés",
+   "type": "etape"
   },
   "ex_mult": {
-   "type": "etape",
    "kicker": "Exemple · forme ax = b",
-   "titre": "Diviser des deux côtés",
    "tex": [
     "\\textstyle 4x = 28",
     "\\textstyle \\tfrac{4x}{4} = \\tfrac{28}{4}",
     "x = 7"
-   ]
-  },
-  "verif_mult": {
-   "type": "etape",
-   "kicker": "Vérification · forme ax = b",
-   "titre": "Remplacer pour contrôler",
-   "tex": [
-    "4 \\times 7 = 28",
-    "\\text{l'égalité est vraie : solution } x = 7"
    ],
+   "titre": "Diviser des deux côtés",
+   "type": "etape"
+  },
+  "ex_valeur": {
+   "kicker": "Exemple · calculer une valeur",
+   "tex": [
+    "A = 2x + 5 \\qquad x = 3",
+    "A = 2 \\times 3 + 5",
+    "A = 6 + 5 = 11"
+   ],
+   "titre": "Remplacer, puis calculer",
+   "type": "etape"
+  },
+  "expr_def": {
+   "kicker": "Les expressions littérales",
+   "texte": "Une expression littérale contient des lettres, les variables, qui représentent des nombres.",
+   "type": "phrase"
+  },
+  "expr_ex": {
    "anim": {
-    "nom": "fleche_fonction",
-    "hauteur": 140
-   }
+    "hauteur": 150,
+    "nom": "calcul_litteral_fig"
+   },
+   "kicker": "Exemple · une expression",
+   "note": "Trois ixe plus deux : une expression littérale, où ixe est la variable.",
+   "tex": "3x + 2",
+   "type": "formule"
+  },
+  "familles": {
+   "kicker": "Deux familles d'équations",
+   "texte": "Deux formes de base : a + x = b et ax = b. Chacune a son geste de résolution.",
+   "type": "phrase"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Une lettre peut représenter un nombre : c'est le début de l'algèbre, et la clé des problèmes.",
+   "type": "phrase"
   },
   "methode": {
-   "type": "recap",
-   "kicker": "Résoudre un problème",
    "etapes": [
     "Choisir l'inconnue, la nommer x",
     "Traduire l'énoncé en équation",
     "Résoudre l'équation obtenue",
     "Vérifier la cohérence du résultat",
     "Répondre à la question posée"
-   ]
+   ],
+   "kicker": "Résoudre un problème",
+   "type": "recap"
+  },
+  "pourquoi_verif": {
+   "kicker": "Le réflexe de vérification",
+   "texte": "Vérifier ne coûte que quelques secondes : c'est l'assurance de ne pas rendre une fausse solution.",
+   "type": "phrase"
   },
   "probleme": {
-   "type": "phrase",
    "kicker": "Problème · les cahiers",
-   "texte": "Des cahiers à trois euros pièce, un total de vingt-quatre euros : combien de cahiers ?"
-  },
-  "probleme_trad": {
-   "type": "etape",
-   "kicker": "Problème · traduire",
-   "titre": "De l'énoncé à l'équation",
-   "tex": [
-    "x : \\text{ le nombre de cahiers}",
-    "3 \\times x = 24 \\quad \\text{soit} \\quad 3x = 24"
-   ]
+   "texte": "Des cahiers à trois euros pièce, un total de vingt-quatre euros : combien de cahiers ?",
+   "type": "phrase"
   },
   "probleme_res": {
-   "type": "etape",
    "kicker": "Problème · résoudre et conclure",
-   "titre": "Résoudre, vérifier, répondre",
    "tex": [
     "\\textstyle x = \\tfrac{24}{3} = 8",
     "3 \\times 8 = 24 \\quad \\text{vérifié}",
     "\\text{réponse : huit cahiers}"
-   ]
+   ],
+   "titre": "Résoudre, vérifier, répondre",
+   "type": "etape"
   },
-  "pourquoi_verif": {
-   "type": "phrase",
-   "kicker": "Le réflexe de vérification",
-   "texte": "Vérifier ne coûte que quelques secondes : c'est l'assurance de ne pas rendre une fausse solution."
+  "probleme_trad": {
+   "kicker": "Problème · traduire",
+   "tex": [
+    "x : \\text{ le nombre de cahiers}",
+    "3 \\times x = 24 \\quad \\text{soit} \\quad 3x = 24"
+   ],
+   "titre": "De l'énoncé à l'équation",
+   "type": "etape"
   },
   "recap": {
-   "type": "recap",
-   "kicker": "À retenir",
    "etapes": [
     "Littéral : des lettres pour des nombres",
     "Valeur : remplacer puis calculer",
     "a + x = b donne x = b − a",
     "ax = b donne x = b divisé par a"
-   ]
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "calcul_litteral_fig"
+   },
+   "kicker": "Mathématique · Calcul littéral",
+   "sous": "Calculer avec une lettre, puis trouver l'inconnue : les deux premiers pas de l'algèbre",
+   "titre": "Expressions littérales et équations du premier degré",
+   "type": "titre"
+  },
+  "valeur_def": {
+   "kicker": "Valeur d'une expression",
+   "texte": "Calculer une valeur : remplacer la lettre par le nombre donné, puis effectuer le calcul.",
+   "type": "phrase"
+  },
+  "verif_add": {
+   "kicker": "Vérification · forme a + x = b",
+   "tex": [
+    "7 + 8 = 15",
+    "\\text{l'égalité est vraie : solution } x = 8"
+   ],
+   "titre": "Remplacer pour contrôler",
+   "type": "etape"
+  },
+  "verif_mult": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "balance_fig"
+   },
+   "kicker": "Vérification · forme ax = b",
+   "tex": [
+    "4 \\times 7 = 28",
+    "\\text{l'égalité est vraie : solution } x = 7"
+   ],
+   "titre": "Remplacer pour contrôler",
+   "type": "etape"
   }
  },
- "phrases": [
-  {
-   "id": "p01",
-   "dit": "Bienvenue dans ce cours de calcul littéral. Nous allons d'abord découvrir les expressions littérales, ces expressions qui contiennent des lettres, puis apprendre à résoudre deux familles d'équations très simples, et enfin à transformer un problème concret en équation pour le résoudre.",
-   "texte": "Expressions littérales et équations : les débuts de l'algèbre.",
-   "ecran": "titre"
-  },
-  {
-   "id": "p02",
-   "dit": "Pourquoi mettre des lettres dans un calcul ? Parce qu'une lettre peut représenter n'importe quel nombre : une seule expression littérale décrit alors une infinité de calculs à la fois. C'est le premier pas de l'algèbre, et l'outil qui permet de résoudre des problèmes où un nombre est inconnu.",
-   "texte": "Une lettre pour tous les nombres à la fois.",
-   "ecran": "intro"
-  },
-  {
-   "id": "p03",
-   "dit": "Définition : une expression littérale est une expression mathématique contenant des lettres, appelées variables, qui représentent des nombres. La lettre n'est pas un objet mystérieux : c'est simplement un nombre dont on ne connaît pas encore, ou pas encore fixé, la valeur.",
-   "texte": "Une variable représente un nombre.",
-   "ecran": "expr_def"
-  },
-  {
-   "id": "p04",
-   "dit": "Exemple : trois ixe plus deux est une expression littérale. La lettre ixe est la variable. Tant qu'on ne remplace pas ixe par un nombre précis, l'expression reste générale : elle vaut un résultat différent pour chaque valeur de ixe choisie.",
-   "texte": "3x + 2 : ixe est la variable.",
-   "ecran": "expr_ex"
-  },
-  {
-   "id": "p05",
-   "dit": "Déterminer la valeur d'une expression littérale pour une variable donnée, c'est remplacer la lettre par le nombre proposé, puis calculer. Le même calcul peut se refaire pour différentes valeurs de la variable : chaque valeur donne un résultat, et un seul.",
-   "texte": "Remplacer la lettre, puis calculer.",
-   "ecran": "valeur_def"
-  },
-  {
-   "id": "p06",
-   "dit": "Exemple résolu : calculer la valeur de grand A égale deux ixe plus cinq, pour ixe égale trois. On remplace ixe par trois : grand A égale deux fois trois plus cinq, soit six plus cinq, égale onze. Pour ixe égale trois, l'expression grand A vaut onze.",
-   "texte": "A = 2x + 5 vaut 11 pour x = 3.",
-   "ecran": "ex_valeur"
-  },
-  {
-   "id": "p07",
-   "dit": "Passons aux équations. Une équation est une égalité contenant une inconnue, représentée par une lettre. Résoudre une équation, c'est trouver toutes les valeurs de l'inconnue qui rendent l'égalité vraie. Ces valeurs sont appelées les solutions de l'équation.",
-   "texte": "Résoudre : trouver les valeurs qui rendent l'égalité vraie.",
-   "ecran": "equation_def"
-  },
-  {
-   "id": "p08",
-   "dit": "Nous étudierons deux familles d'équations du premier degré. La première a la forme a plus ixe égale b : l'inconnue est ajoutée à un nombre connu. La deuxième a la forme a ixe égale b : l'inconnue est multipliée par un nombre connu. À chaque famille correspond un geste précis pour isoler l'inconnue.",
-   "texte": "Deux familles : a + x = b et ax = b.",
-   "ecran": "familles"
-  },
-  {
-   "id": "p09",
-   "dit": "Pour résoudre une équation de la forme a plus ixe égale b, on soustrait a de chaque côté de l'égalité. L'inconnue se retrouve seule, et la solution s'écrit ixe égale b moins a. Le principe est celui d'une balance : ce qu'on retire d'un côté, on le retire aussi de l'autre.",
-   "texte": "a + x = b : on soustrait a des deux côtés.",
-   "ecran": "eq_add"
-  },
-  {
-   "id": "p10",
-   "dit": "Exemple résolu : résoudre sept plus ixe égale quinze. On soustrait sept des deux côtés : sept plus ixe moins sept, égale quinze moins sept. Il reste ixe égale huit. L'opération inverse a isolé l'inconnue en une seule étape.",
-   "texte": "7 + x = 15 donne x = 8.",
-   "ecran": "ex_add"
-  },
-  {
-   "id": "p11",
-   "dit": "Vérifions toujours la solution trouvée : on remplace ixe par huit dans l'équation de départ. Sept plus huit égale quinze : l'égalité est vraie. La solution de l'équation est donc ixe égale huit, et elle est confirmée par le calcul.",
-   "texte": "Vérification : 7 + 8 = 15, égalité vraie.",
-   "ecran": "verif_add"
-  },
-  {
-   "id": "p12",
-   "dit": "Deuxième famille : les équations de la forme a ixe égale b, où a et b sont des entiers et a est différent de zéro. Pour isoler l'inconnue, on divise chaque côté de l'égalité par a. La solution s'écrit alors ixe égale b divisé par a.",
-   "texte": "ax = b : on divise les deux côtés par a.",
-   "ecran": "eq_mult"
-  },
-  {
-   "id": "p13",
-   "dit": "Exemple résolu : résoudre quatre ixe égale vingt-huit. On divise les deux côtés par quatre : quatre ixe sur quatre, égale vingt-huit sur quatre. Il reste ixe égale sept. Encore une fois, une seule opération inverse suffit à isoler l'inconnue.",
-   "texte": "4x = 28 donne x = 7.",
-   "ecran": "ex_mult"
-  },
-  {
-   "id": "p14",
-   "dit": "Vérification : on remplace ixe par sept dans l'équation de départ. Quatre fois sept égale vingt-huit : l'égalité est vraie. La solution de l'équation est donc ixe égale sept. Ce réflexe de vérification doit devenir automatique, sur toutes vos équations.",
-   "texte": "Vérification : 4 × 7 = 28, égalité vraie.",
-   "ecran": "verif_mult"
-  },
-  {
-   "id": "p15",
-   "dit": "Ces équations servent à résoudre des problèmes, selon une méthode en cinq étapes. On identifie l'inconnue et on lui donne un nom, on traduit le problème par une équation, on résout cette équation, on vérifie que la solution est cohérente avec le problème, et on répond clairement à la question posée.",
-   "texte": "Problème : cinq étapes, toujours dans le même ordre.",
-   "ecran": "methode"
-  },
-  {
-   "id": "p16",
-   "dit": "Exemple de problème : un magasin vend des cahiers à trois euros pièce. Léa achète plusieurs cahiers identiques et paie vingt-quatre euros. Combien de cahiers a-t-elle achetés ? Le nombre de cahiers est inconnu : c'est exactement le genre de question qu'une équation va trancher.",
-   "texte": "Les cahiers de Léa : un problème, une inconnue.",
-   "ecran": "probleme"
-  },
-  {
-   "id": "p17",
-   "dit": "Appliquons la méthode. Étape un, l'inconnue : soit ixe le nombre de cahiers achetés. Étape deux, la traduction : chaque cahier coûte trois euros, donc le prix total est trois fois ixe. Comme Léa a payé vingt-quatre euros, on obtient l'équation trois ixe égale vingt-quatre.",
-   "texte": "Traduction : 3x = 24.",
-   "ecran": "probleme_trad"
-  },
-  {
-   "id": "p18",
-   "dit": "Étape trois, on résout : trois ixe égale vingt-quatre, donc ixe égale vingt-quatre divisé par trois, soit huit. Étape quatre, on vérifie : trois fois huit égale vingt-quatre, c'est cohérent. Étape cinq, on répond clairement : Léa a acheté huit cahiers.",
-   "texte": "Réponse : Léa a acheté 8 cahiers.",
-   "ecran": "probleme_res"
-  },
-  {
-   "id": "p19",
-   "dit": "Un dernier mot sur la vérification : elle apparaît dans chaque exemple de ce cours, et ce n'est pas un hasard. Remplacer l'inconnue par la solution trouvée prend quelques secondes et garantit que l'égalité de départ est bien vraie. En contrôle, c'est souvent ce qui sépare une copie juste d'une copie presque juste.",
-   "texte": "Vérifier : quelques secondes, zéro regret.",
-   "ecran": "pourquoi_verif"
-  },
-  {
-   "id": "p20",
-   "dit": "Pour finir, retenez l'essentiel. Une expression littérale contient des lettres qui représentent des nombres, et on calcule sa valeur en remplaçant chaque lettre par sa valeur numérique. Résoudre une équation, c'est trouver la valeur de l'inconnue qui rend l'égalité vraie : on soustrait pour la forme a plus ixe égale b, on divise pour la forme a ixe égale b. Et face à un problème, on traduit, on résout, on vérifie, on répond.",
-   "texte": "L'essentiel : littéral et équations.",
-   "ecran": "recap"
-  }
- ],
+ "matiere": "Mathématique",
  "parties": [
   {
    "debut": "p01",
@@ -292,11 +169,134 @@
   },
   {
    "debut": "p12",
-   "sous_titre": "Équations en ax = b et résolution de problèmes",
    "pont": {
-    "texte": "Partie 2 : les équations ax = b, puis les problèmes.",
-    "dit": "Partie deux : la deuxième famille d'équations, puis la résolution de problèmes. Nous verrons les équations où l'inconnue est multipliée par un nombre, avant de transformer un énoncé concret en équation et de le résoudre de bout en bout."
-   }
+    "dit": "Partie deux : la deuxième famille d'équations, puis la résolution de problèmes. Nous verrons les équations où l'inconnue est multipliée par un nombre, avant de transformer un énoncé concret en équation et de le résoudre de bout en bout.",
+    "texte": "Partie 2 : les équations ax = b, puis les problèmes."
+   },
+   "sous_titre": "Équations en ax = b et résolution de problèmes"
   }
- ]
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de calcul littéral. Nous allons d'abord découvrir les expressions littérales, ces expressions qui contiennent des lettres, puis apprendre à résoudre deux familles d'équations très simples, et enfin à transformer un problème concret en équation pour le résoudre.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Expressions littérales et équations : les débuts de l'algèbre."
+  },
+  {
+   "dit": "Pourquoi mettre des lettres dans un calcul ? Parce qu'une lettre peut représenter n'importe quel nombre : une seule expression littérale décrit alors une infinité de calculs à la fois. C'est le premier pas de l'algèbre, et l'outil qui permet de résoudre des problèmes où un nombre est inconnu.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Une lettre pour tous les nombres à la fois."
+  },
+  {
+   "dit": "Définition : une expression littérale est une expression mathématique contenant des lettres, appelées variables, qui représentent des nombres. La lettre n'est pas un objet mystérieux : c'est simplement un nombre dont on ne connaît pas encore, ou pas encore fixé, la valeur.",
+   "ecran": "expr_def",
+   "id": "p03",
+   "texte": "Une variable représente un nombre."
+  },
+  {
+   "dit": "Exemple : trois ixe plus deux est une expression littérale. La lettre ixe est la variable. Tant qu'on ne remplace pas ixe par un nombre précis, l'expression reste générale : elle vaut un résultat différent pour chaque valeur de ixe choisie.",
+   "ecran": "expr_ex",
+   "id": "p04",
+   "texte": "3x + 2 : ixe est la variable."
+  },
+  {
+   "dit": "Déterminer la valeur d'une expression littérale pour une variable donnée, c'est remplacer la lettre par le nombre proposé, puis calculer. Le même calcul peut se refaire pour différentes valeurs de la variable : chaque valeur donne un résultat, et un seul.",
+   "ecran": "valeur_def",
+   "id": "p05",
+   "texte": "Remplacer la lettre, puis calculer."
+  },
+  {
+   "dit": "Exemple résolu : calculer la valeur de grand A égale deux ixe plus cinq, pour ixe égale trois. On remplace ixe par trois : grand A égale deux fois trois plus cinq, soit six plus cinq, égale onze. Pour ixe égale trois, l'expression grand A vaut onze.",
+   "ecran": "ex_valeur",
+   "id": "p06",
+   "texte": "A = 2x + 5 vaut 11 pour x = 3."
+  },
+  {
+   "dit": "Passons aux équations. Une équation est une égalité contenant une inconnue, représentée par une lettre. Résoudre une équation, c'est trouver toutes les valeurs de l'inconnue qui rendent l'égalité vraie. Ces valeurs sont appelées les solutions de l'équation.",
+   "ecran": "equation_def",
+   "id": "p07",
+   "texte": "Résoudre : trouver les valeurs qui rendent l'égalité vraie."
+  },
+  {
+   "dit": "Nous étudierons deux familles d'équations du premier degré. La première a la forme a plus ixe égale b : l'inconnue est ajoutée à un nombre connu. La deuxième a la forme a ixe égale b : l'inconnue est multipliée par un nombre connu. À chaque famille correspond un geste précis pour isoler l'inconnue.",
+   "ecran": "familles",
+   "id": "p08",
+   "texte": "Deux familles : a + x = b et ax = b."
+  },
+  {
+   "dit": "Pour résoudre une équation de la forme a plus ixe égale b, on soustrait a de chaque côté de l'égalité. L'inconnue se retrouve seule, et la solution s'écrit ixe égale b moins a. Le principe est celui d'une balance : ce qu'on retire d'un côté, on le retire aussi de l'autre.",
+   "ecran": "eq_add",
+   "id": "p09",
+   "texte": "a + x = b : on soustrait a des deux côtés."
+  },
+  {
+   "dit": "Exemple résolu : résoudre sept plus ixe égale quinze. On soustrait sept des deux côtés : sept plus ixe moins sept, égale quinze moins sept. Il reste ixe égale huit. L'opération inverse a isolé l'inconnue en une seule étape.",
+   "ecran": "ex_add",
+   "id": "p10",
+   "texte": "7 + x = 15 donne x = 8."
+  },
+  {
+   "dit": "Vérifions toujours la solution trouvée : on remplace ixe par huit dans l'équation de départ. Sept plus huit égale quinze : l'égalité est vraie. La solution de l'équation est donc ixe égale huit, et elle est confirmée par le calcul.",
+   "ecran": "verif_add",
+   "id": "p11",
+   "texte": "Vérification : 7 + 8 = 15, égalité vraie."
+  },
+  {
+   "dit": "Deuxième famille : les équations de la forme a ixe égale b, où a et b sont des entiers et a est différent de zéro. Pour isoler l'inconnue, on divise chaque côté de l'égalité par a. La solution s'écrit alors ixe égale b divisé par a.",
+   "ecran": "eq_mult",
+   "id": "p12",
+   "texte": "ax = b : on divise les deux côtés par a."
+  },
+  {
+   "dit": "Exemple résolu : résoudre quatre ixe égale vingt-huit. On divise les deux côtés par quatre : quatre ixe sur quatre, égale vingt-huit sur quatre. Il reste ixe égale sept. Encore une fois, une seule opération inverse suffit à isoler l'inconnue.",
+   "ecran": "ex_mult",
+   "id": "p13",
+   "texte": "4x = 28 donne x = 7."
+  },
+  {
+   "dit": "Vérification : on remplace ixe par sept dans l'équation de départ. Quatre fois sept égale vingt-huit : l'égalité est vraie. La solution de l'équation est donc ixe égale sept. Ce réflexe de vérification doit devenir automatique, sur toutes vos équations.",
+   "ecran": "verif_mult",
+   "id": "p14",
+   "texte": "Vérification : 4 × 7 = 28, égalité vraie."
+  },
+  {
+   "dit": "Ces équations servent à résoudre des problèmes, selon une méthode en cinq étapes. On identifie l'inconnue et on lui donne un nom, on traduit le problème par une équation, on résout cette équation, on vérifie que la solution est cohérente avec le problème, et on répond clairement à la question posée.",
+   "ecran": "methode",
+   "id": "p15",
+   "texte": "Problème : cinq étapes, toujours dans le même ordre."
+  },
+  {
+   "dit": "Exemple de problème : un magasin vend des cahiers à trois euros pièce. Léa achète plusieurs cahiers identiques et paie vingt-quatre euros. Combien de cahiers a-t-elle achetés ? Le nombre de cahiers est inconnu : c'est exactement le genre de question qu'une équation va trancher.",
+   "ecran": "probleme",
+   "id": "p16",
+   "texte": "Les cahiers de Léa : un problème, une inconnue."
+  },
+  {
+   "dit": "Appliquons la méthode. Étape un, l'inconnue : soit ixe le nombre de cahiers achetés. Étape deux, la traduction : chaque cahier coûte trois euros, donc le prix total est trois fois ixe. Comme Léa a payé vingt-quatre euros, on obtient l'équation trois ixe égale vingt-quatre.",
+   "ecran": "probleme_trad",
+   "id": "p17",
+   "texte": "Traduction : 3x = 24."
+  },
+  {
+   "dit": "Étape trois, on résout : trois ixe égale vingt-quatre, donc ixe égale vingt-quatre divisé par trois, soit huit. Étape quatre, on vérifie : trois fois huit égale vingt-quatre, c'est cohérent. Étape cinq, on répond clairement : Léa a acheté huit cahiers.",
+   "ecran": "probleme_res",
+   "id": "p18",
+   "texte": "Réponse : Léa a acheté 8 cahiers."
+  },
+  {
+   "dit": "Un dernier mot sur la vérification : elle apparaît dans chaque exemple de ce cours, et ce n'est pas un hasard. Remplacer l'inconnue par la solution trouvée prend quelques secondes et garantit que l'égalité de départ est bien vraie. En contrôle, c'est souvent ce qui sépare une copie juste d'une copie presque juste.",
+   "ecran": "pourquoi_verif",
+   "id": "p19",
+   "texte": "Vérifier : quelques secondes, zéro regret."
+  },
+  {
+   "dit": "Pour finir, retenez l'essentiel. Une expression littérale contient des lettres qui représentent des nombres, et on calcule sa valeur en remplaçant chaque lettre par sa valeur numérique. Résoudre une équation, c'est trouver la valeur de l'inconnue qui rend l'égalité vraie : on soustrait pour la forme a plus ixe égale b, on divise pour la forme a ixe égale b. Et face à un problème, on traduit, on résout, on vérifie, on répond.",
+   "ecran": "recap",
+   "id": "p20",
+   "texte": "L'essentiel : littéral et équations."
+  }
+ ],
+ "titre": "Expressions littérales et équations du premier degré"
 }
