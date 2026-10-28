@@ -100,14 +100,14 @@
   },
   "hybridation_types": {
    "kicker": "Le tableau des leçons",
+   "note": "Exemples, dans l’ordre : BeCl₂, BF₃, CH₄, PCl₅ et SF₆.",
    "tex": [
     "sp : \\text{linéaire},\\ 180^\\circ \\qquad sp^2 : \\text{trigonale plane},\\ 120^\\circ",
     "sp^3 : \\text{tétraédrique},\\ 109{,}5^\\circ \\qquad sp^3d : \\text{bipyramidale}",
     "sp^3d^2 : \\text{octaédrique}"
    ],
    "titre": "Les familles d'hybridation et leurs angles",
-   "type": "etape",
-   "note": "Exemples, dans l’ordre : BeCl₂, BF₃, CH₄, PCl₅ et SF₆."
+   "type": "etape"
   },
   "ionique": {
    "anim": {
@@ -141,13 +141,13 @@
    "type": "formule"
   },
   "metallique": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "mer_electrons_fig"
+   },
    "kicker": "La liaison métallique",
    "texte": "Des cations plongés dans une mer d'électrons libres de circuler partout.",
-   "type": "phrase",
-   "anim": {
-    "nom": "mer_electrons_fig",
-    "hauteur": 180
-   }
+   "type": "phrase"
   },
   "methode_lewis": {
    "etapes": [
@@ -252,7 +252,7 @@
   "titre": {
    "anim": {
     "hauteur": 250,
-    "nom": "transfert_electrons_fig"
+    "nom": "cases_quantiques_fig"
    },
    "kicker": "Chimie · Liaisons chimiques",
    "sous": "Règle de l'octet, Lewis, liaisons ionique, covalente et métallique, géométrie et forces faibles",
