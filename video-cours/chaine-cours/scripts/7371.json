@@ -1,0 +1,431 @@
+{
+ "cours": 7371,
+ "titre": "Brassage génétique, hérédité liée au sexe et anomalies chromosomiques",
+ "matiere": "Biologie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Biologie · Génétique",
+   "titre": "Brassage génétique, hérédité liée au sexe et anomalies chromosomiques",
+   "sous": "Deux caractères ou un seul chromosome : comment les caractères se transmettent, et ce qui se dérègle",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 250
+   }
+  },
+  "condition": {
+   "type": "phrase",
+   "kicker": "Dihybridisme : la condition",
+   "texte": "Deux caractères, deux gènes : la condition d'indépendance d'abord.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "brassage": {
+   "type": "phrase",
+   "kicker": "Brassage interchromosomique",
+   "texte": "Métaphase un : les paires s'alignent au hasard.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "combinaisons": {
+   "type": "formule",
+   "kicker": "Nombre de combinaisons",
+   "tex": "2^n",
+   "note": "n : nombre de paires de chromosomes"
+  },
+  "gametes": {
+   "type": "etape",
+   "kicker": "Gamètes de l'hétérozygote AaBb",
+   "titre": "Quatre gamètes, un quart chacun",
+   "tex": [
+    "\\text{AB}",
+    "\\text{Ab}",
+    "\\text{aB}",
+    "\\text{ab}"
+   ]
+  },
+  "lies": {
+   "type": "phrase",
+   "kicker": "Gènes liés : même chromosome",
+   "texte": "Sur le même chromosome, les gènes voyagent ensemble.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "crossing": {
+   "type": "phrase",
+   "kicker": "Crossing-over, prophase un",
+   "texte": "Échange de segments entre chromatides homologues.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "rf": {
+   "type": "formule",
+   "kicker": "Fréquence de recombinaison",
+   "tex": "RF = \\frac{N_r}{N} \\times 100\\,\\%",
+   "note": "N_r : recombinants, N : total ; 1 centimorgan : 1 % de recombinaison en moyenne"
+  },
+  "seuils": {
+   "type": "etape",
+   "kicker": "Lire la fréquence de recombinaison",
+   "titre": "Liés ou indépendants, selon le pourcentage",
+   "tex": [
+    "RF < 50\\,\\%",
+    "RF \\approx 50\\,\\%"
+   ]
+  },
+  "morgan": {
+   "type": "phrase",
+   "kicker": "Morgan et la drosophile",
+   "texte": "Quinze pour cent de recombinants : quinze centimorgans.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "carte": {
+   "type": "etape",
+   "kicker": "Carte génétique à trois gènes",
+   "titre": "A, B, C : ordre et distances",
+   "tex": [
+    "\\text{A -- 12 cM -- B -- 8 cM -- C}"
+   ]
+  },
+  "souris_att": {
+   "type": "etape",
+   "kicker": "Souris : l'attendu indépendant",
+   "titre": "Sur 1600 petits, l'attendu 9:3:3:1 donne",
+   "tex": [
+    "900 : 300 : 300 : 100"
+   ]
+  },
+  "souris_obs": {
+   "type": "etape",
+   "kicker": "Souris : l'observé tranche",
+   "titre": "L'observé s'écarte : les gènes sont liés",
+   "tex": [
+    "960 : 320 : 280 : 40"
+   ]
+  },
+  "souris_rf": {
+   "type": "formule",
+   "kicker": "Souris : la distance génétique",
+   "tex": "RF = \\frac{600}{1600} \\times 100\\,\\% = 37{,}5\\,\\%",
+   "note": "Distance : 37,5 centimorgans"
+  },
+  "sexe": {
+   "type": "etape",
+   "kicker": "Chromosomes sexuels",
+   "titre": "Femelle XX, mâle XY",
+   "tex": [
+    "\\text{XX}",
+    "\\text{XY}"
+   ]
+  },
+  "notation": {
+   "type": "etape",
+   "kicker": "Notation liée à l'X",
+   "titre": "X exposant A normal, X exposant a pathologique",
+   "tex": [
+    "X^A",
+    "X^a",
+    "X^A X^a",
+    "X^a Y"
+   ]
+  },
+  "transmission": {
+   "type": "phrase",
+   "kicker": "Transmission liée à l'X",
+   "texte": "Un père atteint ne transmet à aucun fils, mais à toutes ses filles.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "exemples": {
+   "type": "phrase",
+   "kicker": "Daltonisme et hémophilie",
+   "texte": "Deux maladies récessives liées à l'X, même transmission.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "arbre": {
+   "type": "phrase",
+   "kicker": "Lire un arbre généalogique",
+   "texte": "Un homme atteint : regarder sa mère en premier.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "methode": {
+   "type": "phrase",
+   "kicker": "Méthode BAC en six étapes",
+   "texte": "Méthode BAC : six étapes, de l'hérédité à la réponse.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "anomalies": {
+   "type": "phrase",
+   "kicker": "Anomalies chromosomiques",
+   "texte": "Nombre ou structure : l'erreur vient souvent de la méiose.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "nondisj": {
+   "type": "phrase",
+   "kicker": "Non-disjonction méiotique",
+   "texte": "Homologues ou chromatides sœurs qui ne se séparent pas.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "formules_anom": {
+   "type": "etape",
+   "kicker": "Trisomie et monosomie",
+   "titre": "Deux n plus un, deux n moins un",
+   "tex": [
+    "2n + 1",
+    "2n - 1"
+   ]
+  },
+  "trisomie21": {
+   "type": "phrase",
+   "kicker": "Exercice : trois chromosomes 21",
+   "texte": "Caryotype quarante-sept, XX, plus 21, ou XY, plus 21.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "mutation": {
+   "type": "phrase",
+   "kicker": "Mutation ponctuelle",
+   "texte": "Un seul nucléotide changé, la mutation la plus fréquente.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "drepa": {
+   "type": "phrase",
+   "kicker": "La drépanocytose",
+   "texte": "Sixième codon de la bêta-globine : glutamate remplacé par valine.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 220
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Brassage interchromosomique : gamètes AB, Ab, aB, ab, un quart chacun",
+    "Gènes liés : crossing-over, fréquence de recombinaison, distance en centimorgans",
+    "Hérédité liée à l'X : père atteint, mère porteuse, daltonisme et hémophilie",
+    "Anomalies : non-disjonction, trisomie 2n plus 1, monosomie 2n moins 1",
+    "Mutation ponctuelle : un nucléotide, un acide aminé, un phénotype"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Deux caractères, un chromosome X, un chromosome en trop : la transmission décortiquée.",
+   "dit": "Bienvenue dans ce cours de génétique et de transmission des caractères héréditaires. Nous verrons le dihybridisme et le brassage génétique, puis l'hérédité liée au sexe, et enfin les anomalies chromosomiques et les mutations."
+  },
+  {
+   "id": "p02",
+   "ecran": "condition",
+   "texte": "Deux gènes, deux caractères : Mendel s'applique sous condition.",
+   "dit": "Lors d'un croisement dihybride, on suit deux caractères héréditaires à la fois. Les lois de Mendel s'appliquent sous une condition précise : les deux gènes doivent être sur des chromosomes différents, ou très éloignés l'un de l'autre. Sur le même chromosome, la loi ne s'applique pas telle quelle."
+  },
+  {
+   "id": "p03",
+   "ecran": "brassage",
+   "texte": "L'orientation aléatoire brasse les allèles.",
+   "dit": "Lors de la métaphase un de la méiose, les paires de chromosomes homologues s'alignent de façon aléatoire par rapport aux autres paires. Cette orientation aléatoire entraîne un brassage des allèles issus de chaque parent : c'est le brassage interchromosomique."
+  },
+  {
+   "id": "p04",
+   "ecran": "combinaisons",
+   "texte": "Deux puissance n combinaisons possibles.",
+   "dit": "Le nombre de combinaisons possibles s'écrit deux puissance n, où n est le nombre de paires de chromosomes."
+  },
+  {
+   "id": "p05",
+   "ecran": "gametes",
+   "texte": "AaBb : quatre gamètes, un quart chacun.",
+   "dit": "Dans un croisement dihybride interchromosomique, l'hétérozygote AaBb produit quatre gamètes : AB, Ab, aB et ab, en proportions égales, un quart chacun. Le croisement produit alors une distribution uniforme des génotypes."
+  },
+  {
+   "id": "p06",
+   "ecran": "lies",
+   "texte": "Gènes liés : transmis ensemble.",
+   "dit": "Deux gènes situés sur le même chromosome sont dits liés : ils ont tendance à être transmis ensemble. Sans mécanisme de recombinaison, les descendants d'un hétérozygote garderaient le génotype parental."
+  },
+  {
+   "id": "p07",
+   "ecran": "crossing",
+   "texte": "Le crossing-over crée des recombinants.",
+   "dit": "Le crossing-over a lieu pendant la prophase un de la méiose, lors des chiasmata. Il échange des segments d'ADN entre les deux chromatides homologues, et crée des génotypes recombinants, différents des parents initiaux."
+  },
+  {
+   "id": "p08",
+   "ecran": "rf",
+   "texte": "La fréquence de recombinaison mesure la distance.",
+   "dit": "La fréquence de recombinaison, RF, est le nombre d'individus recombinants divisé par le nombre total d'individus, multiplié par cent. Exprimée en pourcentage, elle mesure la distance entre les gènes."
+  },
+  {
+   "id": "p09",
+   "ecran": "seuils",
+   "texte": "Moins de cinquante pour cent : liés. Environ cinquante : indépendants.",
+   "dit": "Si la fréquence de recombinaison est inférieure à cinquante pour cent, les gènes sont liés. Si elle est d'environ cinquante pour cent, les gènes sont indépendants, séparés par une longue distance ou portés par des chromosomes différents. L'unité de distance est le centimorgan : un centimorgan vaut un pour cent de recombinaison moyenne."
+  },
+  {
+   "id": "p10",
+   "ecran": "morgan",
+   "texte": "Morgan : quinze pour cent, quinze centimorgans.",
+   "dit": "Exemple classique de Morgan chez la drosophile : une femelle sauvage, aux longues ailes et à la couleur corporelle normale, croisée avec un mâle mutant, aux courtes ailes et au corps gris. On observe environ quinze pour cent de recombinants : les gènes vg et cn sont liés, à quinze centimorgans l'un de l'autre."
+  },
+  {
+   "id": "p11",
+   "ecran": "carte",
+   "texte": "Carte génétique : ordre et distances par testcross.",
+   "dit": "Pour établir une carte génétique, on détermine l'ordre et les distances entre plusieurs gènes d'un même chromosome à partir des fréquences de recombinaison. On croise des hétérozygotes triples ou plus avec des récessifs, c'est le testcross, on compte les phénotypes parents et recombinants, et la distance entre deux gènes est la fréquence de recombinaison entre eux. Exemple : A, puis douze centimorgans, puis B, puis huit centimorgans, puis C."
+  },
+  {
+   "id": "p12",
+   "ecran": "souris_att",
+   "texte": "Exercice souris : l'attendu pour des gènes indépendants.",
+   "dit": "Exercice : un croisement dihybride entre deux hétérozygotes AaBb donne, sur mille six cents petits, les effectifs suivants. Pour des gènes indépendants, le ratio attendu est neuf, trois, trois, un, soit neuf cents, trois cents, trois cents et cent sur mille six cents."
+  },
+  {
+   "id": "p13",
+   "ecran": "souris_obs",
+   "texte": "L'observé : neuf cent soixante, trois cent vingt, deux cent quatre-vingts, quarante.",
+   "dit": "Or on observe neuf cent soixante, trois cent vingt, deux cent quatre-vingts et quarante : les écarts sont significatifs, donc les gènes sont liés."
+  },
+  {
+   "id": "p14",
+   "ecran": "souris_rf",
+   "texte": "Recombinants : six cents. Fréquence : trente-sept virgule cinq pour cent.",
+   "dit": "Les recombinants sont les deux classes A bb et aa B, soit trois cent vingt plus deux cent quatre-vingts, égale six cents. La fréquence de recombinaison vaut six cents divisé par mille six cents, multiplié par cent, soit trente-sept virgule cinq pour cent. La distance génétique est donc de trente-sept virgule cinq centimorgans : les gènes sont sur le même chromosome, mais assez éloignés."
+  },
+  {
+   "id": "p15",
+   "ecran": "sexe",
+   "texte": "Passons à l'hérédité liée au sexe.",
+   "dit": "La plupart des gènes liés au sexe sont situés sur le chromosome X. Le chromosome Y ne contient que très peu de gènes, notamment le gène SRY qui détermine le sexe. Les allèles récessifs situés sur l'X s'expriment donc principalement chez les hommes, qui n'ont qu'un seul chromosome X."
+  },
+  {
+   "id": "p16",
+   "ecran": "notation",
+   "texte": "Notation : X exposant A, X exposant a.",
+   "dit": "On note X exposant A l'allèle normal, dominant, et X exposant a l'allèle récessif, pathologique. Une femelle peut être normale, porteuse ou atteinte, ce dernier cas étant rare. Un mâle est normal ou atteint."
+  },
+  {
+   "id": "p17",
+   "ecran": "transmission",
+   "texte": "Père atteint : toutes ses filles porteuses, aucun fils atteint.",
+   "dit": "Règles fondamentales : un père atteint transmet son allèle muté à toutes ses filles, qui deviennent obligatoirement porteuses, mais à aucun de ses fils, à qui il donne son Y. Une mère porteuse transmet l'allèle muté à cinquante pour cent de ses fils, qui deviennent atteints, et à cinquante pour cent de ses filles, qui deviennent porteuses. Pour une mère porteuse croisée avec un père normal, la probabilité qu'un fils soit atteint est donc d'un demi."
+  },
+  {
+   "id": "p18",
+   "ecran": "exemples",
+   "texte": "Daltonisme, hémophilie : même mode de transmission.",
+   "dit": "Le daltonisme, pour les couleurs rouge et vert, et l'hémophilie, maladie du sang, sont deux allèles récessifs liés à l'X. Exemple historique : la reine Victoria du Royaume-Uni était porteuse de l'hémophilie, et l'a transmise à plusieurs branches royales d'Europe, en Russie, en Espagne et en Allemagne."
+  },
+  {
+   "id": "p19",
+   "ecran": "arbre",
+   "texte": "Arbre généalogique : la mère d'un homme atteint est porteuse.",
+   "dit": "Pour lire un arbre : si un homme atteint apparaît, sa mère doit être porteuse, sauf mutation nouvelle. Si une femme atteinte apparaît, ses deux parents doivent être au moins porteurs, ce qui est rare pour un récessif lié à l'X. On suit les allèles du haut vers le bas, en respectant les règles de transmission X et Y."
+  },
+  {
+   "id": "p20",
+   "ecran": "methode",
+   "texte": "Méthode BAC : six étapes, de l'hérédité à la réponse.",
+   "dit": "La méthode pas à pas : premièrement, identifier le type d'hérédité, liée au sexe, dominante, récessive ou autosomique. Deuxièmement, repérer les sexes des individus atteints dans l'arbre. Troisièmement, déduire les génotypes possibles en appliquant les règles de transmission X et Y. Quatrièmement, calculer les probabilités avec un tableau de croisement adapté. Cinquièmement, vérifier la cohérence avec l'arbre. Sixièmement, formuler la réponse finale avec les génotypes et les pourcentages."
+  },
+  {
+   "id": "p21",
+   "ecran": "anomalies",
+   "texte": "Anomalies chromosomiques : nombre ou structure.",
+   "dit": "Une anomalie chromosomique est une variation du nombre ou de la structure des chromosomes, présente dans les cellules du corps, souvent issue d'une erreur lors de la méiose. On distingue l'aneuploïdie, un nombre anormal de chromosomes complets, et la polyploïdie, un nombre multiple du jeu complet, rare chez l'humain mais fréquente chez les plantes."
+  },
+  {
+   "id": "p22",
+   "ecran": "nondisj",
+   "texte": "Non-disjonction : méiose un ou méiose deux.",
+   "dit": "L'erreur majeure est la non-disjonction méiotique : lors de la méiose un, les chromosomes homologues ne se séparent pas correctement, et lors de la méiose deux, ce sont les chromatides sœurs qui ne se séparent pas."
+  },
+  {
+   "id": "p23",
+   "ecran": "formules_anom",
+   "texte": "Trisomie : deux n plus un. Monosomie : deux n moins un.",
+   "dit": "Dans le zygote, une trisomie correspond à deux n plus un, par exemple deux n plus vingt et un. Une monosomie correspond à deux n moins un, par exemple le syndrome de Turner, noté X zéro."
+  },
+  {
+   "id": "p24",
+   "ecran": "trisomie21",
+   "texte": "Trisomie 21 : caryotype quarante-sept, plus 21.",
+   "dit": "Exercice : l'échographie révèle un fœtus porteur de trois chromosomes 21, et on suppose une non-disjonction méiotique. Le terme médical est la trisomie 21. Pour que tous les gamètes soient affectés, l'erreur est probablement survenue en méiose un, lors de la non-disjonction des homologues. Le caryotype du fœtus est quarante-sept, XX, plus 21, ou quarante-sept, XY, plus 21."
+  },
+  {
+   "id": "p25",
+   "ecran": "mutation",
+   "texte": "Mutation ponctuelle : un seul nucléotide.",
+   "dit": "Une mutation ponctuelle est l'altération d'un unique nucléotide, une seule base azotée, dans la séquence d'ADN. C'est la mutation la plus fréquente. Rappel : le code génétique est dégénéré, plusieurs codons pour un même acide aminé, et universel."
+  },
+  {
+   "id": "p26",
+   "ecran": "drepa",
+   "texte": "Drépanocytose : glutamate remplacé par valine.",
+   "dit": "Exemple : la drépanocytose. La mutation est une substitution de G vers A au sixième codon du gène de la bêta-globine. L'acide glutamique est remplacé par la valine. À l'état hypoxique, les globules rouges prennent une forme de faucille, ce qui obstrue les capillaires et provoque des crises douloureuses."
+  },
+  {
+   "id": "p27",
+   "ecran": "recap",
+   "texte": "Retenons l'essentiel : brassage, liaison, X, anomalies, mutation.",
+   "dit": "Retenons l'essentiel : le brassage interchromosomique produit quatre gamètes à un quart chacun ; pour des gènes liés, le crossing-over crée des recombinants, et la fréquence de recombinaison donne la distance en centimorgans ; l'hérédité liée à l'X suit des règles strictes de père et de mère ; la non-disjonction donne trisomie ou monosomie ; et une mutation ponctuelle d'un seul nucléotide peut changer un acide aminé, donc le phénotype."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Dihybridisme et brassage génétique"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Cartes génétiques et exemple des souris",
+   "pont": {
+    "texte": "Partie 2 : cartes génétiques et exemple des souris.",
+    "dit": "Partie deux : les cartes génétiques et l'exemple des souris. Nous verrons comment ordonner des gènes sur un chromosome, puis comment un écart à l'attendu neuf, trois, trois, un révèle des gènes liés."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Hérédité liée au sexe, anomalies et mutations",
+   "pont": {
+    "texte": "Partie 3 : hérédité liée au sexe, anomalies et mutations.",
+    "dit": "Partie trois : l'hérédité liée au sexe, les anomalies chromosomiques et les mutations. Nous verrons la transmission liée à l'X, la non-disjonction, puis la drépanocytose."
+   }
+  }
+ ]
+}
