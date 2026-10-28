@@ -1,511 +1,511 @@
 {
-  "cours": 6673,
-  "titre": "Matrices et géométrie dans l'espace",
-  "matiere": "Mathématique",
-  "ecrans": {
-    "titre": {
-      "type": "titre",
-      "kicker": "Mathématique · Matrices et espace",
-      "titre": "Matrices et géométrie dans l'espace",
-      "sous": "Opérations et applications linéaires, orthogonalité, droites, plans et sphères",
-      "anim": {
-        "nom": "sphere_fig",
-        "hauteur": 240
-      }
-    },
-    "intro": {
-      "type": "phrase",
-      "kicker": "Le fil rouge du cours",
-      "texte": "Un même langage des deux côtés : les coordonnées, pour transformer la géométrie en calculs."
-    },
-    "def_matrice": {
-      "type": "etape",
-      "kicker": "Matrices · présentation",
-      "titre": "Un tableau de nombres, un format",
-      "tex": [
-        "A=\\begin{pmatrix}2&-1&0\\\\3&4&5\\end{pmatrix}",
-        "a_{ij} : \\text{ ligne } i, \\text{ colonne } j"
-      ]
-    },
-    "operations": {
-      "type": "etape",
-      "kicker": "Matrices · les trois opérations",
-      "titre": "Somme, produit par un réel, produit",
-      "tex": [
-        "(A+B)_{ij} = a_{ij} + b_{ij}",
-        "(\\lambda A)_{ij} = \\lambda a_{ij}",
-        "\\textstyle (AB)_{ij} = \\sum_{k=1}^{p} a_{ik} b_{kj}"
-      ]
-    },
-    "ex_somme": {
-      "type": "etape",
-      "kicker": "Exemple résolu · somme et double",
-      "titre": "Somme et double, coefficient par coefficient",
-      "tex": [
-        "A+B=\\begin{pmatrix}0&6\\\\5&1\\end{pmatrix}",
-        "2A=\\begin{pmatrix}2&4\\\\6&0\\end{pmatrix}"
-      ]
-    },
-    "ex_produit": {
-      "type": "etape",
-      "kicker": "Exemple résolu · le produit",
-      "titre": "Le produit : ligne contre colonne",
-      "tex": [
-        "1\\times(-1)+2\\times 2=3 \\quad 1\\times 4+2\\times 1=6",
-        "AB=\\begin{pmatrix}3&6\\\\-3&12\\end{pmatrix}"
-      ]
-    },
-    "determinant": {
-      "type": "formule",
-      "kicker": "Matrices carrées d'ordre deux · le déterminant",
-      "tex": "\\det(A) = ad - bc",
-      "note": "Diagonale principale moins l'autre diagonale."
-    },
-    "inverse": {
-      "type": "formule",
-      "kicker": "Matrices carrées · inversibilité",
-      "tex": "A^{-1} = \\frac{1}{ad - bc} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}",
-      "note": "Inversible si et seulement si le déterminant est non nul."
-    },
-    "ex_inverse": {
-      "type": "etape",
-      "kicker": "Exemple résolu · calculer un inverse",
-      "titre": "Un déterminant non nul, donc un inverse",
-      "tex": [
-        "\\det(A) = 2 \\times 4 - 3 \\times 1 = 5",
-        "A^{-1}=\\tfrac{1}{5}\\begin{pmatrix}4&-3\\\\-1&2\\end{pmatrix}"
-      ]
-    },
-    "systeme": {
-      "type": "formule",
-      "kicker": "Application · résoudre un système",
-      "tex": "\\begin{pmatrix} x \\\\ y \\end{pmatrix} = A^{-1} \\begin{pmatrix} e \\\\ f \\end{pmatrix}",
-      "note": "Unique solution si le déterminant du système est non nul."
-    },
-    "app_lin": {
-      "type": "formule",
-      "kicker": "Applications linéaires · la matrice",
-      "tex": "M_{\\mathcal{B}}(f) = \\begin{pmatrix} a & c \\\\ b & d \\end{pmatrix}",
-      "note": "Les colonnes : les images des vecteurs de base.",
-      "anim": {
-        "nom": "fleche_fonction",
-        "hauteur": 170
-      }
-    },
-    "ex_app": {
-      "type": "etape",
-      "kicker": "Exemple résolu · image d'un vecteur",
-      "titre": "L'image d'un vecteur par un produit",
-      "tex": [
-        "A=\\begin{pmatrix}2&-1\\\\1&3\\end{pmatrix}",
-        "f(1,\\,2) = (0,\\,7)"
-      ]
-    },
-    "composee": {
-      "type": "etape",
-      "kicker": "Applications linéaires · les opérations",
-      "titre": "Somme, produit, composée : l'ordre",
-      "tex": [
-        "M(f + g) = A + B",
-        "M(\\lambda f) = \\lambda A",
-        "M(g \\circ f) = B \\times A"
-      ]
-    },
-    "reciproque": {
-      "type": "formule",
-      "kicker": "Applications linéaires · la réciproque",
-      "tex": "M_{\\mathcal{B}}(f^{-1}) = A^{-1}",
-      "note": "Vérification : A fois son inverse donne l'identité."
-    },
-    "droites_orth": {
-      "type": "etape",
-      "kicker": "Espace · droites orthogonales",
-      "titre": "Orthogonales, perpendiculaires, coplanaires",
-      "tex": [
-        "\\text{directions perpendiculaires : orthogonales}",
-        "\\text{sécantes et orthogonales : perpendiculaires}",
-        "\\text{coplanaires : sécantes ou parallèles}"
-      ]
-    },
-    "droite_plan": {
-      "type": "formule",
-      "kicker": "Espace · droite orthogonale à un plan",
-      "tex": "\\Delta \\perp d_1 \\ \\text{et} \\ \\Delta \\perp d_2 \\Rightarrow \\Delta \\perp \\mathcal{P}",
-      "note": "Le critère : deux droites sécantes du plan suffisent."
-    },
-    "ex_cube": {
-      "type": "etape",
-      "kicker": "Exemple résolu · le cube",
-      "titre": "La diagonale du cube face au plan",
-      "tex": [
-        "(AG) \\perp (BD) \\qquad (AG) \\perp (BE)",
-        "\\text{donc } (AG) \\perp (BDE)"
-      ]
-    },
-    "plans_orth": {
-      "type": "etape",
-      "kicker": "Espace · plans orthogonaux",
-      "titre": "Deux plans orthogonaux, un exemple",
-      "tex": [
-        "\\text{l'un contient une droite orthogonale}",
-        "(AB) \\perp (BCG) \\qquad (AB) \\subset (ABG)",
-        "\\text{donc } (ABG) \\perp (BCG)"
-      ]
-    },
-    "repere": {
-      "type": "etape",
-      "kicker": "Espace · repères et coordonnées",
-      "titre": "Trois coordonnées pour tout point",
-      "tex": [
-        "\\overrightarrow{OM} = x\\vec{i} + y\\vec{j} + z\\vec{k}",
-        "\\overrightarrow{AB} = (x_B - x_A,\\ y_B - y_A,\\ z_B - z_A)"
-      ]
-    },
-    "param_droite": {
-      "type": "formule",
-      "kicker": "Espace · représentation paramétrique d'une droite",
-      "tex": "\\begin{cases} x = x_A + at \\\\ y = y_A + bt \\\\ z = z_A + ct \\end{cases}, \\quad t \\in \\mathbb{R}",
-      "note": "Un point, un vecteur directeur, un paramètre réel."
-    },
-    "ex_param": {
-      "type": "etape",
-      "kicker": "Exemple résolu · paramétrer une droite",
-      "titre": "La droite par deux points, paramétrée",
-      "tex": [
-        "\\overrightarrow{AB} = (2,\\ 2,\\ -2)",
-        "x = 1 + 2t",
-        "y = -2 + 2t",
-        "z = 3 - 2t"
-      ]
-    },
-    "plan_param": {
-      "type": "formule",
-      "kicker": "Espace · représentation paramétrique d'un plan",
-      "tex": "\\begin{cases} x = x_A + \\alpha a + \\beta a' \\\\ y = y_A + \\alpha b + \\beta b' \\\\ z = z_A + \\alpha c + \\beta c' \\end{cases}",
-      "note": "Un point et deux vecteurs directeurs non colinéaires."
-    },
-    "plan_eq": {
-      "type": "formule",
-      "kicker": "Espace · équation cartésienne d'un plan",
-      "tex": "ax + by + cz + d = 0",
-      "note": "Le vecteur de coordonnées a, b, c est normal au plan."
-    },
-    "ex_plan": {
-      "type": "etape",
-      "kicker": "Exemple résolu · équation d'un plan",
-      "titre": "Construire l'équation pas à pas",
-      "tex": [
-        "\\vec{n} = (1, -1, 2) \\qquad A(1; 2; 0)",
-        "(x - 1) - (y - 2) + 2z = 0",
-        "x - y + 2z + 1 = 0"
-      ]
-    },
-    "positions": {
-      "type": "etape",
-      "kicker": "Espace · positions relatives",
-      "titre": "Toutes les positions en un coup d'œil",
-      "tex": [
-        "\\text{droites : colinéaires, sécantes, gauches}",
-        "\\text{plans parallèles : normaux colinéaires}",
-        "\\text{plans orthogonaux : } \\vec{n}_1 \\cdot \\vec{n}_2 = 0"
-      ]
-    },
-    "distance": {
-      "type": "formule",
-      "kicker": "Espace · projeté orthogonal et distance",
-      "tex": "d(M, \\mathcal{P}) = \\frac{|ax_0 + by_0 + cz_0 + d|}{\\sqrt{a^2 + b^2 + c^2}}",
-      "note": "Exemple de la leçon : la distance vaut cinq sur racine de trois."
-    },
-    "sphere_def": {
-      "type": "formule",
-      "kicker": "Sphères · l'équation cartésienne",
-      "tex": "(x - a)^2 + (y - b)^2 + (z - c)^2 = R^2",
-      "note": "Centre de coordonnées a, b, c et rayon R.",
-      "anim": {
-        "nom": "sphere_fig",
-        "hauteur": 180
-      }
-    },
-    "ex_sphere": {
-      "type": "etape",
-      "kicker": "Exemple résolu · équation d'une sphère",
-      "titre": "Du centre et du rayon à l'équation",
-      "tex": [
-        "\\Omega(2; -1; 3) \\qquad R = 5",
-        "(x - 2)^2 + (y + 1)^2 + (z - 3)^2 = 25"
-      ]
-    },
-    "reconnaitre": {
-      "type": "etape",
-      "kicker": "Sphères · reconnaître une sphère",
-      "titre": "Reconnaître une sphère déguisée",
-      "tex": [
-        "x^2 + y^2 + z^2 + ax + by + cz + d = 0",
-        "\\Omega(-\\tfrac{a}{2}, -\\tfrac{b}{2}, -\\tfrac{c}{2})",
-        "R^2 = \\tfrac{a^2 + b^2 + c^2}{4} - d"
-      ]
-    },
-    "ex_reconnaitre": {
-      "type": "etape",
-      "kicker": "Exemple résolu · nature d'un ensemble",
-      "titre": "Centre deux, moins trois, moins un",
-      "tex": [
-        "a = -4, \\ b = 6, \\ c = 2, \\ d = 5",
-        "R^2 = \\tfrac{16 + 36 + 4}{4} - 5 = 9",
-        "\\Omega(2; -3; -1) \\qquad R = 3"
-      ]
-    },
-    "sphere_droite": {
-      "type": "etape",
-      "kicker": "Sphères · intersection avec une droite",
-      "titre": "Une droite rencontre la sphère",
-      "tex": [
-        "x = t, \\quad y = t, \\quad z = t",
-        "3t^2 = 16 \\qquad t = \\pm \\tfrac{4}{\\sqrt{3}}",
-        "\\text{deux points : la droite est sécante}"
-      ]
-    },
-    "sphere_plan": {
-      "type": "formule",
-      "kicker": "Sphères · intersection avec un plan",
-      "tex": "r = \\sqrt{R^2 - d^2}",
-      "note": "Distance plus petite que le rayon : un cercle.",
-      "anim": {
-        "nom": "sphere_fig",
-        "hauteur": 170
-      }
-    },
-    "recap": {
-      "type": "recap",
-      "kicker": "À retenir",
-      "etapes": [
-        "Matrices : produit, déterminant, inverse",
-        "Applications : la matrice donne les images",
-        "Orthogonalité : deux droites sécantes",
-        "Sphères : une condition de distance"
-      ]
-    }
+ "cours": 6673,
+ "ecrans": {
+  "app_lin": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Applications linéaires · la matrice",
+   "note": "Les colonnes : les images des vecteurs de base.",
+   "tex": "M_{\\mathcal{B}}(f) = \\begin{pmatrix} a & c \\\\ b & d \\end{pmatrix}",
+   "type": "formule"
   },
-  "phrases": [
-    {
-      "id": "p01",
-      "dit": "Bienvenue dans ce cours qui réunit les matrices et la géométrie dans l'espace. Nous verrons les opérations sur les matrices, le déterminant, l'inverse et le lien avec les applications linéaires, puis l'orthogonalité, les repères, les droites et les plans, et nous finirons par les sphères.",
-      "texte": "Matrices et géométrie dans l'espace : le programme du cours.",
-      "ecran": "titre"
-    },
-    {
-      "id": "p02",
-      "dit": "Le fil rouge du cours tient en un mot : les coordonnées. Une matrice organise des nombres en tableau et permet de calculer avec eux. Dans l'espace, les coordonnées d'un point ou d'un vecteur transforment des questions de géométrie en questions de calcul. Chaque partie va illustrer cette idée.",
-      "texte": "Les coordonnées : transformer la géométrie en calculs.",
-      "ecran": "intro"
-    },
-    {
-      "id": "p03",
-      "dit": "Une matrice est un tableau rectangulaire de nombres réels. Si elle possède enne lignes et pé colonnes, elle est de format enne, pé. Voici une matrice de format deux, trois : première ligne deux, moins un, zéro, deuxième ligne trois, quatre, cinq. Le coefficient de la ligne i et de la colonne j se note a indice i j.",
-      "texte": "Une matrice : des lignes, des colonnes, un format.",
-      "ecran": "def_matrice"
-    },
-    {
-      "id": "p04",
-      "dit": "Trois opérations à connaître. La somme n'existe que pour deux matrices de même format, et elle se fait coefficient par coefficient. Le produit par un réel multiplie chaque coefficient par ce réel. Le produit, lui, n'existe que si le nombre de colonnes de la première matrice égale le nombre de lignes de la seconde, et chaque coefficient est une somme de produits, ligne contre colonne.",
-      "texte": "Somme terme à terme, produit ligne contre colonne.",
-      "ecran": "operations"
-    },
-    {
-      "id": "p05",
-      "dit": "Premier exemple résolu, avec deux matrices carrées. La première contient un, deux, trois, zéro, la seconde moins un, quatre, deux, un. Leur somme se calcule coefficient par coefficient : zéro, six, cinq, un. Le double de la première multiplie chaque coefficient par deux : deux, quatre, six, zéro.",
-      "texte": "Somme et double : coefficient par coefficient.",
-      "ecran": "ex_somme"
-    },
-    {
-      "id": "p06",
-      "dit": "Le produit demande plus de soin. En haut à gauche, on multiplie la première ligne par la première colonne : un fois moins un, plus deux fois deux, égale trois. En haut à droite : un fois quatre, plus deux fois un, égale six. En bas, on obtient moins trois et douze. Retenez le geste : une ligne, une colonne, des produits additionnés.",
-      "texte": "Le produit : une ligne, une colonne, une somme.",
-      "ecran": "ex_produit"
-    },
-    {
-      "id": "p07",
-      "dit": "Pour une matrice carrée d'ordre deux, de coefficients a, b, c, d, le déterminant est le nombre a fois d, moins b fois c : le produit de la diagonale principale, moins le produit de l'autre diagonale. Ce petit nombre commande la suite : il dira si la matrice a un inverse et si un système a une unique solution.",
-      "texte": "Le déterminant : diagonale moins diagonale.",
-      "ecran": "determinant"
-    },
-    {
-      "id": "p08",
-      "dit": "Une matrice carrée est inversible si et seulement si son déterminant est différent de zéro. Son inverse s'obtient alors par une recette régulière : on échange les coefficients de la diagonale principale, on change les signes des deux autres, et on divise le tout par le déterminant. Le produit de la matrice par son inverse donne la matrice identité.",
-      "texte": "Inversible si le déterminant est non nul.",
-      "ecran": "inverse"
-    },
-    {
-      "id": "p09",
-      "dit": "Appliquons la recette à la matrice deux, trois, un, quatre. Son déterminant vaut deux fois quatre, moins trois fois un, c'est-à-dire huit moins trois, donc cinq : la matrice est inversible. On échange quatre et deux, on change les signes de trois et de un, on divise par cinq : l'inverse contient quatre cinquièmes, moins trois cinquièmes, moins un cinquième et deux cinquièmes.",
-      "texte": "Déterminant cinq : l'inverse existe.",
-      "ecran": "ex_inverse"
-    },
-    {
-      "id": "p10",
-      "dit": "Application directe : résoudre un système de deux équations à deux inconnues. Le vecteur des inconnues, de coordonnées x et y, s'obtient en multipliant l'inverse de la matrice du système par le vecteur des seconds membres. Le système a une unique solution si et seulement si le déterminant est non nul : c'est exactement la condition d'inversibilité.",
-      "texte": "Un système se résout avec l'inverse.",
-      "ecran": "systeme"
-    },
-    {
-      "id": "p11",
-      "dit": "Les matrices décrivent aussi les applications linéaires. Dans une base donnée, la matrice d'une application linéaire a pour colonnes les coordonnées des images des vecteurs de base : première colonne, l'image du premier vecteur, seconde colonne, l'image du second. Ensuite, l'image de tout vecteur se calcule par un produit de matrices.",
-      "texte": "Les colonnes : les images des vecteurs de base.",
-      "ecran": "app_lin"
-    },
-    {
-      "id": "p12",
-      "dit": "Exemple : l'application qui, au couple x, y, associe le couple deux x moins y, x plus trois y. Sa matrice se lit dans les formules : deux, moins un, un, trois. Le produit par la colonne un, deux donne en haut deux moins deux, soit zéro, et en bas un plus six, soit sept : l'image du vecteur est le vecteur de coordonnées zéro, sept.",
-      "texte": "L'image de (1, 2) : le vecteur (0, 7).",
-      "ecran": "ex_app"
-    },
-    {
-      "id": "p13",
-      "dit": "Le dictionnaire entre applications et matrices est complet. La matrice d'une somme est la somme des matrices, celle d'un produit par un réel est le produit de la matrice par ce réel, et celle d'une composée est le produit des matrices, mais attention à l'ordre : pour g rond f, on écrit la matrice de g fois celle de f.",
-      "texte": "Composée : produit des matrices, dans le bon ordre.",
-      "ecran": "composee"
-    },
-    {
-      "id": "p14",
-      "dit": "Dernier point : si une application linéaire est bijective, son application réciproque a pour matrice l'inverse de sa matrice, dans la même base. Pour l'application des exemples précédents, on retrouve l'inverse déjà calculé, et la vérification tient en un produit : la matrice fois son inverse donne la matrice identité.",
-      "texte": "La réciproque a pour matrice l'inverse.",
-      "ecran": "reciproque"
-    },
-    {
-      "id": "p15",
-      "dit": "Passons à l'espace. Deux droites sont orthogonales lorsque leurs directions sont perpendiculaires : on peut les ramener, par parallélisme, à deux droites perpendiculaires d'un même plan. Si en plus elles se coupent, elles sont perpendiculaires. La nouveauté : deux droites orthogonales ne sont pas forcément coplanaires, et deux droites sont coplanaires exactement quand elles sont sécantes ou parallèles.",
-      "texte": "Orthogonales ne veut pas dire coplanaires.",
-      "ecran": "droites_orth"
-    },
-    {
-      "id": "p16",
-      "dit": "Une droite est orthogonale à un plan quand elle est orthogonale à toutes les droites du plan. Le théorème clé évite de tout vérifier : il suffit qu'elle soit orthogonale à deux droites sécantes du plan. Elle est alors orthogonale à toute droite du plan, même à celles qu'elle ne croise pas. Toute démonstration suivra donc ce plan : deux droites sécantes, deux vérifications.",
-      "texte": "Le critère : deux droites sécantes suffisent.",
-      "ecran": "droite_plan"
-    },
-    {
-      "id": "p17",
-      "dit": "Exemple du cube : montrons que la grande diagonale a g est orthogonale au plan b d e. La projection de cette diagonale sur la base du cube est la diagonale a c, perpendiculaire à b d, car les diagonales d'un carré sont perpendiculaires : donc a g est orthogonale à b d. Par symétrie dans une autre face, a g est aussi orthogonale à b e. Deux droites sécantes du plan : le critère conclut.",
-      "texte": "La diagonale AG est orthogonale au plan BDE.",
-      "ecran": "ex_cube"
-    },
-    {
-      "id": "p18",
-      "dit": "Deux plans sont orthogonaux si l'un contient une droite orthogonale à l'autre. Méthode : trouver une droite du premier plan, montrer qu'elle est orthogonale au second plan, conclure. Dans le cube, le plan a b g contient la droite a b, et a b est perpendiculaire à la face b c g, car c'est une arête perpendiculaire à cette face : le plan a b g est donc orthogonal au plan b c g.",
-      "texte": "Plans orthogonaux : une droite suffit.",
-      "ecran": "plans_orth"
-    },
-    {
-      "id": "p19",
-      "dit": "Pour calculer dans l'espace, on choisit un repère : une origine et trois vecteurs qui forment une base. Tout point a alors trois coordonnées, définies par l'égalité vectorielle qui exprime, avec ces trois vecteurs, le vecteur qui joint l'origine au point. Les coordonnées d'un vecteur s'obtiennent par différences. Exemple : de a, un, deux, trois, vers b, quatre, zéro, moins un, le vecteur a b a pour coordonnées trois, moins deux, moins quatre.",
-      "texte": "Coordonnées d'un vecteur : des différences.",
-      "ecran": "repere"
-    },
-    {
-      "id": "p20",
-      "dit": "Une droite est déterminée par un point et un vecteur directeur : chaque point s'obtient en ajoutant au point de départ un multiple du vecteur directeur. Le coefficient, noté t, parcourt tous les réels. On obtient trois équations, une par coordonnée : la représentation paramétrique. Si deux points sont connus, leur différence donne un vecteur directeur.",
-      "texte": "Paramétrer : un point, une direction, un paramètre.",
-      "ecran": "param_droite"
-    },
-    {
-      "id": "p21",
-      "dit": "Exemple : la droite par a, de coordonnées un, moins deux, trois, et b, de coordonnées trois, zéro, un. Le vecteur a b a pour coordonnées deux, deux, moins deux : c'est un vecteur directeur. La représentation s'écrit : x égale un plus deux t, y égale moins deux plus deux t, z égale trois moins deux t. Pour t égal à zéro, on est en a, pour t égal à un, on arrive en b.",
-      "texte": "La droite AB : x = 1 + 2t, y = −2 + 2t, z = 3 − 2t.",
-      "ecran": "ex_param"
-    },
-    {
-      "id": "p22",
-      "dit": "Un plan demande un point et deux vecteurs directeurs non colinéaires : on avance dans deux directions indépendantes, avec deux paramètres. Exemple de la leçon : avec le point de coordonnées un, zéro, deux et les vecteurs de coordonnées un, un, zéro et zéro, un, un, on obtient x égale un plus alpha, y égale alpha plus bêta, z égale deux plus bêta.",
-      "texte": "Un plan : un point, deux directions, deux paramètres.",
-      "ecran": "plan_param"
-    },
-    {
-      "id": "p23",
-      "dit": "Autre description d'un plan : l'équation cartésienne. Un vecteur normal est orthogonal à tous les vecteurs du plan, et si ses coordonnées sont a, b, c, le plan a une équation de la forme a x plus b y plus c z plus d égale zéro. Les coefficients de x, y et z sont donc exactement les coordonnées d'un vecteur normal : l'équation et la géométrie se lisent l'une dans l'autre.",
-      "texte": "L'équation donne le vecteur normal.",
-      "ecran": "plan_eq"
-    },
-    {
-      "id": "p24",
-      "dit": "Exemple : le plan qui passe par a, de coordonnées un, deux, zéro, avec pour vecteur normal le vecteur de coordonnées un, moins un, deux. On écrit l'équation avec les différences : x moins un, moins la quantité y moins deux, plus deux z, égale zéro. En développant : x moins y plus deux z plus un égale zéro. Vérifiez le réflexe : un, moins un, deux sont bien les coordonnées du vecteur normal.",
-      "texte": "Équation du plan : x − y + 2z + 1 = 0.",
-      "ecran": "ex_plan"
-    },
-    {
-      "id": "p25",
-      "dit": "Récapitulons les positions relatives. Deux droites sont parallèles quand leurs vecteurs directeurs sont colinéaires, sinon elles sont sécantes si elles se rencontrent et non coplanaires si elles ne se rencontrent pas. Pour deux plans, tout se lit sur les vecteurs normaux : colinéaires, plans parallèles, produit scalaire nul, plans orthogonaux, sinon plans sécants suivant une droite.",
-      "texte": "Positions : tout se lit sur directeurs et normaux.",
-      "ecran": "positions"
-    },
-    {
-      "id": "p26",
-      "dit": "Le projeté orthogonal d'un point sur un plan est le pied de la perpendiculaire menée du point au plan, et la distance du point au plan est la longueur qui le sépare de ce projeté. Une formule la donne directement à partir de l'équation du plan. Exemple : pour le point de coordonnées un, deux, trois et le plan d'équation x plus y plus z moins un égale zéro, la distance vaut cinq sur racine de trois.",
-      "texte": "Distance point-plan : la formule du projeté.",
-      "ecran": "distance"
-    },
-    {
-      "id": "p27",
-      "dit": "Une sphère est l'ensemble des points situés à une distance fixée, le rayon, d'un point fixe, le centre. Dans un repère orthonormé, cette condition de distance devient une équation régulière : x moins a au carré, plus y moins b au carré, plus z moins c au carré, égale le rayon au carré, où a, b et c sont les coordonnées du centre. C'est l'équation cartésienne de la sphère.",
-      "texte": "La sphère : une condition de distance.",
-      "ecran": "sphere_def"
-    },
-    {
-      "id": "p28",
-      "dit": "Sens direct : l'équation de la sphère de centre de coordonnées deux, moins un, trois, et de rayon cinq. On remplace dans la formule : y moins b devient y plus un, et le rayon au carré vaut vingt-cinq. L'équation est : x moins deux au carré, plus y plus un au carré, plus z moins trois au carré, égale vingt-cinq. La forme centrée est la réponse, sans développement.",
-      "texte": "Centre (2, −1, 3), rayon 5 : l'équation directe.",
-      "ecran": "ex_sphere"
-    },
-    {
-      "id": "p29",
-      "dit": "Sens inverse, le plus fréquent en exercice : on donne une équation développée et il faut reconnaître la sphère. On regroupe par variable et on complète les carrés : le centre a pour coordonnées les opposés des moitiés des coefficients, et on calcule le carré du rayon. S'il est strictement positif, c'est une sphère, s'il est nul, un seul point, s'il est négatif, l'ensemble est vide.",
-      "texte": "Reconnaître : compléter les carrés.",
-      "ecran": "reconnaitre"
-    },
-    {
-      "id": "p30",
-      "dit": "Exemple complet : l'équation x carré plus y carré plus z carré, moins quatre x, plus six y, plus deux z, plus cinq, égale zéro. Le carré du rayon vaut seize plus trente-six plus quatre, le tout divisé par quatre, moins cinq : cinquante-six sur quatre, moins cinq, soit quatorze moins cinq, neuf. C'est positif : l'ensemble est une sphère de centre deux, moins trois, moins un, et de rayon trois.",
-      "texte": "Carré du rayon : 9, donc une sphère de rayon 3.",
-      "ecran": "ex_reconnaitre"
-    },
-    {
-      "id": "p31",
-      "dit": "Intersection d'une sphère et d'une droite : on remplace les coordonnées paramétriques dans l'équation de la sphère, et on obtient une équation du second degré. Son discriminant décide : positif, deux points, la droite est sécante, nul, un point, la droite est tangente, négatif, aucun point. Exemple : la sphère de centre l'origine et de rayon quatre, avec les points t, t, t : trois t carré égale seize, donc deux points symétriques.",
-      "texte": "Sphère et droite : le discriminant décide.",
-      "ecran": "sphere_droite"
-    },
-    {
-      "id": "p32",
-      "dit": "Intersection d'une sphère et d'un plan : tout dépend de la distance du centre au plan, comparée au rayon. Plus grande, le plan ne touche pas la sphère, égale, le plan est tangent en un point, plus petite, l'intersection est un cercle dont le centre est le projeté du centre, et dont le rayon vient de Pythagore. Exemple : rayon cinq, distance trois, le cercle a pour rayon racine de vingt-cinq moins neuf, c'est-à-dire quatre.",
-      "texte": "Sphère et plan : comparer distance et rayon.",
-      "ecran": "sphere_plan"
-    },
-    {
-      "id": "p33",
-      "dit": "Pour finir, retenez l'enchaînement. Les matrices calculent : somme, produit ligne contre colonne, déterminant, inverse quand il est non nul, et elles décrivent les applications linéaires. Dans l'espace, l'orthogonalité se prouve avec deux droites sécantes, droites et plans se décrivent par paramètres ou par une équation, et la sphère n'est qu'une condition de distance, dont découlent son équation et ses intersections.",
-      "texte": "Matrices et espace : l'essentiel du cours.",
-      "ecran": "recap"
-    }
-  ],
-  "parties": [
-    {
-      "debut": "p01",
-      "sous_titre": "Matrices, déterminant et applications linéaires"
-    },
-    {
-      "debut": "p15",
-      "sous_titre": "Orthogonalité et géométrie analytique dans l'espace",
-      "pont": {
-        "texte": "Partie 2 : orthogonalité, repères, droites et plans.",
-        "dit": "Partie deux : la géométrie dans l'espace. Après les tableaux de nombres, place aux points, aux droites et aux plans : nous définirons l'orthogonalité, nous la prouverons dans un cube, puis nous décrirons droites et plans avec des coordonnées, des paramètres et des équations."
-      }
-    },
-    {
-      "debut": "p26",
-      "sous_titre": "Distances et sphères",
-      "pont": {
-        "texte": "Partie 3 : distance point-plan et sphères.",
-        "dit": "Partie trois : distances et sphères. La distance d'un point à un plan, obtenue grâce au projeté orthogonal, devient la clé d'un dernier objet : la sphère, son équation, et ses intersections avec une droite ou avec un plan."
-      }
-    }
-  ]
+  "composee": {
+   "kicker": "Applications linéaires · les opérations",
+   "tex": [
+    "M(f + g) = A + B",
+    "M(\\lambda f) = \\lambda A",
+    "M(g \\circ f) = B \\times A"
+   ],
+   "titre": "Somme, produit, composée : l'ordre",
+   "type": "etape"
+  },
+  "def_matrice": {
+   "kicker": "Matrices · présentation",
+   "tex": [
+    "A=\\begin{pmatrix}2&-1&0\\\\3&4&5\\end{pmatrix}",
+    "a_{ij} : \\text{ ligne } i, \\text{ colonne } j"
+   ],
+   "titre": "Un tableau de nombres, un format",
+   "type": "etape"
+  },
+  "determinant": {
+   "kicker": "Matrices carrées d'ordre deux · le déterminant",
+   "note": "Diagonale principale moins l'autre diagonale.",
+   "tex": "\\det(A) = ad - bc",
+   "type": "formule"
+  },
+  "distance": {
+   "kicker": "Espace · projeté orthogonal et distance",
+   "note": "Exemple de la leçon : la distance vaut cinq sur racine de trois.",
+   "tex": "d(M, \\mathcal{P}) = \\frac{|ax_0 + by_0 + cz_0 + d|}{\\sqrt{a^2 + b^2 + c^2}}",
+   "type": "formule"
+  },
+  "droite_plan": {
+   "kicker": "Espace · droite orthogonale à un plan",
+   "note": "Le critère : deux droites sécantes du plan suffisent.",
+   "tex": "\\Delta \\perp d_1 \\ \\text{et} \\ \\Delta \\perp d_2 \\Rightarrow \\Delta \\perp \\mathcal{P}",
+   "type": "formule"
+  },
+  "droites_orth": {
+   "kicker": "Espace · droites orthogonales",
+   "tex": [
+    "\\text{directions perpendiculaires : orthogonales}",
+    "\\text{sécantes et orthogonales : perpendiculaires}",
+    "\\text{coplanaires : sécantes ou parallèles}"
+   ],
+   "titre": "Orthogonales, perpendiculaires, coplanaires",
+   "type": "etape"
+  },
+  "ex_app": {
+   "kicker": "Exemple résolu · image d'un vecteur",
+   "tex": [
+    "A=\\begin{pmatrix}2&-1\\\\1&3\\end{pmatrix}",
+    "f(1,\\,2) = (0,\\,7)"
+   ],
+   "titre": "L'image d'un vecteur par un produit",
+   "type": "etape"
+  },
+  "ex_cube": {
+   "kicker": "Exemple résolu · le cube",
+   "tex": [
+    "(AG) \\perp (BD) \\qquad (AG) \\perp (BE)",
+    "\\text{donc } (AG) \\perp (BDE)"
+   ],
+   "titre": "La diagonale du cube face au plan",
+   "type": "etape"
+  },
+  "ex_inverse": {
+   "kicker": "Exemple résolu · calculer un inverse",
+   "tex": [
+    "\\det(A) = 2 \\times 4 - 3 \\times 1 = 5",
+    "A^{-1}=\\tfrac{1}{5}\\begin{pmatrix}4&-3\\\\-1&2\\end{pmatrix}"
+   ],
+   "titre": "Un déterminant non nul, donc un inverse",
+   "type": "etape"
+  },
+  "ex_param": {
+   "kicker": "Exemple résolu · paramétrer une droite",
+   "tex": [
+    "\\overrightarrow{AB} = (2,\\ 2,\\ -2)",
+    "x = 1 + 2t",
+    "y = -2 + 2t",
+    "z = 3 - 2t"
+   ],
+   "titre": "La droite par deux points, paramétrée",
+   "type": "etape"
+  },
+  "ex_plan": {
+   "kicker": "Exemple résolu · équation d'un plan",
+   "tex": [
+    "\\vec{n} = (1, -1, 2) \\qquad A(1; 2; 0)",
+    "(x - 1) - (y - 2) + 2z = 0",
+    "x - y + 2z + 1 = 0"
+   ],
+   "titre": "Construire l'équation pas à pas",
+   "type": "etape"
+  },
+  "ex_produit": {
+   "kicker": "Exemple résolu · le produit",
+   "tex": [
+    "1\\times(-1)+2\\times 2=3 \\quad 1\\times 4+2\\times 1=6",
+    "AB=\\begin{pmatrix}3&6\\\\-3&12\\end{pmatrix}"
+   ],
+   "titre": "Le produit : ligne contre colonne",
+   "type": "etape"
+  },
+  "ex_reconnaitre": {
+   "kicker": "Exemple résolu · nature d'un ensemble",
+   "tex": [
+    "a = -4, \\ b = 6, \\ c = 2, \\ d = 5",
+    "R^2 = \\tfrac{16 + 36 + 4}{4} - 5 = 9",
+    "\\Omega(2; -3; -1) \\qquad R = 3"
+   ],
+   "titre": "Centre deux, moins trois, moins un",
+   "type": "etape"
+  },
+  "ex_somme": {
+   "kicker": "Exemple résolu · somme et double",
+   "tex": [
+    "A+B=\\begin{pmatrix}0&6\\\\5&1\\end{pmatrix}",
+    "2A=\\begin{pmatrix}2&4\\\\6&0\\end{pmatrix}"
+   ],
+   "titre": "Somme et double, coefficient par coefficient",
+   "type": "etape"
+  },
+  "ex_sphere": {
+   "kicker": "Exemple résolu · équation d'une sphère",
+   "tex": [
+    "\\Omega(2; -1; 3) \\qquad R = 5",
+    "(x - 2)^2 + (y + 1)^2 + (z - 3)^2 = 25"
+   ],
+   "titre": "Du centre et du rayon à l'équation",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Le fil rouge du cours",
+   "texte": "Un même langage des deux côtés : les coordonnées, pour transformer la géométrie en calculs.",
+   "type": "phrase"
+  },
+  "inverse": {
+   "kicker": "Matrices carrées · inversibilité",
+   "note": "Inversible si et seulement si le déterminant est non nul.",
+   "tex": "A^{-1} = \\frac{1}{ad - bc} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}",
+   "type": "formule"
+  },
+  "operations": {
+   "kicker": "Matrices · les trois opérations",
+   "tex": [
+    "(A+B)_{ij} = a_{ij} + b_{ij}",
+    "(\\lambda A)_{ij} = \\lambda a_{ij}",
+    "\\textstyle (AB)_{ij} = \\sum_{k=1}^{p} a_{ik} b_{kj}"
+   ],
+   "titre": "Somme, produit par un réel, produit",
+   "type": "etape"
+  },
+  "param_droite": {
+   "kicker": "Espace · représentation paramétrique d'une droite",
+   "note": "Un point, un vecteur directeur, un paramètre réel.",
+   "tex": "\\begin{cases} x = x_A + at \\\\ y = y_A + bt \\\\ z = z_A + ct \\end{cases}, \\quad t \\in \\mathbb{R}",
+   "type": "formule"
+  },
+  "plan_eq": {
+   "kicker": "Espace · équation cartésienne d'un plan",
+   "note": "Le vecteur de coordonnées a, b, c est normal au plan.",
+   "tex": "ax + by + cz + d = 0",
+   "type": "formule"
+  },
+  "plan_param": {
+   "kicker": "Espace · représentation paramétrique d'un plan",
+   "note": "Un point et deux vecteurs directeurs non colinéaires.",
+   "tex": "\\begin{cases} x = x_A + \\alpha a + \\beta a' \\\\ y = y_A + \\alpha b + \\beta b' \\\\ z = z_A + \\alpha c + \\beta c' \\end{cases}",
+   "type": "formule"
+  },
+  "plans_orth": {
+   "kicker": "Espace · plans orthogonaux",
+   "tex": [
+    "\\text{l'un contient une droite orthogonale}",
+    "(AB) \\perp (BCG) \\qquad (AB) \\subset (ABG)",
+    "\\text{donc } (ABG) \\perp (BCG)"
+   ],
+   "titre": "Deux plans orthogonaux, un exemple",
+   "type": "etape"
+  },
+  "positions": {
+   "kicker": "Espace · positions relatives",
+   "tex": [
+    "\\text{droites : colinéaires, sécantes, gauches}",
+    "\\text{plans parallèles : normaux colinéaires}",
+    "\\text{plans orthogonaux : } \\vec{n}_1 \\cdot \\vec{n}_2 = 0"
+   ],
+   "titre": "Toutes les positions en un coup d'œil",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Matrices : produit, déterminant, inverse",
+    "Applications : la matrice donne les images",
+    "Orthogonalité : deux droites sécantes",
+    "Sphères : une condition de distance"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "reciproque": {
+   "kicker": "Applications linéaires · la réciproque",
+   "note": "Vérification : A fois son inverse donne l'identité.",
+   "tex": "M_{\\mathcal{B}}(f^{-1}) = A^{-1}",
+   "type": "formule"
+  },
+  "reconnaitre": {
+   "kicker": "Sphères · reconnaître une sphère",
+   "tex": [
+    "x^2 + y^2 + z^2 + ax + by + cz + d = 0",
+    "\\Omega(-\\tfrac{a}{2}, -\\tfrac{b}{2}, -\\tfrac{c}{2})",
+    "R^2 = \\tfrac{a^2 + b^2 + c^2}{4} - d"
+   ],
+   "titre": "Reconnaître une sphère déguisée",
+   "type": "etape"
+  },
+  "repere": {
+   "kicker": "Espace · repères et coordonnées",
+   "tex": [
+    "\\overrightarrow{OM} = x\\vec{i} + y\\vec{j} + z\\vec{k}",
+    "\\overrightarrow{AB} = (x_B - x_A,\\ y_B - y_A,\\ z_B - z_A)"
+   ],
+   "titre": "Trois coordonnées pour tout point",
+   "type": "etape"
+  },
+  "sphere_def": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "sphere_geo_fig"
+   },
+   "kicker": "Sphères · l'équation cartésienne",
+   "note": "Centre de coordonnées a, b, c et rayon R.",
+   "tex": "(x - a)^2 + (y - b)^2 + (z - c)^2 = R^2",
+   "type": "formule"
+  },
+  "sphere_droite": {
+   "kicker": "Sphères · intersection avec une droite",
+   "tex": [
+    "x = t, \\quad y = t, \\quad z = t",
+    "3t^2 = 16 \\qquad t = \\pm \\tfrac{4}{\\sqrt{3}}",
+    "\\text{deux points : la droite est sécante}"
+   ],
+   "titre": "Une droite rencontre la sphère",
+   "type": "etape"
+  },
+  "sphere_plan": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "sphere_secante_fig"
+   },
+   "kicker": "Sphères · intersection avec un plan",
+   "note": "Distance plus petite que le rayon : un cercle.",
+   "tex": "r = \\sqrt{R^2 - d^2}",
+   "type": "formule"
+  },
+  "systeme": {
+   "kicker": "Application · résoudre un système",
+   "note": "Unique solution si le déterminant du système est non nul.",
+   "tex": "\\begin{pmatrix} x \\\\ y \\end{pmatrix} = A^{-1} \\begin{pmatrix} e \\\\ f \\end{pmatrix}",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "matrice_fig"
+   },
+   "kicker": "Mathématique · Matrices et espace",
+   "sous": "Opérations et applications linéaires, orthogonalité, droites, plans et sphères",
+   "titre": "Matrices et géométrie dans l'espace",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Matrices, déterminant et applications linéaires"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : la géométrie dans l'espace. Après les tableaux de nombres, place aux points, aux droites et aux plans : nous définirons l'orthogonalité, nous la prouverons dans un cube, puis nous décrirons droites et plans avec des coordonnées, des paramètres et des équations.",
+    "texte": "Partie 2 : orthogonalité, repères, droites et plans."
+   },
+   "sous_titre": "Orthogonalité et géométrie analytique dans l'espace"
+  },
+  {
+   "debut": "p26",
+   "pont": {
+    "dit": "Partie trois : distances et sphères. La distance d'un point à un plan, obtenue grâce au projeté orthogonal, devient la clé d'un dernier objet : la sphère, son équation, et ses intersections avec une droite ou avec un plan.",
+    "texte": "Partie 3 : distance point-plan et sphères."
+   },
+   "sous_titre": "Distances et sphères"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours qui réunit les matrices et la géométrie dans l'espace. Nous verrons les opérations sur les matrices, le déterminant, l'inverse et le lien avec les applications linéaires, puis l'orthogonalité, les repères, les droites et les plans, et nous finirons par les sphères.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Matrices et géométrie dans l'espace : le programme du cours."
+  },
+  {
+   "dit": "Le fil rouge du cours tient en un mot : les coordonnées. Une matrice organise des nombres en tableau et permet de calculer avec eux. Dans l'espace, les coordonnées d'un point ou d'un vecteur transforment des questions de géométrie en questions de calcul. Chaque partie va illustrer cette idée.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Les coordonnées : transformer la géométrie en calculs."
+  },
+  {
+   "dit": "Une matrice est un tableau rectangulaire de nombres réels. Si elle possède enne lignes et pé colonnes, elle est de format enne, pé. Voici une matrice de format deux, trois : première ligne deux, moins un, zéro, deuxième ligne trois, quatre, cinq. Le coefficient de la ligne i et de la colonne j se note a indice i j.",
+   "ecran": "def_matrice",
+   "id": "p03",
+   "texte": "Une matrice : des lignes, des colonnes, un format."
+  },
+  {
+   "dit": "Trois opérations à connaître. La somme n'existe que pour deux matrices de même format, et elle se fait coefficient par coefficient. Le produit par un réel multiplie chaque coefficient par ce réel. Le produit, lui, n'existe que si le nombre de colonnes de la première matrice égale le nombre de lignes de la seconde, et chaque coefficient est une somme de produits, ligne contre colonne.",
+   "ecran": "operations",
+   "id": "p04",
+   "texte": "Somme terme à terme, produit ligne contre colonne."
+  },
+  {
+   "dit": "Premier exemple résolu, avec deux matrices carrées. La première contient un, deux, trois, zéro, la seconde moins un, quatre, deux, un. Leur somme se calcule coefficient par coefficient : zéro, six, cinq, un. Le double de la première multiplie chaque coefficient par deux : deux, quatre, six, zéro.",
+   "ecran": "ex_somme",
+   "id": "p05",
+   "texte": "Somme et double : coefficient par coefficient."
+  },
+  {
+   "dit": "Le produit demande plus de soin. En haut à gauche, on multiplie la première ligne par la première colonne : un fois moins un, plus deux fois deux, égale trois. En haut à droite : un fois quatre, plus deux fois un, égale six. En bas, on obtient moins trois et douze. Retenez le geste : une ligne, une colonne, des produits additionnés.",
+   "ecran": "ex_produit",
+   "id": "p06",
+   "texte": "Le produit : une ligne, une colonne, une somme."
+  },
+  {
+   "dit": "Pour une matrice carrée d'ordre deux, de coefficients a, b, c, d, le déterminant est le nombre a fois d, moins b fois c : le produit de la diagonale principale, moins le produit de l'autre diagonale. Ce petit nombre commande la suite : il dira si la matrice a un inverse et si un système a une unique solution.",
+   "ecran": "determinant",
+   "id": "p07",
+   "texte": "Le déterminant : diagonale moins diagonale."
+  },
+  {
+   "dit": "Une matrice carrée est inversible si et seulement si son déterminant est différent de zéro. Son inverse s'obtient alors par une recette régulière : on échange les coefficients de la diagonale principale, on change les signes des deux autres, et on divise le tout par le déterminant. Le produit de la matrice par son inverse donne la matrice identité.",
+   "ecran": "inverse",
+   "id": "p08",
+   "texte": "Inversible si le déterminant est non nul."
+  },
+  {
+   "dit": "Appliquons la recette à la matrice deux, trois, un, quatre. Son déterminant vaut deux fois quatre, moins trois fois un, c'est-à-dire huit moins trois, donc cinq : la matrice est inversible. On échange quatre et deux, on change les signes de trois et de un, on divise par cinq : l'inverse contient quatre cinquièmes, moins trois cinquièmes, moins un cinquième et deux cinquièmes.",
+   "ecran": "ex_inverse",
+   "id": "p09",
+   "texte": "Déterminant cinq : l'inverse existe."
+  },
+  {
+   "dit": "Application directe : résoudre un système de deux équations à deux inconnues. Le vecteur des inconnues, de coordonnées x et y, s'obtient en multipliant l'inverse de la matrice du système par le vecteur des seconds membres. Le système a une unique solution si et seulement si le déterminant est non nul : c'est exactement la condition d'inversibilité.",
+   "ecran": "systeme",
+   "id": "p10",
+   "texte": "Un système se résout avec l'inverse."
+  },
+  {
+   "dit": "Les matrices décrivent aussi les applications linéaires. Dans une base donnée, la matrice d'une application linéaire a pour colonnes les coordonnées des images des vecteurs de base : première colonne, l'image du premier vecteur, seconde colonne, l'image du second. Ensuite, l'image de tout vecteur se calcule par un produit de matrices.",
+   "ecran": "app_lin",
+   "id": "p11",
+   "texte": "Les colonnes : les images des vecteurs de base."
+  },
+  {
+   "dit": "Exemple : l'application qui, au couple x, y, associe le couple deux x moins y, x plus trois y. Sa matrice se lit dans les formules : deux, moins un, un, trois. Le produit par la colonne un, deux donne en haut deux moins deux, soit zéro, et en bas un plus six, soit sept : l'image du vecteur est le vecteur de coordonnées zéro, sept.",
+   "ecran": "ex_app",
+   "id": "p12",
+   "texte": "L'image de (1, 2) : le vecteur (0, 7)."
+  },
+  {
+   "dit": "Le dictionnaire entre applications et matrices est complet. La matrice d'une somme est la somme des matrices, celle d'un produit par un réel est le produit de la matrice par ce réel, et celle d'une composée est le produit des matrices, mais attention à l'ordre : pour g rond f, on écrit la matrice de g fois celle de f.",
+   "ecran": "composee",
+   "id": "p13",
+   "texte": "Composée : produit des matrices, dans le bon ordre."
+  },
+  {
+   "dit": "Dernier point : si une application linéaire est bijective, son application réciproque a pour matrice l'inverse de sa matrice, dans la même base. Pour l'application des exemples précédents, on retrouve l'inverse déjà calculé, et la vérification tient en un produit : la matrice fois son inverse donne la matrice identité.",
+   "ecran": "reciproque",
+   "id": "p14",
+   "texte": "La réciproque a pour matrice l'inverse."
+  },
+  {
+   "dit": "Passons à l'espace. Deux droites sont orthogonales lorsque leurs directions sont perpendiculaires : on peut les ramener, par parallélisme, à deux droites perpendiculaires d'un même plan. Si en plus elles se coupent, elles sont perpendiculaires. La nouveauté : deux droites orthogonales ne sont pas forcément coplanaires, et deux droites sont coplanaires exactement quand elles sont sécantes ou parallèles.",
+   "ecran": "droites_orth",
+   "id": "p15",
+   "texte": "Orthogonales ne veut pas dire coplanaires."
+  },
+  {
+   "dit": "Une droite est orthogonale à un plan quand elle est orthogonale à toutes les droites du plan. Le théorème clé évite de tout vérifier : il suffit qu'elle soit orthogonale à deux droites sécantes du plan. Elle est alors orthogonale à toute droite du plan, même à celles qu'elle ne croise pas. Toute démonstration suivra donc ce plan : deux droites sécantes, deux vérifications.",
+   "ecran": "droite_plan",
+   "id": "p16",
+   "texte": "Le critère : deux droites sécantes suffisent."
+  },
+  {
+   "dit": "Exemple du cube : montrons que la grande diagonale a g est orthogonale au plan b d e. La projection de cette diagonale sur la base du cube est la diagonale a c, perpendiculaire à b d, car les diagonales d'un carré sont perpendiculaires : donc a g est orthogonale à b d. Par symétrie dans une autre face, a g est aussi orthogonale à b e. Deux droites sécantes du plan : le critère conclut.",
+   "ecran": "ex_cube",
+   "id": "p17",
+   "texte": "La diagonale AG est orthogonale au plan BDE."
+  },
+  {
+   "dit": "Deux plans sont orthogonaux si l'un contient une droite orthogonale à l'autre. Méthode : trouver une droite du premier plan, montrer qu'elle est orthogonale au second plan, conclure. Dans le cube, le plan a b g contient la droite a b, et a b est perpendiculaire à la face b c g, car c'est une arête perpendiculaire à cette face : le plan a b g est donc orthogonal au plan b c g.",
+   "ecran": "plans_orth",
+   "id": "p18",
+   "texte": "Plans orthogonaux : une droite suffit."
+  },
+  {
+   "dit": "Pour calculer dans l'espace, on choisit un repère : une origine et trois vecteurs qui forment une base. Tout point a alors trois coordonnées, définies par l'égalité vectorielle qui exprime, avec ces trois vecteurs, le vecteur qui joint l'origine au point. Les coordonnées d'un vecteur s'obtiennent par différences. Exemple : de a, un, deux, trois, vers b, quatre, zéro, moins un, le vecteur a b a pour coordonnées trois, moins deux, moins quatre.",
+   "ecran": "repere",
+   "id": "p19",
+   "texte": "Coordonnées d'un vecteur : des différences."
+  },
+  {
+   "dit": "Une droite est déterminée par un point et un vecteur directeur : chaque point s'obtient en ajoutant au point de départ un multiple du vecteur directeur. Le coefficient, noté t, parcourt tous les réels. On obtient trois équations, une par coordonnée : la représentation paramétrique. Si deux points sont connus, leur différence donne un vecteur directeur.",
+   "ecran": "param_droite",
+   "id": "p20",
+   "texte": "Paramétrer : un point, une direction, un paramètre."
+  },
+  {
+   "dit": "Exemple : la droite par a, de coordonnées un, moins deux, trois, et b, de coordonnées trois, zéro, un. Le vecteur a b a pour coordonnées deux, deux, moins deux : c'est un vecteur directeur. La représentation s'écrit : x égale un plus deux t, y égale moins deux plus deux t, z égale trois moins deux t. Pour t égal à zéro, on est en a, pour t égal à un, on arrive en b.",
+   "ecran": "ex_param",
+   "id": "p21",
+   "texte": "La droite AB : x = 1 + 2t, y = −2 + 2t, z = 3 − 2t."
+  },
+  {
+   "dit": "Un plan demande un point et deux vecteurs directeurs non colinéaires : on avance dans deux directions indépendantes, avec deux paramètres. Exemple de la leçon : avec le point de coordonnées un, zéro, deux et les vecteurs de coordonnées un, un, zéro et zéro, un, un, on obtient x égale un plus alpha, y égale alpha plus bêta, z égale deux plus bêta.",
+   "ecran": "plan_param",
+   "id": "p22",
+   "texte": "Un plan : un point, deux directions, deux paramètres."
+  },
+  {
+   "dit": "Autre description d'un plan : l'équation cartésienne. Un vecteur normal est orthogonal à tous les vecteurs du plan, et si ses coordonnées sont a, b, c, le plan a une équation de la forme a x plus b y plus c z plus d égale zéro. Les coefficients de x, y et z sont donc exactement les coordonnées d'un vecteur normal : l'équation et la géométrie se lisent l'une dans l'autre.",
+   "ecran": "plan_eq",
+   "id": "p23",
+   "texte": "L'équation donne le vecteur normal."
+  },
+  {
+   "dit": "Exemple : le plan qui passe par a, de coordonnées un, deux, zéro, avec pour vecteur normal le vecteur de coordonnées un, moins un, deux. On écrit l'équation avec les différences : x moins un, moins la quantité y moins deux, plus deux z, égale zéro. En développant : x moins y plus deux z plus un égale zéro. Vérifiez le réflexe : un, moins un, deux sont bien les coordonnées du vecteur normal.",
+   "ecran": "ex_plan",
+   "id": "p24",
+   "texte": "Équation du plan : x − y + 2z + 1 = 0."
+  },
+  {
+   "dit": "Récapitulons les positions relatives. Deux droites sont parallèles quand leurs vecteurs directeurs sont colinéaires, sinon elles sont sécantes si elles se rencontrent et non coplanaires si elles ne se rencontrent pas. Pour deux plans, tout se lit sur les vecteurs normaux : colinéaires, plans parallèles, produit scalaire nul, plans orthogonaux, sinon plans sécants suivant une droite.",
+   "ecran": "positions",
+   "id": "p25",
+   "texte": "Positions : tout se lit sur directeurs et normaux."
+  },
+  {
+   "dit": "Le projeté orthogonal d'un point sur un plan est le pied de la perpendiculaire menée du point au plan, et la distance du point au plan est la longueur qui le sépare de ce projeté. Une formule la donne directement à partir de l'équation du plan. Exemple : pour le point de coordonnées un, deux, trois et le plan d'équation x plus y plus z moins un égale zéro, la distance vaut cinq sur racine de trois.",
+   "ecran": "distance",
+   "id": "p26",
+   "texte": "Distance point-plan : la formule du projeté."
+  },
+  {
+   "dit": "Une sphère est l'ensemble des points situés à une distance fixée, le rayon, d'un point fixe, le centre. Dans un repère orthonormé, cette condition de distance devient une équation régulière : x moins a au carré, plus y moins b au carré, plus z moins c au carré, égale le rayon au carré, où a, b et c sont les coordonnées du centre. C'est l'équation cartésienne de la sphère.",
+   "ecran": "sphere_def",
+   "id": "p27",
+   "texte": "La sphère : une condition de distance."
+  },
+  {
+   "dit": "Sens direct : l'équation de la sphère de centre de coordonnées deux, moins un, trois, et de rayon cinq. On remplace dans la formule : y moins b devient y plus un, et le rayon au carré vaut vingt-cinq. L'équation est : x moins deux au carré, plus y plus un au carré, plus z moins trois au carré, égale vingt-cinq. La forme centrée est la réponse, sans développement.",
+   "ecran": "ex_sphere",
+   "id": "p28",
+   "texte": "Centre (2, −1, 3), rayon 5 : l'équation directe."
+  },
+  {
+   "dit": "Sens inverse, le plus fréquent en exercice : on donne une équation développée et il faut reconnaître la sphère. On regroupe par variable et on complète les carrés : le centre a pour coordonnées les opposés des moitiés des coefficients, et on calcule le carré du rayon. S'il est strictement positif, c'est une sphère, s'il est nul, un seul point, s'il est négatif, l'ensemble est vide.",
+   "ecran": "reconnaitre",
+   "id": "p29",
+   "texte": "Reconnaître : compléter les carrés."
+  },
+  {
+   "dit": "Exemple complet : l'équation x carré plus y carré plus z carré, moins quatre x, plus six y, plus deux z, plus cinq, égale zéro. Le carré du rayon vaut seize plus trente-six plus quatre, le tout divisé par quatre, moins cinq : cinquante-six sur quatre, moins cinq, soit quatorze moins cinq, neuf. C'est positif : l'ensemble est une sphère de centre deux, moins trois, moins un, et de rayon trois.",
+   "ecran": "ex_reconnaitre",
+   "id": "p30",
+   "texte": "Carré du rayon : 9, donc une sphère de rayon 3."
+  },
+  {
+   "dit": "Intersection d'une sphère et d'une droite : on remplace les coordonnées paramétriques dans l'équation de la sphère, et on obtient une équation du second degré. Son discriminant décide : positif, deux points, la droite est sécante, nul, un point, la droite est tangente, négatif, aucun point. Exemple : la sphère de centre l'origine et de rayon quatre, avec les points t, t, t : trois t carré égale seize, donc deux points symétriques.",
+   "ecran": "sphere_droite",
+   "id": "p31",
+   "texte": "Sphère et droite : le discriminant décide."
+  },
+  {
+   "dit": "Intersection d'une sphère et d'un plan : tout dépend de la distance du centre au plan, comparée au rayon. Plus grande, le plan ne touche pas la sphère, égale, le plan est tangent en un point, plus petite, l'intersection est un cercle dont le centre est le projeté du centre, et dont le rayon vient de Pythagore. Exemple : rayon cinq, distance trois, le cercle a pour rayon racine de vingt-cinq moins neuf, c'est-à-dire quatre.",
+   "ecran": "sphere_plan",
+   "id": "p32",
+   "texte": "Sphère et plan : comparer distance et rayon."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement. Les matrices calculent : somme, produit ligne contre colonne, déterminant, inverse quand il est non nul, et elles décrivent les applications linéaires. Dans l'espace, l'orthogonalité se prouve avec deux droites sécantes, droites et plans se décrivent par paramètres ou par une équation, et la sphère n'est qu'une condition de distance, dont découlent son équation et ses intersections.",
+   "ecran": "recap",
+   "id": "p33",
+   "texte": "Matrices et espace : l'essentiel du cours."
+  }
+ ],
+ "titre": "Matrices et géométrie dans l'espace"
 }
