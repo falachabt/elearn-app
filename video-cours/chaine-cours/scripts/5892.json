@@ -1,484 +1,301 @@
 {
  "cours": 5892,
- "titre": "Coniques : foyer, directrice et excentricité",
- "matiere": "Mathématique",
  "ecrans": {
-  "titre": {
-   "type": "titre",
-   "kicker": "Mathématique · Coniques",
-   "titre": "Coniques : foyer, directrice et excentricité",
-   "sous": "Du cône d'Apollonius aux faisceaux de cercles : équations réduites, tangentes et applications",
-   "anim": {
-    "nom": "sphere_fig",
-    "hauteur": 240
-   }
-  },
-  "intro": {
-   "type": "phrase",
-   "kicker": "Introduction",
-   "texte": "Un seul rapport de distances décide de tout : celui qui définit la conique."
-  },
-  "cone": {
-   "type": "phrase",
-   "kicker": "L'héritage antique",
-   "texte": "Un double cône coupé par un plan : cercle, ellipse, parabole ou hyperbole.",
-   "anim": {
-    "nom": "sphere_fig",
-    "hauteur": 200
-   }
-  },
-  "focale": {
-   "type": "formule",
-   "kicker": "Définition focale",
-   "tex": "PF = e \\cdot d(P,\\, d)",
-   "note": "P : point de la courbe · F : foyer · d : directrice · e : excentricité.",
-   "anim": {
-    "nom": "parabole_fig",
-    "hauteur": 170
-   }
-  },
-  "familles": {
-   "type": "etape",
-   "kicker": "Trois familles selon e",
-   "titre": "L'excentricité décide de la nature de la courbe",
-   "tex": [
-    "0 < e < 1 : \\text{ellipse, fermée}",
-    "e = 1 : \\text{parabole, ouverte}",
-    "e > 1 : \\text{hyperbole, deux branches}"
-   ],
-   "anim": {
-    "nom": "hyperbole_fig",
-    "hauteur": 120
-   }
-  },
-  "axe": {
-   "type": "phrase",
-   "kicker": "Axe focal et sommets",
-   "texte": "Axe focal : la perpendiculaire à la directrice par F · ses rencontres avec la courbe : les sommets.",
-   "anim": {
-    "nom": "parabole_fig",
-    "hauteur": 190
-   }
-  },
-  "parabole": {
-   "type": "phrase",
-   "kicker": "La parabole · le paramètre",
-   "texte": "p = FD, distance du foyer à la directrice · S, sommet, milieu de [DF] : SD = SF = p/2.",
-   "anim": {
-    "nom": "parabole_fig",
-    "hauteur": 200
-   }
-  },
-  "parabole_calcul": {
-   "type": "etape",
-   "kicker": "La parabole · le calcul",
-   "titre": "Repère au sommet S, axe focal comme axe des abscisses",
-   "tex": [
-    "F\\left(\\tfrac{p}{2}, 0\\right) \\qquad P'\\left(-\\tfrac{p}{2}, y\\right)",
-    "PF^2 = \\left(x - \\tfrac{p}{2}\\right)^2 + y^2 \\qquad PP'^2 = \\left(x + \\tfrac{p}{2}\\right)^2",
-    "PF = PP' \\;\\Longrightarrow\\; y^2 = 2px"
-   ],
-   "anim": {
-    "nom": "parabole_fig",
-    "hauteur": 120
-   }
-  },
-  "parabole_formes": {
-   "type": "etape",
-   "kicker": "La parabole · les quatre formes",
-   "titre": "Le signe et l'axe suivent l'orientation, de S vers F ou vers D",
-   "tex": [
-    "y^2 = 2px \\qquad y^2 = -2px",
-    "x^2 = 2py \\qquad x^2 = -2py"
-   ]
-  },
-  "ex_parabole": {
-   "type": "etape",
-   "kicker": "Exemple · équation d'une parabole",
-   "titre": "Foyer (1, 2), directrice x = −1",
-   "tex": [
-    "\\text{axe focal : } y = 2 \\qquad S(0, 2), \\; p = 2",
-    "(y - 2)^2 = 2p\\,x = 4x"
-   ]
-  },
-  "centrees": {
-   "type": "phrase",
-   "kicker": "Ellipses et hyperboles · coniques centrées",
-   "texte": "O, milieu des sommets : le centre · a = OS, c = OF, e = c/a · deux foyers, deux directrices.",
-   "anim": {
-    "nom": "ellipse_fig",
-    "hauteur": 200
-   }
-  },
-  "ellipse": {
-   "type": "formule",
-   "kicker": "L'ellipse · équation réduite",
-   "tex": "\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1",
-   "note": "b² = a² − c² · le grand carré, a², désigne l'axe focal.",
-   "anim": {
-    "nom": "ellipse_fig",
-    "hauteur": 170
-   }
-  },
-  "hyperbole": {
-   "type": "formule",
-   "kicker": "L'hyperbole · équation réduite",
-   "tex": "\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1",
-   "note": "b² = c² − a², soit c² = a² + b² · asymptotes : y = ±(b/a)x.",
-   "anim": {
-    "nom": "hyperbole_fig",
-    "hauteur": 170
-   }
-  },
-  "ex_ellipse": {
-   "type": "etape",
-   "kicker": "Exemple · sommets d'une ellipse",
-   "titre": "Sommets (5, 0), (−5, 0), (0, 3), (0, −3)",
-   "tex": [
-    "a = 5 \\qquad b = 3",
-    "c^2 = a^2 - b^2 = 25 - 9 = 16 \\;\\Longrightarrow\\; c = 4",
-    "\\tfrac{x^2}{25} + \\tfrac{y^2}{9} = 1 \\qquad F(4, 0), \\; F'(-4, 0), \\; e = \\tfrac{4}{5}"
-   ],
-   "anim": {
-    "nom": "triangle_fig",
-    "hauteur": 140
-   }
-  },
-  "cercle": {
-   "type": "phrase",
-   "kicker": "Le cercle, cas limite",
-   "texte": "e → 0 : foyers au centre, ellipse presque circulaire · e → 1 : ellipse très aplatie.",
-   "anim": {
-    "nom": "ellipse_fig",
-    "hauteur": 180
-   }
-  },
-  "ex_hyperbole": {
-   "type": "etape",
-   "kicker": "Exemple · un lieu en hyperbole",
-   "titre": "Différence des distances aux foyers (±5, 0) égale à 6",
-   "tex": [
-    "|PF - PF'| = 6 \\;\\Longrightarrow\\; 2a = 6, \\; a = 3",
-    "c = 5 \\qquad b^2 = c^2 - a^2 = 16",
-    "\\tfrac{x^2}{9} - \\tfrac{y^2}{16} = 1"
-   ]
-  },
-  "tangentes": {
-   "type": "etape",
-   "kicker": "Tangentes · le dédoublement",
-   "titre": "Au point (x₀, y₀) : x² devient x·x₀, y² devient y·y₀",
-   "tex": [
-    "\\text{parabole } y^2 = 2px : \\quad y y_0 = p(x + x_0)",
-    "\\text{ellipse : } \\tfrac{x x_0}{a^2} + \\tfrac{y y_0}{b^2} = 1",
-    "\\text{hyperbole : } \\tfrac{x x_0}{a^2} - \\tfrac{y y_0}{b^2} = 1"
-   ]
-  },
-  "ex_tangente": {
-   "type": "etape",
-   "kicker": "Exemple · une tangente à l'ellipse",
-   "titre": "Ellipse x² + 4y² = 16, au point (2, √3)",
-   "tex": [
-    "\\tfrac{x^2}{16} + \\tfrac{y^2}{4} = 1 \\qquad 2^2 + 4(\\sqrt{3})^2 = 16",
-    "\\tfrac{2x}{16} + \\tfrac{\\sqrt{3}\\,y}{4} = 1",
-    "x + 2\\sqrt{3}\\,y = 8"
-   ]
-  },
-  "generale": {
-   "type": "formule",
-   "kicker": "L'équation générale",
-   "tex": "A x^2 + B x y + C y^2 + D x + E y + F = 0",
-   "note": "Le terme Bxy signale une conique tournée ; tan(2θ) = B/(A − C) donne l'angle."
-  },
-  "ex_cercle": {
-   "type": "etape",
-   "kicker": "Translation · compléter les carrés",
-   "titre": "Reconnaître un cercle déguisé",
-   "tex": [
-    "x^2 + y^2 - 4x + 6y - 3 = 0",
-    "(x - 2)^2 + (y + 3)^2 = 3 + 4 + 9 = 16",
-    "\\text{centre } (2, -3) \\qquad \\text{rayon } 4"
-   ]
-  },
-  "ex_ellipse_generale": {
-   "type": "etape",
-   "kicker": "Translation · exemple de synthèse",
-   "titre": "Une ellipse cachée dans une équation développée",
-   "tex": [
-    "x^2 + 4y^2 - 6x + 8y - 3 = 0",
-    "(x - 3)^2 + 4(y + 1)^2 = 16",
-    "\\tfrac{(x-3)^2}{16} + \\tfrac{(y+1)^2}{4} = 1 \\qquad \\text{centre } (3, -1), \\; a = 4, \\; b = 2"
-   ]
-  },
-  "rotation": {
-   "type": "etape",
-   "kicker": "Rotation des axes",
-   "titre": "Éliminer le terme en xy en tournant les axes",
-   "tex": [
-    "\\tan(2\\theta) = \\tfrac{B}{A - C}",
-    "x = x'\\cos\\theta - y'\\sin\\theta \\qquad y = x'\\sin\\theta + y'\\cos\\theta",
-    "\\text{après substitution : plus aucun terme en } x'y'"
-   ]
-  },
-  "methode": {
-   "type": "etape",
-   "kicker": "La méthode générale",
-   "titre": "Trois pas devant toute équation du second degré",
-   "tex": [
-    "\\text{1. identifier la conique : excentricité ou forme}",
-    "\\text{2. déterminer foyer, directrice, sommets, axes}",
-    "\\text{3. conclure avec l'équation réduite adaptée}"
-   ]
-  },
-  "faisceau": {
-   "type": "formule",
-   "kicker": "Faisceau linéaire de cercles",
-   "tex": "\\lambda C_1 + \\mu C_2 = 0",
-   "note": "λ, μ réels non tous nuls · C₁, C₂ : deux cercles, ou un cercle et une droite."
-  },
-  "faisceau_types": {
-   "type": "phrase",
-   "kicker": "Points de base et axe radical",
-   "texte": "Deux cercles sécants : tout le faisceau passe par leurs deux points · C₁ − C₂ = 0 : l'axe radical.",
-   "anim": {
-    "nom": "polaire_fig",
-    "hauteur": 150
-   }
-  },
-  "ex_faisceau": {
-   "type": "etape",
-   "kicker": "Exemple · un cercle du faisceau",
-   "titre": "Par A(1, 2) et B(3, 4), et par l'origine",
-   "tex": [
-    "\\text{cercle de diamètre } AB : x^2 + y^2 - 4x - 6y + 11 = 0",
-    "\\text{droite } AB : x - y + 1 = 0 \\qquad C(0,0) : 11 + \\lambda = 0",
-    "x^2 + y^2 - 15x + 5y = 0"
-   ]
-  },
   "applications": {
-   "type": "etape",
    "kicker": "Les coniques dans notre monde",
-   "titre": "Quatre applications, quatre courbes au travail",
    "tex": [
     "\\text{parabole : antennes et phares, le foyer concentre ou émet}",
     "\\text{ellipse : les orbites planétaires, Soleil à un foyer}",
     "\\text{hyperbole : navigation par différence de distances}",
     "\\text{parabole encore : le câble porteur des ponts suspendus}"
-   ]
+   ],
+   "titre": "Quatre applications, quatre courbes au travail",
+   "type": "etape"
   },
-  "ex_comete": {
-   "type": "etape",
-   "kicker": "Application · orbite d'une comète",
-   "titre": "Demi-grand axe 10 UA, excentricité 0,8",
-   "tex": [
-    "a = 10 \\qquad e = 0{,}8 \\;\\Longrightarrow\\; c = e a = 8",
-    "d_{\\min} = a - c = 2 \\ \\text{UA}",
-    "d_{\\max} = a + c = 18 \\ \\text{UA}"
-   ]
+  "axe": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "parabole_fig"
+   },
+   "kicker": "Axe focal et sommets",
+   "texte": "Axe focal : la perpendiculaire à la directrice par F · ses rencontres avec la courbe : les sommets.",
+   "type": "phrase"
+  },
+  "centrees": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "ellipse_fig"
+   },
+   "kicker": "Ellipses et hyperboles · coniques centrées",
+   "texte": "O, milieu des sommets : le centre · a = OS, c = OF, e = c/a · deux foyers, deux directrices.",
+   "type": "phrase"
+  },
+  "cercle": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "ellipse_fig"
+   },
+   "kicker": "Le cercle, cas limite",
+   "texte": "e → 0 : foyers au centre, ellipse presque circulaire · e → 1 : ellipse très aplatie.",
+   "type": "phrase"
+  },
+  "cone": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "coniques_fig"
+   },
+   "kicker": "L'héritage antique",
+   "texte": "Un double cône coupé par un plan : cercle, ellipse, parabole ou hyperbole.",
+   "type": "phrase"
+  },
+  "ellipse": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "ellipse_fig"
+   },
+   "kicker": "L'ellipse · équation réduite",
+   "note": "b² = a² − c² · le grand carré, a², désigne l'axe focal.",
+   "tex": "\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1",
+   "type": "formule"
   },
   "ex_antenne": {
-   "type": "etape",
    "kicker": "Application · profondeur d'une antenne",
-   "titre": "Foyer à 1 m du sommet, diamètre 2 m",
    "tex": [
     "SF = 1 \\ \\text{m} \\;\\Longrightarrow\\; p = 2 \\qquad y^2 = 4x",
     "\\text{bord : } y = 1 \\;\\Longrightarrow\\; x = \\tfrac{1}{4}",
     "\\text{profondeur : } 0{,}25 \\ \\text{m}"
-   ]
+   ],
+   "titre": "Foyer à 1 m du sommet, diamètre 2 m",
+   "type": "etape"
+  },
+  "ex_cercle": {
+   "kicker": "Translation · compléter les carrés",
+   "tex": [
+    "x^2 + y^2 - 4x + 6y - 3 = 0",
+    "(x - 2)^2 + (y + 3)^2 = 3 + 4 + 9 = 16",
+    "\\text{centre } (2, -3) \\qquad \\text{rayon } 4"
+   ],
+   "titre": "Reconnaître un cercle déguisé",
+   "type": "etape"
+  },
+  "ex_comete": {
+   "kicker": "Application · orbite d'une comète",
+   "tex": [
+    "a = 10 \\qquad e = 0{,}8 \\;\\Longrightarrow\\; c = e a = 8",
+    "d_{\\min} = a - c = 2 \\ \\text{UA}",
+    "d_{\\max} = a + c = 18 \\ \\text{UA}"
+   ],
+   "titre": "Demi-grand axe 10 UA, excentricité 0,8",
+   "type": "etape"
+  },
+  "ex_ellipse": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Exemple · sommets d'une ellipse",
+   "tex": [
+    "a = 5 \\qquad b = 3",
+    "c^2 = a^2 - b^2 = 25 - 9 = 16 \\;\\Longrightarrow\\; c = 4",
+    "\\tfrac{x^2}{25} + \\tfrac{y^2}{9} = 1 \\qquad F(4, 0), \\; F'(-4, 0), \\; e = \\tfrac{4}{5}"
+   ],
+   "titre": "Sommets (5, 0), (−5, 0), (0, 3), (0, −3)",
+   "type": "etape"
+  },
+  "ex_ellipse_generale": {
+   "kicker": "Translation · exemple de synthèse",
+   "tex": [
+    "x^2 + 4y^2 - 6x + 8y - 3 = 0",
+    "(x - 3)^2 + 4(y + 1)^2 = 16",
+    "\\tfrac{(x-3)^2}{16} + \\tfrac{(y+1)^2}{4} = 1 \\qquad \\text{centre } (3, -1), \\; a = 4, \\; b = 2"
+   ],
+   "titre": "Une ellipse cachée dans une équation développée",
+   "type": "etape"
+  },
+  "ex_faisceau": {
+   "kicker": "Exemple · un cercle du faisceau",
+   "tex": [
+    "\\text{cercle de diamètre } AB : x^2 + y^2 - 4x - 6y + 11 = 0",
+    "\\text{droite } AB : x - y + 1 = 0 \\qquad C(0,0) : 11 + \\lambda = 0",
+    "x^2 + y^2 - 15x + 5y = 0"
+   ],
+   "titre": "Par A(1, 2) et B(3, 4), et par l'origine",
+   "type": "etape"
+  },
+  "ex_hyperbole": {
+   "kicker": "Exemple · un lieu en hyperbole",
+   "tex": [
+    "|PF - PF'| = 6 \\;\\Longrightarrow\\; 2a = 6, \\; a = 3",
+    "c = 5 \\qquad b^2 = c^2 - a^2 = 16",
+    "\\tfrac{x^2}{9} - \\tfrac{y^2}{16} = 1"
+   ],
+   "titre": "Différence des distances aux foyers (±5, 0) égale à 6",
+   "type": "etape"
+  },
+  "ex_parabole": {
+   "kicker": "Exemple · équation d'une parabole",
+   "tex": [
+    "\\text{axe focal : } y = 2 \\qquad S(0, 2), \\; p = 2",
+    "(y - 2)^2 = 2p\\,x = 4x"
+   ],
+   "titre": "Foyer (1, 2), directrice x = −1",
+   "type": "etape"
+  },
+  "ex_tangente": {
+   "kicker": "Exemple · une tangente à l'ellipse",
+   "tex": [
+    "\\tfrac{x^2}{16} + \\tfrac{y^2}{4} = 1 \\qquad 2^2 + 4(\\sqrt{3})^2 = 16",
+    "\\tfrac{2x}{16} + \\tfrac{\\sqrt{3}\\,y}{4} = 1",
+    "x + 2\\sqrt{3}\\,y = 8"
+   ],
+   "titre": "Ellipse x² + 4y² = 16, au point (2, √3)",
+   "type": "etape"
+  },
+  "faisceau": {
+   "kicker": "Faisceau linéaire de cercles",
+   "note": "λ, μ réels non tous nuls · C₁, C₂ : deux cercles, ou un cercle et une droite.",
+   "tex": "\\lambda C_1 + \\mu C_2 = 0",
+   "type": "formule"
+  },
+  "faisceau_types": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "polaire_fig"
+   },
+   "kicker": "Points de base et axe radical",
+   "texte": "Deux cercles sécants : tout le faisceau passe par leurs deux points · C₁ − C₂ = 0 : l'axe radical.",
+   "type": "phrase"
+  },
+  "familles": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "hyperbole_fig"
+   },
+   "kicker": "Trois familles selon e",
+   "tex": [
+    "0 < e < 1 : \\text{ellipse, fermée}",
+    "e = 1 : \\text{parabole, ouverte}",
+    "e > 1 : \\text{hyperbole, deux branches}"
+   ],
+   "titre": "L'excentricité décide de la nature de la courbe",
+   "type": "etape"
+  },
+  "focale": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "parabole_fig"
+   },
+   "kicker": "Définition focale",
+   "note": "P : point de la courbe · F : foyer · d : directrice · e : excentricité.",
+   "tex": "PF = e \\cdot d(P,\\, d)",
+   "type": "formule"
+  },
+  "generale": {
+   "kicker": "L'équation générale",
+   "note": "Le terme Bxy signale une conique tournée ; tan(2θ) = B/(A − C) donne l'angle.",
+   "tex": "A x^2 + B x y + C y^2 + D x + E y + F = 0",
+   "type": "formule"
+  },
+  "hyperbole": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "hyperbole_fig"
+   },
+   "kicker": "L'hyperbole · équation réduite",
+   "note": "b² = c² − a², soit c² = a² + b² · asymptotes : y = ±(b/a)x.",
+   "tex": "\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Un seul rapport de distances décide de tout : celui qui définit la conique.",
+   "type": "phrase"
+  },
+  "methode": {
+   "kicker": "La méthode générale",
+   "tex": [
+    "\\text{1. identifier la conique : excentricité ou forme}",
+    "\\text{2. déterminer foyer, directrice, sommets, axes}",
+    "\\text{3. conclure avec l'équation réduite adaptée}"
+   ],
+   "titre": "Trois pas devant toute équation du second degré",
+   "type": "etape"
+  },
+  "parabole": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "parabole_fig"
+   },
+   "kicker": "La parabole · le paramètre",
+   "texte": "p = FD, distance du foyer à la directrice · S, sommet, milieu de [DF] : SD = SF = p/2.",
+   "type": "phrase"
+  },
+  "parabole_calcul": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "parabole_fig"
+   },
+   "kicker": "La parabole · le calcul",
+   "tex": [
+    "F\\left(\\tfrac{p}{2}, 0\\right) \\qquad P'\\left(-\\tfrac{p}{2}, y\\right)",
+    "PF^2 = \\left(x - \\tfrac{p}{2}\\right)^2 + y^2 \\qquad PP'^2 = \\left(x + \\tfrac{p}{2}\\right)^2",
+    "PF = PP' \\;\\Longrightarrow\\; y^2 = 2px"
+   ],
+   "titre": "Repère au sommet S, axe focal comme axe des abscisses",
+   "type": "etape"
+  },
+  "parabole_formes": {
+   "kicker": "La parabole · les quatre formes",
+   "tex": [
+    "y^2 = 2px \\qquad y^2 = -2px",
+    "x^2 = 2py \\qquad x^2 = -2py"
+   ],
+   "titre": "Le signe et l'axe suivent l'orientation, de S vers F ou vers D",
+   "type": "etape"
   },
   "recap": {
-   "type": "recap",
-   "kicker": "À retenir",
    "etapes": [
     "Focale : PF = e · distance à la directrice",
     "Parabole : y² = 2px, sommet milieu de [DF]",
     "Ellipse et hyperbole : c² = a² ∓ b² selon le cas",
     "Tangente : dédoubler au point de contact",
     "Faisceau : λC₁ + μC₂ = 0, points communs"
-   ]
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "rotation": {
+   "kicker": "Rotation des axes",
+   "tex": [
+    "\\tan(2\\theta) = \\tfrac{B}{A - C}",
+    "x = x'\\cos\\theta - y'\\sin\\theta \\qquad y = x'\\sin\\theta + y'\\cos\\theta",
+    "\\text{après substitution : plus aucun terme en } x'y'"
+   ],
+   "titre": "Éliminer le terme en xy en tournant les axes",
+   "type": "etape"
+  },
+  "tangentes": {
+   "kicker": "Tangentes · le dédoublement",
+   "tex": [
+    "\\text{parabole } y^2 = 2px : \\quad y y_0 = p(x + x_0)",
+    "\\text{ellipse : } \\tfrac{x x_0}{a^2} + \\tfrac{y y_0}{b^2} = 1",
+    "\\text{hyperbole : } \\tfrac{x x_0}{a^2} - \\tfrac{y y_0}{b^2} = 1"
+   ],
+   "titre": "Au point (x₀, y₀) : x² devient x·x₀, y² devient y·y₀",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "coniques_fig"
+   },
+   "kicker": "Mathématique · Coniques",
+   "sous": "Du cône d'Apollonius aux faisceaux de cercles : équations réduites, tangentes et applications",
+   "titre": "Coniques : foyer, directrice et excentricité",
+   "type": "titre"
   }
  },
- "phrases": [
-  {
-   "id": "p01",
-   "dit": "Bienvenue dans ce cours consacré aux coniques, les courbes obtenues en coupant un double cône par un plan : cercle, ellipse, parabole et hyperbole. Nous les définirons par un foyer, une directrice et une excentricité, nous établirons leurs équations réduites et leurs tangentes, puis les transformations, les faisceaux de cercles et les applications.",
-   "texte": "Coniques : foyer, directrice et excentricité.",
-   "ecran": "titre"
-  },
-  {
-   "id": "p02",
-   "dit": "Le fil rouge du cours tient en un rapport de distances. Pour chaque point d'une conique, on compare sa distance à un point fixe, le foyer, et sa distance à une droite fixe, la directrice : ce rapport constant, l'excentricité, décide de la nature de la courbe. Tout le cours découle de cette seule idée.",
-   "texte": "Un rapport de distances définit toute la famille.",
-   "ecran": "intro"
-  },
-  {
-   "id": "p03",
-   "dit": "Historiquement, tout commence dans l'espace. Faites tourner une droite autour d'un axe en gardant le même angle : vous engendrez un double cône infini. Coupez-le par un plan : selon l'inclinaison, la section est un cercle, une ellipse, une parabole ou une hyperbole. C'est ce découpage, étudié par Apollonius de Perge, qui a donné leur nom aux coniques.",
-   "texte": "Un cône, un plan : quatre courbes naissent.",
-   "ecran": "cone"
-  },
-  {
-   "id": "p04",
-   "dit": "Voici la définition moderne, dite focale. On se donne un point, le foyer, et une droite, la directrice, qui ne passe pas par le foyer. La conique est l'ensemble des points dont la distance au foyer vaut l'excentricité multipliée par leur distance à la directrice. Une seule équation, trois familles de courbes selon l'excentricité.",
-   "texte": "PF = e · distance à la directrice : la définition focale.",
-   "ecran": "focale"
-  },
-  {
-   "id": "p05",
-   "dit": "Entre zéro et un, la courbe se referme : c'est une ellipse, d'autant plus proche d'un cercle que l'excentricité est petite. Pour une excentricité égale à un, les deux distances sont toujours égales : c'est une parabole, ouverte. Au-delà de un, la courbe se sépare en deux branches : c'est une hyperbole, d'autant plus ouverte que l'excentricité est grande.",
-   "texte": "e tranche : ellipse, parabole ou hyperbole.",
-   "ecran": "familles"
-  },
-  {
-   "id": "p06",
-   "dit": "L'axe focal est la droite menée par le foyer, perpendiculairement à la directrice : c'est un axe de symétrie de la courbe. Ses points de rencontre avec la conique sont ses sommets. La parabole n'en a qu'un ; l'ellipse et l'hyperbole en ont deux, et leur milieu deviendra le centre de la courbe.",
-   "texte": "Axe focal : un axe de symétrie, et les sommets.",
-   "ecran": "axe"
-  },
-  {
-   "id": "p07",
-   "dit": "Commençons par la parabole, le cas où l'excentricité vaut un. On note pé la distance du foyer à la directrice : c'est le paramètre. Le sommet, situé sur l'axe focal, est le milieu du segment qui joint le foyer au pied de la directrice : il est donc à distance pé sur deux de chacun.",
-   "texte": "Le paramètre p : la distance du foyer à la directrice.",
-   "ecran": "parabole"
-  },
-  {
-   "id": "p08",
-   "dit": "Plaçons le repère au sommet, l'axe focal comme axe des abscisses, orienté vers le foyer. Le foyer a pour coordonnées pé sur deux et zéro, et le projeté d'un point de la parabole sur la directrice a pour abscisse moins pé sur deux. Écrire l'égalité des deux distances et élever au carré : tout se simplifie, il reste igrec au carré égale deux pé ixe.",
-   "texte": "Le calcul : PF = PP′ donne y² = 2px.",
-   "ecran": "parabole_calcul"
-  },
-  {
-   "id": "p09",
-   "dit": "Selon l'orientation des axes, la même parabole prend quatre formes. Si l'axe focal est l'axe des ordonnées, ixe et igrec échangent leurs rôles, et le signe change quand on s'oriente vers la directrice plutôt que vers le foyer. À retenir : le carré de la coordonnée transversale vaut deux pé fois la coordonnée le long de l'axe.",
-   "texte": "Quatre formes, une seule parabole.",
-   "ecran": "parabole_formes"
-  },
-  {
-   "id": "p10",
-   "dit": "Exemple tiré des exercices des leçons : une parabole a pour foyer le point de coordonnées un et deux, et pour directrice la droite d'équation ixe égale moins un. L'axe focal est la droite d'ordonnée deux, le sommet est le milieu du foyer et de son projeté : zéro et deux. Le paramètre vaut deux, et l'équation s'écrit : igrec moins deux, le tout au carré, égale quatre ixe.",
-   "texte": "Exemple : (y − 2)² = 4x.",
-   "ecran": "ex_parabole"
-  },
-  {
-   "id": "p11",
-   "dit": "Passons aux coniques centrées, l'ellipse et l'hyperbole. Leurs deux sommets ont un milieu, le centre. On note a la distance du centre à chaque sommet, et cé la distance du centre à chaque foyer : l'excentricité vaut cé sur a. Il existe un second foyer et une seconde directrice, symétriques des premiers, et les deux foyers sont distants de deux cé.",
-   "texte": "Coniques centrées : un centre, deux foyers.",
-   "ecran": "centrees"
-  },
-  {
-   "id": "p12",
-   "dit": "Pour l'ellipse, l'excentricité est inférieure à un, donc cé est inférieur à a. La différence a au carré moins cé au carré est positive : on la note bé au carré. L'équation réduite oppose ixe au carré sur a au carré et igrec au carré sur bé au carré, avec pour somme un. Le plus grand des deux carrés, toujours noté a au carré, indique l'axe focal.",
-   "texte": "Ellipse : x²/a² + y²/b² = 1, avec b² = a² − c².",
-   "ecran": "ellipse"
-  },
-  {
-   "id": "p13",
-   "dit": "Pour l'hyperbole, l'excentricité dépasse un, donc cé dépasse a. C'est cé au carré moins a au carré que l'on note bé au carré, et l'équation réduite devient une différence égale à un : le terme précédé du signe plus désigne l'axe focal. Cé au carré égale a au carré plus bé au carré, comme dans un triangle rectangle, et les asymptotes ont pour pentes bé sur a et moins bé sur a.",
-   "texte": "Hyperbole : une différence égale à un, c² = a² + b².",
-   "ecran": "hyperbole"
-  },
-  {
-   "id": "p14",
-   "dit": "Exemple : une ellipse a pour sommets les points de coordonnées cinq et zéro, moins cinq et zéro, zéro et trois, zéro et moins trois. On lit a égale cinq et bé égale trois. Alors cé au carré vaut vingt-cinq moins neuf, seize : cé égale quatre. Les foyers sont les points de coordonnées quatre et zéro et moins quatre et zéro, et l'excentricité vaut quatre cinquièmes.",
-   "texte": "Exemple : a = 5, b = 3, donc c = 4 et e = 4/5.",
-   "ecran": "ex_ellipse"
-  },
-  {
-   "id": "p15",
-   "dit": "Un mot sur le cercle, cas limite de l'ellipse. Quand l'excentricité tend vers zéro, les foyers se rapprochent du centre et l'ellipse ressemble de plus en plus à un cercle ; quand elle tend vers un, l'ellipse s'aplatit. Mais dans la définition focale stricte, une excentricité nulle réduirait la courbe au seul foyer : le cercle est une limite, pas un cas de la définition.",
-   "texte": "Le cercle : la limite quand e tend vers zéro.",
-   "ecran": "cercle"
-  },
-  {
-   "id": "p16",
-   "dit": "Autre lieu géométrique, côté hyperbole : les points dont la différence des distances à deux foyers fixes vaut six, les foyers étant les points de coordonnées cinq et zéro et moins cinq et zéro. La différence constante vaut deux a, donc a égale trois, et cé égale cinq. Bé au carré vaut seize, et l'équation réduite est ixe au carré sur neuf moins igrec au carré sur seize égale un.",
-   "texte": "Exemple : x²/9 − y²/16 = 1.",
-   "ecran": "ex_hyperbole"
-  },
-  {
-   "id": "p17",
-   "dit": "Pour les trois coniques, la tangente obéit à la même règle de dédoublement : dans l'équation réduite, on remplace ixe au carré par ixe fois ixe zéro, et igrec au carré par igrec fois igrec zéro, où ixe zéro et igrec zéro sont les coordonnées du point de contact. Pour la parabole, le terme deux pé ixe devient pé fois ixe plus ixe zéro.",
-   "texte": "Tangentes : la règle du dédoublement.",
-   "ecran": "tangentes"
-  },
-  {
-   "id": "p18",
-   "dit": "Application : la tangente à l'ellipse d'équation ixe au carré plus quatre igrec au carré égale seize, au point de coordonnées deux et racine de trois. Le point est bien sur la courbe : quatre plus quatre fois trois égale seize. L'équation réduite est ixe au carré sur seize plus igrec au carré sur quatre égale un. Le dédoublement donne alors : ixe plus deux racine de trois igrec égale huit.",
-   "texte": "Exemple : la tangente vaut x + 2√3 y = 8.",
-   "ecran": "ex_tangente"
-  },
-  {
-   "id": "p19",
-   "dit": "Jusqu'ici, nos coniques étaient alignées sur les axes. En général, l'équation d'une conique est un polynôme du second degré en ixe et igrec, avec un terme rectangle en ixe igrec quand la courbe est tournée. Deux transformations la ramènent à une forme réduite : la translation, qui ramène le centre ou le sommet à l'origine, et la rotation, qui aligne ses axes sur ceux du repère.",
-   "texte": "Équation générale : le terme en xy signale une rotation.",
-   "ecran": "generale"
-  },
-  {
-   "id": "p20",
-   "dit": "La translation se voit par la complétion des carrés. Exemple des leçons : ixe au carré plus igrec au carré moins quatre ixe plus six igrec moins trois égale zéro. Ixe moins deux au carré fait apparaître quatre, igrec plus trois au carré fait apparaître neuf, et le second membre devient seize. C'est un cercle de centre deux et moins trois, et de rayon quatre.",
-   "texte": "Translation : un cercle de centre (2, −3), rayon 4.",
-   "ecran": "ex_cercle"
-  },
-  {
-   "id": "p21",
-   "dit": "Même réflexe pour un exercice de synthèse : ixe au carré plus quatre igrec au carré moins six ixe plus huit igrec moins trois égale zéro. La complétion des carrés donne ixe moins trois au carré plus quatre fois igrec plus un au carré égale seize. En divisant par seize, on reconnaît une ellipse de centre trois et moins un, de demi-axes quatre et deux.",
-   "texte": "Synthèse : une ellipse de centre (3, −1).",
-   "ecran": "ex_ellipse_generale"
-  },
-  {
-   "id": "p22",
-   "dit": "Reste le terme rectangle, qui signale une conique inclinée. On tourne les axes d'un angle thêta bien choisi : la tangente du double de l'angle vaut bé divisé par a moins cé, où a, bé et cé sont les coefficients de ixe au carré, de ixe igrec et de igrec au carré. On substitue les expressions de ixe et igrec en ixe prime et igrec prime : le terme rectangle disparaît, la conique est redressée.",
-   "texte": "Rotation : tan(2θ) = B/(A − C) élimine le terme en xy.",
-   "ecran": "rotation"
-  },
-  {
-   "id": "p23",
-   "dit": "Devant toute équation du second degré, la méthode tient en trois pas. D'abord, identifier la conique, par son excentricité si elle est donnée, sinon par la forme de son équation après transformation. Ensuite, déterminer ses éléments : foyers, directrice, sommets, centre et axes. Enfin, conclure avec l'équation réduite adaptée, celle qui rend tous ces éléments lisibles.",
-   "texte": "La méthode : identifier, éléments, équation réduite.",
-   "ecran": "methode"
-  },
-  {
-   "id": "p24",
-   "dit": "Changeons de point de vue avec les faisceaux linéaires de cercles. Prenez deux cercles, d'équations cé un et cé deux. Toute combinaison lambda cé un plus mu cé deux égale zéro, avec lambda et mu réels non tous deux nuls, redonne un cercle, ou parfois une droite. En faisant varier les paramètres, on obtient une famille infinie de cercles liés entre eux : le faisceau.",
-   "texte": "Faisceau : λC₁ + μC₂ = 0, une famille de cercles.",
-   "ecran": "faisceau"
-  },
-  {
-   "id": "p25",
-   "dit": "Le cas fondamental est celui de deux cercles qui se coupent en deux points : tous les cercles du faisceau passent par ces deux points, appelés points de base. En soustrayant les deux équations, les termes carrés disparaissent : il reste l'équation d'une droite, celle des points de base, appelée axe radical. C'est elle qui rend les calculs de faisceau si efficaces.",
-   "texte": "Points de base et axe radical : C₁ − C₂ = 0.",
-   "ecran": "faisceau_types"
-  },
-  {
-   "id": "p26",
-   "dit": "Exemple complet, tiré des exercices : le cercle du faisceau passant par les points a, de coordonnées un et deux, et bé, de coordonnées trois et quatre, qui passe aussi par l'origine. On part du cercle de diamètre a bé, auquel on ajoute lambda fois la droite a bé. L'origine impose lambda égale moins onze, et le cercle cherché a pour équation ixe au carré plus igrec au carré moins quinze ixe plus cinq igrec égale zéro.",
-   "texte": "Exemple : x² + y² − 15x + 5y = 0.",
-   "ecran": "ex_faisceau"
-  },
-  {
-   "id": "p27",
-   "dit": "Les coniques travaillent partout autour de nous. La parabole concentre au foyer les rayons parallèles à son axe : c'est le principe des antennes paraboliques et, en sens inverse, des phares, dont la source est placée au foyer. L'ellipse gouverne les orbites des planètes, Soleil à un foyer. L'hyperbole sert la navigation, par différence de distances à deux émetteurs. Et le câble porteur d'un pont suspendu dessine une parabole.",
-   "texte": "Antennes, orbites, navigation, ponts : les coniques au travail.",
-   "ecran": "applications"
-  },
-  {
-   "id": "p28",
-   "dit": "Chiffrons l'application astronomique des leçons : une comète décrit une ellipse de demi-grand axe dix unités astronomiques et d'excentricité zéro virgule huit. Alors cé vaut huit unités. Sa distance au Soleil, placé à un foyer, varie entre a moins cé, deux unités au plus près, et a plus cé, dix-huit unités au plus loin : une orbite très allongée.",
-   "texte": "Comète : entre 2 et 18 unités astronomiques du Soleil.",
-   "ecran": "ex_comete"
-  },
-  {
-   "id": "p29",
-   "dit": "Dernier calcul, côté parabole : une antenne a son foyer à un mètre du sommet et un diamètre de deux mètres. Le foyer étant à pé sur deux du sommet, le paramètre vaut deux, et l'équation est igrec au carré égale quatre ixe. Au bord, l'ordonnée vaut un : ixe vaut un quart. La profondeur de l'antenne est donc d'un quart de mètre, soit vingt-cinq centimètres.",
-   "texte": "Antenne : une profondeur d'un quart de mètre.",
-   "ecran": "ex_antenne"
-  },
-  {
-   "id": "p30",
-   "dit": "Pour terminer, retenez l'enchaînement complet. Une conique naît d'un foyer, d'une directrice et d'une excentricité ; ses équations réduites rendent ses éléments lisibles ; la tangente s'obtient par dédoublement ; translation et rotation ramènent toute équation générale à ces formes ; et les faisceaux organisent les cercles en familles.",
-   "texte": "À retenir : focale, réduites, tangentes, faisceaux.",
-   "ecran": "recap"
-  }
- ],
+ "matiere": "Mathématique",
  "parties": [
   {
    "debut": "p01",
@@ -486,19 +303,202 @@
   },
   {
    "debut": "p11",
-   "sous_titre": "Ellipses, hyperboles, tangentes et équation générale",
    "pont": {
-    "texte": "Partie 2 : coniques centrées, tangentes et équation générale.",
-    "dit": "Partie deux : les coniques centrées. Nous établirons les équations réduites de l'ellipse et de l'hyperbole, leurs foyers et leur excentricité, puis les tangentes par dédoublement, avant d'aborder l'équation générale des coniques."
-   }
+    "dit": "Partie deux : les coniques centrées. Nous établirons les équations réduites de l'ellipse et de l'hyperbole, leurs foyers et leur excentricité, puis les tangentes par dédoublement, avant d'aborder l'équation générale des coniques.",
+    "texte": "Partie 2 : coniques centrées, tangentes et équation générale."
+   },
+   "sous_titre": "Ellipses, hyperboles, tangentes et équation générale"
   },
   {
    "debut": "p21",
-   "sous_titre": "Transformations à l'œuvre, faisceaux de cercles et applications",
    "pont": {
-    "texte": "Partie 3 : transformations, faisceaux de cercles et applications.",
-    "dit": "Partie trois : les transformations à l'œuvre, les faisceaux de cercles et les applications. Après le cercle de la partie précédente, une ellipse cachée dans une équation développée, puis la rotation des axes, les faisceaux, et les coniques dans notre monde."
-   }
+    "dit": "Partie trois : les transformations à l'œuvre, les faisceaux de cercles et les applications. Après le cercle de la partie précédente, une ellipse cachée dans une équation développée, puis la rotation des axes, les faisceaux, et les coniques dans notre monde.",
+    "texte": "Partie 3 : transformations, faisceaux de cercles et applications."
+   },
+   "sous_titre": "Transformations à l'œuvre, faisceaux de cercles et applications"
   }
- ]
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux coniques, les courbes obtenues en coupant un double cône par un plan : cercle, ellipse, parabole et hyperbole. Nous les définirons par un foyer, une directrice et une excentricité, nous établirons leurs équations réduites et leurs tangentes, puis les transformations, les faisceaux de cercles et les applications.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Coniques : foyer, directrice et excentricité."
+  },
+  {
+   "dit": "Le fil rouge du cours tient en un rapport de distances. Pour chaque point d'une conique, on compare sa distance à un point fixe, le foyer, et sa distance à une droite fixe, la directrice : ce rapport constant, l'excentricité, décide de la nature de la courbe. Tout le cours découle de cette seule idée.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Un rapport de distances définit toute la famille."
+  },
+  {
+   "dit": "Historiquement, tout commence dans l'espace. Faites tourner une droite autour d'un axe en gardant le même angle : vous engendrez un double cône infini. Coupez-le par un plan : selon l'inclinaison, la section est un cercle, une ellipse, une parabole ou une hyperbole. C'est ce découpage, étudié par Apollonius de Perge, qui a donné leur nom aux coniques.",
+   "ecran": "cone",
+   "id": "p03",
+   "texte": "Un cône, un plan : quatre courbes naissent."
+  },
+  {
+   "dit": "Voici la définition moderne, dite focale. On se donne un point, le foyer, et une droite, la directrice, qui ne passe pas par le foyer. La conique est l'ensemble des points dont la distance au foyer vaut l'excentricité multipliée par leur distance à la directrice. Une seule équation, trois familles de courbes selon l'excentricité.",
+   "ecran": "focale",
+   "id": "p04",
+   "texte": "PF = e · distance à la directrice : la définition focale."
+  },
+  {
+   "dit": "Entre zéro et un, la courbe se referme : c'est une ellipse, d'autant plus proche d'un cercle que l'excentricité est petite. Pour une excentricité égale à un, les deux distances sont toujours égales : c'est une parabole, ouverte. Au-delà de un, la courbe se sépare en deux branches : c'est une hyperbole, d'autant plus ouverte que l'excentricité est grande.",
+   "ecran": "familles",
+   "id": "p05",
+   "texte": "e tranche : ellipse, parabole ou hyperbole."
+  },
+  {
+   "dit": "L'axe focal est la droite menée par le foyer, perpendiculairement à la directrice : c'est un axe de symétrie de la courbe. Ses points de rencontre avec la conique sont ses sommets. La parabole n'en a qu'un ; l'ellipse et l'hyperbole en ont deux, et leur milieu deviendra le centre de la courbe.",
+   "ecran": "axe",
+   "id": "p06",
+   "texte": "Axe focal : un axe de symétrie, et les sommets."
+  },
+  {
+   "dit": "Commençons par la parabole, le cas où l'excentricité vaut un. On note pé la distance du foyer à la directrice : c'est le paramètre. Le sommet, situé sur l'axe focal, est le milieu du segment qui joint le foyer au pied de la directrice : il est donc à distance pé sur deux de chacun.",
+   "ecran": "parabole",
+   "id": "p07",
+   "texte": "Le paramètre p : la distance du foyer à la directrice."
+  },
+  {
+   "dit": "Plaçons le repère au sommet, l'axe focal comme axe des abscisses, orienté vers le foyer. Le foyer a pour coordonnées pé sur deux et zéro, et le projeté d'un point de la parabole sur la directrice a pour abscisse moins pé sur deux. Écrire l'égalité des deux distances et élever au carré : tout se simplifie, il reste igrec au carré égale deux pé ixe.",
+   "ecran": "parabole_calcul",
+   "id": "p08",
+   "texte": "Le calcul : PF = PP′ donne y² = 2px."
+  },
+  {
+   "dit": "Selon l'orientation des axes, la même parabole prend quatre formes. Si l'axe focal est l'axe des ordonnées, ixe et igrec échangent leurs rôles, et le signe change quand on s'oriente vers la directrice plutôt que vers le foyer. À retenir : le carré de la coordonnée transversale vaut deux pé fois la coordonnée le long de l'axe.",
+   "ecran": "parabole_formes",
+   "id": "p09",
+   "texte": "Quatre formes, une seule parabole."
+  },
+  {
+   "dit": "Exemple tiré des exercices des leçons : une parabole a pour foyer le point de coordonnées un et deux, et pour directrice la droite d'équation ixe égale moins un. L'axe focal est la droite d'ordonnée deux, le sommet est le milieu du foyer et de son projeté : zéro et deux. Le paramètre vaut deux, et l'équation s'écrit : igrec moins deux, le tout au carré, égale quatre ixe.",
+   "ecran": "ex_parabole",
+   "id": "p10",
+   "texte": "Exemple : (y − 2)² = 4x."
+  },
+  {
+   "dit": "Passons aux coniques centrées, l'ellipse et l'hyperbole. Leurs deux sommets ont un milieu, le centre. On note a la distance du centre à chaque sommet, et cé la distance du centre à chaque foyer : l'excentricité vaut cé sur a. Il existe un second foyer et une seconde directrice, symétriques des premiers, et les deux foyers sont distants de deux cé.",
+   "ecran": "centrees",
+   "id": "p11",
+   "texte": "Coniques centrées : un centre, deux foyers."
+  },
+  {
+   "dit": "Pour l'ellipse, l'excentricité est inférieure à un, donc cé est inférieur à a. La différence a au carré moins cé au carré est positive : on la note bé au carré. L'équation réduite oppose ixe au carré sur a au carré et igrec au carré sur bé au carré, avec pour somme un. Le plus grand des deux carrés, toujours noté a au carré, indique l'axe focal.",
+   "ecran": "ellipse",
+   "id": "p12",
+   "texte": "Ellipse : x²/a² + y²/b² = 1, avec b² = a² − c²."
+  },
+  {
+   "dit": "Pour l'hyperbole, l'excentricité dépasse un, donc cé dépasse a. C'est cé au carré moins a au carré que l'on note bé au carré, et l'équation réduite devient une différence égale à un : le terme précédé du signe plus désigne l'axe focal. Cé au carré égale a au carré plus bé au carré, comme dans un triangle rectangle, et les asymptotes ont pour pentes bé sur a et moins bé sur a.",
+   "ecran": "hyperbole",
+   "id": "p13",
+   "texte": "Hyperbole : une différence égale à un, c² = a² + b²."
+  },
+  {
+   "dit": "Exemple : une ellipse a pour sommets les points de coordonnées cinq et zéro, moins cinq et zéro, zéro et trois, zéro et moins trois. On lit a égale cinq et bé égale trois. Alors cé au carré vaut vingt-cinq moins neuf, seize : cé égale quatre. Les foyers sont les points de coordonnées quatre et zéro et moins quatre et zéro, et l'excentricité vaut quatre cinquièmes.",
+   "ecran": "ex_ellipse",
+   "id": "p14",
+   "texte": "Exemple : a = 5, b = 3, donc c = 4 et e = 4/5."
+  },
+  {
+   "dit": "Un mot sur le cercle, cas limite de l'ellipse. Quand l'excentricité tend vers zéro, les foyers se rapprochent du centre et l'ellipse ressemble de plus en plus à un cercle ; quand elle tend vers un, l'ellipse s'aplatit. Mais dans la définition focale stricte, une excentricité nulle réduirait la courbe au seul foyer : le cercle est une limite, pas un cas de la définition.",
+   "ecran": "cercle",
+   "id": "p15",
+   "texte": "Le cercle : la limite quand e tend vers zéro."
+  },
+  {
+   "dit": "Autre lieu géométrique, côté hyperbole : les points dont la différence des distances à deux foyers fixes vaut six, les foyers étant les points de coordonnées cinq et zéro et moins cinq et zéro. La différence constante vaut deux a, donc a égale trois, et cé égale cinq. Bé au carré vaut seize, et l'équation réduite est ixe au carré sur neuf moins igrec au carré sur seize égale un.",
+   "ecran": "ex_hyperbole",
+   "id": "p16",
+   "texte": "Exemple : x²/9 − y²/16 = 1."
+  },
+  {
+   "dit": "Pour les trois coniques, la tangente obéit à la même règle de dédoublement : dans l'équation réduite, on remplace ixe au carré par ixe fois ixe zéro, et igrec au carré par igrec fois igrec zéro, où ixe zéro et igrec zéro sont les coordonnées du point de contact. Pour la parabole, le terme deux pé ixe devient pé fois ixe plus ixe zéro.",
+   "ecran": "tangentes",
+   "id": "p17",
+   "texte": "Tangentes : la règle du dédoublement."
+  },
+  {
+   "dit": "Application : la tangente à l'ellipse d'équation ixe au carré plus quatre igrec au carré égale seize, au point de coordonnées deux et racine de trois. Le point est bien sur la courbe : quatre plus quatre fois trois égale seize. L'équation réduite est ixe au carré sur seize plus igrec au carré sur quatre égale un. Le dédoublement donne alors : ixe plus deux racine de trois igrec égale huit.",
+   "ecran": "ex_tangente",
+   "id": "p18",
+   "texte": "Exemple : la tangente vaut x + 2√3 y = 8."
+  },
+  {
+   "dit": "Jusqu'ici, nos coniques étaient alignées sur les axes. En général, l'équation d'une conique est un polynôme du second degré en ixe et igrec, avec un terme rectangle en ixe igrec quand la courbe est tournée. Deux transformations la ramènent à une forme réduite : la translation, qui ramène le centre ou le sommet à l'origine, et la rotation, qui aligne ses axes sur ceux du repère.",
+   "ecran": "generale",
+   "id": "p19",
+   "texte": "Équation générale : le terme en xy signale une rotation."
+  },
+  {
+   "dit": "La translation se voit par la complétion des carrés. Exemple des leçons : ixe au carré plus igrec au carré moins quatre ixe plus six igrec moins trois égale zéro. Ixe moins deux au carré fait apparaître quatre, igrec plus trois au carré fait apparaître neuf, et le second membre devient seize. C'est un cercle de centre deux et moins trois, et de rayon quatre.",
+   "ecran": "ex_cercle",
+   "id": "p20",
+   "texte": "Translation : un cercle de centre (2, −3), rayon 4."
+  },
+  {
+   "dit": "Même réflexe pour un exercice de synthèse : ixe au carré plus quatre igrec au carré moins six ixe plus huit igrec moins trois égale zéro. La complétion des carrés donne ixe moins trois au carré plus quatre fois igrec plus un au carré égale seize. En divisant par seize, on reconnaît une ellipse de centre trois et moins un, de demi-axes quatre et deux.",
+   "ecran": "ex_ellipse_generale",
+   "id": "p21",
+   "texte": "Synthèse : une ellipse de centre (3, −1)."
+  },
+  {
+   "dit": "Reste le terme rectangle, qui signale une conique inclinée. On tourne les axes d'un angle thêta bien choisi : la tangente du double de l'angle vaut bé divisé par a moins cé, où a, bé et cé sont les coefficients de ixe au carré, de ixe igrec et de igrec au carré. On substitue les expressions de ixe et igrec en ixe prime et igrec prime : le terme rectangle disparaît, la conique est redressée.",
+   "ecran": "rotation",
+   "id": "p22",
+   "texte": "Rotation : tan(2θ) = B/(A − C) élimine le terme en xy."
+  },
+  {
+   "dit": "Devant toute équation du second degré, la méthode tient en trois pas. D'abord, identifier la conique, par son excentricité si elle est donnée, sinon par la forme de son équation après transformation. Ensuite, déterminer ses éléments : foyers, directrice, sommets, centre et axes. Enfin, conclure avec l'équation réduite adaptée, celle qui rend tous ces éléments lisibles.",
+   "ecran": "methode",
+   "id": "p23",
+   "texte": "La méthode : identifier, éléments, équation réduite."
+  },
+  {
+   "dit": "Changeons de point de vue avec les faisceaux linéaires de cercles. Prenez deux cercles, d'équations cé un et cé deux. Toute combinaison lambda cé un plus mu cé deux égale zéro, avec lambda et mu réels non tous deux nuls, redonne un cercle, ou parfois une droite. En faisant varier les paramètres, on obtient une famille infinie de cercles liés entre eux : le faisceau.",
+   "ecran": "faisceau",
+   "id": "p24",
+   "texte": "Faisceau : λC₁ + μC₂ = 0, une famille de cercles."
+  },
+  {
+   "dit": "Le cas fondamental est celui de deux cercles qui se coupent en deux points : tous les cercles du faisceau passent par ces deux points, appelés points de base. En soustrayant les deux équations, les termes carrés disparaissent : il reste l'équation d'une droite, celle des points de base, appelée axe radical. C'est elle qui rend les calculs de faisceau si efficaces.",
+   "ecran": "faisceau_types",
+   "id": "p25",
+   "texte": "Points de base et axe radical : C₁ − C₂ = 0."
+  },
+  {
+   "dit": "Exemple complet, tiré des exercices : le cercle du faisceau passant par les points a, de coordonnées un et deux, et bé, de coordonnées trois et quatre, qui passe aussi par l'origine. On part du cercle de diamètre a bé, auquel on ajoute lambda fois la droite a bé. L'origine impose lambda égale moins onze, et le cercle cherché a pour équation ixe au carré plus igrec au carré moins quinze ixe plus cinq igrec égale zéro.",
+   "ecran": "ex_faisceau",
+   "id": "p26",
+   "texte": "Exemple : x² + y² − 15x + 5y = 0."
+  },
+  {
+   "dit": "Les coniques travaillent partout autour de nous. La parabole concentre au foyer les rayons parallèles à son axe : c'est le principe des antennes paraboliques et, en sens inverse, des phares, dont la source est placée au foyer. L'ellipse gouverne les orbites des planètes, Soleil à un foyer. L'hyperbole sert la navigation, par différence de distances à deux émetteurs. Et le câble porteur d'un pont suspendu dessine une parabole.",
+   "ecran": "applications",
+   "id": "p27",
+   "texte": "Antennes, orbites, navigation, ponts : les coniques au travail."
+  },
+  {
+   "dit": "Chiffrons l'application astronomique des leçons : une comète décrit une ellipse de demi-grand axe dix unités astronomiques et d'excentricité zéro virgule huit. Alors cé vaut huit unités. Sa distance au Soleil, placé à un foyer, varie entre a moins cé, deux unités au plus près, et a plus cé, dix-huit unités au plus loin : une orbite très allongée.",
+   "ecran": "ex_comete",
+   "id": "p28",
+   "texte": "Comète : entre 2 et 18 unités astronomiques du Soleil."
+  },
+  {
+   "dit": "Dernier calcul, côté parabole : une antenne a son foyer à un mètre du sommet et un diamètre de deux mètres. Le foyer étant à pé sur deux du sommet, le paramètre vaut deux, et l'équation est igrec au carré égale quatre ixe. Au bord, l'ordonnée vaut un : ixe vaut un quart. La profondeur de l'antenne est donc d'un quart de mètre, soit vingt-cinq centimètres.",
+   "ecran": "ex_antenne",
+   "id": "p29",
+   "texte": "Antenne : une profondeur d'un quart de mètre."
+  },
+  {
+   "dit": "Pour terminer, retenez l'enchaînement complet. Une conique naît d'un foyer, d'une directrice et d'une excentricité ; ses équations réduites rendent ses éléments lisibles ; la tangente s'obtient par dédoublement ; translation et rotation ramènent toute équation générale à ces formes ; et les faisceaux organisent les cercles en familles.",
+   "ecran": "recap",
+   "id": "p30",
+   "texte": "À retenir : focale, réduites, tangentes, faisceaux."
+  }
+ ],
+ "titre": "Coniques : foyer, directrice et excentricité"
 }
