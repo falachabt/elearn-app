@@ -14,7 +14,7 @@
   "applications": {
    "anim": {
     "hauteur": 140,
-    "nom": "sphere_fig"
+    "nom": "cercle_trigo_fig"
    },
    "kicker": "Astronomie, navigation, images",
    "texte": "Parallaxe, navigation, images en trois dimensions : les mêmes sinus.",
@@ -41,14 +41,14 @@
    "type": "etape"
   },
   "cercle": {
+   "anim": {
+    "hauteur": 175,
+    "nom": "cercle_trigo_fig"
+   },
    "kicker": "Le cercle trigonométrique",
    "note": "Cercle de rayon 1 : le cosinus est l'abscisse, le sinus l'ordonnée du point.",
    "tex": "\\cos\\theta = x \\qquad \\sin\\theta = y \\qquad \\tan\\theta = \\frac{y}{x}",
-   "type": "formule",
-   "anim": {
-    "nom": "cercle_trigo_fig",
-    "hauteur": 175
-   }
+   "type": "formule"
   },
   "double": {
    "kicker": "Angles doubles",
@@ -158,14 +158,14 @@
    "type": "phrase"
   },
   "identite": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "cercle_trigo_fig"
+   },
    "kicker": "L'identité fondamentale",
    "note": "Pythagore dans le cercle unité : x² + y² = 1, le rayon au carré.",
    "tex": "\\sin^2\\theta + \\cos^2\\theta = 1",
-   "type": "formule",
-   "anim": {
-    "nom": "cercle_trigo_fig",
-    "hauteur": 150
-   }
+   "type": "formule"
   },
   "intro": {
    "kicker": "Introduction",
