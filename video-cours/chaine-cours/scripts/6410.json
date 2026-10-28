@@ -1,1 +1,566 @@
-{"cours":6410,"ecrans":{"alter_drop":{"kicker":"Faire évoluer une table","tex":["\\text{ALTER TABLE : ajouter, retirer}","\\text{ALTER TABLE : changer un type}","\\text{DROP TABLE : tout effacer}","\\text{sauvegarder avant toute casse}"],"titre":"Évoluer, jamais sans filet","type":"etape"},"association":{"kicker":"Plusieurs à plusieurs : la jonction","tex":["\\text{Inscriptions : la table jonction}","\\text{id\\_étudiant, id\\_cours}","\\text{date\\_inscription, note}","\\text{deux relations un à plusieurs}"],"titre":"Une jonction brise le plusieurs à plusieurs","type":"etape"},"bibliotheque":{"kicker":"Cas concret : la bibliothèque","tex":["\\text{vérifier : livre disponible}","\\text{INSERT : enregistrer l'emprunt}","\\text{UPDATE : disponible devient faux}","\\text{retard : retour nul et date dépassée}"],"titre":"Emprunter en trois gestes","type":"etape"},"cardinalites":{"kicker":"Trois cardinalités","tex":["\\text{un à plusieurs : département, employés}","\\text{plusieurs à plusieurs : cours, étudiants}","\\text{un à un : données sensibles à part}","\\text{la clé du un voyage vers le plusieurs}"],"titre":"Un, plusieurs : compter les liens","type":"etape"},"cas_autres":{"kicker":"Deux autres terrains","tex":["\\text{auberge : jamais deux réservations}","\\text{auberge : départ après arrivée}","\\text{plateforme : une inscription par cours}","\\text{partout : clés et contraintes}"],"titre":"Mêmes règles, autres métiers","type":"etape"},"cles_autres":{"kicker":"Les autres clés","tex":["\\text{candidate : finaliste pour primaire}","\\text{alternative : candidate non choisie}","\\text{composite : plusieurs attributs}","\\text{combinaison unique, attributs non}"],"titre":"Finalistes, remplaçantes, équipes","type":"etape"},"clients":{"kicker":"Exemple complet : Clients","tex":["\\text{client\\_id : clé primaire}","\\text{email : unique, jamais nul}","\\text{solde : jamais négatif}","\\text{pays : deux lettres, défaut FR}"],"titre":"Six règles dans une seule table","type":"etape"},"codd":{"kicker":"1970 : la rupture de Codd","tex":["\\text{Edgar F. Codd, chercheur IBM}","\\text{avant : hiérarchique et réseau}","\\text{une seule forme : la table}","\\text{logique séparée du physique}"],"titre":"Une idée simple, une révolution","type":"etape"},"contraintes":{"kicker":"Six contraintes, six garde-fous","tex":["\\text{PRIMARY KEY, FOREIGN KEY}","\\text{NOT NULL, UNIQUE}","\\text{CHECK : une règle à respecter}","\\text{DEFAULT : valeur par défaut}"],"titre":"La base refuse l'incohérent","type":"etape"},"create":{"kicker":"Créer : CREATE TABLE","tex":["\\text{CREATE TABLE Nom}","\\text{colonne, type, contraintes}","\\text{une ligne par colonne}","\\text{structure vide, prête à l'emploi}"],"titre":"Dessiner l'étagère avant de ranger","type":"etape"},"def_bd":{"kicker":"Définir : la base de données","tex":["\\text{collection organisée de données}","\\text{stockée, consultée, gérée}","\\text{mise à jour en sécurité}","\\text{modèle, moteur, interfaces}"],"titre":"Plus qu'un fichier : un système","type":"etape"},"domaine":{"kicker":"Attributs et domaines","tex":["\\text{attribut : une colonne typée}","\\text{domaine : valeurs autorisées}","\\text{jamais de texte dans un âge}","\\text{CHAR(2) suffit pour un code pays}"],"titre":"Le type, un contrat d'intégrité","type":"etape"},"exemple_filtre":{"kicker":"Exemple chiffré : qui filtrer ?","tex":["\\text{département : Informatique}","\\text{salaire : plus de 3500}","\\text{colonnes : nom, prénom, salaire}","\\text{ET combine les deux conditions}"],"titre":"Deux conditions, une seule réponse","type":"etape"},"fk":{"kicker":"La clé étrangère","tex":["\\text{pointe vers une clé primaire}","\\text{table enfant vers table parent}","\\text{rien vers ce qui n'existe pas}","\\text{exemple : id\\_formation}"],"titre":"Le pont entre deux tables","type":"etape"},"insert":{"kicker":"Insérer : INSERT","tex":["\\text{colonnes, puis valeurs}","\\text{même ordre, sans faute}","\\text{plusieurs lignes en une fois}","\\text{INSERT ... SELECT : copier filtré}"],"titre":"Peupler, ligne par ligne","type":"etape"},"operateurs":{"kicker":"Filtrer plus fin","tex":["\\text{BETWEEN : bornes incluses}","\\text{IN : une liste de valeurs}","\\text{LIKE : pourcent et tiret bas}","\\text{IS NULL : l'absence de donnée}"],"titre":"Intervalles, listes, motifs, vide","type":"etape"},"pk":{"kicker":"La clé primaire","tex":["\\text{unique : jamais deux pareilles}","\\text{jamais nulle}","\\text{stable : elle ne change pas}","\\text{exemple : numéro d'étudiant}"],"titre":"Un identifiant absolu","type":"etape"},"projection":{"kicker":"Choisir les colonnes","tex":["\\text{projection : colonnes choisies}","\\text{SELECT nom, prénom, département}","\\text{SELECT étoile : tout, avec parcimonie}","\\text{alias AS : renommer pour lire}"],"titre":"Voir juste ce qu'il faut","type":"etape"},"recap":{"etapes":["Base de données : collection organisée, pilotée par un SGBD","Table : lignes et colonnes, schéma d'abord, données ensuite","Clés : primaire unique, étrangère qui relie, contraintes qui protègent","SQL : créer avec CREATE, lire avec SELECT, écrire avec INSERT, UPDATE, DELETE","Prudence : jamais de UPDATE ni de DELETE sans WHERE vérifié"],"kicker":"Récapitulatif","type":"recap"},"relation":{"kicker":"Définir : la relation","note":"Une relation est un ensemble de couples pris dans des domaines.","tex":"R \\subseteq D_1 \\times D_2 \\times \\cdots \\times D_n","type":"formule"},"relations":{"anim":{"hauteur":220,"nom":"graphe_fig"},"kicker":"Des tables reliées","texte":"Des tables reliées par leurs clés étrangères.","type":"phrase"},"schema":{"kicker":"Schéma contre instance","tex":["\\text{schéma : le plan, avant les données}","\\text{instance : le contenu, à un instant}","\\text{bien définir avant d'insérer}","\\text{millions de lignes : gare aux retouches}"],"titre":"Le plan, puis le contenu","type":"etape"},"schema_biblio":{"kicker":"Mini-schéma : la bibliothèque","tex":["\\text{Livres : ISBN, Titre, Auteur}","\\text{Adhérents : ID, Nom, Prénom}","\\text{Emprunts : ID, ISBN, ID\\_Adhérent}","\\text{Emprunts : dates d'emprunt et retour}"],"titre":"Trois tables, deux ponts","type":"etape"},"select":{"kicker":"Interroger : SELECT","tex":["\\text{SELECT : ce que je veux voir}","\\text{FROM : d'où cela vient}","\\text{WHERE : sous quelles conditions}","\\text{quoi, d'où, sous conditions}"],"titre":"Poser la question en trois mots","type":"etape"},"sgbd":{"kicker":"Le SGBD, le cerveau","tex":["\\text{définir la structure}","\\text{manipuler les données}","\\text{contrôler les accès}","\\text{garantir intégrité et transactions}"],"titre":"Intermédiaire entre base et utilisateurs","type":"etape"},"sgbd_exemples":{"kicker":"Cinq SGBD connus","tex":["\\text{MySQL, PostgreSQL}","\\text{Oracle Database}","\\text{Microsoft SQL Server}","\\text{SQLite, léger et embarqué}"],"titre":"Le relationnel partout","type":"etape"},"table":{"anim":{"hauteur":220,"nom":"matrice_fig"},"kicker":"En pratique : la table","texte":"Une table : des colonnes, des lignes, une entité.","type":"phrase"},"titre":{"anim":{"hauteur":250,"nom":"matrice_fig"},"kicker":"Informatique · Bases de données et SQL","sous":"Tables, clés, schéma et requêtes : de la théorie de Codd à la manipulation des données","titre":"Bases de données : concepts et manipulation avec SQL","type":"titre"},"truncate_cascade":{"kicker":"Vider, en cascade, avec prudence","tex":["\\text{DELETE sans WHERE : tout disparaît}","\\text{TRUNCATE : vider vite une table}","\\text{CASCADE : les enfants suivent}","\\text{SET NULL : le lien s'efface}"],"titre":"Trois façons d'effacer, une prudence","type":"etape"},"types":{"kicker":"Choisir le bon type","tex":["\\text{INT, VARCHAR(50)}","\\text{DECIMAL(10,2) pour un prix}","\\text{DATE pour une date}","\\text{CHAR(5) pour un code postal}"],"titre":"Le type juste, au bon endroit","type":"etape"},"update_delete":{"kicker":"Modifier, supprimer : prudence","tex":["\\text{UPDATE table SET colonne = valeur}","\\text{DELETE FROM table}","\\text{sans WHERE : toute la table}","\\text{d'abord un SELECT qui vérifie}"],"titre":"Le WHERE oublié coûte cher","type":"etape"},"where_logique":{"kicker":"Combiner les conditions","tex":["\\text{AND : les deux vraies}","\\text{OR : au moins une vraie}","\\text{NOT : l'inverse}","\\text{priorité : NOT, puis AND, puis OR}"],"titre":"Parenthèses pour clarifier","type":"etape"}},"matiere":"Informatique","parties":[{"debut":"p01","sous_titre":"Base de données, modèle relationnel et clés"},{"debut":"p13","pont":{"dit":"Partie deux : le schéma d'une bibliothèque, les cardinalités entre les tables, puis la construction : créer des tables, choisir les bons types, poser les contraintes, et faire évoluer une structure existante.","texte":"Partie 2 : schéma, cardinalités, création de tables."},"sous_titre":"Schéma, cardinalités et création de tables"},{"debut":"p24","pont":{"dit":"Partie trois : combiner les conditions avec AND, OR et NOT, filtrer plus fin avec BETWEEN, IN, LIKE et IS NULL, puis insérer, modifier et supprimer des données, avant trois cas concrets et le récapitulatif.","texte":"Partie 3 : filtres, manipulation et cas concrets."},"sous_titre":"Filtres, manipulation et cas concrets"}],"phrases":[{"dit":"Bienvenue dans ce cours sur les bases de données : concepts et manipulation avec SQL. Imaginez une bibliothèque universelle sans classement ni catalogue : retrouver un seul livre y serait presque impossible. Les bases de données sont la réponse à ce défi, pour stocker, organiser et retrouver des masses d'informations.","ecran":"titre","id":"p01","texte":"Des données en vrac à une bibliothèque organisée."},{"dit":"Une base de données est une collection organisée de données, structurée pour être stockée, consultée, gérée et mise à jour efficacement par un système informatique. C'est bien plus qu'un simple fichier : c'est un système intégré, avec un modèle de données, un moteur de gestion et des interfaces.","ecran":"def_bd","id":"p02","texte":"Base de données : collection organisée, système intégré."},{"dit":"Le véritable cerveau derrière la base de données, c'est le SGBD, le système de gestion de base de données. C'est un logiciel intermédiaire entre la base, les applications et les utilisateurs : il définit la structure, manipule les données, contrôle les accès, garantit l'intégrité et gère les transactions et la concurrence.","ecran":"sgbd","id":"p03","texte":"SGBD : le cerveau entre base et utilisateurs."},{"dit":"Les SGBD relationnels les plus connus sont MySQL, PostgreSQL, Oracle Database, Microsoft SQL Server et SQLite, ce dernier léger et embarqué. Tous parlent le même langage d'interrogation, que nous découvrirons bientôt : SQL.","ecran":"sgbd_exemples","id":"p04","texte":"MySQL, PostgreSQL, Oracle, SQL Server, SQLite."},{"dit":"Jusqu'à la fin des années soixante, les données vivaient dans des structures hiérarchiques ou en réseau, complexes à concevoir et à interroger. En mille neuf cent soixante-dix, Edgar F. Codd, informaticien britannique chez IBM, propose une idée d'une élégante simplicité : représenter toutes les données sous une forme unique, la table, fondée sur la théorie des ensembles.","ecran":"codd","id":"p05","texte":"1970, Codd, IBM : les données deviennent des tables."},{"dit":"En mathématiques, une relation est un sous-ensemble du produit cartésien de plusieurs domaines. Si l'on prend un domaine des noms et un domaine des âges, une relation Personne est un ensemble de couples, comme Léa vingt-deux ans et Hugo vingt-trois ans. Cette rigueur donne au modèle sa puissance et sa prédictibilité.","ecran":"relation","id":"p06","texte":"Relation : un ensemble de couples tirés de domaines."},{"dit":"En pratique, une relation, c'est simplement une table à deux dimensions. Elle représente une entité du monde réel, comme des clients, des commandes ou des produits. Chaque colonne est un attribut, chaque ligne un tuple, c'est-à-dire une instance de l'entité, comme un client particulier.","ecran":"table","id":"p07","texte":"Une table : des colonnes, des lignes, une entité."},{"dit":"Chaque attribut n'est pas qu'un simple nom : il est associé à un domaine, l'ensemble des valeurs autorisées pour cet attribut. Le domaine est un contrat d'intégrité : on ne stockera pas un numéro de téléphone dans une date de naissance, ni du texte dans un âge. Pour un code pays de deux lettres, CHAR deux lettres suffit, inutile de gaspiller avec un long texte variable.","ecran":"domaine","id":"p08","texte":"Domaine : le contrat qui dit ce qui est autorisé."},{"dit":"Avant toute insertion, on définit le schéma : le plan de la structure, noms et types des colonnes, contraintes. L'instance, elle, c'est le contenu à un instant donné, l'ensemble des lignes stockées. Bien définir le schéma d'abord est crucial : retoucher une table qui contient déjà des millions d'enregistrements peut coûter très cher.","ecran":"schema","id":"p09","texte":"Schéma : le plan. Instance : le contenu."},{"dit":"La clé primaire identifie de manière unique chaque ligne d'une table, et une table n'en a qu'une seule. Deux lignes ne peuvent pas partager la même valeur, cette valeur ne peut jamais être nulle, et idéalement elle ne change jamais. Dans une table Étudiants, le numéro d'étudiant est un excellent candidat : deux étudiants peuvent s'appeler Jean Martin, jamais partager le même numéro.","ecran":"pk","id":"p10","texte":"Clé primaire : unique, jamais nulle, stable."},{"dit":"La clé étrangère est le pont relationnel : un attribut d'une table enfant qui fait référence à la clé primaire d'une table parent. Elle garantit l'intégrité référentielle : on ne peut pas référencer ce qui n'existe pas. Un étudiant ne peut pas être inscrit à une formation absente du catalogue, car son identifiant de formation doit exister dans la table des formations.","ecran":"fk","id":"p11","texte":"Clé étrangère : le pont vers la table parent."},{"dit":"Il existe d'autres clés. Une clé candidate est un finaliste pour le rôle de clé primaire, unique et non nulle : une table peut en avoir plusieurs, on en choisit une. Une clé candidate non choisie devient une clé alternative, souvent protégée par une contrainte d'unicité. Une clé composite, enfin, combine plusieurs attributs : aucun n'est unique seul, mais leur combinaison l'est.","ecran":"cles_autres","id":"p12","texte":"Candidates, alternatives, composites : les autres clés."},{"dit":"Regardons un mini-schéma de bibliothèque. La table Livres porte l'ISBN en clé primaire, avec le titre et l'auteur. La table Adhérents porte son identifiant, son nom et son prénom. La table Emprunts porte son identifiant, l'ISBN en clé étrangère vers Livres, l'identifiant d'adhérent en clé étrangère vers Adhérents, et les dates d'emprunt et de retour.","ecran":"schema_biblio","id":"p13","texte":"Bibliothèque : Livres, Adhérents, Emprunts reliés."},{"dit":"Les clés étrangères transforment une collection de tables indépendantes en un écosystème interconnecté. Ce sont elles qui structurent les données, garantissent leur cohérence et permettent de reconstituer une vue complète du monde modélisé. Sans elles, on n'aurait qu'une collection de fichiers.","ecran":"relations","id":"p14","texte":"Des tables reliées par leurs clés étrangères."},{"dit":"Les relations se classent par cardinalité. En un à plusieurs, la plus courante, un département emploie plusieurs employés, et chaque employé n'a qu'un seul département : la clé du un voyage en clé étrangère dans la table du plusieurs. En plusieurs à plusieurs, un étudiant suit plusieurs cours et un cours accueille plusieurs étudiants. En un à un, plus rare, on scinde une table trop large, par exemple pour isoler des données sensibles.","ecran":"cardinalites","id":"p15","texte":"Un à plusieurs, plusieurs à plusieurs, un à un."},{"dit":"Or une relation plusieurs à plusieurs ne s'implémente pas directement avec deux tables. On crée une table d'association, comme Inscriptions, qui porte les deux clés étrangères, la date d'inscription et la note. Elle brise la relation en deux relations un à plusieurs, et sa clé primaire peut être la combinaison des deux identifiants, si un étudiant ne s'inscrit qu'une fois à un même cours.","ecran":"association","id":"p16","texte":"Inscriptions : la jonction qui brise le plusieurs à plusieurs."},{"dit":"Passons à la construction. La commande CREATE TABLE donne vie à une structure : on nomme la table, puis on déclare chaque colonne avec son type et ses contraintes. La commande crée une structure vide, prête à accueillir des données. C'est l'incantation qui transforme le plan en étagère réelle.","ecran":"create","id":"p17","texte":"CREATE TABLE : nommer, typer, contraindre."},{"dit":"Choisir le bon type est essentiel pour l'intégrité et l'efficacité. On utilise INT pour un identifiant, VARCHAR cinquante pour un nom, DECIMAL dix virgule deux pour un prix, afin d'éviter les erreurs d'arrondi des calculs financiers, DATE pour une date, et CHAR cinq pour un code postal français, dont la longueur est toujours fixe.","ecran":"types","id":"p18","texte":"INT, VARCHAR, DECIMAL, DATE, CHAR : le type juste."},{"dit":"Les contraintes sont les règles qui assurent la fiabilité des données. La clé primaire identifie, la clé étrangère relie, NOT NULL interdit le vide, UNIQUE interdit les doublons, CHECK impose une règle comme un solde jamais négatif, et DEFAULT fournit une valeur par défaut, comme la date du jour pour une inscription. C'est la base elle-même qui refuse les données incohérentes.","ecran":"contraintes","id":"p19","texte":"Six contraintes : la base refuse l'incohérent."},{"dit":"Enrichissons une table Clients : identifiant entier en clé primaire, prénom et nom jamais nuls, email unique et jamais nul, code pays de deux lettres avec FR par défaut, solde décimal par défaut zéro et jamais négatif, date d'inscription par défaut la date du jour et jamais nulle. Six règles, une seule table, et déjà une base robuste.","ecran":"clients","id":"p20","texte":"Clients : six règles dans une seule table."},{"dit":"Une base n'est pas figée : elle évolue avec les besoins. ALTER TABLE permet d'ajouter une colonne, d'en supprimer une, attention, c'est destructeur, de modifier un type sous conditions de compatibilité, ou d'ajouter une contrainte. DROP TABLE, elle, efface définitivement la table et toutes ses données : en production, sauvegardez avant toute opération majeure.","ecran":"alter_drop","id":"p21","texte":"ALTER fait évoluer, DROP efface tout."},{"dit":"Venons-en à l'interrogation. L'instruction SELECT suit la pensée naturelle : je veux voir quoi, venant d'où, sous quelles conditions ? SELECT dit ce que l'on veut voir, c'est la projection. FROM dit d'où cela vient, la source. WHERE dit sous quelles conditions, c'est le filtrage. SQL, développé chez IBM dans les années soixante-dix sous le nom de SEQUEL, doit son succès à cette lisibilité proche du langage naturel.","ecran":"select","id":"p22","texte":"SELECT quoi, FROM d'où, WHERE sous conditions."},{"dit":"La projection choisit les colonnes qui nous intéressent, à l'exclusion des autres : on peut sélectionner nom, prénom et département dans Employés, ou renommer avec un alias pour plus de clarté. Sélectionner toutes les colonnes avec l'étoile est pratique pour explorer, mais à éviter en production : données inutiles transférées, dépendance à la structure exacte, et risque d'exposer des données sensibles.","ecran":"projection","id":"p23","texte":"Projection : choisir, renommer, éviter l'étoile."},{"dit":"La clause WHERE introduit la logique booléenne. AND exige que les deux conditions soient vraies, OR qu'au moins une le soit, NOT inverse la valeur de vérité. Attention à la priorité : NOT d'abord, puis AND, puis OR. Sans parenthèses, une condition mélangeant OR et AND peut surprendre : clarifiez toujours votre intention avec des parenthèses.","ecran":"where_logique","id":"p24","texte":"AND, OR, NOT : priorité et parenthèses."},{"dit":"Des opérateurs spécialisés affinent le filtrage. BETWEEN sélectionne un intervalle, bornes incluses, comme un salaire entre deux mille cinq cents et quatre mille. IN teste l'appartenance à une liste, évitant une ribambelle de OR. LIKE recherche un motif dans du texte : le pourcent remplace zéro, un ou plusieurs caractères, le tiret bas exactement un caractère. Et pour l'absence de donnée, on écrit IS NULL : comparer avec égal NULL ne renvoie jamais vrai, car on ne compare pas l'égalité avec l'inconnu.","ecran":"operateurs","id":"p25","texte":"BETWEEN, IN, LIKE, IS NULL : filtrer plus fin."},{"dit":"Exemple chiffré, résolu. Dans la table Employés, cherchons les employés du département Informatique gagnant plus de trois mille cinq cents. On sélectionne nom, prénom et salaire, dans Employés, là où le département vaut Informatique et le salaire dépasse trois mille cinq cents. Les deux conditions combinées par ET ne gardent que les lignes qui satisfont les deux à la fois.","ecran":"exemple_filtre","id":"p26","texte":"Informatique et salaire au-delà de 3500 : qui reste ?"},{"dit":"Passons à l'écriture des données. INSERT précise les colonnes puis les valeurs, dans le même ordre, sans faute. On peut insérer plusieurs lignes en une seule commande, bien plus efficace que trois commandes séparées. Et INSERT suivi de SELECT permet de peupler une table avec les résultats filtrés d'une autre, par exemple tous les employés dont le salaire dépasse quarante mille, vers une table de managers.","ecran":"insert","id":"p27","texte":"INSERT : colonnes, valeurs, même ordre."},{"dit":"Les données changent : un salaire augmente, un employé change de département. UPDATE fixe les nouvelles valeurs, DELETE retire les lignes, mais tous deux exigent un WHERE. L'avertissement le plus important de tout SQL : oublier le WHERE dans un UPDATE ou un DELETE est une catastrophe, car la commande s'applique alors à toutes les lignes de la table. Écrivez le WHERE d'abord, et vérifiez-le avec un SELECT équivalent avant d'exécuter.","ecran":"update_delete","id":"p28","texte":"UPDATE, DELETE : jamais sans WHERE vérifié."},{"dit":"Pour vider une table entière, DELETE sans WHERE fonctionne, mais TRUNCATE est plus efficace pour les très grandes tables. Côté intégrité, supprimer un parent référencé peut être interdit, c'est la règle par défaut, ou répété sur les enfants avec CASCADE, ou traduit par une mise à NULL du lien. CASCADE est une arme à double tranchant : supprimer un client effacerait d'un coup toutes ses commandes.","ecran":"truncate_cascade","id":"p29","texte":"Vider, cascader, annuler le lien : choisir en conscience."},{"dit":"Appliquons tout cela à la bibliothèque Les Sages Pages. Un adhérent veut emprunter un livre : on vérifie d'abord que le livre est disponible, avec une recherche par motif sur le titre, puis on insère l'emprunt avec le livre, l'adhérent et la date de retour prévue, et enfin on met à jour le livre, dont la disponibilité passe à faux. Pour les retards, on joint emprunts, adhérents et livres, et on garde les emprunts dont le retour effectif est nul et dont la date prévue est dépassée.","ecran":"bibliotheque","id":"p30","texte":"Emprunter en trois gestes, repérer les retards."},{"dit":"Les mêmes règles s'adaptent à d'autres métiers. Une auberge de dix chambres doit éviter toute double réservation sur les mêmes dates, imposer un départ après l'arrivée, et calculer ses tarifs selon la saison. Une plateforme de cours doit garantir une seule inscription par couple cours et étudiant, et suivre la progression module par module. Partout, les mêmes ingrédients : tables, clés étrangères, contraintes métier et requêtes.","ecran":"cas_autres","id":"p31","texte":"Auberge, plateforme : mêmes règles, autres métiers."},{"dit":"Retenons l'essentiel : une base de données est une collection organisée pilotée par un SGBD ; une table, c'est des lignes et des colonnes, un schéma d'abord, des données ensuite ; les clés identifient et relient, les contraintes protègent ; SQL crée avec CREATE, lit avec SELECT, écrit avec INSERT, UPDATE et DELETE ; et surtout, jamais de modification sans un WHERE vérifié.","ecran":"recap","id":"p32","texte":"Tables, clés, SQL, prudence : l'essentiel."}],"titre":"Bases de données : concepts et manipulation avec SQL"}
+{
+ "cours": 6410,
+ "ecrans": {
+  "alter_drop": {
+   "kicker": "Faire évoluer une table",
+   "tex": [
+    "\\text{ALTER TABLE : ajouter, retirer}",
+    "\\text{ALTER TABLE : changer un type}",
+    "\\text{DROP TABLE : tout effacer}",
+    "\\text{sauvegarder avant toute casse}"
+   ],
+   "titre": "Évoluer, jamais sans filet",
+   "type": "etape"
+  },
+  "association": {
+   "kicker": "Plusieurs à plusieurs : la jonction",
+   "tex": [
+    "\\text{Inscriptions : la table jonction}",
+    "\\text{id\\_étudiant, id\\_cours}",
+    "\\text{date\\_inscription, note}",
+    "\\text{deux relations un à plusieurs}"
+   ],
+   "titre": "Une jonction brise le plusieurs à plusieurs",
+   "type": "etape"
+  },
+  "bibliotheque": {
+   "kicker": "Cas concret : la bibliothèque",
+   "tex": [
+    "\\text{vérifier : livre disponible}",
+    "\\text{INSERT : enregistrer l'emprunt}",
+    "\\text{UPDATE : disponible devient faux}",
+    "\\text{retard : retour nul et date dépassée}"
+   ],
+   "titre": "Emprunter en trois gestes",
+   "type": "etape"
+  },
+  "cardinalites": {
+   "kicker": "Trois cardinalités",
+   "tex": [
+    "\\text{un à plusieurs : département, employés}",
+    "\\text{plusieurs à plusieurs : cours, étudiants}",
+    "\\text{un à un : données sensibles à part}",
+    "\\text{la clé du un voyage vers le plusieurs}"
+   ],
+   "titre": "Un, plusieurs : compter les liens",
+   "type": "etape"
+  },
+  "cas_autres": {
+   "kicker": "Deux autres terrains",
+   "tex": [
+    "\\text{auberge : jamais deux réservations}",
+    "\\text{auberge : départ après arrivée}",
+    "\\text{plateforme : une inscription par cours}",
+    "\\text{partout : clés et contraintes}"
+   ],
+   "titre": "Mêmes règles, autres métiers",
+   "type": "etape"
+  },
+  "cles_autres": {
+   "kicker": "Les autres clés",
+   "tex": [
+    "\\text{candidate : finaliste pour primaire}",
+    "\\text{alternative : candidate non choisie}",
+    "\\text{composite : plusieurs attributs}",
+    "\\text{combinaison unique, attributs non}"
+   ],
+   "titre": "Finalistes, remplaçantes, équipes",
+   "type": "etape"
+  },
+  "clients": {
+   "kicker": "Exemple complet : Clients",
+   "tex": [
+    "\\text{client\\_id : clé primaire}",
+    "\\text{email : unique, jamais nul}",
+    "\\text{solde : jamais négatif}",
+    "\\text{pays : deux lettres, défaut FR}"
+   ],
+   "titre": "Six règles dans une seule table",
+   "type": "etape"
+  },
+  "codd": {
+   "kicker": "1970 : la rupture de Codd",
+   "tex": [
+    "\\text{Edgar F. Codd, chercheur IBM}",
+    "\\text{avant : hiérarchique et réseau}",
+    "\\text{une seule forme : la table}",
+    "\\text{logique séparée du physique}"
+   ],
+   "titre": "Une idée simple, une révolution",
+   "type": "etape"
+  },
+  "contraintes": {
+   "kicker": "Six contraintes, six garde-fous",
+   "tex": [
+    "\\text{PRIMARY KEY, FOREIGN KEY}",
+    "\\text{NOT NULL, UNIQUE}",
+    "\\text{CHECK : une règle à respecter}",
+    "\\text{DEFAULT : valeur par défaut}"
+   ],
+   "titre": "La base refuse l'incohérent",
+   "type": "etape"
+  },
+  "create": {
+   "kicker": "Créer : CREATE TABLE",
+   "tex": [
+    "\\text{CREATE TABLE Nom}",
+    "\\text{colonne, type, contraintes}",
+    "\\text{une ligne par colonne}",
+    "\\text{structure vide, prête à l'emploi}"
+   ],
+   "titre": "Dessiner l'étagère avant de ranger",
+   "type": "etape"
+  },
+  "def_bd": {
+   "kicker": "Définir : la base de données",
+   "tex": [
+    "\\text{collection organisée de données}",
+    "\\text{stockée, consultée, gérée}",
+    "\\text{mise à jour en sécurité}",
+    "\\text{modèle, moteur, interfaces}"
+   ],
+   "titre": "Plus qu'un fichier : un système",
+   "type": "etape"
+  },
+  "domaine": {
+   "kicker": "Attributs et domaines",
+   "tex": [
+    "\\text{attribut : une colonne typée}",
+    "\\text{domaine : valeurs autorisées}",
+    "\\text{jamais de texte dans un âge}",
+    "\\text{CHAR(2) suffit pour un code pays}"
+   ],
+   "titre": "Le type, un contrat d'intégrité",
+   "type": "etape"
+  },
+  "exemple_filtre": {
+   "kicker": "Exemple chiffré : qui filtrer ?",
+   "tex": [
+    "\\text{département : Informatique}",
+    "\\text{salaire : plus de 3500}",
+    "\\text{colonnes : nom, prénom, salaire}",
+    "\\text{ET combine les deux conditions}"
+   ],
+   "titre": "Deux conditions, une seule réponse",
+   "type": "etape"
+  },
+  "fk": {
+   "kicker": "La clé étrangère",
+   "tex": [
+    "\\text{pointe vers une clé primaire}",
+    "\\text{table enfant vers table parent}",
+    "\\text{rien vers ce qui n'existe pas}",
+    "\\text{exemple : id\\_formation}"
+   ],
+   "titre": "Le pont entre deux tables",
+   "type": "etape"
+  },
+  "insert": {
+   "kicker": "Insérer : INSERT",
+   "tex": [
+    "\\text{colonnes, puis valeurs}",
+    "\\text{même ordre, sans faute}",
+    "\\text{plusieurs lignes en une fois}",
+    "\\text{INSERT ... SELECT : copier filtré}"
+   ],
+   "titre": "Peupler, ligne par ligne",
+   "type": "etape"
+  },
+  "operateurs": {
+   "kicker": "Filtrer plus fin",
+   "tex": [
+    "\\text{BETWEEN : bornes incluses}",
+    "\\text{IN : une liste de valeurs}",
+    "\\text{LIKE : pourcent et tiret bas}",
+    "\\text{IS NULL : l'absence de donnée}"
+   ],
+   "titre": "Intervalles, listes, motifs, vide",
+   "type": "etape"
+  },
+  "pk": {
+   "kicker": "La clé primaire",
+   "tex": [
+    "\\text{unique : jamais deux pareilles}",
+    "\\text{jamais nulle}",
+    "\\text{stable : elle ne change pas}",
+    "\\text{exemple : numéro d'étudiant}"
+   ],
+   "titre": "Un identifiant absolu",
+   "type": "etape"
+  },
+  "projection": {
+   "kicker": "Choisir les colonnes",
+   "tex": [
+    "\\text{projection : colonnes choisies}",
+    "\\text{SELECT nom, prénom, département}",
+    "\\text{SELECT étoile : tout, avec parcimonie}",
+    "\\text{alias AS : renommer pour lire}"
+   ],
+   "titre": "Voir juste ce qu'il faut",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Base de données : collection organisée, pilotée par un SGBD",
+    "Table : lignes et colonnes, schéma d'abord, données ensuite",
+    "Clés : primaire unique, étrangère qui relie, contraintes qui protègent",
+    "SQL : créer avec CREATE, lire avec SELECT, écrire avec INSERT, UPDATE, DELETE",
+    "Prudence : jamais de UPDATE ni de DELETE sans WHERE vérifié"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "relation": {
+   "kicker": "Définir : la relation",
+   "note": "Une relation est un ensemble de couples pris dans des domaines.",
+   "tex": "R \\subseteq D_1 \\times D_2 \\times \\cdots \\times D_n",
+   "type": "formule"
+  },
+  "relations": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "table_relationnelle_fig",
+    "relie": true
+   },
+   "kicker": "Des tables reliées",
+   "texte": "Des tables reliées par leurs clés étrangères.",
+   "type": "phrase"
+  },
+  "schema": {
+   "kicker": "Schéma contre instance",
+   "tex": [
+    "\\text{schéma : le plan, avant les données}",
+    "\\text{instance : le contenu, à un instant}",
+    "\\text{bien définir avant d'insérer}",
+    "\\text{millions de lignes : gare aux retouches}"
+   ],
+   "titre": "Le plan, puis le contenu",
+   "type": "etape"
+  },
+  "schema_biblio": {
+   "kicker": "Mini-schéma : la bibliothèque",
+   "tex": [
+    "\\text{Livres : ISBN, Titre, Auteur}",
+    "\\text{Adhérents : ID, Nom, Prénom}",
+    "\\text{Emprunts : ID, ISBN, ID\\_Adhérent}",
+    "\\text{Emprunts : dates d'emprunt et retour}"
+   ],
+   "titre": "Trois tables, deux ponts",
+   "type": "etape"
+  },
+  "select": {
+   "kicker": "Interroger : SELECT",
+   "tex": [
+    "\\text{SELECT : ce que je veux voir}",
+    "\\text{FROM : d'où cela vient}",
+    "\\text{WHERE : sous quelles conditions}",
+    "\\text{quoi, d'où, sous conditions}"
+   ],
+   "titre": "Poser la question en trois mots",
+   "type": "etape"
+  },
+  "sgbd": {
+   "kicker": "Le SGBD, le cerveau",
+   "tex": [
+    "\\text{définir la structure}",
+    "\\text{manipuler les données}",
+    "\\text{contrôler les accès}",
+    "\\text{garantir intégrité et transactions}"
+   ],
+   "titre": "Intermédiaire entre base et utilisateurs",
+   "type": "etape"
+  },
+  "sgbd_exemples": {
+   "kicker": "Cinq SGBD connus",
+   "tex": [
+    "\\text{MySQL, PostgreSQL}",
+    "\\text{Oracle Database}",
+    "\\text{Microsoft SQL Server}",
+    "\\text{SQLite, léger et embarqué}"
+   ],
+   "titre": "Le relationnel partout",
+   "type": "etape"
+  },
+  "table": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "table_relationnelle_fig"
+   },
+   "kicker": "En pratique : la table",
+   "texte": "Une table : des colonnes, des lignes, une entité.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "table_relationnelle_fig"
+   },
+   "kicker": "Informatique · Bases de données et SQL",
+   "sous": "Tables, clés, schéma et requêtes : de la théorie de Codd à la manipulation des données",
+   "titre": "Bases de données : concepts et manipulation avec SQL",
+   "type": "titre"
+  },
+  "truncate_cascade": {
+   "kicker": "Vider, en cascade, avec prudence",
+   "tex": [
+    "\\text{DELETE sans WHERE : tout disparaît}",
+    "\\text{TRUNCATE : vider vite une table}",
+    "\\text{CASCADE : les enfants suivent}",
+    "\\text{SET NULL : le lien s'efface}"
+   ],
+   "titre": "Trois façons d'effacer, une prudence",
+   "type": "etape"
+  },
+  "types": {
+   "kicker": "Choisir le bon type",
+   "tex": [
+    "\\text{INT, VARCHAR(50)}",
+    "\\text{DECIMAL(10,2) pour un prix}",
+    "\\text{DATE pour une date}",
+    "\\text{CHAR(5) pour un code postal}"
+   ],
+   "titre": "Le type juste, au bon endroit",
+   "type": "etape"
+  },
+  "update_delete": {
+   "kicker": "Modifier, supprimer : prudence",
+   "tex": [
+    "\\text{UPDATE table SET colonne = valeur}",
+    "\\text{DELETE FROM table}",
+    "\\text{sans WHERE : toute la table}",
+    "\\text{d'abord un SELECT qui vérifie}"
+   ],
+   "titre": "Le WHERE oublié coûte cher",
+   "type": "etape"
+  },
+  "where_logique": {
+   "kicker": "Combiner les conditions",
+   "tex": [
+    "\\text{AND : les deux vraies}",
+    "\\text{OR : au moins une vraie}",
+    "\\text{NOT : l'inverse}",
+    "\\text{priorité : NOT, puis AND, puis OR}"
+   ],
+   "titre": "Parenthèses pour clarifier",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Base de données, modèle relationnel et clés"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : le schéma d'une bibliothèque, les cardinalités entre les tables, puis la construction : créer des tables, choisir les bons types, poser les contraintes, et faire évoluer une structure existante.",
+    "texte": "Partie 2 : schéma, cardinalités, création de tables."
+   },
+   "sous_titre": "Schéma, cardinalités et création de tables"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : combiner les conditions avec AND, OR et NOT, filtrer plus fin avec BETWEEN, IN, LIKE et IS NULL, puis insérer, modifier et supprimer des données, avant trois cas concrets et le récapitulatif.",
+    "texte": "Partie 3 : filtres, manipulation et cas concrets."
+   },
+   "sous_titre": "Filtres, manipulation et cas concrets"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur les bases de données : concepts et manipulation avec SQL. Imaginez une bibliothèque universelle sans classement ni catalogue : retrouver un seul livre y serait presque impossible. Les bases de données sont la réponse à ce défi, pour stocker, organiser et retrouver des masses d'informations.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Des données en vrac à une bibliothèque organisée."
+  },
+  {
+   "dit": "Une base de données est une collection organisée de données, structurée pour être stockée, consultée, gérée et mise à jour efficacement par un système informatique. C'est bien plus qu'un simple fichier : c'est un système intégré, avec un modèle de données, un moteur de gestion et des interfaces.",
+   "ecran": "def_bd",
+   "id": "p02",
+   "texte": "Base de données : collection organisée, système intégré."
+  },
+  {
+   "dit": "Le véritable cerveau derrière la base de données, c'est le SGBD, le système de gestion de base de données. C'est un logiciel intermédiaire entre la base, les applications et les utilisateurs : il définit la structure, manipule les données, contrôle les accès, garantit l'intégrité et gère les transactions et la concurrence.",
+   "ecran": "sgbd",
+   "id": "p03",
+   "texte": "SGBD : le cerveau entre base et utilisateurs."
+  },
+  {
+   "dit": "Les SGBD relationnels les plus connus sont MySQL, PostgreSQL, Oracle Database, Microsoft SQL Server et SQLite, ce dernier léger et embarqué. Tous parlent le même langage d'interrogation, que nous découvrirons bientôt : SQL.",
+   "ecran": "sgbd_exemples",
+   "id": "p04",
+   "texte": "MySQL, PostgreSQL, Oracle, SQL Server, SQLite."
+  },
+  {
+   "dit": "Jusqu'à la fin des années soixante, les données vivaient dans des structures hiérarchiques ou en réseau, complexes à concevoir et à interroger. En mille neuf cent soixante-dix, Edgar F. Codd, informaticien britannique chez IBM, propose une idée d'une élégante simplicité : représenter toutes les données sous une forme unique, la table, fondée sur la théorie des ensembles.",
+   "ecran": "codd",
+   "id": "p05",
+   "texte": "1970, Codd, IBM : les données deviennent des tables."
+  },
+  {
+   "dit": "En mathématiques, une relation est un sous-ensemble du produit cartésien de plusieurs domaines. Si l'on prend un domaine des noms et un domaine des âges, une relation Personne est un ensemble de couples, comme Léa vingt-deux ans et Hugo vingt-trois ans. Cette rigueur donne au modèle sa puissance et sa prédictibilité.",
+   "ecran": "relation",
+   "id": "p06",
+   "texte": "Relation : un ensemble de couples tirés de domaines."
+  },
+  {
+   "dit": "En pratique, une relation, c'est simplement une table à deux dimensions. Elle représente une entité du monde réel, comme des clients, des commandes ou des produits. Chaque colonne est un attribut, chaque ligne un tuple, c'est-à-dire une instance de l'entité, comme un client particulier.",
+   "ecran": "table",
+   "id": "p07",
+   "texte": "Une table : des colonnes, des lignes, une entité."
+  },
+  {
+   "dit": "Chaque attribut n'est pas qu'un simple nom : il est associé à un domaine, l'ensemble des valeurs autorisées pour cet attribut. Le domaine est un contrat d'intégrité : on ne stockera pas un numéro de téléphone dans une date de naissance, ni du texte dans un âge. Pour un code pays de deux lettres, CHAR deux lettres suffit, inutile de gaspiller avec un long texte variable.",
+   "ecran": "domaine",
+   "id": "p08",
+   "texte": "Domaine : le contrat qui dit ce qui est autorisé."
+  },
+  {
+   "dit": "Avant toute insertion, on définit le schéma : le plan de la structure, noms et types des colonnes, contraintes. L'instance, elle, c'est le contenu à un instant donné, l'ensemble des lignes stockées. Bien définir le schéma d'abord est crucial : retoucher une table qui contient déjà des millions d'enregistrements peut coûter très cher.",
+   "ecran": "schema",
+   "id": "p09",
+   "texte": "Schéma : le plan. Instance : le contenu."
+  },
+  {
+   "dit": "La clé primaire identifie de manière unique chaque ligne d'une table, et une table n'en a qu'une seule. Deux lignes ne peuvent pas partager la même valeur, cette valeur ne peut jamais être nulle, et idéalement elle ne change jamais. Dans une table Étudiants, le numéro d'étudiant est un excellent candidat : deux étudiants peuvent s'appeler Jean Martin, jamais partager le même numéro.",
+   "ecran": "pk",
+   "id": "p10",
+   "texte": "Clé primaire : unique, jamais nulle, stable."
+  },
+  {
+   "dit": "La clé étrangère est le pont relationnel : un attribut d'une table enfant qui fait référence à la clé primaire d'une table parent. Elle garantit l'intégrité référentielle : on ne peut pas référencer ce qui n'existe pas. Un étudiant ne peut pas être inscrit à une formation absente du catalogue, car son identifiant de formation doit exister dans la table des formations.",
+   "ecran": "fk",
+   "id": "p11",
+   "texte": "Clé étrangère : le pont vers la table parent."
+  },
+  {
+   "dit": "Il existe d'autres clés. Une clé candidate est un finaliste pour le rôle de clé primaire, unique et non nulle : une table peut en avoir plusieurs, on en choisit une. Une clé candidate non choisie devient une clé alternative, souvent protégée par une contrainte d'unicité. Une clé composite, enfin, combine plusieurs attributs : aucun n'est unique seul, mais leur combinaison l'est.",
+   "ecran": "cles_autres",
+   "id": "p12",
+   "texte": "Candidates, alternatives, composites : les autres clés."
+  },
+  {
+   "dit": "Regardons un mini-schéma de bibliothèque. La table Livres porte l'ISBN en clé primaire, avec le titre et l'auteur. La table Adhérents porte son identifiant, son nom et son prénom. La table Emprunts porte son identifiant, l'ISBN en clé étrangère vers Livres, l'identifiant d'adhérent en clé étrangère vers Adhérents, et les dates d'emprunt et de retour.",
+   "ecran": "schema_biblio",
+   "id": "p13",
+   "texte": "Bibliothèque : Livres, Adhérents, Emprunts reliés."
+  },
+  {
+   "dit": "Les clés étrangères transforment une collection de tables indépendantes en un écosystème interconnecté. Ce sont elles qui structurent les données, garantissent leur cohérence et permettent de reconstituer une vue complète du monde modélisé. Sans elles, on n'aurait qu'une collection de fichiers.",
+   "ecran": "relations",
+   "id": "p14",
+   "texte": "Des tables reliées par leurs clés étrangères."
+  },
+  {
+   "dit": "Les relations se classent par cardinalité. En un à plusieurs, la plus courante, un département emploie plusieurs employés, et chaque employé n'a qu'un seul département : la clé du un voyage en clé étrangère dans la table du plusieurs. En plusieurs à plusieurs, un étudiant suit plusieurs cours et un cours accueille plusieurs étudiants. En un à un, plus rare, on scinde une table trop large, par exemple pour isoler des données sensibles.",
+   "ecran": "cardinalites",
+   "id": "p15",
+   "texte": "Un à plusieurs, plusieurs à plusieurs, un à un."
+  },
+  {
+   "dit": "Or une relation plusieurs à plusieurs ne s'implémente pas directement avec deux tables. On crée une table d'association, comme Inscriptions, qui porte les deux clés étrangères, la date d'inscription et la note. Elle brise la relation en deux relations un à plusieurs, et sa clé primaire peut être la combinaison des deux identifiants, si un étudiant ne s'inscrit qu'une fois à un même cours.",
+   "ecran": "association",
+   "id": "p16",
+   "texte": "Inscriptions : la jonction qui brise le plusieurs à plusieurs."
+  },
+  {
+   "dit": "Passons à la construction. La commande CREATE TABLE donne vie à une structure : on nomme la table, puis on déclare chaque colonne avec son type et ses contraintes. La commande crée une structure vide, prête à accueillir des données. C'est l'incantation qui transforme le plan en étagère réelle.",
+   "ecran": "create",
+   "id": "p17",
+   "texte": "CREATE TABLE : nommer, typer, contraindre."
+  },
+  {
+   "dit": "Choisir le bon type est essentiel pour l'intégrité et l'efficacité. On utilise INT pour un identifiant, VARCHAR cinquante pour un nom, DECIMAL dix virgule deux pour un prix, afin d'éviter les erreurs d'arrondi des calculs financiers, DATE pour une date, et CHAR cinq pour un code postal français, dont la longueur est toujours fixe.",
+   "ecran": "types",
+   "id": "p18",
+   "texte": "INT, VARCHAR, DECIMAL, DATE, CHAR : le type juste."
+  },
+  {
+   "dit": "Les contraintes sont les règles qui assurent la fiabilité des données. La clé primaire identifie, la clé étrangère relie, NOT NULL interdit le vide, UNIQUE interdit les doublons, CHECK impose une règle comme un solde jamais négatif, et DEFAULT fournit une valeur par défaut, comme la date du jour pour une inscription. C'est la base elle-même qui refuse les données incohérentes.",
+   "ecran": "contraintes",
+   "id": "p19",
+   "texte": "Six contraintes : la base refuse l'incohérent."
+  },
+  {
+   "dit": "Enrichissons une table Clients : identifiant entier en clé primaire, prénom et nom jamais nuls, email unique et jamais nul, code pays de deux lettres avec FR par défaut, solde décimal par défaut zéro et jamais négatif, date d'inscription par défaut la date du jour et jamais nulle. Six règles, une seule table, et déjà une base robuste.",
+   "ecran": "clients",
+   "id": "p20",
+   "texte": "Clients : six règles dans une seule table."
+  },
+  {
+   "dit": "Une base n'est pas figée : elle évolue avec les besoins. ALTER TABLE permet d'ajouter une colonne, d'en supprimer une, attention, c'est destructeur, de modifier un type sous conditions de compatibilité, ou d'ajouter une contrainte. DROP TABLE, elle, efface définitivement la table et toutes ses données : en production, sauvegardez avant toute opération majeure.",
+   "ecran": "alter_drop",
+   "id": "p21",
+   "texte": "ALTER fait évoluer, DROP efface tout."
+  },
+  {
+   "dit": "Venons-en à l'interrogation. L'instruction SELECT suit la pensée naturelle : je veux voir quoi, venant d'où, sous quelles conditions ? SELECT dit ce que l'on veut voir, c'est la projection. FROM dit d'où cela vient, la source. WHERE dit sous quelles conditions, c'est le filtrage. SQL, développé chez IBM dans les années soixante-dix sous le nom de SEQUEL, doit son succès à cette lisibilité proche du langage naturel.",
+   "ecran": "select",
+   "id": "p22",
+   "texte": "SELECT quoi, FROM d'où, WHERE sous conditions."
+  },
+  {
+   "dit": "La projection choisit les colonnes qui nous intéressent, à l'exclusion des autres : on peut sélectionner nom, prénom et département dans Employés, ou renommer avec un alias pour plus de clarté. Sélectionner toutes les colonnes avec l'étoile est pratique pour explorer, mais à éviter en production : données inutiles transférées, dépendance à la structure exacte, et risque d'exposer des données sensibles.",
+   "ecran": "projection",
+   "id": "p23",
+   "texte": "Projection : choisir, renommer, éviter l'étoile."
+  },
+  {
+   "dit": "La clause WHERE introduit la logique booléenne. AND exige que les deux conditions soient vraies, OR qu'au moins une le soit, NOT inverse la valeur de vérité. Attention à la priorité : NOT d'abord, puis AND, puis OR. Sans parenthèses, une condition mélangeant OR et AND peut surprendre : clarifiez toujours votre intention avec des parenthèses.",
+   "ecran": "where_logique",
+   "id": "p24",
+   "texte": "AND, OR, NOT : priorité et parenthèses."
+  },
+  {
+   "dit": "Des opérateurs spécialisés affinent le filtrage. BETWEEN sélectionne un intervalle, bornes incluses, comme un salaire entre deux mille cinq cents et quatre mille. IN teste l'appartenance à une liste, évitant une ribambelle de OR. LIKE recherche un motif dans du texte : le pourcent remplace zéro, un ou plusieurs caractères, le tiret bas exactement un caractère. Et pour l'absence de donnée, on écrit IS NULL : comparer avec égal NULL ne renvoie jamais vrai, car on ne compare pas l'égalité avec l'inconnu.",
+   "ecran": "operateurs",
+   "id": "p25",
+   "texte": "BETWEEN, IN, LIKE, IS NULL : filtrer plus fin."
+  },
+  {
+   "dit": "Exemple chiffré, résolu. Dans la table Employés, cherchons les employés du département Informatique gagnant plus de trois mille cinq cents. On sélectionne nom, prénom et salaire, dans Employés, là où le département vaut Informatique et le salaire dépasse trois mille cinq cents. Les deux conditions combinées par ET ne gardent que les lignes qui satisfont les deux à la fois.",
+   "ecran": "exemple_filtre",
+   "id": "p26",
+   "texte": "Informatique et salaire au-delà de 3500 : qui reste ?"
+  },
+  {
+   "dit": "Passons à l'écriture des données. INSERT précise les colonnes puis les valeurs, dans le même ordre, sans faute. On peut insérer plusieurs lignes en une seule commande, bien plus efficace que trois commandes séparées. Et INSERT suivi de SELECT permet de peupler une table avec les résultats filtrés d'une autre, par exemple tous les employés dont le salaire dépasse quarante mille, vers une table de managers.",
+   "ecran": "insert",
+   "id": "p27",
+   "texte": "INSERT : colonnes, valeurs, même ordre."
+  },
+  {
+   "dit": "Les données changent : un salaire augmente, un employé change de département. UPDATE fixe les nouvelles valeurs, DELETE retire les lignes, mais tous deux exigent un WHERE. L'avertissement le plus important de tout SQL : oublier le WHERE dans un UPDATE ou un DELETE est une catastrophe, car la commande s'applique alors à toutes les lignes de la table. Écrivez le WHERE d'abord, et vérifiez-le avec un SELECT équivalent avant d'exécuter.",
+   "ecran": "update_delete",
+   "id": "p28",
+   "texte": "UPDATE, DELETE : jamais sans WHERE vérifié."
+  },
+  {
+   "dit": "Pour vider une table entière, DELETE sans WHERE fonctionne, mais TRUNCATE est plus efficace pour les très grandes tables. Côté intégrité, supprimer un parent référencé peut être interdit, c'est la règle par défaut, ou répété sur les enfants avec CASCADE, ou traduit par une mise à NULL du lien. CASCADE est une arme à double tranchant : supprimer un client effacerait d'un coup toutes ses commandes.",
+   "ecran": "truncate_cascade",
+   "id": "p29",
+   "texte": "Vider, cascader, annuler le lien : choisir en conscience."
+  },
+  {
+   "dit": "Appliquons tout cela à la bibliothèque Les Sages Pages. Un adhérent veut emprunter un livre : on vérifie d'abord que le livre est disponible, avec une recherche par motif sur le titre, puis on insère l'emprunt avec le livre, l'adhérent et la date de retour prévue, et enfin on met à jour le livre, dont la disponibilité passe à faux. Pour les retards, on joint emprunts, adhérents et livres, et on garde les emprunts dont le retour effectif est nul et dont la date prévue est dépassée.",
+   "ecran": "bibliotheque",
+   "id": "p30",
+   "texte": "Emprunter en trois gestes, repérer les retards."
+  },
+  {
+   "dit": "Les mêmes règles s'adaptent à d'autres métiers. Une auberge de dix chambres doit éviter toute double réservation sur les mêmes dates, imposer un départ après l'arrivée, et calculer ses tarifs selon la saison. Une plateforme de cours doit garantir une seule inscription par couple cours et étudiant, et suivre la progression module par module. Partout, les mêmes ingrédients : tables, clés étrangères, contraintes métier et requêtes.",
+   "ecran": "cas_autres",
+   "id": "p31",
+   "texte": "Auberge, plateforme : mêmes règles, autres métiers."
+  },
+  {
+   "dit": "Retenons l'essentiel : une base de données est une collection organisée pilotée par un SGBD ; une table, c'est des lignes et des colonnes, un schéma d'abord, des données ensuite ; les clés identifient et relient, les contraintes protègent ; SQL crée avec CREATE, lit avec SELECT, écrit avec INSERT, UPDATE et DELETE ; et surtout, jamais de modification sans un WHERE vérifié.",
+   "ecran": "recap",
+   "id": "p32",
+   "texte": "Tables, clés, SQL, prudence : l'essentiel."
+  }
+ ],
+ "titre": "Bases de données : concepts et manipulation avec SQL"
+}
