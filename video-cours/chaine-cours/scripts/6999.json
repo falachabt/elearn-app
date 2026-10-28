@@ -1,0 +1,454 @@
+{
+ "cours": 6999,
+ "ecrans": {
+  "accord": {
+   "kicker": "Approuver : les marqueurs",
+   "tex": [
+    "\\text{Estoy de acuerdo con...}",
+    "\\text{Tienes razón.}",
+    "\\text{Comparto tu opinión.}"
+   ],
+   "titre": "D'accord, tu as raison, je partage ton avis",
+   "type": "etape"
+  },
+  "accord2": {
+   "kicker": "Approuver : d'autres marqueurs",
+   "tex": [
+    "\\text{claro, por supuesto}",
+    "\\text{exacto, sin duda, eso es}",
+    "\\text{efectivamente}"
+   ],
+   "titre": "Bien sûr, exactement, effectivement",
+   "type": "etape"
+  },
+  "application_afrique": {
+   "kicker": "Application : réalités hispaniques et africaines",
+   "tex": [
+    "\\text{Estoy de acuerdo con...}",
+    "\\text{No creo que el español sea...}",
+    "\\text{Dudo que se pueda hablar...}"
+   ],
+   "titre": "Accord, opinion niée, doute : un débat positionné",
+   "type": "etape"
+  },
+  "certitude": {
+   "kicker": "La certitude : les marqueurs",
+   "tex": [
+    "\\text{estoy seguro de que}",
+    "\\text{es evidente que, es cierto que}",
+    "\\text{sin duda, está claro que, sé que}"
+   ],
+   "titre": "Sûr, évident, certain, clair",
+   "type": "etape"
+  },
+  "certitude_ex": {
+   "kicker": "Exemple résolu : la certitude",
+   "tex": [
+    "\\text{Estoy seguro de que}",
+    "\\text{aprueba el examen.}"
+   ],
+   "titre": "Indicatif aprueba : certitude affirmée",
+   "type": "etape"
+  },
+  "corruption": {
+   "kicker": "Application : la corruption",
+   "tex": [
+    "\\text{Pienso que la corrupción destruye...}",
+    "\\text{Es evidente que el trámite...}",
+    "\\text{Dudo que se elimine...}"
+   ],
+   "titre": "Opinion, certitude, doute sur un même thème",
+   "type": "etape"
+  },
+  "desaccord": {
+   "kicker": "Désapprouver : les marqueurs",
+   "tex": [
+    "\\text{No estoy de acuerdo con...}",
+    "\\text{Estoy en contra de...}",
+    "\\text{No comparto tu punto de vista.}"
+   ],
+   "titre": "Pas d'accord, contre, point de vue non partagé",
+   "type": "etape"
+  },
+  "desaccord2": {
+   "kicker": "Désapprouver : d'autres marqueurs",
+   "tex": [
+    "\\text{no es cierto, al contrario}",
+    "\\text{en absoluto, para nada}",
+    "\\text{discrepo}"
+   ],
+   "titre": "Ce n'est pas vrai, au contraire, je conteste",
+   "type": "etape"
+  },
+  "desapprobation_ex": {
+   "kicker": "Exemple résolu : désapprouver la corruption",
+   "tex": [
+    "\\text{Estoy en contra de que}",
+    "\\text{la corrupción afecte los trámites.}"
+   ],
+   "titre": "Après en contra de que : subjonctif afecte",
+   "type": "etape"
+  },
+  "doute_ex": {
+   "kicker": "Exemple résolu : le doute",
+   "tex": [
+    "\\text{Dudo que}",
+    "\\text{apruebe el examen.}"
+   ],
+   "titre": "Subjonctif apruebe : le doute",
+   "type": "etape"
+  },
+  "equidad": {
+   "kicker": "Application : l'équité de genre",
+   "tex": [
+    "\\text{Estoy de acuerdo con que}",
+    "\\text{se garantice la equidad.}",
+    "\\text{No es seguro que las leyes basten.}"
+   ],
+   "titre": "Accord, certitude, incertitude sur l'équité",
+   "type": "etape"
+  },
+  "exemple_dialogue": {
+   "kicker": "Exemple résolu : l'espagnol est-il difficile ?",
+   "tex": [
+    "\\text{Creo que el español es más difícil.}",
+    "\\text{Tienes razón. / No estoy de acuerdo.}"
+   ],
+   "titre": "Accord ou désaccord sur la même opinion",
+   "type": "etape"
+  },
+  "incertitude": {
+   "kicker": "L'incertitude : les marqueurs",
+   "tex": [
+    "\\text{no estoy seguro de que}",
+    "\\text{dudo que, es posible que}",
+    "\\text{puede que, quizás, tal vez}"
+   ],
+   "titre": "Doute, possible, peut-être",
+   "type": "etape"
+  },
+  "lexique": {
+   "kicker": "Lexique thématique du chapitre",
+   "tex": [
+    "\\text{la pobreza, la migración}",
+    "\\text{la desigualdad, una deuda}",
+    "\\text{la corrupción, el trámite}"
+   ],
+   "titre": "Pauvreté, migration, inégalité, dette, corruption",
+   "type": "etape"
+  },
+  "lexique2": {
+   "kicker": "Lexique : l'équité de genre",
+   "tex": [
+    "\\text{la equidad de género}",
+    "\\text{el género}"
+   ],
+   "titre": "L'égalité de droits entre femmes et hommes",
+   "type": "etape"
+  },
+  "migration": {
+   "kicker": "Application : pauvreté et migration",
+   "tex": [
+    "\\text{Creo que los bajos salarios}",
+    "\\text{empujan a los jóvenes a emigrar.}",
+    "\\text{Es posible que la situación mejore.}"
+   ],
+   "titre": "Opinion, désapprobation, incertitude",
+   "type": "etape"
+  },
+  "nuance": {
+   "kicker": "La position nuancée",
+   "tex": [
+    "\\text{Puede ser, quizás}",
+    "\\text{hasta cierto punto}",
+    "\\text{no del todo}"
+   ],
+   "titre": "Peut-être, jusqu'à un certain point, pas tout à fait",
+   "type": "etape"
+  },
+  "opinion_neg": {
+   "kicker": "Opinion négative : le subjonctif",
+   "tex": [
+    "\\text{No pienso que la migración}",
+    "\\text{sea solo una consecuencia.}"
+   ],
+   "titre": "Opinion niée : sea, au subjonctif",
+   "type": "etape"
+  },
+  "opinion_pos": {
+   "kicker": "Opinion affirmative : l'indicatif",
+   "tex": [
+    "\\text{Pienso que la migración es}",
+    "\\text{una consecuencia de la pobreza.}"
+   ],
+   "titre": "Opinion affirmée : es, à l'indicatif",
+   "type": "etape"
+  },
+  "opinion_regle": {
+   "kicker": "Donner une opinion : la règle du mode",
+   "tex": [
+    "\\text{affirmative → indicatif}",
+    "\\text{négative, jugement → subjonctif}"
+   ],
+   "titre": "Le marqueur détermine le mode",
+   "type": "etape"
+  },
+  "quizas": {
+   "kicker": "Quizás et tal vez : la nuance",
+   "texte": "Avec l'indicatif, probabilité forte ; avec le subjonctif, probabilité faible.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Opinion affirmative et certitude : indicatif. Opinion négative, jugement, doute, désapprobation : subjonctif.",
+    "Approuver : estoy de acuerdo, tienes razón, comparto tu opinión. Désapprouver : no estoy de acuerdo, estoy en contra, no comparto tu punto de vista.",
+    "Certitude : estoy seguro de que, es evidente que, es cierto que. Incertitude : dudo que, es posible que, no estoy seguro de que.",
+    "Repérer le marqueur, c'est choisir le mode : c'est l'astuce de synthèse de la leçon."
+   ],
+   "kicker": "Synthèse grammaticale",
+   "type": "recap"
+  },
+  "regle_certitude": {
+   "kicker": "Certitude et incertitude : la règle",
+   "tex": [
+    "\\text{certitude → indicatif}",
+    "\\text{incertitude, doute → subjonctif}"
+   ],
+   "titre": "Sûr, on affirme ; on doute, on met au subjonctif",
+   "type": "etape"
+  },
+  "synthese_astuce": {
+   "kicker": "L'astuce de synthèse",
+   "texte": "Repérez le marqueur : opinion, approbation, certitude. Il détermine le mode.",
+   "type": "phrase"
+  },
+  "titre": {
+   "kicker": "Espagnol · Donner son opinion",
+   "sous": "Opinion, approbation, certitude et incertitude",
+   "titre": "Donner son opinion et exprimer la certitude",
+   "type": "titre"
+  },
+  "niveaux": {
+   "kicker": "Réagir à une opinion : trois niveaux",
+   "tex": [
+    "\\text{aprobación}",
+    "\\text{desaprobación}",
+    "\\text{position nuancée}"
+   ],
+   "titre": "Accord, désaccord, nuance",
+   "type": "etape"
+  },
+  "opinion_regle2": {
+   "kicker": "Opinion : la règle fondamentale",
+   "tex": [
+    "\\text{Pienso que la situación mejora.}",
+    "\\text{No pienso que la situación mejore.}"
+   ],
+   "titre": "Mejora à l'indicatif, mejore au subjonctif",
+   "type": "etape"
+  },
+  "doute_ex2": {
+   "kicker": "Exemple résolu : il est possible que...",
+   "tex": [
+    "\\text{Es posible que la pobreza}",
+    "\\text{incite la migración.}"
+   ],
+   "titre": "Subjonctif incite après es posible que",
+   "type": "etape"
+  }
+ },
+ "matiere": "Espagnol",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Opinion, approbation, désapprobation"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : la règle fondamentale de l'opinion, puis la certitude et l'incertitude, avec leurs marqueurs et leurs exemples.",
+    "texte": "Partie 2 : règle fondamentale, certitude, incertitude."
+   },
+   "sous_titre": "Règle fondamentale, certitude et incertitude"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : appliquer ces structures aux thèmes du programme, migration, corruption, équité de genre et réalités hispaniques et africaines.",
+    "texte": "Partie 3 : applications et synthèse."
+   },
+   "sous_titre": "Applications et synthèse"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'espagnol consacré à donner son opinion et à exprimer la certitude. Deux leçons le composent : donner une opinion, approuver ou désapprouver, exprimer la certitude ou l'incertitude, puis les marqueurs d'approbation et de désapprobation avec l'usage du subjonctif.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Opinion, approbation, certitude, incertitude."
+  },
+  {
+   "dit": "Première compétence, donner une opinion. La règle du subjonctif, donnée par la leçon, est la suivante : après une expression d'opinion négative ou un jugement de valeur, le verbe subordonné passe au subjonctif. Après une opinion affirmative, avec creo que ou pienso que, on garde l'indicatif.",
+   "ecran": "opinion_regle",
+   "id": "p02",
+   "texte": "Affirmative : indicatif. Négative : subjonctif."
+  },
+  {
+   "dit": "Exemple résolu, côté affirmatif : Je pense que la migration est une conséquence de la pauvreté. En espagnol : Pienso que la migración es una consecuencia de la pobreza. Opinion affirmative, donc indicatif, es.",
+   "ecran": "opinion_pos",
+   "id": "p03",
+   "texte": "Pienso que la migración es una consecuencia."
+  },
+  {
+   "dit": "Même opinion, côté négatif : Je ne pense pas que la migration soit seulement une conséquence de la pauvreté. En espagnol : No pienso que la migración sea solo una consecuencia de la pobreza. Opinion niée, donc subjonctif, sea.",
+   "ecran": "opinion_neg",
+   "id": "p04",
+   "texte": "No pienso que la migración sea solo una consecuencia."
+  },
+  {
+   "dit": "Le lexique thématique qui porte ces opinions, donné par la leçon : la pobreza et les bajos salarios, la misère et les bas salaires, qui incitent la migración ; la migración, le déplacement de populations vers un autre pays ; la desigualdad, l'écart entre riches et pauvres, revenus et accès aux services ; una deuda, une dette, financière ou morale ; la corrupción, l'usage du pouvoir à des fins personnelles ; el trámite, la démarche administrative, souvent liée à la corruption.",
+   "ecran": "lexique",
+   "id": "p05",
+   "texte": "Pauvreté, migration, inégalité, dette, corruption, démarches."
+  },
+  {
+   "dit": "Dernier mot de ce lexique : la equidad de género, l'égalité de droits entre femmes et hommes ; el género, c'est le genre. Ce thème reviendra dans les applications, page quarante-six.",
+   "ecran": "lexique2",
+   "id": "p06",
+   "texte": "La equidad de género : l'égalité entre femmes et hommes."
+  },
+  {
+   "dit": "Deuxième compétence, approuver. Les marqueurs de l'approbation, l'aprobación : Estoy de acuerdo con, je suis d'accord avec ; Tienes razón, tu as raison ; Comparto tu opinión sobre, je partage ton avis sur ; et Sin duda, es justo que, sans doute, il est juste que.",
+   "ecran": "accord",
+   "id": "p07",
+   "texte": "Estoy de acuerdo, Tienes razón, Comparto tu opinión."
+  },
+  {
+   "dit": "La deuxième leçon ajoute d'autres marqueurs d'accord : claro, por supuesto, exacto, sin duda, eso es, efectivamente. Bien sûr, évidemment, exactement, sans doute, c'est cela, effectivement. Autant de façons courtes de dire oui à une opinion.",
+   "ecran": "accord2",
+   "id": "p08",
+   "texte": "Claro, por supuesto, exacto, efectivamente."
+  },
+  {
+   "dit": "Troisième compétence, désapprouver. Les marqueurs de la désapprobation, la desaprobación : No estoy de acuerdo con, je ne suis pas d'accord avec ; Estoy en contra de, je suis contre ; No comparto tu punto de vista sobre, je ne partage pas ton point de vue sur ; et Es inadmisible que plus subjonctif, il est inadmissible que.",
+   "ecran": "desaccord",
+   "id": "p09",
+   "texte": "No estoy de acuerdo, Estoy en contra, No comparto."
+  },
+  {
+   "dit": "La deuxième leçon ajoute d'autres marqueurs de désaccord : no es cierto, ce n'est pas vrai ; al contrario, au contraire ; en absoluto, absolument pas ; para nada, pas du tout ; no comparto tu opinión, je ne partage pas ton avis ; discrepo, je conteste, je ne suis pas d'accord.",
+   "ecran": "desaccord2",
+   "id": "p10",
+   "texte": "No es cierto, al contrario, en absoluto, discrepo."
+  },
+  {
+   "dit": "Entre l'accord et le désaccord, la simple prise de position nuancée : Puede ser, cela peut être ; quizás, peut-être ; hasta cierto punto, jusqu'à un certain point ; no del todo, pas tout à fait. La nuance évite le oui ou le non tranché.",
+   "ecran": "nuance",
+   "id": "p11",
+   "texte": "Puede ser, quizás, hasta cierto punto, no del todo."
+  },
+  {
+   "dit": "Exemple résolu de désapprobation, tiré de la leçon : Je désapprouve la corruption dans les démarches administratives. En espagnol : Estoy en contra de que la corrupción afecte los trámites administrativos. Après estar en contra de que, le subjonctif est obligatoire : afecte, et non afecta.",
+   "ecran": "desapprobation_ex",
+   "id": "p12",
+   "texte": "Estoy en contra de que la corrupción afecte los trámites."
+  },
+  {
+   "dit": "Exemple résolu en dialogue, tiré de la deuxième leçon. A dit : Creo que el español es más difícil que el francés. Je pense que l'espagnol est plus difficile que le français. Réponse d'accord : Tienes razón, sobre todo por los tiempos verbales. Tu as raison, surtout à cause des temps verbaux. Réponse de désaccord : No estoy de acuerdo : el francés tiene más excepciones. Je ne suis pas d'accord : le français a plus d'exceptions.",
+   "ecran": "exemple_dialogue",
+   "id": "p13",
+   "texte": "Tienes razón, ou : No estoy de acuerdo."
+  },
+  {
+   "dit": "Approuver ou désapprouver une opinion, résume la deuxième leçon, consiste à réagir à un énoncé produit par un interlocuteur. On distingue trois niveaux : l'accord, l'aprobación ; le désaccord, la desaprobación ; et la simple prise de position nuancée, que nous venons de voir.",
+   "ecran": "niveaux",
+   "id": "p14",
+   "texte": "Réagir à l'opinion d'un interlocuteur : trois niveaux."
+  },
+  {
+   "dit": "Avant la deuxième partie, retenez la règle fondamentale de l'usage du subjonctif pour exprimer une opinion, donnée par la deuxième leçon : les verbes d'opinion à la forme affirmative donnent l'indicatif ; à la forme négative ou interrogative, le subjonctif. Exemple : Pienso que la situación mejora, à l'indicatif ; No pienso que la situación mejore, au subjonctif.",
+   "ecran": "opinion_regle2",
+   "id": "p15",
+   "texte": "Affirmatif : indicatif. Négatif ou interrogatif : subjonctif."
+  },
+  {
+   "dit": "Deuxième partie : exprimer la certitude et l'incertitude. La règle, donnée par les deux leçons, est simple : la certitude s'exprime avec l'indicatif ; l'incertitude, le doute, avec le subjonctif ou des marqueurs d'atténuation.",
+   "ecran": "regle_certitude",
+   "id": "p16",
+   "texte": "Certitude : indicatif. Incertitude : subjonctif."
+  },
+  {
+   "dit": "Les marqueurs de certitude, la certidumbre : estoy seguro de que, je suis sûr que ; es evidente que, il est évident que ; es cierto que, il est certain que ; sin duda, sans doute ; está claro que, il est clair que ; sé que, je sais que. Tous introduisent l'indicatif.",
+   "ecran": "certitude",
+   "id": "p17",
+   "texte": "Estoy seguro de que, es evidente que, es cierto que."
+  },
+  {
+   "dit": "Exemple résolu de certitude : Estoy seguro de que aprueba el examen. Je suis sûr qu'il réussit l'examen. L'indicatif aprueba exprime la certitude affirmée.",
+   "ecran": "certitude_ex",
+   "id": "p18",
+   "texte": "Estoy seguro de que aprueba el examen."
+  },
+  {
+   "dit": "Les marqueurs d'incertitude, la incertidumbre : no estoy seguro de que, je ne suis pas sûr que ; dudo que, je doute que ; es posible que, il est possible que ; puede que, il se peut que ; quizás, tal vez, peut-être ; no creo que, je ne crois pas que. Tous appellent le subjonctif.",
+   "ecran": "incertitude",
+   "id": "p19",
+   "texte": "Dudo que, es posible que, no creo que."
+  },
+  {
+   "dit": "Exemple résolu d'incertitude, le pendant exact du précédent : Dudo que apruebe el examen. Je doute qu'il réussisse l'examen. Le subjonctif apruebe exprime le doute, là où aprueba exprimait la certitude. Un seul changement de mode, et le sens bascule.",
+   "ecran": "doute_ex",
+   "id": "p20",
+   "texte": "Dudo que apruebe el examen."
+  },
+  {
+   "dit": "Exemple résolu de la première leçon, sur l'incertitude : Il est possible que la pauvreté pousse à la migration. En espagnol : Es posible que la pobreza incite la migración. Après es posible que, le subjonctif incite, et non l'indicatif.",
+   "ecran": "doute_ex2",
+   "id": "p21",
+   "texte": "Es posible que la pobreza incite la migración."
+  },
+  {
+   "dit": "Nuance importante, donnée par la deuxième leçon : quizás et tal vez, suivis de l'indicatif, expriment une probabilité forte ; suivis du subjonctif, une probabilité faible. Le mode, ici encore, dose la conviction.",
+   "ecran": "quizas",
+   "id": "p22",
+   "texte": "Quizás, tal vez : indicatif, forte probabilité ; subjonctif, faible."
+  },
+  {
+   "dit": "Première application, le support Pobreza y bajos salarios incitan la migración, page quarante. Opinion : Creo que los bajos salarios empujan a los jóvenes a emigrar. Je pense que les bas salaires poussent les jeunes à émigrer. Désapprobation : No estoy de acuerdo con que se cierren las fronteras. Incertitude : Es posible que la situación mejore con políticas sociales.",
+   "ecran": "migration",
+   "id": "p23",
+   "texte": "Bas salaires, frontières, politiques sociales."
+  },
+  {
+   "dit": "Deuxième application, Corrupción : ¿Cómo eliminarla ?, page quarante-trois. Opinion : Pienso que la corrupción destruye la confianza ciudadana. Je pense que la corruption détruit la confiance des citoyens. Certitude : Es evidente que el trámite sin control favorece el abuso. Doute : Dudo que se elimine sin instituciones fuertes.",
+   "ecran": "corruption",
+   "id": "p24",
+   "texte": "Corruption, confiance, contrôle, institutions."
+  },
+  {
+   "dit": "Troisième application, La equidad de género, page quarante-six. Approbation : Estoy de acuerdo con que se garantice la equidad. Certitude : Es cierto que el género no debe limitar oportunidades. Incertitude : No es seguro que las leyes basten. Un même thème, trois degrés d'adhésion.",
+   "ecran": "equidad",
+   "id": "p25",
+   "texte": "Équité garantie, genre, lois : trois degrés."
+  },
+  {
+   "dit": "Dernière application, les réalités hispaniques et africaines, de la deuxième leçon. Accord : Estoy de acuerdo con la política lingüística de Guinea Ecuatorial. Opinion niée : No creo que el español sea una lengua minoritaria en África, subjonctif sea. Certitude : Es evidente que el mestizaje cultural enriquece las sociedades hispanoafricanas. Doute : Dudo que se pueda hablar de una sola identidad hispánica, subjonctif pueda. Ces structures permettent de débattre en positionnant clairement son degré d'adhésion à l'opinion d'autrui.",
+   "ecran": "application_afrique",
+   "id": "p26",
+   "texte": "Guinée équatoriale, identité, métissage culturel."
+  },
+  {
+   "dit": "L'astuce de synthèse de la première leçon : repérez le marqueur, opinion, approbation, certitude, car il détermine le mode. Opinion affirmative et certitude : indicatif ; opinion négative, jugement, doute, désapprobation : subjonctif.",
+   "ecran": "synthese_astuce",
+   "id": "p27",
+   "texte": "Repérez le marqueur : il détermine le mode."
+  },
+  {
+   "dit": "Synthèse générale du cours. Opinion affirmative et certitude : indicatif. Opinion négative, jugement, doute, désapprobation : subjonctif. Approuver : estoy de acuerdo, tienes razón, comparto tu opinión. Désapprouver : no estoy de acuerdo, estoy en contra, no comparto tu punto de vista. Certitude : estoy seguro de que, es evidente que, es cierto que. Incertitude : dudo que, es posible que, no estoy seguro de que. Repérer le marqueur, c'est choisir le mode.",
+   "ecran": "recap",
+   "id": "p28",
+   "texte": "Indicatif ou subjonctif : le marqueur décide."
+  }
+ ],
+ "titre": "Donner son opinion et exprimer la certitude"
+}
