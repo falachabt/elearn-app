@@ -1,1 +1,530 @@
-{"cours":6614,"ecrans":{"adressage":{"kicker":"Adresser : versions et classes","tex":["\\text{IPv4 : 32 bits}","\\text{IPv6 : 128 bits}","\\text{classes A, B, C}"],"titre":"IPv4, IPv6, classes A, B, C","type":"etape"},"adressage_ex":{"kicker":"Exemple : lire une adresse","note":"Réseau 192.168.1.0, hôte 10 ; unicast, broadcast, multicast","tex":"192.168.1.10 \\Rightarrow \\text{classe C}","type":"formule"},"alim":{"kicker":"Exemple : dimensionner l'alimentation","note":"Le bloc convertit le 230 V alternatif en +3,3 V, +5 V, +12 V continus","tex":"P_{\\text{marge}} = 400 - 280 = 120\\,\\text{W}","type":"formule"},"bios":{"kicker":"Démarrer et piloter","tex":["\\text{BIOS : initialise, lance}","\\text{pilote : traduit, par appareil}"],"titre":"BIOS, puis pilotes","type":"etape"},"causes_log":{"kicker":"Pourquoi ça tombe en panne","tex":["\\text{bugs de programmation}","\\text{conflits, incompatibilités}","\\text{virus, rançongiciels}","\\text{fichiers système effacés}"],"titre":"Quatre causes logicielles","type":"etape"},"causes_mat":{"kicker":"Pourquoi ça tombe en panne","tex":["\\text{tension : surtension, coupure}","\\text{surchauffe, poussière}","\\text{vieillissement des composants}","\\text{chocs physiques, vibrations}"],"titre":"Quatre causes matérielles","type":"etape"},"creation_reseau":{"kicker":"Monter un réseau de trois PC","tex":["\\text{chaque PC au switch, RJ45}","\\text{192.168.1.1 à 192.168.1.3}","\\text{ipconfig, puis ping}"],"titre":"Câbler, configurer, tester","type":"etape"},"documents":{"kicker":"Facture, devis, bulletin","tex":["\\text{en-tête : logo, coordonnées}","\\text{corps : désignation, montants}","\\text{TVA 20 %, total TTC}","\\text{pied : conditions, signature}"],"titre":"En-tête, corps, calculs, pied","type":"etape"},"equipements":{"kicker":"Relier les réseaux","tex":["\\text{modem : numérique, analogique}","\\text{hub : répète partout}","\\text{switch : adresse MAC}","\\text{routeur : adresse IP}"],"titre":"Modem, hub, switch, routeur","type":"etape"},"fonctions":{"kicker":"Les fonctions essentielles","tex":["\\text{MOYENNE, RANG}","\\text{NB.SI, SOMME.SI}","\\text{SI pour la mention}"],"titre":"Cinq fonctions, un signe égal","type":"etape"},"fonctions_ex":{"kicker":"Exemple : les notes sur 20","note":"Notes en B2:B6 ; le 15, en B3, est rang 2 ; la note 12 donne la mention AB","tex":"\\frac{12+15+8+18+10}{5} = 12{,}6","type":"formule"},"internes_a":{"kicker":"Dans l'unité centrale","tex":["\\text{carte mère : relie tout}","\\text{processeur : calculs}","\\text{RAM : travail temporaire}"],"titre":"Carte mère, processeur, mémoire","type":"etape"},"internes_b":{"kicker":"Dans l'unité centrale","tex":["\\text{disque dur : permanent}","\\text{alimentation : continu}","\\text{extensions : graphique, réseau}"],"titre":"Stockage, énergie, extensions","type":"etape"},"logiciels":{"kicker":"Les trois types de logiciels","tex":["\\text{système : Windows, Linux}","\\text{utilitaires : antivirus}","\\text{applicatif : texte, tableur}","\\text{programmation : compilateur}"],"titre":"Système, applicatif, programmation","type":"etape"},"logiques_archi":{"kicker":"Circulation et architectures","tex":["\\text{Ethernet : écoute, collision}","\\text{Token Ring : le jeton émet}","\\text{pair à pair, client-serveur}"],"titre":"Ethernet, jeton, pair à pair","type":"etape"},"maintenance":{"kicker":"Prévenir plutôt que subir","tex":["\\text{dépoussiérage régulier}","\\text{connexions vérifiées}","\\text{logiciels et antivirus à jour}","\\text{alimentation contrôlée}"],"titre":"La maintenance préventive","type":"etape"},"mise_forme":{"kicker":"Rendre lisible","tex":["\\text{bordures pour délimiter}","\\text{fusionner des cellules}","\\text{orienter, renvoyer à la ligne}"],"titre":"Bordures, fusion, orientation","type":"etape"},"onduleur":{"kicker":"Exemple : dimensionner l'onduleur","note":"Autonomie batteries : 5 à 30 minutes ; 300 W et 0,6 donnent 500 VA, on choisit 650 ou 800 VA","tex":"S = \\frac{P}{\\cos\\varphi}","type":"formule"},"peripheriques":{"kicker":"Entrées, sorties, mémoires","tex":["\\text{périphérique : entrée, sortie}","\\text{RAM 8 Go : volatile}","\\text{disque 1 To : permanent}"],"titre":"Périphérique, volatil, permanent","type":"etape"},"protection_feuille":{"kicker":"Protéger et imprimer","tex":["\\text{décocher Verrouillée, protéger}","\\text{zone d'impression définie}","\\text{orientation, marges, échelle}"],"titre":"Verrouiller, zone, aperçu","type":"etape"},"protection_poste":{"kicker":"Protéger un poste complet","tex":["\\text{régulateur si fluctuations}","\\text{onduleur pour l'ordinateur}","\\text{imprimante sur régulateur}","\\text{capacité jamais dépassée}"],"titre":"Régulateur, onduleur, capacité","type":"etape"},"recap":{"etapes":["Système et logiciels : traiter, stocker, transmettre, avec les bons outils","Matériel : carte mère, processeur, mémoires, alimentation, BIOS et pilotes","Protection : prévenir, réguler, secourir avec un onduleur bien dimensionné","Tableur : cellules, fonctions, tableaux croisés et documents professionnels","Réseaux : topologies, supports, adressage IP, un petit réseau qui ping"],"kicker":"Récapitulatif","type":"recap"},"refs":{"kicker":"Entre deux feuilles","note":"Nom avec espace : ='Feuille 1'!B5 ; sans espace : =Feuil2!B5","tex":"\\text{=Feuille2!B2 + Feuille2!B3}","type":"formule"},"regulateur":{"kicker":"Protéger du secteur instable","tex":["\\text{sortie fixe : 220 ou 230 V}","\\text{contre surtensions et baisses}","\\text{aucune énergie en coupure}"],"titre":"Le régulateur stabilise","type":"etape"},"reseau_def":{"anim":{"hauteur":220,"nom":"graphe_fig"},"kicker":"Définir : le réseau","texte":"Un réseau : des équipements reliés qui échangent selon des protocoles.","type":"phrase"},"risques":{"kicker":"Sans protection, quatre risques","tex":["\\text{perte et corruption de données}","\\text{composants détruits}","\\text{activité paralysée}","\\text{réparations et productivité}"],"titre":"Données, matériel, activité, coûts","type":"etape"},"supports":{"kicker":"Cuivre, coaxial, fibre","tex":["\\text{paires torsadées, RJ45}","\\text{coaxial : 10Base2, TV}","\\text{fibre : lumière, très haut débit}"],"titre":"Par quoi ça passe","type":"etape"},"systeme":{"kicker":"Définir : le système","tex":["\\text{traiter les informations}","\\text{stocker les informations}","\\text{transmettre les informations}"],"titre":"Trois verbes, un système","type":"etape"},"tableur_def":{"kicker":"Le tableur, vocabulaire","tex":["\\text{tableur : lignes, colonnes}","\\text{classeur : plusieurs feuilles}","\\text{cellule B3, plage A1:C5}"],"titre":"Tableur, classeur, cellule, plage","type":"etape"},"tcd":{"kicker":"Synthétiser en grand","tex":["\\text{lignes : le regroupement}","\\text{colonnes : second critère}","\\text{valeurs : somme, moyenne}"],"titre":"Le tableau croisé dynamique","type":"etape"},"titre":{"anim":{"hauteur":250,"nom":"graphe_fig"},"kicker":"Informatique · Systèmes connectés","sous":"Matériel, tableur et réseaux : comprendre la machine et la connecter","titre":"Informatique et systèmes connectés","type":"titre"},"topologies_phys":{"kicker":"Trois formes physiques","tex":["\\text{bus : un câble unique}","\\text{étoile : un nœud central}","\\text{anneau : une boucle}"],"titre":"Bus, étoile, anneau","type":"etape"}},"matiere":"Informatique","parties":[{"debut":"p01","sous_titre":"Matériel, pannes et protection électrique"},{"debut":"p16","pont":{"dit":"Partie deux : le tableur, ses fonctions et ses tableaux croisés, puis les documents professionnels. Nous calculerons une moyenne, nous croiserons des ventes, et nous bâtirons une facture.","texte":"Partie 2 : le tableur, calculer et présenter."},"sous_titre":"Le tableur : calculer et présenter"},{"debut":"p24","pont":{"dit":"Partie trois : les réseaux, leurs topologies, leurs supports et leurs équipements, puis l'adressage I P et la création d'un petit réseau de trois ordinateurs en étoile.","texte":"Partie 3 : les réseaux, relier et adresser."},"sous_titre":"Les réseaux : relier et adresser"}],"phrases":[{"dit":"Bienvenue dans ce cours d'informatique et de systèmes connectés. Nous allons ouvrir l'ordinateur, comprendre ses pannes et le protéger, puis manier le tableur et brancher un petit réseau local.","ecran":"titre","id":"p01","texte":"Matériel, tableur, réseaux : le système informatique."},{"dit":"Un système informatique est un ensemble de moyens matériels et logiciels qui permet de traiter, de stocker et de transmettre des informations. Un distributeur automatique de billets, par exemple, est un système de contrôle et de commandes : il valide la carte et distribue les espèces en temps réel, sans intervention humaine directe.","ecran":"systeme","id":"p02","texte":"Système : traiter, stocker, transmettre."},{"dit":"Un logiciel est un ensemble de programmes qui commande le matériel. Le logiciel système gère les ressources et sert d'interface : le système d'exploitation, comme Windows ou Linux, et les utilitaires, comme l'antivirus. L'applicatif répond à un besoin précis, traitement de texte, tableur ou navigateur, et le logiciel de programmation, compilateur ou éditeur de code, permet de créer d'autres logiciels. Android, qui gère la mémoire, le processeur et les périphériques d'un smartphone, est un logiciel système.","ecran":"logiciels","id":"p03","texte":"Système, applicatif, programmation."},{"dit":"Un périphérique est un élément externe relié à l'unité centrale, pour l'entrée ou la sortie d'informations. La mémoire vive ne conserve rien après l'extinction : une barrette de huit gigaoctets est volatile. Un disque dur d'un téraoctet, lui, conserve les fichiers indéfiniment.","ecran":"peripheriques","id":"p04","texte":"RAM 8 Go volatile, disque 1 To permanent."},{"dit":"Dans l'unité centrale, la carte mère est le circuit principal qui relie tous les composants par des bus de communication. Le processeur exécute les calculs et les instructions : on le caractérise par sa fréquence d'horloge et son nombre de cœurs. La mémoire vive est la mémoire temporaire de travail : plus elle est grande, plus le système est fluide.","ecran":"internes_a","id":"p05","texte":"Carte mère, processeur, mémoire vive."},{"dit":"Le disque dur assure le stockage permanent des données, système, programmes et fichiers. Le bloc d'alimentation convertit le courant alternatif du secteur en courant continu basse tension. Les cartes d'extension ajoutent des fonctionnalités, carte graphique ou carte réseau : pour améliorer un jeu vidéo, on installe une carte graphique dans un connecteur d'extension et on augmente la mémoire vive.","ecran":"internes_b","id":"p06","texte":"Disque, alimentation, cartes d'extension."},{"dit":"Le BIOS est un logiciel stocké sur la carte mère qui s'exécute au démarrage : il initialise les composants, puis lance le système d'exploitation. Un pilote est un logiciel qui permet au système d'exploitation de communiquer avec un périphérique précis : il traduit les commandes génériques en commandes propres au matériel. Pour une nouvelle imprimante, il faut installer son pilote pour que Windows lui envoie des commandes qu'elle comprend.","ecran":"bios","id":"p07","texte":"BIOS au démarrage, un pilote par appareil."},{"dit":"Un système informatique peut tomber en panne pour des causes matérielles : les variations de la tension électrique, surtensions, baisses et coupures, la surchauffe due à une ventilation insuffisante ou à la poussière, le vieillissement des composants, condensateurs et disques durs, et les chocs physiques ou les vibrations.","ecran":"causes_mat","id":"p08","texte":"Pannes matérielles : tension, chaleur, usure, chocs."},{"dit":"Les causes peuvent aussi être logicielles : les erreurs de programmation, les fameux bogues, les conflits entre logiciels ou pilotes incompatibles, les programmes malveillants comme les virus et les rançongiciels, et la suppression accidentelle de fichiers système ou de configuration. Une panne, c'est l'arrêt ou le mauvais fonctionnement d'un équipement ou d'un logiciel, et la maintenance regroupe les actions qui maintiennent ou rétablissent le fonctionnement normal.","ecran":"causes_log","id":"p09","texte":"Pannes logicielles : bogues, conflits, malwares."},{"dit":"La maintenance préventive, elle, agit avant la panne, par des opérations planifiées : dépoussiérage régulier, vérification des connexions et des câblages, mise à jour des logiciels et des signatures antivirus, et contrôle de l'alimentation électrique. Un laboratoire qui dépoussière ses unités centrales et vérifie ses prises chaque trimestre fait de la maintenance préventive : il prévient les surchauffes et les coupures dues aux mauvais contacts.","ecran":"maintenance","id":"p10","texte":"Préventive : agir avant la panne."},{"dit":"Le bloc d'alimentation convertit le courant alternatif du secteur, deux cent trente volts, en courants continus de trois virgule trois, cinq et douze volts, pour la carte mère, les disques et les ventilateurs. Sa puissance, en watts, doit être adaptée au système. Un ordinateur qui consomme deux cent quatre-vingts watts recevra un bloc de quatre cents watts : la marge de cent vingt watts absorbe les pics et garantit une alimentation stable.","ecran":"alim","id":"p11","texte":"Marge : 400 − 280 = 120 W."},{"dit":"Le régulateur de tension, ou stabilisateur, maintient une tension de sortie constante, deux cent vingt ou deux cent trente volts, malgré les variations de l'entrée. Il protège contre les surtensions et les baisses de tension. Exemple : si le secteur fluctue entre cent quatre-vingt-dix et deux cent cinquante volts, le régulateur sort un fixe de deux cent trente volts et protège l'imprimante. Mais attention : en cas de coupure totale, il ne fournit aucune énergie.","ecran":"regulateur","id":"p12","texte":"Régulateur : 230 V fixes, zéro secours."},{"dit":"L'onduleur assure deux fonctions : il régule la tension, comme le régulateur, et il assure la continuité de service. En cas de coupure, ses batteries prennent le relais pendant cinq à trente minutes, le temps de sauvegarder et d'arrêter proprement les systèmes. Sa capacité s'exprime en voltampères : la puissance apparente égale la puissance active divisée par le facteur de puissance, souvent zéro virgule six à zéro virgule sept. Un serveur de trois cents watts avec un facteur de zéro virgule six exige cinq cents voltampères : on choisira six cent cinquante ou huit cents voltampères pour la marge.","ecran":"onduleur","id":"p13","texte":"S = P / cos φ ; 500 VA, choisir 650 ou 800."},{"dit":"Sans protection, quatre risques menacent le poste de travail : la perte de données, quand une coupure brutale empêche la sauvegarde et peut corrompre les fichiers, l'endommagement matériel, quand les surtensions détruisent carte mère, disque dur ou bloc d'alimentation, l'interruption d'activité, quand l'arrêt imprévu paralyse le travail, et les coûts financiers, réparations, remplacements et perte de productivité.","ecran":"risques","id":"p14","texte":"Sans protection : données, matériel, activité, coûts."},{"dit":"Pour protéger un ordinateur et une imprimante, on installe un régulateur entre la prise et les équipements quand le réseau fluctue sans coupures fréquentes, et un onduleur pour l'ordinateur quand le travail est continu et les données critiques, pour un arrêt propre. L'imprimante, qui n'exige pas de continuité, se contente d'un régulateur ou d'une sortie protégée de l'onduleur. Et on vérifie la capacité : la puissance apparente de l'onduleur doit être supérieure ou égale à la puissance totale divisée par zéro virgule six.","ecran":"protection_poste","id":"p15","texte":"Poste protégé : régulateur + onduleur vérifié."},{"dit":"Un tableur est un logiciel qui crée, modifie et analyse des données organisées en lignes et en colonnes : Excel, LibreOffice Calc ou Google Sheets. Le classeur est le fichier produit par le tableur : il peut contenir plusieurs feuilles de calcul, les onglets en bas de fenêtre. Une cellule est l'intersection d'une ligne et d'une colonne, identifiée par sa référence : B trois, c'est la colonne B, ligne trois. Une plage est un rectangle de cellules contiguës, noté de la première à la dernière séparées par deux points, comme A un deux points C cinq.","ecran":"tableur_def","id":"p16","texte":"Tableur, classeur, cellule B3, plage A1:C5."},{"dit":"Pour améliorer la lisibilité, on délimite les cellules avec des bordures, on regroupe plusieurs cellules adjacentes en une seule par la fusion, on incline le texte, par exemple à quatre-vingt-dix degrés pour les en-têtes, et on affiche un texte long sur plusieurs lignes grâce au renvoi automatique à la ligne.","ecran":"mise_forme","id":"p17","texte":"Bordures, fusion, orientation, renvoi à la ligne."},{"dit":"Toute formule commence par le signe égal et utilise des références de cellules. La moyenne calcule la moyenne d'une plage, le rang donne la place d'une valeur dans la plage, NB point SI compte les valeurs qui respectent un critère, SOMME point SI additionne celles qui le respectent, et SI renvoie une mention selon la note testée.","ecran":"fonctions","id":"p18","texte":"Formules : = MOYENNE, RANG, NB.SI, SOMME.SI, SI."},{"dit":"Prenons les notes sur vingt de cinq élèves, douze, quinze, huit, dix-huit et dix, dans les cellules B deux à B six. Leur moyenne vaut douze virgule six. Le quinze, en B trois, est de rang deux, puisque le premier est le dix-huit. Et la formule de mention appliquée à la note douze, en B deux, renvoie A B, car douze est inférieur à quatorze.","ecran":"fonctions_ex","id":"p19","texte":"Notes : moyenne 12,6 ; 15 rang 2 ; 12 → AB."},{"dit":"Pour protéger une feuille, on verrouille les cellules contre toute modification : on sélectionne les cellules à laisser éditer, on décoche Verrouillée dans l'onglet Protection, puis on protège la feuille, avec ou sans mot de passe. Pour l'impression, on définit une zone d'impression, puis on imprime, en choisissant l'orientation, les marges, l'échelle, par exemple ajuster à une page, après un aperçu.","ecran":"protection_feuille","id":"p20","texte":"Verrouiller, zone d'impression, aperçu."},{"dit":"Pour utiliser une cellule d'une autre feuille du même classeur, on écrit le nom de la feuille, un point d'exclamation, puis la référence : par exemple, égal Feuil deux, point d'exclamation, B cinq. Si le nom contient un espace, on l'entoure de guillemets simples. Et en feuille un, la cellule A un peut additionner deux cellules de la feuille deux.","ecran":"refs","id":"p21","texte":"=Feuille2!B2 + Feuille2!B3."},{"dit":"Un tableau croisé dynamique synthétise et agrège de grands volumes de données, sommes, moyennes et comptages, selon plusieurs dimensions. On sélectionne la plage, on insère le tableau, on choisit sa destination, puis on glisse les champs : le critère de regroupement en lignes, le second critère en colonnes, le champ à agréger en valeurs. Avec des ventes par produit et par région, on obtient le total par produit et par région.","ecran":"tcd","id":"p22","texte":"TCD : lignes, colonnes, valeurs."},{"dit":"Facture, devis et bulletin reposent sur une structure commune : un en-tête avec logo et coordonnées, centré par fusion de cellules, un corps en tableau avec désignation, quantité, prix unitaire et montant hors taxes, des calculs avec la somme pour le sous-total, SI pour une remise éventuelle, et le produit pour la TVA, par exemple vingt pour cent du hors taxes, puis le total toutes taxes comprises, égal au hors taxes plus la TVA, et un pied avec conditions et signature.","ecran":"documents","id":"p23","texte":"Facture : en-tête, corps, TVA 20 %, TTC, pied."},{"dit":"Un réseau informatique est un ensemble d'équipements, ordinateurs et périphériques, interconnectés, qui échangent des données selon des règles communes, les protocoles. Internet est le réseau mondial public, l'intranet est un réseau privé qui utilise les technologies Internet, et l'extranet étend un intranet à des partenaires externes autorisés. Le sans-fil apporte la mobilité, une installation rapide, moins de câbles et une extension flexible.","ecran":"reseau_def","id":"p24","texte":"Un réseau : des équipements reliés qui échangent selon des protocoles."},{"dit":"En topologie physique, le bus relie tous les équipements à un câble unique : une panne du câble paralyse tout le réseau. L'étoile relie tous les équipements à un nœud central, commutateur ou concentrateur : simple à administrer, elle tolère les pannes de câble. L'anneau relie chaque équipement à deux voisins en boucle, et les données circulent dans un sens unique.","ecran":"topologies_phys","id":"p25","texte":"Bus, étoile, anneau : trois formes."},{"dit":"En topologie logique, Ethernet partage le médium : chaque équipement écoute avant d'émettre et, en cas de collision, attend un délai aléatoire avant de réémettre. Avec le Token Ring, un jeton circule dans l'anneau et seul l'équipement qui le possède peut émettre, ce qui évite les collisions. En architecture, le pair à pair met tous les postes à égalité, chacun client et serveur, simple mais peu sécurisé, pour moins de dix postes ; le client-serveur centralise ressources et services sur des serveurs, plus sécurisé et adapté aux grands réseaux.","ecran":"logiques_archi","id":"p26","texte":"Ethernet, jeton, pair à pair, client-serveur."},{"dit":"Côté supports, les paires torsadées regroupent huit fils torsadés, en catégories cinq e et six, de cent mégabits à dix gigabits par seconde, avec connecteur R J quarante-cinq et une portée d'environ cent mètres. Le câble coaxial, conducteur central entouré d'un blindage, servait à l'Ethernet dix base deux et sert aujourd'hui à la télévision par câble. La fibre optique transmet la lumière dans un fil de verre, à plus de dix gigabits par seconde, sur des kilomètres, insensible aux interférences électromagnétiques.","ecran":"supports","id":"p27","texte":"Paires torsadées, coaxial, fibre optique."},{"dit":"Le modem module et démodule : il convertit les signaux numériques en analogiques, et inversement, pour la ligne téléphonique ou le câble. Le concentrateur répète les signaux reçus sur tous ses ports, en partageant la bande passante. Le commutateur achemine les trames uniquement vers le port destinataire, grâce aux adresses M A C. Le routeur interconnecte différents réseaux et achemine les paquets selon les adresses I P, en choisissant la meilleure route. Par exemple, un navigateur envoie une requête à un serveur web, qui renvoie la page, et les paquets sont routés par I P.","ecran":"equipements","id":"p28","texte":"Modem, hub, switch, routeur."},{"dit":"La carte réseau permet à l'ordinateur de se connecter : elle possède une adresse M A C unique et elle est configurée avec une adresse I P. Il existe deux versions : I P version quatre, sur trente-deux bits, et I P version six, sur cent vingt-huit bits, dont l'avantage est un espace quasi illimité : deux puissance cent vingt-huit adresses contre deux puissance trente-deux. Une adresse version quatre compte quatre octets séparés par des points, avec une partie réseau et une partie hôte, déterminées par le masque. La classe A va de un à cent vingt-six au premier octet, avec le masque deux cent cinquante-cinq point zéro point zéro point zéro, la classe B de cent vingt-huit à cent quatre-vingt-onze, et la classe C de cent quatre-vingt-douze à deux cent vingt-trois.","ecran":"adressage","id":"p29","texte":"IPv4 32 bits, IPv6 128 bits, classes A, B, C."},{"dit":"Ainsi, cent quatre-vingt-douze point cent soixante-huit point un point dix est une adresse de classe C : le réseau est cent quatre-vingt-douze point cent soixante-huit point un point zéro, et l'hôte est dix. Enfin, l'envoi à un seul destinataire est l'unicast, à tous les équipements du réseau, le broadcast, à un groupe d'équipements, le multicast.","ecran":"adressage_ex","id":"p30","texte":"192.168.1.10 : classe C, réseau .0, hôte 10."},{"dit":"Pour créer un réseau de trois ordinateurs, on relie chaque PC à un commutateur avec un câble R J quarante-cinq, en topologie étoile. On configure chaque carte réseau : le premier à cent quatre-vingt-douze point cent soixante-huit point un point un, le deuxième en point deux, le troisième en point trois, avec le masque deux cent cinquante-cinq point deux cent cinquante-cinq point deux cent cinquante-cinq point zéro. On vérifie avec ipconfig, puis on teste chaque paire avec ping, et on active le partage de fichiers. En simulation, on place quatre PC et un commutateur, on les câble en étoile, on leur donne des adresses de classe C, puis on teste la connectivité avec ping.","ecran":"creation_reseau","id":"p31","texte":"Trois PC en étoile, puis ping."},{"dit":"Retenons l'essentiel : un système traite, stocke et transmet, avec des logiciels système, applicatifs et de programmation ; la machine s'articule autour de sa carte mère, de son processeur et de ses mémoires, démarrée par le BIOS et pilotée par des pilotes ; on prévient les pannes, on régule la tension et on dimensionne l'onduleur ; le tableur calcule, croise et présente ; et un réseau relie, commute, route et adresse.","ecran":"recap","id":"p32","texte":"Matériel, protection, tableur, réseaux."}],"titre":"Informatique et systèmes connectés"}
+{
+ "cours": 6614,
+ "ecrans": {
+  "adressage": {
+   "kicker": "Adresser : versions et classes",
+   "tex": [
+    "\\text{IPv4 : 32 bits}",
+    "\\text{IPv6 : 128 bits}",
+    "\\text{classes A, B, C}"
+   ],
+   "titre": "IPv4, IPv6, classes A, B, C",
+   "type": "etape"
+  },
+  "adressage_ex": {
+   "kicker": "Exemple : lire une adresse",
+   "note": "Réseau 192.168.1.0, hôte 10 ; unicast, broadcast, multicast",
+   "tex": "192.168.1.10 \\Rightarrow \\text{classe C}",
+   "type": "formule"
+  },
+  "alim": {
+   "kicker": "Exemple : dimensionner l'alimentation",
+   "note": "Le bloc convertit le 230 V alternatif en +3,3 V, +5 V, +12 V continus",
+   "tex": "P_{\\text{marge}} = 400 - 280 = 120\\,\\text{W}",
+   "type": "formule"
+  },
+  "bios": {
+   "kicker": "Démarrer et piloter",
+   "tex": [
+    "\\text{BIOS : initialise, lance}",
+    "\\text{pilote : traduit, par appareil}"
+   ],
+   "titre": "BIOS, puis pilotes",
+   "type": "etape"
+  },
+  "causes_log": {
+   "kicker": "Pourquoi ça tombe en panne",
+   "tex": [
+    "\\text{bugs de programmation}",
+    "\\text{conflits, incompatibilités}",
+    "\\text{virus, rançongiciels}",
+    "\\text{fichiers système effacés}"
+   ],
+   "titre": "Quatre causes logicielles",
+   "type": "etape"
+  },
+  "causes_mat": {
+   "kicker": "Pourquoi ça tombe en panne",
+   "tex": [
+    "\\text{tension : surtension, coupure}",
+    "\\text{surchauffe, poussière}",
+    "\\text{vieillissement des composants}",
+    "\\text{chocs physiques, vibrations}"
+   ],
+   "titre": "Quatre causes matérielles",
+   "type": "etape"
+  },
+  "creation_reseau": {
+   "kicker": "Monter un réseau de trois PC",
+   "tex": [
+    "\\text{chaque PC au switch, RJ45}",
+    "\\text{192.168.1.1 à 192.168.1.3}",
+    "\\text{ipconfig, puis ping}"
+   ],
+   "titre": "Câbler, configurer, tester",
+   "type": "etape"
+  },
+  "documents": {
+   "kicker": "Facture, devis, bulletin",
+   "tex": [
+    "\\text{en-tête : logo, coordonnées}",
+    "\\text{corps : désignation, montants}",
+    "\\text{TVA 20 %, total TTC}",
+    "\\text{pied : conditions, signature}"
+   ],
+   "titre": "En-tête, corps, calculs, pied",
+   "type": "etape"
+  },
+  "equipements": {
+   "kicker": "Relier les réseaux",
+   "tex": [
+    "\\text{modem : numérique, analogique}",
+    "\\text{hub : répète partout}",
+    "\\text{switch : adresse MAC}",
+    "\\text{routeur : adresse IP}"
+   ],
+   "titre": "Modem, hub, switch, routeur",
+   "type": "etape"
+  },
+  "fonctions": {
+   "kicker": "Les fonctions essentielles",
+   "tex": [
+    "\\text{MOYENNE, RANG}",
+    "\\text{NB.SI, SOMME.SI}",
+    "\\text{SI pour la mention}"
+   ],
+   "titre": "Cinq fonctions, un signe égal",
+   "type": "etape"
+  },
+  "fonctions_ex": {
+   "kicker": "Exemple : les notes sur 20",
+   "note": "Notes en B2:B6 ; le 15, en B3, est rang 2 ; la note 12 donne la mention AB",
+   "tex": "\\frac{12+15+8+18+10}{5} = 12{,}6",
+   "type": "formule"
+  },
+  "internes_a": {
+   "kicker": "Dans l'unité centrale",
+   "tex": [
+    "\\text{carte mère : relie tout}",
+    "\\text{processeur : calculs}",
+    "\\text{RAM : travail temporaire}"
+   ],
+   "titre": "Carte mère, processeur, mémoire",
+   "type": "etape"
+  },
+  "internes_b": {
+   "kicker": "Dans l'unité centrale",
+   "tex": [
+    "\\text{disque dur : permanent}",
+    "\\text{alimentation : continu}",
+    "\\text{extensions : graphique, réseau}"
+   ],
+   "titre": "Stockage, énergie, extensions",
+   "type": "etape"
+  },
+  "logiciels": {
+   "kicker": "Les trois types de logiciels",
+   "tex": [
+    "\\text{système : Windows, Linux}",
+    "\\text{utilitaires : antivirus}",
+    "\\text{applicatif : texte, tableur}",
+    "\\text{programmation : compilateur}"
+   ],
+   "titre": "Système, applicatif, programmation",
+   "type": "etape"
+  },
+  "logiques_archi": {
+   "kicker": "Circulation et architectures",
+   "tex": [
+    "\\text{Ethernet : écoute, collision}",
+    "\\text{Token Ring : le jeton émet}",
+    "\\text{pair à pair, client-serveur}"
+   ],
+   "titre": "Ethernet, jeton, pair à pair",
+   "type": "etape"
+  },
+  "maintenance": {
+   "kicker": "Prévenir plutôt que subir",
+   "tex": [
+    "\\text{dépoussiérage régulier}",
+    "\\text{connexions vérifiées}",
+    "\\text{logiciels et antivirus à jour}",
+    "\\text{alimentation contrôlée}"
+   ],
+   "titre": "La maintenance préventive",
+   "type": "etape"
+  },
+  "mise_forme": {
+   "kicker": "Rendre lisible",
+   "tex": [
+    "\\text{bordures pour délimiter}",
+    "\\text{fusionner des cellules}",
+    "\\text{orienter, renvoyer à la ligne}"
+   ],
+   "titre": "Bordures, fusion, orientation",
+   "type": "etape"
+  },
+  "onduleur": {
+   "kicker": "Exemple : dimensionner l'onduleur",
+   "note": "Autonomie batteries : 5 à 30 minutes ; 300 W et 0,6 donnent 500 VA, on choisit 650 ou 800 VA",
+   "tex": "S = \\frac{P}{\\cos\\varphi}",
+   "type": "formule"
+  },
+  "peripheriques": {
+   "kicker": "Entrées, sorties, mémoires",
+   "tex": [
+    "\\text{périphérique : entrée, sortie}",
+    "\\text{RAM 8 Go : volatile}",
+    "\\text{disque 1 To : permanent}"
+   ],
+   "titre": "Périphérique, volatil, permanent",
+   "type": "etape"
+  },
+  "protection_feuille": {
+   "kicker": "Protéger et imprimer",
+   "tex": [
+    "\\text{décocher Verrouillée, protéger}",
+    "\\text{zone d'impression définie}",
+    "\\text{orientation, marges, échelle}"
+   ],
+   "titre": "Verrouiller, zone, aperçu",
+   "type": "etape"
+  },
+  "protection_poste": {
+   "kicker": "Protéger un poste complet",
+   "tex": [
+    "\\text{régulateur si fluctuations}",
+    "\\text{onduleur pour l'ordinateur}",
+    "\\text{imprimante sur régulateur}",
+    "\\text{capacité jamais dépassée}"
+   ],
+   "titre": "Régulateur, onduleur, capacité",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Système et logiciels : traiter, stocker, transmettre, avec les bons outils",
+    "Matériel : carte mère, processeur, mémoires, alimentation, BIOS et pilotes",
+    "Protection : prévenir, réguler, secourir avec un onduleur bien dimensionné",
+    "Tableur : cellules, fonctions, tableaux croisés et documents professionnels",
+    "Réseaux : topologies, supports, adressage IP, un petit réseau qui ping"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "refs": {
+   "kicker": "Entre deux feuilles",
+   "note": "Nom avec espace : ='Feuille 1'!B5 ; sans espace : =Feuil2!B5",
+   "tex": "\\text{=Feuille2!B2 + Feuille2!B3}",
+   "type": "formule"
+  },
+  "regulateur": {
+   "kicker": "Protéger du secteur instable",
+   "tex": [
+    "\\text{sortie fixe : 220 ou 230 V}",
+    "\\text{contre surtensions et baisses}",
+    "\\text{aucune énergie en coupure}"
+   ],
+   "titre": "Le régulateur stabilise",
+   "type": "etape"
+  },
+  "reseau_def": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Définir : le réseau",
+   "texte": "Un réseau : des équipements reliés qui échangent selon des protocoles.",
+   "type": "phrase"
+  },
+  "risques": {
+   "kicker": "Sans protection, quatre risques",
+   "tex": [
+    "\\text{perte et corruption de données}",
+    "\\text{composants détruits}",
+    "\\text{activité paralysée}",
+    "\\text{réparations et productivité}"
+   ],
+   "titre": "Données, matériel, activité, coûts",
+   "type": "etape"
+  },
+  "supports": {
+   "kicker": "Cuivre, coaxial, fibre",
+   "tex": [
+    "\\text{paires torsadées, RJ45}",
+    "\\text{coaxial : 10Base2, TV}",
+    "\\text{fibre : lumière, très haut débit}"
+   ],
+   "titre": "Par quoi ça passe",
+   "type": "etape"
+  },
+  "systeme": {
+   "kicker": "Définir : le système",
+   "tex": [
+    "\\text{traiter les informations}",
+    "\\text{stocker les informations}",
+    "\\text{transmettre les informations}"
+   ],
+   "titre": "Trois verbes, un système",
+   "type": "etape"
+  },
+  "tableur_def": {
+   "kicker": "Le tableur, vocabulaire",
+   "tex": [
+    "\\text{tableur : lignes, colonnes}",
+    "\\text{classeur : plusieurs feuilles}",
+    "\\text{cellule B3, plage A1:C5}"
+   ],
+   "titre": "Tableur, classeur, cellule, plage",
+   "type": "etape"
+  },
+  "tcd": {
+   "kicker": "Synthétiser en grand",
+   "tex": [
+    "\\text{lignes : le regroupement}",
+    "\\text{colonnes : second critère}",
+    "\\text{valeurs : somme, moyenne}"
+   ],
+   "titre": "Le tableau croisé dynamique",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "reseau_fig"
+   },
+   "kicker": "Informatique · Systèmes connectés",
+   "sous": "Matériel, tableur et réseaux : comprendre la machine et la connecter",
+   "titre": "Informatique et systèmes connectés",
+   "type": "titre"
+  },
+  "topologies_phys": {
+   "kicker": "Trois formes physiques",
+   "tex": [
+    "\\text{bus : un câble unique}",
+    "\\text{étoile : un nœud central}",
+    "\\text{anneau : une boucle}"
+   ],
+   "titre": "Bus, étoile, anneau",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Matériel, pannes et protection électrique"
+  },
+  {
+   "debut": "p16",
+   "pont": {
+    "dit": "Partie deux : le tableur, ses fonctions et ses tableaux croisés, puis les documents professionnels. Nous calculerons une moyenne, nous croiserons des ventes, et nous bâtirons une facture.",
+    "texte": "Partie 2 : le tableur, calculer et présenter."
+   },
+   "sous_titre": "Le tableur : calculer et présenter"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : les réseaux, leurs topologies, leurs supports et leurs équipements, puis l'adressage I P et la création d'un petit réseau de trois ordinateurs en étoile.",
+    "texte": "Partie 3 : les réseaux, relier et adresser."
+   },
+   "sous_titre": "Les réseaux : relier et adresser"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'informatique et de systèmes connectés. Nous allons ouvrir l'ordinateur, comprendre ses pannes et le protéger, puis manier le tableur et brancher un petit réseau local.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Matériel, tableur, réseaux : le système informatique."
+  },
+  {
+   "dit": "Un système informatique est un ensemble de moyens matériels et logiciels qui permet de traiter, de stocker et de transmettre des informations. Un distributeur automatique de billets, par exemple, est un système de contrôle et de commandes : il valide la carte et distribue les espèces en temps réel, sans intervention humaine directe.",
+   "ecran": "systeme",
+   "id": "p02",
+   "texte": "Système : traiter, stocker, transmettre."
+  },
+  {
+   "dit": "Un logiciel est un ensemble de programmes qui commande le matériel. Le logiciel système gère les ressources et sert d'interface : le système d'exploitation, comme Windows ou Linux, et les utilitaires, comme l'antivirus. L'applicatif répond à un besoin précis, traitement de texte, tableur ou navigateur, et le logiciel de programmation, compilateur ou éditeur de code, permet de créer d'autres logiciels. Android, qui gère la mémoire, le processeur et les périphériques d'un smartphone, est un logiciel système.",
+   "ecran": "logiciels",
+   "id": "p03",
+   "texte": "Système, applicatif, programmation."
+  },
+  {
+   "dit": "Un périphérique est un élément externe relié à l'unité centrale, pour l'entrée ou la sortie d'informations. La mémoire vive ne conserve rien après l'extinction : une barrette de huit gigaoctets est volatile. Un disque dur d'un téraoctet, lui, conserve les fichiers indéfiniment.",
+   "ecran": "peripheriques",
+   "id": "p04",
+   "texte": "RAM 8 Go volatile, disque 1 To permanent."
+  },
+  {
+   "dit": "Dans l'unité centrale, la carte mère est le circuit principal qui relie tous les composants par des bus de communication. Le processeur exécute les calculs et les instructions : on le caractérise par sa fréquence d'horloge et son nombre de cœurs. La mémoire vive est la mémoire temporaire de travail : plus elle est grande, plus le système est fluide.",
+   "ecran": "internes_a",
+   "id": "p05",
+   "texte": "Carte mère, processeur, mémoire vive."
+  },
+  {
+   "dit": "Le disque dur assure le stockage permanent des données, système, programmes et fichiers. Le bloc d'alimentation convertit le courant alternatif du secteur en courant continu basse tension. Les cartes d'extension ajoutent des fonctionnalités, carte graphique ou carte réseau : pour améliorer un jeu vidéo, on installe une carte graphique dans un connecteur d'extension et on augmente la mémoire vive.",
+   "ecran": "internes_b",
+   "id": "p06",
+   "texte": "Disque, alimentation, cartes d'extension."
+  },
+  {
+   "dit": "Le BIOS est un logiciel stocké sur la carte mère qui s'exécute au démarrage : il initialise les composants, puis lance le système d'exploitation. Un pilote est un logiciel qui permet au système d'exploitation de communiquer avec un périphérique précis : il traduit les commandes génériques en commandes propres au matériel. Pour une nouvelle imprimante, il faut installer son pilote pour que Windows lui envoie des commandes qu'elle comprend.",
+   "ecran": "bios",
+   "id": "p07",
+   "texte": "BIOS au démarrage, un pilote par appareil."
+  },
+  {
+   "dit": "Un système informatique peut tomber en panne pour des causes matérielles : les variations de la tension électrique, surtensions, baisses et coupures, la surchauffe due à une ventilation insuffisante ou à la poussière, le vieillissement des composants, condensateurs et disques durs, et les chocs physiques ou les vibrations.",
+   "ecran": "causes_mat",
+   "id": "p08",
+   "texte": "Pannes matérielles : tension, chaleur, usure, chocs."
+  },
+  {
+   "dit": "Les causes peuvent aussi être logicielles : les erreurs de programmation, les fameux bogues, les conflits entre logiciels ou pilotes incompatibles, les programmes malveillants comme les virus et les rançongiciels, et la suppression accidentelle de fichiers système ou de configuration. Une panne, c'est l'arrêt ou le mauvais fonctionnement d'un équipement ou d'un logiciel, et la maintenance regroupe les actions qui maintiennent ou rétablissent le fonctionnement normal.",
+   "ecran": "causes_log",
+   "id": "p09",
+   "texte": "Pannes logicielles : bogues, conflits, malwares."
+  },
+  {
+   "dit": "La maintenance préventive, elle, agit avant la panne, par des opérations planifiées : dépoussiérage régulier, vérification des connexions et des câblages, mise à jour des logiciels et des signatures antivirus, et contrôle de l'alimentation électrique. Un laboratoire qui dépoussière ses unités centrales et vérifie ses prises chaque trimestre fait de la maintenance préventive : il prévient les surchauffes et les coupures dues aux mauvais contacts.",
+   "ecran": "maintenance",
+   "id": "p10",
+   "texte": "Préventive : agir avant la panne."
+  },
+  {
+   "dit": "Le bloc d'alimentation convertit le courant alternatif du secteur, deux cent trente volts, en courants continus de trois virgule trois, cinq et douze volts, pour la carte mère, les disques et les ventilateurs. Sa puissance, en watts, doit être adaptée au système. Un ordinateur qui consomme deux cent quatre-vingts watts recevra un bloc de quatre cents watts : la marge de cent vingt watts absorbe les pics et garantit une alimentation stable.",
+   "ecran": "alim",
+   "id": "p11",
+   "texte": "Marge : 400 − 280 = 120 W."
+  },
+  {
+   "dit": "Le régulateur de tension, ou stabilisateur, maintient une tension de sortie constante, deux cent vingt ou deux cent trente volts, malgré les variations de l'entrée. Il protège contre les surtensions et les baisses de tension. Exemple : si le secteur fluctue entre cent quatre-vingt-dix et deux cent cinquante volts, le régulateur sort un fixe de deux cent trente volts et protège l'imprimante. Mais attention : en cas de coupure totale, il ne fournit aucune énergie.",
+   "ecran": "regulateur",
+   "id": "p12",
+   "texte": "Régulateur : 230 V fixes, zéro secours."
+  },
+  {
+   "dit": "L'onduleur assure deux fonctions : il régule la tension, comme le régulateur, et il assure la continuité de service. En cas de coupure, ses batteries prennent le relais pendant cinq à trente minutes, le temps de sauvegarder et d'arrêter proprement les systèmes. Sa capacité s'exprime en voltampères : la puissance apparente égale la puissance active divisée par le facteur de puissance, souvent zéro virgule six à zéro virgule sept. Un serveur de trois cents watts avec un facteur de zéro virgule six exige cinq cents voltampères : on choisira six cent cinquante ou huit cents voltampères pour la marge.",
+   "ecran": "onduleur",
+   "id": "p13",
+   "texte": "S = P / cos φ ; 500 VA, choisir 650 ou 800."
+  },
+  {
+   "dit": "Sans protection, quatre risques menacent le poste de travail : la perte de données, quand une coupure brutale empêche la sauvegarde et peut corrompre les fichiers, l'endommagement matériel, quand les surtensions détruisent carte mère, disque dur ou bloc d'alimentation, l'interruption d'activité, quand l'arrêt imprévu paralyse le travail, et les coûts financiers, réparations, remplacements et perte de productivité.",
+   "ecran": "risques",
+   "id": "p14",
+   "texte": "Sans protection : données, matériel, activité, coûts."
+  },
+  {
+   "dit": "Pour protéger un ordinateur et une imprimante, on installe un régulateur entre la prise et les équipements quand le réseau fluctue sans coupures fréquentes, et un onduleur pour l'ordinateur quand le travail est continu et les données critiques, pour un arrêt propre. L'imprimante, qui n'exige pas de continuité, se contente d'un régulateur ou d'une sortie protégée de l'onduleur. Et on vérifie la capacité : la puissance apparente de l'onduleur doit être supérieure ou égale à la puissance totale divisée par zéro virgule six.",
+   "ecran": "protection_poste",
+   "id": "p15",
+   "texte": "Poste protégé : régulateur + onduleur vérifié."
+  },
+  {
+   "dit": "Un tableur est un logiciel qui crée, modifie et analyse des données organisées en lignes et en colonnes : Excel, LibreOffice Calc ou Google Sheets. Le classeur est le fichier produit par le tableur : il peut contenir plusieurs feuilles de calcul, les onglets en bas de fenêtre. Une cellule est l'intersection d'une ligne et d'une colonne, identifiée par sa référence : B trois, c'est la colonne B, ligne trois. Une plage est un rectangle de cellules contiguës, noté de la première à la dernière séparées par deux points, comme A un deux points C cinq.",
+   "ecran": "tableur_def",
+   "id": "p16",
+   "texte": "Tableur, classeur, cellule B3, plage A1:C5."
+  },
+  {
+   "dit": "Pour améliorer la lisibilité, on délimite les cellules avec des bordures, on regroupe plusieurs cellules adjacentes en une seule par la fusion, on incline le texte, par exemple à quatre-vingt-dix degrés pour les en-têtes, et on affiche un texte long sur plusieurs lignes grâce au renvoi automatique à la ligne.",
+   "ecran": "mise_forme",
+   "id": "p17",
+   "texte": "Bordures, fusion, orientation, renvoi à la ligne."
+  },
+  {
+   "dit": "Toute formule commence par le signe égal et utilise des références de cellules. La moyenne calcule la moyenne d'une plage, le rang donne la place d'une valeur dans la plage, NB point SI compte les valeurs qui respectent un critère, SOMME point SI additionne celles qui le respectent, et SI renvoie une mention selon la note testée.",
+   "ecran": "fonctions",
+   "id": "p18",
+   "texte": "Formules : = MOYENNE, RANG, NB.SI, SOMME.SI, SI."
+  },
+  {
+   "dit": "Prenons les notes sur vingt de cinq élèves, douze, quinze, huit, dix-huit et dix, dans les cellules B deux à B six. Leur moyenne vaut douze virgule six. Le quinze, en B trois, est de rang deux, puisque le premier est le dix-huit. Et la formule de mention appliquée à la note douze, en B deux, renvoie A B, car douze est inférieur à quatorze.",
+   "ecran": "fonctions_ex",
+   "id": "p19",
+   "texte": "Notes : moyenne 12,6 ; 15 rang 2 ; 12 → AB."
+  },
+  {
+   "dit": "Pour protéger une feuille, on verrouille les cellules contre toute modification : on sélectionne les cellules à laisser éditer, on décoche Verrouillée dans l'onglet Protection, puis on protège la feuille, avec ou sans mot de passe. Pour l'impression, on définit une zone d'impression, puis on imprime, en choisissant l'orientation, les marges, l'échelle, par exemple ajuster à une page, après un aperçu.",
+   "ecran": "protection_feuille",
+   "id": "p20",
+   "texte": "Verrouiller, zone d'impression, aperçu."
+  },
+  {
+   "dit": "Pour utiliser une cellule d'une autre feuille du même classeur, on écrit le nom de la feuille, un point d'exclamation, puis la référence : par exemple, égal Feuil deux, point d'exclamation, B cinq. Si le nom contient un espace, on l'entoure de guillemets simples. Et en feuille un, la cellule A un peut additionner deux cellules de la feuille deux.",
+   "ecran": "refs",
+   "id": "p21",
+   "texte": "=Feuille2!B2 + Feuille2!B3."
+  },
+  {
+   "dit": "Un tableau croisé dynamique synthétise et agrège de grands volumes de données, sommes, moyennes et comptages, selon plusieurs dimensions. On sélectionne la plage, on insère le tableau, on choisit sa destination, puis on glisse les champs : le critère de regroupement en lignes, le second critère en colonnes, le champ à agréger en valeurs. Avec des ventes par produit et par région, on obtient le total par produit et par région.",
+   "ecran": "tcd",
+   "id": "p22",
+   "texte": "TCD : lignes, colonnes, valeurs."
+  },
+  {
+   "dit": "Facture, devis et bulletin reposent sur une structure commune : un en-tête avec logo et coordonnées, centré par fusion de cellules, un corps en tableau avec désignation, quantité, prix unitaire et montant hors taxes, des calculs avec la somme pour le sous-total, SI pour une remise éventuelle, et le produit pour la TVA, par exemple vingt pour cent du hors taxes, puis le total toutes taxes comprises, égal au hors taxes plus la TVA, et un pied avec conditions et signature.",
+   "ecran": "documents",
+   "id": "p23",
+   "texte": "Facture : en-tête, corps, TVA 20 %, TTC, pied."
+  },
+  {
+   "dit": "Un réseau informatique est un ensemble d'équipements, ordinateurs et périphériques, interconnectés, qui échangent des données selon des règles communes, les protocoles. Internet est le réseau mondial public, l'intranet est un réseau privé qui utilise les technologies Internet, et l'extranet étend un intranet à des partenaires externes autorisés. Le sans-fil apporte la mobilité, une installation rapide, moins de câbles et une extension flexible.",
+   "ecran": "reseau_def",
+   "id": "p24",
+   "texte": "Un réseau : des équipements reliés qui échangent selon des protocoles."
+  },
+  {
+   "dit": "En topologie physique, le bus relie tous les équipements à un câble unique : une panne du câble paralyse tout le réseau. L'étoile relie tous les équipements à un nœud central, commutateur ou concentrateur : simple à administrer, elle tolère les pannes de câble. L'anneau relie chaque équipement à deux voisins en boucle, et les données circulent dans un sens unique.",
+   "ecran": "topologies_phys",
+   "id": "p25",
+   "texte": "Bus, étoile, anneau : trois formes."
+  },
+  {
+   "dit": "En topologie logique, Ethernet partage le médium : chaque équipement écoute avant d'émettre et, en cas de collision, attend un délai aléatoire avant de réémettre. Avec le Token Ring, un jeton circule dans l'anneau et seul l'équipement qui le possède peut émettre, ce qui évite les collisions. En architecture, le pair à pair met tous les postes à égalité, chacun client et serveur, simple mais peu sécurisé, pour moins de dix postes ; le client-serveur centralise ressources et services sur des serveurs, plus sécurisé et adapté aux grands réseaux.",
+   "ecran": "logiques_archi",
+   "id": "p26",
+   "texte": "Ethernet, jeton, pair à pair, client-serveur."
+  },
+  {
+   "dit": "Côté supports, les paires torsadées regroupent huit fils torsadés, en catégories cinq e et six, de cent mégabits à dix gigabits par seconde, avec connecteur R J quarante-cinq et une portée d'environ cent mètres. Le câble coaxial, conducteur central entouré d'un blindage, servait à l'Ethernet dix base deux et sert aujourd'hui à la télévision par câble. La fibre optique transmet la lumière dans un fil de verre, à plus de dix gigabits par seconde, sur des kilomètres, insensible aux interférences électromagnétiques.",
+   "ecran": "supports",
+   "id": "p27",
+   "texte": "Paires torsadées, coaxial, fibre optique."
+  },
+  {
+   "dit": "Le modem module et démodule : il convertit les signaux numériques en analogiques, et inversement, pour la ligne téléphonique ou le câble. Le concentrateur répète les signaux reçus sur tous ses ports, en partageant la bande passante. Le commutateur achemine les trames uniquement vers le port destinataire, grâce aux adresses M A C. Le routeur interconnecte différents réseaux et achemine les paquets selon les adresses I P, en choisissant la meilleure route. Par exemple, un navigateur envoie une requête à un serveur web, qui renvoie la page, et les paquets sont routés par I P.",
+   "ecran": "equipements",
+   "id": "p28",
+   "texte": "Modem, hub, switch, routeur."
+  },
+  {
+   "dit": "La carte réseau permet à l'ordinateur de se connecter : elle possède une adresse M A C unique et elle est configurée avec une adresse I P. Il existe deux versions : I P version quatre, sur trente-deux bits, et I P version six, sur cent vingt-huit bits, dont l'avantage est un espace quasi illimité : deux puissance cent vingt-huit adresses contre deux puissance trente-deux. Une adresse version quatre compte quatre octets séparés par des points, avec une partie réseau et une partie hôte, déterminées par le masque. La classe A va de un à cent vingt-six au premier octet, avec le masque deux cent cinquante-cinq point zéro point zéro point zéro, la classe B de cent vingt-huit à cent quatre-vingt-onze, et la classe C de cent quatre-vingt-douze à deux cent vingt-trois.",
+   "ecran": "adressage",
+   "id": "p29",
+   "texte": "IPv4 32 bits, IPv6 128 bits, classes A, B, C."
+  },
+  {
+   "dit": "Ainsi, cent quatre-vingt-douze point cent soixante-huit point un point dix est une adresse de classe C : le réseau est cent quatre-vingt-douze point cent soixante-huit point un point zéro, et l'hôte est dix. Enfin, l'envoi à un seul destinataire est l'unicast, à tous les équipements du réseau, le broadcast, à un groupe d'équipements, le multicast.",
+   "ecran": "adressage_ex",
+   "id": "p30",
+   "texte": "192.168.1.10 : classe C, réseau .0, hôte 10."
+  },
+  {
+   "dit": "Pour créer un réseau de trois ordinateurs, on relie chaque PC à un commutateur avec un câble R J quarante-cinq, en topologie étoile. On configure chaque carte réseau : le premier à cent quatre-vingt-douze point cent soixante-huit point un point un, le deuxième en point deux, le troisième en point trois, avec le masque deux cent cinquante-cinq point deux cent cinquante-cinq point deux cent cinquante-cinq point zéro. On vérifie avec ipconfig, puis on teste chaque paire avec ping, et on active le partage de fichiers. En simulation, on place quatre PC et un commutateur, on les câble en étoile, on leur donne des adresses de classe C, puis on teste la connectivité avec ping.",
+   "ecran": "creation_reseau",
+   "id": "p31",
+   "texte": "Trois PC en étoile, puis ping."
+  },
+  {
+   "dit": "Retenons l'essentiel : un système traite, stocke et transmet, avec des logiciels système, applicatifs et de programmation ; la machine s'articule autour de sa carte mère, de son processeur et de ses mémoires, démarrée par le BIOS et pilotée par des pilotes ; on prévient les pannes, on régule la tension et on dimensionne l'onduleur ; le tableur calcule, croise et présente ; et un réseau relie, commute, route et adresse.",
+   "ecran": "recap",
+   "id": "p32",
+   "texte": "Matériel, protection, tableur, réseaux."
+  }
+ ],
+ "titre": "Informatique et systèmes connectés"
+}
