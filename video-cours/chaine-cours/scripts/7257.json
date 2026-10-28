@@ -1,384 +1,384 @@
 {
-  "cours": 7257,
-  "titre": "Équations et inéquations du premier degré dans ℚ",
-  "matiere": "Mathématique",
-  "ecrans": {
-    "titre": {
-      "type": "titre",
-      "kicker": "Mathématique · Algèbre",
-      "titre": "Équations et inéquations du premier degré dans ℚ",
-      "sous": "Isoler l'inconnue, chasser les fractions, retourner le sens, modéliser des problèmes",
-      "anim": {
-        "nom": "venn",
-        "hauteur": 240
-      }
-    },
-    "intro": {
-      "type": "phrase",
-      "kicker": "Introduction",
-      "texte": "Résoudre : décrire exactement un ensemble de nombres.",
-      "anim": {
-        "nom": "venn",
-        "hauteur": 180
-      }
-    },
-    "def_eq": {
-      "type": "formule",
-      "kicker": "Définition · équation du premier degré",
-      "tex": "ax + b = 0 \\qquad a \\neq 0",
-      "note": "a et b rationnels ; x est l'inconnue",
-      "anim": {
-        "nom": "balance_fig",
-        "hauteur": 215
-      }
-    },
-    "solution_eq": {
-      "type": "formule",
-      "kicker": "La solution générale",
-      "tex": "x = -\\frac{b}{a} \\qquad S = \\left\\{-\\frac{b}{a}\\right\\}",
-      "note": "Une équation du premier degré : une seule solution"
-    },
-    "equivalentes": {
-      "type": "phrase",
-      "kicker": "Équations équivalentes",
-      "texte": "Même ensemble solution, écriture différente.",
-      "anim": {
-        "nom": "venn",
-        "hauteur": 150
-      }
-    },
-    "proprietes": {
-      "type": "etape",
-      "kicker": "Propriétés de résolution",
-      "titre": "Les deux transformations permises",
-      "tex": [
-        "\\text{ajouter ou retirer le même nombre}",
-        "\\text{aux deux membres : ensemble inchangé}",
-        "\\text{multiplier ou diviser : nombre non nul}"
-      ],
-      "anim": {
-        "nom": "balance_fig",
-        "hauteur": 215
-      }
-    },
-    "ex_eq_enonce": {
-      "type": "formule",
-      "kicker": "Exemple résolu · équation",
-      "tex": "3x - 5 = 7x + 11",
-      "note": "Regrouper les x d'un côté, les nombres de l'autre"
-    },
-    "ex_eq": {
-      "type": "etape",
-      "kicker": "Exemple résolu · résolution",
-      "titre": "Regrouper, puis diviser",
-      "tex": [
-        "3x - 7x = 11 + 5",
-        "-4x = 16",
-        "x = \\tfrac{16}{-4} = -4 \\qquad S = \\{-4\\}"
-      ],
-      "anim": {
-        "nom": "balance_fig",
-        "hauteur": 215
-      }
-    },
-    "fractions": {
-      "type": "formule",
-      "kicker": "Équations avec fractions",
-      "tex": "\\frac{x}{2} + 1 = \\frac{3x}{4} - 2",
-      "note": "Dénominateur commun : quatre, à multiplier partout"
-    },
-    "ex_fractions": {
-      "type": "etape",
-      "kicker": "Exemple résolu · fractions",
-      "titre": "Multiplier par quatre, puis regrouper",
-      "tex": [
-        "2x + 4 = 3x - 8",
-        "-x = -12",
-        "x = 12 \\qquad S = \\{12\\}"
-      ]
-    },
-    "verification_eq": {
-      "type": "etape",
-      "kicker": "Vérification",
-      "titre": "Douze rend les deux membres égaux",
-      "tex": [
-        "\\tfrac{12}{2} + 1 = 6 + 1 = 7",
-        "\\tfrac{3 \\times 12}{4} - 2 = 9 - 2 = 7",
-        "\\text{les deux membres sont égaux : confirmé}"
-      ]
-    },
-    "def_ineq": {
-      "type": "formule",
-      "kicker": "Définition · inéquation du premier degré",
-      "tex": "ax + b \\leq 0 \\qquad a \\neq 0",
-      "note": "Autres signes possibles : strict, supérieur, supérieur ou égal"
-    },
-    "intervalle": {
-      "type": "phrase",
-      "kicker": "Une infinité de solutions",
-      "texte": "L'ensemble solution devient un intervalle.",
-      "anim": {
-        "nom": "droite_graduee_fig",
-        "hauteur": 230
-      }
-    },
-    "regles": {
-      "type": "etape",
-      "kicker": "Règles de transformation",
-      "titre": "Un seul geste retourne le sens",
-      "tex": [
-        "\\text{ajouter ou retirer : sens inchangé}",
-        "\\text{par un positif : sens inchangé}",
-        "\\text{par un négatif : sens retourné}"
-      ]
-    },
-    "ex_ineq_enonce": {
-      "type": "formule",
-      "kicker": "Exemple résolu · inéquation",
-      "tex": "-2x + 3 \\leq 9",
-      "note": "Isoler le terme en x, étape par étape"
-    },
-    "ex_ineq": {
-      "type": "etape",
-      "kicker": "Exemple résolu · le sens se retourne",
-      "titre": "Diviser par moins deux change tout",
-      "tex": [
-        "-2x \\leq 9 - 3 = 6",
-        "x \\geq \\tfrac{6}{-2} = -3",
-        "S = [-3,\\ +\\infty["
-      ]
-    },
-    "representation": {
-      "type": "phrase",
-      "kicker": "Représentation sur une droite graduée",
-      "texte": "Crochet fermé en moins trois, colorié vers la droite.",
-      "anim": {
-        "nom": "droite_graduee_fig",
-        "hauteur": 230
-      }
-    },
-    "methode_pb": {
-      "type": "etape",
-      "kicker": "Problèmes · la méthode",
-      "titre": "Quatre temps, toujours dans cet ordre",
-      "tex": [
-        "\\text{1. choisir l'inconnue } x",
-        "\\text{2. traduire par une équation}",
-        "\\text{3. résoudre}",
-        "\\text{4. vérifier la cohérence}"
-      ]
-    },
-    "pb_eq": {
-      "type": "formule",
-      "kicker": "Problème · équation",
-      "tex": "2(x + x + 5) = 46",
-      "note": "x : largeur en cm ; longueur : x + 5 ; périmètre : 46 cm"
-    },
-    "ex_pb_eq": {
-      "type": "etape",
-      "kicker": "Problème · résolution",
-      "titre": "La largeur d'abord, la longueur ensuite",
-      "tex": [
-        "4x + 10 = 46",
-        "4x = 36 \\qquad x = 9",
-        "\\text{largeur } 9\\ \\text{cm, longueur } 14\\ \\text{cm}"
-      ]
-    },
-    "verif_pb": {
-      "type": "etape",
-      "kicker": "Problème · vérification",
-      "titre": "Le périmètre retrouvé confirme",
-      "tex": [
-        "2 \\times (9 + 14) = 2 \\times 23 = 46\\ \\text{cm}",
-        "\\text{périmètre retrouvé : réponse cohérente}"
-      ]
-    },
-    "pb_ineq": {
-      "type": "formule",
-      "kicker": "Problème · inéquation",
-      "tex": "20 + 3n \\leq 50",
-      "note": "n : nombre de séances ; budget : cinquante euros"
-    },
-    "ex_pb_ineq": {
-      "type": "etape",
-      "kicker": "Problème · résolution",
-      "titre": "Diviser par trois, un positif : sens inchangé",
-      "tex": [
-        "3n \\leq 50 - 20 = 30",
-        "n \\leq \\tfrac{30}{3} = 10",
-        "\\text{au plus dix séances}"
-      ]
-    },
-    "recap": {
-      "type": "recap",
-      "kicker": "À retenir",
-      "etapes": [
-        "Équation : ax + b = 0, une seule solution",
-        "Mêmes opérations sur les deux membres",
-        "Fractions : dénominateur commun partout",
-        "Négatif : le sens de l'inégalité se retourne",
-        "Problème : traduire, résoudre, vérifier"
-      ]
-    }
+ "cours": 7257,
+ "ecrans": {
+  "def_eq": {
+   "anim": {
+    "hauteur": 215,
+    "nom": "balance_fig"
+   },
+   "kicker": "Définition · équation du premier degré",
+   "note": "a et b rationnels ; x est l'inconnue",
+   "tex": "ax + b = 0 \\qquad a \\neq 0",
+   "type": "formule"
   },
-  "phrases": [
-    {
-      "id": "p01",
-      "ecran": "titre",
-      "texte": "Équations et inéquations du premier degré dans ℚ.",
-      "dit": "Bienvenue dans ce cours de mathématiques consacré aux équations et aux inéquations du premier degré dans les nombres rationnels. Nous apprendrons à isoler l'inconnue, à traiter les fractions, à gérer le sens des inégalités, puis à modéliser des problèmes concrets."
-    },
-    {
-      "id": "p02",
-      "ecran": "intro",
-      "texte": "Résoudre, c'est décrire un ensemble, pas deviner.",
-      "dit": "Résoudre, ce n'est pas deviner une valeur au hasard. C'est décrire exactement l'ensemble des nombres rationnels qui rendent l'égalité ou l'inégalité vraie. Cet ensemble s'appelle l'ensemble solution, noté grand esse."
-    },
-    {
-      "id": "p03",
-      "ecran": "def_eq",
-      "texte": "La forme canonique : a ixe plus bé égale zéro.",
-      "dit": "Une équation du premier degré à une inconnue ixe peut toujours se ramener à la forme a ixe plus bé égale zéro, où a est un rationnel différent de zéro. Premier degré signifie que l'inconnue n'apparaît jamais au carré."
-    },
-    {
-      "id": "p04",
-      "ecran": "solution_eq",
-      "texte": "Une seule solution : moins bé sur a.",
-      "dit": "Sous cette forme, la résolution est immédiate : on isole le terme en ixe, puis on divise par a. L'équation admet une seule solution, moins bé sur a, et l'ensemble solution contient ce seul nombre."
-    },
-    {
-      "id": "p05",
-      "ecran": "equivalentes",
-      "texte": "Transformer sans jamais changer les solutions.",
-      "dit": "Deux équations sont équivalentes quand elles ont exactement le même ensemble solution. Toute la méthode consiste à transformer l'équation pas à pas, sans jamais changer cet ensemble, jusqu'à lire la solution."
-    },
-    {
-      "id": "p06",
-      "ecran": "proprietes",
-      "texte": "Deux transformations conservent les solutions.",
-      "dit": "Deux transformations conservent l'ensemble solution. On peut ajouter ou retirer le même nombre aux deux membres, comme on équilibrerait les deux plateaux d'une balance. Et on peut multiplier ou diviser les deux membres par le même nombre non nul."
-    },
-    {
-      "id": "p07",
-      "ecran": "ex_eq_enonce",
-      "texte": "L'inconnue des deux côtés : regrouper d'abord.",
-      "dit": "Premier exemple : résoudre trois ixe moins cinq égale sept ixe plus onze. L'inconnue est présente des deux côtés : on commence par regrouper tous les termes en ixe dans un membre, et les nombres dans l'autre."
-    },
-    {
-      "id": "p08",
-      "ecran": "ex_eq",
-      "texte": "Moins quatre ixe égale seize, donc ixe égale moins quatre.",
-      "dit": "On retire sept ixe des deux côtés et on ajoute cinq : moins quatre ixe égale seize. On divise ensuite par moins quatre, et l'on obtient ixe égale moins quatre. L'ensemble solution contient le seul nombre moins quatre."
-    },
-    {
-      "id": "p09",
-      "ecran": "fractions",
-      "texte": "Le dénominateur commun chasse les fractions.",
-      "dit": "Quand l'équation contient des fractions, un réflexe simplifie tout : multiplier les deux membres par le dénominateur commun. Ici, celui de deux et de quatre est quatre, et les fractions disparaissent d'un coup."
-    },
-    {
-      "id": "p10",
-      "ecran": "ex_fractions",
-      "texte": "Après regroupement, ixe égale douze.",
-      "dit": "On multiplie chaque terme par quatre : deux ixe plus quatre égale trois ixe moins huit. On regroupe les termes en ixe : moins ixe égale moins douze, donc ixe égale douze. L'ensemble solution contient le seul nombre douze."
-    },
-    {
-      "id": "p11",
-      "ecran": "verification_eq",
-      "texte": "Sept des deux côtés : la solution est confirmée.",
-      "dit": "Vérifions avec douze. À gauche, douze sur deux plus un, six plus un, sept. À droite, trois fois douze sur quatre moins deux, neuf moins deux, sept. Les deux membres sont égaux : la solution est confirmée."
-    },
-    {
-      "id": "p12",
-      "ecran": "def_ineq",
-      "texte": "Une inégalité à la place du signe égal.",
-      "dit": "Une inéquation du premier degré se ramène à une forme comme a ixe plus bé inférieur ou égal à zéro, avec a différent de zéro. Les signes possibles sont inférieur strict, inférieur ou égal, supérieur strict, supérieur ou égal."
-    },
-    {
-      "id": "p13",
-      "ecran": "intervalle",
-      "texte": "Les solutions forment un intervalle de rationnels.",
-      "dit": "Grande différence avec les équations : une inéquation admet en général une infinité de solutions. Son ensemble solution est un intervalle de nombres rationnels, que l'on représentera sur une droite graduée."
-    },
-    {
-      "id": "p14",
-      "ecran": "regles",
-      "texte": "Ajouter ne change rien, un négatif retourne tout.",
-      "dit": "Les règles ressemblent à celles des équations, avec une exception capitale. Ajouter ou retirer un même nombre ne change pas le sens, ni multiplier ou diviser par un positif. Mais multiplier ou diviser par un négatif retourne le sens."
-    },
-    {
-      "id": "p15",
-      "ecran": "ex_ineq_enonce",
-      "texte": "Isoler le terme en ixe, comme pour une équation.",
-      "dit": "Exemple : résoudre moins deux ixe plus trois inférieur ou égal à neuf. On isole d'abord le terme en ixe, comme pour une équation, en gardant le sens tant que l'on se contente d'ajouter ou de retirer."
-    },
-    {
-      "id": "p16",
-      "ecran": "ex_ineq",
-      "texte": "Ixe supérieur ou égal à moins trois.",
-      "dit": "On retire trois : moins deux ixe inférieur ou égal à six. Reste à diviser par moins deux, un nombre négatif : le sens se retourne. On obtient ixe supérieur ou égal à moins trois. Tous les rationnels à partir de moins trois conviennent."
-    },
-    {
-      "id": "p17",
-      "ecran": "representation",
-      "texte": "Colorier à partir de moins trois, crochet fermé.",
-      "dit": "Sur une droite graduée, on colorie la partie qui part de moins trois vers la droite. Le crochet est fermé en moins trois, car moins trois est inclus : l'inégalité est large, pas stricte."
-    },
-    {
-      "id": "p18",
-      "ecran": "methode_pb",
-      "texte": "Choisir, traduire, résoudre, vérifier.",
-      "dit": "Pour les problèmes, une méthode en quatre temps. Choisir l'inconnue et dire ce qu'elle représente. Traduire l'énoncé en équation ou inéquation. Résoudre. Puis vérifier que la solution convient au contexte."
-    },
-    {
-      "id": "p19",
-      "ecran": "pb_eq",
-      "texte": "La largeur ixe, la longueur ixe plus cinq.",
-      "dit": "Premier problème : un rectangle a un périmètre de quarante-six centimètres, et sa longueur dépasse sa largeur de cinq centimètres. On choisit ixe pour la largeur ; la longueur vaut ixe plus cinq, et le périmètre donne l'équation."
-    },
-    {
-      "id": "p20",
-      "ecran": "ex_pb_eq",
-      "texte": "Largeur neuf centimètres, longueur quatorze.",
-      "dit": "Deux fois la somme de la largeur et de la longueur donne quatre ixe plus dix égale quarante-six. Donc quatre ixe égale trente-six, et ixe égale neuf. La largeur vaut neuf centimètres, et la longueur, neuf plus cinq, quatorze centimètres."
-    },
-    {
-      "id": "p21",
-      "ecran": "verif_pb",
-      "texte": "Deux fois vingt-trois : quarante-six, périmètre retrouvé.",
-      "dit": "Vérification : deux fois neuf plus quatorze font deux fois vingt-trois, quarante-six centimètres. C'est exactement le périmètre annoncé : la réponse est cohérente avec l'énoncé."
-    },
-    {
-      "id": "p22",
-      "ecran": "pb_ineq",
-      "texte": "Vingt euros fixes, trois euros par séance, cinquante de budget.",
-      "dit": "Deuxième problème, en inéquation : un abonnement coûte vingt euros, puis trois euros par séance, et l'on dispose de cinquante euros. Si èn est le nombre de séances, le coût total, vingt plus trois èn, doit rester sous cinquante."
-    },
-    {
-      "id": "p23",
-      "ecran": "ex_pb_ineq",
-      "texte": "Au plus dix séances avec ce budget.",
-      "dit": "On retire vingt : trois èn inférieur ou égal à trente. On divise par trois, un nombre positif, le sens ne change pas : èn inférieur ou égal à dix. On peut donc payer au plus dix séances."
-    },
-    {
-      "id": "p24",
-      "ecran": "recap",
-      "texte": "Équations et inéquations : à retenir.",
-      "dit": "Pour retenir l'essentiel : on isole l'inconnue par les mêmes opérations sur les deux membres, on chasse les fractions par le dénominateur commun, on retourne le sens face à un négatif, et l'on vérifie toujours la réponse."
-    }
-  ],
-  "parties": [
-    {
-      "debut": "p01",
-      "sous_titre": "Équations : isoler l'inconnue et traiter les fractions"
-    },
-    {
-      "debut": "p12",
-      "sous_titre": "Inéquations et problèmes : le sens, la droite, la modélisation",
-      "pont": {
-        "texte": "Partie 2 : inéquations, droite graduée et problèmes.",
-        "dit": "Partie deux : les inéquations et les problèmes. Le signe égal laissera la place aux inégalités, avec la règle d'or du retournement de sens, puis nous traduirons deux problèmes concrets, l'un en équation, l'autre en inéquation."
-      }
-    }
-  ]
+  "def_ineq": {
+   "kicker": "Définition · inéquation du premier degré",
+   "note": "Autres signes possibles : strict, supérieur, supérieur ou égal",
+   "tex": "ax + b \\leq 0 \\qquad a \\neq 0",
+   "type": "formule"
+  },
+  "equivalentes": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "balance_fig"
+   },
+   "kicker": "Équations équivalentes",
+   "texte": "Même ensemble solution, écriture différente.",
+   "type": "phrase"
+  },
+  "ex_eq": {
+   "anim": {
+    "hauteur": 215,
+    "nom": "balance_fig"
+   },
+   "kicker": "Exemple résolu · résolution",
+   "tex": [
+    "3x - 7x = 11 + 5",
+    "-4x = 16",
+    "x = \\tfrac{16}{-4} = -4 \\qquad S = \\{-4\\}"
+   ],
+   "titre": "Regrouper, puis diviser",
+   "type": "etape"
+  },
+  "ex_eq_enonce": {
+   "kicker": "Exemple résolu · équation",
+   "note": "Regrouper les x d'un côté, les nombres de l'autre",
+   "tex": "3x - 5 = 7x + 11",
+   "type": "formule"
+  },
+  "ex_fractions": {
+   "kicker": "Exemple résolu · fractions",
+   "tex": [
+    "2x + 4 = 3x - 8",
+    "-x = -12",
+    "x = 12 \\qquad S = \\{12\\}"
+   ],
+   "titre": "Multiplier par quatre, puis regrouper",
+   "type": "etape"
+  },
+  "ex_ineq": {
+   "kicker": "Exemple résolu · le sens se retourne",
+   "tex": [
+    "-2x \\leq 9 - 3 = 6",
+    "x \\geq \\tfrac{6}{-2} = -3",
+    "S = [-3,\\ +\\infty["
+   ],
+   "titre": "Diviser par moins deux change tout",
+   "type": "etape"
+  },
+  "ex_ineq_enonce": {
+   "kicker": "Exemple résolu · inéquation",
+   "note": "Isoler le terme en x, étape par étape",
+   "tex": "-2x + 3 \\leq 9",
+   "type": "formule"
+  },
+  "ex_pb_eq": {
+   "kicker": "Problème · résolution",
+   "tex": [
+    "4x + 10 = 46",
+    "4x = 36 \\qquad x = 9",
+    "\\text{largeur } 9\\ \\text{cm, longueur } 14\\ \\text{cm}"
+   ],
+   "titre": "La largeur d'abord, la longueur ensuite",
+   "type": "etape"
+  },
+  "ex_pb_ineq": {
+   "kicker": "Problème · résolution",
+   "tex": [
+    "3n \\leq 50 - 20 = 30",
+    "n \\leq \\tfrac{30}{3} = 10",
+    "\\text{au plus dix séances}"
+   ],
+   "titre": "Diviser par trois, un positif : sens inchangé",
+   "type": "etape"
+  },
+  "fractions": {
+   "kicker": "Équations avec fractions",
+   "note": "Dénominateur commun : quatre, à multiplier partout",
+   "tex": "\\frac{x}{2} + 1 = \\frac{3x}{4} - 2",
+   "type": "formule"
+  },
+  "intervalle": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "droite_graduee_fig"
+   },
+   "kicker": "Une infinité de solutions",
+   "texte": "L'ensemble solution devient un intervalle.",
+   "type": "phrase"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "droite_graduee_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Résoudre : décrire exactement un ensemble de nombres.",
+   "type": "phrase"
+  },
+  "methode_pb": {
+   "kicker": "Problèmes · la méthode",
+   "tex": [
+    "\\text{1. choisir l'inconnue } x",
+    "\\text{2. traduire par une équation}",
+    "\\text{3. résoudre}",
+    "\\text{4. vérifier la cohérence}"
+   ],
+   "titre": "Quatre temps, toujours dans cet ordre",
+   "type": "etape"
+  },
+  "pb_eq": {
+   "kicker": "Problème · équation",
+   "note": "x : largeur en cm ; longueur : x + 5 ; périmètre : 46 cm",
+   "tex": "2(x + x + 5) = 46",
+   "type": "formule"
+  },
+  "pb_ineq": {
+   "kicker": "Problème · inéquation",
+   "note": "n : nombre de séances ; budget : cinquante euros",
+   "tex": "20 + 3n \\leq 50",
+   "type": "formule"
+  },
+  "proprietes": {
+   "anim": {
+    "hauteur": 215,
+    "nom": "balance_fig"
+   },
+   "kicker": "Propriétés de résolution",
+   "tex": [
+    "\\text{ajouter ou retirer le même nombre}",
+    "\\text{aux deux membres : ensemble inchangé}",
+    "\\text{multiplier ou diviser : nombre non nul}"
+   ],
+   "titre": "Les deux transformations permises",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Équation : ax + b = 0, une seule solution",
+    "Mêmes opérations sur les deux membres",
+    "Fractions : dénominateur commun partout",
+    "Négatif : le sens de l'inégalité se retourne",
+    "Problème : traduire, résoudre, vérifier"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "regles": {
+   "kicker": "Règles de transformation",
+   "tex": [
+    "\\text{ajouter ou retirer : sens inchangé}",
+    "\\text{par un positif : sens inchangé}",
+    "\\text{par un négatif : sens retourné}"
+   ],
+   "titre": "Un seul geste retourne le sens",
+   "type": "etape"
+  },
+  "representation": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "droite_graduee_fig"
+   },
+   "kicker": "Représentation sur une droite graduée",
+   "texte": "Crochet fermé en moins trois, colorié vers la droite.",
+   "type": "phrase"
+  },
+  "solution_eq": {
+   "kicker": "La solution générale",
+   "note": "Une équation du premier degré : une seule solution",
+   "tex": "x = -\\frac{b}{a} \\qquad S = \\left\\{-\\frac{b}{a}\\right\\}",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "balance_fig"
+   },
+   "kicker": "Mathématique · Algèbre",
+   "sous": "Isoler l'inconnue, chasser les fractions, retourner le sens, modéliser des problèmes",
+   "titre": "Équations et inéquations du premier degré dans ℚ",
+   "type": "titre"
+  },
+  "verif_pb": {
+   "kicker": "Problème · vérification",
+   "tex": [
+    "2 \\times (9 + 14) = 2 \\times 23 = 46\\ \\text{cm}",
+    "\\text{périmètre retrouvé : réponse cohérente}"
+   ],
+   "titre": "Le périmètre retrouvé confirme",
+   "type": "etape"
+  },
+  "verification_eq": {
+   "kicker": "Vérification",
+   "tex": [
+    "\\tfrac{12}{2} + 1 = 6 + 1 = 7",
+    "\\tfrac{3 \\times 12}{4} - 2 = 9 - 2 = 7",
+    "\\text{les deux membres sont égaux : confirmé}"
+   ],
+   "titre": "Douze rend les deux membres égaux",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Équations : isoler l'inconnue et traiter les fractions"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : les inéquations et les problèmes. Le signe égal laissera la place aux inégalités, avec la règle d'or du retournement de sens, puis nous traduirons deux problèmes concrets, l'un en équation, l'autre en inéquation.",
+    "texte": "Partie 2 : inéquations, droite graduée et problèmes."
+   },
+   "sous_titre": "Inéquations et problèmes : le sens, la droite, la modélisation"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux équations et aux inéquations du premier degré dans les nombres rationnels. Nous apprendrons à isoler l'inconnue, à traiter les fractions, à gérer le sens des inégalités, puis à modéliser des problèmes concrets.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Équations et inéquations du premier degré dans ℚ."
+  },
+  {
+   "dit": "Résoudre, ce n'est pas deviner une valeur au hasard. C'est décrire exactement l'ensemble des nombres rationnels qui rendent l'égalité ou l'inégalité vraie. Cet ensemble s'appelle l'ensemble solution, noté grand esse.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Résoudre, c'est décrire un ensemble, pas deviner."
+  },
+  {
+   "dit": "Une équation du premier degré à une inconnue ixe peut toujours se ramener à la forme a ixe plus bé égale zéro, où a est un rationnel différent de zéro. Premier degré signifie que l'inconnue n'apparaît jamais au carré.",
+   "ecran": "def_eq",
+   "id": "p03",
+   "texte": "La forme canonique : a ixe plus bé égale zéro."
+  },
+  {
+   "dit": "Sous cette forme, la résolution est immédiate : on isole le terme en ixe, puis on divise par a. L'équation admet une seule solution, moins bé sur a, et l'ensemble solution contient ce seul nombre.",
+   "ecran": "solution_eq",
+   "id": "p04",
+   "texte": "Une seule solution : moins bé sur a."
+  },
+  {
+   "dit": "Deux équations sont équivalentes quand elles ont exactement le même ensemble solution. Toute la méthode consiste à transformer l'équation pas à pas, sans jamais changer cet ensemble, jusqu'à lire la solution.",
+   "ecran": "equivalentes",
+   "id": "p05",
+   "texte": "Transformer sans jamais changer les solutions."
+  },
+  {
+   "dit": "Deux transformations conservent l'ensemble solution. On peut ajouter ou retirer le même nombre aux deux membres, comme on équilibrerait les deux plateaux d'une balance. Et on peut multiplier ou diviser les deux membres par le même nombre non nul.",
+   "ecran": "proprietes",
+   "id": "p06",
+   "texte": "Deux transformations conservent les solutions."
+  },
+  {
+   "dit": "Premier exemple : résoudre trois ixe moins cinq égale sept ixe plus onze. L'inconnue est présente des deux côtés : on commence par regrouper tous les termes en ixe dans un membre, et les nombres dans l'autre.",
+   "ecran": "ex_eq_enonce",
+   "id": "p07",
+   "texte": "L'inconnue des deux côtés : regrouper d'abord."
+  },
+  {
+   "dit": "On retire sept ixe des deux côtés et on ajoute cinq : moins quatre ixe égale seize. On divise ensuite par moins quatre, et l'on obtient ixe égale moins quatre. L'ensemble solution contient le seul nombre moins quatre.",
+   "ecran": "ex_eq",
+   "id": "p08",
+   "texte": "Moins quatre ixe égale seize, donc ixe égale moins quatre."
+  },
+  {
+   "dit": "Quand l'équation contient des fractions, un réflexe simplifie tout : multiplier les deux membres par le dénominateur commun. Ici, celui de deux et de quatre est quatre, et les fractions disparaissent d'un coup.",
+   "ecran": "fractions",
+   "id": "p09",
+   "texte": "Le dénominateur commun chasse les fractions."
+  },
+  {
+   "dit": "On multiplie chaque terme par quatre : deux ixe plus quatre égale trois ixe moins huit. On regroupe les termes en ixe : moins ixe égale moins douze, donc ixe égale douze. L'ensemble solution contient le seul nombre douze.",
+   "ecran": "ex_fractions",
+   "id": "p10",
+   "texte": "Après regroupement, ixe égale douze."
+  },
+  {
+   "dit": "Vérifions avec douze. À gauche, douze sur deux plus un, six plus un, sept. À droite, trois fois douze sur quatre moins deux, neuf moins deux, sept. Les deux membres sont égaux : la solution est confirmée.",
+   "ecran": "verification_eq",
+   "id": "p11",
+   "texte": "Sept des deux côtés : la solution est confirmée."
+  },
+  {
+   "dit": "Une inéquation du premier degré se ramène à une forme comme a ixe plus bé inférieur ou égal à zéro, avec a différent de zéro. Les signes possibles sont inférieur strict, inférieur ou égal, supérieur strict, supérieur ou égal.",
+   "ecran": "def_ineq",
+   "id": "p12",
+   "texte": "Une inégalité à la place du signe égal."
+  },
+  {
+   "dit": "Grande différence avec les équations : une inéquation admet en général une infinité de solutions. Son ensemble solution est un intervalle de nombres rationnels, que l'on représentera sur une droite graduée.",
+   "ecran": "intervalle",
+   "id": "p13",
+   "texte": "Les solutions forment un intervalle de rationnels."
+  },
+  {
+   "dit": "Les règles ressemblent à celles des équations, avec une exception capitale. Ajouter ou retirer un même nombre ne change pas le sens, ni multiplier ou diviser par un positif. Mais multiplier ou diviser par un négatif retourne le sens.",
+   "ecran": "regles",
+   "id": "p14",
+   "texte": "Ajouter ne change rien, un négatif retourne tout."
+  },
+  {
+   "dit": "Exemple : résoudre moins deux ixe plus trois inférieur ou égal à neuf. On isole d'abord le terme en ixe, comme pour une équation, en gardant le sens tant que l'on se contente d'ajouter ou de retirer.",
+   "ecran": "ex_ineq_enonce",
+   "id": "p15",
+   "texte": "Isoler le terme en ixe, comme pour une équation."
+  },
+  {
+   "dit": "On retire trois : moins deux ixe inférieur ou égal à six. Reste à diviser par moins deux, un nombre négatif : le sens se retourne. On obtient ixe supérieur ou égal à moins trois. Tous les rationnels à partir de moins trois conviennent.",
+   "ecran": "ex_ineq",
+   "id": "p16",
+   "texte": "Ixe supérieur ou égal à moins trois."
+  },
+  {
+   "dit": "Sur une droite graduée, on colorie la partie qui part de moins trois vers la droite. Le crochet est fermé en moins trois, car moins trois est inclus : l'inégalité est large, pas stricte.",
+   "ecran": "representation",
+   "id": "p17",
+   "texte": "Colorier à partir de moins trois, crochet fermé."
+  },
+  {
+   "dit": "Pour les problèmes, une méthode en quatre temps. Choisir l'inconnue et dire ce qu'elle représente. Traduire l'énoncé en équation ou inéquation. Résoudre. Puis vérifier que la solution convient au contexte.",
+   "ecran": "methode_pb",
+   "id": "p18",
+   "texte": "Choisir, traduire, résoudre, vérifier."
+  },
+  {
+   "dit": "Premier problème : un rectangle a un périmètre de quarante-six centimètres, et sa longueur dépasse sa largeur de cinq centimètres. On choisit ixe pour la largeur ; la longueur vaut ixe plus cinq, et le périmètre donne l'équation.",
+   "ecran": "pb_eq",
+   "id": "p19",
+   "texte": "La largeur ixe, la longueur ixe plus cinq."
+  },
+  {
+   "dit": "Deux fois la somme de la largeur et de la longueur donne quatre ixe plus dix égale quarante-six. Donc quatre ixe égale trente-six, et ixe égale neuf. La largeur vaut neuf centimètres, et la longueur, neuf plus cinq, quatorze centimètres.",
+   "ecran": "ex_pb_eq",
+   "id": "p20",
+   "texte": "Largeur neuf centimètres, longueur quatorze."
+  },
+  {
+   "dit": "Vérification : deux fois neuf plus quatorze font deux fois vingt-trois, quarante-six centimètres. C'est exactement le périmètre annoncé : la réponse est cohérente avec l'énoncé.",
+   "ecran": "verif_pb",
+   "id": "p21",
+   "texte": "Deux fois vingt-trois : quarante-six, périmètre retrouvé."
+  },
+  {
+   "dit": "Deuxième problème, en inéquation : un abonnement coûte vingt euros, puis trois euros par séance, et l'on dispose de cinquante euros. Si èn est le nombre de séances, le coût total, vingt plus trois èn, doit rester sous cinquante.",
+   "ecran": "pb_ineq",
+   "id": "p22",
+   "texte": "Vingt euros fixes, trois euros par séance, cinquante de budget."
+  },
+  {
+   "dit": "On retire vingt : trois èn inférieur ou égal à trente. On divise par trois, un nombre positif, le sens ne change pas : èn inférieur ou égal à dix. On peut donc payer au plus dix séances.",
+   "ecran": "ex_pb_ineq",
+   "id": "p23",
+   "texte": "Au plus dix séances avec ce budget."
+  },
+  {
+   "dit": "Pour retenir l'essentiel : on isole l'inconnue par les mêmes opérations sur les deux membres, on chasse les fractions par le dénominateur commun, on retourne le sens face à un négatif, et l'on vérifie toujours la réponse.",
+   "ecran": "recap",
+   "id": "p24",
+   "texte": "Équations et inéquations : à retenir."
+  }
+ ],
+ "titre": "Équations et inéquations du premier degré dans ℚ"
 }
