@@ -1,0 +1,406 @@
+{
+ "cours": 6805,
+ "ecrans": {
+  "accident": {
+   "kicker": "Accident : la conduite à tenir",
+   "tex": [
+    "\\text{couper la source}",
+    "\\text{ne pas toucher la victime}",
+    "\\text{alerter, premiers gestes}"
+   ],
+   "titre": "Couper, ne pas toucher, alerter",
+   "type": "etape"
+  },
+  "allumage": {
+   "kicker": "Simple allumage et va-et-vient",
+   "tex": [
+    "\\text{simple : un interrupteur, un point}",
+    "\\text{va-et-vient : deux interrupteurs}",
+    "\\text{navettes entre les deux}"
+   ],
+   "titre": "Un point, un ou deux interrupteurs",
+   "type": "etape"
+  },
+  "circuit_dom": {
+   "kicker": "L'installation domestique",
+   "tex": [
+    "\\text{compteur : énergie mesurée}",
+    "\\text{disjoncteur général : protège}",
+    "\\text{tableau : répartit les circuits}",
+    "\\text{phase rouge, neutre bleu, terre}"
+   ],
+   "titre": "Compteur, général, tableau, conducteurs",
+   "type": "etape"
+  },
+  "cycle_4temps": {
+   "kicker": "Le cycle à quatre temps",
+   "tex": [
+    "\\text{admission : piston descend}",
+    "\\text{compression : piston remonte}",
+    "\\text{combustion-détente : temps moteur}",
+    "\\text{échappement : gaz évacués}"
+   ],
+   "titre": "Admission, compression, détente, échappement",
+   "type": "etape"
+  },
+  "cycle_freq": {
+   "kicker": "Exercice : 3000 tours par minute",
+   "note": "Un cycle complet demande deux tours de vilebrequin",
+   "tex": "f_{cycle} = \\frac{3000}{2} = 1500\\,\\text{cycles/min}",
+   "type": "formule"
+  },
+  "dangers": {
+   "kicker": "Les effets du courant sur le corps",
+   "tex": [
+    "\\text{fibrillation dès } 30 \\text{ mA}",
+    "\\text{brûlures par effet Joule}",
+    "\\text{tétanisation : pas de lâcher}"
+   ],
+   "titre": "Trente milliampères suffisent",
+   "type": "etape"
+  },
+  "def_coupe": {
+   "kicker": "Définir : la coupe simple",
+   "tex": [
+    "\\text{plan virtuel de coupe}",
+    "\\text{hachures sur la surface}",
+    "\\text{repères A-A, B-B}"
+   ],
+   "titre": "Sectionner pour révéler l'intérieur",
+   "type": "etape"
+  },
+  "def_rotation": {
+   "kicker": "Rotation et transmission",
+   "tex": [
+    "\\text{rotation autour d'un axe fixe}",
+    "\\text{moteur vers récepteur}",
+    "\\text{r : sortie sur entrée}"
+   ],
+   "titre": "D'un organe moteur à un récepteur",
+   "type": "etape"
+  },
+  "engrenages_def": {
+   "kicker": "Les engrenages : roues dentées",
+   "tex": [
+    "\\text{roues dentées en contact}",
+    "\\text{extérieures : sens inverse}",
+    "\\text{intérieures : même sens}"
+   ],
+   "titre": "Contact direct, sens selon le montage",
+   "type": "etape"
+  },
+  "engrenages_formule": {
+   "kicker": "Le rapport d'un engrenage",
+   "note": "Z : nombres de dents, motrice puis réceptrice",
+   "tex": "r = \\frac{N_2}{N_1} = \\frac{Z_1}{Z_2}",
+   "type": "formule"
+  },
+  "exemple_coupe": {
+   "kicker": "Exemple : la coupe A-A d'un cylindre creux",
+   "tex": [
+    "\\text{deux rectangles hachurés}",
+    "\\text{vide central : l'alésage}",
+    "\\text{hachures à } 45^{\\circ}"
+   ],
+   "titre": "Parois hachurées, vide au centre",
+   "type": "etape"
+  },
+  "methode": {
+   "kicker": "La méthode des projets techniques",
+   "tex": [
+    "\\text{analyser le problème}",
+    "\\text{proposer, choisir, justifier}",
+    "\\text{réaliser, tester, communiquer}"
+   ],
+   "titre": "Analyser, choisir, réaliser, communiquer",
+   "type": "etape"
+  },
+  "moteur_comb": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "piston"
+   },
+   "kicker": "Le moteur à combustion interne",
+   "texte": "Carburant brûlé, mécanique produite.",
+   "type": "phrase"
+  },
+  "moteur_elec": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "moteur_symbole_fig"
+   },
+   "kicker": "Le moteur électrique",
+   "texte": "Électrique en rotation, par électromagnétisme.",
+   "type": "phrase"
+  },
+  "moteur_elec_comp": {
+   "kicker": "Le moteur électrique : organes et grandeur",
+   "tex": [
+    "\\text{stator fixe, rotor tournant}",
+    "\\text{collecteur et balais}",
+    "\\text{P} = \\text{U} \\times \\text{I}"
+   ],
+   "titre": "Stator, rotor, puissance absorbée",
+   "type": "etape"
+  },
+  "poulies": {
+   "kicker": "Le système poulies-courroie",
+   "tex": [
+    "\\text{courroie relie deux poulies}",
+    "\\text{transmission par adhérence}",
+    "\\text{pas de dents, frottement}"
+   ],
+   "titre": "Deux poulies, une courroie, adhérence",
+   "type": "etape"
+  },
+  "poulies_exemple": {
+   "kicker": "Exercice : motrice 100 mm, 1500 tours",
+   "note": "Réceptrice de 300 mm",
+   "tex": "N_2 = 1500 \\times \\frac{100}{300} = 500\\,\\text{tr/min}",
+   "type": "formule"
+  },
+  "poulies_formule": {
+   "kicker": "La relation des poulies",
+   "note": "1 motrice, 2 réceptrice",
+   "tex": "\\frac{N_2}{N_1} = \\frac{D_1}{D_2}",
+   "type": "formule"
+  },
+  "protections": {
+   "kicker": "Se protéger : quatre mesures",
+   "tex": [
+    "\\text{différentiel } 30 \\text{ mA}",
+    "\\text{mise à la terre}",
+    "\\text{liaison équipotentielle}",
+    "\\text{matériel isolé, NF C 15-100}"
+   ],
+   "titre": "Différentiel, terre, liaison, normes",
+   "type": "etape"
+  },
+  "rapport_trans": {
+   "kicker": "Le rapport de transmission",
+   "note": "N : fréquence de rotation en tours par minute",
+   "tex": "r = \\frac{N_{sortie}}{N_{entrée}} = \\frac{D_{entrée}}{D_{sortie}}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Coupe : plan, hachures, repères A-A",
+    "Transmission : rapport sortie sur entrée",
+    "Poulies : diamètres inverses, engrenages : dents",
+    "Moteurs : combustion en quatre temps, électrique en rotation",
+    "Sécurité : différentiel 30 mA, terre, couper, alerter"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "reducteur": {
+   "kicker": "Réducteur ou multiplicateur",
+   "tex": [
+    "\\text{r} < 1 : \\text{réducteur, vitesse diminuée}",
+    "\\text{r} > 1 : \\text{multiplicateur, vitesse augmentée}"
+   ],
+   "titre": "En dessous de un, au-dessus de un",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "piston"
+   },
+   "kicker": "Sciences Physiques et Technologie · Projets et ingénierie",
+   "sous": "Coupe, transmission, moteurs et sécurité électrique : les gestes de l'ingénieur",
+   "titre": "Projets et éléments d'ingénierie",
+   "type": "titre"
+  },
+  "transformation_mvt": {
+   "kicker": "Du piston au vilebrequin",
+   "tex": [
+    "\\text{piston : rectiligne alternatif}",
+    "\\text{bielle : transmission}",
+    "\\text{vilebrequin : circulaire continu}"
+   ],
+   "titre": "Alternatif en circulaire, par la bielle",
+   "type": "etape"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Coupe, transmission, poulies et engrenages"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : les moteurs, à combustion interne puis électrique, l'installation domestique, le va-et-vient, et enfin les dangers du courant et la sécurité. De la rotation transmise, nous passons à la rotation produite, puis à la maison à protéger.",
+    "texte": "Partie 2 : moteurs, installation domestique et sécurité."
+   },
+   "sous_titre": "Moteurs, installation domestique et sécurité"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur les projets et les éléments d'ingénierie. Nous allons couper un objet pour voir son intérieur, transmettre un mouvement de rotation, faire tourner des moteurs, câbler une maison, et surtout nous protéger du courant.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Couper, transmettre, motoriser, protéger."
+  },
+  {
+   "dit": "Une coupe simple est une représentation technique obtenue en sectionnant virtuellement un objet par un plan, afin d'en révéler l'intérieur. On ne casse rien : on imagine la coupe.",
+   "ecran": "def_coupe",
+   "id": "p02",
+   "texte": "Coupe simple : sectionner pour révéler."
+  },
+  {
+   "dit": "Les conventions sont précises : les traits cachés sont remplacés par des hachures, des traits fins et parallèles, sur la surface coupée ; le plan de coupe est indiqué par un trait mixte fin avec des flèches, repères A-A ou B-B ; et la partie située devant le plan est supprimée mentalement.",
+   "ecran": "def_coupe",
+   "id": "p03",
+   "texte": "Hachures, trait mixte, partie supprimée."
+  },
+  {
+   "dit": "Exemple résolu : pour représenter la coupe A-A d'un cylindre creux, on trace deux rectangles hachurés, les parois, séparés par un vide, l'alésage. Les hachures sont inclinées à quarante-cinq degrés.",
+   "ecran": "exemple_coupe",
+   "id": "p04",
+   "texte": "Cylindre creux : parois hachurées, vide central."
+  },
+  {
+   "dit": "Passons à la transmission. Un mouvement de rotation est le mouvement d'un solide autour d'un axe fixe, et une transmission est le dispositif qui transporte ce mouvement d'un organe moteur vers un organe récepteur.",
+   "ecran": "def_rotation",
+   "id": "p05",
+   "texte": "Rotation autour d'un axe, moteur vers récepteur."
+  },
+  {
+   "dit": "Le rapport de transmission, noté r, est le rapport entre la vitesse de sortie et la vitesse d'entrée. Il vaut aussi le diamètre d'entrée divisé par le diamètre de sortie, les fréquences étant en tours par minute.",
+   "ecran": "rapport_trans",
+   "id": "p06",
+   "texte": "Rapport : sortie sur entrée, diamètres inversés."
+  },
+  {
+   "dit": "Dans un système poulies-courroie, une courroie relie deux poulies et transmet le mouvement de rotation par adhérence. Pas de dents ici : c'est le frottement qui entraîne.",
+   "ecran": "poulies",
+   "id": "p07",
+   "texte": "Poulies-courroie : l'adhérence entraîne."
+  },
+  {
+   "dit": "La relation fondamentale s'écrit : la fréquence de la réceptrice sur celle de la motrice égale le diamètre de la motrice sur celui de la réceptrice. Grande poulie réceptrice, vitesse plus faible.",
+   "ecran": "poulies_formule",
+   "id": "p08",
+   "texte": "Fréquences et diamètres : rapports inversés."
+  },
+  {
+   "dit": "Exercice résolu : une poulie motrice de cent millimètres de diamètre tourne à mille cinq cents tours par minute, et la poulie réceptrice a un diamètre de trois cents millimètres. Sa vitesse vaut mille cinq cents fois cent sur trois cents, soit cinq cents tours par minute.",
+   "ecran": "poulies_exemple",
+   "id": "p09",
+   "texte": "Cent et trois cents millimètres : cinq cents tours."
+  },
+  {
+   "dit": "Un engrenage, lui, est un ensemble de roues dentées qui transmettent le mouvement de rotation par contact direct. Les roues extérieures tournent en sens inverse, les roues intérieures dans le même sens.",
+   "ecran": "engrenages_def",
+   "id": "p10",
+   "texte": "Engrenages : dents en contact direct."
+  },
+  {
+   "dit": "La formule du rapport de transmission d'un engrenage s'écrit : r égale la fréquence de la réceptrice sur celle de la motrice, égale le nombre de dents de la motrice sur celui de la réceptrice.",
+   "ecran": "engrenages_formule",
+   "id": "p11",
+   "texte": "Rapport : dents motrice sur dents réceptrice."
+  },
+  {
+   "dit": "Un engrenage réducteur diminue la vitesse, avec r inférieur à un, tandis qu'un multiplicateur l'augmente, avec r supérieur à un. Le rapport dit tout du montage.",
+   "ecran": "reducteur",
+   "id": "p12",
+   "texte": "Réducteur sous un, multiplicateur au-dessus."
+  },
+  {
+   "dit": "Un moteur à combustion interne transforme l'énergie chimique d'un carburant en énergie mécanique. Ses organes principaux sont le cylindre, le piston, la bielle, le vilebrequin, les soupapes, et la bougie pour l'essence ou l'injecteur pour le diesel.",
+   "ecran": "moteur_comb",
+   "id": "p13",
+   "texte": "Combustion interne : chimique en mécanique."
+  },
+  {
+   "dit": "Le cycle à quatre temps comprend l'admission, où le piston descend et le mélange air-carburant entre ; la compression, où le piston remonte et le mélange est comprimé ; la combustion-détente, où l'explosion pousse le piston vers le bas, seul temps moteur ; et l'échappement, où les gaz brûlés sont évacués.",
+   "ecran": "cycle_4temps",
+   "id": "p14",
+   "texte": "Admission, compression, détente, échappement."
+  },
+  {
+   "dit": "La bielle transforme le mouvement rectiligne alternatif du piston en mouvement circulaire continu du vilebrequin. C'est cette transformation qui rend le moteur utilisable pour rouler.",
+   "ecran": "transformation_mvt",
+   "id": "p15",
+   "texte": "Bielle : alternatif en circulaire."
+  },
+  {
+   "dit": "Exercice : un moteur tourne à trois mille tours par minute. La fréquence du cycle complet, quatre temps, vaut trois mille divisé par deux, soit mille cinq cents cycles par minute, car chaque cycle nécessite deux tours de vilebrequin.",
+   "ecran": "cycle_freq",
+   "id": "p16",
+   "texte": "Trois mille tours : mille cinq cents cycles."
+  },
+  {
+   "dit": "Le moteur électrique, lui, convertit l'énergie électrique en énergie mécanique de rotation grâce aux forces électromagnétiques. Ses composants essentiels sont le stator, partie fixe, le rotor, partie tournante, et le collecteur avec les balais pour le moteur à courant continu.",
+   "ecran": "moteur_elec",
+   "id": "p17",
+   "texte": "Moteur électrique : électrique en rotation."
+  },
+  {
+   "dit": "Ses grandeurs caractéristiques sont la tension d'alimentation en volts, l'intensité du courant en ampères, et la puissance électrique absorbée, qui vaut la tension fois l'intensité, en watts.",
+   "ecran": "moteur_elec_comp",
+   "id": "p18",
+   "texte": "Tension, intensité, puissance absorbée."
+  },
+  {
+   "dit": "L'installation domestique se structure ainsi : le compteur mesure l'énergie consommée, le disjoncteur général protège l'installation, le tableau électrique répartit les circuits avec des disjoncteurs divisionnaires, et les conducteurs sont la phase rouge, le neutre bleu et la terre vert-jaune.",
+   "ecran": "circuit_dom",
+   "id": "p19",
+   "texte": "Compteur, général, tableau, trois conducteurs."
+  },
+  {
+   "dit": "Chaque circuit est protégé par un disjoncteur calibré selon la section des fils et la puissance des appareils : c'est la règle de sécurité qui dimensionne toute l'installation.",
+   "ecran": "circuit_dom",
+   "id": "p20",
+   "texte": "Disjoncteur calibré par circuit."
+  },
+  {
+   "dit": "Pour l'éclairage, le simple allumage, c'est un interrupteur qui commande un point d'éclairage depuis un seul endroit. Le va-et-vient, c'est deux interrupteurs qui commandent le même point depuis deux endroits différents, comme un couloir ou un escalier.",
+   "ecran": "allumage",
+   "id": "p21",
+   "texte": "Simple allumage ou va-et-vient."
+  },
+  {
+   "dit": "Le schéma de câblage du va-et-vient relie les deux interrupteurs entre eux par deux navettes : la phase arrive au premier interrupteur, et le retour lampe part du second.",
+   "ecran": "allumage",
+   "id": "p22",
+   "texte": "Deux navettes, phase puis retour lampe."
+  },
+  {
+   "dit": "Les dangers du courant sont réels : la fibrillation cardiaque dès trente milliampères, les brûlures par effet Joule, et la tétanisation, une contraction musculaire qui empêche le lâcher. La tension dangereuse commence à cinquante volts en courant alternatif.",
+   "ecran": "dangers",
+   "id": "p23",
+   "texte": "Trente milliampères, cinquante volts : danger."
+  },
+  {
+   "dit": "Les mesures de protection sont le disjoncteur différentiel de trente milliampères, qui coupe le circuit en cas de fuite, la mise à la terre, qui évacue les courants de défaut, la liaison équipotentielle dans les pièces humides, et le matériel isolé aux normes NF C quinze tiret cent.",
+   "ecran": "protections",
+   "id": "p24",
+   "texte": "Différentiel, terre, liaison, normes."
+  },
+  {
+   "dit": "En cas d'accident, la conduite à tenir est claire : couper la source, ne pas toucher la victime directement, alerter les secours, et pratiquer les premiers gestes de secours.",
+   "ecran": "accident",
+   "id": "p25",
+   "texte": "Couper, ne pas toucher, alerter, secourir."
+  },
+  {
+   "dit": "Enfin, la méthode scientifique des projets techniques se retient en cinq étapes : analyser le problème et le cahier des charges, proposer des solutions, choisir et justifier une solution, réaliser et tester, puis communiquer les résultats avec un vocabulaire scientifique adapté.",
+   "ecran": "methode",
+   "id": "p26",
+   "texte": "Analyser, proposer, choisir, réaliser, communiquer."
+  },
+  {
+   "dit": "Retenons l'essentiel : la coupe révèle l'intérieur par hachures ; la transmission se mesure par le rapport sortie sur entrée ; poulies et engrenages inversent diamètres et dents ; les moteurs transforment chimique ou électrique en rotation ; et la sécurité, c'est différentiel trente milliampères, terre, couper et alerter.",
+   "ecran": "recap",
+   "id": "p27",
+   "texte": "Coupe, transmission, moteurs, sécurité."
+  }
+ ],
+ "titre": "Projets et éléments d'ingénierie"
+}
