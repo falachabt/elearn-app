@@ -57,7 +57,8 @@
   "edo_caract": {
    "anim": {
     "hauteur": 150,
-    "nom": "exponentielle_fig"
+    "mode": "osc",
+    "nom": "solutions_exp_fig"
    },
    "kicker": "Équations à coefficients constants",
    "note": "Chercher une exponentielle : l'exposant obéit à l'équation caractéristique.",
@@ -250,7 +251,8 @@
   "resonance": {
    "anim": {
     "hauteur": 130,
-    "nom": "exponentielle_fig"
+    "mode": "res",
+    "nom": "solutions_exp_fig"
    },
    "kicker": "Le cas de résonance",
    "tex": [
@@ -273,7 +275,8 @@
   "serie_edo_sol": {
    "anim": {
     "hauteur": 180,
-    "nom": "exponentielle_fig"
+    "mode": "serie",
+    "nom": "solutions_exp_fig"
    },
    "kicker": "La solution reconnue",
    "note": "Pairs : un sur deux puissance k factorielle k ; impairs nuls.",
@@ -326,7 +329,7 @@
   "titre": {
    "anim": {
     "hauteur": 250,
-    "nom": "exponentielle_fig"
+    "nom": "champ_pentes_fig"
    },
    "kicker": "Mathématique · Analyse de concours",
    "sous": "Compter les racines, développer en séries, résoudre les équations différentielles et intégrer",
