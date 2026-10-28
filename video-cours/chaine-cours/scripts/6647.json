@@ -1,0 +1,379 @@
+{
+ "cours": 6647,
+ "ecrans": {
+  "admin_groupe": {
+   "kicker": "Créer et administrer un groupe",
+   "tex": [
+    "\\text{Créateur : administrateur du groupe}",
+    "\\text{Valider, annoncer, modérer, nommer}",
+    "\\text{Partage : fichier direct ou lien cloud}"
+   ],
+   "titre": "Gérer membres et fichiers",
+   "type": "etape"
+  },
+  "algo_def": {
+   "kicker": "Définir : algorithmique et algorithme",
+   "tex": [
+    "\\text{Algorithmique : conception, écriture, analyse}",
+    "\\text{Algorithme : suite finie et ordonnée}",
+    "\\text{Précis, fini, général : une classe entière}"
+   ],
+   "titre": "Une science, une suite d'instructions",
+   "type": "etape"
+  },
+  "alternative": {
+   "kicker": "La structure alternative",
+   "tex": [
+    "\\text{Si, Alors, FinSi : forme simple}",
+    "\\text{Si, Alors, Sinon, FinSi : forme complète}",
+    "\\text{Condition : expression vraie ou fausse}"
+   ],
+   "titre": "Exécuter seulement si vrai",
+   "type": "etape"
+  },
+  "application_moyenne": {
+   "kicker": "Exemple complet : la moyenne",
+   "note": "Algorithme Moyenne : lire a, b, c, puis moy reçoit a plus b plus c, le tout divisé par 3. Si moy est supérieure ou égale à 10, écrire Admis, sinon écrire Non admis.",
+   "tex": "moy \\leftarrow \\frac{a + b + c}{3}",
+   "type": "formule"
+  },
+  "caracteristiques": {
+   "kicker": "Les caractéristiques d'une image",
+   "note": "Une image de 4000 sur 3000 pixels a une définition de 12 000 000 pixels, soit 12 mégapixels. Résolution : 300 points par pouce pour l'impression, 72 pour l'écran.",
+   "tex": "D = L \\times H",
+   "type": "formule"
+  },
+  "choix_reseaux": {
+   "kicker": "Choisir un réseau, filtrer, se conduire",
+   "tex": [
+    "\\text{LinkedIn : professionnel, Instagram : photos}",
+    "\\text{Facebook : grand public, X : actualités}",
+    "\\text{Bloquer, signaler, restreindre, confidentialité}"
+   ],
+   "titre": "Objectif, filtrage, nétiquette",
+   "type": "etape"
+  },
+  "cloud": {
+   "kicker": "Le cloud : sauvegarde et partage",
+   "tex": [
+    "\\text{Stockage distant, serveurs externes}",
+    "\\text{Sauvegarder : copier pour protéger}",
+    "\\text{Partager : lien, lecture ou écriture}"
+   ],
+   "titre": "Sauvegarder, partager, retrouver partout",
+   "type": "etape"
+  },
+  "compression": {
+   "kicker": "La compression des fichiers",
+   "note": "Exemple : un fichier son WAV de 50 Mo converti en MP3 de 4 Mo donne un taux de 50 divisé par 4, soit 12,5. Le fichier est compressé 12,5 fois, avec une perte acceptable pour une écoute courante.",
+   "tex": "T = \\frac{\\text{Poids initial}}{\\text{Poids compressé}}",
+   "type": "formule"
+  },
+  "email": {
+   "kicker": "La messagerie électronique",
+   "tex": [
+    "\\text{SMTP : émetteur vers serveurs}",
+    "\\text{POP ou IMAP : vers le destinataire}",
+    "\\text{Adresse : prénom.nom, mot de passe solide}"
+   ],
+   "titre": "Envoyer, recevoir, joindre",
+   "type": "etape"
+  },
+  "etapes_resolution": {
+   "kicker": "Les quatre étapes de résolution",
+   "tex": [
+    "\\text{Analyse : données et résultat attendu}",
+    "\\text{Conception : décomposer, stratégie}",
+    "\\text{Écriture, puis test et validation}"
+   ],
+   "titre": "Comprendre, concevoir, écrire, tester",
+   "type": "etape"
+  },
+  "execution": {
+   "kicker": "L'exécution pas à pas",
+   "note": "Exemple : x reçoit 5, y reçoit x plus 3, soit 8, puis x reçoit y fois 2, soit 16. L'algorithme affiche 16. On note l'évolution des variables dans un tableau de traçage.",
+   "tex": "y \\leftarrow x + 3, \\; x \\leftarrow y \\times 2",
+   "type": "formule"
+  },
+  "infographie": {
+   "kicker": "L'infographie",
+   "tex": [
+    "\\text{Créer, traiter, manipuler des images}",
+    "\\text{Infographe : le professionnel des images}",
+    "\\text{Publicité, cinéma, architecture, médecine}"
+   ],
+   "titre": "Des images par ordinateur",
+   "type": "etape"
+  },
+  "montage": {
+   "kicker": "Le montage vidéo",
+   "tex": [
+    "\\text{Collecte, organisation sur la timeline}",
+    "\\text{Découpage, transition fondu, audio}",
+    "\\text{Exportation : fichier final MP4}"
+   ],
+   "titre": "Assembler des images et du son",
+   "type": "etape"
+  },
+  "multimedia": {
+   "kicker": "Le multimédia",
+   "tex": [
+    "\\text{Texte, image, son, vidéo, animation}",
+    "\\text{Contenus combinés sur un support}",
+    "\\text{Formats et compression à maîtriser}"
+   ],
+   "titre": "Des contenus combinés",
+   "type": "etape"
+  },
+  "organigramme": {
+   "kicker": "L'organigramme",
+   "tex": [
+    "\\text{Symboles normalisés, flèches, ordre}",
+    "\\text{De haut en bas, une action par symbole}",
+    "\\text{Un seul départ, une seule arrivée}"
+   ],
+   "titre": "Dessiner l'algorithme",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Infographie : images vectorielles ou matricielles, définition, résolution, poids, profondeur, modes RVB et CMJN.",
+    "Multimédia : compression sans ou avec perte, montage vidéo en six étapes.",
+    "Culture numérique : réseaux sociaux, messagerie, recherche, cloud, groupes, vérification.",
+    "Algorithmique : analyse, variables, structures, exécution pas à pas, organigramme."
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "recherche": {
+   "kicker": "Rechercher et vérifier une information",
+   "tex": [
+    "\\text{Mots-clés précis, expression exacte}",
+    "\\text{Exclure un mot, limiter à un domaine}",
+    "\\text{Source, date, auteur, croisement}"
+   ],
+   "titre": "Chercher juste, vérifier toujours",
+   "type": "etape"
+  },
+  "reseaux_def": {
+   "kicker": "Réseaux, navigateur, moteur de recherche",
+   "tex": [
+    "\\text{Réseau : profil, connexions, contenus}",
+    "\\text{Navigateur : Chrome, Firefox, Safari}",
+    "\\text{Moteur : Google, Bing, Qwant}"
+   ],
+   "titre": "Profils reliés, pages indexées",
+   "type": "etape"
+  },
+  "structure_algo": {
+   "kicker": "La structure d'un algorithme",
+   "tex": [
+    "\\text{En-tête : nom de l'algorithme}",
+    "\\text{Déclarations : variables et constantes}",
+    "\\text{Corps : instructions entre Début et Fin}"
+   ],
+   "titre": "Nom, déclarations, corps",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Informatique · Images, médias et algorithmique",
+   "sous": "Infographie et multimédia, culture numérique, puis les bases de l'algorithmique",
+   "titre": "Culture numérique et création algorithmique",
+   "type": "titre"
+  },
+  "types_images": {
+   "kicker": "Les types d'images",
+   "tex": [
+    "\\text{Vectorielle : formules, SVG, AI, sans perte}",
+    "\\text{Matricielle : grille de pixels, PNG, JPEG}",
+    "\\text{Agrandie, la matricielle pixellise}"
+   ],
+   "titre": "Formules ou pixels",
+   "type": "etape"
+  },
+  "variables": {
+   "kicker": "Variables, constantes, instructions",
+   "tex": [
+    "\\text{Variable : espace nommé, valeur changeante}",
+    "\\text{Constante : valeur fixe, exemple PI}",
+    "\\text{Affectation, lecture, écriture}"
+   ],
+   "titre": "Nom, type, valeur",
+   "type": "etape"
+  },
+  "verification": {
+   "kicker": "Vérifier l'authenticité d'une information",
+   "tex": [
+    "\\text{Identifier la source originale}",
+    "\\text{Croiser les sources, vérifier la date}",
+    "\\text{Repérer images truquées et titres racoleurs}"
+   ],
+   "titre": "Quatre réflexes avant de croire",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Infographie et multimédia : images, compression, montage"
+  },
+  {
+   "debut": "p08",
+   "pont": {
+    "dit": "Partie deux : la culture numérique. Nous définirons les réseaux sociaux, la messagerie et le cloud, puis nous apprendrons à chercher, filtrer et vérifier une information, et à administrer un groupe.",
+    "texte": "Partie 2 : culture numérique."
+   },
+   "sous_titre": "Culture numérique : réseaux, messagerie, cloud, vérification"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie trois : l'algorithmique. Nous définirons l'algorithme, ses étapes de résolution, ses variables et ses structures, puis nous exécuterons un algorithme pas à pas et nous dessinerons son organigramme.",
+    "texte": "Partie 3 : l'algorithmique."
+   },
+   "sous_titre": "Algorithmique : de la définition à l'organigramme"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'informatique en deux volets : d'abord la culture numérique, avec l'infographie, le multimédia, les réseaux sociaux et le cloud, puis l'algorithmique, la science qui apprend à résoudre un problème par une suite d'instructions.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Culture numérique, puis algorithmique."
+  },
+  {
+   "dit": "L'infographie est l'ensemble des techniques permettant la création, le traitement et la manipulation d'images numériques à l'aide d'outils informatiques. Le professionnel qui exerce ce métier est appelé infographe. Ses domaines d'application sont la publicité et la communication visuelle, le cinéma et les jeux vidéo, l'architecture et l'ingénierie, la médecine, la cartographie et la géolocalisation. Le graphisme, lui, est une branche de l'infographie centrée sur la communication visuelle : typographie, mise en page, identité visuelle. Le graphiste conçoit des visuels destinés à transmettre un message.",
+   "ecran": "infographie",
+   "id": "p02",
+   "texte": "Infographie : créer des images, graphisme : communiquer."
+  },
+  {
+   "dit": "Deux types d'images. L'image vectorielle est définie par des formules mathématiques, points et courbes ; elle est redimensionnable sans perte de qualité, son poids est faible, et ses formats sont SVG et AI. L'image matricielle, bitmap, est constituée d'une grille de pixels, des points colorés ; elle perd en qualité si on l'agrandit, c'est la pixellisation, son poids est proportionnel à la résolution, et ses formats sont PNG, JPEG et GIF.",
+   "ecran": "types_images",
+   "id": "p03",
+   "texte": "Vectorielle sans perte, matricielle en pixels."
+  },
+  {
+   "dit": "Quatre caractéristiques d'une image. La définition est le nombre total de pixels, D égal L fois H, largeur fois hauteur : une image de 4000 sur 3000 pixels a une définition de 12 millions de pixels, soit 12 mégapixels. La résolution est le nombre de pixels par unité de longueur, en points par pouce : 300 pour l'impression, 72 pour l'écran. Le poids est la taille du fichier en octets, égal à la définition fois le nombre d'octets par pixel. La profondeur de couleur est le nombre de bits par pixel : 8 bits donnent 256 couleurs, 24 bits donnent 16,7 millions. Enfin, le mode colorimétrique est RVB pour l'écran et CMJN pour l'impression.",
+   "ecran": "caracteristiques",
+   "id": "p04",
+   "texte": "Définition, résolution, poids, profondeur, mode."
+  },
+  {
+   "dit": "Le multimédia regroupe l'ensemble des contenus numériques combinant texte, image, son, vidéo et animation, diffusés sur un support informatique. Pour les fichiers, la compression réduit le poids pour faciliter le stockage et la transmission. La compression sans perte conserve toutes les données d'origine : le fichier décompressé est identique à l'original, avec PNG, WAV ou ZIP. La compression avec perte supprime des données imperceptibles ou jugées moins importantes : la qualité diminue mais le poids est fortement réduit, avec JPEG, MP3 ou MP4.",
+   "ecran": "multimedia",
+   "id": "p05",
+   "texte": "Multimédia : contenus combinés, fichiers compressés."
+  },
+  {
+   "dit": "Le taux de compression est le poids initial divisé par le poids compressé. Exemple résolu : un fichier son WAV de 50 Mo converti en MP3 de 4 Mo donne un taux de 50 divisé par 4, soit 12,5. Le fichier est compressé 12,5 fois, avec une perte de qualité acceptable pour une écoute courante.",
+   "ecran": "compression",
+   "id": "p06",
+   "texte": "Taux de compression : 50 sur 4, soit 12,5."
+  },
+  {
+   "dit": "Le montage vidéo consiste à assembler des images fixes, des scènes filmées et des pistes audio pour créer un film cohérent. Les étapes sont : la collecte, importer images et séquences dans le logiciel, comme OpenShot, Shotcut, Adobe Premiere ou DaVinci Resolve ; l'organisation, placer les éléments sur la timeline, la ligne de temps, dans l'ordre souhaité ; le découpage, couper les scènes aux points d'entrée et de sortie ; la transition, ajouter des effets entre les scènes, comme le fondu ; l'ajout audio, insérer une bande sonore ou des commentaires ; et l'exportation, générer le fichier final, souvent en MP4. Exemple résolu : pour une vidéo de 30 secondes à partir de 6 photos, chaque photo s'affiche 30 divisé par 6, soit 5 secondes, avec une transition de fondu d'une seconde entre chaque image et une piste musicale en fond.",
+   "ecran": "montage",
+   "id": "p07",
+   "texte": "Montage : collecter, ordonner, couper, exporter."
+  },
+  {
+   "dit": "Un réseau social est un service en ligne permettant à un utilisateur de créer un profil public, d'établir des connexions avec d'autres utilisateurs et d'échanger des contenus : textes, images, vidéos. Exemples : Facebook, Instagram, X, LinkedIn, TikTok, Snapchat. Un navigateur est un logiciel permettant de consulter des pages web : Chrome, Firefox, Safari. Un moteur de recherche est un service en ligne qui indexe les pages web et renvoie des résultats pertinents à partir de mots-clés : Google, Bing, Qwant.",
+   "ecran": "reseaux_def",
+   "id": "p08",
+   "texte": "Réseau, navigateur, moteur : trois services."
+  },
+  {
+   "dit": "Le serveur de messagerie reçoit, stocke et transmet les messages électroniques, en trois étapes : de l'émetteur vers le serveur émetteur par SMTP, puis vers le serveur récepteur par SMTP, puis vers le destinataire par POP ou IMAP. Pour créer une adresse, choisissez un fournisseur, comme Gmail ou Outlook, puis renseignez nom, prénom, et un mot de passe d'au moins 8 caractères, mélangeant lettres, chiffres et symboles. Une adresse professionnelle suit généralement le format prénom point nom, arobase, entreprise, point com. Un mail comporte destinataire, objet, corps et pièces jointes, souvent limitées à 25 Mo : pour des fichiers volumineux, utilisez le cloud.",
+   "ecran": "email",
+   "id": "p09",
+   "texte": "SMTP puis POP ou IMAP : le trajet d'un mail."
+  },
+  {
+   "dit": "Pour rechercher une information, utilisez un navigateur et un moteur de recherche. Formulez des mots-clés précis, utilisez les opérateurs booléens : guillemets pour un texte exact, signe moins pour exclure un mot, site deux points domaine pour limiter à un domaine, puis évaluez la pertinence des résultats : source, date, auteur.",
+   "ecran": "recherche",
+   "id": "p10",
+   "texte": "Mots-clés précis, opérateurs, pertinence."
+  },
+  {
+   "dit": "Le cloud est un espace de stockage distant accessible via internet : les données sont hébergées sur des serveurs externes, ce qui permet leur sauvegarde et leur partage depuis tout appareil connecté. Il permet de sauvegarder, copier des fichiers sur un serveur distant pour les protéger contre la perte, et de partager, transmettre un lien d'accès à d'autres utilisateurs, avec des droits de lecture ou d'écriture.",
+   "ecran": "cloud",
+   "id": "p11",
+   "texte": "Cloud : sauvegarder loin, partager par lien."
+  },
+  {
+   "dit": "Le choix d'un réseau social dépend de l'objectif visé : professionnel avec LinkedIn, partage de photos avec Instagram, communication grand public avec Facebook, courtes actualités avec X. Pour filtrer, paramétrez les préférences de contenu et masquez les publications non pertinentes ; pour les utilisateurs, bloquez, signalez ou restreignez l'accès au profil. Le code de conduite, la nétiquette, varie selon le contexte : en professionnel, langage formel, pas d'abréviations familières, respect de la confidentialité ; en privé, ton plus libre mais toujours respectueux. Règle générale : ne pas publier d'informations personnelles sensibles, et demander l'autorisation avant de partager une photo d'autrui.",
+   "ecran": "choix_reseaux",
+   "id": "p12",
+   "texte": "Choisir selon l'objectif, filtrer, se conduire."
+  },
+  {
+   "dit": "Pour vérifier l'authenticité d'une information reçue : identifiez la source originale, qui a publié ; croisez les sources, l'information est-elle reprise ailleurs ; vérifiez la date de publication ; repérez les indices de manipulation, images truquées, titres sensationnalistes.",
+   "ecran": "verification",
+   "id": "p13",
+   "texte": "Source, croisement, date, indices : vérifier."
+  },
+  {
+   "dit": "Dans un réseau social, le créateur d'un groupe devient administrateur. Ses fonctions : valider ou refuser les demandes d'adhésion, publier des annonces officielles, modérer les commentaires en supprimant les contenus inappropriés, et nommer d'autres administrateurs. Les membres peuvent publier des fichiers directement dans le groupe ou via un lien cloud, et l'administrateur définit les droits : visibilité publique ou privée, téléchargement autorisé ou non.",
+   "ecran": "admin_groupe",
+   "id": "p14",
+   "texte": "Administrer : valider, annoncer, modérer."
+  },
+  {
+   "dit": "Deuxième volet, l'algorithmique. L'algorithmique est la science qui étudie la conception, l'écriture et l'analyse des algorithmes. Un algorithme est une suite finie d'instructions ordonnées qui, exécutées dans un ordre précis, permettent de résoudre un problème donné. Il doit être précis, chaque instruction est sans ambiguïté ; fini, il se termine après un nombre fini d'étapes ; général, il résout toute une classe de problèmes, pas un cas particulier.",
+   "ecran": "algo_def",
+   "id": "p15",
+   "texte": "Algorithme : précis, fini, général."
+  },
+  {
+   "dit": "La résolution d'un problème par algorithme suit quatre étapes : l'analyse, comprendre le problème, identifier les données d'entrée et le résultat attendu ; la conception, décomposer le problème en sous-problèmes et définir la stratégie de résolution ; l'écriture de l'algorithme, formaliser la solution sous forme d'instructions ; le test et la validation, exécuter l'algorithme avec des exemples pour vérifier son bon fonctionnement.",
+   "ecran": "etapes_resolution",
+   "id": "p16",
+   "texte": "Analyser, concevoir, écrire, tester."
+  },
+  {
+   "dit": "Une variable est un espace mémoire nommé qui peut stocker une valeur susceptible de changer pendant l'exécution ; elle possède un nom et un type : nombre entier, réel, caractère, booléen. Exemple : déclarer une variable n pour stocker un nombre entier. Une constante est un espace mémoire nommé dont la valeur ne change jamais ; elle permet de donner un nom à une valeur fixe, par exemple la constante PI égale à 3,14. Une instruction est une action élémentaire : l'affectation attribue une valeur, notée x flèche valeur ; la lecture permet à l'utilisateur de saisir une valeur ; l'écriture affiche un résultat. Exemple : pour calculer le double d'un nombre saisi, lire n, double reçoit n fois 2, écrire double.",
+   "ecran": "variables",
+   "id": "p17",
+   "texte": "Variable changeante, constante fixe, trois gestes."
+  },
+  {
+   "dit": "Un algorithme suit une structure standard : l'en-tête, le nom de l'algorithme ; les déclarations, la liste des variables et constantes ; le corps, la séquence d'instructions entre Début et Fin. Un algorithme séquentiel est un algorithme dont les instructions s'exécutent dans l'ordre où elles sont écrites, de la première à la dernière, sans branchement.",
+   "ecran": "structure_algo",
+   "id": "p18",
+   "texte": "En-tête, déclarations, corps entre Début et Fin."
+  },
+  {
+   "dit": "Une structure de contrôle modifie l'ordre d'exécution séquentiel. La structure alternative permet d'exécuter certaines instructions seulement si une condition est vraie, une expression logique qui peut être vraie ou fausse. Forme simple : Si, condition, Alors, instructions, FinSi. Forme complète : Si, condition, Alors, instructions A, Sinon, instructions B, FinSi. Exemple résolu : déterminer si un nombre saisi n est pair ou impair. La condition est n modulo 2 égal 0 : si elle est vraie, le nombre est pair ; sinon, il est impair.",
+   "ecran": "alternative",
+   "id": "p19",
+   "texte": "Si vrai alors ceci, sinon cela."
+  },
+  {
+   "dit": "La structure répétitive, ou boucle, permet de répéter un bloc d'instructions plusieurs fois ; elle sera étudiée en détail dans les chapitres suivants. Exécuter un algorithme consiste à suivre pas à pas les instructions dans l'ordre, en remplaçant les variables par leurs valeurs successives, souvent dans un tableau de traçage. Exemple résolu : avec x égal 5, y reçoit x plus 3, soit 8, puis x reçoit y fois 2, soit 16. L'algorithme affiche 16.",
+   "ecran": "execution",
+   "id": "p20",
+   "texte": "Suivre pas à pas, noter chaque valeur."
+  },
+  {
+   "dit": "Un organigramme est une représentation graphique d'un algorithme utilisant des symboles normalisés reliés par des flèches indiquant l'ordre d'exécution. Règles de construction : l'organigramme se lit de haut en bas, chaque symbole contient une seule action, les flèches relient les symboles sans croisement inutile, un seul point de départ et un seul point d'arrivée. Exemple résolu, l'organigramme pair ou impair : Début, lire n, losange n modulo 2 égal 0, branche Oui vers écrire pair puis Fin, branche Non vers écrire impair puis Fin.",
+   "ecran": "organigramme",
+   "id": "p21",
+   "texte": "Symboles, flèches, un départ, une arrivée."
+  },
+  {
+   "dit": "Application pratique complète : écrire un algorithme qui calcule la moyenne de trois notes a, b et c, et affiche si l'élève est admis, moyenne supérieure ou égale à 10, ou non. Cet algorithme combine une structure séquentielle, lecture et calcul, et une structure alternative, test de la moyenne. Algorithme Moyenne : lire a, b et c, moy reçoit a plus b plus c, le tout divisé par 3, écrire la moyenne, puis si moy est supérieure ou égale à 10, écrire Admis, sinon écrire Non admis.",
+   "ecran": "application_moyenne",
+   "id": "p22",
+   "texte": "Moyenne de trois notes : admis ou non."
+  },
+  {
+   "dit": "Récapitulons. En infographie, une image est vectorielle ou matricielle, avec sa définition, sa résolution, son poids, sa profondeur et son mode RVB ou CMJN. En multimédia, la compression est sans perte ou avec perte, et le montage vidéo suit six étapes. En culture numérique, choisissez vos réseaux, protégez vos messages, cherchez avec des mots-clés précis, sauvegardez dans le cloud, administrez vos groupes et vérifiez vos informations. En algorithmique, analysez, concevez, écrivez, testez, puis exécutez pas à pas et dessinez l'organigramme.",
+   "ecran": "recap",
+   "id": "p23",
+   "texte": "Images, médias, réseaux, algorithmes : à retenir."
+  }
+ ],
+ "titre": "Culture numérique et création algorithmique"
+}
