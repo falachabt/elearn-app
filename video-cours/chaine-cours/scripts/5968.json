@@ -1,1 +1,472 @@
-{"cours":5968,"ecrans":{"anabolisme":{"kicker":"Définition · L'anabolisme","note":"Synthèse : elle consomme de l'énergie.","tex":"\\begin{aligned} \\text{molécules simples} + \\text{ATP} \\rightarrow \\\\ \\text{molécules complexes} \\end{aligned}","type":"formule"},"applications":{"type":"phrase","kicker":"Applications · Santé et industrie","texte":"Le métabolisme hors du manuel. Diabète : dosage du glucose sanguin ; cholestérol : inhibiteurs de la HMG-CoA réductase ; industrie : éthanol et enzymes par fermentation."},"atp_synthase":{"kicker":"Respiration · La phosphorylation oxydative","note":"Le gradient de protons fait tourner la turbine.","tex":"\\text{ADP} + \\text{P}_{\\text{i}} \\rightarrow \\text{ATP}","type":"formule"},"betaoxydation":{"kicker":"Lipides · Le cycle de la bêta-oxydation","tex":["\\text{oxydation, FADH}_{2}","\\text{hydratation : ajout d'un hydroxyle}","\\text{oxydation, NADH}","\\text{thiolyse : acétyl-CoA libéré}"],"titre":"Quatre temps, répétés jusqu'au bout de la chaîne","type":"etape"},"bilan_respiration":{"kicker":"Respiration · Le bilan complet","tex":["\\text{glycolyse : 2 ATP nets}","\\text{cycle de Krebs : 2 ATP}","\\text{phosphorylation oxydative : 28 ATP}","\\text{total} \\approx 32\\,\\text{ATP}"],"titre":"Un glucose, de la glycolyse à la turbine","type":"etape"},"calvin":{"kicker":"Photosynthèse · Le cycle de Calvin","tex":["\\text{CO}_{2} + \\text{RuBP} \\rightarrow \\text{3-PGA}","\\text{3-PGA} + \\text{ATP} + \\text{NADPH} \\rightarrow \\text{G3P}","\\text{G3P} \\rightarrow \\text{glucose} + \\text{RuBP régénéré}"],"titre":"La phase sombre, dans le stroma","type":"etape"},"catabolisme":{"kicker":"Définition · Le catabolisme","note":"Dégradation : elle libère de l'énergie.","tex":"\\begin{aligned} \\text{molécules complexes} \\rightarrow \\\\ \\text{molécules simples} + \\text{ATP} \\end{aligned}","type":"formule"},"cte":{"kicker":"Respiration · La chaîne de transport","tex":["\\text{NADH} \\rightarrow \\text{I} \\rightarrow \\text{CoQ} \\rightarrow \\text{III} \\rightarrow","\\text{cyt c} \\rightarrow \\text{IV} \\rightarrow \\text{O}_{2}","\\text{FADH}_{2} \\rightarrow \\text{II} \\rightarrow \\text{CoQ} \\rightarrow \\text{III} \\rightarrow","\\text{cyt c} \\rightarrow \\text{IV} \\rightarrow \\text{O}_{2}"],"titre":"Complexes un à quatre, dans la membrane interne","type":"etape"},"definition":{"anim":{"hauteur":200,"nom":"systeme_milieu_fig"},"kicker":"Introduction · Le métabolisme","texte":"Toutes les réactions chimiques de la cellule, au service de la vie.","type":"phrase"},"enzymes":{"anim":{"hauteur":220,"nom":"profil_energie_fig"},"kicker":"Les enzymes · Des catalyseurs","texte":"L'enzyme abaisse la barrière : la réaction va plus vite, sans être consommée.","type":"phrase"},"exemple_deux":{"kicker":"Exemple résolu · Le palmitate, résultat","note":"Avec les rapports modernes : deux virgule cinq et un virgule cinq.","tex":"31 \\times 2{,}5 + 15 \\times 1{,}5 + 8 - 2 = 106\\,\\text{ATP}","type":"formule"},"exemple_un":{"kicker":"Exemple résolu · Le palmitate, première partie","tex":["n = 16 \\rightarrow 7\\,\\text{cycles, } 8\\,\\text{acétyl-CoA}","\\text{NADH : } 7 + 24 = 31","\\text{FADH}_{2} : 7 + 8 = 15"],"titre":"Seize carbones : cycles et transporteurs","type":"etape"},"fermentation_alcoolique":{"kicker":"Fermentations · La voie alcoolique","tex":["\\text{pyruvate} \\rightarrow \\text{acétaldéhyde} + \\text{CO}_{2}","\\text{acétaldéhyde} + \\text{NADH} + \\text{H}^{+} \\rightarrow","\\text{éthanol} + \\text{NAD}^{+}"],"titre":"Les levures, en deux temps","type":"etape"},"fermentation_lactique":{"kicker":"Fermentations · La voie lactique","note":"Sans oxygène : le NAD plus est régénéré.","tex":"\\begin{aligned} \\text{pyruvate} + \\text{NADH} + \\text{H}^{+} \\rightarrow \\\\ \\text{lactate} + \\text{NAD}^{+} \\end{aligned}","type":"formule"},"gluconeogenese":{"kicker":"Réserves · La gluconéogenèse","tex":["\\text{pyruvate} \\rightarrow \\text{PEP : deux enzymes}","\\text{fructose-1,6-bisphosphate} \\rightarrow","\\text{fructose-6-phosphate}","\\text{glucose-6-phosphate} \\rightarrow \\text{glucose}"],"titre":"Trois contournements, pas un simple retour","type":"etape"},"glycogenolyse":{"kicker":"Réserves · La glycogenolyse","note":"Glycogène phosphorylase, puis phosphatase au foie.","tex":"\\begin{aligned} \\text{glycogène} \\rightarrow \\text{glucose-1-phosphate} \\rightarrow \\\\ \\text{glucose-6-phosphate} \\rightarrow \\text{glucose} \\end{aligned}","type":"formule"},"glycolyse_bilan":{"kicker":"Respiration · Bilan de la glycolyse","note":"Bilan net : deux ATP, deux transporteurs, deux pyruvates.","tex":"\\begin{aligned} \\text{glucose} + 2\\,\\text{ADP} \\rightarrow 2\\,\\text{pyruvate} + \\\\ 2\\,\\text{ATP} + 2\\,\\text{NADH} \\end{aligned}","type":"formule"},"glycolyse_etapes":{"kicker":"Respiration · La glycolyse","tex":["\\text{glucose} \\rightarrow 2\\,\\text{pyruvate}","\\text{quatre ATP produits, deux consommés}","\\text{gain net : deux ATP, deux NADH}"],"titre":"Le glucose coupé en deux, dans le cytosol","type":"etape"},"hormones":{"type":"phrase","kicker":"Régulation · Les hormones","texte":"Quatre messagers, des effets antagonistes. Insuline : stockage, glycémie en baisse ; glucagon : mobilisation, glycémie en hausse ; adrénaline : glycogenolyse et lipolyse ; cortisol : néoglucogenèse et protéolyse."},"krebs":{"anim":{"hauteur":180,"nom":"transfert_electrons_fig"},"kicker":"Respiration · Le cycle de Krebs","texte":"Le pyruvate est oxydé dans la mitochondrie : ses électrons partent vers les transporteurs.","type":"phrase"},"krebs_bilan":{"kicker":"Respiration · Bilan du cycle, par glucose","tex":["6\\,\\text{CO}_{2}","2\\,\\text{ATP}","8\\,\\text{NADH} + 2\\,\\text{FADH}_{2}"],"titre":"Conversion puis cycle, pour les deux pyruvates","type":"etape"},"lipogenese":{"kicker":"Lipides · La lipogenèse","note":"Acétyl-CoA carboxylase, puis acide gras synthase.","tex":"\\begin{aligned} \\text{acétyl-CoA} \\rightarrow \\text{malonyl-CoA} \\rightarrow \\\\ \\text{acide gras} \\end{aligned}","type":"formule"},"methode_bilan":{"kicker":"Méthode · Le bilan d'un acide gras","tex":["\\text{cycles} = \\tfrac{n}{2} - 1","\\text{acétyl-CoA} = \\tfrac{n}{2}","\\text{ATP} = 2{,}5\\,\\text{NADH} +","1{,}5\\,\\text{FADH}_{2} + \\text{GTP} - 2"],"titre":"Compter les cycles, puis les transporteurs","type":"etape"},"phase_lumineuse":{"kicker":"Photosynthèse · La phase lumineuse","note":"Dans les thylakoïdes du chloroplaste.","tex":"\\text{eau} + \\text{lumière} \\rightarrow \\text{O}_{2} + \\text{ATP} + \\text{NADPH}","type":"formule"},"photolyse":{"kicker":"Photosynthèse · La photolyse de l'eau","note":"L'oxygène que nous respirons vient de là.","tex":"2\\,\\text{H}_{2}\\text{O} \\rightarrow \\text{O}_{2} + 4\\,\\text{H}^{+} + 4\\,\\text{e}^{-}","type":"formule"},"proteines_degradation":{"kicker":"Protéines · La dégradation","tex":["\\text{ubiquitine-protéasome : protéines}","\\text{marquées, dégradées}","\\text{autophagie : vésicules vers le lysosome}"],"titre":"Recycler les protéines en acides aminés","type":"etape"},"proteines_synthese":{"kicker":"Protéines · La synthèse","tex":["\\text{ADN} \\rightarrow \\text{ARNm} : \\text{transcription}","\\text{ARNm maturé} \\rightarrow \\text{ribosome}","\\text{traduction : acides aminés assemblés}","\\text{repliement et modifications}"],"titre":"De l'ADN à la protéine repliée","type":"etape"},"recap":{"etapes":["Catabolisme libère, anabolisme construit","Glycolyse : deux ATP nets, deux pyruvates","Respiration complète : environ trente-deux ATP","Fermentation : deux ATP, sans oxygène","Régulation : enzymes et hormones antagonistes"],"kicker":"Récapitulatif · Les cinq idées à retenir","type":"recap"},"regulation_enzymes":{"type":"phrase","kicker":"Régulation · Les enzymes sous contrôle","texte":"Trois leviers sur l'activité enzymatique. Allostérique : ATP inhibe la PFK ; covalente : phosphorylation, déphosphorylation ; compartimentation : cytosol, mitochondrie."},"specificite":{"kicker":"Les enzymes · La spécificité","note":"Une enzyme, un substrat : la clé dans la serrure.","tex":"\\text{E} + \\text{S} \\rightleftharpoons \\text{ES} \\rightarrow \\text{E} + \\text{P}","type":"formule"},"titre":{"anim":{"hauteur":250,"nom":"profil_energie_fig"},"kicker":"Biologie · Le métabolisme cellulaire","sous":"Respiration, fermentations, photosynthèse, réserves et régulation : comment la cellule produit, stocke et distribue son énergie","titre":"Le métabolisme cellulaire : voies, énergie et régulation","type":"titre"}},"matiere":"Biologie","parties":[{"debut":"p01","sous_titre":"Définitions, glycolyse, Krebs et chaîne de transport"},{"debut":"p12","pont":{"dit":"Partie deux : de la turbine à protons aux réserves de glucose. Nous verrons comment le gradient de protons fabrique l'ATP et quel bilan en tirer pour un glucose, puis les fermentations sans oxygène, la photosynthèse en deux phases, et enfin la gluconéogenèse et la glycogenolyse, les deux voies qui remettent du glucose en circulation.","texte":"Partie 2 : ATP, fermentations, photosynthèse et réserves."},"sous_titre":"ATP, fermentations, photosynthèse et réserves"},{"debut":"p21","pont":{"dit":"Partie trois : les lipides, les protéines et la régulation. Nous chiffrerons la bêta-oxydation sur le palmitate, nous parcourrons la dégradation et la synthèse des protéines, puis nous verrons comment enzymes et hormones tiennent l'ensemble en équilibre, avant de finir par les applications et le récapitulatif.","texte":"Partie 3 : lipides, protéines, régulation et applications."},"sous_titre":"Lipides, protéines, régulation et applications"}],"phrases":[{"dit":"Bienvenue dans ce cours de biologie consacré au métabolisme cellulaire, c'est-à-dire à l'ensemble des réactions chimiques qui font vivre une cellule, la font grandir et lui permettent de fonctionner. Nous suivrons le trajet de l'énergie : d'abord les deux visages du métabolisme et les enzymes qui le pilotent, puis la respiration cellulaire, de la glycolyse à la chaîne de transport d'électrons, et les fermentations qui prennent le relais sans oxygène. Nous passerons ensuite à la photosynthèse, aux réserves de glucose, aux lipides et aux protéines, avant de finir par la régulation, hormonale et enzymatique, et par les applications en santé et dans l'industrie.","ecran":"titre","id":"p01","texte":"Le métabolisme : produire, stocker et réguler l'énergie."},{"dit":"Commençons par la définition. Le métabolisme cellulaire englobe toutes les réactions chimiques qui se déroulent à l'intérieur d'une cellule pour maintenir sa vie, sa croissance et ses fonctions. Comme un système qui échange avec son milieu, la cellule dégrade des molécules pour récupérer de l'énergie, et elle en construit d'autres pour se renouveler, grandir et se reproduire. Ces deux mouvements opposés portent deux noms, et il faut les distinguer sans les confondre.","ecran":"definition","id":"p02","texte":"Métabolisme : toutes les réactions chimiques de la cellule."},{"dit":"Premier mouvement, le catabolisme : ce sont les réactions de dégradation de molécules complexes, comme les glucides, les lipides et les protéines, en molécules plus simples. Ces réactions libèrent de l'énergie, souvent stockée sous forme d'ATP, l'adénosine triphosphate, la monnaie énergétique de la cellule. Pensez à la démolition d'un vieux bâtiment : on récupère les matériaux, et on produit de l'énergie.","ecran":"catabolisme","id":"p03","texte":"Catabolisme : dégrader pour libérer de l'énergie."},{"dit":"Second mouvement, l'anabolisme : ce sont les réactions de synthèse de molécules complexes à partir de molécules plus simples. Ces réactions nécessitent de l'énergie, généralement fournie par l'ATP. C'est la construction du bâtiment : on utilise des matériaux et de l'énergie pour créer quelque chose de nouveau. Les deux processus sont intimement liés, puisque l'énergie libérée par le catabolisme alimente l'anabolisme.","ecran":"anabolisme","id":"p04","texte":"Anabolisme : construire, avec l'énergie de l'ATP."},{"dit":"Mais ces réactions ne se produisent pas spontanément à la vitesse du vivant. Elles sont catalysées par des enzymes, des protéines spécialisées qui accélèrent considérablement la vitesse de réaction, sans être consommées. Sur le profil énergétique, l'enzyme abaisse la barrière à franchir : la courbe haute, sans enzyme, devient une courbe basse, avec enzyme, et la réaction devient compatible avec la vie.","ecran":"enzymes","id":"p05","texte":"L'enzyme accélère sans être consommée."},{"dit":"Chaque enzyme est spécifique d'une réaction particulière. Retenez l'analogie de la serrure et de la clé : le substrat, la molécule sur laquelle l'enzyme agit, est la clé, et seule la clé correcte peut s'insérer dans la serrure, l'enzyme, et déclencher la réaction. L'enzyme se lie au substrat, forme un complexe, puis ressort intacte avec les produits : elle est régénérée, prête pour un nouveau tour.","ecran":"specificite","id":"p06","texte":"Enzyme et substrat : la clé dans la serrure."},{"dit":"Entrons dans la respiration cellulaire par sa première étape, la glycolyse, dans le cytosol. Une molécule de glucose, à six carbones, est d'abord activée par l'ajout de groupes phosphates, ce qui consomme deux ATP, puis elle est clivée en deux molécules à trois carbones. Des réactions d'oxydoréduction produisent ensuite quatre ATP et deux transporteurs d'électrons, le NADH.","ecran":"glycolyse_etapes","id":"p07","texte":"Glycolyse : un glucose coupé en deux pyruvates."},{"dit":"Faites le bilan avec soin : quatre ATP produits, moins deux ATP consommés, cela donne un gain net de deux ATP par glucose, accompagné de deux NADH et de deux pyruvates. C'est une petite quantité d'énergie, mais elle ne dépend pas de l'oxygène, et c'est ce qui permet aux cellules musculaires de tenir lors d'un effort intense, même quand l'oxygène vient à manquer.","ecran":"glycolyse_bilan","id":"p08","texte":"Glycolyse : gain net de deux ATP par glucose."},{"dit":"Le pyruvate entre ensuite dans la mitochondrie, où se déroule le cycle de Krebs, aussi appelé cycle de l'acide citrique, dans la matrice mitochondriale. Avant d'entrer dans le cycle, chaque pyruvate est transformé en acétyl-CoA, à deux carbones, en libérant du dioxyde de carbone et un NADH. Puis le cycle oxyde complètement l'acétyl-CoA, en une série de réactions cycliques qui libèrent encore du dioxyde de carbone et chargent des transporteurs d'électrons.","ecran":"krebs","id":"p09","texte":"Cycle de Krebs : l'oxydation complète dans la mitochondrie."},{"dit":"Pour un glucose entier, donc pour ses deux pyruvates, le bilan de cette étape est de six dioxydes de carbone, de deux ATP, et de huit NADH accompagnés de deux FADH deux, le second transporteur d'électrons. Notez bien la distinction : par pyruvate seul, le cycle proprement dit donne deux dioxydes de carbone, trois NADH, un FADH deux et un ATP, et c'est la conversion préalable en acétyl-CoA qui ajoute un dioxyde de carbone et un NADH par pyruvate.","ecran":"krebs_bilan","id":"p10","texte":"Krebs par glucose : 6 CO₂, 2 ATP, 8 NADH, 2 FADH₂."},{"dit":"Les transporteurs chargés arrivent alors à la chaîne de transport d'électrons, une série de complexes protéiques numérotés de un à quatre, intégrés dans la membrane interne mitochondriale. Le NADH entre au complexe un, le FADH deux au complexe deux, puis les électrons passent par l'ubiquinone et le cytochrome c jusqu'au complexe quatre, où l'oxygène, l'accepteur final, se réduit en eau. Les complexes un, trois et quatre pompent des protons vers l'espace intermembranaire, et le complexe deux, lui, ne pompe pas directement.","ecran":"cte","id":"p11","texte":"Chaîne de transport : des électrons vers l'oxygène."},{"dit":"Ce pompage crée un gradient électrochimique de protons, une énergie potentielle que l'ATP synthase exploite. Cette enzyme extraordinaire fonctionne comme une turbine moléculaire : le flux de protons qui retourne dans la matrice fait tourner une partie de l'enzyme, et cette rotation synthétise de l'ATP à partir d'ADP et de phosphate inorganique. C'est ici que se joue la majeure partie de la production d'ATP de la respiration.","ecran":"atp_synthase","id":"p12","texte":"ATP synthase : la turbine à protons."},{"dit":"Additionnez maintenant tout le parcours d'un glucose. La glycolyse donne deux ATP nets, le cycle de Krebs en donne deux, et la phosphorylation oxydative en donne vingt-huit, puisque chaque NADH vaut environ deux virgule cinq ATP et chaque FADH deux environ un virgule cinq ATP. Le total moderne est donc d'environ trente-deux ATP par glucose, un peu moins selon la navette qui transporte le NADH du cytosol, et c'est ce rendement moderne qu'il faut retenir.","ecran":"bilan_respiration","id":"p13","texte":"Bilan respiration : environ 32 ATP par glucose."},{"dit":"Sans oxygène, la cellule ne peut pas utiliser la chaîne de transport, et elle fermente. Les fermentations sont des processus anaérobies qui régénèrent le NAD plus en utilisant des composés organiques comme accepteurs d'électrons. La fermentation lactique, réalisée par les bactéries lactiques et par nos cellules musculaires lors d'efforts intenses, convertit le pyruvate en lactate, ce qui régénère le NAD plus et permet à la glycolyse de continuer.","ecran":"fermentation_lactique","id":"p14","texte":"Fermentation lactique : pyruvate vers lactate."},{"dit":"La fermentation alcoolique, réalisée par les levures, suit un autre chemin en deux temps : le pyruvate est d'abord décarboxylé en acétaldéhyde avec libération de dioxyde de carbone, puis l'acétaldéhyde est réduit en éthanol, ce qui régénère aussi le NAD plus. Dans les deux cas, le rendement reste de deux ATP par glucose, venus de la seule glycolyse, contre environ trente-deux pour la respiration complète : la fermentation dépanne, elle ne remplace pas la respiration.","ecran":"fermentation_alcoolique","id":"p15","texte":"Fermentation alcoolique : éthanol et CO₂, 2 ATP."},{"dit":"Changeons de sens : au lieu de dégrader, la cellule peut fabriquer du sucre à partir de la lumière, c'est la photosynthèse. Sa phase lumineuse se déroule dans les thylakoïdes, des disques empilés à l'intérieur des chloroplastes. La chlorophylle, ce pigment vert, capture les photons, un électron excité part dans une chaîne de transporteurs, des protons sont pompés dans la lumière du thylakoïde, et le gradient obtenu produit de l'ATP et du NADPH.","ecran":"phase_lumineuse","id":"p16","texte":"Phase lumineuse : lumière, eau, ATP et NADPH."},{"dit":"D'où vient l'oxygène que nous respirons ? De la photolyse de l'eau, qui compense la perte d'électrons de la chlorophylle. L'eau est oxydée : elle libère des électrons qui remplacent ceux perdus, des protons qui alimentent le gradient, et de l'oxygène. L'oxygène est donc un produit secondaire de la phase lumineuse pour la plante, et non un réactif qu'elle consommerait.","ecran":"photolyse","id":"p17","texte":"Photolyse : l'eau libère l'oxygène respiré."},{"dit":"La phase sombre, aussi appelée cycle de Calvin, ne dépend pas directement de la lumière et se déroule dans le stroma du chloroplaste. Le dioxyde de carbone atmosphérique est fixé sur le ribulose bisphosphate, grâce à l'enzyme Rubisco, pour donner du phosphoglycérate, puis l'ATP et le NADPH de la phase lumineuse réduisent ce composé en glycéraldéhyde phosphate. Une partie de ce sucre sert à fabriquer du glucose, le reste régénère le ribulose bisphosphate, et le cycle peut continuer.","ecran":"calvin","id":"p18","texte":"Cycle de Calvin : CO₂ fixé, sucre fabriqué."},{"dit":"Quand le glucose manque, le foie peut aussi le fabriquer à partir de précurseurs non glucidiques, comme le lactate, le pyruvate, le glycérol et certains acides aminés : c'est la gluconéogenèse, une voie anabolique. Attention, elle n'est pas le simple inverse de la glycolyse : trois étapes irréversibles de la glycolyse sont contournées par des enzymes propres, le pyruvate vers le phosphoénolpyruvate, le fructose bisphosphate vers le fructose phosphate, et le glucose phosphate vers le glucose.","ecran":"gluconeogenese","id":"p19","texte":"Gluconéogenèse : trois contournements, pas un retour."},{"dit":"Autre réserve, plus rapide à mobiliser : le glycogène, la forme de stockage du glucose dans le foie et les muscles. La glycogenolyse le dégrade en glucose phosphate, puis en glucose utilisable, grâce à la glycogène phosphorylase, qui rompt les liaisons du glycogène, et, au foie uniquement, à la glucose phosphatase. C'est la réponse rapide à un effort ou à une hypoglycémie, avant que la gluconéogenèse ne prenne le relais.","ecran":"glycogenolyse","id":"p20","texte":"Glycogenolyse : le glycogène redevient glucose."},{"dit":"Passons aux lipides, avec la bêta-oxydation, un processus mitochondrial qui dégrade les acides gras en acétyl-CoA, la molécule qui entre dans le cycle de Krebs. Après activation de l'acide gras et son transport dans la mitochondrie par la navette de la carnitine, le cycle se répète en quatre temps : une oxydation qui produit du FADH deux, une hydratation, une seconde oxydation qui produit du NADH, puis une thiolyse qui libère un acétyl-CoA et raccourcit la chaîne de deux carbones.","ecran":"betaoxydation","id":"p21","texte":"Bêta-oxydation : quatre temps, deux carbones de moins."},{"dit":"Le mouvement inverse, la lipogenèse, construit des réserves : c'est la synthèse d'acides gras à partir de l'acétyl-CoA, principalement dans le foie et le tissu adipeux. L'acétyl-CoA carboxylase fabrique d'abord du malonyl-CoA, en consommant de l'ATP, puis l'acide gras synthase allonge la chaîne de deux carbones par cycle. L'insuline stimule cette construction, le glucagon l'inhibe, et la disponibilité en acétyl-CoA et en NADPH compte tout autant.","ecran":"lipogenese","id":"p22","texte":"Lipogenèse : construire des acides gras pour stocker."},{"dit":"Voici la méthode pour chiffrer le bilan d'un acide gras, en trois temps. D'abord, le nombre de cycles vaut la moitié du nombre de carbones, moins un, et le nombre d'acétyl-CoA vaut la moitié du nombre de carbones. Ensuite, chaque cycle donne un FADH deux et un NADH, et chaque acétyl-CoA donne, dans le cycle de Krebs, trois NADH, un FADH deux et un ATP. Enfin, on convertit avec les rapports modernes, deux virgule cinq ATP par NADH et un virgule cinq par FADH deux, et on retranche deux pour l'activation.","ecran":"methode_bilan","id":"p23","texte":"Méthode : cycles, transporteurs, conversion, activation."},{"dit":"Appliquons-la au palmitate, un acide gras à seize carbones. La moitié de seize, moins un, donne sept cycles, et la moitié de seize donne huit acétyl-CoA, puisque le dernier cycle en libère deux. Côté transporteurs, les sept cycles donnent sept NADH et sept FADH deux, et les huit acétyl-CoA donnent vingt-quatre NADH et huit FADH deux dans le cycle de Krebs. Au total, donc, trente et un NADH et quinze FADH deux.","ecran":"exemple_un","id":"p24","texte":"Palmitate : 7 cycles, 8 acétyl-CoA, 31 NADH, 15 FADH₂."},{"dit":"Convertissons : trente et un NADH à deux virgule cinq ATP donnent soixante-dix-sept virgule cinq ATP, quinze FADH deux à un virgule cinq donnent vingt-deux virgule cinq, et les huit ATP du cycle de Krebs s'y ajoutent. Cela fait cent huit ATP, moins deux pour l'activation, soit cent six ATP au total pour un palmitate. Retenez la méthode, pas seulement le nombre : avec d'anciens rapports, on trouverait un total plus élevé, mais ce sont les rapports modernes qui donnent cent six.","ecran":"exemple_deux","id":"p25","texte":"Palmitate : 31 × 2,5 + 15 × 1,5 + 8 − 2 = 106 ATP."},{"dit":"Les protéines, elles aussi, se dégradent et se reconstruisent en permanence. Pour la dégradation, le système ubiquitine-protéasome est le principal mécanisme des protéines du cytosol : une petite protéine, l'ubiquitine, marque la cible, et le protéasome la dégrade. L'autophagie, elle, englobe des organites ou des protéines endommagées dans des vésicules qui fusionnent avec des lysosomes, ce qui maintient l'homéostasie cellulaire et répond au stress.","ecran":"proteines_degradation","id":"p26","texte":"Dégradation : ubiquitine-protéasome et autophagie."},{"dit":"Pour la synthèse, le chemin va de l'ADN à la protéine. L'ADN est transcrit en ARN messager par l'ARN polymérase, puis cet ARN messager est maturé, par épissage, coiffe et queue polyadénylée, avant de quitter le noyau. Les ribosomes le traduisent ensuite en assemblant les acides aminés apportés par les ARN de transfert, puis la protéine se replie dans sa forme fonctionnelle et peut subir des modifications, comme une glycosylation ou une phosphorylation.","ecran":"proteines_synthese","id":"p27","texte":"Synthèse : ADN, ARN messager, ribosome, repliement."},{"dit":"Toutes ces voies sont régulées, d'abord au niveau des enzymes. La régulation allostérique joue sur un site distinct du site actif : un modulateur change la forme de l'enzyme et son affinité pour le substrat, comme l'ATP qui inhibe la phosphofructokinase de la glycolyse quand l'énergie abonde. La modification covalente, elle, ajoute ou retire un groupe chimique : une kinase phosphoryle, une phosphatase déphosphoryle, et la phosphorylation de la glycogène synthase, par exemple, l'inhibe. Enfin, la compartimentation sépare les voies entre cytosol et mitochondries.","ecran":"regulation_enzymes","id":"p28","texte":"Régulation enzymatique : allostérie, covalence, lieu."},{"dit":"À distance, les hormones coordonnent l'ensemble. L'insuline, du pancréas, stimule la glycolyse, la synthèse de glycogène et celle des protéines, et fait baisser la glycémie. Le glucagon, du pancréas lui aussi, fait l'inverse : il stimule la glycogenolyse et la néoglucogenèse, et fait monter la glycémie. L'adrénaline, des surrénales, stimule la glycogenolyse et la lipolyse, et le cortisol, des surrénales également, stimule la néoglucogenèse et la protéolyse. Insuline et glucagon sont antagonistes, et c'est cet antagonisme qui stabilise le glucose sanguin.","ecran":"hormones","id":"p29","texte":"Hormones : insuline contre glucagon, glycémie stable."},{"dit":"Pour finir, le métabolisme n'est pas un chapitre abstrait : il sert en santé et dans l'industrie. En santé, le dosage du glucose sanguin diagnostique le diabète, et des médicaments ciblent des enzymes précises, comme les inhibiteurs de la HMG-CoA réductase contre l'hypercholestérolémie. Dans l'industrie, la fermentation produit de l'éthanol et des biocarburants, et l'ingénierie métabolique optimise des organismes pour fabriquer des molécules d'intérêt. Comprendre une voie, c'est pouvoir la mesurer, la cibler ou l'exploiter.","ecran":"applications","id":"p30","texte":"Applications : diagnostiquer, traiter, produire."},{"dit":"Récapitulons les cinq idées à retenir. Le catabolisme libère de l'énergie, l'anabolisme construit avec elle. La glycolyse donne deux ATP nets et deux pyruvates, et la respiration complète, jusqu'à la turbine à protons, en donne environ trente-deux. Sans oxygène, la fermentation ne donne que deux ATP. Et tout cet ensemble est régulé, par les enzymes sur place et par des hormones antagonistes à distance. Avec ces cinq idées, vous pouvez relire chaque voie du cours sans vous y perdre.","ecran":"recap","id":"p31","texte":"Récapitulatif en cinq idées."}],"titre":"Le métabolisme cellulaire : voies, énergie et régulation"}
+{
+ "cours": 5968,
+ "ecrans": {
+  "anabolisme": {
+   "kicker": "Définition · L'anabolisme",
+   "note": "Synthèse : elle consomme de l'énergie.",
+   "tex": "\\begin{aligned} \\text{molécules simples} + \\text{ATP} \\rightarrow \\\\ \\text{molécules complexes} \\end{aligned}",
+   "type": "formule"
+  },
+  "applications": {
+   "kicker": "Applications · Santé et industrie",
+   "texte": "Le métabolisme hors du manuel. Diabète : dosage du glucose sanguin ; cholestérol : inhibiteurs de la HMG-CoA réductase ; industrie : éthanol et enzymes par fermentation.",
+   "type": "phrase"
+  },
+  "atp_synthase": {
+   "kicker": "Respiration · La phosphorylation oxydative",
+   "note": "Le gradient de protons fait tourner la turbine.",
+   "tex": "\\text{ADP} + \\text{P}_{\\text{i}} \\rightarrow \\text{ATP}",
+   "type": "formule"
+  },
+  "betaoxydation": {
+   "kicker": "Lipides · Le cycle de la bêta-oxydation",
+   "tex": [
+    "\\text{oxydation, FADH}_{2}",
+    "\\text{hydratation : ajout d'un hydroxyle}",
+    "\\text{oxydation, NADH}",
+    "\\text{thiolyse : acétyl-CoA libéré}"
+   ],
+   "titre": "Quatre temps, répétés jusqu'au bout de la chaîne",
+   "type": "etape"
+  },
+  "bilan_respiration": {
+   "kicker": "Respiration · Le bilan complet",
+   "tex": [
+    "\\text{glycolyse : 2 ATP nets}",
+    "\\text{cycle de Krebs : 2 ATP}",
+    "\\text{phosphorylation oxydative : 28 ATP}",
+    "\\text{total} \\approx 32\\,\\text{ATP}"
+   ],
+   "titre": "Un glucose, de la glycolyse à la turbine",
+   "type": "etape"
+  },
+  "calvin": {
+   "kicker": "Photosynthèse · Le cycle de Calvin",
+   "tex": [
+    "\\text{CO}_{2} + \\text{RuBP} \\rightarrow \\text{3-PGA}",
+    "\\text{3-PGA} + \\text{ATP} + \\text{NADPH} \\rightarrow \\text{G3P}",
+    "\\text{G3P} \\rightarrow \\text{glucose} + \\text{RuBP régénéré}"
+   ],
+   "titre": "La phase sombre, dans le stroma",
+   "type": "etape"
+  },
+  "catabolisme": {
+   "kicker": "Définition · Le catabolisme",
+   "note": "Dégradation : elle libère de l'énergie.",
+   "tex": "\\begin{aligned} \\text{molécules complexes} \\rightarrow \\\\ \\text{molécules simples} + \\text{ATP} \\end{aligned}",
+   "type": "formule"
+  },
+  "cte": {
+   "kicker": "Respiration · La chaîne de transport",
+   "tex": [
+    "\\text{NADH} \\rightarrow \\text{I} \\rightarrow \\text{CoQ} \\rightarrow \\text{III} \\rightarrow",
+    "\\text{cyt c} \\rightarrow \\text{IV} \\rightarrow \\text{O}_{2}",
+    "\\text{FADH}_{2} \\rightarrow \\text{II} \\rightarrow \\text{CoQ} \\rightarrow \\text{III} \\rightarrow",
+    "\\text{cyt c} \\rightarrow \\text{IV} \\rightarrow \\text{O}_{2}"
+   ],
+   "titre": "Complexes un à quatre, dans la membrane interne",
+   "type": "etape"
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "cellule_fig"
+   },
+   "kicker": "Introduction · Le métabolisme",
+   "texte": "Toutes les réactions chimiques de la cellule, au service de la vie.",
+   "type": "phrase"
+  },
+  "enzymes": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "profil_energie_fig"
+   },
+   "kicker": "Les enzymes · Des catalyseurs",
+   "texte": "L'enzyme abaisse la barrière : la réaction va plus vite, sans être consommée.",
+   "type": "phrase"
+  },
+  "exemple_deux": {
+   "kicker": "Exemple résolu · Le palmitate, résultat",
+   "note": "Avec les rapports modernes : deux virgule cinq et un virgule cinq.",
+   "tex": "31 \\times 2{,}5 + 15 \\times 1{,}5 + 8 - 2 = 106\\,\\text{ATP}",
+   "type": "formule"
+  },
+  "exemple_un": {
+   "kicker": "Exemple résolu · Le palmitate, première partie",
+   "tex": [
+    "n = 16 \\rightarrow 7\\,\\text{cycles, } 8\\,\\text{acétyl-CoA}",
+    "\\text{NADH : } 7 + 24 = 31",
+    "\\text{FADH}_{2} : 7 + 8 = 15"
+   ],
+   "titre": "Seize carbones : cycles et transporteurs",
+   "type": "etape"
+  },
+  "fermentation_alcoolique": {
+   "kicker": "Fermentations · La voie alcoolique",
+   "tex": [
+    "\\text{pyruvate} \\rightarrow \\text{acétaldéhyde} + \\text{CO}_{2}",
+    "\\text{acétaldéhyde} + \\text{NADH} + \\text{H}^{+} \\rightarrow",
+    "\\text{éthanol} + \\text{NAD}^{+}"
+   ],
+   "titre": "Les levures, en deux temps",
+   "type": "etape"
+  },
+  "fermentation_lactique": {
+   "kicker": "Fermentations · La voie lactique",
+   "note": "Sans oxygène : le NAD plus est régénéré.",
+   "tex": "\\begin{aligned} \\text{pyruvate} + \\text{NADH} + \\text{H}^{+} \\rightarrow \\\\ \\text{lactate} + \\text{NAD}^{+} \\end{aligned}",
+   "type": "formule"
+  },
+  "gluconeogenese": {
+   "kicker": "Réserves · La gluconéogenèse",
+   "tex": [
+    "\\text{pyruvate} \\rightarrow \\text{PEP : deux enzymes}",
+    "\\text{fructose-1,6-bisphosphate} \\rightarrow",
+    "\\text{fructose-6-phosphate}",
+    "\\text{glucose-6-phosphate} \\rightarrow \\text{glucose}"
+   ],
+   "titre": "Trois contournements, pas un simple retour",
+   "type": "etape"
+  },
+  "glycogenolyse": {
+   "kicker": "Réserves · La glycogenolyse",
+   "note": "Glycogène phosphorylase, puis phosphatase au foie.",
+   "tex": "\\begin{aligned} \\text{glycogène} \\rightarrow \\text{glucose-1-phosphate} \\rightarrow \\\\ \\text{glucose-6-phosphate} \\rightarrow \\text{glucose} \\end{aligned}",
+   "type": "formule"
+  },
+  "glycolyse_bilan": {
+   "kicker": "Respiration · Bilan de la glycolyse",
+   "note": "Bilan net : deux ATP, deux transporteurs, deux pyruvates.",
+   "tex": "\\begin{aligned} \\text{glucose} + 2\\,\\text{ADP} \\rightarrow 2\\,\\text{pyruvate} + \\\\ 2\\,\\text{ATP} + 2\\,\\text{NADH} \\end{aligned}",
+   "type": "formule"
+  },
+  "glycolyse_etapes": {
+   "kicker": "Respiration · La glycolyse",
+   "tex": [
+    "\\text{glucose} \\rightarrow 2\\,\\text{pyruvate}",
+    "\\text{quatre ATP produits, deux consommés}",
+    "\\text{gain net : deux ATP, deux NADH}"
+   ],
+   "titre": "Le glucose coupé en deux, dans le cytosol",
+   "type": "etape"
+  },
+  "hormones": {
+   "kicker": "Régulation · Les hormones",
+   "texte": "Quatre messagers, des effets antagonistes. Insuline : stockage, glycémie en baisse ; glucagon : mobilisation, glycémie en hausse ; adrénaline : glycogenolyse et lipolyse ; cortisol : néoglucogenèse et protéolyse.",
+   "type": "phrase"
+  },
+  "krebs": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "mitochondrie_fig"
+   },
+   "kicker": "Respiration · Le cycle de Krebs",
+   "texte": "Le pyruvate est oxydé dans la mitochondrie : ses électrons partent vers les transporteurs.",
+   "type": "phrase"
+  },
+  "krebs_bilan": {
+   "kicker": "Respiration · Bilan du cycle, par glucose",
+   "tex": [
+    "6\\,\\text{CO}_{2}",
+    "2\\,\\text{ATP}",
+    "8\\,\\text{NADH} + 2\\,\\text{FADH}_{2}"
+   ],
+   "titre": "Conversion puis cycle, pour les deux pyruvates",
+   "type": "etape"
+  },
+  "lipogenese": {
+   "kicker": "Lipides · La lipogenèse",
+   "note": "Acétyl-CoA carboxylase, puis acide gras synthase.",
+   "tex": "\\begin{aligned} \\text{acétyl-CoA} \\rightarrow \\text{malonyl-CoA} \\rightarrow \\\\ \\text{acide gras} \\end{aligned}",
+   "type": "formule"
+  },
+  "methode_bilan": {
+   "kicker": "Méthode · Le bilan d'un acide gras",
+   "tex": [
+    "\\text{cycles} = \\tfrac{n}{2} - 1",
+    "\\text{acétyl-CoA} = \\tfrac{n}{2}",
+    "\\text{ATP} = 2{,}5\\,\\text{NADH} +",
+    "1{,}5\\,\\text{FADH}_{2} + \\text{GTP} - 2"
+   ],
+   "titre": "Compter les cycles, puis les transporteurs",
+   "type": "etape"
+  },
+  "phase_lumineuse": {
+   "kicker": "Photosynthèse · La phase lumineuse",
+   "note": "Dans les thylakoïdes du chloroplaste.",
+   "tex": "\\text{eau} + \\text{lumière} \\rightarrow \\text{O}_{2} + \\text{ATP} + \\text{NADPH}",
+   "type": "formule"
+  },
+  "photolyse": {
+   "kicker": "Photosynthèse · La photolyse de l'eau",
+   "note": "L'oxygène que nous respirons vient de là.",
+   "tex": "2\\,\\text{H}_{2}\\text{O} \\rightarrow \\text{O}_{2} + 4\\,\\text{H}^{+} + 4\\,\\text{e}^{-}",
+   "type": "formule"
+  },
+  "proteines_degradation": {
+   "kicker": "Protéines · La dégradation",
+   "tex": [
+    "\\text{ubiquitine-protéasome : protéines}",
+    "\\text{marquées, dégradées}",
+    "\\text{autophagie : vésicules vers le lysosome}"
+   ],
+   "titre": "Recycler les protéines en acides aminés",
+   "type": "etape"
+  },
+  "proteines_synthese": {
+   "kicker": "Protéines · La synthèse",
+   "tex": [
+    "\\text{ADN} \\rightarrow \\text{ARNm} : \\text{transcription}",
+    "\\text{ARNm maturé} \\rightarrow \\text{ribosome}",
+    "\\text{traduction : acides aminés assemblés}",
+    "\\text{repliement et modifications}"
+   ],
+   "titre": "De l'ADN à la protéine repliée",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Catabolisme libère, anabolisme construit",
+    "Glycolyse : deux ATP nets, deux pyruvates",
+    "Respiration complète : environ trente-deux ATP",
+    "Fermentation : deux ATP, sans oxygène",
+    "Régulation : enzymes et hormones antagonistes"
+   ],
+   "kicker": "Récapitulatif · Les cinq idées à retenir",
+   "type": "recap"
+  },
+  "regulation_enzymes": {
+   "kicker": "Régulation · Les enzymes sous contrôle",
+   "texte": "Trois leviers sur l'activité enzymatique. Allostérique : ATP inhibe la PFK ; covalente : phosphorylation, déphosphorylation ; compartimentation : cytosol, mitochondrie.",
+   "type": "phrase"
+  },
+  "specificite": {
+   "kicker": "Les enzymes · La spécificité",
+   "note": "Une enzyme, un substrat : la clé dans la serrure.",
+   "tex": "\\text{E} + \\text{S} \\rightleftharpoons \\text{ES} \\rightarrow \\text{E} + \\text{P}",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "profil_energie_fig"
+   },
+   "kicker": "Biologie · Le métabolisme cellulaire",
+   "sous": "Respiration, fermentations, photosynthèse, réserves et régulation : comment la cellule produit, stocke et distribue son énergie",
+   "titre": "Le métabolisme cellulaire : voies, énergie et régulation",
+   "type": "titre"
+  }
+ },
+ "matiere": "Biologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définitions, glycolyse, Krebs et chaîne de transport"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : de la turbine à protons aux réserves de glucose. Nous verrons comment le gradient de protons fabrique l'ATP et quel bilan en tirer pour un glucose, puis les fermentations sans oxygène, la photosynthèse en deux phases, et enfin la gluconéogenèse et la glycogenolyse, les deux voies qui remettent du glucose en circulation.",
+    "texte": "Partie 2 : ATP, fermentations, photosynthèse et réserves."
+   },
+   "sous_titre": "ATP, fermentations, photosynthèse et réserves"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : les lipides, les protéines et la régulation. Nous chiffrerons la bêta-oxydation sur le palmitate, nous parcourrons la dégradation et la synthèse des protéines, puis nous verrons comment enzymes et hormones tiennent l'ensemble en équilibre, avant de finir par les applications et le récapitulatif.",
+    "texte": "Partie 3 : lipides, protéines, régulation et applications."
+   },
+   "sous_titre": "Lipides, protéines, régulation et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de biologie consacré au métabolisme cellulaire, c'est-à-dire à l'ensemble des réactions chimiques qui font vivre une cellule, la font grandir et lui permettent de fonctionner. Nous suivrons le trajet de l'énergie : d'abord les deux visages du métabolisme et les enzymes qui le pilotent, puis la respiration cellulaire, de la glycolyse à la chaîne de transport d'électrons, et les fermentations qui prennent le relais sans oxygène. Nous passerons ensuite à la photosynthèse, aux réserves de glucose, aux lipides et aux protéines, avant de finir par la régulation, hormonale et enzymatique, et par les applications en santé et dans l'industrie.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Le métabolisme : produire, stocker et réguler l'énergie."
+  },
+  {
+   "dit": "Commençons par la définition. Le métabolisme cellulaire englobe toutes les réactions chimiques qui se déroulent à l'intérieur d'une cellule pour maintenir sa vie, sa croissance et ses fonctions. Comme un système qui échange avec son milieu, la cellule dégrade des molécules pour récupérer de l'énergie, et elle en construit d'autres pour se renouveler, grandir et se reproduire. Ces deux mouvements opposés portent deux noms, et il faut les distinguer sans les confondre.",
+   "ecran": "definition",
+   "id": "p02",
+   "texte": "Métabolisme : toutes les réactions chimiques de la cellule."
+  },
+  {
+   "dit": "Premier mouvement, le catabolisme : ce sont les réactions de dégradation de molécules complexes, comme les glucides, les lipides et les protéines, en molécules plus simples. Ces réactions libèrent de l'énergie, souvent stockée sous forme d'ATP, l'adénosine triphosphate, la monnaie énergétique de la cellule. Pensez à la démolition d'un vieux bâtiment : on récupère les matériaux, et on produit de l'énergie.",
+   "ecran": "catabolisme",
+   "id": "p03",
+   "texte": "Catabolisme : dégrader pour libérer de l'énergie."
+  },
+  {
+   "dit": "Second mouvement, l'anabolisme : ce sont les réactions de synthèse de molécules complexes à partir de molécules plus simples. Ces réactions nécessitent de l'énergie, généralement fournie par l'ATP. C'est la construction du bâtiment : on utilise des matériaux et de l'énergie pour créer quelque chose de nouveau. Les deux processus sont intimement liés, puisque l'énergie libérée par le catabolisme alimente l'anabolisme.",
+   "ecran": "anabolisme",
+   "id": "p04",
+   "texte": "Anabolisme : construire, avec l'énergie de l'ATP."
+  },
+  {
+   "dit": "Mais ces réactions ne se produisent pas spontanément à la vitesse du vivant. Elles sont catalysées par des enzymes, des protéines spécialisées qui accélèrent considérablement la vitesse de réaction, sans être consommées. Sur le profil énergétique, l'enzyme abaisse la barrière à franchir : la courbe haute, sans enzyme, devient une courbe basse, avec enzyme, et la réaction devient compatible avec la vie.",
+   "ecran": "enzymes",
+   "id": "p05",
+   "texte": "L'enzyme accélère sans être consommée."
+  },
+  {
+   "dit": "Chaque enzyme est spécifique d'une réaction particulière. Retenez l'analogie de la serrure et de la clé : le substrat, la molécule sur laquelle l'enzyme agit, est la clé, et seule la clé correcte peut s'insérer dans la serrure, l'enzyme, et déclencher la réaction. L'enzyme se lie au substrat, forme un complexe, puis ressort intacte avec les produits : elle est régénérée, prête pour un nouveau tour.",
+   "ecran": "specificite",
+   "id": "p06",
+   "texte": "Enzyme et substrat : la clé dans la serrure."
+  },
+  {
+   "dit": "Entrons dans la respiration cellulaire par sa première étape, la glycolyse, dans le cytosol. Une molécule de glucose, à six carbones, est d'abord activée par l'ajout de groupes phosphates, ce qui consomme deux ATP, puis elle est clivée en deux molécules à trois carbones. Des réactions d'oxydoréduction produisent ensuite quatre ATP et deux transporteurs d'électrons, le NADH.",
+   "ecran": "glycolyse_etapes",
+   "id": "p07",
+   "texte": "Glycolyse : un glucose coupé en deux pyruvates."
+  },
+  {
+   "dit": "Faites le bilan avec soin : quatre ATP produits, moins deux ATP consommés, cela donne un gain net de deux ATP par glucose, accompagné de deux NADH et de deux pyruvates. C'est une petite quantité d'énergie, mais elle ne dépend pas de l'oxygène, et c'est ce qui permet aux cellules musculaires de tenir lors d'un effort intense, même quand l'oxygène vient à manquer.",
+   "ecran": "glycolyse_bilan",
+   "id": "p08",
+   "texte": "Glycolyse : gain net de deux ATP par glucose."
+  },
+  {
+   "dit": "Le pyruvate entre ensuite dans la mitochondrie, où se déroule le cycle de Krebs, aussi appelé cycle de l'acide citrique, dans la matrice mitochondriale. Avant d'entrer dans le cycle, chaque pyruvate est transformé en acétyl-CoA, à deux carbones, en libérant du dioxyde de carbone et un NADH. Puis le cycle oxyde complètement l'acétyl-CoA, en une série de réactions cycliques qui libèrent encore du dioxyde de carbone et chargent des transporteurs d'électrons.",
+   "ecran": "krebs",
+   "id": "p09",
+   "texte": "Cycle de Krebs : l'oxydation complète dans la mitochondrie."
+  },
+  {
+   "dit": "Pour un glucose entier, donc pour ses deux pyruvates, le bilan de cette étape est de six dioxydes de carbone, de deux ATP, et de huit NADH accompagnés de deux FADH deux, le second transporteur d'électrons. Notez bien la distinction : par pyruvate seul, le cycle proprement dit donne deux dioxydes de carbone, trois NADH, un FADH deux et un ATP, et c'est la conversion préalable en acétyl-CoA qui ajoute un dioxyde de carbone et un NADH par pyruvate.",
+   "ecran": "krebs_bilan",
+   "id": "p10",
+   "texte": "Krebs par glucose : 6 CO₂, 2 ATP, 8 NADH, 2 FADH₂."
+  },
+  {
+   "dit": "Les transporteurs chargés arrivent alors à la chaîne de transport d'électrons, une série de complexes protéiques numérotés de un à quatre, intégrés dans la membrane interne mitochondriale. Le NADH entre au complexe un, le FADH deux au complexe deux, puis les électrons passent par l'ubiquinone et le cytochrome c jusqu'au complexe quatre, où l'oxygène, l'accepteur final, se réduit en eau. Les complexes un, trois et quatre pompent des protons vers l'espace intermembranaire, et le complexe deux, lui, ne pompe pas directement.",
+   "ecran": "cte",
+   "id": "p11",
+   "texte": "Chaîne de transport : des électrons vers l'oxygène."
+  },
+  {
+   "dit": "Ce pompage crée un gradient électrochimique de protons, une énergie potentielle que l'ATP synthase exploite. Cette enzyme extraordinaire fonctionne comme une turbine moléculaire : le flux de protons qui retourne dans la matrice fait tourner une partie de l'enzyme, et cette rotation synthétise de l'ATP à partir d'ADP et de phosphate inorganique. C'est ici que se joue la majeure partie de la production d'ATP de la respiration.",
+   "ecran": "atp_synthase",
+   "id": "p12",
+   "texte": "ATP synthase : la turbine à protons."
+  },
+  {
+   "dit": "Additionnez maintenant tout le parcours d'un glucose. La glycolyse donne deux ATP nets, le cycle de Krebs en donne deux, et la phosphorylation oxydative en donne vingt-huit, puisque chaque NADH vaut environ deux virgule cinq ATP et chaque FADH deux environ un virgule cinq ATP. Le total moderne est donc d'environ trente-deux ATP par glucose, un peu moins selon la navette qui transporte le NADH du cytosol, et c'est ce rendement moderne qu'il faut retenir.",
+   "ecran": "bilan_respiration",
+   "id": "p13",
+   "texte": "Bilan respiration : environ 32 ATP par glucose."
+  },
+  {
+   "dit": "Sans oxygène, la cellule ne peut pas utiliser la chaîne de transport, et elle fermente. Les fermentations sont des processus anaérobies qui régénèrent le NAD plus en utilisant des composés organiques comme accepteurs d'électrons. La fermentation lactique, réalisée par les bactéries lactiques et par nos cellules musculaires lors d'efforts intenses, convertit le pyruvate en lactate, ce qui régénère le NAD plus et permet à la glycolyse de continuer.",
+   "ecran": "fermentation_lactique",
+   "id": "p14",
+   "texte": "Fermentation lactique : pyruvate vers lactate."
+  },
+  {
+   "dit": "La fermentation alcoolique, réalisée par les levures, suit un autre chemin en deux temps : le pyruvate est d'abord décarboxylé en acétaldéhyde avec libération de dioxyde de carbone, puis l'acétaldéhyde est réduit en éthanol, ce qui régénère aussi le NAD plus. Dans les deux cas, le rendement reste de deux ATP par glucose, venus de la seule glycolyse, contre environ trente-deux pour la respiration complète : la fermentation dépanne, elle ne remplace pas la respiration.",
+   "ecran": "fermentation_alcoolique",
+   "id": "p15",
+   "texte": "Fermentation alcoolique : éthanol et CO₂, 2 ATP."
+  },
+  {
+   "dit": "Changeons de sens : au lieu de dégrader, la cellule peut fabriquer du sucre à partir de la lumière, c'est la photosynthèse. Sa phase lumineuse se déroule dans les thylakoïdes, des disques empilés à l'intérieur des chloroplastes. La chlorophylle, ce pigment vert, capture les photons, un électron excité part dans une chaîne de transporteurs, des protons sont pompés dans la lumière du thylakoïde, et le gradient obtenu produit de l'ATP et du NADPH.",
+   "ecran": "phase_lumineuse",
+   "id": "p16",
+   "texte": "Phase lumineuse : lumière, eau, ATP et NADPH."
+  },
+  {
+   "dit": "D'où vient l'oxygène que nous respirons ? De la photolyse de l'eau, qui compense la perte d'électrons de la chlorophylle. L'eau est oxydée : elle libère des électrons qui remplacent ceux perdus, des protons qui alimentent le gradient, et de l'oxygène. L'oxygène est donc un produit secondaire de la phase lumineuse pour la plante, et non un réactif qu'elle consommerait.",
+   "ecran": "photolyse",
+   "id": "p17",
+   "texte": "Photolyse : l'eau libère l'oxygène respiré."
+  },
+  {
+   "dit": "La phase sombre, aussi appelée cycle de Calvin, ne dépend pas directement de la lumière et se déroule dans le stroma du chloroplaste. Le dioxyde de carbone atmosphérique est fixé sur le ribulose bisphosphate, grâce à l'enzyme Rubisco, pour donner du phosphoglycérate, puis l'ATP et le NADPH de la phase lumineuse réduisent ce composé en glycéraldéhyde phosphate. Une partie de ce sucre sert à fabriquer du glucose, le reste régénère le ribulose bisphosphate, et le cycle peut continuer.",
+   "ecran": "calvin",
+   "id": "p18",
+   "texte": "Cycle de Calvin : CO₂ fixé, sucre fabriqué."
+  },
+  {
+   "dit": "Quand le glucose manque, le foie peut aussi le fabriquer à partir de précurseurs non glucidiques, comme le lactate, le pyruvate, le glycérol et certains acides aminés : c'est la gluconéogenèse, une voie anabolique. Attention, elle n'est pas le simple inverse de la glycolyse : trois étapes irréversibles de la glycolyse sont contournées par des enzymes propres, le pyruvate vers le phosphoénolpyruvate, le fructose bisphosphate vers le fructose phosphate, et le glucose phosphate vers le glucose.",
+   "ecran": "gluconeogenese",
+   "id": "p19",
+   "texte": "Gluconéogenèse : trois contournements, pas un retour."
+  },
+  {
+   "dit": "Autre réserve, plus rapide à mobiliser : le glycogène, la forme de stockage du glucose dans le foie et les muscles. La glycogenolyse le dégrade en glucose phosphate, puis en glucose utilisable, grâce à la glycogène phosphorylase, qui rompt les liaisons du glycogène, et, au foie uniquement, à la glucose phosphatase. C'est la réponse rapide à un effort ou à une hypoglycémie, avant que la gluconéogenèse ne prenne le relais.",
+   "ecran": "glycogenolyse",
+   "id": "p20",
+   "texte": "Glycogenolyse : le glycogène redevient glucose."
+  },
+  {
+   "dit": "Passons aux lipides, avec la bêta-oxydation, un processus mitochondrial qui dégrade les acides gras en acétyl-CoA, la molécule qui entre dans le cycle de Krebs. Après activation de l'acide gras et son transport dans la mitochondrie par la navette de la carnitine, le cycle se répète en quatre temps : une oxydation qui produit du FADH deux, une hydratation, une seconde oxydation qui produit du NADH, puis une thiolyse qui libère un acétyl-CoA et raccourcit la chaîne de deux carbones.",
+   "ecran": "betaoxydation",
+   "id": "p21",
+   "texte": "Bêta-oxydation : quatre temps, deux carbones de moins."
+  },
+  {
+   "dit": "Le mouvement inverse, la lipogenèse, construit des réserves : c'est la synthèse d'acides gras à partir de l'acétyl-CoA, principalement dans le foie et le tissu adipeux. L'acétyl-CoA carboxylase fabrique d'abord du malonyl-CoA, en consommant de l'ATP, puis l'acide gras synthase allonge la chaîne de deux carbones par cycle. L'insuline stimule cette construction, le glucagon l'inhibe, et la disponibilité en acétyl-CoA et en NADPH compte tout autant.",
+   "ecran": "lipogenese",
+   "id": "p22",
+   "texte": "Lipogenèse : construire des acides gras pour stocker."
+  },
+  {
+   "dit": "Voici la méthode pour chiffrer le bilan d'un acide gras, en trois temps. D'abord, le nombre de cycles vaut la moitié du nombre de carbones, moins un, et le nombre d'acétyl-CoA vaut la moitié du nombre de carbones. Ensuite, chaque cycle donne un FADH deux et un NADH, et chaque acétyl-CoA donne, dans le cycle de Krebs, trois NADH, un FADH deux et un ATP. Enfin, on convertit avec les rapports modernes, deux virgule cinq ATP par NADH et un virgule cinq par FADH deux, et on retranche deux pour l'activation.",
+   "ecran": "methode_bilan",
+   "id": "p23",
+   "texte": "Méthode : cycles, transporteurs, conversion, activation."
+  },
+  {
+   "dit": "Appliquons-la au palmitate, un acide gras à seize carbones. La moitié de seize, moins un, donne sept cycles, et la moitié de seize donne huit acétyl-CoA, puisque le dernier cycle en libère deux. Côté transporteurs, les sept cycles donnent sept NADH et sept FADH deux, et les huit acétyl-CoA donnent vingt-quatre NADH et huit FADH deux dans le cycle de Krebs. Au total, donc, trente et un NADH et quinze FADH deux.",
+   "ecran": "exemple_un",
+   "id": "p24",
+   "texte": "Palmitate : 7 cycles, 8 acétyl-CoA, 31 NADH, 15 FADH₂."
+  },
+  {
+   "dit": "Convertissons : trente et un NADH à deux virgule cinq ATP donnent soixante-dix-sept virgule cinq ATP, quinze FADH deux à un virgule cinq donnent vingt-deux virgule cinq, et les huit ATP du cycle de Krebs s'y ajoutent. Cela fait cent huit ATP, moins deux pour l'activation, soit cent six ATP au total pour un palmitate. Retenez la méthode, pas seulement le nombre : avec d'anciens rapports, on trouverait un total plus élevé, mais ce sont les rapports modernes qui donnent cent six.",
+   "ecran": "exemple_deux",
+   "id": "p25",
+   "texte": "Palmitate : 31 × 2,5 + 15 × 1,5 + 8 − 2 = 106 ATP."
+  },
+  {
+   "dit": "Les protéines, elles aussi, se dégradent et se reconstruisent en permanence. Pour la dégradation, le système ubiquitine-protéasome est le principal mécanisme des protéines du cytosol : une petite protéine, l'ubiquitine, marque la cible, et le protéasome la dégrade. L'autophagie, elle, englobe des organites ou des protéines endommagées dans des vésicules qui fusionnent avec des lysosomes, ce qui maintient l'homéostasie cellulaire et répond au stress.",
+   "ecran": "proteines_degradation",
+   "id": "p26",
+   "texte": "Dégradation : ubiquitine-protéasome et autophagie."
+  },
+  {
+   "dit": "Pour la synthèse, le chemin va de l'ADN à la protéine. L'ADN est transcrit en ARN messager par l'ARN polymérase, puis cet ARN messager est maturé, par épissage, coiffe et queue polyadénylée, avant de quitter le noyau. Les ribosomes le traduisent ensuite en assemblant les acides aminés apportés par les ARN de transfert, puis la protéine se replie dans sa forme fonctionnelle et peut subir des modifications, comme une glycosylation ou une phosphorylation.",
+   "ecran": "proteines_synthese",
+   "id": "p27",
+   "texte": "Synthèse : ADN, ARN messager, ribosome, repliement."
+  },
+  {
+   "dit": "Toutes ces voies sont régulées, d'abord au niveau des enzymes. La régulation allostérique joue sur un site distinct du site actif : un modulateur change la forme de l'enzyme et son affinité pour le substrat, comme l'ATP qui inhibe la phosphofructokinase de la glycolyse quand l'énergie abonde. La modification covalente, elle, ajoute ou retire un groupe chimique : une kinase phosphoryle, une phosphatase déphosphoryle, et la phosphorylation de la glycogène synthase, par exemple, l'inhibe. Enfin, la compartimentation sépare les voies entre cytosol et mitochondries.",
+   "ecran": "regulation_enzymes",
+   "id": "p28",
+   "texte": "Régulation enzymatique : allostérie, covalence, lieu."
+  },
+  {
+   "dit": "À distance, les hormones coordonnent l'ensemble. L'insuline, du pancréas, stimule la glycolyse, la synthèse de glycogène et celle des protéines, et fait baisser la glycémie. Le glucagon, du pancréas lui aussi, fait l'inverse : il stimule la glycogenolyse et la néoglucogenèse, et fait monter la glycémie. L'adrénaline, des surrénales, stimule la glycogenolyse et la lipolyse, et le cortisol, des surrénales également, stimule la néoglucogenèse et la protéolyse. Insuline et glucagon sont antagonistes, et c'est cet antagonisme qui stabilise le glucose sanguin.",
+   "ecran": "hormones",
+   "id": "p29",
+   "texte": "Hormones : insuline contre glucagon, glycémie stable."
+  },
+  {
+   "dit": "Pour finir, le métabolisme n'est pas un chapitre abstrait : il sert en santé et dans l'industrie. En santé, le dosage du glucose sanguin diagnostique le diabète, et des médicaments ciblent des enzymes précises, comme les inhibiteurs de la HMG-CoA réductase contre l'hypercholestérolémie. Dans l'industrie, la fermentation produit de l'éthanol et des biocarburants, et l'ingénierie métabolique optimise des organismes pour fabriquer des molécules d'intérêt. Comprendre une voie, c'est pouvoir la mesurer, la cibler ou l'exploiter.",
+   "ecran": "applications",
+   "id": "p30",
+   "texte": "Applications : diagnostiquer, traiter, produire."
+  },
+  {
+   "dit": "Récapitulons les cinq idées à retenir. Le catabolisme libère de l'énergie, l'anabolisme construit avec elle. La glycolyse donne deux ATP nets et deux pyruvates, et la respiration complète, jusqu'à la turbine à protons, en donne environ trente-deux. Sans oxygène, la fermentation ne donne que deux ATP. Et tout cet ensemble est régulé, par les enzymes sur place et par des hormones antagonistes à distance. Avec ces cinq idées, vous pouvez relire chaque voie du cours sans vous y perdre.",
+   "ecran": "recap",
+   "id": "p31",
+   "texte": "Récapitulatif en cinq idées."
+  }
+ ],
+ "titre": "Le métabolisme cellulaire : voies, énergie et régulation"
+}
