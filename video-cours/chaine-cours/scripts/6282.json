@@ -1,0 +1,469 @@
+{
+ "cours": 6282,
+ "ecrans": {
+  "agregation": {
+   "kicker": "Résumer avec SQL",
+   "tex": [
+    "\\text{COUNT : compter, AVG : moyenne}",
+    "\\text{MAX : maximum}",
+    "\\text{GROUP BY : regrouper}",
+    "\\text{par genre : nombre, prix moyen}"
+   ],
+   "titre": "Compter, moyenner, regrouper",
+   "type": "etape"
+  },
+  "bibliotheque": {
+   "kicker": "Mini-schéma : la bibliothèque",
+   "tex": [
+    "\\text{Livre : ISBN, titre, auteur}",
+    "\\text{Exemplaire : code-barres, état}",
+    "\\text{Emprunt : membre, exemplaire}",
+    "\\text{dates : emprunt, retour prévu}"
+   ],
+   "titre": "Livre, exemplaire, emprunt",
+   "type": "etape"
+  },
+  "cardinalites": {
+   "kicker": "Les trois cardinalités",
+   "tex": [
+    "\\text{un à plusieurs : un client}",
+    "\\text{plusieurs commandes}",
+    "\\text{plusieurs à plusieurs : table}",
+    "\\text{d'association ; un à un : au plus un}"
+   ],
+   "titre": "Un, plusieurs, et entre les deux",
+   "type": "etape"
+  },
+  "cles_types": {
+   "kicker": "Naturelle ou artificielle ?",
+   "tex": [
+    "\\text{naturelle : sécurité sociale}",
+    "\\text{naturelle : ISBN}",
+    "\\text{artificielle : auto-incrément}",
+    "\\text{préférer un identifiant stable}"
+   ],
+   "titre": "Choisir un identifiant qui dure",
+   "type": "etape"
+  },
+  "codd": {
+   "kicker": "1970 : la rupture de Codd",
+   "tex": [
+    "\\text{1970, Edgar Codd, chez IBM}",
+    "\\text{article fondateur}",
+    "\\text{les données en tables}"
+   ],
+   "titre": "Des fichiers plats aux tables",
+   "type": "etape"
+  },
+  "conception": {
+   "kicker": "Concevoir en trois niveaux",
+   "tex": [
+    "\\text{conceptuel : entités}",
+    "\\text{logique : tables, clés}",
+    "\\text{physique : types, index}"
+   ],
+   "titre": "Du monde réel au système",
+   "type": "etape"
+  },
+  "crud": {
+   "kicker": "SQL : le dialogue avec les données",
+   "tex": [
+    "\\text{SELECT : lire, INSERT : créer}",
+    "\\text{UPDATE : modifier}",
+    "\\text{DELETE : supprimer}",
+    "\\text{déclaratif : dire ce que l'on veut}"
+   ],
+   "titre": "Quatre verbes, un langage déclaratif",
+   "type": "etape"
+  },
+  "denormalisation": {
+   "kicker": "Le paradoxe : dénormaliser",
+   "tex": [
+    "\\text{normaliser : transactionnel}",
+    "\\text{dénormaliser : entrepôts}",
+    "\\text{prix figé à la commande}"
+   ],
+   "titre": "Normaliser, sauf pour la performance",
+   "type": "etape"
+  },
+  "fk": {
+   "kicker": "La clé étrangère",
+   "tex": [
+    "\\text{Inscriptions référence}",
+    "\\text{la clé d'Étudiants}",
+    "\\text{nulle, ou valeur existante}",
+    "\\text{sinon, le lien est refusé}"
+   ],
+   "titre": "Le lien entre les tables",
+   "type": "etape"
+  },
+  "fn1": {
+   "kicker": "Première forme normale",
+   "tex": [
+    "\\text{valeur atomique par case}",
+    "\\text{chaque enregistrement unique}",
+    "\\text{un cours par ligne}"
+   ],
+   "titre": "Une valeur atomique par case",
+   "type": "etape"
+  },
+  "fn2": {
+   "kicker": "Deuxième forme normale",
+   "tex": [
+    "\\text{dépendre de toute la clé}",
+    "\\text{la date dépend du numéro}",
+    "\\text{de commande seulement}",
+    "\\text{séparer COMMANDES, LIGNES}"
+   ],
+   "titre": "Dépendre de toute la clé",
+   "type": "etape"
+  },
+  "fn3": {
+   "kicker": "Troisième forme normale",
+   "tex": [
+    "\\text{3NF : pas de dépendance}",
+    "\\text{d'un non-clé à un non-clé}",
+    "\\text{région via code postal}",
+    "\\text{créer une table VILLES}"
+   ],
+   "titre": "Chasser les dépendances transitives",
+   "type": "etape"
+  },
+  "insert": {
+   "kicker": "Créer : INSERT",
+   "tex": [
+    "\\text{INSERT INTO table}",
+    "\\text{(colonnes) VALUES (valeurs)}",
+    "\\text{même ordre des valeurs}",
+    "\\text{clé violée : échec total}"
+   ],
+   "titre": "Colonnes et valeurs dans le même ordre",
+   "type": "etape"
+  },
+  "integrite": {
+   "kicker": "L'intégrité référentielle",
+   "tex": [
+    "\\text{RESTRICT : parent protégé}",
+    "\\text{CASCADE : propagation}",
+    "\\text{SET NULL : référence nulle}"
+   ],
+   "titre": "Que faire du parent supprimé ?",
+   "type": "etape"
+  },
+  "maux": {
+   "kicker": "Pourquoi normaliser ?",
+   "tex": [
+    "\\text{adresse répétée partout}",
+    "\\text{anomalies : mise à jour}",
+    "\\text{suppression, insertion}",
+    "\\text{client sans commande : impossible}"
+   ],
+   "titre": "Les maux de la redondance",
+   "type": "etape"
+  },
+  "nosql": {
+   "kicker": "Au-delà du relationnel",
+   "tex": [
+    "\\text{relationnel : transactions}",
+    "\\text{document : profils}",
+    "\\text{clé-valeur : cache}"
+   ],
+   "titre": "NoSQL : non seulement SQL",
+   "type": "etape"
+  },
+  "pk": {
+   "kicker": "La clé primaire",
+   "tex": [
+    "\\text{unique : deux lignes}",
+    "\\text{deux valeurs différentes}",
+    "\\text{jamais nulle, stable}"
+   ],
+   "titre": "Unique, jamais nulle, stable",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Relation : une table, lignes et attributs",
+    "Clés : primaire unique, étrangère qui relie",
+    "SQL : lire, créer, modifier, supprimer",
+    "Normaliser : première, deuxième, troisième formes",
+    "Bien conçue, une base répond à de vraies questions"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "relation": {
+   "kicker": "Définir : la relation",
+   "note": "R : sous-ensemble du produit cartésien des domaines.",
+   "tex": "R \\subseteq D_1 \\times D_2 \\times \\cdots \\times D_n",
+   "type": "formule"
+  },
+  "retards": {
+   "kicker": "Jointures : les adhérents en retard",
+   "tex": [
+    "\\text{retour effectif nul}",
+    "\\text{retour prévu dépassé}",
+    "\\text{jointures : adhérent,}",
+    "\\text{exemplaire, livre}"
+   ],
+   "titre": "Quatre tables pour une question",
+   "type": "etape"
+  },
+  "schema": {
+   "kicker": "Le schéma : le plan de la table",
+   "tex": [
+    "\\text{Étudiants} ( \\underline{ID}, \\text{Nom}, \\text{Prénom} )",
+    "\\text{schéma = structure}",
+    "\\text{instance = contenu}"
+   ],
+   "titre": "Structure d'abord, données ensuite",
+   "type": "etape"
+  },
+  "select_exemple": {
+   "kicker": "Exemple : la librairie",
+   "note": "WHERE Genre = science-fiction AND Prix < 20.",
+   "tex": "\\text{SELECT Titre, Prix FROM LIVRES}",
+   "type": "formule"
+  },
+  "select_syntaxe": {
+   "kicker": "Lire : la syntaxe SELECT",
+   "tex": [
+    "\\text{SELECT colonnes}",
+    "\\text{FROM table}",
+    "\\text{WHERE : filtrer}",
+    "\\text{ORDER BY : trier}"
+   ],
+   "titre": "Colonnes, table, filtre, tri",
+   "type": "etape"
+  },
+  "table": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "matrice_fig"
+   },
+   "kicker": "En pratique : la table",
+   "texte": "Une relation, c'est une table : lignes et colonnes.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "matrice_fig"
+   },
+   "kicker": "Informatique · Bases de données relationnelles",
+   "sous": "De Codd aux requêtes SQL : relations, clés, conception d'un schéma et normalisation, illustrées par une bibliothèque",
+   "titre": "Bases de données relationnelles : tables, clés et SQL",
+   "type": "titre"
+  },
+  "transactions": {
+   "kicker": "Transactions et index",
+   "tex": [
+    "\\text{transaction ACID}",
+    "\\text{tout ou rien}",
+    "\\text{index : recherche directe}",
+    "\\text{écritures ralenties}"
+   ],
+   "titre": "Tout ou rien, et vite",
+   "type": "etape"
+  },
+  "update_delete": {
+   "kicker": "Modifier, supprimer : prudence",
+   "tex": [
+    "\\text{UPDATE table SET}",
+    "\\text{colonne = valeur}",
+    "\\text{WHERE : lignes ciblées}",
+    "\\text{sans WHERE : toute la table}"
+   ],
+   "titre": "Le WHERE oublié coûte cher",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Modèle relationnel et clés"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : les cardinalités entre les tables, les trois niveaux de conception, un mini-schéma de bibliothèque, puis le langage SQL : lire, agréger et créer, avec la prudence qu'exigent les modifications.",
+    "texte": "Partie 2 : cardinalités, conception, SQL."
+   },
+   "sous_titre": "Cardinalités, conception et SQL"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : la normalisation, de la première à la troisième forme normale, puis ses limites, les jointures, les transactions, et enfin l'ouverture vers les bases NoSQL.",
+    "texte": "Partie 3 : normalisation, jointures, horizons."
+   },
+   "sous_titre": "Normalisation, jointures et horizons"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'introduction aux bases de données relationnelles. Avant les bases de données, les informations vivaient dans des fichiers plats, redondantes et difficiles à croiser : nous allons voir comment les tables, les clés et le langage SQL ont mis de l'ordre dans ce chaos.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Tables, clés, SQL : organiser les données."
+  },
+  {
+   "dit": "En mille neuf cent soixante-dix, Edgar Codd, chercheur chez IBM, publie un article fondateur : représenter les données non par des pointeurs compliqués, mais par des tables simples. Ce modèle domine encore aujourd'hui la gestion des données.",
+   "ecran": "codd",
+   "id": "p02",
+   "texte": "1970, Codd, IBM : les données deviennent des tables."
+  },
+  {
+   "dit": "En mathématiques, une relation est un sous-ensemble du produit cartésien d'une liste de domaines. Un domaine, c'est un ensemble comme les noms, les entiers ou les dates ; un n-uplet en choisit une valeur dans chaque domaine.",
+   "ecran": "relation",
+   "id": "p03",
+   "texte": "Relation R : sous-ensemble du produit cartésien."
+  },
+  {
+   "dit": "En pratique, oubliez un instant la théorie : une relation, c'est simplement une table à deux dimensions. Chaque ligne est un tuple, chaque colonne est un attribut, et la figure montre bien cette grille de lignes et de colonnes.",
+   "ecran": "table",
+   "id": "p04",
+   "texte": "Une relation, c'est une table : lignes et colonnes."
+  },
+  {
+   "dit": "Avant de créer une table, on définit son schéma : le plan de la structure, sans les données. Pour les étudiants, le schéma s'écrit avec l'identifiant souligné, car c'est la clé primaire, puis le nom, le prénom et la date de naissance. Le schéma, c'est la structure ; l'instance, c'est le contenu à un instant donné.",
+   "ecran": "schema",
+   "id": "p05",
+   "texte": "Schéma Étudiants : identifiant souligné, puis nom et prénom."
+  },
+  {
+   "dit": "La clé primaire est l'identifiant unique et immuable de chaque ligne. Elle ne peut jamais être nulle, et sa valeur ne devrait pas changer dans le temps. Dans la table des étudiants, l'identifiant étudiant permet de distinguer deux étudiantes homonymes, comme deux Léa Martin.",
+   "ecran": "pk",
+   "id": "p06",
+   "texte": "Clé primaire : unique, jamais nulle, stable."
+  },
+  {
+   "dit": "Une clé primaire peut être naturelle, comme un numéro de sécurité sociale ou un code ISBN, ou artificielle, comme un numéro auto-incrémenté. Un courriel, bien qu'unique, peut changer : c'est pourquoi un identifiant technique stable est souvent préférable.",
+   "ecran": "cles_types",
+   "id": "p07",
+   "texte": "Naturelle ou artificielle : un identifiant qui dure."
+  },
+  {
+   "dit": "La clé étrangère crée le lien entre les tables, et c'est elle qui donne son sens au mot relationnel. Dans la table des inscriptions, l'identifiant étudiant fait référence à la clé primaire de la table des étudiants : toute inscription doit donc concerner un étudiant déjà présent, sinon le lien est refusé.",
+   "ecran": "fk",
+   "id": "p08",
+   "texte": "Inscriptions : l'identifiant étudiant référence Étudiants."
+  },
+  {
+   "dit": "Cette règle s'appelle l'intégrité référentielle, et le système la fait respecter tout seul. Si l'on essaie de supprimer un client qui a déjà des commandes, le système peut interdire la suppression, la propager aux commandes, ou mettre la référence à nul.",
+   "ecran": "integrite",
+   "id": "p09",
+   "texte": "Supprimer un parent : interdire, propager, ou mettre à nul."
+  },
+  {
+   "dit": "Les tables se lient selon trois cardinalités. Un à plusieurs : un client passe plusieurs commandes, mais chaque commande n'a qu'un seul client. Plusieurs à plusieurs : une commande contient plusieurs produits, et un produit figure dans plusieurs commandes, d'où une table d'association comme la ligne de commande. Un à un : au plus un de chaque côté.",
+   "ecran": "cardinalites",
+   "id": "p10",
+   "texte": "Un à plusieurs, plusieurs à plusieurs, un à un."
+  },
+  {
+   "dit": "Concevoir un schéma se fait en trois niveaux. D'abord le modèle conceptuel, qui repère les entités et leurs associations. Puis le modèle logique, qui traduit les entités en tables et les liens en clés étrangères. Enfin le modèle physique, qui choisit les types précis et les index dans un système donné, comme PostgreSQL ou MySQL.",
+   "ecran": "conception",
+   "id": "p11",
+   "texte": "Conceptuel, logique, physique : trois niveaux."
+  },
+  {
+   "dit": "Appliquons cela à une bibliothèque. On sépare le livre, l'œuvre avec son ISBN, son titre et son auteur, de l'exemplaire physique, avec son code-barres et son état. L'emprunt, lui, est l'événement qui lie un membre à un exemplaire, avec une date d'emprunt et une date de retour prévue.",
+   "ecran": "bibliotheque",
+   "id": "p12",
+   "texte": "Bibliothèque : livre, exemplaire, emprunt."
+  },
+  {
+   "dit": "Pour dialoguer avec ces tables, on utilise SQL, né dans les années soixante-dix chez IBM. C'est un langage déclaratif : on décrit ce que l'on veut obtenir, et le système choisit la manière la plus efficace de l'obtenir. Ses quatre verbes forment le CRUD : lire, créer, modifier, supprimer.",
+   "ecran": "crud",
+   "id": "p13",
+   "texte": "SQL : lire, créer, modifier, supprimer."
+  },
+  {
+   "dit": "La lecture commence par SELECT, suivi des colonnes, puis FROM et le nom de la table. La clause WHERE filtre les lignes, ORDER BY trie le résultat, et AS renomme une colonne dans l'affichage.",
+   "ecran": "select_syntaxe",
+   "id": "p14",
+   "texte": "SELECT, FROM, WHERE, ORDER BY, AS."
+  },
+  {
+   "dit": "Exemple concret dans une librairie : lister les titres et les prix des livres de science-fiction coûtant moins de vingt euros. La requête pose une question précise, et le libraire peut s'en servir pour préparer une promotion.",
+   "ecran": "select_exemple",
+   "id": "p15",
+   "texte": "Librairie : titres et prix de science-fiction à moins de 20 €."
+  },
+  {
+   "dit": "SQL excelle dans les résumés. COUNT compte les lignes, AVG calcule une moyenne, MAX cherche le maximum. Avec GROUP BY, on regroupe par catégorie : par exemple, le nombre de livres et le prix moyen pour chaque genre de la librairie.",
+   "ecran": "agregation",
+   "id": "p16",
+   "texte": "COUNT, AVG, MAX, GROUP BY : résumer."
+  },
+  {
+   "dit": "Pour créer, on utilise INSERT, en listant les colonnes puis les valeurs dans le même ordre. Si l'insertion viole une clé primaire, elle échoue entièrement : une transaction est indivisible.",
+   "ecran": "insert",
+   "id": "p17",
+   "texte": "INSERT : colonnes et valeurs dans le même ordre."
+  },
+  {
+   "dit": "UPDATE corrige les données, par exemple augmenter les prix des essais de cinq pour cent, mais oublier le WHERE modifie toutes les lignes : c'est l'erreur classique et catastrophique. Même prudence pour DELETE, qui retire des lignes entières : en production, on préfère souvent un effacement doux, en passant une colonne actif à faux pour préserver l'historique.",
+   "ecran": "update_delete",
+   "id": "p18",
+   "texte": "UPDATE, DELETE : sans WHERE, toute la table."
+  },
+  {
+   "dit": "Pourquoi normaliser ? Regardez une table de commandes qui répète l'adresse du client à chaque ligne. Si le client déménage, il faut corriger toutes ses commandes ; supprimer sa dernière commande peut effacer ses coordonnées ; et l'on ne peut même pas enregistrer un client qui n'a pas encore commandé.",
+   "ecran": "maux",
+   "id": "p19",
+   "texte": "Redondance : adresse répétée, trois anomalies."
+  },
+  {
+   "dit": "Première forme normale : chaque case contient une valeur atomique, indivisible, et chaque enregistrement est unique. Une case qui contient plusieurs cours viole cette règle : on la décompose en une ligne par cours.",
+   "ecran": "fn1",
+   "id": "p20",
+   "texte": "1NF : une valeur atomique par case."
+  },
+  {
+   "dit": "Deuxième forme normale : chaque attribut doit dépendre de toute la clé primaire, et pas seulement d'une partie. Si la clé combine le numéro de commande et le produit, mais que la date ne dépend que du numéro de commande, on décompose en deux tables : les commandes d'un côté, leurs lignes de l'autre.",
+   "ecran": "fn2",
+   "id": "p21",
+   "texte": "2NF : dépendre de toute la clé."
+  },
+  {
+   "dit": "Troisième forme normale : aucun attribut ne doit dépendre d'un autre attribut non-clé. Si la région dépend du code postal, qui dépend lui-même du client, c'est une dépendance transitive : on crée une table des villes à part. La forme de Boyce et Codd renforce encore cette exigence pour les cas où le déterminant n'est pas une clé.",
+   "ecran": "fn3",
+   "id": "p22",
+   "texte": "3NF : pas de dépendance transitive."
+  },
+  {
+   "dit": "Mais trop normaliser coûte des jointures. Pour des rapports lus en permanence, on peut dénormaliser de façon contrôlée, par exemple recopier le nom du client dans les ventes. Et dans une ligne de commande, on fige le prix au moment de l'achat, sinon une ancienne commande changerait de montant quand le prix évolue.",
+   "ecran": "denormalisation",
+   "id": "p23",
+   "texte": "Dénormaliser, avec contrôle, pour la performance."
+  },
+  {
+   "dit": "Les jointures donnent alors toute leur puissance. Pour trouver les adhérents en retard, on joint les emprunts aux adhérents, aux exemplaires et aux livres, et l'on garde les emprunts dont le retour effectif est nul et dont la date prévue est dépassée.",
+   "ecran": "retards",
+   "id": "p24",
+   "texte": "Retards : retour effectif nul, date prévue dépassée."
+  },
+  {
+   "dit": "Derrière chaque requête, l'optimiseur choisit le plan le moins coûteux, et un index transforme un balayage complet en recherche directe. Mais un index doit être maintenu à chaque écriture : il accélère les lectures et ralentit les insertions et les modifications. Quant aux transactions, elles respectent l'atomicité : tout réussit, ou rien n'est appliqué.",
+   "ecran": "transactions",
+   "id": "p25",
+   "texte": "Index : vite en lecture, coûteux en écriture."
+  },
+  {
+   "dit": "Enfin, NoSQL signifie souvent non seulement SQL, et non contre SQL. Une architecture moderne mélange les outils : une base relationnelle pour le cœur transactionnel, une base document pour les profils, et un cache clé-valeur pour la performance.",
+   "ecran": "nosql",
+   "id": "p26",
+   "texte": "NoSQL : non seulement SQL."
+  },
+  {
+   "dit": "Retenons l'essentiel : une relation est une table, la clé primaire identifie chaque ligne de façon unique, la clé étrangère relie les tables en garantissant l'intégrité, SQL permet de lire, créer, modifier et supprimer, et la normalisation chasse la redondance. Une base bien conçue n'est pas une fin en soi : c'est l'outil qui permet de répondre à de vraies questions.",
+   "ecran": "recap",
+   "id": "p27",
+   "texte": "Tables, clés, SQL, normalisation : l'essentiel."
+  }
+ ],
+ "titre": "Bases de données relationnelles : tables, clés et SQL"
+}
