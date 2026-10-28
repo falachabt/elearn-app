@@ -29,6 +29,10 @@ on:
         description: "Lancer aussi un build Android (APK) de prévisualisation"
         type: boolean
         default: false
+      ios_build:
+        description: "Build iOS production (EAS) puis envoi à App Store Connect — job séparé ios_production"
+        type: boolean
+        default: false
 
 # Pull request : le run précédent est annulé à chaque nouveau commit.
 # Push : un seul run à la fois, mais sans annulation. Une OTA annulée en cours de route
@@ -131,3 +135,28 @@ jobs:
       - name: Build Android de prévisualisation
         if: ${{ env.EXPO_TOKEN != '' && ((github.event_name == 'workflow_dispatch' && inputs.build) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[build]'))) }}
         run: eas build --platform android --profile preview --non-interactive --no-wait
+
+  # Job séparé, uniquement sur lancement manuel avec l'option ios_build : build iOS du profil
+  # production chez EAS (certificats et clé App Store Connect API gérés par EAS), attente de la
+  # fin, puis envoi du build à App Store Connect. Ne tourne jamais sur un push ni une PR.
+  ios_production:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ios_build }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      EXPO_PUBLIC_CERT_MEDIA_BASE: ${{ vars.EXPO_PUBLIC_CERT_MEDIA_BASE || 'https://pub-b05c9f45ef884ab2aa345a5763751590.r2.dev' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Build iOS production (EAS, attente de la fin)
+        run: eas build --platform ios --profile production --non-interactive
+      - name: Envoyer le dernier build iOS à App Store Connect
+        run: eas submit --platform ios --profile production --latest --non-interactive
