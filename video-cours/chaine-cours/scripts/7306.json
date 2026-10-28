@@ -1,0 +1,354 @@
+{
+ "cours": 7306,
+ "ecrans": {
+  "allumage": {
+   "kicker": "Le circuit simple allumage",
+   "texte": "Simple allumage : allumer ou éteindre une lampe.",
+   "type": "phrase"
+  },
+  "amperemetre": {
+   "kicker": "Les appareils de mesure",
+   "tex": [
+    "\\text{ampèremètre : intensité (A), série}",
+    "\\text{voltmètre : tension (V), dérivation}"
+   ],
+   "titre": "Mesurer sans se tromper de branchement",
+   "type": "etape"
+  },
+  "bornes": {
+   "kicker": "Les deux bornes du générateur",
+   "tex": [
+    "\\text{borne + : le courant en sort}",
+    "\\text{borne - : le courant y revient}"
+   ],
+   "titre": "Sortir par +, revenir par -",
+   "type": "etape"
+  },
+  "boucle": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "La boucle fermée",
+   "texte": "Boucle fermée : le courant peut circuler.",
+   "type": "phrase"
+  },
+  "elements": {
+   "kicker": "Les éléments du circuit",
+   "tex": [
+    "\\text{générateur : fournit l'énergie}",
+    "\\text{récepteur : transforme l'énergie}",
+    "\\text{fils : relient et conduisent}",
+    "\\text{interrupteur : ouvre ou ferme}"
+   ],
+   "titre": "Quatre éléments, quatre rôles",
+   "type": "etape"
+  },
+  "elements_allumage": {
+   "kicker": "Les quatre éléments indispensables",
+   "tex": [
+    "\\text{générateur : pile, batterie, secteur}",
+    "\\text{récepteur : lampe, moteur}",
+    "\\text{interrupteur : ouvert ou fermé}",
+    "\\text{fils de connexion}"
+   ],
+   "titre": "Toujours les mêmes quatre",
+   "type": "etape"
+  },
+  "etats": {
+   "kicker": "Interrupteur ouvert, interrupteur fermé",
+   "tex": [
+    "\\text{ouvert : circuit ouvert, lampe éteinte}",
+    "\\text{fermé : circuit fermé, lampe qui brille}"
+   ],
+   "titre": "Deux positions, deux états",
+   "type": "etape"
+  },
+  "exemple_boucle": {
+   "kicker": "Exemple résolu : le circuit qui brille",
+   "texte": "Pile, lampe, interrupteur fermé : ça brille.",
+   "type": "phrase"
+  },
+  "exemple_schema": {
+   "kicker": "Exemple : placer les symboles",
+   "tex": [
+    "\\text{en haut : l'interrupteur}",
+    "\\text{à droite : la lampe}",
+    "\\text{en bas : la pile}",
+    "\\text{à gauche : un fil simple}"
+   ],
+   "titre": "Un rectangle, quatre côtés",
+   "type": "etape"
+  },
+  "exemple_simple": {
+   "kicker": "Exemple résolu : pile, lampe, interrupteur",
+   "texte": "Pile 4,5 V : fermé, ça brille ; ouvert, ça s'éteint.",
+   "type": "phrase"
+  },
+  "fils": {
+   "kicker": "Les fils de connexion",
+   "texte": "Fils en cuivre : ils relient et ferment le circuit.",
+   "type": "phrase"
+  },
+  "generateur": {
+   "kicker": "Le générateur, source du courant",
+   "texte": "Générateur : il crée et entretient le courant.",
+   "type": "phrase"
+  },
+  "interrupteur": {
+   "kicker": "L'interrupteur commande le circuit",
+   "tex": [
+    "\\text{fermé : le courant circule}",
+    "\\text{ouvert : le courant ne circule pas}"
+   ],
+   "titre": "Ouvrir ou fermer à volonté",
+   "type": "etape"
+  },
+  "minimum": {
+   "kicker": "Le minimum d'un circuit",
+   "tex": [
+    "\\text{minimum : générateur, récepteur, fils}",
+    "\\text{souvent : interrupteur et mesure}"
+   ],
+   "titre": "Trois éléments, parfois plus",
+   "type": "etape"
+  },
+  "montage": {
+   "kicker": "Les étapes du montage",
+   "tex": [
+    "\\text{1. pile} \\rightarrow \\text{interrupteur}",
+    "\\text{2. interrupteur} \\rightarrow \\text{douille}",
+    "\\text{3. douille} \\rightarrow \\text{autre borne de la pile}",
+    "\\text{4. vérifier les connexions serrées}"
+   ],
+   "titre": "Quatre gestes, dans l'ordre",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Circuit : boucle fermée, générateur et récepteur au minimum",
+    "Générateur : bornes + et -, courant sort par +",
+    "Récepteur : lampe, moteur, résistance chauffante",
+    "Mesures : ampèremètre en série, voltmètre en dérivation",
+    "Schéma : symboles normalisés, crayon, règle, rectangle"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "recepteur": {
+   "kicker": "Le récepteur transforme l'énergie",
+   "tex": [
+    "\\text{lampe : lumière et chaleur}",
+    "\\text{moteur : mouvement}",
+    "\\text{résistance chauffante : chaleur}"
+   ],
+   "titre": "Une énergie d'entrée, une autre en sortie",
+   "type": "etape"
+  },
+  "regles_trace": {
+   "kicker": "Les règles de tracé",
+   "tex": [
+    "\\text{au crayon, à la règle}",
+    "\\text{fils : segments rectilignes}",
+    "\\text{circuit : rectangle fermé}",
+    "\\text{symboles au milieu des côtés}"
+   ],
+   "titre": "Un schéma propre et lisible",
+   "type": "etape"
+  },
+  "schema": {
+   "kicker": "Schématiser un circuit",
+   "tex": [
+    "\\text{au crayon, avec une règle}",
+    "\\text{fils : segments droits}"
+   ],
+   "titre": "Un dessin normalisé",
+   "type": "etape"
+  },
+  "schema_montage": {
+   "kicker": "Du schéma au montage réel",
+   "texte": "Schéma et montage : le même circuit, deux écritures.",
+   "type": "phrase"
+  },
+  "securite": {
+   "kicker": "Les règles de sécurité",
+   "tex": [
+    "\\text{jamais relier les bornes de la pile}",
+    "\\text{brancher hors tension}"
+   ],
+   "titre": "Deux interdits qui protègent",
+   "type": "etape"
+  },
+  "symboles": {
+   "kicker": "Les symboles normalisés",
+   "tex": [
+    "\\text{pile : deux traits, le plus long côté +}",
+    "\\text{lampe : cercle avec une croix}",
+    "\\text{interrupteur ouvert : trait oblique}",
+    "\\text{fils : traits droits}"
+   ],
+   "titre": "Les mêmes symboles partout dans le monde",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "circuit"
+   },
+   "kicker": "Sciences Physiques et Technologie · Le circuit électrique",
+   "sous": "Éléments, mesures, simple allumage et schématisation : monter un circuit qui fonctionne",
+   "titre": "Le circuit électrique et le simple allumage",
+   "type": "titre"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Éléments, mesures et schéma"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : le circuit simple allumage. Nous monterons le circuit qui allume ou éteint une lampe, nous lirons ses symboles normalisés et nous placerons chaque symbole à sa place sur le schéma.",
+    "texte": "Partie 2 : simple allumage et schématisation."
+   },
+   "sous_titre": "Simple allumage et schématisation"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur le circuit électrique et le simple allumage. Nous allons identifier chaque élément et son rôle, mesurer courant et tension, puis monter et schématiser le circuit qui allume une lampe.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Circuit électrique et simple allumage."
+  },
+  {
+   "dit": "Un circuit électrique est un ensemble d'éléments reliés entre eux par des fils conducteurs, formant une boucle fermée dans laquelle le courant électrique peut circuler. Si la boucle est ouverte, le courant ne circule pas.",
+   "ecran": "boucle",
+   "id": "p02",
+   "texte": "Boucle fermée : le courant peut circuler."
+  },
+  {
+   "dit": "Un circuit simple comporte au minimum un générateur, un récepteur et des fils de connexion, souvent complétés par un interrupteur et éventuellement un appareil de mesure.",
+   "ecran": "minimum",
+   "id": "p03",
+   "texte": "Au minimum : générateur, récepteur, fils."
+  },
+  {
+   "dit": "Le générateur est l'élément qui fournit l'énergie électrique au circuit : c'est la source du courant. Il crée et entretient la circulation du courant dans la boucle. Exemples : pile, batterie, générateur de laboratoire, prise de secteur.",
+   "ecran": "generateur",
+   "id": "p04",
+   "texte": "Générateur : la source du courant."
+  },
+  {
+   "dit": "Le générateur possède deux bornes : une borne positive et une borne négative. Le courant sort par la borne positive et revient par la borne négative, par convention.",
+   "ecran": "bornes",
+   "id": "p05",
+   "texte": "Bornes + et - : le courant sort par +."
+  },
+  {
+   "dit": "Le récepteur utilise l'énergie électrique fournie par le générateur et la transforme en une autre forme d'énergie. La lampe donne de la lumière et de la chaleur, le moteur donne du mouvement, la résistance chauffante donne de la chaleur.",
+   "ecran": "recepteur",
+   "id": "p06",
+   "texte": "Récepteur : il transforme l'énergie."
+  },
+  {
+   "dit": "Les fils de connexion sont des conducteurs métalliques, souvent en cuivre, qui relient les différents éléments entre eux. Leur rôle est de permettre la circulation du courant d'un élément à l'autre et de fermer le circuit.",
+   "ecran": "fils",
+   "id": "p07",
+   "texte": "Fils en cuivre : ils relient et ferment le circuit."
+  },
+  {
+   "dit": "L'interrupteur permet d'ouvrir ou de fermer le circuit à volonté. Interrupteur fermé : le circuit est fermé, le courant circule. Interrupteur ouvert : le circuit est ouvert, le courant ne circule pas. Il commande donc le fonctionnement du circuit, allumer ou éteindre.",
+   "ecran": "interrupteur",
+   "id": "p08",
+   "texte": "Interrupteur : il commande le circuit."
+  },
+  {
+   "dit": "Pour mesurer, deux appareils. L'ampèremètre mesure l'intensité du courant, en ampères, et se branche en série dans le circuit. Le voltmètre mesure la tension aux bornes d'un élément, en volts, et se branche en dérivation, en parallèle, aux bornes de l'élément étudié.",
+   "ecran": "amperemetre",
+   "id": "p09",
+   "texte": "Ampèremètre en série, voltmètre en dérivation."
+  },
+  {
+   "dit": "Un circuit se représente par un schéma normalisé utilisant des symboles standards. Le schéma doit être tracé au crayon, avec une règle, et les fils représentés par des segments droits.",
+   "ecran": "schema",
+   "id": "p10",
+   "texte": "Schéma : crayon, règle, segments droits."
+  },
+  {
+   "dit": "Exemple résolu : une pile est reliée par deux fils à une lampe, avec un interrupteur intercalé sur l'un des fils. L'interrupteur est fermé et la lampe brille. La pile est le générateur, la lampe le récepteur, l'interrupteur la commande, les fils les liaisons.",
+   "ecran": "exemple_boucle",
+   "id": "p11",
+   "texte": "Pile, lampe, interrupteur fermé : ça brille."
+  },
+  {
+   "dit": "Passons au circuit simple allumage : c'est le circuit qui permet d'allumer ou d'éteindre un récepteur, le plus souvent une lampe, à l'aide d'un interrupteur. Il constitue le montage de base de toute installation électrique domestique.",
+   "ecran": "allumage",
+   "id": "p12",
+   "texte": "Simple allumage : allumer ou éteindre une lampe."
+  },
+  {
+   "dit": "Un circuit simple allumage comporte quatre éléments indispensables : le générateur, pile, batterie ou prise de secteur, qui fournit l'énergie ; le récepteur, lampe ou moteur, qui convertit l'énergie en lumière ou en mouvement ; l'interrupteur, organe de commande à deux positions ; et les fils de connexion, qui relient les composants.",
+   "ecran": "elements_allumage",
+   "id": "p13",
+   "texte": "Quatre éléments indispensables."
+  },
+  {
+   "dit": "Interrupteur ouvert : le circuit est ouvert, le courant ne circule pas, la lampe est éteinte. Interrupteur fermé : le circuit est fermé, le courant circule, la lampe brille. Pour qu'un courant circule, le circuit doit former une boucle fermée contenant le générateur.",
+   "ecran": "etats",
+   "id": "p14",
+   "texte": "Ouvert : éteinte ; fermé : elle brille."
+  },
+  {
+   "dit": "Pour monter le circuit, quatre étapes. Relier une borne de la pile à une borne de l'interrupteur. Relier la seconde borne de l'interrupteur à la douille de la lampe. Relier la seconde borne de la douille à l'autre borne de la pile. Enfin, vérifier que toutes les connexions sont bien serrées.",
+   "ecran": "montage",
+   "id": "p15",
+   "texte": "Montage : pile, interrupteur, douille, pile."
+  },
+  {
+   "dit": "Exemple résolu : on réalise le montage avec une pile de quatre virgule cinq volts, un interrupteur et une lampe. L'interrupteur est ouvert. On le ferme : la lampe s'allume. On le rouvre : la lampe s'éteint. L'interrupteur commande donc le passage du courant dans la boucle.",
+   "ecran": "exemple_simple",
+   "id": "p16",
+   "texte": "Pile 4,5 V : fermé, ça brille ; ouvert, ça s'éteint."
+  },
+  {
+   "dit": "Deux règles de sécurité : ne jamais relier directement les deux bornes de la pile, ce serait un court-circuit, et manipuler les composants hors tension avant tout branchement.",
+   "ecran": "securite",
+   "id": "p17",
+   "texte": "Sécurité : pas de court-circuit, hors tension."
+  },
+  {
+   "dit": "Un schéma électrique utilise des symboles normalisés, les mêmes dans le monde entier. Le générateur, une pile, se dessine par deux traits parallèles, le plus long du côté positif. La lampe, par un cercle contenant une croix. L'interrupteur ouvert, par un point, un trait oblique et un point. Les fils, par des traits droits horizontaux ou verticaux.",
+   "ecran": "symboles",
+   "id": "p18",
+   "texte": "Symboles : pile, lampe, interrupteur, fils."
+  },
+  {
+   "dit": "Les règles de tracé : le schéma se dessine au crayon, à la règle. Les fils sont représentés par des segments rectilignes, horizontaux ou verticaux. Le circuit forme un rectangle fermé. Les symboles sont placés au milieu des côtés, jamais dans les coins.",
+   "ecran": "regles_trace",
+   "id": "p19",
+   "texte": "Tracé : crayon, règle, rectangle, symboles au milieu."
+  },
+  {
+   "dit": "Exemple résolu : sur le schéma du circuit précédent, le côté supérieur porte le symbole de l'interrupteur, le côté droit celui de la lampe, le côté inférieur celui de la pile, et le côté gauche un fil simple.",
+   "ecran": "exemple_schema",
+   "id": "p20",
+   "texte": "Haut : interrupteur ; droite : lampe ; bas : pile."
+  },
+  {
+   "dit": "En fermant l'interrupteur sur le schéma, on ferme la boucle : la lampe s'allume. Le schéma et le montage réel représentent le même circuit.",
+   "ecran": "schema_montage",
+   "id": "p21",
+   "texte": "Schéma et montage : le même circuit."
+  },
+  {
+   "dit": "Retenons l'essentiel : un circuit est une boucle fermée contenant au moins un générateur et un récepteur ; le générateur fournit l'énergie, le récepteur la transforme ; l'ampèremètre se branche en série, le voltmètre en dérivation ; et un schéma se trace au crayon, à la règle, avec des symboles normalisés.",
+   "ecran": "recap",
+   "id": "p22",
+   "texte": "Boucle fermée, mesures, schéma normalisé."
+  }
+ ],
+ "titre": "Le circuit électrique et le simple allumage"
+}
