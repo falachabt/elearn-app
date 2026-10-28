@@ -1,0 +1,534 @@
+{
+ "cours": 6611,
+ "ecrans": {
+  "bd_table": {
+   "kicker": "Base relationnelle : la table",
+   "tex": [
+    "\\text{table : lignes et colonnes}",
+    "\\text{enregistrement, ou tuple : une ligne}",
+    "\\text{champ, ou attribut : une colonne}",
+    "\\text{entité : un client, un produit}"
+   ],
+   "titre": "Une table, des lignes, des colonnes",
+   "type": "etape"
+  },
+  "cle_primaire": {
+   "kicker": "Identifier sans ambiguïté",
+   "tex": [
+    "\\text{clé primaire : valeur unique par ligne}",
+    "\\text{jamais vide : non-nullité}",
+    "\\text{exemple Clients : id\\_client, nom, ville}",
+    "\\text{(1, Dupont, Paris) : un seul client n°1}"
+   ],
+   "titre": "La clé primaire identifie chaque ligne",
+   "type": "etape"
+  },
+  "cpu": {
+   "kicker": "Le processeur",
+   "tex": [
+    "\\text{CPU : le cerveau de la machine}",
+    "\\text{il exécute les instructions machine}",
+    "\\text{calculs, opérations logiques, échanges}",
+    "\\text{vitesse exprimée en GHz}"
+   ],
+   "titre": "Le CPU exécute les instructions",
+   "type": "etape"
+  },
+  "donnee_info": {
+   "kicker": "Donnée ou information ?",
+   "tex": [
+    "\\text{donnée : valeur brute, sans sens seul}",
+    "\\text{exemple : 250, ou 38,5}",
+    "\\text{information : donnée interprétée}",
+    "\\text{le traitement transforme l'une en l'autre}"
+   ],
+   "titre": "Du brut au sens : le traitement",
+   "type": "etape"
+  },
+  "exemple_equipe": {
+   "kicker": "Exemple : une équipe de recherche",
+   "texte": "Cloud, chat, e-mail, visio : chaque outil à sa place.",
+   "type": "phrase"
+  },
+  "exemple_fievre": {
+   "kicker": "Exemple : de la donnée à la décision",
+   "texte": "38,5 devient une fièvre, puis une décision médicale.",
+   "type": "phrase"
+  },
+  "exemple_maintenance": {
+   "kicker": "Exemple : préventive ou corrective ?",
+   "texte": "Mise à jour planifiée, ou serveur en panne réparé.",
+   "type": "phrase"
+  },
+  "exemple_memoire": {
+   "kicker": "Exemple : un mémoire de 25 pages",
+   "texte": "Styles, pagination, table des matières, puis PDF.",
+   "type": "phrase"
+  },
+  "exemple_pc": {
+   "kicker": "Exemple résolu : 16 Go et 3,5 GHz",
+   "note": "Montage vidéo : programme chargé en RAM, exécuté par le CPU",
+   "tex": "3{,}5\\,\\text{GHz} = 3{,}5 \\times 10^9\\,\\text{cycles/s}",
+   "type": "formule"
+  },
+  "exemple_univ": {
+   "kicker": "Exemple : une université",
+   "texte": "Intranet étudiants, extranet lycées, IP fixe 172.16.0.1.",
+   "type": "phrase"
+  },
+  "formule_ex": {
+   "kicker": "Exemple : D2 = B2 × C2",
+   "note": "Si B2 passe à 6, D2 affiche automatiquement 24",
+   "tex": "5 \\times 4 = 20",
+   "type": "formule"
+  },
+  "maintenance": {
+   "kicker": "Pannes et maintenance",
+   "tex": [
+    "\\text{panne : défaillance, arrêt du système}",
+    "\\text{causes : surchauffe, coupure, usure}",
+    "\\text{préventive : mises à jour, sauvegardes}",
+    "\\text{corrective : réparer après la panne}"
+   ],
+   "titre": "Prévenir, ou réparer après la panne",
+   "type": "etape"
+  },
+  "moyenne": {
+   "kicker": "Exemple : la moyenne des notes",
+   "note": "=MOYENNE(A1:A20) : moyenne des notes de la plage",
+   "tex": "\\frac{15+18+12}{3} = 15",
+   "type": "formule"
+  },
+  "os": {
+   "kicker": "Logiciels et système d'exploitation",
+   "tex": [
+    "\\text{logiciel : des programmes qui pilotent}",
+    "\\text{applicatifs : texte, navigateur}",
+    "\\text{OS : il gère les ressources matérielles}",
+    "\\text{Windows, Linux, macOS}"
+   ],
+   "titre": "L'OS orchestre tout le reste",
+   "type": "etape"
+  },
+  "pilote": {
+   "kicker": "Le pilote, ou driver",
+   "tex": [
+    "\\text{pilote : logiciel spécifique}",
+    "\\text{il relie l'OS au périphérique}",
+    "\\text{imprimante, carte graphique}"
+   ],
+   "titre": "Un pilote par périphérique",
+   "type": "etape"
+  },
+  "procedure": {
+   "kicker": "La procédure",
+   "tex": [
+    "\\text{séquence formalisée d'opérations}",
+    "\\text{règles, étapes, responsabilités}",
+    "\\text{exemples : commande, recrutement}"
+   ],
+   "titre": "Une procédure, c'est une marche à suivre",
+   "type": "etape"
+  },
+  "protection": {
+   "kicker": "Protéger son environnement",
+   "tex": [
+    "\\text{sauvegarder sur un support externe}",
+    "\\text{mettre à jour OS et logiciels}",
+    "\\text{mots de passe robustes}",
+    "\\text{antivirus et pare-feu}"
+   ],
+   "titre": "Quatre bonnes pratiques",
+   "type": "etape"
+  },
+  "ram": {
+   "kicker": "La mémoire vive",
+   "tex": [
+    "\\text{RAM : mémoire volatile de travail}",
+    "\\text{données et programmes en cours}",
+    "\\text{capacité exprimée en Go}",
+    "\\text{effacée à l'extinction, sauf disque et SSD}"
+   ],
+   "titre": "La RAM travaille, puis oublie",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Système : matériel + logiciel",
+    "Protéger : sauvegarder, mettre à jour",
+    "Réseau : une IP par équipement",
+    "SI et bases : donnée, clé, SQL",
+    "Bureautique : calcul et documents"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "reseau": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Le réseau, un graphe d'équipements",
+   "texte": "Des équipements reliés, une adresse IP chacun.",
+   "type": "phrase"
+  },
+  "ressources": {
+   "kicker": "Les ressources numériques partagées",
+   "tex": [
+    "\\text{cloud : serveurs distants, via Internet}",
+    "\\text{e-mail : messages asynchrones, pièces jointes}",
+    "\\text{chat : messages instantanés, en temps réel}",
+    "\\text{visioconférence : réunions à distance}"
+   ],
+   "titre": "Quatre outils, quatre rythmes",
+   "type": "etape"
+  },
+  "select_ex": {
+   "kicker": "SQL : interroger avec SELECT",
+   "tex": [
+    "\\text{SELECT nom, prix}",
+    "\\text{FROM Produits WHERE stock > 0}"
+   ],
+   "titre": "SELECT extrait nom et prix en stock",
+   "type": "etape"
+  },
+  "sgbd": {
+   "kicker": "Le SGBD, interface vers les données",
+   "tex": [
+    "\\text{il crée, gère et interroge la base}",
+    "\\text{persistance, accès concurrents, sécurité}",
+    "\\text{intégrité : respect des contraintes}",
+    "\\text{MySQL, PostgreSQL, SQLite}"
+   ],
+   "titre": "Le SGBD exécute SQL et garantit la cohérence",
+   "type": "etape"
+  },
+  "si": {
+   "kicker": "Le système d'information",
+   "tex": [
+    "\\text{collecter, stocker, traiter, diffuser}",
+    "\\text{opérant : production et exécution}",
+    "\\text{pilotage : décisions et contrôle}",
+    "\\text{information : relier les deux}"
+   ],
+   "titre": "Trois sous-systèmes complémentaires",
+   "type": "etape"
+  },
+  "si_auto": {
+   "kicker": "Le SI automatisé",
+   "tex": [
+    "\\text{une partie des traitements automatisée}",
+    "\\text{logiciels, réseaux, serveurs}",
+    "\\text{l'humain reste présent}"
+   ],
+   "titre": "Automatiser sans exclure l'humain",
+   "type": "etape"
+  },
+  "sql": {
+   "kicker": "SQL, le langage des bases",
+   "tex": [
+    "\\text{CREATE TABLE : créer}",
+    "\\text{INSERT INTO : insérer}",
+    "\\text{SELECT : interroger}",
+    "\\text{UPDATE : modifier, DELETE : supprimer}"
+   ],
+   "titre": "Cinq commandes essentielles",
+   "type": "etape"
+  },
+  "sys_def": {
+   "kicker": "Définir : le système informatique",
+   "tex": [
+    "\\text{matériel et logiciel ensemble}",
+    "\\text{traiter, stocker, transmettre}",
+    "\\text{des informations numériques}"
+   ],
+   "titre": "Matériel plus logiciel, pour l'information",
+   "type": "etape"
+  },
+  "tableur": {
+   "kicker": "Le tableur",
+   "tex": [
+    "\\text{organiser, calculer, analyser}",
+    "\\text{des données en lignes et colonnes}",
+    "\\text{formules et fonctions dynamiques}"
+   ],
+   "titre": "Le tableur calcule sur des tableaux",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Informatique · Systèmes, données et bureautique",
+   "sous": "De la machine au tableur : comprendre le système, protéger son travail, exploiter les données",
+   "titre": "Informatique : systèmes, données et bureautique",
+   "type": "titre"
+  },
+  "traitement": {
+   "kicker": "Le traitement de texte",
+   "tex": [
+    "\\text{saisir, mettre en forme, imprimer}",
+    "\\text{styles Titre 1 pour structurer}",
+    "\\text{table des matières automatique}",
+    "\\text{pagination, note de bas de page, tableau}"
+   ],
+   "titre": "Structurer un document multipage",
+   "type": "etape"
+  },
+  "tva": {
+   "kicker": "Exemple : la TVA, référence absolue",
+   "tex": [
+    "\\text{B2 s'ajuste : B2 → B3}",
+    "\\text{\\$B\\$1 reste fixe}",
+    "\\text{taux TVA : 0,20 en B1}"
+   ],
+   "titre": "Relative qui bouge, absolue qui reste",
+   "type": "etape"
+  },
+  "typologie": {
+   "kicker": "Trois types de réseaux",
+   "tex": [
+    "\\text{Internet : public, mondial, TCP/IP}",
+    "\\text{intranet : privé, membres autorisés}",
+    "\\text{extranet : partenaires externes autorisés}"
+   ],
+   "titre": "Public, privé, ou ouvert aux partenaires",
+   "type": "etape"
+  },
+  "usb": {
+   "kicker": "L'USB, brancher un périphérique",
+   "tex": [
+    "\\text{standard de connexion universel}",
+    "\\text{clé USB, clavier, disque externe}",
+    "\\text{alimentation électrique et données}"
+   ],
+   "titre": "Brancher, alimenter, transférer",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Système, protection et ressources numériques"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : les réseaux qui relient les machines, puis le système d'information de l'entreprise, de la donnée brute à la décision, et les bases de données relationnelles avec leur clé primaire et leur langage SQL.",
+    "texte": "Partie 2 : réseaux, système d'information, bases de données."
+   },
+   "sous_titre": "Réseaux, système d'information et bases de données"
+  },
+  {
+   "debut": "p25",
+   "pont": {
+    "dit": "Partie trois : l'interrogation des données avec SELECT et le rôle du SGBD, puis la bureautique, avec les formules du tableur et les documents structurés du traitement de texte.",
+    "texte": "Partie 3 : interroger les données, puis la bureautique."
+   },
+   "sous_titre": "Interroger les données, puis la bureautique"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'informatique, des machines aux données. Nous allons comprendre comment fonctionne un système informatique, comment protéger notre travail, comment les réseaux relient les machines, puis comment les entreprises organisent leurs informations et comment produire des documents numériques.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "De la machine aux données."
+  },
+  {
+   "dit": "Un système informatique est un ensemble de composants matériels et logiciels qui permet de traiter, de stocker et de transmettre des informations numériques. Tout repose sur l'interaction entre le matériel, physique, et le logiciel, fait d'instructions.",
+   "ecran": "sys_def",
+   "id": "p02",
+   "texte": "Matériel et logiciel, pour traiter l'information."
+  },
+  {
+   "dit": "Le processeur, ou CPU, est le cerveau de la machine. Il exécute les instructions machine : calculs, opérations logiques et contrôle des échanges. Sa vitesse s'exprime en gigahertz.",
+   "ecran": "cpu",
+   "id": "p03",
+   "texte": "CPU : le cerveau qui exécute."
+  },
+  {
+   "dit": "La mémoire vive, ou RAM, est la mémoire volatile de travail. Elle stocke temporairement les données et les programmes en cours d'exécution, et sa capacité s'exprime en gigaoctets. Elle s'efface à l'extinction de la machine, contrairement aux mémoires de masse comme le disque dur ou le SSD.",
+   "ecran": "ram",
+   "id": "p04",
+   "texte": "RAM : la mémoire de travail, volatile."
+  },
+  {
+   "dit": "L'USB est le standard de connexion qui permet de brancher des périphériques externes : clé USB, clavier ou disque dur externe. Il assure à la fois l'alimentation électrique et le transfert de données.",
+   "ecran": "usb",
+   "id": "p05",
+   "texte": "USB : brancher, alimenter, transférer."
+  },
+  {
+   "dit": "Un logiciel est un ensemble de programmes, donc d'instructions, qui pilotent le matériel et fournissent des fonctionnalités à l'utilisateur. Parmi eux, le système d'exploitation est fondamental : il gère les ressources matérielles, orchestre les autres logiciels et fournit l'interface utilisateur. Windows, Linux et macOS en sont trois exemples.",
+   "ecran": "os",
+   "id": "p06",
+   "texte": "Logiciels applicatifs, et OS qui orchestre."
+  },
+  {
+   "dit": "Le pilote, ou driver, est le logiciel spécifique qui permet au système d'exploitation de communiquer avec un périphérique précis, comme une imprimante ou une carte graphique. Chaque périphérique nécessite son pilote.",
+   "ecran": "pilote",
+   "id": "p07",
+   "texte": "Un pilote par périphérique, entre l'OS et la machine."
+  },
+  {
+   "dit": "Exemple résolu : un ordinateur dispose de seize gigaoctets de RAM et d'un processeur cadencé à trois virgule cinq gigahertz. Lorsqu'on lance un logiciel de montage vidéo, le système charge ses instructions dans la RAM, et le processeur les exécute à raison de trois virgule cinq milliards de cycles par seconde. Le pilote de la carte graphique, lui, permet l'affichage du rendu.",
+   "ecran": "exemple_pc",
+   "id": "p08",
+   "texte": "16 Go de RAM, CPU à 3,5 GHz."
+  },
+  {
+   "dit": "Une panne est la défaillance d'un composant matériel ou logiciel qui entraîne un dysfonctionnement ou l'arrêt du système. Ses causes : surchauffe, coupure électrique, erreur logicielle ou usure. La maintenance préventive agit régulièrement pour réduire le risque de panne, par des mises à jour ou des sauvegardes, tandis que la maintenance corrective intervient après la panne pour restaurer le fonctionnement.",
+   "ecran": "maintenance",
+   "id": "p09",
+   "texte": "Prévenir la panne, ou la réparer."
+  },
+  {
+   "dit": "Exemple résolu : une entreprise qui planifie la mise à jour mensuelle de ses systèmes d'exploitation et la vérification hebdomadaire de ses sauvegardes fait de la maintenance préventive. Si un serveur tombe en panne et que l'équipe technique intervient pour le réparer, c'est de la maintenance corrective.",
+   "ecran": "exemple_maintenance",
+   "id": "p10",
+   "texte": "Mise à jour planifiée, ou serveur réparé."
+  },
+  {
+   "dit": "Pour protéger un environnement de travail, quatre bonnes pratiques : sauvegarder régulièrement ses données sur un support externe, mettre à jour le système d'exploitation et les logiciels pour recevoir les correctifs de sécurité, utiliser des mots de passe robustes avec une authentification adaptée, et installer un antivirus et un pare-feu.",
+   "ecran": "protection",
+   "id": "p11",
+   "texte": "Sauvegarder, mettre à jour, sécuriser."
+  },
+  {
+   "dit": "Les ressources numériques partagées permettent le travail collaboratif et la communication à distance. Le cloud stocke et traite les données sur des serveurs distants accessibles via Internet. L'e-mail envoie des messages et des pièces jointes de façon asynchrone. Le chat échange des messages instantanés en temps réel, et la visioconférence réunit plusieurs participants distants en audio et vidéo.",
+   "ecran": "ressources",
+   "id": "p12",
+   "texte": "Cloud, e-mail, chat, visio : quatre rythmes."
+  },
+  {
+   "dit": "Exemple résolu : une équipe de recherche utilise un espace de stockage cloud pour partager ses documents, un chat pour les questions rapides, l'e-mail pour les comptes-rendus formels et la visioconférence pour ses réunions hebdomadaires.",
+   "ecran": "exemple_equipe",
+   "id": "p13",
+   "texte": "Cloud, chat, e-mail, visio : chaque outil à sa place."
+  },
+  {
+   "dit": "Un réseau informatique est un ensemble d'équipements interconnectés, ordinateurs, serveurs ou imprimantes, qui échangent des données selon des protocoles. Sur ce graphe, chaque sommet est un équipement, chaque arête est une liaison. Chaque équipement connecté possède une adresse IP, un identifiant numérique unique qui permet de localiser la machine et d'acheminer les données vers elle. En IPv4, l'adresse compte quatre octets, par exemple cent quatre-vingt-douze point cent soixante-huit point un point dix ; en IPv6, elle compte cent vingt-huit bits.",
+   "ecran": "reseau",
+   "id": "p14",
+   "texte": "Des équipements reliés, une adresse IP chacun."
+  },
+  {
+   "dit": "On distingue trois types de réseaux. Internet est le réseau public mondial, basé sur la suite de protocoles TCP/IP. L'intranet est le réseau privé interne à une organisation, qui utilise les technologies d'Internet mais n'est accessible qu'aux membres autorisés. L'extranet prolonge l'intranet en permettant à des partenaires externes autorisés, clients ou fournisseurs, d'accéder à certaines ressources via Internet.",
+   "ecran": "typologie",
+   "id": "p15",
+   "texte": "Internet public, intranet privé, extranet partenaires."
+  },
+  {
+   "dit": "Exemple résolu : une université dispose d'un intranet pour ses étudiants, avec emplois du temps et dépôt de devoirs. Elle met en place un extranet pour permettre aux lycées partenaires de consulter ses offres de formation. L'ensemble est accessible depuis Internet, et chaque serveur possède une adresse IP fixe, par exemple cent soixante-douze point seize point zéro point un pour l'intranet, qui permet l'acheminement des requêtes.",
+   "ecran": "exemple_univ",
+   "id": "p16",
+   "texte": "Intranet étudiants, extranet lycées, IP fixe 172.16.0.1."
+  },
+  {
+   "dit": "Une entreprise est une organisation économique qui produit des biens ou des services pour satisfaire des besoins, dans le but de réaliser un profit ou d'atteindre une mission sociale. Son système d'information est l'ensemble des ressources, personnes, procédures, données, matériels et logiciels, organisées pour collecter, stocker, traiter et diffuser l'information nécessaire à son fonctionnement et à son pilotage. Il articule trois sous-systèmes : l'opérant, qui produit et exécute ; le pilotage, qui décide, planifie et contrôle ; et l'information, qui relie les deux en collectant les données du terrain et en transmettant les décisions.",
+   "ecran": "si",
+   "id": "p17",
+   "texte": "Le SI relie l'opérationnel au décisionnel."
+  },
+  {
+   "dit": "Un système d'information automatisé est un système dont une partie des traitements est réalisée par des outils informatiques, logiciels, réseaux ou serveurs. L'automatisation n'exclut pas la présence humaine : elle concerne la collecte, le stockage et la diffusion de l'information.",
+   "ecran": "si_auto",
+   "id": "p18",
+   "texte": "Des outils informatiques aident, l'humain reste."
+  },
+  {
+   "dit": "Une donnée est une représentation brute d'un fait, sans signification intrinsèque : une valeur factuelle comme deux cent cinquante, qui peut être numérique, textuelle, une date ou un booléen. Une information est une donnée interprétée, mise en contexte et dotée de sens, qui réduit l'incertitude et peut servir à la prise de décision. La transformation de la donnée en information s'appelle le traitement.",
+   "ecran": "donnee_info",
+   "id": "p19",
+   "texte": "Donnée brute, information qui décide."
+  },
+  {
+   "dit": "Exemple résolu : un relevé de température affiche trente-huit virgule cinq, une donnée brute. Placée dans le contexte de la température corporelle d'un patient, cette donnée devient une information : le patient a de la fièvre, ce qui déclenche une décision médicale.",
+   "ecran": "exemple_fievre",
+   "id": "p20",
+   "texte": "38,5 devient une fièvre, puis une décision médicale."
+  },
+  {
+   "dit": "Une procédure est une séquence formalisée d'opérations à réaliser pour accomplir une tâche donnée. Elle définit les règles, les étapes et les responsabilités de chacun, par exemple une procédure de commande ou une procédure de recrutement.",
+   "ecran": "procedure",
+   "id": "p21",
+   "texte": "Une procédure, une marche à suivre."
+  },
+  {
+   "dit": "Une base de données est un ensemble structuré de données organisées, stockées de manière persistante et interrogeable. Une base relationnelle s'organise en tables, des structures à deux dimensions faites de lignes et de colonnes. Un enregistrement, ou tuple, est une ligne : il représente une entité concrète, un client ou un produit. Un champ, ou attribut, est une colonne : il représente une propriété commune à tous les enregistrements, comme le nom ou le prix.",
+   "ecran": "bd_table",
+   "id": "p22",
+   "texte": "Table : lignes, colonnes, entités."
+  },
+  {
+   "dit": "La clé primaire est un champ, ou une combinaison de champs, dont la valeur est unique pour chaque enregistrement de la table. Elle permet d'identifier sans ambiguïté chaque ligne, et elle ne peut pas être vide. Exemple : dans la table Clients, avec les champs identifiant client, nom et ville, chaque identifiant est unique ; deux clients peuvent porter le même nom, mais jamais le même identifiant. Un enregistrement serait : un, Dupont, Paris.",
+   "ecran": "cle_primaire",
+   "id": "p23",
+   "texte": "Clé primaire : unique, jamais vide."
+  },
+  {
+   "dit": "SQL, le langage standard d'interrogation et de manipulation des bases relationnelles, se divise en plusieurs sous-langages. Cinq commandes essentielles : CREATE TABLE pour créer, INSERT INTO pour insérer, SELECT pour interroger, UPDATE pour modifier et DELETE pour supprimer.",
+   "ecran": "sql",
+   "id": "p24",
+   "texte": "SQL : créer, insérer, interroger, modifier, supprimer."
+  },
+  {
+   "dit": "La commande fondamentale est SELECT, qui permet d'extraire des données selon des critères. Pour la table Produits, avec les champs identifiant, nom, prix et stock, la requête affichée retourne le nom et le prix de tous les produits disponibles en stock, c'est-à-dire dont le stock est supérieur à zéro.",
+   "ecran": "select_ex",
+   "id": "p25",
+   "texte": "SELECT nom, prix FROM Produits WHERE stock > 0 ;"
+  },
+  {
+   "dit": "Un SGBD, système de gestion de bases de données, est le logiciel qui permet de créer, gérer et interroger une base de données. Ses fonctions principales : la persistance des données, la gestion des accès concurrents, la sécurité par les droits des utilisateurs, l'intégrité, comme le respect de la clé primaire, et la sauvegarde. MySQL, PostgreSQL et SQLite en sont des exemples courants. Le SGBD sert d'interface entre les utilisateurs ou les applications et les données physiques : il exécute les requêtes SQL et garantit la cohérence des données.",
+   "ecran": "sgbd",
+   "id": "p26",
+   "texte": "SGBD : l'interface qui garantit la cohérence."
+  },
+  {
+   "dit": "Un tableur est un logiciel de production de documents numériques qui permet d'organiser, de calculer et d'analyser des données sous forme de tableau structuré en lignes et colonnes. Ses formules et fonctions rendent les calculs dynamiques : modifier une donnée met à jour le résultat.",
+   "ecran": "tableur",
+   "id": "p27",
+   "texte": "Le tableur calcule sur des tableaux."
+  },
+  {
+   "dit": "Toute formule commence par le signe égal, et les opérateurs usuels sont plus, moins, multiplié, divisé et puissance. Exemple résolu : dans une cellule D deux, on saisit B deux fois C deux. Si B deux contient cinq et C deux contient quatre, la cellule D deux affiche vingt. Si on modifie B deux à six, D deux affiche automatiquement vingt-quatre.",
+   "ecran": "formule_ex",
+   "id": "p28",
+   "texte": "D2 = B2 × C2 : le calcul se met à jour."
+  },
+  {
+   "dit": "Pour calculer la moyenne des notes stockées de A un à A vingt, on saisit la fonction MOYENNE de la plage A un à A vingt. Si la plage contient quinze, dix-huit et douze, le résultat est quinze, car quinze plus dix-huit plus douze, divisé par trois, égale quinze.",
+   "ecran": "moyenne",
+   "id": "p29",
+   "texte": "MOYENNE : la moyenne d'une plage."
+  },
+  {
+   "dit": "Une référence relative, comme A un, s'ajuste lors d'une copie vers une autre cellule : la ligne ou la colonne change. Une référence absolue, comme dollar A dollar un, reste fixe lors de la copie. Exemple résolu : la cellule B un contient le taux de TVA, zéro virgule vingt. En C deux, on saisit B deux fois dollar B dollar un pour calculer la TVA du produit en B deux. En copiant cette formule vers C trois, elle devient B trois fois dollar B dollar un : la référence à B deux s'ajuste, celle à dollar B dollar un reste fixe.",
+   "ecran": "tva",
+   "id": "p30",
+   "texte": "=B2*$B$1 copié en C3 devient =B3*$B$1."
+  },
+  {
+   "dit": "Un traitement de texte est un logiciel qui permet la saisie, la mise en forme, l'organisation et l'impression de textes structurés sur plusieurs pages. Pour structurer un document multipage, on applique le style Titre un aux titres de parties, puis on insère un champ Table des matières : le logiciel génère automatiquement la liste des titres avec leurs numéros de page. La pagination automatique, la note de bas de page et le tableau complètent la mise en forme avancée.",
+   "ecran": "traitement",
+   "id": "p31",
+   "texte": "Styles, table des matières, pagination."
+  },
+  {
+   "dit": "Exemple résolu : un mémoire de vingt-cinq pages doit être rendu. On applique les styles, on insère la pagination en pied de page, on génère la table des matières, puis on exporte en PDF, un format figé et non modifiable qui garantit un affichage identique sur tout support, indispensable pour la diffusion finale.",
+   "ecran": "exemple_memoire",
+   "id": "p32",
+   "texte": "Styles, pagination, table des matières, puis PDF."
+  },
+  {
+   "dit": "Retenons l'essentiel : un système informatique fait interagir matériel et logiciel ; on le protège en sauvegardant et en mettant à jour ; un réseau relie des équipements identifiés par leur adresse IP ; dans l'entreprise, le système d'information transforme la donnée en information, puis en décision ; les bases relationnelles s'organisent en tables identifiées par une clé primaire et s'interrogent en SQL via un SGBD ; enfin, le tableur calcule et le traitement de texte structure les documents longs.",
+   "ecran": "recap",
+   "id": "p33",
+   "texte": "Système, réseau, SI, bases, bureautique."
+  }
+ ],
+ "titre": "Informatique : systèmes, données et bureautique"
+}
