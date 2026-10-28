@@ -9048,8 +9048,8 @@ const FIG = {
   },
   table_relationnelle_fig(t, o) {
     const p = prog(t);
-    const grille = (x0, y0, cols, entetes, lignes) => {
-      const L = cols[cols.length - 1] - x0, pas = 46;
+    const grille = (x0, y0, cols, entetes, lignes, pas = 46) => {
+      const L = cols[cols.length - 1] - x0;
       let s = `<rect x="${x0}" y="${y0}" width="${L}" height="${pas}" fill="#FFD83D" fill-opacity=".5"/>` +
         `<rect x="${x0}" y="${y0}" width="${L}" height="${pas * (lignes.length + 1)}" fill="none" stroke="currentColor" stroke-width="4"/>`;
       for (let i = 1; i < cols.length - 1; i++) s += `<line x1="${cols[i]}" y1="${y0}" x2="${cols[i]}" y2="${y0 + pas * (lignes.length + 1)}" stroke="currentColor" stroke-width="3"/>`;
@@ -9069,9 +9069,9 @@ const FIG = {
         mot(730, 268, 'eleve_id renvoie à ÉLÈVES', { t: 19 }));
     }
     return svgBoite(
-      grille(190, 46, [190, 320, 580, 810], ['id', 'nom', 'classe'], [['1', 'Awa', '6e'], ['2', 'Junior', '5e'], ['3', 'Larissa', '6e'], ['4', 'Noah', '4e']]) +
-      mot(255, 268, 'id : la clé primaire', { t: 20, c: '#E8604C' }) +
-      mot(620, 268, 'une table : des lignes, des colonnes', { t: 20 }));
+      grille(190, 38, [190, 320, 580, 810], ['id', 'nom', 'classe'], [['1', 'Awa', '6e'], ['2', 'Junior', '5e'], ['3', 'Larissa', '6e'], ['4', 'Noah', '4e']], 40) +
+      mot(255, 272, 'id : la clé primaire', { t: 20, c: '#E8604C' }) +
+      mot(620, 272, 'une table : des lignes, des colonnes', { t: 20 }));
   },
   groupby_fig(t) {
     const p = prog(t);
