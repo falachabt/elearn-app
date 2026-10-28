@@ -1,0 +1,348 @@
+{
+ "cours": 6374,
+ "ecrans": {
+  "aneuploidie": {
+   "kicker": "Non-disjonction et aneuploïdie",
+   "tex": [
+    "\\text{gamète : n + 1 ou n - 1}",
+    "\\text{trisomie 21 : chromosome 21}",
+    "\\text{Turner : 45, X ; Klinefelter : 47, XXY}"
+   ],
+   "titre": "Un chromosome en trop ou en moins",
+   "type": "etape"
+  },
+  "assortiment": {
+   "kicker": "Brassage interchromosomique",
+   "note": "Chaque parent peut produire ce nombre de combinaisons chromosomiques différentes, sans compter les crossing-overs",
+   "tex": "2^{23} = 8\\,388\\,608",
+   "type": "formule"
+  },
+  "comparaison": {
+   "kicker": "Mitose contre méiose",
+   "tex": [
+    "\\text{mitose : 2 cellules identiques, 2n}",
+    "\\text{méiose : 4 cellules uniques, n}",
+    "\\text{prophase I : le rendez-vous des homologues}"
+   ],
+   "titre": "Identité contre unicité",
+   "type": "etape"
+  },
+  "crossing": {
+   "kicker": "Brassage intrachromosomique",
+   "tex": [
+    "\\text{avant : X, Y, Z et x, y, z}",
+    "\\text{après : X, Y, z et x, y, Z}",
+    "\\text{échange entre Y et Z}"
+   ],
+   "titre": "Des chromatides recombinées",
+   "type": "etape"
+  },
+  "deux_divisions": {
+   "kicker": "Deux divisions, une réduction",
+   "tex": [
+    "\\text{méiose I : homologues séparés}",
+    "\\text{méiose II : chromatides séparées}",
+    "\\text{résultat : 4 cellules haploïdes}"
+   ],
+   "titre": "Réductionnelle, puis équationnelle",
+   "type": "etape"
+  },
+  "fecundation": {
+   "kicker": "La fécondation referme la boucle",
+   "note": "Les noyaux haploïdes de l'ovotide et du spermatozoïde forment le zygote diploïde",
+   "tex": "n + n \\rightarrow 2n",
+   "type": "formule"
+  },
+  "gametogenese": {
+   "kicker": "Méiose et gamétogenèse",
+   "tex": [
+    "\\text{méiose : cellules haploïdes}",
+    "\\text{gamétogenèse : gamètes fonctionnels}",
+    "\\text{deux processus inséparables}"
+   ],
+   "titre": "Diviser, puis différencier",
+   "type": "etape"
+  },
+  "meioses": {
+   "kicker": "Les étapes de la méiose",
+   "tex": [
+    "\\text{prophase I : appariement, crossing-over}",
+    "\\text{métaphase I : alignement aléatoire}",
+    "\\text{anaphase I : homologues séparés}"
+   ],
+   "titre": "Acte un : la réduction",
+   "type": "etape"
+  },
+  "meioses2": {
+   "kicker": "La deuxième division",
+   "tex": [
+    "\\text{pas de réplication entre les deux}",
+    "\\text{métaphase II : alignement simple}",
+    "\\text{anaphase II : chromatides séparées}"
+   ],
+   "titre": "Acte deux : comme une mitose",
+   "type": "etape"
+  },
+  "ovocyte_formule": {
+   "kicker": "Ovogenèse : l'équation complète",
+   "note": "Les deux globules polaires dégénèrent ; seul l'ovotide devient gamète",
+   "tex": [
+    "\\text{Ovocyte I (2n, 4C)} \\rightarrow \\text{Ovocyte II (n, 2C)}",
+    "\\text{Ovocyte II (n, 2C)} \\rightarrow \\text{Ovotide (n, 1C)}"
+   ],
+   "titre": "Deux divisions, un seul gamète",
+   "type": "etape"
+  },
+  "ovogenese": {
+   "kicker": "Ovogenèse : un stock, deux arrêts",
+   "tex": [
+    "\\text{ovocytes I : arrêt en prophase I}",
+    "\\text{reprise à la puberté, un par mois}",
+    "\\text{méiose II : seulement si fécondation}"
+   ],
+   "titre": "Discontinue et asymétrique",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Méiose I : homologues, nombre / 2",
+    "Méiose II : chromatides, 4 cellules",
+    "Brassage : assortiment, crossing-over",
+    "Spermatogenèse / ovogenèse",
+    "Erreur : aneuploïdie"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "spermato": {
+   "kicker": "Spermatogenèse : les étapes",
+   "tex": [
+    "\\text{spermatogonie 2n, mitose}",
+    "\\text{spermatocyte I, méiose I : 2 cellules}",
+    "\\text{méiose II : 4 spermatides, spermiogenèse}"
+   ],
+   "titre": "De la souche au spermatozoïde",
+   "type": "etape"
+  },
+  "spermato_duree": {
+   "kicker": "Spermatogenèse : quantité et durée",
+   "note": "Cycle d'environ soixante-quatorze jours, production continue tout au long de la vie",
+   "tex": "\\text{plusieurs centaines de millions par jour}",
+   "type": "formule"
+  },
+  "stock": {
+   "kicker": "Le stock ovarien",
+   "tex": [
+    "\\text{1 à 2 millions à la naissance}",
+    "\\text{300 000 à la puberté}",
+    "\\text{400 à 500 ovulés dans une vie}"
+   ],
+   "titre": "Un capital qui s'épuise",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Biologie · Méiose et gamétogenèse",
+   "sous": "Deux divisions, deux brassages, deux stratégies : produire des gamètes haploïdes uniques",
+   "titre": "Méiose et gamétogenèse : diviser par deux pour créer de l'unique",
+   "type": "titre"
+  },
+  "versus": {
+   "kicker": "Deux stratégies reproductives",
+   "tex": [
+    "\\text{spermatogenèse : quantité, mobilité}",
+    "\\text{ovogenèse : qualité, réserves}",
+    "\\text{74 jours continus contre 12 à 50 ans}"
+   ],
+   "titre": "Masse contre réserve",
+   "type": "etape"
+  },
+  "assortiment2": {
+   "kicker": "Avec les crossing-overs",
+   "note": "Estimation des leçons, en combinant les deux brassages",
+   "tex": "\\approx 10^{12} \\text{ possibilités}",
+   "type": "formule"
+  },
+  "ovogenese2": {
+   "kicker": "Reprise mensuelle",
+   "tex": [
+    "\\text{pic de LH, division asymétrique}",
+    "\\text{ovocyte II + globule polaire I}",
+    "\\text{arrêt en métaphase II}"
+   ],
+   "titre": "Un ovocyte, un globule sacrifié",
+   "type": "etape"
+  },
+  "ovocyte_bilan": {
+   "kicker": "Ovogenèse : le bilan",
+   "tex": [
+    "\\text{1 gamète fonctionnel}",
+    "\\text{2 globules polaires dégénérés}",
+    "\\text{réserves : le vitellus}"
+   ],
+   "titre": "Qualité contre quantité",
+   "type": "etape"
+  },
+  "aneuploidie2": {
+   "kicker": "Âge et durée des arrêts",
+   "tex": [
+    "\\text{arrêts de plusieurs années}",
+    "\\text{fidélité de la séparation ?}",
+    "\\text{question ouverte des leçons}"
+   ],
+   "titre": "Une piste, pas une certitude",
+   "type": "etape"
+  }
+ },
+ "matiere": "Biologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Pourquoi diviser, et comment"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : les deux gamétogenèses. Nous verrons la spermatogenèse continue de soixante-quatorze jours, puis l'ovogenèse, son stock fixe et sa longue pause en prophase un.",
+    "texte": "Partie 2 : spermatogenèse et ovogenèse."
+   },
+   "sous_titre": "Spermatogenèse et ovogenèse"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie trois : achever la méiose, comparer les stratégies, et comprendre les erreurs. Nous verrons l'équation de l'ovogenèse, la non-disjonction et la trisomie vingt et un.",
+    "texte": "Partie 3 : achèvement, comparaison et aneuploïdie."
+   },
+   "sous_titre": "Achèvement, comparaison et aneuploïdie"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur la méiose et la gamétogenèse, inséparables. Pourquoi diviser par deux ? Sans réduction, le nombre de chromosomes doublerait à chaque génération. La méiose réduit de deux n à n, et la fécondation, en réunissant deux gamètes haploïdes, restaure deux n.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Sans réduction, les chromosomes doubleraient à chaque génération."
+  },
+  {
+   "dit": "La méiose n'est pas une simple division : elle a trois missions, réduire le nombre de chromosomes, brasser les génomes pour créer de la diversité, et préparer des gamètes haploïdes aptes à la fécondation. La gamétogenèse, elle, est l'application biologique de la méiose : elle différencie ces cellules haploïdes en gamètes fonctionnels.",
+   "ecran": "gametogenese",
+   "id": "p02",
+   "texte": "Trois missions : réduire, brasser, préparer des gamètes."
+  },
+  {
+   "dit": "Vue d'ensemble en deux actes. Une cellule mère diploïde, deux n égale quarante-six chez l'humain, subit la méiose un, réductionnelle : deux cellules haploïdes, n égale vingt-trois, mais à chromosomes encore dupliqués. Puis la méiose deux, équationnelle : quatre cellules haploïdes à chromosomes simples.",
+   "ecran": "deux_divisions",
+   "id": "p03",
+   "texte": "Deux n égale quarante-six, puis n égale vingt-trois, puis quatre cellules haploïdes."
+  },
+  {
+   "dit": "Acte un, la méiose un. En prophase un, les chromosomes homologues s'apparient dans un ballet complexe, avec crossing-over. En métaphase un, ils s'alignent de façon aléatoire sur la plaque équatoriale. En anaphase un, les homologues se séparent, et non les chromatides sœurs. La télophase un et la cytocinèse donnent deux cellules haploïdes, puis une interphase sans réplication : la méiose deux ne recopiera pas l'ADN.",
+   "ecran": "meioses",
+   "id": "p04",
+   "texte": "Prophase un, métaphase un aléatoire, anaphase un : les homologues se séparent."
+  },
+  {
+   "dit": "Acte deux, la méiose deux, qui ressemble à une mitose, mais sur des cellules déjà haploïdes. Après une brève prophase deux, les chromosomes s'alignent simplement en métaphase deux, les chromatides sœurs se séparent en anaphase deux, et la télophase deux produit quatre cellules haploïdes à chromosomes simples.",
+   "ecran": "meioses2",
+   "id": "p05",
+   "texte": "Méiose deux : les chromatides sœurs se séparent, quatre cellules haploïdes."
+  },
+  {
+   "dit": "Mitose et méiose partagent un langage cellulaire, mais pas un résultat. La mitose produit deux cellules identiques et diploïdes, pour la croissance et la réparation. La méiose produit quatre cellules uniques et haploïdes, pour la reproduction. La grande différence se joue en prophase un, le rendez-vous des homologues, absent de la mitose, et dans la ségrégation : homologues d'abord, chromatides ensuite.",
+   "ecran": "comparaison",
+   "id": "p06",
+   "texte": "Mitose : deux identiques diploïdes ; méiose : quatre uniques haploïdes."
+  },
+  {
+   "dit": "Premier pilier de la diversité, le brassage interchromosomique, la loterie de l'assortiment indépendant. En métaphase un, chaque paire d'homologues s'oriente au hasard, indépendamment des autres. Le nombre de combinaisons possibles vaut deux puissance n : avec n égale vingt-trois, un parent peut produire huit millions trois cent quatre-vingt-huit mille six cent huit combinaisons chromosomiques différentes.",
+   "ecran": "assortiment",
+   "id": "p07",
+   "texte": "Deux puissance vingt-trois : huit millions trois cent quatre-vingt-huit mille six cent huit combinaisons."
+  },
+  {
+   "dit": "Deuxième pilier, le crossing-over, la recombinaison intrachromosomique en prophase un. Prenez une chromatide paternelle portant les gènes X, Y, Z et une chromatide maternelle portant x, y, z. Après un échange entre Y et Z, on obtient deux chromatides recombinées, X, Y, z et x, y, Z : des combinaisons d'allèles qui n'existaient chez aucun des deux parents.",
+   "ecran": "crossing",
+   "id": "p08",
+   "texte": "X, Y, Z et x, y, z deviennent X, Y, z et x, y, Z."
+  },
+  {
+   "dit": "Combinez les deux brassages, et la diversité explose. Le seul assortiment indépendant donne déjà plus de huit millions de combinaisons par parent. En ajoutant les combinaisons dues aux crossing-overs, les leçons estiment environ dix puissance douze possibilités : deux gamètes, même de mêmes parents, ne sont pratiquement jamais identiques, et c'est cette unicité qui nourrit la sélection naturelle.",
+   "ecran": "assortiment2",
+   "id": "p09",
+   "texte": "Assortiment plus crossing-over : environ dix puissance douze possibilités."
+  },
+  {
+   "dit": "Passons à la spermatogenèse, dans les tubes séminifères des testicules. Les spermatogonies, diploïdes, se multiplient par mitose, dont une souche, la spermatogonie A, assure la production tout au long de la vie. Certaines entrent en méiose : le spermatocyte un donne deux spermatocytes deux en méiose un, qui donnent quatre spermatides en méiose deux. Puis la spermiogenèse transforme les spermatides en spermatozoïdes mobiles, avec flagelle, acrosome et noyau condensé.",
+   "ecran": "spermato",
+   "id": "p10",
+   "texte": "Spermatogonie, spermatocyte un, deux spermatocytes deux, quatre spermatides."
+  },
+  {
+   "dit": "La spermatogenèse est continue et prolifique : plusieurs centaines de millions de spermatozoïdes par jour chez l'homme, pour un cycle d'environ soixante-quatorze jours de la spermatogonie au spermatozoïde mûr. C'est une stratégie de quantité et de compétition. Elle est pilotée par l'axe hypothalamo-hypophyso-gonadique : la GnRH de l'hypothalamus commande la LH et la FSH de l'hypophyse, la LH agit sur les cellules de Leydig qui produisent la testostérone, la FSH soutient les cellules de Sertoli, qui soutiennent les cellules germinales et sécrètent l'inhibine.",
+   "ecran": "spermato_duree",
+   "id": "p11",
+   "texte": "Plusieurs centaines de millions par jour, cycle de soixante-quatorze jours."
+  },
+  {
+   "dit": "Passons à l'ovogenèse, dans les ovaires. Les ovogonies, diploïdes, se multiplient avant la naissance, puis se différencient en ovocytes un, toujours diploïdes, dès la vie intra-utérine. La méiose s'arrête alors en prophase un, et cette pause dure jusqu'à la puberté. C'est une attente de plusieurs années, parfois de plusieurs décennies.",
+   "ecran": "ovogenese",
+   "id": "p12",
+   "texte": "Ovogonies avant la naissance, ovocytes un arrêtés en prophase un."
+  },
+  {
+   "dit": "Une femme naît avec environ un à deux millions d'ovocytes primordiaux. À la puberté, il n'en reste qu'environ trois cent mille. Sur toute une vie reproductive, seulement quatre cents à cinq cents parviendront à maturité et seront ovulés. Les autres dégénèrent par atrésie. L'horloge biologique est dictée par cette diminution quantitative et qualitative du stock, qui aboutit à la ménopause.",
+   "ecran": "stock",
+   "id": "p13",
+   "texte": "Un à deux millions à la naissance, trois cent mille à la puberté, quatre cents à cinq cents ovulés."
+  },
+  {
+   "dit": "À la puberté, chaque mois, un ovocyte un reprend sa méiose sous l'effet du pic de LH, juste avant l'ovulation. La division un est asymétrique : elle produit un ovocyte deux, haploïde mais à chromosomes dupliqués, et un premier globule polaire, très petit et pauvre en cytoplasme, qui dégénère généralement. L'ovocyte deux entre immédiatement en méiose deux et s'arrête en métaphase deux.",
+   "ecran": "ovogenese2",
+   "id": "p14",
+   "texte": "Reprise mensuelle : ovocyte deux plus premier globule polaire."
+  },
+  {
+   "dit": "La méiose deux ne s'achève que si la fécondation a lieu. La pénétration du spermatozoïde déclenche l'achèvement de la division deux, asymétrique elle aussi : elle forme l'ovotide mature, haploïde à chromosomes simples, et un second globule polaire. Les deux globules polaires dégénèrent, et les noyaux haploïdes de l'ovotide et du spermatozoïde forment le zygote diploïde.",
+   "ecran": "ovocyte_formule",
+   "id": "p15",
+   "texte": "Fécondation : ovotide plus second globule polaire, puis zygote."
+  },
+  {
+   "dit": "L'équation complète de l'ovogenèse se lit ainsi : l'ovocyte un, deux n et quatre C, donne l'ovocyte deux, n et deux C, plus le premier globule polaire, puis l'ovotide, n et un C, plus le second globule polaire. Un seul gamète fonctionnel, riche en réserves cytoplasmiques, le vitellus, pour un investissement maximal : c'est la stratégie de la qualité.",
+   "ecran": "ovocyte_bilan",
+   "id": "p16",
+   "texte": "Ovocyte un deux n quatre C, ovocyte deux n deux C, ovotide n un C."
+  },
+  {
+   "dit": "Comparez les deux stratégies. La spermatogenèse dure environ soixante-quatorze jours, en continu, et produit quatre gamètes mobiles par cellule entrée en méiose. L'ovogenèse dure de douze à plus de cinquante ans, par intermittence, et produit un seul gamète par cellule, avec des globules polaires sacrifiés. Masse et mobilité d'un côté, réserve et investissement de l'autre.",
+   "ecran": "versus",
+   "id": "p17",
+   "texte": "Soixante-quatorze jours continus contre douze à cinquante ans interrompus."
+  },
+  {
+   "dit": "Les erreurs de ce système ont un nom : la non-disjonction, la mauvaise séparation des chromosomes en méiose un ou deux, qui produit des gamètes à n plus un ou n moins un chromosomes. Leur fécondation donne un zygote aneuploïde. La trisomie vingt et un résulte le plus souvent d'une non-disjonction du chromosome vingt et un lors de la méiose maternelle. Le syndrome de Turner, quarante-cinq X, et le syndrome de Klinefelter, quarante-sept X X Y, en sont d'autres exemples.",
+   "ecran": "aneuploidie",
+   "id": "p18",
+   "texte": "Non-disjonction : gamètes n plus un ou n moins un, zygote aneuploïde."
+  },
+  {
+   "dit": "Pourquoi ces erreurs semblent-elles plus fréquentes lors de l'ovogenèse, notamment avec l'âge maternel avancé ? Les leçons posent la question sans la trancher : pensez à la durée des arrêts méiotiques, des années en prophase un, puis en métaphase deux, pendant lesquelles la machinerie de séparation doit rester fidèle. C'est une piste, pas une certitude affichée.",
+   "ecran": "aneuploidie2",
+   "id": "p19",
+   "texte": "Âge maternel et durée des arrêts : une question ouverte des leçons."
+  },
+  {
+   "dit": "Pour conclure, la méiose et la gamétogenèse sont indissociables. En réduisant la ploïdie de deux n à n, la méiose prépare l'union ; en recombinant les génomes, elle assure l'innovation ; et la gamétogenèse décline cette division en deux stratégies complémentaires, la production massive de gamètes mobiles et la production sélective de gamètes nourriciers. La fécondation, n plus n, referme la boucle en restaurant deux n.",
+   "ecran": "fecundation",
+   "id": "p20",
+   "texte": "Deux n vers n, puis n plus n vers deux n : la boucle est bouclée."
+  },
+  {
+   "dit": "Retenons l'essentiel : la méiose un sépare les homologues et divise le nombre par deux, la méiose deux sépare les chromatides et donne quatre cellules haploïdes ; l'assortiment indépendant et le crossing-over brassent les génomes ; la spermatogenèse produit en continu quatre gamètes par cellule, l'ovogenèse, par intermittence, un seul gamète et des globules polaires ; et une erreur de séparation donne une aneuploïdie, comme la trisomie vingt et un.",
+   "ecran": "recap",
+   "id": "p21",
+   "texte": "Réduction, brassage, deux stratégies, aneuploïdie."
+  }
+ ],
+ "titre": "Méiose et gamétogenèse : diviser par deux pour créer de l'unique"
+}
