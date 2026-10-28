@@ -2,18 +2,18 @@
  "cours": 6219,
  "ecrans": {
   "annulation": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "dipoles_co2_h2o_fig"
+   },
    "kicker": "La somme vectorielle",
    "texte": "Dipôles opposés : ils s'annulent ou s'additionnent.",
-   "type": "phrase",
-   "anim": {
-    "nom": "dipoles_co2_h2o_fig",
-    "hauteur": 170
-   }
+   "type": "phrase"
   },
   "applications": {
    "anim": {
     "hauteur": 150,
-    "nom": "melange"
+    "nom": "melange_solutions_fig"
    },
    "kicker": "Pourquoi la polarité compte",
    "texte": "Le semblable dissout le semblable.",
@@ -31,15 +31,19 @@
    "type": "etape"
   },
   "bipyramide": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "vsepr_formes_fig"
+   },
    "kicker": "Cinq domaines",
    "texte": "Cinq domaines : trois équatoriaux, deux axiaux.",
-   "type": "phrase",
-   "anim": {
-    "nom": "vsepr_formes_fig",
-    "hauteur": 150
-   }
+   "type": "phrase"
   },
   "compression": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "compression_angles_fig"
+   },
    "kicker": "La compression des angles",
    "tex": [
     "CH_4 \\quad AX_4 \\quad 109{,}5^\\circ \\quad \\text{tétraédrique}",
@@ -47,11 +51,7 @@
     "H_2O \\quad AX_2E_2 \\quad \\approx 104{,}5^\\circ \\quad \\text{coudée}"
    ],
    "titre": "Du méthane à l'eau : l'angle se referme",
-   "type": "etape",
-   "anim": {
-    "nom": "compression_angles_fig",
-    "hauteur": 110
-   }
+   "type": "etape"
   },
   "coordination": {
    "kicker": "Les formes avancées au travail",
@@ -128,6 +128,10 @@
    "type": "etape"
   },
   "formes_base": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "vsepr_formes_fig"
+   },
    "kicker": "Les formes de base",
    "tex": [
     "2 \\text{ domaines : linéaire, } 180^\\circ \\quad CO_2,\\ BeCl_2",
@@ -135,11 +139,7 @@
     "4 \\text{ domaines : tétraédrique, } 109{,}5^\\circ \\quad CH_4,\\ CCl_4"
    ],
    "titre": "Deux, trois, quatre domaines : les formes sans paire libre",
-   "type": "etape",
-   "anim": {
-    "nom": "vsepr_formes_fig",
-    "hauteur": 110
-   }
+   "type": "etape"
   },
   "formes_libres": {
    "kicker": "Le catalogue des distorsions",
@@ -159,13 +159,13 @@
    "type": "formule"
   },
   "lewis": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "lewis_co2_fig"
+   },
    "kicker": "Les structures de Lewis",
    "texte": "Points et traits : Lewis cartographie les électrons de valence.",
-   "type": "phrase",
-   "anim": {
-    "nom": "lewis_co2_fig",
-    "hauteur": 170
-   }
+   "type": "phrase"
   },
   "lewis_etapes": {
    "kicker": "Les structures de Lewis",
@@ -210,13 +210,13 @@
    "type": "etape"
   },
   "postulat": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "vsepr_formes_fig"
+   },
    "kicker": "Le principe VSEPR",
    "texte": "Les doublets se repoussent : ils s'écartent au maximum.",
-   "type": "phrase",
-   "anim": {
-    "nom": "vsepr_formes_fig",
-    "hauteur": 150
-   }
+   "type": "phrase"
   },
   "recap_avancees": {
    "etapes": [
@@ -261,14 +261,14 @@
    "type": "etape"
   },
   "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "vsepr_formes_fig"
+   },
    "kicker": "Chimie · Géométrie moléculaire",
    "sous": "Lewis, VSEPR et polarité",
    "titre": "La géométrie des molécules",
-   "type": "titre",
-   "anim": {
-    "nom": "vsepr_formes_fig",
-    "hauteur": 250
-   }
+   "type": "titre"
   }
  },
  "lecons": [
