@@ -16,6 +16,10 @@
    "type": "phrase"
   },
   "bases": {
+   "anim": {
+    "hauteur": 105,
+    "nom": "pave_fig"
+   },
    "kicker": "Les outils fondamentaux",
    "tex": [
     "\\text{point : une position, sans dimension}",
@@ -23,24 +27,20 @@
     "\\text{plan : défini par trois points non alignés}"
    ],
    "titre": "Point, droite, plan : les trois briques de l'espace",
-   "type": "etape",
-   "anim": {
-    "nom": "pave_fig",
-    "hauteur": 105
-   }
+   "type": "etape"
   },
   "coordonnees": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "repere3d_fig"
+   },
    "kicker": "Repérage dans l'espace",
    "tex": [
     "O(0, 0, 0) \\quad \\text{origine, axes } Ox, Oy, Oz \\text{ perpendiculaires}",
     "A(2, 3, 1) \\qquad B(0, -1, 4) \\qquad C(-2, 0, 0)"
    ],
    "titre": "Trois axes, trois coordonnées",
-   "type": "etape",
-   "anim": {
-    "nom": "repere3d_fig",
-    "hauteur": 140
-   }
+   "type": "etape"
   },
   "distance": {
    "kicker": "Distance entre deux points",
@@ -143,6 +143,10 @@
    "type": "formule"
   },
   "positions": {
+   "anim": {
+    "hauteur": 105,
+    "nom": "pave_fig"
+   },
    "kicker": "Positions relatives",
    "tex": [
     "\\text{droites : parallèles, sécantes, confondues ou gauches}",
@@ -150,11 +154,7 @@
     "\\text{plans : parallèles, confondus ou sécants selon une droite}"
    ],
    "titre": "Se rencontrer, se fuir, ou passer à côté",
-   "type": "etape",
-   "anim": {
-    "nom": "pave_fig",
-    "hauteur": 105
-   }
+   "type": "etape"
   },
   "positions_dp": {
    "kicker": "Positions relatives · droites et plans",
@@ -222,7 +222,7 @@
   "solides_ronds": {
    "anim": {
     "hauteur": 130,
-    "nom": "sphere_fig"
+    "nom": "cylindre_fig"
    },
    "kicker": "Les solides ronds · cylindre, cône, sphère",
    "tex": [
@@ -236,7 +236,7 @@
   "symetries": {
    "anim": {
     "hauteur": 130,
-    "nom": "symetrie_fig"
+    "nom": "symetrie_centrale_fig"
    },
    "kicker": "Les symétries dans l'espace",
    "tex": [
@@ -250,7 +250,7 @@
   "titre": {
    "anim": {
     "hauteur": 250,
-    "nom": "sphere_fig"
+    "nom": "repere3d_fig"
    },
    "kicker": "Mathématique · Géométrie dans l'espace",
    "sous": "Repérer, mesurer et transformer en trois dimensions : solides, coordonnées, produits de vecteurs, équations et mouvements",
