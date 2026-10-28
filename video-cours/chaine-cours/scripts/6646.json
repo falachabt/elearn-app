@@ -1,0 +1,470 @@
+{
+ "cours": 6646,
+ "ecrans": {
+  "algo_caract": {
+   "kicker": "Les trois qualités d'un algorithme",
+   "tex": [
+    "\\text{Finitude : un nombre fini d'étapes}",
+    "\\text{Précision : aucune ambiguïté}",
+    "\\text{Efficacité : un résultat correct}"
+   ],
+   "titre": "Fini, précis, efficace",
+   "type": "etape"
+  },
+  "algo_def": {
+   "kicker": "Définir : algorithmique et algorithme",
+   "tex": [
+    "\\text{Algorithmique : concevoir, écrire, exécuter}",
+    "\\text{Algorithme : suite finie et ordonnée}",
+    "\\text{d'instructions pour résoudre un problème}"
+   ],
+   "titre": "Une science, une suite d'instructions",
+   "type": "etape"
+  },
+  "algorigramme": {
+   "kicker": "L'algorigramme",
+   "tex": [
+    "\\text{Symboles normalisés reliés par des flèches}",
+    "\\text{Un seul début, une seule fin}",
+    "\\text{Losange : le test, branches OUI et NON}"
+   ],
+   "titre": "Dessiner l'algorithme",
+   "type": "etape"
+  },
+  "alternative": {
+   "kicker": "La structure alternative",
+   "tex": [
+    "\\text{SI condition ALORS, SINON, FINSI}",
+    "\\text{Forme réduite sans SINON}",
+    "\\text{Opérateurs : égal, différent, inférieur, supérieur}"
+   ],
+   "titre": "Choisir selon une condition",
+   "type": "etape"
+  },
+  "balises_texte": {
+   "kicker": "Les balises de division du texte",
+   "tex": [
+    "\\text{h2 : titre de section, p : paragraphe}",
+    "\\text{BR : retour à la ligne, hr : trait}",
+    "\\text{pre : espaces conservés}"
+   ],
+   "titre": "Titres, paragraphes, traits",
+   "type": "etape"
+  },
+  "boucles": {
+   "kicker": "Les structures itératives",
+   "tex": [
+    "\\text{POUR : nombre d'itérations connu}",
+    "\\text{TANT QUE : condition d'arrêt}",
+    "\\text{Compteur, initialisation avant la boucle}"
+   ],
+   "titre": "Répéter un bloc d'instructions",
+   "type": "etape"
+  },
+  "compression": {
+   "kicker": "La compression des images",
+   "note": "Sans perte : PNG, GIF, image identique à l'originale. Avec perte : JPEG, données imperceptibles supprimées. Exemple : un fichier de 1,5 Mo compressé en 150 Ko, taux environ 10.",
+   "tex": "C = \\frac{T_{originale}}{T_{compressée}}",
+   "type": "formule"
+  },
+  "couleurs": {
+   "kicker": "La profondeur de couleur",
+   "note": "Avec 8 bits par pixel, 256 couleurs différentes sont représentables.",
+   "tex": "C = 2^P",
+   "type": "formule"
+  },
+  "definition_img": {
+   "kicker": "La définition d'une image",
+   "note": "Une image de 1920 sur 1080 pixels a une définition de 2 073 600 pixels, environ 2 mégapixels. Une image de 800 sur 600 pixels contient 480 000 pixels.",
+   "tex": "D = L \\times H",
+   "type": "formule"
+  },
+  "elements": {
+   "kicker": "Les éléments d'un algorithme",
+   "tex": [
+    "\\text{Variable : emplacement nommé, valeur variable}",
+    "\\text{Constante : valeur fixe, mot-clé CONST}",
+    "\\text{Instruction : affectation, lecture, écriture, calcul}"
+   ],
+   "titre": "Variables, constantes, instructions",
+   "type": "etape"
+  },
+  "ex_mosaique": {
+   "kicker": "Exemple : mosaïque et drapeau",
+   "tex": [
+    "\\text{Mosaïque 2 sur 3, photos 400 sur 300}",
+    "\\text{Définition finale : 800 sur 900 pixels}",
+    "\\text{Drapeau : rouge, blanc, bleu, largeur W sur 3}"
+   ],
+   "titre": "Assembler, dessiner avec des formes",
+   "type": "etape"
+  },
+  "ex_somme": {
+   "kicker": "Exemple résolu : l'algorithme Somme",
+   "tex": [
+    "\\text{CONST PI égal 3,14}",
+    "\\text{LIRE a, LIRE b, s reçoit a plus b}",
+    "\\text{ÉCRIRE s : entrée, traitement, sortie}"
+   ],
+   "titre": "Lire, calculer, écrire",
+   "type": "etape"
+  },
+  "ex_somme_n": {
+   "kicker": "Exemple : la somme de 1 à n",
+   "note": "Pour n égal 4, après initialisation de la somme à 0, les itérations donnent 1, puis 3, puis 6, enfin 10. Le résultat affiché est 10.",
+   "tex": "somme \\leftarrow somme + i",
+   "type": "formule"
+  },
+  "formulaire": {
+   "kicker": "La création de formulaires",
+   "tex": [
+    "\\text{form : texte, mot de passe, radio, case}",
+    "\\text{select : classe, textarea : message}",
+    "\\text{submit : Envoyer, reset : Effacer}"
+   ],
+   "titre": "Saisir et envoyer des données",
+   "type": "etape"
+  },
+  "html_struct": {
+   "kicker": "La structure minimale HTML",
+   "tex": [
+    "\\text{DOCTYPE html : déclaration du document}",
+    "\\text{html : racine, head : titre et métadonnées}",
+    "\\text{body : contenu visible de la page}"
+   ],
+   "titre": "Quatre balises obligatoires",
+   "type": "etape"
+  },
+  "image_html": {
+   "kicker": "L'insertion d'images",
+   "tex": [
+    "\\text{img : src obligatoire, alt : texte alternatif}",
+    "\\text{width et height : dimensions en pixels}",
+    "\\text{Exemple : logo, largeur 100 pixels}"
+   ],
+   "titre": "Source, description, dimensions",
+   "type": "etape"
+  },
+  "infographie": {
+   "kicker": "Infographie et graphisme",
+   "tex": [
+    "\\text{Infographie : créer et manipuler des images}",
+    "\\text{Graphisme : art des visuels, logos, affiches}",
+    "\\text{Publicité, jeux, cinéma, architecture, médecine}"
+   ],
+   "titre": "Technique et art du visuel",
+   "type": "etape"
+  },
+  "liens": {
+   "kicker": "Les liens hypertextes",
+   "tex": [
+    "\\text{a, href : la destination du lien}",
+    "\\text{Lien local : page2.html, contact.html}",
+    "\\text{Lien externe : adresse complète du site}"
+   ],
+   "titre": "Cliquer pour changer de page",
+   "type": "etape"
+  },
+  "listes": {
+   "kicker": "Les balises de liste",
+   "tex": [
+    "\\text{ul : liste non ordonnée, puces}",
+    "\\text{ol : liste ordonnée, numérotation}",
+    "\\text{dl : liste de définition, terme et sens}"
+   ],
+   "titre": "Puces, numéros, définitions",
+   "type": "etape"
+  },
+  "multimedia": {
+   "kicker": "Le multimédia",
+   "tex": [
+    "\\text{Texte, image, son, vidéo, animation}",
+    "\\text{Un même support interactif}",
+    "\\text{Exemple : site pédagogique avec quiz}"
+   ],
+   "titre": "Plusieurs médias ensemble",
+   "type": "etape"
+  },
+  "page_complete": {
+   "kicker": "Exemple : une page web complète",
+   "tex": [
+    "\\text{Titre Ma Page, Bienvenue, paragraphe}",
+    "\\text{Liste de liens, bannière largeur 600}",
+    "\\text{Formulaire : pseudo, bouton OK}"
+   ],
+   "titre": "Titre, liens, image, formulaire",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Algorithme : suite finie et ordonnée, variables, constantes, séquence, alternative, boucles, algorigramme, traçage.",
+    "Web : page, site, navigateur, structure HTML, balises de texte, liens, listes, images, formulaires.",
+    "Image : matricielle ou vectorielle, couleurs 2 puissance P, définition, résolution, taille, compression."
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "resolution_img": {
+   "kicker": "La résolution",
+   "note": "Une image de 3000 pixels de large imprimée sur 10 pouces a une résolution de 300 points par pouce.",
+   "tex": "R = \\frac{\\text{pixels}}{\\text{pouces}}",
+   "type": "formule"
+  },
+  "sequentielle": {
+   "kicker": "La structure séquentielle",
+   "note": "Exemple : x reçoit 5, y reçoit x fois 2, donc y vaut 10, puis x reçoit x plus 1, donc x vaut 6. L'affichage donne 6 et 10.",
+   "tex": "x \\leftarrow 5, \\; y \\leftarrow x \\times 2",
+   "type": "formule"
+  },
+  "taille_fichier": {
+   "kicker": "La taille d'un fichier image",
+   "note": "Image de 800 sur 600 pixels en RVB, 3 octets par pixel : 1 440 000 octets, soit environ 1406 Ko. Un octet pour 256 couleurs, 4 octets pour RVBA.",
+   "tex": "T = L \\times H \\times n",
+   "type": "formule"
+  },
+  "titre": {
+   "kicker": "Informatique · Algorithmique, Web et image",
+   "sous": "Définir un algorithme, construire une page web, mesurer une image numérique",
+   "titre": "Algorithmique, Web et image numérique",
+   "type": "titre"
+  },
+  "tracage": {
+   "kicker": "L'exécution pas à pas",
+   "note": "Exemple : n reçoit 3, s reçoit 0, i reçoit 1, boucle tant que i inférieur ou égal à n. Le programme affiche s égal 6, soit 1 plus 2 plus 3.",
+   "tex": "s \\leftarrow s + i, \\; i \\leftarrow i + 1",
+   "type": "formule"
+  },
+  "types_image": {
+   "kicker": "Les deux types d'images",
+   "tex": [
+    "\\text{Bitmap : grille de pixels, couleurs RVB}",
+    "\\text{Vectoriel : formes par équations mathématiques}",
+    "\\text{Cercle : centre et rayon, agrandi sans perte}"
+   ],
+   "titre": "Pixels ou équations",
+   "type": "etape"
+  },
+  "video_cadre": {
+   "kicker": "La vidéo numérique",
+   "note": "Une vidéo fluide demande environ 24 à 30 images par seconde. Une vidéo de 10 secondes à 25 images par seconde contient 250 images.",
+   "tex": "F = 25 \\times 10 = 250",
+   "type": "formule"
+  },
+  "web_def": {
+   "kicker": "Page, site, navigateur, éditeur",
+   "tex": [
+    "\\text{Page web : texte, images, liens, formulaires}",
+    "\\text{Site web : pages reliées, même racine}",
+    "\\text{Navigateurs : Chrome, Firefox, Safari, Edge}"
+   ],
+   "titre": "Le vocabulaire du Web",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Algorithmique : définir, choisir, répéter, tracer"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : le Web. Nous définirons la page, le site et le navigateur, puis nous construirons une page HTML, de sa structure aux formulaires.",
+    "texte": "Partie 2 : le Web."
+   },
+   "sous_titre": "Web : pages HTML, liens, images, formulaires"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : l'image numérique. Nous distinguerons l'infographie du graphisme, puis nous mesurerons les images, de leurs couleurs à leur compression.",
+    "texte": "Partie 3 : l'image numérique."
+   },
+   "sous_titre": "Image : types, couleurs, mesure, compression"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'informatique en trois volets : l'algorithmique, la création de pages web, et l'image numérique. Nous allons définir un algorithme, construire une page HTML, puis mesurer une image, de ses couleurs à sa taille de fichier.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Algorithme, page web, image : trois volets."
+  },
+  {
+   "dit": "Première notion : l'algorithmique est la science qui étudie la conception, l'écriture et l'exécution des algorithmes. Un algorithme, lui, est une suite finie et ordonnée d'instructions permettant de résoudre un problème donné.",
+   "ecran": "algo_def",
+   "id": "p02",
+   "texte": "Algorithmique : la science des algorithmes."
+  },
+  {
+   "dit": "Un bon algorithme possède trois qualités. La finitude : il doit se terminer après un nombre fini d'étapes. La précision : chaque instruction est sans ambiguïté. L'efficacité : il produit un résultat correct.",
+   "ecran": "algo_caract",
+   "id": "p03",
+   "texte": "Fini, précis, efficace : trois qualités."
+  },
+  {
+   "dit": "Un algorithme comporte trois éléments. Une variable est un emplacement mémoire nommé dont la valeur peut changer durant l'exécution ; elle possède un nom et un type. Une constante est une valeur fixe qui ne change jamais, déclarée avec le mot-clé CONST. Une instruction est une action élémentaire : affectation, lecture, écriture ou calcul.",
+   "ecran": "elements",
+   "id": "p04",
+   "texte": "Variable, constante, instruction."
+  },
+  {
+   "dit": "Exemple résolu, la structure d'un algorithme appelé Somme. On déclare la constante PI égale à 3,14, puis les variables a, b et s, réelles. Au début, on lit a, c'est l'entrée, puis on lit b, puis s reçoit a plus b, c'est le traitement, enfin on écrit s, c'est la sortie, et on termine.",
+   "ecran": "ex_somme",
+   "id": "p05",
+   "texte": "Algorithme Somme : lire, calculer, écrire."
+  },
+  {
+   "dit": "Première structure de contrôle, la structure séquentielle : les instructions s'exécutent dans l'ordre où elles sont écrites, de haut en bas. Exemple : x reçoit 5, y reçoit x fois 2, donc y vaut 10, puis x reçoit x plus 1, donc x vaut 6. L'affichage donne 6 et 10.",
+   "ecran": "sequentielle",
+   "id": "p06",
+   "texte": "En séquence : de haut en bas, dans l'ordre."
+  },
+  {
+   "dit": "Deuxième structure, la structure alternative, qui exécute des instructions selon qu'une condition est vraie ou fausse. Forme complète : SI, condition, ALORS, instructions si vraie, SINON, instructions si fausse, FINSI. Forme réduite, sans SINON. Les opérateurs de comparaison sont : égal, différent, inférieur, inférieur ou égal, supérieur, supérieur ou égal. Exemple : si la note entrée est 12, le programme affiche Admis ; si elle est 8, il affiche Non admis, car le test est note supérieure ou égale à 10.",
+   "ecran": "alternative",
+   "id": "p07",
+   "texte": "SI condition ALORS, SINON : deux branches."
+  },
+  {
+   "dit": "Troisième famille, les structures itératives, les boucles. Une itération est la répétition d'un bloc d'instructions, et une boucle est la structure qui réalise cette répétition. Un compteur est une variable entière qui s'incrémente à chaque passage, et l'initialisation donne une valeur de départ à une variable avant la boucle. La boucle POUR s'utilise quand le nombre d'itérations est connu ; la boucle TANT QUE s'utilise avec une condition d'arrêt.",
+   "ecran": "boucles",
+   "id": "p08",
+   "texte": "POUR quand on sait combien, TANT QUE sinon."
+  },
+  {
+   "dit": "Exemple résolu : calculer la somme des entiers de 1 à n. Pour n égal 4, on lit n, on initialise la somme à 0, puis la boucle POUR i de 1 à n accumule somme plus i. Les itérations donnent 1, puis 3, puis 6, enfin 10. Le résultat affiché est 10.",
+   "ecran": "ex_somme_n",
+   "id": "p09",
+   "texte": "Somme de 1 à 4 : 1, 3, 6, puis 10."
+  },
+  {
+   "dit": "Un algorigramme, aussi appelé organigramme, est une représentation graphique d'un algorithme utilisant des symboles normalisés reliés par des flèches. Règles de construction : un seul début et une seule fin, les flèches indiquent le sens d'exécution, de haut en bas ou de gauche à droite, et chaque symbole contient une action unique et explicite. Exemple : pour la note, le losange représente le test note supérieure ou égale à 10, la branche OUI mène à écrire Admis, la branche NON à écrire Non admis, puis à la fin.",
+   "ecran": "algorigramme",
+   "id": "p10",
+   "texte": "Un dessin, un début, une fin, des flèches."
+  },
+  {
+   "dit": "Dernière méthode, l'exécution pas à pas : on crée un tableau de suivi des variables à chaque étape. Exemple : n reçoit 3, s reçoit 0, i reçoit 1, puis tant que i est inférieur ou égal à n, s reçoit s plus i et i reçoit i plus 1. Le programme affiche s égal 6, soit 1 plus 2 plus 3. Pensez aussi à vérifier les cas limites : valeurs nulles, négatives ou extrêmes.",
+   "ecran": "tracage",
+   "id": "p11",
+   "texte": "Tracer chaque variable, étape par étape."
+  },
+  {
+   "dit": "Passons au Web. Une page web est un document numérique consultable via un navigateur, contenant du texte, des images, des liens et des formulaires. Un site web est un ensemble cohérent de pages reliées par des liens hypertextes, partageant une même racine, domaine ou dossier. Un navigateur affiche et interprète les pages : Chrome, Firefox, Safari, Edge ou Opera. Pour écrire le code, on utilise un éditeur de texte, comme Notepad, TextEdit, Visual Studio Code, Sublime Text ou Gedit.",
+   "ecran": "web_def",
+   "id": "p12",
+   "texte": "Page, site, navigateur, éditeur de texte."
+  },
+  {
+   "dit": "HTML, HyperText Markup Language, est un langage de description de contenu web, structuré en balises. Une balise est un marqueur encadré par des chevrons qui délimite un élément ; elle peut avoir des attributs, comme src, href ou width. La structure minimale obligatoire comporte la déclaration du type de document, la racine html, l'en-tête head avec le titre de la page, et le corps body avec le contenu visible.",
+   "ecran": "html_struct",
+   "id": "p13",
+   "texte": "DOCTYPE, html, head, body : le minimum."
+  },
+  {
+   "dit": "Pour diviser le texte, on utilise un titre de section h2, un paragraphe p, un retour à la ligne BR, un trait de séparation hr, et pre pour un texte dont les espaces sont conservés. Pour la mise en forme, H indice 2 O affiche la formule de l'eau, et x exposant 2 affiche x au carré.",
+   "ecran": "balises_texte",
+   "id": "p14",
+   "texte": "Titres, paragraphes, retours, traits."
+  },
+  {
+   "dit": "Un lien hypertexte est un élément cliquable reliant deux pages web. La balise a, avec l'attribut href, indique la destination : un fichier local ou une adresse complète. Exemple résolu : dans index.html, le code de lien vers contact.html crée un lien vers la page contact.html du même dossier.",
+   "ecran": "liens",
+   "id": "p15",
+   "texte": "Un lien : une balise a, une destination href."
+  },
+  {
+   "dit": "Trois sortes de listes. La liste non ordonnée, avec des puces, utilise ul et li. La liste ordonnée, avec numérotation, utilise ol et li. La liste de définition utilise dl, avec dt pour le terme, par exemple HTML, et dd pour sa définition, langage de structure web.",
+   "ecran": "listes",
+   "id": "p16",
+   "texte": "Puces, numéros, ou terme et définition."
+  },
+  {
+   "dit": "Pour insérer une image, on utilise la balise img : src, le chemin du fichier, est obligatoire ; alt est le texte alternatif affiché si l'image ne charge pas ; width et height donnent les dimensions en pixels. Exemple : une image logo.png, décrite comme logo du lycée, de largeur 100 pixels.",
+   "ecran": "image_html",
+   "id": "p17",
+   "texte": "img : source, description, dimensions."
+  },
+  {
+   "dit": "Un formulaire est une interface permettant à l'utilisateur de saisir et d'envoyer des données. Il contient un libellé et un champ texte pour le nom, un champ mot de passe, des boutons radio pour un choix unique, comme le genre, des cases à cocher pour des choix multiples, comme la newsletter, une liste déroulante pour la classe, une zone de texte pour le message, et deux boutons : Envoyer pour soumettre, Effacer pour réinitialiser.",
+   "ecran": "formulaire",
+   "id": "p18",
+   "texte": "Champs, choix, liste, envoi, effacement."
+  },
+  {
+   "dit": "Exemple résolu, une page web complète, Ma Page. Elle affiche un titre Bienvenue, un paragraphe de présentation, une liste de liens vers la page 1 et la page 2, une bannière de largeur 600 pixels, un trait de séparation, puis un formulaire vers enregistrer.php, avec un champ pseudo et un bouton OK. Pour tester un code HTML, enregistrez le fichier avec l'extension point html, ouvrez-le dans un navigateur, vérifiez l'affichage et corrigez les erreurs éventuelles.",
+   "ecran": "page_complete",
+   "id": "p19",
+   "texte": "Ma Page : titre, liens, bannière, formulaire."
+  },
+  {
+   "dit": "Troisième volet, l'image numérique. L'infographie est l'ensemble des techniques permettant la création, la manipulation et la représentation d'images numériques à l'aide d'un ordinateur. Le graphisme désigne l'art de concevoir des visuels, logos, affiches ou interfaces, en combinant formes, couleurs et textes. L'infographie regroupe les aspects techniques, le graphisme se concentre sur la dimension artistique. Domaines d'application : publicité, jeux vidéo, cinéma, architecture, médecine, cartographie, design web et animation.",
+   "ecran": "infographie",
+   "id": "p20",
+   "texte": "Infographie technique, graphisme artistique."
+  },
+  {
+   "dit": "Le multimédia est l'intégration simultanée de plusieurs types de données numériques, texte, image, son, vidéo et animation, dans un même support interactif. Exemple résolu : un site web pédagogique contenant des textes explicatifs, des images illustratives, des vidéos de démonstration et des quiz interactifs est un document multimédia.",
+   "ecran": "multimedia",
+   "id": "p21",
+   "texte": "Texte, image, son, vidéo : un seul support."
+  },
+  {
+   "dit": "Une image numérique est une représentation visuelle codée en données binaires, en deux formats principaux. Le format matriciel, bitmap, est une grille de pixels, chaque pixel ayant une couleur, définie par ses composantes rouge, vert et bleu en mode RVB. Le format vectoriel décrit des formes par des équations mathématiques : il peut être agrandi sans perte de qualité. Exemple : un cercle est défini par son centre et son rayon, avec l'équation x moins xc au carré plus y moins yc au carré égale r au carré.",
+   "ecran": "types_image",
+   "id": "p22",
+   "texte": "Bitmap : pixels. Vectoriel : équations."
+  },
+  {
+   "dit": "La numérisation convertit un signal analogique, image ou son, en données numériques. Deux paramètres comptent : la résolution R, nombre de pixels par unité de longueur, en points par pouce, et la profondeur de couleur P, nombre de bits utilisés par pixel. Relation fondamentale : le nombre de couleurs représentables est C égal 2 puissance P. Exemple résolu : avec 8 bits par pixel, on obtient 2 puissance 8, soit 256 couleurs différentes.",
+   "ecran": "couleurs",
+   "id": "p23",
+   "texte": "Couleurs : 2 puissance P, 256 pour 8 bits."
+  },
+  {
+   "dit": "La vidéo numérique est une séquence d'images, les frames, affichées à une cadence définie, en images par seconde. Une vidéo fluide nécessite environ 24 à 30 images par seconde. Exemple résolu : une vidéo de 10 secondes à 25 images par seconde contient 250 images.",
+   "ecran": "video_cadre",
+   "id": "p24",
+   "texte": "Vidéo : des images à 24 ou 30 par seconde."
+  },
+  {
+   "dit": "Mesurons une image. La définition est le nombre total de pixels : D égal L fois H, largeur fois hauteur. Exemple : une image de 1920 sur 1080 pixels a une définition de 2 073 600 pixels, environ 2 mégapixels, et une image de 800 sur 600 pixels contient 480 000 pixels.",
+   "ecran": "definition_img",
+   "id": "p25",
+   "texte": "Définition : largeur fois hauteur."
+  },
+  {
+   "dit": "La résolution est le nombre de pixels par unité de longueur, en points par pouce, ou dpi. Exemple résolu : une image de 3000 pixels de large imprimée sur 10 pouces a une résolution de 3000 divisé par 10, soit 300 points par pouce.",
+   "ecran": "resolution_img",
+   "id": "p26",
+   "texte": "Résolution : pixels divisés par pouces."
+  },
+  {
+   "dit": "La taille d'un fichier image matricielle non compressée se calcule par T égal L fois H fois n, où n est le nombre d'octets par pixel : 1 octet pour 256 couleurs, 3 octets pour RVB 24 bits, 4 octets pour RVBA. Exemple résolu : une image de 800 sur 600 pixels en RVB donne 800 fois 600 fois 3, soit 1 440 000 octets, environ 1406 Ko.",
+   "ecran": "taille_fichier",
+   "id": "p27",
+   "texte": "Taille : largeur, hauteur, octets par pixel."
+  },
+  {
+   "dit": "L'acquisition convertit une scène réelle en fichier numérique : numérisation du signal analogique, échantillonnage en points discrets, puis quantification, une valeur numérique par pixel, via un scanner, un appareil photo ou un smartphone. La compression réduit ensuite la taille du fichier : sans perte, aucune donnée n'est supprimée, avec PNG ou GIF, l'image reste identique à l'originale ; avec perte, des données imperceptibles sont supprimées, avec JPEG. Le taux de compression est la taille originale divisée par la taille compressée : un fichier de 1,5 Mo compressé en 150 Ko donne un taux d'environ 10.",
+   "ecran": "compression",
+   "id": "p28",
+   "texte": "Sans perte PNG, avec perte JPEG, taux 10."
+  },
+  {
+   "dit": "Pour finir, deux créations. Une mosaïque assemble plusieurs images en une seule grille, pour des collages ou des planches contact : une mosaïque 2 sur 3 de 6 photos de 400 sur 300 pixels donne une définition de 800 sur 900 pixels. Le dessin vectoriel repose sur des formes primitives et des couleurs RVB, chaque composante entre 0 et 255 : un drapeau tricolore se crée avec trois rectangles rouge, blanc et bleu, chacun de largeur W sur 3 et de hauteur H.",
+   "ecran": "ex_mosaique",
+   "id": "p29",
+   "texte": "Mosaïque 800 sur 900, drapeau en trois bandes."
+  },
+  {
+   "dit": "Récapitulons. Un algorithme est une suite finie et ordonnée d'instructions, avec variables, constantes, séquence, alternative, boucles, algorigramme et traçage pas à pas. Une page web se construit en HTML, avec sa structure, ses balises de texte, ses liens, ses listes, ses images et ses formulaires. Une image numérique se mesure par son type, ses couleurs, sa définition, sa résolution, sa taille et sa compression.",
+   "ecran": "recap",
+   "id": "p30",
+   "texte": "Algorithme, page web, image : à retenir."
+  }
+ ],
+ "titre": "Algorithmique, Web et image numérique"
+}
