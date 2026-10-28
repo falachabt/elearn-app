@@ -9006,6 +9006,415 @@ const FIG = {
       trait(340, 219, 520, 232, p, { w: 3 }) + mot(535, 240, "noyau externe", { t: 21, a: 'start' }) +
       trait(272, 182, 182, 230, p, { w: 3 }) + mot(174, 238, "noyau interne", { t: 19, a: 'end' }));
   },
+  derivee_fig(t) {
+    const p = prog(t);
+    let pts = '';
+    for (let k = 0; k <= 60; k++) {
+      const x = 140 + 12 * k;
+      const y = 262 - 175 * (1 - Math.exp(-(x - 140) / 400));
+      pts += `${Math.round(x)},${Math.round(y)} `;
+    }
+    const ax = 470, ay = 262 - 175 * (1 - Math.exp(-(ax - 140) / 400));
+    const fp = 175 / 400 * Math.exp(-(ax - 140) / 400);
+    return svgBoite(
+      `<line x1="140" y1="285" x2="890" y2="285" stroke="currentColor" stroke-width="3" opacity=".45"/>` +
+      `<line x1="140" y1="285" x2="140" y2="35" stroke="currentColor" stroke-width="3" opacity=".45"/>` +
+      `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>` +
+      trait(ax - 195, ay + fp * 195, ax + 235, ay - fp * 235, p, { c: '#E8604C', w: 5 }) +
+      pointe(ax + 241, ay - fp * 241, Math.atan(-fp) * 180 / Math.PI, '#E8604C') +
+      `<line x1="${ax}" y1="${Math.round(ay)}" x2="${ax + 200}" y2="${Math.round(ay)}" stroke="currentColor" stroke-width="3" stroke-dasharray="8 7"/>` +
+      trait(ax + 200, ay, ax + 200, ay - fp * 200, p, { c: '#10B981', w: 5 }) +
+      `<circle cx="${ax}" cy="${Math.round(ay)}" r="8" fill="#E8604C" stroke="currentColor" stroke-width="3"/>` +
+      mot(ax - 14, ay + 34, 'A (a ; f(a))', { t: 21, a: 'end' }) +
+      mot(ax + 218, ay - fp * 200 - 4, "f′(a)", { t: 24, a: 'start', c: '#10B981' }) +
+      mot(760, 66, 'la tangente en A', { t: 22, c: '#E8604C' }) +
+      mot(150, 30, "la dérivée : la pente de la tangente", { t: 21, a: 'start' }));
+  },
+  boule_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<circle cx="290" cy="138" r="95" fill="none" stroke="currentColor" stroke-width="5"/>` +
+      `<ellipse cx="290" cy="138" rx="95" ry="30" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="8 6"/>` +
+      trait(290, 138, 290 + 67, 138 - 67, p, { c: '#E8604C', w: 5 }) +
+      mot(330, 92, 'R', { t: 25, c: '#E8604C' }) +
+      mot(290, 30, 'la sphère : la surface', { t: 22 }) +
+      mot(290, 272, 'aire = 4πR²', { t: 23 }) +
+      `<circle cx="710" cy="138" r="95" fill="#1A75FF" fill-opacity=".22" stroke="currentColor" stroke-width="5"/>` +
+      `<ellipse cx="710" cy="138" rx="95" ry="30" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="8 6"/>` +
+      trait(710, 138, 710 + 67, 138 - 67, p, { c: '#E8604C', w: 5 }) +
+      mot(750, 92, 'R', { t: 25, c: '#E8604C' }) +
+      mot(710, 30, 'la boule : le volume plein', { t: 22 }) +
+      mot(710, 272, 'volume = (4/3) πR³', { t: 23 }));
+  },
+  table_relationnelle_fig(t, o) {
+    const p = prog(t);
+    const grille = (x0, y0, cols, entetes, lignes) => {
+      const L = cols[cols.length - 1] - x0, pas = 46;
+      let s = `<rect x="${x0}" y="${y0}" width="${L}" height="${pas}" fill="#FFD83D" fill-opacity=".5"/>` +
+        `<rect x="${x0}" y="${y0}" width="${L}" height="${pas * (lignes.length + 1)}" fill="none" stroke="currentColor" stroke-width="4"/>`;
+      for (let i = 1; i < cols.length - 1; i++) s += `<line x1="${cols[i]}" y1="${y0}" x2="${cols[i]}" y2="${y0 + pas * (lignes.length + 1)}" stroke="currentColor" stroke-width="3"/>`;
+      for (let i = 1; i <= lignes.length; i++) s += `<line x1="${x0}" y1="${y0 + pas * i}" x2="${x0 + L}" y2="${y0 + pas * i}" stroke="currentColor" stroke-width="3"/>`;
+      entetes.forEach((e, i) => { s += mot((cols[i] + cols[i + 1]) / 2, y0 + 33, e, { t: 22 }); });
+      lignes.forEach((lig, j) => lig.forEach((c, i) => { s += mot((cols[i] + cols[i + 1]) / 2, y0 + pas * (j + 1) + 33, c, { t: 21 }); }));
+      return s;
+    };
+    if (o && o.relie) {
+      return svgBoite(
+        mot(275, 34, 'ÉLÈVES', { t: 21 }) + mot(730, 34, 'NOTES', { t: 21 }) +
+        grille(90, 52, [90, 190, 460], ['id', 'nom'], [['1', 'Awa'], ['2', 'Junior'], ['3', 'Larissa']]) +
+        grille(560, 52, [560, 640, 790, 920], ['id', 'eleve_id', 'note'], [['1', '2', '15'], ['2', '1', '12'], ['3', '2', '17']]) +
+        trait(462, 120, 636, 120, p, { c: '#E8604C', w: 5 }) + pointe(644, 120, 0, '#E8604C') +
+        mot(550, 100, 'clé étrangère', { t: 19, c: '#E8604C' }) +
+        mot(275, 268, 'id : clé primaire', { t: 19 }) +
+        mot(730, 268, 'eleve_id renvoie à ÉLÈVES', { t: 19 }));
+    }
+    return svgBoite(
+      grille(190, 46, [190, 320, 580, 810], ['id', 'nom', 'classe'], [['1', 'Awa', '6e'], ['2', 'Junior', '5e'], ['3', 'Larissa', '6e'], ['4', 'Noah', '4e']]) +
+      mot(255, 268, 'id : la clé primaire', { t: 20, c: '#E8604C' }) +
+      mot(620, 268, 'une table : des lignes, des colonnes', { t: 20 }));
+  },
+  groupby_fig(t) {
+    const p = prog(t);
+    const mini = (x, y, coul, n) => {
+      let s = `<rect x="${x}" y="${y}" width="120" height="${n * 26}" fill="${coul}" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>`;
+      for (let i = 1; i < n; i++) s += `<line x1="${x}" y1="${y + 26 * i}" x2="${x + 120}" y2="${y + 26 * i}" stroke="currentColor" stroke-width="2"/>`;
+      return s;
+    };
+    return svgBoite(
+      `<rect x="105" y="66" width="150" height="130" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      `<rect x="105" y="66" width="150" height="32" fill="#1A75FF" fill-opacity=".3"/>` +
+      `<rect x="105" y="98" width="150" height="32" fill="#E8604C" fill-opacity=".3"/>` +
+      `<rect x="105" y="130" width="150" height="32" fill="#1A75FF" fill-opacity=".3"/>` +
+      `<rect x="105" y="162" width="150" height="34" fill="#E8604C" fill-opacity=".3"/>` +
+      mot(180, 232, 'le DataFrame', { t: 19 }) +
+      trait(268, 130, 356, 130, p, { c: '#10B981', w: 5 }) + pointe(364, 130, 0, '#10B981') +
+      mot(312, 108, 'split', { t: 20, c: '#10B981' }) +
+      mini(400, 66, '#1A75FF', 2) + mini(400, 148, '#E8604C', 2) +
+      mot(460, 232, 'apply : un calcul par groupe', { t: 19 }) +
+      trait(540, 130, 628, 130, p, { c: '#10B981', w: 5 }) + pointe(636, 130, 0, '#10B981') +
+      mot(584, 108, 'combine', { t: 20, c: '#10B981' }) +
+      `<rect x="680" y="92" width="230" height="78" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="680" y1="131" x2="910" y2="131" stroke="currentColor" stroke-width="3"/>` +
+      `<rect x="680" y="92" width="52" height="39" fill="#1A75FF" fill-opacity=".3"/>` +
+      `<rect x="680" y="131" width="52" height="39" fill="#E8604C" fill-opacity=".3"/>` +
+      mot(820, 120, 'moyenne A', { t: 19 }) + mot(820, 159, 'moyenne B', { t: 19 }) +
+      mot(795, 232, 'le résultat, un par groupe', { t: 19 }));
+  },
+  calcul_litteral_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      mot(415, 118, '3', { t: 66 }) +
+      mot(462, 118, 'x', { t: 66, c: '#E8604C' }) +
+      mot(528, 118, '+ 2', { t: 66, a: 'start' }) +
+      trait(500, 148, 500, 184, p, { c: '#10B981', w: 5 }) + pointe(500, 192, 90, '#10B981') +
+      mot(500, 232, 'si x = 7 :  3 × 7 + 2 = 23', { t: 27 }) +
+      mot(500, 276, "la lettre x : une variable, un nombre qu'on ne connaît pas encore", { t: 20 }));
+  },
+  hexagone_symetrie_fig(t) {
+    const p = prog(t);
+    const cx = 500, cy = 148, R = 108;
+    let pts = '';
+    for (let k = 0; k < 6; k++) {
+      const a = (60 * k - 90) * Math.PI / 180;
+      pts += `${Math.round(cx + R * Math.cos(a))},${Math.round(cy + R * Math.sin(a))} `;
+    }
+    let axes = '';
+    for (let k = 0; k < 3; k++) {
+      const a = (60 * k - 90) * Math.PI / 180, dx = 138 * Math.cos(a), dy = 138 * Math.sin(a);
+      axes += trait(cx - dx, cy - dy, cx + dx, cy + dy, p, { w: 3, tiret: '9 7', c: '#E8604C' });
+    }
+    return svgBoite(
+      `<polygon points="${pts}" fill="#1A75FF" fill-opacity=".13" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>` + axes +
+      mot(500, 24, 'un polygone régulier', { t: 21 }) +
+      mot(500, 292, 'ses axes de symétrie, en pointillés rouges', { t: 20, c: '#E8604C' }));
+  },
+  arbre_graphe_fig(t) {
+    const p = prog(t);
+    const noeud = (x, y) => `<circle cx="${x}" cy="${y}" r="17" fill="#FFD83D" stroke="currentColor" stroke-width="4"/>`;
+    return svgBoite(
+      trait(500, 58, 320, 138, p, { w: 5 }) + trait(500, 58, 680, 138, p, { w: 5 }) +
+      trait(320, 154, 205, 232, p, { w: 5 }) + trait(320, 154, 440, 232, p, { w: 5 }) +
+      trait(680, 154, 570, 232, p, { w: 5 }) + trait(680, 154, 800, 232, p, { w: 5 }) +
+      noeud(500, 42) + noeud(320, 140) + noeud(680, 140) +
+      noeud(205, 240) + noeud(440, 240) + noeud(570, 240) + noeud(800, 240) +
+      mot(545, 50, 'la racine', { t: 20, a: 'start' }) +
+      mot(500, 292, 'un arbre : relié partout, sans aucun cycle', { t: 20 }));
+  },
+  coniques_fig(t) {
+    const p = prog(t);
+    let par = '', hyp = '';
+    for (let k = -8; k <= 8; k++) par += `${730 + 9 * k},${Math.round(186 - 1.05 * k * k)} `;
+    return svgBoite(
+      trait(320, 150, 175, 32, p, { w: 5 }) + trait(320, 150, 465, 32, p, { w: 5 }) +
+      trait(320, 150, 175, 268, p, { w: 5 }) + trait(320, 150, 465, 268, p, { w: 5 }) +
+      `<ellipse cx="320" cy="88" rx="72" ry="20" fill="#1A75FF" fill-opacity=".3" stroke="#1A75FF" stroke-width="4"/>` +
+      trait(238, 66, 402, 116, p, { w: 3, tiret: '8 6', c: '#E8604C' }) +
+      mot(320, 292, 'un double cône, coupé par un plan', { t: 19 }) +
+      `<ellipse cx="730" cy="58" rx="80" ry="28" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      mot(852, 66, 'ellipse', { t: 21, a: 'start' }) +
+      `<polyline points="${par}" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>` +
+      mot(852, 156, 'parabole', { t: 21, a: 'start' }) +
+      `<path d="M 664,214 Q 714,242 664,270" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      `<path d="M 796,214 Q 746,242 796,270" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      mot(852, 250, 'hyperbole', { t: 21, a: 'start' }));
+  },
+  revolution_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<line x1="80" y1="150" x2="920" y2="150" stroke="currentColor" stroke-width="4"/>` +
+      mot(928, 158, '(Ox)', { t: 21, a: 'start' }) +
+      `<path d="M 195,150 A 95,95 0 0 1 385,150" fill="none" stroke="#1A75FF" stroke-width="5"/>` +
+      `<path d="M 428,84 A 78,66 0 1 1 428,216" fill="none" stroke="#E8604C" stroke-width="4"/>` +
+      pointe(424, 224, 160, '#E8604C') +
+      mot(300, 30, 'une demi-circonférence tourne…', { t: 20 }) +
+      `<circle cx="680" cy="150" r="102" fill="#1A75FF" fill-opacity=".1" stroke="currentColor" stroke-width="5"/>` +
+      `<ellipse cx="680" cy="150" rx="102" ry="32" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="8 6"/>` +
+      trait(584, 106, 776, 106, p, { c: '#E8604C', w: 5 }) +
+      trait(584, 194, 776, 194, p, { c: '#E8604C', w: 5 }) +
+      mot(680, 284, '…et engendre la sphère', { t: 20 }));
+  },
+  cotation_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      mot(80, 36, "le dessin technique : une pièce, ses cotes", { t: 20, a: 'start' }) +
+      `<rect x="320" y="55" width="360" height="180" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="282" y1="145" x2="718" y2="145" stroke="currentColor" stroke-width="2" stroke-dasharray="16 6 4 6"/>` +
+      `<line x1="500" y1="28" x2="500" y2="246" stroke="currentColor" stroke-width="2" stroke-dasharray="16 6 4 6"/>` +
+      `<circle cx="500" cy="145" r="52" fill="none" stroke="currentColor" stroke-width="5"/>` +
+      trait(463, 108, 537, 182, p, { w: 4 }) + pointe(541, 186, 45, 'currentColor') + pointe(459, 104, 225, 'currentColor') +
+      mot(560, 102, 'Ø 25', { t: 23, a: 'start' }) +
+      trait(320, 268, 680, 268, p, { w: 4 }) + pointe(684, 268, 0, 'currentColor') + pointe(316, 268, 180, 'currentColor') +
+      `<line x1="320" y1="240" x2="320" y2="278" stroke="currentColor" stroke-width="2"/>` +
+      `<line x1="680" y1="240" x2="680" y2="278" stroke="currentColor" stroke-width="2"/>` +
+      mot(500, 260, '120', { t: 22 }));
+  },
+  engrenages_fig(t) {
+    const roue = (cx, cy, r, n, coul) => {
+      let s = '';
+      for (let k = 0; k < n; k++) {
+        const a = 2 * Math.PI * k / n, c = Math.cos(a), s2 = Math.sin(a);
+        s += `<line x1="${Math.round(cx + r * c)}" y1="${Math.round(cy + r * s2)}" x2="${Math.round(cx + (r + 17) * c)}" y2="${Math.round(cy + (r + 17) * s2)}" stroke="currentColor" stroke-width="7"/>`;
+      }
+      return s + `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${coul}" fill-opacity=".16" stroke="currentColor" stroke-width="5"/>` +
+        `<circle cx="${cx}" cy="${cy}" r="14" fill="none" stroke="currentColor" stroke-width="4"/>`;
+    };
+    return svgBoite(
+      roue(348, 148, 96, 14, '#1A75FF') + roue(556, 148, 70, 11, '#E8604C') +
+      `<path d="M 282,58 A 105,105 0 0 1 428,66" fill="none" stroke="#1A75FF" stroke-width="4"/>` + pointe(436, 68, 55, '#1A75FF') +
+      `<path d="M 618,238 A 82,82 0 0 1 492,232" fill="none" stroke="#E8604C" stroke-width="4"/>` + pointe(484, 230, 235, '#E8604C') +
+      mot(348, 290, 'roue motrice', { t: 20, c: '#1A75FF' }) +
+      mot(556, 290, 'roue menée', { t: 20, c: '#E8604C' }) +
+      mot(790, 140, 'engrenées : elles tournent', { t: 20, a: 'start' }) +
+      mot(790, 170, 'en sens contraires', { t: 20, a: 'start' }));
+  },
+  champ_fil_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<ellipse cx="500" cy="150" rx="72" ry="27" fill="none" stroke="#1A75FF" stroke-width="4"/>` +
+      `<ellipse cx="500" cy="150" rx="132" ry="49" fill="none" stroke="#1A75FF" stroke-width="4"/>` +
+      `<ellipse cx="500" cy="150" rx="192" ry="71" fill="none" stroke="#1A75FF" stroke-width="4"/>` +
+      trait(632, 101, 560, 101, p, { c: '#1A75FF', w: 5 }) + pointe(552, 101, 180, '#1A75FF') +
+      mot(660, 92, 'B', { t: 26, c: '#1A75FF', a: 'start' }) +
+      `<line x1="500" y1="278" x2="500" y2="30" stroke="currentColor" stroke-width="8"/>` +
+      pointe(500, 20, -90, 'currentColor') +
+      mot(528, 52, 'I', { t: 27, a: 'start' }) +
+      mot(150, 158, 'un fil parcouru', { t: 20, a: 'start' }) +
+      mot(150, 186, 'par un courant', { t: 20, a: 'start' }) +
+      mot(500, 294, 'le champ magnétique tourne autour du fil', { t: 20 }));
+  },
+  solenoide_fig(t) {
+    const p = prog(t);
+    let spires = '';
+    for (let k = 0; k < 10; k++) spires += `<ellipse cx="${268 + 52 * k}" cy="148" rx="27" ry="86" fill="none" stroke="currentColor" stroke-width="5"/>`;
+    return svgBoite(
+      spires +
+      trait(300, 118, 700, 118, p, { c: '#1A75FF', w: 4 }) + pointe(708, 118, 0, '#1A75FF') +
+      trait(300, 148, 700, 148, p, { c: '#1A75FF', w: 4 }) + pointe(708, 148, 0, '#1A75FF') +
+      trait(300, 178, 700, 178, p, { c: '#1A75FF', w: 4 }) + pointe(708, 178, 0, '#1A75FF') +
+      mot(196, 156, 'S', { t: 28, c: '#1A75FF' }) +
+      mot(806, 156, 'N', { t: 28, c: '#E8604C' }) +
+      mot(500, 30, 'un solénoïde : des spires enroulées', { t: 21 }) +
+      mot(500, 276, "à l'intérieur, un champ uniforme, parallèle à l'axe", { t: 20 }));
+  },
+  flux_magnetique_fig(t) {
+    const p = prog(t);
+    let lignes = '';
+    [392, 478, 564].forEach(x => {
+      lignes += trait(x, 26, x, 252, p, { c: '#1A75FF', w: 4 }) + pointe(x, 260, 90, '#1A75FF');
+    });
+    return svgBoite(
+      mot(70, 36, 'le flux : les lignes de champ qui traversent une surface', { t: 20, a: 'start' }) +
+      `<polygon points="330,92 668,92 588,228 250,228" fill="#1A75FF" fill-opacity=".13" stroke="currentColor" stroke-width="4"/>` +
+      lignes +
+      `<line x1="459" y1="160" x2="524" y2="66" stroke="currentColor" stroke-width="3" stroke-dasharray="8 6"/>` +
+      mot(540, 62, 'n, la normale', { t: 20, a: 'start' }) +
+      `<path d="M 459,104 A 56,56 0 0 1 489,112" fill="none" stroke="#E8604C" stroke-width="3"/>` +
+      mot(505, 108, 'θ', { t: 22, c: '#E8604C', a: 'start' }) +
+      mot(250, 262, 'la surface S', { t: 21, a: 'start' }) +
+      mot(950, 288, 'flux Φ = B × S × cos θ', { t: 23, a: 'end' }));
+  },
+  bureautique_fig(t) {
+    const p = prog(t);
+    const doc = (x, y, l, h, coul) => `<rect x="${x}" y="${y}" width="${l}" height="${h}" fill="${coul}" fill-opacity=".14" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="${x + 16}" y1="${y + 30}" x2="${x + l - 16}" y2="${y + 30}" stroke="currentColor" stroke-width="3"/>` +
+      `<line x1="${x + 16}" y1="${y + 52}" x2="${x + l - 34}" y2="${y + 52}" stroke="currentColor" stroke-width="3"/>` +
+      `<line x1="${x + 16}" y1="${y + 74}" x2="${x + l - 16}" y2="${y + 74}" stroke="currentColor" stroke-width="3"/>`;
+    return svgBoite(
+      doc(120, 42, 150, 100, '#1A75FF') + doc(150, 118, 150, 100, '#E8604C') +
+      mot(210, 252, 'des versions qui circulent', { t: 19 }) +
+      trait(316, 92, 566, 118, p, { c: '#10B981', w: 5 }) + pointe(574, 120, 25, '#10B981') +
+      trait(316, 168, 566, 168, p, { c: '#10B981', w: 5 }) + pointe(574, 168, 0, '#10B981') +
+      doc(590, 62, 250, 150, '#10B981') +
+      mot(715, 252, 'un seul document, partagé et à jour', { t: 19 }));
+  },
+  ordinateur_fig(t) {
+    return svgBoite(
+      `<rect x="225" y="48" width="380" height="158" fill="#1A75FF" fill-opacity=".1" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="255" y1="86" x2="520" y2="86" stroke="currentColor" stroke-width="3"/>` +
+      `<line x1="255" y1="116" x2="575" y2="116" stroke="currentColor" stroke-width="3"/>` +
+      `<line x1="255" y1="146" x2="470" y2="146" stroke="currentColor" stroke-width="3"/>` +
+      `<line x1="415" y1="206" x2="415" y2="232" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="340" y1="234" x2="490" y2="234" stroke="currentColor" stroke-width="5"/>` +
+      mot(415, 34, "l'écran", { t: 21 }) +
+      `<rect x="680" y="58" width="120" height="176" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="700" y1="92" x2="780" y2="92" stroke="currentColor" stroke-width="4"/>` +
+      `<circle cx="740" cy="196" r="13" fill="none" stroke="#10B981" stroke-width="4"/>` +
+      mot(740, 262, "l'unité centrale", { t: 20 }) +
+      `<rect x="255" y="252" width="320" height="24" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="4"/>` +
+      mot(150, 270, 'le clavier', { t: 20, a: 'end' }));
+  },
+  reseau_fig(t) {
+    const p = prog(t);
+    const poste = (x, y, lib) => `<rect x="${x}" y="${y}" width="130" height="74" fill="#1A75FF" fill-opacity=".12" stroke="currentColor" stroke-width="4"/>` + mot(x + 65, y + 46, lib, { t: 18 });
+    return svgBoite(
+      mot(500, 28, 'un réseau : des équipements interconnectés', { t: 21 }) +
+      trait(448, 118, 262, 92, p, { w: 4 }) + trait(552, 118, 738, 92, p, { w: 4 }) +
+      trait(448, 182, 262, 208, p, { w: 4 }) + trait(552, 182, 738, 208, p, { w: 4 }) +
+      poste(130, 56, 'poste') + poste(740, 56, 'poste') + poste(130, 196, 'imprimante') + poste(740, 196, 'poste') +
+      `<rect x="428" y="106" width="144" height="88" fill="#FFD83D" fill-opacity=".4" stroke="currentColor" stroke-width="5"/>` +
+      mot(500, 158, 'serveur', { t: 21 }) +
+      mot(500, 292, 'ils échangent des données selon des protocoles', { t: 19 }));
+  },
+  arbre_phylo_fig(t) {
+    const p = prog(t);
+    const feuille = (x, y) => `<circle cx="${x}" cy="${y}" r="9" fill="#10B981" stroke="currentColor" stroke-width="3"/>`;
+    return svgBoite(
+      trait(120, 150, 330, 150, p, { w: 5 }) +
+      trait(330, 150, 520, 66, p, { w: 5 }) + trait(330, 150, 520, 234, p, { w: 5 }) +
+      trait(520, 66, 800, 38, p, { w: 5 }) + trait(520, 66, 800, 102, p, { w: 5 }) +
+      trait(520, 234, 800, 198, p, { w: 5 }) + trait(520, 234, 800, 262, p, { w: 5 }) +
+      feuille(812, 38) + feuille(812, 102) + feuille(812, 198) + feuille(812, 262) +
+      mot(120, 186, 'ancêtre commun', { t: 20 }) +
+      mot(812, 292, 'les espèces actuelles', { t: 20 }) +
+      mot(812, 20, 'le temps →', { t: 18 }) +
+      mot(90, 60, "l'arbre de parenté", { t: 20, a: 'start' }));
+  },
+  cycle_carbone_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<rect x="372" y="22" width="256" height="52" rx="10" fill="#1A75FF" fill-opacity=".16" stroke="currentColor" stroke-width="4"/>` +
+      mot(500, 56, 'atmosphère : CO₂', { t: 21 }) +
+      `<line x1="205" y1="238" x2="205" y2="172" stroke="currentColor" stroke-width="6"/>` +
+      `<circle cx="163" cy="140" r="33" fill="#10B981" fill-opacity=".5"/>` +
+      `<circle cx="208" cy="112" r="40" fill="#10B981" fill-opacity=".5"/>` +
+      `<circle cx="250" cy="142" r="31" fill="#10B981" fill-opacity=".5"/>` +
+      mot(205, 272, 'les plantes', { t: 20 }) +
+      trait(430, 66, 262, 108, p, { c: '#10B981', w: 5 }) + pointe(254, 112, 140, '#10B981') +
+      mot(300, 62, 'photosynthèse : absorbé', { t: 18, c: '#10B981', a: 'start' }) +
+      `<rect x="742" y="182" width="118" height="58" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-width="4"/>` +
+      `<rect x="772" y="128" width="30" height="54" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-width="4"/>` +
+      `<circle cx="787" cy="112" r="11" fill="currentColor" opacity=".35"/>` +
+      `<circle cx="800" cy="88" r="14" fill="currentColor" opacity=".3"/>` +
+      mot(801, 272, "l'usine, la combustion", { t: 19 }) +
+      trait(700, 130, 622, 72, p, { c: '#E8604C', w: 5 }) + pointe(614, 68, -140, '#E8604C') +
+      mot(716, 108, 'émis', { t: 19, c: '#E8604C', a: 'start' }) +
+      `<path d="M 330,256 Q 415,240 500,256 Q 585,272 670,256" fill="none" stroke="#1A75FF" stroke-width="4"/>` +
+      mot(500, 292, 'océans et sols : les grands réservoirs', { t: 19 }));
+  },
+  compartiments_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<rect x="110" y="30" width="780" height="240" rx="18" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-width="4"/>` +
+      mot(500, 58, 'les compartiments liquidiens du corps', { t: 21 }) +
+      `<circle cx="300" cy="168" r="54" fill="#FFD83D" fill-opacity=".4" stroke="currentColor" stroke-width="4"/>` +
+      `<circle cx="300" cy="168" r="18" fill="#E8604C" fill-opacity=".4" stroke="currentColor" stroke-width="3"/>` +
+      mot(300, 174, 'cellule', { t: 19 }) +
+      mot(300, 252, 'liquide intracellulaire', { t: 18 }) +
+      mot(330, 96, 'liquide interstitiel : il baigne les cellules', { t: 19 }) +
+      `<rect x="580" y="118" width="270" height="42" fill="#E8604C" fill-opacity=".35" stroke="currentColor" stroke-width="3"/>` +
+      mot(715, 106, 'le plasma, dans les vaisseaux', { t: 18 }) +
+      `<rect x="580" y="204" width="270" height="34" fill="#10B981" fill-opacity=".35" stroke="currentColor" stroke-width="3"/>` +
+      mot(715, 262, 'la lymphe', { t: 18 }) +
+      trait(360, 150, 572, 140, p, { w: 3, tiret: '7 6' }) +
+      trait(360, 196, 572, 218, p, { w: 3, tiret: '7 6' }));
+  },
+  mitochondrie_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      mot(430, 28, 'la mitochondrie, la centrale de la cellule', { t: 21 }) +
+      `<ellipse cx="430" cy="152" rx="215" ry="96" fill="#E8604C" fill-opacity=".12" stroke="currentColor" stroke-width="5"/>` +
+      `<polyline points="262,152 300,116 338,188 376,116 414,188 452,116 490,188 528,116 566,188 598,152" fill="none" stroke="#E8604C" stroke-width="4" stroke-linejoin="round"/>` +
+      mot(430, 232, 'la matrice, au centre', { t: 19 }) +
+      `<path d="M 392,128 A 46,40 0 1 1 392,176" fill="none" stroke="#1A75FF" stroke-width="4" stroke-dasharray="8 6"/>` +
+      pointe(388, 182, 115, '#1A75FF') +
+      mot(700, 96, 'le cycle de Krebs', { t: 20, c: '#1A75FF', a: 'start' }) +
+      trait(600, 128, 692, 104, p, { w: 3, c: '#1A75FF' }) +
+      trait(648, 168, 730, 196, p, { c: '#10B981', w: 5 }) + pointe(738, 199, 25, '#10B981') +
+      mot(748, 190, 'énergie (ATP)', { t: 20, c: '#10B981', a: 'start' }) +
+      trait(648, 128, 730, 96, p, { w: 4 }) + pointe(738, 93, -25, 'currentColor') +
+      mot(748, 88, 'CO₂ rejeté', { t: 20, a: 'start' }));
+  },
+  systeme_thermo_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      mot(80, 44, 'le milieu extérieur', { t: 21, a: 'start' }) +
+      mot(920, 44, "des échanges d'énergie", { t: 20, a: 'end' }) +
+      `<rect x="330" y="62" width="340" height="168" rx="14" fill="#1A75FF" fill-opacity=".12" stroke="currentColor" stroke-width="4" stroke-dasharray="11 8"/>` +
+      mot(500, 140, 'le système', { t: 27 }) +
+      mot(500, 178, 'une portion de matière', { t: 19 }) +
+      mot(500, 256, 'la frontière, réelle ou fictive', { t: 19 }) +
+      trait(420, 12, 420, 54, p, { c: '#E8604C', w: 6 }) + pointe(420, 62, 90, '#E8604C') +
+      mot(404, 36, 'chaleur Q', { t: 20, c: '#E8604C', a: 'end' }) +
+      trait(580, 238, 580, 282, p, { c: '#1A75FF', w: 6 }) + pointe(580, 290, 90, '#1A75FF') +
+      mot(596, 272, 'travail W', { t: 20, c: '#1A75FF', a: 'start' }));
+  },
+  melange_solutions_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<path d="M 218,44 L 218,84 L 178,168 Q 176,186 198,186 L 282,186 Q 304,186 302,168 L 262,84 L 262,44 Z" fill="#1A75FF" fill-opacity=".4" stroke="currentColor" stroke-width="4"/>` +
+      mot(240, 30, 'solution A', { t: 20 }) +
+      `<path d="M 738,44 L 738,84 L 698,168 Q 696,186 718,186 L 802,186 Q 824,186 822,168 L 782,84 L 782,44 Z" fill="#FFD83D" fill-opacity=".55" stroke="currentColor" stroke-width="4"/>` +
+      mot(760, 30, 'solution B', { t: 20 }) +
+      trait(300, 150, 408, 196, p, { w: 3, tiret: '7 6' }) +
+      trait(700, 150, 592, 196, p, { w: 3, tiret: '7 6' }) +
+      `<path d="M 392,196 L 608,196 L 592,268 Q 590,280 576,280 L 424,280 Q 410,280 408,268 Z" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      `<path d="M 398,222 L 602,222 L 592,268 Q 590,280 576,280 L 424,280 Q 410,280 408,268 Z" fill="#10B981" fill-opacity=".35"/>` +
+      mot(500, 250, 'le mélange', { t: 20 }) +
+      mot(130, 250, 'on verse…', { t: 19, a: 'start' }) +
+      mot(870, 250, '…une seule phase', { t: 19, a: 'end' }));
+  },
+  presse_huile_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<ellipse cx="255" cy="160" rx="17" ry="10" fill="#B8860B" fill-opacity=".55" transform="rotate(-20 255 160)"/>` +
+      `<ellipse cx="295" cy="150" rx="17" ry="10" fill="#FFD83D" fill-opacity=".7" transform="rotate(15 295 150)"/>` +
+      `<ellipse cx="275" cy="185" rx="17" ry="10" fill="#B8860B" fill-opacity=".4" transform="rotate(40 275 185)"/>` +
+      `<ellipse cx="320" cy="178" rx="17" ry="10" fill="#FF9F1C" fill-opacity=".6" transform="rotate(-30 320 178)"/>` +
+      `<ellipse cx="238" cy="192" rx="16" ry="9" fill="#FFD83D" fill-opacity=".55" transform="rotate(10 238 192)"/>` +
+      mot(282, 248, "graines oléagineuses", { t: 19 }) +
+      trait(392, 170, 442, 170, p, { w: 5, c: '#B8860B' }) + pointe(448, 170, 0, '#B8860B') +
+      `<path d="M482 132 L512 94 L562 94 L592 132 Z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>` +
+      `<rect x="448" y="132" width="176" height="58" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-width="4"/>` +
+      trait(470, 190, 520, 132, p, { w: 3.5 }) + trait(520, 190, 570, 132, p, { w: 3.5 }) + trait(570, 190, 610, 148, p, { w: 3.5 }) +
+      `<circle cx="537" cy="66" r="21" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      trait(537, 45, 537, 87, p, { w: 3.5 }) + trait(516, 66, 558, 66, p, { w: 3.5 }) +
+      mot(537, 248, "la presse", { t: 19 }) +
+      trait(624, 178, 656, 204, p, { w: 5, c: '#B8860B' }) +
+      `<circle cx="662" cy="214" r="6" fill="#FFD83D" stroke="#B8860B" stroke-width="2.5"/>` +
+      `<rect x="712" y="130" width="46" height="18" rx="6" fill="none" stroke="#B8860B" stroke-width="3.5"/>` +
+      `<rect x="692" y="148" width="92" height="96" rx="10" fill="#FFD83D" fill-opacity=".55" stroke="#B8860B" stroke-width="4"/>` +
+      mot(738, 268, "l'huile brute", { t: 19 }));
+  },
 };
 
 Object.assign(ANIMS, FIG);
