@@ -1,334 +1,334 @@
 {
-  "cours": 7311,
-  "ecrans": {
-    "benefice": {
-      "kicker": "Exemple · le bénéfice",
-      "note": "Bénéfice en euros, production entre zéro et cinquante objets",
-      "tex": "B(x) = -x^2 + 60x - 500 \\qquad x \\in [0,\\ 50]",
-      "type": "formule"
-    },
-    "benefice_bornes": {
-      "kicker": "Exemple · vérifier les bornes",
-      "tex": [
-        "B(0) = -500",
-        "B(50) = -2500 + 3000 - 500 = 0",
-        "B(30) = 400 \\text{ dépasse les deux bornes}"
-      ],
-      "titre": "Le maximum intérieur gagne contre les bornes",
-      "type": "etape"
-    },
-    "benefice_calc": {
-      "kicker": "Exemple résolu · bénéfice maximal",
-      "tex": [
-        "B'(x) = -2x + 60 = 0 \\iff x = 30",
-        "B' > 0 \\text{ avant, } B' < 0 \\text{ après}",
-        "B(30) = -900 + 1800 - 500 = 400"
-      ],
-      "titre": "Maximum en trente, quatre cents euros",
-      "type": "etape"
-    },
-    "conclusion_modele": {
-      "anim": {
-        "hauteur": 160,
-        "nom": "fleche_fonction"
-      },
-      "kicker": "Revenir au contexte",
-      "texte": "Unité, cohérence, phrase de conclusion.",
-      "type": "phrase"
-    },
-    "cout": {
-      "kicker": "Exemple · le coût moyen",
-      "tex": [
-        "C(x) = \\tfrac{x^2 + 100}{x} = x + \\tfrac{100}{x} \\qquad x > 0"
-      ],
-      "titre": "Coût moyen par objet, en euros",
-      "type": "etape"
-    },
-    "cout_derive": {
-      "kicker": "Exemple · dériver le coût moyen",
-      "tex": [
-        "C'(x) = 1 - \\tfrac{100}{x^2} = \\tfrac{x^2 - 100}{x^2}"
-      ],
-      "titre": "Le signe se lit sur le numérateur",
-      "type": "etape"
-    },
-    "cout_signe": {
-      "kicker": "Exemple résolu · coût moyen minimal",
-      "tex": [
-        "C' < 0 \\text{ sur } ]0,\\ 10[,\\quad C' > 0 \\text{ après } 10",
-        "C(10) = 10 + 10 = 20"
-      ],
-      "titre": "Minimum en dix, vingt euros par objet",
-      "type": "etape"
-    },
-    "cout_tableau": {
-      "anim": {
-        "hauteur": 150,
-        "nom": "derive_fig"
-      },
-      "kicker": "Le tableau de variations",
-      "texte": "Le coût moyen descend, touche son minimum, remonte.",
-      "type": "phrase"
-    },
-    "demarche": {
-      "kicker": "La démarche d'optimisation",
-      "tex": [
-        "\\text{1. calculer } f'(x)",
-        "\\text{2. résoudre } f'(x) = 0 \\text{, signe de } f'",
-        "\\text{3. tableau de variations, conclure}",
-        "\\text{4. bornes et domaine : vérifier}"
-      ],
-      "titre": "Dériver, signer, conclure, vérifier",
-      "type": "etape"
-    },
-    "derivee_quotient": {
-      "kicker": "Dériver un quotient",
-      "note": "Le signe de la dérivée est celui de son numérateur",
-      "tex": "\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2} \\qquad v \\neq 0",
-      "type": "formule"
-    },
-    "enclos_derive": {
-      "kicker": "Exemple · exprimer et dériver",
-      "tex": [
-        "A(x) = x(40 - 2x) = -2x^2 + 40x",
-        "A'(x) = -4x + 40 = 0 \\iff x = 10"
-      ],
-      "titre": "L'aire comme fonction de la largeur",
-      "type": "etape"
-    },
-    "enclos_modele": {
-      "kicker": "Exemple · modéliser l'enclos",
-      "tex": [
-        "\\text{largeur : } x \\qquad \\text{longueur : } 40 - 2x",
-        "x \\in\\ ]0,\\ 20["
-      ],
-      "titre": "Quarante mètres de clôture, trois côtés",
-      "type": "etape"
-    },
-    "enclos_opt": {
-      "kicker": "Exemple résolu · aire maximale",
-      "tex": [
-        "A' > 0 \\text{ avant } 10,\\quad A' < 0 \\text{ après}",
-        "A(10) = 10 \\times 20 = 200\\ \\text{m}^2"
-      ],
-      "titre": "Maximum en dix, deux cents mètres carrés",
-      "type": "etape"
-    },
-    "interpretation": {
-      "kicker": "Exemple · interpréter",
-      "note": "Dix objets : le coût moyen le plus faible possible",
-      "tex": "C(10) = 20 \\text{ euros par objet, le minimum}",
-      "type": "formule"
-    },
-    "intro": {
-      "anim": {
-        "hauteur": 180,
-        "nom": "fleche_fonction"
-      },
-      "kicker": "Introduction",
-      "texte": "Un problème concret devient une fonction, puis un extremum.",
-      "type": "phrase"
-    },
-    "methode_modele": {
-      "kicker": "Modéliser en trois étapes",
-      "tex": [
-        "\\text{1. choisir } x \\text{ et son domaine}",
-        "\\text{2. exprimer la quantité en fonction de } x",
-        "\\text{3. étudier } f \\text{ et répondre}"
-      ],
-      "titre": "Variable, expression, étude",
-      "type": "etape"
-    },
-    "pieges": {
-      "anim": {
-        "hauteur": 140,
-        "nom": "derive_fig"
-      },
-      "kicker": "Les pièges à éviter",
-      "texte": "Signe oublié, domaine ignoré, unité absente.",
-      "type": "phrase"
-    },
-    "principe": {
-      "kicker": "Le principe d'optimisation",
-      "note": "Plus vers moins : maximum. Moins vers plus : minimum",
-      "tex": "\\begin{aligned} &f'(x_0) = 0 \\\\ &\\text{changement de signe : extremum en } x_0 \\end{aligned}",
-      "type": "formule"
-    },
-    "recap": {
-      "etapes": [
-        "Modéliser : variable, domaine, expression",
-        "Optimiser : dériver, signe, tableau",
-        "Maximum : la dérivée passe de + à −",
-        "Minimum : la dérivée passe de − à +",
-        "Interpréter : unité et phrase concrète"
-      ],
-      "kicker": "Ce qu'il faut retenir",
-      "type": "recap"
-    },
-    "recap1": {
-      "etapes": [
-        "Modéliser : choisir x et son domaine",
-        "Exprimer la quantité comme une fonction",
-        "Dériver, puis étudier le signe",
-        "Tableau de variations et extremum",
-        "Vérifier domaine et bornes avant de conclure"
-      ],
-      "kicker": "Partie 1 : à retenir",
-      "type": "recap"
-    },
-    "titre": {
-      "anim": {
-        "hauteur": 250,
-        "nom": "derive_fig"
-      },
-      "kicker": "Mathématique · Optimisation",
-      "sous": "Traduire un problème concret en fonction, puis trouver son maximum ou son minimum grâce à la dérivée",
-      "titre": "Optimiser et modéliser avec les fonctions",
-      "type": "titre"
-    }
+ "cours": 7311,
+ "ecrans": {
+  "benefice": {
+   "kicker": "Exemple · le bénéfice",
+   "note": "Bénéfice en euros, production entre zéro et cinquante objets",
+   "tex": "B(x) = -x^2 + 60x - 500 \\qquad x \\in [0,\\ 50]",
+   "type": "formule"
   },
-  "matiere": "Mathématique",
-  "parties": [
-    {
-      "debut": "p01",
-      "sous_titre": "Modéliser, puis optimiser un polynôme"
-    },
-    {
-      "debut": "p13",
-      "pont": {
-        "dit": "Partie deux, les quotients. Quand la grandeur à optimiser est un quotient, comme un coût moyen, la dérivée demande une formule particulière, mais la démarche reste la même : dériver, étudier le signe, conclure, puis interpréter dans le contexte.",
-        "texte": "Partie 2 : optimiser un quotient et interpréter."
-      },
-      "sous_titre": "Optimiser un quotient et interpréter le résultat"
-    }
-  ],
-  "phrases": [
-    {
-      "dit": "Bienvenue dans ce cours de mathématiques consacré à l'optimisation et à la modélisation. Le but est double : traduire un problème concret en une fonction, puis trouver la valeur qui rend cette fonction maximale ou minimale, grâce à l'étude de sa dérivée.",
-      "ecran": "titre",
-      "id": "p01",
-      "texte": "Modéliser, puis chercher le meilleur ou le plus petit."
-    },
-    {
-      "dit": "Modéliser, c'est traduire un problème concret en langage mathématique. On identifie une grandeur variable, notée x, puis on exprime la grandeur étudiée comme une fonction de x : une aire, un coût, un bénéfice, un volume. Le problème devient alors un calcul.",
-      "ecran": "intro",
-      "id": "p02",
-      "texte": "Du concret à la fonction : la modélisation."
-    },
-    {
-      "dit": "La méthode tient en trois étapes. Choisir la variable x et préciser son domaine de validité, souvent x strictement positif, ou un intervalle imposé par le contexte. Exprimer la quantité à étudier en fonction de x. Puis étudier la fonction, avec sa dérivée et ses variations, pour répondre à la question posée.",
-      "ecran": "methode_modele",
-      "id": "p03",
-      "texte": "Variable et domaine, expression, étude."
-    },
-    {
-      "dit": "Premier exemple, concret. Un agriculteur dispose de quarante mètres de clôture pour un enclos rectangulaire adossé à un mur : seuls trois côtés sont à clôturer. On note x la largeur, en mètres. La clôture couvre deux largeurs et une longueur, donc la longueur vaut quarante moins deux x, et x reste entre zéro et vingt, bornes exclues.",
-      "ecran": "enclos_modele",
-      "id": "p04",
-      "texte": "Enclos contre un mur : longueur quarante moins deux x."
-    },
-    {
-      "dit": "L'aire est la largeur fois la longueur : x fois quarante moins deux x, soit moins deux x au carré plus quarante x. On dérive : a prime de x vaut moins quatre x plus quarante, qui s'annule en x égal dix.",
-      "ecran": "enclos_derive",
-      "id": "p05",
-      "texte": "Aire exprimée, dérivée calculée, zéro en dix."
-    },
-    {
-      "dit": "La dérivée est positive avant dix et négative après : l'aire monte, puis descend. Elle est donc maximale en x égal dix. Sa valeur : dix fois vingt, soit deux cents mètres carrés. La largeur optimale est de dix mètres, pour une longueur de vingt mètres.",
-      "ecran": "enclos_opt",
-      "id": "p06",
-      "texte": "Exemple : aire maximale deux cents mètres carrés."
-    },
-    {
-      "dit": "Passons au principe général. Optimiser, c'est déterminer le maximum ou le minimum d'une fonction sur un intervalle. Si la dérivée s'annule en changeant de signe en un point, la fonction admet un extremum local en ce point : maximum si la dérivée passe du positif au négatif, minimum si elle passe du négatif au positif.",
-      "ecran": "principe",
-      "id": "p07",
-      "texte": "Changement de signe de la dérivée : extremum."
-    },
-    {
-      "dit": "La démarche complète compte quatre réflexes. Calculer la dérivée. Résoudre l'équation dérivée égale zéro et étudier le signe de la dérivée. Dresser le tableau de variations et conclure. Et vérifier que l'extremum appartient au domaine de validité, en le comparant avec les valeurs aux bornes.",
-      "ecran": "demarche",
-      "id": "p08",
-      "texte": "Dériver, signer, tableau, vérifier les bornes."
-    },
-    {
-      "dit": "Deuxième exemple : une entreprise fabrique x objets, entre zéro et cinquante. Son bénéfice, en euros, est bé de x égal moins x au carré plus soixante x moins cinq cents. On cherche le bénéfice maximal sur cet intervalle.",
-      "ecran": "benefice",
-      "id": "p09",
-      "texte": "Exemple : un bénéfice à maximiser."
-    },
-    {
-      "dit": "On dérive : bé prime de x vaut moins deux x plus soixante, qui s'annule en x égal trente. La dérivée est positive avant trente et négative après : le bénéfice est maximal pour trente objets. Il vaut moins neuf cents plus mille huit cents moins cinq cents, soit quatre cents euros.",
-      "ecran": "benefice_calc",
-      "id": "p10",
-      "texte": "Exemple : bénéfice maximal quatre cents euros."
-    },
-    {
-      "dit": "Vérifions les bornes, comme la démarche l'exige. Pour zéro objet, le bénéfice vaut moins cinq cents euros. Pour cinquante objets, il vaut moins deux mille cinq cents plus trois mille moins cinq cents, soit zéro euro. Le maximum intérieur, quatre cents euros en trente objets, dépasse les deux bornes : c'est bien le maximum global.",
-      "ecran": "benefice_bornes",
-      "id": "p11",
-      "texte": "Bornes battues : quatre cents, maximum global."
-    },
-    {
-      "dit": "Retenons la première partie. Modéliser, c'est choisir une variable et son domaine, puis exprimer la quantité étudiée en fonction de cette variable. Optimiser, c'est dériver, étudier le signe de la dérivée, dresser le tableau de variations, sans oublier le domaine et les bornes.",
-      "ecran": "recap1",
-      "id": "p12",
-      "texte": "Modéliser, optimiser : à retenir."
-    },
-    {
-      "dit": "Quand la grandeur à optimiser fait intervenir un quotient, on utilise la dérivée d'un quotient. La dérivée de u sur v est u prime fois v, moins u fois v prime, le tout divisé par v au carré, avec v différent de zéro. Et comme v au carré est toujours positif, le signe de la dérivée est celui de son numérateur.",
-      "ecran": "derivee_quotient",
-      "id": "p13",
-      "texte": "Dérivée d'un quotient : le signe vient du numérateur."
-    },
-    {
-      "dit": "Troisième exemple : le coût moyen de production de x objets, avec x strictement positif. Il est donné par cé de x égal x au carré plus cent, divisé par x, que l'on écrit aussi x plus cent sur x. On cherche le coût moyen minimal.",
-      "ecran": "cout",
-      "id": "p14",
-      "texte": "Exemple : un coût moyen à minimiser."
-    },
-    {
-      "dit": "On dérive : cé prime de x vaut un moins cent sur x au carré, soit x au carré moins cent, le tout sur x au carré. Le dénominateur est strictement positif pour x strictement positif : tout le signe se joue donc sur le numérateur, x au carré moins cent.",
-      "ecran": "cout_derive",
-      "id": "p15",
-      "texte": "Dérivée du coût : signe porté par le numérateur."
-    },
-    {
-      "dit": "Le numérateur est négatif entre zéro et dix, positif après dix. La dérivée change donc de signe en dix, du négatif au positif : le coût moyen est minimal pour dix objets. Sa valeur : dix plus dix, soit vingt euros par objet.",
-      "ecran": "cout_signe",
-      "id": "p16",
-      "texte": "Exemple : coût moyen minimal vingt euros."
-    },
-    {
-      "dit": "Le tableau de variations raconte la même histoire en un coup d'œil. Le coût moyen descend depuis les petites productions, touche son minimum de vingt euros en dix objets, puis remonte régulièrement. C'est ce tableau qui justifie la conclusion, pas seulement le calcul de la dérivée.",
-      "ecran": "cout_tableau",
-      "id": "p17",
-      "texte": "Tableau : descente, minimum, remontée."
-    },
-    {
-      "dit": "Trois pièges reviennent sans cesse. Conclure à un extremum sans avoir étudié le signe de la dérivée. Oublier le domaine de validité, par exemple une longueur négative ou un nombre d'objets qui n'est pas entier. Et rendre un nombre sans unité ni phrase, comme si le problème concret avait disparu.",
-      "ecran": "pieges",
-      "id": "p18",
-      "texte": "Pièges : signe, domaine, unité oubliés."
-    },
-    {
-      "dit": "Trouver l'extremum ne suffit pas : il faut revenir au contexte. Donner l'unité du résultat, en euros, en mètres ou en mètres carrés. Vérifier la cohérence avec le domaine. Et rédiger une phrase de conclusion qui interprète le résultat mathématique en termes concrets.",
-      "ecran": "conclusion_modele",
-      "id": "p19",
-      "texte": "Interpréter : unité, cohérence, conclusion."
-    },
-    {
-      "dit": "Reprenons le coût moyen pour interpréter. Son minimum vaut vingt, atteint pour dix objets. Concrètement : pour produire dix objets, le coût moyen par objet est de vingt euros, et c'est la valeur la plus faible possible. En dessous de dix objets comme au-dessus, le coût moyen par objet augmente.",
-      "ecran": "interpretation",
-      "id": "p20",
-      "texte": "Dix objets : vingt euros par objet, au plus bas."
-    },
-    {
-      "dit": "Pour conclure. Le réflexe essentiel tient en une chaîne : modéliser avec une variable et son domaine, dériver, étudier le signe, conclure par le tableau de variations, puis replacer le résultat dans le contexte, avec son unité et sa phrase d'interprétation.",
-      "ecran": "recap",
-      "id": "p21",
-      "texte": "Modéliser, dériver, conclure, interpréter : à retenir."
-    }
-  ],
-  "titre": "Optimiser et modéliser avec les fonctions"
+  "benefice_bornes": {
+   "kicker": "Exemple · vérifier les bornes",
+   "tex": [
+    "B(0) = -500",
+    "B(50) = -2500 + 3000 - 500 = 0",
+    "B(30) = 400 \\text{ dépasse les deux bornes}"
+   ],
+   "titre": "Le maximum intérieur gagne contre les bornes",
+   "type": "etape"
+  },
+  "benefice_calc": {
+   "kicker": "Exemple résolu · bénéfice maximal",
+   "tex": [
+    "B'(x) = -2x + 60 = 0 \\iff x = 30",
+    "B' > 0 \\text{ avant, } B' < 0 \\text{ après}",
+    "B(30) = -900 + 1800 - 500 = 400"
+   ],
+   "titre": "Maximum en trente, quatre cents euros",
+   "type": "etape"
+  },
+  "conclusion_modele": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Revenir au contexte",
+   "texte": "Unité, cohérence, phrase de conclusion.",
+   "type": "phrase"
+  },
+  "cout": {
+   "kicker": "Exemple · le coût moyen",
+   "tex": [
+    "C(x) = \\tfrac{x^2 + 100}{x} = x + \\tfrac{100}{x} \\qquad x > 0"
+   ],
+   "titre": "Coût moyen par objet, en euros",
+   "type": "etape"
+  },
+  "cout_derive": {
+   "kicker": "Exemple · dériver le coût moyen",
+   "tex": [
+    "C'(x) = 1 - \\tfrac{100}{x^2} = \\tfrac{x^2 - 100}{x^2}"
+   ],
+   "titre": "Le signe se lit sur le numérateur",
+   "type": "etape"
+  },
+  "cout_signe": {
+   "kicker": "Exemple résolu · coût moyen minimal",
+   "tex": [
+    "C' < 0 \\text{ sur } ]0,\\ 10[,\\quad C' > 0 \\text{ après } 10",
+    "C(10) = 10 + 10 = 20"
+   ],
+   "titre": "Minimum en dix, vingt euros par objet",
+   "type": "etape"
+  },
+  "cout_tableau": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "tableau_variations_fig"
+   },
+   "kicker": "Le tableau de variations",
+   "texte": "Le coût moyen descend, touche son minimum, remonte.",
+   "type": "phrase"
+  },
+  "demarche": {
+   "kicker": "La démarche d'optimisation",
+   "tex": [
+    "\\text{1. calculer } f'(x)",
+    "\\text{2. résoudre } f'(x) = 0 \\text{, signe de } f'",
+    "\\text{3. tableau de variations, conclure}",
+    "\\text{4. bornes et domaine : vérifier}"
+   ],
+   "titre": "Dériver, signer, conclure, vérifier",
+   "type": "etape"
+  },
+  "derivee_quotient": {
+   "kicker": "Dériver un quotient",
+   "note": "Le signe de la dérivée est celui de son numérateur",
+   "tex": "\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2} \\qquad v \\neq 0",
+   "type": "formule"
+  },
+  "enclos_derive": {
+   "kicker": "Exemple · exprimer et dériver",
+   "tex": [
+    "A(x) = x(40 - 2x) = -2x^2 + 40x",
+    "A'(x) = -4x + 40 = 0 \\iff x = 10"
+   ],
+   "titre": "L'aire comme fonction de la largeur",
+   "type": "etape"
+  },
+  "enclos_modele": {
+   "kicker": "Exemple · modéliser l'enclos",
+   "tex": [
+    "\\text{largeur : } x \\qquad \\text{longueur : } 40 - 2x",
+    "x \\in\\ ]0,\\ 20["
+   ],
+   "titre": "Quarante mètres de clôture, trois côtés",
+   "type": "etape"
+  },
+  "enclos_opt": {
+   "kicker": "Exemple résolu · aire maximale",
+   "tex": [
+    "A' > 0 \\text{ avant } 10,\\quad A' < 0 \\text{ après}",
+    "A(10) = 10 \\times 20 = 200\\ \\text{m}^2"
+   ],
+   "titre": "Maximum en dix, deux cents mètres carrés",
+   "type": "etape"
+  },
+  "interpretation": {
+   "kicker": "Exemple · interpréter",
+   "note": "Dix objets : le coût moyen le plus faible possible",
+   "tex": "C(10) = 20 \\text{ euros par objet, le minimum}",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Introduction",
+   "texte": "Un problème concret devient une fonction, puis un extremum.",
+   "type": "phrase"
+  },
+  "methode_modele": {
+   "kicker": "Modéliser en trois étapes",
+   "tex": [
+    "\\text{1. choisir } x \\text{ et son domaine}",
+    "\\text{2. exprimer la quantité en fonction de } x",
+    "\\text{3. étudier } f \\text{ et répondre}"
+   ],
+   "titre": "Variable, expression, étude",
+   "type": "etape"
+  },
+  "pieges": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "derivee_fig"
+   },
+   "kicker": "Les pièges à éviter",
+   "texte": "Signe oublié, domaine ignoré, unité absente.",
+   "type": "phrase"
+  },
+  "principe": {
+   "kicker": "Le principe d'optimisation",
+   "note": "Plus vers moins : maximum. Moins vers plus : minimum",
+   "tex": "\\begin{aligned} &f'(x_0) = 0 \\\\ &\\text{changement de signe : extremum en } x_0 \\end{aligned}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Modéliser : variable, domaine, expression",
+    "Optimiser : dériver, signe, tableau",
+    "Maximum : la dérivée passe de + à −",
+    "Minimum : la dérivée passe de − à +",
+    "Interpréter : unité et phrase concrète"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "recap1": {
+   "etapes": [
+    "Modéliser : choisir x et son domaine",
+    "Exprimer la quantité comme une fonction",
+    "Dériver, puis étudier le signe",
+    "Tableau de variations et extremum",
+    "Vérifier domaine et bornes avant de conclure"
+   ],
+   "kicker": "Partie 1 : à retenir",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "derivee_fig"
+   },
+   "kicker": "Mathématique · Optimisation",
+   "sous": "Traduire un problème concret en fonction, puis trouver son maximum ou son minimum grâce à la dérivée",
+   "titre": "Optimiser et modéliser avec les fonctions",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Modéliser, puis optimiser un polynôme"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux, les quotients. Quand la grandeur à optimiser est un quotient, comme un coût moyen, la dérivée demande une formule particulière, mais la démarche reste la même : dériver, étudier le signe, conclure, puis interpréter dans le contexte.",
+    "texte": "Partie 2 : optimiser un quotient et interpréter."
+   },
+   "sous_titre": "Optimiser un quotient et interpréter le résultat"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré à l'optimisation et à la modélisation. Le but est double : traduire un problème concret en une fonction, puis trouver la valeur qui rend cette fonction maximale ou minimale, grâce à l'étude de sa dérivée.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Modéliser, puis chercher le meilleur ou le plus petit."
+  },
+  {
+   "dit": "Modéliser, c'est traduire un problème concret en langage mathématique. On identifie une grandeur variable, notée x, puis on exprime la grandeur étudiée comme une fonction de x : une aire, un coût, un bénéfice, un volume. Le problème devient alors un calcul.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Du concret à la fonction : la modélisation."
+  },
+  {
+   "dit": "La méthode tient en trois étapes. Choisir la variable x et préciser son domaine de validité, souvent x strictement positif, ou un intervalle imposé par le contexte. Exprimer la quantité à étudier en fonction de x. Puis étudier la fonction, avec sa dérivée et ses variations, pour répondre à la question posée.",
+   "ecran": "methode_modele",
+   "id": "p03",
+   "texte": "Variable et domaine, expression, étude."
+  },
+  {
+   "dit": "Premier exemple, concret. Un agriculteur dispose de quarante mètres de clôture pour un enclos rectangulaire adossé à un mur : seuls trois côtés sont à clôturer. On note x la largeur, en mètres. La clôture couvre deux largeurs et une longueur, donc la longueur vaut quarante moins deux x, et x reste entre zéro et vingt, bornes exclues.",
+   "ecran": "enclos_modele",
+   "id": "p04",
+   "texte": "Enclos contre un mur : longueur quarante moins deux x."
+  },
+  {
+   "dit": "L'aire est la largeur fois la longueur : x fois quarante moins deux x, soit moins deux x au carré plus quarante x. On dérive : a prime de x vaut moins quatre x plus quarante, qui s'annule en x égal dix.",
+   "ecran": "enclos_derive",
+   "id": "p05",
+   "texte": "Aire exprimée, dérivée calculée, zéro en dix."
+  },
+  {
+   "dit": "La dérivée est positive avant dix et négative après : l'aire monte, puis descend. Elle est donc maximale en x égal dix. Sa valeur : dix fois vingt, soit deux cents mètres carrés. La largeur optimale est de dix mètres, pour une longueur de vingt mètres.",
+   "ecran": "enclos_opt",
+   "id": "p06",
+   "texte": "Exemple : aire maximale deux cents mètres carrés."
+  },
+  {
+   "dit": "Passons au principe général. Optimiser, c'est déterminer le maximum ou le minimum d'une fonction sur un intervalle. Si la dérivée s'annule en changeant de signe en un point, la fonction admet un extremum local en ce point : maximum si la dérivée passe du positif au négatif, minimum si elle passe du négatif au positif.",
+   "ecran": "principe",
+   "id": "p07",
+   "texte": "Changement de signe de la dérivée : extremum."
+  },
+  {
+   "dit": "La démarche complète compte quatre réflexes. Calculer la dérivée. Résoudre l'équation dérivée égale zéro et étudier le signe de la dérivée. Dresser le tableau de variations et conclure. Et vérifier que l'extremum appartient au domaine de validité, en le comparant avec les valeurs aux bornes.",
+   "ecran": "demarche",
+   "id": "p08",
+   "texte": "Dériver, signer, tableau, vérifier les bornes."
+  },
+  {
+   "dit": "Deuxième exemple : une entreprise fabrique x objets, entre zéro et cinquante. Son bénéfice, en euros, est bé de x égal moins x au carré plus soixante x moins cinq cents. On cherche le bénéfice maximal sur cet intervalle.",
+   "ecran": "benefice",
+   "id": "p09",
+   "texte": "Exemple : un bénéfice à maximiser."
+  },
+  {
+   "dit": "On dérive : bé prime de x vaut moins deux x plus soixante, qui s'annule en x égal trente. La dérivée est positive avant trente et négative après : le bénéfice est maximal pour trente objets. Il vaut moins neuf cents plus mille huit cents moins cinq cents, soit quatre cents euros.",
+   "ecran": "benefice_calc",
+   "id": "p10",
+   "texte": "Exemple : bénéfice maximal quatre cents euros."
+  },
+  {
+   "dit": "Vérifions les bornes, comme la démarche l'exige. Pour zéro objet, le bénéfice vaut moins cinq cents euros. Pour cinquante objets, il vaut moins deux mille cinq cents plus trois mille moins cinq cents, soit zéro euro. Le maximum intérieur, quatre cents euros en trente objets, dépasse les deux bornes : c'est bien le maximum global.",
+   "ecran": "benefice_bornes",
+   "id": "p11",
+   "texte": "Bornes battues : quatre cents, maximum global."
+  },
+  {
+   "dit": "Retenons la première partie. Modéliser, c'est choisir une variable et son domaine, puis exprimer la quantité étudiée en fonction de cette variable. Optimiser, c'est dériver, étudier le signe de la dérivée, dresser le tableau de variations, sans oublier le domaine et les bornes.",
+   "ecran": "recap1",
+   "id": "p12",
+   "texte": "Modéliser, optimiser : à retenir."
+  },
+  {
+   "dit": "Quand la grandeur à optimiser fait intervenir un quotient, on utilise la dérivée d'un quotient. La dérivée de u sur v est u prime fois v, moins u fois v prime, le tout divisé par v au carré, avec v différent de zéro. Et comme v au carré est toujours positif, le signe de la dérivée est celui de son numérateur.",
+   "ecran": "derivee_quotient",
+   "id": "p13",
+   "texte": "Dérivée d'un quotient : le signe vient du numérateur."
+  },
+  {
+   "dit": "Troisième exemple : le coût moyen de production de x objets, avec x strictement positif. Il est donné par cé de x égal x au carré plus cent, divisé par x, que l'on écrit aussi x plus cent sur x. On cherche le coût moyen minimal.",
+   "ecran": "cout",
+   "id": "p14",
+   "texte": "Exemple : un coût moyen à minimiser."
+  },
+  {
+   "dit": "On dérive : cé prime de x vaut un moins cent sur x au carré, soit x au carré moins cent, le tout sur x au carré. Le dénominateur est strictement positif pour x strictement positif : tout le signe se joue donc sur le numérateur, x au carré moins cent.",
+   "ecran": "cout_derive",
+   "id": "p15",
+   "texte": "Dérivée du coût : signe porté par le numérateur."
+  },
+  {
+   "dit": "Le numérateur est négatif entre zéro et dix, positif après dix. La dérivée change donc de signe en dix, du négatif au positif : le coût moyen est minimal pour dix objets. Sa valeur : dix plus dix, soit vingt euros par objet.",
+   "ecran": "cout_signe",
+   "id": "p16",
+   "texte": "Exemple : coût moyen minimal vingt euros."
+  },
+  {
+   "dit": "Le tableau de variations raconte la même histoire en un coup d'œil. Le coût moyen descend depuis les petites productions, touche son minimum de vingt euros en dix objets, puis remonte régulièrement. C'est ce tableau qui justifie la conclusion, pas seulement le calcul de la dérivée.",
+   "ecran": "cout_tableau",
+   "id": "p17",
+   "texte": "Tableau : descente, minimum, remontée."
+  },
+  {
+   "dit": "Trois pièges reviennent sans cesse. Conclure à un extremum sans avoir étudié le signe de la dérivée. Oublier le domaine de validité, par exemple une longueur négative ou un nombre d'objets qui n'est pas entier. Et rendre un nombre sans unité ni phrase, comme si le problème concret avait disparu.",
+   "ecran": "pieges",
+   "id": "p18",
+   "texte": "Pièges : signe, domaine, unité oubliés."
+  },
+  {
+   "dit": "Trouver l'extremum ne suffit pas : il faut revenir au contexte. Donner l'unité du résultat, en euros, en mètres ou en mètres carrés. Vérifier la cohérence avec le domaine. Et rédiger une phrase de conclusion qui interprète le résultat mathématique en termes concrets.",
+   "ecran": "conclusion_modele",
+   "id": "p19",
+   "texte": "Interpréter : unité, cohérence, conclusion."
+  },
+  {
+   "dit": "Reprenons le coût moyen pour interpréter. Son minimum vaut vingt, atteint pour dix objets. Concrètement : pour produire dix objets, le coût moyen par objet est de vingt euros, et c'est la valeur la plus faible possible. En dessous de dix objets comme au-dessus, le coût moyen par objet augmente.",
+   "ecran": "interpretation",
+   "id": "p20",
+   "texte": "Dix objets : vingt euros par objet, au plus bas."
+  },
+  {
+   "dit": "Pour conclure. Le réflexe essentiel tient en une chaîne : modéliser avec une variable et son domaine, dériver, étudier le signe, conclure par le tableau de variations, puis replacer le résultat dans le contexte, avec son unité et sa phrase d'interprétation.",
+   "ecran": "recap",
+   "id": "p21",
+   "texte": "Modéliser, dériver, conclure, interpréter : à retenir."
+  }
+ ],
+ "titre": "Optimiser et modéliser avec les fonctions"
 }
