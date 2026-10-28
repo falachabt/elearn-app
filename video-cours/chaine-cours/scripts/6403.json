@@ -1,0 +1,491 @@
+{
+ "cours": 6403,
+ "ecrans": {
+  "abstraction": {
+   "kicker": "Pourquoi cela compte : abstraire",
+   "tex": [
+    "\\text{quoi : le problème posé}",
+    "\\text{comment : la méthode}",
+    "\\text{un tri : nombres, noms, dates}"
+   ],
+   "titre": "Séparer le quoi du comment",
+   "type": "etape"
+  },
+  "affectation": {
+   "kicker": "Donner vie : affectation",
+   "note": "Sens droite vers gauche, pas une égalité",
+   "tex": "compteur \\leftarrow compteur + 1",
+   "type": "formule"
+  },
+  "bibliotheque": {
+   "kicker": "Exemple : le prêt en bibliothèque",
+   "tex": [
+    "\\text{nbLivresEmpruntes} < 5 \\Rightarrow \\text{autorisé}",
+    "\\text{nbLivresEmpruntes} \\geq 5 \\Rightarrow \\text{refusé}",
+    "\\text{afficher le message, puis fin}"
+   ],
+   "titre": "Cinq livres au maximum",
+   "type": "etape"
+  },
+  "boucles": {
+   "kicker": "Les boucles : trois formes",
+   "tex": [
+    "\\text{TantQue : tester avant}",
+    "\\text{Répéter : au moins une fois}",
+    "\\text{Pour : nombre connu, compteur}"
+   ],
+   "titre": "Tant que, répéter, pour",
+   "type": "etape"
+  },
+  "conversion": {
+   "kicker": "Exemple chiffré : Celsius vers Fahrenheit",
+   "note": "20 degrés Celsius donnent 68 degrés Fahrenheit",
+   "tex": "F = (C \\times \\frac{9}{5}) + 32",
+   "type": "formule"
+  },
+  "def": {
+   "kicker": "Définir : un algorithme",
+   "tex": [
+    "\\text{finie : un début, une fin}",
+    "\\text{non ambiguë : un seul sens}",
+    "\\text{ordonnée : un ordre précis}",
+    "\\text{elle résout un problème}"
+   ],
+   "titre": "Une suite finie, claire, ordonnée",
+   "type": "etape"
+  },
+  "efficacite": {
+   "kicker": "Pourquoi cela compte : être efficace",
+   "tex": [
+    "\\text{linéaire : } n \\text{ vérifications}",
+    "\\text{dichotomique : diviser par deux}",
+    "\\text{annuaire trié : aller plus vite}"
+   ],
+   "titre": "Linéaire ou dichotomique",
+   "type": "etape"
+  },
+  "euclide": {
+   "kicker": "Application : Euclide et le PGCD",
+   "tex": [
+    "56 - 32 = 24",
+    "32 - 24 = 8",
+    "24 - 8 = 16",
+    "16 - 8 = 8"
+   ],
+   "titre": "Des soustractions vers le PGCD",
+   "type": "etape"
+  },
+  "factorielle": {
+   "kicker": "Exemple chiffré : la factorielle",
+   "note": "Un fois deux fois trois fois quatre fois cinq",
+   "tex": "5! = 120",
+   "type": "formule"
+  },
+  "khwarizmi": {
+   "kicker": "Histoire : le nom algorithme",
+   "tex": [
+    "\\text{neuvième siècle : Al-Khwārizmī}",
+    "\\text{Algoritmi, nom latinisé}",
+    "\\text{algèbre : le même ouvrage}"
+   ],
+   "titre": "De Al-Khwārizmī à Algoritmi",
+   "type": "etape"
+  },
+  "lovelace": {
+   "kicker": "Histoire : le premier programme",
+   "tex": [
+    "\\text{milieu du dix-neuvième siècle}",
+    "\\text{machine analytique de Babbage}",
+    "\\text{nombres de Bernoulli calculés}"
+   ],
+   "titre": "Ada Lovelace, avant les machines",
+   "type": "etape"
+  },
+  "maximum": {
+   "kicker": "Premier exemple : le maximum",
+   "note": "Sinon, max reçoit b",
+   "tex": "a \\geq b \\Rightarrow max \\leftarrow a",
+   "type": "formule"
+  },
+  "maximum_liste": {
+   "kicker": "Application : le maximum dans une liste",
+   "note": "Liste 3, 7, 2, 9, 1 : maximum 9",
+   "tex": "O(n)",
+   "type": "formule"
+  },
+  "operateurs": {
+   "kicker": "Construire une condition",
+   "tex": [
+    "\\text{ET : vrai si les deux vraies}",
+    "\\text{OU : vrai si une vraie}",
+    "\\text{NON : inverse la valeur}"
+   ],
+   "titre": "ET, OU, NON",
+   "type": "etape"
+  },
+  "organigramme": {
+   "kicker": "Représenter : organigramme",
+   "tex": [
+    "\\text{symboles normalisés, flux fléché}",
+    "\\text{diamant : la décision bifurque}",
+    "\\text{deux branches, puis convergence}"
+   ],
+   "titre": "Le dessin technique de la logique",
+   "type": "etape"
+  },
+  "parite": {
+   "kicker": "Exemple : pair ou impair",
+   "note": "Sinon, le nombre est impair",
+   "tex": "nombre \\bmod 2 = 0 \\Rightarrow \\text{pair}",
+   "type": "formule"
+  },
+  "proprietes": {
+   "kicker": "Cinq propriétés cardinales",
+   "tex": [
+    "\\text{déterminisme : étape précise}",
+    "\\text{finitude : il termine}",
+    "\\text{entrées} \\rightarrow \\text{sorties}",
+    "\\text{effectivité : exécutable}",
+    "\\text{généralité : une classe}"
+   ],
+   "titre": "Déterministe, fini, général",
+   "type": "etape"
+  },
+  "pseudo": {
+   "kicker": "Représenter : le pseudo-code",
+   "tex": [
+    "\\text{texte structuré, proche du code}",
+    "\\text{indépendant de tout langage}",
+    "\\text{entre naturel et programme}"
+   ],
+   "titre": "Précisément imprécis, et indépendant",
+   "type": "etape"
+  },
+  "quotidien": {
+   "kicker": "Partout, même sans ordinateur",
+   "tex": [
+    "\\text{recette : ingrédients} \\rightarrow \\text{gâteau}",
+    "\\text{mode emploi : pièces} \\rightarrow \\text{meuble}",
+    "\\text{Euclide, vers 300 avant J.-C. : PGCD}"
+   ],
+   "titre": "Recette, mode emploi, Euclide",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Algorithme : suite finie, claire, ordonnée",
+    "Représenter : pseudo-code et organigramme",
+    "Variables : nom, valeur, type",
+    "Décider : séquence, condition, boucles",
+    "Appliquer : maximum, Euclide, recherches"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "recherches": {
+   "kicker": "Application : chercher plus vite",
+   "note": "Dichotomie : 20 comparaisons contre 1 000 000",
+   "tex": "2^{20} \\approx 1\\,000\\,000",
+   "type": "formule"
+  },
+  "sequence_condition": {
+   "kicker": "Les structures : séquence et condition",
+   "tex": [
+    "\\text{séquence : ordre, une fois}",
+    "\\text{condition : vrai ou faux}",
+    "\\text{choix : bifurcation du flux}"
+   ],
+   "titre": "Ordre, puis choix",
+   "type": "etape"
+  },
+  "sinonsi": {
+   "kicker": "Plusieurs issues : SinonSi et Selon",
+   "tex": [
+    "\\text{note} \\geq 16 \\text{ : Très bien}",
+    "\\text{note} \\geq 14 \\text{ : Bien}",
+    "\\text{note} \\geq 12 \\text{ : Assez bien}",
+    "\\text{note} \\geq 10 \\text{ : Passable}",
+    "\\text{sinon : Insuffisant}"
+   ],
+   "titre": "Seize, quatorze, douze, dix",
+   "type": "etape"
+  },
+  "structure_pseudo": {
+   "kicker": "Le squelette du pseudo-code",
+   "tex": [
+    "\\text{Algorithme : son nom}",
+    "\\text{Variables : nom et type}",
+    "\\text{Début} \\rightarrow \\text{instructions}",
+    "\\text{Si, TantQue} \\rightarrow \\text{Fin}"
+   ],
+   "titre": "Algorithme, variables, début, fin",
+   "type": "etape"
+  },
+  "synthese": {
+   "kicker": "Synthèse : le trio fondamental",
+   "tex": [
+    "\\text{séquence : enchaîner}",
+    "\\text{sélection : décider}",
+    "\\text{répétition : itérer}",
+    "\\text{Böhm-Jacopini, 1966}"
+   ],
+   "titre": "Trois structures suffisent",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Informatique · Introduction aux algorithmes",
+   "sous": "Définir, représenter, décider, répéter : des premiers algorithmes aux applications",
+   "titre": "Introduction aux algorithmes : concepts et représentation",
+   "type": "titre"
+  },
+  "types_autres": {
+   "kicker": "Les types : booléen, caractère, chaîne",
+   "tex": [
+    "\\text{Booléen : VRAI ou FAUX}",
+    "\\text{Caractère : A, code } 65",
+    "\\text{Chaîne : Bonjour, Alice}"
+   ],
+   "titre": "Vrai ou faux, lettre, texte",
+   "type": "etape"
+  },
+  "types_num": {
+   "kicker": "Les types : entiers et réels",
+   "tex": [
+    "\\text{Entier : } 15 \\text{ pommes}",
+    "\\text{Réel : } 23{,}7 \\text{ degrés}",
+    "\\text{DIV, MOD : division, reste}"
+   ],
+   "titre": "Compter ou mesurer",
+   "type": "etape"
+  },
+  "universalite": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Pourquoi cela compte : réutiliser",
+   "texte": "Un parcours de graphe : GPS, réseau social, routage.",
+   "type": "phrase"
+  },
+  "variable": {
+   "kicker": "Les boîtes : la variable",
+   "tex": [
+    "\\text{nom : étiquette unique}",
+    "\\text{valeur : contenu qui change}",
+    "\\text{type : nature de la donnée}"
+   ],
+   "titre": "Nom, valeur, type",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir et représenter : algorithme, histoire, pseudo-code"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : du premier exemple aux premiers choix. Nous appliquerons le pseudo-code au maximum et au prêt en bibliothèque, puis nous ouvrirons les boîtes des variables et des types, avant de décider avec la séquence et la condition.",
+    "texte": "Partie 2 : exemples, variables, types, premiers choix."
+   },
+   "sous_titre": "Exemples, variables, types et premiers choix"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : les choix multiples, les boucles qui répètent, et quatre applications, de la factorielle à la recherche dichotomique, en passant par le maximum et Euclide.",
+    "texte": "Partie 3 : choix multiples, boucles, applications."
+   },
+   "sous_titre": "Choix multiples, boucles et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'introduction aux algorithmes, ces entités invisibles qui dirigent nos journées. Le matin, une alarme calcule le moment optimal pour vous réveiller, un réseau social trie votre fil selon une logique précise, et une application de navigation cherche votre itinéraire le plus rapide.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Des algorithmes invisibles dirigent nos journées."
+  },
+  {
+   "dit": "Un algorithme est une suite finie, non ambiguë et ordonnée d'instructions permettant de résoudre un problème en un nombre fini d'étapes. Finie veut dire qu'il a un début et une fin, non ambiguë que chaque instruction se comprend d'une seule façon, ordonnée que l'ordre des étapes compte.",
+   "ecran": "def",
+   "id": "p02",
+   "texte": "Algorithme : fini, clair, ordonné."
+  },
+  {
+   "dit": "Un vrai algorithme possède cinq propriétés cardinales. Le déterminisme : chaque étape est précisément définie. La finitude : l'exécution se termine toujours. Il accepte des entrées et produit des sorties, chaque opération est assez simple pour être exécutée, et il résout toute une classe de problèmes, pas un seul cas.",
+   "ecran": "proprietes",
+   "id": "p03",
+   "texte": "Cinq propriétés : déterminisme, finitude, généralité."
+  },
+  {
+   "dit": "Le mot lui-même est un hommage au mathématicien perse du neuvième siècle, Al-Khwārizmī. Son ouvrage décrivait des procédures si claires et méthodiques pour résoudre des équations que son nom, latinisé en Algoritmi, est devenu synonyme de méthode de calcul, et nous a aussi donné le mot algèbre.",
+   "ecran": "khwarizmi",
+   "id": "p04",
+   "texte": "Al-Khwārizmī, neuvième siècle : Algoritmi."
+  },
+  {
+   "dit": "Le premier algorithme conçu pour une machine est attribué à Ada Lovelace, au milieu du dix-neuvième siècle. En annotant le travail de Charles Babbage sur sa machine analytique, elle a décrit une méthode pour calculer les nombres de Bernoulli, considérée comme le premier programme informatique.",
+   "ecran": "lovelace",
+   "id": "p05",
+   "texte": "Ada Lovelace : le premier programme."
+  },
+  {
+   "dit": "Les algorithmes ne sont pas nés avec l'informatique. Une recette de cuisine transforme des ingrédients en gâteau, à condition de respecter l'ordre : mettre le gâteau au four avant de le mélanger conduit à l'échec. Un mode d'emploi assemble des pièces détachées en objet fonctionnel, et l'algorithme d'Euclide, vieux de plus de deux mille ans, calcule encore le plus grand commun diviseur.",
+   "ecran": "quotidien",
+   "id": "p06",
+   "texte": "Recette, mode emploi, Euclide : déjà des algorithmes."
+  },
+  {
+   "dit": "Un algorithme permet d'abord de séparer le quoi du comment : la spécification du problème d'une part, la méthode de résolution d'autre part. Une fois que vous avez conçu un bon algorithme de tri, vous pouvez trier des nombres, des noms ou des dates, sans repenser le problème fondamental à chaque fois.",
+   "ecran": "abstraction",
+   "id": "p07",
+   "texte": "Séparer le quoi du comment."
+  },
+  {
+   "dit": "Le choix de l'algorithme décide aussi de l'efficacité. Pour chercher un nom dans un annuaire trié, la recherche linéaire lit chaque page depuis le début et fait, dans le pire des cas, autant de vérifications qu'il y a de pages. La recherche dichotomique, elle, divise l'espace de recherche en deux à chaque étape et va beaucoup plus vite.",
+   "ecran": "efficacite",
+   "id": "p08",
+   "texte": "Linéaire : tout lire. Dichotomique : diviser par deux."
+  },
+  {
+   "dit": "Enfin, un bon algorithme se réutilise partout. L'algorithme de parcours de graphe qui trouve le chemin le plus court entre deux villes dans une application de guidage est fondamentalement le même que celui qui trouve les relations les plus proches dans un réseau social, ou qui optimise le routage des paquets sur Internet.",
+   "ecran": "universalite",
+   "id": "p09",
+   "texte": "Un parcours de graphe : GPS, réseau social, routage."
+  },
+  {
+   "dit": "Mais comment décrire un algorithme avant de coder ? Premier outil : le pseudo-code, une description textuelle et structurée, proche d'un langage de programmation sans en subir la syntaxe rigoureuse. C'est un compromis élégant entre le langage naturel, trop ambigu, et le code informatique, trop contraignant dans sa forme.",
+   "ecran": "pseudo",
+   "id": "p10",
+   "texte": "Pseudo-code : entre naturel et programme."
+  },
+  {
+   "dit": "Un algorithme en pseudo-code s'annonce par son nom, puis déclare ses variables avec leur type, puis enchaîne ses instructions entre Début et Fin. On y retrouve les mots Si pour la condition, et TantQue pour la répétition, que nous allons détailler dans la deuxième partie.",
+   "ecran": "structure_pseudo",
+   "id": "p11",
+   "texte": "Nom, variables, début, instructions, fin."
+  },
+  {
+   "dit": "Premier exemple, le maximum de deux nombres. On lit a et b, puis si a est supérieur ou égal à b, alors le maximum reçoit a, sinon il reçoit b, et on affiche le résultat. On voit déjà les deux structures de base : la séquence, des instructions dans l'ordre, et la condition, Si, Alors, Sinon.",
+   "ecran": "maximum",
+   "id": "p12",
+   "texte": "Maximum de a et b : si a supérieur ou égal à b, max reçoit a."
+  },
+  {
+   "dit": "Deuxième outil : l'organigramme, le dessin technique de la logique. Il représente graphiquement l'enchaînement des opérations et des décisions à l'aide de symboles normalisés. La structure en diamant crée une bifurcation dans le flux : les deux branches se rejoignent ensuite, ce qui illustre la convergence après une décision.",
+   "ecran": "organigramme",
+   "id": "p13",
+   "texte": "Organigramme : le dessin de la logique."
+  },
+  {
+   "dit": "Reprenons le contrôle de prêt d'une bibliothèque, en pseudo-code puis en organigramme. Un utilisateur peut emprunter jusqu'à cinq livres. Si le nombre de livres déjà empruntés est inférieur à cinq, l'emprunt est autorisé, sinon il est refusé, puis le message s'affiche. Et vous, que se passe-t-il si l'utilisateur entre un nombre négatif ? Notre algorithme est-il robuste ?",
+   "ecran": "bibliotheque",
+   "id": "p14",
+   "texte": "Bibliothèque : moins de cinq livres, emprunt autorisé."
+  },
+  {
+   "dit": "Pour décrire tout cela, il faut des boîtes : les variables. Une variable est un emplacement en mémoire auquel on attribue un nom, comme une étiquette, et dans lequel on stocke une valeur. Trois aspects comptent : le nom, qui identifie la boîte, la valeur, qui peut changer, et le type, la nature de la donnée qu'elle doit contenir.",
+   "ecran": "variable",
+   "id": "p15",
+   "texte": "Variable : nom, valeur, type."
+  },
+  {
+   "dit": "Commençons par les types numériques. Les entiers représentent les nombres sans partie décimale : on s'en sert pour compter, par exemple quinze pommes. Les réels représentent les nombres à virgule, comme vingt-trois virgule sept degrés, pour les mesures et les calculs scientifiques. La division entière et le modulo donnent le quotient et le reste.",
+   "ecran": "types_num",
+   "id": "p16",
+   "texte": "Entier pour compter, réel pour mesurer."
+  },
+  {
+   "dit": "Les autres types de base sont tout aussi utiles. Le booléen ne prend que deux valeurs, vrai ou faux, pour un interrupteur ou le résultat d'une condition. Le caractère est un seul symbole, comme la lettre A, stockée en mémoire sous le code soixante-cinq. La chaîne est une séquence de caractères, comme un nom, et on peut concaténer deux chaînes, par exemple Bonjour et un prénom pour obtenir Bonjour Alice.",
+   "ecran": "types_autres",
+   "id": "p17",
+   "texte": "Booléen, caractère, chaîne : vrai, lettre, texte."
+  },
+  {
+   "dit": "Déclarer une variable, c'est créer la boîte et coller son étiquette. L'affecter, c'est y placer une valeur, avec la flèche, de la droite vers la gauche : on évalue d'abord ce qui est à droite, puis on place le résultat à gauche. La ligne compteur reçoit compteur plus un est fondamentale : ce n'est pas une égalité mathématique, impossible, mais une instruction de mise à jour, qui transforme zéro en un.",
+   "ecran": "affectation",
+   "id": "p18",
+   "texte": "Compteur reçoit compteur plus un : mise à jour, pas égalité."
+  },
+  {
+   "dit": "Appliquons les types à une conversion de température, de degrés Celsius vers Fahrenheit. La formule multiplie la température en Celsius par neuf cinquièmes, puis ajoute trente-deux. Pour vingt degrés Celsius, on obtient trente-six plus trente-deux, soit soixante-huit degrés Fahrenheit. Les deux températures sont déclarées comme réelles, car elles peuvent être décimales.",
+   "ecran": "conversion",
+   "id": "p19",
+   "texte": "Vingt degrés Celsius donnent soixante-huit Fahrenheit."
+  },
+  {
+   "dit": "Revenons aux structures de contrôle. La séquence est l'enchaînement linéaire d'instructions : chaque instruction est exécutée exactement une fois, dans l'ordre où elle est écrite. La condition, elle, introduit le choix : l'algorithme peut emprunter un chemin ou un autre selon que la condition est vraie ou fausse. C'est ce qui transforme une simple recette en processus intelligent.",
+   "ecran": "sequence_condition",
+   "id": "p20",
+   "texte": "Séquence : dans lordre. Condition : selon vrai ou faux."
+  },
+  {
+   "dit": "Une condition est une expression logique, vraie ou fausse, souvent construite avec des opérateurs de comparaison. Pour combiner des conditions, on dispose de trois opérateurs logiques. ET n'est vrai que si les deux conditions sont vraies. OU est vrai si au moins une condition est vraie. NON inverse la valeur de la condition.",
+   "ecran": "operateurs",
+   "id": "p21",
+   "texte": "ET, OU, NON : combiner des conditions."
+  },
+  {
+   "dit": "Exemple simple : pair ou impair ? On lit un nombre entier, puis si le reste de sa division par deux vaut zéro, on affiche qu'il est pair, sinon qu'il est impair. Attention, dans de nombreux langages, un seul signe égal affecte une valeur, tandis que deux signes égaux comparent : écrire Si x égale cinq au lieu de comparer affecte cinq à x au lieu de le tester.",
+   "ecran": "parite",
+   "id": "p22",
+   "texte": "Pair si le reste de la division par deux vaut zéro."
+  },
+  {
+   "dit": "Pour plus de deux issues, on enchaîne les SinonSi. Pour une note sur vingt : à partir de seize, Très bien, à partir de quatorze, Bien, à partir de douze, Assez bien, à partir de dix, Passable, sinon Insuffisant. Attention à l'ordre : les conditions sont évaluées de haut en bas, et dès qu'une condition est vraie, les suivantes sont ignorées. La structure Selon, elle, compare une même variable à plusieurs valeurs discrètes, comme le numéro du jour de la semaine.",
+   "ecran": "sinonsi",
+   "id": "p23",
+   "texte": "SinonSi : de haut en bas, la première vraie gagne."
+  },
+  {
+   "dit": "Il manque encore la répétition. Une boucle exécute un bloc d'instructions de façon répétée tant qu'une condition est vérifiée. La boucle TantQue teste avant chaque tour, et peut donc ne jamais tourner. La boucle Répéter Jusqu'à exécute le bloc au moins une fois, puis teste. La boucle Pour, enfin, sert quand le nombre d'itérations est connu d'avance, avec un compteur et un pas.",
+   "ecran": "boucles",
+   "id": "p24",
+   "texte": "Tant que, répéter, pour : trois façons de répéter."
+  },
+  {
+   "dit": "Exemple chiffré : la factorielle d'un nombre, notée n suivi d'un point d'exclamation, est le produit de tous les entiers de un à n. Pour cinq, on multiplie un par deux par trois par quatre par cinq, ce qui donne cent vingt. L'algorithme refuse les nombres négatifs, initialise la factorielle à un, puis multiplie pour chaque valeur du compteur.",
+   "ecran": "factorielle",
+   "id": "p25",
+   "texte": "Cinq factorielle : cent vingt."
+  },
+  {
+   "dit": "Voyons maintenant des algorithmes en action. Pour trouver le maximum d'une liste non triée, on suppose que le premier élément est le maximum, puis on compare chaque élément suivant et on met à jour le maximum quand on trouve plus grand. Pour la liste trois, sept, deux, neuf, un, le maximum passe de trois à sept, puis à neuf, et y reste : le résultat est neuf. Il faut examiner chaque élément une fois, c'est une complexité linéaire, notée grand O de n.",
+   "ecran": "maximum_liste",
+   "id": "p26",
+   "texte": "Maximum de la liste : neuf, en un seul parcours."
+  },
+  {
+   "dit": "Deuxième application, l'algorithme d'Euclide, vers trois cents ans avant Jésus-Christ, pour le plus grand commun diviseur. Par soustractions successives, tant que les deux nombres sont différents, on retranche le plus petit du plus grand. Pour cinquante-six et trente-deux : cinquante-six moins trente-deux donne vingt-quatre, trente-deux moins vingt-quatre donne huit, vingt-quatre moins huit donne seize, seize moins huit donne huit : le plus grand commun diviseur est huit.",
+   "ecran": "euclide",
+   "id": "p27",
+   "texte": "Euclide : cinquante-six et trente-deux donnent huit."
+  },
+  {
+   "dit": "Dernière application : la recherche. La recherche linéaire examine chaque élément un par un, dans l'ordre. La recherche dichotomique, elle, exige une liste triée, mais divise l'espace de recherche en deux à chaque étape. Pour une liste d'un million d'éléments, elle ne demande au pire que vingt comparaisons, car deux puissance vingt vaut environ un million, contre un million pour la recherche linéaire.",
+   "ecran": "recherches",
+   "id": "p28",
+   "texte": "Dichotomie : vingt comparaisons contre un million."
+  },
+  {
+   "dit": "Retenons le trio fondamental. La séquence enchaîne, la sélection décide, la répétition itère. Selon le théorème de Böhm-Jacopini, de mille neuf cent soixante-six, ces trois structures suffisent à exprimer n'importe quel algorithme. Concevoir un bon algorithme, c'est trouver l'équilibre entre la correction, il résout toujours le problème, la clarté, il est compréhensible, et l'efficacité, il utilise judicieusement le temps et la mémoire.",
+   "ecran": "synthese",
+   "id": "p29",
+   "texte": "Séquence, sélection, répétition : le trio qui suffit."
+  },
+  {
+   "dit": "Retenons l'essentiel : un algorithme est une suite finie, claire et ordonnée, qui se représente en pseudo-code ou en organigramme, qui stocke ses données dans des variables typées, qui décide avec des conditions et répète avec des boucles, et qui s'applique du maximum au plus grand commun diviseur, en passant par la recherche dichotomique.",
+   "ecran": "recap",
+   "id": "p30",
+   "texte": "Définir, représenter, décider, répéter, appliquer."
+  }
+ ],
+ "titre": "Introduction aux algorithmes : concepts et représentation"
+}
