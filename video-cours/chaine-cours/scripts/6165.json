@@ -1,465 +1,294 @@
 {
  "cours": 6165,
- "titre": "Primitives et intégrale indéfinie : remonter de la dérivée à la fonction",
- "matiere": "Mathématique",
  "ecrans": {
-  "titre": {
-   "type": "titre",
-   "kicker": "Mathématique · Analyse",
-   "titre": "Primitives : remonter de la dérivée à la fonction",
-   "sous": "Intégrale indéfinie, primitives usuelles, formes composées et applications",
+  "aire": {
    "anim": {
-    "nom": "primitives_famille_fig",
-    "hauteur": 240
-   }
-  },
-  "intro": {
-   "type": "phrase",
-   "kicker": "Introduction",
-   "texte": "Connaître la vitesse à chaque instant, retrouver la distance : intégrer, c'est remonter le temps.",
-   "anim": {
-    "nom": "graphe_fig",
-    "hauteur": 200
-   }
-  },
-  "def": {
-   "type": "formule",
-   "kicker": "Définition d'une primitive",
-   "tex": "F \\text{ primitive de } f \\text{ sur } I \\iff F'(x) = f(x) \\ \\forall x \\in I",
-   "note": "F est dérivable sur l'intervalle I, et sa dérivée redonne exactement f en tout point.",
-   "anim": {
-    "nom": "fleche_fonction",
-    "hauteur": 170
-   }
-  },
-  "famille": {
-   "type": "formule",
-   "kicker": "Une famille, pas une fonction",
-   "tex": "f(x) = 2x \\quad \\Rightarrow \\quad F(x) = x^2 + C, \\ C \\in \\mathbb{R}",
-   "note": "Toutes les primitives diffèrent d'une constante : leurs courbes se déduisent par translation verticale.",
-   "anim": {
-    "nom": "primitives_famille_fig",
-    "hauteur": 200
-   }
-  },
-  "notation": {
-   "type": "formule",
-   "kicker": "L'intégrale indéfinie",
-   "tex": "\\int f(x) \\, dx = F(x) + C",
-   "note": "Le signe intégral de Leibniz, un S allongé pour somme ; f est l'intégrande, dx désigne la variable.",
-   "anim": {
-    "nom": "primitives_famille_fig",
-    "hauteur": 170
-   }
-  },
-  "puissance": {
-   "type": "formule",
-   "kicker": "La règle des puissances, à l'envers",
-   "tex": "\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C \\qquad (n \\neq -1)",
-   "note": "Exception capitale : pour n = −1, la formule diviserait par zéro ; ∫ (1/x) dx = ln|x| + C.",
-   "anim": {
-    "nom": "parabole_fig",
-    "hauteur": 170
-   }
-  },
-  "tableau": {
-   "type": "etape",
-   "kicker": "Les primitives usuelles",
-   "titre": "La table des dérivées, lue à l'envers",
+    "hauteur": 140,
+    "nom": "riemann_fig"
+   },
+   "kicker": "Application · une aire sous la courbe",
    "tex": [
-    "\\textstyle \\int \\tfrac{1}{x} \\, dx = \\ln|x| + C",
-    "\\textstyle \\int e^x \\, dx = e^x + C, \\qquad \\int a^x \\, dx = \\tfrac{a^x}{\\ln a} + C",
-    "\\textstyle \\int \\cos x \\, dx = \\sin x + C",
-    "\\textstyle \\int \\sin x \\, dx = -\\cos x + C"
-   ]
-  },
-  "ex_puissance": {
-   "type": "etape",
-   "kicker": "Exemple · puissances en chaîne",
-   "titre": "Y compris les exposants négatifs, après réécriture",
-   "tex": [
-    "\\int x^4 \\, dx = \\tfrac{x^5}{5} + C",
-    "\\int \\tfrac{1}{x^3} \\, dx = \\int x^{-3} \\, dx = \\tfrac{x^{-2}}{-2} + C",
-    "= -\\tfrac{1}{2x^2} + C"
-   ]
-  },
-  "verif": {
-   "type": "phrase",
-   "kicker": "Le réflexe de vérification",
-   "texte": "Dériver la primitive trouvée doit redonner la fonction de départ : c'est le contrôle gratuit de tout calcul.",
-   "anim": {
-    "nom": "derive_fig",
-    "hauteur": 200
-   }
-  },
-  "linearite": {
-   "type": "formule",
-   "kicker": "La linéarité de l'intégration",
-   "tex": "\\int \\big(\\alpha f(x) + \\beta g(x)\\big) \\, dx = \\alpha \\int f(x) \\, dx + \\beta \\int g(x) \\, dx",
-   "note": "Primitive d'une somme : somme des primitives. Les constantes multiplicatives traversent le signe intégral.",
-   "anim": {
-    "nom": "graphe_fig",
-    "hauteur": 170
-   }
-  },
-  "ex_lineaire": {
-   "type": "etape",
-   "kicker": "Exemple · intégrer terme à terme",
-   "titre": "Trois termes, trois primitives usuelles",
-   "tex": [
-    "\\int (3x^2 - 4\\cos x + 5) \\, dx",
-    "= 3 \\cdot \\tfrac{x^3}{3} - 4\\sin x + 5x + C",
-    "= x^3 - 4\\sin x + 5x + C"
-   ]
-  },
-  "ex_poly": {
-   "type": "etape",
-   "kicker": "Exemple · un polynôme complet",
-   "titre": "Chaque monôme suit la règle des puissances",
-   "tex": [
-    "\\int (3x^4 - 2x^2 + 5) \\, dx",
-    "= 3 \\cdot \\tfrac{x^5}{5} - 2 \\cdot \\tfrac{x^3}{3} + 5x + C",
-    "= \\tfrac{3x^5}{5} - \\tfrac{2x^3}{3} + 5x + C"
-   ]
-  },
-  "cond_initiale": {
-   "type": "etape",
-   "kicker": "Exemple · fixer la constante",
-   "titre": "La condition initiale choisit une courbe de la famille",
-   "tex": [
-    "f(x) = 4x^3 - \\tfrac{2}{x} + e^x, \\qquad F(1) = e",
-    "F(x) = x^4 - 2\\ln|x| + e^x + C",
-    "F(1) = 1 + e + C = e \\ \\Rightarrow \\ C = -1"
-   ]
-  },
-  "piege_produit": {
-   "type": "etape",
-   "kicker": "Le piège du produit",
-   "titre": "La linéarité ne distribue pas sur les produits",
-   "tex": [
-    "(2x-1)^2 = 4x^2 - 4x + 1 \\quad \\text{(développer d'abord)}",
-    "\\int (2x-1)^2 \\, dx = \\tfrac{4x^3}{3} - 2x^2 + x + C",
-    "\\int f \\cdot g \\neq \\left(\\int f\\right) \\cdot \\left(\\int g\\right)"
-   ]
-  },
-  "forme_un": {
-   "type": "formule",
-   "kicker": "La forme u' fois u puissance n",
-   "tex": "\\int u'(x) \\, [u(x)]^n \\, dx = \\frac{[u(x)]^{n+1}}{n+1} + C \\qquad (n \\neq -1)",
-   "note": "La dérivée de la fonction intérieure doit être présente, à une constante près que l'on ajuste.",
-   "anim": {
-    "nom": "fleche_fonction",
-    "hauteur": 170
-   }
-  },
-  "ex_un": {
-   "type": "etape",
-   "kicker": "Exemple · reconnaître u' uⁿ",
-   "titre": "La dérivée de l'intérieur est déjà là",
-   "tex": [
-    "\\int 3x^2 (x^3 + 5)^4 \\, dx, \\quad u = x^3 + 5, \\ u' = 3x^2",
-    "= \\tfrac{(x^3+5)^5}{5} + C",
-    "\\text{vérification : la dérivée redonne } 3x^2 (x^3+5)^4"
-   ]
-  },
-  "forme_uu": {
-   "type": "formule",
-   "kicker": "La forme u' sur u",
-   "tex": "\\int \\frac{u'(x)}{u(x)} \\, dx = \\ln |u(x)| + C",
-   "note": "Le cas limite n = −1 des puissances : le logarithme prend le relais, avec la valeur absolue.",
-   "anim": {
-    "nom": "log_courbes_fig",
-    "hauteur": 190
-   }
-  },
-  "ex_uu": {
-   "type": "etape",
-   "kicker": "Exemple · deux quotients à reconnaître",
-   "titre": "Numérateur égal à la dérivée du dénominateur",
-   "tex": [
-    "\\int \\tfrac{2x}{x^2+1} \\, dx = \\ln(x^2 + 1) + C",
-    "\\int \\tfrac{\\cos x}{\\sin x} \\, dx = \\ln|\\sin x| + C",
-    "x^2 + 1 > 0 : \\text{ valeur absolue inutile au premier}"
-   ]
+    "f(x) = x^2, \\quad F(x) = \\tfrac{x^3}{3}",
+    "A = F(3) - F(1) = \\tfrac{27}{3} - \\tfrac{1}{3}",
+    "A = \\tfrac{26}{3} \\approx 8{,}67 \\text{ unités d'aire}"
+   ],
+   "titre": "La primitive calcule l'aire sans aucun découpage",
+   "type": "etape"
   },
   "ajustement": {
-   "type": "etape",
    "kicker": "L'ajustement de constante",
-   "titre": "Faire apparaître la dérivée qui manque, puis compenser",
    "tex": [
     "\\int e^{3x} \\, dx = \\tfrac{1}{3} \\int 3 e^{3x} \\, dx = \\tfrac{1}{3} e^{3x} + C",
     "\\int \\cos(2x) \\, dx = \\tfrac{1}{2} \\sin(2x) + C",
     "\\text{on multiplie dedans, on divise dehors}"
-   ]
+   ],
+   "titre": "Faire apparaître la dérivée qui manque, puis compenser",
+   "type": "etape"
   },
-  "reecriture": {
-   "type": "etape",
-   "kicker": "Exemple · réécrire avant d'intégrer",
-   "titre": "Une fraction devient une somme de puissances",
+  "cinematique": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "graphes_cinematique_fig"
+   },
+   "kicker": "Application · de l'accélération à la position",
    "tex": [
-    "\\tfrac{x^3 + 4\\sqrt{x} - 1}{x^2} = x + 4x^{-3/2} - x^{-2}",
-    "\\int \\left(x + 4x^{-3/2} - x^{-2}\\right) dx = \\tfrac{x^2}{2} - 8x^{-1/2} + x^{-1} + C",
-    "= \\tfrac{x^2}{2} - \\tfrac{8}{\\sqrt{x}} + \\tfrac{1}{x} + C"
-   ]
+    "a(t) = 2t + 1, \\quad v(0) = 2, \\quad x(0) = 0",
+    "v(t) = t^2 + t + 2",
+    "x(t) = \\tfrac{t^3}{3} + \\tfrac{t^2}{2} + 2t"
+   ],
+   "titre": "Deux intégrations successives, deux conditions",
+   "type": "etape"
+  },
+  "conclusion": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "primitives_famille_fig"
+   },
+   "kicker": "Conclusion",
+   "texte": "Dériver descend, intégrer remonte : avec les usuelles, la linéarité et les formes composées, la reconstruction devient un savoir-faire.",
+   "type": "phrase"
+  },
+  "cond_initiale": {
+   "kicker": "Exemple · fixer la constante",
+   "tex": [
+    "f(x) = 4x^3 - \\tfrac{2}{x} + e^x, \\qquad F(1) = e",
+    "F(x) = x^4 - 2\\ln|x| + e^x + C",
+    "F(1) = 1 + e + C = e \\ \\Rightarrow \\ C = -1"
+   ],
+   "titre": "La condition initiale choisit une courbe de la famille",
+   "type": "etape"
+  },
+  "cout": {
+   "kicker": "Application · du coût marginal au coût total",
+   "tex": [
+    "C_m(x) = 0{,}02x + 50, \\qquad C_T(0) = 1000",
+    "C_T(x) = 0{,}01x^2 + 50x + C",
+    "C_T(x) = 0{,}01x^2 + 50x + 1000"
+   ],
+   "titre": "Les coûts fixes jouent le rôle de la constante",
+   "type": "etape"
+  },
+  "def": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Définition d'une primitive",
+   "note": "F est dérivable sur l'intervalle I, et sa dérivée redonne exactement f en tout point.",
+   "tex": "F \\text{ primitive de } f \\text{ sur } I \\iff F'(x) = f(x) \\ \\forall x \\in I",
+   "type": "formule"
+  },
+  "ex_lineaire": {
+   "kicker": "Exemple · intégrer terme à terme",
+   "tex": [
+    "\\int (3x^2 - 4\\cos x + 5) \\, dx",
+    "= 3 \\cdot \\tfrac{x^3}{3} - 4\\sin x + 5x + C",
+    "= x^3 - 4\\sin x + 5x + C"
+   ],
+   "titre": "Trois termes, trois primitives usuelles",
+   "type": "etape"
+  },
+  "ex_poly": {
+   "kicker": "Exemple · un polynôme complet",
+   "tex": [
+    "\\int (3x^4 - 2x^2 + 5) \\, dx",
+    "= 3 \\cdot \\tfrac{x^5}{5} - 2 \\cdot \\tfrac{x^3}{3} + 5x + C",
+    "= \\tfrac{3x^5}{5} - \\tfrac{2x^3}{3} + 5x + C"
+   ],
+   "titre": "Chaque monôme suit la règle des puissances",
+   "type": "etape"
+  },
+  "ex_puissance": {
+   "kicker": "Exemple · puissances en chaîne",
+   "tex": [
+    "\\int x^4 \\, dx = \\tfrac{x^5}{5} + C",
+    "\\int \\tfrac{1}{x^3} \\, dx = \\int x^{-3} \\, dx = \\tfrac{x^{-2}}{-2} + C",
+    "= -\\tfrac{1}{2x^2} + C"
+   ],
+   "titre": "Y compris les exposants négatifs, après réécriture",
+   "type": "etape"
+  },
+  "ex_un": {
+   "kicker": "Exemple · reconnaître u' uⁿ",
+   "tex": [
+    "\\int 3x^2 (x^3 + 5)^4 \\, dx, \\quad u = x^3 + 5, \\ u' = 3x^2",
+    "= \\tfrac{(x^3+5)^5}{5} + C",
+    "\\text{vérification : la dérivée redonne } 3x^2 (x^3+5)^4"
+   ],
+   "titre": "La dérivée de l'intérieur est déjà là",
+   "type": "etape"
+  },
+  "ex_uu": {
+   "kicker": "Exemple · deux quotients à reconnaître",
+   "tex": [
+    "\\int \\tfrac{2x}{x^2+1} \\, dx = \\ln(x^2 + 1) + C",
+    "\\int \\tfrac{\\cos x}{\\sin x} \\, dx = \\ln|\\sin x| + C",
+    "x^2 + 1 > 0 : \\text{ valeur absolue inutile au premier}"
+   ],
+   "titre": "Numérateur égal à la dérivée du dénominateur",
+   "type": "etape"
+  },
+  "famille": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "primitives_famille_fig"
+   },
+   "kicker": "Une famille, pas une fonction",
+   "note": "Toutes les primitives diffèrent d'une constante : leurs courbes se déduisent par translation verticale.",
+   "tex": "f(x) = 2x \\quad \\Rightarrow \\quad F(x) = x^2 + C, \\ C \\in \\mathbb{R}",
+   "type": "formule"
+  },
+  "forme_un": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "La forme u' fois u puissance n",
+   "note": "La dérivée de la fonction intérieure doit être présente, à une constante près que l'on ajuste.",
+   "tex": "\\int u'(x) \\, [u(x)]^n \\, dx = \\frac{[u(x)]^{n+1}}{n+1} + C \\qquad (n \\neq -1)",
+   "type": "formule"
+  },
+  "forme_uu": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "log_courbes_fig"
+   },
+   "kicker": "La forme u' sur u",
+   "note": "Le cas limite n = −1 des puissances : le logarithme prend le relais, avec la valeur absolue.",
+   "tex": "\\int \\frac{u'(x)}{u(x)} \\, dx = \\ln |u(x)| + C",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "aire_courbe_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Connaître la vitesse à chaque instant, retrouver la distance : intégrer, c'est remonter le temps.",
+   "type": "phrase"
+  },
+  "linearite": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "riemann_fig"
+   },
+   "kicker": "La linéarité de l'intégration",
+   "note": "Primitive d'une somme : somme des primitives. Les constantes multiplicatives traversent le signe intégral.",
+   "tex": "\\int \\big(\\alpha f(x) + \\beta g(x)\\big) \\, dx = \\alpha \\int f(x) \\, dx + \\beta \\int g(x) \\, dx",
+   "type": "formule"
   },
   "methode": {
-   "type": "recap",
-   "kicker": "La méthode en cinq réflexes",
    "etapes": [
     "Simplifier l'expression à intégrer",
     "Reconnaître une forme usuelle ou composée",
     "Décomposer par linéarité, terme à terme",
     "Ajuster la constante qui manque",
     "Vérifier en dérivant le résultat"
-   ]
-  },
-  "aire": {
-   "type": "etape",
-   "kicker": "Application · une aire sous la courbe",
-   "titre": "La primitive calcule l'aire sans aucun découpage",
-   "tex": [
-    "f(x) = x^2, \\quad F(x) = \\tfrac{x^3}{3}",
-    "A = F(3) - F(1) = \\tfrac{27}{3} - \\tfrac{1}{3}",
-    "A = \\tfrac{26}{3} \\approx 8{,}67 \\text{ unités d'aire}"
    ],
-   "anim": {
-    "nom": "riemann_fig",
-    "hauteur": 140
-   }
+   "kicker": "La méthode en cinq réflexes",
+   "type": "recap"
   },
-  "cinematique": {
-   "type": "etape",
-   "kicker": "Application · de l'accélération à la position",
-   "titre": "Deux intégrations successives, deux conditions",
-   "tex": [
-    "a(t) = 2t + 1, \\quad v(0) = 2, \\quad x(0) = 0",
-    "v(t) = t^2 + t + 2",
-    "x(t) = \\tfrac{t^3}{3} + \\tfrac{t^2}{2} + 2t"
-   ],
+  "notation": {
    "anim": {
-    "nom": "graphe_fig",
-    "hauteur": 130
-   }
+    "hauteur": 170,
+    "nom": "primitives_famille_fig"
+   },
+   "kicker": "L'intégrale indéfinie",
+   "note": "Le signe intégral de Leibniz, un S allongé pour somme ; f est l'intégrande, dx désigne la variable.",
+   "tex": "\\int f(x) \\, dx = F(x) + C",
+   "type": "formule"
+  },
+  "piege_produit": {
+   "kicker": "Le piège du produit",
+   "tex": [
+    "(2x-1)^2 = 4x^2 - 4x + 1 \\quad \\text{(développer d'abord)}",
+    "\\int (2x-1)^2 \\, dx = \\tfrac{4x^3}{3} - 2x^2 + x + C",
+    "\\int f \\cdot g \\neq \\left(\\int f\\right) \\cdot \\left(\\int g\\right)"
+   ],
+   "titre": "La linéarité ne distribue pas sur les produits",
+   "type": "etape"
   },
   "population": {
-   "type": "etape",
    "kicker": "Application · une population de bactéries",
-   "titre": "Le taux de croissance intégré redonne l'effectif",
    "tex": [
     "P'(t) = 300 e^{0{,}1 t}, \\qquad P(0) = 1000",
     "P(t) = 3000 e^{0{,}1 t} + C, \\quad C = -2000",
     "P(5) = 3000 e^{0{,}5} - 2000 \\approx 2946"
-   ]
+   ],
+   "titre": "Le taux de croissance intégré redonne l'effectif",
+   "type": "etape"
   },
-  "cout": {
-   "type": "etape",
-   "kicker": "Application · du coût marginal au coût total",
-   "titre": "Les coûts fixes jouent le rôle de la constante",
-   "tex": [
-    "C_m(x) = 0{,}02x + 50, \\qquad C_T(0) = 1000",
-    "C_T(x) = 0{,}01x^2 + 50x + C",
-    "C_T(x) = 0{,}01x^2 + 50x + 1000"
-   ]
-  },
-  "verif_fin": {
-   "type": "phrase",
-   "kicker": "Le dernier mot : vérifier",
-   "texte": "Un calcul de primitive n'est terminé qu'après le contrôle : dériver le résultat et retrouver, terme à terme, la fonction de départ.",
+  "puissance": {
    "anim": {
-    "nom": "derive_fig",
-    "hauteur": 200
-   }
+    "hauteur": 170,
+    "nom": "parabole_fig"
+   },
+   "kicker": "La règle des puissances, à l'envers",
+   "note": "Exception capitale : pour n = −1, la formule diviserait par zéro ; ∫ (1/x) dx = ln|x| + C.",
+   "tex": "\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C \\qquad (n \\neq -1)",
+   "type": "formule"
   },
   "recap": {
-   "type": "recap",
-   "kicker": "Récapitulatif",
    "etapes": [
     "Une primitive F vérifie F' = f sur un intervalle",
     "Toutes les primitives : F + C, C constante",
     "Linéarité : intégrer terme à terme",
     "Formes clés : u'·uⁿ et u'/u, ajustement"
-   ]
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
   },
-  "conclusion": {
-   "type": "phrase",
-   "kicker": "Conclusion",
-   "texte": "Dériver descend, intégrer remonte : avec les usuelles, la linéarité et les formes composées, la reconstruction devient un savoir-faire.",
+  "reecriture": {
+   "kicker": "Exemple · réécrire avant d'intégrer",
+   "tex": [
+    "\\tfrac{x^3 + 4\\sqrt{x} - 1}{x^2} = x + 4x^{-3/2} - x^{-2}",
+    "\\int \\left(x + 4x^{-3/2} - x^{-2}\\right) dx = \\tfrac{x^2}{2} - 8x^{-1/2} + x^{-1} + C",
+    "= \\tfrac{x^2}{2} - \\tfrac{8}{\\sqrt{x}} + \\tfrac{1}{x} + C"
+   ],
+   "titre": "Une fraction devient une somme de puissances",
+   "type": "etape"
+  },
+  "tableau": {
+   "kicker": "Les primitives usuelles",
+   "tex": [
+    "\\textstyle \\int \\tfrac{1}{x} \\, dx = \\ln|x| + C",
+    "\\textstyle \\int e^x \\, dx = e^x + C, \\qquad \\int a^x \\, dx = \\tfrac{a^x}{\\ln a} + C",
+    "\\textstyle \\int \\cos x \\, dx = \\sin x + C",
+    "\\textstyle \\int \\sin x \\, dx = -\\cos x + C"
+   ],
+   "titre": "La table des dérivées, lue à l'envers",
+   "type": "etape"
+  },
+  "titre": {
    "anim": {
-    "nom": "primitives_famille_fig",
-    "hauteur": 210
-   }
+    "hauteur": 240,
+    "nom": "primitives_famille_fig"
+   },
+   "kicker": "Mathématique · Analyse",
+   "sous": "Intégrale indéfinie, primitives usuelles, formes composées et applications",
+   "titre": "Primitives : remonter de la dérivée à la fonction",
+   "type": "titre"
+  },
+  "verif": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "derivee_fig"
+   },
+   "kicker": "Le réflexe de vérification",
+   "texte": "Dériver la primitive trouvée doit redonner la fonction de départ : c'est le contrôle gratuit de tout calcul.",
+   "type": "phrase"
+  },
+  "verif_fin": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "derivee_fig"
+   },
+   "kicker": "Le dernier mot : vérifier",
+   "texte": "Un calcul de primitive n'est terminé qu'après le contrôle : dériver le résultat et retrouver, terme à terme, la fonction de départ.",
+   "type": "phrase"
   }
  },
- "phrases": [
-  {
-   "id": "p01",
-   "dit": "Bienvenue dans ce cours consacré aux primitives et à l'intégrale indéfinie. La dérivation descend d'une fonction vers son taux de variation ; nous allons apprendre le voyage inverse : remonter d'une dérivée vers la fonction qui l'a produite. Nous poserons la définition et la fameuse constante d'intégration, nous lirons la table des dérivées à l'envers, nous combinerons les primitives par linéarité, nous reconnaîtrons les formes composées, et nous finirons par les applications : aires, mouvements, populations et coûts.",
-   "texte": "Dériver descend, intégrer remonte : le voyage inverse commence.",
-   "ecran": "titre"
-  },
-  {
-   "id": "p02",
-   "dit": "Imaginez que vous connaissiez, seconde par seconde, la vitesse d'un véhicule, et que l'on vous demande la distance parcourue. La vitesse est la dérivée de la position : retrouver la distance, c'est donc chercher une fonction dont la dérivée est la vitesse connue. Ce problème de reconstruction est partout : un taux de croissance donné, retrouver l'effectif ; un coût marginal donné, retrouver le coût total. C'est exactement la recherche d'une primitive.",
-   "texte": "De la vitesse à la distance : reconstruire l'original.",
-   "ecran": "intro"
-  },
-  {
-   "id": "p03",
-   "dit": "Définition. Sur un intervalle, une primitive d'une fonction f est une fonction F, dérivable sur cet intervalle, dont la dérivée vaut f en tout point. L'exemple fondateur tient en une ligne : la fonction x au carré a pour dérivée deux x, donc x au carré est une primitive de la fonction deux x. Toute la théorie découle de cette unique égalité, que l'on peut toujours contrôler en dérivant le résultat proposé.",
-   "texte": "F primitive de f si F' = f en tout point de l'intervalle.",
-   "ecran": "def"
-  },
-  {
-   "id": "p04",
-   "dit": "Cette primitive n'est jamais unique. Ajoutez n'importe quelle constante à x au carré : la dérivée ne change pas, puisque la dérivée d'une constante est nulle. Et réciproquement, deux primitives d'une même fonction sur un intervalle ne diffèrent que d'une constante. On parle donc d'une famille de primitives, et géométriquement, leurs courbes se déduisent les unes des autres par une simple translation verticale, de la valeur de la constante.",
-   "texte": "Une infinité de primitives, séparées par la constante C.",
-   "ecran": "famille"
-  },
-  {
-   "id": "p05",
-   "dit": "Pour désigner toute la famille d'un coup, Leibniz a introduit le signe intégral, un S allongé qui évoque une somme, suivi de la fonction à intégrer et du symbole de la variable. L'intégrale indéfinie d'une fonction, c'est donc l'ensemble de ses primitives, résumé en une primitive particulière plus la constante arbitraire. Le mot indéfinie rappelle qu'aucune borne n'est fixée : le résultat est une famille de fonctions, pas un nombre.",
-   "texte": "∫ f(x) dx = F(x) + C : la famille entière en un symbole.",
-   "ecran": "notation"
-  },
-  {
-   "id": "p06",
-   "dit": "Premier outil : lire la règle des puissances à l'envers. Pour intégrer x puissance n, on augmente l'exposant d'une unité et l'on divise par le nouvel exposant. Mais la formule a un trou : pour l'exposant moins un, le dénominateur deviendrait zéro. Ce cas exceptionnel, la fonction inverse, a sa propre réponse, le logarithme népérien de la valeur absolue de x. C'est le premier exemple d'une règle générale : chaque exception de la dérivation devient une primitive à connaître.",
-   "texte": "∫ xⁿ dx = xⁿ⁺¹/(n+1) + C — sauf n = −1 : ln|x|.",
-   "ecran": "puissance"
-  },
-  {
-   "id": "p07",
-   "dit": "La table des primitives usuelles est la table des dérivées relue de droite à gauche. L'inverse donne le logarithme de la valeur absolue. L'exponentielle est sa propre primitive, et une exponentielle de base a se divise par le logarithme de a. Le cosinus donne le sinus, et le sinus donne moins le cosinus : le signe moins est l'oubli le plus fréquent de tout le chapitre. Apprenez cette table comme une table de multiplication : tout le reste du cours s'appuie dessus.",
-   "texte": "1/x → ln|x| · eˣ → eˣ · cos → sin · sin → −cos.",
-   "ecran": "tableau"
-  },
-  {
-   "id": "p08",
-   "dit": "Deux calculs pour ancrer la règle. Intégrer x puissance quatre donne x puissance cinq sur cinq, plus la constante. Pour la fraction un sur x au cube, on réécrit d'abord en puissance négative, x puissance moins trois ; la règle donne x puissance moins deux, divisé par moins deux, c'est-à-dire moins un sur deux x carré. Le réflexe à acquérir : réécrire racines et fractions en puissances avant d'appliquer la formule.",
-   "texte": "∫ x⁴ dx = x⁵/5 + C · ∫ 1/x³ dx = −1/(2x²) + C.",
-   "ecran": "ex_puissance"
-  },
-  {
-   "id": "p09",
-   "dit": "Comment être sûr d'une primitive ? En la dérivant. Si la dérivée de votre candidate redonne exactement la fonction de départ, le calcul est juste ; sinon, l'erreur se voit immédiatement. Exemple : le logarithme de la valeur absolue de x, plus x au carré, a pour dérivée un sur x, plus deux x. La vérification prend dix secondes et elle est gratuite : prenez l'habitude de ne jamais rendre un calcul de primitive sans ce contrôle.",
-   "texte": "Vérifier = dériver la réponse et retrouver le départ.",
-   "ecran": "verif"
-  },
-  {
-   "id": "p10",
-   "dit": "Deuxième outil, le plus rentable du cours : la linéarité. L'intégrale d'une somme est la somme des intégrales, et une constante multiplicative peut sortir du signe intégral. Autrement dit, on intègre terme à terme. Rien de mystérieux : la dérivation possède exactement les mêmes propriétés, et l'intégration, opération inverse, en hérite naturellement. Une seule constante, globale, s'ajoute à la fin du calcul, jamais une par terme.",
-   "texte": "Primitive d'une somme = somme des primitives.",
-   "ecran": "linearite"
-  },
-  {
-   "id": "p11",
-   "dit": "Application immédiate : intégrer trois x carré, moins quatre cosinus x, plus cinq. Terme à terme : trois x carré donne x au cube ; moins quatre cosinus x donne moins quatre sinus x ; la constante cinq donne cinq x. On assemble, on ajoute la grande constante finale, et le calcul est terminé en trois lignes. Remarquez la mécanique : sortir les coefficients, appliquer la table des usuelles, assembler.",
-   "texte": "∫ (3x² − 4cos x + 5) dx = x³ − 4sin x + 5x + C.",
-   "ecran": "ex_lineaire"
-  },
-  {
-   "id": "p12",
-   "dit": "Même mécanique sur un polynôme complet : trois x puissance quatre, moins deux x carré, plus cinq. Chaque monôme suit la règle des puissances, avec son coefficient sorti devant. On obtient trois x puissance cinq sur cinq, moins deux x puissance trois sur trois, plus cinq x, plus la constante. Tous les polynômes du monde se traitent ainsi, monôme par monôme, sans exception ni astuce supplémentaire.",
-   "texte": "Tout polynôme s'intègre monôme par monôme.",
-   "ecran": "ex_poly"
-  },
-  {
-   "id": "p13",
-   "dit": "Reste à choisir la bonne courbe dans la famille. On cherche la primitive de quatre x au cube, moins deux sur x, plus exponentielle de x, qui vaut le nombre e en un. La famille générale est x puissance quatre, moins deux logarithmes de la valeur absolue de x, plus exponentielle de x, plus la constante. En un, le logarithme s'annule et il reste un, plus e, plus la constante. Pour obtenir exactement e, la constante vaut donc moins un. La condition initiale a fixé la translation.",
-   "texte": "F(1) = e impose C = −1 : une seule courbe retenue.",
-   "ecran": "cond_initiale"
-  },
-  {
-   "id": "p14",
-   "dit": "Attention au piège symétrique de la linéarité : elle distribue sur les sommes, jamais sur les produits. L'intégrale d'un produit n'est pas le produit des intégrales. Pour le carré de deux x moins un, la tentative directe échoue d'un facteur deux ; la méthode sûre consiste à développer d'abord : quatre x carré, moins quatre x, plus un, que la linéarité traite sans peine. Développer ou factoriser avant d'intégrer est souvent la moitié du travail.",
-   "texte": "∫ f·g ≠ (∫ f)·(∫ g) : développer d'abord, intégrer ensuite.",
-   "ecran": "piege_produit"
-  },
-  {
-   "id": "p15",
-   "dit": "Troisième outil : les formes composées. Quand l'expression contient une fonction u élevée à une puissance, multipliée par la dérivée de u, la primitive suit la même règle que les puissances, appliquée à u tout entier : u puissance n plus un, sur n plus un. Toute la difficulté est de reconnaissance : repérer la fonction intérieure et vérifier que sa dérivée est bien présente, éventuellement à une constante près.",
-   "texte": "Forme u'·uⁿ : primitive uⁿ⁺¹/(n+1) + C.",
-   "ecran": "forme_un"
-  },
-  {
-   "id": "p16",
-   "dit": "Exemple parfait : intégrer trois x carré, fois x au cube plus cinq, le tout puissance quatre. La fonction intérieure est x au cube plus cinq, et sa dérivée, trois x carré, est exactement le facteur qui multiplie. La forme est donc reconnue sans aucun ajustement : la primitive est x au cube plus cinq, puissance cinq, sur cinq. Un seul regard sur la structure a remplacé un développement monstrueux de degré quatorze.",
-   "texte": "∫ 3x²(x³ + 5)⁴ dx = (x³ + 5)⁵/5 + C.",
-   "ecran": "ex_un"
-  },
-  {
-   "id": "p17",
-   "dit": "Le cas limite de la forme précédente, pour l'exposant moins un, mérite son propre réflexe : quand le numérateur est la dérivée du dénominateur, la primitive est le logarithme népérien de la valeur absolue du dénominateur. C'est la forme u prime sur u, l'une des plus fréquentes dans les exercices. La valeur absolue garantit que l'argument du logarithme reste positif, et on peut l'omettre quand le dénominateur est manifestement toujours positif.",
-   "texte": "Forme u'/u : primitive ln|u| + C.",
-   "ecran": "forme_uu"
-  },
-  {
-   "id": "p18",
-   "dit": "Deux exemples. La fraction deux x sur x carré plus un : le numérateur est la dérivée exacte du dénominateur, la primitive est le logarithme de x carré plus un, sans valeur absolue puisque ce dénominateur ne s'annule jamais et reste positif. Et le quotient cosinus x sur sinus x, sur un intervalle où le sinus garde un signe constant, donne le logarithme de la valeur absolue du sinus. Même réflexe, deux costumes différents.",
-   "texte": "∫ 2x/(x² + 1) dx = ln(x² + 1) + C.",
-   "ecran": "ex_uu"
-  },
-  {
-   "id": "p19",
-   "dit": "Il manque souvent un simple facteur. Pour intégrer l'exponentielle de trois x, on fait apparaître la dérivée de trois x, qui vaut trois, en multipliant à l'intérieur, et l'on compense en divisant par trois à l'extérieur : la primitive est un tiers d'exponentielle de trois x. Même geste pour le cosinus de deux x, dont la primitive est un demi de sinus de deux x. Multiplier dedans, diviser dehors, du même nombre : c'est l'ajustement de constante.",
-   "texte": "∫ e³ˣ dx = e³ˣ/3 + C : multiplier dedans, diviser dehors.",
-   "ecran": "ajustement"
-  },
-  {
-   "id": "p20",
-   "dit": "Dernier exemple de technique : une fraction dont le numérateur mêle un cube, une racine carrée et une constante, sur x carré. On divise terme à terme et l'on réécrit en puissances : x, plus quatre x puissance moins trois demis, moins x puissance moins deux. La linéarité et la règle des puissances finissent le travail : x carré sur deux, moins huit sur racine de x, plus un sur x. La leçon dépasse l'exemple : la réécriture algébrique précède presque toujours l'intégration.",
-   "texte": "Diviser, réécrire en puissances, puis intégrer terme à terme.",
-   "ecran": "reecriture"
-  },
-  {
-   "id": "p21",
-   "dit": "Face à une intégrale nouvelle, suivez toujours le même cheminement. Simplifiez d'abord l'expression, par un développement, une factorisation ou une réécriture en puissances. Cherchez ensuite une forme connue : usuelle, ou composée du type u prime fois u puissance n, ou u prime sur u. Décomposez par linéarité ce qui peut l'être. Ajustez la constante multiplicative qui manque. Et terminez par la vérification, en dérivant votre réponse.",
-   "texte": "Cinq réflexes : simplifier, reconnaître, décomposer, ajuster, vérifier.",
-   "ecran": "methode"
-  },
-  {
-   "id": "p22",
-   "dit": "Première application, et la plus célèbre : les aires. L'aire comprise entre la courbe d'une fonction positive et l'axe des abscisses se lit sur n'importe laquelle de ses primitives : c'est la valeur en la borne de droite, moins la valeur en la borne de gauche. Pour la parabole x carré, entre un et trois : la primitive x au cube sur trois donne neuf, moins un tiers, c'est-à-dire vingt-six tiers, environ huit virgule soixante-sept unités d'aire. Aucun découpage en rectangles n'a été nécessaire.",
-   "texte": "Aire sous x² de 1 à 3 : F(3) − F(1) = 26/3 ≈ 8,67.",
-   "ecran": "aire"
-  },
-  {
-   "id": "p23",
-   "dit": "En mécanique, la reconstruction se fait deux fois de suite. L'accélération deux t plus un s'intègre en une vitesse, t carré plus t, plus une première constante, fixée à deux par la vitesse initiale. Cette vitesse s'intègre à son tour en une position, t au cube sur trois, plus t carré sur deux, plus deux t, la seconde constante étant nulle puisque la position initiale est l'origine. Accélération, vitesse, position : une chaîne de deux primitives, avec une condition à chaque maillon.",
-   "texte": "a → v → x : deux primitives, deux constantes fixées.",
-   "ecran": "cinematique"
-  },
-  {
-   "id": "p24",
-   "dit": "En biologie, le même schéma prédit l'avenir d'une population. Si le taux de croissance vaut trois cents fois l'exponentielle de zéro virgule un t, la population est une primitive de ce taux : trois mille fois la même exponentielle, plus une constante. L'effectif initial, mille individus, fixe la constante à moins deux mille. Après cinq heures, le modèle prédit environ deux mille neuf cent quarante-six bactéries. La primitive transforme une loi de variation en prévision chiffrée.",
-   "texte": "P(t) = 3000·e^(0,1t) − 2000 ; P(5) ≈ 2946 bactéries.",
-   "ecran": "population"
-  },
-  {
-   "id": "p25",
-   "dit": "En économie, le coût marginal est la dérivée du coût total : le coût total est donc une primitive du coût marginal. Pour un coût marginal de zéro virgule zéro deux x, plus cinquante, le coût total vaut zéro virgule zéro un x carré, plus cinquante x, plus une constante. Et cette constante a un nom concret : ce sont les coûts fixes, le coût total quand rien n'est produit, ici mille euros. La constante d'intégration n'est pas un artifice : c'est le point de départ réel du phénomène.",
-   "texte": "Coût total = primitive du coût marginal ; C = coûts fixes.",
-   "ecran": "cout"
-  },
-  {
-   "id": "p26",
-   "dit": "Un dernier mot sur la discipline du calcul. Chaque primitive trouvée dans ce cours a été, ou peut être, contrôlée en la dérivant. Ce réflexe attrape les erreurs de signe, les exposants faux et les constantes oubliées, qui sont les trois fautes classiques du chapitre. Il transforme aussi l'apprentissage : en dérivant vos réponses, vous relisez la table des primitives dans les deux sens, et c'est ainsi qu'elle devient définitive.",
-   "texte": "Trois fautes classiques : signe, exposant, constante oubliée.",
-   "ecran": "verif_fin"
-  },
-  {
-   "id": "p27",
-   "dit": "Récapitulons. Une primitive est une fonction dont la dérivée redonne la fonction de départ, et toutes ses sœurs s'obtiennent en ajoutant une constante, choisie par une condition initiale quand il y en a une. Le calcul repose sur trois piliers : la table des usuelles lue à l'envers, la linéarité qui autorise le terme à terme, et la reconnaissance des formes composées, avec l'ajustement de constante. Le reste n'est que réécriture algébrique et vérification.",
-   "texte": "Définition, table, linéarité, formes composées : l'essentiel.",
-   "ecran": "recap"
-  },
-  {
-   "id": "p28",
-   "dit": "Vous savez désormais remonter le cours du calcul différentiel : d'un taux de variation, reconstruire la quantité elle-même, à une constante près que le contexte vient fixer. Ces primitives serviront très vite à calculer des aires exactes et des quantités accumulées de toutes sortes. Entraînez-vous en dérivant chacune de vos réponses : c'est en fermant la boucle, encore et encore, que le geste devient un réflexe.",
-   "texte": "Remonter d'un taux à la quantité : le geste est acquis.",
-   "ecran": "conclusion"
-  }
- ],
+ "matiere": "Mathématique",
  "parties": [
   {
    "debut": "p01",
@@ -467,19 +296,190 @@
   },
   {
    "debut": "p10",
-   "sous_titre": "Linéarité et formes composées : les techniques de calcul",
    "pont": {
-    "texte": "Partie 2 : linéarité, constante fixée et formes composées.",
-    "dit": "Partie deux : les techniques de calcul. Nous combinerons les primitives par linéarité, nous fixerons la constante grâce à une condition initiale, puis nous reconnaîtrons les formes composées, où la dérivée de la fonction intérieure est déjà présente dans l'expression."
-   }
+    "dit": "Partie deux : les techniques de calcul. Nous combinerons les primitives par linéarité, nous fixerons la constante grâce à une condition initiale, puis nous reconnaîtrons les formes composées, où la dérivée de la fonction intérieure est déjà présente dans l'expression.",
+    "texte": "Partie 2 : linéarité, constante fixée et formes composées."
+   },
+   "sous_titre": "Linéarité et formes composées : les techniques de calcul"
   },
   {
    "debut": "p21",
-   "sous_titre": "Méthode générale et applications : aires, mouvement, populations, coûts",
    "pont": {
-    "texte": "Partie 3 : la méthode en cinq réflexes et les applications.",
-    "dit": "Partie trois : la méthode et les applications. Nous résumerons la démarche en cinq réflexes, puis nous mettrons les primitives au travail : calculer une aire, reconstruire un mouvement, prévoir une population et retrouver un coût total."
-   }
+    "dit": "Partie trois : la méthode et les applications. Nous résumerons la démarche en cinq réflexes, puis nous mettrons les primitives au travail : calculer une aire, reconstruire un mouvement, prévoir une population et retrouver un coût total.",
+    "texte": "Partie 3 : la méthode en cinq réflexes et les applications."
+   },
+   "sous_titre": "Méthode générale et applications : aires, mouvement, populations, coûts"
   }
- ]
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux primitives et à l'intégrale indéfinie. La dérivation descend d'une fonction vers son taux de variation ; nous allons apprendre le voyage inverse : remonter d'une dérivée vers la fonction qui l'a produite. Nous poserons la définition et la fameuse constante d'intégration, nous lirons la table des dérivées à l'envers, nous combinerons les primitives par linéarité, nous reconnaîtrons les formes composées, et nous finirons par les applications : aires, mouvements, populations et coûts.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Dériver descend, intégrer remonte : le voyage inverse commence."
+  },
+  {
+   "dit": "Imaginez que vous connaissiez, seconde par seconde, la vitesse d'un véhicule, et que l'on vous demande la distance parcourue. La vitesse est la dérivée de la position : retrouver la distance, c'est donc chercher une fonction dont la dérivée est la vitesse connue. Ce problème de reconstruction est partout : un taux de croissance donné, retrouver l'effectif ; un coût marginal donné, retrouver le coût total. C'est exactement la recherche d'une primitive.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "De la vitesse à la distance : reconstruire l'original."
+  },
+  {
+   "dit": "Définition. Sur un intervalle, une primitive d'une fonction f est une fonction F, dérivable sur cet intervalle, dont la dérivée vaut f en tout point. L'exemple fondateur tient en une ligne : la fonction x au carré a pour dérivée deux x, donc x au carré est une primitive de la fonction deux x. Toute la théorie découle de cette unique égalité, que l'on peut toujours contrôler en dérivant le résultat proposé.",
+   "ecran": "def",
+   "id": "p03",
+   "texte": "F primitive de f si F' = f en tout point de l'intervalle."
+  },
+  {
+   "dit": "Cette primitive n'est jamais unique. Ajoutez n'importe quelle constante à x au carré : la dérivée ne change pas, puisque la dérivée d'une constante est nulle. Et réciproquement, deux primitives d'une même fonction sur un intervalle ne diffèrent que d'une constante. On parle donc d'une famille de primitives, et géométriquement, leurs courbes se déduisent les unes des autres par une simple translation verticale, de la valeur de la constante.",
+   "ecran": "famille",
+   "id": "p04",
+   "texte": "Une infinité de primitives, séparées par la constante C."
+  },
+  {
+   "dit": "Pour désigner toute la famille d'un coup, Leibniz a introduit le signe intégral, un S allongé qui évoque une somme, suivi de la fonction à intégrer et du symbole de la variable. L'intégrale indéfinie d'une fonction, c'est donc l'ensemble de ses primitives, résumé en une primitive particulière plus la constante arbitraire. Le mot indéfinie rappelle qu'aucune borne n'est fixée : le résultat est une famille de fonctions, pas un nombre.",
+   "ecran": "notation",
+   "id": "p05",
+   "texte": "∫ f(x) dx = F(x) + C : la famille entière en un symbole."
+  },
+  {
+   "dit": "Premier outil : lire la règle des puissances à l'envers. Pour intégrer x puissance n, on augmente l'exposant d'une unité et l'on divise par le nouvel exposant. Mais la formule a un trou : pour l'exposant moins un, le dénominateur deviendrait zéro. Ce cas exceptionnel, la fonction inverse, a sa propre réponse, le logarithme népérien de la valeur absolue de x. C'est le premier exemple d'une règle générale : chaque exception de la dérivation devient une primitive à connaître.",
+   "ecran": "puissance",
+   "id": "p06",
+   "texte": "∫ xⁿ dx = xⁿ⁺¹/(n+1) + C — sauf n = −1 : ln|x|."
+  },
+  {
+   "dit": "La table des primitives usuelles est la table des dérivées relue de droite à gauche. L'inverse donne le logarithme de la valeur absolue. L'exponentielle est sa propre primitive, et une exponentielle de base a se divise par le logarithme de a. Le cosinus donne le sinus, et le sinus donne moins le cosinus : le signe moins est l'oubli le plus fréquent de tout le chapitre. Apprenez cette table comme une table de multiplication : tout le reste du cours s'appuie dessus.",
+   "ecran": "tableau",
+   "id": "p07",
+   "texte": "1/x → ln|x| · eˣ → eˣ · cos → sin · sin → −cos."
+  },
+  {
+   "dit": "Deux calculs pour ancrer la règle. Intégrer x puissance quatre donne x puissance cinq sur cinq, plus la constante. Pour la fraction un sur x au cube, on réécrit d'abord en puissance négative, x puissance moins trois ; la règle donne x puissance moins deux, divisé par moins deux, c'est-à-dire moins un sur deux x carré. Le réflexe à acquérir : réécrire racines et fractions en puissances avant d'appliquer la formule.",
+   "ecran": "ex_puissance",
+   "id": "p08",
+   "texte": "∫ x⁴ dx = x⁵/5 + C · ∫ 1/x³ dx = −1/(2x²) + C."
+  },
+  {
+   "dit": "Comment être sûr d'une primitive ? En la dérivant. Si la dérivée de votre candidate redonne exactement la fonction de départ, le calcul est juste ; sinon, l'erreur se voit immédiatement. Exemple : le logarithme de la valeur absolue de x, plus x au carré, a pour dérivée un sur x, plus deux x. La vérification prend dix secondes et elle est gratuite : prenez l'habitude de ne jamais rendre un calcul de primitive sans ce contrôle.",
+   "ecran": "verif",
+   "id": "p09",
+   "texte": "Vérifier = dériver la réponse et retrouver le départ."
+  },
+  {
+   "dit": "Deuxième outil, le plus rentable du cours : la linéarité. L'intégrale d'une somme est la somme des intégrales, et une constante multiplicative peut sortir du signe intégral. Autrement dit, on intègre terme à terme. Rien de mystérieux : la dérivation possède exactement les mêmes propriétés, et l'intégration, opération inverse, en hérite naturellement. Une seule constante, globale, s'ajoute à la fin du calcul, jamais une par terme.",
+   "ecran": "linearite",
+   "id": "p10",
+   "texte": "Primitive d'une somme = somme des primitives."
+  },
+  {
+   "dit": "Application immédiate : intégrer trois x carré, moins quatre cosinus x, plus cinq. Terme à terme : trois x carré donne x au cube ; moins quatre cosinus x donne moins quatre sinus x ; la constante cinq donne cinq x. On assemble, on ajoute la grande constante finale, et le calcul est terminé en trois lignes. Remarquez la mécanique : sortir les coefficients, appliquer la table des usuelles, assembler.",
+   "ecran": "ex_lineaire",
+   "id": "p11",
+   "texte": "∫ (3x² − 4cos x + 5) dx = x³ − 4sin x + 5x + C."
+  },
+  {
+   "dit": "Même mécanique sur un polynôme complet : trois x puissance quatre, moins deux x carré, plus cinq. Chaque monôme suit la règle des puissances, avec son coefficient sorti devant. On obtient trois x puissance cinq sur cinq, moins deux x puissance trois sur trois, plus cinq x, plus la constante. Tous les polynômes du monde se traitent ainsi, monôme par monôme, sans exception ni astuce supplémentaire.",
+   "ecran": "ex_poly",
+   "id": "p12",
+   "texte": "Tout polynôme s'intègre monôme par monôme."
+  },
+  {
+   "dit": "Reste à choisir la bonne courbe dans la famille. On cherche la primitive de quatre x au cube, moins deux sur x, plus exponentielle de x, qui vaut le nombre e en un. La famille générale est x puissance quatre, moins deux logarithmes de la valeur absolue de x, plus exponentielle de x, plus la constante. En un, le logarithme s'annule et il reste un, plus e, plus la constante. Pour obtenir exactement e, la constante vaut donc moins un. La condition initiale a fixé la translation.",
+   "ecran": "cond_initiale",
+   "id": "p13",
+   "texte": "F(1) = e impose C = −1 : une seule courbe retenue."
+  },
+  {
+   "dit": "Attention au piège symétrique de la linéarité : elle distribue sur les sommes, jamais sur les produits. L'intégrale d'un produit n'est pas le produit des intégrales. Pour le carré de deux x moins un, la tentative directe échoue d'un facteur deux ; la méthode sûre consiste à développer d'abord : quatre x carré, moins quatre x, plus un, que la linéarité traite sans peine. Développer ou factoriser avant d'intégrer est souvent la moitié du travail.",
+   "ecran": "piege_produit",
+   "id": "p14",
+   "texte": "∫ f·g ≠ (∫ f)·(∫ g) : développer d'abord, intégrer ensuite."
+  },
+  {
+   "dit": "Troisième outil : les formes composées. Quand l'expression contient une fonction u élevée à une puissance, multipliée par la dérivée de u, la primitive suit la même règle que les puissances, appliquée à u tout entier : u puissance n plus un, sur n plus un. Toute la difficulté est de reconnaissance : repérer la fonction intérieure et vérifier que sa dérivée est bien présente, éventuellement à une constante près.",
+   "ecran": "forme_un",
+   "id": "p15",
+   "texte": "Forme u'·uⁿ : primitive uⁿ⁺¹/(n+1) + C."
+  },
+  {
+   "dit": "Exemple parfait : intégrer trois x carré, fois x au cube plus cinq, le tout puissance quatre. La fonction intérieure est x au cube plus cinq, et sa dérivée, trois x carré, est exactement le facteur qui multiplie. La forme est donc reconnue sans aucun ajustement : la primitive est x au cube plus cinq, puissance cinq, sur cinq. Un seul regard sur la structure a remplacé un développement monstrueux de degré quatorze.",
+   "ecran": "ex_un",
+   "id": "p16",
+   "texte": "∫ 3x²(x³ + 5)⁴ dx = (x³ + 5)⁵/5 + C."
+  },
+  {
+   "dit": "Le cas limite de la forme précédente, pour l'exposant moins un, mérite son propre réflexe : quand le numérateur est la dérivée du dénominateur, la primitive est le logarithme népérien de la valeur absolue du dénominateur. C'est la forme u prime sur u, l'une des plus fréquentes dans les exercices. La valeur absolue garantit que l'argument du logarithme reste positif, et on peut l'omettre quand le dénominateur est manifestement toujours positif.",
+   "ecran": "forme_uu",
+   "id": "p17",
+   "texte": "Forme u'/u : primitive ln|u| + C."
+  },
+  {
+   "dit": "Deux exemples. La fraction deux x sur x carré plus un : le numérateur est la dérivée exacte du dénominateur, la primitive est le logarithme de x carré plus un, sans valeur absolue puisque ce dénominateur ne s'annule jamais et reste positif. Et le quotient cosinus x sur sinus x, sur un intervalle où le sinus garde un signe constant, donne le logarithme de la valeur absolue du sinus. Même réflexe, deux costumes différents.",
+   "ecran": "ex_uu",
+   "id": "p18",
+   "texte": "∫ 2x/(x² + 1) dx = ln(x² + 1) + C."
+  },
+  {
+   "dit": "Il manque souvent un simple facteur. Pour intégrer l'exponentielle de trois x, on fait apparaître la dérivée de trois x, qui vaut trois, en multipliant à l'intérieur, et l'on compense en divisant par trois à l'extérieur : la primitive est un tiers d'exponentielle de trois x. Même geste pour le cosinus de deux x, dont la primitive est un demi de sinus de deux x. Multiplier dedans, diviser dehors, du même nombre : c'est l'ajustement de constante.",
+   "ecran": "ajustement",
+   "id": "p19",
+   "texte": "∫ e³ˣ dx = e³ˣ/3 + C : multiplier dedans, diviser dehors."
+  },
+  {
+   "dit": "Dernier exemple de technique : une fraction dont le numérateur mêle un cube, une racine carrée et une constante, sur x carré. On divise terme à terme et l'on réécrit en puissances : x, plus quatre x puissance moins trois demis, moins x puissance moins deux. La linéarité et la règle des puissances finissent le travail : x carré sur deux, moins huit sur racine de x, plus un sur x. La leçon dépasse l'exemple : la réécriture algébrique précède presque toujours l'intégration.",
+   "ecran": "reecriture",
+   "id": "p20",
+   "texte": "Diviser, réécrire en puissances, puis intégrer terme à terme."
+  },
+  {
+   "dit": "Face à une intégrale nouvelle, suivez toujours le même cheminement. Simplifiez d'abord l'expression, par un développement, une factorisation ou une réécriture en puissances. Cherchez ensuite une forme connue : usuelle, ou composée du type u prime fois u puissance n, ou u prime sur u. Décomposez par linéarité ce qui peut l'être. Ajustez la constante multiplicative qui manque. Et terminez par la vérification, en dérivant votre réponse.",
+   "ecran": "methode",
+   "id": "p21",
+   "texte": "Cinq réflexes : simplifier, reconnaître, décomposer, ajuster, vérifier."
+  },
+  {
+   "dit": "Première application, et la plus célèbre : les aires. L'aire comprise entre la courbe d'une fonction positive et l'axe des abscisses se lit sur n'importe laquelle de ses primitives : c'est la valeur en la borne de droite, moins la valeur en la borne de gauche. Pour la parabole x carré, entre un et trois : la primitive x au cube sur trois donne neuf, moins un tiers, c'est-à-dire vingt-six tiers, environ huit virgule soixante-sept unités d'aire. Aucun découpage en rectangles n'a été nécessaire.",
+   "ecran": "aire",
+   "id": "p22",
+   "texte": "Aire sous x² de 1 à 3 : F(3) − F(1) = 26/3 ≈ 8,67."
+  },
+  {
+   "dit": "En mécanique, la reconstruction se fait deux fois de suite. L'accélération deux t plus un s'intègre en une vitesse, t carré plus t, plus une première constante, fixée à deux par la vitesse initiale. Cette vitesse s'intègre à son tour en une position, t au cube sur trois, plus t carré sur deux, plus deux t, la seconde constante étant nulle puisque la position initiale est l'origine. Accélération, vitesse, position : une chaîne de deux primitives, avec une condition à chaque maillon.",
+   "ecran": "cinematique",
+   "id": "p23",
+   "texte": "a → v → x : deux primitives, deux constantes fixées."
+  },
+  {
+   "dit": "En biologie, le même schéma prédit l'avenir d'une population. Si le taux de croissance vaut trois cents fois l'exponentielle de zéro virgule un t, la population est une primitive de ce taux : trois mille fois la même exponentielle, plus une constante. L'effectif initial, mille individus, fixe la constante à moins deux mille. Après cinq heures, le modèle prédit environ deux mille neuf cent quarante-six bactéries. La primitive transforme une loi de variation en prévision chiffrée.",
+   "ecran": "population",
+   "id": "p24",
+   "texte": "P(t) = 3000·e^(0,1t) − 2000 ; P(5) ≈ 2946 bactéries."
+  },
+  {
+   "dit": "En économie, le coût marginal est la dérivée du coût total : le coût total est donc une primitive du coût marginal. Pour un coût marginal de zéro virgule zéro deux x, plus cinquante, le coût total vaut zéro virgule zéro un x carré, plus cinquante x, plus une constante. Et cette constante a un nom concret : ce sont les coûts fixes, le coût total quand rien n'est produit, ici mille euros. La constante d'intégration n'est pas un artifice : c'est le point de départ réel du phénomène.",
+   "ecran": "cout",
+   "id": "p25",
+   "texte": "Coût total = primitive du coût marginal ; C = coûts fixes."
+  },
+  {
+   "dit": "Un dernier mot sur la discipline du calcul. Chaque primitive trouvée dans ce cours a été, ou peut être, contrôlée en la dérivant. Ce réflexe attrape les erreurs de signe, les exposants faux et les constantes oubliées, qui sont les trois fautes classiques du chapitre. Il transforme aussi l'apprentissage : en dérivant vos réponses, vous relisez la table des primitives dans les deux sens, et c'est ainsi qu'elle devient définitive.",
+   "ecran": "verif_fin",
+   "id": "p26",
+   "texte": "Trois fautes classiques : signe, exposant, constante oubliée."
+  },
+  {
+   "dit": "Récapitulons. Une primitive est une fonction dont la dérivée redonne la fonction de départ, et toutes ses sœurs s'obtiennent en ajoutant une constante, choisie par une condition initiale quand il y en a une. Le calcul repose sur trois piliers : la table des usuelles lue à l'envers, la linéarité qui autorise le terme à terme, et la reconnaissance des formes composées, avec l'ajustement de constante. Le reste n'est que réécriture algébrique et vérification.",
+   "ecran": "recap",
+   "id": "p27",
+   "texte": "Définition, table, linéarité, formes composées : l'essentiel."
+  },
+  {
+   "dit": "Vous savez désormais remonter le cours du calcul différentiel : d'un taux de variation, reconstruire la quantité elle-même, à une constante près que le contexte vient fixer. Ces primitives serviront très vite à calculer des aires exactes et des quantités accumulées de toutes sortes. Entraînez-vous en dérivant chacune de vos réponses : c'est en fermant la boucle, encore et encore, que le geste devient un réflexe.",
+   "ecran": "conclusion",
+   "id": "p28",
+   "texte": "Remonter d'un taux à la quantité : le geste est acquis."
+  }
+ ],
+ "titre": "Primitives et intégrale indéfinie : remonter de la dérivée à la fonction"
 }
