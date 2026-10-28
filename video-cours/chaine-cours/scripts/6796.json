@@ -1,1 +1,443 @@
-{"cours":6796,"ecrans":{"cadre":{"kicker":"Le cadre","tex":["\\text{cadre à 10 mm du bord, tous formats}","\\text{A4 : largeur 210 moins 20 = 190 mm}","\\text{A4 : hauteur 297 moins 20 = 277 mm}","\\text{protège le dessin à l'archivage}"],"titre":"Une marge de 10 mm","type":"etape"},"cartouche":{"kicker":"Le cartouche","tex":["\\text{angle inférieur droit du cadre}","\\text{nom, date, échelle, désignation}","\\text{numéro du document, établissement}","\\text{exemple collège : environ 130 sur 40 mm}"],"titre":"La carte d'identité du dessin","type":"etape"},"def":{"kicker":"Définir : le dessin technique","tex":["\\text{représente un objet avec précision}","\\text{formes, dimensions, matériaux}","\\text{sans ambiguïté entre concepteur,}","\\text{fabricant et utilisateur}"],"titre":"Un langage graphique normalisé","type":"etape"},"def_cotation":{"kicker":"La cotation","texte":"Coter, c'est inscrire toutes les dimensions utiles à fabriquer.","type":"phrase"},"def_echelle":{"kicker":"Définir : l'échelle","note":"Les deux dimensions doivent être dans la même unité","tex":"e = \\frac{\\text{dessinée}}{\\text{réelle}}","type":"formule"},"det_echelle":{"kicker":"Déterminer une échelle","tex":["\\text{mesurer la dimension sur le dessin}","\\text{relever la dimension réelle}","\\text{même unité, puis rapport simplifié}"],"titre":"Trois étapes","type":"etape"},"elements_cote":{"kicker":"Les trois éléments d'une cote","tex":["\\text{ligne d'attache à chaque extrémité}","\\text{ligne de cote à environ 10 mm du contour}","\\text{valeur au centre : exemple, 65}"],"titre":"Attache, ligne, valeur","type":"etape"},"ex_a3":{"kicker":"Exemple : de A3 à A4","note":"A3 plié en deux sur sa longueur donne A4","tex":"297 \\times 420 \\rightarrow 210 \\times 297\\,\\text{mm}","type":"formule"},"ex_cercle":{"anim":{"hauteur":100,"nom":"cercle_rayon_fig"},"kicker":"Exemple : un cercle de rayon 25 mm","tex":["\\text{axes en trait mixte fin}","\\text{pointe sèche à l'intersection}","\\text{écartement : 25 mm}","\\text{un tour complet, trait fort}"],"titre":"Quatre gestes, dans l'ordre","type":"etape"},"ex_cylindre":{"kicker":"Exemple : un cylindre","note":"Diamètre 24 mm, hauteur 50 mm","tex":"\\varnothing\\,24 \\quad h = 50\\,\\text{mm}","type":"formule"},"ex_moteur":{"kicker":"Exemple : la coupe d'un moteur","texte":"Piston en fort, vilebrequin en interrompu, axe en mixte.","type":"phrase"},"ex_mur":{"kicker":"Exemple : du dessin au réel","note":"Mur de 6,5 cm sur un plan au 1/100","tex":"\\frac{6{,}5}{1/100} = 650\\,\\text{cm} = 6{,}5\\,\\text{m}","type":"formule"},"ex_piece":{"kicker":"Exemple : du réel au dessin","note":"Pièce de 4 m de large, plan au 1/50","tex":"400\\,\\text{cm} \\times \\frac{1}{50} = 8\\,\\text{cm}","type":"formule"},"ex_smartphone":{"kicker":"Exemple : du croquis au technique","note":"Vue éclatée d'un smartphone : épaisseur 7,5 mm, écran 6,1 pouces, traits normalisés","tex":"7{,}5\\,\\text{mm}","type":"formule"},"ex_trou":{"kicker":"Exemple : un trou est-il centré ?","note":"Support 40 mm de large, trou à 15 mm du bord inférieur : 15 contre 25, pas centré","tex":"d = 40 - 15 = 25\\,\\text{mm}","type":"formule"},"ex_vis":{"kicker":"Exemple : une vis agrandie","note":"Vis de 12 mm réels, 36 mm sur le dessin : agrandissement 3","tex":"\\frac{36}{12} = \\frac{3}{1}","type":"formule"},"formats":{"kicker":"Les formats normalisés","tex":["\\text{chaque format = le précédent plié en deux}","\\text{rapport longueur sur largeur : racine de 2}","\\text{A4 : dessins simples, documents scolaires}","\\text{A0 : grands plans d'ensemble}"],"titre":"La série ISO A","type":"etape"},"instruments":{"kicker":"Les instruments","tex":["\\text{instruments propres, sans traces de gras}","\\text{crayon incliné à environ 60 degrés}","\\text{construction en mine dure H}","\\text{contours en mine tendre HB ou B}"],"titre":"Le bon geste, le bon instrument","type":"etape"},"lecture_cotation":{"kicker":"Lire une cotation","tex":["\\text{repérer les lignes d'attache}","\\text{lire chaque valeur numérique}","\\text{repérer diamètre et rayon}","\\text{calculer les dimensions manquantes}"],"titre":"Quatre gestes de lecture","type":"etape"},"mise_en_page":{"kicker":"La mise en page","tex":["\\text{dessin centré dans le cadre}","\\text{orientation selon la forme de l'objet}","\\text{environ 80 pour cent de la surface}","\\text{écritures parallèles au bord inférieur}"],"titre":"Quatre règles de lisibilité","type":"etape"},"piege_mesure":{"kicker":"Le piège à éviter","texte":"La cote écrite prévaut : ne mesure jamais sur le papier.","type":"phrase"},"recap":{"etapes":["Dessin technique : langage normalisé et mesurable","Traits : fort, interrompu, mixte, fin — chaque sens","Format A, cadre à 10 mm, cartouche en bas à droite","Échelle : rapport dessin sur réel, même unité","Cotation : une fois, lisible, diamètre et rayon codés"],"kicker":"Récapitulatif","type":"recap"},"regles_cotation":{"kicker":"Les règles de cotation","tex":["\\text{cotes à l'extérieur, sans croisement}","\\text{valeurs en mm, sans écrire l'unité}","\\text{chaque dimension cotée une seule fois}","\\text{petites près, grandes loin du contour}"],"titre":"Lisible, claire, sans doublon","type":"etape"},"symboles":{"kicker":"Les symboles particuliers","note":"Diamètre : symbole diamètre 20 ; rayon : R 12 ; angles en degrés","tex":"\\varnothing\\,20 \\quad R\\,12","type":"formule"},"titre":{"anim":{"hauteur":250,"nom":"cercle_rayon_fig"},"kicker":"Sciences Physiques et Technologie · Dessin technique","sous":"Un langage normalisé pour fabriquer sans ambiguïté","titre":"Dessin technique : traits, formats, échelles et cotation","type":"titre"},"traits":{"kicker":"Les traits normalisés","tex":["\\text{fort : contour visible, environ 2 fois le fin}","\\text{interrompu fin : partie cachée}","\\text{mixte fin : axe, dépasse de 2 à 3 mm}","\\text{fin continu : hachures, cotes}"],"titre":"Chaque trait a un sens","type":"etape"},"types_echelles":{"kicker":"Réduction ou agrandissement","tex":["\\text{réduction : 1 sur n, réalité n fois plus grande}","\\text{agrandissement : n sur 1, dessin n fois plus grand}","\\text{un bâtiment, une cellule : jamais taille réelle}"],"titre":"Deux écritures","type":"etape"},"vs_art":{"kicker":"Technique ou artistique ?","tex":["\\text{normes : traits, échelles, formats}","\\text{fonctionnel : fabriquer, entretenir}","\\text{mesurable : toutes les dimensions}"],"titre":"Trois différences","type":"etape"}},"matiere":"Sciences Physiques et Technologie","parties":[{"debut":"p01","sous_titre":"Dessin technique, traits et instruments"},{"debut":"p09","pont":{"dit":"Partie deux : les formats et la mise en page, puis les échelles, dans les deux sens, avec trois exemples chiffrés.","texte":"Partie 2 : formats, mise en page et échelles."},"sous_titre":"Formats, mise en page et échelles"},{"debut":"p20","pont":{"dit":"Partie trois : la cotation, ses trois éléments, ses règles, ses symboles, et la lecture d'une cote pour vérifier une pièce.","texte":"Partie 3 : la cotation."},"sous_titre":"La cotation"}],"phrases":[{"dit":"Bienvenue dans ce cours de dessin technique. Un dessin technique n'est pas un dessin d'art : c'est un langage graphique normalisé, qui permet de fabriquer une pièce sans ambiguïté, du concepteur à l'utilisateur.","ecran":"titre","id":"p01","texte":"Dessin technique : un langage qui se lit sans ambiguïté."},{"dit":"Le dessin technique représente un objet, une pièce ou un système de manière précise et objective. Il transmet des informations complètes : les formes, les dimensions et les matériaux.","ecran":"def","id":"p02","texte":"Dessin technique : précis, objectif, complet."},{"dit":"Il se distingue d'un dessin artistique par trois traits : il respecte des normes précises de traits, d'échelles et de formats ; il est fonctionnel, destiné à la fabrication et à la maintenance ; et il est mesurable, toutes les dimensions y sont indiquées.","ecran":"vs_art","id":"p03","texte":"Technique contre artistique : normes, fonction, mesure."},{"dit":"Exemple : le croquis d'un smartphone est un dessin libre. Sa vue éclatée, avec ses cotes — une épaisseur de sept virgule cinq millimètres, un écran de six virgule un pouces — et ses traits normalisés, constitue un dessin technique.","ecran":"ex_smartphone","id":"p04","texte":"Croquis libre ou dessin technique ? La cote tranche."},{"dit":"Les traits sont normalisés, chacun avec une signification précise. Le trait fort, environ deux fois plus épais que le trait fin, dessine le contour visible. Le trait interrompu fin montre une partie cachée. Le trait mixte fin marque un axe et doit dépasser légèrement du contour, de deux à trois millimètres. Le trait fin continu sert aux hachures et aux cotes.","ecran":"traits","id":"p05","texte":"Trait fort, interrompu, mixte, fin : quatre sens."},{"dit":"Sur la vue en coupe d'un moteur, on lit ce code d'un coup d'œil : le piston est en trait fort, car c'est un contour visible ; le vilebrequin, derrière le piston, est en trait interrompu fin ; l'axe de rotation est en trait mixte fin ; et les hachures de la section coupée sont en trait fin continu.","ecran":"ex_moteur","id":"p06","texte":"Piston en fort, vilebrequin en interrompu, axe en mixte."},{"dit":"Pour un tracé précis, quelques précautions : vérifier que les instruments sont propres, car les traces de gras salissent le papier ; tenir le crayon incliné dans le sens du tracé, à environ soixante degrés ; tracer les traits de construction en mine dure H, puis repasser les contours en mine tendre HB ou B.","ecran":"instruments","id":"p07","texte":"Instruments propres, crayon à 60 degrés, mines H puis HB."},{"dit":"Exemple : pour dessiner un cercle de rayon vingt-cinq millimètres, centré sur l'intersection de deux axes de symétrie, on trace d'abord les deux axes à l'équerre et à la règle, en trait mixte fin ; on place la pointe sèche du compas à leur intersection ; on règle l'écartement à vingt-cinq millimètres avec la règle graduée ; puis on fait pivoter le compas d'un tour complet, en trait fort continu.","ecran":"ex_cercle","id":"p08","texte":"Cercle de 25 mm : axes, pointe sèche, écartement, un tour."},{"dit":"Passons au support. Les formats sont normalisés selon la série ISO A : chaque format est obtenu en pliant le précédent en deux, ce qui conserve le rapport longueur sur largeur, égal à racine de deux. On peut donc agrandir ou réduire un document sans changer ses proportions. Le format A4 sert aux dessins simples et aux documents scolaires, le format A0 aux grands plans d'ensemble.","ecran":"formats","id":"p09","texte":"Série A : plier en deux conserve les proportions."},{"dit":"Exemple : le format A3 mesure deux cent quatre-vingt-dix-sept millimètres sur quatre cent vingt. En le pliant en deux sur sa longueur, on obtient le format A4, de deux cent dix millimètres sur deux cent quatre-vingt-dix-sept.","ecran":"ex_a3","id":"p10","texte":"A3 297 sur 420 : plié, il devient A4 210 sur 297."},{"dit":"Le cadre est un rectangle tracé à l'intérieur de la feuille, qui délimite la zone du dessin. Il se trace à dix millimètres du bord, pour tous les formats, afin que le dessin ne soit pas endommagé à la manipulation ou à la reliure. Pour une feuille A4 de deux cent dix sur deux cent quatre-vingt-dix-sept millimètres, le cadre mesure donc cent quatre-vingt-dix millimètres sur deux cent soixante-dix-sept.","ecran":"cadre","id":"p11","texte":"Cadre à 10 mm du bord : A4 devient 190 sur 277."},{"dit":"Le cartouche est un tableau normalisé situé dans l'angle inférieur droit du cadre. Il doit obligatoirement contenir le nom du dessinateur, la date, l'échelle, la désignation de la pièce, le numéro du document et l'établissement ou la classe. Un cartouche typique de collège mesure environ cent trente millimètres sur quarante.","ecran":"cartouche","id":"p12","texte":"Cartouche en bas à droite : qui, quand, quelle échelle."},{"dit":"Pour la mise en page, quatre règles : le dessin doit être centré dans le cadre ; l'orientation de la feuille, paysage ou portrait, se choisit selon la forme de l'objet ; le dessin doit occuper environ quatre-vingts pour cent de la surface du cadre ; et les informations écrites sont orientées parallèlement au bord inférieur de la feuille.","ecran":"mise_en_page","id":"p13","texte":"Centré, orienté selon l'objet, 80 pour cent du cadre."},{"dit":"Venons-en à l'échelle. C'est le rapport constant entre les dimensions mesurées sur le dessin et les dimensions réelles de l'objet. Une échelle permet de représenter un objet trop grand, comme un bâtiment, ou trop petit, comme une cellule, pour être dessiné à sa taille réelle. Attention : les deux dimensions doivent être exprimées dans la même unité avant le calcul.","ecran":"def_echelle","id":"p14","texte":"Échelle : dimension sur le dessin divisée par le réel."},{"dit":"L'écriture est normalisée : une échelle s'écrit sous forme de fraction, un sur n pour une réduction, n sur un pour un agrandissement, où n est un nombre entier positif.","ecran":"types_echelles","id":"p15","texte":"1 sur n réduit, n sur 1 agrandit."},{"dit":"Premier calcul, du dessin vers le réel. Sur un plan à l'échelle un centième, un mur mesure six virgule cinq centimètres sur le dessin. Sa longueur réelle vaut six virgule cinq divisé par un centième, soit six cent cinquante centimètres, c'est-à-dire six virgule cinq mètres.","ecran":"ex_mur","id":"p16","texte":"Mur de 6,5 cm au 1/100 : 6,5 m réels."},{"dit":"Deuxième calcul, du réel vers le dessin. Une pièce mesure réellement quatre mètres de large. Sur un plan à l'échelle un cinquantième, on convertit d'abord : quatre mètres valent quatre cents centimètres. Sa largeur sur le dessin sera quatre cents fois un cinquantième, soit huit centimètres.","ecran":"ex_piece","id":"p17","texte":"Pièce de 4 m au 1/50 : 8 cm sur le dessin."},{"dit":"Pour déterminer une échelle, trois étapes : mesurer la dimension correspondante sur le dessin, relever la dimension réelle, puis exprimer les deux dimensions dans la même unité et calculer le rapport. Le résultat s'écrit sous forme de fraction simplifiée, avec un numérateur ou un dénominateur égal à un.","ecran":"det_echelle","id":"p18","texte":"Déterminer une échelle : mesurer, relever, diviser."},{"dit":"Exemple : sur un dessin technique, une vis de douze millimètres de longueur réelle mesure trente-six millimètres sur le dessin. Les deux dimensions sont en millimètres, on calcule directement : trente-six sur douze égale trois sur un. L'échelle est donc trois sur un : c'est un agrandissement à l'échelle trois.","ecran":"ex_vis","id":"p19","texte":"Vis 12 mm réels, 36 mm dessinés : échelle 3 sur 1."},{"dit":"Dernière partie : la cotation. Coter, c'est inscrire sur un dessin technique toutes les dimensions nécessaires à la fabrication ou à la vérification d'une pièce : longueurs, largeurs, hauteurs, diamètres. Le résultat s'appelle la cote : c'est la valeur numérique associée à une dimension.","ecran":"def_cotation","id":"p20","texte":"Coter, c'est inscrire toutes les dimensions utiles à fabriquer."},{"dit":"Une cote repose sur trois éléments graphiques. Exemple : pour une pièce rectangulaire de longueur soixante-cinq millimètres, la ligne d'attache est tracée à chaque extrémité, perpendiculairement au bord ; la ligne de cote est tracée entre ces deux lignes d'attache, à environ dix millimètres du contour ; et la valeur soixante-cinq est inscrite au centre, au-dessus de la ligne de cote.","ecran":"elements_cote","id":"p21","texte":"Attache, ligne de cote, valeur : les trois éléments."},{"dit":"Les règles sont strictes. Lisibilité : les cotes se placent à l'extérieur de la pièce, sauf contrainte d'encombrement, et les lignes de cote ne croisent jamais les lignes d'attache. Clarté : les valeurs sont écrites en millimètres, sans préciser l'unité sur le dessin, et une ligne de cote ne doit pas être interrompue par un autre trait. Non-redondance : chaque dimension n'est cotée qu'une seule fois, et on ne cote que les dimensions utiles. Ordre : les petites cotes près de la pièce, les grandes plus loin, du contour vers l'extérieur.","ecran":"regles_cotation","id":"p22","texte":"Lisibilité, clarté, non-redondance, ordre."},{"dit":"Les cotes particulières ont leurs symboles : les diamètres sont précédés du symbole diamètre, par exemple diamètre vingt ; les rayons sont précédés de la lettre R, par exemple R douze ; et les angles sont exprimés en degrés.","ecran":"symboles","id":"p23","texte":"Diamètre, rayon, angle : trois codes à reconnaître."},{"dit":"Exemple : pour coter un cylindre de diamètre vingt-quatre millimètres et de hauteur cinquante millimètres, on indique diamètre vingt-quatre sur la face circulaire ou sur la vue de face, et cinquante pour la hauteur. Le symbole diamètre évite toute confusion avec une simple longueur.","ecran":"ex_cylindre","id":"p24","texte":"Cylindre : diamètre 24, hauteur 50."},{"dit":"Exploiter une cotation, c'est la lire pour comprendre les dimensions réelles, calculer une dimension non indiquée par différence ou addition, et vérifier la faisabilité d'une pièce. Méthode : identifier les lignes d'attache, lire la valeur de chaque ligne de cote, repérer les symboles diamètre et rayon, puis calculer si nécessaire les dimensions manquantes.","ecran":"lecture_cotation","id":"p25","texte":"Lire une cotation : attaches, valeurs, symboles, calcul."},{"dit":"Exemple : un support rectangulaire est coté avec une longueur de quatre-vingts millimètres, une largeur de quarante et une épaisseur de cinq. Un trou de diamètre douze est percé à vingt millimètres du bord gauche et à quinze millimètres du bord inférieur. Pour vérifier s'il est centré verticalement, on calcule sa distance au bord supérieur : quarante moins quinze égale vingt-cinq millimètres. Le trou n'est pas centré : quinze millimètres d'un côté, vingt-cinq de l'autre.","ecran":"ex_trou","id":"p26","texte":"Trou à 15 mm d'un bord, 25 mm de l'autre : pas centré."},{"dit":"Dernier piège, valable aussi pour les échelles : toute dimension portée sur un dessin prévaut sur la mesure effectuée directement sur celui-ci, car le papier peut se dilater ou se contracter. On lit la cote, on ne mesure pas le papier.","ecran":"piege_mesure","id":"p27","texte":"La cote écrite prévaut : ne mesure jamais sur le papier."},{"dit":"Retenons l'essentiel : le dessin technique est un langage normalisé ; chaque trait a une signification unique, chaque instrument une fonction précise ; le format, le cadre et le cartouche identifient le document ; l'échelle relie le dessin au réel ; et la cotation transmet les dimensions sans doublon. Maîtriser ces codes garantit une communication technique fiable.","ecran":"recap","id":"p28","texte":"Traits, formats, échelles, cotation : le code complet."}],"titre":"Dessin technique : traits, formats, échelles et cotation"}
+{
+ "cours": 6796,
+ "ecrans": {
+  "cadre": {
+   "kicker": "Le cadre",
+   "tex": [
+    "\\text{cadre à 10 mm du bord, tous formats}",
+    "\\text{A4 : largeur 210 moins 20 = 190 mm}",
+    "\\text{A4 : hauteur 297 moins 20 = 277 mm}",
+    "\\text{protège le dessin à l'archivage}"
+   ],
+   "titre": "Une marge de 10 mm",
+   "type": "etape"
+  },
+  "cartouche": {
+   "kicker": "Le cartouche",
+   "tex": [
+    "\\text{angle inférieur droit du cadre}",
+    "\\text{nom, date, échelle, désignation}",
+    "\\text{numéro du document, établissement}",
+    "\\text{exemple collège : environ 130 sur 40 mm}"
+   ],
+   "titre": "La carte d'identité du dessin",
+   "type": "etape"
+  },
+  "def": {
+   "kicker": "Définir : le dessin technique",
+   "tex": [
+    "\\text{représente un objet avec précision}",
+    "\\text{formes, dimensions, matériaux}",
+    "\\text{sans ambiguïté entre concepteur,}",
+    "\\text{fabricant et utilisateur}"
+   ],
+   "titre": "Un langage graphique normalisé",
+   "type": "etape"
+  },
+  "def_cotation": {
+   "kicker": "La cotation",
+   "texte": "Coter, c'est inscrire toutes les dimensions utiles à fabriquer.",
+   "type": "phrase"
+  },
+  "def_echelle": {
+   "kicker": "Définir : l'échelle",
+   "note": "Les deux dimensions doivent être dans la même unité",
+   "tex": "e = \\frac{\\text{dessinée}}{\\text{réelle}}",
+   "type": "formule"
+  },
+  "det_echelle": {
+   "kicker": "Déterminer une échelle",
+   "tex": [
+    "\\text{mesurer la dimension sur le dessin}",
+    "\\text{relever la dimension réelle}",
+    "\\text{même unité, puis rapport simplifié}"
+   ],
+   "titre": "Trois étapes",
+   "type": "etape"
+  },
+  "elements_cote": {
+   "kicker": "Les trois éléments d'une cote",
+   "tex": [
+    "\\text{ligne d'attache à chaque extrémité}",
+    "\\text{ligne de cote à environ 10 mm du contour}",
+    "\\text{valeur au centre : exemple, 65}"
+   ],
+   "titre": "Attache, ligne, valeur",
+   "type": "etape"
+  },
+  "ex_a3": {
+   "kicker": "Exemple : de A3 à A4",
+   "note": "A3 plié en deux sur sa longueur donne A4",
+   "tex": "297 \\times 420 \\rightarrow 210 \\times 297\\,\\text{mm}",
+   "type": "formule"
+  },
+  "ex_cercle": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "cotation_fig"
+   },
+   "kicker": "Exemple : un cercle de rayon 25 mm",
+   "tex": [
+    "\\text{axes en trait mixte fin}",
+    "\\text{pointe sèche à l'intersection}",
+    "\\text{écartement : 25 mm}",
+    "\\text{un tour complet, trait fort}"
+   ],
+   "titre": "Quatre gestes, dans l'ordre",
+   "type": "etape"
+  },
+  "ex_cylindre": {
+   "kicker": "Exemple : un cylindre",
+   "note": "Diamètre 24 mm, hauteur 50 mm",
+   "tex": "\\varnothing\\,24 \\quad h = 50\\,\\text{mm}",
+   "type": "formule"
+  },
+  "ex_moteur": {
+   "kicker": "Exemple : la coupe d'un moteur",
+   "texte": "Piston en fort, vilebrequin en interrompu, axe en mixte.",
+   "type": "phrase"
+  },
+  "ex_mur": {
+   "kicker": "Exemple : du dessin au réel",
+   "note": "Mur de 6,5 cm sur un plan au 1/100",
+   "tex": "\\frac{6{,}5}{1/100} = 650\\,\\text{cm} = 6{,}5\\,\\text{m}",
+   "type": "formule"
+  },
+  "ex_piece": {
+   "kicker": "Exemple : du réel au dessin",
+   "note": "Pièce de 4 m de large, plan au 1/50",
+   "tex": "400\\,\\text{cm} \\times \\frac{1}{50} = 8\\,\\text{cm}",
+   "type": "formule"
+  },
+  "ex_smartphone": {
+   "kicker": "Exemple : du croquis au technique",
+   "note": "Vue éclatée d'un smartphone : épaisseur 7,5 mm, écran 6,1 pouces, traits normalisés",
+   "tex": "7{,}5\\,\\text{mm}",
+   "type": "formule"
+  },
+  "ex_trou": {
+   "kicker": "Exemple : un trou est-il centré ?",
+   "note": "Support 40 mm de large, trou à 15 mm du bord inférieur : 15 contre 25, pas centré",
+   "tex": "d = 40 - 15 = 25\\,\\text{mm}",
+   "type": "formule"
+  },
+  "ex_vis": {
+   "kicker": "Exemple : une vis agrandie",
+   "note": "Vis de 12 mm réels, 36 mm sur le dessin : agrandissement 3",
+   "tex": "\\frac{36}{12} = \\frac{3}{1}",
+   "type": "formule"
+  },
+  "formats": {
+   "kicker": "Les formats normalisés",
+   "tex": [
+    "\\text{chaque format = le précédent plié en deux}",
+    "\\text{rapport longueur sur largeur : racine de 2}",
+    "\\text{A4 : dessins simples, documents scolaires}",
+    "\\text{A0 : grands plans d'ensemble}"
+   ],
+   "titre": "La série ISO A",
+   "type": "etape"
+  },
+  "instruments": {
+   "kicker": "Les instruments",
+   "tex": [
+    "\\text{instruments propres, sans traces de gras}",
+    "\\text{crayon incliné à environ 60 degrés}",
+    "\\text{construction en mine dure H}",
+    "\\text{contours en mine tendre HB ou B}"
+   ],
+   "titre": "Le bon geste, le bon instrument",
+   "type": "etape"
+  },
+  "lecture_cotation": {
+   "kicker": "Lire une cotation",
+   "tex": [
+    "\\text{repérer les lignes d'attache}",
+    "\\text{lire chaque valeur numérique}",
+    "\\text{repérer diamètre et rayon}",
+    "\\text{calculer les dimensions manquantes}"
+   ],
+   "titre": "Quatre gestes de lecture",
+   "type": "etape"
+  },
+  "mise_en_page": {
+   "kicker": "La mise en page",
+   "tex": [
+    "\\text{dessin centré dans le cadre}",
+    "\\text{orientation selon la forme de l'objet}",
+    "\\text{environ 80 pour cent de la surface}",
+    "\\text{écritures parallèles au bord inférieur}"
+   ],
+   "titre": "Quatre règles de lisibilité",
+   "type": "etape"
+  },
+  "piege_mesure": {
+   "kicker": "Le piège à éviter",
+   "texte": "La cote écrite prévaut : ne mesure jamais sur le papier.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Dessin technique : langage normalisé et mesurable",
+    "Traits : fort, interrompu, mixte, fin — chaque sens",
+    "Format A, cadre à 10 mm, cartouche en bas à droite",
+    "Échelle : rapport dessin sur réel, même unité",
+    "Cotation : une fois, lisible, diamètre et rayon codés"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "regles_cotation": {
+   "kicker": "Les règles de cotation",
+   "tex": [
+    "\\text{cotes à l'extérieur, sans croisement}",
+    "\\text{valeurs en mm, sans écrire l'unité}",
+    "\\text{chaque dimension cotée une seule fois}",
+    "\\text{petites près, grandes loin du contour}"
+   ],
+   "titre": "Lisible, claire, sans doublon",
+   "type": "etape"
+  },
+  "symboles": {
+   "kicker": "Les symboles particuliers",
+   "note": "Diamètre : symbole diamètre 20 ; rayon : R 12 ; angles en degrés",
+   "tex": "\\varnothing\\,20 \\quad R\\,12",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "cotation_fig"
+   },
+   "kicker": "Sciences Physiques et Technologie · Dessin technique",
+   "sous": "Un langage normalisé pour fabriquer sans ambiguïté",
+   "titre": "Dessin technique : traits, formats, échelles et cotation",
+   "type": "titre"
+  },
+  "traits": {
+   "kicker": "Les traits normalisés",
+   "tex": [
+    "\\text{fort : contour visible, environ 2 fois le fin}",
+    "\\text{interrompu fin : partie cachée}",
+    "\\text{mixte fin : axe, dépasse de 2 à 3 mm}",
+    "\\text{fin continu : hachures, cotes}"
+   ],
+   "titre": "Chaque trait a un sens",
+   "type": "etape"
+  },
+  "types_echelles": {
+   "kicker": "Réduction ou agrandissement",
+   "tex": [
+    "\\text{réduction : 1 sur n, réalité n fois plus grande}",
+    "\\text{agrandissement : n sur 1, dessin n fois plus grand}",
+    "\\text{un bâtiment, une cellule : jamais taille réelle}"
+   ],
+   "titre": "Deux écritures",
+   "type": "etape"
+  },
+  "vs_art": {
+   "kicker": "Technique ou artistique ?",
+   "tex": [
+    "\\text{normes : traits, échelles, formats}",
+    "\\text{fonctionnel : fabriquer, entretenir}",
+    "\\text{mesurable : toutes les dimensions}"
+   ],
+   "titre": "Trois différences",
+   "type": "etape"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Dessin technique, traits et instruments"
+  },
+  {
+   "debut": "p09",
+   "pont": {
+    "dit": "Partie deux : les formats et la mise en page, puis les échelles, dans les deux sens, avec trois exemples chiffrés.",
+    "texte": "Partie 2 : formats, mise en page et échelles."
+   },
+   "sous_titre": "Formats, mise en page et échelles"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : la cotation, ses trois éléments, ses règles, ses symboles, et la lecture d'une cote pour vérifier une pièce.",
+    "texte": "Partie 3 : la cotation."
+   },
+   "sous_titre": "La cotation"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de dessin technique. Un dessin technique n'est pas un dessin d'art : c'est un langage graphique normalisé, qui permet de fabriquer une pièce sans ambiguïté, du concepteur à l'utilisateur.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Dessin technique : un langage qui se lit sans ambiguïté."
+  },
+  {
+   "dit": "Le dessin technique représente un objet, une pièce ou un système de manière précise et objective. Il transmet des informations complètes : les formes, les dimensions et les matériaux.",
+   "ecran": "def",
+   "id": "p02",
+   "texte": "Dessin technique : précis, objectif, complet."
+  },
+  {
+   "dit": "Il se distingue d'un dessin artistique par trois traits : il respecte des normes précises de traits, d'échelles et de formats ; il est fonctionnel, destiné à la fabrication et à la maintenance ; et il est mesurable, toutes les dimensions y sont indiquées.",
+   "ecran": "vs_art",
+   "id": "p03",
+   "texte": "Technique contre artistique : normes, fonction, mesure."
+  },
+  {
+   "dit": "Exemple : le croquis d'un smartphone est un dessin libre. Sa vue éclatée, avec ses cotes — une épaisseur de sept virgule cinq millimètres, un écran de six virgule un pouces — et ses traits normalisés, constitue un dessin technique.",
+   "ecran": "ex_smartphone",
+   "id": "p04",
+   "texte": "Croquis libre ou dessin technique ? La cote tranche."
+  },
+  {
+   "dit": "Les traits sont normalisés, chacun avec une signification précise. Le trait fort, environ deux fois plus épais que le trait fin, dessine le contour visible. Le trait interrompu fin montre une partie cachée. Le trait mixte fin marque un axe et doit dépasser légèrement du contour, de deux à trois millimètres. Le trait fin continu sert aux hachures et aux cotes.",
+   "ecran": "traits",
+   "id": "p05",
+   "texte": "Trait fort, interrompu, mixte, fin : quatre sens."
+  },
+  {
+   "dit": "Sur la vue en coupe d'un moteur, on lit ce code d'un coup d'œil : le piston est en trait fort, car c'est un contour visible ; le vilebrequin, derrière le piston, est en trait interrompu fin ; l'axe de rotation est en trait mixte fin ; et les hachures de la section coupée sont en trait fin continu.",
+   "ecran": "ex_moteur",
+   "id": "p06",
+   "texte": "Piston en fort, vilebrequin en interrompu, axe en mixte."
+  },
+  {
+   "dit": "Pour un tracé précis, quelques précautions : vérifier que les instruments sont propres, car les traces de gras salissent le papier ; tenir le crayon incliné dans le sens du tracé, à environ soixante degrés ; tracer les traits de construction en mine dure H, puis repasser les contours en mine tendre HB ou B.",
+   "ecran": "instruments",
+   "id": "p07",
+   "texte": "Instruments propres, crayon à 60 degrés, mines H puis HB."
+  },
+  {
+   "dit": "Exemple : pour dessiner un cercle de rayon vingt-cinq millimètres, centré sur l'intersection de deux axes de symétrie, on trace d'abord les deux axes à l'équerre et à la règle, en trait mixte fin ; on place la pointe sèche du compas à leur intersection ; on règle l'écartement à vingt-cinq millimètres avec la règle graduée ; puis on fait pivoter le compas d'un tour complet, en trait fort continu.",
+   "ecran": "ex_cercle",
+   "id": "p08",
+   "texte": "Cercle de 25 mm : axes, pointe sèche, écartement, un tour."
+  },
+  {
+   "dit": "Passons au support. Les formats sont normalisés selon la série ISO A : chaque format est obtenu en pliant le précédent en deux, ce qui conserve le rapport longueur sur largeur, égal à racine de deux. On peut donc agrandir ou réduire un document sans changer ses proportions. Le format A4 sert aux dessins simples et aux documents scolaires, le format A0 aux grands plans d'ensemble.",
+   "ecran": "formats",
+   "id": "p09",
+   "texte": "Série A : plier en deux conserve les proportions."
+  },
+  {
+   "dit": "Exemple : le format A3 mesure deux cent quatre-vingt-dix-sept millimètres sur quatre cent vingt. En le pliant en deux sur sa longueur, on obtient le format A4, de deux cent dix millimètres sur deux cent quatre-vingt-dix-sept.",
+   "ecran": "ex_a3",
+   "id": "p10",
+   "texte": "A3 297 sur 420 : plié, il devient A4 210 sur 297."
+  },
+  {
+   "dit": "Le cadre est un rectangle tracé à l'intérieur de la feuille, qui délimite la zone du dessin. Il se trace à dix millimètres du bord, pour tous les formats, afin que le dessin ne soit pas endommagé à la manipulation ou à la reliure. Pour une feuille A4 de deux cent dix sur deux cent quatre-vingt-dix-sept millimètres, le cadre mesure donc cent quatre-vingt-dix millimètres sur deux cent soixante-dix-sept.",
+   "ecran": "cadre",
+   "id": "p11",
+   "texte": "Cadre à 10 mm du bord : A4 devient 190 sur 277."
+  },
+  {
+   "dit": "Le cartouche est un tableau normalisé situé dans l'angle inférieur droit du cadre. Il doit obligatoirement contenir le nom du dessinateur, la date, l'échelle, la désignation de la pièce, le numéro du document et l'établissement ou la classe. Un cartouche typique de collège mesure environ cent trente millimètres sur quarante.",
+   "ecran": "cartouche",
+   "id": "p12",
+   "texte": "Cartouche en bas à droite : qui, quand, quelle échelle."
+  },
+  {
+   "dit": "Pour la mise en page, quatre règles : le dessin doit être centré dans le cadre ; l'orientation de la feuille, paysage ou portrait, se choisit selon la forme de l'objet ; le dessin doit occuper environ quatre-vingts pour cent de la surface du cadre ; et les informations écrites sont orientées parallèlement au bord inférieur de la feuille.",
+   "ecran": "mise_en_page",
+   "id": "p13",
+   "texte": "Centré, orienté selon l'objet, 80 pour cent du cadre."
+  },
+  {
+   "dit": "Venons-en à l'échelle. C'est le rapport constant entre les dimensions mesurées sur le dessin et les dimensions réelles de l'objet. Une échelle permet de représenter un objet trop grand, comme un bâtiment, ou trop petit, comme une cellule, pour être dessiné à sa taille réelle. Attention : les deux dimensions doivent être exprimées dans la même unité avant le calcul.",
+   "ecran": "def_echelle",
+   "id": "p14",
+   "texte": "Échelle : dimension sur le dessin divisée par le réel."
+  },
+  {
+   "dit": "L'écriture est normalisée : une échelle s'écrit sous forme de fraction, un sur n pour une réduction, n sur un pour un agrandissement, où n est un nombre entier positif.",
+   "ecran": "types_echelles",
+   "id": "p15",
+   "texte": "1 sur n réduit, n sur 1 agrandit."
+  },
+  {
+   "dit": "Premier calcul, du dessin vers le réel. Sur un plan à l'échelle un centième, un mur mesure six virgule cinq centimètres sur le dessin. Sa longueur réelle vaut six virgule cinq divisé par un centième, soit six cent cinquante centimètres, c'est-à-dire six virgule cinq mètres.",
+   "ecran": "ex_mur",
+   "id": "p16",
+   "texte": "Mur de 6,5 cm au 1/100 : 6,5 m réels."
+  },
+  {
+   "dit": "Deuxième calcul, du réel vers le dessin. Une pièce mesure réellement quatre mètres de large. Sur un plan à l'échelle un cinquantième, on convertit d'abord : quatre mètres valent quatre cents centimètres. Sa largeur sur le dessin sera quatre cents fois un cinquantième, soit huit centimètres.",
+   "ecran": "ex_piece",
+   "id": "p17",
+   "texte": "Pièce de 4 m au 1/50 : 8 cm sur le dessin."
+  },
+  {
+   "dit": "Pour déterminer une échelle, trois étapes : mesurer la dimension correspondante sur le dessin, relever la dimension réelle, puis exprimer les deux dimensions dans la même unité et calculer le rapport. Le résultat s'écrit sous forme de fraction simplifiée, avec un numérateur ou un dénominateur égal à un.",
+   "ecran": "det_echelle",
+   "id": "p18",
+   "texte": "Déterminer une échelle : mesurer, relever, diviser."
+  },
+  {
+   "dit": "Exemple : sur un dessin technique, une vis de douze millimètres de longueur réelle mesure trente-six millimètres sur le dessin. Les deux dimensions sont en millimètres, on calcule directement : trente-six sur douze égale trois sur un. L'échelle est donc trois sur un : c'est un agrandissement à l'échelle trois.",
+   "ecran": "ex_vis",
+   "id": "p19",
+   "texte": "Vis 12 mm réels, 36 mm dessinés : échelle 3 sur 1."
+  },
+  {
+   "dit": "Dernière partie : la cotation. Coter, c'est inscrire sur un dessin technique toutes les dimensions nécessaires à la fabrication ou à la vérification d'une pièce : longueurs, largeurs, hauteurs, diamètres. Le résultat s'appelle la cote : c'est la valeur numérique associée à une dimension.",
+   "ecran": "def_cotation",
+   "id": "p20",
+   "texte": "Coter, c'est inscrire toutes les dimensions utiles à fabriquer."
+  },
+  {
+   "dit": "Une cote repose sur trois éléments graphiques. Exemple : pour une pièce rectangulaire de longueur soixante-cinq millimètres, la ligne d'attache est tracée à chaque extrémité, perpendiculairement au bord ; la ligne de cote est tracée entre ces deux lignes d'attache, à environ dix millimètres du contour ; et la valeur soixante-cinq est inscrite au centre, au-dessus de la ligne de cote.",
+   "ecran": "elements_cote",
+   "id": "p21",
+   "texte": "Attache, ligne de cote, valeur : les trois éléments."
+  },
+  {
+   "dit": "Les règles sont strictes. Lisibilité : les cotes se placent à l'extérieur de la pièce, sauf contrainte d'encombrement, et les lignes de cote ne croisent jamais les lignes d'attache. Clarté : les valeurs sont écrites en millimètres, sans préciser l'unité sur le dessin, et une ligne de cote ne doit pas être interrompue par un autre trait. Non-redondance : chaque dimension n'est cotée qu'une seule fois, et on ne cote que les dimensions utiles. Ordre : les petites cotes près de la pièce, les grandes plus loin, du contour vers l'extérieur.",
+   "ecran": "regles_cotation",
+   "id": "p22",
+   "texte": "Lisibilité, clarté, non-redondance, ordre."
+  },
+  {
+   "dit": "Les cotes particulières ont leurs symboles : les diamètres sont précédés du symbole diamètre, par exemple diamètre vingt ; les rayons sont précédés de la lettre R, par exemple R douze ; et les angles sont exprimés en degrés.",
+   "ecran": "symboles",
+   "id": "p23",
+   "texte": "Diamètre, rayon, angle : trois codes à reconnaître."
+  },
+  {
+   "dit": "Exemple : pour coter un cylindre de diamètre vingt-quatre millimètres et de hauteur cinquante millimètres, on indique diamètre vingt-quatre sur la face circulaire ou sur la vue de face, et cinquante pour la hauteur. Le symbole diamètre évite toute confusion avec une simple longueur.",
+   "ecran": "ex_cylindre",
+   "id": "p24",
+   "texte": "Cylindre : diamètre 24, hauteur 50."
+  },
+  {
+   "dit": "Exploiter une cotation, c'est la lire pour comprendre les dimensions réelles, calculer une dimension non indiquée par différence ou addition, et vérifier la faisabilité d'une pièce. Méthode : identifier les lignes d'attache, lire la valeur de chaque ligne de cote, repérer les symboles diamètre et rayon, puis calculer si nécessaire les dimensions manquantes.",
+   "ecran": "lecture_cotation",
+   "id": "p25",
+   "texte": "Lire une cotation : attaches, valeurs, symboles, calcul."
+  },
+  {
+   "dit": "Exemple : un support rectangulaire est coté avec une longueur de quatre-vingts millimètres, une largeur de quarante et une épaisseur de cinq. Un trou de diamètre douze est percé à vingt millimètres du bord gauche et à quinze millimètres du bord inférieur. Pour vérifier s'il est centré verticalement, on calcule sa distance au bord supérieur : quarante moins quinze égale vingt-cinq millimètres. Le trou n'est pas centré : quinze millimètres d'un côté, vingt-cinq de l'autre.",
+   "ecran": "ex_trou",
+   "id": "p26",
+   "texte": "Trou à 15 mm d'un bord, 25 mm de l'autre : pas centré."
+  },
+  {
+   "dit": "Dernier piège, valable aussi pour les échelles : toute dimension portée sur un dessin prévaut sur la mesure effectuée directement sur celui-ci, car le papier peut se dilater ou se contracter. On lit la cote, on ne mesure pas le papier.",
+   "ecran": "piege_mesure",
+   "id": "p27",
+   "texte": "La cote écrite prévaut : ne mesure jamais sur le papier."
+  },
+  {
+   "dit": "Retenons l'essentiel : le dessin technique est un langage normalisé ; chaque trait a une signification unique, chaque instrument une fonction précise ; le format, le cadre et le cartouche identifient le document ; l'échelle relie le dessin au réel ; et la cotation transmet les dimensions sans doublon. Maîtriser ces codes garantit une communication technique fiable.",
+   "ecran": "recap",
+   "id": "p28",
+   "texte": "Traits, formats, échelles, cotation : le code complet."
+  }
+ ],
+ "titre": "Dessin technique : traits, formats, échelles et cotation"
+}
