@@ -1,0 +1,622 @@
+{
+ "cours": 6617,
+ "ecrans": {
+  "access": {
+   "kicker": "Créer une base avec Access",
+   "tex": [
+    "\\text{1. Nouvelle base de données}",
+    "\\text{2. Nommer le fichier, Créer}",
+    "\\text{3. onglet Créer, Table}",
+    "\\text{4. Mode Création : champs et types}",
+    "\\text{5. clé primaire, Enregistrer Eleves}"
+   ],
+   "titre": "Créer une base dans Access",
+   "type": "etape"
+  },
+  "algo_def": {
+   "kicker": "Définir : l'algorithme",
+   "tex": [
+    "\\text{suite finie et ordonnée}",
+    "\\text{non ambigu, se termine, correct}",
+    "\\text{instruction : action élémentaire}"
+   ],
+   "titre": "Fini, ordonné, correct",
+   "type": "etape"
+  },
+  "bdd": {
+   "kicker": "Définir : la base de données",
+   "tex": [
+    "\\text{table : lignes et colonnes}",
+    "\\text{ligne : enregistrement}",
+    "\\text{colonne : champ}"
+   ],
+   "titre": "Des données persistantes, en tables",
+   "type": "etape"
+  },
+  "cles": {
+   "kicker": "Les deux clés du modèle relationnel",
+   "tex": [
+    "\\text{primaire : unique, chaque ligne}",
+    "\\text{étrangère : référence autre table}",
+    "\\text{intégrité référentielle garantie}"
+   ],
+   "titre": "Deux clés structurent les tables",
+   "type": "etape"
+  },
+  "controles": {
+   "kicker": "Les structures de contrôle en C",
+   "tex": [
+    "\\text{if, else if, else}",
+    "\\text{for : itérations connues}",
+    "\\text{while : condition vérifiée avant}"
+   ],
+   "titre": "Choisir, répéter",
+   "type": "etape"
+  },
+  "erreurs": {
+   "kicker": "Vérifier avant, corriger après",
+   "tex": [
+    "\\text{cas limites : vide, extrémités}",
+    "\\text{ou éléments tous identiques}",
+    "\\text{message : ligne et nature}",
+    "\\text{corriger la première, recompiler}",
+    "\\text{logique : débogueur ou affichages}"
+   ],
+   "titre": "Tester avant, corriger après",
+   "type": "etape"
+  },
+  "exemple_insert_select": {
+   "kicker": "Exemple récapitulatif : l'école",
+   "tex": [
+    "\\text{Ali 14 ; Mariama 9,5 ; Omar 17}",
+    "\\text{entre 10 et 16 : Ali seul}"
+   ],
+   "titre": "Trois élèves, un seul retenu",
+   "type": "etape"
+  },
+  "io": {
+   "kicker": "Entrées et sorties en C",
+   "tex": [
+    "\\text{printf : formats d, f, c, s}",
+    "\\text{scanf : esperluette}",
+    "\\text{devant la variable}",
+    "\\text{exemple : deux entiers, la somme}"
+   ],
+   "titre": "Afficher, puis lire",
+   "type": "etape"
+  },
+  "ldd": {
+   "kicker": "Le langage de définition",
+   "tex": [
+    "\\text{CREATE TABLE Eleves}",
+    "\\text{ALTER TABLE : ajouter classe}",
+    "\\text{DROP TABLE : tout supprimer}"
+   ],
+   "titre": "Structurer : créer, modifier, supprimer",
+   "type": "etape"
+  },
+  "lmd": {
+   "kicker": "Le langage de manipulation",
+   "tex": [
+    "\\text{INSERT : ajouter une ligne}",
+    "\\text{UPDATE : modifier des lignes}",
+    "\\text{SELECT : extraire selon critères}",
+    "\\text{DELETE : supprimer des lignes}"
+   ],
+   "titre": "Quatre opérations sur les lignes",
+   "type": "etape"
+  },
+  "maximum": {
+   "kicker": "Maximum et minimum",
+   "tex": [
+    "\\text{max} \\leftarrow T[1]",
+    "\\text{si T[i] > max, max} \\leftarrow T[i]",
+    "\\text{n - 1 comparaisons, optimal}"
+   ],
+   "titre": "Partir du premier, comparer les suivants",
+   "type": "etape"
+  },
+  "mcd_concepts": {
+   "kicker": "Le modèle conceptuel de données",
+   "tex": [
+    "\\text{entité : attributs et identifiant}",
+    "\\text{association : lien entre entités}",
+    "\\text{cardinalités : (0,n), (1,1)}"
+   ],
+   "titre": "Entités, associations, cardinalités",
+   "type": "etape"
+  },
+  "mcd_etapes": {
+   "kicker": "Élaborer un MCD",
+   "tex": [
+    "\\text{1. repérer les entités}",
+    "\\text{2. attributs et identifiant}",
+    "\\text{3. repérer les associations}",
+    "\\text{4. fixer les cardinalités}"
+   ],
+   "titre": "Quatre gestes, quatre entités au plus",
+   "type": "etape"
+  },
+  "mcd_exemple": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Exemple résolu : le MCD",
+   "texte": "Client, commande, produit, fournisseur : un réseau lié.",
+   "type": "phrase"
+  },
+  "methodes": {
+   "kicker": "Concevoir un système d'information",
+   "tex": [
+    "\\text{MERISE : conceptuel, logique, physique}",
+    "\\text{UML : modélisation orientée objet}",
+    "\\text{agiles : itératives, incrémentales}",
+    "\\text{modéliser : simplifier le réel}"
+   ],
+   "titre": "Trois démarches, un même but",
+   "type": "etape"
+  },
+  "mld_exemple": {
+   "kicker": "Exemple résolu : le MLD final",
+   "tex": [
+    "\\text{CLIENT : codeClient, nom}",
+    "\\text{adresse}",
+    "\\text{COMMANDE : numCmd, date}",
+    "\\text{codeClient, clé étrangère}"
+   ],
+   "titre": "Client et commande, liés",
+   "type": "etape"
+  },
+  "mld_regle1": {
+   "kicker": "Passage au modèle logique",
+   "tex": [
+    "\\text{entité} \\rightarrow \\text{table}",
+    "\\text{identifiant} \\rightarrow \\text{clé primaire}"
+   ],
+   "titre": "Chaque entité devient une table",
+   "type": "etape"
+  },
+  "mld_regles": {
+   "kicker": "Passage au modèle logique",
+   "tex": [
+    "\\text{(1,1) à (1,1) : fusion en une table}",
+    "\\text{(1,1) à (0,n) : clé étrangère côté (0,n)}",
+    "\\text{(0,n) à (0,n) : table association}",
+    "\\text{clé primaire : concaténation des clés}"
+   ],
+   "titre": "Trois cas selon les cardinalités",
+   "type": "etape"
+  },
+  "operateurs": {
+   "kicker": "Filtrer avec WHERE",
+   "tex": [
+    "\\text{=, <, >, <=, >=, <>}",
+    "\\text{AND : les deux conditions vraies}",
+    "\\text{OR : au moins une condition vraie}"
+   ],
+   "titre": "Comparer, puis combiner",
+   "type": "etape"
+  },
+  "parcours": {
+   "kicker": "Parcours d'un tableau",
+   "tex": [
+    "\\text{boucle 1 : lire les valeurs}",
+    "\\text{boucle 2 : afficher les valeurs}",
+    "\\text{chaque boucle : n itérations}"
+   ],
+   "titre": "Deux boucles, n itérations chacune",
+   "type": "etape"
+  },
+  "programme_c": {
+   "kicker": "La structure d'un programme C",
+   "tex": [
+    "\\text{include : bibliothèque stdio}",
+    "\\text{define PI : 3,14}",
+    "\\text{main : entrée, accolades}",
+    "\\text{return 0}"
+   ],
+   "titre": "stdio, une constante, main",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Système d'information : modéliser en conceptuel, puis en logique",
+    "Table : clé primaire unique, clé étrangère liée",
+    "SQL : créer, insérer, sélectionner, modifier, supprimer",
+    "Algorithme : parcours, recherche, maximum sur tableau",
+    "Programme C : printf, scanf, débogage, cas limites"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "recherche": {
+   "kicker": "La recherche séquentielle",
+   "tex": [
+    "\\text{comparer chaque élément à v}",
+    "\\text{trouvé : arrêter ; sinon : absent}",
+    "\\text{pire : n ; moyenne : (n+1)/2}"
+   ],
+   "titre": "Comparer, un à un",
+   "type": "etape"
+  },
+  "regles": {
+   "kicker": "Les règles de gestion",
+   "tex": [
+    "\\text{un client passe plusieurs commandes}",
+    "\\text{une commande : un seul client}",
+    "\\text{règle de gestion :}",
+    "\\text{contrainte du métier}"
+   ],
+   "titre": "Le réel, dit en langage naturel",
+   "type": "etape"
+  },
+  "select_exemple": {
+   "kicker": "Sélection : la clause WHERE",
+   "note": "SELECT : extraire selon des critères",
+   "tex": [
+    "\\text{SELECT nom, moyenne}",
+    "\\text{FROM Eleves}",
+    "\\text{WHERE moyenne} \\geq 10"
+   ],
+   "titre": "SELECT avec WHERE",
+   "type": "etape"
+  },
+  "sgbd": {
+   "kicker": "Le SGBD",
+   "tex": [
+    "\\text{créer, gérer, manipuler}",
+    "\\text{persistance, cohérence, sécurité}",
+    "\\text{accès concurrent aux données}"
+   ],
+   "titre": "Le logiciel qui pilote la base",
+   "type": "etape"
+  },
+  "si": {
+   "kicker": "Définir : le système d'information",
+   "tex": [
+    "\\text{ressources : matériel}",
+    "\\text{logiciel, humain, données}",
+    "\\text{collecter, stocker}",
+    "\\text{traiter, diffuser}",
+    "\\text{automatisé : base de données}"
+   ],
+   "titre": "Un système organisé, quatre fonctions",
+   "type": "etape"
+  },
+  "somme": {
+   "kicker": "Exemple résolu : la somme",
+   "note": "Lire n, S reçoit zéro, boucle de un à n, afficher S",
+   "tex": "S = \\sum_{i=1}^{n} i",
+   "type": "formule"
+  },
+  "sql_familles": {
+   "kicker": "Le langage SQL",
+   "tex": [
+    "\\text{LDD : CREATE, ALTER, DROP}",
+    "\\text{LMD : INSERT, UPDATE}",
+    "\\text{SELECT, DELETE}"
+   ],
+   "titre": "Définir, puis manipuler",
+   "type": "etape"
+  },
+  "structures": {
+   "kicker": "Les structures de données",
+   "tex": [
+    "\\text{variable simple : une valeur}",
+    "\\text{tableau : indexé, même type}",
+    "\\text{chaîne : suite de caractères}",
+    "\\text{fichier : données persistantes}",
+    "\\text{enregistrement : champs variés}"
+   ],
+   "titre": "Cinq structures fondamentales",
+   "type": "etape"
+  },
+  "tableau_def": {
+   "kicker": "Déclarer un tableau",
+   "tex": [
+    "\\text{T de 1 à n : même type}",
+    "\\text{en C : int T[100]}",
+    "\\text{indices C : 0 à 99}",
+    "\\text{accès direct, taille fixe}"
+   ],
+   "titre": "Contigu, typé, indicé",
+   "type": "etape"
+  },
+  "tableaux_c_recherche": {
+   "kicker": "Tableaux et recherche en C",
+   "tex": [
+    "\\text{int T[10] ; notes[30] ; M[3][4]}",
+    "\\text{avancer tant que différent}",
+    "\\text{et dans le tableau}",
+    "\\text{trouvé : position ; sinon : absent}"
+   ],
+   "titre": "Indice zéro, avance, décide",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "matrice_fig"
+   },
+   "kicker": "Informatique · Bases de données et algorithmique",
+   "sous": "Du système d'information au programme C : modéliser, interroger, programmer.",
+   "titre": "Bases de données et algorithmique en C",
+   "type": "titre"
+  },
+  "update_delete": {
+   "kicker": "Exemple récapitulatif : l'école",
+   "tex": [
+    "\\text{UPDATE : Mariama passe à 10,5}",
+    "\\text{DELETE : identifiant 3, Omar}"
+   ],
+   "titre": "Corriger, puis supprimer",
+   "type": "etape"
+  },
+  "variables": {
+   "kicker": "Variables et constantes en C",
+   "tex": [
+    "\\text{int : entier ; float : réel}",
+    "\\text{char : caractère}",
+    "\\text{define TAUX : 0,18}",
+    "\\text{const MAX : 100}"
+   ],
+   "titre": "Typée, nommée, parfois constante",
+   "type": "etape"
+  },
+  "mld_exemple2": {
+   "kicker": "Exemple résolu : le MLD final",
+   "tex": [
+    "\\text{PRODUIT : refProd, libellé}",
+    "\\text{prix, numCmd, clé étrangère}",
+    "\\text{FOURNISSEUR : codeFourn}",
+    "\\text{nom, téléphone, refProd}",
+    "\\text{refProd, clé étrangère}"
+   ],
+   "titre": "Produit et fournisseur, liés aussi",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Système d'information, modèle conceptuel, modèle logique"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : les bases de données relationnelles et le langage SQL, de la création de la table à la requête filtrée, avec l'exemple complet de la gestion d'une école.",
+    "texte": "Partie 2 : base de données, SGBD et langage SQL."
+   },
+   "sous_titre": "Base de données, SGBD et langage SQL"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : l'algorithmique et le langage C, des structures de données à la recherche dans un tableau, puis la traduction en programme C, avec ses entrées, ses sorties et ses erreurs.",
+    "texte": "Partie 3 : algorithmes, tableaux et programmation en C."
+   },
+   "sous_titre": "Algorithmes, tableaux et programmation en C"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de bases de données et d'algorithmique en C. Nous partirons des besoins d'une organisation, nous modéliserons ses données, puis nous les interrogerons en langage SQL et nous les traiterons par des algorithmes traduits en langage C.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Données, modèles, programmes : le parcours complet."
+  },
+  {
+   "dit": "Un système d'information est un ensemble organisé de ressources matérielles, logicielles, humaines et de données. Il collecte, stocke, traite et diffuse l'information dans l'organisation ; automatisé, il s'appuie sur des bases de données.",
+   "ecran": "si",
+   "id": "p02",
+   "texte": "Système d'information : collecter, stocker, traiter, diffuser."
+  },
+  {
+   "dit": "Pour le concevoir, trois démarches : MERISE, méthode française par niveaux conceptuel, logique puis physique ; UML, langage de modélisation orienté objet ; et les méthodes agiles, itératives et incrémentales. Modéliser, c'est simplifier le réel pour l'informatique.",
+   "ecran": "methodes",
+   "id": "p03",
+   "texte": "MERISE, UML, agiles : trois démarches."
+  },
+  {
+   "dit": "Tout commence par les règles de gestion, des phrases en langage naturel qui disent les faits du métier. Par exemple : un client peut passer plusieurs commandes, mais une commande est passée par un seul client.",
+   "ecran": "regles",
+   "id": "p04",
+   "texte": "Règles de gestion : le métier en langage naturel."
+  },
+  {
+   "dit": "Le modèle conceptuel de données décrit ce réel avec des entités, qui portent des attributs et un identifiant, des associations entre entités, et des cardinalités, comme zéro virgule n ou un virgule un, qui comptent les liens possibles.",
+   "ecran": "mcd_concepts",
+   "id": "p05",
+   "texte": "MCD : entités, associations, cardinalités."
+  },
+  {
+   "dit": "Pour construire ce modèle, quatre gestes, avec quatre entités au maximum : repérer les entités dans les règles de gestion, définir leurs attributs et leur identifiant, repérer les associations, puis fixer les cardinalités.",
+   "ecran": "mcd_etapes",
+   "id": "p06",
+   "texte": "Construire un MCD en quatre gestes."
+  },
+  {
+   "dit": "Appliquons-le : un client, zéro virgule n, passe, un virgule un, une commande ; une commande, un virgule n, concerne, un virgule un, un produit ; un produit, un virgule un, est fourni par, zéro virgule n, un fournisseur. La figure montre des sommets reliés, comme ces entités reliées par leurs associations.",
+   "ecran": "mcd_exemple",
+   "id": "p07",
+   "texte": "Client, commande, produit, fournisseur : un réseau lié."
+  },
+  {
+   "dit": "Passons au modèle logique : chaque entité devient une table, et son identifiant devient la clé primaire, notée dièse, qui identifie chaque enregistrement de façon unique.",
+   "ecran": "mld_regle1",
+   "id": "p08",
+   "texte": "Entité devient table, identifiant devient clé primaire."
+  },
+  {
+   "dit": "Selon les cardinalités : de un virgule un à un virgule un, on fusionne en une seule table ; de un virgule un à zéro virgule n, le côté zéro virgule n reçoit une clé étrangère ; de zéro virgule n à zéro virgule n, on crée une table d'association dont la clé concatène les deux clés étrangères.",
+   "ecran": "mld_regles",
+   "id": "p09",
+   "texte": "Fusion, clé étrangère, table d'association."
+  },
+  {
+   "dit": "Dans notre exemple, tout passe par la règle trois : la table client garde son code, son nom et son adresse, et la table commande reçoit le code du client comme clé étrangère.",
+   "ecran": "mld_exemple",
+   "id": "p10",
+   "texte": "Client et commande : une clé étrangère."
+  },
+  {
+   "dit": "La table produit reçoit le numéro de commande, et la table fournisseur reçoit la référence du produit, chaque fois comme clé étrangère.",
+   "ecran": "mld_exemple2",
+   "id": "p11",
+   "texte": "Produit et fournisseur : deux clés étrangères."
+  },
+  {
+   "dit": "Retenez les deux clés : la clé primaire identifie chaque ligne de façon unique, et la clé étrangère référence la clé primaire d'une autre table, ce qui garantit l'intégrité référentielle entre les tables.",
+   "ecran": "cles",
+   "id": "p12",
+   "texte": "Clé primaire unique, clé étrangère liée."
+  },
+  {
+   "dit": "Une base de données est un ensemble structuré de données persistantes, organisées en tables, avec des lignes, les enregistrements, et des colonnes, les champs. On la pilote avec un système de gestion de base de données, un SGBD.",
+   "ecran": "bdd",
+   "id": "p13",
+   "texte": "Base de données : des tables persistantes."
+  },
+  {
+   "dit": "Le SGBD crée, gère et manipule la base : il assure la persistance, la cohérence, la sécurité et l'accès concurrent. Parmi les SGBD, citons MySQL, PostgreSQL, Oracle, SQL Server, Access et SQLite.",
+   "ecran": "sgbd",
+   "id": "p14",
+   "texte": "SGBD : créer, gérer, sécuriser, partager."
+  },
+  {
+   "dit": "Le langage SQL dialogue avec le SGBD relationnel. On distingue le langage de définition, créer, modifier, supprimer une table, et le langage de manipulation, insérer, modifier, sélectionner, supprimer des lignes.",
+   "ecran": "sql_familles",
+   "id": "p15",
+   "texte": "SQL : définir, puis manipuler."
+  },
+  {
+   "dit": "En mode graphique, avec Access, on crée une nouvelle base, on la nomme, par exemple GestionEleves, puis on crée une table en mode feuille de données, on passe en mode création pour définir les champs et la clé primaire, et on enregistre la table Eleves.",
+   "ecran": "access",
+   "id": "p16",
+   "texte": "Access : créer une base en mode graphique."
+  },
+  {
+   "dit": "En SQL, on crée la table Eleves avec un identifiant élève entier et clé primaire, un nom texte et une moyenne réelle. ALTER TABLE ajoute la colonne classe, DROP TABLE supprime la table et toutes ses données.",
+   "ecran": "ldd",
+   "id": "p17",
+   "texte": "CREATE, ALTER, DROP : structurer."
+  },
+  {
+   "dit": "Pour manipuler les lignes : INSERT ajoute une ligne, UPDATE met à jour des lignes existantes, SELECT extrait des données selon des critères, et DELETE supprime des lignes de la table.",
+   "ecran": "lmd",
+   "id": "p18",
+   "texte": "INSERT, UPDATE, SELECT, DELETE : manipuler."
+  },
+  {
+   "dit": "Par exemple, sélectionner nom et moyenne dans Eleves, pour les moyennes supérieures ou égales à dix, ne garde que les élèves qui satisfont ce critère. La clause WHERE, c'est le filtre de la requête.",
+   "ecran": "select_exemple",
+   "id": "p19",
+   "texte": "SELECT avec WHERE : filtrer les lignes."
+  },
+  {
+   "dit": "Dans ce filtre, les comparaisons sont égal, inférieur, supérieur, inférieur ou égal, supérieur ou égal, et différent. Avec AND, les deux conditions doivent être vraies ; avec OR, au moins une doit l'être.",
+   "ecran": "operateurs",
+   "id": "p20",
+   "texte": "Comparaisons, AND, OR : combiner les filtres."
+  },
+  {
+   "dit": "Reprenons l'école : on insère Ali avec quatorze, Mariama avec neuf virgule cinq, Omar avec dix-sept. Sélectionner les moyennes entre dix et seize ne retient qu'Ali, car quatorze est entre dix et seize.",
+   "ecran": "exemple_insert_select",
+   "id": "p21",
+   "texte": "Ali, Mariama, Omar : un seul retenu."
+  },
+  {
+   "dit": "Puis on corrige : la moyenne de Mariama passe à dix virgule cinq. Et on supprime la ligne dont l'identifiant élève vaut trois, celle d'Omar. La base reflète alors la réalité de la classe.",
+   "ecran": "update_delete",
+   "id": "p22",
+   "texte": "Corriger Mariama, supprimer Omar."
+  },
+  {
+   "dit": "Un algorithme est une suite finie et ordonnée d'instructions qui résout un problème : il doit être non ambigu, se terminer et donner un résultat correct. Une instruction est une action élémentaire, comme affecter, lire, écrire, tester ou répéter.",
+   "ecran": "algo_def",
+   "id": "p23",
+   "texte": "Algorithme : fini, ordonné, correct."
+  },
+  {
+   "dit": "Les données s'organisent en cinq structures : la variable simple, qui contient une seule valeur ; le tableau, collection indexée de même type ; la chaîne de caractères ; le fichier, persistant ; et l'enregistrement, qui regroupe des champs de types différents.",
+   "ecran": "structures",
+   "id": "p24",
+   "texte": "Cinq structures pour organiser les données."
+  },
+  {
+   "dit": "Premier algorithme, la somme des n premiers entiers : lire n, mettre S à zéro, puis pour i de un à n, ajouter i à S, et afficher S. Les structures de contrôle, tests et boucles, pilotent l'ordre des instructions.",
+   "ecran": "somme",
+   "id": "p25",
+   "texte": "Somme de un à n : lire, accumuler, afficher."
+  },
+  {
+   "dit": "Un tableau est contigu, de même type, accessible par un indice entier : on le déclare tableau T de un à n, de type donné. En C, on écrit int T entre crochets cent, avec des indices de zéro à quatre-vingt-dix-neuf.",
+   "ecran": "tableau_def",
+   "id": "p26",
+   "texte": "Tableau T de un à n, en C de zéro à quatre-vingt-dix-neuf."
+  },
+  {
+   "dit": "Pour le parcourir, on visite chaque élément une seule fois, en général par indice croissant : une première boucle de un à n lit les valeurs, une seconde boucle de un à n les affiche. Chaque boucle fait exactement n itérations.",
+   "ecran": "parcours",
+   "id": "p27",
+   "texte": "Lire puis afficher : deux boucles de n."
+  },
+  {
+   "dit": "La recherche séquentielle compare chaque élément, l'un après l'autre, à la valeur cherchée. Dans cinq, deux, neuf, un, chercher neuf trouve le troisième élément. Au pire, il faut n comparaisons ; en moyenne, n plus un sur deux.",
+   "ecran": "recherche",
+   "id": "p28",
+   "texte": "Recherche séquentielle : comparer un à un."
+  },
+  {
+   "dit": "Pour le maximum, on part du premier élément, puis on compare chaque suivant : si un élément dépasse le maximum, il le remplace. Sur sept, trois, dix, un, le maximum est dix et le minimum, par symétrie, est un. Il faut exactement n moins une comparaisons, et c'est optimal.",
+   "ecran": "maximum",
+   "id": "p29",
+   "texte": "Maximum dix, minimum un : n moins une comparaisons."
+  },
+  {
+   "dit": "En langage C, on écrit dans un environnement qui regroupe éditeur, compilateur et débogueur, comme Code::Blocks ou Visual Studio Code. Un programme commence par la bibliothèque stdio, définit parfois une constante, entre dans la fonction main entre accolades, et retourne zéro.",
+   "ecran": "programme_c",
+   "id": "p30",
+   "texte": "Programme C : stdio, constante, main, retour zéro."
+  },
+  {
+   "dit": "Une variable est un espace mémoire nommé et typé : entier avec int, réel avec float, caractère avec char, avec ou sans valeur initiale. Une constante ne change jamais : on la définit par define, comme un taux de zéro virgule dix-huit, ou par const, comme un maximum de cent.",
+   "ecran": "variables",
+   "id": "p31",
+   "texte": "int, float, char, define, const : typer et figer."
+  },
+  {
+   "dit": "Pour afficher, printf avec un format : pour cent d pour un entier, pour cent f pour un réel, pour cent c pour un caractère, pour cent s pour une chaîne. Pour lire, scanf avec une esperluette devant la variable : on lit deux entiers, puis on affiche leur somme.",
+   "ecran": "io",
+   "id": "p32",
+   "texte": "printf affiche, scanf lit avec esperluette."
+  },
+  {
+   "dit": "Côté contrôle : si, sinon si, sinon pour les choix ; la boucle for quand le nombre d'itérations est connu ; la boucle while, dont la condition est vérifiée avant. La somme des n premiers entiers s'écrit avec un for de un à n qui accumule la somme.",
+   "ecran": "controles",
+   "id": "p33",
+   "texte": "if, for, while : choisir et répéter."
+  },
+  {
+   "dit": "En C, le premier indice est zéro : un tableau de dix entiers, un tableau de trente réels, ou une matrice de trois lignes et quatre colonnes. Pour chercher une valeur, on avance tant qu'on n'a pas atteint la fin et que l'élément diffère de la valeur : trouvé, on affiche sa position, sinon on affiche absent.",
+   "ecran": "tableaux_c_recherche",
+   "id": "p34",
+   "texte": "En C, indice zéro : chercher, trouver ou absent."
+  },
+  {
+   "dit": "Avant d'implémenter, testez à la main les cas limites : tableau vide, valeur en première ou dernière position, éléments tous identiques. En C, les messages du compilateur indiquent la ligne et la nature de l'erreur : corrigez la première, recompilez, et pour une erreur logique, utilisez le débogueur ou des affichages de trace.",
+   "ecran": "erreurs",
+   "id": "p35",
+   "texte": "Cas limites, messages, débogueur : vérifier."
+  },
+  {
+   "dit": "Retenons l'essentiel : un système d'information se modélise en conceptuel puis en logique ; une table se structure par ses clés ; SQL crée, insère, sélectionne, modifie et supprime ; un algorithme traite un tableau par parcours, recherche ou maximum ; et le programme C traduit tout cela, puis se teste.",
+   "ecran": "recap",
+   "id": "p36",
+   "texte": "Modéliser, structurer, interroger, programmer, tester."
+  }
+ ],
+ "titre": "Bases de données et algorithmique en C"
+}
