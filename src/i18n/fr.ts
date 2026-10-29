@@ -2869,6 +2869,11 @@ export const fr = {
         numeroMiniPartie: 'n° {{numero}}',
         numeroMixte: 'Mixte n° {{numero}}',
         meilleurSur: 'Meilleur : {{score}} sur {{max}}',
+        surMax: 'sur {{max}}',
+        barreAuDessus: 'Meilleur : {{score}} sur {{max}}, au-dessus de ton objectif de {{objectif}}',
+        barreEnDessous: 'Meilleur : {{score}} sur {{max}}, en dessous de ton objectif de {{objectif}}',
+        barreObjectifAtteint: 'Meilleur : {{score}} sur {{max}}, juste à ton objectif de {{objectif}}',
+        barreVideObjectif: 'Pas encore de score. Ton objectif : {{objectif}}.',
         choixPartie: {
           titre: 'Choisis une partie',
           intro: 'Chaque mini-test porte sur une seule partie : 10 ou 12 questions selon la partie.',

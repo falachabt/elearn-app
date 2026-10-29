@@ -1,8 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fireEvent, screen } from '@testing-library/react-native';
 import { router } from 'expo-router';
+import { StyleSheet } from 'react-native';
 
 import { definirApi } from '@/services/certification/api';
+import { ecrirePlan } from '@/services/certification/etat';
 import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
 import type { DefTest } from '@/services/certification/types';
 import { enregistrerProfil } from '@/services/profil';
@@ -71,7 +73,8 @@ describe('liste des mini-tests d’une partie (v39)', () => {
     expect(screen.getByTestId('ligne-mini-3')).toBeTruthy();
     expect(screen.getByTestId('ligne-mini-5')).toBeTruthy();
     expect(screen.queryByTestId('ligne-mini-1')).toBeNull();
-    expect(screen.getByText(/Meilleur : 7 sur 10/)).toBeTruthy();
+    // Le meilleur s'écrit en compact au-dessus de la barre (« 7 sur 10 »), plus en phrase « Meilleur : … ».
+    expect(screen.getByText(/7 sur 10/)).toBeTruthy();
   });
 
   it('sans partie valide, renvoie vers le choix de la partie', async () => {
@@ -97,8 +100,9 @@ describe('total affiché sur les cartes (décision de Benny du 25 octobre 2026)'
     ]);
     await monter(<ListeTests />);
     expect(await screen.findByText('n° 1')).toBeTruthy();
-    // Une ligne de total par carte, au total de la définition (10), jamais la nouveauté (5 ou 6).
-    expect(screen.getAllByText('10 questions')).toHaveLength(2);
+    // Une ligne de méta par carte (« Tentatives : N · 10 questions »), au total de la définition (10),
+    // jamais la nouveauté (5 ou 6).
+    expect(screen.getAllByText(/· 10 questions/)).toHaveLength(2);
     expect(screen.queryByText(/questions nouvelles pour toi/)).toBeNull();
   });
 
@@ -107,7 +111,7 @@ describe('total affiché sur les cartes (décision de Benny du 25 octobre 2026)'
     installer([{ ...mini('l1', null, 1, { questions: 100, nouvellesQuestions: 76 }), kind: 'listening' }]);
     await monter(<ListeTests />);
     expect(await screen.findByText('Écoute n° 1')).toBeTruthy();
-    expect(screen.getByText('100 questions')).toBeTruthy();
+    expect(screen.getByText(/· 100 questions/)).toBeTruthy();
     expect(screen.queryByText(/questions nouvelles pour toi/)).toBeNull();
   });
 });
@@ -178,7 +182,7 @@ describe('liste des mixtes : échelle du meilleur et départ (terrain du 27 octo
     mockParams = { kind: 'mixed' };
     installerMixtes();
     await monter(<ListeTests />);
-    expect(await screen.findByText(/Meilleur : 550 sur 990/)).toBeTruthy();
+    expect(await screen.findByText(/550 sur 990/)).toBeTruthy();
     expect(screen.queryByText(/sur 20/)).toBeNull();
   });
 
@@ -203,5 +207,104 @@ describe('liste des mixtes : échelle du meilleur et départ (terrain du 27 octo
     fireEvent.press(await screen.findByTestId('ligne-mixed-2'));
     await screen.findByTestId('ligne-mixed-2');
     expect(router.replace).toHaveBeenCalledWith('/certification/mini-test');
+  });
+});
+
+describe('barre du meilleur, repère objectif et bloc collé (maquette validée par Benny le 29 octobre 2026)', () => {
+  const styleDe = (testID: string, index = 0) =>
+    StyleSheet.flatten(screen.getAllByTestId(testID)[index]?.props.style) as Record<string, unknown>;
+  const mixtes: DefTest[] = [
+    { ...mini('y1', null, 1, { questions: 20, fini: true, tentatives: 1, meilleurScoreMax: 980, nouvellesQuestions: 0 }), kind: 'mixed' },
+    { ...mini('y2', null, 2, { questions: 20 }), kind: 'mixed' },
+  ];
+
+  it('fait au-dessus de l’objectif : repère à sa position, valeur « 800 » au-dessus, aucune légende textuelle', async () => {
+    mockParams = { kind: 'mixed' };
+    installer(mixtes);
+    await ecrirePlan({ exam: 'toeic', objectif: 800 });
+    await monter(<ListeTests />);
+    expect(await screen.findByText(/980 sur 990/)).toBeTruthy();
+    // Un repère par ligne (faite ou non), à la position de l'objectif sur l'échelle totale.
+    expect(screen.getAllByTestId('repere-objectif')).toHaveLength(2);
+    expect(styleDe('repere-objectif').left).toBe(`${(800 / 990) * 100}%`);
+    // La valeur s'écrit en petit juste au-dessus du repère — et c'est le seul texte d'objectif visible :
+    // aucune légende (« Objectif : 800 ») ne fait passer la ligne à la ligne (ajustement de Benny).
+    expect(screen.getAllByTestId('repere-valeur').map((el) => el.props.children)).toEqual([800, 800]);
+    expect(screen.queryByText(/Objectif/)).toBeNull();
+    // La position par rapport à l'objectif vit dans le libellé d'accessibilité de la barre.
+    const barre = screen.getByLabelText(/au-dessus de ton objectif de 800/);
+    expect(barre.props.accessibilityValue).toEqual({ min: 0, max: 990, now: 980 });
+  });
+
+  it('fait en dessous de l’objectif : le libellé de la barre le dit, le repère reste à l’objectif', async () => {
+    mockParams = { kind: 'mixed' };
+    installer([
+      { ...mini('z1', null, 1, { questions: 20, fini: true, tentatives: 2, meilleurScoreMax: 550, nouvellesQuestions: 0 }), kind: 'mixed' },
+    ]);
+    await ecrirePlan({ exam: 'toeic', objectif: 800 });
+    await monter(<ListeTests />);
+    expect(await screen.findByText(/550 sur 990/)).toBeTruthy();
+    expect(screen.getByLabelText(/en dessous de ton objectif de 800/)).toBeTruthy();
+    expect(styleDe('repere-objectif').left).toBe(`${(800 / 990) * 100}%`);
+  });
+
+  it('pas encore fait : piste vide, repère déjà visible avec sa valeur', async () => {
+    mockParams = { kind: 'mixed' };
+    installer(mixtes);
+    await ecrirePlan({ exam: 'toeic', objectif: 800 });
+    await monter(<ListeTests />);
+    expect(await screen.findByText('Mixte n° 2')).toBeTruthy();
+    // La ligne non faite a sa barre (valeur 0) et le même repère que la ligne faite.
+    const barres = screen.getAllByRole('progressbar');
+    expect(barres.map((b) => b.props.accessibilityValue.now)).toEqual([980, 0]);
+    expect(screen.getAllByTestId('repere-objectif')).toHaveLength(2);
+    expect(screen.getByLabelText(/Ton objectif : 800/)).toBeTruthy();
+  });
+
+  it('sans objectif défini : la barre reste, aucun repère n’est inventé', async () => {
+    mockParams = { kind: 'mixed' };
+    installer(mixtes);
+    await monter(<ListeTests />);
+    expect(await screen.findByText(/980 sur 990/)).toBeTruthy();
+    expect(screen.getAllByRole('progressbar')).toHaveLength(2);
+    expect(screen.queryByTestId('repere-objectif')).toBeNull();
+    expect(screen.queryByTestId('repere-valeur')).toBeNull();
+  });
+
+  it('mini par partie : barre sur les questions, jamais de repère (échelles incompatibles)', async () => {
+    mockParams = { kind: 'mini', partie: '5' };
+    await ecrirePlan({ exam: 'toeic', objectif: 800 });
+    await monter(<ListeTests />);
+    expect(await screen.findByText(/7 sur 10/)).toBeTruthy();
+    expect(screen.queryByTestId('repere-objectif')).toBeNull();
+    const barres = screen.getAllByRole('progressbar');
+    expect(barres[0]?.props.accessibilityValue).toEqual({ min: 0, max: 10, now: 7 });
+  });
+
+  it('demi-test : le repère se place à la moitié de l’objectif, sa valeur est celle de la section', async () => {
+    mockParams = { kind: 'listening' };
+    installer([
+      { ...mini('l1', null, 1, { questions: 100, fini: true, tentatives: 1, meilleurScoreMax: 450, nouvellesQuestions: 0 }), kind: 'listening' },
+    ]);
+    await ecrirePlan({ exam: 'toeic', objectif: 800 });
+    await monter(<ListeTests />);
+    // « 450 sur 495 » vit dans l'en-tête (meilleur de la section) et, désormais, sur la ligne elle-même.
+    expect((await screen.findAllByText(/450 sur 495/)).length).toBe(2);
+    // Position et valeur écrite : 400 sur l'échelle 495 — le libellé d'accessibilité parle de l'objectif total (800).
+    expect(styleDe('repere-objectif').left).toBe(`${(400 / 495) * 100}%`);
+    expect(screen.getByTestId('repere-valeur').props.children).toBe(400);
+    expect(screen.getByLabelText(/au-dessus de ton objectif de 800/)).toBeTruthy();
+  });
+
+  it('bloc collé unique : pas de contour par ligne, un trait fin entre les lignes', async () => {
+    mockParams = { kind: 'mixed' };
+    installer(mixtes);
+    await monter(<ListeTests />);
+    expect(await screen.findByText('Mixte n° 1')).toBeTruthy();
+    // Avant : chaque ligne était une carte bordée (borderWidth 2). Dans le bloc, seule la première
+    // ligne n'a pas de séparateur ; les suivantes portent le trait fin du patron ListeCollee.
+    expect(styleDe('ligne-mixed-1').borderWidth).toBeUndefined();
+    expect(styleDe('ligne-mixed-1').borderTopWidth).toBeUndefined();
+    expect(styleDe('ligne-mixed-2').borderTopWidth).toBe(1.5);
   });
 });

@@ -1,13 +1,13 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useTextesCredits } from '@/components/credits/textes';
 import { useGardeReseau } from '@/components/reseau/useGardeReseau';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { obtenirApi } from '@/services/certification/api';
-import { obtenirReglages } from '@/services/certification/etat';
+import { lirePlan, obtenirReglages } from '@/services/certification/etat';
 import { signalerErreurDemarrage } from '@/services/certification/erreurDemarrage';
 import { lancerDefTest, longueurMiniServie } from '@/services/certification/miniTest';
 import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE, PARTIES, meilleurDeSection, nombreFaits, numeroDansPartie, statutLigne, testConseille, testsDeLaPartie } from '@/services/certification/listesTests';
@@ -23,10 +23,10 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
-import { Appui } from '../Appui';
+import { GroupeColle } from '../liste/ListeCollee';
 import { FeuilleCreditsInsuffisants, FeuilleErreurDemarrage } from './FeuillesDemarrageTest';
 import { stylePartie } from './partiesStyle';
-import { EnteteToeic, Squelette } from './ui';
+import { BarreScoreObjectif, EnteteToeic, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
 const TYPES: TypeDefTest[] = ['listening', 'reading', 'full', 'mini', 'mixed'];
@@ -68,10 +68,15 @@ export function ListeTests() {
   }, [choixManquant]);
 
   const { etat, recharger } = useChargement(async () => {
-    if (choixManquant) return { exam: 'toeic', tests: [], reglages: null };
+    if (choixManquant) return { exam: 'toeic', tests: [], reglages: null, plan: null };
     const exam = (await lireProfil())?.exam ?? 'toeic';
-    const [tests, reglages] = await Promise.all([obtenirApi().listerDefsTests(exam, type), obtenirReglages().catch(() => null)]);
-    return { exam, tests, reglages };
+    const [tests, reglages, plan] = await Promise.all([
+      obtenirApi().listerDefsTests(exam, type),
+      obtenirReglages().catch(() => null),
+      // Le plan de l'élève porte son objectif (le repère des barres) ; lecture locale, jamais bloquante.
+      lirePlan().catch(() => null),
+    ]);
+    return { exam, tests, reglages, plan };
   });
 
   const lancer = async (test: DefTest, exam: string, reglages: Pick<Reglages, 'miniMinutesPour10'> | null) => {
@@ -103,6 +108,9 @@ export function ListeTests() {
   const tests = type === 'mini' && partie !== null ? testsDeLaPartie(tousTests, partie) : tousTests;
   const exam = etat.phase === 'ok' ? etat.valeur.exam : 'toeic';
   const reglagesOk = etat.phase === 'ok' ? etat.valeur.reglages : null;
+  const planOk = etat.phase === 'ok' ? etat.valeur.plan : null;
+  // Objectif de l'élève, un score total posé à l'arrivée ; null s'il a passé l'étape : aucun repère n'est inventé.
+  const objectifTotal = planOk?.objectif ?? null;
   // Nombre de questions annoncé pour un mini par partie : celui des définitions listées quand elles s'accordent
   // (la donnée réelle — 12 pour les parties 3, 4 et 6) ; à défaut, la longueur que le serveur sert pour la partie.
   const comptesMini = new Set(tests.map((x) => x.questions));
@@ -150,28 +158,62 @@ export function ListeTests() {
               </View>
             </View>
           </Carte>
-          {tests.map((test) => {
-            const statut = statutLigne(test);
-            const estConseille = conseille?.id === test.id;
-            const libelleStatut = t(`certification.tests.listes.statut.${statut}`);
-            // Échelle du meilleur score : un mini se lit sur ses questions (un compte de bonnes
-            // réponses) ; un mixte se lit sur le total, comme au détail et au bilan — le nombre de
-            // questions pris pour échelle donnait « Meilleur : 550 sur 20 » (terrain du 27 octobre 2026).
-            const maxMeilleur = type === 'mixed' ? (reglagesOk?.objectifMax ?? null) : test.questions;
-            
-            return (
-              <Appui
-                key={test.id}
-                accessibilityRole="button"
-                accessibilityLabel={`${t(CLE_NUMERO_LIGNE[type], { numero: test.numero })}. ${libelleStatut}`}
-                disabled={enCours !== null}
-                onPress={() => (test.fini ? router.push({ pathname: '/certification/test-detail', params: { kind: type, id: test.id, ...(type === 'mini' && test.part ? { partie: String(test.part) } : {}) } } as never) : void lancer(test, exam, reglagesOk))}
-                decalage={3}
-                rayon={rayon.l}
-              >
-                <View
+          {/* Les lignes vivent en un seul bloc collé (patron ListeCollee, comme les listes du
+              Secondaire) : un seul contour, un trait fin entre les lignes, la ligne conseillée en
+              fond soleil très doux — la bordure jaune individuelle des cartes séparées disparaît. */}
+          <GroupeColle>
+            {tests.map((test, index) => {
+              const statut = statutLigne(test);
+              const estConseille = conseille?.id === test.id;
+              const libelleStatut = t(`certification.tests.listes.statut.${statut}`);
+              // Échelle de la barre du meilleur, par type : un mini se lit sur ses questions (un compte
+              // de bonnes réponses) ; un mixte et un complet sur le total — le nombre de questions pris
+              // pour échelle donnait « Meilleur : 550 sur 20 » (terrain du 27 octobre 2026) ; un
+              // demi-test sur sa section, la moitié du total. Sans réglages, pas d'échelle connue :
+              // la ligne garde alors son texte seul, sans barre.
+              const echelle = type === 'mini'
+                ? test.questions
+                : reglagesOk
+                  ? type === 'listening' || type === 'reading'
+                    ? reglagesOk.objectifMax / 2
+                    : reglagesOk.objectifMax
+                  : null;
+              // Repère de l'objectif ramené à l'échelle de la barre (l'objectif est un score total,
+              // donc sa moitié sur un demi-test) ; jamais sur un mini : un compte de questions ne se
+              // compare pas à un score TOEIC.
+              const repere = echelle !== null && objectifTotal !== null && type !== 'mini'
+                ? type === 'listening' || type === 'reading'
+                  ? objectifTotal / 2
+                  : objectifTotal
+                : null;
+              // Le libellé d'accessibilité de la barre dit tout en mots (valeur, échelle, position par
+              // rapport à l'objectif total) : la carte visible, elle, ne porte aucun texte d'objectif.
+              const libelleBarre = echelle === null
+                ? ''
+                : test.meilleurScoreMax === null
+                  ? repere !== null && objectifTotal !== null
+                    ? t('certification.tests.listes.barreVideObjectif', { objectif: objectifTotal })
+                    : t('certification.tests.listes.pasDeScoreLigne')
+                  : repere === null || objectifTotal === null
+                    ? t('certification.tests.listes.meilleurSur', { score: test.meilleurScoreMax, max: echelle })
+                    : test.meilleurScoreMax > repere
+                      ? t('certification.tests.listes.barreAuDessus', { score: test.meilleurScoreMax, max: echelle, objectif: objectifTotal })
+                      : test.meilleurScoreMax < repere
+                        ? t('certification.tests.listes.barreEnDessous', { score: test.meilleurScoreMax, max: echelle, objectif: objectifTotal })
+                        : t('certification.tests.listes.barreObjectifAtteint', { score: test.meilleurScoreMax, max: echelle, objectif: objectifTotal });
+              return (
+                <Pressable
+                  key={test.id}
                   testID={`ligne-${test.kind}-${test.numero}`}
-                  style={[styles.ligne, { backgroundColor: theme.fond.surface, borderColor: estConseille ? theme.accent.soleil : theme.bord.fort }]}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${t(CLE_NUMERO_LIGNE[type], { numero: test.numero })}. ${libelleStatut}`}
+                  disabled={enCours !== null}
+                  onPress={() => (test.fini ? router.push({ pathname: '/certification/test-detail', params: { kind: type, id: test.id, ...(type === 'mini' && test.part ? { partie: String(test.part) } : {}) } } as never) : void lancer(test, exam, reglagesOk))}
+                  style={[
+                    styles.ligneCollee,
+                    index > 0 ? { borderTopWidth: bord.fin, borderTopColor: theme.bord.doux } : null,
+                    { backgroundColor: estConseille ? theme.accent.soleilTresDoux : theme.fond.surface },
+                  ]}
                 >
                   <View style={[styles.pastilleLigne, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
                     <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
@@ -184,26 +226,44 @@ export function ListeTests() {
                       <Text style={[typo.legende, { color: theme.texte.principal }]}>{libelleStatut}</Text>
                     </View>
                     {estConseille ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.tests.listes.conseille')}</Text> : null}
-                    <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                      {test.meilleurScoreMax === null
-                        ? t('certification.tests.listes.pasDeScoreLigne')
-                        : parMini && maxMeilleur !== null
-                          ? t('certification.tests.listes.meilleurSur', { score: test.meilleurScoreMax, max: maxMeilleur })
-                          : t('certification.tests.listes.meilleur', { score: test.meilleurScoreMax })}
-                      {' · '}
-                      {t('certification.tests.listes.tentatives', { n: test.tentatives })}
-                    </Text>
-                    {/* Le total réel du test, toujours affiché : la nouveauté (« questions nouvelles ») n'est plus
-                        présentée comme le nombre de questions (décision de Benny du 25 octobre 2026) ; elle ne
-                        sert plus qu'à la recommandation « Conseillé » (listesTests.ts). */}
-                    <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                      {t('certification.tests.listes.total', { n: test.questions })}
-                    </Text>
+                    {echelle !== null ? (
+                      <>
+                        {/* Le nombre reste écrit, en compact (« 980 sur 990 ») : jamais la barre seule. */}
+                        <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+                          {test.meilleurScoreMax === null ? t('certification.tests.listes.pasDeScoreLigne') : null}
+                          {test.meilleurScoreMax !== null ? <Text style={[styles.scoreNombre, { color: theme.texte.principal }]}>{test.meilleurScoreMax}</Text> : null}
+                          {test.meilleurScoreMax !== null ? ` ${t('certification.tests.listes.surMax', { max: echelle })}` : null}
+                        </Text>
+                        <BarreScoreObjectif valeur={test.meilleurScoreMax} max={echelle} objectif={repere} libelle={libelleBarre} />
+                        {/* Tentatives et total réel du test sous la barre : le total, toujours — la
+                            nouveauté (« questions nouvelles ») n'est plus présentée comme le nombre de
+                            questions (décision de Benny du 25 octobre 2026) ; elle ne sert plus qu'à la
+                            recommandation « Conseillé » (listesTests.ts). */}
+                        <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+                          {t('certification.tests.listes.tentatives', { n: test.tentatives })}
+                          {' · '}
+                          {t('certification.tests.listes.total', { n: test.questions })}
+                        </Text>
+                      </>
+                    ) : (
+                      <>
+                        <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+                          {test.meilleurScoreMax === null
+                            ? t('certification.tests.listes.pasDeScoreLigne')
+                            : t('certification.tests.listes.meilleur', { score: test.meilleurScoreMax })}
+                          {' · '}
+                          {t('certification.tests.listes.tentatives', { n: test.tentatives })}
+                        </Text>
+                        <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+                          {t('certification.tests.listes.total', { n: test.questions })}
+                        </Text>
+                      </>
+                    )}
                   </View>
-                </View>
-              </Appui>
-            );
-          })}
+                </Pressable>
+              );
+            })}
+          </GroupeColle>
           {/* Un démarrage refusé s'explique par une feuille du bas, jamais par un petit texte sous la
               liste que l'élève ne voit pas (mixtes non faits inertes au toucher, terrain du 27 octobre 2026). */}
           <FeuilleErreurDemarrage code={codeEchec} onFermer={() => setCodeEchec(null)} />
@@ -216,7 +276,9 @@ export function ListeTests() {
 }
 
 const styles = StyleSheet.create({
-  ligne: { flexDirection: 'row', alignItems: 'flex-start', borderWidth: bord.normal, borderRadius: rayon.l, padding: espace[3], gap: espace[3], minHeight: 78 },
+  // Ligne du bloc collé : pas de contour propre (celui du GroupeColle), le séparateur fin est posé en ligne.
+  ligneCollee: { flexDirection: 'row', alignItems: 'flex-start', padding: espace[4], gap: espace[4] },
+  scoreNombre: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 15, lineHeight: 20 },
   pastilleLigne: { width: 34, height: 34, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   pastille: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },

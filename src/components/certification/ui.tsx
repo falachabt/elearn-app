@@ -103,6 +103,57 @@ export function BarreProgression({ pourcent, libelle, hauteur = 10 }: { pourcent
   );
 }
 
+/**
+ * Barre du meilleur score d'une ligne de liste, lue sur l'échelle du test (maquette « cartes des listes
+ * de tests » validée par Benny le 29 octobre 2026) : même piste que `BarreProgression`, remplissage au
+ * meilleur par rapport au MAXIMUM de l'échelle — jamais par rapport à l'objectif. Quand l'élève a un
+ * objectif, un repère vertical à sa position dépasse la piste en haut et en bas, et sa valeur s'écrit en
+ * petit juste au-dessus du repère (ajustement de Benny : aucune légende textuelle de l'objectif sur la
+ * carte, le texte ferait passer la ligne à la ligne). `objectif` arrive déjà ramené à l'échelle de la
+ * barre par l'appelant (moitié pour un demi-test) ; null ou hors échelle = pas de repère. Le libellé
+ * d'accessibilité, lui, dit tout en mots (valeur, échelle, position par rapport à l'objectif).
+ */
+export function BarreScoreObjectif({
+  valeur,
+  max,
+  objectif,
+  libelle,
+}: {
+  valeur: number | null;
+  max: number;
+  objectif?: number | null;
+  libelle: string;
+}) {
+  const { theme } = useTheme();
+  const rempli = valeur === null || max <= 0 ? 0 : Math.max(0, Math.min(100, (valeur / max) * 100));
+  const objectifValide = objectif !== null && objectif !== undefined && max > 0 && objectif > 0 && objectif <= max ? objectif : null;
+  const repere = objectifValide !== null ? (objectifValide / max) * 100 : null;
+  return (
+    <View style={styles.barreScore}>
+      {repere !== null && objectifValide !== null ? (
+        <Text testID="repere-valeur" style={[styles.repereValeur, { left: `${repere}%`, color: theme.texte.principal }]}>
+          {Math.round(objectifValide)}
+        </Text>
+      ) : null}
+      <View
+        accessible
+        accessibilityRole="progressbar"
+        accessibilityLabel={libelle}
+        accessibilityValue={{ min: 0, max, now: valeur ?? 0 }}
+        style={[
+          styles.piste,
+          { height: 10, marginTop: repere !== null ? 17 : 0, backgroundColor: theme.fond.creux, borderColor: theme.bord.fort },
+        ]}
+      >
+        <View style={{ width: `${rempli}%`, height: '100%', backgroundColor: theme.marque.principale }} />
+      </View>
+      {repere !== null ? (
+        <View testID="repere-objectif" style={[styles.repere, { left: `${repere}%`, backgroundColor: theme.bord.fort }]} />
+      ) : null}
+    </View>
+  );
+}
+
 /** État de maîtrise : icône ET texte, jamais la couleur seule (F3, F4). */
 export function PastilleEtat({ etat, libelle }: { etat: EtatMaitrise; libelle: string }) {
   const { theme } = useTheme();
@@ -213,6 +264,10 @@ const styles = StyleSheet.create({
   texte: { flex: 1, gap: 2 },
   radio: { width: 28, height: 28, borderRadius: 14, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   piste: { borderWidth: bord.normal, borderRadius: rayon.pilule, overflow: 'hidden', width: '100%' },
+  // BarreScoreObjectif : la zone porte la valeur du repère (au-dessus) et le repère (à cheval sur la piste).
+  barreScore: { position: 'relative', width: '100%' },
+  repereValeur: { position: 'absolute', top: 0, fontFamily: 'SpaceGrotesk-Bold', fontSize: 12, lineHeight: 15, transform: [{ translateX: -10 }] },
+  repere: { position: 'absolute', top: 13, width: 3, height: 18, borderRadius: 2, marginLeft: -1.5 },
   etat: { flexDirection: 'row', alignItems: 'center', gap: espace[1], borderWidth: bord.fin, borderRadius: rayon.s, paddingHorizontal: espace[2], paddingVertical: 2, alignSelf: 'flex-start' },
   pointille: { borderWidth: bord.normal, borderStyle: 'dashed', borderRadius: rayon.m, padding: espace[4] },
 });

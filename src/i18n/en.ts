@@ -2868,6 +2868,11 @@ export const en: Textes = {
         numeroMiniPartie: 'n° {{numero}}',
         numeroMixte: 'Mixed n° {{numero}}',
         meilleurSur: 'Best: {{score}} out of {{max}}',
+        surMax: 'out of {{max}}',
+        barreAuDessus: 'Best: {{score}} out of {{max}}, above your goal of {{objectif}}',
+        barreEnDessous: 'Best: {{score}} out of {{max}}, below your goal of {{objectif}}',
+        barreObjectifAtteint: 'Best: {{score}} out of {{max}}, right at your goal of {{objectif}}',
+        barreVideObjectif: 'No score yet. Your goal: {{objectif}}.',
         choixPartie: {
           titre: 'Choose a part',
           intro: 'Each mini-test covers one part: 10 or 12 questions depending on the part.',
