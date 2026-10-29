@@ -35,12 +35,14 @@ sys.path.insert(0, str(PIPE / "mixte"))
 from decode_lecon import decoder  # noqa: E402
 from selecteur_scenes import texte_inline  # noqa: E402
 
-# Voix unique de production : la voix initiale de la chaîne (clonage de
-# ref-femme-4s.wav). « Homme 1 » a été essayée puis abandonnée sur décision
-# de Benny (25/10/2026, 23 h 50) — l'alternance des voix également.
-REF_AUDIO = ICI / "voix" / "ref-femme-4s.wav"
-REF_TEXTE = "Bonjour à tous, aujourd hui nous allons apprendre à résoudre une équation du second degré."
-VITESSE = 0.92
+# Voix des cas spéciaux du blitz (décision de Benny, 29/10/2026) : voix 08
+# « homme jeune, voix grave » (design vocal OmniVoice, pas un clonage),
+# figée en référence de production ref-homme-grave.wav (26,4 s, extraits des
+# propositions 45 s). Vaut pour les rendus 5942, 6290, 6496, 7367, 7370.
+# La voix initiale de la chaîne reste ref-femme-4s.wav (VITESSE 0,92).
+REF_AUDIO = ICI / "voix" / "ref-homme-grave.wav"
+REF_TEXTE = "Pourquoi le ciel nous paraît-il bleu ? La lumière du Soleil semble blanche, mais elle est en réalité composée de toutes les couleurs de l'arc-en-ciel. En traversant l'atmosphère, elle rencontre des molécules d'air bien plus petites que sa longueur d'onde. Ces molécules diffusent surtout les courtes longueurs d'onde, c'est-à-dire le bleu et le violet : c'est la diffusion de Rayleigh. Plus une longueur d'onde est courte, plus elle est diffusée."
+VITESSE = 1.0
 GABARIT = ICI / "gabarit"
 CHROME = os.environ.get("CHAINE_CHROME", "/opt/pw-browsers/chromium-1243/chrome-linux64/chrome")
 TYPES = {"titre", "formule", "etape", "lignes", "phrase", "recap"}
