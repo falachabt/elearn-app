@@ -4,168 +4,821 @@
     4716,
     4717,
     4718,
-    4719
+    4719,
+    4720,
+    4721,
+    4722,
+    4723,
+    4724,
+    4725,
+    4726,
+    4727,
+    4728
   ],
   "titre": "Mélanges et corps purs",
   "matiere": "Chimie",
-  "phrases": [
-    {
-      "id": "p01",
-      "ecran": "titre",
-      "dit": "Bonjour à tous. Aujourd'hui, on découvre les corps purs et les mélanges : deux façons de décrire la matière.",
-      "texte": "Bonjour à tous. Aujourd'hui : corps purs et mélanges.",
-      "pause_apres": 0.9
-    },
-    {
-      "id": "p02",
-      "ecran": "intro",
-      "dit": "Un corps pur est fait d'un seul type de particules. Un mélange en contient plusieurs.",
-      "texte": "Un corps pur contient un seul type de particules. Un mélange en contient plusieurs.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p03",
-      "ecran": "purs",
-      "dit": "Un corps pur a une composition fixe et des propriétés constantes. L'eau, le dioxygène et l'or en sont des exemples.",
-      "texte": "Corps pur : composition fixe et propriétés constantes. Exemples : eau, dioxygène, or.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p04",
-      "ecran": "purs_types",
-      "dit": "Il existe des corps purs simples, faits d'un seul type d'atome, comme le dioxygène. Et des corps purs composés, faits d'atomes différents, comme l'eau.",
-      "texte": "Corps pur simple : un seul type d'atome. Corps pur composé : plusieurs types d'atomes.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p05",
-      "ecran": "melange",
-      "dit": "Un mélange est constitué de deux substances ou plus, sans réaction chimique entre elles. L'air ou l'eau sucrée en sont des exemples.",
-      "texte": "Mélange : au moins deux substances, sans réaction chimique entre elles.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p06",
-      "ecran": "homog",
-      "dit": "Un mélange homogène a une composition uniforme à notre échelle. On ne distingue qu'une seule phase, comme dans l'eau sucrée ou l'air.",
-      "texte": "Mélange homogène : une seule phase, composition uniforme.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p07",
-      "ecran": "heterog",
-      "dit": "Un mélange hétérogène présente plusieurs phases visibles. Le sable dans l'eau en est l'exemple typique : le sable se dépose au fond.",
-      "texte": "Mélange hétérogène : plusieurs phases visibles. Exemple : sable dans l'eau.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p08",
-      "ecran": "critere",
-      "dit": "Attention : le critère n'est pas la transparence. Ce qui compte, c'est le nombre de phases visibles.",
-      "texte": "Le critère est le nombre de phases, pas la transparence.",
-      "pause_apres": 0.9
-    },
-    {
-      "id": "p09",
-      "ecran": "etats",
-      "dit": "La matière existe sous trois états : solide, liquide et gaz. On passe d'un état à l'autre en changeant la température.",
-      "texte": "Trois états : solide, liquide, gaz. Le changement d'état dépend de la température.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p10",
-      "ecran": "solide",
-      "dit": "Un solide a une forme propre et un volume fixe.",
-      "texte": "Solide : forme propre et volume fixe.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p11",
-      "ecran": "liquide_gaz",
-      "dit": "Un liquide a un volume fixe, mais prend la forme de son récipient. Un gaz remplit tout le volume disponible.",
-      "texte": "Liquide : volume fixe, forme du récipient. Gaz : remplit tout le volume disponible.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p12",
-      "ecran": "recap",
-      "dit": "À retenir : un corps pur a une composition fixe, un mélange en contient plusieurs. Le nombre de phases distingue l'homogène de l'hétérogène.",
-      "texte": "À retenir : corps pur, composition fixe ; mélange, plusieurs substances.",
-      "pause_apres": 0.9
-    }
-  ],
   "ecrans": {
     "titre": {
       "type": "titre",
       "kicker": "Chimie",
       "titre": "Mélanges et corps purs",
-      "sous": "Déconstruire la matière"
+      "sous": "Déconstruire la matière",
+      "anim": {
+        "nom": "agitation",
+        "hauteur": 215
+      }
     },
-    "intro": {
-      "type": "phrase",
-      "kicker": "Introduction",
-      "texte": "Un corps pur ou un mélange : quelle différence ?"
-    },
-    "purs": {
+    "pur_def": {
       "type": "formule",
       "kicker": "Corps pur",
-      "tex": "H_2O \\quad O_2 \\quad \\mathrm{Au}",
-      "note": "composition fixe"
+      "tex": "H_2O",
+      "note": "l'eau pure : fusion à 0 °C, ébullition à 100 °C"
     },
-    "purs_types": {
+    "purs_exemples": {
       "type": "lignes",
-      "kicker": "Corps purs simples et composés",
+      "kicker": "Exemples de corps purs",
       "tex": [
-        "O_2 \\;\\text{corps pur simple}",
-        "H_2O \\;\\text{corps pur composé}"
+        "O_2 \\quad H_2O",
+        "Au \\quad Fe \\quad CO_2"
       ]
     },
-    "melange": {
-      "type": "phrase",
-      "kicker": "Mélange",
-      "texte": "Au moins deux substances, sans réaction chimique"
+    "purs_types": {
+      "type": "etape",
+      "kicker": "Corps purs simples et composés",
+      "titre": "Deux familles de corps purs",
+      "tex": [
+        "O_2 \\quad N_2 \\quad Fe \\quad Au",
+        "H_2O \\quad CO_2 \\quad NaCl"
+      ]
     },
-    "homog": {
+    "purete": {
+      "type": "formule",
+      "kicker": "Le degré de pureté",
+      "tex": "98\\,\\% + 2\\,\\% = 100\\,\\%",
+      "note": "la pureté parfaite est un idéal : on la mesure en pourcentage"
+    },
+    "melange_def": {
+      "type": "formule",
+      "kicker": "Mélange",
+      "tex": "N_2 + O_2 + Ar",
+      "note": "l'air : plusieurs gaz côte à côte, sans réaction"
+    },
+    "homogene": {
       "type": "phrase",
       "kicker": "Mélange homogène",
-      "texte": "Une seule phase, composition uniforme"
+      "texte": "Composition uniforme en tout point, une seule phase visible.",
+      "anim": {
+        "nom": "melange_solutions_fig",
+        "hauteur": 205
+      }
     },
-    "heterog": {
+    "heterogene": {
       "type": "phrase",
       "kicker": "Mélange hétérogène",
-      "texte": "Plusieurs phases visibles : sable dans l'eau"
+      "texte": "Composition non uniforme : plusieurs phases se distinguent.",
+      "anim": {
+        "nom": "decantation_fig",
+        "hauteur": 200
+      }
     },
-    "critere": {
+    "critere_phase": {
+      "type": "etape",
+      "kicker": "Le critère des phases",
+      "titre": "Compter les phases, pas regarder la transparence",
+      "tex": [
+        "1\\ \\text{phase}",
+        "\\geq 2\\ \\text{phases}"
+      ]
+    },
+    "solutions_alliages": {
+      "type": "etape",
+      "kicker": "Solutions et alliages",
+      "titre": "Une seule phase, dans les trois états",
+      "tex": [
+        "H_2O + NaCl",
+        "Cu + Zn",
+        "Fe + C"
+      ]
+    },
+    "sep_homogenes": {
       "type": "phrase",
-      "kicker": "Piège",
-      "texte": "Ce n'est pas la transparence : c'est le nombre de phases"
+      "kicker": "Séparer un mélange homogène",
+      "texte": "Exploiter une différence de propriétés des constituants.",
+      "anim": {
+        "nom": "distillation_fig",
+        "hauteur": 180
+      }
     },
-    "etats": {
+    "hetero_exemples": {
+      "type": "lignes",
+      "kicker": "Hétérogènes dans tous les états",
+      "tex": [
+        "\\text{granite}",
+        "\\text{jus} + \\text{pulpe}",
+        "\\text{nuage}"
+      ]
+    },
+    "sep_hetero": {
+      "type": "phrase",
+      "kicker": "Séparer un mélange hétérogène",
+      "texte": "Densité, taille, magnétisme : des différences faciles à exploiter.",
+      "anim": {
+        "nom": "filtration_fig",
+        "hauteur": 200
+      }
+    },
+    "exercice_classif": {
+      "type": "phrase",
+      "kicker": "Entraînement",
+      "texte": "Classe : air, argent, bronze, dioxygène, eau de mer, glucose."
+    },
+    "etats_intro": {
       "type": "lignes",
       "kicker": "Les trois états de la matière",
       "tex": [
-        "\\text{solide} \\leftrightarrow \\text{liquide} \\leftrightarrow \\text{gaz}"
-      ]
+        "\\text{solide} \\leftrightarrow \\text{liquide}",
+        "\\text{liquide} \\leftrightarrow \\text{gaz}"
+      ],
+      "anim": {
+        "nom": "chauffe",
+        "hauteur": 180
+      }
     },
-    "solide": {
-      "type": "phrase",
-      "kicker": "Solide",
-      "texte": "Forme propre, volume fixe"
-    },
-    "liquide_gaz": {
-      "type": "phrase",
-      "kicker": "Liquide et gaz",
-      "texte": "Liquide : volume fixe. Gaz : tout le volume disponible"
-    },
-    "recap": {
+    "recap1": {
       "type": "recap",
       "kicker": "À retenir",
       "etapes": [
-        "Corps pur : une seule substance, composition fixe",
-        "Mélange : plusieurs substances, sans réaction",
-        "Homogène : une seule phase ; hétérogène : plusieurs phases",
-        "Trois états : solide, liquide, gaz"
+        "Corps pur : composition fixe",
+        "Mélange : sans réaction chimique",
+        "Homogène : une seule phase",
+        "Hétérogène : plusieurs phases"
       ]
+    },
+    "micro_balance": {
+      "type": "formule",
+      "kicker": "Le monde microscopique",
+      "tex": "E_{cin} \\; \\leftrightarrow \\; F_{attraction}",
+      "note": "énergie de mouvement contre forces d'attraction"
+    },
+    "solide_liquide_micro": {
+      "type": "phrase",
+      "kicker": "Solide et liquide au microscope",
+      "texte": "Solide : ordre et vibrations. Liquide : particules proches qui glissent.",
+      "anim": {
+        "nom": "agitation",
+        "hauteur": 200
+      }
+    },
+    "gaz_micro": {
+      "type": "phrase",
+      "kicker": "Le gaz au microscope",
+      "texte": "Particules éloignées et rapides : le gaz remplit tout le volume.",
+      "anim": {
+        "nom": "gaz",
+        "hauteur": 205
+      }
+    },
+    "transitions": {
+      "type": "etape",
+      "kicker": "Transitions de phase",
+      "titre": "Six transitions : fusion, solidification, vaporisation, condensation, sublimation, dépôt",
+      "tex": [
+        "\\text{solide} \\rightleftharpoons \\text{liquide}",
+        "\\text{liquide} \\rightleftharpoons \\text{gaz}",
+        "\\text{solide} \\rightleftharpoons \\text{gaz}"
+      ]
+    },
+    "paliers": {
+      "type": "phrase",
+      "kicker": "Paliers de température",
+      "texte": "Fusion à température constante : la signature du corps pur.",
+      "anim": {
+        "nom": "chauffe",
+        "hauteur": 200
+      }
+    },
+    "sublimation": {
+      "type": "lignes",
+      "kicker": "La sublimation",
+      "tex": [
+        "CO_2(s) \\rightarrow CO_2(g)"
+      ]
+    },
+    "diagramme_phase": {
+      "type": "phrase",
+      "kicker": "Le diagramme de phase",
+      "texte": "Température et pression décident de l'état stable.",
+      "anim": {
+        "nom": "phases",
+        "hauteur": 225
+      }
+    },
+    "cristallin": {
+      "type": "phrase",
+      "kicker": "Solides cristallins",
+      "texte": "Un motif régulier répété : le réseau cristallin du sel.",
+      "anim": {
+        "nom": "maille_nacl_fig",
+        "hauteur": 215
+      }
+    },
+    "amorphe": {
+      "type": "phrase",
+      "kicker": "Solides amorphes",
+      "texte": "Verre et plastiques : un désordre figé, sans réseau régulier.",
+      "anim": {
+        "nom": "cristallin_amorphe_fig",
+        "hauteur": 205
+      }
+    },
+    "liaisons": {
+      "type": "etape",
+      "kicker": "Liaisons et propriétés",
+      "titre": "Trois liaisons, trois comportements",
+      "tex": [
+        "NaCl",
+        "C \\; \\text{(diamant)}",
+        "Cu \\; \\text{(métal)}"
+      ]
+    },
+    "liaison_metal": {
+      "type": "phrase",
+      "kicker": "La liaison métallique",
+      "texte": "Des électrons délocalisés circulent dans tout le métal.",
+      "anim": {
+        "nom": "mer_electrons_fig",
+        "hauteur": 200
+      }
+    },
+    "liquides_props": {
+      "type": "etape",
+      "kicker": "Propriétés des liquides",
+      "titre": "Viscosité, tension superficielle, capillarité",
+      "tex": [
+        "\\eta \\; : \\text{écoulement}",
+        "\\gamma \\; : \\text{surface}"
+      ]
+    },
+    "gaz_props": {
+      "type": "formule",
+      "kicker": "Décrire un gaz",
+      "tex": "P \\quad V \\quad T \\quad n",
+      "note": "pression, volume, température absolue, quantité de matière",
+      "anim": {
+        "nom": "piston",
+        "hauteur": 175
+      }
+    },
+    "lois_gaz": {
+      "type": "etape",
+      "kicker": "Les lois des gaz",
+      "titre": "Boyle-Mariotte, Charles, Avogadro",
+      "tex": [
+        "PV = \\text{constante}",
+        "V/T = \\text{constante}",
+        "V/n = \\text{constante}"
+      ]
+    },
+    "gaz_parfait": {
+      "type": "formule",
+      "kicker": "Le gaz parfait",
+      "tex": "PV = nRT",
+      "note": "R : la constante des gaz parfaits"
+    },
+    "exercice_gaz": {
+      "type": "etape",
+      "kicker": "Entraînement : loi de Charles",
+      "titre": "Chauffer un gaz à pression constante",
+      "tex": [
+        "T_1 = 298\\ \\text{K}",
+        "T_2 = 323\\ \\text{K}",
+        "V_2 = \\tfrac{2 \\times 323}{298} \\approx 2{,}17\\ \\text{L}"
+      ]
+    },
+    "exercice_transitions": {
+      "type": "lignes",
+      "kicker": "Entraînement : changements d'état",
+      "tex": [
+        "H_2O(s) \\rightarrow H_2O(l) \\rightarrow H_2O(g)"
+      ],
+      "anim": {
+        "nom": "etats_matiere_fig",
+        "hauteur": 175
+      }
+    },
+    "recap2": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Attraction contre agitation : l'état",
+        "Transitions à température de palier",
+        "Cristallin ordonné, amorphe désordonné",
+        "Gaz parfait : P, V, T et n liés"
+      ]
+    },
+    "choix_technique": {
+      "type": "lignes",
+      "kicker": "Choisir sa technique",
+      "tex": [
+        "\\Delta \\rho",
+        "\\Delta \\text{taille}",
+        "\\Delta T_{eb}"
+      ]
+    },
+    "decantation": {
+      "type": "phrase",
+      "kicker": "La décantation",
+      "texte": "Laisser reposer, laisser déposer, verser le liquide clair.",
+      "anim": {
+        "nom": "decantation_fig",
+        "hauteur": 205
+      }
+    },
+    "filtration": {
+      "type": "phrase",
+      "kicker": "La filtration",
+      "texte": "Le filtre retient le solide, le liquide traverse.",
+      "anim": {
+        "nom": "filtration_fig",
+        "hauteur": 205
+      }
+    },
+    "magnetique": {
+      "type": "etape",
+      "kicker": "La séparation magnétique",
+      "titre": "Attirés par un aimant",
+      "tex": [
+        "Fe \\quad Ni \\quad Co"
+      ]
+    },
+    "evaporation": {
+      "type": "phrase",
+      "kicker": "L'évaporation",
+      "texte": "Chauffer : le liquide s'évapore, le solide dissous reste.",
+      "anim": {
+        "nom": "concentre_fig",
+        "hauteur": 195
+      }
+    },
+    "distillation": {
+      "type": "phrase",
+      "kicker": "La distillation",
+      "texte": "Évaporer le plus volatil, condenser ses vapeurs, recueillir.",
+      "anim": {
+        "nom": "distillation_fig",
+        "hauteur": 205
+      }
+    },
+    "chromatographie": {
+      "type": "lignes",
+      "kicker": "La chromatographie",
+      "tex": [
+        "\\text{phase fixe}",
+        "\\text{phase mobile}"
+      ]
+    },
+    "air": {
+      "type": "phrase",
+      "kicker": "Application : l'air",
+      "texte": "Un mélange homogène de gaz, vital et équilibré.",
+      "anim": {
+        "nom": "melange",
+        "hauteur": 215
+      }
+    },
+    "eau_de_mer": {
+      "type": "phrase",
+      "kicker": "Application : l'eau de mer",
+      "texte": "Sels dissous et particules : filtrer, puis dessaler.",
+      "anim": {
+        "nom": "osmose_fig",
+        "hauteur": 195
+      }
+    },
+    "distillation_industrielle": {
+      "type": "etape",
+      "kicker": "La distillation fractionnée",
+      "titre": "La colonne sépare le pétrole brut par étages",
+      "tex": [
+        "\\text{essence}",
+        "\\text{kérosène}",
+        "\\text{fioul}"
+      ]
+    },
+    "alliages": {
+      "type": "etape",
+      "kicker": "Application : les alliages",
+      "titre": "Plus de carbone, plus de dureté",
+      "tex": [
+        "Fe + C : 0{,}05\\ \\text{à} \\ 0{,}25\\,\\%",
+        "Fe + C : 0{,}25\\ \\text{à} \\ 2\\,\\%"
+      ]
+    },
+    "exercice_separation": {
+      "type": "recap",
+      "kicker": "Entraînement : sable, limaille, sel",
+      "etapes": [
+        "Un aimant retire la limaille de fer",
+        "On dissout le sel dans l'eau",
+        "On filtre : le sable reste",
+        "On évapore : le sel réapparaît"
+      ]
+    },
+    "exercice_concentration": {
+      "type": "etape",
+      "kicker": "Entraînement : concentration",
+      "titre": "Concentration d'une solution salée",
+      "tex": [
+        "m = 225\\ \\text{g}",
+        "V = 0{,}225\\ \\text{L}",
+        "C = \\tfrac{25}{0{,}225} \\approx 111\\ \\text{g/L}"
+      ]
+    },
+    "classement_final": {
+      "type": "phrase",
+      "kicker": "Entraînement final",
+      "texte": "Classe : eau distillée, air, sable, lait, acier, or, sucre, eau de mer."
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "À retenir pour la suite",
+      "etapes": [
+        "Corps pur ou mélange : la composition",
+        "Homogène ou hétérogène : les phases",
+        "États et transitions : T et P",
+        "Séparer : exploiter une différence"
+      ],
+      "anim": {
+        "nom": "agitation",
+        "hauteur": 130
+      }
     }
-  }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "dit": "Bienvenue dans ce cours consacré aux mélanges et aux corps purs. Nous apprendrons à reconnaître un corps pur, à classer les mélanges, à comprendre les états de la matière, puis à séparer ces mélanges.",
+      "texte": "Reconnaître, classer, séparer la matière.",
+      "pause_apres": 0.9
+    },
+    {
+      "id": "p02",
+      "ecran": "pur_def",
+      "dit": "Un corps pur est formé d'un seul type de particules, atomes, molécules ou ions. Ses propriétés sont constantes : l'eau pure fond à zéro degré et bout à cent degrés sous la pression atmosphérique normale.",
+      "texte": "Un seul type de particules, des propriétés constantes.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p03",
+      "ecran": "purs_exemples",
+      "dit": "Le dioxygène, l'eau, l'or, le fer et le dioxyde de carbone sont des corps purs. Un même corps pur peut changer d'état sans changer de nature : glace, eau liquide et vapeur restent toujours de l'eau.",
+      "texte": "Dioxygène, eau, or, fer, dioxyde de carbone.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p04",
+      "ecran": "purs_types",
+      "dit": "Deux familles de corps purs. Les simples ne contiennent qu'un seul type d'atome, comme le dioxygène ou le diamant, pur carbone. Les composés associent plusieurs types d'atomes liés chimiquement, comme l'eau ou le sucre.",
+      "texte": "Simple : un type d'atome. Composé : plusieurs types liés.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p05",
+      "ecran": "purete",
+      "dit": "La pureté parfaite est un idéal : une substance dite pure garde des traces d'impuretés. On mesure donc un degré de pureté, par exemple quatre-vingt-dix-huit pour cent, le reste étant des impuretés.",
+      "texte": "Pureté 98 % : il reste 2 % d'impuretés.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p06",
+      "ecran": "melange_def",
+      "dit": "Un mélange rassemble au moins deux substances, mises ensemble sans réaction chimique entre elles. Chacune conserve ses propriétés : dans l'air, diazote, dioxygène et argon restent eux-mêmes, côte à côte.",
+      "texte": "Au moins deux substances, sans réaction chimique.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p07",
+      "ecran": "homogene",
+      "dit": "Un mélange homogène a la même composition en tout point : une seule phase, même à la loupe. Dans l'eau salée bien mélangée, chaque goutte contient la même proportion de sel.",
+      "texte": "Composition uniforme, une seule phase.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p08",
+      "ecran": "heterogene",
+      "dit": "Un mélange hétérogène n'est pas uniforme : on distingue plusieurs phases à l'œil nu. Le sable se dépose au fond de l'eau, l'huile flotte, et dans le granite on reconnaît quartz, feldspath et mica.",
+      "texte": "Plusieurs phases visibles : sable, huile, granite.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p09",
+      "ecran": "critere_phase",
+      "dit": "Une phase est une partie homogène et distincte de la matière. Le critère est donc le nombre de phases, pas la transparence : le lait paraît uniforme, mais ses graisses n'y sont pas réparties de façon homogène.",
+      "texte": "Critère : le nombre de phases, pas la transparence.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p10",
+      "ecran": "solutions_alliages",
+      "dit": "Les mélanges homogènes sont souvent des solutions : l'eau de mer et le vinaigre sont liquides, l'air est gazeux, et les alliages, comme le laiton ou l'acier, sont des mélanges homogènes solides.",
+      "texte": "Solutions liquides, gazeuses et alliages solides.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p11",
+      "ecran": "sep_homogenes",
+      "dit": "Séparer un mélange homogène exige une différence de propriétés. La distillation joue sur les points d'ébullition : l'éthanol s'évapore vers soixante-dix-huit degrés, avant l'eau. Cristallisation et chromatographie offrent d'autres voies.",
+      "texte": "Distillation, cristallisation, chromatographie.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p12",
+      "ecran": "hetero_exemples",
+      "dit": "Les mélanges hétérogènes existent dans tous les états : solides comme le granite, liquides comme le jus d'orange avec pulpe, et même gazeux en apparence, comme l'air pollué ou un nuage de gouttelettes.",
+      "texte": "Granite, jus avec pulpe, nuage : hétérogènes.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p13",
+      "ecran": "sep_hetero",
+      "dit": "Les constituants d'un mélange hétérogène se séparent souvent facilement, grâce à leurs différences de densité, de taille ou de magnétisme : décantation, filtration ou aimant, détaillés en dernière partie.",
+      "texte": "Décanter, filtrer, attirer : séparation facile.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p14",
+      "ecran": "exercice_classif",
+      "dit": "Entraînement : l'air est un mélange homogène, l'argent et le dioxygène des corps purs simples, le bronze et l'eau de mer des mélanges, et le glucose un corps pur composé, ses atomes étant liés en une molécule.",
+      "texte": "Air, argent, bronze, dioxygène, eau de mer, glucose.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p15",
+      "ecran": "etats_intro",
+      "dit": "La matière existe sous trois états. Un solide garde sa forme, un liquide garde son volume en prenant la forme du récipient, un gaz remplit tout l'espace offert. Chauffer ou refroidir fait passer d'un état à l'autre.",
+      "texte": "Solide, liquide, gaz : forme et volume.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p16",
+      "ecran": "recap1",
+      "dit": "À retenir : un corps pur a une composition fixe, un mélange associe plusieurs substances sans réaction, et le nombre de phases distingue homogène et hétérogène.",
+      "texte": "Corps pur fixe, mélange, phases.",
+      "pause_apres": 0.9
+    },
+    {
+      "id": "p17",
+      "ecran": "micro_balance",
+      "dit": "Au microscope, tout dépend d'un équilibre : les forces d'attraction lient les particules, l'énergie cinétique les agite. Attraction dominante, la matière s'ordonne ; agitation dominante, elle se disperse.",
+      "texte": "Attraction contre agitation : l'équilibre décide.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p18",
+      "ecran": "solide_liquide_micro",
+      "dit": "Dans un solide, les particules, ordonnées, vibrent sur place : forme propre et volume fixe. Dans un liquide, elles restent proches mais glissent les unes sur les autres : le liquide coule et épouse son récipient.",
+      "texte": "Solide : ordre et vibrations. Liquide : glissements.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p19",
+      "ecran": "gaz_micro",
+      "dit": "Dans un gaz, l'agitation l'emporte : particules très éloignées, mouvements rapides en tous sens, le gaz remplit tout le volume. À l'extrême, le plasma, gaz ionisé, compose éclairs et aurores boréales.",
+      "texte": "Gaz : particules libres. Plasma : gaz ionisé.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p20",
+      "ecran": "transitions",
+      "dit": "Changer d'état s'appelle une transition de phase. Fusion du solide vers le liquide, solidification en retour, vaporisation vers le gaz, condensation en retour, et sublimation, directe entre solide et gaz, dont le retour se nomme dépôt.",
+      "texte": "Fusion, vaporisation, sublimation et leurs inverses.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p21",
+      "ecran": "paliers",
+      "dit": "Pour un corps pur, la fusion se fait à température constante : tant que la glace fond, tout reste à zéro degré. Ce palier signe le corps pur, comme le point d'ébullition, quand la pression de vapeur égale la pression extérieure.",
+      "texte": "Palier de fusion : signature d'un corps pur.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p22",
+      "ecran": "sublimation",
+      "dit": "Certains solides se subliment : la glace sèche, dioxyde de carbone solide, devient directement gazeuse, sans passer par le liquide. On l'utilise pour la lyophilisation, le séchage par le froid.",
+      "texte": "Glace sèche : du solide directement au gaz.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p23",
+      "ecran": "diagramme_phase",
+      "dit": "Le diagramme de phase cartographie ces équilibres : selon température et pression, chaque zone est un état stable. Au point triple, les trois états coexistent ; au point critique, liquide et gaz se confondent.",
+      "texte": "Zones d'états, point triple, point critique.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p24",
+      "ecran": "cristallin",
+      "dit": "Un solide cristallin répète un motif régulier, le réseau cristallin, dont la plus petite brique est la maille. Le sel en est l'exemple type, ions sodium et chlorure alternés, avec des propriétés parfois dépendantes de la direction.",
+      "texte": "Réseau régulier, maille : le sel cristallin.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p25",
+      "ecran": "amorphe",
+      "dit": "Un solide amorphe n'a aucun ordre lointain : verre, plastiques et ambre ont une structure désordonnée, proche d'un liquide figé, et des propriétés identiques dans toutes les directions.",
+      "texte": "Amorphe : désordre, propriétés uniformes.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p26",
+      "ecran": "liaisons",
+      "dit": "Les propriétés d'un solide suivent ses liaisons. Ioniques dans le sel : dur, fragile, fusion très haute. Covalentes dans le diamant : réseau rigide, dureté extrême, alors que le graphite, en feuillets qui glissent, reste mou.",
+      "texte": "Ionique, covalente, métallique : trois liaisons.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p27",
+      "ecran": "liaison_metal",
+      "dit": "Dans un métal, les atomes baignent dans une mer d'électrons délocalisés. Ces électrons mobiles font des métaux de bons conducteurs de courant et de chaleur, déformables sans casser : or martelé, cuivre étiré en fils.",
+      "texte": "Une mer d'électrons : conducteur, malléable, ductile.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p28",
+      "ecran": "liquides_props",
+      "dit": "Trois propriétés distinguent les liquides. La viscosité, résistance à l'écoulement, oppose le miel lent à l'eau fluide et baisse avec la température. La tension superficielle forme les gouttes. La capillarité fait monter l'eau dans les tubes fins et les plantes.",
+      "texte": "Viscosité, tension superficielle, capillarité.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p29",
+      "ecran": "gaz_props",
+      "dit": "Un gaz n'a ni forme ni volume propres : il occupe tout le récipient et se comprime, ses particules étant très espacées. On le décrit par la pression, née des chocs sur les parois, le volume, la température et la quantité de matière.",
+      "texte": "Ni forme ni volume propres : P, V, T, n.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p30",
+      "ecran": "lois_gaz",
+      "dit": "Trois lois décrivent les gaz. Boyle-Mariotte : à température constante, pression et volume varient en sens inverse. Charles : à pression constante, le volume suit la température absolue. Avogadro : le volume suit la quantité de matière.",
+      "texte": "Boyle-Mariotte, Charles, Avogadro.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p31",
+      "ecran": "gaz_parfait",
+      "dit": "Ces lois se réunissent dans l'équation des gaz parfaits : P fois V égale n fois R fois T, avec R égal à huit virgule trois cent quatorze joules par mole et par kelvin. Les gaz réels s'en écartent à forte pression et basse température.",
+      "texte": "P fois V égale n fois R fois T.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p32",
+      "ecran": "exercice_gaz",
+      "dit": "Application : deux litres d'air à vingt-cinq degrés, chauffés à pression constante jusqu'à cinquante degrés. En kelvins, deux cent quatre-vingt-dix-huit puis trois cent vingt-trois : le volume suit le même rapport et atteint environ deux virgule dix-sept litres.",
+      "texte": "2 L chauffés de 25 °C à 50 °C : nouveau volume ?",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p33",
+      "ecran": "exercice_transitions",
+      "dit": "Entraînement : la glace chauffée fond, c'est la fusion, puis l'eau bout, c'est la vaporisation. À température ambiante, fer et sucre sont solides, eau et mercure liquides, dioxygène et hélium gazeux.",
+      "texte": "Glace chauffée : fusion, puis vaporisation.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p34",
+      "ecran": "recap2",
+      "dit": "À retenir : l'état dépend de l'équilibre entre attraction et agitation, les transitions se lisent sur le diagramme de phase, et le gaz parfait relie pression, volume, température et quantité.",
+      "texte": "Attraction, agitation, diagramme, gaz parfait.",
+      "pause_apres": 0.9
+    },
+    {
+      "id": "p35",
+      "ecran": "choix_technique",
+      "dit": "Pas de technique universelle : on choisit selon la différence de propriétés à exploiter, densité, taille des particules, magnétisme, solubilité ou température d'ébullition.",
+      "texte": "Choisir selon la différence de propriétés.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p36",
+      "ecran": "decantation",
+      "dit": "La décantation laisse reposer le mélange : les particules les plus denses tombent au fond, puis on verse doucement le liquide clair. Ainsi le sable se sépare de l'eau, et l'huile finit par surnager.",
+      "texte": "Repos, dépôt, puis on verse le liquide clair.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p37",
+      "ecran": "filtration",
+      "dit": "La filtration fait traverser un filtre poreux au mélange : le liquide passe, les particules solides trop grosses restent. On filtre l'eau sableuse, le café, ou des cristaux dans un liquide.",
+      "texte": "Le filtre retient le solide, le liquide passe.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p38",
+      "ecran": "magnetique",
+      "dit": "Si un constituant est magnétique, fer, nickel ou cobalt, un aimant suffit à l'extraire. Ainsi la limaille de fer mêlée au sable, et le fer trié dans les minerais et les déchets.",
+      "texte": "Un aimant extrait le fer du mélange.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p39",
+      "ecran": "evaporation",
+      "dit": "L'évaporation chasse le liquide par chauffage : comme ce jus qui se concentre, l'eau de mer laisse son sel dans les marais salants. Le solide est récupéré, le liquide est perdu.",
+      "texte": "Chauffer : le liquide part, le sel reste.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p40",
+      "ecran": "distillation",
+      "dit": "La distillation récupère aussi le liquide : on chauffe, le plus volatil s'évapore d'abord, ses vapeurs se condensent dans le condenseur à eau froide, et le distillat tombe goutte à goutte, comme l'éthanol vers soixante-dix-huit degrés.",
+      "texte": "Évaporer, condenser, recueillir le distillat.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p41",
+      "ecran": "chromatographie",
+      "dit": "La chromatographie trie par affinité : entraînés par une phase mobile le long d'une phase fixe, les constituants avancent à des vitesses différentes et se séparent, comme les pigments d'une encre.",
+      "texte": "Des affinités différentes, des vitesses différentes.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p42",
+      "ecran": "air",
+      "dit": "L'air, mélange homogène vital, contient surtout du diazote, puis du dioxygène, un peu d'argon et des traces de dioxyde de carbone. Heureusement, le dioxygène y est dilué : pur, il rendrait les combustions dangereuses.",
+      "texte": "Diazote, dioxygène dilué, argon : l'air.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p43",
+      "ecran": "eau_de_mer",
+      "dit": "L'eau de mer semble homogène, ses sels étant dissous, mais elle transporte des particules en suspension. Pour la rendre potable : filtration de ces particules, puis séparation du sel, par osmose inverse ou évaporation.",
+      "texte": "Filtrer les particules, puis séparer le sel.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p44",
+      "ecran": "distillation_industrielle",
+      "dit": "La distillation fractionnée sépare le pétrole brut dans une colonne aux étages de plus en plus froids : l'essence, légère, en haut, puis le kérosène, et le fioul, plus lourd, en bas.",
+      "texte": "Essence en haut, fioul en bas de la colonne.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p45",
+      "ecran": "alliages",
+      "dit": "Les alliages sont des mélanges homogènes solides aux propriétés ajustées. L'acier est du fer durci par un peu de carbone : un quart de pour cent au plus pour un acier doux, jusqu'à deux pour cent pour un acier très résistant.",
+      "texte": "Fer plus carbone : la dureté se règle.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p46",
+      "ecran": "exercice_separation",
+      "dit": "Entraînement : séparer sable, limaille de fer et sel. L'aimant retire la limaille, on dissout le sel dans l'eau, on filtre pour garder le sable, et l'évaporation redonne le sel.",
+      "texte": "Aimant, dissolution, filtration, évaporation.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p47",
+      "ecran": "exercice_concentration",
+      "dit": "Calcul final : vingt-cinq grammes de sel dans deux cents grammes d'eau donnent une solution de deux cent vingt-cinq grammes, soit zéro virgule deux cent vingt-cinq litre. Concentration : environ cent onze grammes par litre.",
+      "texte": "25 g de sel : quelle concentration ?",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p48",
+      "ecran": "classement_final",
+      "dit": "Classement final : eau distillée, or vingt-quatre carats et sucre pur sont des corps purs ; air, acier et eau de mer à grande échelle sont homogènes ; sable et lait sont hétérogènes.",
+      "texte": "Corps purs, homogènes, hétérogènes : le tri final.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p49",
+      "ecran": "recap_final",
+      "dit": "Tu sais déconstruire la matière : distinguer corps pur et mélange, classer le mélange, décrire ses états, suivre ses transitions et choisir comment le séparer. Ces réflexes serviront partout en chimie.",
+      "texte": "Déconstruire la matière : acquis.",
+      "pause_apres": 0.9
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Corps purs et mélanges : les reconnaître"
+    },
+    {
+      "debut": "p17",
+      "sous_titre": "Au microscope : états, transitions, propriétés",
+      "pont": {
+        "dit": "Partie deux : au microscope. Regardons les particules, leurs mouvements, les transitions entre états et les propriétés des solides, des liquides et des gaz.",
+        "texte": "Partie 2 : états, transitions, propriétés."
+      }
+    },
+    {
+      "debut": "p35",
+      "sous_titre": "Séparer les mélanges et les utiliser",
+      "pont": {
+        "dit": "Partie trois : séparer pour utiliser. Choisissons la bonne technique pour chaque mélange, puis retrouvons l'air, l'eau de mer, l'industrie et les alliages.",
+        "texte": "Partie 3 : techniques, air, mer, alliages."
+      }
+    }
+  ]
 }
