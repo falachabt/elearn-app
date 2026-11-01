@@ -281,79 +281,19 @@ describe('barre du meilleur, repère objectif et bloc collé (maquette validée 
     expect(barres[0]?.props.accessibilityValue).toEqual({ min: 0, max: 10, now: 7 });
   });
 
-  it('demi-test : le score de section s’affiche converti en équivalent 990, repère à l’objectif total (décision de Benny du 1er novembre 2026)', async () => {
+  it('demi-test : le repère se place à la moitié de l’objectif, sa valeur est celle de la section', async () => {
     mockParams = { kind: 'listening' };
     installer([
-      { ...mini('l1', null, 1, { questions: 100, fini: true, tentatives: 1, meilleurScoreMax: 385, nouvellesQuestions: 0 }), kind: 'listening' },
+      { ...mini('l1', null, 1, { questions: 100, fini: true, tentatives: 1, meilleurScoreMax: 450, nouvellesQuestions: 0 }), kind: 'listening' },
     ]);
     await ecrirePlan({ exam: 'toeic', objectif: 800 });
     await monter(<ListeTests />);
-    // Règle de 3 : 385 sur 495 → « 770 équiv. · sur 990 » sur la carte ; l'en-tête suit la même échelle.
-    expect(await screen.findByText(/770 équiv\. · sur 990/)).toBeTruthy();
-    expect(screen.getByText(/Meilleur de la section : 770 équiv\. sur 990/)).toBeTruthy();
-    // Aucune trace visible de l'ancienne échelle 495, ni de l'ancien repère à la moitié de l'objectif.
-    expect(screen.queryByText(/sur 495/)).toBeNull();
-    // Le repère se place à l'objectif total réel, étiqueté « 800 » — plus la moitié étiquetée « 400 ».
-    expect(styleDe('repere-objectif').left).toBe(`${(800 / 990) * 100}%`);
-    expect(screen.getByTestId('repere-valeur').props.children).toBe(800);
-    // La barre vit sur 990, remplie à l'équivalent ; le VRAI score de section reste dans le libellé
-    // d'accessibilité (« 385 sur 495 »), position jugée contre l'objectif total (770 < 800 : en dessous).
-    const barre = screen.getByLabelText(/Meilleur : 385 sur 495, en dessous de ton objectif de 800/);
-    expect(barre.props.accessibilityValue).toEqual({ min: 0, max: 990, now: 770 });
-  });
-
-  it('demi-test au-dessus de l’objectif après conversion : 450 sur 495 devient 900, au-dessus du repère 800', async () => {
-    mockParams = { kind: 'reading' };
-    installer([
-      { ...mini('r1', null, 1, { questions: 100, fini: true, tentatives: 2, meilleurScoreMax: 450, nouvellesQuestions: 0 }), kind: 'reading' },
-    ]);
-    await ecrirePlan({ exam: 'toeic', objectif: 800 });
-    await monter(<ListeTests />);
-    expect(await screen.findByText(/900 équiv\. · sur 990/)).toBeTruthy();
-    const barre = screen.getByLabelText(/Meilleur : 450 sur 495, au-dessus de ton objectif de 800/);
-    expect(barre.props.accessibilityValue).toEqual({ min: 0, max: 990, now: 900 });
-    expect(styleDe('repere-objectif').left).toBe(`${(800 / 990) * 100}%`);
-  });
-
-  it('demi-test sans objectif : la conversion s’affiche, aucun repère n’est inventé', async () => {
-    mockParams = { kind: 'listening' };
-    installer([
-      { ...mini('l1', null, 1, { questions: 100, fini: true, tentatives: 1, meilleurScoreMax: 385, nouvellesQuestions: 0 }), kind: 'listening' },
-    ]);
-    await monter(<ListeTests />);
-    expect(await screen.findByText(/770 équiv\. · sur 990/)).toBeTruthy();
-    expect(screen.queryByTestId('repere-objectif')).toBeNull();
-    expect(screen.queryByTestId('repere-valeur')).toBeNull();
-    expect(screen.getAllByRole('progressbar')[0]?.props.accessibilityValue).toEqual({ min: 0, max: 990, now: 770 });
-  });
-
-  it('demi-test pas encore fait : piste vide sur l’échelle 990, repère déjà à l’objectif total', async () => {
-    mockParams = { kind: 'listening' };
-    installer([
-      { ...mini('l1', null, 1, { questions: 100 }), kind: 'listening' },
-    ]);
-    await ecrirePlan({ exam: 'toeic', objectif: 800 });
-    await monter(<ListeTests />);
-    expect(await screen.findByText('Écoute n° 1')).toBeTruthy();
-    expect(screen.getAllByRole('progressbar')[0]?.props.accessibilityValue).toEqual({ min: 0, max: 990, now: 0 });
-    expect(screen.getByTestId('repere-valeur').props.children).toBe(800);
-    expect(screen.getByLabelText(/Ton objectif : 800/)).toBeTruthy();
-  });
-
-  it('test complet : inchangé — score natif sur le total, repère à l’objectif, aucune mention « équiv. »', async () => {
-    mockParams = { kind: 'full' };
-    installer([
-      { ...mini('f1', null, 1, { questions: 200, fini: true, tentatives: 1, meilleurScoreMax: 720, nouvellesQuestions: 0 }), kind: 'full' },
-    ]);
-    await ecrirePlan({ exam: 'toeic', objectif: 800 });
-    await monter(<ListeTests />);
-    // En-tête et carte : le score natif sur le total, aux deux endroits, sans conversion.
-    expect((await screen.findAllByText(/720 sur 990/)).length).toBe(2);
-    expect(screen.queryByText(/équiv/)).toBeNull();
-    expect(styleDe('repere-objectif').left).toBe(`${(800 / 990) * 100}%`);
-    expect(screen.getByTestId('repere-valeur').props.children).toBe(800);
-    const barre = screen.getByLabelText(/Meilleur : 720 sur 990, en dessous de ton objectif de 800/);
-    expect(barre.props.accessibilityValue).toEqual({ min: 0, max: 990, now: 720 });
+    // « 450 sur 495 » vit dans l'en-tête (meilleur de la section) et, désormais, sur la ligne elle-même.
+    expect((await screen.findAllByText(/450 sur 495/)).length).toBe(2);
+    // Position et valeur écrite : 400 sur l'échelle 495 — le libellé d'accessibilité parle de l'objectif total (800).
+    expect(styleDe('repere-objectif').left).toBe(`${(400 / 495) * 100}%`);
+    expect(screen.getByTestId('repere-valeur').props.children).toBe(400);
+    expect(screen.getByLabelText(/au-dessus de ton objectif de 800/)).toBeTruthy();
   });
 
   it('bloc collé unique : pas de contour par ligne, un trait fin entre les lignes', async () => {

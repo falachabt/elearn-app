@@ -117,19 +117,10 @@ export function ListeTests() {
   const nombreQuestionsMini = tests.length > 0 && comptesMini.size === 1 ? tests[0]!.questions : longueurMiniServie(partie, reglagesOk);
   const libelleMini = type === 'mixed' ? t('certification.tests.detailMiniMixte') : t('certification.tests.detailMiniPartie', { n: nombreQuestionsMini });
   const meilleur = meilleurDeSection(tests);
-  const estDemi = type === 'listening' || type === 'reading';
-  // L'échelle totale (990) vient des réglages ; la section d'un demi-test vaut la moitié (495) ;
-  // le test complet se lit sur le total. Mini-tests et mixte : pas de section.
-  const objectifMax = reglagesOk?.objectifMax ?? null;
-  const sectionMax = objectifMax !== null && (estDemi || type === 'full')
-    ? (type === 'full' ? objectifMax : objectifMax / 2)
+  // Une moitié se lit sur la moitié du total (495 sur 990) ; le test complet se lit sur le total. Mini-tests et mixte : pas de section.
+  const sectionMax = reglagesOk && (type === 'listening' || type === 'reading' || type === 'full')
+    ? (type === 'full' ? reglagesOk.objectifMax : reglagesOk.objectifMax / 2)
     : null;
-  // Règle de 3 (décision de Benny du 1er novembre 2026) : sur les cartes d'un demi-test, le score
-  // de section s'affiche converti en équivalent sur le total (385 sur 495 → 770 sur 990), pour se
-  // comparer directement à l'objectif de l'élève, qui est un score total. Affichage seulement :
-  // le vrai score de section reste la référence partout ailleurs (détail, bilan, historique).
-  const equivalentTotal = (scoreSection: number): number =>
-    sectionMax !== null && objectifMax !== null ? Math.round((scoreSection * objectifMax) / sectionMax) : scoreSection;
   const conseille = testConseille(tests);
   const parMini = type === 'mini' || type === 'mixed';
   // Demi-test (écoute ou lecture) et test complet : coût du départ, comme pour les mini-tests.
@@ -156,15 +147,11 @@ export function ListeTests() {
                 <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
                   {(() => {
                     // Coût du type (crédits hors Pass), lu dans la configuration serveur : mini, demi-test ou complet.
-                    // Demi-test : l'en-tête annonce le même équivalent 990 que ses cartes (règle de 3),
-                    // jamais l'échelle 495 que plus aucune ligne n'affiche.
                     const libelle = parMini
                       ? libelleMini
-                      : meilleur === null || sectionMax === null || objectifMax === null
+                      : meilleur === null || sectionMax === null
                         ? t('certification.tests.listes.pasDeScore')
-                        : estDemi
-                          ? t('certification.tests.listes.meilleurSectionEquiv', { score: equivalentTotal(meilleur), max: objectifMax })
-                          : t('certification.tests.listes.meilleurSection', { score: meilleur, max: sectionMax });
+                        : t('certification.tests.listes.meilleurSection', { score: meilleur, max: sectionMax });
                     return coutListe === undefined || solde?.illimite ? libelle : t('certification.tests.avecCout', { detail: libelle, cout: cout(coutListe) });
                   })()}
                 </Text>
@@ -181,42 +168,39 @@ export function ListeTests() {
               const libelleStatut = t(`certification.tests.listes.statut.${statut}`);
               // Échelle de la barre du meilleur, par type : un mini se lit sur ses questions (un compte
               // de bonnes réponses) ; un mixte et un complet sur le total — le nombre de questions pris
-              // pour échelle donnait « Meilleur : 550 sur 20 » (terrain du 27 octobre 2026). Un
-              // demi-test se lit AUSSI sur le total depuis la décision de Benny du 1er novembre 2026 :
-              // son score de section est converti en équivalent (règle de 3) et la barre vit sur
-              // l'échelle totale, comme le repère. Sans réglages, pas d'échelle connue : la ligne
-              // garde alors son texte seul, sans barre.
+              // pour échelle donnait « Meilleur : 550 sur 20 » (terrain du 27 octobre 2026) ; un
+              // demi-test sur sa section, la moitié du total. Sans réglages, pas d'échelle connue :
+              // la ligne garde alors son texte seul, sans barre.
               const echelle = type === 'mini'
                 ? test.questions
                 : reglagesOk
-                  ? reglagesOk.objectifMax
+                  ? type === 'listening' || type === 'reading'
+                    ? reglagesOk.objectifMax / 2
+                    : reglagesOk.objectifMax
                   : null;
-              // Le score tel qu'il s'affiche et remplit la barre : l'équivalent total pour un
-              // demi-test, le score brut pour les autres types (déjà sur le total, ou compte de
-              // questions pour un mini). Le meilleur nul (pas encore fait) reste nul : piste vide.
-              const scoreBarre = estDemi && test.meilleurScoreMax !== null ? equivalentTotal(test.meilleurScoreMax) : test.meilleurScoreMax;
-              // Repère de l'objectif, un score total : il se place tel quel sur l'échelle de la
-              // barre — y compris sur un demi-test, grâce à la conversion ; jamais sur un mini :
-              // un compte de questions ne se compare pas à un score TOEIC.
-              const repere = echelle !== null && objectifTotal !== null && type !== 'mini' ? objectifTotal : null;
-              // Le libellé d'accessibilité de la barre dit tout en mots : pour un demi-test, c'est le
-              // VRAI score de section qui se lit (« 385 sur 495 »), et la position (au-dessus,
-              // en dessous, juste à) se juge entre l'équivalent et l'objectif total. La carte
-              // visible, elle, ne porte aucun texte d'objectif.
-              const maxLibelle = estDemi && sectionMax !== null ? sectionMax : echelle;
-              const libelleBarre = echelle === null || maxLibelle === null
+              // Repère de l'objectif ramené à l'échelle de la barre (l'objectif est un score total,
+              // donc sa moitié sur un demi-test) ; jamais sur un mini : un compte de questions ne se
+              // compare pas à un score TOEIC.
+              const repere = echelle !== null && objectifTotal !== null && type !== 'mini'
+                ? type === 'listening' || type === 'reading'
+                  ? objectifTotal / 2
+                  : objectifTotal
+                : null;
+              // Le libellé d'accessibilité de la barre dit tout en mots (valeur, échelle, position par
+              // rapport à l'objectif total) : la carte visible, elle, ne porte aucun texte d'objectif.
+              const libelleBarre = echelle === null
                 ? ''
                 : test.meilleurScoreMax === null
                   ? repere !== null && objectifTotal !== null
                     ? t('certification.tests.listes.barreVideObjectif', { objectif: objectifTotal })
                     : t('certification.tests.listes.pasDeScoreLigne')
-                  : repere === null || objectifTotal === null || scoreBarre === null
-                    ? t('certification.tests.listes.meilleurSur', { score: test.meilleurScoreMax, max: maxLibelle })
-                    : scoreBarre > repere
-                      ? t('certification.tests.listes.barreAuDessus', { score: test.meilleurScoreMax, max: maxLibelle, objectif: objectifTotal })
-                      : scoreBarre < repere
-                        ? t('certification.tests.listes.barreEnDessous', { score: test.meilleurScoreMax, max: maxLibelle, objectif: objectifTotal })
-                        : t('certification.tests.listes.barreObjectifAtteint', { score: test.meilleurScoreMax, max: maxLibelle, objectif: objectifTotal });
+                  : repere === null || objectifTotal === null
+                    ? t('certification.tests.listes.meilleurSur', { score: test.meilleurScoreMax, max: echelle })
+                    : test.meilleurScoreMax > repere
+                      ? t('certification.tests.listes.barreAuDessus', { score: test.meilleurScoreMax, max: echelle, objectif: objectifTotal })
+                      : test.meilleurScoreMax < repere
+                        ? t('certification.tests.listes.barreEnDessous', { score: test.meilleurScoreMax, max: echelle, objectif: objectifTotal })
+                        : t('certification.tests.listes.barreObjectifAtteint', { score: test.meilleurScoreMax, max: echelle, objectif: objectifTotal });
               return (
                 <Pressable
                   key={test.id}
@@ -244,15 +228,13 @@ export function ListeTests() {
                     {estConseille ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.tests.listes.conseille')}</Text> : null}
                     {echelle !== null ? (
                       <>
-                        {/* Le nombre reste écrit, en compact (« 980 sur 990 », « 770 équiv. · sur 990 »
-                            pour un demi-test converti) : jamais la barre seule, jamais un texte qui
-                            passe à la ligne. */}
+                        {/* Le nombre reste écrit, en compact (« 980 sur 990 ») : jamais la barre seule. */}
                         <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
                           {test.meilleurScoreMax === null ? t('certification.tests.listes.pasDeScoreLigne') : null}
-                          {scoreBarre !== null ? <Text style={[styles.scoreNombre, { color: theme.texte.principal }]}>{scoreBarre}</Text> : null}
-                          {scoreBarre !== null ? ` ${t(estDemi ? 'certification.tests.listes.equivSurMax' : 'certification.tests.listes.surMax', { max: echelle })}` : null}
+                          {test.meilleurScoreMax !== null ? <Text style={[styles.scoreNombre, { color: theme.texte.principal }]}>{test.meilleurScoreMax}</Text> : null}
+                          {test.meilleurScoreMax !== null ? ` ${t('certification.tests.listes.surMax', { max: echelle })}` : null}
                         </Text>
-                        <BarreScoreObjectif valeur={scoreBarre} max={echelle} objectif={repere} libelle={libelleBarre} />
+                        <BarreScoreObjectif valeur={test.meilleurScoreMax} max={echelle} objectif={repere} libelle={libelleBarre} />
                         {/* Tentatives et total réel du test sous la barre : le total, toujours — la
                             nouveauté (« questions nouvelles ») n'est plus présentée comme le nombre de
                             questions (décision de Benny du 25 octobre 2026) ; elle ne sert plus qu'à la
