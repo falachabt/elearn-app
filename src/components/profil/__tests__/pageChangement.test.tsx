@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { fireEvent, screen, waitFor, within } from '@testing-library/react-native';
+import { act, fireEvent, screen, waitFor, within } from '@testing-library/react-native';
 import { router } from 'expo-router';
 
 import EcranChoisirCertification from '@/app/profil/certification';
@@ -127,6 +127,32 @@ describe('Page de changement de parcours', () => {
     await waitFor(async () => expect((await lireProfil())?.type).toBe('certification'), { timeout: 5000 });
     expect(router.replace).toHaveBeenCalledWith('/');
     expect((await lireMemoireProfil()).secondaire).toMatchObject({ type: 'eleve', niveau: 'Tle' });
+  });
+
+  it('adoption inter-familles : P6-CHARGE reste visible tant que la bascule est en attente', async () => {
+    mockParams.onglet = 'certification';
+    await monter(<PageChangementParcours />);
+    fireEvent.press(await screen.findByRole('radio', { name: /TOEIC Listening and Reading/ }, { timeout: 5000 }));
+    await attendre(30);
+    fireEvent.press(await screen.findByRole('button', { name: x.certification.continuer }));
+    expect(await screen.findByText(x.profilChoix.passerToeicTitre, {}, { timeout: 5000 })).toBeTruthy();
+
+    let terminerEcriture: (() => void) | undefined;
+    (AsyncStorage.setItem as jest.Mock).mockImplementationOnce(
+      () => new Promise<void>((resolve) => { terminerEcriture = resolve; }),
+    );
+    fireEvent.press(screen.getByRole('button', { name: x.profilChoix.passerToeicBouton }));
+
+    expect(await screen.findByText(x.profilChoix.chargeTitre, {}, { timeout: 5000 })).toBeTruthy();
+    expect(screen.getByRole('button', { name: x.profilChoix.chargeBouton }).props.accessibilityState?.disabled).toBe(true);
+    expect((await lireProfil())?.type).toBe('eleve');
+    expect(terminerEcriture).toBeDefined();
+
+    await act(async () => {
+      terminerEcriture?.();
+      await attendre(30);
+    });
+    await waitFor(async () => expect((await lireProfil())?.type).toBe('certification'), { timeout: 5000 });
   });
 
   it('adoption inter-familles en échec d’écriture : « Changement impossible », le profil reste en place', async () => {
