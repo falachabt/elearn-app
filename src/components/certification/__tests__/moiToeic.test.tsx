@@ -69,4 +69,14 @@ describe('N2 · Moi TOEIC', () => {
     expect(await screen.findByText(t.moiToeic.progressionEtiquette)).toBeTruthy();
     expect(screen.queryByText(/XP/)).toBeNull();
   });
+
+  it('garde les entrées Ma progression et Mes documents dans Moi TOEIC', async () => {
+    await monter(<MoiToeic />);
+    expect(await screen.findByText(fr.profil.progression)).toBeTruthy();
+    expect(screen.getByText(fr.profil.documents)).toBeTruthy();
+    await fireEvent.press(screen.getByText(fr.profil.progression));
+    expect(router.push).toHaveBeenCalledWith('/statistiques');
+    await fireEvent.press(screen.getByText(fr.profil.documents));
+    expect(router.push).toHaveBeenCalledWith('/documents');
+  });
 });

@@ -235,7 +235,7 @@ export function EcranMoi({ toeic = false }: { toeic?: boolean } = {}) {
           icone={Target}
           titre={t('profil.progression')}
           sousTitre={resume.minutes !== null ? t('profil.progSous', { n: resume.minutes }) : undefined}
-          onPress={() => router.push('/progression')}
+          onPress={() => router.push(toeic ? '/statistiques' : '/progression')}
         />
         {connecte ? (
           <LigneGroupe

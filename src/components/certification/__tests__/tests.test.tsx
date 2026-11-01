@@ -306,6 +306,40 @@ describe('T2 · réglage d’un mini-test', () => {
     expect(suivre).toHaveBeenCalledWith('cert_credit_gate_viewed', { action: 'cert_mock_mini_ten' });
   });
 
+  it('après fermeture de la feuille de crédits, on peut réessayer le démarrage', async () => {
+    mockSolde = 0;
+    await monter(<ReglageMini />);
+    await fireEvent.press(await screen.findByLabelText('Partie 5'));
+    await fireEvent.press(screen.getByText(t.mini.commencer));
+    expect(await screen.findByText(t.mini.insuffisantTexte)).toBeTruthy();
+
+    await fireEvent.press(screen.getByText(t.mini.plusTard));
+    mockSolde = 12;
+    await fireEvent.press(screen.getByLabelText('Partie 6'));
+    await fireEvent.press(screen.getByText(t.mini.commencer));
+
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/certification/mini-test', params: { epreuve: 'examen' } }));
+    expect(fausse.appels.minis).toEqual([{ partie: 6, longueur: 10 }]);
+  });
+
+  it('la feuille partagée conserve la destination TOEIC pour recharger', async () => {
+    mockSolde = 0;
+    await monter(<ReglageMini />);
+    await fireEvent.press(await screen.findByLabelText('Partie 5'));
+    await fireEvent.press(screen.getByText(t.mini.commencer));
+    await fireEvent.press(await screen.findByText(t.mini.recharger));
+    expect(router.push).toHaveBeenCalledWith('/offres?declencheur=limite');
+  });
+
+  it('la feuille partagée conserve la destination TOEIC pour gagner des crédits', async () => {
+    mockSolde = 0;
+    await monter(<ReglageMini />);
+    await fireEvent.press(await screen.findByLabelText('Partie 5'));
+    await fireEvent.press(screen.getByText(t.mini.commencer));
+    await fireEvent.press(await screen.findByText(t.mini.gagner));
+    expect(router.push).toHaveBeenCalledWith('/certification/gagner');
+  });
+
   it('le serveur refuse faute de crédits : même feuille, aucune tentative gardée', async () => {
     installer({ mini: 'insufficient' });
     await monter(<ReglageMini />);

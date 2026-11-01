@@ -1,14 +1,12 @@
-import { router } from 'expo-router';
-import { Gift, Wallet } from 'lucide-react-native';
 import { Text } from 'react-native';
 
 import { useTextesCredits } from '@/components/credits/textes';
+import { FeuilleEpuise } from '@/components/credits/FeuilleEpuise';
 import { useTraduction } from '@/i18n/useTraduction';
 import { useTheme } from '@/theme/ThemeProvider';
 import { typo } from '@/theme/theme';
 
 import { Feuille } from '../Feuille';
-import { LigneChoix } from './ui';
 
 /**
  * Blocages au démarrage d'un test composé (liste des tests et détail d'un test fait) : la règle produit
@@ -55,32 +53,18 @@ export function FeuilleCreditsInsuffisants({
         ? t('certification.mini.insuffisantSoldeUn')
         : t('certification.mini.insuffisantSolde', { n: blocage.solde });
   return (
-    <Feuille
+    <FeuilleEpuise
       ouverte={blocage !== null}
       onFermer={onFermer}
-      titre={t('certification.mini.insuffisantTitre', { cout: cout(blocage?.cout ?? coutRepli) })}
-      texte={t('certification.mini.insuffisantTexte')}
-      actions={[{ libelle: t('certification.mini.plusTard'), onPress: onFermer, variante: 'texte' }]}
-    >
-      {soldeTexte ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{soldeTexte}</Text> : null}
-      <LigneChoix
-        icone={Wallet}
-        titre={t('certification.mini.recharger')}
-        aide={t('certification.mini.rechargerAide')}
-        onPress={() => {
-          onFermer();
-          router.push('/offres?declencheur=limite');
-        }}
-      />
-      <LigneChoix
-        icone={Gift}
-        titre={t('certification.mini.gagner')}
-        aide={t('certification.mini.gagnerAide')}
-        onPress={() => {
-          onFermer();
-          router.push('/certification/gagner' as never);
-        }}
-      />
-    </Feuille>
+      certification={{
+        titre: t('certification.mini.insuffisantTitre', { cout: cout(blocage?.cout ?? coutRepli) }),
+        texte: t('certification.mini.insuffisantTexte'),
+        detail: soldeTexte ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{soldeTexte}</Text> : undefined,
+        libelleRecharger: t('certification.mini.recharger'),
+        libelleGagner: t('certification.mini.gagner'),
+        libellePlusTard: t('certification.mini.plusTard'),
+        destinationGagner: '/certification/gagner',
+      }}
+    />
   );
 }

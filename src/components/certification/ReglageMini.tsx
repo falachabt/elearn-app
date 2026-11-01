@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { Clock, Gift, Wallet } from 'lucide-react-native';
+import { Clock, Wallet } from 'lucide-react-native';
 import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -20,8 +20,8 @@ import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
-import { Feuille } from '../Feuille';
 import { Onglets } from '../Onglets';
+import { FeuilleCreditsInsuffisants } from './FeuillesDemarrageTest';
 import { EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix } from './ui';
 
 type Choix = number | 'mixte' | null;
@@ -87,6 +87,7 @@ export function ReglageMini() {
     if (!pass && coutServeur !== undefined && coutServeur > 0 && solde && solde.total < coutServeur) {
       suivre('cert_credit_gate_viewed', { action });
       setFeuille({ cout: coutServeur, solde: solde.total });
+      enVolRef.current = false;
       return;
     }
     setEnCours(true);
@@ -115,8 +116,6 @@ export function ReglageMini() {
       setEnCours(false);
     }
   };
-
-  const soldeTexte = feuille?.solde === null || feuille?.solde === undefined ? null : feuille.solde === 1 ? t('certification.mini.insuffisantSoldeUn') : t('certification.mini.insuffisantSolde', { n: feuille.solde });
 
   return (
     <Ecran
@@ -164,19 +163,7 @@ export function ReglageMini() {
       <LigneChoix icone={Clock} titre={t('certification.mini.temps')} aide={minutes === null ? undefined : t('certification.mini.tempsAide', { min: minutes, n: longueurAnnoncee })} />
       <LigneChoix icone={Wallet} titre={t('certification.mini.cout')} aide={lignesCout} />
       <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.mini.aideCarte')}</Text>
-      <Feuille
-        ouverte={!!feuille}
-        onFermer={() => setFeuille(null)}
-        titre={feuille?.cout === null || feuille?.cout === undefined ? t('certification.mini.insuffisantTitre', { cout: cout(coutServeur ?? 0) }) : t('certification.mini.insuffisantTitre', { cout: cout(feuille.cout) })}
-        texte={t('certification.mini.insuffisantTexte')}
-        actions={[
-          { libelle: t('certification.mini.plusTard'), onPress: () => setFeuille(null), variante: 'texte' },
-        ]}
-      >
-        {soldeTexte ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{soldeTexte}</Text> : null}
-        <LigneChoix icone={Wallet} titre={t('certification.mini.recharger')} aide={t('certification.mini.rechargerAide')} onPress={() => { setFeuille(null); router.push('/offres?declencheur=limite'); }} />
-        <LigneChoix icone={Gift} titre={t('certification.mini.gagner')} aide={t('certification.mini.gagnerAide')} onPress={() => { setFeuille(null); router.push('/certification/gagner' as never); }} />
-      </Feuille>
+      <FeuilleCreditsInsuffisants blocage={feuille} coutRepli={coutServeur ?? 0} onFermer={() => setFeuille(null)} />
     </Ecran>
   );
 }

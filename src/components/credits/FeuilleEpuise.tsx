@@ -1,5 +1,6 @@
 import { router } from 'expo-router';
 import { Gift, Zap } from 'lucide-react-native';
+import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { suivre } from '@/services/analytics';
@@ -12,6 +13,16 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 import { Feuille, type ActionFeuille } from '../Feuille';
 import { useTextesCredits } from './textes';
 
+type ContenuCertification = {
+  titre: string;
+  texte: string;
+  detail?: ReactNode;
+  libelleRecharger: string;
+  libelleGagner: string;
+  libellePlusTard: string;
+  destinationGagner: string;
+};
+
 /**
  * K3 « Crédits épuisés » : une seule feuille, sur la même page, trois choix : « Recharger » (pass ou crédits, l'unique
  * bouton vert), « Gagner des crédits » (page des actions) et « Plus tard ». « Demander à quelqu'un de payer » et les
@@ -19,7 +30,7 @@ import { useTextesCredits } from './textes';
  * et « Créer mon compte » devient alors le seul bouton vert. `recharge` : petite action payante (justification d'un
  * quiz), sans compte à rebours. On peut toujours fermer et continuer le gratuit.
  */
-export function FeuilleEpuise({ ouverte, onFermer, recharge: rechargeSimple }: { ouverte: boolean; onFermer: () => void; recharge?: boolean }) {
+export function FeuilleEpuise({ ouverte, onFermer, recharge: rechargeSimple, certification }: { ouverte: boolean; onFermer: () => void; recharge?: boolean; certification?: ContenuCertification }) {
   const { solde, reglages } = useCredits();
   const { session } = useSession();
   const { theme } = useTheme();
@@ -35,6 +46,24 @@ export function FeuilleEpuise({ ouverte, onFermer, recharge: rechargeSimple }: {
     { libelle: t('credits.gagnerBouton'), onPress: aller('/credits'), variante: 'secondaire', icone: <Gift size={20} color={theme.texte.principal} /> },
     { libelle: t('credits.plusTard'), onPress: onFermer, variante: 'texte' },
   ];
+  if (certification) {
+    return (
+      <Feuille
+        ouverte={ouverte}
+        onFermer={onFermer}
+        icone="flash-outline"
+        titre={certification.titre}
+        texte={certification.texte}
+        actions={[
+          { libelle: certification.libelleRecharger, onPress: aller('/offres?declencheur=limite'), variante: 'principal', icone: <Zap size={20} color={theme.texte.principal} /> },
+          { libelle: certification.libelleGagner, onPress: aller(certification.destinationGagner), variante: 'secondaire', icone: <Gift size={20} color={theme.texte.principal} /> },
+          { libelle: certification.libellePlusTard, onPress: onFermer, variante: 'texte' },
+        ]}
+      >
+        {certification.detail}
+      </Feuille>
+    );
+  }
   if (invite) {
     return (
       <Feuille
