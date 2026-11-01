@@ -3104,6 +3104,17 @@ export const fr = {
       absent: 'Ce test est introuvable.',
       retour: 'Revenir à l’historique',
     },
+    recapSemaine: {
+      entete: 'Ma semaine TOEIC',
+      periode: 'Synthèse des 7 derniers jours',
+      activite: 'Activité des 7 derniers jours',
+      reponses: 'Questions répondues',
+      reponsesAide: '{{n}} réponses enregistrées',
+      seancesAideUne: '1 séance · {{min}} min',
+      seancesAide: '{{n}} séances · {{min}} min',
+      regularite: 'Jours actifs',
+      toutesStats: 'Voir toutes les statistiques',
+    },
     stats: {
       courbe: {
         depart: 'Départ',

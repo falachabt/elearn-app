@@ -3103,6 +3103,17 @@ export const en: Textes = {
       absent: 'This test could not be found.',
       retour: 'Back to history',
     },
+    recapSemaine: {
+      entete: 'My TOEIC week',
+      periode: 'Summary of the last 7 days',
+      activite: 'Activity in the last 7 days',
+      reponses: 'Questions answered',
+      reponsesAide: '{{n}} answers recorded',
+      seancesAideUne: '1 session · {{min}} min',
+      seancesAide: '{{n}} sessions · {{min}} min',
+      regularite: 'Active days',
+      toutesStats: 'See all statistics',
+    },
     stats: {
       courbe: {
         depart: 'Start',

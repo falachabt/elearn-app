@@ -223,6 +223,13 @@ describe.each(['fr', 'en'] as const)('EcranMoi (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/ma-semaine', params: { source: 'inbox' } });
   });
 
+  it('compte sauvegardé TOEIC : le rapport hebdomadaire ouvre le récapitulatif TOEIC', async () => {
+    mockSession.mockReturnValue(membre);
+    await monter(<EcranMoi toeic />);
+    await fireEvent.press(screen.getByText(x.profil.rapportHebdo));
+    expect(router.push).toHaveBeenCalledWith('/certification/semaine');
+  });
+
   it('compte sauvegardé : pas de carte de création, déconnexion dans Paramètres', async () => {
     mockSession.mockReturnValue(membre);
     mockDeconnecter.mockResolvedValue(undefined);

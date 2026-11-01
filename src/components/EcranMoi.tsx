@@ -242,7 +242,7 @@ export function EcranMoi({ toeic = false }: { toeic?: boolean } = {}) {
             icone={CalendarDays}
             titre={t('profil.rapportHebdo')}
             sousTitre={t('profil.rapportHebdoSous')}
-            onPress={() => router.push({ pathname: '/ma-semaine', params: { source: 'inbox' } })}
+            onPress={() => router.push(toeic ? '/certification/semaine' as never : { pathname: '/ma-semaine', params: { source: 'inbox' } })}
           />
         ) : null}
         <LigneGroupe

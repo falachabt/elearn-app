@@ -509,3 +509,30 @@ Retour de Benny (22 octobre, soir) : les cartes de l'onglet Tests sont monochrom
 - `TOEIC-V34-BILAN` : bilan de fin. « Nouveau meilleur score » (9 sur 10, ancien meilleur 8), mêmes trois actions, puis « Retour aux tests ».
 
 Règles : une liste par type ; mini-tests et mixte demandent d'abord la partie quand il y en a une. « Refaire » crée une tentative du même test, nouveau débit. « Passer un autre test » ouvre le test Conseillé du même type.
+
+
+## Version 40 : rapport hebdomadaire TOEIC (1 novembre 2026)
+
+À la demande de Benny, la page Moi TOEIC conserve un accès hebdomadaire, mais ne réutilise pas le récit « Ma semaine » du Secondaire : celui-ci parle de missions et de crédits qui ne décrivent pas les séances TOEIC. Le rapport TOEIC est une synthèse dédiée.
+
+`TOEIC-N2-SEMAINE` — structure de l’écran :
+
+```text
+[←] Ma semaine TOEIC
+     Synthèse des 7 derniers jours
+
+[ Score estimé · fourchette serveur · mention « pas un score officiel » ]
+
+Activité des 7 derniers jours
+[ Questions répondues · total de la période ]
+[ Séances · nombre et minutes en séance ]
+[ Lecture des fiches · minutes ]
+[ Jours actifs · x sur 7 ]
+
+[ Voir toutes les statistiques ]
+```
+
+- La période est glissante et fixée à 7 jours via le même service de statistiques TOEIC que l’écran « Statistiques » ; l’écran n’invente pas de compteur ni de comparaison à la semaine précédente.
+- Le score reste explicitement une estimation. Les minutes, réponses et jours proviennent du résultat serveur. L’écran détaillé des statistiques reste accessible par le bouton final.
+- États : chargement en squelette, erreur avec nouvel essai, période vide avec action « Commencer ma séance », première semaine sans tendance forcée, et copie hors ligne datée selon les règles existantes.
+- Sur Moi TOEIC, le menu « Mon rapport hebdomadaire » (compte connecté) ouvre cette route ; le Secondaire conserve sa destination `/ma-semaine`. Le menu TOEIC n’ajoute ni résumé de missions, ni récompense/crédits propres au Secondaire.

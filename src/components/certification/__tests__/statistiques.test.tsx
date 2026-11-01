@@ -13,6 +13,7 @@ import { enregistrerProfil } from '@/services/profil';
 
 import { GagnerToeic } from '../GagnerToeic';
 import { MoiToeic } from '../MoiToeic';
+import { RecapSemaineToeic } from '../RecapSemaineToeic';
 import { StatistiquesToeic } from '../StatistiquesToeic';
 import { monter } from './harnais';
 
@@ -167,6 +168,50 @@ describe('ST1 · Statistiques', () => {
   });
 });
 
+describe('Rapport hebdomadaire TOEIC', () => {
+  it('utilise les données serveur des 7 derniers jours et ouvre les statistiques détaillées', async () => {
+    await monter(<RecapSemaineToeic />);
+    expect(await screen.findByText(t.recapSemaine.entete)).toBeTruthy();
+    expect(screen.getByText('690')).toBeTruthy();
+    expect(screen.getByText(t.recapSemaine.reponsesAide.replace('{{n}}', '84'))).toBeTruthy();
+    expect(screen.getByText(t.recapSemaine.seancesAide.replace('{{n}}', '6').replace('{{min}}', '95'))).toBeTruthy();
+    expect(screen.getByText(t.stats.lectureAide.replace('{{min}}', '22'))).toBeTruthy();
+    expect(screen.getByText(t.stats.jours.replace('{{n}}', '4'))).toBeTruthy();
+    expect(fausse.appels.stats).toEqual([7]);
+
+    await fireEvent.press(screen.getByText(t.recapSemaine.toutesStats));
+    expect(router.push).toHaveBeenCalledWith('/statistiques');
+  });
+
+  it('état vide : propose de démarrer une séance TOEIC', async () => {
+    installer({ stats: STATS_VIDE(7) });
+    await monter(<RecapSemaineToeic />);
+    expect(await screen.findByText(t.stats.vide.titre)).toBeTruthy();
+    await fireEvent.press(screen.getByText(t.stats.vide.action));
+    expect(router.push).toHaveBeenCalledWith('/certification/seance');
+  });
+
+  it('erreur sans copie : affiche un nouvel essai qui recharge les statistiques', async () => {
+    installer({ stats: 'echec' });
+    await monter(<RecapSemaineToeic />);
+    expect(await screen.findByText(t.stats.erreurTitre)).toBeTruthy();
+    installer({ stats: STATS_OK() });
+    await fireEvent.press(screen.getByText(t.reessayer));
+    expect(await screen.findByText('690')).toBeTruthy();
+  });
+
+  it('copie trop ancienne : avertit sans proposer de séance comme si la période était vide', async () => {
+    await monter(<RecapSemaineToeic />);
+    await screen.findByText('690');
+    installer({ stats: 'echec' });
+    definirDernierContactPourTest(Date.now() - 8 * 24 * 3600 * 1000);
+    await monter(<RecapSemaineToeic />);
+    expect(await screen.findByText(t.stats.expire.titre)).toBeTruthy();
+    expect(screen.queryByText(t.stats.vide.titre)).toBeNull();
+    expect(screen.queryByText(t.stats.vide.action)).toBeNull();
+  });
+});
+
 describe('G1 · Gagner des crédits', () => {
   const GAINS: EtatGains = {
     plafond: 15, gagneSemaine: 12, serie: 4,
@@ -230,4 +275,3 @@ describe('G1 · Gagner des crédits', () => {
     expect(await screen.findByText(t.gagner.intro.replace('{{plafond}}', '15'))).toBeTruthy();
   });
 });
-
