@@ -1,0 +1,44 @@
+name: Build iOS production (App Store)
+
+# Build iOS de production et envoi vers App Store Connect, à la demande uniquement.
+# Le build lui-même tourne chez EAS (certificats et clé App Store Connect API gérés par EAS) ;
+# ce job ne fait que le déclencher avec le secret EXPO_TOKEN, l'attendre, puis soumettre
+# le dernier build à App Store Connect (étape « submit », désactivable).
+# Aucun déclenchement automatique : ni push, ni pull request.
+
+on:
+  workflow_dispatch:
+    inputs:
+      etape:
+        description: "build-submit = construire puis envoyer à App Store Connect ; submit = renvoyer le dernier build seulement"
+        type: choice
+        options: [build-submit, submit]
+        default: build-submit
+
+concurrency:
+  group: ios-production
+  cancel-in-progress: false
+
+jobs:
+  ios:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      # Même hôte public des médias TOEIC que le workflow preview (valeur par défaut du code sinon).
+      EXPO_PUBLIC_CERT_MEDIA_BASE: ${{ vars.EXPO_PUBLIC_CERT_MEDIA_BASE || 'https://pub-b05c9f45ef884ab2aa345a5763751590.r2.dev' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Build iOS production (EAS, attente de la fin)
+        if: ${{ inputs.etape == 'build-submit' }}
+        run: eas build --platform ios --profile production --non-interactive
+      - name: Envoyer le dernier build iOS à App Store Connect
+        run: eas submit --platform ios --profile production --latest --non-interactive
