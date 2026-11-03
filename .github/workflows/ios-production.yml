@@ -37,6 +37,8 @@ jobs:
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+      - name: Installer les dépendances (node_modules requis par EAS pour résoudre les plugins)
+        run: npm ci
       - name: Build iOS production (EAS, attente de la fin)
         if: ${{ inputs.etape == 'build-submit' }}
         run: eas build --platform ios --profile production --non-interactive
