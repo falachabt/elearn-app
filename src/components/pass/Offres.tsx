@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { acheterPass, achatIntegreDisponible, attendreAcces, configurerAchats, lirePrixApple, restaurerAchats, type PrixApple } from '@/services/achatsIntegres';
+import { acheterPass, achatIntegreDisponible, attendreAcces, configurerAchats, lirePrixApple, type PrixApple } from '@/services/achatsIntegres';
 import { estFcfa, formaterMontant, lireAcces, lireOffres, PRIX_REPETITEUR, type Acces, type CodeOffre, type Offre } from '@/services/pass';
 import { paiementPossible } from '@/services/plateforme';
 import { lireProfil } from '@/services/profil';
@@ -110,7 +110,7 @@ export function Offres() {
   const achatApple = achatIntegreDisponible();
   const [prixApple, setPrixApple] = useState<PrixApple>({});
   const [achatEnCours, setAchatEnCours] = useState(false);
-  const [messageAchat, setMessageAchat] = useState<{ ton: 'succes' | 'erreur' | 'info'; cle: 'offres.achatReussi' | 'offres.achatErreur' | 'offres.achatAttente' | 'offres.restaureOk' | 'offres.restaureVide' } | null>(null);
+  const [messageAchat, setMessageAchat] = useState<{ ton: 'succes' | 'erreur' | 'info'; cle: 'offres.achatReussi' | 'offres.achatErreur' | 'offres.achatAttente' } | null>(null);
 
   const charger = useCallback(() => {
     void chargerOffres().then((e) => {
@@ -145,22 +145,6 @@ export function Offres() {
       suivre('payment_succeeded', { offre: code, pays });
       const acces = await rafraichirAcces();
       setMessageAchat({ ton: acces ? 'succes' : 'info', cle: acces ? 'offres.achatReussi' : 'offres.achatAttente' });
-      charger();
-    } catch {
-      setMessageAchat({ ton: 'erreur', cle: 'offres.achatErreur' });
-    } finally {
-      setAchatEnCours(false);
-    }
-  };
-
-  const restaurer = async () => {
-    if (achatEnCours) return;
-    setAchatEnCours(true);
-    setMessageAchat(null);
-    try {
-      await restaurerAchats();
-      const acces = await rafraichirAcces();
-      setMessageAchat({ ton: acces ? 'succes' : 'info', cle: acces ? 'offres.restaureOk' : 'offres.restaureVide' });
       charger();
     } catch {
       setMessageAchat({ ton: 'erreur', cle: 'offres.achatErreur' });
@@ -206,7 +190,6 @@ export function Offres() {
           <Bouton libelle={t('offres.continuerGratuit')} onPress={fermer} />
         )}
         {!mm && !achatApple ? <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('offres.achatBientot')}</Text> : null}
-        {achatApple ? <Bouton variante="texte" libelle={t('offres.restaurer')} desactive={achatEnCours} onPress={() => void restaurer()} /> : null}
         {choisie && mm ? (
           <Bouton variante="secondaire" libelle={t('offres.parent')} onPress={() => exiger('parent', () => router.push({ pathname: '/offres/parent', params: { offre: choisie.code } }))} />
         ) : null}

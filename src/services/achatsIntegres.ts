@@ -14,6 +14,12 @@ import { iosSimule } from './plateformeDev';
  *   (`entitlement`, lu ensuite par `my_access`), comme `record_deposit_result` le fait pour pawaPay.
  * Sans clé publique (`EXPO_PUBLIC_REVENUECAT_IOS_KEY`), `achatIntegreDisponible()` est faux et l'écran des offres garde son
  * message « bientôt ».
+ *
+ * Pas de restauration via le compte Apple, volontairement : les trois produits sont des **consommables**, et la règle
+ * 3.1.1 interdit de les restaurer par `restorePurchases()` (rejet du build 21, 06/11/2026). Notre mécanisme propre :
+ * le droit vient du serveur (`my_access`) et RevenueCat suit le compte Elearn (`logIn`/`logOut`) — l'élève retrouve
+ * son pass en se reconnectant avec le même compte, sur n'importe quel appareil. Ne pas réintroduire de bouton
+ * « Restaurer mes achats » branché sur le compte Apple.
  */
 
 /** Sous-ensemble du SDK `react-native-purchases` utilisé ici (permet de le remplacer dans les tests). */
@@ -24,7 +30,6 @@ export type SdkAchats = {
   logOut(): Promise<unknown>;
   getOfferings(): Promise<{ current: { availablePackages: Package[] } | null }>;
   purchasePackage(p: Package): Promise<unknown>;
-  restorePurchases(): Promise<unknown>;
 };
 
 export type PrixApple = Partial<Record<CodeOffre, { prix: string; paquet: Package }>>;
@@ -50,7 +55,6 @@ const SDK_SIMULE: SdkAchats = {
     },
   }),
   purchasePackage: async () => ({}),
-  restorePurchases: async () => ({}),
 };
 
 /** Chargement différé : le module natif n'est jamais importé sur Android, sur le web ni sous Jest. */
@@ -91,11 +95,6 @@ export async function acheterPass(paquet: Package, depuis: SdkAchats = sdk()): P
     if ((e as { userCancelled?: boolean } | null)?.userCancelled) return 'annule';
     throw e;
   }
-}
-
-/** « Restaurer mes achats » : obligatoire pour les achats restaurables (règle 3.1.1). */
-export async function restaurerAchats(depuis: SdkAchats = sdk()): Promise<void> {
-  await depuis.restorePurchases();
 }
 
 /** Déconnexion du compte : les achats suivent le compte suivant, pas l'appareil. */

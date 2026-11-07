@@ -6,7 +6,7 @@ Plan établi le 08/10/2026 à partir des App Review Guidelines d'Apple (develope
 
 | Règle | Exigence | État |
 |---|---|---|
-| 3.1.1 | Tout contenu ou accès numérique vendu dans l'app passe par l'achat intégré. Restauration des achats obligatoire. | Client RevenueCat écrit (`services/achatsIntegres.ts`, écran Offres). Produits, clé et webhook à faire (section 3). |
+| 3.1.1 | Tout contenu ou accès numérique vendu dans l'app passe par l'achat intégré. Nos produits sont des **consommables** : la restauration par le compte Apple leur est interdite (voir 1 ter). Notre restauration est le compte Elearn : le droit vient du serveur, l'élève retrouve son pass en se reconnectant. | Client RevenueCat écrit (`services/achatsIntegres.ts`, écran Offres). Produits, clé et webhook à faire (section 3). |
 | 3.1.1(a) | Aucun bouton, lien ou appel à l'action vers un autre moyen de payer (Mobile Money, lien parent). | Déjà masqué sur iOS (`plateforme.ts`, tests `iosSansPaiement`). À revérifier à chaque nouvel écran. |
 | 3.1.2 | Un abonnement renouvelable dure au moins 7 jours. Décrire ce qu'on obtient avant d'acheter. | Nos pass ne se renouvellent pas : produits « abonnement sans renouvellement » (semaine, mois, concours). |
 | 3.1.3(b) | Un service multiplateforme peut donner accès à ce qui a été acheté ailleurs (Mobile Money sur Android) si les mêmes offres existent en achat intégré dans l'app iOS. | Respecté si les trois pass existent côté iOS. Le droit vient de `my_access`, quelle que soit la source. |
@@ -26,10 +26,19 @@ Revue du 28/10/2026 (iPad Air 11-inch M3) : deux motifs seulement, **5.1.1(iv)**
 - **2.5.4, cause réelle** : `app.json` ne déclarait que `remote-notification`, mais l'`Info.plist` **généré** contenait aussi « audio », réinjecté par deux plugins Expo : `expo-audio` (`enableBackgroundPlayback` vaut `true` par défaut quand il n'est pas précisé) et `expo-video` (`supportsPictureInPicture: true`). Vérifié par `npx expo prebuild --platform ios` : avant correctif `['remote-notification', 'audio']`, après correctif `['remote-notification']`. L'app ne joue jamais en arrière-plan (`shouldPlayInBackground: false` dans `LecteurAudio.tsx` et `retours.ts`, aucun usage du picture-in-picture) : retrait, pas de justification. La note de relecture du build 18 affirmait le retrait du mode : elle décrivait la configuration écrite à la main, pas le binaire — ne plus jamais affirmer un `Info.plist` sans prebuild de contrôle.
 - **5.1.1(iv)** : deux écrans de demande caméra avaient un bouton « Allow »/« Autoriser » (correction photo et photos des annales) ; les deux passent à « Continuer »/« Continue », titres reformulés. Garde-fou : test dans `src/__tests__/app-json.test.ts`.
 
+## 1 ter. Rejet du build 21 (6 novembre 2026) et correctif
+
+Revue du 06/11/2026 (iPad Air 11-inch M3) : le plantage 2.1 est réglé (l'app se lance), motif unique **3.1.1** : le bouton « Restaurer mes achats » de l'écran des offres appelait `restorePurchases()` de RevenueCat, qui demande le compte Apple. Nos trois pass sont des produits **consommables** (`pass_weeks`, `pass_month`, `pass_contest`) : Apple interdit de restaurer un consommable par le compte Apple et demande, si on veut une restauration, notre mécanisme propre.
+
+- **Correctif (build 22)** : bouton et flux de restauration via le compte Apple retirés du binaire (`Offres.tsx`, `achatsIntegres.ts`, chaînes i18n). 
+- **Notre mécanisme propre, déjà en place** : le droit vient du serveur (`my_access`), RevenueCat est connecté au compte Elearn (`logIn`/`logOut`, identifiant Supabase). L'accès suit le compte, pas l'appareil : l'élève retrouve son pass en se reconnectant avec le même compte, sur n'importe quel appareil. C'est l'explication donnée à l'App Review dans le Resolution Center.
+- **Ne pas réintroduire** de restauration branchée sur le compte Apple tant que les produits restent des consommables.
+- Avant la resoumission, audit complet des consignes applicables (pas seulement le motif cité), vérifié dans le code et par `npx expo prebuild --platform ios` : modes d'arrière-plan limités à `remote-notification`, textes de permission caméra/photos présents, ni micro ni pistage déclarés, manifeste de scènes présent, routes de paiement Mobile Money toutes fermées sur iOS (`paiementPossible()` + `Redirect`), Apple proposé partout où Google et Facebook le sont (4.8), suppression de compte dans l'app (5.1.1 v), mention ETS présente (5.2).
+
 ## 2. Fait dans cette branche
 - Apple dans le parcours de sauvegarde du score invité (règle 4.8) et test.
-- `services/achatsIntegres.ts` : configuration RevenueCat, prix lus chez Apple, achat, restauration, attente de l'accès créé par le serveur. Tests Jest.
-- Écran Offres (E1) sur iOS : bouton « Prendre le pass … · prix Apple », « Restaurer mes achats », messages de résultat. Actif seulement si `EXPO_PUBLIC_REVENUECAT_IOS_KEY` est défini ; sinon l'écran garde « Tu pourras bientôt choisir ton pass… ». Rien ne change pour Android.
+- `services/achatsIntegres.ts` : configuration RevenueCat, prix lus chez Apple, achat, attente de l'accès créé par le serveur. Tests Jest.
+- Écran Offres (E1) sur iOS : bouton « Prendre le pass … · prix Apple », messages de résultat. Pas de restauration par le compte Apple (produits consommables, voir 1 ter) : l'accès suit le compte Elearn. Actif seulement si `EXPO_PUBLIC_REVENUECAT_IOS_KEY` est défini ; sinon l'écran garde « Tu pourras bientôt choisir ton pass… ». Rien ne change pour Android.
 - `eas.json` : profils iOS et `submit.ios` **renseignés** (`ascAppId` 6744586289, `appleTeamId` 6KATV2T6TV).
 - Dépendance `react-native-purchases`, version `3.1.0`.
 - Sign in with Apple **natif (iOS)** et **web** (OAuth Supabase), bouton Apple partout où Google est proposé.
