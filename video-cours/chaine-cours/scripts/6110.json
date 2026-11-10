@@ -1,0 +1,444 @@
+{
+ "cours": 6110,
+ "titre": "Analyse combinatoire et probabilités : compter, choisir, conditionner",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Concours ESSEC",
+   "titre": "Compter, choisir, conditionner : analyse combinatoire et probabilités",
+   "sous": "Dénombrement, arrangements, permutations, combinaisons, puis probabilités conditionnelles et totales",
+   "anim": {
+    "nom": "grille_des_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Compter sans se tromper, puis mesurer le hasard : un seul enchaînement pour tout le cours."
+  },
+  "principe": {
+   "type": "etape",
+   "kicker": "Le principe multiplicatif",
+   "titre": "Des choix successifs : on multiplie",
+   "tex": [
+    "3 \\times 2 \\times 4 = 24 \\text{ tenues}",
+    "26^3 \\times 10^2 = 1\\,757\\,600 \\text{ mots de passe}"
+   ]
+  },
+  "arrangements": {
+   "type": "formule",
+   "kicker": "Arrangements : l'ordre compte, sans remise",
+   "tex": "A(n, k) = \\frac{n!}{(n-k)!}",
+   "note": "Factorielle n : le produit de tous les entiers de un à n."
+  },
+  "code_secret": {
+   "type": "etape",
+   "kicker": "Exemple : le code secret",
+   "titre": "Trois chiffres distincts parmi dix",
+   "tex": [
+    "A(10, 3) = \\tfrac{10!}{7!}",
+    "= 10 \\times 9 \\times 8",
+    "= 720 \\text{ codes}"
+   ]
+  },
+  "repetition": {
+   "type": "formule",
+   "kicker": "Arrangements avec répétition",
+   "tex": "A'(n, k) = n^k",
+   "note": "Avec répétition, le code à trois chiffres donne dix puissance trois, soit mille codes.",
+   "anim": {
+    "nom": "grille_des_fig",
+    "hauteur": 200
+   }
+  },
+  "permutations": {
+   "type": "formule",
+   "kicker": "Permutations : tout le monde est utilisé",
+   "tex": "P(n) = n!",
+   "note": "Cas particulier des arrangements : on ordonne les n éléments, sans en laisser aucun."
+  },
+  "livres_pin": {
+   "type": "etape",
+   "kicker": "Exemple : livres et codes PIN",
+   "titre": "Trois lectures de la même factorielle",
+   "tex": [
+    "7! = 5\\,040 \\text{ rangements de livres}",
+    "10^4 = 10\\,000 \\text{ codes PIN avec répétition}",
+    "10 \\times 9 \\times 8 \\times 7 = 5\\,040 \\text{ sans répétition}"
+   ]
+  },
+  "repetitions_perm": {
+   "type": "etape",
+   "kicker": "Permutations avec répétitions",
+   "titre": "Diviser par les permutations des lettres identiques",
+   "tex": [
+    "\\tfrac{n!}{n_1! \\, n_2! \\cdots n_k!}",
+    "\\tfrac{6!}{2!\\,2!} = 180 \\text{ (BANANE)}",
+    "\\tfrac{11!}{4!\\,4!\\,2!} = 34\\,650 \\text{ (MISSISSIPPI)}"
+   ]
+  },
+  "circulaires": {
+   "type": "formule",
+   "kicker": "Permutations circulaires",
+   "tex": "(n-1)!",
+   "note": "Autour d'une table ronde, les rotations ne changent rien : cinq personnes donnent vingt-quatre places."
+  },
+  "combinaisons": {
+   "type": "formule",
+   "kicker": "Combinaisons : l'ordre ne compte pas",
+   "tex": "\\binom{n}{k} = \\frac{n!}{k!\\,(n-k)!}",
+   "note": "On choisit un sous-ensemble : seuls les éléments retenus comptent, pas leur ordre."
+  },
+  "ex_combinaisons": {
+   "type": "etape",
+   "kicker": "Exemple : choisir sans ordonner",
+   "titre": "Plats, mains de cartes et comités",
+   "tex": [
+    "\\tbinom{10}{3} = 120 \\text{ choix de plats}",
+    "\\tbinom{52}{5} = 2\\,598\\,960 \\text{ mains de cartes}",
+    "\\tbinom{12}{5} = 792 \\text{ comités}"
+   ]
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés des combinaisons",
+   "titre": "Symétrie et triangle de Pascal",
+   "tex": [
+    "\\tbinom{n}{k} = \\tbinom{n}{n-k}",
+    "\\tbinom{n}{0} = \\tbinom{n}{n} = 1 \\qquad \\tbinom{n}{1} = n"
+   ]
+  },
+  "outil": {
+   "type": "phrase",
+   "kicker": "Choisir le bon outil",
+   "texte": "Trois questions avant tout calcul : l'ordre compte-t-il, les répétitions sont-elles permises, utilise-t-on tous les éléments ?"
+  },
+  "urne_prob": {
+   "type": "etape",
+   "kicker": "Du dénombrement à la probabilité",
+   "titre": "Une urne : cinq rouges, trois bleues, sans remise",
+   "tex": [
+    "P(R \\text{ puis } B) = \\tfrac{5}{8} \\times \\tfrac{3}{7}",
+    "= \\tfrac{15}{56} \\approx 0{,}268"
+   ]
+  },
+  "univers": {
+   "type": "etape",
+   "kicker": "Probabilités élémentaires : l'univers",
+   "titre": "Trois axiomes pour toutes les probabilités",
+   "tex": [
+    "0 \\leq P(A) \\leq 1",
+    "P(\\Omega) = 1",
+    "A \\cap B = \\emptyset \\Rightarrow P(A \\cup B) = P(A) + P(B)"
+   ]
+  },
+  "equiprobable": {
+   "type": "formule",
+   "kicker": "Le cas équiprobable",
+   "tex": "P(A) = \\frac{|A|}{|\\Omega|}",
+   "note": "Dé équilibré, événement pair : trois cas favorables sur six, soit un demi.",
+   "anim": {
+    "nom": "urne_fig",
+    "hauteur": 200
+   }
+  },
+  "frequence": {
+   "type": "phrase",
+   "kicker": "Fréquence et loi des grands nombres",
+   "texte": "Répétée mille fois, l'expérience stabilise sa fréquence : cinq cent dix piles sur mille lancers annoncent une probabilité proche d'un demi.",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 150
+   }
+  },
+  "conditionnelle": {
+   "type": "formule",
+   "kicker": "Probabilités conditionnelles",
+   "tex": "P(A|B) = \\frac{P(A \\cap B)}{P(B)}",
+   "note": "Condition : la probabilité de B est strictement positive. Savoir restreint l'univers."
+  },
+  "ex_conditionnelle": {
+   "type": "etape",
+   "kicker": "Exemple : conditionner en pratique",
+   "titre": "Cartes et urne, l'univers se restreint",
+   "tex": [
+    "P(\\text{roi au 2e} \\mid \\text{as au 1er}) = \\tfrac{4}{51}",
+    "P(\\text{rouge au 2e} \\mid \\text{bleue au 1er}) = \\tfrac{3}{4}",
+    "P(\\text{roi} \\mid \\text{rouge}) = \\tfrac{2}{26} = \\tfrac{1}{13}"
+   ]
+  },
+  "independance": {
+   "type": "formule",
+   "kicker": "Indépendance",
+   "tex": "P(A \\cap B) = P(A) \\times P(B)",
+   "note": "Roi et rouge sont indépendants : un treizième fois un demi égale un vingt-sixième.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 200
+   }
+  },
+  "bayes": {
+   "type": "formule",
+   "kicker": "Le théorème de Bayes",
+   "tex": "P(B|A) = \\frac{P(A|B) \\times P(B)}{P(A)}",
+   "note": "Inverser le conditionnement : passer de la cause observée à l'effet, ou l'inverse."
+  },
+  "ex_bayes_medical": {
+   "type": "etape",
+   "kicker": "Exemple type concours : le diagnostic médical",
+   "titre": "Maladie à un pour cent, sensibilité quatre-vingt-quinze pour cent",
+   "tex": [
+    "P(+) = 0{,}0095 + 0{,}099 = 0{,}1085",
+    "P(M|+) = \\tfrac{0{,}0095}{0{,}1085}",
+    "\\approx 0{,}088"
+   ],
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 140
+   }
+  },
+  "ex_bayes_boites": {
+   "type": "etape",
+   "kicker": "Exemple : le problème des deux boîtes",
+   "titre": "Une boule rouge : de quelle boîte vient-elle ?",
+   "tex": [
+    "P(R) = \\tfrac12 \\times \\tfrac25 + \\tfrac12 \\times \\tfrac34 = \\tfrac{23}{40}",
+    "P(B_1|R) = \\tfrac{1/5}{23/40} = \\tfrac{8}{23} \\approx 0{,}348"
+   ]
+  },
+  "totales": {
+   "type": "formule",
+   "kicker": "Formule des probabilités totales",
+   "tex": "P(B) = \\sum_{i=1}^{n} P(B|A_i) \\times P(A_i)",
+   "note": "Les événements A indice i forment une partition : disjoints, et leur réunion est tout l'univers.",
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_totales": {
+   "type": "etape",
+   "kicker": "Exemple : décomposer selon les cas",
+   "titre": "Dé truqué, urnes et examen",
+   "tex": [
+    "0{,}2 \\times 0{,}6 + 0{,}3 \\times 0{,}4 = 0{,}24",
+    "\\tfrac12 \\times \\tfrac35 + \\tfrac12 \\times \\tfrac15 = \\tfrac25 = 0{,}4",
+    "0{,}8 \\times 0{,}7 + 0{,}2 \\times 0{,}3 = 0{,}62"
+   ]
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "Stratégie d'épreuve",
+   "etapes": [
+    "L'ordre compte : arrangement ou permutation",
+    "Sans ordre : combinaison, diviser par k factorielle",
+    "« Sachant » : restreindre l'univers, conditionner",
+    "Plusieurs causes : probabilités totales, puis Bayes"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Multiplier les choix successifs indépendants",
+    "Arrangements, permutations, combinaisons : l'ordre décide",
+    "Probabilité : favorables sur possibles si équiprobable",
+    "Conditionner, inverser par Bayes, totaliser par cas"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de statistiques et de probabilités pour le concours de l'ESSEC. Nous commençons par l'analyse combinatoire, l'art de compter des ensembles parfois immenses, puis nous mesurerons le hasard : probabilités élémentaires, probabilités conditionnelles, théorème de Bayes et formule des probabilités totales.",
+   "texte": "Analyse combinatoire et probabilités : le parcours du cours.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil conducteur est simple : presque toutes les probabilités de ce cours se calculent en comptant. Compter les cas favorables, compter les cas possibles, puis diviser. Si le comptage est juste, la probabilité suit. Toute la première partie sert donc à compter sans se tromper.",
+   "texte": "Compter juste d'abord : la probabilité suivra.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Premier outil, le principe multiplicatif. Pour composer une tenue avec trois chemises, deux pantalons et quatre paires de chaussures, on multiplie : trois fois deux fois quatre, vingt-quatre tenues. Même geste pour un mot de passe de trois lettres suivies de deux chiffres : vingt-six choix, trois fois, puis dix choix, deux fois, soit un million sept cent cinquante-sept mille six cents mots de passe.",
+   "texte": "Choix successifs : on multiplie les nombres de façons.",
+   "ecran": "principe"
+  },
+  {
+   "id": "p04",
+   "dit": "Quand l'ordre compte et que chaque élément ne peut servir qu'une fois, on parle d'arrangement. Le nombre d'arrangements de k éléments parmi n vaut n factorielle divisé par n moins k factorielle. La factorielle compte les ordres possibles : chaque choix retire un élément du stock, et les possibilités se multiplient en cascade descendante.",
+   "texte": "Arrangements : n factorielle sur n moins k factorielle.",
+   "ecran": "arrangements"
+  },
+  {
+   "id": "p05",
+   "dit": "Exemple : un code secret de trois chiffres distincts, choisis parmi dix chiffres. Dix choix pour le premier chiffre, neuf pour le deuxième, huit pour le troisième : dix fois neuf fois huit, sept cent vingt codes. C'est exactement la formule des arrangements, où la longue division des factorielles se simplifie en un produit de trois termes.",
+   "texte": "Trois chiffres distincts parmi dix : sept cent vingt codes.",
+   "ecran": "code_secret"
+  },
+  {
+   "id": "p06",
+   "dit": "Si les répétitions sont autorisées, le calcul devient encore plus simple : à chaque position, les n choix reviennent en entier, et le nombre de suites vaut n puissance k. Le même code à trois chiffres, répétitions permises, donne dix puissance trois, soit mille codes. Retenez le contraste : interdire les répétitions fait chuter le nombre de possibilités.",
+   "texte": "Avec répétition : n puissance k, mille codes ici.",
+   "ecran": "repetition"
+  },
+  {
+   "id": "p07",
+   "dit": "Une permutation est un arrangement qui utilise tous les éléments : on ordonne un ensemble complet, sans rien laisser de côté. Le nombre de permutations de n éléments vaut donc n factorielle, tout simplement. C'est le cas des rangements, des classements et des ordres d'arrivée où chaque élément occupe exactement une place.",
+   "texte": "Permutations : ordonner tout l'ensemble, n factorielle.",
+   "ecran": "permutations"
+  },
+  {
+   "id": "p08",
+   "dit": "Trois visages de la même idée. Ranger sept livres sur une étagère : sept factorielle, cinq mille quarante rangements. Un code PIN à quatre chiffres avec répétitions : dix puissance quatre, dix mille codes. Le même code sans répétition : dix fois neuf fois huit fois sept, cinq mille quarante codes, un arrangement et non une permutation complète, car seuls quatre chiffres sont utilisés sur dix.",
+   "texte": "Livres et PIN : cinq mille quarante, dix mille, cinq mille quarante.",
+   "ecran": "livres_pin"
+  },
+  {
+   "id": "p09",
+   "dit": "Quand certains éléments sont identiques, permuter deux exemplaires ne crée rien de nouveau : il faut diviser par les factorielles des répétitions. Le mot BANANE compte deux a et deux n : six factorielle divisé par deux factorielle fois deux factorielle, soit cent quatre-vingts anagrammes. Pour MISSISSIPPI, quatre i, quatre s et deux p : trente-quatre mille six cent cinquante anagrammes.",
+   "texte": "Éléments identiques : diviser par leurs permutations internes.",
+   "ecran": "repetitions_perm"
+  },
+  {
+   "id": "p10",
+   "dit": "Autour d'une table ronde, seul l'ordre relatif compte : tourner toute la table ne change pas la disposition. On fixe donc une personne comme repère, et il reste n moins un factorielle arrangements. Pour cinq convives, quatre factorielle, soit vingt-quatre façons de s'asseoir. Ce réflexe, fixer un repère pour casser une symétrie, revient souvent en dénombrement.",
+   "texte": "Table ronde : n moins un factorielle, vingt-quatre pour cinq.",
+   "ecran": "circulaires"
+  },
+  {
+   "id": "p11",
+   "dit": "Dernier des trois outils : la combinaison, quand l'ordre du choix ne compte pas. Choisir trois plats parmi dix, c'est retenir un sous-ensemble, pas une suite. On divise le nombre d'arrangements par k factorielle, le nombre d'ordres possibles du même choix : il reste n factorielle divisé par k factorielle fois n moins k factorielle.",
+   "texte": "Combinaisons : choisir un sous-ensemble, sans ordre.",
+   "ecran": "combinaisons"
+  },
+  {
+   "id": "p12",
+   "dit": "Trois applications à connaître par cœur. Trois plats parmi dix : cent vingt choix. Une main de cinq cartes dans un jeu de cinquante-deux : plus de deux millions et demi de mains, deux millions cinq cent quatre-vingt-dix-huit mille neuf cent soixante exactement. Un comité de cinq personnes parmi douze candidats : sept cent quatre-vingt-douze comités. Même formule, trois échelles très différentes.",
+   "texte": "Cent vingt plats, des millions de mains, sept cent quatre-vingt-douze comités.",
+   "ecran": "ex_combinaisons"
+  },
+  {
+   "id": "p13",
+   "dit": "Deux propriétés accélèrent les calculs. La symétrie : choisir k éléments parmi n revient à écarter les n moins k autres, donc les deux coefficients sont égaux. Et les cas extrêmes valent un : choisir zéro élément ou tous les éléments n'offre qu'une seule possibilité. Ces coefficients s'organisent dans le triangle de Pascal, où chaque nombre est la somme des deux nombres situés au-dessus de lui.",
+   "texte": "Symétrie : choisir k éléments, c'est écarter les autres.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p14",
+   "dit": "Avant tout calcul, posez-vous trois questions. L'ordre compte-t-il ? Les répétitions sont-elles permises ? Utilise-t-on tous les éléments ? Ordre et tous les éléments : permutation. Ordre sans tout utiliser : arrangement, avec ou sans répétition. Aucun ordre : combinaison. Neuf erreurs sur dix, en concours, viennent d'un mauvais choix d'outil, pas du calcul lui-même.",
+   "texte": "Trois questions pour choisir : ordre, répétition, totalité.",
+   "ecran": "outil"
+  },
+  {
+   "id": "p15",
+   "dit": "Le dénombrement sert déjà les probabilités. Une urne contient cinq boules rouges et trois bleues, on tire deux boules sans remise. La probabilité d'enchaîner une rouge puis une bleue vaut cinq huitièmes fois trois septièmes, soit quinze cinquante-sixièmes. On vient de croiser, sans le nommer, le conditionnement : après la rouge, l'urne a changé.",
+   "texte": "Rouge puis bleue : quinze cinquante-sixièmes.",
+   "ecran": "urne_prob"
+  },
+  {
+   "id": "p16",
+   "dit": "Passons aux probabilités. L'univers, noté oméga, rassemble tous les résultats possibles : pour un dé, les six faces. Un événement est un sous-ensemble de cet univers. Sa probabilité obéit à trois axiomes : elle est toujours entre zéro et un, celle de l'univers entier vaut un, et pour deux événements qui ne peuvent pas se produire ensemble, la probabilité de leur réunion est la somme de leurs probabilités.",
+   "texte": "L'univers, les événements, et trois axiomes.",
+   "ecran": "univers"
+  },
+  {
+   "id": "p17",
+   "dit": "Quand tous les résultats ont la même chance, la probabilité devient un simple rapport : nombre de cas favorables sur nombre de cas possibles. C'est là que tout le dénombrement de la première partie trouve son emploi. Pour un dé équilibré, obtenir un nombre pair regroupe trois faces sur six : probabilité un demi.",
+   "texte": "Équiprobabilité : favorables divisés par possibles.",
+   "ecran": "equiprobable"
+  },
+  {
+   "id": "p18",
+   "dit": "Il existe une autre façon de rencontrer une probabilité : répéter l'expérience. Sur mille lancers de pièce, obtenir cinq cent dix piles donne une fréquence de zéro virgule cinquante et un, très proche d'un demi. La loi des grands nombres garantit ce rapprochement : plus le nombre d'essais grandit, plus la fréquence observée s'approche de la probabilité théorique.",
+   "texte": "La fréquence observée approche la probabilité.",
+   "ecran": "frequence"
+  },
+  {
+   "id": "p19",
+   "dit": "Une information change les probabilités. La probabilité de a sachant b est la probabilité que a et b se produisent ensemble, divisée par la probabilité de b. Dire « sachant b », c'est restreindre l'univers aux seuls cas où b s'est produit, puis mesurer la part de a dans ce nouvel univers. C'est le mécanisme central de toute la suite du cours.",
+   "texte": "Sachant B : l'univers se restreint, la probabilité se recalcule.",
+   "ecran": "conditionnelle"
+  },
+  {
+   "id": "p20",
+   "dit": "Trois lectures du même mécanisme. Deux cartes sans remise : la deuxième est un roi sachant que la première est un as, quatre rois parmi cinquante et une cartes, soit quatre cinquante et unièmes. Une urne de trois rouges et deux bleues : la deuxième est rouge sachant que la première est bleue, trois rouges sur quatre boules restantes, soit trois quarts. Enfin, un roi sachant que la carte est rouge : deux rois rouges sur vingt-six cartes rouges, soit un treizième.",
+   "texte": "Quatre sur cinquante et un, trois quarts, un treizième.",
+   "ecran": "ex_conditionnelle"
+  },
+  {
+   "id": "p21",
+   "dit": "Le dernier exemple réserve une surprise : tirer un roi a pour probabilité un treizième, exactement comme sachant que la carte est rouge. L'information n'a rien changé : roi et rouge sont indépendants. Deux événements sont indépendants quand la probabilité de leur intersection est le produit de leurs probabilités, autrement dit quand savoir l'un ne renseigne pas sur l'autre. Attention, indépendant ne veut pas dire incompatible.",
+   "texte": "Indépendance : l'intersection vaut le produit.",
+   "ecran": "independance"
+  },
+  {
+   "id": "p22",
+   "dit": "Le théorème de Bayes inverse le conditionnement : il calcule la probabilité d'une cause sachant son effet observé, à partir de la probabilité de l'effet sachant la cause. On multiplie la probabilité conditionnelle directe par la probabilité de la cause, puis on divise par la probabilité de l'effet. C'est l'outil des diagnostics, médicaux ou techniques, où l'on observe un signe et l'on cherche la cause la plus probable.",
+   "texte": "Bayes : remonter de l'effet observé vers la cause.",
+   "ecran": "bayes"
+  },
+  {
+   "id": "p23",
+   "dit": "Application complète, taillée pour le concours. Une maladie touche un pour cent de la population. Le test la détecte chez quatre-vingt-quinze pour cent des malades, mais il est aussi positif chez dix pour cent des personnes saines. Au total, un test positif survient dans dix virgule quatre-vingt-cinq pour cent des cas. Bayes donne alors : être malade sachant le test positif vaut environ huit virgule huit pour cent. Un test positif n'est donc pas une certitude, loin de là, parce que la maladie est rare.",
+   "texte": "Positif ne veut pas dire malade : huit virgule huit pour cent.",
+   "ecran": "ex_bayes_medical"
+  },
+  {
+   "id": "p24",
+   "dit": "Deuxième inversion classique. Deux boîtes : la première contient deux rouges et trois bleues, la deuxième trois rouges et une bleue. On choisit une boîte au hasard et la boule tirée est rouge. La probabilité de tirer une rouge vaut un demi fois deux cinquièmes plus un demi fois trois quarts, soit vingt-trois quarantièmes. Puis Bayes : la probabilité qu'elle vienne de la première boîte vaut huit vingt-troisièmes, environ zéro virgule trente-cinq. La rouge plaide donc plutôt pour la deuxième boîte, plus riche en rouges.",
+   "texte": "Boule rouge : huit chances sur vingt-trois pour la boîte un.",
+   "ecran": "ex_bayes_boites"
+  },
+  {
+   "id": "p25",
+   "dit": "Dernier outil, la formule des probabilités totales. Si des événements forment une partition de l'univers, deux à deux incompatibles et couvrant tous les cas, alors la probabilité d'un événement quelconque est la somme, sur chaque cas, de sa probabilité conditionnelle multipliée par la probabilité du cas. C'est le dénominateur de Bayes, et le réflexe à avoir dès qu'un problème se découpe en scénarios exclusifs.",
+   "texte": "Probabilités totales : sommer sur tous les scénarios.",
+   "ecran": "totales"
+  },
+  {
+   "id": "p26",
+   "dit": "Trois calculs, un seul geste. Un six au dé : probabilité zéro virgule deux avec le premier dé, zéro virgule trois avec le second, choisis avec des probabilités de zéro virgule six et zéro virgule quatre : au total, zéro virgule vingt-quatre. Deux urnes choisies au hasard : tirer une rouge donne un demi fois trois cinquièmes plus un demi fois un cinquième, soit deux cinquièmes. Un examen : réussir vaut zéro virgule huit si l'on étudie, zéro virgule deux sinon, et l'on étudie sept fois sur dix : au total, zéro virgule soixante-deux.",
+   "texte": "Dé truqué, urnes, examen : zéro vingt-quatre, zéro quatre, zéro soixante-deux.",
+   "ecran": "ex_totales"
+  },
+  {
+   "id": "p27",
+   "dit": "Face à un énoncé de concours, avancez dans cet ordre. D'abord, nommez l'univers et les événements. Ensuite, demandez-vous si l'ordre compte pour choisir votre dénombrement. Au mot « sachant », conditionnez sans hésiter. Si plusieurs causes exclusives mènent au même effet, totalisez, puis inversez par Bayes si la question remonte vers la cause. Cette grille de lecture transforme la plupart des énoncés en calculs déjà vus.",
+   "texte": "La grille : modéliser, dénombrer, conditionner, totaliser.",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p28",
+   "dit": "Pour finir, retenez l'enchaînement complet. Multiplier pour les choix successifs, factorielles pour ordonner, combinaisons pour choisir sans ordre. Puis diviser favorables par possibles quand les cas sont équiprobables, restreindre l'univers quand une information arrive, totaliser sur les scénarios et inverser par Bayes. Sept chapitres, une seule logique : compter d'abord, mesurer ensuite.",
+   "texte": "Compter d'abord, mesurer ensuite : à retenir.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Dénombrement : multiplier, arranger, permuter"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Combinaisons et premières probabilités",
+   "pont": {
+    "texte": "Partie 2 : combinaisons, univers et probabilités conditionnelles.",
+    "dit": "Partie deux : les combinaisons et les premières probabilités. Nous choisirons sans tenir compte de l'ordre, nous poserons l'univers et ses axiomes, puis nous verrons comment une information restreint l'univers et crée les probabilités conditionnelles."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "Conditionner en pratique, Bayes et probabilités totales",
+   "pont": {
+    "texte": "Partie 3 : conditionnement en pratique, Bayes et probabilités totales.",
+    "dit": "Partie trois : le conditionnement en pratique. Nous calculerons des probabilités conditionnelles, nous croiserons l'indépendance, puis nous inverserons le conditionnement avec le théorème de Bayes avant de décomposer les événements par la formule des probabilités totales."
+   }
+  }
+ ]
+}

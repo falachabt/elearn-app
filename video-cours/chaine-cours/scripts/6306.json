@@ -1,0 +1,440 @@
+{
+  "cours": 6306,
+  "ecrans": {
+    "bayes": {
+      "anim": {
+        "hauteur": 200,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Le théorème de Bayes",
+      "note": "Inverser le conditionnement : remonter de l'effet observé B vers la cause A.",
+      "tex": "P(A|B) = \\frac{P(B|A) \\cdot P(A)}{P(B)}",
+      "type": "formule"
+    },
+    "cartes": {
+      "kicker": "Exemple · l'as sachant le cœur",
+      "tex": [
+        "P(A \\cap B) = \\tfrac{1}{52} \\qquad P(B) = \\tfrac{13}{52}",
+        "P(A|B) = \\tfrac{1/52}{13/52} = \\tfrac{1}{13}",
+        "P(A|B) = P(A) \\text{ : indépendance}"
+      ],
+      "titre": "A : la carte est un as ; B : la carte est un cœur",
+      "type": "etape"
+    },
+    "definition": {
+      "anim": {
+        "hauteur": 180,
+        "nom": "venn"
+      },
+      "kicker": "La probabilité conditionnelle",
+      "note": "Condition : P(B) > 0 · Savoir B restreint l'univers au seul événement B.",
+      "tex": "P(A|B) = \\frac{P(A \\cap B)}{P(B)}",
+      "type": "formule"
+    },
+    "des": {
+      "kicker": "Exemple · deux dés",
+      "tex": [
+        "P(A) = \\tfrac{1}{6} \\qquad P(B) = \\tfrac{1}{2}",
+        "P(A \\cap B) = \\tfrac{3}{36} = \\tfrac{1}{12}",
+        "P(A) P(B) = \\tfrac{1}{6} \\times \\tfrac{1}{2} = \\tfrac{1}{12}"
+      ],
+      "titre": "A : un six au dé bleu ; B : un nombre pair au dé rouge",
+      "type": "etape"
+    },
+    "donnees": {
+      "kicker": "Tester l'indépendance sur des données",
+      "tex": [
+        "P(M \\cap P) = \\tfrac{200}{1000} = 0{,}20",
+        "P(M) P(P) = 0{,}4 \\times 0{,}3 = 0{,}12"
+      ],
+      "titre": "Mille étudiants : aimer les maths, aimer la physique",
+      "type": "etape"
+    },
+    "generateurs": {
+      "kicker": "Exemple · deux générateurs",
+      "tex": [
+        "P(\\overline{S}) = 0{,}05 \\times 0{,}02 = 0{,}001",
+        "P(S) = 1 - 0{,}001 = 0{,}999"
+      ],
+      "titre": "La redondance : calculer par le complémentaire",
+      "type": "etape"
+    },
+    "independance": {
+      "anim": {
+        "hauteur": 240,
+        "nom": "grille_des_fig"
+      },
+      "kicker": "L'indépendance",
+      "note": "Si P(B) > 0, c'est P(A|B) = P(A) : savoir ne change rien.",
+      "tex": "P(A \\cap B) = P(A) \\cdot P(B)",
+      "type": "formule"
+    },
+    "intro": {
+      "kicker": "Introduction",
+      "texte": "Une information nouvelle change les probabilités : le baromètre qui chute rend la pluie plus probable. Conditionner, c'est recalculer avec ce que l'on sait.",
+      "type": "phrase"
+    },
+    "machines": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Exemple · le contrôle qualité",
+      "tex": [
+        "P(D) = 0{,}30 \\times 0{,}02 + 0{,}45 \\times 0{,}03",
+        "P(D) = 0{,}006 + 0{,}0135 + 0{,}01",
+        "P(D) = 0{,}0295 \\approx 2{,}95\\ \\%"
+      ],
+      "titre": "Trois machines, trois taux de défauts",
+      "type": "etape"
+    },
+    "marketing": {
+      "kicker": "Exemple · les canaux d'un site",
+      "tex": [
+        "P(A) = 0{,}005 + 0{,}009 + 0{,}010 = 0{,}024",
+        "P(E|A) = \\tfrac{0{,}010}{0{,}024} \\approx 0{,}417"
+      ],
+      "titre": "Totales pour le taux global, Bayes pour l'origine",
+      "type": "etape"
+    },
+    "methode": {
+      "etapes": [
+        "Nommer les événements, les décrire en mots",
+        "Traduire les données sans inverser P(A|B)",
+        "Représenter : arbre, tableau, diagramme",
+        "Bayes pour inverser, totales pour décomposer",
+        "Interpréter le nombre dans son contexte"
+      ],
+      "kicker": "La méthode en cinq temps",
+      "type": "recap"
+    },
+    "moteurs": {
+      "kicker": "Exemple · les deux moteurs",
+      "tex": [
+        "P(\\text{panne du système}) = 0{,}02 \\times 0{,}02",
+        "P(\\text{panne}) = 0{,}0004 \\qquad P(\\text{OK}) = 0{,}9996"
+      ],
+      "titre": "L'indépendance au service de la fiabilité",
+      "type": "etape"
+    },
+    "mutuelle": {
+      "kicker": "L'indépendance mutuelle",
+      "tex": [
+        "P(A \\cap B) = P(A) P(B)",
+        "P(A \\cap C) = P(A) P(C)",
+        "P(B \\cap C) = P(B) P(C)",
+        "P(A \\cap B \\cap C) = P(A) P(B) P(C)"
+      ],
+      "titre": "Pour trois événements : quatre conditions, pas trois",
+      "type": "etape"
+    },
+    "partition": {
+      "kicker": "La partition de l'univers",
+      "tex": [
+        "B_i \\cap B_j = \\varnothing \\quad (i \\neq j)",
+        "B_1 \\cup \\cdots \\cup B_n = \\Omega"
+      ],
+      "titre": "Découper l'univers en cas incompatibles et complets",
+      "type": "etape"
+    },
+    "pieces": {
+      "kicker": "Contre-exemple · deux lancers de pièce",
+      "tex": [
+        "P(A \\cap C) = \\tfrac{1}{4} = P(A) P(C)",
+        "P(A \\cap B \\cap C) = \\tfrac{1}{4}",
+        "P(A) P(B) P(C) = \\tfrac{1}{8}"
+      ],
+      "titre": "Indépendants deux à deux, mais pas mutuellement",
+      "type": "etape"
+    },
+    "piege": {
+      "kicker": "Le piège classique",
+      "texte": "Indépendance n'est pas incompatibilité : deux événements incompatibles sont au contraire très dépendants, car si l'un arrive, l'autre est exclu.",
+      "type": "phrase"
+    },
+    "procureur": {
+      "kicker": "Justice · l'erreur du procureur",
+      "tex": [
+        "P(M|C) = 1 \\qquad P(M|\\overline{C}) = 10^{-5}",
+        "P(C|M) \\approx \\tfrac{10^{-6}}{10^{-6} + 10^{-5}}",
+        "P(C|M) \\approx 0{,}09 : \\text{ pas } 0{,}99999"
+      ],
+      "titre": "Une correspondance génétique, un a priori minuscule",
+      "type": "etape"
+    },
+    "produit": {
+      "kicker": "La règle du produit",
+      "tex": [
+        "P(A \\cap B) = P(A|B) \\times P(B)",
+        "P(A_1 \\cap A_2) = \\tfrac{4}{52} \\times \\tfrac{3}{51}",
+        "= \\tfrac{12}{2652} = \\tfrac{1}{221}"
+      ],
+      "titre": "Enchaîner deux tirages sans remise",
+      "type": "etape"
+    },
+    "recap": {
+      "etapes": [
+        "Conditionner : restreindre l'univers à B",
+        "Indépendance : savoir ne change rien",
+        "Totales : sommer sur tous les chemins",
+        "Bayes : remonter des effets aux causes"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "spam": {
+      "kicker": "Exemple · le filtre anti-spam",
+      "tex": [
+        "P(G) = 0{,}95 \\times 0{,}8 + 0{,}1 \\times 0{,}2 = 0{,}78",
+        "P(S|G) = \\tfrac{0{,}76}{0{,}78} \\approx 0{,}97"
+      ],
+      "titre": "Le mot gratuit comme preuve",
+      "type": "etape"
+    },
+    "tableau": {
+      "kicker": "Le tableau de contingence",
+      "tex": [
+        "P(\\text{Sciences}) = \\tfrac{90}{200} = 0{,}45",
+        "P(\\text{Sciences}|\\text{Masculin}) = \\tfrac{60}{100} = 0{,}60",
+        "P(\\text{Masculin}|\\text{Sciences})=\\tfrac{60}{90}\\approx0{,}67"
+      ],
+      "titre": "Deux cents étudiants, genre et matière préférée",
+      "type": "etape"
+    },
+    "test_lecon": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Le paradoxe des maladies rares",
+      "texte": "Test positif, et seulement environ 5 % de chances d'être malade : les faux positifs des très nombreuses personnes saines submergent les vrais positifs.",
+      "type": "phrase"
+    },
+    "test_total": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Exemple · le test médical",
+      "tex": [
+        "P(T^+) = 0{,}99 \\times 0{,}001 + 0{,}02 \\times 0{,}999",
+        "P(T^+) = 0{,}00099 + 0{,}01998 = 0{,}02097",
+        "P(M|T^+) = \\tfrac{0{,}00099}{0{,}02097} \\approx 0{,}047"
+      ],
+      "titre": "Maladie rare : un pour mille, test fiable",
+      "type": "etape"
+    },
+    "titre": {
+      "anim": {
+        "nom": "arbre_fig",
+        "hauteur": 240
+      },
+      "kicker": "Mathématique · Probabilités",
+      "sous": "Conditionner, décomposer, inverser : mettre à jour ses croyances face à l'information",
+      "titre": "Probabilités conditionnelles, indépendance et théorème de Bayes",
+      "type": "titre"
+    },
+    "totales": {
+      "anim": {
+        "hauteur": 200,
+        "nom": "arbre_fig"
+      },
+      "kicker": "La formule des probabilités totales",
+      "note": "Sur un arbre : multiplier le long des chemins, additionner ceux qui mènent à A.",
+      "tex": "P(A) = \\sum_{i=1}^{n} P(A|B_i) \\cdot P(B_i)",
+      "type": "formule"
+    },
+    "vocabulaire": {
+      "kicker": "Le lexique de Bayes",
+      "tex": [
+        "\\text{a priori : } P(A) \\text{, avant l'observation}",
+        "\\text{vraisemblance : } P(B|A) \\text{, fiabilité}",
+        "\\text{a posteriori : } P(A|B) \\text{, la croyance révisée}"
+      ],
+      "titre": "Trois rôles dans la formule",
+      "type": "etape"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Conditionner et décomposer : conditionnelles et probabilités totales"
+    },
+    {
+      "debut": "p11",
+      "pont": {
+        "dit": "Partie deux : l'indépendance et l'inversion. Nous verrons quand une information ne change rien, le piège de l'incompatibilité et le contre-exemple des deux lancers de pièce, avant de construire le théorème de Bayes et son vocabulaire.",
+        "texte": "Partie 2 : l'indépendance, ses pièges, puis le théorème de Bayes."
+      },
+      "sous_titre": "L'indépendance, puis inverser avec Bayes"
+    },
+    {
+      "debut": "p19",
+      "pont": {
+        "dit": "Partie trois : Bayes en action. Nous calculerons le paradoxe du test médical pas à pas, puis nous suivrons le même raisonnement dans un filtre anti-spam, dans la fiabilité des avions, dans le marketing et jusque dans un tribunal.",
+        "texte": "Partie 3 : Bayes au travail, du test médical au tribunal."
+      },
+      "sous_titre": "Bayes en action : médecine, spam, fiabilité, justice"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de probabilités conditionnelles. Nous allons apprendre à recalculer une probabilité quand une information nouvelle arrive, à décomposer un événement selon ses causes avec la formule des probabilités totales, à reconnaître l'indépendance, puis à inverser le raisonnement avec le théorème de Bayes, jusqu'au paradoxe des tests médicaux.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Probabilités conditionnelles, indépendance et Bayes."
+    },
+    {
+      "dit": "Un météorologue observe un ciel chargé : quelle est la probabilité de pluie ? Le baromètre chute brutalement, et son estimation change aussitôt. Cette révision est le cœur du cours : une probabilité n'est jamais figée, elle dépend de ce que l'on sait. Les probabilités conditionnelles formalisent ce bon sens : calculer la probabilité d'un événement sachant qu'un autre est déjà réalisé.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "Une information nouvelle révise les probabilités."
+    },
+    {
+      "dit": "La probabilité de a sachant b mesure la chance que a se produise dans un monde où b est déjà certain. Sa définition divise la probabilité que a et b se produisent ensemble par la probabilité de b. Diviser par la probabilité de b, c'est restreindre l'univers au seul événement b et recalibrer les chances à l'intérieur de ce monde réduit. La condition essentielle : la probabilité de b doit être strictement positive.",
+      "ecran": "definition",
+      "id": "p03",
+      "texte": "P(A|B) : la probabilité de A dans le monde où B est vrai."
+    },
+    {
+      "dit": "Premier calcul, sur un jeu de cinquante-deux cartes. Quelle est la probabilité de tirer un as, sachant que la carte est un cœur ? L'intersection, c'est l'as de cœur : une carte sur cinquante-deux. Les cœurs sont treize. Le quotient donne un treizième, exactement la probabilité initiale de tirer un as. Savoir que la carte est un cœur n'a rien changé : nous venons de croiser, sans le nommer, le phénomène d'indépendance.",
+      "ecran": "cartes",
+      "id": "p04",
+      "texte": "As sachant cœur : 1/13, comme sans information."
+    },
+    {
+      "dit": "En retournant la définition, on obtient la règle du produit : la probabilité que a et b se produisent ensemble égale la probabilité de a sachant b, multipliée par la probabilité de b. Elle sert à enchaîner les étapes d'une expérience. Exemple : tirer deux as d'affilée sans remise vaut quatre sur cinquante-deux fois trois sur cinquante et un, soit un sur deux cent vingt et un.",
+      "ecran": "produit",
+      "id": "p05",
+      "texte": "Le produit : enchaîner les étapes d'une expérience."
+    },
+    {
+      "dit": "Quand les données viennent d'une enquête, le tableau de contingence devient l'outil de calcul. Deux cents étudiants sont croisés selon leur genre et leur matière préférée. La probabilité des sciences vaut quatre-vingt-dix sur deux cents. Sachant que l'étudiant est un garçon, on se restreint à sa ligne : soixante sur cent choisissent les sciences. Et parmi les amateurs de sciences, les garçons représentent soixante sur quatre-vingt-dix. Restreindre une ligne ou une colonne : tout le geste est là.",
+      "ecran": "tableau",
+      "id": "p06",
+      "texte": "Le tableau : restreindre une ligne ou une colonne."
+    },
+    {
+      "dit": "Pour décomposer un problème, il faut d'abord savoir découper l'univers. Une famille d'événements forme une partition si les événements sont deux à deux incompatibles, aucun chevauchement, et si leur réunion recouvre tout l'univers, aucun oubli. Comme les parts d'un gâteau : distinctes, et qui reconstituent le gâteau entier. Pair et impair pour un dé, ou trois tranches de résultats, sont des partitions.",
+      "ecran": "partition",
+      "id": "p07",
+      "texte": "Une partition : des cas incompatibles qui couvrent tout."
+    },
+    {
+      "dit": "Voici la formule des probabilités totales. Si les événements bé forment une partition, la probabilité de a s'obtient en sommant, sur chaque cas, la probabilité du cas multipliée par la probabilité de a sachant ce cas. Sur un arbre de probabilités, cela se lit très simplement : on multiplie les probabilités le long de chaque chemin qui mène à a, puis on additionne ces chemins.",
+      "ecran": "totales",
+      "id": "p08",
+      "texte": "Probabilités totales : sommer sur toutes les causes."
+    },
+    {
+      "dit": "Application au contrôle qualité. Trois machines produisent respectivement trente, quarante-cinq et vingt-cinq pour cent des articles, avec des taux de défauts de deux, trois et quatre pour cent. La probabilité qu'un article pris au hasard soit défectueux somme les trois chemins : zéro virgule zéro zéro six, plus zéro virgule zéro cent trente-cinq, plus zéro virgule zéro un. Total : environ deux virgule quatre-vingt-quinze pour cent de pièces défectueuses.",
+      "ecran": "machines",
+      "id": "p09",
+      "texte": "Trois machines : environ 2,95 % de défauts."
+    },
+    {
+      "dit": "La même formule, doublée d'un réflexe : passer par le complémentaire. Un système de secours a deux générateurs. Le principal fonctionne avec probabilité zéro virgule quatre-vingt-quinze ; s'il tombe en panne, le secours fonctionne encore avec probabilité zéro virgule quatre-vingt-dix-huit. Le système ne tombe en panne que si les deux lâchent : zéro virgule zéro cinq fois zéro virgule zéro deux, un millième. Sa fiabilité atteint donc quatre-vingt-dix-neuf virgule neuf pour cent.",
+      "ecran": "generateurs",
+      "id": "p10",
+      "texte": "Redondance : une fiabilité de 99,9 %."
+    },
+    {
+      "dit": "Deux événements sont indépendants quand la réalisation de l'un n'apprend rien sur l'autre. Mathématiquement, la probabilité de leur intersection est le produit de leurs probabilités. C'est exactement dire que la probabilité de a sachant b égale la probabilité de a : l'information b est inutile pour prévoir a. Nous l'avions déjà rencontré avec l'as et le cœur, sans le savoir.",
+      "ecran": "independance",
+      "id": "p11",
+      "texte": "Indépendance : l'intersection vaut le produit."
+    },
+    {
+      "dit": "Vérifions l'indépendance sur deux dés, un bleu et un rouge. L'événement a : le dé bleu montre un six, de probabilité un sixième. L'événement b : le dé rouge montre un nombre pair, de probabilité un demi. Leur intersection compte trois issues sur trente-six : un douzième. Et le produit, un sixième fois un demi, donne aussi un douzième. L'égalité est vérifiée : les deux dés sont indépendants, comme l'intuition le disait.",
+      "ecran": "des",
+      "id": "p12",
+      "texte": "Deux dés : 1/12 des deux côtés, indépendance vérifiée."
+    },
+    {
+      "dit": "Attention au piège le plus classique du chapitre : l'indépendance n'est pas l'incompatibilité. Deux événements incompatibles ne peuvent pas arriver ensemble ; si l'un se réalise, on sait avec certitude que l'autre ne s'est pas réalisé. C'est une information énorme : ils sont donc, en général, très dépendants. Indépendant veut dire sans influence, pas sans intersection.",
+      "ecran": "piege",
+      "id": "p13",
+      "texte": "Incompatibles : dépendants, presque toujours."
+    },
+    {
+      "dit": "Face à des données, on teste l'indépendance par le même calcul. Sur mille étudiants, quatre cents aiment les maths, trois cents aiment la physique, et deux cents aiment les deux. Si les goûts étaient indépendants, la proportion des deux à la fois vaudrait zéro virgule quatre fois zéro virgule trois, soit zéro virgule douze. Or elle vaut zéro virgule vingt : les deux goûts s'attirent, ils ne sont pas indépendants.",
+      "ecran": "donnees",
+      "id": "p14",
+      "texte": "Maths et physique : 0,20 contre 0,12, pas indépendants."
+    },
+    {
+      "dit": "Avec trois événements, la prudence s'impose. L'indépendance deux à deux ne suffit pas : pour parler d'indépendance mutuelle, il faut aussi que la probabilité de l'intersection des trois soit le produit des trois probabilités. Quatre conditions au total. La quatrième est celle qu'on oublie, et c'est elle qui protège des situations contre-intuitives que nous allons rencontrer.",
+      "ecran": "mutuelle",
+      "id": "p15",
+      "texte": "Trois événements : quatre conditions à vérifier."
+    },
+    {
+      "dit": "Le contre-exemple célèbre tient en deux lancers d'une pièce équilibrée. A : le premier lancer donne pile. B : le deuxième donne pile. C : les deux résultats sont identiques. Chaque événement a probabilité un demi, et chaque paire est indépendante, avec une intersection d'un quart. Mais l'intersection des trois vaut un quart, alors que le produit des trois vaut un huitième. Si les deux premiers lancers sont connus, le troisième événement devient certain : l'indépendance mutuelle s'effondre.",
+      "ecran": "pieces",
+      "id": "p16",
+      "texte": "Deux à deux oui, mutuellement non."
+    },
+    {
+      "dit": "Nous inversons maintenant le conditionnement avec le théorème de Bayes. La probabilité de a sachant b s'écrit : la probabilité de b sachant a, multipliée par la probabilité de a, le tout divisé par la probabilité de b. Le dénominateur se calcule presque toujours avec la formule des probabilités totales. Bayes permet de remonter des effets observés vers leurs causes probables.",
+      "ecran": "bayes",
+      "id": "p17",
+      "texte": "Bayes : de l'effet observé à la cause probable."
+    },
+    {
+      "dit": "Chaque terme de la formule a un rôle et un nom. La probabilité de a est l'a priori : notre croyance avant l'observation. La probabilité de b sachant a est la vraisemblance : à quel point l'effet observé est attendu si la cause est vraie. Et le résultat, la probabilité de a sachant b, est l'a posteriori : la croyance révisée, qui mélange le savoir ancien et l'information nouvelle. Cet a posteriori deviendra l'a priori de la prochaine observation.",
+      "ecran": "vocabulaire",
+      "id": "p18",
+      "texte": "A priori, vraisemblance, a posteriori."
+    },
+    {
+      "dit": "L'application qui rend Bayes inoubliable : un test de dépistage. La maladie touche un pour mille de la population. Le test détecte quatre-vingt-dix-neuf pour cent des malades, mais déclare positifs deux pour cent des personnes saines. La probabilité totale d'un test positif additionne vrais et faux positifs : environ zéro virgule zéro deux cent neuf sept. Bayes donne alors la probabilité d'être malade sachant le test positif : environ zéro virgule zéro quarante-sept.",
+      "ecran": "test_total",
+      "id": "p19",
+      "texte": "Test positif : P(M|T⁺) ≈ 0,047 seulement."
+    },
+    {
+      "dit": "Traduisons : malgré un test positif et un test qui semble excellent, la probabilité d'être réellement malade n'est que d'environ cinq pour cent. Pourquoi ? Parce que la maladie est très rare : les personnes saines sont si nombreuses que leurs deux pour cent de faux positifs submergent le petit nombre de vrais positifs. Négliger la fréquence de base, l'a priori, est le biais que Bayes corrige systématiquement.",
+      "ecran": "test_lecon",
+      "id": "p20",
+      "texte": "La rareté de la maladie change tout."
+    },
+    {
+      "dit": "Même mécanisme dans votre boîte mail. Quatre-vingts pour cent des messages reçus sont des spams. Le mot gratuit apparaît dans quatre-vingt-quinze pour cent des spams, mais aussi dans dix pour cent des messages légitimes. La probabilité totale du mot gratuit vaut zéro virgule soixante-dix-huit. Sachant qu'un message contient ce mot, la probabilité que ce soit un spam grimpe à environ quatre-vingt-dix-sept pour cent : le filtre le classera comme indésirable.",
+      "ecran": "spam",
+      "id": "p21",
+      "texte": "Le mot gratuit : un spam à 97 %. "
+    },
+    {
+      "dit": "Retour à l'ingénierie, où l'indépendance devient un principe de conception. Un avion a deux moteurs indépendants, chacun tombant en panne avec probabilité zéro virgule zéro deux par vol. Le système ne tombe en panne que si les deux moteurs lâchent ensemble : par indépendance, le produit, zéro virgule zéro zéro zéro quatre. La fiabilité passe ainsi de quatre-vingt-dix-huit pour cent pour un moteur seul à quatre-vingt-dix-neuf virgule quatre-vingt-seize pour cent pour le système.",
+      "ecran": "moteurs",
+      "id": "p22",
+      "texte": "Deux moteurs : la panne divisée par cinquante."
+    },
+    {
+      "dit": "Dernier terrain d'application, le marketing. Un site reçoit son trafic des réseaux sociaux pour moitié, des moteurs de recherche pour trente pour cent et des courriels pour vingt pour cent, avec des taux d'achat de un, trois et cinq pour cent. Les probabilités totales donnent un taux de conversion global de deux virgule quatre pour cent. Et Bayes répond à la question inverse : un achat vient d'un courriel avec probabilité environ quarante et un virgule sept pour cent, alors que ce canal ne fournit qu'un cinquième du trafic.",
+      "ecran": "marketing",
+      "id": "p23",
+      "texte": "Les courriels : 20 % du trafic, 42 % des achats."
+    },
+    {
+      "dit": "Terminons par la justice, où l'inversion des conditionnelles peut coûter très cher. Une correspondance génétique a une chance sur cent mille d'apparaître chez un innocent : le procureur en déduit une culpabilité quasi certaine. C'est un sophisme : il confond la probabilité de la correspondance sachant l'innocence avec celle de l'innocence sachant la correspondance. Si le suspect a été trouvé parmi un million d'habitants, Bayes donne une probabilité de culpabilité d'environ neuf pour cent seulement.",
+      "ecran": "procureur",
+      "id": "p24",
+      "texte": "L'erreur du procureur : inverser les conditionnelles."
+    },
+    {
+      "dit": "Devant un énoncé, suivez une démarche en cinq temps. Nommez les événements et décrivez-les en français. Traduisez les données en distinguant soigneusement les probabilités simples des conditionnelles. Représentez le problème : arbre pour les expériences successives, tableau pour les données croisées, diagramme pour les intersections. Choisissez ensuite l'outil : totales pour décomposer, Bayes pour inverser, produit si les événements sont indépendants. Enfin, interprétez le nombre obtenu dans son contexte.",
+      "ecran": "methode",
+      "id": "p25",
+      "texte": "Cinq temps : nommer, traduire, représenter, calculer, interpréter."
+    },
+    {
+      "dit": "Récapitulons votre boîte à outils. La probabilité conditionnelle restreint l'univers à ce que l'on sait. L'indépendance dit quand une information ne change rien. La formule des probabilités totales décompose un événement selon toutes ses causes. Et le théorème de Bayes inverse le raisonnement, des effets vers les causes, en révisant nos croyances. Ensemble, ils forment une hygiène de raisonnement face à l'incertitude, bien au-delà des exercices.",
+      "ecran": "recap",
+      "id": "p26",
+      "texte": "Conditionner, décomposer, inverser : à retenir."
+    }
+  ],
+  "titre": "Probabilités conditionnelles, indépendance et théorème de Bayes"
+}

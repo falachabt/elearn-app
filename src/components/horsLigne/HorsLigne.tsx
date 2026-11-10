@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -7,6 +6,7 @@ import type { CleTexte } from '@/i18n';
 import { useTraduction } from '@/i18n/useTraduction';
 import {
   CATEGORIES_HORS_LIGNE,
+  ErreurEspaceInsuffisant,
   declinerModeHorsLigne,
   ecouterHorsLigne,
   estimerTelechargement,
@@ -68,6 +68,7 @@ export function HorsLigne() {
   const [selection, setSelection] = useState<Partial<Record<CategorieHorsLigne, boolean>>>({});
   const [chargement, setChargement] = useState(true);
   const [erreur, setErreur] = useState(false);
+  const [erreurEspace, setErreurEspace] = useState(false);
 
   useEffect(() => {
     let actif = true;
@@ -131,6 +132,7 @@ export function HorsLigne() {
   const commencer = async () => {
     if (!estimation) return;
     setErreur(false);
+    setErreurEspace(false);
     setPhase('progression');
     try {
       await lancerTelechargement(selectionnerCategories(
@@ -138,8 +140,10 @@ export function HorsLigne() {
         CATEGORIES_HORS_LIGNE.filter((categorie) => selection[categorie] !== false),
       ));
       setEtat(await lireEtatHorsLigne());
-    } catch {
-      setErreur(true);
+    } catch (e) {
+      // Le refus pour espace insuffisant a son message : l'élève doit savoir quoi faire (libérer ou décocher).
+      if (e instanceof ErreurEspaceInsuffisant) setErreurEspace(true);
+      else setErreur(true);
       setPhase('selection');
     }
   };
@@ -183,15 +187,18 @@ export function HorsLigne() {
       pied={pied}
     >
       <View style={styles.intro}>
-        <View style={[styles.icone, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>
-          <Ionicons name="cloud-download-outline" size={26} color={theme.marque.forte} />
-        </View>
         <Text style={[typo.texte, { color: theme.texte.secondaire }]}>
           {phase === 'selection' ? t('horsLigne.intro') : t('horsLigne.travail')}
         </Text>
       </View>
 
       {erreur ? <Banniere ton="erreur" titre={t('horsLigne.erreur')} /> : null}
+      {erreurEspace && estimationChoisie && estimation ? (
+        <Banniere
+          ton="erreur"
+          titre={t('horsLigne.espaceInsuffisant', { besoin: tailleLisible(estimationChoisie.estimationOctets), libre: tailleLisible(estimation.espaceDisponible) })}
+        />
+      ) : null}
 
       {phase === 'selection' ? (
         <View style={[styles.estimation, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
@@ -250,6 +257,7 @@ export function HorsLigne() {
               </View>
             );
           })}
+          {etat.erreurStockage && etat.statut === 'partiel' ? <Text style={[typo.texte, { color: theme.etat.erreurTexte }]}>{t('horsLigne.stockagePlein')}</Text> : null}
           {etat.statut === 'telechargement' ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('horsLigne.peutFermer')}</Text> : null}
           {etat.statut === 'termine' ? <Text style={[typo.texteFort, { color: theme.marque.forte }]}>{t('horsLigne.termineTexte')}</Text> : null}
           {etat.statut === 'termine' && etat.notification === 'refusee' ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('horsLigne.notificationRefusee')}</Text> : null}
@@ -263,7 +271,6 @@ export function HorsLigne() {
 const styles = StyleSheet.create({
   intro: { alignItems: 'flex-start', gap: espace[4] },
   titreEntete: { flex: 1 },
-  icone: { width: 56, height: 56, borderWidth: bord.normal, borderRadius: rayon.m, justifyContent: 'center', alignItems: 'center' },
   actions: { gap: espace[3] },
   estimation: { gap: espace[3], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   selectionCategorie: { paddingVertical: espace[2], borderBottomWidth: bord.fin },

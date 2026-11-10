@@ -1,0 +1,608 @@
+{
+ "cours": 6555,
+ "ecrans": {
+  "analyse_synthese": {
+   "kicker": "Analyse-synthèse à l'œuvre",
+   "tex": [
+    "f(x) \\, f(y) = f(x) + f(y)",
+    "f(a) = 0 \\Rightarrow f \\equiv 0",
+    "f(x) \\neq 0 \\Rightarrow f(x)^2 = 2 f(x) \\Rightarrow f \\equiv 2"
+   ],
+   "titre": "Une équation fonctionnelle, deux candidates",
+   "type": "etape"
+  },
+  "cantor": {
+   "kicker": "Le théorème de Cantor",
+   "tex": [
+    "f(n) = 0, a_{n1} a_{n2} a_{n3} \\ldots",
+    "b_n = 1 \\ \\text{si } a_{nn} \\neq 1, \\qquad b_n = 2 \\ \\text{si } a_{nn} = 1",
+    "x = 0, b_1 b_2 b_3 \\ldots, \\quad x \\neq f(n) \\ \\forall n"
+   ],
+   "titre": "L'argument diagonal : R n'est pas dénombrable",
+   "type": "etape",
+   "anim": {
+    "nom": "diagonale",
+    "hauteur": 150
+   }
+  },
+  "cantor_bernstein": {
+   "kicker": "Cantor-Bernstein et la hiérarchie des infinis",
+   "note": "Deux injections, une dans chaque sens, suffisent à conclure à l'équipotence · Cantor : pour tout ensemble E, le cardinal de P de E dépasse celui de E · Il existe une hiérarchie infinie d'infinis",
+   "tex": "A \\hookrightarrow B \\ \\text{et} \\ B \\hookrightarrow A \\ \\Rightarrow \\ A \\simeq B",
+   "type": "formule"
+  },
+  "composition": {
+   "kicker": "Composition",
+   "note": "Lire g rond f : appliquer f, puis g · Associative, l'identité est neutre · Si g rond f est injective, f est injective ; si g rond f est surjective, g est surjective",
+   "tex": "(g \\circ f)(x) = g(f(x))",
+   "type": "formule"
+  },
+  "connecteurs": {
+   "kicker": "Logique propositionnelle",
+   "tex": [
+    "\\neg P \\qquad P \\land Q \\qquad P \\lor Q",
+    "P \\Rightarrow Q \\qquad P \\Leftrightarrow Q"
+   ],
+   "titre": "Cinq connecteurs, définis par leurs tables de vérité",
+   "type": "etape",
+   "anim": {
+    "nom": "table_verite",
+    "hauteur": 220
+   }
+  },
+  "contraposee": {
+   "kicker": "Contraposée et réciproque",
+   "note": "Une implication et sa contraposée ont la même table de vérité · La réciproque, Q implique P, n'a aucune raison d'être vraie",
+   "tex": "(P \\Rightarrow Q) \\Leftrightarrow (\\neg Q \\Rightarrow \\neg P)",
+   "type": "formule"
+  },
+  "contraposee_ex": {
+   "kicker": "La contraposée à l'œuvre",
+   "note": "À prouver : si x au carré est irrationnel, alors x est irrationnel · La contraposée, si x est rationnel alors x au carré est rationnel, se démontre directement · Annoncer la méthode guide le correcteur",
+   "tex": "x = \\dfrac{p}{q} \\Rightarrow x^2 = \\dfrac{p^2}{q^2} \\in \\mathbb{Q}",
+   "type": "formule"
+  },
+  "de_morgan": {
+   "kicker": "Lois de De Morgan",
+   "note": "Et de même : le complémentaire d'une intersection est la réunion des complémentaires · Le complémentaire se définit toujours par rapport à un univers E",
+   "tex": "\\complement_E (A \\cup B) = \\complement_E A \\cap \\complement_E B",
+   "type": "formule",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 180
+   }
+  },
+  "denombrable": {
+   "kicker": "Ensembles dénombrables",
+   "note": "Dénombrable : en bijection avec N, ou fini · Toute partie d'un dénombrable est au plus dénombrable · Union dénombrable d'ensembles dénombrables : dénombrable · Même les nombres algébriques sont dénombrables",
+   "tex": "\\mathbb{N}, \\ \\mathbb{Z}, \\ \\mathbb{Q}, \\ \\mathbb{N}^2",
+   "type": "formule"
+  },
+  "double_inclusion": {
+   "etapes": [
+    "Première inclusion : montrer X inclus dans Y",
+    "Prendre x quelconque dans X, prouver x dans Y",
+    "Seconde inclusion : montrer Y inclus dans X",
+    "Même travail, élément quelconque, sens inverse",
+    "Alternative : transformer les appartenances en logique"
+   ],
+   "kicker": "Prouver une égalité d'ensembles",
+   "titre": "La double inclusion",
+   "type": "recap"
+  },
+  "equipotence": {
+   "kicker": "Cardinaux",
+   "note": "Deux ensembles ont même cardinal s'ils sont en bijection : la définition vaut pour le fini comme pour l'infini · Pour un ensemble fini, le cardinal est son nombre d'éléments",
+   "tex": "|A| = |B| \\Leftrightarrow \\exists \\ f : A \\to B \\ \\text{bijective}",
+   "type": "formule"
+  },
+  "equivalence": {
+   "kicker": "Relation d'équivalence",
+   "note": "Réflexive, symétrique, transitive : elle classe · Deux classes sont disjointes ou confondues · L'ensemble des classes est l'ensemble quotient, noté E sur R · Exemple fondateur : la congruence modulo n sur Z",
+   "tex": "[x] = \\{y \\in E \\mid x \\sim y\\}",
+   "type": "formule"
+  },
+  "finis": {
+   "kicker": "Compter les ensembles finis",
+   "tex": [
+    "|A \\cup B| = |A| + |B| - |A \\cap B|",
+    "|A \\times B| = |A| \\times |B|",
+    "|\\mathcal{P}(A)| = 2^n \\quad \\text{si } |A| = n"
+   ],
+   "titre": "Les formules de dénombrement",
+   "type": "etape"
+  },
+  "fonction": {
+   "kicker": "Fonctions",
+   "note": "Une fonction est un triplet : départ, arrivée, graphe · Définir une fonction, c'est préciser ces trois choses · L'erreur fréquente : oublier l'ensemble d'arrivée",
+   "tex": "f : E \\to F, \\quad \\forall x \\in E, \\ \\exists! \\ y \\in F, \\ (x, y) \\in G",
+   "type": "formule",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 240
+   }
+  },
+  "fonction_ex": {
+   "kicker": "Exemple type · une homographie",
+   "tex": [
+    "f(x) = \\frac{x - 3}{x + 1}",
+    "\\mathbb{R} \\setminus \\{-1\\} \\longrightarrow \\mathbb{R} \\setminus \\{1\\}",
+    "f(x) = y \\Leftrightarrow x (1 - y) = y + 3 \\qquad x = \\frac{y + 3}{1 - y}, \\quad y \\neq 1"
+   ],
+   "titre": "Résoudre f de x égale y fait tout le travail",
+   "type": "etape"
+  },
+  "fonction_ex_res": {
+   "kicker": "Exemple type · résultat",
+   "note": "La résolution donne la réciproque : vérifier les ensembles rend chaque division licite · Ne pas confondre la fonction réciproque, qui suppose la bijectivité, et l'image réciproque d'une partie",
+   "tex": "f^{-1}(x) = \\dfrac{x + 3}{1 - x}",
+   "type": "formule"
+  },
+  "images": {
+   "kicker": "Images et antécédents",
+   "tex": [
+    "f(A) = \\{f(x) \\mid x \\in A\\}",
+    "f^{-1}(B) = \\{x \\in E \\mid f(x) \\in B\\}",
+    "f\\left(\\bigcup\\nolimits_{i} A_i\\right) = \\bigcup\\nolimits_{i} f(A_i)",
+    "f\\left(\\bigcap\\nolimits_{i} A_i\\right) \\subset \\bigcap\\nolimits_{i} f(A_i)"
+   ],
+   "titre": "L'image directe ne commute qu'avec la réunion",
+   "type": "etape"
+  },
+  "images_recip": {
+   "kicker": "Le bon comportement de l'image réciproque",
+   "note": "L'image réciproque commute avec réunion, intersection et complémentaire : f moins un de F privé de B égale E privé de f moins un de B · La notation f moins un ne suppose pas f bijective",
+   "tex": "f^{-1}\\left(\\bigcap_{j} B_j\\right) = \\bigcap_{j} f^{-1}(B_j)",
+   "type": "formule"
+  },
+  "implication": {
+   "kicker": "Le connecteur piégeux",
+   "note": "Fausse dans un seul cas : P vrai et Q faux · Si P est faux, l'implication est vraie quelle que soit Q : du faux, on déduit n'importe quoi",
+   "tex": "P \\Rightarrow Q \\equiv \\neg P \\lor Q",
+   "type": "formule",
+   "anim": {
+    "nom": "table_verite",
+    "hauteur": 200
+   }
+  },
+  "inj_surj": {
+   "kicker": "Injectivité, surjectivité, bijectivité",
+   "tex": [
+    "f(x_1) = f(x_2) \\Rightarrow x_1 = x_2",
+    "\\forall y \\in F, \\quad \\exists x \\in E, \\quad f(x) = y",
+    "\\text{bijective} \\Leftrightarrow \\text{injective et surjective}"
+   ],
+   "titre": "Au plus un, au moins un, exactement un antécédent",
+   "type": "etape",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 220
+   }
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Tout le cours tient en un mot : la rigueur. La logique donne le langage, la théorie des ensembles les objets, et les fonctions le mouvement. Nous allons poser chaque définition précisément, puis l'éprouver sur les exemples types du concours : négations quantifiées, relations, bijections, cardinaux et problèmes de synthèse.",
+   "type": "phrase"
+  },
+  "negation_ex": {
+   "kicker": "Exemple type · nier une phrase",
+   "tex": [
+    "\\forall x \\in \\mathbb{R}, \\ \\exists y, \\ (x < y \\Rightarrow f(x) < f(y))",
+    "\\neg (A \\Rightarrow B) \\Leftrightarrow A \\land \\neg B",
+    "\\exists x \\in \\mathbb{R}, \\ \\forall y, \\ (x < y) \\land (f(x) \\geq f(y))"
+   ],
+   "titre": "La négation descend, les quantificateurs s'inversent",
+   "type": "etape"
+  },
+  "operations": {
+   "kicker": "Opérations sur les ensembles",
+   "tex": [
+    "A \\cup B = \\{x \\mid x \\in A \\text{ ou } x \\in B\\}",
+    "A \\cap B = \\{x \\mid x \\in A \\text{ et } x \\in B\\}",
+    "A \\setminus B = \\{x \\mid x \\in A \\text{ et } x \\notin B\\}"
+   ],
+   "titre": "Union, intersection, différence",
+   "type": "etape",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 200
+   }
+  },
+  "ordre": {
+   "kicker": "Relation d'ordre",
+   "note": "Réflexive, antisymétrique, transitive : elle hiérarchise · La divisibilité est un ordre partiel : deux entiers ne sont pas toujours comparables · Majorant, maximum et borne supérieure se définissent dans ce cadre",
+   "tex": "a \\mid b \\quad \\text{sur } \\mathbb{N}^{*}",
+   "type": "formule"
+  },
+  "partition": {
+   "kicker": "Partitions et classes",
+   "note": "a équivalent à b si cinq divise a moins b : cinq classes, une par reste de la division par cinq · Toute partition définit une équivalence, et les classes d'une équivalence forment une partition",
+   "tex": "[2] = \\{\\ldots, -3, \\ 2, \\ 7, \\ 12, \\ldots\\}",
+   "type": "formule"
+  },
+  "phi": {
+   "kicker": "Problème de synthèse · le complémentaire",
+   "tex": [
+    "\\Phi(A) = E \\setminus A, \\qquad \\Phi : \\mathcal{P}(E) \\to \\mathcal{P}(E)",
+    "\\Phi(\\Phi(A)) = A, \\qquad \\Phi \\circ \\Phi = \\mathrm{Id}_{\\mathcal{P}(E)}",
+    "c(\\Phi(A)) = n - c(A)"
+   ],
+   "titre": "Une involution sur l'ensemble des parties",
+   "type": "etape"
+  },
+  "phi_res": {
+   "kicker": "Problème de synthèse · résultat",
+   "note": "Si n est impair, le complémentaire apparie parties paires et impaires · Si n est pair, le binôme de Newton, avec un plus un et un moins un, donne le même partage · La moitié des parties a un cardinal pair",
+   "tex": "\\# \\{A \\subset E \\mid c(A) \\text{ pair}\\} = 2^{n-1}",
+   "type": "formule"
+  },
+  "preuves": {
+   "etapes": [
+    "Direct : partir de l'hypothèse, enchaîner vers la conclusion",
+    "Contraposée : prouver non Q implique non P",
+    "Absurde : supposer la négation, atteindre une contradiction",
+    "Analyse-synthèse : candidats nécessaires, puis vérification",
+    "Déterminer tous les objets : presque toujours analyse-synthèse"
+   ],
+   "kicker": "Choisir sa démonstration",
+   "titre": "Quatre raisonnements, quatre réflexes",
+   "type": "recap"
+  },
+  "produit": {
+   "kicker": "Produit cartésien",
+   "note": "Une paire ordonnée n'est pas une paire : l'ordre compte · En général, A fois B diffère de B fois A · R fois R, c'est le plan, base des graphes et des relations",
+   "tex": "A \\times B = \\{(a, b) \\mid a \\in A, \\ b \\in B\\}",
+   "type": "formule"
+  },
+  "quantificateurs": {
+   "kicker": "Quantificateurs",
+   "tex": [
+    "\\forall x \\in E, \\ P(x) \\qquad \\exists x \\in E, \\ P(x)",
+    "\\neg \\left( \\forall x, \\ P(x) \\right) \\Leftrightarrow \\exists x, \\ \\neg P(x)",
+    "\\neg \\left( \\exists x, \\ P(x) \\right) \\Leftrightarrow \\forall x, \\ \\neg P(x)"
+   ],
+   "titre": "Pour tout, il existe : l'ordre est crucial",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Logique : implication, contraposée, négations",
+    "Ensembles : De Morgan et double inclusion",
+    "Relations : une équivalence classe, un ordre hiérarchise",
+    "Fonctions : images, réciproques, et f de x égale y",
+    "Cardinaux : bijections, tiroirs, diagonale de Cantor"
+   ],
+   "kicker": "À retenir",
+   "titre": "Logique et théorie des ensembles : l'enchaînement complet",
+   "type": "recap"
+  },
+  "relation_ex": {
+   "kicker": "Exemple type · tester une relation",
+   "tex": [
+    "A \\ \\mathcal{R} \\ B \\Leftrightarrow A \\cap B = \\varnothing \\quad \\text{sur } \\mathcal{P}(E)",
+    "A = \\{1\\}, \\quad B = \\{2\\}, \\quad C = \\{1\\}",
+    "A \\cap B = \\varnothing, \\quad B \\cap C = \\varnothing, \\quad A \\cap C = \\{1\\}"
+   ],
+   "titre": "Disjoints deux à deux : symétrique, et c'est tout",
+   "type": "etape"
+  },
+  "relations": {
+   "kicker": "Relations sur un ensemble",
+   "tex": [
+    "\\forall x \\in E, \\quad x \\ \\mathcal{R} \\ x",
+    "x \\ \\mathcal{R} \\ y \\Rightarrow y \\ \\mathcal{R} \\ x",
+    "x \\ \\mathcal{R} \\ y \\ \\text{et} \\ y \\ \\mathcal{R} \\ x \\Rightarrow x = y",
+    "x \\ \\mathcal{R} \\ y \\ \\text{et} \\ y \\ \\mathcal{R} \\ z \\Rightarrow x \\ \\mathcal{R} \\ z"
+   ],
+   "titre": "Réflexivité, symétrie, antisymétrie, transitivité",
+   "type": "etape"
+  },
+  "somme_parties": {
+   "kicker": "Problème type · sommes de parties",
+   "tex": [
+    "f(A) = \\sum_{x \\in A} x, \\qquad A \\subset \\{1, \\ldots, n\\}",
+    "f(\\{1, 4\\}) = f(\\{2, 3\\}) = 5",
+    "2^4 = 16 > 11 = \\dfrac{4 \\times 5}{2} + 1"
+   ],
+   "titre": "Surjective par récurrence, non injective par les cardinaux",
+   "type": "etape"
+  },
+  "tiroirs": {
+   "kicker": "Le principe des tiroirs",
+   "texte": "Si l'on répartit n plus un objets dans n tiroirs, un tiroir contient au moins deux objets : une application d'un ensemble de cardinal n plus un vers un ensemble de cardinal n n'est jamais injective. Exemple : parmi treize personnes, deux partagent le même mois de naissance. La méthode : identifier les objets, créer les tiroirs, définir la fonction, comparer les cardinaux, conclure.",
+   "type": "phrase",
+   "anim": {
+    "nom": "tiroirs_fig",
+    "hauteur": 240
+   }
+  },
+  "titre": {
+   "kicker": "Concours Polytechnique L3",
+   "sous": "Connecteurs, ensembles, relations, fonctions et cardinaux : le langage du concours",
+   "titre": "Logique et théorie des ensembles",
+   "type": "titre",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 250
+   }
+  }
+ },
+ "matiere": "Concours Polytechnique L3",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Logique, ensembles et relations"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : les deux grandes familles de relations, les équivalences et les ordres, puis les fonctions, avec leurs images, leurs antécédents et leurs réciproques.",
+    "texte": "Partie 2 : équivalences, ordres et fonctions."
+   },
+   "sous_titre": "Équivalences, ordres et fonctions"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : les cardinaux, les méthodes de démonstration et les problèmes types du concours, où tous ces outils se combinent.",
+    "texte": "Partie 3 : cardinaux, preuves et problèmes types."
+   },
+   "sous_titre": "Cardinaux, démonstrations et problèmes types"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de préparation au concours Polytechnique, consacré à la logique et à la théorie des ensembles : le langage et les objets sur lesquels reposent toutes les mathématiques du programme.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Logique et théorie des ensembles : le langage du concours."
+  },
+  {
+   "dit": "L'objectif de ce cours est la rigueur. La logique fournit le langage des énoncés vrais ou faux, la théorie des ensembles fournit les objets, et les fonctions les relient. Chaque définition sera posée précisément, puis éprouvée sur les exemples types du concours.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "La rigueur d'abord : le langage, les objets, les liens."
+  },
+  {
+   "dit": "Un énoncé mathématique est une phrase déclarative, vraie ou fausse. La logique propositionnelle combine des énoncés simples à l'aide de cinq connecteurs : la négation ; la conjonction, le et ; la disjonction, le ou ; l'implication et l'équivalence. Chacun est défini, sans ambiguïté, par sa table de vérité.",
+   "ecran": "connecteurs",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Cinq connecteurs, définis par leurs tables de vérité."
+  },
+  {
+   "dit": "Parmi ces connecteurs, l'implication est le plus piégeux. Elle n'est fausse que dans un seul cas : lorsque l'hypothèse est vraie et la conclusion fausse. Si l'hypothèse est fausse, l'implication est vraie, quelle que soit la conclusion. Retenez aussi son écriture équivalente : P implique Q, c'est non P ou Q.",
+   "ecran": "implication",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "L'implication : fausse seulement si vrai implique faux."
+  },
+  {
+   "dit": "À toute implication sont associées deux autres phrases : sa réciproque, qui échange hypothèse et conclusion, et sa contraposée, qui les échange en les niant toutes les deux. Une implication et sa contraposée sont logiquement équivalentes : démontrer l'une, c'est démontrer l'autre. La réciproque, elle, n'a aucune raison d'être vraie.",
+   "ecran": "contraposee",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Contraposée : équivalente. Réciproque : pas de garantie."
+  },
+  {
+   "dit": "Pour parler de propriétés d'objets, on ajoute les quantificateurs : pour tout, et il existe. Leur négation obéit à une règle mécanique : la négation d'un pour tout est un il existe, celle d'un il existe est un pour tout, et le prédicat est nié. Attention à l'ordre : pour tout x, il existe y, ne dit pas la même chose que il existe y, pour tout x, car dans le premier cas, y peut dépendre de x.",
+   "ecran": "quantificateurs",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Nier un quantificateur : l'inverser et nier le prédicat."
+  },
+  {
+   "dit": "Exemple type du concours : nier la phrase, pour tout réel x, il existe un réel y tel que, si x est plus petit que y, alors f de x est plus petit que f de y. La négation descend à travers les quantificateurs en les inversant, et la négation d'une implication est une conjonction : on obtient, il existe un réel x tel que, pour tout y plus grand que x, f de x est supérieur ou égal à f de y.",
+   "ecran": "negation_ex",
+   "id": "p07",
+   "pause_apres": 0.7,
+   "texte": "Négation : il existe un mauvais x, témoin contre la phrase."
+  },
+  {
+   "dit": "Passons aux ensembles. Deux ensembles se combinent par l'union, les éléments qui sont dans l'un ou dans l'autre ; par l'intersection, les éléments communs aux deux ; et par la différence, les éléments du premier qui ne sont pas dans le second. Ces définitions, en termes d'appartenance, sont le point de départ de tous les calculs ensemblistes.",
+   "ecran": "operations",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Union, intersection, différence : par l'appartenance."
+  },
+  {
+   "dit": "Le complémentaire d'un ensemble se définit toujours par rapport à un univers. Les lois de De Morgan disent comment il traverse les opérations : le complémentaire d'une union est l'intersection des complémentaires, et le complémentaire d'une intersection est la réunion des complémentaires. C'est l'outil des raisonnements par contraposée sur les ensembles.",
+   "ecran": "de_morgan",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "De Morgan : le complémentaire échange union et intersection."
+  },
+  {
+   "dit": "Comment prouver que deux ensembles sont égaux ? Par double inclusion : on montre d'abord que tout élément du premier est dans le second, puis l'inverse. Chaque inclusion se rédige séparément, avec un élément quelconque. C'est la méthode la plus sûre du cours ; elle servira pour les lois de De Morgan comme pour les problèmes de synthèse.",
+   "ecran": "double_inclusion",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Égalité d'ensembles : deux inclusions, un élément quelconque."
+  },
+  {
+   "dit": "Dernière construction de base : le produit cartésien, l'ensemble des paires ordonnées. Une paire ordonnée n'est pas une paire ordinaire : l'ordre des composantes compte, et le produit de A par B diffère en général du produit de B par A. Le produit de R par R est le plan : c'est là que vivent les graphes de fonctions et les relations.",
+   "ecran": "produit",
+   "id": "p11",
+   "pause_apres": 0.7,
+   "texte": "Le produit cartésien : des paires où l'ordre compte."
+  },
+  {
+   "dit": "Une relation sur un ensemble est un lien entre ses éléments, formellement une partie du produit cartésien de l'ensemble par lui-même. Quatre propriétés la structurent : la réflexivité, chaque élément est en relation avec lui-même ; la symétrie, la relation se renverse ; l'antisymétrie, la relation dans les deux sens force l'égalité ; et la transitivité, la relation se propage le long des chaînes.",
+   "ecran": "relations",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Quatre propriétés pour structurer les relations."
+  },
+  {
+   "dit": "Exemple type : sur l'ensemble des parties d'un ensemble, déclarons que A est en relation avec B si leur intersection est vide. La relation est symétrique, car l'intersection est commutative. Mais elle n'est pas réflexive : une partie non vide se rencontre elle-même. Et elle n'est pas transitive : avec A égal singleton un, B égal singleton deux, C égal singleton un, A et B sont disjoints, B et C aussi, mais A et C se rencontrent.",
+   "ecran": "relation_ex",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Symétrique, ni réflexive, ni transitive : les contre-exemples d'abord."
+  },
+  {
+   "dit": "Une relation réflexive, symétrique et transitive est une relation d'équivalence : elle exprime une égalité à quelque chose près. Elle découpe l'ensemble en classes d'équivalence, les paquets d'éléments équivalents entre eux. Deux classes distinctes sont toujours disjointes, et l'ensemble de toutes les classes s'appelle l'ensemble quotient.",
+   "ecran": "equivalence",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Une équivalence classe : les classes forment une partition."
+  },
+  {
+   "dit": "Une relation réflexive, antisymétrique et transitive est une relation d'ordre : elle hiérarchise au lieu de classer. L'exemple fondamental est l'ordre usuel sur les réels ; un autre est la divisibilité sur les entiers non nuls, un ordre seulement partiel, car deux entiers ne se divisent pas toujours l'un l'autre. Dans un ensemble ordonné, on définit majorants, maximum et borne supérieure.",
+   "ecran": "ordre",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Un ordre hiérarchise : majorant, maximum, borne supérieure."
+  },
+  {
+   "dit": "Équivalences et partitions sont les deux faces d'une même construction. La congruence modulo cinq, où deux entiers sont équivalents si cinq divise leur différence, donne cinq classes : une pour chaque reste possible. Réciproquement, toute partition d'un ensemble définit une relation d'équivalence : être dans le même bloc. Les classes de la relation sont alors exactement les blocs de la partition.",
+   "ecran": "partition",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Partitions et équivalences : deux faces d'une même idée."
+  },
+  {
+   "dit": "Venons-en aux fonctions. Une fonction d'un ensemble E vers un ensemble F associe à tout élément de E un et un seul élément de F. Rigueur oblige : c'est un triplet formé de l'ensemble de départ, de l'ensemble d'arrivée et du graphe, la partie du produit qui liste les couples. Définir une fonction, c'est préciser ces trois données ; oublier l'ensemble d'arrivée est l'erreur classique.",
+   "ecran": "fonction",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Une fonction : départ, arrivée, graphe. Trois données."
+  },
+  {
+   "dit": "À une fonction sont attachées deux opérations sur les parties. L'image directe d'une partie de E rassemble les images de ses éléments ; l'image réciproque d'une partie de F rassemble tous les éléments dont l'image tombe dedans. L'image directe commute avec la réunion, mais seulement s'inclut dans l'intersection des images : l'inclusion peut être stricte.",
+   "ecran": "images",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Image directe : parfaite sur la réunion, prudente sur l'intersection."
+  },
+  {
+   "dit": "L'image réciproque, elle, se comporte parfaitement : elle commute avec la réunion, avec l'intersection, et même avec le complémentaire. C'est un réflexe de concours : dès qu'un raisonnement porte sur des parties de l'ensemble d'arrivée, passez par les images réciproques. Et attention : la notation f moins un, pour une partie, ne suppose aucunement que f soit bijective.",
+   "ecran": "images_recip",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "L'image réciproque commute avec tout : un réflexe de concours."
+  },
+  {
+   "dit": "Trois propriétés classent les fonctions selon leurs antécédents. Injective : tout élément de l'arrivée a au plus un antécédent, deux éléments d'images égales sont égaux. Surjective : tout élément de l'arrivée a au moins un antécédent. Bijective : les deux à la fois, chaque élément a exactement un antécédent, et l'on peut alors définir la fonction réciproque.",
+   "ecran": "inj_surj",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Au plus un, au moins un, exactement un antécédent."
+  },
+  {
+   "dit": "Exemple type du concours : la fonction qui à x associe x moins trois, sur x plus un, de R privé de moins un vers R privé de un. Pour l'injectivité, on part de deux éléments d'images égales et le produit en croix donne leur égalité. Pour la surjectivité, on fixe un y de l'arrivée et l'on résout l'équation f de x égale y : elle donne x comme une fraction en y, licite car y est différent de un.",
+   "ecran": "fonction_ex",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Un seul calcul : injectivité, surjectivité, réciproque."
+  },
+  {
+   "dit": "La fonction est donc bijective, et le calcul de surjectivité livre gratuitement sa réciproque : à x, elle associe x plus trois, sur un moins x. Le point de vigilance de tout l'exercice est la vérification des ensembles : c'est elle qui garantit que les dénominateurs ne s'annulent pas et que l'antécédent trouvé vit bien dans l'ensemble de départ.",
+   "ecran": "fonction_ex_res",
+   "id": "p22",
+   "pause_apres": 0.7,
+   "texte": "La réciproque : x plus trois sur un moins x."
+  },
+  {
+   "dit": "Dernière opération sur les fonctions : la composition. G rond f signifie appliquer f d'abord, puis g ; l'ordre de lecture est un piège permanent. La composition est associative et l'identité est son élément neutre. Deux implications à retenir : si la composée est injective, alors la première fonction appliquée est injective ; si la composée est surjective, alors la seconde est surjective.",
+   "ecran": "composition",
+   "id": "p23",
+   "pause_apres": 0.7,
+   "texte": "Composer : appliquer f, puis g. L'ordre compte."
+  },
+  {
+   "dit": "Comment comparer la taille de deux ensembles, surtout infinis ? Par les bijections. Deux ensembles sont dits équipotents, ou de même cardinal, s'il existe une bijection de l'un vers l'autre. Pour un ensemble fini, le cardinal est simplement son nombre d'éléments ; pour un ensemble infini, la bijection devient la seule mesure possible.",
+   "ecran": "equipotence",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Même cardinal : une bijection entre les deux ensembles."
+  },
+  {
+   "dit": "Pour les ensembles finis, le comptage suit quelques formules. Le cardinal d'une réunion additionne les cardinaux, moins celui de l'intersection, comptée deux fois. Le cardinal d'un produit est le produit des cardinaux. Et un ensemble de n éléments possède deux puissance n parties : chaque élément est, au choix, dedans ou dehors.",
+   "ecran": "finis",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Compter : réunion, produit, et deux puissance n parties."
+  },
+  {
+   "dit": "Le principe des tiroirs, ou principe de Dirichlet, est l'arme des problèmes d'existence. Si plus d'objets que de tiroirs sont rangés, deux objets partagent un tiroir : une application d'un ensemble plus grand vers un ensemble plus petit n'est jamais injective. Parmi treize personnes, deux sont donc nées le même mois. Toute la difficulté est dans le choix des tiroirs.",
+   "ecran": "tiroirs",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Plus d'objets que de tiroirs : deux objets se rencontrent."
+  },
+  {
+   "dit": "Premier échelon de l'infini : les ensembles dénombrables, en bijection avec l'ensemble des entiers naturels. Les entiers relatifs le sont, les rationnels aussi, et même les couples d'entiers naturels. Les propriétés de clôture aident à conclure vite : toute partie d'un dénombrable est au plus dénombrable, et une réunion dénombrable d'ensembles dénombrables reste dénombrable.",
+   "ecran": "denombrable",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Dénombrable : le premier échelon de l'infini."
+  },
+  {
+   "dit": "Mais tous les infinis ne se valent pas : Cantor a montré que l'ensemble des réels n'est pas dénombrable. Son argument diagonal est un modèle du genre. Si les réels entre zéro et un étaient listés, chacun avec son développement décimal, on construirait un réel dont la n-ième décimale diffère de celle du n-ième réel de la liste : ce réel échapperait à la liste, contradiction.",
+   "ecran": "cantor",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "La diagonale de Cantor : un réel échappe à toute liste."
+  },
+  {
+   "dit": "Deux outils pour manier ces infinis. Le théorème de Cantor-Bernstein : s'il existe une injection de A dans B et une injection de B dans A, alors A et B sont équipotents, sans devoir construire la bijection. Et le théorème de Cantor : l'ensemble des parties d'un ensemble a toujours un cardinal strictement plus grand, ce qui engendre une hiérarchie infinie d'infinis.",
+   "ecran": "cantor_bernstein",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "Deux injections suffisent ; les parties dépassent toujours."
+  },
+  {
+   "dit": "Savoir énoncer ne suffit pas : il faut démontrer. Quatre raisonnements couvrent presque toutes les situations. Le direct, qui enchaîne les conséquences de l'hypothèse. La contraposée, quand la négation de la conclusion est plus maniable. L'absurde, qui suppose la négation du but et chasse une contradiction. Et l'analyse-synthèse, pour déterminer tous les objets vérifiant une propriété.",
+   "ecran": "preuves",
+   "id": "p30",
+   "pause_apres": 0.6,
+   "texte": "Direct, contraposée, absurde, analyse-synthèse."
+  },
+  {
+   "dit": "La contraposée à l'œuvre : montrer que si le carré d'un réel est irrationnel, alors ce réel est irrationnel. Directement, l'hypothèse est inutilisable. La contraposée dit : si x est rationnel, alors son carré est rationnel. Elle se démontre en une ligne, en élevant la fraction au carré. Annoncez toujours la méthode : le correcteur suit un plan annoncé.",
+   "ecran": "contraposee_ex",
+   "id": "p31",
+   "pause_apres": 0.6,
+   "texte": "Contraposée : le rationnel a un carré rationnel."
+  },
+  {
+   "dit": "L'analyse-synthèse à l'œuvre, sur une équation fonctionnelle : trouver toutes les fonctions telles que, pour tous x et y, f de x fois f de y égale f de x plus f de y. En analyse, on suppose une solution : si elle s'annule quelque part, elle est identiquement nulle ; sinon, en prenant x égal y, on obtient qu'elle vaut constamment deux. En synthèse, on vérifie que ces deux candidates fonctionnent. Oublier la synthèse est l'erreur classique.",
+   "ecran": "analyse_synthese",
+   "id": "p32",
+   "pause_apres": 0.6,
+   "texte": "Analyse : deux candidates. Synthèse : les deux marchent."
+  },
+  {
+   "dit": "Problème type, qui combine fonctions et ensembles de parties. À chaque partie d'un ensemble de un à n, associons la somme de ses éléments. Cette application est surjective : tout entier entre zéro et la somme totale est atteint, ce qui se prouve par récurrence forte. Mais elle n'est pas injective : il y a plus de parties que de sommes possibles, et explicitement, la partie formée de un et quatre, et celle formée de deux et trois, donnent la même somme, cinq.",
+   "ecran": "somme_parties",
+   "id": "p33",
+   "pause_apres": 0.6,
+   "texte": "Surjective, oui. Injective, non : un, quatre et deux, trois."
+  },
+  {
+   "dit": "Le problème de synthèse du cours met tout en jeu. Sur l'ensemble des parties d'un ensemble, considérons l'application qui à chaque partie associe son complémentaire. Composée avec elle-même, elle redonne l'identité : prendre deux fois le complémentaire ramène à la partie de départ. Elle est donc bijective, et elle est sa propre réciproque : c'est une involution.",
+   "ecran": "phi",
+   "id": "p34",
+   "pause_apres": 0.6,
+   "texte": "Le complémentaire : une involution de l'ensemble des parties."
+  },
+  {
+   "dit": "Elle a très peu de points fixes : une partie égale à son complémentaire n'existe que si l'ensemble de départ est vide. Et elle sert à compter : si l'ensemble a n éléments, le complémentaire d'une partie de cardinal c est de cardinal n moins c. En appariant chaque partie à son complémentaire, on montre que la moitié exactement des parties, deux puissance n moins un, a un cardinal pair.",
+   "ecran": "phi_res",
+   "id": "p35",
+   "pause_apres": 0.7,
+   "texte": "La moitié des parties a un cardinal pair : deux puissance n moins un."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement complet : la logique donne le langage, avec implication, contraposée et négation des quantificateurs ; les ensembles donnent les opérations, De Morgan et la double inclusion ; les relations classent ou hiérarchisent ; les fonctions se lisent par leurs images et leurs antécédents ; et les cardinaux se comparent par bijections, tiroirs et diagonale. C'est cet arsenal, entraîné, qui fait la différence le jour du concours.",
+   "ecran": "recap",
+   "id": "p36",
+   "pause_apres": 0.5,
+   "texte": "Logique, ensembles, relations, fonctions, cardinaux : à retenir."
+  }
+ ],
+ "titre": "Logique et théorie des ensembles"
+}

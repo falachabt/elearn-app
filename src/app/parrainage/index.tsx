@@ -11,9 +11,11 @@ import { Ecran } from '@/components/Ecran';
 import { BoutonFermer } from '@/components/arrivee/MiniTest';
 import { Groupe, LigneGroupe, TitreSection } from '@/components/parametres/Groupe';
 import { useTraduction } from '@/i18n/useTraduction';
+import { suivre } from '@/services/analytics';
 import {
   chargerStatsParrainage,
   partagerLienWhatsApp,
+  suivreJalons,
   type StatsParrainage,
 } from '@/services/parrainage';
 import { getSupabase } from '@/services/supabase';
@@ -23,19 +25,29 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; stats: StatsParrainage };
 
+/**
+ * Nettoie tout suffixe de crédits redondant avec le badge (+50 crédits, (+150 credits), etc.).
+ * Le badge jaune affiche déjà la récompense en crédits.
+ */
+export function epurerLibelleMission(libelle: string): string {
+  return libelle.replace(/\s*\(\s*\+?\s*\d+\s*cr[ée]dits?\s*\)/gi, '').trim();
+}
+
 export default function EcranParrainage() {
-  const { t } = useTraduction();
+  const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const { session } = useSession();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [copie, setCopie] = useState(false);
 
   useEffect(() => {
+    suivre('referral_page_opened', {});
     let actif = true;
     void (async () => {
       try {
         const stats = await chargerStatsParrainage(getSupabase());
         if (actif) setEtat({ statut: 'pret', stats });
+        void suivreJalons(stats);
       } catch {
         if (actif) setEtat({ statut: 'erreur' });
       }
@@ -47,6 +59,7 @@ export default function EcranParrainage() {
 
   const copierCode = async (code: string) => {
     await Clipboard.setStringAsync(code);
+    suivre('referral_link_shared', { canal: 'copie' });
     setCopie(true);
     setTimeout(() => setCopie(false), 2500);
   };
@@ -87,6 +100,7 @@ export default function EcranParrainage() {
               <Appui
                 accessibilityRole="button"
                 accessibilityLabel={t('parrainage.copier')}
+                accessibilityHint={t('parrainage.hintCopier') || 'Copie votre code de parrainage dans le presse-papiers.'}
                 onPress={() => void copierCode(etat.stats.code)}
                 decalage={2}
                 rayon={rayon.m}
@@ -102,6 +116,7 @@ export default function EcranParrainage() {
 
             <Bouton
               libelle={t('parrainage.partagerWhatsApp')}
+              accessibilityHint={t('parrainage.hintPartagerWhatsApp') || 'Ouvre WhatsApp avec un message d’invitation pré-rempli.'}
               icone={<Share2 size={20} color={theme.texte.principal} />}
               variante="secondaire"
               onPress={() => void partagerLienWhatsApp(etat.stats.code, prenom)}
@@ -149,7 +164,7 @@ export default function EcranParrainage() {
                   <View style={styles.ligneEnteteMission}>
                     <View style={styles.colonneTitre}>
                       <Text style={[typo.h3, { color: theme.texte.principal }]}>
-                        {j.label_fr}
+                        {epurerLibelleMission((langue === 'en' ? j.label_en : j.label_fr) || j.label_fr || '')}
                       </Text>
                       <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
                         {t('parrainage.progression', {
@@ -202,6 +217,7 @@ export default function EcranParrainage() {
                         petit
                         variante="secondaire"
                         libelle={t('parrainage.inviterAmi')}
+                        accessibilityHint={t('parrainage.hintPartagerWhatsApp') || 'Ouvre WhatsApp avec un message d’invitation pré-rempli.'}
                         icone={<Share2 size={16} color={theme.texte.principal} />}
                         onPress={() => void partagerLienWhatsApp(etat.stats.code, prenom)}
                       />

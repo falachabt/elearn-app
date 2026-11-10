@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -8,7 +8,7 @@ import { chargerMission, terminerMission, type Mission as MissionDuJour } from '
 import { lireRythme } from '@/services/rythme';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { typo } from '@/theme/theme';
 
@@ -24,6 +24,9 @@ export function Mission() {
   const [mission, setMission] = useState<MissionDuJour | null>(null);
   const [niveau, setNiveau] = useState('3e');
   const pret = useSessionPrete();
+  const { session } = useSession();
+  const userId = session?.user?.id;
+  const termineRef = useRef(false);
 
   useEffect(() => {
     if (!pret || mission) return;
@@ -31,7 +34,14 @@ export function Mission() {
     void (async () => {
       const profil = await lireProfil();
       const n = profil?.niveau ?? '3e';
-      const m = await chargerMission(getSupabase(), { niveau: n, pays: profil?.pays ?? 'CM', vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') }, taille: (await lireRythme()) ?? undefined, concours: profil?.type === 'concours' ? profil.concours?.id : null });
+      const m = await chargerMission(getSupabase(), {
+        niveau: n,
+        pays: profil?.pays ?? 'CM',
+        vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') },
+        taille: (await lireRythme()) ?? undefined,
+        concours: profil?.type === 'concours' ? profil.concours?.id : null,
+        ...(profil?.type === 'eleve' && profil.serie?.id ? { serie: profil.serie.id } : {}),
+      });
       if (!actif) return;
       setNiveau(n);
       setMission(m);
@@ -61,7 +71,9 @@ export function Mission() {
       libelleFermer={t('mission.fermer')}
       onFermer={accueil}
       onTermine={async ({ questions, reponses, dureeS }) => {
-        await terminerMission(getSupabase(), { questions, reponses, niveau, dureeS, jour: mission.jour });
+        if (termineRef.current) return;
+        termineRef.current = true;
+        await terminerMission(getSupabase(), { questions, reponses, niveau, dureeS, jour: mission.jour, userId });
         router.replace('/mission/terminee');
       }}
     />

@@ -1,0 +1,491 @@
+{
+ "cours": 6151,
+ "ecrans": {
+  "addition": {
+   "kicker": "Addition et soustraction",
+   "tex": [
+    "A = \\begin{pmatrix} 1 & -3 & 0 \\\\ 4 & 2 & 7 \\end{pmatrix} \\qquad B = \\begin{pmatrix} 5 & 2 & -1 \\\\ 0 & 3 & 4 \\end{pmatrix}",
+    "A + B = \\begin{pmatrix} 6 & -1 & -1 \\\\ 4 & 5 & 11 \\end{pmatrix}"
+   ],
+   "titre": "Mêmes dimensions, coefficient par coefficient",
+   "type": "etape"
+  },
+  "aire": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "vecteurs"
+   },
+   "kicker": "L'aire du parallélogramme des colonnes",
+   "texte": "Le carré unité devient un parallélogramme porté par les colonnes : son aire vaut la valeur absolue du déterminant.",
+   "type": "phrase"
+  },
+  "applications": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Applications : graphes, données, mécanique",
+   "texte": "Infographie, PageRank, analyse en composantes principales, vibrations : les matrices calculent le monde.",
+   "type": "phrase"
+  },
+  "cofacteurs": {
+   "kicker": "Développer par les cofacteurs",
+   "tex": [
+    "C = (2, 0, -1 \\ ; \\ 3, 0, 2 \\ ; \\ 4, 5, 6) \\qquad \\text{colonne deux : deux zéros}",
+    "\\det M_{32} = 2 \\times 2 - (-1) \\times 3 = 7 \\qquad \\text{signe } (-1)^{3+2} = -1",
+    "\\det C = -5 \\times 7 = -35"
+   ],
+   "titre": "Choisir la ligne ou la colonne la plus riche en zéros",
+   "type": "etape"
+  },
+  "composition": {
+   "kicker": "Composer : rotation et réflexion",
+   "tex": [
+    "R = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} \\qquad M = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}",
+    "RM = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix} \\qquad MR = \\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}"
+   ],
+   "titre": "Réflexion puis rotation, ou l'inverse : pas le même résultat",
+   "type": "etape"
+  },
+  "couts": {
+   "kicker": "Application : des coûts de production",
+   "tex": [
+    "M : \\text{heures par atelier (lignes) et par produit (colonnes)}",
+    "M^{T} c, \\ c = (15,\\ 20) : \\quad P_1 = 90, \\quad P_2 = 55, \\quad P_3 = 80 \\ \\text{euros}"
+   ],
+   "titre": "La transposée rend le produit possible, les dimensions guident",
+   "type": "etape"
+  },
+  "cramer": {
+   "kicker": "Résoudre par Cramer",
+   "tex": [
+    "2x + y = 5, \\quad x - 3y = -1 \\qquad \\det A = -7",
+    "\\det A_1 = -14 \\ \\Rightarrow \\ x = 2 \\qquad \\det A_2 = -7 \\ \\Rightarrow \\ y = 1"
+   ],
+   "titre": "Chaque inconnue : un rapport de deux déterminants",
+   "type": "etape"
+  },
+  "definition": {
+   "kicker": "Qu'est-ce qu'une matrice ?",
+   "note": "Exemple : les notes de trois élèves en deux matières forment une matrice 3 × 2 ; n indice deux un vaut douze.",
+   "tex": "A = \\begin{pmatrix} a_{11} & a_{12} & \\cdots & a_{1n} \\\\ a_{21} & a_{22} & \\cdots & a_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ a_{m1} & a_{m2} & \\cdots & a_{mn} \\end{pmatrix}",
+   "type": "formule"
+  },
+  "det2": {
+   "kicker": "Le déterminant en taille deux",
+   "note": "Exemple : pour (1, 2 ; 3, 4), det = 1×4 − 2×3 = −2. C'est l'aire signée du parallélogramme des colonnes.",
+   "tex": "\\det \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = ad - bc",
+   "type": "formule"
+  },
+  "det_intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Le déterminant : la signature d'une transformation",
+   "texte": "Un seul nombre : de combien la transformation dilate-t-elle les aires, et retourne-t-elle l'espace ?",
+   "type": "phrase"
+  },
+  "det_proprietes": {
+   "kicker": "Les propriétés qui font gagner du temps",
+   "tex": [
+    "\\det(AB) = \\det A \\cdot \\det B \\qquad \\det(A^T) = \\det A",
+    "\\det(kA) = k^n \\det A \\qquad \\det(A^{-1}) = \\tfrac{1}{\\det A}",
+    "\\text{triangulaire : produit des termes diagonaux}",
+    "\\text{ligne nulle ou lignes proportionnelles : } \\det = 0"
+   ],
+   "titre": "Produit, transposée, scalaire et cas nuls",
+   "type": "etape"
+  },
+  "gauss_det": {
+   "kicker": "Calculer par le pivot de Gauss",
+   "tex": [
+    "E = (1, 3, 1 \\ ; \\ 2, 1, 2 \\ ; \\ 3, 2, 1) \\qquad L_2 - 2L_1, \\quad L_3 - 3L_1",
+    "\\text{un échange de lignes, puis diagonale } 1, -7, \\tfrac{10}{7}",
+    "\\det E = -\\left(1 \\times (-7) \\times \\tfrac{10}{7}\\right) = 10"
+   ],
+   "titre": "Triangulariser sans changer le déterminant, puis multiplier la diagonale",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Introduction",
+   "texte": "Un tableau de nombres qui agit : chaque matrice transforme des vecteurs, et son déterminant mesure cette action.",
+   "type": "phrase"
+  },
+  "inverse": {
+   "kicker": "L'inverse en taille deux",
+   "note": "Inversible si et seulement si le déterminant est différent de zéro : échanger a et d, changer le signe de b et c, diviser par det.",
+   "tex": "A^{-1} = \\frac{1}{ad - bc} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}",
+   "type": "formule"
+  },
+  "produit_def": {
+   "kicker": "Le produit matriciel",
+   "note": "Dimensions : (m × n) fois (n × p) donne (m × p). Les dimensions intérieures doivent coïncider.",
+   "tex": "c_{ij} = \\sum_{k=1}^{n} a_{ik} \\, b_{kj}",
+   "type": "formule"
+  },
+  "produit_ex": {
+   "kicker": "Exemple : le produit, dans les deux sens",
+   "tex": [
+    "A = \\begin{pmatrix} 1 & 2 \\\\ -1 & 3 \\end{pmatrix} \\qquad B = \\begin{pmatrix} 0 & 4 \\\\ 5 & -1 \\end{pmatrix}",
+    "AB = \\begin{pmatrix} 10 & 2 \\\\ 15 & -7 \\end{pmatrix} \\qquad BA = \\begin{pmatrix} -4 & 12 \\\\ 6 & 7 \\end{pmatrix}"
+   ],
+   "titre": "Ligne contre colonne, quatre produits scalaires",
+   "type": "etape"
+  },
+  "proprietes": {
+   "kicker": "Propriétés du produit",
+   "tex": [
+    "\\text{associativité : } (AB)C = A(BC)",
+    "\\text{distributivité : } A(B + C) = AB + AC",
+    "\\text{neutre : } AI = IA = A",
+    "\\text{transposée : } (AB)^T = B^T A^T"
+   ],
+   "titre": "Presque comme les nombres, sauf l'ordre",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Même taille : addition terme à terme",
+    "Scalaire : chaque coefficient multiplié",
+    "Produit : ligne contre colonne, AB ≠ BA",
+    "Dimensions intérieures égales, sinon rien"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "2×2 : ad − bc ; 3×3 : Sarrus ou cofacteurs",
+    "Gauss : triangulariser, produit diagonal",
+    "det(AB) = det A · det B ; det(kA) = kⁿ det A",
+    "det ≠ 0 ⟺ inversible ; Cramer pour les petits"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Matrice : un tableau, une transformation",
+    "|det| : facteur d'aire ou de volume",
+    "Signe de det : l'orientation conservée ou non",
+    "det = 0 : écrasement, pas d'inverse",
+    "Valeurs propres : det(A − λI) = 0"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "sarrus": {
+   "kicker": "Le déterminant en taille trois : Sarrus",
+   "tex": [
+    "B = (1, 2, 3 \\ ; \\ 0, 4, 5 \\ ; \\ 1, 0, 6) \\qquad \\text{recopier deux colonnes}",
+    "\\text{descendants : } 24 + 10 + 0 = 34 \\qquad \\text{montants : } 12 + 0 + 0 = 12",
+    "\\det B = 34 - 12 = 22"
+   ],
+   "titre": "Diagonales descendantes contre diagonales montantes",
+   "type": "etape",
+   "anim": {
+    "nom": "determinant_dev_fig",
+    "hauteur": 140
+   }
+  },
+  "scalaire": {
+   "kicker": "Multiplier par un scalaire",
+   "tex": [
+    "A = \\begin{pmatrix} 1 & 4 \\\\ -2 & 0 \\\\ 3 & 5 \\end{pmatrix} \\qquad 3A = \\begin{pmatrix} 3 & 12 \\\\ -6 & 0 \\\\ 9 & 15 \\end{pmatrix}",
+    "\\lambda(A + B) = \\lambda A + \\lambda B \\qquad (\\lambda \\mu) A = \\lambda (\\mu A)"
+   ],
+   "titre": "Chaque coefficient est multiplié par le même nombre",
+   "type": "etape"
+  },
+  "synthese_det": {
+   "kicker": "S'entraîner avec les propriétés",
+   "tex": [
+    "\\det A = 5 \\ (3 \\times 3) \\quad \\Rightarrow \\quad \\det(2A) = 2^3 \\times 5 = 40",
+    "\\det(A^2) = 25 \\qquad \\det(A^{-1}) = \\tfrac{1}{5}",
+    "\\det(A^T A) = 25 \\qquad \\text{une ligne} \\times 3 : \\det = 15"
+   ],
+   "titre": "Sans calculer A : seulement ses propriétés",
+   "type": "etape"
+  },
+  "systeme": {
+   "kicker": "Les systèmes deviennent A X égale B",
+   "note": "Le système deux x plus trois y égale sept, moins x plus quatre y égale deux, lu comme un produit matrice-vecteur.",
+   "tex": "\\begin{pmatrix} 2 & 3 \\\\ -1 & 4 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 7 \\\\ 2 \\end{pmatrix}",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "matrice_fig"
+   },
+   "kicker": "Mathématique · Matrices et déterminants",
+   "sous": "Addition, produit ligne contre colonne, déterminant par Sarrus, cofacteurs et pivot : puis la géométrie des transformations",
+   "titre": "Matrices et déterminants : le langage des transformations",
+   "type": "titre"
+  },
+  "transfo_exemples": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "rotation_homothetie_fig"
+   },
+   "kicker": "Quatre transformations, quatre déterminants",
+   "tex": [
+    "\\text{homothétie } k : \\det = k^2 \\qquad \\text{rotation : } \\det = 1",
+    "\\text{cisaillement : } \\det = 1 \\qquad \\text{projection : } \\det = 0",
+    "\\text{réflexion : } \\det = -1 \\quad \\text{(orientation inversée)}"
+   ],
+   "titre": "Dilater, tourner, glisser, écraser, retourner",
+   "type": "etape"
+  },
+  "transformation": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "La matrice d'une transformation linéaire",
+   "note": "Les colonnes sont les images des vecteurs de base : tout le reste suit par linéarité.",
+   "tex": "T(\\vec{v}) = A \\vec{v} \\qquad A = [\\, T(\\vec{e}_1) \\mid T(\\vec{e}_2) \\, ]",
+   "type": "formule"
+  },
+  "types_trace": {
+   "kicker": "Formes particulières et trace",
+   "tex": [
+    "A = \\begin{pmatrix} 1 & -2 \\\\ 3 & 4 \\end{pmatrix} \\qquad \\text{tr}(A) = 1 + 4 = 5",
+    "\\text{carrée, ligne, colonne, diagonale, triangulaire, identité, nulle}"
+   ],
+   "titre": "La diagonale principale, et sa somme : la trace",
+   "type": "etape"
+  },
+  "valeurs_propres": {
+   "kicker": "Valeurs propres : la porte d'entrée",
+   "note": "Applications : fréquences de vibration des structures, PageRank de Google, analyse en composantes principales.",
+   "tex": "\\det(A - \\lambda I) = 0 \\qquad \\det A = \\lambda_1 \\lambda_2 \\cdots \\lambda_n",
+   "type": "formule"
+  },
+  "volume": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "produit_vectoriel_fig"
+   },
+   "kicker": "Le volume d'un parallélépipède",
+   "tex": [
+    "\\vec{u} = (1, 0, 2), \\quad \\vec{v} = (2, 1, 0), \\quad \\vec{w} = (0, 3, 1)",
+    "V = |\\det(\\vec{u}, \\vec{v}, \\vec{w})| = |1 + 12 + 0|",
+    "V = 13"
+   ],
+   "titre": "Trois vecteurs, un déterminant, un volume",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Matrices : addition, scalaire, produit et systèmes"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : le déterminant. Après le calcul matriciel, voici le nombre qui résume une matrice carrée : on le calcule en croix en taille deux, par Sarrus ou par les cofacteurs en taille trois, et par le pivot de Gauss ensuite. Ses propriétés feront gagner un temps précieux, et il décidera de l'inversibilité.",
+    "texte": "Partie 2 : calculer le déterminant et utiliser ses propriétés."
+   },
+   "sous_titre": "Le déterminant : calculs et propriétés"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : la géométrie cachée dans les matrices. Une matrice est une transformation de l'espace, son déterminant est le facteur de dilatation des aires et des volumes, et son signe trahit l'orientation. Nous terminerons par les valeurs propres et les grandes applications, de l'infographie à l'analyse de données.",
+    "texte": "Partie 3 : transformations, aires, volumes et applications."
+   },
+   "sous_titre": "Transformations linéaires et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux matrices et aux déterminants. Un tableau de nombres, en apparence inerte, va se révéler être une machine à transformer l'espace : nous apprendrons son alphabet, ses trois opérations, puis ce nombre unique, le déterminant, qui mesure la dilatation des aires et décide si la transformation peut être défaite.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Matrices et déterminants : le langage des transformations."
+  },
+  {
+   "dit": "Les matrices sont partout où des données s'organisent en lignes et en colonnes : les notes d'une classe, les pixels d'une image, les coûts d'une usine, les transformations d'un jeu vidéo. Ce cours construit le langage complet : définir une matrice, la calculer, puis lire dans son déterminant le facteur d'aire, l'orientation et l'inversibilité de la transformation qu'elle encode.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Un tableau qui agit : transformer, mesurer, décider."
+  },
+  {
+   "dit": "Une matrice est un tableau rectangulaire de nombres, disposés en lignes et en colonnes. Le coefficient a, indice i j, se trouve à l'intersection de la ligne i et de la colonne j : la ligne d'abord, la colonne ensuite. Exemple vécu : les notes de trois élèves dans deux matières forment une matrice trois fois deux, et le coefficient d'indice deux, un vaut douze.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "a indice i j : ligne i, colonne j."
+  },
+  {
+   "dit": "Certaines formes reviennent sans cesse. Une matrice carrée a autant de lignes que de colonnes : c'est seulement pour elle que déterminant et inverse existeront. La diagonale principale rassemble les coefficients dont les deux indices sont égaux, et leur somme s'appelle la trace : pour notre exemple, un plus quatre, soit cinq. Deux matrices sont égales si elles ont même dimension et des coefficients tous égaux.",
+   "ecran": "types_trace",
+   "id": "p04",
+   "texte": "Trace : la somme de la diagonale, ici cinq."
+  },
+  {
+   "dit": "Première opération : l'addition. Elle exige la même dimension des deux côtés, et elle se fait coefficient par coefficient, chacun restant à sa place. Nos deux matrices deux fois trois s'additionnent donc place par place : un plus cinq font six, moins trois plus deux font moins un, et ainsi de suite. La soustraction suit exactement la même règle, et la matrice nulle, pleine de zéros, joue le rôle du zéro des nombres.",
+   "ecran": "addition",
+   "id": "p05",
+   "texte": "Addition : même taille, place par place."
+  },
+  {
+   "dit": "Multiplier une matrice par un nombre, appelé scalaire, c'est multiplier chacun de ses coefficients par ce nombre. Avec le scalaire trois, la matrice un, quatre, moins deux, zéro, trois, cinq devient trois, douze, moins six, zéro, neuf, quinze. Cette opération se distribue sur l'addition des matrices comme sur celle des scalaires, et elle prépare la notion d'espace vectoriel : combiner des additions et des multiples, c'est déjà faire de l'algèbre linéaire.",
+   "ecran": "scalaire",
+   "id": "p06",
+   "texte": "Scalaire trois : tous les coefficients triplés."
+  },
+  {
+   "dit": "Voici l'opération centrale, le produit matriciel. Il n'existe que si le nombre de colonnes de la première matrice égale le nombre de lignes de la seconde : les dimensions intérieures doivent coïncider, et le résultat prend les dimensions extérieures. Chaque coefficient du produit est un produit scalaire : la ligne i de la première matrice, multipliée terme à terme avec la colonne j de la seconde, puis additionnée. Ligne contre colonne : retenez ce geste, tout le reste suit.",
+   "ecran": "produit_def",
+   "id": "p07",
+   "texte": "Produit : ligne contre colonne, dimensions intérieures égales."
+  },
+  {
+   "dit": "Calculons entièrement un produit. Première ligne contre première colonne : un fois zéro, plus deux fois cinq, égale dix. Première ligne, deuxième colonne : un fois quatre, plus deux fois moins un, égale deux. Deuxième ligne : quinze, puis moins sept. Et maintenant, le choc : dans l'autre sens, le produit donne moins quatre, douze, six, sept. Le produit matriciel n'est pas commutatif : l'ordre compte, toujours.",
+   "ecran": "produit_ex",
+   "id": "p08",
+   "texte": "AB ≠ BA : (10, 2 ; 15, −7) contre (−4, 12 ; 6, 7)."
+  },
+  {
+   "dit": "Malgré cette non-commutativité, le produit garde de belles propriétés : il est associatif, il se distribue sur l'addition, et la matrice identité, des uns sur la diagonale et des zéros ailleurs, est son élément neutre, comme le un pour les nombres. La transposée échange lignes et colonnes, et celle d'un produit renverse l'ordre des facteurs. Ce sont ces règles, et elles seules, qui autorisent le calcul matriciel rapide et sûr.",
+   "ecran": "proprietes",
+   "id": "p09",
+   "texte": "Associatif, distributif, neutre I : mais pas commutatif."
+  },
+  {
+   "dit": "Premier fruit du produit : les systèmes d'équations deviennent une seule égalité matricielle. Le système deux ixe plus trois igrec égale sept, moins ixe plus quatre igrec égale deux, se lit comme le produit de la matrice des coefficients par le vecteur des inconnues, égal au vecteur des seconds membres : grand a, ixe, égale bé. Résoudre le système, c'est défaire ce produit : toute la fin du cours, déterminant et inverse, sert ce but.",
+   "ecran": "systeme",
+   "id": "p10",
+   "texte": "Le système devient A X = B."
+  },
+  {
+   "dit": "Un exemple économique montre pourquoi les dimensions sont une boussole. Une usine donne, pour deux ateliers et trois produits, les heures nécessaires à chaque produit. Les coûts horaires des deux ateliers forment un vecteur colonne. Le produit direct est impossible : les dimensions intérieures ne coïncident pas. En transposant la matrice des heures, le produit devient licite, et l'on obtient le coût de chaque produit : quatre-vingt-dix, cinquante-cinq et quatre-vingts euros. La rigueur des dimensions guide la modélisation.",
+   "ecran": "couts",
+   "id": "p11",
+   "texte": "Coûts par produit : 90, 55 et 80 euros."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Une matrice se lit par ses lignes et ses colonnes, et sa trace somme sa diagonale. L'addition se fait place par place entre matrices de même taille, le scalaire multiplie chaque coefficient, et le produit, ligne contre colonne, exige des dimensions compatibles et refuse la commutativité. Les systèmes d'équations s'écrivent alors en une ligne : grand a, ixe, égale bé.",
+   "ecran": "recap1",
+   "id": "p12",
+   "texte": "L'essentiel de la partie un."
+  },
+  {
+   "dit": "Un même nombre va maintenant tout résumer. Associé à une transformation du plan, le déterminant dit de combien les aires sont dilatées ou contractées, si l'orientation de l'espace est conservée ou retournée, et si la transformation écrase tout sur une droite, auquel cas il vaut zéro et rien ne peut être défait. C'est la signature géométrique de la matrice, et nous allons apprendre à la calculer de quatre manières.",
+   "ecran": "det_intro",
+   "id": "p13",
+   "texte": "Le déterminant : la signature de la transformation."
+  },
+  {
+   "dit": "En taille deux, le calcul tient en une croix : a fois dé, moins bé fois cé, le produit de la diagonale principale moins celui de l'autre diagonale. Pour la matrice un, deux, trois, quatre : un fois quatre moins deux fois trois, soit moins deux. Le signe négatif a déjà un sens : cette transformation retourne l'orientation du plan, comme un miroir, tout en doublant presque les aires, au facteur deux près en valeur absolue.",
+   "ecran": "det2",
+   "id": "p14",
+   "texte": "det 2×2 : ad − bc, ici −2."
+  },
+  {
+   "dit": "En taille trois, la règle de Sarrus organise le calcul : on recopie les deux premières colonnes à droite de la matrice, puis on suit les diagonales. Les trois produits descendants s'ajoutent : vingt-quatre, dix et zéro. Les trois produits montants se soustraient : douze, zéro et zéro. Le déterminant de notre exemple vaut donc trente-quatre moins douze, soit vingt-deux. Attention, cette règle mnémotechnique ne vaut que pour la taille trois, jamais au-delà.",
+   "ecran": "sarrus",
+   "id": "p15",
+   "texte": "Sarrus : 34 − 12 = 22."
+  },
+  {
+   "dit": "La méthode générale, valable en toute taille, est le développement par les cofacteurs : on choisit une ligne ou une colonne, et chaque coefficient multiplie le déterminant de la sous-matrice obtenue en rayant sa ligne et sa colonne, avec un signe en damier. L'astuce est de choisir la ligne ou la colonne la plus riche en zéros. Ici, la deuxième colonne contient deux zéros : un seul terme survit, cinq fois le mineur sept, avec un signe moins : le déterminant vaut moins trente-cinq.",
+   "ecran": "cofacteurs",
+   "id": "p16",
+   "texte": "Cofacteurs : choisir la colonne des zéros, det −35."
+  },
+  {
+   "dit": "Les propriétés du déterminant sont des raccourcis de calcul autant que des vérités géométriques. Celui d'un produit est le produit des déterminants : composer deux transformations multiplie leurs facteurs d'aire. Transposer ne change rien. Multiplier toute la matrice par un scalaire multiplie le déterminant par ce scalaire à la puissance la taille. Une matrice triangulaire livre son déterminant d'un coup : le produit de sa diagonale. Et une ligne nulle, ou deux lignes proportionnelles, l'annulent immédiatement.",
+   "ecran": "det_proprietes",
+   "id": "p17",
+   "texte": "det(AB) = det A · det B : les facteurs se multiplient."
+  },
+  {
+   "dit": "Pour les grandes matrices, la méthode la plus efficace est le pivot de Gauss : on triangularise la matrice par des combinaisons de lignes, qui ne changent pas le déterminant, en comptant les échanges, qui changent son signe. Sur notre exemple, deux éliminations, un échange et une dernière combinaison donnent une triangulaire de diagonale un, moins sept et dix septièmes. Avec le signe de l'échange, le déterminant vaut moins le produit, soit dix. Aucune formule exponentielle, que des opérations élémentaires.",
+   "ecran": "gauss_det",
+   "id": "p18",
+   "texte": "Pivot de Gauss : det = 10."
+  },
+  {
+   "dit": "Première application : la méthode de Cramer résout les petits systèmes par des rapports de déterminants. Pour deux ixe plus igrec égale cinq, et ixe moins trois igrec égale moins un, le déterminant du système vaut moins sept, différent de zéro : la solution est unique. On remplace tour à tour une colonne par les seconds membres : moins quatorze sur moins sept donne ixe égale deux, et moins sept sur moins sept donne igrec égale un. Élégant, mais réservé aux petits systèmes : Gauss gagne dès que la taille grandit.",
+   "ecran": "cramer",
+   "id": "p19",
+   "texte": "Cramer : x = 2, y = 1."
+  },
+  {
+   "dit": "Deuxième application : l'inverse. Une matrice carrée est inversible si et seulement si son déterminant est différent de zéro, et en taille deux, la formule tient en une phrase : on échange les deux coefficients diagonaux, on change le signe des deux autres, et l'on divise le tout par le déterminant. Le produit de la matrice par son inverse redonne alors l'identité : la transformation est défaite, exactement comme une division défait une multiplication.",
+   "ecran": "inverse",
+   "id": "p20",
+   "texte": "Inversible ⟺ det ≠ 0."
+  },
+  {
+   "dit": "Récapitulons cette deuxième partie. Le déterminant se calcule en croix en taille deux, par Sarrus ou par les cofacteurs en taille trois, et par le pivot de Gauss en toute taille. Ses propriétés transforment les calculs : produit, transposée, scalaire, forme triangulaire. Il décide de l'inversibilité, donne l'inverse en taille deux, et résout les petits systèmes par la méthode de Cramer.",
+   "ecran": "recap2",
+   "id": "p21",
+   "texte": "L'essentiel de la partie deux."
+  },
+  {
+   "dit": "Changeons de regard : une matrice carrée est une transformation linéaire de l'espace. Linéaire signifie qu'elle respecte les sommes et les multiples : l'image d'une combinaison est la combinaison des images. Conséquence magnifique : il suffit de connaître les images des vecteurs de la base. Ces images deviennent, côte à côte, les colonnes de la matrice. La rotation de trente degrés, par exemple, envoie le premier vecteur de base sur racine de trois sur deux, un demi : voilà sa première colonne, et de même pour la seconde.",
+   "ecran": "transformation",
+   "id": "p22",
+   "texte": "Les colonnes : les images des vecteurs de base."
+  },
+  {
+   "dit": "Que fait cette transformation aux figures ? Le carré unité, porté par les deux vecteurs de base, devient le parallélogramme porté par les deux colonnes de la matrice. Et l'aire de ce parallélogramme est exactement la valeur absolue du déterminant. Mieux : toute région du plan voit son aire multipliée par ce même facteur. Une matrice de déterminant six envoie donc chaque figure sur une figure six fois plus grande en aire, comme notre exemple de colonnes deux, zéro et un, trois.",
+   "ecran": "aire",
+   "id": "p23",
+   "texte": "Toute aire est multipliée par |det A|."
+  },
+  {
+   "dit": "Les transformations élémentaires se lisent alors d'un coup d'œil sur leur déterminant. Une homothétie de rapport ka multiplie les aires par ka au carré. Une rotation conserve tout : déterminant un. Un cisaillement déforme sans changer les aires : déterminant un aussi. Une projection écrase le plan sur une droite : déterminant zéro, et l'écrasement est irréversible. Une réflexion conserve les aires mais retourne l'orientation : déterminant moins un. Le signe est le test du miroir.",
+   "ecran": "transfo_exemples",
+   "id": "p24",
+   "texte": "Rotation 1, projection 0, réflexion −1."
+  },
+  {
+   "dit": "Composer des transformations, c'est multiplier leurs matrices, et là encore l'ordre compte. Réfléchir par rapport à l'axe des ixe puis tourner d'un quart de tour donne la matrice zéro, un, un, zéro. Tourner puis réfléchir donne zéro, moins un, moins un, zéro : un résultat différent, comme mettre sa veste avant son manteau ne donne pas le même geste que l'inverse. Leurs déterminants, eux, se multiplient calmement : le facteur d'aire total est le produit des facteurs.",
+   "ecran": "composition",
+   "id": "p25",
+   "texte": "Composer = multiplier, dans le bon ordre."
+  },
+  {
+   "dit": "Dernière porte ouverte par le déterminant : les valeurs propres. Ce sont les facteurs d'étirement des directions que la transformation ne tourne pas : le vecteur garde sa direction, il est seulement dilaté du facteur lambda. Pour les trouver, on exige que la matrice a moins lambda identité écrase un vecteur non nul : son déterminant doit donc être nul. Cette équation, le polynôme caractéristique, livre toutes les valeurs propres, et leur produit redonne le déterminant : chaque direction propre contribue son facteur à la dilatation totale.",
+   "ecran": "valeurs_propres",
+   "id": "p26",
+   "texte": "det(A − λI) = 0 : trouver les directions propres."
+  },
+  {
+   "dit": "En dimension trois, la même lecture donne les volumes. Trois vecteurs de l'espace engendrent un parallélépipède, un pavé penché, dont le volume est la valeur absolue du déterminant de la matrice des trois vecteurs. Pour nos trois vecteurs exemples, le calcul donne un plus douze, soit un volume de treize. Si les trois vecteurs étaient coplanaires, le pavé serait plat, le déterminant nul : le volume s'effondre exactement quand les vecteurs cessent d'être indépendants.",
+   "ecran": "volume",
+   "id": "p27",
+   "texte": "Volume du parallélépipède : 13."
+  },
+  {
+   "dit": "À quoi tout cela sert-il, concrètement ? En infographie, chaque image de jeu vidéo multiplie des millions de matrices pour placer, tourner et projeter les objets. Le classement des pages web par Google repose sur un vecteur propre d'une immense matrice de liens. L'analyse en composantes principales compresse les données le long des directions propres de leur covariance. Les ingénieurs lisent dans les valeurs propres les fréquences de vibration d'un pont ou d'un bâtiment : partout, les mêmes deux objets, matrice et déterminant.",
+   "ecran": "applications",
+   "id": "p28",
+   "texte": "Jeux vidéo, PageRank, vibrations : partout des matrices."
+  },
+  {
+   "dit": "Un dernier entraînement, sans connaître la matrice : on sait seulement qu'elle est de taille trois et que son déterminant vaut cinq. Alors le déterminant de deux fois la matrice vaut deux au cube fois cinq, quarante. Celui de son carré vaut vingt-cinq, celui de son inverse un cinquième, et celui du produit de sa transposée par elle-même, vingt-cinq. Multiplier une seule ligne par trois ne multiplie le déterminant que par trois : quinze. Tout tient dans les propriétés, aucun calcul de matrice n'a été nécessaire.",
+   "ecran": "synthese_det",
+   "id": "p29",
+   "texte": "det A = 5 : tout le reste suit par les propriétés."
+  },
+  {
+   "dit": "Pour conclure ce cours, retenez la double nature de nos objets. Une matrice est un tableau que l'on calcule : additions place par place, produits ligne contre colonne, systèmes en une égalité. Mais elle est aussi une transformation que l'on visualise : son déterminant en est la signature, facteur d'aire et de volume, témoin de l'orientation, juge de l'inversibilité, et porte d'entrée vers les valeurs propres. Calculer et voir : c'est ce double regard qui fait la puissance de l'algèbre linéaire.",
+   "ecran": "recap_final",
+   "id": "p30",
+   "texte": "Matrices et déterminants : l'essentiel à retenir."
+  }
+ ],
+ "titre": "Matrices et déterminants : le langage des transformations"
+}

@@ -1,0 +1,370 @@
+{
+ "cours": 7335,
+ "ecrans": {
+  "composee": {
+   "kicker": "Dérivée du logarithme composé",
+   "note": "Pour u dérivable et strictement positive sur l'intervalle",
+   "tex": "(\\ln u)' = \\frac{u'}{u}",
+   "type": "formule"
+  },
+  "conditions": {
+   "kicker": "Équations · la règle préalable",
+   "texte": "Conditions d'existence : chaque argument d'un logarithme doit être strictement positif.",
+   "type": "phrase"
+  },
+  "croissances": {
+   "kicker": "Croissances comparées",
+   "tex": [
+    "\\lim_{x \\to +\\infty} \\frac{\\ln x}{x} = 0",
+    "\\lim_{x \\to 0^+} x \\ln x = 0"
+   ],
+   "titre": "Le logarithme est négligeable devant x",
+   "type": "etape"
+  },
+  "decimal": {
+   "kicker": "Le logarithme décimal",
+   "note": "Mêmes propriétés que ln · log 1 = 0 et log 10 = 1",
+   "tex": "\\log x = \\frac{\\ln x}{\\ln 10}",
+   "type": "formule"
+  },
+  "decimal_valeurs": {
+   "kicker": "Le logarithme décimal en pratique",
+   "tex": [
+    "\\log 10 = 1 \\qquad \\log 100 = 2",
+    "\\log 1000 = 3",
+    "\\log x = 2 \\iff x = 10^2 = 100"
+   ],
+   "titre": "Compter les puissances de dix",
+   "type": "etape"
+  },
+  "definition": {
+   "kicker": "Définition du logarithme népérien",
+   "note": "La primitive de x ↦ 1/x sur ]0 ; +∞[ qui s'annule en 1",
+   "tex": "(\\ln x)' = \\frac{1}{x} \\qquad \\ln 1 = 0",
+   "type": "formule"
+  },
+  "derivee": {
+   "kicker": "La dérivée de ln",
+   "note": "Dérivée strictement positive : ln est strictement croissante",
+   "tex": "(\\ln x)' = \\frac{1}{x} > 0",
+   "type": "formule"
+  },
+  "eq_exp": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "exp_ln_fig"
+   },
+   "kicker": "Équation avec exponentielle",
+   "note": "ln et exponentielle sont réciproques : elles se neutralisent",
+   "tex": "\\ln x = 2 \\iff x = e^2",
+   "type": "formule"
+  },
+  "eq_methode": {
+   "kicker": "Comparer deux logarithmes",
+   "tex": [
+    "\\ln A = \\ln B \\iff A = B",
+    "\\ln A \\le \\ln B \\iff A \\le B"
+   ],
+   "titre": "Le logarithme disparaît, les arguments restent",
+   "type": "etape"
+  },
+  "ex_derivee": {
+   "kicker": "Exemple · dériver une composée",
+   "tex": [
+    "f(x) = \\ln(3x^2 + 1) \\qquad u(x) = 3x^2 + 1",
+    "u'(x) = 6x \\qquad f'(x) = \\frac{6x}{3x^2 + 1}"
+   ],
+   "titre": "Repérer la fonction intérieure u",
+   "type": "etape"
+  },
+  "ex_equation": {
+   "kicker": "Exemple · une équation",
+   "tex": [
+    "\\ln(2x - 1) = \\ln(x + 3) \\qquad x > \\tfrac{1}{2}",
+    "2x - 1 = x + 3 \\iff x = 4",
+    "4 > \\tfrac{1}{2} \\quad \\text{donc} \\quad S = \\{4\\}"
+   ],
+   "titre": "Égaler les arguments, puis vérifier",
+   "type": "etape"
+  },
+  "ex_inequation": {
+   "kicker": "Exemple · une inéquation",
+   "tex": [
+    "\\ln(x + 2) \\le \\ln(3x - 4) \\qquad x > \\tfrac{4}{3}",
+    "x + 2 \\le 3x - 4 \\iff x \\ge 3",
+    "S = [3\\,; +\\infty["
+   ],
+   "titre": "L'ordre se conserve : ln est croissante",
+   "type": "etape"
+  },
+  "ex_limite": {
+   "kicker": "Exemple · une limite en plus l'infini",
+   "tex": [
+    "\\frac{\\ln x + 3}{x} = \\frac{\\ln x}{x} + \\frac{3}{x}",
+    "\\lim_{x \\to +\\infty} \\frac{\\ln x + 3}{x} = 0 + 0 = 0"
+   ],
+   "titre": "Séparer la fraction en deux termes",
+   "type": "etape"
+  },
+  "ex_simplifier": {
+   "kicker": "Exemple · simplifier une expression",
+   "tex": [
+    "A = \\ln 8 - \\ln 2 + \\ln\\tfrac{1}{4}",
+    "A = \\ln\\tfrac{8}{2} + \\ln\\tfrac{1}{4} = \\ln 4 - \\ln 4",
+    "A = 0"
+   ],
+   "titre": "Trois termes qui s'annulent",
+   "type": "etape"
+  },
+  "fond": {
+   "kicker": "La propriété fondamentale",
+   "note": "Pour tous a, b strictement positifs : le produit devient une somme",
+   "tex": "\\ln(ab) = \\ln a + \\ln b",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Introduction",
+   "texte": "Transformer les produits en sommes : la raison d'être des logarithmes.",
+   "type": "phrase"
+  },
+  "limites": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "log_courbes_fig"
+   },
+   "kicker": "Limites aux bornes du domaine",
+   "note": "L'axe des ordonnées est asymptote verticale à la courbe",
+   "tex": "\\lim_{x \\to 0^+} \\ln x = -\\infty \\qquad \\lim_{x \\to +\\infty} \\ln x = +\\infty",
+   "type": "formule"
+  },
+  "methode_eq": {
+   "etapes": [
+    "Conditions : arguments strictement positifs",
+    "Transformer avec les propriétés de ln",
+    "Comparer les arguments : ln est croissante",
+    "Vérifier chaque solution obtenue"
+   ],
+   "kicker": "La méthode de résolution",
+   "type": "recap"
+  },
+  "proprietes": {
+   "kicker": "Propriétés algébriques",
+   "tex": [
+    "\\ln(ab) = \\ln a + \\ln b",
+    "\\ln\\left(\\tfrac{a}{b}\\right) = \\ln a - \\ln b",
+    "\\ln(a^n) = n \\ln a \\qquad n \\in \\mathbb{Z}",
+    "\\ln\\sqrt{a} = \\tfrac{1}{2} \\ln a"
+   ],
+   "titre": "Quotient, puissance, racine carrée",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "ln : définie sur ]0 ; +∞[, ln 1 = 0, ln e = 1",
+    "Produit → somme, quotient → différence",
+    "Puissance → coefficient : ln(aⁿ) = n ln a",
+    "Croissances comparées : ln x / x → 0",
+    "Équations : conditions d'existence d'abord"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "signe": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "log_courbes_fig"
+   },
+   "kicker": "Le signe du logarithme",
+   "tex": [
+    "\\ln x < 0 \\quad \\text{sur } ]0\\,; 1[",
+    "\\ln x > 0 \\quad \\text{sur } ]1\\,; +\\infty["
+   ],
+   "titre": "Négatif avant un, positif après un",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "log_courbes_fig"
+   },
+   "kicker": "Mathématique · Fonctions logarithmes",
+   "sous": "Propriétés algébriques, limites, dérivée, logarithme décimal et équations",
+   "titre": "Fonctions logarithmes : propriétés, limites et équations",
+   "type": "titre"
+  },
+  "variations": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "log_courbes_fig"
+   },
+   "kicker": "Variations et courbe",
+   "tex": [
+    "(\\ln x)' = \\tfrac{1}{x} > 0 \\quad \\text{sur } ]0\\,; +\\infty[",
+    "\\ln 1 = 0 \\qquad \\ln e = 1 \\qquad e \\approx 2{,}718",
+    "x = 0 : \\text{asymptote verticale}"
+   ],
+   "titre": "Strictement croissante, de moins l'infini à plus l'infini",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Propriétés, limites et dérivée du logarithme népérien"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : la courbe, le logarithme décimal et les équations. Nous lirons les variations et le signe du logarithme, puis le logarithme décimal, avant de résoudre équations et inéquations.",
+    "texte": "Partie 2 : courbe, logarithme décimal et équations."
+   },
+   "sous_titre": "Courbe, logarithme décimal et équations"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux fonctions logarithmes. Nous partirons du logarithme népérien, la primitive de la fonction inverse qui s'annule en un, puis nous établirons ses propriétés, ses limites et sa dérivée. Nous finirons par le logarithme décimal et par les équations et inéquations logarithmiques.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Fonctions logarithmes : propriétés, limites et équations."
+  },
+  {
+   "dit": "Une fonction logarithme répond à un besoin simple : transformer les multiplications en additions. Là où les puissances accumulent les produits, le logarithme les déplie en sommes, ce qui rend calculs et comparaisons bien plus lisibles.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Transformer les produits en sommes."
+  },
+  {
+   "dit": "Le logarithme népérien, noté ln, n'est défini que pour les réels strictement positifs, sur l'intervalle ouvert de zéro à plus l'infini. C'est la primitive de la fonction qui à ixe associe un sur ixe, choisie pour s'annuler en un. Deux faits sont donc immédiats : le logarithme de un vaut zéro, et la dérivée du logarithme est la fonction inverse.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "ln : la primitive de 1/x qui s'annule en 1."
+  },
+  {
+   "dit": "La propriété fondamentale tient en une ligne : le logarithme d'un produit est la somme des logarithmes. Pour tous réels a et b strictement positifs, ln de a fois b égale ln de a plus ln de b. Un produit, difficile à comparer, devient une somme, facile à manipuler : c'est tout l'intérêt de la fonction.",
+   "ecran": "fond",
+   "id": "p04",
+   "texte": "ln(ab) = ln a + ln b : la propriété fondamentale."
+  },
+  {
+   "dit": "Les autres propriétés découlent de la première. Le logarithme d'un quotient est la différence des logarithmes. Celui d'une puissance fait descendre l'exposant en coefficient : ln de a puissance n égale n fois ln de a, pour n entier relatif. Et le logarithme d'une racine carrée vaut la moitié du logarithme, car la racine est une puissance un demi.",
+   "ecran": "proprietes",
+   "id": "p05",
+   "texte": "Quotient, puissance, racine : les propriétés."
+  },
+  {
+   "dit": "Premier calcul : simplifier grand A, égal à ln de huit, moins ln de deux, plus ln de un quart. Les deux premiers termes forment le logarithme d'un quotient : ln de huit sur deux, c'est-à-dire ln de quatre. Et ln de un quart vaut moins ln de quatre. Les deux termes s'annulent : grand A vaut zéro.",
+   "ecran": "ex_simplifier",
+   "id": "p06",
+   "texte": "Simplifier : ln 8 − ln 2 + ln(1/4) = 0."
+  },
+  {
+   "dit": "La dérivée du logarithme est d'une simplicité remarquable : en tout point, elle vaut un sur ixe. Comme ixe est strictement positif, cette dérivée est strictement positive : le logarithme est donc strictement croissant. Conséquence directe pour la suite : comparer deux logarithmes reviendra à comparer leurs arguments.",
+   "ecran": "derivee",
+   "id": "p07",
+   "texte": "(ln x)′ = 1/x, strictement positive."
+  },
+  {
+   "dit": "Quand le logarithme porte sur une fonction composée, la règle est la suivante : la dérivée de ln de u est u prime sur u, dès que u est dérivable et strictement positive. Le numérateur est la dérivée de la fonction intérieure, le dénominateur est cette fonction elle-même.",
+   "ecran": "composee",
+   "id": "p08",
+   "texte": "(ln u)′ = u′/u : la dérivée composée."
+  },
+  {
+   "dit": "Application : dériver f, définie par f de ixe égale ln de trois ixe carré plus un. On pose u de ixe égale trois ixe carré plus un, toujours strictement positif ; sa dérivée vaut six ixe. La règle donne aussitôt f prime de ixe égale six ixe, divisé par trois ixe carré plus un.",
+   "ecran": "ex_derivee",
+   "id": "p09",
+   "texte": "Dériver ln(3x² + 1) : 6x/(3x² + 1)."
+  },
+  {
+   "dit": "Aux bornes du domaine, le comportement est tranché. Quand ixe tend vers zéro par valeurs supérieures, ln de ixe tend vers moins l'infini : la courbe plonge le long de l'axe des ordonnées, son asymptote verticale. Quand ixe tend vers plus l'infini, ln de ixe tend vers plus l'infini, mais avec une croissance très lente.",
+   "ecran": "limites",
+   "id": "p10",
+   "texte": "En 0⁺ : −∞ ; en +∞ : +∞, très lentement."
+  },
+  {
+   "dit": "Deux limites de croissances comparées sont à connaître par cœur. En plus l'infini, le rapport de ln de ixe sur ixe tend vers zéro : le logarithme est négligeable devant ixe. En zéro, le produit de ixe par ln de ixe tend aussi vers zéro. Ces résultats lèvent la plupart des formes indéterminées.",
+   "ecran": "croissances",
+   "id": "p11",
+   "texte": "Croissances comparées : ln x / x → 0."
+  },
+  {
+   "dit": "Exemple : la limite en plus l'infini de ln de ixe plus trois, divisé par ixe. On sépare la fraction en deux termes : ln de ixe sur ixe, qui tend vers zéro par croissance comparée, et trois sur ixe, qui tend vers zéro. Par somme, la limite cherchée vaut zéro.",
+   "ecran": "ex_limite",
+   "id": "p12",
+   "texte": "Limite de (ln x + 3)/x : zéro."
+  },
+  {
+   "dit": "Le tableau de variations se lit d'un coup d'œil : la fonction part de moins l'infini en zéro et croît strictement jusqu'à plus l'infini. Sa courbe passe par deux points à connaître : celui d'abscisse un et d'ordonnée zéro, et celui d'abscisse e et d'ordonnée un, où e vaut environ deux virgule sept cent dix-huit.",
+   "ecran": "variations",
+   "id": "p13",
+   "texte": "La courbe passe par (1 ; 0) et (e ; 1)."
+  },
+  {
+   "dit": "De la croissance et du passage par le point d'abscisse un, on déduit le signe du logarithme : strictement négatif entre zéro et un, strictement positif au-delà de un. C'est un réflexe d'examen, utile chaque fois qu'un produit ou un quotient contient un logarithme dont il faut déterminer le signe.",
+   "ecran": "signe",
+   "id": "p14",
+   "texte": "Signe de ln : négatif avant 1, positif après."
+  },
+  {
+   "dit": "Le logarithme décimal, noté log, est le cousin du logarithme népérien adapté aux puissances de dix : log de ixe égale ln de ixe, divisé par ln de dix. Il vérifie exactement les mêmes propriétés algébriques, avec deux valeurs repères : log de un vaut zéro, et log de dix vaut un.",
+   "ecran": "decimal",
+   "id": "p15",
+   "texte": "log x = ln x / ln 10."
+  },
+  {
+   "dit": "Sur les puissances de dix, le logarithme décimal compte simplement les zéros : log de dix vaut un, log de cent vaut deux, log de mille vaut trois. Résoudre log de ixe égale deux revient donc à remonter à la puissance de dix correspondante : ixe vaut dix puissance deux, c'est-à-dire cent, avec la condition ixe strictement positif.",
+   "ecran": "decimal_valeurs",
+   "id": "p16",
+   "texte": "log x = 2 donne x = 100."
+  },
+  {
+   "dit": "Passons aux équations, avec une règle qui précède tous les calculs : un logarithme n'existe que si son argument est strictement positif. On écrit donc d'abord les conditions d'existence, qui délimitent les valeurs permises. Toute solution obtenue ensuite devra leur être confrontée, et rejetée si elle les viole.",
+   "ecran": "conditions",
+   "id": "p17",
+   "texte": "D'abord, les conditions d'existence."
+  },
+  {
+   "dit": "La méthode tient en trois temps. D'abord, poser les conditions d'existence. Ensuite, transformer l'équation avec les propriétés algébriques, pour n'avoir qu'un logarithme de chaque côté, ou un logarithme égal à une constante. Enfin, conclure avec la stricte croissance, puis vérifier chaque solution.",
+   "ecran": "methode_eq",
+   "id": "p18",
+   "texte": "La méthode en trois temps."
+  },
+  {
+   "dit": "Concrètement, l'égalité de deux logarithmes équivaut à l'égalité de leurs arguments, et une inégalité entre deux logarithmes équivaut à la même inégalité entre leurs arguments, toujours sous les conditions d'existence. Le logarithme disparaît : il ne reste qu'un calcul ordinaire sur les arguments.",
+   "ecran": "eq_methode",
+   "id": "p19",
+   "texte": "ln A = ln B équivaut à A = B."
+  },
+  {
+   "dit": "Premier exemple : résoudre ln de deux ixe moins un, égal à ln de ixe plus trois. Les conditions se résument à ixe supérieur à un demi. L'égalité des logarithmes donne celle des arguments : deux ixe moins un égale ixe plus trois, d'où ixe égale quatre. Quatre est supérieur à un demi : l'ensemble des solutions est le singleton quatre.",
+   "ecran": "ex_equation",
+   "id": "p20",
+   "texte": "ln(2x − 1) = ln(x + 3) : S = {4}."
+  },
+  {
+   "dit": "Deuxième exemple, une inéquation : ln de ixe plus deux, inférieur ou égal à ln de trois ixe moins quatre. Les conditions donnent ixe supérieur à quatre tiers. La fonction étant croissante, l'inégalité passe aux arguments : ixe plus deux inférieur ou égal à trois ixe moins quatre, d'où ixe supérieur ou égal à trois. Les solutions forment l'intervalle de trois à plus l'infini.",
+   "ecran": "ex_inequation",
+   "id": "p21",
+   "texte": "Inéquation : S = [3 ; +∞[."
+  },
+  {
+   "dit": "Dernier type d'équation : ln de ixe égale deux. Ici, pas de second logarithme : on passe à l'exponentielle des deux côtés, car l'exponentielle est la réciproque du logarithme. Il vient ixe égale e puissance deux. Plus généralement, ln de ixe égale a équivaut à ixe égale e puissance a, pour tout réel a.",
+   "ecran": "eq_exp",
+   "id": "p22",
+   "texte": "ln x = 2 équivaut à x = e²."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement du cours. Le logarithme népérien est la primitive de la fonction inverse qui s'annule en un ; ses propriétés transforment produits en sommes, quotients en différences et puissances en coefficients. Les croissances comparées règlent les indéterminations, la dérivée composée vaut u prime sur u, et toute équation commence par ses conditions d'existence.",
+   "ecran": "recap",
+   "id": "p23",
+   "texte": "Fonctions logarithmes : l'essentiel à retenir."
+  }
+ ],
+ "titre": "Fonctions logarithmes : propriétés, limites et équations"
+}

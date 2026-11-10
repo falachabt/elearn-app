@@ -1,0 +1,514 @@
+{
+ "cours": 6554,
+ "ecrans": {
+  "amorti_eq": {
+   "kicker": "Oscillateur amorti",
+   "note": "λ : coefficient de frottement fluide (λ > 0) · la force de frottement vaut −λ fois la vitesse",
+   "tex": "m\\,\\ddot{x} + \\lambda\\,\\dot{x} + k\\,x = 0",
+   "titre": "Le frottement entre en jeu",
+   "type": "formule"
+  },
+  "canonique": {
+   "kicker": "Forme canonique",
+   "tex": [
+    "\\ddot{x} + \\dfrac{k}{m}\\,x = 0",
+    "\\omega_0^2 = \\dfrac{k}{m}",
+    "\\ddot{x} + \\omega_0^2\\,x = 0"
+   ],
+   "titre": "Le réflexe numéro un",
+   "type": "etape"
+  },
+  "canonique_amorti": {
+   "kicker": "Forme canonique amortie",
+   "tex": [
+    "\\ddot{x} + 2\\alpha\\,\\dot{x} + \\omega_0^2\\,x = 0",
+    "\\alpha = \\dfrac{\\lambda}{2m} \\qquad r^2 + 2\\alpha\\,r + \\omega_0^2 = 0",
+    "\\Delta' = \\alpha^2 - \\omega_0^2"
+   ],
+   "titre": "Deux paramètres : α et ω₀",
+   "type": "etape"
+  },
+  "corde_chargee": {
+   "kicker": "Corde chargée",
+   "tex": [
+    "f\\big(\\tfrac{L}{2}^-\\big) = f\\big(\\tfrac{L}{2}^+\\big)",
+    "f'\\big(\\tfrac{L}{2}^+\\big) - f'\\big(\\tfrac{L}{2}^-\\big) = -\\frac{m\\,\\omega^2}{T_0}\\,f\\big(\\tfrac{L}{2}\\big)",
+    "\\omega \\approx \\frac{\\pi c}{L}\\left(1 - \\frac{m}{\\pi\\,\\mu L}\\right)"
+   ],
+   "titre": "Continuité du déplacement, saut de la pente",
+   "type": "etape"
+  },
+  "corde_eq": {
+   "kicker": "Corde vibrante",
+   "tex": [
+    "c = \\sqrt{\\dfrac{T}{\\mu}}",
+    "\\dfrac{\\partial^2 y}{\\partial t^2} = c^2\\,\\dfrac{\\partial^2 y}{\\partial x^2}"
+   ],
+   "titre": "La célérité : tension et masse linéique",
+   "type": "etape"
+  },
+  "dalembert": {
+   "kicker": "Équation d'onde",
+   "note": "u(x, t) : grandeur qui se propage (déplacement, pression…) · c : célérité de l'onde",
+   "tex": "\\dfrac{\\partial^2 u}{\\partial t^2} = c^2\\,\\dfrac{\\partial^2 u}{\\partial x^2}",
+   "titre": "L'équation de d'Alembert",
+   "type": "formule"
+  },
+  "ex_corde": {
+   "kicker": "Exemple type concours",
+   "tex": [
+    "\\mu = 50\\ \\text{g/m} = 0{,}05\\ \\text{kg/m}",
+    "c = \\sqrt{\\frac{T}{\\mu}} = \\sqrt{40} \\approx 6{,}32\\ \\text{m/s}",
+    "f_n = n \\times \\frac{c}{2L} = n \\times 3{,}16\\ \\text{Hz} \\qquad f_1 \\approx 3{,}16, \\ f_2 \\approx 6{,}32, \\ f_3 \\approx 9{,}48\\ \\text{Hz}"
+   ],
+   "titre": "Trois fréquences propres",
+   "type": "etape"
+  },
+  "ex_guitare": {
+   "kicker": "Exemple · la guitare",
+   "tex": [
+    "L = 0{,}65\\ \\text{m} \\qquad f_1 = 330\\ \\text{Hz}",
+    "\\mu = 4{,}0 \\times 10^{-3}\\ \\text{kg/m}",
+    "T = \\mu\\,(2L f_1)^2 \\approx 736\\ \\text{N}"
+   ],
+   "titre": "Quelle tension pour un mi ?",
+   "type": "etape"
+  },
+  "ex_osc": {
+   "kicker": "Exemple type concours",
+   "tex": [
+    "m = 0{,}1\\ \\text{kg} \\qquad k = 10\\ \\text{N/m} \\qquad \\lambda = 0{,}2\\ \\text{kg/s}",
+    "\\omega_0 = \\sqrt{\\frac{k}{m}} = 10\\ \\text{rad/s}",
+    "\\alpha = \\frac{\\lambda}{2m} = 1\\ \\text{s}^{-1}"
+   ],
+   "titre": "α < ω₀ : régime pseudo-périodique",
+   "type": "etape"
+  },
+  "ex_osc_loi": {
+   "kicker": "Exemple · résultat",
+   "note": "Régime critique du même système : λc = 2mω₀ = 2 kg/s · en critique, amplitude divisée par 10 en ≈ 0,512 s",
+   "tex": "x(t) = e^{-t}\\big(0{,}05\\cos(\\sqrt{99}\\,t) + 0{,}00503\\sin(\\sqrt{99}\\,t)\\big)",
+   "titre": "La loi horaire complète",
+   "type": "formule"
+  },
+  "ex_osc_sol": {
+   "kicker": "Exemple · résolution",
+   "tex": [
+    "\\omega_a = \\sqrt{\\omega_0^2 - \\alpha^2} = \\sqrt{99} \\approx 9{,}95\\ \\text{rad/s}",
+    "x(0) = A = 0{,}05\\ \\text{m}",
+    "\\dot{x}(0) = 0 \\;\\Rightarrow\\; B = \\dfrac{\\alpha A}{\\omega_a} \\approx 5{,}03 \\times 10^{-3}\\ \\text{m}"
+   ],
+   "titre": "Appliquer les conditions initiales",
+   "type": "etape"
+  },
+  "ex_violon": {
+   "kicker": "Exemple · le violon",
+   "note": "Corde de 32,5 cm, f₁ = 660 Hz ⇒ tension T ≈ 368 N · fondamental C₁ ≈ 0,81 mm pour h = 1 mm",
+   "tex": "C_5 = \\dfrac{8h}{25\\pi^2} \\approx 3{,}24 \\times 10^{-5}\\ \\text{m}",
+   "titre": "Le cinquième harmonique est minuscule",
+   "type": "formule"
+  },
+  "frequences": {
+   "kicker": "Fréquences propres",
+   "note": "Uniquement pour une corde fixée aux deux extrémités : une extrémité libre change la quantification",
+   "tex": "f_1 = \\dfrac{1}{2L}\\sqrt{\\dfrac{T}{\\mu}} \\qquad f_n = n\\,f_1",
+   "titre": "Fondamental et harmoniques",
+   "type": "formule"
+  },
+  "harmonique": {
+   "kicker": "Oscillateur harmonique",
+   "note": "m : masse · k : raideur du ressort · x : écart à la position d'équilibre",
+   "tex": "m\\,\\ddot{x} = -k\\,x",
+   "titre": "L'équation fondamentale",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "pendule"
+   },
+   "kicker": "Introduction",
+   "texte": "Un seul modèle au départ : l'oscillateur, brique élémentaire de toutes les vibrations.",
+   "type": "phrase"
+  },
+  "methode_osc": {
+   "etapes": [
+    "Équation par le bilan des forces et le PFD",
+    "Forme canonique, puis identifier α et ω₀",
+    "Comparer α et ω₀ : nommer le régime",
+    "Écrire la solution adaptée au régime",
+    "Conditions initiales : dériver, puis injecter t = 0"
+   ],
+   "kicker": "Méthode",
+   "titre": "L'oscillateur amorti en cinq gestes",
+   "type": "recap"
+  },
+  "modes": {
+   "kicker": "Modes propres",
+   "note": "n = 1, 2, 3… · le mode n possède n ventres et n + 1 nœuds · n ne commence jamais à 0",
+   "tex": "X_n(x) = \\sin\\left(\\dfrac{n\\pi x}{L}\\right) \\qquad k_n = \\dfrac{n\\pi}{L}",
+   "titre": "La quantification par les extrémités fixées",
+   "type": "formule",
+   "anim": {
+    "nom": "stationnaire",
+    "hauteur": 200
+   }
+  },
+  "propagation": {
+   "kicker": "Sens de propagation",
+   "tex": [
+    "\\omega t - kx = \\text{constante} \\;\\Rightarrow\\; v_\\varphi = +\\dfrac{\\omega}{k} = +c",
+    "\\omega t + kx = \\text{constante} \\;\\Rightarrow\\; v_\\varphi = -\\dfrac{\\omega}{k} = -c"
+   ],
+   "titre": "Le test du point de phase constante",
+   "type": "etape"
+  },
+  "pseudo": {
+   "kicker": "Pseudo-pulsation",
+   "note": "ω₀ est intrinsèque au système ; ωa est la pulsation réellement observée en régime amorti",
+   "tex": "\\omega_a = \\sqrt{\\omega_0^2 - \\alpha^2}",
+   "titre": "Toujours inférieure à ω₀",
+   "type": "formule"
+  },
+  "qualite": {
+   "kicker": "Facteur de qualité",
+   "note": "Q > 1/2 : sous-amorti · Q = 1/2 : critique · Q < 1/2 : sur-amorti",
+   "tex": "Q = \\dfrac{\\sqrt{m k}}{\\lambda} = \\dfrac{\\omega_0}{2\\alpha}",
+   "titre": "Le diagnostic en un nombre",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Oscillateur : régime d'abord, formule ensuite",
+    "Seuil critique : λ comparé à 2√(mk)",
+    "Corde : les conditions aux limites font les modes",
+    "Fondamental : f₁ = (1/2L)√(T/μ), si fixée-fixée",
+    "Démarche : bilan, loi, équation, calcul, contrôle"
+   ],
+   "kicker": "À retenir",
+   "titre": "Ondes et vibrations : l'essentiel concours",
+   "type": "recap"
+  },
+  "regimes": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "regimes"
+   },
+   "etapes": [
+    "α < ω₀ : pseudo-périodique, oscillations amorties",
+    "α = ω₀ : critique, retour le plus rapide, sans osciller",
+    "α > ω₀ : apériodique, retour lent et monotone"
+   ],
+   "kicker": "Les trois régimes",
+   "titre": "Le signe de Δ′ décide de tout",
+   "type": "recap"
+  },
+  "resonance_force": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "resonance"
+   },
+   "kicker": "Oscillateur forcé",
+   "note": "La puissance moyenne absorbée, elle, est maximale exactement en Ω = ω₀, quel que soit l'amortissement",
+   "tex": "\\Omega_{\\text{amplitude}} = \\sqrt{\\omega_0^2 - 2\\alpha^2} \\;<\\; \\omega_0",
+   "titre": "Deux résonances à ne pas confondre",
+   "type": "formule"
+  },
+  "separation": {
+   "kicker": "Séparation des variables",
+   "tex": [
+    "y(x,t) = X(x)\\,T(t)",
+    "\\dfrac{T''(t)}{c^2\\,T(t)} = \\dfrac{X''(x)}{X(x)} = -\\omega^2",
+    "X''(x) + \\dfrac{\\omega^2}{c^2} X(x) = 0 \\qquad T''(t) + \\omega^2 T(t) = 0"
+   ],
+   "titre": "Chercher un produit X(x) · T(t)",
+   "type": "etape"
+  },
+  "solution_harmonique": {
+   "kicker": "Solution générale",
+   "note": "Forme équivalente : A cos(ω₀ t) + B sin(ω₀ t) · X_m : amplitude · φ : phase à l'origine",
+   "tex": "x(t) = X_m\\cos(\\omega_0 t + \\varphi)",
+   "titre": "Une sinusoïde de pulsation ω₀",
+   "type": "formule"
+  },
+  "solutions_regimes": {
+   "kicker": "Formes des solutions",
+   "tex": [
+    "x(t) = e^{-\\alpha t}\\big(A\\cos(\\omega_a t) + B\\sin(\\omega_a t)\\big)",
+    "x(t) = (A + Bt)\\,e^{-\\alpha t}",
+    "x(t) = A\\,e^{r_1 t} + B\\,e^{r_2 t}"
+   ],
+   "titre": "À connaître par cœur",
+   "type": "etape"
+  },
+  "superposition": {
+   "kicker": "Solution générale",
+   "tex": [
+    "y(x,t) = \\sum_{n} A_n \\sin(k_n x)\\cos(\\omega_n t) \\qquad \\omega_n = \\frac{n\\pi c}{L} = n\\,\\omega_1",
+    "A_n = \\frac{2}{L} \\int_0^L f(x)\\,\\sin\\left(\\frac{n\\pi x}{L}\\right) dx"
+   ],
+   "titre": "Vitesse initiale nulle : les B_n s'annulent",
+   "type": "etape"
+  },
+  "superposition_energie": {
+   "kicker": "Superposition",
+   "note": "φ = 2π/3 ⇒ A rés = A · deux ondes en phase : amplitude doublée, énergie multipliée par 4",
+   "tex": "A_{\\text{rés}} = 2A\\left|\\cos\\dfrac{\\varphi}{2}\\right|",
+   "titre": "Les amplitudes s'ajoutent, pas les énergies",
+   "type": "formule"
+  },
+  "titre": {
+   "kicker": "Concours Polytechnique L3",
+   "sous": "Oscillateur amorti, corde vibrante, modes propres et stratégies de concours",
+   "titre": "Ondes et vibrations",
+   "type": "titre",
+   "anim": {
+    "nom": "stationnaire",
+    "hauteur": 250
+   }
+  },
+  "triangle": {
+   "kicker": "Corde pincée au centre",
+   "note": "n impair uniquement · A₃ ≈ A₁ / 9 : le fondamental domine le son produit",
+   "tex": "A_n = \\dfrac{8h}{n^2\\pi^2}\\sin\\left(\\dfrac{n\\pi}{2}\\right)",
+   "titre": "Seuls les modes impairs chantent",
+   "type": "formule"
+  }
+ },
+ "matiere": "Concours Polytechnique L3",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'oscillateur amorti : équation, régimes et diagnostics"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : la méthode en action. Nous appliquons la démarche complète à un exemple d'oscillateur, puis nous passons aux ondes et à la corde vibrante.",
+    "texte": "Partie 2 : méthode, exemple, puis la corde vibrante."
+   },
+   "sous_titre": "Méthode et exemple de l'oscillateur, puis la corde vibrante et ses modes"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : les cordes en exemples et les pièges. Une corde simple, une guitare, un violon, une corde chargée, et les pièges classiques de propagation et de superposition.",
+    "texte": "Partie 3 : exemples de cordes et pièges de concours."
+   },
+   "sous_titre": "Cordes en exemples : instruments, corde chargée et pièges"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de préparation au concours Polytechnique, consacré aux ondes et aux vibrations : l'oscillateur amorti et la corde vibrante, traités avec la rigueur et les réflexes qu'exige l'épreuve.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Ondes et vibrations : le programme du cours, esprit concours."
+  },
+  {
+   "dit": "Tout phénomène vibratoire repose sur un modèle unique : l'oscillateur. Une masse accrochée à un ressort, écartée de son équilibre, oscille. Maîtriser ce système, c'est maîtriser la corde vibrante, le circuit oscillant et la plupart des sujets de concours.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "L'oscillateur : le modèle unique derrière toutes les vibrations."
+  },
+  {
+   "dit": "Pour un ressort idéal, la deuxième loi de Newton, projetée sur l'axe du mouvement, donne l'équation de l'oscillateur harmonique : la masse fois l'accélération égale moins la raideur fois l'écart à la position d'équilibre, car la force de rappel ramène toujours vers l'équilibre.",
+   "ecran": "harmonique",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Oscillateur harmonique : m·ẍ = −k·x."
+  },
+  {
+   "dit": "Premier réflexe de concours : mettre l'équation sous forme canonique. On divise par la masse, et l'on identifie la pulsation propre oméga zéro, racine carrée de la raideur sur la masse. Dès que cette forme apparaît, on connaît déjà la nature du mouvement.",
+   "ecran": "canonique",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Forme canonique : ẍ + ω₀²x = 0, avec ω₀ = √(k/m)."
+  },
+  {
+   "dit": "La solution générale est une sinusoïde de pulsation oméga zéro : une amplitude fois le cosinus de oméga zéro t plus une phase. L'amplitude et la phase ne sont pas libres : ce sont les conditions initiales qui les fixent.",
+   "ecran": "solution_harmonique",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Solution : x(t) = X_m cos(ω₀ t + φ)."
+  },
+  {
+   "dit": "Dans la réalité, un frottement fluide, proportionnel à la vitesse, dissipe l'énergie. L'équation gagne un terme en vitesse et devient celle de l'oscillateur harmonique amorti : c'est elle qui structure tout ce chapitre.",
+   "ecran": "amorti_eq",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Oscillateur amorti : m·ẍ + λ·ẋ + k·x = 0."
+  },
+  {
+   "dit": "Sous forme canonique, deux paramètres suffisent : alpha, le coefficient d'amortissement, égal au coefficient de frottement divisé par deux fois la masse, et oméga zéro. En cherchant des solutions exponentielles, on obtient l'équation caractéristique, dont le discriminant réduit décide du régime.",
+   "ecran": "canonique_amorti",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Forme canonique amortie : α = λ/(2m), Δ′ = α² − ω₀²."
+  },
+  {
+   "dit": "Si alpha est inférieur à oméga zéro, le régime est pseudo-périodique : des oscillations qui s'éteignent peu à peu. Si alpha égale oméga zéro, le régime est critique : le retour à l'équilibre le plus rapide, sans oscillation. Si alpha est supérieur, le régime est apériodique : un retour lent et monotone.",
+   "ecran": "regimes",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Trois régimes selon le signe de Δ′."
+  },
+  {
+   "dit": "Chaque régime possède sa forme de solution, à connaître par cœur. En pseudo-périodique, une exponentielle décroissante module un cosinus et un sinus à la pseudo-pulsation. En critique, attention au piège classique : un terme en t multiplie l'exponentielle. En apériodique, deux exponentielles réelles décroissantes.",
+   "ecran": "solutions_regimes",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Trois formes de solutions à connaître par cœur."
+  },
+  {
+   "dit": "Dans le régime pseudo-périodique, la pseudo-pulsation vaut la racine carrée de oméga zéro au carré moins alpha au carré : elle est donc toujours inférieure à la pulsation propre. Confondre les deux est l'erreur la plus fréquente dans les copies.",
+   "ecran": "pseudo",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Pseudo-pulsation : ωa = √(ω₀² − α²), toujours sous ω₀."
+  },
+  {
+   "dit": "Un diagnostic rapide existe : le facteur de qualité, racine carrée de la masse fois la raideur, divisée par le coefficient de frottement. Supérieur à un demi, le système oscille ; égal à un demi, il est critique ; inférieur, il n'oscille plus.",
+   "ecran": "qualite",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Facteur de qualité Q = √(mk)/λ : le diagnostic rapide."
+  },
+  {
+   "dit": "La méthode complète tient en cinq gestes : établir l'équation par le bilan des forces, la mettre sous forme canonique, identifier alpha et oméga zéro, comparer pour nommer le régime, puis seulement écrire la solution et appliquer les conditions initiales. Jamais de solution avant le régime.",
+   "ecran": "methode_osc",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Méthode : régime d'abord, solution ensuite."
+  },
+  {
+   "dit": "Exemple type, tiré du cours. Une masse de cent grammes est accrochée à un ressort de raideur dix newtons par mètre, avec un frottement de coefficient zéro virgule deux. La pulsation propre vaut dix radians par seconde, et alpha vaut un par seconde : alpha est très inférieur à oméga zéro, le régime est donc pseudo-périodique.",
+   "ecran": "ex_osc",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Exemple : ω₀ = 10 rad/s, α = 1 s⁻¹, régime pseudo-périodique."
+  },
+  {
+   "dit": "La pseudo-pulsation vaut racine de quatre-vingt-dix-neuf, soit environ neuf virgule quatre-vingt-quinze radians par seconde. La position initiale donne directement la première constante, cinq centimètres ; la vitesse initiale nulle impose alors la seconde, environ cinq millimètres.",
+   "ecran": "ex_osc_sol",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Exemple : ωa = √99 ≈ 9,95 rad/s ; A = 5 cm, B ≈ 5 mm."
+  },
+  {
+   "dit": "Voici la loi horaire complète de cet oscillateur. Deux questions classiques la ferment : le régime critique s'obtient pour un frottement de deux kilogrammes par seconde, et dans ce régime, l'amplitude est divisée par dix en un peu plus d'une demi-seconde.",
+   "ecran": "ex_osc_loi",
+   "id": "p15",
+   "pause_apres": 0.7,
+   "texte": "Loi horaire complète ; λc = 2 kg/s pour le critique."
+  },
+  {
+   "dit": "Passons aux ondes. Une onde est la propagation d'une perturbation dans un milieu : on ne suit plus un point unique, mais une grandeur qui dépend à la fois de la position et du temps. L'équation de d'Alembert gouverne cette propagation, et la constante qui y figure est la célérité de l'onde.",
+   "ecran": "dalembert",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Équation de d'Alembert : ∂²u/∂t² = c² ∂²u/∂x²."
+  },
+  {
+   "dit": "Pour une corde tendue, la célérité ne dépend que de deux paramètres : la tension, qui raidit la corde, et la masse linéique, qui l'alourdit. Elle vaut la racine carrée de la tension sur la masse linéique. C'est le bilan de forces sur un petit élément de corde qui conduit à l'équation de d'Alembert.",
+   "ecran": "corde_eq",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Corde : célérité c = √(T/μ)."
+  },
+  {
+   "dit": "La grande méthode pour les cordes est la séparation des variables. On cherche la solution comme le produit d'une fonction de l'espace seul par une fonction du temps seul. L'équation se scinde alors en deux équations ordinaires, reliées par une même constante de séparation, moins oméga au carré.",
+   "ecran": "separation",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Séparation des variables : y = X(x)·T(t)."
+  },
+  {
+   "dit": "Les conditions aux limites font le reste. Une corde fixée aux deux extrémités impose un déplacement nul en zéro et en L : le sinus spatial doit s'annuler à l'extrémité, ce qui quantifie le nombre d'onde. Chaque entier n donne alors un mode propre de la corde, avec ses nœuds et ses ventres.",
+   "ecran": "modes",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Modes propres : X_n = sin(nπx/L), n ≥ 1."
+  },
+  {
+   "dit": "La fréquence du mode n vaut n fois la fréquence fondamentale. Et le fondamental vaut la célérité sur deux fois la longueur, soit un sur deux L, racine de la tension sur la masse linéique. Formule à connaître par cœur, mais seulement pour une corde fixée aux deux extrémités.",
+   "ecran": "frequences",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Fréquences : f_n = n·f₁, f₁ = (1/2L)√(T/μ)."
+  },
+  {
+   "dit": "La solution générale est une superposition de tous les modes propres. Si la corde est lâchée sans vitesse initiale, seuls les cosinus du temps subsistent, et leurs coefficients sont les coefficients de Fourier de la forme initiale : c'est la déformation de départ qui choisit quels modes vont chanter.",
+   "ecran": "superposition",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Solution générale : superposition des modes, coefficients de Fourier."
+  },
+  {
+   "dit": "Exemple numérique. Une corde d'un mètre, de masse linéique cinquante grammes par mètre, est tendue à deux newtons. La célérité vaut racine de quarante, environ six virgule trente-deux mètres par seconde. Les trois premières fréquences propres sont donc trois virgule seize, six virgule trente-deux et neuf virgule quarante-huit hertz.",
+   "ecran": "ex_corde",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Exemple : c ≈ 6,32 m/s ; f₁ ≈ 3,16 Hz, f₂ ≈ 6,32 Hz, f₃ ≈ 9,48 Hz."
+  },
+  {
+   "dit": "Exemple d'instrument : une corde de guitare de soixante-cinq centimètres émet un mi à trois cent trente hertz dans son mode fondamental. En isolant la tension dans la formule du fondamental, on trouve environ sept cent trente-six newtons, l'équivalent du poids d'une masse de soixante-quinze kilogrammes.",
+   "ecran": "ex_guitare",
+   "id": "p23",
+   "pause_apres": 0.7,
+   "texte": "Guitare : un mi à 330 Hz exige T ≈ 736 N."
+  },
+  {
+   "dit": "Pincée en son centre, la corde prend une forme triangulaire. Son développement ne contient que les modes impairs : les modes pairs possèdent un nœud au centre, là même où le déplacement est maximal, ils ne peuvent donc pas être excités. Et comme l'amplitude décroît en un sur n au carré, le fondamental domine largement.",
+   "ecran": "triangle",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Corde pincée au centre : seuls les modes impairs, en 1/n²."
+  },
+  {
+   "dit": "Même méthode sur une corde de violon : trente-deux centimètres et demi, un son à six cent soixante hertz. La tension tombe à environ trois cent soixante-huit newtons. Et pour un pincement d'un millimètre, le cinquième harmonique n'a plus qu'une amplitude d'environ trente-deux micromètres.",
+   "ecran": "ex_violon",
+   "id": "p25",
+   "pause_apres": 0.7,
+   "texte": "Violon : T ≈ 368 N ; 5e harmonique ≈ 32 µm."
+  },
+  {
+   "dit": "Un cran plus haut : une masse ponctuelle est attachée au milieu de la corde. Au raccord, le déplacement reste continu, mais la pente saute, et ce saut est piloté par l'inertie de la masse. Résultat physique immédiat : la masse abaisse la fréquence fondamentale, d'une correction relative de l'ordre du rapport des masses.",
+   "ecran": "corde_chargee",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Corde chargée : déplacement continu, pente qui saute."
+  },
+  {
+   "dit": "Piège de propagation : le signe devant le terme d'espace, dans la phase de l'onde, décide du sens de propagation. Plutôt qu'un slogan appris par cœur, refaites le test du point de phase constante : suivre un maximum donne la vitesse de phase, égale à plus ou moins la célérité.",
+   "ecran": "propagation",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Sens de propagation : le test de la phase constante."
+  },
+  {
+   "dit": "Dernier piège, en régime forcé : il existe deux résonances distinctes. La puissance moyenne absorbée est maximale exactement à la pulsation propre, quel que soit l'amortissement. Mais l'amplitude, elle, culmine un peu avant, à une pulsation légèrement inférieure à la pulsation propre.",
+   "ecran": "resonance_force",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Résonance en puissance : exactement à ω₀."
+  },
+  {
+   "dit": "Attention, enfin, à la superposition : les amplitudes s'ajoutent, mais pas les énergies, car l'énergie est proportionnelle au carré de l'amplitude. Deux ondes en phase doublent l'amplitude et quadruplent l'énergie ; avec un déphasage de deux pi sur trois, l'amplitude résultante redescend à celle d'une onde seule.",
+   "ecran": "superposition_energie",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "Superposition : les énergies ne s'ajoutent pas."
+  },
+  {
+   "dit": "À retenir : pour l'oscillateur, régime d'abord, formule ensuite, avec le test qui compare l'amortissement au seuil critique. Pour la corde, ce sont les conditions aux limites qui commandent les modes propres. Et face à tout énoncé, la même démarche : bilan des données, loi physique, mise en équation, résolution, vérification.",
+   "ecran": "recap",
+   "id": "p30",
+   "pause_apres": 0.5,
+   "texte": "L'essentiel : régimes, modes propres et démarche systématique."
+  }
+ ],
+ "titre": "Ondes et vibrations"
+}

@@ -1,0 +1,506 @@
+{
+  "cours": 7196,
+  "ecrans": {
+    "developpement": {
+      "kicker": "Le développement",
+      "tex": [
+        "a(b+c) = ab+ac",
+        "(a+b)(c+d) = ac+ad+bc+bd"
+      ],
+      "titre": "Un produit devient une somme",
+      "type": "etape"
+    },
+    "ensembles": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "venn"
+      },
+      "kicker": "Les nombres réels",
+      "tex": [
+        "\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}",
+        "-3 \\in \\mathbb{Z} \\qquad \\tfrac{7}{4} \\in \\mathbb{Q}",
+        "\\sqrt{5} \\in \\mathbb{R}"
+      ],
+      "titre": "Quatre ensembles emboîtés",
+      "type": "etape"
+    },
+    "eq_methode": {
+      "kicker": "Les équations du premier degré",
+      "texte": "Même opération des deux côtés, x reste seul.",
+      "type": "phrase"
+    },
+    "eq_produit": {
+      "kicker": "Les équations produit",
+      "note": "Un produit est nul dès qu'un facteur est nul.",
+      "tex": "A \\cdot B = 0 \\iff A = 0 \\lor B = 0",
+      "type": "formule"
+    },
+    "ex_B": {
+      "kicker": "Puissances · Exemple",
+      "tex": [
+        "B = \\tfrac{2^5 \\times 2^{-3}}{2^2}",
+        "= 2^{5-3-2}",
+        "= 2^0 = 1"
+      ],
+      "titre": "Cinq moins trois moins deux font zéro",
+      "type": "etape"
+    },
+    "ex_C": {
+      "kicker": "Racines · Exemple",
+      "tex": [
+        "C = \\sqrt{18} + \\sqrt{8} - \\sqrt{2}",
+        "= 3\\sqrt{2} + 2\\sqrt{2} - \\sqrt{2}",
+        "= 4\\sqrt{2}"
+      ],
+      "titre": "Regrouper les racines de deux",
+      "type": "etape"
+    },
+    "ex_D": {
+      "kicker": "Valeur absolue · Exemple",
+      "tex": [
+        "D = |3-7| - 2|-4|",
+        "= |-4| - 2 \\times 4",
+        "= 4 - 8 = -4"
+      ],
+      "titre": "D'abord l'intérieur, puis la distance",
+      "type": "etape"
+    },
+    "ex_develop": {
+      "kicker": "Développement · Exemple",
+      "tex": [
+        "B = (2x+3)(x-5)",
+        "= 2x^2-10x+3x-15",
+        "= 2x^2-7x-15"
+      ],
+      "titre": "Chaque terme du premier multiplie chaque terme du second",
+      "type": "etape"
+    },
+    "ex_eq": {
+      "kicker": "Équation du premier degré · Exemple",
+      "tex": [
+        "3x-7 = 5x+1",
+        "3x-5x = 1+7 \\implies -2x = 8",
+        "x = -4 \\qquad S = \\{-4\\}"
+      ],
+      "titre": "Les x à gauche, les nombres à droite",
+      "type": "etape"
+    },
+    "ex_fact_commun": {
+      "kicker": "Factorisation · Facteur commun",
+      "tex": [
+        "C = 5x^2+15x",
+        "= 5x(x+3)"
+      ],
+      "titre": "Cinq x est dans les deux termes",
+      "type": "etape"
+    },
+    "ex_fact_identite": {
+      "kicker": "Factorisation · Identité remarquable",
+      "tex": [
+        "D = 4x^2-9 = (2x)^2-3^2",
+        "= (2x-3)(2x+3)"
+      ],
+      "titre": "Quatre x carré moins neuf, différence de deux carrés",
+      "type": "etape"
+    },
+    "ex_identite": {
+      "kicker": "Identité remarquable · Exemple",
+      "tex": [
+        "(3x-4)^2 = (3x)^2-2\\cdot 3x\\cdot 4+4^2",
+        "= 9x^2-24x+16"
+      ],
+      "titre": "Carré d'une différence, double produit au milieu",
+      "type": "etape"
+    },
+    "ex_produit": {
+      "kicker": "Équation produit · Exemple",
+      "tex": [
+        "(2x-6)(x+4) = 0",
+        "2x-6 = 0 \\implies x = 3",
+        "x+4 = 0 \\implies x = -4",
+        "S = \\{-4,3\\}"
+      ],
+      "titre": "Annuler chaque facteur, un par un",
+      "type": "etape"
+    },
+    "factorisation": {
+      "kicker": "La factorisation",
+      "tex": [
+        "ka+kb = k(a+b)",
+        "a^2-b^2 = (a-b)(a+b)",
+        "a^2 \\pm 2ab+b^2 = (a \\pm b)^2"
+      ],
+      "titre": "Une somme devient un produit",
+      "type": "etape"
+    },
+    "identites": {
+      "kicker": "Les identités remarquables",
+      "tex": [
+        "(a+b)^2 = a^2+2ab+b^2",
+        "(a-b)^2 = a^2-2ab+b^2",
+        "(a-b)(a+b) = a^2-b^2"
+      ],
+      "titre": "Trois formules à savoir dans les deux sens",
+      "type": "etape"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "venn"
+      },
+      "kicker": "Le fil du cours",
+      "texte": "Deux volets : les nombres, puis les lettres.",
+      "type": "phrase"
+    },
+    "litterale": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Les expressions littérales",
+      "texte": "Pour x égal trois, A vaut quatre.",
+      "type": "phrase"
+    },
+    "operations": {
+      "kicker": "Opérations sur les réels",
+      "tex": [
+        "a+b=b+a \\qquad a\\times b=b\\times a",
+        "(a+b)+c=a+(b+c)",
+        "a(b+c)=ab+ac"
+      ],
+      "titre": "Trois propriétés à connaître",
+      "type": "etape"
+    },
+    "puiss_def": {
+      "kicker": "Les puissances",
+      "note": "a à la puissance zéro vaut un si a est non nul, a à la puissance moins n vaut un sur a à la puissance n.",
+      "tex": "a^n = \\underbrace{a\\times a\\times\\cdots\\times a}_{n}",
+      "type": "formule"
+    },
+    "puiss_regles": {
+      "kicker": "Règles de calcul des puissances",
+      "tex": [
+        "a^m \\times a^n = a^{m+n}",
+        "\\tfrac{a^m}{a^n} = a^{m-n}",
+        "(a^m)^n = a^{mn}",
+        "(ab)^n = a^n b^n"
+      ],
+      "titre": "Même base : on combine les exposants",
+      "type": "etape"
+    },
+    "racines_def": {
+      "kicker": "Les racines carrées",
+      "note": "La racine carrée est le nombre positif dont le carré vaut a.",
+      "tex": "(\\sqrt{a})^2 = a \\qquad a \\ge 0",
+      "type": "formule"
+    },
+    "racines_props": {
+      "kicker": "Propriétés des racines",
+      "tex": [
+        "\\sqrt{ab} = \\sqrt{a}\\sqrt{b}",
+        "\\sqrt{\\tfrac{a}{b}} = \\tfrac{\\sqrt{a}}{\\sqrt{b}} \\qquad b > 0",
+        "\\sqrt{a^2} = |a|"
+      ],
+      "titre": "Séparer un produit, jamais une somme",
+      "type": "etape"
+    },
+    "racines_simplif": {
+      "kicker": "Simplifier une racine",
+      "tex": [
+        "\\sqrt{50} = \\sqrt{25 \\times 2} = 5\\sqrt{2}",
+        "\\sqrt{a+b} \\ne \\sqrt{a} + \\sqrt{b}"
+      ],
+      "titre": "Extraire les carrés parfaits",
+      "type": "etape"
+    },
+    "recap": {
+      "etapes": [
+        "N, Z, Q, R : des ensembles emboîtés",
+        "Puissances et racines : exposants et carrés",
+        "Développer : produit vers somme",
+        "Factoriser : somme vers produit",
+        "Équation produit : annuler chaque facteur"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "signes": {
+      "kicker": "Règle des signes · Exemple",
+      "tex": [
+        "A = 3 - 2\\times(-5) + \\tfrac{-8}{4}",
+        "= 3 + 10 - 2",
+        "= 11"
+      ],
+      "titre": "Priorités d'abord, signes ensuite",
+      "type": "etape"
+    },
+    "simplif": {
+      "kicker": "Simplification d'une fraction",
+      "tex": [
+        "E = \\tfrac{6x^2+9x}{3x} \\qquad x \\ne 0",
+        "= \\tfrac{3x(2x+3)}{3x}",
+        "= 2x+3"
+      ],
+      "titre": "Factoriser le numérateur, puis barrer le facteur commun",
+      "type": "etape"
+    },
+    "synth_enonce": {
+      "kicker": "Problème de synthèse",
+      "note": "Racines d'abord, valeur absolue ensuite, simplification à la fin.",
+      "tex": "E = \\frac{\\sqrt{75}-\\sqrt{27}}{\\sqrt{3}} + |2-\\sqrt{5}|",
+      "type": "formule"
+    },
+    "synth_resol": {
+      "kicker": "Problème de synthèse · Résolution",
+      "tex": [
+        "\\sqrt{75} = 5\\sqrt{3} \\qquad \\sqrt{27} = 3\\sqrt{3}",
+        "\\tfrac{2\\sqrt{3}}{\\sqrt{3}} = 2",
+        "|2-\\sqrt{5}| = \\sqrt{5}-2",
+        "E = 2 + \\sqrt{5} - 2 = \\sqrt{5}"
+      ],
+      "titre": "Le numérateur devient deux racines de trois",
+      "type": "etape"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 250,
+        "nom": "venn"
+      },
+      "kicker": "Mathématique · Nombres réels et calcul littéral",
+      "sous": "Des réels aux équations, calculer juste en respectant les priorités",
+      "titre": "Nombres réels et calcul littéral : puissances, racines, identités et équations",
+      "type": "titre"
+    },
+    "valabs_def": {
+      "kicker": "La valeur absolue",
+      "tex": [
+        "|a| = a \\qquad a \\ge 0",
+        "|a| = -a \\qquad a < 0"
+      ],
+      "titre": "Deux cas selon le signe de a",
+      "type": "etape"
+    },
+    "valabs_props": {
+      "kicker": "Propriétés de la valeur absolue",
+      "tex": [
+        "|ab| = |a||b|",
+        "\\left|\\tfrac{a}{b}\\right| = \\tfrac{|a|}{|b|}",
+        "|a+b| \\le |a| + |b|"
+      ],
+      "titre": "Toujours positive, comme une distance",
+      "type": "etape"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Calcul numérique : réels, opérations et puissances"
+    },
+    {
+      "debut": "p09",
+      "sous_titre": "Racines carrées, valeur absolue et problème de synthèse",
+      "pont": {
+        "dit": "Partie deux, les racines carrées et la valeur absolue. Nous apprendrons à simplifier les racines en extrayant les carrés parfaits, puis à mesurer une distance à zéro avec la valeur absolue, avant de réunir les deux outils dans un problème de synthèse.",
+        "texte": "Partie 2 : racines, valeur absolue et synthèse."
+      }
+    },
+    {
+      "debut": "p18",
+      "sous_titre": "Calcul littéral et équations : développer, factoriser, résoudre",
+      "pont": {
+        "dit": "Partie trois, le calcul littéral et les équations. Nous apprendrons à développer et à factoriser avec la distributivité et les identités remarquables, puis à simplifier une fraction littérale, avant de résoudre une équation du premier degré et une équation produit.",
+        "texte": "Partie 3 : développer, factoriser et résoudre."
+      }
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de calcul numérique et de calcul littéral. Nous allons d'abord apprivoiser les nombres réels, leurs opérations, leurs puissances et leurs racines, puis passer aux lettres pour développer, factoriser et résoudre des équations. Deux volets, une même exigence, calculer juste en respectant les priorités.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Réels puis lettres : calculer juste, dans l'ordre."
+    },
+    {
+      "dit": "Commençons par le paysage des nombres. Tout nombre que l'on peut placer sur une droite graduée est un nombre réel. Les entiers naturels, les entiers relatifs et les fractions y vivent déjà, et les nombres comme racine de deux ou pi, qui ne sont jamais des fractions, les rejoignent dans ce grand ensemble.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "La droite graduée : tous les nombres y vivent."
+    },
+    {
+      "dit": "Retenez l'emboîtement, chaque ensemble contient le précédent. Les naturels sont dans les relatifs, les relatifs dans les rationnels, les rationnels dans les réels. Moins trois est un entier relatif, sept quarts est un rationnel, racine de cinq est un réel qui n'est pas un rationnel.",
+      "ecran": "ensembles",
+      "id": "p03",
+      "texte": "N dans Z dans Q dans R : chaque ensemble contient le précédent."
+    },
+    {
+      "dit": "Sur ces nombres, les quatre opérations obéissent à trois propriétés qui simplifient tout. L'ordre des termes ne change ni une somme ni un produit, on peut regrouper les termes comme on veut, et multiplier une somme revient à multiplier chaque terme. Cette dernière propriété, la distributivité, est la clé de tout le calcul littéral qui suivra.",
+      "ecran": "operations",
+      "id": "p04",
+      "texte": "Commutativité, associativité, distributivité : les trois clés."
+    },
+    {
+      "dit": "Attention aux signes et aux priorités. Moins fois moins donne plus, moins fois plus donne moins. Dans l'exemple affiché, la multiplication passe avant l'addition, deux fois moins cinq donne moins dix, et moins huit sur quatre donne moins deux. Il reste trois plus dix moins deux, soit onze.",
+      "ecran": "signes",
+      "id": "p05",
+      "texte": "A égale onze : multiplication avant addition."
+    },
+    {
+      "dit": "Passons aux puissances. Élever un nombre à une puissance entière, c'est le multiplier par lui même autant de fois que l'exposant l'indique. Un exposant nul donne un, dès que la base n'est pas nulle, et un exposant négatif donne l'inverse de la puissance positive correspondante.",
+      "ecran": "puiss_def",
+      "id": "p06",
+      "texte": "a puissance n : a multiplié par lui-même n fois."
+    },
+    {
+      "dit": "Pour une même base, les exposants se combinent simplement. Multiplier deux puissances additionne leurs exposants, les diviser les retranche, élever une puissance à une puissance les multiplie, et une puissance d'un produit se distribue sur chaque facteur.",
+      "ecran": "puiss_regles",
+      "id": "p07",
+      "texte": "Même base : exposants ajoutés, retranchés, multipliés."
+    },
+    {
+      "dit": "Vérifions sur un exemple. Au numérateur, deux puissance cinq fois deux puissance moins trois donne deux puissance deux, car cinq moins trois font deux. Diviser par deux puissance deux retranche encore deux à l'exposant. Il reste deux puissance zéro, c'est à dire un.",
+      "ecran": "ex_B",
+      "id": "p08",
+      "texte": "B égale un : cinq moins trois moins deux font zéro."
+    },
+    {
+      "dit": "La racine carrée est l'opération inverse du carré, pour les nombres positifs. La racine carrée d'un nombre positif est le nombre positif dont le carré vaut ce nombre. Ainsi, la racine carrée de a, élevée au carré, redonne a.",
+      "ecran": "racines_def",
+      "id": "p09",
+      "texte": "Racine de a : le nombre positif dont le carré vaut a."
+    },
+    {
+      "dit": "Trois propriétés servent à simplifier. La racine d'un produit est le produit des racines, la racine d'un quotient est le quotient des racines, et la racine d'un carré redonne la valeur absolue du nombre. En revanche, et c'est le piège classique, la racine d'une somme n'est jamais la somme des racines.",
+      "ecran": "racines_props",
+      "id": "p10",
+      "texte": "Produit et quotient se séparent, jamais une somme."
+    },
+    {
+      "dit": "Pour simplifier, on extrait les carrés parfaits. Cinquante, c'est vingt cinq fois deux, la racine de vingt cinq vaut cinq, il reste donc cinq racines de deux. Gardez le piège en tête, racine de a plus b ne se sépare pas.",
+      "ecran": "racines_simplif",
+      "id": "p11",
+      "texte": "Racine de cinquante : cinq racines de deux."
+    },
+    {
+      "dit": "Appliquons la méthode. Racine de dix huit vaut trois racines de deux, racine de huit vaut deux racines de deux. On regroupe alors les racines de deux, trois plus deux moins un font quatre, le résultat est quatre racines de deux.",
+      "ecran": "ex_C",
+      "id": "p12",
+      "texte": "C égale quatre racines de deux."
+    },
+    {
+      "dit": "La valeur absolue d'un nombre mesure sa distance à zéro. Si le nombre est positif ou nul, elle vaut le nombre lui même, s'il est négatif, elle vaut son opposé. Une valeur absolue n'est donc jamais négative, et elle ne s'annule que pour zéro.",
+      "ecran": "valabs_def",
+      "id": "p13",
+      "texte": "Valeur absolue : la distance à zéro, toujours positive."
+    },
+    {
+      "dit": "Ses propriétés ressemblent à celles des racines. La valeur absolue d'un produit est le produit des valeurs absolues, celle d'un quotient est le quotient des valeurs absolues, et la valeur absolue d'une somme ne dépasse jamais la somme des valeurs absolues.",
+      "ecran": "valabs_props",
+      "id": "p14",
+      "texte": "Produit, quotient et inégalité triangulaire."
+    },
+    {
+      "dit": "Calculons un exemple. Trois moins sept vaut moins quatre, dont la valeur absolue vaut quatre. Moins quatre a pour valeur absolue quatre, multipliée par deux, cela fait huit. Quatre moins huit donne moins quatre.",
+      "ecran": "ex_D",
+      "id": "p15",
+      "texte": "D égale moins quatre."
+    },
+    {
+      "dit": "Voici maintenant un problème de synthèse qui mêle racines et valeur absolue. Il faut calculer une fraction dont le numérateur retranche racine de vingt sept à racine de soixante quinze, le tout divisé par racine de trois, puis ajouter la valeur absolue de deux moins racine de cinq.",
+      "ecran": "synth_enonce",
+      "id": "p16",
+      "texte": "Synthèse : racines divisées, puis valeur absolue."
+    },
+    {
+      "dit": "Résolvons pas à pas. Racine de soixante quinze vaut cinq racines de trois, racine de vingt sept vaut trois racines de trois, leur différence vaut deux racines de trois, divisée par racine de trois, cela donne deux. Par ailleurs, deux moins racine de cinq est négatif, car racine de cinq vaut environ deux virgule vingt quatre, sa valeur absolue vaut donc racine de cinq moins deux. Deux plus racine de cinq moins deux se simplifie, il reste racine de cinq.",
+      "ecran": "synth_resol",
+      "id": "p17",
+      "texte": "E égale racine de cinq."
+    },
+    {
+      "dit": "Deuxième volet, le calcul littéral. Une expression littérale mêle des lettres et des nombres reliés par des opérations. Pour calculer sa valeur, on remplace chaque lettre par le nombre donné. Ici, pour x égal trois, deux fois neuf moins quinze plus un donne quatre.",
+      "ecran": "litterale",
+      "id": "p18",
+      "texte": "Remplacer chaque lettre, puis calculer."
+    },
+    {
+      "dit": "Développer, c'est transformer un produit en somme. La distributivité simple distribue un facteur sur chaque terme d'une parenthèse, et la double distributivité croise chaque terme du premier facteur avec chaque terme du second.",
+      "ecran": "developpement",
+      "id": "p19",
+      "texte": "Développer : produit vers somme."
+    },
+    {
+      "dit": "Développons un exemple. Deux x plus trois fois x moins cinq donne d'abord deux x au carré, moins dix x, plus trois x, moins quinze. En regroupant les termes en x, moins dix x plus trois x font moins sept x, le résultat est deux x au carré moins sept x moins quinze.",
+      "ecran": "ex_develop",
+      "id": "p20",
+      "texte": "B égale deux x carré moins sept x moins quinze."
+    },
+    {
+      "dit": "Trois identités remarquables accélèrent ces développements, et elles servent aussi à factoriser. Le carré d'une somme ajoute le double produit, le carré d'une différence le retranche, et le produit d'une différence par une somme donne la différence des carrés.",
+      "ecran": "identites",
+      "id": "p21",
+      "texte": "Trois identités, dans les deux sens."
+    },
+    {
+      "dit": "Vérifions la deuxième identité. Trois x moins quatre au carré donne neuf x au carré, moins deux fois trois x fois quatre, plus seize. Le double produit vaut vingt quatre x, le résultat est donc neuf x au carré moins vingt quatre x plus seize.",
+      "ecran": "ex_identite",
+      "id": "p22",
+      "texte": "Neuf x carré moins vingt-quatre x plus seize."
+    },
+    {
+      "dit": "Factoriser, c'est le mouvement inverse, transformer une somme en produit. Trois méthodes dominent, mettre un facteur commun en évidence, reconnaître une identité remarquable, ou combiner les deux. Savoir factoriser, c'est se donner les moyens de résoudre des équations.",
+      "ecran": "factorisation",
+      "id": "p23",
+      "texte": "Factoriser : somme vers produit."
+    },
+    {
+      "dit": "Premier exemple, le facteur commun. Cinq x au carré plus quinze x partagent le facteur cinq x. En le mettant en évidence, il reste x plus trois entre parenthèses.",
+      "ecran": "ex_fact_commun",
+      "id": "p24",
+      "texte": "C égale cinq x fois x plus trois."
+    },
+    {
+      "dit": "Deuxième exemple, l'identité remarquable. Quatre x au carré moins neuf est une différence de deux carrés, deux x au carré moins trois au carré. Elle se factorise donc en deux x moins trois fois deux x plus trois.",
+      "ecran": "ex_fact_identite",
+      "id": "p25",
+      "texte": "D égale deux x moins trois fois deux x plus trois."
+    },
+    {
+      "dit": "Simplifier une fraction littérale, c'est barrer un facteur commun. Ici, le numérateur se factorise en trois x fois deux x plus trois, et le dénominateur vaut trois x, avec x différent de zéro. En simplifiant par trois x, il reste deux x plus trois.",
+      "ecran": "simplif",
+      "id": "p26",
+      "texte": "E égale deux x plus trois, pour x non nul."
+    },
+    {
+      "dit": "Passons aux équations du premier degré. Résoudre une équation, c'est trouver les valeurs de l'inconnue qui rendent l'égalité vraie. On peut ajouter, retrancher, multiplier ou diviser les deux membres par un même nombre non nul sans changer les solutions. La méthode consiste à regrouper les termes en x d'un côté et les nombres de l'autre, puis à isoler x.",
+      "ecran": "eq_methode",
+      "id": "p27",
+      "texte": "Même opération des deux côtés, x reste seul."
+    },
+    {
+      "dit": "Résolvons trois x moins sept égale cinq x plus un. En regroupant, trois x moins cinq x égale un plus sept, soit moins deux x égale huit. En divisant par moins deux, x vaut moins quatre, l'ensemble des solutions ne contient que moins quatre.",
+      "ecran": "ex_eq",
+      "id": "p28",
+      "texte": "x égale moins quatre."
+    },
+    {
+      "dit": "Les équations produit reposent sur une idée simple et puissante. Un produit est nul si et seulement si l'un de ses facteurs est nul. C'est pour cela que la factorisation est essentielle, une somme factorisée devient un produit dont on peut annuler chaque facteur.",
+      "ecran": "eq_produit",
+      "id": "p29",
+      "texte": "Produit nul : un facteur nul suffit."
+    },
+    {
+      "dit": "Résolvons deux x moins six fois x plus quatre égale zéro. Annuler le premier facteur donne x égal trois, annuler le second donne x égal moins quatre. L'ensemble des solutions contient donc moins quatre et trois.",
+      "ecran": "ex_produit",
+      "id": "p30",
+      "texte": "Solutions : moins quatre et trois."
+    },
+    {
+      "dit": "Retenons l'essentiel. Les ensembles de nombres s'emboîtent, les puissances et les racines se simplifient par leurs règles, développer transforme un produit en somme, factoriser fait l'inverse, et une équation produit se résout en annulant chaque facteur. Avec ces réflexes, le calcul devient un outil, pas un obstacle.",
+      "ecran": "recap",
+      "id": "p31",
+      "texte": "À retenir : emboîter, développer, factoriser, résoudre."
+    }
+  ],
+  "titre": "Nombres réels et calcul littéral : puissances, racines, identités et équations"
+}

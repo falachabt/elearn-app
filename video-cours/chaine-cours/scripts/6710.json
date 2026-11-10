@@ -1,0 +1,556 @@
+{
+ "cours": 6710,
+ "ecrans": {
+  "celerite": {
+   "kicker": "Célérité et retard",
+   "note": "τ : retard en secondes · d : distance entre les deux points · v : célérité en mètres par seconde",
+   "tex": "\\tau = \\frac{d}{v}",
+   "titre": "Le temps que met l'onde à franchir la distance",
+   "type": "formule"
+  },
+  "conditions": {
+   "kicker": "Différence de marche",
+   "tex": [
+    "\\delta = d_2 - d_1",
+    "\\delta = k\\lambda : \\text{vibration maximale}",
+    "\\delta = (2k + 1)\\, \\frac{\\lambda}{2} : \\text{repos}"
+   ],
+   "titre": "La condition qui décide du sort d'un point",
+   "type": "etape"
+  },
+  "cuve": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "interference"
+   },
+   "kicker": "Interférences sur l'eau",
+   "texte": "Deux vibreurs synchrones frappent la surface de l'eau en deux points : deux ondes circulaires de même fréquence se superposent. On observe une figure d'interférences : des lignes de repos et des lignes de vibration maximale, alternées.",
+   "type": "phrase"
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "vagues"
+   },
+   "kicker": "Qu'est-ce qu'une onde mécanique ?",
+   "texte": "Une onde mécanique est la propagation d'une perturbation dans un milieu matériel élastique : vagues sur l'eau, ondes sismiques, vibrations d'une corde, ondes sonores. Elle transporte de l'énergie, sans transporter de matière, et le milieu revient à son état initial après son passage.",
+   "type": "phrase"
+  },
+  "dephasage": {
+   "kicker": "Comparer deux points",
+   "tex": [
+    "\\Delta\\varphi = \\frac{2\\pi}{\\lambda}\\, (x_2 - x_1)",
+    "\\Delta\\varphi = 2k\\pi : \\text{en phase}",
+    "\\Delta\\varphi = (2k + 1)\\pi : \\text{en opposition}"
+   ],
+   "titre": "En phase ou en opposition de phase",
+   "type": "etape"
+  },
+  "distance": {
+   "kicker": "La mesure de distance",
+   "note": "Le facteur deux vient de l'aller-retour de l'onde entre la sonde et l'interface",
+   "tex": "d = \\frac{v \\cdot \\Delta t}{2}",
+   "titre": "Un temps d'aller-retour devient une distance",
+   "type": "formule"
+  },
+  "doppler": {
+   "kicker": "L'effet Doppler radar",
+   "note": "Signe plus si la cible s'approche, moins si elle s'éloigne · c : vitesse de la lumière",
+   "tex": "\\Delta f = \\pm \\frac{2\\, v_r}{c}\\, f_e",
+   "titre": "Le décalage de fréquence donne la vitesse",
+   "type": "formule"
+  },
+  "echographie": {
+   "kicker": "L'échographie",
+   "texte": "L'échographie envoie des ultrasons, de un à quinze mégahertz, dans les tissus grâce à une sonde piézoélectrique. Les ondes se réfléchissent partiellement aux interfaces entre milieux différents, et la sonde écoute les échos pour reconstruire une image.",
+   "type": "phrase",
+   "anim": {
+    "nom": "echo_mesure_fig",
+    "hauteur": 150
+   }
+  },
+  "equation": {
+   "kicker": "L'équation de l'onde",
+   "note": "Le point M, à l'abscisse x, répète le mouvement de la source avec le retard τ = x/v",
+   "tex": "y_M(t) = A \\sin\\left(\\frac{2\\pi\\, t}{T} - \\frac{2\\pi\\, x}{\\lambda}\\right)",
+   "titre": "Le mouvement d'un point reproduit celui de la source, en retard",
+   "type": "formule"
+  },
+  "ex_corde": {
+   "kicker": "Exemple · le fondamental",
+   "note": "Pour le mode deux, les nœuds sont aux extrémités et au milieu",
+   "tex": "f_1 = \\frac{1 \\times 200}{2 \\times 1} = 100\\ \\text{Hz}",
+   "titre": "Un mètre de corde, deux cents mètres par seconde",
+   "type": "formule"
+  },
+  "ex_echo": {
+   "kicker": "Exemple · une profondeur",
+   "note": "Célérité des ultrasons dans les tissus mous : environ 1 540 mètres par seconde",
+   "tex": "d = \\frac{1540 \\times 130 \\times 10^{-6}}{2} = 0{,}10\\ \\text{m} = 10\\ \\text{cm}",
+   "titre": "Un écho reçu cent trente microsecondes plus tard",
+   "type": "formule"
+  },
+  "ex_equation": {
+   "kicker": "Exemple · une équation d'onde",
+   "tex": [
+    "y_M(t) = A \\sin\\left(\\frac{2\\pi\\, t}{0{,}02} - \\frac{2\\pi\\, x}{0{,}68}\\right)",
+    "y_M(t) = A \\sin(100\\pi\\, t - 9{,}24\\, x)"
+   ],
+   "titre": "Période deux centièmes de seconde, longueur d'onde soixante-huit centimètres",
+   "type": "etape"
+  },
+  "ex_guitare": {
+   "kicker": "Exemple · une corde de guitare",
+   "tex": [
+    "L = 0{,}65\\ \\text{m} \\qquad \\mu = 3 \\times 10^{-3}\\ \\text{kg/m} \\qquad T = 80\\ \\text{N}",
+    "f_1 = \\frac{1}{1{,}3}\\, \\sqrt{26667} \\approx 125{,}6\\ \\text{Hz}"
+   ],
+   "titre": "Soixante-cinq centimètres, quatre-vingts newtons",
+   "type": "etape"
+  },
+  "ex_lambda": {
+   "kicker": "Exemple · une longueur d'onde",
+   "note": "Deux points distants d'une longueur d'onde vibrent exactement en phase",
+   "tex": "\\lambda = \\frac{340}{440} \\approx 0{,}77\\ \\text{m}",
+   "titre": "Un son de quatre cent quarante hertz dans l'air",
+   "type": "formule"
+  },
+  "ex_phase": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "sinusoide"
+   },
+   "kicker": "Exemple · en phase ?",
+   "note": "Trois longueurs d'onde exactement : les deux points vibrent en phase",
+   "tex": "\\frac{d}{\\lambda} = \\frac{1{,}5}{0{,}5} = 3 \\qquad d = 3\\lambda",
+   "titre": "Un mètre cinquante pour une longueur d'onde de cinquante centimètres",
+   "type": "formule"
+  },
+  "ex_radar": {
+   "kicker": "Exemple · un contrôle de vitesse",
+   "tex": [
+    "v_r = \\frac{\\Delta f \\times c}{2\\, f_e} = \\frac{1333 \\times 3 \\times 10^{8}}{2 \\times 24 \\times 10^{9}}",
+    "v_r \\approx 8{,}33\\ \\text{m/s} \\approx 30\\ \\text{km/h}"
+   ],
+   "titre": "Vingt-quatre gigahertz, un décalage de mille trois cent trente-trois hertz",
+   "type": "etape"
+  },
+  "ex_recul": {
+   "kicker": "Exemple · un capteur de recul",
+   "note": "Plus l'obstacle est proche, plus l'alarme du véhicule s'accélère",
+   "tex": "d = \\frac{340 \\times 14{,}7 \\times 10^{-3}}{2} = 2{,}5\\ \\text{m}",
+   "titre": "Un écho après quatorze virgule sept millisecondes",
+   "type": "formule"
+  },
+  "ex_repos": {
+   "kicker": "Exemple · un point de repos",
+   "tex": [
+    "\\delta = 13{,}25 - 12 = 1{,}25\\ \\text{cm} = 2{,}5\\, \\lambda",
+    "\\delta = 5 \\times \\frac{\\lambda}{2} : \\text{multiple impair, donc repos}"
+   ],
+   "titre": "Douze centimètres d'une source, treize vingt-cinq de l'autre",
+   "type": "etape"
+  },
+  "ex_sismique": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "sismogramme"
+   },
+   "kicker": "Exemple · une onde sismique",
+   "note": "Le retard ne dépend que de la distance et de la célérité du milieu",
+   "tex": "\\tau = \\frac{25 \\times 10^{3}}{5 \\times 10^{3}} = 5\\ \\text{s}",
+   "titre": "Vingt-cinq kilomètres à cinq kilomètres par seconde",
+   "type": "formule"
+  },
+  "ex_superposition": {
+   "kicker": "Exemple · deux ondes de deux millimètres",
+   "tex": [
+    "y = y_1 + y_2 = 2 + 2 = 4\\ \\text{mm}",
+    "y = y_1 + y_2 = 2 - 2 = 0\\ \\text{mm}"
+   ],
+   "titre": "En phase, elles s'ajoutent ; en opposition, elles s'annulent",
+   "type": "etape"
+  },
+  "guitare": {
+   "kicker": "La corde de guitare",
+   "note": "L : longueur · T : tension · μ : masse linéique · les harmoniques valent n fois f1",
+   "tex": "f_1 = \\frac{1}{2L}\\, \\sqrt{\\frac{T}{\\mu}}",
+   "titre": "La fréquence fondamentale d'une corde tendue",
+   "type": "formule"
+  },
+  "interfrange": {
+   "kicker": "L'interfrange",
+   "note": "a : distance entre les deux sources · D : distance des sources à la ligne d'observation",
+   "tex": "i = \\frac{\\lambda\\, D}{a}",
+   "titre": "L'écart entre deux lignes consécutives de même nature",
+   "type": "formule"
+  },
+  "modes": {
+   "kicker": "Les modes propres d'une corde",
+   "note": "n = 1, 2, 3… · le mode n = 1 est le fondamental · v : célérité sur la corde",
+   "tex": "f_n = \\frac{n\\, v}{2L}",
+   "titre": "Une corde fixée aux deux bouts ne vibre qu'à certaines fréquences",
+   "type": "formule"
+  },
+  "noeuds": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "stationnaire"
+   },
+   "etapes": [
+    "Nœuds : points immobiles en permanence",
+    "Ventres : points de vibration maximale",
+    "D'un nœud au ventre voisin : λ/4"
+   ],
+   "kicker": "Nœuds et ventres",
+   "type": "recap"
+  },
+  "periodicite": {
+   "kicker": "La double périodicité",
+   "note": "T : période en secondes · λ : distance parcourue pendant une période",
+   "tex": [
+    "f = \\frac{1}{T}",
+    "\\lambda = v\\, T = \\frac{v}{f}"
+   ],
+   "titre": "Période dans le temps, longueur d'onde dans l'espace",
+   "type": "etape"
+  },
+  "radar": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "onde_em"
+   },
+   "kicker": "Le radar",
+   "texte": "Le radar remplace les ultrasons par des micro-ondes, qui voyagent à la vitesse de la lumière. En mode télémétrie, il applique la même formule d'aller-retour ; en mode Doppler, il lit la vitesse de la cible dans le décalage de fréquence de l'écho.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Onde mécanique : de l'énergie, pas de matière",
+    "λ = vT = v/f ; retard τ = d/v",
+    "Interférences : δ = kλ ou (2k+1)λ/2",
+    "Corde fixée : modes f_n = nv/(2L)",
+    "Mesures : d = vΔt/2 ; Doppler pour la vitesse"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "stationnaire": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "stationnaire"
+   },
+   "kicker": "Les ondes stationnaires",
+   "texte": "Quand une onde rencontre son onde réfléchie, de même fréquence et de même amplitude, mais en sens opposé, leur superposition ne voyage plus : c'est une onde stationnaire, comme sur une corde fixée à une extrémité.",
+   "type": "phrase"
+  },
+  "superposition": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "interference"
+   },
+   "kicker": "Le principe de superposition",
+   "texte": "Quand deux ondes se rencontrent en un point, la déformation résultante est la somme algébrique des deux déformations. Après le croisement, chacune continue sa route comme si l'autre n'existait pas.",
+   "type": "phrase"
+  },
+  "systeme": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "onde_em"
+   },
+   "kicker": "Les systèmes à ondes",
+   "texte": "Un système technologique à ondes réunit toujours un émetteur, un milieu de propagation et un récepteur. Ce qu'on exploite : l'énergie transportée, le temps de propagation, ou la modification de l'onde après son interaction avec un obstacle.",
+   "type": "phrase"
+  },
+  "telemetrie": {
+   "kicker": "La télémétrie par ultrasons",
+   "texte": "Le même principe sert dans l'air, à trois cent quarante mètres par seconde : télémètres, capteurs de recul des véhicules et sonars mesurent la distance d'un obstacle au temps que met l'écho à revenir.",
+   "type": "phrase",
+   "anim": {
+    "nom": "echo_mesure_fig",
+    "hauteur": 170
+   }
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "vagues"
+   },
+   "kicker": "Physique",
+   "sous": "Propagation, double périodicité, interférences, ondes stationnaires et leurs applications",
+   "titre": "Ondes mécaniques",
+   "type": "titre"
+  },
+  "types": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "types_ondes"
+   },
+   "kicker": "Transversale ou longitudinale",
+   "texte": "Si la perturbation est perpendiculaire à la direction de propagation, l'onde est transversale, comme sur une corde qui vibre verticalement. Si elle lui est parallèle, comme dans un son, l'onde est longitudinale.",
+   "type": "phrase"
+  }
+ },
+ "lecons": [
+  9498,
+  9499,
+  9500
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'onde progressive : propagation et double périodicité"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : la superposition des ondes, des interférences aux ondes stationnaires.",
+    "texte": "Partie 2 : quand deux ondes se rencontrent."
+   },
+   "sous_titre": "Superposition, interférences et ondes stationnaires"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : les ondes au service des mesures, de la corde de guitare à l'échographie et au radar.",
+    "texte": "Partie 3 : mesurer avec les ondes, de la guitare au radar."
+   },
+   "sous_titre": "Les ondes au service des mesures"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique consacré aux ondes mécaniques : comment elles se propagent, comment deux ondes se superposent jusqu'aux interférences et aux ondes stationnaires, et comment on les utilise pour mesurer des distances et des vitesses.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Propagation, superposition, applications : le programme."
+  },
+  {
+   "dit": "Une onde mécanique est la propagation d'une perturbation dans un milieu matériel élastique. Les vagues sur l'eau, les ondes sismiques, les vibrations d'une corde et les ondes sonores en sont des exemples. Point capital : l'onde transporte de l'énergie, mais pas de matière, et chaque point du milieu revient à son état initial après son passage.",
+   "ecran": "definition",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "De l'énergie transportée, pas de matière."
+  },
+  {
+   "dit": "Sur une corde horizontale dont les points vibrent verticalement, la perturbation est perpendiculaire à la direction de propagation : l'onde est transversale. Quand la perturbation est parallèle à la propagation, comme pour le son dans l'air, l'onde est longitudinale.",
+   "ecran": "types",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Transversale : perpendiculaire ; longitudinale : parallèle."
+  },
+  {
+   "dit": "La célérité v est la vitesse de propagation de l'onde ; elle dépend du milieu. Si l'onde atteint un point A puis un point B situé à la distance d, elle arrive en B avec un retard tau, qui vaut la distance divisée par la célérité.",
+   "ecran": "celerite",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Retard : τ = d/v."
+  },
+  {
+   "dit": "Exemple : une onde sismique se propage à cinq fois dix puissance trois mètres par seconde. Entre deux stations distantes de vingt-cinq kilomètres, le retard vaut vingt-cinq mille divisé par cinq mille, soit cinq secondes.",
+   "ecran": "ex_sismique",
+   "id": "p05",
+   "pause_apres": 0.7,
+   "texte": "Résultat : τ = 5 s."
+  },
+  {
+   "dit": "Une onde progressive possède une double périodicité. Dans le temps : la période T, durée au bout de laquelle chaque point retrouve le même état vibratoire, et la fréquence, son inverse. Dans l'espace : la longueur d'onde lambda, distance entre deux points voisins qui vibrent en phase ; c'est aussi la distance parcourue par l'onde pendant une période, d'où lambda égale v fois T, ou v sur f.",
+   "ecran": "periodicite",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "T et f dans le temps ; λ = vT dans l'espace."
+  },
+  {
+   "dit": "Exemple : un son de quatre cent quarante hertz se propage dans l'air à trois cent quarante mètres par seconde. Sa longueur d'onde vaut trois cent quarante divisé par quatre cent quarante, environ zéro virgule soixante-dix-sept mètre.",
+   "ecran": "ex_lambda",
+   "id": "p07",
+   "pause_apres": 0.7,
+   "texte": "Résultat : λ ≈ 0,77 m."
+  },
+  {
+   "dit": "Écrivons le mouvement d'un point du milieu. La source, à l'origine, vibre en sinusoïde. Un point M, à l'abscisse x, reproduit exactement ce mouvement, mais avec le retard x sur v. En remplaçant ce retard grâce à lambda égale v fois T, on obtient l'équation de l'onde, qui mélange le temps et l'espace.",
+   "ecran": "equation",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "y_M(t) = A·sin(2πt/T − 2πx/λ)."
+  },
+  {
+   "dit": "Exemple du cours : pour une période de deux centièmes de seconde et une longueur d'onde de zéro virgule soixante-huit mètre, l'équation devient y de M égale A fois le sinus de cent pi fois t, moins neuf virgule vingt-quatre fois x.",
+   "ecran": "ex_equation",
+   "id": "p09",
+   "pause_apres": 0.7,
+   "texte": "Résultat : y_M = A·sin(100πt − 9,24x)."
+  },
+  {
+   "dit": "Comparons deux points du milieu : leur déphasage vaut deux pi sur lambda, multiplié par la différence de leurs abscisses. S'il est un multiple pair de pi, les points vibrent en phase ; s'il est un multiple impair de pi, ils vibrent en opposition de phase.",
+   "ecran": "dephasage",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Δφ = (2π/λ)(x2 − x1) : en phase ou en opposition."
+  },
+  {
+   "dit": "Exemple : deux points distants d'un mètre cinquante sur une onde de longueur d'onde zéro virgule cinq mètre. Le rapport vaut trois : la distance est exactement trois longueurs d'onde, les deux points vibrent donc en phase.",
+   "ecran": "ex_phase",
+   "id": "p11",
+   "pause_apres": 0.7,
+   "texte": "Résultat : d = 3λ, points en phase."
+  },
+  {
+   "dit": "Quand deux ondes mécaniques se rencontrent en un même point du milieu, la déformation résultante est simplement la somme algébrique des déformations que chacune produirait seule. Et après le croisement, chaque onde poursuit sa propagation comme si l'autre n'existait pas : c'est le principe de superposition.",
+   "ecran": "superposition",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Superposition : les déformations s'ajoutent, puis chacune repart."
+  },
+  {
+   "dit": "Exemple : deux ondes de même amplitude, deux millimètres. Si elles arrivent en phase, leurs déformations s'ajoutent : quatre millimètres. Si elles arrivent en opposition de phase, elles se compensent exactement : déformation nulle.",
+   "ecran": "ex_superposition",
+   "id": "p13",
+   "pause_apres": 0.7,
+   "texte": "Résultat : 4 mm en phase, 0 mm en opposition."
+  },
+  {
+   "dit": "L'expérience classique se fait à la surface de l'eau : deux vibreurs synchrones, de même fréquence et même amplitude, frappent l'eau en deux points et créent deux ondes circulaires qui se superposent. La surface se couvre alors d'une figure d'interférences, faite de lignes de repos et de lignes de vibration maximale alternées.",
+   "ecran": "cuve",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "La cuve à ondes : des lignes de repos et de vibration maximale."
+  },
+  {
+   "dit": "Pour un point M, tout dépend de la différence de marche, delta égale d deux moins d un, ses distances aux deux sources. Si delta est un multiple entier de lambda, les ondes arrivent en phase : vibration maximale. Si delta est un multiple impair de lambda sur deux, elles arrivent en opposition : c'est un point de repos.",
+   "ecran": "conditions",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "δ = kλ : maximum ; δ = (2k+1)λ/2 : repos."
+  },
+  {
+   "dit": "Les lignes de même nature se répètent régulièrement : la distance entre deux lignes de vibration maximale consécutives est l'interfrange i, qui vaut lambda fois D divisé par a, où a est la distance entre les sources et D la distance des sources à la ligne d'observation.",
+   "ecran": "interfrange",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Interfrange : i = λD/a."
+  },
+  {
+   "dit": "Exemple résolu : des vibreurs distants de deux centimètres créent des ondes de longueur d'onde zéro virgule cinq centimètre. Un point situé à douze centimètres d'une source et treize virgule vingt-cinq de l'autre a une différence de marche d'un virgule vingt-cinq centimètre, soit deux virgule cinq lambda, ou cinq fois lambda sur deux : un multiple impair, donc un point de repos.",
+   "ecran": "ex_repos",
+   "id": "p17",
+   "pause_apres": 0.7,
+   "texte": "Résultat : δ = 2,5λ = 5λ/2, point de repos."
+  },
+  {
+   "dit": "Autre fruit de la superposition : quand une onde se réfléchit sur une extrémité fixe, elle se superpose à elle-même en sens inverse. Les deux ondes, de même fréquence et même amplitude, produisent une onde stationnaire, qui vibre sur place sans se propager.",
+   "ecran": "stationnaire",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Onde + onde réfléchie : une vibration qui ne voyage plus."
+  },
+  {
+   "dit": "Dans une onde stationnaire, certains points, les nœuds, restent immobiles en permanence, tandis que les ventres vibrent au maximum. Nœuds et ventres se succèdent régulièrement : deux nœuds voisins sont distants d'une demi-longueur d'onde, et d'un nœud au ventre voisin, il n'y a qu'un quart de longueur d'onde.",
+   "ecran": "noeuds",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Nœuds immobiles, ventres au maximum, tous les λ/2."
+  },
+  {
+   "dit": "Une corde fixée à ses deux extrémités impose ses conditions : elle ne peut vibrer qu'à des fréquences bien précises, ses modes propres, multiples entiers de v sur deux L. Le premier mode, n égale un, est le fondamental.",
+   "ecran": "modes",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Modes propres : f_n = nv/(2L)."
+  },
+  {
+   "dit": "Exemple : une corde d'un mètre, fixée aux deux bouts, où les ondes voyagent à deux cents mètres par seconde. Son fondamental vaut un fois deux cents, divisé par deux fois un, soit cent hertz. Pour le mode deux, des nœuds apparaissent aussi au milieu de la corde.",
+   "ecran": "ex_corde",
+   "id": "p21",
+   "pause_apres": 0.7,
+   "texte": "Résultat : f1 = 100 Hz."
+  },
+  {
+   "dit": "Les ondes ne servent pas qu'à décrire la nature : on les exploite. Tout système technologique à ondes combine un émetteur qui produit l'onde, un milieu où elle se propage, et un récepteur qui la détecte après son interaction avec l'environnement. L'information cherchée est soit l'énergie transportée, soit le temps de propagation, soit la modification de l'onde.",
+   "ecran": "systeme",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Émetteur, milieu, récepteur : l'architecture commune."
+  },
+  {
+   "dit": "Premier système : la corde de guitare. Pincée, elle vibre en onde stationnaire, et sa fréquence fondamentale vaut un sur deux L, multiplié par la racine carrée du rapport de la tension à la masse linéique. Le son émis superpose ce fondamental et ses harmoniques, multiples entiers, ce qui forme le timbre de l'instrument.",
+   "ecran": "guitare",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "f1 = (1/2L)·√(T/μ) ; harmoniques : n·f1."
+  },
+  {
+   "dit": "Exemple du cours : une corde de zéro virgule soixante-cinq mètre, de masse linéique trois fois dix puissance moins trois kilogrammes par mètre, tendue à quatre-vingts newtons. Le calcul donne une fréquence fondamentale d'environ cent vingt-cinq virgule six hertz. Pour changer de note, le musicien raccourcit la corde avec un doigt, ou modifie sa tension.",
+   "ecran": "ex_guitare",
+   "id": "p24",
+   "pause_apres": 0.7,
+   "texte": "Résultat : f1 ≈ 125,6 Hz."
+  },
+  {
+   "dit": "L'échographie médicale utilise des ultrasons, des ondes mécaniques de un à quinze mégahertz, émis par une sonde piézoélectrique. Dans les tissus, à environ mille cinq cent quarante mètres par seconde, ils se réfléchissent partiellement aux interfaces entre milieux d'impédances acoustiques différentes.",
+   "ecran": "echographie",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Ultrasons : émission, réflexions aux interfaces, échos."
+  },
+  {
+   "dit": "La sonde fonctionne en émission-réception : elle émet une impulsion, puis écoute l'écho. La distance de l'interface vaut la célérité multipliée par le temps d'aller-retour, divisée par deux, car l'onde a parcouru le trajet deux fois.",
+   "ecran": "distance",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Distance : d = v·Δt/2, l'aller-retour."
+  },
+  {
+   "dit": "Exemple : un écho revient cent trente microsecondes après l'émission. La distance vaut mille cinq cent quarante fois cent trente fois dix puissance moins six, divisé par deux, soit zéro virgule dix mètre : l'interface se trouve à dix centimètres de la sonde. En balayant, on construit l'image des structures internes.",
+   "ecran": "ex_echo",
+   "id": "p27",
+   "pause_apres": 0.7,
+   "texte": "Résultat : d = 10 cm."
+  },
+  {
+   "dit": "La télémétrie par ultrasons applique exactement la même formule dans l'air, où la célérité vaut environ trois cent quarante mètres par seconde : c'est le principe des télémètres à ultrasons, des capteurs de recul des véhicules et des sonars.",
+   "ecran": "telemetrie",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Même formule dans l'air : télémètres, radars de recul, sonars."
+  },
+  {
+   "dit": "Exemple : un capteur de parking reçoit l'écho après quatorze virgule sept millisecondes. La distance vaut trois cent quarante fois quatorze virgule sept fois dix puissance moins trois, divisé par deux, soit deux virgule cinq mètres. L'alarme s'accélère à mesure que l'obstacle se rapproche.",
+   "ecran": "ex_recul",
+   "id": "p29",
+   "pause_apres": 0.7,
+   "texte": "Résultat : obstacle à 2,5 m."
+  },
+  {
+   "dit": "Le radar, enfin, utilise des ondes électromagnétiques, qui voyagent à la vitesse de la lumière, trois fois dix puissance huit mètres par seconde. Pour la distance, il applique la même formule d'aller-retour. Et si la cible bouge, la fréquence de l'écho change : c'est l'effet Doppler.",
+   "ecran": "radar",
+   "id": "p30",
+   "pause_apres": 0.6,
+   "texte": "Micro-ondes : distance par aller-retour, vitesse par Doppler."
+  },
+  {
+   "dit": "Le décalage Doppler vaut, au signe près, deux fois la vitesse radiale de la cible, divisée par la vitesse de la lumière, multipliée par la fréquence émise. Signe plus quand la cible s'approche, fréquence reçue plus haute ; signe moins quand elle s'éloigne.",
+   "ecran": "doppler",
+   "id": "p31",
+   "pause_apres": 0.6,
+   "texte": "Δf = ±(2v_r/c)·f_e : le signe dit le sens du mouvement."
+  },
+  {
+   "dit": "Exemple final : un radar émet à vingt-quatre gigahertz et reçoit un décalage de plus mille trois cent trente-trois hertz, le véhicule s'approche. La vitesse radiale vaut le décalage fois la vitesse de la lumière, divisé par deux fois la fréquence émise : environ huit virgule trente-trois mètres par seconde, soit trente kilomètres par heure.",
+   "ecran": "ex_radar",
+   "id": "p32",
+   "pause_apres": 0.7,
+   "texte": "Résultat : v_r ≈ 8,33 m/s ≈ 30 km/h."
+  },
+  {
+   "dit": "Retenez l'essentiel : une onde mécanique transporte de l'énergie sans transporter de matière ; sa longueur d'onde vaut la célérité fois la période ; la superposition explique les interférences, réglées par la différence de marche, et les ondes stationnaires des cordes ; et la mesure du temps d'aller-retour, ou du décalage Doppler, transforme les ondes en instruments de mesure.",
+   "ecran": "recap",
+   "id": "p33",
+   "pause_apres": 0.5,
+   "texte": "Propagation, superposition, mesures : à retenir."
+  }
+ ],
+ "titre": "Ondes mécaniques"
+}

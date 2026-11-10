@@ -18,6 +18,9 @@ type Props = PressableProps & {
   badge?: number;
 };
 
+/** Hauteur dont le bouton central dépasse au-dessus de la barre : le contenu des onglets doit s'arrêter au-dessus. */
+export const DEPASSEMENT_CENTRAL = 22;
+
 /** Un onglet de la barre. Le bouton Photo central, émeraude et rond, est l'action n° 1. Texte toujours visible. */
 export const Onglet = forwardRef<View, Props>(function Onglet(
   { libelle, icone, iconeActive, isFocused, central, badge, ...reste },
@@ -67,5 +70,5 @@ const styles = StyleSheet.create({
   badgeTexte: { fontSize: 10, lineHeight: 12 },
   onglet: { flex: 1, minHeight: cibleMin + 8, alignItems: 'center', justifyContent: 'flex-end', paddingVertical: 6, gap: 2 },
   photoMasque: { opacity: 0 },
-  photo: { width: 52, height: 52, borderRadius: 26, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center', marginTop: -22 },
+  photo: { width: 52, height: 52, borderRadius: 26, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center', marginTop: -DEPASSEMENT_CENTRAL },
 });

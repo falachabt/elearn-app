@@ -1,0 +1,360 @@
+{
+ "cours": 6692,
+ "ecrans": {
+  "applications": {
+   "etapes": [
+    "Cellules photovoltaïques : les panneaux solaires",
+    "Capteurs de luminosité : photo, éclairage automatique",
+    "Détecteurs d'incendie",
+    "Tubes photomultiplicateurs"
+   ],
+   "kicker": "Applications",
+   "titre": "L'effet photoélectrique au quotidien",
+   "type": "recap"
+  },
+  "arret": {
+   "kicker": "Potentiel d'arrêt",
+   "note": "e = 1,6 × 10⁻¹⁹ C · U₀ mesure donc l'énergie des photoélectrons",
+   "tex": "e \\cdot U_0 = E_{c,\\max} = h\\nu - W_0",
+   "titre": "Freiner les électrons pour mesurer leur énergie",
+   "type": "formule"
+  },
+  "compton": {
+   "anim": {
+    "nom": "compton_fig",
+    "hauteur": 220
+   },
+   "kicker": "Effet Compton (1923)",
+   "texte": "Le photon X heurte un électron quasi libre et repart dévié, affaibli.",
+   "type": "phrase"
+  },
+  "compton_formule": {
+   "kicker": "Relation de Compton",
+   "note": "λ_C = h/(mₑ c) = 2,43 × 10⁻¹² m : la longueur d'onde de Compton",
+   "tex": "\\lambda' - \\lambda = \\frac{h}{m_e\\, c}\\,(1 - \\cos\\theta)",
+   "titre": "Le décalage ne dépend que de l'angle",
+   "type": "formule"
+  },
+  "ecmax": {
+   "kicker": "Énergie cinétique maximale",
+   "note": "Bilan d'énergie d'un photon absorbé par un électron",
+   "tex": "E_{c,\\max} = h\\nu - W_0 = \\frac{h\\,c}{\\lambda} - W_0",
+   "titre": "Ce qui reste devient de la vitesse",
+   "type": "formule"
+  },
+  "etats": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "niveaux_atome_fig"
+   },
+   "kicker": "Fondamental, excités, ionisation",
+   "texte": "n = 1 : état fondamental · n > 1 : états excités · n → ∞ : atome ionisé.",
+   "type": "phrase"
+  },
+  "ex_cesium": {
+   "kicker": "Exemple · césium",
+   "tex": [
+    "\\lambda_0 = \\frac{h\\,c}{W_0} = 654\\ \\text{nm} \\; > \\; \\lambda = 500\\ \\text{nm}",
+    "E_{c,\\max} = \\frac{h\\,c}{\\lambda} - W_0 = 0{,}58\\ \\text{eV}",
+    "U_0 = \\frac{E_{c,\\max}}{e} = 0{,}58\\ \\text{V}"
+   ],
+   "titre": "Une cathode de césium éclairée à 500 nm",
+   "type": "etape"
+  },
+  "ex_compton": {
+   "kicker": "Exemple · diffusion à 90°",
+   "tex": [
+    "\\lambda' = \\lambda + \\frac{h}{m_e\\, c}\\,(1 - \\cos 90^\\circ)",
+    "\\lambda' = 20 \\times 10^{-12} + 2{,}43 \\times 10^{-12} = 22{,}43\\ \\text{pm}"
+   ],
+   "titre": "Un photon X de 20 pm diffusé à angle droit",
+   "type": "etape"
+  },
+  "ex_halpha": {
+   "kicker": "Exemple · raie H-alpha",
+   "tex": [
+    "\\frac{1}{\\lambda} = 1{,}097 \\times 10^7 \\times \\frac{5}{36} \\approx 1{,}524 \\times 10^6\\ \\text{m}^{-1}",
+    "\\lambda \\approx 6{,}56 \\times 10^{-7}\\ \\text{m} = 656\\ \\text{nm}"
+   ],
+   "titre": "La transition de n = 3 vers n = 2",
+   "type": "etape"
+  },
+  "ex_n3": {
+   "kicker": "Exemple",
+   "tex": [
+    "E_3 = -\\frac{13{,}6}{3^2} = -\\frac{13{,}6}{9}",
+    "E_3 \\approx -1{,}51\\ \\text{eV}"
+   ],
+   "titre": "L'énergie du niveau n = 3",
+   "type": "etape"
+  },
+  "niveaux": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "niveaux_atome_fig"
+   },
+   "kicker": "Niveaux d'énergie",
+   "texte": "L'énergie de l'atome est quantifiée : elle forme des paliers discrets.",
+   "type": "phrase"
+  },
+  "niveaux_formule": {
+   "kicker": "L'atome d'hydrogène",
+   "note": "E₀ = 13,6 eV : énergie de Rydberg · n : nombre quantique principal",
+   "tex": "E_n = -\\frac{E_0}{n^2}",
+   "titre": "Une seule formule pour tous les niveaux",
+   "type": "formule"
+  },
+  "photo_def": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "photoelectrique_fig"
+   },
+   "kicker": "Effet photoélectrique",
+   "texte": "Un métal éclairé par un rayonnement assez énergétique émet des électrons : les photoélectrons.",
+   "type": "phrase"
+  },
+  "photon": {
+   "kicker": "Le photon d'Einstein (1905)",
+   "note": "h = 6,63 × 10⁻³⁴ J·s · le photon est absorbé en entier par un électron",
+   "tex": "E = h\\,\\nu",
+   "titre": "La lumière est faite de grains d'énergie",
+   "type": "formule"
+  },
+  "recap": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "niveaux_atome_fig"
+   },
+   "etapes": [
+    "Énergie d'un photon : E = hν = hc/λ",
+    "Émission si ν > ν₀ (ou λ < λ₀) ; bilan : Ec max = hν − W₀",
+    "Potentiel d'arrêt : eU₀ = hν − W₀",
+    "Compton : Δλ = (h/mₑc)(1 − cos θ), indépendant de λ"
+   ],
+   "kicker": "À retenir",
+   "titre": "Physique quantique et atomique",
+   "type": "recap"
+  },
+  "rydberg": {
+   "kicker": "Relation de Rydberg",
+   "note": "R_H ≈ 1,097 × 10⁷ m⁻¹ · pour une émission : nᵢ > n_f",
+   "tex": "\\frac{1}{\\lambda} = R_H \\left( \\frac{1}{n_f^2} - \\frac{1}{n_i^2} \\right)",
+   "titre": "Calculer la longueur d'onde d'une transition",
+   "type": "formule"
+  },
+  "series": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "spectre"
+   },
+   "etapes": [
+    "Lyman : transitions vers n = 1 — ultraviolet",
+    "Balmer : transitions vers n = 2 — visible",
+    "Paschen : transitions vers n = 3 — infrarouge"
+   ],
+   "kicker": "Séries spectrales",
+   "titre": "Trois familles de raies",
+   "type": "recap"
+  },
+  "seuil": {
+   "kicker": "Travail d'extraction et seuil",
+   "tex": [
+    "\\nu_0 = \\frac{W_0}{h}",
+    "\\lambda_0 = \\frac{h\\,c}{W_0}"
+   ],
+   "titre": "Le seuil : aucune émission en dessous",
+   "type": "etape"
+  },
+  "spectres": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "spectre"
+   },
+   "kicker": "Spectres d'émission et d'absorption",
+   "texte": "Émission : raies colorées sur fond noir · Absorption : raies noires sur fond continu, aux mêmes longueurs d'onde.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "niveaux_atome_fig"
+   },
+   "kicker": "Physique",
+   "sous": "Niveaux d'énergie de l'hydrogène, spectres, effet photoélectrique et effet Compton",
+   "titre": "Physique quantique et atomique",
+   "type": "titre"
+  },
+  "transitions": {
+   "kicker": "Transitions électroniques",
+   "note": "h = 6,63 × 10⁻³⁴ J·s (constante de Planck) · c : vitesse de la lumière",
+   "tex": "\\Delta E = E_{final} - E_{initial} = h\\,\\nu = \\frac{h\\,c}{\\lambda}",
+   "titre": "Changer de niveau, c'est échanger un photon",
+   "type": "formule"
+  }
+ },
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'atome d'hydrogène : niveaux et spectres"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : la lumière se comporte aussi comme un flux de particules. Deux expériences le prouvent : l'effet photoélectrique et l'effet Compton.",
+    "texte": "Partie 2 : la lumière en grains — effet photoélectrique et effet Compton."
+   },
+   "sous_titre": "La lumière en grains : photoélectrique et Compton"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique quantique et atomique. Nous verrons d'abord comment l'énergie d'un atome d'hydrogène est quantifiée, puis comment la lumière, par l'effet photoélectrique et l'effet Compton, révèle sa nature corpusculaire.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Physique quantique et atomique."
+  },
+  {
+   "dit": "L'énergie d'un atome ne peut pas prendre n'importe quelle valeur : elle n'existe qu'en paliers discrets, les niveaux d'énergie. Pour l'hydrogène, l'atome le plus simple — un proton et un électron — ces niveaux sont donnés par une formule unique.",
+   "ecran": "niveaux",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Des niveaux d'énergie discrets."
+  },
+  {
+   "dit": "Le niveau numéro n a pour énergie E n égale moins E zéro sur n au carré, où E zéro vaut treize virgule six électronvolts : c'est l'énergie de Rydberg. n est le nombre quantique principal : un, deux, trois, et ainsi de suite.",
+   "ecran": "niveaux_formule",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "E n = −E₀/n², avec E₀ = 13,6 eV."
+  },
+  {
+   "dit": "Le niveau un est le plus bas : c'est l'état fondamental, à moins treize virgule six électronvolts. Les niveaux supérieurs sont des états excités. Et quand n tend vers l'infini, l'énergie tend vers zéro : l'électron est libéré, l'atome est ionisé. L'énergie d'ionisation vaut donc treize virgule six électronvolts.",
+   "ecran": "etats",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Fondamental, excités, puis l'ionisation."
+  },
+  {
+   "dit": "Exemple du cours : l'énergie du niveau trois. On remplace : moins treize virgule six divisé par neuf, soit environ moins un virgule cinquante et un électronvolts. Le niveau trois est donc bien moins profond que le niveau fondamental.",
+   "ecran": "ex_n3",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Exemple : E₃ ≈ −1,51 eV."
+  },
+  {
+   "dit": "Un atome ne change de niveau qu'en absorbant ou en émettant un photon dont l'énergie égale exactement la différence entre les deux niveaux : delta E égale h fois nu, soit h fois c sur lambda. Si le niveau final est plus haut, le photon est absorbé ; s'il est plus bas, le photon est émis.",
+   "ecran": "transitions",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "ΔE = hν = hc/λ : le photon de la transition."
+  },
+  {
+   "dit": "Un gaz d'hydrogène excité émet des photons : son spectre est fait de raies colorées sur fond noir, chaque raie correspondant à une transition. Éclairé par une lumière blanche, le même gaz froid absorbe exactement les mêmes longueurs d'onde : ce sont des raies noires sur fond continu. Ce spectre est la signature de l'atome : il permet de l'identifier.",
+   "ecran": "spectres",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Le spectre de raies, signature de l'atome."
+  },
+  {
+   "dit": "Pour calculer la longueur d'onde d'une transition, on utilise la relation de Rydberg : un sur lambda égale R H fois, entre parenthèses, un sur n f au carré moins un sur n i au carré. R H, la constante de Rydberg, vaut environ un virgule zéro neuf sept fois dix puissance sept par mètre.",
+   "ecran": "rydberg",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "La relation de Rydberg donne toutes les raies."
+  },
+  {
+   "dit": "Exemple : la transition de n égal trois vers n égal deux, la raie H alpha de la série de Balmer. Un sur lambda égale un virgule zéro neuf sept fois dix puissance sept, multiplié par un quart moins un neuvième, soit cinq trente-sixièmes. On trouve lambda environ six cent cinquante-six nanomètres : c'est une raie rouge du spectre visible.",
+   "ecran": "ex_halpha",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Exemple : la raie H-alpha, à 656 nm, dans le rouge."
+  },
+  {
+   "dit": "Les transitions qui aboutissent au même niveau final forment une série. Vers le niveau un, la série de Lyman, dans l'ultraviolet. Vers le niveau deux, la série de Balmer, dans le visible. Vers le niveau trois, la série de Paschen, dans l'infrarouge. Comme les niveaux sont discrets, seules certaines longueurs d'onde sont possibles : des raies, jamais un continuum.",
+   "ecran": "series",
+   "id": "p10",
+   "pause_apres": 0.7,
+   "texte": "Lyman, Balmer, Paschen : trois séries de raies."
+  },
+  {
+   "dit": "L'effet photoélectrique, découvert par Hertz en mille huit cent quatre-vingt-sept, est l'émission d'électrons par un métal éclairé par un rayonnement de fréquence suffisamment élevée. Ces électrons émis sont appelés photoélectrons. La théorie ondulatoire de la lumière ne peut pas expliquer ce phénomène.",
+   "ecran": "photo_def",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "L'effet photoélectrique : des électrons éjectés par la lumière."
+  },
+  {
+   "dit": "En mille neuf cent cinq, Einstein propose que la lumière est faite de grains d'énergie, les photons. Chaque photon porte l'énergie E égale h fois nu, où h est la constante de Planck et nu la fréquence du rayonnement.",
+   "ecran": "photon",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Le photon : E = hν."
+  },
+  {
+   "dit": "Pour arracher un électron, le photon doit fournir au minimum le travail d'extraction, W zéro, propre à chaque métal. Cela définit un seuil : la fréquence minimale nu zéro égale W zéro sur h, et la longueur d'onde seuil lambda zéro égale h c sur W zéro. En dessous du seuil, aucune émission, même avec une lumière intense.",
+   "ecran": "seuil",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Le seuil : ν₀ = W₀/h et λ₀ = hc/W₀."
+  },
+  {
+   "dit": "Le photon cède toute son énergie à l'électron : une partie paie l'extraction, le reste devient l'énergie cinétique maximale du photoélectron : E c max égale h nu moins W zéro.",
+   "ecran": "ecmax",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Ec max = hν − W₀."
+  },
+  {
+   "dit": "Dans une cellule photoélectrique, on peut freiner les photoélectrons par une tension opposée. La tension qui annule juste le courant est le potentiel d'arrêt, U zéro : e fois U zéro égale l'énergie cinétique maximale. À tension positive, le courant atteint un palier de saturation, quand tous les électrons émis sont collectés.",
+   "ecran": "arret",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Le potentiel d'arrêt : eU₀ = Ec max."
+  },
+  {
+   "dit": "Exemple du cours : une cathode de césium, de travail d'extraction un virgule neuf électronvolts, éclairée à cinq cents nanomètres. La longueur d'onde seuil vaut six cent cinquante-quatre nanomètres : cinq cents est en dessous, il y a donc émission. L'énergie cinétique maximale vaut zéro virgule cinquante-huit électronvolts, et le potentiel d'arrêt zéro virgule cinquante-huit volts.",
+   "ecran": "ex_cesium",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Exemple : émission, Ec max = 0,58 eV, U₀ = 0,58 V."
+  },
+  {
+   "dit": "L'effet photoélectrique est partout : les cellules photovoltaïques des panneaux solaires, les capteurs de luminosité des appareils photo et de l'éclairage automatique, les détecteurs d'incendie et les tubes photomultiplicateurs des instruments de mesure.",
+   "ecran": "applications",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Des applications quotidiennes."
+  },
+  {
+   "dit": "En mille neuf cent vingt-trois, Compton envoie des rayons X sur des électrons quasi libres : le photon est dévié de sa trajectoire et cède une partie de son énergie à l'électron, qui est éjecté. Le photon se comporte comme une particule qui entre en collision : nouvelle preuve de la nature corpusculaire de la lumière.",
+   "ecran": "compton",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "L'effet Compton : le photon en collision."
+  },
+  {
+   "dit": "La conservation de l'énergie et de la quantité de mouvement donne la relation de Compton : lambda prime moins lambda égale h sur m e fois c, multiplié par un moins cosinus thêta. Le photon diffusé a une plus grande longueur d'onde, donc une plus faible énergie. Et le décalage ne dépend que de l'angle de diffusion.",
+   "ecran": "compton_formule",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Δλ = (h/mₑc)(1 − cos θ)."
+  },
+  {
+   "dit": "Exemple : un photon X de vingt picomètres diffusé à quatre-vingt-dix degrés. Cosinus quatre-vingt-dix vaut zéro : le décalage vaut exactement la longueur d'onde de Compton, deux virgule quarante-trois picomètres. Le photon diffusé a donc une longueur d'onde de vingt-deux virgule quarante-trois picomètres, et l'énergie perdue est partie dans l'électron.",
+   "ecran": "ex_compton",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Exemple : λ′ = 22,43 pm après diffusion à 90°."
+  },
+  {
+   "dit": "À retenir : le photon porte l'énergie h nu ; l'effet photoélectrique exige une fréquence au-dessus du seuil, et le potentiel d'arrêt mesure l'énergie des électrons ; l'effet Compton montre le photon en collision, avec un décalage de longueur d'onde qui ne dépend que de l'angle.",
+   "ecran": "recap",
+   "id": "p21",
+   "pause_apres": 0.5,
+   "texte": "Quantique et atomique : l'essentiel à retenir."
+  }
+ ],
+ "titre": "Physique quantique et atomique"
+}

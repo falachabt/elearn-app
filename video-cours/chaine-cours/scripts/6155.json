@@ -1,0 +1,509 @@
+{
+ "cours": 6155,
+ "titre": "Applications linéaires : transformer en respectant la structure",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Applications linéaires",
+   "titre": "Applications linéaires : transformer en respectant la structure",
+   "sous": "Définition, noyau et image, théorème du rang, matrices et changements de base",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Agrandir, projeter, dériver, tourner : des transformations qui respectent les combinaisons.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 200
+   }
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition : deux conditions en une",
+   "tex": "f(\\lambda u + \\mu v) = \\lambda f(u) + \\mu f(v)",
+   "note": "Additivité et homogénéité : la structure des combinaisons est préservée.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 180
+   }
+  },
+  "exemples": {
+   "type": "etape",
+   "kicker": "Trois exemples fondateurs",
+   "titre": "Dilatation, dérivation, projection",
+   "tex": [
+    "f(x,\\ y) = (2x,\\ 2y) : \\text{ dilatation de rapport } 2",
+    "D(f + g) = f' + g' \\qquad D(\\lambda f) = \\lambda f' : \\text{ la dérivation est linéaire}",
+    "p(x,\\ y,\\ z) = (x,\\ y,\\ 0) : \\text{ projection sur le plan horizontal}"
+   ]
+  },
+  "projection": {
+   "type": "formule",
+   "kicker": "La projection sur un axe",
+   "tex": "f(x,\\ y) = (x,\\ 0)",
+   "note": "Chaque vecteur est écrasé verticalement sur l'axe des abscisses.",
+   "anim": {
+    "nom": "projection_fig",
+    "hauteur": 220
+   }
+  },
+  "contre_exemples": {
+   "type": "etape",
+   "kicker": "Ce qui n'est pas linéaire",
+   "titre": "Translation et norme : deux violations",
+   "tex": [
+    "t(x,\\ y) = (x + 1,\\ y + 2) \\qquad t(0,\\ 0) = (1,\\ 2) \\neq (0,\\ 0)",
+    "n(\\lambda u) = |\\lambda|\\, n(u) \\neq \\lambda\\, n(u) \\text{ en général}",
+    "f(0_E) = 0_F : \\text{ nécessaire, mais pas suffisant}"
+   ]
+  },
+  "determinee_base": {
+   "type": "etape",
+   "kicker": "Déterminée par les images d'une base",
+   "titre": "Deux images suffisent pour tout calculer",
+   "tex": [
+    "f(1,\\ 0) = (2,\\ 1) \\qquad f(0,\\ 1) = (-1,\\ 3)",
+    "f(3,\\ 4) = 3f(1,\\ 0) + 4f(0,\\ 1) = 3(2,\\ 1) + 4(-1,\\ 3) = (2,\\ 15)"
+   ]
+  },
+  "proprietes": {
+   "type": "formule",
+   "kicker": "Propriétés immédiates",
+   "tex": "\\textstyle f\\left(\\sum_i \\lambda_i v_i\\right) = \\sum_i \\lambda_i f(v_i)",
+   "note": "L'image d'un sous-espace est un sous-espace, l'image réciproque aussi, et f est entièrement déterminée par les images d'une base."
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Linéaire : sommes et multiples conservés",
+    "Toujours f du vecteur nul égale le vecteur nul",
+    "Déterminée par les images d'une base",
+    "Translation et norme : non linéaires"
+   ]
+  },
+  "noyau": {
+   "type": "formule",
+   "kicker": "Le noyau : ce qui disparaît",
+   "tex": "\\ker f = \\{u \\in E \\mid f(u) = 0_F\\}",
+   "note": "Un sous-espace de l'espace de départ : tout ce qui est écrasé sur zéro.",
+   "anim": {
+    "nom": "noyau_image_fig",
+    "hauteur": 180,
+    "accent": "ker"
+   }
+  },
+  "image": {
+   "type": "formule",
+   "kicker": "L'image : ce qui est atteint",
+   "tex": "\\text{Im}\\, f = \\{f(u) \\mid u \\in E\\} = \\text{Vect}(f(e_1),\\ \\dots,\\ f(e_n))",
+   "note": "Un sous-espace de l'espace d'arrivée, engendré par les images d'une base.",
+   "anim": {
+    "nom": "noyau_image_fig",
+    "hauteur": 180,
+    "accent": "im"
+   }
+  },
+  "exemple_plan": {
+   "type": "etape",
+   "kicker": "Exemple : noyau et image dans le plan",
+   "titre": "Deux droites, une dans chaque rôle",
+   "tex": [
+    "f(x,\\ y) = (x - y,\\ 2x - 2y)",
+    "\\ker f : \\ x = y \\quad \\Rightarrow \\quad \\ker f = \\text{Vect}((1,\\ 1))",
+    "\\text{Im}\\, f : \\ b = 2a \\quad \\Rightarrow \\quad \\text{Im}\\, f = \\text{Vect}((1,\\ 2))"
+   ]
+  },
+  "rang": {
+   "type": "formule",
+   "kicker": "Théorème du rang",
+   "tex": "\\dim E = \\dim \\ker f + \\dim \\text{Im}\\, f",
+   "note": "Le rang est la dimension de l'image : ce qui disparaît, plus ce qui est produit.",
+   "anim": {
+    "nom": "noyau_image_fig",
+    "hauteur": 180,
+    "accent": "rang"
+   }
+  },
+  "exemple_rang": {
+   "type": "etape",
+   "kicker": "Exemple : de l'espace vers le plan",
+   "titre": "Une droite effacée, un plan atteint",
+   "tex": [
+    "f(x,\\ y,\\ z) = (x + y,\\ 2y - z)",
+    "\\ker f = \\text{Vect}((-1,\\ 1,\\ 2)), \\quad \\dim \\ker f = 1",
+    "\\text{Im}\\, f = \\mathbb{R}^2, \\quad \\dim \\text{Im}\\, f = 2, \\quad 3 = 1 + 2"
+   ]
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "Méthode : noyau et image en pratique",
+   "titre": "Résoudre, puis engendrer",
+   "tex": [
+    "\\text{noyau : résoudre } f(u) = 0, \\text{ exprimer les solutions par générateurs}",
+    "\\text{image : calculer les } f(e_i) \\text{ pour une base, puis prendre Vect}",
+    "\\text{contrôle : vérifier avec le théorème du rang}",
+    "\\text{colonnes d'une matrice : les images des vecteurs de base}"
+   ]
+  },
+  "injectivite": {
+   "type": "formule",
+   "kicker": "Injectivité, surjectivité, isomorphismes",
+   "tex": "f \\text{ injective} \\iff \\ker f = \\{0_E\\}",
+   "note": "Surjective si et seulement si l'image égale l'espace d'arrivée entier.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 170
+   }
+  },
+  "exemple_iso": {
+   "type": "etape",
+   "kicker": "Exemple : un isomorphisme de l'espace",
+   "titre": "Noyau nul, image pleine",
+   "tex": [
+    "f(x,\\ y,\\ z) = (x + y,\\ y + z,\\ x + z)",
+    "x + y = 0,\\ y + z = 0,\\ x + z = 0 \\ \\Rightarrow\\ x = y = z = 0",
+    "\\ker f = \\{0\\}, \\quad \\text{Im}\\, f = \\mathbb{R}^3, \\quad 3 = 0 + 3"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Noyau : ce qui est envoyé sur zéro",
+    "Image : ce qui est atteint, un sous-espace",
+    "Rang : dim départ égale noyau plus image",
+    "Injective si et seulement si noyau nul"
+   ]
+  },
+  "matrice_def": {
+   "type": "formule",
+   "kicker": "La matrice d'une application linéaire",
+   "tex": "\\text{Mat}_{\\mathcal{B}_E,\\ \\mathcal{B}_F}(f) = (a_{ij})",
+   "note": "Colonne j : les coordonnées de l'image du j-ième vecteur de base de départ.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 170
+   }
+  },
+  "produit": {
+   "type": "formule",
+   "kicker": "La matrice agit sur les coordonnées",
+   "tex": "Y = M\\,X \\qquad y_i = \\sum_j a_{ij}\\, x_j",
+   "note": "Les coordonnées de l'image sont le produit de la matrice par les coordonnées de départ."
+  },
+  "rotation": {
+   "type": "formule",
+   "kicker": "Exemple : la rotation du plan",
+   "tex": "R_\\theta = \\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix}",
+   "note": "Les colonnes sont les images des deux vecteurs canoniques.",
+   "anim": {
+    "nom": "rotation_homothetie_fig",
+    "hauteur": 170
+   }
+  },
+  "rotation_exemple": {
+   "type": "etape",
+   "kicker": "Le quart de tour en chiffres",
+   "titre": "Tourner le vecteur de coordonnées un, deux",
+   "tex": [
+    "R_{\\pi/2} = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}",
+    "R_{\\pi/2}(1,\\ 2) = (-2,\\ 1) \\qquad R_{\\pi/2}(2,\\ 3) = (-3,\\ 2)"
+   ]
+  },
+  "composition": {
+   "type": "formule",
+   "kicker": "Composition et produit matriciel",
+   "tex": "\\text{Mat}(g \\circ f) = \\text{Mat}(g) \\times \\text{Mat}(f)",
+   "note": "Identité : matrice identité. Isomorphisme si et seulement si matrice inversible."
+  },
+  "exemple_matrice": {
+   "type": "etape",
+   "kicker": "Exemple : de la formule à la matrice",
+   "titre": "Les images des vecteurs de base en colonnes",
+   "tex": [
+    "f(x,\\ y) = (2x + y,\\ x - 3y) : \\quad f(e_1) = (2,\\ 1), \\quad f(e_2) = (1,\\ -3)",
+    "M = \\begin{pmatrix} 2 & 1 \\\\ 1 & -3 \\end{pmatrix} \\qquad \\det M = -7 \\neq 0"
+   ]
+  },
+  "exercice_matrice": {
+   "type": "etape",
+   "kicker": "Exemple : lire le noyau sur la matrice",
+   "titre": "Deux équations, une droite de solutions",
+   "tex": [
+    "M\\,X = 0 : \\quad x + 2z = 0, \\quad -x + y = 0",
+    "x = -2z, \\quad y = -2z : \\quad \\ker u = \\text{Vect}((-2,\\ -2,\\ 1))"
+   ]
+  },
+  "passage": {
+   "type": "formule",
+   "kicker": "Matrice de passage et coordonnées",
+   "tex": "X = P\\,X'",
+   "note": "P a pour colonnes les coordonnées de la nouvelle base dans l'ancienne ; son inverse fait le retour.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 160
+   }
+  },
+  "changement": {
+   "type": "formule",
+   "kicker": "Changement de bases : la formule",
+   "tex": "A' = Q^{-1} A\\, P",
+   "note": "Pour un endomorphisme, une seule base change : A prime égale P inverse A P, matrices semblables."
+  },
+  "changement_exemple": {
+   "type": "etape",
+   "kicker": "Exemple : une matrice qui se diagonalise",
+   "titre": "La bonne base découple tout",
+   "tex": [
+    "A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix} \\qquad P = \\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}",
+    "A' = P^{-1} A\\, P = \\begin{pmatrix} 3 & 0 \\\\ 0 & 1 \\end{pmatrix}"
+   ]
+  },
+  "projection_base": {
+   "type": "etape",
+   "kicker": "Exemple : la même projection, deux matrices",
+   "titre": "Une base adaptée simplifie tout",
+   "tex": [
+    "\\text{base canonique : } A_1 = \\begin{pmatrix} 1 & 0 \\\\ 1 & 0 \\end{pmatrix}",
+    "\\text{base adaptée } ((1,1),(0,1)) : \\ A_2 = \\begin{pmatrix} 1 & 0 \\\\ 0 & 0 \\end{pmatrix}"
+   ]
+  },
+  "deriv_matrice": {
+   "type": "etape",
+   "kicker": "Exemple : la dérivation des polynômes",
+   "titre": "Noyau, image et rang en dimension trois",
+   "tex": [
+    "T(1) = 0 \\qquad T(X) = 1 \\qquad T(X^2) = 2X",
+    "\\ker T = \\text{les constantes}, \\quad \\dim \\ker T = 1",
+    "\\text{Im}\\, T = \\mathbb{R}_1[X], \\quad \\dim \\text{Im}\\, T = 2, \\quad 3 = 1 + 2"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Linéaire : les combinaisons sont conservées",
+    "Noyau et image : deux sous-espaces",
+    "Rang : dim départ égale noyau plus image",
+    "Matrice : les images d'une base en colonnes",
+    "Changement de base : A' = Q⁻¹AP"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux applications linéaires, les transformations qui respectent la structure des espaces vectoriels. Nous définirons la linéarité par ses deux conditions, nous rencontrerons ses deux visages, le noyau et l'image, reliés par le théorème du rang, puis nous coderons chaque transformation par une matrice, jusqu'aux changements de base.",
+   "texte": "Applications linéaires : transformer sans déformer la structure.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge est la fidélité. Agrandir une photo, projeter une ombre, dériver une fonction, tourner une figure : ces gestes ont en commun de respecter les combinaisons linéaires. Quand on double un vecteur, son image double. Quand on additionne deux vecteurs, leurs images s'additionnent. Une transformation qui respecte ces deux règles est prévisible : il suffit de connaître ce qu'elle fait aux vecteurs d'une base pour tout savoir d'elle.",
+   "texte": "Respecter les combinaisons : le fil rouge du cours.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Définition : une application entre deux espaces vectoriels est linéaire quand elle vérifie deux conditions, l'additivité, l'image d'une somme est la somme des images, et l'homogénéité, l'image d'un multiple est le multiple de l'image. Les deux se condensent en une seule formule : l'image d'une combinaison linéaire est la combinaison linéaire des images, avec exactement les mêmes coefficients.",
+   "texte": "f(λu + μv) = λf(u) + μf(v) : la formule unique.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Trois exemples fondateurs. La dilatation qui double chaque coordonnée est linéaire : doubler le vecteur ou doubler son image revient au même. La dérivation aussi est linéaire : la dérivée d'une somme est la somme des dérivées, et la dérivée d'un multiple est le multiple de la dérivée, ce qui explique pourquoi les équations différentielles linéaires se traitent si bien. Et la projection qui écrase un vecteur de l'espace sur le plan horizontal, en annulant sa troisième coordonnée, est également linéaire.",
+   "texte": "Dilatation, dérivation, projection : trois linéaires.",
+   "ecran": "exemples"
+  },
+  {
+   "id": "p05",
+   "dit": "Regardons la projection de plus près, car elle servira d'exemple filé. Projeter sur l'axe des abscisses garde la première coordonnée et annule la seconde. Géométriquement, chaque vecteur tombe verticalement sur l'axe. Retenez dès maintenant deux choses : certains vecteurs tombent sur le vecteur nul, ce seront ceux du noyau, et seuls les vecteurs de l'axe sont atteints, ce sera l'image.",
+   "texte": "Projection sur un axe : (x, y) devient (x, 0).",
+   "ecran": "projection"
+  },
+  {
+   "id": "p06",
+   "dit": "Savoir reconnaître ce qui n'est pas linéaire est tout aussi important. La translation, qui décale chaque vecteur d'une quantité fixe, n'est pas linéaire : elle envoie le vecteur nul sur un vecteur non nul. Or toute application linéaire envoie nécessairement le vecteur nul sur le vecteur nul, par homogénéité. La norme non plus n'est pas linéaire : elle répond par une valeur absolue du coefficient, et non par le coefficient lui-même. Attention, envoyer zéro sur zéro est nécessaire, mais pas suffisant.",
+   "texte": "f(0) = 0 : nécessaire, jamais suffisant.",
+   "ecran": "contre_exemples"
+  },
+  {
+   "id": "p07",
+   "dit": "Conséquence immense de la définition : une application linéaire est entièrement déterminée par les images des vecteurs d'une base. Exemple : une application du plan est définie par les images des deux vecteurs canoniques, affichées à l'écran. Pour calculer l'image du vecteur de coordonnées trois et quatre, on le décompose sur la base, on applique la linéarité, et on combine les deux images connues : on obtient le vecteur de coordonnées deux et quinze, sans aucun autre calcul.",
+   "texte": "Connaître les images d'une base, c'est tout connaître.",
+   "ecran": "determinee_base"
+  },
+  {
+   "id": "p08",
+   "dit": "Quelques propriétés découlent immédiatement de la définition. L'image d'une combinaison linéaire quelconque est la combinaison correspondante des images. L'image d'un sous-espace vectoriel est toujours un sous-espace vectoriel de l'espace d'arrivée, et l'image réciproque d'un sous-espace est un sous-espace de l'espace de départ. La linéarité transporte donc toute la structure, dans les deux sens.",
+   "texte": "La linéarité transporte les sous-espaces.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p09",
+   "dit": "Récapitulons cette première partie. Une application linéaire conserve les sommes et les multiples, donc toutes les combinaisons linéaires. Elle envoie toujours le vecteur nul sur le vecteur nul, et elle est entièrement déterminée par les images des vecteurs d'une base. Dans la deuxième partie, nous regarderons ce qu'elle efface et ce qu'elle atteint : son noyau et son image.",
+   "texte": "L'essentiel de la partie un.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p10",
+   "dit": "Le noyau d'une application linéaire est l'ensemble des vecteurs de l'espace de départ qu'elle envoie sur le vecteur nul de l'espace d'arrivée. C'est tout ce qui disparaît sous son action. Pour une projection, ce sont les vecteurs perpendiculaires au plan de projection, qui tombent sur l'origine. Le noyau n'est pas un ensemble quelconque : c'est un sous-espace vectoriel de l'espace de départ, stable par sommes et par multiples, comme on le vérifie grâce à la linéarité.",
+   "texte": "Le noyau : tout ce qui est écrasé sur zéro.",
+   "ecran": "noyau"
+  },
+  {
+   "id": "p11",
+   "dit": "L'image est le visage complémentaire : l'ensemble de tous les vecteurs de l'espace d'arrivée qui sont effectivement atteints. C'est aussi un sous-espace vectoriel, cette fois de l'espace d'arrivée. En pratique, on l'obtient sans effort : les images des vecteurs d'une base de départ engendrent l'image, car tout vecteur de départ est combinaison de ces vecteurs, et la linéarité fait le reste.",
+   "texte": "L'image : Vect des images d'une base.",
+   "ecran": "image"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple complet dans le plan. L'application envoie un vecteur sur un autre dont la seconde coordonnée est le double de la première combinaison. Pour le noyau, on résout le système : les deux équations disent la même chose, les deux coordonnées sont égales, et le noyau est la droite engendrée par le vecteur de coordonnées un et un. Pour l'image, un vecteur atteint a toujours sa seconde coordonnée double de la première : c'est la droite engendrée par le vecteur de coordonnées un et deux.",
+   "texte": "Noyau : la droite y = x. Image : la droite y = 2x.",
+   "ecran": "exemple_plan"
+  },
+  {
+   "id": "p13",
+   "dit": "Le théorème du rang relie quantitativement le noyau et l'image : la dimension de l'espace de départ égale la dimension du noyau plus la dimension de l'image. Cette dernière dimension s'appelle le rang de l'application. L'image mentale est une conservation : ce qui n'est pas effacé dans le noyau se retrouve dans l'image, rien ne se perd sans laisser de trace dans le bilan des dimensions.",
+   "texte": "dim E = dim Ker + dim Im : le bilan est exact.",
+   "ecran": "rang"
+  },
+  {
+   "id": "p14",
+   "dit": "Vérifions le théorème sur l'exemple d'une application de l'espace à trois dimensions vers le plan. Son noyau se calcule en résolvant deux équations : il reste un paramètre libre, et le noyau est la droite engendrée par le vecteur affiché. Son image, elle, remplit le plan entier, comme le montre le fait qu'on peut toujours résoudre le système. Le bilan est exact : trois égale un plus deux, dimension de départ contre noyau et image.",
+   "texte": "3 = 1 + 2 : le théorème du rang vérifié.",
+   "ecran": "exemple_rang"
+  },
+  {
+   "id": "p15",
+   "dit": "La méthode pratique tient en deux gestes. Pour le noyau : écrire l'équation d'image nulle, résoudre le système homogène, et exprimer les solutions comme combinaisons de vecteurs générateurs ; le nombre de paramètres libres est la dimension du noyau. Pour l'image : calculer les images des vecteurs d'une base, elles engendrent l'image. Et toujours, le contrôle final par le théorème du rang, qui détecte la plupart des erreurs de calcul.",
+   "texte": "Noyau : résoudre. Image : engendrer. Rang : contrôler.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p16",
+   "dit": "Le noyau et l'image donnent des critères d'une élégance redoutable. Une application linéaire est injective exactement quand son noyau est réduit au vecteur nul : si deux vecteurs avaient la même image, leur différence serait dans le noyau. Elle est surjective exactement quand son image remplit l'espace d'arrivée. Et elle est un isomorphisme, une bijection linéaire, quand les deux conditions sont réunies.",
+   "texte": "Injective si et seulement si le noyau est nul.",
+   "ecran": "injectivite"
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple d'isomorphisme : une application de l'espace dans lui-même qui mélange les coordonnées deux à deux. Son noyau se calcule par un système de trois équations : en les combinant, on force les trois coordonnées à zéro, le noyau est donc réduit au vecteur nul. Le déterminant associé vaut deux, non nul, ce qui confirme le calcul. L'image remplit alors l'espace entier par le théorème du rang, et le bilan trois égale zéro plus trois est parfaitement cohérent.",
+   "texte": "Noyau nul et déterminant deux : un isomorphisme.",
+   "ecran": "exemple_iso"
+  },
+  {
+   "id": "p18",
+   "dit": "Récapitulons cette deuxième partie. Le noyau rassemble ce que l'application efface, l'image ce qu'elle atteint, et ce sont deux sous-espaces. Le théorème du rang équilibre leurs dimensions avec celle de l'espace de départ, et l'injectivité se lit directement sur le noyau. Nous traduirons maintenant tout cela en nombres : les matrices.",
+   "texte": "L'essentiel de la partie deux.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p19",
+   "dit": "Passons au codage numérique. On choisit une base dans l'espace de départ et une base dans l'espace d'arrivée. Pour chaque vecteur de la base de départ, on calcule son image, et on écrit ses coordonnées dans la base d'arrivée : ces coordonnées forment une colonne. La matrice de l'application est le tableau de toutes ces colonnes. Elle dépend des bases choisies, mais elle capture entièrement l'application : c'est son dictionnaire de traduction.",
+   "texte": "La matrice : les images d'une base, en colonnes.",
+   "ecran": "matrice_def"
+  },
+  {
+   "id": "p20",
+   "dit": "La puissance du dispositif apparaît quand on calcule l'image d'un vecteur quelconque. On écrit ses coordonnées en colonne dans la base de départ, on multiplie par la matrice, et on obtient exactement les coordonnées de son image dans la base d'arrivée. Chaque coordonnée du résultat est une somme de produits ligne contre colonne. La géométrie des transformations devient ainsi du calcul systématique, que même une machine peut exécuter.",
+   "texte": "Y = MX : les coordonnées se calculent toutes seules.",
+   "ecran": "produit"
+  },
+  {
+   "id": "p21",
+   "dit": "Exemple géométrique majeur : la rotation du plan d'un angle donné autour de l'origine. Le premier vecteur canonique tourne vers un vecteur dont les coordonnées sont le cosinus et le sinus de l'angle. Le second tourne vers le vecteur de coordonnées moins sinus et cosinus. Ces deux images, mises en colonnes, donnent la matrice de rotation, à connaître par cœur.",
+   "texte": "Rotation : cosinus et sinus en colonnes.",
+   "ecran": "rotation"
+  },
+  {
+   "id": "p22",
+   "dit": "Pour un quart de tour, le cosinus vaut zéro et le sinus vaut un : la matrice se simplifie beaucoup. Appliquée au vecteur de coordonnées un et deux, elle donne le vecteur de coordonnées moins deux et un. Appliquée au vecteur de coordonnées deux et trois, elle donne moins trois et deux. Dans les deux cas, on retrouve exactement le point tourné d'un angle droit dans le sens trigonométrique, comme le dessin le confirme.",
+   "texte": "Quart de tour : (1, 2) devient (−2, 1).",
+   "ecran": "rotation_exemple"
+  },
+  {
+   "id": "p23",
+   "dit": "La correspondance va plus loin : composer deux applications linéaires revient à multiplier leurs matrices, dans l'ordre de la composition. C'est même la justification profonde de la définition du produit matriciel. L'application identité correspond à la matrice identité, et une application est un isomorphisme exactement quand sa matrice est inversible. Toute l'algèbre des transformations se traduit en algèbre des tableaux de nombres.",
+   "texte": "Composer, c'est multiplier les matrices.",
+   "ecran": "composition"
+  },
+  {
+   "id": "p24",
+   "dit": "Exemple de construction complète, d'une formule vers sa matrice. L'application du plan mélange les coordonnées avec les coefficients affichés. L'image du premier vecteur canonique se lit en annulant la seconde coordonnée, celle du second en annulant la première. On place ces deux images en colonnes : la matrice est construite. Son déterminant vaut moins sept, différent de zéro : nous retrouvons, par le calcul matriciel, que l'application est un isomorphisme, avec un noyau nul et une image pleine.",
+   "texte": "f(x, y) = (2x + y, x − 3y) : det −7, isomorphisme.",
+   "ecran": "exemple_matrice"
+  },
+  {
+   "id": "p25",
+   "dit": "Inversement, une matrice donnée permet de retrouver le noyau de son application en résolvant le système homogène associé. Ici, la matrice a deux lignes et trois colonnes, pour une application de l'espace vers le plan. Les deux équations donnent la première coordonnée et la deuxième en fonction de la troisième : le noyau est la droite engendrée par le vecteur affiché, de dimension un, ce que le théorème du rang confirme aussitôt.",
+   "texte": "Lire le noyau sur la matrice : résoudre MX = 0.",
+   "ecran": "exercice_matrice"
+  },
+  {
+   "id": "p26",
+   "dit": "Mais une matrice n'est jamais absolue : elle dépend des bases. La matrice de passage traduit les coordonnées d'un vecteur entre deux bases du même espace. Ses colonnes sont les coordonnées des vecteurs de la nouvelle base, exprimés dans l'ancienne. Elle est toujours inversible, et son inverse est la matrice de passage dans l'autre sens : changer de point de vue, puis revenir, ne perd rien.",
+   "texte": "Matrice de passage : le traducteur de coordonnées.",
+   "ecran": "passage"
+  },
+  {
+   "id": "p27",
+   "dit": "La formule de changement de base pour une application en découle. Si on change de base au départ et à l'arrivée, la nouvelle matrice s'obtient en encadrant l'ancienne par les matrices de passage et leurs inverses, dans l'ordre affiché. Pour un endomorphisme, où l'on change la même base au départ et à l'arrivée, la formule se simplifie : les deux matrices sont dites semblables, et elles décrivent la même transformation vue sous deux angles.",
+   "texte": "A' = Q⁻¹AP : changer de base, encadrer.",
+   "ecran": "changement"
+  },
+  {
+   "id": "p28",
+   "dit": "Exemple où le changement de base change tout. Un endomorphisme du plan a une matrice pleine dans la base canonique. On choisit une nouvelle base formée de deux vecteurs diagonaux du plan. La matrice de passage a ces vecteurs en colonnes, et la formule donne une matrice diagonale : dans cette base, l'endomorphisme agit par simple multiplication sur chaque coordonnée, avec les facteurs trois et un. Les calculs couplés sont devenus découplés.",
+   "texte": "Dans la bonne base : une matrice diagonale.",
+   "ecran": "changement_exemple"
+  },
+  {
+   "id": "p29",
+   "dit": "Même leçon avec une projection sur la première diagonale du plan, parallèlement à l'axe vertical. Dans la base canonique, sa matrice mélange les lignes. Dans une base adaptée, dont le premier vecteur est sur la diagonale et le second vertical, sa matrice devient limpide : un et zéro en première ligne, que des zéros en seconde. Choisir une base adaptée à la géométrie de l'application est souvent le geste qui rend un problème trivial.",
+   "texte": "Base adaptée : la projection devient limpide.",
+   "ecran": "projection_base"
+  },
+  {
+   "id": "p30",
+   "dit": "Dernier exemple, qui boucle la boucle : la dérivation des polynômes de degré au plus deux. Sa matrice, dans la base canonique des puissances, se construit colonne par colonne à partir des dérivées de l'unité, de la variable et de son carré. Son noyau est l'ensemble des polynômes constants, de dimension un. Son image est l'ensemble des polynômes de degré au plus un, de dimension deux. Et le théorème du rang boucle le bilan : trois égale un plus deux.",
+   "texte": "Dérivation : noyau de dimension un, image de dimension deux.",
+   "ecran": "deriv_matrice"
+  },
+  {
+   "id": "p31",
+   "dit": "Pour terminer, retenez la chaîne complète de ce cours. Une application linéaire conserve les combinaisons ; son noyau dit ce qu'elle efface, son image ce qu'elle atteint, et le théorème du rang équilibre les dimensions. Une fois des bases choisies, elle devient une matrice, dont les colonnes sont les images des vecteurs de base, et changer de base encadre cette matrice par les passages. Géométrie et calcul sont les deux visages d'une même transformation.",
+   "texte": "Tout le cours en cinq idées.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définition, exemples et contre-exemples"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Noyau, image, théorème du rang et première matrice",
+   "pont": {
+    "texte": "Partie 2 : noyau, image et théorème du rang.",
+    "dit": "Partie deux : noyau et image. Nous allons regarder les deux visages d'une application linéaire, ce qu'elle efface et ce qu'elle atteint, puis le théorème du rang qui relie leurs dimensions à celle de l'espace de départ."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "Matrices et changements de base",
+   "pont": {
+    "texte": "Partie 3 : matrices, composition et changements de base.",
+    "dit": "Partie trois : les matrices à l'œuvre et les changements de base. La matrice étant construite, nous calculerons avec elle, nous composerons par le produit matriciel, et nous verrons comment une bonne base peut rendre une matrice diagonale."
+   }
+  }
+ ]
+}

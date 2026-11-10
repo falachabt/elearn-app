@@ -20,7 +20,7 @@ const mockVerifier = jest.fn();
 const mockParams: { offre: string } = { offre: 'month' };
 const mockReseau = { estEnLigne: true };
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: () => true }, useLocalSearchParams: () => mockParams }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: jest.fn(async () => ({ data: 'cancelled', error: null })) }) }));
 jest.mock('@/session/CreditsProvider', () => ({ useCredits: () => ({ rafraichir: jest.fn(async () => {}) }) }));
 jest.mock('@/components/reseau/useReseau', () => ({ useReseau: () => mockReseau }));

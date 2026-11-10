@@ -1,0 +1,674 @@
+{
+ "cours": 6348,
+ "titre": "Les hydrocarbures : familles, liaisons et réactivité",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Les hydrocarbures",
+   "titre": "Les hydrocarbures : familles, liaisons et réactivité",
+   "sous": "Quatre familles, un langage universel, des milliards d'usages — et la question de la transition",
+   "anim": {
+    "nom": "benzene_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Un monde de carbone et d'hydrogène",
+   "texte": "Conduire, se chauffer, manipuler un plastique : à chaque fois, des molécules de carbone et d'hydrogène entrent en jeu. Les hydrocarbures fournissent environ 84 % de l'énergie primaire mondiale, et la pétrochimie en fait des milliers de produits, des polymères aux engrais."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition",
+   "tex": "C_nH_{2n+2}",
+   "note": "Que du carbone et de l'hydrogène : ici, la formule générale des alcanes."
+  },
+  "formation": {
+   "type": "etape",
+   "kicker": "Une origine géologique",
+   "titre": "Le pétrole, une matière organique transformée",
+   "tex": [
+    "\\text{plancton et algues s'accumulent, puis s'enfouissent}",
+    "\\text{sous l'effet de la chaleur } (60 \\text{ à } 120\\ ^\\circ\\text{C}) \\text{ : les hydrocarbures naissent}",
+    "\\text{ils migrent vers des roches réservoirs et y restent piégés}",
+    "\\text{durée du processus : } 10 \\text{ à } 100 \\text{ millions d'années}"
+   ]
+  },
+  "energie": {
+   "type": "etape",
+   "kicker": "Pourquoi ils dominent l'énergie",
+   "titre": "Une densité énergétique exceptionnelle",
+   "tex": [
+    "\\text{hydrocarbures} \\approx 84\\ \\% \\text{ de l'énergie primaire mondiale}",
+    "\\text{essence : } 44 \\text{ à } 46\\ \\text{MJ/kg} \\qquad \\text{charbon : } 24 \\text{ à } 30",
+    "\\text{bois sec : } 16 \\text{ à } 20\\ \\text{MJ/kg} \\qquad \\text{batterie Li-ion : } 0{,}5 \\text{ à } 0{,}9"
+   ]
+  },
+  "familles": {
+   "type": "etape",
+   "kicker": "Les quatre grandes familles",
+   "titre": "Classer par le type de liaison",
+   "tex": [
+    "\\text{alcanes : liaisons simples} \\quad C_nH_{2n+2} \\quad \\text{(méthane } CH_4\\text{)}",
+    "\\text{alcènes : une double liaison} \\quad C_nH_{2n} \\quad \\text{(éthylène } C_2H_4\\text{)}",
+    "\\text{alcynes : une triple liaison} \\quad C_nH_{2n-2} \\quad \\text{(acétylène } C_2H_2\\text{)}",
+    "\\text{aromatiques : cycle délocalisé} \\quad \\text{(benzène } C_6H_6\\text{)}"
+   ]
+  },
+  "alcanes": {
+   "type": "etape",
+   "kicker": "Famille 1 : les alcanes",
+   "titre": "Saturés, tétraédriques, peu réactifs",
+   "tex": [
+    "sp^3 \\text{ : tétraèdre, angles de } 109{,}5^\\circ",
+    "\\text{série homologue : } CH_4\\ (-161{,}5\\ ^\\circ\\text{C}) \\rightarrow C_6H_{14}\\ (68{,}7\\ ^\\circ\\text{C})",
+    "\\text{surnom : paraffines, « peu d'affinité »}"
+   ]
+  },
+  "alcenes": {
+   "type": "etape",
+   "kicker": "Famille 2 : les alcènes",
+   "titre": "La double liaison, site de réactivité",
+   "tex": [
+    "C{=}C \\text{ : carbones } sp^2 \\text{, géométrie plane, angles de } 120^\\circ",
+    "CH_2{=}CH_2 \\text{ : éthène, l'hydrocarbure le plus produit au monde}",
+    "CH_3\\text{-}CH{=}CH_2 \\text{ : propène, vers le polypropylène}",
+    "\\text{la double liaison bloque la rotation}"
+   ]
+  },
+  "cistrans": {
+   "type": "etape",
+   "kicker": "L'isomérie géométrique",
+   "titre": "Cis ou trans : le même squelette, deux molécules",
+   "tex": [
+    "CH_3\\text{-}CH{=}CH\\text{-}CH_3 \\text{ : le but-2-ène}",
+    "\\text{cis : les deux } CH_3 \\text{ du même côté, ébullition } 3{,}7\\ ^\\circ\\text{C}",
+    "\\text{trans : les deux } CH_3 \\text{ opposés, ébullition } 0{,}9\\ ^\\circ\\text{C}"
+   ],
+   "anim": {
+    "nom": "cistrans_fig",
+    "hauteur": 110
+   }
+  },
+  "alcynes": {
+   "type": "etape",
+   "kicker": "Famille 3 : les alcynes",
+   "titre": "La triple liaison, droite et tendue",
+   "tex": [
+    "C{\\equiv}C \\text{ : carbones } sp \\text{, géométrie linéaire, } 180^\\circ",
+    "HC{\\equiv}CH \\text{ : éthyne (acétylène), flamme jusqu'à } 3100\\ ^\\circ\\text{C}",
+    "\\text{l'hydrogène terminal est faiblement acide : caractère } s = 50\\ \\%",
+    "RC{\\equiv}C^- \\text{ : les alcynures, nucléophiles de synthèse}"
+   ]
+  },
+  "benzene": {
+   "type": "etape",
+   "kicker": "Famille 4 : les aromatiques",
+   "titre": "Le benzène, l'exception stable",
+   "tex": [
+    "C_6H_6 \\text{ : insaturé sur le papier, mais il ne décolore pas le dibrome}",
+    "\\text{Kekulé (1865) : un cycle, des liaisons alternées, une résonance}",
+    "4n + 2 = 6 \\text{ électrons } \\pi \\text{ délocalisés (règle de Hückel)}"
+   ],
+   "anim": {
+    "nom": "benzene_fig",
+    "hauteur": 110
+   }
+  },
+  "carbone": {
+   "type": "formule",
+   "kicker": "Le carbone, bâtisseur",
+   "tex": "1s^2\\,2s^2\\,2p^2 \\longrightarrow 2s^1\\,2p^3 \\text{ : quatre électrons célibataires}",
+   "note": "Tétravalence du carbone (Kekulé et Couper, 1858) : quatre liaisons à former."
+  },
+  "hybridation": {
+   "type": "etape",
+   "kicker": "Les orbitales hybrides",
+   "titre": "Trois mélanges, trois géométries",
+   "tex": [
+    "sp^3 \\text{ : } 1\\ s + 3\\ p \\Rightarrow \\text{tétraèdre, } 109{,}5^\\circ \\text{ (alcanes)}",
+    "sp^2 \\text{ : } 1\\ s + 2\\ p \\Rightarrow \\text{plan, } 120^\\circ \\text{, } 1\\ p \\text{ restante (alcènes)}",
+    "sp \\text{ : } 1\\ s + 1\\ p \\Rightarrow \\text{linéaire, } 180^\\circ \\text{, } 2\\ p \\text{ restantes (alcynes)}"
+   ],
+   "anim": {
+    "nom": "orbitales_formes_fig",
+    "hauteur": 110
+   }
+  },
+  "sigma_pi": {
+   "type": "etape",
+   "kicker": "Sigma et pi : deux attaches",
+   "titre": "L'axe solide et le renfort latéral",
+   "tex": [
+    "\\sigma \\text{ : recouvrement axial, forte, rotation libre}",
+    "\\pi \\text{ : recouvrement latéral, plus faible, rotation bloquée}",
+    "C\\text{-}C : 154\\ \\text{pm, } 347\\ \\text{kJ/mol} \\qquad C{=}C : 134\\ \\text{pm, } 614\\ \\text{kJ/mol}",
+    "C{\\equiv}C : 120\\ \\text{pm, } 839\\ \\text{kJ/mol : plus courte, plus forte}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Familles et géométries : l'essentiel",
+   "etapes": [
+    "Hydrocarbure : C et H seulement",
+    "Alcanes : simples, sp³, saturés",
+    "Alcènes et alcynes : π réactive",
+    "Benzène : 6 e⁻ π délocalisés",
+    "L'hybridation fixe la géométrie"
+   ]
+  },
+  "nommer_intro": {
+   "type": "phrase",
+   "kicker": "Pourquoi un langage commun ?",
+   "texte": "Acide formique, isopentane, éthylène… : avant 1919, les noms racontaient une origine, pas une structure. L'IUPAC a forgé un langage universel : un nom, une seule structure — et la structure se lit dans le nom."
+  },
+  "architecture_nom": {
+   "type": "etape",
+   "kicker": "L'architecture d'un nom",
+   "titre": "Préfixe, infixe, suffixe",
+   "tex": [
+    "\\text{préfixe : longueur} \\quad \\text{infixe : type de liaison} \\quad \\text{suffixe : } \\text{-e}",
+    "\\text{pent-} + \\text{-an-} + \\text{-e} = \\text{pentane, } C_5H_{12}",
+    "\\text{-an- : } C_nH_{2n+2} \\quad \\text{-èn- : } C_nH_{2n} \\quad \\text{-yn- : } C_nH_{2n-2}"
+   ]
+  },
+  "prefixes": {
+   "type": "etape",
+   "kicker": "Les préfixes et les alkyles",
+   "titre": "Compter les carbones, nommer les branches",
+   "tex": [
+    "1\\ \\text{méth-} \\quad 2\\ \\text{éth-} \\quad 3\\ \\text{prop-} \\quad 4\\ \\text{but-} \\quad 5\\ \\text{pent-}",
+    "6\\ \\text{hex-} \\quad 7\\ \\text{hept-} \\quad 8\\ \\text{oct-} \\quad 9\\ \\text{non-} \\quad 10\\ \\text{déc-}",
+    "\\text{alkyles : méthyl-} \\text{-}CH_3 \\quad \\text{éthyl-} \\text{-}C_2H_5 \\quad \\text{propyl-} \\text{-}C_3H_7"
+   ]
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "La procédure en cinq étapes",
+   "titre": "Nommer, comme un algorithme",
+   "tex": [
+    "\\text{1. chaîne la plus longue (à égalité : le plus de branches)}",
+    "\\text{2. numéroter au plus bas, priorité aux insaturations}",
+    "\\text{3. identifier les substituants alkyles}",
+    "\\text{4. assembler : numéros, ordre alphabétique, di-/tri- si répétés}"
+   ]
+  },
+  "cas_alcane": {
+   "type": "etape",
+   "kicker": "Cas 1 : un alcane ramifié",
+   "titre": "De la structure au nom",
+   "tex": [
+    "CH_3\\text{-}CH(CH_3)\\text{-}CH_2\\text{-}CH_3",
+    "\\text{chaîne la plus longue : 4 carbones (butane), méthyle en position 2}",
+    "\\Rightarrow \\text{2-méthylbutane (nom courant : isopentane, composant de l'essence)}"
+   ],
+   "anim": {
+    "nom": "chaine_carbonee_fig",
+    "hauteur": 110
+   }
+  },
+  "cas_insatures": {
+   "type": "etape",
+   "kicker": "Cas 2 et 3 : les insaturés",
+   "titre": "La priorité à la double et à la triple liaison",
+   "tex": [
+    "CH_2{=}CH\\text{-}CH_2\\text{-}CH_3 \\Rightarrow \\text{but-1-ène (la liaison commence en 1)}",
+    "CH_3\\text{-}C{\\equiv}C\\text{-}CH(CH_3)\\text{-}CH_3 \\Rightarrow \\text{4-méthylpent-2-yne}",
+    "\\text{règle : l'insaturation reçoit le plus petit numéro}"
+   ]
+  },
+  "exercice": {
+   "type": "etape",
+   "kicker": "Exercice de synthèse",
+   "titre": "À vous de nommer — et un piège classique",
+   "tex": [
+    "CH_3\\text{-}C(CH_3)_2\\text{-}CH_2\\text{-}CH(CH_3)\\text{-}CH_3",
+    "\\text{chaîne de 5 carbones, trois méthyles : positions 2, 2 et 4}",
+    "\\Rightarrow \\text{2,2,4-triméthylpentane : l'isooctane, étalon d'indice 100}",
+    "\\text{piège : 2,3-diméthylbutane, jamais « 2-méthyl-3-méthylbutane »}"
+   ]
+  },
+  "solubilite": {
+   "type": "etape",
+   "kicker": "Propriété 1 : la solubilité",
+   "titre": "Le similaire dissout le similaire",
+   "tex": [
+    "\\text{l'eau : liaisons hydrogène fortes } (10 \\text{ à } 40\\ \\text{kJ/mol)}",
+    "\\text{les hydrocarbures : seules les forces de London } (0{,}1 \\text{ à } 10\\ \\text{kJ/mol)}",
+    "CH_4 : 22\\ \\text{mg/L} \\qquad C_6H_{14} : 9{,}5\\ \\text{mg/L} \\qquad C_{12}H_{26} : 0{,}0037\\ \\text{mg/L}",
+    "\\text{en revanche, ils se dissolvent entre solvants apolaires}"
+   ]
+  },
+  "ebullition": {
+   "type": "etape",
+   "kicker": "Propriété 2 : l'ébullition",
+   "titre": "Chaque carbone ajouté compte",
+   "tex": [
+    "\\text{point d'ébullition : quand la vapeur égale la pression extérieure}",
+    "CH_4 : -161{,}5\\ ^\\circ\\text{C} \\qquad C_4H_{10} : -0{,}5 \\qquad C_8H_{18} : 125{,}7\\ ^\\circ\\text{C}",
+    "\\text{force de London} \\propto \\alpha^2 / r^{6} \\text{ : elle croît avec la taille}"
+   ]
+  },
+  "ramification": {
+   "type": "etape",
+   "kicker": "L'effet de la forme",
+   "titre": "Ramifier abaisse l'ébullition, relève l'octane",
+   "tex": [
+    "C_5H_{12} \\text{ linéaire : } 36{,}1\\ ^\\circ\\text{C} \\qquad \\text{ramifié : } 27{,}7\\ ^\\circ\\text{C}",
+    "\\text{très ramifié (néopentane) : } 9{,}5\\ ^\\circ\\text{C}",
+    "\\text{moins de contacts} \\Rightarrow \\text{forces de London plus faibles}",
+    "\\text{mais indice d'octane plus élevé (isooctane = 100, n-heptane = 0)}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Nommer et prévoir : l'essentiel",
+   "etapes": [
+    "Un nom IUPAC = une structure",
+    "Préfixe, infixe, suffixe",
+    "La plus longue chaîne, au plus bas",
+    "Le similaire dissout le similaire",
+    "Ramifier abaisse l'ébullition"
+   ]
+  },
+  "fondement": {
+   "type": "etape",
+   "kicker": "Le fondement électronique",
+   "titre": "Où sont les électrons, là sera la réaction",
+   "tex": [
+    "\\text{densité électronique : où les électrons se concentrent}",
+    "\\text{polarisabilité : la facilité à déformer le nuage}",
+    "\\text{la liaison } \\pi \\text{ : exposée, riche en électrons, attaquée par les } E^+"
+   ]
+  },
+  "substitution": {
+   "type": "etape",
+   "kicker": "Les alcanes : la substitution radicalaire",
+   "titre": "Une chaîne de radicaux, en trois actes",
+   "tex": [
+    "\\text{initiation : } Cl_2 \\xrightarrow{h\\nu} 2\\,Cl^{\\bullet}",
+    "\\text{propagation : } Cl^{\\bullet} + CH_4 \\rightarrow HCl + CH_3^{\\bullet}",
+    "CH_3^{\\bullet} + Cl_2 \\rightarrow CH_3Cl + Cl^{\\bullet} \\text{ (la chaîne continue)}",
+    "\\text{terminaison : deux radicaux se recombinent}"
+   ]
+  },
+  "combustion": {
+   "type": "etape",
+   "kicker": "Les alcanes : la combustion",
+   "titre": "L'oxydation totale, source d'énergie",
+   "tex": [
+    "C_nH_{2n+2} + \\tfrac{3n+1}{2}\\,O_2 \\longrightarrow n\\,CO_2 + (n+1)\\,H_2O + \\text{énergie}",
+    "CH_4 + 2\\,O_2 \\longrightarrow CO_2 + 2\\,H_2O",
+    "\\text{stœchiométrie exacte} \\Rightarrow \\text{combustion propre et complète}"
+   ],
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 110
+   }
+  },
+  "addition": {
+   "type": "etape",
+   "kicker": "Alcènes et alcynes : l'addition électrophile",
+   "titre": "La liaison pi s'ouvre, deux liaisons sigma naissent",
+   "tex": [
+    "H_2 \\text{ (Ni, Pd, Pt)} \\rightarrow \\text{alcane : hydrogénation (huiles} \\rightarrow \\text{margarine)}",
+    "Br_2 \\text{ : le dibrome orange se décolore (test des alcènes)}",
+    "HBr \\text{ sur le propène} \\rightarrow \\text{2-bromopropane (Markovnikov)}",
+    "H_2O \\text{ en milieu acide} \\rightarrow \\text{alcool : } CH_2{=}CH_2 \\rightarrow \\text{éthanol}"
+   ]
+  },
+  "sear": {
+   "type": "etape",
+   "kicker": "Les aromatiques : la substitution",
+   "titre": "Préserver le cycle à tout prix",
+   "tex": [
+    "\\text{nitration : } C_6H_6 + HNO_3 \\xrightarrow{H_2SO_4} C_6H_5\\text{-}NO_2 + H_2O",
+    "\\text{bromation : } Br_2 \\xrightarrow{FeBr_3} C_6H_5Br + HBr",
+    "\\text{sulfonation : } H_2SO_4 \\rightarrow C_6H_5\\text{-}SO_3H \\text{ (réversible)}",
+    "\\text{Friedel-Crafts : } R\\text{-}Cl \\xrightarrow{AlCl_3} C_6H_5\\text{-}R + HCl"
+   ]
+  },
+  "retrosynthese": {
+   "type": "etape",
+   "kicker": "Synthèse : penser à rebours",
+   "titre": "Du 2-bromobutane à l'éthylène",
+   "tex": [
+    "\\text{cible : le 2-bromobutane, } CH_3\\text{-}CHBr\\text{-}CH_2\\text{-}CH_3",
+    "\\text{étape 1 : deux éthylènes se soudent (dimérisation)} \\rightarrow \\text{but-1-ène}",
+    "\\text{étape 2 : } +\\ HBr \\text{ (Markovnikov, sans peroxydes)} \\rightarrow \\text{2-bromobutane}"
+   ]
+  },
+  "carburants": {
+   "type": "etape",
+   "kicker": "Applications 1 : les carburants",
+   "titre": "L'indice d'octane, une affaire de forme",
+   "tex": [
+    "\\text{essence : n-heptane, indice 0 ; isooctane ramifié, indice 100}",
+    "\\text{reformage catalytique : linéaires} \\rightarrow \\text{ramifiés et aromatiques}",
+    "\\text{gazole et kérosène : longues chaînes (environ } C_{12} \\text{ à } C_{20}\\text{)}",
+    "\\text{gaz naturel : } CH_4 \\text{, le rapport H/C le plus élevé, le moins de } CO_2"
+   ]
+  },
+  "distillation": {
+   "type": "etape",
+   "kicker": "Applications 2 : la distillation fractionnée",
+   "titre": "Trier le pétrole par l'ébullition",
+   "tex": [
+    "\\text{gaz : } < 20\\ ^\\circ\\text{C, } C_1 \\text{ à } C_4 \\text{ (carburant, chauffage)}",
+    "\\text{naphta : } 30 \\text{ à } 200\\ ^\\circ\\text{C, } C_5 \\text{ à } C_{10} \\text{ (essence, solvants)}",
+    "\\text{kérosène puis gazole : jusqu'à } 400\\ ^\\circ\\text{C} \\text{ (réacteurs, diesel)}",
+    "\\text{résidus : } > 400\\ ^\\circ\\text{C, } > C_{25} \\text{ (bitume, huiles lourdes)}"
+   ]
+  },
+  "petrochimie": {
+   "type": "etape",
+   "kicker": "Applications 3 : la pétrochimie",
+   "titre": "L'éthylène, roi des briques de construction",
+   "tex": [
+    "\\text{éthylène} \\rightarrow \\text{polyéthylène (sacs, films), glycol (antigel), PVC (tuyaux)}",
+    "\\text{propylène} \\rightarrow \\text{polypropylène (pare-chocs), Plexiglas (PMMA)}",
+    "\\text{butadiène + styrène} \\rightarrow \\text{caoutchouc SBR : 60 \\% du marché des pneus}"
+   ],
+   "anim": {
+    "nom": "chaine_polymere_fig",
+    "hauteur": 110
+   }
+  },
+  "btx": {
+   "type": "etape",
+   "kicker": "Applications 4 : les aromatiques utiles",
+   "titre": "Le trio BTX : benzène, toluène, xylènes",
+   "tex": [
+    "\\text{benzène} \\rightarrow \\text{styrène et polystyrène ; cumène} \\rightarrow \\text{phénol et acétone}",
+    "\\text{toluène : solvant, précurseur du TNT}",
+    "\\text{paraxylène} \\rightarrow \\text{acide téréphtalique} \\rightarrow \\text{PET (bouteilles, fibres)}",
+    "\\text{solvants du quotidien : hexane (huiles), white spirit (peintures)}"
+   ]
+  },
+  "vulcanisation": {
+   "type": "etape",
+   "kicker": "Application concrète : le caoutchouc",
+   "titre": "Des ponts de soufre qui changent tout",
+   "tex": [
+    "\\text{caoutchouc naturel : polyisoprène, mou, collant à chaud}",
+    "\\text{vulcanisation (Goodyear, 1839) : des ponts } \\text{-S-S-} \\text{ entre les chaînes}",
+    "\\text{résultat : élastique et durable} \\Rightarrow \\text{le pneu}"
+   ]
+  },
+  "enjeux": {
+   "type": "phrase",
+   "kicker": "Le dilemme contemporain",
+   "texte": "Infrastructure mondiale, densité énergétique, polyvalence — contre émissions de CO₂, ressources finies et géopolitique. Les hydrocarbures de synthèse ou biosourcés peuvent-ils prendre le relais sans changer nos infrastructures ?"
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Quatre familles, classées par liaison",
+    "Nommer : préfixe, infixe, suffixe",
+    "London règle solubilité et ébullition",
+    "π réagit, σ résiste, le cycle substitue",
+    "Carburants, polymères : tout en découle"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux hydrocarbures, les molécules du carbone et de l'hydrogène qui portent notre civilisation : carburants, plastiques, solvants, médicaments. Nous allons d'abord faire connaissance avec les quatre grandes familles et la géométrie de leurs liaisons. Puis nous apprendrons à les nommer avec le langage universel de la nomenclature, et à lire leurs propriétés physiques. Enfin, nous verrons comment elles réagissent, et comment l'industrie les transforme en produits du quotidien.",
+   "texte": "Les hydrocarbures : que du carbone et de l'hydrogène.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Imaginez votre journée : vous montez en voiture, vous allumez le chauffage, vous saisissez un objet en plastique. Sans le savoir, vous venez d'utiliser trois fois la même famille de molécules : les hydrocarbures, des composés formés uniquement de carbone et d'hydrogène. Ils fournissent environ quatre-vingt-quatre pour cent de l'énergie primaire mondiale. Et ils ne servent pas qu'à brûler : la pétrochimie les transforme en plastiques, en solvants, en engrais, en médicaments. Ce cours vous donne les clés de ce monde invisible.",
+   "texte": "84 % de l'énergie mondiale : les hydrocarbures partout.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "La définition tient en une phrase : un hydrocarbure est un composé organique constitué exclusivement d'atomes de carbone et d'atomes d'hydrogène. Derrière cette simplicité se cache une diversité immense, car la liaison carbone-carbone peut être simple, double ou triple, et les atomes s'organisent en chaînes droites, en chaînes ramifiées ou en cycles. Pour la famille la plus simple, les alcanes, la formule générale relie le nombre d'hydrogènes au nombre de carbones : deux fois ce nombre, plus deux.",
+   "texte": "Hydrocarbure = C et H uniquement ; alcanes : CₙH₂ₙ₊₂.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "D'où viennent ces molécules ? Le pétrole et le gaz naturel sont l'héritage d'organismes microscopiques, plancton et algues, accumulés au fond des mers anciennes. Enfouis sous les sédiments, chauffés entre soixante et cent vingt degrés pendant des millions d'années, ils se transforment lentement en hydrocarbures. Ceux-ci migrent ensuite vers des roches poreuses, où ils restent piégés. Le gisement de Ghawar, en Arabie Saoudite, contient à lui seul des dizaines de milliards de barils. Mais ce trésor a mis dix à cent millions d'années à se former : à l'échelle humaine, il est non renouvelable.",
+   "texte": "Plancton enfoui, chaleur, millions d'années : le pétrole.",
+   "ecran": "formation"
+  },
+  {
+   "id": "p05",
+   "dit": "Pourquoi une telle domination ? Comparez les densités énergétiques. L'essence concentre environ quarante-cinq mégajoules par kilogramme, le charbon moins de trente, le bois sec moins de vingt. Une batterie lithium-ion, elle, peine entre zéro et un mégajoule par kilogramme : à masse égale, l'essence stocke des dizaines de fois plus d'énergie. Ajoutez la facilité de transport et de stockage des liquides, et l'on comprend que les hydrocarbures fournissent encore l'essentiel de l'énergie primaire mondiale.",
+   "texte": "Essence ≈ 45 MJ/kg, batterie ≈ 0,7 : le fossile concentre.",
+   "ecran": "energie"
+  },
+  {
+   "id": "p06",
+   "dit": "Classons maintenant. Toute la diversité s'organise autour du type de liaison entre carbones. Les alcanes n'ont que des liaisons simples : ils sont saturés. Les alcènes portent au moins une double liaison, les alcynes au moins une triple. Les aromatiques, enfin, forment des cycles où les électrons circulent librement. Ce classement n'est pas un simple étiquetage : chaque type de liaison dessine une géométrie, et cette géométrie commandera les propriétés et la réactivité. Nous allons rencontrer chaque famille.",
+   "texte": "Simples, doubles, triples ou cycle : quatre familles.",
+   "ecran": "familles"
+  },
+  {
+   "id": "p07",
+   "dit": "Première famille : les alcanes, que l'on surnomme paraffines, c'est-à-dire « peu d'affinité », tant ils sont peu réactifs. Tous leurs carbones sont entourés de quatre liaisons simples disposées en tétraèdre, avec des angles voisins de cent neuf degrés et demi. Le plus simple est le méthane, le gaz naturel. En allongeant la chaîne, le point d'ébullition grimpe régulièrement : le méthane bout à moins cent soixante et un degrés, l'hexane à soixante-huit degrés. Cette progression régulière définit une série homologue.",
+   "texte": "Alcanes : sp³, 109,5°, du méthane gaz à l'hexane liquide.",
+   "ecran": "alcanes"
+  },
+  {
+   "id": "p08",
+   "dit": "Deuxième famille : les alcènes, reconnaissables à leur double liaison. Les deux carbones concernés sont plans, avec des angles de cent vingt degrés, et la double liaison interdit toute rotation : la molécule est verrouillée. L'éthène, ou éthylène, est l'hydrocarbure le plus produit industriellement : c'est le point de départ du polyéthylène. C'est aussi une hormone végétale, qui déclenche le mûrissement des fruits. Le propène, lui, conduit au polypropylène.",
+   "texte": "Alcènes : C=C plane, rotation bloquée, éthène roi.",
+   "ecran": "alcenes"
+  },
+  {
+   "id": "p09",
+   "dit": "La rotation bloquée a une conséquence spectaculaire : l'isomérie géométrique. Prenez le but-deux-ène : ses deux groupes méthyle peuvent se placer du même côté de la double liaison, c'est l'isomère cis, ou de part et d'autre, c'est l'isomère trans. Même formule, même enchaînement, mais deux molécules distinctes, qui ne bouillent pas à la même température : trois virgule sept degrés pour le cis, zéro virgule neuf pour le trans. Une différence minuscule en apparence, mesurable en laboratoire.",
+   "texte": "But-2-ène : cis 3,7 °C, trans 0,9 °C.",
+   "ecran": "cistrans"
+  },
+  {
+   "id": "p10",
+   "dit": "Troisième famille : les alcynes et leur triple liaison. Les carbones sont alignés, à cent quatre-vingts degrés : la molécule est droite et rigide. L'aîné de la famille, l'éthyne, est plus connu sous le nom d'acétylène : sa flamme dans l'oxygène atteint trois mille cent degrés, ce qui en fait le gaz du soudage et du découpage des métaux. Particularité unique : l'hydrogène porté par un carbone de triple liaison est faiblement acide, car l'orbitale qui le lie contient moitié de caractère s, proche du noyau. On peut l'arracher avec une base forte et obtenir des alcynures, des outils précieux pour construire des molécules plus longues.",
+   "texte": "Alcynes : sp, 180°, acétylène à 3 100 °C.",
+   "ecran": "alcynes"
+  },
+  {
+   "id": "p11",
+   "dit": "Quatrième famille, la plus déroutante : les aromatiques, dont le chef de file est le benzène. Sa formule suggère trois doubles liaisons, donc un composé très réactif. Or le benzène ne décolore pas l'eau de brome, et il est remarquablement stable. En mille huit cent soixante-cinq, Kekulé propose un cycle de six carbones aux liaisons alternées. La vérité moderne : les six électrons pi ne sont fixés sur aucune liaison, ils sont délocalisés sur tout le cycle, au-dessus et au-dessous de son plan. La règle de Hückel le confirme : un cycle plan et conjugué est aromatique lorsqu'il compte quatre n plus deux électrons pi. Pour le benzène, six : le compte est bon.",
+   "texte": "Benzène : 6 e⁻ π délocalisés, Hückel 4n + 2.",
+   "ecran": "benzene"
+  },
+  {
+   "id": "p12",
+   "dit": "Remontons à la source de cette diversité : l'atome de carbone lui-même. Dans son état fondamental, sa couche de valence compte deux électrons appariés et deux célibataires. Pour former des liaisons, un électron est promu vers l'orbitale vide voisine : le carbone dispose alors de quatre électrons célibataires, prêts à former quatre liaisons covalentes. C'est la tétravalence, énoncée par Kekulé et Couper en mille huit cent cinquante-huit. En mille huit cent soixante-quatorze, van 't Hoff et Le Bel montrent que ces quatre liaisons pointent vers les sommets d'un tétraèdre : la stéréochimie est née.",
+   "texte": "Carbone promu : 4 électrons célibataires, 4 liaisons.",
+   "ecran": "carbone"
+  },
+  {
+   "id": "p13",
+   "dit": "Pour construire ces géométries, le carbone mélange ses orbitales : c'est l'hybridation. Un mélange d'une orbitale s et de trois orbitales p donne quatre hybrides identiques, dirigées en tétraèdre : c'est le cas des alcanes. Avec deux orbitales p, on obtient trois hybrides dans un plan, et il reste une orbitale p pure, perpendiculaire : c'est le cas des alcènes, et cette orbitale restante formera la liaison pi. Avec une seule orbitale p, deux hybrides opposées et deux orbitales p restantes : c'est le cas des alcynes. L'hybridation est le plan directeur de la forme des molécules.",
+   "texte": "sp³ tétraèdre, sp² plan + 1 p, sp linéaire + 2 p.",
+   "ecran": "hybridation"
+  },
+  {
+   "id": "p14",
+   "dit": "Distinguons enfin les deux types d'attaches. La liaison sigma naît d'un recouvrement axial, tête à tête, entre les noyaux : elle concentre les électrons sur l'axe, elle est forte, et elle autorise la rotation. La liaison pi naît d'un recouvrement latéral, de part et d'autre de l'axe : plus exposée, plus faible, elle interdit la rotation. Les chiffres le montrent : en passant de la liaison simple à la double, puis à la triple, la distance entre carbones raccourcit, de cent cinquante-quatre à cent vingt picomètres, et l'énergie de liaison grimpe. Mais attention : la liaison pi seule reste le maillon faible, le point d'attaque des réactifs, et c'est là que se jouera la réactivité, dans la troisième partie.",
+   "texte": "σ axiale et forte ; π latérale, faible, exposée.",
+   "ecran": "sigma_pi"
+  },
+  {
+   "id": "p15",
+   "dit": "Récapitulons cette première partie. Un hydrocarbure ne contient que du carbone et de l'hydrogène, mais le type de liaison entre carbones crée quatre familles : alcanes saturés, alcènes, alcynes et aromatiques. L'hybridation du carbone, sp trois, sp deux ou sp, fixe la géométrie : tétraèdre, plan ou droite. Et la liaison pi, latérale et exposée, sera le siège de la réactivité. Nous savons classer ; il faut maintenant apprendre à nommer.",
+   "texte": "Quatre familles, trois géométries, une liaison π clé.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p16",
+   "dit": "Deuxième partie : le langage des molécules. Imaginez un chimiste en Allemagne, un ingénieur au Texas et un chercheur au Japon travaillant sur la même molécule : sans système commun, impossible de s'entendre. Autrefois, les noms venaient de l'origine : l'acide formique devait son nom aux fourmis dont on l'extrayait. En mille neuf cent dix-neuf, l'IUPAC, l'union internationale de chimie, établit des règles systématiques fondées sur trois principes : l'univocité, un nom pour une seule structure ; la systématicité, le nom révèle la structure ; et l'universalité, le système vaut pour toutes les molécules, même celles à découvrir.",
+   "texte": "IUPAC 1919 : un nom, une structure, partout.",
+   "ecran": "nommer_intro"
+  },
+  {
+   "id": "p17",
+   "dit": "Un nom d'hydrocarbure se construit comme un mot composé de trois pièces. Le préfixe annonce la longueur de la chaîne principale. L'infixe désigne la famille : an pour des liaisons simples, èn pour une double liaison, yn pour une triple. Le suffixe, pour les hydrocarbures, est simplement la lettre e. Assemblez : pent, an, e : pentane, l'alcane à cinq carbones. Chaque infixe renvoie à la formule générale de sa famille : en lisant le nom, on connaît déjà la composition de la molécule.",
+   "texte": "Pent- + -an- + -e = pentane : le nom dit la structure.",
+   "ecran": "architecture_nom"
+  },
+  {
+   "id": "p18",
+   "dit": "Les préfixes viennent du grec et du latin : méth pour un carbone, éth pour deux, prop pour trois, but pour quatre, puis pent, hex, hept, oct, non et déc jusqu'à dix. Quant aux branches accrochées à la chaîne, ce sont des groupes alkyles : un alcane qui a perdu un hydrogène. Le méthane donne le groupe méthyle, l'éthane donne l'éthyle, le propane donne le propyle. Attention, le propane peut perdre son hydrogène au centre ou au bout : il existe donc deux groupes propyle, et c'est une première rencontre avec l'isomérie.",
+   "texte": "Méth- à déc- ; alkyles : méthyl-, éthyl-, propyl-.",
+   "ecran": "prefixes"
+  },
+  {
+   "id": "p19",
+   "dit": "Nommer devient alors un algorithme en cinq étapes. D'abord, identifier la chaîne carbonée la plus longue ; à longueur égale, celle qui porte le plus de substituants. Ensuite, numéroter cette chaîne pour donner les plus petits numéros possibles, en donnant la priorité aux insaturations. Troisième étape : identifier et nommer chaque substituant. Quatrième étape : assembler le nom, en plaçant les numéros, puis les substituants par ordre alphabétique. Dernière étape : gérer les répétitions avec les préfixes di, tri, tétra, qui ne comptent pas dans l'ordre alphabétique.",
+   "texte": "Chaîne, numéros, substituants, assemblage : 5 étapes.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p20",
+   "dit": "Premier cas, corrigé par la leçon. La molécule dessinée semble avoir une chaîne de trois carbones et deux branches ; mais en cherchant bien, la plus longue chaîne continue compte quatre carbones : c'est un butane. Le groupe méthyle restant se place sur le carbone deux, en numérotant depuis le bout le plus proche. Le nom est donc deux-méthylbutane. Dans l'industrie pétrolière, on l'appelle isopentane : c'est un composant majeur de l'essence, à l'indice d'octane élevé. Les deux noms coexistent : le systématique pour la rigueur, le trivial pour l'habitude.",
+   "texte": "2-méthylbutane : la chaîne la plus longue gagne.",
+   "ecran": "cas_alcane"
+  },
+  {
+   "id": "p21",
+   "dit": "Deuxième cas : une chaîne de quatre carbones avec une double liaison au bout. La numérotation donne la priorité à l'insaturation : la double liaison commence au carbone un, c'est le but-un-ène. Troisième cas : une triple liaison dans une chaîne de cinq carbones, avec un méthyle en position quatre. La triple liaison, numérotée au plus bas, commence au carbone deux : c'est le quatre-méthylpent-deux-yne. Retenez le réflexe : dans un nom, la position de l'insaturation se lit sur le premier carbone qui la porte.",
+   "texte": "But-1-ène, 4-méthylpent-2-yne : l'insaturation d'abord.",
+   "ecran": "cas_insatures"
+  },
+  {
+   "id": "p22",
+   "dit": "À vous de jouer, avec l'exercice de synthèse de la leçon. La structure dessinée montre une chaîne de cinq carbones portant trois groupes méthyle : deux sur le carbone deux, un sur le carbone quatre. En appliquant la méthode, le nom se construit tout seul : deux, deux, quatre-triméthylpentane. C'est l'isooctane, la molécule étalon de l'indice d'octane cent, dont la structure très ramifiée résiste à la détonation dans les moteurs. Et un piège classique au passage : deux méthyles voisins se regroupent avec le préfixe di ; on écrit deux, trois-diméthylbutane, jamais deux-méthyl-trois-méthylbutane.",
+   "texte": "2,2,4-triméthylpentane : l'isooctane, indice 100.",
+   "ecran": "exercice"
+  },
+  {
+   "id": "p23",
+   "dit": "Passons aux propriétés physiques, avec la solubilité. Une règle ancienne gouverne tout : le similaire dissout le similaire. L'eau est très polaire et tient ses molécules par des liaisons hydrogène, fortes de dix à quarante kilojoules par mole. Les hydrocarbures sont apolaires : entre eux ne jouent que les faibles forces de London. Pour se dissoudre, il faudrait rompre les liaisons de l'eau sans compensation : le processus est défavorable, la goutte d'huile reste donc en surface. Et plus la chaîne s'allonge, plus la solubilité s'effondre : du méthane au dodécane, elle est divisée par plusieurs milliers. En revanche, entre solvants apolaires, la dissolution est facile : c'est le principe du nettoyage à sec.",
+   "texte": "Apolaire contre polaire : l'huile fuit l'eau.",
+   "ecran": "solubilite"
+  },
+  {
+   "id": "p24",
+   "dit": "Deuxième propriété : le point d'ébullition, la température où la pression de vapeur du liquide égale la pression extérieure. Pour les alcanes droits, la loi est d'une régularité belle : chaque fois que la chaîne s'allonge d'un carbone portant ses deux hydrogènes, le point d'ébullition augmente d'environ vingt à trente degrés. Le méthane bout à moins cent soixante et un degrés, le butane juste sous zéro, l'octane à cent vingt-cinq degrés. L'explication tient aux forces de London : elles croissent avec la polarisabilité, donc avec la taille et la surface de contact des molécules. Plus la molécule est grosse, plus il faut d'énergie pour l'arracher au liquide.",
+   "texte": "+20 à 30 °C par carbone : la taille commande l'ébullition.",
+   "ecran": "ebullition"
+  },
+  {
+   "id": "p25",
+   "dit": "À formule égale, la forme change tout. Les trois isomères du pentane bouillent à des températures nettement différentes : trente-six degrés pour le linéaire, vingt-sept pour le simplement ramifié, et seulement neuf degrés et demi pour le néopentane, presque sphérique. Une molécule ramifiée offre moins de surface de contact à ses voisines : les forces de London s'affaiblissent, l'ébullition devient plus facile. Mais ce qui abaisse l'ébullition relève l'indice d'octane : l'isooctane, très ramifié, vaut cent sur l'échelle, quand l'heptane linéaire vaut zéro. Nous retrouverons ce duo dans les carburants.",
+   "texte": "Pentanes : 36,1 / 27,7 / 9,5 °C selon la ramification.",
+   "ecran": "ramification"
+  },
+  {
+   "id": "p26",
+   "dit": "Récapitulons. Le nom IUPAC se construit en trois pièces, préfixe, infixe, suffixe, selon une procédure en cinq étapes qui commence toujours par la chaîne la plus longue. Côté propriétés, deux idées maîtresses : la solubilité obéit à l'affinité des polarités, et le point d'ébullition raconte les forces de London, qui grandissent avec la taille mais faiblissent avec la ramification. Nous savons nommer et prévoir ; reste à voir comment ces molécules réagissent.",
+   "texte": "Nommer en cinq étapes, prévoir par London.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p27",
+   "dit": "Troisième partie : la réactivité. Deux paramètres gouvernent toutes les réactions des hydrocarbures. D'abord, la densité électronique : où les électrons se concentrent-ils ? Ensuite, la polarisabilité : avec quelle facilité le nuage électronique se déforme-t-il sous l'effet d'un réactif ? Comparez un alcane et un alcène de même taille : leurs comportements sont opposés. La différence ne tient pas au nombre d'électrons, mais à leur organisation. Là où siège une liaison pi, les électrons sont exposés et concentrés : c'est une cible pour les électrophiles, ces espèces qui aiment les électrons.",
+   "texte": "Densité π exposée : la cible des électrophiles E⁺.",
+   "ecran": "fondement"
+  },
+  {
+   "id": "p28",
+   "dit": "Les alcanes, sans liaison pi, ne réagissent qu'en forçant : par substitution radicalaire. Prenons le méthane et le chlore, sous lumière ultraviolette. Premier acte, l'initiation : la lumière casse la molécule de chlore en deux radicaux, des espèces portant un électron célibataire, très réactives. Deuxième acte, la propagation : un radical chlore arrache un hydrogène au méthane, naît un radical méthyle, qui attaque à son tour une molécule de chlore, forme le produit et régénère un radical chlore : la chaîne s'auto-entretient. Troisième acte, la terminaison : deux radicaux se recombinent, la chaîne s'éteint. Attention au défaut de cette réaction : elle manque de sélectivité, et sur un alcane plus long, elle donne des mélanges d'isomères.",
+   "texte": "UV → radicaux : initiation, propagation, terminaison.",
+   "ecran": "substitution"
+  },
+  {
+   "id": "p29",
+   "dit": "L'autre grande réaction des alcanes, vous la connaissez : la combustion. C'est une oxydation complète qui transforme tout hydrocarbure en dioxyde de carbone et en eau, en libérant l'énergie stockée dans les liaisons. Pour le méthane, une molécule réagit avec deux molécules de dioxygène. Cette réaction fait tourner les moteurs et chauffe les maisons. Elle exige un équilibre stœchiométrique précis : avec un dioxygène insuffisant, la combustion devient incomplète et produit des composés indésirables, dont le monoxyde de carbone, toxique.",
+   "texte": "Combustion : hydrocarbure + O₂ → CO₂ + H₂O + énergie.",
+   "ecran": "combustion"
+  },
+  {
+   "id": "p30",
+   "dit": "Chez les alcènes, tout change : la liaison pi s'offre aux électrophiles. Le mécanisme se fait en deux temps : l'électrophile attaque la double liaison et crée un carbocation, puis un nucléophile vient combler le carbone positif. Quatre réactifs à retenir : le dihydrogène, sur catalyseur métallique, sature la double liaison, c'est l'hydrogénation des huiles en margarine. Le dibrome se décolore au contact d'un alcène : c'est le test de reconnaissance classique. Les acides halogénés suivent la règle de Markovnikov : l'hydrogène se fixe sur le carbone déjà le plus hydrogéné, celui qui donne le carbocation le plus stable. Et l'eau, en milieu acide, donne un alcool.",
+   "texte": "π + E⁺ → carbocation → produit : l'addition.",
+   "ecran": "addition"
+  },
+  {
+   "id": "p31",
+   "dit": "Les aromatiques jouent une autre partition. Malgré leurs doubles liaisons apparentes, ils refusent l'addition : détruire le système aromatique coûterait leur précieuse stabilité. Ils préfèrent la substitution électrophile aromatique : un électrophile attaque le cycle, forme un intermédiaire, puis un proton part et l'aromaticité est restaurée. Quatre réactions fondatrices : la nitration, qui donne le nitrobenzène, précurseur de l'aniline ; la bromation, catalysée par le bromure de fer ; la sulfonation, remarquablement réversible ; et l'alkylation de Friedel-Crafts, qui greffe une chaîne carbonée sur le cycle.",
+   "texte": "SEAr : substituer sans détruire l'aromaticité.",
+   "ecran": "sear"
+  },
+  {
+   "id": "p32",
+   "dit": "Ces réactivités permettent de construire. Exemple résolu de la leçon : comment fabriquer le deux-bromobutane en partant de l'éthylène ? On raisonne à rebours, en rétrosynthèse. Le produit compte quatre carbones, le point de départ deux : première étape, une dimérisation contrôlée soude deux éthylènes en but-un-ène. Deuxième étape : on additionne le bromure d'hydrogène sur cette double liaison. Sans peroxydes, la règle de Markovnikov place le brome sur le carbone deux : le tour est joué. Deux réactions bien choisies transforment la brique la plus simple en une molécule ciblée.",
+   "texte": "Éthylène → but-1-ène → 2-bromobutane (Markovnikov).",
+   "ecran": "retrosynthese"
+  },
+  {
+   "id": "p33",
+   "dit": "Place aux applications, avec les carburants. L'essence est un mélange optimisé, et son indice d'octane mesure sa résistance au cliquetis, cette combustion trop brutale qui cogne le moteur. L'heptane linéaire, qui brûle trop vite, définit le zéro de l'échelle ; l'isooctane ramifié, à la combustion régulière, définit le cent. Le reformage catalytique transforme donc les alcanes linéaires en isomères ramifiés et en aromatiques. Les fractions plus lourdes, aux chaînes de douze à vingt carbones environ, donnent le gazole et le kérosène. Quant au gaz naturel, presque pur méthane, il possède le rapport hydrogène sur carbone le plus élevé : par unité d'énergie, c'est l'hydrocarbure qui émet le moins de dioxyde de carbone.",
+   "texte": "Heptane 0, isooctane 100 : la forme fait l'indice.",
+   "ecran": "carburants"
+  },
+  {
+   "id": "p34",
+   "dit": "Toutes les propriétés vues en deuxième partie deviennent ici un outil industriel : la distillation fractionnée trie le pétrole brut selon les points d'ébullition. En bas de la colonne, les fractions lourdes ; en haut, les légères. Les gaz sortent sous vingt degrés, avec un à quatre carbones. Le naphta, de cinq à dix carbones, donne l'essence et les solvants. Le kérosène alimente les réacteurs, le gazole les moteurs diesel. Et les résidus, au-delà de vingt-cinq carbones, deviennent bitume et huiles lourdes. La loi des points d'ébullition, apprise sur les alcanes, organise toute une raffinerie.",
+   "texte": "Du gaz C₁-C₄ au bitume > C₂₅ : trier par ébullition.",
+   "ecran": "distillation"
+  },
+  {
+   "id": "p35",
+   "dit": "La pétrochimie pousse la logique plus loin : au lieu de brûler les hydrocarbures, elle les déconstruit et les réassemble. Le roi de ce royaume est l'éthylène : polymérisé, il donne le polyéthylène des sacs et des films ; oxydé puis hydraté, l'antigel et les fibres polyester ; transformé en chlorure de vinyle, le PVC des tuyaux. Le prince est le propylène : polypropylène des pare-chocs, et filière vers le Plexiglas. Le butadiène, copolymérisé avec le styrène, donne le caoutchouc SBR, celui de soixante pour cent des pneus mondiaux. Une raffinerie ressemble alors à un arbre : le pétrole brut en racine, et chaque branche porte ses produits.",
+   "texte": "Éthylène roi, propylène prince : la pétrochimie.",
+   "ecran": "petrochimie"
+  },
+  {
+   "id": "p36",
+   "dit": "L'autre pilier de la pétrochimie est le trio des aromatiques, benzène, toluène et xylènes. Le benzène conduit au styrène du polystyrène, et au cumène, intermédiaire vers le phénol et l'acétone. Le toluène sert de solvant et de précurseur du TNT. Le paraxylène, oxydé en acide téréphtalique, devient avec l'éthylène glycol le PET des bouteilles et des fibres. Et dans la vie quotidienne, les hydrocarbures travaillent discrètement : l'hexane extrait les huiles végétales, le white spirit dilue les peintures, les huiles minérales lubrifient les moteurs, et la vaseline protège les peaux.",
+   "texte": "BTX : du benzène au PET, du toluène au TNT.",
+   "ecran": "btx"
+  },
+  {
+   "id": "p37",
+   "dit": "Terminons par l'application qui relie tout le cours : le caoutchouc. Le caoutchouc naturel est un polymère de l'isoprène, un hydrocarbure, dont les chaînes portent des doubles liaisons. À l'état brut, ces chaînes glissent les unes sur les autres : le matériau est mou, collant à la chaleur, cassant au froid. En mille huit cent trente-neuf, Charles Goodyear chauffe le caoutchouc avec du soufre : les atomes de soufre forment des ponts entre les chaînes, au niveau des doubles liaisons. Plus de glissement : le matériau devient élastique, résistant, durable. Le pneu était né, d'une propriété des liaisons pi.",
+   "texte": "Goodyear 1839 : des ponts de soufre, le pneu est né.",
+   "ecran": "vulcanisation"
+  },
+  {
+   "id": "p38",
+   "dit": "Reste le dilemme de notre époque. D'un côté, une infrastructure mondiale déjà construite, une densité énergétique inégalée, une polyvalence sans équivalent. De l'autre, les émissions de dioxyde de carbone, des ressources finies à l'échelle humaine et une géopolitique tendue. La chimie peut-elle décarboner son propre carbone, en fabriquant des hydrocarbures de synthèse ou biosourcés, à partir de biomasse ou de dioxyde de carbone capturé ? C'est l'une des grandes questions ouvertes que ce cours vous laisse : comprendre ces molécules, c'est acquérir les clés pour juger notre présent et inventer notre avenir matériel.",
+   "texte": "Dépendance contre transition : le dilemme du siècle.",
+   "ecran": "enjeux"
+  },
+  {
+   "id": "p39",
+   "dit": "Terminons par l'essentiel. Les hydrocarbures ne contiennent que du carbone et de l'hydrogène, mais le type de liaison entre carbones les partage en quatre familles aux géométries distinctes. La nomenclature IUPAC permet de nommer chacune d'elles sans ambiguïté, en lisant la structure dans le nom. Les forces de London expliquent leurs propriétés physiques, hydrophobie et points d'ébullition. Leur réactivité suit la liaison : les alcanes substituent ou brûlent, les alcènes et les alcynes additionnent, les aromatiques substituent pour préserver leur cycle. Et de ces comportements découlent leurs usages, des carburants aux polymères, qui structurent notre monde moderne.",
+   "texte": "Deux atomes, quatre familles, un monde entier.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Un monde de carbone et d'hydrogène : familles et géométries"
+  },
+  {
+   "debut": "p16",
+   "sous_titre": "Nommer les molécules et lire leurs propriétés",
+   "pont": {
+    "dit": "Partie deux : nommer les molécules et lire leurs propriétés. Nous allons construire le langage universel de la nomenclature, l'appliquer à des cas corrigés, puis découvrir comment la structure décide de la solubilité et des points d'ébullition.",
+    "texte": "Partie 2 : nomenclature IUPAC et propriétés physiques."
+   }
+  },
+  {
+   "debut": "p27",
+   "sous_titre": "Réactivité et applications : du laboratoire au monde réel",
+   "pont": {
+    "dit": "Partie trois : la réactivité et les applications. Nous verrons comment chaque famille réagit, des radicaux libres aux substitutions aromatiques, avant de suivre les hydrocarbures dans les carburants, le raffinage et la pétrochimie.",
+    "texte": "Partie 3 : réactivité, carburants, pétrochimie."
+   }
+  }
+ ]
+}

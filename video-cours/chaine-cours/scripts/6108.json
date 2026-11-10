@@ -1,0 +1,508 @@
+{
+ "cours": 6108,
+ "titre": "Nombres complexes et géométrie du plan",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Concours ESSEC",
+   "titre": "Nombres complexes et géométrie du plan",
+   "sous": "De la forme algébrique aux transformations : module, argument, équations et isométries",
+   "anim": {
+    "nom": "plan_complexe_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Neuf chapitres, un seul outil : le nombre complexe, à la fois nombre et point du plan."
+  },
+  "necessite": {
+   "type": "phrase",
+   "kicker": "Au-delà des réels",
+   "texte": "x² + 1 = 0 n'a aucune solution réelle : il faut élargir l'ensemble des nombres."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition d'un nombre complexe",
+   "tex": "z = a + ib, \\quad i^2 = -1",
+   "note": "a : partie réelle Re(z) ; b : partie imaginaire Im(z), un réel, pas un nombre imaginaire."
+  },
+  "conjugue": {
+   "type": "formule",
+   "kicker": "Le conjugué",
+   "tex": "\\bar{z} = a - ib, \\quad z\\,\\bar{z} = a^2 + b^2",
+   "note": "Le conjugué change le signe de la partie imaginaire : c'est l'outil de la division."
+  },
+  "affixe": {
+   "type": "etape",
+   "kicker": "Le plan de Gauss · l'affixe",
+   "titre": "Un nombre, un point, un vecteur",
+   "tex": [
+    "z = a + ib \\quad \\longleftrightarrow \\quad M(a,\\, b)",
+    "\\overrightarrow{OM} \\text{ a pour affixe } z",
+    "\\text{axe horizontal : les réels ; axe vertical : les imaginaires}"
+   ],
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 140
+   }
+  },
+  "operations": {
+   "type": "etape",
+   "kicker": "Opérations en forme algébrique",
+   "titre": "Additionner terme à terme, multiplier en développant",
+   "tex": [
+    "(a + ib) + (c + id) = (a + c) + i(b + d)",
+    "(a + ib)(c + id) = (ac - bd) + i(ad + bc)"
+   ]
+  },
+  "ex_operations": {
+   "type": "etape",
+   "kicker": "Exemple · somme et produit",
+   "titre": "z₁ = 2 + 3i et z₂ = 1 − i",
+   "tex": [
+    "z_1 + z_2 = 3 + 2i \\qquad z_1 - z_2 = 1 + 4i",
+    "z_1 z_2 = (2 + 3) + i(3 - 2) = 5 + i",
+    "|z_1| = \\sqrt{13} \\qquad |z_2| = \\sqrt{2}"
+   ]
+  },
+  "division": {
+   "type": "formule",
+   "kicker": "La division · le rôle du conjugué",
+   "tex": "\\frac{a + ib}{c + id} = \\frac{(ac + bd) + i(bc - ad)}{c^2 + d^2}",
+   "note": "On multiplie haut et bas par le conjugué du dénominateur : le bas devient réel."
+  },
+  "ex_division": {
+   "type": "etape",
+   "kicker": "Exemple · une division pas à pas",
+   "titre": "Diviser 2 + 3i par 1 − i",
+   "tex": [
+    "\\tfrac{2 + 3i}{1 - i} = \\tfrac{(2 + 3i)(1 + i)}{(1 - i)(1 + i)}",
+    "= \\tfrac{2 + 5i + 3i^2}{2} = \\tfrac{-1 + 5i}{2}",
+    "= -\\tfrac{1}{2} + \\tfrac{5}{2}i"
+   ]
+  },
+  "module_argument": {
+   "type": "formule",
+   "kicker": "Module et argument",
+   "tex": "|z| = \\sqrt{a^2 + b^2}, \\quad \\tan\\theta = \\frac{b}{a}",
+   "note": "Le module est la distance OM ; l'argument est l'angle de OM avec l'axe réel, défini à deux pi près.",
+   "anim": {
+    "nom": "plan_complexe_fig",
+    "hauteur": 190
+   }
+  },
+  "forme_trigo": {
+   "type": "formule",
+   "kicker": "Forme trigonométrique et formule d'Euler",
+   "tex": "z = r(\\cos\\theta + i\\sin\\theta) = r e^{i\\theta}",
+   "note": "Euler : e puissance i thêta égale cosinus thêta plus i sinus thêta. La forme courte des calculs de rotation."
+  },
+  "ex_conversion": {
+   "type": "etape",
+   "kicker": "Exemple · convertir, puis élever au carré",
+   "titre": "z = 1 + i√3, par les deux formes",
+   "tex": [
+    "r = 2, \\quad \\theta = \\tfrac{\\pi}{3} \\quad \\Rightarrow \\quad z = 2\\left(\\cos\\tfrac{\\pi}{3} + i\\sin\\tfrac{\\pi}{3}\\right)",
+    "z^2 = (1 + i\\sqrt{3})^2 = -2 + 2i\\sqrt{3}",
+    "z^2 = 4\\left(\\cos\\tfrac{2\\pi}{3} + i\\sin\\tfrac{2\\pi}{3}\\right) = -2 + 2i\\sqrt{3}"
+   ]
+  },
+  "mult_div_trigo": {
+   "type": "etape",
+   "kicker": "Produit et quotient en forme trigonométrique",
+   "titre": "Les modules se multiplient, les arguments s'ajoutent",
+   "tex": [
+    "z_1 z_2 = r_1 r_2 \\left[ \\cos(\\theta_1 + \\theta_2) + i\\sin(\\theta_1 + \\theta_2) \\right]",
+    "\\tfrac{z_1}{z_2} = \\tfrac{r_1}{r_2} \\left[ \\cos(\\theta_1 - \\theta_2) + i\\sin(\\theta_1 - \\theta_2) \\right]",
+    "z_1 = 2[\\pi/4], \\; z_2 = 3[\\pi/6] \\; \\Rightarrow \\; z_1 z_2 = 6[5\\pi/12], \\; z_1/z_2 = \\tfrac{2}{3}[\\pi/12]"
+   ]
+  },
+  "moivre": {
+   "type": "formule",
+   "kicker": "La formule de Moivre",
+   "tex": "z^n = r^n (\\cos n\\theta + i \\sin n\\theta)",
+   "note": "Élever à la puissance n : le module à la puissance n, l'argument multiplié par n."
+  },
+  "ex_racines": {
+   "type": "etape",
+   "kicker": "Exemple · les racines cubiques de 8i",
+   "titre": "Trois racines, un triangle sur le cercle de rayon deux",
+   "tex": [
+    "8i = 8\\left(\\cos\\tfrac{\\pi}{2} + i\\sin\\tfrac{\\pi}{2}\\right), \\quad \\sqrt[3]{8} = 2",
+    "\\theta_k = \\tfrac{\\pi/2 + 2k\\pi}{3}, \\quad k = 0, 1, 2",
+    "z_0 = \\sqrt{3} + i, \\quad z_1 = -\\sqrt{3} + i, \\quad z_2 = -2i"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Mi-parcours · l'essentiel",
+   "etapes": [
+    "z = a + ib, i² = −1, conjugué a − ib",
+    "Division : multiplier par le conjugué",
+    "Module : distance ; argument : angle",
+    "Trigonométrique : modules et arguments",
+    "Moivre : puissances et racines n-ièmes"
+   ]
+  },
+  "equations": {
+   "type": "formule",
+   "kicker": "Le second degré dans C",
+   "tex": "\\Delta = b^2 - 4ac, \\quad z = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}",
+   "note": "Dans C, toujours deux solutions, comptées avec multiplicité, même si le discriminant est négatif."
+  },
+  "ex_equation": {
+   "type": "etape",
+   "kicker": "Exemple · discriminant négatif",
+   "titre": "Résoudre x² + 2x + 5 = 0",
+   "tex": [
+    "\\Delta = 4 - 20 = -16 \\qquad \\sqrt{\\Delta} = 4i",
+    "x = \\tfrac{-2 \\pm 4i}{2} = -1 \\pm 2i",
+    "\\text{somme } -2, \\quad \\text{produit } 1 + 4 = 5"
+   ]
+  },
+  "relations": {
+   "type": "etape",
+   "kicker": "Relations coefficients-racines",
+   "titre": "Vérifier sans résoudre, ou résoudre sans calculer",
+   "tex": [
+    "z_1 + z_2 = -\\tfrac{b}{a} \\qquad z_1 z_2 = \\tfrac{c}{a}",
+    "z^2 - 4iz + 3 = 0 \\; : \\; \\text{somme } 4i, \\; \\text{produit } 3"
+   ]
+  },
+  "racines_unite": {
+   "type": "formule",
+   "kicker": "Les racines n-ièmes de l'unité",
+   "tex": "z_k = \\cos\\frac{2k\\pi}{n} + i\\sin\\frac{2k\\pi}{n}, \\quad k = 0, \\dots, n - 1",
+   "note": "Toutes sur le cercle unité : les sommets d'un polygone régulier à n côtés, de somme nulle si n dépasse un.",
+   "anim": {
+    "nom": "racines_unite_fig",
+    "hauteur": 190,
+    "n": 3
+   }
+  },
+  "ex_unite": {
+   "type": "etape",
+   "kicker": "Exemple · racines cubiques et primitives",
+   "titre": "Pour n = 3 et n = 4",
+   "tex": [
+    "n = 3 : \\quad 1, \\quad \\tfrac{-1 + i\\sqrt{3}}{2}, \\quad \\tfrac{-1 - i\\sqrt{3}}{2}",
+    "n = 4 : \\quad 1, \\; i, \\; -1, \\; -i \\quad \\text{primitives : } i \\text{ et } -i",
+    "\\varphi(4) = 2 \\text{ racines primitives}"
+   ],
+   "anim": {
+    "nom": "racines_unite_fig",
+    "hauteur": 170,
+    "n": 4
+   }
+  },
+  "transformations": {
+   "type": "etape",
+   "kicker": "Transformations du plan",
+   "titre": "Additionner, multiplier par un réel, multiplier par e puissance i thêta",
+   "tex": [
+    "\\text{translation : } z' = z + w",
+    "\\text{homothétie de rapport } k : \\quad z' = kz",
+    "\\text{rotation d'angle } \\theta : \\quad z' = e^{i\\theta} z"
+   ],
+   "anim": {
+    "nom": "rotation_homothetie_fig",
+    "hauteur": 105
+   }
+  },
+  "ex_transformations": {
+   "type": "etape",
+   "kicker": "Exemple · trois transformations calculées",
+   "titre": "Le même point, trois images",
+   "tex": [
+    "\\text{translation : } (2 + 3i) + (1 - i) = 3 + 2i",
+    "\\text{rotation de } \\pi/2 : \\quad i(1 + i) = -1 + i",
+    "\\text{homothétie de rapport deux : } \\quad 2(1 + i) = 2 + 2i"
+   ]
+  },
+  "isometries": {
+   "type": "etape",
+   "kicker": "Les isométries en écriture complexe",
+   "titre": "Conserver les distances, en une formule",
+   "tex": [
+    "\\text{symétrie par rapport à l'axe réel : } z \\mapsto \\bar{z}",
+    "\\text{symétrie d'axe d'angle } \\theta : \\quad z \\mapsto e^{2i\\theta}\\, \\bar{z}",
+    "\\text{symétrie centrale : } z \\mapsto -z"
+   ],
+   "anim": {
+    "nom": "symetrie_fig",
+    "hauteur": 140
+   }
+  },
+  "ex_isometrie": {
+   "type": "etape",
+   "kicker": "Exemple · rotation puis translation",
+   "titre": "L'image de 1 + i, en deux temps",
+   "tex": [
+    "e^{i\\pi/4}(1 + i) = \\tfrac{\\sqrt{2}}{2}(1 + i)^2 = i\\sqrt{2}",
+    "z' = i\\sqrt{2} + 2 + i = 2 + (1 + \\sqrt{2})i",
+    "\\text{deux symétries axiales composées : } z \\mapsto -z"
+   ]
+  },
+  "ex_synthese": {
+   "type": "etape",
+   "kicker": "Entraînement · un quotient de synthèse",
+   "titre": "Mettre (3 + 4i) divisé par (1 − 2i) sous forme algébrique",
+   "tex": [
+    "\\tfrac{3 + 4i}{1 - 2i} = \\tfrac{(3 + 4i)(1 + 2i)}{(1 - 2i)(1 + 2i)}",
+    "= \\tfrac{3 + 10i + 8i^2}{5} = \\tfrac{-5 + 10i}{5}",
+    "= -1 + 2i \\qquad |z| = \\sqrt{5}"
+   ]
+  },
+  "lieu": {
+   "type": "etape",
+   "kicker": "Un lieu géométrique en une équation",
+   "titre": "Équidistance : la médiatrice devient une droite d'équation",
+   "tex": [
+    "|z - 2 + i| = |z + 1 - 2i|",
+    "(x - 2)^2 + (y + 1)^2 = (x + 1)^2 + (y - 2)^2",
+    "6y = 6x \\quad \\Rightarrow \\quad y = x"
+   ]
+  },
+  "equilateral": {
+   "type": "formule",
+   "kicker": "Le triangle équilatéral, en affixes",
+   "tex": "z_A^2 + z_B^2 + z_C^2 = z_A z_B + z_A z_C + z_B z_C",
+   "note": "La condition de synthèse du cours : un triangle est équilatéral exactement quand cette égalité tient."
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode, exercice par exercice",
+   "etapes": [
+    "Identifier : opération, forme, ou lieu",
+    "Algébrique pour additionner et diviser",
+    "Trigonométrique pour multiplier, puissances",
+    "Vérifier par somme et produit des racines",
+    "Traduire la géométrie en modules, arguments"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Dans C, toute équation a ses solutions",
+    "Les racines de l'unité : un polygone régulier",
+    "Translation : ajouter ; rotation : multiplier",
+    "Isométries : conjugaison et e puissance i thêta",
+    "Toujours vérifier par un second calcul"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours du concours ESSEC consacré aux nombres complexes et à la géométrie du plan. Au programme : la forme algébrique pour calculer, la forme trigonométrique pour tourner et élever en puissance, les équations du second degré, les racines de l'unité, et les transformations du plan, jusqu'aux isométries.",
+   "texte": "Probabilités : non, complexes : le nombre qui devient point.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge tient en une idée : un nombre complexe est à la fois un nombre, sur lequel on calcule, et un point du plan, sur lequel on lit des distances et des angles. Toute la méthode consiste à traduire la géométrie en calcul, résoudre, puis relire le résultat géométriquement.",
+   "texte": "Un nombre, un point : traduire sans cesse entre les deux.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Pourquoi inventer de nouveaux nombres ? Parce qu'aucun réel n'a pour carré un nombre négatif : l'équation ixe au carré plus un égale zéro n'a aucune solution réelle. On introduit alors un nombre nouveau, dont le carré vaut moins un, et tout un ensemble construit à partir de lui.",
+   "texte": "Aucun réel au carré ne donne moins un : il faut inventer.",
+   "ecran": "necessite"
+  },
+  {
+   "id": "p04",
+   "dit": "La définition : on note i l'unité imaginaire, avec i au carré égal à moins un. Un nombre complexe z s'écrit a plus i b, où a est sa partie réelle et b sa partie imaginaire, qui est bien un réel. Exemple : pour z égal à trois plus deux i, la partie réelle vaut trois et la partie imaginaire vaut deux.",
+   "texte": "z = a + ib : a réelle, b imaginaire, i² = −1.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p05",
+   "dit": "Premier outil, le conjugué : celui de a plus i b est a moins i b, on change le signe de la partie imaginaire. Son produit avec z donne a au carré plus b au carré, un réel positif : c'est ce qui rendra la division possible. Et les racines non réelles d'une équation à coefficients réels sont toujours conjuguées.",
+   "texte": "Le conjugué : a − ib, et z fois son conjugué est réel.",
+   "ecran": "conjugue"
+  },
+  {
+   "id": "p06",
+   "dit": "Dans le plan de Gauss, muni d'un repère orthonormé, le complexe a plus i b correspond au point M de coordonnées a et b : z est l'affixe de M. L'axe horizontal porte les réels, l'axe vertical les imaginaires purs. Le vecteur O M a la même affixe : une addition de complexes se lira comme une addition de vecteurs.",
+   "texte": "L'affixe : z = a + ib devient le point M(a, b).",
+   "ecran": "affixe"
+  },
+  {
+   "id": "p07",
+   "dit": "En forme algébrique, on additionne les parties réelles entre elles et les parties imaginaires entre elles. Pour multiplier, on développe comme un produit de binômes, puis on remplace i au carré par moins un : le produit donne, en réel, a c moins b d, et en imaginaire, a d plus b c. Le piège est ce signe moins.",
+   "texte": "Addition terme à terme, produit : gare au i² = −1.",
+   "ecran": "operations"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple : z un égal à deux plus trois i, z deux égal à un moins i. La somme vaut trois plus deux i, la différence un plus quatre i. Le produit : deux plus i moins trois i au carré, donc cinq plus i. Les modules valent racine de treize et racine de deux. Vérifiez toujours en regroupant réels et imaginaires.",
+   "texte": "Somme 3 + 2i, produit 5 + i : regrouper et vérifier.",
+   "ecran": "ex_operations"
+  },
+  {
+   "id": "p09",
+   "dit": "Pour diviser, on multiplie le numérateur et le dénominateur par le conjugué du dénominateur. Le dénominateur devient c au carré plus d au carré, un réel, et le quotient prend sa forme algébrique : en réel, a c plus b d ; en imaginaire, b c moins a d ; le tout sur c au carré plus d au carré.",
+   "texte": "Diviser : multiplier haut et bas par le conjugué.",
+   "ecran": "division"
+  },
+  {
+   "id": "p10",
+   "dit": "Appliquons : deux plus trois i divisé par un moins i. Le conjugué de un moins i est un plus i, et le dénominateur devient deux. En haut : deux plus cinq i plus trois i au carré, soit moins un plus cinq i. Le quotient vaut donc moins un demi plus cinq demis de i.",
+   "texte": "(2 + 3i)/(1 − i) = −1/2 + (5/2)i, par le conjugué.",
+   "ecran": "ex_division"
+  },
+  {
+   "id": "p11",
+   "dit": "Deux nombres décrivent la position de M : le module, distance de l'origine à M, égal à racine de a au carré plus b au carré ; et l'argument, l'angle en radians entre l'axe des réels positifs et le vecteur O M. Sa tangente vaut b sur a, mais les signes de a et de b fixent le quadrant, et l'argument n'est défini qu'à deux pi près.",
+   "texte": "Module : la distance OM ; argument : l'angle, à 2π près.",
+   "ecran": "module_argument"
+  },
+  {
+   "id": "p12",
+   "dit": "Avec le module r et l'argument thêta, z s'écrit r fois cosinus thêta plus i sinus thêta : c'est la forme trigonométrique. La formule d'Euler, e puissance i thêta égale cosinus thêta plus i sinus thêta, la compresse en r fois e puissance i thêta. L'algébrique sert à additionner, la trigonométrique servira à multiplier et à élever en puissance.",
+   "texte": "z = r(cos θ + i sin θ) = r·e^(iθ) : la forme des rotations.",
+   "ecran": "forme_trigo"
+  },
+  {
+   "id": "p13",
+   "dit": "Conversion : z égal à un plus i racine de trois. Le module vaut racine de un plus trois, donc deux ; le cosinus vaut un demi et le sinus racine de trois sur deux, donc thêta égale pi sur trois. Au carré, par la forme algébrique : moins deux plus deux i racine de trois. Par la forme trigonométrique : module quatre, argument deux pi sur trois, même résultat. Les deux formes se contrôlent.",
+   "texte": "1 + i√3 = 2 à l'angle π/3 ; son carré, par deux chemins.",
+   "ecran": "ex_conversion"
+  },
+  {
+   "id": "p14",
+   "dit": "Le bénéfice de la forme trigonométrique : pour multiplier, on multiplie les modules et on additionne les arguments ; pour diviser, on divise les modules et on soustrait les arguments. Exemple : modules deux et trois, arguments pi sur quatre et pi sur six. Le produit a pour module six et pour argument cinq pi sur douze ; le quotient, module deux tiers et argument pi sur douze.",
+   "texte": "Produit : modules multipliés, arguments additionnés.",
+   "ecran": "mult_div_trigo"
+  },
+  {
+   "id": "p15",
+   "dit": "La formule de Moivre généralise : z puissance n a pour module r puissance n et pour argument n fois thêta. Dans l'autre sens, elle donne les racines n-ièmes : on prend la racine n-ième du module, on divise l'argument par n, et on ajoute les multiples de deux pi sur n. Tout complexe non nul a exactement n racines n-ièmes.",
+   "texte": "Moivre : r puissance n, argument multiplié par n.",
+   "ecran": "moivre"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple : les racines cubiques de huit i, qui s'écrit huit fois cosinus pi sur deux plus i sinus pi sur deux. La racine cubique de huit vaut deux ; les arguments sont pi sur six, cinq pi sur six et trois pi sur deux. Les racines sont racine de trois plus i, moins racine de trois plus i, et moins deux i. Contrôle : racine de trois plus i, au cube, redonne huit i.",
+   "texte": "Racines cubiques de 8i : √3 + i, −√3 + i, −2i.",
+   "ecran": "ex_racines"
+  },
+  {
+   "id": "p17",
+   "dit": "Récapitulons. Un complexe s'écrit a plus i b ; son conjugué change le signe de b, et la division passe toujours par lui. Le module est une distance, l'argument un angle à deux pi près. En forme trigonométrique, produits, quotients, puissances et racines deviennent des opérations simples sur les modules et les arguments.",
+   "texte": "Formes, opérations, Moivre : l'essentiel à mi-parcours.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p18",
+   "dit": "Dans les complexes, le second degré admet toujours deux solutions : la formule habituelle, avec le discriminant delta égal à b au carré moins quatre a c. Si delta est négatif, sa racine carrée est imaginaire pure : pour moins seize, elle vaut quatre i. Si delta est nul, la racine est double. Il n'y a plus de cas sans solution.",
+   "texte": "Dans C : toujours deux solutions, même si Δ est négatif.",
+   "ecran": "equations"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple : ixe au carré plus deux ixe plus cinq égale zéro. Le discriminant vaut moins seize, de racine carrée quatre i. Les solutions sont moins deux plus ou moins quatre i, sur deux : moins un plus deux i et moins un moins deux i, deux conjugués, symétriques par rapport à l'axe réel. Contrôle : somme moins deux, produit cinq.",
+   "texte": "x² + 2x + 5 = 0 : −1 + 2i et −1 − 2i, conjuguées.",
+   "ecran": "ex_equation"
+  },
+  {
+   "id": "p20",
+   "dit": "Ces contrôles sont les relations coefficients-racines : la somme des racines vaut moins b sur a, leur produit vaut c sur a, dans les complexes comme dans les réels. Sans résoudre, pour z au carré moins quatre i z plus trois égale zéro, la somme vaut quatre i et le produit vaut trois. Dix secondes pour vérifier un calcul, ou pour construire une équation de racines données.",
+   "texte": "Somme −b/a, produit c/a : le contrôle en dix secondes.",
+   "ecran": "relations"
+  },
+  {
+   "id": "p21",
+   "dit": "Cas célèbre : les racines n-ièmes de l'unité, solutions de z puissance n égale un. Leur module vaut un, leurs arguments sont deux k pi sur n : elles sont sur le cercle unité, aux sommets d'un polygone régulier, et leur somme est nulle dès que n dépasse un. Une racine est primitive si ses puissances engendrent toutes les autres ; leur nombre est l'indicatrice d'Euler de n.",
+   "texte": "Les racines de l'unité : un polygone régulier, somme nulle.",
+   "ecran": "racines_unite"
+  },
+  {
+   "id": "p22",
+   "dit": "Pour n égal à trois, les racines sont un, et moins un plus ou moins i racine de trois, le tout sur deux : un triangle équilatéral sur le cercle unité. Pour n égal à quatre : un, i, moins un, moins i. Les primitives sont i et moins i seulement, car un et moins un n'engendrent pas les autres. L'indicatrice d'Euler de quatre vaut bien deux.",
+   "texte": "n = 3 : un triangle ; n = 4 : primitives i et −i.",
+   "ecran": "ex_unite"
+  },
+  {
+   "id": "p23",
+   "dit": "Passons à la géométrie. Translater d'un vecteur d'affixe w, c'est ajouter w à l'affixe. Une homothétie de centre l'origine et de rapport réel k, c'est multiplier par k. Une rotation de centre l'origine et d'angle thêta, c'est multiplier par e puissance i thêta : le module ne change pas, l'argument augmente de thêta. Composer les transformations, c'est composer les opérations.",
+   "texte": "Ajouter : translater ; multiplier : dilater et tourner.",
+   "ecran": "transformations"
+  },
+  {
+   "id": "p24",
+   "dit": "Trois calculs. Translation : deux plus trois i, plus un moins i, donne trois plus deux i. Rotation d'un quart de tour : multiplier un plus i par i donne moins un plus i, le point a tourné de quatre-vingt-dix degrés. Homothétie de rapport deux : un plus i devient deux plus deux i, deux fois plus loin de l'origine, même direction.",
+   "texte": "Translation : 3 + 2i ; rotation π/2 : −1 + i ; rapport 2 : 2 + 2i.",
+   "ecran": "ex_transformations"
+  },
+  {
+   "id": "p25",
+   "dit": "Les isométries conservent les distances et ont leurs écritures. La symétrie par rapport à l'axe réel envoie z sur son conjugué. Celle par rapport à une droite d'angle thêta envoie z sur e puissance deux i thêta fois son conjugué : pour la première bissectrice, le facteur vaut i. La symétrie centrale envoie z sur moins z.",
+   "texte": "Symétries : conjugaison, facteur e^(2iθ), ou opposé.",
+   "ecran": "isometries"
+  },
+  {
+   "id": "p26",
+   "dit": "Exemple composé : rotation de pi sur quatre, puis translation de vecteur deux plus i, sur le point d'affixe un plus i. La rotation donne racine de deux sur deux fois un plus i au carré, soit i racine de deux. On ajoute deux plus i : l'image est deux plus, un plus racine de deux, fois i. Autre classique : composer les symétries des deux axes donne la symétrie centrale.",
+   "texte": "Rotation π/4 puis translation : 2 + (1 + √2)i.",
+   "ecran": "ex_isometrie"
+  },
+  {
+   "id": "p27",
+   "dit": "Entraînement : mettre trois plus quatre i, divisé par un moins deux i, sous forme algébrique. On multiplie par le conjugué un plus deux i : le dénominateur vaut cinq ; le numérateur donne trois plus dix i plus huit i au carré, soit moins cinq plus dix i. Résultat : moins un plus deux i, de module racine de cinq. Vous reconnaissez une racine de notre exemple du second degré.",
+   "texte": "(3 + 4i)/(1 − 2i) = −1 + 2i : le conjugué, encore.",
+   "ecran": "ex_synthese"
+  },
+  {
+   "id": "p28",
+   "dit": "Les lieux géométriques, enfin. Égaler le module de z moins deux plus i et celui de z plus un moins deux i, c'est dire que M est à égale distance des points d'affixes deux moins i et moins un plus deux i. En coordonnées, les carrés se simplifient : il reste igrec égal à ixe. Le lieu est la médiatrice des deux points, ici la première bissectrice.",
+   "texte": "Équidistance : le lieu est la médiatrice, ici y = x.",
+   "ecran": "lieu"
+  },
+  {
+   "id": "p29",
+   "dit": "Le problème de synthèse du cours : un triangle A B C est équilatéral exactement quand la somme des carrés des affixes de ses sommets égale la somme de leurs produits deux à deux. Une seule égalité complexe remplace les égalités de longueurs et les angles : c'est la forme de démonstration attendue à l'ESSEC.",
+   "texte": "Triangle équilatéral : une seule égalité sur les affixes.",
+   "ecran": "equilateral"
+  },
+  {
+   "id": "p30",
+   "dit": "La méthode, en cinq gestes : identifier ce qui est demandé, opération, conversion, équation ou lieu ; choisir la forme adaptée, algébrique pour additionner et diviser, trigonométrique pour multiplier et élever en puissance ; calculer en regroupant réels et imaginaires ; vérifier par un second chemin ; et relire géométriquement le résultat.",
+   "texte": "Identifier, choisir la forme, calculer, vérifier, relire.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p31",
+   "dit": "Pour conclure : dans les complexes, toute équation du second degré a ses deux solutions, et tout complexe non nul a ses n racines n-ièmes, en polygone régulier. Les transformations deviennent des opérations : ajouter, multiplier, conjuguer. Et la règle d'or, du premier calcul au problème de synthèse : toujours vérifier par un second chemin.",
+   "texte": "Complexes et géométrie : un seul langage, deux lectures.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Forme algébrique, conjugué, plan de Gauss et division"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Forme trigonométrique, Moivre et équations du second degré",
+   "pont": {
+    "texte": "Partie 2 : forme trigonométrique, puissances et équations.",
+    "dit": "Partie deux : la forme trigonométrique et ses puissances. Nous convertirons entre les formes, multiplierons et diviserons par les modules et les arguments, appliquerons la formule de Moivre aux puissances et aux racines, puis nous résoudrons les équations du second degré dans les complexes, avec les relations entre coefficients et racines."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Racines de l'unité, transformations et isométries du plan",
+   "pont": {
+    "texte": "Partie 3 : racines de l'unité et géométrie du plan.",
+    "dit": "Partie trois : les racines de l'unité et la géométrie du plan. Nous disposerons les racines de l'unité en polygone régulier sur le cercle unité, puis nous traduirons les transformations du plan en opérations sur les affixes : translations, rotations, homothéties et isométries, jusqu'au lieu géométrique et au problème de synthèse du triangle équilatéral."
+   }
+  }
+ ]
+}

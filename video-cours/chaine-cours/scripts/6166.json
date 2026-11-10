@@ -1,0 +1,487 @@
+{
+ "cours": 6166,
+ "ecrans": {
+  "abs_exemple": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Exemple · une valeur absolue, deux triangles",
+   "tex": [
+    "\\textstyle |x-2| = 2-x \\ \\text{sur } [0,2], \\quad x-2 \\ \\text{sur } [2,4]",
+    "\\textstyle \\int_0^4 |x-2|\\,dx = \\int_0^2 (2-x)\\,dx + \\int_2^4 (x-2)\\,dx",
+    "\\textstyle = 2 + 2 = 4 \\quad \\text{(deux triangles)}"
+   ],
+   "titre": "Découper là où l'expression change de forme",
+   "type": "etape"
+  },
+  "aire_signee": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "sinusoide"
+   },
+   "kicker": "Aire géométrique totale",
+   "note": "Méthode : trouver les zéros, découper aux changements de signe, intégrer avec le bon signe sur chaque morceau.",
+   "tex": "A = \\int_a^b |f(x)|\\,dx",
+   "type": "formule"
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "riemann_fig"
+   },
+   "kicker": "La définition · le passage à la limite",
+   "note": "La limite doit être la même pour tout choix des points cᵢ : alors l'intégrale existe.",
+   "tex": "\\int_a^b f(x)\\,dx = \\lim_{n \\to \\infty} \\sum_{i=1}^{n} f(c_i)\\,\\Delta x_i",
+   "type": "formule"
+  },
+  "deplacement": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Application · intégrer une vitesse",
+   "tex": [
+    "\\textstyle v(t) = 60t - 10t^2 \\qquad G(t) = 30t^2 - \\tfrac{10}{3}t^3",
+    "\\textstyle \\int_0^6 v(t)\\,dt = \\big[G(t)\\big]_0^6 = 1080 - 720",
+    "\\textstyle = 360 \\ \\text{km : l'aire sous la courbe de vitesse}"
+   ],
+   "titre": "La distance parcourue est l'aire sous la courbe de vitesse",
+   "type": "etape"
+  },
+  "encadrement": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Encadrer sans calculer",
+   "note": "m et M : minimum et maximum de f sur l'intervalle. Un encadrement simple, avant tout calcul exact.",
+   "tex": "m(b-a) \\leq \\int_a^b f(x)\\,dx \\leq M(b-a)",
+   "type": "formule"
+  },
+  "entre_courbes": {
+   "anim": {
+    "nom": "entre_courbes_fig",
+    "hauteur": 190
+   },
+   "kicker": "Aire entre deux courbes",
+   "note": "Dessus moins dessous, entre les abscisses d'intersection. Si les courbes se croisent, découper aux croisements.",
+   "tex": "A = \\int_a^b \\big[f(x) - g(x)\\big]\\,dx \\qquad (f \\geq g)",
+   "type": "formule"
+  },
+  "ex_cubique": {
+   "kicker": "Exemple complet · une cubique qui traverse l'axe",
+   "tex": [
+    "f(x)=x^3-4x, \\quad \\text{zéros : } -2,\\ 0,\\ 2",
+    "F(x) = \\tfrac{x^4}{4} - 2x^2",
+    "A = \\tfrac{25}{4} + 4 + 4 + \\tfrac{25}{4}",
+    "A = \\tfrac{41}{2} = 20{,}5"
+   ],
+   "titre": "Quatre intervalles, quatre contributions positives",
+   "type": "etape"
+  },
+  "ex_entre": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "parabole_fig"
+   },
+   "kicker": "Exemple · la racine contre la parabole",
+   "tex": [
+    "\\textstyle \\sqrt{x} \\geq x^2 \\ \\text{sur } [0,1], \\quad \\text{intersections : } 0 \\text{ et } 1",
+    "\\textstyle A = \\int_0^1 (\\sqrt{x} - x^2)\\,dx = \\left[\\tfrac{2}{3}x^{3/2} - \\tfrac{x^3}{3}\\right]_0^1",
+    "\\textstyle A = \\tfrac{2}{3} - \\tfrac{1}{3} = \\tfrac{1}{3}"
+   ],
+   "titre": "Deux courbes qui se rencontrent en zéro et en un",
+   "type": "etape"
+  },
+  "ex_temperature": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "sinusoide"
+   },
+   "kicker": "Exemple · la température moyenne d'une journée",
+   "tex": [
+    "\\textstyle T(t) = 15 + 5\\sin\\left(\\tfrac{\\pi t}{12}\\right), \\quad 0 \\leq t \\leq 24",
+    "\\textstyle \\int_0^{24} T(t)\\,dt = 360 + 0 = 360",
+    "\\textstyle T_{\\text{moy}} = \\tfrac{360}{24} = 15\\ ^\\circ\\text{C}"
+   ],
+   "titre": "La partie sinusoïdale se compense sur une période complète",
+   "type": "etape"
+  },
+  "ex_tfci": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "parabole_fig"
+   },
+   "kicker": "Deux calculs directs",
+   "tex": [
+    "\\textstyle \\int_1^3 x^2\\,dx = \\left[\\tfrac{x^3}{3}\\right]_1^3 = 9 - \\tfrac{1}{3} = \\tfrac{26}{3}",
+    "\\textstyle \\int_0^\\pi \\sin x\\,dx = \\big[-\\cos x\\big]_0^\\pi = 1 + 1 = 2",
+    "\\textstyle \\text{deux calculs, aucune somme de Riemann}"
+   ],
+   "titre": "La parabole, puis le sinus : la règle de Newton-Leibniz",
+   "type": "etape"
+  },
+  "fonction_aire": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "primitives_famille_fig"
+   },
+   "kicker": "Vérification sur un triangle",
+   "tex": [
+    "\\textstyle f(t) = 2t \\qquad F(x) = \\int_0^x 2t\\,dt",
+    "\\textstyle F(x) = \\tfrac{1}{2} \\times x \\times 2x = x^2 \\quad \\text{(aire du triangle)}",
+    "\\textstyle F'(x) = 2x = f(x)"
+   ],
+   "titre": "La fonction deux t : son aire accumulée est x carré",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "riemann_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Depuis Archimède, un même problème : mesurer ce qui n'est pas droit. L'intégrale définie est la réponse : approcher une aire courbe par des rectangles, puis passer à la limite.",
+   "type": "phrase"
+  },
+  "notation": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Lire la notation",
+   "tex": [
+    "\\text{bornes : } a \\text{ en bas},\\quad b \\text{ en haut}",
+    "\\text{intégrande : } f(x) \\qquad \\text{variable : } dx",
+    "\\text{condition : } f \\text{ continue, ou continue par morceaux}"
+   ],
+   "titre": "Chaque symbole a un rôle précis",
+   "type": "etape"
+  },
+  "probleme": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "parabole_fig"
+   },
+   "kicker": "Le problème de départ",
+   "texte": "Aire délimitée par la courbe de f, l'axe des abscisses et les droites x = a et x = b : ni rectangle, ni triangle, il faut une méthode générale.",
+   "type": "phrase"
+  },
+  "proprietes": {
+   "kicker": "Les propriétés fondamentales",
+   "tex": [
+    "\\textstyle \\int_a^b [\\alpha f + \\beta g] = \\alpha \\int_a^b f + \\beta \\int_a^b g",
+    "\\textstyle \\int_a^b f + \\int_b^c f = \\int_a^c f",
+    "\\textstyle \\int_a^b f = -\\int_b^a f \\qquad \\int_a^a f = 0",
+    "\\textstyle f \\leq g \\ \\Rightarrow \\ \\int_a^b f \\leq \\int_a^b g"
+   ],
+   "titre": "Linéarité, additivité, bornes et comparaison",
+   "type": "etape"
+  },
+  "quart_cercle": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "riemann_fig"
+   },
+   "kicker": "Exemple · approcher un quart de cercle",
+   "tex": [
+    "S_4 \\approx 1{,}000 + 0{,}968 + 0{,}866 + 0{,}661 = 3{,}495",
+    "\\text{valeur exacte : } \\tfrac{1}{4}\\pi (2)^2 = \\pi \\approx 3{,}1416",
+    "\\text{fonction décroissante, rectangles à gauche : surestimation}"
+   ],
+   "titre": "Quatre rectangles à gauche pour la racine de quatre moins x carré",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Riemann : découper, sommer, passer à la limite",
+    "Aire signée : au-dessus moins en dessous",
+    "TFCI : intégrer, c'est anti-dériver",
+    "Aire géométrique : intégrer la valeur absolue",
+    "Entre deux courbes : dessus moins dessous"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "reservoir": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "graphe_fig"
+   },
+   "kicker": "L'intuition du théorème fondamental",
+   "texte": "Un réservoir se remplit à débit variable f(t) : la quantité accumulée A(x) augmente, à chaque instant, exactement au rythme du débit f(x). Donc A′(x) = f(x).",
+   "type": "phrase"
+  },
+  "signe": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "sinusoide"
+   },
+   "kicker": "Les aires signées",
+   "note": "Au-dessus de l'axe : aire positive. En dessous : son opposé. Sur une période complète, elles se compensent.",
+   "tex": "\\int_0^{2\\pi} \\sin x\\,dx = 0 \\qquad \\int_0^{2\\pi} |\\sin x|\\,dx = 4",
+   "type": "formule"
+  },
+  "somme_droite": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "parabole_fig"
+   },
+   "kicker": "Exemple · la parabole sur un petit intervalle",
+   "tex": [
+    "\\Delta x = \\tfrac{1}{4} = 0{,}25 \\qquad f(0{,}25)=0{,}0625,\\ f(0{,}5)=0{,}25",
+    "f(0{,}75)=0{,}5625 \\qquad f(1)=1",
+    "S_4 = 0{,}25\\,(0{,}0625+0{,}25+0{,}5625+1) = 0{,}46875"
+   ],
+   "titre": "Quatre rectangles à droite : une surestimation",
+   "type": "etape"
+  },
+  "strategie": {
+   "etapes": [
+    "Dessiner la courbe et repérer son signe",
+    "Zéros d'abord : ils donnent le découpage",
+    "Primitive, puis bornes : G(b) moins G(a)",
+    "Aire demandée ? valeur absolue, jamais signée"
+   ],
+   "kicker": "Stratégie d'épreuve",
+   "type": "recap"
+  },
+  "subdivision": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "riemann_fig"
+   },
+   "kicker": "Les sommes de Riemann · découper",
+   "tex": [
+    "\\textstyle a = x_0 < x_1 < \\cdots < x_n = b, \\quad \\Delta x = \\tfrac{b-a}{n}",
+    "\\textstyle A_i = f(c_i)\\,\\Delta x_i",
+    "\\textstyle S_n = \\sum_{i=1}^{n} f(c_i)\\,\\Delta x_i"
+   ],
+   "titre": "Découper, choisir, sommer : la méthode en trois gestes",
+   "type": "etape"
+  },
+  "tfci1": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "primitives_famille_fig"
+   },
+   "kicker": "Théorème fondamental · première partie",
+   "note": "f continue : la fonction aire accumulée est une primitive de f. Dériver défait l'intégration.",
+   "tex": "F(x) = \\int_a^x f(t)\\,dt \\quad \\Rightarrow \\quad F'(x) = f(x)",
+   "type": "formule"
+  },
+  "tfci2": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "primitives_famille_fig"
+   },
+   "kicker": "Théorème fondamental · seconde partie",
+   "note": "G : n'importe quelle primitive de f. Fini les limites de sommes : deux évaluations et une soustraction.",
+   "tex": "\\int_a^b f(x)\\,dx = \\big[G(x)\\big]_a^b = G(b) - G(a)",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "riemann_fig"
+   },
+   "kicker": "Mathématique · Intégrales définies",
+   "sous": "Sommes de Riemann, théorème fondamental, aires signées et aires entre deux courbes",
+   "titre": "L'intégrale définie : mesurer l'aire sous une courbe",
+   "type": "titre"
+  },
+  "valeur_moyenne": {
+   "anim": {
+    "nom": "valeur_moyenne_fig",
+    "hauteur": 190
+   },
+   "kicker": "La valeur moyenne d'une fonction",
+   "note": "Hauteur du rectangle de même aire que celle sous la courbe. f continue : cette valeur est atteinte en au moins un point.",
+   "tex": "f_{\\text{moy}} = \\frac{1}{b-a} \\int_a^b f(x)\\,dx",
+   "type": "formule"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Sommes de Riemann et définition de l'intégrale"
+  },
+  {
+   "debut": "p09",
+   "pont": {
+    "dit": "Partie deux : les propriétés de l'intégrale et le théorème fondamental. Après les propriétés qui structurent le calcul, nous découvrirons le pont entre intégration et dérivation, vérifierons la première partie du théorème sur un triangle, puis appliquerons la règle de Newton-Leibniz à des calculs directs.",
+    "texte": "Partie 2 : les propriétés de l'intégrale, puis le théorème fondamental qui relie intégration et dérivation."
+   },
+   "sous_titre": "Propriétés et théorème fondamental"
+  },
+  {
+   "debut": "p18",
+   "pont": {
+    "dit": "Partie trois : les aires en pratique. Nous distinguerons l'aire signée de l'aire géométrique totale, calculerons l'aire d'une cubique qui traverse l'axe, définirons la valeur moyenne d'une fonction, et terminerons par l'aire comprise entre deux courbes.",
+    "texte": "Partie 3 : aires géométriques, valeur moyenne et aire entre deux courbes."
+   },
+   "sous_titre": "Aires signées, valeur moyenne et aire entre deux courbes"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré à l'intégrale définie et au calcul d'aires. Depuis Archimède, qui approchait le cercle par des polygones, les mathématiciens cherchent à mesurer des surfaces bordées par des courbes. Nous construirons la réponse complète : approcher par des rectangles, passer à la limite, puis calculer vite grâce au théorème fondamental, jusqu'aux aires entre deux courbes.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "L'intégrale définie : mesurer l'aire sous une courbe."
+  },
+  {
+   "dit": "Le point de départ est un problème très concret. Un ingénieur doit estimer le volume de terre d'une colline à la forme irrégulière : il la découpe en tranches fines, calcule l'aire de chaque tranche, multiplie par l'épaisseur et additionne. Ce geste, découper puis sommer des morceaux simples, est exactement le principe de l'intégrale définie.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Découper en tranches fines, puis sommer."
+  },
+  {
+   "dit": "Formulons le problème. Soit une fonction continue et positive sur un intervalle. On cherche l'aire de la région délimitée par sa courbe, par l'axe des abscisses et par les deux droites verticales aux extrémités. Cette région n'est ni un rectangle ni un triangle : aucune formule élémentaire ne la donne, il faut construire une méthode générale.",
+   "ecran": "probleme",
+   "id": "p03",
+   "texte": "Ni rectangle, ni triangle : une méthode générale."
+  },
+  {
+   "dit": "La méthode de Riemann procède en trois gestes. D'abord, découper l'intervalle en n sous-intervalles de même largeur, delta x. Ensuite, dans chaque sous-intervalle, choisir un point et construire le rectangle dont la hauteur est la valeur de la fonction en ce point. Enfin, sommer les aires de tous les rectangles : on obtient une approximation de l'aire cherchée, la somme de Riemann.",
+   "ecran": "subdivision",
+   "id": "p04",
+   "texte": "Découper, construire des rectangles, sommer."
+  },
+  {
+   "dit": "Premier calcul, pour la parabole x carré entre zéro et un, avec quatre rectangles et les points de droite. La largeur vaut un quart. Les hauteurs sont les images de un quart, un demi, trois quarts et un : la somme donne environ zéro virgule quarante-sept. La fonction est croissante, les rectangles dépassent la courbe : c'est une surestimation, la valeur exacte étant un tiers.",
+   "ecran": "somme_droite",
+   "id": "p05",
+   "texte": "Quatre rectangles : 0,46875, la valeur exacte est 1/3."
+  },
+  {
+   "dit": "L'idée décisive est de raffiner le découpage sans fin. Quand le nombre de rectangles tend vers l'infini et que leur largeur tend vers zéro, la somme de Riemann tend vers une limite : cette limite, quand elle ne dépend pas du choix des points, est par définition l'intégrale définie de la fonction entre les deux bornes.",
+   "ecran": "definition",
+   "id": "p06",
+   "texte": "L'intégrale : la limite des sommes de Riemann."
+  },
+  {
+   "dit": "Apprenons à lire la notation, due à Leibniz. Le symbole de l'intégrale est un s allongé, pour somme. Les bornes indiquent l'intervalle, la fonction est l'intégrande, et la différentielle désigne la variable d'intégration. Une condition assure l'existence : si la fonction est continue, ou continue par morceaux avec un nombre fini de discontinuités, l'intégrale existe toujours.",
+   "ecran": "notation",
+   "id": "p07",
+   "texte": "Un S allongé pour somme : la notation de Leibniz."
+  },
+  {
+   "dit": "Attention à une convention essentielle : l'intégrale mesure une aire signée. Au-dessus de l'axe, elle compte positivement ; en dessous, elle donne l'opposé de l'aire géométrique. Pour le sinus sur une période complète, la bosse positive et la bosse négative se compensent exactement : l'intégrale vaut zéro, alors que l'aire géométrique totale vaut quatre.",
+   "ecran": "signe",
+   "id": "p08",
+   "texte": "Aire signée : zéro pour sin sur [0, 2π], aire totale 4."
+  },
+  {
+   "dit": "L'intégrale obéit à des propriétés qui calquent notre intuition géométrique. Linéarité : l'intégrale d'une combinaison est la combinaison des intégrales, constantes comprises. Additivité : découper l'intervalle en deux morceaux additionne les aires. Inverser les bornes change le signe, intégrer sur un point donne zéro, et une fonction partout plus grande a une intégrale plus grande.",
+   "ecran": "proprietes",
+   "id": "p09",
+   "texte": "Linéarité, additivité, bornes inversées, comparaison."
+  },
+  {
+   "dit": "La propriété de comparaison donne un outil d'estimation précieux. Si la fonction reste entre un minimum m et un maximum M sur l'intervalle, son intégrale reste entre m fois la longueur et M fois la longueur : l'aire sous la courbe est coincée entre deux rectangles. Avant même de savoir calculer, on sait déjà encadrer.",
+   "ecran": "encadrement",
+   "id": "p10",
+   "texte": "Encadrer entre deux rectangles : m(b−a) ≤ ∫ ≤ M(b−a)."
+  },
+  {
+   "dit": "Exemple d'application du découpage : l'aire entre la courbe de la valeur absolue de x moins deux et l'axe, entre zéro et quatre. La fonction vaut deux moins x avant deux, puis x moins deux après. Par additivité, on sépare en deux intégrales : chacune est l'aire d'un triangle de base deux et de hauteur deux, soit deux. Total : quatre unités d'aire.",
+   "ecran": "abs_exemple",
+   "id": "p11",
+   "texte": "|x − 2| sur [0, 4] : deux triangles, aire totale 4."
+  },
+  {
+   "dit": "Dernier exemple d'approximation : la racine carrée de quatre moins x carré, entre zéro et deux, qui dessine un quart de cercle de rayon deux. Quatre rectangles à gauche donnent environ trois virgule cinquante, alors que la valeur exacte est pi, environ trois virgule quatorze. La fonction décroît, les rectangles à gauche dépassent : encore une surestimation, que seul le raffinement corrige.",
+   "ecran": "quart_cercle",
+   "id": "p12",
+   "texte": "Quart de cercle : 3,495 approché, π exact."
+  },
+  {
+   "dit": "Tout cela reste laborieux. Le salut vient d'une intuition physique. Un réservoir se remplit avec un débit variable : la quantité d'eau accumulée depuis le départ est l'aire sous la courbe du débit, donc une intégrale. Mais à chaque instant, cette quantité augmente exactement au rythme du débit du moment. Autrement dit, la dérivée de l'aire accumulée redonne la fonction de départ.",
+   "ecran": "reservoir",
+   "id": "p13",
+   "texte": "La dérivée de l'aire accumulée redonne la fonction."
+  },
+  {
+   "dit": "C'est la première partie du théorème fondamental du calcul. Si la fonction est continue et si grand F de x désigne l'intégrale de la fonction depuis la borne de départ jusqu'à x, alors grand F est dérivable, et sa dérivée est la fonction elle-même. L'intégration fabrique donc des primitives : dériver défait exactement ce que l'intégration a construit.",
+   "ecran": "tfci1",
+   "id": "p14",
+   "texte": "TFCI, partie 1 : F′(x) = f(x)."
+  },
+  {
+   "dit": "Vérifions sur un exemple que l'on sait calculer à la main. Pour la fonction deux t, l'aire accumulée depuis zéro est l'aire d'un triangle de base x et de hauteur deux x, c'est-à-dire x carré. Dériver x carré donne deux x : on retrouve bien la fonction de départ. Le théorème est confirmé par la géométrie élémentaire.",
+   "ecran": "fonction_aire",
+   "id": "p15",
+   "texte": "∫₀ˣ 2t dt = x², et (x²)′ = 2x : vérifié."
+  },
+  {
+   "dit": "Partie deux du théorème fondamental, la règle de Newton-Leibniz, celle qui sert tous les jours. Pour calculer l'intégrale d'une fonction continue entre deux bornes, prenez n'importe laquelle de ses primitives, évaluez-la à la borne du haut, soustrayez sa valeur à la borne du bas. Terminé : plus aucune limite de sommes de Riemann à calculer.",
+   "ecran": "tfci2",
+   "id": "p16",
+   "texte": "Partie 2 : calculer par une primitive, G(b) − G(a)."
+  },
+  {
+   "dit": "Mise en pratique immédiate. L'intégrale de x carré entre un et trois : une primitive est x cube sur trois, évaluée en trois cela donne neuf, en un cela donne un tiers, la différence vaut vingt-six tiers. Et l'intégrale du sinus entre zéro et pi vaut deux, avec la primitive moins cosinus. Deux calculs complets en quelques lignes.",
+   "ecran": "ex_tfci",
+   "id": "p17",
+   "texte": "∫₁³ x² dx = 26/3 ; ∫₀^π sin x dx = 2."
+  },
+  {
+   "dit": "Application physique : une voiture dont la vitesse, en kilomètres par heure, varie comme soixante t moins dix t carré, pendant six heures. La distance parcourue est l'intégrale de la vitesse. Une primitive donne trente t carré moins dix tiers de t cube ; entre zéro et six, on obtient mille quatre-vingts moins sept cent vingt, soit trois cent soixante kilomètres : l'aire sous la courbe de vitesse.",
+   "ecran": "deplacement",
+   "id": "p18",
+   "texte": "Distance : ∫₀⁶ v(t) dt = 360 km."
+  },
+  {
+   "dit": "Revenons aux aires, avec la distinction qui piège tant de copies. L'intégrale simple donne l'aire signée, algébrique. L'aire géométrique totale, elle, est l'intégrale de la valeur absolue de la fonction. La méthode est systématique : trouver les zéros de la fonction, découper l'intervalle à chaque changement de signe, et intégrer chaque morceau avec le signe qui le rend positif.",
+   "ecran": "aire_signee",
+   "id": "p19",
+   "texte": "Aire géométrique : intégrer |f|, découper aux zéros."
+  },
+  {
+   "dit": "Exemple complet : la cubique x cube moins quatre x, entre moins trois et trois. Ses zéros sont moins deux, zéro et deux, et une primitive est x puissance quatre sur quatre moins deux x carré. Morceau par morceau, les quatre contributions positives sont vingt-cinq quarts, quatre, quatre et vingt-cinq quarts. L'aire géométrique totale vaut quarante et un demis, soit vingt virgule cinq.",
+   "ecran": "ex_cubique",
+   "id": "p20",
+   "texte": "x³ − 4x sur [−3, 3] : aire totale 41/2."
+  },
+  {
+   "dit": "L'intégrale définit aussi la valeur moyenne d'une fonction sur un intervalle : on divise l'intégrale par la longueur de l'intervalle. Géométriquement, c'est la hauteur du rectangle de même base ayant exactement la même aire que celle sous la courbe. Et si la fonction est continue, le théorème de la valeur moyenne garantit qu'elle atteint cette valeur moyenne en au moins un point.",
+   "ecran": "valeur_moyenne",
+   "id": "p21",
+   "texte": "Valeur moyenne : la hauteur du rectangle équivalent."
+  },
+  {
+   "dit": "Illustration : une température qui oscille au cours de la journée autour de quinze degrés, avec une sinusoïde d'amplitude cinq et de période vingt-quatre heures. Sur une journée complète, l'intégrale de la partie sinusoïdale vaut zéro, car la bosse positive compense la bosse négative. La température moyenne est donc exactement quinze degrés, la valeur centrale.",
+   "ecran": "ex_temperature",
+   "id": "p22",
+   "texte": "Température moyenne sur 24 h : 15 °C exactement."
+  },
+  {
+   "dit": "Dernière extension : l'aire entre deux courbes. Si une fonction reste au-dessus d'une autre sur tout l'intervalle, l'aire comprise entre elles est l'intégrale de la différence, la fonction du dessus moins celle du dessous, entre les abscisses où elles se rencontrent. Si les courbes se croisent à l'intérieur, on découpe à chaque croisement, comme pour les changements de signe.",
+   "ecran": "entre_courbes",
+   "id": "p23",
+   "texte": "Entre deux courbes : ∫ (dessus − dessous)."
+  },
+  {
+   "dit": "Exemple : la région comprise entre la racine carrée de x et la parabole x carré, entre zéro et un, où la racine reste au-dessus. L'intégrale de la différence donne deux tiers de x puissance trois demis moins un tiers de x cube, évaluée entre zéro et un : deux tiers moins un tiers, soit un tiers d'unité d'aire.",
+   "ecran": "ex_entre",
+   "id": "p24",
+   "texte": "Entre √x et x² sur [0, 1] : aire 1/3."
+  },
+  {
+   "dit": "Face à un exercice, gardez la stratégie en quatre réflexes. Dessinez la courbe et repérez son signe. Cherchez ses zéros : ce sont eux qui imposent le découpage. Calculez ensuite par une primitive, borne du haut moins borne du bas. Et surtout, relisez la question : intégrale signée ou aire géométrique, la réponse n'est pas la même, et la valeur absolue fait toute la différence.",
+   "ecran": "strategie",
+   "id": "p25",
+   "texte": "La stratégie : signe, zéros, primitive, question relue."
+  },
+  {
+   "dit": "Pour conclure, retenez l'enchaînement complet de ce cours. Les sommes de Riemann définissent l'intégrale comme une limite d'approximations par rectangles. Le théorème fondamental transforme ce calcul en recherche de primitive. L'intégrale donne une aire signée ; la valeur absolue donne l'aire géométrique ; et la différence de deux fonctions donne l'aire entre leurs courbes.",
+   "ecran": "recap",
+   "id": "p26",
+   "texte": "De Riemann au TFCI, puis aux aires : à retenir."
+  }
+ ],
+ "titre": "L'intégrale définie : mesurer l'aire sous une courbe"
+}

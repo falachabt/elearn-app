@@ -14,7 +14,7 @@ import { DELAI_INVITATION_MS, Score } from '../Score';
 import { MiniTest } from '../MiniTest';
 
 jest.mock('expo-router', () => ({ router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => false) } }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ auth: { getSession: () => Promise.resolve({ data: { session: null } }) }, from: jest.fn() }) }));
 jest.mock('@/services/authNatif', () => ({ appleAffiche: true, facebookAffiche: true, depsOAuth: () => ({}), depsApple: () => ({}) }));
 const mockSession = jest.fn();

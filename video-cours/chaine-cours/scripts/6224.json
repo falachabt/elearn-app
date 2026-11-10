@@ -1,0 +1,575 @@
+{
+ "cours": 6224,
+ "ecrans": {
+  "caracteres": {
+   "etapes": [
+    "Dynamique : les deux réactions continuent",
+    "Atteignable depuis les réactifs ou les produits",
+    "Couleur, pression, pH : plus rien ne bouge",
+    "Caractérisé par une constante : Kc ou Kp"
+   ],
+   "kicker": "Les caractères de l'équilibre",
+   "type": "recap"
+  },
+  "chrome": {
+   "kicker": "L'équilibre du chrome",
+   "tex": [
+    "Cr_2O_7^{2-} + H_2O \\rightleftharpoons 2\\,CrO_4^{2-} + 2\\,H^+",
+    "\\text{orange intense} \\qquad \\text{jaune}",
+    "H^+ \\text{ ajouté} \\Rightarrow \\text{vers la gauche : orange renforcé}",
+    "OH^- \\text{ ajouté} \\Rightarrow H^+ \\text{ consommé} \\Rightarrow \\text{vers la droite}"
+   ],
+   "titre": "Orange ou jaune : la concentration se voit",
+   "type": "etape"
+  },
+  "concentration": {
+   "kicker": "Premier levier : la concentration",
+   "tex": [
+    "[\\text{réactif}] \\uparrow \\ \\Rightarrow \\ \\text{sens direct : on le consomme}",
+    "[\\text{réactif}] \\downarrow \\ \\Rightarrow \\ \\text{sens inverse : on le forme}",
+    "[\\text{produit}] \\uparrow \\ \\Rightarrow \\ \\text{sens inverse : on le consomme}",
+    "[\\text{produit}] \\downarrow \\ \\Rightarrow \\ \\text{sens direct : on le forme}"
+   ],
+   "titre": "Fuir ce qu'on ajoute, courir après ce qu'on retire",
+   "type": "etape"
+  },
+  "constante": {
+   "kicker": "La constante d'équilibre",
+   "note": "à température donnée : indépendante des concentrations initiales.",
+   "tex": "K_c = \\frac{[C]^c\\,[D]^d}{[A]^a\\,[B]^b} = \\frac{k_d}{k_i}",
+   "type": "formule"
+  },
+  "contact": {
+   "kicker": "Application : l'acide sulfurique",
+   "tex": [
+    "2\\,SO_2\\,(g) + O_2\\,(g) \\rightleftharpoons 2\\,SO_3\\,(g)",
+    "\\Delta H^\\circ = -198\\ \\text{kJ/mol} \\quad \\Delta n_g = -1",
+    "\\text{excès de } O_2\\text{, 400-450 °C, catalyseur } V_2O_5"
+   ],
+   "titre": "Le procédé de contact",
+   "type": "etape"
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "equilibre_dynamique_fig"
+   },
+   "kicker": "La définition de l'équilibre",
+   "texte": "Système fermé, concentrations constantes, vitesses directe et inverse égales et non nulles : un équilibre dynamique, pas un arrêt.",
+   "type": "phrase"
+  },
+  "ester": {
+   "kicker": "Problème de synthèse",
+   "tex": [
+    "CH_3COOH\\,(l) + C_2H_5OH\\,(l) \\rightleftharpoons CH_3COOC_2H_5\\,(l) + H_2O\\,(l)",
+    "K_c = 4{,}0 \\quad \\Delta H^\\circ \\approx 0",
+    "\\text{excès d'éthanol, distillation de l'ester formé}",
+    "\\text{catalyseur acide : la vitesse, pas la position}"
+   ],
+   "titre": "Concevoir le procédé : l'ester à la banane",
+   "type": "etape"
+  },
+  "exemples_pression": {
+   "kicker": "La pression en exemples",
+   "tex": [
+    "N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3 \\quad \\Delta n_g = -2",
+    "2\\,NO_2 \\rightleftharpoons N_2O_4 \\quad \\Delta n_g = -1",
+    "H_2 + I_2 \\rightleftharpoons 2\\,HI \\quad \\Delta n_g = 0 \\ : \\text{aucun effet}"
+   ],
+   "titre": "Trois bilans gazeux, trois réponses",
+   "type": "etape"
+  },
+  "exercice_fe": {
+   "kicker": "Exercice guidé",
+   "tex": [
+    "Fe_2O_3\\,(s) + 3\\,CO\\,(g) \\rightleftharpoons 2\\,Fe\\,(s) + 3\\,CO_2\\,(g) \\quad \\Delta H < 0",
+    "\\text{a) solide ajouté : aucun effet}",
+    "\\text{b) } CO_2 \\text{ retiré : sens direct}",
+    "\\text{c) } T \\uparrow \\text{ : sens inverse} \\quad \\text{d) } \\Delta n_g = 0 \\text{ : aucun effet}"
+   ],
+   "titre": "La métallurgie du fer passe la grille",
+   "type": "etape"
+  },
+  "haber": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "piston"
+   },
+   "kicker": "Application : l'ammoniac",
+   "tex": [
+    "N_2\\,(g) + 3\\,H_2\\,(g) \\rightleftharpoons 2\\,NH_3\\,(g)",
+    "\\Delta H^\\circ = -92{,}4\\ \\text{kJ/mol} \\quad \\Delta n_g = -2",
+    "\\text{400-500 °C, 150-300 atm, catalyseur de fer}"
+   ],
+   "titre": "Haber-Bosch : le compromis industriel",
+   "type": "etape"
+  },
+  "hemoglobine": {
+   "kicker": "Application : la respiration",
+   "tex": [
+    "Hb\\,(aq) + 4\\,O_2\\,(g) \\rightleftharpoons Hb(O_2)_4\\,(aq)",
+    "\\text{poumons : } O_2 \\text{ abondant} \\Rightarrow \\text{fixation}",
+    "\\text{tissus : } O_2 \\text{ rare} \\Rightarrow \\text{libération}"
+   ],
+   "titre": "L'hémoglobine charge et décharge l'oxygène",
+   "type": "etape"
+  },
+  "kp_inerte": {
+   "kicker": "Kp et le piège du gaz inerte",
+   "note": "gaz inerte à volume constant : concentrations inchangées, aucun déplacement.",
+   "tex": "K_p = K_c\\,(RT)^{\\Delta n_g}",
+   "type": "formule"
+  },
+  "lecture_k": {
+   "kicker": "Lire la constante",
+   "tex": [
+    "K_c = \\tfrac{[NH_3]^2}{[N_2]\\,[H_2]^3}",
+    "K_c \\gg 1 \\ : \\text{produits favorisés}",
+    "K_c \\ll 1 \\ : \\text{réactifs favorisés}",
+    "K_c \\approx 1 \\ : \\text{même ordre de grandeur}"
+   ],
+   "titre": "Ce que la valeur de K raconte",
+   "type": "etape"
+  },
+  "limites": {
+   "kicker": "Les limites du principe",
+   "texte": "Le Chatelier prédit le sens, jamais l'ampleur ; et ouvrir un soda, c'est déjà perturber un équilibre.",
+   "type": "phrase"
+  },
+  "methanol": {
+   "kicker": "Application : le méthanol",
+   "tex": [
+    "CO\\,(g) + 2\\,H_2\\,(g) \\rightleftharpoons CH_3OH\\,(g)",
+    "\\Delta H^\\circ = -90{,}8\\ \\text{kJ/mol} \\quad \\Delta n_g = -2",
+    "\\text{50-100 atm, 200-300 °C, excès de } H_2\\text{, catalyseur Cu}"
+   ],
+   "titre": "Tous les leviers dans le même sens",
+   "type": "etape"
+  },
+  "methode": {
+   "kicker": "La méthode en trois étapes",
+   "tex": [
+    "\\text{1. Écrire l'équation : le système est à l'équilibre}",
+    "\\text{2. Identifier la perturbation imposée}",
+    "\\text{3. Appliquer la règle : le sens de déplacement}"
+   ],
+   "titre": "Identifier, perturber, conclure",
+   "type": "etape"
+  },
+  "naissance": {
+   "kicker": "La naissance de l'équilibre",
+   "tex": [
+    "N_2O_4\\,(g) \\rightleftharpoons 2\\,NO_2\\,(g) \\qquad \\text{incolore} \\qquad \\text{brun-rouge}",
+    "v_d \\text{ diminue}, \\quad v_i \\text{ augmente} \\qquad v_d = v_i \\ \\Rightarrow \\ \\text{équilibre atteint}"
+   ],
+   "titre": "Le brunissement s'arrête quand les vitesses s'égalisent",
+   "type": "etape",
+   "anim": {
+    "nom": "courbes_vitesses_fig",
+    "hauteur": 140
+   }
+  },
+  "no2_temp": {
+   "kicker": "Un thermomètre chimique",
+   "tex": [
+    "2\\,NO_2\\,(g) \\rightleftharpoons N_2O_4\\,(g)",
+    "\\text{brun-rouge} \\qquad \\text{incolore} \\qquad \\Delta H^\\circ = -57{,}2\\ \\text{kJ/mol}",
+    "T \\uparrow \\Rightarrow NO_2 \\text{ augmente : le brun s'intensifie}",
+    "T \\downarrow \\Rightarrow N_2O_4 \\text{ augmente : le mélange pâlit}"
+   ],
+   "titre": "Le dioxyde d'azote change de couleur avec la température",
+   "type": "etape"
+  },
+  "oceans": {
+   "kicker": "Application : les océans",
+   "tex": [
+    "CO_2\\,(g) \\rightleftharpoons CO_2\\,(aq)",
+    "CO_2 + H_2O \\rightleftharpoons H^+ + HCO_3^-",
+    "Ca^{2+} + CO_3^{2-} \\rightleftharpoons CaCO_3\\,(s)"
+   ],
+   "titre": "Une cascade d'équilibres qui acidifie",
+   "type": "etape"
+  },
+  "pression": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "piston"
+   },
+   "kicker": "Troisième levier : la pression",
+   "tex": [
+    "\\Delta n_g = (c + d) - (a + b)",
+    "P \\uparrow \\ \\Rightarrow \\ \\text{vers le côté le moins gazeux}",
+    "P \\downarrow \\ \\Rightarrow \\ \\text{vers le côté le plus gazeux}"
+   ],
+   "titre": "Compter les moles de gaz avant de conclure",
+   "type": "etape"
+  },
+  "principe": {
+   "kicker": "Le principe de Le Chatelier",
+   "tex": [
+    "\\text{concentration, température ou pression}",
+    "\\text{la compensation est toujours partielle}",
+    "\\text{un nouvel équilibre, différent du premier}"
+   ],
+   "titre": "Le système évolue pour compenser la perturbation",
+   "type": "etape"
+  },
+  "quotient": {
+   "kicker": "Le quotient de réaction",
+   "note": "Q différent de K : le système évolue jusqu'à Q = K, qui ne dépend que de la température.",
+   "tex": "Q = \\frac{[C]^c\\,[D]^d}{[A]^a\\,[B]^b}",
+   "type": "formule"
+  },
+  "recap1": {
+   "etapes": [
+    "Réversible : la double flèche ⇌",
+    "Équilibre : vd = vi, sans arrêt",
+    "Dynamique, atteignable des deux côtés",
+    "Kc : produits sur réactifs, à l'équilibre",
+    "K grand : produits ; K petit : réactifs"
+   ],
+   "kicker": "Points clés de la partie",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Le Chatelier : contrer la perturbation",
+    "Concentration : fuir ce qu'on ajoute",
+    "Température : seul facteur qui change K",
+    "Pression : compter les moles de gaz",
+    "Catalyseur : plus vite, même équilibre"
+   ],
+   "kicker": "Points clés de la partie",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Équilibre dynamique : vd = vi ≠ 0",
+    "K mesure la position, T seule le change",
+    "Le Chatelier : fuir ce qu'on ajoute",
+    "Pression : le côté le moins gazeux gagne",
+    "Industrie, sang, océans : même logique"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "reversible": {
+   "kicker": "La réaction réversible",
+   "tex": [
+    "\\text{A} + \\text{B} \\longrightarrow \\text{C} + \\text{D}",
+    "\\text{A} + \\text{B} \\rightleftharpoons \\text{C} + \\text{D}",
+    "CuSO_4\\,(s) + 5\\,H_2O\\,(g) \\rightleftharpoons CuSO_4 \\cdot 5H_2O\\,(s)",
+    "\\text{blanc} \\rightleftharpoons \\text{bleu : chauffer inverse la réaction}"
+   ],
+   "titre": "La double flèche remplace la flèche unique",
+   "type": "etape"
+  },
+  "sang": {
+   "kicker": "Application : le sang tamponné",
+   "tex": [
+    "CO_2 + H_2O \\rightleftharpoons H_2CO_3 \\rightleftharpoons H^+ + HCO_3^-",
+    "\\text{hyperventilation : } CO_2 \\downarrow \\Rightarrow H^+ \\downarrow",
+    "\\text{hypoventilation : } CO_2 \\uparrow \\Rightarrow H^+ \\uparrow"
+   ],
+   "titre": "Le tampon bicarbonate veille sur le pH",
+   "type": "etape"
+  },
+  "temperature": {
+   "kicker": "Deuxième levier : la température",
+   "tex": [
+    "\\text{exothermique } (\\Delta H < 0) \\text{ : la chaleur est un produit}",
+    "T \\uparrow \\ \\Rightarrow \\ \\text{sens endothermique}",
+    "T \\downarrow \\ \\Rightarrow \\ \\text{sens exothermique}",
+    "\\text{la température est la seule à modifier } K"
+   ],
+   "titre": "La chaleur, un réactif ou un produit",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "equilibre_dynamique_fig"
+   },
+   "kicker": "Chimie · Équilibre chimique",
+   "sous": "De l'équilibre dynamique au contrôle des réactions",
+   "titre": "L'équilibre chimique et le principe de Le Chatelier",
+   "type": "titre"
+  },
+  "vant_hoff": {
+   "kicker": "L'équation de van 't Hoff",
+   "note": "R : constante des gaz parfaits ; la pente de ln K contre un sur T donne le signe de l'enthalpie.",
+   "tex": "\\ln \\frac{K_2}{K_1} = -\\frac{\\Delta H^\\circ}{R} \\left( \\frac{1}{T_2} - \\frac{1}{T_1} \\right)",
+   "type": "formule",
+   "anim": {
+    "nom": "vant_hoff_graphe_fig",
+    "hauteur": 170
+   }
+  },
+  "vitesses": {
+   "kicker": "Le moteur : les vitesses",
+   "tex": [
+    "v_d = k_d\\,[A]^a\\,[B]^b \\qquad v_i = k_i\\,[C]^c\\,[D]^d",
+    "N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3 \\qquad \\text{départ : } v_d \\text{ grande}, \\ v_i = 0",
+    "\\text{équilibre : } v_d = v_i \\neq 0"
+   ],
+   "titre": "Deux vitesses qui se règlent d'elles-mêmes",
+   "type": "etape",
+   "anim": {
+    "nom": "courbes_vitesses_fig",
+    "hauteur": 110
+   }
+  }
+ },
+ "lecons": [
+  6715,
+  6716,
+  6717,
+  6718,
+  6719,
+  6720,
+  6721
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Réactions réversibles et équilibre dynamique"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : le principe de Le Chatelier. Nous allons énoncer le grand principe de modération, puis l'appliquer aux trois perturbations possibles : changer une concentration, changer la température, ou changer la pression.",
+    "texte": "Partie 2 : le principe de Le Chatelier, ou l'art de prévoir le sens."
+   },
+   "sous_titre": "Le principe de Le Chatelier : concentration, température, pression"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : prévoir, puis optimiser. Nous allons d'abord fixer la méthode en trois étapes et la tester sur un exercice de métallurgie, puis parcourir les grandes applications : l'ammoniac, l'acide sulfurique, le sang, les océans et la conception d'un procédé complet.",
+    "texte": "Partie 3 : la méthode en trois étapes, puis les applications."
+   },
+   "sous_titre": "Prévoir, calculer, optimiser : méthode et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré à l'équilibre chimique. Imaginez une salle de bal : deux groupes de danseurs échangent sans cesse leurs partenaires, et pourtant, le nombre de danseurs de chaque groupe semble ne jamais changer. C'est l'illusion de l'immobilité : derrière une apparence figée, les réactions continuent dans les deux sens. Nous allons d'abord comprendre cet équilibre dynamique et sa constante, puis apprendre, avec le principe de Le Chatelier, à prévoir comment un système réagit quand on le perturbe, avant de l'appliquer à l'industrie, au sang et aux océans.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Un équilibre dynamique : rien ne bouge, tout réagit."
+  },
+  {
+   "dit": "Dans vos premiers cours, les réactions allaient dans un seul sens : des réactifs vers les produits, avec une flèche unique. Mais la nature aime la réciprocité : beaucoup de réactions peuvent avancer dans les deux sens, et on les écrit avec une double flèche. L'exemple du sulfate de cuivre le montre bien : la poudre blanche et anhydre absorbe l'eau et devient bleue en s'hydratant ; chauffez doucement le composé bleu, il libère son eau et redevient blanc. Rien n'est définitif : tout dépend des conditions.",
+   "ecran": "reversible",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "La double flèche : réversible, dans les deux sens."
+  },
+  {
+   "dit": "Suivons la naissance d'un équilibre avec deux gaz : le tétroxyde de diazote, incolore, et le dioxyde d'azote, brun-rouge. Au départ, on enferme le premier dans un flacon fermé : il se décompose, le mélange brunit. Mais dès que le dioxyde d'azote apparaît, la réaction inverse démarre et s'accélère. La vitesse directe diminue, la vitesse inverse augmente, et elles finissent par s'égaliser : la couleur se fige, les concentrations ne bougent plus. L'équilibre est né, sans que rien ne se soit arrêté.",
+   "ecran": "naissance",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "N₂O₄ incolore ⇌ NO₂ brun-rouge : la couleur se fige."
+  },
+  {
+   "dit": "Formalisons. L'équilibre chimique est l'état d'un système fermé où les concentrations des réactifs et des produits restent constantes dans le temps, parce que les vitesses des réactions directe et inverse sont devenues égales. Attention au mot clé : cet équilibre est dynamique, et non statique. À l'échelle microscopique, les molécules continuent de se transformer dans les deux sens, au même rythme : c'est un état stationnaire, une stabilité de flux, pas un arrêt des réactions.",
+   "ecran": "definition",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Des vitesses égales, des concentrations constantes."
+  },
+  {
+   "dit": "Quatre caractères définissent cet état, et les analogies de la leçon les rendent concrets. Dynamique d'abord : comme sur un escalator, les individus montent et descendent pendant que les effectifs restent constants. Atteignable des deux côtés ensuite : on peut partir des seuls réactifs ou des seuls produits, on aboutit au même équilibre. Macroscopiquement constant : couleur, pression ou pH ne varient plus, comme un réservoir alimenté et vidangé au même débit. Enfin, il est caractérisé par une constante, que nous allons définir.",
+   "ecran": "caracteres",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "Dynamique, atteignable des deux côtés, constant en apparence."
+  },
+  {
+   "dit": "Pourquoi les deux vitesses finissent-elles par s'égaliser ? Parce que chacune dépend des concentrations : plus une espèce est abondante, plus les rencontres efficaces sont fréquentes. Dans la synthèse de l'ammoniac, au départ, la vitesse directe est grande et la vitesse inverse est nulle, faute de produits. Puis les réactifs diminuent : la vitesse directe ralentit ; les produits augmentent : la vitesse inverse accélère. L'écart se réduit de lui-même, jusqu'à l'égalité. Le système s'auto-régule : c'est le moteur de l'équilibre.",
+   "ecran": "vitesses",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "vd ralentit, vi accélère : l'écart se referme seul."
+  },
+  {
+   "dit": "À l'équilibre, l'égalité des vitesses a une conséquence remarquable. En écrivant que la vitesse directe égale la vitesse inverse, les concentrations se rangent en un rapport : les produits, élevés à leurs coefficients, divisés par les réactifs, élevés aux leurs. Ce rapport vaut exactement le quotient des deux constantes de vitesse : c'est la constante d'équilibre, notée Kc pour les concentrations. À température fixée, elle est la même quelles que soient les concentrations de départ : c'est une signature de la réaction.",
+   "ecran": "constante",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Kc : le rapport qui ne dépend que de la température."
+  },
+  {
+   "dit": "Que nous dit la valeur de cette constante ? Écrivons-la pour la synthèse de l'ammoniac : au numérateur, la concentration d'ammoniac au carré ; au dénominateur, celle de diazote fois celle de dihydrogène au cube. Si K est très supérieur à un, l'équilibre favorise nettement les produits : la réaction avance beaucoup. S'il est très inférieur à un, les réactifs dominent. S'il est proche de un, produits et réactifs coexistent dans des proportions comparables. Et si l'on part d'ammoniac pur, on retrouve le même K : seul le chemin change.",
+   "ecran": "lecture_k",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "K ≫ 1 : produits ; K ≪ 1 : réactifs."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Certaines réactions sont réversibles et s'écrivent avec une double flèche. Dans un système fermé, les vitesses directe et inverse finissent par s'égaliser : c'est l'équilibre, un état dynamique où les concentrations restent constantes. Cet équilibre est caractérisé par la constante K, rapport des concentrations à l'équilibre, qui renseigne sur le camp favorisé. Mais cet équilibre est-il figé ? Pas du tout : il réagit aux perturbations. C'est ce que nous allons apprendre à prévoir.",
+   "ecran": "recap1",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Réversible, dynamique, caractérisé par K."
+  },
+  {
+   "dit": "En mille huit cent quatre-vingt-quatre, Henri Louis Le Chatelier énonce le principe qui porte son nom : lorsqu'on modifie un facteur d'un système en équilibre, une concentration, la température ou la pression, le système évolue spontanément dans le sens qui tend à compenser partiellement la perturbation imposée. Deux mots comptent : compenser, car le système résiste au changement ; et partiellement, car il ne l'annule jamais complètement. Il trouve simplement un nouvel équilibre, différent du précédent.",
+   "ecran": "principe",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Compenser partiellement la perturbation : voilà le principe."
+  },
+  {
+   "dit": "Premier levier, la concentration. La règle est simple : augmenter la concentration d'une espèce déplace l'équilibre dans le sens qui la consomme ; la diminuer le déplace dans le sens qui la forme. Exemple : si l'on injecte du diazote dans le mélange de la synthèse de l'ammoniac, le système consomme cet excès en produisant davantage d'ammoniac. À l'inverse, si l'on retire l'ammoniac au fur et à mesure, le système en fabrique toujours plus pour le remplacer : c'est exactement ce que fait l'usine Haber-Bosch.",
+   "ecran": "concentration",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Ajouter du N₂ ou retirer NH₃ : toujours plus d'ammoniac."
+  },
+  {
+   "dit": "L'équilibre du chrome rend cette règle visible à l'œil nu : le dichromate est orange intense, le chromate est jaune. Ajoutez un acide, donc des ions hydrogène, qui sont un produit de l'équilibre : le système les consomme en reculant vers la gauche, et l'orange se renforce. Ajoutez une base : les ions hydroxyde consomment les ions hydrogène, leur concentration chute, l'équilibre avance vers la droite et la solution jaunit. Même en diluant, le système réagit : il avance du côté où il y a le plus de particules, ici vers la droite.",
+   "ecran": "chrome",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Dichromate orange ⇌ chromate jaune : l'acide décide."
+  },
+  {
+   "dit": "Comment décider, calcul à l'appui, du sens d'évolution ? On compare le quotient de réaction, noté Q, à la constante K. Le quotient a exactement la même forme que K, mais avec les concentrations du moment, hors équilibre. Si vous modifiez une concentration, Q devient aussitôt différent de K : le système n'est plus à l'équilibre. Il évolue alors jusqu'à ce que Q redevienne égal à K. Retenez la distinction clé : changer une concentration déplace la position de l'équilibre, mais ne change jamais la valeur de K, qui ne dépend que de la température.",
+   "ecran": "quotient",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Q contre K : le système court après l'égalité."
+  },
+  {
+   "dit": "Deuxième levier, la température, et d'abord un changement de regard : traitons la chaleur comme un réactif ou un produit. Une réaction exothermique dégage de la chaleur : la chaleur figure parmi les produits. Une réaction endothermique en absorbe : la chaleur figure parmi les réactifs. Dès lors, la règle tombe sous le sens : chauffer favorise toujours le sens endothermique, celui qui consomme la chaleur ; refroidir favorise le sens exothermique, celui qui en dégage. C'est le moyen mnémotechnique de la leçon : chaleur contre chaleur.",
+   "ecran": "temperature",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "Chauffer favorise le sens qui consomme la chaleur."
+  },
+  {
+   "dit": "Le couple dioxyde d'azote et tétroxyde de diazote sert de thermomètre visuel. La formation du tétroxyde, incolore, à partir du dioxyde brun-rouge est exothermique. Plongez le ballon dans l'eau chaude : pour consommer l'excès de chaleur, l'équilibre recule dans le sens endothermique, le dioxyde d'azote augmente, et la couleur brun-rouge s'intensifie. Refroidissez, et la même règle prédit l'inverse : l'équilibre avance vers le tétroxyde, le mélange pâlit. Conséquence mesurable : la constante K de cet équilibre diminue quand la température monte.",
+   "ecran": "no2_temp",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Eau chaude : brun intense ; eau froide : le mélange pâlit."
+  },
+  {
+   "dit": "Peut-on quantifier l'effet de la température ? Oui, grâce à l'équation de van 't Hoff, du nom du premier prix Nobel de chimie. Elle relie les constantes d'équilibre à deux températures, par l'enthalpie standard de réaction, supposée à peu près constante. Si l'on trace le logarithme de K en fonction de l'inverse de la température, on obtient une droite : sa pente est négative pour une réaction exothermique, où K diminue quand la température augmente, et positive pour une réaction endothermique, où K augmente. La température est ainsi le seul facteur qui réécrit la constante elle-même.",
+   "ecran": "vant_hoff",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "ln K contre 1/T : une droite, une pente, un signe."
+  },
+  {
+   "dit": "Troisième levier, la pression, qui ne concerne que les équilibres gazeux. Quand on comprime un mélange en réduisant son volume, toutes les concentrations augmentent : le système réagit en fuyant vers le côté qui compte le moins de moles de gaz, pour occuper moins de place. Tout se joue donc sur le bilan gazeux : la différence entre les moles de gaz des produits et celles des réactifs. Si ce bilan est nul, autant de moles des deux côtés, la pression n'a rigoureusement aucun effet. Le piston de la figure le rappelle : comprimer, c'est d'abord compter.",
+   "ecran": "pression",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Comprimer : fuir vers le côté le moins gazeux."
+  },
+  {
+   "dit": "Appliquons le comptage à trois équilibres. La synthèse de l'ammoniac fait passer de quatre moles de gaz à deux : bilan négatif, donc une augmentation de pression pousse vers les produits. La dimérisation du dioxyde d'azote fait passer de deux moles à une : comprimé brutalement, le mélange s'éclaircit en formant le tétroxyde incolore. Enfin, la synthèse de l'iodure d'hydrogène compte deux moles de chaque côté : bilan nul, et la pression peut monter ou descendre, l'équilibre ne bouge pas d'un pouce.",
+   "ecran": "exemples_pression",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "Δng = −2, −1 ou 0 : trois réponses différentes."
+  },
+  {
+   "dit": "Deux pièges classiques pour finir ce levier. Premier piège : augmenter la pression en ajoutant un gaz inerte, comme l'argon, sans changer le volume. La pression totale monte, mais les concentrations et les pressions partielles des espèces réactives ne changent pas : aucun déplacement. Deuxième point : pour les gaz, on définit aussi une constante en pressions partielles, Kp, reliée à Kc par la loi des gaz parfaits et le bilan gazeux. Comme Kc, elle ne dépend que de la température : quand on comprime, les pressions partielles se réajustent pour la conserver.",
+   "ecran": "kp_inerte",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Gaz inerte à volume constant : pression trompeuse, rien ne bouge."
+  },
+  {
+   "dit": "Récapitulons. Le principe de Le Chatelier prédit le sens d'évolution : le système fuit ce qu'on ajoute et court après ce qu'on retire. La concentration déplace l'équilibre sans toucher à K ; la température favorise le sens endothermique quand elle monte, et elle est la seule à modifier K ; la pression ne joue que sur les gaz, en faveur du côté le moins gazeux. Deux limites à garder en tête : le principe reste qualitatif, il ne dit jamais de combien l'équilibre se déplace, et un catalyseur, qui accélère les deux sens, ne déplace rien du tout.",
+   "ecran": "recap2",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Trois leviers, une seule constante qui change : avec T."
+  },
+  {
+   "dit": "Face à un problème d'équilibre, la leçon propose un protocole en trois étapes qui ne trompe pas. Première étape : identifier l'état initial, écrire l'équation bilan et rappeler que le système est à l'équilibre. Deuxième étape : identifier précisément la perturbation imposée, concentration, température ou pression. Troisième étape : appliquer la règle correspondante et en déduire le sens de déplacement. Tout le reste du cours va utiliser cette grille : un exercice guidé, puis les procédés industriels et les systèmes vivants.",
+   "ecran": "methode",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "État initial, perturbation, règle : la grille en trois temps."
+  },
+  {
+   "dit": "À vous de jouer, avec l'équilibre de la métallurgie du fer, exothermique dans le sens direct. Première question : on ajoute de l'oxyde de fer, un solide. Son activité est constante : aucun effet sur l'équilibre. Deuxième question : on élimine le dioxyde de carbone formé. Le système court après ce qu'on retire : sens direct. Troisième question : on chauffe. La réaction directe est exothermique : l'équilibre recule, sens inverse. Dernière question : on comprime. Trois moles de gaz de chaque côté : bilan nul, aucun effet. Quatre perturbations, et la grille a tout trié.",
+   "ecran": "exercice_fe",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Solide, retrait, chaleur, compression : quatre verdicts."
+  },
+  {
+   "dit": "Le procédé Haber-Bosch est la synthèse de tout ce cours. La réaction est exothermique et fait passer de quatre moles de gaz à deux. Pour l'équilibre, il faudrait donc froid et haute pression. Mais à froid, la réaction est désespérément lente : l'industrie choisit un compromis, entre quatre cents et cinq cents degrés, sous cent cinquante à trois cents atmosphères, avec un catalyseur de fer qui accélère l'atteinte de l'équilibre sans le déplacer, et l'on retire l'ammoniac liquéfié en continu pour forcer encore la production. Enjeu : nourrir près de la moitié de l'humanité.",
+   "ecran": "haber",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "400-500 °C et haute pression : le prix de la vitesse."
+  },
+  {
+   "dit": "Deuxième chef-d'œuvre industriel : le procédé de contact, qui fabrique le trioxyde de soufre, étape vers l'acide sulfurique, le produit chimique le plus fabriqué au monde, environ deux cent soixante millions de tonnes par an. L'équilibre est exothermique, et le bilan gazeux passe de trois moles à deux. La stratégie combine tout : un excès d'oxygène pour pousser par la concentration, une pression modérément élevée, une température de compromis entre quatre cents et quatre cent cinquante degrés, et un catalyseur à l'oxyde de vanadium pour la vitesse.",
+   "ecran": "contact",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "Excès d'oxygène et compromis thermique pour SO₃."
+  },
+  {
+   "dit": "Changeons de décor : l'équilibre travaille aussi dans votre sang. L'hémoglobine fixe le dioxygène selon un équilibre réversible. Dans les poumons, où la pression partielle en dioxygène est élevée, l'équilibre est déplacé vers la droite : le sang se charge. Dans les tissus, où le dioxygène est rare, il se déplace vers la gauche : le sang se décharge, exactement là où il faut. Mieux : le dioxyde de carbone et les ions hydrogène des tissus actifs déplacent encore l'équilibre vers la libération : c'est l'effet Bohr, une régulation automatique de la respiration.",
+   "ecran": "hemoglobine",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Poumons : fixation ; tissus : libération."
+  },
+  {
+   "dit": "Le sang régule aussi son acidité par un équilibre en cascade : le dioxyde de carbone dissous forme l'acide carbonique, qui se partage entre ions hydrogène et ions hydrogénocarbonate. Si vous hyperventilez, vous chassez le dioxyde de carbone : l'équilibre recule, les ions hydrogène diminuent, le sang devient trop basique. Si vous retenez votre respiration, c'est l'inverse : l'acidité monte. Ce tampon bicarbonate maintient le pH du sang autour de sept virgule quatre, et la médecine l'exploite, par exemple pour aider à éliminer une intoxication à l'aspirine.",
+   "ecran": "sang",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Respirer trop ou trop peu déplace le pH du sang."
+  },
+  {
+   "dit": "Même cascade, autre échelle : les océans absorbent le dioxyde de carbone de l'air. Quand sa concentration atmosphérique augmente, environ quatre cent vingt parties par million aujourd'hui, les équilibres se déplacent en cascade : davantage d'ions hydrogène, donc un pH qui baisse, c'est l'acidification des océans, et moins d'ions carbonate disponibles. Or les coraux et les mollusques construisent leurs coquilles en carbonate de calcium : leur équilibre de précipitation devient plus difficile. À l'inverse, au laboratoire, on ajoute des carbonates pour précipiter le calcium et adoucir une eau dure.",
+   "ecran": "oceans",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Plus de CO₂ dans l'air, moins de carbonate pour les coquilles."
+  },
+  {
+   "dit": "Dernier procédé : la synthèse du méthanol, à partir du monoxyde de carbone et du dihydrogène. Exothermique, avec un bilan gazeux qui passe de trois moles à une : tous les leviers pointent dans le même sens. L'industrie applique donc cinquante à cent atmosphères, deux cents à trois cents degrés pour garder une vitesse acceptable, un excès de dihydrogène, de deux pour un jusqu'à dix pour un, qui force la conversion du monoxyde de carbone, le réactif coûteux, et un catalyseur au cuivre. Un équilibre secondaire, dit de déplacement eau-gaz, sert à régler finement le rapport des deux gaz.",
+   "ecran": "methanol",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "Pression, excès d'hydrogène, catalyseur au cuivre."
+  },
+  {
+   "dit": "À vous de concevoir un procédé complet, le problème de synthèse de la leçon : fabriquer l'éthanoate d'éthyle, à l'odeur de banane, par estérification, avec une constante d'équilibre de quatre et une enthalpie quasi nulle. Puisque l'enthalpie est presque nulle, chauffer ne déplacera presque pas l'équilibre : cela servira seulement à l'atteindre plus vite, avec le catalyseur acide. Pour le rendement, deux stratégies : un excès d'éthanol, le réactif bon marché, et la distillation de l'ester au fur et à mesure qu'il se forme, pour empêcher tout retour en arrière.",
+   "ecran": "ester",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "Excès d'éthanol et distillation : le rendement sans chauffer."
+  },
+  {
+   "dit": "Terminons par l'image du soda, empruntée à la première leçon. Dans la bouteille fermée, le dioxyde de carbone gazeux et le dioxyde dissous sont en équilibre. Vous dévissez le bouchon : le gaz s'échappe, sa pression chute, et l'équilibre se déplace pour le remplacer : le gaz dissous sort de la solution, ça pétille. Gardez aussi les limites du principe : il prédit le sens, jamais l'ampleur, qui exige le calcul par K ; il ignore les solides et liquides purs, dont la concentration est constante ; et il ne dit rien de la vitesse, affaire de cinétique et de catalyseurs.",
+   "ecran": "limites",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "Le soda qui pétille : un équilibre qu'on ouvre."
+  },
+  {
+   "dit": "Vous maîtrisez maintenant la logique complète des équilibres chimiques. Un équilibre est dynamique : deux réactions opposées à vitesses égales, décrites par une constante K que seule la température peut modifier. Le principe de Le Chatelier transforme chaque perturbation, concentration, température ou pression, en une prédiction de sens. Et cette même logique optimise les usines d'ammoniac et d'acide sulfurique, charge et décharge votre hémoglobine, tamponne votre sang et gouverne l'acidité des océans. L'équilibre n'est pas un point : c'est un processus, et vous savez désormais le piloter.",
+   "ecran": "recap_final",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "Prévoir le sens, partout : usines, sang, océans."
+  }
+ ],
+ "titre": "L'équilibre chimique et le principe de Le Chatelier"
+}

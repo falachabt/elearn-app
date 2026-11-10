@@ -32,6 +32,7 @@ export function MesDocuments() {
   const { theme } = useTheme();
   const [documents, setDocuments] = useState<DocumentGarde[] | null>(null);
   const [confirmer, setConfirmer] = useState(false);
+  const suffixeCorrection = ` · ${t('annales.correctionTitre')}`;
 
   useFocusEffect(
     useCallback(() => {
@@ -50,6 +51,13 @@ export function MesDocuments() {
     if (q === 'aujourdhui') return t('document.ouvertAujourdhui', { mo });
     if (q === 'hier') return t('document.ouvertHier', { mo });
     return t('document.details', { mo, date: new Date(d.le).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long' }) });
+  };
+  // Un ancien sujet rouvre sa page de détail (temps, correction, sessions) ; un autre document, le lecteur seul.
+  const ouvrir = (d: DocumentGarde) => {
+    const nom = d.titre.endsWith(suffixeCorrection) ? d.titre.slice(0, -suffixeCorrection.length) : d.titre;
+    const o = d.origine ?? (d.sujet ? { kind: 'exam' as const, ref: String(d.sujet) } : null);
+    if (o) router.push({ pathname: '/annales/sujet', params: { id: o.ref, ...(o.kind === 'document' ? { kind: 'document', nom, ...(o.corr ? { corr: o.corr } : {}) } : {}) } });
+    else router.push({ pathname: '/document', params: { url: d.url, titre: d.titre } });
   };
   const retirer = async (url: string) => {
     await supprimerDocument(url);
@@ -97,7 +105,7 @@ export function MesDocuments() {
                 </View>
               </Appui>
             }
-            onPress={() => router.push({ pathname: '/document', params: { url: d.url, titre: d.titre } })}
+            onPress={() => ouvrir(d)}
           />
         ))}
       </Ecran>

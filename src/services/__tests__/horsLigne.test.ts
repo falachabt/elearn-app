@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { ecouterHorsLigne, estimerTelechargement, lancerTelechargement } from '../horsLigne';
+import { CLE_ETAT_HORS_LIGNE, ErreurEspaceInsuffisant, concurrenceTelechargement, ecouterHorsLigne, estimerTelechargement, lancerTelechargement, lireEtatHorsLigne, prioriserTachesSeances, reprendreTelechargementHorsLigne } from '../horsLigne';
 
 /**
  * Prouve que le téléchargement hors ligne est bien scopé au programme actif : il ne prend que les cours renvoyés par
@@ -11,7 +11,14 @@ import { ecouterHorsLigne, estimerTelechargement, lancerTelechargement } from '.
 jest.mock('../profil', () => ({ lireProfil: jest.fn() }));
 jest.mock('../pass', () => ({ lireAcces: jest.fn() }));
 jest.mock('../rythme', () => ({ lireRythme: jest.fn(), TAILLE_DEFAUT: 10 }));
-jest.mock('../supabase', () => ({ getSupabase: jest.fn(() => ({ rpc: jest.fn(), from: () => ({ select: jest.fn() }) })) }));
+jest.mock('../supabase', () => ({
+  getSupabase: jest.fn(() => ({
+    rpc: jest.fn(),
+    from: () => ({ select: jest.fn() }),
+    auth: { getSession: jest.fn(async () => ({ data: { session: { user: { id: 'u-pack' } } }, error: null })) },
+  })),
+}));
+jest.mock('../planning', () => ({ ...jest.requireActual('../planning'), lirePlanning: jest.fn() }));
 jest.mock('../reviser', () => ({
   programmeDu: jest.fn((profil: unknown) => ({ niveau: (profil as { niveau?: string }).niveau ?? '3e', pays: (profil as { pays?: string }).pays ?? 'CM', concours: (profil as { concours?: { id: string } | null }).concours?.id ?? null })),
   lireCours: jest.fn(),
@@ -27,11 +34,17 @@ jest.mock('../creditsHorsLigne', () => ({ telechargerContenuPayant: jest.fn(), l
 jest.mock('../annales', () => ({ lireDossiers: jest.fn(), lireDocuments: jest.fn() }));
 jest.mock('../documents', () => ({ prechargerDocument: jest.fn() }));
 jest.mock('../mission', () => ({ prechargerMission: jest.fn() }));
-jest.mock('../connectivite', () => ({ contenuHorsLigneValide: jest.fn(async () => true) }));
+jest.mock('../connectivite', () => ({
+  contenuHorsLigneValide: jest.fn(async () => true),
+  // Même règle que le vrai service : un TypeError ou un message « network » est une erreur réseau.
+  estErreurReseau: jest.fn((e: { name?: string; message?: string } | null) =>
+    !!e && (e.name === 'TypeError' || /network/i.test(e.message ?? ''))),
+}));
 
 import { lireAcces } from '../pass';
+import { jourLocalTexte, lirePlanning } from '../planning';
 import { lireProfil } from '../profil';
-import { lireCours, lireLecons, programmeDu } from '../reviser';
+import { lireCours, lireLecon, lireLecons, programmeDu } from '../reviser';
 import { lireEntrainement } from '../entrainement';
 import { lireRythme } from '../rythme';
 
@@ -42,6 +55,7 @@ const mProgramme = programmeDu as jest.Mock;
 const mCours = lireCours as jest.Mock;
 const mLecons = lireLecons as jest.Mock;
 const mEntrainement = lireEntrainement as jest.Mock;
+const mLirePlanning = lirePlanning as jest.Mock;
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -53,6 +67,7 @@ beforeEach(() => {
   mCours.mockResolvedValue([{ id: 11, nom: 'Analyse', matiere: 'Maths', lecons: 1 }]);
   mLecons.mockResolvedValue([{ id: 101, nom: 'Limites', minutes: 10 }]);
   mEntrainement.mockResolvedValue({ quiz: [{ id: 'q1', nom: 'Quiz 1', numero: 1, questions: 3 }], exercices: [{ id: 'e1', titre: 'Exo', enonce: 'Énoncé' }] });
+  mLirePlanning.mockResolvedValue({ planning: { statut: 'empty' }, copie: false });
 });
 
 it('télécharge uniquement les cours du programme actif', async () => {
@@ -79,6 +94,227 @@ it('ne crée aucune tâche de cours quand le programme n’en a pas', async () =
   expect(est.taches.filter((t) => t.categorie === 'cours')).toHaveLength(0);
   expect(est.taches.filter((t) => t.categorie === 'quiz')).toHaveLength(0);
   expect(est.taches.filter((t) => t.categorie === 'exercices')).toHaveLength(0);
+});
+
+// Demande de Benny pendant ses tests de l'issue #74 (23 octobre) : le pack entier (~5 800 éléments) se téléchargeait
+// une tâche après l'autre (10 % en cinq minutes), et la mise en veille coupait des éléments en « échec ».
+describe('moteur de téléchargement : parallèle et reprise réseau', () => {
+  const mLecon = lireLecon as jest.Mock;
+
+  const tachesLecons = (n: number) =>
+    Array.from({ length: n }, (_, i) => ({
+      id: `lecon-${100 + i}`,
+      categorie: 'cours' as const,
+      statut: 'a-faire' as const,
+      cours: 11,
+      lecon: 100 + i,
+    }));
+
+  const attendreFin = async () => {
+    for (let i = 0; i < 300; i++) {
+      const statut = (await lireEtatHorsLigne())?.statut;
+      if (statut && statut !== 'telechargement') return;
+      await new Promise((r) => setTimeout(r, 50));
+    }
+    throw new Error('le téléchargement ne s’est pas terminé');
+  };
+
+  it('la concurrence grandit avec la quantité restante, sans dépasser le plafond', () => {
+    expect(concurrenceTelechargement(0)).toBe(0);
+    expect(concurrenceTelechargement(5)).toBeLessThanOrEqual(5);
+    expect(concurrenceTelechargement(20)).toBeGreaterThan(1);
+    expect(concurrenceTelechargement(500)).toBeGreaterThan(concurrenceTelechargement(20));
+    expect(concurrenceTelechargement(6000)).toBeGreaterThan(concurrenceTelechargement(500));
+    expect(concurrenceTelechargement(6000)).toBeLessThanOrEqual(32);
+  });
+
+  it('plusieurs tâches partent en même temps, toutes arrivent, aucune en échec', async () => {
+    let enCours = 0;
+    let maximum = 0;
+    mLecon.mockImplementation(async () => {
+      enCours++;
+      maximum = Math.max(maximum, enCours);
+      await new Promise((r) => setTimeout(r, 40));
+      enCours--;
+      return {};
+    });
+    const estimation = await estimerTelechargement();
+    await lancerTelechargement({ ...estimation, taches: tachesLecons(12) });
+    await attendreFin();
+    const etat = await lireEtatHorsLigne();
+    expect(etat?.statut).toBe('termine');
+    expect(etat?.taches.every((t) => t.statut === 'faite')).toBe(true);
+    expect(maximum).toBeGreaterThanOrEqual(3);
+  });
+
+  it('une erreur réseau (veille, coupure) n’est pas un échec : la tâche repart et finit', async () => {
+    let appels = 0;
+    mLecon.mockImplementation(async () => {
+      appels++;
+      if (appels <= 2) throw { name: 'TypeError', message: 'Network request failed' };
+      return {};
+    });
+    const estimation = await estimerTelechargement();
+    await lancerTelechargement({ ...estimation, taches: tachesLecons(1) });
+    await attendreFin();
+    const etat = await lireEtatHorsLigne();
+    expect(appels).toBe(3);
+    expect(etat?.statut).toBe('termine');
+    expect(etat?.taches[0].statut).toBe('faite');
+  });
+
+  it('une erreur qui n’est pas le réseau reste un échec immédiat, sans réessai', async () => {
+    let appels = 0;
+    mLecon.mockImplementation(async () => {
+      appels++;
+      throw new Error('contenu illisible');
+    });
+    const estimation = await estimerTelechargement();
+    await lancerTelechargement({ ...estimation, taches: tachesLecons(1) });
+    await attendreFin();
+    const etat = await lireEtatHorsLigne();
+    expect(appels).toBe(1);
+    expect(etat?.statut).toBe('partiel');
+    expect(etat?.taches[0].statut).toBe('echec');
+  });
+
+  // Benny, même matinée : à la réouverture de l'app, on vérifie ce qui a échoué à cause de la veille ou du réseau —
+  // pas complètement téléchargé = on retélécharge ; les vrais échecs (droit, contenu) ne repartent pas tout seuls.
+  it('à la reprise, un échec réseau est retéléchargé ; un vrai échec reste en attente', async () => {
+    mLecon.mockResolvedValue({});
+    const progressionVide = { missions: { total: 0, faites: 0, echecs: 0 }, cours: { total: 3, faites: 1, echecs: 2 }, quiz: { total: 0, faites: 0, echecs: 0 }, exercices: { total: 0, faites: 0, echecs: 0 }, pdf: { total: 0, faites: 0, echecs: 0 } };
+    await AsyncStorage.setItem(CLE_ETAT_HORS_LIGNE, JSON.stringify({
+      statut: 'partiel',
+      profil: { niveau: 'ingenieurs', pays: 'CM', concours: 'concours-cible' },
+      taches: [
+        { id: 'lecon-100', categorie: 'cours', statut: 'faite', cours: 11, lecon: 100 },
+        // Échec laissé par une ancienne version : pas de drapeau, mais le message dit le réseau.
+        { id: 'lecon-101', categorie: 'cours', statut: 'echec', cours: 11, lecon: 101, erreur: 'Network request failed' },
+        { id: 'lecon-102', categorie: 'cours', statut: 'echec', cours: 11, lecon: 102, erreur: 'corrigé non téléchargé : il n’est pas encore débloqué' },
+      ],
+      progression: progressionVide,
+      estimationOctets: 0,
+      espaceDisponible: 0,
+      actualiseLe: new Date().toISOString(),
+    }));
+    await reprendreTelechargementHorsLigne();
+    for (let i = 0; i < 100; i++) {
+      const e = await lireEtatHorsLigne();
+      if (e?.taches.find((t) => t.id === 'lecon-101')?.statut === 'faite') break;
+      await new Promise((r) => setTimeout(r, 50));
+    }
+    const etat = await lireEtatHorsLigne();
+    expect(etat?.taches.find((t) => t.id === 'lecon-101')?.statut).toBe('faite');
+    expect(etat?.taches.find((t) => t.id === 'lecon-102')?.statut).toBe('echec');
+    // Une seule leçon retéléchargée : celle du réseau. Ni celle déjà faite, ni le vrai échec.
+    expect(mLecon).toHaveBeenCalledTimes(1);
+    expect(mLecon).toHaveBeenCalledWith(expect.anything(), 101);
+    expect(etat?.statut).toBe('partiel');
+  });
+});
+
+// Retour terrain du 23 octobre : la base locale de l'app a saturé pendant le téléchargement (SQLITE_FULL à la
+// connexion suivante). Deux garde-fous : ne pas partir si la place manque, et s'arrêter net si le stockage dit plein.
+// Issue #74, lot B : les contenus des séances des trois prochains jours passent devant le reste du
+// programme dans le pack, pour qu'un téléchargement interrompu couvre d'abord les séances imminentes.
+describe('prioriserTachesSeances', () => {
+  const tache = (id: string, categorie: 'missions' | 'cours' | 'quiz' | 'exercices') => ({
+    id, categorie, statut: 'a-faire' as const,
+  });
+
+  it('missions en tête, puis les priorités, puis le reste — ordre relatif conservé', () => {
+    const taches = [
+      tache('fiche-11', 'cours'), tache('lecon-101', 'cours'), tache('mission-2026-10-23', 'missions'),
+      tache('quiz-q1', 'quiz'), tache('validation-101', 'quiz'), tache('exercice-e1', 'exercices'),
+    ];
+    const ordonnees = prioriserTachesSeances(taches, new Set(['lecon-101', 'validation-101']));
+    expect(ordonnees.map((t) => t.id)).toEqual(['mission-2026-10-23', 'lecon-101', 'validation-101', 'fiche-11', 'quiz-q1', 'exercice-e1']);
+  });
+
+  it('sans priorité, l’ordre est inchangé', () => {
+    const taches = [tache('fiche-11', 'cours'), tache('lecon-101', 'cours')];
+    expect(prioriserTachesSeances(taches, new Set()).map((t) => t.id)).toEqual(['fiche-11', 'lecon-101']);
+  });
+});
+
+describe('estimerTelechargement — séances des trois prochains jours en premier (lot B)', () => {
+  it('la séance du jour (leçon 101, exercice e1) passe avant la fiche et le quiz libre', async () => {
+    const aujourdhui = jourLocalTexte();
+    mLirePlanning.mockResolvedValue({
+      planning: {
+        statut: 'ready', minutesParJour: 45, cible: null, joursRestants: 10,
+        couverture: { total: 1, prevues: 1 },
+        semaines: [{
+          debut: aujourdhui, phase: 'learning',
+          jours: [{
+            jour: aujourdhui, phase: 'learning', minutes: 45, fait: false,
+            elements: [
+              { genre: 'lecon', matiere: null, cours: 'Cours 1', lecon: 'Leçon 101', minutes: 20, coursId: 11, leconId: 101 },
+              { genre: 'exercice', matiere: null, cours: 'Cours 1', exercice: 'Exo', minutes: 15, coursId: 11, exerciceId: 'e1' },
+            ],
+          }],
+        }],
+      },
+      copie: false,
+    });
+
+    const est = await estimerTelechargement();
+    const apresMissions = est.taches.filter((t) => t.categorie !== 'missions').map((t) => t.id);
+    expect(apresMissions).toEqual(['lecon-101', 'validation-101', 'exercice-e1', 'fiche-11', 'quiz-q1']);
+  });
+
+  it('sans planning prêt, l’ordre du programme est conservé', async () => {
+    const est = await estimerTelechargement();
+    const apresMissions = est.taches.filter((t) => t.categorie !== 'missions').map((t) => t.id);
+    expect(apresMissions).toEqual(['fiche-11', 'lecon-101', 'validation-101', 'quiz-q1', 'exercice-e1']);
+  });
+});
+
+describe('garde-fous stockage', () => {
+  const mLecon = lireLecon as jest.Mock;
+
+  const tachesLecons = (n: number) =>
+    Array.from({ length: n }, (_, i) => ({
+      id: `lecon-${100 + i}`,
+      categorie: 'cours' as const,
+      statut: 'a-faire' as const,
+      cours: 11,
+      lecon: 100 + i,
+    }));
+
+  const attendreFin = async () => {
+    for (let i = 0; i < 200; i++) {
+      const statut = (await lireEtatHorsLigne())?.statut;
+      if (statut && statut !== 'telechargement') return;
+      await new Promise((r) => setTimeout(r, 50));
+    }
+    throw new Error('le téléchargement ne s’est pas terminé');
+  };
+
+  it('refuse de partir quand l’espace disponible est inférieur à l’estimation', async () => {
+    const estimation = await estimerTelechargement();
+    await expect(lancerTelechargement({ ...estimation, taches: tachesLecons(3), estimationOctets: 5_000_000, espaceDisponible: 1_000_000 }))
+      .rejects.toBeInstanceOf(ErreurEspaceInsuffisant);
+    // Rien n'a été lancé : aucun état de téléchargement n'existe.
+    expect(await lireEtatHorsLigne()).toBeNull();
+  });
+
+  it('une écriture « base pleine » arrête tout le téléchargement au lieu de continuer élément par élément', async () => {
+    mLecon.mockImplementation(async (_c: unknown, id: number) => {
+      if (id === 100) throw new Error('database or disk is full (code 13 SQLITE_FULL)');
+      await new Promise((r) => setTimeout(r, 30));
+      return {};
+    });
+    const estimation = await estimerTelechargement();
+    await lancerTelechargement({ ...estimation, taches: tachesLecons(6), estimationOctets: 1000, espaceDisponible: 10_000_000 });
+    await attendreFin();
+    const etat = await lireEtatHorsLigne();
+    expect(etat?.statut).toBe('partiel');
+    expect(etat?.erreurStockage).toBe(true);
+    // Les ouvriers se sont arrêtés : des tâches n'ont même pas été tentées (seules celles déjà en vol ont fini).
+    expect(etat?.taches.filter((t) => t.statut === 'a-faire').length).toBeGreaterThanOrEqual(2);
+    expect(etat?.taches.filter((t) => t.statut === 'faite').length).toBeLessThanOrEqual(3);
+  });
 });
 
 describe('progression du téléchargement', () => {

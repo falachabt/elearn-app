@@ -1,0 +1,406 @@
+{
+ "cours": 5900,
+ "ecrans": {
+  "buckingham": {
+   "kicker": "Modélisation",
+   "tex": [
+    "n\\ \\text{variables},\\quad k\\ \\text{dimensions de base}",
+    "\\Rightarrow\\ n - k\\ \\text{nombres sans dimension } (\\Pi)",
+    "\\text{bille dans un fluide : } 6 - 3 = 3\\ \\Pi"
+   ],
+   "titre": "Le théorème Pi de Buckingham",
+   "type": "etape"
+  },
+  "contre": {
+   "kicker": "Vérification",
+   "tex": [
+    "F = m a^2 \\text{ ?}",
+    "[F] = M L T^{-2}",
+    "[m a^2] = M (L T^{-2})^2 = M L^2 T^{-4}",
+    "M L^2 T^{-4} \\ne M L T^{-2}"
+   ],
+   "titre": "Une force qui n'en est pas une",
+   "type": "etape"
+  },
+  "corde": {
+   "kicker": "Autre exemple",
+   "note": "F : tension de la corde, [F] = MLT⁻² · μ : masse linéique, la masse par unité de longueur, [μ] = ML⁻¹",
+   "tex": "v = k\\,\\sqrt{\\dfrac{F}{\\mu}}",
+   "titre": "Une onde sur une corde tendue",
+   "type": "formule"
+  },
+  "derivees": {
+   "kicker": "Grandeurs dérivées",
+   "tex": [
+    "[v] = L T^{-1}",
+    "[a] = L T^{-2}",
+    "[F] = [m][a] = M L T^{-2}",
+    "[E] = [F][d] = M L^2 T^{-2}"
+   ],
+   "titre": "Composer les dimensions",
+   "type": "etape"
+  },
+  "dimensions": {
+   "kicker": "Les dimensions fondamentales",
+   "tex": [
+    "[\\text{longueur}] = L \\qquad [\\text{masse}] = M",
+    "[\\text{temps}] = T \\qquad [\\text{courant}] = I",
+    "[\\text{température}] = \\Theta \\qquad [\\text{matière}] = N",
+    "[\\text{lumière}] = J"
+   ],
+   "titre": "À chaque grandeur, sa dimension",
+   "type": "etape"
+  },
+  "erreur": {
+   "kicker": "Le réflexe qui sauve",
+   "tex": [
+    "d = v^2 + t",
+    "[v] = L T^{-1} \\Rightarrow [v^2] = L^2 T^{-2}",
+    "[t] = T \\qquad [d] = L",
+    "L^2 T^{-2} + T \\ne L"
+   ],
+   "titre": "Une formule fausse, démasquée en dix secondes",
+   "type": "etape"
+  },
+  "erreurs": {
+   "kicker": "Et les incertitudes",
+   "tex": [
+    "\\dfrac{\\Delta A}{A} \\approx \\dfrac{\\Delta L}{L} + \\dfrac{\\Delta l}{l}",
+    "= \\dfrac{0{,}1}{10} + \\dfrac{0{,}05}{5} = 0{,}03",
+    "A = 50 \\pm 1{,}5\\ \\text{cm}^2"
+   ],
+   "titre": "L'aire d'un rectangle, avec son erreur",
+   "type": "etape"
+  },
+  "homogeneite": {
+   "kicker": "Homogénéité",
+   "texte": "Une équation est homogène quand tous ses termes ont la même dimension. Premier contrôle de tout résultat : si les dimensions ne concordent pas, l'équation est fausse, à coup sûr.",
+   "type": "phrase"
+  },
+  "intro": {
+   "kicker": "Pourquoi cet outil",
+   "texte": "En physique, une équation relie des grandeurs mesurables, qui ont chacune une nature : longueur, masse, temps… Une équation correcte doit être homogène : même dimension des deux côtés du signe égal.",
+   "type": "phrase"
+  },
+  "limites": {
+   "etapes": [
+    "Les constantes sans dimension sont invisibles : le 2π du pendule échappe à la méthode",
+    "Une équation homogène peut être fausse : la condition est nécessaire, pas suffisante",
+    "Les relations complexes, non réductibles à un produit de puissances, lui échappent",
+    "Le résultat doit toujours être validé par l'expérience ou un calcul complet"
+   ],
+   "kicker": "Les limites",
+   "titre": "Ce que la méthode ne peut pas faire",
+   "type": "recap"
+  },
+  "methode": {
+   "etapes": [
+    "Identifier les grandeurs dont dépend le résultat, et leurs dimensions",
+    "Écrire le produit de ces grandeurs, chacune élevée à un exposant inconnu, avec une constante k sans dimension",
+    "Égaler les exposants de chaque dimension de base, des deux côtés",
+    "Résoudre le système d'équations obtenu",
+    "Vérifier la cohérence du résultat et l'interpréter"
+   ],
+   "kicker": "La méthode",
+   "titre": "Retrouver une formule en cinq temps",
+   "type": "recap"
+  },
+  "pas_juste": {
+   "kicker": "La limite du contrôle",
+   "note": "Les deux termes valent ML²T⁻² : l'équation est homogène… et pourtant fausse — elle additionne une énergie cinétique et une énergie potentielle",
+   "tex": "E_c = \\dfrac{1}{2} m v^2 + m g h",
+   "titre": "Homogène ne veut pas dire juste",
+   "type": "formule"
+  },
+  "pendule_pose": {
+   "kicker": "Exemple · le pendule",
+   "tex": [
+    "T = k\\, L^a\\, g^b\\, m^c",
+    "[T] = T \\qquad [L] = L",
+    "[g] = L T^{-2} \\qquad [m] = M"
+   ],
+   "titre": "De quoi dépend la période d'un pendule ?",
+   "type": "etape",
+   "anim": {
+    "nom": "pendule",
+    "hauteur": 200
+   }
+  },
+  "pendule_res": {
+   "kicker": "Exemple · résultat",
+   "note": "a = 1/2 et b = −1/2 · La masse n'intervient pas (c = 0) · La constante k vaut en fait 2π : la méthode ne peut pas la donner",
+   "tex": "T = k\\,\\sqrt{\\dfrac{L}{g}}",
+   "titre": "La période du pendule",
+   "type": "formule",
+   "anim": {
+    "nom": "pendule",
+    "hauteur": 280
+   }
+  },
+  "pendule_systeme": {
+   "kicker": "Exemple · le pendule",
+   "tex": [
+    "T = L^{a+b}\\, T^{-2b}\\, M^{c}",
+    "\\text{masse : } c = 0",
+    "\\text{longueur : } a + b = 0",
+    "\\text{temps : } -2b = 1"
+   ],
+   "titre": "On égale les exposants",
+   "type": "etape"
+  },
+  "prefixes": {
+   "kicker": "Les préfixes du SI",
+   "tex": [
+    "1\\ \\text{nm} = 10^{-9}\\ \\text{m}",
+    "1\\ \\text{km} = 10^{3}\\ \\text{m}",
+    "c \\approx 3{,}0 \\times 10^{8}\\ \\text{m/s}",
+    "c \\approx 3{,}0 \\times 10^{5}\\ \\text{km/s} = 0{,}3\\ \\text{Gm/s}"
+   ],
+   "titre": "Changer d'échelle sans changer d'unité",
+   "type": "etape"
+  },
+  "pression": {
+   "kicker": "Exemple",
+   "note": "Pression : une force par unité de surface · Son unité SI est le pascal (Pa), un newton par mètre carré",
+   "tex": "[p] = \\dfrac{[F]}{[S]} = \\dfrac{M L T^{-2}}{L^2} = M L^{-1} T^{-2}",
+   "titre": "La dimension de la pression",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Sept dimensions de base — L, M, T, I, Θ, N, J — et toutes les autres s'en déduisent",
+    "Homogénéité : des dimensions différentes signalent une erreur à coup sûr",
+    "Retrouver une formule : produit de puissances, exposants égalés, système résolu",
+    "Limites : constantes sans dimension invisibles, et homogène ne veut pas dire juste"
+   ],
+   "kicker": "À retenir",
+   "titre": "Analyse dimensionnelle",
+   "type": "recap",
+   "anim": {
+    "nom": "pendule",
+    "hauteur": 100
+   }
+  },
+  "regles": {
+   "kicker": "L'algèbre des dimensions",
+   "tex": [
+    "[A \\times B] = [A] \\times [B]",
+    "\\left[\\dfrac{A}{B}\\right] = \\dfrac{[A]}{[B]}",
+    "[A^n] = [A]^n"
+   ],
+   "titre": "Trois règles de calcul",
+   "type": "etape"
+  },
+  "reynolds": {
+   "kicker": "Les nombres sans dimension",
+   "note": "ρ : masse volumique du fluide · η : sa viscosité · Re n'a pas de dimension : il dit si l'écoulement est laminaire ou turbulent",
+   "tex": "Re = \\dfrac{\\rho\\, v\\, L}{\\eta}",
+   "titre": "Le nombre de Reynolds",
+   "type": "formule"
+  },
+  "titre": {
+   "kicker": "Physique · Terminale",
+   "sous": "Dimensions, unités, et l'art de vérifier une formule",
+   "titre": "Analyse dimensionnelle",
+   "type": "titre",
+   "anim": {
+    "nom": "pendule",
+    "hauteur": 250
+   }
+  },
+  "unites": {
+   "type": "phrase",
+   "kicker": "Le système international",
+   "texte": "Longueur : le mètre (m) · Masse : le kilogramme (kg) · Temps : la seconde (s) · Courant électrique : l'ampère (A) · Température : le kelvin (K) · Quantité de matière : la mole (mol) · Intensité lumineuse : la candela (cd)"
+  },
+  "verif": {
+   "kicker": "Vérification",
+   "tex": [
+    "E_c = \\dfrac{1}{2} m v^2",
+    "[v^2] = (L T^{-1})^2 = L^2 T^{-2}",
+    "[E_c] = M \\times L^2 T^{-2} = M L^2 T^{-2}"
+   ],
+   "titre": "Contrôler l'énergie cinétique",
+   "type": "etape"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Dimensions, unités et homogénéité"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : passer de la vérification à la découverte, en retrouvant la forme d'une formule, puis regarder les limites de la méthode.",
+    "texte": "Partie 2 : retrouver une formule, et les limites de la méthode."
+   },
+   "sous_titre": "Retrouver une formule, et les limites de la méthode"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré à l'analyse dimensionnelle : un outil simple et redoutable pour vérifier une formule, et même pour retrouver sa forme, rien qu'en regardant les unités.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Analyse dimensionnelle : vérifier et retrouver les formules par les unités."
+  },
+  {
+   "dit": "Parce qu'en physique, une équation relie des grandeurs mesurables, et chacune a une nature : longueur, masse, temps. Une équation correcte doit être homogène, c'est-à-dire présenter la même dimension des deux côtés du signe égal.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Une équation correcte est homogène : même dimension des deux côtés."
+  },
+  {
+   "dit": "Premier exemple : une formule fausse, qui prétend que la distance vaut le carré de la vitesse plus le temps. Le carré de la vitesse est une longueur au carré sur un temps au carré ; le temps est un temps. Ni l'un ni l'autre ne peut s'ajouter à une longueur : la formule est impossible, sans le moindre calcul.",
+   "ecran": "erreur",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "On n'additionne que des grandeurs de même dimension."
+  },
+  {
+   "dit": "Tout repose sur le système international, qui compte sept unités de base : le mètre pour la longueur, le kilogramme pour la masse, la seconde pour le temps, l'ampère pour le courant électrique, le kelvin pour la température, la mole pour la quantité de matière, et la candela pour l'intensité lumineuse.",
+   "ecran": "unites",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Sept unités de base : m, kg, s, A, K, mol, cd."
+  },
+  {
+   "dit": "À chaque grandeur de base correspond une dimension, notée entre crochets : L pour la longueur, M pour la masse, T pour le temps, I pour le courant, thêta pour la température, N pour la quantité de matière et J pour l'intensité lumineuse. Toutes les autres dimensions se construisent à partir de ces sept-là.",
+   "ecran": "dimensions",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Sept dimensions : L, M, T, I, Θ, N, J."
+  },
+  {
+   "dit": "Les grandeurs dérivées combinent ces briques. La vitesse est une longueur divisée par un temps. L'accélération, une longueur sur un temps au carré. La force, par la deuxième loi de Newton, est une masse fois une accélération. Et l'énergie, un travail, est une force fois une distance.",
+   "ecran": "derivees",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Vitesse LT⁻¹, accélération LT⁻², force MLT⁻², énergie ML²T⁻²."
+  },
+  {
+   "dit": "Exemple tiré des leçons : la pression est une force divisée par une surface. On divise donc la dimension d'une force par celle d'une surface, une longueur au carré : il reste masse, longueur puissance moins un, temps puissance moins deux.",
+   "ecran": "pression",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Pression : [p] = ML⁻¹T⁻², en pascals."
+  },
+  {
+   "dit": "Pour les très grandes et les très petites valeurs, des préfixes multiplient l'unité par des puissances de dix : nano, dix puissance moins neuf ; kilo, dix puissance trois. La vitesse de la lumière, trois cents millions de mètres par seconde, s'écrit aussi trois cent mille kilomètres par seconde.",
+   "ecran": "prefixes",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "nano = 10⁻⁹, kilo = 10³ : les préfixes gèrent les échelles."
+  },
+  {
+   "dit": "Les dimensions se manipulent comme des grandeurs algébriques : la dimension d'un produit est le produit des dimensions, celle d'un quotient est le quotient, et élever une grandeur à une puissance élève sa dimension à la même puissance. Et on n'additionne que des grandeurs de même dimension.",
+   "ecran": "regles",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Produit, quotient, puissance : les dimensions suivent l'algèbre."
+  },
+  {
+   "dit": "Retenons le vocabulaire : une équation est homogène quand tous ses termes ont la même dimension. C'est le premier contrôle à passer sur n'importe quel résultat : si les dimensions ne concordent pas, l'équation est fausse, c'est certain.",
+   "ecran": "homogeneite",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Homogène : tous les termes ont la même dimension."
+  },
+  {
+   "dit": "Vérifions l'énergie cinétique : un demi de m fois v au carré. Le facteur un demi est sans dimension, il ne compte pas. La masse apporte M, le carré de la vitesse apporte longueur au carré sur temps au carré : on obtient exactement la dimension d'une énergie. L'équation est homogène.",
+   "ecran": "verif",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Énergie cinétique : homogène, [Ec] = ML²T⁻²."
+  },
+  {
+   "dit": "Et voici le piège inverse, autre exercice des leçons : une force vaudrait la masse fois le carré de l'accélération. Le carré de l'accélération donne longueur au carré sur temps puissance quatre : ce n'est pas la dimension d'une force. Cette équation est donc incohérente, on la rejette sans hésiter.",
+   "ecran": "contre",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "F = ma² : dimensions différentes, équation rejetée."
+  },
+  {
+   "dit": "Attention, maintenant, à la limite du contrôle. Cette équation additionne l'énergie cinétique et le produit m g h : chaque terme a la dimension d'une énergie, l'équation est donc homogène. Et pourtant elle est fausse : elle mélange deux énergies différentes. L'homogénéité est une condition nécessaire, jamais une garantie.",
+   "ecran": "pas_juste",
+   "id": "p13",
+   "pause_apres": 0.7,
+   "texte": "Homogène ≠ juste : condition nécessaire, pas suffisante."
+  },
+  {
+   "dit": "Mieux : l'analyse dimensionnelle peut retrouver la forme d'une formule inconnue. La méthode tient en cinq temps : repérer les grandeurs dont dépend le résultat, écrire leur produit avec des exposants inconnus et une constante sans dimension, égaler les exposants de chaque dimension de base, résoudre le système, puis interpréter.",
+   "ecran": "methode",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Cinq temps : grandeurs, produit, exposants, système, interprétation."
+  },
+  {
+   "dit": "Exemple complet, celui des leçons : la période d'un pendule simple. Elle peut dépendre de la longueur du fil, de l'accélération de la pesanteur g, et peut-être de la masse. On écrit donc la période comme le produit de ces grandeurs, chacune élevée à un exposant inconnu, fois une constante k sans dimension.",
+   "ecran": "pendule_pose",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "On pose T = k Lᵃ gᵇ mᶜ, avec a, b, c inconnus."
+  },
+  {
+   "dit": "On développe le produit : la longueur apparaît avec l'exposant a plus b, le temps avec moins deux b, la masse avec c. Pour retomber sur un temps pur, chaque dimension de base impose son équation : c vaut zéro, a plus b vaut zéro, et moins deux b vaut un.",
+   "ecran": "pendule_systeme",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Trois équations : c = 0, a + b = 0, −2b = 1."
+  },
+  {
+   "dit": "Le système se résout : b vaut moins un demi, a vaut un demi, et c vaut zéro. La période est donc proportionnelle à la racine carrée de la longueur divisée par g. Et remarquez : la masse a disparu, la période d'un pendule ne dépend pas de sa masse.",
+   "ecran": "pendule_res",
+   "id": "p17",
+   "pause_apres": 0.7,
+   "texte": "T = k √(L/g) : la masse ne joue aucun rôle."
+  },
+  {
+   "dit": "Même méthode pour la vitesse d'une onde sur une corde tendue : elle dépend de la tension de la corde et de sa masse linéique, la masse par unité de longueur. Le calcul des exposants donne une vitesse proportionnelle à la racine carrée de la tension divisée par la masse linéique.",
+   "ecran": "corde",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Onde sur une corde : v = k √(F/μ)."
+  },
+  {
+   "dit": "En combinant les grandeurs, on fabrique parfois des nombres sans dimension, qui caractérisent un phénomène quel que soit le système d'unités. Le plus célèbre est le nombre de Reynolds, en mécanique des fluides : il combine masse volumique, vitesse, longueur et viscosité, et il dit si un écoulement est laminaire ou turbulent.",
+   "ecran": "reynolds",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Re = ρvL/η : un nombre sans dimension qui caractérise l'écoulement."
+  },
+  {
+   "dit": "Le théorème Pi de Buckingham généralise tout cela : un phénomène décrit par n grandeurs et k dimensions de base se résume à n moins k nombres sans dimension. Pour une bille qui tombe dans un fluide, six grandeurs et trois dimensions donnent trois nombres Pi : le problème entier tient dans ces trois nombres.",
+   "ecran": "buckingham",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "n grandeurs, k dimensions → n − k nombres sans dimension."
+  },
+  {
+   "dit": "Gardons les limites en tête. La méthode ne voit pas les constantes sans dimension, comme le deux pi du pendule. Elle ne prouve jamais qu'une équation est juste. Elle suppose des relations simples, produits de puissances. Et ses résultats doivent toujours être confirmés par l'expérience.",
+   "ecran": "limites",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Constantes invisibles, preuve impossible : les limites à connaître."
+  },
+  {
+   "dit": "Dernier point des leçons : les incertitudes de mesure. L'aire d'un rectangle de dix centimètres sur cinq vaut cinquante centimètres carrés ; les incertitudes relatives sur les deux côtés s'ajoutent, trois pour cent, ce qui donne une aire connue à un centimètre carré et demi près. Et là encore, l'homogénéité veille : une aire est bien une longueur au carré.",
+   "ecran": "erreurs",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Les incertitudes relatives s'ajoutent : A = 50 ± 1,5 cm²."
+  },
+  {
+   "dit": "Retenez l'essentiel : sept dimensions de base suffisent à tout construire ; une équation doit être homogène, sinon elle est fausse à coup sûr ; et en égalant les exposants, on peut retrouver la forme d'une formule, à une constante sans dimension près.",
+   "ecran": "recap",
+   "id": "p23",
+   "pause_apres": 0.5,
+   "texte": "Dimensions, homogénéité, méthode : l'essentiel du chapitre."
+  }
+ ],
+ "titre": "Analyse dimensionnelle"
+}

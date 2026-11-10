@@ -1,0 +1,515 @@
+{
+ "cours": 6234,
+ "titre": "Les polymères : des monomères aux matériaux du quotidien",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Les polymères",
+   "titre": "Les polymères : des monomères aux matériaux du quotidien",
+   "sous": "Deux voies de synthèse, trois architectures — et la question de la fin de vie",
+   "anim": {
+    "nom": "chaine_polymere_fig",
+    "hauteur": 250
+   }
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition",
+   "tex": "-[M]_n-",
+   "note": "n : degré de polymérisation, de quelques centaines à plusieurs centaines de milliers."
+  },
+  "addition": {
+   "type": "etape",
+   "kicker": "Voie 1 : la polymérisation par addition",
+   "titre": "Des monomères insaturés qui s'enchaînent sans rien perdre",
+   "tex": [
+    "n\\,CH_2{=}CH\\text{-}X \\longrightarrow -[CH_2\\text{-}CH(X)]_n-",
+    "\\text{aucun sous-produit : tous les atomes restent}",
+    "\\text{en chaîne : initiation, propagation, terminaison}"
+   ]
+  },
+  "mecanisme": {
+   "type": "etape",
+   "kicker": "Le mécanisme radicalaire",
+   "titre": "Trois actes : naître, grandir, s'éteindre",
+   "tex": [
+    "I_2 \\xrightarrow{\\Delta} 2\\,I^\\bullet",
+    "I^\\bullet + H_2C{=}CH_2 \\rightarrow I\\text{-}CH_2\\text{-}CH_2^\\bullet",
+    "P_n^\\bullet + M \\rightarrow P_{n+1}^\\bullet",
+    "P_n^\\bullet + P_m^\\bullet \\rightarrow P_{n+m}"
+   ]
+  },
+  "exemples_addition": {
+   "type": "etape",
+   "kicker": "Les grands témoins de l'addition",
+   "titre": "Quatre monomères, quatre plastiques du quotidien",
+   "tex": [
+    "H_2C{=}CH_2 \\rightarrow -[CH_2\\text{-}CH_2]_n- \\quad \\text{PE}",
+    "H_2C{=}CHCl \\rightarrow -[CH_2\\text{-}CHCl]_n- \\quad \\text{PVC}",
+    "H_2C{=}CH\\text{-}C_6H_5 \\rightarrow \\text{PS}",
+    "\\text{méthacrylate de méthyle} \\rightarrow \\text{PMMA (Plexiglas)}"
+   ]
+  },
+  "condensation": {
+   "type": "etape",
+   "kicker": "Voie 2 : la polymérisation par condensation",
+   "titre": "Des monomères bifonctionnels, une petite molécule éliminée",
+   "tex": [
+    "n\\,HOOC\\text{-}(CH_2)_4\\text{-}COOH + n\\,H_2N\\text{-}(CH_2)_6\\text{-}NH_2",
+    "\\longrightarrow -[NH\\text{-}(CH_2)_6\\text{-}NH\\text{-}CO\\text{-}(CH_2)_4\\text{-}CO]_n-",
+    "+\\ (2n-1)\\,H_2O \\quad \\text{: croissance par étapes, lente}"
+   ]
+  },
+  "exemples_condensation": {
+   "type": "etape",
+   "kicker": "Les grandes familles de la condensation",
+   "titre": "Le lien formé décide de la famille",
+   "tex": [
+    "-CO\\text{-}NH- \\ \\text{(amide)} \\rightarrow \\text{nylon} + H_2O",
+    "-CO\\text{-}O- \\ \\text{(ester)} \\rightarrow \\text{PET} + H_2O",
+    "-NH\\text{-}CO\\text{-}O- \\ \\text{(uréthane)} \\rightarrow \\text{PU, sans perte}",
+    "-CH_2- \\ \\text{(méthylène)} \\rightarrow \\text{bakélite} + H_2O"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Addition contre condensation",
+   "etapes": [
+    "Addition : monomères insaturés",
+    "En chaîne, rapide, sans perte",
+    "Condensation : bifonctionnels",
+    "Par étapes, lente, H₂O perdue",
+    "Ex. : PE et PVC contre nylon"
+   ]
+  },
+  "copolymeres": {
+   "type": "etape",
+   "kicker": "Les copolymères : le mélange contrôlé",
+   "titre": "Deux monomères différents dans la même chaîne",
+   "tex": [
+    "\\text{ABS : acrylonitrile + butadiène + styrène}",
+    "\\text{PU : par étapes, mais sans sous-produit}"
+   ]
+  },
+  "lineaires": {
+   "type": "etape",
+   "kicker": "Architecture 1 : les polymères linéaires",
+   "titre": "De longues chaînes indépendantes qui glissent",
+   "tex": [
+    "-[CH_2\\text{-}CH_2]_n- \\text{ : chaînes solitaires}",
+    "\\text{glissement} \\Rightarrow \\text{ramollissement à chaud}",
+    "\\text{thermoplastiques : PE, PVC, PS, PMMA}"
+   ],
+   "anim": {
+    "nom": "architectures_fig",
+    "hauteur": 110
+   }
+  },
+  "ramifies": {
+   "type": "etape",
+   "kicker": "Architecture 2 : les polymères ramifiés",
+   "titre": "Des branches qui règlent la compacité",
+   "tex": [
+    "\\text{branches courtes et nombreuses : PEBD}",
+    "\\Rightarrow \\text{densité faible, matériau souple}",
+    "\\text{branches longues : emmêlement, viscosité}",
+    "\\text{ramification réglée dès la synthèse}"
+   ]
+  },
+  "reticules": {
+   "type": "etape",
+   "kicker": "Architecture 3 : les polymères réticulés",
+   "titre": "Des ponts covalents, un réseau tridimensionnel géant",
+   "tex": [
+    "\\text{caoutchouc vulcanisé : ponts } -S_x-",
+    "\\text{bakélite, époxy : réseaux denses et rigides}",
+    "\\text{thermodurcissables : infusibles, insolubles}",
+    "\\text{une chaleur excessive les dégrade}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "De la structure aux propriétés",
+   "etapes": [
+    "Linéaire : fusible, recyclable",
+    "Ramifié : souple, moins dense",
+    "Réticulé : réseau infusible",
+    "Cristallin : dense, résistant",
+    "Amorphe : souple, transparent"
+   ]
+  },
+  "cristallinite": {
+   "type": "etape",
+   "kicker": "Cristallinité et état amorphe",
+   "titre": "Deux états qui coexistent dans le même matériau",
+   "tex": [
+    "\\text{PEHD, linéaire : } 80 \\text{ à } 90\\ \\% \\text{ cristallin}",
+    "\\text{PEBD, ramifié : plutôt amorphe}",
+    "\\text{la plupart sont semicristallins}"
+   ]
+  },
+  "plastiques": {
+   "type": "etape",
+   "kicker": "Famille 1 : les plastiques",
+   "titre": "Formables à chaud, ils gardent leur forme en refroidissant",
+   "tex": [
+    "\\rho \\approx 0{,}9 \\text{ à } 1{,}5\\ \\text{g/cm}^3",
+    "\\text{isolants thermiques et électriques}",
+    "\\text{thermoplastiques} \\approx 80\\ \\% \\text{ de la production}",
+    "\\text{résistants aux produits chimiques}"
+   ]
+  },
+  "grands_plastiques": {
+   "type": "etape",
+   "kicker": "Les quatre plastiques stars",
+   "titre": "PE, PVC, PS, PET : un portrait chacun",
+   "tex": [
+    "-[CH_2\\text{-}CH_2]_n- \\text{ : PE, le plus produit}",
+    "-[CH_2\\text{-}CHCl]_n- \\text{ : PVC, } \\approx 57\\ \\% \\text{ de chlore}",
+    "-[CH_2\\text{-}CH(C_6H_5)]_n- \\text{ : PS cristal ou expansé}",
+    "\\text{PET : un polyester, le plus recyclé}"
+   ]
+  },
+  "fibres": {
+   "type": "etape",
+   "kicker": "Famille 2 : les fibres",
+   "titre": "Filer, solidifier, étirer : l'orientation crée la résistance",
+   "tex": [
+    "L/d > 1\\,000 \\text{ : le rapport d'aspect}",
+    "\\text{filage} \\rightarrow \\text{solidification} \\rightarrow \\text{étirage}",
+    "\\text{nylon : des ponts hydrogène entre chaînes}",
+    "\\text{PET fibre} \\approx 50\\ \\% \\text{ des fibres synthétiques}"
+   ]
+  },
+  "elastomeres": {
+   "type": "etape",
+   "kicker": "Famille 3 : les élastomères",
+   "titre": "Une élasticité née du désordre des chaînes",
+   "tex": [
+    "\\text{étirement : } 500 \\text{ à } 1\\,000\\ \\% \\text{, retour total}",
+    "\\text{au repos : pelotes désordonnées, entropie maximale} \\qquad \\text{étirées : chaînes alignées, entropie réduite}",
+    "\\text{quelques ponts} \\Rightarrow \\text{le rappel élastique}"
+   ],
+   "anim": {
+    "nom": "pelote_elastomere_fig",
+    "hauteur": 110
+   }
+  },
+  "caoutchouc": {
+   "type": "etape",
+   "kicker": "Le caoutchouc, modèle des élastomères",
+   "titre": "Du latex collant au pneu, grâce au soufre",
+   "tex": [
+    "-[CH_2\\text{-}C(CH_3){=}CH\\text{-}CH_2]_n- \\text{ : polyisoprène}",
+    "\\text{vulcanisation (1839) : ponts } -S_x-",
+    "\\text{SBR : } 25\\ \\% \\text{ styrène, } 75\\ \\% \\text{ butadiène}",
+    "\\text{silicones : de } {-100} \\text{ à } {+250}\\ ^\\circ\\text{C}"
+   ]
+  },
+  "etude_pe": {
+   "type": "etape",
+   "kicker": "Étude de cas 1 : le polyéthylène",
+   "titre": "Le même motif, deux matériaux selon la pression",
+   "tex": [
+    "n\\,H_2C{=}CH_2 \\rightarrow -[CH_2\\text{-}CH_2]_n-",
+    "n \\text{ : de } 2\\,000 \\text{ à } 20\\,000",
+    "\\text{PEBD : ramifié, } 0{,}91 \\text{ à } 0{,}93\\ \\text{g/cm}^3",
+    "\\text{PEHD : linéaire, } 0{,}94 \\text{ à } 0{,}97\\ \\text{g/cm}^3"
+   ]
+  },
+  "etude_pvc": {
+   "type": "etape",
+   "kicker": "Étude de cas 2 : le PVC",
+   "titre": "Un polymère à deux visages : rigide ou souple",
+   "tex": [
+    "n\\,H_2C{=}CHCl \\rightarrow -[CH_2\\text{-}CHCl]_n-",
+    "\\text{brut : fragile, il libère } HCl \\text{ à chaud}",
+    "\\text{rigide : stabilisants thermiques ajoutés}",
+    "\\text{souple : plastifiants, jusqu'à } 40\\ \\%"
+   ]
+  },
+  "etude_nylon": {
+   "type": "etape",
+   "kicker": "Étude de cas 3 : le nylon-6,6",
+   "titre": "Une condensation qui exige la précision",
+   "tex": [
+    "n\\,HOOC\\text{-}(CH_2)_4\\text{-}COOH + n\\,H_2N\\text{-}(CH_2)_6\\text{-}NH_2",
+    "\\rightarrow -[OC\\text{-}(CH_2)_4\\text{-}CO\\text{-}NH\\text{-}(CH_2)_6\\text{-}NH]_n- + (2n-1)\\,H_2O",
+    "\\text{stœchiométrie exacte } 1:1 \\text{, eau éliminée}"
+   ]
+  },
+  "nylon6": {
+   "type": "formule",
+   "kicker": "Le nylon-6 et le fil tiré",
+   "tex": "n\\ \\text{caprolactame} \\xrightarrow{H_2O,\\ \\Delta} -[NH\\text{-}(CH_2)_5\\text{-}CO]_n-",
+   "note": "À l'interface de deux liquides, on tire une fibrille continue de nylon-6,6."
+  },
+  "recap3": {
+   "type": "recap",
+   "kicker": "Trois géants, trois logiques",
+   "etapes": [
+    "PE : addition radicalaire",
+    "PVC : le chlore change tout",
+    "Nylon-6,6 : condensation 1:1",
+    "Les conditions règlent les propriétés"
+   ]
+  },
+  "echelle": {
+   "type": "etape",
+   "kicker": "La fin de vie : l'échelle du défi",
+   "titre": "Une production multipliée par deux cents",
+   "tex": [
+    "\\text{années 1950 : } \\approx 2\\ \\text{Mt/an}",
+    "\\text{années 1980 : } \\approx 100\\ \\text{Mt/an}",
+    "2020 : > 400\\ \\text{Mt/an}",
+    "\\text{depuis 1950 : } > 10 \\text{ milliards de t, } < 10\\ \\% \\text{ recyclées}"
+   ]
+  },
+  "degradation": {
+   "type": "etape",
+   "kicker": "Pourquoi les polymères persistent",
+   "titre": "Des liaisons fortes, une dégradation lente et incomplète",
+   "tex": [
+    "\\text{liaisons C-C et C-H : très stables}",
+    "\\text{photolyse : les UV } (h\\nu) \\text{ brisent les chaînes}",
+    "-CO\\text{-}O- + H_2O \\rightarrow -COOH + HO\\text{-} \\text{ (hydrolyse)}",
+    "\\text{microplastiques : fragments } < 5\\ \\text{mm}"
+   ]
+  },
+  "recyclage": {
+   "type": "etape",
+   "kicker": "Recycler : fondre ou casser",
+   "titre": "Le mécanique dégrade, le chimique recommence",
+   "tex": [
+    "\\text{mécanique : tri} \\rightarrow \\text{broyage} \\rightarrow \\text{refonte}",
+    "(PET)_n + n\\,H_2O \\xrightarrow{\\Delta,\\ \\text{catalyse}}",
+    "n\\ \\text{acide téréphtalique} + n\\ \\text{éthylène glycol}",
+    "\\text{pyrolyse : huiles, gaz } CO + H_2 \\text{, charbon}"
+   ]
+  },
+  "biosource": {
+   "type": "etape",
+   "kicker": "Biosourcé n'est pas biodégradable",
+   "titre": "Distinguer l'origine de la matière et sa fin de vie",
+   "tex": [
+    "\\text{biosourcé} \\neq \\text{biodégradable}",
+    "\\text{PLA} \\xrightarrow{\\text{compostage industriel}} CO_2 + H_2O + \\text{biomasse}",
+    "\\text{compostage : chaleur, humidité, micro-organismes}"
+   ]
+  },
+  "circulaire": {
+   "type": "recap",
+   "kicker": "Vers l'économie circulaire",
+   "etapes": [
+    "Linéaire : extraire, fabriquer, jeter",
+    "Circulaire : garder en usage",
+    "Éco-conception dès le laboratoire",
+    "La bouteille PET en boucle fermée"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Polymère : des monomères répétés",
+    "Deux voies : addition, condensation",
+    "La structure commande l'usage",
+    "Plastiques, fibres, élastomères",
+    "Fin de vie : recycler, éco-concevoir"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux polymères, les géants moléculaires de notre quotidien. Écran de téléphone, vêtements, pneus, emballages : presque tout ce qui nous entoure est fait de ces très longues molécules. Nous allons d'abord comprendre ce qui les définit et comment on les fabrique, par addition ou par condensation. Puis nous verrons comment leur architecture, linéaire, ramifiée ou réticulée, commande leurs propriétés. Nous détaillerons ensuite trois géants, le polyéthylène, le PVC et le nylon, avant d'affronter la question de leur fin de vie.",
+   "texte": "Des monomères répétés : les géants moléculaires de notre quotidien.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Un polymère est une macromolécule formée par la répétition d'une petite unité de base, le monomère, reliée à ses voisines par des liaisons covalentes. Imaginez un long train de marchandises : chaque wagon identique est un monomère, et le train entier est le polymère. Si le monomère est noté M, la chaîne s'écrit comme un motif M répété n fois, et ce nombre n est le degré de polymérisation. Cette nature macromoléculaire n'a été établie que dans les années vingt, grâce à Hermann Staudinger, prix Nobel de chimie en mille neuf cent cinquante-trois.",
+   "texte": "-[M]ₙ- : un monomère M, répété n fois.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p03",
+   "dit": "Première voie de synthèse : la polymérisation par addition. Les monomères possèdent une double liaison carbone-carbone, qui s'ouvre pour lier chaque monomère au suivant. Aucun atome n'est perdu : tout le monomère se retrouve dans le polymère, sans aucun sous-produit. Le mécanisme est une réaction en chaîne, qui se déroule en trois actes : l'initiation crée un centre actif, la propagation additionne les monomères les uns après les autres, et la terminaison éteint le centre actif. La chaîne grandit alors très vite, en quelques instants.",
+   "texte": "Addition : la double liaison s'ouvre, rien ne se perd.",
+   "ecran": "addition"
+  },
+  {
+   "id": "p04",
+   "dit": "Regardons ce mécanisme de plus près, dans sa version radicalaire. Tout commence par l'initiation : un initiateur, par exemple un peroxyde, se décompose sous l'effet de la chaleur et libère des radicaux libres, des espèces portant un électron célibataire, donc très réactives. Un radical attaque la double liaison d'un premier monomère : il s'y accroche et transmet le point radicalaire à l'autre extrémité. C'est la propagation : la chaîne grandit d'un monomère à chaque rencontre, des milliers de fois. Enfin, lorsque deux chaînes radicalaires se rencontrent, elles combinent leurs électrons : c'est la terminaison, la croissance s'arrête.",
+   "texte": "I₂ → 2 I• : le radical naît, attaque, se transmet.",
+   "ecran": "mecanisme"
+  },
+  {
+   "id": "p05",
+   "dit": "Quatre monomères illustrent la voie de l'addition. L'éthylène donne le polyéthylène, le plastique le plus produit au monde. Le chlorure de vinyle donne le PVC, celui des fenêtres et des tuyaux. Le styrène donne le polystyrène des emballages et des couverts jetables. Et le méthacrylate de méthyle donne le PMMA, le fameux Plexiglas, ce verre organique transparent et léger qui a équipé les cockpits d'avions pendant la Seconde Guerre mondiale. Retenez la logique : un seul type de monomère, une double liaison qui s'ouvre, une chaîne qui s'allonge.",
+   "texte": "Éthylène → PE, chlorure de vinyle → PVC, styrène → PS.",
+   "ecran": "exemples_addition"
+  },
+  {
+   "id": "p06",
+   "dit": "Deuxième voie : la polymérisation par condensation. Ici, les monomères portent deux groupes fonctionnels réactifs, par exemple une fonction acide et une fonction amine. À chaque liaison formée entre deux monomères, une petite molécule est éliminée, le plus souvent de l'eau. L'exemple emblématique est le nylon six-six, né chez DuPont en mille neuf cent trente-cinq : un diacide à six carbones réagit avec une diamine à six carbones, et chaque lien amide créé libère une molécule d'eau. Autre différence majeure : la croissance se fait par étapes, lentement, et la masse des chaînes augmente progressivement.",
+   "texte": "Condensation : deux fonctions réagissent, l'eau s'échappe.",
+   "ecran": "condensation"
+  },
+  {
+   "id": "p07",
+   "dit": "Le lien formé lors de la condensation décide de la famille du polymère. Un lien amide entre un diacide et une diamine donne un polyamide : c'est le nylon, qui libère de l'eau. Un lien ester entre un diacide et un diol donne un polyester, comme le PET des bouteilles. Un lien uréthane donne les polyuréthanes des mousses et des adhésifs, cas particulier formé sans sous-produit. Et le phénol associé au formaldéhyde donne la bakélite, le tout premier plastique entièrement synthétique, relié par des ponts méthylène. À chaque fois, deux partenaires différents s'associent, fonction contre fonction.",
+   "texte": "Amide → nylon, ester → PET, uréthane → PU, méthylène → bakélite.",
+   "ecran": "exemples_condensation"
+  },
+  {
+   "id": "p08",
+   "dit": "Avant d'aller plus loin, fixons le contraste entre les deux voies. L'addition assemble des monomères insaturés, en chaîne, rapidement et sans rien perdre. La condensation associe des monomères bifonctionnels, par étapes, lentement, en éliminant une petite molécule. Retenez aussi que ces deux voies peuvent mélanger deux monomères différents dans une même chaîne : on obtient alors un copolymère, comme le plastique ABS des briques de construction, qui combine résistance, souplesse et brillance.",
+   "texte": "Addition contre condensation : l'essentiel en cinq points.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p09",
+   "dit": "Partie deux : l'architecture des chaînes. Commençons par les polymères linéaires : de longues chaînes flexibles, sans aucune liaison permanente entre elles, comme des spaghettis cuits dans une assiette. Quand on chauffe, l'agitation thermique aide les chaînes à glisser les unes sur les autres : le matériau ramollit, puis fond. Au refroidissement, il redurcit, sans dommage. C'est le comportement thermoplastique, qui permet le moulage et le recyclage par refusion. Le polyéthylène, le PVC, le polystyrène et le Plexiglas sont des linéaires.",
+   "texte": "Chaînes solitaires : elles glissent, donc le matériau fond.",
+   "ecran": "lineaires"
+  },
+  {
+   "id": "p10",
+   "dit": "Deuxième architecture : les polymères ramifiés. La chaîne principale porte des chaînes latérales, des branches. Si ces branches sont courtes et nombreuses, elles empêchent les chaînes de se rapprocher et de s'empiler de façon compacte : la densité baisse, le matériau devient plus souple et moins résistant. C'est le cas du polyéthylène basse densité des films et des sacs. Si les branches sont longues mais rares, elles s'emmêlent avec les voisines et augmentent la viscosité du matériau fondu. La ramification est donc un réglage que le chimiste ajuste dès la synthèse pour viser une propriété précise.",
+   "texte": "Branches courtes et nombreuses : moins dense, plus souple.",
+   "ecran": "ramifies"
+  },
+  {
+   "id": "p11",
+   "dit": "Troisième architecture, et c'est un saut qualitatif : les polymères réticulés. Des liaisons covalentes, de véritables ponts, relient les chaînes entre elles de façon permanente, jusqu'à former un réseau tridimensionnel unique et géant. Dans le caoutchouc vulcanisé, ce sont des ponts de soufre qui soudent les chaînes ; dans la bakélite et les résines époxy, le réseau est dense et rigide. Conséquence : ces matériaux sont thermodurcissables. Ils ne fondent pas et ne se dissolvent pas, car les chaînes ne peuvent plus glisser ; une chaleur excessive finit par les dégrader chimiquement.",
+   "texte": "Des ponts covalents : un réseau unique, infusible et insoluble.",
+   "ecran": "reticules"
+  },
+  {
+   "id": "p12",
+   "dit": "Au sein d'un même polymère, les chaînes peuvent aussi s'organiser de deux façons. Dans les régions cristallines, les segments se plient et s'empilent de manière ordonnée et compacte : la densité, la résistance mécanique et l'effet barrière augmentent. Dans les régions amorphes, les segments sont désordonnés et enchevêtrés : ils apportent souplesse et transparence. Le polyéthylène haute densité, linéaire, peut atteindre quatre-vingts à quatre-vingt-dix pour cent de cristallinité, tandis que son cousin ramifié reste surtout amorphe. La plupart des polymères techniques sont donc semicristallins.",
+   "texte": "PEHD : 80 à 90 % cristallin ; PEBD : plutôt amorphe.",
+   "ecran": "cristallinite"
+  },
+  {
+   "id": "p13",
+   "dit": "Venons-en aux trois grandes familles d'applications, en commençant par les plastiques. Un plastique est un matériau polymère que l'on peut former sous l'effet de la chaleur ou de la pression, et qui conserve sa forme ensuite. Ses atouts : une faible densité, entre zéro virgule neuf et un virgule cinq gramme par centimètre cube, une excellente résistance chimique, de bonnes qualités d'isolant thermique et électrique, et une grande facilité de mise en forme et de coloration. Les thermoplastiques représentent environ quatre-vingts pour cent de la production, et ils sont théoriquement recyclables.",
+   "texte": "ρ ≈ 0,9 à 1,5 g/cm³ : légers, isolants, façonnables.",
+   "ecran": "plastiques"
+  },
+  {
+   "id": "p14",
+   "dit": "Quatre plastiques dominent notre quotidien. Le polyéthylène, le plus simple et le plus polyvalent : souple et transparent quand il est ramifié, rigide et opaque quand il est linéaire ; sa production mondiale dépasse cent millions de tonnes par an. Le PVC doit son caractère à ses atomes de chlore, environ cinquante-sept pour cent de sa masse, qui le rendent rigide et résistant au feu. Le polystyrène existe en version cristal, transparente et cassante, et en version expansée, cette mousse blanche qui contient quatre-vingt-quinze pour cent d'air. Et le PET, le polyester des bouteilles, est le plastique le plus recyclé au monde.",
+   "texte": "PE, PVC (≈ 57 % de chlore), PS, PET : les quatre stars.",
+   "ecran": "grands_plastiques"
+  },
+  {
+   "id": "p15",
+   "dit": "Deuxième famille : les fibres. Une fibre est un matériau dont la longueur dépasse mille fois le diamètre. Pour la fabriquer, on fait passer le polymère fondu ou en solution à travers les trous d'une filière, on solidifie les filaments, puis on les étire. Cet étirage est l'étape décisive : il aligne les chaînes dans l'axe de la fibre, ce qui augmente considérablement la résistance à la traction. Le nylon doit en plus sa cohésion à de forts ponts hydrogène entre ses chaînes. Le polyester règne sur le marché textile, avec environ la moitié des fibres synthétiques, et le polyacrylonitrile sert de précurseur aux fibres de carbone, pyrolysées à très haute température.",
+   "texte": "Filage puis étirage : les chaînes alignées résistent.",
+   "ecran": "fibres"
+  },
+  {
+   "id": "p16",
+   "dit": "Troisième famille : les élastomères. Là où un métal se déforme élastiquement d'environ un pour cent, un élastomère peut s'étirer de cinq cents à mille pour cent, puis revenir exactement à sa forme initiale. Son secret tient à sa structure : des chaînes légèrement réticulées. Au repos, elles forment des pelotes désordonnées, l'état de plus grande entropie. À l'étirement, elles s'alignent, l'entropie diminue. La force de rappel n'est donc pas une affaire d'attraction entre atomes : c'est la tendance des chaînes à retrouver leur désordre préféré. Les quelques ponts de réticulation empêchent simplement le glissement définitif.",
+   "texte": "500 à 1 000 % d'étirement : le rappel vient de l'entropie.",
+   "ecran": "elastomeres"
+  },
+  {
+   "id": "p17",
+   "dit": "Le modèle historique des élastomères est le caoutchouc naturel, un polyisoprène extrait du latex de l'hévéa. Brut, il est collant et peu utile. En mille huit cent trente-neuf, Charles Goodyear découvre la vulcanisation : le soufre crée des ponts disulfure entre les chaînes, sur un à cinq pour cent des motifs seulement. Le matériau devient résilient, stable, prêt pour les pneus. Son grand rival synthétique, le caoutchouc styrène-butadiène, associe environ un quart de styrène à trois quarts de butadiène et domine les pneumatiques grâce à sa résistance à l'abrasion. Les silicones, eux, travaillent de moins cent à plus deux cent cinquante degrés.",
+   "texte": "Polyisoprène + soufre : la vulcanisation de Goodyear (1839).",
+   "ecran": "caoutchouc"
+  },
+  {
+   "id": "p18",
+   "dit": "Partie trois : trois géants à la loupe, en commençant par le polyéthylène. Il naît d'une addition radicalaire de l'éthylène, et son degré de polymérisation va de deux mille à vingt mille. Toute sa personnalité dépend des conditions de fabrication. À très haute pression, entre mille et trois mille atmosphères, on obtient le polyéthylène basse densité : ses nombreuses branches empêchent l'empilement serré, la densité reste entre zéro virgule quatre-vingt-onze et zéro virgule quatre-vingt-treize, le matériau est souple et transparent, parfait pour les films. À basse pression, avec des catalyseurs spéciaux, on obtient le haute densité : quasi linéaire, cristallin, rigide, celui des bouteilles de lait et des jerricans.",
+   "texte": "PEBD : 0,91-0,93 g/cm³ ; PEHD : 0,94-0,97 g/cm³.",
+   "ecran": "etude_pe"
+  },
+  {
+   "id": "p19",
+   "dit": "Deuxième géant : le PVC, issu lui aussi d'une addition radicalaire, celle du chlorure de vinyle. Le PVC brut est inutilisable : fragile, il se dégrade à la chaleur en libérant de l'acide chlorhydrique. Tout son génie tient donc à sa formulation. Avec des stabilisants thermiques, on obtient le PVC rigide des fenêtres et des tuyaux. Avec des plastifiants, de petites molécules qui s'intercalent entre les chaînes et les écartent, parfois jusqu'à quarante pour cent de la masse, on obtient le PVC souple des câbles et des revêtements de sol. Réserve importante : certains de ces additifs posent des questions de santé et d'environnement, et la recherche d'alternatives vertes est active.",
+   "texte": "PVC rigide : stabilisants ; PVC souple : plastifiants (≤ 40 %).",
+   "ecran": "etude_pvc"
+  },
+  {
+   "id": "p20",
+   "dit": "Troisième géant : le nylon six-six, le modèle de la condensation. Son nom code sa structure : un diacide à six carbones, l'acide adipique, réagit avec une diamine à six carbones. Chaque lien amide formé élimine une molécule d'eau. Trois exigences dominent ce mécanisme. D'abord, la croissance se fait par étapes : n'importe quelle molécule portant une fonction acide peut réagir avec n'importe quelle amine, quelle que soit sa taille. Ensuite, la réaction est un équilibre : pour la pousser vers le polymère, il faut éliminer l'eau au fur et à mesure. Enfin, la stœchiométrie doit être parfaite, un rapport d'un pour un entre les fonctions, sinon le moindre excès bloque la croissance des chaînes.",
+   "texte": "Diacide C6 + diamine C6 → nylon-6,6 + (2n−1) H₂O.",
+   "ecran": "etude_nylon"
+  },
+  {
+   "id": "p21",
+   "dit": "Le nylon existe aussi en version six, fabriquée à partir d'un seul monomère, la caprolactame, un cycle à sept atomes qui s'ouvre pour enchaîner les motifs. Et pour voir la condensation de vos yeux, rien ne vaut l'expérience du fil tiré : on place une solution de diamine au-dessus d'une solution organique de chlorure d'acide, et à l'interface entre les deux liquides, une pellicule de nylon se forme instantanément. En l'accrochant avec une pince et en tirant doucement, on déroule une fibrille continue, pendant que de nouveaux monomères diffusent vers l'interface pour la nourrir. C'est ainsi que Carothers avait démontré la naissance de la première fibre synthétique.",
+   "texte": "Caprolactame → nylon-6 : un cycle qui s'ouvre.",
+   "ecran": "nylon6"
+  },
+  {
+   "id": "p22",
+   "dit": "Résumons nos trois études de cas. Le polyéthylène et le PVC naissent d'additions radicalaires, sans aucun sous-produit : toute leur différence vient d'un seul atome, le chlore du PVC. Le nylon six-six naît d'une condensation exigeante, qui élimine de l'eau et réclame une stœchiométrie parfaite. Et dans les trois cas, ce sont les conditions de synthèse et de formulation qui règlent les propriétés finales : pression et catalyseur pour le polyéthylène, additifs pour le PVC, équilibre déplacé pour le nylon. La chimie ne subit pas les propriétés : elle les conçoit.",
+   "texte": "PE, PVC, nylon : trois logiques de fabrication.",
+   "ecran": "recap3"
+  },
+  {
+   "id": "p23",
+   "dit": "Changeons maintenant de regard : que deviennent tous ces matériaux après usage ? L'échelle du défi est vertigineuse. Dans les années cinquante, la production mondiale plafonnait à environ deux millions de tonnes par an. Dans les années quatre-vingt, elle atteignait cent millions de tonnes. En deux mille vingt, elle dépassait quatre cents millions de tonnes par an. Au total, depuis mille neuf cent cinquante, l'humanité a produit plus de dix milliards de tonnes de plastique, et moins de dix pour cent ont été recyclées. Le reste est enfoui, incinéré, ou dispersé dans l'environnement, des profondeurs des océans aux sommets des montagnes.",
+   "texte": "1950 : ~2 Mt/an ; 2020 : > 400 Mt/an ; < 10 % recyclé.",
+   "ecran": "echelle"
+  },
+  {
+   "id": "p24",
+   "dit": "Pourquoi les polymères persistent-ils si longtemps ? Parce que leur qualité première, la stabilité, devient un défaut. Leurs liaisons carbone-carbone et carbone-hydrogène sont fortes et peu réactives face à l'eau, à l'oxygène ou aux enzymes, et leurs zones cristallines forment des forteresses contre les agents de dégradation. La dégradation existe pourtant, mais elle est lente et incomplète : les rayons ultraviolets du soleil brisent les chaînes et fragmentent les objets en microplastiques de moins de cinq millimètres. Seuls les polymères porteurs de fonctions sensibles, comme les polyesters et les polyamides, peuvent être coupés par l'eau, par hydrolyse. Fragmenter n'est pas éliminer : les microplastiques infiltrent tous les écosystèmes.",
+   "texte": "UV, chaleur, eau : une dégradation lente et incomplète.",
+   "ecran": "degradation"
+  },
+  {
+   "id": "p25",
+   "dit": "Face à ces déchets, le recyclage tente de refermer la boucle. Le recyclage mécanique, le plus répandu, trie, nettoie, broie puis refond les plastiques. Simple et peu coûteux, il a une limite physique : chaque fusion fragilise un peu plus les chaînes, la qualité baisse, c'est le décyclage. Le recyclage chimique va plus loin : au lieu de fondre, il casse les chaînes pour revenir aux briques de départ. Le PET des bouteilles, par exemple, peut être dépolymérisé en acide téréphtalique et en éthylène glycol, prêts à refaire un PET de qualité vierge. La pyrolyse, elle, décompose les mélanges en huiles, en gaz de synthèse et en charbon, mais au prix d'une énergie élevée.",
+   "texte": "Mécanique : refondre. Chimique : revenir aux monomères.",
+   "ecran": "recyclage"
+  },
+  {
+   "id": "p26",
+   "dit": "Reste une confusion à dissiper, entre biosourcé et biodégradable. Un plastique biosourcé est fabriqué à partir de plantes, mais il peut être aussi persistant qu'un plastique fossile. Un plastique biodégradable se décompose sous l'action des micro-organismes, mais il peut venir du pétrole. L'acide polylactique, le PLA, cumule les deux qualités, à condition d'être composté en conditions industrielles, avec chaleur et humidité contrôlées : il y devient dioxyde de carbone, eau et biomasse. Origine de la matière et fin de vie sont donc deux questions différentes, qu'il ne faut jamais confondre sur une étiquette.",
+   "texte": "Biosourcé ≠ biodégradable : PLA et compostage industriel.",
+   "ecran": "biosource"
+  },
+  {
+   "id": "p27",
+   "dit": "La vraie solution dépasse le seul recyclage : c'est l'économie circulaire. Au lieu du modèle linéaire, extraire, fabriquer, jeter, elle cherche à garder les produits et les matériaux en usage le plus longtemps possible, par la réutilisation, la réparation et le reconditionnement. Cela commence dès le laboratoire, par l'éco-conception : éviter les assemblages de matériaux indissociables, les colorants que les machines de tri ne voient pas, les additifs problématiques. La bouteille en PET montre la voie : collectée et triée, elle peut devenir une fibre pour un pull, ou être dépolymérisée pour redevenir une bouteille alimentaire, en boucle fermée.",
+   "texte": "Extraire, fabriquer, jeter : le modèle linéaire à dépasser.",
+   "ecran": "circulaire"
+  },
+  {
+   "id": "p28",
+   "dit": "Terminons par l'essentiel. Un polymère est une macromolécule faite de monomères répétés, fabriquée par addition, rapide et sans perte, ou par condensation, lente et avec élimination d'une petite molécule. Son architecture, linéaire, ramifiée ou réticulée, et sa cristallinité commandent ses propriétés et ses usages : plastiques façonnables, fibres résistantes, élastomères déformables. Et le défi de notre siècle est de maîtriser le cycle de vie complet de ces matériaux, de la synthèse au recyclage, pour que les géants moléculaires restent des alliés, sans devenir un héritage encombrant.",
+   "texte": "L'essentiel du cours sur les polymères.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Des monomères aux géants moléculaires"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "L'architecture des chaînes et les trois familles",
+   "pont": {
+    "dit": "Partie deux : l'architecture des chaînes et les grandes familles. Nous allons voir comment l'agencement des macromolécules, linéaire, ramifié ou réticulé, commande le comportement des matériaux, puis parcourir les trois familles d'applications : les plastiques, les fibres et les élastomères.",
+    "texte": "Partie 2 : architectures, plastiques, fibres, élastomères."
+   }
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Trois géants à la loupe, et la fin de vie",
+   "pont": {
+    "dit": "Partie trois : trois géants à la loupe, puis la fin de vie. Nous détaillerons la fabrication du polyéthylène, du PVC et du nylon, avant d'affronter la question qui domine aujourd'hui la science des polymères : que deviennent ces matériaux après usage, et comment les recycler ?",
+    "texte": "Partie 3 : PE, PVC, nylon — puis dégrader, recycler, éco-concevoir."
+   }
+  }
+ ]
+}

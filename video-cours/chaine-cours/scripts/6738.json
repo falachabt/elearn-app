@@ -1,0 +1,419 @@
+{
+ "cours": 6738,
+ "titre": "Vecteurs du plan : produit par un réel, colinéarité et coordonnées",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Vecteurs du plan",
+   "titre": "Vecteurs du plan : produit par un réel, colinéarité et coordonnées",
+   "sous": "Multiplier, reconnaître le parallélisme et l'alignement, puis calculer avec les coordonnées",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 230
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Le fil du cours",
+   "texte": "Un vecteur se multiplie, se compare et se calcule : trois gestes, un seul outil, l'égalité vectorielle."
+  },
+  "produit_def": {
+   "type": "formule",
+   "kicker": "Produit par un réel · définition",
+   "tex": "k\\vec{u}",
+   "note": "Le produit du vecteur u par le réel k : un nouveau vecteur, noté k u."
+  },
+  "produit_sens": {
+   "type": "etape",
+   "kicker": "Produit par un réel · direction, sens, norme",
+   "titre": "Le signe de k décide du sens, sa valeur de la longueur",
+   "tex": [
+    "k > 0 : \\text{ même sens},\\ |k\\vec{u}| = k|\\vec{u}|",
+    "k < 0 : \\text{ sens opposé},\\ |k\\vec{u}| = -k|\\vec{u}|",
+    "k = 0\\ \\text{ou}\\ \\vec{u} = \\vec{0} : k\\vec{u} = \\vec{0}"
+   ]
+  },
+  "produit_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · construire deux multiples",
+   "titre": "La norme de u vaut trois centimètres",
+   "tex": [
+    "|\\vec{u}| = 3\\ \\text{cm}",
+    "2\\vec{u} : \\text{ même sens, norme } 6\\ \\text{cm}",
+    "-1{,}5\\vec{u} : \\text{ sens opposé, norme } 4{,}5\\ \\text{cm}"
+   ]
+  },
+  "produit_calc": {
+   "type": "etape",
+   "kicker": "Produit par un réel · propriétés de calcul",
+   "titre": "Les mêmes règles que pour les nombres",
+   "tex": [
+    "k(\\vec{u} + \\vec{v}) = k\\vec{u} + k\\vec{v}",
+    "(k + k')\\vec{u} = k\\vec{u} + k'\\vec{u}",
+    "k(k'\\vec{u}) = (kk')\\vec{u}",
+    "1\\vec{u} = \\vec{u} \\qquad (-1)\\vec{u} = -\\vec{u}"
+   ]
+  },
+  "colineaires_def": {
+   "type": "formule",
+   "kicker": "Vecteurs colinéaires · définition",
+   "tex": "\\vec{v} = k\\vec{u}",
+   "note": "Colinéaires : l'un est le produit de l'autre par un réel k.",
+   "anim": {
+    "nom": "colineaires_fig",
+    "hauteur": 190
+   }
+  },
+  "colineaires_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · deux droites parallèles",
+   "titre": "Le vecteur CD vaut trois fois le vecteur AB",
+   "tex": [
+    "\\overrightarrow{CD} = 3\\overrightarrow{AB}",
+    "\\vec{v} = 3\\vec{u} \\Rightarrow (AB) \\parallel (CD)"
+   ]
+  },
+  "directeur": {
+   "type": "phrase",
+   "kicker": "Vecteur directeur d'une droite",
+   "texte": "Un vecteur directeur donne la direction de la droite : tous ses multiples non nuls en sont aussi.",
+   "anim": {
+    "nom": "colineaires_fig",
+    "hauteur": 150
+   }
+  },
+  "directeur_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · parallélisme de deux droites",
+   "titre": "CD vaut moins deux fois AB",
+   "tex": [
+    "\\overrightarrow{CD} = -2\\overrightarrow{AB}",
+    "\\overrightarrow{CD} \\text{ et } \\vec{u} \\text{ colinéaires}",
+    "(d_1) \\parallel (d_2)"
+   ]
+  },
+  "alignement": {
+   "type": "formule",
+   "kicker": "Alignement de trois points",
+   "tex": "\\overrightarrow{AC} = k\\overrightarrow{AB}",
+   "note": "A, B et C alignés si et seulement si AB et AC sont colinéaires."
+  },
+  "alignement_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · trois points alignés",
+   "titre": "AC vaut deux virgule cinq fois AB",
+   "tex": [
+    "\\overrightarrow{AC} = 2{,}5\\overrightarrow{AB}",
+    "A,\\ B,\\ C \\text{ alignés, } C \\text{ au-delà de } B"
+   ]
+  },
+  "coord_def": {
+   "type": "formule",
+   "kicker": "Coordonnées · définition",
+   "tex": "\\vec{u} = x\\vec{i} + y\\vec{j}",
+   "note": "Dans le repère de centre O et de vecteurs i et j, le couple x, y donne les coordonnées de u."
+  },
+  "coord_ab": {
+   "type": "etape",
+   "kicker": "Coordonnées du vecteur AB · exemple",
+   "titre": "A de coordonnées deux, moins un ; B de coordonnées cinq, trois",
+   "tex": [
+    "\\overrightarrow{AB} = \\begin{pmatrix} 5 - 2 \\\\ 3 - (-1) \\end{pmatrix}",
+    "\\overrightarrow{AB} = \\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}"
+   ]
+  },
+  "coord_point": {
+   "type": "etape",
+   "kicker": "Retrouver un point · exemple",
+   "titre": "On ajoute les coordonnées du vecteur à celles du point de départ",
+   "tex": [
+    "A(1;\\,2),\\ \\overrightarrow{AB} = \\begin{pmatrix} 4 \\\\ -3 \\end{pmatrix}",
+    "B(1 + 4;\\, 2 - 3) = (5;\\,-1)"
+   ]
+  },
+  "operations": {
+   "type": "phrase",
+   "kicker": "Opérations · le principe",
+   "texte": "Avec les coordonnées, tout se fait coordonnée par coordonnée : on ajoute, on multiplie.",
+   "anim": {
+    "nom": "somme_vecteurs_fig",
+    "hauteur": 190
+   }
+  },
+  "somme_formule": {
+   "type": "formule",
+   "kicker": "Somme de deux vecteurs",
+   "tex": "\\vec{u} + \\vec{v} = \\begin{pmatrix} x + x' \\\\ y + y' \\end{pmatrix}",
+   "note": "La somme : les premières coordonnées ensemble, les deuxièmes ensemble."
+  },
+  "produit_formule": {
+   "type": "formule",
+   "kicker": "Produit par un réel, en coordonnées",
+   "tex": "k\\vec{u} = \\begin{pmatrix} kx \\\\ ky \\end{pmatrix}",
+   "note": "Le produit par k : chaque coordonnée est multipliée par k."
+  },
+  "operations_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · somme et produits",
+   "titre": "u de coordonnées deux, moins un ; v de coordonnées moins trois, quatre",
+   "tex": [
+    "\\vec{u} + \\vec{v} = \\begin{pmatrix} -1 \\\\ 3 \\end{pmatrix}",
+    "2\\vec{u} = \\begin{pmatrix} 4 \\\\ -2 \\end{pmatrix} \\qquad -3\\vec{v} = \\begin{pmatrix} 9 \\\\ -12 \\end{pmatrix}"
+   ]
+  },
+  "colin_critere": {
+   "type": "formule",
+   "kicker": "Colinéarité · le critère des coordonnées",
+   "tex": "xy' - yx' = 0",
+   "note": "Coordonnées proportionnelles : le critère xy prime moins yx prime vaut zéro."
+  },
+  "colin_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · tester la colinéarité",
+   "titre": "u de coordonnées deux, trois ; v de coordonnées six, neuf",
+   "tex": [
+    "2 \\times 9 - 3 \\times 6 = 18 - 18 = 0",
+    "\\vec{v} = 3\\vec{u} : \\text{ colinéaires}"
+   ]
+  },
+  "ortho": {
+   "type": "formule",
+   "kicker": "Vecteurs orthogonaux · le critère",
+   "tex": "xx' + yy' = 0",
+   "note": "Directions perpendiculaires : la somme xx prime plus yy prime vaut zéro.",
+   "anim": {
+    "nom": "orthogonalite_fig",
+    "hauteur": 180
+   }
+  },
+  "ortho_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · tester l'orthogonalité",
+   "titre": "u de coordonnées trois, un ; v de coordonnées moins deux, six",
+   "tex": [
+    "\\vec{u}(3;\\,1),\\ \\vec{v}(-2;\\,6)",
+    "3 \\times (-2) + 1 \\times 6 = -6 + 6 = 0",
+    "\\vec{u} \\perp \\vec{v}"
+   ]
+  },
+  "norme": {
+   "type": "formule",
+   "kicker": "Norme d'un vecteur",
+   "tex": "|\\vec{u}| = \\sqrt{x^2 + y^2}",
+   "note": "La norme, c'est la longueur du vecteur : racine de la somme des carrés des coordonnées."
+  },
+  "distance": {
+   "type": "formule",
+   "kicker": "Distance entre deux points",
+   "tex": "AB = \\sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}",
+   "note": "La distance AB est la norme du vecteur AB."
+  },
+  "distance_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · une distance",
+   "titre": "A de coordonnées un, deux ; B de coordonnées quatre, six",
+   "tex": [
+    "AB = \\sqrt{(4-1)^2 + (6-2)^2}",
+    "AB = \\sqrt{9 + 16} = \\sqrt{25} = 5"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Produit par k : le signe donne le sens",
+    "Colinéaires : v = k u, directions parallèles",
+    "Alignement : AB et AC colinéaires",
+    "Coordonnées : somme et produit par coordonnée",
+    "Distance AB : racine des carrés des écarts"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux vecteurs du plan. Nous allons d'abord multiplier un vecteur par un nombre réel, puis reconnaître les vecteurs colinéaires pour prouver le parallélisme et l'alignement, et enfin travailler avec les coordonnées : opérations, orthogonalité, norme et distance.",
+   "texte": "Vecteurs du plan : multiplier, comparer, calculer.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge du cours est une seule égalité : un vecteur peut être le produit d'un autre par un nombre. Cette idée simple suffit à décrire une direction, à décider si deux droites sont parallèles et si trois points sont alignés. Les coordonnées viendront ensuite transformer ces questions de géométrie en calculs.",
+   "texte": "Une égalité vectorielle pour la direction, le parallélisme, l'alignement.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par le produit d'un vecteur par un nombre réel. Si u est un vecteur non nul et k un nombre réel, le produit de u par k est le vecteur noté k u. Tout est dans la façon dont ce nouveau vecteur se compare à u : sa direction, son sens et sa longueur.",
+   "texte": "Produit k u : un vecteur, trois comparaisons.",
+   "ecran": "produit_def"
+  },
+  {
+   "id": "p04",
+   "dit": "Si k est strictement positif, k u a la même direction et le même sens que u, et sa norme vaut k fois celle de u. Si k est strictement négatif, la direction reste la même mais le sens s'inverse, et la norme vaut moins k fois celle de u. Enfin, si k est nul ou si u est le vecteur nul, le produit est le vecteur nul.",
+   "texte": "Le signe de k fixe le sens, sa valeur fixe la norme.",
+   "ecran": "produit_sens"
+  },
+  {
+   "id": "p05",
+   "dit": "Prenons un exemple. La norme de u vaut trois centimètres. Le vecteur deux u garde le même sens et sa norme vaut deux fois trois, c'est-à-dire six centimètres. Le vecteur moins un virgule cinq u part dans le sens opposé, avec une norme d'un virgule cinq fois trois, c'est-à-dire quatre virgule cinq centimètres.",
+   "texte": "Norme 3 cm : 2u mesure 6 cm, −1,5u mesure 4,5 cm.",
+   "ecran": "produit_ex"
+  },
+  {
+   "id": "p06",
+   "dit": "Ce produit se calcule comme avec les nombres. Multiplier une somme par k distribue le produit sur chaque vecteur. Additionner les coefficients devant un même vecteur revient à multiplier par leur somme. Et deux produits successifs se composent en un seul, par le produit des deux nombres. Enfin, multiplier par un redonne le vecteur, et multiplier par moins un donne son opposé.",
+   "texte": "Distribuer, additionner les coefficients, composer.",
+   "ecran": "produit_calc"
+  },
+  {
+   "id": "p07",
+   "dit": "Deux vecteurs sont colinéaires lorsqu'il existe un nombre réel k tel que l'un soit le produit de l'autre par k. Géométriquement, cela signifie qu'ils ont la même direction, à condition d'écarter le cas du vecteur nul : leurs directions sont parallèles.",
+   "texte": "Colinéaires : v = k u, même direction.",
+   "ecran": "colineaires_def"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple : le vecteur CD vaut trois fois le vecteur AB. Les deux vecteurs sont donc colinéaires, puisque le second est le produit du premier par le nombre trois. Conséquence immédiate : les droites AB et CD sont parallèles.",
+   "texte": "CD = 3 AB : colinéaires, donc (AB) ∥ (CD).",
+   "ecran": "colineaires_ex"
+  },
+  {
+   "id": "p09",
+   "dit": "Un vecteur directeur d'une droite est un vecteur non nul qui a la même direction que cette droite. Tout multiple non nul d'un vecteur directeur est encore un vecteur directeur : une droite en possède donc une infinité, tous colinéaires entre eux.",
+   "texte": "Une droite, une infinité de vecteurs directeurs colinéaires.",
+   "ecran": "directeur"
+  },
+  {
+   "id": "p10",
+   "dit": "Pour prouver que deux droites sont parallèles, il suffit donc de montrer que leurs vecteurs directeurs sont colinéaires. Exemple : si le vecteur CD vaut moins deux fois le vecteur AB, alors CD est colinéaire au vecteur directeur de la première droite, et les deux droites sont parallèles.",
+   "texte": "Parallélisme : des vecteurs directeurs colinéaires.",
+   "ecran": "directeur_ex"
+  },
+  {
+   "id": "p11",
+   "dit": "Le même outil sert pour l'alignement. Trois points A, B et C sont alignés si et seulement si les vecteurs AB et AC sont colinéaires, c'est-à-dire s'il existe un réel k tel que le vecteur AC soit le produit du vecteur AB par k. La différence avec le parallélisme : les deux vecteurs partent du même point.",
+   "texte": "Alignés : AC = k AB, même origine A.",
+   "ecran": "alignement"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple : si le vecteur AC vaut deux virgule cinq fois le vecteur AB, les deux vecteurs sont colinéaires et les trois points sont alignés. Le coefficient, positif et supérieur à un, précise même la position : le point C se trouve au-delà du point B, sur la demi-droite d'origine A passant par B.",
+   "texte": "AC = 2,5 AB : alignés, C au-delà de B.",
+   "ecran": "alignement_ex"
+  },
+  {
+   "id": "p13",
+   "dit": "Passons aux coordonnées. Dans un repère orthonormé d'origine O et de vecteurs de base i et j, tout vecteur u s'écrit de façon unique comme la somme de x fois i et de y fois j. Le couple formé par x et y constitue les coordonnées du vecteur.",
+   "texte": "u = x i + y j : le couple (x ; y).",
+   "ecran": "coord_def"
+  },
+  {
+   "id": "p14",
+   "dit": "Pour le vecteur AB, chaque coordonnée est un écart : la première vaut l'abscisse de B moins celle de A, la deuxième vaut l'ordonnée de B moins celle de A. Avec A de coordonnées deux et moins un, et B de coordonnées cinq et trois, on obtient trois pour la première coordonnée et quatre pour la deuxième.",
+   "texte": "AB : (5 − 2 ; 3 − (−1)) = (3 ; 4).",
+   "ecran": "coord_ab"
+  },
+  {
+   "id": "p15",
+   "dit": "Dans l'autre sens, si l'on connaît le point de départ et le vecteur, on retrouve le point d'arrivée en ajoutant : ses coordonnées sont celles de A augmentées de celles du vecteur. Avec A de coordonnées un et deux et un vecteur de coordonnées quatre et moins trois, le point B a pour coordonnées cinq et moins un.",
+   "texte": "Point d'arrivée : A + les coordonnées du vecteur.",
+   "ecran": "coord_point"
+  },
+  {
+   "id": "p16",
+   "dit": "Les opérations sur les vecteurs deviennent alors des opérations sur les coordonnées, en traitant chaque coordonnée séparément. C'est le grand confort du calcul en repère : plus besoin de figure pour ajouter deux vecteurs ou multiplier un vecteur par un nombre.",
+   "texte": "En repère, tout se calcule coordonnée par coordonnée.",
+   "ecran": "operations"
+  },
+  {
+   "id": "p17",
+   "dit": "Pour la somme de deux vecteurs, on ajoute les premières coordonnées entre elles et les deuxièmes coordonnées entre elles. Le vecteur somme a donc pour première coordonnée la somme des premières, et pour deuxième coordonnée la somme des deuxièmes.",
+   "texte": "Somme : (x + x′ ; y + y′).",
+   "ecran": "somme_formule"
+  },
+  {
+   "id": "p18",
+   "dit": "Pour le produit d'un vecteur par un réel k, on multiplie chaque coordonnée par k. La première devient k fois x, la deuxième devient k fois y : le coefficient s'applique partout, sans exception.",
+   "texte": "Produit : (k x ; k y).",
+   "ecran": "produit_formule"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple complet : u a pour coordonnées deux et moins un, v a pour coordonnées moins trois et quatre. Leur somme a pour coordonnées moins un et trois. Le double de u a pour coordonnées quatre et moins deux, et le produit de v par moins trois a pour coordonnées neuf et moins douze.",
+   "texte": "u + v = (−1 ; 3), 2u = (4 ; −2), −3v = (9 ; −12).",
+   "ecran": "operations_ex"
+  },
+  {
+   "id": "p20",
+   "dit": "Les coordonnées donnent aussi un critère immédiat de colinéarité : deux vecteurs sont colinéaires si et seulement si la quantité x y prime moins y x prime est nulle. Autrement dit, leurs coordonnées sont proportionnelles, et ce petit calcul tranche sans aucune figure.",
+   "texte": "Critère : x y′ − y x′ = 0.",
+   "ecran": "colin_critere"
+  },
+  {
+   "id": "p21",
+   "dit": "Vérifions sur un exemple : u a pour coordonnées deux et trois, v a pour coordonnées six et neuf. Le calcul donne deux fois neuf moins trois fois six, c'est-à-dire dix-huit moins dix-huit, donc zéro. Les vecteurs sont colinéaires, ce que confirme l'égalité : v vaut trois fois u.",
+   "texte": "2 × 9 − 3 × 6 = 0 : colinéaires, v = 3u.",
+   "ecran": "colin_ex"
+  },
+  {
+   "id": "p22",
+   "dit": "Deux vecteurs sont orthogonaux lorsque leurs directions sont perpendiculaires. En coordonnées, le critère est tout aussi simple : la somme x x prime plus y y prime doit être nulle. Un seul calcul suffit donc à tester un angle droit entre deux directions.",
+   "texte": "Orthogonaux : x x′ + y y′ = 0.",
+   "ecran": "ortho"
+  },
+  {
+   "id": "p23",
+   "dit": "Exemple : u a pour coordonnées trois et un, v a pour coordonnées moins deux et six. La somme vaut trois fois moins deux, plus un fois six, c'est-à-dire moins six plus six, donc zéro. Les deux vecteurs sont bien orthogonaux.",
+   "texte": "3 × (−2) + 1 × 6 = 0 : u ⊥ v.",
+   "ecran": "ortho_ex"
+  },
+  {
+   "id": "p24",
+   "dit": "La norme d'un vecteur, c'est sa longueur. Dans un repère orthonormé, elle se calcule comme une hypothénuse : c'est la racine carrée de la somme des carrés des deux coordonnées. On reconnaît le théorème de Pythagore, appliqué aux composantes du vecteur.",
+   "texte": "Norme : √(x² + y²), Pythagore en repère.",
+   "ecran": "norme"
+  },
+  {
+   "id": "p25",
+   "dit": "La distance entre deux points est simplement la norme du vecteur qui les joint. Elle vaut donc la racine carrée de la somme des carrés des écarts de coordonnées : écart des abscisses au carré, plus écart des ordonnées au carré.",
+   "texte": "Distance AB : la norme du vecteur AB.",
+   "ecran": "distance"
+  },
+  {
+   "id": "p26",
+   "dit": "Exemple : A a pour coordonnées un et deux, B a pour coordonnées quatre et six. Les écarts valent trois et quatre, leurs carrés valent neuf et seize, et la somme vaut vingt-cinq. La distance AB est donc la racine de vingt-cinq, c'est-à-dire cinq.",
+   "texte": "AB = √(9 + 16) = √25 = 5.",
+   "ecran": "distance_ex"
+  },
+  {
+   "id": "p27",
+   "dit": "Retenez l'essentiel. Le produit par un réel change la longueur et éventuellement le sens, jamais la direction. La colinéarité décide du parallélisme et de l'alignement. Et en coordonnées, somme, produit, colinéarité, orthogonalité et distance se ramènent à quelques calculs coordonnée par coordonnée.",
+   "texte": "Produit, colinéarité, coordonnées : l'essentiel.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Produit par un réel et vecteurs colinéaires"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Parallélisme, alignement et coordonnées",
+   "pont": {
+    "texte": "Partie 2 : prouver avec les directions, calculer avec les coordonnées.",
+    "dit": "Partie deux : prouver et calculer. Nous utiliserons les vecteurs directeurs pour prouver le parallélisme, puis l'alignement de trois points, avant de passer aux coordonnées des vecteurs et aux opérations, coordonnée par coordonnée."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "Critères en coordonnées, norme et distance",
+   "pont": {
+    "texte": "Partie 3 : colinéarité, orthogonalité, norme et distance en coordonnées.",
+    "dit": "Partie trois : les critères en coordonnées et les longueurs. Encore un exemple d'opérations pour refermer ce volet, puis les tests de colinéarité et d'orthogonalité, la norme d'un vecteur et la distance entre deux points."
+   }
+  }
+ ]
+}

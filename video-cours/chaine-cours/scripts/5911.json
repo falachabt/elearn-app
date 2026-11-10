@@ -1,0 +1,462 @@
+{
+ "cours": 5911,
+ "ecrans": {
+  "amorti_eq": {
+   "kicker": "Amortissement",
+   "note": "γ : coefficient d'amortissement — le terme du milieu est la force de frottement, proportionnelle à la vitesse et opposée au mouvement",
+   "tex": "m\\, \\ddot{x} + \\gamma\\, \\dot{x} + k\\, x = 0",
+   "titre": "L'équation amortie",
+   "type": "formule"
+  },
+  "amortissement": {
+   "anim": {
+    "amorti": true,
+    "nom": "ressort"
+   },
+   "kicker": "Amortissement",
+   "texte": "Dans la réalité, les frottements dissipent l'énergie en chaleur : l'amplitude décroît progressivement, jusqu'à l'arrêt. C'est l'amortissement.",
+   "type": "phrase"
+  },
+  "applications": {
+   "etapes": [
+    "Musique : la corde pincée vibre presque harmoniquement, à une fréquence fixée par sa tension et sa longueur",
+    "Mesure du temps : balancier des horloges, puis quartz, puis horloge atomique, la plus précise",
+    "Suspensions de voiture : l'amortisseur, proche du régime critique, dissipe l'énergie sans rebonds",
+    "Médecine : la résonance magnétique nucléaire image l'intérieur du corps"
+   ],
+   "kicker": "Applications",
+   "titre": "Des horloges à la médecine",
+   "type": "recap"
+  },
+  "couplage": {
+   "kicker": "Oscillateurs couplés",
+   "texte": "Deux pendules identiques reliés par un ressort faible ne vibrent plus chacun de son côté : l'énergie passe de l'un à l'autre, périodiquement. C'est le couplage.",
+   "type": "phrase",
+   "anim": {
+    "nom": "couplage",
+    "hauteur": 280
+   }
+  },
+  "ex_pendule": {
+   "kicker": "Exemple",
+   "tex": [
+    "L = 1\\ \\text{m} \\qquad g = 9{,}81\\ \\text{m/s}^2",
+    "T = 2\\pi \\sqrt{\\dfrac{L}{g}}"
+   ],
+   "titre": "Un pendule d'un mètre",
+   "type": "etape"
+  },
+  "ex_pendule_res": {
+   "kicker": "Exemple · résultat",
+   "note": "L'expérience confirme : chronométré sur dix oscillations, ce pendule met vingt secondes, soit deux secondes par oscillation (tableau du cours)",
+   "tex": "T = 2\\pi \\sqrt{\\dfrac{1}{9{,}81}} \\approx 2{,}0\\ \\text{s}",
+   "titre": "Deux secondes par aller-retour",
+   "type": "formule"
+  },
+  "ex_ressort": {
+   "kicker": "Exemple",
+   "tex": [
+    "m = 0{,}5\\ \\text{kg} \\qquad k = 20\\ \\text{N/m}",
+    "\\omega_0 = \\sqrt{\\dfrac{k}{m}} = \\sqrt{\\dfrac{20}{0{,}5}}"
+   ],
+   "titre": "Une masse de 0,5 kg, un ressort de 20 N/m",
+   "type": "etape"
+  },
+  "ex_ressort_res": {
+   "kicker": "Exemple · résultat",
+   "note": "D'où une période propre T₀ = 2π / ω₀ d'environ une seconde, et une fréquence propre d'environ un hertz",
+   "tex": "\\omega_0 = \\sqrt{40} \\approx 6{,}3\\ \\text{rad/s}",
+   "titre": "Pulsation, période et fréquence propres",
+   "type": "formule"
+  },
+  "forcees_eq": {
+   "kicker": "Oscillations forcées",
+   "note": "F₀ : amplitude de la force excitatrice · ω : sa pulsation — le système finit par osciller à la pulsation de l'excitateur, pas à la sienne",
+   "tex": "m\\, \\ddot{x} + \\gamma\\, \\dot{x} + k\\, x = F_0 \\cos(\\omega t)",
+   "titre": "Une force extérieure périodique",
+   "type": "formule"
+  },
+  "grandeurs": {
+   "kicker": "Les grandeurs du mouvement",
+   "tex": [
+    "T : \\text{période (s), un aller-retour complet}",
+    "f = \\dfrac{1}{T} : \\text{fréquence (Hz)}",
+    "A : \\text{amplitude, écart maximal à l'équilibre}"
+   ],
+   "titre": "Période, fréquence, amplitude",
+   "type": "etape"
+  },
+  "hooke": {
+   "anim": {
+    "nom": "ressort"
+   },
+   "kicker": "L'oscillateur harmonique",
+   "note": "La force de rappel du ressort est proportionnelle à l'élongation x ; le signe moins dit qu'elle ramène toujours vers la position d'équilibre",
+   "tex": "F = -k\\, x",
+   "titre": "La loi de Hooke",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "pendule"
+   },
+   "kicker": "Introduction",
+   "texte": "Un système oscillant effectue des allers-retours répétitifs autour d'une position d'équilibre : le pendule et la balançoire en sont les images familières.",
+   "type": "phrase"
+  },
+  "libres": {
+   "anim": {
+    "nom": "ressort"
+   },
+   "kicker": "Libres ou forcées",
+   "texte": "En régime libre, le système écarté puis lâché oscille seul, à sa fréquence propre. En régime forcé, une force extérieure périodique entretient le mouvement et impose son rythme.",
+   "type": "phrase"
+  },
+  "modes": {
+   "etapes": [
+    "Mode symétrique : les deux pendules oscillent en phase, à la fréquence la plus basse",
+    "Mode antisymétrique : ils oscillent en opposition de phase, à la fréquence la plus haute",
+    "Hors de ces modes : des battements — chaque amplitude varie pendant que l'énergie fait la navette",
+    "Couplage fort : les oscillateurs finissent par se synchroniser"
+   ],
+   "kicker": "Oscillateurs couplés",
+   "titre": "Modes normaux et battements",
+   "type": "recap"
+  },
+  "ohs_eq": {
+   "anim": {
+    "nom": "ressort",
+    "hauteur": 200
+   },
+   "kicker": "L'oscillateur harmonique",
+   "tex": [
+    "m\\, \\ddot{x} = -k\\, x \\qquad \\ddot{x} + \\omega_0^2\\, x = 0",
+    "\\omega_0 = \\sqrt{\\dfrac{k}{m}} \\qquad T_0 = 2\\pi \\sqrt{\\dfrac{m}{k}}"
+   ],
+   "titre": "Équation différentielle et pulsation propre",
+   "type": "etape"
+  },
+  "ohs_solution": {
+   "anim": {
+    "nom": "ressort"
+   },
+   "kicker": "L'oscillateur harmonique",
+   "note": "A : amplitude · ω₀ : pulsation propre · φ : phase initiale, fixée par la position et la vitesse au départ",
+   "tex": "x(t) = A \\cos(\\omega_0 t + \\varphi)",
+   "titre": "La solution est une sinusoïde",
+   "type": "formule"
+  },
+  "pendule_eq": {
+   "kicker": "Le pendule simple",
+   "note": "θ : angle avec la verticale · L : longueur du fil · g : accélération de la pesanteur — le sinus rend l'équation non linéaire",
+   "tex": "\\ddot{\\theta} + \\dfrac{g}{L}\\, \\sin\\theta = 0",
+   "titre": "L'équation du mouvement",
+   "type": "formule"
+  },
+  "pendule_modele": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "pendule"
+   },
+   "kicker": "Le pendule simple",
+   "texte": "Le modèle : une masse ponctuelle suspendue à un fil inextensible et sans masse. Écarté de la verticale puis lâché, il oscille autour de sa position d'équilibre.",
+   "type": "phrase"
+  },
+  "pendule_periode": {
+   "anim": {
+    "hauteur": 175,
+    "nom": "pendule"
+   },
+   "kicker": "Petites oscillations",
+   "note": "Elle ne dépend que de la longueur du fil et de la pesanteur : ni de la masse, ni de l'amplitude tant qu'elle reste petite",
+   "tex": "T = 2\\pi \\sqrt{\\dfrac{L}{g}}",
+   "titre": "La période du pendule simple",
+   "type": "formule"
+  },
+  "petites_osc": {
+   "kicker": "Petites oscillations",
+   "note": "Pour des angles faibles, sin θ est presque égal à θ : le pendule devient un oscillateur harmonique, que l'on sait résoudre",
+   "tex": "\\sin\\theta \\approx \\theta \\qquad \\ddot{\\theta} + \\dfrac{g}{L}\\, \\theta = 0",
+   "titre": "L'approximation des petits angles",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Pendule simple : T = 2π√(L/g), indépendante de la masse",
+    "Oscillateur harmonique : x(t) = A cos(ω₀t + φ), ω₀ = √(k/m)",
+    "Amortissement : trois régimes selon γ face à 2√(mk)",
+    "Résonance : amplitude maximale à la fréquence propre",
+    "Couplage : modes normaux, battements, synchronisation"
+   ],
+   "kicker": "À retenir",
+   "titre": "Systèmes oscillants",
+   "type": "recap"
+  },
+  "regimes": {
+   "etapes": [
+    "Sous-amorti (γ < 2√(mk)) : oscillations dont l'amplitude décroît exponentiellement",
+    "Critique (γ = 2√(mk)) : retour à l'équilibre le plus rapide, sans osciller",
+    "Sur-amorti (γ > 2√(mk)) : retour lent à l'équilibre, sans oscillation"
+   ],
+   "kicker": "Amortissement",
+   "titre": "Les trois régimes d'amortissement",
+   "type": "recap",
+   "anim": {
+    "nom": "regimes",
+    "hauteur": 280
+   }
+  },
+  "resonance": {
+   "kicker": "Résonance",
+   "texte": "Quand la pulsation de l'excitateur approche la pulsation propre, l'amplitude grandit démesurément : c'est la résonance. Plus l'amortissement est faible, plus le pic de résonance est haut et étroit.",
+   "type": "phrase",
+   "anim": {
+    "nom": "resonance",
+    "hauteur": 280
+   }
+  },
+  "resonance_ex": {
+   "etapes": [
+    "La balançoire : pousser au bon rythme, à la fréquence propre, fait grandir l'amplitude",
+    "Le verre qui casse sous la voix du chanteur, accordée sur sa fréquence propre",
+    "Les instruments de musique vivent de la résonance des cordes et des colonnes d'air",
+    "Danger : le pont de Tacoma Narrows, détruit en 1940 par les oscillations résonantes du vent"
+   ],
+   "kicker": "Résonance",
+   "titre": "Utile ou destructrice",
+   "type": "recap"
+  },
+  "spectrale": {
+   "kicker": "Observer les oscillations",
+   "texte": "L'analyse spectrale décompose un signal complexe en ses fréquences, comme l'oreille distingue les notes d'un orchestre. Un pic dans le spectre révèle chaque fréquence présente, et donc les fréquences propres du système.",
+   "type": "phrase",
+   "anim": {
+    "nom": "spectre",
+    "hauteur": 260
+   }
+  },
+  "strobo": {
+   "kicker": "Observer les oscillations",
+   "texte": "La stroboscopie éclaire un mouvement rapide par des éclairs périodiques. Quand la fréquence des éclairs égale celle du mouvement, l'objet semble figé ; légèrement différente, il semble bouger au ralenti.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "pendule"
+   },
+   "kicker": "Physique · Terminale",
+   "sous": "Pendule simple, oscillateur harmonique, amortissement, résonance et couplage",
+   "titre": "Systèmes oscillants",
+   "type": "titre"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le pendule simple et l'oscillateur harmonique"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : les oscillations réelles, avec l'amortissement, les oscillations forcées, la résonance et le couplage d'oscillateurs.",
+    "texte": "Partie 2 : amortissement, résonance et couplage."
+   },
+   "sous_titre": "Amortissement, résonance et couplage"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré aux systèmes oscillants : le pendule, l'oscillateur harmonique, puis les oscillations réelles, amorties, forcées et couplées.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Systèmes oscillants : pendule, ressort, résonance et couplage."
+  },
+  {
+   "dit": "Un système oscillant est un système qui effectue des mouvements répétitifs autour d'une position d'équilibre. Le pendule qui se balance, l'enfant sur sa balançoire, la corde de guitare qui vibre : tous oscillent, chacun à son rythme.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Des allers-retours répétitifs autour d'une position d'équilibre."
+  },
+  {
+   "dit": "Trois grandeurs décrivent ce mouvement : la période, durée d'un aller-retour complet ; la fréquence, inverse de la période, qui se mesure en hertz ; et l'amplitude, l'écart maximal par rapport à l'équilibre.",
+   "ecran": "grandeurs",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Période T, fréquence f = 1/T, amplitude A."
+  },
+  {
+   "dit": "Le modèle le plus simple est le pendule simple : une masse ponctuelle au bout d'un fil inextensible et sans masse. Écarté de la verticale et lâché sans vitesse, il oscille de part et d'autre de sa position d'équilibre.",
+   "ecran": "pendule_modele",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Le pendule simple : une masse, un fil, la gravité."
+  },
+  {
+   "dit": "Son mouvement se décrit par l'angle thêta, mesuré depuis la verticale. Le principe fondamental de la dynamique donne une équation où intervient sinus thêta : à cause de ce sinus, elle est non linéaire et difficile à résoudre telle quelle.",
+   "ecran": "pendule_eq",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "L'équation du pendule fait intervenir sin θ."
+  },
+  {
+   "dit": "L'astuce : se limiter aux petites oscillations. Pour un angle faible, sinus thêta est presque égal à thêta, et l'équation devient linéaire : celle d'un oscillateur harmonique, que l'on sait résoudre exactement.",
+   "ecran": "petites_osc",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Petits angles : sin θ ≈ θ, l'équation devient linéaire."
+  },
+  {
+   "dit": "On en tire la période du pendule simple : T égale deux pi racine de L sur g. Elle ne dépend que de la longueur du fil et de la pesanteur : ni de la masse accrochée, ni de l'amplitude, tant qu'elle reste petite.",
+   "ecran": "pendule_periode",
+   "id": "p07",
+   "pause_apres": 0.7,
+   "texte": "La période du pendule : T = 2π√(L/g)."
+  },
+  {
+   "dit": "Exemple, celui des exercices du cours : un pendule d'un mètre, avec g égal à neuf virgule quatre-vingt-un mètres par seconde carrée. On applique la formule de la période.",
+   "ecran": "ex_pendule",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Exemple : un pendule d'un mètre."
+  },
+  {
+   "dit": "Le calcul donne environ deux secondes. Et l'expérience le confirme : chronométré sur dix oscillations, ce pendule met vingt secondes, soit deux secondes par aller-retour. C'est le pendule qui bat la seconde.",
+   "ecran": "ex_pendule_res",
+   "id": "p09",
+   "pause_apres": 0.7,
+   "texte": "Résultat : une période d'environ deux secondes."
+  },
+  {
+   "dit": "Autre système fondamental : la masse accrochée à un ressort. Le ressort exerce une force de rappel proportionnelle à l'élongation : F égale moins k x. C'est la loi de Hooke, et le signe moins dit que la force ramène toujours vers la position d'équilibre.",
+   "ecran": "hooke",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "La loi de Hooke : F = −kx."
+  },
+  {
+   "dit": "La deuxième loi de Newton transforme cette force en équation du mouvement : m fois l'accélération égale moins k x. Elle se réécrit avec la pulsation propre oméga zéro, racine de k sur m, et la période propre associée vaut deux pi racine de m sur k.",
+   "ecran": "ohs_eq",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "L'équation de l'oscillateur harmonique et sa pulsation propre."
+  },
+  {
+   "dit": "La solution de cette équation est une sinusoïde : x de t égale A cosinus de oméga zéro t plus phi. A est l'amplitude, oméga zéro la pulsation propre, et phi la phase initiale, qui dépend de la façon dont on a lancé le mouvement.",
+   "ecran": "ohs_solution",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "La solution : x(t) = A cos(ω₀t + φ)."
+  },
+  {
+   "dit": "Exemple, tiré des exercices du cours : une masse de zéro virgule cinq kilogramme accrochée à un ressort de raideur vingt newtons par mètre. Calculons sa pulsation propre, racine de k sur m.",
+   "ecran": "ex_ressort",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Exemple : masse de 0,5 kg, ressort de 20 N/m."
+  },
+  {
+   "dit": "On obtient racine de quarante, soit environ six virgule trois radians par seconde. La période propre vaut alors environ une seconde, et la fréquence propre environ un hertz : la masse oscille à peu près une fois par seconde.",
+   "ecran": "ex_ressort_res",
+   "id": "p14",
+   "pause_apres": 0.7,
+   "texte": "Résultat : ω₀ ≈ 6,3 rad/s, T₀ ≈ 1 s, f₀ ≈ 1 Hz."
+  },
+  {
+   "dit": "Commençons par distinguer deux régimes. En régime libre, le système écarté puis lâché oscille seul, à sa fréquence propre : c'est tout ce que nous venons de voir. En régime forcé, une force extérieure périodique entretient le mouvement et impose son rythme.",
+   "ecran": "libres",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Oscillations libres contre oscillations forcées."
+  },
+  {
+   "dit": "Mais le régime libre idéal n'existe pas : les frottements dissipent l'énergie du système, le plus souvent en chaleur. L'amplitude diminue alors progressivement, jusqu'à l'arrêt complet. C'est l'amortissement.",
+   "ecran": "amortissement",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Les frottements dissipent l'énergie : l'amplitude décroît."
+  },
+  {
+   "dit": "Pour le modéliser, on ajoute à l'équation un terme de frottement, proportionnel à la vitesse et opposé au mouvement. Le coefficient gamma mesure la force de cet amortissement : plus gamma est grand, plus le système s'éteint vite.",
+   "ecran": "amorti_eq",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "L'équation amortie et le coefficient γ."
+  },
+  {
+   "dit": "Selon la valeur de gamma, trois régimes apparaissent. Sous-amorti : le système oscille encore, avec une amplitude qui décroît exponentiellement. Critique : retour à l'équilibre le plus rapide, sans osciller. Sur-amorti : retour lent, sans oscillation non plus.",
+   "ecran": "regimes",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Trois régimes : sous-amorti, critique, sur-amorti."
+  },
+  {
+   "dit": "Passons au régime forcé : une force extérieure périodique, d'amplitude F zéro et de pulsation oméga, entretient les oscillations. Le système finit par abandonner sa pulsation propre et oscille à celle de l'excitateur.",
+   "ecran": "forcees_eq",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "L'excitateur impose sa pulsation au système."
+  },
+  {
+   "dit": "Quand la pulsation de l'excitateur s'approche de la pulsation propre, l'amplitude augmente considérablement : c'est la résonance. Pousser une balançoire au bon rythme, c'est exactement cela. Et plus l'amortissement est faible, plus le pic de résonance est haut et étroit.",
+   "ecran": "resonance",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "La résonance : l'amplitude grandit à la fréquence propre."
+  },
+  {
+   "dit": "La résonance est partout : elle fait chanter les instruments de musique et peut casser un verre sous une voix accordée sur sa fréquence propre. Mais elle peut aussi détruire : en mille neuf cent quarante, le vent a excité le pont de Tacoma jusqu'à sa rupture.",
+   "ecran": "resonance_ex",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Résonance utile en musique, destructrice pour les ponts."
+  },
+  {
+   "dit": "Dernier niveau de complexité : les oscillateurs couplés. Deux pendules identiques, reliés par un ressort faible, n'oscillent plus indépendamment : si l'un part seul, son amplitude diminue pendant que l'autre se met en mouvement, et l'énergie fait la navette entre eux.",
+   "ecran": "couplage",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Deux pendules couplés : l'énergie fait la navette."
+  },
+  {
+   "dit": "Ce système possède deux façons simples d'osciller, ses modes normaux : en phase, à la fréquence la plus basse ; ou en opposition de phase, à la fréquence la plus haute. Toute autre situation donne des battements, et un couplage fort peut même synchroniser les oscillateurs.",
+   "ecran": "modes",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Modes normaux : en phase, ou en opposition de phase."
+  },
+  {
+   "dit": "Pour observer ces mouvements rapides, un outil précieux : la stroboscopie. On éclaire le système par des éclairs périodiques ; si la fréquence des éclairs égale celle du mouvement, l'objet paraît immobile, et une fréquence légèrement différente le montre au ralenti.",
+   "ecran": "strobo",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "La stroboscopie fige les mouvements rapides."
+  },
+  {
+   "dit": "Autre outil d'analyse : le spectre. L'analyse spectrale décompose un signal complexe en ses fréquences, un peu comme l'oreille distingue les notes d'un orchestre. Chaque pic du spectre signale une fréquence présente, ce qui révèle les fréquences propres du système.",
+   "ecran": "spectrale",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "L'analyse spectrale décompose le signal en fréquences."
+  },
+  {
+   "dit": "Ces idées travaillent partout : les horloges mesurent le temps grâce à un oscillateur régulier, du balancier à l'horloge atomique ; les suspensions de voiture jouent sur l'amortissement ; et la résonance magnétique nucléaire image l'intérieur du corps en médecine.",
+   "ecran": "applications",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Horloges, suspensions, médecine : les applications."
+  },
+  {
+   "dit": "Retenez l'essentiel : la période du pendule simple, deux pi racine de L sur g ; la solution sinusoïdale de l'oscillateur harmonique ; les trois régimes d'amortissement ; la résonance à la fréquence propre ; et les modes des oscillateurs couplés.",
+   "ecran": "recap",
+   "id": "p27",
+   "pause_apres": 0.5,
+   "texte": "Pendule, oscillateur harmonique, amortissement, résonance, couplage : à retenir."
+  }
+ ],
+ "titre": "Systèmes oscillants"
+}

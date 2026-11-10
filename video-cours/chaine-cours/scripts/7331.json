@@ -1,0 +1,413 @@
+{
+ "cours": 7331,
+ "ecrans": {
+  "arith_def": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "suite_arith_fig"
+   },
+   "kicker": "Suites arithmétiques",
+   "note": "r : la raison · on ajoute toujours le même nombre.",
+   "tex": "u_{n+1} = u_n + r",
+   "type": "formule"
+  },
+  "arith_ex": {
+   "kicker": "Arithmétique · exemple complet",
+   "tex": [
+    "u_0 = 3,\\ r = 4 : \\ u_{10} = 3 + 40 = 43",
+    "S_{10} = 11 \\times \\tfrac{3 + 43}{2} = 253"
+   ],
+   "titre": "Premier terme trois, raison quatre",
+   "type": "etape"
+  },
+  "arith_general": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "escalier_sommes_fig"
+   },
+   "kicker": "Arithmétique · terme général et somme",
+   "tex": [
+    "u_n = u_0 + nr",
+    "u_n = u_p + (n-p)\\, r",
+    "S = (n+1) \\times \\tfrac{u_0 + u_n}{2}"
+   ],
+   "titre": "Terme général et somme des termes",
+   "type": "etape"
+  },
+  "conv_mono": {
+   "kicker": "Convergence monotone",
+   "tex": [
+    "\\text{croissante et majorée : elle converge}",
+    "\\text{décroissante et minorée : elle converge}"
+   ],
+   "titre": "Une suite monotone et bornée converge",
+   "type": "etape"
+  },
+  "def": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "nuage_suite_fig"
+   },
+   "kicker": "Définition d'une suite",
+   "note": "(u_n) : la suite · u_n : le terme d'indice n, dit terme général.",
+   "tex": "u : n \\mapsto u_n",
+   "type": "formule"
+  },
+  "def_ex": {
+   "kicker": "Exemple · une suite explicite",
+   "tex": [
+    "u_n = \\frac{1}{n+1}",
+    "u_0 = 1,\\ u_1 = \\tfrac{1}{2},\\ u_2 = \\tfrac{1}{3}"
+   ],
+   "titre": "Les inverses décalés d'un rang",
+   "type": "etape"
+  },
+  "def_modes": {
+   "kicker": "Deux modes de génération",
+   "tex": [
+    "u_n = f(n) \\quad \\text{(explicite)}",
+    "u_{n+1} = f(u_n),\\ u_0 \\text{ donné (récurrence)}"
+   ],
+   "titre": "Explicite, ou par récurrence",
+   "type": "etape"
+  },
+  "geom_def": {
+   "kicker": "Suites géométriques",
+   "note": "q : la raison · on multiplie toujours par le même nombre.",
+   "tex": "u_{n+1} = q \\times u_n \\quad (q \\neq 0)",
+   "type": "formule"
+  },
+  "geom_ex": {
+   "kicker": "Géométrique · exemple complet",
+   "tex": [
+    "u_0 = 2,\\ q = 3 : \\ S_4 = 2 \\times \\tfrac{1 - 3^5}{1 - 3}",
+    "S_4 = 2 \\times \\tfrac{1 - 243}{-2} = 242",
+    "2 + 6 + 18 + 54 + 162 = 242"
+   ],
+   "titre": "Une somme qui se vérifie terme à terme",
+   "type": "etape"
+  },
+  "geom_general": {
+   "kicker": "Géométrique · terme général et somme",
+   "tex": [
+    "u_n = u_0 \\, q^n \\qquad u_n = u_p \\, q^{\\,n-p}",
+    "S = u_0 \\times \\tfrac{1 - q^{n+1}}{1 - q} \\quad (q \\neq 1)",
+    "q = 1 : \\ S = (n+1)\\, u_0"
+   ],
+   "titre": "Terme général et somme des termes",
+   "type": "etape"
+  },
+  "geom_lim": {
+   "kicker": "Géométrique · limite de q puissance n",
+   "tex": [
+    "q > 1 : \\lim q^n = +\\infty",
+    "q = 1 : q^n = 1",
+    "-1 < q < 1 : \\lim q^n = 0",
+    "q \\leq -1 : \\text{ pas de limite}"
+   ],
+   "titre": "La limite de q puissance n",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Trois questions pour toute suite : comment est-elle définie, comment varie-t-elle, et vers quoi tend-elle.",
+   "type": "phrase"
+  },
+  "lim_comp": {
+   "kicker": "Théorème de comparaison",
+   "note": "La suite du dessus est entraînée vers plus l'infini par celle qui la minore.",
+   "tex": "\\begin{aligned} u_n &\\leq v_n \\\\ \\lim u_n = +\\infty &\\Rightarrow \\lim v_n = +\\infty \\end{aligned}",
+   "type": "formule"
+  },
+  "lim_def": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "bande_epsilon_fig"
+   },
+   "kicker": "Limite finie",
+   "note": "Tout intervalle ouvert contenant ℓ contient tous les termes à partir d'un certain rang.",
+   "tex": "\\lim_{n \\to +\\infty} u_n = \\ell",
+   "type": "formule"
+  },
+  "lim_ex": {
+   "kicker": "Exemple · une limite par factorisation",
+   "tex": [
+    "u_n = \\tfrac{2n+1}{n+3} = \\tfrac{2 + 1/n}{1 + 3/n}",
+    "\\lim u_n = 2"
+   ],
+   "titre": "Factoriser par n, en haut et en bas",
+   "type": "etape"
+  },
+  "lim_inf": {
+   "kicker": "Limites infinies",
+   "tex": [
+    "u_n \\to +\\infty : \\ u_n > A \\text{ dès un rang}",
+    "u_n \\to -\\infty : \\ u_n < -A \\text{ dès un rang}"
+   ],
+   "titre": "Diverger vers l'infini",
+   "type": "etape"
+  },
+  "lim_regles": {
+   "kicker": "Opérations sur les limites",
+   "tex": [
+    "\\lim (u_n + v_n) = \\ell + \\ell'",
+    "\\lim (u_n \\, v_n) = \\ell \\, \\ell'",
+    "\\lim \\tfrac{u_n}{v_n} = \\tfrac{\\ell}{\\ell'} \\quad (\\ell' \\neq 0)"
+   ],
+   "titre": "Somme, produit, quotient",
+   "type": "etape"
+  },
+  "point_fixe": {
+   "kicker": "Déterminer la limite · le point fixe",
+   "note": "Seulement si la suite converge et si f est continue en ℓ : l'équation donne des candidats.",
+   "tex": "\\ell = f(\\ell)",
+   "type": "formule"
+  },
+  "point_fixe_ex": {
+   "kicker": "Exemple · le point fixe en chiffres",
+   "tex": [
+    "\\ell = \\tfrac{1}{2} \\ell + 1 \\iff \\tfrac{1}{2} \\ell = 1",
+    "\\ell = 2"
+   ],
+   "titre": "Résoudre l'équation du point fixe",
+   "type": "etape"
+  },
+  "rec_ex": {
+   "kicker": "Exemple · une suite récurrente",
+   "tex": [
+    "u_0 = 1, \\quad u_{n+1} = \\tfrac{1}{2} u_n + 1",
+    "u_1 = \\tfrac{3}{2}, \\quad u_2 = \\tfrac{7}{4}, \\quad u_3 = \\tfrac{15}{8}",
+    "\\text{les termes montent vers } 2"
+   ],
+   "titre": "Des termes qui montent vers deux",
+   "type": "etape"
+  },
+  "rec_intro": {
+   "kicker": "Suites définies par récurrence",
+   "note": "Pas de formule directe en fonction de n : on avance pas à pas, à l'aide de f.",
+   "tex": "u_{n+1} = f(u_n), \\quad u_0 \\text{ donné}",
+   "type": "formule"
+  },
+  "rec_preuve": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "dominos_fig"
+   },
+   "kicker": "Prouver une majoration par récurrence",
+   "tex": [
+    "u_0 = 1 \\leq 2 \\quad \\text{(initialisation)}",
+    "\\text{on suppose } u_n \\leq 2",
+    "u_{n+1} = \\tfrac{1}{2} u_n + 1 \\leq 2"
+   ],
+   "titre": "Initialisation, puis hérédité",
+   "type": "etape"
+  },
+  "rec_variation": {
+   "kicker": "Récurrente · sens de variation",
+   "tex": [
+    "u_{n+1} - u_n = \\tfrac{1}{2} u_n + 1 - u_n",
+    "= 1 - \\tfrac{1}{2} u_n",
+    "u_n \\leq 2 \\Rightarrow u_{n+1} - u_n \\geq 0"
+   ],
+   "titre": "Le signe de la différence",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Définir : explicite uₙ = f(n), ou récurrence",
+    "Limite : factoriser par le terme dominant",
+    "Arithmétique : uₙ = u₀ + nr",
+    "Géométrique : uₙ = u₀ qⁿ, limite selon q",
+    "Récurrente : variation, borne, point fixe"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "nuage_suite_fig"
+   },
+   "kicker": "Mathématique · Suites numériques",
+   "sous": "Définir, faire converger, sommer : arithmétiques, géométriques et suites récurrentes",
+   "titre": "Les suites numériques : limites, familles et récurrence",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définitions, modes de génération et limites"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : les deux grandes familles de suites. Les arithmétiques, où l'on ajoute toujours la même raison, et les géométriques, où l'on multiplie toujours par la même raison : pour chacune, le terme général, la monotonie, la limite et la somme des termes, avec un exemple complet.",
+    "texte": "Partie 2 : suites arithmétiques et géométriques, termes et sommes."
+   },
+   "sous_titre": "Suites arithmétiques et géométriques"
+  },
+  {
+   "debut": "p18",
+   "pont": {
+    "dit": "Partie trois : les suites définies par récurrence. Pas de formule directe cette fois : nous mènerons une étude complète sur un exemple, avec le sens de variation, une majoration prouvée par récurrence, la convergence monotone et l'équation du point fixe pour trouver la limite.",
+    "texte": "Partie 3 : suites récurrentes, variation, borne et point fixe."
+   },
+   "sous_titre": "Suites récurrentes : variation, borne et point fixe"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux suites numériques, leurs limites, leurs deux grandes familles et les suites définies par récurrence. Nous définirons d'abord une suite et ses modes de génération, puis la convergence, avant les suites arithmétiques et géométriques, leurs termes généraux et leurs sommes. Nous finirons par une méthode complète sur un exemple récurrent.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Suites numériques : limites, familles et récurrence."
+  },
+  {
+   "dit": "Toute la méthode tient en trois questions. Comment la suite est-elle définie. Varie-t-elle toujours dans le même sens. Et vers quoi tend-elle quand l'indice devient très grand. Gardez ces trois questions en tête : chaque partie du cours répond à l'une d'elles.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Définir, varier, tendre : les trois questions."
+  },
+  {
+   "dit": "Une suite numérique est une fonction définie sur l'ensemble des entiers naturels, ou sur une partie de cet ensemble, et à valeurs réelles. On note u indice n l'image de l'entier n : c'est le terme d'indice n, ou terme général. La suite entière se note entre parenthèses, et l'indice n'avance par pas entiers, jamais en continu.",
+   "ecran": "def",
+   "id": "p03",
+   "texte": "(u_n) : la suite · u_n : le terme général."
+  },
+  {
+   "dit": "Une suite peut être définie de deux façons. Explicitement : le terme général est donné directement en fonction de l'indice, u indice n égale f de n, et chaque terme se calcule indépendamment des autres. Ou par récurrence : on donne le premier terme, et une relation qui fabrique chaque terme à partir du précédent.",
+   "ecran": "def_modes",
+   "id": "p04",
+   "texte": "Explicite : u_n = f(n) · récurrence : terme à terme."
+  },
+  {
+   "dit": "Exemple explicite : la suite de terme général u indice n égale un, sur n plus un. Pour n égal zéro, on obtient un. Pour n égal un, un demi. Pour n égal deux, un tiers. Les termes diminuent et se rapprochent de zéro, sans jamais l'atteindre.",
+   "ecran": "def_ex",
+   "id": "p05",
+   "texte": "u_n = 1/(n + 1) : 1, 1/2, 1/3, vers zéro."
+  },
+  {
+   "dit": "Une suite converge vers un nombre réel, noté l, quand tout intervalle ouvert contenant l finit par contenir tous les termes de la suite, à partir d'un certain rang. Aussi étroite que soit la bande autour de l, les termes finissent par y entrer et ne plus en sortir. On note alors : limite de u indice n égale l, quand n tend vers plus l'infini.",
+   "ecran": "lim_def",
+   "id": "p06",
+   "texte": "Converger : entrer dans toute bande autour de ℓ."
+  },
+  {
+   "dit": "Une suite qui n'admet pas de limite finie est dite divergente. Elle peut diverger vers plus l'infini : à partir d'un certain rang, tous ses termes dépassent n'importe quel seuil donné. Elle peut aussi diverger vers moins l'infini, ou bien osciller sans admettre aucune limite.",
+   "ecran": "lim_inf",
+   "id": "p07",
+   "texte": "Diverger : +∞, −∞, ou aucune limite."
+  },
+  {
+   "dit": "Les limites des suites obéissent aux mêmes règles que celles des fonctions. Si u tend vers l et v vers l prime, alors la somme tend vers l plus l prime, le produit vers l fois l prime, et le quotient vers l sur l prime, à condition que l prime soit différent de zéro. Attention, comme pour les fonctions, aux formes indéterminées, qui exigent un travail supplémentaire.",
+   "ecran": "lim_regles",
+   "id": "p08",
+   "texte": "Limites : somme, produit, quotient terme à terme."
+  },
+  {
+   "dit": "Le théorème de comparaison permet de conclure sans calcul direct. Si, à partir d'un certain rang, chaque terme de u est inférieur ou égal au terme correspondant de v, et si u tend vers plus l'infini, alors v tend aussi vers plus l'infini : elle est entraînée par la suite qui la minore. C'est l'outil des encadrements et des majorations.",
+   "ecran": "lim_comp",
+   "id": "p09",
+   "texte": "Comparaison : minorée par +∞, donc +∞."
+  },
+  {
+   "dit": "Exemple : la suite de terme général u indice n égale deux n plus un, sur n plus trois. On factorise par n au numérateur et au dénominateur : u indice n devient deux, plus un sur n, le tout sur un, plus trois sur n. Quand n tend vers plus l'infini, un sur n et trois sur n tendent vers zéro : la limite de la suite est donc deux.",
+   "ecran": "lim_ex",
+   "id": "p10",
+   "texte": "(2n + 1)/(n + 3) : la limite vaut 2."
+  },
+  {
+   "dit": "Première famille : les suites arithmétiques. Une suite est arithmétique quand on passe d'un terme au suivant en ajoutant toujours le même nombre, appelé la raison et noté r : u indice n plus un égale u indice n plus r. Sur un graphique, les points sont alignés, avec un écart vertical constant égal à la raison.",
+   "ecran": "arith_def",
+   "id": "p11",
+   "texte": "Arithmétique : on ajoute toujours r."
+  },
+  {
+   "dit": "Le terme général s'en déduit immédiatement : u indice n égale u zéro plus n fois r. Depuis un rang p quelconque : u indice n égale u indice p, plus n moins p, le tout fois r. Et la somme des termes, de u zéro à u indice n, vaut le nombre de termes, n plus un, multiplié par la demi-somme du premier et du dernier terme.",
+   "ecran": "arith_general",
+   "id": "p12",
+   "texte": "u_n = u₀ + nr · S = (n+1)(u₀ + u_n)/2."
+  },
+  {
+   "dit": "La raison décide aussi de la monotonie : positive, la suite est strictement croissante et tend vers plus l'infini ; négative, elle est strictement décroissante et tend vers moins l'infini ; nulle, elle est constante. Exemple complet : premier terme trois, raison quatre. Le terme de rang dix vaut trois plus dix fois quatre, soit quarante-trois. La somme des onze premiers termes vaut onze fois la demi-somme de trois et quarante-trois, soit onze fois vingt-trois : deux cent cinquante-trois.",
+   "ecran": "arith_ex",
+   "id": "p13",
+   "texte": "u₀ = 3, r = 4 : u₁₀ = 43 et S = 253."
+  },
+  {
+   "dit": "Deuxième famille : les suites géométriques. Une suite est géométrique quand on passe d'un terme au suivant en multipliant toujours par le même nombre, appelé la raison et noté q, différent de zéro : u indice n plus un égale q fois u indice n. Là où l'arithmétique ajoute, la géométrique multiplie.",
+   "ecran": "geom_def",
+   "id": "p14",
+   "texte": "Géométrique : on multiplie toujours par q."
+  },
+  {
+   "dit": "Le terme général devient une puissance : u indice n égale u zéro fois q puissance n, ou, depuis un rang p, u indice p fois q puissance n moins p. La somme des termes, pour une raison différente de un, vaut u zéro fois un, moins q puissance n plus un, le tout divisé par un moins q. Et si la raison vaut un, tous les termes sont égaux : la somme vaut n plus un fois u zéro.",
+   "ecran": "geom_general",
+   "id": "p15",
+   "texte": "u_n = u₀ qⁿ · S = u₀(1 − qⁿ⁺¹)/(1 − q)."
+  },
+  {
+   "dit": "Tout repose sur la limite de q puissance n. Si q est supérieur à un, elle vaut plus l'infini. Si q égale un, la puissance vaut toujours un. Si q est strictement compris entre moins un et un, elle tend vers zéro, et la suite géométrique converge alors vers zéro. Et si q est inférieur ou égal à moins un, la puissance n'admet pas de limite.",
+   "ecran": "geom_lim",
+   "id": "p16",
+   "texte": "Limite de qⁿ : tout dépend de q."
+  },
+  {
+   "dit": "Exemple complet : premier terme deux, raison trois, et l'on somme jusqu'au rang quatre. La formule donne deux fois un, moins trois puissance cinq, le tout divisé par un moins trois, soit deux fois moins deux cent quarante-deux, sur moins deux : deux cent quarante-deux. Contrôle terme à terme : deux, plus six, plus dix-huit, plus cinquante-quatre, plus cent soixante-deux, total deux cent quarante-deux.",
+   "ecran": "geom_ex",
+   "id": "p17",
+   "texte": "u₀ = 2, q = 3 : S₄ = 242, vérifié terme à terme."
+  },
+  {
+   "dit": "Dernière partie : les suites définies par récurrence, données par un premier terme et une relation qui exprime chaque terme à partir du précédent, u indice n plus un égale f de u indice n. Contrairement aux suites explicites, on ne connaît pas directement le terme général en fonction de n : il faut étudier le comportement pas à pas, à l'aide de la fonction f.",
+   "ecran": "rec_intro",
+   "id": "p18",
+   "texte": "Récurrence : pas de formule directe, une étude pas à pas."
+  },
+  {
+   "dit": "Notre exemple fil rouge : u zéro égale un, et chaque terme vaut la moitié du précédent, plus un. On calcule : u un égale trois demis, u deux égale sept quarts, u trois égale quinze huitièmes. Les termes semblent croître et se rapprocher de deux. Il reste à le prouver, en trois étapes : la variation, la majoration, puis la limite.",
+   "ecran": "rec_ex",
+   "id": "p19",
+   "texte": "1, 3/2, 7/4, 15/8 : les termes montent vers 2."
+  },
+  {
+   "dit": "Première étape, le sens de variation. On calcule la différence de deux termes consécutifs : un demi de u indice n, plus un, moins u indice n, ce qui se simplifie en un, moins un demi de u indice n. Si l'on sait que u indice n reste inférieur ou égal à deux, cette différence est positive ou nulle : la suite est croissante. Reste à établir cette majoration.",
+   "ecran": "rec_variation",
+   "id": "p20",
+   "texte": "uₙ₊₁ − uₙ = 1 − uₙ/2 ≥ 0 si uₙ ≤ 2."
+  },
+  {
+   "dit": "Deuxième étape : prouver par récurrence que u indice n reste inférieur ou égal à deux pour tout n. Initialisation : u zéro égale un, qui est bien inférieur ou égal à deux. Hérédité : supposons la propriété vraie au rang n. Alors u indice n plus un, qui vaut un demi de u indice n plus un, reste inférieur ou égal à un demi de deux, plus un, c'est-à-dire deux. Les deux étapes sont indispensables : sans initialisation, la chaîne ne démarre pas.",
+   "ecran": "rec_preuve",
+   "id": "p21",
+   "texte": "Récurrence : initialisation, puis hérédité."
+  },
+  {
+   "dit": "Troisième étape, la convergence. Le théorème de convergence monotone affirme qu'une suite croissante et majorée converge, et qu'une suite décroissante et minorée converge. Notre suite est croissante et majorée par deux : elle converge donc vers une limite, notée l. Mais le théorème ne donne pas la valeur de cette limite.",
+   "ecran": "conv_mono",
+   "id": "p22",
+   "texte": "Croissante et majorée par 2 : elle converge."
+  },
+  {
+   "dit": "Pour trouver la valeur, on utilise le point fixe. Si une suite définie par récurrence converge vers l, et si la fonction f est continue en l, alors, en passant à la limite dans la relation de récurrence, on obtient : l égale f de l. Attention à l'ordre des étapes : cette équation donne des candidats pour la limite, elle ne prouve jamais, à elle seule, que la suite converge.",
+   "ecran": "point_fixe",
+   "id": "p23",
+   "texte": "Point fixe : ℓ = f(ℓ), après la preuve de convergence."
+  },
+  {
+   "dit": "Appliquons le point fixe à notre exemple. La fonction f, qui à x associe un demi de x plus un, est continue partout. L'équation du point fixe s'écrit : l égale un demi de l, plus un. On en tire : un demi de l égale un, donc l égale deux. La suite converge, et deux est l'unique candidat cohérent avec la majoration : sa limite vaut deux, comme les premiers termes le laissaient deviner.",
+   "ecran": "point_fixe_ex",
+   "id": "p24",
+   "texte": "ℓ = ℓ/2 + 1, donc ℓ = 2 : la limite est trouvée."
+  },
+  {
+   "dit": "Pour conclure, retenez l'enchaînement complet. Définir la suite, explicitement ou par récurrence. Calculer sa limite en factorisant par le terme dominant, et conclure par comparaison quand un encadrement s'impose. Reconnaître les deux familles, arithmétique et géométrique, avec leurs sommes. Et pour une suite récurrente : variation, majoration par récurrence, convergence monotone, puis point fixe.",
+   "ecran": "recap",
+   "id": "p25",
+   "texte": "Suites numériques : à retenir."
+  }
+ ],
+ "titre": "Les suites numériques : limites, familles et récurrence"
+}

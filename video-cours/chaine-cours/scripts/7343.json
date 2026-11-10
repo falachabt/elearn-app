@@ -1,0 +1,353 @@
+{
+ "cours": 7343,
+ "ecrans": {
+  "aire": {
+   "kicker": "Application · calcul d'aires",
+   "note": "Si f est continue et positive sur [a, b], l'intégrale est l'aire sous sa courbe, entre les droites d'abscisses a et b.",
+   "tex": "\\mathcal{A} = \\int_a^b f(x)\\,dx",
+   "type": "formule",
+   "anim": {
+    "nom": "aire_courbe_fig",
+    "hauteur": 180
+   }
+  },
+  "changement": {
+   "kicker": "Changement de variable",
+   "note": "On pose x égal à phi de t : la fonction, le dé ixe et les bornes se transforment ensemble.",
+   "tex": "\\int_a^b f(x)\\,dx = \\int_\\alpha^\\beta f\\big(\\varphi(t)\\big)\\,\\varphi'(t)\\,dt",
+   "type": "formule"
+  },
+  "changement_etapes": {
+   "kicker": "Changement de variable · en pratique",
+   "tex": [
+    "\\text{poser } u \\text{, calculer } du",
+    "\\text{transformer les bornes}",
+    "\\text{calculer dans la variable } u"
+   ],
+   "titre": "Poser la nouvelle variable u, en trois temps",
+   "type": "etape"
+  },
+  "constante": {
+   "kicker": "Pourquoi la constante disparaît",
+   "note": "La constante k s'ajoute aux deux bornes et s'élimine dans la différence : le choix de la primitive est libre.",
+   "tex": "\\big(F(b) + k\\big) - \\big(F(a) + k\\big) = F(b) - F(a)",
+   "type": "formule"
+  },
+  "ex_aire": {
+   "kicker": "Exemple · aire sous une parabole",
+   "tex": [
+    "\\mathcal{A} = \\int_0^2 x^2\\,dx = \\left[\\tfrac{x^3}{3}\\right]_0^2",
+    "\\mathcal{A} = \\tfrac{8}{3}"
+   ],
+   "titre": "Ixe carré, entre zéro et deux",
+   "type": "etape"
+  },
+  "ex_changement": {
+   "kicker": "Exemple · changement de variable",
+   "tex": [
+    "u = x^2 + 1 \\qquad du = 2x\\,dx",
+    "x = 0 \\to u = 1 \\qquad x = 1 \\to u = 2",
+    "\\int_0^1 \\tfrac{2x}{x^2+1}\\,dx = \\int_1^2 \\tfrac{du}{u} = \\ln 2"
+   ],
+   "titre": "Deux ixe sur ixe carré plus un, de zéro à un",
+   "type": "etape"
+  },
+  "ex_forme": {
+   "kicker": "Exemple · forme composée",
+   "tex": [
+    "u = x^3 + 5 \\qquad u' = 3x^2",
+    "\\int \\tfrac{3x^2}{x^3+5}\\,dx = \\ln|x^3+5| + C"
+   ],
+   "titre": "Trois ixe carré sur ixe cube plus cinq",
+   "type": "etape"
+  },
+  "ex_integrale": {
+   "kicker": "Exemple · première intégrale",
+   "tex": [
+    "F(x) = x^2 + x",
+    "\\int_1^3 (2x+1)\\,dx = \\big[x^2+x\\big]_1^3",
+    "= (9+3) - (1+1) = 10"
+   ],
+   "titre": "Deux ixe plus un, de un à trois",
+   "type": "etape"
+  },
+  "ex_ipp": {
+   "kicker": "Exemple · intégration par parties",
+   "tex": [
+    "u = x \\qquad v' = e^x \\qquad u' = 1 \\qquad v = e^x",
+    "\\int_0^1 x\\,e^x\\,dx = \\big[x\\,e^x\\big]_0^1 - \\int_0^1 e^x\\,dx",
+    "= e - (e - 1) = 1"
+   ],
+   "titre": "Ixe fois exponentielle ixe, de zéro à un",
+   "type": "etape"
+  },
+  "ex_proprietes": {
+   "kicker": "Exemple · linéarité",
+   "tex": [
+    "\\int_0^2 (3x^2 - 1)\\,dx = \\big[x^3 - x\\big]_0^2",
+    "= (8 - 2) - 0 = 6"
+   ],
+   "titre": "Trois ixe carré moins un, de zéro à deux",
+   "type": "etape"
+  },
+  "ex_usuelles": {
+   "kicker": "Exemple · tableau des usuelles",
+   "tex": [
+    "f(x) = 3 \\times \\tfrac{1}{x^2}",
+    "F(x) = 3 \\times \\left(-\\tfrac{1}{x}\\right) = -\\tfrac{3}{x}"
+   ],
+   "titre": "Trois sur ixe carré, pour ixe strictement positif",
+   "type": "etape"
+  },
+  "formes": {
+   "kicker": "Rappel · formes composées",
+   "tex": [
+    "u'\\,u^n \\to \\tfrac{u^{n+1}}{n+1} \\quad (n \\neq -1)",
+    "\\tfrac{u'}{u} \\to \\ln|u|",
+    "u'\\,e^{u} \\to e^{u}"
+   ],
+   "titre": "Reconnaître u prime dès la lecture",
+   "type": "etape"
+  },
+  "integrale_def": {
+   "kicker": "L'intégrale définie",
+   "note": "f continue sur [a, b], F une de ses primitives : l'intégrale est la différence des valeurs de F aux bornes.",
+   "tex": "\\int_a^b f(x)\\,dx = F(b) - F(a) = \\big[F(x)\\big]_a^b",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Introduction",
+   "texte": "Deux leçons en une vidéo : un rappel ciblé des primitives, puis tout le calcul intégral.",
+   "type": "phrase"
+  },
+  "ipp": {
+   "kicker": "Intégration par parties",
+   "note": "On dérive le facteur qui se simplifie, souvent un polynôme ou un logarithme, et on primitive l'autre.",
+   "tex": "\\int_a^b u\\,v' = \\big[u\\,v\\big]_a^b - \\int_a^b u'\\,v",
+   "type": "formule"
+  },
+  "ipp_choix": {
+   "kicker": "Intégration par parties · le choix",
+   "tex": [
+    "\\text{dériver le facteur qui se simplifie}",
+    "\\text{souvent } u = x^n \\text{ ou } u = \\ln x",
+    "\\text{primitiver le facteur restant}"
+   ],
+   "titre": "Qui dériver, qui primitiver",
+   "type": "etape"
+  },
+  "methode_choix": {
+   "etapes": [
+    "Produit polynôme × exp : par parties",
+    "ln x ou arctan x : par parties, u = ln x",
+    "u′ et u présents : forme composée",
+    "Racine, dénominateur : changement de variable",
+    "Sinon : linéarité et primitives usuelles"
+   ],
+   "kicker": "Méthode de choix",
+   "type": "recap"
+  },
+  "proprietes": {
+   "kicker": "Propriétés de l'intégrale",
+   "tex": [
+    "\\textstyle \\int_a^b (\\alpha f + \\beta g) = \\alpha \\int_a^b f + \\beta \\int_a^b g",
+    "\\textstyle \\int_a^b f + \\int_b^c f = \\int_a^c f \\quad \\text{(Chasles)}",
+    "\\textstyle \\int_a^b f = -\\int_b^a f \\qquad f \\geq 0 \\Rightarrow \\int_a^b f \\geq 0"
+   ],
+   "titre": "Quatre propriétés qui structurent tous les calculs",
+   "type": "etape"
+  },
+  "rappel_def": {
+   "kicker": "Rappel · définition",
+   "note": "F primitive de f sur I. Deux primitives diffèrent d'une constante : F(x) + k donne toutes les autres.",
+   "tex": "F'(x) = f(x) \\quad \\text{pour tout } x \\in I",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Intégrale : F(b) − F(a), choix de F libre",
+    "Linéarité, Chasles, bornes inversées",
+    "Par parties : un facteur se simplifie",
+    "Changement de variable : bornes aussi",
+    "f ≥ 0 : l'intégrale est une aire"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "titre": {
+   "kicker": "Mathématique · Primitives et calcul intégral",
+   "sous": "L'intégrale comme différence de primitives, ses propriétés, l'intégration par parties, le changement de variable et les aires",
+   "titre": "Primitives et calcul intégral : de la primitive à l'aire",
+   "type": "titre",
+   "anim": {
+    "nom": "aire_courbe_fig",
+    "hauteur": 240
+   }
+  },
+  "usuelles": {
+   "kicker": "Rappel · primitives usuelles",
+   "tex": [
+    "x^n \\to \\tfrac{x^{n+1}}{n+1} \\qquad \\tfrac{1}{x^n} \\to -\\tfrac{1}{(n-1)x^{n-1}}",
+    "\\tfrac{1}{x} \\to \\ln|x| \\qquad \\tfrac{1}{\\sqrt{x}} \\to 2\\sqrt{x}",
+    "e^x \\to e^x \\qquad \\cos x \\to \\sin x",
+    "\\sin x \\to -\\cos x"
+   ],
+   "titre": "Le tableau minimum à maîtriser",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Rappels de primitives et définition de l'intégrale"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : les techniques d'intégration et les aires. Quand la primitive ne se voit pas directement, l'intégration par parties et le changement de variable prennent le relais, et nous terminerons par la lecture de l'intégrale comme une aire.",
+    "texte": "Partie 2 : intégration par parties, changement de variable et aires."
+   },
+   "sous_titre": "Par parties, changement de variable et aires"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours qui assemble primitives et calcul intégral. Un rappel ciblé des primitives d'abord, car tout repose sur elles. Puis l'intégrale d'une fonction continue, ses propriétés, les deux grandes techniques, par parties et changement de variable, et enfin les aires.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Primitives et calcul intégral : de la primitive à l'aire."
+  },
+  {
+   "dit": "Le fil rouge est simple : intégrer, c'est primitiver puis évaluer. Si vous savez trouver une primitive, vous savez calculer une intégrale, à condition de choisir la bonne technique. Ce cours enchaîne donc les deux savoirs, sans réciter deux fois les mêmes exemples.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Intégrer : primitiver, puis évaluer aux bornes."
+  },
+  {
+   "dit": "Rappel de définition. Une fonction grand eff est une primitive de eff sur un intervalle si elle y est dérivable et si sa dérivée est eff. Deux primitives d'une même fonction diffèrent d'une constante : en ajouter une ne change pas la dérivée, et ce sont les seules variantes possibles.",
+   "ecran": "rappel_def",
+   "id": "p03",
+   "texte": "Une primitive : F′ = f, à une constante près."
+  },
+  {
+   "dit": "Le tableau minimum doit être su par cœur. Ixe puissance n donne ixe puissance n plus un sur n plus un, et un sur ixe puissance n donne moins un, sur n moins un fois ixe puissance n moins un. Un sur ixe donne le logarithme de la valeur absolue de ixe, un sur racine de ixe donne deux racine de ixe, l'exponentielle se primitive en elle-même, cosinus donne sinus, sinus donne moins cosinus.",
+   "ecran": "usuelles",
+   "id": "p04",
+   "texte": "Le tableau minimum, à connaître par cœur."
+  },
+  {
+   "dit": "Exemple d'usage du tableau : une primitive de trois sur ixe carré, pour ixe strictement positif. On écrit trois fois un sur ixe carré, dont une primitive est moins un sur ixe. Le facteur trois se conserve : le résultat est moins trois sur ixe. Dérivez-le pour contrôler : vous retrouvez bien trois sur ixe carré.",
+   "ecran": "ex_usuelles",
+   "id": "p05",
+   "texte": "3/x² → −3/x, le facteur constant se conserve."
+  },
+  {
+   "dit": "Deuxième rappel, les formes composées. Quand une fonction intérieure u apparaît avec sa dérivée u prime, trois formes couvrent la majorité des cas : u prime fois u puissance n, u prime sur u, et u prime fois exponentielle de u, qui donnent respectivement la puissance augmentée, le logarithme de la valeur absolue de u, et exponentielle de u.",
+   "ecran": "formes",
+   "id": "p06",
+   "texte": "u′uⁿ, u′/u, u′eᵘ : la majorité des cas."
+  },
+  {
+   "dit": "Exemple de reconnaissance : l'intégrale de trois ixe carré sur ixe cube plus cinq. On pose u égale ixe cube plus cinq. Sa dérivée est trois ixe carré, exactement le numérateur. C'est donc la forme u prime sur u, et le résultat est le logarithme de la valeur absolue de ixe cube plus cinq, plus une constante.",
+   "ecran": "ex_forme",
+   "id": "p07",
+   "texte": "3x²/(x³+5) = u′/u, d'où ln|x³ + 5| + C."
+  },
+  {
+   "dit": "Nous pouvons maintenant définir l'intégrale. Soit eff continue sur le segment de a à b, et grand eff une de ses primitives. L'intégrale de a à b de eff est le nombre réel grand eff de b, moins grand eff de a. On le note aussi avec la primitive entre crochets, de a à b. Un seul nombre, calculé en deux évaluations.",
+   "ecran": "integrale_def",
+   "id": "p08",
+   "texte": "∫ de a à b de f = F(b) − F(a)."
+  },
+  {
+   "dit": "Ce nombre ne dépend pas de la primitive choisie, et voici pourquoi. Si l'on prend une autre primitive, elle diffère de la première par une constante k. Cette constante s'ajoute à la valeur en b comme à la valeur en a, et elle s'élimine dans la différence. Vous pouvez donc choisir la primitive la plus simple, sans constante.",
+   "ecran": "constante",
+   "id": "p09",
+   "texte": "La constante s'élimine : le choix de F est libre."
+  },
+  {
+   "dit": "Premier calcul complet : l'intégrale de un à trois de deux ixe plus un. Une primitive est ixe carré plus ixe. En trois, elle vaut neuf plus trois, douze ; en un, elle vaut un plus un, deux. La différence vaut dix. Remarquez la rédaction : primitive entre crochets, valeurs aux bornes, puis différence, dans cet ordre.",
+   "ecran": "ex_integrale",
+   "id": "p10",
+   "texte": "∫₁³ (2x + 1) dx = 12 − 2 = 10."
+  },
+  {
+   "dit": "Quatre propriétés structurent tous les calculs. La linéarité : l'intégrale d'une combinaison est la combinaison des intégrales. La relation de Chasles : on peut découper l'intervalle en un point intermédiaire et additionner. Inverser les bornes change le signe. Et si la fonction est positive sur le segment, son intégrale est positive.",
+   "ecran": "proprietes",
+   "id": "p11",
+   "texte": "Linéarité, Chasles, inversion des bornes, positivité."
+  },
+  {
+   "dit": "Exemple d'usage de la linéarité : l'intégrale de zéro à deux de trois ixe carré moins un. Une primitive est ixe cube moins ixe. En deux, elle vaut huit moins deux, six ; en zéro, zéro. L'intégrale vaut six. Chaque terme a été primitivé séparément, comme la linéarité l'autorise.",
+   "ecran": "ex_proprietes",
+   "id": "p12",
+   "texte": "∫₀² (3x² − 1) dx = [x³ − x] = 6."
+  },
+  {
+   "dit": "Quand la primitive ne se voit pas, deux techniques prennent le relais. La première est l'intégration par parties : l'intégrale de u fois v prime égale le crochet de u fois v, moins l'intégrale de u prime fois v. On échange donc une intégrale contre une autre, que l'on choisit plus simple que la première.",
+   "ecran": "ipp",
+   "id": "p13",
+   "texte": "Par parties : ∫ u·v′ = [u·v] − ∫ u′·v."
+  },
+  {
+   "dit": "Tout l'art est dans le choix des rôles. On dérive le facteur qui se simplifie en dérivant : un polynôme, dont le degré baisse, ou un logarithme, qui devient une fraction. Et l'on primitive l'autre facteur, en vérifiant qu'il se primitive facilement. Un mauvais choix complique l'intégrale au lieu de la simplifier.",
+   "ecran": "ipp_choix",
+   "id": "p14",
+   "texte": "Dériver ce qui se simplifie, primitiver le reste."
+  },
+  {
+   "dit": "Exemple complet : l'intégrale de zéro à un de ixe fois exponentielle ixe. On pose u égale ixe, qui se dérive en un, et v prime égale exponentielle ixe, qui se primitive en elle-même. Le crochet vaut e en un, zéro en zéro. Il reste l'intégrale de l'exponentielle, qui vaut e moins un. Au total, e moins e moins un : l'intégrale vaut un.",
+   "ecran": "ex_ipp",
+   "id": "p15",
+   "texte": "∫₀¹ x·eˣ dx = e − (e − 1) = 1."
+  },
+  {
+   "dit": "Deuxième technique, le changement de variable. On remplace la variable ixe par une fonction phi d'une nouvelle variable t. La fonction se compose avec phi, le dé ixe devient phi prime fois dé t, et les bornes deviennent celles de la nouvelle variable. Tout se transforme ensemble, ou rien ne se transforme.",
+   "ecran": "changement",
+   "id": "p16",
+   "texte": "Changement de variable : fonction, dx et bornes ensemble."
+  },
+  {
+   "dit": "En pratique, on travaille le plus souvent avec une nouvelle variable u, fonction de ixe. Trois temps : poser u et calculer sa différentielle dé u ; transformer les bornes, en calculant u pour chaque ancienne borne ; puis mener tout le calcul dans la variable u, sans jamais revenir à ixe.",
+   "ecran": "changement_etapes",
+   "id": "p17",
+   "texte": "Poser u, transformer les bornes, calculer en u."
+  },
+  {
+   "dit": "Exemple complet : l'intégrale de zéro à un de deux ixe sur ixe carré plus un. On pose u égale ixe carré plus un, donc dé u égale deux ixe dé ixe, exactement le numérateur. Les bornes deviennent un pour ixe égal zéro, et deux pour ixe égal un. L'intégrale devient celle de un sur u, de un à deux, soit logarithme de deux.",
+   "ecran": "ex_changement",
+   "id": "p18",
+   "texte": "u = x² + 1 : ∫₀¹ 2x/(x²+1) dx = ln 2."
+  },
+  {
+   "dit": "Une application donne son sens géométrique à tout ce chapitre. Si eff est continue et positive sur le segment de a à b, son intégrale est l'aire du domaine situé sous sa courbe, au-dessus de l'axe des abscisses, entre les droites verticales d'abscisses a et b. Calculer une intégrale, c'est donc aussi mesurer une aire.",
+   "ecran": "aire",
+   "id": "p19",
+   "texte": "f ≥ 0 : l'intégrale est l'aire sous la courbe."
+  },
+  {
+   "dit": "Exemple : l'aire sous la courbe de ixe carré, entre zéro et deux. L'intégrale de ixe carré est ixe cube sur trois, entre crochets de zéro à deux. En deux, huit sur trois ; en zéro, zéro. L'aire vaut donc huit tiers, en unités d'aire. C'est la positivité de la fonction qui autorise cette lecture en aire.",
+   "ecran": "ex_aire",
+   "id": "p20",
+   "texte": "Aire sous x² de 0 à 2 : 8/3 unités d'aire."
+  },
+  {
+   "dit": "Devant un calcul, choisissez la technique selon la forme. Produit d'un polynôme par une exponentielle, ou présence d'un logarithme : par parties. U et u prime présents ensemble : forme composée. Racine ou dénominateur compliqué : changement de variable. Sinon, linéarité et usuelles.",
+   "ecran": "methode_choix",
+   "id": "p21",
+   "texte": "Choisir la technique selon la forme de l'expression."
+  },
+  {
+   "dit": "Pour retenir l'essentiel : une intégrale est une différence de valeurs d'une primitive, au choix libre. La linéarité et Chasles découpent les calculs, l'intégration par parties traite les produits qui se simplifient, le changement de variable transforme aussi les bornes, et pour une fonction positive, le résultat se lit comme une aire.",
+   "ecran": "recap",
+   "id": "p22",
+   "texte": "L'essentiel du calcul intégral, en cinq points."
+  }
+ ],
+ "titre": "Primitives et calcul intégral : de la primitive à l'aire"
+}

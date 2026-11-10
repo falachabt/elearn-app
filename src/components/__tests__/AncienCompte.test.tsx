@@ -15,7 +15,7 @@ import { AncienCompte } from '../AncienCompte';
 const mockRetrouver = jest.fn();
 const mockGoogle = jest.fn();
 jest.mock('expo-router', () => ({ router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => false) } }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@/services/authNatif', () => ({ appleAffiche: false, facebookAffiche: true, depsOAuth: () => ({}), depsApple: () => ({}) }));
 jest.mock('@/services/ancienCompte', () => ({

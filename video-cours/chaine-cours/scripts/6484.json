@@ -1,0 +1,386 @@
+{
+ "cours": 6484,
+ "titre": "Équations du second degré : résoudre par le discriminant",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Équations du second degré",
+   "titre": "Équations du second degré : résoudre par le discriminant",
+   "sous": "Forme canonique, coefficients, et la formule qui donne toutes les racines",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Une question : pour quelles valeurs de x l'égalité est-elle vraie ?"
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Une très vieille équation",
+   "texte": "Des Babyloniens à Al-Khwarizmi, et de la balle lancée au profit d'une entreprise."
+  },
+  "forme": {
+   "type": "formule",
+   "kicker": "La forme canonique",
+   "tex": "ax^2 + bx + c = 0, \\quad a \\neq 0",
+   "note": "a, b, c réels. Le degré 2 vient de la plus grande puissance de x."
+  },
+  "coefficients": {
+   "type": "etape",
+   "kicker": "Les trois coefficients",
+   "titre": "Chaque coefficient a son rôle sur la parabole",
+   "tex": [
+    "\\text{a : devant } x^2 \\text{, ouverture de la parabole}",
+    "\\text{b : devant } x \\text{, position horizontale}",
+    "\\text{c : terme constant, ordonnée à l'origine}"
+   ]
+  },
+  "identifier": {
+   "type": "etape",
+   "kicker": "Identifier a, b et c",
+   "titre": "Parfois, il faut d'abord développer et tout ramener à gauche",
+   "tex": [
+    "5x^2 - 3x + 2 = 0 : a{=}5,\\ b{=}-3,\\ c{=}2",
+    "(x{+}1)(2x{-}3) = 7 \\rightarrow 2x^2 - x - 10 = 0",
+    "2x^2 - 8 = 0 : a{=}2,\\ b{=}0,\\ c{=}-8"
+   ]
+  },
+  "produit_nul": {
+   "type": "etape",
+   "kicker": "Le cas factorisé",
+   "titre": "Produit nul : x = 2 ou x = −5",
+   "tex": [
+    "(2x - 4)(x + 5) = 0",
+    "2x - 4 = 0 \\text{ ou } x + 5 = 0"
+   ]
+  },
+  "terrain": {
+   "type": "etape",
+   "kicker": "Le problème du terrain",
+   "titre": "Périmètre 100 m, aire 600 m² : les dimensions sont 30 m et 20 m",
+   "tex": [
+    "L + l = 50 \\qquad L \\times l = 600",
+    "l = 50 - L \\quad \\Rightarrow \\quad L^2 - 50L + 600 = 0",
+    "\\Delta = 100 \\quad L = 20 \\ \\text{ou} \\ 30"
+   ]
+  },
+  "graphique": {
+   "type": "phrase",
+   "kicker": "L'intuition graphique",
+   "texte": "Résoudre, c'est chercher où la parabole coupe l'axe des abscisses.",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 200
+   }
+  },
+  "discriminant": {
+   "type": "formule",
+   "kicker": "Le discriminant",
+   "tex": "\\Delta = b^2 - 4ac",
+   "note": "Son signe décide de tout : 2, 1 ou 0 solution réelle."
+  },
+  "calcul_delta": {
+   "type": "etape",
+   "kicker": "Calculer delta",
+   "titre": "Identifier, élever b au carré, calculer 4ac, soustraire",
+   "tex": [
+    "3x^2 - 7x + 2 = 0 : \\Delta = 49 - 24 = 25",
+    "9x^2 + 6x + 1 = 0 : \\Delta = 36 - 36 = 0",
+    "x^2 + x + 1 = 0 : \\Delta = 1 - 4 = -3"
+   ]
+  },
+  "trois_cas": {
+   "type": "etape",
+   "kicker": "Les trois cas",
+   "titre": "Le signe de delta annonce le nombre de solutions",
+   "tex": [
+    "\\Delta > 0 \\text{ : la parabole coupe l'axe deux fois}",
+    "\\Delta = 0 \\text{ : la parabole est tangente à l'axe}",
+    "\\Delta < 0 \\text{ : la parabole évite l'axe}"
+   ],
+   "anim": {
+    "nom": "signe_parabole_fig",
+    "hauteur": 130
+   }
+  },
+  "formule_quad": {
+   "type": "formule",
+   "kicker": "La formule des racines",
+   "tex": "x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}",
+   "note": "Valable si Δ ≥ 0. Si Δ = 0, elle se réduit à x₀ = −b sur 2a."
+  },
+  "ex_deux": {
+   "type": "etape",
+   "kicker": "Exemple complet · deux racines",
+   "titre": "Delta vaut 64, sa racine carrée vaut 8",
+   "tex": [
+    "2x^2 - 4x - 6 = 0 \\quad \\Delta = 16 + 48 = 64",
+    "x_1 = \\tfrac{4 - 8}{4} = -1",
+    "x_2 = \\tfrac{4 + 8}{4} = 3",
+    "S = \\{-1\\,;\\, 3\\}"
+   ]
+  },
+  "ex_classique": {
+   "type": "etape",
+   "kicker": "Exemple · delta carré parfait",
+   "titre": "Delta vaut 1 : des racines entières",
+   "tex": [
+    "x^2 - 5x + 6 = 0 \\quad \\Delta = 25 - 24 = 1",
+    "x_1 = \\tfrac{5 - 1}{2} = 2",
+    "x_2 = \\tfrac{5 + 1}{2} = 3 \\quad S = \\{2\\,;\\, 3\\}"
+   ]
+  },
+  "cas_double": {
+   "type": "etape",
+   "kicker": "Exemple · la racine double",
+   "titre": "Un carré parfait déguisé en trinôme",
+   "tex": [
+    "x^2 - 6x + 9 = 0 \\quad \\Delta = 36 - 36 = 0",
+    "x_0 = \\tfrac{-b}{2a} = \\tfrac{6}{2} = 3",
+    "x^2 - 6x + 9 = (x - 3)^2"
+   ]
+  },
+  "cas_negatif": {
+   "type": "etape",
+   "kicker": "Exemple · aucune racine réelle",
+   "titre": "Delta négatif : le calcul s'arrête, dans les réels",
+   "tex": [
+    "3x^2 + 2x + 5 = 0 \\quad \\Delta = 4 - 60 = -56",
+    "S = \\varnothing \\quad \\text{dans } \\mathbb{R}"
+   ],
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 150
+   }
+  },
+  "cas_particuliers": {
+   "type": "etape",
+   "kicker": "Les raccourcis",
+   "titre": "Quand b ou c est nul, la formule devient inutile",
+   "tex": [
+    "b = 0 : 2x^2 - 8 = 0 \\Rightarrow x = \\pm 2",
+    "c = 0 : x(ax + b) = 0, \\ x = 0 \\text{ ou } -\\tfrac{b}{a}",
+    "a = 0 \\text{ : plus du second degré}"
+   ]
+  },
+  "balle": {
+   "type": "etape",
+   "kicker": "Application · la balle lancée",
+   "titre": "Toucher le sol, c'est résoudre h(t) = 0",
+   "tex": [
+    "h(t) = -4{,}9t^2 + 15t + 2 = 0",
+    "\\Delta = 225 + 39{,}2 = 264{,}2",
+    "t \\approx 3{,}2 \\text{ s, racine positive gardée}"
+   ],
+   "anim": {
+    "nom": "trajectoire",
+    "hauteur": 130
+   }
+  },
+  "sommet": {
+   "type": "etape",
+   "kicker": "Application · le bénéfice maximal",
+   "titre": "Le sommet de la parabole donne l'optimum",
+   "tex": [
+    "B(x) = -2x^2 + 200x - 1000",
+    "x_s = \\tfrac{-200}{-4} = 50 \\text{ unités}"
+   ]
+  },
+  "relations": {
+   "type": "etape",
+   "kicker": "Somme et produit des racines",
+   "titre": "Les relations de Viète : un contrôle éclair",
+   "tex": [
+    "x_1 + x_2 = -\\tfrac{b}{a} \\qquad x_1 x_2 = \\tfrac{c}{a}",
+    "\\text{exemple : } 2 + 3 = 5 \\qquad 2 \\times 3 = 6"
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode en quatre gestes",
+   "etapes": [
+    "Identifier a, b, c dans la forme canonique",
+    "Calculer Δ = b² − 4ac, signes compris",
+    "Conclure selon le signe de Δ",
+    "Appliquer la formule, puis vérifier"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Forme canonique : ax² + bx + c = 0, a ≠ 0",
+    "Δ = b² − 4ac : son signe décide de tout",
+    "Δ > 0 : deux racines ; Δ = 0 : une double",
+    "Δ < 0 : aucune solution réelle",
+    "Racines : (−b ± √Δ) / 2a"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux équations du second degré. Une seule forme à retenir, a ixe carré plus bé ixe plus cé égale zéro, et un seul nombre pour la juger : le discriminant, delta égale bé carré moins quatre a cé. Nous verrons comment identifier les coefficients, comment le signe de delta décide du nombre de solutions, et comment la formule générale les calcule toutes, des cas simples aux applications concrètes.",
+   "texte": "Équations du second degré : le discriminant décide, la formule calcule.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge du cours tient en une question : pour quelles valeurs de ixe l'égalité est-elle vraie. Ces valeurs sont les racines de l'équation, et tout l'enjeu est de les trouver sans tâtonner. La méthode du discriminant répond en trois temps : identifier les coefficients, calculer delta, conclure. C'est un algorithme complet, qui ne laisse aucun cas de côté.",
+   "texte": "Les racines : les valeurs de x qui rendent l'égalité vraie.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Ces équations sont parmi les plus anciennes des mathématiques : les Babyloniens les résolvaient déjà, de façon géométrique, il y a près de quatre mille ans, et le mot algèbre vient du traité d'Al-Khwarizmi, au neuvième siècle. Aujourd'hui, elles décrivent la trajectoire d'une balle, la forme d'une arche de pont, ou le profit d'une entreprise selon ses ventes. Un même outil, des mondes très différents.",
+   "texte": "Quatre mille ans d'histoire, et des usages partout.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p04",
+   "dit": "Une équation du second degré est une égalité qui se ramène à la forme canonique : a ixe carré, plus bé ixe, plus cé, égale zéro. Les lettres a, bé et cé sont des nombres réels, les coefficients de l'équation. Le second degré vient de la plus grande puissance de l'inconnue, ixe carré. Et la condition a différent de zéro est impérative : sans elle, le terme en ixe carré disparaît, et l'équation retombe au premier degré.",
+   "texte": "ax² + bx + c = 0, avec a ≠ 0 : la forme à reconnaître.",
+   "ecran": "forme"
+  },
+  {
+   "id": "p05",
+   "dit": "Chaque coefficient a son rôle. Le coefficient a commande la parabole associée : positif, elle s'ouvre vers le haut ; négatif, vers le bas. Le coefficient bé règle la position horizontale de la courbe. Le coefficient cé, le terme constant, donne l'ordonnée à l'origine, le point où la parabole coupe l'axe vertical. Retenez surtout ceci : dans ce cours, a ne s'annule jamais.",
+   "texte": "a ouvre la parabole, b la déplace, c la cale en hauteur.",
+   "ecran": "coefficients"
+  },
+  {
+   "id": "p06",
+   "dit": "Identifier les coefficients demande parfois un détour. Premier exemple, tout est en place : cinq ixe carré, moins trois ixe, plus deux, égale zéro ; a vaut cinq, bé vaut moins trois, cé vaut deux. Deuxième exemple : un produit égal à sept. On développe, on ramène tout à gauche, et l'on obtient deux ixe carré, moins ixe, moins dix, égale zéro. Dernier réflexe : un terme absent vaut zéro, comme bé dans deux ixe carré moins huit.",
+   "texte": "Développer, tout ramener à gauche, puis lire a, b, c.",
+   "ecran": "identifier"
+  },
+  {
+   "id": "p07",
+   "dit": "Quand l'équation arrive déjà factorisée, la résolution est immédiate, grâce à la règle du produit nul : si un produit de facteurs est nul, l'un des facteurs au moins est nul. Pour deux ixe moins quatre, facteur de ixe plus cinq, chaque facteur donne une équation du premier degré. On trouve deux solutions : ixe égal à deux, et ixe égal à moins cinq. Toute la question est donc de savoir factoriser, ou de contourner la factorisation.",
+   "texte": "Produit nul : chaque facteur donne une solution.",
+   "ecran": "produit_nul"
+  },
+  {
+   "id": "p08",
+   "dit": "Voici le problème qui rend une méthode générale indispensable. Un terrain rectangulaire a un périmètre de cent mètres et une aire de six cents mètres carrés. Longueur plus largeur valent cinquante, et leur produit vaut six cents. En remplaçant la largeur par cinquante moins la longueur, on tombe sur une équation du second degré. Le discriminant va la résoudre en quelques lignes, et ses deux racines seront les deux dimensions du terrain : trente mètres et vingt mètres.",
+   "texte": "Le terrain : un périmètre, une aire, une équation.",
+   "ecran": "terrain"
+  },
+  {
+   "id": "p09",
+   "dit": "Lisons ce problème sur un graphique. À l'équation correspond la parabole d'équation igrec égale a ixe carré plus bé ixe plus cé. Résoudre l'équation, c'est chercher où cette parabole coupe l'axe des abscisses. Trois scénarios seulement sont possibles : elle le coupe en deux points, elle le touche en un seul point, ou elle ne le rencontre jamais. Deux, une ou zéro solution : le discriminant va choisir entre ces trois destins.",
+   "texte": "Deux points, un point, ou aucun : trois destins possibles.",
+   "ecran": "graphique"
+  },
+  {
+   "id": "p10",
+   "dit": "Voici l'outil central du cours. Le discriminant, noté delta, se calcule uniquement à partir des coefficients : delta égale bé carré, moins quatre fois a fois cé. Son nom le dit : il discrimine, il distingue les cas. Il apparaît naturellement quand on résout l'équation par la forme canonique, car c'est la quantité placée sous la racine carrée de la formule des solutions. Son signe décidera donc de tout.",
+   "texte": "Δ = b² − 4ac : un seul nombre pour juger l'équation.",
+   "ecran": "discriminant"
+  },
+  {
+   "id": "p11",
+   "dit": "Le calcul suit toujours le même protocole : identifier a, bé et cé, élever bé au carré, calculer quatre a cé, puis soustraire. Trois exemples pour prendre le réflexe. Le premier donne delta égal à vingt-cinq, un nombre positif. Le deuxième donne delta égal à zéro, tout juste. Le troisième donne delta égal à moins trois, un nombre négatif. Retenez les pièges : bé carré est toujours positif, même si bé est négatif, et un terme absent compte pour zéro.",
+   "texte": "Trois calculs de Δ : positif, nul, négatif.",
+   "ecran": "calcul_delta"
+  },
+  {
+   "id": "p12",
+   "dit": "Interprétons ces trois signes, car chacun annonce un destin différent. Si delta est strictement positif, la parabole coupe l'axe en deux points : deux solutions réelles distinctes. Si delta est nul, la parabole est tangente à l'axe, son sommet posé exactement dessus : une solution unique, dite double. Si delta est strictement négatif, la parabole ne rencontre jamais l'axe : aucune solution réelle, car la racine carrée d'un nombre négatif n'existe pas chez les réels.",
+   "texte": "Le signe de Δ : deux solutions, une double, ou aucune.",
+   "ecran": "trois_cas"
+  },
+  {
+   "id": "p13",
+   "dit": "Quand delta est positif ou nul, les solutions s'écrivent d'un seul trait : ixe égale, moins bé, plus ou moins racine carrée de delta, le tout divisé par deux a. Le plus ou moins produit les deux racines quand delta est positif, et une seule quand delta est nul, puisque la racine de zéro vaut zéro. Cette formule, associée au mathématicien indien Bhaskara, fonctionne pour toutes les équations du second degré : c'est la clé universelle du chapitre.",
+   "texte": "x = (−b ± √Δ) / 2a : la clé universelle.",
+   "ecran": "formule_quad"
+  },
+  {
+   "id": "p14",
+   "dit": "Premier exemple complet : deux ixe carré, moins quatre ixe, moins six, égale zéro. Les coefficients sont deux, moins quatre et moins six. Delta vaut seize, plus quarante-huit, soit soixante-quatre, et sa racine carrée vaut huit. La première racine : quatre, moins huit, divisé par quatre, égal à moins un. La seconde : quatre, plus huit, divisé par quatre, égal à trois. L'ensemble des solutions contient donc moins un et trois, et la parabole coupe l'axe en ces deux points.",
+   "texte": "Δ = 64 : les racines sont −1 et 3.",
+   "ecran": "ex_deux"
+  },
+  {
+   "id": "p15",
+   "dit": "Deuxième exemple, le classique des manuels : ixe carré, moins cinq ixe, plus six, égale zéro. Delta vaut vingt-cinq, moins vingt-quatre, soit un, et sa racine vaut un. Les racines tombent juste : cinq moins un, divisé par deux, égale deux ; cinq plus un, divisé par deux, égale trois. Quand delta est un carré parfait, comme ici, attendez-vous à des solutions rationnelles, souvent entières : c'est un bon contrôle de vraisemblance.",
+   "texte": "Δ = 1, un carré parfait : racines 2 et 3.",
+   "ecran": "ex_classique"
+  },
+  {
+   "id": "p16",
+   "dit": "Troisième exemple, le cas limite : ixe carré, moins six ixe, plus neuf, égale zéro. Delta vaut trente-six, moins trente-six, soit zéro. La formule se simplifie en moins bé sur deux a, et donne la racine double trois. Rien d'étonnant : le trinôme est le carré de ixe moins trois, une identité remarquable. Graphiquement, le sommet de la parabole repose sur l'axe des abscisses, au point d'abscisse trois.",
+   "texte": "Δ = 0 : la racine double vaut 3.",
+   "ecran": "cas_double"
+  },
+  {
+   "id": "p17",
+   "dit": "Quatrième exemple, le cas sans issue réelle : trois ixe carré, plus deux ixe, plus cinq, égale zéro. Delta vaut quatre, moins soixante, soit moins cinquante-six. Le calcul s'arrête là pour les solutions réelles : l'ensemble des solutions est vide, et la parabole, tournée vers le haut, reste entièrement au-dessus de l'axe. Ce n'est pas une impasse définitive : en élargissant les nombres aux complexes, cette équation aurait deux solutions, mais cela dépasse le cadre de ce cours.",
+   "texte": "Δ = −56 : aucune solution réelle, S est vide.",
+   "ecran": "cas_negatif"
+  },
+  {
+   "id": "p18",
+   "dit": "Deux cas particuliers dispensent de la formule générale. Si bé est nul, l'équation devient a ixe carré plus cé égale zéro : on isole ixe carré, et l'on obtient deux racines opposées, comme deux et moins deux pour deux ixe carré moins huit. Si cé est nul, on factorise par ixe : une racine est zéro, l'autre est moins bé sur a. Et si a est nul, rappelons-le, ce n'est plus du second degré. Reconnaître ces formes fait gagner un temps précieux.",
+   "texte": "b = 0 ou c = 0 : des raccourcis à reconnaître.",
+   "ecran": "cas_particuliers"
+  },
+  {
+   "id": "p19",
+   "dit": "Application à la physique : une balle lancée vers le haut, depuis deux mètres, à quinze mètres par seconde. Sa hauteur suit une loi du second degré, et toucher le sol signifie résoudre moins quatre virgule neuf té carré, plus quinze té, plus deux, égale zéro. Delta est positif : il donne deux instants mathématiques, dont un seul positif, donc physique. La balle retombe au sol après environ trois virgule deux secondes ; la racine négative se rejette, car le temps ne remonte pas.",
+   "texte": "La balle retombe après environ 3,2 secondes.",
+   "ecran": "balle"
+  },
+  {
+   "id": "p20",
+   "dit": "Application à l'économie : le bénéfice d'une entreprise, moins deux ixe carré, plus deux cents ixe, moins mille, où ixe compte les unités produites. Le maximum du bénéfice se lit au sommet de la parabole, dont l'abscisse est moins bé sur deux a : moins deux cents, divisé par moins quatre, égal à cinquante. Produire cinquante unités maximise donc le bénéfice. Remarquez que la même expression, moins bé sur deux a, donnait déjà la racine double : le sommet est au cœur du chapitre.",
+   "texte": "Sommet en x = 50 : cinquante unités, bénéfice maximal.",
+   "ecran": "sommet"
+  },
+  {
+   "id": "p21",
+   "dit": "Un dernier outil, offert par les relations de Viète : sans calculer les racines, on connaît leur somme, moins bé sur a, et leur produit, cé sur a. Sur notre exemple classique, ixe carré moins cinq ixe plus six : la somme vaut cinq, le produit vaut six, et deux plus trois font bien cinq, deux fois trois font bien six. C'est un contrôle éclair après chaque résolution, et parfois un moyen de deviner des racines entières.",
+   "texte": "Somme −b/a, produit c/a : le contrôle éclair.",
+   "ecran": "relations"
+  },
+  {
+   "id": "p22",
+   "dit": "Face à n'importe quelle équation du second degré, la stratégie tient en quatre gestes. D'abord, ramener l'équation à la forme canonique et identifier a, bé et cé, signes compris. Ensuite, calculer delta, bé carré moins quatre a cé. Puis conclure selon le signe de delta : deux solutions, une double, ou aucune. Enfin, appliquer la formule des racines, rejeter les solutions impossibles dans le contexte, et vérifier par la somme et le produit.",
+   "texte": "La méthode en quatre gestes.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p23",
+   "dit": "Pour conclure, retenez l'enchaînement complet du cours. La forme canonique a ixe carré plus bé ixe plus cé égale zéro, avec a non nul, décrit toutes les équations du second degré. Le discriminant delta, bé carré moins quatre a cé, annonce par son seul signe le nombre de solutions réelles. La formule des racines les calcule ensuite exactement. Et les cas particuliers, bé nul ou cé nul, offrent des raccourcis à reconnaître au premier coup d'œil.",
+   "texte": "Équations du second degré : à retenir.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Forme canonique, coefficients et premières résolutions"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "Le discriminant : le signe qui décide",
+   "pont": {
+    "texte": "Partie 2 : le discriminant, son calcul et la formule des racines.",
+    "dit": "Partie deux : le discriminant. Nous lirons d'abord l'équation sur sa parabole, puis nous définirons delta, nous apprendrons à le calculer sans faute, à interpréter son signe, et nous en tirerons la formule générale qui donne toutes les racines."
+   }
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Aucune racine, raccourcis et applications",
+   "pont": {
+    "texte": "Partie 3 : cas sans solution, raccourcis, applications et synthèse.",
+    "dit": "Partie trois : les cas limites et les applications. Nous traiterons le cas sans solution réelle, les raccourcis quand un coefficient est nul, puis deux applications concrètes, la chute d'une balle et le bénéfice maximal, avant la synthèse finale."
+   }
+  }
+ ]
+}

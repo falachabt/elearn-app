@@ -1,0 +1,418 @@
+{
+ "cours": 6378,
+ "ecrans": {
+  "bowen_note": {
+   "kicker": "La naissance d'un minéral",
+   "tex": [
+    "\\text{refroidissement d'un magma}",
+    "\\text{précipitation d'une solution}",
+    "\\text{réarrangement à l'état solide}"
+   ],
+   "titre": "Trois naissances",
+   "type": "etape"
+  },
+  "classification": {
+   "kicker": "Classer les magmatiques",
+   "tex": [
+    "\\text{ultrabasique : } \\mathrm{SiO_2} < 45\\,\\%",
+    "\\text{basique : 45 à 52 \\,\\%}",
+    "\\text{intermédiaire : 52 à 65 \\,\\%}",
+    "\\text{acide : plus de 65 \\,\\%}"
+   ],
+   "titre": "Quatre familles selon la silice",
+   "type": "etape"
+  },
+  "cycle": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "cycle_roches_fig"
+   },
+   "kicker": "Le cycle des roches",
+   "texte": "Le cycle des roches, sans début ni fin.",
+   "type": "phrase"
+  },
+  "cycle_etapes": {
+   "kicker": "Le cycle en boucle",
+   "tex": [
+    "\\text{magma} \\rightarrow \\text{magmatique}",
+    "\\text{magmatique} \\rightarrow \\text{sédiments}",
+    "\\text{sédiments} \\rightarrow \\text{sédimentaire}",
+    "\\text{métamorphique} \\rightarrow \\text{magma}"
+   ],
+   "titre": "Quatre passages, une boucle",
+   "type": "etape"
+  },
+  "def_mineral": {
+   "kicker": "Définir : le minéral",
+   "tex": [
+    "\\text{naturel, inorganique, solide}",
+    "\\text{composition chimique définie}",
+    "\\text{structure atomique ordonnée}"
+   ],
+   "titre": "Un minéral, quatre critères",
+   "type": "etape"
+  },
+  "diagenese": {
+   "kicker": "La diagenèse",
+   "tex": [
+    "\\text{compaction : grains tassés}",
+    "\\text{cimentation : pores remplis}",
+    "\\text{grès des Vosges, ciment ferreux}"
+   ],
+   "titre": "La pierre se fige en deux temps",
+   "type": "etape"
+  },
+  "exemple_mohs": {
+   "kicker": "Exercice : identifier un inconnu",
+   "note": "Il raye le verre, le quartz le raye : ce n'est pas le calcaire, dureté trois",
+   "tex": "H \\geq 5{,}5",
+   "type": "formule"
+  },
+  "facies": {
+   "kicker": "Les faciès métamorphiques",
+   "tex": [
+    "\\text{zéolites : basse température}",
+    "\\text{schistes verts}",
+    "\\text{amphibolites}",
+    "\\text{granulites et éclogites : haute pression}"
+   ],
+   "titre": "Une carte d'identité pression-température",
+   "type": "etape"
+  },
+  "fusion": {
+   "kicker": "Faire fondre une roche",
+   "tex": [
+    "\\text{décompression lors d'une remontée}",
+    "\\text{apport de volatils, eau en subduction}",
+    "\\text{élévation de température}"
+   ],
+   "titre": "Trois déclencheurs de la fusion",
+   "type": "etape"
+  },
+  "identification": {
+   "kicker": "Observer d'abord",
+   "tex": [
+    "\\text{couleur, éclat}",
+    "\\text{trait, clivage}",
+    "\\text{dureté}"
+   ],
+   "titre": "Cinq tests d'identification",
+   "type": "etape"
+  },
+  "magma": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "volcan_fig"
+   },
+   "kicker": "Magma ou lave ?",
+   "texte": "Magma en profondeur, lave en surface.",
+   "type": "phrase"
+  },
+  "metamorphisme": {
+   "kicker": "Le métamorphisme",
+   "tex": [
+    "\\text{calcaire} \\rightarrow \\text{marbre}",
+    "\\text{shale} \\rightarrow \\text{ardoise}",
+    "\\text{à l'état solide, sans fondre}"
+   ],
+   "titre": "Transformer sans fondre",
+   "type": "etape"
+  },
+  "mohs": {
+   "kicker": "Mesurer : l'échelle de Mohs",
+   "note": "Échelle de Friedrich Mohs, 1812, de un à dix, du talc au diamant",
+   "tex": "1 \\leq H \\leq 10",
+   "type": "formule"
+  },
+  "plutonique": {
+   "kicker": "Deux destins de refroidissement",
+   "tex": [
+    "\\text{plutonique, lent : granite grenu}",
+    "\\text{volcanique, rapide : basalte fin}"
+   ],
+   "titre": "Lent ou rapide, grenu ou fin",
+   "type": "etape"
+  },
+  "quartz": {
+   "kicker": "Exemple : le quartz",
+   "note": "Quartz, dioxyde de silicium ; la glace de glacier, elle, est un minéral",
+   "tex": "\\mathrm{SiO_2}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Minéral : solide naturel cristallisé",
+    "Roche : assemblage de minéraux",
+    "Cycle : magma, sédiments, métamorphisme",
+    "Classer par silice, texture et faciès",
+    "Lire la pierre, c'est lire l'histoire de la Terre"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "ressources": {
+   "kicker": "Les ressources du sous-sol",
+   "texte": "Bâtir, produire l'énergie : le sous-sol nous porte.",
+   "type": "phrase"
+  },
+  "roche": {
+   "kicker": "Définir : la roche",
+   "tex": [
+    "\\text{monominérale : calcaire, calcite}",
+    "\\text{polyminérale : granite, trois minéraux}"
+   ],
+   "titre": "Un assemblage, deux cas",
+   "type": "etape"
+  },
+  "sed_actes": {
+   "kicker": "Les sédimentaires : quatre actes",
+   "tex": [
+    "\\text{altération : désagrégation}",
+    "\\text{transport : eau, vent, glace}",
+    "\\text{sédimentation : dépôt}",
+    "\\text{diagenèse : compaction, cimentation}"
+   ],
+   "titre": "Altérer, transporter, déposer, cimenter",
+   "type": "etape"
+  },
+  "sed_familles": {
+   "kicker": "Trois familles sédimentaires",
+   "tex": [
+    "\\text{détritiques : grès, conglomérat}",
+    "\\text{chimiques : calcaire, dolomie}",
+    "\\text{organiques : charbon, pétrole}"
+   ],
+   "titre": "Détritiques, chimiques, organiques",
+   "type": "etape"
+  },
+  "silicates": {
+   "kicker": "Les silicates, maîtres de la croûte",
+   "note": "Unité de base : le tétraèdre silice-oxygène",
+   "tex": "[\\mathrm{SiO_4}]^{4-}",
+   "type": "formule"
+  },
+  "strates": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "strates_fig"
+   },
+   "kicker": "Les archives de la surface",
+   "texte": "Strates : les pages de l'histoire.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "cycle_roches_fig"
+   },
+   "kicker": "Biologie · Minéraux et roches",
+   "sous": "Définitions, classification et formation : apprendre à lire la pierre",
+   "titre": "Roches et minéraux : classification et formation",
+   "type": "titre"
+  },
+  "usages": {
+   "kicker": "Bâtir : du calcaire au ciment",
+   "tex": [
+    "\\text{calcaire : ciment, pierre de taille}",
+    "\\text{grès : pavés}",
+    "\\text{ardoise : toits}"
+   ],
+   "titre": "La pierre porte nos sociétés",
+   "type": "etape"
+  },
+  "defi": {
+   "kicker": "Votre défi d'observation",
+   "texte": "Autour de vous : granite, calcaire ou ardoise ?",
+   "type": "phrase"
+  },
+  "fractionnement": {
+   "kicker": "La cristallisation fractionnée",
+   "tex": [
+    "\\text{magma qui refroidit}",
+    "\\text{résidu enrichi en silice}",
+    "\\text{roches de compositions différentes}"
+   ],
+   "titre": "Un magma, plusieurs roches",
+   "type": "etape"
+  },
+  "transition": {
+   "kicker": "Vers la formation",
+   "texte": "Mots, phrases, récit : passons à la formation.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Biologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Minéral, roche et cycle"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : la formation des trois familles de roches, puis leurs usages. Nous verrons comment naissent les magmatiques, les sédimentaires et les métamorphiques, et pourquoi nos sociétés reposent sur elles.",
+    "texte": "Partie 2 : former les trois familles, et leurs usages."
+   },
+   "sous_titre": "Former les trois familles, et leurs usages"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur les roches et les minéraux, leur classification et leur formation. Un simple caillou ramassé au bord d'un chemin est un livre ouvert : apprenons son langage, du mot minéral à la phrase roche, puis au grand cycle qui les relie.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Un caillou, un livre ouvert."
+  },
+  {
+   "dit": "D'abord, une distinction cruciale, souvent source de confusion. Un minéral est un solide naturel, inorganique, de composition chimique définie et de structure atomique ordonnée, cristalline. C'est le mot de base du langage géologique.",
+   "ecran": "def_mineral",
+   "id": "p02",
+   "texte": "Minéral : naturel, défini, cristallisé."
+  },
+  {
+   "dit": "Le quartz en est l'exemple parfait : toujours un atome de silicium pour deux atomes d'oxygène, arrangés en réseau hexagonal. Et notez ce cas limite : la glace d'un glacier, solide naturel de composition H deux O et de structure cristalline, est considérée comme un minéral, alors que l'eau liquide ne l'est pas.",
+   "ecran": "quartz",
+   "id": "p03",
+   "texte": "Quartz SiO₂, toujours la même composition."
+  },
+  {
+   "dit": "Les silicates dominent la croûte. Leur unité de base est le tétraèdre silice-oxygène, et la façon dont ces tétraèdres s'assemblent détermine les sous-familles de minéraux. C'est cette charpente de silicium et d'oxygène qui porte l'essentiel des roches de la croûte.",
+   "ecran": "silicates",
+   "id": "p04",
+   "texte": "Le tétraèdre SiO₄, brique des silicates."
+  },
+  {
+   "dit": "Une roche, elle, est un agrégat solide d'un ou plusieurs minéraux : la phrase composée de mots minéraux. Le calcaire pur, fait de calcite seule, est monominéral ; le granite, quartz gris vitreux, feldspath rose ou blanc et mica noir brillant, est polyminéral.",
+   "ecran": "roche",
+   "id": "p05",
+   "texte": "Roche : un assemblage de minéraux."
+  },
+  {
+   "dit": "Avant tout instrument, l'œil suffit : couleur, éclat, trait, clivage et dureté identifient un minéral. Attention, la couleur seule trompe souvent, comme pour le quartz multicolore : c'est la combinaison des tests qui tranche.",
+   "ecran": "identification",
+   "id": "p06",
+   "texte": "Cinq tests : couleur, éclat, trait, clivage, dureté."
+  },
+  {
+   "dit": "L'échelle de Mohs, créée par le minéralogiste allemand Friedrich Mohs en mille huit cent douze, mesure la résistance à la rayure, de un à dix, du talc au diamant. Ce n'est pas une échelle de dureté absolue : elle dit seulement qui raye qui.",
+   "ecran": "mohs",
+   "id": "p07",
+   "texte": "Mohs : qui raye qui, de un à dix."
+  },
+  {
+   "dit": "Exercice : un minéral inconnu raye le verre, dont la dureté est d'environ cinq virgule cinq. Le calcaire, fait de calcite de dureté trois, est donc éliminé. Il faut chercher parmi les minéraux plus durs que le verre, en croisant avec les autres tests.",
+   "ecran": "exemple_mohs",
+   "id": "p08",
+   "texte": "Il raye le verre : plus dur que le calcaire."
+  },
+  {
+   "dit": "Les roches ne sont pas statiques : elles tournent dans le cycle des roches, sans début ni fin absolus. Deux moteurs l'alimentent : la chaleur interne de la Terre et l'énergie du Soleil, qui altère les roches en surface.",
+   "ecran": "cycle",
+   "id": "p09",
+   "texte": "Le cycle des roches, sans début ni fin."
+  },
+  {
+   "dit": "Suivons la boucle : le magma cristallise en roche magmatique, qui s'altère en sédiments, puis en roche sédimentaire. Enfouie, elle devient métamorphique, puis fond à nouveau en magma. Le cycle n'est pas une ligne, c'est un réseau de passages possibles.",
+   "ecran": "cycle_etapes",
+   "id": "p10",
+   "texte": "Magma, roches, sédiments : la boucle."
+  },
+  {
+   "dit": "Les minéraux naissent surtout par cristallisation : refroidissement d'un magma, précipitation d'une solution, comme le sel quand l'eau de mer s'évapore, ou réarrangement à l'état solide sous chaleur et pression, c'est-à-dire le métamorphisme.",
+   "ecran": "bowen_note",
+   "id": "p11",
+   "texte": "Trois naissances : magma, solution, métamorphisme."
+  },
+  {
+   "dit": "Premier défi d'observation, pour vous : les bordures de trottoir ou les façades autour de vous sont-elles en granite, roche magmatique, en calcaire, roche sédimentaire, ou en ardoise, roche métamorphique ? Regardez les cristaux, les strates, le grain : la pierre parle.",
+   "ecran": "defi",
+   "id": "p12",
+   "texte": "Autour de vous : granite, calcaire ou ardoise ?"
+  },
+  {
+   "dit": "Nous avons donc les mots, les phrases et le récit complet. Il reste à voir comment chaque famille se forme, avec ses propres règles de classement, de la fournaise du magma aux archives sédimentaires et aux transformations profondes.",
+   "ecran": "transition",
+   "id": "p13",
+   "texte": "Mots, phrases, récit : passons à la formation."
+  },
+  {
+   "dit": "Les roches magmatiques naissent du magma. En profondeur ou en surface, la lave en fusion refroidit, et les atomes, qui bougeaient librement, se figent en cristaux. Plus le refroidissement est lent, plus les cristaux ont le temps de devenir grands.",
+   "ecran": "magma",
+   "id": "p14",
+   "texte": "Magma en profondeur, lave en surface."
+  },
+  {
+   "dit": "Le magma n'est pas la lave : c'est un mélange fondu, en profondeur, de liquide, de cristaux et de gaz dissous. La lave n'est que le magma arrivé en surface, appauvri en gaz. Et une roche solide ne fond pas seulement parce qu'il fait chaud : la décompression d'une remontée, l'apport d'eau en subduction ou un apport de chaleur déclenchent la fusion.",
+   "ecran": "fusion",
+   "id": "p15",
+   "texte": "Trois déclencheurs de la fusion."
+  },
+  {
+   "dit": "Le lieu de refroidissement décide de la texture : lent et en profondeur, il donne une roche grenue comme le granite, dont les cristaux se voient à l'œil nu ; rapide et en surface, une roche fine comme le basalte. Basalte et gabbro ont la même composition chimique, mais pas la même histoire de refroidissement.",
+   "ecran": "plutonique",
+   "id": "p16",
+   "texte": "Grenu en profondeur, fin en surface."
+  },
+  {
+   "dit": "Les magmatiques se classent aussi par leur chimie, selon leur teneur en silice, qui contrôle les minéraux qui cristalliseront. Quatre familles : ultrabasique en dessous de quarante-cinq pour cent de silice, basique de quarante-cinq à cinquante-deux, intermédiaire de cinquante-deux à soixante-cinq, acide au-delà de soixante-cinq pour cent.",
+   "ecran": "classification",
+   "id": "p17",
+   "texte": "Quatre familles selon la silice."
+  },
+  {
+   "dit": "En refroidissant, le magma cristallise dans un ordre précis et son résidu s'enrichit en silice, en aluminium, en potassium et en sodium : c'est la cristallisation fractionnée, qui explique pourquoi un même magma peut donner des roches de compositions différentes.",
+   "ecran": "fractionnement",
+   "id": "p18",
+   "texte": "En refroidissant, le magma change de composition."
+  },
+  {
+   "dit": "Côté surface, quatre actes forment une roche sédimentaire : altération, érosion et transport par l'eau, le vent ou la glace, sédimentation, puis diagenèse. Les grains se déposent par taille décroissante, et la cimentation, par la silice, la calcite ou les oxydes de fer, colle les grains entre eux.",
+   "ecran": "sed_actes",
+   "id": "p19",
+   "texte": "Quatre actes : altérer, transporter, déposer, cimenter."
+  },
+  {
+   "dit": "La diagenèse fige la pierre en deux temps : la compaction tasse les grains sous le poids des couches, puis la cimentation précipite des minéraux dans les pores. Regardez un grès au microscope : un puzzle de grains de quartz résistants, teinté parfois en rouge par un ciment ferreux, comme le grès des Vosges.",
+   "ecran": "diagenese",
+   "id": "p20",
+   "texte": "Compaction puis cimentation : la pierre se fige."
+  },
+  {
+   "dit": "Les sédimentaires se classent en trois familles : détritiques, comme le grès et le conglomérat ; chimiques et biochimiques, comme le calcaire et la dolomie, riche en dolomite ; organiques, comme le charbon et le pétrole, nés de l'accumulation de matière organique.",
+   "ecran": "sed_familles",
+   "id": "p21",
+   "texte": "Détritiques, chimiques, organiques."
+  },
+  {
+   "dit": "Les strates sont les pages du livre géologique : elles datent les couches par leurs fossiles et racontent les milieux anciens, lagon tropical ou rivière, selon les structures sédimentaires. Les roches sédimentaires sont aussi d'immenses réservoirs de carbone, et leurs grès poreux piègent le pétrole et le gaz.",
+   "ecran": "strates",
+   "id": "p22",
+   "texte": "Strates : les pages de l'histoire."
+  },
+  {
+   "dit": "Le métamorphisme transforme une roche à l'état solide, sous température, pression et fluides, sans la fondre. Un calcaire devient ainsi du marbre, un shale devient de l'ardoise. Chaque faciès signe un domaine de pression et de température : zéolites à basse température, schistes verts, amphibolites, puis granulites et éclogites à haute pression.",
+   "ecran": "facies",
+   "id": "p23",
+   "texte": "Faciès : la carte d'identité pression-température."
+  },
+  {
+   "dit": "Le métamorphisme est donc le chaînon manquant du cycle : il relie la surface et la profondeur, et prépare la fusion qui recommencera la boucle. Une roche métamorphique raconte à la fois son origine sédimentaire ou magmatique et les conditions extrêmes qu'elle a traversées.",
+   "ecran": "metamorphisme",
+   "id": "p24",
+   "texte": "Transformer à l'état solide, sans fondre."
+  },
+  {
+   "dit": "Nos sociétés reposent sur ces roches : le calcaire pour le ciment et la pierre de taille, le grès pour les pavés, l'ardoise pour les toits, sans oublier les métaux, les gemmes et les roches énergétiques. Une pierre, mille histoires, et un avenir ancré dans la pierre.",
+   "ecran": "usages",
+   "id": "p25",
+   "texte": "Calcaire, grès, ardoise : bâtir le monde."
+  },
+  {
+   "dit": "Retenons l'essentiel : un minéral est défini et cristallisé, une roche en assemble plusieurs, le cycle les transforme sans fin, et chaque famille se classe par ses propres règles, silice et texture pour les magmatiques, origine des grains pour les sédimentaires, faciès pression-température pour les métamorphiques.",
+   "ecran": "recap",
+   "id": "p26",
+   "texte": "Minéral, roche, cycle, trois familles, classement."
+  }
+ ],
+ "titre": "Roches et minéraux : classification et formation"
+}

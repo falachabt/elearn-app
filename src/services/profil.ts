@@ -7,17 +7,95 @@ export const CLE_PROFIL = 'profil.arrivee';
 /** Concours précis choisi par un candidat : il se comporte comme une classe (programme, mission, annales). */
 export type ConcoursChoisi = { id: string; sigle: string; nom: string; ville?: string | null };
 
+/** Série du lycée (2nde, 1re, Tle) choisie par l'élève : filtre ses cours, sa mission, ses annales et son planning. */
+export type SerieChoisie = { id: string; nom: string };
+export type SerieClasse = { id: string; nom: string; cours: number };
+
 /** `niveau` : la classe pour un élève, la filière (ingenieurs, sante…) pour un candidat. */
-export type Profil = { type: 'eleve' | 'concours'; niveau?: string; pays?: string; concours?: ConcoursChoisi | null; termine: boolean };
+export type Profil = {
+  type: 'eleve' | 'concours' | 'certification';
+  niveau?: string;
+  pays?: string;
+  serie?: SerieChoisie | null;
+  concours?: ConcoursChoisi | null;
+  /** Examen préparé (profil `certification`) : code de `cert_exams`, par exemple `toeic`. */
+  exam?: string;
+  termine: boolean;
+};
+
+/** Séries proposées pour une classe et un pays (`class_series`) ; vide si la classe n'a pas de choix ou hors ligne. */
+export async function lireSeriesClasse(
+  client: { rpc?: (nom: string, args: Record<string, unknown>) => PromiseLike<{ data: unknown; error: unknown }> } | null | undefined,
+  niveau: string,
+  pays: string,
+): Promise<SerieClasse[]> {
+  if (!client || typeof client.rpc !== 'function') return [];
+  try {
+    const { data, error } = await client.rpc('class_series', { p_level: niveau, p_country: pays.toUpperCase() });
+    if (error || !Array.isArray(data)) return [];
+    return (data as { series_id?: string; name?: string; courses?: number }[])
+      .filter((l): l is { series_id: string; name: string; courses?: number } => typeof l.series_id === 'string' && typeof l.name === 'string' && l.name.trim() !== '')
+      .map((l) => ({ id: l.series_id, nom: l.name.trim(), cours: typeof l.courses === 'number' ? l.courses : 0 }));
+  } catch {
+    return [];
+  }
+}
 
 /** Choix du parcours d'arrivée (M1-01), gardés sur le téléphone : aucun compte n'est demandé. */
 export async function lireProfil(): Promise<Profil | null> {
   try {
     const brut = await AsyncStorage.getItem(CLE_PROFIL);
     const p = brut ? (JSON.parse(brut) as Partial<Profil>) : null;
-    if (p && (p.type === 'eleve' || p.type === 'concours')) return { type: p.type, niveau: p.niveau, pays: p.pays, concours: p.type === 'concours' ? (p.concours ?? null) : null, termine: !!p.termine };
+    if (p && (p.type === 'eleve' || p.type === 'concours' || p.type === 'certification')) {
+      return {
+        type: p.type,
+        niveau: p.niveau,
+        pays: p.pays,
+        ...(p.type === 'eleve' && p.serie?.id && p.serie?.nom ? { serie: { id: p.serie.id, nom: p.serie.nom } } : {}),
+        concours: p.type === 'concours' ? (p.concours ?? null) : null,
+        ...(p.type === 'certification' && p.exam ? { exam: p.exam } : {}),
+        termine: !!p.termine,
+      };
+    }
   } catch {
     // illisible : parcours d'arrivée à refaire
+  }
+  return null;
+}
+
+/**
+ * Tente d'extraire le profil depuis les métadonnées du compte Supabase
+ * (utilisé quand un invité se connecte à un compte existant ou sur un nouvel appareil).
+ */
+export function profilDepuisCompte(user?: { user_metadata?: Record<string, unknown> } | null): Profil | null {
+  if (!user || !user.user_metadata) return null;
+  const m = user.user_metadata;
+  const reglages = m.reglages as { profil?: Partial<Profil> } | undefined;
+  const p = reglages?.profil ?? (m.profil as Partial<Profil> | undefined);
+
+  const type = p?.type === 'certification' ? 'certification' : p?.type === 'concours' || m.statut === 'concours' ? 'concours' : 'eleve';
+  const niveau =
+    p?.niveau ??
+    (typeof m.niveau === 'string' && m.niveau ? m.niveau : undefined) ??
+    (typeof m.classe === 'string' && m.classe ? m.classe : undefined) ??
+    (typeof m.class_level === 'string' && m.class_level ? m.class_level : undefined);
+  const pays =
+    p?.pays ??
+    (typeof m.pays === 'string' && m.pays ? m.pays : undefined) ??
+    (typeof m.country === 'string' && m.country ? m.country : undefined);
+  const serie = type === 'eleve' && p?.serie?.id && p?.serie?.nom ? { id: p.serie.id, nom: p.serie.nom } : undefined;
+  const concours = p?.concours ?? null;
+
+  if (niveau || pays || type === 'certification') {
+    return {
+      type,
+      niveau,
+      pays,
+      ...(serie ? { serie } : {}),
+      concours,
+      ...(type === 'certification' && typeof p?.exam === 'string' ? { exam: p.exam } : {}),
+      termine: true,
+    };
   }
   return null;
 }
@@ -41,9 +119,9 @@ export type Pays = (typeof PAYS)[number];
 export const INDICATIFS: Record<Pays, string> = { CM: '237', CI: '225', SN: '221', GA: '241', BF: '226', CD: '243', FR: '33' };
 
 /** Pays présélectionné d'après la région du téléphone (M1-02), Cameroun par défaut. */
-export function paysParDefaut(region?: string | null): Pays {
+export function paysParDefaut(region?: string | null): string {
   const r = region?.toUpperCase();
-  return (PAYS as readonly string[]).includes(r ?? '') ? (r as Pays) : 'CM';
+  return r && /^[A-Z]{2}$/.test(r) ? r : 'CM';
 }
 
 export const CLASSES = ['6e', '5e', '4e', '3e', '2nde', '1re', 'Tle'] as const;

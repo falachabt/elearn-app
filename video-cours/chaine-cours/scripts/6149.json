@@ -1,0 +1,412 @@
+{
+ "cours": 6149,
+ "titre": "Racines complexes et théorème de D'Alembert-Gauss",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Racines complexes",
+   "titre": "Racines complexes et théorème de D'Alembert-Gauss",
+   "sous": "Dans le plan complexe, tout polynôme se décompose en facteurs linéaires",
+   "anim": {
+    "nom": "plan_complexe_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "L'équation impossible",
+   "texte": "x² + 1 = 0 n'a aucune solution réelle. En inventant un nombre dont le carré vaut −1, on ouvre un monde où toute équation polynomiale a ses solutions."
+  },
+  "rappels": {
+   "type": "etape",
+   "kicker": "Rappel : les nombres complexes",
+   "titre": "Forme algébrique, module, argument",
+   "tex": [
+    "z = a + ib \\qquad i^2 = -1",
+    "|z| = \\sqrt{a^2 + b^2} \\qquad z = r e^{i\\theta}",
+    "\\bar{z} = a - ib"
+   ]
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Polynômes à coefficients complexes",
+   "tex": "P(X) = a_n X^n + a_{n-1} X^{n-1} + \\cdots + a_1 X + a_0",
+   "note": "Les coefficients vivent dans les complexes : l'ensemble de ces polynômes se note ℂ[X]. Degré et coefficient dominant se lisent comme sur les réels."
+  },
+  "exemple_coeffs": {
+   "type": "etape",
+   "kicker": "Exemple : lire un polynôme complexe",
+   "titre": "Des coefficients qui sont eux-mêmes complexes",
+   "tex": [
+    "P(X) = (2 + i)X^3 - iX^2 + 3X + (1 - 4i)",
+    "\\deg P = 3 \\qquad a_3 = 2 + i",
+    "a_2 = -i \\qquad a_1 = 3 \\qquad a_0 = 1 - 4i"
+   ]
+  },
+  "racine_def": {
+   "type": "formule",
+   "kicker": "La notion de racine",
+   "tex": "P(\\alpha) = 0",
+   "note": "Un complexe α est racine de P quand l'évaluation du polynôme en α donne zéro. Toute la question : ces racines existent-elles toujours ?"
+  },
+  "x2plus1": {
+   "type": "etape",
+   "kicker": "Exemple fondateur : ixe carré plus un",
+   "titre": "Deux racines là où les réels n'en voyaient aucune",
+   "tex": [
+    "Q(X) = X^2 + 1 \\qquad Q(a + ib) = 0",
+    "a^2 - b^2 + 1 = 0 \\qquad 2ab = 0",
+    "X^2 + 1 = (X - i)(X + i)"
+   ]
+  },
+  "exercice_i": {
+   "type": "etape",
+   "kicker": "Exemple : factoriser par une racine complexe",
+   "titre": "La racine i, un quotient carré parfait",
+   "tex": [
+    "P(X) = X^3 - (2 + i)X^2 + (1 + 2i)X - i \\qquad P(i) = 0",
+    "P(X) = (X - i)(X^2 - 2X + 1)",
+    "P(X) = (X - i)(X - 1)^2"
+   ]
+  },
+  "enonce": {
+   "type": "formule",
+   "kicker": "Le théorème de D'Alembert-Gauss",
+   "tex": "P \\text{ non constant} \\implies \\exists \\, \\alpha \\in \\mathbb{C}, \\ P(\\alpha) = 0",
+   "note": "Tout polynôme non constant à coefficients complexes admet au moins une racine complexe. Énoncé par D'Alembert, démontré rigoureusement par Gauss en 1799."
+  },
+  "preuves": {
+   "type": "phrase",
+   "kicker": "Trois idées de démonstration",
+   "texte": "Par Liouville : sans racine, l'inverse du polynôme serait entier et borné, donc constant — impossible. Par la topologie : quand le point décrit un grand cercle, son image tourne autour de l'origine ; en rétrécissant le cercle, l'image doit passer par l'origine."
+  },
+  "corollaires": {
+   "type": "etape",
+   "kicker": "Les corollaires immédiats",
+   "titre": "D'une racine à toutes les racines",
+   "tex": [
+    "\\text{degré } n \\implies n \\text{ racines, multiplicités comprises}",
+    "P(z) = a_n(z - \\alpha_1)(z - \\alpha_2)\\cdots(z - \\alpha_n)",
+    "\\text{coefficients réels : les racines viennent par paires conjuguées}"
+   ]
+  },
+  "decomposition": {
+   "type": "formule",
+   "kicker": "La décomposition en facteurs linéaires",
+   "tex": "P(z) = a_n(z - r_1)(z - r_2)\\cdots(z - r_n)",
+   "note": "On factorise la première racine, on applique le théorème au quotient, et l'on recommence : après n étapes, il ne reste que le coefficient dominant."
+  },
+  "ex_decomp": {
+   "type": "etape",
+   "kicker": "Exemple : une décomposition complète",
+   "titre": "Une racine réelle, deux racines imaginaires pures",
+   "tex": [
+    "P(z) = z^3 - 2z^2 + z - 2 \\qquad P(2) = 0",
+    "P(z) = (z - 2)(z^2 + 1)",
+    "P(z) = (z - 2)(z - i)(z + i)"
+   ]
+  },
+  "mult_def": {
+   "type": "formule",
+   "kicker": "La multiplicité d'une racine",
+   "tex": "P(X) = (X - \\alpha)^m Q(X) \\quad \\text{avec} \\quad Q(\\alpha) \\neq 0",
+   "note": "m vaut un : racine simple ; deux : racine double ; trois : racine triple. La somme des multiplicités de toutes les racines égale le degré."
+  },
+  "mult_deriv": {
+   "type": "etape",
+   "kicker": "Reconnaître une multiplicité par les dérivées",
+   "titre": "Les dérivées s'annulent jusqu'à l'ordre m moins un",
+   "tex": [
+    "P(x) = (x - 1)^3 \\qquad P(1) = 0",
+    "P'(1) = 0 \\qquad P''(1) = 0",
+    "P'''(1) = 6 \\neq 0 \\qquad \\text{multiplicité } 3"
+   ]
+  },
+  "ex_mult": {
+   "type": "etape",
+   "kicker": "Exemple : une multiplicité quatre",
+   "titre": "La même racine, extraite quatre fois de suite",
+   "tex": [
+    "P(x) = x^5 - 6x^4 + 14x^3 - 16x^2 + 9x - 2",
+    "P(1) = 0 \\text{ : on divise par } (x - 1), \\text{ quatre fois}",
+    "P(x) = (x - 1)^4(x - 2) \\qquad 4 + 1 = 5"
+   ]
+  },
+  "viete": {
+   "type": "etape",
+   "kicker": "Les relations de Viète",
+   "titre": "Les coefficients sont des fonctions des racines",
+   "tex": [
+    "\\alpha_1 + \\alpha_2 + \\cdots + \\alpha_n = -\\tfrac{a_{n-1}}{a_n}",
+    "\\sum_{i < j} \\alpha_i \\alpha_j = \\tfrac{a_{n-2}}{a_n}",
+    "\\alpha_1 \\alpha_2 \\cdots \\alpha_n = (-1)^n \\tfrac{a_0}{a_n}"
+   ]
+  },
+  "ex_viete": {
+   "type": "etape",
+   "kicker": "Exemple : reconstruire un polynôme par Viète",
+   "titre": "Trois racines données, le polynôme retrouvé",
+   "tex": [
+    "\\text{racines : } 1, \\ 2, \\ -3 \\qquad \\text{somme : } 0",
+    "\\text{produits deux à deux : } 2 - 3 - 6 = -7",
+    "P(z) = z^3 - 7z + 6"
+   ]
+  },
+  "conjuguees": {
+   "type": "formule",
+   "kicker": "Les paires conjuguées",
+   "tex": "(z - \\alpha)(z - \\bar{\\alpha}) = z^2 - 2\\,\\mathrm{Re}(\\alpha)\\, z + |\\alpha|^2",
+   "note": "Pour un polynôme à coefficients réels, toute racine non réelle entraîne sa conjuguée, avec la même multiplicité : leur produit est un trinôme réel irréductible.",
+   "anim": {
+    "nom": "plan_complexe_fig",
+    "hauteur": 180
+   }
+  },
+  "unite3": {
+   "type": "formule",
+   "kicker": "Les racines de l'unité",
+   "tex": "z^3 - 1 = (z - 1)\\left(z + \\frac{1}{2} - i\\frac{\\sqrt{3}}{2}\\right)\\left(z + \\frac{1}{2} + i\\frac{\\sqrt{3}}{2}\\right)",
+   "note": "Les racines n-ièmes de l'unité forment un polygone régulier à n côtés sur le cercle unité : ici, un triangle équilatéral.",
+   "anim": {
+    "nom": "racines_unite_fig",
+    "hauteur": 230
+   }
+  },
+  "z4plus1": {
+   "type": "etape",
+   "kicker": "Exemple : les quatre racines de moins un",
+   "titre": "Un polynôme sans racine réelle, quatre racines complexes",
+   "tex": [
+    "z^4 = -1 = e^{i\\pi} \\qquad z_k = e^{i\\frac{\\pi + 2k\\pi}{4}}",
+    "z_k = \\tfrac{\\sqrt{2}}{2}(1 + i), \\ \\tfrac{\\sqrt{2}}{2}(-1 + i), \\ \\tfrac{\\sqrt{2}}{2}(-1 - i), \\ \\tfrac{\\sqrt{2}}{2}(1 - i)",
+    "P(z) = (z^2 - \\sqrt{2}\\, z + 1)(z^2 + \\sqrt{2}\\, z + 1)"
+   ],
+   "anim": {
+    "nom": "plan_complexe_fig",
+    "hauteur": 130
+   }
+  },
+  "germain": {
+   "type": "etape",
+   "kicker": "Exemple : l'identité de Sophie Germain",
+   "titre": "Fabriquer une différence de carrés",
+   "tex": [
+    "z^4 + 4 = (z^2 + 2)^2 - (2z)^2",
+    "= (z^2 + 2z + 2)(z^2 - 2z + 2)",
+    "\\text{racines : } 1 + i, \\ 1 - i, \\ -1 + i, \\ -1 - i"
+   ]
+  },
+  "limites": {
+   "type": "phrase",
+   "kicker": "Ce que le théorème ne dit pas",
+   "texte": "Le théorème garantit l'existence des racines, pas leur calcul : dès le degré cinq, aucune formule générale par radicaux n'existe (Abel-Ruffini). Et les racines multiples sont fragiles : une petite perturbation des coefficients les éclate en racines simples distinctes."
+  },
+  "applications": {
+   "type": "phrase",
+   "kicker": "À quoi servent ces racines ?",
+   "texte": "Les racines du polynôme caractéristique d'une matrice sont ses valeurs propres : toute matrice complexe a donc ses n valeurs propres. En ingénierie, un système est stable quand toutes les racines de son polynôme caractéristique ont une partie réelle strictement négative."
+  },
+  "defi": {
+   "type": "etape",
+   "kicker": "Défi de synthèse : un degré cinq palindromique",
+   "titre": "La symétrie des coefficients annonce la racine un",
+   "tex": [
+    "P(z) = z^5 - 3z^4 + 4z^3 - 4z^2 + 3z - 1 \\qquad P(1) = 0",
+    "P(z) = (z - 1)^2(z^3 - z^2 + z - 1)",
+    "P(z) = (z - 1)^3(z^2 + 1) = (z - 1)^3(z - i)(z + i)"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "D'Alembert-Gauss : toujours une racine dans ℂ",
+    "Degré n : exactement n racines, avec multiplicités",
+    "Décomposition complète en facteurs linéaires",
+    "Réels : paires conjuguées, trinômes irréductibles",
+    "Viète : coefficients et racines se répondent"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux racines des polynômes et au théorème de D'Alembert-Gauss, le théorème fondamental de l'algèbre. Le point de départ est une impasse vieille de plusieurs siècles : certaines équations n'ont aucune solution dans les nombres réels. Nous verrons comment les nombres complexes lèvent cette impasse, et comment un seul théorème d'existence entraîne la décomposition complète de tout polynôme en facteurs du premier degré.",
+   "texte": "D'Alembert-Gauss : dans les complexes, toute équation a ses racines.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "L'équation qui a tout déclenché tient en trois signes : le carré de la variable, plus un, égal zéro. Sur les nombres réels, elle est sans solution, car un carré y est toujours positif ou nul. Au seizième siècle, des mathématiciens italiens osent franchir l'interdit : ils postulent un nombre nouveau, l'unité imaginaire, dont le carré vaut moins un. Ce nombre n'existe dans aucun mesurage, et pourtant, en calculant avec lui, les formules des degrés trois et quatre deviennent vraies. Les complexes sont nés d'un besoin d'algèbre.",
+   "texte": "Un nombre dont le carré vaut moins un : les complexes sont nés.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Rappel express sur ces nombres. Un complexe s'écrit sous forme algébrique : une partie réelle et une partie imaginaire, multipliée par l'unité imaginaire, dont le carré vaut moins un. Son module est sa distance à l'origine dans le plan complexe, la racine carrée de la somme des carrés des deux parties. Son argument est l'angle de cette direction, et la forme exponentielle condense les deux informations : le module, fois l'exponentielle de l'unité imaginaire fois l'argument. Enfin, le conjugué change le signe de la partie imaginaire : les deux points sont symétriques par rapport à l'axe des réels.",
+   "texte": "Forme algébrique, module, argument, conjugué : le kit minimal.",
+   "ecran": "rappels"
+  },
+  {
+   "id": "p04",
+   "dit": "Un polynôme à coefficients complexes ressemble à un polynôme ordinaire, à un détail près : ses coefficients sont eux-mêmes des nombres complexes. Le degré reste la plus grande puissance dont le coefficient est non nul, et ce coefficient s'appelle le coefficient dominant. Rien d'autre ne change dans les calculs : on additionne, on multiplie, on divise ces polynômes exactement comme ceux à coefficients réels, en appliquant partout la règle du carré de l'unité imaginaire.",
+   "texte": "Mêmes polynômes, mais des coefficients complexes.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p05",
+   "dit": "Exemple de lecture. Dans ce polynôme de degré trois, le coefficient dominant est un complexe qui vaut deux plus l'unité imaginaire ; le coefficient du terme de degré deux est l'opposé de l'unité imaginaire ; celui du terme constant associe la partie réelle un et la partie imaginaire moins quatre. Savoir lire une telle écriture sans hésiter est la première compétence du cours : chaque coefficient a une partie réelle et une partie imaginaire, même quand l'une des deux est nulle ou invisible.",
+   "texte": "Degré trois, coefficient dominant deux plus l'unité imaginaire.",
+   "ecran": "exemple_coeffs"
+  },
+  {
+   "id": "p06",
+   "dit": "Au coeur du cours, une définition d'une ligne : un nombre complexe est une racine d'un polynôme quand, en remplaçant la variable par ce nombre, le polynôme vaut zéro. Si la racine est trouvée, le cours précédent nous l'a appris, le binôme associé divise le polynôme. Toute la question du présent cours est donc la suivante : un polynôme à coefficients complexes possède-t-il toujours au moins une racine ? La réponse est oui, et c'est un théorème immense. Avant de l'énoncer, regardons-le à l'oeuvre sur le cas fondateur.",
+   "texte": "Une racine : la valeur qui annule le polynôme.",
+   "ecran": "racine_def"
+  },
+  {
+   "id": "p07",
+   "dit": "Le cas fondateur : le polynôme dont le carré de la variable est augmenté de un. Cherchons sa racine sous forme algébrique, partie réelle et partie imaginaire inconnues. En développant le carré, la partie imaginaire de l'équation impose que le produit des deux parties soit nul ; la partie réelle impose alors que la partie imaginaire vaille un ou moins un, avec une partie réelle nulle. Les deux racines sont donc l'unité imaginaire et son opposée, et le polynôme se factorise en deux binômes. Là où les réels ne voyaient rien, les complexes voient deux racines.",
+   "texte": "Ixe carré plus un : deux racines, l'unité imaginaire et son opposée.",
+   "ecran": "x2plus1"
+  },
+  {
+   "id": "p08",
+   "dit": "Exercice complet, qui servira de modèle. On donne un polynôme cubique à coefficients complexes, et l'on vérifie d'abord, par un calcul direct, que l'unité imaginaire l'annule : c'est une racine. On divise alors par le binôme associé ; le quotient est un trinôme qui se reconnaît comme un carré parfait. Au final, le polynôme est le produit du binôme de la racine imaginaire par le carré d'un binôme réel : ses racines sont l'unité imaginaire, simple, et la valeur un, double. Les coefficients complexes n'ont rien changé à la méthode du cours précédent.",
+   "texte": "Racine l'unité imaginaire, quotient carré parfait, racine un double.",
+   "ecran": "exercice_i"
+  },
+  {
+   "id": "p09",
+   "dit": "Énonçons le théorème. Tout polynôme non constant, à coefficients complexes, admet au moins une racine dans les nombres complexes. D'Alembert en publie une première démonstration, incomplète, au dix-huitième siècle ; Gauss en donne la première preuve rigoureuse dans sa thèse, en mille sept cent quatre-vingt-dix-neuf, et il y reviendra trois fois dans sa vie, signe de l'importance qu'il lui accordait. Un polynôme constant non nul, lui, n'a évidemment aucune racine : l'hypothèse non constant est indispensable.",
+   "texte": "Tout polynôme non constant a au moins une racine complexe.",
+   "ecran": "enonce"
+  },
+  {
+   "id": "p10",
+   "dit": "Comment démontre-t-on un tel résultat ? Aucune des preuves n'est purement algébrique, et c'est une leçon en soi. La plus courte passe par l'analyse complexe : si le polynôme n'avait aucune racine, son inverse serait une fonction définie et régulière sur tout le plan, et bornée, car le polynôme grandit à l'infini ; le théorème de Liouville dirait alors que cet inverse est constant, ce qui est impossible. L'idée topologique, elle, regarde l'image d'un cercle : elle tourne autour de l'origine pour un grand rayon, pas pour un petit ; entre les deux, elle doit passer par l'origine, et c'est la racine.",
+   "texte": "Preuves par Liouville ou par les tours autour de l'origine.",
+   "ecran": "preuves"
+  },
+  {
+   "id": "p11",
+   "dit": "D'une seule racine garantie, les corollaires tirent tout le reste. D'abord, en factorisant cette racine puis en réappliquant le théorème au quotient, on obtient la décomposition complète : un polynôme de degré n est le produit de son coefficient dominant par n facteurs linéaires. Ensuite, le comptage : un polynôme de degré n a exactement n racines complexes, à condition de compter chacune avec sa multiplicité. Enfin, pour les polynômes à coefficients réels, les racines non réelles viennent toujours par paires conjuguées, de même multiplicité. La deuxième partie du cours exploite ces trois conséquences.",
+   "texte": "Une racine garantie, et tout polynôme se décompose.",
+   "ecran": "corollaires"
+  },
+  {
+   "id": "p12",
+   "dit": "Regardons le mécanisme de la décomposition de près. Le théorème donne une première racine ; on factorise le binôme correspondant, et le quotient a un degré de moins. On applique le théorème à ce quotient : deuxième racine, deuxième facteur. Après n étapes, le quotient restant est une constante, le coefficient dominant. La décomposition est unique, à l'ordre des facteurs près : c'est la carte d'identité du polynôme, l'équivalent, pour les polynômes, de la décomposition d'un entier en facteurs premiers.",
+   "texte": "Factoriser, réappliquer, recommencer : la carte d'identité du polynôme.",
+   "ecran": "decomposition"
+  },
+  {
+   "id": "p13",
+   "dit": "Exemple complet. Ce polynôme cubique s'annule en deux : premier facteur. La division laisse un trinôme, la somme du carré de la variable et de un, sans aucune racine réelle. Sur les réels, la factorisation s'arrêterait là. Sur les complexes, ce trinôme se décompose encore, en les deux binômes de l'unité imaginaire et de son opposée. La décomposition finale compte bien trois facteurs linéaires pour un degré trois : une racine réelle et deux racines imaginaires pures, conjuguées l'une de l'autre.",
+   "texte": "Degré trois : la racine deux, puis l'unité imaginaire et son opposée.",
+   "ecran": "ex_decomp"
+  },
+  {
+   "id": "p14",
+   "dit": "Il faut maintenant compter juste : la multiplicité. Une racine est de multiplicité m si le facteur correspondant peut être extrait exactement m fois, c'est à dire si le polynôme est ce facteur à la puissance m, fois un quotient qui ne s'annule plus en cette racine. Les mots sont : simple pour un, double pour deux, triple pour trois. Et le bilan comptable du théorème devient : la somme des multiplicités de toutes les racines distinctes égale exactement le degré du polynôme.",
+   "texte": "Multiplicité : le nombre de fois où le facteur peut sortir.",
+   "ecran": "mult_def"
+  },
+  {
+   "id": "p15",
+   "dit": "Un test pratique repère les multiplicités sans factoriser : les dérivées. Une racine est de multiplicité m quand le polynôme et ses dérivées successives s'annulent en ce point jusqu'à l'ordre m moins un, et que la dérivée d'ordre m, elle, ne s'y annule pas. Sur le cube parfait de notre exemple, le polynôme, sa dérivée première et sa dérivée seconde s'annulent en un, mais la dérivée troisième vaut six : la racine un est donc de multiplicité trois, ce que la forme factorisée affichait déjà.",
+   "texte": "La dérivée troisième vaut six : multiplicité trois confirmée.",
+   "ecran": "mult_deriv"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple extrême : un polynôme de degré cinq dont presque toutes les racines sont confondues. La valeur un l'annule ; on divise. Le quotient s'annule encore en un ; on divise à nouveau. Et encore, et encore : quatre divisions successives par le même binôme. Il reste un dernier facteur, de racine deux. La factorisation complète oppose donc une racine de multiplicité quatre et une racine simple, et le contrôle est immédiat : quatre plus un égale cinq, le degré. En pratique numérique, de telles racines sont fragiles, nous y reviendrons.",
+   "texte": "Quatre plus un égale cinq : le compte des multiplicités est juste.",
+   "ecran": "ex_mult"
+  },
+  {
+   "id": "p17",
+   "dit": "La décomposition complète crée un pont entre deux mondes : les coefficients et les racines. Les relations de Viète le franchissent. La somme de toutes les racines, comptées avec multiplicité, vaut l'opposé du quotient des deux premiers coefficients. La somme de leurs produits deux à deux vaut le quotient suivant. Et le produit de toutes les racines vaut, au signe près selon la parité du degré, le quotient du terme constant par le coefficient dominant. Connaître les racines, c'est donc connaître les coefficients, et réciproquement, au moins en partie.",
+   "texte": "Viète : la somme, les produits deux à deux, le produit total.",
+   "ecran": "viete"
+  },
+  {
+   "id": "p18",
+   "dit": "Application inverse : reconstruire un polynôme dont on donne les racines. Pour les racines un, deux et moins trois, la somme vaut zéro : le coefficient du terme de degré deux est donc nul. Les produits deux à deux donnent moins sept : c'est le coefficient du terme de degré un. Le produit des trois racines vaut moins six, d'où un terme constant de six, avec le signe de la formule. Le polynôme unitaire cherché n'a que deux termes non constants, et un développement direct des trois binômes confirme le résultat donné par les relations de Viète.",
+   "texte": "Racines un, deux, moins trois : le polynôme n'a que deux termes.",
+   "ecran": "ex_viete"
+  },
+  {
+   "id": "p19",
+   "dit": "Revenons aux paires conjuguées, le corollaire le plus utile en pratique. Si un polynôme à coefficients réels admet une racine complexe non réelle, il admet aussi sa conjuguée, avec la même multiplicité. Le produit des deux binômes associés est un trinôme à coefficients réels : le carré de la variable, moins deux fois la partie réelle de la racine fois la variable, plus le carré du module. C'est exactement pour cela que la factorisation réelle s'arrête à des trinômes irréductibles : chacun cache une paire de racines conjuguées.",
+   "texte": "Deux binômes conjugués valent un trinôme réel irréductible.",
+   "ecran": "conjuguees"
+  },
+  {
+   "id": "p20",
+   "dit": "Les racines de l'unité offrent la plus belle image du cours. Résoudre l'équation dont le cube de la variable vaut un donne trois racines : un, et deux complexes conjuguées de partie réelle moins un demi. Dans le plan complexe, ce sont trois points du cercle unité, espacés d'un tiers de tour : un triangle équilatéral. En général, les racines n-ièmes de l'unité forment un polygone régulier à n côtés inscrit dans le cercle unité, un point par racine, exactement comme le théorème de comptage l'exige.",
+   "texte": "Les racines cubiques de l'unité : un triangle équilatéral.",
+   "ecran": "unite3"
+  },
+  {
+   "id": "p21",
+   "dit": "Exemple célèbre : le polynôme dont la variable puissance quatre est augmentée de un. Aucune racine réelle, puisque la puissance quatre est positive ou nulle. Ses quatre racines complexes sont les racines quatrièmes de moins un : des points du cercle unité, à mi-chemin entre les axes, aux angles d'un huitième de tour et ses multiples impairs. Explicitement, leurs parties réelle et imaginaire valent, au signe près, la racine de deux sur deux. Regroupées par paires conjuguées, elles donnent la factorisation réelle en deux trinômes irréductibles.",
+   "texte": "Quatre racines sur le cercle unité, à mi-chemin des axes.",
+   "ecran": "z4plus1"
+  },
+  {
+   "id": "p22",
+   "dit": "Autre attaque du même polynôme augmenté de quatre unités, par une identité historique attribuée à Sophie Germain. On ajoute et l'on retranche le même terme pour fabriquer un carré parfait, duquel on soustrait un carré : une différence de carrés apparaît, et le polynôme éclate en deux trinômes réels. Chacun donne deux racines complexes conjuguées : un plus ou moins l'unité imaginaire, et moins un plus ou moins l'unité imaginaire. Dans le plan, les quatre racines dessinent un carré. Moralité : le théorème garantit les racines, mais l'astuce de calcul reste humaine.",
+   "texte": "Sophie Germain : fabriquer une différence de carrés.",
+   "ecran": "germain"
+  },
+  {
+   "id": "p23",
+   "dit": "Soyons honnêtes sur les limites. Le théorème de D'Alembert-Gauss est un théorème d'existence, pas une méthode de calcul : il ne donne ni formule, ni algorithme. Pour les degrés cinq et plus, le théorème d'Abel et Ruffini ajoute qu'aucune formule générale par radicaux n'existe : il faut des méthodes numériques. Autre limite pratique : les racines multiples sont instables. Perturbez légèrement les coefficients d'un polynôme à racine double, et cette racine éclate en deux racines simples voisines, réelles ou conjuguées : voilà pourquoi le calcul numérique les traite avec méfiance.",
+   "texte": "Existence garantie, calcul non garanti : degrés cinq et plus, méthodes numériques.",
+   "ecran": "limites"
+  },
+  {
+   "id": "p24",
+   "dit": "À quoi tout cela sert-il, hors de l'algèbre ? En algèbre linéaire, les valeurs propres d'une matrice sont les racines de son polynôme caractéristique : le théorème garantit qu'une matrice complexe de taille n a exactement n valeurs propres, multiplicités comprises, ce qui fonde la diagonalisation. En ingénierie des systèmes et en traitement du signal, la stabilité se lit sur les racines : un système est stable quand toutes les racines de son polynôme caractéristique ont une partie réelle strictement négative, c'est à dire vivent dans le demi-plan gauche du plan complexe.",
+   "texte": "Valeurs propres et stabilité : les racines décident.",
+   "ecran": "applications"
+  },
+  {
+   "id": "p25",
+   "dit": "Défi de synthèse, pour assembler tout le cours. Ce polynôme de degré cinq a des coefficients presque symétriques, ce qui annonce une racine évidente : la valeur un l'annule. On divise, le quotient s'annule encore en un, on divise une seconde fois, puis une troisième : le reste est le trinôme du cas fondateur, le carré de la variable plus un. La racine un est donc triple, et la factorisation complète aligne le cube du binôme, fois les deux binômes imaginaires. Sur les réels, on s'arrête au trinôme irréductible.",
+   "texte": "Racine un triple, puis le trinôme fondateur : synthèse complète.",
+   "ecran": "defi"
+  },
+  {
+   "id": "p26",
+   "dit": "Récapitulons l'édifice. Le théorème de D'Alembert-Gauss garantit au moins une racine complexe à tout polynôme non constant ; par récurrence, un polynôme de degré n a exactement n racines dans les complexes, comptées avec leurs multiplicités, et se décompose en n facteurs linéaires. Pour les coefficients réels, les racines non réelles marchent par paires conjuguées, et les relations de Viète relient les coefficients aux sommes et produits des racines. Les complexes ne sont pas un détour : ils sont l'ensemble où l'algèbre des polynômes se referme.",
+   "texte": "Dans les complexes, l'algèbre des polynômes se referme.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les complexes, les racines et le théorème"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Décomposition complète, multiplicités et relations de Viète",
+   "pont": {
+    "texte": "Partie 2 : d'une racine à la décomposition complète, multiplicités et Viète.",
+    "dit": "Partie deux : les conséquences du théorème. Une racine garantie suffit à tout décomposer : nous établirons la factorisation complète en facteurs linéaires, le rôle des multiplicités, et les relations de Viète qui relient les coefficients aux racines."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "Paires conjuguées, racines de l'unité et applications",
+   "pont": {
+    "texte": "Partie 3 : paires conjuguées, racines de l'unité, limites et applications.",
+    "dit": "Partie trois : la géométrie des racines et leurs applications. Paires conjuguées, racines de l'unité en polygones réguliers, exemples de Sophie Germain, limites du théorème, puis ses usages en algèbre linéaire et en stabilité des systèmes."
+   }
+  }
+ ]
+}

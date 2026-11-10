@@ -1,0 +1,605 @@
+{
+ "cours": 5889,
+ "ecrans": {
+  "autres_hyp": {
+   "kicker": "Hyperboliques · les réciproques",
+   "tex": [
+    "\\operatorname{sech} x = \\tfrac{1}{\\cosh x}",
+    "\\operatorname{csch} x = \\tfrac{1}{\\sinh x} \\qquad x \\ne 0",
+    "\\operatorname{coth} x = \\tfrac{1}{\\tanh x} \\qquad x \\ne 0"
+   ],
+   "titre": "Inverser la fraction, ce n'est pas inverser la fonction",
+   "type": "etape"
+  },
+  "bacteries": {
+   "kicker": "Exemple · croissance bactérienne",
+   "tex": [
+    "N(t) = 100 \\times 2^t",
+    "N(5) = 100 \\times 2^5 = 100 \\times 32",
+    "N(5) = 3200 \\ \\text{bactéries}"
+   ],
+   "titre": "Doubler à chaque heure, partir de 100",
+   "type": "etape"
+  },
+  "carbone": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Exemple · datation au carbone quatorze",
+   "tex": [
+    "N(t) = 100 \\left(\\tfrac{1}{2}\\right)^{t/5730}",
+    "\\tfrac{10000}{5730} \\approx 1{,}745",
+    "N(10000) \\approx 29{,}8 \\ \\text{g}"
+   ],
+   "titre": "Ce qui reste après dix mille ans",
+   "type": "etape"
+  },
+  "chainette": {
+   "kicker": "Hyperboliques · la chaînette",
+   "note": "Le paramètre a règle la flèche : petit, creusé ; grand, aplati.",
+   "tex": "y = a \\, \\cosh\\left(\\frac{x}{a}\\right)",
+   "type": "formule",
+   "anim": {
+    "nom": "chainette_fig",
+    "hauteur": 170
+   }
+  },
+  "chsh_def": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "hyperbole_fig"
+   },
+   "kicker": "Hyperboliques · définitions",
+   "tex": [
+    "\\cosh x = \\tfrac{e^x + e^{-x}}{2}",
+    "\\sinh x = \\tfrac{e^x - e^{-x}}{2}",
+    "\\tanh x = \\tfrac{\\sinh x}{\\cosh x}"
+   ],
+   "titre": "Deux exponentielles, trois fonctions",
+   "type": "etape"
+  },
+  "cosh_eq": {
+   "kicker": "Exemple · résoudre une équation hyperbolique",
+   "tex": [
+    "\\cosh x = 2 \\iff x = \\pm \\operatorname{arcosh} 2",
+    "\\operatorname{arcosh} 2 = \\ln\\left(2 + \\sqrt{3}\\right)",
+    "x \\approx \\pm 1{,}317"
+   ],
+   "titre": "L'inverse donne une solution, la parité l'autre",
+   "type": "etape"
+  },
+  "demi_vie": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Exemple · décroissance radioactive",
+   "tex": [
+    "m(t) = m_0\\, e^{-kt} \\qquad m(10) = \\tfrac{m_0}{2}",
+    "e^{-10k} = \\tfrac{1}{2} \\qquad -10k = -\\ln 2",
+    "k = \\tfrac{\\ln 2}{10} \\approx 0{,}0693 \\ \\text{par an}"
+   ],
+   "titre": "Une demi-vie de dix ans donne le taux",
+   "type": "etape"
+  },
+  "deriv_hyp": {
+   "kicker": "Hyperboliques · dérivées",
+   "tex": [
+    "(\\cosh x)' = \\sinh x",
+    "(\\sinh x)' = \\cosh x",
+    "(\\tanh x)' = 1 - \\tanh^2 x = \\tfrac{1}{\\cosh^2 x}"
+   ],
+   "titre": "Elles se renvoient l'une à l'autre",
+   "type": "etape"
+  },
+  "exp_def": {
+   "kicker": "Exponentielles · définition",
+   "tex": [
+    "f(x) = a^x \\qquad a > 0, \\ a \\ne 1",
+    "2^x \\qquad \\left(\\tfrac{1}{2}\\right)^x \\qquad e^x",
+    "e \\approx 2{,}71828 \\ \\text{: la constante d'Euler}"
+   ],
+   "titre": "Trois bases, trois comportements",
+   "type": "etape"
+  },
+  "exp_deriv": {
+   "kicker": "Exponentielles · la dérivée unique",
+   "note": "Composée : (eᵘ)′ = u′·eᵘ — ici u = 3x + 1, d'où le facteur 3.",
+   "tex": "(e^x)' = e^x",
+   "type": "formule"
+  },
+  "exp_prop": {
+   "kicker": "Exponentielles · propriétés",
+   "tex": [
+    "\\mathcal{D} = \\mathbb{R} \\qquad \\text{image} = ]0, +\\infty[",
+    "a > 1 : \\text{ strictement croissante}",
+    "0 < a < 1 : \\text{ strictement décroissante}",
+    "e^{x+y} = e^x \\cdot e^y \\qquad e^0 = 1"
+   ],
+   "titre": "Toujours positive, jamais nulle",
+   "type": "etape"
+  },
+  "identite": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "hyperbole_fig"
+   },
+   "kicker": "Hyperboliques · identité fondamentale",
+   "note": "Comme cos² + sin² = 1, mais avec un signe moins.",
+   "tex": "\\cosh^2 x - \\sinh^2 x = 1",
+   "type": "formule"
+  },
+  "integrale": {
+   "kicker": "Exemple · une primitive de sinus hyperbolique",
+   "tex": [
+    "\\int \\sinh x\\, dx = \\cosh x + C",
+    "(\\cosh(2x))' = 2\\,\\sinh(2x)",
+    "\\int \\sinh(2x)\\, dx = \\tfrac{1}{2}\\cosh(2x) + C"
+   ],
+   "titre": "Compenser le facteur de l'argument",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Introduction · lire une fonction sur sa courbe",
+   "texte": "Trois familles, un fil rouge : l'exponentielle monte, le logarithme la défait, les hyperboliques la recombinent.",
+   "type": "phrase"
+  },
+  "inverses_deriv": {
+   "kicker": "Inverses hyperboliques · dérivées",
+   "tex": [
+    "(\\operatorname{arsinh} x)' = \\tfrac{1}{\\sqrt{x^2+1}}",
+    "(\\operatorname{arcosh} x)' = \\tfrac{1}{\\sqrt{x^2-1}} \\qquad x > 1",
+    "(\\operatorname{artanh} x)' = \\tfrac{1}{1-x^2} \\qquad |x| < 1"
+   ],
+   "titre": "La racine rappelle le domaine",
+   "type": "etape"
+  },
+  "inverses_dom": {
+   "kicker": "Inverses hyperboliques · domaines",
+   "tex": [
+    "\\operatorname{arsinh} : \\mathbb{R} \\to \\mathbb{R}",
+    "\\operatorname{arcosh} : [1, +\\infty[ \\ \\to \\ [0, +\\infty[",
+    "\\operatorname{artanh} : ]-1, 1[ \\ \\to \\ \\mathbb{R}",
+    "\\cosh : [0, +\\infty[ \\ \\to \\ [1, +\\infty["
+   ],
+   "titre": "Le cosinus hyperbolique impose sa restriction",
+   "type": "etape"
+  },
+  "inverses_form": {
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 100
+   },
+   "kicker": "Inverses hyperboliques · les formules",
+   "tex": [
+    "\\operatorname{arsinh} x = \\ln\\left(x + \\sqrt{x^2+1}\\right)",
+    "\\operatorname{arcosh} x = \\ln\\left(x + \\sqrt{x^2-1}\\right)",
+    "\\operatorname{artanh} x = \\tfrac{1}{2}\\ln\\left(\\tfrac{1+x}{1-x}\\right)"
+   ],
+   "titre": "Des logarithmes déguisés",
+   "type": "etape"
+  },
+  "investissement": {
+   "kicker": "Exemple · un placement à intérêts continus",
+   "tex": [
+    "A(t) = 1000\\, e^{0{,}05 t}",
+    "e^{0{,}05 t} = 2 \\iff t = \\tfrac{\\ln 2}{0{,}05}",
+    "t \\approx 13{,}86 \\ \\text{ans}"
+   ],
+   "titre": "Le logarithme répond aux questions de durée",
+   "type": "etape"
+  },
+  "limites": {
+   "kicker": "Comparatif · croissances comparées",
+   "tex": [
+    "\\lim_{x \\to +\\infty} \\tfrac{e^x}{x^n} = +\\infty",
+    "\\lim_{x \\to +\\infty} x\\, e^{-x} = 0",
+    "\\lim_{x \\to +\\infty} \\tfrac{\\ln x}{x} = 0"
+   ],
+   "titre": "L'exponentielle écrase, le logarithme perd",
+   "type": "etape"
+  },
+  "log_def": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Logarithmes · définition",
+   "note": "Conditions : a > 0, a ≠ 1, b > 0 · bases usuelles : e (ln) et 10 (log).",
+   "tex": "\\log_a(b) = x \\iff a^x = b",
+   "type": "formule"
+  },
+  "log_deriv": {
+   "kicker": "Logarithmes · dérivée et allure",
+   "note": "Domaine ]0, +∞[ · point (1, 0) · asymptote verticale x = 0.",
+   "tex": "(\\ln x)' = \\frac{1}{x}",
+   "type": "formule"
+  },
+  "log_eq": {
+   "kicker": "Exemple · une équation en logarithmes",
+   "tex": [
+    "\\ln[x(x-1)] = \\ln 6 \\qquad x > 1",
+    "x^2 - x - 6 = 0 \\qquad (x-3)(x+2) = 0",
+    "x = 3 \\qquad (-2 \\ \\text{rejeté})"
+   ],
+   "titre": "Le domaine d'abord, la solution ensuite",
+   "type": "etape"
+  },
+  "log_prop": {
+   "kicker": "Logarithmes · les propriétés",
+   "tex": [
+    "\\ln(xy) = \\ln x + \\ln y",
+    "\\ln\\left(\\tfrac{x}{y}\\right) = \\ln x - \\ln y",
+    "\\ln(x^p) = p\\,\\ln x",
+    "\\log_a(x) = \\tfrac{\\ln x}{\\ln a} \\qquad x, y > 0"
+   ],
+   "titre": "Transformer les opérations",
+   "type": "etape"
+  },
+  "log_valeurs": {
+   "kicker": "Logarithmes · les allers-retours",
+   "tex": [
+    "\\ln 1 = 0 \\qquad \\ln e = 1",
+    "e^{\\ln x} = x \\qquad (x > 0)",
+    "\\ln(e^x) = x \\qquad (x \\in \\mathbb{R})"
+   ],
+   "titre": "Deux fonctions qui se défont",
+   "type": "etape"
+  },
+  "modele": {
+   "kicker": "Applications · le modèle exponentiel",
+   "note": "k > 0 : croissance · k < 0 : décroissance · N₀ : quantité de départ.",
+   "tex": "N(t) = N_0 \\, e^{kt}",
+   "type": "formule"
+  },
+  "parites": {
+   "kicker": "Hyperboliques · parités et valeurs",
+   "tex": [
+    "\\cosh(-x) = \\cosh x \\qquad \\cosh 0 = 1 \\qquad \\cosh x \\ge 1",
+    "\\sinh(-x) = -\\sinh x \\qquad \\sinh 0 = 0",
+    "\\tanh(-x) = -\\tanh x \\qquad \\tanh 0 = 0",
+    "\\lim_{x \\to +\\infty} \\tanh x = 1 \\qquad \\lim_{x \\to -\\infty} \\tanh x = -1"
+   ],
+   "titre": "Un U, une impaire, une coincée entre deux bornes",
+   "type": "etape"
+  },
+  "population": {
+   "kicker": "Exemple · une population en croissance continue",
+   "tex": [
+    "P(t) = 1000\\, e^{0{,}2 t}",
+    "P(5) = 1000\\, e^{1} \\approx 2718",
+    "t_{double} = \\tfrac{\\ln 2}{0{,}2} \\approx 3{,}47 \\ \\text{h}"
+   ],
+   "titre": "Valeur après cinq heures, et temps de doublement",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "exp : aˣ > 0, définie sur ℝ, passe par (0, 1)",
+    "(eˣ)′ = eˣ ; composée : multiplier par u′",
+    "logₐ(b) : l'exposant qui donne b",
+    "ln : produit → somme, puissance → facteur",
+    "Équations : domaine d'abord, rejeter l'intrus"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "cosh, sinh : demi-somme, demi-différence",
+    "Identité : cosh² − sinh² = 1",
+    "Dérivées : cosh ↔ sinh, sans signe −",
+    "Inverses hyperboliques = logarithmes",
+    "arcosh : x ≥ 1 · artanh : −1 < x < 1"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "exp : taux proportionnel, dérivée elle-même",
+    "ln : réciproque de exp, produit → somme",
+    "cosh et sinh : identité avec un signe −",
+    "Inverses hyperboliques : des logarithmes",
+    "Toujours : domaine, réciproque, dérivée"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "richter": {
+   "kicker": "Applications · les échelles logarithmiques",
+   "tex": [
+    "M = \\log_{10}\\left(\\tfrac{A}{A_0}\\right)",
+    "\\Delta M = 1 \\Rightarrow \\times 10 \\qquad \\Delta M = 2 \\Rightarrow \\times 100",
+    "+10\\ \\text{dB} \\Rightarrow \\text{intensité} \\times 10"
+   ],
+   "titre": "Richter pour les séismes, décibels pour le son",
+   "type": "etape"
+  },
+  "symetrie": {
+   "kicker": "Comparatif · exponentielle et logarithme",
+   "tex": [
+    "\\exp : \\mathbb{R} \\to ]0, +\\infty[ \\qquad (0, 1)",
+    "\\ln : ]0, +\\infty[ \\to \\mathbb{R} \\qquad (1, 0)",
+    "\\text{symétrie : la droite } y = x"
+   ],
+   "titre": "Domaines et images échangés",
+   "type": "etape",
+   "anim": {
+    "nom": "exp_ln_fig",
+    "hauteur": 135
+   }
+  },
+  "synthese_deriv": {
+   "kicker": "Révision · dériver un produit de composées",
+   "tex": [
+    "g(x) = \\sinh(x^2)\\,\\cosh x",
+    "g'(x) = 2x\\,\\cosh(x^2)\\,\\cosh x",
+    "\\qquad + \\sinh(x^2)\\,\\sinh x"
+   ],
+   "titre": "La règle du produit, facteur par facteur",
+   "type": "etape"
+  },
+  "synthese_log": {
+   "kicker": "Révision · une équation en base deux",
+   "tex": [
+    "\\log_2[x(x-2)] = 3 \\qquad x > 2",
+    "x(x-2) = 2^3 = 8 \\qquad x^2 - 2x - 8 = 0",
+    "x = 4 \\qquad (-2 \\ \\text{rejeté})"
+   ],
+   "titre": "Même réflexe, autre base",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Mathématique · Fonctions usuelles",
+   "sous": "Réciproques, dérivées et limites : de l'exponentielle à la chaînette, en passant par le logarithme",
+   "titre": "Fonctions usuelles : exponentielle, logarithme et hyperboliques",
+   "type": "titre",
+   "anim": {
+    "nom": "exp_ln_fig",
+    "hauteur": 250
+   }
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Exponentielle et logarithme, deux réciproques"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : les fonctions hyperboliques et leurs inverses. Construites avec les exponentielles, elles imitent la trigonométrie avec un signe moins qui change tout, puis leurs réciproques se révèlent être des logarithmes.",
+    "texte": "Partie 2 : hyperboliques et leurs inverses, en logarithmes."
+   },
+   "sous_titre": "Fonctions hyperboliques et leurs inverses"
+  },
+  {
+   "debut": "p26",
+   "pont": {
+    "dit": "Partie trois : comparer, puis appliquer. Nous mettrons face à face l'exponentielle et son logarithme, nous lirons leurs limites, puis nous modéliserons une population, un échantillon radioactif, un séisme et un placement.",
+    "texte": "Partie 3 : comparatif, limites et applications."
+   },
+   "sous_titre": "Comparatif, limites et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux fonctions usuelles : l'exponentielle, le logarithme et les fonctions hyperboliques. Trois familles qui se répondent : le logarithme défait l'exponentielle, les hyperboliques se construisent avec elle, et leurs réciproques ramènent au logarithme. Nous verrons leurs définitions, leurs dérivées, leurs limites, puis leurs applications, de la radioactivité aux séismes.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Exponentielle, logarithme, hyperboliques : trois familles liées."
+  },
+  {
+   "dit": "Une fonction associe à chaque nombre de son ensemble de départ un unique nombre d'arrivée. Toute la géométrie du cours se lit sur les courbes : croissance, asymptote, point de passage et symétrie racontent les propriétés avant même le calcul. Gardez ce réflexe : pour chaque fonction nouvelle, demander d'abord où elle est définie, dans quel ensemble elle arrive, et comment elle varie.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "À chaque x, un unique f(x) : tout se lit sur la courbe."
+  },
+  {
+   "dit": "Une fonction exponentielle place la variable en exposant : a puissance ixe, où a, la base, est un nombre strictement positif différent de un. Avec la base deux, chaque pas d'une unité double la valeur. Avec la base un demi, chaque pas la divise par deux. Et avec la base e, la constante d'Euler, on obtient l'exponentielle naturelle, la plus importante de toutes.",
+   "ecran": "exp_def",
+   "id": "p03",
+   "texte": "La variable en exposant : aˣ, base a > 0, a ≠ 1."
+  },
+  {
+   "dit": "L'exponentielle est définie sur tous les réels et ne prend que des valeurs strictement positives : elle ne s'annule jamais et passe par le point d'abscisse zéro et d'ordonnée un. Si la base dépasse un, elle est strictement croissante ; entre zéro et un, elle est strictement décroissante. Enfin, elle transforme les sommes en produits : l'exponentielle d'une somme est le produit des exponentielles.",
+   "ecran": "exp_prop",
+   "id": "p04",
+   "texte": "Définie partout, toujours > 0, par (0, 1)."
+  },
+  {
+   "dit": "La propriété qui rend la base e irremplaçable : l'exponentielle naturelle est sa propre dérivée. Autrement dit, sa vitesse de croissance est, à chaque instant, exactement égale à sa valeur. Pour une exponentielle composée, on multiplie par la dérivée de l'exposant : la dérivée de l'exponentielle de trois ixe plus un est donc trois fois cette même exponentielle.",
+   "ecran": "exp_deriv",
+   "id": "p05",
+   "texte": "(eˣ)′ = eˣ : elle est sa propre dérivée."
+  },
+  {
+   "dit": "Premier exemple chiffré, tiré des leçons : une colonie de bactéries double toutes les heures, en partant de cent individus. Le nombre après té heures est cent fois deux puissance té. Après cinq heures, deux puissance cinq vaut trente-deux, et cent fois trente-deux donne trois mille deux cents bactéries. Le modèle est le même pour un capital ou une population : une quantité de départ, un facteur qui se répète.",
+   "ecran": "bacteries",
+   "id": "p06",
+   "texte": "100 bactéries, doublement horaire : 3 200 après 5 h."
+  },
+  {
+   "dit": "Exemple inverse : la décroissance radioactive. La masse suit une exponentielle de moins ka fois té, et la demi-vie est le temps au bout duquel il reste la moitié. Si cette demi-vie vaut dix ans, poser l'égalité donne l'exponentielle de moins dix ka égale à un demi, d'où ka égale au logarithme de deux divisé par dix, environ zéro virgule zéro six neuf trois par an. Les courbes de l'écran sont exactement ces survies exponentielles, pour deux valeurs du taux.",
+   "ecran": "demi_vie",
+   "id": "p07",
+   "texte": "Demi-vie 10 ans : k = ln 2 / 10 ≈ 0,0693 par an."
+  },
+  {
+   "dit": "Comment retrouver un exposant inconnu ? C'est le travail du logarithme. Le logarithme en base a de bé est l'exposant auquel il faut élever a pour obtenir bé. Il n'existe que pour une base strictement positive et différente de un, et pour un nombre bé strictement positif. Deux bases dominent : la base e, qui donne le logarithme népérien, et la base dix, le logarithme décimal.",
+   "ecran": "log_def",
+   "id": "p08",
+   "texte": "logₐ(b) = x ⇔ aˣ = b : l'exposant cherché."
+  },
+  {
+   "dit": "Le logarithme transforme la nature des opérations : le logarithme d'un produit est la somme des logarithmes, celui d'un quotient est une différence, et une puissance sort devant comme un simple facteur. Le changement de base ramène tout au logarithme népérien : on divise par le logarithme de l'ancienne base. Toutes ces formules exigent des nombres strictement positifs, c'est la condition à vérifier avant tout calcul.",
+   "ecran": "log_prop",
+   "id": "p09",
+   "texte": "Produit → somme, quotient → différence, puissance → facteur."
+  },
+  {
+   "dit": "Exponentielle et logarithme se défont mutuellement. Le logarithme de un vaut zéro, celui de e vaut un. Composer dans un sens : l'exponentielle du logarithme d'un nombre strictement positif redonne ce nombre ; dans l'autre sens, le logarithme d'une exponentielle redonne l'exposant, pour tout réel. Ce sont ces deux allers-retours qui permettent d'isoler une inconnue placée en exposant ou sous un logarithme.",
+   "ecran": "log_valeurs",
+   "id": "p10",
+   "texte": "e^(ln x) = x et ln(eˣ) = x : elles se défont."
+  },
+  {
+   "dit": "Résolvons l'équation des leçons : logarithme de ixe plus logarithme de ixe moins un égale logarithme de six. D'abord le domaine : il faut ixe strictement positif et ixe moins un aussi, donc ixe plus grand que un. La propriété du produit donne le logarithme de ixe fois ixe moins un, d'où le produit égal à six. On obtient une équation du second degré dont les racines sont trois et moins deux : moins deux est hors domaine, il reste ixe égal à trois.",
+   "ecran": "log_eq",
+   "id": "p11",
+   "texte": "ln x + ln(x − 1) = ln 6 : domaine d'abord, x = 3."
+  },
+  {
+   "dit": "Le logarithme népérien n'est défini que pour les nombres strictement positifs. Sa dérivée est l'inverse de ixe : plus ixe grandit, plus la pente s'écrase, et la courbe croît de plus en plus lentement, sans jamais s'arrêter. À gauche, quand ixe tend vers zéro par valeurs positives, le logarithme plonge vers moins l'infini : l'axe des ordonnées est son asymptote verticale, et la courbe passe par le point d'abscisse un et d'ordonnée zéro.",
+   "ecran": "log_deriv",
+   "id": "p12",
+   "texte": "(ln x)′ = 1/x : une croissance lente, asymptote x = 0."
+  },
+  {
+   "dit": "Récapitulons cette première partie. L'exponentielle place la variable en exposant, reste strictement positive et, pour la base e, se dérive en elle-même. Le logarithme est sa réciproque : il transforme les produits en sommes et les puissances en facteurs. Pour toute équation, le réflexe est le même : domaine d'abord, propriétés ensuite, solutions étrangères rejetées à la fin.",
+   "ecran": "recap1",
+   "id": "p13",
+   "texte": "Partie 1 : l'essentiel à retenir."
+  },
+  {
+   "dit": "Construisons les fonctions hyperboliques à partir des deux exponentielles, celle de ixe et celle de moins ixe. Leur demi-somme est le cosinus hyperbolique, leur demi-différence est le sinus hyperbolique. Leur quotient est la tangente hyperbolique. Les noms imitent la trigonométrie, mais il n'y a ni cercle ni périodicité : la géométrie sous-jacente est celle de l'hyperbole, dessinée à l'écran.",
+   "ecran": "chsh_def",
+   "id": "p14",
+   "texte": "cosh et sinh : demi-somme et demi-différence de eˣ et e⁻ˣ."
+  },
+  {
+   "dit": "Lisons leurs allures. Le cosinus hyperbolique est pair, comme un miroir autour de l'axe des ordonnées : il vaut un en zéro, ne descend jamais sous un, et forme une courbe en U. Le sinus hyperbolique est impair, il passe par l'origine et croît sans borne. La tangente hyperbolique, elle aussi impaire, reste coincée entre moins un et un : ses deux asymptotes horizontales sont les droites d'ordonnée un et moins un.",
+   "ecran": "parites",
+   "id": "p15",
+   "texte": "cosh pair ≥ 1 ; sinh impair ; −1 < tanh < 1."
+  },
+  {
+   "dit": "Voici leur identité fondamentale, l'analogue hyperbolique de l'identité du cercle, mais avec un signe moins : le carré du cosinus hyperbolique moins le carré du sinus hyperbolique vaut toujours un. La preuve tient en quelques lignes à partir des définitions : les termes en exponentielle double se détruisent et il reste un. Géométriquement, le point de coordonnées cosinus hyperbolique et sinus hyperbolique vit sur l'hyperbole d'équation ixe carré moins igrec carré égal à un, celle de l'écran.",
+   "ecran": "identite",
+   "id": "p16",
+   "texte": "cosh²x − sinh²x = 1 : l'hyperbole x² − y² = 1."
+  },
+  {
+   "dit": "Leurs dérivées forment un duo d'une simplicité rare : la dérivée du cosinus hyperbolique est le sinus hyperbolique, et celle du sinus hyperbolique est le cosinus hyperbolique. Elles se renvoient l'une à l'autre, sans le signe moins qui complique la dérivée du cosinus usuel. Pour la tangente hyperbolique, la dérivée vaut un moins le carré de la tangente, ou encore un divisé par le carré du cosinus hyperbolique.",
+   "ecran": "deriv_hyp",
+   "id": "p17",
+   "texte": "cosh′ = sinh, sinh′ = cosh : sans signe moins."
+  },
+  {
+   "dit": "Ces dérivées donnent les primitives immédiatement, et règlent l'exemple des leçons : intégrer le sinus hyperbolique de deux ixe. La primitive du sinus hyperbolique est le cosinus hyperbolique, mais l'argument deux ixe apporte un facteur deux à la dérivation, qu'il faut compenser par un demi. Résultat : un demi de cosinus hyperbolique de deux ixe, plus une constante. Vérifiez toujours une primitive en la dérivant, c'est le contrôle le plus rapide.",
+   "ecran": "integrale",
+   "id": "p18",
+   "texte": "∫ sinh(2x) dx = ½ cosh(2x) + C : vérifier en dérivant."
+  },
+  {
+   "dit": "Trois fonctions complètent la famille, construites comme des inverses au sens du quotient : la sécante hyperbolique est l'inverse du cosinus hyperbolique, la cosécante hyperbolique celui du sinus, et la cotangente hyperbolique celui de la tangente. Attention au vocabulaire : ces réciproques, obtenues en inversant la fraction, ne sont pas les fonctions inverses du chapitre suivant, qui défont la fonction. Et comme le sinus hyperbolique s'annule en zéro, sa réciproque et la cotangente n'y sont pas définies.",
+   "ecran": "autres_hyp",
+   "id": "p19",
+   "texte": "sech = 1/cosh, csch = 1/sinh, coth = 1/tanh."
+  },
+  {
+   "dit": "Passons aux vraies fonctions inverses, les fonctions argument. Bonne surprise : elles s'écrivent toutes avec le logarithme népérien. L'argument sinus hyperbolique d'un nombre est le logarithme de ce nombre augmenté de la racine carrée de son carré plus un, et il accepte tous les réels. L'argument cosinus hyperbolique exige un nombre au moins égal à un. L'argument tangente hyperbolique, lui, vit strictement entre moins un et un, et fait intervenir un demi-logarithme d'un quotient.",
+   "ecran": "inverses_form",
+   "id": "p20",
+   "texte": "Les inverses hyperboliques sont des logarithmes."
+  },
+  {
+   "dit": "Pourquoi l'argument cosinus hyperbolique est-il restreint ? Parce que le cosinus hyperbolique, en U, n'est pas injectif : une même valeur est prise deux fois, en ixe et en moins ixe. On ne garde que la branche positive, ixe positif ou nul, et comme le cosinus hyperbolique ne descend jamais sous un, son inverse ne démarre qu'en un. Les deux autres n'ont pas ce problème : le sinus et la tangente hyperboliques sont strictement croissants, donc inversibles sur tout leur domaine.",
+   "ecran": "inverses_dom",
+   "id": "p21",
+   "texte": "cosh n'est pas injectif : on garde la branche x ≥ 0."
+  },
+  {
+   "dit": "Leurs dérivées prolongent le tableau : celle de l'argument sinus hyperbolique est un divisé par la racine carrée de ixe carré plus un, définie partout. Celle de l'argument cosinus hyperbolique remplace le plus par un moins sous la racine, ce qui impose ixe strictement supérieur à un. Celle de l'argument tangente hyperbolique est un divisé par un moins ixe carré, entre moins un et un. Retenez le motif : une racine ou un dénominateur qui rappelle exactement le domaine.",
+   "ecran": "inverses_deriv",
+   "id": "p22",
+   "texte": "Dérivées des inverses : la racine rappelle le domaine."
+  },
+  {
+   "dit": "Exemple complet : résoudre cosinus hyperbolique de ixe égal à deux. On cherche donc l'argument cosinus hyperbolique de deux, c'est-à-dire le logarithme de deux plus la racine carrée de trois, environ un virgule trois cent dix-sept. Mais attention : l'équation, elle, a deux solutions, positives et négatives, car le cosinus hyperbolique est pair. La fonction inverse ne donne que la positive ; la symétrie de la courbe fournit l'autre.",
+   "ecran": "cosh_eq",
+   "id": "p23",
+   "texte": "cosh x = 2 : x = ±ln(2 + √3) ≈ ±1,317."
+  },
+  {
+   "dit": "L'application emblème des hyperboliques est la chaînette : la forme que prend un câble ou une chaîne suspendue entre deux points, sous son seul poids. Ce n'est pas une parabole, comme on l'a cru longtemps, mais un cosinus hyperbolique mis à l'échelle : igrec égale a fois le cosinus hyperbolique de ixe divisé par a. Le paramètre a règle la flèche : petit, le câble est tendu et la courbe creusée ; grand, elle s'aplatit. Les leçons l'utilisent aussi pour les lignes de transmission et certains phénomènes relativistes.",
+   "ecran": "chainette",
+   "id": "p24",
+   "texte": "y = a·cosh(x/a) : le câble suspendu n'est pas une parabole."
+  },
+  {
+   "dit": "Récapitulons cette deuxième partie. Le cosinus et le sinus hyperboliques sont les demi-somme et demi-différence des exponentielles ; ils vérifient l'identité fondamentale avec un signe moins, et leurs dérivées se renvoient l'une à l'autre. Leurs inverses s'écrivent avec des logarithmes, à condition de respecter les domaines : au moins un pour l'argument cosinus, entre moins un et un pour l'argument tangente.",
+   "ecran": "recap2",
+   "id": "p25",
+   "texte": "Partie 2 : l'essentiel à retenir."
+  },
+  {
+   "dit": "Commençons par superposer les deux réciproques historiques. L'exponentielle envoie les réels sur les nombres strictement positifs et passe par le point de coordonnées zéro, un ; le logarithme fait le trajet inverse et passe par un, zéro. Leurs asymptotes se correspondent : horizontale pour l'une, verticale pour l'autre. Et leurs courbes sont symétriques par rapport à la première bissectrice, la droite d'équation igrec égale ixe : échanger les coordonnées transforme l'une en l'autre.",
+   "ecran": "symetrie",
+   "id": "p26",
+   "texte": "exp et ln : symétriques par rapport à y = x."
+  },
+  {
+   "dit": "Aux infinis, la hiérarchie est nette : l'exponentielle écrase toutes les puissances. Le quotient de l'exponentielle par n'importe quelle puissance de ixe tend vers plus l'infini, et le produit de ixe par l'exponentielle de moins ixe tend vers zéro. Le logarithme, lui, perd contre la moindre puissance : son quotient par ixe tend vers zéro. Ces croissances comparées tranchent la plupart des formes indéterminées où ces fonctions se rencontrent.",
+   "ecran": "limites",
+   "id": "p27",
+   "texte": "Croissances comparées : exp ≫ puissances ≫ ln."
+  },
+  {
+   "dit": "Le modèle qui résume toutes les applications : une quantité dont la variation est proportionnelle à elle-même suit une exponentielle, la quantité de départ multipliée par l'exponentielle de ka fois té. Si ka est positif, c'est une croissance ; s'il est négatif, une décroissance. Toute la modélisation tient alors en deux questions : quelle est la quantité de départ, et que vaut ka, qu'un doublement ou une demi-vie permet de déterminer.",
+   "ecran": "modele",
+   "id": "p28",
+   "texte": "N(t) = N₀·e^(kt) : le signe de k décide du sens."
+  },
+  {
+   "dit": "Application des leçons : une population suit la loi mille fois l'exponentielle de zéro virgule deux té, té en heures. Après cinq heures, l'exposant vaut un, et la population est mille fois e, environ deux mille sept cent dix-huit. Pour le doublement, on résout l'exponentielle de zéro virgule deux té égale à deux : té vaut le logarithme de deux divisé par zéro virgule deux, environ trois virgule quarante-sept heures, soit trois heures et vingt-huit minutes environ.",
+   "ecran": "population",
+   "id": "p29",
+   "texte": "P(5) ≈ 2 718 ; doublement en ≈ 3,47 h."
+  },
+  {
+   "dit": "Datation au carbone quatorze : sa demi-vie est d'environ cinq mille sept cent trente ans. Un échantillon parti de cent grammes suit la loi du demi élevé à la puissance té sur la demi-vie. Après dix mille ans, l'exposant vaut environ un virgule sept cent quarante-cinq, et il reste cent fois un demi à cette puissance, environ vingt-neuf virgule huit grammes. C'est ce calcul, inversé par un logarithme, qui donne l'âge d'un échantillon mesuré.",
+   "ecran": "carbone",
+   "id": "p30",
+   "texte": "Carbone 14, 10 000 ans : il reste ≈ 29,8 g sur 100 g."
+  },
+  {
+   "dit": "Les logarithmes servent aussi à comprimer les échelles. Sur l'échelle de Richter, la magnitude est le logarithme décimal du rapport des amplitudes : gagner une unité de magnitude, c'est multiplier l'amplitude des ondes par dix. Un séisme de magnitude six a donc une amplitude cent fois celle d'un séisme de magnitude quatre. Même principe pour les décibels du son : dix décibels de plus, c'est une intensité sonore multipliée par dix, et vingt décibels la multiplient par cent.",
+   "ecran": "richter",
+   "id": "p31",
+   "texte": "Richter : +1 unité = amplitude × 10 ; +10 dB = intensité × 10."
+  },
+  {
+   "dit": "Exercice de synthèse, pris dans la révision finale : logarithme en base deux de ixe, plus logarithme en base deux de ixe moins deux, égale trois. Le domaine impose ixe plus grand que deux. Le produit sous le logarithme donne ixe fois ixe moins deux égal à huit, soit une équation du second degré de racines quatre et moins deux. Moins deux est hors domaine : la seule solution est quatre. Même réflexe que pour l'équation en logarithme népérien, seule la base change.",
+   "ecran": "synthese_log",
+   "id": "p32",
+   "texte": "log₂ x + log₂(x − 2) = 3 : domaine x > 2, solution 4."
+  },
+  {
+   "dit": "Dernier calcul de révision : dériver le produit du sinus hyperbolique de ixe carré par le cosinus hyperbolique de ixe. La règle du produit donne deux termes. Le premier dérive le sinus hyperbolique composé : il apporte le facteur deux ixe et le cosinus hyperbolique de ixe carré, multiplié par le cosinus hyperbolique de ixe resté en place. Le second dérive le cosinus hyperbolique : il apporte le sinus hyperbolique de ixe, multiplié par le sinus hyperbolique de ixe carré.",
+   "ecran": "synthese_deriv",
+   "id": "p33",
+   "texte": "Produit de composées : dériver chaque facteur à son tour."
+  },
+  {
+   "dit": "Problème de placement, pour finir les applications : mille euros placés à cinq pour cent par an, en intérêts composés en continu, valent mille fois l'exponentielle de zéro virgule zéro cinq té après té années. Le doublement demande l'exponentielle de zéro virgule zéro cinq té égale à deux, donc té égale au logarithme de deux divisé par zéro virgule zéro cinq : environ treize virgule quatre-vingt-six ans. Le logarithme est l'outil qui répond aux questions de durée, là où l'exponentielle répond aux questions de montant.",
+   "ecran": "investissement",
+   "id": "p34",
+   "texte": "1 000 € à 5 % continu : doublement en ≈ 13,86 ans."
+  },
+  {
+   "dit": "Pour conclure, retenez l'enchaînement complet de ce cours. L'exponentielle modélise ce qui croît ou décroît à taux proportionnel, le logarithme la défait et comprime les échelles, les hyperboliques recombinent les exponentielles et décrivent la chaînette, et leurs inverses ramènent au logarithme. Devant chaque exercice, trois questions : quel est le domaine, quelle est la réciproque, et quelle dérivée s'applique.",
+   "ecran": "recap_final",
+   "id": "p35",
+   "texte": "Fonctions usuelles : l'essentiel final."
+  }
+ ],
+ "titre": "Fonctions usuelles : exponentielle, logarithme et hyperboliques"
+}

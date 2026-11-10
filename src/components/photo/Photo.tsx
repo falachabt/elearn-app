@@ -1,15 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
-import { Flag, Share2 } from 'lucide-react-native';
+import { Flag, Share2, Sparkles } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, AppState, Share, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
+import { ActivityIndicator, AppState, Share, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent, type StyleProp, type ViewStyle } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import {
-  MATIERES_PHOTO, MOTIFS_PHOTO, PROGRESSIONS, blocsDepuisTexte, envoyerPhoto, etatsEtapes, lireMatiere, noterCorrection, preparerImage, reclamerRecompensePartage, retenirMatiere,
-  signalerCorrection, texteDePartage, type Cadre, type CorrectionPhoto, type MatierePhoto, type MotifPhoto, type Progression,
+  MATIERES_PHOTO, MOTIFS_PHOTO, PROGRESSIONS, blocsDepuisTexte, envoyerPhoto, etatsEtapes, lireMatiere, lireQuotaPhoto, noterCorrection, preparerImage, reclamerRecompensePartage, retenirMatiere,
+  signalerCorrection, texteDePartage, type Cadre, type CorrectionPhoto, type MatierePhoto, type MotifPhoto, type Progression, type QuotaPhoto,
 } from '@/services/photo';
 import { suivre } from '@/services/analytics';
 import { texteAvecFormules } from '@/services/blocs';
@@ -53,6 +53,17 @@ type Etat =
 
 const COULEUR: Record<string, string> = { maths: couleursMatiere.maths, physique: couleursMatiere.physique, chimie: couleursMatiere.physique, svt: couleursMatiere.svt, francais: couleursMatiere.francais, anglais: couleursMatiere.anglais };
 
+/**
+ * Pied des écrans du parcours posés dans l'onglet Photo (recadrage, correction, signaler, limites).
+ * Le `TabSlot` du layout des onglets réserve déjà sous chaque écran le dépassement du bouton central
+ * plus `espace[3]` de respiration ; le pied d'`Ecran` ajoute par-dessus son propre `paddingBottom`
+ * standard (`espace[5]`), prévu pour les écrans sans cette réserve. Les deux s'additionnaient : le bloc
+ * du bas flottait loin de la barre d'onglets. On compense la réserve en double par une marge négative :
+ * le pied garde son padding interne (clavier compris) et descend de `espace[5]`, la respiration de
+ * l'onglet (dépassement + `espace[3]`) reste la seule sous le bloc.
+ */
+const PIED_ONGLET: StyleProp<ViewStyle> = { marginBottom: -espace[5] };
+
 /** Aide par photo (M3, parcours B) : appareil photo → recadrage → analyse → correction pas à pas, signalement, limites. */
 export function Photo() {
   const { t } = useTraduction();
@@ -72,6 +83,35 @@ export function Photo() {
   const [occupe, setOccupe] = useState(false);
   const [signaleErreur, setSignaleErreur] = useState(false);
   const [signale, setSignale] = useState<Set<string>>(new Set());
+  const [quota, setQuota] = useState<QuotaPhoto | null>(null);
+
+  const rafraichirQuota = useCallback(async () => {
+    try {
+      const q = await lireQuotaPhoto(getSupabase());
+      if (q) setQuota(q);
+    } catch {
+      // repli silencieux
+    }
+  }, []);
+
+  useEffect(() => {
+    let actif = true;
+    lireQuotaPhoto(getSupabase())
+      .then((q) => {
+        if (actif && q) setQuota(q);
+      })
+      .catch(() => {});
+    return () => {
+      actif = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (etatApp) => {
+      if (etatApp === 'active') void rafraichirQuota();
+    });
+    return () => sub.remove();
+  }, [rafraichirQuota]);
 
   useEffect(() => {
     void lireMatiere().then(setMatiere);
@@ -148,12 +188,16 @@ export function Photo() {
         surEtape: (e) => setEtat((s) => (s.ecran === 'analyse' && !s.etapes.includes(e) ? { ecran: 'analyse', etapes: [...s.etapes, e] } : s)),
       });
       void rafraichir();
+      void rafraichirQuota();
       void rappel.then(annulerCorrectionPrete);
       // Application en arrière-plan quand la correction arrive : on prévient tout de suite plutôt qu'au délai prévu.
       if (issue.type === 'fin' && AppState.currentState !== 'active') void notifierCorrectionPrete({ titre: t('photo.notifTitre'), corps: t('photo.notifCorps'), canal: t('photo.notifCanal') });
       if (issue.type === 'fin') {
         declencher('arrive');
-        suivre('photo_corrected', { matiere: issue.correction.matiere, duree_s: Math.round((Date.now() - debut) / 1000), etapes: issue.correction.etapes.length });
+        const dureeS = Math.round((Date.now() - debut) / 1000);
+        suivre('photo_corrected', { matiere: issue.correction.matiere, duree_s: dureeS, etapes: issue.correction.etapes.length });
+        suivre('ai_answer_seen', { source: 'photo', duree_s: dureeS });
+        suivre('ai_correction_complete', { duration_ms: Date.now() - debut, matiere: issue.correction.matiere, etapes: issue.correction.etapes.length });
         await noterActionConfiguration('correction').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
         setEtat({ ecran: 'correction', id: issue.id, correction: issue.correction });
       } else if (issue.type === 'illisible') {
@@ -164,6 +208,7 @@ export function Photo() {
         setEpuise(true);
         setEtat({ ecran: 'recadrage', photo: derniereRecadrage.current!, source: image.source });
       } else if (issue.type === 'quota') {
+        suivre('quota_reached', { action: 'ai_question', limite: quota?.daily_limit ?? 0 });
         declencher('problem');
         setEtat({ ecran: 'limite' });
       } else if (issue.type === 'limite') {
@@ -227,6 +272,7 @@ export function Photo() {
 
   const partager = async (c: CorrectionPhoto, correctionId?: string) => {
     suivre('photo_shared', { id: correctionId });
+    suivre('correction_shared', { source: 'photo' });
     try {
       await Share.share({
         message: texteDePartage(
@@ -249,6 +295,7 @@ export function Photo() {
         void mefierNotificationReward('partage_photo', res.gain);
         setPartageMessage(t('photo.recompensePartageToast'));
         suivre('share_reward_claimed', { gain: res.gain, type: 'photo' });
+        suivre('reward_granted', { type: 'partage_photo', valeur: res.gain });
       } else if (!res.ok && res.motif === 'deja_reclame') {
         setPartageMessage(t('photo.recompensePartageDeja'));
       }
@@ -291,13 +338,24 @@ export function Photo() {
         insetBas={false}
         defilement={false}
         retourHaut={false}
+        piedStyle={PIED_ONGLET}
         entete={
           <>
             <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={recommencer} />
             <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('photo.recadrer')}</Text>
           </>
         }
-        pied={<BoutonEnvoi libelle={t('photo.demanderIa')} cout={solde?.illimite ? undefined : couts.ai_question} desactive={occupe} onPress={() => void envoyer(photo, source)} />}
+        pied={
+          <View style={styles.piedRecadrage}>
+            <BoutonEnvoi
+              libelle={t('photo.demanderIa')}
+              cout={solde?.illimite ? undefined : couts.ai_question}
+              desactive={occupe || (quota !== null && quota.remaining === 0)}
+              onPress={() => void envoyer(photo, source)}
+            />
+            {quota !== null ? <CompteurQuotaIA quota={quota} /> : null}
+          </View>
+        }
       >
         <CadreRecadrage uri={photo.uri} largeur={photo.largeur} hauteur={photo.hauteur} onChange={setCadre} />
         <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('photo.matiereDevinee')}</Text>
@@ -359,6 +417,7 @@ export function Photo() {
         <Ecran
           insetBas={false}
           onScroll={surDefilementCorrection}
+          piedStyle={PIED_ONGLET}
           entete={
             <>
               <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={depuis ? () => setEtat({ ecran: 'historique' }) : quitter} />
@@ -373,15 +432,22 @@ export function Photo() {
           }
           pied={
             avis ? (
-              <View style={styles.piedAvecPartage}>
-                <View style={styles.flex}>
-                  <Bouton libelle={t('photo.nouvelle')} onPress={recommencer} />
-                </View>
-                <Appui accessibilityRole="button" accessibilityLabel={t('photo.partager')} onPress={() => void partager(c, id)} decalage={2} rayon={rayon.m}>
-                  <View style={[styles.boutonCarrePartage, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                    <Share2 size={22} strokeWidth={2.25} color={theme.texte.principal} />
+              <View style={styles.piedCorrection}>
+                <View style={styles.piedAvecPartage}>
+                  <View style={styles.flex}>
+                    <Bouton
+                      libelle={t('photo.nouvelle')}
+                      desactive={quota !== null && quota.remaining === 0}
+                      onPress={recommencer}
+                    />
                   </View>
-                </Appui>
+                  <Appui accessibilityRole="button" accessibilityLabel={t('photo.partager')} onPress={() => void partager(c, id)} decalage={2} rayon={rayon.m}>
+                    <View style={[styles.boutonCarrePartage, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                      <Share2 size={22} strokeWidth={2.25} color={theme.texte.principal} />
+                    </View>
+                  </Appui>
+                </View>
+                {quota !== null ? <CompteurQuotaIA quota={quota} discret /> : null}
               </View>
             ) : (
               <View style={styles.avis}>
@@ -469,6 +535,7 @@ export function Photo() {
             <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('photo.signalerTitre')}</Text>
           </>
         }
+        piedStyle={PIED_ONGLET}
         pied={<Bouton libelle={t('photo.signalerEnvoyer')} desactive={!motif || occupe} onPress={() => void envoyerSignalement(id, correction)} />}
       >
         <View style={styles.options}>
@@ -511,6 +578,7 @@ export function Photo() {
             <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('onglets.photo')}</Text>
           </>
         }
+        piedStyle={PIED_ONGLET}
         pied={<Bouton libelle={t('photo.limiteCadenceBouton')} onPress={recommencer} />}
       >
         <View style={[styles.carteJaune, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
@@ -534,6 +602,7 @@ export function Photo() {
           <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('onglets.photo')}</Text>
         </>
       }
+      piedStyle={PIED_ONGLET}
       pied={<Bouton libelle={t('photo.faireMission')} onPress={() => router.replace('/')} />}
     >
       <View style={[styles.carteJaune, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
@@ -554,6 +623,43 @@ function BoutonEnvoi({ libelle, cout, desactive, onPress }: { libelle: string; c
         {cout ? <PuceCout cout={cout} /> : null}
       </View>
     </Appui>
+  );
+}
+
+/** Compteur discret du quota IA restant aujourd'hui (vert > 2 -> orange 1-2 -> rouge 0, Issue #10). */
+export function CompteurQuotaIA({ quota, discret }: { quota: QuotaPhoto; discret?: boolean }) {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+
+  const couleurPastille =
+    quota.remaining > 2
+      ? theme.etat.succes
+      : quota.remaining > 0
+      ? theme.etat.alerte
+      : theme.etat.erreur;
+
+  const texteCompteur =
+    quota.remaining === 0
+      ? t('photo.quotaZero')
+      : quota.remaining === 1
+      ? t('photo.quotaRestant', { n: '1' })
+      : t('photo.quotaRestants', { n: String(quota.remaining) });
+
+  return (
+    <View style={styles.quotaConteneur}>
+      <View style={styles.quotaLigne}>
+        <View style={[styles.quotaPastille, { backgroundColor: couleurPastille }]} />
+        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{texteCompteur}</Text>
+      </View>
+      {quota.remaining === 0 && !discret ? (
+        <View style={[styles.quotaBlocExplication, { backgroundColor: theme.fond.creux, borderColor: theme.bord.doux }]}>
+          <Sparkles size={16} color={theme.texte.secondaire} />
+          <Text style={[typo.etiquette, styles.flex, { color: theme.texte.secondaire }]}>
+            {t('photo.quotaBloqueExplication')}
+          </Text>
+        </View>
+      ) : null}
+    </View>
   );
 }
 
@@ -578,4 +684,19 @@ const styles = StyleSheet.create({
   piedAvecPartage: { flexDirection: 'row', gap: espace[3], alignItems: 'center' },
   boutonCarrePartage: { width: 48, height: 48, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   separateur: { height: 1.5, marginVertical: espace[3] },
+  piedRecadrage: { gap: espace[3] },
+  piedCorrection: { gap: espace[3] },
+  quotaConteneur: { gap: espace[2], alignItems: 'center', width: '100%' },
+  quotaLigne: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  quotaPastille: { width: 8, height: 8, borderRadius: 4 },
+  quotaBlocExplication: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espace[2],
+    borderWidth: bord.fin,
+    borderRadius: rayon.m,
+    paddingHorizontal: espace[3],
+    paddingVertical: espace[2],
+    width: '100%',
+  },
 });

@@ -32,7 +32,7 @@ async function charger(): Promise<Etat> {
     const p = programmeDu(profil);
     // Leçons validées du téléphone d'abord ; la mise en commun avec le compte suit sans faire attendre l'écran.
     const [cours, lues] = await Promise.all([lireCours(getSupabase(), p), lireLues()]);
-    return { statut: 'pret', matieres: regrouperParMatiere(cours), lues, cle: p.concours ?? `${p.niveau}.${p.pays}` };
+    return { statut: 'pret', matieres: regrouperParMatiere(cours), lues, cle: p.concours ?? `${p.niveau}.${p.pays}${p.serie ? `.${p.serie}` : ''}` };
   } catch {
     return { statut: 'erreur' };
   }

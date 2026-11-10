@@ -1,0 +1,656 @@
+{
+ "cours": 6045,
+ "ecrans": {
+  "champ_electrique": {
+   "kicker": "Mouvements plans",
+   "note": "Entre des plaques de longueur l, poids négligé · parabole entre les plaques, puis mouvement rectiligne uniforme à la sortie · alpha : angle de déviation",
+   "tex": [
+    "\\vec{F} = q\\,\\vec{E} \\ \\Rightarrow \\ \\vec{a} = \\tfrac{q}{m}\\,\\vec{E}",
+    "z = -\\tfrac{1}{2}\\,\\tfrac{q\\,E}{m\\,V_0^2}\\,x^2",
+    "\\tan\\alpha = -\\tfrac{q\\,E\\,l}{m\\,V_0^2}"
+   ],
+   "titre": "Particule chargée dans un champ électrique uniforme",
+   "type": "etape",
+   "anim": {
+    "nom": "deviation_electrique_fig",
+    "hauteur": 115
+   }
+  },
+  "champ_magnetique": {
+   "kicker": "Mouvements circulaires",
+   "note": "Force de Lorentz, perpendiculaire à la vitesse : elle ne travaille pas et la norme de V est constante · mesurer le rayon R donne la quantité de mouvement p",
+   "tex": [
+    "\\vec{F} = q\\,\\vec{V} \\wedge \\vec{B}",
+    "a_t = 0 \\ ; \\ a_n = \\tfrac{V^2}{R}",
+    "R = \\tfrac{m\\,V}{|q|\\,B} = \\tfrac{p}{|q|\\,B}"
+   ],
+   "titre": "Particule chargée dans un champ magnétique uniforme",
+   "type": "etape",
+   "anim": {
+    "nom": "deviation_magnetique_fig",
+    "hauteur": 115
+   }
+  },
+  "chocs": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "choc"
+   },
+   "etapes": [
+    "Élastique : p et énergie cinétique conservées — le billard",
+    "Mou : seule p se conserve — des voitures qui s'accrochent",
+    "Parfaitement mou : les deux corps restent unis après le choc"
+   ],
+   "kicker": "Quantité de mouvement",
+   "titre": "Élastique, mou, parfaitement mou",
+   "type": "recap"
+  },
+  "chute_libre": {
+   "kicker": "Mouvements rectilignes",
+   "note": "Axe vertical orienté vers le bas · a égale g, soit neuf virgule huit mètres par seconde au carré, quelle que soit la masse du corps",
+   "tex": [
+    "\\vec{P} = m\\,\\vec{a} \\ \\Rightarrow \\ \\vec{a} = \\vec{g}",
+    "v_z = g\\,t + v_0",
+    "z = \\frac{1}{2}\\,g\\,t^2 + v_0\\,t + z_0"
+   ],
+   "titre": "Chute libre : le poids seul aux commandes",
+   "type": "etape"
+  },
+  "circulaire": {
+   "kicker": "Mouvements circulaires",
+   "note": "Force centripète associée : F indice c égale m fois v au carré sur R, dirigée vers le centre de la trajectoire circulaire",
+   "tex": "a_c = \\frac{v^2}{R}",
+   "titre": "L'accélération centripète",
+   "type": "formule"
+  },
+  "conservation": {
+   "kicker": "Quantité de mouvement",
+   "note": "Valable pour un système isolé, sans force extérieure · les échanges internes entre corps ne modifient pas le total",
+   "tex": "\\sum \\vec{p}_{\\text{initial}} = \\sum \\vec{p}_{\\text{final}}",
+   "titre": "La conservation de la quantité de mouvement",
+   "type": "formule"
+  },
+  "energie_cinetique": {
+   "kicker": "Travail et énergie",
+   "note": "Première ligne : mouvement de translation · deuxième : rotation autour d'un axe fixe · troisième : théorème de l'énergie cinétique, variation entre le point de départ et le point d'arrivée",
+   "tex": [
+    "E_c = \\frac{1}{2}\\,m\\,v^2",
+    "E_c = \\frac{1}{2}\\,J_\\Delta\\,\\omega^2",
+    "\\Delta E_c = \\sum W_{ext}"
+   ],
+   "titre": "Énergie cinétique et son théorème",
+   "type": "etape"
+  },
+  "energie_mecanique": {
+   "kicker": "Travail et énergie",
+   "note": "W indice nc : travaux des forces non conservatives, comme les frottements · une force conservative, tel le poids, fournit un travail indépendant du chemin suivi",
+   "tex": [
+    "E_m = E_c + E_p",
+    "E_{m1} = E_{m2} \\ \\Rightarrow \\ \\Delta E_c = - \\Delta E_p",
+    "\\Delta E_m = \\sum W_{nc}"
+   ],
+   "titre": "L'énergie mécanique, somme qui se conserve",
+   "type": "etape"
+  },
+  "energies_potentielles": {
+   "kicker": "Travail et énergie",
+   "note": "z : altitude du centre d'inertie, potentielle nulle à z égal zéro · k : constante de raideur, x : déformation du ressort · C : constante de torsion du fil",
+   "tex": [
+    "E_{p,\\text{pesanteur}} = m\\,g\\,z",
+    "E_{p,\\text{élastique}} = \\frac{1}{2}\\,k\\,x^2",
+    "E_{p,\\text{torsion}} = \\frac{1}{2}\\,C\\,\\theta^2"
+   ],
+   "titre": "Les énergies potentielles",
+   "type": "etape"
+  },
+  "exemple_balle": {
+   "kicker": "Exemple corrigé",
+   "note": "Balle lâchée sans vitesse initiale de un mètre vingt-cinq · à chaque rebond, son énergie cinétique est multipliée par q, zéro virgule quarante-deux · arrêt quand la hauteur passe sous le centième du rayon",
+   "tex": [
+    "v_S = \\sqrt{2\\,g\\,h_0} = 5\\ \\text{m/s}",
+    "h_1 = q \\cdot h_0",
+    "h_n = q^n\\,h_0"
+   ],
+   "titre": "La balle qui rebondit, de moins en moins haut",
+   "type": "etape"
+  },
+  "exemple_pendule": {
+   "kicker": "Exemple corrigé",
+   "note": "Projectile de dix grammes à deux cents mètres par seconde · bloc de deux kilogrammes suspendu à un fil de deux mètres · le choc dissipe presque toute l'énergie cinétique initiale",
+   "tex": [
+    "V' = \\frac{m\\,V}{m + M} \\approx 1\\ \\text{m/s}",
+    "\\Delta E_c = -199\\ \\text{J}",
+    "1 - \\cos\\theta \\approx \\frac{1}{40} \\ \\Rightarrow \\ \\theta \\approx 12{,}8^\\circ"
+   ],
+   "titre": "Le pendule balistique : un choc, puis une oscillation",
+   "type": "etape"
+  },
+  "exemple_pirogue": {
+   "kicker": "Exemple corrigé",
+   "note": "Pirogue de cinq mètres et cent cinquante kilogrammes, centre au milieu · passager de soixante kilogrammes assis à une extrémité",
+   "tex": [
+    "\\vec{OG} = \\tfrac{M\\,\\vec{OG_1} + m\\,\\vec{OG_2}}{M + m}",
+    "G_1G_2 = \\frac{L}{2} = 2{,}5\\ \\text{m} \\qquad G_1G = \\frac{60 \\times 2{,}5}{150 + 60} \\approx 0{,}71\\ \\text{m}"
+   ],
+   "titre": "Le centre de gravité de la pirogue chargée",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Pendant des siècles, Aristote affirme qu'un objet en mouvement s'arrête naturellement s'il n'est plus poussé. Galilée brise ce dogme en introduisant l'inertie. Newton, à la fin du dix-septième siècle, donne le cadre mathématique complet : trois lois du mouvement et la gravitation universelle, qui explique d'un même geste la chute d'une pomme et l'orbite de la Lune.",
+   "type": "phrase"
+  },
+  "methode": {
+   "etapes": [
+    "Délimiter précisément le système étudié",
+    "Choisir un référentiel d'étude galiléen",
+    "Dessiner le bilan des forces extérieures",
+    "Appliquer la relation fondamentale ou l'énergie cinétique",
+    "Projeter sur des axes, puis déduire la cinématique"
+   ],
+   "kicker": "Méthode",
+   "titre": "Résoudre un problème de dynamique",
+   "type": "recap"
+  },
+  "moment_cinetique": {
+   "kicker": "Moment cinétique",
+   "note": "r : vecteur position depuis un point de référence · deuxième ligne : solide en rotation autour de l'axe delta · troisième : masse ponctuelle à distance r de l'axe",
+   "tex": [
+    "\\vec{L} = \\vec{r} \\wedge \\vec{p} = m\\,(\\vec{r} \\wedge \\vec{v})",
+    "\\vec{L} = J_\\Delta\\,\\vec{\\omega}",
+    "J_\\Delta = m\\,r^2"
+   ],
+   "titre": "Le moment cinétique, produit vectoriel",
+   "type": "etape"
+  },
+  "moments_inertie": {
+   "kicker": "Les lois de Newton",
+   "note": "Dans l'ordre : masse ponctuelle, cerceau ou cylindre creux · disque ou cylindre plein · sphère pleine · tige homogène, axe par son centre",
+   "tex": [
+    "J_\\Delta = m\\,r^2 \\qquad J_\\Delta = \\frac{1}{2}\\,m\\,r^2",
+    "J_\\Delta = \\frac{2}{5}\\,m\\,r^2 \\qquad J_\\Delta = \\frac{1}{12}\\,m\\,l^2"
+   ],
+   "titre": "Quelques moments d'inertie à connaître",
+   "type": "etape"
+  },
+  "pendule_conique": {
+   "kicker": "Mouvements circulaires",
+   "note": "T : tension du fil · l : longueur du fil · alpha : demi-angle au sommet du cône décrit par le fil pendant la rotation",
+   "tex": [
+    "a = \\omega^2\\,l\\,\\sin\\alpha",
+    "T = m\\,\\omega^2\\,l",
+    "\\cos\\alpha = \\frac{g}{\\omega^2\\,l}"
+   ],
+   "titre": "Le pendule conique",
+   "type": "etape",
+   "anim": {
+    "nom": "pendule_conique_fig",
+    "hauteur": 115
+   }
+  },
+  "plan_lisse": {
+   "anim": {
+    "hauteur": 105,
+    "nom": "plan_incline"
+   },
+   "kicker": "Mouvements rectilignes",
+   "note": "Axe x le long du plan, vers le bas · sur l'axe normal, la réaction compense la composante du poids : R égale P cosinus alpha",
+   "tex": [
+    "\\vec{P} + \\vec{R} = m\\,\\vec{a}",
+    "a_x = g\\,\\sin\\alpha",
+    "x = \\frac{1}{2}\\,g\\,\\sin\\alpha \\cdot t^2"
+   ],
+   "titre": "Plan incliné parfaitement lisse",
+   "type": "etape"
+  },
+  "plan_rugueux": {
+   "anim": {
+    "hauteur": 105,
+    "nom": "plan_incline"
+   },
+   "kicker": "Mouvements rectilignes",
+   "note": "f : intensité de la force de frottement, toujours opposée au mouvement · la réaction normale vaut toujours P cosinus alpha",
+   "tex": [
+    "a_x = g\\,\\sin\\alpha - \\frac{f}{m}",
+    "x = \\frac{1}{2}\\left(g\\,\\sin\\alpha - \\frac{f}{m}\\right) t^2"
+   ],
+   "titre": "Plan incliné rugueux : le frottement s'oppose",
+   "type": "etape"
+  },
+  "premiere_loi": {
+   "kicker": "Les lois de Newton",
+   "note": "V de G : vitesse du centre d'inertie · énoncé valable dans un référentiel galiléen",
+   "tex": "\\sum \\vec{F}_{ext} = \\vec{0} \\ \\Rightarrow \\ \\vec{V}_G = \\text{constante}",
+   "titre": "Le principe d'inertie",
+   "type": "formule"
+  },
+  "projectile": {
+   "kicker": "Mouvements plans",
+   "note": "Uniforme selon x, uniformément varié selon z · la flèche est la hauteur maximale atteinte, la portée l'abscisse du point de chute",
+   "tex": [
+    "x = (V_0 \\cos\\alpha)\\,t",
+    "z = -\\frac{1}{2}\\,g\\,t^2 + (V_0 \\sin\\alpha)\\,t",
+    "z = x\\,\\tan\\alpha - \\frac{g\\,x^2}{2\\,V_0^2 \\cos^2\\alpha}"
+   ],
+   "titre": "Le projectile : une parabole dans un plan vertical",
+   "type": "etape"
+  },
+  "propulsion": {
+   "kicker": "Quantité de mouvement",
+   "note": "Équation de Tsiolkovski · v indice e : vitesse d'éjection des gaz · m zéro : masse initiale, m indice f : masse finale · v relative : vitesse de la masse éjectée",
+   "tex": [
+    "\\Delta v = v_e\\,\\ln\\left(\\frac{m_0}{m_f}\\right)",
+    "\\frac{d\\vec{p}}{dt} = \\vec{F}_{ext} + \\vec{v}_{rel}\\,\\frac{dm}{dt}"
+   ],
+   "titre": "Propulsion et systèmes à masse variable",
+   "type": "etape"
+  },
+  "quantite_mouvement": {
+   "kicker": "Quantité de mouvement",
+   "note": "p s'exprime en kilogramme mètre par seconde · vecteur de même direction et de même sens que la vitesse",
+   "tex": "\\vec{p} = m\\,\\vec{v}",
+   "titre": "La quantité de mouvement",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "La démarche : système, référentiel galiléen, bilan des forces",
+    "Deuxième loi : somme des forces égale M fois a de G",
+    "Chute et projectile : a égale g, trajectoire parabolique",
+    "Système isolé : p et L se conservent — chocs et orbites",
+    "Sans force non conservative, E mécanique se conserve"
+   ],
+   "kicker": "Récapitulatif",
+   "titre": "Ce qu'il faut retenir du cours",
+   "type": "recap"
+  },
+  "referentiels": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "referentiel"
+   },
+   "kicker": "Les lois de Newton",
+   "texte": "Un référentiel est galiléen si la première loi de Newton y est vérifiée. Le référentiel héliocentrique, d'origine le centre du Soleil, est le meilleur référentiel galiléen connu. Le géocentrique et le terrestre ne le sont qu'en approximation, pour des mouvements de courte durée. Tous les référentiels galiléens sont en translation rectiligne uniforme les uns par rapport aux autres.",
+   "type": "phrase"
+  },
+  "resultante": {
+   "kicker": "Quantité de mouvement",
+   "note": "La seconde ligne suppose la masse constante : on retrouve la deuxième loi de Newton, dont la première est la forme générale",
+   "tex": [
+    "\\frac{d\\vec{p}}{dt} = \\sum \\vec{F}_{ext}",
+    "\\sum \\vec{F}_{ext} = m\\,\\frac{d\\vec{v}}{dt} = m\\,\\vec{a}"
+   ],
+   "titre": "Le théorème de la résultante dynamique",
+   "type": "etape"
+  },
+  "satellite": {
+   "kicker": "Mouvements circulaires",
+   "note": "R : rayon de la Terre · h : altitude · g₀ au sol, g_h à l'altitude h",
+   "tex": [
+    "\\vec{a} = \\vec{g}_h \\ \\Rightarrow \\ a_t = 0",
+    "V = R\\,\\sqrt{\\tfrac{g_0}{R + h}}",
+    "T = 2\\pi\\,\\sqrt{\\tfrac{(R + h)^3}{g_0\\,R^2}}"
+   ],
+   "titre": "Le satellite en orbite circulaire",
+   "type": "etape"
+  },
+  "systeme": {
+   "kicker": "Les lois de Newton",
+   "texte": "Le système est l'ensemble des objets sur lesquels porte l'étude ; tout le reste constitue le milieu extérieur. Un point matériel est un objet assimilé à un point, de masse donnée : un satellite est un point dans son mouvement orbital. Les forces intérieures agissent entre les parties du système, les forces extérieures sont exercées par le milieu extérieur. Un système isolé ne subit aucune action extérieure ; un système pseudo-isolé subit des forces extérieures dont la somme vectorielle est nulle.",
+   "type": "phrase",
+   "anim": {
+    "nom": "systeme_milieu_fig",
+    "hauteur": 170
+   }
+  },
+  "tci": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "vecteurs"
+   },
+   "kicker": "Les lois de Newton",
+   "note": "M : masse totale du système · a de G : accélération de son centre d'inertie · dynamique classique : vitesse faible devant celle de la lumière",
+   "tex": "\\sum \\vec{F}_{ext} = M\\,\\vec{a}_G",
+   "titre": "Le théorème du centre d'inertie",
+   "type": "formule"
+  },
+  "theoreme_moment": {
+   "kicker": "Moment cinétique",
+   "note": "Gamma : couple appliqué, c'est-à-dire le moment de force total · si le couple extérieur est nul, le moment cinétique reste constant",
+   "tex": "\\frac{d\\vec{L}}{dt} = \\vec{\\Gamma}",
+   "titre": "Le théorème du moment cinétique",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "trajectoire"
+   },
+   "kicker": "Physique",
+   "sous": "Mouvements, quantité de mouvement, travail et énergie",
+   "titre": "Applications des lois de Newton",
+   "type": "titre"
+  },
+  "translation_rotation": {
+   "kicker": "Les lois de Newton",
+   "note": "Dans l'ordre : solide en translation · rotation autour d'un axe fixe delta · théorème de Huygens, axe parallèle D distant de d",
+   "tex": [
+    "\\sum \\vec{F}_{ext} = M\\,\\vec{a}_G",
+    "\\sum M_\\Delta = J_\\Delta\\,\\theta''",
+    "J_D = J_\\Delta + m\\,d^2"
+   ],
+   "titre": "Translation, rotation et théorème de Huygens",
+   "type": "etape"
+  },
+  "travail": {
+   "kicker": "Travail et énergie",
+   "note": "Thêta : angle entre la force et le déplacement · travail moteur si W est positif, résistant si W est négatif, nul si la force est perpendiculaire au déplacement",
+   "tex": "W = \\vec{F} \\cdot \\vec{d} = F\\,d\\,\\cos\\theta",
+   "titre": "Le travail d'une force constante",
+   "type": "formule"
+  },
+  "travaux_puissance": {
+   "kicker": "Travail et énergie",
+   "note": "Le travail du poids ne dépend que des altitudes de départ A et d'arrivée B · celui du frottement est toujours négatif · la réaction normale ne travaille pas",
+   "tex": [
+    "W_{\\vec{P}} = m\\,g\\,(z_A - z_B)",
+    "W_f = -f \\cdot d",
+    "P = \\vec{F} \\cdot \\vec{v} \\ ; \\ P_{moy} = \\frac{W}{\\Delta t}"
+   ],
+   "titre": "Travaux particuliers et puissance",
+   "type": "etape"
+  },
+  "troisieme_loi": {
+   "kicker": "Les lois de Newton",
+   "note": "Force de A sur B et force de B sur A · interactions de contact ou à distance, corps en mouvement ou au repos",
+   "tex": "\\vec{F}_{A/B} = -\\vec{F}_{B/A}",
+   "titre": "Le principe des actions réciproques",
+   "type": "formule"
+  },
+  "virage": {
+   "kicker": "Mouvements circulaires",
+   "note": "L'angle d'inclinaison ne dépend que de la vitesse V et du rayon de courbure r du virage · même relation pour une piste relevée d'un angle alpha",
+   "tex": "\\tan\\alpha = \\frac{V^2}{r\\,g}",
+   "titre": "Le cycliste dans le virage",
+   "type": "formule"
+  }
+ },
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les trois lois et la méthode"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : mettons les lois en mouvement. Chute libre, plan incliné, projectile et champ électrique, puis les mouvements circulaires jusqu'au satellite en orbite.",
+    "texte": "Partie 2 : les lois en mouvement, des chutes aux orbites."
+   },
+   "sous_titre": "Chute libre, projectiles et mouvements circulaires"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : la quantité de mouvement et les chocs, puis le travail et l'énergie, et pour finir le moment cinétique.",
+    "texte": "Partie 3 : quantité de mouvement, énergie et moment cinétique."
+   },
+   "sous_titre": "Quantité de mouvement, énergie et moment cinétique"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Applications des lois de Newton : après Galilée et Newton, le mouvement des corps devient prévisible. Ce cours applique les trois lois aux chutes, aux projectiles, aux satellites, aux chocs et à l'énergie.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Applications des lois de Newton."
+  },
+  {
+   "dit": "Pendant des siècles, on croit avec Aristote qu'un objet en mouvement s'arrête de lui-même. Galilée introduit l'inertie, puis Newton formule ses trois lois et la gravitation universelle : le mouvement devient calculable.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "D'Aristote à Newton : la naissance de la mécanique."
+  },
+  {
+   "dit": "Le système est l'ensemble des objets étudiés ; tout le reste forme le milieu extérieur. Les forces intérieures agissent entre ses parties, les forces extérieures viennent de l'extérieur. Un système isolé ne subit aucune action extérieure ; un système pseudo-isolé voit les siennes se compenser.",
+   "ecran": "systeme",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Système, milieu extérieur, forces intérieures et extérieures."
+  },
+  {
+   "dit": "Troisième loi, le principe des actions réciproques : quand un corps A exerce une force sur un corps B, le corps B exerce simultanément sur A une force de même droite d'action, de sens contraire et de même intensité.",
+   "ecran": "troisieme_loi",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Troisième loi : l'action et la réaction."
+  },
+  {
+   "dit": "Première loi, le principe d'inertie : le centre d'inertie d'un système isolé ou pseudo-isolé est immobile ou en mouvement rectiligne uniforme. Sa vitesse ne change que si une force extérieure agit.",
+   "ecran": "premiere_loi",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Première loi : le principe d'inertie."
+  },
+  {
+   "dit": "Ces lois ne valent que dans un référentiel galiléen, un repère où le principe d'inertie est vérifié. Le référentiel héliocentrique est le meilleur connu ; le géocentrique et le terrestre servent d'approximations pour les mouvements courts.",
+   "ecran": "referentiels",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Les référentiels galiléens."
+  },
+  {
+   "dit": "Deuxième loi, le théorème du centre d'inertie : la somme des forces extérieures appliquées à un système égale sa masse totale multipliée par l'accélération de son centre d'inertie. Tout le cours découle de cette relation.",
+   "ecran": "tci",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Deuxième loi : le théorème du centre d'inertie."
+  },
+  {
+   "dit": "Un solide en translation se ramène à son centre d'inertie. En rotation autour d'un axe fixe, la somme des moments des forces égale le moment d'inertie multiplié par l'accélération angulaire. Et le théorème de Huygens transporte le moment d'inertie vers un axe parallèle.",
+   "ecran": "translation_rotation",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Translation, rotation et théorème de Huygens."
+  },
+  {
+   "dit": "Le moment d'inertie dépend de la forme du solide : masse fois rayon au carré pour un point ou un cerceau, la moitié pour un disque ou un cylindre plein, deux cinquièmes pour une sphère pleine, et un douzième de la masse fois la longueur au carré pour une tige.",
+   "ecran": "moments_inertie",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Les moments d'inertie des solides usuels."
+  },
+  {
+   "dit": "La méthode, toujours la même : délimiter le système, choisir un référentiel galiléen, faire le bilan des forces sur un schéma, appliquer la relation fondamentale de la dynamique ou le théorème de l'énergie cinétique, projeter, et conclure sur le mouvement.",
+   "ecran": "methode",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "La méthode de résolution, en cinq étapes."
+  },
+  {
+   "dit": "Exemple : une pirogue de cent cinquante kilogrammes reçoit un passager de soixante kilogrammes à une extrémité. Le barycentre, pondéré par les masses, déplace le centre de gravité d'environ soixante et onze centimètres vers le passager.",
+   "ecran": "exemple_pirogue",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Exemple : le centre de gravité de la pirogue chargée."
+  },
+  {
+   "dit": "Un corps en chute libre n'est soumis qu'à son poids : son accélération égale le champ de pesanteur, neuf virgule huit mètres par seconde au carré, indépendamment de sa masse. On intègre deux fois pour obtenir la vitesse puis la position.",
+   "ecran": "chute_libre",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "La chute libre : a égale g."
+  },
+  {
+   "dit": "Sur un plan incliné sans frottement, d'angle alpha, on projette le poids et la réaction du plan : l'accélération le long du plan vaut g fois sinus alpha, constante. Le mouvement est uniformément accéléré, comme une chute libre ralentie.",
+   "ecran": "plan_lisse",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Plan incliné lisse : a égale g sinus alpha."
+  },
+  {
+   "dit": "Si le plan est rugueux, une force de frottement s'ajoute, opposée au glissement : elle retranche f sur m à l'accélération. La forme des équations horaires ne change pas, seule l'accélération diminue.",
+   "ecran": "plan_rugueux",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Plan incliné rugueux : le frottement retranche f sur m."
+  },
+  {
+   "dit": "Lancé avec une vitesse initiale inclinée d'un angle alpha, le projectile ne subit que son poids : son mouvement est uniforme horizontalement, uniformément varié verticalement. En éliminant le temps, la trajectoire est une parabole, caractérisée par sa flèche et sa portée.",
+   "ecran": "projectile",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Le projectile : une trajectoire parabolique."
+  },
+  {
+   "dit": "Une particule chargée lancée entre deux plaques subit la force électrique q fois E : son accélération est constante, sa trajectoire entre les plaques est une parabole, puis elle ressort déviée d'un angle dont la tangente se calcule. C'est le principe de l'oscilloscope.",
+   "ecran": "champ_electrique",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Particule chargée dans un champ électrique : la déviation."
+  },
+  {
+   "dit": "Dans un mouvement circulaire uniforme, la vitesse garde la même norme mais change sans cesse de direction : l'accélération, dite centripète, pointe vers le centre et vaut v au carré divisé par le rayon.",
+   "ecran": "circulaire",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Mouvement circulaire uniforme : l'accélération centripète."
+  },
+  {
+   "dit": "Le pendule conique tourne à vitesse angulaire oméga : le fil décrit un cône de demi-angle alpha. La projection des forces donne la tension, m fois oméga au carré fois l, et le cosinus de l'angle, g divisé par oméga au carré fois l.",
+   "ecran": "pendule_conique",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Le pendule conique."
+  },
+  {
+   "dit": "Dans un virage, le cycliste s'incline d'un angle dont la tangente vaut la vitesse au carré divisée par le rayon fois g : ni sa masse ni la nature du sol n'interviennent, seulement la vitesse et le rayon du virage.",
+   "ecran": "virage",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Le virage : tangente alpha égale V au carré sur r g."
+  },
+  {
+   "dit": "Pour un satellite, le théorème du centre d'inertie donne une accélération égale au champ à son altitude. Dans la base de Frenet, la composante tangentielle est nulle : la vitesse est constante, la trajectoire un cercle, et la période suit la loi de Kepler.",
+   "ecran": "satellite",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Le satellite : vitesse constante, période de Kepler."
+  },
+  {
+   "dit": "Dans un champ magnétique, la force de Lorentz, perpendiculaire à la vitesse, ne change pas sa norme : le rayon de courbure reste constant, la trajectoire est un cercle de rayon m fois V sur valeur absolue de q fois B.",
+   "ecran": "champ_magnetique",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Particule dans un champ magnétique : un cercle de rayon m V sur q B."
+  },
+  {
+   "dit": "La quantité de mouvement d'un objet est le produit de sa masse par son vecteur vitesse. Elle traduit son état de mouvement et devient la grandeur centrale pour comprendre les interactions et les chocs.",
+   "ecran": "quantite_mouvement",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "La quantité de mouvement : p égale m fois v."
+  },
+  {
+   "dit": "La dérivée par rapport au temps de la quantité de mouvement égale la somme des forces extérieures. Si la masse est constante, on retrouve exactement la deuxième loi de Newton : c'en est la forme la plus générale.",
+   "ecran": "resultante",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "La résultante dynamique : dérivée de p égale somme des forces."
+  },
+  {
+   "dit": "Conséquence immédiate : dans un système isolé, la quantité de mouvement totale se conserve. Ce que perd un corps, l'autre le gagne ; c'est l'outil maître pour analyser les chocs et les propulsions.",
+   "ecran": "conservation",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Système isolé : la quantité de mouvement se conserve."
+  },
+  {
+   "dit": "On distingue le choc élastique, où quantité de mouvement et énergie cinétique se conservent, comme au billard ; le choc mou, où seule la quantité de mouvement se conserve ; et le choc parfaitement mou, où les deux corps restent unis.",
+   "ecran": "chocs",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Les chocs : élastique, mou, parfaitement mou."
+  },
+  {
+   "dit": "Une fusée éjecte des gaz vers l'arrière et avance par conservation de la quantité de mouvement : l'équation de Tsiolkovski relie son gain de vitesse au logarithme du rapport des masses. Pour ces systèmes à masse variable, la résultante dynamique gagne un terme correctif.",
+   "ecran": "propulsion",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "La propulsion : l'équation de Tsiolkovski."
+  },
+  {
+   "dit": "Exemple complet : un projectile de dix grammes à deux cents mètres par seconde s'incruste dans un bloc de deux kilogrammes suspendu à un fil. Après le choc, l'ensemble part à environ un mètre par seconde, cent quatre-vingt-dix-neuf joules sont dissipés, et le pendule s'écarte de douze virgule huit degrés.",
+   "ecran": "exemple_pendule",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Exemple : le pendule balistique."
+  },
+  {
+   "dit": "Le travail d'une force constante est le produit scalaire de la force par le déplacement : il est moteur quand la force aide le mouvement, résistant quand elle s'y oppose, et nul quand elle lui est perpendiculaire.",
+   "ecran": "travail",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Le travail d'une force : moteur, résistant ou nul."
+  },
+  {
+   "dit": "Le travail du poids ne dépend que des altitudes de départ et d'arrivée ; celui du frottement est toujours résistant. La puissance, moyenne ou instantanée, mesure la rapidité avec laquelle une force travaille.",
+   "ecran": "travaux_puissance",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "Travaux du poids et du frottement, et la puissance."
+  },
+  {
+   "dit": "L'énergie cinétique vaut un demi de m v au carré en translation, un demi de J oméga au carré en rotation. Son théorème dit que sa variation entre deux positions égale la somme des travaux de toutes les forces extérieures.",
+   "ecran": "energie_cinetique",
+   "id": "p30",
+   "pause_apres": 0.6,
+   "texte": "L'énergie cinétique et son théorème."
+  },
+  {
+   "dit": "L'énergie potentielle stocke la position : m g z pour la pesanteur, un demi de k x au carré pour un ressort déformé, un demi de C thêta au carré pour un fil tordu. Elle se libère en énergie cinétique quand le système évolue.",
+   "ecran": "energies_potentielles",
+   "id": "p31",
+   "pause_apres": 0.6,
+   "texte": "Les énergies potentielles : pesanteur, ressort, torsion."
+  },
+  {
+   "dit": "L'énergie mécanique est la somme des énergies cinétique et potentielle. Si toutes les forces sont conservatives, elle se conserve : ce que l'énergie cinétique gagne, la potentielle le perd. Sinon, sa variation égale le travail des forces non conservatives.",
+   "ecran": "energie_mecanique",
+   "id": "p32",
+   "pause_apres": 0.6,
+   "texte": "L'énergie mécanique et sa conservation."
+  },
+  {
+   "dit": "Exemple : lâchée d'un mètre vingt-cinq, une balle arrive au sol à cinq mètres par seconde. Chaque rebond multiplie son énergie cinétique, donc sa hauteur, par zéro virgule quarante-deux : la hauteur suit une puissance de ce facteur, et après dix rebonds la balle s'arrête.",
+   "ecran": "exemple_balle",
+   "id": "p33",
+   "pause_apres": 0.6,
+   "texte": "Exemple : la balle qui rebondit."
+  },
+  {
+   "dit": "Le moment cinétique, ou moment angulaire, est le produit vectoriel du vecteur position par la quantité de mouvement. Pour un objet en rotation, il devient le moment d'inertie multiplié par le vecteur vitesse angulaire.",
+   "ecran": "moment_cinetique",
+   "id": "p34",
+   "pause_apres": 0.6,
+   "texte": "Le moment cinétique : r vectoriel p."
+  },
+  {
+   "dit": "Le théorème du moment cinétique relie sa dérivée au couple appliqué. Sans couple extérieur, le moment cinétique se conserve : c'est le secret des orbites planétaires, des gyroscopes, et de la patineuse qui accélère sa pirouette en ramenant les bras le long du corps.",
+   "ecran": "theoreme_moment",
+   "id": "p35",
+   "pause_apres": 0.6,
+   "texte": "Le théorème du moment cinétique et sa conservation."
+  },
+  {
+   "dit": "Récapitulons : une démarche unique, la deuxième loi au centre, l'accélération g pour toutes les chutes, la conservation de la quantité de mouvement et du moment cinétique pour les systèmes isolés, et celle de l'énergie mécanique sans frottement.",
+   "ecran": "recap",
+   "id": "p36",
+   "pause_apres": 0.7,
+   "texte": "Récapitulatif du cours."
+  }
+ ],
+ "titre": "Applications des lois de Newton"
+}

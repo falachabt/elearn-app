@@ -3,6 +3,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import * as Linking from 'expo-linking';
 import { router } from 'expo-router';
 
+import { suivre } from './analytics';
 import type { Solde } from './credits';
 import { mefierNotificationReward, planifierNotificationRappelHebdo } from './rappels';
 import { getSupabase } from './supabase';
@@ -21,17 +22,17 @@ export type ConfigActionQuotidienne = {
 export const ACTIONS_QUOTIDIENNES: Record<ActionQuotidienne, ConfigActionQuotidienne> = {
   site_web: {
     id: 'site_web',
-    gain: 10,
+    gain: 3,
     url: 'https://elearnprepa.com',
   },
   facebook: {
     id: 'facebook',
-    gain: 5,
+    gain: 2,
     url: 'https://facebook.com/elearnprepa',
   },
   instagram: {
     id: 'instagram',
-    gain: 5,
+    gain: 2,
     url: 'https://instagram.com/elearnprepa',
   },
   parrainage: {
@@ -120,7 +121,7 @@ export async function enregistrerActionQuotidienne(action: ActionQuotidienne, ma
 }
 
 /**
- * Vrai si l'élève n'a pas de pass illimité et qu'au moins une action quotidienne (+5 ou +10) est disponible aujourd'hui.
+ * Vrai si l'élève n'a pas de pass illimité et qu'au moins une action quotidienne (+2 ou +3) est disponible aujourd'hui.
  */
 export async function aDesActionsDisponibles(solde: Solde | null, maintenant = new Date(), source: SourceServeur = {}): Promise<boolean> {
   if (solde?.illimite) return false;
@@ -138,7 +139,9 @@ export async function reclamerActionServeur(client: Client, actionCode: string):
   try {
     const { data, error } = await client.rpc('claim_daily_action', { p_action_code: actionCode });
     if (error) return 'erreur';
-    return Number(data) > 0 ? 'credite' : 'deja';
+    const gain = Number(data);
+    if (gain > 0) suivre('credits_gained', { source: actionCode, montant: gain });
+    return gain > 0 ? 'credite' : 'deja';
   } catch {
     return 'erreur';
   }

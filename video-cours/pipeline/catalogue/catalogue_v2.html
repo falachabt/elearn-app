@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../gabarits/ressources/node_modules/katex/dist/katex.min.css">
+<script src="../gabarits/ressources/node_modules/katex/dist/katex.min.js"></script>
+<style>
+@font-face{font-family:"Archivo Black";src:url(../gabarits/ressources/node_modules/@fontsource/archivo-black/files/archivo-black-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-weight:500;src:url(../gabarits/ressources/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-weight:700;src:url(../gabarits/ressources/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2) format("woff2")}
+html,body{margin:0;width:1920px;height:1080px;background:#FFF7E3}
+#cadre{position:relative;width:1920px;height:1080px;overflow:hidden;background:#FFF7E3;color:#0A0A0A;font-family:"Space Grotesk",sans-serif}
+.entete{position:absolute;top:50px;left:90px;right:90px;height:210px;display:flex;justify-content:space-between;align-items:flex-start}
+.num{font-family:"Archivo Black";font-size:170px;line-height:1;color:#10B981}
+.droite{text-align:right}
+.famille{font-size:28px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+h1{font-family:"Archivo Black";font-weight:400;font-size:70px;margin:8px 0 0;line-height:1.05}
+.badges{display:flex;gap:14px;justify-content:flex-end;margin-top:16px}
+.badge{border:3px solid #0A0A0A;border-radius:10px;padding:6px 16px;font-size:24px;font-weight:700;background:#FFFFFF;box-shadow:4px 4px 0 #0A0A0A}
+.badge.jaune{background:#FFD83D}
+.variante{position:absolute;left:90px;top:292px;font-size:36px;font-weight:700}
+.pastille{display:inline-block;border:3px solid #0A0A0A;border-radius:10px;background:#10B981;padding:4px 16px;font-family:"Archivo Black";font-size:30px;font-weight:400;box-shadow:4px 4px 0 #0A0A0A;margin-right:12px}
+.corps{position:absolute;left:90px;top:360px;width:1740px;height:620px}
+.bloc{background:#FFFFFF;border:3px solid #0A0A0A;border-radius:14px;box-shadow:6px 6px 0 #0A0A0A;padding:22px 30px;box-sizing:border-box}
+.bloc.vert{background:#10B981}
+.bloc.jaune{background:#FFD83D}
+.gros{font-size:52px;font-weight:700;line-height:1.25}
+.petit{font-size:28px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.katex{font-size:1em}
+table{border-collapse:collapse;font-size:42px}
+td,th{border:3px solid #0A0A0A;padding:14px 26px;text-align:center;background:#FFFFFF}
+th{background:#FFD83D}
+.pied{position:absolute;right:90px;bottom:24px;font-size:26px;font-weight:700}
+.corps .bloc,.corps div{box-sizing:border-box}
+</style></head>
+<body><div id="cadre"></div>
+<script src="scenes_video.js"></script>
+</body></html>

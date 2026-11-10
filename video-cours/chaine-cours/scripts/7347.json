@@ -1,0 +1,371 @@
+{
+  "cours": 7347,
+  "ecrans": {
+    "amperemetre": {
+      "kicker": "Mesurer avec un ampèremètre",
+      "texte": "L'ampèremètre se branche en série : le courant doit le traverser, borne A côté +.",
+      "type": "phrase"
+    },
+    "autres_grandeurs": {
+      "kicker": "Retrouver U et I",
+      "tex": [
+        "U = \\dfrac{P}{I}",
+        "I = \\dfrac{P}{U}"
+      ],
+      "titre": "Trois formules, une seule à retenir",
+      "type": "etape"
+    },
+    "energie_def": {
+      "kicker": "L'énergie électrique",
+      "note": "W dépend de la puissance P et de la durée t de fonctionnement.",
+      "tex": "W = P \\times t",
+      "type": "formule"
+    },
+    "energie_unites": {
+      "kicker": "Unités d'énergie",
+      "tex": [
+        "1\\ \\text{kWh} = 1000\\ \\text{Wh}",
+        "W = P \\times t"
+      ],
+      "titre": "Joules, wattheures, kilowattheures",
+      "type": "etape"
+    },
+    "exemple_i": {
+      "kicker": "Exemple résolu : convertir I",
+      "note": "Une intensité de 0,25 A vaut 250 mA.",
+      "tex": "I = 0{,}25 \\times 1000 = 250\\ \\text{mA}",
+      "type": "formule"
+    },
+    "exemple_nominale": {
+      "kicker": "Exemple résolu : ampoule 230 V – 60 W",
+      "note": "Sous 230 V, l'ampoule de 60 W est traversée par environ 0,26 A.",
+      "tex": "I = \\dfrac{P}{U} = \\dfrac{60}{230} \\approx 0{,}26\\ \\text{A}",
+      "type": "formule"
+    },
+    "exemple_p": {
+      "kicker": "Exemple résolu : lampe",
+      "note": "Sous 12 V et 0,5 A, la lampe consomme 6 W.",
+      "tex": "P = 12 \\times 0{,}5 = 6\\ \\text{W}",
+      "type": "formule"
+    },
+    "exemple_schema": {
+      "anim": {
+        "hauteur": 200,
+        "nom": "circuit"
+      },
+      "kicker": "Exemple résolu : schématiser",
+      "texte": "Pile, lampe, interrupteur : un rectangle, une boucle unique, courant de + vers −.",
+      "type": "phrase"
+    },
+    "exemple_total": {
+      "kicker": "Exemple résolu : lampe et ventilateur",
+      "note": "60 W + 40 W = 100 W appelés en même temps.",
+      "tex": "P_{\\text{totale}} = 60 + 40 = 100\\ \\text{W}",
+      "type": "formule"
+    },
+    "exemple_u": {
+      "kicker": "Exemple résolu : convertir U",
+      "note": "Une tension de 4,5 V aux bornes d'une lampe vaut 4 500 mV.",
+      "tex": "U = 4{,}5 \\times 1000 = 4500\\ \\text{mV}",
+      "type": "formule"
+    },
+    "exemple_w": {
+      "kicker": "Exemple résolu : radiateur",
+      "note": "Un radiateur de 1,5 kW pendant 4 h consomme 6 kWh.",
+      "tex": "W = 1{,}5 \\times 4 = 6\\ \\text{kWh}",
+      "type": "formule"
+    },
+    "facture": {
+      "kicker": "Exemple résolu : la facture",
+      "note": "À 100 FCFA le kWh, ces 6 kWh coûtent 600 FCFA.",
+      "tex": "6 \\times 100 = 600\\ \\text{FCFA}",
+      "type": "formule"
+    },
+    "intensite_conv": {
+      "kicker": "Convertir les intensités",
+      "tex": [
+        "1\\ \\text{mA} = 0{,}001\\ \\text{A}",
+        "1\\ \\text{kA} = 1000\\ \\text{A}"
+      ],
+      "titre": "Milliampères et kiloampères",
+      "type": "etape"
+    },
+    "intensite_def": {
+      "kicker": "L'intensité du courant",
+      "texte": "L'intensité I mesure le débit de charges qui traversent une section par seconde.",
+      "type": "phrase"
+    },
+    "nominale": {
+      "kicker": "Puissance nominale",
+      "texte": "La puissance nominale est celle de la plaque signalétique, sous tension nominale.",
+      "type": "phrase"
+    },
+    "piege": {
+      "kicker": "Ne pas confondre",
+      "texte": "Puissance en watts : à chaque instant. Énergie en Wh : le total sur une durée.",
+      "type": "phrase"
+    },
+    "puissance_conv": {
+      "kicker": "Unités de puissance",
+      "tex": [
+        "1\\ \\text{kW} = 1000\\ \\text{W}",
+        "P = U \\times I"
+      ],
+      "titre": "Watts et kilowatts",
+      "type": "etape"
+    },
+    "puissance_def": {
+      "kicker": "La puissance électrique",
+      "note": "P en watts : l'énergie consommée par unité de temps par l'appareil.",
+      "tex": "P = U \\times I",
+      "type": "formule"
+    },
+    "recap": {
+      "etapes": [
+        "Schéma normalisé, boucle fermée ; U en dérivation, I en série.",
+        "P = U × I ; W = P × t ; la facture compte les kWh.",
+        "Puissance instantanée, énergie cumulée : ne pas les confondre."
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "recap1": {
+      "etapes": [
+        "Un schéma normalisé forme une boucle fermée.",
+        "La tension se mesure en dérivation, avec un voltmètre.",
+        "L'intensité se mesure en série, avec un ampèremètre."
+      ],
+      "kicker": "À retenir : première partie",
+      "type": "recap"
+    },
+    "schema": {
+      "anim": {
+        "hauteur": 220,
+        "nom": "circuit"
+      },
+      "kicker": "Schématiser un circuit",
+      "texte": "Un schéma utilise des symboles normalisés, les mêmes dans tous les pays.",
+      "type": "phrase"
+    },
+    "serie": {
+      "kicker": "Règles de schématisation",
+      "texte": "En série, une seule boucle : les composants se suivent, fils à angles droits.",
+      "type": "phrase"
+    },
+    "tension_conv": {
+      "kicker": "Convertir les tensions",
+      "tex": [
+        "1\\ \\text{kV} = 1000\\ \\text{V}",
+        "1\\ \\text{mV} = 0{,}001\\ \\text{V}"
+      ],
+      "titre": "Kilovolts et millivolts",
+      "type": "etape"
+    },
+    "tension_def": {
+      "kicker": "La tension électrique",
+      "texte": "La tension U est la différence de potentiel entre deux points d'un circuit.",
+      "type": "phrase"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 220,
+        "nom": "circuit"
+      },
+      "kicker": "Sciences Physiques et Technologie · Circuits",
+      "sous": "Schématiser, mesurer, calculer puissance et énergie",
+      "titre": "Circuits et grandeurs électriques",
+      "type": "titre"
+    },
+    "total": {
+      "kicker": "Plusieurs appareils ensemble",
+      "note": "Les puissances des appareils en marche s'ajoutent.",
+      "tex": "P_{\\text{totale}} = P_1 + P_2 + \\dots + P_n",
+      "type": "formule"
+    },
+    "voltmetre": {
+      "kicker": "Mesurer avec un voltmètre",
+      "texte": "Le voltmètre se branche en dérivation, aux bornes du composant, borne V côté +.",
+      "type": "phrase"
+    }
+  },
+  "matiere": "Sciences Physiques et Technologie",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Schéma, tension et intensité"
+    },
+    {
+      "debut": "p14",
+      "pont": {
+        "dit": "Partie deux : la puissance et l'énergie électrique, avec la facture et la puissance totale d'une installation. Nous calculerons d'abord la puissance d'un appareil, puis l'énergie qu'il consomme.",
+        "texte": "Partie 2 : puissance, énergie et facture."
+      },
+      "sous_titre": "Puissance, énergie et facture"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours sur les circuits et les grandeurs électriques. Nous allons apprendre à schématiser un circuit, à mesurer la tension et l'intensité, puis à calculer la puissance et l'énergie consommées par un appareil.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Circuits, tension, intensité, puissance, énergie."
+    },
+    {
+      "dit": "Un circuit électrique se représente par un schéma qui utilise des symboles normalisés, c'est-à-dire les mêmes dans tous les pays. Connaître ces symboles, c'est pouvoir lire n'importe quel schéma, d'où qu'il vienne.",
+      "ecran": "schema",
+      "id": "p02",
+      "texte": "Symboles normalisés, identiques partout."
+    },
+    {
+      "dit": "Pour schématiser, on respecte des règles simples. Un circuit en série comporte une seule boucle, où les composants sont alignés les uns à la suite des autres, et les fils se représentent par des traits horizontaux et verticaux, à angles droits.",
+      "ecran": "serie",
+      "id": "p03",
+      "texte": "Série : une boucle, des angles droits."
+    },
+    {
+      "dit": "Prenons un exemple résolu : une pile alimente une lampe protégée par un interrupteur. On trace un rectangle, la pile en haut avec son grand trait à gauche pour la borne plus, la lampe à droite, l'interrupteur en bas. Quand l'interrupteur est fermé, le courant circule de la borne plus vers la borne moins.",
+      "ecran": "exemple_schema",
+      "id": "p04",
+      "texte": "Pile, lampe, interrupteur : une boucle."
+    },
+    {
+      "dit": "Passons à la tension électrique, notée u. C'est la différence de potentiel entre deux points d'un circuit, et elle se mesure entre deux points, c'est-à-dire en dérivation. Son unité est le volt, de symbole v, grand vé.",
+      "ecran": "tension_def",
+      "id": "p05",
+      "texte": "U : différence de potentiel entre deux points."
+    },
+    {
+      "dit": "Pour convertir les tensions, retenez deux égalités : un kilovolt vaut mille volts, et un millivolt vaut zéro virgule zéro zéro un volt. Le préfixe kilo multiplie par mille, le préfixe milli divise par mille.",
+      "ecran": "tension_conv",
+      "id": "p06",
+      "texte": "Un kilovolt, mille volts ; un millivolt, un millième."
+    },
+    {
+      "dit": "L'instrument qui mesure la tension s'appelle le voltmètre. Il se branche en dérivation, en parallèle, aux bornes du composant étudié. Son symbole sur un schéma est un cercle contenant la lettre vé, et sa borne vé, ou plus, se relie du côté de la borne plus du générateur.",
+      "ecran": "voltmetre",
+      "id": "p07",
+      "texte": "Voltmètre en dérivation, borne V côté +."
+    },
+    {
+      "dit": "Exemple résolu : on mesure la tension aux bornes d'une lampe, le voltmètre indique u égale quatre virgule cinq volts. Pour exprimer cette valeur en millivolts, on multiplie par mille : quatre virgule cinq fois mille égale quatre mille cinq cents millivolts.",
+      "ecran": "exemple_u",
+      "id": "p08",
+      "texte": "4,5 V = 4 500 mV."
+    },
+    {
+      "dit": "L'intensité du courant, notée i, mesure le débit de charges électriques qui traversent une section du circuit par seconde. Son unité est l'ampère, de symbole a, grand a. Le symbole de la grandeur, lui, est la lettre i.",
+      "ecran": "intensite_def",
+      "id": "p09",
+      "texte": "I : débit de charges par seconde."
+    },
+    {
+      "dit": "Pour les intensités, les conversions à connaître sont les suivantes : un milliampère vaut zéro virgule zéro zéro un ampère, et un kiloampère vaut mille ampères. Comme pour les tensions, on multiplie ou on divise par mille selon le sens.",
+      "ecran": "intensite_conv",
+      "id": "p10",
+      "texte": "Un milliampère, un millième d'ampère."
+    },
+    {
+      "dit": "L'ampèremètre, lui, se branche en série : le courant doit le traverser pour être mesuré. Son symbole est un cercle contenant la lettre a, et sa borne a, ou plus, se relie elle aussi du côté de la borne plus du générateur.",
+      "ecran": "amperemetre",
+      "id": "p11",
+      "texte": "Ampèremètre en série, borne A côté +."
+    },
+    {
+      "dit": "Exemple résolu : un ampèremètre branché en série dans un circuit indique i égale zéro virgule vingt-cinq ampères. En milliampères, cela donne zéro virgule vingt-cinq fois mille, soit deux cent cinquante milliampères.",
+      "ecran": "exemple_i",
+      "id": "p12",
+      "texte": "0,25 A = 250 mA."
+    },
+    {
+      "dit": "Faisons le point sur cette première partie : un schéma électrique respecte des symboles normalisés et forme une boucle fermée, la tension se mesure entre deux points, en parallèle, avec un voltmètre, et l'intensité se mesure dans le circuit, en série, avec un ampèremètre.",
+      "ecran": "recap1",
+      "id": "p13",
+      "texte": "Schéma, tension, intensité : le point."
+    },
+    {
+      "dit": "Passons à la puissance électrique, notée pé. Elle mesure l'énergie qu'un appareil consomme par unité de temps, et elle se calcule à partir de la tension u à ses bornes et de l'intensité i qui le traverse : pé égale u fois i. Son unité est le watt, de symbole w.",
+      "ecran": "puissance_def",
+      "id": "p14",
+      "texte": "P = U × I, en watts."
+    },
+    {
+      "dit": "On utilise aussi le kilowatt : un kilowatt vaut mille watts. Et retenez bien la formule de base, pé égale u fois i, car c'est d'elle que se déduisent les deux autres formules, comme pour la loi d'Ohm.",
+      "ecran": "puissance_conv",
+      "id": "p15",
+      "texte": "Un kilowatt, mille watts."
+    },
+    {
+      "dit": "Exemple : une lampe est soumise à une tension de douze volts et traversée par un courant d'intensité zéro virgule cinq ampères. Sa puissance vaut douze fois zéro virgule cinq, soit six watts.",
+      "ecran": "exemple_p",
+      "id": "p16",
+      "texte": "12 V × 0,5 A = 6 W."
+    },
+    {
+      "dit": "La puissance nominale d'un appareil est la puissance indiquée par le fabricant sur la plaque signalétique. Elle correspond au fonctionnement normal de l'appareil, sous sa tension nominale, c'est-à-dire la tension prévue pour lui.",
+      "ecran": "nominale",
+      "id": "p17",
+      "texte": "Puissance nominale : celle de la plaque."
+    },
+    {
+      "dit": "Exemple : une ampoule porte l'indication deux cent trente volts, soixante watts. Sous deux cent trente volts, elle consomme soixante watts. On en déduit l'intensité qui la traverse en fonctionnement normal : soixante divisé par deux cent trente, soit environ zéro virgule vingt-six ampères.",
+      "ecran": "exemple_nominale",
+      "id": "p18",
+      "texte": "60 W sous 230 V : environ 0,26 A."
+    },
+    {
+      "dit": "À partir de pé égale u fois i, on retrouve les deux autres grandeurs : u égale pé divisé par i, et i égale pé divisé par u. Retenez la formule de base, les deux autres s'en déduisent directement.",
+      "ecran": "autres_grandeurs",
+      "id": "p19",
+      "texte": "U = P ÷ I et I = P ÷ U."
+    },
+    {
+      "dit": "Passons à l'énergie électrique, notée w. Elle dépend de la puissance pé de l'appareil et de la durée té pendant laquelle il fonctionne : w égale pé fois té. C'est la grandeur qui s'accumule tant que l'appareil marche.",
+      "ecran": "energie_def",
+      "id": "p20",
+      "texte": "W = P × t."
+    },
+    {
+      "dit": "Pour les unités, si la puissance est en watts et la durée en secondes, l'énergie s'exprime en joules. Dans la pratique domestique, on utilise plutôt le wattheure ou le kilowattheure, avec la puissance en watts ou en kilowatts et la durée en heures. Un kilowattheure vaut mille wattheures.",
+      "ecran": "energie_unites",
+      "id": "p21",
+      "texte": "Joules, wattheures, kilowattheures."
+    },
+    {
+      "dit": "Exemple : un radiateur de puissance mille cinq cents watts, soit un virgule cinq kilowatts, fonctionne pendant quatre heures. L'énergie consommée vaut un virgule cinq fois quatre, soit six kilowattheures.",
+      "ecran": "exemple_w",
+      "id": "p22",
+      "texte": "1,5 kW pendant 4 h : 6 kWh."
+    },
+    {
+      "dit": "La facture d'électricité est établie à partir de l'énergie totale consommée, en kilowattheures, multipliée par le prix du kilowattheure. Si le kilowattheure coûte cent francs CFA, la consommation de ce radiateur coûte six fois cent, soit six cents francs CFA.",
+      "ecran": "facture",
+      "id": "p23",
+      "texte": "6 kWh à 100 FCFA : 600 FCFA."
+    },
+    {
+      "dit": "Attention à ne pas confondre puissance et énergie : la puissance, en watts, dit ce que l'appareil consomme à chaque instant, tandis que l'énergie, en wattheures ou en joules, dit ce qu'il a consommé au total sur une durée. Un appareil très puissant utilisé une minute peut consommer moins d'énergie qu'un appareil peu puissant utilisé toute une journée.",
+      "ecran": "piege",
+      "id": "p24",
+      "texte": "Puissance : l'instant. Énergie : le total."
+    },
+    {
+      "dit": "Lorsque plusieurs appareils fonctionnent en même temps sur une même installation, la puissance totale appelée est la somme des puissances de chaque appareil. On additionne simplement toutes les puissances.",
+      "ecran": "total",
+      "id": "p25",
+      "texte": "Puissance totale : la somme des puissances."
+    },
+    {
+      "dit": "Exemple : une pièce comporte une lampe de soixante watts et un ventilateur de quarante watts allumés en même temps. La puissance totale vaut soixante plus quarante, soit cent watts.",
+      "ecran": "exemple_total",
+      "id": "p26",
+      "texte": "60 W + 40 W = 100 W."
+    },
+    {
+      "dit": "Pour conclure : un schéma normalisé forme une boucle fermée, la tension se mesure en dérivation et l'intensité en série, la puissance vaut u fois i, l'énergie vaut pé fois té, et c'est l'énergie en kilowattheures qui est facturée. La puissance décrit un débit instantané, l'énergie cumule ce débit sur la durée.",
+      "ecran": "recap",
+      "id": "p27",
+      "texte": "Schéma, mesures, puissance, énergie : retenu."
+    }
+  ],
+  "titre": "Circuits et grandeurs électriques"
+}

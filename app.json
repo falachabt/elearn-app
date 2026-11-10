@@ -114,6 +114,9 @@
       [
         "expo-build-properties",
         {
+          "ios": {
+            "enableSceneSupport": true
+          },
           "android": {
             "compileSdkVersion": 36,
             "targetSdkVersion": 36,
@@ -156,13 +159,15 @@
         "expo-video",
         {
           "supportsBackgroundPlayback": false,
-          "supportsPictureInPicture": true
+          "supportsPictureInPicture": false
         }
       ],
       [
         "expo-audio",
         {
-          "microphonePermission": false
+          "microphonePermission": false,
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
         }
       ],
       "expo-image",

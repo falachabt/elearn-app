@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 import { signalerSucces, simulationHorsLigneActive } from './connectivite';
+import { mesurerFetch } from './mesureReseau';
 
 /** Levée quand la configuration Supabase est absente : message clair, jamais au build. */
 export class ConfigSupabaseManquante extends Error {
@@ -114,6 +115,8 @@ export function getSupabase(config: Config = configDepuisEnv()): SupabaseClient 
         persistSession: true,
         detectSessionInUrl: false,
       },
+      // Mesure de chaque requête (durée, statut, octets) : une seule porte, sans toucher aux appels (issue #14).
+      global: { fetch: mesurerFetch() },
     }),
   );
   return client;

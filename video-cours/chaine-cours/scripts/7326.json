@@ -1,0 +1,374 @@
+{
+ "cours": 7326,
+ "ecrans": {
+  "composees1": {
+   "kicker": "Fonctions composées · puissances",
+   "tex": [
+    "u'\\,u^n \\to \\tfrac{u^{n+1}}{n+1}",
+    "\\tfrac{u'}{u^2} \\to -\\tfrac{1}{u}",
+    "\\tfrac{u'}{\\sqrt{u}} \\to 2\\sqrt{u} \\quad (u > 0)"
+   ],
+   "titre": "La fonction intérieure u et sa dérivée",
+   "type": "etape"
+  },
+  "composees2": {
+   "kicker": "Fonctions composées · log, exp, trigo",
+   "tex": [
+    "\\tfrac{u'}{u} \\to \\ln|u|",
+    "u'\\,e^{u} \\to e^{u} \\qquad u'\\cos u \\to \\sin u",
+    "u'\\sin u \\to -\\cos u"
+   ],
+   "titre": "Les autres formes composées à connaître",
+   "type": "etape"
+  },
+  "condition": {
+   "kicker": "Primitive vérifiant une condition",
+   "tex": [
+    "f(x) = 3x^2 \\qquad F(x) = x^3 + k",
+    "F(1) = 1 + k = 5",
+    "k = 4 \\qquad F(x) = x^3 + 4"
+   ],
+   "titre": "La constante se fixe par une valeur imposée",
+   "type": "etape"
+  },
+  "definition": {
+   "kicker": "Définition d'une primitive",
+   "note": "F est une primitive de f sur I si F est dérivable et si sa dérivée est f.",
+   "tex": "F'(x) = f(x) \\quad \\text{pour tout } x \\in I",
+   "type": "formule"
+  },
+  "ex_exp": {
+   "kicker": "Exemple · la forme u prime fois e de u",
+   "tex": [
+    "f(x) = x\\,e^{x^2}",
+    "u = x^2 \\qquad u' = 2x",
+    "f = \\tfrac{1}{2}\\,u'\\,e^{u}",
+    "F(x) = \\tfrac{1}{2}\\,e^{x^2} + k"
+   ],
+   "titre": "Ixe fois exponentielle de ixe carré",
+   "type": "etape"
+  },
+  "ex_linearite": {
+   "kicker": "Exemple · linéarité",
+   "tex": [
+    "f(x) = 2x + \\cos x",
+    "F(x) = x^2 + \\sin x + k"
+   ],
+   "titre": "Deux ixe plus cosinus ixe",
+   "type": "etape"
+  },
+  "ex_log": {
+   "kicker": "Exemple · la forme u prime sur u",
+   "tex": [
+    "f(x) = \\tfrac{2x}{x^2+1}",
+    "u = x^2+1 > 0 \\qquad u' = 2x",
+    "f = \\tfrac{u'}{u} \\qquad F(x) = \\ln(x^2+1) + k"
+   ],
+   "titre": "Deux ixe sur ixe carré plus un",
+   "type": "etape"
+  },
+  "ex_puissance": {
+   "kicker": "Exemple · puissance négative",
+   "tex": [
+    "f(x) = \\tfrac{1}{x^3} = x^{-3}",
+    "F(x) = \\tfrac{x^{-2}}{-2} = -\\tfrac{1}{2x^2}"
+   ],
+   "titre": "Un sur ixe cube, sur les réels strictement positifs",
+   "type": "etape"
+  },
+  "ex_simple": {
+   "kicker": "Premier exemple",
+   "tex": [
+    "(x^3)' = 3x^2",
+    "F(x) = x^3 + k"
+   ],
+   "titre": "Trois ixe carré, le cas d'école",
+   "type": "etape"
+  },
+  "ex_transfo": {
+   "kicker": "Exemple · transformer puis primitiver",
+   "tex": [
+    "f(x) = \\tfrac{x^2}{x^2+1} = 1 - \\tfrac{1}{x^2+1}",
+    "(\\arctan x)' = \\tfrac{1}{1+x^2}",
+    "F(x) = x - \\arctan x + k"
+   ],
+   "titre": "Ixe carré sur ixe carré plus un",
+   "type": "etape"
+  },
+  "existence": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "champ_pentes_fig"
+   },
+   "kicker": "Existence",
+   "texte": "Toute fonction continue sur un intervalle admet des primitives.",
+   "type": "phrase"
+  },
+  "famille": {
+   "kicker": "Toutes les primitives",
+   "note": "Deux primitives d'une même fonction diffèrent d'une constante : on les obtient toutes ainsi.",
+   "tex": "F(x) + k \\qquad k \\in \\mathbb{R}",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Introduction",
+   "texte": "Dériver, on sait faire. Ce cours fait le chemin inverse : remonter de la dérivée à la fonction.",
+   "type": "phrase"
+  },
+  "linearisation": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "cercle_trigo_fig"
+   },
+   "kicker": "Technique · linéarisation trigonométrique",
+   "tex": [
+    "\\cos^2 x = \\tfrac{1 + \\cos 2x}{2}",
+    "F(x) = \\tfrac{x}{2} + \\tfrac{\\sin 2x}{4} + k"
+   ],
+   "titre": "Cosinus carré : la formule de duplication d'abord",
+   "type": "etape"
+  },
+  "linearite": {
+   "kicker": "Linéarité",
+   "note": "F et G primitives de f et g : une somme se primitive terme à terme, un facteur constant passe devant.",
+   "tex": "(F + G)' = f + g \\qquad (\\lambda F)' = \\lambda f",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Primitive : F′ = f, à une constante près",
+    "Usuelles : puissances, 1/x, exp, cos, sin",
+    "Linéarité : somme et facteur constant",
+    "Forme u′·g(u) : repérer u et le facteur u′",
+    "Toujours vérifier en dérivant le résultat"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "recette": {
+   "kicker": "La méthode centrale",
+   "tex": [
+    "\\text{repérer la fonction intérieure}",
+    "\\text{vérifier le facteur } u'",
+    "\\text{corriger par une constante}"
+   ],
+   "titre": "Reconnaître la forme u prime fois g de u",
+   "type": "etape"
+  },
+  "signes": {
+   "kicker": "Pièges de signe",
+   "tex": [
+    "\\sin x \\to -\\cos x",
+    "\\tfrac{1}{x^2} \\to -\\tfrac{1}{x}"
+   ],
+   "titre": "Les deux moins qui se perdent le plus souvent",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "champ_pentes_fig"
+   },
+   "kicker": "Mathématique · Primitives",
+   "sous": "Retrouver une fonction dont on connaît la dérivée, puis la calculer dans tous les cas usuels",
+   "titre": "Primitives : dériver à rebours",
+   "type": "titre"
+  },
+  "transformation": {
+   "kicker": "Technique · transformer l'expression",
+   "tex": [
+    "\\text{réécrire l'expression de } f",
+    "\\text{développer, factoriser, simplifier}",
+    "\\text{se ramener aux formes usuelles}"
+   ],
+   "titre": "Réécrire avant de chercher",
+   "type": "etape"
+  },
+  "usuelles1": {
+   "kicker": "Primitives usuelles · puissances",
+   "tex": [
+    "a \\to a\\,x \\qquad x^n \\to \\tfrac{x^{n+1}}{n+1}",
+    "\\tfrac{1}{x^2} \\to -\\tfrac{1}{x} \\qquad \\tfrac{1}{\\sqrt{x}} \\to 2\\sqrt{x}",
+    "\\tfrac{1}{x} \\to \\ln x \\quad (x > 0)"
+   ],
+   "titre": "Les puissances et les inverses",
+   "type": "etape"
+  },
+  "usuelles2": {
+   "kicker": "Primitives usuelles · exp et trigo",
+   "tex": [
+    "e^x \\to e^x \\qquad \\cos x \\to \\sin x",
+    "\\sin x \\to -\\cos x",
+    "1 + \\tan^2 x \\to \\tan x"
+   ],
+   "titre": "Exponentielle et fonctions trigonométriques",
+   "type": "etape"
+  },
+  "verification": {
+   "kicker": "Le réflexe de contrôle",
+   "note": "Une primitive se vérifie toujours par dérivation : si le résultat dérivé ne redonne pas f, le calcul est faux.",
+   "tex": "F'(x) \\stackrel{?}{=} f(x)",
+   "type": "formule"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définition, tableau des usuelles et linéarité"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : reconnaître les formes composées et calculer. Nous appliquons la méthode centrale, puis nous verrons comment transformer une expression, fixer la constante par une condition, et vérifier en dérivant.",
+    "texte": "Partie 2 : reconnaître la forme u′·g(u), transformer, et fixer la constante."
+   },
+   "sous_titre": "Reconnaître les formes composées et calculer"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux primitives. Dériver une fonction, vous savez le faire : ici, nous faisons le chemin inverse. On nous donne une fonction, et nous en cherchons une dont elle est la dérivée. Au programme : définition, tableau des usuelles, linéarité, formes composées et techniques de calcul.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Primitives : retrouver la fonction dont on connaît la dérivée."
+  },
+  {
+   "dit": "Le point de départ tient en une image : une fonction associe à chaque nombre une unique image. Dériver fait passer de la fonction à sa dérivée. Primitiver, c'est remonter ce passage à rebours. Tout le cours est l'apprentissage méthodique de ce retour en arrière.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Primitiver : remonter de la dérivée à la fonction."
+  },
+  {
+   "dit": "Définissons. Soit eff une fonction définie sur un intervalle grand I. On appelle primitive de eff sur grand I toute fonction grand eff, dérivable sur grand I, dont la dérivée est exactement eff : grand eff prime de ixe égale eff de ixe, pour tout ixe de l'intervalle.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "Une primitive F de f : F′(x) = f(x) sur I."
+  },
+  {
+   "dit": "Une primitive n'est jamais seule. Si grand eff est une primitive de eff, toutes les fonctions grand eff de ixe plus k, où k est un réel quelconque, sont aussi des primitives, et ce sont les seules. Deux primitives d'une même fonction diffèrent donc d'une constante, car une constante disparaît en dérivant.",
+   "ecran": "famille",
+   "id": "p04",
+   "texte": "Toutes les primitives : F(x) + k, k réel quelconque."
+  },
+  {
+   "dit": "Ces primitives existent dès que la fonction est continue : toute fonction continue sur un intervalle y admet des primitives. Sur le schéma, chaque segment indique une pente : une primitive est une courbe qui suit partout ces pentes, et toutes ces courbes se déduisent par un décalage vertical, la constante.",
+   "ecran": "existence",
+   "id": "p05",
+   "texte": "Continue sur un intervalle : des primitives existent."
+  },
+  {
+   "dit": "Premier exemple. Les primitives de trois ixe carré, sur les réels : on connaît ixe cube, dont la dérivée est trois ixe carré. Les primitives sont donc ixe cube plus k. Le geste de base est là : chercher dans sa mémoire des dérivées connues, à une constante près.",
+   "ecran": "ex_simple",
+   "id": "p06",
+   "texte": "(x³)′ = 3x², donc F(x) = x³ + k."
+  },
+  {
+   "dit": "Ce geste s'organise dans le tableau des primitives usuelles, le tableau des dérivées lu à l'envers. Une constante a donne a fois ixe. Ixe puissance n donne ixe puissance n plus un, sur n plus un. Un sur ixe carré donne moins un sur ixe, un sur racine de ixe donne deux racine de ixe, et un sur ixe donne logarithme de ixe, pour ixe positif.",
+   "ecran": "usuelles1",
+   "id": "p07",
+   "texte": "Le tableau des usuelles, lu à l'envers des dérivées."
+  },
+  {
+   "dit": "Suite du tableau. L'exponentielle est sa propre primitive : ses primitives sont exponentielle ixe plus une constante. Cosinus ixe donne sinus ixe, et sinus ixe donne moins cosinus ixe : attention à ce signe moins. Enfin, un plus tangente carré de ixe donne tangente ixe.",
+   "ecran": "usuelles2",
+   "id": "p08",
+   "texte": "exp → exp ; cos → sin ; sin → −cos."
+  },
+  {
+   "dit": "Le tableau sert aussi avec des exposants négatifs. Une primitive de un sur ixe cube, pour ixe strictement positif : on écrit ixe puissance moins trois, et la règle des puissances donne ixe puissance moins deux sur moins deux, soit moins un sur deux ixe carré. Dérivez le résultat : vous retombez bien sur un sur ixe cube.",
+   "ecran": "ex_puissance",
+   "id": "p09",
+   "texte": "1/x³ = x⁻³, d'où F(x) = −1/(2x²)."
+  },
+  {
+   "dit": "Deuxième outil, la linéarité. Si grand eff et grand gé primitivent eff et gé, alors leur somme primitive la somme des fonctions : on traite chaque terme séparément. Et un facteur constant lambda se conserve : lambda fois grand eff primitive lambda fois eff. Un facteur ne disparaît jamais dans un calcul de primitive.",
+   "ecran": "linearite",
+   "id": "p10",
+   "texte": "Somme terme à terme, facteur constant conservé."
+  },
+  {
+   "dit": "Application. Une primitive de deux ixe plus cosinus ixe : deux ixe se primitive en ixe carré, le facteur deux compensant le deux du dénominateur de la règle des puissances, et cosinus ixe se primitive en sinus ixe. Au total, ixe carré plus sinus ixe, plus la constante k.",
+   "ecran": "ex_linearite",
+   "id": "p11",
+   "texte": "2x + cos x → x² + sin x + k."
+  },
+  {
+   "dit": "Passons aux formes composées, là où se gagnent la plupart des points. On repère une fonction intérieure u, et sa dérivée u prime. U prime fois u puissance n donne u puissance n plus un, sur n plus un. U prime sur u carré donne moins un sur u. U prime sur racine de u donne deux racine de u, pour u strictement positive.",
+   "ecran": "composees1",
+   "id": "p12",
+   "texte": "u′uⁿ → uⁿ⁺¹/(n+1) ; u′/u² → −1/u ; u′/√u → 2√u."
+  },
+  {
+   "dit": "Autres formes composées. U prime sur u donne le logarithme de la valeur absolue de u, et simplement logarithme de u quand u est positive. U prime fois exponentielle de u donne exponentielle de u. U prime fois cosinus de u donne sinus de u, et u prime fois sinus de u donne moins cosinus de u. Sans le facteur u prime, la forme n'est pas reconnue.",
+   "ecran": "composees2",
+   "id": "p13",
+   "texte": "u′/u → ln|u| ; u′eᵘ → eᵘ ; u′cos u → sin u."
+  },
+  {
+   "dit": "Voici la méthode centrale du cours, en trois gestes. D'abord, repérer la fonction intérieure u, celle qui est composée avec une fonction usuelle. Ensuite, vérifier que le facteur u prime est présent, au besoin à une constante près. Enfin, corriger par cette constante, appliquée devant le résultat. Ces trois gestes traitent presque tous les calculs du chapitre.",
+   "ecran": "recette",
+   "id": "p14",
+   "texte": "Repérer u, vérifier u′, corriger par la constante."
+  },
+  {
+   "dit": "Exemple complet : une primitive de deux ixe sur ixe carré plus un, sur les réels. On pose u égale ixe carré plus un, qui est toujours strictement positive. Sa dérivée est deux ixe : c'est exactement le numérateur. La fonction est donc de la forme u prime sur u, et une primitive est logarithme de ixe carré plus un, plus la constante k.",
+   "ecran": "ex_log",
+   "id": "p15",
+   "texte": "2x/(x²+1) = u′/u, d'où ln(x²+1) + k."
+  },
+  {
+   "dit": "Autre forme, autre exemple : ixe fois exponentielle de ixe carré. On pose u égale ixe carré, donc u prime égale deux ixe. Il ne manque qu'un facteur deux : la fonction vaut un demi fois u prime fois exponentielle de u. Une primitive est donc un demi fois exponentielle de ixe carré, plus la constante.",
+   "ecran": "ex_exp",
+   "id": "p16",
+   "texte": "x·e^(x²) = ½·u′eᵘ, d'où ½·e^(x²) + k."
+  },
+  {
+   "dit": "Quand aucune forme ne se reconnaît, on transforme l'expression avant de chercher : développer, factoriser, simplifier une fraction, ou utiliser une identité trigonométrique. Le but est toujours le même : se ramener, par une réécriture exacte, à une somme de formes usuelles ou composées déjà connues.",
+   "ecran": "transformation",
+   "id": "p17",
+   "texte": "Transformer d'abord, se ramener au connu ensuite."
+  },
+  {
+   "dit": "Exemple : ixe carré sur ixe carré plus un. On réécrit la fraction : elle vaut un, moins un sur ixe carré plus un. Or, un sur un plus ixe carré est la dérivée de la fonction arc tangente. Une primitive est donc ixe, moins arc tangente de ixe, plus la constante k. La transformation a tout fait.",
+   "ecran": "ex_transfo",
+   "id": "p18",
+   "texte": "x²/(x²+1) = 1 − 1/(x²+1), d'où x − arctan x + k."
+  },
+  {
+   "dit": "Cas particulier de transformation, la linéarisation trigonométrique. Pour primitiver cosinus carré de ixe, on utilise la formule de duplication : cosinus carré vaut un plus cosinus de deux ixe, le tout sur deux. Chaque terme devient usuel, et une primitive est ixe sur deux, plus sinus de deux ixe sur quatre, plus la constante.",
+   "ecran": "linearisation",
+   "id": "p19",
+   "texte": "cos²x = (1 + cos 2x)/2, d'où x/2 + sin(2x)/4 + k."
+  },
+  {
+   "dit": "Avant de terminer, deux pièges de signe qui coûtent cher. Sinus ixe se primitive en moins cosinus ixe, jamais en cosinus ixe. Et un sur ixe carré se primitive en moins un sur ixe, avec un moins également. Quand un doute survient, le réflexe est simple : dériver mentalement le résultat proposé, et comparer à la fonction de départ.",
+   "ecran": "signes",
+   "id": "p20",
+   "texte": "Sinus → −cos ; 1/x² → −1/x : les deux moins à surveiller."
+  },
+  {
+   "dit": "Dernier type de question : trouver la primitive qui vérifie une condition. On cherche la primitive de trois ixe carré qui vaut cinq en un. La forme générale est ixe cube plus k. En un, elle vaut un plus k, et on impose un plus k égale cinq : k vaut quatre. La primitive cherchée est donc ixe cube plus quatre, et elle est unique.",
+   "ecran": "condition",
+   "id": "p21",
+   "texte": "F(1) = 5 impose k = 4 : F(x) = x³ + 4."
+  },
+  {
+   "dit": "Le réflexe de contrôle, pour finir chaque calcul : dériver le résultat. Une primitive se vérifie toujours ainsi, en quelques secondes. Si la dérivée obtenue ne redonne pas exactement la fonction de départ, le calcul est faux, et l'erreur est presque toujours un facteur oublié ou un signe perdu.",
+   "ecran": "verification",
+   "id": "p22",
+   "texte": "Vérifier chaque primitive en la dérivant."
+  },
+  {
+   "dit": "Pour retenir l'essentiel : une primitive est définie à une constante près, le tableau des usuelles se lit à l'envers des dérivées, la linéarité traite les sommes, et la forme u prime fois g de u traite les composées. Et dans tous les cas, on vérifie en dérivant.",
+   "ecran": "recap",
+   "id": "p23",
+   "texte": "L'essentiel des primitives, en cinq points."
+  }
+ ],
+ "titre": "Primitives : dériver à rebours"
+}

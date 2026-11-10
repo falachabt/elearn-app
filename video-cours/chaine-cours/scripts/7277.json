@@ -1,0 +1,317 @@
+{
+ "cours": 7277,
+ "ecrans": {
+  "couple": {
+   "kicker": "Le couple solution",
+   "texte": "Un couple est solution si, une fois les remplacements faits, l'inégalité obtenue est vraie.",
+   "type": "phrase"
+  },
+  "definition": {
+   "kicker": "Définition",
+   "note": "f est une expression qui dépend des deux variables x et y.",
+   "tex": "\\begin{cases} f(x,y) \\le 0 \\\\ f(x,y) \\ge 0 \\\\ f(x,y) < 0 \\\\ f(x,y) > 0 \\end{cases}",
+   "type": "formule"
+  },
+  "ex_conclusion": {
+   "kicker": "Exemple résolu · la conclusion",
+   "note": "Le demi-plan fermé qui contient l'origine, délimité par la droite frontière.",
+   "tex": "S = \\{(x,\\,y) \\in \\mathbb{R}^2 \\mid 2x + y - 4 \\le 0\\}",
+   "type": "formule"
+  },
+  "ex_enonce": {
+   "kicker": "Exemple résolu · l'énoncé et sa frontière",
+   "tex": [
+    "2x + y - 4 \\le 0",
+    "(D) : \\ y = -2x + 4",
+    "\\text{la droite passe par } (0,\\,4) \\text{ et } (2,\\,0)"
+   ],
+   "titre": "Une inégalité large : la frontière sera en trait plein",
+   "type": "etape",
+   "anim": {
+    "nom": "demi_plan_fig",
+    "hauteur": 120
+   }
+  },
+  "ex_test": {
+   "kicker": "Exemple résolu · le point test",
+   "tex": [
+    "O(0,\\,0) : \\quad 2 \\times 0 + 0 - 4 = -4",
+    "-4 \\le 0 \\quad \\text{: vrai à l'origine}"
+   ],
+   "titre": "L'origine tranche : le test est vrai",
+   "type": "etape"
+  },
+  "frontiere": {
+   "kicker": "Frontière comprise ou exclue",
+   "tex": [
+    "\\text{inégalité large : trait plein}",
+    "\\text{inégalité stricte : pointillés}"
+   ],
+   "titre": "Le trait dit si la droite fait partie de la solution",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Avec deux variables, la réponse n'est plus un nombre ni un intervalle : c'est une région du plan, que l'on dessine.",
+   "type": "phrase"
+  },
+  "methode_choisir": {
+   "kicker": "La méthode graphique · choisir le côté",
+   "tex": [
+    "\\text{calculer l'expression au point test,}",
+    "\\text{comparer à zéro}",
+    "\\text{test vrai : son demi-plan}",
+    "\\text{test faux : l'autre}",
+    "\\text{hachurer le demi-plan solution}"
+   ],
+   "titre": "Le point test désigne le bon demi-plan",
+   "type": "etape"
+  },
+  "methode_tracer": {
+   "kicker": "La méthode graphique · tracer et tester",
+   "tex": [
+    "\\text{tracer la droite frontière,}",
+    "\\text{en plein ou en pointillés}",
+    "\\text{point test hors de la droite,}",
+    "\\text{souvent l'origine}"
+   ],
+   "titre": "D'abord la droite, ensuite un point hors de la droite",
+   "type": "etape"
+  },
+  "origine": {
+   "kicker": "Le cas où l'origine ne convient pas",
+   "texte": "Si l'origine est sur la droite frontière, elle ne départage rien : choisis un autre point, simple à calculer.",
+   "type": "phrase"
+  },
+  "point_plan": {
+   "kicker": "Un couple, un point du plan",
+   "texte": "Chaque couple solution est un point du plan : l'ensemble solution se dessine, point par point.",
+   "type": "phrase"
+  },
+  "premier_degre": {
+   "kicker": "Le premier degré",
+   "note": "a, b et c sont des réels, a et b non tous les deux nuls : la frontière est alors une vraie droite.",
+   "tex": "ax + by + c \\le 0",
+   "type": "formule"
+  },
+  "principe": {
+   "kicker": "Le principe fondamental",
+   "texte": "La droite d'équation ax + by + c = 0 coupe le plan en deux demi-plans : la solution est l'un des deux.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "La solution est une région du plan",
+    "Plein si large, pointillés si stricte",
+    "Le point test choisit le demi-plan",
+    "Système : intersection des demi-plans",
+    "Toujours vérifier un point de la région"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "signe": {
+   "kicker": "Pourquoi un seul test suffit",
+   "texte": "L'expression ne change de signe qu'en traversant la droite : dans chaque demi-plan, son signe est constant.",
+   "type": "phrase"
+  },
+  "sys_demiplans": {
+   "kicker": "Exemple de système · les trois demi-plans",
+   "tex": [
+    "x + y \\le 3 : \\text{ sous la droite } y = -x + 3",
+    "x \\ge 0 : \\text{ à droite de l'axe des ordonnées}",
+    "y \\ge 0 : \\text{ au-dessus de l'axe des abscisses}"
+   ],
+   "titre": "Chaque condition garde son demi-plan",
+   "type": "etape"
+  },
+  "sys_enonce": {
+   "kicker": "Exemple de système · l'énoncé",
+   "note": "Trois conditions à satisfaire en même temps, par les mêmes couples.",
+   "tex": "\\begin{cases} x + y \\le 3 \\\\ x \\ge 0 \\\\ y \\ge 0 \\end{cases}",
+   "type": "formule"
+  },
+  "sys_triangle": {
+   "kicker": "Exemple de système · la région commune",
+   "tex": [
+    "O(0,\\,0), \\quad A(3,\\,0), \\quad B(0,\\,3)",
+    "\\text{les trois frontières sont comprises}"
+   ],
+   "titre": "L'intersection est un triangle",
+   "type": "etape",
+   "anim": {
+    "nom": "triangle_region_fig",
+    "hauteur": 150
+   }
+  },
+  "sys_verif": {
+   "kicker": "Vérifier la région trouvée",
+   "tex": [
+    "(1,\\,1) : \\quad 1 + 1 = 2 \\le 3",
+    "1 \\ge 0 \\qquad 1 \\ge 0",
+    "\\text{le couple } (1,\\,1) \\text{ est solution du système}"
+   ],
+   "titre": "Un point intérieur doit passer les trois tests",
+   "type": "etape"
+  },
+  "systeme": {
+   "kicker": "Systèmes d'inéquations",
+   "texte": "Plusieurs inéquations à la fois : la solution est l'intersection des demi-plans, la région commune à tous.",
+   "type": "phrase"
+  },
+  "titre": {
+   "kicker": "Mathématique · Inéquations dans le plan",
+   "sous": "Tracer la frontière, tester un point, hachurer la région solution — puis croiser plusieurs conditions",
+   "titre": "Inéquations dans le plan : le demi-plan solution",
+   "type": "titre",
+   "anim": {
+    "nom": "demi_plan_fig",
+    "hauteur": 240
+   }
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Une inéquation, un demi-plan : définition, frontière et point test"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : les exemples résolus et les systèmes. Nous appliquons la méthode complète à une première inéquation, frontière, point test et conclusion, puis nous croisons trois inéquations dans un système, dont la région solution sera un triangle.",
+    "texte": "Partie 2 : exemple résolu pas à pas, puis les systèmes."
+   },
+   "sous_titre": "Exemples résolus et systèmes d'inéquations"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux inéquations à deux variables, dans le plan. Résoudre ne donnera plus un intervalle, mais une région du plan : un demi-plan, délimité par une droite. Nous apprendrons à tracer cette frontière, à choisir le bon côté grâce à un point test, puis à croiser plusieurs conditions dans un système.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Inéquations dans le plan : le demi-plan solution."
+  },
+  {
+   "dit": "Changeons d'échelle. Avec une seule inconnue, une inéquation se résout sur une droite graduée, et la réponse est un intervalle. Avec deux variables, ixe et igrec, chaque solution est un couple de nombres, donc un point du plan : la réponse devient un dessin, une région entière à délimiter.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Deux variables : la réponse devient un dessin."
+  },
+  {
+   "dit": "Définition : une inéquation à deux variables est une inégalité où une expression de ixe et de igrec est comparée à zéro, avec un signe inférieur ou supérieur, large ou strict. Toute la question est de trouver quels couples rendent cette inégalité vraie.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "Une inégalité sur une expression de x et de y."
+  },
+  {
+   "dit": "Un couple est solution lorsque, après avoir remplacé ixe et igrec par les deux nombres du couple, l'inégalité obtenue est vraie. Si elle est fausse, le couple est rejeté. Résoudre, c'est donc trier tous les couples du plan en deux familles : ceux qui conviennent, et les autres.",
+   "ecran": "couple",
+   "id": "p04",
+   "texte": "Solution : l'inégalité reste vraie après remplacement."
+  },
+  {
+   "dit": "Comme chaque couple est un point du plan, l'ensemble des solutions se représente graphiquement : on dessine la région formée par tous les points solutions. C'est la lecture graphique du titre de ce cours : la figure finale dit la réponse, autant que le calcul.",
+   "ecran": "point_plan",
+   "id": "p05",
+   "texte": "L'ensemble solution se dessine dans le plan."
+  },
+  {
+   "dit": "Nous travaillons surtout avec les inéquations du premier degré : une expression de la forme a ixe plus bé igrec plus cé, comparée à zéro. Les coefficients a et bé ne sont pas tous les deux nuls, sinon il n'y aurait plus de variable. C'est ce premier degré qui garantit une frontière bien simple : une droite.",
+   "ecran": "premier_degre",
+   "id": "p06",
+   "texte": "Premier degré : a·x + b·y + c comparé à zéro."
+  },
+  {
+   "dit": "Voici le principe fondamental. La droite d'équation a ixe plus bé igrec plus cé égale zéro partage le plan en deux demi-plans. L'ensemble des solutions est exactement l'un de ces deux demi-plans. Tout le travail consiste donc à tracer la droite, puis à décider de quel côté se trouvent les solutions.",
+   "ecran": "principe",
+   "id": "p07",
+   "texte": "La droite partage le plan en deux demi-plans."
+  },
+  {
+   "dit": "Pourquoi un seul test suffit-il pour trancher ? Parce que l'expression ne s'annule que sur la droite elle-même : de chaque côté, elle garde un signe constant, partout positif ou partout négatif. Un seul point bien choisi révèle donc le signe de tout son demi-plan.",
+   "ecran": "signe",
+   "id": "p08",
+   "texte": "Un signe constant de chaque côté de la droite."
+  },
+  {
+   "dit": "Reste le statut de la frontière. Si l'inégalité est large, les points de la droite vérifient l'égalité : la frontière fait partie de la solution, et on la trace en trait plein. Si l'inégalité est stricte, la droite est exclue : on la trace en pointillés, pour dire que ses points ne conviennent pas.",
+   "ecran": "frontiere",
+   "id": "p09",
+   "texte": "Large : trait plein. Stricte : pointillés."
+  },
+  {
+   "dit": "La méthode graphique tient en quelques gestes. Premier geste : tracer la droite frontière, en trait plein ou en pointillés selon l'inégalité. Deuxième geste : choisir un point test qui n'est pas sur la droite. Le plus souvent, l'origine convient parfaitement, car ses coordonnées rendent les calculs presque immédiats.",
+   "ecran": "methode_tracer",
+   "id": "p10",
+   "texte": "Tracer la frontière, choisir un point test."
+  },
+  {
+   "dit": "Troisième geste : calculer la valeur de l'expression au point test, et la comparer à zéro. Si l'inégalité est vérifiée, l'ensemble solution est le demi-plan qui contient le point test ; sinon, c'est l'autre demi-plan. Dernier geste : hachurer le demi-plan choisi, pour que la réponse se lise d'un coup d'œil.",
+   "ecran": "methode_choisir",
+   "id": "p11",
+   "texte": "Le test désigne le demi-plan : on hachure."
+  },
+  {
+   "dit": "Un cas particulier à connaître : si la droite frontière passe par l'origine, l'origine ne peut pas servir de point test, puisqu'elle est sur la frontière et ne départage aucun côté. On choisit alors un autre point, aux coordonnées simples, par exemple un point d'un axe, et la méthode continue exactement de la même façon.",
+   "ecran": "origine",
+   "id": "p12",
+   "texte": "Origine sur la droite : prendre un autre point."
+  },
+  {
+   "dit": "Exemple résolu, pas à pas : deux ixe plus igrec moins quatre, inférieur ou égal à zéro. La frontière est la droite d'équation igrec égale moins deux ixe plus quatre. Elle passe par le point de coordonnées zéro et quatre, et par le point de coordonnées deux et zéro. L'inégalité est large : on la trace en trait plein.",
+   "ecran": "ex_enonce",
+   "id": "p13",
+   "texte": "Exemple : 2x + y − 4 ≤ 0, frontière par (0, 4) et (2, 0)."
+  },
+  {
+   "dit": "Point test : l'origine, de coordonnées zéro et zéro. On calcule : deux fois zéro, plus zéro, moins quatre, cela donne moins quatre. Et moins quatre est bien inférieur ou égal à zéro : l'inégalité est vraie à l'origine. Le bon demi-plan est donc celui qui contient l'origine.",
+   "ecran": "ex_test",
+   "id": "p14",
+   "texte": "Test à l'origine : −4 ≤ 0, c'est vrai."
+  },
+  {
+   "dit": "Conclusion de l'exemple : l'ensemble solution est le demi-plan fermé qui contient l'origine, délimité par la droite frontière. On l'écrit comme l'ensemble des couples de ixe et igrec de l'ensemble des réels au carré qui vérifient l'inéquation de départ.",
+   "ecran": "ex_conclusion",
+   "id": "p15",
+   "texte": "S : le demi-plan fermé contenant l'origine."
+  },
+  {
+   "dit": "Passons aux systèmes. Un système d'inéquations impose plusieurs conditions en même temps : un couple solution doit les vérifier toutes. Graphiquement, son ensemble solution est l'intersection des demi-plans solutions de chaque inéquation, la région commune à tous, souvent un polygone.",
+   "ecran": "systeme",
+   "id": "p16",
+   "texte": "Système : la région commune à tous les demi-plans."
+  },
+  {
+   "dit": "Exemple : ixe plus igrec inférieur ou égal à trois, avec ixe positif ou nul et igrec positif ou nul. Trois conditions, trois demi-plans à déterminer séparément, avant de ne garder que leur partie commune.",
+   "ecran": "sys_enonce",
+   "id": "p17",
+   "texte": "Exemple : x + y ≤ 3, x ≥ 0, y ≥ 0."
+  },
+  {
+   "dit": "Première condition : ixe plus igrec inférieur ou égal à trois garde le demi-plan situé sous la droite d'équation igrec égale moins ixe plus trois, frontière comprise. Deuxième condition : ixe positif ou nul garde le demi-plan à droite de l'axe des ordonnées. Troisième condition : igrec positif ou nul garde le demi-plan au-dessus de l'axe des abscisses.",
+   "ecran": "sys_demiplans",
+   "id": "p18",
+   "texte": "Trois conditions, trois demi-plans."
+  },
+  {
+   "dit": "La région commune à ces trois demi-plans est un triangle : ses sommets sont l'origine, le point a de coordonnées trois et zéro, et le point bé de coordonnées zéro et trois. Les frontières sont comprises, puisque les trois inégalités sont larges.",
+   "ecran": "sys_triangle",
+   "id": "p19",
+   "texte": "La région commune : le triangle O, A(3, 0), B(0, 3)."
+  },
+  {
+   "dit": "Vérifions avec un point intérieur, le couple un et un. Un plus un égale deux, bien inférieur ou égal à trois ; un est positif ou nul, pour ixe comme pour igrec. Les trois conditions sont vérifiées : le couple est bien dans le triangle solution. Ce réflexe de vérification doit devenir automatique.",
+   "ecran": "sys_verif",
+   "id": "p20",
+   "texte": "Contrôle : (1, 1) passe les trois conditions."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement complet : une inéquation à deux variables a pour solution une région du plan ; la frontière se trace en trait plein si l'inégalité est large, en pointillés si elle est stricte ; le point test choisit le demi-plan ; et un système se résout en croisant les demi-plans, puis en vérifiant un point de la région obtenue.",
+   "ecran": "recap",
+   "id": "p21",
+   "texte": "Frontière, point test, intersection : à retenir."
+  }
+ ],
+ "titre": "Inéquations dans le plan : le demi-plan solution"
+}

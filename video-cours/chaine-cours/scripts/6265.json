@@ -1,0 +1,289 @@
+{
+  "cours": 6265,
+  "ecrans": {
+    "accord": {
+      "kicker": "Point de vigilance",
+      "texte": "Le participe passé s'accorde toujours avec le sujet de la phrase passive.",
+      "type": "phrase"
+    },
+    "definition": {
+      "kicker": "La voix passive : une définition en miroir",
+      "texte": "Le sujet ne fait plus l'action : il la subit. L'action passe au premier plan.",
+      "type": "phrase"
+    },
+    "exemple_actif_passif": {
+      "kicker": "Exemple : actif vers passif",
+      "texte": "L'athlète français bat le record du monde. → Le record du monde est battu par l'athlète français.",
+      "type": "phrase"
+    },
+    "exemple_sans_agent": {
+      "kicker": "Exemple : agent absent",
+      "texte": "La Joconde a été volée dans la nuit du 20 au 21 août 1911.",
+      "type": "phrase"
+    },
+    "exemple_science": {
+      "kicker": "Exemple : style scientifique",
+      "texte": "Les échantillons ont été chauffés à 100 °C pendant 24 heures.",
+      "type": "phrase"
+    },
+    "formule": {
+      "kicker": "La formule de la transformation",
+      "tex": "\\text{sujet patient} + \\text{être} + \\text{participe passé}",
+      "type": "formule"
+    },
+    "limites": {
+      "kicker": "Quand le passif est impossible",
+      "texte": "Sans complément d'objet direct, pas de passif : verbe impersonnel ou complément indirect.",
+      "type": "phrase"
+    },
+    "methode": {
+      "etapes": [
+        "Repérer le sujet agent, le verbe et le complément d'objet direct.",
+        "Faire du complément d'objet direct le nouveau sujet.",
+        "Conjuguer « être » au temps du verbe actif, puis ajouter le participe passé accordé."
+      ],
+      "kicker": "Méthode en quatre étapes",
+      "type": "recap"
+    },
+    "piege": {
+      "kicker": "Piège à éviter",
+      "texte": "Tout « être » plus participe passé n'est pas un passif : il faut une action subie.",
+      "type": "phrase"
+    },
+    "pourquoi": {
+      "kicker": "Pourquoi choisir le passif ?",
+      "texte": "Mettre l'accent sur l'action, créer une distance objective, gérer l'information connue et nouvelle.",
+      "type": "phrase"
+    },
+    "recap": {
+      "etapes": [
+        "Actif : sujet agent, verbe, complément d'objet direct.",
+        "Passif : complément d'objet direct, être, participe passé accordé.",
+        "Agent absent, évident ou sans importance : le passif s'impose."
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "recap1": {
+      "etapes": [
+        "Le sujet passif subit l'action.",
+        "Formule : être au temps voulu, plus participe passé.",
+        "L'agent, introduit par « par », peut disparaître."
+      ],
+      "kicker": "À retenir : première partie",
+      "type": "recap"
+    },
+    "temps_composes": {
+      "kicker": "Les temps composés du passif",
+      "tex": [
+        "\\text{passé composé}",
+        "\\text{a été} + \\text{participe passé}",
+        "\\text{plus-que-parfait}",
+        "\\text{avait été} + \\text{participe passé}"
+      ],
+      "titre": "Être porte le temps, avoir le conjugue",
+      "type": "etape"
+    },
+    "temps_futur_ant": {
+      "kicker": "Le futur antérieur du passif",
+      "note": "Futur antérieur : action passive achevée à un moment précis du futur.",
+      "tex": "\\text{aura été} + \\text{participe passé}",
+      "type": "formule"
+    },
+    "temps_simples": {
+      "kicker": "Les temps simples du passif",
+      "tex": [
+        "\\text{présent} : \\text{est} + \\text{participe passé}",
+        "\\text{imparfait} : \\text{était} + \\text{participe passé}",
+        "\\text{futur} : \\text{sera} + \\text{participe passé}"
+      ],
+      "titre": "Être épouse le temps du verbe actif",
+      "type": "etape"
+    },
+    "titre": {
+      "kicker": "Anglais · La voix passive",
+      "sous": "Transformer l'actif en passif, choisir le passif, éviter ses pièges",
+      "titre": "La voix passive",
+      "type": "titre"
+    },
+    "transformation": {
+      "kicker": "Le mécanisme de la transformation",
+      "texte": "Le complément d'objet direct devient sujet, le sujet devient complément d'agent.",
+      "type": "phrase"
+    }
+  },
+  "matiere": "Anglais",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définition, formule et temps simples"
+    },
+    {
+      "debut": "p15",
+      "pont": {
+        "dit": "Deuxième partie : les temps composés, les raisons de choisir le passif, ses limites et ses pièges, puis la méthode complète de transformation.",
+        "texte": "Partie 2 : temps composés, usages, limites et méthode."
+      },
+      "sous_titre": "Temps composés, usages, limites et méthode"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours sur la voix passive, l'outil qui met l'action elle-même au premier plan. Nous verrons sa formule, ses temps, puis pourquoi la choisir, et quand l'éviter.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "La voix passive : mettre l'action au premier plan."
+    },
+    {
+      "dit": "Imaginez ce titre de journal : « Le record du monde est battu par l'athlète français. » Comparez avec : « L'athlète français bat le record du monde. » La première version met en avant l'action et son résultat, la seconde met l'accent sur l'acteur.",
+      "ecran": "exemple_actif_passif",
+      "id": "p02",
+      "texte": "Le record du monde est battu par l'athlète français."
+    },
+    {
+      "dit": "À la voix active, le sujet fait l'action. À la voix passive, le sujet ne fait plus l'action : il la subit. C'est une inversion, un miroir : ce qui était l'objet de l'action devient le sujet de la phrase.",
+      "ecran": "definition",
+      "id": "p03",
+      "texte": "Actif : le sujet fait. Passif : le sujet subit."
+    },
+    {
+      "dit": "La formule est la suivante : le sujet patient, celui qui subit, plus l'auxiliaire être, conjugué au temps voulu, plus le participe passé du verbe. C'est être qui porte le temps du verbe actif.",
+      "ecran": "formule",
+      "id": "p04",
+      "texte": "Sujet patient, plus être, plus participe passé."
+    },
+    {
+      "dit": "Le mécanisme de transformation se fait en miroir. Dans la phrase active, on a un sujet agent, un verbe et un complément d'objet direct. Dans la phrase passive, le complément d'objet direct devient le sujet, et le sujet agent devient le complément d'agent, introduit par par, parfois par de.",
+      "ecran": "transformation",
+      "id": "p05",
+      "texte": "Le complément d'objet direct devient sujet, le sujet devient complément d'agent."
+    },
+    {
+      "dit": "Exemple : « Les résultats sont analysés par l'équipe. » Les résultats, complément d'objet direct de la phrase active, sont devenus le sujet. L'équipe, ancien sujet, est devenue le complément d'agent, après par.",
+      "ecran": "transformation",
+      "id": "p06",
+      "texte": "Les résultats sont analysés par l'équipe."
+    },
+    {
+      "dit": "Point de vigilance crucial : le participe passé s'accorde en genre et en nombre avec le nouveau sujet. On écrit : la décision est annoncée, et : les décisions sont annoncées. L'accord est la clé d'une transformation réussie.",
+      "ecran": "accord",
+      "id": "p07",
+      "texte": "Le participe passé s'accorde avec le sujet passif."
+    },
+    {
+      "dit": "Aux temps simples, être épouse le temps du verbe actif. Au présent : le sujet est plus participe passé, comme : le record est battu. À l'imparfait : était plus participe passé, comme : le discours du président était retransmis en direct à la radio.",
+      "ecran": "temps_simples",
+      "id": "p08",
+      "texte": "Présent : est battu. Imparfait : était retransmis."
+    },
+    {
+      "dit": "Au futur simple : sera plus participe passé. Exemples des leçons : le nouveau règlement européen sera appliqué à partir du premier janvier prochain ; vous serez récompensés pour votre loyauté ; les contrevenants seront sanctionnés.",
+      "ecran": "temps_simples",
+      "id": "p09",
+      "texte": "Futur : sera appliqué, seront sanctionnés."
+    },
+    {
+      "dit": "Autre exemple au futur : la décision sera prise en conseil. Et au présent : ces monuments sont visités par des milliers de touristes. Dans chaque cas, être porte le temps, le participe passé porte l'action.",
+      "ecran": "temps_simples",
+      "id": "p10",
+      "texte": "Ces monuments sont visités par des milliers de touristes."
+    },
+    {
+      "dit": "Dans les médias, le passif met l'accent sur le fait plutôt que sur l'acteur. Exemple : la police a interpellé trois suspects hier soir devient : trois suspects ont été interpellés hier soir. Le fait prime sur l'institution.",
+      "ecran": "exemple_actif_passif",
+      "id": "p11",
+      "texte": "Trois suspects ont été interpellés hier soir."
+    },
+    {
+      "dit": "Un nouveau vaccin a été découvert par le chercheur : voilà le passé composé passif, a été plus participe passé. Le passif s'emploie aussi dans les notices et les textes administratifs, comme : votre dossier sera traité sous quarante-huit heures.",
+      "ecran": "exemple_actif_passif",
+      "id": "p12",
+      "texte": "Un nouveau vaccin a été découvert par le chercheur."
+    },
+    {
+      "dit": "Faisons le point sur cette première partie : le sujet passif subit l'action ; la formule est être au temps voulu plus le participe passé ; et l'agent, introduit par par, peut disparaître quand il n'apporte rien.",
+      "ecran": "recap1",
+      "id": "p13",
+      "texte": "Définition, formule et temps simples : le point."
+    },
+    {
+      "dit": "Retenez enfin, avant la deuxième partie, que le passif n'est pas réservé aux journaux : dans les textes scientifiques, il peut représenter jusqu'à trente pour cent des verbes d'un article, selon une étude citée par les leçons.",
+      "ecran": "exemple_science",
+      "id": "p14",
+      "texte": "Dans un article scientifique, jusqu'à 30 % de verbes au passif."
+    },
+    {
+      "dit": "Passons aux temps composés. On utilise exclusivement l'auxiliaire être pour former le passif, et avoir n'intervient que pour conjuguer être lui-même. Au passé composé : a été plus participe passé. Au plus-que-parfait : avait été plus participe passé. Au futur antérieur : aura été plus participe passé.",
+      "ecran": "temps_composes",
+      "id": "p15",
+      "texte": "Passé composé : a été. Plus-que-parfait : avait été."
+    },
+    {
+      "dit": "Exemples : le vaccin a été mis au point par une équipe internationale ; les résultats ont été publiés hier dans une revue prestigieuse ; le protocole avait été validé par le comité d'éthique avant que l'expérience ne commence ; le rapport aura été relu par tous les co-auteurs avant la soumission.",
+      "ecran": "temps_futur_ant",
+      "id": "p16",
+      "texte": "Le rapport aura été relu par tous les co-auteurs avant la soumission."
+    },
+    {
+      "dit": "Piège signalé par les leçons : « seront été rendus » n'existe pas. Au futur simple passif, on écrit : les détails de l'accord seront rendus publics dans l'après-midi, et non : seront été rendus. Le futur simple ne prend qu'un seul auxiliaire.",
+      "ecran": "piege",
+      "id": "p17",
+      "texte": "Seront rendus, jamais « seront été rendus »."
+    },
+    {
+      "dit": "Pourquoi choisir le passif ? Trois raisons, selon les leçons. Mettre l'accent sur l'action et son résultat ; créer un effet de distance et d'objectivité ; et gérer l'information connue et nouvelle, en plaçant en tête ce dont on parle.",
+      "ecran": "pourquoi",
+      "id": "p18",
+      "texte": "Trois raisons : accent sur l'action, objectivité, information."
+    },
+    {
+      "dit": "Premier cas d'usage : quand l'agent est inconnu, évident ou sans importance. « La Joconde a été volée dans la nuit du 20 au 21 août 1911. » Le voleur était inconnu au moment des faits : mettre l'accent sur le vol lui-même rend le récit plus fluide.",
+      "ecran": "exemple_sans_agent",
+      "id": "p19",
+      "texte": "La Joconde a été volée dans la nuit du 20 au 21 août 1911."
+    },
+    {
+      "dit": "Dans un rapport scientifique, on écrit : « Les échantillons ont été contaminés », peu importe par qui, l'important est le résultat. Dans une notice administrative : « Votre dossier sera traité sous 48 heures », l'agent est évident, c'est le service administratif.",
+      "ecran": "exemple_science",
+      "id": "p20",
+      "texte": "Les échantillons ont été chauffés à 100 °C pendant 24 heures."
+    },
+    {
+      "dit": "Dans les textes scientifiques, le passif crée une narration centrée sur la découverte et ses preuves. Exemple de réécriture des leçons : une série d'expériences a été réalisée par l'équipe du docteur Lena ; l'hypothèse de départ a été confirmée ; ces résultats ont été accueillis avec un vif intérêt par la communauté scientifique.",
+      "ecran": "exemple_science",
+      "id": "p21",
+      "texte": "Une série d'expériences a été réalisée par l'équipe du docteur Lena."
+    },
+    {
+      "dit": "Mais le passif a des limites. Toutes les phrases actives ne peuvent pas être passivées : la condition indispensable est l'existence d'un complément d'objet direct. Il pleut depuis ce matin, verbe impersonnel, pas de passif possible. Elle ressemble à sa mère, complément indirect, pas de passif direct.",
+      "ecran": "limites",
+      "id": "p22",
+      "texte": "Sans complément d'objet direct, pas de passif possible."
+    },
+    {
+      "dit": "En revanche, quand il y a un complément d'objet direct, le passif est possible, même avec un complément indirect à côté : le directeur lui a donné des instructions devient : des instructions lui ont été données par le directeur.",
+      "ecran": "limites",
+      "id": "p23",
+      "texte": "Des instructions lui ont été données par le directeur."
+    },
+    {
+      "dit": "Autre piège : tous les « être » plus participe passé ne forment pas une voix passive. Il faut une action subie, pas un simple état. Et dans les discours administratifs ou politiques, le passif peut aussi servir à estomper la responsabilité, comme dans : « Des erreurs ont été commises », sans dire par qui.",
+      "ecran": "piege",
+      "id": "p24",
+      "texte": "« Des erreurs ont été commises » : le passif peut masquer l'agent."
+    },
+    {
+      "dit": "La méthode complète, en trois gestes. D'abord, repérer le sujet agent, le verbe et le complément d'objet direct. Ensuite, faire du complément d'objet direct le nouveau sujet. Enfin, conjuguer être au temps du verbe actif, puis ajouter le participe passé, accordé en genre et en nombre avec le nouveau sujet.",
+      "ecran": "methode",
+      "id": "p25",
+      "texte": "Méthode : repérer, inverser, conjuguer être, accorder le participe."
+    },
+    {
+      "dit": "Pour conclure : à l'actif, sujet agent, verbe et complément d'objet direct ; au passif, complément d'objet direct devenu sujet, être, participe passé accordé ; et l'agent, quand il est absent, évident ou sans importance, laisse le passif s'imposer.",
+      "ecran": "recap",
+      "id": "p26",
+      "texte": "Actif, passif : un miroir, une formule, un accord."
+    }
+  ],
+  "titre": "La voix passive"
+}

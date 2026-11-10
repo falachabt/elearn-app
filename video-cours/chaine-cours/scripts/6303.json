@@ -1,0 +1,505 @@
+{
+ "cours": 6303,
+ "ecrans": {
+  "algorithme": {
+   "kicker": "L'algorithme du facteur intégrant",
+   "tex": [
+    "\\text{un : forme standard } y' + a(x)y = b(x)",
+    "\\text{deux : } \\mu(x) = e^{\\int a(x)\\,dx}",
+    "\\text{trois : multiplier, reconnaître } (\\mu y)'",
+    "\\text{quatre : intégrer, puis isoler } y"
+   ],
+   "titre": "De la forme standard à la solution générale",
+   "type": "etape"
+  },
+  "cafe": {
+   "kicker": "Application chiffrée · le café",
+   "tex": [
+    "T(t) = 22 + 73\\,e^{-kt}",
+    "85 = 22 + 73\\,e^{-2k} \\Rightarrow k \\approx 0{,}0737",
+    "T(10) \\approx 22 + 73\\,e^{-0{,}737} \\approx 56{,}9"
+   ],
+   "titre": "Deux mesures suffisent à prédire la suite",
+   "type": "etape"
+  },
+  "cauchy": {
+   "kicker": "Le problème de Cauchy",
+   "tex": [
+    "\\text{un : résoudre, solution générale}",
+    "\\text{deux : substituer le point imposé}",
+    "\\text{trois : résoudre pour la constante}",
+    "\\text{quatre : écrire la solution particulière}"
+   ],
+   "titre": "Quatre étapes vers la solution unique",
+   "type": "etape"
+  },
+  "circuit": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "circuit_rc"
+   },
+   "kicker": "Le circuit RC",
+   "note": "τ = RC : 63 % de la charge finale en une constante de temps.",
+   "tex": "V_C(t) = E\\left(1 - e^{-t/(RC)}\\right)",
+   "type": "formule"
+  },
+  "constantes": {
+   "kicker": "Le piège des solutions constantes",
+   "tex": [
+    "h(y) = y - 1 = 0 \\Rightarrow y = 1",
+    "\\int \\tfrac{dy}{y - 1} = \\int x\\,dx",
+    "\\ln|y - 1| = \\tfrac{x^2}{2} + C"
+   ],
+   "titre": "Tester h(y) = 0 avant de diviser",
+   "type": "etape"
+  },
+  "croissance": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Le modèle fondateur",
+   "note": "La vitesse de croissance est proportionnelle à la population.",
+   "tex": "\\frac{dP}{dt} = kP",
+   "type": "formule"
+  },
+  "croissance_res": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Résolution · croissance exponentielle",
+   "tex": [
+    "\\tfrac{1}{P}\\,dP = k\\,dt",
+    "\\ln|P| = kt + C",
+    "P(t) = P_0\\,e^{kt}"
+   ],
+   "titre": "Séparer, intégrer, repasser par l'exponentielle",
+   "type": "etape"
+  },
+  "ex_condition_sep": {
+   "kicker": "Exemple guidé · condition initiale",
+   "tex": [
+    "2(y - 1)\\,dy = (3x^2 + 4x + 2)\\,dx",
+    "y^2 - 2y = x^3 + 2x^2 + 2x + C",
+    "C = 3 \\quad y = 1 - \\sqrt{x^3 + 2x^2 + 2x + 4}"
+   ],
+   "titre": "Séparable, avec y(0) = −1 : la branche se choisit",
+   "type": "etape"
+  },
+  "ex_cos": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "sinusoide"
+   },
+   "kicker": "Exemple · second membre oscillant",
+   "tex": [
+    "\\mu(x) = e^{x}",
+    "(e^x y)' = e^x \\cos x",
+    "y = \\tfrac{1}{2}(\\sin x + \\cos x) + \\tfrac{1}{2} e^{-x}"
+   ],
+   "titre": "La dérivée plus y égale cosinus, y(0) = 1",
+   "type": "etape"
+  },
+  "ex_homogene": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Exemple · homogène",
+   "tex": [
+    "\\mu(x) = e^{3x}",
+    "(e^{3x} y)' = 0",
+    "y = C\\,e^{-3x}"
+   ],
+   "titre": "La dérivée plus trois y égale zéro",
+   "type": "etape"
+  },
+  "ex_nonhom": {
+   "kicker": "Exemple complet · avec condition initiale",
+   "tex": [
+    "\\mu(x) = e^{x^2}",
+    "(e^{x^2} y)' = x\\,e^{x^2}",
+    "y = \\tfrac{1}{2} + \\tfrac{1}{2}\\,e^{-x^2}"
+   ],
+   "titre": "Facteur e^(x²), constante fixée par y(0) = 1",
+   "type": "etape"
+  },
+  "ex_sep": {
+   "kicker": "Exemple résolu · séparable",
+   "tex": [
+    "y^2\\,dy = x\\,dx",
+    "\\tfrac{y^3}{3} = \\tfrac{x^2}{2} + C",
+    "y = \\sqrt[3]{\\tfrac{3x^2}{2} + K}"
+   ],
+   "titre": "La dérivée égale x divisé par le carré de y",
+   "type": "etape"
+  },
+  "ex_synthese": {
+   "kicker": "Exercice de synthèse · standardiser",
+   "tex": [
+    "y' + \\tfrac{2}{x}\\,y = 4x \\qquad (x \\neq 0)",
+    "\\mu(x) = x^2 \\qquad (x^2 y)' = 4x^3",
+    "y = x^2 + \\tfrac{C}{x^2} \\qquad y(1) = 2 \\Rightarrow C = 1"
+   ],
+   "titre": "Diviser par x avant tout : le facteur devient x²",
+   "type": "etape"
+  },
+  "facteur": {
+   "kicker": "Le facteur intégrant",
+   "note": "Multiplier par μ rend le membre de gauche égal à (μy)'.",
+   "tex": "\\mu(x) = e^{\\int a(x)\\,dx}",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Résoudre : retrouver une fonction à partir de la loi de son changement.",
+   "type": "phrase"
+  },
+  "lineaire": {
+   "kicker": "Équations linéaires · la forme standard",
+   "note": "Homogène si b(x) = 0 · y et y' à la puissance 1 seulement.",
+   "tex": "y' + a(x)\\,y = b(x)",
+   "type": "formule"
+  },
+  "logistique": {
+   "kicker": "Le modèle logistique",
+   "note": "K : capacité de charge · courbe en S, saturation à K.",
+   "tex": "\\frac{dP}{dt} = rP\\left(1 - \\frac{P}{K}\\right)",
+   "type": "formule"
+  },
+  "melange": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Application · le réservoir de sel",
+   "tex": [
+    "S' + \\tfrac{1}{20}\\,S = 0",
+    "S(t) = 2\\,e^{-t/20}",
+    "\\text{constante de temps : vingt minutes}"
+   ],
+   "titre": "Eau pure en entrée : la dilution exponentielle",
+   "type": "etape"
+  },
+  "methode_sep": {
+   "kicker": "La méthode de séparation",
+   "tex": [
+    "\\text{un : séparer les variables}",
+    "\\text{deux : intégrer les deux membres}",
+    "\\text{trois : calculer, constante unique}",
+    "\\text{quatre : isoler l'inconnue}"
+   ],
+   "titre": "Quatre gestes, de la séparation à la solution",
+   "type": "etape"
+  },
+  "newton": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "La loi de refroidissement de Newton",
+   "note": "Tarte : 118 °C à 5 min, 80 °C à 10 min, 30 °C à 30 min.",
+   "tex": "T(t) = T_a + (T_0 - T_a)\\,e^{-kt}",
+   "type": "formule"
+  },
+  "pentes": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Le champ de pentes",
+   "texte": "En chaque point, l'équation donne la pente : résoudre, c'est suivre le champ.",
+   "type": "phrase"
+  },
+  "radio": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "decroissance"
+   },
+   "kicker": "Décroissance radioactive · la demi-vie",
+   "note": "N(t) = N₀·e^(−λt) · carbone 14 : demi-vie ≈ 5 730 ans.",
+   "tex": "T_{1/2} = \\frac{\\ln 2}{\\lambda}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Séparable : dy/h(y) = g(x) dx, intégrer",
+    "Linéaire : μ = e^(∫a dx), produit dérivé",
+    "Constante C fixée par la condition y(x₀) = y₀",
+    "Solutions constantes : tester h(y) = 0",
+    "Modèles : Newton, logistique, RC, mélanges"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "separable": {
+   "kicker": "Variables séparables · la forme",
+   "note": "Produit de g(x) par h(y) · une somme comme x + y ne se sépare pas.",
+   "tex": "\\frac{dy}{dx} = g(x)\\,h(y)",
+   "type": "formule"
+  },
+  "structure": {
+   "kicker": "La structure de la solution",
+   "note": "Homogène générale + particulière : la superposition.",
+   "tex": "y = y_h + y_p",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Mathématique · Équations différentielles",
+   "sous": "Variables séparables, équations linéaires, conditions initiales et modèles du réel",
+   "titre": "Équations différentielles du premier ordre : résoudre et modéliser",
+   "type": "titre"
+  },
+  "unicite": {
+   "kicker": "Une infinité de solutions",
+   "tex": [
+    "y' = 2x",
+    "y = x^2 + C",
+    "y(0) = 3 \\Rightarrow y = x^2 + 3"
+   ],
+   "titre": "La condition initiale choisit la courbe",
+   "type": "etape"
+  },
+  "vocab": {
+   "kicker": "Le vocabulaire essentiel",
+   "tex": [
+    "\\text{ordre : la plus haute dérivée présente}",
+    "\\text{solution : une fonction qui vérifie}",
+    "\\text{générale : avec C ; particulière : fixée}"
+   ],
+   "titre": "Ordre, solution, famille de solutions",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le langage du changement et les variables séparables"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : achever les variables séparables par un exemple avec condition initiale et par le modèle logistique, puis ouvrir la deuxième famille, les équations linéaires, avec le facteur intégrant, sa structure de solution et ses premiers exemples complets.",
+    "texte": "Partie 2 : condition initiale, logistique et équations linéaires."
+   },
+   "sous_titre": "Condition initiale, logistique et équations linéaires"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : la synthèse et les modèles. Un exercice complet de standardisation, le problème de Cauchy qui garantit la solution unique, puis les applications qui font la force du chapitre : refroidissement, radioactivité, circuits électriques et mélanges.",
+    "texte": "Partie 3 : synthèse, problème de Cauchy et modèles du réel."
+   },
+   "sous_titre": "Synthèse, problème de Cauchy et modèles du réel"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux équations différentielles du premier ordre, le langage mathématique du changement. Nous apprendrons à reconnaître les deux grandes familles résolubles, à variables séparables et linéaires, à fixer la constante par une condition initiale, puis à modéliser le refroidissement, la radioactivité, les circuits et les mélanges.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Équations du premier ordre : résoudre et modéliser."
+  },
+  {
+   "dit": "Une équation différentielle ne cherche pas un nombre, mais une fonction, et elle la décrit par sa vitesse de variation. Résoudre, c'est retrouver la fonction à partir de la loi de son changement. La solution générale forme une famille de courbes, avec une constante arbitraire ; la condition initiale choisira, dans cette famille, l'unique courbe du problème posé.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Retrouver la fonction depuis la loi de son changement."
+  },
+  {
+   "dit": "L'ordre est celui de la dérivée la plus haute : ici, toujours le premier. Une solution est une fonction qui, substituée dans l'équation, la vérifie sur tout un intervalle. Générale, elle garde sa constante arbitraire ; particulière, elle est fixée par une condition initiale. Ce vocabulaire posé, attaquons le modèle fondateur du chapitre.",
+   "ecran": "vocab",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Ordre un, solution, générale ou particulière."
+  },
+  {
+   "dit": "Le modèle fondateur : une population de bactéries dont la vitesse de croissance est proportionnelle à la population présente. Plus il y a de bactéries, plus elles se multiplient vite. Cette phrase se traduit mot pour mot en une équation : la dérivée de la population égale une constante fois la population. Le signe de la constante décidera entre croissance et décroissance.",
+   "ecran": "croissance",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "dP/dt = kP : la vitesse proportionnelle à l'état."
+  },
+  {
+   "dit": "Résolvons-la par séparation des variables. On divise par la population, on intègre : le logarithme de la population vaut la constante fois le temps, plus une constante d'intégration. En repassant par l'exponentielle, la population devient une constante fois l'exponentielle du temps. La condition initiale identifie cette constante à la population de départ.",
+   "ecran": "croissance_res",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "P(t) = P₀·e^(kt) : la croissance exponentielle."
+  },
+  {
+   "dit": "Une équation différentielle a presque toujours une infinité de solutions. Pour l'équation la plus simple, la dérivée égale deux fois la variable, la solution générale est la variable au carré plus une constante : une famille de paraboles décalées verticalement. Exiger que la courbe passe par le point d'abscisse zéro et d'ordonnée trois fixe la constante à trois, et sélectionne une seule parabole.",
+   "ecran": "unicite",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "y = x² + C : la condition initiale sélectionne."
+  },
+  {
+   "dit": "Première famille : les équations à variables séparables. Le membre de droite se factorise en un produit : une fonction de la seule variable indépendante, fois une fonction de la seule inconnue. L'équation de la décroissance radioactive en est l'archétype. En revanche, une somme mélangée, comme la variable plus l'inconnue, refuse toute séparation : ce sera l'affaire des équations linéaires.",
+   "ecran": "separable",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Séparable : dy/dx = g(x)·h(y), un produit."
+  },
+  {
+   "dit": "La méthode tient en quatre gestes. Séparer : tout ce qui contient l'inconnue rejoint sa différentielle, tout ce qui contient la variable rejoint la sienne. Intégrer les deux membres. Calculer les intégrales, sans oublier l'unique constante. Puis, si c'est possible, exprimer l'inconnue explicitement en fonction de la variable.",
+   "ecran": "methode_sep",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Séparer, intégrer, calculer, exprimer."
+  },
+  {
+   "dit": "Exemple complet : la dérivée égale la variable divisée par le carré de l'inconnue. En séparant, le carré de l'inconnue fois sa différentielle égale la variable fois la sienne. L'intégration donne le cube de l'inconnue sur trois, égal au carré de la variable sur deux, plus une constante. Une racine cubique plus tard, la solution générale est explicite : une famille de courbes indexée par une nouvelle constante.",
+   "ecran": "ex_sep",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "y³/3 = x²/2 + C : la racine cubique conclut."
+  },
+  {
+   "dit": "Un piège avant de diviser : si la fonction de l'inconnue s'annule pour une valeur, la fonction constante égale à cette valeur est déjà une solution. Ici, l'inconnue constante égale à un annule le facteur, c'est une solution à part entière. Pour les autres, la séparation donne le logarithme de la valeur absolue de l'inconnue moins un, égal à la moitié du carré de la variable, plus une constante. Diviser sans vérifier, c'est perdre des solutions.",
+   "ecran": "constantes",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "h(y) = 0 d'abord : ne pas perdre les constantes."
+  },
+  {
+   "dit": "Exemple guidé avec condition initiale : la dérivée égale un polynôme du second degré, divisé par deux fois l'inconnue moins un, et l'inconnue vaut moins un au départ. La séparation puis l'intégration donnent le carré de l'inconnue moins deux fois l'inconnue, égal au polynôme intégré, plus une constante. La condition initiale fixe la constante à trois. En complétant le carré, on choisit la branche négative, celle qui passe par le point de départ.",
+   "ecran": "ex_condition_sep",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Constante 3, branche négative : y(0) = −1 respecté."
+  },
+  {
+   "dit": "La croissance illimitée est un conte de fées : les ressources finissent toujours par manquer. Le modèle logistique corrige le modèle exponentiel par un frein, la place encore disponible par rapport à une capacité maximale. L'équation reste séparable, et sa solution dessine la célèbre courbe en esse : départ rapide, puis saturation progressive vers la capacité. Diffusion d'une innovation, croissance d'une population : même silhouette.",
+   "ecran": "logistique",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Logistique : la courbe en S vers la capacité K."
+  },
+  {
+   "dit": "Deuxième famille : les équations linéaires du premier ordre. La forme standard aligne la dérivée, plus une fonction connue fois l'inconnue, égale à un second membre connu. Linéaire signifie que l'inconnue et sa dérivée n'apparaissent qu'à la puissance un : ni carré, ni sinus, ni produit entre elles. Second membre nul, l'équation est homogène ; sinon, elle est complète.",
+   "ecran": "lineaire",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Linéaire : y' + a(x)y = b(x), puissance un partout."
+  },
+  {
+   "dit": "L'astuce du facteur intégrant : multiplier toute l'équation par une fonction bien choisie pour que le membre de gauche devienne la dérivée d'un produit. Cette fonction est l'exponentielle d'une primitive du coefficient de l'inconnue. Elle-même se trouve par une petite équation séparable : le chapitre précédent travaille déjà pour celui-ci.",
+   "ecran": "facteur",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "μ = e^(∫a dx) : fabriquer une dérivée de produit."
+  },
+  {
+   "dit": "L'algorithme complet tient en six temps : mettre l'équation sous forme standard, calculer le facteur intégrant, multiplier, reconnaître la dérivée d'un produit, intégrer, puis isoler l'inconnue. Deux gardes-fous : le coefficient de la dérivée doit valoir un avant tout calcul, et le facteur intégrant se calcule sans constante d'intégration.",
+   "ecran": "algorithme",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Six temps, deux gardes-fous : standardiser d'abord."
+  },
+  {
+   "dit": "Premier exemple, homogène à coefficients constants : la dérivée plus trois fois l'inconnue égale zéro. Le facteur intégrant est l'exponentielle de trois fois la variable. Le produit dérivé est constant, et la solution générale tombe : une constante fois l'exponentielle de moins trois fois la variable. Une décroissance exponentielle, signature des désintégrations et des refroidissements simples.",
+   "ecran": "ex_homogene",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "y = C·e^(−3x) : la décroissance exponentielle."
+  },
+  {
+   "dit": "Exemple complet avec condition initiale : la dérivée, plus deux fois la variable fois l'inconnue, égale la variable, et l'inconnue vaut un au départ. Le facteur intégrant est l'exponentielle du carré de la variable. L'intégration donne un demi d'exponentielle, plus une constante. La condition initiale fixe la constante à un demi : la solution glisse de un vers un demi en s'aplatissant.",
+   "ecran": "ex_nonhom",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "y = 1/2 + (1/2)e^(−x²) : de 1 vers 1/2."
+  },
+  {
+   "dit": "La solution générale d'une équation linéaire a une architecture remarquable : la solution générale de l'équation homogène associée, plus une solution particulière de l'équation complète. La partie homogène porte la constante et décrit le comportement propre du système ; la partie particulière est la réponse forcée par le second membre. C'est la superposition, la signature de toute la linéarité.",
+   "ecran": "structure",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "y = yh + yp : la superposition organise tout."
+  },
+  {
+   "dit": "Un second membre qui oscille : la dérivée plus l'inconnue égale le cosinus de la variable, avec l'inconnue égale à un au départ. Le facteur intégrant est l'exponentielle de la variable, et l'intégration par parties, menée deux fois, livre le produit. La solution mélange une oscillation entretenue par le cosinus et un terme exponentiel décroissant, souvenir de la condition initiale.",
+   "ecran": "ex_cos",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Oscillation plus exponentielle décroissante."
+  },
+  {
+   "dit": "Exercice de synthèse : la variable fois la dérivée, plus deux fois l'inconnue, égale quatre fois le carré de la variable, avec l'inconnue égale à deux au point un. Elle n'est ni séparable ni standard : on divise tout par la variable. Le facteur intégrant devient le carré de la variable, l'intégration est immédiate, et la condition initiale fixe la constante à un.",
+   "ecran": "ex_synthese",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Standardiser, μ = x², constante 1 : synthèse."
+  },
+  {
+   "dit": "Le problème de Cauchy assemble l'équation et sa condition initiale. La méthode : résoudre jusqu'à la solution générale, substituer le point imposé, résoudre pour la constante, puis réécrire la solution particulière. Le théorème de Picard et Lindelöf garantit alors, sous des conditions de continuité, qu'une seule courbe intégrale passe par le point choisi.",
+   "ecran": "cauchy",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Cauchy : une équation, un point, une seule courbe."
+  },
+  {
+   "dit": "Le café en chiffres : servi à quatre-vingt-quinze degrés dans une pièce à vingt-deux, il tombe à quatre-vingt-cinq degrés en deux minutes. La première condition donne la constante, soixante-treize. La mesure à deux minutes livre le coefficient de refroidissement, environ zéro virgule zéro sept trois sept par minute. Prédiction du modèle : après dix minutes, le café sera à environ cinquante-six virgule neuf degrés.",
+   "ecran": "cafe",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Café : k ≈ 0,0737, prédiction 56,9 °C à 10 min."
+  },
+  {
+   "dit": "La loi de refroidissement de Newton rassemble tout le chapitre : la vitesse de refroidissement est proportionnelle à l'écart avec la température ambiante. Sa solution est une exponentielle décroissante vers la température de la pièce. Pour la tarte sortie du four à cent quatre-vingts degrés, le modèle donne environ cent dix-huit degrés après cinq minutes, quatre-vingts après dix, et trente après trente : la chute ralentit à mesure que l'écart se referme.",
+   "ecran": "newton",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Newton : 180 → 118 → 80 → 30 degrés, la chute ralentit."
+  },
+  {
+   "dit": "La décroissance radioactive parle le même langage : la vitesse de désintégration est proportionnelle au nombre d'atomes présents. La solution est une exponentielle décroissante, et sa carte d'identité est la demi-vie, le temps au bout duquel la moitié des atomes a disparu : le logarithme de deux divisé par la constante de désintégration. Pour le carbone quatorze, environ cinq mille sept cent trente ans : de quoi dater les vestiges des archéologues.",
+   "ecran": "radio",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Demi-vie = ln 2 / λ : dater au carbone 14."
+  },
+  {
+   "dit": "Le circuit résistance condensateur est une équation linéaire déguisée en électricité. La tension aux bornes du condensateur grimpe vers la tension d'alimentation, avec une exponentielle en miroir. Sa constante de temps, le produit de la résistance par la capacité, donne le temps pour atteindre environ soixante-trois pour cent de la charge finale : les ingénieurs règlent temporisateurs et filtres avec elle.",
+   "ecran": "circuit",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "RC : τ = RC, 63 % de charge en une constante de temps."
+  },
+  {
+   "dit": "Dernier modèle, le réservoir de sel traversé par de l'eau pure : le sel ne sort qu'emporté par le mélange, à un taux proportionnel à la quantité présente. L'équation est homogène, et la solution, une exponentielle décroissante : deux kilogrammes de sel au départ, et une quantité qui fond avec une constante de temps de vingt minutes. Ni entrée de sel, ni surprise : juste la dilution qui travaille.",
+   "ecran": "melange",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Sel : S(t) = 2·e^(−t/20), la dilution exponentielle."
+  },
+  {
+   "dit": "Pour finir, une image qui résume tout : une équation différentielle dessine en chaque point du plan la pente que doit suivre sa solution. Résoudre, c'est tracer la courbe qui épouse ce champ de pentes en partant du point imposé par la condition initiale. C'est pour cela qu'une seule courbe passe par chaque point : la prédiction n'est pas un miracle, c'est une géométrie.",
+   "ecran": "pentes",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Le champ de pentes : la prédiction est une géométrie."
+  },
+  {
+   "dit": "Pour conclure : reconnaître la famille, séparer ou multiplier par le facteur intégrant, intégrer sans oublier la constante, puis fixer cette constante par la condition initiale. Quatre gestes, et les équations du premier ordre décrivent le refroidissement d'un café, la datation d'un vestige et la charge d'un condensateur.",
+   "ecran": "recap",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Quatre gestes : reconnaître, résoudre, fixer, interpréter."
+  }
+ ],
+ "titre": "Équations différentielles du premier ordre : résoudre et modéliser"
+}

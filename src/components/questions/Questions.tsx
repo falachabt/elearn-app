@@ -1,5 +1,5 @@
 import { router, useFocusEffect } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -38,7 +38,7 @@ export function Questions() {
   const { exiger, feuille } = useCompteRequis();
   const [niveau, setNiveau] = useState<string | null>(null);
   const [matiere, setMatiere] = useState<string | null>(null);
-  const [classe, setClasse] = useState<Classe>('maClasse');
+  const [classe, setClasse] = useState<Classe>('toutes');
   const [resolues, setResolues] = useState(false);
   const [photo, setPhoto] = useState<string | null>(null);
   const [essai, setEssai] = useState(0);
@@ -52,6 +52,18 @@ export function Questions() {
     useCallback(() => {
       if (pret) void marquerVues(getSupabase());
     }, [pret]),
+  );
+
+  // Retour sur l'écran (ex. après la suppression d'une question) : la liste est relue au serveur, pas reprise de la copie locale.
+  const premierAffichage = useRef(true);
+  useFocusEffect(
+    useCallback(() => {
+      if (premierAffichage.current) {
+        premierAffichage.current = false;
+        return;
+      }
+      setEssai((e) => e + 1);
+    }, []),
   );
 
   useEffect(() => {
@@ -101,8 +113,8 @@ export function Questions() {
           <View style={styles.flex}>
             <Onglets
               valeurs={[
-                { valeur: 'maClasse' as Classe, libelle: niveau ? t('questions.maClasse', { classe: niveau }) : t('questions.toutes') },
                 { valeur: 'toutes' as Classe, libelle: t('questions.toutesClasses') },
+                { valeur: 'maClasse' as Classe, libelle: niveau ? t('questions.maClasse', { classe: niveau }) : t('questions.toutes') },
               ]}
               valeur={classe}
               onChange={setClasse}

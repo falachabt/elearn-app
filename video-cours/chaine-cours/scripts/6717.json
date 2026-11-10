@@ -1,0 +1,448 @@
+{
+ "cours": 6717,
+ "titre": "Translations et repérage dans le plan",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Géométrie plane",
+   "titre": "Translations et repérage dans le plan",
+   "sous": "Glisser une figure sans la déformer, puis situer chaque point par deux nombres",
+   "anim": {
+    "nom": "translation_triangle_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Le fil du cours",
+   "texte": "Deux outils, un même plan : la translation déplace les figures, le repère situe les points."
+  },
+  "def_translation": {
+   "type": "phrase",
+   "kicker": "Définition · La translation",
+   "texte": "Une translation : même direction, même distance, même sens, pour tous les points.",
+   "anim": {
+    "nom": "translation_triangle_fig",
+    "hauteur": 180
+   }
+  },
+  "vecteur": {
+   "type": "formule",
+   "kicker": "Le vecteur de la translation",
+   "tex": "t_{\\vec{AB}} : A \\longmapsto B",
+   "note": "La translation qui envoie A sur B : son vecteur est le vecteur AB.",
+   "anim": {
+    "nom": "somme_vecteurs_fig",
+    "hauteur": 180
+   }
+  },
+  "vecteur_traits": {
+   "type": "etape",
+   "kicker": "Anatomie d'un vecteur",
+   "titre": "Trois informations dans un vecteur",
+   "tex": [
+    "\\text{direction : celle de la droite } (AB)",
+    "\\text{sens : de } A \\text{ vers } B",
+    "\\text{longueur : la distance } AB"
+   ]
+  },
+  "construction": {
+   "type": "etape",
+   "kicker": "Construire l'image d'un point",
+   "titre": "Le parallélogramme caché",
+   "tex": [
+    "\\vec{AA'} = \\vec{BC}",
+    "(AA') \\parallel (BC) \\text{ et } AA' = BC",
+    "BCA'A \\text{ est un parallélogramme}"
+   ],
+   "anim": {
+    "nom": "translation_triangle_fig",
+    "hauteur": 130
+   }
+  },
+  "image_figure": {
+   "type": "phrase",
+   "kicker": "Image d'une figure entière",
+   "texte": "On translate les points caractéristiques, puis on relie leurs images.",
+   "anim": {
+    "nom": "translation_triangle_fig",
+    "hauteur": 170
+   }
+  },
+  "images": {
+   "type": "etape",
+   "kicker": "Les images à connaître",
+   "titre": "Chaque figure a son image",
+   "tex": [
+    "A \\mapsto A',\\quad \\vec{AA'} = \\vec{u}",
+    "(d) \\mapsto (d'),\\quad (d') \\parallel (d)",
+    "[AB] \\mapsto [A'B'],\\quad A'B' = AB",
+    "\\text{cercle} \\mapsto \\text{cercle de même rayon}"
+   ]
+  },
+  "cercle": {
+   "type": "etape",
+   "kicker": "Exemple résolu · Le cercle",
+   "titre": "Translater un cercle par son centre",
+   "tex": [
+    "\\vec{OO'} = \\vec{u}",
+    "\\text{cercle image : centre } O', \\text{ rayon } r"
+   ],
+   "anim": {
+    "nom": "cercle_rayon_fig",
+    "hauteur": 150
+   }
+  },
+  "conservations": {
+   "type": "etape",
+   "kicker": "Propriétés de conservation",
+   "titre": "Ce que la translation conserve",
+   "tex": [
+    "\\text{alignement conservé}",
+    "A'B' = AB \\quad \\text{(distances)}",
+    "\\widehat{A'B'C'} = \\widehat{ABC} \\quad \\text{(angles)}",
+    "\\text{parallélisme et cercles conservés}"
+   ]
+  },
+  "droite_par": {
+   "type": "formule",
+   "kicker": "Propriété clé · Les droites",
+   "tex": "(d) \\mapsto (d') \\quad \\text{avec} \\quad (d') \\parallel (d)",
+   "note": "Une droite et son image par une translation sont toujours parallèles."
+  },
+  "justifier": {
+   "type": "phrase",
+   "kicker": "Démontrer avec une translation",
+   "texte": "Prouver une égalité, un alignement, un parallélisme : montrer une image."
+  },
+  "parallelogramme": {
+   "type": "etape",
+   "kicker": "Exemple résolu · Le parallélogramme",
+   "titre": "Démontrer : AB égale CD",
+   "tex": [
+    "t_{\\vec{AD}} : A \\mapsto D,\\quad B \\mapsto C",
+    "[AB] \\mapsto [DC]",
+    "AB = DC = CD"
+   ],
+   "anim": {
+    "nom": "somme_vecteurs_fig",
+    "hauteur": 130
+   }
+  },
+  "reconnaitre": {
+   "type": "phrase",
+   "kicker": "Reconnaître une translation",
+   "texte": "Une frise qui se répète à pas régulier : une translation, de vecteur AA′.",
+   "anim": {
+    "nom": "translation_triangle_fig",
+    "hauteur": 170
+   }
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "Méthode pratique",
+   "titre": "La méthode de construction",
+   "tex": [
+    "\\text{1. repérer les points clés}",
+    "\\text{2. translater chaque point}",
+    "\\text{3. relier les images}"
+   ],
+   "anim": {
+    "nom": "translation_triangle_fig",
+    "hauteur": 120
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Récapitulatif · Les translations",
+   "etapes": [
+    "Translation : même direction, même sens",
+    "Image d'un point : un parallélogramme",
+    "Distances, angles et parallélisme gardés",
+    "Construire point par point, puis relier"
+   ]
+  },
+  "repere": {
+   "type": "phrase",
+   "kicker": "Le repère du plan",
+   "texte": "Deux axes perpendiculaires gradués, une origine O : le repère orthogonal.",
+   "anim": {
+    "nom": "cercle_rayon_fig",
+    "hauteur": 200
+   }
+  },
+  "orthonorme": {
+   "type": "formule",
+   "kicker": "Repère orthonormé",
+   "tex": "(O, I, J) \\quad \\text{avec} \\quad OI = OJ",
+   "note": "Orthonormé : axes perpendiculaires et même unité sur les deux axes."
+  },
+  "coordonnees": {
+   "type": "formule",
+   "kicker": "Coordonnées d'un point",
+   "tex": "M(x\\,;\\,y)",
+   "note": "x : abscisse, toujours en premier · y : ordonnée, en second."
+  },
+  "ordre": {
+   "type": "phrase",
+   "kicker": "Un couple ordonné",
+   "texte": "(2 ; 3) ≠ (3 ; 2) : l'ordre des coordonnées compte.",
+   "anim": {
+    "nom": "cercle_rayon_fig",
+    "hauteur": 170
+   }
+  },
+  "placer": {
+   "type": "etape",
+   "kicker": "Exemple résolu · Placer un point",
+   "titre": "Placer le point A",
+   "tex": [
+    "x = 3 \\text{ sur l'axe des abscisses}",
+    "y = 2 \\text{ sur l'axe des ordonnées}",
+    "A(3\\,;\\,2) \\text{ à l'intersection}"
+   ]
+  },
+  "lire_methode": {
+   "type": "phrase",
+   "kicker": "Lire des coordonnées",
+   "texte": "Projeter le point sur chaque axe : on lit l'abscisse, puis l'ordonnée.",
+   "anim": {
+    "nom": "cercle_rayon_fig",
+    "hauteur": 160
+   }
+  },
+  "lire": {
+   "type": "etape",
+   "kicker": "Exemple résolu · Lire un point",
+   "titre": "Lire les coordonnées de B",
+   "tex": [
+    "\\text{projection sur les abscisses : } -2",
+    "\\text{projection sur les ordonnées : } 4",
+    "B(-2\\,;\\,4)"
+   ]
+  },
+  "axes": {
+   "type": "etape",
+   "kicker": "Cas particuliers · Sur les axes",
+   "titre": "Une coordonnée nulle",
+   "tex": [
+    "M \\text{ sur les abscisses : } M(x\\,;\\,0)",
+    "M \\text{ sur les ordonnées : } M(0\\,;\\,y)",
+    "O(0\\,;\\,0) \\text{ : l'origine}"
+   ]
+  },
+  "comparer": {
+   "type": "phrase",
+   "kicker": "Orthogonal ou orthonormé",
+   "texte": "Orthogonal : axes perpendiculaires. Orthonormé : en plus, la même unité."
+  },
+  "exercice": {
+   "type": "etape",
+   "kicker": "Exercice type",
+   "titre": "Placer trois points, trouver D",
+   "tex": [
+    "A(2\\,;\\,-1), \\quad B(-3\\,;\\,4)",
+    "C(0\\,;\\,2) \\text{ sur l'axe des ordonnées}",
+    "D : \\text{ abscisse de } A, \\text{ ordonnée nulle}",
+    "D(2\\,;\\,0)"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Récapitulatif · Le repérage",
+   "etapes": [
+    "Repère orthonormé : même unité partout",
+    "Coordonnées : abscisse, puis ordonnée",
+    "Placer : deux perpendiculaires",
+    "Lire : projeter sur chaque axe"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de géométrie plane, en deux temps. D'abord la translation : un glissement qui déplace une figure entière sans la tourner, sans la déformer, et qui se décrit par un seul vecteur. Ensuite le repérage : deux axes gradués qui permettent de situer chaque point du plan par deux nombres, son abscisse et son ordonnée. Deux outils simples, mais ils servent partout, pour construire, pour démontrer et pour calculer.",
+   "texte": "Translations et repérage : déplacer, puis situer.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Retenez l'idée directrice : une translation ne change ni les longueurs, ni les angles, ni les directions. Elle déplace tout, de la même façon. C'est ce qui la rend si utile pour démontrer : ce qui est vrai avant le glissement reste vrai après, simplement ailleurs dans le plan.",
+   "texte": "La translation déplace tout, sans rien déformer.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Définissons la translation. C'est un déplacement glissant d'une figure : tous ses points se déplacent dans la même direction, sur la même distance, et dans le même sens. Imaginez une figure qui glisse sur la table sans jamais pivoter : chaque point parcourt exactement le même trajet que les autres, comme les passagers d'un même train.",
+   "texte": "Un glissement : direction, distance et sens identiques.",
+   "ecran": "def_translation"
+  },
+  {
+   "id": "p04",
+   "dit": "La translation qui transforme le point A en le point B s'appelle la translation de vecteur A B. On la note souvent t, avec le vecteur A B en indice. Le vecteur porte les trois informations du glissement : sa direction, son sens, et sa longueur, qui est exactement la distance parcourue par chaque point de la figure.",
+   "texte": "Translation de vecteur AB, notée t avec AB en indice.",
+   "ecran": "vecteur"
+  },
+  {
+   "id": "p05",
+   "dit": "Un vecteur n'est pas seulement une flèche dessinée au hasard. Sa direction est celle de la droite qui le porte, son sens va du point de départ vers le point d'arrivée, et sa longueur est la distance entre ces deux points. Deux vecteurs égaux ont ces trois traits en commun : c'est pour cela qu'un même vecteur peut se dessiner en plusieurs endroits du plan.",
+   "texte": "Direction, sens, longueur : le portrait d'un vecteur.",
+   "ecran": "vecteur_traits"
+  },
+  {
+   "id": "p06",
+   "dit": "Premier geste pratique : construire l'image d'un point A par la translation de vecteur B C. On trace la parallèle à la droite B C passant par A, puis on reporte sur cette droite la longueur B C, du même côté que le point C. Le point obtenu est A prime, et le quadrilatère B C A prime A est un parallélogramme : voilà le critère qui permet de vérifier sa construction.",
+   "texte": "Image de A : un parallélogramme BCA′A.",
+   "ecran": "construction"
+  },
+  {
+   "id": "p07",
+   "dit": "Pour translater une figure entière, inutile de déplacer ses points un à un à l'infini. On construit l'image de chacun de ses points caractéristiques : les sommets pour un polygone, le centre pour un cercle, les extrémités pour un segment. Puis on relie ces images dans le même ordre, et la figure image apparaît, identique à l'originale, simplement déplacée.",
+   "texte": "Points clés translatés, puis reliés : la figure suit.",
+   "ecran": "image_figure"
+  },
+  {
+   "id": "p08",
+   "dit": "Résumons les images essentielles. Un point A devient le point A prime, avec le vecteur A A prime égal au vecteur de la translation. Une droite devient une droite parallèle. Un segment devient un segment de même longueur. Et un cercle devient un cercle de même rayon : seule sa position change, jamais sa taille ni sa forme.",
+   "texte": "Point, droite, segment, cercle : mêmes mesures.",
+   "ecran": "images"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple résolu : construire l'image d'un cercle de centre O par la translation de vecteur u. Un seul point suffit : on construit O prime, l'image du centre, tel que le vecteur O O prime égale le vecteur u. Puis on trace le cercle de centre O prime, avec exactement le même rayon que le cercle initial. Le tour est joué, sans mesurer aucun autre point.",
+   "texte": "Un cercle se translate par son centre, rayon inchangé.",
+   "ecran": "cercle"
+  },
+  {
+   "id": "p10",
+   "dit": "Voici le théorème central du chapitre : une translation conserve tout ce qui compte. L'alignement d'abord : trois points alignés ont des images alignées. Les distances ensuite : l'image d'un segment a la même longueur. Les mesures d'angles aussi, et donc les angles droits. Le parallélisme enfin, et les cercles, qui restent des cercles de même rayon. Rien ne se perd dans le glissement.",
+   "texte": "Alignement, distances, angles, parallélisme : tout est conservé.",
+   "ecran": "conservations"
+  },
+  {
+   "id": "p11",
+   "dit": "Parmi ces conservations, une mérite d'être isolée, tant elle sert dans les démonstrations : une droite et son image par une translation sont parallèles. Si la droite d devient la droite d prime, alors d et d prime sont parallèles. Autrement dit, translater une droite, c'est la faire glisser le long d'elle-même, sans jamais changer sa direction.",
+   "texte": "Une droite translatée reste parallèle à l'originale.",
+   "ecran": "droite_par"
+  },
+  {
+   "id": "p12",
+   "dit": "La translation est aussi un outil de démonstration, et la leçon donne la recette pour chaque type de conclusion. Pour montrer que deux longueurs sont égales, montrez que l'une est l'image de l'autre. Même idée pour deux angles égaux, pour un alignement de trois points, ou pour deux droites parallèles. Et pour la perpendicularité, on translate une droite déjà perpendiculaire : les angles droits étant conservés, l'image reste perpendiculaire.",
+   "texte": "Une propriété à prouver ? Cherchez la translation.",
+   "ecran": "justifier"
+  },
+  {
+   "id": "p13",
+   "dit": "Exemple résolu : dans un parallélogramme A B C D, montrons que A B égale C D. La translation de vecteur A D envoie A sur D, et B sur C, car dans un parallélogramme les vecteurs A B et D C sont égaux. L'image du segment A B est donc le segment D C. Or une translation conserve les distances : A B égale D C, c'est-à-dire C D. La démonstration tient en trois lignes.",
+   "texte": "Dans un parallélogramme, AB = CD par translation.",
+   "ecran": "parallelogramme"
+  },
+  {
+   "id": "p14",
+   "dit": "Comment reconnaître une translation dans une configuration ? Le critère est simple : tous les points se déplacent dans la même direction, sur la même distance, et dans le même sens. Pensez à une frise décorative : chaque motif se répète identiquement, décalé de la même distance vers la droite. La transformation qui envoie un motif sur le suivant est une translation, et son vecteur relie deux points correspondants de deux motifs voisins.",
+   "texte": "Motifs répétés à pas constant : c'est une translation.",
+   "ecran": "reconnaitre"
+  },
+  {
+   "id": "p15",
+   "dit": "Gardons la méthode complète de construction, en trois temps. Un : identifier les points clés de la figure, sommets, centre ou extrémités. Deux : pour chaque point clé, construire son image en traçant la parallèle à la direction du vecteur, puis en reportant la longueur du vecteur dans le bon sens. Trois : relier les images obtenues, et la figure image est construite. Cette méthode marche pour toutes les figures du cours.",
+   "texte": "Méthode : points clés, images, puis on relie.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p16",
+   "dit": "Récapitulons cette première partie. La translation est un glissement décrit par un vecteur, l'image d'un point se construit grâce à un parallélogramme, toutes les mesures sont conservées, et une figure se translate point clé par point clé. Place maintenant au repérage du plan.",
+   "texte": "La translation en quatre idées.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p17",
+   "dit": "Changeons d'outil : pour situer précisément un point, il faut un repère. Un repère orthogonal est formé de deux droites graduées perpendiculaires, qui se coupent en un point appelé l'origine, noté en général O. L'axe horizontal est l'axe des abscisses, l'axe vertical est l'axe des ordonnées.",
+   "texte": "Repère orthogonal : deux axes perpendiculaires en O.",
+   "ecran": "repere"
+  },
+  {
+   "id": "p18",
+   "dit": "Un repère devient orthonormé lorsque, en plus d'avoir des axes perpendiculaires, il utilise la même unité de longueur sur les deux axes. On le note O, I, J, et l'on a alors O I égale O J. Dans un repère seulement orthogonal, les unités peuvent différer d'un axe à l'autre : piège classique des lectures graphiques.",
+   "texte": "Orthonormé : perpendiculaire et même unité, OI = OJ.",
+   "ecran": "orthonorme"
+  },
+  {
+   "id": "p19",
+   "dit": "Dans un repère, tout point M est repéré par un couple de nombres : son abscisse, notée x, et son ordonnée, notée y. On écrit M, avec x et y entre parenthèses, séparés par un point-virgule. L'abscisse se lit sur l'axe horizontal, l'ordonnée sur l'axe vertical : deux nombres donnent l'adresse exacte du point.",
+   "texte": "M(x ; y) : abscisse d'abord, ordonnée ensuite.",
+   "ecran": "coordonnees"
+  },
+  {
+   "id": "p20",
+   "dit": "Attention, ce couple est ordonné : l'abscisse vient toujours en premier, l'ordonnée en second. Le point de coordonnées deux, trois n'est pas le point de coordonnées trois, deux : l'un est plus à droite et moins haut, l'autre plus haut et moins à droite. Inverser les nombres, c'est changer de point.",
+   "texte": "L'ordre compte : abscisse en premier, toujours.",
+   "ecran": "ordre"
+  },
+  {
+   "id": "p21",
+   "dit": "Exemple résolu : plaçons le point A de coordonnées trois, deux. On repère le trois sur l'axe des abscisses, et le deux sur l'axe des ordonnées. On trace les deux perpendiculaires à partir de ces points : leur intersection est le point A, là où la verticale de l'abscisse rencontre l'horizontale de l'ordonnée.",
+   "texte": "Placer A(3 ; 2) : deux perpendiculaires se croisent.",
+   "ecran": "placer"
+  },
+  {
+   "id": "p22",
+   "dit": "Opération inverse : lire les coordonnées d'un point déjà placé. On projette le point sur l'axe des abscisses par une perpendiculaire : le nombre lu est son abscisse. Même geste vers l'axe des ordonnées pour obtenir l'ordonnée. Placer et lire sont les deux faces d'un même geste, avec les mêmes perpendiculaires.",
+   "texte": "Lire : projeter sur les axes, dans l'ordre.",
+   "ecran": "lire_methode"
+  },
+  {
+   "id": "p23",
+   "dit": "Exemple résolu : les coordonnées du point B. Sa perpendiculaire à l'axe des abscisses coupe cet axe au point d'abscisse moins deux : l'abscisse de B est donc moins deux. Sa perpendiculaire à l'axe des ordonnées la coupe au point d'ordonnée quatre. B a pour coordonnées moins deux, quatre : il est à gauche de l'origine.",
+   "texte": "B(−2 ; 4) : à gauche de l'origine, en hauteur quatre.",
+   "ecran": "lire"
+  },
+  {
+   "id": "p24",
+   "dit": "Trois cas particuliers à connaître par cœur. Un point sur l'axe des abscisses a une ordonnée nulle. Un point sur l'axe des ordonnées a une abscisse nulle. Et l'origine cumule les deux : ses coordonnées sont zéro, zéro. Ces cas reviennent dès qu'un point cherché se trouve à l'intersection d'une droite avec un axe.",
+   "texte": "Sur un axe, l'autre coordonnée vaut zéro.",
+   "ecran": "axes"
+  },
+  {
+   "id": "p25",
+   "dit": "Récapitulons la différence entre les deux repères. Orthogonal : les axes sont perpendiculaires, mais les unités peuvent différer. Orthonormé : les axes sont perpendiculaires, et la même unité sert sur les deux axes. Tout repère orthonormé est donc orthogonal, mais l'inverse est faux. Pour calculer des distances, c'est le repère orthonormé qu'il faut.",
+   "texte": "Orthonormé = orthogonal + même unité partout.",
+   "ecran": "comparer"
+  },
+  {
+   "id": "p26",
+   "dit": "Exercice type pour finir : placez les points A de coordonnées deux, moins un, B de coordonnées moins trois, quatre, et C de coordonnées zéro, deux, sur l'axe des ordonnées. Le point D est l'intersection de l'axe des abscisses et de la verticale passant par A : il garde l'abscisse de A, soit deux, avec une ordonnée nulle. D a pour coordonnées deux, zéro.",
+   "texte": "Exercice type : D(2 ; 0), lu par les deux conditions.",
+   "ecran": "exercice"
+  },
+  {
+   "id": "p27",
+   "dit": "Récapitulons le repérage. Un repère orthonormé a des axes perpendiculaires et une unité commune, chaque point reçoit un couple ordonné, abscisse puis ordonnée, on place avec deux perpendiculaires et on lit par projections. Avec la translation, vous tenez les deux gestes de base de la géométrie plane.",
+   "texte": "Le repérage en quatre idées.",
+   "ecran": "recap2"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La translation : glisser et construire"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Conserver et démontrer avec la translation",
+   "pont": {
+    "dit": "Partie deux : conserver et démontrer. Une translation conserve les distances, les angles et le parallélisme, et ces conservations deviennent un outil de démonstration : égalités de longueurs, alignements et droites parallèles se prouvent en exhibant la bonne translation.",
+    "texte": "Partie 2 : conservations et démonstrations."
+   }
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Repérage dans le plan : abscisse et ordonnée",
+   "pont": {
+    "dit": "Partie trois : le repérage dans le plan. Après avoir déplacé les figures, apprenons à situer les points : un repère, deux axes, et chaque point reçoit une adresse exacte faite de deux nombres, son abscisse et son ordonnée.",
+    "texte": "Partie 3 : repère, coordonnées, placer et lire un point."
+   }
+  }
+ ]
+}

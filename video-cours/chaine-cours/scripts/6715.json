@@ -1,0 +1,551 @@
+{
+ "cours": 6715,
+ "ecrans": {
+  "activite": {
+   "kicker": "L'activité",
+   "note": "1 Bq = 1 désintégration par seconde",
+   "tex": "A(t) = \\lambda \\, N(t)",
+   "type": "formule"
+  },
+  "applications": {
+   "etapes": [
+    "Datation : carbone quatorze, potassium-argon",
+    "Médecine : scintigraphie, radiothérapie",
+    "Industrie : gammagraphie, mesures d'épaisseur",
+    "Énergie : la fission dans les centrales"
+   ],
+   "kicker": "Les applications",
+   "type": "recap"
+  },
+  "attenuation": {
+   "kicker": "L'atténuation d'un faisceau",
+   "note": "μ : coefficient d'atténuation linéique du matériau",
+   "tex": "N(x) = N_0 \\, e^{-\\mu x}",
+   "type": "formule"
+  },
+  "bilan": {
+   "kicker": "Le bilan d'énergie",
+   "note": "Δm = m(parent) − m(enfant) − m(particule)",
+   "tex": "Q = \\Delta m \\cdot c^2",
+   "type": "formule"
+  },
+  "cda": {
+   "kicker": "La couche de demi-atténuation",
+   "note": "l'analogue, pour les épaisseurs, de la demi-vie pour les durées",
+   "tex": "\\mathrm{CDA} = \\frac{\\ln 2}{\\mu}",
+   "type": "formule"
+  },
+  "comparaison": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "fission"
+   },
+   "etapes": [
+    "Fission : noyaux lourds, scindés par un neutron lent",
+    "Fusion : noyaux légers, unis à très haute température",
+    "Par nucléon : 3,5 MeV en fusion, 0,85 en fission",
+    "Déchets : importants en fission, faibles en fusion"
+   ],
+   "kicker": "Fission contre fusion",
+   "type": "recap"
+  },
+  "conservations": {
+   "kicker": "Les lois de conservation",
+   "tex": [
+    "A_{parent} = A_{enfant} + A_{particule}",
+    "Z_{parent} = Z_{enfant} + Z_{particule}"
+   ],
+   "titre": "Les deux conservations",
+   "type": "etape"
+  },
+  "decroissance_loi": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "decroissance"
+   },
+   "kicker": "La loi de décroissance",
+   "note": "l'activité A(t) suit la même loi exponentielle",
+   "tex": "N(t) = N_0 \\, e^{-\\lambda t}",
+   "type": "formule"
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "noyau"
+   },
+   "kicker": "La radioactivité",
+   "texte": "Un noyau instable se transforme spontanément en un noyau plus stable.",
+   "type": "phrase"
+  },
+  "effets": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "rayonnement"
+   },
+   "kicker": "Les effets biologiques",
+   "texte": "Ionisants, les rayonnements altèrent les cellules des tissus biologiques.",
+   "type": "phrase"
+  },
+  "effets_deux": {
+   "etapes": [
+    "Déterministes : au-delà d'un seuil, gravité croissante",
+    "Stochastiques : sans seuil, probabilité croissante"
+   ],
+   "kicker": "Deux familles d'effets",
+   "type": "recap"
+  },
+  "energie_liberee": {
+   "kicker": "L'énergie libérée",
+   "note": "Δm = m(réactifs) − m(produits) · 1 MeV = 1,60 × 10⁻¹³ J",
+   "tex": "E = \\Delta m \\times c^2",
+   "type": "formule"
+  },
+  "equation_generale": {
+   "kicker": "L'équation bilan",
+   "tex": [
+    "{}^{A_1}_{Z_1}\\mathrm{X} + {}^{A_2}_{Z_2}\\mathrm{Y} \\to {}^{A_3}_{Z_3}\\mathrm{U} + {}^{A_4}_{Z_4}\\mathrm{V}",
+    "A_1 + A_2 = A_3 + A_4 \\qquad Z_1 + Z_2 = Z_3 + Z_4"
+   ],
+   "titre": "La forme générale d'une réaction provoquée",
+   "type": "etape"
+  },
+  "exemple_cesium": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "N(90 \\ \\text{ans}) = 1{,}6 \\times 10^{12} \\times \\left(\\frac{1}{2}\\right)^{90/30}",
+    "N(90 \\ \\text{ans}) = 2{,}0 \\times 10^{11} \\ \\text{noyaux}"
+   ],
+   "titre": "Le césium cent trente-sept après quatre-vingt-dix ans",
+   "type": "etape"
+  },
+  "exemple_energie": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\Delta m = 209{,}98285 - (205{,}97446 + 4{,}00260)",
+    "\\Delta m = 0{,}00579 \\ \\text{u}",
+    "Q = 0{,}00579 \\times 931{,}5 = 5{,}39 \\ \\text{MeV}"
+   ],
+   "titre": "L'énergie de la désintégration du polonium",
+   "type": "etape"
+  },
+  "exemple_fusion": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\Delta m = (2{,}01355 + 3{,}01550) - (4{,}00150 + 1{,}00866)",
+    "\\Delta m = 0{,}01889 \\ \\text{u}",
+    "E = 2{,}82 \\times 10^{-12} \\ \\text{J} \\approx 17{,}6 \\ \\text{MeV}"
+   ],
+   "titre": "L'énergie de la fusion deutérium-tritium",
+   "type": "etape"
+  },
+  "exemple_iode": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "N(24 \\ \\text{j}) = 10^{12} \\times \\left(\\frac{1}{2}\\right)^{24/8}",
+    "N(24 \\ \\text{j}) = 1{,}25 \\times 10^{11} \\ \\text{noyaux}"
+   ],
+   "titre": "L'iode cent trente et un, traceur médical",
+   "type": "etape"
+  },
+  "exemple_lithium": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\Delta m = (7{,}01600 + 1{,}00728) - 2 \\times 4{,}00260",
+    "\\Delta m = 0{,}01808 \\ \\text{u}",
+    "E = \\Delta m \\, c^2 = 2{,}70 \\times 10^{-12} \\ \\text{J}"
+   ],
+   "titre": "Le lithium sept frappé par un proton",
+   "type": "etape"
+  },
+  "exemple_plomb": {
+   "kicker": "Exemple résolu",
+   "note": "environ 4,6 cm de plomb pour passer à dix pour cent",
+   "tex": [
+    "0{,}1 = e^{-0{,}5 x} \\ \\Rightarrow \\ x = \\frac{\\ln 10}{0{,}5}",
+    "x = \\frac{2{,}303}{0{,}5} = 4{,}6 \\ \\text{cm}"
+   ],
+   "titre": "Réduire un faisceau gamma à un dixième",
+   "type": "etape"
+  },
+  "exemple_polonium": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "{}^{210}_{84}\\mathrm{Po} \\to {}^{A}_{Z}\\mathrm{X} + {}^{4}_{2}\\mathrm{He}",
+    "A = 210 - 4 = 206 \\qquad Z = 84 - 2 = 82",
+    "{}^{210}_{84}\\mathrm{Po} \\to {}^{206}_{82}\\mathrm{Pb} + {}^{4}_{2}\\mathrm{He}"
+   ],
+   "titre": "La désintégration alpha du polonium",
+   "type": "etape"
+  },
+  "fission": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "fission"
+   },
+   "kicker": "La fission nucléaire",
+   "texte": "Un noyau lourd se scinde en deux noyaux plus légers : la réaction en chaîne démarre.",
+   "type": "phrase"
+  },
+  "fission_equation": {
+   "kicker": "Une fission de l'uranium",
+   "note": "les neutrons produits entretiennent la réaction en chaîne",
+   "tex": "{}^{235}_{92}\\mathrm{U} + {}^{1}_{0}\\mathrm{n} \\to {}^{94}_{38}\\mathrm{Sr} + {}^{140}_{54}\\mathrm{Xe} + 2\\,{}^{1}_{0}\\mathrm{n}",
+   "type": "formule"
+  },
+  "forme_puissance": {
+   "kicker": "Compter les périodes",
+   "note": "t/T : le nombre de périodes écoulées",
+   "tex": "N(t) = N_0 \\left(\\frac{1}{2}\\right)^{t/T}",
+   "type": "formule"
+  },
+  "fusion": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "fusion_fig"
+   },
+   "kicker": "La fusion nucléaire",
+   "texte": "Deux noyaux légers s'unissent en un noyau plus lourd, comme dans le Soleil.",
+   "type": "phrase"
+  },
+  "fusion_equation": {
+   "kicker": "Deutérium et tritium",
+   "note": "17,6 MeV libérés par réaction",
+   "tex": "{}^{2}_{1}\\mathrm{H} + {}^{3}_{1}\\mathrm{H} \\to {}^{4}_{2}\\mathrm{He} + {}^{1}_{0}\\mathrm{n}",
+   "type": "formule"
+  },
+  "irradiation_contamination": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "penetration"
+   },
+   "etapes": [
+    "Irradiation : exposition externe, cesse en s'éloignant",
+    "Contamination : inhalation, ingestion ou plaie",
+    "Le risque dure tant que la substance est présente",
+    "Remède : décontaminer, évacuer les substances"
+   ],
+   "kicker": "Irradiation ou contamination",
+   "type": "recap"
+  },
+  "periode": {
+   "kicker": "La période radioactive",
+   "note": "λ : la constante radioactive du noyau",
+   "tex": "T = \\frac{\\ln 2}{\\lambda}",
+   "type": "formule"
+  },
+  "protection": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "penetration"
+   },
+   "etapes": [
+    "Le temps : raccourcir l'exposition",
+    "La distance : l'intensité chute en carré",
+    "Les écrans : interposer un matériau absorbant"
+   ],
+   "kicker": "La radioprotection",
+   "type": "recap"
+  },
+  "provoquees": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "choc"
+   },
+   "kicker": "Les réactions provoquées",
+   "texte": "Une collision entre un noyau cible et un projectile déclenche la transformation.",
+   "type": "phrase"
+  },
+  "recap": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "penetration"
+   },
+   "etapes": [
+    "Alpha : arrêté par une feuille de papier",
+    "Bêta : quelques millimètres d'aluminium",
+    "Gamma : plomb ou béton épais",
+    "Toujours : temps court, distance, écrans"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "decroissance"
+   },
+   "kicker": "Physique",
+   "sous": "Désintégrations, décroissance, fission, fusion et radioprotection",
+   "titre": "Radioactivité et énergie nucléaire",
+   "type": "titre"
+  },
+  "types": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "emissions"
+   },
+   "etapes": [
+    "α : un noyau d'hélium est émis",
+    "β− : un électron est émis, Z augmente",
+    "β+ : un positon est émis, Z diminue"
+   ],
+   "kicker": "Les trois types de radioactivité",
+   "type": "recap"
+  }
+ },
+ "lecons": [
+  9510,
+  9511,
+  9512
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Radioactivité et décroissance"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : les réactions nucléaires provoquées. Après les désintégrations spontanées, voici celles que l'on déclenche par une collision : la fission et la fusion.",
+    "texte": "Partie 2 : les réactions provoquées, fission et fusion."
+   },
+   "sous_titre": "Réactions provoquées : fission et fusion"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : effets des rayonnements et radioprotection. Après la production d'énergie, voici l'autre visage du nucléaire : ce que les rayonnements font aux tissus, et comment s'en protéger.",
+    "texte": "Partie 3 : effets des rayonnements et radioprotection."
+   },
+   "sous_titre": "Effets des rayonnements et radioprotection"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de radioactivité et d'énergie nucléaire. Nous verrons comment un noyau instable se désintègre, la loi de décroissance et l'activité, puis les réactions provoquées, fission et fusion, et nous finirons par les effets des rayonnements et la radioprotection.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Radioactivité et énergie nucléaire : désintégrer, fissionner, se protéger."
+  },
+  {
+   "dit": "La radioactivité est la transformation spontanée d'un noyau instable, un radionucléide, en un noyau plus stable : il émet des particules, et souvent un rayonnement électromagnétique. Un noyau est instable quand ses nombres de protons et de neutrons le placent en dehors de la vallée de stabilité du diagramme N, Z.",
+   "ecran": "definition",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Un noyau instable se transforme spontanément en noyau plus stable."
+  },
+  {
+   "dit": "Il existe trois types de radioactivité. La radioactivité alpha émet un noyau d'hélium : ainsi, l'uranium deux cent trente-huit devient du thorium deux cent trente-quatre. La bêta moins émet un électron : le cobalt soixante devient du nickel soixante, et le numéro atomique augmente d'une unité. La bêta plus émet un positon : le sodium vingt-deux devient du néon vingt-deux, et le numéro atomique diminue d'une unité.",
+   "ecran": "types",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Trois radioactivités : alpha, bêta moins, bêta plus."
+  },
+  {
+   "dit": "Deux grandeurs se conservent dans toute désintégration : le nombre de nucléons A, et le nombre de charge Z. Le A du noyau parent égale la somme des A de l'enfant et de la particule ; de même pour Z. Ce sont ces deux conservations qui permettent d'écrire les équations de désintégration.",
+   "ecran": "conservations",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "A et Z se conservent : la clé des équations."
+  },
+  {
+   "dit": "Exemple : le polonium deux cent dix se désintègre en émettant une particule alpha. Conservation de A : deux cent dix égale A plus quatre, donc A vaut deux cent six. Conservation de Z : quatre-vingt-quatre égale Z plus deux, donc Z vaut quatre-vingt-deux. Le noyau enfant est donc le plomb deux cent six.",
+   "ecran": "exemple_polonium",
+   "id": "p05",
+   "pause_apres": 0.9,
+   "texte": "Exemple : le polonium deux cent dix donne du plomb deux cent six."
+  },
+  {
+   "dit": "La période radioactive, ou demi-vie, est la durée au bout de laquelle la moitié des noyaux présents se sont désintégrés. Elle est reliée à la constante radioactive lambda par T égale ln de deux divisé par lambda. Chaque radionucléide a sa période propre : c'est son horloge interne.",
+   "ecran": "periode",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "La demi-vie : la moitié des noyaux disparaît à chaque période."
+  },
+  {
+   "dit": "L'activité d'une source compte le nombre de désintégrations par seconde : elle vaut lambda fois N de t, le nombre de noyaux restants. Elle se mesure en becquerels : un becquerel, c'est une désintégration par seconde.",
+   "ecran": "activite",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "L'activité : des désintégrations par seconde, en becquerels."
+  },
+  {
+   "dit": "Le nombre de noyaux restants décroît de façon exponentielle : N de t égale N zéro fois l'exponentielle de moins lambda t. L'activité suit exactement la même loi. Sur la courbe, au bout d'une demi-vie, il reste la moitié des noyaux ; au bout de deux demi-vies, le quart.",
+   "ecran": "decroissance_loi",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "La loi de décroissance : une exponentielle qui s'éteint."
+  },
+  {
+   "dit": "On peut aussi écrire la loi en comptant les périodes : N de t égale N zéro fois un demi, élevé à la puissance t sur T. À chaque période écoulée, on divise par deux : c'est la forme la plus pratique pour les calculs rapides.",
+   "ecran": "forme_puissance",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Compter les périodes : on divise par deux à chacune."
+  },
+  {
+   "dit": "Exemple : un échantillon de césium cent trente-sept, de période trente ans, contient au départ un virgule six fois dix puissance douze noyaux. Après quatre-vingt-dix ans, trois périodes se sont écoulées : on divise par deux, trois fois, donc par huit. Il reste deux fois dix puissance onze noyaux.",
+   "ecran": "exemple_cesium",
+   "id": "p10",
+   "pause_apres": 0.9,
+   "texte": "Exemple : le césium cent trente-sept après trois périodes."
+  },
+  {
+   "dit": "Une désintégration libère de l'énergie, donnée par la relation d'Einstein : Q égale delta m fois c au carré. Delta m est la masse perdue : la masse du parent moins celles de l'enfant et de la particule. Si Q est positif, la désintégration est spontanée et l'énergie part en énergie cinétique et en rayonnement.",
+   "ecran": "bilan",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Le bilan d'énergie : la masse perdue devient énergie."
+  },
+  {
+   "dit": "Exemple : la désintégration alpha du polonium deux cent dix. La perte de masse vaut zéro virgule zéro zéro cinq cent soixante-dix-neuf unités de masse atomique. En multipliant par neuf cent trente et un virgule cinq, la valeur d'une unité en mégaélectron-volts, on obtient Q égal cinq virgule trente-neuf mégaélectron-volts par désintégration.",
+   "ecran": "exemple_energie",
+   "id": "p12",
+   "pause_apres": 0.9,
+   "texte": "Exemple : cinq virgule trente-neuf mégaélectron-volts par désintégration."
+  },
+  {
+   "dit": "La radioactivité sert partout : la datation, avec le carbone quatorze pour les vestiges organiques et le potassium-argon pour les roches ; la médecine nucléaire, avec la scintigraphie au technétium et la radiothérapie au cobalt ; l'industrie, pour contrôler les soudures sans les détruire ; et la production d'électricité par fission.",
+   "ecran": "applications",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Dater, soigner, contrôler, produire : les usages de la radioactivité."
+  },
+  {
+   "dit": "Une réaction nucléaire provoquée résulte d'une collision entre un noyau cible et un projectile, une particule légère ou un autre noyau. Contrairement à la radioactivité, elle n'est pas spontanée : il faut un apport extérieur pour la déclencher.",
+   "ecran": "provoquees",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "Provoquée : une collision déclenche la transformation."
+  },
+  {
+   "dit": "L'équation bilan met en jeu deux noyaux ou particules à gauche, deux à droite. Pour la compléter, on applique les mêmes conservations que pour la radioactivité : la somme des A des réactifs égale celle des produits, et de même pour les Z.",
+   "ecran": "equation_generale",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Équation bilan : conserver A et Z pour trouver les inconnus."
+  },
+  {
+   "dit": "Comme pour les désintégrations, l'énergie libérée vient de la perte de masse : E égale delta m fois c au carré, avec delta m égal à la masse des réactifs moins celle des produits. En pratique, on exprime souvent cette énergie en mégaélectron-volts.",
+   "ecran": "energie_liberee",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "L'énergie libérée : toujours delta m fois c au carré."
+  },
+  {
+   "dit": "Exemple : un proton frappe un noyau de lithium sept, qui éclate en deux noyaux d'hélium quatre. Les conservations sont vérifiées : sept plus un égale quatre plus quatre pour les nucléons, trois plus un égale deux plus deux pour les charges. La perte de masse vaut environ dix-huit millièmes d'unité de masse atomique, et l'énergie libérée deux virgule soixante-dix fois dix puissance moins douze joules.",
+   "ecran": "exemple_lithium",
+   "id": "p17",
+   "pause_apres": 0.9,
+   "texte": "Exemple : le lithium sept frappé par un proton donne deux héliums."
+  },
+  {
+   "dit": "La fission est la cassure d'un noyau lourd, comme l'uranium ou le plutonium, en deux noyaux plus légers. Elle est déclenchée par l'absorption d'un neutron lent. Chaque fission libère environ deux cents mégaélectron-volts, et surtout des neutrons qui peuvent provoquer d'autres fissions : c'est la réaction en chaîne, le principe des réacteurs nucléaires.",
+   "ecran": "fission",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "La fission : un noyau lourd se scinde, la chaîne s'enclenche."
+  },
+  {
+   "dit": "Voici une fission de l'uranium deux cent trente-cinq : il absorbe un neutron et donne du strontium quatre-vingt-quatorze, du xénon cent quarante, et deux neutrons. Vérifiez les conservations : deux cent trente-cinq plus un égale quatre-vingt-quatorze plus cent quarante plus deux ; quatre-vingt-douze égale trente-huit plus cinquante-quatre.",
+   "ecran": "fission_equation",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Une fission de l'uranium deux cent trente-cinq, équilibrée."
+  },
+  {
+   "dit": "La fusion fait le contraire : deux noyaux légers s'unissent pour former un noyau plus lourd. Pour vaincre la répulsion électrique entre les noyaux, il faut des températures énormes, de l'ordre de cent millions de kelvins. C'est la réaction qui fait briller le Soleil et les étoiles.",
+   "ecran": "fusion",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "La fusion : deux noyaux légers s'unissent, comme dans le Soleil."
+  },
+  {
+   "dit": "L'exemple de référence associe le deutérium et le tritium, deux isotopes de l'hydrogène : ils donnent un noyau d'hélium et un neutron, en libérant dix-sept virgule six mégaélectron-volts par réaction.",
+   "ecran": "fusion_equation",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "Deutérium plus tritium : hélium, neutron et énergie."
+  },
+  {
+   "dit": "Vérifions par les masses : la perte de masse de la fusion deutérium-tritium vaut environ dix-neuf millièmes d'unité de masse atomique. Convertie par la relation d'Einstein, elle donne deux virgule quatre-vingt-deux fois dix puissance moins douze joules, soit dix-sept virgule six mégaélectron-volts par réaction : énorme, à l'échelle d'un seul noyau.",
+   "ecran": "exemple_fusion",
+   "id": "p22",
+   "pause_apres": 0.9,
+   "texte": "Exemple : les masses confirment les dix-sept virgule six mégaélectron-volts."
+  },
+  {
+   "dit": "Comparons : la fission casse des noyaux lourds, de A supérieur à deux cents, sous l'impact d'un neutron lent, et laisse des déchets radioactifs importants. La fusion unit des noyaux légers, de A inférieur à dix, à très haute température, avec des déchets faibles. Par nucléon, la fusion gagne : environ trois virgule cinq mégaélectron-volts contre zéro virgule quatre-vingt-cinq.",
+   "ecran": "comparaison",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "Fission contre fusion : lourds contre légers, déchets contre rendement."
+  },
+  {
+   "dit": "Les rayonnements alpha, bêta et gamma sont ionisants : ils cèdent leur énergie aux tissus biologiques et y provoquent des ionisations qui altèrent les cellules. C'est cette agression des cellules qui rend les rayonnements à la fois utiles en médecine et dangereux à forte dose.",
+   "ecran": "effets",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "Ionisants, les rayonnements altèrent les cellules."
+  },
+  {
+   "dit": "On distingue deux familles d'effets. Les effets déterministes apparaissent au-delà d'un seuil de dose, et leur gravité augmente avec la dose : brûlures, cataractes, stérilité. Les effets stochastiques n'ont pas de seuil : cancers et mutations, dont seule la probabilité augmente avec la dose. La dose efficace, qui tient compte du rayonnement et de l'organe touché, se mesure en sieverts : l'exposition naturelle vaut environ deux virgule quatre millisieverts par an.",
+   "ecran": "effets_deux",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Seuil ou pas de seuil : deux familles d'effets."
+  },
+  {
+   "dit": "Il faut distinguer deux situations. L'irradiation est une exposition externe : la source est hors du corps, et tout cesse dès qu'on s'en éloigne. La contamination est l'entrée de substances radioactives dans l'organisme, par inhalation, ingestion ou par une plaie : le risque continue tant que la substance est présente, et il faut une décontamination.",
+   "ecran": "irradiation_contamination",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Irradiation : de l'extérieur. Contamination : les substances entrent."
+  },
+  {
+   "dit": "La décroissance sert aussi en médecine. L'iode cent trente et un a une demi-vie de huit jours. Après vingt-quatre jours, soit trois demi-vies, il ne reste qu'un huitième des noyaux de départ : un virgule vingt-cinq fois dix puissance onze noyaux. La source s'éteint donc vite, ce qui la rend maniable pour l'imagerie médicale.",
+   "ecran": "exemple_iode",
+   "id": "p27",
+   "pause_apres": 0.9,
+   "texte": "Exemple : l'iode cent trente et un après trois demi-vies."
+  },
+  {
+   "dit": "Trois principes fondamentaux de radioprotection : le temps, car l'irradiation reçue est proportionnelle à la durée d'exposition ; la distance, car l'intensité diminue avec le carré de la distance à la source ; et les écrans, des matériaux absorbants interposés entre la source et l'organisme.",
+   "ecran": "protection",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "Temps, distance, écrans : le triptyque de la protection."
+  },
+  {
+   "dit": "Un faisceau de photons qui traverse une épaisseur x de matière s'atténue exponentiellement : N de x égale N zéro fois l'exponentielle de moins mu x. Le coefficient mu, propre au matériau et à l'énergie des photons, mesure ce pouvoir d'absorption.",
+   "ecran": "attenuation",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "L'atténuation d'un faisceau : une exponentielle dans la matière."
+  },
+  {
+   "dit": "L'épaisseur qui divise le faisceau par deux s'appelle la couche de demi-atténuation : elle vaut ln de deux divisé par mu. C'est l'équivalent, pour les épaisseurs, de la demi-vie pour les durées.",
+   "ecran": "cda",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "La couche de demi-atténuation : l'épaisseur qui divise par deux."
+  },
+  {
+   "dit": "Exemple : un faisceau gamma traverse du plomb de coefficient zéro virgule cinq par centimètre. Quelle épaisseur faut-il pour ne laisser passer qu'un dixième du faisceau ? On résout l'équation : x égale deux virgule trois cent trois divisé par zéro virgule cinq, soit quatre virgule six centimètres de plomb.",
+   "ecran": "exemple_plomb",
+   "id": "p31",
+   "pause_apres": 0.9,
+   "texte": "Exemple : quatre virgule six centimètres de plomb pour un faisceau divisé par dix."
+  },
+  {
+   "dit": "Pour finir, la protection adaptée à chaque rayonnement : l'alpha, très peu pénétrant, est arrêté par une feuille de papier ou quelques centimètres d'air ; le bêta, moyen, demande quelques millimètres d'aluminium ; le gamma, très pénétrant, exige du plomb ou du béton épais. Et dans tous les cas : moins de temps, plus de distance, de bons écrans.",
+   "ecran": "recap",
+   "id": "p32",
+   "pause_apres": 0.9,
+   "texte": "À retenir : papier pour l'alpha, aluminium pour le bêta, plomb pour le gamma."
+  }
+ ],
+ "titre": "Radioactivité et énergie nucléaire"
+}

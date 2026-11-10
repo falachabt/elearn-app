@@ -1,0 +1,557 @@
+{
+ "cours": 6558,
+ "ecrans": {
+  "activite": {
+   "kicker": "Activité radioactive",
+   "note": "L'activité se mesure en becquerels : un becquerel vaut une désintégration par seconde. Elle suit la même exponentielle que le nombre de noyaux.",
+   "tex": "A(t) = \\lambda\\, N(t) = A_0\\, e^{-\\lambda t}",
+   "titre": "Des désintégrations par seconde",
+   "type": "formule"
+  },
+  "alpha_sep": {
+   "kicker": "Coefficient de séparation",
+   "note": "R désigne le rapport isotopique de chaque flux de sortie. Si alpha vaut un, aucune séparation. Pour la centrifugation de l'uranium, alpha vaut typiquement un virgule un à un virgule trois, et l'on pose souvent epsilon égal alpha moins un.",
+   "tex": "\\alpha = \\frac{R_P}{R_W}",
+   "titre": "La performance d'un étage",
+   "type": "formule"
+  },
+  "attenuation": {
+   "kicker": "Section efficace",
+   "note": "C'est la loi de Beer-Lambert, la même forme que pour les gamma. Son inverse, un sur Sigma, est le libre parcours moyen. Pour les neutrons thermiques, la section efficace suit souvent une loi en un sur v : elle croît quand l'énergie diminue.",
+   "tex": "\\phi(x) = \\phi_0\\, e^{-\\Sigma x}",
+   "titre": "L'atténuation d'un faisceau",
+   "type": "formule"
+  },
+  "bilans": {
+   "kicker": "Enrichissement isotopique",
+   "tex": [
+    "F = P + W",
+    "F\\, x_F = P\\, x_P + W\\, x_W",
+    "R = \\frac{x}{1 - x} \\qquad x = \\frac{R}{1 + R}"
+   ],
+   "titre": "L'étage de séparation : les deux bilans",
+   "type": "etape"
+  },
+  "bord_compton": {
+   "kicker": "Lire un spectre gamma",
+   "note": "L'énergie de masse de l'électron vaut cinq cent onze kiloélectronvolts. Le bord Compton, dépôt maximal d'une diffusion unique, sert à valider l'énergie d'un pic.",
+   "tex": "E_C = \\frac{E_\\gamma}{1 + \\frac{m_e c^2}{2\\, E_\\gamma}}",
+   "titre": "Le bord Compton",
+   "type": "formule"
+  },
+  "chaine_solution": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "decroissance"
+   },
+   "kicker": "Chaînes de désintégration",
+   "note": "Valable si les deux constantes sont différentes. Si elles sont égales, la solution particulière change de forme et fait apparaître un facteur temps devant l'exponentielle.",
+   "tex": "N_B(t) = \\frac{\\lambda_A\\, N_0}{\\lambda_B - \\lambda_A}\\, \\big( e^{-\\lambda_A t} - e^{-\\lambda_B t} \\big)",
+   "titre": "La population du fils : deux exponentielles",
+   "type": "formule"
+  },
+  "chaines_bilan": {
+   "kicker": "Chaînes de désintégration",
+   "tex": [
+    "\\frac{dN_A}{dt} = -\\lambda_A\\, N_A",
+    "\\frac{dN_B}{dt} = \\lambda_A\\, N_A - \\lambda_B\\, N_B",
+    "\\frac{dN_C}{dt} = \\lambda_B\\, N_B"
+   ],
+   "titre": "Le bilan de population",
+   "type": "etape"
+  },
+  "datation": {
+   "kicker": "Application · datation",
+   "tex": [
+    "\\frac{A}{A_0} = \\frac{10{,}0}{13{,}6} \\approx 0{,}735 = e^{-\\lambda t}",
+    "t = \\frac{-\\ln(0{,}735)}{\\lambda} \\approx 2\\,500\\ \\text{ans}"
+   ],
+   "titre": "Dater un vestige au carbone 14",
+   "type": "etape"
+  },
+  "demivie": {
+   "kicker": "Demi-vie",
+   "note": "La durée de vie moyenne d'un noyau vaut un sur lambda. Retenez aussi : diviser une activité par dix prend environ trois virgule trente-deux demi-vies.",
+   "tex": "t_{1/2} = \\frac{\\ln 2}{\\lambda}",
+   "titre": "Le repère de la décroissance",
+   "type": "formule"
+  },
+  "detection": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "spectre_gamma_fig"
+   },
+   "kicker": "Détection des gamma",
+   "note": "Dans le germanium hyperpur, créer une paire électron-trou coûte environ deux virgule quatre-vingt-seize électronvolts : le nombre de charges collectées est proportionnel à l'énergie déposée.",
+   "tex": "N_{\\text{paires}} = \\frac{E_d}{W}",
+   "titre": "Du photon au signal électrique",
+   "type": "formule"
+  },
+  "efficacite": {
+   "kicker": "Efficacité de détection",
+   "note": "N : aire nette du pic ; t : durée de mesure ; pγ : probabilité d'émission du gamma par désintégration. Oublier cette probabilité est l'erreur classique de la spectrométrie.",
+   "tex": "\\varepsilon = \\frac{N}{A\\, t\\, p_\\gamma}",
+   "titre": "De l'aire du pic à l'activité",
+   "type": "formule"
+  },
+  "energie_alpha": {
+   "kicker": "Énergie de désintégration",
+   "note": "La particule alpha, bien plus légère que le noyau fils, emporte l'essentiel de cette énergie ; le reste part dans le recul du noyau fils.",
+   "tex": "Q_\\alpha = \\big[ m(A, Z) - m(A-4, Z-2) - m_\\alpha \\big]\\, c^2",
+   "titre": "L'énergie libérée par une émission alpha",
+   "type": "formule"
+  },
+  "enrichissement": {
+   "kicker": "Séparation des isotopes",
+   "texte": "L'uranium naturel ne contient que zéro virgule soixante et onze pour cent d'uranium deux cent trente-cinq fissile ; les réacteurs exigent trois à cinq pour cent. Deux isotopes d'un même élément sont chimiquement identiques : seule leur infime différence de masse permet de les séparer, toujours imparfaitement.",
+   "type": "phrase",
+   "anim": {
+    "nom": "etage_fig",
+    "hauteur": 240
+   }
+  },
+  "ex_cadmium": {
+   "kicker": "Exemple type concours",
+   "tex": [
+    "N = \\frac{\\rho}{M}\\, N_A \\approx 4{,}63 \\times 10^{28}\\ \\text{m}^{-3}",
+    "\\Sigma_a = N\\, \\sigma_a \\approx 1{,}14 \\times 10^{4}\\ \\text{m}^{-1}",
+    "\\frac{\\phi}{\\phi_0} = e^{-\\Sigma_a\\, e} \\approx 1{,}2 \\times 10^{-5}"
+   ],
+   "titre": "Un millimètre de cadmium",
+   "type": "etape"
+  },
+  "ex_cascade": {
+   "kicker": "Exemple type concours",
+   "tex": [
+    "R_P = \\frac{x_P}{1 - x_P} = \\frac{0{,}035}{0{,}965} \\approx 0{,}0363",
+    "N \\approx \\frac{\\ln(R_P / R_F)}{\\ln \\alpha} \\approx 9\\ \\text{étages}",
+    "\\beta = \\frac{\\alpha}{1 + (\\alpha - 1)\\, \\theta} \\approx 1{,}09 \\Rightarrow N \\approx 19\\ \\text{étages}"
+   ],
+   "titre": "Combien d'étages pour un réacteur ?",
+   "type": "etape"
+  },
+  "ex_cesium": {
+   "kicker": "Exemple type concours",
+   "tex": [
+    "A = \\frac{N}{t\\, p_\\gamma\\, \\varepsilon} \\approx \\frac{125\\,000}{2{,}295}",
+    "A \\approx 5{,}45 \\times 10^{4}\\ \\text{Bq}",
+    "R = \\frac{\\text{FWHM}}{E_0} \\approx 0{,}30\\ \\%"
+   ],
+   "titre": "Mesurer une source de césium 137",
+   "type": "etape"
+  },
+  "ex_cobalt": {
+   "kicker": "Exemple type concours",
+   "tex": [
+    "\\lambda = \\frac{\\ln 2}{t_{1/2}} \\approx 4{,}17 \\times 10^{-9}\\ \\text{s}^{-1}",
+    "N_0 = \\frac{A_0}{\\lambda} \\approx 8{,}87 \\times 10^{19}\\ \\text{noyaux}",
+    "A(10\\ \\text{ans}) = A_0\\, e^{-\\lambda t} \\approx 9{,}9 \\times 10^{10}\\ \\text{Bq}"
+   ],
+   "titre": "La source de cobalt 60 en radiothérapie",
+   "type": "etape"
+  },
+  "ex_filiation": {
+   "kicker": "Exemple type concours",
+   "tex": [
+    "\\lambda_1 = \\frac{\\ln 2}{T_1} \\qquad \\lambda_2 = \\frac{\\ln 2}{T_2}",
+    "t_m = \\frac{\\ln(\\lambda_2 / \\lambda_1)}{\\lambda_2 - \\lambda_1} \\approx 227\\ \\text{min}",
+    "N_{Bi}^{max} \\approx 7{,}4 \\times 10^{10}\\ \\text{noyaux}"
+   ],
+   "titre": "La filiation plomb 212 – bismuth 212",
+   "type": "etape"
+  },
+  "ex_polonium": {
+   "kicker": "Exemple type concours",
+   "tex": [
+    "Q_\\alpha = \\Delta m\\, c^2 \\approx 5{,}41\\ \\text{MeV}",
+    "E_\\alpha \\approx \\frac{A - 4}{A}\\, Q_\\alpha \\approx 5{,}30\\ \\text{MeV}"
+   ],
+   "titre": "L'énergie alpha du polonium 210",
+   "type": "etape"
+  },
+  "gamma_matiere": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "rayonnement"
+   },
+   "etapes": [
+    "Photoélectrique : photon absorbé, électron éjecté — basse énergie",
+    "Compton : le photon diffuse sur un électron et perd de l'énergie",
+    "Création de paires : dès 1,022 MeV, le photon se matérialise"
+   ],
+   "kicker": "Les gamma dans la matière",
+   "titre": "Trois façons de céder son énergie",
+   "type": "recap"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "noyau"
+   },
+   "kicker": "Introduction",
+   "texte": "Un noyau instable se désintègre au hasard, mais une population immense obéit à une loi exacte : tout repose sur la probabilité de désintégration par unité de temps, la constante radioactive lambda.",
+   "type": "phrase"
+  },
+  "loi": {
+   "kicker": "Loi de décroissance radioactive",
+   "note": "Elle vient de l'équation fondamentale : pendant un temps très court, le nombre de désintégrations est proportionnel au nombre de noyaux présents.",
+   "tex": "N(t) = N_0\\, e^{-\\lambda t}",
+   "titre": "De moins en moins de noyaux",
+   "type": "formule"
+  },
+  "masse_activite": {
+   "kicker": "Application concrète",
+   "tex": [
+    "N_0 = \\frac{m}{M}\\, N_A",
+    "\\lambda = \\frac{\\ln 2}{t_{1/2}} \\qquad A_0 = \\lambda\\, N_0",
+    "\\text{1 mg de } {}^{32}\\text{P} \\Rightarrow A_0 \\approx 1{,}06 \\times 10^{13}\\ \\text{Bq}"
+   ],
+   "titre": "D'une masse à une activité",
+   "type": "etape"
+  },
+  "methode": {
+   "etapes": [
+    "Découper en blocs : enrichissement, désintégration, transport",
+    "Écrire les bilans et les lois avant tout calcul numérique",
+    "Vérifier l'homogénéité : [λN] = s⁻¹ et [Nσ] = m⁻¹",
+    "Vérifier les hypothèses : équilibre séculaire, cible mince",
+    "Interpréter l'ordre de grandeur du résultat final"
+   ],
+   "kicker": "Méthode de concours",
+   "titre": "Relier les blocs le jour de l'épreuve",
+   "type": "recap"
+  },
+  "penetration": {
+   "anim": {
+    "hauteur": 260,
+    "nom": "penetration"
+   },
+   "kicker": "Interaction avec la matière",
+   "texte": "Lourdes et chargées, les particules alpha ionisent intensément sur quelques centimètres d'air : une feuille de papier les arrête. Les bêta, légères, zigzaguent sur quelques mètres et cèdent devant quelques millimètres d'aluminium. Les gamma, neutres, s'atténuent exponentiellement : il faut du plomb ou du béton.",
+   "type": "phrase"
+  },
+  "pics": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "spectre_gamma_fig"
+   },
+   "etapes": [
+    "Pic photoélectrique : toute l'énergie du photon est déposée",
+    "Continuum de Compton : dépôt partiel, jusqu'au bord Compton",
+    "Pics d'échappement : un photon d'annihilation de 511 keV s'enfuit",
+    "Pic de somme : deux photons simultanés, énergies additionnées"
+   ],
+   "kicker": "Lire un spectre gamma",
+   "titre": "Les structures d'un spectre",
+   "type": "recap"
+  },
+  "recap": {
+   "etapes": [
+    "Décroissance : N = N₀ e^(−λt) ; A = λN ; t½ = ln 2 / λ",
+    "Chaînes : bilan, résolution séquentielle, équilibre séculaire",
+    "Spectrométrie : A = N / (t · pγ · ε) ; résolution R = FWHM / E₀",
+    "Enrichissement : bilans F = P + W et α = rapport des rapports",
+    "Neutrons : Σ = Nσ, atténuation en e^(−Σx), taux R = φΣ"
+   ],
+   "kicker": "À retenir",
+   "titre": "Radioactivité et nucléaire",
+   "type": "recap"
+  },
+  "resolution": {
+   "kicker": "Résolution énergétique",
+   "note": "La largeur à mi-hauteur croît comme la racine carrée de l'énergie. Un germanium atteint environ zéro virgule un pour cent à un virgule trente-trois mégaélectronvolt : il sépare des pics distants de quelques kiloélectronvolts.",
+   "tex": "R = \\frac{\\text{FWHM}}{E_0}",
+   "titre": "La finesse du détecteur",
+   "type": "formule"
+  },
+  "section": {
+   "kicker": "Section efficace",
+   "note": "La section microscopique se mesure en barns : un barn vaut dix puissance moins vingt-huit mètres carrés. La densité de noyaux cibles se calcule à partir de la masse volumique, de la masse molaire, du nombre d'Avogadro et de la fraction isotopique du nucléide visé.",
+   "tex": "\\Sigma = N\\, \\sigma \\qquad R = \\phi\\, \\Sigma",
+   "titre": "Du noyau isolé au matériau",
+   "type": "formule"
+  },
+  "seculaire": {
+   "kicker": "Équilibre séculaire",
+   "note": "Conditions : la demi-vie du père est très supérieure à celle du fils, et le temps écoulé dépasse une dizaine de demi-vies du fils. Le stock du fils devient quasi stationnaire, avec bien moins de noyaux que le père, mais la même activité.",
+   "tex": "A_B(t) \\approx A_A(t)",
+   "titre": "Le fils finit par suivre le père",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "decroissance"
+   },
+   "kicker": "Concours Polytechnique L3",
+   "sous": "Chaînes de désintégration, spectrométrie gamma, enrichissement et sections efficaces",
+   "titre": "Radioactivité et nucléaire",
+   "type": "titre"
+  },
+  "types": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "emissions"
+   },
+   "etapes": [
+    "Alpha : noyau d'hélium éjecté — A diminue de 4, Z de 2, énergie unique",
+    "Bêta moins : électron émis — A inchangé, Z + 1, spectre continu",
+    "Bêta plus : positon émis — A inchangé, Z diminue de 1",
+    "Gamma : photon de désexcitation — ni A ni Z ne changent"
+   ],
+   "kicker": "Les désintégrations",
+   "titre": "Identifier un rayonnement",
+   "type": "recap"
+  }
+ },
+ "matiere": "Concours Polytechnique L3",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Décroissance, activité et chaînes radioactives"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : les rayonnements émis, leur énergie, et la spectrométrie gamma qui permet de les identifier.",
+    "texte": "Partie 2 : rayonnements et spectrométrie gamma."
+   },
+   "sous_titre": "Rayonnements et spectrométrie gamma"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : l'enrichissement isotopique, les sections efficaces des neutrons, et la méthode qui relie tous ces blocs le jour du concours.",
+    "texte": "Partie 3 : enrichissement, neutrons et méthode."
+   },
+   "sous_titre": "Enrichissement, sections efficaces et méthode"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours du concours Polytechnique, consacré à la radioactivité et au nucléaire : décroissance et chaînes de désintégration, spectrométrie gamma, enrichissement isotopique et sections efficaces des neutrons.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Radioactivité et nucléaire."
+  },
+  {
+   "dit": "La radioactivité est un phénomène aléatoire et spontané : impossible de prévoir quel noyau va se désintégrer, ni quand. Mais sur un très grand nombre de noyaux, le comportement devient prévisible. Chaque noyau possède la même probabilité de se désintégrer par unité de temps : c'est la constante radioactive, lambda, propre à chaque nucléide et indépendante des conditions extérieures.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Un phénomène aléatoire, une loi statistique exacte."
+  },
+  {
+   "dit": "Pendant un intervalle de temps très court, le nombre de désintégrations est proportionnel au nombre de noyaux présents et à la durée. Cette équation différentielle se résout immédiatement : le nombre de noyaux restants décroît exponentiellement avec le temps. C'est la loi fondamentale de la radioactivité.",
+   "ecran": "loi",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "La loi de décroissance : N(t) = N₀ e^(−λt)."
+  },
+  {
+   "dit": "L'activité d'un échantillon, c'est son nombre de désintégrations par seconde : elle vaut lambda fois le nombre de noyaux présents, et elle se mesure en becquerels. Comme elle est proportionnelle au nombre de noyaux, elle décroît avec la même exponentielle.",
+   "ecran": "activite",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "L'activité : A = λN, en becquerels."
+  },
+  {
+   "dit": "On caractérise un nucléide par sa demi-vie : le temps au bout duquel la moitié des noyaux se sont désintégrés. Elle vaut logarithme népérien de deux, divisé par lambda. Connaître la demi-vie ou la constante radioactive, c'est connaître l'autre : elles sont inversement proportionnelles.",
+   "ecran": "demivie",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "La demi-vie : t½ = ln 2 / λ."
+  },
+  {
+   "dit": "Premier réflexe de concours : passer d'une masse à une activité. On compte les noyaux avec le nombre d'Avogadro, on calcule lambda à partir de la demi-vie, puis l'activité. Exemple : un milligramme de phosphore trente-deux, de demi-vie quatorze jours environ, contient près de deux fois dix puissance dix-neuf noyaux et démarre à environ dix puissance treize becquerels.",
+   "ecran": "masse_activite",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "D'une masse à une activité : trois calculs enchaînés."
+  },
+  {
+   "dit": "Exemple résolu. Une source de cobalt soixante démarre à trois virgule sept fois dix puissance onze becquerels ; sa demi-vie est de cinq virgule vingt-sept ans. On en tire sa constante radioactive, puis le nombre initial de noyaux : près de dix puissance vingt. Après dix ans, soit environ deux demi-vies, son activité tombe à environ dix puissance onze becquerels.",
+   "ecran": "ex_cobalt",
+   "id": "p07",
+   "pause_apres": 0.7,
+   "texte": "Exemple : la source de cobalt 60, dix ans plus tard."
+  },
+  {
+   "dit": "Application célèbre : la datation au carbone quatorze. Un fragment d'os ancien affiche dix becquerels par gramme de carbone, contre treize virgule six pour un organisme vivant. Le rapport des activités donne directement l'âge : environ deux mille cinq cents ans. Tout repose sur une hypothèse à énoncer : depuis la mort de l'organisme, le système est resté fermé.",
+   "ecran": "datation",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Datation au carbone 14 : environ 2 500 ans."
+  },
+  {
+   "dit": "Passons aux chaînes : un noyau père se désintègre en un fils, lui-même radioactif. Le réflexe de concours, c'est le bilan de population : le père ne fait que disparaître ; le fils est créé par le père et disparaît par sa propre désintégration ; le petit-fils, s'il est stable, ne fait que s'accumuler. On obtient un système d'équations différentielles couplées, à résoudre dans l'ordre.",
+   "ecran": "chaines_bilan",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Chaînes : écrire le bilan de population de chaque espèce."
+  },
+  {
+   "dit": "On injecte la décroissance du père dans l'équation du fils, et on résout : la population du fils est une différence de deux exponentielles. Elle part de zéro, croît pendant que le père la nourrit, passe par un maximum, puis décroît. Retenez cette forme : elle revient dans presque tous les sujets de chaînes.",
+   "ecran": "chaine_solution",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "La population du fils : une différence d'exponentielles."
+  },
+  {
+   "dit": "Exemple résolu : le plomb deux cent douze engendre le bismuth deux cent douze, qui se désintègre environ dix fois plus vite. En annulant la dérivée de la population du fils, on trouve son maximum : après trois heures quarante-sept minutes environ, l'échantillon contient soixante-quatorze milliards de noyaux de bismuth, et à cet instant, les activités du père et du fils sont exactement égales.",
+   "ecran": "ex_filiation",
+   "id": "p11",
+   "pause_apres": 0.7,
+   "texte": "Exemple : le maximum du fils, à activités égales."
+  },
+  {
+   "dit": "Cas limite essentiel : si le père vit beaucoup plus longtemps que le fils, un équilibre dynamique s'installe après quelques demi-vies du fils. Le fils se désintègre presque aussitôt qu'il est créé, et son activité devient égale à celle du père. C'est l'équilibre séculaire : les activités s'égalisent, pas les nombres de noyaux. Entre le radium et son descendant le radon, le fils se désintègre plus de cent mille fois plus vite que le père.",
+   "ecran": "seculaire",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Équilibre séculaire : A du fils égale A du père."
+  },
+  {
+   "dit": "Deuxième bloc : les rayonnements eux-mêmes. Pour identifier une désintégration, regardez les variations du nombre de masse et du numéro atomique. Alpha : le noyau éjecte un noyau d'hélium, A baisse de quatre, Z de deux. Bêta : A ne change pas, Z bouge d'une unité. Gamma : ni A ni Z ne changent, c'est une simple désexcitation.",
+   "ecran": "types",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Quatre rayonnements : alpha, bêta moins, bêta plus, gamma."
+  },
+  {
+   "dit": "Ces rayonnements n'interagissent pas de la même façon avec la matière. L'alpha, lourd et doublement chargé, ionise intensément le long d'une trajectoire rectiligne et courte : une feuille de papier suffit à l'arrêter. Le bêta, beaucoup plus léger, suit une trajectoire tortueuse, plus longue. Le gamma, neutre, ne s'arrête jamais franchement : son intensité décroît exponentiellement dans la matière. Retenez : papier pour l'alpha, aluminium pour le bêta, plomb pour le gamma.",
+   "ecran": "penetration",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Papier, aluminium, plomb : le pouvoir d'arrêt croissant."
+  },
+  {
+   "dit": "L'énergie libérée par une désintégration se calcule par le défaut de masse : la différence entre la masse de départ et les masses des produits, convertie par le facteur c au carré. Pour une émission alpha, la particule emporte presque toute l'énergie, car le noyau fils, très lourd, ne recule que très peu. Son énergie est donc unique et bien définie : le spectre alpha est discret.",
+   "ecran": "energie_alpha",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "L'énergie libérée vient du défaut de masse."
+  },
+  {
+   "dit": "Exemple résolu : le polonium deux cent dix se désintègre en plomb deux cent six. Le défaut de masse, calculé à partir des masses atomiques, vaut environ six millièmes d'unité de masse atomique, soit une énergie de désintégration de cinq virgule quarante et un mégaélectronvolts. La particule alpha en emporte cinq virgule trente ; le reste part dans le recul du plomb.",
+   "ecran": "ex_polonium",
+   "id": "p16",
+   "pause_apres": 0.7,
+   "texte": "Exemple : 5,41 MeV libérés, 5,30 MeV pour l'alpha."
+  },
+  {
+   "dit": "Un photon gamma cède son énergie de trois façons. À basse énergie, l'effet photoélectrique : le photon est absorbé et éjecte un électron. Aux énergies intermédiaires, la diffusion Compton : le photon rebondit sur un électron en lui cédant une partie de son énergie. Et au-delà du seuil d'un virgule zéro vingt-deux mégaélectronvolt, la création de paires : le photon se matérialise en un électron et un positon.",
+   "ecran": "gamma_matiere",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Photoélectrique, Compton, création de paires."
+  },
+  {
+   "dit": "Pour identifier ces photons, le détecteur de référence est le germanium hyperpur, refroidi à l'azote liquide. Chaque photon qui dépose son énergie dans le cristal crée des paires électron-trou, en nombre proportionnel à l'énergie déposée : le signal électrique mesure donc l'énergie du photon, et l'accumulation des coups dessine le spectre gamma.",
+   "ecran": "detection",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Le germanium hyperpur convertit l'énergie en signal."
+  },
+  {
+   "dit": "Un spectre gamma ne contient pas que des pics. Les photons qui ne cèdent qu'une partie de leur énergie avant de s'échapper forment un continuum, qui s'arrête brutalement au bord Compton : c'est le dépôt maximal possible lors d'une diffusion unique. Sa position se calcule à partir de l'énergie du photon, et elle sert à confirmer l'identification d'un pic.",
+   "ecran": "bord_compton",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Le bord Compton borne le continuum."
+  },
+  {
+   "dit": "Apprenez à lire un spectre comme une carte d'identité. Le pic photoélectrique donne l'énergie du gamma et, par son aire, l'activité de la source. Le continuum de Compton trahit les dépôts partiels. Au-dessus du seuil de création de paires, des pics d'échappement apparaissent, décalés de cinq cent onze kiloélectronvolts. Et si deux photons arrivent en même temps, un pic de somme additionne leurs énergies.",
+   "ecran": "pics",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Lire un spectre : pics, continuum, échappements, sommes."
+  },
+  {
+   "dit": "La qualité d'un spectromètre se mesure à sa résolution : la largeur à mi-hauteur d'un pic, rapportée à son énergie. Elle vient des fluctuations statistiques de la création des charges. Plus elle est faible, mieux on sépare deux raies voisines. Pour le césium cent trente-sept, une largeur d'un virgule quatre-vingt-quinze kiloélectronvolt donne une résolution d'environ zéro virgule trois pour cent.",
+   "ecran": "resolution",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Résolution : la largeur du pic rapportée à son énergie."
+  },
+  {
+   "dit": "Pour passer du spectre à l'activité, on utilise l'efficacité du détecteur : la fraction des photons émis qui finissent dans le pic. Elle se mesure par étalonnage, dépend de l'énergie et de la géométrie, et elle chute avec le carré de la distance. Piège classique du concours : oublier la probabilité d'émission du gamma, qui n'est presque jamais de cent pour cent.",
+   "ecran": "efficacite",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "L'efficacité relie les coups comptés à l'activité."
+  },
+  {
+   "dit": "Exemple résolu : une source de césium cent trente-sept est comptée pendant mille huit cents secondes ; son pic contient cent vingt-cinq mille coups nets. Avec l'efficacité étalonnée et la probabilité d'émission de quatre-vingt-cinq pour cent, on remonte à une activité d'environ cinquante-quatre mille cinq cents becquerels. Et si l'on double la distance à la source, l'aire du pic est divisée par quatre.",
+   "ecran": "ex_cesium",
+   "id": "p23",
+   "pause_apres": 0.7,
+   "texte": "Exemple : environ 54 500 Bq pour la source de césium."
+  },
+  {
+   "dit": "Troisième bloc : la séparation des isotopes. L'uranium naturel contient moins d'un pour cent d'uranium deux cent trente-cinq, le seul fissile ; il en faut trois à cinq pour cent pour un réacteur. Or deux isotopes ont exactement les mêmes propriétés chimiques : on ne peut exploiter que leur minuscule différence de masse, par diffusion gazeuse ou par centrifugation. La séparation est toujours partielle, et c'est un coefficient qui la mesure.",
+   "ecran": "enrichissement",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Enrichir : séparer ce qui se ressemble presque parfaitement."
+  },
+  {
+   "dit": "Un étage de séparation reçoit un flux d'alimentation et le partage en un produit enrichi et un résidu appauvri. Deux bilans, toujours vrais, gouvernent tout : la conservation de la matière totale, et celle de l'isotope léger. Ne confondez jamais la teneur, une fraction, avec le rapport isotopique : ce sont deux écritures du même mélange, et les bilans s'écrivent avec les teneurs.",
+   "ecran": "bilans",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Deux bilans : matière totale et isotope léger."
+  },
+  {
+   "dit": "La performance d'un étage se résume en un nombre sans dimension : le coefficient de séparation, rapport des rapports isotopiques entre le produit et le résidu. S'il vaut un, rien ne se sépare. Pour l'uranium, il dépasse à peine un : chaque étage n'ajoute qu'un tout petit écart de teneur, proportionnel à epsilon, l'excès du coefficient au-dessus de un.",
+   "ecran": "alpha_sep",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Le coefficient de séparation : un rapport de rapports."
+  },
+  {
+   "dit": "Exemple résolu : enrichir l'uranium naturel jusqu'à trois virgule cinq pour cent avec des étages de coefficient un virgule deux. Le calcul naïf, qui multiplie le coefficient à chaque étage, annonce neuf étages. Mais si chaque étage ne prélève que la moitié du flux en produit, l'enrichissement réel par étage tombe à un virgule zéro neuf, et il faut dix-neuf étages. Leçon : un bilan matière honnête change le dimensionnement du tout au tout.",
+   "ecran": "ex_cascade",
+   "id": "p27",
+   "pause_apres": 0.7,
+   "texte": "Exemple : neuf étages en théorie, dix-neuf en réalité."
+  },
+  {
+   "dit": "Dernier bloc physique : les sections efficaces des neutrons. Un noyau présente au neutron incident une surface apparente, la section efficace microscopique, qui mesure la probabilité d'une réaction : diffusion, absorption ou fission. Multipliée par le nombre de noyaux par unité de volume, elle devient la section efficace macroscopique, une probabilité d'interaction par unité de longueur. Le taux de réaction s'obtient en multipliant par le flux de neutrons.",
+   "ecran": "section",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Section efficace : une surface apparente probabiliste."
+  },
+  {
+   "dit": "Un faisceau qui traverse la matière s'atténue exponentiellement avec l'épaisseur : c'est la loi de Beer-Lambert, déjà rencontrée pour les gamma. Avant de l'appliquer, vérifiez deux choses : la section efficace doit correspondre à l'énergie réelle des neutrons, car pour les thermiques elle croît comme l'inverse de la vitesse ; et l'approximation de la cible mince ne vaut que si l'épaisseur reste petite devant le libre parcours moyen.",
+   "ecran": "attenuation",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "Atténuation exponentielle : vérifier énergie et épaisseur."
+  },
+  {
+   "dit": "Exemple résolu : le cadmium, absorbeur puissant des neutrons thermiques, avec une section efficace de deux mille quatre cent cinquante barns. On calcule la densité de noyaux, puis la section macroscopique : plus de dix mille par mètre, soit un libre parcours moyen de quatre-vingt-huit micromètres seulement. Résultat : un millimètre de cadmium ne laisse passer qu'environ un neutron sur cent mille. Voilà pourquoi on en fait des barres de contrôle.",
+   "ecran": "ex_cadmium",
+   "id": "p30",
+   "pause_apres": 0.7,
+   "texte": "Exemple : un millimètre de cadmium arrête presque tout."
+  },
+  {
+   "dit": "Le jour du concours, ces blocs se mélangent dans un même énoncé. La méthode qui protège : découper le problème en sous-problèmes indépendants, écrire les bilans et les lois avant tout calcul, garder les expressions littérales le plus longtemps possible, vérifier l'homogénéité de chaque résultat, et contrôler les hypothèses avant d'appliquer une formule approchée.",
+   "ecran": "methode",
+   "id": "p31",
+   "pause_apres": 0.6,
+   "texte": "Méthode : découper, écrire, vérifier, interpréter."
+  },
+  {
+   "dit": "Pour finir, retenez l'architecture du cours : une loi de décroissance, des bilans — de population pour les chaînes, de matière pour la séparation —, une efficacité pour mesurer, une section efficace pour les neutrons, et partout la même exponentielle. C'est cette poignée de lois, appliquée avec méthode, qui couvre l'essentiel des sujets du concours sur le nucléaire.",
+   "ecran": "recap",
+   "id": "p32",
+   "pause_apres": 0.5,
+   "texte": "Une poignée de lois, une méthode : l'essentiel du sujet."
+  }
+ ],
+ "titre": "Radioactivité et nucléaire"
+}

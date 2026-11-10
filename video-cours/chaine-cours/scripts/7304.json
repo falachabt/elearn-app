@@ -1,0 +1,394 @@
+{
+  "cours": 7304,
+  "titre": "Primitives et calcul intégral : techniques, aires et volumes",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Analyse",
+      "titre": "Primitives et calcul intégral : techniques, aires et volumes",
+      "sous": "Dériver à rebours, mesurer l'aire sous une courbe, et intégrer par parties ou par changement de variable",
+      "anim": {
+        "nom": "primitives_famille_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Connaître la dérivée, retrouver la fonction.",
+      "anim": {
+        "nom": "primitives_famille_fig",
+        "hauteur": 150
+      }
+    },
+    "def_primitive": {
+      "type": "formule",
+      "kicker": "Définition · la primitive",
+      "tex": "F'(x) = f(x)",
+      "note": "F dérivable sur l'intervalle I, pour tout x de I"
+    },
+    "constante": {
+      "type": "phrase",
+      "kicker": "Une famille de primitives",
+      "texte": "Toutes les primitives : F(x) + k, avec k réel quelconque.",
+      "anim": {
+        "nom": "primitives_famille_fig",
+        "hauteur": 170
+      }
+    },
+    "usuelles1": {
+      "type": "etape",
+      "kicker": "Primitives usuelles · constantes et puissances",
+      "titre": "Le tableau des dérivées, lu à l'envers",
+      "tex": [
+        "a \\;\\to\\; ax + k",
+        "x^n \\;\\to\\; \\tfrac{x^{n+1}}{n+1} + k \\quad (n \\neq -1)"
+      ]
+    },
+    "usuelles2": {
+      "type": "etape",
+      "kicker": "Primitives usuelles · les inverses",
+      "titre": "Logarithme, opposé d'inverse, racine",
+      "tex": [
+        "\\tfrac{1}{x} \\;\\to\\; \\ln x + k",
+        "\\tfrac{1}{x^2} \\;\\to\\; -\\tfrac{1}{x} + k",
+        "\\tfrac{1}{\\sqrt{x}} \\;\\to\\; 2\\sqrt{x} + k"
+      ]
+    },
+    "usuelles3": {
+      "type": "etape",
+      "kicker": "Primitives usuelles · exponentielle et trigonométrie",
+      "titre": "Attention au signe moins du sinus",
+      "tex": [
+        "e^x \\;\\to\\; e^x + k",
+        "\\cos x \\;\\to\\; \\sin x + k",
+        "\\sin x \\;\\to\\; -\\cos x + k"
+      ]
+    },
+    "ex_primitive": {
+      "type": "etape",
+      "kicker": "Exemple · primitives d'une somme",
+      "titre": "Sur l'intervalle zéro, plus l'infini",
+      "tex": [
+        "f(x) = 3x^2 - \\tfrac{1}{x}",
+        "F(x) = x^3 - \\ln x + k",
+        "F'(x) = 3x^2 - \\tfrac{1}{x}"
+      ]
+    },
+    "aire_intro": {
+      "type": "phrase",
+      "kicker": "Vers l'intégrale · l'aire sous la courbe",
+      "texte": "L'aire sous la courbe, approchée par des rectangles.",
+      "anim": {
+        "nom": "riemann_fig",
+        "hauteur": 180
+      }
+    },
+    "integrale_def": {
+      "type": "formule",
+      "kicker": "Définition · l'intégrale définie",
+      "tex": "\\int_a^b f(x)\\,dx = F(b) - F(a)",
+      "note": "F : n'importe quelle primitive de f, continue sur a, b"
+    },
+    "theoreme": {
+      "type": "formule",
+      "kicker": "Théorème fondamental de l'analyse",
+      "tex": "F(x) = \\int_a^x f(t)\\,dt \\qquad F'(x) = f(x)",
+      "note": "La fonction aire sous la courbe est une primitive de f"
+    },
+    "methode": {
+      "type": "etape",
+      "kicker": "Méthode · calculer une intégrale",
+      "titre": "Primitive, bornes, soustraction",
+      "tex": [
+        "\\text{1. chercher une primitive } F \\text{ de } f",
+        "\\text{2. évaluer } F \\text{ en } b \\text{ et en } a",
+        "\\text{3. soustraire : } F(b) - F(a)"
+      ]
+    },
+    "ex_integrale": {
+      "type": "etape",
+      "kicker": "Exemple · premier calcul complet",
+      "titre": "Intégrale de un à deux de deux x plus un",
+      "tex": [
+        "\\int_1^2 (2x + 1)\\,dx \\qquad F(x) = x^2 + x",
+        "\\left[x^2 + x\\right]_1^2 = (4 + 2) - (1 + 1)",
+        "= 6 - 2 = 4"
+      ]
+    },
+    "proprietes1": {
+      "type": "etape",
+      "kicker": "Propriétés · linéarité et Chasles",
+      "titre": "Combiner, puis couper l'intervalle",
+      "tex": [
+        "\\int_a^b (\\alpha f + \\beta g) = \\alpha \\int_a^b f + \\beta \\int_a^b g",
+        "\\int_a^b f = \\int_a^c f + \\int_c^b f"
+      ]
+    },
+    "proprietes2": {
+      "type": "etape",
+      "kicker": "Propriétés · les bornes",
+      "titre": "Intervalle vide et bornes échangées",
+      "tex": [
+        "\\int_a^a f(x)\\,dx = 0",
+        "\\int_b^a f(x)\\,dx = -\\int_a^b f(x)\\,dx"
+      ]
+    },
+    "ipp": {
+      "type": "etape",
+      "kicker": "Technique · intégration par parties",
+      "titre": "Pour les produits de fonctions",
+      "tex": [
+        "\\int_a^b u'(x) v(x)\\,dx",
+        "= \\big[u(x) v(x)\\big]_a^b - \\int_a^b u(x) v'(x)\\,dx"
+      ]
+    },
+    "ex_ipp": {
+      "type": "etape",
+      "kicker": "Exemple · par parties",
+      "titre": "Intégrale de zéro à un de x exponentielle x",
+      "tex": [
+        "u'(x) = e^x \\qquad v(x) = x",
+        "\\int_0^1 x e^x\\,dx = \\big[x e^x\\big]_0^1 - \\int_0^1 e^x\\,dx",
+        "= e - (e - 1) = 1"
+      ]
+    },
+    "cdv": {
+      "type": "formule",
+      "kicker": "Technique · changement de variable",
+      "tex": "\\int_a^b u'(x) f(u(x))\\,dx = \\int_{u(a)}^{u(b)} f(t)\\,dt",
+      "note": "u dérivable ; on pose t égal à u de x, bornes comprises"
+    },
+    "ex_cdv_pose": {
+      "type": "etape",
+      "kicker": "Exemple · changement de variable",
+      "titre": "On pose t égale x au carré plus un",
+      "tex": [
+        "t = x^2 + 1 \\qquad dt = 2x\\,dx",
+        "x : 0 \\to 1 \\qquad t : 1 \\to 2"
+      ]
+    },
+    "ex_cdv_calcul": {
+      "type": "etape",
+      "kicker": "Exemple · changement de variable",
+      "titre": "L'intégrale devient celle de t au cube",
+      "tex": [
+        "\\int_1^2 t^3\\,dt = \\left[\\tfrac{t^4}{4}\\right]_1^2",
+        "= \\tfrac{16 - 1}{4} = \\tfrac{15}{4}"
+      ]
+    },
+    "aire_formules": {
+      "type": "etape",
+      "kicker": "Application · les aires",
+      "titre": "Sous une courbe, et entre deux courbes",
+      "tex": [
+        "f \\geq 0 : \\quad \\mathcal{A} = \\int_a^b f(x)\\,dx",
+        "f \\geq g : \\quad \\mathcal{A} = \\int_a^b \\big(f(x) - g(x)\\big)\\,dx"
+      ]
+    },
+    "ex_aire": {
+      "type": "etape",
+      "kicker": "Exemple · aire entre deux courbes",
+      "titre": "Entre la droite et la parabole, de zéro à un",
+      "tex": [
+        "\\mathcal{A} = \\int_0^1 (x - x^2)\\,dx",
+        "= \\left[\\tfrac{x^2}{2} - \\tfrac{x^3}{3}\\right]_0^1",
+        "= \\tfrac{1}{2} - \\tfrac{1}{3} = \\tfrac{1}{6}"
+      ]
+    },
+    "volume": {
+      "type": "formule",
+      "kicker": "Application · volume de révolution",
+      "tex": "\\mathcal{V} = \\pi \\int_a^b \\big[f(x)\\big]^2\\,dx",
+      "note": "Rotation de la courbe autour de l'axe des abscisses"
+    },
+    "ex_volume": {
+      "type": "etape",
+      "kicker": "Exemple · volume de révolution",
+      "titre": "Le solide engendré par racine de x, de zéro à quatre",
+      "tex": [
+        "f(x) = \\sqrt{x} \\qquad \\big[f(x)\\big]^2 = x",
+        "\\mathcal{V} = \\pi \\int_0^4 x\\,dx = \\pi \\left[\\tfrac{x^2}{2}\\right]_0^4",
+        "= \\pi \\times 8 = 8\\pi"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Primitive : F' redonne f, plus constante",
+        "Intégrale : F(b) moins F(a)",
+        "Par parties : les produits de fonctions",
+        "Changement de variable : les composées",
+        "Aires et volumes par l'intégrale"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux primitives et au calcul intégral. Nous allons inverser la dérivation, calculer des aires sous les courbes, puis découvrir deux techniques d'intégration et leurs applications aux volumes.",
+      "texte": "Primitives et calcul intégral : le programme.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Le point de départ est une question à l'envers. D'habitude, on connaît une fonction et on calcule sa dérivée. Ici, on connaît la dérivée et on cherche la fonction. Cette recherche s'appelle la primitivation, et elle débouchera sur le calcul des aires.",
+      "texte": "La dérivation à rebours : chercher la fonction.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Une fonction grand F est une primitive d'une fonction f sur un intervalle quand grand F est dérivable sur cet intervalle et que sa dérivée redonne exactement f en tout point. Autrement dit, primitiver, c'est dériver à rebours.",
+      "texte": "Primitive : la dérivée de F redonne f.",
+      "ecran": "def_primitive"
+    },
+    {
+      "id": "p04",
+      "dit": "Une primitive n'est jamais seule. Si grand F est une primitive de f, alors grand F plus n'importe quelle constante est encore une primitive, car la dérivée d'une constante est nulle. Toutes les primitives forment ainsi une famille, décalée verticalement.",
+      "texte": "Une famille de courbes, décalées par la constante.",
+      "ecran": "constante"
+    },
+    {
+      "id": "p05",
+      "dit": "Premier groupe de primitives usuelles, à lire comme le tableau des dérivées à l'envers. Une constante a a pour primitive a x. Et x puissance n a pour primitive x puissance n plus un, divisé par n plus un, dès que n est différent de moins un.",
+      "texte": "Usuelles : constante et puissances.",
+      "ecran": "usuelles1"
+    },
+    {
+      "id": "p06",
+      "dit": "Deuxième groupe, les inverses. Un sur x a pour primitive le logarithme népérien de x, sur l'intervalle zéro, plus l'infini. Un sur x au carré a pour primitive moins un sur x. Et un sur racine de x a pour primitive deux racines de x.",
+      "texte": "Usuelles : les inverses et le logarithme.",
+      "ecran": "usuelles2"
+    },
+    {
+      "id": "p07",
+      "dit": "Troisième groupe. L'exponentielle est sa propre primitive, comme elle est sa propre dérivée. Le cosinus a pour primitive le sinus. Et le sinus a pour primitive moins le cosinus : le signe moins est le piège classique de ce tableau.",
+      "texte": "Usuelles : exponentielle, cosinus, sinus.",
+      "ecran": "usuelles3"
+    },
+    {
+      "id": "p08",
+      "dit": "Exemple d'application du tableau. Cherchons les primitives de trois x au carré moins un sur x, sur zéro, plus l'infini. Terme à terme : trois x au carré donne x au cube, et un sur x donne le logarithme. Les primitives sont x au cube moins logarithme de x, plus une constante quelconque.",
+      "texte": "Exemple : x³ − ln x + k, vérifié en dérivant.",
+      "ecran": "ex_primitive"
+    },
+    {
+      "id": "p09",
+      "dit": "Passons à l'intégrale. Imaginez l'aire située sous la courbe d'une fonction positive, entre deux abscisses a et b. Le théorème fondamental dira que cette fonction aire, quand la borne de droite varie, est elle-même une primitive de la fonction de départ.",
+      "texte": "L'intégrale commence par une aire.",
+      "ecran": "aire_intro"
+    },
+    {
+      "id": "p10",
+      "dit": "L'intégrale définie de a à b d'une fonction continue se calcule avec n'importe laquelle de ses primitives : c'est la valeur de la primitive en b, moins sa valeur en a. La constante disparaît dans la soustraction, donc le résultat ne dépend pas de la primitive choisie.",
+      "texte": "Intégrale : F(b) − F(a), la constante s'efface.",
+      "ecran": "integrale_def"
+    },
+    {
+      "id": "p11",
+      "dit": "Le théorème fondamental de l'analyse relie les deux mondes. Si l'on définit grand F de x comme l'intégrale, de a jusqu'à x, de la fonction f, alors grand F est dérivable, et sa dérivée redonne f. Dérivation et intégration sont donc deux opérations inverses l'une de l'autre.",
+      "texte": "Théorème fondamental : deux opérations inverses.",
+      "ecran": "theoreme"
+    },
+    {
+      "id": "p12",
+      "dit": "En pratique, calculer une intégrale suit toujours le même chemin. On cherche d'abord une primitive de la fonction, avec le tableau ou les techniques qui viennent. On évalue ensuite cette primitive aux deux bornes. Puis on soustrait, valeur en b moins valeur en a.",
+      "texte": "Méthode : primitive, bornes, soustraction.",
+      "ecran": "methode"
+    },
+    {
+      "id": "p13",
+      "dit": "Premier calcul complet. Intégrale de un à deux de deux x plus un. Une primitive de deux x plus un est x au carré plus x. En deux, elle vaut quatre plus deux, six. En un, elle vaut un plus un, deux. Différence : six moins deux, quatre. L'intégrale vaut quatre.",
+      "texte": "Exemple : l'intégrale de 2x + 1 vaut 4.",
+      "ecran": "ex_integrale"
+    },
+    {
+      "id": "p14",
+      "dit": "Trois propriétés rendent les calculs supportables. La linéarité : l'intégrale d'une combinaison de fonctions est la combinaison des intégrales, avec les mêmes coefficients. Et la relation de Chasles : on peut couper l'intervalle en un point intermédiaire et additionner les deux morceaux.",
+      "texte": "Linéarité et Chasles : combiner et découper.",
+      "ecran": "proprietes1"
+    },
+    {
+      "id": "p15",
+      "dit": "Deux règles de bornes complètent le tableau. L'intégrale d'un point à lui-même vaut zéro, puisqu'il n'y a aucune aire à mesurer. Et échanger les bornes change le signe de l'intégrale : intégrer de b vers a donne l'opposé d'intégrer de a vers b.",
+      "texte": "Bornes : intervalle vide nul, échange signé.",
+      "ecran": "proprietes2"
+    },
+    {
+      "id": "p16",
+      "dit": "Première technique, l'intégration par parties, pour les produits de fonctions. L'intégrale du produit d'une dérivée par une fonction égale le produit des deux fonctions, pris aux bornes, moins l'intégrale du produit de la première par la dérivée de la seconde.",
+      "texte": "Par parties : un produit contre un autre produit.",
+      "ecran": "ipp"
+    },
+    {
+      "id": "p17",
+      "dit": "Exemple : l'intégrale de zéro à un de x fois exponentielle x. On pose la dérivée égale à l'exponentielle et la fonction égale à x. Le terme tout intégré donne e. L'intégrale restante est celle de l'exponentielle entre zéro et un, elle vaut e moins un. La différence donne e moins e plus un, donc un.",
+      "texte": "Exemple par parties : le résultat vaut 1.",
+      "ecran": "ex_ipp"
+    },
+    {
+      "id": "p18",
+      "dit": "Deuxième technique, le changement de variable, pour les fonctions composées. Quand l'intégrande contient une fonction et presque sa dérivée, on pose une nouvelle variable égale à cette fonction intérieure, et l'intégrale se réécrit entièrement dans la nouvelle variable, bornes comprises.",
+      "texte": "Changement de variable : repérer la dérivée intérieure.",
+      "ecran": "cdv"
+    },
+    {
+      "id": "p19",
+      "dit": "Exemple : l'intégrale de zéro à un de deux x fois x au carré plus un, le tout au cube. On pose t égale x au carré plus un ; sa dérivée est deux x, exactement le facteur présent. Quand x va de zéro à un, t va de un à deux. L'intégrale devient celle de t au cube, de un à deux.",
+      "texte": "Exemple : t = x² + 1, les bornes deviennent 1 et 2.",
+      "ecran": "ex_cdv_pose"
+    },
+    {
+      "id": "p20",
+      "dit": "On termine le calcul. Une primitive de t au cube est t puissance quatre sur quatre. Évaluée entre un et deux, elle donne seize moins un, le tout sur quatre, c'est-à-dire quinze quarts.",
+      "texte": "Résultat : 15/4 après évaluation aux bornes.",
+      "ecran": "ex_cdv_calcul"
+    },
+    {
+      "id": "p21",
+      "dit": "Application majeure : les aires. Si une fonction est positive, son intégrale entre a et b est exactement l'aire sous sa courbe. Et si deux courbes se font face, l'aire comprise entre elles est l'intégrale de la fonction du dessus moins celle du dessous.",
+      "texte": "Aires : sous la courbe, ou entre deux courbes.",
+      "ecran": "aire_formules"
+    },
+    {
+      "id": "p22",
+      "dit": "Exemple : l'aire entre la parabole x au carré et la droite x, entre zéro et un. Sur cet intervalle, la droite est au-dessus de la parabole. On intègre donc x moins x au carré. La primitive, x au carré sur deux moins x au cube sur trois, donne un demi moins un tiers, soit un sixième.",
+      "texte": "Exemple : l'aire entre les courbes vaut 1/6.",
+      "ecran": "ex_aire"
+    },
+    {
+      "id": "p23",
+      "dit": "Dernière application : les volumes de révolution. En faisant tourner la courbe d'une fonction autour de l'axe des abscisses, on engendre un solide. Son volume vaut pi fois l'intégrale, entre a et b, du carré de la fonction.",
+      "texte": "Volume : pi fois l'intégrale du carré.",
+      "ecran": "volume"
+    },
+    {
+      "id": "p24",
+      "dit": "Exemple : le solide engendré par racine de x, entre zéro et quatre. Le carré de racine de x est simplement x. L'intégrale de x entre zéro et quatre vaut seize sur deux, huit. Le volume est donc huit pi, en unités de volume.",
+      "texte": "Exemple : le volume engendré vaut 8π.",
+      "ecran": "ex_volume"
+    },
+    {
+      "id": "p25",
+      "dit": "Pour conclure. Une primitive se reconnaît en dérivant. L'intégrale se calcule par la différence des valeurs d'une primitive aux bornes. Par parties pour les produits, changement de variable pour les composées. Et derrière ces calculs, des aires et des volumes.",
+      "texte": "Primitives et intégrales : l'essentiel.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Primitives usuelles et intégrale définie"
+    },
+    {
+      "debut": "p14",
+      "sous_titre": "Propriétés, techniques et applications",
+      "pont": {
+        "texte": "Partie 2 : propriétés, techniques, aires et volumes.",
+        "dit": "Partie deux : les propriétés qui simplifient les calculs, les deux grandes techniques, par parties et par changement de variable, et les applications aux aires et aux volumes de révolution."
+      }
+    }
+  ]
+}

@@ -1,0 +1,508 @@
+{
+ "cours": 6393,
+ "ecrans": {
+  "box": {
+   "kicker": "Votre box, trois appareils en un",
+   "tex": [
+    "\\text{routeur : vers Internet}",
+    "\\text{switch : 4 ports Ethernet}",
+    "\\text{point d'accès : le Wi-Fi}"
+   ],
+   "titre": "Routeur, switch, point d'accès",
+   "type": "etape"
+  },
+  "cidr": {
+   "kicker": "Masque et CIDR",
+   "note": "Bits à 1 : le réseau ; bits à 0 : les hôtes ; ici 8 bits d'hôtes, 254 adresses utilisables",
+   "tex": "192.168.1.10/24 \\iff 255.255.255.0",
+   "type": "formule"
+  },
+  "couches_principe": {
+   "kicker": "Le principe des couches",
+   "tex": [
+    "\\text{sert la couche supérieure}",
+    "\\text{s'appuie sur l'inférieure}",
+    "\\text{parle à son homologue}",
+    "\\text{indépendante à l'intérieur}"
+   ],
+   "titre": "Chacune son travail, chacune sa voisine",
+   "type": "etape"
+  },
+  "def_reseau": {
+   "kicker": "Définir : le réseau",
+   "tex": [
+    "\\text{équipements interconnectés}",
+    "\\text{échange de données}",
+    "\\text{partage de ressources}"
+   ],
+   "titre": "Des équipements reliés pour échanger",
+   "type": "etape"
+  },
+  "desencapsulation": {
+   "kicker": "À la réception",
+   "tex": [
+    "\\text{trame : on retire la remorque}",
+    "\\text{on retire l'en-tête Internet}",
+    "\\text{on retire l'en-tête Transport}",
+    "\\text{la donnée arrive à l'application}"
+   ],
+   "titre": "La désencapsulation, en sens inverse",
+   "type": "etape"
+  },
+  "email_envoi": {
+   "kicker": "Le courrier électronique",
+   "tex": [
+    "\\text{MUA : votre client email}",
+    "\\text{MTA : serveur d'envoi}",
+    "\\text{SMTP : l'envoi, ports 25/587}",
+    "\\text{MDA : serveur de réception}"
+   ],
+   "titre": "MUA, MTA, MDA : trois rôles",
+   "type": "etape"
+  },
+  "encapsulation": {
+   "kicker": "L'encapsulation",
+   "tex": [
+    "\\text{Application : la donnée}",
+    "\\text{Transport : + en-tête}",
+    "\\text{Internet : + en-tête}",
+    "\\text{Accès : trame + remorque}"
+   ],
+   "titre": "Chaque couche ajoute son en-tête",
+   "type": "etape"
+  },
+  "formule_trame": {
+   "kicker": "La trame finale",
+   "note": "H : en-têtes Liaison, Internet, Transport ; D : donnée ; T : remorque Liaison",
+   "tex": "F = H_{L} + H_{I} + H_{T} + D + T_{L}",
+   "type": "formule"
+  },
+  "handshake": {
+   "kicker": "La poignée de main TCP",
+   "note": "Séquences x, puis y et accusé x+1, puis accusé y+1 : les deux parties sont prêtes",
+   "tex": "\\text{SYN} \\rightarrow \\text{SYN-ACK} \\rightarrow \\text{ACK}",
+   "type": "formule"
+  },
+  "internet": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Internet, le réseau des réseaux",
+   "texte": "Internet : des milliers de réseaux reliés par TCP/IP.",
+   "type": "phrase"
+  },
+  "ipv4": {
+   "kicker": "IPv4 : 32 bits",
+   "note": "4 nombres de 0 à 255, ex. 192.168.1.10 : environ 4,3 milliards d'adresses",
+   "tex": "2^{32} = 4\\ 294\\ 967\\ 296",
+   "type": "formule"
+  },
+  "ipv6": {
+   "kicker": "IPv6 : 128 bits",
+   "note": "Hexadécimal, groupes séparés par des deux-points : l'espace de l'avenir",
+   "tex": "2^{128} \\approx 3{,}4 \\times 10^{38}",
+   "type": "formule"
+  },
+  "lan": {
+   "kicker": "Le LAN, réseau local",
+   "tex": [
+    "\\text{maison, bureau, campus}",
+    "\\text{moins de 1 à 2 km}",
+    "\\text{100 Mbit/s à 10 Gbit/s}",
+    "\\text{Ethernet ou Wi-Fi}"
+   ],
+   "titre": "Proche, rapide, privé",
+   "type": "etape"
+  },
+  "nat": {
+   "kicker": "Le NAT de la box",
+   "tex": [
+    "\\text{PC privé} \\rightarrow \\text{box}",
+    "\\text{box : adresse publique}",
+    "\\text{box : note la traduction}",
+    "\\text{retour : traduction inverse}"
+   ],
+   "titre": "Une publique pour tout le foyer",
+   "type": "etape"
+  },
+  "osi_tcpip": {
+   "kicker": "Deux modèles de référence",
+   "tex": [
+    "\\text{OSI : 7 couches, théorique}",
+    "\\text{TCP/IP : 4 couches, pratique}",
+    "\\text{le pilier d'Internet : TCP/IP}"
+   ],
+   "titre": "OSI théorique, TCP/IP pratique",
+   "type": "etape"
+  },
+  "page_web": {
+   "kicker": "Visiter une page, pas à pas",
+   "tex": [
+    "\\text{DNS (UDP 53) : nom} \\rightarrow \\text{IP}",
+    "\\text{poignée de main TCP}",
+    "\\text{requête HTTP GET}",
+    "\\text{réponse : page, images, scripts}",
+    "\\text{fermeture propre de la connexion}"
+   ],
+   "titre": "DNS, TCP, HTTP, réponse, fermeture",
+   "type": "etape"
+  },
+  "parcours_paquet": {
+   "kicker": "Le parcours d'un paquet",
+   "tex": [
+    "\\text{PC} \\rightarrow \\text{routeur de la box}",
+    "\\text{box : NAT} \\rightarrow \\text{WAN du FAI}",
+    "\\text{IXP, réseaux de transit}",
+    "\\text{LAN du serveur} \\rightarrow \\text{serveur}",
+    "\\text{retour : le chemin inverse}"
+   ],
+   "titre": "De votre PC au serveur, et retour",
+   "type": "etape"
+  },
+  "pop_imap": {
+   "kicker": "Recevoir son courrier",
+   "tex": [
+    "\\text{POP3 : télécharge, ports 110/995}",
+    "\\text{POP3 : efface souvent le serveur}",
+    "\\text{IMAP : synchronise, ports 143/993}",
+    "\\text{IMAP : messages gardés sur le serveur}"
+   ],
+   "titre": "Télécharger ou synchroniser",
+   "type": "etape"
+  },
+  "postale": {
+   "kicker": "L'analogie postale",
+   "tex": [
+    "\\text{lettre : les données}",
+    "\\text{enveloppe : l'adressage}",
+    "\\text{centres de tri : les routeurs}",
+    "\\text{règles communes : les protocoles}"
+   ],
+   "titre": "Une lettre, une adresse, des règles",
+   "type": "etape"
+  },
+  "prive_public": {
+   "kicker": "Publiques et privées",
+   "tex": [
+    "\\text{publique : unique, mondiale}",
+    "\\text{publique : routable sur Internet}",
+    "\\text{privée : RFC 1918, non routable}",
+    "\\text{privée : réutilisée dans chaque LAN}"
+   ],
+   "titre": "Routables ou réservées au local",
+   "type": "etape"
+  },
+  "quotidien": {
+   "kicker": "Dans la vie quotidienne",
+   "tex": [
+    "\\text{streaming : morceaux, qualité adaptative}",
+    "\\text{jeux : UDP, chaque milliseconde compte}",
+    "\\text{objets : MQTT, messages légers}"
+   ],
+   "titre": "Streaming, jeux, objets connectés",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Réseau : équipements reliés et partage",
+    "Échelles : LAN, WAN, Internet",
+    "Couches : TCP/IP, encapsulation",
+    "Adresses : IPv4, IPv6, CIDR, NAT",
+    "Protocoles et sécurité : TCP, UDP, Web, email"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "role_ip": {
+   "kicker": "L'adresse IP, double rôle",
+   "tex": [
+    "\\text{identifier l'hôte}",
+    "\\text{donner son emplacement}",
+    "\\text{permettre le routage}"
+   ],
+   "titre": "Identifier et localiser",
+   "type": "etape"
+  },
+  "roles_couches": {
+   "kicker": "Les quatre couches TCP/IP",
+   "tex": [
+    "\\text{Application : HTTP, DNS}",
+    "\\text{Transport : TCP ou UDP}",
+    "\\text{Internet : IP, routage}",
+    "\\text{Accès réseau : Ethernet, Wi-Fi}"
+   ],
+   "titre": "Application, Transport, Internet, Accès",
+   "type": "etape"
+  },
+  "securite": {
+   "kicker": "La défense en profondeur",
+   "tex": [
+    "\\text{pare-feu : filtrer le trafic}",
+    "\\text{HTTPS : chiffrer avec TLS}",
+    "\\text{2FA : une seconde preuve}",
+    "\\text{SPF, DKIM, DMARC : authentifier l'email}"
+   ],
+   "titre": "Plusieurs barrières, pas une seule",
+   "type": "etape"
+  },
+  "tcp_udp": {
+   "kicker": "TCP contre UDP",
+   "tex": [
+    "\\text{TCP : fiable, appel téléphonique}",
+    "\\text{UDP : rapide, carte postale}",
+    "\\text{voix : UDP, la perte vaut mieux}",
+    "\\text{que l'attente d'une retransmission}"
+   ],
+   "titre": "Fiable ou rapide : il faut choisir",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Informatique · Fondamentaux des réseaux",
+   "sous": "Du LAN de la maison à Internet : définitions, couches, adresses et protocoles",
+   "titre": "Fondamentaux des réseaux et d'Internet",
+   "type": "titre"
+  },
+  "topologies": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Les topologies",
+   "texte": "Étoile, bus, anneau : trois façons de relier les nœuds.",
+   "type": "phrase"
+  },
+  "wan": {
+   "kicker": "Le WAN, réseau étendu",
+   "tex": [
+    "\\text{LAN distants reliés entre eux}",
+    "\\text{routeurs : le meilleur chemin}",
+    "\\text{fibre, satellite, 4G/5G}",
+    "\\text{débit plus faible, latence plus haute}"
+   ],
+   "titre": "Relier des LAN distants",
+   "type": "etape"
+  },
+  "web": {
+   "kicker": "Internet n'est pas le Web",
+   "tex": [
+    "\\text{Internet : réseaux, TCP/IP}",
+    "\\text{Web : documents hyperliés}",
+    "\\text{HTTP : port 80, HTTPS : 443}",
+    "\\text{HTTPS : HTTP + TLS, chiffré}"
+   ],
+   "titre": "L'infrastructure et son service",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définitions, topologies, LAN, WAN et Internet"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : les couches qui organisent tout, de l'encapsulation à la désencapsulation, puis les adresses I P qui permettent à chaque paquet de trouver sa destination, et le NAT qui partage une adresse publique.",
+    "texte": "Partie 2 : couches, adresses IP et NAT."
+   },
+   "sous_titre": "Couches TCP/IP, adresses IP et NAT"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : les protocoles qui transportent vos pages et vos emails, la sécurité en profondeur, et le voyage complet d'un paquet, de votre ordinateur jusqu'au serveur.",
+    "texte": "Partie 3 : protocoles, sécurité et voyage d'un paquet."
+   },
+   "sous_titre": "Protocoles, sécurité et voyage d'un paquet"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans les fondamentaux des réseaux et d'Internet. Derrière chaque clic, chaque page qui se charge et chaque message qui arrive, une même machinerie invisible : des appareils reliés, des règles communes et des adresses. Découvrons-la, de votre box au monde entier.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Derrière chaque clic, une machinerie invisible."
+  },
+  {
+   "dit": "Un réseau informatique, c'est un ensemble d'équipements interconnectés, ordinateurs, serveurs, imprimantes ou routeurs, reliés par des canaux de communication pour échanger des données et partager des ressources.",
+   "ecran": "def_reseau",
+   "id": "p02",
+   "texte": "Réseau : des équipements reliés qui partagent."
+  },
+  {
+   "dit": "Pensez au service postal : vous écrivez une lettre, les données, vous la glissez dans une enveloppe portant une adresse précise, l'adressage, puis elle passe par des centres de tri, les routeurs. Sans règles communes sur les enveloppes et les adresses, tout s'effondrerait : ces règles communes, ce sont les protocoles.",
+   "ecran": "postale",
+   "id": "p03",
+   "texte": "Comme la poste : lettre, adresse, tri, règles."
+  },
+  {
+   "dit": "La topologie décrit comment les nœuds, les appareils, sont reliés entre eux. En étoile, tous passent par un centre, souvent un switch : si un poste tombe en panne, le reste du réseau continue. En bus, tous partagent un même câble, et en anneau, ils forment une boucle.",
+   "ecran": "topologies",
+   "id": "p04",
+   "texte": "Étoile, bus, anneau : trois façons de relier les nœuds."
+  },
+  {
+   "dit": "Le réseau local, le LAN, couvre une zone restreinte, une maison, un bureau ou un campus, sur moins d'un à deux kilomètres. Il est rapide, de cent mégabits par seconde à dix gigabits par seconde et au-delà, peu coûteux, et repose souvent sur Ethernet ou sur le Wi-Fi.",
+   "ecran": "lan",
+   "id": "p05",
+   "texte": "LAN : proche, rapide, privé."
+  },
+  {
+   "dit": "Regardez votre box : elle intègre en réalité trois appareils. Un routeur, pour sortir vers Internet, un switch, avec ses quatre ports Ethernet à l'arrière, et un point d'accès Wi-Fi. Tous vos appareils, PC, télévision, téléphone, forment votre LAN domestique.",
+   "ecran": "box",
+   "id": "p06",
+   "texte": "Votre box : routeur, switch et Wi-Fi en un."
+  },
+  {
+   "dit": "Le réseau étendu, le WAN, relie des LAN distants, une région, un pays, voire le monde entier. Il repose sur des routeurs, qui trouvent le meilleur chemin, et sur des infrastructures louées, fibre ou satellite : débit généralement plus faible qu'un LAN, et latence plus élevée.",
+   "ecran": "wan",
+   "id": "p07",
+   "texte": "WAN : relier des sites distants."
+  },
+  {
+   "dit": "Internet, avec un I majuscule, n'est pas un réseau unique : c'est un réseau mondial de réseaux, publics et privés, qui acceptent de communiquer grâce à une suite de protocoles commune, TCP/IP. Son ancêtre, ARPANET, reliait quatre universités en mille neuf cent soixante-neuf, et son premier message, LOGIN, planta après les deux premières lettres : LO.",
+   "ecran": "internet",
+   "id": "p08",
+   "texte": "Internet : des milliers de réseaux reliés par TCP/IP."
+  },
+  {
+   "dit": "Pour maîtriser cette complexité, les ingénieurs ont découpé le problème en couches. Chaque couche fournit des services à la couche supérieure, s'appuie sur les services de la couche inférieure, communique logiquement avec sa couche homologue sur l'autre machine, et reste indépendante dans son fonctionnement interne.",
+   "ecran": "couches_principe",
+   "id": "p09",
+   "texte": "Chaque couche : un travail, deux voisines."
+  },
+  {
+   "dit": "Deux modèles de référence existent. Le modèle OSI, défini par l'ISO, compte sept couches : c'est un idéal théorique et pédagogique. Le modèle TCP/IP, plus pragmatique, n'en compte que quatre, et c'est lui qui fait réellement tourner Internet.",
+   "ecran": "osi_tcpip",
+   "id": "p10",
+   "texte": "OSI, sept couches théoriques ; TCP/IP, quatre, pratiques."
+  },
+  {
+   "dit": "Voici les quatre couches TCP/IP. L'Application, avec HTTP ou le DNS ; le Transport, avec TCP, fiable, ou UDP, rapide ; l'Internet, avec IP, qui adresse et route ; et l'Accès réseau, avec Ethernet, le Wi-Fi ou PPP, qui porte les bits sur le câble ou dans les airs.",
+   "ecran": "roles_couches",
+   "id": "p11",
+   "texte": "Application, Transport, Internet, Accès réseau."
+  },
+  {
+   "dit": "Le concept clé, c'est l'encapsulation. Quand vous envoyez un email, les données descendent les couches, et chaque couche ajoute ses propres informations de contrôle, un en-tête, autour des données reçues, comme une poupée russe qui en contient une autre.",
+   "ecran": "encapsulation",
+   "id": "p12",
+   "texte": "Chaque couche ajoute son en-tête : poupées russes."
+  },
+  {
+   "dit": "Si D désigne les données de l'utilisateur, la trame finale s'écrit comme la somme de l'en-tête de Liaison, de l'en-tête Internet, de l'en-tête Transport, des données, puis de la remorque de Liaison.",
+   "ecran": "formule_trame",
+   "id": "p13",
+   "texte": "La trame : en-têtes, donnée, remorque."
+  },
+  {
+   "dit": "À la réception, le processus inverse a lieu, la désencapsulation : chaque couche retire son en-tête, et sa remorque, avant de passer les données à la couche supérieure, jusqu'à ce que l'application retrouve le message d'origine.",
+   "ecran": "desencapsulation",
+   "id": "p14",
+   "texte": "À l'arrivée, chaque couche retire son en-tête."
+  },
+  {
+   "dit": "Pour qu'un paquet trouve sa destination parmi des millions d'appareils, chacun doit avoir une adresse logique unique : l'adresse IP. Elle joue un double rôle : identifier l'hôte, l'appareil, et donner son emplacement dans la topologie du réseau, ce qui permet le routage.",
+   "ecran": "role_ip",
+   "id": "p15",
+   "texte": "Adresse IP : identifier et localiser."
+  },
+  {
+   "dit": "Le format historique, I P version quatre, tient sur trente-deux bits : quatre nombres de zéro à deux cent cinquante-cinq, séparés par des points, comme cent quatre-vingt-douze, cent soixante-huit, un, dix. Cela ne fait que deux puissance trente-deux adresses, environ quatre virgule trois milliards : un nombre qui semblait astronomique, et qui est aujourd'hui insuffisant.",
+   "ecran": "ipv4",
+   "id": "p16",
+   "texte": "IPv4 : 32 bits, 4 nombres, 4,3 milliards d'adresses."
+  },
+  {
+   "dit": "La solution, c'est I P version six : cent vingt-huit bits, soit deux puissance cent vingt-huit adresses, environ trois virgule quatre fois dix puissance trente-huit. Son format est hexadécimal, avec des groupes séparés par des deux-points : assez pour attribuer des billions d'adresses à chaque millimètre carré de la surface de la Terre.",
+   "ecran": "ipv6",
+   "id": "p17",
+   "texte": "IPv6 : 128 bits, un espace colossal."
+  },
+  {
+   "dit": "Une adresse IP se découpe en deux parties, définies par un masque. Les bits à un du masque désignent le réseau, les bits à zéro désignent l'hôte. En notation CIDR, barre oblique vingt-quatre équivaut au masque deux cent cinquante-cinq, deux cent cinquante-cinq, deux cent cinquante-cinq, zéro : il reste huit bits pour les hôtes, soit deux puissance huit moins deux, deux cent cinquante-quatre adresses utilisables.",
+   "ecran": "cidr",
+   "id": "p18",
+   "texte": "Barre oblique 24 : le réseau, puis les hôtes."
+  },
+  {
+   "dit": "Toutes les adresses ne sont pas routables sur l'Internet public. L'adresse publique est unique au niveau mondial, attribuée par l'IANA via les registres régionaux : c'est l'adresse visible de l'extérieur de votre box. Les adresses privées, réservées par la norme RFC dix-neuf cent dix-huit, ne servent qu'à l'intérieur des LAN, et peuvent être réutilisées dans des millions de réseaux privés sans conflit.",
+   "ecran": "prive_public",
+   "id": "p19",
+   "texte": "Publique, unique et routable ; privée, locale."
+  },
+  {
+   "dit": "Comment votre ordinateur, en adresse privée, accède-t-il alors à Internet ? Grâce au NAT de la box. La box remplace l'adresse privée source par sa propre adresse publique, note cette traduction dans une table, puis, au retour de la réponse, fait la traduction inverse vers votre ordinateur. Un seul inconvénient : cela brise le modèle de bout en bout d'Internet.",
+   "ecran": "nat",
+   "id": "p20",
+   "texte": "NAT : une publique pour tout le foyer."
+  },
+  {
+   "dit": "Au-dessus d'IP, qui ne garantit ni la livraison ni l'ordre, deux transports s'opposent. TCP est comme un appel téléphonique : on établit la connexion, on vérifie que l'interlocuteur comprend. UDP est comme une carte postale : on envoie sans savoir si elle arrivera, mais c'est rapide. Pour la voix, UDP gagne : perdre quelques paquets vaut mieux qu'attendre leur retransmission.",
+   "ecran": "tcp_udp",
+   "id": "p21",
+   "texte": "TCP fiable, UDP rapide : le dilemme."
+  },
+  {
+   "dit": "Avant d'échanger, TCP établit la connexion en trois messages. Le client envoie SYN, avec un numéro de séquence x. Le serveur répond SYN-ACK, avec son numéro y et l'accusé x plus un. Le client confirme par ACK, accusé y plus un. Cette troisième étape évite les connexions fantômes si le deuxième message se perd.",
+   "ecran": "handshake",
+   "id": "p22",
+   "texte": "SYN, SYN-ACK, ACK : trois messages."
+  },
+  {
+   "dit": "Ne confondez pas Internet et le Web. Internet est l'infrastructure, réseaux, routeurs et protocoles TCP/IP. Le Web est un service qui fonctionne dessus : des documents hyperliés, structurés en HTML, adressés par des URL, et échangés par HTTP, sur le port quatre-vingts, ou HTTPS, sur le port quatre cent quarante-trois, qui ajoute le chiffrement TLS.",
+   "ecran": "web",
+   "id": "p23",
+   "texte": "Internet : l'infrastructure ; Web : le service."
+  },
+  {
+   "dit": "Suivez une visite de page web. D'abord, le DNS, sur le port cinquante-trois, convertit le nom du site en adresse IP. Puis la poignée de main TCP établit la connexion, le navigateur envoie sa requête HTTP, le serveur renvoie la page, les images et les scripts, et la connexion se ferme proprement une fois la page chargée.",
+   "ecran": "page_web",
+   "id": "p24",
+   "texte": "Une page : DNS, TCP, HTTP, réponse, fermeture."
+  },
+  {
+   "dit": "Le courrier électronique repose sur trois rôles. Le MUA, votre client email ; le MTA, le serveur d'envoi ; le MDA, le serveur de réception. L'envoi entre serveurs utilise SMTP, sur le port vingt-cinq, ou cinq cent quatre-vingt-sept pour la soumission, un protocole en texte simple avec des codes de réponse à trois chiffres.",
+   "ecran": "email_envoi",
+   "id": "p25",
+   "texte": "Email : client, serveur d'envoi, serveur de réception."
+  },
+  {
+   "dit": "Pour relever son courrier, deux protocoles s'opposent. P O P trois télécharge les messages vers le client, et les supprime généralement du serveur ensuite. IMAP, lui, synchronise dans les deux sens : les messages restent sur le serveur, avec leurs dossiers, et tous vos appareils voient la même boîte.",
+   "ecran": "pop_imap",
+   "id": "p26",
+   "texte": "POP3 télécharge, IMAP synchronise."
+  },
+  {
+   "dit": "La sécurité ne repose jamais sur une seule barrière : c'est la défense en profondeur. Un pare-feu filtre le trafic entrant et sortant selon des règles. HTTPS chiffre la communication avec TLS. L'authentification à deux facteurs ajoute une seconde preuve après le mot de passe. Et côté email, SPF, DKIM et DMARC authentifient l'expéditeur contre l'usurpation.",
+   "ecran": "securite",
+   "id": "p27",
+   "texte": "Pare-feu, chiffrement, double facteur, authentification."
+  },
+  {
+   "dit": "Récapitulons le voyage d'un paquet depuis votre ordinateur à la maison. Il part dans votre LAN vers le routeur de la box, subit le NAT, traverse le WAN de votre fournisseur d'accès, passe éventuellement par un point d'échange Internet et des réseaux de transit, arrive dans le LAN du serveur, puis la réponse refait le chemin inverse.",
+   "ecran": "parcours_paquet",
+   "id": "p28",
+   "texte": "PC, box, FAI, transit, serveur : le voyage d'un paquet."
+  },
+  {
+   "dit": "Ces mêmes principes vivent dans votre quotidien. Le streaming découpe la vidéo en petits morceaux et adapte la qualité à votre débit, pour éviter les coupures. Les jeux en ligne préfèrent UDP, car une information vieille de deux cents millisecondes est déjà obsolète. Et les objets connectés, à batterie limitée, parlent MQTT, un protocole léger de petits messages.",
+   "ecran": "quotidien",
+   "id": "p29",
+   "texte": "Streaming adaptatif, jeux en UDP, objets en MQTT."
+  },
+  {
+   "dit": "Retenons l'essentiel. Un réseau relie des équipements pour échanger des données et partager des ressources. LAN proche et rapide, WAN distant, Internet réseau des réseaux. TCP/IP organise tout en quatre couches, avec encapsulation à l'envoi et désencapsulation à l'arrivée. I P version quatre s'épuise, I P version six est immense, le CIDR découpe, le NAT partage. TCP est fiable, UDP est rapide, le Web et l'email vivent sur cette machinerie, et la sécurité, elle, se pense en profondeur.",
+   "ecran": "recap",
+   "id": "p30",
+   "texte": "Réseau, échelles, couches, adresses, protocoles, sécurité."
+  }
+ ],
+ "titre": "Fondamentaux des réseaux et d'Internet"
+}

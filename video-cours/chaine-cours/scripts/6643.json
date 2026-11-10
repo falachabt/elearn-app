@@ -1,0 +1,489 @@
+{
+ "cours": 6643,
+ "ecrans": {
+  "antivirus": {
+   "kicker": "L'antivirus",
+   "tex": [
+    "\\text{analyse en temps réel}",
+    "\\text{analyse planifiée}",
+    "\\text{installer, analyser, mettre à jour}"
+   ],
+   "titre": "Surveiller en continu",
+   "type": "etape"
+  },
+  "attitudes": {
+   "kicker": "Travailler à deux, sans casse",
+   "texte": "À deux, on connecte mieux : l'un branche, l'autre vérifie.",
+   "type": "phrase"
+  },
+  "attributs": {
+   "kicker": "Les attributs d'un fichier",
+   "tex": [
+    "\\text{lecture seule : ouvert, non modifié}",
+    "\\text{masqué : invisible par défaut}",
+    "\\text{archive : modifié depuis la sauvegarde}",
+    "\\text{système : critique pour l'OS}",
+    "\\text{indexé : dans l'index de recherche}"
+   ],
+   "titre": "Cinq propriétés à connaître",
+   "type": "etape"
+  },
+  "caracteristiques": {
+   "kicker": "Identifier sa machine",
+   "tex": [
+    "\\text{type et fréquence du processeur}",
+    "\\text{capacité de la RAM}",
+    "\\text{capacité du stockage}",
+    "\\text{type de carte graphique}",
+    "\\text{système d'exploitation installé}"
+   ],
+   "titre": "Cinq caractéristiques à connaître",
+   "type": "etape"
+  },
+  "compression": {
+   "kicker": "Compression : le taux",
+   "note": "Projet_TP : 24 Mo compressés en 6 Mo, économie de 75 %, envoi sous la limite de 10 Mo",
+   "tex": "\\text{Taux} = \\frac{6}{24} \\times 100 = 25\\,\\%",
+   "type": "formule"
+  },
+  "connexion": {
+   "kicker": "Procédure : connecter",
+   "tex": [
+    "\\text{identifier le port adapté}",
+    "\\text{aligner le connecteur}",
+    "\\text{insérer jusqu'au clic}",
+    "\\text{vérifier la détection}"
+   ],
+   "titre": "Connecter en quatre gestes",
+   "type": "etape"
+  },
+  "cpu": {
+   "kicker": "Le processeur",
+   "tex": [
+    "\\text{il exécute les instructions}",
+    "\\text{fréquence, en gigahertz}",
+    "\\text{nombre de cœurs}"
+   ],
+   "titre": "Le processeur exécute",
+   "type": "etape"
+  },
+  "deconnexion": {
+   "kicker": "Procédure : déconnecter",
+   "tex": [
+    "\\text{fermer les applications en cours}",
+    "\\text{cliquer sur Éjecter}",
+    "\\text{attendre la confirmation}"
+   ],
+   "titre": "Débrancher sans abîmer",
+   "type": "etape"
+  },
+  "defrag": {
+   "kicker": "Défragmentation : le taux",
+   "note": "Au-delà de 10 % : défragmenter ; après, sous 3 % ; jamais sur un SSD, inutile et usant",
+   "tex": "T_f = \\frac{48}{320} \\times 100 = 15\\,\\%",
+   "type": "formule"
+  },
+  "exercice": {
+   "kicker": "Exercice d'application",
+   "tex": [
+    "\\text{écran : port HDMI, haute qualité}",
+    "\\text{clavier et souris : ports USB}",
+    "\\text{USB : le standard actuel}"
+   ],
+   "titre": "Écran, clavier, souris : quels ports ?",
+   "type": "etape"
+  },
+  "extensions": {
+   "kicker": "Formats et extensions",
+   "note": "rapport_TP1.docx renommé en .txt : Word ne l'ouvre plus correctement",
+   "tex": [
+    "\\text{suffixe de 3 ou 4 caractères}",
+    "\\text{après le point du nom}",
+    "\\text{ne jamais la modifier à la main}"
+   ],
+   "titre": "L'extension dit le type",
+   "type": "etape"
+  },
+  "fichiers_arbre": {
+   "kicker": "Fichiers et dossiers",
+   "tex": [
+    "\\text{fichier : unité nommée, extension}",
+    "\\text{dossier : conteneur logique}",
+    "\\text{arborescence : structure hiérarchique}"
+   ],
+   "titre": "Fichier, dossier, arborescence",
+   "type": "etape"
+  },
+  "formatage": {
+   "kicker": "Le formatage",
+   "note": "Clé de 32 Go en FAT32 : environ 29,8 Go utiles, 2,2 Go d'overhead du système de fichiers",
+   "tex": [
+    "\\text{crée un système de fichiers}",
+    "\\text{NTFS, FAT32, exFAT}",
+    "\\text{efface tout : sauvegarder avant}"
+   ],
+   "titre": "Préparer un support, effacer ses données",
+   "type": "etape"
+  },
+  "graphique_alim": {
+   "kicker": "Image et énergie",
+   "tex": [
+    "\\text{carte graphique : images et vidéos}",
+    "\\text{elle a sa propre mémoire vidéo}",
+    "\\text{alimentation : secteur vers composants}"
+   ],
+   "titre": "Voir et alimenter",
+   "type": "etape"
+  },
+  "intro_port": {
+   "kicker": "D'abord, de quoi parle-t-on ?",
+   "texte": "Un ordinateur traite des informations ; un port le relie au monde.",
+   "type": "phrase"
+  },
+  "methode_windows": {
+   "kicker": "Sous Windows",
+   "note": "Exemple : Intel Core i5, 8 Go de RAM, système 64 bits",
+   "tex": [
+    "\\text{Panneau de configuration > Système}",
+    "\\text{ou Gestionnaire de périphériques}"
+   ],
+   "titre": "Où lire ces informations ?",
+   "type": "etape"
+  },
+  "nettoyage": {
+   "kicker": "Nettoyage du disque",
+   "note": "Nettoyage de disque de Windows : fichiers temporaires et corbeille supprimés en sécurité",
+   "tex": "\\text{Espace libéré} = 2{,}5 + 0{,}8 = 3{,}3\\,\\text{Go}",
+   "type": "formule"
+  },
+  "onduleur": {
+   "kicker": "Dimensionner l'onduleur",
+   "note": "Ordinateur 300 W + écran 50 W, facteur 0,7 : onduleur de 600 VA minimum recommandé",
+   "tex": "S = \\frac{350}{0{,}7} = 500\\,\\text{VA}",
+   "type": "formule"
+  },
+  "operations": {
+   "kicker": "Manipuler fichiers et dossiers",
+   "tex": [
+    "\\text{créer : dossier, fichier}",
+    "\\text{copier : Ctrl+C, Ctrl+V}",
+    "\\text{déplacer : Ctrl+X, Ctrl+V}",
+    "\\text{renommer : F2, supprimer : Suppr}",
+    "\\text{rechercher : nom, date}"
+   ],
+   "titre": "Six opérations courantes",
+   "type": "etape"
+  },
+  "peripheriques": {
+   "kicker": "Entrées et sorties",
+   "tex": [
+    "\\text{entrée : clavier, souris, microphone}",
+    "\\text{sortie : écran, imprimante, haut-parleurs}",
+    "\\text{clé USB : port USB de type A}"
+   ],
+   "titre": "Entrée d'un côté, sortie de l'autre",
+   "type": "etape"
+  },
+  "protection": {
+   "kicker": "Protéger le matériel",
+   "tex": [
+    "\\text{onduleur : coupures et variations}",
+    "\\text{parafoudre : foudre et surtensions}",
+    "\\text{refroidissement : 18 à 25 degrés}",
+    "\\text{filtres contre la poussière}",
+    "\\text{stabilisateur de tension}"
+   ],
+   "titre": "Cinq protections physiques",
+   "type": "etape"
+  },
+  "ram": {
+   "kicker": "La mémoire vive",
+   "tex": [
+    "\\text{temporaire, en cours d'utilisation}",
+    "\\text{plus de gigaoctets, plus de tâches}"
+   ],
+   "titre": "La RAM, mémoire de travail",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Ports : interfaces vers les périphériques, connexion et déconnexion en procédure",
+    "Unité centrale : carte mère, processeur, RAM, stockage, graphique, alimentation",
+    "Fichiers : arborescence, extensions à ne pas toucher, attributs, compression",
+    "Optimiser : nettoyer, défragmenter les disques mécaniques, sauvegarder en 3-2-1",
+    "Protéger : onduleur, antivirus à jour, scanner chaque support externe"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "sauvegarde": {
+   "kicker": "La sauvegarde, règle 3-2-1",
+   "tex": [
+    "\\text{3 copies des données}",
+    "\\text{sur 2 supports différents}",
+    "\\text{dont 1 copie hors site}"
+   ],
+   "titre": "Trois copies, deux supports, un hors site",
+   "type": "etape"
+  },
+  "sauvegardes_types": {
+   "kicker": "Incrémentielle ou différentielle ?",
+   "tex": [
+    "\\text{complète lundi : 50 Go}",
+    "\\text{incrémentielle : 53,5 Go au total}",
+    "\\text{différentielle : 55,5 Go au total}"
+   ],
+   "titre": "Deux stratégies, deux totaux",
+   "type": "etape"
+  },
+  "securite_scan": {
+   "kicker": "Analyser un support",
+   "note": "Clé de 16 Go analysée en 4 minutes, 2 fichiers infectés mis en quarantaine puis supprimés",
+   "tex": "\\text{Taux} = \\frac{2}{16} = 0{,}125\\,\\text{menace/Go}",
+   "type": "formule"
+  },
+  "stockage": {
+   "kicker": "Le stockage permanent",
+   "tex": [
+    "\\text{stockage permanent des données}",
+    "\\text{SSD : plus rapide, plus fiable}",
+    "\\text{disque dur mécanique : HDD}"
+   ],
+   "titre": "Disque dur ou SSD ?",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Informatique · Maîtriser son ordinateur",
+   "sous": "Ports, composants, fichiers et entretien : connaître sa machine pour la faire durer",
+   "titre": "Maîtriser et optimiser son ordinateur",
+   "type": "titre"
+  },
+  "unite_centrale": {
+   "kicker": "Dans le boîtier",
+   "tex": [
+    "\\text{carte mère, processeur}",
+    "\\text{mémoire vive, stockage}",
+    "\\text{carte graphique, alimentation}"
+   ],
+   "titre": "Six composants essentiels",
+   "type": "etape"
+  },
+  "utilitaires": {
+   "kicker": "Les utilitaires système",
+   "tex": [
+    "\\text{gestion des fichiers}",
+    "\\text{défragmentation, nettoyage}",
+    "\\text{restauration du système}",
+    "\\text{gestionnaire de tâches, sauvegarde}"
+   ],
+   "titre": "Entretenir, diagnostiquer, optimiser",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Ports, périphériques et composants internes"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : les utilitaires système et l'antivirus, puis les fichiers, leurs opérations, leurs extensions et leurs attributs, et enfin la compression.",
+    "texte": "Partie 2 : utilitaires, fichiers et compression."
+   },
+   "sous_titre": "Utilitaires, fichiers et compression"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : nettoyer et défragmenter le disque, sauvegarder selon la règle trois deux un, formater sans perdre ses données, et protéger la machine, physiquement et par logiciel.",
+    "texte": "Partie 3 : nettoyage, sauvegarde, formatage et protection."
+   },
+   "sous_titre": "Nettoyage, sauvegarde, formatage et protection"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours pour maîtriser et optimiser son ordinateur. Nous allons brancher ses périphériques, ouvrir son boîtier, ranger ses fichiers, puis nettoyer, sauvegarder et protéger sa machine.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Maîtriser son ordinateur, de la prise au disque dur."
+  },
+  {
+   "dit": "Un ordinateur est un ensemble de matériel et de logiciels qui traite automatiquement des informations. Un port, lui, est l'interface qui relie l'ordinateur à un périphérique externe, par un connecteur physique sur la carte mère ou le boîtier.",
+   "ecran": "intro_port",
+   "id": "p02",
+   "texte": "Un ordinateur traite des informations ; un port le relie au monde."
+  },
+  {
+   "dit": "Pour connecter une clé USB, on l'insère dans le port USB de type A, et le système la détecte puis l'affiche dans l'explorateur de fichiers. Les périphériques d'entrée, clavier, souris, microphone, et de sortie, écran, imprimante, haut-parleurs, se connectent chacun par le port adapté.",
+   "ecran": "peripheriques",
+   "id": "p03",
+   "texte": "Entrée d'un côté, sortie de l'autre."
+  },
+  {
+   "dit": "Pour connecter un périphérique, on identifie d'abord le port qui correspond à son connecteur, on aligne correctement ce connecteur, on insère fermement jusqu'au clic ou au blocage, puis on vérifie que le système l'a bien détecté.",
+   "ecran": "connexion",
+   "id": "p04",
+   "texte": "Connecter en quatre gestes."
+  },
+  {
+   "dit": "Pour déconnecter, on ferme d'abord les applications qui utilisent le périphérique, on utilise l'option Éjecter ou Retirer le périphérique en toute sécurité, et on attend la confirmation avant de débrancher. Par exemple, pour une imprimante, on branche le câble USB, on installe le pilote, puis on teste l'impression.",
+   "ecran": "deconnexion",
+   "id": "p05",
+   "texte": "Débrancher sans abîmer."
+  },
+  {
+   "dit": "L'unité centrale, ou boîtier, contient les composants essentiels au fonctionnement de l'ordinateur. La carte mère est le circuit imprimé principal qui relie tous les composants entre eux, avec son chipset, ses connecteurs et ses slots d'extension.",
+   "ecran": "unite_centrale",
+   "id": "p06",
+   "texte": "Six composants essentiels."
+  },
+  {
+   "dit": "Le processeur, ou unité centrale de traitement, exécute les instructions des programmes. Ses caractéristiques sont sa fréquence, en gigahertz, et son nombre de cœurs.",
+   "ecran": "cpu",
+   "id": "p07",
+   "texte": "Le processeur exécute."
+  },
+  {
+   "dit": "La mémoire vive stocke temporairement les données en cours d'utilisation. Plus sa capacité est grande, en gigaoctets, plus l'ordinateur peut traiter de tâches en même temps.",
+   "ecran": "ram",
+   "id": "p08",
+   "texte": "La RAM, mémoire de travail."
+  },
+  {
+   "dit": "Le disque dur ou le SSD assure le stockage permanent des données. Le SSD, disque à mémoire flash, est plus rapide et plus fiable que le disque dur mécanique.",
+   "ecran": "stockage",
+   "id": "p09",
+   "texte": "Disque dur ou SSD ?"
+  },
+  {
+   "dit": "La carte graphique traite les images et les vidéos, et elle possède sa propre mémoire vidéo. L'alimentation, elle, convertit le courant du secteur en tensions adaptées aux composants internes.",
+   "ecran": "graphique_alim",
+   "id": "p10",
+   "texte": "Voir et alimenter."
+  },
+  {
+   "dit": "Prenons un exemple chiffré : un ordinateur possède huit gigaoctets de RAM et un processeur à deux virgule quatre gigahertz, c'est-à-dire la capacité de sa mémoire temporaire et la vitesse d'exécution de son processeur. Les caractéristiques à identifier sont le processeur, la RAM, le stockage, la carte graphique et le système d'exploitation installé.",
+   "ecran": "caracteristiques",
+   "id": "p11",
+   "texte": "Cinq caractéristiques à connaître."
+  },
+  {
+   "dit": "Sous Windows, on les identifie par le Panneau de configuration, puis Système, ou par le Gestionnaire de périphériques. On y obtient par exemple un processeur Intel Core i5, huit gigaoctets de RAM installée, et un système soixante-quatre bits.",
+   "ecran": "methode_windows",
+   "id": "p12",
+   "texte": "Où lire ces informations ?"
+  },
+  {
+   "dit": "Exercice d'application : pour connecter un écran, un clavier et une souris à un ordinateur de bureau, on choisit le port HDMI pour l'écran, pour sa transmission numérique de haute qualité, et les ports USB pour le clavier et la souris, le standard actuel, compatible avec la majorité des périphériques.",
+   "ecran": "exercice",
+   "id": "p13",
+   "texte": "Écran, clavier, souris : quels ports ?"
+  },
+  {
+   "dit": "Passons aux logiciels d'entretien. Un utilitaire est un logiciel conçu pour une tâche précise de maintenance, d'optimisation ou de diagnostic, à la différence des logiciels applicatifs comme le traitement de texte ou le tableur. Les utilitaires intégrés au système permettent la gestion des fichiers, la défragmentation, le nettoyage de disque, la restauration du système, la gestion des tâches et la sauvegarde.",
+   "ecran": "utilitaires",
+   "id": "p14",
+   "texte": "Entretenir, diagnostiquer, optimiser."
+  },
+  {
+   "dit": "Un antivirus détecte, neutralise et élimine les programmes malveillants : virus, vers, chevaux de Troie et rançongiciels. Il fonctionne en analyse en temps réel, une surveillance continue, et en analyse planifiée. Par exemple, pour installer l'antivirus libre ClamWin, on télécharge l'installateur, on lance l'assistant, on accepte les conditions, on choisit le dossier, on installe, puis on lance une première analyse complète et on configure les mises à jour automatiques.",
+   "ecran": "antivirus",
+   "id": "p15",
+   "texte": "Surveiller en continu."
+  },
+  {
+   "dit": "Un fichier est une unité de données nommée, avec un nom et une extension, stockée sur un support. Un dossier, ou répertoire, est un conteneur logique qui organise les fichiers en structure hiérarchique, une arborescence. Pour organiser ses documents scolaires, l'élève crée ainsi un dossier Devoirs sur le bureau, puis y déplace ses fichiers par glisser-déposer.",
+   "ecran": "fichiers_arbre",
+   "id": "p16",
+   "texte": "Un dossier range, une arborescence organise."
+  },
+  {
+   "dit": "Les opérations courantes sont créer un dossier ou un fichier, copier avec Contrôle C puis Contrôle V, l'original restant en place, déplacer avec Contrôle X puis Contrôle V, l'original disparaissant, renommer avec la touche F2 ou le clic droit, supprimer vers la corbeille avec la touche Suppr, ou définitivement avec Majuscule plus Suppr, et rechercher par nom, type ou date de modification.",
+   "ecran": "operations",
+   "id": "p17",
+   "texte": "Six opérations courantes."
+  },
+  {
+   "dit": "L'extension est un suffixe de trois ou quatre caractères, ajouté au nom du fichier après un point, qui indique le type de contenu et le logiciel associé. Règle essentielle : ne jamais la modifier à la main, sinon le fichier devient illisible ou corrompu. Un document rapport TP1 point docx renommé en point txt ne s'ouvrira plus correctement avec Word.",
+   "ecran": "extensions",
+   "id": "p18",
+   "texte": "L'extension dit le type."
+  },
+  {
+   "dit": "Les attributs sont des propriétés qui définissent le comportement et les permissions d'un fichier. Lecture seule : ouvert mais non modifiable ; masqué : invisible dans l'explorateur par défaut ; archive : modifié depuis la dernière sauvegarde ; système : critique pour le système d'exploitation ; indexé : inclus dans l'index de recherche. On les consulte par clic droit, Propriétés, onglet Général, et onglet Sécurité pour les permissions avancées.",
+   "ecran": "attributs",
+   "id": "p19",
+   "texte": "Cinq propriétés à connaître."
+  },
+  {
+   "dit": "La compression réduit la taille d'un ou plusieurs fichiers, et le fichier compressé porte l'extension point zip, point rar ou point 7z ; la décompression est l'opération inverse. Le taux de compression est le rapport entre la taille compressée et la taille initiale, multiplié par cent. Un dossier Projet TP de vingt-quatre mégaoctets compressé en six mégaoctets donne un taux de vingt-cinq pour cent, soit une économie de soixante-quinze pour cent, indispensable pour un envoi par courriel limité à dix mégaoctets.",
+   "ecran": "compression",
+   "id": "p20",
+   "texte": "Compresser, c'est diviser la taille."
+  },
+  {
+   "dit": "Avec l'usage, le disque accumule fichiers temporaires, cache internet, corbeilles non vidées et programmes inutiles, qui occupent de l'espace et ralentissent le système. Le Nettoyage de disque de Windows analyse le disque et propose de supprimer ces fichiers en toute sécurité. Sur un poste, il détecte deux virgule cinq gigaoctets de temporaires et huit cents mégaoctets de corbeille : l'espace libéré est de trois virgule trois gigaoctets.",
+   "ecran": "nettoyage",
+   "id": "p21",
+   "texte": "Nettoyer, c'est libérer."
+  },
+  {
+   "dit": "La défragmentation regroupe les fragments de fichiers éparpillés sur le disque dur, afin d'en accélérer la lecture. Le taux de fragmentation est l'espace fragmenté divisé par l'espace total utilisé, multiplié par cent. Pour un disque de cinq cents gigaoctets contenant trois cent vingt gigaoctets de données dont quarante-huit fragmentés, le taux est de quinze pour cent : au-delà de dix pour cent, la défragmentation se justifie, et après l'opération le taux retombe généralement sous trois pour cent. Attention, elle ne s'applique pas aux SSD, où elle est inutile et réduit leur durée de vie.",
+   "ecran": "defrag",
+   "id": "p22",
+   "texte": "Défragmenter, c'est regrouper."
+  },
+  {
+   "dit": "La sauvegarde est la copie des données sur un support externe, disque externe, clé USB, serveur distant ou cloud, pour les protéger contre la panne, le virus, le vol ou l'erreur humaine. Sa règle fondamentale, la règle trois deux un, préconise trois copies des données, sur deux supports différents, dont une copie hors site, dans un emplacement distant.",
+   "ecran": "sauvegarde",
+   "id": "p23",
+   "texte": "Trois copies, deux supports, un hors site."
+  },
+  {
+   "dit": "Prenons une entreprise qui effectue une sauvegarde complète le lundi, de cinquante gigaoctets. Mardi, deux gigaoctets sont modifiés ; mercredi, un virgule cinq gigaoctet supplémentaire. En stratégie incrémentielle, mardi compte deux gigaoctets et mercredi un virgule cinq, soit cinquante-trois virgule cinq gigaoctets au total sur trois jours. En stratégie différentielle, mercredi compte trois virgule cinq gigaoctets, deux plus un virgule cinq, soit cinquante-cinq virgule cinq au total. L'incrémentielle économise de l'espace, mais exige de conserver toutes les sauvegardes intermédiaires.",
+   "ecran": "sauvegardes_types",
+   "id": "p24",
+   "texte": "Deux stratégies, deux totaux."
+  },
+  {
+   "dit": "Le formatage prépare un support de stockage, disque dur, clé USB ou carte mémoire, à recevoir des données, en créant un système de fichiers, NTFS, FAT32 ou exFAT, qui organise l'espace en secteurs et clusters. Par exemple, une clé USB de trente-deux gigaoctets formatée en FAT32 pour un autoradio offre environ vingt-neuf virgule huit gigaoctets utiles, les deux virgule deux gigaoctets perdus correspondant à l'overhead du système de fichiers. Attention : le formatage efface définitivement les données, toute sauvegarde préalable est indispensable.",
+   "ecran": "formatage",
+   "id": "p25",
+   "texte": "Préparer un support, effacer ses données."
+  },
+  {
+   "dit": "Pour protéger le matériel, on utilise un onduleur contre les coupures et variations de courant, un parafoudre contre la foudre et les surtensions, un refroidissement adéquat, ventilation ou climatisation, avec une température idéale entre dix-huit et vingt-cinq degrés, des filtres contre la poussière, et un stabilisateur de tension qui maintient une tension constante.",
+   "ecran": "protection",
+   "id": "p26",
+   "texte": "Cinq protections physiques."
+  },
+  {
+   "dit": "La puissance apparente S nécessaire pour un onduleur se calcule en divisant la puissance totale des équipements, en watts, par le facteur de puissance cosinus phi, environ zéro virgule six à zéro virgule sept. Pour un ordinateur de trois cents watts et un écran de cinquante watts, la puissance totale est de trois cent cinquante watts ; avec un facteur de zéro virgule sept, S vaut cinq cents voltampères, et un onduleur de six cents voltampères minimum est recommandé.",
+   "ecran": "onduleur",
+   "id": "p27",
+   "texte": "Dimensionner l'onduleur."
+  },
+  {
+   "dit": "Côté logiciel, la protection passe par l'antivirus, le pare-feu, les mises à jour régulières du système, des mots de passe robustes et une politique de sauvegarde systématique. Bonne pratique : scanner systématiquement toute clé USB ou disque externe avant utilisation, mettre à jour la base virale avant chaque analyse, et analyser en mode hors ligne si le système est infecté. Par exemple, une clé de seize gigaoctets analysée en quatre minutes détecte deux fichiers infectés, soit un taux de zéro virgule cent vingt-cinq menace par gigaoctet ; les fichiers sont mis en quarantaine puis supprimés.",
+   "ecran": "securite_scan",
+   "id": "p28",
+   "texte": "Analyser un support."
+  },
+  {
+   "dit": "Ce chapitre se prête au travail en binôme : lors des manipulations de connexion, on organise les tâches, un élève connecte, l'autre vérifie. L'honnêteté est requise pour signaler toute erreur de manipulation, et la prudence s'impose pour éviter les dommages matériels : ne pas forcer une connexion, et décharger son électricité statique avant de toucher les composants internes.",
+   "ecran": "attitudes",
+   "id": "p29",
+   "texte": "À deux, on connecte mieux : l'un branche, l'autre vérifie."
+  },
+  {
+   "dit": "Retenons l'essentiel : les ports sont les interfaces de connexion vers les périphériques, avec des procédures précises de connexion et de déconnexion ; l'unité centrale contient carte mère, processeur, RAM, stockage, carte graphique et alimentation ; les fichiers s'organisent en arborescence, avec des extensions à ne pas modifier et une compression qui fait gagner de la place ; et l'optimisation repose sur le nettoyage, la défragmentation des disques mécaniques, la sauvegarde en trois deux un et la protection matérielle et logicielle.",
+   "ecran": "recap",
+   "id": "p30",
+   "texte": "Ports, composants, fichiers, entretien, protection."
+  }
+ ],
+ "titre": "Maîtriser et optimiser son ordinateur"
+}

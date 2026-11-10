@@ -1,0 +1,348 @@
+{
+ "cours": 7293,
+ "titre": "Équations et inéquations du second degré : le trinôme, son discriminant et son signe",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Le trinôme du second degré",
+   "titre": "Équations et inéquations du second degré : le trinôme, son discriminant et son signe",
+   "sous": "Discriminant, relations somme-produit, signe du trinôme et inéquations résolues pas à pas",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un seul nombre décide de tout : le discriminant."
+  },
+  "trino_def": {
+   "type": "formule",
+   "kicker": "Le trinôme du second degré",
+   "tex": "f(x) = ax^2 + bx + c \\quad a \\neq 0",
+   "note": "Résoudre f(x) = 0, c'est trouver les racines du trinôme."
+  },
+  "parab": {
+   "type": "phrase",
+   "kicker": "La parabole du trinôme",
+   "texte": "La courbe du trinôme est une parabole : vers le haut si a est positif, vers le bas si a est négatif.",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 210
+   }
+  },
+  "delta_def": {
+   "type": "formule",
+   "kicker": "Le discriminant",
+   "tex": "\\Delta = b^2 - 4ac",
+   "note": "Un seul nombre, calculé sur les trois coefficients, décide du nombre de racines."
+  },
+  "delta_cas": {
+   "type": "etape",
+   "kicker": "Résolution selon le signe de delta",
+   "titre": "Trois cas selon le signe de delta",
+   "tex": [
+    "\\Delta > 0 : x_1 = \\tfrac{-b - \\sqrt{\\Delta}}{2a}, \\ x_2 = \\tfrac{-b + \\sqrt{\\Delta}}{2a}",
+    "\\Delta = 0 : x_0 = -\\tfrac{b}{2a}",
+    "\\Delta < 0 : S = \\emptyset"
+   ]
+  },
+  "ex1a": {
+   "type": "etape",
+   "kicker": "Exemple résolu · le discriminant",
+   "titre": "Identifier a, b, c, puis calculer delta",
+   "tex": [
+    "2x^2 - 5x + 3 = 0",
+    "a = 2, \\quad b = -5, \\quad c = 3",
+    "\\Delta = (-5)^2 - 4 \\times 2 \\times 3 = 25 - 24",
+    "\\Delta = 1 > 0"
+   ]
+  },
+  "ex1b": {
+   "type": "etape",
+   "kicker": "Exemple résolu · les racines",
+   "titre": "Deux racines, puis la vérification",
+   "tex": [
+    "x_1 = \\tfrac{5 - 1}{4} = 1 \\qquad x_2 = \\tfrac{5 + 1}{4} = \\tfrac{3}{2}",
+    "S = \\{1, \\tfrac{3}{2}\\}",
+    "2 \\times 1^2 - 5 \\times 1 + 3 = 0"
+   ]
+  },
+  "somme_prod": {
+   "type": "formule",
+   "kicker": "Relations entre coefficients et racines",
+   "tex": "x_1 + x_2 = -\\frac{b}{a} \\qquad x_1 \\times x_2 = \\frac{c}{a}",
+   "note": "Dès que les racines existent : somme et produit se lisent sur les coefficients."
+  },
+  "controle": {
+   "type": "etape",
+   "kicker": "Contrôle par la somme et le produit",
+   "titre": "Contrôler l'exemple précédent en quelques secondes",
+   "tex": [
+    "1 + \\tfrac{3}{2} = \\tfrac{5}{2} = -\\tfrac{b}{a}",
+    "1 \\times \\tfrac{3}{2} = \\tfrac{3}{2} = \\tfrac{c}{a}"
+   ]
+  },
+  "ex_sp": {
+   "type": "etape",
+   "kicker": "Exemple · somme et produit donnés",
+   "titre": "Deux nombres de somme cinq et de produit six",
+   "tex": [
+    "S = 5 \\qquad P = 6",
+    "x^2 - 5x + 6 = 0 \\qquad \\Delta = 1",
+    "x_1 = 2 \\qquad x_2 = 3"
+   ]
+  },
+  "astuce": {
+   "type": "phrase",
+   "kicker": "Le principe somme-produit",
+   "texte": "Deux nombres de somme S et de produit P sont les racines de x² − Sx + P = 0."
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Première partie : l'essentiel",
+   "etapes": [
+    "Delta décide du nombre de racines",
+    "Delta positif : deux racines distinctes",
+    "Delta nul : une racine double",
+    "Somme : −b/a, produit : c/a"
+   ]
+  },
+  "signe_regle": {
+   "type": "etape",
+   "kicker": "Signe du trinôme · la règle",
+   "titre": "Le signe se lit à partir de a et de delta",
+   "tex": [
+    "\\Delta < 0 : \\text{signe de } a \\text{ partout}",
+    "\\Delta = 0 : \\text{signe de } a, \\text{ nul en } x_0",
+    "\\Delta > 0 : \\text{signe de } a \\text{ dehors, opposé dedans}"
+   ],
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 140
+   }
+  },
+  "ex_signe": {
+   "type": "etape",
+   "kicker": "Exemple · signe d'un trinôme",
+   "titre": "Positif dehors, négatif entre les racines",
+   "tex": [
+    "f(x) = x^2 - 3x + 2",
+    "a = 1 > 0, \\quad \\Delta = 1, \\quad x_1 = 1, \\quad x_2 = 2",
+    "f > 0 \\text{ sur } ]-\\infty, 1[ \\cup ]2, +\\infty[",
+    "f < 0 \\text{ sur } ]1, 2["
+   ]
+  },
+  "lecture_ineq": {
+   "type": "phrase",
+   "kicker": "Lire une inéquation sur le signe",
+   "texte": "Un signe déjà connu résout l'inéquation : choisir les intervalles du bon signe."
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "Inéquation du second degré · méthode",
+   "etapes": [
+    "Tout ramener à un trinôme comparé à 0",
+    "Calculer delta et les racines",
+    "Dresser le tableau de signes",
+    "Lire l'ensemble des solutions"
+   ]
+  },
+  "ineq_ex1": {
+   "type": "etape",
+   "kicker": "Exemple · inéquation avec a négatif",
+   "titre": "Calculer delta d'abord",
+   "tex": [
+    "-x^2 + 4x - 3 \\geq 0",
+    "a = -1, \\ b = 4, \\ c = -3",
+    "\\Delta = 16 - 12 = 4 \\qquad \\sqrt{\\Delta} = 2"
+   ]
+  },
+  "ineq_ex2": {
+   "type": "etape",
+   "kicker": "Exemple · inéquation avec a négatif",
+   "titre": "Positif entre les racines, car a est négatif",
+   "tex": [
+    "x_1 = \\tfrac{-4 - 2}{-2} = 3 \\qquad x_2 = \\tfrac{-4 + 2}{-2} = 1",
+    "a < 0 : \\text{positif entre les racines}",
+    "S = [1, 3]"
+   ]
+  },
+  "verif": {
+   "type": "phrase",
+   "kicker": "Vérification par une valeur test",
+   "texte": "Tester x = 2 : −4 + 8 − 3 = 1, positif, et 2 est bien dans [1, 3]."
+  },
+  "pieges": {
+   "type": "recap",
+   "kicker": "Pièges à éviter",
+   "etapes": [
+    "Racines : les ordonner avant de conclure",
+    "Inégalité stricte : bornes exclues",
+    "a négatif : les signes s'inversent",
+    "Delta négatif : signe constant de a"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Delta = b² − 4ac décide du nombre de racines",
+    "Somme des racines : −b/a, produit : c/a",
+    "Signe de a dehors, signe opposé dedans",
+    "Inéquation : delta, racines, tableau, lecture",
+    "Toujours vérifier les racines trouvées"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours consacré au trinôme du second degré. Nous apprendrons à résoudre complètement les équations et les inéquations du second degré : le discriminant décidera du nombre de racines, les relations entre coefficients et racines offriront un raccourci précieux, et le signe du trinôme ouvrira la porte aux inéquations.",
+   "texte": "Le trinôme : discriminant, racines, signe, inéquations."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Le fil rouge tient en un mot : discriminant. Avant tout calcul de racines, un seul nombre, calculé à partir des trois coefficients, annonce s'il y aura zéro, une ou deux solutions, et il commande aussi le signe du trinôme sur tout l'ensemble des réels.",
+   "texte": "Avant de calculer : regarder le discriminant."
+  },
+  {
+   "id": "p03",
+   "ecran": "trino_def",
+   "dit": "On appelle trinôme du second degré toute expression de la forme a ixe au carré plus b ixe plus c, avec a différent de zéro. On note f de ixe cette expression. Résoudre l'équation associée, c'est trouver les réels qui annulent f : on les appelle les racines du trinôme.",
+   "texte": "f(x) = ax² + bx + c : trouver ses racines."
+  },
+  {
+   "id": "p04",
+   "ecran": "parab",
+   "dit": "La représentation graphique du trinôme est une parabole. Si a est positif, elle s'ouvre vers le haut et possède un minimum ; si a est négatif, elle s'ouvre vers le bas et possède un maximum. Ses intersections avec l'axe des abscisses, quand elles existent, sont exactement les racines de l'équation.",
+   "texte": "La parabole : le sens de a, les racines sur l'axe."
+  },
+  {
+   "id": "p05",
+   "ecran": "delta_def",
+   "dit": "On pose delta égale b au carré moins quatre a c. Ce nombre s'appelle le discriminant, parce qu'il discrimine, il trie les situations : toute la résolution qui suit dépend uniquement de son signe.",
+   "texte": "Δ = b² − 4ac : le signe de delta décide."
+  },
+  {
+   "id": "p06",
+   "ecran": "delta_cas",
+   "dit": "Trois cas se présentent. Si delta est strictement négatif, l'équation n'a aucune solution réelle. Si delta est nul, il y a une seule solution, dite racine double, qui vaut moins b sur deux a. Si delta est strictement positif, il y a deux solutions distinctes, obtenues en ajoutant ou en retranchant la racine carrée de delta, le tout divisé par deux a.",
+   "texte": "Δ < 0, Δ = 0, Δ > 0 : zéro, une ou deux racines."
+  },
+  {
+   "id": "p07",
+   "ecran": "ex1a",
+   "dit": "Exemple résolu, pas à pas : résoudre deux ixe au carré moins cinq ixe plus trois égale zéro. Ici, a vaut deux, b vaut moins cinq et c vaut trois. Le discriminant vaut moins cinq au carré moins quatre fois deux fois trois, c'est-à-dire vingt-cinq moins vingt-quatre, donc un. Delta est strictement positif : il y aura deux racines.",
+   "texte": "Δ = 25 − 24 = 1 : deux racines à venir."
+  },
+  {
+   "id": "p08",
+   "ecran": "ex1b",
+   "dit": "La racine carrée de delta vaut un. La première racine vaut cinq moins un, divisé par quatre, donc un. La seconde vaut cinq plus un, divisé par quatre, donc trois demis. Vérification pour un : deux moins cinq plus trois égale zéro. Les solutions sont un et trois demis.",
+   "texte": "Racines 1 et 3/2, vérifiées."
+  },
+  {
+   "id": "p09",
+   "ecran": "somme_prod",
+   "dit": "Quand les racines existent, elles sont liées aux coefficients par deux relations très utiles : leur somme vaut moins b sur a, et leur produit vaut c sur a. Ces relations permettent de contrôler un calcul en quelques secondes, et parfois de trouver les racines sans repasser par le discriminant.",
+   "texte": "Somme −b/a, produit c/a : le contrôle rapide."
+  },
+  {
+   "id": "p10",
+   "ecran": "controle",
+   "dit": "Contrôlons l'exemple précédent. La somme des racines, un plus trois demis, vaut cinq demis : c'est bien moins b sur a. Leur produit, un fois trois demis, vaut trois demis : c'est bien c sur a. Le calcul est cohérent, et ce réflexe de contrôle évite bien des erreurs de signe.",
+   "texte": "Somme 5/2 et produit 3/2 : le calcul est cohérent."
+  },
+  {
+   "id": "p11",
+   "ecran": "ex_sp",
+   "dit": "Application renversée : deux réels ont pour somme cinq et pour produit six, que valent-ils ? Ils sont solutions de l'équation ixe au carré moins cinq ixe plus six égale zéro, dont le discriminant vaut un. Les deux nombres sont donc deux et trois : leur somme vaut bien cinq, et leur produit six.",
+   "texte": "Somme 5, produit 6 : les nombres sont 2 et 3."
+  },
+  {
+   "id": "p12",
+   "ecran": "astuce",
+   "dit": "Retenez le principe : deux nombres sont entièrement déterminés, à l'ordre près, par leur somme et leur produit. Dès qu'un énoncé donne une somme et un produit, écrivez l'équation ixe au carré moins grand s fois ixe plus grand p égale zéro, puis résolvez-la par le discriminant.",
+   "texte": "Somme et produit donnés : écrire x² − Sx + P = 0."
+  },
+  {
+   "id": "p13",
+   "ecran": "recap1",
+   "dit": "Récapitulons cette première partie. Le trinôme se résout par son discriminant : négatif, aucune racine ; nul, une racine double ; positif, deux racines. Et quand les racines existent, leur somme et leur produit se lisent directement sur les coefficients, ce qui offre un contrôle rapide et une méthode pour retrouver deux nombres.",
+   "texte": "L'essentiel de la première partie."
+  },
+  {
+   "id": "p14",
+   "ecran": "signe_regle",
+   "dit": "Le signe du trinôme dépend de a et de delta. Si delta est strictement négatif, le trinôme garde partout le signe de a. Si delta est nul, il garde le signe de a et ne s'annule qu'en sa racine double. Si delta est strictement positif, il est du signe de a à l'extérieur des racines, et du signe opposé entre les racines.",
+   "texte": "Signe de a dehors, signe opposé dedans."
+  },
+  {
+   "id": "p15",
+   "ecran": "ex_signe",
+   "dit": "Exemple : le signe de ixe au carré moins trois ixe plus deux. Ici a vaut un, donc est positif, le discriminant vaut un et les racines sont un et deux. Le trinôme est donc strictement positif avant un et après deux, strictement négatif entre un et deux, et il s'annule en un et en deux.",
+   "texte": "Racines 1 et 2 : positif dehors, négatif dedans."
+  },
+  {
+   "id": "p16",
+   "ecran": "lecture_ineq",
+   "dit": "Ce signe déjà calculé résout immédiatement des inéquations. Demander où le trinôme est strictement positif, c'est répondre : avant un et après deux. Demander où il est négatif ou nul, c'est répondre : entre un et deux, bornes comprises. Toute inéquation du second degré se ramène ainsi à une lecture du tableau de signes.",
+   "texte": "Une inéquation = une lecture du tableau de signes."
+  },
+  {
+   "id": "p17",
+   "ecran": "methode",
+   "dit": "La méthode pour une inéquation du second degré suit quatre temps. On écrit d'abord l'inéquation avec un trinôme dans un membre et zéro dans l'autre. On calcule ensuite le discriminant et les racines éventuelles. On dresse alors le tableau de signes du trinôme. Il ne reste qu'à lire l'ensemble des solutions, en fermant ou en ouvrant les bornes selon que l'inégalité est large ou stricte.",
+   "texte": "Quatre temps : forme, delta, tableau, lecture."
+  },
+  {
+   "id": "p18",
+   "ecran": "ineq_ex1",
+   "dit": "Exemple complet : résoudre moins ixe au carré plus quatre ixe moins trois supérieur ou égal à zéro. Ici, a vaut moins un, b vaut quatre et c vaut moins trois. Le discriminant vaut seize moins douze, donc quatre, et sa racine carrée vaut deux.",
+   "texte": "a = −1 : Δ = 4, racine de delta égale à 2."
+  },
+  {
+   "id": "p19",
+   "ecran": "ineq_ex2",
+   "dit": "Les racines valent, pour la première, moins quatre moins deux, divisé par moins deux, donc trois ; et pour la seconde, moins quatre plus deux, divisé par moins deux, donc un. Comme a est négatif, le trinôme est positif entre ses racines : les solutions forment l'intervalle fermé de un à trois.",
+   "texte": "a négatif, positif entre les racines : [1, 3]."
+  },
+  {
+   "id": "p20",
+   "ecran": "verif",
+   "dit": "Vérifions avec une valeur test. Pour ixe égale deux, le trinôme vaut moins quatre plus huit moins trois, donc un : c'est positif, et deux appartient bien à l'intervalle de un à trois. Une valeur test bien choisie, au milieu de l'intervalle annoncé, confirme la lecture du tableau de signes.",
+   "texte": "Valeur test x = 2 : le trinôme vaut 1, positif."
+  },
+  {
+   "id": "p21",
+   "ecran": "pieges",
+   "dit": "Quatre pièges à éviter. Oublier d'ordonner les racines avant de parler de l'intérieur et de l'extérieur. Fermer une borne alors que l'inégalité est stricte. Oublier qu'avec a négatif, tous les signes s'inversent. Et conclure trop vite quand delta est négatif : le signe est alors constant, celui de a, sur tout l'ensemble des réels.",
+   "texte": "Ordonner, bornes, a négatif, delta négatif."
+  },
+  {
+   "id": "p22",
+   "ecran": "recap",
+   "dit": "Pour finir, retenez l'enchaînement. Le discriminant décide du nombre de racines et commande le signe. La somme et le produit des racines contrôlent les calculs et retrouvent deux nombres. Pour une inéquation, on calcule delta, on dresse le tableau de signes, puis on lit les solutions en respectant les bornes.",
+   "texte": "Le trinôme du second degré : à retenir."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le trinôme et son discriminant : racines et relations somme-produit"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Signe du trinôme et inéquations du second degré",
+   "pont": {
+    "texte": "Partie 2 : signe du trinôme et inéquations du second degré.",
+    "dit": "Partie deux : le signe du trinôme et les inéquations du second degré. Nous lirons le signe à partir de a et des racines, puis nous appliquerons la méthode complète sur un exemple où a est négatif."
+   }
+  }
+ ]
+}

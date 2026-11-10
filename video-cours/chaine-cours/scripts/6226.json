@@ -1,0 +1,571 @@
+{
+ "cours": 6226,
+ "ecrans": {
+  "acetique_ex": {
+   "kicker": "Exemple : l'acide acétique",
+   "tex": [
+    "C_a / K_a = 0{,}10 / 1{,}8 \\times 10^{-5} \\approx 5556 > 100",
+    "[H_3O^+] = \\sqrt{1{,}8 \\times 10^{-5} \\times 0{,}10} = 1{,}34 \\times 10^{-3}",
+    "\\mathrm{pH} = 2{,}87 \\quad \\text{contre} \\quad 1{,}0 \\ \\text{pour } HCl"
+   ],
+   "titre": "Même concentration, deux mondes",
+   "type": "etape"
+  },
+  "acide_fort_calc": {
+   "kicker": "Calcul : un acide fort",
+   "tex": [
+    "[H_3O^+] = C_a = 5{,}0 \\times 10^{-2} \\ \\text{mol/L}",
+    "\\mathrm{pH} = -\\log(5{,}0 \\times 10^{-2}) = 1{,}3",
+    "\\mathrm{pOH} = 14 - 1{,}3 = 12{,}7"
+   ],
+   "titre": "Le jus gastrique : pH un virgule trois",
+   "type": "etape"
+  },
+  "acteurs": {
+   "kicker": "Les acteurs à connaître",
+   "tex": [
+    "HCl, \\ HBr, \\ HI, \\ HClO_4, \\ HNO_3, \\ H_2SO_4",
+    "\\text{(} H_2SO_4 \\text{ : première dissociation seule)}",
+    "NaOH, \\ KOH, \\ Ca(OH)_2, \\ Ba(OH)_2"
+   ],
+   "titre": "La liste fermée des forts",
+   "type": "etape"
+  },
+  "ammoniac_ex": {
+   "kicker": "Exemple : l'ammoniac",
+   "tex": [
+    "[OH^-] \\approx \\sqrt{K_b \\cdot C_b} = 9{,}49 \\times 10^{-4}",
+    "\\mathrm{pOH} = 3{,}02",
+    "\\mathrm{pH} = 14 - 3{,}02 = 10{,}98"
+   ],
+   "titre": "Une base faible, la même démarche",
+   "type": "etape"
+  },
+  "arrhenius": {
+   "kicker": "La définition d'Arrhenius",
+   "tex": [
+    "\\text{acide} : HCl \\rightarrow H^+ + Cl^-",
+    "\\text{base} : NaOH \\rightarrow Na^+ + OH^-",
+    "H^+ + H_2O \\rightarrow H_3O^+ \\ \\text{(l'ion oxonium)}"
+   ],
+   "titre": "Libérer H⁺ ou OH⁻ dans l'eau",
+   "type": "etape"
+  },
+  "autour": {
+   "kicker": "Le pH autour de nous",
+   "tex": [
+    "\\text{sang} : 7{,}35 \\text{ à } 7{,}45 \\qquad \\text{suc gastrique} : 1{,}5 \\text{ à } 3{,}5",
+    "\\text{pluie normale} : 5{,}6 \\qquad \\text{café} : \\approx 5",
+    "\\text{eau de Javel} : \\approx 12{,}5 \\qquad \\text{peau} : \\approx 5{,}5"
+   ],
+   "titre": "Du sang à l'eau de Javel",
+   "type": "etape"
+  },
+  "base_forte_calc": {
+   "kicker": "Calcul : une base forte",
+   "tex": [
+    "NaOH \\ 0{,}02 : [OH^-] = 2{,}0 \\times 10^{-2}",
+    "\\mathrm{pOH} = 1{,}70 \\Rightarrow \\mathrm{pH} = 12{,}30",
+    "Ca(OH)_2 : [OH^-] = 2\\,C_b \\Rightarrow \\mathrm{pH} = 12{,}00"
+   ],
+   "titre": "Soude et chaux : passer par le pOH",
+   "type": "etape"
+  },
+  "citron": {
+   "kicker": "Le goût de l'acidité",
+   "texte": "Un citron qui pique, un savon qui glisse : l'acidité se goûte avant de se mesurer.",
+   "type": "phrase"
+  },
+  "composition": {
+   "kicker": "La composition d'un tampon",
+   "tex": [
+    "CH_3COOH / CH_3COO^- \\ : \\ \\mathrm{pH} \\approx 4{,}76",
+    "H_2PO_4^- / HPO_4^{2-} \\ : \\ \\mathrm{pH} \\approx 7{,}21",
+    "NH_4^+ / NH_3 \\ : \\ \\mathrm{pH} \\approx 9{,}25",
+    "\\text{acide faible + son sel, ou base faible + son sel}"
+   ],
+   "titre": "Le duo indissociable",
+   "type": "etape"
+  },
+  "definition_ph": {
+   "kicker": "La définition du pH",
+   "note": "Inventé en 1909 par Sørensen, chimiste des brasseries Carlsberg.",
+   "tex": "\\mathrm{pH} = -\\log_{10}\\,[H_3O^+]",
+   "type": "formule"
+  },
+  "demi_equivalence": {
+   "kicker": "Le titrage d'un acide faible",
+   "note": "Acide formique titré par la soude : à mi-chemin, pH = pKa = 3,75.",
+   "tex": "\\text{demi-équivalence} : [\\text{acide}] = [\\text{base conjuguée}] \\Rightarrow \\mathrm{pH} = \\mathrm{p}K_a",
+   "type": "formule"
+  },
+  "dilution_exercice": {
+   "kicker": "Exercice guidé",
+   "tex": [
+    "\\mathrm{pH} = 1{,}0 \\Rightarrow [H_3O^+] = 0{,}10 \\ \\text{mol/L}",
+    "n = 0{,}10 \\times 2{,}0 = 0{,}20 \\ \\text{mol}",
+    "V = \\tfrac{0{,}20}{12{,}0} = 16{,}7 \\ \\text{mL de } HCl \\text{ concentré}"
+   ],
+   "titre": "Préparer deux litres à pH un",
+   "type": "etape"
+  },
+  "echelle": {
+   "kicker": "L'échelle de pH",
+   "tex": [
+    "[H_3O^+] = 1 \\ \\text{mol/L} \\Rightarrow \\mathrm{pH} = 0",
+    "[H_3O^+] = 10^{-7} \\ \\text{mol/L} \\Rightarrow \\mathrm{pH} = 7 \\ \\text{(neutre)}",
+    "[H_3O^+] = 10^{-14} \\ \\text{mol/L} \\Rightarrow \\mathrm{pH} = 14",
+    "\\text{une unité de pH} = \\text{un facteur dix}"
+   ],
+   "titre": "Quatorze ordres de grandeur deviennent quatorze nombres",
+   "type": "etape"
+  },
+  "exercice_tampon": {
+   "kicker": "Exercice de synthèse",
+   "tex": [
+    "CH_3COOH \\ 0{,}10 \\ \\text{M seul} : \\mathrm{pH} = 2{,}87",
+    "+ \\ 0{,}05 \\ \\text{mol de } NaOH : \\mathrm{pH} = \\mathrm{p}K_a = 4{,}76",
+    "\\text{le même ajout dans l'eau pure} : 7 \\rightarrow 12{,}7"
+   ],
+   "titre": "Le choc que le tampon encaisse",
+   "type": "etape"
+  },
+  "forts": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "dissociation_fig"
+   },
+   "kicker": "Acides et bases forts",
+   "tex": [
+    "HA + H_2O \\longrightarrow H_3O^+ + A^-",
+    "BOH \\longrightarrow B^+ + OH^-",
+    "\\text{aucune molécule intacte ne subsiste}"
+   ],
+   "titre": "La dissociation complète",
+   "type": "etape"
+  },
+  "henderson": {
+   "kicker": "L'équation de Henderson-Hasselbalch",
+   "note": "Le pH dépend du pKa et du rapport base sur acide, guère de la dilution.",
+   "tex": "\\mathrm{pH} = \\mathrm{p}K_a + \\log \\frac{[\\text{base conjuguée}]}{[\\text{acide faible}]}",
+   "type": "formule"
+  },
+  "ice": {
+   "kicker": "La méthode de l'équilibre",
+   "tex": [
+    "K_a = \\tfrac{x^2}{C_a - x} \\approx \\tfrac{x^2}{C_a}",
+    "[H_3O^+] = x \\approx \\sqrt{K_a \\cdot C_a}",
+    "\\mathrm{pH} \\approx \\tfrac{1}{2}\\left( \\mathrm{p}K_a - \\log C_a \\right)"
+   ],
+   "titre": "Du tableau d'avancement à la racine carrée",
+   "type": "etape"
+  },
+  "industrie": {
+   "kicker": "Les tampons dans l'industrie",
+   "tex": [
+    "\\text{insuline : phosphate, } \\mathrm{pH} = 7{,}4",
+    "\\text{pénicilline : } \\mathrm{pH} = 6{,}5 \\pm 0{,}2 \\ \\text{sinon } -30 \\ \\%",
+    "\\text{sodas : } 2{,}5 \\text{ à } 4{,}0 \\ ; \\ \\text{eaux anti-corrosion : } 8{,}5 \\text{ à } 9{,}0"
+   ],
+   "titre": "De l'insuline au fermenteur",
+   "type": "etape"
+  },
+  "ka": {
+   "kicker": "La constante d'acidité",
+   "note": "Acide acétique : Ka ≈ 1,8×10⁻⁵ ; et Ka × Kb = Ke pour un couple conjugué.",
+   "tex": "K_a = \\frac{[H_3O^+]\\,[A^-]}{[HA]}",
+   "type": "formule"
+  },
+  "mecanisme": {
+   "kicker": "Le mécanisme tampon",
+   "tex": [
+    "\\text{acide ajouté} : CH_3COO^- + H_3O^+ \\rightarrow CH_3COOH + H_2O",
+    "\\text{base ajoutée} : CH_3COOH + OH^- \\rightarrow CH_3COO^- + H_2O"
+   ],
+   "titre": "Capteur de protons, donneur de protons",
+   "type": "etape"
+  },
+  "mesurer": {
+   "anim": {
+    "cible": 5,
+    "debut": 12,
+    "hauteur": 150,
+    "nom": "ph"
+   },
+   "kicker": "Mesurer le pH",
+   "texte": "Indicateurs colorés, papier pH ou pH-mètre : trois façons de lire l'acidité.",
+   "type": "phrase"
+  },
+  "ostwald": {
+   "kicker": "Le pourcentage de dissociation",
+   "tex": [
+    "\\alpha \\approx \\sqrt{\\tfrac{K_a}{C_a}} \\times 100 \\ \\%",
+    "C_a : 1{,}0 \\rightarrow 0{,}0010 \\Rightarrow \\alpha : 0{,}42 \\ \\% \\rightarrow 13{,}4 \\ \\%",
+    "\\text{approximation valide si } C_a/K_a > 100,\\ \\alpha < 5 \\ \\%"
+   ],
+   "titre": "Diluer dissocie davantage",
+   "type": "etape"
+  },
+  "piege_dilution": {
+   "kicker": "Le piège des très faibles concentrations",
+   "note": "Sous 10⁻⁶ mol/L, l'eau elle-même fournit des ions : la règle simple tombe.",
+   "tex": "C_a = 10^{-7} \\ \\text{mol/L} \\ \\Rightarrow \\ \\mathrm{pH} \\approx 6{,}8 \\neq 7",
+   "type": "formule"
+  },
+  "preparation": {
+   "kicker": "Préparer un tampon",
+   "tex": [
+    "\\tfrac{[\\text{base}]}{[\\text{acide}]} = 10^{\\,5{,}0 - 4{,}76} \\approx 1{,}74",
+    "\\text{capacité maximale quand } \\mathrm{pH} = \\mathrm{p}K_a",
+    "\\text{plus le couple est concentré, plus le tampon encaisse}"
+   ],
+   "titre": "Viser pH cinq avec le couple de l'acétate",
+   "type": "etape"
+  },
+  "produit_ionique": {
+   "kicker": "Le produit ionique de l'eau",
+   "note": "À 25 °C : le produit ionique de l'eau vaut dix puissance moins quatorze.",
+   "tex": "K_e = [H_3O^+]\\,[OH^-] = 1{,}0 \\times 10^{-14} \\ \\Rightarrow \\ \\mathrm{pH} + \\mathrm{pOH} = 14",
+   "type": "formule"
+  },
+  "recap1": {
+   "etapes": [
+    "Acidité = ions oxonium H₃O⁺ en solution",
+    "pH = −log[H₃O⁺] : une échelle de 0 à 14",
+    "pH + pOH = 14 à 25 °C, toujours",
+    "7 : neutre ; moins : acide ; plus : basique",
+    "Sang 7,4 ; estomac ~2 ; Javel ~12,5"
+   ],
+   "kicker": "Points clés de la partie",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Fort : dissociation totale, pH direct",
+    "Faible : équilibre, constante Ka ou Kb",
+    "[H₃O⁺] ≈ √(Ka·Ca) si Ca/Ka > 100",
+    "Base forte : pOH d'abord, pH = 14 − pOH",
+    "Très dilué : l'eau compte aussi"
+   ],
+   "kicker": "Points clés de la partie",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Identifier la solution avant de calculer",
+    "Fort : direct ; faible : racine carrée",
+    "Tampon = couple faible en duo équilibré",
+    "Henderson-Hasselbalch : pH = pKa + log rapport",
+    "Sang, cellule, usine : même équation"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "sang": {
+   "anim": {
+    "cible": 7.4,
+    "debut": 7.4,
+    "hauteur": 120,
+    "nom": "ph"
+   },
+   "kicker": "Le tampon du sang",
+   "tex": [
+    "CO_2 + H_2O \\rightleftharpoons H_2CO_3 \\rightleftharpoons H^+ + HCO_3^-",
+    "\\mathrm{pH} = 6{,}1 + \\log 20 \\approx 7{,}4",
+    "H^+ + HCO_3^- \\rightarrow CO_2 + H_2O \\ \\text{(puis exhalé)}"
+   ],
+   "titre": "Sept virgule quatre, ni plus ni moins",
+   "type": "etape"
+  },
+  "tampon_def": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "equilibre_dynamique_fig"
+   },
+   "kicker": "Qu'est-ce qu'un tampon ?",
+   "texte": "Un acide faible et sa base conjuguée, ensemble, absorbent les chocs d'acidité.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "cible": 2,
+    "debut": 7,
+    "hauteur": 250,
+    "nom": "ph"
+   },
+   "kicker": "Chimie · pH et solutions tampons",
+   "sous": "Des acides forts aux tampons du sang et de l'industrie",
+   "titre": "Le pH et les solutions tampons : mesurer l'acidité, garder l'équilibre",
+   "type": "titre"
+  },
+  "vivant": {
+   "kicker": "Les autres tampons du vivant",
+   "tex": [
+    "H_2PO_4^- / HPO_4^{2-} \\ : \\ \\mathrm{p}K_a = 7{,}2 \\ \\text{(dans la cellule)}",
+    "\\text{protéines : } -COO^- \\text{ et } -NH_3^+ \\text{ captent ou cèdent } H^+",
+    "\\text{acidose sous } 7{,}35 \\ ; \\ \\text{alcalose au-dessus de } 7{,}45"
+   ],
+   "titre": "Phosphate et protéines prennent le relais",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  6729,
+  6730,
+  6731,
+  6732,
+  6733,
+  6734,
+  6735
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Mesurer l'acidité : du citron à l'échelle de pH"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : calculer le pH. Nous allons d'abord traiter le cas simple des acides et des bases forts, qui se dissocient totalement, puis affronter les équilibres des acides et des bases faibles, avec leurs constantes, leurs approximations et leurs pièges.",
+    "texte": "Partie 2 : calculer, d'abord les forts, puis les faibles."
+   },
+   "sous_titre": "Calculer le pH : acides et bases, forts puis faibles"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : les solutions tampons. Nous allons voir comment un acide faible et sa base conjuguée, réunis, absorbent les ajouts d'acide ou de base sans laisser le pH s'échapper, puis suivre ce gardien dans le sang, dans la cellule et dans l'usine.",
+    "texte": "Partie 3 : le gardien de l'équilibre."
+   },
+   "sous_titre": "Les solutions tampons : du laboratoire au sang et à l'industrie"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré au pH et aux solutions tampons. Tout commence par une sensation : le citron qui pique, le savon qui glisse entre les doigts. Nous allons d'abord comprendre ce qu'est l'acidité et comment Sørensen l'a transformée en une échelle simple, de zéro à quatorze. Puis nous calculerons le pH des solutions : acides forts, bases fortes, puis acides et bases faibles en équilibre. Enfin, nous découvrirons les tampons, ces systèmes qui gardent le pH presque immobile, dans le sang comme dans l'industrie.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Un citron, une échelle, un gardien : le pH."
+  },
+  {
+   "dit": "Croquez dans une tranche de citron : la contraction des joues, la salive qui afflue, c'est l'acidité dans toute sa splendeur. Depuis des millénaires, l'humanité l'utilise sans la comprendre : le vinaigre conserve les aliments, le levain fait lever le pain. En face, les substances savonneuses, au goût amer et glissant, forment la famille opposée, celle des bases. Mais qu'est-ce qui se cache derrière ces sensations ? Pourquoi un jus pique-t-il quand une eau savonneuse glisse ? La réponse tient en un ion, et en une mesure que nous allons construire.",
+   "ecran": "citron",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Le citron pique, le savon glisse : deux familles opposées."
+  },
+  {
+   "dit": "La première théorie moderne est celle d'Arrhenius, à la fin du dix-neuvième siècle. Un acide est une substance qui, dissoute dans l'eau, libère des ions hydrogène ; une base est une substance qui libère des ions hydroxyde. L'acide chlorhydrique de notre estomac se dissocie en ions hydrogène et chlorure ; la soude des déboucheurs donne des ions sodium et hydroxyde. Précision importante : l'ion hydrogène ne voyage jamais seul dans l'eau, il s'attache à une molécule d'eau et devient l'ion oxonium. C'est la concentration de cet ion qui commande l'acidité.",
+   "ecran": "arrhenius",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Arrhenius : l'acide libère H⁺, la base libère OH⁻."
+  },
+  {
+   "dit": "La concentration en ions oxonium est la clé, mais elle varie dans des proportions vertigineuses : de un à un dix-millième de milliardième de mole par litre. En mille neuf cent neuf, le chimiste danois Sørensen, qui cherchait à optimiser la fabrication de la bière dans les laboratoires Carlsberg, propose une solution élégante : prendre l'opposé du logarithme décimal de cette concentration. Le pH est né. Les puissances de dix deviennent des nombres simples, et toute l'acidité tient sur une échelle de zéro à quatorze.",
+   "ecran": "definition_ph",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "pH = −log[H₃O⁺] : l'invention de Sørensen, en 1909."
+  },
+  {
+   "dit": "Lisons cette échelle. Quand la concentration en ions oxonium vaut un, le pH vaut zéro : c'est le domaine des acides très forts. À dix puissance moins sept, le pH vaut sept : c'est l'eau pure, ni acide ni basique, le point neutre. À dix puissance moins quatorze, le pH atteint quatorze, le domaine des bases très fortes. Le point essentiel : l'échelle est logarithmique. Gagner une unité de pH, c'est diviser la concentration en ions oxonium par dix ; en perdre une, c'est la multiplier par dix.",
+   "ecran": "echelle",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "0 : très acide ; 7 : neutre ; 14 : très basique."
+  },
+  {
+   "dit": "Pourquoi quatorze ? Parce que dans l'eau, même pure, quelques molécules se dissocient en ions oxonium et hydroxyde, et le produit de leurs concentrations est une constante : dix puissance moins quatorze, à vingt-cinq degrés. On l'appelle le produit ionique de l'eau. En prenant les logarithmes, on obtient la relation qui servira partout dans ce cours : pH plus pOH égale quatorze. Si vous connaissez l'un, vous connaissez l'autre, et l'acide et la base se répondent comme les deux plateaux d'une balance.",
+   "ecran": "produit_ionique",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Ke = 10⁻¹⁴ à 25 °C, donc pH + pOH = 14."
+  },
+  {
+   "dit": "Comment lire concrètement ce pH ? Première méthode : les indicateurs colorés. Ce sont des acides ou des bases faibles dont la forme acide et la forme basique n'ont pas la même couleur ; ils changent de teinte dans une zone étroite, autour d'un pH caractéristique. Deuxième méthode : le papier pH, imprégné de ces indicateurs. Troisième méthode, la précision : le pH-mètre, dont l'électrode de verre, sensible aux ions oxonium, produit une tension que l'appareil convertit directement en valeur de pH affichée.",
+   "ecran": "mesurer",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Des couleurs qui changent, ou une tension que l'on convertit."
+  },
+  {
+   "dit": "Le pH n'est pas une curiosité de laboratoire : il est partout, et souvent vital. Le sang humain se maintient entre sept virgule trente-cinq et sept virgule quarante-cinq ; en dehors de cette plage, le danger est mortel. Le suc gastrique descend entre un et demi et trois et demi, assez acide pour digérer les protéines et tuer de nombreux microbes. La pluie normale est légèrement acide, à cinq virgule six, à cause du dioxyde de carbone de l'air ; le café est vers cinq ; et l'eau de Javel, très basique vers douze et demi, doit son pouvoir désinfectant à cette basicité.",
+   "ecran": "autour",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Sang : 7,35 à 7,45 ; estomac : jusqu'à 1,5 ; Javel : 12,5."
+  },
+  {
+   "dit": "Récapitulons cette première partie. L'acidité d'une solution, c'est sa concentration en ions oxonium, et les bases répondent par leurs ions hydroxyde, les deux étant liés par le produit ionique de l'eau. Le pH condense cette concentration en un nombre de zéro à quatorze, sept étant la neutralité, et chaque unité compte pour un facteur dix. On le mesure par indicateurs colorés ou au pH-mètre. Reste une question : tous les acides libèrent-ils leurs ions avec la même facilité ? Non, et la distinction entre forts et faibles ouvre la partie suivante.",
+   "ecran": "recap1",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Acidité mesurée, échelle comprise : place aux calculs."
+  },
+  {
+   "dit": "Commençons par le cas simple : les acides et les bases forts. Leur trait commun est la dissociation complète. Dissous dans l'eau, l'acide fort cède entièrement son proton, et il ne reste aucune molécule intacte en solution ; de même, la base forte libère intégralement ses ions hydroxyde. Conséquence immédiate et précieuse : la concentration en ions oxonium d'un acide fort est simplement égale à sa concentration initiale. Tout le calcul du pH tient alors en quelques lignes, et c'est ce qui rend ce cas si agréable.",
+   "ecran": "forts",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Dissociation complète : [H₃O⁺] égale la concentration de l'acide."
+  },
+  {
+   "dit": "Encore faut-il reconnaître ces acteurs. La liste des acides forts est courte et doit être connue : acide chlorhydrique, bromhydrique, iodhydrique, perchlorique, nitrique, et sulfurique, dont seule la première dissociation est forte. Côté bases fortes : la soude, la potasse, l'hydroxyde de calcium et celui de baryum. Tout ce qui n'est pas dans cette liste est faible : l'acide acétique du vinaigre, l'ammoniac, et l'immense majorité des acides et des bases de la nature et de la biologie.",
+   "ecran": "acteurs",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Six acides forts, quatre bases fortes : la liste est courte."
+  },
+  {
+   "dit": "Premier calcul complet : le suc gastrique, qui contient environ cinq centièmes de mole par litre d'acide chlorhydrique. Première étape, la dissociation : acide fort, donc la concentration en ions oxonium égale la concentration de l'acide, cinq centièmes. Deuxième étape, le pH : opposé du logarithme de cinq centièmes, soit un virgule trois. Troisième étape, la vérification : le pOH vaut quatorze moins un virgule trois, douze virgule sept. Un pH de un virgule trois : voilà l'environnement extrême dans lequel travaille votre estomac.",
+   "ecran": "acide_fort_calc",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "0,05 mol/L de HCl : le pH tombe à 1,3."
+  },
+  {
+   "dit": "Pour une base forte, le calcul passe par le pOH. Exemple : un déboucheur à la soude, à deux centièmes de mole par litre. La concentration en ions hydroxyde égale celle de la base ; le pOH vaut un virgule soixante-dix ; le pH s'en déduit : quatorze moins un virgule soixante-dix, douze virgule trente. Attention au cas de l'hydroxyde de calcium : chaque formule libère deux ions hydroxyde, la concentration en ions hydroxyde est donc le double de celle de la base, et une solution à cinq millièmes donne un pH de douze exactement.",
+   "ecran": "base_forte_calc",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Soude : pH 12,30 ; chaux : deux OH⁻ par formule, pH 12,00."
+  },
+  {
+   "dit": "Un piège classique guette aux très faibles concentrations. Diluez un acide fort jusqu'à dix puissance moins sept mole par litre : la règle simple annoncerait un pH de sept, comme si l'acide avait disparu. C'est faux. À ce niveau, l'eau elle-même, par son autoprotolyse, fournit autant d'ions oxonium que l'acide ajouté, et le pH réel descend légèrement sous sept, voisin de six virgule huit. Retenez la règle pratique : nos formules simples sont valables au-dessus de dix puissance moins six mole par litre ; en dessous, il faut compter l'eau.",
+   "ecran": "piege_dilution",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "À 10⁻⁷ mol/L, l'acide ne donne pas pH 7, mais environ 6,8."
+  },
+  {
+   "dit": "Exercice guidé : préparer deux litres d'une solution de pH un, à partir d'acide chlorhydrique concentré à douze moles par litre. On remonte le calcul à l'envers. Le pH visé donne la concentration finale en ions oxonium : un dixième de mole par litre. Dans deux litres, il faut donc deux dixièmes de mole d'acide. Cette quantité doit venir du prélèvement concentré : deux dixièmes divisés par douze donnent environ dix-sept millilitres à prélever, puis à compléter avec de l'eau jusqu'à deux litres. La dilution devient un simple bilan de matière.",
+   "ecran": "dilution_exercice",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "16,7 mL d'acide concentré suffisent pour 2 L à pH 1."
+  },
+  {
+   "dit": "Passons aux acides faibles, qui ne se dissocient que partiellement. L'acide faible et ses ions vivent en équilibre, et cet équilibre possède une constante : la constante d'acidité, Ka, rapport des produits sur l'acide restant. Pour l'acide acétique, elle vaut environ deux cent-millièmes : minuscule, signe que l'équilibre penche très fort vers l'acide intact. Pour un acide fort, elle serait immense. Le pendant existe pour les bases faibles, la constante Kb, et les deux se répondent : pour un couple conjugué, Ka fois Kb égale le produit ionique de l'eau.",
+   "ecran": "ka",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "Ka petit : l'équilibre penche vers l'acide intact."
+  },
+  {
+   "dit": "Comment calculer le pH d'un acide faible ? On suit la quantité dissociée, inconnue que l'on note x, dans un tableau d'avancement : au départ, l'acide à sa concentration initiale ; à l'équilibre, il en reste cette concentration moins x, et il s'est formé x d'ions oxonium. La constante d'acidité s'écrit alors x au carré, divisé par la concentration moins x. Si l'acide est vraiment faible, x est négligeable devant la concentration : il reste une racine carrée, et le pH devient la moitié de pKa moins le logarithme de la concentration.",
+   "ecran": "ice",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "x inconnue, tableau d'avancement, racine carrée."
+  },
+  {
+   "dit": "Application au vinaigre modèle : l'acide acétique à un dixième de mole par litre, de pKa quatre virgule soixante-seize. D'abord, vérifier l'approximation : la concentration divisée par Ka donne environ cinq mille cinq cents, très supérieur à cent, l'approximation est légitime. La racine carrée du produit donne une concentration en ions oxonium d'environ un virgule trois millième, et un pH de deux virgule quatre-vingt-sept. Comparez : l'acide chlorhydrique à la même concentration donne un pH de un. Même quantité au départ, acidité réelle très différente : voilà ce que faible veut dire.",
+   "ecran": "acetique_ex",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "Acide acétique 0,10 M : pH 2,87, contre 1,0 pour HCl."
+  },
+  {
+   "dit": "La démarche est symétrique pour une base faible. L'ammoniac, dont la constante Kb est voisine de celle de l'acide acétique, en solution à cinq centièmes de mole par litre : la concentration en ions hydroxyde vaut la racine carrée du produit de Kb par la concentration, soit environ neuf virgule cinq dix-millièmes. Le pOH tombe à trois virgule zéro deux, et le pH remonte à dix virgule quatre-vingt-dix-huit. Notez le contraste : une base faible concentrée reste moins basique qu'une base forte très diluée, parce qu'une petite fraction seulement des molécules réagit.",
+   "ecran": "ammoniac_ex",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Ammoniac 0,050 M : pOH 3,02, donc pH 10,98."
+  },
+  {
+   "dit": "Un nombre résume cette dissociation partielle : le pourcentage de dissociation, la part des molécules qui ont effectivement libéré leur proton. Pour l'acide acétique, il passe de moins d'un demi pour cent en solution concentrée à plus de treize pour cent quand on dilue mille fois. C'est la loi de dilution d'Ostwald : plus un acide faible est dilué, plus il se dissocie, même si son pH, lui, remonte vers sept. L'approximation de la racine carrée reste valable tant que ce pourcentage reste sous les cinq pour cent ; au-delà, on résout l'équation du second degré complète.",
+   "ecran": "ostwald",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "De 0,42 % à 13,4 % de dissociation en diluant mille fois."
+  },
+  {
+   "dit": "Récapitulons. Pour un acide ou une base fort, tout est direct : dissociation totale, concentration en ions égale à la concentration initiale, et un passage par le pOH pour les bases. Pour un acide ou une base faible, on écrit l'équilibre, on pose l'inconnue, et l'approximation de la racine carrée donne le pH dès que la dissociation reste faible. Un réflexe avant tout calcul : identifier le type de solution. Reste un pas : que se passe-t-il quand l'acide faible rencontre sa propre base conjuguée ? Réponse : un tampon, et c'est la troisième partie.",
+   "ecran": "recap2",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "Forts : direct ; faibles : équilibre ; puis les tampons."
+  },
+  {
+   "dit": "Une solution tampon est une solution qui résiste aux variations de pH quand on lui ajoute de petites quantités d'acide fort ou de base forte, ou quand on la dilue modérément. Son principe est celui de Le Chatelier : le système réagit à la perturbation en la compensant. Ajoute-t-on des ions oxonium ? La base conjuguée les capte. Ajoute-t-on des ions hydroxyde ? L'acide faible libère des protons pour les neutraliser. Le pH bouge à peine : le tampon fonctionne comme un réservoir qui absorbe les chocs.",
+   "ecran": "tampon_def",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Le tampon encaisse les ajouts d'acide ou de base."
+  },
+  {
+   "dit": "La recette exige un couple acide faible et base conjuguée, en quantités significatives et comparables. Deux montages possibles : un acide faible accompagné du sel de sa base conjuguée, comme l'acide acétique et l'acétate de sodium ; ou une base faible accompagnée du sel de son acide conjugué, comme l'ammoniac et le chlorure d'ammonium. Chaque couple garde le pH autour de son pKa : quatre virgule soixante-seize pour l'acétate, sept virgule vingt et un pour le phosphate, neuf virgule vingt-cinq pour l'ammonium. Choisir un tampon, c'est d'abord choisir son pKa.",
+   "ecran": "composition",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "Chaque couple garde le pH autour de son pKa."
+  },
+  {
+   "dit": "Regardons le mécanisme sur le couple de l'acétate. Versez un acide fort : ses ions oxonium rencontrent les ions acétate, nombreux, qui les captent pour reformer de l'acide acétique ; l'équilibre se déplace vers la gauche, et presque aucun ion oxonium ne reste libre. Versez une base forte : ses ions hydroxyde consomment les ions oxonium présents, et l'acide acétique se dissocie aussitôt pour les remplacer ; l'équilibre se déplace vers la droite. Dans les deux cas, l'agresseur est neutralisé par le partenaire du couple, et le pH ne cède que très peu.",
+   "ecran": "mecanisme",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "L'acétate capte H₃O⁺ ; l'acide acétique neutralise OH⁻."
+  },
+  {
+   "dit": "Une équation gouverne tous ces systèmes : celle de Henderson et Hasselbalch. Le pH d'un tampon égale le pKa du couple, plus le logarithme du rapport entre la concentration de la base conjuguée et celle de l'acide faible. Deux leçons à en tirer. Si les deux formes sont en quantités égales, le rapport vaut un, son logarithme vaut zéro, et le pH égale exactement le pKa : c'est le point de pouvoir tampon maximal. Et comme seul le rapport compte, diluer modérément le tampon ne change presque pas son pH, même si sa capacité, elle, diminue.",
+   "ecran": "henderson",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "pH = pKa + log([base]/[acide]) : tout est dans le rapport."
+  },
+  {
+   "dit": "Préparons au laboratoire un tampon de pH cinq, avec le couple de l'acétate, de pKa quatre virgule soixante-seize. L'équation de Henderson-Hasselbalch donne le rapport à réaliser : dix puissance zéro virgule vingt-quatre, soit environ une fois et trois quarts plus de base conjuguée que d'acide. On peut aussi fabriquer le même tampon en neutralisant partiellement l'acide acétique par la soude : la fraction neutralisée devient l'acétate, le reste demeure l'acide. Enfin, la capacité du tampon, sa réserve de neutralisation, croît avec les concentrations des deux partenaires.",
+   "ecran": "preparation",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Rapport base sur acide : 1,74 pour viser pH 5."
+  },
+  {
+   "dit": "Le tampon le plus célèbre travaille dans votre sang. Le couple est celui de l'acide carbonique et de l'ion hydrogénocarbonate, relié au dioxyde de carbone dissous. Son pKa, à la température du corps, est d'environ six virgule un. L'équation de Henderson-Hasselbalch fixe alors le rapport nécessaire : vingt fois plus de bicarbonate que d'acide, et le pH tombe à sept virgule quatre, au cœur de la zone vitale. Arrive un acide, comme l'acide lactique d'un effort : le bicarbonate le neutralise, le dioxyde de carbone formé est exhalé par les poumons, et le rapport se rétablit.",
+   "ecran": "sang",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Rapport 20 pour 1 : 6,1 + log 20 = 7,4."
+  },
+  {
+   "dit": "Le sang n'est pas défendu par un seul couple. Dans les globules rouges, l'hémoglobine elle-même tamponne les protons libérés quand le dioxyde de carbone devient bicarbonate. Dans le liquide des cellules, c'est le couple phosphate qui veille : son pKa de sept virgule deux colle au pH intracellulaire. Les protéines, avec leurs groupements capables de capter ou de céder des protons, complètent l'arsenal. Quand ces défenses sont dépassées, c'est l'acidose sous sept virgule trente-cinq, ou l'alcalose au-dessus de sept virgule quarante-cinq : deux états qui peuvent être mortels.",
+   "ecran": "vivant",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "Hémoglobine, phosphate, protéines : trois lignes de défense."
+  },
+  {
+   "dit": "Même équation, autre décor : l'industrie. L'insuline des diabétiques est formulée dans un tampon phosphate à pH sept virgule quatre, celui du sang : en dehors, la protéine se dénature et le médicament meurt. Dans les fermenteurs qui produisent la pénicilline, le pH est gardé à six virgule cinq : un écart de deux dixièmes peut coûter trente pour cent du rendement. Les sodas sont tamponnés entre deux et demi et quatre par le système carbonique, les jus par le citrate vers trois et demi, et les circuits d'eau industrielle entre huit et demi et neuf pour empêcher la corrosion de l'acier.",
+   "ecran": "industrie",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "Insuline à 7,4 ; pénicilline à 6,5 ; sodas sous 4."
+  },
+  {
+   "dit": "Exercice de synthèse, celui de la leçon finale. Partez d'un litre d'acide acétique à un dixième de mole par litre : son pH, calculé dans la partie deux, est de deux virgule quatre-vingt-sept. Ajoutez cinq centièmes de mole de soude : elle neutralise exactement la moitié de l'acide et crée autant d'acétate. Vous avez fabriqué un tampon équimolaire, et Henderson-Hasselbalch donne un pH égal au pKa, quatre virgule soixante-seize. La même soude, versée dans un litre d'eau pure, ferait bondir le pH de sept à douze virgule sept. Le saut passe de près de six unités à moins de deux : voilà la puissance d'un tampon, mesurée.",
+   "ecran": "exercice_tampon",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "Dans le tampon : +1,9 unité ; dans l'eau pure : +5,7."
+  },
+  {
+   "dit": "Dernier repère, sur la courbe de titrage d'un acide faible par une base forte : le point de demi-équivalence, quand on a versé la moitié de la soude nécessaire. À cet instant précis, il reste autant d'acide que de base conjuguée formée ; le rapport de Henderson-Hasselbalch vaut un, son logarithme s'annule, et le pH égale le pKa. Pour l'acide formique de la leçon, on lit donc directement trois virgule soixante-quinze sur la courbe. C'est la méthode la plus simple pour mesurer le pKa d'un acide faible, et la zone qui entoure ce point est précisément la zone tampon de la courbe.",
+   "ecran": "demi_equivalence",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "À la demi-équivalence, pH = pKa : on le lit sur la courbe."
+  },
+  {
+   "dit": "Vous avez désormais la boîte à outils complète de l'acidité. Identifier d'abord la solution : forte, faible, ou tampon. Pour les forts, le calcul est direct ; pour les faibles, l'équilibre et sa constante commandent, avec la racine carrée en approximation ; pour les tampons, Henderson-Hasselbalch ne demande que le pKa et un rapport. Et derrière ces formules, un même principe d'équilibre garde le pH du sang, protège les médicaments, fait fermenter les usines et tamponne même les océans. Mesurer l'acidité, c'était la première étape ; la garder, c'est comprendre le vivant.",
+   "ecran": "recap_final",
+   "id": "p32",
+   "pause_apres": 0.8,
+   "texte": "Mesurer l'acidité, puis la garder : le cours est bouclé."
+  }
+ ],
+ "titre": "Le pH et les solutions tampons : mesurer l'acidité, garder l'équilibre"
+}

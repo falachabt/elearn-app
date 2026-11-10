@@ -7,7 +7,7 @@ import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { MentionsLegales, lienCgu, urlSite } from '../MentionsLegales';
 
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('expo-web-browser', () => ({ openBrowserAsync: jest.fn(async () => ({ type: 'opened' })) }));
 
 afterAll(() => changerLangue('fr'));

@@ -1,0 +1,429 @@
+{
+  "cours": 7309,
+  "ecrans": {
+    "bornees": {
+      "kicker": "Majorée, minorée, bornée",
+      "note": "Bornée : majorée et minorée à la fois",
+      "tex": "\\begin{aligned} f(x) \\leq M &\\text{ : majorée} \\\\ f(x) \\geq m &\\text{ : minorée} \\end{aligned}",
+      "type": "formule"
+    },
+    "courbe_def": {
+      "kicker": "Courbe représentative",
+      "note": "Tous les points dont l'ordonnée est l'image de l'abscisse",
+      "tex": "M(x,\\ y) \\in \\mathcal{C}_f \\iff y = f(x),\\ x \\in D_f",
+      "type": "formule"
+    },
+    "def_df": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Ensemble de définition",
+      "note": "Les réels pour lesquels le calcul de f(x) est possible",
+      "tex": "D_f = \\{ x \\in \\mathbb{R} \\mid f(x) \\text{ existe} \\}",
+      "type": "formule"
+    },
+    "ex_bornees": {
+      "anim": {
+        "hauteur": 160,
+        "nom": "sinusoide"
+      },
+      "kicker": "Exemple · le sinus est borné",
+      "texte": "−1 ≤ sin(x) ≤ 1 : le sinus est borné sur R.",
+      "type": "phrase"
+    },
+    "ex_carre": {
+      "kicker": "Exemple résolu · croissance",
+      "tex": [
+        "0 \\leq a < b \\qquad f(b) - f(a) = b^2 - a^2",
+        "b^2 - a^2 = (b - a)(b + a) \\geq 0",
+        "f(a) \\leq f(b) \\text{ : } f \\text{ croissante}"
+      ],
+      "titre": "Le carré, sur les réels positifs",
+      "type": "etape"
+    },
+    "ex_cos": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "sinusoide"
+      },
+      "kicker": "Exemple · le cosinus",
+      "note": "Période deux pi : la courbe se répète tous les deux pi",
+      "tex": "\\cos(x + 2\\pi) = \\cos(x)",
+      "type": "formule"
+    },
+    "ex_df": {
+      "kicker": "Exemple résolu · domaine",
+      "tex": [
+        "f(x) = \\tfrac{\\sqrt{x+2}}{x-3}",
+        "x + 2 \\geq 0 \\iff x \\geq -2",
+        "x - 3 \\neq 0 \\iff x \\neq 3",
+        "D_f = [-2,\\ 3[\\ \\cup\\ ]3,\\ +\\infty["
+      ],
+      "titre": "Racine au numérateur, fraction en dessous",
+      "type": "etape"
+    },
+    "ex_extremum": {
+      "kicker": "Exemple · un minimum global",
+      "texte": "x² admet un minimum global en 0, de valeur 0.",
+      "type": "phrase"
+    },
+    "ex_inverse": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "hyperbole_fig"
+      },
+      "kicker": "Exemple résolu · décroissance",
+      "tex": [
+        "0 < a < b \\qquad f(a) - f(b) = \\tfrac{1}{a} - \\tfrac{1}{b}",
+        "f(a) - f(b) = \\tfrac{b - a}{ab} > 0",
+        "f(a) > f(b) \\text{ : } f \\text{ décroissante}"
+      ],
+      "titre": "L'inverse, sur les réels strictement positifs",
+      "type": "etape"
+    },
+    "ex_parite": {
+      "kicker": "Exemple résolu · parité",
+      "tex": [
+        "f(x) = x^3 - x \\qquad D_f = \\mathbb{R}",
+        "f(-x) = (-x)^3 - (-x) = -x^3 + x",
+        "f(-x) = -(x^3 - x) = -f(x)"
+      ],
+      "titre": "Un cube moins la variable",
+      "type": "etape"
+    },
+    "ex_trace": {
+      "kicker": "Exemple résolu · tracé",
+      "tex": [
+        "x : \\quad 0 \\qquad 1 \\qquad 2",
+        "f(x) : \\quad 0 \\qquad 1 \\qquad 4",
+        "\\text{points } (0,\\ 0),\\ (1,\\ 1),\\ (2,\\ 4)"
+      ],
+      "titre": "Le carré, sur l'intervalle moins deux, deux",
+      "type": "etape"
+    },
+    "extremum": {
+      "kicker": "Extremums",
+      "note": "Local : autour de x zéro. Global : sur tout l'intervalle",
+      "tex": "\\begin{aligned} f(x_0) \\geq f(x) &\\text{ : maximum} \\\\ f(x_0) \\leq f(x) &\\text{ : minimum} \\end{aligned}",
+      "type": "formule"
+    },
+    "intervalle": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "hyperbole_fig"
+      },
+      "kicker": "Le piège de l'intervalle",
+      "texte": "La monotonie se dit sur un intervalle précis.",
+      "type": "phrase"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 180,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Introduction",
+      "texte": "Avant de tracer : où elle existe, ses symétries, comment elle varie.",
+      "type": "phrase"
+    },
+    "lecture": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "tangente_courbe_fig"
+      },
+      "kicker": "Lecture graphique",
+      "texte": "De gauche à droite : la courbe monte, ou descend.",
+      "type": "phrase"
+    },
+    "methode_trace": {
+      "kicker": "Méthode de tracé",
+      "tex": [
+        "\\text{1. déterminer } D_f",
+        "\\text{2. parité, périodicité : réduire l'étude}",
+        "\\text{3. tableau de valeurs}",
+        "\\text{4. placer les points, relier en continu}"
+      ],
+      "titre": "Quatre gestes, dans l'ordre",
+      "type": "etape"
+    },
+    "methode_var": {
+      "anim": {
+        "hauteur": 160,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Prouver sans dérivée",
+      "texte": "Fixer a < b, étudier le signe de f(b) − f(a).",
+      "type": "phrase"
+    },
+    "parite": {
+      "kicker": "Parité",
+      "note": "Domaine d'abord symétrique par rapport à zéro",
+      "tex": "\\begin{aligned} f(-x) = f(x) &\\text{ : paire} \\\\ f(-x) = -f(x) &\\text{ : impaire} \\end{aligned}",
+      "type": "formule"
+    },
+    "parite_graph": {
+      "anim": {
+        "hauteur": 190,
+        "nom": "symetrie_fig"
+      },
+      "kicker": "Parité · lecture graphique",
+      "texte": "Paire : axe des ordonnées. Impaire : origine O.",
+      "type": "phrase"
+    },
+    "periodicite": {
+      "kicker": "Périodicité",
+      "note": "La même valeur revient après chaque période T",
+      "tex": "f(x + T) = f(x) \\qquad T > 0",
+      "type": "formule"
+    },
+    "periodicite_graph": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "sinusoide"
+      },
+      "kicker": "Périodicité · lecture graphique",
+      "texte": "Un motif de longueur T, répété par translations.",
+      "type": "phrase"
+    },
+    "recap": {
+      "etapes": [
+        "Croissante : les images gardent l'ordre",
+        "Décroissante : les images inversent l'ordre",
+        "Preuve : le signe de f(b) − f(a)",
+        "Extremum : maximum ou minimum, local ou global",
+        "Bornée : majorée et minorée à la fois"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "recap1": {
+      "etapes": [
+        "Domaine : dénominateur non nul, racine positive",
+        "Parité : f(−x) comparé à f(x) et à −f(x)",
+        "Période T : f(x + T) = f(x), motif répété",
+        "Courbe : les points M(x, f(x)), x dans D_f",
+        "Tracé : domaine, symétries, valeurs, points"
+      ],
+      "kicker": "Partie 1 : à retenir",
+      "type": "recap"
+    },
+    "regles": {
+      "kicker": "Règles usuelles",
+      "tex": [
+        "\\tfrac{P(x)}{Q(x)} \\text{ exige } Q(x) \\neq 0",
+        "\\sqrt{P(x)} \\text{ exige } P(x) \\geq 0",
+        "\\sqrt{\\tfrac{P(x)}{Q(x)}} \\text{ : les deux conditions}"
+      ],
+      "titre": "Trois conditions à surveiller",
+      "type": "etape"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 250,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Mathématique · Fonctions",
+      "sous": "Où la fonction existe, ses symétries, son sens de variation et sa courbe représentative",
+      "titre": "Fonctions : domaine, parité, variations et courbe",
+      "type": "titre"
+    },
+    "trace_sym": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "symetrie_fig"
+      },
+      "kicker": "Tracé · le rôle de la parité",
+      "texte": "Moitié tracée, moitié obtenue par symétrie.",
+      "type": "phrase"
+    },
+    "variations": {
+      "kicker": "Sens de variation",
+      "tex": [
+        "a \\leq b \\implies f(a) \\leq f(b) \\text{ : croissante}",
+        "a \\leq b \\implies f(a) \\geq f(b) \\text{ : décroissante}"
+      ],
+      "titre": "Les images suivent, ou inversent, l'ordre",
+      "type": "etape"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Domaine, parité, périodicité et tracé de la courbe"
+    },
+    {
+      "debut": "p17",
+      "pont": {
+        "dit": "Partie deux, le sens de variation. Nous allons comparer les images de deux réels, repérer les extremums, et décider si les images restent entre un plancher et un plafond.",
+        "texte": "Partie 2 : sens de variation, extremums et bornes."
+      },
+      "sous_titre": "Sens de variation, extremums et fonctions bornées"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux généralités sur les fonctions. Nous allons déterminer où une fonction existe, reconnaître ses symétries, étudier son sens de variation, puis lire et tracer sa courbe.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Fonctions : domaine, symétries, variations, courbe."
+    },
+    {
+      "dit": "Le fil du cours est simple. Avant de tracer, on répond à trois questions : pour quelles valeurs de x le calcul est-il possible, la courbe présente-t-elle une symétrie qui réduit le travail, et les images montent-elles ou descendent-elles quand x grandit.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "Trois questions avant tout tracé."
+    },
+    {
+      "dit": "L'ensemble de définition d'une fonction eff est l'ensemble des réels x pour lesquels eff de x existe, c'est-à-dire est calculable. On le note dé eff. Hors de cet ensemble, la fonction n'a pas d'image.",
+      "ecran": "def_df",
+      "id": "p03",
+      "texte": "D_f : les x pour lesquels f(x) existe."
+    },
+    {
+      "dit": "Trois règles usuelles donnent les conditions d'existence. Une fraction exige un dénominateur non nul. Une racine carrée exige un contenu positif ou nul. Une racine d'une fraction cumule les deux conditions.",
+      "ecran": "regles",
+      "id": "p04",
+      "texte": "Fraction, racine : les conditions d'existence."
+    },
+    {
+      "dit": "Exemple résolu : déterminer l'ensemble de définition de la fonction qui, à x, associe la racine carrée de x plus deux, divisée par x moins trois. La racine impose x supérieur ou égal à moins deux. Le dénominateur impose x différent de trois. Au final, dé eff est l'intervalle moins deux, trois, fermé en moins deux, ouvert en trois, réuni avec l'intervalle trois, plus l'infini.",
+      "ecran": "ex_df",
+      "id": "p05",
+      "texte": "Exemple : D_f = [−2, 3[ ∪ ]3, +∞[."
+    },
+    {
+      "dit": "Passons à la parité. On suppose le domaine symétrique par rapport à zéro : si x y est, moins x y est aussi. La fonction est paire si eff de moins x égale eff de x. Elle est impaire si eff de moins x égale moins eff de x.",
+      "ecran": "parite",
+      "id": "p06",
+      "texte": "Paire : f(−x) = f(x). Impaire : f(−x) = −f(x)."
+    },
+    {
+      "dit": "Graphiquement, la parité se voit. Fonction paire : la courbe est symétrique par rapport à l'axe des ordonnées. Fonction impaire : elle est symétrique par rapport à l'origine du repère. Une moitié de courbe suffit donc pour connaître l'autre.",
+      "ecran": "parite_graph",
+      "id": "p07",
+      "texte": "Symétrie : axe des ordonnées, ou origine."
+    },
+    {
+      "dit": "Exemple résolu : étudier la parité de la fonction qui, à x, associe x au cube moins x, sur l'ensemble des réels, symétrique par rapport à zéro. On calcule eff de moins x : moins x au cube plus x, c'est-à-dire moins eff de x. La fonction est donc impaire, symétrique par rapport à l'origine.",
+      "ecran": "ex_parite",
+      "id": "p08",
+      "texte": "Exemple : x³ − x est impaire."
+    },
+    {
+      "dit": "Troisième symétrie possible : la périodicité. Soit té strictement positif. La fonction est périodique de période té si x plus té reste dans le domaine et si eff de x plus té égale eff de x. La même valeur revient, indéfiniment.",
+      "ecran": "periodicite",
+      "id": "p09",
+      "texte": "Période T : f(x + T) = f(x)."
+    },
+    {
+      "dit": "Graphiquement, la courbe se répète identiquement sur tout intervalle de longueur té. Il suffit donc de l'étudier sur un seul intervalle de longueur té, puis de la reproduire par des translations successives le long de l'axe des abscisses.",
+      "ecran": "periodicite_graph",
+      "id": "p10",
+      "texte": "Un motif de longueur T, puis des translations."
+    },
+    {
+      "dit": "Exemple : le cosinus. Pour tout réel x, le cosinus de x plus deux pi égale le cosinus de x. Le cosinus est donc périodique de période deux pi, et sa courbe se répète par translation de deux pi sur l'axe des abscisses.",
+      "ecran": "ex_cos",
+      "id": "p11",
+      "texte": "Le cosinus : période 2π."
+    },
+    {
+      "dit": "Venons-en à la représentation. La courbe représentative d'une fonction est l'ensemble des points èm de coordonnées x et y tels que y égale eff de x, avec x dans l'ensemble de définition. Chaque point a pour ordonnée l'image de son abscisse.",
+      "ecran": "courbe_def",
+      "id": "p12",
+      "texte": "La courbe : tous les points M(x, f(x))."
+    },
+    {
+      "dit": "La méthode de tracé tient en quatre gestes. Déterminer l'ensemble de définition. Étudier la parité et la périodicité pour réduire l'intervalle d'étude. Dresser un tableau de valeurs. Puis placer les points et les relier par une courbe continue.",
+      "ecran": "methode_trace",
+      "id": "p13",
+      "texte": "Domaine, symétries, valeurs, points reliés."
+    },
+    {
+      "dit": "Exemple résolu : tracer la courbe de la fonction carré sur l'intervalle moins deux, deux. La fonction est paire, on étudie donc d'abord zéro, deux. Le tableau de valeurs donne : zéro donne zéro, un donne un, deux donne quatre. On place ces points et on relie.",
+      "ecran": "ex_trace",
+      "id": "p14",
+      "texte": "Exemple : x², valeurs 0, 1, 4."
+    },
+    {
+      "dit": "Il ne reste qu'à compléter. Par symétrie par rapport à l'axe des ordonnées, on reproduit la moitié tracée sur moins deux, zéro. La courbe obtenue est une parabole de sommet l'origine. Parité et périodicité réduisent le travail à une portion de courbe, le reste s'obtient par symétrie ou par translation.",
+      "ecran": "trace_sym",
+      "id": "p15",
+      "texte": "Parabole complétée par symétrie."
+    },
+    {
+      "dit": "Retenons la première partie. L'ensemble de définition rassemble les valeurs où le calcul est possible, avec les conditions sur les dénominateurs et les racines. La parité et la périodicité créent des symétries qui réduisent l'étude. Et la courbe rassemble les points dont l'ordonnée est l'image de l'abscisse.",
+      "ecran": "recap1",
+      "id": "p16",
+      "texte": "Domaine, parité, périodicité, courbe : à retenir."
+    },
+    {
+      "dit": "Définissons le sens de variation. La fonction est croissante sur un intervalle si les images gardent l'ordre : a inférieur ou égal à bé donne eff de a inférieur ou égal à eff de bé. Décroissante, les images inversent l'ordre. Inégalités strictes : stricte croissance ou stricte décroissance.",
+      "ecran": "variations",
+      "id": "p17",
+      "texte": "Croissante : l'ordre gardé. Décroissante : inversé."
+    },
+    {
+      "dit": "Pour prouver un sens de variation sans dérivée, on fixe a et bé dans l'intervalle, a strictement inférieur à bé, et on étudie le signe de eff de bé moins eff de a. Positive, la fonction est croissante ; négative, décroissante.",
+      "ecran": "methode_var",
+      "id": "p18",
+      "texte": "La preuve : le signe de f(b) − f(a)."
+    },
+    {
+      "dit": "Premier exemple : la fonction carré est croissante sur zéro, plus l'infini. Soient a et bé, zéro inférieur ou égal à a, a strictement inférieur à bé. La différence eff de bé moins eff de a vaut bé au carré moins a au carré, soit bé moins a, fois bé plus a. Premier facteur strictement positif, second positif ou nul : la fonction est croissante.",
+      "ecran": "ex_carre",
+      "id": "p19",
+      "texte": "Exemple : x² croissante sur [0, +∞[."
+    },
+    {
+      "dit": "Deuxième exemple : la fonction inverse est décroissante sur zéro, plus l'infini, ouvert en zéro. Soient a et bé strictement positifs, a strictement inférieur à bé. La différence eff de a moins eff de bé vaut bé moins a, sur a fois bé, strictement positive. Donc eff de a dépasse eff de bé : la fonction est décroissante.",
+      "ecran": "ex_inverse",
+      "id": "p20",
+      "texte": "Exemple : 1/x décroissante sur ]0, +∞[."
+    },
+    {
+      "dit": "Attention : une fonction peut être croissante sur un intervalle et décroissante sur un autre. La monotonie se précise toujours sur un intervalle donné, jamais sur l'ensemble des réels sans vérification. Dire une fonction est croissante, sans intervalle, ne veut rien dire.",
+      "ecran": "intervalle",
+      "id": "p21",
+      "texte": "Toujours préciser l'intervalle."
+    },
+    {
+      "dit": "Passons aux extremums. La fonction admet un maximum en x zéro si eff de x zéro est supérieur ou égal à toutes les images de l'intervalle, et un minimum s'il leur est inférieur ou égal. L'extremum est local s'il ne vaut qu'autour de x zéro, global s'il vaut sur tout l'intervalle.",
+      "ecran": "extremum",
+      "id": "p22",
+      "texte": "Maximum, minimum : local ou global."
+    },
+    {
+      "dit": "Exemple : la fonction carré admet un minimum global en zéro, sur l'ensemble des réels. Un carré est toujours positif ou nul, et eff de zéro vaut zéro : aucune image ne descend en dessous.",
+      "ecran": "ex_extremum",
+      "id": "p23",
+      "texte": "x² : minimum global 0, atteint en 0."
+    },
+    {
+      "dit": "Trois mots voisins des extremums. Majorée : il existe un réel plafond que toutes les images restent en dessous ou égalent. Minorée : il existe un réel plancher qui reste en dessous de toutes les images, ou les égale. Majorée et minorée à la fois, la fonction est bornée.",
+      "ecran": "bornees",
+      "id": "p24",
+      "texte": "Majorée, minorée, bornée : trois plafonds et planchers."
+    },
+    {
+      "dit": "Exemples : le sinus est borné sur l'ensemble des réels, car son image reste toujours entre moins un et un. La fonction carré, elle, est minorée par zéro, mais pas majorée : ses images grandissent sans limite. Graphiquement, une fonction bornée a sa courbe comprise entre deux droites horizontales.",
+      "ecran": "ex_bornees",
+      "id": "p25",
+      "texte": "Sinus borné entre −1 et 1 ; x² seulement minorée."
+    },
+    {
+      "dit": "Dernier savoir-faire : lire le sens de variation sur une courbe. On balaye les abscisses de gauche à droite. Là où la courbe monte, la fonction est croissante ; là où elle descend, décroissante. Les extremums sont les points où la courbe change de sens. Pour le carré : descente jusqu'en zéro, minimum, puis remontée.",
+      "ecran": "lecture",
+      "id": "p26",
+      "texte": "Lecture : monter, descendre, changer de sens."
+    },
+    {
+      "dit": "Pour conclure. Croissante, les images gardent l'ordre ; décroissante, elles l'inversent, et la preuve passe par le signe d'une différence. Les extremums sont les plus grandes et les plus petites images, localement ou globalement. Et une fonction bornée reste entre un plancher et un plafond.",
+      "ecran": "recap",
+      "id": "p27",
+      "texte": "Variations, extremums, bornes : à retenir."
+    }
+  ],
+  "titre": "Fonctions : domaine, parité, variations et courbe"
+}

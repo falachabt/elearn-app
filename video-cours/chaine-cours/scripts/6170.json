@@ -1,0 +1,489 @@
+{
+ "cours": 6170,
+ "titre": "Équations différentielles : le langage du changement et ses applications",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Équations différentielles",
+   "titre": "Équations différentielles : le langage du changement et ses applications",
+   "sous": "Modéliser, résoudre, prévoir : populations, oscillations, circuits et méthodes numériques",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 240
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Une équation qui cherche une fonction",
+   "texte": "Une équation algébrique cherche un nombre ; une équation différentielle cherche une fonction, la loi du mouvement elle-même.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 200
+   }
+  },
+  "forme_generale": {
+   "type": "formule",
+   "kicker": "La forme générale",
+   "tex": "F\\left(x,\\ y(x),\\ y'(x),\\ y''(x),\\ \\ldots,\\ y^{(n)}(x)\\right) = 0",
+   "note": "n est l'ordre : la dérivée la plus haute fixe le nombre de conditions initiales."
+  },
+  "modelisation": {
+   "type": "etape",
+   "kicker": "La modélisation en quatre temps",
+   "titre": "De la réalité observée à l'équation exploitable",
+   "tex": [
+    "\\text{1. identifier le système et les variables qui évoluent}",
+    "\\text{2. poser des hypothèses simplificatrices réalistes}",
+    "\\text{3. appliquer une loi connue : un taux devient une dérivée}",
+    "\\text{4. écrire l'équation et ses conditions initiales}"
+   ]
+  },
+  "newton_cafe": {
+   "type": "formule",
+   "kicker": "Exemple : le café qui refroidit",
+   "tex": "\\frac{dT}{dt} = -k\\,(T - T_a), \\qquad k > 0",
+   "note": "Loi de Newton : la vitesse de refroidissement est proportionnelle à l'écart avec l'ambiante.",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 120
+   }
+  },
+  "cauchy": {
+   "type": "etape",
+   "kicker": "Solution, condition initiale, problème de Cauchy",
+   "titre": "Une infinité de solutions, une seule pour notre système",
+   "tex": [
+    "\\tfrac{dP}{dt} = rP \\quad \\Rightarrow \\quad P(t) = C\\,e^{rt}",
+    "P(0) = P_0 \\quad \\Rightarrow \\quad C = P_0"
+   ]
+  },
+  "chute_libre": {
+   "type": "etape",
+   "kicker": "Premier modèle mécanique : la chute libre",
+   "titre": "Deux intégrations successives, de l'accélération à la hauteur",
+   "tex": [
+    "z''(t) = -g",
+    "z(t) = h - \\tfrac{1}{2}\\,g\\,t^2 \\quad \\text{si } z(0)=h,\\ v(0)=0"
+   ]
+  },
+  "expo": {
+   "type": "formule",
+   "kicker": "Le modèle fondamental du premier ordre",
+   "tex": "\\frac{dP}{dt} = kP \\quad \\Longrightarrow \\quad P(t) = P_0\\,e^{kt}",
+   "note": "k positif : croissance. k négatif : décroissance. C'est le fil rouge de tout le cours.",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 120
+   }
+  },
+  "separation": {
+   "type": "etape",
+   "kicker": "Résoudre : la séparation des variables",
+   "titre": "Séparer, intégrer, exponentier",
+   "tex": [
+    "\\tfrac{dP}{P} = k\\,dt",
+    "\\ln|P| = kt + C",
+    "P(t) = P_0\\,e^{kt}"
+   ]
+  },
+  "bacteries": {
+   "type": "etape",
+   "kicker": "Exemple résolu : la croissance bactérienne",
+   "titre": "Mille bactéries qui doublent toutes les deux heures",
+   "tex": [
+    "P(0) = 1000, \\quad P(2) = 2000",
+    "k = \\tfrac{\\ln 2}{2} \\approx 0{,}347\\ \\text{par heure}",
+    "P(6) = 1000\\,e^{0{,}347 \\times 6} \\approx 8000"
+   ]
+  },
+  "carbone": {
+   "type": "etape",
+   "kicker": "Exemple résolu : la datation au carbone quatorze",
+   "titre": "Une demi-vie de cinq mille sept cent trente ans",
+   "tex": [
+    "\\lambda = \\tfrac{\\ln 2}{5730} \\approx 1{,}21 \\times 10^{-4}\\ \\text{par an}",
+    "\\tfrac{N(t)}{N_0} = 0{,}25 \\quad \\Rightarrow \\quad t = \\tfrac{\\ln 4}{\\lambda}",
+    "t \\approx 11\\,460\\ \\text{ans}"
+   ]
+  },
+  "logistique_f": {
+   "type": "formule",
+   "kicker": "Corriger Malthus : le modèle logistique de Verhulst",
+   "tex": "\\frac{dP}{dt} = rP\\left(1 - \\frac{P}{K}\\right)",
+   "note": "K : capacité de charge du milieu. Petite population : exponentielle ; proche de K : stabilisation."
+  },
+  "logistique_c": {
+   "type": "phrase",
+   "kicker": "La courbe en S et sa solution",
+   "texte": "La solution logistique dessine une sigmoïde : départ exponentiel, inflexion à K/2, puis plateau à K. P(t) = K / (1 + A·e^(−rt)).",
+   "anim": {
+    "nom": "logistique_fig",
+    "hauteur": 200
+   }
+  },
+  "finance": {
+   "type": "etape",
+   "kicker": "Argent : intérêts continus et dette",
+   "titre": "Le même squelette exponentiel, deux lectures opposées",
+   "tex": [
+    "\\tfrac{dC}{dt} = rC \\quad \\Rightarrow \\quad C(t) = C_0\\,e^{rt}",
+    "\\tfrac{dD}{dt} = rD - R \\quad \\Rightarrow",
+    "D(t) = \\tfrac{R}{r} + \\left(D_0 - \\tfrac{R}{r}\\right) e^{rt}"
+   ]
+  },
+  "lotka": {
+   "type": "formule",
+   "kicker": "Deux espèces en interaction : Lotka et Volterra",
+   "tex": "\\begin{cases} \\frac{dx}{dt} = \\alpha x - \\beta x y \\\\[2pt] \\frac{dy}{dt} = \\delta x y - \\gamma y \\end{cases}",
+   "note": "x : proies, y : prédateurs. Les solutions tournent en cycles autour de l'équilibre (γ/δ ; α/β)."
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Bilan du premier ordre",
+   "etapes": [
+    "Une ED relie une fonction à ses dérivées",
+    "Modéliser : variables, hypothèses, loi, CI",
+    "dP/dt = kP : la solution est exponentielle",
+    "Logistique : le frein de la capacité K"
+   ]
+  },
+  "ressort_intro": {
+   "type": "phrase",
+   "kicker": "Second ordre : entrer dans l'oscillation",
+   "texte": "Une masse, un ressort, la loi de Hooke et Newton : naît l'oscillateur harmonique, le modèle de tout ce qui vibre.",
+   "anim": {
+    "nom": "ressort",
+    "hauteur": 200
+   }
+  },
+  "canonique": {
+   "type": "formule",
+   "kicker": "La forme canonique de l'oscillateur",
+   "tex": "x'' + \\omega_0^2\\,x = 0, \\qquad \\omega_0 = \\sqrt{\\frac{k}{m}}, \\qquad T = \\frac{2\\pi}{\\omega_0}",
+   "note": "ω₀ : pulsation propre. La solution générale combine cosinus et sinus de même pulsation."
+  },
+  "ex_ressort": {
+   "type": "etape",
+   "kicker": "Exemple résolu : masse et ressort",
+   "titre": "Un demi-kilogramme, une raideur de deux cents, un écart de dix centimètres",
+   "tex": [
+    "\\omega_0 = \\sqrt{\\tfrac{200}{0{,}5}} = \\sqrt{400} = 20\\ \\text{rad/s}",
+    "x(0) = 0{,}1, \\quad v(0) = 0",
+    "x(t) = 0{,}1\\cos(20t)"
+   ]
+  },
+  "regimes": {
+   "type": "etape",
+   "kicker": "L'amortissement : trois régimes",
+   "titre": "Le taux d'amortissement ζ décide du retour à l'équilibre",
+   "tex": [
+    "m\\,x'' + c\\,x' + k\\,x = 0",
+    "\\zeta < 1 : \\text{ pseudo-périodique, oscillations amorties}",
+    "\\zeta = 1 : \\text{ critique, retour le plus rapide sans oscillation}",
+    "\\zeta > 1 : \\text{ apériodique, retour lent sans oscillation}"
+   ]
+  },
+  "suspension": {
+   "type": "etape",
+   "kicker": "Application : la suspension automobile chiffrée",
+   "titre": "Trois cents kilogrammes suspendus, un amortissement aux deux tiers",
+   "tex": [
+    "\\omega_0 = \\sqrt{\\tfrac{30000}{300}} = 10\\ \\text{rad/s}",
+    "\\zeta = \\tfrac{4000}{2\\sqrt{300 \\times 30000}} \\approx 0{,}67",
+    "T_d = \\tfrac{2\\pi}{\\omega_d} \\approx 0{,}84\\ \\text{s}"
+   ]
+  },
+  "resonance": {
+   "type": "phrase",
+   "kicker": "Le forçage et la résonance",
+   "texte": "Exciter un oscillateur à sa pulsation propre fait grandir l'amplitude : la résonance amplifie, en musique comme sur un pont.",
+   "anim": {
+    "nom": "amortie",
+    "hauteur": 200
+   }
+  },
+  "rlc": {
+   "type": "formule",
+   "kicker": "Le même squelette en électricité : le circuit RLC",
+   "tex": "L\\,i'' + R\\,i' + \\frac{1}{C}\\,i = 0",
+   "note": "Loi des mailles de Kirchhoff, puis dérivation : on retrouve l'oscillateur amorti, mot pour mot.",
+   "anim": {
+    "nom": "circuit_rlc",
+    "hauteur": 120
+   }
+  },
+  "ex_meca": {
+   "type": "etape",
+   "kicker": "Exemple résolu : lire un régime sur ses racines",
+   "titre": "Deux kilogrammes, un discriminant négatif, une oscillation amortie",
+   "tex": [
+    "2r^2 + 12r + 50 = 0 \\quad \\Rightarrow \\quad r = -3 \\pm 4i",
+    "x(t) = e^{-3t}\\left[0{,}1\\cos(4t) + 0{,}075\\sin(4t)\\right]",
+    "x(t) = 0{,}125\\,e^{-3t}\\cos(4t - \\varphi), \\quad \\varphi \\approx 0{,}64\\ \\text{rad}"
+   ]
+  },
+  "euler_f": {
+   "type": "formule",
+   "kicker": "Quand le calcul exact renonce : la méthode d'Euler",
+   "tex": "y_{n+1} = y_n + h \\cdot f(t_n,\\ y_n)",
+   "note": "Avancer par petits pas h dans la direction de la pente locale : simple, mais l'erreur s'accumule.",
+   "anim": {
+    "nom": "champ_pentes_fig",
+    "hauteur": 180
+   }
+  },
+  "euler_ex": {
+   "type": "etape",
+   "kicker": "Euler à la main : deux pas sur la logistique",
+   "titre": "Population de départ cent, capacité mille, pas d'un an",
+   "tex": [
+    "P_1 = 100 + 1 \\times \\left[0{,}1 \\times 100 \\times (1 - \\tfrac{100}{1000})\\right] = 109",
+    "P_2 = 109 + 1 \\times \\left[0{,}1 \\times 109 \\times (1 - \\tfrac{109}{1000})\\right] \\approx 118{,}7"
+   ]
+  },
+  "rk4": {
+   "type": "phrase",
+   "kicker": "Runge-Kutta : quatre pentes valent mieux qu'une",
+   "texte": "Au lieu d'une seule pente, quatre sondages par pas, combinés en moyenne pondérée : la précision bondit à pas égal.",
+   "anim": {
+    "nom": "tangente_courbe_fig",
+    "hauteur": 200
+   }
+  },
+  "garde_fous": {
+   "type": "etape",
+   "kicker": "Les garde-fous du numérique",
+   "titre": "Une solution calculée ne vaut que validée",
+   "tex": [
+    "\\text{comparer à la solution exacte quand elle existe}",
+    "\\text{réduire le pas } h \\text{ et vérifier que la solution bouge peu}",
+    "\\text{contrôler les lois physiques : énergie, masse, bornes}",
+    "\\text{instabilité : pour } y' = -100y, \\text{ Euler exige } h < 0{,}02"
+   ]
+  },
+  "peche": {
+   "type": "etape",
+   "kicker": "Étude de cas : la pêche durable",
+   "titre": "Le prélèvement maximal qui ne vide pas la mer",
+   "tex": [
+    "\\tfrac{dP}{dt} = rP\\left(1 - \\tfrac{P}{K}\\right) - H",
+    "H_{\\max} = \\tfrac{rK}{4}, \\quad \\text{atteint pour } P = \\tfrac{K}{2}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Second ordre : oscillateur, ζ, résonance",
+    "RLC et mécanique : une seule équation",
+    "Euler avance pas à pas, RK4 affine",
+    "Modéliser, résoudre, valider : le cycle"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux équations différentielles, le langage mathématique du changement. Une population qui croît, un café qui refroidit, un ressort qui oscille, un circuit qui vibre : derrière chacun de ces phénomènes se cache la même idée, relier une quantité à sa propre vitesse de variation. Nous construirons la démarche de modélisation, puis les grands modèles du premier et du second ordre, et enfin les méthodes numériques qui prennent le relais quand le calcul exact devient impossible.",
+   "texte": "Relier une quantité à sa vitesse de variation.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Premier changement de regard : une équation algébrique classique cherche un nombre inconnu, mais une équation différentielle cherche une fonction inconnue. Elle relie cette fonction à ses dérivées, c'est-à-dire à ses vitesses de variation successives. Elle ne répond donc pas à la question quel est le nombre, mais à la question quelle est la loi du mouvement. L'ordre de l'équation est tout simplement l'ordre de la dérivée la plus élevée qui y apparaît.",
+   "texte": "Elle cherche une fonction, pas un nombre.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Voici la forme générale d'une équation différentielle d'ordre n : une relation entre la variable, la fonction inconnue et ses dérivées jusqu'à l'ordre n. Dans ce cours, nous travaillerons surtout avec des équations ordinaires, où la fonction ne dépend que d'une seule variable, le plus souvent le temps. Retenez déjà ceci : plus l'ordre est élevé, plus il faudra de conditions initiales pour choisir une solution unique.",
+   "texte": "Ordre n : n conditions pour une solution unique.",
+   "ecran": "forme_generale"
+  },
+  {
+   "id": "p04",
+   "dit": "Modéliser, c'est traduire un phénomène réel en mathématiques manipulables, et cela se fait en quatre temps. D'abord, identifier le système et les variables qui évoluent : une population, une température, une position. Ensuite, poser des hypothèses simplificatrices honnêtes : milieu isolé, ressources illimitées, frottements négligeables. Troisièmement, appliquer une loi connue, physique, biologique ou économique : c'est là qu'un taux de variation apparaît, donc une dérivée. Enfin, écrire proprement l'équation différentielle avec ses conditions initiales.",
+   "texte": "Identifier, supposer, appliquer une loi, écrire.",
+   "ecran": "modelisation"
+  },
+  {
+   "id": "p05",
+   "dit": "Premier modèle complet : le refroidissement d'un café, décrit par la loi de Newton. La vitesse à laquelle la température baisse est proportionnelle à l'écart entre la température du café et la température ambiante. Le signe moins traduit la baisse, et la constante k, strictement positive, règle la rapidité du refroidissement. Si le café sort à quatre-vingt-cinq degrés dans une pièce à vingt degrés, la condition initiale est posée : le modèle est prêt à être résolu et confronté à l'expérience.",
+   "texte": "dT/dt = −k(T − Ta) : l'écart commande la baisse.",
+   "ecran": "newton_cafe"
+  },
+  {
+   "id": "p06",
+   "dit": "Qu'est-ce qu'une solution ? C'est une fonction dérivable qui satisfait l'équation sur tout un intervalle. Pour l'équation de croissance, la solution générale dépend d'une constante arbitraire : elle décrit une famille infinie de courbes. La condition initiale, la valeur de la fonction à un instant donné, choisit la courbe unique qui correspond à notre système. L'équation accompagnée de ses conditions initiales forme ce qu'on appelle un problème de Cauchy, et c'est lui que nous résolvons en pratique.",
+   "texte": "La condition initiale choisit LA courbe.",
+   "ecran": "cauchy"
+  },
+  {
+   "id": "p07",
+   "dit": "Appliquons la démarche à la chute libre d'une pomme, sans frottement. La seule force est le poids, la seconde loi de Newton donne donc une accélération constante, opposée à l'axe vertical : c'est une équation du second ordre. Une première intégration donne la vitesse, une seconde donne la hauteur. Lâchée sans vitesse depuis une hauteur h, la pomme suit la loi écrite à l'écran. Et si l'on voulait tenir compte de l'air, il faudrait ajouter à l'équation un terme de frottement proportionnel à la vitesse : le modèle grandit avec la réalité.",
+   "texte": "z″ = −g, puis z(t) = h − ½gt².",
+   "ecran": "chute_libre"
+  },
+  {
+   "id": "p08",
+   "dit": "Voici le modèle fondamental du premier ordre : le taux de variation d'une quantité est proportionnel à la quantité elle-même. Sa solution est une exponentielle. Si la constante est positive, la quantité croît de plus en plus vite ; si elle est négative, elle décroît en s'amortissant. Croissance de bactéries, désintégration radioactive, intérêts composés, élimination d'un médicament : quatre mondes différents, une seule et même équation. C'est cette universalité qui rend le modèle si précieux.",
+   "texte": "dP/dt = kP → P(t) = P₀·e^(kt).",
+   "ecran": "expo"
+  },
+  {
+   "id": "p09",
+   "dit": "Comment obtient-on cette solution ? Par la séparation des variables. On regroupe d'un côté tout ce qui dépend de la quantité, de l'autre tout ce qui dépend du temps, puis on intègre les deux membres. Le logarithme apparaît naturellement, et en prenant l'exponentielle, on retrouve la solution, avec la constante fixée par la valeur initiale. Cette technique simple résout toutes les équations de ce premier modèle, et elle reviendra pour le modèle logistique.",
+   "texte": "Séparer, intégrer, exponentier.",
+   "ecran": "separation"
+  },
+  {
+   "id": "p10",
+   "dit": "Exemple résolu pas à pas : une culture de mille bactéries double toutes les deux heures. La condition de doublement donne la constante : le logarithme de deux divisé par deux, environ zéro virgule trois quatre sept par heure. Après six heures, c'est-à-dire trois doublements, la culture compte environ huit mille bactéries. Et pour atteindre un million, il faudrait environ vingt heures. Le modèle est puissant, mais il prédit une croissance sans limite : nous verrons bientôt comment le corriger.",
+   "texte": "Doublement en 2 h : k ≈ 0,347 ; P(6) ≈ 8 000.",
+   "ecran": "bacteries"
+  },
+  {
+   "id": "p11",
+   "dit": "Même équation, signe opposé : la décroissance radioactive. Un échantillon perd la moitié de ses noyaux en une demi-vie, cinq mille sept cent trente ans pour le carbone quatorze. La constante de désintégration vaut donc le logarithme de deux divisé par cette demi-vie. Un fossile qui ne contient plus que le quart du carbone initial a attendu deux demi-vies : son âge est d'environ onze mille quatre cent soixante ans. Cette méthode, qui a révolutionné l'archéologie, n'est qu'une lecture intelligente d'une exponentielle décroissante.",
+   "texte": "25 % restant = 2 demi-vies ≈ 11 460 ans.",
+   "ecran": "carbone"
+  },
+  {
+   "id": "p12",
+   "dit": "Aucune population ne croît indéfiniment : les ressources sont limitées. Verhulst corrige le modèle de Malthus en multipliant le taux par un facteur de freinage qui s'annule quand la population approche la capacité de charge du milieu, notée K. Quand la population est petite devant K, le facteur vaut presque un et la croissance est exponentielle. Quand elle approche K, la variation s'éteint et la population se stabilise. Si elle dépasse K, elle décroît et revient vers K.",
+   "texte": "dP/dt = rP(1 − P/K) : le frein des ressources.",
+   "ecran": "logistique_f"
+  },
+  {
+   "id": "p13",
+   "dit": "La solution du modèle logistique dessine la célèbre courbe en S : un départ presque exponentiel, un point d'inflexion quand la population atteint la moitié de la capacité, puis un ralentissement jusqu'au plateau. La même courbe décrit la propagation d'une rumeur dans une communauté fermée : le taux de propagation est proportionnel au produit des personnes informées par celles qui ne le sont pas encore. Un seul modèle, des lectures multiples : c'est exactement l'esprit de ce cours.",
+   "texte": "Une sigmoïde : exponentielle, inflexion, plateau.",
+   "ecran": "logistique_c"
+  },
+  {
+   "id": "p14",
+   "dit": "L'argent obéit à la même équation. Un capital placé à taux continu croît comme une population de bactéries : mille euros à cinq pour cent donnent, après dix ans, environ mille six cent quarante-neuf euros. Pour une dette, on soustrait le remboursement continu : si le remboursement dépasse les intérêts initiaux, la dette s'éteint en temps fini ; s'il les égale seulement, elle stagne ; s'il est inférieur, elle explose. Toute la différence tient à une comparaison entre deux nombres, et l'équation la rend visible.",
+   "texte": "Capital : C₀·e^(rt). Dette : comparer R et r·D₀.",
+   "ecran": "finance"
+  },
+  {
+   "id": "p15",
+   "dit": "Quand deux espèces interagissent, une seule équation ne suffit plus : il faut un système. Dans le modèle de Lotka et Volterra, les proies croissent sans les prédateurs, les rencontres les font disparaître, et ces mêmes rencontres font naître de nouveaux prédateurs, qui meurent sans proies. Les solutions ne convergent pas vers un point fixe : elles tournent en cycles fermés autour de l'équilibre. Les populations oscillent sans jamais s'éteindre, comme le montrent les relevés historiques des lynx et des lièvres.",
+   "texte": "Proies et prédateurs : des cycles, pas un équilibre.",
+   "ecran": "lotka"
+  },
+  {
+   "id": "p16",
+   "dit": "Récapitulons cette première partie. Une équation différentielle relie une fonction inconnue à ses dérivées, et la condition initiale choisit la solution unique d'un problème de Cauchy. La modélisation suit quatre temps : variables, hypothèses, loi, équation. Au premier ordre, le modèle proportionnel donne l'exponentielle, qui décrit bactéries, carbone quatorze et capitaux ; le modèle logistique ajoute le frein des ressources limitées, et les systèmes couplés font naître des cycles.",
+   "texte": "L'essentiel de la partie 1.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p17",
+   "dit": "Passons au second ordre, le royaume des oscillations. Une masse accrochée à un ressort, sans frottement : la loi de Hooke dit que le ressort tire d'autant plus fort qu'on l'écarte de l'équilibre, et en sens opposé. La seconde loi de Newton transforme cette force en accélération, c'est-à-dire en dérivée seconde de la position. Le pendule, la suspension, le circuit électrique vibrant suivent des équations jumelles : comprendre l'oscillateur, c'est comprendre tout ce qui vibre.",
+   "texte": "Hooke + Newton : le modèle de tout ce qui vibre.",
+   "ecran": "ressort_intro"
+  },
+  {
+   "id": "p18",
+   "dit": "En divisant par la masse, l'équation prend sa forme canonique, entièrement gouvernée par un seul nombre : la pulsation propre, racine carrée du rapport de la raideur à la masse. La période s'en déduit immédiatement : deux pi divisé par la pulsation. L'équation caractéristique donne deux racines imaginaires pures, et la solution générale combine un cosinus et un sinus : l'oscillation est permanente, d'amplitude fixée une fois pour toutes par les conditions initiales.",
+   "texte": "x″ + ω₀²x = 0, avec ω₀ = √(k/m).",
+   "ecran": "canonique"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple résolu : une masse d'un demi-kilogramme, un ressort de raideur deux cents newtons par mètre. La pulsation propre vaut la racine de quatre cents, soit vingt radians par seconde. On écarte la masse de dix centimètres et on la lâche sans vitesse : le cosinus s'impose, le sinus disparaît. Le mouvement est entièrement prédit : dix centimètres d'amplitude, une période d'environ un tiers de seconde. Doubler la masse allongerait la période ; quadrupler la raideur la raccourcirait de moitié.",
+   "texte": "ω₀ = 20 rad/s : x(t) = 0,1·cos(20t).",
+   "ecran": "ex_ressort"
+  },
+  {
+   "id": "p20",
+   "dit": "Dans le monde réel, un frottement proportionnel à la vitesse dissipe l'énergie : c'est l'amortissement. Tout se joue sur un nombre sans dimension, le taux d'amortissement. En dessous de un, le système oscille encore, mais chaque oscillation est plus petite que la précédente : c'est le régime pseudo-périodique. À un exactement, régime critique, le retour à l'équilibre est le plus rapide possible sans osciller. Au-dessus, le retour est direct mais paresseux. Les amortisseurs de voiture sont réglés légèrement sous le régime critique, pour absorber le choc sans rebondir longtemps.",
+   "texte": "ζ < 1 : ça oscille en s'éteignant ; ζ = 1 : retour optimal.",
+   "ecran": "regimes"
+  },
+  {
+   "id": "p21",
+   "dit": "Chiffrons une suspension : trois cents kilogrammes de masse suspendue, une raideur de trente mille, un coefficient d'amortissement de quatre mille. La pulsation propre vaut dix radians par seconde, et le taux d'amortissement environ deux tiers : le système est donc sous-amorti, comme prévu par les constructeurs. Sa pseudo-période vaut environ zéro virgule huit quatre seconde : après un nid-de-poule, la caisse oscille brièvement, puis se stabilise. Le calcul valide le choix du constructeur avant même le premier essai routier.",
+   "texte": "ζ ≈ 0,67 < 1 : sous-amorti, Td ≈ 0,84 s.",
+   "ecran": "suspension"
+  },
+  {
+   "id": "p22",
+   "dit": "Ajoutons maintenant une force extérieure périodique. La réponse combine un régime transitoire, qui s'éteint, et un régime permanent, qui suit l'excitation. Quand la pulsation d'excitation approche la pulsation propre, l'amplitude du régime permanent devient maximale : c'est la résonance. Les instruments de musique l'exploitent pour amplifier le son ; les ingénieurs la fuient dans les ponts et les bâtiments, car une excitation modeste mais bien accordée peut amplifier les oscillations jusqu'à la rupture.",
+   "texte": "Excitation ≈ ω₀ : l'amplitude explose, c'est la résonance.",
+   "ecran": "resonance"
+  },
+  {
+   "id": "p23",
+   "dit": "Surprise féconde : un circuit associant une bobine, une résistance et un condensateur obéit à exactement la même équation que la masse et son ressort. La loi des mailles de Kirchhoff, une fois dérivée, donne une équation du second ordre pour le courant. L'inductance joue le rôle de la masse, la résistance celui du frottement, et l'inverse de la capacité celui de la raideur. Résoudre l'un, c'est résoudre l'autre : l'analogie transfère gratuitement toutes les conclusions d'un domaine à l'autre.",
+   "texte": "L ↔ masse, R ↔ frottement, 1/C ↔ raideur.",
+   "ecran": "rlc"
+  },
+  {
+   "id": "p24",
+   "dit": "Dernier exemple mécanique résolu : deux kilogrammes, une raideur de cinquante, un amortissement de douze. L'équation caractéristique a un discriminant négatif, moins soixante-quatre : les racines sont complexes, moins trois plus ou moins quatre i. La solution est donc une oscillation de pulsation quatre, enfermée dans une enveloppe exponentielle décroissante. Les conditions initiales fixent les deux constantes, et la forme amplitude-phase donne une amplitude initiale de zéro virgule cent vingt-cinq mètre. Le signe de la partie réelle commande l'extinction ; la partie imaginaire, le rythme.",
+   "texte": "r = −3 ± 4i : oscillation × enveloppe e^(−3t).",
+   "ecran": "ex_meca"
+  },
+  {
+   "id": "p25",
+   "dit": "La plupart des équations réelles n'ont aucune solution exprimable avec les fonctions usuelles : le pendule à grande amplitude en est l'exemple célèbre. La méthode d'Euler répond autrement : au lieu d'une formule valable partout, on calcule la solution pas à pas. Connaissant la pente au point courant, on avance d'un petit pas dans cette direction, puis on recommence. C'est la randonnée avec une carte qui ne donne la direction qu'à l'endroit où l'on se tient : simple, robuste, mais l'erreur s'accumule à chaque pas.",
+   "texte": "y(n+1) = y(n) + h·f : avancer de pente en pente.",
+   "ecran": "euler_f"
+  },
+  {
+   "id": "p26",
+   "dit": "Faisons deux pas d'Euler à la main, sur le modèle logistique : taux de zéro virgule un, capacité de mille, population initiale de cent, pas d'un an. Premier pas : la pente vaut neuf, la population passe à cent neuf. Deuxième pas : la nouvelle pente vaut environ neuf virgule sept, on arrive à environ cent dix-huit virgule sept. Le mécanisme est limpide ; tout l'art consiste à choisir le pas : trop grand, la précision s'effondre ; trop petit, le calcul s'éternise.",
+   "texte": "Deux pas d'Euler : 100 → 109 → ≈ 118,7.",
+   "ecran": "euler_ex"
+  },
+  {
+   "id": "p27",
+   "dit": "Pour faire mieux sans réduire le pas, les méthodes de Runge et Kutta sondent la pente quatre fois par intervalle : au début, deux fois au milieu, une fois à la fin, puis combinent ces sondages en une moyenne pondérée. La version d'ordre quatre est devenue le cheval de bataille du calcul scientifique : à pas égal, elle est incomparablement plus précise qu'Euler. Le prix à payer est un calcul plus lourd par pas, largement compensé par la possibilité d'avancer à grands pas fiables.",
+   "texte": "Quatre pentes par pas, une moyenne pondérée.",
+   "ecran": "rk4"
+  },
+  {
+   "id": "p28",
+   "dit": "Une solution numérique n'a de valeur que validée. On la compare à la solution exacte quand elle existe, on réduit le pas pour vérifier qu'elle change peu, et on contrôle qu'elle respecte les lois du problème : une population ne devient pas négative, une énergie ne naît pas de rien. Attention aussi à la stabilité : pour une décroissance très rapide, la méthode d'Euler explicite exige un pas minuscule, sinon le calcul explose alors que la vraie solution s'éteint paisiblement. Le numérique donne l'accès au concret ; la vigilance donne le droit de le croire.",
+   "texte": "Valider : exacte, convergence, physique, stabilité.",
+   "ecran": "garde_fous"
+  },
+  {
+   "id": "p29",
+   "dit": "Terminons par une étude de cas complète : une population de poissons logistique, pêchée à taux constant. Les équilibres existent seulement si le prélèvement ne dépasse pas un maximum, atteint quand la population vaut la moitié de la capacité : c'est le rendement maximal soutenable. Au-delà, aucun équilibre ne subsiste et le stock s'effondre. La politique de pêche durable tient donc en une phrase d'équation : maintenir le stock à la moitié de sa capacité et ne jamais prélever davantage que ce maximum calculé.",
+   "texte": "H maximal = rK/4, pour un stock à K/2.",
+   "ecran": "peche"
+  },
+  {
+   "id": "p30",
+   "dit": "Pour conclure ce cours : au second ordre, l'oscillateur amorti et forcé obéit à une même équation, du ressort au circuit électrique, avec ses trois régimes et sa résonance. Quand le calcul exact renonce, Euler avance pas à pas et Runge-Kutta affine le tir, à condition de valider stabilité et convergence. Mais la compétence durable est la démarche elle-même : discerner l'essentiel, traduire en équation, résoudre, puis interpréter la solution pour comprendre le monde et, parfois, agir sur lui.",
+   "texte": "Osciller, calculer, modéliser : le cycle complet.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Modéliser, puis résoudre au premier ordre"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Freins, interactions et oscillations amorties",
+   "pont": {
+    "texte": "Partie 2 : freins, interactions et oscillations.",
+    "dit": "Partie deux : les freins, les interactions et les oscillations. Nous corrigerons d'abord la croissance illimitée par la capacité du milieu, nous couplerons deux espèces, puis nous passerons au second ordre : le ressort, son amortissement et le réglage d'une suspension de voiture."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Résonance, analogie électrique et calcul numérique",
+   "pont": {
+    "texte": "Partie 3 : résonance, circuit RLC et méthodes numériques.",
+    "dit": "Partie trois : la résonance, l'analogie électrique et le calcul numérique. Nous exciterons l'oscillateur jusqu'à la résonance, nous retrouverons la même équation dans un circuit électrique, puis nous apprendrons à calculer pas à pas les solutions que le calcul exact ne peut pas donner."
+   }
+  }
+ ]
+}

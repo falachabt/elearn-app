@@ -1,0 +1,575 @@
+{
+  "cours": 6293,
+  "titre": "Limites de suites et récurrence : prouver rang par rang, conclure à l'infini",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Suites numériques",
+      "titre": "Limites de suites et récurrence : prouver rang par rang, conclure à l'infini",
+      "sous": "Convergence, opérations, formes indéterminées : la méthode complète des exercices de bac",
+      "anim": {
+        "nom": "suite_convergente_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Une suite : des points isolés qui racontent un comportement à l'infini.",
+      "anim": {
+        "nom": "nuage_suite_fig",
+        "hauteur": 200
+      }
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "Qu'est-ce qu'une suite ?",
+      "tex": "u : \\mathbb{N} \\to \\mathbb{R}, \\quad n \\mapsto u_n",
+      "note": "u_n : terme de rang n. La suite se note (u_n) : une liste infinie et ordonnée de réels."
+    },
+    "modes": {
+      "type": "etape",
+      "kicker": "Trois modes de définition",
+      "titre": "Explicite, par récurrence, ou par une propriété",
+      "tex": [
+        "\\text{explicite : } u_n = 2n + 1 \\quad (1,\\ 3,\\ 5,\\ 7, \\dots)",
+        "\\text{récurrence : } u_0 = 1, \\quad u_{n+1} = 2u_n + 3",
+        "\\text{implicite : la suite des nombres premiers}"
+      ]
+    },
+    "capital": {
+      "type": "etape",
+      "kicker": "Exemple : un capital qui grossit",
+      "titre": "Intérêts composés : chaque année multiplie par 1,02",
+      "tex": [
+        "C_0 = 1000",
+        "C_{n+1} = 1{,}02 \\times C_n",
+        "C_n = 1000 \\times 1{,}02^n"
+      ],
+      "anim": {
+        "nom": "capitalisation_fig",
+        "hauteur": 110
+      }
+    },
+    "limite_intuitive": {
+      "type": "formule",
+      "kicker": "L'intuition de la limite",
+      "tex": "\\lim_{n \\to +\\infty} \\frac{1}{n+1} = 0",
+      "note": "Les termes 1, un demi, un tiers, un quart se resserrent sur 0 sans jamais l'atteindre.",
+      "anim": {
+        "nom": "suite_convergente_fig",
+        "hauteur": 160
+      }
+    },
+    "definition_formelle": {
+      "type": "formule",
+      "kicker": "La définition formelle",
+      "tex": "\\forall \\varepsilon > 0,\\ \\exists N,\\ \\forall n \\geq N,\\ |u_n - \\ell| < \\varepsilon",
+      "note": "Aussi petit que soit ε, tous les termes finissent dans la bande autour de ℓ.",
+      "anim": {
+        "nom": "bande_epsilon_fig",
+        "hauteur": 160
+      }
+    },
+    "classification": {
+      "type": "etape",
+      "kicker": "Convergente ou divergente",
+      "titre": "Quatre destins possibles pour une suite",
+      "tex": [
+        "\\text{convergente : limite finie } \\ell",
+        "\\text{vers } +\\infty \\text{ : } u_n = n^2",
+        "\\text{vers } -\\infty \\text{ : } u_n = -5n",
+        "\\text{sans limite : } u_n = (-1)^n"
+      ]
+    },
+    "geometrique": {
+      "type": "formule",
+      "kicker": "La suite géométrique",
+      "tex": "u_n = u_0 \\times q^n",
+      "note": "q : la raison. Tout le comportement à l'infini dépend d'elle, et d'elle seule."
+    },
+    "geo_tableau": {
+      "type": "etape",
+      "kicker": "Le tableau des raisons",
+      "titre": "La raison q décide du destin de q puissance n",
+      "tex": [
+        "q > 1 : \\quad q^n \\to +\\infty",
+        "q = 1 : \\quad \\text{suite constante}",
+        "-1 < q < 1 : \\quad q^n \\to 0",
+        "q \\leq -1 : \\quad \\text{pas de limite}"
+      ]
+    },
+    "gendarmes": {
+      "type": "formule",
+      "kicker": "Le théorème des gendarmes",
+      "tex": "v_n \\leq u_n \\leq w_n \\ \\Rightarrow \\ u_n \\to \\ell",
+      "note": "Si v et w tendent vers ℓ, u est forcée de suivre. Exemple : sin(n)/n tend vers 0.",
+      "anim": {
+        "nom": "gendarmes_fig",
+        "hauteur": 190
+      }
+    },
+    "monotone": {
+      "type": "formule",
+      "kicker": "Le théorème de convergence monotone",
+      "tex": "u_n \\text{ croissante et majorée} \\Rightarrow (u_n) \\text{ converge}",
+      "note": "Et de même, décroissante et minorée. La convergence est prouvée sans connaître la limite."
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : l'essentiel",
+      "etapes": [
+        "Une suite : une liste infinie ordonnée",
+        "Limite : la bande d'epsilon, à partir d'un rang",
+        "Géométrique : la raison décide de tout",
+        "Gendarmes : encadrer pour forcer la limite",
+        "Croissante majorée : convergence assurée"
+      ]
+    },
+    "operations": {
+      "type": "etape",
+      "kicker": "Les opérations sur les limites",
+      "titre": "Somme, produit, quotient : les limites se combinent",
+      "tex": [
+        "\\lim (u_n + v_n) = \\ell + \\ell'",
+        "\\lim (u_n \\times v_n) = \\ell \\times \\ell'",
+        "\\lim \\tfrac{u_n}{v_n} = \\tfrac{\\ell}{\\ell'} \\quad (\\ell' \\neq 0)"
+      ]
+    },
+    "formes": {
+      "type": "etape",
+      "kicker": "Les formes indéterminées",
+      "titre": "Quatre formes sans réponse automatique",
+      "tex": [
+        "\\infty - \\infty \\qquad 0 \\times \\infty",
+        "\\tfrac{\\infty}{\\infty} \\qquad \\tfrac{0}{0}"
+      ]
+    },
+    "ex_factorisation": {
+      "type": "etape",
+      "kicker": "Exemple : factoriser le terme dominant",
+      "titre": "Un quotient de polynômes : seuls les plus hauts degrés comptent",
+      "tex": [
+        "\\tfrac{3n^2 - 2n + 1}{2n^2 + 5} = \\tfrac{3 - \\tfrac{2}{n} + \\tfrac{1}{n^2}}{2 + \\tfrac{5}{n^2}}",
+        "\\to \\tfrac{3}{2}"
+      ]
+    },
+    "ex_conjuguee": {
+      "type": "etape",
+      "kicker": "Exemple : la quantité conjuguée",
+      "titre": "Une différence de racines, forme infini moins infini",
+      "tex": [
+        "\\sqrt{n+1} - \\sqrt{n} = \\tfrac{1}{\\sqrt{n+1} + \\sqrt{n}}",
+        "\\to 0"
+      ]
+    },
+    "ex_complet": {
+      "type": "etape",
+      "kicker": "Exemple : une étude en deux morceaux",
+      "titre": "Décomposer, traiter chaque morceau, puis additionner",
+      "tex": [
+        "\\tfrac{2n^2 - 3n + 1}{n^2 + 4} \\to 2",
+        "\\tfrac{5}{\\sqrt{n}} \\to 0",
+        "w_n \\to 2 + 0 = 2"
+      ]
+    },
+    "dominos": {
+      "type": "phrase",
+      "kicker": "Le raisonnement par récurrence",
+      "texte": "Des dominos : le premier tombe, chacun entraîne le suivant, tous tombent.",
+      "anim": {
+        "nom": "dominos_fig",
+        "hauteur": 220
+      }
+    },
+    "schema": {
+      "type": "etape",
+      "kicker": "Le schéma en trois temps",
+      "titre": "Initialisation, hérédité, conclusion : jamais deux sur trois",
+      "tex": [
+        "\\text{initialisation : } P(n_0) \\text{ est vraie}",
+        "\\text{hérédité : } P(k) \\Rightarrow P(k+1)",
+        "\\text{conclusion : } P(n) \\text{ vraie pour tout } n \\geq n_0"
+      ],
+      "anim": {
+        "nom": "dominos_fig",
+        "hauteur": 110
+      }
+    },
+    "gauss": {
+      "type": "etape",
+      "kicker": "Exemple : la somme des premiers entiers",
+      "titre": "La formule de Gauss, prouvée par récurrence",
+      "tex": [
+        "1 + 2 + \\cdots + n = \\tfrac{n(n+1)}{2}",
+        "\\text{rang } k+1 \\text{ : } \\tfrac{k(k+1)}{2} + (k+1) = \\tfrac{(k+1)(k+2)}{2}"
+      ]
+    },
+    "inegalite": {
+      "type": "etape",
+      "kicker": "Exemple : une inégalité à partir du rang 4",
+      "titre": "Deux puissance n dépasse n au carré, dès le rang quatre",
+      "tex": [
+        "n = 4 : \\quad 2^4 = 16 \\geq 4^2 = 16",
+        "2^{k+1} = 2 \\times 2^k \\geq 2k^2 > (k+1)^2"
+      ]
+    },
+    "recap2": {
+      "type": "recap",
+      "kicker": "Partie 2 : l'essentiel",
+      "etapes": [
+        "Opérations : somme, produit, quotient",
+        "Formes indéterminées : transformer d'abord",
+        "Factoriser, conjuguer, décomposer",
+        "Récurrence : initialisation et hérédité",
+        "Sans initialisation, l'hérédité ne prouve rien"
+      ]
+    },
+    "methode": {
+      "type": "etape",
+      "kicker": "La méthode type bac en cinq temps",
+      "titre": "L'ordre des questions n'est jamais un hasard",
+      "tex": [
+        "\\text{1. borner la suite, par récurrence}",
+        "\\text{2. monotonie : signe de } u_{n+1} - u_n",
+        "\\text{3. convergence par le théorème monotone}",
+        "\\text{4. limite : passer à la limite, point fixe}"
+      ]
+    },
+    "suite_racine": {
+      "type": "formule",
+      "kicker": "L'exercice modèle",
+      "tex": "u_0 = 1, \\quad u_{n+1} = \\sqrt{2 + u_n}",
+      "note": "Une racine carrée à chaque rang : bornes, croissance, puis limite par le point fixe.",
+      "anim": {
+        "nom": "point_fixe_fig",
+        "hauteur": 190
+      }
+    },
+    "bornes": {
+      "type": "etape",
+      "kicker": "Étape 1 : borner par récurrence",
+      "titre": "Tous les termes restent entre 1 et 2",
+      "tex": [
+        "1 \\leq u_k \\leq 2 \\ \\Rightarrow \\ 3 \\leq u_k + 2 \\leq 4",
+        "\\sqrt{3} \\leq u_{k+1} \\leq 2 \\ \\Rightarrow \\ 1 \\leq u_{k+1} \\leq 2"
+      ]
+    },
+    "point_fixe": {
+      "type": "etape",
+      "kicker": "Étapes 2 à 4 : monotonie et limite",
+      "titre": "Croissante et majorée, donc convergente vers 2",
+      "tex": [
+        "\\text{croissante : la racine conserve l'ordre}",
+        "\\ell = \\sqrt{2 + \\ell} \\ \\Rightarrow \\ \\ell^2 - \\ell - 2 = 0",
+        "\\ell = 2 \\quad (\\ell \\geq 0)"
+      ],
+      "anim": {
+        "nom": "point_fixe_fig",
+        "hauteur": 165
+      }
+    },
+    "contraction": {
+      "type": "etape",
+      "kicker": "Exemple : la contraction vers 1",
+      "titre": "L'écart à la limite est divisé par deux à chaque rang",
+      "tex": [
+        "|u_{n+1} - 1| \\leq \\tfrac{1}{2}\\,|u_n - 1|",
+        "|u_n - 1| \\leq \\tfrac{1}{2^n} \\ \\Rightarrow \\ u_n \\to 1"
+      ]
+    },
+    "adjacentes": {
+      "type": "etape",
+      "kicker": "Les suites adjacentes",
+      "titre": "Moyenne géométrique et moyenne arithmétique se rejoignent",
+      "tex": [
+        "a_{n+1} = \\sqrt{a_n\\, b_n} \\qquad b_{n+1} = \\tfrac{a_n + b_n}{2}",
+        "a_n \\text{ croissante, } b_n \\text{ décroissante}",
+        "b_{n+1} - a_{n+1} \\leq \\tfrac{1}{2}\\,(b_n - a_n)"
+      ],
+      "anim": {
+        "nom": "suites_adjacentes_fig",
+        "hauteur": 120
+      }
+    },
+    "piege": {
+      "type": "phrase",
+      "kicker": "Le piège classique",
+      "texte": "Calculer la limite avant de prouver la convergence : le cercle vicieux à éviter.",
+      "anim": {
+        "nom": "suite_convergente_fig",
+        "hauteur": 180
+      }
+    },
+    "synthese": {
+      "type": "etape",
+      "kicker": "Exercice de synthèse guidé",
+      "titre": "u zéro égal zéro, u n plus un égal (3u + 4)/(u + 3)",
+      "tex": [
+        "0 \\leq u_n < 2 \\quad \\text{(récurrence)}",
+        "u_{n+1} - u_n = \\tfrac{4 - u_n^2}{u_n + 3} > 0",
+        "\\ell^2 = 4 \\ \\Rightarrow \\ \\ell = 2"
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Prouver d'abord : bornes et monotonie",
+        "Convergence monotone, puis point fixe",
+        "Encadrer : gendarmes et contractions",
+        "Indéterminée : transformer avant de conclure",
+        "Récurrence prouve, la limite conclut"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours consacré aux limites de suites et au raisonnement par récurrence, les deux piliers des exercices de suites au baccalauréat. Nous définirons d'abord ce qu'est une suite et ce que tendre vers une limite veut dire, puis nous apprendrons à calculer ces limites, avant d'assembler les deux outils dans la méthode complète des exercices types.",
+      "texte": "Limites et récurrence : prouver, puis conclure à l'infini.",
+      "ecran": "titre",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p02",
+      "dit": "Une plante grandit : un centimètre le premier jour, puis un et demi, puis un virgule soixante-quinze. Cette liste ordonnée de nombres, où chaque terme occupe un rang précis, est une suite numérique. Mathématiquement, c'est une fonction qui à chaque entier naturel associe un nombre réel. Sur un graphique, ne tracez jamais une courbe : une suite, ce sont des points isolés, un par rang.",
+      "texte": "Une suite : des points isolés, un par rang.",
+      "ecran": "intro",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p03",
+      "dit": "Formellement, une suite u est une application des entiers naturels dans les réels, et l'image de l'entier n se note u indice n : c'est le terme de rang n, ou terme général. La suite entière se note entre parenthèses, et il faut distinguer soigneusement le terme, qui est un nombre, de la suite, qui est la liste complète et infinie de ses termes.",
+      "texte": "uₙ : le terme de rang n, un nombre réel.",
+      "ecran": "definition",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p04",
+      "dit": "Une suite se définit de trois façons. En mode explicite, le terme est donné directement en fonction du rang, comme deux n plus un, qui énumère les nombres impairs. En mode récurrence, on donne le premier terme et la règle qui fabrique le suivant. Et certaines suites se définissent par une propriété, comme la suite des nombres premiers.",
+      "texte": "Explicite, par récurrence, ou par une propriété.",
+      "ecran": "modes",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p05",
+      "dit": "Exemple vivant : mille euros placés à deux pour cent par an, en intérêts composés. Chaque année, le capital est multiplié par un virgule zéro deux : c'est une suite géométrique définie par récurrence, dont la formule explicite est mille fois un virgule zéro deux à la puissance n. Attention au vocabulaire : multiplier chaque année, ce sont des intérêts composés, pas des intérêts simples.",
+      "texte": "Capital × 1,02 chaque année : intérêts composés.",
+      "ecran": "capital",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p06",
+      "dit": "Que devient une suite quand le rang grandit sans fin ? Pour la suite des inverses, un sur n plus un, les termes valent un, un demi, un tiers, un quart, et se resserrent indéfiniment sur zéro. On dit que la suite converge vers zéro, ou que zéro est sa limite. La limite ne demande pas ce qui se passe au rang infini, qui n'existe pas, mais vers quelle valeur les termes se resserrent.",
+      "texte": "1/(n+1) se resserre sur 0 : la limite intuitive.",
+      "ecran": "limite_intuitive",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p07",
+      "dit": "Voici la définition qui rend cette intuition rigoureuse. Une suite converge vers le réel l si, pour tout écart épsilon strictement positif, aussi petit soit-il, il existe un rang à partir duquel tous les termes restent à moins de épsilon de l. Dessinez une bande autour de l : après un certain rang, plus aucun terme n'en sort.",
+      "texte": "Après un certain rang, tous les termes dans la bande.",
+      "ecran": "definition_formelle",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p08",
+      "dit": "Quatre destins sont possibles. La suite converge vers une limite finie. Elle diverge vers plus l'infini, comme n au carré, ou vers moins l'infini, comme moins cinq n. Ou elle n'a aucune limite, comme la suite alternée qui vaut un et moins un à tour de rôle. Une suite qui ne converge pas est dite divergente, mais retenez que diverger vers l'infini et ne pas avoir de limite sont deux comportements différents.",
+      "texte": "Convergente, vers ±∞, ou sans limite : quatre destins.",
+      "ecran": "classification",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p09",
+      "dit": "Parmi toutes les suites, la géométrique est la référence. Chaque terme est le précédent multiplié par une constante, la raison, et le terme général vaut le premier terme fois la raison à la puissance n. Capital qui fructifie, valeur qui se déprécie, population qui croît : dès qu'une évolution multiplie à taux constant, vous êtes face à une suite géométrique, et tout dépend de la raison.",
+      "texte": "uₙ = u₀ × qⁿ : tout dépend de la raison q.",
+      "ecran": "geometrique",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p10",
+      "dit": "Le tableau des raisons est à connaître par cœur. Raison supérieure à un : la suite explose vers l'infini. Raison égale à un : la suite est constante. Raison strictement entre moins un et un : les puissances de la raison tendent vers zéro, même si le signe alterne. Raison inférieure ou égale à moins un : le signe alterne sans s'éteindre, il n'y a pas de limite.",
+      "texte": "q > 1 : ∞ ; −1 < q < 1 : 0 ; q ≤ −1 : rien.",
+      "ecran": "geo_tableau",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p11",
+      "dit": "Premier grand théorème d'encadrement : les gendarmes. Si une suite est coincée, à partir d'un certain rang, entre deux suites qui tendent vers la même limite l, alors elle tend elle aussi vers l. Application immédiate : sinus de n divisé par n est coincé entre moins un sur n et un sur n, qui tendent vers zéro, donc ce quotient tend vers zéro. Encadrer est souvent plus simple que calculer directement.",
+      "texte": "Coincée entre deux suites : la limite est forcée.",
+      "ecran": "gendarmes",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p12",
+      "dit": "Deuxième grand théorème : toute suite croissante et majorée converge, et toute suite décroissante et minorée converge. Sa force : il prouve que la limite existe sans donner sa valeur. Toute la stratégie des exercices types repose dessus : bornes et monotonie d'abord, la convergence suit, et il ne reste qu'à identifier la limite.",
+      "texte": "Croissante et majorée : la convergence est acquise.",
+      "ecran": "monotone",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p13",
+      "dit": "Récapitulons cette première partie. Une suite est une liste infinie ordonnée de réels, définie de façon explicite, par récurrence ou par une propriété. Elle converge si ses termes finissent dans toute bande autour de sa limite. La raison décide du destin des suites géométriques, les gendarmes forcent une limite par encadrement, et le théorème de convergence monotone garantit l'existence de la limite des suites monotones bornées.",
+      "texte": "L'essentiel de la partie 1 : limites et théorèmes.",
+      "ecran": "recap1",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p14",
+      "dit": "Quand les limites sont finies, elles se combinent comme les nombres. La limite d'une somme est la somme des limites, celle d'un produit est le produit des limites, et celle d'un quotient est le quotient des limites, à condition que la limite du dénominateur ne soit pas nulle. Ces règles transforment un calcul intimidant en une suite de petits calculs élémentaires, à condition de vérifier leurs conditions d'application.",
+      "texte": "Somme, produit, quotient : combiner les limites finies.",
+      "ecran": "operations",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p15",
+      "dit": "Mais quatre combinaisons résistent à ces règles : infini moins infini, zéro fois infini, infini sur infini et zéro sur zéro. Ce sont les formes indéterminées : le mot indéterminé ne signifie pas impossible, il signifie que la réponse dépend des suites précises et qu'il faut transformer l'expression avant de conclure. Toute la technique du chapitre consiste à lever ces indéterminations.",
+      "texte": "Quatre formes indéterminées : transformer d'abord.",
+      "ecran": "formes",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p16",
+      "dit": "Première technique, pour les quotients de polynômes : factoriser par le terme dominant, ici n au carré, en haut et en bas. Le quotient de trois n au carré moins deux n plus un par deux n au carré plus cinq devient un quotient dont le numérateur tend vers trois et le dénominateur vers deux : la limite est trois demis. Retenez le raccourci : seuls les termes de plus haut degré comptent.",
+      "texte": "Quotient de polynômes : limite 3/2.",
+      "ecran": "ex_factorisation",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p17",
+      "dit": "Deuxième technique, pour les différences de racines : la quantité conjuguée. Racine de n plus un moins racine de n est une forme infini moins infini, mais en multipliant par la somme des racines, le numérateur devient un et il reste un sur la somme des racines, qui tend vers zéro. La différence de deux quantités qui explosent peut donc tendre vers zéro : voilà pourquoi la forme était indéterminée.",
+      "texte": "Quantité conjuguée : √(n+1) − √n tend vers 0.",
+      "ecran": "ex_conjuguee",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p18",
+      "dit": "Troisième réflexe : décomposer avant de calculer. La suite qui additionne le quotient de deux n au carré moins trois n plus un par n au carré plus quatre, et cinq sur racine de n, se traite en deux morceaux. Le quotient tend vers deux par factorisation, le second morceau tend vers zéro, et la somme tend vers deux. Un problème de limite se découpe presque toujours en morceaux que les opérations savent traiter.",
+      "texte": "Décomposer : 2 + 0, la limite est 2.",
+      "ecran": "ex_complet",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p19",
+      "dit": "Changeons d'outil : comment prouver qu'une propriété est vraie pour tous les rangs d'un coup ? Imaginez une file de dominos. Si le premier domino tombe, et si chaque domino qui tombe entraîne le suivant, alors tous les dominos tomberont, quelle que soit la longueur de la file. Le raisonnement par récurrence est exactement cette image, transformée en démonstration rigoureuse en trois temps.",
+      "texte": "Les dominos : l'image du raisonnement par récurrence.",
+      "ecran": "dominos",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p20",
+      "dit": "Le schéma comporte trois étapes, toutes indispensables. L'initialisation vérifie la propriété au premier rang. L'hérédité suppose la propriété vraie à un rang fixé quelconque et démontre qu'elle passe au rang suivant. La conclusion invoque le principe de récurrence pour affirmer la propriété à tous les rangs. Le contre-exemple célèbre le prouve : l'hérédité seule peut être vraie pour une propriété fausse, si l'initialisation manque.",
+      "texte": "Initialisation, hérédité, conclusion : les trois temps.",
+      "ecran": "schema",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p21",
+      "dit": "Exemple fondateur : la somme des premiers entiers vaut n fois n plus un, le tout divisé par deux. Au rang un, les deux membres valent un. Pour l'hérédité, on ajoute le nouvel entier k plus un à la somme supposée connue : la factorisation par k plus un donne exactement la formule au rang suivant. C'est la formule que le jeune Gauss aurait retrouvée en regroupant les termes deux à deux pour obtenir cinq mille cinquante.",
+      "texte": "Somme de Gauss : n(n+1)/2, prouvée par récurrence.",
+      "ecran": "gauss",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p22",
+      "dit": "La récurrence prouve aussi des inégalités, à condition d'initialiser au bon rang. Deux à la puissance n dépasse n au carré à partir du rang quatre seulement : au rang quatre, les deux membres valent seize. Pour l'hérédité, on double le membre de gauche, et deux fois k au carré dépasse déjà le carré de k plus un dès que k vaut au moins quatre. Au rang trois, l'inégalité est fausse : huit est inférieur à neuf, l'initialisation ne pouvait pas y commencer.",
+      "texte": "2ⁿ ≥ n² dès le rang 4 : initialiser au bon rang.",
+      "ecran": "inegalite",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p23",
+      "dit": "Récapitulons cette deuxième partie. Les opérations combinent les limites finies, les formes indéterminées se lèvent par factorisation, quantité conjuguée ou décomposition. Et le raisonnement par récurrence prouve en trois temps, initialisation, hérédité, conclusion, des formules et des inégalités valables pour tous les rangs, à condition de ne jamais oublier l'initialisation ni de mal choisir le rang de départ.",
+      "texte": "L'essentiel de la partie 2 : calculer et prouver.",
+      "ecran": "recap2",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p24",
+      "dit": "Assemblons maintenant les deux outils dans la méthode des exercices types du baccalauréat. L'ordre est presque toujours le même : borner la suite par récurrence, étudier sa monotonie, conclure à sa convergence par le théorème des suites monotones bornées, puis déterminer la limite en passant à la limite dans la relation de récurrence. Chaque question prépare la suivante : ne sautez jamais une étape.",
+      "texte": "La méthode : borner, monotonie, convergence, limite.",
+      "ecran": "methode",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p25",
+      "dit": "L'exercice modèle : la suite définie par un premier terme égal à un, et chaque terme suivant égal à la racine carrée de deux plus le terme précédent. Les premiers termes montent visiblement vers deux. Nous allons le démontrer proprement, en trois temps : les bornes par récurrence, la croissance, puis la limite comme point fixe de la relation.",
+      "texte": "uₙ₊₁ = √(2 + uₙ) : l'exercice modèle complet.",
+      "ecran": "suite_racine",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p26",
+      "dit": "Premier temps, les bornes, par récurrence. Le premier terme vaut un, il est bien entre un et deux. Supposons un terme entre un et deux : en ajoutant deux, on obtient un nombre entre trois et quatre, et la racine carrée, qui conserve l'ordre, donne un terme suivant entre racine de trois et deux, donc encore entre un et deux. La propriété se transmet : tous les termes restent dans l'intervalle.",
+      "texte": "Bornes par récurrence : tous les termes dans [1, 2].",
+      "ecran": "bornes",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p27",
+      "dit": "Deuxième temps, la croissance, par le même jeu : si un terme est inférieur au suivant, leurs images par la fonction racine de deux plus x, qui est croissante, gardent le même ordre, donc la suite est croissante. Croissante et majorée par deux, elle converge. Sa limite, notée l, vérifie l égal racine de deux plus l, d'où l au carré moins l moins deux égal zéro : les solutions sont deux et moins un, et seule deux est compatible avec des termes positifs.",
+      "texte": "Croissante et majorée : la limite est 2.",
+      "ecran": "point_fixe",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p28",
+      "dit": "Autre schéma de synthèse, la contraction. Pour la suite définie par le quotient de deux u plus un par u plus deux, en partant de zéro, l'écart à la limite un est divisé par au moins deux à chaque rang, car le dénominateur u plus deux reste supérieur à deux. Par récurrence, cet écart reste inférieur à un sur deux à la puissance n, qui tend vers zéro : les gendarmes concluent que la suite tend vers un. Quand un écart se contracte géométriquement, la limite est forcée.",
+      "texte": "Contraction : l'écart ≤ (1/2)ⁿ, limite forcée.",
+      "ecran": "contraction",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p29",
+      "dit": "Dernier schéma, les suites adjacentes. Partez de un et deux : la première suite prend à chaque rang la moyenne géométrique des deux termes, racine du produit, la seconde leur moyenne arithmétique. La première monte, la seconde descend, et leur écart est au moins divisé par deux à chaque rang, donc il tend vers zéro. Deux suites qui se resserrent ainsi l'une sur l'autre, sans jamais se croiser, convergent vers une limite commune.",
+      "texte": "Suites adjacentes : l'écart se resserre vers 0.",
+      "ecran": "adjacentes",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p30",
+      "dit": "Le piège classique de ces exercices est un raisonnement circulaire : écrire que la limite vérifie l'équation du point fixe avant d'avoir prouvé que la suite converge. L'équation ne donne que des candidates : sans convergence établie, elle ne prouve rien. Et le passage à la limite dans la relation repose sur la continuité de la fonction, pas sur la récurrence : distinguez toujours les deux outils.",
+      "texte": "D'abord la convergence, ensuite le point fixe.",
+      "ecran": "piege",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p31",
+      "dit": "Exercice de synthèse, à traiter avec la méthode complète. La suite part de zéro, et chaque terme suivant vaut le quotient de trois fois le terme plus quatre par le terme plus trois. Par récurrence, tous les termes restent positifs et strictement inférieurs à deux. La différence de deux termes consécutifs a le signe de quatre moins le carré du terme, donc elle est positive : la suite est croissante. Croissante et majorée, elle converge, et sa limite vérifie l au carré égal quatre, d'où la limite deux.",
+      "texte": "Synthèse : bornée, croissante, limite 2.",
+      "ecran": "synthese",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p32",
+      "dit": "Pour conclure ce cours, retenez la partition complète. La récurrence est l'outil de preuve : elle établit bornes, monotonie, formules et inégalités, rang par rang. Les théorèmes de limite sont l'outil d'analyse : convergence monotone, gendarmes, opérations et point fixe transforment ces propriétés en une limite exacte. Dans chaque exercice, repérez où se cache la récurrence et où intervient la limite : la copie devient une construction, pas une devinette.",
+      "texte": "Récurrence prouve, la limite conclut.",
+      "ecran": "recap_final",
+      "pause_apres": 0.6
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Suites, limites et grands théorèmes"
+    },
+    {
+      "debut": "p14",
+      "sous_titre": "Calculer une limite, prouver par récurrence",
+      "pont": {
+        "texte": "Partie 2 : opérations, indéterminations et récurrence.",
+        "dit": "Partie deux : calculer, puis prouver. Nous combinerons les limites par les opérations, nous lèverons les formes indéterminées par factorisation et quantité conjuguée, puis nous découvrirons le raisonnement par récurrence, l'outil qui prouve une propriété pour tous les rangs en trois temps."
+      }
+    },
+    {
+      "debut": "p24",
+      "sous_titre": "La synthèse type bac : bornes, monotonie, point fixe",
+      "pont": {
+        "texte": "Partie 3 : la synthèse type bac, de la preuve à la limite.",
+        "dit": "Partie trois : la synthèse, là où les deux outils se rencontrent. Nous appliquerons la méthode complète des exercices de baccalauréat, bornes par récurrence, monotonie, convergence, puis limite par le point fixe, avec les schémas de la contraction et des suites adjacentes."
+      }
+    }
+  ]
+}

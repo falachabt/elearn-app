@@ -1,0 +1,413 @@
+{
+ "cours": 5903,
+ "ecrans": {
+  "applications": {
+   "etapes": [
+    "Climatisation : la vaporisation du fluide frigorigène absorbe la chaleur",
+    "Centrales : la vapeur d'eau produite entraîne les turbines",
+    "Nuages : la condensation libère la chaleur latente dans l'atmosphère",
+    "Corps humain : la transpiration refroidit par évaporation"
+   ],
+   "kicker": "Applications",
+   "titre": "La chaleur latente autour de nous",
+   "type": "recap"
+  },
+  "applications_c": {
+   "etapes": [
+    "Ingénierie : radiateurs, échangeurs de chaleur, dissipateurs",
+    "Météo : les océans, réservoirs de chaleur, régulent le climat",
+    "Cuisine : des temps de cuisson adaptés à chaque aliment",
+    "Médecine : la thermorégulation du corps humain"
+   ],
+   "kicker": "Applications",
+   "titre": "La capacité thermique au quotidien",
+   "type": "recap"
+  },
+  "c_def": {
+   "kicker": "Capacité thermique massique",
+   "note": "c en joules par kilogramme et par kelvin (J/(kg·K)) · une variation de 1 °C vaut une variation de 1 K",
+   "tex": "c = \\dfrac{Q}{m \\times \\Delta T}",
+   "titre": "La définition, en retournant la relation",
+   "type": "formule"
+  },
+  "capacite_intro": {
+   "kicker": "Capacité thermique massique",
+   "texte": "Chaque matière emmagasine la chaleur à sa façon : c'est sa capacité thermique massique.",
+   "type": "phrase"
+  },
+  "distinction": {
+   "etapes": [
+    "Température : elle mesure l'agitation thermique des particules",
+    "Température : propriété d'un corps, lue au thermomètre, en kelvins ou en degrés Celsius",
+    "Chaleur : un transfert d'énergie thermique, du corps chaud vers le corps froid",
+    "Chaleur : elle se calcule et s'exprime en joules"
+   ],
+   "kicker": "Ne pas confondre",
+   "titre": "Température et chaleur : deux notions différentes",
+   "type": "recap"
+  },
+  "eau_remarque": {
+   "kicker": "Le cas de l'eau",
+   "texte": "L'eau absorbe beaucoup de chaleur en chauffant à peine.",
+   "type": "phrase"
+  },
+  "ex_eau": {
+   "kicker": "Exemple",
+   "tex": [
+    "m = 0{,}5\\ \\text{kg}",
+    "c = 4186\\ \\text{J/(kg·K)}",
+    "\\Delta T = 100 - 20 = 80\\ \\text{K}",
+    "Q = 0{,}5 \\times 4186 \\times 80"
+   ],
+   "titre": "Chauffer un demi-litre d'eau",
+   "type": "etape"
+  },
+  "ex_eau_res": {
+   "kicker": "Exemple · résultat",
+   "note": "Pour un kilogramme entier d'eau sur le même écart, on double : 334 880 J",
+   "tex": "Q = 167\\,440\\ \\text{J} \\approx 167\\ \\text{kJ}",
+   "titre": "La chaleur nécessaire",
+   "type": "formule"
+  },
+  "ex_glace": {
+   "kicker": "Exemple",
+   "tex": [
+    "m = 0{,}5\\ \\text{kg}",
+    "L_f = 334\\,000\\ \\text{J/kg}",
+    "Q = 0{,}5 \\times 334\\,000"
+   ],
+   "titre": "Faire fondre de la glace à zéro degré",
+   "type": "etape"
+  },
+  "ex_glace_res": {
+   "kicker": "Exemple · résultat",
+   "note": "Toute cette énergie change l'état de la glace, sans élever sa température",
+   "tex": "Q = 167\\,000\\ \\text{J} = 167\\ \\text{kJ}",
+   "titre": "La chaleur absorbée par la fusion",
+   "type": "formule"
+  },
+  "ex_metal": {
+   "kicker": "Exemple",
+   "tex": [
+    "m = 500\\ \\text{g} = 0{,}5\\ \\text{kg}",
+    "Q = 2000\\ \\text{J}",
+    "\\Delta T = 20\\ \\text{K}",
+    "c = \\dfrac{2000}{0{,}5 \\times 20}"
+   ],
+   "titre": "Identifier un métal par sa capacité thermique",
+   "type": "etape"
+  },
+  "ex_metal_res": {
+   "kicker": "Exemple · résultat",
+   "note": "Le cours l'exprime en J/(kg·°C) : pour une variation de température, le degré Celsius et le kelvin se valent",
+   "tex": "c = 200\\ \\text{J/(kg·K)}",
+   "titre": "La capacité du métal inconnu",
+   "type": "formule"
+  },
+  "ex_total": {
+   "kicker": "Exemple complet",
+   "tex": [
+    "Q_1 = 1 \\times 4186 \\times 80 = 334\\,880\\ \\text{J}",
+    "Q_2 = m\\, L_v = 2{,}26 \\times 10^{6}\\ \\text{J}",
+    "Q = Q_1 + Q_2 \\approx 2{,}6 \\times 10^{6}\\ \\text{J}"
+   ],
+   "titre": "Chauffer puis vaporiser : les deux chaleurs s'ajoutent",
+   "type": "etape"
+  },
+  "formule_l": {
+   "kicker": "Changement d'état",
+   "note": "Q en joules · m en kilogrammes · L, chaleur latente, en joules par kilogramme (J/kg) · La température reste constante",
+   "tex": "Q = m \\times L",
+   "titre": "Chaleur échangée lors d'un changement d'état",
+   "type": "formule"
+  },
+  "formule_q": {
+   "kicker": "La relation fondamentale",
+   "note": "Q en joules (J) · m en kilogrammes (kg) · c en J/(kg·K) · ΔT = T finale − T initiale · Valable sans changement d'état",
+   "tex": "Q = m \\times c \\times \\Delta T",
+   "titre": "Chaleur reçue lors d'un changement de température",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "La chaleur nous entoure, mais elle n'est pas la température.",
+   "type": "phrase"
+  },
+  "latente_intro": {
+   "kicker": "Changements d'état",
+   "texte": "À l'ébullition, la température reste bloquée : où passe la chaleur ?",
+   "type": "phrase",
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 280
+   }
+  },
+  "latentes": {
+   "kicker": "Chaleur latente",
+   "tex": [
+    "L_f\\ (\\text{fusion de la glace}) \\approx 334\\ \\text{kJ/kg}",
+    "L_v\\ (\\text{vaporisation de l'eau}) \\approx 2260\\ \\text{kJ/kg}",
+    "L_s\\ (\\text{sublimation}) : \\text{solide} \\to \\text{gaz}"
+   ],
+   "titre": "L'énergie cachée des changements d'état",
+   "type": "etape"
+  },
+  "limite": {
+   "kicker": "Limites de la relation",
+   "texte": "La relation néglige les pertes et ne vaut pas lors d'un changement d'état.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Température : agitation des particules · Chaleur : transfert d'énergie, en joules",
+    "Sans changement d'état : Q = m × c × ΔT, avec c propre à chaque matière (eau : 4186 J/(kg·K))",
+    "Changement d'état : Q = m × L, à température constante (fusion de la glace : 334 kJ/kg, vaporisation : 2260 kJ/kg)"
+   ],
+   "kicker": "À retenir",
+   "titre": "Quantité de chaleur",
+   "type": "recap",
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 100
+   }
+  },
+  "temperature": {
+   "kicker": "Température",
+   "texte": "La température mesure l'agitation des particules d'un corps.",
+   "type": "phrase",
+   "anim": {
+    "nom": "agitation",
+    "hauteur": 280
+   }
+  },
+  "titre": {
+   "kicker": "Physique · Terminale",
+   "sous": "Chaleur, température et changements d'état",
+   "titre": "Quantité de chaleur",
+   "type": "titre",
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 250
+   }
+  },
+  "transfert": {
+   "kicker": "La chaleur",
+   "texte": "La chaleur passe toujours du corps chaud vers le corps froid.",
+   "type": "phrase",
+   "anim": {
+    "nom": "transfert",
+    "hauteur": 280
+   }
+  },
+  "unite": {
+   "kicker": "Unité de la chaleur",
+   "note": "Le joule (J) est l'unité internationale de la chaleur, comme de toute énergie",
+   "tex": "1\\ \\text{cal} \\approx 4{,}18\\ \\text{J}",
+   "titre": "Le joule, et l'ancienne calorie",
+   "type": "formule"
+  },
+  "valeurs_c": {
+   "kicker": "Capacités thermiques massiques",
+   "tex": [
+    "c_{\\text{eau}} = 4186 \\qquad c_{\\text{aluminium}} = 900",
+    "c_{\\text{verre}} = 840 \\qquad c_{\\text{fer}} = 450",
+    "c_{\\text{cuivre}} = 385 \\qquad \\text{(en J/(kg·K))}"
+   ],
+   "titre": "Quelques valeurs à connaître",
+   "type": "etape"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Chaleur, température et premier calcul"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : nous retournons la relation pour mesurer la capacité thermique d'une matière, puis nous découvrons la chaleur latente des changements d'état.",
+    "texte": "Partie 2 : capacité thermique et chaleur latente."
+   },
+   "sous_titre": "Capacité thermique et chaleur latente"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré à la quantité de chaleur : ce que la chaleur est vraiment, comment elle se mesure, et comment on la calcule.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Quantité de chaleur : température, transferts et changements d'état."
+  },
+  {
+   "dit": "Nous ressentons la chaleur chaque jour, au soleil ou près d'un four. Mais attention : la chaleur n'est pas la température. Confondre les deux est l'erreur de départ de ce chapitre, et nous allons les distinguer proprement.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "La chaleur n'est pas la température."
+  },
+  {
+   "dit": "La température mesure l'agitation des particules qui composent un corps : atomes et molécules bougent sans cesse, de façon désordonnée. Plus ils bougent vite, plus la température est élevée. Imaginez une foule : calme à basse température, agitée à haute température. À la limite, au zéro absolu, zéro kelvin, l'agitation cesse complètement.",
+   "ecran": "temperature",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "La température : une mesure de l'agitation des particules."
+  },
+  {
+   "dit": "La chaleur, elle, n'est pas une propriété d'un corps : c'est une énergie en transit. Elle passe toujours du corps le plus chaud vers le corps le plus froid, jusqu'à l'équilibre thermique, quand les deux corps atteignent la même température. Une cuillère froide plongée dans un café chaud reçoit ainsi de la chaleur du café, qui refroidit pendant qu'elle se réchauffe.",
+   "ecran": "transfert",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "La chaleur : un transfert, du chaud vers le froid."
+  },
+  {
+   "dit": "Résumons la différence. La température est une propriété du corps, elle se mesure au thermomètre, en kelvins ou en degrés Celsius. La chaleur est un transfert d'énergie entre deux corps, et elle se calcule, en joules.",
+   "ecran": "distinction",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Température et chaleur : la distinction à retenir."
+  },
+  {
+   "dit": "L'unité de la chaleur est le joule, l'unité de toutes les énergies. Vous rencontrerez encore parfois l'ancienne calorie : une calorie vaut environ quatre virgule dix-huit joules.",
+   "ecran": "unite",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "La chaleur se mesure en joules."
+  },
+  {
+   "dit": "Pourquoi une petite tasse en métal chauffe-t-elle plus vite qu'une grande casserole en fonte, posées sur la même plaque ? Parce que chaque matière emmagasine la chaleur à sa façon : c'est sa capacité thermique massique, notée c.",
+   "ecran": "capacite_intro",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Chaque matière a sa capacité thermique massique."
+  },
+  {
+   "dit": "Voici la relation fondamentale du chapitre. La quantité de chaleur reçue par un corps qui change de température vaut Q égale m fois c fois delta T. La masse en kilogrammes, la capacité thermique massique en joules par kilogramme et par kelvin, et delta T, la différence entre la température finale et la température initiale.",
+   "ecran": "formule_q",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "La relation fondamentale : Q = m × c × ΔT."
+  },
+  {
+   "dit": "Chaque matière a sa valeur, à retrouver dans les tables. L'eau écrase toutes les autres : quatre mille cent quatre-vingt-six joules par kilogramme et par kelvin. L'aluminium vaut neuf cents, le verre huit cent quarante, le fer quatre cent cinquante, et le cuivre trois cent quatre-vingt-cinq.",
+   "ecran": "valeurs_c",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Les capacités thermiques massiques des matières courantes."
+  },
+  {
+   "dit": "La valeur énorme de l'eau a des conséquences partout. Elle absorbe beaucoup de chaleur en chauffant à peine : on l'utilise pour refroidir les moteurs, et les océans, immenses réservoirs d'eau, régulent le climat de la planète en adoucissant les écarts de température.",
+   "ecran": "eau_remarque",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "L'eau, réservoir de chaleur : refroidissement et climat."
+  },
+  {
+   "dit": "Exemple, celui du cours : quelle chaleur faut-il pour chauffer un demi-kilogramme d'eau de vingt degrés à cent degrés ? On relève les données : la masse, la capacité de l'eau, et delta T, cent moins vingt, donc quatre-vingts degrés. Puis on applique la relation.",
+   "ecran": "ex_eau",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Exemple : chauffer 0,5 kg d'eau de 20 °C à 100 °C."
+  },
+  {
+   "dit": "Le calcul donne cent soixante-sept mille quatre cent quarante joules, environ cent soixante-sept kilojoules. Retenez l'ordre de grandeur : porter un simple demi-litre d'eau à ébullition demande déjà une énergie considérable.",
+   "ecran": "ex_eau_res",
+   "id": "p12",
+   "pause_apres": 0.7,
+   "texte": "Résultat : environ 167 kJ pour un demi-litre d'eau."
+  },
+  {
+   "dit": "Deux précisions avant de continuer. La relation néglige les pertes de chaleur vers l'extérieur, inévitables en pratique. Et surtout, elle ne vaut que si le corps ne change pas d'état : fondre ou bouillir demande un autre type de chaleur, que nous verrons dans la partie deux.",
+   "ecran": "limite",
+   "id": "p13",
+   "pause_apres": 0.7,
+   "texte": "Une relation limitée aux changements de température."
+  },
+  {
+   "dit": "La même relation, lue dans l'autre sens, définit la capacité thermique massique : c égale Q sur m fois delta T. C'est la chaleur qu'il faut fournir pour élever d'un degré la température d'un kilogramme de la matière. Plus c est grand, plus la matière est lente à chauffer.",
+   "ecran": "c_def",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "La définition : c = Q / (m × ΔT)."
+  },
+  {
+   "dit": "Exemple du cours : on chauffe cinq cents grammes d'un métal inconnu avec deux mille joules, et sa température monte de vingt degrés. Quelle est sa capacité thermique massique ? D'abord, convertir la masse : cinq cents grammes, c'est zéro virgule cinq kilogramme. Puis on applique la définition.",
+   "ecran": "ex_metal",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Exemple : retrouver la capacité d'un métal inconnu."
+  },
+  {
+   "dit": "On obtient deux cents joules par kilogramme et par degré : une capacité faible, typique d'un métal, qui chauffe et refroidit vite. Comparez avec les quatre mille cent quatre-vingt-six de l'eau.",
+   "ecran": "ex_metal_res",
+   "id": "p16",
+   "pause_apres": 0.7,
+   "texte": "Résultat : 200 J/(kg·K), typique d'un métal."
+  },
+  {
+   "dit": "Cette capacité thermique se retrouve dans tous les domaines. L'ingénieur choisit ses matériaux de radiateurs et de refroidissement, le météorologue sait que les océans tamponnent le climat, le cuisinier ajuste ses temps de cuisson, et notre propre corps garde sa température stable grâce à l'eau qu'il contient.",
+   "ecran": "applications_c",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "La capacité thermique, de l'ingénierie au corps humain."
+  },
+  {
+   "dit": "Changeons de phénomène. Une casserole d'eau sur le feu monte à cent degrés, puis bout, et la température reste bloquée à cent degrés, alors que le feu continue de fournir de la chaleur. Où passe cette énergie ? Elle ne chauffe plus l'eau : elle la transforme en vapeur.",
+   "ecran": "latente_intro",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "À l'ébullition, la température reste bloquée à 100 °C."
+  },
+  {
+   "dit": "Cette énergie cachée s'appelle la chaleur latente. C'est la chaleur nécessaire pour changer l'état d'un kilogramme de matière, à température constante. Fondre un kilogramme de glace demande environ trois cent trente-quatre kilojoules ; vaporiser un kilogramme d'eau en demande deux mille deux cent soixante, près de sept fois plus. Il existe aussi la sublimation, le passage direct du solide au gaz.",
+   "ecran": "latentes",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "La chaleur latente : changer d'état sans changer de température."
+  },
+  {
+   "dit": "Le calcul d'un changement d'état est encore plus simple : la chaleur échangée vaut la masse fois la chaleur latente, Q égale m fois L. Pas de température dans la formule, puisqu'elle ne change pas pendant la transformation.",
+   "ecran": "formule_l",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Changement d'état : Q = m × L."
+  },
+  {
+   "dit": "Exemple du cours : quelle chaleur faut-il pour fondre un demi-kilogramme de glace, déjà à zéro degré ? La masse vaut zéro virgule cinq kilogramme, et la chaleur latente de fusion de la glace, trois cent trente-quatre mille joules par kilogramme. On multiplie.",
+   "ecran": "ex_glace",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Exemple : fondre 0,5 kg de glace à 0 °C."
+  },
+  {
+   "dit": "Résultat : cent soixante-sept mille joules, soit cent soixante-sept kilojoules, absorbés sans que la température bouge d'un seul degré. C'est presque la même énergie que pour chauffer le demi-litre d'eau de la partie une, mais employée à changer l'état au lieu d'élever la température.",
+   "ecran": "ex_glace_res",
+   "id": "p22",
+   "pause_apres": 0.7,
+   "texte": "Résultat : 167 kJ absorbés, à température constante."
+  },
+  {
+   "dit": "Dernier exercice, le plus complet du cours : chauffer un kilogramme d'eau de vingt degrés jusqu'à le vaporiser entièrement. Deux étapes s'enchaînent : d'abord élever la température jusqu'à cent degrés, avec la première relation ; ensuite vaporiser à cent degrés, avec la chaleur latente. On additionne les deux chaleurs. Au total, environ deux virgule six millions de joules, dont l'essentiel part dans la vaporisation.",
+   "ecran": "ex_total",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Chauffer puis vaporiser : environ 2,6 millions de joules."
+  },
+  {
+   "dit": "La chaleur latente travaille partout autour de nous. La climatisation l'utilise pour pomper la chaleur des pièces, les centrales produisent leur vapeur grâce à elle, les nuages la libèrent en se formant, et notre transpiration nous refroidit en évaporant l'eau de la peau.",
+   "ecran": "applications",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Climatisation, centrales, nuages et transpiration."
+  },
+  {
+   "dit": "Retenez l'essentiel : la température mesure l'agitation des particules, la chaleur est un transfert d'énergie en joules. Q égale m fois c fois delta T pour changer de température, Q égale m fois L pour changer d'état, à température constante.",
+   "ecran": "recap",
+   "id": "p25",
+   "pause_apres": 0.5,
+   "texte": "Quantité de chaleur : l'essentiel à retenir."
+  }
+ ],
+ "titre": "Quantité de chaleur"
+}

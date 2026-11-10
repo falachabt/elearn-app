@@ -6,6 +6,8 @@ import { contenuHorsLigneValide } from './connectivite';
 import { calculerResultat, melanger, tirerMiniTest, type QuestionTiree, type ResultatMiniTest } from './miniTest';
 import { enregistrerCorrection } from './correction';
 import { TAILLE_DEFAUT } from './rythme';
+import { ecrireContenu, lireContenu } from './stockageContenu';
+import { crediterXp } from './xp';
 
 type Client = Pick<SupabaseClient, 'from' | 'rpc'>;
 
@@ -37,8 +39,8 @@ export const CLE_MISSION = 'mission.jour';
 export const CLE_HISTORIQUE = 'mission.historique';
 export const CLE_DERNIER = 'mission.dernier';
 export const CLE_ERREURS = 'mission.erreurs';
-const cleMissionHorsLigne = (p: { niveau: string; pays: string; concours?: string | null; taille?: number }, jour: string) =>
-  `mission.horsLigne.${p.niveau}.${p.pays}.${p.concours ?? 'classe'}.${p.taille ?? TAILLE_DEFAUT}.${jour}`;
+const cleMissionHorsLigne = (p: { niveau: string; pays: string; serie?: string | null; concours?: string | null; taille?: number }, jour: string) =>
+  `mission.horsLigne.${p.niveau}.${p.pays}.${p.concours ?? p.serie ?? 'classe'}.${p.taille ?? TAILLE_DEFAUT}.${jour}`;
 
 /** Jour local au format AAAA-MM-JJ : la mission change à minuit, heure du téléphone. */
 export function jourLocal(date: Date = new Date()): string {
@@ -77,12 +79,12 @@ export function convertir(l: LigneMission, vraiFaux: { vrai: string; faux: strin
 }
 
 /**
- * Mission du jour (M4-01) : tirée par le serveur pour la classe et le pays, gardée pour la journée (elle se rejoue sans
+ * Mission du jour (M4-01) : tirée par le serveur pour la classe (et la série) et le pays, gardée pour la journée (elle se rejoue sans
  * réseau). Sans réseau ou sans contenu pour la classe, questions embarquées de la classe.
  */
 export async function chargerMission(
   client: Client,
-  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour?: string; taille?: number; concours?: string | null },
+  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour?: string; taille?: number; serie?: string | null; concours?: string | null },
 ): Promise<Mission> {
   const jour = p.jour ?? jourLocal();
   const taille = p.taille ?? TAILLE_DEFAUT;
@@ -90,21 +92,29 @@ export async function chargerMission(
   // repart alors du serveur, qui échoue sans connexion, et l'écran retombe sur la mission embarquée. Sans ce
   // contrôle, la mission préchargée contournerait l'expiration puisqu'elle ne passe pas par `avecCopie`.
   const copieEncoreValable = await contenuHorsLigneValide();
-  const missionHorsLigne = copieEncoreValable ? await AsyncStorage.getItem(cleMissionHorsLigne({ ...p, taille }, jour)) : null;
+  const missionHorsLigne = copieEncoreValable ? await lireContenu(cleMissionHorsLigne({ ...p, taille }, jour)) : null;
   if (missionHorsLigne) return JSON.parse(missionHorsLigne) as Mission;
-  const brut = copieEncoreValable ? await AsyncStorage.getItem(CLE_MISSION) : null;
-  const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string; taille?: number; concours?: string | null }) : null;
-  if (garde?.jour === jour && garde.niveau === p.niveau && (garde.taille ?? taille) === taille && (garde.concours ?? null) === (p.concours ?? null)) return garde;
+  const brut = copieEncoreValable ? await lireContenu(CLE_MISSION) : null;
+  const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string; taille?: number; serie?: string | null; concours?: string | null }) : null;
+  if (
+    garde?.jour === jour &&
+    garde.niveau === p.niveau &&
+    (garde.taille ?? taille) === taille &&
+    (garde.serie ?? null) === (p.serie ?? null) &&
+    (garde.concours ?? null) === (p.concours ?? null)
+  )
+    return garde;
 
   let mission: Mission;
+  const argSerie = p.serie ? { p_series: p.serie } : {};
   try {
     // Candidat : les quiz des cours de son concours. Élève : du plus récent au plus ancien, la fonction peut ne pas
     // encore être déployée en production.
     let { data, error } = p.concours
       ? await client.rpc('daily_mission_contest', { p_contest: p.concours, p_day: jour, p_questions: taille })
-      : await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_questions: taille });
-    if (error) ({ data, error } = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_lessons: LECONS_MISSION }));
-    if (error) ({ data, error } = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_size: TAILLE_MISSION }));
+      : await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_questions: taille, ...argSerie });
+    if (error) ({ data, error } = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_lessons: LECONS_MISSION, ...argSerie }));
+    if (error) ({ data, error } = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_size: TAILLE_MISSION, ...argSerie }));
     if (error) throw error;
     const questions = ((data ?? []) as LigneMission[]).map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => !!q);
     if (questions.length < 3) throw new Error('mission trop courte');
@@ -113,30 +123,31 @@ export async function chargerMission(
     // Pas gardée : au prochain affichage, on retente le serveur.
     return { jour, source: 'locale', questions: tirerMiniTest(p.niveau) };
   }
-  await AsyncStorage.setItem(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille, concours: p.concours ?? null }));
+  await ecrireContenu(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille, ...(p.serie ? { serie: p.serie } : {}), concours: p.concours ?? null }));
   return mission;
 }
 
 /** Prépare une journée future sans écraser la mission courante ni la progression de l'élève. */
 export async function prechargerMission(
   client: Client,
-  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour: string; taille?: number; concours?: string | null },
+  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour: string; taille?: number; serie?: string | null; concours?: string | null },
 ): Promise<Mission> {
   const taille = p.taille ?? TAILLE_DEFAUT;
   const cle = cleMissionHorsLigne({ ...p, taille }, p.jour);
-  const garde = await AsyncStorage.getItem(cle);
+  const garde = await lireContenu(cle);
   if (garde) return JSON.parse(garde) as Mission;
 
+  const argSerie = p.serie ? { p_series: p.serie } : {};
   let resultat = p.concours
     ? await client.rpc('daily_mission_contest', { p_contest: p.concours, p_day: p.jour, p_questions: taille })
-    : await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_questions: taille });
-  if (resultat.error) resultat = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_lessons: LECONS_MISSION });
-  if (resultat.error) resultat = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_size: TAILLE_MISSION });
+    : await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_questions: taille, ...argSerie });
+  if (resultat.error) resultat = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_lessons: LECONS_MISSION, ...argSerie });
+  if (resultat.error) resultat = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_size: TAILLE_MISSION, ...argSerie });
   if (resultat.error) throw resultat.error;
   const questions = ((resultat.data ?? []) as LigneMission[]).map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => !!q);
   if (questions.length < 3) throw new Error('mission trop courte');
   const mission: Mission = { jour: p.jour, source: 'serveur', questions };
-  await AsyncStorage.setItem(cle, JSON.stringify(mission));
+  await ecrireContenu(cle, JSON.stringify(mission));
   return mission;
 }
 
@@ -175,13 +186,36 @@ export async function lireDernierResultat(): Promise<ResultatMission | null> {
   return brut ? (JSON.parse(brut) as ResultatMission) : null;
 }
 
+/** Jour (AAAA-MM-JJ) où l'alerte « ta série est en danger » a été montrée à l'ouverture : une fois par jour. */
+export const CLE_ALERTE_SERIE = 'mission.alerteSerie';
+
+export async function lireAlerteSerie(): Promise<string | null> {
+  return AsyncStorage.getItem(CLE_ALERTE_SERIE);
+}
+
+export async function noterAlerteSerie(jour: string): Promise<void> {
+  await AsyncStorage.setItem(CLE_ALERTE_SERIE, jour);
+}
+
+/**
+ * Alerte « Ta série est en danger » : ne s'affiche que s'il reste au maximum 40% de la journée
+ * (soit environ après 14h24 en heure locale), pour ne pas alerter l'élève dès le début de journée.
+ */
+export function estMomentAlerteSerie(maintenant: Date = new Date(), fractionMaxRestante: number = 0.4): boolean {
+  const minutesEcoulees = maintenant.getHours() * 60 + maintenant.getMinutes();
+  const fractionRestante = (1440 - minutesEcoulees) / 1440;
+  return fractionRestante <= fractionMaxRestante;
+}
+
 /**
  * Fin de mission (M4-03) : résultat et série calculés sur le téléphone (visibles sans réseau), puis envoyés au serveur
  * sans bloquer. Une deuxième mission le même jour ne change pas la série.
  */
+const missionsXpEnCours = new Set<string>();
+
 export async function terminerMission(
   client: Client,
-  p: { questions: readonly QuestionTiree[]; reponses: readonly number[]; niveau: string; dureeS: number; jour?: string },
+  p: { questions: readonly QuestionTiree[]; reponses: readonly number[]; niveau: string; dureeS: number; jour?: string; userId?: string },
 ): Promise<ResultatMission> {
   const jour = p.jour ?? jourLocal();
   const base = calculerResultat(p.questions, p.reponses, { niveau: p.niveau, dureeS: p.dureeS });
@@ -198,6 +232,17 @@ export async function terminerMission(
   ]).catch(() => {});
   await enregistrerCorrection({ source: 'mission', questions: [...p.questions], reponses: [...p.reponses], contexte: { type: 'mission' } });
   suivre('mission_completed', { score: resultat.score, total: resultat.total, duree_s: resultat.dureeS, serie });
+
+  // Les 50 XP ne sont crédités qu'une seule fois par jour calendaire (M4-07)
+  const cleXpJour = `mission.xp_recompensee_${jour}`;
+  if (!missionsXpEnCours.has(cleXpJour)) {
+    missionsXpEnCours.add(cleXpJour);
+    const dejaRecompense = (await AsyncStorage.getItem(cleXpJour).catch(() => null)) === '1';
+    if (!dejaRecompense) {
+      await AsyncStorage.setItem(cleXpJour, '1').catch(() => {});
+      void crediterXp(client, p.userId, 50, 'daily_mission', jour);
+    }
+  }
   // Le passage est gardé sur le téléphone AVANT l'envoi : hors ligne, l'insertion échouait en silence et la mission
   // n'entrait jamais dans la progression (ni hors ligne, ni au retour du réseau).
   await ajouterPassageLocal({

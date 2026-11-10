@@ -23,7 +23,7 @@ import { BoutonFermer } from '../arrivee/MiniTest';
 type Objectif = 'BEPC' | 'probatoire' | 'bac' | 'concours' | 'examens';
 
 /** Examen visé selon la classe, pour personnaliser le message au parent. */
-export function objectifPour(niveau?: string | null, type?: 'eleve' | 'concours'): Objectif {
+export function objectifPour(niveau?: string | null, type?: 'eleve' | 'concours' | 'certification'): Objectif {
   if (type === 'concours') return 'concours';
   if (niveau === '3e') return 'BEPC';
   if (niveau === '1re') return 'probatoire';

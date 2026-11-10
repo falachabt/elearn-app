@@ -1,0 +1,365 @@
+{
+ "cours": 7328,
+ "titre": "Variables aléatoires et lois usuelles",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Probabilités",
+   "titre": "Variables aléatoires et lois usuelles",
+   "sous": "Décrire une loi, la résumer par l'espérance et la variance, reconnaître Bernoulli et la binomiale",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Le hasard devient des nombres : toute la suite consiste à décrire ces nombres, puis à les résumer."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Variable aléatoire · définition",
+   "tex": "X : \\Omega \\to \\mathbb{R}",
+   "note": "À chaque issue de l'expérience, X associe un nombre réel : c'est une fonction."
+  },
+  "valeurs_des": {
+   "type": "etape",
+   "kicker": "Exemple · la somme de deux dés",
+   "titre": "Les valeurs prises par la somme",
+   "tex": [
+    "X(\\Omega) = \\{2, 3, \\dots, 12\\}",
+    "(1;4) \\mapsto X = 5"
+   ],
+   "anim": {
+    "nom": "grille_des_fig",
+    "hauteur": 200
+   }
+  },
+  "loi": {
+   "type": "etape",
+   "kicker": "Loi de probabilité",
+   "titre": "Chaque valeur avec sa probabilité",
+   "tex": [
+    "x_i \\quad x_1 \\quad x_2 \\quad \\dots \\quad x_n",
+    "P(X = x_i) \\quad p_1 \\quad p_2 \\quad \\dots \\quad p_n",
+    "0 \\leq p_i \\leq 1 \\qquad \\sum p_i = 1"
+   ]
+  },
+  "loi_des": {
+   "type": "etape",
+   "kicker": "Exemple · la loi de la somme",
+   "titre": "Trois probabilités à connaître",
+   "tex": [
+    "P(X = 2) = \\tfrac{1}{36} \\qquad P(X = 12) = \\tfrac{1}{36}",
+    "P(X = 7) = \\tfrac{6}{36} = \\tfrac{1}{6}"
+   ]
+  },
+  "esperance": {
+   "type": "formule",
+   "kicker": "Espérance mathématique",
+   "tex": "E(X) = \\sum_{i=1}^{n} x_i\\, p_i",
+   "note": "La moyenne des valeurs, pondérée par leurs probabilités : la valeur moyenne sur un grand nombre de répétitions.",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 170
+   }
+  },
+  "esperance_proprietes": {
+   "type": "etape",
+   "kicker": "Espérance · propriétés",
+   "titre": "Linéaire, et exacte pour une constante",
+   "tex": [
+    "E(aX + b) = a\\,E(X) + b",
+    "X = k \\ \\text{constante} \\Rightarrow E(X) = k"
+   ]
+  },
+  "jeu_loi": {
+   "type": "etape",
+   "kicker": "Exemple · un jeu au dé",
+   "titre": "Mise de deux euros, dix euros si le six sort",
+   "tex": [
+    "G \\in \\{8, -2\\}",
+    "P(G = 8) = \\tfrac{1}{6} \\qquad P(G = -2) = \\tfrac{5}{6}"
+   ]
+  },
+  "jeu_esperance": {
+   "type": "etape",
+   "kicker": "Exemple · l'espérance du gain",
+   "titre": "Un jeu défavorable, en moyenne",
+   "tex": [
+    "E(G) = 8 \\times \\tfrac{1}{6} - 2 \\times \\tfrac{5}{6}",
+    "E(G) = \\tfrac{8 - 10}{6} = -\\tfrac{1}{3} \\approx -0{,}33"
+   ]
+  },
+  "jeu_bilan": {
+   "type": "phrase",
+   "kicker": "Interpréter l'espérance",
+   "texte": "Espérance négative : sur un grand nombre de parties, le joueur perd en moyenne."
+  },
+  "variance": {
+   "type": "formule",
+   "kicker": "Variance et écart-type",
+   "tex": "V(X) = E(X^2) - [E(X)]^2",
+   "note": "Aussi : la moyenne des carrés des écarts à l'espérance. L'écart-type est la racine carrée de la variance.",
+   "anim": {
+    "nom": "deux_distributions_fig",
+    "hauteur": 170
+   }
+  },
+  "variance_proprietes": {
+   "type": "etape",
+   "kicker": "Variance · propriétés",
+   "titre": "Toujours positive, insensible aux translations",
+   "tex": [
+    "V(X) \\geq 0",
+    "V(X) = 0 \\iff X \\ \\text{constante}",
+    "V(aX + b) = a^2\\, V(X)",
+    "\\sigma(X) = \\sqrt{V(X)}"
+   ]
+  },
+  "jeu_variance": {
+   "type": "etape",
+   "kicker": "Exemple · la variance du gain",
+   "titre": "Le calcul complet, par les écarts",
+   "tex": [
+    "V(G) = \\tfrac{1}{6}\\left(\\tfrac{25}{3}\\right)^2 + \\tfrac{5}{6}\\left(\\tfrac{5}{3}\\right)^2",
+    "V(G) = \\tfrac{625}{54} + \\tfrac{125}{54} = \\tfrac{125}{9} \\approx 13{,}89",
+    "\\sigma(G) = \\tfrac{5\\sqrt{5}}{3} \\approx 3{,}73"
+   ]
+  },
+  "bernoulli": {
+   "type": "formule",
+   "kicker": "Loi de Bernoulli",
+   "tex": "X \\in \\{0, 1\\} \\qquad P(X = 1) = p",
+   "note": "Une seule épreuve, deux issues : succès de probabilité p, échec de probabilité un moins p."
+  },
+  "bernoulli_moments": {
+   "type": "etape",
+   "kicker": "Loi de Bernoulli · moments",
+   "titre": "Deux formules à retenir par cœur",
+   "tex": [
+    "E(X) = p \\qquad V(X) = p(1 - p)"
+   ]
+  },
+  "bernoulli_ex": {
+   "type": "etape",
+   "kicker": "Exemple · tirer un as",
+   "titre": "Un as dans un jeu de trente-deux cartes",
+   "tex": [
+    "p = \\tfrac{4}{32} = \\tfrac{1}{8} \\qquad E(X) = \\tfrac{1}{8}",
+    "V(X) = \\tfrac{1}{8} \\times \\tfrac{7}{8} = \\tfrac{7}{64}"
+   ]
+  },
+  "binomiale": {
+   "type": "formule",
+   "kicker": "Loi binomiale",
+   "tex": "P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}",
+   "note": "X compte les succès en n épreuves de Bernoulli identiques et indépendantes : X suit la loi B(n, p)."
+  },
+  "binomiale_moments": {
+   "type": "etape",
+   "kicker": "Loi binomiale · moments",
+   "titre": "L'espérance et la variance, sans calcul",
+   "tex": [
+    "E(X) = np \\qquad V(X) = np(1 - p)"
+   ]
+  },
+  "binomiale_ex": {
+   "type": "etape",
+   "kicker": "Exemple · cinq lancers de pièce",
+   "titre": "Exactement trois fois pile",
+   "tex": [
+    "P(X = 3) = \\binom{5}{3} \\left(\\tfrac{1}{2}\\right)^5 = \\tfrac{10}{32}",
+    "P(X = 3) = \\tfrac{5}{16} \\qquad E(X) = 2{,}5",
+    "V(X) = 5 \\times \\tfrac{1}{2} \\times \\tfrac{1}{2} = 1{,}25"
+   ],
+   "anim": {
+    "nom": "binomiale_hist_fig",
+    "hauteur": 100
+   }
+  },
+  "pieges": {
+   "type": "phrase",
+   "kicker": "Les réflexes avant de calculer",
+   "texte": "Identifier la variable, écrire sa loi, vérifier que les probabilités somment à un."
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode",
+   "etapes": [
+    "Identifier la variable et ses valeurs",
+    "Écrire la loi, vérifier la somme à 1",
+    "Espérance : la moyenne pondérée",
+    "Variance : König-Huygens, puis la racine",
+    "Bernoulli ou répétition : binomiale"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Une variable : un réel par issue",
+    "Loi : valeurs et probabilités, somme 1",
+    "E(X) : moyenne, V(X) : dispersion",
+    "Bernoulli : E = p, V = p(1 − p)",
+    "Binomiale : E = np, V = np(1 − p)"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux variables aléatoires et aux lois usuelles. Une variable aléatoire transforme le hasard en nombres : nous allons décrire ces nombres par leur loi, les résumer par l'espérance et la variance, puis reconnaître la loi de Bernoulli et la loi binomiale.",
+   "texte": "Variables aléatoires : décrire, résumer, reconnaître.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Pourquoi transformer le hasard en nombres ? Parce qu'un nombre se décrit, se moyenne et se compare. Une fois l'expérience traduite en valeurs numériques, on peut dire quelles valeurs sont probables, quelle valeur attendre en moyenne, si le résultat reste groupé autour de cette moyenne, et avec quelles lois simples le décrire.",
+   "texte": "Le hasard devient des nombres que l'on peut résumer.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "La définition d'abord. Une variable aléatoire, notée grand ixe, est une fonction qui associe un nombre réel à chaque issue d'une expérience aléatoire. L'ensemble des valeurs qu'elle peut prendre se note ixe de oméga : on énumère ces valeurs avant tout calcul de probabilité.",
+   "texte": "Une variable aléatoire : un réel pour chaque issue.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Premier exemple : on lance deux dés équilibrés, et ixe désigne la somme des deux résultats. Les valeurs possibles vont de deux à douze. La grille montre les trente-six couples possibles : l'issue un et quatre, par exemple, donne une somme de cinq.",
+   "texte": "Deux dés : la somme prend les valeurs de deux à douze.",
+   "ecran": "valeurs_des"
+  },
+  {
+   "id": "p05",
+   "dit": "La loi de probabilité de ixe est la donnée de chaque valeur et de sa probabilité. On la présente en tableau : une ligne pour les valeurs, une ligne pour les probabilités. Deux contrôles : chaque probabilité est comprise entre zéro et un, et leur somme vaut exactement un.",
+   "texte": "La loi : chaque valeur avec sa probabilité, somme un.",
+   "ecran": "loi"
+  },
+  {
+   "id": "p06",
+   "dit": "Sur les deux dés, quelques probabilités se calculent par dénombrement sur les trente-six couples. Obtenir deux, c'est le seul couple un et un : un sur trente-six. Obtenir sept est le cas le plus favorable, avec six couples : six sur trente-six, soit un sixième. Obtenir douze redescend à un sur trente-six.",
+   "texte": "Somme sept : la plus probable, un sixième.",
+   "ecran": "loi_des"
+  },
+  {
+   "id": "p07",
+   "dit": "Premier résumé d'une loi : l'espérance. C'est la moyenne des valeurs, pondérée par leurs probabilités : on multiplie chaque valeur par sa probabilité, puis on additionne. Si l'on répète l'expérience un très grand nombre de fois, la moyenne observée se rapproche de cette espérance.",
+   "texte": "L'espérance : la moyenne pondérée des valeurs.",
+   "ecran": "esperance"
+  },
+  {
+   "id": "p08",
+   "dit": "L'espérance est linéaire : l'espérance de a ixe plus b vaut a fois l'espérance de ixe, plus b, pour tous réels a et b. Et si la variable est constante, égale à un réel k, son espérance vaut simplement k : il n'y a aucun hasard à moyenner.",
+   "texte": "Linéarité : l'espérance de aX plus b suit la formule.",
+   "ecran": "esperance_proprietes"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple complet, un jeu. On mise deux euros, on lance un dé : si le six sort, on reçoit dix euros, sinon rien. Le gain net, noté grand gé, vaut donc huit euros avec probabilité un sixième, et moins deux euros, la mise perdue, avec probabilité cinq sixièmes. Voilà la loi de gé.",
+   "texte": "Le jeu : gagner huit ou perdre deux euros.",
+   "ecran": "jeu_loi"
+  },
+  {
+   "id": "p10",
+   "dit": "Calculons son espérance : huit fois un sixième, plus moins deux fois cinq sixièmes, soit huit moins dix, le tout sur six, c'est-à-dire moins un tiers, environ moins zéro virgule trente-trois euros. Le joueur perd en moyenne trente-trois centimes par partie : le jeu est défavorable.",
+   "texte": "Espérance du jeu : moins un tiers d'euro par partie.",
+   "ecran": "jeu_esperance"
+  },
+  {
+   "id": "p11",
+   "dit": "Retenez ce réflexe : une espérance négative annonce une perte moyenne sur le long terme, une espérance nulle un jeu équilibré, une espérance positive un jeu favorable. Mais la moyenne ne dit pas tout : deux jeux de même espérance peuvent être l'un régulier, l'autre très risqué. Il faut mesurer la dispersion.",
+   "texte": "L'espérance juge le jeu, pas encore son risque.",
+   "ecran": "jeu_bilan"
+  },
+  {
+   "id": "p12",
+   "dit": "C'est le rôle de la variance : elle mesure la dispersion des valeurs autour de l'espérance. Par définition, c'est la moyenne des carrés des écarts à l'espérance. En pratique, on utilise la formule de König-Huygens : l'espérance du carré, moins le carré de l'espérance. Sa racine carrée est l'écart-type.",
+   "texte": "La variance mesure l'étalement autour de la moyenne.",
+   "ecran": "variance"
+  },
+  {
+   "id": "p13",
+   "dit": "Trois propriétés à retenir. La variance est toujours positive ou nulle, et elle ne vaut zéro que si la variable est constante. Ensuite, translater la variable ne change rien : la variance de a ixe plus b vaut a au carré fois la variance de ixe, le terme b disparaît.",
+   "texte": "Variance : positive, et les translations la laissent intacte.",
+   "ecran": "variance_proprietes"
+  },
+  {
+   "id": "p14",
+   "dit": "Appliquons au jeu précédent, d'espérance moins un tiers. Les écarts sont huit plus un tiers, soit vingt-cinq tiers, et moins deux plus un tiers, soit moins cinq tiers. En pondérant leurs carrés, on obtient cent vingt-cinq neuvièmes, environ treize virgule quatre-vingt-neuf, et l'écart-type vaut environ trois virgule soixante-treize euros.",
+   "texte": "Variance du jeu : cent vingt-cinq neuvièmes.",
+   "ecran": "jeu_variance"
+  },
+  {
+   "id": "p15",
+   "dit": "Passons aux lois usuelles. La plus simple est la loi de Bernoulli. Une épreuve de Bernoulli n'a que deux issues : le succès, de probabilité pé, et l'échec, de probabilité un moins pé. La variable qui vaut un en cas de succès et zéro sinon suit la loi de Bernoulli de paramètre pé.",
+   "texte": "Bernoulli : succès ou échec, un ou zéro.",
+   "ecran": "bernoulli"
+  },
+  {
+   "id": "p16",
+   "dit": "Ses deux résumés se retiennent par cœur : l'espérance vaut pé, et la variance vaut pé fois un moins pé. Cette variance est maximale quand pé vaut un demi : c'est là que l'issue est la plus incertaine, entre un succès presque sûr et un échec presque sûr.",
+   "texte": "Bernoulli : espérance pé, variance pé fois un moins pé.",
+   "ecran": "bernoulli_moments"
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple : on tire une carte d'un jeu de trente-deux, et ixe vaut un si c'est un as. Il y a quatre as, donc pé vaut quatre sur trente-deux, soit un huitième. L'espérance vaut un huitième, et la variance vaut un huitième fois sept huitièmes, soit sept sur soixante-quatre.",
+   "texte": "Tirer un as : paramètre un huitième.",
+   "ecran": "bernoulli_ex"
+  },
+  {
+   "id": "p18",
+   "dit": "Répétons la même épreuve de Bernoulli, ène fois, de façon identique et indépendante. Le nombre total de succès, ixe, suit la loi binomiale de paramètres ène et pé. La probabilité d'obtenir exactement k succès se calcule par la formule affichée : le coefficient binomial choisit les rangs des succès.",
+   "texte": "La binomiale compte les succès en ène épreuves.",
+   "ecran": "binomiale"
+  },
+  {
+   "id": "p19",
+   "dit": "Bonne nouvelle : nul besoin de la formule pour résumer cette loi. L'espérance vaut ène fois pé, somme des espérances des épreuves. La variance vaut ène fois pé fois un moins pé : les épreuves étant indépendantes, leurs variances s'additionnent.",
+   "texte": "Binomiale : espérance ène pé, variance ène pé fois un moins pé.",
+   "ecran": "binomiale_moments"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple : on lance cinq fois une pièce équilibrée, et ixe compte les fois où pile sort. Ici, ène vaut cinq et pé vaut un demi. La probabilité d'obtenir exactement trois fois pile vaut dix sur trente-deux, soit cinq seizièmes. L'espérance vaut deux virgule cinq, la variance un virgule vingt-cinq.",
+   "texte": "Cinq lancers : trois fois pile, cinq seizièmes.",
+   "ecran": "binomiale_ex"
+  },
+  {
+   "id": "p21",
+   "dit": "Avant de conclure, les réflexes qui évitent les erreurs. Commencer par identifier la variable et ses valeurs. Écrire sa loi et vérifier que les probabilités somment à un. Et avant d'appliquer une loi usuelle, vérifier ses conditions : deux issues pour Bernoulli, indépendance pour la binomiale.",
+   "texte": "Identifier, écrire la loi, vérifier les conditions.",
+   "ecran": "pieges"
+  },
+  {
+   "id": "p22",
+   "dit": "La méthode tient en cinq gestes : identifier la variable et ses valeurs, écrire la loi et contrôler la somme, calculer l'espérance comme une moyenne pondérée, obtenir la variance par König-Huygens puis l'écart-type par la racine, et reconnaître une épreuve de Bernoulli ou sa répétition.",
+   "texte": "La méthode en cinq gestes, dans l'ordre.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p23",
+   "dit": "Pour terminer, retenez l'enchaînement : une variable aléatoire associe un réel à chaque issue, sa loi donne chaque valeur avec sa probabilité, l'espérance est la moyenne attendue, la variance mesure la dispersion, et les lois usuelles se résument en deux lignes : Bernoulli et la binomiale.",
+   "texte": "Variables et lois usuelles : l'essentiel à retenir.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Décrire une loi : espérance et premier jeu"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Variance, loi de Bernoulli et loi binomiale",
+   "pont": {
+    "texte": "Partie 2 : variance, Bernoulli et loi binomiale.",
+    "dit": "Partie deux : mesurer la dispersion, puis rencontrer les lois usuelles. Nous calculerons la variance et l'écart-type du jeu précédent, avant de présenter l'épreuve de Bernoulli et sa répétition, la loi binomiale."
+   }
+  }
+ ]
+}

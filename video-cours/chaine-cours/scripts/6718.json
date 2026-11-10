@@ -1,0 +1,503 @@
+{
+ "cours": 6718,
+ "titre": "L'espace : positions relatives, pyramide et cône",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Géométrie dans l'espace",
+   "titre": "L'espace : positions relatives, pyramide et cône",
+   "sous": "Droites et plans sur le pavé droit, puis deux solides à décrire, déplier et mesurer"
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Le fil du cours",
+   "texte": "Compter les points communs : le réflexe qui décide de toutes les positions."
+  },
+  "plan": {
+   "type": "formule",
+   "kicker": "Les objets de l'espace · Le plan",
+   "tex": "(ABC) : A, B, C \\text{ non alignés}",
+   "note": "Un plan se note par trois points non alignés : ici le plan ABC.",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 200
+   }
+  },
+  "droite": {
+   "type": "phrase",
+   "kicker": "Les objets de l'espace · La droite",
+   "texte": "Une droite : une infinité de points alignés, notée (AB).",
+   "anim": {
+    "nom": "pave_fig",
+    "hauteur": 180
+   }
+  },
+  "coplanaires": {
+   "type": "phrase",
+   "kicker": "Points coplanaires",
+   "texte": "Coplanaires : dans un même plan. A, B, C, D oui ; A, B, C, G non.",
+   "anim": {
+    "nom": "pave_fig",
+    "hauteur": 170
+   }
+  },
+  "droites_cop": {
+   "type": "etape",
+   "kicker": "Deux droites · Cas coplanaire",
+   "titre": "Sécantes ou parallèles",
+   "tex": [
+    "\\text{sécantes : un unique point commun}",
+    "\\text{parallèles : aucun point commun}"
+   ],
+   "anim": {
+    "nom": "droites_trois_cas_fig",
+    "hauteur": 150
+   }
+  },
+  "gauches": {
+   "type": "etape",
+   "kicker": "Deux droites · Cas non coplanaire",
+   "titre": "Les droites gauches",
+   "tex": [
+    "(AB) \\text{ et } (CG) : \\text{aucun point commun}",
+    "\\text{pas parallèles, aucun plan commun}",
+    "\\text{donc non coplanaires, dites gauches}"
+   ],
+   "anim": {
+    "nom": "droites_gauches_fig",
+    "hauteur": 140
+   }
+  },
+  "droite_plan": {
+   "type": "etape",
+   "kicker": "Une droite et un plan",
+   "titre": "Trois positions possibles",
+   "tex": [
+    "(d) \\cap (P) = \\{I\\} \\text{ : sécants}",
+    "(d) \\parallel (P) \\text{ : parallèles}",
+    "(d) \\subset (P) \\text{ : contenue}"
+   ]
+  },
+  "ef_plan": {
+   "type": "etape",
+   "kicker": "Exemple résolu · Droite et plan",
+   "titre": "La droite EF face au plan ABC",
+   "tex": [
+    "(EF) \\text{ dans la face supérieure}",
+    "(ABC) : \\text{ face inférieure, parallèle}",
+    "(EF) \\parallel (ABC)"
+   ],
+   "anim": {
+    "nom": "pave_fig",
+    "hauteur": 140
+   }
+  },
+  "plans": {
+   "type": "etape",
+   "kicker": "Deux plans",
+   "titre": "Sécants ou parallèles",
+   "tex": [
+    "\\text{sécants : une droite commune}",
+    "\\text{parallèles : aucun point commun}"
+   ],
+   "anim": {
+    "nom": "plans_secants_fig",
+    "hauteur": 170
+   }
+  },
+  "plans_par": {
+   "type": "formule",
+   "kicker": "Exemple résolu · Plans parallèles",
+   "tex": "(ABC) \\parallel (EFG)",
+   "note": "Faces opposées du pavé droit : aucun point commun.",
+   "anim": {
+    "nom": "pave_fig",
+    "hauteur": 160
+   }
+  },
+  "regle": {
+   "type": "formule",
+   "kicker": "Règle fondamentale du parallélisme",
+   "tex": "(P) \\parallel (Q),\\ (d) \\subset (Q) \\Rightarrow (d) \\parallel (P)",
+   "note": "Deux plans parallèles : toute droite de l'un est parallèle à l'autre."
+  },
+  "synthese": {
+   "type": "etape",
+   "kicker": "Synthèse · Le pavé droit",
+   "titre": "Le pavé droit en quatre lignes",
+   "tex": [
+    "(AB) \\parallel (CD) \\parallel (EF) \\parallel (GH)",
+    "(AB) \\text{ et } (CG) \\text{ : gauches}",
+    "(ABC) \\parallel (EFG)",
+    "(AB) \\parallel (EFG)"
+   ]
+  },
+  "pyramide_def": {
+   "type": "phrase",
+   "kicker": "La pyramide · Définition",
+   "texte": "Une base polygonale, un sommet, des faces latérales triangulaires."
+  },
+  "elements": {
+   "type": "etape",
+   "kicker": "La pyramide · Ses éléments",
+   "titre": "Arêtes, faces et hauteur",
+   "tex": [
+    "\\text{arêtes latérales : du sommet à la base}",
+    "\\text{arêtes de base : les côtés du polygone}",
+    "\\text{hauteur : } [SH], \\text{ perpendiculaire à la base}"
+   ]
+  },
+  "euler": {
+   "type": "etape",
+   "kicker": "La pyramide · Sommets, faces, arêtes",
+   "titre": "La relation d'Euler",
+   "tex": [
+    "S + F = a + 2",
+    "\\text{base pentagonale : } S = 6,\\ F = 6,\\ a = 10",
+    "6 + 6 = 10 + 2"
+   ]
+  },
+  "reguliere": {
+   "type": "phrase",
+   "kicker": "Pyramide régulière",
+   "texte": "Base régulière, hauteur au centre : faces latérales isocèles superposables."
+  },
+  "patron": {
+   "type": "etape",
+   "kicker": "Patron d'une pyramide",
+   "titre": "Le patron de la pyramide carrée",
+   "tex": [
+    "\\text{base : un carré de côté } 4\\ \\text{cm}",
+    "\\text{sur chaque côté, un triangle isocèle}",
+    "\\text{côtés égaux : } 6\\ \\text{cm} \\text{ (5 faces)}"
+   ]
+  },
+  "aire_formule": {
+   "type": "formule",
+   "kicker": "Aires d'une pyramide",
+   "tex": "\\mathcal{A}_{tot} = \\mathcal{A}_{lat} + \\mathcal{A}_{base}",
+   "note": "Aire latérale : somme des faces latérales, sans la base."
+  },
+  "aire_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · Aire totale",
+   "titre": "Pyramide carrée : aire totale",
+   "tex": [
+    "\\text{une face : } \\tfrac{4 \\times 6}{2} = 12\\ \\text{cm}^2",
+    "\\mathcal{A}_{lat} = 4 \\times 12 = 48\\ \\text{cm}^2",
+    "\\mathcal{A}_{tot} = 48 + 16 = 64\\ \\text{cm}^2"
+   ]
+  },
+  "volume_formule": {
+   "type": "formule",
+   "kicker": "Volume d'une pyramide",
+   "tex": "\\mathcal{V} = \\frac{\\mathcal{A}_{base} \\times h}{3}",
+   "note": "Le tiers du prisme de même base et de même hauteur."
+  },
+  "volume_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · Volume",
+   "titre": "Base rectangulaire, hauteur neuf",
+   "tex": [
+    "\\mathcal{A}_{base} = 6 \\times 4 = 24\\ \\text{cm}^2",
+    "\\mathcal{V} = \\tfrac{24 \\times 9}{3} = 72\\ \\text{cm}^3"
+   ]
+  },
+  "conversions": {
+   "type": "etape",
+   "kicker": "Unités de volume",
+   "titre": "Convertir les volumes",
+   "tex": [
+    "1\\ \\text{m}^3 = 1000\\ \\text{dm}^3 = 10^6\\ \\text{cm}^3",
+    "2{,}5\\ \\text{dm}^3 = 2500\\ \\text{cm}^3",
+    "1\\ \\text{L} = 1\\ \\text{dm}^3,\\ 1\\ \\text{mL} = 1\\ \\text{cm}^3",
+    "3{,}4 \\times 10^6\\ \\text{cm}^3 = 3{,}4\\ \\text{m}^3"
+   ]
+  },
+  "cone_def": {
+   "type": "phrase",
+   "kicker": "Le cône de révolution · Définition",
+   "texte": "Un triangle rectangle qui tourne : un disque, un sommet, une surface courbe."
+  },
+  "generatrice": {
+   "type": "formule",
+   "kicker": "La génératrice",
+   "tex": "g^2 = h^2 + r^2",
+   "note": "Pythagore dans le triangle SOA, rectangle en O."
+  },
+  "patron_cone": {
+   "type": "formule",
+   "kicker": "Patron du cône",
+   "tex": "\\theta = 360 \\times \\frac{r}{g}",
+   "note": "L'arc du secteur égale le périmètre du cercle de base : 2πr."
+  },
+  "patron_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · Patron du cône",
+   "titre": "Hauteur quatre, rayon trois",
+   "tex": [
+    "g = \\sqrt{4^2 + 3^2} = \\sqrt{25} = 5\\ \\text{cm}",
+    "\\theta = 360 \\times \\tfrac{3}{5} = 216^\\circ",
+    "\\text{disque } r = 3,\\ \\text{secteur } g = 5"
+   ]
+  },
+  "aire_cone": {
+   "type": "formule",
+   "kicker": "Aires du cône",
+   "tex": "\\mathcal{A}_{lat} = \\pi r g",
+   "note": "Aire totale : πr(g + r), la base πr² en plus."
+  },
+  "aire_cone_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · Aires du cône",
+   "titre": "Rayon trois, génératrice cinq",
+   "tex": [
+    "\\mathcal{A}_{lat} = \\pi \\times 3 \\times 5 = 15\\pi",
+    "\\mathcal{A}_{lat} \\approx 47{,}1\\ \\text{cm}^2",
+    "\\mathcal{A}_{tot} = 24\\pi \\approx 75{,}4\\ \\text{cm}^2"
+   ]
+  },
+  "volume_cone": {
+   "type": "formule",
+   "kicker": "Volume du cône",
+   "tex": "V = \\frac{1}{3} \\pi r^2 h",
+   "note": "Le tiers du cylindre de même base et de même hauteur."
+  },
+  "volume_cone_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · Volume du cône",
+   "titre": "Rayon trois, hauteur quatre",
+   "tex": [
+    "V = \\tfrac{1}{3} \\times \\pi \\times 3^2 \\times 4",
+    "V = 12\\pi \\approx 37{,}7\\ \\text{cm}^3"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Positions : compter les points communs",
+    "Pyramide : V = aire de base × h, sur trois",
+    "Cône : g par Pythagore, aires avec g",
+    "Volume du cône : le tiers du cylindre"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de géométrie dans l'espace, en trois temps. D'abord les positions relatives : comment droites et plans se rencontrent, se croisent sans se toucher, ou ne se rencontrent jamais. Ensuite la pyramide : son vocabulaire, son patron, ses aires et son volume. Enfin le cône de révolution et ses formules. Notre fil conducteur sera un solide familier : le pavé droit.",
+   "texte": "L'espace : positions, pyramide et cône.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Dans le plan, deux droites se coupent ou sont parallèles, et tout est dit. Dans l'espace, les possibilités se multiplient : deux droites peuvent ne jamais se rencontrer sans être parallèles, une droite peut traverser un plan, glisser à côté ou s'y coucher. Le réflexe qui décide de tout : compter les points communs, avec le pavé droit comme terrain d'entraînement.",
+   "texte": "Le réflexe : chercher les points communs.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par les objets. Un plan est une surface plane qui s'étend à l'infini dans toutes les directions : une feuille sans bords, prolongée sans fin. On le désigne par trois points non alignés : le plan A B C passe par A, B et C. Dans un pavé droit, la face supérieure tout entière est contenue dans le plan E F G.",
+   "texte": "Un plan : une surface infinie, notée par trois points.",
+   "ecran": "plan"
+  },
+  {
+   "id": "p04",
+   "dit": "Une droite est un ensemble infini de points alignés, notée par deux de ses points : la droite A B se prolonge sans fin des deux côtés. Ne la confondez pas avec le segment : dans le pavé droit, l'arête A B n'est qu'un morceau, contenu dans la droite A B tout entière, qui dépasse largement le solide.",
+   "texte": "Droite (AB) : infinie, le segment n'en est qu'un morceau.",
+   "ecran": "droite"
+  },
+  {
+   "id": "p05",
+   "dit": "Des points sont coplanaires lorsqu'ils appartiennent à un même plan. Dans notre pavé droit, A, B, C et D sont coplanaires : ce sont les sommets de la face inférieure, tous dans le plan A B C. En revanche, A, B, C et G ne le sont pas : aucun plan unique ne contient ces quatre points. Cette notion décidera du sort des droites.",
+   "texte": "Coplanaires : contenus dans un même plan.",
+   "ecran": "coplanaires"
+  },
+  {
+   "id": "p06",
+   "dit": "Deux droites situées dans un même plan relèvent de la géométrie plane habituelle. Ou elles se coupent en un unique point : elles sont sécantes. Ou elles ne se rencontrent jamais, tout en restant dans le même plan : elles sont parallèles. La nouveauté de l'espace arrive quand aucun plan ne contient les deux droites à la fois.",
+   "texte": "Dans un plan : sécantes ou parallèles.",
+   "ecran": "droites_cop"
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple résolu : dans le pavé droit, les droites A B et C G. La première est portée par la face inférieure, la seconde monte le long d'une face latérale. Elles n'ont aucun point commun, et pourtant elles ne sont pas parallèles, car aucun plan ne les contient toutes les deux. On dit qu'elles sont non coplanaires, ou gauches : la troisième possibilité, propre à l'espace.",
+   "texte": "(AB) et (CG) : gauches, ni sécantes ni parallèles.",
+   "ecran": "gauches"
+  },
+  {
+   "id": "p08",
+   "dit": "Une droite face à un plan : trois positions seulement. Ou la droite traverse le plan en un unique point : ils sont sécants. Ou elle n'a aucun point commun avec lui : elle lui est parallèle. Ou tous ses points appartiennent au plan : elle y est contenue. Pour décider, une seule question : zéro, un, ou une infinité de points communs.",
+   "texte": "Droite et plan : zéro, un, ou une infinité de points communs.",
+   "ecran": "droite_plan"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple résolu : la droite E F par rapport au plan A B C, dans le pavé droit. La droite E F appartient à la face supérieure, le plan A B C est celui de la face inférieure. Ces faces sont parallèles et ne se rencontrent jamais : la droite E F n'a donc aucun point commun avec le plan A B C. Conclusion : E F est parallèle au plan A B C.",
+   "texte": "(EF) ∥ (ABC) : aucun point commun.",
+   "ecran": "ef_plan"
+  },
+  {
+   "id": "p10",
+   "dit": "Deux plans, maintenant. Ou ils se coupent, et leur intersection n'est pas un point mais une droite entière : ils sont sécants le long de cette droite. Ou ils n'ont aucun point commun : ils sont parallèles, comme deux feuilles prolongées à l'infini sans jamais se rejoindre. Retenez ce contraste : deux plans sécants partagent une droite, jamais un seul point.",
+   "texte": "Deux plans : une droite commune, ou rien du tout.",
+   "ecran": "plans"
+  },
+  {
+   "id": "p11",
+   "dit": "Exemple résolu : les plans A B C et E F G du pavé droit. Le premier contient la face inférieure, le second la face supérieure. Ce sont des faces opposées : aucun point commun, pour les faces comme pour leurs plans. Les deux plans sont donc parallèles. C'est l'exemple de référence pour illustrer des plans parallèles.",
+   "texte": "(ABC) ∥ (EFG) : les faces opposées du pavé.",
+   "ecran": "plans_par"
+  },
+  {
+   "id": "p12",
+   "dit": "La règle fondamentale relie ces positions. Si deux plans sont parallèles, alors toute droite contenue dans l'un est parallèle à l'autre plan. Application : les plans A B C et E F G étant parallèles, la droite E F, contenue dans le second, est parallèle au plan A B C. L'exemple précédent est cette fois démontré par la règle, au lieu d'être seulement observé.",
+   "texte": "Plans parallèles ⇒ droite de l'un parallèle à l'autre.",
+   "ecran": "regle"
+  },
+  {
+   "id": "p13",
+   "dit": "Synthèse sur le pavé droit, à garder comme aide-mémoire. Les arêtes opposées sont parallèles : A B, C D, E F et G H ont la même direction. Certaines arêtes sont gauches, comme A B et C G. Les faces opposées donnent des plans parallèles, comme A B C et E F G. Et une arête peut être parallèle à une face opposée. La méthode ne change jamais : s'appuyer sur le solide, compter les points communs.",
+   "texte": "Le pavé droit : le résumé vivant du chapitre.",
+   "ecran": "synthese"
+  },
+  {
+   "id": "p14",
+   "dit": "Place aux solides, avec la pyramide. Une pyramide est un solide dont une face est un polygone, appelé la base, et dont toutes les autres faces sont des triangles ayant un sommet commun : le sommet de la pyramide. Ces faces triangulaires s'appellent les faces latérales. Selon la base, on parle de pyramide triangulaire, carrée, pentagonale, et ainsi de suite.",
+   "texte": "Pyramide : une base, un sommet, des triangles.",
+   "ecran": "pyramide_def"
+  },
+  {
+   "id": "p15",
+   "dit": "Le vocabulaire de la pyramide, sur l'exemple d'une base triangulaire de sommet S. Elle possède quatre faces : la base A B C et trois faces latérales. Six arêtes : trois latérales, qui relient le sommet aux sommets de la base, et trois arêtes de base. Quatre sommets en tout. Et une hauteur : le segment S H, perpendiculaire à la base, où H est le pied de la perpendiculaire abaissée du sommet.",
+   "texte": "Pyramide triangulaire : 4 faces, 6 arêtes, 4 sommets.",
+   "ecran": "elements"
+  },
+  {
+   "id": "p16",
+   "dit": "Un comptage relie les sommets, les faces et les arêtes de toute pyramide : le nombre de sommets plus le nombre de faces égale le nombre d'arêtes plus deux. Vérifions sur une pyramide à base pentagonale : six sommets, six faces, une base et cinq faces latérales, et dix arêtes. Six plus six font douze, et dix plus deux font douze : la relation est vérifiée, et elle sert de contrôle rapide pour vos comptages.",
+   "texte": "S + F = a + 2 : le contrôle des comptages.",
+   "ecran": "euler"
+  },
+  {
+   "id": "p17",
+   "dit": "Une pyramide est régulière lorsque sa base est un polygone régulier, carré ou triangle équilatéral par exemple, et que sa hauteur passe par le centre de la base. Conséquence précieuse pour les calculs : toutes les arêtes latérales sont égales, et toutes les faces latérales sont des triangles isocèles superposables. Une seule face calculée suffit donc pour obtenir l'aire latérale entière.",
+   "texte": "Régulière : une face latérale calculée, toutes connues.",
+   "ecran": "reguliere"
+  },
+  {
+   "id": "p18",
+   "dit": "Le patron d'une pyramide est la figure plane qui, par pliage, reconstitue le solide : la base, avec les faces latérales autour d'elle. Exemple résolu : une pyramide régulière à base carrée de côté quatre centimètres, d'arête latérale six centimètres. On trace le carré, puis sur chaque côté un triangle isocèle de côtés égaux six centimètres. Au pliage, les sommets libres se rejoignent en un point : le sommet.",
+   "texte": "Patron : un carré et quatre triangles isocèles.",
+   "ecran": "patron"
+  },
+  {
+   "id": "p19",
+   "dit": "Passons aux mesures. L'aire latérale d'une pyramide est la somme des aires de ses faces latérales, sans la base. L'aire totale ajoute l'aire de la base à l'aire latérale. Pour une pyramide régulière, les faces latérales sont superposables : on calcule l'aire d'une seule face, on la multiplie par le nombre de faces, et l'aire latérale est obtenue.",
+   "texte": "Aire totale = aire latérale + aire de la base.",
+   "ecran": "aire_formule"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple résolu : une pyramide régulière à base carrée de côté quatre centimètres, dont chaque face latérale est un triangle de base quatre et de hauteur six centimètres. Une face vaut quatre fois six, divisé par deux : douze centimètres carrés. Quatre faces : aire latérale de quarante-huit. La base vaut seize. Aire totale : soixante-quatre centimètres carrés. Ne confondez pas la hauteur du triangle avec l'arête latérale.",
+   "texte": "Aire totale : 48 + 16 = 64 cm².",
+   "ecran": "aire_ex"
+  },
+  {
+   "id": "p21",
+   "dit": "Le volume d'une pyramide est égal à l'aire de sa base, multipliée par sa hauteur, le tout divisé par trois. Ce facteur un tiers est le point à ne jamais oublier : à base et hauteur égales, une pyramide contient exactement le tiers du prisme correspondant. Ici, h désigne la hauteur du solide, la distance perpendiculaire du sommet au plan de la base, et non la hauteur d'une face.",
+   "texte": "Volume : aire de base × hauteur, divisé par trois.",
+   "ecran": "volume_formule"
+  },
+  {
+   "id": "p22",
+   "dit": "Exemple résolu : une pyramide à base rectangulaire de six centimètres sur quatre, et de hauteur neuf centimètres. L'aire de la base vaut six fois quatre, vingt-quatre centimètres carrés. Le volume vaut vingt-quatre fois neuf, divisé par trois : soixante-douze centimètres cubes. Retenez le schéma : d'abord l'aire de la base, ensuite le produit avec la hauteur, et la division par trois en dernier.",
+   "texte": "Volume : 24 × 9 / 3 = 72 cm³.",
+   "ecran": "volume_ex"
+  },
+  {
+   "id": "p23",
+   "dit": "Les unités de volume avancent par sauts de mille : chaque unité vaut mille fois celle à sa droite. Un mètre cube vaut mille décimètres cubes, soit un million de centimètres cubes. Deux virgule cinq décimètres cubes valent deux mille cinq cents centimètres cubes. Et deux équivalences du quotidien : un litre vaut un décimètre cube, un millilitre vaut un centimètre cube.",
+   "texte": "Volumes : mille par rang, et 1 L = 1 dm³.",
+   "ecran": "conversions"
+  },
+  {
+   "id": "p24",
+   "dit": "Dernier solide : le cône de révolution, engendré par la rotation d'un triangle rectangle autour d'un de ses côtés de l'angle droit. Ses éléments : une base, qui est un disque de centre O et de rayon r ; un sommet S, situé à l'aplomb du centre ; la hauteur, le segment S O, perpendiculaire à la base ; la surface latérale, courbe, qui relie le sommet au bord du disque ; et les génératrices, segments du sommet vers le cercle de base, toutes de même longueur, notée g.",
+   "texte": "Cône : base disque, sommet S, hauteur h, génératrice g.",
+   "ecran": "cone_def"
+  },
+  {
+   "id": "p25",
+   "dit": "La génératrice se calcule toujours de la même façon : par le théorème de Pythagore, appliqué au triangle rectangle formé par la hauteur, le rayon et la génératrice. Le carré de g égale le carré de la hauteur, plus le carré du rayon. Retenez le partage des rôles : les formules d'aires auront besoin de g, la formule du volume se contentera du rayon et de la hauteur.",
+   "texte": "g² = h² + r² : Pythagore décide.",
+   "ecran": "generatrice"
+  },
+  {
+   "id": "p26",
+   "dit": "Le patron du cône comporte deux pièces : le disque de base, de rayon r, et un secteur circulaire de rayon g, qui deviendra la surface latérale. La condition d'assemblage est que l'arc du secteur ait exactement la longueur du cercle de base. On en tire l'angle du secteur : trois cent soixante, multiplié par le rapport du rayon à la génératrice. Plus le cône est pointu, plus cet angle est petit.",
+   "texte": "Patron : un disque plus un secteur d'angle 360 × r/g.",
+   "ecran": "patron_cone"
+  },
+  {
+   "id": "p27",
+   "dit": "Exemple résolu : un cône de hauteur quatre centimètres et de rayon trois centimètres. La génératrice vaut la racine de seize plus neuf, soit racine de vingt-cinq : cinq centimètres, le triplet pythagoricien classique. L'angle du secteur vaut trois cent soixante fois trois cinquièmes : deux cent seize degrés. Le patron est donc un disque de rayon trois et un secteur de rayon cinq, ouvert à deux cent seize degrés.",
+   "texte": "g = 5 cm, secteur de 216° : le patron est prêt.",
+   "ecran": "patron_ex"
+  },
+  {
+   "id": "p28",
+   "dit": "L'aire latérale du cône est le produit de pi, du rayon et de la génératrice : c'est l'aire du secteur circulaire du patron, refermée en solide. L'aire totale ajoute l'aire du disque de base, pi fois le rayon au carré, ce qui se factorise élégamment : pi fois r, multiplié par g plus r. Sans la génératrice, aucune de ces deux aires ne peut être calculée.",
+   "texte": "Aire latérale : πrg ; totale : πr(g + r).",
+   "ecran": "aire_cone"
+  },
+  {
+   "id": "p29",
+   "dit": "Exemple résolu, avec le rayon trois et la génératrice cinq de l'exemple précédent. Aire latérale : pi fois trois fois cinq, soit quinze pi, environ quarante-sept virgule un centimètres carrés. Aire de la base : neuf pi. Aire totale : quinze pi plus neuf pi, vingt-quatre pi, environ soixante-quinze virgule quatre centimètres carrés. Gardez la valeur exacte en pi jusqu'à la fin, puis donnez l'arrondi.",
+   "texte": "Aires : 15π puis 24π, arrondis à la fin.",
+   "ecran": "aire_cone_ex"
+  },
+  {
+   "id": "p30",
+   "dit": "Le volume du cône suit la même logique que celui de la pyramide : c'est le tiers du solide droit de même base et de même hauteur, ici le cylindre. La formule : un tiers de pi, multiplié par le rayon au carré, multiplié par la hauteur. Ni la génératrice, ni l'angle du patron n'y figurent : seuls le rayon et la hauteur comptent.",
+   "texte": "Volume du cône : un tiers de πr²h.",
+   "ecran": "volume_cone"
+  },
+  {
+   "id": "p31",
+   "dit": "Exemple résolu final : le cône de rayon trois et de hauteur quatre. On remplace : un tiers de pi, fois neuf, fois quatre. Neuf fois quatre font trente-six, et trente-six divisé par trois font douze : le volume vaut douze pi, environ trente-sept virgule sept centimètres cubes. Avant tout calcul, vérifiez que rayon et hauteur sont dans la même unité : les aires sortent en unités au carré, les volumes en unités au cube.",
+   "texte": "Volume : 12π, environ 37,7 cm³.",
+   "ecran": "volume_cone_ex"
+  },
+  {
+   "id": "p32",
+   "dit": "Récapitulons le cours. Les positions relatives se décident en comptant les points communs, avec le pavé droit comme terrain de contrôle. La pyramide se décrit par sa base et son sommet, son volume vaut l'aire de la base fois la hauteur, divisée par trois. Le cône demande sa génératrice par Pythagore pour les aires et son patron, et son volume est le tiers du cylindre correspondant.",
+   "texte": "Positions, pyramide, cône : l'essentiel tenu.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Positions relatives sur le pavé droit"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "La pyramide : décrire, déplier, mesurer",
+   "pont": {
+    "dit": "Partie deux : la pyramide. Après les positions, décrivons un premier solide : une base polygonale, un sommet, des faces triangulaires, puis son patron, ses aires, son volume et les conversions d'unités qui vont avec.",
+    "texte": "Partie 2 : la pyramide, du vocabulaire aux calculs."
+   }
+  },
+  {
+   "debut": "p24",
+   "sous_titre": "Le cône de révolution : patron, aires et volume",
+   "pont": {
+    "dit": "Partie trois : le cône de révolution. Un triangle rectangle qui tourne engendre ce solide rond : nous calculerons sa génératrice par Pythagore, l'angle de son patron, puis ses aires et son volume, sur un même exemple de bout en bout.",
+    "texte": "Partie 3 : le cône, de la génératrice au volume."
+   }
+  }
+ ]
+}

@@ -28,7 +28,7 @@ jest.mock('expo-router', () => ({
     useEffect(f, [f]);
   },
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
 jest.mock('@/session/NotificationsProvider', () => ({ useNotifications: () => mockNotifications() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
@@ -120,6 +120,19 @@ describe('Cloche (N0)', () => {
     expect(screen.queryByLabelText(fr.notifications.clocheAucune)).toBeNull();
   });
 
+  it('reste visible pour un invité quand l’écran la demande (accueil TOEIC)', async () => {
+    mockSession.mockReturnValue(invite);
+    await monter(<Cloche pourInvite />);
+    expect(screen.getByLabelText(fr.notifications.clocheAucune)).toBeTruthy();
+  });
+
+  it('pour un invité, la cloche ouvre la création de compte (parcours A6), pas le centre', async () => {
+    mockSession.mockReturnValue(invite);
+    await monter(<Cloche pourInvite />);
+    await fireEvent.press(screen.getByLabelText(fr.notifications.clocheAucune));
+    expect(router.push).toHaveBeenCalledWith('/compte/creer');
+  });
+
   it('est absente sans session', async () => {
     mockSession.mockReturnValue({ session: null, statut: 'chargement' });
     await monter(<Cloche />);
@@ -150,21 +163,26 @@ describe('Centre de notifications (N1)', () => {
   });
 
   it('groupe « Aujourd’hui » et « Plus tôt », non lues repérées par un point et un fond', async () => {
-    mockNotifications.mockReturnValue(
-      etat({
-        nonLues: 1,
-        notifications: [notif('a'), notif('b', { lue: true, creeLe: new Date(Date.now() - 5 * 86400000).toISOString() })],
-      }),
-    );
-    await monter(<CentreNotifications />);
-    expect(screen.getByText(fr.notifications.aujourdhui)).toBeTruthy();
-    expect(screen.getByText(fr.notifications.plusTot)).toBeTruthy();
-    expect(screen.getAllByTestId('notification-non-lue')).toHaveLength(1);
-    expect(screen.getAllByTestId('notification-lue')).toHaveLength(1);
-    expect(screen.getAllByTestId('point-non-lue')).toHaveLength(1);
-    expect(screen.getByText('Titre a')).toBeTruthy();
-    expect(screen.getByText('10 min')).toBeTruthy();
-    expect(screen.getByText('5 j')).toBeTruthy();
+    jest.useFakeTimers().setSystemTime(new Date('2026-10-14T12:00:00Z'));
+    try {
+      mockNotifications.mockReturnValue(
+        etat({
+          nonLues: 1,
+          notifications: [notif('a'), notif('b', { lue: true, creeLe: new Date(Date.now() - 5 * 86400000).toISOString() })],
+        }),
+      );
+      await monter(<CentreNotifications />);
+      expect(screen.getByText(fr.notifications.aujourdhui)).toBeTruthy();
+      expect(screen.getByText(fr.notifications.plusTot)).toBeTruthy();
+      expect(screen.getAllByTestId('notification-non-lue')).toHaveLength(1);
+      expect(screen.getAllByTestId('notification-lue')).toHaveLength(1);
+      expect(screen.getAllByTestId('point-non-lue')).toHaveLength(1);
+      expect(screen.getByText('Titre a')).toBeTruthy();
+      expect(screen.getByText('10 min')).toBeTruthy();
+      expect(screen.getByText('5 j')).toBeTruthy();
+    } finally {
+      jest.useRealTimers();
+    }
   });
 
   it('un appui marque lue, compte l’ouverture et ouvre la question concernée', async () => {

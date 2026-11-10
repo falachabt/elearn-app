@@ -1,0 +1,367 @@
+{
+ "cours": 6280,
+ "titre": "Les équations du second degré : discriminant, racines et signe du trinôme",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Le second degré",
+   "titre": "Les équations du second degré",
+   "sous": "Discriminant, racines et signe du trinôme : la méthode complète",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 240
+   }
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition",
+   "tex": "ax^2 + bx + c = 0, \\quad a \\neq 0",
+   "note": "a, b, c réels : si a = 0, l'équation n'est plus du second degré."
+  },
+  "anatomie": {
+   "type": "etape",
+   "kicker": "Anatomie d'un trinôme",
+   "titre": "Exemple : 2x² − 5x + 3 = 0",
+   "tex": [
+    "a = 2 \\quad \\text{(coefficient dominant)}",
+    "b = -5 \\quad \\text{(coefficient linéaire)}",
+    "c = 3 \\quad \\text{(terme constant)}"
+   ]
+  },
+  "canonique_exemple": {
+   "type": "etape",
+   "kicker": "La forme canonique en exemple",
+   "titre": "Compléter le carré, pas à pas",
+   "tex": [
+    "f(x) = 2x^2 - 8x + 5 = 2(x^2 - 4x) + 5",
+    "x^2 - 4x = (x - 2)^2 - 4",
+    "f(x) = 2(x - 2)^2 - 3"
+   ]
+  },
+  "canonique": {
+   "type": "formule",
+   "kicker": "Forme canonique générale",
+   "tex": "ax^2 + bx + c = a(x - \\alpha)^2 + \\beta, \\quad \\alpha = -\\frac{b}{2a}",
+   "note": "Sommet S(α ; β) : minimum si a > 0, maximum si a < 0.",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 150
+   }
+  },
+  "cas_particuliers": {
+   "type": "etape",
+   "kicker": "Cas particuliers immédiats",
+   "titre": "Avant la méthode générale",
+   "tex": [
+    "ax^2 + c = 0 \\iff x^2 = -\\tfrac{c}{a}",
+    "ax^2 + bx = x(ax + b) = 0",
+    "x = 0 \\quad \\text{ou} \\quad x = -\\tfrac{b}{a}"
+   ]
+  },
+  "discriminant": {
+   "type": "formule",
+   "kicker": "Le discriminant",
+   "tex": "\\Delta = b^2 - 4ac",
+   "note": "Il naît de la forme canonique : (x + b/2a)² = Δ/(4a²), et 4a² est toujours positif."
+  },
+  "trois_cas": {
+   "type": "etape",
+   "kicker": "Le discriminant prédit tout",
+   "titre": "Trois signes, trois destins",
+   "tex": [
+    "\\Delta > 0 : \\text{ deux racines distinctes}",
+    "\\Delta = 0 : \\text{ une racine double}",
+    "\\Delta < 0 : \\text{ aucune racine réelle}"
+   ]
+  },
+  "exemples_delta": {
+   "type": "etape",
+   "kicker": "Prédire avant de résoudre",
+   "titre": "Trois discriminants, trois conclusions",
+   "tex": [
+    "3x^2 - 5x + 2 : \\ \\Delta = 25 - 24 = 1",
+    "x^2 - 6x + 9 : \\ \\Delta = 36 - 36 = 0",
+    "2x^2 + 3x + 4 : \\ \\Delta = 9 - 32 = -23"
+   ]
+  },
+  "delta_reduit": {
+   "type": "formule",
+   "kicker": "Le discriminant réduit",
+   "tex": "b = 2b' \\Rightarrow \\Delta' = b'^2 - ac, \\quad \\Delta = 4\\Delta'",
+   "note": "Exemple : 3x² − 8x + 4 donne Δ′ = 16 − 12 = 4, donc Δ = 16."
+  },
+  "titre2": {
+   "type": "phrase",
+   "kicker": "Partie 2 · Les racines et le signe",
+   "texte": "La formule des racines, puis le signe du trinôme et ses applications."
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "Méthode de résolution",
+   "etapes": [
+    "Mettre sous la forme ax² + bx + c = 0",
+    "Identifier a, b, c avec leurs signes",
+    "Calculer Δ et lire son signe",
+    "Appliquer la formule, puis vérifier"
+   ]
+  },
+  "exemple_resolution": {
+   "type": "etape",
+   "kicker": "Résolution complète : Δ > 0",
+   "titre": "2x² − 5x − 3 = 0, en quatre temps",
+   "tex": [
+    "\\Delta = (-5)^2 - 4 \\times 2 \\times (-3) = 49",
+    "x_1 = \\tfrac{5 - 7}{4} = -\\tfrac{1}{2}, \\qquad x_2 = \\tfrac{5 + 7}{4} = 3",
+    "S = \\{-\\tfrac{1}{2} \\ ; \\ 3\\}"
+   ]
+  },
+  "cas_double": {
+   "type": "formule",
+   "kicker": "Résolution : Δ = 0",
+   "tex": "x^2 - 6x + 9 = (x - 3)^2 = 0 \\iff x = 3",
+   "note": "Racine double x₀ = −b/(2a) : la parabole est tangente à l'axe des abscisses."
+  },
+  "cas_sans": {
+   "type": "formule",
+   "kicker": "Résolution : Δ < 0",
+   "tex": "x^2 + 2x + 5 = 0, \\quad \\Delta = 4 - 20 = -16",
+   "note": "Aucune solution réelle : la parabole ne coupe pas l'axe des abscisses."
+  },
+  "factorisation": {
+   "type": "formule",
+   "kicker": "Forme factorisée du trinôme",
+   "tex": "ax^2 + bx + c = a(x - x_1)(x - x_2)",
+   "note": "Valable dès que les racines existent ; si Δ = 0, les deux facteurs sont égaux."
+  },
+  "signe_regle": {
+   "type": "phrase",
+   "kicker": "Le signe du trinôme",
+   "texte": "Du signe de a à l'extérieur des racines, du signe contraire entre les racines.",
+   "anim": {
+    "nom": "signe_parabole_fig",
+    "hauteur": 220
+   }
+  },
+  "signe_exemple": {
+   "type": "etape",
+   "kicker": "Signe : exemple",
+   "titre": "f(x) = x² − 4x + 3, de coefficient dominant positif",
+   "tex": [
+    "\\Delta = 16 - 12 = 4",
+    "x_1 = 1, \\qquad x_2 = 3",
+    "f(x) < 0 \\text{ entre } 1 \\text{ et } 3"
+   ]
+  },
+  "signe_cas": {
+   "type": "etape",
+   "kicker": "Signe : les cas Δ ≤ 0",
+   "titre": "Un signe constant, celui de a",
+   "tex": [
+    "\\Delta = 0 : \\text{ signe de } a, \\text{ nul en } x_0",
+    "\\Delta < 0 : \\text{ signe de } a \\text{ partout}"
+   ]
+  },
+  "enclos": {
+   "type": "phrase",
+   "kicker": "Application : l'enclos contre un mur",
+   "texte": "100 m de clôture, trois côtés : −2x² + 100x = 1200 admet x = 20 et x = 30.",
+   "anim": {
+    "nom": "enclos_fig",
+    "hauteur": 220
+   }
+  },
+  "benefice": {
+   "type": "etape",
+   "kicker": "Application : les seuils de rentabilité",
+   "titre": "B(x) = −2x² + 18x − 28, en centaines d'objets",
+   "tex": [
+    "\\Delta = 324 - 224 = 100",
+    "x_1 = 2, \\qquad x_2 = 7",
+    "B(x) > 0 \\text{ entre } 2 \\text{ et } 7"
+   ]
+  },
+  "projectile": {
+   "type": "etape",
+   "kicker": "Application : la retombée du projectile",
+   "titre": "h(t) = −4,9t² + 10t + 1,5 : résoudre h(t) = 0",
+   "tex": [
+    "\\Delta = 100 + 29{,}4 = 129{,}4",
+    "t = \\tfrac{-10 - \\sqrt{129{,}4}}{-9{,}8} \\approx 2{,}18 \\ \\text{s}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Forme standard : ax² + bx + c = 0, a ≠ 0",
+    "Δ = b² − 4ac prédit le nombre de racines",
+    "Racines : (−b ± √Δ) / (2a)",
+    "Factoriser avec les racines si elles existent",
+    "Signe : celui de a hors des racines"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux équations du second degré. Une balle lancée en l'air, un enclos à clôturer, un bénéfice à maximiser : partout, la même parabole. Nous construirons la forme canonique et le discriminant, qui prédit le nombre de solutions, puis la formule des racines, l'étude du signe, et des applications complètes.",
+   "texte": "Les équations du second degré : discriminant, racines, signe.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Une équation du second degré se ramène toujours à cette forme : un coefficient fois la variable au carré, plus un coefficient fois la variable, plus une constante, le tout égal à zéro. Le premier coefficient ne doit jamais être nul, sinon le carré disparaît et l'équation retombe au premier degré. Le membre de gauche s'appelle un trinôme.",
+   "texte": "ax² + bx + c = 0, avec a non nul : le trinôme du second degré.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p03",
+   "dit": "Chaque coefficient a son rôle. Le premier décide du sens de la parabole et de son ouverture. Le second déplace le sommet horizontalement. Le troisième est la hauteur à laquelle la parabole coupe l'axe vertical. Dans notre exemple, le coefficient dominant vaut deux, le coefficient linéaire moins cinq, et la constante trois.",
+   "texte": "a = 2, b = −5, c = 3 : chaque coefficient a son rôle.",
+   "ecran": "anatomie"
+  },
+  {
+   "id": "p04",
+   "dit": "Première réécriture stratégique : la forme canonique. On factorise par le coefficient dominant, puis on complète le carré, en ajoutant et en retranchant le même terme pour ne rien changer. Notre exemple devient alors deux fois le carré d'une différence, moins trois : le sommet de la parabole se lit directement, en deux, moins trois.",
+   "texte": "2x² − 8x + 5 = 2(x − 2)² − 3 : sommet en (2 ; −3).",
+   "ecran": "canonique_exemple"
+  },
+  {
+   "id": "p05",
+   "dit": "En toute généralité, la forme canonique fait apparaître deux nombres clés : alpha, l'abscisse du sommet, égal à moins le coefficient linéaire sur deux fois le coefficient dominant, et bêta, la valeur extrême du trinôme. Coefficient dominant positif : la parabole sourit, bêta est un minimum. Négatif : elle se tourne vers le bas, bêta est un maximum.",
+   "texte": "a(x − α)² + β : α = −b/(2a), le sommet S(α ; β).",
+   "ecran": "canonique"
+  },
+  {
+   "id": "p06",
+   "dit": "Avant la méthode générale, deux cas se résolvent en une ligne. Sans terme linéaire, on isole le carré : deux solutions opposées, une seule, ou aucune, selon le signe du rapport. Sans terme constant, on factorise par la variable et le produit nul donne zéro et une seconde solution immédiate.",
+   "texte": "b = 0 : isoler le carré · c = 0 : factoriser par x.",
+   "ecran": "cas_particuliers"
+  },
+  {
+   "id": "p07",
+   "dit": "Résoudre l'équation à partir de la forme canonique fait apparaître une quantité décisive : le numérateur qui décide si le carré peut égaler un nombre positif, nul ou négatif. Cette quantité, le coefficient linéaire au carré moins quatre fois le produit des deux autres coefficients, porte un nom : le discriminant, noté delta.",
+   "texte": "Δ = b² − 4ac : la quantité qui décide du nombre de solutions.",
+   "ecran": "discriminant"
+  },
+  {
+   "id": "p08",
+   "dit": "Le discriminant prédit tout, avant le moindre calcul de racine. Strictement positif : deux solutions réelles distinctes, la parabole coupe l'axe en deux points. Nul : une solution double, la parabole est tangente à l'axe. Strictement négatif : aucune solution réelle, la parabole ne touche jamais l'axe.",
+   "texte": "Δ > 0 : deux racines · Δ = 0 : une double · Δ < 0 : aucune.",
+   "ecran": "trois_cas"
+  },
+  {
+   "id": "p09",
+   "dit": "Trois exemples pour s'entraîner à prédire. Le premier donne un discriminant de un : deux solutions. Le deuxième tombe exactement à zéro : une solution double, et c'est d'ailleurs un carré parfait. Le troisième descend à moins vingt-trois : aucune solution réelle. Identifier les coefficients, calculer delta, conclure : la routine est déjà en place.",
+   "texte": "Δ = 1, Δ = 0, Δ = −23 : prédire avant de résoudre.",
+   "ecran": "exemples_delta"
+  },
+  {
+   "id": "p10",
+   "dit": "Quand le coefficient linéaire est pair, un raccourci allège les calculs : le discriminant réduit, calculé avec la moitié de ce coefficient. Le discriminant complet vaut quatre fois le réduit, donc les deux ont le même signe et racontent la même histoire. Nous l'utiliserons quand les nombres deviennent gros.",
+   "texte": "b pair : Δ′ = b′² − ac, et Δ = 4Δ′ — même signe, calculs plus légers.",
+   "ecran": "delta_reduit"
+  },
+  {
+   "id": "p11",
+   "dit": "Nous savons prédire combien de solutions possède une équation. Il est temps de les calculer : la formule des racines livre les deux solutions en une seule écriture, moins le coefficient linéaire, plus ou moins la racine carrée du discriminant, le tout sur deux fois le coefficient dominant. Le plus ou moins n'est pas un décor : il produit les deux solutions d'un coup.",
+   "texte": "Partie 2 : x = (−b ± √Δ) / (2a) — calculer les racines.",
+   "ecran": "titre2"
+  },
+  {
+   "id": "p12",
+   "dit": "La méthode complète tient en quatre temps. Un : mettre l'équation sous la forme standard et identifier les trois coefficients, signes compris. Deux : calculer le discriminant et regarder son signe. Trois : appliquer la formule adaptée, ou conclure qu'il n'y a pas de solution réelle. Quatre : vérifier en réinjectant chaque solution dans l'équation de départ.",
+   "texte": "Identifier, calculer Δ, appliquer, vérifier : quatre temps.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p13",
+   "dit": "Exemple complet, le cas général. Les coefficients sont deux, moins cinq et moins trois : attention, la constante est négative, le discriminant devient une somme et grimpe à quarante-neuf, dont la racine vaut sept. Les deux solutions tombent alors simplement : moins un demi et trois. Vérification faite, les deux annulent bien le trinôme.",
+   "texte": "2x² − 5x − 3 = 0 : Δ = 49, solutions −1/2 et 3.",
+   "ecran": "exemple_resolution"
+  },
+  {
+   "id": "p14",
+   "dit": "Cas limite : discriminant nul. La formule se referme sur une seule valeur, la racine double, ici trois. Et ce n'est pas un hasard si le trinôme se factorise en un carré parfait : discriminant nul, carré parfait et tangence de la parabole sont trois visages d'une même situation.",
+   "texte": "Δ = 0 : x² − 6x + 9 = (x − 3)², racine double 3.",
+   "ecran": "cas_double"
+  },
+  {
+   "id": "p15",
+   "dit": "Dernier cas : discriminant négatif. La racine carrée d'un nombre négatif n'existe pas chez les réels, donc l'équation n'a aucune solution réelle, et on s'arrête là proprement. Pour notre exemple, le discriminant vaut moins seize : la parabole reste entièrement au-dessus de l'axe.",
+   "texte": "Δ = −16 < 0 : aucune solution réelle, on conclut.",
+   "ecran": "cas_sans"
+  },
+  {
+   "id": "p16",
+   "dit": "Quand les racines existent, le trinôme se factorise avec elles : le coefficient dominant, fois la variable moins la première racine, fois la variable moins la seconde racine. Cette forme factorisée fait le lien avec le cours sur les polynômes, et elle prépare l'étude du signe : chaque facteur changera de signe à sa racine.",
+   "texte": "ax² + bx + c = a(x − x₁)(x − x₂) : la forme factorisée.",
+   "ecran": "factorisation"
+  },
+  {
+   "id": "p17",
+   "dit": "Étudier le signe d'un trinôme, c'est déterminer où il est positif, négatif ou nul. La règle d'or tient en une phrase : le trinôme est du signe de son coefficient dominant à l'extérieur des racines, et du signe contraire entre les racines. Sur la parabole, cela se voit : au-dessus de l'axe, positif ; au-dessous, négatif.",
+   "texte": "Signe de a à l'extérieur des racines, signe contraire entre elles.",
+   "ecran": "signe_regle"
+  },
+  {
+   "id": "p18",
+   "dit": "Exemple d'étude de signe, construit sur la figure. Notre trinôme a pour racines un et trois, et son coefficient dominant est positif. Il est donc positif avant un, négatif entre un et trois, puis positif après trois. C'est exactement l'intervalle où la parabole plonge sous l'axe des abscisses.",
+   "texte": "x² − 4x + 3 : négatif entre 1 et 3, positif à l'extérieur.",
+   "ecran": "signe_exemple"
+  },
+  {
+   "id": "p19",
+   "dit": "Les deux autres cas sont encore plus simples. Discriminant nul : le trinôme garde le signe de son coefficient dominant partout, sauf en la racine double où il s'annule. Discriminant négatif : il ne s'annule jamais et garde ce signe partout, sans exception. Un seul calcul de delta suffit donc à dresser tout le tableau de signes.",
+   "texte": "Δ ≤ 0 : le signe de a partout, nul au plus en un point.",
+   "ecran": "signe_cas"
+  },
+  {
+   "id": "p20",
+   "dit": "Application géométrique : l'enclos contre un mur. Avec cent mètres de clôture pour trois côtés, la longueur parallèle au mur vaut cent moins deux fois la largeur. Pour une aire de mille deux cents mètres carrés, l'équation donne deux largeurs possibles, vingt ou trente mètres, avec des longueurs de soixante ou quarante mètres : les deux sont valables.",
+   "texte": "Aire 1200 m² : largeur 20 m (longueur 60) ou 30 m (longueur 40).",
+   "ecran": "enclos"
+  },
+  {
+   "id": "p21",
+   "dit": "Application économique : quand une entreprise est-elle rentable ? Son bénéfice est un trinôme tourné vers le bas, de racines deux et sept, en centaines d'objets. Entre les racines, il est positif : l'entreprise gagne de l'argent entre deux cents et sept cents objets. Le maximum, au sommet, atteint mille deux cent cinquante euros pour quatre cent cinquante objets.",
+   "texte": "B(x) > 0 entre 200 et 700 objets ; maximum 1250 € à 450 objets.",
+   "ecran": "benefice"
+  },
+  {
+   "id": "p22",
+   "dit": "Application physique : le projectile. Sa hauteur est un trinôme du temps, qui s'annule quand il retombe au sol. Des deux solutions, seule la positive a un sens : environ deux secondes et dix-huit centièmes après le lancer. La solution négative décrirait un instant avant le départ : la physique tranche ce que les mathématiques proposent.",
+   "texte": "h(t) = 0 : t ≈ 2,18 s — seule la solution positive a un sens.",
+   "ecran": "projectile"
+  },
+  {
+   "id": "p23",
+   "dit": "Récapitulons la méthode complète. Ramener l'équation à la forme standard, calculer le discriminant et lire son signe, appliquer la formule des racines ou conclure, factoriser quand c'est possible, puis étudier le signe avec la règle de l'extérieur et de l'intérieur des racines. Avec ces cinq réflexes, toute équation du second degré se traite sans hésitation.",
+   "texte": "Forme standard, Δ, racines, factorisation, signe : la routine complète.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Forme canonique et discriminant"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "La formule des racines et la factorisation",
+   "pont": {
+    "texte": "Partie 2 : calculer les racines, puis factoriser.",
+    "dit": "Partie deux : calculer les racines. La formule des racines livre ce que le discriminant a prédit, nous l'appliquerons aux trois cas, solution double et absence de solution compris, avant de factoriser le trinôme avec ses racines."
+   }
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Signe du trinôme et applications",
+   "pont": {
+    "texte": "Partie 3 : le signe du trinôme, puis trois applications.",
+    "dit": "Partie trois : le signe du trinôme et ses applications. La règle de l'extérieur et de l'intérieur des racines transforme le calcul en décisions : un enclos à dimensionner, une entreprise à rendre rentable, un projectile à suivre jusqu'à sa retombée."
+   }
+  }
+ ]
+}

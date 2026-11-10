@@ -1,4 +1,4 @@
-import { router, useFocusEffect } from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -38,6 +38,7 @@ const relire = (c: { id: number; nom: string }) => {
 export function EcranResultats() {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const { provenance, planningJour } = useLocalSearchParams<{ provenance?: string; planningJour?: string }>();
   const [c, setC] = useState<Correction | null>(null);
   const [liste, setListe] = useState(false);
   // Relu au retour de « Refaire mes erreurs », qui met à jour cette correction.
@@ -50,7 +51,17 @@ export function EcranResultats() {
       };
     }, []),
   );
-  const fermer = () => (router.canGoBack() ? router.back() : router.replace('/'));
+  const fermer = () => {
+    if (provenance === 'planning') {
+      if (planningJour) {
+        router.replace({ pathname: '/planning/jour', params: { jour: planningJour } });
+      } else {
+        router.replace('/planning/jour');
+      }
+      return;
+    }
+    return router.canGoBack() ? router.back() : router.replace('/');
+  };
   if (!c) return <Ecran>{null}</Ecran>;
   const s = statuts(c);
   const rates = coursRates(c, s);
@@ -63,7 +74,7 @@ export function EcranResultats() {
         <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('correction.titreScore', { score: justes, total: s.length, message })}</Text>
         <ResultatsQuiz statuts={s} leconsRatees={{ nombre: rates.length, unCours: rates.length === 1, onPress: () => (rates.length === 1 ? relire(rates[0]) : setListe(true)) }} />
         {/* Même action que le ✕ en haut : sans ce bouton, il ne restait que « Revoir la correction » pour continuer. */}
-        <Bouton libelle={t('correction.terminer')} onPress={fermer} />
+        <Bouton libelle={provenance === 'planning' ? t('planning.retourProgramme') : t('correction.terminer')} onPress={fermer} />
       </Ecran>
       <PropositionNotifications source="fin_quiz" />
       <Feuille ouverte={liste} onFermer={() => setListe(false)} titre={t('correction.leconsTitre')} actions={[{ libelle: t('correction.fermer'), onPress: () => setListe(false), variante: 'secondaire' }]}>

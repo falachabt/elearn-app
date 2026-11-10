@@ -1,0 +1,388 @@
+{
+  "cours": 7319,
+  "ecrans": {
+    "arbre": {
+      "anim": {
+        "hauteur": 200,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Lire un arbre de probabilités",
+      "texte": "Sur chaque branche, la probabilité du chemin suivi.",
+      "type": "phrase"
+    },
+    "axiomes": {
+      "kicker": "Ce qu'est une probabilité",
+      "tex": [
+        "P(\\Omega) = 1 \\qquad P(\\varnothing) = 0",
+        "A \\cap B = \\varnothing",
+        "P(A \\cup B) = P(A) + P(B)"
+      ],
+      "titre": "Un nombre entre zéro et un, deux règles",
+      "type": "etape"
+    },
+    "bayes": {
+      "kicker": "Le théorème de Bayes",
+      "note": "Le dénominateur vient des probabilités totales",
+      "tex": "P(B_k \\mid A) = \\frac{P(A \\mid B_k)P(B_k)}{P(A)}",
+      "type": "formule"
+    },
+    "composees": {
+      "kicker": "Probabilités composées",
+      "note": "La définition relue dans l'autre sens",
+      "tex": "\\begin{aligned} P(A \\cap B) &= P(B) \\times P(A \\mid B) \\\\ &= P(A) \\times P(B \\mid A) \\end{aligned}",
+      "type": "formule"
+    },
+    "conditionnelle": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Probabilité conditionnelle",
+      "note": "Définie seulement si la probabilité de B est non nulle",
+      "tex": "P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}",
+      "type": "formule"
+    },
+    "equiproba": {
+      "kicker": "Le cas équiprobable",
+      "note": "Toutes les issues ont la même chance de sortir",
+      "tex": "P(A) = \\frac{\\text{cas favorables}}{\\text{cas possibles}} = \\frac{\\mathrm{card}(A)}{n}",
+      "type": "formule"
+    },
+    "ex_de": {
+      "kicker": "Exemple résolu · le dé équilibré",
+      "tex": [
+        "P(A) = \\tfrac{3}{6} = \\tfrac{1}{2} \\qquad P(B) = \\tfrac{2}{6} = \\tfrac{1}{3}",
+        "P(A \\cap B) = P(\\{6\\}) = \\tfrac{1}{6}",
+        "P(A \\cup B) = \\tfrac{1}{2} + \\tfrac{1}{3} - \\tfrac{1}{6} = \\tfrac{2}{3}"
+      ],
+      "titre": "Pair, multiple de trois, et leur union",
+      "type": "etape"
+    },
+    "ex_machines_bayes": {
+      "kicker": "Exemple résolu · puis Bayes renverse",
+      "tex": [
+        "P(M_1 \\mid D) = \\tfrac{0{,}02 \\times 0{,}6}{0{,}032}",
+        "P(M_1 \\mid D) = \\tfrac{0{,}012}{0{,}032} = 0{,}375"
+      ],
+      "titre": "La réponse : zéro virgule trois cent soixante-quinze",
+      "type": "etape"
+    },
+    "ex_machines_donnees": {
+      "kicker": "Exemple résolu · deux machines, des pièces défectueuses",
+      "tex": [
+        "P(M_1) = 0{,}6 \\qquad P(M_2) = 0{,}4",
+        "P(D \\mid M_1) = 0{,}02 \\qquad P(D \\mid M_2) = 0{,}05",
+        "\\text{chercher } P(M_1 \\mid D)"
+      ],
+      "titre": "Une pièce défectueuse : de quelle machine vient-elle ?",
+      "type": "etape"
+    },
+    "ex_machines_totales": {
+      "kicker": "Exemple résolu · d'abord la probabilité totale",
+      "tex": [
+        "P(D) = 0{,}6 \\times 0{,}02 + 0{,}4 \\times 0{,}05",
+        "P(D) = 0{,}012 + 0{,}020 = 0{,}032"
+      ],
+      "titre": "La pièce défectueuse, toutes machines confondues",
+      "type": "etape"
+    },
+    "ex_urne": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "urne_fig"
+      },
+      "kicker": "Exemple résolu · deux tirages dans l'urne",
+      "tex": [
+        "P(R_1) = \\tfrac{3}{5}",
+        "P(R_2 \\mid R_1) = \\tfrac{2}{4} = \\tfrac{1}{2}",
+        "P(R_1 \\cap R_2) = \\tfrac{3}{5} \\times \\tfrac{1}{2} = \\tfrac{3}{10}"
+      ],
+      "titre": "Trois rouges, deux vertes, sans remise",
+      "type": "etape"
+    },
+    "experience": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "grille_des_fig"
+      },
+      "kicker": "L'expérience aléatoire",
+      "texte": "Issues connues, résultat imprévisible : le dé à six faces.",
+      "type": "phrase"
+    },
+    "interpretation": {
+      "anim": {
+        "hauteur": 160,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Interpréter le résultat",
+      "texte": "Défectueuse : plus probablement de la machine deux.",
+      "type": "phrase"
+    },
+    "methode": {
+      "kicker": "La méthode en quatre gestes",
+      "tex": [
+        "\\text{1. identifier la partition}",
+        "\\text{2. noter les probabilités de chaque cas}",
+        "\\text{3. appliquer les probabilités totales}",
+        "\\text{4. renverser avec Bayes si besoin}"
+      ],
+      "titre": "Partition, conditionnelles, total, renversement",
+      "type": "etape"
+    },
+    "objectifs": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "urne_fig"
+      },
+      "kicker": "Objectifs du cours",
+      "texte": "Calculer, conditionner, puis renverser une probabilité.",
+      "type": "phrase"
+    },
+    "partition": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "venn"
+      },
+      "kicker": "La partition de l'univers",
+      "texte": "Des cas incompatibles qui recouvrent tout l'univers.",
+      "type": "phrase"
+    },
+    "piege": {
+      "anim": {
+        "hauteur": 160,
+        "nom": "venn"
+      },
+      "kicker": "Le piège du cours",
+      "texte": "Sachant B et sachant A ne se confondent jamais.",
+      "type": "phrase"
+    },
+    "proprietes": {
+      "kicker": "Deux propriétés à connaître",
+      "note": "L'union compte l'intersection une seule fois",
+      "tex": "\\begin{aligned} P(\\bar{A}) &= 1 - P(A) \\\\ P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\end{aligned}",
+      "type": "formule"
+    },
+    "recap": {
+      "etapes": [
+        "Équiprobabilité : favorables sur possibles",
+        "Union : ajouter, retirer l'intersection",
+        "Conditionnelle : intersection sur sachant",
+        "Totales : somme sur une partition",
+        "Bayes : renverser le conditionnement"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "recap1": {
+      "etapes": [
+        "Équiprobabilité : favorables sur possibles",
+        "Union : ajouter, retirer l'intersection",
+        "Conditionnelle : intersection sur sachant",
+        "Composées : suivre les branches de l'arbre"
+      ],
+      "kicker": "Partie 1 : à retenir",
+      "type": "recap"
+    },
+    "renverser": {
+      "anim": {
+        "hauteur": 180,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Renverser un conditionnement",
+      "texte": "De la cause vers l'effet, puis de l'effet vers la cause.",
+      "type": "phrase"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 250,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Mathématique · Probabilités",
+      "sous": "De l'expérience aléatoire aux décisions : conditionner, totaliser, renverser",
+      "titre": "Probabilités : conditionnelles et théorème de Bayes",
+      "type": "titre"
+    },
+    "totales": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "arbre_fig"
+      },
+      "kicker": "Probabilités totales",
+      "note": "On additionne les contributions de chaque cas de la partition",
+      "tex": "P(A) = \\sum_i P(A \\mid B_i) \\, P(B_i)",
+      "type": "formule"
+    },
+    "univers": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "venn"
+      },
+      "kicker": "Univers et événement",
+      "note": "A : obtenir un nombre pair, une partie de l'univers",
+      "tex": "\\Omega = \\{1, 2, 3, 4, 5, 6\\} \\qquad A = \\{2, 4, 6\\}",
+      "type": "formule"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Expérience aléatoire, probabilités et conditionnelles"
+    },
+    {
+      "debut": "p14",
+      "pont": {
+        "dit": "Partie deux, les probabilités totales et le théorème de Bayes. Après avoir conditionné, nous allons décomposer une probabilité selon tous les cas possibles, puis renverser le conditionnement pour remonter d'un effet observé vers sa cause la plus probable.",
+        "texte": "Partie 2 : probabilités totales et théorème de Bayes."
+      },
+      "sous_titre": "Probabilités totales et théorème de Bayes"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux probabilités. Nous partirons du hasard d'une expérience aléatoire, nous apprendrons à calculer quand une information nouvelle arrive, et nous finirons par renverser un conditionnement grâce au théorème de Bayes.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Probabilités : conditionnelles et théorème de Bayes."
+    },
+    {
+      "dit": "À la fin de ce cours, vous saurez définir une expérience aléatoire et calculer une probabilité, utiliser les probabilités conditionnelles et totales, puis appliquer le théorème de Bayes pour remonter d'un effet vers sa cause.",
+      "ecran": "objectifs",
+      "id": "p02",
+      "texte": "Objectif : calculer, conditionner, renverser."
+    },
+    {
+      "dit": "Une expérience aléatoire est une expérience dont on connaît toutes les issues possibles, sans pouvoir prévoir laquelle se réalisera. Lancer un dé à six faces en est l'exemple de base : six résultats possibles, un seul sortira, imprévisible.",
+      "ecran": "experience",
+      "id": "p03",
+      "texte": "Issues connues, résultat imprévisible."
+    },
+    {
+      "dit": "L'ensemble de toutes les issues possibles s'appelle l'univers, noté oméga. Un événement est une partie de cet univers. Pour le dé, l'univers réunit les nombres de un à six, et l'événement obtenir un nombre pair réunit deux, quatre et six.",
+      "ecran": "univers",
+      "id": "p04",
+      "texte": "Ω, l'univers ; A, une partie de Ω."
+    },
+    {
+      "dit": "Une probabilité associe à chaque événement un nombre compris entre zéro et un. L'événement certain, l'univers entier, a pour probabilité un, et l'événement impossible zéro. Si deux événements sont incompatibles, sans issue commune, la probabilité de leur union est la somme de leurs probabilités.",
+      "ecran": "axiomes",
+      "id": "p05",
+      "texte": "P(Ω) = 1, P(∅) = 0, et l'addition des incompatibles."
+    },
+    {
+      "dit": "Dans le cas équiprobable, toutes les issues ont la même chance. La probabilité d'un événement est alors le nombre de cas favorables divisé par le nombre de cas possibles, c'est-à-dire le cardinal de l'événement sur le nombre d'issues.",
+      "ecran": "equiproba",
+      "id": "p06",
+      "texte": "P(A) = cas favorables / cas possibles."
+    },
+    {
+      "dit": "Deux propriétés servent en permanence. La probabilité de l'événement contraire vaut un moins la probabilité de l'événement. Et la probabilité d'une union vaut la somme des deux probabilités, moins celle de l'intersection, car les issues communes sont comptées deux fois.",
+      "ecran": "proprietes",
+      "id": "p07",
+      "texte": "Contraire et union : les deux réflexes."
+    },
+    {
+      "dit": "Exemple avec le dé équilibré. L'événement a réunit les nombres pairs, deux, quatre, six : sa probabilité vaut trois sixièmes, un demi. L'événement bé réunit les multiples de trois, trois et six : sa probabilité vaut deux sixièmes, un tiers. Leur intersection ne contient que six, soit un sixième. L'union vaut donc un demi plus un tiers moins un sixième, c'est-à-dire deux tiers.",
+      "ecran": "ex_de",
+      "id": "p08",
+      "texte": "Dé : P(A) = 1/2, P(B) = 1/3, union = 2/3."
+    },
+    {
+      "dit": "Passons aux probabilités conditionnelles. Quand on sait qu'un événement bé est réalisé, la probabilité d'un événement a change : on la note probabilité de a sachant bé. Elle vaut la probabilité de l'intersection de a et bé, divisée par la probabilité de bé, si celle-ci est non nulle.",
+      "ecran": "conditionnelle",
+      "id": "p09",
+      "texte": "P(A | B) : A, sachant que B est réalisé."
+    },
+    {
+      "dit": "En réécrivant cette définition, on obtient la formule des probabilités composées. La probabilité de l'intersection vaut la probabilité de bé multipliée par la probabilité de a sachant bé. Elle vaut aussi la probabilité de a multipliée par la probabilité de bé sachant a : l'ordre se choisit selon les données.",
+      "ecran": "composees",
+      "id": "p10",
+      "texte": "L'intersection se lit dans les deux sens."
+    },
+    {
+      "dit": "Exemple dans une urne contenant trois boules rouges et deux boules vertes. On tire une boule, et si elle est rouge, on en tire une seconde sans remise. La première est rouge avec une probabilité de trois cinquièmes. Sachant cela, il reste deux rouges sur quatre boules : la seconde est rouge avec une probabilité d'un demi. Les deux rouges de suite valent donc trois cinquièmes fois un demi, soit trois dixièmes.",
+      "ecran": "ex_urne",
+      "id": "p11",
+      "texte": "Urne : deux rouges de suite, 3/10."
+    },
+    {
+      "dit": "Ces calculs se lisent sur un arbre de probabilités. Chaque branche porte une probabilité, simple au premier niveau, conditionnelle ensuite. Suivre un chemin complet, c'est multiplier les probabilités de ses branches : on retrouve la formule des probabilités composées.",
+      "ecran": "arbre",
+      "id": "p12",
+      "texte": "Un chemin d'arbre = une probabilité composée."
+    },
+    {
+      "dit": "Retenons cette première partie. En équiprobabilité, on compte les cas favorables sur les cas possibles. L'union s'obtient en retranchant l'intersection. La probabilité conditionnelle restreint l'univers à ce que l'on sait déjà, et les probabilités composées suivent les chemins d'un arbre.",
+      "ecran": "recap1",
+      "id": "p13",
+      "texte": "Partie 1 : les bases sont en place."
+    },
+    {
+      "dit": "Pour aller plus loin, il faut la notion de partition. Des événements forment une partition de l'univers quand ils sont incompatibles deux à deux et que leur union recouvre l'univers entier. Exactement un de ces cas se réalise à chaque expérience : jamais deux à la fois, jamais aucun.",
+      "ecran": "partition",
+      "id": "p14",
+      "texte": "La partition : des cas qui recouvrent tout."
+    },
+    {
+      "dit": "La formule des probabilités totales décompose alors la probabilité d'un événement a selon tous les cas de la partition. On additionne, pour chaque cas, la probabilité de ce cas multipliée par la probabilité de a sachant ce cas. Chaque cas contribue à a à hauteur de sa propre fréquence.",
+      "ecran": "totales",
+      "id": "p15",
+      "texte": "P(A) : la somme sur tous les cas de la partition."
+    },
+    {
+      "dit": "La méthode complète tient en quatre gestes. Identifier la partition, les cas possibles et incompatibles. Noter la probabilité de chaque cas et les probabilités conditionnelles de l'événement étudié. Appliquer les probabilités totales pour obtenir sa probabilité globale. Et, si la question demande la cause, renverser avec Bayes.",
+      "ecran": "methode",
+      "id": "p16",
+      "texte": "Identifier, noter, totaliser, renverser."
+    },
+    {
+      "dit": "Voici le théorème de Bayes. La probabilité d'un cas de la partition, sachant que l'événement a est réalisé, vaut la probabilité de a sachant ce cas, multipliée par la probabilité du cas, le tout divisé par la probabilité totale de a. Le numérateur est une probabilité composée, le dénominateur vient des probabilités totales.",
+      "ecran": "bayes",
+      "id": "p17",
+      "texte": "Bayes : P(Bₖ | A) à partir de P(A | Bₖ)."
+    },
+    {
+      "dit": "Ce théorème renverse le sens du conditionnement. Souvent, on connaît la probabilité d'un effet sachant sa cause : un taux de défaut sachant la machine. Bayes donne l'inverse : sachant l'effet observé, la probabilité de chaque cause. C'est le passage du hasard aux décisions.",
+      "ecran": "renverser",
+      "id": "p18",
+      "texte": "De l'effet observé vers la cause probable."
+    },
+    {
+      "dit": "Exemple complet. Deux machines produisent des pièces : la première fournit soixante pour cent de la production, la seconde quarante pour cent. Deux pour cent des pièces de la première sont défectueuses, contre cinq pour cent pour la seconde. On prélève une pièce défectueuse : quelle est la probabilité qu'elle vienne de la première machine ?",
+      "ecran": "ex_machines_donnees",
+      "id": "p19",
+      "texte": "M₁ : 60 % et 2 % de défauts ; M₂ : 40 % et 5 %."
+    },
+    {
+      "dit": "Premier temps, les probabilités totales. La probabilité qu'une pièce soit défectueuse vaut zéro virgule six fois zéro virgule zéro deux, plus zéro virgule quatre fois zéro virgule zéro cinq. Cela donne zéro virgule zéro douze plus zéro virgule zéro vingt, soit zéro virgule zéro trente-deux.",
+      "ecran": "ex_machines_totales",
+      "id": "p20",
+      "texte": "P(D) = 0,012 + 0,020 = 0,032."
+    },
+    {
+      "dit": "Second temps, Bayes renverse la question. La probabilité que la pièce vienne de la première machine, sachant qu'elle est défectueuse, vaut zéro virgule zéro deux fois zéro virgule six, divisé par zéro virgule zéro trente-deux. Soit zéro virgule zéro douze sur zéro virgule zéro trente-deux, c'est-à-dire zéro virgule trois cent soixante-quinze.",
+      "ecran": "ex_machines_bayes",
+      "id": "p21",
+      "texte": "P(M₁ | D) = 0,012 / 0,032 = 0,375."
+    },
+    {
+      "dit": "Le résultat mérite une lecture attentive. La première machine produit la majorité des pièces, mais seulement trente-sept virgule cinq pour cent des pièces défectueuses, car son taux de défaut est bien plus faible. Une pièce défectueuse a donc plus de chances de venir de la seconde machine : c'est ce renversement qui guide une décision, comme cibler un contrôle qualité.",
+      "ecran": "interpretation",
+      "id": "p22",
+      "texte": "37,5 % seulement : le taux de défaut compte."
+    },
+    {
+      "dit": "Le piège du cours est la confusion entre les deux sens du conditionnement. La probabilité de a sachant bé et celle de bé sachant a sont deux nombres différents, reliés par Bayes mais jamais interchangeables. Avant tout calcul, demandez-vous ce qui est déjà su, et ce que l'on cherche.",
+      "ecran": "piege",
+      "id": "p23",
+      "texte": "P(A | B) et P(B | A) : deux nombres différents."
+    },
+    {
+      "dit": "Pour conclure. En équiprobabilité, cas favorables sur cas possibles. Pour une union, on retire l'intersection comptée deux fois. La conditionnelle divise l'intersection par l'événement connu. Les probabilités totales additionnent les cas d'une partition. Et Bayes renverse le conditionnement, de l'effet vers la cause.",
+      "ecran": "recap",
+      "id": "p24",
+      "texte": "Conditionnelles, totales, Bayes : à retenir."
+    }
+  ],
+  "titre": "Probabilités : conditionnelles et théorème de Bayes"
+}

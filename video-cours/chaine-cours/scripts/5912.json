@@ -1,0 +1,406 @@
+{
+ "cours": 5912,
+ "ecrans": {
+  "applications_mesure": {
+   "etapes": [
+    "Oscilloscope en électronique : dépannage de circuits, qualité des signaux audio et vidéo",
+    "Oscilloscope en recherche et en médecine : signaux d’expériences, activité du cœur et du cerveau",
+    "Sismographe et surveillance : réseaux mondiaux, localisation des tremblements de terre",
+    "Sismographe et prévention : géophysique, étude des failles, bâtiments parasismiques"
+   ],
+   "kicker": "Applications · mesurer et observer",
+   "type": "recap"
+  },
+  "applications_quotidien": {
+   "etapes": [
+    "Sonnerie à la maison : sonnettes de porte, alarmes, minuteries",
+    "Sonnerie dans l’industrie : signalisation sonore et systèmes d’alerte",
+    "Ventilateur et confort : climatisation et ventilation des locaux",
+    "Ventilateur en informatique : refroidir les composants et éviter la surchauffe"
+   ],
+   "kicker": "Applications · au quotidien",
+   "type": "recap"
+  },
+  "approches": {
+   "etapes": [
+    "Descriptive : décrire les pièces, leurs mouvements et leurs interactions — approche qualitative",
+    "Cinématique : mesurer les mouvements, vitesses, accélérations et trajectoires",
+    "Dynamique : ajouter les forces et les moments, pour juger efficacité et performances"
+   ],
+   "kicker": "Analyser un mécanisme",
+   "type": "recap"
+  },
+  "ciseaux": {
+   "kicker": "Exemple · analyse descriptive",
+   "texte": "Deux lames reliées par un pivot : en serrant les poignées, les lames se rapprochent et coupent. L’angle des lames et la longueur des poignées règlent l’efficacité de la coupe.",
+   "type": "phrase"
+  },
+  "definition": {
+   "kicker": "Qu’est-ce qu’un mécanisme ?",
+   "texte": "Un assemblage de pièces mobiles qui interagissent entre elles pour accomplir une tâche précise, en transformant une forme d’énergie en un mouvement ou une action désirée.",
+   "type": "phrase"
+  },
+  "exemples": {
+   "etapes": [
+    "Le levier : un point d’appui qui amplifie la force — la balançoire, l’ouvre-bouteille",
+    "La roue et l’axe : réduire les frottements pour déplacer les charges lourdes",
+    "La poulie : changer la direction d’une force ou la multiplier — les systèmes de levage"
+   ],
+   "kicker": "Exemples simples",
+   "type": "recap",
+   "anim": {
+    "nom": "levier",
+    "hauteur": 280
+   }
+  },
+  "oscillo_composants": {
+   "type": "phrase",
+   "kicker": "Anatomie de l’oscilloscope",
+   "texte": "Écran (tube cathodique ou LCD) · canaux d'entrée · amplificateur vertical · système de balayage · déclenchement",
+   "anim": {
+    "nom": "oscilloscope",
+    "hauteur": 280
+   }
+  },
+  "oscillo_exemple": {
+   "kicker": "Exemple",
+   "texte": "Une onde sinusoïdale d’un kilohertz : le déclenchement se synchronise sur le passage par zéro, et chaque balayage redessine la même onde, stable et répétitive.",
+   "type": "phrase",
+   "anim": {
+    "nom": "oscilloscope",
+    "hauteur": 260
+   }
+  },
+  "oscillo_fonctionnement": {
+   "kicker": "Du signal à l’image",
+   "texte": "Le signal amplifié dévie le faisceau verticalement, le balayage le déplace horizontalement à vitesse constante. Sans déclenchement, l’image serait un flou ininterrompu.",
+   "type": "phrase",
+   "anim": {
+    "nom": "oscilloscope",
+    "hauteur": 260
+   }
+  },
+  "oscillo_signal": {
+   "kicker": "L’oscilloscope",
+   "texte": "Un signal électrique est une tension, ou un courant, qui varie au cours du temps. L’oscilloscope le traduit en une courbe dont on lit la forme, l’amplitude et la fréquence.",
+   "type": "phrase",
+   "anim": {
+    "nom": "oscilloscope",
+    "hauteur": 280
+   }
+  },
+  "points_communs": {
+   "etapes": [
+    "Oscilloscope : l’énergie électrique devient une image visuelle",
+    "Sismographe : les vibrations mécaniques deviennent un tracé graphique",
+    "Sonnerie électrique : l’énergie électrique devient une énergie sonore",
+    "Ventilateur : l’énergie électrique devient une énergie cinétique, le mouvement de l’air"
+   ],
+   "kicker": "Le point commun : transformer l’énergie",
+   "type": "recap"
+  },
+  "recap": {
+   "etapes": [
+    "Un mécanisme transforme une forme d’énergie en un mouvement ou une action",
+    "Trois approches pour l’analyser : descriptive, cinématique, dynamique",
+    "Oscilloscope : un balayage synchronisé par le déclenchement rend le signal visible",
+    "Sismographe : une masse inertielle enregistre les vibrations du sol",
+    "Sonnerie : un cycle auto-entretenu ; ventilateur : la chaîne moteur-hélice crée le flux d’air"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "sismo_applications": {
+   "type": "phrase",
+   "kicker": "Applications du sismographe",
+   "texte": "Surveillance sismique · exploration pétrolière et gazière · recherche sur la Terre interne · ingénierie parasismique · détection des explosions",
+   "anim": {
+    "nom": "sismogramme",
+    "hauteur": 280
+   }
+  },
+  "sismo_avant": {
+   "kicker": "Le sismographe",
+   "texte": "Avant lui, les séismes n’étaient décrits qu’avec des mots, imprécis et subjectifs. Au début du vingtième siècle, il apporte des mesures précises de l’amplitude et de la fréquence des ondes sismiques.",
+   "type": "phrase"
+  },
+  "sismo_principe": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "pendule"
+   },
+   "kicker": "Principe : l’inertie de la masse",
+   "texte": "Une masse suspendue à un fil ou à un ressort tend à rester immobile quand le sol bouge : le mouvement relatif entre la masse et le sol, amplifié puis enregistré, donne le sismogramme.",
+   "type": "phrase"
+  },
+  "sismo_types": {
+   "etapes": [
+    "À pendule : une masse suspendue à un fil ou à un ressort",
+    "À masse inertielle : une masse lourde reliée à un système d’amortissement",
+    "Électroniques : des accéléromètres convertissent les vibrations en signaux électriques, enregistrés numériquement"
+   ],
+   "kicker": "Trois familles de sismographes",
+   "type": "recap"
+  },
+  "sonnerie_composants": {
+   "type": "phrase",
+   "kicker": "Les composants de la sonnerie",
+   "texte": "Bobine de cuivre sur noyau de fer doux · armature · marteau et cloche · ressort de rappel · contacts électriques",
+   "anim": {
+    "nom": "sonnerie",
+    "hauteur": 280
+   }
+  },
+  "sonnerie_cycle": {
+   "etapes": [
+    "Le courant traverse la bobine : l’électroaimant attire l’armature",
+    "Le marteau frappe la cloche : le son retentit",
+    "Le mouvement de l’armature interrompt le circuit : le courant se coupe",
+    "Sans magnétisme, le ressort ramène l’armature à sa position",
+    "Le circuit se referme : le cycle recommence"
+   ],
+   "kicker": "Le cycle de la sonnerie",
+   "type": "recap"
+  },
+  "sonnerie_electroaimant": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "aimant"
+   },
+   "kicker": "Le principe : l’électroaimant",
+   "texte": "Une bobine de fil de cuivre enroulée autour d’un noyau de fer doux : traversée par le courant, elle devient un aimant temporaire et attire l’armature reliée au marteau.",
+   "type": "phrase"
+  },
+  "sonnerie_observation": {
+   "kicker": "La sonnerie électrique",
+   "texte": "Un boîtier, deux bornes pour la connexion électrique, un marteau et une cloche : le son naît de la rencontre entre l’électromagnétisme et la mécanique.",
+   "type": "phrase"
+  },
+  "sonnerie_relais": {
+   "kicker": "Au-delà de la sonnerie",
+   "texte": "L’électroaimant se retrouve dans les relais, les moteurs électriques et les haut-parleurs : comprendre la sonnerie est une clé pour des technologies bien plus avancées.",
+   "type": "phrase"
+  },
+  "titre": {
+   "kicker": "Physique · Terminale",
+   "sous": "Oscilloscope, sismographe, sonnerie électrique et ventilateur : quatre dispositifs à démonter par la pensée",
+   "titre": "Les mécanismes",
+   "type": "titre",
+   "anim": {
+    "nom": "oscilloscope",
+    "hauteur": 250
+   }
+  },
+  "ventilo_chaine": {
+   "etapes": [
+    "Alimentation : la source d’énergie électrique, prise murale ou batterie",
+    "Moteur électrique : il convertit l’énergie électrique en énergie mécanique de rotation",
+    "Transmission : l’axe du moteur transmet la rotation à l’hélice",
+    "Hélice : la forme de ses pales accélère l’air et crée le flux d’air"
+   ],
+   "kicker": "Le ventilateur : la chaîne d’énergie",
+   "type": "recap",
+   "anim": {
+    "nom": "ventilateur",
+    "hauteur": 150
+   }
+  },
+  "ventilo_types": {
+   "etapes": [
+    "De table : petit et portable, pour un usage personnel",
+    "Sur pied : plus grand, souvent oscillant, pour les grandes pièces",
+    "De plafond : pales larges, un flux d’air large et diffus",
+    "Industriel : puissant et robuste, pour usines et entrepôts",
+    "Sans pales : un anneau propulse l’air, design moderne et sécurité accrue"
+   ],
+   "kicker": "Les types de ventilateurs",
+   "type": "recap"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré aux mécanismes : des assemblages de pièces qui transforment l’énergie pour observer, mesurer, sonner ou souffler.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Les mécanismes : quatre dispositifs à démonter par la pensée."
+  },
+  {
+   "dit": "Un mécanisme est un assemblage de pièces mobiles qui interagissent entre elles pour accomplir une tâche précise. Cela va du système le plus simple, comme une poulie, au plus complexe, comme un moteur. Son point clé : transformer une forme d’énergie, mécanique, électrique ou hydraulique, en un mouvement ou une action désirée.",
+   "ecran": "definition",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Un mécanisme : des pièces mobiles qui transforment l’énergie en action."
+  },
+  {
+   "dit": "Les mécanismes les plus simples sont déjà autour de nous. Le levier amplifie une force grâce à son point d’appui : c’est la balançoire ou l’ouvre-bouteille. La roue et son axe réduisent les frottements pour déplacer les charges lourdes. La poulie change la direction d’une force, ou la multiplie : on la retrouve dans les systèmes de levage.",
+   "ecran": "exemples",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Levier, roue et axe, poulie : les mécanismes du quotidien."
+  },
+  {
+   "dit": "Pour analyser un mécanisme, trois approches se complètent. L’approche descriptive décrit les pièces, leurs mouvements et leurs interactions : elle est qualitative. L’approche cinématique mesure les mouvements : vitesses, accélérations et trajectoires. L’approche dynamique ajoute les forces et les moments : elle juge l’efficacité et les performances.",
+   "ecran": "approches",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Décrire, mesurer les mouvements, puis les forces : trois approches."
+  },
+  {
+   "dit": "Exemple d’analyse descriptive : une paire de ciseaux. Deux lames reliées par un pivot ; en serrant les poignées, les lames se rapprochent et coupent le matériau. L’angle des lames et la longueur des poignées règlent l’efficacité de la coupe.",
+   "ecran": "ciseaux",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Les ciseaux : une analyse descriptive en une phrase."
+  },
+  {
+   "dit": "Premier dispositif : l’oscilloscope, l’instrument qui rend les signaux électriques visibles. Un signal électrique est une tension, ou un courant, qui varie au cours du temps, périodique comme une onde sinusoïdale, ou non. L’oscilloscope traduit ces variations en une courbe sur un écran, dont on lit forme, amplitude et fréquence.",
+   "ecran": "oscillo_signal",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "L’oscilloscope : voir les signaux électriques sous forme de courbes."
+  },
+  {
+   "dit": "Découvrons ses composants. Le tube cathodique, ou l’écran des modèles modernes, affiche la courbe. Les canaux d’entrée reçoivent les signaux et permettent d’en comparer plusieurs. L’amplificateur vertical adapte le signal à l’écran, le balayage génère le déplacement horizontal, et le déclenchement synchronise le tout.",
+   "ecran": "oscillo_composants",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Tube, canaux, amplificateur, balayage, déclenchement."
+  },
+  {
+   "dit": "Comment l’image se forme-t-elle ? Le signal, après amplification, dévie le faisceau verticalement, pendant qu’un signal de balayage le déplace de gauche à droite à vitesse constante. La combinaison de ces deux mouvements trace la courbe du signal sur l’écran.",
+   "ecran": "oscillo_fonctionnement",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Déflexion verticale plus balayage horizontal : la courbe se trace."
+  },
+  {
+   "dit": "Le déclenchement est décisif : sans lui, chaque balayage repartirait au hasard et l’image serait un flou ininterrompu. Synchronisé sur un événement précis du signal, par exemple le passage par zéro d’une onde sinusoïdale d’un kilohertz, il rend l’onde stable et répétitive, prête à être mesurée.",
+   "ecran": "oscillo_exemple",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Exemple : le déclenchement fige une onde d’un kilohertz."
+  },
+  {
+   "dit": "Deuxième dispositif : le sismographe, qui enregistre les tremblements de terre. Avant lui, on ne décrivait les séismes qu’avec des mots, léger, modéré ou violent : trop imprécis pour bâtir une science. Au début du vingtième siècle, les sismographes modernes apportent des mesures précises d’amplitude et de fréquence des ondes sismiques.",
+   "ecran": "sismo_avant",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Des descriptions avec des mots aux mesures précises."
+  },
+  {
+   "dit": "Le principe repose sur l’inertie. Une masse est suspendue à un fil ou à un ressort. Quand le sol tremble, le support bouge avec lui, mais la masse, grâce à son inertie, tend à rester immobile. Ce mouvement relatif, amplifié puis enregistré, donne le sismogramme.",
+   "ecran": "sismo_principe",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Une masse suspendue reste immobile pendant que le sol bouge."
+  },
+  {
+   "dit": "Trois familles de sismographes partagent ce principe. Le sismographe à pendule suspend sa masse à un fil ou à un ressort. Celui à masse inertielle ajoute un système d’amortissement. Les sismographes électroniques modernes mesurent les vibrations avec des accéléromètres, puis les enregistrent numériquement.",
+   "ecran": "sismo_types",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Pendule, masse inertielle, accéléromètres : trois familles."
+  },
+  {
+   "dit": "Les applications dépassent largement la détection des séismes. Le sismographe cartographie les zones à risque et suit l’activité volcanique. En exploration, des ondes artificielles imagent le sous-sol et localisent les gisements de pétrole et de gaz. Il révèle la structure interne de la Terre, aide à concevoir des bâtiments parasismiques, et détecte les explosions souterraines.",
+   "ecran": "sismo_applications",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Surveillance, exploration, recherche, protection : un outil polyvalent."
+  },
+  {
+   "dit": "Troisième dispositif : la sonnerie électrique, ce petit appareil que vous avez sûrement chez vous. De l’extérieur, on repère un boîtier, deux bornes pour la connexion électrique, un marteau et une cloche. Son secret tient dans la rencontre entre l’électromagnétisme et la mécanique.",
+   "ecran": "sonnerie_observation",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "La sonnerie électrique : un boîtier, un marteau, une cloche."
+  },
+  {
+   "dit": "Le cœur du dispositif est un électroaimant : une bobine de fil de cuivre enroulée autour d’un noyau de fer doux. Quand le courant traverse la bobine, elle crée un champ magnétique temporaire et attire l’armature, une pièce de fer doux reliée au marteau.",
+   "ecran": "sonnerie_electroaimant",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Une bobine traversée par le courant devient un aimant temporaire."
+  },
+  {
+   "dit": "Détaillons les composants. La bobine crée le champ magnétique. L’armature, en fer doux, est attirée par l’électroaimant. Le marteau frappe la cloche, la surface résonnante qui produit le son. Le ressort, en acier, ramène l’armature à sa place. Et les contacts électriques ferment et ouvrent le circuit.",
+   "ecran": "sonnerie_composants",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Bobine, armature, marteau, cloche, ressort et contacts."
+  },
+  {
+   "dit": "Le fonctionnement est un cycle qui s’entretient lui-même. Le courant crée l’électroaimant, qui attire l’armature : le marteau frappe la cloche. Mais ce même mouvement interrompt le circuit : le courant se coupe, l’électroaimant perd son magnétisme, et le ressort ramène l’armature. Le circuit se referme, et le cycle recommence : la sonnerie tinte tant qu’on l’alimente.",
+   "ecran": "sonnerie_cycle",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Un cycle auto-entretenu : attirer, frapper, couper, revenir."
+  },
+  {
+   "dit": "Ce principe dépasse largement la sonnette de porte. On retrouve l’électroaimant dans les relais, les moteurs électriques et les haut-parleurs : comprendre la sonnerie, c’est une clé pour des technologies bien plus avancées.",
+   "ecran": "sonnerie_relais",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "L’électroaimant, partout : relais, moteurs, haut-parleurs."
+  },
+  {
+   "dit": "Quatrième dispositif : le ventilateur, qui transforme l’énergie électrique en flux d’air. L’alimentation fournit l’énergie. Le moteur, à courant continu ou alternatif, la convertit en énergie mécanique de rotation. La transmission la transmet à l’hélice. Et l’hélice, grâce à la forme de ses pales, accélère l’air et crée le souffle.",
+   "ecran": "ventilo_chaine",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Alimentation, moteur, transmission, hélice : de l’électricité au vent."
+  },
+  {
+   "dit": "Il existe une grande variété de ventilateurs, chacun adapté à un besoin. Le petit ventilateur de table, portable. Le ventilateur sur pied, plus grand et souvent oscillant. Le ventilateur de plafond, aux pales larges. Le ventilateur industriel, puissant et robuste. Et le ventilateur sans pales, au design moderne et plus sûr pour les enfants.",
+   "ecran": "ventilo_types",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "De table, sur pied, de plafond, industriel ou sans pales."
+  },
+  {
+   "dit": "Le chapitre des applications montre leur étendue. L’oscilloscope dépanne les circuits électroniques, analyse la qualité des signaux audio et vidéo, et visualise en médecine l’activité du cœur et du cerveau. Le sismographe alimente les réseaux mondiaux de surveillance sismique et la prévention des risques naturels.",
+   "ecran": "applications_mesure",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Oscilloscope et sismographe : mesurer pour comprendre et prévenir."
+  },
+  {
+   "dit": "La sonnerie électrique équipe nos sonnettes de porte, nos alarmes et la signalisation sonore des machines industrielles. Le ventilateur climatise et ventile les locaux, et refroidit machines industrielles et ordinateurs : sans lui, tout surchaufferait.",
+   "ecran": "applications_quotidien",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Sonnerie et ventilateur : la signalisation et le refroidissement."
+  },
+  {
+   "dit": "Au fond, ces quatre dispositifs se ressemblent. Chacun transforme une forme d’énergie en une autre. Et chacun combine les mêmes rôles : un capteur qui détecte un signal ou un mouvement, un transducteur qui convertit, parfois un amplificateur qui augmente le signal, et un actionneur qui produit l’effet final.",
+   "ecran": "points_communs",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Transformer l’énergie, avec capteurs, transducteurs et actionneurs."
+  },
+  {
+   "dit": "Retenez la définition d’un mécanisme et les trois approches pour l’analyser. Retenez surtout le principe de chaque dispositif : le balayage synchronisé de l’oscilloscope, la masse inertielle du sismographe, le cycle auto-entretenu de la sonnerie, et la chaîne moteur, transmission, hélice du ventilateur.",
+   "ecran": "recap",
+   "id": "p24",
+   "pause_apres": 0.5,
+   "texte": "Mécanismes : définition, approches et quatre principes à retenir."
+  }
+ ],
+ "titre": "Les mécanismes",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Observer et mesurer : oscilloscope et sismographe"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : la sonnerie électrique et le ventilateur, puis les applications de tous ces mécanismes.",
+    "texte": "Partie 2 : sonnerie, ventilateur et applications."
+   },
+   "sous_titre": "Sonner et souffler : sonnerie, ventilateur et applications"
+  }
+ ]
+}

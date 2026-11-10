@@ -1,0 +1,589 @@
+{
+ "cours": 6653,
+ "ecrans": {
+  "accroche": {
+   "kicker": "Prologue",
+   "texte": "Une pile, un dosage, une rouille : le même transfert d'électrons.",
+   "type": "phrase"
+  },
+  "anode_soluble": {
+   "kicker": "L'électrolyse à anode soluble",
+   "tex": [
+    "\\text{anode soluble : } M \\rightarrow M^{n+} + ne^- \\text{, elle se dissout}",
+    "\\text{anode : } Cu \\rightarrow Cu^{2+} + 2e^- \\qquad \\text{cathode : } Cu^{2+} + 2e^- \\rightarrow Cu",
+    "\\text{applications : purification du cuivre, galvanoplastie}"
+   ],
+   "titre": "Le métal se dissout et se redépose",
+   "type": "etape"
+  },
+  "combustions": {
+   "kicker": "Les combustions",
+   "tex": [
+    "\\text{combustible (réducteur) + comburant (oxydant, souvent } O_2\\text{), exothermique}",
+    "2Mg + O_2 \\rightarrow 2MgO \\text{ : flamme éclatante}",
+    "C + O_2 \\rightarrow CO_2"
+   ],
+   "titre": "Un combustible, un comburant, de l'énergie",
+   "type": "etape"
+  },
+  "constitution_daniell": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "pile_daniell_fig"
+   },
+   "kicker": "La pile Daniell",
+   "tex": [
+    "Zn \\text{ dans } Zn^{2+} + SO_4^{2-} \\text{ : couple } Zn^{2+}/Zn",
+    "Cu \\text{ dans } Cu^{2+} + SO_4^{2-} \\text{ : couple } Cu^{2+}/Cu",
+    "\\text{pont salin (gel de } KCl\\text{) : les ions circulent, électroneutralité}"
+   ],
+   "titre": "Deux demi-piles reliées par un pont salin",
+   "type": "etape"
+  },
+  "corrosion": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "corrosion_fig"
+   },
+   "kicker": "Corrosion et protection",
+   "tex": [
+    "\\text{corrosion : oxydation du métal par l'environnement (eau, } O_2\\text{, ions)}",
+    "\\text{fer} \\rightarrow Fe^{2+} \\text{ puis rouille ; revêtement : peinture, galvanisation}",
+    "\\text{protection cathodique : anode sacrificielle (zinc sur coque d'acier)}"
+   ],
+   "titre": "Revêtir le métal, ou sacrifier un autre métal",
+   "type": "etape"
+  },
+  "definition_no": {
+   "kicker": "Le nombre d'oxydation",
+   "tex": [
+    "\\text{n.o. : charge fictive de l'atome dans l'espèce}",
+    "\\text{les électrons de liaison sont attribués au plus électronégatif}",
+    "\\text{un outil pour suivre les transferts d'électrons}"
+   ],
+   "titre": "Une charge fictive pour suivre les électrons",
+   "type": "etape"
+  },
+  "definition_pile": {
+   "kicker": "Qu'est-ce qu'une pile ?",
+   "tex": [
+    "\\text{réaction d'oxydoréduction spontanée}",
+    "\\text{deux demi-piles : le transfert d'électrons est séparé}",
+    "\\text{les électrons circulent par le circuit extérieur}"
+   ],
+   "titre": "L'énergie chimique convertie en énergie électrique",
+   "type": "etape"
+  },
+  "demi_equations": {
+   "kicker": "Les demi-équations à connaître",
+   "tex": [
+    "MnO_4^- + 8H^+ + 5e^- \\rightleftharpoons Mn^{2+} + 4H_2O",
+    "Cr_2O_7^{2-} + 14H^+ + 6e^- \\rightleftharpoons 2Cr^{3+} + 7H_2O",
+    "Fe^{3+} + e^- \\rightleftharpoons Fe^{2+} \\qquad Cl_2 + 2e^- \\rightleftharpoons 2Cl^-",
+    "I_2 + 2e^- \\rightleftharpoons 2I^- \\qquad S_4O_6^{2-} + 2e^- \\rightleftharpoons 2S_2O_3^{2-}"
+   ],
+   "titre": "Équilibrer en milieu acide",
+   "type": "etape"
+  },
+  "dosage_fer": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "dosage_fig"
+   },
+   "kicker": "Dosage redox : Fe²⁺ par MnO₄⁻",
+   "tex": [
+    "\\text{burette : } KMnO_4 \\text{ violet ; erlenmeyer : } Fe^{2+} \\text{ acidifié}",
+    "MnO_4^- + 5Fe^{2+} + 8H^+ \\rightarrow Mn^{2+} + 5Fe^{3+} + 4H_2O",
+    "\\text{équivalence : teinte violette persistante } (Mn^{2+} \\text{ incolore)}"
+   ],
+   "titre": "Le permanganate, titrant et indicateur",
+   "type": "etape"
+  },
+  "dosage_iode": {
+   "kicker": "Dosage redox : I₂ par le thiosulfate",
+   "tex": [
+    "I_2 + 2S_2O_3^{2-} \\rightarrow 2I^- + S_4O_6^{2-}",
+    "n(I_2) = \\tfrac{n(S_2O_3^{2-})}{2} \\text{ à l'équivalence}",
+    "\\text{empois d'amidon : bleu foncé} \\rightarrow \\text{décoloration}"
+   ],
+   "titre": "L'empois d'amidon signale la fin",
+   "type": "etape"
+  },
+  "electrolyse_principe": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "electrolyse_fig"
+   },
+   "kicker": "L'électrolyse",
+   "tex": [
+    "\\text{transformation forcée : le générateur impose le courant}",
+    "\\text{cathode } (-) : \\text{ réduction (gain d'électrons)}",
+    "\\text{anode } (+) : \\text{ oxydation (perte d'électrons)}"
+   ],
+   "titre": "Une transformation forcée par le générateur",
+   "type": "etape"
+  },
+  "equilibrer_no": {
+   "kicker": "Équilibrer avec les n.o.",
+   "tex": [
+    "\\text{méthode : repérer, varier, égaler les électrons, équilibrer}",
+    "Al : 0 \\rightarrow +III \\text{ (perd } 3e^-\\text{)} \\qquad Fe : +III \\rightarrow 0 \\text{ (gagne } 3e^-\\text{)}",
+    "2Al + Fe_2O_3 \\rightarrow Al_2O_3 + 2Fe \\text{ : aluminothermie}"
+   ],
+   "titre": "Exemple résolu : l'aluminothermie",
+   "type": "etape"
+  },
+  "esh": {
+   "kicker": "La référence : l'ESH",
+   "tex": [
+    "\\text{platine platiné, } H_2 \\text{ gazeux à } 1\\ \\text{bar}",
+    "\\text{solution acide : } [H^+] = 1\\ \\text{mol par litre}",
+    "2H^+ + 2e^- \\rightleftharpoons H_2",
+    "E^\\circ = 0{,}00\\ \\text{V} \\text{ par convention : la référence}"
+   ],
+   "titre": "L'électrode standard à hydrogène",
+   "type": "etape"
+  },
+  "exemple_daniell": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "n(Cu) = \\tfrac{m}{M} = \\tfrac{0{,}64}{64} = 0{,}010\\ \\text{mol}",
+    "n(e^-) = 2\\,n(Cu) = 0{,}020\\ \\text{mol}",
+    "Q = n(e^-) \\times F = 0{,}020 \\times 96500 \\approx 1930\\ \\text{C}"
+   ],
+   "titre": "Du cuivre déposé à la charge échangée",
+   "type": "etape"
+  },
+  "exemple_dosage": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\tfrac{n(MnO_4^-)}{1} = \\tfrac{n(Fe^{2+})}{5} \\text{ à l'équivalence}",
+    "\\text{données : } C = 2{,}00 \\times 10^{-2}\\ \\text{mol/L},\\ V_E = 10{,}0\\ \\text{mL},\\ V_{Fe} = 20{,}0\\ \\text{mL}",
+    "C_{Fe} = \\tfrac{5 \\times 2{,}00 \\times 10^{-2} \\times 10{,}0}{20{,}0} = 5{,}00 \\times 10^{-2}\\ \\text{mol/L}"
+   ],
+   "titre": "Calculer la concentration dosée à l'équivalence",
+   "type": "etape"
+  },
+  "exemple_sulfate": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\text{ion sulfate } SO_4^{2-} \\text{ : soit } x \\text{ le n.o. du soufre}",
+    "x + 4 \\times (-2) = -2 \\Rightarrow x = +6",
+    "\\text{le soufre est au degré } +VI"
+   ],
+   "titre": "Le n.o. du soufre dans l'ion sulfate",
+   "type": "etape"
+  },
+  "fem": {
+   "kicker": "Caractéristiques électriques",
+   "tex": [
+    "E \\approx 1{,}10\\ \\text{V} \\text{ : f.é.m. de la Daniell (conditions standard)}",
+    "\\text{courant conventionnel : du pôle } + \\text{ vers le pôle } -",
+    "\\text{électrons : du pôle } - \\text{ vers le pôle } + \\text{, en sens inverse}"
+   ],
+   "titre": "La force électromotrice et le sens du courant",
+   "type": "etape"
+  },
+  "hydrogene_combustions": {
+   "kicker": "Le cas du dihydrogène",
+   "tex": [
+    "2H_2 + O_2 \\rightarrow 2H_2O",
+    "H_2 + Cl_2 \\rightarrow 2HCl \\text{ : combustion sans oxygène}",
+    "\\text{oxydation } \\neq \\text{ fixation d'oxygène : transfert d'électrons}"
+   ],
+   "titre": "Brûler sans oxygène : la preuve par le dichlore",
+   "type": "etape"
+  },
+  "identifier_redox": {
+   "kicker": "Identifier une oxydoréduction",
+   "tex": [
+    "\\text{redox : les n.o. d'au moins deux éléments changent}",
+    "\\text{n.o. augmente : oxydation} \\qquad \\text{n.o. diminue : réduction}",
+    "Mg + Cl_2 \\rightarrow MgCl_2 : Mg\\ 0 \\rightarrow +II \\text{ ; } Cl\\ 0 \\rightarrow -I"
+   ],
+   "titre": "Le sens de variation du n.o. dit tout",
+   "type": "etape"
+  },
+  "industrie_acides": {
+   "kicker": "Applications industrielles : oxyder",
+   "tex": [
+    "\\text{acide nitrique (Ostwald) : } 4NH_3 + 5O_2 \\rightarrow 4NO + 6H_2O",
+    "\\text{puis } 2NO + O_2 \\rightarrow 2NO_2 \\text{ et } 3NO_2 + H_2O \\rightarrow 2HNO_3 + NO",
+    "2SO_2 + O_2 \\rightarrow 2SO_3 \\qquad SO_3 + H_2O \\rightarrow H_2SO_4 \\text{ (contact)}"
+   ],
+   "titre": "Les grands acides par oxydations en cascade",
+   "type": "etape"
+  },
+  "industrie_reductions": {
+   "kicker": "Applications industrielles : réduire",
+   "tex": [
+    "\\text{sidérurgie : } Fe_2O_3 + 3CO \\rightarrow 2Fe + 3CO_2 \\text{ (haut fourneau)}",
+    "\\text{aluminothermie : } 2Al + Cr_2O_3 \\rightarrow Al_2O_3 + 2Cr",
+    "\\text{principe : le n.o. prévoit et équilibre la transformation}"
+   ],
+   "titre": "Sidérurgie et aluminothermie",
+   "type": "etape"
+  },
+  "intro_combustions": {
+   "kicker": "La voie sèche",
+   "texte": "Par voie sèche : brûler, compter les électrons, produire.",
+   "type": "phrase"
+  },
+  "intro_potentiels": {
+   "kicker": "Classer les couples",
+   "texte": "Un nombre pour classer les couples : le potentiel normal.",
+   "type": "phrase"
+  },
+  "notation": {
+   "kicker": "Notation conventionnelle",
+   "note": "De gauche à droite : anode, sa solution, pont salin, solution, cathode.",
+   "tex": "Zn_{(s)}\\ |\\ Zn^{2+}_{(aq)}\\ ||\\ Cu^{2+}_{(aq)}\\ |\\ Cu_{(s)}",
+   "type": "formule"
+  },
+  "polarite": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "transfert_electrons_fig"
+   },
+   "kicker": "Polarité et équations",
+   "tex": [
+    "\\text{anode } (-) : Zn \\rightarrow Zn^{2+} + 2e^- \\text{ (oxydation)}",
+    "\\text{cathode } (+) : Cu^{2+} + 2e^- \\rightarrow Cu \\text{ (réduction)}",
+    "\\text{bilan : } Zn + Cu^{2+} \\rightarrow Zn^{2+} + Cu"
+   ],
+   "titre": "Le zinc s'oxyde, le cuivre se réduit",
+   "type": "etape"
+  },
+  "potentiels": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "echelle_redox_fig"
+   },
+   "kicker": "Les potentiels normaux",
+   "tex": [
+    "\\text{chaque couple a son } E^\\circ \\text{ (conditions standard)}",
+    "\\text{plus } E^\\circ \\text{ est élevé, plus l'oxydant est fort}",
+    "MnO_4^-/Mn^{2+} : +1{,}51\\ \\text{V} \\qquad Fe^{3+}/Fe^{2+} : +0{,}77\\ \\text{V}"
+   ],
+   "titre": "Plus E° est élevé, plus l'oxydant est fort",
+   "type": "etape"
+  },
+  "prevision_hcl": {
+   "kicker": "Prévoir les réactions",
+   "tex": [
+    "\\text{l'oxydant le plus fort est réduit ; le réducteur le plus fort est oxydé}",
+    "\\text{cathode : } 2H_3O^+ + 2e^- \\rightarrow H_2 + 2H_2O",
+    "\\text{anode : } 2Cl^- \\rightarrow Cl_2 + 2e^-"
+   ],
+   "titre": "Exemple : l'électrolyse de l'acide chlorhydrique",
+   "type": "etape"
+  },
+  "quantitatif_electrolyse": {
+   "kicker": "Aspects quantitatifs",
+   "tex": [
+    "Q = I \\times t \\qquad n(e^-) = \\tfrac{Q}{F} = \\tfrac{I \\times t}{F}",
+    "\\text{exemple : } I = 2{,}00\\ \\text{A},\\ t = 30\\ \\text{min} = 1800\\ \\text{s}",
+    "n(e^-) = \\tfrac{2{,}00 \\times 1800}{96500} = 3{,}73 \\times 10^{-2}\\ \\text{mol}",
+    "n(Cu) = \\tfrac{n(e^-)}{2} = 1{,}87 \\times 10^{-2}\\ \\text{mol} \\rightarrow m = 1{,}19\\ \\text{g}"
+   ],
+   "titre": "Exemple résolu : la loi de Faraday à l'œuvre",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Pile : énergie chimique → électrique",
+    "Anode - : oxydation ; cathode + : réduction",
+    "Bilan : sans électrons apparents",
+    "F.é.m. au voltmètre, circuit ouvert",
+    "ESH : E° = 0 V, la référence"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "E° élevé : oxydant fort",
+    "Dosage : proportions stœchiométriques",
+    "Électrolyse : réaction forcée",
+    "Faraday : Q = It et n(e-) = Q/F",
+    "Corrosion : revêtir ou sacrifier"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Combustion : redox par voie sèche",
+    "n.o. : charge fictive, règles simples",
+    "n.o. monte : oxydation ; baisse : réduction",
+    "Équilibrer par les variations de n.o.",
+    "Industrie : fer, chrome, grands acides"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "regles_no": {
+   "kicker": "Les règles d'attribution",
+   "tex": [
+    "\\text{corps simple : } 0 \\qquad \\text{ion monoatomique : sa charge}",
+    "O : -II \\text{ (peroxydes : } -I\\text{)} \\qquad H : +I \\text{ (hydrures : } -I\\text{)}",
+    "F : -I \\qquad \\text{alcalins : } +I \\qquad \\text{alcalino-terreux : } +II",
+    "\\text{somme des n.o. } = \\text{ charge totale de l'espèce}"
+   ],
+   "titre": "Cinq règles pour déterminer un n.o.",
+   "type": "etape"
+  },
+  "surtension_nacl": {
+   "kicker": "Surtension et saumure",
+   "tex": [
+    "\\text{surtension : tension réelle } > \\text{ tension théorique}",
+    "\\text{cathode : } 2H_2O + 2e^- \\rightarrow H_2 + 2OH^-",
+    "\\text{anode : } 2Cl^- \\rightarrow Cl_2 + 2e^- \\text{ (surtension de } O_2\\text{)}",
+    "\\text{bilan : } 2H_2O + 2Cl^- \\rightarrow H_2 + Cl_2 + 2OH^-"
+   ],
+   "titre": "Exemple résolu : l'électrolyse du chlorure de sodium",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "pile_daniell_fig"
+   },
+   "kicker": "Chimie · Oxydoréduction",
+   "sous": "La pile Daniell et les potentiels, les dosages et l'électrolyse, puis les combustions et le nombre d'oxydation",
+   "titre": "L'oxydoréduction en action : piles, électrolyse et nombre d'oxydation",
+   "type": "titre"
+  }
+ },
+ "matiere": "Chimie",
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'oxydoréduction appliquée, celui où le transfert d'électrons devient utile. Nous commencerons par les piles, qui transforment une réaction spontanée en courant électrique, avec la pile Daniell comme modèle et l'électrode à hydrogène comme référence. Nous verrons ensuite comment les potentiels classent les couples, comment on dose par oxydoréduction, et comment l'électrolyse force au contraire les réactions, avant de parler corrosion. Nous terminerons par les combustions et le nombre d'oxydation, l'outil qui suit les électrons et équilibre les équations, jusqu'aux procédés industriels.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Piles, dosages, électrolyse, combustions : le fil, c'est l'électron."
+  },
+  {
+   "dit": "Une pile de lampe torche, le dosage d'un produit au laboratoire, la rouille qui ronge une coque de navire, la flamme d'un chalumeau : quatre scènes sans rapport apparent. Pourtant, un même acteur les relie toutes : l'électron, qui passe d'une espèce chimique à une autre. Ce cours suit ce fil rouge, du courant produit par une pile jusqu'aux hauts fourneaux de la sidérurgie.",
+   "ecran": "accroche",
+   "id": "p02",
+   "texte": "Pile, dosage, rouille, flamme : le même transfert d'électrons."
+  },
+  {
+   "dit": "Définition d'abord. Une pile est un système qui convertit l'énergie chimique en énergie électrique, grâce à une réaction d'oxydoréduction spontanée. Le principe repose sur le transfert d'électrons entre deux couples oxydant-réducteur, mais réalisé de manière séparée, dans deux compartiments distincts. Les électrons ne passent plus directement d'une espèce à l'autre : ils sont contraints d'emprunter un circuit extérieur, et c'est ce détour forcé qui engendre le courant électrique.",
+   "ecran": "definition_pile",
+   "id": "p03",
+   "texte": "Une pile : l'énergie chimique devient électrique."
+  },
+  {
+   "dit": "Le modèle historique est la pile Daniell, constituée de deux demi-piles reliées par un pont salin, comme le montre la figure. Première demi-pile : une lame de zinc plongeant dans une solution de sulfate de zinc ; le couple mis en jeu est ion zinc sur zinc. Deuxième demi-pile : une lame de cuivre plongeant dans une solution de sulfate de cuivre ; le couple est ion cuivre sur cuivre. Le pont salin, un tube contenant un gel ionique, souvent du chlorure de potassium, assure la continuité électrique entre les deux solutions : il laisse circuler les ions, ce qui maintient l'électroneutralité de chaque solution.",
+   "ecran": "constitution_daniell",
+   "id": "p04",
+   "texte": "Deux demi-piles, un pont salin : la pile Daniell."
+  },
+  {
+   "dit": "Qui donne, qui reçoit ? Le zinc, plus réducteur que le cuivre, s'oxyde : il cède des électrons. Cette oxydation a lieu à l'anode, l'électrode de zinc, qui est le pôle négatif de la pile. Les électrons libérés circulent dans le circuit extérieur jusqu'à la lame de cuivre, où les ions cuivre sont réduits en métal cuivre : c'est la cathode, le pôle positif. En additionnant les deux demi-équations membre à membre, les électrons disparaissent et on obtient l'équation-bilan du fonctionnement : le zinc réagit avec les ions cuivre pour donner des ions zinc et du cuivre métallique.",
+   "ecran": "polarite",
+   "id": "p05",
+   "texte": "Anode (-) : Zn s'oxyde ; cathode (+) : Cu se dépose."
+  },
+  {
+   "dit": "Deux caractéristiques électriques à retenir. La force électromotrice, notée E, se mesure en volts à l'aide d'un voltmètre branché entre les deux électrodes, en l'absence de courant, donc en circuit ouvert : pour la pile Daniell dans les conditions standard, elle vaut environ un virgule dix volts. Ensuite, le sens des charges : dans le circuit extérieur, l'intensité du courant conventionnel circule de la cathode, le pôle plus, vers l'anode, le pôle moins, tandis que les électrons, eux, circulent en sens inverse.",
+   "ecran": "fem",
+   "id": "p06",
+   "texte": "F.é.m. ≈ 1,10 V, mesurée en circuit ouvert."
+  },
+  {
+   "dit": "Pour décrire une pile sans dessin, on utilise une notation conventionnelle abrégée, à savoir écrire et à savoir lire le jour de l'examen. On écrit de gauche à droite : l'électrode de l'anode, puis sa solution, puis le pont salin figuré par une double barre, puis la solution de la cathode, et enfin l'électrode de la cathode. Pour la Daniell, cela donne : zinc, ions zinc, double barre, ions cuivre, cuivre. Chaque barre simple marque la frontière entre une électrode et sa solution.",
+   "ecran": "notation",
+   "id": "p07",
+   "texte": "Zn | Zn²⁺ || Cu²⁺ | Cu : la notation de la pile."
+  },
+  {
+   "dit": "Un problème se pose : il est impossible de mesurer le potentiel d'une seule électrode ; on ne mesure jamais qu'une différence de potentiel entre deux électrodes. Il faut donc une référence commune à tous : l'électrode standard à hydrogène, dont le potentiel est fixé à zéro volt par convention. Sa constitution : un fil de platine platiné, recouvert de platine poreux, sur lequel barbote du dihydrogène gazeux à la pression de un bar, le tout plongeant dans une solution acide contenant des ions hydrogène à la concentration de un mol par litre. Associer une demi-pile inconnue à cette référence donne directement le potentiel standard du couple étudié, avec son signe.",
+   "ecran": "esh",
+   "id": "p08",
+   "texte": "L'ESH : platine, H₂, H⁺ à 1 mol/L, E° = 0 V."
+  },
+  {
+   "dit": "Exemple résolu des leçons : une pile Daniell débite un courant, et la masse de l'électrode de cuivre augmente de zéro virgule soixante-quatre grammes. D'abord, identifier les électrodes : le cuivre se dépose, la réduction a donc lieu sur cette électrode ; c'est la cathode, pôle plus, et le zinc est l'anode. Ensuite, calculer la quantité d'électricité échangée. La quantité de matière de cuivre déposé vaut la masse divisée par la masse molaire : zéro virgule zéro un zéro mole. La demi-équation de la cathode montre qu'une mole de cuivre exige deux moles d'électrons : il en a donc circulé zéro virgule zéro deux zéro mole. La charge vaut ce nombre multiplié par la constante de Faraday : environ mille neuf cent trente coulombs.",
+   "ecran": "exemple_daniell",
+   "id": "p09",
+   "texte": "0,64 g de Cu déposé → Q ≈ 1930 C échangés."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Une pile convertit l'énergie chimique en énergie électrique par une réaction d'oxydoréduction spontanée, dont le transfert d'électrons est séparé entre deux demi-piles. À l'anode, le pôle négatif, une oxydation ; à la cathode, le pôle positif, une réduction ; et le bilan s'écrit sans électrons apparents. La force électromotrice se mesure au voltmètre, en circuit ouvert, et la notation conventionnelle décrit la pile en une ligne. Enfin, tous les potentiels se réfèrent à l'électrode standard à hydrogène, fixée à zéro volt. Reste à classer les couples : c'est l'objet de la partie suivante.",
+   "ecran": "recap1",
+   "id": "p10",
+   "texte": "La pile Daniell et sa référence : l'essentiel."
+  },
+  {
+   "dit": "Pour prévoir ces échanges, il faut un classement : chaque couple oxydant-réducteur possède un potentiel normal, un nombre qui mesure son pouvoir. C'est ce classement qui permettra de prévoir les réactions spontanées, de conduire les dosages par oxydoréduction, et même de décider quelles espèces réagiront quand on forcera le courant dans une électrolyse.",
+   "ecran": "intro_potentiels",
+   "id": "p11",
+   "texte": "Classer les couples pour prévoir les réactions."
+  },
+  {
+   "dit": "Chaque couple oxydant-réducteur possède un potentiel normal, noté E zéro, mesuré en volts dans les conditions standard : concentration de un mol par litre et vingt-cinq degrés Celsius. Cette valeur caractérise le pouvoir du couple : plus le potentiel normal est élevé, plus l'oxydant du couple est fort, et plus son réducteur est faible. Le tableau des leçons classe les couples usuels par potentiel croissant, et l'échelle de la figure les replace : en bas, le couple tétrathionate-thiosulfate, à plus zéro virgule zéro huit volts ; en haut, le couple permanganate-manganèse, à plus un virgule cinquante et un volts, l'un des oxydants les plus puissants de la liste.",
+   "ecran": "potentiels",
+   "id": "p12",
+   "texte": "E° mesure le pouvoir oxydant d'un couple."
+  },
+  {
+   "dit": "À chaque couple correspond sa demi-équation électronique, qu'il faut savoir écrire et équilibrer en milieu acide. Pour le permanganate : l'ion permanganate, accompagné de huit ions hydrogène, capte cinq électrons et donne l'ion manganèse et de l'eau. Pour le dichromate : quatorze ions hydrogène et six électrons donnent deux ions chrome et sept molécules d'eau. Les couples simples se retiennent d'un coup d'œil : l'ion fer trois capte un électron, le dichlore et le diiode en captent deux chacun, comme le thiosulfate qui s'oxyde en tétrathionate. Le potentiel normal se lit toujours dans le sens de la réduction écrite ici.",
+   "ecran": "demi_equations",
+   "id": "p13",
+   "texte": "Les demi-équations des grands couples."
+  },
+  {
+   "dit": "Un dosage d'oxydoréduction, ou titrage redox, détermine la concentration d'une espèce en la faisant réagir quantitativement avec une solution titrante de concentration connue. Premier exemple : le dosage des ions fer deux par les ions permanganate, avec le dispositif de la figure. La burette contient le permanganate de potassium, violet ; l'erlenmeyer contient la solution de fer deux, acidifiée par l'acide sulfurique, incolore au départ, posée sur un agitateur magnétique. La réaction de dosage est à l'écran. L'équivalence se repère à l'œil : comme l'ion manganèse formé est incolore, la première goutte de permanganate en excès suffit à colorer durablement la solution en violet.",
+   "ecran": "dosage_fer",
+   "id": "p14",
+   "texte": "Fe²⁺ dosé par MnO₄⁻ : le violet signe l'équivalence."
+  },
+  {
+   "dit": "Exemple résolu : on dose vingt millilitres d'une solution de fer deux acidifiée par le permanganate, de concentration deux centièmes de mol par litre ; le volume versé à l'équivalence est de dix millilitres. À l'équivalence, les réactifs ont été introduits dans les proportions stœchiométriques de la réaction : la quantité de permanganate, divisée par un, égale la quantité de fer deux, divisée par cinq. On en tire la concentration inconnue : cinq fois la concentration du titrant, multipliée par le volume équivalent, le tout divisé par le volume dosé, soit cinq centièmes de mol par litre.",
+   "ecran": "exemple_dosage",
+   "id": "p15",
+   "texte": "À l'équivalence : C(Fe²⁺) = 5,00×10⁻² mol/L."
+  },
+  {
+   "dit": "Deuxième dosage classique : le diiode par les ions thiosulfate. Le diiode, brun en solution, est dosé en présence d'empois d'amidon, un indicateur qui prend une coloration bleu foncé en présence de diiode. La réaction est à l'écran : le diiode oxyde le thiosulfate en tétrathionate et se réduit en ions iodure. À l'équivalence, la quantité de diiode vaut la moitié de la quantité de thiosulfate versé, conformément aux coefficients de l'équation. Le repérage est spectaculaire : dès que tout le diiode a disparu, la couleur bleue s'efface d'un coup.",
+   "ecran": "dosage_iode",
+   "id": "p16",
+   "texte": "I₂ dosé par le thiosulfate : adieu le bleu."
+  },
+  {
+   "dit": "Changeons de régime : l'électrolyse est une transformation chimique forcée. Elle consomme de l'énergie électrique pour provoquer une réaction non spontanée : c'est le générateur qui impose le sens du courant, comme le montre la figure. Les électrons arrivent par la cathode et repartent par l'anode. Les réactions, elles, gardent leurs définitions : à la cathode, reliée au pôle moins du générateur, a lieu une réduction, un gain d'électrons ; à l'anode, reliée au pôle plus, a lieu une oxydation, une perte d'électrons. Attention au piège : par rapport à la pile, les signes des électrodes sont inversés, mais jamais les noms des réactions.",
+   "ecran": "electrolyse_principe",
+   "id": "p17",
+   "texte": "Électrolyse : le générateur force la réaction."
+  },
+  {
+   "dit": "Comment prévoir les réactions d'une électrolyse ? En l'absence de surtension, la règle est simple : parmi toutes les espèces présentes, c'est l'oxydant le plus fort, celui du couple de plus haut potentiel, qui est réduit à la cathode ; et c'est le réducteur le plus fort, celui du couple de plus bas potentiel, qui est oxydé à l'anode. Exemple : l'électrolyse d'une solution d'acide chlorhydrique, où coexistent l'eau, les ions oxonium et les ions chlorure. À la cathode, les ions oxonium sont réduits en dihydrogène. À l'anode, ce sont les ions chlorure qui sont oxydés en dichlore.",
+   "ecran": "prevision_hcl",
+   "id": "p18",
+   "texte": "Prévoir : le plus fort oxydant est réduit."
+  },
+  {
+   "dit": "Un phénomène peut inverser ces prévisions : la surtension, l'écart entre la tension théorique et la tension réelle nécessaire pour qu'une réaction se produise à une électrode. Elle dépend de la nature des électrodes et des espèces. Exemple résolu : l'électrolyse d'une solution de chlorure de sodium avec des électrodes de graphite. À la cathode, c'est l'eau qui est réduite en dihydrogène, car l'ion sodium n'est pas réductible en solution aqueuse. À l'anode, la surtension du dioxygène sur le carbone étant élevée, ce sont les ions chlorure qui sont oxydés en dichlore, et non l'eau en dioxygène. Le bilan global est à l'écran.",
+   "ecran": "surtension_nacl",
+   "id": "p19",
+   "texte": "Saumure électrolysée : H₂ et Cl₂, grâce à la surtension."
+  },
+  {
+   "dit": "Cas particulier élégant : l'électrolyse à anode soluble. L'anode est constituée du métal même que l'on veut purifier ou déposer : elle est oxydée, le métal se dissout sous forme d'ions, traverse la solution et se redépose à la cathode. Exemple avec une solution de sulfate de cuivre et une anode de cuivre : à l'anode, le cuivre se dissout et l'électrode s'use ; à la cathode, les ions cuivre se réduisent en un dépôt de cuivre pur. Deux applications industrielles majeures : la purification du cuivre et la galvanoplastie, le dépôt d'un métal sur un objet.",
+   "ecran": "anode_soluble",
+   "id": "p20",
+   "texte": "Anode soluble : le cuivre se dissout et se redépose."
+  },
+  {
+   "dit": "L'électrolyse se calcule, avec les mêmes outils que la pile. La quantité d'électricité transférée vaut l'intensité multipliée par la durée, en coulombs. La quantité de matière d'électrons s'en déduit en divisant par la constante de Faraday. Exemple résolu : un courant de deux ampères traverse pendant trente minutes la cellule à anode soluble de cuivre. Les électrons échangés représentent trois virgule soixante-treize centièmes de mole. Comme chaque atome de cuivre dissous libère deux électrons, la quantité de cuivre vaut la moitié : un virgule quatre-vingt-sept centièmes de mole, soit une masse dissoute de un virgule dix-neuf grammes.",
+   "ecran": "quantitatif_electrolyse",
+   "id": "p21",
+   "texte": "2,00 A pendant 30 min : 1,19 g de cuivre dissous."
+  },
+  {
+   "dit": "Dernier volet de cette partie : la corrosion, l'oxydation d'un métal par son environnement, en présence d'eau, de dioxygène et d'ions. Le fer, par exemple, s'oxyde en ions fer deux, puis en rouille. Deux familles de protections. D'abord le revêtement : peinture, vernis, ou un métal déposé en surface, comme le zinc sur le fer dans la galvanisation. Ensuite la protection cathodique : le métal à protéger est relié à un métal plus réducteur, une anode sacrificielle qui s'oxyde à sa place. Ainsi, un bloc de zinc fixé sur la coque en acier d'un navire se sacrifie lentement, pendant que le fer, devenu cathode, reste intact, comme le schématise la figure.",
+   "ecran": "corrosion",
+   "id": "p22",
+   "texte": "Corrosion : revêtir le métal, ou sacrifier un zinc."
+  },
+  {
+   "dit": "Récapitulons cette deuxième partie. Le potentiel normal classe les couples : plus il est élevé, plus l'oxydant est fort. Dans un dosage, l'équivalence livre la concentration inconnue grâce aux proportions stœchiométriques, qu'un changement de couleur signale. L'électrolyse, elle, force les réactions : réduction à la cathode négative, oxydation à l'anode positive, quantités gouvernées par la loi de Faraday, et prévisions parfois bousculées par la surtension. Quant à la corrosion, c'est une oxydation subie, que l'on combat par revêtement ou par anode sacrificielle.",
+   "ecran": "recap2",
+   "id": "p23",
+   "texte": "Potentiels, dosages, électrolyse : l'essentiel."
+  },
+  {
+   "id": "p24",
+   "ecran": "intro_combustions",
+   "texte": "Par voie sèche : brûler et compter les électrons.",
+   "dit": "Quittons les solutions pour la voie sèche : les combustions, où le transfert d'électrons se fait sans solvant, dans les gaz et les solides. Pour suivre ces réactions, un outil de comptabilité s'impose : le nombre d'oxydation, qui attribue à chaque atome une charge fictive et rend les échanges d'électrons lisibles, jusqu'à équilibrer les grandes équations de l'industrie."
+  },
+  {
+   "id": "p25",
+   "ecran": "combustions",
+   "texte": "Combustion : combustible + comburant, énergie libérée.",
+   "dit": "Une combustion est une réaction chimique exothermique entre un combustible, qui joue le rôle de réducteur, et un comburant, l'oxydant, souvent le dioxygène. Dans ce chapitre, les combustions sont étudiées par voie sèche, en phase gazeuse ou solide, sans solvant. Premier exemple : le ruban de magnésium brûle dans le dioxygène avec une flamme éclatante, et donne l'oxyde de magnésium. Le carbone, lui, brûle en dioxyde de carbone. Dans tous les cas, le schéma est le même : un transfert d'électrons du combustible, qui est oxydé, vers le comburant, qui est réduit."
+  },
+  {
+   "id": "p26",
+   "ecran": "hydrogene_combustions",
+   "texte": "H₂ brûle aussi dans Cl₂ : l'oxydation sans oxygène.",
+   "dit": "Deuxième exemple : la combustion du dihydrogène. Dans le dioxygène, elle donne de l'eau, selon l'équation attendue. Mais le dihydrogène brûle aussi dans le dichlore, en donnant du chlorure d'hydrogène, alors qu'il n'y a aucun atome d'oxygène dans les parages. C'est la preuve que l'oxydation ne se réduit pas à une fixation d'oxygène : c'est un transfert d'électrons, et le dichlore y joue le même rôle d'oxydant que le dioxygène. Cette vision par les électrons prépare l'outil de comptage qui suit."
+  },
+  {
+   "id": "p27",
+   "ecran": "definition_no",
+   "texte": "Le n.o. : une charge fictive qui suit les électrons.",
+   "dit": "Voici cet outil : le nombre d'oxydation, ou degré d'oxydation, d'un élément dans une espèce chimique. Il représente la charge fictive que porterait l'atome si tous les électrons de ses liaisons étaient attribués à l'atome le plus électronégatif de chaque liaison. Fictive, donc : ce n'est pas une charge réelle, mais une convention de comptabilité. Son intérêt est immense : en suivant la variation des nombres d'oxydation, on repère qui perd et qui gagne des électrons, sans écrire toutes les demi-équations."
+  },
+  {
+   "id": "p28",
+   "ecran": "regles_no",
+   "texte": "Cinq règles pour attribuer les nombres d'oxydation.",
+   "dit": "Les règles de détermination tiennent en cinq points. Un élément à l'état natif, corps simple comme le magnésium ou le dioxygène, a un nombre d'oxydation de zéro. Pour un ion monoatomique, il égale simplement la charge : plus deux pour l'ion magnésium, moins un pour l'ion chlorure. Dans les composés, l'oxygène vaut en général moins deux, sauf dans les peroxydes où il vaut moins un ; l'hydrogène vaut plus un, sauf dans les hydrures métalliques où il vaut moins un. Le fluor vaut toujours moins un ; les métaux alcalins, plus un ; les alcalino-terreux, plus deux. Bouclage : la somme algébrique des nombres d'oxydation de tous les atomes d'une espèce égale la charge totale de l'espèce, zéro pour une molécule."
+  },
+  {
+   "id": "p29",
+   "ecran": "exemple_sulfate",
+   "texte": "Dans SO₄²⁻, le soufre est au degré +VI.",
+   "dit": "Exemple résolu : déterminer le nombre d'oxydation du soufre dans l'ion sulfate. Le savoir-faire consiste à poser l'équation de la règle de la somme. Soit x le nombre d'oxydation cherché. L'oxygène vaut moins deux, et il y en a quatre ; la somme doit égaler la charge de l'ion, moins deux. Donc x moins huit égale moins deux, et x égale plus six. Le soufre est au degré d'oxydation plus six, le maximum pour cet élément : dans le sulfate, il a fictivement cédé tous ses électrons de valence."
+  },
+  {
+   "id": "p30",
+   "ecran": "identifier_redox",
+   "texte": "Mg + Cl₂ : les n.o. désignent oxydant et réducteur.",
+   "dit": "À quoi sert ce compteur ? D'abord à identifier une réaction d'oxydoréduction : c'en est une si les nombres d'oxydation d'au moins deux éléments changent entre réactifs et produits. Et le sens de la variation dit tout : une augmentation du nombre d'oxydation signale une oxydation, une perte d'électrons ; une diminution signale une réduction, un gain d'électrons. Exemple résolu : le magnésium réagit avec le dichlore pour donner le chlorure de magnésium. Le magnésium passe de zéro à plus deux : il est oxydé, c'est le réducteur. Le chlore passe de zéro à moins un : il est réduit, c'est l'oxydant. Le diagnostic est immédiat."
+  },
+  {
+   "id": "p31",
+   "ecran": "equilibrer_no",
+   "texte": "L'aluminothermie équilibrée par les n.o.",
+   "dit": "Deuxième usage : équilibrer une équation-bilan. La méthode compte quatre temps : identifier les éléments dont le nombre d'oxydation change ; calculer la variation par atome ; placer des coefficients pour que les électrons perdus égalent les électrons gagnés ; équilibrer enfin les autres atomes. Exemple résolu, la célèbre aluminothermie : l'aluminium passe de zéro à plus trois, il perd trois électrons par atome ; le fer passe de plus trois à zéro, il en gagne trois par atome, donc six pour les deux atomes de fer de l'oxyde. Il faut donc deux atomes d'aluminium, qui cèdent six électrons. L'équation s'équilibre, et la vérification atome par atome confirme : aluminium, fer et oxygène sont conservés."
+  },
+  {
+   "id": "p32",
+   "ecran": "industrie_reductions",
+   "texte": "Haut fourneau et aluminothermie : réduire les oxydes.",
+   "dit": "Ces outils irriguent l'industrie lourde, et le tableau des leçons en donne la carte. Dans le haut fourneau de la sidérurgie, le minerai de fer, un oxyde, est réduit par le monoxyde de carbone en fer métallique : c'est une oxydoréduction géante. L'aluminothermie, notre exemple d'équilibrage, réduit les oxydes métalliques par l'aluminium dans une réaction très exothermique : elle produit ainsi le chrome à partir de son oxyde. Principe commun à tous ces procédés : transformer des matières premières en produits à valeur ajoutée, avec des transformations que les nombres d'oxydation permettent de prévoir et d'équilibrer."
+  },
+  {
+   "id": "p33",
+   "ecran": "industrie_acides",
+   "texte": "Ostwald et contact : oxyder pour fabriquer les acides.",
+   "dit": "L'industrie des acides fonctionne sur le même principe, en oxydant au lieu de réduire. Pour l'acide nitrique, le procédé Ostwald oxyde l'ammoniac, en présence d'un catalyseur, en monoxyde d'azote, lequel s'oxyde encore en dioxyde d'azote, qui réagit avec l'eau pour donner l'acide nitrique. Pour l'acide sulfurique, le procédé de contact oxyde le dioxyde de soufre en trioxyde de soufre, ensuite hydraté en acide. À chaque étape, le nombre d'oxydation de l'azote ou du soufre grimpe : ce sont des oxydations en cascade, pensées et équilibrées grâce au compteur que vous maîtrisez désormais."
+  },
+  {
+   "id": "p34",
+   "ecran": "recap_final",
+   "texte": "Combustions et nombre d'oxydation : l'essentiel.",
+   "dit": "Récapitulons cette dernière partie, et le cours entier. Une combustion est une oxydation par voie sèche, souvent par le dioxygène, mais le dichlore peut jouer le même rôle : l'oxydation est un transfert d'électrons. Le nombre d'oxydation, charge fictive calculée par quelques règles simples, permet de suivre ces transferts : il augmente dans une oxydation, diminue dans une réduction. Il sert à équilibrer les équations-bilan et à comprendre les procédés industriels, de la sidérurgie aux acides nitrique et sulfurique. Des piles aux hauts fourneaux, un seul fil rouge : les électrons qui changent de mains."
+  }
+ ],
+ "titre": "L'oxydoréduction en action : piles, électrolyse et nombre d'oxydation",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La pile Daniell et l'électrode de référence"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Potentiels, dosages redox, électrolyse et corrosion",
+   "pont": {
+    "texte": "Partie 2 : potentiels, dosages redox, électrolyse et corrosion.",
+    "dit": "Partie deux : classer, doser, forcer. Nous allons d'abord classer les couples par leur potentiel normal, puis doser par oxydoréduction, avec le permanganate et le thiosulfate. Nous forcerons ensuite les réactions par l'électrolyse, avant de voir comment la corrosion attaque les métaux et comment on les protège."
+   }
+  },
+  {
+   "debut": "p24",
+   "sous_titre": "Combustions, nombre d'oxydation et industrie",
+   "pont": {
+    "texte": "Partie 3 : combustions, nombre d'oxydation et industrie.",
+    "dit": "Partie trois : la voie sèche et le compteur d'électrons. Nous étudierons les combustions, ces oxydoréductions sans solvant, puis le nombre d'oxydation, qui permet de repérer les échanges d'électrons et d'équilibrer les équations, jusqu'aux grands procédés industriels."
+   }
+  }
+ ]
+}

@@ -1,0 +1,447 @@
+{
+ "cours": 6741,
+ "titre": "Compter la matière : maille cristalline et analyse élémentaire",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Cristaux et analyse élémentaire",
+   "titre": "Compter la matière : maille cristalline et analyse élémentaire",
+   "sous": "La maille du chlorure de sodium et sa formule statistique, puis la mise en évidence des éléments d'un composé organique et sa formule brute",
+   "anim": {
+    "nom": "maille_nacl_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "Un cristal de sel parfaitement ordonné, une pincée de sucre que l'on brûle : deux façons de compter la matière."
+  },
+  "maille": {
+   "type": "etape",
+   "kicker": "La maille : notion fondamentale",
+   "titre": "La brique élémentaire du cristal",
+   "tex": [
+    "\\text{solide cristallin : un arrangement périodique et ordonné}",
+    "\\text{la maille : le plus petit motif élémentaire}",
+    "\\text{répétée dans les 3 directions, elle reproduit le cristal}"
+   ]
+  },
+  "structure_nacl": {
+   "type": "etape",
+   "kicker": "La structure du chlorure de sodium",
+   "titre": "Un cube, deux ions, une alternance parfaite",
+   "tex": [
+    "Cl^- \\text{ (gros ions) : 8 sommets + centres des 6 faces}",
+    "Na^+ \\text{ (petits ions) : milieux des 12 arêtes + centre}",
+    "\\text{coordinence 6 : chaque } Na^+ \\text{ entouré de 6 } Cl^-",
+    "\\text{alternance régulière : neutralité électrique locale}"
+   ]
+  },
+  "formule_stat": {
+   "type": "etape",
+   "kicker": "La formule statistique",
+   "titre": "Le rapport minimal qui assure la neutralité",
+   "tex": [
+    "\\text{le rapport minimal des nombres d'ions dans la maille}",
+    "\\text{elle traduit la neutralité électrique globale du cristal}",
+    "\\text{à ne pas confondre avec la formule d'une molécule}"
+   ]
+  },
+  "partage": {
+   "type": "etape",
+   "kicker": "Les règles de partage",
+   "titre": "Chaque position a sa contribution",
+   "tex": [
+    "\\text{sommet : partagé entre 8 mailles} \\rightarrow \\tfrac{1}{8}",
+    "\\text{centre d'une face : partagé entre 2 mailles} \\rightarrow \\tfrac{1}{2}",
+    "\\text{milieu d'une arête : partagé entre 4 mailles} \\rightarrow \\tfrac{1}{4}",
+    "\\text{centre du cube : il appartient à la maille} \\rightarrow 1"
+   ]
+  },
+  "comptage_cl": {
+   "type": "etape",
+   "kicker": "Exemple résolu : compter les chlorures",
+   "titre": "Huit sommets et six faces",
+   "tex": [
+    "8\\ \\text{sommets} \\times \\tfrac{1}{8} = 1\\ \\text{ion } Cl^-",
+    "6\\ \\text{faces} \\times \\tfrac{1}{2} = 3\\ \\text{ions } Cl^-",
+    "\\text{total : } 1 + 3 = 4\\ \\text{ions } Cl^- \\text{ par maille}"
+   ]
+  },
+  "comptage_na": {
+   "type": "etape",
+   "kicker": "Exemple résolu : compter les sodiums",
+   "titre": "Douze arêtes et un centre",
+   "tex": [
+    "12\\ \\text{arêtes} \\times \\tfrac{1}{4} = 3\\ \\text{ions } Na^+",
+    "1\\ \\text{centre} \\times 1 = 1\\ \\text{ion } Na^+",
+    "\\text{total : } 3 + 1 = 4\\ \\text{ions } Na^+ \\text{ par maille}"
+   ]
+  },
+  "formule_nacl": {
+   "type": "formule",
+   "kicker": "La formule statistique de NaCl",
+   "tex": "\\boxed{NaCl}",
+   "note": "Rapport 4 : 4, donc 1 : 1 — la maille contient 4 motifs NaCl."
+  },
+  "generalisation": {
+   "type": "etape",
+   "kicker": "Généralisation : le fluorure de calcium",
+   "titre": "La même méthode pour les composés AB et AB₂",
+   "tex": [
+    "\\text{même méthode pour les composés de type } AB \\text{ ou } AB_2",
+    "CaF_2 \\text{ : 4 ions } Ca^{2+} \\text{ et 8 ions } F^- \\text{ par maille}",
+    "4 : 8 = 1 : 2 \\qquad 4 \\times (+2) + 8 \\times (-1) = 0"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Maille : le plus petit motif du cristal",
+    "NaCl : Cl⁻ sommets et faces, Na⁺ arêtes",
+    "Partage : 1/8, 1/2, 1/4, puis 1 au centre",
+    "Comptage : 4 Na⁺ et 4 Cl⁻ par maille",
+    "Formule statistique : NaCl, 4 motifs"
+   ]
+  },
+  "definition_orga": {
+   "type": "etape",
+   "kicker": "Qu'est-ce que la chimie organique ?",
+   "titre": "La chimie des composés du carbone",
+   "tex": [
+    "\\text{les composés du carbone : C, souvent associé à H, O, N}",
+    "\\text{la matière vivante : glucides, lipides, protéines}",
+    "\\text{médicaments, plastiques, textiles, carburants}"
+   ]
+  },
+  "comparatif": {
+   "type": "etape",
+   "kicker": "Composé organique contre composé ionique",
+   "titre": "Deux mondes, deux comportements",
+   "tex": [
+    "\\text{liaisons covalentes ; fusion souvent basse}",
+    "\\text{non conducteur ; souvent insoluble dans l'eau}",
+    "CH_4 \\text{ : fusion à } -182\\,^\\circ C \\text{, non conducteur}",
+    "NaCl \\text{ (ionique) : fusion à } 801\\,^\\circ C \\text{, conducteur fondu}"
+   ]
+  },
+  "principe": {
+   "type": "etape",
+   "kicker": "Le principe de la mise en évidence",
+   "titre": "Transformer les éléments en gaz identifiables",
+   "tex": [
+    "\\text{chauffer le composé avec } O_2 \\text{ ou l'oxydant } CuO",
+    "\\text{chaque élément devient un produit gazeux identifiable}",
+    "\\text{identifier les gaz, c'est remonter aux éléments}"
+   ]
+  },
+  "protocole": {
+   "type": "etape",
+   "kicker": "L'expérience de mise en évidence",
+   "titre": "Un tube, un oxydant, de la chaleur",
+   "tex": [
+    "\\text{tube à essai : le composé organique + } CuO",
+    "\\text{on chauffe le tube}",
+    "\\text{les gaz produits barbotent dans l'eau de chaux}"
+   ],
+   "anim": {
+    "nom": "analyseur_combustion_fig",
+    "hauteur": 110
+   }
+  },
+  "tests": {
+   "type": "etape",
+   "kicker": "Résultats et interprétations",
+   "titre": "À chaque élément son test",
+   "tex": [
+    "C \\rightarrow CO_2 \\text{ : l'eau de chaux se trouble (précipité blanc)}",
+    "H \\rightarrow H_2O \\text{ : le } CuSO_4 \\text{ anhydre passe du blanc au bleu}",
+    "N \\rightarrow NH_3 \\text{ : le papier pH humide vire au bleu (basique)}",
+    "O \\text{ : aucun test direct}"
+   ]
+  },
+  "exemple_sucre": {
+   "type": "etape",
+   "kicker": "Exemple résolu : le sucre à l'épreuve",
+   "titre": "Deux grammes de sucre chauffés avec CuO",
+   "tex": [
+    "\\text{2 g de sucre chauffés avec } CuO",
+    "\\text{eau de chaux troublée} \\Rightarrow C \\text{ présent}",
+    "CuSO_4 \\text{ devenu bleu} \\Rightarrow H \\text{ présent}",
+    "\\text{l'oxygène : déduit par différence}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Organique : les composés du carbone",
+    "On brûle le composé avec CuO",
+    "CO₂ trouble l'eau de chaux : C prouvé",
+    "H₂O bleuit le CuSO₄ anhydre : H prouvé",
+    "L'oxygène se déduit par différence"
+   ]
+  },
+  "deux_analyses": {
+   "type": "etape",
+   "kicker": "Analyse qualitative et quantitative",
+   "titre": "Quels éléments, et en quelles proportions ?",
+   "tex": [
+    "\\text{qualitative : quels éléments sont présents ?}",
+    "\\text{quantitative : en quelles proportions ?}",
+    "N_2 \\text{ mesuré en volume : la méthode de Dumas}"
+   ]
+  },
+  "formules_calcul": {
+   "type": "etape",
+   "kicker": "Les calculs pour le carbone et l'hydrogène",
+   "titre": "Des gaz pesés aux masses des éléments",
+   "tex": [
+    "m_C = \\tfrac{12}{44} \\times m_{CO_2}",
+    "m_H = \\tfrac{2}{18} \\times m_{H_2O} \\text{ (deux H par molécule d'eau)}",
+    "P_X = \\tfrac{m_X}{m} \\times 100 \\text{ : le pourcentage massique}"
+   ]
+  },
+  "exemple_pourcentages": {
+   "type": "etape",
+   "kicker": "Exemple résolu : une combustion chiffrée",
+   "titre": "Quatre grammes et demi qui en disent long",
+   "tex": [
+    "m = 4{,}6\\ \\text{g} \\rightarrow 8{,}8\\ \\text{g de } CO_2 \\text{ et } 5{,}4\\ \\text{g de } H_2O",
+    "m_C = \\tfrac{12}{44} \\times 8{,}8 = 2{,}4\\ \\text{g} \\Rightarrow P_C = 52{,}2\\ \\%",
+    "m_H = \\tfrac{2}{18} \\times 5{,}4 = 0{,}6\\ \\text{g} \\Rightarrow P_H = 13{,}0\\ \\%"
+   ]
+  },
+  "oxygene": {
+   "type": "etape",
+   "kicker": "L'oxygène par différence",
+   "titre": "Ce qui manque pour faire cent pour cent",
+   "tex": [
+    "m_O = 4{,}6 - 2{,}4 - 0{,}6 = 1{,}6\\ \\text{g} \\Rightarrow P_O = 34{,}8\\ \\%",
+    "52{,}2 + 13{,}0 + 34{,}8 = 100{,}0\\ \\%",
+    "\\text{la somme fait 100 \\% : le composé ne contient que C, H et O}"
+   ]
+  },
+  "methode_brute": {
+   "type": "etape",
+   "kicker": "La méthode de la formule brute",
+   "titre": "Trois gestes, des pourcentages aux entiers",
+   "tex": [
+    "\\text{1. calculer les pourcentages massiques } P_X",
+    "\\text{2. diviser par la masse molaire : } n_X = \\tfrac{P_X}{M_X}",
+    "\\text{3. diviser par le plus petit quotient : des entiers}"
+   ]
+  },
+  "exemple_quotients": {
+   "type": "etape",
+   "kicker": "Exemple résolu : les quotients",
+   "titre": "Le plus petit quotient décide de tout",
+   "tex": [
+    "n_C = \\tfrac{52{,}2}{12} = 4{,}35 \\qquad n_H = \\tfrac{13{,}0}{1} = 13{,}0",
+    "n_O = \\tfrac{34{,}8}{16} = 2{,}18 \\text{ : le plus petit quotient}",
+    "\\text{on divise tout par } 2{,}18"
+   ]
+  },
+  "formule_brute": {
+   "type": "formule",
+   "kicker": "La formule brute du composé",
+   "tex": "C_2H_6O",
+   "note": "Rapports deux, six et un : c'est la formule brute de l'éthanol."
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Brûler, puis peser CO₂ et H₂O",
+    "m(C) = 12/44 × m(CO₂), m(H) = 2/18 × m(H₂O)",
+    "L'oxygène se compte par différence",
+    "Diviser par M, puis par le plus petit",
+    "Formule brute : C₂H₆O, l'éthanol"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "pause_apres": 0.9,
+   "dit": "Bienvenue dans ce cours de chimie consacré à l'art de compter la matière. Nous commencerons par les solides cristallins : nous décrirons la maille du chlorure de sodium, la brique élémentaire de son cristal, et nous apprendrons à compter ses ions pour établir sa formule statistique. Nous changerons ensuite de monde avec la chimie organique : comment prouver qu'un composé contient du carbone et de l'hydrogène ? Puis, en pesant les produits de sa combustion, nous déterminerons sa formule brute.",
+   "texte": "Un cristal à compter, une molécule à analyser."
+  },
+  {
+   "id": "p02",
+   "ecran": "accroche",
+   "dit": "Regardez un cristal de sel de cuisine : ses faces planes et ses angles droits trahissent un ordre parfait, répété des milliards de fois. À l'autre bout de la chimie, une pincée de sucre chauffée dans un tube se décompose en gaz invisibles. Deux scènes très différentes, mais une même démarche : compter. Compter les ions d'un cristal pour trouver sa formule, compter les atomes d'une molécule pour la même raison. Ce cours est une leçon de comptabilité chimique.",
+   "texte": "Compter les ions d'un cristal, peser les atomes d'une molécule."
+  },
+  {
+   "id": "p03",
+   "ecran": "maille",
+   "dit": "Commençons par les cristaux. Un solide cristallin est constitué d'un arrangement périodique et ordonné d'entités chimiques : des ions, des atomes ou des molécules. La maille est le plus petit motif élémentaire de ce cristal : répétée dans les trois directions de l'espace, elle reproduit entièrement le solide. C'est la brique élémentaire du cristal. Pour la décrire, on utilise un modèle éclaté, en perspective, ou un modèle compact. Dans ce cours, nous nous intéresserons à la maille cubique : un cube dont les ions occupent les sommets, les centres des faces, ou le centre.",
+   "texte": "La maille : la brique élémentaire du cristal."
+  },
+  {
+   "id": "p04",
+   "ecran": "structure_nacl",
+   "dit": "Notre exemple est le chlorure de sodium, le sel de table, qui cristallise selon une structure cubique caractéristique, la structure type NaCl, dite aussi structure halite. Dans sa maille, les gros ions chlorure occupent les huit sommets du cube et les centres des six faces. Les petits ions sodium occupent, eux, les milieux des douze arêtes et le centre du cube. Règle de construction : chaque ion sodium est entouré de six ions chlorure, et réciproquement ; on dit que la coordinence est de six pour chaque ion. Cette alternance régulière assure la neutralité électrique locale du cristal.",
+   "texte": "NaCl : Cl⁻ aux sommets et faces, Na⁺ aux arêtes et au centre."
+  },
+  {
+   "id": "p05",
+   "ecran": "formule_stat",
+   "dit": "Que cherche-t-on à écrire ? La formule statistique du composé, appelée aussi formule unitaire. Elle donne le rapport minimal des nombres d'ions présents dans la maille, et elle traduit la neutralité électrique globale du cristal. Attention à ne pas la confondre avec la formule d'une molécule : un cristal ionique est un édifice infini, sans molécules séparées, et la formule statistique ne représente qu'un motif élémentaire qui se répète. Pour l'obtenir, il faut compter les ions qui appartiennent réellement à une maille.",
+   "texte": "La formule statistique : un rapport minimal d'ions."
+  },
+  {
+   "id": "p06",
+   "ecran": "partage",
+   "dit": "Voici les règles de ce comptage, les règles de partage. Un ion situé à un sommet du cube appartient à huit mailles voisines : sa contribution à notre maille n'est que d'un huitième. Un ion situé au centre d'une face appartient à deux mailles : sa contribution est d'un demi. Un ion situé au milieu d'une arête appartient à quatre mailles : sa contribution est d'un quart. Enfin, un ion situé au centre du cube appartient entièrement à la maille : sa contribution vaut un. Retenez ce tableau, c'est lui qui fait tout le calcul.",
+   "texte": "Sommet : 1/8 ; face : 1/2 ; arête : 1/4 ; centre : 1."
+  },
+  {
+   "id": "p07",
+   "ecran": "comptage_cl",
+   "dit": "Exemple résolu : la formule statistique du chlorure de sodium. Première étape, compter les ions chlorure. Ils occupent les sommets : huit sommets, multipliés par un huitième, donnent un ion chlorure. Ils occupent aussi les centres des faces : six faces, multipliées par un demi, donnent trois ions chlorure. Total : un plus trois, c'est-à-dire quatre ions chlorure appartiennent réellement à la maille. Retenez ce nombre, quatre : il servira dans un instant.",
+   "texte": "Cl⁻ : 8 × 1/8 + 6 × 1/2 = 4 par maille."
+  },
+  {
+   "id": "p08",
+   "ecran": "comptage_na",
+   "dit": "Deuxième étape, compter les ions sodium. Ils occupent les milieux des arêtes : douze arêtes, multipliées par un quart, donnent trois ions sodium. Et ils occupent le centre du cube : un centre, multiplié par un, donne un ion sodium. Total : trois plus un, c'est-à-dire quatre ions sodium par maille. La maille contient donc quatre ions sodium et quatre ions chlorure : les charges se compensent exactement, la neutralité est respectée.",
+   "texte": "Na⁺ : 12 × 1/4 + 1 = 4 par maille."
+  },
+  {
+   "id": "p09",
+   "ecran": "formule_nacl",
+   "dit": "Troisième étape : établir la formule statistique. Le rapport entre les ions sodium et les ions chlorure est de quatre pour quatre, c'est-à-dire un pour un. La formule statistique du chlorure de sodium est donc NaCl, exactement celle que vous connaissez. Et comme la maille contient quatre ions de chaque sorte, elle renferme quatre motifs NaCl, quatre unités formulaires. C'est ce nombre, quatre motifs par maille, que les cristallographes retiennent de notre comptage.",
+   "texte": "Rapport 4 : 4, donc 1 : 1 — la formule NaCl."
+  },
+  {
+   "id": "p10",
+   "ecran": "generalisation",
+   "dit": "Généralisons. La même méthode s'applique à tout solide ionique, de type A B ou de type A B deux. Prenons le fluorure de calcium : si une maille contient quatre ions calcium et huit ions fluorure, le rapport est de quatre pour huit, soit un pour deux, et la formule statistique est CaF deux. La neutralité électrique est bien vérifiée : quatre fois plus deux, plus huit fois moins un, égale zéro. Principe général : la formule statistique est toujours le rapport entier le plus simple qui assure la neutralité électrique du cristal.",
+   "texte": "CaF₂ : le rapport 4 : 8 devient 1 : 2."
+  },
+  {
+   "id": "p11",
+   "ecran": "recap1",
+   "dit": "Récapitulons cette première partie. La maille est le plus petit motif répétitif d'un cristal ; dans celle du chlorure de sodium, les ions chlorure occupent les sommets et les centres des faces, les ions sodium les milieux des arêtes et le centre, avec une coordinence de six. Les règles de partage, un huitième, un demi, un quart et un, permettent de compter quatre ions de chaque sorte par maille. Le rapport, un pour un, donne la formule statistique NaCl, et la méthode se généralise aux autres solides ioniques.",
+   "texte": "La maille de NaCl : l'essentiel."
+  },
+  {
+   "id": "p12",
+   "ecran": "definition_orga",
+   "dit": "Changeons de famille de composés. La chimie organique est la branche de la chimie qui étudie les composés contenant l'élément carbone, généralement associé à l'hydrogène, à l'oxygène, à l'azote, et à quelques autres. Son importance est immense : les composés organiques constituent la matière vivante, glucides, lipides et protéines, et ils interviennent partout autour de nous : médicaments, plastiques, textiles, carburants, pesticides. Toute la question de ce volet est expérimentale : comment savoir quels éléments un composé organique contient ?",
+   "texte": "La chimie organique : celle du carbone."
+  },
+  {
+   "id": "p13",
+   "ecran": "comparatif",
+   "dit": "Un composé organique ne se comporte pas comme un composé ionique, et le tableau des leçons le compare point par point. Les liaisons y sont covalentes, là où le composé ionique assemble des métaux et des non-métaux. L'organique est souvent liquide ou solide à basse température de fusion, et il ne conduit pas le courant ; l'ionique est un solide cristallin à haute température de fusion, conducteur à l'état fondu ou en solution, et généralement soluble dans l'eau, là où l'organique y est souvent insoluble. Illustration : le méthane, organique, ne conduit pas le courant et fond à moins cent quatre-vingt-deux degrés ; le chlorure de sodium, ionique, fond à huit cent un degrés et conduit le courant une fois fondu.",
+   "texte": "CH₄ fond à −182 °C ; NaCl à 801 °C."
+  },
+  {
+   "id": "p14",
+   "ecran": "principe",
+   "dit": "Voici le principe général de la mise en évidence des éléments. On chauffe un échantillon du composé organique en présence de dioxygène, ou d'un oxydant comme l'oxyde de cuivre, pour transformer ses éléments en produits gazeux identifiables. Le carbone devient du dioxyde de carbone, l'hydrogène devient de l'eau. La démarche est donc indirecte : on n'observe pas les éléments eux-mêmes, on observe les gaz qu'ils forment, et chaque gaz possède un test caractéristique.",
+   "texte": "Brûler pour identifier : le principe."
+  },
+  {
+   "id": "p15",
+   "ecran": "protocole",
+   "dit": "Le protocole est celui de la figure. On place le composé organique dans un tube à essai, mélangé à de l'oxyde de cuivre, qui joue le rôle d'oxydant. On chauffe le tube. Les gaz produits s'échappent et barbotent dans de l'eau de chaux, le premier de nos réactifs tests. Il ne reste qu'à observer : chaque élément recherché a son produit, son test et son observation positive, que le prochain écran détaille.",
+   "texte": "Composé + CuO, chauffage, eau de chaux."
+  },
+  {
+   "id": "p16",
+   "ecran": "tests",
+   "dit": "Le tableau des résultats est à connaître par cœur. Pour le carbone : le produit formé est le dioxyde de carbone ; le test est l'eau de chaux ; l'observation positive est un précipité blanc, l'eau de chaux se trouble. Pour l'hydrogène : le produit est l'eau ; le test est le sulfate de cuivre anhydre ; l'observation positive est son passage du blanc au bleu. Pour l'azote : le produit est l'ammoniac ; le test est un papier pH humide ; l'observation positive est son virage au bleu, signe d'un gaz basique. Et pour l'oxygène : aucun test direct, nous verrons comment le débusquer autrement.",
+   "texte": "CO₂ trouble, H₂O bleuit, NH₃ vire au bleu."
+  },
+  {
+   "id": "p17",
+   "ecran": "exemple_sucre",
+   "dit": "Exemple résolu : on chauffe deux grammes de sucre avec de l'oxyde de cuivre. Résultat : l'eau de chaux se trouble, et le sulfate de cuivre anhydre devient bleu. Conclusion, en appliquant le tableau : le sucre contient du carbone, puisque le dioxyde de carbone a troublé l'eau de chaux, et de l'hydrogène, puisque de l'eau s'est formée. Quant à l'oxygène, aucun test ne le montre directement : sa présence se déduira par différence, grâce à l'analyse quantitative de la partie suivante.",
+   "texte": "Le sucre chauffé : C et H démontrés."
+  },
+  {
+   "id": "p18",
+   "ecran": "recap2",
+   "dit": "Récapitulons. La chimie organique étudie les composés du carbone, ceux de la matière vivante et de nos matériaux. Pour identifier leurs éléments, on chauffe le composé avec un oxydant : le carbone donne du dioxyde de carbone, qui trouble l'eau de chaux ; l'hydrogène donne de l'eau, qui bleuit le sulfate de cuivre anhydre ; l'azote peut donner de l'ammoniac, qui fait virer le papier pH au bleu. L'oxygène, lui, échappe à tout test direct. Reste à passer du constat aux proportions : c'est l'analyse quantitative.",
+   "texte": "Mise en évidence des éléments : l'essentiel."
+  },
+  {
+   "id": "p19",
+   "ecran": "deux_analyses",
+   "dit": "Distinguons les deux analyses. L'analyse qualitative, celle que nous venons de pratiquer, consiste à identifier les éléments présents dans le composé. L'analyse quantitative va plus loin : elle détermine en quelles proportions, en masse, ces éléments sont présents. Son principe : on pèse précisément une masse de composé organique, on le brûle complètement, puis on pèse les masses de dioxyde de carbone et d'eau formées. Pour l'azote, on mesure le volume de diazote dégagé : c'est la méthode de Dumas. De ces pesées, tout le reste se calcule.",
+   "texte": "Qualitatif : lesquels ? Quantitatif : combien ?"
+  },
+  {
+   "id": "p20",
+   "ecran": "formules_calcul",
+   "dit": "Les calculs pour le carbone et l'hydrogène tiennent en deux formules. La masse de carbone contenue dans l'échantillon vaut la masse de dioxyde de carbone formée, multipliée par douze sur quarante-quatre : en effet, sur les quarante-quatre grammes d'une mole de dioxyde de carbone, douze grammes sont du carbone. La masse d'hydrogène vaut la masse d'eau formée, multipliée par deux sur dix-huit, car chaque molécule d'eau contient deux atomes d'hydrogène. On rapporte ensuite chaque masse à celle de l'échantillon pour obtenir le pourcentage massique de l'élément.",
+   "texte": "Des gaz pesés aux masses des éléments."
+  },
+  {
+   "id": "p21",
+   "ecran": "exemple_pourcentages",
+   "dit": "Exemple résolu, le fil rouge de cette partie : la combustion de quatre virgule six grammes d'un composé organique donne huit virgule huit grammes de dioxyde de carbone et cinq virgule quatre grammes d'eau. Masse de carbone : douze sur quarante-quatre, multiplié par huit virgule huit, égale deux virgule quatre grammes ; le pourcentage massique du carbone vaut donc deux virgule quatre divisé par quatre virgule six, fois cent, soit cinquante-deux virgule deux pour cent. Masse d'hydrogène : deux sur dix-huit, multiplié par cinq virgule quatre, égale zéro virgule six gramme, soit treize pour cent de l'échantillon.",
+   "texte": "4,6 g brûlés : 52,2 % de C, 13,0 % de H."
+  },
+  {
+   "id": "p22",
+   "ecran": "oxygene",
+   "dit": "Et l'oxygène ? Il se compte par différence, comme annoncé. La masse d'oxygène vaut la masse de l'échantillon, moins la masse de carbone, moins la masse d'hydrogène : quatre virgule six, moins deux virgule quatre, moins zéro virgule six, égale un virgule six gramme, soit trente-quatre virgule huit pour cent. Vérification, et c'est un réflexe d'esprit critique à garder : cinquante-deux virgule deux, plus treize, plus trente-quatre virgule huit, font exactement cent pour cent. Le composé ne contient donc que du carbone, de l'hydrogène et de l'oxygène.",
+   "texte": "L'oxygène : 34,8 %, par différence."
+  },
+  {
+   "id": "p23",
+   "ecran": "methode_brute",
+   "dit": "Nous avons les pourcentages ; il faut maintenant la formule brute, celle qui indique la nature et le nombre réel d'atomes de chaque élément dans la molécule. La méthode comporte trois gestes. Premier geste : calculer les pourcentages massiques de chaque élément, ce qui est fait. Deuxième geste : diviser chaque pourcentage par la masse molaire atomique de son élément ; on obtient des quotients proportionnels aux nombres d'atomes. Troisième geste : diviser tous ces quotients par le plus petit d'entre eux, pour obtenir des nombres entiers : la formule brute.",
+   "texte": "La méthode : pourcentages, quotients, entiers."
+  },
+  {
+   "id": "p24",
+   "ecran": "exemple_quotients",
+   "dit": "Exemple résolu, suite et fin de notre fil rouge. Pour le carbone : cinquante-deux virgule deux divisé par douze, égale quatre virgule trente-cinq. Pour l'hydrogène : treize divisé par un, égale treize. Pour l'oxygène : trente-quatre virgule huit divisé par seize, égale deux virgule dix-huit. Le plus petit quotient est celui de l'oxygène, deux virgule dix-huit : on divise donc tout par lui. Le carbone donne quatre virgule trente-cinq sur deux virgule dix-huit, c'est-à-dire deux ; l'hydrogène donne treize sur deux virgule dix-huit, c'est-à-dire six ; l'oxygène donne un.",
+   "texte": "Quotients : 4,35 ; 13,0 ; 2,18."
+  },
+  {
+   "id": "p25",
+   "ecran": "formule_brute",
+   "dit": "La formule brute de notre composé est donc C deux H six O : deux atomes de carbone, six atomes d'hydrogène, un atome d'oxygène. Cette formule est celle de l'éthanol, l'alcool des boissons et des désinfectants. Admirez le chemin parcouru : quelques pesées de gaz, deux multiplications, trois divisions, et l'on tient la carte d'identité atomique d'une molécule que l'on n'a jamais vue. C'est toute la puissance de l'analyse élémentaire.",
+   "texte": "C₂H₆O : la formule brute de l'éthanol."
+  },
+  {
+   "id": "p26",
+   "ecran": "recap_final",
+   "dit": "Terminons par l'essentiel de ce cours. Compter la matière prend deux formes. Dans un cristal, on compte les ions d'une maille grâce aux règles de partage, et le rapport obtenu donne la formule statistique, NaCl pour le sel, avec quatre motifs par maille. Dans un composé organique, on brûle, on identifie les éléments par leurs tests, on pèse le dioxyde de carbone et l'eau, on en déduit les pourcentages massiques, l'oxygène par différence, puis la formule brute en divisant par les masses molaires et par le plus petit quotient. Deux mondes, une même rigueur : tout se compte, tout se vérifie.",
+   "texte": "De la combustion à la formule brute."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La maille cristalline : la structure du chlorure de sodium"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "La chimie organique : mettre les éléments en évidence",
+   "pont": {
+    "texte": "Partie 2 : la chimie organique et ses éléments.",
+    "dit": "Partie deux : la chimie organique. Quittons les cristaux et leur ordre parfait pour les composés du carbone, ceux de la matière vivante. La question change : comment prouver, au laboratoire, qu'un composé contient du carbone, de l'hydrogène ou de l'azote ? Réponse : en le brûlant, et en identifiant les gaz qui s'en échappent."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "L'analyse élémentaire : des pourcentages à la formule brute",
+   "pont": {
+    "texte": "Partie 3 : l'analyse quantitative et la formule brute.",
+    "dit": "Partie trois : compter pour de bon. Savoir quels éléments sont présents ne suffit plus : nous allons peser les produits de la combustion, en déduire les pourcentages massiques de chaque élément, puis convertir ces pourcentages en une formule brute, la carte d'identité de la molécule."
+   }
+  }
+ ]
+}

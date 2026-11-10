@@ -1,0 +1,312 @@
+{
+ "cours": 6732,
+ "titre": "Statistiques : regrouper en classes, moyenne et diagrammes",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Statistiques",
+   "titre": "Statistiques : regrouper en classes, moyenne et diagrammes",
+   "sous": "Classes d'égale amplitude, classe modale, moyenne par les centres et quatre diagrammes"
+  },
+  "idee": {
+   "type": "phrase",
+   "kicker": "L'idée de départ",
+   "texte": "Une classe est un intervalle ; son amplitude est sa largeur : borne supérieure moins borne inférieure."
+  },
+  "amplitude": {
+   "type": "formule",
+   "kicker": "Classes d'égales amplitudes",
+   "tex": "a = \\frac{x_{max} - x_{min}}{k}",
+   "note": "x min et x max : valeurs extrêmes de la série ; k : nombre de classes ; a : amplitude commune."
+  },
+  "classes": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge",
+   "titre": "Trente notes sur vingt, quatre classes d'amplitude cinq",
+   "tex": [
+    "[0\\,;\\,5[ \\quad [5\\,;\\,10[ \\quad [10\\,;\\,15[ \\quad [15\\,;\\,20[",
+    "a = 5 \\qquad N = 30"
+   ]
+  },
+  "comptage": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge",
+   "titre": "Compter les notes, classe par classe",
+   "tex": [
+    "n_1 = 2 \\qquad n_2 = 10",
+    "n_3 = 12 \\qquad n_4 = 6",
+    "2 + 10 + 12 + 6 = 30 = N"
+   ]
+  },
+  "frequence": {
+   "type": "formule",
+   "kicker": "La fréquence d'une classe",
+   "tex": "f_i = \\frac{n_i}{N}",
+   "note": "Fraction, décimal ou pourcentage : la somme de toutes les fréquences vaut un."
+  },
+  "frequences": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge",
+   "titre": "Les fréquences des quatre classes",
+   "tex": [
+    "f_1 = \\tfrac{2}{30} \\approx 0{,}07",
+    "f_2 = \\tfrac{10}{30} \\approx 0{,}33",
+    "f_3 = \\tfrac{12}{30} = 0{,}4 \\qquad f_4 = \\tfrac{6}{30} = 0{,}2"
+   ]
+  },
+  "modale": {
+   "type": "phrase",
+   "kicker": "La classe modale",
+   "texte": "La classe modale est la classe de plus grand effectif : ici [10;15[, avec 12 notes."
+  },
+  "centre": {
+   "type": "formule",
+   "kicker": "Le centre d'une classe",
+   "tex": "c_i = \\frac{b_{inf} + b_{sup}}{2}",
+   "note": "Le centre est le milieu de la classe : il remplace toutes les valeurs de la classe."
+  },
+  "centres": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge",
+   "titre": "Les centres des quatre classes",
+   "tex": [
+    "c_1 = 2{,}5 \\qquad c_2 = 7{,}5",
+    "c_3 = 12{,}5 \\qquad c_4 = 17{,}5"
+   ]
+  },
+  "moyenne": {
+   "type": "formule",
+   "kicker": "Moyenne d'une série regroupée",
+   "tex": "\\bar{x} = \\frac{\\sum_{i=1}^{k} n_i \\, c_i}{N}",
+   "note": "n i : effectif de la classe i ; c i : son centre ; N : effectif total."
+  },
+  "calcul_moyenne": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge",
+   "titre": "La moyenne des trente notes, pas à pas",
+   "tex": [
+    "2 \\times 2{,}5 = 5 \\qquad 10 \\times 7{,}5 = 75",
+    "12 \\times 12{,}5 = 150 \\qquad 6 \\times 17{,}5 = 105",
+    "5 + 75 + 150 + 105 = 335",
+    "\\bar{x} = \\tfrac{335}{30} \\approx 11{,}17"
+   ]
+  },
+  "diagrammes": {
+   "type": "phrase",
+   "kicker": "Représenter la série",
+   "texte": "Quatre représentations à connaître : bâtons, bandes, circulaire, semi-circulaire — chacune a son usage."
+  },
+  "batons": {
+   "type": "etape",
+   "kicker": "Diagramme à bâtons",
+   "titre": "Des bâtons pour des valeurs discrètes",
+   "tex": [
+    "\\text{une valeur isolée : un bâton vertical}",
+    "\\text{hauteur du bâton : effectif ou fréquence}"
+   ]
+  },
+  "bandes": {
+   "type": "etape",
+   "kicker": "Diagramme à bandes",
+   "titre": "Des rectangles contigus pour des classes",
+   "tex": [
+    "\\text{une classe : un rectangle}",
+    "\\text{largeur : amplitude ; hauteur : effectif}",
+    "\\text{rectangles contigus :}",
+    "\\text{les classes se touchent}"
+   ]
+  },
+  "circulaire": {
+   "type": "formule",
+   "kicker": "Diagramme circulaire",
+   "tex": "\\alpha_i = \\frac{n_i}{N} \\times 360^\\circ",
+   "note": "Angle du secteur de la classe i : la fréquence, multipliée par le tour complet."
+  },
+  "angles": {
+   "type": "etape",
+   "kicker": "Diagramme circulaire",
+   "titre": "Les angles de nos classes",
+   "tex": [
+    "\\tfrac{12}{30} \\times 360^\\circ = 144^\\circ",
+    "\\tfrac{2}{30} \\times 360^\\circ = 24^\\circ",
+    "\\tfrac{6}{30} \\times 360^\\circ = 72^\\circ"
+   ]
+  },
+  "semicirculaire": {
+   "type": "formule",
+   "kicker": "Diagramme semi-circulaire",
+   "tex": "\\alpha_i = \\frac{n_i}{N} \\times 180^\\circ",
+   "note": "Même principe, dans un demi-disque : le tour complet devient l'angle plat."
+  },
+  "angle_semi": {
+   "type": "etape",
+   "kicker": "Diagramme semi-circulaire",
+   "titre": "La classe modale dans le demi-disque",
+   "tex": [
+    "\\tfrac{12}{30} \\times 180^\\circ = 72^\\circ"
+   ]
+  },
+  "lecture": {
+   "type": "phrase",
+   "kicker": "Lire un diagramme",
+   "texte": "Lire un diagramme : effectifs, classe modale, moyenne estimée par les centres."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Classes d'égale amplitude : a = étendue / k",
+    "Fréquence : effectif de la classe / total",
+    "Classe modale : le plus grand effectif",
+    "Moyenne groupée : Σ nᵢ·cᵢ / N, centres cᵢ",
+    "Angles : × 360° en circulaire, × 180° en semi"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de statistiques. Quand une série comporte beaucoup de valeurs, on la regroupe en classes de même largeur pour la lire d'un coup d'œil. Nous verrons comment construire ces classes, repérer la classe modale, calculer une moyenne à partir des centres, puis représenter la série par quatre diagrammes.",
+   "texte": "Regrouper, résumer, représenter : les statistiques en classes.",
+   "ecran": "titre",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p02",
+   "dit": "L'idée de départ est simple : au lieu de manipuler une longue liste de valeurs une par une, on les range dans des intervalles appelés classes. Chaque classe a deux bornes, une borne inférieure et une borne supérieure, et son amplitude, c'est-à-dire sa largeur, est la différence entre la borne supérieure et la borne inférieure. Dans ce cours, toutes les classes auront la même amplitude.",
+   "texte": "Une classe : un intervalle, deux bornes, une amplitude.",
+   "ecran": "idee"
+  },
+  {
+   "id": "p03",
+   "dit": "Pour obtenir des classes d'égales amplitudes, on repère la plus petite valeur et la plus grande valeur de la série, puis on découpe l'intervalle qui les sépare en autant de classes que voulu. L'amplitude commune s'obtient en divisant l'étendue, la différence entre le maximum et le minimum, par le nombre de classes.",
+   "texte": "Amplitude a = (x max − x min) / k.",
+   "ecran": "amplitude"
+  },
+  {
+   "id": "p04",
+   "dit": "Prenons l'exemple qui servira de fil rouge : trente notes sur vingt. On choisit quatre classes d'amplitude cinq : de zéro à cinq, de cinq à dix, de dix à quinze et de quinze à vingt. Chaque intervalle est fermé à gauche et ouvert à droite, pour qu'une note frontière, comme cinq ou dix, n'appartienne qu'à une seule classe.",
+   "texte": "30 notes, 4 classes d'amplitude 5.",
+   "ecran": "classes"
+  },
+  {
+   "id": "p05",
+   "dit": "On compte alors les notes dans chaque classe : deux notes sont inférieures à cinq, dix notes vont de cinq à dix, douze notes vont de dix à quinze et six notes vont de quinze à vingt. Le contrôle est immédiat : deux, plus dix, plus douze, plus six font bien trente, l'effectif total. Si ce contrôle échoue, une note a été comptée deux fois ou oubliée.",
+   "texte": "Effectifs : 2 · 10 · 12 · 6 — total : 30.",
+   "ecran": "comptage"
+  },
+  {
+   "id": "p06",
+   "dit": "L'effectif seul ne dit pas le poids d'une classe : on calcule sa fréquence, c'est-à-dire son effectif divisé par l'effectif total. La fréquence s'exprime en fraction, en nombre décimal ou en pourcentage, et la somme de toutes les fréquences vaut toujours un.",
+   "texte": "Fréquence = effectif de la classe / effectif total.",
+   "ecran": "frequence"
+  },
+  {
+   "id": "p07",
+   "dit": "Pour nos notes : la première classe a une fréquence de deux sur trente, environ zéro virgule zéro sept ; la deuxième, de dix sur trente, environ zéro virgule trente-trois ; la troisième, de douze sur trente, soit zéro virgule quatre ; la quatrième, de six sur trente, soit zéro virgule deux. Additionnées, ces fréquences redonnent bien un.",
+   "texte": "Fréquences : ≈ 0,07 · ≈ 0,33 · 0,4 · 0,2 — somme 1.",
+   "ecran": "frequences"
+  },
+  {
+   "id": "p08",
+   "dit": "La classe modale est la classe qui a le plus grand effectif : c'est la classe la plus remplie de la série. Dans notre exemple, il s'agit de la classe de dix à quinze, avec douze notes. Attention, une série peut avoir plusieurs classes modales si deux classes ou davantage partagent le même effectif maximal.",
+   "texte": "Classe modale : [10;15[, 12 notes.",
+   "ecran": "modale"
+  },
+  {
+   "id": "p09",
+   "dit": "Pour calculer une moyenne quand les valeurs sont regroupées, on remplace chaque classe par son centre : la moyenne de ses deux bornes, c'est-à-dire la borne inférieure plus la borne supérieure, le tout divisé par deux. Tout se passe comme si toutes les notes d'une classe valaient ce centre.",
+   "texte": "Centre cᵢ = (borne inf. + borne sup.) / 2.",
+   "ecran": "centre"
+  },
+  {
+   "id": "p10",
+   "dit": "Pour nos quatre classes d'amplitude cinq, les centres sont deux virgule cinq, sept virgule cinq, douze virgule cinq et dix-sept virgule cinq : ce sont les milieux des intervalles. Ce sont ces quatre valeurs, pondérées par les effectifs des classes, qui vont donner la moyenne.",
+   "texte": "Centres : 2,5 · 7,5 · 12,5 · 17,5.",
+   "ecran": "centres"
+  },
+  {
+   "id": "p11",
+   "dit": "La moyenne d'une série regroupée en classes est une moyenne pondérée : pour chaque classe, on multiplie son effectif par son centre, on additionne tous ces produits, et on divise par l'effectif total. C'est une moyenne approchée, car le centre remplace les valeurs réelles de chaque classe.",
+   "texte": "Moyenne groupée : Σ nᵢ·cᵢ / N.",
+   "ecran": "moyenne"
+  },
+  {
+   "id": "p12",
+   "dit": "Appliquons la formule. Deux fois deux virgule cinq font cinq ; dix fois sept virgule cinq font soixante-quinze ; douze fois douze virgule cinq font cent cinquante ; six fois dix-sept virgule cinq font cent cinq. La somme vaut trois cent trente-cinq, et divisée par trente, elle donne une moyenne d'environ onze virgule dix-sept.",
+   "texte": "x̄ = 335 / 30 ≈ 11,17.",
+   "ecran": "calcul_moyenne",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p13",
+   "dit": "Une série regroupée se représente aussi graphiquement, et chaque diagramme a son usage. Le diagramme à bâtons sert pour des valeurs discrètes, isolées ; le diagramme à bandes sert pour des classes de valeurs ; les diagrammes circulaire et semi-circulaire partagent un disque, ou un demi-disque, en secteurs proportionnels aux effectifs.",
+   "texte": "À chaque donnée son diagramme.",
+   "ecran": "diagrammes"
+  },
+  {
+   "id": "p14",
+   "dit": "Le diagramme à bâtons s'utilise pour des valeurs discrètes, comme le nombre d'enfants par famille. Chaque valeur est représentée par un bâton vertical, dont la hauteur est proportionnelle à l'effectif, ou à la fréquence, de cette valeur. Les bâtons restent séparés les uns des autres, car les valeurs sont isolées.",
+   "texte": "Bâtons : valeurs discrètes, hauteur = effectif.",
+   "ecran": "batons"
+  },
+  {
+   "id": "p15",
+   "dit": "Le diagramme à bandes, proche de l'histogramme, s'utilise pour des classes de valeurs, donc pour des données continues. Chaque classe devient un rectangle : sa largeur correspond à l'amplitude de la classe, et sa hauteur, ou sa longueur, à son effectif. Les rectangles sont contigus, ils se touchent, car les classes se suivent sans trou.",
+   "texte": "Bandes : rectangles contigus, largeur = amplitude.",
+   "ecran": "bandes"
+  },
+  {
+   "id": "p16",
+   "dit": "Dans un diagramme circulaire, chaque classe est représentée par un secteur du disque. L'angle de ce secteur est proportionnel à l'effectif : on multiplie la fréquence de la classe par trois cent soixante degrés, l'angle du tour complet.",
+   "texte": "Circulaire : angle = fréquence × 360°.",
+   "ecran": "circulaire"
+  },
+  {
+   "id": "p17",
+   "dit": "Pour la classe modale, d'effectif douze sur trente, l'angle vaut douze trentièmes de trois cent soixante degrés, soit cent quarante-quatre degrés : c'est le plus grand secteur du disque. La première classe occupe vingt-quatre degrés, et la dernière soixante-douze degrés. La somme de tous les angles redonne bien trois cent soixante degrés.",
+   "texte": "Classe modale : 144° sur 360°.",
+   "ecran": "angles"
+  },
+  {
+   "id": "p18",
+   "dit": "Le diagramme semi-circulaire suit exactement le même principe, mais dans un demi-disque : le tour complet est remplacé par l'angle plat, cent quatre-vingts degrés. On multiplie donc la fréquence de chaque classe par cent quatre-vingts degrés.",
+   "texte": "Semi-circulaire : angle = fréquence × 180°.",
+   "ecran": "semicirculaire"
+  },
+  {
+   "id": "p19",
+   "dit": "Pour la classe modale, l'angle semi-circulaire vaut douze trentièmes de cent quatre-vingts degrés, soit soixante-douze degrés : exactement la moitié de l'angle circulaire, ce qui est logique, puisque le demi-disque vaut la moitié du disque. Retenez le réflexe : en circulaire, on multiplie par trois cent soixante ; en semi-circulaire, par cent quatre-vingts.",
+   "texte": "Classe modale en semi-circulaire : 72°.",
+   "ecran": "angle_semi"
+  },
+  {
+   "id": "p20",
+   "dit": "Savoir lire un diagramme est aussi important que savoir le tracer. On commence par lire les effectifs ou les fréquences de chaque classe, on repère la classe modale, la plus remplie, puis on peut estimer la moyenne grâce aux centres des classes : c'est la démarche inverse de celle de ce cours.",
+   "texte": "Lire : effectifs, classe modale, moyenne estimée.",
+   "ecran": "lecture"
+  },
+  {
+   "id": "p21",
+   "dit": "Pour retenir l'essentiel : on regroupe les valeurs en classes d'égale amplitude, on calcule les fréquences en divisant chaque effectif par l'effectif total, on repère la classe modale, celle du plus grand effectif, on estime la moyenne grâce aux centres des classes, et on convertit les fréquences en angles, avec trois cent soixante degrés en circulaire et cent quatre-vingts en semi-circulaire.",
+   "texte": "L'essentiel : classes, fréquences, moyenne, angles.",
+   "ecran": "recap",
+   "pause_apres": 0.5
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Regrouper en classes : effectifs, fréquences et moyenne"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Représenter la série : les quatre diagrammes",
+   "pont": {
+    "texte": "Partie 2 : bâtons, bandes, circulaire et semi-circulaire.",
+    "dit": "Partie deux : représenter la série. Nous allons traduire les effectifs et les fréquences en images, avec quatre diagrammes : à bâtons, à bandes, circulaire et semi-circulaire, puis apprendre à lire ces représentations."
+   }
+  }
+ ]
+}

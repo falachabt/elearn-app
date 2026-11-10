@@ -1,0 +1,353 @@
+{
+ "cours": 6792,
+ "ecrans": {
+  "actions_enonce": {
+   "kicker": "Le principe des actions réciproques",
+   "tex": [
+    "\\text{même direction : la}",
+    "\\text{droite reliant A et B}",
+    "\\text{même valeur}",
+    "\\text{sens opposés}"
+   ],
+   "titre": "Trois caractères, deux forces",
+   "type": "etape"
+  },
+  "archimede_def": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "poussee_archimede_fig"
+   },
+   "kicker": "La poussée d'Archimède",
+   "texte": "Immergez un corps : un fluide le pousse vers le haut.",
+   "type": "phrase"
+  },
+  "archimede_formule": {
+   "kicker": "La poussée d'Archimède",
+   "note": "F en newtons, rho en kg/m³, V en m³, g en N/kg",
+   "tex": "F_A = \\rho_{\\text{fluide}} \\times V_{\\text{immergé}} \\times g",
+   "type": "formule"
+  },
+  "circuit_def": {
+   "kicker": "Le circuit à courant continu",
+   "tex": [
+    "\\text{dipôles reliés en boucle fermée}",
+    "\\text{le courant circule toujours}",
+    "\\text{dans le même sens}",
+    "\\text{circuit fermé, sinon pas de courant}"
+   ],
+   "titre": "Une boucle fermée, un seul sens",
+   "type": "etape"
+  },
+  "exemple_bloc": {
+   "kicker": "Exemple : le bloc immergé",
+   "note": "Volume 0,5 m³, eau rho = 1000 kg/m³",
+   "tex": "F_A = 1000 \\times 0{,}5 \\times 9{,}8 = 4900\\, \\mathrm{N}",
+   "type": "formule"
+  },
+  "exemple_lampe": {
+   "kicker": "Exemple : la lampe",
+   "note": "Pile 4,5 V, courant 0,3 A",
+   "tex": "P = 4{,}5 \\times 0{,}3 = 1{,}35\\, \\mathrm{W}",
+   "type": "formule"
+  },
+  "exemple_objet": {
+   "kicker": "Exemple : l'objet de 2 kg",
+   "note": "g = 9,8 N/kg sur Terre",
+   "tex": "P = 2 \\times 9{,}8 = 19{,}6\\, \\mathrm{N}",
+   "type": "formule"
+  },
+  "flottaison": {
+   "kicker": "Couler, flotter, rester en équilibre",
+   "tex": [
+    "\\text{si } P > F_A \\text{ : le corps coule}",
+    "\\text{si } P = F_A \\text{ : il est en équilibre}",
+    "\\text{si } P < F_A \\text{ : il remonte et flotte}"
+   ],
+   "titre": "Poids contre poussée : trois cas",
+   "type": "etape"
+  },
+  "formule_reciproques": {
+   "kicker": "La relation vectorielle",
+   "note": "Le signe moins dit : sens opposés",
+   "tex": "\\vec{F}_{A/B} = -\\vec{F}_{B/A}",
+   "type": "formule"
+  },
+  "generateur_recepteurs": {
+   "kicker": "Générateur et récepteurs",
+   "tex": [
+    "\\text{générateur : pile,}",
+    "\\text{batterie, fournit l'énergie}",
+    "\\text{récepteurs : lampe, moteur, résistance}",
+    "\\text{ils convertissent l'énergie électrique}"
+   ],
+   "titre": "Fournir, puis convertir",
+   "type": "etape"
+  },
+  "livre_table": {
+   "kicker": "Le livre et la table",
+   "tex": [
+    "\\text{le livre pousse la table vers le bas}",
+    "\\text{la table pousse le livre vers le haut}",
+    "\\text{même valeur, sens opposés}"
+   ],
+   "titre": "Deux forces, deux corps",
+   "type": "etape"
+  },
+  "poids_def": {
+   "kicker": "Le poids d'un corps",
+   "tex": [
+    "\\text{action de la Terre}",
+    "\\text{sur le corps, une force}",
+    "\\text{direction verticale, sens vers le bas}",
+    "\\text{point d'application : le}",
+    "\\text{centre de gravité G}"
+   ],
+   "titre": "Vertical, vers le bas, en G",
+   "type": "etape"
+  },
+  "poids_masse": {
+   "kicker": "Poids et masse",
+   "note": "P en newtons, m en kg, g en N/kg",
+   "tex": "P = m \\times g",
+   "type": "formule"
+  },
+  "poids_vecteur": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "gravite_fig"
+   },
+   "kicker": "Le vecteur poids",
+   "texte": "Origine G, verticale, vers le bas, longueur selon P.",
+   "type": "phrase"
+  },
+  "pomme": {
+   "kicker": "Exemple : la pomme de 0,2 kg",
+   "tex": [
+    "\\text{poids de la pomme :}",
+    "P = 0{,}2 \\times 9{,}8 = 1{,}96\\, \\mathrm{N}",
+    "\\text{la pomme attire la Terre :}",
+    "\\text{1,96 N vers le haut}",
+    "\\text{la table soutient la pomme vers le haut}"
+   ],
+   "titre": "Pomme, Terre et table : trois forces",
+   "type": "etape"
+  },
+  "pression_origine": {
+   "kicker": "Caractéristiques de la poussée",
+   "tex": [
+    "\\text{direction verticale, sens vers le haut}",
+    "\\text{point d'application : le}",
+    "\\text{centre de poussée C}",
+    "\\text{valeur : poids du fluide déplacé}"
+   ],
+   "titre": "Verticale, vers le haut, en C",
+   "type": "etape"
+  },
+  "puissance": {
+   "kicker": "La puissance électrique",
+   "note": "P en watts, U en volts, I en ampères",
+   "tex": "P = U \\times I",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Circuit continu : boucle fermée, courant de + vers −",
+    "Puissance : P = U × I",
+    "Poids : P = m × g, vertical vers le bas",
+    "Poussée d'Archimède : poids du fluide déplacé",
+    "Actions réciproques : égales, opposées, deux corps"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "sens_courant": {
+   "kicker": "Le sens conventionnel du courant",
+   "tex": [
+    "\\text{de la borne positive (+)}",
+    "\\text{vers la borne négative (−)}",
+    "\\text{à l'extérieur du générateur}",
+    "\\text{toujours le même sens en courant continu}"
+   ],
+   "titre": "Du plus vers le moins, dehors",
+   "type": "etape"
+  },
+  "synthese": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "L'énergie, d'un bout à l'autre",
+   "texte": "Le générateur fournit, les récepteurs convertissent.",
+   "type": "phrase"
+  },
+  "terre_objet": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "champ_gravitation_fig"
+   },
+   "kicker": "Terre, objet et marche",
+   "texte": "La Terre attire l'objet, l'objet attire la Terre.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "circuit"
+   },
+   "kicker": "Sciences Physiques et Technologie · Actions et énergie",
+   "sous": "Circuit continu, poids, poussée d'Archimède et actions réciproques",
+   "titre": "Actions mécaniques et énergie électrique",
+   "type": "titre"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Circuit continu et poids"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : la poussée d'Archimède, puis le principe des actions réciproques. Nous verrons pourquoi un corps immergé est poussé vers le haut, quand il coule ou flotte, et pourquoi toute action s'accompagne d'une réaction égale et opposée.",
+    "texte": "Partie 2 : poussée d'Archimède et actions réciproques."
+   },
+   "sous_titre": "Poussée d'Archimède et actions réciproques"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur les actions mécaniques et l'énergie électrique. Nous commencerons par le circuit à courant continu et le poids d'un corps, puis nous verrons la poussée d'Archimède et le principe des actions réciproques.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Actions mécaniques et énergie électrique."
+  },
+  {
+   "dit": "Un circuit électrique à courant continu est un ensemble de dipôles reliés en boucle fermée, dans lequel le courant circule toujours dans le même sens. Le circuit doit être fermé pour que le courant circule.",
+   "ecran": "circuit_def",
+   "id": "p02",
+   "texte": "Une boucle fermée, un seul sens."
+  },
+  {
+   "dit": "Le générateur, pile ou batterie, fournit l'énergie électrique. Les récepteurs, lampe, moteur ou résistance, convertissent l'énergie électrique en une autre forme : lumineuse, mécanique ou thermique.",
+   "ecran": "generateur_recepteurs",
+   "id": "p03",
+   "texte": "Le générateur fournit, les récepteurs convertissent."
+  },
+  {
+   "dit": "Le courant électrique circule de la borne positive vers la borne négative du générateur, à l'extérieur de celui-ci. C'est le sens conventionnel du courant.",
+   "ecran": "sens_courant",
+   "id": "p04",
+   "texte": "Du plus vers le moins, à l'extérieur."
+  },
+  {
+   "dit": "La puissance électrique reçue par un récepteur se calcule par P égale U fois I, avec P en watts, U en volts et I en ampères.",
+   "ecran": "puissance",
+   "id": "p05",
+   "texte": "Puissance : P = U × I."
+  },
+  {
+   "dit": "Exemple résolu : une lampe est branchée aux bornes d'une pile de quatre virgule cinq volts, et le courant qui la traverse est de zéro virgule trois ampère. Sa puissance vaut quatre virgule cinq fois zéro virgule trois, soit un virgule trente-cinq watt.",
+   "ecran": "exemple_lampe",
+   "id": "p06",
+   "texte": "Lampe : 4,5 V et 0,3 A, 1,35 W."
+  },
+  {
+   "dit": "Passons au poids. Le poids d'un corps est l'action mécanique exercée par la Terre sur ce corps. C'est une force : direction verticale, selon le fil à plomb, sens vers le centre de la Terre, donc vers le bas, point d'application le centre de gravité G du corps, valeur notée P et mesurée en newtons avec un dynamomètre.",
+   "ecran": "poids_def",
+   "id": "p07",
+   "texte": "Le poids : force verticale, vers le bas, en G."
+  },
+  {
+   "dit": "Le poids et la masse sont liés par la relation P égale m fois g, avec P le poids en newtons, m la masse en kilogrammes, et g l'intensité de la pesanteur, environ neuf virgule huit newtons par kilogramme sur Terre.",
+   "ecran": "poids_masse",
+   "id": "p08",
+   "texte": "Poids : P = m × g."
+  },
+  {
+   "dit": "Le poids se représente par un vecteur : origine le centre de gravité G, direction verticale, sens vers le bas, et longueur proportionnelle à la valeur P, selon l'échelle choisie.",
+   "ecran": "poids_vecteur",
+   "id": "p09",
+   "texte": "Vecteur poids : origine G, vertical, vers le bas."
+  },
+  {
+   "dit": "Exemple résolu : un objet a une masse de deux kilogrammes. Son poids sur Terre vaut deux fois neuf virgule huit, soit dix-neuf virgule six newtons.",
+   "ecran": "exemple_objet",
+   "id": "p10",
+   "texte": "Objet de 2 kg : 19,6 N."
+  },
+  {
+   "dit": "Tout corps immergé dans un fluide, liquide ou gaz, subit une force verticale dirigée vers le haut, appelée poussée d'Archimède. Cette force est due à la différence de pression entre la partie inférieure et la partie supérieure du corps.",
+   "ecran": "archimede_def",
+   "id": "p11",
+   "texte": "Immergez un corps : le fluide le pousse vers le haut."
+  },
+  {
+   "dit": "La poussée d'Archimède est donc une force verticale vers le haut, dont le point d'application est le centre de poussée C, et dont la valeur est égale au poids du fluide déplacé.",
+   "ecran": "pression_origine",
+   "id": "p12",
+   "texte": "Verticale vers le haut, égale au fluide déplacé."
+  },
+  {
+   "dit": "La relation de la poussée d'Archimède s'écrit F indice A égale rhô du fluide fois V immergé fois g, avec F indice A en newtons, rhô la masse volumique du fluide en kilogrammes par mètre cube, V immergé le volume immergé en mètres cubes, et g l'intensité de la pesanteur en newtons par kilogramme.",
+   "ecran": "archimede_formule",
+   "id": "p13",
+   "texte": "Poussée : F = rho × V × g."
+  },
+  {
+   "dit": "Exemple résolu : un bloc de volume zéro virgule cinq mètre cube est totalement immergé dans l'eau, de masse volumique mille kilogrammes par mètre cube. La poussée vaut mille fois zéro virgule cinq fois neuf virgule huit, soit quatre mille neuf cents newtons.",
+   "ecran": "exemple_bloc",
+   "id": "p14",
+   "texte": "Bloc de 0,5 m³ : 4900 N."
+  },
+  {
+   "dit": "La condition de flottaison compare le poids et la poussée : si P est supérieur à F indice A, le corps coule ; si P égale F indice A, le corps est en équilibre dans le fluide ; si P est inférieur à F indice A, le corps remonte et flotte.",
+   "ecran": "flottaison",
+   "id": "p15",
+   "texte": "Poids contre poussée : couler, flotter, équilibre."
+  },
+  {
+   "dit": "Le principe des actions réciproques affirme que lorsqu'un corps A exerce une force sur un corps B, alors le corps B exerce une force sur le corps A. Ces deux forces ont même direction, la droite reliant A et B, même valeur, et des sens opposés.",
+   "ecran": "actions_enonce",
+   "id": "p16",
+   "texte": "Même direction, même valeur, sens opposés."
+  },
+  {
+   "dit": "On écrit cette relation entre vecteurs : F de A sur B égale moins F de B sur A. Le signe moins indique simplement que les deux vecteurs ont des sens opposés.",
+   "ecran": "formule_reciproques",
+   "id": "p17",
+   "texte": "F de A sur B = moins F de B sur A."
+  },
+  {
+   "dit": "Un livre posé sur une table exerce une force sur la table, vers le bas, et la table exerce une force égale et opposée sur le livre, vers le haut. Chaque force agit sur un corps différent.",
+   "ecran": "livre_table",
+   "id": "p18",
+   "texte": "Le livre pousse la table, la table pousse le livre."
+  },
+  {
+   "dit": "De même, la Terre attire un objet par son poids, et l'objet attire la Terre avec une force égale et opposée. Et quand une personne marche, elle pousse le sol vers l'arrière, tandis que le sol la pousse vers l'avant.",
+   "ecran": "terre_objet",
+   "id": "p19",
+   "texte": "La Terre attire l'objet, l'objet attire la Terre."
+  },
+  {
+   "dit": "Exemple résolu : une pomme de masse zéro virgule deux kilogramme est posée sur une table. La Terre exerce sur la pomme son poids : zéro virgule deux fois neuf virgule huit, soit un virgule quatre-vingt-seize newton, vertical vers le bas. La pomme exerce sur la Terre une force d'attraction de même valeur, verticale vers le haut, et la table soutient la pomme vers le haut.",
+   "ecran": "pomme",
+   "id": "p20",
+   "texte": "Pomme : 1,96 N vers le bas, 1,96 N vers le haut."
+  },
+  {
+   "dit": "En synthèse, l'énergie électrique fournie par un générateur est convertie par les récepteurs en énergie lumineuse, mécanique ou thermique, tandis que les actions mécaniques comme le poids, la poussée et les forces de contact permettent d'expliquer les mouvements et les équilibres. Communiquer sur ces phénomènes exige les symboles scientifiques normalisés et les unités du Système International.",
+   "ecran": "synthese",
+   "id": "p21",
+   "texte": "Fournir, convertir, expliquer les mouvements."
+  },
+  {
+   "dit": "Retenons l'essentiel : circuit continu en boucle fermée, courant du plus vers le moins, puissance égale à U fois I, poids égal à m fois g vers le bas, poussée d'Archimède égale au poids du fluide déplacé, et actions réciproques égales et opposées sur deux corps différents.",
+   "ecran": "recap",
+   "id": "p22",
+   "texte": "Circuit, poids, poussée, actions réciproques."
+  }
+ ],
+ "titre": "Actions mécaniques et énergie électrique"
+}

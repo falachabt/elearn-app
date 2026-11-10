@@ -7,7 +7,7 @@ import { changerLangue } from '@/i18n';
 import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
-import { CLE_DERNIER, CLE_ERREURS, CLE_HISTORIQUE, convertir, jourLocal, type LigneMission } from '@/services/mission';
+import { CLE_ALERTE_SERIE, CLE_DERNIER, CLE_ERREURS, CLE_HISTORIQUE, convertir, jourLocal, type LigneMission } from '@/services/mission';
 import { enregistrerProfil } from '@/services/profil';
 import { CLE_CORRECTION } from '@/services/correction';
 import { CLE_PREMIERE_OUVERTURE, CLE_RAPPEL } from '@/services/rappels';
@@ -30,9 +30,11 @@ jest.mock('expo-router', () => ({
     effet(f, [f]);
   },
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/services/assistantConfiguration', () => ({
   lireProgressionAssistant: jest.fn(async () => ({ mission: false, lecon: false, quiz: false, exercice: false, correction: false, fil: false })),
+  estAssistantMasque: jest.fn(async () => false),
+  enregistrerCompletionAssistant: jest.fn(async () => undefined),
 }));
 let mockPret: string | null = 'u1';
 let mockInvite = false;
@@ -88,6 +90,10 @@ beforeEach(async () => {
   await AsyncStorage.clear();
   await AsyncStorage.setItem(CLE_RAPPEL, JSON.stringify({ statut: 'actif', le: '2026-09-01T00:00:00Z' }));
   await AsyncStorage.setItem(CLE_RYTHME, '20');
+  // Alerte de série déjà montrée ce jour-là : la feuille de danger ne s'ouvre pas dans les autres tests (elle masque l'accueil).
+  await AsyncStorage.setItem(CLE_ALERTE_SERIE, '2026-10-01');
+  // Pack hors ligne déjà téléchargé : la proposition de téléchargement (#118) ne s'ouvre pas ici (elle a sa propre suite).
+  await AsyncStorage.setItem('horsLigne.telechargement', JSON.stringify({ statut: 'termine' }));
   await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
   mockRpc.mockResolvedValue({ data: LIGNES, error: null });
 });
@@ -104,22 +110,27 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
   const x = T[langue];
   beforeEach(() => act(() => changerLangue(langue)));
 
-  it('accueil : la salutation reste « Bonsoir » seul (le prénom ne tronque plus la ligne), le prénom reste lu par l’accessibilité', async () => {
-    mockMetadata = { given_name: 'Aïcha' };
-    try {
-      await monter(<Accueil maintenant={SOIR} />);
-      expect(screen.getByText(x.mission.bonsoir)).toBeTruthy();
-      expect(screen.queryByText(/Aïcha/)).toBeNull();
-      expect(screen.getByLabelText(x.mission.bonsoirNom.replace('{{prenom}}', 'Aïcha'))).toBeTruthy();
-    } finally {
-      mockMetadata = {};
-    }
+  it('accueil : affiche le sélecteur avec la classe seule (3e), appui ouvre la page de changement de parcours', async () => {
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText('3e')).toBeTruthy());
+    await fireEvent.press(screen.getByText('3e'));
+    expect(router.push).toHaveBeenCalledWith('/profil/changer');
   });
 
-  it('accueil : salutation du soir, chapitres et matières de la mission, commencer en 1 appui', async () => {
+  it('accueil : avec un concours choisi, affiche uniquement le sigle', async () => {
+    await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: { id: 'c1', sigle: 'ENS', nom: 'École Normale', ville: 'Yaoundé' }, termine: true });
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText('ENS')).toBeTruthy());
+
+    await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: { id: 'c1', sigle: 'ENS', nom: 'École Normale', ville: null }, termine: true });
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText('ENS')).toBeTruthy());
+  });
+
+  it('accueil : sélecteur de classe, chapitres et matières de la mission, commencer en 1 appui', async () => {
     await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-29', '2026-09-30']));
     await monter(<Accueil maintenant={SOIR} />);
-    expect(screen.getByText(x.mission.bonsoir)).toBeTruthy();
+    await waitFor(() => expect(screen.getByText('3e')).toBeTruthy());
     await waitFor(() => expect(screen.getByText('Chapitre 1, Chapitre 2')).toBeTruthy());
     expect(screen.getByText('Chimie')).toBeTruthy();
     expect(screen.getByLabelText(x.mission.serieLibelle.replace('{{n}}', '2'))).toBeTruthy();
@@ -144,6 +155,42 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await monter(<Accueil maintenant={SOIR} />);
     await waitFor(() => expect(screen.getByText(x.mission.faite)).toBeTruthy());
     expect(screen.getByRole('button', { name: x.mission.refaire })).toBeTruthy();
+  });
+
+  it('accueil : le badge de série ouvre la feuille de série (mission déjà faite, rien en danger)', async () => {
+    await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-29', '2026-09-30', '2026-10-01']));
+    await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify({ jour: '2026-10-01', score: 4, total: 5, chapitres: [], serie: 3 }));
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByLabelText(x.mission.serieLibelle.replace('{{n}}', '3'))).toBeTruthy());
+    expect(screen.queryByText(x.mission.feuilleSerieTitreDanger)).toBeNull();
+    await fireEvent.press(screen.getByLabelText(x.mission.serieLibelle.replace('{{n}}', '3')));
+    expect(screen.getByText(x.mission.feuilleSerieTitre)).toBeTruthy();
+  });
+
+  it('accueil : le matin (plus de 40% de la journée restante), la série en danger ne s’ouvre pas', async () => {
+    await AsyncStorage.removeItem(CLE_ALERTE_SERIE);
+    await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-29', '2026-09-30']));
+    const MATIN = new Date(2026, 9, 1, 9, 0);
+    await monter(<Accueil maintenant={MATIN} />);
+    await waitFor(() => expect(screen.getByLabelText(x.mission.serieLibelle.replace('{{n}}', '2'))).toBeTruthy());
+    expect(screen.queryByText(x.mission.feuilleSerieTitreDanger)).toBeNull();
+  });
+
+  it('accueil : série en danger ouvre la feuille toute seule, CTA vers la mission', async () => {
+    await AsyncStorage.removeItem(CLE_ALERTE_SERIE);
+    await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-29', '2026-09-30']));
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText(x.mission.feuilleSerieTitreDanger)).toBeTruthy());
+    expect(screen.getByText(x.mission.feuilleSerieTexteDanger)).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: x.mission.feuilleSerieFaire }));
+    expect(router.push).toHaveBeenCalledWith('/mission');
+  });
+
+  it('accueil : la feuille de danger ne se rouvre pas le même jour', async () => {
+    await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-29', '2026-09-30']));
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByLabelText(x.mission.serieLibelle.replace('{{n}}', '2'))).toBeTruthy());
+    expect(screen.queryByText(x.mission.feuilleSerieTitreDanger)).toBeNull();
   });
 
   it('mission : 5 questions, correction, puis fin enregistrée', async () => {
@@ -173,7 +220,8 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     );
     await monter(<FinMission />);
     await waitFor(() => expect(screen.getByText(x.mission.finTitre)).toBeTruthy());
-    expect(screen.getByText('6')).toBeTruthy();
+    // Le compteur monte de 5 à 6 : on attend la fin de l'animation (300 ms + un pas).
+    await waitFor(() => expect(screen.getByText('6')).toBeTruthy(), { timeout: 2000 });
     expect(screen.getByText(x.mission.joursDeSuite)).toBeTruthy();
     expect(screen.getByText(x.mission.minutes.replace('{{n}}', '12'))).toBeTruthy();
     expect(screen.getByLabelText('Fractions : 2/3')).toBeTruthy();

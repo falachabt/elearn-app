@@ -22,7 +22,7 @@ jest.mock('expo-router', () => ({
   router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => false) },
   useLocalSearchParams: () => mockParams,
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => ({ session: { user: { is_anonymous: false } } }) }));
 jest.mock('@/session/CreditsProvider', () => ({ useCredits: () => ({ rafraichir: jest.fn(async () => {}) }) }));

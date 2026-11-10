@@ -1,0 +1,381 @@
+{
+ "cours": 7307,
+ "ecrans": {
+  "boucle": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "La boucle fermée",
+   "texte": "Boucle fermée : le courant circule.",
+   "type": "phrase"
+  },
+  "bouton": {
+   "kicker": "Le bouton-poussoir",
+   "texte": "Bouton-poussoir : du courant seulement pendant l'appui.",
+   "type": "phrase"
+  },
+  "bouton_exemple": {
+   "kicker": "Exemple : la lampe sur bouton",
+   "tex": [
+    "\\text{relâché : circuit ouvert, lampe éteinte}",
+    "\\text{appuyé : circuit fermé, lampe allumée}",
+    "\\text{relâché à nouveau : lampe éteinte}"
+   ],
+   "titre": "Appuyé, allumé ; relâché, éteint",
+   "type": "etape"
+  },
+  "branchements": {
+   "kicker": "Exemple : les trois branchements",
+   "tex": [
+    "\\text{+ pile} \\rightarrow \\text{entrée interrupteur}",
+    "\\text{sortie interrupteur} \\rightarrow \\text{lampe}",
+    "\\text{lampe} \\rightarrow \\text{- pile}"
+   ],
+   "titre": "Plus, interrupteur, lampe, moins",
+   "type": "etape"
+  },
+  "choix": {
+   "kicker": "Choisir selon l'usage",
+   "texte": "Interrupteur : ça reste allumé ; poussoir : tant qu'on appuie.",
+   "type": "phrase"
+  },
+  "commande": {
+   "kicker": "Commander un circuit",
+   "texte": "Commander : ouvrir ou fermer la boucle à volonté.",
+   "type": "phrase"
+  },
+  "conclusion": {
+   "kicker": "Conclusion de l'exemple",
+   "texte": "L'interrupteur commande le courant dans tout le circuit.",
+   "type": "phrase"
+  },
+  "difference": {
+   "kicker": "La différence clé",
+   "texte": "Interrupteur stable, poussoir momentané.",
+   "type": "phrase"
+  },
+  "elements": {
+   "kicker": "Les quatre éléments du circuit",
+   "tex": [
+    "\\text{générateur : source d'énergie}",
+    "\\text{récepteur : lampe, moteur}",
+    "\\text{fils : relient et conduisent}",
+    "\\text{interrupteur : ouvre ou ferme}"
+   ],
+   "titre": "Quatre types d'éléments",
+   "type": "etape"
+  },
+  "etats": {
+   "kicker": "Interrupteur fermé, interrupteur ouvert",
+   "tex": [
+    "\\text{fermé : circuit fermé, lampe qui brille}",
+    "\\text{ouvert : circuit ouvert, lampe éteinte}"
+   ],
+   "titre": "Deux positions, deux états",
+   "type": "etape"
+  },
+  "etats_commande": {
+   "kicker": "Circuit fermé, circuit ouvert",
+   "tex": [
+    "\\text{fermé : boucle complète, lampe brille}",
+    "\\text{ouvert : boucle coupée, lampe éteinte}"
+   ],
+   "titre": "Commander, c'est ouvrir ou refermer",
+   "type": "etape"
+  },
+  "exemple_commande": {
+   "kicker": "Exemple : pile, lampe, interrupteur",
+   "tex": [
+    "\\text{ouvert : aucun courant, lampe éteinte}",
+    "\\text{appui : fermé, courant, lampe allumée}",
+    "\\text{nouvel appui : ouvert, lampe éteinte}"
+   ],
+   "titre": "Trois gestes, une commande",
+   "type": "etape"
+  },
+  "exemple_resultat": {
+   "kicker": "Résultat de l'exemple",
+   "texte": "Fermé : ça brille ; ouvert : ça s'éteint.",
+   "type": "phrase"
+  },
+  "generateur": {
+   "kicker": "Le générateur, indispensable",
+   "tex": [
+    "\\text{borne positive : +}",
+    "\\text{borne négative : -}"
+   ],
+   "titre": "Sans lui, aucun courant",
+   "type": "etape"
+  },
+  "minimum_commande": {
+   "kicker": "Le circuit commandé minimum",
+   "tex": [
+    "\\text{un générateur : pile}",
+    "\\text{un récepteur : lampe, moteur}",
+    "\\text{une commande : interrupteur ou poussoir}",
+    "\\text{des fils formant une boucle}"
+   ],
+   "titre": "Quatre éléments, une boucle",
+   "type": "etape"
+  },
+  "monter": {
+   "kicker": "Réaliser un circuit simple",
+   "tex": [
+    "\\text{1. borne de la pile} \\rightarrow \\text{borne de la lampe}",
+    "\\text{2. autre borne de la lampe} \\rightarrow \\text{interrupteur}",
+    "\\text{3. interrupteur} \\rightarrow \\text{autre borne de la pile}"
+   ],
+   "titre": "Trois liaisons, une seule boucle",
+   "type": "etape"
+  },
+  "ouvert": {
+   "kicker": "Le circuit ouvert",
+   "texte": "Coupure : aucun courant, rien ne fonctionne.",
+   "type": "phrase"
+  },
+  "poussoir_types": {
+   "kicker": "Deux types de boutons-poussoirs",
+   "tex": [
+    "\\text{normalement ouvert : fermé si appuyé}",
+    "\\text{normalement fermé : ouvert si appuyé}"
+   ],
+   "titre": "Ouvert ou fermé au repos",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Circuit : boucle fermée, sinon rien ne fonctionne",
+    "Commande : interrupteur stable ou poussoir momentané",
+    "Commande toujours en série, jamais en dérivation",
+    "Fermé : courant et lampe allumée ; ouvert : lampe éteinte",
+    "Choisir la commande selon l'usage voulu"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "recepteur": {
+   "kicker": "Le récepteur transforme l'énergie",
+   "tex": [
+    "\\text{lampe : lumière et un peu de chaleur}",
+    "\\text{moteur : mouvement}"
+   ],
+   "titre": "Lumière, chaleur, mouvement",
+   "type": "etape"
+  },
+  "reconnaitre": {
+   "kicker": "Reconnaître une commande",
+   "texte": "Une commande agit sur l'état du circuit, rien d'autre.",
+   "type": "phrase"
+  },
+  "schema_exemple": {
+   "kicker": "Exemple : pile, bouton, lampe en série",
+   "texte": "Pile, bouton, lampe : la commande coupe tout.",
+   "type": "phrase"
+  },
+  "serie": {
+   "kicker": "La commande se place en série",
+   "texte": "En série : l'ouvrir coupe le courant partout.",
+   "type": "phrase"
+  },
+  "serie_circuit": {
+   "kicker": "Le circuit en série",
+   "texte": "Une seule boucle : un circuit en série.",
+   "type": "phrase"
+  },
+  "symbole": {
+   "kicker": "L'interrupteur et son symbole",
+   "texte": "Symbole : segment avec un levier incliné, en série.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "circuit"
+   },
+   "kicker": "Sciences Physiques et Technologie · Commander un circuit",
+   "sous": "Interrupteur stable ou bouton-poussoir momentané : ouvrir et fermer la boucle à volonté",
+   "titre": "Commander un circuit : interrupteur et bouton-poussoir",
+   "type": "titre"
+  },
+  "usages": {
+   "kicker": "Usages typiques du poussoir",
+   "texte": "Sonnette, télécommande de portail : un appui suffit.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Circuit simple et interrupteur"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : les dispositifs de commande. Nous comparerons l'interrupteur, stable, et le bouton-poussoir, momentané, et nous choisirons la commande selon l'usage voulu.",
+    "texte": "Partie 2 : interrupteur stable, poussoir momentané."
+   },
+   "sous_titre": "Interrupteur et bouton-poussoir"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur la commande d'un circuit électrique. Nous allons voir comment allumer et éteindre une lampe à volonté, d'abord avec un interrupteur, puis avec un bouton-poussoir, et comment choisir entre les deux.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Commander un circuit : interrupteur ou poussoir ?"
+  },
+  {
+   "dit": "Un circuit électrique est un ensemble d'éléments reliés entre eux qui permet le passage d'un courant électrique. Pour qu'un courant circule, il faut une boucle fermée : le chemin suivi par le courant ne doit présenter aucune coupure.",
+   "ecran": "boucle",
+   "id": "p02",
+   "texte": "Boucle fermée : le courant circule."
+  },
+  {
+   "dit": "Un circuit qui possède une coupure est dit ouvert : aucun courant ne circule et les éléments ne fonctionnent pas. Par exemple, une lampe reste éteinte.",
+   "ecran": "ouvert",
+   "id": "p03",
+   "texte": "Coupure : aucun courant, rien ne fonctionne."
+  },
+  {
+   "dit": "Un circuit électrique simple comporte quatre types d'éléments. Le générateur, source d'énergie électrique, comme une pile. Le récepteur, qui transforme l'énergie. Les fils de connexion, qui relient et conduisent. Et l'interrupteur, qui ouvre ou ferme le circuit.",
+   "ecran": "elements",
+   "id": "p04",
+   "texte": "Quatre éléments : générateur, récepteur, fils, interrupteur."
+  },
+  {
+   "dit": "Le générateur est indispensable : sans lui, aucun courant ne peut circuler. Une pile possède deux bornes : la borne positive et la borne négative.",
+   "ecran": "generateur",
+   "id": "p05",
+   "texte": "Générateur indispensable : bornes + et -."
+  },
+  {
+   "dit": "Le récepteur reçoit l'énergie du générateur. Une lampe convertit l'énergie électrique en lumière, et un peu en chaleur. Un moteur la convertit en mouvement.",
+   "ecran": "recepteur",
+   "id": "p06",
+   "texte": "Récepteur : lumière, chaleur, mouvement."
+  },
+  {
+   "dit": "Interrupteur fermé : le circuit est fermé, le courant circule, la lampe brille. Interrupteur ouvert : le circuit est ouvert, le courant ne circule pas, la lampe est éteinte.",
+   "ecran": "etats",
+   "id": "p07",
+   "texte": "Fermé : ça brille ; ouvert : ça s'éteint."
+  },
+  {
+   "dit": "Pour réaliser un circuit simple, on relie en boucle trois éléments. D'abord, une borne de la pile à une borne de la lampe, par un fil. Ensuite, l'autre borne de la lampe à l'interrupteur, par un fil. Enfin, l'interrupteur à l'autre borne de la pile, par un fil.",
+   "ecran": "monter",
+   "id": "p08",
+   "texte": "Trois liaisons, une seule boucle."
+  },
+  {
+   "dit": "Le courant circule alors dans une seule boucle fermée : c'est un circuit en série.",
+   "ecran": "serie_circuit",
+   "id": "p09",
+   "texte": "Une seule boucle : un circuit en série."
+  },
+  {
+   "dit": "Exemple résolu : on veut allumer une lampe avec une pile et un interrupteur. On connecte la borne positive de la pile à l'entrée de l'interrupteur. On relie la sortie de l'interrupteur à une borne de la lampe. On relie l'autre borne de la lampe à la borne négative de la pile.",
+   "ecran": "branchements",
+   "id": "p10",
+   "texte": "Pile +, interrupteur, lampe, pile -."
+  },
+  {
+   "dit": "Quand on ferme l'interrupteur, la boucle est complète : le courant circule et la lampe s'allume. Si on ouvre l'interrupteur, la boucle est coupée : le courant ne passe plus et la lampe s'éteint.",
+   "ecran": "exemple_resultat",
+   "id": "p11",
+   "texte": "Fermé : ça brille ; ouvert : ça s'éteint."
+  },
+  {
+   "dit": "Dans un circuit simple, pile, lampe et fils, la lampe brille en permanence dès que le circuit est fermé. Pour l'allumer et l'éteindre à volonté, il faut pouvoir ouvrir ou fermer le circuit à tout moment. C'est le rôle d'un dispositif de commande.",
+   "ecran": "commande",
+   "id": "p12",
+   "texte": "Commander : ouvrir ou fermer à volonté."
+  },
+  {
+   "dit": "Un circuit ne fonctionne que s'il forme une boucle fermée continue. Circuit fermé : la boucle est complète, le courant circule, la lampe brille. Circuit ouvert : la boucle est interrompue en un point, le courant ne circule plus, la lampe est éteinte. Commander un circuit, c'est créer volontairement une ouverture dans le circuit, ou la refermer.",
+   "ecran": "etats_commande",
+   "id": "p13",
+   "texte": "Fermé ou ouvert : la boucle décide."
+  },
+  {
+   "dit": "Un interrupteur est un composant placé en série dans le circuit, avec deux positions : ouvert ou fermé. Son symbole normalisé est un segment avec un levier incliné. Il se place en série, c'est-à-dire dans la boucle du circuit, jamais en dérivation.",
+   "ecran": "symbole",
+   "id": "p14",
+   "texte": "Interrupteur en série, jamais en dérivation."
+  },
+  {
+   "dit": "Exemple résolu : on réalise le circuit pile, lampe, interrupteur, pile. L'interrupteur est ouvert : le circuit est ouvert, aucun courant ne circule, la lampe est éteinte. On appuie sur l'interrupteur pour le fermer : le circuit devient fermé, le courant circule, la lampe s'allume. On appuie de nouveau : l'interrupteur s'ouvre, la lampe s'éteint.",
+   "ecran": "exemple_commande",
+   "id": "p15",
+   "texte": "Ouvert, fermé, ouvert : la lampe suit."
+  },
+  {
+   "dit": "Conclusion : l'interrupteur commande le passage du courant dans tout le circuit.",
+   "ecran": "conclusion",
+   "id": "p16",
+   "texte": "L'interrupteur commande tout le circuit."
+  },
+  {
+   "dit": "Un bouton-poussoir est un autre dispositif de commande : il ne laisse passer le courant que tant qu'on appuie dessus. Dès qu'on relâche, le circuit s'ouvre.",
+   "ecran": "bouton",
+   "id": "p17",
+   "texte": "Poussoir : du courant seulement pendant l'appui."
+  },
+  {
+   "dit": "Il existe deux types de boutons-poussoirs : normalement ouvert, fermé seulement si on appuie, et normalement fermé, ouvert seulement si on appuie.",
+   "ecran": "poussoir_types",
+   "id": "p18",
+   "texte": "Normalement ouvert ou normalement fermé."
+  },
+  {
+   "dit": "Usage typique du bouton-poussoir : la sonnette et la télécommande de portail. Un appui suffit, pas besoin que ça reste.",
+   "ecran": "usages",
+   "id": "p19",
+   "texte": "Sonnette, portail : un appui suffit."
+  },
+  {
+   "dit": "La différence clé avec l'interrupteur : l'interrupteur reste dans la position choisie, tandis que le bouton-poussoir revient à sa position de repos quand on le relâche.",
+   "ecran": "difference",
+   "id": "p20",
+   "texte": "Interrupteur stable, poussoir momentané."
+  },
+  {
+   "dit": "Un dispositif de commande se reconnaît à sa fonction : il agit sur l'état du circuit, ouvert ou fermé. Il ne produit pas d'énergie, ce n'est donc pas un générateur, et il ne consomme pas d'énergie comme une lampe, ce n'est donc pas un récepteur.",
+   "ecran": "reconnaitre",
+   "id": "p21",
+   "texte": "Une commande agit sur l'état, rien d'autre."
+  },
+  {
+   "dit": "Un circuit commandé comporte au minimum un générateur, une pile, un récepteur, lampe ou moteur, un dispositif de commande, interrupteur ou bouton-poussoir, et des fils de connexion formant une boucle.",
+   "ecran": "minimum_commande",
+   "id": "p22",
+   "texte": "Circuit commandé : quatre éléments minimum."
+  },
+  {
+   "dit": "Le dispositif de commande est toujours branché en série : ainsi, l'ouvrir coupe le courant dans tout le circuit.",
+   "ecran": "serie",
+   "id": "p23",
+   "texte": "En série : l'ouvrir coupe le courant partout."
+  },
+  {
+   "dit": "Exemple résolu : un élève veut que sa lampe s'allume seulement quand il appuie sur un bouton. Il branche en série pile, bouton-poussoir, lampe. Bouton relâché : circuit ouvert, lampe éteinte. Bouton appuyé : circuit fermé, lampe allumée. Bouton relâché à nouveau : lampe éteinte.",
+   "ecran": "bouton_exemple",
+   "id": "p24",
+   "texte": "Relâché, appuyé, relâché : la lampe suit le doigt."
+  },
+  {
+   "dit": "S'il avait utilisé un interrupteur, la lampe resterait allumée après le premier appui. Le choix du dispositif dépend donc de l'usage voulu.",
+   "ecran": "choix",
+   "id": "p25",
+   "texte": "Interrupteur : ça reste ; poussoir : tant qu'on appuie."
+  },
+  {
+   "dit": "Retenons l'essentiel : un circuit doit être fermé pour fonctionner ; l'interrupteur est une commande stable, le bouton-poussoir une commande momentanée ; la commande se place toujours en série ; et le choix dépend de l'usage voulu.",
+   "ecran": "recap",
+   "id": "p26",
+   "texte": "Boucle fermée, commande en série, choix selon l'usage."
+  }
+ ],
+ "titre": "Commander un circuit : interrupteur et bouton-poussoir"
+}

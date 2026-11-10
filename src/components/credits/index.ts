@@ -7,6 +7,7 @@ export { FeuilleCout } from './FeuilleCout';
 export { FeuilleDetailCredits } from './FeuilleDetailCredits';
 export { FeuilleEpuise } from './FeuilleEpuise';
 export { PuceCout } from './PuceCout';
+export { ToastRechargeCredits } from './ToastRechargeCredits';
 export { useDepenseCredits } from './useDepenseCredits';
 export { useOuverts } from './useOuverts';
 export { useOuverturePass } from './useOuverturePass';

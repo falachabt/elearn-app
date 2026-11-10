@@ -1,0 +1,337 @@
+{
+ "cours": 7284,
+ "titre": "Collecter, organiser et interpréter des données",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Statistique",
+   "titre": "Collecter, organiser et interpréter des données",
+   "sous": "Du sondage au diagramme : effectifs, fréquences et lecture des représentations",
+   "anim": {
+    "nom": "batons_couleurs_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "La démarche statistique",
+   "texte": "Collecter, organiser, interpréter : trois gestes, toujours dans cet ordre."
+  },
+  "vocab": {
+   "type": "etape",
+   "kicker": "Vocabulaire de base",
+   "titre": "Population, individu, caractère",
+   "tex": [
+    "\\text{population : l'ensemble étudié}",
+    "\\text{individu : un élément}",
+    "\\text{de la population, un élève}",
+    "\\text{caractère : l'information étudiée,}",
+    "\\text{la couleur des yeux}"
+   ]
+  },
+  "caractere": {
+   "type": "etape",
+   "kicker": "Le caractère de l'exemple",
+   "titre": "La couleur préférée : un caractère qualitatif",
+   "tex": [
+    "\\text{qualitatif : des catégories,}",
+    "\\text{bleu, rouge ou vert}",
+    "\\text{il ne se mesure pas, il se classe}"
+   ]
+  },
+  "effectifs_def": {
+   "type": "etape",
+   "kicker": "Effectif et effectif total",
+   "titre": "Compter, catégorie par catégorie",
+   "tex": [
+    "\\text{effectif : le nombre d'individus}",
+    "\\text{d'une catégorie}",
+    "\\text{effectif total : la somme}",
+    "\\text{de tous les effectifs}"
+   ]
+  },
+  "collecte": {
+   "type": "etape",
+   "kicker": "Collecter les données",
+   "titre": "Trois façons de recueillir des données",
+   "tex": [
+    "\\text{sondage : on interroge la population}",
+    "\\text{comptage : on dénombre}",
+    "\\text{mesure : on relève une grandeur}"
+   ]
+  },
+  "organiser": {
+   "type": "phrase",
+   "kicker": "Organiser les données",
+   "texte": "Des réponses en vrac ne se lisent pas : le tableau les rend exploitables."
+  },
+  "tableau": {
+   "type": "etape",
+   "kicker": "Exemple · les couleurs préférées de vingt-cinq élèves",
+   "titre": "Le tableau des effectifs",
+   "tex": [
+    "\\text{Bleu : } 10 \\qquad \\text{Rouge : } 8 \\qquad \\text{Vert : } 7",
+    "N = 10 + 8 + 7 = 25"
+   ]
+  },
+  "verif_total": {
+   "type": "etape",
+   "kicker": "Vérifier le tableau",
+   "titre": "La somme des effectifs doit redonner le total",
+   "tex": [
+    "10 + 8 + 7 = 25",
+    "\\text{l'effectif total est bien respecté}"
+   ]
+  },
+  "frequence": {
+   "type": "formule",
+   "kicker": "Effectifs et fréquences · la fréquence",
+   "tex": "\\text{fréquence} = \\frac{\\text{effectif de la valeur}}{\\text{effectif total}}",
+   "note": "Elle dit quelle part de la population une valeur représente."
+  },
+  "freq_props": {
+   "type": "etape",
+   "kicker": "Les propriétés des fréquences",
+   "titre": "Entre zéro et un, et une somme qui vaut un",
+   "tex": [
+    "\\text{chaque fréquence est comprise entre}",
+    "0 \\text{ et } 1",
+    "\\text{la somme de toutes les fréquences vaut } 1",
+    "\\text{en pourcentage : } 0{,}4 = 40\\,\\%"
+   ]
+  },
+  "ex_frequences": {
+   "type": "etape",
+   "kicker": "Exemple · les fréquences des trois couleurs",
+   "titre": "Diviser chaque effectif par vingt-cinq",
+   "tex": [
+    "f_{\\text{Bleu}} = \\tfrac{10}{25} = 0{,}40",
+    "f_{\\text{Rouge}} = \\tfrac{8}{25} = 0{,}32",
+    "f_{\\text{Vert}} = \\tfrac{7}{25} = 0{,}28",
+    "0{,}40 + 0{,}32 + 0{,}28 = 1"
+   ]
+  },
+  "batons": {
+   "type": "phrase",
+   "kicker": "Représentations · le diagramme en bâtons",
+   "texte": "Un bâton par catégorie, une hauteur proportionnelle à l'effectif : le bleu domine.",
+   "anim": {
+    "nom": "batons_couleurs_fig",
+    "hauteur": 190
+   }
+  },
+  "circulaire": {
+   "type": "formule",
+   "kicker": "Représentations · le diagramme circulaire",
+   "tex": "\\text{angle} = \\frac{e}{N} \\times 360^\\circ",
+   "note": "e : effectif de la valeur ; N : effectif total.",
+   "anim": {
+    "nom": "circulaire_couleurs_fig",
+    "hauteur": 190
+   }
+  },
+  "ex_angle": {
+   "type": "etape",
+   "kicker": "Exemple · les angles des trois couleurs",
+   "titre": "Chaque secteur se calcule avec son effectif",
+   "tex": [
+    "\\text{Bleu : } \\tfrac{10}{25} \\times 360^\\circ = 144^\\circ",
+    "\\text{Rouge : } \\tfrac{8}{25} \\times 360^\\circ = 115{,}2^\\circ",
+    "\\text{Vert : } \\tfrac{7}{25} \\times 360^\\circ = 100{,}8^\\circ"
+   ],
+   "anim": {
+    "nom": "circulaire_couleurs_fig",
+    "hauteur": 120
+   }
+  },
+  "choix": {
+   "type": "etape",
+   "kicker": "Choisir sa représentation",
+   "titre": "Chaque forme répond à une question",
+   "tex": [
+    "\\text{bâtons : comparer les effectifs,}",
+    "\\text{valeur par valeur}",
+    "\\text{circulaire : voir les parts d'un tout}",
+    "\\text{tableau : garder les valeurs exactes}"
+   ]
+  },
+  "interpreter": {
+   "type": "etape",
+   "kicker": "Interpréter une représentation",
+   "titre": "Trois questions, trois grandeurs à lire",
+   "tex": [
+    "\\text{la plus fréquente : l'effectif le plus grand}",
+    "\\text{la part d'une valeur : sa fréquence}",
+    "\\text{le nombre d'individus : l'effectif total}"
+   ]
+  },
+  "ex_interpretation": {
+   "type": "etape",
+   "kicker": "Exemple · lire le tableau des couleurs",
+   "titre": "Le bleu domine, avec quarante pour cent de la classe",
+   "tex": [
+    "\\text{la plus fréquente : le bleu, effectif } 10",
+    "\\text{sa part : fréquence } 0{,}4 \\text{, soit } 40\\,\\%",
+    "\\text{effectif total : } 25 \\text{ élèves}"
+   ]
+  },
+  "pieges": {
+   "type": "etape",
+   "kicker": "Les contrôles avant de conclure",
+   "titre": "Trois sommes à vérifier systématiquement",
+   "tex": [
+    "\\text{les effectifs somment à l'effectif total}",
+    "\\text{les fréquences somment à } 1",
+    "\\text{les angles somment à } 360^\\circ"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Collecter : sondage, comptage, mesure",
+    "Organiser : un tableau catégories et effectifs",
+    "Fréquence = effectif / effectif total",
+    "Bâtons : hauteurs, circulaire : angles",
+    "Interpréter : plus fréquent, part, total"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce chapitre de statistique. Nous allons apprendre à collecter des données, à les organiser dans un tableau, puis à les interpréter à l'aide des effectifs, des fréquences et de deux diagrammes : le diagramme en bâtons et le diagramme circulaire.",
+   "texte": "Collecter, organiser, interpréter : la démarche statistique.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "La statistique est la science qui consiste à collecter, organiser puis interpréter des données. Ces trois gestes, toujours dans cet ordre, forment la démarche complète du chapitre : sans collecte soigneuse, rien à organiser ; sans organisation, rien à interpréter.",
+   "texte": "Trois gestes dans l'ordre : collecter, organiser, interpréter.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par le vocabulaire. La population est l'ensemble étudié, par exemple une classe entière. Chaque élément de la population est un individu, ici un élève. Et le caractère est l'information que l'on étudie chez ces individus.",
+   "texte": "Population, individu, caractère : le vocabulaire de base.",
+   "ecran": "vocab"
+  },
+  {
+   "id": "p04",
+   "dit": "Le caractère de notre exemple fil rouge sera la couleur préférée des élèves. C'est un caractère qualitatif : il décrit une catégorie, bleu, rouge ou vert, et non une mesure. La couleur des yeux, citée dans la leçon, en est un autre exemple.",
+   "texte": "La couleur préférée : un caractère qualitatif.",
+   "ecran": "caractere"
+  },
+  {
+   "id": "p05",
+   "dit": "Pour chaque catégorie, on compte combien d'individus lui appartiennent : c'est son effectif. L'effectif total est la somme des effectifs de toutes les catégories : il dit combien d'individus compte la population entière.",
+   "texte": "Effectif d'une catégorie, effectif total de la population.",
+   "ecran": "effectifs_def"
+  },
+  {
+   "id": "p06",
+   "dit": "Première étape : collecter. On recueille les données directement auprès de la population, par un sondage quand on interroge, par un comptage quand on dénombre, ou par une mesure quand on relève une grandeur.",
+   "texte": "Collecter : sondage, comptage ou mesure.",
+   "ecran": "collecte"
+  },
+  {
+   "id": "p07",
+   "dit": "Deuxième étape : organiser. Des réponses en vrac ne se lisent pas : on les range dans un tableau qui associe à chaque catégorie son effectif. Le tableau est la forme organisée des données, celle sur laquelle tous les calculs vont s'appuyer.",
+   "texte": "Organiser : ranger les données dans un tableau.",
+   "ecran": "organiser"
+  },
+  {
+   "id": "p08",
+   "dit": "Notre exemple : une classe de vingt-cinq élèves interrogés sur leur couleur préférée. Dix choisissent le bleu, huit le rouge et sept le vert. Le tableau range ces trois catégories et leurs effectifs, prêts à être exploités.",
+   "texte": "Bleu dix, rouge huit, vert sept : vingt-cinq élèves.",
+   "ecran": "tableau"
+  },
+  {
+   "id": "p09",
+   "dit": "Premier réflexe devant tout tableau : vérifier l'effectif total. Dix plus huit plus sept égale vingt-cinq : la somme des effectifs redonne bien le nombre d'élèves interrogés. Si ce contrôle échoue, inutile d'aller plus loin.",
+   "texte": "Contrôle : dix plus huit plus sept égale vingt-cinq.",
+   "ecran": "verif_total"
+  },
+  {
+   "id": "p10",
+   "dit": "L'effectif dit combien, la fréquence dit quelle part. La fréquence d'une valeur est le quotient de son effectif par l'effectif total. Elle permet de comparer des catégories, et même des populations de tailles différentes.",
+   "texte": "La fréquence : le quotient qui donne la part.",
+   "ecran": "frequence"
+  },
+  {
+   "id": "p11",
+   "dit": "Deux propriétés à retenir sur les fréquences : chacune est comprise entre zéro et un, et leur somme vaut toujours un. Une fréquence se lit aussi en pourcentage : zéro virgule quarante, c'est quarante pour cent de la population.",
+   "texte": "Fréquences : entre zéro et un, de somme un.",
+   "ecran": "freq_props"
+  },
+  {
+   "id": "p12",
+   "dit": "Calculons pour nos couleurs, avec un effectif total de vingt-cinq. Le bleu : dix sur vingt-cinq, soit zéro virgule quarante. Le rouge : huit sur vingt-cinq, soit zéro virgule trente-deux. Le vert : sept sur vingt-cinq, soit zéro virgule vingt-huit. Et la somme redonne bien un.",
+   "texte": "Fréquences : bleu zéro virgule quarante, rouge zéro virgule trente-deux, vert zéro virgule vingt-huit.",
+   "ecran": "ex_frequences"
+  },
+  {
+   "id": "p13",
+   "dit": "Pour représenter le tableau, le diagramme en bâtons dessine une barre par catégorie, avec une hauteur proportionnelle à l'effectif. Le bâton du bleu, effectif dix, est donc le plus haut, suivi du rouge puis du vert : la comparaison saute aux yeux.",
+   "texte": "Diagramme en bâtons : des hauteurs proportionnelles aux effectifs.",
+   "ecran": "batons"
+  },
+  {
+   "id": "p14",
+   "dit": "Le diagramme circulaire partage un disque entier entre les catégories : chaque secteur a un angle proportionnel à l'effectif, calculé par la formule effectif divisé par effectif total, multiplié par trois cent soixante degrés.",
+   "texte": "Angle d'un secteur : effectif sur total, fois trois cent soixante.",
+   "ecran": "circulaire"
+  },
+  {
+   "id": "p15",
+   "dit": "Pour le bleu : dix sur vingt-cinq, multiplié par trois cent soixante, donne cent quarante-quatre degrés. Le rouge occupe cent quinze virgule deux degrés et le vert cent virgule huit degrés. Additionnés, les trois secteurs refont le tour complet.",
+   "texte": "Angles : bleu cent quarante-quatre degrés, rouge cent quinze virgule deux, vert cent virgule huit.",
+   "ecran": "ex_angle"
+  },
+  {
+   "id": "p16",
+   "dit": "Quel diagramme choisir ? Les bâtons comparent les effectifs valeur par valeur, le circulaire montre les parts d'un tout, et le tableau garde les valeurs exactes. Le bon choix dépend de la question à laquelle on veut répondre.",
+   "texte": "Bâtons pour comparer, circulaire pour les parts, tableau pour l'exact.",
+   "ecran": "choix"
+  },
+  {
+   "id": "p17",
+   "dit": "Troisième étape : interpréter, c'est répondre à des questions en lisant le tableau ou le diagramme. Quelle est la valeur la plus fréquente ? Quelle part représente une valeur ? Combien d'individus au total ? Chaque réponse se lit dans une grandeur déjà calculée.",
+   "texte": "Interpréter : répondre à trois questions types.",
+   "ecran": "interpreter"
+  },
+  {
+   "id": "p18",
+   "dit": "Sur notre exemple, l'interprétation est immédiate : la couleur la plus choisie est le bleu, avec l'effectif le plus grand, dix. Elle représente une fréquence de zéro virgule quarante, soit quarante pour cent de la classe, qui compte vingt-cinq élèves au total.",
+   "texte": "Le bleu domine : dix élèves, quarante pour cent de la classe.",
+   "ecran": "ex_interpretation"
+  },
+  {
+   "id": "p19",
+   "dit": "Avant de conclure, trois contrôles protègent de presque toutes les erreurs : l'effectif total doit égaler la somme des effectifs, les fréquences doivent sommer à un, et les angles du diagramme circulaire à trois cent soixante degrés.",
+   "texte": "Trois contrôles : total, somme des fréquences, somme des angles.",
+   "ecran": "pieges"
+  },
+  {
+   "id": "p20",
+   "dit": "Pour finir, retenez la démarche complète : collecter par sondage, comptage ou mesure, organiser dans un tableau d'effectifs, calculer les fréquences, représenter en bâtons ou en circulaire, puis interpréter en répondant à des questions précises.",
+   "texte": "À retenir : la démarche complète, de la collecte à l'interprétation.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Collecter, organiser et calculer les fréquences"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Diagrammes et interprétation",
+   "pont": {
+    "texte": "Partie 2 : fréquences calculées, diagrammes et interprétation.",
+    "dit": "Partie deux : exploiter les fréquences et interpréter. Nous calculons les fréquences de l'exemple, nous construisons les deux diagrammes, puis nous apprenons à lire une représentation pour répondre à des questions."
+   }
+  }
+ ]
+}

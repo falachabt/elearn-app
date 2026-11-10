@@ -1,0 +1,362 @@
+{
+ "cours": 6686,
+ "ecrans": {
+  "capteur": {
+   "kicker": "Le capteur",
+   "texte": "Un capteur convertit une grandeur physique mesurable en une grandeur électrique exploitable.",
+   "type": "phrase",
+   "anim": {
+    "nom": "chaine_electronique_fig",
+    "hauteur": 210
+   }
+  },
+  "chaine": {
+   "etapes": [
+    "Capteur : il convertit la grandeur physique en signal électrique",
+    "Conditionneur : il met le signal en forme, par exemple l'amplifie",
+    "Circuit de commande : il traite le signal et décide",
+    "Actionneur : il produit l'effet désiré, sirène, lampe, moteur, relais"
+   ],
+   "kicker": "La chaîne électronique",
+   "titre": "Quatre maillons, du monde physique à l'action",
+   "type": "recap",
+   "anim": {
+    "nom": "chaine_electronique_fig",
+    "hauteur": 120
+   }
+  },
+  "ctn": {
+   "kicker": "Capteur de température : la CTN",
+   "texte": "Thermistance CTN : sa résistance diminue quand la température augmente, de façon non linéaire.",
+   "type": "phrase",
+   "anim": {
+    "nom": "courbe_ctn_kty_fig",
+    "hauteur": 210
+   }
+  },
+  "dipole": {
+   "kicker": "Le dipôle commandé",
+   "texte": "Un dipôle dont une grandeur caractéristique est modifiée par une grandeur physique externe.",
+   "type": "phrase"
+  },
+  "electriques": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "diode"
+   },
+   "etapes": [
+    "Relais électromagnétique : un électroaimant ouvre ou ferme un interrupteur",
+    "VDR : la résistance diminue quand la tension augmente",
+    "Diodes et transistors : commandés par un courant ou une tension",
+    "Électrodes conductrices : elles détectent la présence d'un liquide"
+   ],
+   "kicker": "Commandés électriquement",
+   "titre": "Quatre dipôles commandés par l'électricité",
+   "type": "recap"
+  },
+  "ex_25": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "I = \\frac{5}{4700 + 1000} \\approx 0{,}88\\ \\text{mA}",
+    "U_{R_0} = 1000 \\times 0{,}88 \\times 10^{-3} \\approx 0{,}88\\ \\text{V}"
+   ],
+   "titre": "À 25 °C, la CTN vaut 4,7 kΩ",
+   "type": "etape"
+  },
+  "ex_60": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "I = \\frac{5}{1000 + 1000} = 2{,}5\\ \\text{mA}",
+    "U_{R_0} = 1000 \\times 2{,}5 \\times 10^{-3} = 2{,}5\\ \\text{V}"
+   ],
+   "titre": "À 60 °C, la CTN ne vaut plus que 1 kΩ",
+   "type": "etape"
+  },
+  "ex_conclusion": {
+   "kicker": "Exemple résolu · conclusion",
+   "texte": "De 0,88 V à 2,5 V : la température est devenue une tension exploitable.",
+   "type": "phrase"
+  },
+  "ex_montage": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "E = 5\\ \\text{V} \\qquad R_0 = 1\\ \\text{k}\\Omega",
+    "I = \\frac{E}{R_{CTN} + R_0}",
+    "U_{R_0} = R_0 \\cdot I"
+   ],
+   "titre": "Une CTN en série avec une résistance fixe",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Thermostat, détecteur de lumière, niveau d'eau : derrière chaque appareil, un capteur.",
+   "type": "phrase"
+  },
+  "kty": {
+   "kicker": "Capteur de température : le KTY",
+   "texte": "KTY : coefficient de température positif, réponse quasi linéaire sur sa plage utile.",
+   "type": "phrase",
+   "anim": {
+    "nom": "courbe_ctn_kty_fig",
+    "hauteur": 210
+   }
+  },
+  "lineaire": {
+   "kicker": "Linéaire ou non linéaire",
+   "texte": "Linéaire si la sortie est proportionnelle à l'entrée : KTY oui, CTN et LDR non.",
+   "type": "phrase"
+  },
+  "lumiere": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "diodes_types"
+   },
+   "kicker": "Capteurs de lumière",
+   "texte": "Photorésistance (LDR) et photodiode : la lumière devient un signal électrique.",
+   "type": "phrase"
+  },
+  "niveau": {
+   "kicker": "Exemple : l'indicateur de niveau d'eau",
+   "texte": "Deux électrodes, un transistor, une LED : l'eau conductrice ferme le circuit de base.",
+   "type": "phrase",
+   "anim": {
+    "nom": "electrodes_niveau_fig",
+    "hauteur": 210
+   }
+  },
+  "ondes": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "onde_em"
+   },
+   "etapes": [
+    "Antenne : elle capte les ondes électromagnétiques, converties en signaux",
+    "Microphone : les variations de pression acoustique deviennent un signal",
+    "Écouteur : il convertit le signal électrique en son, chemin inverse",
+    "Capteurs de pression : résistance ou capacité varie avec la pression"
+   ],
+   "kicker": "Capteurs d'ondes et de pression",
+   "titre": "Écouter les ondes, sentir la pression",
+   "type": "recap"
+  },
+  "principe": {
+   "kicker": "Principe du captage",
+   "texte": "La conversion agit sur la résistance, la capacité ou la tension aux bornes du dipôle.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Dipôle commandé : une grandeur réglée par une grandeur externe",
+    "Capteur : grandeur physique convertie en signal électrique",
+    "CTN : R diminue quand θ augmente ; KTY quasi linéaire",
+    "LDR : R diminue quand l'éclairement augmente",
+    "Chaîne : capteur, conditionneur, commande, actionneur"
+   ],
+   "kicker": "À retenir",
+   "titre": "Capteurs et composants électroniques",
+   "type": "recap"
+  },
+  "rheostat": {
+   "kicker": "Commande manuelle : le rhéostat",
+   "note": "Réseau U = f(I, R) : des droites passant par l'origine, une par valeur de R",
+   "tex": "U = R \\cdot I",
+   "titre": "La loi d'Ohm gouverne le réseau de caractéristiques",
+   "type": "formule",
+   "anim": {
+    "nom": "reseau_caracteristiques_fig",
+    "hauteur": 170
+   }
+  },
+  "sirene": {
+   "kicker": "Exemple : la sirène commandée par la lumière",
+   "texte": "Un pont diviseur, photorésistance et résistance fixe, polarise la base d'un transistor.",
+   "type": "phrase",
+   "anim": {
+    "nom": "pont_diviseur_fig",
+    "hauteur": 210
+   }
+  },
+  "sirene_seuil": {
+   "kicker": "Le seuil du transistor",
+   "note": "Le transistor agit comme un interrupteur électronique commandé par la lumière",
+   "tex": "U_{BE} \\approx 0{,}7\\ \\text{V}",
+   "titre": "En dessous, bloqué ; au-dessus, passant",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "circuit"
+   },
+   "kicker": "Physique",
+   "sous": "Dipôles commandés, capteurs et chaînes électroniques",
+   "titre": "Capteurs et composants électroniques",
+   "type": "titre"
+  }
+ },
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Dipôles commandés et capteurs"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : les chaînes électroniques. Comment un capteur s'insère dans un montage complet, de la grandeur physique jusqu'à l'action.",
+    "texte": "Partie 2 : chaînes électroniques et exemple résolu."
+   },
+   "sous_titre": "Chaînes électroniques et exemple résolu"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique consacré aux capteurs et aux composants électroniques : comment un dipôle, dont une grandeur varie sous l'effet d'une température, d'une lumière ou d'une pression, devient l'œil et l'oreille de tous les appareils électroniques.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Capteurs et composants électroniques."
+  },
+  {
+   "dit": "Partout autour de nous, des appareils mesurent le monde : un thermostat suit la température d'une pièce, un détecteur allume la lampe quand la nuit tombe, un réservoir signale son niveau d'eau. Au cœur de chacun de ces appareils se trouve un capteur, et derrière lui, toute une chaîne électronique.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Des appareils qui mesurent le monde grâce à des capteurs."
+  },
+  {
+   "dit": "Commençons par la notion de base. Un dipôle commandé est un dipôle dont une grandeur caractéristique, sa résistance, sa tension ou son courant, peut être modifiée par une grandeur physique extérieure : une action mécanique, un éclairement, une température ou un signal électrique.",
+   "ecran": "dipole",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Dipôle commandé : une grandeur modifiée de l'extérieur."
+  },
+  {
+   "dit": "Un capteur est un cas particulier de dipôle commandé : il transforme une grandeur physique mesurable, température, lumière, son ou pression, en une grandeur électrique exploitable, résistance, tension ou courant. C'est un convertisseur : le monde physique entre, un signal électrique sort.",
+   "ecran": "capteur",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Le capteur : un convertisseur physique vers électrique."
+  },
+  {
+   "dit": "Tout captage repose sur cette conversion. La grandeur d'entrée agit concrètement sur le dipôle : elle modifie sa résistance, sa capacité ou la tension à ses bornes. C'est cette modification, mesurable par un circuit, qui porte l'information sur la grandeur physique.",
+   "ecran": "principe",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Le captage : modifier R, C ou U du dipôle."
+  },
+  {
+   "dit": "Le plus simple des dipôles commandés se règle à la main : c'est le rhéostat, une résistance variable dont un curseur règle la valeur. Son réseau de caractéristiques, la tension en fonction du courant, montre des droites passant par l'origine, une pour chaque valeur de la résistance, toujours selon la loi d'Ohm : la tension égale la résistance multipliée par le courant.",
+   "ecran": "rheostat",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Le rhéostat : une résistance réglée par un curseur, U = R·I."
+  },
+  {
+   "dit": "D'autres dipôles sont commandés électriquement. Le relais électromagnétique : un électroaimant commande l'ouverture ou la fermeture d'un interrupteur. Les résistances dépendant de la tension : leur résistance diminue quand la tension augmente. Les diodes et les transistors, commandés par un courant ou par une tension. Et les électrodes conductrices, qui détectent la présence d'un liquide.",
+   "ecran": "electriques",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Relais, VDR, diodes, transistors, électrodes."
+  },
+  {
+   "dit": "Parmi les capteurs de température, voici d'abord la thermistance à coefficient négatif, dite CTN. Sa résistance diminue quand la température augmente. Sa caractéristique, la résistance en fonction de la température, est donc décroissante, mais elle est courbée : ce capteur est non linéaire.",
+   "ecran": "ctn",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "CTN : R diminue quand θ augmente, réponse non linéaire."
+  },
+  {
+   "dit": "Deuxième capteur de température : le KTY, à coefficient de température positif. Sa résistance augmente avec la température et, sur sa plage utile, elle le fait de façon presque proportionnelle. C'est un capteur quasi linéaire, particulièrement commode pour mesurer une température.",
+   "ecran": "kty",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "KTY : R augmente avec θ, réponse quasi linéaire."
+  },
+  {
+   "dit": "Pour capter la lumière, la photorésistance, ou LDR, voit sa résistance diminuer quand l'éclairement augmente : son réseau de caractéristiques montre des droites d'autant moins pentues que l'éclairement est fort. La photodiode va plus loin : elle génère elle-même un courant proportionnel à l'éclairement reçu. C'est le symbole de droite à l'écran, avec ses flèches de lumière entrantes.",
+   "ecran": "lumiere",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "LDR et photodiode : capter la lumière."
+  },
+  {
+   "dit": "D'autres capteurs écoutent les ondes et sentent les pressions. L'antenne capte les ondes électromagnétiques et les convertit en signaux électriques. Le microphone convertit les variations de pression acoustique en signal électrique. L'écouteur téléphonique fait le chemin inverse : il convertit le signal électrique en son, c'est un transducteur électroacoustique. Enfin, les capteurs de pression voient leur résistance ou leur capacité varier avec la pression appliquée.",
+   "ecran": "ondes",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Antenne, microphone, écouteur, capteurs de pression."
+  },
+  {
+   "dit": "Un capteur est dit linéaire si sa grandeur de sortie est proportionnelle à sa grandeur d'entrée : c'est le cas du KTY sur sa plage utile. Dans le cas contraire, le capteur est non linéaire : c'est le cas de la thermistance CTN et de la photorésistance, dont les réponses sont courbées.",
+   "ecran": "lineaire",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Linéaire : sortie proportionnelle à l'entrée."
+  },
+  {
+   "dit": "Un capteur seul ne suffit pas : il s'insère dans une chaîne électronique complète. D'abord le capteur, qui convertit la grandeur physique en signal électrique. Puis le conditionneur, qui met le signal en forme, par exemple en l'amplifiant ou en le mettant à niveau. Ensuite le circuit de commande, qui traite le signal et décide. Enfin l'actionneur, qui produit l'effet désiré : une sirène, une lampe, un moteur ou un relais.",
+   "ecran": "chaine",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Capteur, conditionneur, commande, actionneur."
+  },
+  {
+   "dit": "Exemple complet : une sirène commandée par la lumière. La photorésistance forme, avec une résistance fixe, un pont diviseur de tension qui polarise la base d'un transistor. Quand l'éclairement diminue, la résistance de la photorésistance augmente, et la tension de base du transistor augmente avec elle.",
+   "ecran": "sirene",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "La photorésistance polarise la base du transistor."
+  },
+  {
+   "dit": "Le transistor ne conduit que si sa tension de base dépasse un seuil, environ zéro virgule sept volt. En dessous de ce seuil, il est bloqué ; au-dessus, il devient passant et la sirène est alimentée. La photorésistance commande ainsi l'état du transistor, saturé ou bloqué, qui agit comme un interrupteur électronique.",
+   "ecran": "sirene_seuil",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Seuil : U_BE ≈ 0,7 V, le transistor bascule."
+  },
+  {
+   "dit": "Autre exemple : l'indicateur de niveau d'eau. Deux électrodes sont placées dans un réservoir. Quand l'eau monte et les touche, elle ferme le circuit de base : l'eau, conductrice, établit le courant. Le transistor devient passant et une diode électroluminescente s'allume. Au passage, le transistor amplifie le faible courant détecté par les électrodes.",
+   "ecran": "niveau",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "L'eau ferme le circuit : la LED s'allume."
+  },
+  {
+   "dit": "Terminons par l'exemple résolu du cours. Une thermistance CTN est montée en série avec une résistance fixe de un kiloohm, sous une tension d'alimentation de cinq volts. Question : que vaut la tension aux bornes de la résistance fixe, d'abord à vingt-cinq degrés, puis à soixante degrés ? Le courant dans le circuit vaut la tension divisée par la somme des deux résistances.",
+   "ecran": "ex_montage",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Exemple : CTN en série avec R₀ = 1 kΩ, sous 5 V."
+  },
+  {
+   "dit": "À vingt-cinq degrés, la thermistance vaut quatre virgule sept kiloohms, soit quatre mille sept cents ohms. Le courant vaut cinq divisé par cinq mille sept cents, environ zéro virgule quatre-vingt-huit milliampère. La tension aux bornes de la résistance fixe vaut alors environ zéro virgule quatre-vingt-huit volt.",
+   "ecran": "ex_25",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "À 25 °C : I ≈ 0,88 mA et U(R₀) ≈ 0,88 V."
+  },
+  {
+   "dit": "À soixante degrés, la thermistance ne vaut plus que un kiloohm : les deux résistances sont égales. Le courant monte à deux virgule cinq milliampères, et la tension aux bornes de la résistance fixe atteint deux virgule cinq volts, exactement la moitié de la tension d'alimentation.",
+   "ecran": "ex_60",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "À 60 °C : I = 2,5 mA et U(R₀) = 2,5 V."
+  },
+  {
+   "dit": "Résultat : quand la température passe de vingt-cinq à soixante degrés, la tension mesurée grimpe de zéro virgule quatre-vingt-huit volt à deux virgule cinq volts. La thermistance a bien converti une variation de température en une variation de tension exploitable : c'est exactement le travail d'un capteur.",
+   "ecran": "ex_conclusion",
+   "id": "p20",
+   "pause_apres": 0.7,
+   "texte": "La température est devenue une tension exploitable."
+  },
+  {
+   "dit": "Retenez l'essentiel : un dipôle commandé voit une de ses grandeurs réglée par une grandeur extérieure ; un capteur convertit une grandeur physique en signal électrique ; la CTN et la photorésistance répondent de façon non linéaire, le KTY de façon quasi linéaire ; et tout capteur travaille au sein d'une chaîne : capteur, conditionneur, commande, actionneur.",
+   "ecran": "recap",
+   "id": "p21",
+   "pause_apres": 0.5,
+   "texte": "Capteurs et chaînes électroniques : l'essentiel."
+  }
+ ],
+ "titre": "Capteurs et composants électroniques"
+}

@@ -1,0 +1,504 @@
+{
+ "cours": 6229,
+ "titre": "L'énergie d'activation et les mécanismes réactionnels",
+ "matiere": "Chimie",
+ "lecons": [
+  6749,
+  6750,
+  6751,
+  6752
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Cinétique chimique",
+   "titre": "L'énergie d'activation et les mécanismes réactionnels",
+   "sous": "Collisions, profils d'énergie et étapes élémentaires",
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 250
+   }
+  },
+  "mur_invisible": {
+   "type": "phrase",
+   "kicker": "Le mur invisible",
+   "texte": "Un flacon d'hydrogène et d'oxygène peut attendre des années : rien ne se passe, et pourtant la formation de l'eau est énergétiquement favorable. Entre les réactifs et les produits se dresse un mur invisible : l'énergie d'activation.",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 140
+   }
+  },
+  "arrhenius_base": {
+   "type": "formule",
+   "kicker": "La barrière énergétique",
+   "tex": "k = A \\cdot e^{-\\frac{E_a}{RT}}",
+   "note": "R = 8,314 J/(mol·K) ; T en kelvin ; A, facteur de fréquence des collisions."
+  },
+  "collisions": {
+   "type": "etape",
+   "kicker": "La théorie des collisions",
+   "titre": "Trois conditions pour un choc efficace",
+   "tex": [
+    "\\text{collision : les molécules doivent se rencontrer}",
+    "\\text{orientation : se heurter du bon côté}",
+    "\\text{énergie : } E \\geq E_a \\text{ au moment du choc}"
+   ]
+  },
+  "frequence_sterique": {
+   "type": "etape",
+   "kicker": "Fréquence et orientation",
+   "titre": "Des milliards de chocs, une poignée d'efficaces",
+   "tex": [
+    "Z \\propto [A]\\,[B] \\quad \\text{et} \\quad Z \\propto \\sqrt{T}",
+    "p \\in [0\\,;\\,1] \\ : \\ \\text{probabilité d'orientation favorable}",
+    "\\text{NO} + O_2 \\ : \\ \\text{frontal efficace, latéral stérile}"
+   ]
+  },
+  "facteur_energie": {
+   "type": "formule",
+   "kicker": "Le facteur d'énergie",
+   "tex": "f = e^{-\\frac{E_a}{RT}}",
+   "note": "f : fraction des molécules assez énergétiques, selon Maxwell-Boltzmann."
+  },
+  "equation_collisions": {
+   "type": "etape",
+   "kicker": "L'équation complète des collisions",
+   "titre": "Vitesse égale p fois Z fois f",
+   "tex": [
+    "\\text{Vitesse} = p \\times Z \\times f",
+    "= p \\times Z_0\\,[A]\\,[B] \\times e^{-\\tfrac{E_a}{RT}}",
+    "A_{\\text{Arrhenius}} = p \\times Z_0"
+   ]
+  },
+  "diagramme": {
+   "type": "etape",
+   "kicker": "Le diagramme d'énergie",
+   "titre": "Anatomie d'un profil réactionnel",
+   "tex": [
+    "E_a = E_{\\text{état de transition}} - E_{\\text{état initial}}",
+    "\\Delta H = E_{\\text{état final}} - E_{\\text{état initial}}",
+    "\\text{état de transition : le col, instable et éphémère}"
+   ],
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 110
+   }
+  },
+  "methane": {
+   "type": "formule",
+   "kicker": "Exemple : la combustion du méthane",
+   "tex": "CH_4 + 2\\,O_2 \\rightarrow CO_2 + 2\\,H_2O \\quad \\Delta H < 0",
+   "note": "Très exothermique, mais une étincelle doit fournir Ea pour démarrer."
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Points clés de la partie",
+   "etapes": [
+    "Ea : l'énergie minimale pour réagir",
+    "Collision efficace : choc, orientation, énergie",
+    "Vitesse = p × Z × f ; A = p × Z₀",
+    "État de transition : le col du profil",
+    "Ea : cinétique ; ΔH : thermodynamique"
+   ]
+  },
+  "facteurs": {
+   "type": "etape",
+   "kicker": "Synthèse : les facteurs cinétiques",
+   "titre": "Quatre leviers, lus sur le diagramme",
+   "tex": [
+    "T \\uparrow \\ : \\ f \\uparrow \\text{, la barrière } E_a \\text{ ne change pas}",
+    "[A], [B] \\uparrow \\ : \\ Z \\uparrow \\text{, le profil ne change pas}",
+    "\\text{catalyseur : nouveau chemin, } E_a \\downarrow \\text{, } \\Delta H \\text{ inchangé}",
+    "\\text{liaisons fortes : } E_a \\text{ élevée, réaction lente}"
+   ]
+  },
+  "linearisee": {
+   "type": "formule",
+   "kicker": "La forme linéarisée d'Arrhenius",
+   "tex": "\\ln k = \\ln A - \\frac{E_a}{R} \\cdot \\frac{1}{T}",
+   "note": "Droite ln k contre 1/T : pente −Ea/R ; ordonnée à l'origine : ln A."
+  },
+  "donnees": {
+   "type": "etape",
+   "kicker": "Exemple : les données expérimentales",
+   "titre": "Quatre températures, quatre constantes",
+   "tex": [
+    "T = 300\\ \\text{K} : k = 2{,}5 \\times 10^{-3}",
+    "T = 310\\ \\text{K} : k = 5{,}8 \\times 10^{-3}",
+    "T = 320\\ \\text{K} : k = 1{,}3 \\times 10^{-2}",
+    "T = 330\\ \\text{K} : k = 2{,}8 \\times 10^{-2}"
+   ]
+  },
+  "calcul_ea": {
+   "type": "etape",
+   "kicker": "Exemple résolu : la pente donne Ea",
+   "titre": "De la droite à l'énergie d'activation",
+   "tex": [
+    "\\Delta \\ln k = -3{,}57 - (-5{,}99) = 2{,}42",
+    "\\Delta \\tfrac{1}{T} = 3{,}03 \\times 10^{-3} - 3{,}33 \\times 10^{-3} = -3{,}0 \\times 10^{-4}\\ \\text{K}^{-1}",
+    "\\text{pente} = \\tfrac{2{,}42}{-3{,}0 \\times 10^{-4}} \\approx -8{,}1 \\times 10^{3}\\ \\text{K}",
+    "E_a = 8{,}1 \\times 10^{3} \\times 8{,}314 \\approx 67\\ \\text{kJ/mol}"
+   ]
+  },
+  "sensibilite": {
+   "type": "etape",
+   "kicker": "La sensibilité à la barrière",
+   "titre": "Dix kilojoules de plus, cinquante-sept fois plus lent",
+   "tex": [
+    "E_{a1} = 50\\ \\text{kJ/mol} \\quad E_{a2} = 60\\ \\text{kJ/mol} \\quad T = 298\\ \\text{K}",
+    "\\tfrac{k_1}{k_2} = e^{\\tfrac{E_{a2} - E_{a1}}{RT}}",
+    "= e^{\\tfrac{10000}{8{,}314 \\times 298}} \\approx e^{4{,}04} \\approx 57"
+   ]
+  },
+  "temperature": {
+   "type": "etape",
+   "kicker": "La sensibilité à la température",
+   "titre": "Dix degrés suffisent à presque doubler",
+   "tex": [
+    "\\tfrac{k_{310}}{k_{300}} = e^{-\\tfrac{E_a}{R}\\left(\\tfrac{1}{310} - \\tfrac{1}{300}\\right)}",
+    "\\approx e^{0{,}646} \\approx 1{,}91 \\quad (E_a = 50\\ \\text{kJ/mol})",
+    "\\text{règle de van 't Hoff : } +10\\ ^\\circ\\text{C} \\Rightarrow k \\times 2 \\text{ environ}"
+   ],
+   "anim": {
+    "nom": "distribution_boltzmann_fig",
+    "hauteur": 110
+   }
+  },
+  "catalyseur": {
+   "type": "etape",
+   "kicker": "Le catalyseur : un passeur de colline",
+   "titre": "Un autre chemin, plus bas",
+   "tex": [
+    "\\text{sans catalyseur : une seule haute colline}",
+    "\\text{avec catalyseur : des étapes aux bosses plus basses}",
+    "E_a \\downarrow \\text{ dans les deux sens : } \\Delta H \\text{ et } K \\text{ inchangés}"
+   ],
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 110
+   }
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Points clés de la partie",
+   "etapes": [
+    "Droite d'Arrhenius : pente = −Ea/R",
+    "Données (300-330 K) : Ea ≈ 67 kJ/mol",
+    "+10 kJ/mol de barrière : k divisée par 57",
+    "+10 K : k presque doublée (van 't Hoff)",
+    "Catalyseur : Ea abaissée, ΔH et K inchangés"
+   ]
+  },
+  "etape_elementaire": {
+   "type": "etape",
+   "kicker": "L'étape élémentaire",
+   "titre": "L'acte fondamental, en un seul événement",
+   "tex": [
+    "\\text{une étape élémentaire se produit comme elle s'écrit}",
+    "\\text{un seul événement de collision, aucun intermédiaire}",
+    "\\text{son ordre} = \\text{sa molécularité}"
+   ]
+  },
+  "molecularite": {
+   "type": "etape",
+   "kicker": "Les trois types d'étapes",
+   "titre": "Une, deux ou trois particules",
+   "tex": [
+    "\\text{uni : } O_3^* \\rightarrow O_2 + O",
+    "\\text{bi : } NO_2 + CO \\rightarrow NO + CO_2",
+    "\\text{ter : } O + O_2 + N_2 \\rightarrow O_3 + N_2^*",
+    "\\text{termoléculaire : collision triple, rarissime}"
+   ]
+  },
+  "mecanisme_ozone": {
+   "type": "etape",
+   "kicker": "Le mécanisme réactionnel",
+   "titre": "Un mécanisme en deux actes : l'ozone attaqué",
+   "tex": [
+    "NO + O_3 \\rightarrow NO_2 + O_2 \\quad \\text{(bilan global)}",
+    "\\text{étape 1, lente : } O_3 \\xrightarrow{UV} O_2 + O",
+    "\\text{étape 2, rapide : } NO + O \\rightarrow NO_2",
+    "O \\text{ produit puis consommé : il disparaît du bilan}"
+   ]
+  },
+  "concepts": {
+   "type": "etape",
+   "kicker": "Les concepts du mécanisme",
+   "titre": "Intermédiaire, étape limitante, ordre global",
+   "tex": [
+    "\\text{intermédiaire : produit d'une étape, consommé par la suivante}",
+    "\\text{étape limitante : la plus lente impose sa vitesse à toutes}",
+    "\\text{ordre global : résultat du mécanisme, pas de la stœchiométrie}"
+   ]
+  },
+  "profil_mecanisme": {
+   "type": "etape",
+   "kicker": "Le profil d'un mécanisme",
+   "titre": "Deux collines et une vallée",
+   "tex": [
+    "\\text{chaque bosse : une étape et son } E_a",
+    "\\text{la vallée : l'intermédiaire, espèce réelle et identifiable}",
+    "E_{a1} > E_{a2} \\Rightarrow \\text{première étape limitante}"
+   ],
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 110
+   }
+  },
+  "exercice_peroxyde": {
+   "type": "etape",
+   "kicker": "Exercice guidé : la catalyse par les ions iodure",
+   "titre": "Décomposer la décomposition de l'eau oxygénée",
+   "tex": [
+    "H_2O_2 + I^- \\rightarrow H_2O + IO^- \\quad \\text{(lente)}",
+    "H_2O_2 + IO^- \\rightarrow H_2O + O_2 + I^- \\quad \\text{(rapide)}",
+    "\\text{bilan : } 2\\,H_2O_2 \\rightarrow 2\\,H_2O + O_2",
+    "\\text{intermédiaire : } IO^- \\ ; \\ I^- \\text{ régénéré : le catalyseur}"
+   ]
+  },
+  "industrie": {
+   "type": "etape",
+   "kicker": "La catalyse dans le monde réel",
+   "titre": "Du pot d'échappement à l'usine d'engrais",
+   "tex": [
+    "\\text{pot catalytique : Pt, Pd, Rh} \\ ; \\ CO \\rightarrow CO_2",
+    "N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3 \\quad \\Delta H \\approx -92\\ \\text{kJ/mol}",
+    "\\text{catalyseur au fer : } E_a \\text{ abaissée, procédé viable}"
+   ]
+  },
+  "stabilite": {
+   "type": "etape",
+   "kicker": "La stabilité cinétique",
+   "titre": "Favorable, mais figé : la patience des systèmes",
+   "tex": [
+    "\\text{diamant} \\rightarrow \\text{graphite : } E_a \\text{ immense, jamais observé}",
+    "\\text{ADN et protéines : protégés par leur } E_a",
+    "\\text{combustion du papier : spontanée, mais étincelle requise}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Points clés du cours",
+   "etapes": [
+    "Ea : la hauteur de la colline à franchir",
+    "Collisions : rencontre, orientation, énergie",
+    "Arrhenius : la droite donne Ea et A",
+    "Mécanisme : étapes, intermédiaires, limitante",
+    "Catalyseur : un chemin plus bas, même bilan"
+   ]
+  }
+ },
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La barrière d'activation et la théorie des collisions"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Mesurer la barrière : la loi d'Arrhenius à l'œuvre",
+   "pont": {
+    "texte": "Partie 2 : la droite d'Arrhenius devient un instrument.",
+    "dit": "Partie deux : mesurer la barrière. Nous commencerons par relire les quatre grands facteurs cinétiques avec les lunettes de la théorie des collisions, puis la loi d'Arrhenius deviendra notre instrument de mesure : une droite, des données expérimentales, et l'énergie d'activation se calcule. Nous chiffrerons enfin la sensibilité de la vitesse, à la barrière comme à la température, avant de rencontrer le catalyseur."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "Les mécanismes réactionnels, étape par étape",
+   "pont": {
+    "texte": "Partie 3 : décomposer le voyage en étapes.",
+    "dit": "Partie trois : les mécanismes réactionnels. Les réactions globales cachent presque toujours une suite d'étapes élémentaires : nous allons les décomposer, traquer les intermédiaires, identifier l'étape qui impose son tempo, et voir ces mécanismes à l'œuvre, de l'ozone stratosphérique au pot d'échappement."
+   }
+  }
+ ],
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours consacré à l'énergie d'activation et aux mécanismes réactionnels. Nous commencerons par le mur invisible qui empêche tant de réactions de démarrer : la barrière d'énergie qu'il faut franchir pour transformer les réactifs en produits. La théorie des collisions nous dira ce qui se joue au moment du choc entre molécules, et la loi d'Arrhenius nous apprendra à mesurer cette barrière. Enfin, nous décomposerons les réactions en étapes élémentaires pour découvrir leurs mécanismes, ces chemins cachés que suivent les molécules.",
+   "texte": "Énergie d'activation et mécanismes : la colline et le chemin.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "mur_invisible",
+   "dit": "Imaginez un flacon rempli d'hydrogène et d'oxygène gazeux. Les molécules sont là, prêtes à former de l'eau, et la réaction devrait libérer beaucoup d'énergie. Pourtant, à température ambiante, rien ne se passe : le mélange peut attendre indéfiniment. Pourquoi ? Parce qu'entre les réactifs et les produits se dresse un mur invisible. Ce mur, c'est l'énergie d'activation, la clé de voûte de ce cours. Comprendre cette barrière, c'est comprendre pourquoi certaines réactions spontanées n'ont jamais lieu, pourquoi une étincelle déclenche une combustion, et comment les catalyseurs ouvrent des passages secrets dans le mur.",
+   "texte": "H₂ + O₂ : favorable, mais bloqué par la barrière Ea.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p03",
+   "ecran": "arrhenius_base",
+   "dit": "L'énergie d'activation est l'énergie minimale que les espèces réactives, atomes, molécules ou ions, doivent posséder pour qu'une réaction chimique puisse se produire lors de leurs collisions. C'est la hauteur de la colline à gravir avant de redescendre vers les produits : même si la vallée d'arrivée est plus basse, il faut d'abord fournir l'effort de la montée. La relation fondamentale est l'équation d'Arrhenius : la constante de vitesse égale un facteur pré-exponentiel, lié à la fréquence des collisions, multiplié par une exponentielle qui contient l'énergie d'activation, la constante des gaz parfaits et la température absolue, exprimée en kelvin.",
+   "texte": "Ea : l'énergie minimale pour réagir ; k = A·e^(−Ea/RT).",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p04",
+   "ecran": "collisions",
+   "dit": "Comment les réactions démarrent-elles au niveau moléculaire ? La théorie des collisions, développée par Max Trautz et William Lewis au début du vingtième siècle, pose trois conditions simultanées. Premièrement, les molécules doivent entrer en collision : plus la concentration est élevée, plus les chocs sont fréquents. Deuxièmement, elles doivent être correctement orientées : comme deux pièces de puzzle, elles doivent se rencontrer du bon côté, sinon le choc est stérile. Troisièmement, elles doivent posséder au moment du choc une énergie au moins égale à l'énergie d'activation. Si toutes les collisions réussissaient, la synthèse de l'ammoniac serait instantanée à température ambiante ; en réalité, elle y est pratiquement inexistante.",
+   "texte": "Rencontre, orientation, énergie ≥ Ea : sinon, choc stérile.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p05",
+   "ecran": "frequence_sterique",
+   "dit": "Dans le modèle des sphères dures, les molécules sont des billes en mouvement perpétuel, et la fréquence de collision grandit avec les concentrations des deux partenaires, avec leur diamètre, et avec la racine carrée de la température. On s'attendrait donc à des vitesses de réaction colossales. Or seule une infime fraction des chocs est efficace. Le premier filtre est l'orientation, mesurée par le facteur stérique, un nombre compris entre zéro et un. Dans la réaction entre le monoxyde d'azote et le dioxygène, une collision frontale entre l'atome d'azote et un atome d'oxygène a bien plus de chances de réussir qu'une collision latérale : c'est la clé qui n'entre dans la serrure que dans le bon sens, même agitée vigoureusement devant elle.",
+   "texte": "Z ∝ [A][B] et √T ; p : la probabilité du bon côté.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p06",
+   "ecran": "facteur_energie",
+   "dit": "Le second filtre est l'énergie. Même parfaitement orientée, une collision reste stérile si l'énergie cinétique totale des partenaires n'atteint pas l'énergie d'activation. La distribution de Maxwell-Boltzmann nous donne la fraction des molécules qui possèdent une énergie supérieure ou égale à la barrière : cette fraction est une exponentielle décroissante de l'énergie d'activation rapportée à la température. Quand la barrière est haute ou la température basse, cette fraction devient minuscule, et la réaction aussi. C'est ce facteur qui explique la sensibilité spectaculaire des vitesses à la température.",
+   "texte": "f = e^(−Ea/RT) : la fraction qui peut franchir.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p07",
+   "ecran": "equation_collisions",
+   "dit": "Assemblons les trois facteurs. Pour une réaction entre deux espèces, la vitesse est le produit de la fréquence des collisions, du facteur stérique et du facteur d'énergie. En regroupant les paramètres géométriques et de vitesse dans une constante, on retrouve exactement la forme d'Arrhenius : le facteur pré-exponentiel, qu'Arrhenius avait introduit de façon empirique en mille huit cent quatre-vingt-neuf, cache en réalité le produit du facteur stérique par la fréquence de collision. La théorie des collisions donne ainsi un visage moléculaire à l'équation d'Arrhenius. Elle a pourtant ses limites : des molécules traitées comme des sphères inertes, des réactions en solution ou unimoléculaires mal décrites.",
+   "texte": "Vitesse = p·Z·f : A d'Arrhenius = p × Z₀.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p08",
+   "ecran": "diagramme",
+   "dit": "Pour raconter toute l'histoire énergétique d'une réaction, on trace son diagramme d'énergie, ou profil réactionnel : l'énergie potentielle en fonction de l'avancement, de l'état initial des réactifs à l'état final des produits. Au sommet de la colline siège l'état de transition, une configuration atomique instable et éphémère : le complexe activé y a des liaisons à moitié rompues et à moitié formées, c'est le point de non-retour. L'énergie d'activation est la différence entre ce sommet et l'état initial ; la variation d'enthalpie, la différence entre l'état final et l'état initial. La hauteur de la colline est l'information cinétique, le dénivelé total est l'information thermodynamique : les deux ne se confondent pas.",
+   "texte": "Ea : réactifs → sommet ; ΔH : réactifs → produits.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p09",
+   "ecran": "methane",
+   "dit": "Prenons la combustion du méthane : un méthane et deux dioxygènes donnent un dioxyde de carbone et deux molécules d'eau, avec une variation d'enthalpie fortement négative. La réaction est donc très exothermique : une fois partie, elle dégage énormément de chaleur. Et pourtant, un mélange de méthane et d'air peut attendre indéfiniment sans brûler. Il lui faut une étincelle : ce petit apport d'énergie permet à quelques molécules de franchir la barrière d'activation, et la chaleur qu'elles libèrent en entraîne d'autres, en cascade. La bougie des leçons illustre la même logique : sans allumette, la cire ne brûle jamais spontanément, malgré une combustion très favorable.",
+   "texte": "CH₄ + 2 O₂ → CO₂ + 2 H₂O : il faut l'étincelle.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p10",
+   "ecran": "recap1",
+   "dit": "Récapitulons cette première partie. L'énergie d'activation est l'énergie minimale qu'une collision doit apporter pour déclencher la réaction, et l'équation d'Arrhenius relie la constante de vitesse à cette barrière. La théorie des collisions décompose la réussite d'un choc en trois conditions : la rencontre, l'orientation favorable mesurée par le facteur stérique, et l'énergie suffisante mesurée par le facteur de Boltzmann. Le diagramme d'énergie, lui, distingue soigneusement la hauteur de la colline, qui règle la vitesse, du dénivelé entre réactifs et produits, qui relève de la thermodynamique. Reste une question pratique : comment mesurer cette barrière ?",
+   "texte": "Barrière définie : passons à sa mesure.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p11",
+   "ecran": "facteurs",
+   "dit": "Relisons l'effet des grands facteurs, à la fois dans la théorie des collisions et sur le diagramme. Augmenter la température augmente fortement la fraction des molécules assez énergétiques, sans toucher à la hauteur de la barrière : simplement, plus de molécules peuvent la franchir. Augmenter la concentration ou la pression augmente la fréquence des collisions, sans aucun effet sur le profil. Un catalyseur propose un chemin alternatif dont l'état de transition est plus bas : l'énergie d'activation diminue, la variation d'enthalpie reste la même. Enfin, la nature des réactifs compte : des liaisons fortes sont difficiles à rompre, ce qui se traduit par une barrière initiale très haute et une réaction lente.",
+   "texte": "T : f ↑ ; concentration : Z ↑ ; catalyseur : Ea ↓.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p12",
+   "ecran": "linearisee",
+   "dit": "Pour mesurer expérimentalement l'énergie d'activation, on utilise la forme logarithmique de l'équation d'Arrhenius. Le logarithme de la constante de vitesse égale le logarithme du facteur pré-exponentiel, moins le rapport de l'énergie d'activation à la constante des gaz, multiplié par l'inverse de la température. C'est l'équation d'une droite : en portant le logarithme de la constante en fonction de l'inverse de la température, on obtient la droite d'Arrhenius. Sa pente donne l'énergie d'activation, et son extrapolation jusqu'à un inverse de température nul donne le logarithme du facteur pré-exponentiel. Une série de mesures à plusieurs températures fiabilise le tracé.",
+   "texte": "ln k = ln A − (Ea/R)·(1/T) : une droite à exploiter.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p13",
+   "ecran": "donnees",
+   "dit": "Voici les données d'une réaction suivie à quatre températures, la constante de vitesse étant exprimée en litres par mole et par seconde. À trois cents kelvins, elle vaut deux virgule cinq millièmes ; à trois cent dix, cinq virgule huit millièmes ; à trois cent vingt, treize millièmes ; à trois cent trente, vingt-huit millièmes. En trente kelvins, la constante a donc été multipliée par plus de onze. Le tableau des leçons donne aussi les logarithmes : le logarithme de la constante passe de moins cinq virgule quatre-vingt-dix-neuf à moins trois virgule cinquante-sept, pendant que l'inverse de la température glisse de trois virgule trente-trois millièmes à trois virgule zéro trois millièmes. Tout est prêt pour le calcul de la pente.",
+   "texte": "k multipliée par 11 en 30 K : les données de la droite.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p14",
+   "ecran": "calcul_ea",
+   "dit": "Calculons la pente avec les deux points extrêmes du tableau. La variation du logarithme de la constante vaut deux virgule quarante-deux ; celle de l'inverse de la température vaut environ moins trois dix-millièmes par kelvin. Le rapport donne une pente d'environ moins huit mille cent kelvins. Or la pente de la droite d'Arrhenius est l'opposé de l'énergie d'activation divisée par la constante des gaz parfaits : il suffit donc de multiplier huit mille cent par huit virgule trois cent quatorze pour obtenir l'énergie d'activation, soit environ soixante-sept kilojoules par mole. Voilà comment une poignée de mesures de vitesse se transforme en hauteur de barrière : c'est la méthode expérimentale standard.",
+   "texte": "Pente ≈ −8 100 K → Ea ≈ 67 kJ/mol.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p15",
+   "ecran": "sensibilite",
+   "dit": "L'équation d'Arrhenius révèle une sensibilité extrême à la barrière. Comparons deux réactions à deux cent quatre-vingt-dix-huit kelvins, l'une avec une énergie d'activation de cinquante kilojoules par mole, l'autre de soixante. Le rapport de leurs constantes de vitesse est l'exponentielle de l'écart des barrières rapporté au produit de la constante des gaz par la température : environ e puissance quatre, c'est-à-dire cinquante-sept. Autrement dit, dix kilojoules par mole de barrière supplémentaire divisent la vitesse par presque soixante, à température ambiante. Voilà pourquoi les réactions à haute barrière semblent figées, et pourquoi un catalyseur qui rogne un peu la barrière change tout.",
+   "texte": "ΔEa = +10 kJ/mol → k divisée par ≈ 57.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p16",
+   "ecran": "temperature",
+   "dit": "Inversement, à barrière fixée, chauffer accélère de façon exponentielle. Pour une énergie d'activation de cinquante kilojoules par mole, passer de trois cents à trois cent dix kelvins multiplie la constante de vitesse par environ un virgule quatre-vingt-onze : dix degrés suffisent à presque la doubler. C'est le fondement de la règle empirique de van 't Hoff, valable justement pour des barrières voisines de cinquante kilojoules par mole à température ambiante. La figure montre pourquoi : chauffer déplace la distribution des énergies vers les hautes valeurs, et la fraction des molécules au-delà de la barrière grandit démesurément. Le réfrigérateur exploite l'effet inverse : baisser la température étrangle les réactions de dégradation des aliments.",
+   "texte": "300 → 310 K : k × 1,91 (pour Ea = 50 kJ/mol).",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p17",
+   "ecran": "catalyseur",
+   "dit": "Un catalyseur agit exclusivement en abaissant l'énergie d'activation. Il ne déplace pas la réaction par magie : il propose un mécanisme alternatif, découpé en plusieurs étapes élémentaires, dont chacune a une barrière plus basse que celle de la réaction directe. Sur le profil d'énergie, la haute colline unique est remplacée par une succession de petites bosses. Le point de départ et le point d'arrivée n'ont pas bougé : la variation d'enthalpie est inchangée. Et comme le catalyseur abaisse aussi bien la barrière du sens direct que celle du sens inverse, il accélère les deux sens de la même façon : l'équilibre et sa constante ne sont pas modifiés, on l'atteint simplement plus vite. Le catalyseur lui-même ressort intact de la réaction : il n'est pas consommé.",
+   "texte": "Le catalyseur abaisse Ea, jamais ΔH ni K.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p18",
+   "ecran": "recap2",
+   "dit": "Récapitulons. La droite d'Arrhenius transforme des mesures de constantes de vitesse en énergie d'activation : sur nos données, environ soixante-sept kilojoules par mole. La vitesse est d'une sensibilité redoutable : dix kilojoules de barrière en plus la divisent par près de soixante, tandis que dix kelvins de plus la doublent presque, selon la règle de van 't Hoff. Le catalyseur, lui, contourne la barrière en ouvrant un chemin d'étapes plus basses, sans toucher ni à l'enthalpie ni à l'équilibre. Mais ce mot de chemin mérite qu'on s'y arrête : de quelles étapes un mécanisme est-il fait ?",
+   "texte": "Ea mesurée, effets chiffrés : place au mécanisme.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p19",
+   "ecran": "etape_elementaire",
+   "dit": "Une étape élémentaire est un événement réactionnel qui se produit exactement comme le décrit son équation : un acte simple et direct, où une, deux, ou très rarement trois particules se rencontrent et forment directement les produits. Trois propriétés la définissent. La simultanéité : tout se joue dans un seul événement de collision. L'absence d'intermédiaire : les produits naissent directement des réactifs de l'étape. Et l'identité entre ordre et molécularité : la molécularité, c'est-à-dire le nombre de particules qui entrent en collision, donne directement l'ordre de l'étape. Une étape unimoléculaire est d'ordre un, une bimoléculaire d'ordre deux. Ce lien automatique entre écriture et ordre ne vaut que pour les étapes élémentaires, jamais pour une réaction globale.",
+   "texte": "Étape élémentaire : ordre = molécularité.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p20",
+   "ecran": "molecularite",
+   "dit": "Le tableau des leçons distingue trois familles. L'étape unimoléculaire n'implique qu'une particule, souvent activée, qui se décompose ou se réarrange : un ozone excité qui se scinde en dioxygène et en un atome d'oxygène. L'étape bimoléculaire fait entrer deux particules en collision : c'est la plus courante, comme le dioxyde d'azote qui réagit avec le monoxyde de carbone. L'étape termoléculaire exige la rencontre simultanée de trois particules, avec la bonne orientation et assez d'énergie : la probabilité d'une telle synchronisation est si faible que ces étapes sont extrêmement rares. La théorie des collisions explique donc à la fois la hiérarchie des étapes et la simplicité des mécanismes réels.",
+   "texte": "Uni, bi, ter : la triple collision est rarissime.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p21",
+   "ecran": "mecanisme_ozone",
+   "dit": "Un mécanisme réactionnel est la séquence d'étapes élémentaires qui, additionnées, redonnent l'équation globale : c'est la recette détaillée derrière le bilan, comme les instructions d'une recette de cuisine se cachent derrière la liste des ingrédients et le nom du plat. Exemple célèbre : la destruction de l'ozone stratosphérique par le monoxyde d'azote. Le bilan fait réagir le monoxyde d'azote avec l'ozone pour donner du dioxyde d'azote et du dioxygène, mais aucune collision directe ne réalise ce bilan. Première étape, lente : l'ozone, frappé par les ultraviolets, se scinde en dioxygène et en un atome d'oxygène. Deuxième étape, rapide : cet atome réagit avec le monoxyde d'azote. En additionnant les deux étapes, l'atome d'oxygène apparaît des deux côtés et s'élimine : on retrouve exactement le bilan global.",
+   "texte": "NO + O₃ → NO₂ + O₂ : deux étapes, un intermédiaire O.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p22",
+   "ecran": "concepts",
+   "dit": "Trois concepts structurent l'analyse d'un mécanisme. L'intermédiaire réactionnel est une espèce produite par une étape et consommée par une étape ultérieure : il n'apparaît ni parmi les réactifs ni parmi les produits du bilan, et il est en général très réactif, comme l'atome d'oxygène de l'exemple précédent. L'étape limitante, ou déterminante, est l'étape la plus lente : tel un goulot d'étranglement sur une autoroute, elle impose son tempo à toute la réaction, et c'est souvent celle dont l'énergie d'activation est la plus haute. Enfin, l'ordre de la réaction globale est la résultante du mécanisme : il n'a aucune raison d'égaler les coefficients de l'équation bilan, et c'est bien l'expérience qui le révèle.",
+   "texte": "Intermédiaire éphémère, étape lente décisive.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p23",
+   "ecran": "profil_mecanisme",
+   "dit": "Le diagramme d'énergie d'un mécanisme raconte la même histoire en image. Pour un exemple hypothétique où un corps se scinde lentement en deux atomes avant que ceux-ci ne réagissent vite avec un partenaire, le profil présente deux bosses séparées par une vallée. Chaque bosse correspond à une étape élémentaire et à son énergie d'activation propre. La vallée représente l'intermédiaire : contrairement à l'état de transition, qui est un simple col instable, l'intermédiaire est une espèce chimique réelle, identifiable, quoique souvent très réactive et peu stable. Ici, la première bosse est la plus haute : la première étape est limitante, et l'énergie d'activation globale perçue est la sienne. Quant à l'enthalpie globale, elle reste la différence entre les réactifs initiaux et les produits finaux, quel que soit le chemin.",
+   "texte": "Deux bosses, une vallée : l'intermédiaire siège entre les cols.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p24",
+   "ecran": "exercice_peroxyde",
+   "dit": "Exercice guidé, tiré des leçons : la décomposition de l'eau oxygénée est catalysée par les ions iodure, selon un mécanisme en deux étapes. Première étape, lente : le peroxyde réagit avec un ion iodure pour donner de l'eau et un ion hypoiodite ; elle est bimoléculaire, et c'est elle l'étape limitante. Deuxième étape, rapide : un second peroxyde réagit avec l'ion hypoiodite et régénère l'ion iodure, tout en dégageant du dioxygène. L'ion hypoiodite, produit puis consommé, est l'intermédiaire réactionnel. L'ion iodure, consommé puis régénéré, est le catalyseur : il ne figure pas dans le bilan global, qui est bien la décomposition de deux molécules de peroxyde en deux molécules d'eau et une molécule de dioxygène. Tous les rôles du mécanisme sont ainsi distribués.",
+   "texte": "IO⁻ intermédiaire, I⁻ catalyseur régénéré.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p25",
+   "ecran": "industrie",
+   "dit": "Ces mécanismes commandent des technologies majeures. Dans le pot d'échappement catalytique, les métaux précieux, platine, palladium et rhodium, abaissent tellement l'énergie d'activation que le monoxyde de carbone et les hydrocarbures imbrûlés sont oxydés en dioxyde de carbone et en eau dès la température des gaz d'échappement. Dans la synthèse de l'ammoniac, la réaction est exothermique, d'environ moins quatre-vingt-douze kilojoules par mole, mais rompre la triple liaison de la molécule de diazote exige une énergie d'activation énorme : le mélange de diazote et de dihydrogène resterait inerte sans le catalyseur à base de fer du procédé Haber-Bosch, complété par de hautes températures et pressions. C'est ce contournement de la barrière qui a rendu la production d'engrais possible à l'échelle mondiale.",
+   "texte": "Pt, Pd, Rh contre CO ; le fer pour Haber-Bosch.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p26",
+   "ecran": "stabilite",
+   "dit": "Dernier enseignement : une énergie d'activation élevée confère une stabilité cinétique, même aux systèmes que la thermodynamique condamne. Le diamant devrait se transformer en graphite, la forme la plus stable du carbone à température ambiante ; mais la barrière est si haute que la réaction est infiniment lente à l'échelle humaine : le diamant est métastable, éternel en pratique. De même, la dégradation spontanée de l'ADN et des protéines est thermodynamiquement favorable, mais leur énergie d'activation élevée les préserve et rend la vie possible ; la cuisson franchit cette barrière, c'est la dénaturation. Et la combustion du papier, elle aussi spontanée dans l'air, attend son étincelle. Thermodynamique et cinétique répondent à deux questions différentes : où va la réaction, et à quelle vitesse.",
+   "texte": "Le diamant est métastable : Ea le rend éternel.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p27",
+   "ecran": "recap_final",
+   "dit": "Vous possédez désormais les deux clés du temps chimique. L'énergie d'activation est la hauteur de la colline qui sépare réactifs et produits : la théorie des collisions explique qui peut la franchir, rencontre, orientation et énergie, et l'équation d'Arrhenius, sous sa forme linéarisée, permet de la mesurer à partir de quelques constantes de vitesse. Les mécanismes décomposent ensuite le voyage en étapes élémentaires, avec leurs intermédiaires éphémères et leur étape limitante qui impose le tempo. Enfin, le catalyseur redessine la carte en ouvrant un chemin plus bas, sans déplacer ni le départ ni l'arrivée. Maîtriser la barrière, par la température ou la catalyse, c'est décider du rythme du monde matériel : accélérer les synthèses utiles, ralentir les dégradations, et comprendre pourquoi tant de réactions possibles n'ont, en pratique, jamais lieu.",
+   "texte": "La barrière mesurée, le chemin décomposé : cours bouclé.",
+   "pause_apres": 0.8
+  }
+ ]
+}

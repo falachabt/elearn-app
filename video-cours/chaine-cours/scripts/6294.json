@@ -1,0 +1,479 @@
+{
+  "cours": 6294,
+  "titre": "Étudier une fonction de A à Z",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Analyse",
+      "titre": "Étudier une fonction de A à Z",
+      "sous": "Domaine, limites, dérivée, extremums : la méthode complète, jusqu'à la courbe représentative",
+      "anim": {
+        "nom": "tableau_variations_fig",
+        "hauteur": 230
+      }
+    },
+    "methode": {
+      "type": "etape",
+      "kicker": "La méthodologie",
+      "titre": "Sept étapes, toujours dans le même ordre",
+      "tex": [
+        "\\text{1. domaine} \\qquad \\text{2. limites aux bornes}",
+        "\\text{3. dérivée} \\qquad \\text{4. signe de la dérivée}",
+        "\\text{5. tableau de variations}",
+        "\\text{6. asymptotes, points clés} \\qquad \\text{7. tracé}"
+      ]
+    },
+    "parabole_intro": {
+      "type": "etape",
+      "kicker": "Premier contact · une étude entière",
+      "titre": "f(x) = x² − 4x + 3 : une parabole en sept étapes",
+      "tex": [
+        "f'(x) = 2x - 4 \\qquad f'(2) = 0",
+        "f(2) = -1 \\qquad f(0) = 3",
+        "\\text{racines : } x = 1 \\text{ et } x = 3"
+      ],
+      "anim": {
+        "nom": "signe_parabole_fig",
+        "hauteur": 120
+      }
+    },
+    "domaine": {
+      "type": "formule",
+      "kicker": "Étape 1 · le domaine de définition",
+      "tex": "D_f = \\{x \\in \\mathbb{R} \\mid f(x) \\text{ existe}\\}",
+      "note": "Trois interdits : dénominateur nul, racine d'un négatif, logarithme d'un non-positif",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 160
+      }
+    },
+    "ex_domaine": {
+      "type": "etape",
+      "kicker": "Trois domaines, trois réflexes",
+      "titre": "Polynôme : partout · rationnelle : des trous · racine : un intervalle",
+      "tex": [
+        "g(x) = \\tfrac{x^2-1}{x^2-3x+2} : D_g = \\mathbb{R} \\setminus \\{1\\,;\\,2\\}",
+        "h(x) = \\sqrt{4-x^2} : 4 - x^2 \\geq 0",
+        "D_h = [-2\\,;\\,2] \\qquad D_{\\text{polynôme}} = \\mathbb{R}"
+      ]
+    },
+    "limites": {
+      "type": "formule",
+      "kicker": "Étape 2 · les limites aux bornes",
+      "tex": "\\begin{aligned} &\\lim_{x \\to +\\infty} f(x) = l \\\\ &y = l \\text{ : asymptote horizontale} \\end{aligned}",
+      "note": "Limite infinie en un point exclu : asymptote verticale x = a · toujours étudier la gauche et la droite séparément",
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 170
+      }
+    },
+    "continuite": {
+      "type": "phrase",
+      "kicker": "Continuité",
+      "texte": "Continue : un tracé sans lever le crayon."
+    },
+    "ex_limites": {
+      "type": "etape",
+      "kicker": "Les limites de g à toutes ses bornes",
+      "titre": "Un trou, une asymptote verticale, une asymptote horizontale",
+      "tex": [
+        "\\lim_{x \\to 1} g(x) = -2 \\text{ : un trou en } (1\\,;\\,-2)",
+        "\\lim_{x \\to 2^-} g(x) = -\\infty \\qquad \\lim_{x \\to 2^+} g(x) = +\\infty",
+        "\\lim_{x \\to \\pm\\infty} g(x) = 1 \\text{ : asymptote } y = 1"
+      ]
+    },
+    "derivee_def": {
+      "type": "formule",
+      "kicker": "Étapes 3 et 4 · la dérivée",
+      "tex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a+h) - f(a)}{h}",
+      "note": "La pente de la tangente en a · si f est une position, f′ est la vitesse instantanée",
+      "anim": {
+        "nom": "tangente_courbe_fig",
+        "hauteur": 170
+      }
+    },
+    "variations_thm": {
+      "type": "etape",
+      "kicker": "Le théorème des variations",
+      "titre": "Le signe de la dérivée commande les variations",
+      "tex": [
+        "f' > 0 \\text{ sur } I \\Rightarrow f \\text{ strictement croissante}",
+        "f' < 0 \\text{ sur } I \\Rightarrow f \\text{ strictement décroissante}",
+        "f'(x_0) = 0 \\text{ : point critique}"
+      ],
+      "anim": {
+        "nom": "tableau_variations_fig",
+        "hauteur": 120
+      }
+    },
+    "tableau": {
+      "type": "etape",
+      "kicker": "Étape 5 · le tableau de variations",
+      "titre": "Trois lignes pour tout résumer",
+      "tex": [
+        "\\text{le signe de } f' \\Rightarrow \\text{les flèches de } f",
+        "\\text{limites aux bornes, points critiques}",
+        "\\text{le tableau raconte tout le voyage}"
+      ],
+      "anim": {
+        "nom": "tableau_variations_fig",
+        "hauteur": 120
+      }
+    },
+    "ex_cubique": {
+      "type": "etape",
+      "kicker": "Exemple complet · une cubique",
+      "titre": "f(x) = 2x³ − 3x² − 12x + 5, du signe de f′ aux extremums",
+      "tex": [
+        "f'(x) = 6x^2 - 6x - 12 = 6(x+1)(x-2)",
+        "f(-1) = 12 \\text{ : maximum local}",
+        "f(2) = -15 \\text{ : minimum local}"
+      ]
+    },
+    "extremums": {
+      "type": "formule",
+      "kicker": "Classer un point critique",
+      "tex": "f'(x_0) = 0, \\ f''(x_0) > 0 \\Rightarrow \\text{minimum local}",
+      "note": "f″ négative : maximum local · f″ nulle : test muet, revenir au signe de f′ · x³ en zéro : inflexion, pas d'extremum",
+      "anim": {
+        "nom": "inflexion_fig",
+        "hauteur": 160
+      }
+    },
+    "pieges": {
+      "type": "etape",
+      "kicker": "Trois pièges classiques",
+      "titre": "Extremum sans dérivée, bornes oubliées, intervalles confondus",
+      "tex": [
+        "\\text{extremum sans dérivée nulle : } |x| \\text{ en zéro}",
+        "\\text{extremums aux bornes du domaine}",
+        "\\text{croissante par intervalle} \\neq \\text{partout}"
+      ]
+    },
+    "polynomes": {
+      "type": "formule",
+      "kicker": "Famille 1 · les polynômes",
+      "tex": "\\lim_{x \\to \\pm\\infty} P(x) = \\lim_{x \\to \\pm\\infty} a_n x^n",
+      "note": "Seul le terme de plus haut degré compte à l'infini · degré impair : infinis opposés ; degré pair : même infini"
+    },
+    "ex_polynome": {
+      "type": "etape",
+      "kicker": "Étude complète · la cubique de référence",
+      "titre": "f(x) = x³ − 3x² − 9x + 5 : variations et valeurs remarquables",
+      "tex": [
+        "f'(x) = 3(x+1)(x-3)",
+        "f(-1) = 10 \\text{ : maximum local}",
+        "f(3) = -22 \\text{ : minimum local}"
+      ],
+      "anim": {
+        "nom": "tableau_variations_fig",
+        "hauteur": 120
+      }
+    },
+    "optimisation": {
+      "type": "etape",
+      "kicker": "Application · optimiser un enclos",
+      "titre": "Deux cents mètres de clôture, une rivière comme quatrième côté",
+      "tex": [
+        "A(x) = 200x - 2x^2 \\qquad A'(x) = 200 - 4x",
+        "A'(50) = 0 \\qquad A''(50) = -4 < 0",
+        "x = 50,\\ y = 100 : A_{max} = 5000\\ \\text{m}^2"
+      ],
+      "anim": {
+        "nom": "enclos_fig",
+        "hauteur": 120
+      }
+    },
+    "rationnelles": {
+      "type": "etape",
+      "kicker": "Famille 2 · les fonctions rationnelles",
+      "titre": "Comparer les degrés du numérateur et du dénominateur",
+      "tex": [
+        "\\deg P < \\deg Q : \\text{asymptote } y = 0",
+        "\\deg P = \\deg Q : y = \\tfrac{\\text{coeff. dominant P}}{\\text{coeff. dominant Q}}",
+        "\\deg P = \\deg Q + 1 : \\text{asymptote oblique}"
+      ],
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 110
+      }
+    },
+    "ex_rationnelle": {
+      "type": "etape",
+      "kicker": "Exemple · simplifier avant tout",
+      "titre": "f(x) = (x² − 3x + 2)/(x² − 4) : un facteur commun change tout",
+      "tex": [
+        "f(x) = \\tfrac{(x-1)(x-2)}{(x-2)(x+2)} = \\tfrac{x-1}{x+2} \\ (x \\neq 2)",
+        "\\text{trou en } (2\\,;\\,\\tfrac{1}{4}), \\ x = -2 \\text{ asymptote}",
+        "f'(x) = \\tfrac{3}{(x+2)^2} > 0 \\qquad \\lim_{\\pm\\infty} f = 1"
+      ]
+    },
+    "racines": {
+      "type": "etape",
+      "kicker": "Famille 3 · les fonctions racines",
+      "titre": "g(x) = √(x² − 3x + 2) : exister d'abord, dériver ensuite",
+      "tex": [
+        "x^2 - 3x + 2 \\geq 0",
+        "\\Rightarrow D_g = ]-\\infty\\,;\\,1] \\cup [2\\,;\\,+\\infty[",
+        "g'(x) = \\tfrac{2x-3}{2\\sqrt{x^2-3x+2}}",
+        "\\text{en } 1 \\text{ et } 2 \\text{ : tangentes verticales}"
+      ]
+    },
+    "hybride": {
+      "type": "etape",
+      "kicker": "Synthèse · une fonction hybride",
+      "titre": "h(x) = √(x − 1)/(x − 3) : racine et dénominateur réunis",
+      "tex": [
+        "D_h = [1\\,;\\,3[ \\cup ]3\\,;\\,+\\infty[",
+        "h'(x) = \\tfrac{-x-1}{2\\sqrt{x-1}\\,(x-3)^2} < 0",
+        "\\lim_{+\\infty} h = 0 \\qquad x = 3 \\text{ : asymptote verticale}"
+      ]
+    },
+    "convexite": {
+      "type": "formule",
+      "kicker": "Le raffinement · convexité et inflexion",
+      "tex": "\\begin{aligned} &f''(x) > 0 \\Rightarrow \\text{convexe} \\\\ &f''(x) < 0 \\Rightarrow \\text{concave} \\end{aligned}",
+      "note": "Au point d'inflexion, la courbe traverse sa tangente et change de concavité",
+      "anim": {
+        "nom": "convexite_fig",
+        "hauteur": 180
+      }
+    },
+    "trace": {
+      "type": "etape",
+      "kicker": "Étapes 6 et 7 · du tableau à la courbe",
+      "titre": "Le protocole de tracé, en quatre gestes",
+      "tex": [
+        "\\text{1. asymptotes en pointillés}",
+        "\\text{2. extremums et intersections avec les axes}",
+        "\\text{3. points stratégiques près des singularités}",
+        "\\text{4. relier : variations, concavité}"
+      ]
+    },
+    "synthese": {
+      "type": "etape",
+      "kicker": "Étude express de synthèse",
+      "titre": "g(x) = x√(4 − x) : la méthode entière en quelques lignes",
+      "tex": [
+        "D_g = ]-\\infty\\,;\\,4] \\qquad g'(x) = \\tfrac{8-3x}{2\\sqrt{4-x}}",
+        "g\\left(\\tfrac{8}{3}\\right) = \\tfrac{16\\sqrt{3}}{9} \\approx 3{,}1 \\text{ : maximum}",
+        "\\text{en } (4\\,;\\,0) \\text{ : tangente verticale}"
+      ],
+      "anim": {
+        "nom": "courbe_synthese_fig",
+        "hauteur": 170
+      }
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Domaine d'abord : trois interdits à traquer",
+        "Limites aux bornes : asymptotes lues dessus",
+        "Le signe de f′ donne les variations",
+        "Points critiques : classer, jamais deviner",
+        "Tableau, puis courbe : la synthèse finale"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Étudier une fonction : de la formule à la courbe.",
+      "dit": "Bienvenue dans ce cours consacré à l'étude complète d'une fonction. Une fonction, au départ, n'est qu'une formule ; l'étude complète est l'enquête systématique qui la transforme en portrait : où elle vit, comment elle se comporte aux frontières, où elle monte, où elle descend, où elle atteint ses sommets et ses creux. Au bout du chemin, deux documents résument tout : le tableau de variations et la courbe représentative. Nous appliquerons la méthode aux polynômes, aux fonctions rationnelles et aux fonctions racines.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p02",
+      "ecran": "methode",
+      "texte": "Sept étapes : le fil d'Ariane de toute étude.",
+      "dit": "La méthode tient en sept étapes, toujours dans le même ordre. Un : le domaine de définition, le territoire où la fonction existe. Deux : les limites aux bornes de ce domaine. Trois : le calcul de la dérivée. Quatre : l'étude du signe de la dérivée. Cinq : le tableau de variations, qui synthétise tout. Six : les éléments graphiques complémentaires, asymptotes et intersections avec les axes. Sept : le tracé de la courbe. Cet ordre n'est pas arbitraire : chaque étape prépare la suivante.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p03",
+      "ecran": "parabole_intro",
+      "texte": "Une parabole entière, étudiée en sept étapes.",
+      "dit": "Premier contact, avec la parabole d'équation f de ixe égale ixe carré moins quatre ixe plus trois. Domaine : tous les réels, c'est un polynôme. Dérivée : deux ixe moins quatre, qui s'annule en deux. La fonction décroît avant deux, croît après, et atteint en deux son minimum, qui vaut moins un. Aux deux infinis, elle tend vers plus l'infini. La courbe coupe l'axe vertical en trois, et l'axe horizontal en un et en trois. Sept étapes, et la parabole n'a plus de secret.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p04",
+      "ecran": "domaine",
+      "texte": "Le domaine d'abord : où la fonction a-t-elle le droit d'exister ?",
+      "dit": "Première étape, toujours : pour quelles valeurs de ixe la fonction existe-t-elle ? Trois interdits sont à traquer. Un dénominateur ne doit jamais être nul. L'intérieur d'une racine carrée ne doit jamais être négatif. Et, pour la suite du programme, l'argument d'un logarithme doit rester strictement positif. La méthode : lister les contraintes, les traduire en équations ou en inéquations, les résoudre, puis garder les valeurs qui les satisfont toutes à la fois.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p05",
+      "ecran": "ex_domaine",
+      "texte": "Polynôme, rationnelle, racine : trois domaines types.",
+      "dit": "Trois exemples pour fixer les réflexes. Un polynôme comme trois ixe cube moins deux ixe plus cinq n'utilise que des additions et des multiplications : domaine, tous les réels. La fonction rationnelle g, quotient de ixe carré moins un par ixe carré moins trois ixe plus deux, exclut les valeurs qui annulent son dénominateur : un et deux. La fonction racine h, racine de quatre moins ixe carré, exige quatre moins ixe carré positif ou nul : son domaine est l'intervalle fermé de moins deux à deux.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p06",
+      "ecran": "limites",
+      "texte": "Les limites dessinent les asymptotes de la courbe.",
+      "dit": "Deuxième étape : les limites aux bornes du domaine. Une limite décrit la destination de la fonction quand ixe s'approche d'une borne, finie ou infinie, éventuellement par la gauche ou par la droite. Deux lectures graphiques sont à retenir. Si la limite en l'infini est un nombre fini, la droite horizontale d'équation igrec égale ce nombre est une asymptote : la courbe s'en approche sans fin. Et si la fonction explose quand ixe tend vers un nombre a, la droite verticale d'équation ixe égale a est une asymptote verticale.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p07",
+      "ecran": "continuite",
+      "texte": "Continue : la courbe se trace sans lever le crayon.",
+      "dit": "Entre les limites et la dérivée, un mot sur la continuité : une fonction est continue quand sa courbe se trace sans lever le crayon. Un saut ou un trou signale une discontinuité, et une fonction discontinue en un point ne peut pas y être dérivable. Les polynômes sont continus partout ; les fonctions rationnelles le sont sur chaque intervalle de leur domaine, mais leurs valeurs interdites créent des ruptures qu'il faudra respecter au moment du tracé.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p08",
+      "ecran": "ex_limites",
+      "texte": "En 1 : un trou. En 2 : une asymptote. À l'infini : y = 1.",
+      "dit": "Reprenons la fonction g, quotient de ixe carré moins un par ixe carré moins trois ixe plus deux. En factorisant, numérateur et dénominateur partagent le facteur ixe moins un. En un, la limite existe et vaut moins deux : ce n'est pas une asymptote, mais un trou dans la courbe, au point de coordonnées un et moins deux. En deux, en revanche, la fonction explose : moins l'infini à gauche, plus l'infini à droite, donc une asymptote verticale. Et aux deux infinis, g tend vers un : asymptote horizontale d'équation igrec égale un.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p09",
+      "ecran": "derivee_def",
+      "texte": "La dérivée : la pente de la tangente, la vitesse instantanée.",
+      "dit": "L'outil central de l'étude est la dérivée. Le taux d'accroissement mesure la pente de la sécante entre deux points de la courbe ; quand le second point se rapproche du premier, cette pente tend vers la pente de la tangente : c'est le nombre dérivé. Géométriquement, la dérivée en un point est donc le coefficient directeur de la tangente. Cinématiquement, si la fonction donne une position, la dérivée donne la vitesse instantanée. Toute l'étude des variations découle de ce nombre.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p10",
+      "ecran": "variations_thm",
+      "texte": "Dérivée positive : ça monte. Négative : ça descend.",
+      "dit": "Le théorème qui fait tout fonctionner : sur un intervalle où la dérivée est positive, la fonction est strictement croissante ; où elle est négative, strictement décroissante. Un point où la dérivée s'annule est un point critique : la tangente y est horizontale. Mais attention, un point critique n'est pas forcément un extremum : pour la fonction ixe cube, la dérivée s'annule en zéro, et pourtant la fonction ne cesse jamais de croître ; zéro est un point d'inflexion à tangente horizontale.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p11",
+      "ecran": "tableau",
+      "texte": "Le tableau de variations : toute l'étude en trois lignes.",
+      "dit": "Le tableau de variations condense l'étude en trois lignes : les valeurs de ixe, le signe de la dérivée, et les flèches de la fonction, avec les limites aux bornes et les valeurs aux points critiques. Savoir le lire, c'est savoir raconter le voyage complet de la fonction : d'où elle part, où elle monte, où elle redescend, et vers quoi elle tend. C'est ce document, et lui seul, qui guidera le tracé final.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p12",
+      "ecran": "ex_cubique",
+      "texte": "Maximum 12 en −1, minimum −15 en 2.",
+      "dit": "Exemple complet sur la cubique f de ixe égale deux ixe cube moins trois ixe carré moins douze ixe plus cinq. Sa dérivée, six ixe carré moins six ixe moins douze, se factorise en six fois ixe plus un fois ixe moins deux. Le signe est positif avant moins un, négatif entre moins un et deux, positif après deux. La fonction monte donc jusqu'au maximum local en moins un, qui vaut douze, redescend jusqu'au minimum local en deux, qui vaut moins quinze, puis remonte. Le tableau de variations est complet.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p13",
+      "ecran": "extremums",
+      "texte": "Classer un point critique : deux tests, un seul réflexe sûr.",
+      "dit": "Pour classer un point critique, deux tests. Le test de la dérivée première, le plus sûr : si la dérivée passe du plus au moins, c'est un maximum ; du moins au plus, un minimum ; sans changement de signe, pas d'extremum. Le test de la dérivée seconde, plus rapide quand il parle : dérivée seconde positive en un point critique, la courbe est convexe comme un bol, c'est un minimum ; négative, c'est un maximum ; nulle, le test est muet, et il faut revenir au signe de la dérivée première.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p14",
+      "ecran": "pieges",
+      "texte": "Un extremum peut se cacher là où la dérivée n'existe pas.",
+      "dit": "Trois pièges classiques à déjouer. Premier : un extremum peut exister là où la dérivée n'existe pas : la valeur absolue atteint son minimum en zéro, un point anguleux où elle n'est pas dérivable. Deuxième : aux bornes d'un domaine fermé, un extremum global peut se cacher sans que la dérivée s'y annule ; il faut toujours évaluer la fonction aux bornes. Troisième : une fonction strictement croissante sur chaque intervalle de son domaine n'est pas forcément croissante sur le domaine entier, si une discontinuité la coupe en deux.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p15",
+      "ecran": "polynomes",
+      "texte": "Polynômes : le terme de plus haut degré décide de tout à l'infini.",
+      "dit": "Passons aux familles, en commençant par les polynômes. Leur domaine est toujours l'ensemble des réels, et leurs limites à l'infini ne dépendent que du terme de plus haut degré : on factorise par ce terme, et toutes les autres contributions s'écrasent vers zéro. Degré impair : les deux branches partent vers des infinis opposés. Degré pair : vers le même infini, dicté par le signe du coefficient dominant. Leur dérivée est un polynôme de degré un de moins, ce qui rend la recherche des points critiques systématique.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p16",
+      "ecran": "ex_polynome",
+      "texte": "Maximum 10 en −1, minimum −22 en 3.",
+      "dit": "Étude complète de la cubique f de ixe égale ixe cube moins trois ixe carré moins neuf ixe plus cinq. Dérivée : trois ixe carré moins six ixe moins neuf, soit trois fois ixe plus un fois ixe moins trois. Maximum local en moins un, de valeur dix ; minimum local en trois, de valeur moins vingt-deux. Pour tracer : placer ces deux points, ajouter l'ordonnée à l'origine, cinq, puis relier en partant de moins l'infini, en montant au maximum, en redescendant au minimum, et en repartant vers plus l'infini. Et ne confondez jamais les racines de la fonction, qui donnent les intersections avec l'axe horizontal, avec les racines de la dérivée, qui donnent les extremums.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p17",
+      "ecran": "optimisation",
+      "texte": "Optimiser : modéliser, dériver, annuler, conclure.",
+      "dit": "L'application reine des extremums : l'optimisation. Un agriculteur dispose de deux cents mètres de clôture pour un enclos rectangulaire adossé à une rivière, qui dispense de clôturer un côté. Si ixe est la longueur perpendiculaire à la rivière, l'autre côté vaut deux cents moins deux ixe, et l'aire vaut deux cents ixe moins deux ixe carré. Sa dérivée s'annule en cinquante : l'enclos optimal mesure cinquante mètres sur cent, pour une aire maximale de cinq mille mètres carrés. Modéliser, dériver, annuler, conclure : le schéma est toujours le même.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p18",
+      "ecran": "rationnelles",
+      "texte": "Rationnelles : factoriser, simplifier, comparer les degrés.",
+      "dit": "Les fonctions rationnelles, quotients de deux polynômes, changent la donne : le dénominateur crée des valeurs interdites, donc des morceaux de courbe séparés. Premier réflexe : factoriser numérateur et dénominateur, et simplifier les facteurs communs, sans oublier la valeur interdite correspondante, qui devient un trou. Deuxième réflexe : comparer les degrés. Numérateur de degré inférieur : asymptote horizontale igrec égale zéro. Degrés égaux : asymptote horizontale donnée par le rapport des coefficients dominants. Un degré de plus au numérateur : asymptote oblique, obtenue par division.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p19",
+      "ecran": "ex_rationnelle",
+      "texte": "Un trou en (2 ; 1/4), une asymptote en −2, une limite de 1.",
+      "dit": "Exemple : f de ixe égale ixe carré moins trois ixe plus deux, sur ixe carré moins quatre. Le numérateur se factorise en ixe moins un fois ixe moins deux, le dénominateur en ixe moins deux fois ixe plus deux. Pour ixe différent de deux, f se simplifie en ixe moins un sur ixe plus deux ; en deux, il reste un trou, au point de coordonnées deux et un quart. La dérivée de la forme simplifiée vaut trois sur ixe plus deux au carré : toujours positive, la fonction croît sur chaque intervalle. En moins deux, asymptote verticale ; aux infinis, elle tend vers un.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p20",
+      "ecran": "racines",
+      "texte": "Racines : dérivable seulement où l'intérieur est strictement positif.",
+      "dit": "Les fonctions racines imposent d'abord une condition d'existence : l'intérieur de la racine doit être positif ou nul. Pour g de ixe égale racine de ixe carré moins trois ixe plus deux, l'intérieur se factorise en ixe moins un fois ixe moins deux, positif à l'extérieur des racines : le domaine est la réunion de deux demi-droites. Subtilité : la fonction n'est dérivable que là où l'intérieur est strictement positif ; aux points où il s'annule, en un et en deux, la dérivée explose, et la courbe présente des tangentes verticales.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p21",
+      "ecran": "hybride",
+      "texte": "Une hybride : deux contraintes, un domaine en deux morceaux.",
+      "dit": "Synthèse des deux familles : h de ixe égale racine de ixe moins un, le tout sur ixe moins trois. Deux contraintes se combinent : ixe au moins un pour la racine, ixe différent de trois pour le dénominateur. Le domaine est donc de un inclus à trois exclu, puis de trois exclu à plus l'infini. En trois, asymptote verticale ; en plus l'infini, h tend vers zéro. Sa dérivée, après réduction, a pour numérateur moins ixe moins un : toujours négative sur le domaine, h décroît sur chacun de ses deux intervalles.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p22",
+      "ecran": "convexite",
+      "texte": "Convexe ou concave : la dérivée seconde donne le galbe.",
+      "dit": "Un raffinement souvent décisif pour tracer juste : la convexité, lue dans la dérivée seconde. Dérivée seconde positive : la courbe est convexe, en forme de bol, située au-dessus de ses tangentes et au-dessous de ses cordes. Négative : elle est concave, en forme de chapeau. Le point où la concavité change, et où la courbe traverse sa tangente, est un point d'inflexion. C'est lui qui donne à la courbe son vrai galbe, entre deux extremums ou près d'une asymptote.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p23",
+      "ecran": "trace",
+      "texte": "Tracer : les asymptotes d'abord, les points ensuite, la courbe enfin.",
+      "dit": "Le tracé final suit un protocole. D'abord, préparer le repère et dessiner les asymptotes en pointillés : ce sont les rails de la courbe. Ensuite, placer les intersections avec les axes et les extremums. Puis, ajouter des points stratégiques, en particulier près des asymptotes verticales, là où la courbe varie très vite. Enfin, relier zone par zone, en respectant les flèches du tableau et la concavité, en approchant les asymptotes sans jamais les traverser. Un tracé réussi se vérifie : chaque portion doit raconter exactement ce que dit le tableau.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p24",
+      "ecran": "synthese",
+      "texte": "g(x) = x√(4 − x) : maximum en 8/3, tangente verticale en 4.",
+      "dit": "Étude express de synthèse : g de ixe égale ixe fois racine de quatre moins ixe. Domaine : quatre moins ixe positif ou nul, donc ixe au plus quatre. Dérivée : huit moins trois ixe, sur deux racine de quatre moins ixe ; elle s'annule en huit tiers. La fonction croît de moins l'infini jusqu'au maximum en huit tiers, de valeur seize racine de trois sur neuf, environ trois virgule un, puis décroît jusqu'au point quatre, zéro, où elle arrive avec une tangente verticale et s'arrête : le domaine est fermé à droite. Domaine, limites, dérivée, tableau, courbe : la méthode entière tient en quelques lignes.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p25",
+      "ecran": "recap",
+      "texte": "L'étude complète : une enquête en sept étapes, dans l'ordre.",
+      "dit": "Pour conclure : l'étude complète est une enquête en sept étapes, toujours dans le même ordre. Le domaine d'abord, car il commande tout le reste. Les limites, qui livrent les asymptotes. La dérivée et son signe, qui donnent les variations et les points critiques, à classer sans jamais deviner. Puis le tableau de variations, la synthèse, et enfin la courbe, qui doit raconter exactement ce que le tableau annonce. Cette discipline, appliquée aux polynômes, aux rationnelles et aux racines, vous servira pour toutes les fonctions à venir.",
+      "pause_apres": 0.6
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "La méthode en sept étapes : domaine et limites"
+    },
+    {
+      "debut": "p09",
+      "sous_titre": "La dérivée, les variations et les polynômes",
+      "pont": {
+        "texte": "Partie 2 : dérivée, variations, extremums et polynômes.",
+        "dit": "Partie deux : la dérivée au travail. Après la définition du nombre dérivé, le théorème des variations transformera le signe de la dérivée en flèches du tableau, nous classerons les points critiques, puis nous appliquerons la méthode aux polynômes, jusqu'à un premier problème d'optimisation."
+      }
+    },
+    {
+      "debut": "p18",
+      "sous_titre": "Rationnelles, racines et synthèse graphique",
+      "pont": {
+        "texte": "Partie 3 : rationnelles, racines, convexité et tracé final.",
+        "dit": "Partie trois : les fonctions rationnelles et les fonctions racines, avec leurs asymptotes, leurs trous et leurs tangentes verticales. Nous ajouterons la convexité, puis nous terminerons par le protocole de tracé et une étude complète de synthèse."
+      }
+    }
+  ]
+}

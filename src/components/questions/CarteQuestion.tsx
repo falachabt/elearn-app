@@ -46,23 +46,19 @@ export function CarteQuestion({ q, onPress, onPhoto }: { q: Question; onPress: (
     >
       <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
         <View style={styles.haut}>
-          <View style={[styles.avatar, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
-            <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{(q.auteur || '?').charAt(0).toUpperCase()}</Text>
-          </View>
-          <View style={styles.flex}>
-            <Text numberOfLines={1} style={[typo.texteFort, { color: theme.texte.principal }]}>{q.equipe ? 'Elearn Prépa' : q.auteur}{q.classe ? ` · ${q.classe}` : ''}</Text>
-            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{ilYaTexte(q.creeLe)}</Text>
-          </View>
+          {q.matiere ? (
+            <View style={[styles.tagMatiere, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{q.matiere}</Text>
+            </View>
+          ) : null}
           {q.equipe ? (
             <View style={[styles.pastille, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{t('questions.equipe')}</Text>
+              <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('questions.equipe')}</Text>
             </View>
           ) : null}
-          {q.matiere ? (
-            <View style={[styles.pastille, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{q.matiere}</Text>
-            </View>
-          ) : null}
+          <Text numberOfLines={1} style={[typo.legende, styles.flex, { color: theme.texte.secondaire }]}>
+            {q.equipe ? 'Elearn Prépa' : q.classe ? `Élève de ${q.classe}` : q.auteur} · {ilYaTexte(q.creeLe)}
+          </Text>
         </View>
         <View style={styles.corps}>
           {q.photos[0] ? (
@@ -70,7 +66,7 @@ export function CarteQuestion({ q, onPress, onPhoto }: { q: Question; onPress: (
               <Image source={{ uri: q.photos[0] }} style={[styles.miniature, { borderColor: theme.bord.fort }]} accessibilityIgnoresInvertColors />
             </Appui>
           ) : null}
-          <Text numberOfLines={2} style={[typo.texte, styles.flex, { color: theme.texte.principal }]}>{q.texte}</Text>
+          <Text numberOfLines={2} style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{q.texte}</Text>
         </View>
         <View style={styles.pied}>
           {q.sondage ? (
@@ -103,12 +99,13 @@ export function CarteQuestion({ q, onPress, onPhoto }: { q: Question; onPress: (
 }
 
 const styles = StyleSheet.create({
-  avatar: { width: 28, height: 28, borderRadius: 14, borderWidth: bord.fin, alignItems: 'center', justifyContent: 'center' },
   carte: { gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
-  corps: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
+  corps: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3] },
   flex: { flex: 1 },
   haut: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   miniature: { width: 44, height: 44, borderRadius: rayon.s, borderWidth: bord.normal },
   pastille: { flexDirection: 'row', alignItems: 'center', gap: espace[1], borderWidth: bord.fin, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: espace[1] },
   pied: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  // Tag matière : coins peu arrondis (rayon s, comme les étiquettes du design), pas une pilule.
+  tagMatiere: { borderWidth: bord.fin, borderRadius: rayon.s, paddingHorizontal: espace[2], paddingVertical: espace[1] },
 });

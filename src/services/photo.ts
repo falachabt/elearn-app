@@ -5,7 +5,7 @@ import { ImageManipulator, SaveFormat } from 'expo-image-manipulator';
 
 import type { Bloc, Segment } from './blocs';
 import { identifiantAppareil, lireCouts, lireSolde } from './credits';
-import { latexVersTexte, texteAvecFormules } from './blocs';
+import { latexVersTexte } from './blocs';
 
 /**
  * Aide par photo (M3) : préparation de l'image recadrée, envoi à la fonction serveur photo-correction (flux NDJSON),
@@ -84,19 +84,25 @@ export function cadrePixels(fraction: Cadre, largeur: number, hauteur: number): 
 }
 
 /** Taille finale après réduction (côté le plus long ≤ COTE_MAX), proportions gardées. */
-export function tailleReduite(largeur: number, hauteur: number): { width: number } | { height: number } | null {
-  if (Math.max(largeur, hauteur) <= COTE_MAX) return null;
-  return largeur >= hauteur ? { width: COTE_MAX } : { height: COTE_MAX };
+export function tailleReduite(largeur: number, hauteur: number, coteMax: number = COTE_MAX): { width: number } | { height: number } | null {
+  if (Math.max(largeur, hauteur) <= coteMax) return null;
+  return largeur >= hauteur ? { width: coteMax } : { height: coteMax };
 }
 
 /** Recadre, réduit et compresse la photo ; renvoie le JPEG en base64 et l'adresse locale (aperçu). */
-export async function preparerImage(uri: string, fraction: Cadre, largeur: number, hauteur: number): Promise<{ base64: string; uri: string }> {
+export async function preparerImage(
+  uri: string,
+  fraction: Cadre,
+  largeur: number,
+  hauteur: number,
+  qualite: { coteMax?: number; compress?: number } = {},
+): Promise<{ base64: string; uri: string }> {
   const c = cadrePixels(fraction, largeur, hauteur);
   const contexte = ImageManipulator.manipulate(uri).crop({ originX: c.x, originY: c.y, width: c.largeur, height: c.hauteur });
-  const taille = tailleReduite(c.largeur, c.hauteur);
+  const taille = tailleReduite(c.largeur, c.hauteur, qualite.coteMax ?? COTE_MAX);
   if (taille) contexte.resize(taille);
   const image = await contexte.renderAsync();
-  const resultat = await image.saveAsync({ format: SaveFormat.JPEG, compress: 0.7, base64: true });
+  const resultat = await image.saveAsync({ format: SaveFormat.JPEG, compress: qualite.compress ?? 0.7, base64: true });
   if (!resultat.base64) throw new Error('Image non encodée');
   return { base64: resultat.base64, uri: resultat.uri };
 }
@@ -308,4 +314,44 @@ export async function reclamerRecompensePartage(
     return { ok: false, gain: 0, motif: e instanceof Error ? e.message : 'erreur' };
   }
 }
+
+export type QuotaPhoto = {
+  used: number;
+  daily_limit: number;
+  remaining: number;
+  unlimited: boolean;
+};
+
+/**
+ * Lit le quota de questions IA restantes aujourd'hui (Issue #10, B3-Notif-UI).
+ * Tente d'abord `my_ai_quota_today()`, sinon repli sur `photo_quota()`.
+ */
+export async function lireQuotaPhoto(client: Pick<SupabaseClient, 'rpc'>): Promise<QuotaPhoto | null> {
+  try {
+    const { data, error } = await client.rpc('my_ai_quota_today');
+    if (!error && data) {
+      const row = (Array.isArray(data) ? data[0] : data) as { used?: number; daily_limit?: number; remaining?: number; unlimited?: boolean } | null;
+      if (row && typeof row.used === 'number' && typeof row.daily_limit === 'number') {
+        const remaining = typeof row.remaining === 'number' ? row.remaining : Math.max(0, row.daily_limit - row.used);
+        return { used: row.used, daily_limit: row.daily_limit, remaining, unlimited: !!row.unlimited };
+      }
+    }
+  } catch {
+    // repli
+  }
+
+  try {
+    const { data, error } = await client.rpc('photo_quota');
+    if (!error && data) {
+      const row = (Array.isArray(data) ? data[0] : data) as { used?: number; daily_limit?: number; unlimited?: boolean } | null;
+      if (row && typeof row.used === 'number' && typeof row.daily_limit === 'number') {
+        return { used: row.used, daily_limit: row.daily_limit, remaining: Math.max(0, row.daily_limit - row.used), unlimited: !!row.unlimited };
+      }
+    }
+  } catch {
+    // indisponible
+  }
+  return null;
+}
+
 

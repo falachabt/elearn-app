@@ -1,0 +1,331 @@
+{
+ "cours": 7273,
+ "ecrans": {
+  "angle_football": {
+   "kicker": "Exemple résolu · l'angle du football",
+   "tex": [
+    "\\text{angle} = \\tfrac{10}{25} \\times 360^\\circ",
+    "= 144^\\circ"
+   ],
+   "titre": "Le plus grand secteur du diagramme",
+   "type": "etape"
+  },
+  "calcul_moyenne": {
+   "kicker": "Exemple résolu · calcul de la moyenne",
+   "tex": [
+    "\\bar{x} = \\tfrac{8 \\times 2 + 10 \\times 5 + 12 \\times 7 + 15 \\times 4 + 18 \\times 2}{20}",
+    "\\bar{x} = \\tfrac{16 + 50 + 84 + 60 + 36}{20} = \\tfrac{246}{20}",
+    "\\bar{x} = 12{,}3"
+   ],
+   "titre": "Pondérer, additionner, diviser",
+   "type": "etape"
+  },
+  "caracteres": {
+   "kicker": "Population et caractère",
+   "tex": [
+    "\\text{qualitatif : couleur des yeux}",
+    "\\text{quantitatif : taille, âge, note}"
+   ],
+   "titre": "Qualitatif ou quantitatif ?",
+   "type": "etape"
+  },
+  "circulaire": {
+   "kicker": "Le diagramme circulaire",
+   "note": "L'angle de chaque secteur est proportionnel à son effectif.",
+   "tex": "\\text{angle} = \\frac{n_i}{N} \\times 360^\\circ",
+   "type": "formule"
+  },
+  "diagrammes": {
+   "kicker": "Diagrammes et histogrammes",
+   "tex": [
+    "\\text{bâtons : hauteurs proportionnelles}",
+    "\\text{circulaire : des secteurs, parts d'un tout}",
+    "\\text{histogramme : aires proportionnelles}",
+    "\\text{bandes : caractères qualitatifs}"
+   ],
+   "titre": "Choisir la représentation adaptée",
+   "type": "etape"
+  },
+  "effectif_total": {
+   "kicker": "Effectifs",
+   "texte": "Effectif total N : la somme de tous les effectifs.",
+   "type": "phrase"
+  },
+  "exemple_sports": {
+   "kicker": "Exemple · les sports préférés",
+   "texte": "25 élèves, un sport préféré : population = les élèves, caractère qualitatif.",
+   "type": "phrase"
+  },
+  "football_pct": {
+   "kicker": "Exemple résolu · en pourcentage",
+   "tex": [
+    "f = \\tfrac{10}{25} = 0{,}4",
+    "0{,}4 \\times 100 = 40\\ \\%"
+   ],
+   "titre": "Le football : le sport le plus choisi",
+   "type": "etape"
+  },
+  "frequence": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "distribution_bars_fig"
+   },
+   "kicker": "Fréquences",
+   "note": "La fréquence : l'effectif de la valeur divisé par l'effectif total.",
+   "tex": "f = \\frac{n_i}{N}",
+   "type": "formule"
+  },
+  "histogramme": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "L'histogramme",
+   "texte": "Histogramme : des classes, des rectangles collés, une aire proportionnelle à l'effectif.",
+   "type": "phrase"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Une liste de réponses devient une information : organiser, résumer, montrer.",
+   "type": "phrase"
+  },
+  "lire_graphique": {
+   "kicker": "Lire et interpréter un graphique",
+   "tex": [
+    "\\text{population et caractère étudiés}",
+    "\\text{les axes, ce qu'ils mesurent, leurs unités}",
+    "\\text{effectifs ou fréquences par valeur}",
+    "\\text{la tendance et la valeur la plus fréquente}"
+   ],
+   "titre": "Une lecture en quatre temps",
+   "type": "etape"
+  },
+  "moyenne": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "La moyenne",
+   "note": "Chaque valeur est pondérée par son effectif, puis divisée par l'effectif total.",
+   "tex": "\\bar{x} = \\frac{n_1 x_1 + n_2 x_2 + \\cdots + n_k x_k}{N}",
+   "type": "formule"
+  },
+  "moyenne_sens": {
+   "kicker": "La moyenne · interprétation",
+   "texte": "12,3 : la note unique qui garderait le même total de points.",
+   "type": "phrase"
+  },
+  "organiser": {
+   "kicker": "Organiser les données",
+   "texte": "Un tableau à deux lignes : les valeurs du caractère, et leurs effectifs.",
+   "type": "phrase"
+  },
+  "population": {
+   "kicker": "Population et caractère",
+   "texte": "La population : tous les individus étudiés. Le caractère : la propriété observée.",
+   "type": "phrase"
+  },
+  "proprietes": {
+   "kicker": "Fréquences · propriétés",
+   "texte": "Entre 0 et 1 · en pourcentage : multiplier par 100 · somme égale à 1.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Population et caractère : qui, quoi",
+    "Effectif : compter chaque valeur",
+    "Fréquence : effectif divisé par N",
+    "Moyenne : valeurs pondérées par effectifs",
+    "Diagramme adapté au type de caractère"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "tableau_notes": {
+   "kicker": "Exemple résolu · les notes",
+   "tex": [
+    "x_i :\\ 8 \\quad 10 \\quad 12 \\quad 15 \\quad 18",
+    "n_i :\\ 2 \\quad 5 \\quad 7 \\quad 4 \\quad 2 \\qquad N = 20"
+   ],
+   "titre": "Les notes de 20 élèves",
+   "type": "etape"
+  },
+  "tableau_sports": {
+   "kicker": "Exemple résolu · les sports préférés",
+   "tex": [
+    "\\text{Football} : 10 \\qquad f = \\tfrac{10}{25} = 0{,}4",
+    "\\text{Tennis} : 6 \\qquad f = \\tfrac{6}{25} = 0{,}24",
+    "\\text{Natation} : 5 \\qquad f = 0{,}2",
+    "\\text{Basket} : 4 \\qquad f = 0{,}16 \\qquad \\text{Total} : 25"
+   ],
+   "titre": "Effectifs et fréquences des 25 élèves",
+   "type": "etape"
+  },
+  "tailles": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "Exemple résolu · les tailles",
+   "texte": "Tailles de 30 élèves : aire double, effectif double, classe fréquente vers 162 cm.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "Mathématique · Statistiques",
+   "sous": "Population, effectifs, fréquences, moyenne et diagrammes",
+   "titre": "Statistiques descriptives : décrire, compter, représenter",
+   "type": "titre"
+  },
+  "vigilance": {
+   "kicker": "Lire et interpréter · vigilance",
+   "texte": "Sans axe nommé ni unité, aucune conclusion sûre.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Mathématique",
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de statistiques descriptives. Nous allons décrire des données : population et caractère, effectifs, fréquences, moyenne, puis les diagrammes.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Statistiques descriptives : décrire, compter, représenter."
+  },
+  {
+   "dit": "Une enquête produit d'abord une longue liste de réponses. Les statistiques servent à l'organiser, à la résumer par quelques nombres et à la montrer dans un graphique lisible d'un coup d'œil.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Organiser, résumer, montrer : le rôle des statistiques."
+  },
+  {
+   "dit": "La population est l'ensemble des individus étudiés : personnes, objets ou réponses. La propriété que l'on observe chez chacun s'appelle le caractère, ou variable statistique.",
+   "ecran": "population",
+   "id": "p03",
+   "texte": "Population : les individus. Caractère : la propriété observée."
+  },
+  {
+   "dit": "Un caractère qualitatif prend des valeurs qui ne sont pas des nombres : couleur des yeux, sport préféré. Un caractère quantitatif prend des valeurs numériques : taille, âge ou note.",
+   "ecran": "caracteres",
+   "id": "p04",
+   "texte": "Qualitatif : pas des nombres. Quantitatif : des nombres."
+  },
+  {
+   "dit": "Exemple : on interroge vingt-cinq élèves sur leur sport préféré. La population réunit ces vingt-cinq élèves, et le caractère, le sport préféré, est qualitatif : football, tennis, et cetera.",
+   "ecran": "exemple_sports",
+   "id": "p05",
+   "texte": "25 élèves interrogés sur leur sport préféré."
+  },
+  {
+   "dit": "On regroupe les réponses dans un tableau : les valeurs du caractère d'un côté, leurs effectifs de l'autre. L'effectif d'une valeur, c'est le nombre d'individus qui présentent cette valeur.",
+   "ecran": "organiser",
+   "id": "p06",
+   "texte": "L'effectif : combien d'individus pour chaque valeur."
+  },
+  {
+   "dit": "L'effectif total, noté grand enne, s'obtient en additionnant les effectifs de toutes les valeurs. C'est lui qui servira de référence pour calculer les proportions dans la suite du cours.",
+   "ecran": "effectif_total",
+   "id": "p07",
+   "texte": "N : la somme de tous les effectifs."
+  },
+  {
+   "dit": "La fréquence d'une valeur est sa proportion dans la population : l'effectif de la valeur divisé par l'effectif total, soit enne indice i sur grand enne.",
+   "ecran": "frequence",
+   "id": "p08",
+   "texte": "Fréquence f = nᵢ/N : une proportion."
+  },
+  {
+   "dit": "Une fréquence est comprise entre zéro et un ; multipliée par cent, elle devient un pourcentage. Additionnées, les fréquences de toutes les valeurs donnent toujours exactement un.",
+   "ecran": "proprietes",
+   "id": "p09",
+   "texte": "Somme des fréquences = 1, soit 100 %."
+  },
+  {
+   "dit": "Voici la répartition des sports : dix élèves pour le football, six pour le tennis, cinq pour la natation et quatre pour le basket. Le tableau donne aussi chaque fréquence.",
+   "ecran": "tableau_sports",
+   "id": "p10",
+   "texte": "Football 10, tennis 6, natation 5, basket 4."
+  },
+  {
+   "dit": "Pour le football : dix divisé par vingt-cinq donne zéro virgule quatre, et zéro virgule quatre fois cent donne quarante pour cent. Le football réunit donc quarante pour cent des élèves.",
+   "ecran": "football_pct",
+   "id": "p11",
+   "texte": "Football : f = 0,4, soit 40 % des élèves."
+  },
+  {
+   "dit": "Passons aux caractères quantitatifs avec la moyenne. On additionne chaque valeur multipliée par son effectif, puis on divise par l'effectif total. Le résultat se note ixe barre.",
+   "ecran": "moyenne",
+   "id": "p12",
+   "texte": "La moyenne : une somme pondérée, divisée par N."
+  },
+  {
+   "dit": "Exemple chiffré : les notes de vingt élèves. Deux élèves ont eu huit, cinq ont eu dix, sept ont eu douze, quatre ont eu quinze et deux ont eu dix-huit. L'effectif total vaut bien vingt.",
+   "ecran": "tableau_notes",
+   "id": "p13",
+   "texte": "Notes : 8, 10, 12, 15, 18 — effectifs 2, 5, 7, 4, 2."
+  },
+  {
+   "dit": "Chaque note est multipliée par son effectif : les produits donnent seize, cinquante, quatre-vingt-quatre, soixante et trente-six, total deux cent quarante-six. Divisé par vingt : douze virgule trois.",
+   "ecran": "calcul_moyenne",
+   "id": "p14",
+   "texte": "246 divisé par 20 : moyenne 12,3."
+  },
+  {
+   "dit": "Douze virgule trois est la note qui résume la classe : si tous les élèves avaient la même note en gardant le même total de points, ce serait douze virgule trois pour chacun.",
+   "ecran": "moyenne_sens",
+   "id": "p15",
+   "texte": "12,3 : le résumé chiffré de la classe."
+  },
+  {
+   "dit": "On choisit un diagramme adapté : des bâtons pour des valeurs séparées, un diagramme circulaire pour des parts, un histogramme pour des classes, des bandes pour un caractère qualitatif.",
+   "ecran": "diagrammes",
+   "id": "p16",
+   "texte": "Chaque caractère a son diagramme adapté."
+  },
+  {
+   "dit": "Bâtons et histogramme ne se confondent pas : dans un histogramme, les valeurs sont regroupées en classes, les rectangles se touchent, et c'est leur aire qui est proportionnelle à l'effectif.",
+   "ecran": "histogramme",
+   "id": "p17",
+   "texte": "Histogramme : c'est l'aire qui compte."
+  },
+  {
+   "dit": "Dans un diagramme circulaire, chaque secteur a un angle proportionnel à l'effectif : l'angle vaut l'effectif de la valeur divisé par l'effectif total, multiplié par trois cent soixante degrés.",
+   "ecran": "circulaire",
+   "id": "p18",
+   "texte": "Angle = (nᵢ/N) × 360°."
+  },
+  {
+   "dit": "Pour le football : dix sur vingt-cinq, multiplié par trois cent soixante degrés, donne cent quarante-quatre degrés. Le football occupe le plus grand secteur du diagramme circulaire.",
+   "ecran": "angle_football",
+   "id": "p19",
+   "texte": "Football : un secteur de 144°."
+  },
+  {
+   "dit": "Pour interpréter un graphique : identifier la population et le caractère, lire les axes et leurs unités, relever les effectifs ou les fréquences, puis la tendance et la valeur la plus fréquente.",
+   "ecran": "lire_graphique",
+   "id": "p20",
+   "texte": "Interpréter : population, axes, valeurs, tendance."
+  },
+  {
+   "dit": "Sur l'histogramme des tailles de trente élèves, la classe de cent soixante à cent soixante-cinq a une aire double de la précédente : effectif double, taille fréquente proche de cent soixante-deux centimètres.",
+   "ecran": "tailles",
+   "id": "p21",
+   "texte": "Aire double : effectif double."
+  },
+  {
+   "dit": "Un graphique sans titre d'axe ni unité ne dit rien de sûr. Avant de conclure, vérifiez toujours ce que mesure chaque axe et dans quelle unité, sinon la comparaison des barres peut tromper.",
+   "ecran": "vigilance",
+   "id": "p22",
+   "texte": "Axes et unités d'abord, conclusion ensuite."
+  },
+  {
+   "dit": "À retenir : population et caractère d'abord, effectifs et fréquences ensuite, moyenne pondérée pour les nombres, et un diagramme choisi selon le type de caractère.",
+   "ecran": "recap",
+   "id": "p23",
+   "texte": "Statistiques descriptives : l'essentiel."
+  }
+ ],
+ "titre": "Statistiques descriptives : décrire, compter, représenter"
+}

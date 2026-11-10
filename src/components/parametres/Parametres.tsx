@@ -7,6 +7,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { languesDisponibles, type Langue } from '@/i18n';
 import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import { cleErreur, deconnecter, estInvite } from '@/services/compte';
+import { consentementActif, definirConsentement } from '@/services/analytics';
 import { definirWifiSeulement, lireWifiSeulement } from '@/services/donnees';
 import { modeDeveloppement } from '@/services/developpement';
 import { definirRenduFormules } from '@/services/formules';
@@ -52,6 +53,7 @@ export function Parametres() {
   const [pushActif, setPushActif] = useState(false);
   const [pushDiag, setPushDiag] = useState<DiagnosticPush | null>(null);
   const [wifi, setWifi] = useState(false);
+  const [mesures, setMesures] = useState(consentementActif());
   const [taille, setTaille] = useState<number | null>(null);
   const [suppression, setSuppression] = useState(false);
   const [feuille, setFeuille] = useState<'langue' | 'rythme' | 'deconnexion' | null>(null);
@@ -110,6 +112,11 @@ export function Parametres() {
   const changerWifi = (v: boolean) => {
     setWifi(v);
     void definirWifiSeulement(v);
+  };
+
+  const changerMesures = (v: boolean) => {
+    setMesures(v);
+    void definirConsentement(v);
   };
 
   const sortir = async () => {
@@ -180,6 +187,9 @@ export function Parametres() {
           </BlocGroupe>
           <BlocGroupe>
             <Interrupteur libelle={t('reglages.wifi')} aide={t('reglages.wifiAide')} valeur={wifi} onChange={changerWifi} />
+          </BlocGroupe>
+          <BlocGroupe>
+            <Interrupteur libelle={t('reglages.mesures')} aide={t('reglages.mesuresAide')} valeur={mesures} onChange={changerMesures} />
           </BlocGroupe>
           <LigneGroupe icone={Download} titre={t('reglages.horsLigne')} sousTitre={t('reglages.horsLigneAide')} onPress={() => router.push('/hors-ligne')} />
           <LigneGroupe icone={FileText} titre={t('reglages.documents')} sousTitre={t('reglages.documentsAide')} onPress={() => router.push('/documents')} />

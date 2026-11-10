@@ -1,7 +1,7 @@
 import { activerPassGratuit, ErreurPaiement, lireMethodes, payerMobileMoney, suivreCommande } from '../paiementPass';
 
 jest.mock('expo-updates', () => ({ channel: 'production' }));
-jest.mock('../analytics', () => ({ suivre: jest.fn() }));
+jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 
 const reponse = (corps: unknown, ok = true) => ({ ok, json: async () => corps }) as Response;
 const client = { auth: { getSession: async () => ({ data: { session: { access_token: 'jeton-eleve' } } }) } } as never;

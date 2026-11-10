@@ -1,0 +1,436 @@
+{
+ "cours": 6177,
+ "ecrans": {
+  "batons": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "Bâtons ou histogramme ?",
+   "texte": "Bâtons séparés pour les catégories, rectangles collés pour le continu.",
+   "type": "phrase"
+  },
+  "boite": {
+   "kicker": "La boîte à moustaches",
+   "tex": [
+    "\\min = 8, \\quad Q_1 = 11, \\quad M_e = 14",
+    "Q_3 = 16, \\quad \\max = 20, \\quad IQR = 5",
+    "\\text{limites : } 3{,}5 \\text{ et } 23{,}5"
+   ],
+   "titre": "Cinq nombres résument quinze notes",
+   "type": "etape",
+   "anim": {
+    "nom": "boite_moustaches_fig",
+    "hauteur": 110
+   }
+  },
+  "camembert": {
+   "kicker": "Le diagramme circulaire",
+   "note": "Bus 40 % : 144° · Voiture 25 % : 90° · Vélo 20 % : 72° · Marche 54°.",
+   "tex": "\\alpha_i = f_i \\times 360^\\circ",
+   "type": "formule",
+   "anim": {
+    "nom": "camembert_fig",
+    "hauteur": 190
+   }
+  },
+  "choisir": {
+   "kicker": "Moyenne ou médiane ?",
+   "tex": [
+    "\\text{moyenne : distribution symétrique, sans aberrante}",
+    "\\text{médiane : asymétrie ou valeurs extrêmes}",
+    "\\text{groupes : toujours pondérer par les effectifs}",
+    "\\text{les deux écartés : distribution asymétrique}"
+   ],
+   "titre": "Quel centre pour quelle série ?",
+   "type": "etape"
+  },
+  "classes": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "Histogramme · la densité d'effectif",
+   "note": "Hauteur = effectif / amplitude : l'aire vaut l'effectif.",
+   "tex": "h_i = \\frac{n_i}{a_i}",
+   "type": "formule"
+  },
+  "collecte": {
+   "kicker": "Collecte · population et échantillon",
+   "tex": [
+    "\\text{population : tous les individus étudiés}",
+    "\\text{échantillon : un sous-ensemble représentatif}",
+    "\\text{tirage au hasard : le garant contre les biais}"
+   ],
+   "titre": "Étudier un sous-ensemble représentatif",
+   "type": "etape"
+  },
+  "cv": {
+   "kicker": "Le coefficient de variation",
+   "note": "L'écart-type en pourcentage de la moyenne : comparable partout.",
+   "tex": "CV = \\frac{\\sigma}{\\bar{x}} \\times 100\\,\\%",
+   "type": "formule"
+  },
+  "etendue": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "dispersion_mesures_fig"
+   },
+   "kicker": "L'étendue",
+   "note": "Ville stable : 5 − 2 = 3° · Ville contrastée : 15 − (−5) = 20°.",
+   "tex": "E = x_{\\max} - x_{\\min}",
+   "type": "formule"
+  },
+  "ex_ecart": {
+   "kicker": "Exemple · deux étudiants comparés",
+   "tex": [
+    "A : V = \\tfrac{2{,}8}{5} = 0{,}56 \\qquad \\sigma \\approx 0{,}75",
+    "B : V = \\tfrac{40}{5} = 8 \\qquad \\sigma \\approx 2{,}83",
+    "\\text{même centre, régularité opposée}"
+   ],
+   "titre": "Régulier contre en dents de scie",
+   "type": "etape"
+  },
+  "ex_moyenne": {
+   "kicker": "Exemple · la moyenne de sept notes",
+   "tex": [
+    "12 + 15 + 8 + 18 + 14 + 16 + 13 = 96",
+    "\\bar{x} = \\tfrac{96}{7} \\approx 13{,}71"
+   ],
+   "titre": "Sept notes, une somme, une division",
+   "type": "etape"
+  },
+  "ex_percentiles": {
+   "kicker": "Exemple · deux percentiles calculés",
+   "tex": [
+    "P_{40} : \\text{position } 4 \\quad \\Rightarrow \\quad P_{40} = 65",
+    "P_{85} : 78 + 0{,}5 \\times (82 - 78) = 80"
+   ],
+   "titre": "Lire, ou interpoler entre deux valeurs",
+   "type": "etape"
+  },
+  "frequences": {
+   "kicker": "Effectifs et fréquences",
+   "note": "n : effectif de la modalité, N : effectif total. Somme des f : 1.",
+   "tex": "f_i = \\frac{n_i}{N} \\qquad N = \\sum_i n_i",
+   "type": "formule"
+  },
+  "immobilier": {
+   "kicker": "Exemple · les prix des logements",
+   "tex": [
+    "\\bar{x} = \\tfrac{4700}{10} = 470 \\text{ milliers d'euros}",
+    "M_e = \\tfrac{280 + 300}{2} = 290 \\text{ milliers d'euros}"
+   ],
+   "titre": "Un bien à 2 000 milliers fausse la moyenne",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "graphique_mesures_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Des nombres bruts ne racontent rien : il faut les organiser pour les comprendre.",
+   "type": "phrase"
+  },
+  "mediane": {
+   "kicker": "La médiane",
+   "tex": [
+    "n \\text{ impair : la valeur de rang } \\tfrac{n+1}{2}",
+    "n \\text{ pair : moyenne des rangs } \\tfrac{n}{2} \\text{ et } \\tfrac{n}{2} + 1"
+   ],
+   "titre": "Deux cas selon la parité de l'effectif",
+   "type": "etape"
+  },
+  "moyenne": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "La moyenne arithmétique",
+   "note": "Le point d'équilibre : somme des écarts à la moyenne nulle.",
+   "tex": "\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i",
+   "type": "formule"
+  },
+  "percentiles": {
+   "kicker": "Les percentiles",
+   "note": "P25 = Q1, P50 = médiane, P75 = Q3 : les mêmes repères, plus fins.",
+   "tex": "P_k : \\quad \\text{position} = \\frac{k}{100} \\times (n + 1)",
+   "type": "formule"
+  },
+  "quartiles": {
+   "kicker": "Les quartiles",
+   "tex": [
+    "Q_1 = 11 \\qquad Q_2 = M_e = 14 \\qquad Q_3 = 17",
+    "EI = Q_3 - Q_1 = 17 - 11 = 6",
+    "\\text{11 notes ordonnées, de } 8 \\text{ à } 19"
+   ],
+   "titre": "Trois coupures, quatre quarts",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Variable d'abord : son type choisit les outils",
+    "Fréquences : f = n / N, somme égale à un",
+    "Bâtons, histogramme ou camembert selon le type",
+    "Position : moyenne fragile, médiane robuste",
+    "Dispersion : étendue, EI et écart-type σ"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "regle": {
+   "kicker": "La règle empirique",
+   "tex": [
+    "\\bar{x} \\pm \\sigma : \\text{environ } 68\\,\\% \\text{ des données}",
+    "\\bar{x} \\pm 2\\sigma : \\text{environ } 95\\,\\%",
+    "\\bar{x} \\pm 3\\sigma : \\text{environ } 99{,}7\\,\\%"
+   ],
+   "titre": "Les repères des distributions en cloche",
+   "type": "etape"
+  },
+  "salaires": {
+   "kicker": "Exemple · les salaires d'une entreprise",
+   "tex": [
+    "\\bar{x} = \\tfrac{2 \\times 1200 + 5 \\times 2500 + 2 \\times 4500 + 12000}{10} = 3590",
+    "M_e = \\tfrac{2500 + 2500}{2} = 2500",
+    "\\text{la moyenne est tirée par le salaire extrême}"
+   ],
+   "titre": "Moyenne contre médiane : 3 590 € contre 2 500 €",
+   "type": "etape"
+  },
+  "tableau": {
+   "kicker": "Le tableau d'effectifs",
+   "tex": [
+    "N = 30 \\qquad f_{11} = \\tfrac{3}{30} = 0{,}10",
+    "ECC(13) = 19 : \\text{19 élèves à } 13 \\text{ ou moins}",
+    "\\text{notes ordonnées : } 4, 5, 6, 7, 8, 8, \\dots, 19"
+   ],
+   "titre": "Les notes de la classe, rangées et comptées",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "Mathématique · Statistiques",
+   "sous": "Variables, tableaux, graphiques, indicateurs de position et de dispersion",
+   "titre": "Statistiques à une variable : décrire et résumer une série",
+   "type": "titre"
+  },
+  "trajet": {
+   "kicker": "Étude de cas · temps de trajet",
+   "tex": [
+    "\\bar{x} = \\tfrac{607}{15} \\approx 40{,}5 \\text{ min} \\qquad M_e = 35 \\text{ min}",
+    "E = 120 - 20 = 100 \\text{ min} \\qquad EI = 42{,}5 - 27{,}5 = 15 \\text{ min}",
+    "\\sigma \\approx 23{,}7 \\text{ min} \\qquad \\text{valeur extrême : } 120 \\text{ min}"
+   ],
+   "titre": "Quinze trajets : le centre et l'étalement",
+   "type": "etape"
+  },
+  "variables": {
+   "kicker": "Les variables statistiques",
+   "tex": [
+    "\\text{qualitative nominale : modalités sans ordre}",
+    "\\text{qualitative ordinale : modalités classées}",
+    "\\text{quantitative discrète : valeurs isolées comptées}",
+    "\\text{quantitative continue : valeurs d'un intervalle}"
+   ],
+   "titre": "Quatre natures de variables",
+   "type": "etape"
+  },
+  "variance": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "dispersion_mesures_fig"
+   },
+   "kicker": "Variance et écart-type",
+   "note": "La variance moyenne les carrés des écarts ; σ revient à l'unité.",
+   "tex": "\\sigma = \\sqrt{V}, \\qquad V = \\frac{1}{n} \\sum_{i=1}^{n} (x_i - \\bar{x})^2",
+   "type": "formule"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Variables, collecte et représentations graphiques"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : résumer par des nombres. Nous découvrirons la boîte à moustaches, puis les deux grands indicateurs de centre, la moyenne et la médiane, nous apprendrons à choisir entre eux sur les salaires et les prix des logements, et nous découperons la série en quarts avec les quartiles.",
+    "texte": "Partie 2 : boîte à moustaches, moyenne, médiane et quartiles."
+   },
+   "sous_titre": "Boîte à moustaches, moyenne, médiane et quartiles"
+  },
+  {
+   "debut": "p18",
+   "pont": {
+    "dit": "Partie trois : affiner le découpage et mesurer la dispersion. Nous diviserons la série en cent parts avec les percentiles, puis nous mesurerons son étalement par l'étendue, la variance et l'écart-type, avant l'étude de cas finale sur les temps de trajet.",
+    "texte": "Partie 3 : percentiles, dispersion et étude de cas."
+   },
+   "sous_titre": "Percentiles et dispersion : étendue et écart-type"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'introduction aux statistiques à une variable. Nous apprendrons à nommer et classer les variables, à collecter et organiser les données, à les représenter par le graphique adapté, puis à les résumer par des indicateurs de position, moyenne, médiane, quartiles et percentiles, et par des indicateurs de dispersion, étendue et écart-type, avant une étude de cas complète qui réunira tous ces outils.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Statistiques à une variable : décrire et résumer une série."
+  },
+  {
+   "dit": "Une série de nombres bruts ne raconte rien tant qu'elle n'est pas organisée. La démarche statistique est toujours la même : définir la population et la variable étudiée, collecter les données avec rigueur, les ranger dans un tableau, les dessiner, puis les résumer par quelques nombres bien choisis. Chaque étape prépare la suivante, et une erreur au départ, un échantillon biaisé ou une mauvaise classe, fausse toutes les conclusions.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "La démarche : population, collecte, tableau, graphique, résumé."
+  },
+  {
+   "dit": "Tout commence par la nature de la variable. Une variable qualitative décrit une qualité : ses réponses sont des modalités, comme une couleur ou un moyen de transport ; elle est nominale si les modalités n'ont pas d'ordre, ordinale si elles se classent, comme des mentions. Une variable quantitative décrit une quantité mesurable : elle est discrète si elle compte des valeurs isolées, continue si elle peut prendre toutes les valeurs d'un intervalle. Ce classement décide de tous les outils autorisés ensuite.",
+   "ecran": "variables",
+   "id": "p03",
+   "texte": "Qualitative ou quantitative : le classement qui décide de tout."
+  },
+  {
+   "dit": "Pour résumer un tableau, on compte les effectifs : le nombre d'individus dans chaque modalité ou chaque valeur. La fréquence est la part de chaque effectif dans l'effectif total : on la donne en proportion ou en pourcentage, et la somme des fréquences vaut toujours un. Sur une variable nominale, compter et calculer des fréquences sont les seules opérations légitimes : une moyenne de couleurs n'aurait aucun sens.",
+   "ecran": "frequences",
+   "id": "p04",
+   "texte": "Fréquence : la part de chaque effectif dans le total."
+  },
+  {
+   "dit": "Les données viennent de quatre sources principales : l'observation directe, l'enquête par questionnaire, les registres administratifs et l'expérimentation. Quand la population est trop vaste, on étudie un échantillon, un sous-ensemble qui doit la représenter fidèlement : le tirage au hasard est le garant de cette représentativité. L'histoire du sondage qui avait prédit le mauvais vainqueur, parce que son échantillon surreprésentait les électeurs aisés, rappelle qu'un grand nombre de réponses ne corrige jamais un échantillon biaisé.",
+   "ecran": "collecte",
+   "id": "p05",
+   "texte": "Population ou échantillon représentatif : gare aux biais."
+  },
+  {
+   "dit": "Exemple fil rouge : les notes d'une classe de trente élèves. On commence par les ranger par ordre croissant, puis on compte les effectifs de chaque note. La fréquence de la note onze vaut trois sur trente, soit dix pour cent. Les effectifs cumulés croissants comptent les élèves au plus égaux à une note : dix-neuf élèves ont obtenu treize ou moins. Ce tableau est le socle de tous les calculs et de tous les graphiques du cours.",
+   "ecran": "tableau",
+   "id": "p06",
+   "texte": "Trente notes : effectifs, fréquences et cumuls."
+  },
+  {
+   "dit": "Quand les valeurs sont trop nombreuses ou continues, on les regroupe en classes, des intervalles disjoints qui couvrent toutes les données. Dans un histogramme, c'est l'aire de chaque rectangle qui représente l'effectif : la hauteur vaut donc l'effectif divisé par l'amplitude de la classe. Si une classe est deux fois plus large, son rectangle doit être deux fois moins haut pour le même effectif : sans cette règle, le graphique mentirait.",
+   "ecran": "classes",
+   "id": "p07",
+   "texte": "Classes : la hauteur vaut effectif divisé par amplitude."
+  },
+  {
+   "dit": "Deux graphiques se ressemblent mais ne disent pas la même chose. Le diagramme en bâtons, aux bâtons séparés, sert aux variables qualitatives et aux valeurs discrètes isolées : la hauteur de chaque bâton donne l'effectif de la modalité. L'histogramme, aux rectangles collés, sert aux variables continues regroupées en classes : la contiguïté des rectangles traduit la continuité de la variable. Confondre les deux, c'est confondre des catégories avec une mesure.",
+   "ecran": "batons",
+   "id": "p08",
+   "texte": "Bâtons séparés : catégories. Rectangles collés : continu."
+  },
+  {
+   "dit": "Le diagramme circulaire représente les parts d'un tout : chaque modalité reçoit un secteur dont l'angle est proportionnel à sa fréquence. Pour les moyens de transport des étudiants, la voiture, un quart des effectifs, reçoit un angle droit ; le bus, quarante pour cent, reçoit cent quarante-quatre degrés ; le vélo soixante-douze degrés et la marche cinquante-quatre degrés, pour un total de trois cent soixante degrés. Réservez ce graphique aux proportions, avec peu de modalités.",
+   "ecran": "camembert",
+   "id": "p09",
+   "texte": "Camembert : chaque angle est proportionnel à la fréquence."
+  },
+  {
+   "dit": "La boîte à moustaches résume une distribution en cinq nombres : le minimum, le premier quartile, la médiane, le troisième quartile et le maximum. La boîte centrale contient la moitié des données, entre le premier et le troisième quartile, et le trait intérieur marque la médiane. Sur les notes affichées, la boîte va de onze à seize, la médiane vaut quatorze, et aucune valeur n'est atypique. C'est le graphique de synthèse par excellence, idéal pour comparer plusieurs groupes côte à côte.",
+   "ecran": "boite",
+   "id": "p10",
+   "texte": "Boîte à moustaches : minimum, quartiles, médiane, maximum."
+  },
+  {
+   "dit": "Premier indicateur de position : la moyenne arithmétique. On additionne toutes les valeurs et l'on divise par leur nombre. Imaginez une planche en équilibre sur un pivot : la moyenne est le point d'équilibre, et la somme des écarts à la moyenne est toujours nulle. Elle utilise toutes les données, ce qui fait sa richesse algébrique, mais aussi sa fragilité : une seule valeur extrême peut la tirer loin du centre réel.",
+   "ecran": "moyenne",
+   "id": "p11",
+   "texte": "Moyenne : somme des valeurs divisée par leur nombre."
+  },
+  {
+   "dit": "Exemple : sept notes, douze, quinze, huit, dix-huit, quatorze, seize et treize. Leur somme vaut quatre-vingt-seize, et la moyenne vaut quatre-vingt-seize divisé par sept, soit environ treize virgule soixante et onze. Remarquez que la moyenne n'est pas forcément une des notes obtenues : c'est une valeur d'équilibre calculée, pas une observation. Elle servira de référence pour mesurer ensuite la dispersion autour d'elle.",
+   "ecran": "ex_moyenne",
+   "id": "p12",
+   "texte": "Sept notes : somme quatre-vingt-seize, moyenne treize virgule soixante et onze."
+  },
+  {
+   "dit": "La médiane est la valeur centrale de la série ordonnée : elle la partage en deux moitiés de même effectif. Si l'effectif est impair, c'est la valeur du milieu ; s'il est pair, c'est la moyenne des deux valeurs centrales. Pour nos sept notes ordonnées, la médiane est la quatrième valeur, quatorze. Contrairement à la moyenne, elle ignore la taille des extrêmes : déplacez la plus grande note, la médiane ne bouge pas. C'est sa robustesse.",
+   "ecran": "mediane",
+   "id": "p13",
+   "texte": "Médiane : la valeur du milieu, insensible aux extrêmes."
+  },
+  {
+   "dit": "Le contraste éclate sur les salaires d'une petite entreprise : deux employés modestes, cinq au milieu, deux cadres et un directeur très bien payé. La moyenne vaut trois mille cinq cent quatre-vingt-dix euros, mais la médiane ne vaut que deux mille cinq cents euros : la moitié des employés gagne moins que ce montant. La moyenne est tirée vers le haut par le salaire du directeur ; la médiane décrit mieux le salaire typique. Quand les deux indicateurs s'écartent, la distribution est asymétrique.",
+   "ecran": "salaires",
+   "id": "p14",
+   "texte": "Salaires : moyenne trois mille cinq cent quatre-vingt-dix, médiane deux mille cinq cents."
+  },
+  {
+   "dit": "Comment choisir entre moyenne et médiane ? Privilégiez la moyenne pour une distribution à peu près symétrique, sans valeur aberrante, surtout si des calculs doivent suivre. Privilégiez la médiane dès que la distribution est asymétrique ou contient des extrêmes : prix des logements, revenus, temps d'attente. Et souvenez-vous du piège de la moyenne des moyennes : deux groupes de tailles différentes ne se moyennent jamais à parts égales, il faut pondérer par les effectifs.",
+   "ecran": "choisir",
+   "id": "p15",
+   "texte": "Symétrique : moyenne. Asymétrique : médiane. Toujours pondérer."
+  },
+  {
+   "dit": "L'immobilier le montre en chiffres vérifiés : dix prix de logements, dont un bien d'exception à deux millions d'euros. Le prix moyen vaut quatre cent soixante-dix mille euros, gonflé par ce seul bien, alors que le prix médian vaut deux cent quatre-vingt-dix mille euros. Un acheteur typique paiera autour du prix médian : c'est pour cela que les statistiques officielles du logement publient des prix médians, et non des prix moyens.",
+   "ecran": "immobilier",
+   "id": "p16",
+   "texte": "Logements : moyenne quatre cent soixante-dix mille, médiane deux cent quatre-vingt-dix mille."
+  },
+  {
+   "dit": "Les quartiles découpent la série ordonnée en quatre quarts. Le premier quartile laisse un quart des données en dessous de lui, le deuxième est la médiane, et le troisième laisse trois quarts des données en dessous. Sur onze notes ordonnées, le premier quartile vaut onze, la médiane quatorze et le troisième quartile dix-sept. L'écart interquartile, troisième moins premier, vaut six : il mesure la dispersion de la moitié centrale des données, à l'abri des extrêmes.",
+   "ecran": "quartiles",
+   "id": "p17",
+   "texte": "Quartiles : onze, quatorze, dix-sept. Écart interquartile six."
+  },
+  {
+   "dit": "Les percentiles affinent ce découpage en cent parts égales : le percentile d'ordre k est la valeur en dessous de laquelle se trouvent k pour cent des observations. Le premier quartile est le percentile vingt-cinq, la médiane le percentile cinquante. Quand la position calculée tombe entre deux valeurs, on interpole entre elles. En médecine, les courbes de croissance des enfants sont tracées en percentiles : être au percentile soixante-quinze signifie être plus grand que les trois quarts des enfants du même âge.",
+   "ecran": "percentiles",
+   "id": "p18",
+   "texte": "Percentiles : le découpage en cent parts égales."
+  },
+  {
+   "dit": "Exemple calculé : neuf résultats ordonnés, de quarante-cinq à quatre-vingt-deux. Le percentile quarante tombe exactement sur la quatrième valeur : soixante-cinq. Le percentile quatre-vingt-cinq tombe à mi-chemin entre la huitième valeur, soixante-dix-huit, et la neuvième, quatre-vingt-deux : l'interpolation donne quatre-vingts. La méthode est générale : calculer la position, puis lire ou interpoler dans la série ordonnée.",
+   "ecran": "ex_percentiles",
+   "id": "p19",
+   "texte": "Percentile quarante : soixante-cinq. Quatre-vingt-cinq : quatre-vingts."
+  },
+  {
+   "dit": "Passons à la dispersion. L'étendue est l'indicateur le plus simple : la plus grande valeur moins la plus petite. Une ville aux températures de janvier entre deux et cinq degrés a une étendue de trois degrés : son climat est stable. Une autre, entre moins cinq et quinze degrés, a une étendue de vingt degrés : son climat est contrasté. Mais l'étendue ne regarde que les deux extrêmes : une seule valeur aberrante suffit à la gonfler, et elle ignore tout le reste de la distribution.",
+   "ecran": "etendue",
+   "id": "p20",
+   "texte": "Étendue : maximum moins minimum, simple mais fragile."
+  },
+  {
+   "dit": "L'écart-type corrige ce défaut en utilisant toutes les données. On calcule les écarts à la moyenne, on les élève au carré pour éviter les annulations et peser davantage les grands écarts, on fait la moyenne de ces carrés : c'est la variance. L'écart-type est la racine carrée de la variance, ce qui le ramène dans l'unité des données. Il se lit comme la distance typique entre une observation et la moyenne de la série.",
+   "ecran": "variance",
+   "id": "p21",
+   "texte": "Variance : moyenne des carrés des écarts. Écart-type : sa racine."
+  },
+  {
+   "dit": "La comparaison de deux étudiants le rend concret : leurs moyennes sont voisines, environ quatorze. Le premier, très régulier, a une variance de zéro virgule cinquante-six et un écart-type d'environ zéro virgule soixante-quinze. Le second, en dents de scie, a une variance de huit et un écart-type d'environ deux virgule quatre-vingt-trois. Même centre, dispersions opposées : sans l'écart-type, ces deux profils sembleraient identiques.",
+   "ecran": "ex_ecart",
+   "id": "p22",
+   "texte": "Même moyenne, écart-type zéro virgule soixante-quinze contre deux virgule quatre-vingt-trois."
+  },
+  {
+   "dit": "Pour une distribution en forme de cloche, l'écart-type donne des repères précieux : environ soixante-huit pour cent des données se trouvent à moins d'un écart-type de la moyenne, environ quatre-vingt-quinze pour cent à moins de deux écarts-types, et presque toutes à moins de trois. C'est la règle empirique : elle transforme l'écart-type en outil de prévision et de détection des valeurs vraiment exceptionnelles.",
+   "ecran": "regle",
+   "id": "p23",
+   "texte": "Règle empirique : soixante-huit, quatre-vingt-quinze, presque tout."
+  },
+  {
+   "dit": "Attention, un écart-type ne se juge jamais dans l'absolu : cinq peut être énorme pour des millimètres et négligeable pour des kilomètres. Le coefficient de variation rapporte l'écart-type à la moyenne et l'exprime en pourcentage : il permet de comparer des dispersions mesurées dans des unités ou à des échelles différentes. En finance, c'est la volatilité relative qui mesure le risque ; en contrôle qualité, c'est lui qui dit si une production est régulière.",
+   "ecran": "cv",
+   "id": "p24",
+   "texte": "Coefficient de variation : l'écart-type rapporté à la moyenne."
+  },
+  {
+   "dit": "Étude de cas finale, avec des valeurs recalculées et vérifiées : les temps de trajet de quinze employés. La médiane vaut trente-cinq minutes, mais la moyenne vaut environ quarante virgule cinq minutes, tirée vers le haut par un trajet exceptionnel de deux heures. L'étendue vaut cent minutes, alors que l'écart interquartile ne vaut que quinze minutes : la moitié centrale des employés est regroupée entre vingt-sept minutes et demie et quarante-deux minutes et demie. La leçon est complète : le centre dépend de l'indicateur, et la dispersion centrale raconte une autre histoire que les extrêmes.",
+   "ecran": "trajet",
+   "id": "p25",
+   "texte": "Trajets : médiane trente-cinq minutes, moyenne quarante virgule cinq, écart interquartile quinze."
+  },
+  {
+   "dit": "Pour conclure, retenez la méthode complète : identifier la variable et son type, collecter sans biais, organiser en tableau de fréquences, choisir le graphique adapté à la nature des données, calculer position et dispersion ensemble, puis interpréter dans le contexte. Une moyenne sans dispersion est un résumé aveugle, un graphique sans échelle honnête est un mensonge : la statistique à une variable est un langage, et vous en connaissez maintenant la grammaire.",
+   "ecran": "recap",
+   "id": "p26",
+   "texte": "Identifier, collecter, organiser, dessiner, résumer, interpréter."
+  }
+ ],
+ "titre": "Statistiques à une variable : décrire et résumer une série"
+}

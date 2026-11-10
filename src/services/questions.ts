@@ -113,6 +113,18 @@ export async function poserQuestion(client: ClientPoster, q: { texte: string; ma
   return (data as { id: string }).id;
 }
 
+/** Supprime sa propre question (RLS : seul l'auteur). Ses réponses partent avec elle (ON DELETE CASCADE). */
+export async function supprimerQuestion(client: ClientPoster, id: string): Promise<void> {
+  const { error } = await client.from('feed_posts').delete().eq('id', id);
+  if (error) throw error;
+}
+
+/** Supprime sa propre réponse (RLS : seul l'auteur). Les suites de cette réponse partent avec elle. */
+export async function supprimerReponse(client: ClientPoster, id: string): Promise<void> {
+  const { error } = await client.from('post_comments').delete().eq('id', id);
+  if (error) throw error;
+}
+
 /** Signale une question ou une réponse : elle est masquée en attendant la décision (M7-04). */
 export async function signaler(client: ClientFil, type: 'post' | 'comment', id: string, motif: MotifSignalement, details?: string): Promise<void> {
   const { error } = await client.rpc('report_content', { p_type: type, p_id: id, p_reason: motif, p_details: details ?? null });
@@ -289,8 +301,15 @@ export async function envoyerPhotos(client: ClientReponse, uris: readonly string
  * Envoie une réponse en attente. Succès : elle quitte la file. Échec : elle reste, marquée « echec », prête pour
  * « Réessayer ». Les numéros sont masqués par le serveur (M7-05) ; le client prévient avant (`contientNumero`).
  */
+const sortiesEnCours = new Set<string>();
+
 export async function envoyerSortie(client: ClientReponse, s: Sortie, userId: string): Promise<boolean> {
+  // Déjà en route (envoi immédiat + renvoi des réponses en file au même moment) : on n'insère jamais deux fois la même.
+  if (sortiesEnCours.has(s.cle)) return false;
+  sortiesEnCours.add(s.cle);
   try {
+    // Partie entre-temps (lue dans la file avant que l'autre envoi ne la retire) : rien à renvoyer.
+    if (!(await lireToutesSorties()).some((x) => x.cle === s.cle)) return false;
     const photos = s.photo ? await envoyerPhotos(client, [s.photo], userId) : [];
     const { error } = await client
       .from('post_comments')
@@ -301,6 +320,8 @@ export async function envoyerSortie(client: ClientReponse, s: Sortie, userId: st
   } catch {
     await marquerSortie(s.cle, 'echec');
     return false;
+  } finally {
+    sortiesEnCours.delete(s.cle);
   }
 }
 

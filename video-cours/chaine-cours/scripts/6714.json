@@ -1,0 +1,421 @@
+{
+ "cours": 6714,
+ "titre": "Distances et triangles : perpendiculaires, bissectrice et Pythagore",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Géométrie plane",
+   "titre": "Distances et triangles : perpendiculaires, bissectrice et Pythagore",
+   "sous": "Le plus court chemin est toujours perpendiculaire, et le triangle obéit à des droites remarquables",
+   "anim": {
+    "nom": "distance_point_droite_fig",
+    "hauteur": 240
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Le plus court chemin",
+   "texte": "Entre un point et une droite, le chemin le plus court est toujours le segment perpendiculaire.",
+   "anim": {
+    "nom": "distance_point_droite_fig",
+    "hauteur": 180
+   }
+  },
+  "def_distance": {
+   "type": "etape",
+   "kicker": "Distance d'un point à une droite",
+   "titre": "Le pied de la perpendiculaire",
+   "tex": [
+    "H \\in d,\\quad (MH) \\perp d",
+    "d(M,\\, d) = MH"
+   ],
+   "anim": {
+    "nom": "distance_point_droite_fig",
+    "hauteur": 170
+   }
+  },
+  "minimalite": {
+   "type": "formule",
+   "kicker": "Propriété fondamentale",
+   "tex": "MH \\leq MN",
+   "note": "Pour tout point N de la droite ; égalité seulement si N vaut H."
+  },
+  "exemple_distance": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Cinq contre sept",
+   "tex": [
+    "d(M,\\,d) = MH = 5\\ \\text{cm}",
+    "MN = 7\\ \\text{cm}",
+    "5 \\leq 7 : \\text{cohérent}"
+   ]
+  },
+  "paralleles": {
+   "type": "formule",
+   "kicker": "Distance de deux droites parallèles",
+   "tex": "d(d_1,\\,d_2) = d(A,\\,d_2)",
+   "note": "A : un point quelconque de la première droite."
+  },
+  "paralleles_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Trois centimètres partout",
+   "tex": [
+    "A \\in d_1",
+    "d(A,\\,d_2) = 3\\ \\text{cm}"
+   ]
+  },
+  "symetries": {
+   "type": "formule",
+   "kicker": "Les symétries conservent les distances",
+   "tex": "d(M',\\,d') = d(M,\\,d)",
+   "note": "Symétrie axiale ou centrale : la distance ne change pas."
+  },
+  "symetries_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Quatre centimètres conservés",
+   "tex": [
+    "d(M,\\,d) = 4\\ \\text{cm}",
+    "d(M',\\,d') = 4\\ \\text{cm}"
+   ]
+  },
+  "bissectrice_rappel": {
+   "type": "phrase",
+   "kicker": "La bissectrice d'un angle",
+   "texte": "La bissectrice partage un angle en deux angles adjacents de même mesure.",
+   "anim": {
+    "nom": "lieu_equidistant_fig",
+    "hauteur": 190
+   }
+  },
+  "bissectrice": {
+   "type": "formule",
+   "kicker": "Caractérisation de la bissectrice",
+   "tex": "d(M,\\,[OA)) = d(M,\\,[OB))",
+   "note": "M est sur la bissectrice si et seulement si cette égalité a lieu."
+  },
+  "bissectrice_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Équidistant, donc sur la bissectrice",
+   "tex": [
+    "d(M,\\,[OA)) = d(M,\\,[OB))",
+    "= 2\\ \\text{cm}"
+   ]
+  },
+  "outil": {
+   "type": "phrase",
+   "kicker": "Un outil de démonstration",
+   "texte": "Pour prouver qu'un point est sur une bissectrice, montre qu'il est équidistant des deux côtés.",
+   "anim": {
+    "nom": "lieu_equidistant_fig",
+    "hauteur": 160
+   }
+  },
+  "milieux": {
+   "type": "etape",
+   "kicker": "Droite des milieux",
+   "titre": "Parallèle, et moitié du troisième côté",
+   "tex": [
+    "(IJ) \\parallel (BC)",
+    "IJ = \\tfrac{BC}{2}"
+   ],
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 150
+   }
+  },
+  "milieux_reciproque": {
+   "type": "phrase",
+   "kicker": "La réciproque des milieux",
+   "texte": "Par le milieu d'un côté et parallèle à un autre côté : la droite coupe le troisième côté en son milieu.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 160
+   }
+  },
+  "milieux_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "La moitié de six",
+   "tex": [
+    "BC = 6\\ \\text{cm}",
+    "IJ = \\tfrac{BC}{2} = \\tfrac{6}{2}",
+    "IJ = 3\\ \\text{cm}"
+   ]
+  },
+  "inscrit": {
+   "type": "phrase",
+   "kicker": "Bissectrices et cercle inscrit",
+   "texte": "Les trois bissectrices se croisent au centre du cercle inscrit, équidistant des trois côtés.",
+   "anim": {
+    "nom": "cercle_rayon_fig",
+    "hauteur": 180
+   }
+  },
+  "hauteurs_medianes": {
+   "type": "phrase",
+   "kicker": "Hauteurs et médianes",
+   "texte": "Hauteurs : concourantes en l'orthocentre H. Médianes : concourantes au centre de gravité G.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 160
+   }
+  },
+  "gravite": {
+   "type": "formule",
+   "kicker": "Le centre de gravité sur la médiane",
+   "tex": "AG = \\frac{2}{3} AA'",
+   "note": "A prime : milieu du côté opposé ; G est aux deux tiers depuis le sommet."
+  },
+  "pythagore": {
+   "type": "formule",
+   "kicker": "Théorème de Pythagore",
+   "tex": "BC^2 = AB^2 + AC^2",
+   "note": "ABC rectangle en A ; BC est l'hypoténuse.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 170
+   }
+  },
+  "pythagore_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Le triplet trois, quatre, cinq",
+   "tex": [
+    "BC^2 = 3^2 + 4^2",
+    "BC^2 = 9 + 16",
+    "BC^2 = 25",
+    "BC = 5\\ \\text{cm}"
+   ]
+  },
+  "reciproque": {
+   "type": "phrase",
+   "kicker": "Réciproque de Pythagore",
+   "texte": "Si le carré du plus grand côté égale la somme des carrés des deux autres, le triangle est rectangle.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 160
+   }
+  },
+  "reciproque_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Six, huit, dix : rectangle ou non",
+   "tex": [
+    "EF^2 = 10^2 = 100",
+    "DE^2 + DF^2 = 6^2 + 8^2",
+    "6^2 + 8^2 = 36 + 64 = 100",
+    "\\text{égalité : rectangle en } D"
+   ]
+  },
+  "metrique": {
+   "type": "formule",
+   "kicker": "Relation métrique dans le triangle rectangle",
+   "tex": "AB \\times AC = BC \\times AH",
+   "note": "H : pied de la hauteur issue de l'angle droit."
+  },
+  "metrique_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "La hauteur du triangle trois-quatre-cinq",
+   "tex": [
+    "3 \\times 4 = 5 \\times AH",
+    "AH = \\tfrac{12}{5}",
+    "AH = 2{,}4\\ \\text{cm}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Distance : le pied H de la perpendiculaire",
+    "Bissectrice : équidistance des deux côtés",
+    "Milieux : parallèle et moitié du côté",
+    "Pythagore : direct, réciproque, hauteur"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Distances, bissectrice, triangles : les outils de base.",
+   "dit": "Bienvenue dans ce cours de géométrie plane, consacré aux distances et aux triangles. Nous commencerons par une question très simple : quelle est la plus courte distance entre un point et une droite. Nous verrons ensuite comment cette distance caractérise la bissectrice d'un angle, puis nous passerons au triangle : droite des milieux, droites remarquables, et le théorème de Pythagore sous toutes ses formes."
+  },
+  {
+   "id": "p02",
+   "ecran": "accroche",
+   "texte": "Le plus court chemin est perpendiculaire.",
+   "dit": "Imaginez un point situé au-dessus d'une droite, comme une maison au bord d'une route rectiligne. Pour rejoindre la route au plus vite, il ne faut pas marcher en biais : il faut avancer perpendiculairement à la route. C'est cette idée simple qui définit la distance d'un point à une droite, et elle servira tout au long du cours."
+  },
+  {
+   "id": "p03",
+   "ecran": "def_distance",
+   "texte": "d(M, d) = MH : H, pied de la perpendiculaire.",
+   "dit": "Soit une droite et un point extérieur à cette droite. On appelle pied de la perpendiculaire le point où la perpendiculaire à la droite, menée depuis le point, rencontre la droite. La distance du point à la droite est alors la longueur du segment qui joint le point à ce pied. On la note d de M et de la droite."
+  },
+  {
+   "id": "p04",
+   "ecran": "minimalite",
+   "texte": "MH ≤ MN pour tout point N de la droite.",
+   "dit": "Propriété fondamentale : cette distance est la plus courte de toutes. Pour n'importe quel autre point de la droite, le segment qui le joint à notre point est plus long que le segment perpendiculaire. L'égalité n'a lieu que dans un seul cas : quand l'autre point est exactement le pied de la perpendiculaire."
+  },
+  {
+   "id": "p05",
+   "ecran": "exemple_distance",
+   "texte": "Distance : 5 cm ; autre segment : 7 cm. Cohérent.",
+   "dit": "Premier exemple. Un point est situé à cinq centimètres d'une droite, et un autre point de la droite est relié à lui par un segment de sept centimètres. La distance cherchée est donc cinq centimètres, par définition. Et l'on vérifie que cinq est inférieur à sept : c'est exactement ce qu'exige la propriété de minimalité."
+  },
+  {
+   "id": "p06",
+   "ecran": "paralleles",
+   "texte": "Deux parallèles : une seule distance, d(d₁, d₂).",
+   "dit": "Passons à deux droites parallèles. Leur distance se définit comme la distance d'un point quelconque de la première à la deuxième droite. Et cette distance ne dépend pas du point choisi : tous les points d'une parallèle sont à la même distance de l'autre. C'est la longueur du segment perpendiculaire commun aux deux droites."
+  },
+  {
+   "id": "p07",
+   "ecran": "paralleles_ex",
+   "texte": "Parallèles distantes de 3 cm : d(A, d₂) = 3 cm.",
+   "dit": "Exemple immédiat : deux droites parallèles sont distantes de trois centimètres, et un point appartient à la première. Sa distance à la deuxième vaut donc trois centimètres, sans aucun calcul : c'est la propriété elle-même qui répond."
+  },
+  {
+   "id": "p08",
+   "ecran": "symetries",
+   "texte": "Symétries axiale et centrale conservent les distances.",
+   "dit": "Troisième outil : les symétries. Une symétrie, axiale ou centrale, conserve les distances. Si un point et une droite sont transformés par une symétrie, la distance entre leurs images est exactement la distance de départ. Après une transformation, on peut donc lire la distance sur la figure image."
+  },
+  {
+   "id": "p09",
+   "ecran": "symetries_ex",
+   "texte": "4 cm avant la symétrie, 4 cm après.",
+   "dit": "Exemple : un point est à quatre centimètres d'une droite. On applique une symétrie axiale qui transforme le point et la droite. La distance entre les images vaut quatre centimètres, parce que les symétries conservent les distances. Aucun nouveau calcul n'est nécessaire."
+  },
+  {
+   "id": "p10",
+   "ecran": "bissectrice_rappel",
+   "texte": "La bissectrice coupe l'angle en deux angles égaux.",
+   "dit": "Venons-en à la bissectrice d'un angle. Rappelons d'abord sa définition : c'est la demi-droite qui partage l'angle en deux angles adjacents de même mesure. Mais il existe une autre façon de la reconnaître, bien plus utile dans les démonstrations : par les distances."
+  },
+  {
+   "id": "p11",
+   "ecran": "bissectrice",
+   "texte": "Sur la bissectrice ⟺ distances égales aux deux côtés.",
+   "dit": "Voici la propriété caractéristique, admise dans ce cours. Un point appartient à la bissectrice d'un angle si et seulement si il est à égale distance des deux côtés de l'angle. Attention à la réciproque : un point équidistant des deux droites qui portent les côtés appartient à l'une des deux bissectrices, la bissectrice intérieure ou la bissectrice extérieure."
+  },
+  {
+   "id": "p12",
+   "ecran": "bissectrice_ex",
+   "texte": "Distances : 2 cm et 2 cm ⟹ M est sur la bissectrice.",
+   "dit": "Exemple : un point est à deux centimètres du premier côté d'un angle et à deux centimètres du second côté. Ses distances aux deux côtés sont égales : d'après la caractérisation, ce point appartient à la bissectrice de l'angle. La demi-droite qui le joint au sommet est donc la bissectrice cherchée."
+  },
+  {
+   "id": "p13",
+   "ecran": "outil",
+   "texte": "Équidistance démontrée = appartenance démontrée.",
+   "dit": "Retenez la méthode : pour démontrer qu'un point appartient à la bissectrice d'un angle, il suffit de prouver qu'il est équidistant des deux côtés. C'est un outil de démonstration puissant. Nous allons maintenant entrer dans le triangle lui-même."
+  },
+  {
+   "id": "p14",
+   "ecran": "milieux",
+   "texte": "(IJ) ∥ (BC) et IJ = BC/2.",
+   "dit": "Ouvrons le triangle avec la droite des milieux. Dans un triangle, si une droite passe par les milieux de deux côtés, alors elle est parallèle au troisième côté. Mieux : le segment qui joint ces deux milieux mesure exactement la moitié du troisième côté. Deux conclusions pour le prix d'une hypothèse."
+  },
+  {
+   "id": "p15",
+   "ecran": "milieux_reciproque",
+   "texte": "Milieu + parallèle ⟹ milieu du troisième côté.",
+   "dit": "La réciproque fonctionne aussi. Si une droite passe par le milieu d'un côté et qu'elle est parallèle à un deuxième côté, alors elle coupe le troisième côté en son milieu. Milieu plus parallélisme d'un côté, milieu de l'autre côté : c'est le schéma à reconnaître dans les figures."
+  },
+  {
+   "id": "p16",
+   "ecran": "milieux_ex",
+   "texte": "BC = 6 cm ⟹ IJ = 3 cm.",
+   "dit": "Exemple : dans un triangle, les points I et J sont les milieux de deux côtés, et le troisième côté mesure six centimètres. D'après la propriété directe, le segment des milieux vaut la moitié de six, c'est-à-dire trois centimètres. Et la droite des milieux est parallèle à ce troisième côté."
+  },
+  {
+   "id": "p17",
+   "ecran": "inscrit",
+   "texte": "Bissectrices concourantes : centre du cercle inscrit.",
+   "dit": "Passons aux droites remarquables du triangle. D'abord les bissectrices : les trois bissectrices d'un triangle se croisent en un même point, le centre du cercle inscrit. Ce point est équidistant des trois côtés, exactement comme le disait la caractérisation de la première partie. Le cercle inscrit est le cercle de ce centre, tangent aux trois côtés."
+  },
+  {
+   "id": "p18",
+   "ecran": "hauteurs_medianes",
+   "texte": "Hauteurs → orthocentre H ; médianes → centre de gravité G.",
+   "dit": "Ensuite les hauteurs : une hauteur passe par un sommet et elle est perpendiculaire au côté opposé. Les trois hauteurs sont concourantes en un point appelé orthocentre. Enfin les médianes : une médiane joint un sommet au milieu du côté opposé, et les trois médianes se croisent au centre de gravité du triangle."
+  },
+  {
+   "id": "p19",
+   "ecran": "gravite",
+   "texte": "AG = (2/3) AA' : G aux deux tiers de la médiane.",
+   "dit": "Le centre de gravité a une adresse précise sur chaque médiane : il se situe aux deux tiers de la médiane en partant du sommet. Si A prime est le milieu du côté opposé au sommet A, alors le segment du sommet au centre de gravité vaut deux tiers de la médiane entière. Pour construire ces points, deux droites suffisent toujours : leur intersection donne le centre cherché."
+  },
+  {
+   "id": "p20",
+   "ecran": "pythagore",
+   "texte": "BC² = AB² + AC², triangle rectangle en A.",
+   "dit": "Arrivons au théorème de Pythagore. Dans un triangle rectangle, le carré de la longueur de l'hypoténuse, le côté opposé à l'angle droit, est égal à la somme des carrés des longueurs des deux autres côtés. Si le triangle est rectangle au sommet A, l'hypoténuse est le côté opposé, et l'égalité s'écrit avec les trois carrés."
+  },
+  {
+   "id": "p21",
+   "ecran": "pythagore_ex",
+   "texte": "3² + 4² = 25 ⟹ BC = 5 cm.",
+   "dit": "Exemple classique : un triangle rectangle a pour côtés de l'angle droit trois centimètres et quatre centimètres. Le carré de l'hypoténuse vaut neuf plus seize, c'est-à-dire vingt-cinq. L'hypoténuse mesure donc cinq centimètres. C'est le fameux triplet de Pythagore : trois, quatre, cinq. Pour les valeurs non entières, la calculatrice donne une valeur approchée de la racine carrée."
+  },
+  {
+   "id": "p22",
+   "ecran": "reciproque",
+   "texte": "L'égalité des carrés prouve l'angle droit.",
+   "dit": "La réciproque sert à prouver qu'un triangle est rectangle. Si le carré de la longueur du plus grand côté est égal à la somme des carrés des deux autres côtés, alors le triangle est rectangle, et son hypoténuse est ce plus grand côté. Le sens de lecture change tout : Pythagore calcule une longueur, sa réciproque prouve un angle droit."
+  },
+  {
+   "id": "p23",
+   "ecran": "reciproque_ex",
+   "texte": "100 = 36 + 64 ⟹ DEF rectangle en D.",
+   "dit": "Exemple : un triangle a des côtés de six, huit et dix centimètres. Le plus grand côté mesure dix, son carré vaut cent. La somme des deux autres carrés vaut trente-six plus soixante-quatre, c'est-à-dire cent aussi. L'égalité est vérifiée : le triangle est rectangle, au sommet opposé au plus grand côté."
+  },
+  {
+   "id": "p24",
+   "ecran": "metrique",
+   "texte": "AB × AC = BC × AH : deux façons de compter.",
+   "dit": "Dernière relation du cours, toujours dans le triangle rectangle. Le produit des deux côtés de l'angle droit est égal au produit de l'hypoténuse par la hauteur issue de l'angle droit. Derrière cette égalité, il y a l'aire du triangle, comptée de deux façons différentes."
+  },
+  {
+   "id": "p25",
+   "ecran": "metrique_ex",
+   "texte": "3 × 4 = 5 × AH ⟹ AH = 12/5 = 2,4 cm.",
+   "dit": "Application au triangle trois, quatre, cinq : le produit des côtés de l'angle droit vaut trois fois quatre, soit douze. Il égale cinq fois la hauteur cherchée. La hauteur vaut donc douze cinquièmes, c'est-à-dire deux virgule quatre centimètres. Sans cette relation, il aurait fallu un détour bien plus long."
+  },
+  {
+   "id": "p26",
+   "ecran": "recap",
+   "texte": "Distances, bissectrice, milieux, Pythagore.",
+   "dit": "Récapitulons. La distance d'un point à une droite se lit au pied de la perpendiculaire, et c'est la plus courte. Un point est sur une bissectrice exactement quand il est équidistant des deux côtés. Dans le triangle, la droite des milieux est parallèle au troisième côté et en vaut la moitié. Et Pythagore, direct ou réciproque, avec sa relation de hauteur, règle toutes les questions de longueurs et d'angles droits."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Distances : point, droites parallèles et symétries"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Bissectrice, milieux et droites remarquables du triangle",
+   "pont": {
+    "texte": "Partie 2 : la bissectrice par les distances, puis le triangle et ses droites remarquables.",
+    "dit": "Partie deux : la bissectrice, puis le triangle. Nous caractériserons d'abord la bissectrice d'un angle par l'égalité des distances à ses côtés, avant d'entrer dans le triangle : droite des milieux, bissectrices, hauteurs, médianes et leurs points de concours."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "Pythagore : théorème, réciproque et hauteur",
+   "pont": {
+    "texte": "Partie 3 : Pythagore, sa réciproque et la relation de hauteur.",
+    "dit": "Partie trois : le théorème de Pythagore. Nous énoncerons le théorème direct qui calcule l'hypoténuse, sa réciproque qui prouve l'angle droit, et la relation métrique qui donne la hauteur issue de l'angle droit, le tout sur le triangle trois, quatre, cinq."
+   }
+  }
+ ]
+}

@@ -1,0 +1,384 @@
+{
+  "cours": 6075,
+  "titre": "Les verbes : principaux, de liaison et auxiliaires",
+  "matiere": "Anglais",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Anglais · Verbs",
+      "titre": "Les verbes : principaux, de liaison et auxiliaires",
+      "sous": "Action, état, liaison : reconnaître les trois rôles du verbe"
+    },
+    "def_verbe": {
+      "type": "phrase",
+      "kicker": "Qu'est-ce qu'un verbe ?",
+      "texte": "Le verbe est le moteur de la phrase : il dit ce que fait le sujet, ou dans quel état il est."
+    },
+    "ex_action": {
+      "type": "etape",
+      "kicker": "Verbes d'action",
+      "titre": "Ils disent ce que fait le sujet",
+      "tex": [
+        "\\text{run, jump, sing}",
+        "\\text{eat, write, sleep}"
+      ]
+    },
+    "ex_etat": {
+      "type": "etape",
+      "kicker": "Verbes d'état",
+      "titre": "Ils disent dans quel état est le sujet",
+      "tex": [
+        "\\text{is, are, was, were}",
+        "\\text{be, seem, become}"
+      ]
+    },
+    "ex_phrase": {
+      "type": "phrase",
+      "kicker": "Deux phrases, deux rôles",
+      "texte": "The bird sings beautifully. The sky is blue."
+    },
+    "main_def": {
+      "type": "phrase",
+      "kicker": "Le verbe principal",
+      "texte": "Le verbe principal porte le sens de la phrase. Seul, il suffit à former un groupe verbal."
+    },
+    "main_ex": {
+      "type": "phrase",
+      "kicker": "Exemples de verbes principaux",
+      "texte": "She reads novels. The dog sleeps soundly. They travelled extensively."
+    },
+    "main_meth": {
+      "type": "etape",
+      "kicker": "Repérer le verbe principal",
+      "titre": "Deux questions suffisent",
+      "tex": [
+        "\\text{1. Who or what?}",
+        "\\text{2. What does it do?}"
+      ]
+    },
+    "trans": {
+      "type": "phrase",
+      "kicker": "Transitif ou intransitif ?",
+      "texte": "Transitif : le verbe a un objet direct. Intransitif : il se suffit à lui-même."
+    },
+    "trans_ex": {
+      "type": "phrase",
+      "kicker": "Exemples",
+      "texte": "The cat chased the mouse. The bird flew."
+    },
+    "link_def": {
+      "type": "phrase",
+      "kicker": "Les verbes de liaison",
+      "texte": "Le verbe de liaison ne montre pas d'action : il relie le sujet à sa description."
+    },
+    "link_tobe": {
+      "type": "etape",
+      "kicker": "Le verbe to be",
+      "titre": "Le verbe de liaison le plus courant",
+      "tex": [
+        "\\text{is, am, are}",
+        "\\text{was, were, be, being, been}"
+      ]
+    },
+    "link_autres": {
+      "type": "etape",
+      "kicker": "Les autres verbes de liaison",
+      "titre": "Ils relient aussi le sujet à sa description",
+      "tex": [
+        "\\text{appear, seem, become, remain}",
+        "\\text{feel, look, smell, taste, sound}"
+      ]
+    },
+    "link_ex": {
+      "type": "phrase",
+      "kicker": "Exemples de liaison",
+      "texte": "She is a talented musician. The soup tastes delicious. He appears tired."
+    },
+    "link_test": {
+      "type": "formule",
+      "kicker": "Le test du signe égal",
+      "tex": "\\text{She is a doctor} = \\text{She = a doctor}",
+      "note": "Si on peut remplacer le verbe par « égal », c'est un verbe de liaison."
+    },
+    "link_amb": {
+      "type": "phrase",
+      "kicker": "Attention à l'ambiguïté",
+      "texte": "The cake smells delicious. The baker smells the cake."
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "À retenir : première partie",
+      "etapes": [
+        "Le verbe principal porte le sens ; il peut être transitif ou intransitif.",
+        "Le verbe de liaison relie le sujet à sa description ; test du signe égal.",
+        "Beaucoup de verbes changent de rôle selon le contexte."
+      ]
+    },
+    "help_def": {
+      "type": "phrase",
+      "kicker": "Les verbes auxiliaires",
+      "texte": "L'auxiliaire aide le verbe principal : il marque le temps, le mode ou la voix."
+    },
+    "help_liste": {
+      "type": "etape",
+      "kicker": "Les auxiliaires courants",
+      "titre": "Trois familles à connaître",
+      "tex": [
+        "\\text{be : is, are, was, were}",
+        "\\text{have : have, has, had}",
+        "\\text{do : do, does, did}"
+      ]
+    },
+    "help_modaux": {
+      "type": "etape",
+      "kicker": "Les modaux",
+      "titre": "Ils font partie des auxiliaires",
+      "tex": [
+        "\\text{will, would, shall, should}",
+        "\\text{can, could, may, might, must}"
+      ]
+    },
+    "help_temps": {
+      "type": "etape",
+      "kicker": "Temps, mode, voix",
+      "titre": "Un auxiliaire, trois effets possibles",
+      "tex": [
+        "\\text{is running, has run, will run}"
+      ]
+    },
+    "help_multi": {
+      "type": "phrase",
+      "kicker": "Plusieurs auxiliaires ensemble",
+      "texte": "She has been studying. They will have finished."
+    },
+    "help_modal_ex": {
+      "type": "phrase",
+      "kicker": "Exemple : la nécessité",
+      "texte": "You must complete the assignment."
+    },
+    "help_accord": {
+      "type": "phrase",
+      "kicker": "Erreur à éviter : l'accord",
+      "texte": "Même avec un auxiliaire, le verbe s'accorde avec le vrai sujet, pas avec les mots entre les deux."
+    },
+    "help_temps2": {
+      "type": "phrase",
+      "kicker": "Erreur à éviter : le bon auxiliaire",
+      "texte": "Pour les temps parfaits, choisissez have, has ou had selon le sujet et le temps."
+    },
+    "help_meth": {
+      "type": "phrase",
+      "kicker": "La méthode de l'enquêteur",
+      "texte": "Pour trouver le verbe principal, éliminez les auxiliaires : ce qui reste porte le sens."
+    },
+    "help_ex": {
+      "type": "phrase",
+      "kicker": "Exemple guidé",
+      "texte": "The teacher is speaking aloud. Le verbe principal est speaking."
+    },
+    "help_quiz": {
+      "type": "phrase",
+      "kicker": "À vous : quel est le verbe ?",
+      "texte": "The cat sat on the mat. Le verbe est sat."
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Verbe principal : le sens de la phrase, transitif ou intransitif.",
+        "Verbe de liaison : il relie le sujet à sa description.",
+        "Auxiliaire : il aide le verbe principal pour le temps, le mode ou la voix."
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Verbes principaux, de liaison, auxiliaires.",
+      "dit": "Bienvenue dans ce cours sur les verbes en anglais. Nous allons distinguer trois rôles : le verbe principal, qui porte le sens, le verbe de liaison, qui relie le sujet à sa description, et le verbe auxiliaire, qui aide le verbe principal."
+    },
+    {
+      "id": "p02",
+      "ecran": "def_verbe",
+      "texte": "Le verbe, moteur de la phrase.",
+      "dit": "Un verbe est d'abord un mot d'action : il dit ce que fait quelqu'un ou quelque chose. C'est le moteur de la phrase, celui qui lui donne son sens principal. Mais les verbes expriment aussi des états, des conditions ou des événements."
+    },
+    {
+      "id": "p03",
+      "ecran": "ex_action",
+      "texte": "run, jump, sing, eat, write, sleep.",
+      "dit": "Voici des verbes d'action : run, courir, jump, sauter, sing, chanter, eat, manger, write, écrire, sleep, dormir. Chacun décrit une action que le sujet accomplit."
+    },
+    {
+      "id": "p04",
+      "ecran": "ex_etat",
+      "texte": "is, are, was, were, be, seem, become.",
+      "dit": "Et voici des verbes d'état : is, are, was, were, be, seem, devenir avec become. Ils ne décrivent pas une action, mais l'état ou la condition du sujet."
+    },
+    {
+      "id": "p05",
+      "ecran": "ex_phrase",
+      "texte": "The bird sings beautifully. The sky is blue.",
+      "dit": "Comparez : The bird sings beautifully, l'oiseau chante magnifiquement, sings est un verbe d'action. The sky is blue, le ciel est bleu, is exprime un état, la condition du ciel."
+    },
+    {
+      "id": "p06",
+      "ecran": "main_def",
+      "texte": "Le verbe principal, cœur de la phrase.",
+      "dit": "Le verbe principal, aussi appelé verbe essentiel, exprime l'action principale ou l'état principal. Il peut se suffire à lui-même et former à lui seul un groupe verbal complet dans une phrase simple."
+    },
+    {
+      "id": "p07",
+      "ecran": "main_ex",
+      "texte": "She reads novels. The dog sleeps soundly.",
+      "dit": "Par exemple : She reads novels, elle lit des romans, reads est le verbe principal. The dog sleeps soundly, le chien dort profondément, sleeps est le verbe principal."
+    },
+    {
+      "id": "p08",
+      "ecran": "main_meth",
+      "texte": "Trouvez le sujet, puis posez la question.",
+      "dit": "Pour repérer le verbe principal, commencez par trouver le sujet : de qui ou de quoi parle-t-on ? Puis demandez-vous : que fait le sujet, ou dans quel état est-il ? La réponse est en général le verbe principal."
+    },
+    {
+      "id": "p09",
+      "ecran": "trans",
+      "texte": "Transitif ou intransitif ?",
+      "dit": "Les verbes principaux se divisent encore en deux groupes, selon qu'ils prennent ou non un objet direct, c'est-à-dire un complément qui reçoit l'action."
+    },
+    {
+      "id": "p10",
+      "ecran": "trans_ex",
+      "texte": "The cat chased the mouse. The bird flew.",
+      "dit": "The cat chased the mouse, le chat a poursuivi la souris : mouse est l'objet direct, le verbe est transitif. The bird flew, l'oiseau a volé : aucune action n'est reçue par un objet, le verbe est intransitif."
+    },
+    {
+      "id": "p11",
+      "ecran": "link_def",
+      "texte": "Le verbe de liaison, un pont.",
+      "dit": "Contrairement au verbe principal, le verbe de liaison ne montre pas d'action : il relie le sujet à un mot ou à un groupe de mots qui le décrit ou l'identifie. C'est un pont entre le sujet et son complément."
+    },
+    {
+      "id": "p12",
+      "ecran": "link_tobe",
+      "texte": "To be, le verbe de liaison le plus courant.",
+      "dit": "Le verbe de liaison le plus courant est to be, sous toutes ses formes : is, am, are, was, were, be, being, been."
+    },
+    {
+      "id": "p13",
+      "ecran": "link_autres",
+      "texte": "appear, seem, become, remain, feel, look, smell, taste, sound.",
+      "dit": "La famille est plus large : appear, seem, become, remain, feel, look, smell, taste, sound. Tous peuvent relier le sujet à sa description."
+    },
+    {
+      "id": "p14",
+      "ecran": "link_ex",
+      "texte": "She is a talented musician. The soup tastes delicious.",
+      "dit": "She is a talented musician, elle est une musicienne talentueuse : is relie she à sa description. The soup tastes delicious, la soupe a un goût délicieux : tastes relie soup à delicious."
+    },
+    {
+      "id": "p15",
+      "ecran": "link_test",
+      "texte": "She is a doctor, c'est She égale a doctor.",
+      "dit": "Astuce de la leçon : avec un verbe de liaison, on peut souvent remplacer le verbe par le signe égal sans perdre le sens. She is a doctor devient She égale a doctor, elle égale un médecin."
+    },
+    {
+      "id": "p16",
+      "ecran": "link_amb",
+      "texte": "The cake smells delicious. The baker smells the cake.",
+      "dit": "Attention, beaucoup de verbes changent de rôle selon le contexte. The cake smells delicious : smells décrit le gâteau, c'est un verbe de liaison. The baker smells the cake : le boulanger sent le gâteau, c'est une action."
+    },
+    {
+      "id": "p17",
+      "ecran": "recap1",
+      "texte": "Principal, liaison, transitif : le point.",
+      "dit": "Faisons le point : le verbe principal porte le sens et peut être transitif ou intransitif ; le verbe de liaison relie le sujet à sa description, avec le test du signe égal ; et beaucoup de verbes changent de rôle selon le contexte."
+    },
+    {
+      "id": "p18",
+      "ecran": "help_def",
+      "texte": "L'auxiliaire aide le verbe principal.",
+      "dit": "Les verbes auxiliaires, ou helping verbs, assistent le verbe principal. Ils ne portent pas l'action principale, mais ils ajoutent un sens : le temps, passé, présent ou futur, le mode, ou la voix, active ou passive."
+    },
+    {
+      "id": "p19",
+      "ecran": "help_liste",
+      "texte": "be, have, do : les trois familles.",
+      "dit": "Les auxiliaires courants se rangent en trois familles : be, avec is, are, was, were ; have, avec have, has, had ; do, avec do, does, did."
+    },
+    {
+      "id": "p20",
+      "ecran": "help_modaux",
+      "texte": "will, would, shall, should, can, could, may, might, must.",
+      "dit": "À ces familles s'ajoutent les modaux : will, would, shall, should, can, could, may, might, must. Ce sont aussi des auxiliaires, qui aident le verbe principal."
+    },
+    {
+      "id": "p21",
+      "ecran": "help_temps",
+      "texte": "is running, has run, will run.",
+      "dit": "Regardez l'effet sur le temps : is running, est en train de courir ; has run, a couru ; will run, courra. Le même verbe principal run change de temps grâce à l'auxiliaire."
+    },
+    {
+      "id": "p22",
+      "ecran": "help_multi",
+      "texte": "She has been studying. They will have finished.",
+      "dit": "Plusieurs auxiliaires peuvent se combiner devant le verbe principal : She has been studying, elle est en train d'étudier depuis un moment ; They will have finished, ils auront terminé."
+    },
+    {
+      "id": "p23",
+      "ecran": "help_modal_ex",
+      "texte": "You must complete the assignment.",
+      "dit": "Les modaux expriment aussi la nécessité, la possibilité ou la capacité. Par exemple, pour la nécessité : You must complete the assignment, vous devez terminer le devoir."
+    },
+    {
+      "id": "p24",
+      "ecran": "help_accord",
+      "texte": "L'accord se fait avec le vrai sujet.",
+      "dit": "Erreur fréquente : l'accord avec les auxiliaires. Même avec un auxiliaire, le verbe doit s'accorder avec le vrai sujet de la phrase, en ignorant les groupes de mots intercalés entre le sujet et le verbe."
+    },
+    {
+      "id": "p25",
+      "ecran": "help_temps2",
+      "texte": "have, has, had : le bon auxiliaire au bon temps.",
+      "dit": "Autre erreur : le choix de l'auxiliaire pour les temps parfaits. Il faut comprendre les nuances de chaque temps parfait et utiliser have, has ou had en conséquence."
+    },
+    {
+      "id": "p26",
+      "ecran": "help_meth",
+      "texte": "Éliminez les auxiliaires pour trouver le principal.",
+      "dit": "La méthode de l'enquêteur pour démasquer le verbe : éliminez les auxiliaires, is, are, was, were, be, being, been, have, has, had, do, does, did, will, would, shall, should, can, could, may, might, must. Ce qui reste est le verbe principal."
+    },
+    {
+      "id": "p27",
+      "ecran": "help_ex",
+      "texte": "The teacher is speaking aloud.",
+      "dit": "Appliquez-la : The teacher is speaking aloud, l'enseignant parle à voix haute. On élimine is, l'auxiliaire, et il reste speaking, le verbe principal."
+    },
+    {
+      "id": "p28",
+      "ecran": "help_quiz",
+      "texte": "The cat sat on the mat.",
+      "dit": "Et pour finir, retrouvez le verbe de cette phrase de la leçon : The cat sat on the mat, le chat s'est assis sur le tapis. Le verbe est sat."
+    },
+    {
+      "id": "p29",
+      "ecran": "recap",
+      "texte": "Principal, liaison, auxiliaire : retenu.",
+      "dit": "Pour conclure : le verbe principal porte le sens, transitif ou intransitif ; le verbe de liaison relie le sujet à sa description ; l'auxiliaire aide le verbe principal pour le temps, le mode ou la voix."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Verbe principal et verbe de liaison"
+    },
+    {
+      "debut": "p18",
+      "pont": {
+        "texte": "Partie 2 : les verbes auxiliaires.",
+        "dit": "Partie deux : les verbes auxiliaires, qui aident le verbe principal à exprimer le temps, le mode ou la voix, avec leurs erreurs fréquentes."
+      },
+      "sous_titre": "Les verbes auxiliaires"
+    }
+  ]
+}

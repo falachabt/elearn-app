@@ -1,0 +1,351 @@
+{
+ "cours": 7280,
+ "ecrans": {
+  "carre_props": {
+   "kicker": "Le carré",
+   "tex": [
+    "\\text{quatre angles droits}",
+    "\\text{et quatre côtés égaux}",
+    "AC = BD, \\quad AC \\perp BD, \\quad \\text{même milieu}"
+   ],
+   "titre": "Il cumule les propriétés du rectangle et du losange",
+   "type": "etape"
+  },
+  "constructions_intro": {
+   "kicker": "Constructions",
+   "texte": "Construire ces figures prolonge leurs définitions : des perpendiculaires pour le rectangle et le carré, et les diagonales elles-mêmes pour le losange.",
+   "type": "phrase"
+  },
+  "construire_carre": {
+   "kicker": "Construire un carré",
+   "tex": [
+    "\\text{1. tracer } [AB] \\text{ de côté } a",
+    "\\text{2. perpendiculaires en } A \\text{ et } B,",
+    "\\text{placer } D \\text{ et } C \\text{ à distance } a",
+    "\\text{3. vérifier : } DC = a \\text{ et les angles droits}"
+   ],
+   "titre": "Comme le rectangle, mais tout est à distance a",
+   "type": "etape"
+  },
+  "construire_los": {
+   "kicker": "Construire un losange",
+   "tex": [
+    "\\text{1. deux diagonales}",
+    "\\text{perpendiculaires, de milieu } O",
+    "\\text{2. sommets de part et d'autre de } O",
+    "\\text{3. relier les quatre sommets}"
+   ],
+   "titre": "On part des diagonales, pas des côtés",
+   "type": "etape"
+  },
+  "construire_rect": {
+   "kicker": "Construire un rectangle",
+   "tex": [
+    "\\text{1. tracer } [AB] \\text{ de la longueur voulue}",
+    "\\text{2. perpendiculaires à } (AB) \\text{ en } A \\text{ et en } B",
+    "\\text{3. placer } D \\text{ et } C \\text{ à la distance voulue}",
+    "\\text{4. relier } C \\text{ et } D"
+   ],
+   "titre": "La base, puis deux perpendiculaires",
+   "type": "etape"
+  },
+  "definitions": {
+   "kicker": "Définitions",
+   "tex": [
+    "\\text{rectangle : un angle droit, donc quatre}",
+    "\\text{losange : 2 côtés consécutifs égaux}",
+    "\\text{carré : rectangle et losange à la fois}"
+   ],
+   "titre": "Trois figures, trois exigences",
+   "type": "etape",
+   "anim": {
+    "nom": "trio_particuliers_fig",
+    "hauteur": 140
+   }
+  },
+  "ex_carre": {
+   "kicker": "Exemple · la diagonale du carré",
+   "note": "a = 5 cm : la diagonale d'un carré vaut toujours le côté fois racine de deux.",
+   "tex": "d = a\\sqrt{2} = 5\\sqrt{2} \\approx 7{,}1\\ \\text{cm}",
+   "titre": "Le côté, fois racine de deux",
+   "type": "formule"
+  },
+  "ex_losange": {
+   "kicker": "Exemple · le côté du losange",
+   "tex": [
+    "d_1 = 8\\ \\text{cm}, \\quad d_2 = 6\\ \\text{cm}",
+    "\\tfrac{d_1}{2} = 4\\ \\text{cm}, \\quad \\tfrac{d_2}{2} = 3\\ \\text{cm}",
+    "c = \\sqrt{4^2 + 3^2} = \\sqrt{25}",
+    "c = 5\\ \\text{cm}"
+   ],
+   "titre": "Les moitiés des diagonales forment un triangle rectangle",
+   "type": "etape"
+  },
+  "ex_rectangle": {
+   "kicker": "Exemple · la diagonale du rectangle",
+   "tex": [
+    "AB = 6\\ \\text{cm}, \\quad BC = 4\\ \\text{cm}",
+    "AC = \\sqrt{AB^2 + BC^2} = \\sqrt{52}",
+    "AC \\approx 7{,}2\\ \\text{cm}"
+   ],
+   "titre": "Pythagore dans le triangle rectangle ABC",
+   "type": "etape",
+   "anim": {
+    "nom": "rectangle_diag_fig",
+    "hauteur": 100
+   }
+  },
+  "herite": {
+   "kicker": "Ce qu'ils gardent du parallélogramme",
+   "texte": "Ces trois figures restent des parallélogrammes : côtés opposés parallèles et égaux, angles opposés égaux, diagonales de même milieu. Ce qui les distingue, ce sont leurs diagonales.",
+   "type": "phrase"
+  },
+  "intro": {
+   "kicker": "L'idée du cours",
+   "texte": "Un parallélogramme particulier, c'est un parallélogramme ordinaire auquel on ajoute une seule exigence supplémentaire : un angle droit, ou des côtés égaux. Toute la leçon tient dans cette idée.",
+   "type": "phrase"
+  },
+  "losange_props": {
+   "kicker": "Le losange",
+   "tex": [
+    "AB = BC = CD = DA",
+    "\\widehat{A} = \\widehat{C} \\quad \\text{et} \\quad \\widehat{B} = \\widehat{D}",
+    "AC \\perp BD, \\quad \\text{même milieu}"
+   ],
+   "titre": "Quatre côtés égaux, des diagonales perpendiculaires",
+   "type": "etape",
+   "anim": {
+    "nom": "losange_diag_fig",
+    "hauteur": 130
+   }
+  },
+  "pieges": {
+   "kicker": "Deux confusions fréquentes",
+   "texte": "Des diagonales égales ne font un rectangle que si elles ont le même milieu ; des diagonales perpendiculaires ne font un losange qu'à la même condition. Le milieu commun garantit d'abord le parallélogramme.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Rectangle : angles droits, diagonales égales",
+    "Losange : côtés égaux, diagonales ⊥",
+    "Carré : les deux, le plus régulier",
+    "Reconnaître et construire : par les diagonales"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "reconnaitre_carre": {
+   "kicker": "Reconnaître un carré",
+   "tex": [
+    "\\text{rectangle et losange à la fois}",
+    "\\Rightarrow \\text{ carré}",
+    "\\text{diagonales égales, perpendiculaires,}",
+    "\\text{même milieu} \\Rightarrow \\text{ carré}"
+   ],
+   "titre": "Les deux familles de conditions réunies",
+   "type": "etape"
+  },
+  "reconnaitre_intro": {
+   "kicker": "Reconnaître un parallélogramme particulier",
+   "texte": "Pour chaque figure, deux portes d'entrée permettent de la reconnaître : une par les angles ou les côtés, et une par les diagonales.",
+   "type": "phrase"
+  },
+  "reconnaitre_los": {
+   "kicker": "Reconnaître un losange",
+   "tex": [
+    "\\text{quatre côtés égaux} \\quad \\Rightarrow \\quad \\text{losange}",
+    "\\text{diagonales de même milieu}",
+    "\\text{et perpendiculaires} \\Rightarrow \\text{ losange}"
+   ],
+   "titre": "Quatre côtés égaux, ou les diagonales",
+   "type": "etape"
+  },
+  "reconnaitre_rect": {
+   "kicker": "Reconnaître un rectangle",
+   "tex": [
+    "\\text{trois angles droits} \\quad \\Rightarrow \\quad \\text{rectangle}",
+    "\\text{diagonales de même milieu}",
+    "\\text{et égales} \\Rightarrow \\text{ rectangle}"
+   ],
+   "titre": "Trois angles droits, ou les diagonales",
+   "type": "etape"
+  },
+  "rectangle_props": {
+   "kicker": "Le rectangle",
+   "tex": [
+    "\\text{côtés opposés parallèles}",
+    "\\text{et de même longueur}",
+    "\\widehat{A} = \\widehat{B} = \\widehat{C} = \\widehat{D} = 90^\\circ",
+    "AC = BD \\quad \\text{et même milieu}"
+   ],
+   "titre": "Quatre angles droits, des diagonales égales",
+   "type": "etape"
+  },
+  "tableau": {
+   "kicker": "Tableau récapitulatif",
+   "tex": [
+    "\\text{rectangle : angles droits,}",
+    "\\text{diagonales égales}",
+    "\\text{losange : côtés égaux, diag. perp.}",
+    "\\text{carré : angles droits et côtés égaux}",
+    "\\text{carré : diag. égales et perp.}"
+   ],
+   "titre": "Côtés, angles, diagonales : la leçon en trois lignes",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Mathématique · Géométrie",
+   "sous": "Un parallélogramme, plus une propriété : angles droits, côtés égaux, ou les deux",
+   "titre": "Les parallélogrammes particuliers : rectangle, losange, carré",
+   "type": "titre",
+   "anim": {
+    "nom": "trio_particuliers_fig",
+    "hauteur": 240
+   }
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Rectangle, losange, carré : définitions et diagonales"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : reconnaître et construire. Nous verrons comment prouver qu'un quadrilatère est un rectangle, un losange ou un carré, puis comment tracer ces trois figures à la règle et à l'équerre.",
+    "texte": "Partie 2 : reconnaître ces figures, puis les construire."
+   },
+   "sous_titre": "Reconnaître et construire les trois figures"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de géométrie consacré aux parallélogrammes particuliers : le rectangle, le losange et le carré. Ce sont des parallélogrammes comme les autres, plus une propriété : leurs diagonales deviennent remarquables, égales, perpendiculaires, ou les deux. Nous allons les définir, calculer avec leurs diagonales, apprendre à les reconnaître, puis à les construire.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Rectangle, losange, carré : des parallélogrammes pas comme les autres."
+  },
+  {
+   "dit": "Un parallélogramme particulier, c'est un parallélogramme auquel on ajoute une seule exigence : un angle droit, ou des côtés égaux. La propriété ajoutée transforme la figure et enrichit ses diagonales. Nous allons rencontrer les trois figures qui en naissent : le rectangle, le losange et le carré.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Une propriété de plus, et le parallélogramme change de famille."
+  },
+  {
+   "dit": "Voici les trois définitions. Le rectangle est un parallélogramme qui possède un angle droit : pour un parallélogramme, un seul angle droit suffit, les trois autres suivent automatiquement. Le losange est un parallélogramme dont deux côtés consécutifs sont égaux : cela suffit pour que les quatre côtés aient la même longueur. Et le carré cumule les deux exigences : c'est un rectangle et un losange à la fois.",
+   "ecran": "definitions",
+   "id": "p03",
+   "texte": "Rectangle : l'angle droit. Losange : les côtés égaux. Carré : les deux."
+  },
+  {
+   "dit": "Avant le détail, un point commun essentiel : ces trois figures restent des parallélogrammes, et héritent de toutes ses propriétés : les côtés opposés sont parallèles et de même longueur, les angles opposés sont égaux, et les diagonales se coupent en leur milieu. Ce qui va les distinguer, ce sont leurs diagonales : égales pour le rectangle, perpendiculaires pour le losange, les deux pour le carré.",
+   "ecran": "herite",
+   "id": "p04",
+   "texte": "D'abord des parallélogrammes : ils en gardent toutes les propriétés."
+  },
+  {
+   "dit": "Commençons par le rectangle. Ses côtés opposés sont parallèles et de même longueur, comme dans tout parallélogramme, mais ses quatre angles mesurent quatre-vingt-dix degrés. Sa signature se lit sur les diagonales : elles se coupent en leur milieu, comme toujours, et en plus elles ont la même longueur. C'est cette égalité qui distingue le rectangle parmi les parallélogrammes.",
+   "ecran": "rectangle_props",
+   "id": "p05",
+   "texte": "Rectangle : quatre angles de quatre-vingt-dix degrés, diagonales égales."
+  },
+  {
+   "dit": "Exemple pour le rectangle : a bé cé dé est un rectangle, avec a bé égal à six centimètres et bé cé égal à quatre centimètres. Calculons sa diagonale. Le triangle a bé cé est rectangle en bé : le théorème de Pythagore donne a cé au carré égal à trente-six plus seize, soit cinquante-deux. La diagonale vaut donc racine de cinquante-deux, environ sept virgule deux centimètres.",
+   "ecran": "ex_rectangle",
+   "id": "p06",
+   "texte": "Rectangle six par quatre : diagonale racine de cinquante-deux, environ sept virgule deux centimètres."
+  },
+  {
+   "dit": "Passons au losange. Ses quatre côtés ont la même longueur, et ses angles opposés restent égaux, deux à deux. Sa signature, ce sont encore les diagonales : elles se coupent en leur milieu, elles sont perpendiculaires, et chacune est la bissectrice des deux angles qu'elle traverse, c'est-à-dire qu'elle les partage en deux angles égaux.",
+   "ecran": "losange_props",
+   "id": "p07",
+   "texte": "Losange : quatre côtés égaux, diagonales perpendiculaires et bissectrices."
+  },
+  {
+   "dit": "Exemple pour le losange : ses diagonales mesurent huit centimètres et six centimètres. Elles se coupent en leur milieu : chaque moitié vaut donc quatre et trois centimètres. Diagonales perpendiculaires : chaque côté est l'hypoténuse d'un triangle rectangle de côtés quatre et trois. Pythagore donne : racine de seize plus neuf, soit racine de vingt-cinq, égale à cinq. Chaque côté du losange mesure cinq centimètres.",
+   "ecran": "ex_losange",
+   "id": "p08",
+   "texte": "Diagonales huit et six : le côté vaut racine de vingt-cinq, cinq centimètres."
+  },
+  {
+   "dit": "Le carré, enfin, réunit tout : quatre angles droits comme le rectangle, quatre côtés égaux comme le losange, et des diagonales qui cumulent les deux signatures : même longueur, perpendiculaires, même milieu. C'est le parallélogramme le plus régulier de tous.",
+   "ecran": "carre_props",
+   "id": "p09",
+   "texte": "Carré : diagonales égales et perpendiculaires, de même milieu."
+  },
+  {
+   "dit": "Exemple pour le carré : prenons un côté de cinq centimètres. Sa diagonale vaut le côté multiplié par racine de deux, soit cinq racine de deux, environ sept virgule un centimètres. Retenez ce facteur racine de deux : il revient dans tous les calculs sur le carré.",
+   "ecran": "ex_carre",
+   "id": "p10",
+   "texte": "Carré de côté cinq : diagonale cinq racine de deux, environ sept virgule un centimètres."
+  },
+  {
+   "dit": "Le tableau récapitulatif tient en trois lignes. Rectangle : côtés opposés égaux, quatre angles droits, diagonales de même longueur. Losange : quatre côtés égaux, diagonales perpendiculaires. Carré : tout à la fois, diagonales égales et perpendiculaires. Lisez-le par les diagonales : c'est la colonne qui distingue chaque figure.",
+   "ecran": "tableau",
+   "id": "p11",
+   "texte": "Le tableau : côtés, angles, diagonales, figure par figure."
+  },
+  {
+   "dit": "Savoir décrire ces figures ne suffit pas : il faut aussi savoir les reconnaître, c'est-à-dire prouver qu'un quadrilatère donné est un rectangle, un losange ou un carré. La leçon donne pour chaque figure deux portes d'entrée : une par les angles ou les côtés, et une par les diagonales. Les voici.",
+   "ecran": "reconnaitre_intro",
+   "id": "p12",
+   "texte": "Reconnaître : deux portes d'entrée par figure, dont les diagonales."
+  },
+  {
+   "dit": "Pour prouver qu'une figure est un rectangle, deux caractérisations suffisent. Première porte : trois angles droits, le quatrième suit forcément, et la figure est un rectangle. Deuxième porte, par les diagonales : si elles se coupent en leur milieu et ont la même longueur, le quadrilatère est un rectangle.",
+   "ecran": "reconnaitre_rect",
+   "id": "p13",
+   "texte": "Rectangle : trois angles droits, ou diagonales égales de même milieu."
+  },
+  {
+   "dit": "Même logique pour le losange. Première porte : un quadrilatère dont les quatre côtés ont la même longueur est un losange. Deuxième porte : si ses diagonales se coupent en leur milieu et sont perpendiculaires, c'est également un losange. Notez la symétrie avec le rectangle : égales devient perpendiculaires.",
+   "ecran": "reconnaitre_los",
+   "id": "p14",
+   "texte": "Losange : quatre côtés égaux, ou diagonales perpendiculaires de même milieu."
+  },
+  {
+   "dit": "Pour le carré, le plus simple reste la définition : un quadrilatère à la fois rectangle et losange est un carré. Et la porte des diagonales cumule tout : si elles sont perpendiculaires, de même longueur, et se coupent en leur milieu, la figure est un carré. C'est la vérification la plus complète des trois.",
+   "ecran": "reconnaitre_carre",
+   "id": "p15",
+   "texte": "Carré : rectangle plus losange, ou les trois propriétés des diagonales."
+  },
+  {
+   "dit": "Dernier volet : construire ces trois figures à la règle et à l'équerre. Leurs constructions prolongent leurs définitions : des perpendiculaires pour le rectangle et le carré, les diagonales pour le losange.",
+   "ecran": "constructions_intro",
+   "id": "p16",
+   "texte": "Construire : perpendiculaires pour l'angle droit, diagonales pour le losange."
+  },
+  {
+   "dit": "Construire un rectangle, en quatre gestes. On trace d'abord un segment a bé, de la longueur choisie. On trace ensuite la perpendiculaire à la droite a bé en a, puis en bé, avec l'équerre. On place les points dé et cé sur ces perpendiculaires, à la distance voulue : c'est elle qui fixe la largeur du rectangle. Il ne reste qu'à relier cé et dé pour fermer la figure.",
+   "ecran": "construire_rect",
+   "id": "p17",
+   "texte": "Rectangle : le segment a bé, deux perpendiculaires, placer dé et cé, relier."
+  },
+  {
+   "dit": "Construire un losange, en partant de ses diagonales. On trace deux droites perpendiculaires qui se coupent en o : ce seront les diagonales, et o leur milieu commun. Sur chaque droite, on place deux sommets de part et d'autre de o, à la moitié de la diagonale choisie pour cette droite : les deux diagonales n'ont en général pas la même longueur. On relie ensuite les quatre sommets, et le losange est tracé.",
+   "ecran": "construire_los",
+   "id": "p18",
+   "texte": "Losange : deux diagonales perpendiculaires, sommets de part et d'autre de o."
+  },
+  {
+   "dit": "Construire un carré combine les deux méthodes. On trace un segment a bé, de longueur a, le côté du carré. On trace les perpendiculaires en a et en bé, et on y place dé et cé à la distance a exactement : c'est ce qui distingue le carré du rectangle. On vérifie pour finir : dé cé doit mesurer a, et les angles être droits.",
+   "ecran": "construire_carre",
+   "id": "p19",
+   "texte": "Carré : comme le rectangle, mais dé et cé à distance exactement a."
+  },
+  {
+   "dit": "Deux confusions fréquentes pour terminer. Première confusion : des diagonales égales ne suffisent pas à faire un rectangle si elles ne se coupent pas en leur milieu. Deuxième confusion : des diagonales perpendiculaires ne font un losange que si, là encore, elles partagent le même milieu. Dans les deux cas, la condition sur le milieu est celle qui garantit d'abord le parallélogramme.",
+   "ecran": "pieges",
+   "id": "p20",
+   "texte": "Piège : égales ou perpendiculaires ne suffisent pas sans le milieu commun."
+  },
+  {
+   "dit": "Récapitulons. Le rectangle se reconnaît à ses angles droits et à ses diagonales de même longueur. Le losange se reconnaît à ses côtés égaux et à ses diagonales perpendiculaires. Le carré cumule les deux familles, avec des diagonales égales, perpendiculaires et de même milieu. Le fil conducteur : les diagonales sont l'outil clé, pour identifier ces figures comme pour les construire.",
+   "ecran": "recap",
+   "id": "p21",
+   "texte": "Rectangle, losange, carré : tout se joue sur les diagonales."
+  }
+ ],
+ "titre": "Les parallélogrammes particuliers : rectangle, losange, carré"
+}

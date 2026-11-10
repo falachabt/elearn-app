@@ -1,0 +1,526 @@
+{
+  "cours": 6296,
+  "titre": "Les transformations géométriques : translater, tourner, agrandir",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Transformations géométriques",
+      "titre": "Les transformations géométriques",
+      "sous": "Translater, tourner, agrandir : déplacer les figures sans perdre leurs propriétés",
+      "anim": {
+        "nom": "rotation_homothetie_fig",
+        "hauteur": 240
+      }
+    },
+    "accroche": {
+      "type": "phrase",
+      "kicker": "Le monde en mouvement",
+      "texte": "Glisser une chaise, pivoter une porte, zoomer une photo : trois gestes, trois transformations.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 150
+      }
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "Qu'est-ce qu'une transformation ?",
+      "tex": "M(x, y) \\mapsto M'(x', y')",
+      "note": "À tout point M du plan, la transformation associe un point image M prime.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 130
+      }
+    },
+    "invariants": {
+      "type": "etape",
+      "kicker": "Le vocabulaire des transformations",
+      "titre": "Ce qui change, et ce qui ne change pas",
+      "tex": [
+        "M \\text{ : le point initial}",
+        "M' \\text{ : son image}",
+        "\\text{invariant : une propriété conservée}"
+      ]
+    },
+    "familles": {
+      "type": "phrase",
+      "kicker": "Les trois grandes familles",
+      "texte": "Translation, rotation, homothétie : deux déplacements rigides et un changement d'échelle.",
+      "anim": {
+        "nom": "rotation_homothetie_fig",
+        "hauteur": 150
+      }
+    },
+    "translation_def": {
+      "type": "formule",
+      "kicker": "La translation · définition",
+      "tex": "\\overrightarrow{MM'} = \\vec{u}",
+      "note": "M prime est l'image de M par la translation de vecteur u lorsque le vecteur MM prime vaut u."
+    },
+    "translation_prop": {
+      "type": "etape",
+      "kicker": "La translation · propriétés",
+      "titre": "Une isométrie qui conserve tout",
+      "tex": [
+        "A'B' = AB",
+        "\\text{alignement, angles et aires conservés}",
+        "\\text{une droite devient une parallèle}"
+      ]
+    },
+    "translation_coord": {
+      "type": "formule",
+      "kicker": "La translation · coordonnées",
+      "tex": "M'(x + a,\\; y + b)",
+      "note": "Si le vecteur u a pour coordonnées a et b, on ajoute a à l'abscisse et b à l'ordonnée."
+    },
+    "translation_ex": {
+      "type": "etape",
+      "kicker": "Exemple · translater un triangle",
+      "titre": "Translation de vecteur u de coordonnées moins un et deux",
+      "tex": [
+        "A(1, 1) \\to A'(0, 3)",
+        "B(4, 1) \\to B'(3, 3)",
+        "C(2, 3) \\to C'(1, 5)"
+      ]
+    },
+    "translation_comp": {
+      "type": "formule",
+      "kicker": "Composer deux translations",
+      "tex": "t_{\\vec{v}} \\circ t_{\\vec{u}} = t_{\\vec{u} + \\vec{v}}",
+      "note": "Deux glissements successifs valent un seul glissement, de vecteur la somme des deux vecteurs."
+    },
+    "rotation_def": {
+      "type": "etape",
+      "kicker": "La rotation · définition",
+      "titre": "Un centre, un angle, un sens",
+      "tex": [
+        "OM = OM'",
+        "\\widehat{MOM'} = \\theta",
+        "\\text{sens positif : le sens trigonométrique}"
+      ],
+      "anim": {
+        "nom": "rotation_homothetie_fig",
+        "hauteur": 140
+      }
+    },
+    "rotation_formules": {
+      "type": "etape",
+      "kicker": "La rotation · formules au centre origine",
+      "titre": "Quand le centre est l'origine du repère",
+      "tex": [
+        "x' = x \\cos\\theta - y \\sin\\theta",
+        "y' = x \\sin\\theta + y \\cos\\theta"
+      ]
+    },
+    "rotation_ex": {
+      "type": "etape",
+      "kicker": "Exemple · un quart de tour",
+      "titre": "Rotation de centre l'origine et d'angle quatre-vingt-dix degrés",
+      "tex": [
+        "A(1, 0) \\to A'(0, 1)",
+        "B(1, 1) \\to B'(-1, 1)",
+        "C(0, 1) \\to C'(-1, 0)"
+      ]
+    },
+    "rotation_prop": {
+      "type": "phrase",
+      "kicker": "La rotation · propriétés",
+      "texte": "Isométrie elle aussi : seul le centre reste fixe, tout le reste tourne.",
+      "anim": {
+        "nom": "rotation_homothetie_fig",
+        "hauteur": 150
+      }
+    },
+    "rotation_complexe": {
+      "type": "formule",
+      "kicker": "La rotation · écriture complexe",
+      "tex": "z' = e^{i\\theta}(z - c) + c",
+      "note": "Dans le plan complexe : on centre, on multiplie par l'exponentielle de i fois l'angle, on recentre."
+    },
+    "homothetie_def": {
+      "type": "formule",
+      "kicker": "L'homothétie · définition",
+      "tex": "\\overrightarrow{OM'} = k \\, \\overrightarrow{OM}",
+      "note": "Le centre O, le rapport k : M prime est sur la droite OM, à k fois la distance OM.",
+      "anim": {
+        "nom": "rotation_homothetie_fig",
+        "hauteur": 140
+      }
+    },
+    "homothetie_cas": {
+      "type": "etape",
+      "kicker": "L'homothétie · le rôle du rapport",
+      "titre": "Quatre régimes selon la valeur de k",
+      "tex": [
+        "k > 1 \\text{ : agrandissement}",
+        "0 < k < 1 \\text{ : réduction}",
+        "k < 0 \\text{ : image de l'autre côté de } O",
+        "k = -1 \\text{ : symétrie centrale}"
+      ]
+    },
+    "homothetie_effets": {
+      "type": "etape",
+      "kicker": "L'homothétie · effets mesurables",
+      "titre": "Les angles restent, les mesures changent d'échelle",
+      "tex": [
+        "A'B' = |k| \\times AB",
+        "\\mathcal{A}' = k^2 \\times \\mathcal{A}",
+        "\\text{angles et parallélisme conservés}"
+      ]
+    },
+    "homothetie_ex": {
+      "type": "etape",
+      "kicker": "Exemple · un rapport négatif",
+      "titre": "Homothétie de centre l'origine et de rapport moins deux",
+      "tex": [
+        "A(3, -1), \\quad k = -2",
+        "x' = -2 \\times 3 = -6",
+        "y' = -2 \\times (-1) = 2",
+        "A'(-6, \\; 2)"
+      ]
+    },
+    "composition_def": {
+      "type": "formule",
+      "kicker": "Composer les transformations",
+      "tex": "(T_2 \\circ T_1)(M) = T_2(T_1(M))",
+      "note": "On lit de droite à gauche : on applique d'abord T un, puis T deux au résultat."
+    },
+    "composition_ex": {
+      "type": "etape",
+      "kicker": "Exemple · translater puis tourner",
+      "titre": "Le point A de coordonnées un et deux, deux transformations",
+      "tex": [
+        "A(1, 2) \\xrightarrow{T} A'(2, 2)",
+        "A'(2, 2) \\xrightarrow{R} A''(-2, 2)",
+        "R \\circ T \\text{ n'est pas } T \\circ R"
+      ]
+    },
+    "non_commut": {
+      "type": "etape",
+      "kicker": "L'ordre change le résultat",
+      "titre": "Le même point de départ, deux ordres, deux arrivées",
+      "tex": [
+        "(t \\circ r)(M) = (2, 1)",
+        "(r \\circ t)(M) = (0, 3)",
+        "(2, 1) \\neq (0, 3)"
+      ]
+    },
+    "similitudes": {
+      "type": "formule",
+      "kicker": "Les similitudes · un concept unificateur",
+      "tex": "z' = az + b, \\quad a \\neq 0",
+      "note": "Le module de a donne le rapport d'échelle, son argument donne l'angle de rotation.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 130
+      }
+    },
+    "analytique": {
+      "type": "phrase",
+      "kicker": "Le langage des coordonnées",
+      "texte": "Descartes et Fermat : décrire les figures par des équations, calculer les images point par point.",
+      "anim": {
+        "nom": "plan_complexe_fig",
+        "hauteur": 150
+      }
+    },
+    "identifier": {
+      "type": "etape",
+      "kicker": "Méthode · identifier une transformation",
+      "titre": "Retrouver le centre en cherchant le point fixe",
+      "tex": [
+        "x' = 2x - 1, \\quad y' = 2y + 3",
+        "x = 2x - 1 \\Rightarrow x = 1",
+        "y = 2y + 3 \\Rightarrow y = -3",
+        "\\text{homothétie de centre } \\Omega(1, -3), \\text{ rapport } 2"
+      ]
+    },
+    "composee_calc": {
+      "type": "etape",
+      "kicker": "Exemple · composer par le calcul",
+      "titre": "Rotation d'un quart de tour, puis homothétie de rapport deux",
+      "tex": [
+        "M(2, 3) \\xrightarrow{\\text{rotation}} M_1(-3, 2)",
+        "M_1(-3, 2) \\xrightarrow{k = 2} M'(-6, 4)"
+      ],
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 130
+      }
+    },
+    "napoleon": {
+      "type": "phrase",
+      "kicker": "Problème · le théorème de Napoléon",
+      "texte": "Des triangles équilatéraux sur les côtés d'un triangle : leurs centres forment un triangle équilatéral.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 170
+      }
+    },
+    "napoleon_preuve": {
+      "type": "etape",
+      "kicker": "Problème · la preuve par rotation",
+      "titre": "Une rotation de soixante degrés transporte le problème",
+      "tex": [
+        "r(A, 60°) : D \\mapsto B \\text{ et } C \\mapsto E",
+        "\\text{l'image du segment } [DC] \\text{ est } [BE]",
+        "DC = BE"
+      ]
+    },
+    "minimum": {
+      "type": "phrase",
+      "kicker": "Problème · le chemin le plus court",
+      "texte": "Toucher une droite au meilleur endroit : le symétrique transforme le détour en ligne droite.",
+      "anim": {
+        "nom": "symetrie_fig",
+        "hauteur": 160
+      }
+    },
+    "strategie": {
+      "type": "etape",
+      "kicker": "La stratégie générale",
+      "titre": "Résoudre par transformation, en trois temps",
+      "tex": [
+        "\\text{identifier ce qui est conservé}",
+        "\\text{choisir la transformation qui simplifie}",
+        "\\text{résoudre, puis revenir par l'inverse}"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Une transformation envoie M sur M prime",
+        "Translation : le vecteur u décide de tout",
+        "Rotation : un centre et un angle",
+        "Homothétie : longueurs par |k|, aires par k au carré",
+        "Composer : l'ordre change le résultat"
+      ]
+    },
+    "cloture": {
+      "type": "phrase",
+      "kicker": "Pour conclure",
+      "texte": "Felix Klein : une géométrie se définit par les transformations qui laissent ses propriétés invariantes.",
+      "anim": {
+        "nom": "rotation_homothetie_fig",
+        "hauteur": 150
+      }
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours consacré aux transformations géométriques. Une figure peut glisser, tourner ou changer d'échelle sans perdre son identité : nous allons apprendre le langage qui décrit ces mouvements. D'abord la définition générale et le vocabulaire, puis les trois grandes familles : la translation, la rotation et l'homothétie. Nous verrons ensuite comment les composer, comment les écrire avec des coordonnées, et comment elles résolvent des problèmes qui semblaient difficiles.",
+      "texte": "Translater, tourner, agrandir : le plan en mouvement.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Regardez autour de vous : une chaise que l'on pousse glisse sans se déformer, une porte pivote autour de ses gonds, une photographie que l'on zoome grandit en gardant ses proportions. Derrière chacun de ces gestes se cache une transformation géométrique, et tout l'enjeu du cours est de passer de l'intuition du geste à sa description mathématique exacte, celle qui permet de calculer l'image de n'importe quel point.",
+      "texte": "Trois gestes du quotidien, trois transformations à décrire.",
+      "ecran": "accroche"
+    },
+    {
+      "id": "p03",
+      "dit": "Définition : une transformation géométrique du plan est une opération qui, à tout point du plan, associe un point image du même plan. Le point de départ s'appelle le point initial, ou l'objet ; le point d'arrivée s'appelle son image. Transformer une figure, c'est appliquer la transformation à chacun de ses points, un par un.",
+      "texte": "À chaque point M, un point image M′.",
+      "ecran": "definition"
+    },
+    {
+      "id": "p04",
+      "dit": "Un mot dominera tout le cours : invariant. Un invariant est une propriété que la transformation conserve, par exemple une longueur, un angle ou un alignement. Deux figures peuvent changer de position ou de taille, mais si l'on sait exactement ce qui est conservé, on sait exactement ce que la transformation a le droit de faire. Caractériser une transformation, c'est d'abord lister ses invariants.",
+      "texte": "Un invariant : ce que la transformation conserve à coup sûr.",
+      "ecran": "invariants"
+    },
+    {
+      "id": "p05",
+      "dit": "Nous étudierons trois familles fondamentales. La translation fait glisser tous les points dans la même direction. La rotation fait tourner tous les points autour d'un centre fixe. L'homothétie, elle, agrandit ou réduit les figures depuis un centre, comme un zoom. Les deux premières conservent les longueurs : ce sont des isométries. La troisième conserve les angles et les rapports, mais multiplie les longueurs.",
+      "texte": "Deux isométries, un zoom : translation, rotation, homothétie.",
+      "ecran": "familles"
+    },
+    {
+      "id": "p06",
+      "dit": "Commençons par la translation. Elle est entièrement déterminée par un vecteur, noté u. La translation de vecteur u envoie chaque point M sur le point M prime tel que le vecteur qui va de M à M prime est exactement le vecteur u. Tous les points subissent donc le même déplacement : même direction, même sens, même longueur. C'est un glissement pur, sans aucune rotation.",
+      "texte": "La translation : tout le monde glisse du même vecteur u.",
+      "ecran": "translation_def"
+    },
+    {
+      "id": "p07",
+      "dit": "Parce que tous les points glissent ensemble, une translation conserve les distances : l'image d'un segment a exactement la même longueur que le segment de départ. Elle conserve aussi l'alignement, les angles, le parallélisme et les aires. L'image d'une droite est une droite qui lui est parallèle. La figure arrive déplacée, mais strictement identique : c'est la signature d'une isométrie.",
+      "texte": "Distances, angles, alignement : la translation conserve tout.",
+      "ecran": "translation_prop"
+    },
+    {
+      "id": "p08",
+      "dit": "En coordonnées, la translation devient un calcul élémentaire. Si le vecteur u a pour coordonnées a et b, alors l'image d'un point de coordonnées x et y a pour coordonnées x plus a, et y plus b. On ajoute simplement les composantes du vecteur aux coordonnées du point. C'est exactement l'opération qu'un logiciel de dessin effectue quand vous faites glisser un objet à l'écran.",
+      "texte": "Traduire, c'est ajouter : (x + a, y + b).",
+      "ecran": "translation_coord"
+    },
+    {
+      "id": "p09",
+      "dit": "Exemple : translatons le triangle de sommets A, B et C par le vecteur de coordonnées moins un et deux. Pour le point A de coordonnées un et un : un moins un donne zéro pour l'abscisse, un plus deux donne trois pour l'ordonnée, donc A prime a pour coordonnées zéro et trois. Même calcul pour B, qui arrive en trois et trois, et pour C, qui arrive en un et cinq. Le triangle image est le même triangle, simplement déplacé.",
+      "texte": "A(1, 1) → A′(0, 3), B → (3, 3), C → (1, 5).",
+      "ecran": "translation_ex"
+    },
+    {
+      "id": "p10",
+      "dit": "Propriété remarquable : la composée de deux translations est encore une translation, dont le vecteur est la somme des deux vecteurs. Et ici, l'ordre ne compte pas : translater d'abord par u puis par v donne le même résultat que l'inverse, puisque l'addition des vecteurs est commutative. Retenez ce point, car nous verrons bientôt que cette commutativité est l'exception, pas la règle.",
+      "texte": "Deux translations composées : une translation, vecteur somme.",
+      "ecran": "translation_comp"
+    },
+    {
+      "id": "p11",
+      "dit": "Passons à la rotation. Elle est définie par un centre, noté O, et par un angle orienté. L'image M prime d'un point M est l'unique point situé à la même distance du centre que M, et tel que l'angle formé par les points M, O et M prime soit exactement l'angle de la rotation. Par convention, un angle positif tourne dans le sens trigonométrique, c'est-à-dire à l'inverse des aiguilles d'une montre ; un angle négatif tourne dans le sens horaire.",
+      "texte": "Rotation : même distance au centre, angle imposé.",
+      "ecran": "rotation_def"
+    },
+    {
+      "id": "p12",
+      "dit": "Quand le centre de rotation est l'origine du repère, les formules sont élégantes. La nouvelle abscisse combine l'ancienne abscisse multipliée par le cosinus de l'angle, moins l'ancienne ordonnée multipliée par le sinus. La nouvelle ordonnée combine l'abscisse multipliée par le sinus, plus l'ordonnée multipliée par le cosinus. Pour un centre quelconque, on ramène d'abord le centre à l'origine par une translation, on tourne, puis on revient.",
+      "texte": "Au centre origine : cosinus et sinus mélangent x et y.",
+      "ecran": "rotation_formules"
+    },
+    {
+      "id": "p13",
+      "dit": "Exemple : faisons tourner le carré de sommets l'origine, A, B et C d'un quart de tour autour de l'origine, soit quatre-vingt-dix degrés dans le sens positif. Le cosinus vaut zéro et le sinus vaut un, donc l'image d'un point de coordonnées x et y a pour coordonnées moins y et x. Le point A arrive en zéro et un, le point B en moins un et un, le point C en moins un et zéro. Le carré a pivoté, sans changer ni de taille ni de forme.",
+      "texte": "Quart de tour : (x, y) devient (−y, x).",
+      "ecran": "rotation_ex"
+    },
+    {
+      "id": "p14",
+      "dit": "La rotation est elle aussi une isométrie : elle conserve les distances et les angles orientés. Son seul point invariant, lorsque l'angle n'est pas un tour complet, est son centre : c'est le pivot autour duquel tout le plan tourne. Composer deux rotations de même centre revient à additionner leurs angles. Avec des centres différents, la composée est une rotation si la somme des angles n'est pas nulle, et une translation si elle l'est.",
+      "texte": "Seul le centre ne bouge pas ; les angles s'additionnent.",
+      "ecran": "rotation_prop"
+    },
+    {
+      "id": "p15",
+      "dit": "Dans le plan complexe, la rotation devient d'une simplicité remarquable. Pour tourner autour d'un centre d'affixe c, on retranche d'abord c pour se ramener à l'origine, on multiplie par l'exponentielle de i fois l'angle, ce qui effectue la rotation, puis on rajoute c. Une seule multiplication encode tout le mouvement : c'est cette écriture qui rend les rotations si maniables dans les calculs avancés.",
+      "texte": "En complexes, tourner = multiplier par e puissance iθ.",
+      "ecran": "rotation_complexe"
+    },
+    {
+      "id": "p16",
+      "dit": "Troisième famille : l'homothétie. Elle est définie par un centre O et un nombre réel non nul k, appelé le rapport. L'image M prime d'un point M est le point de la droite qui joint O à M, tel que le vecteur OM prime vaut k fois le vecteur OM. Autrement dit, la distance de O à M prime vaut la valeur absolue de k fois la distance de O à M, et le signe de k dit de quel côté du centre se trouve l'image.",
+      "texte": "Homothétie : OM′ = k × OM, depuis le centre O.",
+      "ecran": "homothetie_def"
+    },
+    {
+      "id": "p17",
+      "dit": "Le rapport gouverne tout. Si k est supérieur à un, la figure est agrandie. Si k est compris entre zéro et un, elle est réduite. Si k est négatif, chaque image passe de l'autre côté du centre, comme dans un miroir ponctuel. Deux cas limites à retenir : un rapport égal à un laisse tout inchangé, et un rapport égal à moins un donne exactement la symétrie centrale de centre O. Une carte géographique n'est rien d'autre qu'une homothétie de très petit rapport appliquée au terrain.",
+      "texte": "k > 1 : agrandi ; 0 < k < 1 : réduit ; k < 0 : retourné.",
+      "ecran": "homothetie_cas"
+    },
+    {
+      "id": "p18",
+      "dit": "Que conserve une homothétie ? Les angles, l'alignement et le parallélisme : l'image d'une droite est une droite parallèle, ou la droite elle-même si elle passe par le centre. En revanche, les longueurs sont toutes multipliées par la valeur absolue de k, et les aires par le carré de k. C'est pour cela qu'agrandir une figure d'un facteur deux multiplie son aire par quatre : les deux dimensions grandissent en même temps.",
+      "texte": "Longueurs × |k|, aires × k², angles inchangés.",
+      "ecran": "homothetie_effets"
+    },
+    {
+      "id": "p19",
+      "dit": "Exemple chiffré : prenons le point A de coordonnées trois et moins un, et l'homothétie de centre l'origine et de rapport moins deux. Quand le centre est l'origine, on multiplie simplement chaque coordonnée par le rapport. L'abscisse devient moins deux fois trois, soit moins six ; l'ordonnée devient moins deux fois moins un, soit deux. L'image est donc le point de coordonnées moins six et deux : deux fois plus loin du centre, et de l'autre côté, comme l'annonçait le signe négatif.",
+      "texte": "A(3, −1), rapport −2 : A′(−6, 2), de l'autre côté de O.",
+      "ecran": "homothetie_ex"
+    },
+    {
+      "id": "p20",
+      "dit": "Composer deux transformations, c'est les appliquer successivement à la même figure. La composée de T un suivie de T deux se note T deux rond T un, et elle se lit de droite à gauche : on applique d'abord T un au point, puis T deux au résultat obtenu. Cette convention d'écriture est la première source d'erreurs du chapitre : l'ordre de lecture n'est pas l'ordre d'action.",
+      "texte": "Composer = enchaîner ; l'écriture se lit de droite à gauche.",
+      "ecran": "composition_def"
+    },
+    {
+      "id": "p21",
+      "dit": "Exemple : prenons le point A de coordonnées un et deux. Une translation de vecteur de coordonnées un et zéro l'envoie sur le point de coordonnées deux et deux. Une rotation d'un quart de tour autour de l'origine envoie ensuite ce point sur le point de coordonnées moins deux et deux. Voilà le résultat de la composée rotation après translation. Mais si l'on inverse l'ordre des deux opérations, le point d'arrivée n'est en général plus le même.",
+      "texte": "Translater puis tourner : A(1, 2) finit en (−2, 2).",
+      "ecran": "composition_ex"
+    },
+    {
+      "id": "p22",
+      "dit": "Vérifions sur un point simple, le point de coordonnées un et zéro, avec une rotation d'un quart de tour et une translation de vecteur deux et zéro. Si l'on tourne d'abord puis que l'on translate, on arrive au point de coordonnées deux et un. Si l'on translate d'abord puis que l'on tourne, on arrive au point de coordonnées zéro et trois. Deux arrivées différentes : la composition des transformations n'est pas commutative, contrairement à celle des translations entre elles.",
+      "texte": "Tourner puis translater ≠ translater puis tourner.",
+      "ecran": "non_commut"
+    },
+    {
+      "id": "p23",
+      "dit": "En composant une homothétie et une rotation de même centre, on obtient une similitude directe : elle tourne et elle zoome en un seul geste. Dans le plan complexe, toute similitude directe s'écrit sous la forme z prime égal a fois z plus b, avec a non nul. Le module de a est le rapport d'échelle, son argument est l'angle de rotation, et le terme b encode la translation. Translation, rotation et homothétie apparaissent alors comme des cas particuliers d'une seule formule.",
+      "texte": "Similitude : z′ = az + b ; |a| zoome, arg(a) tourne.",
+      "ecran": "similitudes"
+    },
+    {
+      "id": "p24",
+      "dit": "Nous disposons maintenant de deux langages. Le langage géométrique parle en vecteurs, en angles et en rapports : il est visuel et intuitif. Le langage analytique, hérité de Descartes et de Fermat, parle en coordonnées et en formules : il est précis, calculatoire, et c'est lui que les machines utilisent. Savoir traduire un problème d'un langage dans l'autre est la compétence centrale de ce chapitre.",
+      "texte": "Deux langages : la géométrie voit, les coordonnées calculent.",
+      "ecran": "analytique"
+    },
+    {
+      "id": "p25",
+      "dit": "Méthode : on vous donne des formules, par exemple x prime égal deux x moins un, et y prime égal deux y plus trois. Le coefficient deux devant chaque variable évoque une homothétie de rapport deux. Pour trouver son centre, on cherche le point fixe : le point dont les coordonnées vérifient x égal x prime et y égal y prime. On obtient l'abscisse un et l'ordonnée moins trois. C'est bien une homothétie, de centre le point de coordonnées un et moins trois, et de rapport deux.",
+      "texte": "Point fixe (1, −3) : homothétie de rapport 2 démasquée.",
+      "ecran": "identifier"
+    },
+    {
+      "id": "p26",
+      "dit": "Dernier calcul guidé : quelle est l'image du point de coordonnées deux et trois par une rotation d'un quart de tour autour de l'origine, suivie d'une homothétie de centre l'origine et de rapport deux ? La rotation envoie le point sur le point de coordonnées moins trois et deux, selon la règle qui échange les coordonnées en changeant un signe. L'homothétie double ensuite chaque coordonnée : l'image finale a pour coordonnées moins six et quatre. Les deux transformations ayant le même centre, l'ordre n'aurait ici rien changé.",
+      "texte": "M(2, 3) → (−3, 2) → (−6, 4) : enchaîner les formules.",
+      "ecran": "composee_calc"
+    },
+    {
+      "id": "p27",
+      "dit": "À quoi servent ces outils ? À révéler des propriétés invisibles. Le théorème de Napoléon affirme que si l'on construit des triangles équilatéraux vers l'extérieur sur les trois côtés d'un triangle quelconque, alors les centres de ces trois triangles forment eux-mêmes un triangle équilatéral. Aucune mesure ne permet d'en être sûr : il faut une démonstration, et les rotations de soixante degrés sont exactement l'outil qu'il faut.",
+      "texte": "Napoléon : trois centres, un triangle équilatéral caché.",
+      "ecran": "napoleon"
+    },
+    {
+      "id": "p28",
+      "dit": "L'idée de la preuve tient en une phrase : choisissez la rotation qui envoie un côté de la figure sur un autre. Ici, la rotation de centre A et d'angle soixante degrés, dans le sens direct, envoie le point D sur le point B et le point C sur le point E, parce que les triangles construits sont équilatéraux. L'image du segment qui joint D à C est donc le segment qui joint B à E. Et comme une rotation conserve les longueurs, ces deux segments ont la même longueur. C'est ce type d'égalité, répété sur la figure, qui force les centres à former un triangle équilatéral.",
+      "texte": "Une rotation bien choisie prouve DC = BE d'un coup.",
+      "ecran": "napoleon_preuve"
+    },
+    {
+      "id": "p29",
+      "dit": "Autre problème classique : deux points A et B sont du même côté d'une droite, et l'on cherche le point de la droite qui minimise la somme des distances aux deux points, comme un rayon qui se réfléchit sur un miroir. La solution consiste à remplacer le point A par son symétrique par rapport à la droite : les distances sont conservées, le chemin brisé devient un segment droit, et le meilleur point est l'intersection de ce segment avec la droite. Une transformation bien choisie a transformé un problème d'optimisation en un simple alignement.",
+      "texte": "Le symétrique redresse le chemin : minimum = alignement.",
+      "ecran": "minimum"
+    },
+    {
+      "id": "p30",
+      "dit": "Retenez la stratégie générale de résolution. D'abord, identifiez les invariants du problème : quelles longueurs, quels angles doivent survivre ? Ensuite, choisissez la transformation qui préserve exactement ces invariants tout en simplifiant la configuration. Résolvez le problème dans la figure simplifiée, souvent devenue évidente. Enfin, appliquez la transformation inverse pour transporter la réponse dans la figure de départ.",
+      "texte": "Invariant, transformation, solution, retour : la méthode.",
+      "ecran": "strategie"
+    },
+    {
+      "id": "p31",
+      "dit": "Récapitulons. Une transformation associe à chaque point un point image, et ses invariants la caractérisent. La translation est entièrement décrite par son vecteur, la rotation par son centre et son angle, l'homothétie par son centre et son rapport, qui multiplie les longueurs par sa valeur absolue et les aires par son carré. Composer ces transformations crée les similitudes, mais l'ordre des opérations y change le résultat. Et chaque transformation s'écrit en coordonnées, ce qui permet de tout calculer.",
+      "texte": "Vecteur, centre et angle, rapport : trois signatures.",
+      "ecran": "recap"
+    },
+    {
+      "id": "p32",
+      "dit": "Pour conclure : à la fin du dix-neuvième siècle, le mathématicien Felix Klein a renversé notre regard sur la géométrie. Au lieu de définir une géométrie par ses objets, il la définit par le groupe de transformations qui laisse ses propriétés invariantes. La géométrie euclidienne de ce cours est précisément celle des translations, des rotations et des réflexions. Vous ne regardez plus les figures comme des objets figés, mais comme des formes que des mouvements relient entre elles.",
+      "texte": "Klein : la géométrie, c'est l'étude des invariants.",
+      "ecran": "cloture"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définir une transformation et maîtriser la translation"
+    },
+    {
+      "debut": "p11",
+      "sous_titre": "Rotation et homothétie : tourner, puis changer d'échelle",
+      "pont": {
+        "texte": "Partie 2 : la rotation et l'homothétie.",
+        "dit": "Partie deux : la rotation et l'homothétie. Après le glissement de la translation, nous faisons tourner les figures autour d'un centre, nous écrivons la rotation dans le plan complexe, puis nous changeons d'échelle avec l'homothétie et son rapport, avant d'apprendre à composer les transformations."
+      }
+    },
+    {
+      "debut": "p24",
+      "sous_titre": "Coordonnées, identification et problèmes résolus par transformation",
+      "pont": {
+        "texte": "Partie 3 : calculer en coordonnées et résoudre par transformation.",
+        "dit": "Partie trois : le langage des coordonnées et la résolution de problèmes. Nous identifierons une transformation à partir de ses formules, nous composerons par le calcul, puis nous utiliserons les rotations et les symétries pour démontrer le théorème de Napoléon et trouver un chemin de longueur minimale."
+      }
+    }
+  ]
+}

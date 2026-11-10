@@ -1,0 +1,380 @@
+{
+  "cours": 7259,
+  "titre": "Équations et inéquations : du premier au second degré",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Algèbre",
+      "titre": "Équations et inéquations : du premier au second degré",
+      "sous": "Isoler l'inconnue, le discriminant, le sens des inégalités et les tableaux de signes",
+      "anim": {
+        "nom": "parabole_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Résoudre : trouver toutes les valeurs qui rendent l'énoncé vrai.",
+      "anim": {
+        "nom": "parabole_fig",
+        "hauteur": 230
+      }
+    },
+    "forme1": {
+      "type": "formule",
+      "kicker": "Équation du premier degré",
+      "tex": "ax + b = 0,\\qquad a \\neq 0",
+      "note": "a et b connus, x est l'inconnue : aucun carré"
+    },
+    "regles_eq": {
+      "type": "etape",
+      "kicker": "Propriétés d'équivalence",
+      "titre": "Deux gestes qui conservent les solutions",
+      "tex": [
+        "\\text{ajouter ou retrancher : même nombre}",
+        "\\text{multiplier, diviser : nombre non nul}"
+      ]
+    },
+    "ex1": {
+      "type": "etape",
+      "kicker": "Exemple résolu · premier degré",
+      "titre": "Regrouper les x, puis isoler",
+      "tex": [
+        "3x - 7 = 5x + 1",
+        "3x - 5x = 1 + 7",
+        "-2x = 8",
+        "x = -4 \\qquad S = \\{-4\\}"
+      ]
+    },
+    "forme2": {
+      "type": "formule",
+      "kicker": "Équation du second degré",
+      "tex": "ax^2 + bx + c = 0,\\qquad a \\neq 0",
+      "note": "L'inconnue apparaît au carré : il faut le discriminant",
+      "anim": {
+        "nom": "parabole_fig",
+        "hauteur": 215
+      }
+    },
+    "discriminant": {
+      "type": "formule",
+      "kicker": "Le discriminant",
+      "tex": "\\Delta = b^2 - 4ac",
+      "note": "Un seul nombre : son signe décide du nombre de solutions",
+      "anim": {
+        "nom": "parabole_fig",
+        "hauteur": 215
+      }
+    },
+    "cas_delta": {
+      "type": "etape",
+      "kicker": "Les trois cas du discriminant",
+      "titre": "Le signe de delta tranche",
+      "tex": [
+        "\\Delta > 0 :\\ x = \\tfrac{-b \\pm \\sqrt{\\Delta}}{2a}",
+        "\\Delta = 0 :\\ x_0 = \\tfrac{-b}{2a}",
+        "\\Delta < 0 :\\ \\text{aucune solution réelle}"
+      ]
+    },
+    "ex2": {
+      "type": "etape",
+      "kicker": "Exemple résolu · second degré",
+      "titre": "Delta vaut soixante-quatre",
+      "tex": [
+        "2x^2 - 4x - 6 = 0",
+        "\\Delta = (-4)^2 - 4 \\times 2 \\times (-6) = 64",
+        "x_1 = \\tfrac{4 - 8}{4} = -1",
+        "x_2 = \\tfrac{4 + 8}{4} = 3 \\qquad S = \\{-1\\,;\\,3\\}"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Équations : à retenir",
+      "etapes": [
+        "Premier degré : isoler x par équivalence",
+        "Second degré : calculer Δ = b² − 4ac",
+        "Δ > 0 : deux solutions ; Δ = 0 : une double",
+        "Δ < 0 : aucune solution réelle"
+      ]
+    },
+    "ineq1": {
+      "type": "formule",
+      "kicker": "Inéquation du premier degré",
+      "tex": "ax + b \\leq 0",
+      "note": "Quatre signes possibles : <, ≤, >, ≥ ; solutions en intervalle",
+      "anim": {
+        "nom": "droite_graduee_fig",
+        "hauteur": 215
+      }
+    },
+    "regles_ineq": {
+      "type": "etape",
+      "kicker": "Les règles de sens",
+      "titre": "Diviser par un négatif inverse le sens",
+      "tex": [
+        "\\text{ajouter ou retrancher : sens conservé}",
+        "\\text{multiplier par un positif : sens conservé}",
+        "\\text{multiplier par un négatif : sens inversé}"
+      ]
+    },
+    "ex_ineq1": {
+      "type": "etape",
+      "kicker": "Exemple résolu · inéquation",
+      "titre": "Division par moins deux : le sens se retourne",
+      "tex": [
+        "-2x + 5 \\leq 1",
+        "-2x \\leq 1 - 5 = -4",
+        "x \\geq 2 \\qquad S = [2\\,;\\,+\\infty["
+      ]
+    },
+    "signe_trinome": {
+      "type": "etape",
+      "kicker": "Signe du trinôme",
+      "titre": "Dehors du signe de a, dedans le signe opposé",
+      "tex": [
+        "\\text{signe de } a \\text{ à l'extérieur des racines}",
+        "\\text{signe opposé à } a \\text{ entre les racines}"
+      ],
+      "anim": {
+        "nom": "parabole_fig",
+        "hauteur": 215
+      }
+    },
+    "methode_signes": {
+      "type": "etape",
+      "kicker": "Méthode · tableau de signes",
+      "titre": "Trois temps, du calcul à la lecture",
+      "tex": [
+        "\\text{1. calculer delta et les racines}",
+        "\\text{2. dresser le tableau, signe par intervalle}",
+        "\\text{3. lire les solutions selon le sens demandé}"
+      ],
+      "anim": {
+        "nom": "tableau_signes_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_signe": {
+      "type": "etape",
+      "kicker": "Exemple résolu · signe du trinôme",
+      "titre": "Négatif entre moins deux et trois",
+      "tex": [
+        "x^2 - x - 6 < 0",
+        "\\Delta = 25,\\quad x_1 = -2,\\quad x_2 = 3",
+        "\\text{signes : } +\\quad 0\\quad -\\quad 0\\quad +",
+        "S = ]-2\\,;\\,3["
+      ]
+    },
+    "produit_quotient": {
+      "type": "etape",
+      "kicker": "Produit nul et quotient",
+      "titre": "Les deux réflexes à connaître",
+      "tex": [
+        "A \\cdot B = 0 \\iff A = 0 \\text{ ou } B = 0",
+        "\\tfrac{A}{B} = 0 \\iff A = 0 \\text{ et } B \\neq 0",
+        "\\text{quotient : valeur interdite, puis tableau}"
+      ]
+    },
+    "ex_quotient": {
+      "type": "formule",
+      "kicker": "Exemple résolu · inéquation quotient",
+      "tex": "\\frac{x - 1}{x + 2} \\geq 0",
+      "note": "Valeur interdite : x = −2, le dénominateur s'y annule"
+    },
+    "tableau_quotient": {
+      "type": "etape",
+      "kicker": "Tableau de signes du quotient",
+      "titre": "Dans l'ordre : moins l'infini, moins deux, un, plus l'infini",
+      "tex": [
+        "x - 1 :\\quad -\\quad -\\quad 0\\quad +",
+        "x + 2 :\\quad -\\quad 0\\quad +\\quad +",
+        "\\text{quotient :}\\quad +\\quad \\text{indéfini}\\quad -\\quad +"
+      ],
+      "anim": {
+        "nom": "tableau_signes_fig",
+        "hauteur": 215
+      }
+    },
+    "solution_quotient": {
+      "type": "formule",
+      "kicker": "Lecture des solutions",
+      "tex": "S = ]-\\infty\\,;\\,-2[ \\cup [1\\,;\\,+\\infty[",
+      "note": "Quotient positif ou nul ; moins deux toujours exclu",
+      "anim": {
+        "nom": "droite_graduee_fig",
+        "hauteur": 215
+      }
+    },
+    "verif": {
+      "type": "etape",
+      "kicker": "Le contrôle final",
+      "titre": "Valeurs interdites et bornes, à chaque fois",
+      "tex": [
+        "\\text{valeurs interdites : toujours exclues}",
+        "\\text{inégalité large : borne incluse si permise}",
+        "\\text{inégalité stricte : borne exclue}"
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Premier degré : isoler x, sens si négatif",
+        "Second degré : Δ, racines, signe de a",
+        "Trinôme : signe de a dehors, opposé dedans",
+        "Tableau de signes : produit et quotient",
+        "Toujours exclure les valeurs interdites"
+      ]
+    }
+  },
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Équations et inéquation du premier degré"
+    },
+    {
+      "debut": "p14",
+      "sous_titre": "Signe du trinôme, produits et quotients",
+      "pont": {
+        "texte": "Partie 2 : signe du trinôme et tableaux de signes.",
+        "dit": "Partie deux : le signe du trinôme et les tableaux de signes. Nous étudions le signe du trinôme du second degré, puis les équations produits et les inéquations quotients, avec le contrôle des valeurs interdites."
+      }
+    }
+  ],
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Équations et inéquations : les bases du calcul algébrique.",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux équations et aux inéquations. Nous allons maîtriser les bases du calcul algébrique : résoudre au premier degré, traiter le second degré avec le discriminant, puis passer aux inéquations et à leurs tableaux de signes."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "texte": "Résoudre : trouver toutes les solutions, sans en perdre.",
+      "dit": "Résoudre, cela veut dire trouver toutes les valeurs de l'inconnue qui rendent l'égalité ou l'inégalité vraie. Ces valeurs forment l'ensemble des solutions. Toute la méthode consiste à transformer l'énoncé pas à pas, sans jamais changer cet ensemble."
+    },
+    {
+      "id": "p03",
+      "ecran": "forme1",
+      "texte": "ax + b = 0, a non nul : l'inconnue sans carré.",
+      "dit": "Une équation du premier degré s'écrit a fois ixe plus bé égale zéro, avec a différent de zéro. L'inconnue ixe n'apparaît qu'à la puissance un : pas de carré, pas de racine. Résoudre, c'est isoler ixe d'un côté du signe égal."
+    },
+    {
+      "id": "p04",
+      "ecran": "regles_eq",
+      "texte": "Ajouter, retrancher, multiplier, diviser : solutions conservées.",
+      "dit": "Deux gestes conservent exactement les solutions. On peut ajouter ou soustraire le même nombre des deux côtés de l'égalité. Et on peut multiplier ou diviser les deux membres par un même nombre non nul. Ce sont les propriétés d'équivalence."
+    },
+    {
+      "id": "p05",
+      "ecran": "ex1",
+      "texte": "3x − 7 = 5x + 1 : la solution est −4.",
+      "dit": "Exemple : résoudre trois ixe moins sept égale cinq ixe plus un. On regroupe les ixe à gauche et les nombres à droite : trois ixe moins cinq ixe égale un plus sept, soit moins deux ixe égale huit. On divise par moins deux : ixe égale moins quatre. L'ensemble des solutions contient ce seul nombre."
+    },
+    {
+      "id": "p06",
+      "ecran": "forme2",
+      "texte": "ax² + bx + c = 0 : l'inconnue au carré.",
+      "dit": "Au second degré, l'inconnue apparaît au carré : a ixe carré plus bé ixe plus cé égale zéro, avec a différent de zéro. On ne peut plus isoler ixe par de simples gestes : il faut un outil de tri, le discriminant."
+    },
+    {
+      "id": "p07",
+      "ecran": "discriminant",
+      "texte": "Δ = b² − 4ac : le signe décide.",
+      "dit": "Le discriminant, noté delta, vaut bé au carré moins quatre fois a fois cé. C'est un seul nombre, calculé à partir des trois coefficients, et son signe décide à l'avance du nombre de solutions de l'équation."
+    },
+    {
+      "id": "p08",
+      "ecran": "cas_delta",
+      "texte": "Δ > 0 : deux ; Δ = 0 : une double ; Δ < 0 : aucune.",
+      "dit": "Trois cas. Si delta est strictement positif, il y a deux solutions distinctes, données par les formules avec la racine carrée de delta. Si delta est nul, il y a une solution double. Si delta est strictement négatif, il n'y a aucune solution réelle."
+    },
+    {
+      "id": "p09",
+      "ecran": "ex2",
+      "texte": "Δ = 64 : solutions −1 et 3.",
+      "dit": "Exemple : résoudre deux ixe carré moins quatre ixe moins six égale zéro. Delta vaut seize plus quarante-huit, soit soixante-quatre, strictement positif, et sa racine carrée vaut huit. Les deux solutions sont donc moins un et trois."
+    },
+    {
+      "id": "p10",
+      "ecran": "recap1",
+      "texte": "Équations : à retenir.",
+      "dit": "Retenons la première partie. Au premier degré, on isole l'inconnue par des gestes d'équivalence. Au second degré, on calcule delta : positif, deux solutions ; nul, une solution double ; négatif, aucune solution réelle."
+    },
+    {
+      "id": "p11",
+      "ecran": "ineq1",
+      "texte": "Une inéquation : des solutions en intervalle.",
+      "dit": "Une inéquation du premier degré se ramène à la forme a fois ixe plus bé, avec un signe d'inégalité : inférieur, inférieur ou égal, supérieur ou supérieur ou égal. On isole ixe comme dans une équation, mais les solutions forment le plus souvent un intervalle entier."
+    },
+    {
+      "id": "p12",
+      "ecran": "regles_ineq",
+      "texte": "Négatif : le sens de l'inégalité se retourne.",
+      "dit": "Les règles de sens sont le cœur du chapitre. Ajouter ou soustraire un même nombre conserve le sens de l'inégalité. Multiplier ou diviser par un nombre strictement positif conserve aussi le sens. Mais multiplier ou diviser par un nombre strictement négatif change le sens : c'est le piège classique."
+    },
+    {
+      "id": "p13",
+      "ecran": "ex_ineq1",
+      "texte": "−2x + 5 ≤ 1 : solutions x ≥ 2.",
+      "dit": "Exemple : résoudre moins deux ixe plus cinq inférieur ou égal à un. On retranche cinq des deux côtés : moins deux ixe inférieur ou égal à moins quatre. On divise par moins deux, un nombre négatif, donc le sens se retourne : ixe supérieur ou égal à deux. Les solutions forment l'intervalle de deux à plus l'infini, deux inclus."
+    },
+    {
+      "id": "p14",
+      "ecran": "signe_trinome",
+      "texte": "Signe de a dehors, signe opposé dedans.",
+      "dit": "Pour une inéquation du second degré, on étudie le signe du trinôme. La règle est simple à retenir : le trinôme est du signe de a à l'extérieur des racines, et du signe opposé à a entre les racines, quand les racines existent."
+    },
+    {
+      "id": "p15",
+      "ecran": "methode_signes",
+      "texte": "Delta, tableau, lecture : la méthode en trois temps.",
+      "dit": "La méthode du tableau de signes tient en trois temps. D'abord calculer delta et les racines éventuelles. Ensuite dresser le tableau, qui donne le signe du trinôme sur chaque intervalle. Enfin lire l'ensemble des solutions selon le sens de l'inégalité demandée."
+    },
+    {
+      "id": "p16",
+      "ecran": "ex_signe",
+      "texte": "x² − x − 6 < 0 : solutions entre −2 et 3.",
+      "dit": "Exemple : résoudre ixe carré moins ixe moins six strictement inférieur à zéro. Delta vaut vingt-cinq, les racines sont moins deux et trois. Comme a vaut un, positif, le trinôme est négatif entre les racines. Les solutions sont donc tous les nombres strictement entre moins deux et trois."
+    },
+    {
+      "id": "p17",
+      "ecran": "produit_quotient",
+      "texte": "Produit nul : un facteur nul. Quotient : dénominateur non nul.",
+      "dit": "Deux formes spéciales reviennent sans cesse. Un produit de deux facteurs est nul si et seulement si l'un des facteurs est nul : l'équation produit se ramène donc à deux équations simples. Et un quotient est nul quand son numérateur est nul, à condition que son dénominateur, lui, ne le soit pas."
+    },
+    {
+      "id": "p18",
+      "ecran": "ex_quotient",
+      "texte": "(x − 1)/(x + 2) ≥ 0 : valeur interdite −2.",
+      "dit": "Exemple complet : résoudre le quotient de ixe moins un par ixe plus deux, supérieur ou égal à zéro. Première étape, la valeur interdite : le dénominateur s'annule pour ixe égale moins deux, qui ne pourra jamais être solution, même si le tableau semble l'autoriser."
+    },
+    {
+      "id": "p19",
+      "ecran": "tableau_quotient",
+      "texte": "Signes : quotient + avant −2, − entre −2 et 1, + après.",
+      "dit": "On dresse le tableau de signes. Le numérateur ixe moins un est négatif avant un, nul en un, positif après. Le dénominateur ixe plus deux est négatif avant moins deux, nul en moins deux, positif après. Le quotient est donc positif avant moins deux, indéfini en moins deux, négatif entre moins deux et un, puis positif après un."
+    },
+    {
+      "id": "p20",
+      "ecran": "solution_quotient",
+      "texte": "S = ]−∞ ; −2[ ∪ [1 ; +∞[ : −2 exclu, 1 inclus.",
+      "dit": "On lit les zones où le quotient est positif ou nul, en excluant la valeur interdite. Les solutions sont les nombres strictement inférieurs à moins deux, réunis avec les nombres supérieurs ou égaux à un. Un est inclus car le quotient s'y annule, moins deux est exclu car le quotient n'y existe pas."
+    },
+    {
+      "id": "p21",
+      "ecran": "verif",
+      "texte": "Valeurs interdites exclues ; bornes selon le sens.",
+      "dit": "Dernier réflexe avant de conclure, le contrôle final. Vérifiez toujours les valeurs interdites, qui sont exclues dans tous les cas. Et contrôlez chaque borne : incluse si l'inégalité est large et la valeur permise, exclue si l'inégalité est stricte ou la valeur interdite."
+    },
+    {
+      "id": "p22",
+      "ecran": "recap_final",
+      "texte": "Équations et inéquations : à retenir.",
+      "dit": "Pour conclure. Premier degré : isoler l'inconnue, en retournant le sens quand on divise par un négatif. Second degré : delta, racines, puis signe de a. Le tableau de signes règle les produits et les quotients. Et dans tous les cas, on exclut les valeurs interdites."
+    }
+  ]
+}

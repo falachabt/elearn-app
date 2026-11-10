@@ -1,0 +1,71 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { CLE_PROFIL, lireProfil, type Profil } from './profil';
+import { signalerModification } from './reglagesLocaux';
+
+export const CLE_PROFIL_MEMOIRE = 'profil.memoire';
+
+/** Dernier profil de chaque famille (secondaire ou concours, TOEIC) : on y revient sans tout ressaisir (P4, P5). */
+export type MemoireProfil = { secondaire?: Profil; toeic?: Profil };
+
+async function lireMemoire(): Promise<MemoireProfil> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_PROFIL_MEMOIRE);
+    return brut ? (JSON.parse(brut) as MemoireProfil) : {};
+  } catch {
+    return {};
+  }
+}
+
+/** Mémoire des profils (dernier profil de chaque famille) : lue par la page de changement pour pré-remplir ses onglets. */
+export async function lireMemoireProfil(): Promise<MemoireProfil> {
+  return lireMemoire();
+}
+
+/**
+ * Écrit la mémoire puis le profil. Une erreur d'écriture remonte à l'écran : le profil reste alors celui d'avant
+ * (écran P6, « Changement impossible »). Aucune donnée d'élève n'est effacée : la mémoire ne fait que garder l'ancien profil.
+ */
+async function basculer(suivant: Profil, memoire: MemoireProfil): Promise<void> {
+  await AsyncStorage.setItem(CLE_PROFIL_MEMOIRE, JSON.stringify(memoire));
+  await AsyncStorage.setItem(CLE_PROFIL, JSON.stringify(suivant));
+  await signalerModification();
+}
+
+/** P4 : passer du secondaire ou du concours au TOEIC. Le profil précédent reste en mémoire. */
+export async function passerAuToeic(): Promise<void> {
+  const actuel = await lireProfil();
+  if (actuel?.type === 'certification') return;
+  const memoire = await lireMemoire();
+  const suivant: Profil = memoire.toeic ?? { type: 'certification', exam: 'toeic', pays: actuel?.pays, termine: false };
+  await basculer(suivant, { ...memoire, ...(actuel ? { secondaire: actuel } : {}) });
+}
+
+/**
+ * P5 : revenir du TOEIC au secondaire. Le secondaire mémorisé est rétabli ; sans mémoire, la fonction renvoie `false`
+ * et l'écran ouvre le choix de classe. Le profil TOEIC reste en mémoire.
+ */
+export async function revenirAuSecondaire(): Promise<boolean> {
+  const actuel = await lireProfil();
+  const memoire = await lireMemoire();
+  if (!memoire.secondaire) return false;
+  await basculer(memoire.secondaire, { ...memoire, ...(actuel?.type === 'certification' ? { toeic: actuel } : {}) });
+  return true;
+}
+
+/**
+ * Adoption d'un profil d'une AUTRE famille depuis la page de changement (issue #125) : le profil quitté est gardé
+ * en mémoire (même invariant que `passerAuToeic` et `revenirAuSecondaire` : aucune donnée effacée, les profils
+ * permutent), puis le nouveau profil devient le profil courant. Une erreur d'écriture remonte à l'écran, qui
+ * affiche « Changement impossible » et garde l'ancien profil.
+ */
+export async function adopterProfil(suivant: Profil): Promise<void> {
+  const actuel = await lireProfil();
+  const memoire = await lireMemoire();
+  const maj: MemoireProfil = { ...memoire };
+  if (actuel && actuel.type !== suivant.type) {
+    if (actuel.type === 'certification') maj.toeic = actuel;
+    else maj.secondaire = actuel;
+  }
+  await basculer(suivant, maj);
+}

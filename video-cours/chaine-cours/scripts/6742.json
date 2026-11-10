@@ -1,0 +1,322 @@
+{
+ "cours": 6742,
+ "titre": "Équations cartésiennes de droites : lire, écrire, croiser",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Équations de droites",
+   "titre": "Équations cartésiennes de droites : lire, écrire, croiser",
+   "sous": "Vecteur directeur, coefficient directeur, positions relatives : la droite sous toutes ses formes",
+   "anim": {
+    "nom": "colineaires_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Une droite se décrit de trois façons qui se traduisent l'une dans l'autre : un point et une direction, une pente, ou une équation. Tout le cours consiste à passer d'une description à l'autre sans se tromper de signe."
+  },
+  "vecteur_directeur": {
+   "type": "formule",
+   "kicker": "Le vecteur directeur",
+   "tex": "\\vec{v} = \\lambda \\, \\vec{u}, \\qquad \\lambda \\neq 0",
+   "note": "Tout vecteur non nul de même direction que la droite : il n'est jamais unique, tout multiple non nul convient.",
+   "anim": {
+    "nom": "colineaires_fig",
+    "hauteur": 200
+   }
+  },
+  "coef_directeur": {
+   "type": "formule",
+   "kicker": "Le coefficient directeur",
+   "tex": "m = \\frac{y_B - y_A}{x_B - x_A}",
+   "note": "La pente : variation verticale divisée par variation horizontale. Vecteur directeur associé : u de coordonnées un et m."
+  },
+  "cartesienne": {
+   "type": "formule",
+   "kicker": "L'équation cartésienne",
+   "tex": "a x + b y + c = 0, \\qquad (a\\,;\\, b) \\neq (0\\,;\\, 0)",
+   "note": "Un vecteur directeur se lit directement : u de coordonnées moins b et a. Échanger et changer un signe."
+  },
+  "lecture": {
+   "type": "etape",
+   "kicker": "Exemple · lire une équation",
+   "titre": "La droite deux ixe moins trois igrec plus cinq égale zéro",
+   "tex": [
+    "a = 2 \\qquad b = -3 \\qquad c = 5",
+    "\\vec{u}(-b\\,;\\, a) = \\vec{u}(3\\,;\\, 2)",
+    "m = -\\tfrac{a}{b} = \\tfrac{2}{3}"
+   ]
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "La méthode · point et direction",
+   "titre": "La colinéarité fait tout le travail",
+   "tex": [
+    "\\overrightarrow{AM}(x - x_A\\,;\\, y - y_A)",
+    "\\overrightarrow{AM} \\text{ et } \\vec{u} \\text{ colinéaires}",
+    "\\beta (x - x_A) - \\alpha (y - y_A) = 0"
+   ],
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 130
+   }
+  },
+  "exemple_point_dir": {
+   "type": "etape",
+   "kicker": "Exemple · point et vecteur directeur",
+   "titre": "Par le point A et le vecteur u",
+   "tex": [
+    "A(1\\,;\\, 2) \\qquad \\vec{u}(-2\\,;\\, 3)",
+    "3(x - 1) + 2(y - 2) = 0",
+    "3x + 2y - 7 = 0"
+   ]
+  },
+  "autres_cas": {
+   "type": "etape",
+   "kicker": "Écrire une équation · les autres cas",
+   "titre": "Tout se ramène au premier cas",
+   "tex": [
+    "\\text{deux points : } \\vec{u} = \\overrightarrow{AB}",
+    "\\text{pente } m \\text{ donnée : } \\vec{u}(1\\,;\\, m)",
+    "\\text{parallèle : même vecteur directeur}",
+    "\\text{perpendiculaire : produit scalaire nul}"
+   ]
+  },
+  "ex_parallele": {
+   "type": "etape",
+   "kicker": "Exemple · la parallèle",
+   "titre": "Par A, parallèle à la droite d",
+   "tex": [
+    "d : x - 2y + 4 = 0 \\qquad \\vec{u}(2\\,;\\, 1)",
+    "A(2\\,;\\, -1) \\qquad 1(x - 2) - 2(y + 1) = 0",
+    "x - 2y - 4 = 0"
+   ]
+  },
+  "ex_perpendiculaire": {
+   "type": "etape",
+   "kicker": "Exemple · la perpendiculaire",
+   "titre": "Par A, perpendiculaire à la droite d",
+   "tex": [
+    "d : x + 2y - 1 = 0 \\qquad \\vec{u}(-2\\,;\\, 1)",
+    "\\vec{v}(1\\,;\\, 2) \\qquad \\vec{u} \\cdot \\vec{v} = -2 + 2 = 0",
+    "2(x - 1) - (y - 3) = 0 \\qquad 2x - y + 1 = 0"
+   ]
+  },
+  "appartenance": {
+   "type": "formule",
+   "kicker": "Un point est-il sur la droite ?",
+   "tex": "M \\in d \\iff a x_M + b y_M + c = 0",
+   "note": "On remplace ixe et igrec par les coordonnées du point : si l'égalité tient, le point est sur la droite, sinon non."
+  },
+  "ex_appartenance": {
+   "type": "etape",
+   "kicker": "Exemple · appartenance",
+   "titre": "Le point M sur la droite trois ixe moins igrec moins un",
+   "tex": [
+    "M(1\\,;\\, 2) \\qquad d : 3x - y - 1 = 0",
+    "3 \\times 1 - 2 - 1 = 0",
+    "M \\in d"
+   ]
+  },
+  "intersection": {
+   "type": "etape",
+   "kicker": "Le point d'intersection",
+   "titre": "Deux équations, un système, un point",
+   "tex": [
+    "x + y - 3 = 0 \\qquad x - y + 1 = 0",
+    "2x - 2 = 0 \\qquad x = 1",
+    "1 + y - 3 = 0 \\qquad y = 2 \\qquad I(1\\,;\\, 2)"
+   ]
+  },
+  "positions": {
+   "type": "etape",
+   "kicker": "Positions relatives de deux droites",
+   "titre": "Le déterminant des coefficients tranche",
+   "tex": [
+    "a b' - a' b \\neq 0 \\quad \\text{: sécantes}",
+    "a b' - a' b = 0 \\quad \\text{: directions parallèles}"
+   ],
+   "note": "Directions parallèles : confondues si les trois coefficients sont proportionnels, strictement parallèles sinon. Perpendiculaires si les vecteurs directeurs ont un produit scalaire nul."
+  },
+  "pente_depuis": {
+   "type": "formule",
+   "kicker": "La pente depuis l'équation cartésienne",
+   "tex": "m = -\\frac{a}{b}, \\qquad b \\neq 0",
+   "note": "Si b est nul, la droite est verticale : elle n'a pas de coefficient directeur."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Vecteur directeur : u(−b ; a) depuis ax + by + c = 0",
+    "Pente : m = −a/b, et u(1 ; m) dirige la droite",
+    "Écrire : colinéarité de AM avec le vecteur directeur",
+    "Tester : remplacer x et y par les coordonnées",
+    "Croiser : résoudre le système des deux équations"
+   ]
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "Réflexes d'exercice",
+   "etapes": [
+    "Lire u(−b ; a) avant tout calcul",
+    "Parallèle : garder la direction, changer le point",
+    "Perpendiculaire : imposer un produit scalaire nul",
+    "Déterminant nul ou non : la position relative"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux équations cartésiennes de droites. Une droite du plan peut se décrire par un point et une direction, par sa pente, ou par une équation qui sélectionne tous ses points : nous allons apprendre à lire chacune de ces descriptions, à passer de l'une à l'autre, et à décider si deux droites se croisent, sont parallèles ou se confondent.",
+   "texte": "Équations de droites : lire, écrire, croiser.",
+   "ecran": "titre",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge du cours tient en une idée : une droite, c'est un point de départ et une direction. Le vecteur directeur donne la direction, le coefficient directeur la chiffre par une pente, et l'équation cartésienne encode les deux à la fois dans trois coefficients. Qui sait traduire entre ces trois langages résout presque tous les exercices du chapitre.",
+   "texte": "Trois langages pour une même droite.",
+   "ecran": "intro",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "dit": "Un vecteur directeur d'une droite est un vecteur non nul qui a la même direction que la droite. Il n'est jamais unique : tout vecteur proportionnel à un vecteur directeur, avec un coefficient non nul, dirige la même droite, dans le même sens ou dans le sens opposé. Retenez l'image : la droite est une route, le vecteur directeur est une flèche posée dessus, et toutes les flèches parallèles à la route conviennent.",
+   "texte": "Un vecteur directeur : une flèche le long de la droite.",
+   "ecran": "vecteur_directeur",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "dit": "Pour une droite non verticale, le coefficient directeur, noté m, mesure la pente : quand on avance d'une unité en abscisse, de combien monte-t-on en ordonnée ? Avec deux points A et B de la droite, il vaut la différence des ordonnées divisée par la différence des abscisses. Et le lien avec la direction est immédiat : le vecteur de coordonnées un et m est un vecteur directeur de cette droite. Une droite verticale, elle, n'a pas de coefficient directeur.",
+   "texte": "La pente : monter divisé par avancer.",
+   "ecran": "coef_directeur",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "dit": "Toute droite admet une équation de la forme a ixe plus b igrec plus c égale zéro, où a et b ne sont pas tous les deux nuls : c'est son équation cartésienne. Le point capital du cours : un vecteur directeur s'y lit directement, c'est le vecteur de coordonnées moins b et a. On échange les deux coefficients, et on change le signe du premier. Ce réflexe de lecture servira dans tous les exercices qui suivent.",
+   "texte": "L'équation cartésienne : a x + b y + c = 0.",
+   "ecran": "cartesienne",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "dit": "Exemple de lecture, sur la droite d'équation deux ixe moins trois igrec plus cinq égale zéro. Ici, a vaut deux et b vaut moins trois. Le vecteur directeur a donc pour coordonnées moins b, c'est-à-dire trois, et a, c'est-à-dire deux. Quant au coefficient directeur, il vaut moins a sur b, soit deux tiers : la droite monte doucement. Aucun calcul posé, juste une lecture correcte des coefficients.",
+   "texte": "Lecture directe : u(3 ; 2) et pente deux tiers.",
+   "ecran": "lecture",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p07",
+   "dit": "Passons à l'écriture. Premier cas, le fondamental : la droite passe par un point A connu et l'on connaît un vecteur directeur u, de coordonnées alpha et bêta. Un point M appartient à la droite exactement quand les vecteurs A M et u sont colinéaires. La colinéarité s'écrit avec le déterminant : bêta fois ixe moins ixe A, moins alpha fois igrec moins igrec A, égale zéro. C'est cette équation qui devient l'équation cartésienne.",
+   "texte": "La méthode : la colinéarité de AM et de u.",
+   "ecran": "methode",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "dit": "Application immédiate : la droite qui passe par le point A de coordonnées un et deux, dirigée par le vecteur de coordonnées moins deux et trois. On applique la formule de colinéarité : trois fois ixe moins un, plus deux fois igrec moins deux, égale zéro. En développant, trois ixe moins trois plus deux igrec moins quatre égale zéro, c'est-à-dire trois ixe plus deux igrec moins sept égale zéro. Vérification gratuite : le point A satisfait bien l'équation obtenue.",
+   "texte": "Exemple résolu : 3x + 2y − 7 = 0.",
+   "ecran": "exemple_point_dir",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "dit": "Les trois autres cas d'écriture se ramènent tous à ce premier cas. Droite par deux points : le vecteur A B devient le vecteur directeur. Droite de pente m donnée : le vecteur directeur est le vecteur de coordonnées un et m. Droite parallèle à une droite donnée : on garde son vecteur directeur. Droite perpendiculaire : on choisit un vecteur directeur dont le produit scalaire avec celui de la droite donnée est nul. Un seul geste, quatre habillages.",
+   "texte": "Quatre cas, une seule méthode.",
+   "ecran": "autres_cas",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "dit": "Exemple de parallélisme : écrire l'équation de la droite qui passe par le point A de coordonnées deux et moins un, parallèlement à la droite d d'équation ixe moins deux igrec plus quatre égale zéro. Un vecteur directeur de d se lit dans son équation : coordonnées deux et un. La droite cherchée garde cette direction : la colinéarité donne ixe moins deux, moins deux fois igrec plus un, égale zéro, soit ixe moins deux igrec moins quatre égale zéro.",
+   "texte": "Parallèle : même direction, autre point.",
+   "ecran": "ex_parallele",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p11",
+   "dit": "Exemple d'orthogonalité : la droite qui passe par le point A de coordonnées un et trois, perpendiculairement à la droite d d'équation ixe plus deux igrec moins un égale zéro. Un vecteur directeur de d a pour coordonnées moins deux et un. Il nous faut un vecteur dont le produit scalaire avec lui soit nul : le vecteur de coordonnées un et deux convient, car moins deux plus deux égale zéro. La colinéarité donne alors deux ixe moins igrec plus un égale zéro.",
+   "texte": "Perpendiculaire : produit scalaire nul.",
+   "ecran": "ex_perpendiculaire",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p12",
+   "dit": "Question fréquente : un point donné appartient-il à une droite donnée ? La réponse est un simple test : on remplace ixe et igrec par les coordonnées du point dans l'équation. Si l'égalité est vérifiée, le point est sur la droite ; sinon, il n'y est pas. Aucune figure, aucun système : une substitution et une conclusion.",
+   "texte": "Appartenance : remplacer, calculer, conclure.",
+   "ecran": "appartenance",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p13",
+   "dit": "Exemple : le point M de coordonnées un et deux appartient-il à la droite d'équation trois ixe moins igrec moins un égale zéro ? On remplace : trois fois un, moins deux, moins un, ce qui fait bien zéro. L'égalité tient, donc le point M appartient à la droite. Si le calcul avait donné autre chose que zéro, la conclusion aurait été l'inverse, sans autre forme de procès.",
+   "texte": "Test réussi : M est sur la droite.",
+   "ecran": "ex_appartenance",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "dit": "Quand deux droites sont sécantes, leur point d'intersection est le point qui vérifie les deux équations à la fois : on résout donc le système formé par les deux équations cartésiennes. Exemple avec les droites ixe plus igrec moins trois égale zéro et ixe moins igrec plus un égale zéro. En additionnant les deux équations, les igrec disparaissent : deux ixe moins deux égale zéro, donc ixe vaut un. On reporte dans la première : un plus igrec moins trois égale zéro, donc igrec vaut deux. L'intersection est le point de coordonnées un et deux.",
+   "texte": "Intersection : le système donne I(1 ; 2).",
+   "ecran": "intersection",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "dit": "Reste à décider, avant tout calcul, comment deux droites se positionnent. Le critère le plus sûr passe par leurs vecteurs directeurs : ils sont colinéaires exactement quand le déterminant a b prime moins a prime b est nul. S'il est nul, les droites sont parallèles au sens large : confondues si les trois coefficients sont proportionnels, strictement parallèles sinon. S'il ne l'est pas, les droites sont sécantes en un unique point. Et elles sont perpendiculaires quand le produit scalaire de leurs vecteurs directeurs est nul.",
+   "texte": "Positions : le déterminant tranche.",
+   "ecran": "positions",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p16",
+   "dit": "Dernier aller-retour entre les langages : retrouver la pente depuis l'équation cartésienne. Pour une droite d'équation a ixe plus b igrec plus c égale zéro, avec b non nul, le coefficient directeur vaut moins a sur b. C'est ce qui a donné deux tiers dans notre premier exemple de lecture. Et si b est nul, l'équation se réduit à une condition sur ixe seul : la droite est verticale, et parler de sa pente n'a pas de sens.",
+   "texte": "La pente depuis l'équation : m = −a/b.",
+   "ecran": "pente_depuis",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p17",
+   "dit": "Pour conclure, gardez la chaîne complète sous les yeux : lire le vecteur directeur moins b et a dans l'équation, convertir en pente moins a sur b si la droite n'est pas verticale, écrire une équation par la colinéarité, tester un point par substitution, et croiser deux droites par leur système. Cinq gestes, un seul chapitre.",
+   "texte": "À retenir : cinq gestes, un chapitre.",
+   "ecran": "recap",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p18",
+   "dit": "Et face à un exercice, les réflexes qui font gagner du temps : lire le vecteur directeur avant de poser le moindre calcul ; pour une parallèle, conserver la direction et ne changer que le point ; pour une perpendiculaire, fabriquer la direction par le produit scalaire nul ; et trancher toute question de position par le déterminant, jamais au jugé sur une figure.",
+   "texte": "Les réflexes qui font gagner du temps.",
+   "ecran": "strategie",
+   "pause_apres": 0.6
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Lire une droite : direction, pente, équation"
+  },
+  {
+   "debut": "p07",
+   "sous_titre": "Écrire une équation cartésienne",
+   "pont": {
+    "texte": "Partie 2 : écrire l'équation d'une droite.",
+    "dit": "Partie deux : écrire une équation cartésienne. Nous partons d'un point et d'une direction, nous écrivons l'équation par la colinéarité, puis nous traitons les cas parallèle et perpendiculaire, qui se ramènent tous au même geste."
+   }
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Tester, croiser et positionner les droites",
+   "pont": {
+    "texte": "Partie 3 : appartenance, intersection, positions.",
+    "dit": "Partie trois : utiliser les équations. Nous testerons si un point appartient à une droite, nous calculerons le point d'intersection de deux droites sécantes, puis nous déciderons de leur position relative et nous retrouverons la pente depuis l'équation."
+   }
+  }
+ ]
+}

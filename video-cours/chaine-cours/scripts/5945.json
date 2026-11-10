@@ -1,0 +1,488 @@
+{
+ "cours": 5945,
+ "ecrans": {
+  "affinite": {
+   "kicker": "Et la quatrième propriété : l'affinité électronique",
+   "note": "elle suit l'électronégativité, mais avec des exceptions",
+   "tex": "\\mathrm{X} + e^- \\longrightarrow \\mathrm{X}^- + \\text{énergie libérée}",
+   "type": "formule"
+  },
+  "alcalins": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "ecran_alcalins_fig"
+   },
+   "kicker": "Zoom : la famille des alcalins",
+   "texte": "Lithium, sodium, potassium, rubidium, césium : un seul électron de valence, en n s un. Ils le perdent très facilement : très réactifs, faible énergie d'ionisation, ions de charge plus un. Le sodium réagit violemment avec l'eau.",
+   "type": "phrase"
+  },
+  "applications": {
+   "etapes": [
+    "Nouveaux matériaux et alliages résistants",
+    "Semi-conducteurs pour l'électronique",
+    "Chimie médicinale : concevoir des médicaments",
+    "Environnement : cycles et polluants",
+    "Biologie : les éléments essentiels à la vie"
+   ],
+   "kicker": "Le tableau en action",
+   "type": "recap"
+  },
+  "blocs": {
+   "kicker": "Le découpage en quatre blocs",
+   "tex": [
+    "\\text{bloc } s : \\text{ à gauche} \\qquad \\text{bloc } p : \\text{ à droite}",
+    "\\text{bloc } d : \\text{ au centre} \\qquad \\text{bloc } f : \\text{ en bas}"
+   ],
+   "titre": "Chaque bloc, son orbitale de valence",
+   "type": "etape",
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "hauteur": 170,
+    "mode": "blocs"
+   }
+  },
+  "capacites": {
+   "kicker": "Combien d'électrons par sous-niveau",
+   "note": "la capacité maximale de chaque sous-niveau, en électrons : deux par orbitale",
+   "tex": "s : 2 \\qquad p : 6 \\qquad d : 10 \\qquad f : 14",
+   "type": "formule"
+  },
+  "carbone": {
+   "kicker": "Exemple : la configuration du carbone",
+   "note": "six électrons : deux sur le premier niveau, deux en deux s, deux en deux p",
+   "tex": "\\mathrm{C} : 1s^2\\,2s^2\\,2p^2",
+   "type": "formule"
+  },
+  "chaos": {
+   "kicker": "Avant le tableau : le désordre",
+   "texte": "Avant la chimie moderne, les alchimistes classaient les substances selon des propriétés magiques ou philosophiques. Au dix-huitième siècle, Lavoisier commence à ranger les éléments selon leurs propriétés observées.",
+   "type": "phrase"
+  },
+  "chlore": {
+   "kicker": "Exercice résolu",
+   "tex": [
+    "Z = 17 : \\quad 1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^5",
+    "\\text{couche externe : } 3s^2\\,3p^5 \\text{ — sept électrons de valence}",
+    "\\Rightarrow \\text{le chlore, groupe } 17 \\text{, un halogène}"
+   ],
+   "titre": "L'élément de numéro atomique dix-sept",
+   "type": "etape"
+  },
+  "electronegativite": {
+   "kicker": "Tendance deux : l'électronégativité",
+   "tex": [
+    "\\text{période} \\rightarrow : \\quad \\chi \\uparrow \\quad \\text{(noyau plus proche des électrons)}",
+    "\\text{groupe} \\downarrow : \\quad \\chi \\downarrow \\quad \\text{(électrons de valence plus loin)}",
+    "\\mathrm{F} : \\text{le plus électronégatif des éléments}"
+   ],
+   "titre": "Attirer les électrons d'une liaison",
+   "type": "etape"
+  },
+  "exemple_sel": {
+   "kicker": "Exemple résolu : sodium contre chlore",
+   "tex": [
+    "\\mathrm{Na} \\text{ (groupe 1) : grand rayon, faible } \\chi \\longrightarrow \\mathrm{Na}^{+}",
+    "\\mathrm{Cl} \\text{ (groupe 17) : petit rayon, forte } \\chi \\longrightarrow \\mathrm{Cl}^{-}",
+    "\\mathrm{NaCl} : \\text{ le composé ionique stable}"
+   ],
+   "titre": "Prédire une rencontre",
+   "type": "etape"
+  },
+  "familles_principe": {
+   "kicker": "Les familles : des airs de ressemblance",
+   "texte": "Imaginez le tableau comme un immeuble : chaque étage est une période, chaque appartement une famille. Les éléments d'une famille partagent la même configuration de valence : leurs propriétés chimiques et physiques se ressemblent donc fortement.",
+   "type": "phrase",
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "hauteur": 180
+   }
+  },
+  "familles_tableau": {
+   "kicker": "Les grandes familles en un coup d'œil",
+   "tex": [
+    "\\text{alcalins (1) : } ns^1 \\longrightarrow \\text{ions de charge} +1",
+    "\\text{alcalino-terreux (2) : } ns^2 \\longrightarrow \\text{ions de charge} +2",
+    "\\text{halogènes (17) : } ns^2\\,np^5 \\longrightarrow \\text{ions de charge} -1",
+    "\\text{gaz nobles (18) : } ns^2\\,np^6 \\longrightarrow \\text{presque inertes}"
+   ],
+   "titre": "Configuration de valence et ions formés",
+   "type": "etape"
+  },
+  "formules": {
+   "kicker": "Prédire une formule : l'oxyde de magnésium",
+   "note": "les charges se compensent exactement : un magnésium pour un oxygène",
+   "tex": "\\mathrm{Mg}^{2+} + \\mathrm{O}^{2-} \\longrightarrow \\mathrm{MgO}",
+   "type": "formule"
+  },
+  "ionisation": {
+   "kicker": "Tendance trois : l'énergie d'ionisation",
+   "tex": [
+    "\\text{période} \\rightarrow : \\quad E_i \\uparrow \\quad \\text{(attraction du noyau croissante)}",
+    "\\text{groupe} \\downarrow : \\quad E_i \\downarrow \\quad \\text{(électron externe plus loin)}",
+    "\\mathrm{He} : E_i \\text{ très élevée — configuration complète}"
+   ],
+   "titre": "Arracher un électron à l'atome",
+   "type": "etape"
+  },
+  "mendeleiev": {
+   "kicker": "1869 : le coup de génie de Mendeleïev",
+   "texte": "En 1869, Mendeleïev range les éléments par masse atomique croissante, en suivant la répétition de leurs propriétés. Il laisse des cases vides, prédit des éléments inconnus : l'éka-aluminium deviendra le gallium, l'éka-silicium le germanium.",
+   "type": "phrase"
+  },
+  "metaux": {
+   "kicker": "Métaux, non-métaux, métalloïdes",
+   "texte": "À gauche du tableau, les métaux : conducteurs, malléables, ductiles. À droite, les non-métaux : mauvais conducteurs et fragiles. Entre les deux, une frontière en escalier où vivent les métalloïdes, aux propriétés intermédiaires.",
+   "type": "phrase",
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "hauteur": 170
+   }
+  },
+  "niveaux": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "niveaux_atome_fig"
+   },
+   "kicker": "Au cœur de l'atome : les niveaux d'énergie",
+   "texte": "Autour du noyau, les électrons se répartissent sur des niveaux d'énergie numérotés par n : plus n est grand, plus l'électron est éloigné du noyau et plus son énergie est élevée.",
+   "type": "phrase"
+  },
+  "numero_atomique": {
+   "kicker": "Le bon critère : le numéro atomique",
+   "note": "Moseley : classer par Z fait disparaître toutes les anomalies de la masse",
+   "tex": "Z = \\text{nombre de protons du noyau}",
+   "type": "formule"
+  },
+  "orbitales": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "orbitales_formes_fig"
+   },
+   "kicker": "Sous-niveaux et orbitales",
+   "texte": "Chaque niveau se subdivise en sous-niveaux s, p, d et f, formés d'orbitales : des régions de l'espace où la probabilité de trouver l'électron est la plus forte. Chaque orbitale accueille au maximum deux électrons : c'est le principe de Pauli.",
+   "type": "phrase"
+  },
+  "organisation": {
+   "kicker": "L'organisation du tableau moderne",
+   "texte": "Le tableau moderne range les éléments par numéro atomique croissant. Les lignes horizontales sont les périodes, les colonnes verticales les groupes : les éléments d'un même groupe se ressemblent chimiquement.",
+   "type": "phrase",
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "hauteur": 200
+   }
+  },
+  "periodes_groupes": {
+   "kicker": "Les deux axes du tableau",
+   "tex": [
+    "\\text{périodes : } 7 \\text{ lignes, une par nombre de couches occupées}",
+    "\\text{groupes : } 18 \\text{ colonnes, une par famille}",
+    "\\text{même groupe} \\Rightarrow \\text{valence semblable, propriétés voisines}"
+   ],
+   "titre": "Périodes et groupes en chiffres",
+   "type": "etape"
+  },
+  "periodicite": {
+   "etapes": [
+    "Rayon atomique : la taille de l'atome",
+    "Énergie d'ionisation : arracher un électron",
+    "Électronégativité : attirer les électrons",
+    "Affinité électronique : gagner un électron"
+   ],
+   "kicker": "La périodicité : le fil rouge",
+   "type": "recap"
+  },
+  "position": {
+   "kicker": "De la configuration à la position",
+   "tex": [
+    "\\text{même groupe} \\Rightarrow \\text{même configuration de valence}",
+    "\\text{alcalins (groupe 1) : } ns^1 \\text{ — un électron de valence}",
+    "\\text{gaz nobles (groupe 18) : } ns^2\\,np^6 \\text{ — couche complète}"
+   ],
+   "titre": "La configuration décide de la case",
+   "type": "etape"
+  },
+  "rayon": {
+   "kicker": "Tendance un : le rayon atomique",
+   "tex": [
+    "\\text{période} \\rightarrow : \\quad r \\downarrow \\quad \\text{(le noyau attire plus fort)}",
+    "\\text{groupe} \\downarrow : \\quad r \\uparrow \\quad \\text{(une couche de plus)}",
+    "\\text{exemples : } r(\\mathrm{Li}) > r(\\mathrm{F}) \\quad ; \\quad r(\\mathrm{Na}) > r(\\mathrm{Li})"
+   ],
+   "titre": "La taille des atomes",
+   "type": "etape"
+  },
+  "recap_final": {
+   "etapes": [
+    "Le numéro atomique Z ordonne le tableau",
+    "Même groupe : même valence, mêmes propriétés",
+    "Le rayon grandit en descendant un groupe",
+    "Ionisation et électronégativité : sens inverse",
+    "La position prédit propriétés et formules"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "titre": {
+   "kicker": "Chimie · Classification périodique",
+   "sous": "De Mendeleïev au tableau moderne : lire la matière organisée",
+   "titre": "Le tableau périodique des éléments",
+   "type": "titre",
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "hauteur": 250
+   }
+  },
+  "transition": {
+   "kicker": "Zoom : les métaux de transition",
+   "tex": [
+    "\\text{groupes } 3 \\text{ à } 12 \\text{, au centre du tableau}",
+    "\\text{signature : le remplissage des orbitales } (n-1)d",
+    "\\text{ions de charges multiples, composés souvent colorés}",
+    "\\mathrm{Fe}, \\mathrm{Cu}, \\mathrm{Zn}, \\mathrm{Ni}"
+   ],
+   "titre": "Le grand bloc central",
+   "type": "etape"
+  },
+  "valence": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "atome_bohr_fig"
+   },
+   "kicker": "Le lien secret : les électrons de valence",
+   "texte": "Les propriétés d'un élément se jouent sur sa couche externe : ses électrons de valence. Les éléments d'un même groupe partagent la même configuration de valence, et c'est elle qui explique leurs ressemblances.",
+   "type": "phrase"
+  }
+ },
+ "lecons": [
+  4747,
+  4748,
+  4749,
+  4750,
+  4751,
+  4752,
+  4753,
+  4754
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Classer les éléments : de Mendeleïev au tableau moderne"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : la structure électronique et les tendances périodiques. Après l'organisation du tableau, voici son moteur : la façon dont les électrons se répartissent dans l'atome, et les grandes tendances qui en découlent, rayon, électronégativité et énergie d'ionisation.",
+    "texte": "Partie 2 : la structure électronique et les tendances."
+   },
+   "sous_titre": "La structure électronique et les tendances"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : les familles, les blocs et le tableau en action. Après les tendances, voici les grandes familles d'éléments et leurs propriétés, le découpage en quatre blocs, et comment le tableau devient un outil pour prédire les réactions et les formules chimiques.",
+    "texte": "Partie 3 : familles, blocs, et le tableau en action."
+   },
+   "sous_titre": "Les familles, les blocs et le tableau en action"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré au tableau périodique des éléments, l'outil le plus célèbre de la chimie. Nous suivrons d'abord son histoire, de Mendeleïev au classement moderne par numéro atomique. Nous découvrirons ensuite son moteur : la structure électronique des atomes et les grandes tendances des propriétés. Nous terminerons par les familles d'éléments, les blocs, et la manière d'utiliser le tableau pour prédire le comportement des éléments.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Le tableau périodique : son histoire, son moteur, ses familles."
+  },
+  {
+   "dit": "Revenons au point de départ. Avant la chimie moderne, impossible de s'y retrouver parmi les substances connues : les alchimistes les classaient selon des idées magiques ou philosophiques, sans mesures rigoureuses. Au dix-huitième siècle, des chimistes comme Lavoisier changent de méthode : observer, mesurer, et ranger les éléments selon leurs propriétés réelles. La classification devient une affaire de science.",
+   "ecran": "chaos",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Des classifications magiques des alchimistes aux propriétés mesurées."
+  },
+  {
+   "dit": "Le tournant arrive en mille huit cent soixante-neuf, avec le chimiste russe Dmitri Mendeleïev. Il range les éléments par masse atomique croissante et remarque que leurs propriétés se répètent régulièrement. Mais son vrai génie est ailleurs : il laisse des cases vides pour des éléments encore inconnus, et il prédit leurs propriétés. L'éka-aluminium deviendra le gallium, l'éka-silicium le germanium : les découvertes confirmeront ses prédictions.",
+   "ecran": "mendeleiev",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Mendeleïev : classer par la masse, prédire les éléments manquants."
+  },
+  {
+   "dit": "Le tableau de Mendeleïev gardait quelques anomalies, car la masse atomique n'est pas le critère profond. Au début du vingtième siècle, Henry Moseley découvre le numéro atomique : le nombre de protons du noyau. En classant les éléments par numéro atomique croissant, toutes les anomalies disparaissent. Et ce n'est pas un hasard : le numéro atomique fixe la charge du noyau, donc la configuration électronique, donc les propriétés chimiques.",
+   "ecran": "numero_atomique",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Le numéro atomique Z : le nombre de protons, le vrai critère."
+  },
+  {
+   "dit": "Voici donc le tableau moderne. Les éléments y sont rangés par numéro atomique croissant, en lignes et en colonnes. Les lignes horizontales sont les périodes, les colonnes verticales sont les groupes, qu'on appelle aussi familles. Retenez l'idée maîtresse : les éléments d'un même groupe ont des propriétés chimiques voisines, parce que leur couche externe se ressemble. Toute la puissance du tableau tient dans cette organisation.",
+   "ecran": "organisation",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "Périodes en lignes, groupes en colonnes : l'idée maîtresse."
+  },
+  {
+   "dit": "Comptons les axes. Il y a sept périodes : chacune correspond à un nombre de couches électroniques occupées. Il y a dix-huit groupes : chacun rassemble une famille d'éléments à la configuration de valence semblable. Quand vous descendez dans un groupe, vous ajoutez une couche ; quand vous traversez une période, vous ajoutez un proton et un électron. Ces deux gestes simples expliquent toutes les tendances que nous allons voir.",
+   "ecran": "periodes_groupes",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Sept périodes, dix-huit groupes : les deux axes du tableau."
+  },
+  {
+   "dit": "Pourquoi dit-on que les propriétés sont périodiques ? Parce qu'elles se répètent régulièrement quand on suit les éléments par numéro atomique croissant. Quatre propriétés reviennent sans cesse dans ce cours : le rayon atomique, la taille de l'atome ; l'énergie d'ionisation, l'énergie pour arracher un électron ; l'électronégativité, la capacité à attirer les électrons d'une liaison ; et l'affinité électronique, l'énergie dégagée quand l'atome gagne un électron.",
+   "ecran": "periodicite",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Quatre propriétés périodiques : rayon, ionisation, électronégativité, affinité."
+  },
+  {
+   "dit": "Quel est le lien entre la case d'un élément et son comportement ? Il tient en un mot : la valence. Les propriétés chimiques dépendent presque uniquement des électrons de la couche la plus externe, les électrons de valence. Deux éléments du même groupe ont la même configuration de valence : voilà pourquoi ils se comportent comme des cousins. Gardez cette idée, elle expliquera les tendances, les familles et les réactions.",
+   "ecran": "valence",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "La valence : la couche externe commande les propriétés."
+  },
+  {
+   "dit": "Première lecture globale du tableau : sa géographie. À gauche vivent les métaux, bons conducteurs d'électricité et de chaleur, malléables et ductiles. À droite vivent les non-métaux, mauvais conducteurs et souvent fragiles. Entre les deux, la frontière n'est pas une ligne nette : une zone en escalier accueille les métalloïdes, aux propriétés intermédiaires, précieux pour l'électronique. Cette géographie se lit directement sur les configurations.",
+   "ecran": "metaux",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Métaux à gauche, non-métaux à droite, métalloïdes sur la frontière."
+  },
+  {
+   "dit": "Ouvrons maintenant le moteur du tableau : l'atome lui-même. Imaginez un système solaire miniature : au centre, le noyau, massif et positif ; autour, les électrons. Mais contrairement aux planètes, les électrons ne choisissent pas leur orbite : ils occupent des niveaux d'énergie numérotés par l'entier n. Plus n est grand, plus l'électron est éloigné du noyau, et plus son énergie est élevée. Le numéro de la période d'un élément est justement le plus grand n occupé.",
+   "ecran": "niveaux",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Les niveaux d'énergie : n grand, électron loin et énergétique."
+  },
+  {
+   "dit": "Chaque niveau se subdivise en sous-niveaux, désignés par les lettres s, p, d et f. À chaque sous-niveau correspondent des orbitales : les régions de l'espace où l'on a le plus de chances de trouver l'électron. L'orbitale s est une sphère, les orbitales p des haltères, les d et les f ont des formes plus complexes. Et une règle absolue, le principe de Pauli : une orbitale accueille au maximum deux électrons.",
+   "ecran": "orbitales",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Orbitales s, p, d, f : les formes, et deux électrons au maximum."
+  },
+  {
+   "dit": "Combien d'électrons chaque sous-niveau peut-il recevoir ? Le tableau de l'écran donne la réponse : deux pour un sous-niveau s, qui ne compte qu'une orbitale ; six pour un sous-niveau p, avec ses trois orbitales ; dix pour un sous-niveau d ; quatorze pour un sous-niveau f. Ces quatre nombres, deux, six, dix, quatorze, sont les briques de toutes les configurations électroniques, et ils dessineront la largeur des blocs du tableau.",
+   "ecran": "capacites",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Les capacités : deux, six, dix, quatorze électrons par sous-niveau."
+  },
+  {
+   "dit": "Exemple : le carbone, six électrons. Sa configuration s'écrit : un s deux, deux s deux, deux p deux. Traduction : deux électrons sur le niveau un, dans le sous-niveau s ; deux électrons sur le niveau deux, en s ; et les deux derniers sur le niveau deux, en p. Quatre électrons sur la couche externe : le carbone est au groupe quatorze, et sa chimie, celle de toutes les molécules du vivant, naît de ces quatre électrons de valence.",
+   "ecran": "carbone",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Le carbone : quatre électrons de valence, groupe quatorze."
+  },
+  {
+   "dit": "La règle générale est maintenant claire : la configuration électronique détermine la position, et la position annonce les propriétés. Les éléments d'un groupe partagent la même configuration de valence : les alcalins, groupe un, ont tous un électron de valence en n s un, d'où leur réactivité et leurs ions de charge plus un. À l'autre extrémité, les gaz nobles ont une couche externe complète, et ils ne réagissent presque jamais.",
+   "ecran": "position",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "La configuration décide de la case, la case annonce les propriétés."
+  },
+  {
+   "dit": "À vous de jouer, avec l'exercice classique : quel est le groupe de l'élément de numéro atomique dix-sept ? On écrit sa configuration : le remplissage donne un s deux, deux s deux, deux p six, trois s deux, trois p cinq. Sa couche externe, la couche trois, porte sept électrons : deux en s, cinq en p. Sept électrons de valence, c'est la signature des halogènes : cet élément est le chlore, groupe dix-sept.",
+   "ecran": "chlore",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Exercice résolu : sept électrons de valence, donc les halogènes."
+  },
+  {
+   "dit": "Première tendance : le rayon atomique, la taille de l'atome. Dans une période, il diminue de gauche à droite : le nombre de protons augmente, le noyau attire les électrons de valence plus fortement, et l'atome se contracte. Comparez le lithium et le fluor : le fluor, plus riche en protons, est le plus petit. Dans un groupe, le rayon augmente de haut en bas : chaque étage ajoute une couche. Le sodium, avec une couche de plus que le lithium, est donc plus gros.",
+   "ecran": "rayon",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "Le rayon : il diminue en traversant, il grandit en descendant."
+  },
+  {
+   "dit": "Deuxième tendance : l'électronégativité, la capacité d'un atome à attirer vers lui les électrons d'une liaison. Dans une période, elle augmente de gauche à droite : l'atome rapetisse, son noyau se rapproche des électrons partagés et les attire plus fort. Dans un groupe, elle diminue de haut en bas, car les électrons de valence s'éloignent du noyau. Le champion toutes catégories est le fluor, en haut à droite du tableau, et c'est cette propriété qui aide à prévoir le type de liaison.",
+   "ecran": "electronegativite",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "L'électronégativité : elle grandit en traversant, le fluor champion."
+  },
+  {
+   "dit": "Troisième tendance : l'énergie d'ionisation, l'énergie minimale pour arracher un électron à un atome gazeux. Dans une période, elle augmente de gauche à droite, car le noyau retient ses électrons de plus en plus fort. Dans un groupe, elle diminue de haut en bas : l'électron externe, plus loin du noyau, part plus facilement. L'hélium, minuscule et à la configuration complète, demande une énergie énorme. Et une faible énergie d'ionisation rime avec cation facile et métal réactif.",
+   "ecran": "ionisation",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "L'énergie d'ionisation : même sens que l'électronégativité."
+  },
+  {
+   "dit": "Quatrième propriété : l'affinité électronique, l'énergie libérée quand un atome neutre gagne un électron. Elle suit à peu près les mêmes tendances que l'électronégativité : on gagne facilement un électron en haut à droite du tableau, là où l'atome est petit et avide d'électrons. Mais attention, elle connaît des exceptions : c'est la sœur capricieuse de l'électronégativité, et il faudra toujours vérifier ses cas particuliers.",
+   "ecran": "affinite",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "L'affinité électronique : le gain d'un électron, avec ses exceptions."
+  },
+  {
+   "dit": "Changeons d'échelle : après les tendances, les familles. Une famille, c'est une colonne du tableau, un groupe. Ses membres partagent la même configuration électronique de valence, c'est-à-dire le même nombre d'électrons sur la couche externe. Conséquence directe : leurs propriétés chimiques et physiques se ressemblent, comme des traits de famille. Étudier une famille, c'est donc étudier un comportement-type, puis ses variations régulières de haut en bas de la colonne.",
+   "ecran": "familles_principe",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Une famille : même valence, des propriétés qui se ressemblent."
+  },
+  {
+   "dit": "Voici les quatre familles à connaître par cœur, avec leur configuration de valence et les ions qu'elles forment. Les alcalins, groupe un, configuration n s un : des ions de charge plus un. Les alcalino-terreux, groupe deux, n s deux : charge plus deux. Les halogènes, groupe dix-sept, n s deux, n p cinq : ils gagnent un électron, charge moins un. Et les gaz nobles, groupe dix-huit, couche complète : ils ne forment presque jamais d'ions.",
+   "ecran": "familles_tableau",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "Alcalins, alcalino-terreux, halogènes, gaz nobles : le tableau des familles."
+  },
+  {
+   "dit": "Zoom sur les alcalins : lithium, sodium, potassium, rubidium, césium. Leur point commun : un unique électron de valence, très mal retenu. Ils le perdent au moindre prétexte : ce sont des métaux très réactifs, à l'énergie d'ionisation très faible, qui forment des ions de charge plus un. Le sodium réagit violemment avec l'eau, et c'est sa faible énergie d'ionisation qui permet l'émission de la lumière jaune intense des lampes à vapeur de sodium.",
+   "ecran": "alcalins",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Les alcalins : un électron de valence, une réactivité maximale."
+  },
+  {
+   "dit": "Au centre du tableau trône le bloc des métaux de transition, groupes trois à douze. Leur signature électronique : le remplissage progressif des orbitales d de la couche précédente. Résultat, des propriétés variables : ils forment des ions de charges multiples, leurs composés sont souvent colorés, et plusieurs ont des propriétés catalytiques précieuses. Le fer en est l'exemple parfait, essentiel à la vie comme à l'industrie ; pensez aussi au cuivre, au zinc et au nickel.",
+   "ecran": "transition",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "Les métaux de transition : les orbitales d, des propriétés variables."
+  },
+  {
+   "dit": "Le tableau entier se découpe en quatre blocs, selon l'orbitale qui reçoit le dernier électron. Le bloc s, à l'extrême gauche : les alcalins et les alcalino-terreux, très réactifs. Le bloc p, à droite : le plus diversifié, métaux, non-métaux et métalloïdes, du carbone au fluor. Le bloc d, au centre : les éléments de transition. Et le bloc f, relégué en bas du tableau : les lanthanides et les actinides, pour la plupart radioactifs, comme l'uranium des centrales nucléaires.",
+   "ecran": "blocs",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "Quatre blocs : s à gauche, p à droite, d au centre, f en bas."
+  },
+  {
+   "dit": "Exemple résolu, tiré des exercices du cours : comparons le sodium et le chlore. Le sodium, groupe un, a un grand rayon et une faible électronégativité : il ne demande qu'à perdre son électron externe et devient un cation de charge plus un. Le chlore, groupe dix-sept, petit et très électronégatif, fait l'inverse : il gagne un électron, anion de charge moins un. Électron donné, électron reçu : leur rencontre produit le chlorure de sodium, le sel de table, un composé ionique très stable.",
+   "ecran": "exemple_sel",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Sodium contre chlore : le transfert qui fabrique le sel."
+  },
+  {
+   "dit": "Le tableau sert aussi à prédire les formules chimiques, grâce aux charges des ions. Prenons l'exercice du cours : le composé du magnésium et de l'oxygène. Le magnésium, groupe deux, forme des ions de charge plus deux ; l'oxygène, groupe seize, des ions de charge moins deux. Les charges se compensent une pour une : la formule associe donc un atome de chaque. Même logique pour le chlorure de sodium ou le chlorure de calcium : la valence se lit dans la colonne.",
+   "ecran": "formules",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Prédire une formule : les charges des ions se compensent."
+  },
+  {
+   "dit": "À quoi sert tout cela, concrètement ? Partout où la matière se conçoit. L'industrie choisit les métaux des alliages selon leur position dans le tableau. L'électronique joue sur les semi-conducteurs. La chimie médicinale conçoit des médicaments en comprenant comment les éléments interagissent avec le vivant. L'environnement se lit comme un cycle des éléments, et la biologie repose sur une poignée d'entre eux : carbone, hydrogène, oxygène, azote, phosphore et soufre.",
+   "ecran": "applications",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Industrie, électronique, médecine, environnement, biologie."
+  },
+  {
+   "dit": "Récapitulons le voyage. Un critère profond, le numéro atomique, a remplacé la masse pour ordonner les éléments. Leur position découle de leur configuration électronique, et les éléments d'un même groupe partagent la même valence, donc des propriétés voisines. Les grandes tendances se lisent d'un coup d'œil : le rayon grandit en descendant, l'électronégativité et l'énergie d'ionisation grandissent en traversant. Le tableau périodique n'est pas une affiche de classe : c'est une machine à prédire.",
+   "ecran": "recap_final",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "Un critère, une organisation, des tendances : une machine à prédire."
+  }
+ ],
+ "titre": "Le tableau périodique des éléments"
+}

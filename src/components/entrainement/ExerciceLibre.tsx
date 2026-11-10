@@ -1,6 +1,5 @@
 import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -8,12 +7,12 @@ import { suivre } from '@/services/analytics';
 import { enregistrerTempsActivite, useChrono } from '@/services/activite';
 import type { Bloc } from '@/services/blocs';
 import { basculerExerciceFait, blocsCorrige, lireEntrainement, lireExercice, lireExercicesFaits, noterDernier, type DetailExercice, type Exercice } from '@/services/entrainement';
-import { lireLocalHorsLigne } from '@/services/reviser';
+import { ecrireLocalHorsLigne, lireLocalHorsLigne } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { titreExercice } from '@/services/titres';
 import { useCredits } from '@/session/CreditsProvider';
 import { libelleAvecPrix } from '@/session/useContenuPayant';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, corrige as corrigeCouleurs, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
@@ -52,15 +51,26 @@ type NavigationSortie = {
  * « Fait » n'est jamais automatique : on le demande sur « Suivant » et en quittant (D11e, D11f).
  */
 export function ExerciceLibre() {
+  useEffect(() => {
+    suivre('exercise_opened', {});
+  }, []);
   const { t } = useTraduction();
   const { theme, sombre } = useTheme();
   const couleursCorrige = sombre ? corrigeCouleurs.dark : corrigeCouleurs.light;
-  const { id, cours } = useLocalSearchParams<{ id: string; cours: string }>();
+  const { id, cours, matiere, provenance, planningJour } = useLocalSearchParams<{
+    id: string;
+    cours: string;
+    matiere?: string;
+    provenance?: string;
+    planningJour?: string;
+  }>();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   // Exercice dont le corrigé est affiché : repasse à l'énoncé quand on enchaîne sur l'exercice suivant.
   const [corrigeDe, setCorrigeDe] = useState<string | null>(null);
   const corrige = corrigeDe === id;
   const pret = useSessionPrete();
+  const { session } = useSession();
+  const idUtilisateur = session?.user?.id;
   const navigation = useNavigation() as unknown as NavigationSortie;
   const { declencher } = useFeedback();
   const [demande, setDemande] = useState<'suivant' | 'sortie' | null>(null);
@@ -94,12 +104,16 @@ export function ExerciceLibre() {
         void enregistrerTempsActivite({
           type: 'exercice',
           dureeS,
-          matiere: cours ? String(cours) : undefined,
+          // Le nom de la matière vient des paramètres de route (chaîne suivie par les écrans appelants,
+          // comme QuizLecon et LecteurVideo). Ne JAMAIS y mettre l'identifiant du cours : il devenait
+          // une fausse « matière » (« 6145 » à 100 %) dans « Ma progression → Niveau par matière ».
+          // Sans matière connue, laisser undefined : l'activité tombe sous « Général », comme les quiz libres.
+          matiere: matiere || undefined,
           titre: exerciceRef.current?.titre,
         });
       }
     };
-  }, [cours, id]);
+  }, [id, matiere]);
 
   useEffect(() => {
     if (!pret) return;
@@ -118,7 +132,21 @@ export function ExerciceLibre() {
     };
   }, [cours, id, pret, essai]);
 
-  const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
+  const retourProgramme = () => {
+    if (planningJour) {
+      router.replace({ pathname: '/planning/jour', params: { jour: planningJour } });
+    } else {
+      router.replace('/planning/jour');
+    }
+  };
+
+  const retour = () => {
+    if (provenance === 'planning') {
+      retourProgramme();
+      return;
+    }
+    return router.canGoBack() ? router.back() : router.replace('/reviser');
+  };
   const position = etat.statut === 'pret' ? etat.exercices.findIndex((e) => e.id === id) : -1;
   const exercice = etat.statut === 'pret' ? etat.exercices[position] : undefined;
   useEffect(() => {
@@ -129,7 +157,7 @@ export function ExerciceLibre() {
 
   const basculer = async () => {
     if (!exercice || etat.statut !== 'pret') return;
-    const maintenant = await basculerExerciceFait(exercice.id);
+    const maintenant = await basculerExerciceFait(exercice.id, new Date(), { client: getSupabase(), userId: idUtilisateur });
     suivre('practice_exercise_done', { fait: maintenant });
     setEtat({ ...etat, faits: maintenant ? { ...etat.faits, [exercice.id]: true } : Object.fromEntries(Object.entries(etat.faits).filter(([k]) => k !== exercice.id)) });
   };
@@ -174,7 +202,7 @@ export function ExerciceLibre() {
         }
       }
       if (!contenu) return;
-      await AsyncStorage.setItem(`entrainement.exercice.corrige.${id}`, JSON.stringify(contenu))
+      await ecrireLocalHorsLigne(`entrainement.exercice.corrige.${id}`, contenu)
         .catch((erreur: unknown) => console.warn('Le corrigé débloqué ne peut pas être gardé hors ligne.', erreur));
       setCorriges((c) => ({ ...c, [id]: blocsCorrige(contenu) }));
     }
@@ -204,7 +232,11 @@ export function ExerciceLibre() {
   const allerSuivant = () => {
     setDemande(null);
     passer.current = true;
-    if (suivant) router.replace({ pathname: '/entrainement/exercice', params: { id: suivant.id, cours: String(cours) } });
+    if (provenance === 'planning') {
+      retourProgramme();
+      return;
+    }
+    if (suivant) router.replace({ pathname: '/entrainement/exercice', params: { id: suivant.id, cours: String(cours), ...(matiere ? { matiere } : {}) } });
     else retour();
   };
   const quitter = () => {
@@ -246,7 +278,7 @@ export function ExerciceLibre() {
     }
     void voirCorrige();
   };
-  // Barre du bas (écran 5 v2) : bascule énoncé / corrigé à gauche, « Suivant » à droite.
+  // Barre du bas (écran 5 v2) : bascule énoncé / corrigé à gauche, « Suivant » ou « Terminer » à droite.
   const pied = exercice ? (
     <View style={styles.pied}>
       <View style={styles.flex}>
@@ -266,8 +298,20 @@ export function ExerciceLibre() {
       </View>
       <View style={styles.flex}>
         <Bouton
-          libelle={suivant ? `${t('entrainement.suivant')} ›` : t('entrainement.terminer')}
-          accessibilityLabel={suivant ? t('entrainement.exerciceSuivant') : t('entrainement.terminer')}
+          libelle={
+            provenance === 'planning'
+              ? t('entrainement.terminer')
+              : suivant
+                ? `${t('entrainement.suivant')} ›`
+                : t('entrainement.terminer')
+          }
+          accessibilityLabel={
+            provenance === 'planning'
+              ? t('entrainement.terminer')
+              : suivant
+                ? t('entrainement.exerciceSuivant')
+                : t('entrainement.terminer')
+          }
           onPress={surSuivant}
           retour
         />
@@ -368,7 +412,7 @@ export function ExerciceLibre() {
         },
         { libelle: t('entrainement.finiPasEncore'), variante: 'secondaire', onPress: allerSuivant },
       ]}
-      mention={suivant ? t('entrainement.finiNote', { n: position + 2 }) : t('entrainement.finiNoteDernier')}
+      mention={provenance === 'planning' ? undefined : suivant ? t('entrainement.finiNote', { n: position + 2 }) : t('entrainement.finiNoteDernier')}
     />
     <Feuille
       ouverte={demande === 'sortie'}

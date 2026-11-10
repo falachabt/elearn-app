@@ -1,0 +1,340 @@
+{
+ "cours": 6723,
+ "lecons": [
+  9524
+ ],
+ "titre": "Composants électroniques et logique",
+ "matiere": "Physique",
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bonjour à tous. Aujourd'hui, les composants électroniques et la logique : le résistor, la diode et le transistor, leurs associations, puis les portes logiques qui décident avec des zéros et des uns.",
+   "texte": "Bonjour à tous. Aujourd'hui : les composants électroniques et les portes logiques.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Nous commençons par les composants de base : certains sont passifs, comme le résistor, d'autres actifs, comme la diode et le transistor, capables de commander le courant.",
+   "texte": "Composants passifs et actifs, puis des circuits qui décident.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p03",
+   "ecran": "resistor",
+   "dit": "Premier composant : le résistor. Il s'oppose au passage du courant électrique, et sa résistance, notée R, s'exprime en ohms. Voici son symbole normalisé : un simple rectangle sur le fil.",
+   "texte": "Le résistor s'oppose au courant ; R se mesure en ohms.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p04",
+   "ecran": "ohm",
+   "dit": "La loi d'Ohm relie la tension aux bornes du résistor à l'intensité qui le traverse : U égale R fois I. Si la résistance double, à tension égale, l'intensité est divisée par deux.",
+   "texte": "Loi d'Ohm : U = R × I.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p05",
+   "ecran": "caract_resistor",
+   "dit": "La caractéristique du résistor, c'est la courbe de la tension en fonction de l'intensité : une droite qui passe par l'origine, et dont la pente donne directement la valeur de la résistance.",
+   "texte": "Caractéristique U = f(I) : une droite par l'origine, de pente R.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p06",
+   "ecran": "diode",
+   "dit": "Deuxième composant : la diode. Elle ne laisse passer le courant que dans un seul sens, le sens direct, de l'anode vers la cathode. Dans le sens inverse, elle bloque le courant, sauf en cas de claquage.",
+   "texte": "La diode : un seul sens de passage, de l'anode vers la cathode.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p07",
+   "ecran": "diode_seuil",
+   "dit": "En sens direct, la diode ne conduit que lorsque la tension dépasse un seuil, environ zéro virgule sept volt pour une diode au silicium. Sa caractéristique est donc une courbe non linéaire : après le seuil, le courant croît très vite.",
+   "texte": "Seuil de conduction : environ 0,7 V pour le silicium.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p08",
+   "ecran": "transistor",
+   "dit": "Troisième composant : le transistor bipolaire. Il possède trois broches, l'émetteur, la base et le collecteur. Voici son symbole, dans la version NPN : la flèche sur l'émetteur indique le sens du courant.",
+   "texte": "Le transistor bipolaire : émetteur, base, collecteur.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p09",
+   "ecran": "transistor_formule",
+   "dit": "Le transistor fonctionne comme un amplificateur de courant : un faible courant de base, I B, contrôle un courant de collecteur, I C, beaucoup plus important. Le rapport des deux, c'est le gain, noté bêta.",
+   "texte": "Amplification : I_C = β × I_B.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p10",
+   "ecran": "serie",
+   "dit": "Passons aux associations de résistors. En série, la résistance équivalente est tout simplement la somme des résistances : R équivalent égale R un plus R deux.",
+   "texte": "En série : R_eq = R_1 + R_2.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p11",
+   "ecran": "parallele",
+   "dit": "En parallèle, c'est l'inverse de la résistance équivalente qui égale la somme des inverses. La résistance équivalente est alors plus petite que la plus petite des deux résistances.",
+   "texte": "En parallèle : les inverses s'ajoutent.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p12",
+   "ecran": "exemple_parallele",
+   "dit": "Exemple résolu : deux résistors de cent ohms et trois cents ohms en parallèle. Un sur cent plus un sur trois cents donne quatre sur trois cents, donc R équivalent égale soixante-quinze ohms.",
+   "texte": "Exemple : 100 Ω et 300 Ω en parallèle donnent 75 Ω.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p13",
+   "ecran": "diviseur",
+   "dit": "Le montage potentiométrique, ou diviseur de tension : deux résistors en série, et l'on récupère aux bornes du second une fraction de la tension d'alimentation, proportionnelle à sa part dans la somme des résistances.",
+   "texte": "Diviseur de tension : une fraction de la tension d'alimentation.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p14",
+   "ecran": "utilisations",
+   "dit": "À quoi servent les diodes ? À redresser le courant alternatif en courant continu, à protéger les montages contre les inversions de polarité, et, avec la diode Zener, à stabiliser une tension.",
+   "texte": "Diodes : redresser, protéger, stabiliser.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p15",
+   "ecran": "modes_transistor",
+   "dit": "Le transistor a deux grands modes. En commutation, il joue l'interrupteur : courant de base suffisant, il est saturé et le courant passe ; courant de base nul, il est bloqué. En amplification, il travaille dans sa zone linéaire.",
+   "texte": "Commutation : saturé ou bloqué. Amplification : zone linéaire.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p16",
+   "ecran": "portes",
+   "dit": "Place à la logique. Les circuits logiques ne connaissent que deux états : zéro, qui correspond à zéro volt, et un, qui correspond à cinq volts. Toute l'information devient alors une suite de zéros et de uns.",
+   "texte": "Logique : deux états, 0 (0 V) et 1 (5 V).",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p17",
+   "ecran": "trois_portes",
+   "dit": "Trois portes suffisent pour commencer. La porte NOT inverse l'entrée. La porte AND, le ET, ne donne un que si toutes ses entrées sont à un. La porte OR, le OU, donne un dès qu'au moins une entrée est à un.",
+   "texte": "NOT inverse, AND exige toutes les entrées, OR se contente d'une.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p18",
+   "ecran": "exemple_logique",
+   "dit": "Exemple d'association : un inverseur suivi d'un ET. La sortie S vaut A barre fois B. Pour prévoir la table de vérité, on calcule étape par étape : d'abord A barre, la sortie intermédiaire, puis le ET avec B.",
+   "texte": "S = Ā · B : calculer étape par étape.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p19",
+   "ecran": "applications",
+   "dit": "En pratique, les montages combinent tout cela : détecteurs de lumière, alarmes à portes logiques, alimentations stabilisées, interrupteurs commandés. Chaque montage repose sur les caractéristiques de ses composants.",
+   "texte": "Des montages qui combinent tous ces composants.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p20",
+   "ecran": "recap",
+   "dit": "Récapitulons : la loi d'Ohm pour le résistor, un seuil et un seul sens pour la diode, un gain en courant pour le transistor, et trois portes, NOT, AND et OR, pour décider en logique.",
+   "texte": "Résistor, diode, transistor et portes logiques : l'essentiel.",
+   "pause_apres": 1.0
+  }
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique",
+   "titre": "Composants électroniques et logique",
+   "sous": "Résistors, diodes, transistors et portes logiques",
+   "anim": {
+    "nom": "diodes_types",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Des composants passifs et actifs, puis des circuits qui décident.",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 190
+   }
+  },
+  "resistor": {
+   "type": "phrase",
+   "kicker": "Les composants passifs",
+   "texte": "Le résistor s'oppose au passage du courant ; sa résistance R se mesure en ohms (Ω).",
+   "anim": {
+    "nom": "resistor_symbole_fig",
+    "hauteur": 200
+   }
+  },
+  "ohm": {
+   "type": "formule",
+   "kicker": "La loi d'Ohm",
+   "tex": "U = R \\times I",
+   "note": "La tension aux bornes du résistor est proportionnelle à l'intensité qui le traverse."
+  },
+  "caract_resistor": {
+   "type": "formule",
+   "kicker": "Caractéristique du résistor",
+   "tex": "U = f(I)",
+   "note": "Une droite passant par l'origine ; sa pente donne la valeur de R.",
+   "anim": {
+    "nom": "reseau_caracteristiques_fig",
+    "hauteur": 160
+   }
+  },
+  "diode": {
+   "type": "phrase",
+   "kicker": "La diode",
+   "texte": "La diode ne laisse passer le courant que dans le sens direct, de l'anode vers la cathode.",
+   "anim": {
+    "nom": "diode",
+    "hauteur": 200
+   }
+  },
+  "diode_seuil": {
+   "type": "formule",
+   "kicker": "Le seuil de la diode",
+   "tex": "U > U_{seuil} \\approx 0{,}7\\ \\text{V}",
+   "note": "En inverse, la diode bloque ; en direct, le courant croît très vite après le seuil.",
+   "anim": {
+    "nom": "courbe_diode_fig",
+    "hauteur": 150
+   }
+  },
+  "transistor": {
+   "type": "phrase",
+   "kicker": "Le transistor bipolaire",
+   "texte": "Trois broches : émetteur (E), base (B) et collecteur (C).",
+   "anim": {
+    "nom": "transistor_fig",
+    "hauteur": 230
+   }
+  },
+  "transistor_formule": {
+   "type": "formule",
+   "kicker": "L'amplification de courant",
+   "tex": "I_C = \\beta \\times I_B",
+   "note": "β, le gain en courant, vaut typiquement de 100 à 300."
+  },
+  "serie": {
+   "type": "formule",
+   "kicker": "Associations de résistors",
+   "tex": "R_{eq} = R_1 + R_2",
+   "note": "En série, les résistances s'ajoutent."
+  },
+  "parallele": {
+   "type": "formule",
+   "kicker": "Associations de résistors",
+   "tex": "\\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2}",
+   "note": "En parallèle, ce sont les inverses qui s'ajoutent.",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 140
+   }
+  },
+  "exemple_parallele": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Deux résistors en parallèle : 100 Ω et 300 Ω",
+   "tex": [
+    "\\frac{1}{R_{eq}} = \\frac{1}{100} + \\frac{1}{300} = \\frac{4}{300}",
+    "R_{eq} = 75\\ \\Omega"
+   ]
+  },
+  "diviseur": {
+   "type": "formule",
+   "kicker": "Le diviseur de tension",
+   "tex": "U_{sortie} = U_{alim} \\times \\frac{R_2}{R_1 + R_2}",
+   "note": "Deux résistors en série ; la tension de sortie se prend aux bornes de R₂.",
+   "anim": {
+    "nom": "diviseur_tension_fig",
+    "hauteur": 150
+   }
+  },
+  "utilisations": {
+   "type": "recap",
+   "kicker": "Les utilisations des diodes",
+   "etapes": [
+    "Redressement : de l'alternatif au continu (pont de diodes)",
+    "Protection contre les inversions de polarité",
+    "Stabilisation : la Zener garde une tension constante",
+    "Passante en direct, bloquée en inverse"
+   ],
+   "anim": {
+    "nom": "redressement",
+    "hauteur": 120
+   }
+  },
+  "modes_transistor": {
+   "type": "phrase",
+   "kicker": "Les deux modes du transistor",
+   "texte": "En commutation, un interrupteur ; en amplification, un travail dans la zone linéaire.",
+   "anim": {
+    "nom": "transistor_fig",
+    "hauteur": 200
+   }
+  },
+  "portes": {
+   "type": "phrase",
+   "kicker": "Les portes logiques",
+   "texte": "Deux états seulement : 0 (0 V) et 1 (5 V).",
+   "anim": {
+    "nom": "portes_logiques_fig",
+    "hauteur": 230
+   }
+  },
+  "trois_portes": {
+   "type": "recap",
+   "kicker": "Les trois portes de base",
+   "etapes": [
+    "NOT : inverse l'entrée, 1 devient 0 et 0 devient 1",
+    "AND (ET) : sortie à 1 si toutes les entrées sont à 1",
+    "OR (OU) : sortie à 1 si au moins une entrée est à 1"
+   ],
+   "anim": {
+    "nom": "portes_logiques_fig",
+    "hauteur": 130
+   }
+  },
+  "exemple_logique": {
+   "type": "formule",
+   "kicker": "Association de portes",
+   "tex": "S = \\overline{A} \\cdot B",
+   "note": "Un inverseur suivi d'un ET ; on calcule étape par étape, sorties intermédiaires d'abord."
+  },
+  "applications": {
+   "type": "recap",
+   "kicker": "Applications pratiques",
+   "etapes": [
+    "Détecteurs de lumière : photodiode et transistor",
+    "Alarmes : des portes logiques qui décident",
+    "Alimentations stabilisées : transformateur, redresseur, régulateur",
+    "Interrupteurs commandés : transistor et résistor"
+   ],
+   "anim": {
+    "nom": "chaine_electronique_fig",
+    "hauteur": 120
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Loi d'Ohm : U = R × I, une droite par l'origine",
+    "Diode : un seul sens, seuil d'environ 0,7 V",
+    "Transistor : I_C = β × I_B, interrupteur ou amplificateur",
+    "Portes logiques : NOT, AND et OR, sur des 0 et des 1"
+   ]
+  }
+ }
+}

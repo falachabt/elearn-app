@@ -1,0 +1,512 @@
+{
+ "cours": 6751,
+ "titre": "Calcul numérique, équations et inéquations",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Calcul et équations",
+   "titre": "Calcul numérique, équations et inéquations",
+   "sous": "Ensembles de nombres, racines, puissances, valeur absolue, puis équations, trinômes et systèmes"
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "D'abord sécuriser le calcul sur les réels, ensuite résoudre : équations, inéquations, systèmes."
+  },
+  "ensembles": {
+   "type": "etape",
+   "kicker": "Les ensembles de nombres",
+   "titre": "Cinq ensembles emboîtés",
+   "tex": [
+    "\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{D}",
+    "\\mathbb{D} \\subset \\mathbb{Q} \\subset \\mathbb{R}",
+    "\\tfrac{3}{4} = \\tfrac{75}{100} \\in \\mathbb{D}",
+    "\\sqrt{2} \\in \\mathbb{R}, \\quad \\sqrt{2} \\notin \\mathbb{Q}"
+   ]
+  },
+  "racines": {
+   "type": "etape",
+   "kicker": "Racines carrées · propriétés",
+   "titre": "Pour a et b positifs ou nuls",
+   "tex": [
+    "\\sqrt{a} \\times \\sqrt{b} = \\sqrt{a \\times b}",
+    "\\tfrac{\\sqrt{a}}{\\sqrt{b}} = \\sqrt{\\tfrac{a}{b}} \\quad (b > 0)",
+    "(\\sqrt{a})^2 = a"
+   ]
+  },
+  "racines_ex": {
+   "type": "etape",
+   "kicker": "Racines carrées · exemple",
+   "titre": "Réduire sous une même racine",
+   "tex": [
+    "\\sqrt{18} + \\sqrt{8} = 3\\sqrt{2} + 2\\sqrt{2}",
+    "\\sqrt{18} + \\sqrt{8} = 5\\sqrt{2}"
+   ]
+  },
+  "puissances": {
+   "type": "etape",
+   "kicker": "Puissances · les règles",
+   "titre": "Des exposants entiers relatifs",
+   "tex": [
+    "a^m \\times a^n = a^{m+n} \\qquad \\tfrac{a^m}{a^n} = a^{m-n}",
+    "(a^m)^n = a^{mn} \\qquad (ab)^n = a^n b^n",
+    "a^{-n} = \\tfrac{1}{a^n} \\qquad a^0 = 1"
+   ]
+  },
+  "puissances_ex": {
+   "type": "formule",
+   "kicker": "Puissances · exemple",
+   "tex": "\\frac{2^3 \\times 2^5}{2^6} = 2^{3+5-6} = 2^2 = 4",
+   "note": "On additionne les exposants au numérateur, on soustrait celui du dénominateur."
+  },
+  "comparaison": {
+   "type": "etape",
+   "kicker": "Comparer des réels",
+   "titre": "Trois réflexes qui conservent ou inversent",
+   "tex": [
+    "a < b \\Rightarrow a + c < b + c",
+    "c > 0 : a < b \\Rightarrow ac < bc",
+    "c < 0 : a < b \\Rightarrow ac > bc"
+   ]
+  },
+  "comparaison_ex": {
+   "type": "etape",
+   "kicker": "Comparer · exemple aux carrés",
+   "titre": "Élever au carré pour trancher",
+   "tex": [
+    "(2\\sqrt{3})^2 = 12 \\qquad (3\\sqrt{2})^2 = 18",
+    "2\\sqrt{3} < 3\\sqrt{2}"
+   ]
+  },
+  "encadrement": {
+   "type": "etape",
+   "kicker": "Encadrer somme et produit",
+   "titre": "Borne à borne, dans le même sens",
+   "tex": [
+    "a + c \\leq x + y \\leq b + d",
+    "ac \\leq xy \\leq bd \\quad (x, y > 0)"
+   ]
+  },
+  "encadrement_ex": {
+   "type": "formule",
+   "kicker": "Encadrement · exemple",
+   "tex": "2 \\leq x \\leq 3, \\quad 4 \\leq y \\leq 5 \\Rightarrow 8 \\leq xy \\leq 15",
+   "note": "Pour des nombres positifs, le produit s'encadre borne contre borne."
+  },
+  "valabs_def": {
+   "type": "formule",
+   "kicker": "La valeur absolue",
+   "tex": "|x| = x \\text{ si } x \\geq 0, \\quad |x| = -x \\text{ si } x < 0",
+   "note": "Toujours positive ou nulle, et la valeur absolue de moins ixe égale celle de ixe."
+  },
+  "valabs_ex": {
+   "type": "etape",
+   "kicker": "Valeur absolue · exemples",
+   "titre": "Le signe disparaît, la distance reste",
+   "tex": [
+    "|-7| = 7 \\qquad |5| = 5",
+    "\\sqrt{(-3)^2} = |-3| = 3",
+    "|x| \\leq a \\iff -a \\leq x \\leq a"
+   ]
+  },
+  "scientifique": {
+   "type": "formule",
+   "kicker": "Écriture scientifique",
+   "tex": "0{,}000457 = 4{,}57 \\times 10^{-4}",
+   "note": "Un seul chiffre non nul avant la virgule, compris entre un et dix, fois une puissance de dix."
+  },
+  "arrondi": {
+   "type": "etape",
+   "kicker": "Approximation et arrondi",
+   "titre": "Sur pi, à deux ordres différents",
+   "tex": [
+    "\\text{ordre deux, par défaut : } 3{,}14",
+    "\\text{arrondi d'ordre trois : } 3{,}142"
+   ]
+  },
+  "racine_forme": {
+   "type": "etape",
+   "kicker": "Racine d'un carré · le piège classique",
+   "titre": "La racine d'un carré donne une valeur absolue",
+   "tex": [
+    "\\sqrt{(5 - 2\\sqrt{6})^2} = |5 - 2\\sqrt{6}|",
+    "25 > 24 \\Rightarrow 5 > 2\\sqrt{6}",
+    "\\sqrt{(5 - 2\\sqrt{6})^2} = 5 - 2\\sqrt{6}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Le calcul numérique : l'essentiel",
+   "etapes": [
+    "Ensembles emboîtés : N, Z, D, Q, R",
+    "Racines : réduire sous le même radical",
+    "Puissances : additionner les exposants",
+    "Valeur absolue : racine d'un carré"
+   ]
+  },
+  "eq1": {
+   "type": "formule",
+   "kicker": "Équation du premier degré",
+   "tex": "ax + b = 0 \\Rightarrow x = -\\frac{b}{a} \\quad (a \\neq 0)",
+   "note": "Une solution unique : on isole l'inconnue en deux opérations."
+  },
+  "eq1_ex": {
+   "type": "etape",
+   "kicker": "Premier degré · exemple",
+   "titre": "Résoudre pas à pas",
+   "tex": [
+    "3x - 6 = 0 \\Rightarrow 3x = 6",
+    "x = 2 \\qquad S = \\{2\\}"
+   ]
+  },
+  "eq_frac": {
+   "type": "etape",
+   "kicker": "Équation fractionnaire nulle",
+   "titre": "Numérateur nul, dénominateur non nul",
+   "tex": [
+    "\\tfrac{2x-4}{x+3} = 0, \\quad x \\neq -3",
+    "2x - 4 = 0 \\Rightarrow x = 2 \\qquad S = \\{2\\}"
+   ]
+  },
+  "eq_abs": {
+   "type": "etape",
+   "kicker": "Équation en valeur absolue",
+   "titre": "Deux cas, deux solutions",
+   "tex": [
+    "|x - 2| = 5",
+    "x - 2 = 5 \\Rightarrow x = 7",
+    "x - 2 = -5 \\Rightarrow x = -3"
+   ]
+  },
+  "ineq1": {
+   "type": "etape",
+   "kicker": "Inéquation du premier degré",
+   "titre": "Diviser par un négatif inverse le sens",
+   "tex": [
+    "-2x + 6 > 0 \\Rightarrow -2x > -6",
+    "x < 3 \\qquad S = ]-\\infty; 3["
+   ]
+  },
+  "signe_binome": {
+   "type": "etape",
+   "kicker": "Signe du binôme ax + b",
+   "titre": "La racine partage la droite en deux signes",
+   "tex": [
+    "2x - 4 = 0 \\iff x = 2",
+    "\\text{négatif avant deux, positif après}"
+   ]
+  },
+  "canonique": {
+   "type": "etape",
+   "kicker": "Forme canonique du trinôme",
+   "titre": "Faire apparaître un carré parfait",
+   "tex": [
+    "f(x) = 2x^2 - 4x + 1",
+    "f(x) = 2(x - 1)^2 - 1"
+   ]
+  },
+  "factorisation": {
+   "type": "etape",
+   "kicker": "Factoriser un trinôme",
+   "titre": "Les racines donnent les facteurs",
+   "tex": [
+    "x^2 - 5x + 6, \\quad \\text{racines } 2 \\text{ et } 3",
+    "x^2 - 5x + 6 = (x - 2)(x - 3)"
+   ]
+  },
+  "signe_trinome": {
+   "type": "etape",
+   "kicker": "Signe d'un trinôme factorisé",
+   "titre": "Du signe de a à l'extérieur des racines",
+   "tex": [
+    "(x - 2)(x - 3) > 0 \\text{ hors de } [2; 3]",
+    "(x - 2)(x - 3) < 0 \\text{ sur } ]2; 3["
+   ]
+  },
+  "ineq2": {
+   "type": "etape",
+   "kicker": "Inéquation du second degré",
+   "titre": "Factoriser, puis lire le tableau de signes",
+   "tex": [
+    "x^2 - 5x + 6 \\leq 0",
+    "S = [2; 3]"
+   ]
+  },
+  "rationnelle": {
+   "type": "etape",
+   "kicker": "Inéquation rationnelle",
+   "titre": "Un tableau commun pour numérateur et dénominateur",
+   "tex": [
+    "\\tfrac{x-1}{x+2} > 0",
+    "S = ]-\\infty; -2[ \\cup ]1; +\\infty["
+   ]
+  },
+  "systeme_eq": {
+   "type": "etape",
+   "kicker": "Système de deux équations",
+   "titre": "Substitution : éliminer une inconnue",
+   "tex": [
+    "x + y = 5 \\qquad 2x - y = 1",
+    "y = 5 - x \\Rightarrow 3x = 6",
+    "x = 2, \\quad y = 3"
+   ]
+  },
+  "systeme_ineq": {
+   "type": "phrase",
+   "kicker": "Système d'inéquations · graphique",
+   "texte": "Chaque inéquation découpe un demi-plan : la solution est la région commune aux deux."
+  },
+  "systeme_verif": {
+   "type": "etape",
+   "kicker": "Vérifier un couple candidat",
+   "titre": "Tester le couple dans chaque inéquation",
+   "tex": [
+    "(2; 2) : \\quad 2 \\leq 2 + 1",
+    "2 \\geq -2 + 3 \\quad \\text{: vrai aussi}"
+   ]
+  },
+  "probleme": {
+   "type": "etape",
+   "kicker": "Problème · aire et périmètre",
+   "titre": "Un rectangle à retrouver par le calcul",
+   "tex": [
+    "xy = 12 \\qquad x + y = 7",
+    "x^2 - 7x + 12 = (x - 3)(x - 4) = 0",
+    "\\text{dimensions : } 3 \\text{ et } 4"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Premier degré : isoler, sens si négatif",
+    "Fraction nulle : exclure d'abord",
+    "Trinôme : factoriser, tableau de signes",
+    "Système : substituer, puis vérifier"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré au calcul numérique et aux équations. Première partie : les ensembles de nombres, les racines carrées, les puissances, la comparaison, la valeur absolue et le calcul approché. Deuxième partie : les équations et inéquations, du premier degré aux systèmes, jusqu'aux problèmes qui s'y ramènent.",
+   "texte": "Calcul sur les réels, puis équations et systèmes.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge est simple : on ne résout bien que ce que l'on calcule juste. Chaque règle de calcul de la première partie reviendra comme un outil dans les résolutions de la seconde. Avancez donc règle par règle, exemple par exemple, en vérifiant chaque résultat.",
+   "texte": "Sécuriser le calcul avant de résoudre.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par les ensembles de nombres. Les entiers naturels forment l'ensemble grand n, les relatifs grand z, les décimaux grand d, les rationnels grand q et les réels grand r. Ils sont emboîtés dans cet ordre : chaque ensemble contient le précédent. Trois quarts est rationnel, et même décimal, car il vaut soixante-quinze centièmes ; racine de deux, elle, est réelle mais irrationnelle.",
+   "texte": "N ⊂ Z ⊂ D ⊂ Q ⊂ R : cinq ensembles emboîtés.",
+   "ecran": "ensembles"
+  },
+  {
+   "id": "p04",
+   "dit": "Passons aux racines carrées, pour des nombres positifs ou nuls. Le produit de deux racines est la racine du produit, et le quotient de deux racines est la racine du quotient. Le carré d'une racine redonne le nombre de départ. Attention au piège : la racine d'une somme n'est jamais la somme des racines.",
+   "texte": "Racines : produit et quotient se regroupent, jamais la somme.",
+   "ecran": "racines"
+  },
+  {
+   "id": "p05",
+   "dit": "Exemple : racine de dix-huit plus racine de huit. Dix-huit vaut neuf fois deux, donc sa racine vaut trois racine de deux ; huit vaut quatre fois deux, donc sa racine vaut deux racine de deux. Total : cinq racine de deux. Le réflexe est de faire apparaître le même nombre sous chaque radical.",
+   "texte": "√18 + √8 = 3√2 + 2√2 = 5√2.",
+   "ecran": "racines_ex"
+  },
+  {
+   "id": "p06",
+   "dit": "Les puissances à exposant entier relatif obéissent à trois règles : multiplier deux puissances de même base additionne les exposants ; les diviser les soustrait ; élever une puissance à une puissance les multiplie. Un exposant négatif donne l'inverse, et tout nombre non nul à la puissance zéro vaut un.",
+   "texte": "Puissances : les exposants s'ajoutent, se soustraient, se multiplient.",
+   "ecran": "puissances"
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple : deux puissance trois fois deux puissance cinq, le tout divisé par deux puissance six. Au numérateur, les exposants s'additionnent ; on soustrait ensuite l'exposant du dénominateur. Il reste deux puissance deux, c'est-à-dire quatre.",
+   "texte": "(2³ × 2⁵) / 2⁶ = 2² = 4.",
+   "ecran": "puissances_ex"
+  },
+  {
+   "id": "p08",
+   "dit": "Comparer deux réels obéit à des règles précises. Ajouter le même nombre aux deux membres conserve l'ordre. Multiplier par un nombre strictement positif le conserve aussi. Mais multiplier par un nombre strictement négatif inverse l'ordre : c'est la faute la plus fréquente du chapitre.",
+   "texte": "Multiplier par un négatif inverse l'inégalité.",
+   "ecran": "comparaison"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple : comparer deux racine de trois et trois racine de deux. Pour des nombres positifs, comparer revient à comparer les carrés. Le premier carré vaut douze, le second dix-huit. Douze est plus petit que dix-huit, donc deux racine de trois est plus petit que trois racine de deux.",
+   "texte": "Aux carrés : 12 contre 18, l'ordre est tranché.",
+   "ecran": "comparaison_ex"
+  },
+  {
+   "id": "p10",
+   "dit": "Encadrer un nombre, c'est l'enfermer entre deux bornes. Une somme s'encadre borne à borne : les plus petites ensemble, les plus grandes ensemble. Un produit de nombres positifs aussi : le plus petit produit vient des deux bornes inférieures, le plus grand des deux bornes supérieures.",
+   "texte": "Encadrer : additionner et multiplier borne à borne.",
+   "ecran": "encadrement"
+  },
+  {
+   "id": "p11",
+   "dit": "Exemple : ixe est entre deux et trois, igrec entre quatre et cinq, tous deux positifs. Leur produit est donc entre deux fois quatre et trois fois cinq, c'est-à-dire entre huit et quinze. Aucun calcul de produit intermédiaire n'est nécessaire : les bornes suffisent.",
+   "texte": "2 ≤ x ≤ 3 et 4 ≤ y ≤ 5 → 8 ≤ xy ≤ 15.",
+   "ecran": "encadrement_ex"
+  },
+  {
+   "id": "p12",
+   "dit": "La valeur absolue d'un réel est ce réel s'il est positif ou nul, et son opposé s'il est strictement négatif. Elle est donc toujours positive ou nulle, et elle ne change pas quand on remplace le nombre par son opposé. Retenez aussi que la racine du carré d'un nombre vaut sa valeur absolue, jamais le nombre lui-même sans précaution.",
+   "texte": "|x| : x si x ≥ 0, −x sinon. Toujours ≥ 0.",
+   "ecran": "valabs_def"
+  },
+  {
+   "id": "p13",
+   "dit": "Exemples immédiats : la valeur absolue de moins sept vaut sept, celle de cinq vaut cinq, et la racine du carré de moins trois vaut trois. Enfin, être à valeur absolue inférieure ou égale à a signifie exactement être compris entre moins a et a.",
+   "texte": "|−7| = 7, √( (−3)² ) = 3 : le signe disparaît.",
+   "ecran": "valabs_ex"
+  },
+  {
+   "id": "p14",
+   "dit": "Un nombre est en écriture scientifique quand il s'écrit comme un nombre compris entre un inclus et dix exclu, multiplié par une puissance de dix. Exemple : zéro virgule zéro zéro zéro quatre cent cinquante-sept s'écrit quatre virgule cinquante-sept fois dix puissance moins quatre.",
+   "texte": "0,000457 = 4,57 × 10⁻⁴ : un chiffre avant la virgule.",
+   "ecran": "scientifique"
+  },
+  {
+   "id": "p15",
+   "dit": "Approcher un nombre demande de choisir un ordre. L'approximation d'ordre deux par défaut de pi est trois virgule quatorze : on garde deux chiffres après la virgule sans dépasser. L'arrondi d'ordre trois est trois virgule cent quarante-deux, car le chiffre suivant vaut cinq et impose d'arrondir par excès.",
+   "texte": "π : 3,14 par défaut, arrondi 3,142 à l'ordre 3.",
+   "ecran": "arrondi"
+  },
+  {
+   "id": "p16",
+   "dit": "Dernier calcul de cette partie : la racine du carré de cinq moins deux racine de six. La règle donne la valeur absolue de l'intérieur. Pour la lever, on compare les carrés : vingt-cinq contre vingt-quatre, donc cinq dépasse deux racine de six, l'intérieur est positif, et le résultat est simplement cinq moins deux racine de six.",
+   "texte": "√((5 − 2√6)²) = 5 − 2√6, car 25 > 24.",
+   "ecran": "racine_forme"
+  },
+  {
+   "id": "p17",
+   "dit": "Récapitulons cette première partie. Les ensembles de nombres sont emboîtés, de grand n à grand r. Les racines se réduisent sous un même radical, les puissances se règlent par leurs exposants, la comparaison par un négatif inverse l'ordre, et la racine d'un carré donne toujours une valeur absolue.",
+   "texte": "L'essentiel du calcul numérique, en quatre règles.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p18",
+   "dit": "Ouvrons les équations du premier degré. Une équation de la forme a ixe plus bé égale zéro, avec a non nul, possède une solution unique : moins bé sur a. On l'obtient en isolant l'inconnue, d'abord par une addition, puis par une division.",
+   "texte": "ax + b = 0 → x = −b/a, solution unique.",
+   "ecran": "eq1"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple : trois ixe moins six égale zéro. On ajoute six des deux côtés, ce qui donne trois ixe égale six, puis on divise par trois : ixe égale deux. L'ensemble solution contient ce seul nombre.",
+   "texte": "3x − 6 = 0 → x = 2, S = {2}.",
+   "ecran": "eq1_ex"
+  },
+  {
+   "id": "p20",
+   "dit": "Une fraction est nulle exactement quand son numérateur est nul et son dénominateur non nul. Pour l'équation deux ixe moins quatre, sur ixe plus trois, égale zéro, on exclut d'abord moins trois, valeur interdite. Le numérateur donne ixe égale deux, valeur autorisée : c'est l'unique solution.",
+   "texte": "Fraction nulle : numérateur nul, dénominateur exclu.",
+   "ecran": "eq_frac"
+  },
+  {
+   "id": "p21",
+   "dit": "Une équation en valeur absolue se dédouble. Valeur absolue de ixe moins deux égale cinq signifie : ixe moins deux égale cinq, ou ixe moins deux égale moins cinq. On obtient deux solutions, sept et moins trois. Sans ce dédoublement, la moitié des solutions échappe.",
+   "texte": "|x − 2| = 5 → x = 7 ou x = −3.",
+   "ecran": "eq_abs"
+  },
+  {
+   "id": "p22",
+   "dit": "Une inéquation du premier degré se résout comme une équation, à une règle près : multiplier ou diviser par un nombre négatif inverse le sens. Pour moins deux ixe plus six strictement positif, on obtient moins deux ixe strictement supérieur à moins six, puis, en divisant par moins deux, ixe strictement inférieur à trois.",
+   "texte": "−2x + 6 > 0 → x < 3 : le sens s'est inversé.",
+   "ecran": "ineq1"
+  },
+  {
+   "id": "p23",
+   "dit": "Le binôme a ixe plus bé s'annule en sa racine, moins bé sur a, et change de signe en ce point. Pour deux ixe moins quatre, la racine est deux : négatif avant deux, nul en deux, positif après, car le coefficient de ixe est positif. Ce tableau de signes servira partout dans la suite.",
+   "texte": "2x − 4 : négatif avant 2, positif après.",
+   "ecran": "signe_binome"
+  },
+  {
+   "id": "p24",
+   "dit": "Passons au second degré, avec la forme canonique. Elle réécrit un trinôme en faisant apparaître un carré parfait, autour de la valeur qui annule la parenthèse. Pour deux ixe carré moins quatre ixe plus un, le calcul donne deux fois le carré de ixe moins un, moins un.",
+   "texte": "2x² − 4x + 1 = 2(x − 1)² − 1.",
+   "ecran": "canonique"
+  },
+  {
+   "id": "p25",
+   "dit": "Si un trinôme possède deux racines, il se factorise en a fois ixe moins la première racine, fois ixe moins la seconde. Pour ixe carré moins cinq ixe plus six, les racines sont deux et trois : le trinôme vaut donc ixe moins deux, fois ixe moins trois. Vérifiez toujours en redéveloppant mentalement.",
+   "texte": "x² − 5x + 6 = (x − 2)(x − 3).",
+   "ecran": "factorisation"
+  },
+  {
+   "id": "p26",
+   "dit": "Le signe d'un trinôme factorisé se lit alors directement : avec un coefficient dominant positif, le trinôme est positif à l'extérieur des racines et négatif entre elles. Notre exemple est donc positif avant deux et après trois, négatif entre deux et trois, et nul exactement en deux et en trois.",
+   "texte": "Positif hors des racines, négatif entre elles.",
+   "ecran": "signe_trinome"
+  },
+  {
+   "id": "p27",
+   "dit": "Résoudre une inéquation du second degré suit alors une méthode fixe : factoriser si possible, puis dresser le tableau de signes. Pour ixe carré moins cinq ixe plus six inférieur ou égal à zéro, le tableau donne le signe négatif ou nul entre les racines, bornes comprises : l'ensemble solution est l'intervalle fermé de deux à trois.",
+   "texte": "x² − 5x + 6 ≤ 0 → S = [2 ; 3].",
+   "ecran": "ineq2"
+  },
+  {
+   "id": "p28",
+   "dit": "Pour une inéquation rationnelle, on étudie dans un même tableau le signe du numérateur et celui du dénominateur, sans oublier la valeur interdite. Pour ixe moins un, sur ixe plus deux, strictement positif : le numérateur change de signe en un, le dénominateur en moins deux. Le quotient est positif avant moins deux et après un.",
+   "texte": "(x − 1)/(x + 2) > 0 → S = ]−∞ ; −2[ ∪ ]1 ; +∞[.",
+   "ecran": "rationnelle"
+  },
+  {
+   "id": "p29",
+   "dit": "Un système de deux équations à deux inconnues se résout par substitution ou par combinaison. Exemple par substitution : ixe plus igrec égale cinq, et deux ixe moins igrec égale un. La première donne igrec égale cinq moins ixe ; en reportant, trois ixe égale six, donc ixe égale deux et igrec égale trois. Le couple solution est deux, trois.",
+   "texte": "Système : substitution → (x ; y) = (2 ; 3).",
+   "ecran": "systeme_eq"
+  },
+  {
+   "id": "p30",
+   "dit": "Un système d'inéquations, lui, se résout graphiquement. Chaque inéquation linéaire représente un demi-plan, délimité par sa droite frontière. La solution du système est l'intersection des demi-plans, la région qui satisfait toutes les inéquations en même temps. Pour notre exemple, c'est la région comprise entre les deux droites du plan.",
+   "texte": "Système d'inéquations : l'intersection des demi-plans.",
+   "ecran": "systeme_ineq"
+  },
+  {
+   "id": "p31",
+   "dit": "Pour vérifier un couple candidat, on le teste dans chaque inéquation. Le couple deux, deux vérifie-t-il le système ? Première inéquation : deux est bien inférieur ou égal à deux plus un. Deuxième : deux est bien supérieur ou égal à moins deux plus trois. Deux réponses vraies : le couple est solution.",
+   "texte": "(2 ; 2) : 2 ≤ 3 et 2 ≥ 1, donc solution.",
+   "ecran": "systeme_verif"
+  },
+  {
+   "id": "p32",
+   "dit": "Dernier exercice : un problème qui se ramène aux équations. Un rectangle a pour aire douze mètres carrés et pour périmètre quatorze mètres. Aire et périmètre donnent ixe fois igrec égale douze et ixe plus igrec égale sept. En éliminant igrec, on obtient ixe carré moins sept ixe plus douze égale zéro, qui se factorise par trois et quatre : les dimensions sont trois mètres et quatre mètres.",
+   "texte": "Aire 12, périmètre 14 → dimensions 3 m et 4 m.",
+   "ecran": "probleme"
+  },
+  {
+   "id": "p33",
+   "dit": "Pour conclure ce cours, retenez la méthode complète. Au premier degré, isolez l'inconnue et surveillez le sens des inégalités. Pour une fraction, excluez d'abord la valeur interdite. Au second degré, factorisez puis lisez le tableau de signes. Et pour tout système, terminez par la vérification du couple obtenu.",
+   "texte": "Résoudre, puis vérifier : la méthode complète.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Ensembles, racines, puissances et encadrement"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Valeur absolue, calcul approché et premier degré",
+   "pont": {
+    "texte": "Partie 2 : valeur absolue, calcul approché, puis les équations du premier degré.",
+    "dit": "Partie deux : la valeur absolue et le calcul approché, puis les premières résolutions. Nous définirons la valeur absolue, l'écriture scientifique et l'arrondi, avant d'attaquer les équations et inéquations du premier degré."
+   }
+  },
+  {
+   "debut": "p23",
+   "sous_titre": "Signes, trinômes, systèmes et problèmes",
+   "pont": {
+    "texte": "Partie 3 : tableaux de signes, trinômes, systèmes et problème final.",
+    "dit": "Partie trois : les signes et les systèmes. Nous lirons le signe d'un binôme puis d'un trinôme factorisé, nous résoudrons des inéquations rationnelles et des systèmes, et nous terminerons par un problème complet d'aire et de périmètre."
+   }
+  }
+ ]
+}

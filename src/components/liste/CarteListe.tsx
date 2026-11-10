@@ -49,7 +49,9 @@ export function CarteListe({ titre, sousTitre, gauche, bas, droite, fini, enCour
           {sousTitre ? <Text numberOfLines={1} style={[typo.legende, { color: encreDouce }]}>{sousTitre}</Text> : null}
           {bas}
         </View>
-        {droite ?? <ChevronRight size={20} strokeWidth={2} color={encreDouce} />}
+        <View style={styles.droite}>
+          {droite ?? <ChevronRight size={20} strokeWidth={2} color={encreDouce} />}
+        </View>
       </View>
     </Appui>
   );
@@ -59,6 +61,14 @@ const styles = StyleSheet.create({
   enCours: { borderWidth: 3 },
   flex: { flex: 1, gap: 2, justifyContent: 'center' },
   titre: { fontSize: 15, lineHeight: 20 },
-  // Hauteur fixe de 78 px (décision design du 01/10) : titres d'une ou deux lignes, cartes de même taille, bloc texte centré.
-  carte: { height: 78, flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
+  carte: {
+    minHeight: 78,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: espace[4],
+    padding: espace[4],
+    borderWidth: bord.normal,
+    borderRadius: rayon.l,
+  },
+  droite: { alignSelf: 'center' },
 });

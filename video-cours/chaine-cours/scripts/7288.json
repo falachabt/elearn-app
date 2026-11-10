@@ -1,0 +1,326 @@
+{
+ "cours": 7288,
+ "ecrans": {
+  "accroche": {
+   "kicker": "Pourquoi ce cours",
+   "texte": "Le parallélogramme est la figure mère : le rectangle, le losange et le carré ne sont que des parallélogrammes auxquels on a ajouté une exigence. Le maîtriser, c'est préparer quatre chapitres d'un coup.",
+   "type": "phrase"
+  },
+  "aire": {
+   "kicker": "L'aire du parallélogramme",
+   "note": "b : un côté choisi comme base ; h : la hauteur relative à ce côté, perpendiculaire à lui.",
+   "tex": "\\mathcal{A} = b \\times h",
+   "titre": "Base fois hauteur",
+   "type": "formule"
+  },
+  "aires_part": {
+   "kicker": "Les aires des cas particuliers",
+   "tex": [
+    "\\text{rectangle : } \\mathcal{A} = L \\times l",
+    "\\text{losange : } \\mathcal{A} = \\tfrac{d_1 \\times d_2}{2}",
+    "\\text{carré : } \\mathcal{A} = c^2"
+   ],
+   "titre": "Chaque figure a sa formule, toutes viennent de base fois hauteur",
+   "type": "etape"
+  },
+  "cas_particuliers": {
+   "kicker": "Cas particuliers",
+   "tex": [
+    "\\text{rectangle : parallélogramme}",
+    "\\text{à quatre angles droits}",
+    "\\text{losange : parallélogramme}",
+    "\\text{à quatre côtés égaux}",
+    "\\text{carré : rectangle et losange à la fois}"
+   ],
+   "titre": "Trois descendants célèbres",
+   "type": "etape"
+  },
+  "choix_base": {
+   "kicker": "Le choix de la base",
+   "texte": "La hauteur dépend de la base choisie : changer de base impose de mesurer la hauteur perpendiculaire à ce nouveau côté. Les deux calculs donnent la même aire, un bon moyen de se vérifier.",
+   "type": "phrase"
+  },
+  "construction": {
+   "kicker": "Construire un parallélogramme",
+   "tex": [
+    "\\text{1. tracer } [AB] \\text{ et } [AD]",
+    "\\text{2. parallèle à } (AB) \\text{ par } D",
+    "\\text{3. parallèle à } (AD) \\text{ par } B",
+    "\\text{4. intersection : le point } C"
+   ],
+   "titre": "Deux segments, puis deux parallèles",
+   "type": "etape"
+  },
+  "criteres": {
+   "kicker": "Les trois critères",
+   "tex": [
+    "\\text{côtés opposés deux à deux}",
+    "\\text{de même longueur}",
+    "\\text{diagonales qui se coupent en leur milieu}",
+    "\\text{deux côtés opposés parallèles}",
+    "\\text{et de même longueur}"
+   ],
+   "titre": "Trois façons de prouver, une seule suffit",
+   "type": "etape"
+  },
+  "criteres_intro": {
+   "kicker": "Reconnaître un parallélogramme",
+   "texte": "Les propriétés partent de la figure et en déduisent des conséquences. Les critères font le chemin inverse : ils servent à prouver qu'un quadrilatère est un parallélogramme.",
+   "type": "phrase"
+  },
+  "definition": {
+   "kicker": "Définition",
+   "note": "ABCD est un parallélogramme : ses côtés opposés sont parallèles deux à deux.",
+   "tex": "(AB) \\parallel (CD) \\quad \\text{et} \\quad (BC) \\parallel (AD)",
+   "titre": "Deux paires de côtés parallèles",
+   "type": "formule"
+  },
+  "ex_aire": {
+   "kicker": "Exemple · calculer une aire",
+   "tex": [
+    "b = 6\\ \\text{cm}, \\quad h = 4\\ \\text{cm}",
+    "\\mathcal{A} = 6 \\times 4",
+    "\\mathcal{A} = 24\\ \\text{cm}^2"
+   ],
+   "titre": "Six fois quatre",
+   "type": "etape"
+  },
+  "ex_angles": {
+   "kicker": "Exemple · trouver les angles",
+   "tex": [
+    "\\widehat{A} = 70^\\circ \\quad \\Rightarrow \\quad \\widehat{C} = 70^\\circ",
+    "\\widehat{B} = \\widehat{D} = 180^\\circ - 70^\\circ",
+    "\\widehat{B} = \\widehat{D} = 110^\\circ"
+   ],
+   "titre": "Un angle donné, les trois autres suivent",
+   "type": "etape"
+  },
+  "ex_construction": {
+   "kicker": "Exemple de construction",
+   "tex": [
+    "AB = 5\\ \\text{cm}, \\quad AD = 3\\ \\text{cm}",
+    "\\widehat{DAB} = 60^\\circ",
+    "\\text{puis les deux parallèles donnent } C"
+   ],
+   "titre": "Deux longueurs et un angle suffisent",
+   "type": "etape"
+  },
+  "ex_critere": {
+   "kicker": "Application · utiliser un critère",
+   "tex": [
+    "\\text{on mesure : les diagonales}",
+    "\\text{ont le même milieu}",
+    "\\text{critère des diagonales}",
+    "\\Rightarrow \\text{ c'est un parallélogramme}"
+   ],
+   "titre": "Reconnaître d'abord, utiliser ensuite",
+   "type": "etape"
+  },
+  "ex_losange_aire": {
+   "kicker": "Exemple · l'aire du losange",
+   "tex": [
+    "d_1 = 8\\ \\text{cm}, \\quad d_2 = 6\\ \\text{cm}",
+    "\\mathcal{A} = \\tfrac{8 \\times 6}{2} = \\tfrac{48}{2}",
+    "\\mathcal{A} = 24\\ \\text{cm}^2"
+   ],
+   "titre": "Le produit des diagonales, divisé par deux",
+   "type": "etape"
+  },
+  "prop_angles": {
+   "kicker": "Propriété · les angles consécutifs",
+   "note": "Deux angles qui se suivent dans la figure sont supplémentaires : leur somme vaut cent quatre-vingts degrés.",
+   "tex": "\\widehat{A} + \\widehat{B} = 180^\\circ",
+   "titre": "Consécutifs : supplémentaires",
+   "type": "formule"
+  },
+  "prop_cotes": {
+   "kicker": "Propriétés · côtés et angles opposés",
+   "tex": [
+    "AB = CD \\quad \\text{et} \\quad BC = AD",
+    "\\widehat{A} = \\widehat{C} \\quad \\text{et} \\quad \\widehat{B} = \\widehat{D}"
+   ],
+   "titre": "Côtés opposés égaux, angles opposés égaux",
+   "type": "etape",
+   "anim": {
+    "nom": "parallelogramme_fig",
+    "hauteur": 150
+   }
+  },
+  "prop_diag": {
+   "kicker": "Propriété · les diagonales",
+   "tex": [
+    "\\text{les diagonales } [AC] \\text{ et } [BD] \\text{ se coupent}",
+    "\\text{même milieu pour les deux}"
+   ],
+   "titre": "Un même milieu pour les deux diagonales",
+   "type": "etape",
+   "anim": {
+    "nom": "parallelogramme_fig",
+    "hauteur": 150
+   }
+  },
+  "proprietes_intro": {
+   "kicker": "Les propriétés",
+   "texte": "Quatre propriétés valent dans tout parallélogramme : les côtés opposés, les angles opposés, les angles consécutifs, et les diagonales. Ce sont elles qui servent dans les exercices.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Définition : côtés opposés parallèles",
+    "Angles opposés égaux, consécutifs : 180°",
+    "Diagonales : elles ont le même milieu",
+    "Aire : 𝒜 = b × h, base fois hauteur"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "titre": {
+   "kicker": "Mathématique · Géométrie",
+   "sous": "Côtés opposés parallèles : des propriétés, trois critères pour reconnaître, et une aire, base fois hauteur",
+   "titre": "Le parallélogramme : construire, reconnaître, utiliser",
+   "type": "titre",
+   "anim": {
+    "nom": "parallelogramme_fig",
+    "hauteur": 240
+   }
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définition, construction et propriétés"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : reconnaître, calculer, et descendre dans la famille. Nous verrons les trois critères qui prouvent qu'un quadrilatère est un parallélogramme, le calcul de son aire, puis ses cas particuliers : rectangle, losange et carré.",
+    "texte": "Partie 2 : les critères, l'aire et les cas particuliers."
+   },
+   "sous_titre": "Critères, aire et cas particuliers"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré au parallélogramme, le quadrilatère dont les côtés opposés sont parallèles. Nous allons apprendre à le construire avec deux parallèles, à utiliser ses propriétés sur les côtés, les angles et les diagonales, à le reconnaître grâce à trois critères, et à calculer son aire. Nous finirons par ses trois descendants célèbres : le rectangle, le losange et le carré.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Le parallélogramme : parallèles, propriétés, critères et aire."
+  },
+  {
+   "dit": "Pourquoi consacrer un cours entier à cette figure ? Parce qu'elle est la mère de toutes les autres : le rectangle, le losange et le carré ne sont que des parallélogrammes auxquels on a ajouté une exigence. Maîtriser le parallélogramme, c'est donc préparer d'un coup quatre chapitres de géométrie.",
+   "ecran": "accroche",
+   "id": "p02",
+   "texte": "La figure mère : rectangle, losange et carré en descendent."
+  },
+  {
+   "dit": "La définition tient en une phrase : un parallélogramme est un quadrilatère dont les côtés opposés sont parallèles deux à deux. Pour le parallélogramme a bé cé dé, cela signifie que la droite a bé est parallèle à la droite cé dé, et que la droite bé cé est parallèle à la droite a dé. Deux paires de parallèles : c'est tout, et tout le reste du cours découle de cette seule phrase.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "Définition : la droite a bé parallèle à cé dé, bé cé parallèle à a dé."
+  },
+  {
+   "dit": "Première utilisation : construire un parallélogramme. On trace deux segments de sommet commun a : le segment a bé et le segment a dé. Par le point dé, on trace la parallèle à la droite a bé. Par le point bé, on trace la parallèle à la droite a dé. Leur croisement donne le point cé, le quatrième sommet : la construction n'est que la définition, appliquée à la règle et à l'équerre.",
+   "ecran": "construction",
+   "id": "p04",
+   "texte": "Construction : deux segments, deux parallèles, cé à l'intersection."
+  },
+  {
+   "dit": "Exemple de construction : on donne a bé égal à cinq centimètres, a dé égal à trois centimètres, et l'angle dé a bé égal à soixante degrés. On place les points a, bé et dé en respectant ces trois mesures, puis on trace les deux parallèles comme dans la méthode : leur intersection donne le point cé, et le parallélogramme a bé cé dé est complet.",
+   "ecran": "ex_construction",
+   "id": "p05",
+   "texte": "Exemple : cinq centimètres, trois centimètres, soixante degrés, puis les parallèles."
+  },
+  {
+   "dit": "Une fois la figure définie, que peut-on affirmer sur elle ? La leçon énonce quatre propriétés valables dans tout parallélogramme : deux concernent les côtés et les angles, une concerne les angles voisins, et la dernière concerne les diagonales. Ce sont elles qui servent dans les exercices, pour calculer une longueur ou un angle inconnu.",
+   "ecran": "proprietes_intro",
+   "id": "p06",
+   "texte": "Quatre propriétés, valables dans tout parallélogramme."
+  },
+  {
+   "dit": "Première propriété : les côtés opposés ont la même longueur. Dans le parallélogramme a bé cé dé, a bé égale cé dé, et bé cé égale a dé. Deuxième propriété : les angles opposés ont la même mesure. L'angle en a égale l'angle en cé, et l'angle en bé égale l'angle en dé. Conséquence pratique : connaître un côté ou un angle donne immédiatement son opposé.",
+   "ecran": "prop_cotes",
+   "id": "p07",
+   "texte": "Côtés opposés de même longueur, angles opposés de même mesure."
+  },
+  {
+   "dit": "Troisième propriété, sur les angles voisins cette fois : deux angles consécutifs, c'est-à-dire qui se suivent le long d'un côté, sont supplémentaires. Leur somme vaut cent quatre-vingts degrés. Retenez le contraste : angles opposés, égaux ; angles consécutifs, supplémentaires. C'est le couple de propriétés le plus utilisé du chapitre.",
+   "ecran": "prop_angles",
+   "id": "p08",
+   "texte": "Consécutifs : supplémentaires, leur somme vaut cent quatre-vingts degrés."
+  },
+  {
+   "dit": "Quatrième propriété : les diagonales se coupent en leur milieu. La diagonale a cé et la diagonale bé dé se croisent exactement en leur milieu, qui est donc le même point pour les deux. Retenez bien cette propriété : sa réciproque sera l'un de nos critères pour reconnaître un parallélogramme.",
+   "ecran": "prop_diag",
+   "id": "p09",
+   "texte": "Diagonales a cé et bé dé : le même milieu."
+  },
+  {
+   "dit": "Exemple : dans un parallélogramme a bé cé dé, l'angle en a mesure soixante-dix degrés ; trouvez les trois autres. L'angle en cé, opposé à l'angle en a, mesure aussi soixante-dix degrés. L'angle en bé, consécutif à l'angle en a, est supplémentaire : cent quatre-vingts moins soixante-dix, soit cent dix degrés. Et l'angle en dé, opposé à l'angle en bé, mesure lui aussi cent dix degrés.",
+   "ecran": "ex_angles",
+   "id": "p10",
+   "texte": "Angle en a : soixante-dix degrés ; en cé : soixante-dix ; en bé et dé : cent dix."
+  },
+  {
+   "dit": "Jusqu'ici, nous savions que la figure était un parallélogramme, et nous en déduisions ses propriétés. Les critères font le chemin inverse : ils permettent de prouver qu'un quadrilatère est un parallélogramme. La leçon en donne trois, et un seul suffit.",
+   "ecran": "criteres_intro",
+   "id": "p11",
+   "texte": "Les critères : prouver que c'est un parallélogramme."
+  },
+  {
+   "dit": "Voici les trois critères. Premier critère : si les côtés opposés d'un quadrilatère sont deux à deux de même longueur, alors c'est un parallélogramme. Deuxième critère : si ses diagonales se coupent en leur milieu, alors c'est un parallélogramme : la réciproque de la quatrième propriété. Troisième critère : si deux côtés opposés sont à la fois parallèles et de même longueur, alors c'est un parallélogramme. Dans un exercice, choisissez le critère que les données permettent de vérifier.",
+   "ecran": "criteres",
+   "id": "p12",
+   "texte": "Un seul critère suffit : côtés, diagonales, ou le couple des deux."
+  },
+  {
+   "dit": "Application des critères : on vous donne un quadrilatère, et en mesurant, vous constatez que ses diagonales se coupent en leur milieu. Le deuxième critère s'applique directement : ce quadrilatère est un parallélogramme, et vous pouvez alors utiliser toutes ses propriétés. C'est le schéma de presque tous les exercices du chapitre : d'abord reconnaître, ensuite utiliser.",
+   "ecran": "ex_critere",
+   "id": "p13",
+   "texte": "Diagonales de même milieu : reconnu, puis on utilise les propriétés."
+  },
+  {
+   "dit": "Passons au calcul de l'aire. L'aire d'un parallélogramme est le produit d'un côté par la hauteur relative à ce côté : aire égale base fois hauteur, où la base est la longueur du côté choisi, et la hauteur la distance perpendiculaire entre ce côté et le côté opposé. Attention : la hauteur n'est en général pas le côté voisin, sauf si la figure est un rectangle.",
+   "ecran": "aire",
+   "id": "p14",
+   "texte": "Aire : base fois hauteur, la hauteur relative à la base."
+  },
+  {
+   "dit": "Exemple : un parallélogramme de base six centimètres et de hauteur quatre centimètres. Son aire vaut six fois quatre, soit vingt-quatre centimètres carrés. Deux remarques : l'aire s'exprime en unités au carré, et l'autre côté comme base donnerait le même résultat, avec sa propre hauteur.",
+   "ecran": "ex_aire",
+   "id": "p15",
+   "texte": "Base six, hauteur quatre : aire vingt-quatre centimètres carrés."
+  },
+  {
+   "dit": "Un dernier point de vigilance sur l'aire : la hauteur dépend de la base choisie. Si vous prenez un autre côté comme base, il faut mesurer la hauteur perpendiculaire à ce côté-là, et non réutiliser la première. Les deux calculs donnent heureusement la même aire : c'est même un bon moyen de vérifier son résultat en exercice.",
+   "ecran": "choix_base",
+   "id": "p16",
+   "texte": "Changer de base impose de changer de hauteur."
+  },
+  {
+   "dit": "La leçon se termine par la famille des cas particuliers. Le rectangle est un parallélogramme avec quatre angles droits, et ses diagonales sont égales. Le losange est un parallélogramme avec quatre côtés égaux, et ses diagonales sont perpendiculaires. Le carré est à la fois un rectangle et un losange : un cas particulier des trois figures à la fois.",
+   "ecran": "cas_particuliers",
+   "id": "p17",
+   "texte": "Rectangle, losange, carré : des parallélogrammes particuliers."
+  },
+  {
+   "dit": "Chaque cas particulier a sa formule d'aire, qui découle de la formule générale. Pour le rectangle : longueur fois largeur. Pour le losange : le produit des deux diagonales, divisé par deux ; c'est une conséquence directe de ses diagonales perpendiculaires. Pour le carré de côté cé : cé au carré, puisque ses deux dimensions sont égales.",
+   "ecran": "aires_part",
+   "id": "p18",
+   "texte": "Aires : longueur fois largeur ; diagonales divisées par deux ; côté au carré."
+  },
+  {
+   "dit": "Dernier exemple : un losange dont les diagonales mesurent huit centimètres et six centimètres. Son aire vaut huit fois six, divisé par deux, soit quarante-huit divisé par deux, égale à vingt-quatre centimètres carrés. Le même résultat que l'exemple précédent, obtenu par une tout autre formule : surveillez toujours quelle donnée l'énoncé vous donne, la hauteur ou les diagonales.",
+   "ecran": "ex_losange_aire",
+   "id": "p19",
+   "texte": "Losange, diagonales huit et six : aire vingt-quatre centimètres carrés."
+  },
+  {
+   "dit": "Récapitulons. Un parallélogramme est un quadrilatère dont les côtés opposés sont parallèles ; il se construit avec deux parallèles. Ses côtés opposés et ses angles opposés sont égaux, ses angles consécutifs sont supplémentaires, et ses diagonales ont le même milieu. Trois critères permettent de le reconnaître, et son aire vaut base fois hauteur. Rectangle, losange et carré sont ses cas particuliers : ils héritent de tout ce que nous venons de voir.",
+   "ecran": "recap",
+   "id": "p20",
+   "texte": "Parallélogramme : parallèles, propriétés, critères, aire base fois hauteur."
+  }
+ ],
+ "titre": "Le parallélogramme : construire, reconnaître, utiliser"
+}

@@ -1,0 +1,610 @@
+{
+ "cours": 6227,
+ "ecrans": {
+  "analyse_ordres": {
+   "kicker": "L'analyse des rapports",
+   "tex": [
+    "[NO] \\times 2 \\Rightarrow v_0 \\times 4 \\ : \\ 2^{\\alpha} = 4 \\Rightarrow \\alpha = 2",
+    "[O_2] \\times 2 \\Rightarrow v_0 \\times 2 \\ : \\ \\beta = 1",
+    "v = k\\,[NO]^2\\,[O_2] \\quad \\text{ordre global : } 3",
+    "k = \\tfrac{2{,}5 \\times 10^{-3}}{(0{,}010)^2 (0{,}010)} = 2{,}5 \\times 10^{3} \\ \\text{L}^2\\text{/mol}^2\\text{/s}"
+   ],
+   "titre": "Doubler, quadrupler : les ordres se dévoilent",
+   "type": "etape"
+  },
+  "arrhenius": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "distribution_boltzmann_fig"
+   },
+   "kicker": "Troisième facteur : la température",
+   "note": "A : fréquence des collisions ; Ea : la barrière à franchir pour réagir.",
+   "tex": "k = A \\cdot e^{-\\frac{E_a}{RT}}",
+   "type": "formule"
+  },
+  "autres_facteurs": {
+   "kicker": "Les autres boutons de commande",
+   "tex": [
+    "P \\uparrow \\ \\Rightarrow \\ \\text{concentration effective des gaz} \\uparrow \\ \\Rightarrow \\ v \\uparrow",
+    "N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3 \\ \\text{: haute pression industrielle}",
+    "\\text{lumière : photosynthèse, photographie argentique}",
+    "\\text{agitation : homogénéiser les phases}"
+   ],
+   "titre": "Pression, lumière, agitation",
+   "type": "etape"
+  },
+  "catalyseurs": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "profil_energie_fig"
+   },
+   "kicker": "Quatrième facteur : les catalyseurs",
+   "tex": [
+    "\\text{le catalyseur abaisse } E_a \\text{, sans être consommé}",
+    "2\\,H_2O_2 \\xrightarrow{Fe^{3+}} 2\\,H_2O + O_2 \\quad \\text{(homogène)}",
+    "\\text{pot catalytique : Pt, Pd, Rh} \\quad \\text{(hétérogène)}"
+   ],
+   "titre": "Un tunnel à travers la montagne",
+   "type": "etape"
+  },
+  "concentration_facteur": {
+   "kicker": "Deuxième facteur : la concentration",
+   "tex": [
+    "2\\,I^- + S_2O_8^{2-} \\longrightarrow I_2 + 2\\,SO_4^{2-}",
+    "[I^-] \\times 2 \\Rightarrow v \\times 2 \\quad \\text{(ordre } 1\\text{)}",
+    "[S_2O_8^{2-}] \\times 2 \\Rightarrow v \\times 2 \\quad \\text{(ordre } 1\\text{)}",
+    "\\text{les deux doublées} \\Rightarrow v \\times 4"
+   ],
+   "titre": "La foule chimique se rencontre plus souvent",
+   "type": "etape"
+  },
+  "conclusion": {
+   "kicker": "Conclusion : la patience de la matière",
+   "texte": "Si toutes les réactions étaient instantanées, ni la vie ni la chimie ne seraient possibles.",
+   "type": "phrase"
+  },
+  "definition": {
+   "kicker": "La définition de la vitesse",
+   "note": "Le signe moins rend v positive : la concentration du réactif diminue.",
+   "tex": "v = -\\frac{1}{a}\\,\\frac{d[A]}{dt} = +\\frac{1}{c}\\,\\frac{d[C]}{dt}",
+   "type": "formule"
+  },
+  "demi_reaction": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "courbe_concentration_fig"
+   },
+   "kicker": "Le temps de demi-réaction",
+   "tex": [
+    "t_{1/2} \\ : \\ [A] \\text{ passe de } [A]_0 \\text{ à } \\tfrac{[A]_0}{2}",
+    "\\text{lecture graphique : horizontale, courbe, abscisse}",
+    "\\text{ordre } 1 \\text{ : } t_{1/2} \\text{ constant, indépendant de } [A]_0"
+   ],
+   "titre": "Le chronomètre incorporé de la réaction",
+   "type": "etape"
+  },
+  "effet_temperature": {
+   "kicker": "L'effet chiffré de la température",
+   "tex": [
+    "E_a = 50 \\ \\text{kJ/mol} \\ : \\ 25\\ ^\\circ\\text{C} \\rightarrow \\text{rapport } 1{,}0",
+    "35\\ ^\\circ\\text{C} : \\approx 1{,}8 \\qquad 45\\ ^\\circ\\text{C} : \\approx 3{,}2",
+    "80\\ ^\\circ\\text{C} : \\approx 24",
+    "\\text{règle de van 't Hoff : } +10\\ ^\\circ\\text{C} \\Rightarrow v \\times 2 \\ \\text{environ}"
+   ],
+   "titre": "Dix degrés suffisent à presque doubler",
+   "type": "etape"
+  },
+  "evolution_vitesse": {
+   "kicker": "Comment la vitesse évolue",
+   "tex": [
+    "v \\text{ maximale au départ, puis décroissante}",
+    "v = k\\,[A] \\quad \\text{(souvent)}",
+    "\\text{moins de réactifs} \\Rightarrow \\text{moins de collisions efficaces}"
+   ],
+   "titre": "Rapide au début, épuisée à la fin",
+   "type": "etape"
+  },
+  "exercice_ordre": {
+   "kicker": "Exercice résolu : trouver l'ordre",
+   "tex": [
+    "t \\text{ (s)} : 0,\\ 10,\\ 20,\\ 30,\\ 40,\\ 50",
+    "[A] \\text{ (mol/L)} : 0{,}100,\\ 0{,}067,\\ 0{,}050,\\ 0{,}040,\\ 0{,}033,\\ 0{,}029",
+    "\\ln [A] = f(t) \\text{ : pas une droite} \\ ; \\ \\tfrac{1}{[A]} = f(t) \\text{ : une droite}",
+    "\\Rightarrow \\text{ordre } 2 \\text{ par rapport à } A"
+   ],
+   "titre": "Deux tracés candidats, un seul est une droite",
+   "type": "etape"
+  },
+  "experience_h2o2": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "courbe_concentration_fig"
+   },
+   "kicker": "Application : l'expérience du laboratoire",
+   "tex": [
+    "[H_2O_2] \\ : \\ 0{,}500 \\ \\text{(0 min)} \\rightarrow 0{,}390 \\ \\text{(10 min)}",
+    "\\rightarrow 0{,}254 \\ \\text{(30 min)} \\rightarrow 0 \\ \\text{(fin)}",
+    "V_{O_2} \\text{ total dégagé} : 120{,}0 \\ \\text{mL} \\qquad \\text{tangentes en 10 et 30 min : la pente diminue}"
+   ],
+   "titre": "L'eau oxygénée se décompose, la courbe le montre",
+   "type": "etape"
+  },
+  "haber_compromis": {
+   "kicker": "Application : le compromis industriel",
+   "tex": [
+    "N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3 \\quad \\Delta H = -92{,}4 \\ \\text{kJ/mol}",
+    "\\text{froid : équilibre favorable, mais réaction trop lente}",
+    "\\text{compromis : } 400 \\text{ à } 500\\ ^\\circ\\text{C, } 150 \\text{ à } 300 \\ \\text{atm, catalyseur au fer}",
+    "\\text{rendement} \\approx 15 \\ \\% \\ \\text{par passage, vitesse acceptable}"
+   ],
+   "titre": "Haber-Bosch, entre équilibre et vitesse",
+   "type": "etape"
+  },
+  "haber_vitesse": {
+   "kicker": "Exemple chiffré : la synthèse de l'ammoniac",
+   "tex": [
+    "N_2\\,(g) + 3\\,H_2\\,(g) \\longrightarrow 2\\,NH_3\\,(g)",
+    "v = -\\tfrac{d[N_2]}{dt} = -\\tfrac{1}{3}\\,\\tfrac{d[H_2]}{dt} = \\tfrac{1}{2}\\,\\tfrac{d[NH_3]}{dt}",
+    "\\text{si } v = 2{,}0 \\times 10^{-3} \\ \\text{alors } H_2 \\text{ disparaît à } 6{,}0 \\times 10^{-3}",
+    "\\text{et } NH_3 \\text{ apparaît à } 4{,}0 \\times 10^{-3} \\ \\text{mol/L/s}"
+   ],
+   "titre": "Chaque espèce à son rythme, une seule vitesse",
+   "type": "etape"
+  },
+  "horloge_iode": {
+   "kicker": "Application : l'horloge à iode",
+   "tex": [
+    "IO_3^- + 3\\,HSO_3^- \\longrightarrow I^- + 3\\,SO_4^{2-} + 3\\,H^+ \\ \\text{(lente)}",
+    "\\text{le diiode formé est aussitôt reconverti en } I^-",
+    "\\text{hydrogénosulfite épuisé : } I_2 + \\text{amidon} \\rightarrow \\text{bleu noir}"
+   ],
+   "titre": "Le bleu qui attend son heure",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Le temps, acteur invisible",
+   "texte": "Un sucre qui fond, un sucre qui brûle, de la rouille qui ronge : même matière, des rythmes opposés.",
+   "type": "phrase"
+  },
+  "loi_vitesse": {
+   "kicker": "La loi de vitesse",
+   "note": "Les ordres α et β se mesurent : ils ne se lisent pas dans l'équation bilan.",
+   "tex": "v = k \\cdot [A]^{\\alpha} \\cdot [B]^{\\beta}",
+   "type": "formule"
+  },
+  "mano_ph": {
+   "kicker": "Autres méthodes physiques",
+   "tex": [
+    "\\Delta P \\propto \\Delta n_\\text{gaz} \\quad \\text{(volume et température constants)}",
+    "pH = -\\log [H_3O^+] \\quad \\text{(à convertir avant tout calcul)}",
+    "\\text{réactions rapides : stopped-flow, saut de température}",
+    "\\text{échauffement en moins d'une microseconde}"
+   ],
+   "titre": "Pression, pH et réactions éclairs",
+   "type": "etape"
+  },
+  "michaelis": {
+   "kicker": "Application : la cinétique des enzymes",
+   "note": "Alcool déshydrogénase : Km ≈ 0,1 g/L ; saturée, élimination d'ordre zéro.",
+   "tex": "v = \\frac{V_{max}\\,[S]}{K_m + [S]}",
+   "type": "formule"
+  },
+  "moyenne_instantanee": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "courbe_concentration_fig"
+   },
+   "kicker": "Moyenne ou instantanée ?",
+   "tex": [
+    "v_{moy} = -\\tfrac{1}{a}\\,\\tfrac{\\Delta [A]}{\\Delta t} \\quad \\text{(pente de la corde)}",
+    "v(t) = \\lim_{\\Delta t \\to 0} v_{moy} \\quad \\text{(pente de la tangente)}",
+    "\\text{la pente s'aplatit : la vitesse diminue}"
+   ],
+   "titre": "De la corde à la tangente",
+   "type": "etape"
+  },
+  "nature_surface": {
+   "kicker": "Premier facteur : la nature des réactifs",
+   "tex": [
+    "Mg \\text{ : flamme blanche en quelques secondes}",
+    "Fe \\text{ (laine d'acier) : combustion lente, étincelles}",
+    "F_2 + H_2 \\text{ : explosif même à } -200\\ ^\\circ\\text{C}",
+    "\\text{surface de contact} \\uparrow \\ \\Rightarrow \\ \\text{collisions} \\uparrow \\ \\Rightarrow \\ v \\uparrow"
+   ],
+   "titre": "Le passeport chimique et la surface de contact",
+   "type": "etape"
+  },
+  "ordres_sens": {
+   "kicker": "Ce que les ordres racontent",
+   "tex": [
+    "\\text{ordre } 0 : v = k \\quad \\text{(surface saturée, vitesse constante)}",
+    "\\text{ordre } 1 : v = k\\,[A] \\quad \\text{(décroissance exponentielle)}",
+    "\\text{ordre } 2 : v = k\\,[A]^2 \\text{ ou } k\\,[A][B] \\quad \\text{(rencontre à deux)}",
+    "2\\,N_2O_5 \\rightarrow 4\\,NO_2 + O_2 \\ : \\ v = k\\,[N_2O_5]"
+   ],
+   "titre": "Zéro, un, deux : trois comportements",
+   "type": "etape"
+  },
+  "peroxyde": {
+   "kicker": "Exemple : l'eau oxygénée",
+   "tex": [
+    "2\\,H_2O_2\\,(aq) \\longrightarrow 2\\,H_2O\\,(l) + O_2\\,(g)",
+    "v = -\\tfrac{1}{2}\\,\\tfrac{d[H_2O_2]}{dt}",
+    "v = +\\tfrac{d[O_2]}{dt}"
+   ],
+   "titre": "Deux écritures, une seule vitesse",
+   "type": "etape"
+  },
+  "quenching": {
+   "kicker": "Les méthodes chimiques",
+   "tex": [
+    "\\text{mélange à } t = 0 \\text{, prélèvements à } t_1, t_2, t_3",
+    "\\text{réaction gelée : glace, dilution, inhibiteur}",
+    "\\text{dosage de l'espèce suivie dans chaque échantillon}",
+    "S_2O_8^{2-} + 2\\,I^- \\longrightarrow 2\\,SO_4^{2-} + I_2"
+   ],
+   "titre": "L'arrêt brusque : geler la réaction",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Vitesse : variation de concentration par temps",
+    "v = −(1/a) d[A]/dt, unique pour la réaction",
+    "Unité : mol par litre et par seconde",
+    "Moyenne : la corde ; instantanée : la tangente",
+    "Maxi au début, la vitesse décroît ensuite"
+   ],
+   "kicker": "Points clés de la partie",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Suivi : une propriété physique suit [A]",
+    "Spectro, conducti, mano, pH-métrie : au choix",
+    "Loi de vitesse : v = k·[A]^α·[B]^β",
+    "Ordres : mesurés, pas lus dans l'équation",
+    "t½ : moitié consommée ; constant si ordre 1"
+   ],
+   "kicker": "Points clés de la partie",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Vitesse : dérivée des concentrations, tangente",
+    "Loi de vitesse : ordres mesurés, k calculé",
+    "t½ : la moitié consommée, signature d'ordre 1",
+    "Facteurs : concentration, surface, température",
+    "Catalyseur : Ea abaissée, bilan inchangé"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "spectro_conducti": {
+   "kicker": "Les méthodes physiques",
+   "tex": [
+    "A = \\varepsilon \\cdot l \\cdot C \\quad \\text{(Beer-Lambert)}",
+    "MnO_4^- \\text{ violet} : A \\text{ à } 525\\ \\text{nm suit } [MnO_4^-]",
+    "\\sigma = \\sum_i \\lambda_i\\,C_i \\quad \\text{(conductimétrie)}",
+    "OH^- \\ (198) \\rightarrow CH_3COO^- \\ (41) : \\sigma \\text{ diminue}"
+   ],
+   "titre": "La lumière et les ions racontent la concentration",
+   "type": "etape"
+  },
+  "suivi": {
+   "kicker": "Le principe du suivi cinétique",
+   "texte": "Suivre une concentration au cours du temps, [A] = f(t), par une propriété physique mesurable.",
+   "type": "phrase"
+  },
+  "tangente": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "courbe_concentration_fig"
+   },
+   "kicker": "Du signal à la vitesse",
+   "tex": [
+    "\\text{tangente en } t_0 \\text{ : pente } a = \\tfrac{\\Delta [A]}{\\Delta t}",
+    "v(t_0) = -a \\ \\text{(réactif)} \\qquad v(t_0) = +a \\ \\text{(produit)}",
+    "[A] = -0{,}025\\,t + 0{,}50 \\Rightarrow v(2\\ \\text{min}) = 0{,}025 \\ \\text{mol/L/min}"
+   ],
+   "titre": "La tangente donne la vitesse instantanée",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "courbe_concentration_fig"
+   },
+   "kicker": "Chimie · Cinétique chimique",
+   "sous": "Définir, mesurer et maîtriser le temps des réactions",
+   "titre": "La cinétique chimique : la vitesse des réactions",
+   "type": "titre"
+  },
+  "vitamine_c": {
+   "kicker": "Exercice : conserver la vitamine C",
+   "tex": [
+    "\\text{ordre } 1, \\ k = 1{,}2 \\times 10^{-5} \\ \\text{s}^{-1} \\ \\text{à } 25\\ ^\\circ\\text{C}",
+    "t_{1/2} = \\tfrac{\\ln 2}{k} \\approx 16 \\ \\text{h}",
+    "\\text{à } 5\\ ^\\circ\\text{C} : k \\text{ divisé par } 4 \\ (3{,}0 \\times 10^{-6})",
+    "\\text{garder } 80 \\ \\% \\text{ à } 25\\ ^\\circ\\text{C} : t \\approx 5{,}2 \\ \\text{h}"
+   ],
+   "titre": "Le réfrigérateur gagne du temps",
+   "type": "etape"
+  },
+  "vitesses_initiales": {
+   "kicker": "La méthode des vitesses initiales",
+   "tex": [
+    "2\\,NO\\,(g) + O_2\\,(g) \\longrightarrow 2\\,NO_2\\,(g)",
+    "\\text{exp. 1 : } [NO]_0 = 0{,}010 \\ ; \\ [O_2]_0 = 0{,}010 \\ ; \\ v_0 = 2{,}5 \\times 10^{-3}",
+    "\\text{exp. 2 : } [NO]_0 = 0{,}020 \\ ; \\ v_0 = 1{,}0 \\times 10^{-2}",
+    "\\text{exp. 3 : } [O_2]_0 = 0{,}020 \\ ; \\ v_0 = 5{,}0 \\times 10^{-3}"
+   ],
+   "titre": "Trois expériences pour deux ordres",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  6736,
+  6737,
+  6738,
+  6739,
+  6740,
+  6741
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir la vitesse de réaction"
+  },
+  {
+   "debut": "p09",
+   "pont": {
+    "dit": "Partie deux : mesurer la vitesse, puis trouver sa loi. Nous allons découvrir l'arsenal du cinéticien, des prélèvements gelés à la spectrophotométrie, apprendre à extraire la vitesse d'une courbe par sa tangente, puis établir la loi de vitesse et ses ordres grâce aux expériences.",
+    "texte": "Partie 2 : mesurer, puis modéliser."
+   },
+   "sous_titre": "Mesurer la vitesse et trouver sa loi"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : les facteurs qui gouvernent la vitesse, et leurs applications. Nature des réactifs, concentration, température, catalyseurs : nous passerons en revue les boutons de commande du chimiste, avant de les voir à l'œuvre au laboratoire, dans l'usine d'ammoniac et jusque dans le foie.",
+    "texte": "Partie 3 : commander le temps des réactions."
+   },
+   "sous_titre": "Les facteurs de la vitesse et leurs applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de cinétique chimique, la science de la vitesse des réactions. Nous allons d'abord définir rigoureusement cette vitesse et apprendre à la lire sur les courbes de concentration. Puis nous découvrirons comment les chimistes la mesurent au laboratoire, et comment ils en tirent une loi mathématique, avec ses ordres et sa constante. Enfin, nous passerons en revue les facteurs qui permettent d'accélérer ou de ralentir une réaction à volonté, de la température aux catalyseurs, jusqu'aux applications industrielles et biologiques.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "La cinétique chimique : le temps devient une grandeur."
+  },
+  {
+   "dit": "Imaginez un morceau de sucre qui fond lentement dans votre café. Imaginez maintenant le même sucre qui brûle dans une flamme : il disparaît en un instant. Entre les deux, un même ingrédient a changé de rythme. Certaines réactions sont fulgurantes, comme l'explosion de la poudre à canon ; d'autres sont imperceptiblement lentes, comme la rouille qui ronge un vieux vélo. Étudier ces rythmes, apprendre à les mesurer puis à les commander : c'est le programme de la cinétique chimique, la science de la vitesse des réactions. Le temps est l'acteur invisible de toutes les transformations.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Le sucre fond ou brûle : tout est affaire de rythme."
+  },
+  {
+   "dit": "Pour la réaction générale où a fois A plus b fois B donnent c fois C plus d fois D, la vitesse se définit par une dérivée. Du côté d'un réactif, on prend l'opposé de la dérivée de sa concentration, divisée par son coefficient stœchiométrique ; du côté d'un produit, la dérivée divisée par son coefficient. Le signe moins compense la diminution du réactif, et la division par le coefficient garantit une vitesse unique, la même quel que soit le corps choisi pour la calculer. L'unité : la mole par litre et par seconde, parfois la mole par litre et par minute, ou par heure, pour les réactions lentes.",
+   "ecran": "definition",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "v = −(1/a)·d[A]/dt = +(1/c)·d[C]/dt, en mol/L/s."
+  },
+  {
+   "dit": "Premier exemple : la décomposition de l'eau oxygénée, le peroxyde d'hydrogène, en eau et en dioxygène. On peut suivre la disparition du peroxyde : la vitesse vaut alors l'opposé de la moitié de la dérivée de sa concentration, le coefficient deux figurant au dénominateur. On peut aussi suivre l'apparition du dioxygène : la vitesse vaut la dérivée de sa concentration, sans coefficient. Les deux écritures sont mathématiquement équivalentes : elles décrivent une seule et même vitesse.",
+   "ecran": "peroxyde",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "2 H₂O₂ → 2 H₂O + O₂ : deux suivis, une vitesse."
+  },
+  {
+   "dit": "Sur un intervalle de temps, on ne connaît qu'une vitesse moyenne : la variation de concentration divisée par la durée, c'est-à-dire la pente de la corde qui relie deux points de la courbe. La vitesse instantanée, elle, est la valeur à un instant précis : c'est la limite de la vitesse moyenne quand l'intervalle devient infiniment court, donc la pente de la tangente à la courbe en ce point. Regardez la figure : la sécante donne la moyenne, la tangente donne l'instantanée. Et comme la courbe s'aplatit avec le temps, la vitesse diminue au fil de la réaction.",
+   "ecran": "moyenne_instantanee",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "Corde : moyenne ; tangente : instantanée."
+  },
+  {
+   "dit": "Appliquons à la synthèse de l'ammoniac, le procédé Haber-Bosch : un diazote et trois dihydrogènes donnent deux ammoniacs. La vitesse s'écrit indifféremment avec le diazote, le dihydrogène divisé par trois, ou l'ammoniac divisé par deux. Si elle vaut deux millièmes de mole par litre et par seconde, alors le diazote disparaît à ce rythme, le dihydrogène trois fois plus vite, et l'ammoniac apparaît deux fois plus vite. Les coefficients stœchiométriques règlent les rythmes relatifs ; la vitesse, elle, reste unique. C'est cette unicité qui rend les mesures comparables d'une expérience à l'autre.",
+   "ecran": "haber_vitesse",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "N₂ + 3 H₂ → 2 NH₃ : v unique, rythmes proportionnels."
+  },
+  {
+   "dit": "Une conviction à installer dès maintenant : la vitesse n'est pas constante. Elle est maximale au début, quand les réactifs sont nombreux et que les collisions efficaces se multiplient. Puis les réactifs se consomment, leur concentration baisse, les rencontres deviennent rares, et la réaction ralentit, comme une fête qui se vide : à la fin de la soirée, on croise de moins en moins de monde. Pour beaucoup de réactions simples, la vitesse est simplement proportionnelle à la concentration du réactif : quand elle diminue, la vitesse diminue d'autant. C'est ce lien entre concentration et vitesse que la deuxième partie transformera en loi mathématique.",
+   "ecran": "evolution_vitesse",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "v maximale au départ, puis les rencontres se raréfient."
+  },
+  {
+   "dit": "Récapitulons cette première partie. La vitesse de réaction mesure la variation d'une concentration par unité de temps ; le signe et les coefficients stœchiométriques la rendent positive et unique. Sur une courbe, la vitesse moyenne est la pente d'une corde, la vitesse instantanée la pente d'une tangente. Et cette vitesse n'a rien d'un régime de croisière : maximale au départ, elle décroît à mesure que les réactifs s'épuisent. Savoir la définir ne suffit pas : encore faut-il la mesurer. C'est l'objet de la partie suivante.",
+   "ecran": "recap1",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Définition posée : passons à la mesure."
+  },
+  {
+   "dit": "Toutes les méthodes de mesure reposent sur un principe simple : suivre l'évolution de la concentration d'un réactif ou d'un produit en fonction du temps, en exploitant une propriété physique qui varie avec elle. Dès mille huit cent cinquante, Ludwig Wilhelmy étudiait l'hydrolyse du sucre en mesurant la rotation de la lumière polarisée par la solution : la première étude quantitative de cinétique. Le choix de la méthode dépend de la réaction : changement de couleur, dégagement gazeux, ions en solution, rapidité du phénomène.",
+   "ecran": "suivi",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Suivre [A] = f(t) par une propriété physique."
+  },
+  {
+   "dit": "La méthode chimique la plus directe est celle de l'arrêt brusque. On mélange les réactifs, puis, à des instants précis, on prélève des échantillons dans lesquels on gèle instantanément la réaction : refroidissement brutal dans la glace, dilution, ou ajout d'un inhibiteur. Chaque échantillon est ensuite dosé tranquillement. Exemple classique : le persulfate oxyde les ions iodure en diiode, que l'on dose par le thiosulfate. La méthode donne des concentrations réelles et s'applique presque partout, mais elle est fastidieuse et impuissante devant les réactions très rapides.",
+   "ecran": "quenching",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Geler, prélever, doser : la méthode de l'arrêt brusque."
+  },
+  {
+   "dit": "Les méthodes physiques suivent la réaction sur place, sans la perturber. La spectrophotométrie mesure l'absorbance d'une espèce colorée : la loi de Beer-Lambert la relie directement à la concentration. Le permanganate, violet intense, se décolore en réagissant : son absorbance, lue à cinq cent vingt-cinq nanomètres, raconte sa disparition. La conductimétrie écoute les ions : quand l'ion hydroxyde, très mobile, est remplacé par l'ion acétate, bien plus lent, la conductivité de la solution chute.",
+   "ecran": "spectro_conducti",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "A = ε·l·C ; σ chute quand OH⁻ laisse place à l'acétate."
+  },
+  {
+   "dit": "Si la réaction produit ou consomme un gaz, la manométrie suit la pression : à volume et température constants, sa variation est proportionnelle à celle du nombre de moles de gaz, comme dans la décomposition de l'eau oxygénée qui dégage du dioxygène. Pour les réactions acido-basiques, la pH-métrie suit l'évolution du pH, en n'oubliant jamais que le pH est un logarithme : une petite variation de pH cache une grande variation de concentration. Restent les réactions éclairs : on les piège par mélange turbulent arrêté en quelques millisecondes, le stopped-flow.",
+   "ecran": "mano_ph",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "ΔP suit le gaz ; le pH, un logarithme à convertir."
+  },
+  {
+   "dit": "Une fois la courbe des concentrations tracée, la vitesse s'en extrait graphiquement. En un instant choisi, on trace la tangente à la courbe et on calcule sa pente. Pour un réactif, la vitesse est l'opposé de cette pente ; pour un produit, c'est la pente elle-même. Exemple : si la tangente à la courbe d'un réactif, à deux minutes, a pour équation concentration égale moins zéro virgule zéro vingt-cinq fois t plus zéro virgule cinquante, alors la vitesse à cet instant vaut zéro virgule zéro vingt-cinq mole par litre et par minute.",
+   "ecran": "tangente",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "v(t₀) = ∓ pente de la tangente en t₀."
+  },
+  {
+   "dit": "Mesurer ne suffit pas : il faut modéliser. La loi de vitesse relie la vitesse aux concentrations des réactifs, chacune élevée à une puissance : alpha pour A, bêta pour B. La constante k, la constante de vitesse, dépend de la température et d'un éventuel catalyseur, mais pas des concentrations. Les exposants alpha et bêta sont les ordres partiels ; leur somme est l'ordre global. Point crucial : ces ordres se déterminent expérimentalement. Rien n'oblige à ce qu'ils égaux les coefficients stœchiométriques, et c'est là que la cinétique se sépare de la stœchiométrie.",
+   "ecran": "loi_vitesse",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "v = k·[A]^α·[B]^β : les ordres se mesurent."
+  },
+  {
+   "dit": "Comment déterminer les ordres ? Par la méthode des vitesses initiales. On réalise plusieurs expériences en fixant des concentrations initiales connues, et l'on mesure pour chacune la vitesse initiale, avant que les concentrations n'aient eu le temps de changer. Étudions la formation du dioxyde d'azote, le polluant brun-rouge, à partir du monoxyde d'azote et du dioxygène. Première expérience : les deux réactifs à un centième de mole par litre, vitesse initiale de deux virgule cinq millièmes. Deuxième : on double le monoxyde d'azote seul. Troisième : on double le dioxygène seul.",
+   "ecran": "vitesses_initiales",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Trois expériences, des concentrations initiales connues."
+  },
+  {
+   "dit": "L'analyse tient en deux comparaisons. Quand la concentration du monoxyde d'azote double, la vitesse initiale quadruple : deux puissance alpha égale quatre, donc alpha égale deux, la réaction est d'ordre deux par rapport au monoxyde d'azote. Quand celle du dioxygène double, la vitesse double : bêta égale un. La loi s'écrit donc : vitesse égale k fois la concentration du monoxyde d'azote au carré, fois celle du dioxygène ; l'ordre global est trois, ce qui est assez rare. Avec la première expérience, on calcule k : deux virgule cinq fois dix puissance trois, dans une unité qui dépend de l'ordre global.",
+   "ecran": "analyse_ordres",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "[NO] doublé : v × 4 ; [O₂] doublé : v × 2."
+  },
+  {
+   "dit": "Que signifient ces ordres ? À l'ordre zéro, la vitesse est constante, indépendante de la concentration : c'est le cas des réactions sur une surface catalytique dont tous les sites sont occupés. À l'ordre un, la vitesse est proportionnelle à la concentration et celle-ci décroît de façon exponentielle, comme dans les désintégrations. À l'ordre deux, elle dépend du carré ou du produit de deux concentrations : la rencontre de deux molécules est probablement l'étape clé. Et souvenez-vous de la décomposition du pentaoxyde de diazote : son équation affiche un coefficient deux, mais l'expérience donne un ordre un. L'ordre ne se devine pas, il se mesure.",
+   "ecran": "ordres_sens",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Ordre 0, 1 ou 2 : trois signatures différentes."
+  },
+  {
+   "dit": "Une donnée caractéristique s'extrait directement de la courbe : le temps de demi-réaction, la durée au bout de laquelle la concentration du réactif limitant a diminué de moitié, ou celle d'un produit a atteint la moitié de sa valeur finale. Graphiquement, on trace l'horizontale à la moitié de la concentration initiale, on repère son intersection avec la courbe, et l'abscisse de ce point donne le temps de demi-réaction. Pour les réactions d'ordre un, ce temps est constant et indépendant de la concentration de départ : une véritable signature de la réaction dans des conditions données.",
+   "ecran": "demi_reaction",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "t½ : le temps de la moitié consommée."
+  },
+  {
+   "dit": "Exercice résolu : un réactif A se transforme en produits, et l'on a mesuré sa concentration toutes les dix secondes : elle passe de un dixième de mole par litre à moins de trois centièmes en cinquante secondes. Pour trouver l'ordre, on teste les tracés. Si la réaction est d'ordre un, le logarithme de la concentration en fonction du temps doit donner une droite ; si elle est d'ordre deux, c'est l'inverse de la concentration qui doit s'aligner. Ici, seul le second tracé est une droite : la réaction est d'ordre deux par rapport à A. Notez au passage que la concentration est divisée par deux à vingt secondes : c'est le temps de demi-réaction pour ces conditions.",
+   "ecran": "exercice_ordre",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "ln[A] ou 1/[A] : le tracé qui s'aligne décide."
+  },
+  {
+   "dit": "Récapitulons. Pour mesurer une vitesse, on suit une propriété physique liée à une concentration : absorbance, conductivité, pression ou pH, ou bien l'on gèle des prélèvements successifs. La pente de la tangente à la courbe donne la vitesse instantanée. La loi de vitesse, elle, relie la vitesse aux concentrations par des ordres que seule l'expérience révèle, le plus souvent grâce aux vitesses initiales. Le temps de demi-réaction complète le portrait. Reste la grande question pratique : sur quels boutons agir pour accélérer ou ralentir une réaction ?",
+   "ecran": "recap2",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Mesurer, modéliser : place aux facteurs."
+  },
+  {
+   "dit": "Premier facteur, que l'on ne choisit pas : la nature des réactifs. Le magnésium brûle en quelques secondes dans une flamme éblouissante, là où le fer, même en laine d'acier, brûle lentement avec des étincelles : tout dépend des liaisons à rompre et à former. Le mélange de fluor et d'hydrogène explose même à moins deux cents degrés et dans l'obscurité, quand celui d'hydrogène et d'oxygène peut attendre des années une étincelle. Second levier, mécanique : l'état de division. Un morceau de craie fait quelques bulles dans l'acide ; la même masse en poudre effervesce violemment : plus la surface de contact est grande, plus les collisions sont fréquentes.",
+   "ecran": "nature_surface",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "Nature des réactifs et surface de contact commandent."
+  },
+  {
+   "dit": "Deuxième facteur : la concentration. C'est l'image de la salle de bal : doublez le nombre de danseurs, et les rencontres se multiplient. La loi de vitesse le quantifie. Reprenons la réaction entre les ions iodure et les ions persulfate : elle est d'ordre un par rapport à chaque réactif. Doubler la concentration en iodure double la vitesse ; doubler celle du persulfate la double aussi ; doubler les deux la multiplie par quatre. Augmenter une concentration, c'est augmenter la fréquence des collisions entre les espèces concernées.",
+   "ecran": "concentration_facteur",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Doubler chaque réactif : la vitesse quadruple."
+  },
+  {
+   "dit": "Troisième facteur, le plus puissant : la température. Pour réagir, deux molécules qui se rencontrent doivent posséder une énergie suffisante pour franchir une barrière : l'énergie d'activation. La distribution de Boltzmann, sur la figure, répartit les molécules selon leur énergie : seules celles qui dépassent la barrière peuvent réagir. Chauffer déplace la distribution vers les hautes énergies, et la fraction capable de franchir la barrière explose. L'équation d'Arrhenius résume cet effet : la constante de vitesse égale un facteur de fréquence, lié aux collisions, multiplié par une exponentielle contenant l'énergie d'activation et la température.",
+   "ecran": "arrhenius",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "k = A·e^(−Ea/RT) : franchir la barrière d'activation."
+  },
+  {
+   "dit": "Chiffrons cet effet pour une énergie d'activation typique de cinquante kilojoules par mole. En prenant la vitesse à vingt-cinq degrés comme référence, elle est multipliée par environ un virgule huit à trente-cinq degrés, par plus de trois à quarante-cinq degrés, et par vingt-quatre à quatre-vingts degrés. C'est la vieille règle empirique de van 't Hoff : dix degrés de plus doublent à peu près la vitesse. Voilà pourquoi un gâteau cuit deux fois plus vite à cent quatre-vingts degrés qu'à cent soixante, et pourquoi le réfrigérateur met les dégradations au ralenti.",
+   "ecran": "effet_temperature",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "+10 °C : la vitesse double presque (van 't Hoff)."
+  },
+  {
+   "dit": "Quatrième facteur : le catalyseur, une substance qui accélère la réaction sans être consommée. Son secret, visible sur le profil d'énergie : il ouvre un chemin réactionnel différent, dont la barrière est plus basse. Comme un tunnel qui perce la montagne au lieu de la gravir, il ne change ni le point de départ ni le bilan, seulement l'effort à fournir. Quand le catalyseur partage la phase des réactifs, la catalyse est homogène : les ions fer trois catalysent ainsi la décomposition de l'eau oxygénée. Quand il forme une phase distincte, elle est hétérogène : le pot catalytique convertit les gaz polluants grâce au platine, au palladium et au rhodium. Et la vie repose sur des catalyseurs : les enzymes, sans lesquelles digérer un repas prendrait des décennies.",
+   "ecran": "catalyseurs",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Le catalyseur : un tunnel dans la montagne d'énergie."
+  },
+  {
+   "dit": "Trois autres leviers complètent le tableau. Pour les gaz, augmenter la pression revient à augmenter la concentration : les collisions se multiplient, et c'est l'une des raisons des hautes pressions du procédé Haber-Bosch. La lumière déclenche ou accélère certaines réactions : c'est la photochimie, de la photosynthèse à la photographie argentique. Enfin, l'agitation homogénéise les milieux où plusieurs phases coexistent, en renouvelant sans cesse le contact entre elles. Retenez la logique d'ensemble : tout ce qui multiplie les collisions efficaces accélère la réaction.",
+   "ecran": "autres_facteurs",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Pression, lumière, agitation : les derniers leviers."
+  },
+  {
+   "dit": "Mettons tout cela en pratique avec l'expérience classique de la décomposition de l'eau oxygénée, catalysée par le dioxyde de manganèse, à vingt-cinq degrés. On suit le volume de dioxygène dégagé : cent vingt millilitres au total quand la réaction s'achève. La concentration du peroxyde part d'un demi-mole par litre ; elle vaut encore zéro virgule trois cent quatre-vingt-dix à dix minutes, zéro virgule deux cent cinquante-quatre à trente minutes. Les tangentes en ces deux instants le confirment : la pente, donc la vitesse, diminue avec le temps, comme le prévoit la baisse de concentration.",
+   "ecran": "experience_h2o2",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "[H₂O₂] : 0,500 → 0,390 → 0,254 → 0 mol/L."
+  },
+  {
+   "dit": "Autre classique des travaux pratiques : l'horloge à iode. La solution semble ne rien produire, puis vire soudain au bleu noir, presque instantanément. Le secret tient en trois étapes : une première, lente, transforme les ions iodate en ions iodure grâce aux ions hydrogénosulfite ; une seconde, rapide, fabrique du diiode ; mais une troisième, très rapide, reconvertit aussitôt ce diiode en iodure, tant qu'il reste des ions hydrogénosulfite. Quand ceux-ci s'épuisent enfin, le diiode s'accumule et rencontre l'amidon : le bleu noir apparaît. Le temps d'attente avant le virage mesure donc la vitesse de l'étape lente, sans aucun appareil sophistiqué.",
+   "ecran": "horloge_iode",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "Le bleu noir surgit quand l'hydrogénosulfite s'épuise."
+  },
+  {
+   "dit": "Le procédé Haber-Bosch illustre le grand compromis de la cinétique industrielle. La synthèse de l'ammoniac est exothermique : le froid favoriserait l'équilibre vers l'ammoniac, mais à basse température la réaction est désespérément lente. Les industriels ont tranché : une température de compromis, entre quatre cents et cinq cents degrés, une pression élevée, entre cent cinquante et trois cents atmosphères, et un catalyseur à base de fer. Le rendement par passage n'est que d'environ quinze pour cent, mais la vitesse devient économiquement viable. Le meilleur équilibre ne sert à rien s'il faut un siècle pour l'atteindre.",
+   "ecran": "haber_compromis",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "400-500 °C, 150-300 atm, fer : le compromis Haber-Bosch."
+  },
+  {
+   "dit": "La cinétique gouverne aussi le vivant, à travers les enzymes. Leur loi de vitesse, celle de Michaelis et Menten, fait intervenir une vitesse maximale et une constante propre à chaque enzyme. Quand le substrat est abondant, l'enzyme est saturée et la vitesse plafonne : la cinétique devient d'ordre zéro. Quand il se raréfie, elle redevient proportionnelle à sa concentration : ordre un. C'est ainsi que le foie élimine l'alcool à débit presque constant, tant que son enzyme, saturée, travaille à plein régime.",
+   "ecran": "michaelis",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "v = Vmax·[S]/(Km + [S]) : l'enzyme sature."
+  },
+  {
+   "dit": "Dernier exercice, tiré du quotidien : la vitamine C d'un jus d'orange se dégrade selon une cinétique d'ordre un, avec une constante de un virgule deux fois dix puissance moins cinq par seconde, à vingt-cinq degrés. Le temps de demi-réaction vaut le logarithme de deux divisé par cette constante : environ seize heures pour perdre la moitié de la vitamine. Au réfrigérateur, à cinq degrés, la règle du doublement tous les dix degrés divise la constante par quatre. Et pour garder au moins quatre-vingts pour cent de la vitamine à température ambiante, le calcul donne environ cinq heures : mieux vaut presser le jus au dernier moment.",
+   "ecran": "vitamine_c",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "Vitamine C : t½ ≈ 16 h à 25 °C, le froid protège."
+  },
+  {
+   "dit": "Imaginez un monde où toutes les réactions seraient instantanées : plus de digestion progressive, plus de corrosion lente, plus de médicaments qui agissent dans la durée ; la complexité du vivant s'effondrerait. C'est parce que les réactions ont des vitesses différentes, et que nous savons les gouverner, que la chimie devient un art du temps. Vous savez désormais définir une vitesse, la mesurer par la méthode adaptée, écrire sa loi et trouver ses ordres, puis agir sur ses facteurs : nature des réactifs, surface, concentration, température, catalyseurs. La cinétique est l'étude de la patience et de l'impatience de la matière.",
+   "ecran": "conclusion",
+   "id": "p32",
+   "pause_apres": 0.8,
+   "texte": "Des réactions à des vitesses différentes : la vie possible."
+  },
+  {
+   "dit": "Vous avez désormais la boîte à outils complète de la cinétique. Définir : la vitesse, dérivée des concentrations, positive et unique grâce aux coefficients. Mesurer : une propriété physique suivie dans le temps, et la tangente qui livre la vitesse instantanée. Modéliser : la loi de vitesse et ses ordres, débusqués par les vitesses initiales ou par les tracés tests, avec le temps de demi-réaction pour signature. Maîtriser enfin : la concentration, la surface de contact, la température par Arrhenius, et les catalyseurs qui abaissent la barrière. Le temps des réactions n'est plus un mystère : c'est un paramètre que le chimiste règle.",
+   "ecran": "recap_final",
+   "id": "p33",
+   "pause_apres": 0.8,
+   "texte": "Définir, mesurer, modéliser, maîtriser : le cours est bouclé."
+  }
+ ],
+ "titre": "La cinétique chimique : la vitesse des réactions"
+}

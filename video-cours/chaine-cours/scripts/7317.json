@@ -1,0 +1,363 @@
+{
+ "cours": 7317,
+ "ecrans": {
+  "calcul_joule": {
+   "kicker": "Exemple : puissance dissipée",
+   "tex": [
+    "P = 0{,}1 \\times 5^2 = 2{,}5\\ \\text{W}",
+    "P = 0{,}1 \\times 50^2 = 250\\ \\text{W}"
+   ],
+   "titre": "De 2,5 W à 250 W dans le même fil",
+   "type": "etape"
+  },
+  "calcul_lampe": {
+   "kicker": "Exemple : intensité normale",
+   "note": "En fonctionnement normal, la lampe est traversée par un demi-ampère.",
+   "tex": "I = \\frac{U}{R} = \\frac{6}{12} = 0{,}5\\ \\text{A}",
+   "type": "formule"
+  },
+  "chemin_raccourci": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Le chemin raccourci",
+   "texte": "Le courant évite le récepteur : R devient très faible.",
+   "type": "phrase"
+  },
+  "circuit_normal": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Le circuit normal",
+   "texte": "Normalement, le courant traverse le récepteur.",
+   "type": "phrase"
+  },
+  "conclusion_joule": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "resistor_symbole_fig"
+   },
+   "kicker": "Cent fois plus de chaleur",
+   "texte": "Le fil chauffe cent fois plus : les gaines prennent feu.",
+   "type": "phrase"
+  },
+  "consequences_lampe": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Conséquence immédiate",
+   "texte": "La lampe ne brille plus, le fil et la pile chauffent.",
+   "type": "phrase"
+  },
+  "dangers": {
+   "kicker": "Dangers d'un court-circuit",
+   "tex": [
+    "\\text{incendie : isolants qui fondent}",
+    "\\text{matériel détérioré}",
+    "\\text{brûlures, électrocution}",
+    "\\text{coupure générale}"
+   ],
+   "titre": "Quatre dangers à retenir",
+   "type": "etape"
+  },
+  "declenchement": {
+   "kicker": "Déclenchement en millisecondes",
+   "texte": "Le circuit s'ouvre avant que les fils ne chauffent.",
+   "type": "phrase"
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Définition : le court-circuit",
+   "texte": "Deux points du circuit se touchent directement.",
+   "type": "phrase"
+  },
+  "differentiel": {
+   "kicker": "Le différentiel associé",
+   "texte": "Associée au différentiel, elle évite l'électrocution.",
+   "type": "phrase"
+  },
+  "disjoncteur": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Le disjoncteur",
+   "texte": "Il ouvre le circuit dès que le seuil est dépassé.",
+   "type": "phrase"
+  },
+  "disjoncteur_rearmement": {
+   "kicker": "Avantage du disjoncteur",
+   "texte": "Contrairement au fusible, il se réarme à la main.",
+   "type": "phrase"
+  },
+  "effet_joule": {
+   "kicker": "Pourquoi ça chauffe : effet Joule",
+   "note": "La puissance dissipée en chaleur grandit avec le carré de l'intensité.",
+   "tex": "P = R \\cdot I^2",
+   "type": "formule"
+  },
+  "exemple_disjoncteur": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Exemple : circuit de prise",
+   "texte": "Disjoncteur calibré à 16 A, court-circuit à 40 A.",
+   "type": "phrase"
+  },
+  "exemple_joule_donnees": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "resistor_symbole_fig"
+   },
+   "kicker": "Exemple : un fil domestique",
+   "texte": "Dans une installation, I passe de 5 A à 50 A.",
+   "type": "phrase"
+  },
+  "exemple_lampe_donnees": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Exemple : une lampe normale",
+   "texte": "Lampe : R = 12 Ω sous U = 6 V.",
+   "type": "phrase"
+  },
+  "fusible": {
+   "kicker": "Le fusible",
+   "texte": "Un fil calibré fond au-delà d'une intensité limite.",
+   "type": "phrase"
+  },
+  "fusible_remplacement": {
+   "kicker": "Après un fusible fondu",
+   "texte": "Un fusible fondu doit être remplacé après usage.",
+   "type": "phrase"
+  },
+  "lampe_courtcircuitee": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "La lampe court-circuitée",
+   "texte": "Un fil de résistance négligeable shunte la lampe.",
+   "type": "phrase"
+  },
+  "origines": {
+   "kicker": "Origines fréquentes",
+   "tex": [
+    "\\text{fils dénudés qui se touchent}",
+    "\\text{prise ou fiche endommagée}",
+    "\\text{eau ou métal entre conducteurs}",
+    "\\text{gaine grignotée par un rongeur}"
+   ],
+   "titre": "Quatre contacts dangereux",
+   "type": "etape"
+  },
+  "prise_terre": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "La prise de terre",
+   "texte": "Elle évacue le courant de fuite vers le sol.",
+   "type": "phrase"
+  },
+  "protections_intro": {
+   "kicker": "Protéger l'installation",
+   "tex": [
+    "\\text{le fusible}",
+    "\\text{le disjoncteur}",
+    "\\text{la prise de terre}"
+   ],
+   "titre": "Trois dispositifs de protection",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Court-circuit : contact direct, résistance très faible, intensité très grande",
+    "Dangers : incendie, matériel détérioré, électrocution",
+    "Protections : fusible à remplacer, disjoncteur réarmable, prise de terre avec différentiel"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "circuit"
+   },
+   "kicker": "Sciences Physiques et Technologie · Électricité",
+   "sous": "Comprendre le danger, puis les trois protections qui coupent le courant",
+   "titre": "Court-circuit et protection des installations électriques",
+   "type": "titre"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définition, origines et dangers du court-circuit"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : les trois protections de l'installation électrique, le fusible, le disjoncteur et la prise de terre, avec un exemple de déclenchement.",
+    "texte": "Partie 2 : les trois protections de l'installation."
+   },
+   "sous_titre": "Fusible, disjoncteur et prise de terre"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur le court-circuit et la protection des installations électriques. Nous allons voir ce qu'est un court-circuit, pourquoi il est dangereux, puis les trois dispositifs qui protègent une installation.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Un court-circuit : un danger à comprendre, des protections à connaître."
+  },
+  {
+   "dit": "Dans un circuit normal, le courant traverse le récepteur, par exemple une lampe, qui oppose une résistance au passage du courant.",
+   "ecran": "circuit_normal",
+   "id": "p02",
+   "texte": "Normalement, le courant traverse le récepteur."
+  },
+  {
+   "dit": "Un court-circuit se produit lorsque deux points d'un circuit, normalement séparés par un composant comme un récepteur ou une résistance, sont mis en contact direct par un conducteur de très faible résistance.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "Deux points du circuit se touchent directement."
+  },
+  {
+   "dit": "Le courant emprunte alors ce chemin raccourci au lieu de traverser le récepteur. Comme la résistance devient très faible, l'intensité du courant augmente brutalement.",
+   "ecran": "chemin_raccourci",
+   "id": "p04",
+   "texte": "Le courant évite le récepteur : R devient très faible."
+  },
+  {
+   "dit": "Les origines sont fréquentes et concrètes : des fils dénudés qui se touchent, une prise ou une fiche endommagée, de l'eau ou un corps métallique qui met deux conducteurs en contact, ou encore un rongeur qui a grignoté une gaine isolante.",
+   "ecran": "origines",
+   "id": "p05",
+   "texte": "Quatre origines fréquentes du court-circuit."
+  },
+  {
+   "dit": "Prenons un premier exemple résolu. Une lampe de résistance douze ohms est branchée sous une tension de six volts. Calculons d'abord son intensité normale.",
+   "ecran": "exemple_lampe_donnees",
+   "id": "p06",
+   "texte": "Lampe : R = 12 Ω sous U = 6 V."
+  },
+  {
+   "dit": "L'intensité normale vaut la tension divisée par la résistance, soit six divisé par douze, ce qui donne zéro virgule cinq ampère.",
+   "ecran": "calcul_lampe",
+   "id": "p07",
+   "texte": "I = U / R = 0,5 A en fonctionnement normal."
+  },
+  {
+   "dit": "Maintenant, un fil de résistance négligeable court-circuite la lampe. La résistance du circuit devient presque nulle, et l'intensité devient très grande, de l'ordre de plusieurs dizaines d'ampères.",
+   "ecran": "lampe_courtcircuitee",
+   "id": "p08",
+   "texte": "Un fil de résistance négligeable shunte la lampe."
+  },
+  {
+   "dit": "Conséquence immédiate : la lampe ne brille plus, puisque le courant ne la traverse plus, tandis que le fil et la pile chauffent fortement.",
+   "ecran": "consequences_lampe",
+   "id": "p09",
+   "texte": "La lampe ne brille plus, le fil et la pile chauffent."
+  },
+  {
+   "dit": "Pourquoi un tel échauffement ? C'est l'effet Joule : la puissance dissipée en chaleur dans un conducteur vaut sa résistance multipliée par le carré de l'intensité. Doubler l'intensité, c'est donc quadrupler la chaleur.",
+   "ecran": "effet_joule",
+   "id": "p10",
+   "texte": "Effet Joule : P = R × I²."
+  },
+  {
+   "dit": "Les dangers suivent : un incendie, car les isolants fondent et s'enflamment ; la détérioration du générateur, des fils ou des appareils ; des brûlures et un risque d'électrocution pour les personnes ; et la coupure générale de l'alimentation, quand le disjoncteur déclenche.",
+   "ecran": "dangers",
+   "id": "p11",
+   "texte": "Quatre dangers : incendie, dégâts, blessures, coupure."
+  },
+  {
+   "dit": "Mesurons cet échauffement avec un deuxième exemple. Dans une installation domestique, un court-circuit fait passer l'intensité de cinq ampères à cinquante ampères, dans un fil de résistance zéro virgule un ohm.",
+   "ecran": "exemple_joule_donnees",
+   "id": "p12",
+   "texte": "Dans une installation, I passe de 5 A à 50 A."
+  },
+  {
+   "dit": "La puissance dissipée par effet Joule passe de zéro virgule un fois cinq au carré, soit deux virgule cinq watts, à zéro virgule un fois cinquante au carré, soit deux cent cinquante watts.",
+   "ecran": "calcul_joule",
+   "id": "p13",
+   "texte": "De 2,5 W à 250 W dans le même fil."
+  },
+  {
+   "dit": "Le fil chauffe donc cent fois plus : c'est ce qui met le feu aux gaines. Voilà pourquoi un court-circuit, même bref, ne doit jamais être pris à la légère.",
+   "ecran": "conclusion_joule",
+   "id": "p14",
+   "texte": "Le fil chauffe cent fois plus : les gaines prennent feu."
+  },
+  {
+   "dit": "Heureusement, trois dispositifs protègent les circuits : le fusible, le disjoncteur et la prise de terre. Voyons chacun d'eux.",
+   "ecran": "protections_intro",
+   "id": "p15",
+   "texte": "Trois dispositifs protègent les circuits."
+  },
+  {
+   "dit": "Le fusible est un fil calibré : il fond lorsque l'intensité dépasse une valeur limite, ce qui ouvre le circuit et interrompt le courant dangereux.",
+   "ecran": "fusible",
+   "id": "p16",
+   "texte": "Un fil calibré fond au-delà d'une intensité limite."
+  },
+  {
+   "dit": "Un fusible fondu a joué son rôle, mais il est détruit : il doit être remplacé après usage, une fois la cause du court-circuit trouvée.",
+   "ecran": "fusible_remplacement",
+   "id": "p17",
+   "texte": "Un fusible fondu doit être remplacé après usage."
+  },
+  {
+   "dit": "Le disjoncteur, lui, ouvre le circuit dès que l'intensité dépasse un seuil. Il joue le même rôle de coupure que le fusible, mais sans se détruire.",
+   "ecran": "disjoncteur",
+   "id": "p18",
+   "texte": "Il ouvre le circuit dès que le seuil est dépassé."
+  },
+  {
+   "dit": "Contrairement au fusible, le disjoncteur ne se jette pas : une fois le défaut éliminé, il se réarme manuellement, et l'installation peut repartir.",
+   "ecran": "disjoncteur_rearmement",
+   "id": "p19",
+   "texte": "Contrairement au fusible, il se réarme à la main."
+  },
+  {
+   "dit": "La prise de terre, enfin, est reliée à la carcasse métallique des appareils : elle évacue le courant de fuite vers le sol et évite ainsi l'électrocution.",
+   "ecran": "prise_terre",
+   "id": "p20",
+   "texte": "Elle évacue le courant de fuite vers le sol."
+  },
+  {
+   "dit": "Elle est associée à un disjoncteur différentiel, qui coupe le circuit en cas de fuite de courant : la terre évacue, le différentiel coupe.",
+   "ecran": "differentiel",
+   "id": "p21",
+   "texte": "Associée au différentiel, elle évite l'électrocution."
+  },
+  {
+   "dit": "Dernier exemple résolu. Un circuit de prise est protégé par un disjoncteur calibré à seize ampères. Un appareil provoque un court-circuit, et l'intensité atteint quarante ampères.",
+   "ecran": "exemple_disjoncteur",
+   "id": "p22",
+   "texte": "Disjoncteur calibré à 16 A, court-circuit à 40 A."
+  },
+  {
+   "dit": "Le disjoncteur détecte cette surintensité et ouvre le circuit en quelques millisecondes, avant que les fils ne chauffent dangereusement. La protection a donc agi à temps.",
+   "ecran": "declenchement",
+   "id": "p23",
+   "texte": "Le circuit s'ouvre avant que les fils ne chauffent."
+  },
+  {
+   "dit": "Retenons l'essentiel. Un court-circuit est un contact direct entre deux points d'un circuit : la résistance devient très faible et l'intensité très grande. Les dangers sont l'incendie, la détérioration du matériel et l'électrocution. Et les protections sont le fusible, à remplacer après usage, le disjoncteur, réarmable, et la prise de terre associée au différentiel.",
+   "ecran": "recap",
+   "id": "p24",
+   "texte": "Court-circuit, dangers, protections : le récapitulatif."
+  }
+ ],
+ "titre": "Court-circuit et protection des installations électriques"
+}

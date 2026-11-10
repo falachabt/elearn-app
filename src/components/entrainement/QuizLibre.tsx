@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -9,7 +9,8 @@ import { enregistrerSession, lireQuizLibre, noterDernier } from '@/services/entr
 import { enregistrerTempsActivite } from '@/services/activite';
 import type { QuestionTiree } from '@/services/miniTest';
 import { getSupabase } from '@/services/supabase';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { crediterXp } from '@/services/xp';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -17,15 +18,25 @@ import { Banniere } from '../Banniere';
 import { Ecran } from '../Ecran';
 import { BoutonFermer, MiniTest } from '../arrivee/MiniTest';
 
-const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
-
 /** Quiz libre (M5-09) : même lecteur que la mission, résultats et correction communs (M5-10), sans toucher à la série. */
 export function QuizLibreEcran() {
+  useEffect(() => {
+    suivre('quiz_started', { type: 'libre' });
+  }, []);
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { id, cours, nom } = useLocalSearchParams<{ id: string; cours?: string; nom?: string }>();
+  const { id, cours, nom, provenance, planningJour } = useLocalSearchParams<{
+    id: string;
+    cours?: string;
+    nom?: string;
+    provenance?: string;
+    planningJour?: string;
+  }>();
   const [questions, setQuestions] = useState<QuestionTiree[] | null | undefined>(undefined);
+  const { session } = useSession();
+  const idUtilisateur = session?.user?.id;
   const pret = useSessionPrete();
+  const termineRef = useRef(false);
 
   useEffect(() => {
     if (!pret) return;
@@ -44,6 +55,22 @@ export function QuizLibreEcran() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, cours, pret]);
 
+  const retourProgramme = () => {
+    if (planningJour) {
+      router.replace({ pathname: '/planning/jour', params: { jour: planningJour } });
+    } else {
+      router.replace('/planning/jour');
+    }
+  };
+
+  const retour = () => {
+    if (provenance === 'planning') {
+      retourProgramme();
+      return;
+    }
+    return router.canGoBack() ? router.back() : router.replace('/reviser');
+  };
+
   if (questions) {
     return (
       <MiniTest
@@ -52,6 +79,8 @@ export function QuizLibreEcran() {
         libelleFermer={t('entrainement.quizFermer')}
         onFermer={retour}
         onTermine={async ({ questions: q, reponses, dureeS }) => {
+          if (termineRef.current) return;
+          termineRef.current = true;
           const score = q.filter((x, i) => reponses[i] === x.bonne).length;
           const le = new Date();
           void enregistrerTempsActivite({ type: 'quiz', dureeS, titre: nom ?? 'Quiz libre' });
@@ -75,7 +104,18 @@ export function QuizLibreEcran() {
             console.warn('Impossible de noter ce quiz pour « Reprendre ».', erreur);
           }
           suivre('practice_quiz_completed', { score, total: q.length, record });
-          router.replace('/quiz/resultats');
+          void crediterXp(getSupabase(), idUtilisateur, 10, 'quiz', String(id));
+          if (provenance === 'planning') {
+            router.replace({
+              pathname: '/quiz/resultats',
+              params: {
+                provenance,
+                planningJour: planningJour ?? '',
+              },
+            });
+          } else {
+            router.replace('/quiz/resultats');
+          }
         }}
       />
     );

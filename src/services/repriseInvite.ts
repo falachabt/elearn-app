@@ -10,9 +10,30 @@ import type { SupabaseClient } from '@supabase/supabase-js';
  * échouer instantanément la connexion Google d'un invité) : on y retombe sur le stockage du navigateur.
  */
 export const SecureStore = {
-  getItemAsync: (cle: string) => (Platform.OS === 'web' ? AsyncStorage.getItem(cle) : ExpoSecureStore.getItemAsync(cle)),
-  setItemAsync: (cle: string, valeur: string) => (Platform.OS === 'web' ? AsyncStorage.setItem(cle, valeur) : ExpoSecureStore.setItemAsync(cle, valeur)),
-  deleteItemAsync: (cle: string) => (Platform.OS === 'web' ? AsyncStorage.removeItem(cle) : ExpoSecureStore.deleteItemAsync(cle)),
+  getItemAsync: async (cle: string): Promise<string | null> => {
+    if (Platform.OS === 'web') return AsyncStorage.getItem(cle);
+    try {
+      return await ExpoSecureStore.getItemAsync(cle);
+    } catch {
+      return AsyncStorage.getItem(cle);
+    }
+  },
+  setItemAsync: async (cle: string, valeur: string): Promise<void> => {
+    if (Platform.OS === 'web') return AsyncStorage.setItem(cle, valeur);
+    try {
+      await ExpoSecureStore.setItemAsync(cle, valeur);
+    } catch {
+      await AsyncStorage.setItem(cle, valeur);
+    }
+  },
+  deleteItemAsync: async (cle: string): Promise<void> => {
+    if (Platform.OS === 'web') return AsyncStorage.removeItem(cle);
+    try {
+      await ExpoSecureStore.deleteItemAsync(cle);
+    } catch {
+      await AsyncStorage.removeItem(cle);
+    }
+  },
 };
 
 const CLE_REPRISE = 'compte.repriseInvite';
@@ -41,8 +62,7 @@ export function useRepriseInviteEnCours(): boolean {
 }
 
 export async function progressionInviteeLocalePresente(): Promise<boolean> {
-  const cles = new Set(await AsyncStorage.getAllKeys());
-  return [
+  const cles = [
     'miniTest.resultat',
     'mission.historique',
     'mission.dernier',
@@ -51,8 +71,36 @@ export async function progressionInviteeLocalePresente(): Promise<boolean> {
     'entrainement.scores',
     'entrainement.exercicesFaits',
     'entrainement.sessions',
-    'profil.arrivee',
-  ].some((cle) => cles.has(cle));
+  ];
+  try {
+    const paires = await AsyncStorage.multiGet(cles);
+    for (const [cle, val] of paires) {
+      if (!val) continue;
+      try {
+        const parsed = JSON.parse(val);
+        if (!parsed) continue;
+        if (Array.isArray(parsed)) {
+          if (parsed.length > 0) return true;
+        } else if (typeof parsed === 'object') {
+          if (cle === 'miniTest.resultat') {
+            if (typeof (parsed as { total?: number }).total === 'number' && (parsed as { total: number }).total > 0) return true;
+          } else if (cle === 'entrainement.sessions') {
+            const sessions = Object.values(parsed);
+            if (sessions.some((s) => Array.isArray(s) && s.length > 0)) return true;
+          } else {
+            if (Object.keys(parsed).length > 0) return true;
+          }
+        }
+      } catch {
+        if (val.trim().length > 0 && val !== '[]' && val !== '{}' && val !== 'null') {
+          return true;
+        }
+      }
+    }
+  } catch {
+    return false;
+  }
+  return false;
 }
 
 export async function reprendreApresRedemarrage(compteId: string): Promise<boolean> {
@@ -121,6 +169,22 @@ export async function annulerOAuthRepriseInvite(): Promise<void> {
   }
 }
 
+/**
+ * État de reprise tel qu'il est rangé, sans exiger le jeton invité. Sert à distinguer « aucune reprise en
+ * attente » (l'écran de reprise n'a pas lieu d'être) d'une reprise bloquée parce que le jeton a disparu —
+ * `lireRepriseInvite()` renvoie `null` dans les deux cas, l'écran ne doit pas les traiter pareil.
+ */
+export async function lireEtatReprise(): Promise<EtatReprise | null> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_REPRISE);
+    if (!brut) return null;
+    const etat = JSON.parse(brut) as EtatReprise;
+    return etat && typeof etat.inviteId === 'string' ? etat : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function lireRepriseInvite(): Promise<RepriseInvite | null> {
   try {
     const brut = await AsyncStorage.getItem(CLE_REPRISE);
@@ -150,12 +214,12 @@ export async function verifierRepriseInvitee(
   client: Pick<SupabaseClient, 'functions'>,
   progressionLocale: boolean,
 ): Promise<boolean> {
-  const reprise = await lireRepriseInvite();
-  if (!reprise) throw new Error('La session invitée nécessaire à la reprise n’est plus disponible.');
+  const jeton = (await SecureStore.getItemAsync(CLE_JETON_INVITE)) ?? (await lireRepriseInvite())?.jetonRafraichissementInvite;
+  if (!jeton) throw new Error('La session invitée nécessaire à la reprise n’est plus disponible.');
   const { data, error } = await client.functions.invoke('transfer-guest-progress', {
     body: {
       action: 'verifier',
-      guest_refresh_token: reprise.jetonRafraichissementInvite,
+      guest_refresh_token: jeton,
       progression_locale: progressionLocale,
     },
   });

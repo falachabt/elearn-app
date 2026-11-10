@@ -1,0 +1,559 @@
+{
+ "cours": 5894,
+ "ecrans": {
+  "affixe": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "vecteurs"
+   },
+   "kicker": "Point image, vecteur image, affixe",
+   "tex": [
+    "M(a\\,;\\,b) \\longleftrightarrow z_M = a + ib",
+    "\\overrightarrow{OM} \\text{ a pour affixe } z",
+    "z_{\\overrightarrow{AB}} = z_B - z_A"
+   ],
+   "titre": "Un même nombre, un point et un vecteur",
+   "type": "etape"
+  },
+  "compositions": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Composer les réflexions",
+   "texte": "Deux réflexions composées fabriquent les autres isométries : axes parallèles, une translation ; axes sécants, une rotation du double de l'angle des axes.",
+   "type": "phrase"
+  },
+  "conjugue": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "symetrie_fig"
+   },
+   "kicker": "Le conjugué",
+   "note": "Géométrie : le conjugué est le symétrique de M par rapport à l'axe des réels.",
+   "tex": "\\overline{z} = a - ib",
+   "type": "formule"
+  },
+  "determination": {
+   "kicker": "Méthode · déterminer une similitude directe",
+   "tex": [
+    "a = \\tfrac{z'_B - z'_A}{z_B - z_A} \\qquad k = |a| \\qquad \\theta = \\arg(a)",
+    "b = z'_A - a z_A"
+   ],
+   "titre": "Deux points et leurs images suffisent",
+   "type": "etape"
+  },
+  "distances": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Distances et ensembles de points",
+   "note": "L'égalité |z − 2| = |z + 1| donne la médiatrice des points d'affixes 2 et −1 : x = 1/2.",
+   "tex": "AB = \\left|z_B - z_A\\right|",
+   "type": "formule"
+  },
+  "ecriture": {
+   "kicker": "Écriture algébrique",
+   "tex": [
+    "z = a + ib, \\qquad i^2 = -1",
+    "\\operatorname{Re}(z) = a \\qquad \\operatorname{Im}(z) = b",
+    "b = 0 : \\text{réel} \\qquad a = 0 : \\text{imaginaire pur}"
+   ],
+   "titre": "Deux réels et une unité imaginaire",
+   "type": "etape"
+  },
+  "equations": {
+   "kicker": "Équations du second degré dans les complexes",
+   "tex": [
+    "x^2 = a, \\ a < 0 : \\quad x = \\pm i\\sqrt{-a}",
+    "\\Delta < 0 : \\quad x = \\tfrac{-b \\pm i\\sqrt{4ac - b^2}}{2a}"
+   ],
+   "titre": "Un discriminant négatif donne deux solutions conjuguées",
+   "type": "etape"
+  },
+  "exemple_module": {
+   "kicker": "Exemple résolu · passer en forme exponentielle",
+   "tex": [
+    "z = 1 + i\\sqrt{3} \\qquad |z| = \\sqrt{1 + 3} = 2",
+    "\\cos\\theta = \\tfrac{1}{2} \\qquad \\sin\\theta = \\tfrac{\\sqrt{3}}{2}",
+    "\\theta = \\tfrac{\\pi}{3} \\qquad z = 2\\,e^{i\\pi/3}"
+   ],
+   "titre": "Module deux, argument pi sur trois",
+   "type": "etape"
+  },
+  "exemple_produit": {
+   "kicker": "Exemple résolu · produit et quotient polaires",
+   "tex": [
+    "z = 2\\,e^{i\\pi/3} \\qquad z' = e^{i\\pi/6}",
+    "zz' = 2\\,e^{i\\pi/2} = 2i",
+    "\\tfrac{z}{z'} = 2\\,e^{i\\pi/6} = \\sqrt{3} + i"
+   ],
+   "titre": "Les modules se multiplient, les angles s'ajoutent",
+   "type": "etape"
+  },
+  "exemple_rotation": {
+   "kicker": "Exemple résolu · quart de tour et centre quelconque",
+   "tex": [
+    "e^{i\\pi/2} = i \\qquad (1 + i) \\times i = -1 + i",
+    "\\text{centre } a : \\quad z' = e^{i\\theta}(z - a) + a"
+   ],
+   "titre": "Tourner autour de l'origine, puis autour d'un point",
+   "type": "etape"
+  },
+  "exemple_similitude": {
+   "kicker": "Exemple résolu · lire une similitude directe",
+   "tex": [
+    "z' = 2\\,e^{i\\pi/3} z + 1 + i",
+    "k = 2 \\qquad \\theta = \\tfrac{\\pi}{3} \\qquad \\text{translation } 1 + i",
+    "z' = (1 + i)z + 2 : \\quad k = \\sqrt{2}, \\ \\theta = \\tfrac{\\pi}{4}"
+   ],
+   "titre": "Rapport, angle et translation se lisent sur a et b",
+   "type": "etape"
+  },
+  "exemple_translation": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Exemple résolu · deux translations",
+   "tex": [
+    "w = 2 + 3i, \\ z = 1 + i : \\quad z' = 3 + 4i",
+    "w = -3 - i, \\ z = -1 + 2i : \\quad z' = -4 + i"
+   ],
+   "titre": "Ajouter l'affixe du vecteur, point par point",
+   "type": "etape"
+  },
+  "forme_polaire": {
+   "kicker": "Formes trigonométrique et exponentielle",
+   "note": "r : le module, θ : un argument. La forme exponentielle change les produits en additions d'angles.",
+   "tex": "z = r\\left(\\cos\\theta + i\\sin\\theta\\right) = r\\,e^{i\\theta}",
+   "type": "formule",
+   "anim": {
+    "nom": "plan_complexe_fig",
+    "hauteur": 170
+   }
+  },
+  "homothetie": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "L'homothétie",
+   "note": "k réel : distances multipliées par |k|, angles et orientation conservés.",
+   "tex": "z' = \\omega + k\\left(z - \\omega\\right)",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Introduction",
+   "texte": "Le plan complexe fait le pont entre algèbre et géométrie : chaque calcul sur les affixes décrit un déplacement, un retournement ou un agrandissement de figure.",
+   "type": "phrase"
+  },
+  "methode": {
+   "etapes": [
+    "Traduire points et vecteurs en affixes",
+    "Écrire la transformation : z vers z prime",
+    "Calculer dans les complexes, forme adaptée",
+    "Relire le résultat en géométrie du plan"
+   ],
+   "kicker": "Méthode de résolution",
+   "type": "recap"
+  },
+  "milieu_ex": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Exemple · vecteur et milieu",
+   "tex": [
+    "z_A = 3 + 2i \\qquad z_B = 5 - i",
+    "z_{\\overrightarrow{AB}} = (5 - i) - (3 + 2i) = 2 - 3i",
+    "z_I = \\tfrac{z_A + z_B}{2} = \\tfrac{8 + i}{2} = 4 + \\tfrac{i}{2}"
+   ],
+   "titre": "Deux points, un vecteur, un milieu",
+   "type": "etape"
+  },
+  "module_argument": {
+   "kicker": "Module et argument",
+   "tex": [
+    "|z| = \\sqrt{a^2 + b^2} = OM",
+    "\\cos\\theta = \\tfrac{a}{|z|} \\qquad \\sin\\theta = \\tfrac{b}{|z|}",
+    "\\theta = \\arg(z) \\pmod{2\\pi}"
+   ],
+   "titre": "Une longueur et un angle",
+   "type": "etape",
+   "anim": {
+    "nom": "plan_complexe_fig",
+    "hauteur": 120
+   }
+  },
+  "operations": {
+   "kicker": "Opérations et géométrie",
+   "tex": [
+    "(a + ib) + (c + id) = (a + c) + i(b + d)",
+    "|zz'| = |z|\\,|z'| \\qquad \\arg(zz') = \\arg(z) + \\arg(z')",
+    "\\left|\\tfrac{z}{z'}\\right| = \\tfrac{|z|}{|z'|} \\qquad \\arg\\left(\\tfrac{z}{z'}\\right) = \\arg(z) - \\arg(z')"
+   ],
+   "titre": "Addition vectorielle, produit tournant",
+   "type": "etape"
+  },
+  "probleme_composee": {
+   "kicker": "Problème résolu · rotation puis homothétie",
+   "tex": [
+    "2\\,e^{i\\pi/3} = 1 + i\\sqrt{3}",
+    "A' : (1 + i\\sqrt{3})(2 + i) = (2 - \\sqrt{3}) + i(1 + 2\\sqrt{3})",
+    "B' : (1 + i\\sqrt{3})(1 - 2i) = (1 + 2\\sqrt{3}) + i(\\sqrt{3} - 2)"
+   ],
+   "titre": "Un seul coefficient : deux fois l'exponentielle de i pi sur trois",
+   "type": "etape"
+  },
+  "probleme_intersection": {
+   "kicker": "Problème résolu · une droite rencontre un cercle",
+   "tex": [
+    "A = 1 + i, \\ B = 3 - i : \\quad \\tfrac{z - z_A}{z_B - z_A} \\in \\mathbb{R}",
+    "\\text{cercle} : \\quad |z| = 2",
+    "\\text{intersections} : \\quad z = 2 \\ \\text{et} \\ z = 2i"
+   ],
+   "titre": "Traduire la droite et le cercle en affixes",
+   "type": "etape"
+  },
+  "probleme_triangle": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Problème résolu · l'image d'un triangle",
+   "tex": [
+    "T(z) = iz + 1",
+    "A(1) \\to 1 + i \\qquad B(2 + i) \\to 2i",
+    "C(2i) \\to -1"
+   ],
+   "titre": "Appliquer la transformation sommet par sommet",
+   "type": "etape"
+  },
+  "racines": {
+   "kicker": "Racines n-ièmes",
+   "tex": [
+    "Z = \\Phi\\,e^{i\\alpha} \\qquad z^n = Z",
+    "|z| = \\sqrt[n]{\\Phi} \\qquad \\arg(z) = \\tfrac{\\alpha}{n} + \\tfrac{2k\\pi}{n}",
+    "k = 0, 1, \\ldots, n-1 : \\ n \\text{ racines}"
+   ],
+   "titre": "Un module à la racine, un angle partagé",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "z = a + ib : partie réelle a, imaginaire b",
+    "Point M(a, b) et vecteur OM : même affixe",
+    "Module : |z| = OM, argument : l'angle thêta",
+    "Produit : modules multipliés, angles ajoutés",
+    "Conjugué : symétrique sur l'axe des réels"
+   ],
+   "kicker": "Rappel · les outils du plan complexe",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Translation : z prime = z + w",
+    "Rotation : multiplier par e puissance i thêta",
+    "Réflexion : z prime = conjugué de z",
+    "Directe : z prime = az + b, |a| rapport",
+    "Indirecte : le conjugué renverse le sens"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "reflexion": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "symetrie_fig"
+   },
+   "kicker": "Isométries · la réflexion",
+   "tex": [
+    "\\text{axe des réels} : \\quad z' = \\overline{z}",
+    "M(2\\,;\\,3) \\longrightarrow M'(2\\,;\\,-3)",
+    "\\text{deux fois la même réflexion} = \\text{identité}"
+   ],
+   "titre": "Le miroir renverse l'orientation",
+   "type": "etape"
+  },
+  "rotation": {
+   "kicker": "Isométries · la rotation autour de l'origine",
+   "note": "Multiplier par e^{iθ} ajoute θ à l'argument, module inchangé : la distance à O est conservée.",
+   "tex": "z' = z\\,e^{i\\theta}",
+   "type": "formule",
+   "anim": {
+    "nom": "plan_complexe_fig",
+    "hauteur": 170
+   }
+  },
+  "similitude_directe": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Similitudes directes",
+   "note": "Tout se lit sur a : |a| est le rapport, arg(a) l'angle ; ajouter b translate.",
+   "tex": "z' = az + b, \\qquad a \\neq 0",
+   "type": "formule"
+  },
+  "similitude_indirecte": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "symetrie_fig"
+   },
+   "kicker": "Similitudes indirectes",
+   "note": "Le conjugué renverse l'orientation : a = 1, b = 0 redonne la réflexion sur l'axe réel.",
+   "tex": "z' = a\\overline{z} + b, \\qquad a \\neq 0",
+   "type": "formule"
+  },
+  "symetrie_centrale": {
+   "kicker": "Isométries · la symétrie centrale",
+   "note": "ω : affixe du centre. Autour de l'origine, z devient −z : la rotation d'angle π, directe.",
+   "tex": "z' = 2\\omega - z",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "symetrie_fig"
+   },
+   "kicker": "Mathématique · Nombres complexes et transformations",
+   "sous": "Un nombre devient un point, une formule devient un mouvement : translations, rotations, réflexions et similitudes lues dans les affixes",
+   "titre": "Le plan complexe : affixes, isométries et similitudes",
+   "type": "titre"
+  },
+  "translation": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Isométries · la translation",
+   "note": "w est l'affixe du vecteur de translation : translater, c'est ajouter la même affixe à tous les points.",
+   "tex": "z' = z + w",
+   "type": "formule"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Affixe, module et argument : le nombre devient un point"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : les opérations deviennent des mouvements, et les isométries entrent en scène. Nous lirons l'addition comme une somme de vecteurs et le produit comme une rotation dilatée, puis nous écrirons chaque isométrie dans les affixes : la translation qui ajoute, la rotation qui multiplie, la réflexion qui conjugue et la symétrie centrale.",
+    "texte": "Partie 2 : opérations géométriques et isométries, lues dans les affixes."
+   },
+   "sous_titre": "Opérations géométriques et isométries : ajouter, tourner, réfléchir"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : les similitudes et les problèmes. Après l'homothétie, nous lirons les similitudes directes et indirectes dans leur coefficient unique, nous apprendrons à les déterminer par deux points et leurs images, puis nous résoudrons trois problèmes complets de géométrie plane avec les seuls affixes.",
+    "texte": "Partie 3 : homothétie, similitudes et trois problèmes résolus."
+   },
+   "sous_titre": "Similitudes directes et indirectes, et problèmes de géométrie"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré au plan complexe et aux transformations du plan. Un nombre complexe n'est pas seulement un calcul : c'est un point, un vecteur, et les formules qui le transforment décrivent des mouvements de figures. Nous poserons d'abord l'écriture algébrique, l'affixe, le module et l'argument, puis nous lirons les isométries et les similitudes directement dans les affixes, jusqu'à résoudre des problèmes de géométrie plane.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Un nombre, un point, un mouvement : le plan complexe."
+  },
+  {
+   "dit": "Le fil rouge du cours est simple : l'algèbre des complexes et la géométrie du plan se répondent point par point. Additionner deux affixes, c'est composer deux vecteurs. Multiplier par un complexe, c'est tourner et dilater. Prendre le conjugué, c'est traverser un miroir. Chaque notion algébrique aura donc son image géométrique, et chaque problème de géométrie pourra se traduire en un calcul, souvent plus court que la figure.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Chaque calcul sur les affixes décrit un mouvement."
+  },
+  {
+   "dit": "Tout commence par un manque : aucune solution réelle pour l'équation ixe au carré plus un égale zéro. On invente alors une unité imaginaire, notée i, dont le carré vaut moins un. Un nombre complexe s'écrit zède égale a plus i bé, où a est la partie réelle et bé la partie imaginaire, deux nombres réels. Si bé est nul, le complexe est un réel ; si a est nul, c'est un imaginaire pur. Cette écriture est unique : un complexe, c'est exactement un couple de réels.",
+   "ecran": "ecriture",
+   "id": "p03",
+   "texte": "z = a + ib, avec i² = −1 : un couple de réels."
+  },
+  {
+   "dit": "Plaçons ce nombre dans un plan muni d'un repère orthonormé. Au complexe zède, on associe le point M de coordonnées a et bé : c'est le point image. Le même nombre est aussi l'affixe du vecteur O M, son vecteur image. Réciproquement, tout point et tout vecteur reçoit une affixe unique. Premier outil : l'affixe du vecteur A B est la différence des affixes, zède de B moins zède de A. Les réels vivent sur l'axe des abscisses, les imaginaires purs sur l'axe des ordonnées.",
+   "ecran": "affixe",
+   "id": "p04",
+   "texte": "M(a, b) ↔ z : le point image et le vecteur OM."
+  },
+  {
+   "dit": "Exemple immédiat : A a pour affixe trois plus deux i, et B cinq moins i. L'affixe du vecteur A B vaut cinq moins i, moins trois plus deux i, soit deux moins trois i : on lit le déplacement horizontal et le déplacement vertical. Le milieu I du segment A B a pour affixe la demi-somme des affixes : huit plus i, le tout divisé par deux, soit quatre plus i sur deux. Retenez le réflexe : milieu égale demi-somme, jamais demi-différence.",
+   "ecran": "milieu_ex",
+   "id": "p05",
+   "texte": "Vecteur AB : 2 − 3i · milieu I : 4 + i/2."
+  },
+  {
+   "dit": "Le conjugué de zède, noté zède barre, change le signe de la partie imaginaire : a plus i bé devient a moins i bé. Géométriquement, le point image du conjugué est le symétrique du point de départ par rapport à l'axe des réels : le conjugué est déjà une transformation. Deux identités servent partout : zède plus son conjugué vaut deux fois sa partie réelle, et zède fois son conjugué vaut a au carré plus bé au carré, donc le module au carré.",
+   "ecran": "conjugue",
+   "id": "p06",
+   "texte": "Le conjugué : le symétrique par rapport à l'axe réel."
+  },
+  {
+   "dit": "Le module de zède est la distance de l'origine au point M : racine carrée de a au carré plus bé au carré, par le théorème de Pythagore. L'argument est l'angle entre l'axe des réels et le vecteur O M, défini modulo deux pi : le cosinus de cet angle est a divisé par le module, le sinus est bé divisé par le module. Un complexe non nul est donc entièrement décrit par une longueur et un angle : c'est la porte d'entrée des rotations.",
+   "ecran": "module_argument",
+   "id": "p07",
+   "texte": "Module = longueur OM, argument = angle θ."
+  },
+  {
+   "dit": "Avec le module, noté ère, et un argument, noté thêta, le complexe s'écrit sous forme trigonométrique : ère fois cosinus thêta plus i sinus thêta. La formule d'Euler condense cette écriture en forme exponentielle : ère fois exponentielle de i thêta. Cette écriture est la plus efficace dès qu'il faut multiplier, diviser ou élever à une puissance, car elle transforme ces opérations en additions et soustractions d'angles.",
+   "ecran": "forme_polaire",
+   "id": "p08",
+   "texte": "z = r(cos θ + i sin θ) = r·e^{iθ}."
+  },
+  {
+   "dit": "Exemple résolu : mettons zède égale un plus i racine de trois sous forme exponentielle. Son module vaut racine de un plus trois, soit deux. Son argument vérifie : cosinus égal à un demi, sinus égal à racine de trois sur deux, donc thêta vaut pi sur trois. Conclusion : zède égale deux fois exponentielle de i pi sur trois. La méthode est toujours la même : calculer le module, puis reconnaître l'angle grâce à son cosinus et à son sinus réunis, jamais à l'un des deux seul.",
+   "ecran": "exemple_module",
+   "id": "p09",
+   "texte": "1 + i√3 = 2·e^{iπ/3} : module, puis angle."
+  },
+  {
+   "dit": "Les complexes résolvent aussi les équations qui bloquaient dans les réels. L'équation ixe au carré égale a, avec a négatif, admet deux solutions complexes opposées : plus ou moins i fois racine de moins a. Et une équation du second degré à coefficients réels dont le discriminant est négatif admet deux solutions complexes conjuguées l'une de l'autre, où la racine porte sur moins le discriminant. Conjuguées : le conjugué réapparaît, comme prévu par la symétrie du problème.",
+   "ecran": "equations",
+   "id": "p10",
+   "texte": "Δ < 0 : deux solutions complexes conjuguées."
+  },
+  {
+   "dit": "Dernier outil de ce socle : les racines n-ièmes. Chercher les nombres dont la puissance n donne un complexe donné, écrit sous forme exponentielle, se fait en deux gestes : le module de chaque racine est la racine n-ième du module, et son argument est l'argument de départ divisé par n, augmenté des multiples de deux pi sur n. On obtient exactement n racines distinctes, régulièrement réparties sur un cercle : encore une figure que le calcul dessine tout seul.",
+   "ecran": "racines",
+   "id": "p11",
+   "texte": "n racines : module ^{1/n}, angles partagés en n."
+  },
+  {
+   "dit": "Passons aux opérations, lues géométriquement. L'addition se fait partie par partie et correspond à la somme des vecteurs images : le point image de la somme est le quatrième sommet du parallélogramme. La multiplication est plus riche : le module du produit est le produit des modules, et l'argument du produit est la somme des arguments. Multiplier par un complexe, c'est donc appliquer une homothétie et une rotation à la fois. Pour le quotient, les modules se divisent et les arguments se retranchent.",
+   "ecran": "operations",
+   "id": "p12",
+   "texte": "Produit : modules ×, arguments + — rotation et dilatation."
+  },
+  {
+   "dit": "Vérifions sur un exemple entièrement polaire : zède vaut deux fois exponentielle de i pi sur trois, et zède prime exponentielle de i pi sur six. Le produit a pour module deux et pour argument pi sur trois plus pi sur six, soit pi sur deux : le produit vaut deux i, un imaginaire pur, comme l'annonce un angle droit. Le quotient a pour module deux et pour argument pi sur six : il vaut racine de trois plus i. Aucune forme algébrique à développer : les angles ont tout fait.",
+   "ecran": "exemple_produit",
+   "id": "p13",
+   "texte": "Produit : 2i · quotient : √3 + i, par les angles seuls."
+  },
+  {
+   "dit": "Le module mesure aussi les distances entre deux points : la distance A B est le module de la différence des affixes. Cette lecture transforme les ensembles de points en équations : être à égale distance du point d'affixe deux et du point d'affixe moins un, c'est vérifier que le module de zède moins deux égale le module de zède plus un. L'ensemble cherché est la médiatrice des deux points, ici la droite verticale d'abscisse un demi.",
+   "ecran": "distances",
+   "id": "p14",
+   "texte": "AB = |zB − zA| : les distances deviennent des modules."
+  },
+  {
+   "dit": "Récapitulons les outils avant de transformer les figures. Un complexe est un couple de réels, donc un point et un vecteur du plan complexe. Son module est la distance à l'origine, son argument l'angle du vecteur image, et sa forme exponentielle rend les produits presque immédiats. Le conjugué est le symétrique par rapport à l'axe des réels, et les distances entre points sont des modules de différences. Tout est prêt pour les isométries.",
+   "ecran": "recap1",
+   "id": "p15",
+   "texte": "Rappel : affixe, module, argument, conjugué."
+  },
+  {
+   "dit": "Une isométrie est une transformation qui conserve les distances. La plus simple est la translation : chaque point glisse du même vecteur. Si ce vecteur a pour affixe doublevé, l'image d'un point d'affixe zède a pour affixe zède plus doublevé. Rien d'autre : translater, c'est ajouter. Aucun point n'est fixe, l'orientation est conservée, et la composée de deux translations est la translation de vecteur somme.",
+   "ecran": "translation",
+   "id": "p16",
+   "texte": "Translation : z' = z + w, ajouter l'affixe du vecteur."
+  },
+  {
+   "dit": "Deux applications pour ancrer la formule. Par la translation de vecteur d'affixe deux plus trois i, le point d'affixe un plus i devient trois plus quatre i : deux unités vers la droite, trois vers le haut, exactement le vecteur annoncé. Par la translation de vecteur d'affixe moins trois moins i, le point d'affixe moins un plus deux i devient moins quatre plus i. Le calcul est une simple addition, partie réelle avec partie réelle, partie imaginaire avec partie imaginaire.",
+   "ecran": "exemple_translation",
+   "id": "p17",
+   "texte": "1 + i → 3 + 4i · −1 + 2i → −4 + i."
+  },
+  {
+   "dit": "La rotation fait tourner chaque point autour d'un centre fixe, d'un même angle. Autour de l'origine, son écriture complexe est d'une élégance totale : l'image de zède est zède multiplié par exponentielle de i thêta. Pourquoi ? Parce que multiplier ajoute thêta à l'argument sans toucher au module : le point reste sur son cercle, décalé de l'angle voulu. C'est la multiplication par un complexe de module un, et rien d'autre.",
+   "ecran": "rotation",
+   "id": "p18",
+   "texte": "Rotation d'angle θ autour de O : z' = z·e^{iθ}."
+  },
+  {
+   "dit": "Exemple : le quart de tour direct correspond à exponentielle de i pi sur deux, c'est-à-dire i. Le point d'affixe un plus i devient un plus i, multiplié par i, soit moins un plus i : le point de coordonnées un et un passe en moins un et un, un quart de tour autour de l'origine. Pour un centre quelconque, d'affixe a, on translate le centre à l'origine, on tourne, puis on revient : zède prime égale exponentielle de i thêta, fois zède moins a, plus a.",
+   "ecran": "exemple_rotation",
+   "id": "p19",
+   "texte": "(1 + i) × i = −1 + i : le quart de tour, vérifié."
+  },
+  {
+   "dit": "La réflexion est le symétrique par rapport à une droite, l'effet miroir. Par rapport à l'axe des réels, elle envoie chaque point sur le point image de son conjugué : deux points de coordonnées deux et trois, et deux et moins trois, se répondent. Une réflexion conserve les distances et la valeur absolue des angles, mais renverse l'orientation : une figure directe devient indirecte. Appliquée deux fois, elle redonne le point de départ : c'est une involution.",
+   "ecran": "reflexion",
+   "id": "p20",
+   "texte": "Réflexion sur l'axe réel : z' = conjugué de z."
+  },
+  {
+   "dit": "La symétrie centrale est le symétrique par rapport à un point, le centre. Si le centre a pour affixe oméga, il doit être le milieu du segment joignant un point à son image : l'image de zède a donc pour affixe deux oméga moins zède. Autour de l'origine, zède devient simplement moins zède : le point de coordonnées deux et trois passe en moins deux et moins trois. Attention à la classification : c'est aussi la rotation d'angle pi, donc une transformation directe, pas un effet miroir.",
+   "ecran": "symetrie_centrale",
+   "id": "p21",
+   "texte": "Symétrie de centre ω : z' = 2ω − z, une rotation de π."
+  },
+  {
+   "dit": "Les réflexions fabriquent les autres isométries par composition. Deux réflexions d'axes parallèles composées donnent une translation, dont le vecteur vaut deux fois la distance entre les axes, perpendiculairement à eux. Deux réflexions d'axes sécants donnent une rotation, centrée au point d'intersection et d'angle double de l'angle des axes. Deux réflexions d'axes perpendiculaires donnent même une symétrie centrale. Le miroir, répété, engendre tous les déplacements du plan.",
+   "ecran": "compositions",
+   "id": "p22",
+   "texte": "Deux miroirs : une translation ou une rotation."
+  },
+  {
+   "dit": "Élargissons : l'homothétie de centre oméga et de rapport ka multiplie toutes les distances par la valeur absolue de ka. Son écriture complexe ramène au centre : l'image de zède est oméga, plus ka fois zède moins oméga. Autour de l'origine, elle se réduit à multiplier par ka. Une homothétie conserve les angles et l'orientation, mais pas les distances, sauf si le rapport vaut un ou moins un : ce n'est plus une isométrie, c'est la brique des similitudes.",
+   "ecran": "homothetie",
+   "id": "p23",
+   "texte": "Homothétie : distances × |k|, angles conservés."
+  },
+  {
+   "dit": "Une similitude directe conserve les angles et l'orientation, et multiplie toutes les distances par un même rapport positif, son rapport de similitude. Son écriture complexe tient en une ligne : zède prime égale a zède plus bé, avec a non nul. Tout se lit sur a : son module est le rapport, son argument est l'angle de la rotation cachée dans la transformation. Ajouter bé translate. Si le module de a vaut un, la similitude est une isométrie directe : une rotation, une translation, ou les deux composées.",
+   "ecran": "similitude_directe",
+   "id": "p24",
+   "texte": "z' = az + b : |a| rapport, arg(a) angle."
+  },
+  {
+   "dit": "Lisons deux exemples. La transformation qui envoie zède sur deux fois exponentielle de i pi sur trois, fois zède, plus un plus i, combine une homothétie de rapport deux, une rotation d'angle pi sur trois et la translation de vecteur d'affixe un plus i. Autre lecture : un plus i, fois zède, plus deux. Le module de un plus i est racine de deux, son argument pi sur quatre : rapport racine de deux, rotation d'un huitième de tour, puis translation de deux unités vers la droite.",
+   "ecran": "exemple_similitude",
+   "id": "p25",
+   "texte": "Lire a : rapport √2 et angle π/4 pour (1 + i)z + 2."
+  },
+  {
+   "dit": "Méthode d'examen : déterminer une similitude directe par les images de deux points distincts. On forme le quotient de la différence des images par la différence des points : c'est le coefficient a, dont le module donne le rapport et l'argument donne l'angle. Puis bé s'obtient en écrivant que le premier point part bien sur sa propre image : bé égale l'affixe de l'image, moins a fois l'affixe du point. Deux points suffisent, car une similitude directe est entièrement déterminée par leurs images.",
+   "ecran": "determination",
+   "id": "p26",
+   "texte": "a = (z'B − z'A)/(zB − zA), puis b = z'A − a·zA."
+  },
+  {
+   "dit": "Reste la famille indirecte : les similitudes qui renversent l'orientation, comme un miroir qui agrandirait ou réduirait en même temps. Leur écriture complexe fait intervenir le conjugué : zède prime égale a fois zède barre, plus bé. Ce seul conjugué explique le renversement. Cas particuliers : avec a égal à un et bé nul, on retrouve la réflexion par rapport à l'axe des réels ; composer une telle similitude avec une réflexion redonne une similitude directe.",
+   "ecran": "similitude_indirecte",
+   "id": "p27",
+   "texte": "Indirecte : z' = a·conjugué de z + b, sens renversé."
+  },
+  {
+   "dit": "Problème résolu : l'image d'un triangle par la transformation qui envoie zède sur i zède plus un. C'est une rotation de quart de tour autour de l'origine, suivie d'une translation d'une unité vers la droite. Sommet par sommet : A, d'affixe un, devient un plus i. B, d'affixe deux plus i, devient deux i. C, d'affixe deux i, devient moins un. Le triangle image se calcule sommet par sommet, sans tracer une seule figure auxiliaire.",
+   "ecran": "probleme_triangle",
+   "id": "p28",
+   "texte": "T(z) = iz + 1 : A → 1 + i, B → 2i, C → −1."
+  },
+  {
+   "dit": "Problème résolu : une rotation d'angle pi sur trois autour de l'origine, suivie d'une homothétie de rapport deux, appliquée aux points A d'affixe deux plus i et B d'affixe un moins deux i. Rotation et homothétie de même centre se fusionnent en un seul coefficient : deux fois exponentielle de i pi sur trois, soit un plus i racine de trois. L'image de A vaut deux moins racine de trois, plus i fois un plus deux racines de trois. L'image de B vaut un plus deux racines de trois, plus i fois racine de trois moins deux.",
+   "ecran": "probleme_composee",
+   "id": "p29",
+   "texte": "Coefficient unique 1 + i√3 : A' et B' calculés."
+  },
+  {
+   "dit": "Dernier problème : l'intersection de la droite passant par A d'affixe un plus i et B d'affixe trois moins i, avec le cercle de centre l'origine et de rayon deux. La droite se traduit par une condition : le quotient de zède moins zède de A, par zède de B moins zède de A, est un réel. Le cercle se traduit par module de zède égal à deux. En résolvant le système, on trouve deux points d'intersection : celui d'affixe deux, et celui d'affixe deux i, tous deux sur le cercle et alignés avec A et B.",
+   "ecran": "probleme_intersection",
+   "id": "p30",
+   "texte": "Droite AB ∩ cercle |z| = 2 : les points 2 et 2i."
+  },
+  {
+   "dit": "La méthode générale tient en quatre gestes. D'abord, traduire : chaque point devient une affixe, chaque vecteur une différence d'affixes. Ensuite, écrire la transformation sous sa forme complexe, en lisant rapport et angle sur le coefficient. Puis calculer dans les complexes, en choisissant la forme, algébrique ou exponentielle, qui rend le calcul le plus court. Enfin, relire le résultat dans le plan : une affixe obtenue doit toujours se raconter en position, en distance ou en angle.",
+   "ecran": "methode",
+   "id": "p31",
+   "texte": "Traduire, écrire, calculer, relire dans le plan."
+  },
+  {
+   "dit": "Pour conclure : le plan complexe transforme la géométrie en algèbre lisible. Ajouter, c'est translater ; multiplier par une exponentielle, c'est tourner ; conjuguer, c'est réfléchir ; multiplier par un complexe quelconque, c'est appliquer une similitude directe, et le conjugué dans la formule signale une similitude indirecte. Gardez la table de correspondance sous les yeux : à chaque épreuve, la première question à se poser est simplement quelle transformation se cache derrière la formule.",
+   "ecran": "recap_final",
+   "id": "p32",
+   "texte": "À chaque formule sa transformation : la table finale."
+  }
+ ],
+ "titre": "Le plan complexe : affixes, isométries et similitudes"
+}

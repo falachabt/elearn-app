@@ -1,0 +1,371 @@
+{
+  "cours": 7303,
+  "titre": "Systèmes d'équations linéaires : substitution et combinaison",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Algèbre",
+      "titre": "Systèmes d'équations linéaires : substitution et combinaison",
+      "sous": "Deux équations, deux inconnues : isoler, éliminer, et lire la solution sur deux droites",
+      "anim": {
+        "nom": "droites_trois_cas_fig",
+        "hauteur": 250
+      }
+    },
+    "objectifs": {
+      "type": "phrase",
+      "kicker": "Objectifs du cours",
+      "texte": "Reconnaître, résoudre, choisir la méthode, interpréter.",
+      "anim": {
+        "nom": "droites_trois_cas_fig",
+        "hauteur": 150
+      }
+    },
+    "def_systeme": {
+      "type": "formule",
+      "kicker": "Définition · le système",
+      "tex": "\\begin{cases} ax + by = c \\\\ a'x + b'y = c' \\end{cases}",
+      "note": "a, b, c, a', b', c' : des réels donnés ; x et y : les inconnues"
+    },
+    "solution": {
+      "type": "phrase",
+      "kicker": "Solution et résolution",
+      "texte": "Un couple (x ; y) qui vérifie les deux équations à la fois.",
+      "anim": {
+        "nom": "droites_trois_cas_fig",
+        "hauteur": 150
+      }
+    },
+    "cas": {
+      "type": "etape",
+      "kicker": "Les trois cas graphiques",
+      "titre": "Deux droites dans le plan : trois rencontres possibles",
+      "tex": [
+        "\\text{sécantes : une solution unique}",
+        "\\text{parallèles distinctes : aucune solution}",
+        "\\text{confondues : une infinité de solutions}"
+      ],
+      "anim": {
+        "nom": "droites_trois_cas_fig",
+        "hauteur": 130
+      }
+    },
+    "transition": {
+      "type": "phrase",
+      "kicker": "Deux méthodes algébriques",
+      "texte": "Substitution : remplacer. Combinaison : éliminer.",
+      "anim": {
+        "nom": "droites_trois_cas_fig",
+        "hauteur": 150
+      }
+    },
+    "subst_principe": {
+      "type": "phrase",
+      "kicker": "Substitution · le principe",
+      "texte": "Exprimer une inconnue en fonction de l'autre, puis remplacer.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 150
+      }
+    },
+    "subst_etapes": {
+      "type": "etape",
+      "kicker": "Substitution · les étapes",
+      "titre": "Isoler, substituer, résoudre, calculer",
+      "tex": [
+        "\\text{1. isoler une inconnue}",
+        "\\text{2. substituer dans l'autre équation}",
+        "\\text{3. résoudre à une inconnue}",
+        "\\text{4. calculer la seconde inconnue}"
+      ]
+    },
+    "ex_subst_enonce": {
+      "type": "formule",
+      "kicker": "Exemple · substitution",
+      "tex": "\\begin{cases} 2x + y = 7 \\quad (1) \\\\ x - 3y = -7 \\quad (2) \\end{cases}",
+      "note": "Le coefficient de y vaut 1 dans (1) : y s'isole sans fraction"
+    },
+    "ex_subst_calc": {
+      "type": "etape",
+      "kicker": "Exemple · substitution",
+      "titre": "On remplace y par sept moins deux x",
+      "tex": [
+        "y = 7 - 2x",
+        "x - 3(7 - 2x) = -7",
+        "x - 21 + 6x = -7 \\qquad 7x = 14"
+      ]
+    },
+    "ex_subst_fin": {
+      "type": "etape",
+      "kicker": "Exemple · substitution",
+      "titre": "La seconde inconnue suit aussitôt",
+      "tex": [
+        "x = 2",
+        "y = 7 - 2 \\times 2 = 3 \\qquad S = \\{(2\\,;\\,3)\\}"
+      ]
+    },
+    "verif_subst": {
+      "type": "etape",
+      "kicker": "Le réflexe · vérifier",
+      "titre": "Vérification du couple (2 ; 3)",
+      "tex": [
+        "2 \\times 2 + 3 = 7",
+        "2 - 3 \\times 3 = -7"
+      ]
+    },
+    "comb_etapes": {
+      "type": "etape",
+      "kicker": "Combinaison linéaire · les étapes",
+      "titre": "Éliminer au lieu de remplacer",
+      "tex": [
+        "\\text{1. choisir l'inconnue à éliminer}",
+        "\\text{2. rendre ses coefficients opposés}",
+        "\\text{3. additionner membre à membre}",
+        "\\text{4. résoudre, puis calculer l'autre}"
+      ]
+    },
+    "ex_comb_enonce": {
+      "type": "formule",
+      "kicker": "Exemple · combinaison",
+      "tex": "\\begin{cases} 3x + 2y = 12 \\quad (1) \\\\ 5x - 2y = 4 \\quad (2) \\end{cases}",
+      "note": "Coefficients de y déjà opposés : +2 et −2"
+    },
+    "ex_comb_calc": {
+      "type": "etape",
+      "kicker": "Exemple · combinaison",
+      "titre": "On additionne (1) et (2) : les y disparaissent",
+      "tex": [
+        "3x + 5x = 8x \\qquad 2y - 2y = 0",
+        "8x = 16",
+        "x = 2"
+      ]
+    },
+    "ex_comb_fin": {
+      "type": "etape",
+      "kicker": "Exemple · combinaison",
+      "titre": "On remplace x dans la première équation",
+      "tex": [
+        "3 \\times 2 + 2y = 12",
+        "2y = 6 \\qquad y = 3 \\qquad S = \\{(2\\,;\\,3)\\}"
+      ]
+    },
+    "verif_comb": {
+      "type": "etape",
+      "kicker": "Le réflexe · vérifier",
+      "titre": "Vérification des deux équations",
+      "tex": [
+        "3 \\times 2 + 2 \\times 3 = 12",
+        "5 \\times 2 - 2 \\times 3 = 4"
+      ]
+    },
+    "graphique": {
+      "type": "phrase",
+      "kicker": "Lecture graphique",
+      "texte": "La solution : le point d'intersection des deux droites.",
+      "anim": {
+        "nom": "droites_trois_cas_fig",
+        "hauteur": 170
+      }
+    },
+    "confondues_enonce": {
+      "type": "formule",
+      "kicker": "Cas limite · droites confondues",
+      "tex": "\\begin{cases} x + y = 3 \\\\ 2x + 2y = 6 \\end{cases}",
+      "note": "La seconde équation est le double de la première"
+    },
+    "confondues": {
+      "type": "etape",
+      "kicker": "Cas limite · résolution",
+      "titre": "Une même droite, une infinité de couples",
+      "tex": [
+        "2x + 2y = 6 \\text{ : double de } x + y = 3",
+        "S = \\{(x\\,;\\,3 - x),\\ x \\in \\mathbb{R}\\}"
+      ]
+    },
+    "choix": {
+      "type": "phrase",
+      "kicker": "Choisir sa méthode",
+      "texte": "Coefficient 1 ou −1 : substitution. Sinon : combinaison.",
+      "anim": {
+        "nom": "droites_trois_cas_fig",
+        "hauteur": 140
+      }
+    },
+    "choix_tableau": {
+      "type": "etape",
+      "kicker": "Choisir sa méthode",
+      "titre": "Le réflexe selon les coefficients",
+      "tex": [
+        "\\text{coefficient } 1 \\text{ ou } -1 \\text{ : substitution}",
+        "\\text{coeffs opposés ou égaux : combinaison}",
+        "\\text{coeffs quelconques : combinaison}"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "0, 1 ou une infinité de solutions",
+        "Substitution : isoler, puis remplacer",
+        "Combinaison : éliminer une inconnue",
+        "Solution : point commun aux deux droites",
+        "Vérifier dans les deux équations"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux systèmes de deux équations linéaires à deux inconnues. Deux méthodes pour les résoudre, la substitution et la combinaison linéaire, et une lecture graphique en termes de droites.",
+      "texte": "Systèmes linéaires : substitution et combinaison.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "À la fin de ce cours, vous saurez reconnaître un système linéaire, dire ce que signifie le résoudre, choisir entre la substitution et la combinaison, et interpréter la solution comme le point de rencontre de deux droites.",
+      "texte": "Objectif : résoudre et interpréter graphiquement.",
+      "ecran": "objectifs"
+    },
+    {
+      "id": "p03",
+      "dit": "Un système d'équations linéaires est un ensemble de deux équations du premier degré aux deux inconnues x et y, que l'on doit vérifier en même temps. Les coefficients sont des nombres réels donnés, écrits ici avec des lettres.",
+      "texte": "Deux équations du premier degré, à vérifier ensemble.",
+      "ecran": "def_systeme"
+    },
+    {
+      "id": "p04",
+      "dit": "Un couple de nombres est solution du système quand il satisfait les deux équations à la fois. Résoudre le système, c'est trouver tous ces couples. Graphiquement, chaque équation est une droite, et une solution est un point commun aux deux droites.",
+      "texte": "Solution : un couple pour les deux équations.",
+      "ecran": "solution"
+    },
+    {
+      "id": "p05",
+      "dit": "Trois cas seulement peuvent se présenter. Les droites sont sécantes et se coupent en un point : une solution unique. Elles sont parallèles et distinctes : aucune solution. Elles sont confondues : une infinité de solutions, tous les points de la droite.",
+      "texte": "Sécantes, parallèles, confondues : trois cas.",
+      "ecran": "cas"
+    },
+    {
+      "id": "p06",
+      "dit": "Pour trouver ces solutions sans dessin, deux méthodes algébriques se complètent. La substitution isole une inconnue et la remplace. La combinaison élimine une inconnue en additionnant les équations. Commençons par la substitution.",
+      "texte": "Deux méthodes : remplacer ou éliminer.",
+      "ecran": "transition"
+    },
+    {
+      "id": "p07",
+      "dit": "Le principe de la substitution est simple. À partir d'une des deux équations, on exprime une inconnue en fonction de l'autre. Puis on remplace cette expression dans la seconde équation, qui ne contient alors plus qu'une seule inconnue.",
+      "texte": "Principe : une inconnue en fonction de l'autre.",
+      "ecran": "subst_principe"
+    },
+    {
+      "id": "p08",
+      "dit": "La méthode suit quatre étapes. D'abord, isoler une inconnue dans une équation, celle dont le coefficient est le plus simple. Ensuite, substituer son expression dans l'autre équation. Puis résoudre l'équation à une inconnue obtenue. Enfin, calculer la seconde inconnue.",
+      "texte": "Quatre étapes : isoler, substituer, résoudre, calculer.",
+      "ecran": "subst_etapes"
+    },
+    {
+      "id": "p09",
+      "dit": "Premier exemple, résolu par substitution. Le système oppose deux x plus y égale sept, et x moins trois y égale moins sept. Dans la première équation, le coefficient de y vaut un : y s'isole immédiatement, sans fraction.",
+      "texte": "Exemple : 2x + y = 7 et x − 3y = −7.",
+      "ecran": "ex_subst_enonce"
+    },
+    {
+      "id": "p10",
+      "dit": "De la première équation, on tire y égale sept moins deux x. On remplace y par cette expression dans la seconde : x moins trois fois sept moins deux x, égale moins sept. En développant, x moins vingt et un plus six x égale moins sept, donc sept x égale quatorze.",
+      "texte": "Substitution : 7x = 14 après développement.",
+      "ecran": "ex_subst_calc"
+    },
+    {
+      "id": "p11",
+      "dit": "On obtient x égale deux. On revient alors à l'expression de y : sept moins deux fois deux, soit trois. Le couple solution est donc deux, trois, et l'ensemble solution contient ce seul couple.",
+      "texte": "Résultat : x = 2, puis y = 3.",
+      "ecran": "ex_subst_fin"
+    },
+    {
+      "id": "p12",
+      "dit": "Vérifions toujours le résultat dans les deux équations de départ. Deux fois deux plus trois font bien sept. Et deux moins trois fois trois font bien moins sept. Le couple deux, trois est confirmé.",
+      "texte": "Vérification : 7 et −7, les deux équations tiennent.",
+      "ecran": "verif_subst"
+    },
+    {
+      "id": "p13",
+      "dit": "La combinaison linéaire change de stratégie : au lieu de remplacer, elle élimine. On choisit l'inconnue à faire disparaître, on multiplie chaque équation par un nombre bien choisi pour rendre ses coefficients opposés, puis on additionne membre à membre.",
+      "texte": "Combinaison : créer des coefficients opposés, additionner.",
+      "ecran": "comb_etapes"
+    },
+    {
+      "id": "p14",
+      "dit": "Exemple résolu par combinaison. Le système oppose trois x plus deux y égale douze, et cinq x moins deux y égale quatre. Regardez les coefficients de y : plus deux et moins deux, ils sont déjà opposés, aucun produit préparatoire n'est nécessaire.",
+      "texte": "Exemple : 3x + 2y = 12 et 5x − 2y = 4.",
+      "ecran": "ex_comb_enonce"
+    },
+    {
+      "id": "p15",
+      "dit": "On additionne les deux équations membre à membre. Les y se compensent et disparaissent : trois x plus cinq x donnent huit x, et douze plus quatre donnent seize. Huit x égale seize, donc x égale deux.",
+      "texte": "Addition membre à membre : 8x = 16.",
+      "ecran": "ex_comb_calc"
+    },
+    {
+      "id": "p16",
+      "dit": "Il reste à trouver y. On remplace x par deux dans la première équation : trois fois deux plus deux y égale douze, donc deux y égale six, et y égale trois. On retrouve le couple deux, trois.",
+      "texte": "Résultat : x = 2, puis y = 3.",
+      "ecran": "ex_comb_fin"
+    },
+    {
+      "id": "p17",
+      "dit": "Vérification finale du couple dans les deux équations. Trois fois deux plus deux fois trois font douze. Cinq fois deux moins deux fois trois font quatre. Les deux égalités de départ sont satisfaites.",
+      "texte": "Vérification : 12 et 4, les deux équations tiennent.",
+      "ecran": "verif_comb"
+    },
+    {
+      "id": "p18",
+      "dit": "Revenons au graphique pour donner du sens à ces calculs. Chaque équation du système définit une droite dans le plan. Si les droites se coupent en un point, ses coordonnées forment l'unique solution. Le calcul algébrique trouve exactement ce point.",
+      "texte": "Le calcul retrouve le point d'intersection.",
+      "ecran": "graphique"
+    },
+    {
+      "id": "p19",
+      "dit": "Dernier exemple, un cas limite. Le système oppose x plus y égale trois, et deux x plus deux y égale six. La seconde équation est exactement le double de la première : les deux équations décrivent en fait la même droite.",
+      "texte": "Cas limite : la seconde équation double la première.",
+      "ecran": "confondues_enonce"
+    },
+    {
+      "id": "p20",
+      "dit": "Les deux droites sont donc confondues. Le système admet une infinité de solutions : tous les couples de la forme x, trois moins x, où x parcourt tous les nombres réels. Choisir x, c'est choisir un point de la droite, et y suit aussitôt.",
+      "texte": "Infinité de solutions : (x ; 3 − x).",
+      "ecran": "confondues"
+    },
+    {
+      "id": "p21",
+      "dit": "Comment choisir entre les deux méthodes le jour de l'exercice. Si un coefficient vaut un ou moins un, une inconnue s'isole sans fraction : la substitution est la plus rapide. Sinon, la combinaison évite les fractions et reste la plus sûre.",
+      "texte": "Le choix dépend des coefficients du système.",
+      "ecran": "choix"
+    },
+    {
+      "id": "p22",
+      "dit": "Retenez le réflexe complet. Coefficients déjà opposés ou égaux : additionnez ou soustrayez directement, c'est la combinaison. Coefficients quelconques : multipliez d'abord pour créer des coefficients opposés, puis combinez de la même façon.",
+      "texte": "Réflexe : opposés, on combine ; sinon, on prépare.",
+      "ecran": "choix_tableau"
+    },
+    {
+      "id": "p23",
+      "dit": "Pour conclure. Un système linéaire admet zéro, une ou une infinité de solutions. La substitution isole puis remplace, la combinaison élimine. Et dans tous les cas, on vérifie le couple trouvé dans les deux équations initiales.",
+      "texte": "Systèmes linéaires : l'essentiel.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définitions et méthode de substitution"
+    },
+    {
+      "debut": "p13",
+      "sous_titre": "Combinaison linéaire et lecture graphique",
+      "pont": {
+        "texte": "Partie 2 : combinaison et lecture graphique.",
+        "dit": "Partie deux : la méthode de combinaison linéaire, qui élimine une inconnue au lieu de la remplacer, puis la lecture graphique complète du système et le choix entre les deux méthodes."
+      }
+    }
+  ]
+}

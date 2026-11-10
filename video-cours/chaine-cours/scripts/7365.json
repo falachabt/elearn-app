@@ -1,0 +1,465 @@
+{
+ "cours": 7365,
+ "titre": "Cinématique et Dynamique du point matériel",
+ "matiere": "Physique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique · Terminale C/D",
+   "titre": "Cinématique et Dynamique du point matériel",
+   "sous": "Décrire le mouvement par les vecteurs, l'expliquer par les forces",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Deux questions : comment le point se déplace-t-il ? C'est la cinématique. Pourquoi se déplace-t-il ainsi ? C'est la dynamique.",
+   "anim": {
+    "nom": "referentiel",
+    "hauteur": 200
+   }
+  },
+  "position": {
+   "type": "formule",
+   "kicker": "Vecteur position",
+   "tex": "\\overrightarrow{OM}(t) = x(t)\\,\\mathbf{i} + y(t)\\,\\mathbf{j} + z(t)\\,\\mathbf{k}",
+   "note": "Dans un repère orthonormé : les coordonnées de M dépendent du temps"
+  },
+  "vitesse": {
+   "type": "formule",
+   "kicker": "Vecteur vitesse",
+   "tex": "\\vec{v}(t) = \\frac{d\\overrightarrow{OM}}{dt} = \\dot{x}\\,\\mathbf{i} + \\dot{y}\\,\\mathbf{j} + \\dot{z}\\,\\mathbf{k}",
+   "note": "Tangent à la trajectoire, dans le sens du mouvement ; norme en mètres par seconde"
+  },
+  "acceleration": {
+   "type": "formule",
+   "kicker": "Vecteur accélération",
+   "tex": "\\vec{a}(t) = \\frac{d\\vec{v}}{dt} = \\ddot{x}\\,\\mathbf{i} + \\ddot{y}\\,\\mathbf{j} + \\ddot{z}\\,\\mathbf{k}",
+   "note": "En mètres par seconde carrée ; toute variation du vecteur vitesse compte"
+  },
+  "frenet": {
+   "type": "formule",
+   "kicker": "La base de Frenet",
+   "tex": "\\vec{a} = a_T\\,\\vec{t} + a_N\\,\\vec{n} \\qquad \\vec{t} = \\frac{\\vec{v}}{v}",
+   "note": "t : tangent à la trajectoire ; n : vers le centre de courbure"
+  },
+  "frenet_composantes": {
+   "type": "etape",
+   "kicker": "Base de Frenet",
+   "titre": "Les deux composantes de l'accélération",
+   "tex": [
+    "a_T = \\tfrac{dv}{dt}",
+    "a_N = v^2\\,\\kappa = \\tfrac{v^2}{\\rho}",
+    "\\kappa = \\tfrac{1}{\\rho}"
+   ]
+  },
+  "exemple_enonce": {
+   "type": "phrase",
+   "kicker": "Exemple",
+   "texte": "Un véhicule suit la trajectoire OM(t) = (2t ; t² ; 0). On calcule v(t), a(t), puis aT et aN à t = 1 s.",
+   "anim": {
+    "nom": "trajectoire",
+    "hauteur": 170
+   }
+  },
+  "exemple_vitesse": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Vitesse et accélération du véhicule",
+   "tex": [
+    "\\vec{v}(t) = \\left(2\\ ;\\ 2t\\ ;\\ 0\\right)",
+    "\\vec{a}(t) = \\left(0\\ ;\\ 2\\ ;\\ 0\\right)",
+    "v(t) = \\sqrt{4 + 4t^2} = 2\\sqrt{1 + t^2}"
+   ]
+  },
+  "exemple_frenet": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Composantes de Frenet à t = 1 s",
+   "tex": [
+    "a_T(1) = \\frac{2}{\\sqrt{2}} = \\sqrt{2} \\approx 1{,}41\\ \\text{m/s}^2",
+    "a_N(1) = v^2\\,\\kappa = \\sqrt{2} \\approx 1{,}41\\ \\text{m/s}^2",
+    "|\\vec{a}| = \\sqrt{a_T^2 + a_N^2} = 2\\ \\text{m/s}^2"
+   ]
+  },
+  "piege_norme": {
+   "type": "formule",
+   "kicker": "Piège classique du bac",
+   "tex": "|\\vec{a}| = \\sqrt{a_T^2 + a_N^2}",
+   "note": "La norme de a n'est pas la somme aT + aN : c'est Pythagore qui commande"
+  },
+  "inertie": {
+   "type": "formule",
+   "kicker": "Première loi de Newton",
+   "tex": "\\sum \\vec{F} = \\vec{0} \\ \\Longrightarrow\\ \\vec{a} = \\vec{0} \\ \\Longrightarrow\\ \\vec{v} = \\text{constante}",
+   "note": "Le principe d'inertie, valable dans un référentiel galiléen"
+  },
+  "deuxieme_loi": {
+   "type": "formule",
+   "kicker": "Deuxième loi de Newton",
+   "tex": "\\sum \\vec{F} = m\\,\\vec{a}",
+   "note": "La relation fondamentale de la dynamique : les forces donnent l'accélération"
+  },
+  "troisieme_loi": {
+   "type": "formule",
+   "kicker": "Troisième loi de Newton",
+   "tex": "\\vec{F}_{A \\to B} = -\\,\\vec{F}_{B \\to A}",
+   "note": "Même nature, même intensité, sens opposés... et deux corps différents"
+  },
+  "mru": {
+   "type": "etape",
+   "kicker": "Mouvements rectilignes",
+   "titre": "Le mouvement rectiligne uniforme, MRU",
+   "tex": [
+    "\\vec{a} = \\vec{0} \\qquad \\vec{v} = \\text{constante}",
+    "x(t) = x_0 + v_x\\,t",
+    "v = \\frac{\\Delta x}{\\Delta t}"
+   ]
+  },
+  "mruv": {
+   "type": "etape",
+   "kicker": "Mouvements rectilignes",
+   "titre": "Le mouvement rectiligne uniformément varié, MRUV",
+   "tex": [
+    "v(t) = v_0 + a\\,t",
+    "x(t) = x_0 + v_0\\,t + \\frac{1}{2}\\,a\\,t^2",
+    "v^2 = v_0^2 + 2\\,a\\,\\Delta x"
+   ]
+  },
+  "mcu": {
+   "type": "etape",
+   "kicker": "Mouvement circulaire",
+   "titre": "Le mouvement circulaire uniforme, MCU",
+   "tex": [
+    "T = \\tfrac{2\\pi\\rho}{v} = \\tfrac{1}{f} \\qquad \\omega = \\tfrac{v}{\\rho} = 2\\pi f",
+    "a_N = \\tfrac{v^2}{\\rho} = \\rho\\,\\omega^2",
+    "F_c = \\tfrac{m\\,v^2}{\\rho}"
+   ]
+  },
+  "rondpoint_enonce": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Un véhicule sur un rond-point : la période",
+   "tex": [
+    "\\rho = 25\\ \\text{m} \\qquad v = 15\\ \\text{m/s}",
+    "T = \\frac{2\\pi \\times 25}{15} = \\frac{10\\pi}{3}",
+    "T \\approx 10{,}47\\ \\text{s}"
+   ]
+  },
+  "rondpoint_suite": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Accélération normale et contrôle",
+   "tex": [
+    "a_N = \\frac{15^2}{25} = \\frac{225}{25} = 9{,}0\\ \\text{m/s}^2",
+    "\\omega = \\frac{15}{25} = 0{,}6\\ \\text{rad/s}",
+    "a_N = \\rho\\,\\omega^2 = 25 \\times 0{,}36 = 9{,}0\\ \\text{m/s}^2"
+   ]
+  },
+  "probleme_dynamique": {
+   "type": "phrase",
+   "kicker": "Problèmes de dynamique",
+   "texte": "Un problème de dynamique : partir des forces pour déterminer accélération, vitesse et déplacement.",
+   "anim": {
+    "nom": "plan_incline",
+    "hauteur": 170
+   }
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "Méthode",
+   "titre": "Résoudre un problème de dynamique en cinq étapes",
+   "etapes": [
+    "Définir le système et le référentiel galiléen",
+    "Bilan complet des forces extérieures",
+    "Écrire la deuxième loi : Σ F = m a",
+    "Choisir le repère adapté et projeter",
+    "Intégrer : a, puis v(t), puis la position"
+   ]
+  },
+  "pieges_methode": {
+   "type": "recap",
+   "kicker": "Pièges classiques",
+   "titre": "Trois pièges à éviter",
+   "etapes": [
+    "Le frottement dépend de la réaction normale",
+    "Référentiel non galiléen : forces fictives",
+    "Frottement statique ≠ frottement cinétique"
+   ],
+   "anim": {
+    "nom": "plan_incline",
+    "hauteur": 130
+   }
+  },
+  "plan_enonce": {
+   "type": "phrase",
+   "kicker": "Exemple : plan incliné",
+   "texte": "Un bloc de 2 kg glisse sur un plan incliné de 30°, avec un coefficient de frottement cinétique μ = 0,20.",
+   "anim": {
+    "nom": "plan_incline",
+    "hauteur": 200
+   }
+  },
+  "plan_forces": {
+   "type": "etape",
+   "kicker": "Exemple : plan incliné",
+   "titre": "Étape 2 : le bilan des forces",
+   "tex": [
+    "P = m\\,g = 2 \\times 9{,}8 = 19{,}6\\ \\text{N}",
+    "N = m\\,g\\cos\\alpha \\approx 17{,}0\\ \\text{N}",
+    "f = \\mu\\,N \\approx 3{,}4\\ \\text{N}"
+   ]
+  },
+  "plan_acceleration": {
+   "type": "etape",
+   "kicker": "Exemple : plan incliné",
+   "titre": "Étapes 3 et 4 : projection sur l'axe du plan",
+   "tex": [
+    "m\\,g\\sin\\alpha - f = m\\,a",
+    "a = g\\left(\\sin\\alpha - \\mu\\cos\\alpha\\right)",
+    "a \\approx 3{,}2\\ \\text{m/s}^2"
+   ]
+  },
+  "plan_resultats": {
+   "type": "etape",
+   "kicker": "Exemple : plan incliné",
+   "titre": "Étape 5 : intégrations et résultats",
+   "tex": [
+    "v(3) = a\\,t \\approx 3{,}2 \\times 3 \\approx 9{,}6\\ \\text{m/s}",
+    "d = \\frac{1}{2}\\,a\\,t^2 \\approx \\frac{1}{2} \\times 3{,}2 \\times 9",
+    "d \\approx 14{,}4\\ \\text{m}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "titre": "L'essentiel du cours",
+   "etapes": [
+    "Position OM, vitesse, accélération : des dérivées",
+    "Frenet : a = aT + aN, avec |a| = √(aT² + aN²)",
+    "Newton : ΣF = 0, ΣF = m a, action-réaction",
+    "La méthode : système, forces, loi, projection, calcul"
+   ],
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 120
+   }
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours de terminale : cinématique et dynamique du point matériel. Nous allons d'abord décrire le mouvement avec les vecteurs position, vitesse et accélération, puis l'expliquer avec les lois de Newton, et nous finirons par une méthode complète de résolution, appliquée à un bloc qui glisse sur un plan incliné.",
+   "texte": "Cinématique et dynamique du point matériel.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Deux questions guident tout le cours. Comment le mouvement se déroule-t-il ? C'est la cinématique, qui décrit les trajectoires sans chercher leurs causes. Et pourquoi se déroule-t-il ainsi ? C'est la dynamique, qui relie le mouvement aux forces qui s'exercent sur le point.",
+   "texte": "Cinématique : décrire. Dynamique : expliquer.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p03",
+   "ecran": "position",
+   "dit": "Pour situer le point mobile M, on choisit un repère orthonormé : une origine O et trois vecteurs unitaires, i, j et k. Le vecteur position, c'est le vecteur O M : il pointe de l'origine vers le point, et ses coordonnées x, y et z dépendent du temps.",
+   "texte": "Le vecteur position OM(t).",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p04",
+   "ecran": "vitesse",
+   "dit": "Le vecteur vitesse est la dérivée du vecteur position par rapport au temps. En coordonnées cartésiennes, chaque composante est la dérivée de la coordonnée correspondante : x point, y point, z point. Ce vecteur est tangent à la trajectoire, orienté dans le sens du mouvement, et sa norme s'exprime en mètres par seconde.",
+   "texte": "La vitesse, dérivée de la position.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p05",
+   "ecran": "acceleration",
+   "dit": "On dérive une seconde fois : le vecteur accélération est la dérivée du vecteur vitesse, donc la dérivée seconde du vecteur position. Ses composantes portent deux points : x deux points, y deux points, z deux points. Attention : accélérer, ce n'est pas seulement aller plus vite, c'est faire varier le vecteur vitesse, en norme ou en direction.",
+   "texte": "L'accélération, dérivée de la vitesse.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p06",
+   "ecran": "frenet",
+   "dit": "Sur une trajectoire courbe, on colle au point mobile une petite base qui le suit : la base de Frenet. Le vecteur t est tangent à la trajectoire, dans le sens du mouvement : c'est le vecteur vitesse divisé par sa norme. Le vecteur n est perpendiculaire à t et pointe vers le centre de courbure. L'accélération se décompose alors en une composante tangentielle, a T, et une composante normale, a N.",
+   "texte": "La base de Frenet : t et n.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p07",
+   "ecran": "frenet_composantes",
+   "dit": "La composante tangentielle, a T, égale la dérivée de la norme de la vitesse : elle dit si le point accélère ou freine le long de sa trajectoire. La composante normale, a N, égale v carré fois la courbure kappa, c'est-à-dire v carré divisé par le rayon de courbure rho : elle dit comment la direction du mouvement tourne. Et si a T est négative, le mouvement est décéléré.",
+   "texte": "aT = dv/dt ; aN = v²/ρ.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p08",
+   "ecran": "exemple_enonce",
+   "dit": "Passons à un exemple complet. Un véhicule suit la trajectoire paramétrée suivante : le vecteur O M a pour coordonnées deux t, t au carré, et zéro, en mètres, avec t positif ou nul. On demande le vecteur vitesse, le vecteur accélération, puis les composantes tangentielle et normale de l'accélération à l'instant t égale une seconde.",
+   "texte": "Exemple : une trajectoire paramétrée.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p09",
+   "ecran": "exemple_vitesse",
+   "dit": "On dérive coordonnée par coordonnée. Le vecteur vitesse a pour coordonnées deux, deux t, zéro : la première coordonnée est constante, la deuxième grandit avec le temps. Le vecteur accélération a pour coordonnées zéro, deux, zéro : il est constant. Quant à la norme de la vitesse, elle vaut deux fois racine carrée de un plus t au carré.",
+   "texte": "v(t) = (2 ; 2t ; 0), a(t) = (0 ; 2 ; 0).",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p10",
+   "ecran": "exemple_frenet",
+   "dit": "À l'instant une seconde, la vitesse vaut deux racine de deux, environ deux virgule quatre-vingt-trois mètres par seconde. L'accélération tangentielle vaut racine de deux, environ un virgule quarante et un mètres par seconde carrée. L'accélération normale, calculée par v carré fois kappa, vaut elle aussi racine de deux. Et vérification : la racine carrée de a T au carré plus a N au carré donne deux, exactement la norme du vecteur accélération. Tout est cohérent.",
+   "texte": "À t = 1 s : aT = aN ≈ 1,41 m/s².",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p11",
+   "ecran": "piege_norme",
+   "dit": "Premier piège classique du bac : la norme de l'accélération n'est pas la somme des composantes tangentielle et normale. C'est la racine carrée de la somme de leurs carrés, comme une hypoténuse. Deuxième piège : ne pas oublier le signe de a T. Quand la norme de la vitesse diminue, a T est négative : le point décélère.",
+   "texte": "Piège : |a| = √(aT² + aN²).",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p12",
+   "ecran": "inertie",
+   "dit": "Première loi de Newton, le principe d'inertie : dans un référentiel galiléen, si la somme des forces extérieures est nulle, alors l'accélération est nulle et la vitesse reste constante. Le point est donc soit au repos, soit en mouvement rectiligne uniforme. Tout problème de dynamique doit être posé dans un tel référentiel, c'est-à-dire un référentiel non accéléré.",
+   "texte": "Inertie : ΣF = 0 ⇒ v constante.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p13",
+   "ecran": "deuxieme_loi",
+   "dit": "Deuxième loi de Newton, la relation fondamentale de la dynamique : la somme des forces extérieures appliquées au point égale sa masse fois son accélération. C'est elle qui transforme un bilan de forces en mouvement : connaissant les forces, on en déduit l'accélération, puis, en intégrant, la vitesse et la position.",
+   "texte": "ΣF = m·a : la loi centrale.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p14",
+   "ecran": "troisieme_loi",
+   "dit": "Troisième loi de Newton, le principe des actions réciproques : quand un corps A exerce une force sur un corps B, le corps B exerce sur A une force de même nature, de même intensité, mais de sens opposé. Attention, piège : ces deux forces ne s'annulent pas, car elles ne s'appliquent pas au même corps.",
+   "texte": "Action et réaction : deux corps différents.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p15",
+   "ecran": "mru",
+   "dit": "Premier mouvement modèle : le mouvement rectiligne uniforme. La trajectoire est une droite et la vitesse est constante, donc l'accélération est nulle. La position croît de façon régulière : x de t égale x zéro plus v x fois t. Et la vitesse est simplement la distance parcourue, divisée par la durée du parcours.",
+   "texte": "MRU : x(t) = x₀ + v·t.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p16",
+   "ecran": "mruv",
+   "dit": "Deuxième mouvement modèle : le mouvement rectiligne uniformément varié, avec une accélération constante. La vitesse varie de façon régulière : v de t égale v zéro plus a fois t. La position suit une parabole du temps, avec le terme en un demi de a t au carré. Et la troisième relation relie les vitesses aux distances, sans le temps : v au carré égale v zéro au carré plus deux a fois delta x.",
+   "texte": "MRUV : trois relations à connaître.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p17",
+   "ecran": "mcu",
+   "dit": "Troisième mouvement modèle : le mouvement circulaire uniforme. La norme de la vitesse ne change pas, mais sa direction tourne sans cesse : il existe donc une accélération, dirigée vers le centre du cercle. La période T est la durée d'un tour complet, et la vitesse angulaire oméga relie la vitesse au rayon. L'accélération normale vaut v carré sur rho, ou rho oméga au carré, et la force résultante qui la produit pointe vers le centre.",
+   "texte": "MCU : aN = v²/ρ, vers le centre.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p18",
+   "ecran": "rondpoint_enonce",
+   "dit": "Exemple : un véhicule roule sur un rond-point de rayon vingt-cinq mètres, à la vitesse constante de quinze mètres par seconde. Première question : la période de rotation. On divise le périmètre du cercle par la vitesse : deux pi fois vingt-cinq, divisé par quinze, soit dix pi sur trois, environ dix virgule quarante-sept secondes pour un tour complet.",
+   "texte": "Rond-point : T ≈ 10,47 s.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p19",
+   "ecran": "rondpoint_suite",
+   "dit": "Deuxième question : l'accélération normale subie par le véhicule. Elle vaut v au carré divisé par rho, soit deux cent vingt-cinq divisé par vingt-cinq : neuf mètres par seconde carrée. C'est presque g : un ordre de grandeur à retenir. Contrôle par la vitesse angulaire : oméga vaut zéro virgule six radian par seconde, et rho oméga au carré redonne bien neuf. Les deux calculs se confirment.",
+   "texte": "aN = 9,0 m/s² ≈ g : contrôle cohérent.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p20",
+   "ecran": "probleme_dynamique",
+   "dit": "Qu'est-ce qu'un problème de dynamique ? On connaît les forces extérieures qui s'exercent sur un ou plusieurs corps, et on veut déterminer leurs grandeurs cinématiques : l'accélération, la vitesse, le déplacement. Le point de départ est toujours le même : un référentiel galiléen et un système mécanique bien défini.",
+   "texte": "Des forces vers le mouvement.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p21",
+   "ecran": "methode",
+   "dit": "Voici la méthode, en cinq étapes. Un : définir le système étudié et le référentiel galiléen. Deux : faire le bilan complet des forces extérieures, poids, réaction, tension, frottement, et les représenter par des vecteurs. Trois : écrire la deuxième loi de Newton, somme des forces égale m fois a. Quatre : choisir un repère adapté, souvent avec l'axe x le long du mouvement, et projeter l'équation vectorielle sur les axes. Cinq : résoudre, puis intégrer successivement pour obtenir la vitesse, puis la position, sans oublier les conditions initiales.",
+   "texte": "La méthode en cinq étapes.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p22",
+   "ecran": "pieges_methode",
+   "dit": "Trois pièges classiques accompagnent cette méthode. Le frottement dépend de la réaction normale, qui dépend elle-même de la géométrie, par exemple de l'angle d'un plan incliné. Un référentiel non galiléen fait apparaître des forces fictives, comme la force centrifuge : on l'évite en choisissant bien son référentiel. Et le frottement statique, qui peut être nul avant le départ, ne doit pas être confondu avec le frottement cinétique, constant pendant le glissement.",
+   "texte": "Pièges : normale, référentiel, frottements.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p23",
+   "ecran": "plan_enonce",
+   "dit": "Application complète de la méthode. Un bloc de masse deux kilogrammes glisse, sans roulement, sur un plan incliné d'un angle de trente degrés. Le coefficient de frottement cinétique vaut zéro virgule vingt. On demande l'accélération du bloc, sa vitesse après trois secondes de glissement, et la distance parcourue pendant ces trois secondes.",
+   "texte": "Exemple : le bloc sur le plan incliné.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p24",
+   "ecran": "plan_forces",
+   "dit": "Étape un : le système est le bloc seul, le référentiel est lié au plan, galiléen. Étape deux, le bilan des forces. Le poids, m g, soit deux fois neuf virgule huit, dix-neuf virgule six newtons, vertical vers le bas. La réaction normale du plan, perpendiculaire au plan, qui vaut m g cosinus alpha, environ dix-sept newtons. Et le frottement, opposé au mouvement, qui vaut mu fois N, environ trois virgule quatre newtons.",
+   "texte": "Forces : P = 19,6 N, N ≈ 17,0 N, f ≈ 3,4 N.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p25",
+   "ecran": "plan_acceleration",
+   "dit": "Étapes trois et quatre : on écrit la deuxième loi, puis on la projette sur l'axe x, pris le long du plan, vers le bas de la pente. La composante du poids le long du plan, m g sinus alpha, tire le bloc vers le bas ; le frottement le retient. Il reste : a égale g fois, entre parenthèses, sinus alpha moins mu cosinus alpha. Le calcul donne environ trois virgule deux mètres par seconde carrée. L'accélération est constante : le mouvement sera uniformément varié.",
+   "texte": "a = g(sin α − μ cos α) ≈ 3,2 m/s².",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p26",
+   "ecran": "plan_resultats",
+   "dit": "Étape cinq, les intégrations. L'accélération étant constante et le bloc partant du repos, la vitesse après trois secondes vaut a fois t : environ neuf virgule six mètres par seconde. La distance parcourue vaut un demi de a t au carré : environ quatorze virgule quatre mètres. La méthode est complète : des forces de départ, nous avons obtenu l'accélération, la vitesse et le déplacement.",
+   "texte": "v(3 s) ≈ 9,6 m/s ; d ≈ 14,4 m.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p27",
+   "ecran": "recap",
+   "dit": "Récapitulons. La position se décrit par le vecteur O M ; la vitesse et l'accélération sont ses dérivées première et seconde. Dans la base de Frenet, l'accélération se décompose en une partie tangentielle et une partie normale. Les trois lois de Newton relient les forces au mouvement, et la deuxième loi, projetée sur un repère bien choisi, est le cœur de la méthode de résolution en cinq étapes. Bon courage pour vos exercices.",
+   "texte": "L'essentiel : vecteurs, Newton, méthode.",
+   "pause_apres": 0.9
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Vecteurs position, vitesse, accélération et base de Frenet"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Les lois de Newton et les mouvements modèles",
+   "pont": {
+    "texte": "Partie 2 : lois de Newton et mouvements modèles.",
+    "dit": "Partie deux : les lois de Newton et les mouvements modèles. Après avoir décrit le mouvement, nous allons l'expliquer par les forces, puis reconnaître les mouvements les plus simples : rectiligne uniforme, rectiligne uniformément varié et circulaire uniforme."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "La méthode de résolution et le plan incliné",
+   "pont": {
+    "texte": "Partie 3 : la méthode en cinq étapes, appliquée au plan incliné.",
+    "dit": "Partie trois : la méthode de résolution des problèmes de dynamique, en cinq étapes, puis son application complète à un bloc qui glisse sur un plan incliné avec frottement."
+   }
+  }
+ ]
+}

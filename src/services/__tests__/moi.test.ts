@@ -1,6 +1,6 @@
 import { annulerSuppression, dateEffacement, demanderSuppression, enregistrerContactParent, lireContactParent, lireDemandeSuppression, retirerContactParent } from '../moi';
 
-jest.mock('../analytics', () => ({ suivre: jest.fn() }));
+jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 
 const ligne = { name: 'Maman', phone: '+237677123456', consent_at: '2026-09-30T10:00:00Z', withdrawn_at: null };
 const client = (p: { rpc?: unknown; from?: unknown; erreur?: unknown }) => ({

@@ -1,0 +1,332 @@
+{
+  "cours": 7252,
+  "ecrans": {
+    "adjacents": {
+      "kicker": "Angles adjacents",
+      "texte": "Même sommet, un côté commun, les autres côtés de part et d'autre du côté commun.",
+      "type": "phrase",
+      "anim": {
+        "nom": "angles_adjacents_fig",
+        "hauteur": 230
+      }
+    },
+    "bissectrice": {
+      "kicker": "La bissectrice",
+      "texte": "La demi-droite issue du sommet qui partage l'angle en deux angles égaux.",
+      "type": "phrase",
+      "anim": {
+        "nom": "bissectrice_fig",
+        "hauteur": 230
+      }
+    },
+    "complementaires": {
+      "kicker": "Angles complémentaires",
+      "texte": "Complémentaires : la somme de leurs mesures vaut 90°.",
+      "type": "phrase",
+      "anim": {
+        "nom": "angles_complementaires_fig",
+        "hauteur": 230
+      }
+    },
+    "construire": {
+      "kicker": "Construire un angle de mesure donnée",
+      "tex": [
+        "\\text{1. tracer la demi-droite } [Ox)",
+        "\\text{2. centre sur } O \\text{, zéro sur } [Ox)",
+        "\\text{3. marquer } A \\text{ à la graduation voulue}",
+        "\\text{4. tracer } [Oy) \\text{ par } A"
+      ],
+      "titre": "Du premier côté au second, au rapporteur",
+      "type": "etape"
+    },
+    "def_angle": {
+      "kicker": "Qu'est-ce qu'un angle",
+      "note": "Deux demi-droites de même origine O : le sommet, au centre de la notation",
+      "tex": "\\widehat{AOB}",
+      "type": "formule",
+      "anim": {
+        "nom": "angle_simple_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_adjacents": {
+      "kicker": "Angles adjacents · la somme",
+      "note": "Collés le long de OB, les deux angles s'ajoutent",
+      "tex": "\\widehat{AOC} = \\widehat{AOB} + \\widehat{BOC}",
+      "type": "formule",
+      "anim": {
+        "nom": "angles_adjacents_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_bissectrice": {
+      "kicker": "Exemple résolu · bissectrice",
+      "tex": [
+        "\\widehat{AOC} = \\widehat{COB} = \\tfrac{80^{\\circ}}{2}",
+        "\\widehat{AOC} = \\widehat{COB} = 40^{\\circ}"
+      ],
+      "titre": "Un angle de quatre-vingts degrés",
+      "type": "etape",
+      "anim": {
+        "nom": "bissectrice_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_complementaire": {
+      "kicker": "Exemple résolu · complémentaire",
+      "tex": [
+        "90^{\\circ} - 35^{\\circ} = 55^{\\circ}",
+        "\\text{le complément mesure } 55^{\\circ}"
+      ],
+      "titre": "Un angle de trente-cinq degrés",
+      "type": "etape",
+      "anim": {
+        "nom": "angles_complementaires_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_construire": {
+      "kicker": "Exemple résolu · construire soixante degrés",
+      "tex": [
+        "\\text{tracer } [Ox) \\text{, poser le rapporteur}",
+        "\\text{repérer } 60^{\\circ} \\text{, marquer } A",
+        "\\text{tracer } [Oy) : \\widehat{xOy} = 60^{\\circ}"
+      ],
+      "titre": "Un angle aigu, en quatre gestes",
+      "type": "etape",
+      "anim": {
+        "nom": "angle_mesure_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_supplementaire": {
+      "kicker": "Exemple résolu · supplémentaire",
+      "tex": [
+        "180^{\\circ} - 110^{\\circ} = 70^{\\circ}",
+        "\\text{le supplément mesure } 70^{\\circ}"
+      ],
+      "titre": "Deux adjacents qui forment un angle plat",
+      "type": "etape",
+      "anim": {
+        "nom": "angles_supplementaires_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_type": {
+      "kicker": "Exemple résolu · classer un angle",
+      "tex": [
+        "90^{\\circ} < 135^{\\circ} < 180^{\\circ}",
+        "\\text{c'est un angle obtus}"
+      ],
+      "titre": "Un angle de cent trente-cinq degrés",
+      "type": "etape",
+      "anim": {
+        "nom": "angles_types_fig",
+        "hauteur": 215
+      }
+    },
+    "mesure": {
+      "kicker": "Mesurer un angle",
+      "texte": "Unité : le degré. Un tour complet mesure 360°, un angle plat 180°.",
+      "type": "phrase",
+      "anim": {
+        "nom": "angle_mesure_fig",
+        "hauteur": 230
+      }
+    },
+    "objectifs": {
+      "kicker": "Objectifs du cours",
+      "texte": "Identifier un angle, le mesurer, le construire, puis calculer avec la bissectrice et les sommes d'angles.",
+      "type": "phrase",
+      "anim": {
+        "nom": "angles_types_fig",
+        "hauteur": 230
+      }
+    },
+    "rapporteur": {
+      "kicker": "Lire une mesure au rapporteur",
+      "tex": [
+        "\\text{1. centre du rapporteur sur le sommet } O",
+        "\\text{2. zéro aligné sur un côté}",
+        "\\text{3. lire la graduation sur l'autre côté}"
+      ],
+      "titre": "Trois gestes, dans l'ordre",
+      "type": "etape",
+      "anim": {
+        "nom": "angle_mesure_fig",
+        "hauteur": 215
+      }
+    },
+    "recap": {
+      "etapes": [
+        "Angle : sommet au centre de la notation",
+        "Cinq types : nul, aigu, droit, obtus, plat",
+        "Mesurer et construire au rapporteur",
+        "Bissectrice : l'angle partagé en deux",
+        "Complémentaires 90°, supplémentaires 180°"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "sans_rapporteur": {
+      "kicker": "Calculer sans rapporteur",
+      "texte": "Bissectrice, angles adjacents, sommes de 90° et de 180° : des mesures par le calcul.",
+      "type": "phrase",
+      "anim": {
+        "nom": "angle_simple_fig",
+        "hauteur": 230
+      }
+    },
+    "supplementaires": {
+      "kicker": "Angles supplémentaires",
+      "texte": "Supplémentaires : la somme de leurs mesures vaut 180°, comme un angle plat.",
+      "type": "phrase",
+      "anim": {
+        "nom": "angles_supplementaires_fig",
+        "hauteur": 230
+      }
+    },
+    "titre": {
+      "kicker": "Mathématique · Géométrie",
+      "sous": "Le rapporteur pour mesurer et construire, la bissectrice et les angles associés pour calculer sans instrument",
+      "titre": "Angles : identifier, mesurer, construire",
+      "type": "titre",
+      "anim": {
+        "nom": "angles_types_fig",
+        "hauteur": 250
+      }
+    },
+    "types": {
+      "kicker": "Les cinq types d'angles",
+      "tex": [
+        "0^{\\circ}\\ \\text{nul} \\qquad 90^{\\circ}\\ \\text{droit}",
+        "0^{\\circ} < \\text{aigu} < 90^{\\circ}",
+        "90^{\\circ} < \\text{obtus} < 180^{\\circ} \\qquad 180^{\\circ}\\ \\text{plat}"
+      ],
+      "titre": "Classer selon la mesure",
+      "type": "etape",
+      "anim": {
+        "nom": "angles_types_fig",
+        "hauteur": 215
+      }
+    }
+  },
+  "matiere": "Mathématique",
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours consacré aux angles. Nous allons identifier et classer un angle, le mesurer et le construire au rapporteur, puis calculer des mesures sans instrument, grâce à la bissectrice et aux angles associés.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Angles : identifier, mesurer, construire."
+    },
+    {
+      "dit": "À la fin de ce cours, vous saurez nommer et classer un angle, lire sa mesure au rapporteur, construire un angle donné, et retrouver une mesure inconnue par un partage ou une somme.",
+      "ecran": "objectifs",
+      "id": "p02",
+      "texte": "Objectif : du rapporteur au calcul sans instrument."
+    },
+    {
+      "dit": "Un angle est formé par deux demi-droites de même origine. Cette origine est le sommet de l'angle, et les deux demi-droites sont ses côtés. On note un angle avec trois lettres, le sommet au centre : a o bé, sommet o.",
+      "ecran": "def_angle",
+      "id": "p03",
+      "texte": "AOB : le sommet O au centre."
+    },
+    {
+      "dit": "L'unité de mesure des angles est le degré. Un angle complet, un tour entier, mesure trois cent soixante degrés. Un angle plat, la moitié d'un tour, en mesure cent quatre-vingts. Tous nos repères partent de là.",
+      "ecran": "mesure",
+      "id": "p04",
+      "texte": "Le degré : 360° le tour, 180° l'angle plat."
+    },
+    {
+      "dit": "Pour mesurer un angle, on utilise un rapporteur, gradué de zéro à cent quatre-vingts degrés. Son centre se place exactement sur le sommet, son zéro sur l'un des côtés. On lit alors la graduation où passe l'autre côté : c'est la mesure.",
+      "ecran": "rapporteur",
+      "id": "p05",
+      "texte": "Centre sur le sommet, zéro sur un côté, lecture."
+    },
+    {
+      "dit": "Cinq types d'angles sont à connaître. Nul : zéro degré. Aigu : entre zéro et quatre-vingt-dix degrés. Droit : exactement quatre-vingt-dix degrés. Obtus : entre quatre-vingt-dix et cent quatre-vingts degrés. Plat : cent quatre-vingts degrés.",
+      "ecran": "types",
+      "id": "p06",
+      "texte": "Nul, aigu, droit, obtus, plat : cinq repères."
+    },
+    {
+      "dit": "Exemple résolu. Un angle mesure cent trente-cinq degrés. On le compare aux repères : plus grand que quatre-vingt-dix, plus petit que cent quatre-vingts. Il est donc dans l'intervalle des angles obtus. Cet angle est obtus.",
+      "ecran": "ex_type",
+      "id": "p07",
+      "texte": "Exemple : 135°, c'est un angle obtus."
+    },
+    {
+      "dit": "Construire un angle de mesure donnée suit les mêmes repères que mesurer. On trace une demi-droite, on place le centre du rapporteur sur son origine, le zéro aligné. On marque un point en face de la graduation voulue, puis on trace la seconde demi-droite par ce point.",
+      "ecran": "construire",
+      "id": "p08",
+      "texte": "Construire : côté, rapporteur, repère, côté."
+    },
+    {
+      "dit": "Exemple résolu. Construire un angle x o y de soixante degrés. On trace o x, on pose le rapporteur, centre en o, zéro sur o x. On repère soixante, on place un point a, puis on trace o y par a. L'angle obtenu, soixante degrés, est aigu.",
+      "ecran": "ex_construire",
+      "id": "p09",
+      "texte": "Exemple : construire un angle de 60°."
+    },
+    {
+      "dit": "Mesurer et construire demandent le rapporteur. Mais certaines mesures se calculent sans instrument, par un partage en deux ou par une somme : la bissectrice, les angles adjacents, les complémentaires et les supplémentaires.",
+      "ecran": "sans_rapporteur",
+      "id": "p10",
+      "texte": "La suite : calculer au lieu de mesurer."
+    },
+    {
+      "dit": "La bissectrice d'un angle est la demi-droite issue du sommet qui le partage en deux angles de même mesure. Les deux moitiés sont égales : chacune vaut la moitié de l'angle de départ.",
+      "ecran": "bissectrice",
+      "id": "p11",
+      "texte": "La bissectrice partage l'angle en deux égaux."
+    },
+    {
+      "dit": "Exemple résolu. L'angle a o bé mesure quatre-vingts degrés, et o cé est sa bissectrice. Les angles a o cé et cé o bé sont égaux, et chacun vaut quatre-vingts divisé par deux : quarante degrés. Bissectrice, donc division par deux.",
+      "ecran": "ex_bissectrice",
+      "id": "p12",
+      "texte": "Exemple : 80° partagé donne deux fois 40°."
+    },
+    {
+      "dit": "Deux angles sont adjacents s'ils réunissent trois conditions : même sommet, un côté commun, et leurs autres côtés de part et d'autre du côté commun. Ils sont collés l'un contre l'autre, sans se chevaucher.",
+      "ecran": "adjacents",
+      "id": "p13",
+      "texte": "Adjacents : même sommet, un côté commun."
+    },
+    {
+      "dit": "Exemple. Les angles a o bé et bé o cé ont même sommet o, le côté commun o bé, et o a et o cé de part et d'autre : ils sont adjacents. Bout à bout, ils forment a o cé, et les mesures s'ajoutent : a o cé égale a o bé plus bé o cé.",
+      "ecran": "ex_adjacents",
+      "id": "p14",
+      "texte": "Adjacents : AOC = AOB + BOC."
+    },
+    {
+      "dit": "Deux angles sont complémentaires lorsque la somme de leurs mesures vaut quatre-vingt-dix degrés, la mesure d'un angle droit. Connaissant l'un, l'autre s'obtient par soustraction à quatre-vingt-dix.",
+      "ecran": "complementaires",
+      "id": "p15",
+      "texte": "Complémentaires : la somme vaut 90°."
+    },
+    {
+      "dit": "Exemple résolu. Un angle mesure trente-cinq degrés. Son complément vaut quatre-vingt-dix moins trente-cinq, soit cinquante-cinq degrés.",
+      "ecran": "ex_complementaire",
+      "id": "p16",
+      "texte": "Exemple : le complément de 35° vaut 55°."
+    },
+    {
+      "dit": "Deux angles sont supplémentaires lorsque la somme de leurs mesures vaut cent quatre-vingts degrés, la mesure d'un angle plat. Deux adjacents qui forment un angle plat sont supplémentaires : connaître l'un donne l'autre, par soustraction à cent quatre-vingts.",
+      "ecran": "supplementaires",
+      "id": "p17",
+      "texte": "Supplémentaires : la somme vaut 180°."
+    },
+    {
+      "dit": "Exemple résolu. Deux adjacents forment un angle plat, et l'un mesure cent dix degrés. L'autre vaut cent quatre-vingts moins cent dix : soixante-dix degrés. Seule la somme de référence change : quatre-vingt-dix ou cent quatre-vingts.",
+      "ecran": "ex_supplementaire",
+      "id": "p18",
+      "texte": "Exemple : le supplément de 110° vaut 70°."
+    },
+    {
+      "dit": "Pour finir. Un angle se note avec le sommet au centre, et se classe de nul à plat. Le rapporteur le mesure et le construit, avec les mêmes repères. La bissectrice partage en deux égaux. Et les sommes de référence, quatre-vingt-dix et cent quatre-vingts, calculent les inconnues.",
+      "ecran": "recap",
+      "id": "p19",
+      "texte": "Angles : à retenir."
+    }
+  ],
+  "titre": "Angles : identifier, mesurer, construire"
+}

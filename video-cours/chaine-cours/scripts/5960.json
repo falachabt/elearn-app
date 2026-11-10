@@ -1,0 +1,568 @@
+{
+ "cours": 5960,
+ "titre": "La thermodynamique : énergie, principes et spontanéité des réactions",
+ "matiere": "Chimie",
+ "lecons": [
+  4906,
+  4907,
+  4908,
+  4909,
+  4910,
+  4911,
+  4912,
+  4913,
+  4914,
+  4915,
+  4916
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Thermodynamique",
+   "titre": "La thermodynamique",
+   "sous": "L'énergie et ses transformations : systèmes, principes et thermochimie",
+   "anim": {
+    "nom": "piston",
+    "hauteur": 250
+   }
+  },
+  "definition": {
+   "type": "phrase",
+   "kicker": "La thermodynamique",
+   "texte": "La thermodynamique étudie l'énergie et ses transformations : les transferts de chaleur et de travail, et leurs effets sur la matière, en regardant le comportement moyen d'un très grand nombre de particules.",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 150
+   }
+  },
+  "systemes": {
+   "type": "etape",
+   "kicker": "Le système",
+   "titre": "Les trois types de systèmes",
+   "tex": [
+    "\\text{Ouvert : matière et énergie échangées}",
+    "\\text{Fermé : énergie seule échangée}",
+    "\\text{Isolé : aucun échange}"
+   ],
+   "note": "Un système peut aussi être homogène, de composition uniforme, ou hétérogène."
+  },
+  "travail": {
+   "type": "formule",
+   "kicker": "Le travail",
+   "tex": "\\delta W = -P_{ext}\\,dV",
+   "note": "Le signe moins : le travail est fait contre la pression extérieure.",
+   "anim": {
+    "nom": "piston",
+    "hauteur": 110
+   }
+  },
+  "travail_calculs": {
+   "type": "etape",
+   "kicker": "Le travail",
+   "titre": "Le travail selon le régime de transformation",
+   "tex": [
+    "W = -P_{ext}\\,\\Delta V \\quad \\text{(irréversible : } P_{ext} \\text{ constante)}",
+    "W = -nRT\\,(\\ln V_f - \\ln V_i) \\quad \\text{(réversible isotherme)}"
+   ]
+  },
+  "chaleur": {
+   "type": "recap",
+   "kicker": "La chaleur",
+   "etapes": [
+    "Conduction : transfert par contact direct",
+    "Convection : transfert par mouvement de matière",
+    "Rayonnement : transfert par ondes électromagnétiques",
+    "Toujours du corps chaud vers le corps froid"
+   ],
+   "anim": {
+    "nom": "convection_fig",
+    "hauteur": 110
+   }
+  },
+  "premier_principe": {
+   "type": "formule",
+   "kicker": "Le premier principe",
+   "tex": "\\Delta U = W + Q",
+   "note": "Premier principe : la conservation de l'énergie, pour un système fermé."
+  },
+  "conventions": {
+   "type": "etape",
+   "kicker": "Le premier principe",
+   "titre": "Signes et fonctions d'état",
+   "tex": [
+    "W,\\ Q > 0 \\quad \\text{si le système reçoit de l'énergie}",
+    "W,\\ Q < 0 \\quad \\text{si le système cède de l'énergie}",
+    "U \\text{ : fonction d'état} \\qquad W,\\ Q \\text{ : fonctions de chemin}"
+   ]
+  },
+  "exemple_premier": {
+   "type": "etape",
+   "kicker": "Exercice",
+   "titre": "Exemple : appliquer le premier principe",
+   "tex": [
+    "Q = +100\\ \\text{J} \\qquad W = -50\\ \\text{J}",
+    "\\Delta U = W + Q = -50 + 100",
+    "\\Delta U = +50\\ \\text{J}"
+   ]
+  },
+  "cas_particuliers": {
+   "type": "etape",
+   "kicker": "Le premier principe",
+   "titre": "Trois transformations à connaître",
+   "tex": [
+    "\\text{Isotherme (gaz parfait) : } \\Delta U = 0 \\ \\Rightarrow\\ Q = -W",
+    "\\text{Isochore : } W = 0 \\ \\Rightarrow\\ \\Delta U = Q",
+    "\\text{Adiabatique : } Q = 0 \\ \\Rightarrow\\ \\Delta U = W"
+   ]
+  },
+  "recap_p1": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Choisir le système : ouvert, fermé ou isolé",
+    "Travail et chaleur dépendent du chemin suivi",
+    "Premier principe : l'énergie se conserve",
+    "Les signes disent qui reçoit et qui cède"
+   ]
+  },
+  "entropie_def": {
+   "type": "phrase",
+   "kicker": "L'entropie",
+   "texte": "L'entropie, notée S, quantifie le désordre d'un système, la dispersion de son énergie : plus un système est désordonné, plus son entropie est élevée.",
+   "anim": {
+    "nom": "agitation",
+    "hauteur": 150
+   }
+  },
+  "entropie_calcul": {
+   "type": "etape",
+   "kicker": "L'entropie",
+   "titre": "Calculer une variation d'entropie",
+   "tex": [
+    "\\Delta S = \\int \\tfrac{\\delta Q_{rev}}{T}",
+    "\\text{Isotherme réversible : } \\Delta S = \\tfrac{Q}{T} = \\tfrac{1000}{300}",
+    "\\Delta S \\approx 3{,}33\\ \\text{J/K}"
+   ]
+  },
+  "reversible": {
+   "type": "etape",
+   "kicker": "L'entropie",
+   "titre": "Réversible, irréversible : la distinction clé",
+   "tex": [
+    "\\text{Réversible : lente, équilibres permanents, } \\Delta S_{univers} = 0",
+    "\\text{Irréversible : vitesse finie, } \\Delta S_{univers} > 0",
+    "\\text{Exemples irréversibles : détente libre, mélange de gaz}"
+   ],
+   "anim": {
+    "nom": "melange",
+    "hauteur": 110
+   }
+  },
+  "troisieme": {
+   "type": "phrase",
+   "kicker": "Le troisième principe",
+   "texte": "Le zéro absolu, zéro kelvin, est la température où toute agitation thermique cesserait : le troisième principe affirme qu'on ne peut pas l'atteindre en un nombre fini d'étapes.",
+   "anim": {
+    "nom": "agitation",
+    "hauteur": 140
+   }
+  },
+  "enthalpie": {
+   "type": "formule",
+   "kicker": "L'enthalpie",
+   "tex": "\\Delta H = Q_p",
+   "note": "À pression constante, la chaleur échangée est la variation d'enthalpie."
+  },
+  "entropie_etats": {
+   "type": "etape",
+   "kicker": "L'entropie",
+   "titre": "L'entropie selon l'état de la matière",
+   "tex": [
+    "S_{solide} < S_{liquide} < S_{gaz}",
+    "\\text{Fusion, détente : } \\Delta S > 0",
+    "\\text{Cristallisation : } \\Delta S < 0"
+   ],
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 110
+   }
+  },
+  "gibbs": {
+   "type": "formule",
+   "kicker": "L'énergie libre de Gibbs",
+   "tex": "G = H - TS",
+   "note": "L'énergie libre de Gibbs : l'arbitre de la spontanéité."
+  },
+  "gibbs_criteres": {
+   "type": "etape",
+   "kicker": "L'énergie libre de Gibbs",
+   "titre": "Le critère de spontanéité",
+   "tex": [
+    "\\Delta G < 0 : \\text{spontanée, exergonique}",
+    "\\Delta G > 0 : \\text{non spontanée, endergonique}",
+    "\\Delta G = 0 : \\text{équilibre}",
+    "\\Delta G = \\Delta H - T\\,\\Delta S"
+   ]
+  },
+  "exemple_gibbs": {
+   "type": "etape",
+   "kicker": "Exercice",
+   "titre": "Exemple : Gibbs tranche",
+   "tex": [
+    "\\Delta G = \\Delta H - T\\,\\Delta S",
+    "\\Delta G = -50\\,000 - 298 \\times 100 = -79\\,800\\ \\text{J/mol}",
+    "\\Delta G \\approx -79{,}8\\ \\text{kJ/mol} < 0 \\text{ : spontanée}"
+   ]
+  },
+  "helmholtz": {
+   "type": "formule",
+   "kicker": "L'énergie libre de Helmholtz",
+   "tex": "A = U - TS",
+   "note": "L'énergie libre de Helmholtz : le critère à volume constant."
+  },
+  "equilibre": {
+   "type": "formule",
+   "kicker": "L'équilibre chimique",
+   "tex": "\\Delta G^\\circ = -RT\\,\\ln K",
+   "note": "R est la constante des gaz parfaits ; K, la constante d'équilibre."
+  },
+  "recap_p2": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "L'entropie mesure le désordre et ne peut qu'augmenter",
+    "Le zéro absolu est inatteignable en un nombre fini d'étapes",
+    "Gibbs : enthalpie moins température fois entropie",
+    "Une variation de Gibbs négative : transformation spontanée"
+   ]
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Les substances pures",
+   "titre": "Décrire l'état d'un corps pur",
+   "tex": [
+    "\\text{Intensives : } T,\\ P,\\ v = \\tfrac{V}{m},\\ C = \\tfrac{n}{V}",
+    "\\text{Extensives : } m,\\ V,\\ U,\\ H,\\ S",
+    "\\text{État} = \\text{deux intensives indépendantes}"
+   ]
+  },
+  "gaz_parfait": {
+   "type": "formule",
+   "kicker": "Les gaz parfaits",
+   "tex": "PV = nRT",
+   "note": "L'équation d'état des gaz parfaits ; R = 8,314 J/(mol·K), T en kelvins."
+  },
+  "exemple_gaz": {
+   "type": "etape",
+   "kicker": "Exercice",
+   "titre": "Exemple : une mole de dioxygène",
+   "tex": [
+    "V = \\tfrac{nRT}{P} = \\tfrac{1 \\times 8{,}314 \\times 298{,}15}{101\\,325}",
+    "V \\approx 24{,}5\\ \\text{L}"
+   ]
+  },
+  "vdw": {
+   "type": "formule",
+   "kicker": "Les gaz réels",
+   "tex": "\\left(P + \\frac{a}{\\bar{V}^2}\\right)\\left(\\bar{V} - b\\right) = RT",
+   "note": "L'équation de Van der Waals : le modèle du gaz réel."
+  },
+  "phases_ecran": {
+   "type": "phrase",
+   "kicker": "Les diagrammes de phases",
+   "texte": "Le diagramme de phases d'un corps pur dessine les frontières entre solide, liquide et gaz : le point triple, où les trois phases coexistent, et le point critique, au-delà duquel on ne peut plus liquéfier le gaz.",
+   "anim": {
+    "nom": "phases",
+    "hauteur": 170
+   }
+  },
+  "etat_standard": {
+   "type": "etape",
+   "kicker": "L'état standard",
+   "titre": "L'état standard, la référence commune",
+   "tex": [
+    "\\text{État standard : } P = 1\\ \\text{bar}, \\ T = 298{,}15\\ \\text{K}",
+    "\\text{Conditions normales : } P = 1\\ \\text{atm}, \\ T = 273\\ \\text{K}",
+    "\\text{En solution : } C^\\circ = 1\\ \\text{mol/L}"
+   ]
+  },
+  "hess": {
+   "type": "formule",
+   "kicker": "La loi de Hess",
+   "tex": "\\Delta H^\\circ_r = \\sum \\Delta H^\\circ_f \\text{(produits)} - \\sum \\Delta H^\\circ_f \\text{(réactifs)}",
+   "note": "La loi de Hess : sommes des formations, produits moins réactifs."
+  },
+  "exemple_hess": {
+   "type": "etape",
+   "kicker": "Exercice",
+   "titre": "Exemple : la combustion du méthane",
+   "tex": [
+    "\\mathrm{CH_4(g) + 2\\,O_2(g) \\longrightarrow CO_2(g) + 2\\,H_2O(l)}",
+    "\\Delta H^\\circ_r = \\Delta H^\\circ_f(\\mathrm{CO_2}) + 2\\,\\Delta H^\\circ_f(\\mathrm{H_2O})",
+    "\\qquad - \\Delta H^\\circ_f(\\mathrm{CH_4}) - 2\\,\\Delta H^\\circ_f(\\mathrm{O_2})"
+   ]
+  },
+  "enthalpies": {
+   "type": "recap",
+   "kicker": "Les enthalpies standard",
+   "etapes": [
+    "Changement d'état : la chaleur latente",
+    "Ionisation : toujours endothermique",
+    "Affinité électronique : capter un électron",
+    "Énergie de liaison : toujours positive",
+    "Énergie réticulaire : désagréger un cristal"
+   ]
+  },
+  "exercices_finaux": {
+   "type": "etape",
+   "kicker": "Exercices",
+   "titre": "Deux exercices pour verrouiller le cours",
+   "tex": [
+    "\\Delta S_{fusion} = \\tfrac{6\\,010}{273{,}15} \\approx 22{,}0\\ \\text{J/K}",
+    "K = e^{\\tfrac{10\\,000}{8{,}314 \\times 298}} \\approx 57 \\quad (\\Delta G^\\circ = -10\\ \\text{kJ/mol})"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Conclusion",
+   "etapes": [
+    "Premier principe : l'énergie se conserve",
+    "Deuxième principe : l'entropie augmente",
+    "Gibbs et Hess : spontanéité et chaleurs de réaction",
+    "Applications : moteurs, industrie, climat, vivant"
+   ],
+   "anim": {
+    "nom": "clapeyron_fig",
+    "hauteur": 110
+   }
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours de thermodynamique, la science de l'énergie et de ses transformations. Nous définirons d'abord le système et ses échanges : le travail et la chaleur. Puis viendront les trois principes : la conservation de l'énergie, l'entropie qui impose un sens aux transformations, et le zéro absolu. Nous verrons ensuite les fonctions d'état qui prédisent la spontanéité, l'enthalpie et l'énergie libre de Gibbs, avant de terminer par l'état standard et la loi de Hess.",
+   "texte": "Thermodynamique : l'énergie et ses transformations, en trois principes."
+  },
+  {
+   "id": "p02",
+   "ecran": "definition",
+   "dit": "La thermodynamique est l'étude de l'énergie et de ses transformations. Elle s'intéresse aux transferts d'énergie sous forme de chaleur et de travail, et à leurs effets sur la matière. Son approche est statistique : pour un verre d'eau, elle regarde la température globale et la pression, là où la mécanique classique décrirait le mouvement d'une seule molécule d'eau.",
+   "texte": "La thermodynamique : chaleur, travail et comportement moyen des particules."
+  },
+  {
+   "id": "p03",
+   "ecran": "systemes",
+   "dit": "Tout commence par le choix du système : la portion de l'univers que l'on étudie, séparée du reste, l'environnement, par une frontière réelle ou imaginaire ; système et environnement réunis forment l'univers. Un système ouvert échange matière et énergie, comme une casserole d'eau bouillante ; un système fermé n'échange que de l'énergie, comme un ballon de baudruche ; un système isolé n'échange rien du tout, comme un thermos parfait.",
+   "texte": "Ouvert, fermé, isolé : tout dépend des échanges avec l'environnement."
+  },
+  {
+   "id": "p04",
+   "ecran": "travail",
+   "dit": "L'énergie traverse la frontière sous deux formes. D'abord le travail : une force qui provoque un déplacement. Quand un gaz se détend en poussant un piston, il fournit un travail contre la pression extérieure ; pour une variation élémentaire de volume, ce travail vaut moins la pression extérieure fois la variation de volume.",
+   "texte": "Le travail des forces de pression : δW = −P·dV, avec P la pression extérieure."
+  },
+  {
+   "id": "p05",
+   "ecran": "travail_calculs",
+   "dit": "Pour calculer un travail complet, tout dépend du régime. Si la transformation est irréversible, la pression extérieure reste constante et le travail vaut moins la pression extérieure fois la variation totale de volume. Si elle est réversible, infiniment lente, la pression varie à chaque instant : pour un gaz parfait en détente isotherme, le travail fait intervenir les logarithmes des volumes final et initial.",
+   "texte": "Travail irréversible contre travail réversible : deux calculs."
+  },
+  {
+   "id": "p06",
+   "ecran": "chaleur",
+   "dit": "Deuxième forme d'échange : la chaleur, un transfert d'énergie thermique causé par une différence de température, toujours du corps le plus chaud vers le corps le plus froid. Elle circule de trois façons : par contact direct, c'est la conduction ; par mouvement de matière, c'est la convection ; ou par ondes électromagnétiques, c'est le rayonnement.",
+   "texte": "La chaleur : conduction, convection, rayonnement."
+  },
+  {
+   "id": "p07",
+   "ecran": "premier_principe",
+   "dit": "Le premier principe affirme que l'énergie ne peut être ni créée ni détruite, seulement transformée. Pour un système fermé, la variation d'énergie interne est donc égale à la somme du travail et de la chaleur reçus. L'énergie interne, elle, est une fonction d'état : elle ne dépend que de l'état du système, et non du chemin suivi pour y parvenir.",
+   "texte": "Premier principe : ΔU = W + Q, la conservation de l'énergie."
+  },
+  {
+   "id": "p08",
+   "ecran": "conventions",
+   "dit": "Attention aux signes, ils sont la première source d'erreur. Par convention, le travail et la chaleur reçus par le système comptent positivement, et ce qu'il cède compte négativement. Et retenez la différence de nature : l'énergie interne est une fonction d'état, mais le travail et la chaleur dépendent du chemin suivi, ce ne sont pas des fonctions d'état.",
+   "texte": "Reçu : positif ; cédé : négatif. U est une fonction d'état, W et Q n'en sont pas."
+  },
+  {
+   "id": "p09",
+   "ecran": "exemple_premier",
+   "dit": "Un exemple chiffré : un système reçoit cent joules de chaleur et fournit cinquante joules de travail. La chaleur reçue compte plus cent ; le travail fourni compte moins cinquante. La variation d'énergie interne vaut moins cinquante plus cent, soit plus cinquante joules : l'énergie interne du système augmente de cinquante joules.",
+   "texte": "Exemple : Q = +100 J, W = −50 J, donc ΔU = +50 J."
+  },
+  {
+   "id": "p10",
+   "ecran": "cas_particuliers",
+   "dit": "Trois cas particuliers reviennent sans cesse. En transformation isotherme d'un gaz parfait, l'énergie interne ne varie pas : la chaleur cédée compense exactement le travail fourni. À volume constant, aucun travail n'est échangé : toute la chaleur reçue devient énergie interne. Et sans aucun échange de chaleur, en adiabatique, c'est le travail seul qui fait varier l'énergie interne.",
+   "texte": "Isotherme, isochore, adiabatique : les trois raccourcis du premier principe."
+  },
+  {
+   "id": "p11",
+   "ecran": "recap_p1",
+   "dit": "Récapitulons ce premier volet : on choisit un système, on suit ses échanges de travail et de chaleur avec l'environnement, et le premier principe fait les comptes, la variation d'énergie interne égale le travail plus la chaleur, avec des signes qui disent qui reçoit et qui cède.",
+   "texte": "Premier volet : systèmes, échanges et premier principe."
+  },
+  {
+   "id": "p12",
+   "ecran": "entropie_def",
+   "dit": "Le second principe introduit une grandeur nouvelle : l'entropie, qui quantifie le désordre d'un système, la dispersion de son énergie. Mélangez un jeu de cartes parfaitement rangé : passer de l'ordre au désordre est facile, l'inverse presque impossible. C'est ce sens unique que le second principe énonce : l'entropie d'un système isolé ne peut qu'augmenter au cours d'une transformation spontanée.",
+   "texte": "L'entropie : la mesure du désordre, et le sens des transformations."
+  },
+  {
+   "id": "p13",
+   "ecran": "entropie_calcul",
+   "dit": "Pour une transformation réversible, la variation d'entropie se calcule en intégrant la chaleur élémentaire échangée, divisée par la température absolue. Exemple : un gaz parfait absorbe mille joules au cours d'une détente isotherme réversible à trois cents kelvins ; son entropie augmente de mille sur trois cents, soit environ trois virgule trente-trois joules par kelvin.",
+   "texte": "Exemple : ΔS = Q/T = 1000/300 ≈ 3,33 J/K."
+  },
+  {
+   "id": "p14",
+   "ecran": "reversible",
+   "dit": "Réversible ou irréversible ? Une transformation réversible est un idéal : infiniment lente, elle passe par une succession d'états d'équilibre, et l'entropie de l'univers n'y change pas. Toute transformation réelle est irréversible : détente libre d'un gaz, mélange de deux gaz, frottements ; l'entropie totale augmente, et le retour en arrière est impossible.",
+   "texte": "Réversible : un idéal sans création d'entropie ; irréversible : le réel."
+  },
+  {
+   "id": "p15",
+   "ecran": "troisieme",
+   "dit": "Le troisième principe concerne une limite : le zéro absolu, zéro kelvin, soit moins deux cent soixante-treize virgule quinze degrés Celsius, où toute agitation thermique s'arrêterait. Il est impossible de l'atteindre en un nombre fini d'étapes : chaque refroidissement exige un réservoir encore plus froid que le système. Conséquence célèbre : l'entropie d'un cristal parfait au zéro absolu est exactement nulle.",
+   "texte": "Troisième principe : le zéro absolu est inatteignable, S y vaut zéro pour un cristal parfait."
+  },
+  {
+   "id": "p16",
+   "ecran": "enthalpie",
+   "dit": "Passons aux fonctions d'état qui pilotent les réactions. À pression constante, la situation la plus courante au laboratoire, la chaleur échangée se lit directement sur une fonction d'état : l'enthalpie. Sa variation égale la chaleur reçue à pression constante. Si elle est négative, la réaction libère de la chaleur, elle est exothermique, comme une combustion ; si elle est positive, la réaction absorbe de la chaleur, elle est endothermique.",
+   "texte": "L'enthalpie : la chaleur à pression constante ; négative, exothermique ; positive, endothermique."
+  },
+  {
+   "id": "p17",
+   "ecran": "entropie_etats",
+   "dit": "L'entropie grandit avec la température, car l'agitation des particules augmente, et elle suit l'ordre des états de la matière : le solide, très ordonné, a l'entropie la plus faible, puis le liquide, puis le gaz, le plus désordonné. La fusion ou la détente d'un gaz augmentent donc l'entropie, tandis qu'une cristallisation la diminue.",
+   "texte": "S du solide, plus faible que S du liquide, plus faible que S du gaz."
+  },
+  {
+   "id": "p18",
+   "ecran": "gibbs",
+   "dit": "Enthalpie et entropie tirent parfois en sens opposé : pour trancher, on les combine dans l'énergie libre de Gibbs, égale à l'enthalpie moins la température fois l'entropie. C'est l'énergie disponible pour fournir un travail utile, à température et pression constantes.",
+   "texte": "G = H − TS : l'énergie disponible pour un travail utile."
+  },
+  {
+   "id": "p19",
+   "ecran": "gibbs_criteres",
+   "dit": "Le critère est simple à appliquer : si la variation d'énergie libre est négative, la transformation est spontanée dans le sens direct, on dit qu'elle est exergonique ; si elle est positive, elle est impossible dans le sens direct, elle est endergonique et demande un apport d'énergie ; si elle est nulle, le système est à l'équilibre. Et lisez la formule : à haute température, c'est le terme d'entropie qui décide ; à basse température, c'est l'enthalpie.",
+   "texte": "ΔG négatif : spontané ; positif : impossible dans le sens direct ; nul : équilibre."
+  },
+  {
+   "id": "p20",
+   "ecran": "exemple_gibbs",
+   "dit": "Exemple complet : une réaction dégage cinquante kilojoules par mole, et son entropie augmente de cent joules par mole et par kelvin. À vingt-cinq degrés Celsius, soit deux cent quatre-vingt-dix-huit kelvins, sa variation d'énergie libre vaut moins cinquante mille, moins deux cent quatre-vingt-dix-huit fois cent : moins soixante-dix-neuf mille huit cents joules par mole. Elle est négative : la réaction est spontanée.",
+   "texte": "Exemple : ΔG = −79 800 J/mol, la réaction est spontanée."
+  },
+  {
+   "id": "p21",
+   "ecran": "helmholtz",
+   "dit": "À volume constant, ce n'est plus Gibbs mais Helmholtz qui arbitre : son énergie libre combine l'énergie interne et l'entropie. Le critère garde la même forme : une variation négative signale une transformation spontanée à volume constant, une variation nulle signale l'équilibre.",
+   "texte": "A = U − TS : le critère de spontanéité à volume constant."
+  },
+  {
+   "id": "p22",
+   "ecran": "equilibre",
+   "dit": "Gibbs parle aussi le langage de l'équilibre chimique : la variation d'énergie libre standard d'une réaction est reliée à sa constante d'équilibre par un logarithme. Plus la constante est grande, plus l'équilibre est déplacé vers les produits ; plus elle est petite, plus les réactifs dominent.",
+   "texte": "ΔG° = −RT ln K : de l'énergie libre à la constante d'équilibre."
+  },
+  {
+   "id": "p23",
+   "ecran": "recap_p2",
+   "dit": "Récapitulons : le second principe donne un sens aux transformations par l'entropie, le troisième fixe le zéro absolu comme une limite inatteignable, et l'énergie libre de Gibbs combine enthalpie et entropie pour prédire la spontanéité et l'équilibre des réactions.",
+   "texte": "Deuxième volet : entropie, troisième principe et énergie libre."
+  },
+  {
+   "id": "p24",
+   "ecran": "proprietes",
+   "dit": "Une substance pure a une composition chimique uniforme et constante : l'eau distillée, oui ; l'eau de mer, non. Son état est décrit par des propriétés intensives, indépendantes de la quantité de matière, comme la température, la pression ou le volume spécifique ; deux d'entre elles, indépendantes, suffisent à fixer complètement l'état. Les propriétés extensives, elles, sont proportionnelles à la quantité de matière : la masse, le volume, l'énergie interne, l'enthalpie et l'entropie.",
+   "texte": "Intensives contre extensives : deux intensives fixent l'état d'un corps pur."
+  },
+  {
+   "id": "p25",
+   "ecran": "gaz_parfait",
+   "dit": "L'équation d'état la plus simple relie pression, volume, quantité de matière et température absolue : c'est l'équation des gaz parfaits. Elle décrit bien les gaz à basse pression et haute température ; la constante des gaz parfaits vaut huit virgule trois cent quatorze joules par mole et par kelvin.",
+   "texte": "PV = nRT, avec R = 8,314 J/(mol·K) et T en kelvins."
+  },
+  {
+   "id": "p26",
+   "ecran": "exemple_gaz",
+   "dit": "Exemple : quel volume occupe une mole de dioxygène à vingt-cinq degrés Celsius sous une atmosphère ? On convertit d'abord : deux cent quatre-vingt-dix-huit virgule quinze kelvins, et cent un mille trois cent vingt-cinq pascals. Le volume vaut la quantité de matière fois la constante fois la température, le tout divisé par la pression : environ vingt-quatre virgule cinq litres.",
+   "texte": "Exemple : V = nRT/P ≈ 24,5 L pour une mole à 25 °C et 1 atm."
+  },
+  {
+   "id": "p27",
+   "ecran": "vdw",
+   "dit": "Pour un gaz réel, l'équation se corrige : celle de Van der Waals ajoute un terme de pression interne et retire le volume propre des molécules, en raisonnant sur le volume molaire, c'est-à-dire le volume divisé par la quantité de matière.",
+   "texte": "Van der Waals : la correction du gaz réel, en volume molaire."
+  },
+  {
+   "id": "p28",
+   "ecran": "phases_ecran",
+   "dit": "Le diagramme de phases cartographie le comportement d'un corps pur selon la pression et la température : trois zones, solide, liquide et gaz, et deux points remarquables. Au point triple, les trois phases coexistent : pour l'eau, à zéro virgule zéro un degré Celsius. Au point critique, au-delà duquel aucune pression ne peut plus liquéfier le gaz : pour l'eau, à trois cent soixante-quatorze degrés Celsius.",
+   "texte": "Point triple de l'eau : 0,01 °C ; point critique : 374 °C."
+  },
+  {
+   "id": "p29",
+   "ecran": "etat_standard",
+   "dit": "Pour comparer les réactions entre elles, il faut une référence commune, comme le niveau de la mer pour les montagnes : c'est l'état standard. En thermodynamique : une pression d'un bar et une température de vingt-cinq degrés Celsius ; les conditions normales, elles, retiennent une atmosphère et zéro degré Celsius. En solution, la concentration standard vaut une mole par litre, et chaque substance est prise dans son état le plus stable.",
+   "texte": "État standard : 1 bar, 298,15 K ; conditions normales : 1 atm, 273 K."
+  },
+  {
+   "id": "p30",
+   "ecran": "hess",
+   "dit": "La loi de Hess est l'outil de calcul des chaleurs de réaction : l'enthalpie étant une fonction d'état, la variation d'enthalpie d'une réaction ne dépend que des états initial et final, jamais du chemin. On la calcule donc à partir des enthalpies standard de formation : la somme de celles des produits, moins la somme de celles des réactifs. Et par convention, l'enthalpie standard de formation d'un corps simple dans son état standard est nulle.",
+   "texte": "Loi de Hess : produits moins réactifs, et zéro pour les corps simples."
+  },
+  {
+   "id": "p31",
+   "ecran": "exemple_hess",
+   "dit": "Application à la combustion du méthane, la réaction du gaz de ville : un méthane plus deux dioxygènes donnent un dioxyde de carbone et deux eaux liquides. Son enthalpie standard s'écrit : formation du dioxyde de carbone, plus deux fois celle de l'eau liquide, moins celle du méthane, moins deux fois celle du dioxygène, nulle puisque le dioxygène est un corps simple. Les valeurs numériques se lisent dans les tables thermodynamiques.",
+   "texte": "Exemple : la combustion du méthane par la loi de Hess."
+  },
+  {
+   "id": "p32",
+   "ecran": "enthalpies",
+   "dit": "Autour de la formation gravitent d'autres enthalpies standard à connaître : la chaleur latente d'un changement d'état ; l'enthalpie d'ionisation, toujours positive, pour arracher un électron à un atome gazeux ; l'affinité électronique, qui accompagne la capture d'un électron ; l'énergie de liaison, toujours positive, pour dissocier une molécule en ses atomes ; et l'énergie réticulaire, pour désagréger un cristal ionique en ions gazeux, accessible par le cycle de Born et Haber. Dissocier une mole de dioxyde de carbone en atomes coûte par exemple mille six cent deux kilojoules, en deux étapes de cinq cent trente et un puis mille soixante et onze kilojoules : la somme des étapes, c'est encore la loi de Hess.",
+   "texte": "Changement d'état, ionisation, affinité, liaison, réticulaire : le catalogue des enthalpies."
+  },
+  {
+   "id": "p33",
+   "ecran": "exercices_finaux",
+   "dit": "Deux derniers exercices pour verrouiller le cours. D'abord, la fusion d'une mole de glace à zéro degré Celsius : la variation d'entropie vaut la chaleur latente de fusion, six mille dix joules par mole, divisée par deux cent soixante-treize virgule quinze kelvins, soit environ vingt-deux joules par kelvin. Ensuite, une réaction dont l'énergie libre standard vaut moins dix kilojoules par mole à deux cent quatre-vingt-dix-huit kelvins : sa constante d'équilibre vaut environ cinquante-sept, l'équilibre penche nettement vers les produits.",
+   "texte": "Fusion de la glace : ΔS ≈ 22 J/K ; ΔG° = −10 kJ/mol donne K ≈ 57."
+  },
+  {
+   "id": "p34",
+   "ecran": "recap_final",
+   "dit": "Voilà la thermodynamique au complet : le premier principe conserve l'énergie, le deuxième donne un sens aux transformations par l'entropie, le troisième fixe la limite du zéro absolu. Avec l'enthalpie, l'énergie libre de Gibbs et la loi de Hess, vous savez prédire si une réaction peut avoir lieu et calculer sa chaleur. Ces outils commandent les moteurs thermiques et leur rendement maximal, la production d'ammoniac du procédé Haber et Bosch, l'effet de serre qui réchauffe le climat, et même la respiration cellulaire.",
+   "texte": "Conclusion : trois principes, et des applications du moteur à la cellule."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Systèmes, échanges d'énergie et premier principe"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Entropie et énergie libre : le sens des transformations",
+   "pont": {
+    "dit": "Partie deux : entropie et énergie libre, le sens des transformations. Le premier principe comptait l'énergie ; le deuxième va nous dire dans quel sens les transformations peuvent réellement se dérouler, et l'énergie libre de Gibbs tranchera pour les réactions.",
+    "texte": "Partie 2 : entropie et énergie libre."
+   }
+  },
+  {
+   "debut": "p24",
+   "sous_titre": "Substances pures, état standard et loi de Hess",
+   "pont": {
+    "dit": "Partie trois : substances pures, état standard et loi de Hess. Après les principes, décrivons l'état des corps purs, puis apprenons à calculer les chaleurs de réaction à partir des tables, comme un comptable de l'énergie.",
+    "texte": "Partie 3 : substances pures et thermochimie."
+   }
+  }
+ ]
+}

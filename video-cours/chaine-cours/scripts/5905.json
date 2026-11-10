@@ -1,0 +1,462 @@
+{
+ "cours": 5905,
+ "ecrans": {
+  "alternatif": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "conversion"
+   },
+   "kicker": "Le courant alternatif",
+   "texte": "Le courant change périodiquement de sens : les électrons oscillent, comme une balançoire. L'oscillation est sinusoïdale.",
+   "type": "phrase"
+  },
+  "associations": {
+   "kicker": "Associations de dipôles",
+   "texte": "En série : une unique connexion commune, qui n'est pas un nœud. En parallèle (dérivation) : les bornes connectées deux à deux.",
+   "type": "phrase",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 270
+   }
+  },
+  "caracteristique": {
+   "kicker": "La caractéristique d'un dipôle",
+   "texte": "La relation entre la tension aux bornes du dipôle et l'intensité qui le traverse. Avec les lois de Kirchhoff, elle permet de résoudre le circuit.",
+   "type": "phrase",
+   "anim": {
+    "nom": "caracteristique",
+    "hauteur": 280
+   }
+  },
+  "conventions": {
+   "etapes": [
+    "Générateur : flèches de la tension et du courant dans le même sens",
+    "Récepteur : flèches de la tension et du courant en sens contraires",
+    "On oriente chaque dipôle selon sa nature, pour travailler en valeurs positives"
+   ],
+   "kicker": "Conventions générateur et récepteur",
+   "type": "recap",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 270
+   }
+  },
+  "courant": {
+   "kicker": "Le courant électrique",
+   "texte": "Un mouvement ordonné de porteurs de charge libres : électrons dans les métaux, ions dans les solutions électrolytiques.",
+   "type": "phrase"
+  },
+  "dipoles": {
+   "kicker": "Les dipôles",
+   "texte": "Un dipôle a deux bornes. Générateurs (actifs) : ils imposent le courant. Récepteurs (passifs) : ils le subissent.",
+   "type": "phrase",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 270
+   }
+  },
+  "efficace": {
+   "kicker": "La valeur efficace",
+   "note": "Même relation pour l'intensité : I eff = I max / √2 · la valeur moyenne sur une période est nulle · les 230 V des prises sont une valeur efficace",
+   "tex": "U_{\\text{eff}} = \\dfrac{U_{\\max}}{\\sqrt{2}}",
+   "titre": "La valeur qui produit le même effet thermique",
+   "type": "formule"
+  },
+  "ex_onde": {
+   "kicker": "Exemple",
+   "tex": [
+    "f = 100\\ \\text{MHz} = 10^{8}\\ \\text{Hz}",
+    "\\lambda = \\dfrac{c}{f}",
+    "\\lambda = \\dfrac{3 \\times 10^{8}}{10^{8}} = 3\\ \\text{m}"
+   ],
+   "titre": "La longueur d'onde d'une onde radio",
+   "type": "etape"
+  },
+  "ex_puissance": {
+   "kicker": "Exemple",
+   "tex": [
+    "U_{\\text{eff}} = 230\\ \\text{V}",
+    "I_{\\text{eff}} = 5\\ \\text{A}",
+    "\\varphi = 30^\\circ",
+    "S = U_{\\text{eff}}\\, I_{\\text{eff}} = 1150\\ \\text{VA}"
+   ],
+   "titre": "Les puissances d'un circuit en alternatif",
+   "type": "etape"
+  },
+  "ex_puissance_res": {
+   "kicker": "Exemple · résultats",
+   "note": "Puissance réactive : Q = 1150 × sin 30° = 575 var · le facteur de puissance cos φ vaut ici environ 0,87",
+   "tex": "P = 1150 \\times \\cos 30^\\circ \\approx 996\\ \\text{W}",
+   "titre": "La puissance active",
+   "type": "formule"
+  },
+  "fleche": {
+   "kicker": "La flèche de tension",
+   "tex": [
+    "U_{AB} = -U_{BA}",
+    "U_{\\text{flèche}} = V_{\\text{pointe}} - V_{\\text{origine}}"
+   ],
+   "titre": "La flèche fixe le sens de la différence",
+   "type": "etape"
+  },
+  "generateur": {
+   "kicker": "Le générateur idéal de tension",
+   "note": "E : tension à vide, maintenue constante quel que soit le courant débité — le modèle des piles et batteries (1,5 V, 4,5 V, 9 V)",
+   "tex": "u_G = E",
+   "titre": "Une tension maintenue constante",
+   "type": "formule",
+   "anim": {
+    "nom": "caracteristique",
+    "hauteur": 280
+   }
+  },
+  "intensite": {
+   "kicker": "L'intensité du courant",
+   "note": "Q : charge traversant la branche, en coulombs · Δt : durée, en secondes · I en ampères : un ampère vaut un coulomb par seconde",
+   "tex": "I = \\dfrac{Q}{\\Delta t}",
+   "titre": "Une charge par unité de temps",
+   "type": "formule"
+  },
+  "magneto": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "induction"
+   },
+   "kicker": "Électricité et magnétisme",
+   "texte": "Un courant crée un champ magnétique ; un champ magnétique variable crée un courant : c'est l'induction de Faraday.",
+   "type": "phrase"
+  },
+  "mailles": {
+   "kicker": "Loi des mailles",
+   "texte": "Dans une maille fermée, la somme des tensions orientées dans un sens égale la somme des tensions orientées dans le sens opposé.",
+   "type": "phrase",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 270
+   }
+  },
+  "noeuds": {
+   "kicker": "Loi des nœuds",
+   "texte": "En un nœud, la somme des intensités qui arrivent égale la somme des intensités qui repartent : la charge se conserve.",
+   "type": "phrase",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 270
+   }
+  },
+  "ondes": {
+   "kicker": "Les ondes électromagnétiques",
+   "texte": "Champs électrique et magnétique oscillent ensemble, perpendiculaires l'un à l'autre, et se propagent dans le vide à la vitesse de la lumière.",
+   "type": "phrase",
+   "anim": {
+    "nom": "onde_em",
+    "hauteur": 280
+   }
+  },
+  "potentiel": {
+   "kicker": "Potentiel et tension",
+   "texte": "Chaque charge crée un potentiel électrique V, en volts. Le potentiel est constant le long d'un fil ; la tension est la différence de potentiel entre deux bornes.",
+   "type": "phrase"
+  },
+  "puissances": {
+   "kicker": "Les puissances en alternatif",
+   "tex": [
+    "P = U_{\\text{eff}}\\, I_{\\text{eff}} \\cos\\varphi",
+    "Q = U_{\\text{eff}}\\, I_{\\text{eff}} \\sin\\varphi",
+    "S = U_{\\text{eff}}\\, I_{\\text{eff}}"
+   ],
+   "titre": "Trois puissances, un déphasage φ",
+   "type": "etape"
+  },
+  "recap": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "conversion"
+   },
+   "etapes": [
+    "Tension : U_AB = V_A − V_B ; loi des mailles et loi des nœuds (Kirchhoff)",
+    "Intensité : I = Q / Δt, en ampères ; générateur idéal : u = E, constante",
+    "Alternatif : U eff = U max / √2 ; P = U I cos φ, Q = U I sin φ, S = U I",
+    "Ondes électromagnétiques : propagation à c ≈ 3 × 10⁸ m/s, λ = c / f"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "sens": {
+   "kicker": "Le sens conventionnel",
+   "texte": "Les électrons vont du moins vers le plus. Par convention, le courant positif va du plus vers le moins, et son intensité est la même en tout point d'une branche.",
+   "type": "phrase",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 270
+   }
+  },
+  "sinus": {
+   "kicker": "La tension alternative",
+   "note": "U max : valeur maximale de la tension · ω = 2πf : la pulsation, avec f la fréquence en hertz",
+   "tex": "u(t) = U_{\\max}\\, \\sin(\\omega\\, t)",
+   "titre": "Une tension sinusoïdale",
+   "type": "formule"
+  },
+  "spectre": {
+   "etapes": [
+    "Ondes radio et micro-ondes : communications, radars, fours",
+    "Infrarouge, lumière visible, ultraviolet",
+    "Rayons X : l'imagerie médicale ; rayons gamma : la radiothérapie"
+   ],
+   "kicker": "Le spectre électromagnétique",
+   "titre": "Des ondes classées par fréquence croissante",
+   "type": "recap",
+   "anim": {
+    "nom": "onde_em",
+    "hauteur": 280
+   }
+  },
+  "tension": {
+   "kicker": "La tension aux bornes d'un dipôle",
+   "note": "V_A et V_B : potentiels des bornes A et B, en volts · changer l'ordre des bornes change le signe",
+   "tex": "U_{AB} = V_A - V_B",
+   "titre": "Une différence de potentiel",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "conversion"
+   },
+   "kicker": "Physique · Terminale",
+   "sous": "Courant, tension, intensité et lois de Kirchhoff, puis courant alternatif et ondes",
+   "titre": "Rappels d'électricité",
+   "type": "titre"
+  },
+  "transformateur": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "adaptateur"
+   },
+   "kicker": "Application : le transformateur",
+   "texte": "Élever la tension pour le transport, l'abaisser pour l'usage : le transformateur rend possibles les réseaux électriques.",
+   "type": "phrase"
+  },
+  "vocabulaire": {
+   "etapes": [
+    "Nœud : point du circuit où concourent au moins 3 fils",
+    "Branche : portion de circuit comprise entre 2 nœuds consécutifs",
+    "Maille : succession fermée de branches, sans passer deux fois par la même"
+   ],
+   "kicker": "Vocabulaire du circuit",
+   "type": "recap",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 270
+   }
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Grandeurs et lois des circuits"
+  },
+  {
+   "debut": "p16",
+   "pont": {
+    "dit": "Partie deux : le courant alternatif, ses valeurs efficaces et ses puissances, puis le lien entre électricité et magnétisme.",
+    "texte": "Partie 2 : courant alternatif et ondes électromagnétiques."
+   },
+   "sous_titre": "Courant alternatif et ondes"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré aux rappels d'électricité : le courant, la tension et l'intensité dans les circuits, puis le courant alternatif et les ondes électromagnétiques.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Rappels d'électricité : circuits, courant alternatif et ondes."
+  },
+  {
+   "dit": "Le courant électrique est un mouvement ordonné de particules chargées, les porteurs de charge libres. Dans les métaux, ce sont des électrons libres de passer d'un atome à l'autre ; dans les solutions, ce sont des ions. Un matériau qui laisse passer ces porteurs est un conducteur, sinon c'est un isolant.",
+   "ecran": "courant",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Le courant : un mouvement ordonné de porteurs de charge."
+  },
+  {
+   "dit": "L'objet de base est le dipôle, un composant à deux bornes que l'on relie aux autres par des fils. Les dipôles générateurs, dits actifs, imposent la circulation du courant ; les dipôles récepteurs, dits passifs, la subissent. Associer des dipôles, c'est construire un circuit électrique.",
+   "ecran": "dipoles",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Dipôles générateurs et récepteurs : les briques du circuit."
+  },
+  {
+   "dit": "Trois mots décrivent tout circuit. Un nœud est un point où concourent au moins trois fils. Une branche est une portion de circuit comprise entre deux nœuds consécutifs. Une maille est une succession fermée de branches : en la parcourant, on revient à son point de départ.",
+   "ecran": "vocabulaire",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Nœud, branche, maille : le vocabulaire du circuit."
+  },
+  {
+   "dit": "Deux dipôles sont associés en série lorsqu'ils n'ont qu'une seule connexion commune, qui n'est pas un nœud. Ils sont associés en parallèle, ou en dérivation, lorsque leurs bornes sont connectées deux à deux.",
+   "ecran": "associations",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Série ou parallèle : les deux associations de base."
+  },
+  {
+   "dit": "Toute charge électrique crée autour d'elle un potentiel électrique, mesuré en volts. Le long d'un fil, ce potentiel ne varie pas ; mais entre les deux bornes d'un dipôle, il est en général différent. La tension aux bornes d'un dipôle est précisément cette différence de potentiel.",
+   "ecran": "potentiel",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "La tension : une différence de potentiel entre deux bornes."
+  },
+  {
+   "dit": "Pour un dipôle de bornes A et B, la tension U indice A B vaut le potentiel en A moins le potentiel en B. L'ordre des bornes compte : inverser l'ordre change le signe de la tension.",
+   "ecran": "tension",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "U indice A B égale V indice A moins V indice B."
+  },
+  {
+   "dit": "Sur un schéma, une flèche précise la tension choisie : elle vaut le potentiel du point où arrive la pointe, moins le potentiel du point d'où part la flèche. Attention, cette flèche n'est pas un vecteur : la tension est une grandeur scalaire, qui se mesure au voltmètre.",
+   "ecran": "fleche",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "La flèche de tension fixe l'ordre de la différence."
+  },
+  {
+   "dit": "Première loi de Kirchhoff, la loi des mailles. Parcourir une maille fermée ramène au point de départ, donc au même potentiel. La somme des tensions dont les flèches vont dans un sens égale donc la somme des tensions dont les flèches vont dans le sens opposé.",
+   "ecran": "mailles",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Loi des mailles : les tensions se compensent dans une maille."
+  },
+  {
+   "dit": "En courant continu, l'intensité mesure la charge qui traverse une branche pendant une durée donnée : c'est le rapport de la charge Q à la durée delta t. Son unité est l'ampère, c'est-à-dire un coulomb par seconde, et elle se mesure à l'ampèremètre.",
+   "ecran": "intensite",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "L'intensité : I égale Q sur delta t, en ampères."
+  },
+  {
+   "dit": "Les électrons portent une charge négative : leur courant réel va des potentiels faibles vers les potentiels forts. Par convention, on travaille avec le courant positif équivalent, qui circule des potentiels forts vers les faibles, du plus vers le moins. Et dans une même branche, l'intensité est la même en tout point.",
+   "ecran": "sens",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Par convention, le courant positif va du plus vers le moins."
+  },
+  {
+   "dit": "Deuxième loi de Kirchhoff, la loi des nœuds. La charge se conserve : en tout nœud, la somme des intensités des courants qui arrivent égale la somme des intensités des courants qui repartent. Rien ne s'accumule dans un nœud.",
+   "ecran": "noeuds",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Loi des nœuds : ce qui entre dans un nœud en ressort."
+  },
+  {
+   "dit": "Pour travailler avec des valeurs positives, chaque dipôle est orienté selon sa nature. Aux bornes d'un générateur, les flèches de la tension et du courant vont dans le même sens. Aux bornes d'un récepteur, elles vont en sens contraires : c'est la convention récepteur.",
+   "ecran": "conventions",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Même sens pour le générateur, sens contraires pour le récepteur."
+  },
+  {
+   "dit": "Pour résoudre un circuit, les lois de Kirchhoff ne suffisent pas : il faut la caractéristique de chaque dipôle, la relation entre la tension à ses bornes et l'intensité qui le traverse. Pour certains dipôles, comme le condensateur, cette relation fait intervenir une dérivée et conduit à une équation différentielle.",
+   "ecran": "caracteristique",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "La caractéristique : la relation tension-intensité du dipôle."
+  },
+  {
+   "dit": "Le générateur idéal de tension est le modèle le plus simple : il maintient à ses bornes une tension constante, égale à sa tension à vide grand E, quelle que soit l'intensité du courant qu'il débite. C'est le modèle des piles et des batteries du quotidien.",
+   "ecran": "generateur",
+   "id": "p15",
+   "pause_apres": 0.7,
+   "texte": "Le générateur idéal : u égale E, constante."
+  },
+  {
+   "dit": "Le courant alternatif change périodiquement de sens : les électrons oscillent d'avant en arrière, comme une balançoire, au lieu de circuler toujours dans la même direction comme en courant continu. Cette oscillation est sinusoïdale, et c'est elle qui alimente les prises de nos maisons.",
+   "ecran": "alternatif",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Le courant alternatif : une oscillation sinusoïdale."
+  },
+  {
+   "dit": "La tension alternative s'écrit comme un sinus : u de t égale U max fois sinus de oméga t. U max est la valeur maximale de la tension, et oméga, la pulsation, vaut deux pi fois la fréquence f.",
+   "ecran": "sinus",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "u de t égale U max sinus oméga t."
+  },
+  {
+   "dit": "Sur une période, la valeur moyenne d'une tension sinusoïdale est nulle : elle ne dit rien de l'énergie transportée. On utilise la valeur efficace, celle qui produirait le même effet thermique qu'un courant continu : elle vaut la valeur maximale divisée par racine de deux. Les deux cent trente volts de nos prises sont une valeur efficace.",
+   "ecran": "efficace",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "La valeur efficace : la maximale divisée par racine de deux."
+  },
+  {
+   "dit": "En alternatif, tension et courant peuvent être déphasés d'un angle phi, à cause des bobines et des condensateurs. On distingue trois puissances : la puissance active, réellement convertie en travail ou en chaleur ; la puissance réactive, qui circule sans être consommée ; et la puissance apparente, produit des valeurs efficaces.",
+   "ecran": "puissances",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Active, réactive, apparente : les trois puissances."
+  },
+  {
+   "dit": "Exemple tiré du cours. Un circuit est alimenté sous une tension efficace de deux cent trente volts ; il consomme un courant efficace de cinq ampères, avec un déphasage de trente degrés. Calculons ses trois puissances.",
+   "ecran": "ex_puissance",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Exemple : deux cent trente volts, cinq ampères, trente degrés."
+  },
+  {
+   "dit": "La puissance apparente vaut deux cent trente fois cinq, soit mille cent cinquante voltampères. La puissance active, mille cent cinquante fois cosinus trente degrés, vaut environ neuf cent quatre-vingt-seize watts. Et la puissance réactive, mille cent cinquante fois sinus trente degrés, vaut cinq cent soixante-quinze vars.",
+   "ecran": "ex_puissance_res",
+   "id": "p21",
+   "pause_apres": 0.7,
+   "texte": "Résultats : S mille cent cinquante, P neuf cent quatre-vingt-seize, Q cinq cent soixante-quinze."
+  },
+  {
+   "dit": "Le courant alternatif a un atout décisif : le transformateur. Grâce à lui, on élève la tension pour transporter l'électricité sur de longues distances, puis on l'abaisse à l'arrivée pour alimenter les appareils. C'est ce qui rend possibles les réseaux électriques.",
+   "ecran": "transformateur",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Le transformateur : l'atout du courant alternatif."
+  },
+  {
+   "dit": "Dernier volet : électricité et magnétisme ne font qu'un. Un courant électrique crée un champ magnétique autour du fil, qu'une boussole détecte. Inversement, un champ magnétique qui varie crée un courant dans un circuit voisin : c'est l'induction électromagnétique, découverte par Faraday.",
+   "ecran": "magneto",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Courant et champ magnétique se créent l'un l'autre."
+  },
+  {
+   "dit": "Car un champ magnétique variable crée un champ électrique, et un champ électrique variable crée un champ magnétique. Les deux champs s'entretiennent et se propagent ensemble, jusque dans le vide, à la vitesse de la lumière : c'est une onde électromagnétique.",
+   "ecran": "ondes",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Une onde : deux champs qui se propagent ensemble."
+  },
+  {
+   "dit": "Selon leur fréquence, ces ondes forment le spectre électromagnétique : ondes radio, micro-ondes, infrarouge, lumière visible, ultraviolet, rayons X et rayons gamma. Communications, imagerie médicale, industrie et recherche : leurs applications sont partout.",
+   "ecran": "spectre",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Le spectre : des ondes radio aux rayons gamma."
+  },
+  {
+   "dit": "Exemple du cours : quelle est la longueur d'onde d'une onde radio émise à la fréquence de cent mégahertz. On divise la vitesse de la lumière par la fréquence, et l'on trouve une longueur d'onde de trois mètres.",
+   "ecran": "ex_onde",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Exemple : une onde radio de cent mégahertz mesure trois mètres."
+  },
+  {
+   "dit": "Retenez la tension comme différence de potentiel, les deux lois de Kirchhoff, l'intensité comme une charge par seconde, le générateur idéal de tension constante, la valeur efficace et les trois puissances de l'alternatif, et les ondes électromagnétiques qui voyagent à la vitesse de la lumière.",
+   "ecran": "recap",
+   "id": "p27",
+   "pause_apres": 0.5,
+   "texte": "Rappels d'électricité : grandeurs, lois, alternatif et ondes — à retenir."
+  }
+ ],
+ "titre": "Rappels d'électricité"
+}

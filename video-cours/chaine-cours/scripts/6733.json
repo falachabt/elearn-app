@@ -1,0 +1,407 @@
+{
+ "cours": 6733,
+ "ecrans": {
+  "alternateur": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "induction"
+   },
+   "etapes": [
+    "Le rotor : la partie tournante, qui crée le champ magnétique",
+    "Le stator : la partie fixe, où le courant est induit",
+    "Balais et bagues : le contact électrique avec la partie tournante"
+   ],
+   "kicker": "L'alternateur",
+   "type": "recap"
+  },
+  "associations_gen": {
+   "kicker": "Association de générateurs",
+   "tex": [
+    "E_{eq} = E_1 + E_2 \\qquad r_{eq} = r_1 + r_2",
+    "\\frac{1}{r_{eq}} = \\frac{1}{r_1} + \\frac{1}{r_2}"
+   ],
+   "titre": "Série : tout s'ajoute · Parallèle : E conservée, r diminue",
+   "type": "etape"
+  },
+  "auto_induction": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "circuit_rl"
+   },
+   "kicker": "L'auto-induction",
+   "note": "L : inductance, en henrys (H) · le courant variable crée son propre flux variable",
+   "tex": "e = -L\\, \\frac{\\Delta I}{\\Delta t}",
+   "titre": "Le circuit s'induit lui-même",
+   "type": "formule"
+  },
+  "bilan_recepteur": {
+   "kicker": "Le bilan d'énergie d'un récepteur",
+   "tex": [
+    "W_{\\text{totale}} = E'\\, I\\, \\Delta t + r'\\, I^2\\, \\Delta t"
+   ],
+   "titre": "Énergie utile convertie, plus pertes par effet Joule",
+   "type": "etape"
+  },
+  "caracteristique_gen": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "caracteristique"
+   },
+   "kicker": "Lire la caractéristique",
+   "note": "Droite décroissante : ordonnée à l'origine = E, pente = −r",
+   "tex": "U_{PN} = E - r\\, I",
+   "titre": "Une droite décroissante qui contient E et r",
+   "type": "formule"
+  },
+  "energie_puissance": {
+   "kicker": "Énergie et puissance électriques",
+   "tex": [
+    "W = U\\, I\\, \\Delta t",
+    "P = U\\, I"
+   ],
+   "titre": "L'énergie consommée et la puissance correspondante",
+   "type": "etape"
+  },
+  "ex_generateur": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "U_{PN} = 6{,}0 - 2{,}0\\, I",
+    "E = 6{,}0\\ \\text{V} \\qquad r = 2{,}0\\ \\Omega"
+   ],
+   "titre": "Identifier E et r sur une caractéristique",
+   "type": "etape"
+  },
+  "ex_pouillet": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "I = \\frac{12 - 6}{1 + 2} = 2\\ \\text{A}",
+    "U = E - rI = 12 - 1 \\times 2 = 10\\ \\text{V}"
+   ],
+   "titre": "Un générateur de 12 V alimente un moteur",
+   "type": "etape"
+  },
+  "ex_rendement": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "I = \\frac{U - E'}{r'} = \\frac{6 - 4}{1} = 2\\ \\text{A}",
+    "\\eta = \\frac{E'}{U} = \\frac{4}{6} \\approx 0{,}67"
+   ],
+   "titre": "Rendement d'un moteur alimenté sous 6 V",
+   "type": "etape"
+  },
+  "fem_induite": {
+   "kicker": "La force électromotrice induite",
+   "note": "Le signe moins traduit la loi de Lenz : l'induction s'oppose à la variation",
+   "tex": "e = -\\frac{\\Delta \\Phi}{\\Delta t}",
+   "titre": "Proportionnelle à la variation du flux",
+   "type": "formule"
+  },
+  "flux": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "aimant"
+   },
+   "kicker": "Le flux magnétique",
+   "note": "Φ en webers (Wb) · θ : angle entre le champ et la normale · maximal pour θ = 0",
+   "tex": "\\Phi = B\\, S\\, \\cos\\theta",
+   "titre": "La quantité de champ qui traverse une surface",
+   "type": "formule"
+  },
+  "generateur": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "circuit"
+   },
+   "kicker": "Le générateur électrique",
+   "texte": "Un générateur convertit une énergie non électrique (chimique, mécanique, lumineuse) en énergie électrique. Deux paramètres : sa force électromotrice E et sa résistance interne r.",
+   "type": "phrase"
+  },
+  "generateur_loi": {
+   "kicker": "La caractéristique du générateur",
+   "note": "E : force électromotrice, tension à vide · r : résistance interne · I : courant débité",
+   "tex": "U_{PN} = E - r\\, I",
+   "titre": "La tension diminue quand le courant débité augmente",
+   "type": "formule"
+  },
+  "induction": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "induction"
+   },
+   "kicker": "Le phénomène d'induction",
+   "texte": "Un flux variable fait apparaître une force électromotrice dans le circuit : le circuit induit la subit, le circuit inducteur crée le champ. Loi de Lenz : le courant induit s'oppose à la cause qui lui donne naissance.",
+   "type": "phrase"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "circuit"
+   },
+   "kicker": "Introduction",
+   "texte": "Un circuit est un échange d'énergie : un dipôle la fournit, un autre la convertit. Chacun se décrit par deux nombres : une force électromotrice et une résistance interne.",
+   "type": "phrase"
+  },
+  "joule": {
+   "kicker": "La loi de Joule",
+   "note": "Avec la loi d'Ohm, autre forme : W_J = (U²/R) · Δt",
+   "tex": "W_J = R\\, I^2\\, \\Delta t",
+   "titre": "L'énergie dissipée en chaleur dans un résistor",
+   "type": "formule"
+  },
+  "pertes": {
+   "kicker": "Réduire les pertes du transport",
+   "texte": "Réduire les pertes Joule du transport : des câbles de plus forte section, en cuivre, et surtout une tension élevée, pour diminuer l'intensité à puissance transportée constante.",
+   "type": "phrase",
+   "anim": {
+    "nom": "transport_energie_fig",
+    "hauteur": 190
+   }
+  },
+  "point_fonctionnement": {
+   "kicker": "Le point de fonctionnement",
+   "tex": [
+    "U = E - r\\, I",
+    "U = E' + r'\\, I"
+   ],
+   "titre": "Le même couple (I, U) vérifie les deux relations",
+   "type": "etape"
+  },
+  "pouillet": {
+   "kicker": "La loi de Pouillet",
+   "note": "Générateur (E, r) branché sur un récepteur (E′, r′), sans autre résistance",
+   "tex": "I = \\frac{E - E'}{r + r'}",
+   "titre": "Le courant d'un circuit série simple",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Générateur : U = E − rI, droite décroissante",
+    "Récepteur : U = E′ + r′I, droite croissante",
+    "Pouillet : I = (E − E′)/(r + r′)",
+    "Induction : e = −ΔΦ/Δt, loi de Lenz",
+    "Rendement d'un récepteur : η = E′/U"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "recepteur": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "moteur_symbole_fig"
+   },
+   "kicker": "Le récepteur",
+   "texte": "Un récepteur convertit l'énergie électrique reçue en une autre forme : mécanique pour un moteur, chimique pour un électrolyseur. Deux paramètres : sa force contre-électromotrice E′ et sa résistance interne r′.",
+   "type": "phrase"
+  },
+  "recepteur_loi": {
+   "kicker": "La caractéristique du récepteur",
+   "note": "Droite croissante : ordonnée à l'origine = E′, pente = r′",
+   "tex": "U_{AB} = E' + r'\\, I",
+   "titre": "Une droite croissante, le miroir du générateur",
+   "type": "formule"
+  },
+  "rendement": {
+   "kicker": "Le rendement",
+   "note": "Rapport des énergies, qui se simplifie en un rapport de tensions",
+   "tex": "\\eta = \\frac{E'}{U}",
+   "titre": "L'énergie utile rapportée à l'énergie totale",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "caracteristique"
+   },
+   "kicker": "Physique · Électricité",
+   "sous": "Générateurs et récepteurs, point de fonctionnement, induction électromagnétique, énergie et rendement",
+   "titre": "Électricité : générateurs et circuits",
+   "type": "titre"
+  }
+ },
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Générateurs, récepteurs et point de fonctionnement"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : l'induction électromagnétique, puis l'énergie, la puissance et le rendement des circuits.",
+    "texte": "Partie 2 : l'induction électromagnétique, puis l'énergie et le rendement."
+   },
+   "sous_titre": "Induction électromagnétique, énergie et rendement"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'électricité consacré aux générateurs et aux circuits. Au programme : le générateur et le récepteur, leurs caractéristiques et le point de fonctionnement d'un circuit, puis l'induction électromagnétique, et enfin l'énergie, la puissance et le rendement.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Électricité : générateurs et circuits, le cours complet."
+  },
+  {
+   "dit": "Tout circuit électrique repose sur un échange d'énergie : un dipôle la fournit, un autre la reçoit et la convertit. Dans cette première partie, nous apprenons à décrire ces deux acteurs par deux nombres seulement : une force électromotrice et une résistance interne.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Un circuit : un dipôle fournit, un autre convertit."
+  },
+  {
+   "dit": "Un générateur est un dipôle qui convertit une énergie non électrique, chimique, mécanique ou lumineuse, en énergie électrique. Il est caractérisé par sa force électromotrice, notée E, qui est la tension à ses bornes quand aucun courant ne circule, et par sa résistance interne, notée r.",
+   "ecran": "generateur",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Le générateur : E, sa force électromotrice, et r, sa résistance interne."
+  },
+  {
+   "dit": "Quand le générateur débite un courant d'intensité I, la tension entre ses bornes P et N diminue, à cause de la résistance interne : U indice P N égale E moins r fois I. Plus le courant débité est fort, plus la tension disponible baisse.",
+   "ecran": "generateur_loi",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "U indice P N égale E moins r fois I."
+  },
+  {
+   "dit": "Traçons la tension en fonction de l'intensité : on obtient une droite décroissante. Son ordonnée à l'origine donne directement la force électromotrice E, et sa pente vaut moins r. La caractéristique contient donc, à elle seule, les deux paramètres du générateur.",
+   "ecran": "caracteristique_gen",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Une droite décroissante : ordonnée E, pente moins r."
+  },
+  {
+   "dit": "Exemple : un générateur a pour caractéristique U indice P N égale six moins deux fois I. Par identification avec la forme E moins r fois I, on lit immédiatement : E vaut six volts, et la résistance interne r vaut deux ohms.",
+   "ecran": "ex_generateur",
+   "id": "p06",
+   "pause_apres": 0.7,
+   "texte": "Exemple : E vaut six volts, r vaut deux ohms."
+  },
+  {
+   "dit": "On peut associer plusieurs générateurs. En série, les forces électromotrices s'ajoutent, et les résistances internes aussi. En parallèle, pour des générateurs identiques, la force électromotrice équivalente reste E, mais la résistance interne équivalente diminue : ce sont ses inverses qui s'ajoutent.",
+   "ecran": "associations_gen",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "En série tout s'ajoute ; en parallèle, la résistance interne diminue."
+  },
+  {
+   "dit": "Face au générateur, le récepteur convertit l'énergie électrique reçue en une autre forme : énergie mécanique pour un moteur, énergie chimique pour un électrolyseur. Il est caractérisé par sa force contre-électromotrice, notée E prime, et par sa résistance interne, notée r prime.",
+   "ecran": "recepteur",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Le récepteur : E prime et r prime."
+  },
+  {
+   "dit": "La tension aux bornes d'un récepteur s'écrit U indice A B égale E prime plus r prime fois I. Sa caractéristique est une droite croissante : l'ordonnée à l'origine donne E prime, et la pente donne r prime. C'est l'exact miroir de la caractéristique du générateur.",
+   "ecran": "recepteur_loi",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "U indice A B égale E prime plus r prime fois I."
+  },
+  {
+   "dit": "Branchons un générateur sur un récepteur : le circuit impose un courant unique, le même pour les deux dipôles. Le point de fonctionnement est le couple intensité-tension qui satisfait à la fois la caractéristique du générateur et celle du récepteur : graphiquement, c'est l'intersection des deux droites.",
+   "ecran": "point_fonctionnement",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Le point de fonctionnement : l'intersection des deux caractéristiques."
+  },
+  {
+   "dit": "Pour un circuit série simple, la loi de Pouillet donne directement ce courant : I égale E moins E prime, le tout divisé par r plus r prime. Au numérateur, les forces qui s'opposent ; au dénominateur, toutes les résistances du circuit.",
+   "ecran": "pouillet",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Pouillet : I égale E moins E prime, sur r plus r prime."
+  },
+  {
+   "dit": "Exemple : un générateur de douze volts, de résistance interne un ohm, alimente un moteur de force contre-électromotrice six volts et de résistance interne deux ohms. La loi de Pouillet donne I égale douze moins six, divisé par un plus deux, soit deux ampères. La tension aux bornes vaut alors E moins r fois I, soit dix volts.",
+   "ecran": "ex_pouillet",
+   "id": "p12",
+   "pause_apres": 0.7,
+   "texte": "Exemple de Pouillet : deux ampères, dix volts aux bornes."
+  },
+  {
+   "dit": "Changeons de registre : le magnétisme. Le flux magnétique à travers une surface mesure, en quelque sorte, la quantité de champ magnétique qui la traverse : phi égale B fois S fois cosinus thêta, où thêta est l'angle entre le champ et la normale à la surface. Le flux s'exprime en webers, et il est maximal quand le champ est perpendiculaire à la surface.",
+   "ecran": "flux",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Le flux : phi égale B fois S fois cosinus thêta, en webers."
+  },
+  {
+   "dit": "Si ce flux varie au cours du temps, une force électromotrice apparaît dans le circuit : c'est le phénomène d'induction. Le circuit qui subit l'induction est le circuit induit ; celui qui crée le champ est le circuit inducteur. Et la loi de Lenz précise le sens du courant induit : il s'oppose, par ses effets, à la cause qui lui donne naissance.",
+   "ecran": "induction",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Induction : un flux variable crée une force électromotrice."
+  },
+  {
+   "dit": "La valeur de cette force électromotrice induite est proportionnelle à la rapidité de la variation du flux : e égale moins delta phi sur delta t. Le signe moins traduit la loi de Lenz : l'induction s'oppose toujours à la variation qui la provoque.",
+   "ecran": "fem_induite",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "e égale moins delta phi sur delta t."
+  },
+  {
+   "dit": "Cas particulier : un circuit parcouru par un courant variable crée lui-même un flux variable, donc une force électromotrice dans son propre circuit : c'est l'auto-induction. Elle fait intervenir l'inductance L, en henrys : e égale moins L fois delta I sur delta t.",
+   "ecran": "auto_induction",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Auto-induction : e égale moins L fois delta I sur delta t."
+  },
+  {
+   "dit": "L'alternateur met l'induction au service de la production d'électricité : il convertit l'énergie mécanique en énergie électrique. Le rotor, partie tournante, crée le champ magnétique ; le stator, partie fixe, contient les bobines où le courant est induit ; et les balais et les bagues assurent le contact électrique. Comme le flux varie sinusoïdalement avec la rotation, le courant produit est alternatif.",
+   "ecran": "alternateur",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "L'alternateur : rotor, stator, balais et bagues."
+  },
+  {
+   "dit": "Une portion de circuit sous tension U, traversée par un courant I pendant une durée delta t, consomme une énergie W égale U fois I fois delta t, en joules. La puissance correspondante, en watts, est simplement P égale U fois I : c'est l'énergie consommée chaque seconde.",
+   "ecran": "energie_puissance",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "W égale U fois I fois delta t ; P égale U fois I."
+  },
+  {
+   "dit": "Dans un résistor, toute l'énergie électrique reçue est dissipée en chaleur : c'est l'effet Joule. L'énergie perdue vaut R fois I au carré fois delta t ; on peut aussi l'écrire U au carré sur R, fois delta t, grâce à la loi d'Ohm.",
+   "ecran": "joule",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Loi de Joule : W indice J égale R fois I au carré fois delta t."
+  },
+  {
+   "dit": "Faisons le bilan d'un récepteur pendant une durée delta t. L'énergie totale reçue se partage en deux : E prime fois I fois delta t, l'énergie utile réellement convertie, et r prime fois I au carré fois delta t, les pertes par effet Joule dans la résistance interne.",
+   "ecran": "bilan_recepteur",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Bilan : énergie utile convertie, plus pertes Joule."
+  },
+  {
+   "dit": "Le rendement d'un récepteur est le rapport de l'énergie utile sur l'énergie totale reçue. Après simplification, il se réduit à un rapport de tensions : êta égale E prime sur U. Plus la force contre-électromotrice est proche de la tension d'alimentation, meilleur est le rendement.",
+   "ecran": "rendement",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Le rendement : êta égale E prime sur U."
+  },
+  {
+   "dit": "Exemple : un moteur de force contre-électromotrice quatre volts et de résistance interne un ohm est alimenté sous six volts. Le courant vaut U moins E prime, divisé par r prime, soit deux ampères. Le rendement vaut E prime sur U, c'est-à-dire quatre sixièmes, environ zéro virgule soixante-sept : soixante-sept pour cent de l'énergie reçue est utile.",
+   "ecran": "ex_rendement",
+   "id": "p22",
+   "pause_apres": 0.7,
+   "texte": "Exemple : deux ampères, rendement de soixante-sept pour cent."
+  },
+  {
+   "dit": "Dernier point : transporter l'électricité coûte de l'énergie, à cause des pertes par effet Joule dans les câbles, proportionnelles au carré de l'intensité. Pour les réduire, on augmente la section des câbles et on choisit le cuivre ; mais surtout, on élève la tension : à puissance transportée constante, l'intensité diminue, et les pertes chutent comme le carré de l'intensité.",
+   "ecran": "pertes",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Transport : élever la tension fait chuter les pertes Joule."
+  },
+  {
+   "dit": "À retenir : le générateur et le récepteur se décrivent par une force électromotrice et une résistance interne ; la loi de Pouillet donne le courant du circuit ; l'induction naît d'une variation de flux ; et le rendement compare l'énergie utile à l'énergie totale reçue.",
+   "ecran": "recap",
+   "id": "p24",
+   "pause_apres": 0.5,
+   "texte": "Générateurs et circuits : caractéristiques, Pouillet, induction, rendement."
+  }
+ ],
+ "titre": "Électricité : générateurs et circuits"
+}

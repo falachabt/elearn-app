@@ -1,0 +1,419 @@
+{
+ "cours": 6128,
+ "titre": "Annuités et versements périodiques : actualiser, capitaliser, décider",
+ "matiere": "Mathématiques financières",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Concours ESSEC · Mathématiques financières",
+   "titre": "Annuités et versements périodiques : actualiser, capitaliser, décider",
+   "sous": "Valeur actuelle, valeur future, montant du versement : constantes, variables, différées, et la décision d'investir",
+   "anim": {
+    "nom": "capitalisation_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Crédit, épargne, loyers : les paiements réguliers sont partout.",
+   "anim": {
+    "nom": "capitalisation_fig",
+    "hauteur": 150
+   }
+  },
+  "definition": {
+   "type": "etape",
+   "kicker": "Qu'est-ce qu'une annuité ?",
+   "titre": "Trois traits : montant, rythme, moment",
+   "tex": [
+    "\\text{des paiements identiques, à intervalles réguliers}",
+    "\\text{ordinaire : chaque versement en fin de période}",
+    "\\text{anticipée : chaque versement en début de période}"
+   ]
+  },
+  "perspective": {
+   "type": "phrase",
+   "kicker": "Valeur actuelle, valeur future",
+   "texte": "Une même annuité, deux dates de lecture : aujourd'hui, ou à la fin.",
+   "anim": {
+    "nom": "equivalence_fig",
+    "hauteur": 150
+   }
+  },
+  "va_formule": {
+   "type": "formule",
+   "kicker": "Valeur actuelle d'une annuité constante",
+   "tex": "VA = A \\times \\frac{1 - (1 + i)^{-n}}{i}",
+   "note": "A : versement constant · i : taux par période · n : nombre de périodes",
+   "anim": {
+    "nom": "equivalence_fig",
+    "hauteur": 180
+   }
+  },
+  "va_sens": {
+   "type": "phrase",
+   "kicker": "Lire la formule",
+   "texte": "Taux plus haut : valeur actuelle plus basse.",
+   "anim": {
+    "nom": "equivalence_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_va": {
+   "type": "etape",
+   "kicker": "Exemple · le prêt étudiant",
+   "titre": "Inverser la valeur actuelle pour trouver le versement",
+   "tex": [
+    "VA = 20\\,000\\ \\text{€}, \\quad i = 6\\,\\%, \\quad n = 5 \\ \\text{ans}",
+    "A = VA \\times \\tfrac{i \\, (1 + i)^n}{(1 + i)^n - 1}",
+    "A \\approx 4\\,747{,}93\\ \\text{€ par an}"
+   ]
+  },
+  "ex_locatif": {
+   "type": "etape",
+   "kicker": "Exemple · l'investissement locatif",
+   "titre": "Les loyers actualisés couvrent-ils le prix ?",
+   "tex": [
+    "VA = 10\\,000 \\times \\tfrac{1 - (1{,}04)^{-15}}{0{,}04}",
+    "VA \\approx 111\\,184\\ \\text{€} \\quad < \\quad 250\\,000\\ \\text{€}",
+    "\\text{les loyers actualisés ne couvrent pas le prix}"
+   ]
+  },
+  "vf_formule": {
+   "type": "formule",
+   "kicker": "Valeur future d'une annuité constante",
+   "tex": "VF = A \\times \\frac{(1 + i)^n - 1}{i}",
+   "note": "Chaque versement capitalise jusqu'à la date finale.",
+   "anim": {
+    "nom": "capitalisation_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_vf": {
+   "type": "etape",
+   "kicker": "Exemple · l'épargne mensuelle",
+   "titre": "Cent euros par mois pendant cinq ans",
+   "tex": [
+    "A = 100\\ \\text{€}, \\quad i = \\tfrac{0{,}05}{12} \\approx 0{,}4167\\,\\%, \\quad n = 60",
+    "VF = 100 \\times \\tfrac{(1 + i)^{60} - 1}{i}",
+    "VF \\approx 6\\,800{,}61\\ \\text{€}"
+   ]
+  },
+  "montant_formule": {
+   "type": "formule",
+   "kicker": "Le montant du versement périodique",
+   "tex": "A = VA \\times \\frac{i \\, (1 + i)^n}{(1 + i)^n - 1}",
+   "note": "Depuis un capital, on inverse la VA ; depuis un objectif, on inverse la VF."
+  },
+  "ex_montant": {
+   "type": "etape",
+   "kicker": "Exemple · le prêt automobile",
+   "titre": "Convertir le taux, puis appliquer la formule",
+   "tex": [
+    "VA = 20\\,000\\ \\text{€}, \\quad i = \\tfrac{6\\,\\%}{12} = 0{,}5\\,\\%, \\quad n = 36",
+    "A = 20\\,000 \\times \\tfrac{0{,}005 \\, (1{,}005)^{36}}{(1{,}005)^{36} - 1}",
+    "A \\approx 608{,}44\\ \\text{€ par mois}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Récap · les annuités constantes",
+   "etapes": [
+    "VA : actualiser chaque versement, puis sommer",
+    "VF : capitaliser chaque versement jusqu'au bout",
+    "Le taux par période d'abord : annuel divisé",
+    "Le montant A s'obtient en inversant VA ou VF",
+    "Taux plus haut : VA plus basse, VF plus haute"
+   ]
+  },
+  "variables": {
+   "type": "phrase",
+   "kicker": "Les annuités variables",
+   "texte": "Arithmétique, géométrique ou quelconque : le montant bouge.",
+   "anim": {
+    "nom": "suite_arith_fig",
+    "hauteur": 150
+   }
+  },
+  "var_formules": {
+   "type": "etape",
+   "kicker": "Variables · les sommes générales",
+   "titre": "Plus de formule close : sommer terme à terme",
+   "tex": [
+    "\\textstyle VA = \\sum_{k=1}^{n} \\frac{R_k}{(1 + t)^k}",
+    "\\textstyle VF = \\sum_{k=1}^{n} R_k \\, (1 + t)^{n - k}"
+   ]
+  },
+  "ex_arith": {
+   "type": "etape",
+   "kicker": "Exemple · progression arithmétique",
+   "titre": "Cinq cents euros de plus chaque année",
+   "tex": [
+    "R_k : 2\\,000, \\ 2\\,500, \\ 3\\,000, \\ 3\\,500\\ \\text{€} \\quad (t = 6\\,\\%)",
+    "VA = \\tfrac{2000}{1{,}06} + \\tfrac{2500}{1{,}06^2} + \\tfrac{3000}{1{,}06^3} + \\tfrac{3500}{1{,}06^4}",
+    "VA \\approx 9\\,402{,}97\\ \\text{€}"
+   ]
+  },
+  "ex_geo": {
+   "type": "etape",
+   "kicker": "Exemple · progression géométrique",
+   "titre": "Des investissements qui croissent de dix pour cent",
+   "tex": [
+    "R_k = 50\\,000 \\times (1{,}10)^{k - 1} \\quad k = 1 \\dots 5",
+    "VA = \\sum R_k \\, (1{,}08)^{-k} \\approx 240\\,215\\ \\text{€}",
+    "\\text{flux en hausse de } 10\\,\\% \\text{, actualisés à } 8\\,\\%"
+   ]
+  },
+  "differee": {
+   "type": "formule",
+   "kicker": "Annuités immédiates et différées",
+   "tex": "VA = R \\times \\frac{1 - (1 + i)^{-n}}{i} \\times (1 + i)^{-k}",
+   "note": "k périodes de différé ; la VF à la dernière échéance ne change pas."
+  },
+  "ex_differe": {
+   "type": "etape",
+   "kicker": "Exemple · la rente différée",
+   "titre": "Calculer comme une immédiate, puis décaler",
+   "tex": [
+    "\\text{rente } 2\\,000\\ \\text{€ par an}, \\ 10 \\ \\text{ans}, \\ \\text{différée de } 5, \\ i = 6\\,\\%",
+    "VA_{\\text{immédiate}} \\approx 14\\,720{,}17\\ \\text{€}",
+    "VA = 14\\,720{,}17 \\times (1{,}06)^{-5} \\approx 10\\,999{,}77\\ \\text{€}"
+   ]
+  },
+  "applications": {
+   "type": "phrase",
+   "kicker": "Applications pratiques",
+   "texte": "Immobilier, retraite, consommation : la même mécanique.",
+   "anim": {
+    "nom": "emprunt_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_immo": {
+   "type": "etape",
+   "kicker": "Application · le crédit immobilier",
+   "titre": "Deux cent mille euros sur vingt ans, à deux pour cent",
+   "tex": [
+    "C = 200\\,000\\ \\text{€}, \\quad i = \\tfrac{2\\,\\%}{12}, \\quad n = 240",
+    "A \\approx 1\\,011{,}77\\ \\text{€ par mois}",
+    "\\text{intérêts totaux} \\approx 42\\,824\\ \\text{€}"
+   ]
+  },
+  "ex_retraite": {
+   "type": "etape",
+   "kicker": "Application · l'épargne retraite",
+   "titre": "Cent euros par mois pendant trente ans",
+   "tex": [
+    "100\\ \\text{€ par mois}, \\ 30 \\ \\text{ans}, \\ 4\\,\\% : \\ n = 360",
+    "VF \\approx 69\\,404{,}94\\ \\text{€}",
+    "\\text{versé : } 36\\,000\\ \\text{€} \\quad \\text{gagné : } \\approx 33\\,405\\ \\text{€}"
+   ]
+  },
+  "ex_conso": {
+   "type": "etape",
+   "kicker": "Application · comparer deux crédits",
+   "titre": "Dix mille euros : plus long, ou plus cher ?",
+   "tex": [
+    "\\text{A : } 5\\,\\%, \\ 48 \\ \\text{mois} : 230{,}29\\ \\text{€}, \\ \\text{total} \\approx 11\\,054\\ \\text{€}",
+    "\\text{B : } 6\\,\\%, \\ 60 \\ \\text{mois} : 193{,}33\\ \\text{€}, \\ \\text{total} \\approx 11\\,600\\ \\text{€}",
+    "\\text{B allège le mois, mais coûte plus au total}"
+   ]
+  },
+  "van": {
+   "type": "etape",
+   "kicker": "Décider · la valeur actuelle nette",
+   "titre": "La machine est-elle rentable ?",
+   "tex": [
+    "VA(\\text{revenus}) = 10\\,000 \\times \\tfrac{1 - (1{,}08)^{-8}}{0{,}08} \\approx 57\\,466{,}39\\ \\text{€}",
+    "VAN = 57\\,466{,}39 - 50\\,000 = +7\\,466{,}39\\ \\text{€}",
+    "\\text{VAN positive : l'investissement est rentable}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Variables : sommer chaque flux, terme à terme",
+    "Différée : calculer, puis décaler de k périodes",
+    "Immo, retraite, conso : la même mécanique",
+    "Comparer deux offres : mensualité et coût total",
+    "VAN positive : le projet crée de la valeur"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Annuités : actualiser, capitaliser, décider.",
+   "dit": "Bienvenue dans ce cours de mathématiques financières, consacré aux annuités et aux versements périodiques. Nous allons apprendre à donner une valeur, aujourd'hui ou demain, à une série de paiements réguliers : constantes, variables ou différées, jusqu'à la décision d'investir."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "texte": "Des paiements réguliers, partout dans la vie financière.",
+   "dit": "Les annuités sont partout : les mensualités d'un crédit immobilier, le remboursement d'un prêt à la consommation, les versements programmés d'un plan d'épargne. À chaque fois, la même mécanique, et trois questions : combien cela vaut-il aujourd'hui, combien cela fera-t-il demain, et quel est le montant du versement ?"
+  },
+  {
+   "id": "p03",
+   "ecran": "definition",
+   "texte": "Montant fixe, rythme régulier, moment connu.",
+   "dit": "Formellement, une annuité réunit trois traits. Des paiements identiques, d'abord : le montant ne change pas d'une échéance à l'autre. Des intervalles réguliers, ensuite : mensuels, trimestriels ou annuels. Et un moment de versement, enfin : en fin de période pour l'annuité ordinaire, en début de période pour l'annuité anticipée."
+  },
+  {
+   "id": "p04",
+   "ecran": "perspective",
+   "texte": "Valeur actuelle ou valeur future : une question de date.",
+   "dit": "La valeur d'une annuité dépend de la date à laquelle on se place. Vue d'aujourd'hui, c'est sa valeur actuelle : la somme qu'il faudrait placer maintenant pour reproduire les mêmes paiements futurs. Vue de la fin, c'est sa valeur future : le total accumulé, versements et intérêts composés compris."
+  },
+  {
+   "id": "p05",
+   "ecran": "va_formule",
+   "texte": "VA : la somme des versements actualisés.",
+   "dit": "La valeur actuelle s'obtient en actualisant chaque versement, puis en sommant : le premier vaut le versement divisé par un plus i, le second divisé par un plus i au carré, et ainsi de suite. Cette somme géométrique se referme en une formule compacte, où i est le taux par période et ène le nombre de périodes."
+  },
+  {
+   "id": "p06",
+   "ecran": "va_sens",
+   "texte": "Le taux monte, la valeur actuelle descend.",
+   "dit": "Lisez la formule comme un levier. Quand le taux augmente, chaque paiement futur vaut moins aujourd'hui : la valeur actuelle baisse. Quand le nombre de périodes augmente, il y a davantage de paiements à actualiser : la valeur actuelle monte, mais de moins en moins vite, car les paiements lointains pèsent peu."
+  },
+  {
+   "id": "p07",
+   "ecran": "ex_va",
+   "texte": "Prêt étudiant : vingt mille euros, cinq ans, six pour cent.",
+   "dit": "Premier calcul complet : le prêt étudiant. Vous empruntez vingt mille euros, remboursés en cinq annuités constantes, au taux annuel de six pour cent. La valeur actuelle est connue, c'est le capital ; on inverse donc la formule, et le versement annuel ressort à environ quatre mille sept cent quarante-huit euros."
+  },
+  {
+   "id": "p08",
+   "ecran": "ex_locatif",
+   "texte": "Loyers actualisés : cent onze mille, prix : deux cent cinquante mille.",
+   "dit": "Côté investissement : un appartement coûte deux cent cinquante mille euros et peut rapporter dix mille euros de loyer par an pendant quinze ans. Au taux de quatre pour cent, la valeur actuelle de ces loyers vaut environ cent onze mille euros, très loin du prix demandé : à ces conditions, l'investissement n'est pas rentable."
+  },
+  {
+   "id": "p09",
+   "ecran": "vf_formule",
+   "texte": "VF : chaque versement capitalise jusqu'au bout.",
+   "dit": "À l'autre bout de la ligne du temps, la valeur future. Chaque versement, une fois payé, capitalise jusqu'à la date finale : le premier produit des intérêts pendant presque toute la durée, le dernier n'en produit aucun. La somme donne la formule miroir : le versement, multiplié par un plus i puissance ène, moins un, divisé par i."
+  },
+  {
+   "id": "p10",
+   "ecran": "ex_vf",
+   "texte": "Six mille huit cents euros accumulés en cinq ans.",
+   "dit": "Exemple : vous versez cent euros chaque mois sur un compte rémunéré à cinq pour cent par an. Le taux mensuel vaut le taux annuel divisé par douze, et le nombre de périodes vaut soixante. La formule donne environ six mille huit cents euros : vous avez versé six mille euros, près de huit cents euros viennent donc des intérêts composés."
+  },
+  {
+   "id": "p11",
+   "ecran": "montant_formule",
+   "texte": "Le versement s'obtient en inversant VA ou VF.",
+   "dit": "La question la plus fréquente du concours : quel est le montant du versement ? Si l'on connaît la valeur actuelle, comme un capital emprunté, on inverse la formule de la valeur actuelle. Si l'on vise une valeur future, comme un objectif d'épargne, on inverse la formule de la valeur future. Dans les deux cas, le taux se convertit d'abord à la période du versement."
+  },
+  {
+   "id": "p12",
+   "ecran": "ex_montant",
+   "texte": "Prêt auto : environ six cent huit euros par mois.",
+   "dit": "Application : un prêt de vingt mille euros, au taux annuel de six pour cent, remboursé par mensualités constantes sur trois ans. Le taux mensuel vaut six pour cent divisé par douze, soit zéro virgule cinq pour cent, et le nombre de périodes vaut trente-six. La mensualité ressort à environ six cent huit euros, pour un coût d'intérêts proche de mille neuf cents euros."
+  },
+  {
+   "id": "p13",
+   "ecran": "recap1",
+   "texte": "Les constantes : l'essentiel.",
+   "dit": "Récapitulons le bloc des annuités constantes. La valeur actuelle actualise tous les versements et les ramène à aujourd'hui ; la valeur future les capitalise jusqu'à la date finale. Le taux se convertit toujours à la période du versement, et le montant du versement s'obtient en inversant l'une ou l'autre formule."
+  },
+  {
+   "id": "p14",
+   "ecran": "variables",
+   "texte": "Variables : le montant évolue selon une règle connue.",
+   "dit": "Toutes les annuités ne sont pas constantes. Dans une annuité variable, le montant évolue selon une règle connue : progression arithmétique, quand chaque versement augmente d'un montant fixe ; progression géométrique, quand chaque versement est multiplié par un facteur fixe ; progression quelconque, quand les montants sont donnés un par un."
+  },
+  {
+   "id": "p15",
+   "ecran": "var_formules",
+   "texte": "Variables : sommer les flux un par un, à leur rang.",
+   "dit": "Conséquence immédiate : la formule fermée des annuités constantes ne s'applique plus. On revient à la définition : la valeur actuelle est la somme des flux actualisés un par un, chacun divisé par un plus le taux, élevé à la puissance de son rang ; la valeur future est la somme des flux capitalisés un par un, chacun jusqu'à la date finale."
+  },
+  {
+   "id": "p16",
+   "ecran": "ex_arith",
+   "texte": "Arithmétique : valeur actuelle environ neuf mille quatre cents euros.",
+   "dit": "Exemple en progression arithmétique : des versements annuels de deux mille, deux mille cinq cents, trois mille, puis trois mille cinq cents euros. Au taux de six pour cent, on actualise chaque versement à son rang, et la somme donne une valeur actuelle d'environ neuf mille quatre cent trois euros, contre onze mille euros en total nominal : l'écart, c'est le prix du temps."
+  },
+  {
+   "id": "p17",
+   "ecran": "ex_geo",
+   "texte": "Géométrique : environ deux cent quarante mille euros aujourd'hui.",
+   "dit": "Exemple en progression géométrique : un entrepreneur investit cinquante mille euros la première année, puis dix pour cent de plus chaque année, pendant cinq ans. Ses flux montent donc jusqu'à environ soixante-treize mille euros. Actualisés à huit pour cent et sommés un par un, ces investissements valent aujourd'hui environ deux cent quarante mille euros."
+  },
+  {
+   "id": "p18",
+   "ecran": "differee",
+   "texte": "Différée : calculer, puis décaler du différé.",
+   "dit": "Reste le décalage dans le temps. Une annuité est immédiate quand ses paiements commencent tout de suite ; elle est différée quand le premier paiement n'arrive qu'après un délai, la période de différé, comme une rente qui démarre à la retraite. La méthode tient en deux temps : calculer comme une immédiate, puis actualiser le résultat sur toute la durée du différé."
+  },
+  {
+   "id": "p19",
+   "ecran": "ex_differe",
+   "texte": "Rente différée : environ onze mille euros aujourd'hui.",
+   "dit": "Exemple : une rente de deux mille euros par an pendant dix ans, différée de cinq périodes, au taux de six pour cent. Comme annuité immédiate, elle vaudrait environ quatorze mille sept cent vingt euros à la veille de son premier versement. Actualisée sur les cinq périodes de différé, sa valeur actuelle tombe à environ onze mille euros : attendre fait perdre de la valeur."
+  },
+  {
+   "id": "p20",
+   "ecran": "applications",
+   "texte": "Trois terrains d'application, une seule mécanique.",
+   "dit": "Ces formules travaillent dans trois terrains que le concours affectionne. Le crédit immobilier, où la valeur actuelle est le capital emprunté et le versement la mensualité. L'épargne retraite, où la valeur future mesure le capital constitué. Et le crédit à la consommation, où comparer deux offres revient à comparer mensualités et coûts totaux."
+  },
+  {
+   "id": "p21",
+   "ecran": "ex_immo",
+   "texte": "Immobilier : environ mille douze euros par mois.",
+   "dit": "Le crédit immobilier, en chiffres : deux cent mille euros sur vingt ans, au taux annuel de deux pour cent, remboursés par mensualités constantes. Le taux mensuel est deux pour cent divisé par douze, et le nombre de périodes vaut deux cent quarante. La mensualité ressort à environ mille douze euros, et les intérêts totaux dépassent quarante-deux mille euros."
+  },
+  {
+   "id": "p22",
+   "ecran": "ex_retraite",
+   "texte": "Retraite : les intérêts font presque la moitié du capital.",
+   "dit": "L'épargne retraite, en chiffres : cent euros versés chaque mois pendant trente ans, à quatre pour cent par an. La valeur future atteint environ soixante-neuf mille quatre cents euros. Or les versements eux-mêmes ne totalisent que trente-six mille euros : les intérêts composés apportent environ trente-trois mille quatre cents euros, presque la moitié du capital final."
+  },
+  {
+   "id": "p23",
+   "ecran": "ex_conso",
+   "texte": "Plus long ne veut pas dire moins cher.",
+   "dit": "Comparer deux crédits à la consommation, pour dix mille euros. Première offre : cinq pour cent sur quarante-huit mois, environ deux cent trente euros par mois, pour un total proche de onze mille cinquante-quatre euros. Deuxième offre : six pour cent sur soixante mois, environ cent quatre-vingt-treize euros par mois, mais un total proche de onze mille six cents euros. La mensualité la plus douce est la plus chère au total."
+  },
+  {
+   "id": "p24",
+   "ecran": "van",
+   "texte": "VAN positive : le projet crée de la valeur.",
+   "dit": "Dernier outil, celui qui décide des investissements : la valeur actuelle nette. Une machine coûte cinquante mille euros et rapporterait dix mille euros nets par an pendant huit ans. Au taux de huit pour cent, la valeur actuelle de ces revenus vaut environ cinquante-sept mille quatre cent soixante-six euros. On soustrait l'investissement : la valeur actuelle nette est positive, d'environ sept mille quatre cent soixante-six euros, le projet est rentable."
+  },
+  {
+   "id": "p25",
+   "ecran": "recap",
+   "texte": "Annuités et versements : à retenir.",
+   "dit": "Pour conclure, gardez la chaîne complète. Devant des versements constants, actualisez, capitalisez ou inversez la formule selon la question. Devant des versements variables, sommez les flux un par un. Devant un différé, calculez puis décalez. Et devant une décision, comparez : mensualité et coût total pour un crédit, valeur actuelle nette pour un investissement."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Valeur actuelle et valeur future des annuités constantes"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Montant du versement, annuités variables et différées",
+   "pont": {
+    "texte": "Partie 2 : montant du versement, variables et différées.",
+    "dit": "Partie deux : le montant du versement, puis les annuités qui bougent. Nous inverserons les formules pour trouver le versement, avant de traiter les annuités variables, en progression arithmétique ou géométrique, et les annuités différées, dont les paiements commencent plus tard."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "Applications : crédit, épargne et valeur actuelle nette",
+   "pont": {
+    "texte": "Partie 3 : immobilier, retraite, comparaison et VAN.",
+    "dit": "Partie trois : les applications qui décident. Crédit immobilier, épargne retraite, comparaison de crédits à la consommation, et la valeur actuelle nette pour trancher un investissement : toute la mécanique des annuités passe à l'épreuve des décisions réelles."
+   }
+  }
+ ]
+}

@@ -1,0 +1,364 @@
+{
+ "cours": 6698,
+ "titre": "Triangles : angles, droites remarquables, constructions et aire",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Triangles",
+   "titre": "Triangles : angles, droites remarquables, constructions et aire",
+   "sous": "La somme des angles, les triangles particuliers, quatre droites et quatre points de concours",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un seul objet, le triangle, et tout un programme : angles, droites, constructions, aire."
+  },
+  "somme": {
+   "type": "formule",
+   "kicker": "Somme des angles",
+   "tex": "\\widehat{A} + \\widehat{B} + \\widehat{C} = 180^\\circ",
+   "note": "Deux angles connus suffisent toujours à retrouver le troisième.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 190
+   }
+  },
+  "ex_angle": {
+   "type": "etape",
+   "kicker": "Exemple · cinquante et soixante-dix",
+   "titre": "Le troisième angle par soustraction",
+   "tex": [
+    "\\widehat{C} = 180^\\circ - 50^\\circ - 70^\\circ = 60^\\circ"
+   ]
+  },
+  "isocele": {
+   "type": "etape",
+   "kicker": "Triangle isocèle",
+   "titre": "Deux côtés égaux, base et sommet",
+   "tex": [
+    "\\text{deux côtés égaux : } AB = AC",
+    "\\text{sommet principal : } A \\qquad \\text{base : } [BC]",
+    "\\text{angles à la base égaux : } \\widehat{B} = \\widehat{C}"
+   ],
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 130
+   }
+  },
+  "equilateral": {
+   "type": "etape",
+   "kicker": "Triangle équilatéral",
+   "titre": "Trois côtés égaux, trois fois soixante",
+   "tex": [
+    "AB = BC = CA",
+    "\\widehat{A} = \\widehat{B} = \\widehat{C} = 60^\\circ"
+   ]
+  },
+  "rectangle": {
+   "type": "etape",
+   "kicker": "Triangle rectangle",
+   "titre": "Un angle droit, une hypoténuse",
+   "tex": [
+    "\\text{un angle droit : } \\widehat{A} = 90^\\circ",
+    "\\text{hypoténuse : le côté opposé à l'angle droit}",
+    "\\text{angles aigus complémentaires : somme } 90^\\circ"
+   ]
+  },
+  "ex_rectangle": {
+   "type": "etape",
+   "kicker": "Exemple · rectangle en a",
+   "titre": "Complémentaire de trente-cinq",
+   "tex": [
+    "\\widehat{C} = 90^\\circ - 35^\\circ = 55^\\circ"
+   ]
+  },
+  "mediatrice": {
+   "type": "phrase",
+   "kicker": "Droites du triangle · la médiatrice",
+   "texte": "Les trois médiatrices se coupent au centre du cercle circonscrit.",
+   "anim": {
+    "nom": "lieu_equidistant_fig",
+    "hauteur": 170
+   }
+  },
+  "mediane": {
+   "type": "etape",
+   "kicker": "Droites du triangle · la médiane",
+   "titre": "Du sommet au milieu opposé",
+   "tex": [
+    "\\text{une médiane joint un sommet}",
+    "\\text{au milieu du côté opposé}",
+    "\\text{les trois se coupent}",
+    "\\text{au centre de gravité}"
+   ]
+  },
+  "hauteur": {
+   "type": "etape",
+   "kicker": "Droites du triangle · la hauteur",
+   "titre": "Perpendiculaire depuis un sommet",
+   "tex": [
+    "\\text{d'un sommet, perpendiculaire}",
+    "\\text{au côté opposé : pied sur ce côté}",
+    "\\text{concours en l'orthocentre}"
+   ]
+  },
+  "bissectrice": {
+   "type": "etape",
+   "kicker": "Droites du triangle · la bissectrice",
+   "titre": "L'angle partagé en deux",
+   "tex": [
+    "\\text{la bissectrice partage un angle}",
+    "\\text{en deux angles égaux}",
+    "\\text{concours : centre du cercle inscrit}"
+   ]
+  },
+  "recap_droites": {
+   "type": "recap",
+   "kicker": "Quatre droites, quatre points",
+   "etapes": [
+    "Médiatrices : centre du cercle circonscrit",
+    "Médianes : centre de gravité",
+    "Hauteurs : orthocentre",
+    "Bissectrices : centre du cercle inscrit"
+   ]
+  },
+  "construction_angles": {
+   "type": "etape",
+   "kicker": "Construire · un côté, deux angles",
+   "titre": "Cinq, quarante, soixante",
+   "tex": [
+    "\\text{un : tracer } BC = 5\\ \\text{cm}",
+    "\\text{deux : en } B \\text{, demi-droite à } 40^\\circ",
+    "\\text{trois : en } C \\text{, demi-droite à } 60^\\circ",
+    "\\text{quatre : } A \\text{, intersection des demi-droites}"
+   ]
+  },
+  "condition_angles": {
+   "type": "phrase",
+   "kicker": "La condition d'existence",
+   "texte": "Condition : les deux angles connus totalisent moins de 180 degrés."
+  },
+  "construction_isocele": {
+   "type": "etape",
+   "kicker": "Construire · un isocèle",
+   "titre": "Deux arcs de rayon quatre",
+   "tex": [
+    "\\text{un : tracer la base } BC = 3\\ \\text{cm}",
+    "\\text{deux : arcs de rayon } 4\\ \\text{cm en } B \\text{ et } C",
+    "\\text{trois : leur intersection donne } A"
+   ]
+  },
+  "construction_rectangle": {
+   "type": "etape",
+   "kicker": "Construire · un rectangle",
+   "titre": "Trois, quatre, et l'angle droit",
+   "tex": [
+    "\\text{un : tracer } AB = 3\\ \\text{cm}",
+    "\\text{deux : perpendiculaire à } AB \\text{ en } A",
+    "\\text{trois : placer } C \\text{ à } 4\\ \\text{cm de } A"
+   ]
+  },
+  "construction_hauteur": {
+   "type": "etape",
+   "kicker": "Construire · une hauteur",
+   "titre": "Règle et équerre, en quatre temps",
+   "tex": [
+    "\\text{règle le long de } BC",
+    "\\text{équerre perpendiculaire}",
+    "\\text{glisser l'équerre jusqu'au sommet } A",
+    "\\text{la droite par } A \\text{, perpendiculaire à } BC"
+   ]
+  },
+  "aire": {
+   "type": "formule",
+   "kicker": "Aire d'un triangle",
+   "tex": "\\mathcal{A} = \\frac{\\text{base} \\times \\text{hauteur}}{2}",
+   "note": "La hauteur se mesure perpendiculairement à la base choisie."
+  },
+  "ex_aire": {
+   "type": "etape",
+   "kicker": "Exemple · base huit, hauteur cinq",
+   "titre": "Huit fois cinq, divisé par deux",
+   "tex": [
+    "\\mathcal{A} = \\tfrac{8 \\times 5}{2} = 20\\ \\text{cm}^2"
+   ]
+  },
+  "aire_rectangle": {
+   "type": "phrase",
+   "kicker": "Le cas du triangle rectangle",
+   "texte": "Rectangle : les deux côtés de l'angle droit servent de base et de hauteur."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Somme des angles : 180 degrés",
+    "Équilatéral : trois angles de 60 degrés",
+    "Rectangle : angles aigus complémentaires",
+    "Quatre droites, quatre points de concours",
+    "Aire : base fois hauteur, divisé par deux"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours entièrement consacré au triangle. Nous commencerons par sa propriété la plus célèbre, la somme de ses angles, puis nous reconnaîtrons ses trois formes particulières, isocèle, équilatérale et rectangle. Nous tracerons ensuite ses quatre droites remarquables et leurs points de concours, avant d'apprendre à construire un triangle donné et à calculer son aire.",
+   "texte": "Angles, droites remarquables, constructions et aire.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Un même objet, le triangle, mais plusieurs regards. Le regard des angles dit combien vaut chaque coin de la figure. Le regard des côtés distingue les triangles particuliers. Le regard des droites remarquables organise l'intérieur du triangle autour de quatre points célèbres. Et les constructions, enfin, transforment ces propriétés en gestes précis, à la règle, au compas et à l'équerre.",
+   "texte": "Quatre regards sur un même triangle.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Propriété fondamentale : dans tout triangle, la somme des trois angles vaut toujours cent quatre-vingts degrés. Pour un triangle a bé cé, l'angle en a, plus l'angle en bé, plus l'angle en cé, égale cent quatre-vingts degrés. C'est un invariant : quelle que soit la forme du triangle, allongé, écrasé ou presque plat, le total ne change jamais. Conséquence immédiate : dès que deux angles sont connus, le troisième s'obtient par une simple soustraction.",
+   "texte": "Â + B̂ + Ĉ = 180° : un total qui ne change jamais.",
+   "ecran": "somme"
+  },
+  {
+   "id": "p04",
+   "dit": "Exemple résolu : dans un triangle a bé cé, l'angle en a vaut cinquante degrés et l'angle en bé vaut soixante-dix degrés. Calculer l'angle en cé. On retranche les deux angles connus du total : cent quatre-vingts, moins cinquante, moins soixante-dix, égale soixante degrés. L'angle en cé vaut donc soixante degrés. Vérification rapide : cinquante, plus soixante-dix, plus soixante, redonne bien cent quatre-vingts.",
+   "texte": "180 − 50 − 70 = 60 : l'angle en C vaut 60 degrés.",
+   "ecran": "ex_angle"
+  },
+  {
+   "id": "p05",
+   "dit": "Passons aux triangles particuliers, d'abord le triangle isocèle. Il possède deux côtés de même longueur. Le sommet commun à ces deux côtés égaux s'appelle le sommet principal, et le côté opposé forme la base. Conséquence sur les angles : les deux angles à la base sont égaux. Le triangle isocèle possède un axe de symétrie, qui n'est autre que la médiatrice de sa base : la figure se replie parfaitement sur elle-même le long de cet axe.",
+   "texte": "Isocèle : deux côtés égaux, angles à la base égaux.",
+   "ecran": "isocele"
+  },
+  {
+   "id": "p06",
+   "dit": "Deuxième forme particulière, le triangle équilatéral : ses trois côtés ont la même longueur. La somme des angles vaut toujours cent quatre-vingts degrés, et comme les trois angles sont égaux, chacun d'eux mesure exactement soixante degrés. C'est le triangle le plus régulier qui soit : il possède trois axes de symétrie, un pour chaque sommet, et on peut le retourner de plusieurs façons en le retrouvant identique à lui-même.",
+   "texte": "Équilatéral : trois côtés égaux, trois angles de 60 degrés.",
+   "ecran": "equilateral"
+  },
+  {
+   "id": "p07",
+   "dit": "Troisième forme, le triangle rectangle : il possède un angle droit, qui mesure quatre-vingt-dix degrés. Le côté opposé à cet angle droit porte un nom spécial, l'hypoténuse, et c'est toujours le plus long des trois côtés. Puisque la somme des angles vaut cent quatre-vingts degrés et que l'angle droit en prend déjà quatre-vingt-dix, les deux angles aigus se partagent les quatre-vingt-dix degrés restants : on dit qu'ils sont complémentaires.",
+   "texte": "Rectangle : un angle droit, une hypoténuse, deux angles complémentaires.",
+   "ecran": "rectangle"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple résolu : un triangle a bé cé est rectangle en a, et l'angle en bé vaut trente-cinq degrés. Déterminer l'angle en cé. Les deux angles aigus sont complémentaires, donc l'angle en cé vaut quatre-vingt-dix moins trente-cinq, c'est-à-dire cinquante-cinq degrés. Retenez ce raccourci propre aux triangles rectangles : inutile de repasser par cent quatre-vingts, on complète simplement à quatre-vingt-dix.",
+   "texte": "90 − 35 = 55 : l'angle en C vaut 55 degrés.",
+   "ecran": "ex_rectangle"
+  },
+  {
+   "id": "p09",
+   "dit": "Venons-en aux droites particulières du triangle, quatre familles de droites à ne pas confondre. Première famille, les médiatrices : la médiatrice d'un côté est la droite perpendiculaire à ce côté, passant par son milieu, et chacun de ses points est équidistant des deux extrémités du côté. Dans un triangle, les trois médiatrices se coupent en un même point, appelé centre du cercle circonscrit, le cercle qui passe par les trois sommets.",
+   "texte": "Médiatrices : concours au centre du cercle circonscrit.",
+   "ecran": "mediatrice"
+  },
+  {
+   "id": "p10",
+   "dit": "Deuxième famille, les médianes. Une médiane est une droite qui passe par un sommet du triangle et par le milieu du côté opposé : elle partage donc le triangle en deux moitiés. Les trois médianes se coupent en un point appelé centre de gravité du triangle, son point d'équilibre : posé sur la pointe d'un crayon en ce point, un triangle découpé dans du carton tiendrait en équilibre.",
+   "texte": "Médianes : concours au centre de gravité.",
+   "ecran": "mediane"
+  },
+  {
+   "id": "p11",
+   "dit": "Troisième famille, les hauteurs. Une hauteur est une droite qui passe par un sommet et qui est perpendiculaire au côté opposé. Le point où elle rencontre ce côté s'appelle le pied de la hauteur. Les trois hauteurs d'un triangle se coupent en un point appelé orthocentre. Attention à ne pas confondre hauteur et médiane : la hauteur vise le côté opposé à angle droit, la médiane vise son milieu, et ce n'est le même geste que dans des triangles particuliers.",
+   "texte": "Hauteurs : concours à l'orthocentre.",
+   "ecran": "hauteur"
+  },
+  {
+   "id": "p12",
+   "dit": "Quatrième famille, les bissectrices. La bissectrice d'un angle est la droite qui le partage en deux angles égaux. Dans un triangle, les trois bissectrices, une par sommet, se coupent en un point appelé centre du cercle inscrit, le cercle intérieur qui touche les trois côtés. Nous avons donc quatre familles de droites, et chacune donne un point de concours différent : c'est le tableau à connaître par cœur.",
+   "texte": "Bissectrices : concours au centre du cercle inscrit.",
+   "ecran": "bissectrice"
+  },
+  {
+   "id": "p13",
+   "dit": "Récapitulons les droites remarquables avant de passer aux constructions. Les médiatrices se rencontrent au centre du cercle circonscrit. Les médianes se rencontrent au centre de gravité. Les hauteurs se rencontrent à l'orthocentre. Et les bissectrices se rencontrent au centre du cercle inscrit. Quatre définitions, quatre points : les exercices demandent presque toujours d'associer les bonnes paires.",
+   "texte": "Quatre droites, quatre points de concours.",
+   "ecran": "recap_droites"
+  },
+  {
+   "id": "p14",
+   "dit": "Passons aux constructions. Premier protocole : construire un triangle a bé cé connaissant un côté et les deux angles à ses extrémités. Données : bé cé mesure cinq centimètres, l'angle en bé vaut quarante degrés et l'angle en cé vaut soixante degrés. On trace d'abord le segment bé cé, de cinq centimètres. Puis on trace la demi-droite issue de bé qui forme un angle de quarante degrés avec bé cé. Ensuite, la demi-droite issue de cé qui forme un angle de soixante degrés avec cé bé. Le point a est tout simplement l'intersection des deux demi-droites.",
+   "texte": "BC = 5 cm, 40° en B, 60° en C : A à l'intersection.",
+   "ecran": "construction_angles"
+  },
+  {
+   "id": "p15",
+   "dit": "Ce protocole n'est pas toujours possible : il faut que la somme des deux angles connus soit strictement inférieure à cent quatre-vingts degrés, sinon les deux demi-droites ne se rencontrent jamais. Ici, quarante plus soixante égale cent, ce qui est bien inférieur à cent quatre-vingts : la construction aboutit, et l'angle en a vaudra cent quatre-vingts moins cent, c'est-à-dire quatre-vingts degrés, ce que la figure confirme.",
+   "texte": "40 + 60 = 100 < 180 : la construction aboutit, Â = 80°.",
+   "ecran": "condition_angles"
+  },
+  {
+   "id": "p16",
+   "dit": "Deuxième protocole : construire un triangle isocèle en a, avec a bé égale a cé égale quatre centimètres, et bé cé égale trois centimètres. On trace d'abord la base bé cé, de trois centimètres. Puis on trace un arc de cercle de rayon quatre centimètres centré en bé, et un second arc de même rayon centré en cé. Leur intersection donne le point a, automatiquement à quatre centimètres de bé comme de cé : l'égalité des deux côtés est garantie par le compas.",
+   "texte": "Isocèle en A : base 3 cm, deux arcs de rayon 4 cm.",
+   "ecran": "construction_isocele"
+  },
+  {
+   "id": "p17",
+   "dit": "Troisième protocole : construire un triangle rectangle en a, avec a bé égale trois centimètres et a cé égale quatre centimètres. On trace le segment a bé, de trois centimètres. Puis on trace la perpendiculaire à a bé passant par a : c'est elle qui fabrique l'angle droit. Il ne reste qu'à placer cé sur cette perpendiculaire, à quatre centimètres de a, et à relier. L'angle droit est exact par construction, pas seulement dessiné à main levée.",
+   "texte": "Rectangle en A : AB = 3 cm, perpendiculaire, AC = 4 cm.",
+   "ecran": "construction_rectangle"
+  },
+  {
+   "id": "p18",
+   "dit": "Dernier geste de construction, celui qui sert partout : tracer la hauteur issue de a dans un triangle a bé cé. On place la règle le long du côté bé cé. On appuie l'équerre contre la règle, bien perpendiculairement à bé cé. On fait glisser l'équerre le long de la règle jusqu'au sommet a. Puis on trace la droite qui passe par a et qui est perpendiculaire à bé cé : c'est la hauteur issue de a, et son pied est le point où elle touche le côté bé cé.",
+   "texte": "Hauteur issue de A : règle, équerre, glissement, tracé.",
+   "ecran": "construction_hauteur"
+  },
+  {
+   "id": "p19",
+   "dit": "Terminons par l'aire d'un triangle. La formule est la même pour tous les triangles : aire égale base fois hauteur, divisé par deux. La base est un côté choisi du triangle, et la hauteur est la distance perpendiculaire entre le sommet opposé et ce côté, c'est-à-dire la longueur de la hauteur correspondante. Le divisé par deux traduit une image simple : un triangle remplit exactement la moitié du rectangle construit sur sa base et sa hauteur.",
+   "texte": "Aire = base × hauteur ÷ 2.",
+   "ecran": "aire"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple résolu : un triangle a bé cé a pour base bé cé, qui mesure huit centimètres, et la hauteur issue de a mesure cinq centimètres. On applique la formule : huit fois cinq, divisé par deux, égale vingt. L'aire du triangle vaut donc vingt centimètres carrés. Notez l'unité : une aire s'exprime en centimètres carrés, jamais en centimètres, et oublier le divisé par deux est l'erreur la plus fréquente sur cette formule.",
+   "texte": "8 × 5 ÷ 2 = 20 : aire de 20 cm².",
+   "ecran": "ex_aire"
+  },
+  {
+   "id": "p21",
+   "dit": "Un raccourci termine le cours : pour un triangle rectangle, on peut choisir comme base et comme hauteur les deux côtés de l'angle droit. Ils sont déjà perpendiculaires l'un à l'autre, donc nul besoin de tracer une hauteur séparée : l'aire vaut le produit de ces deux côtés, divisé par deux. C'est le même esprit que tout le cours : reconnaître la forme particulière devant soi, puis appliquer la version la plus simple de la règle.",
+   "texte": "Rectangle : les côtés de l'angle droit font base et hauteur.",
+   "ecran": "aire_rectangle"
+  },
+  {
+   "id": "p22",
+   "dit": "Récapitulons. La somme des angles d'un triangle vaut cent quatre-vingts degrés ; l'équilatéral a trois angles de soixante degrés, et le rectangle a deux angles aigus complémentaires. Quatre droites remarquables se partagent le triangle : médiatrices, médianes, hauteurs et bissectrices, chacune avec son point de concours. Les constructions combinent un côté, des angles, des arcs de compas et une perpendiculaire. Et l'aire vaut toujours base fois hauteur, divisé par deux.",
+   "texte": "Angles, droites, constructions, aire : l'essentiel.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Somme des angles et triangles particuliers"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "Droites remarquables et construction par les angles",
+   "pont": {
+    "texte": "Partie 2 : médiatrices, médianes, hauteurs et bissectrices.",
+    "dit": "Partie deux : les droites remarquables du triangle. Après les angles et les formes particulières, nous traçons les quatre familles de droites qui organisent l'intérieur du triangle, et nous retiendrons le point où chacune d'elles se rencontre."
+   }
+  },
+  {
+   "debut": "p16",
+   "sous_titre": "Construire les triangles particuliers, calculer l'aire",
+   "pont": {
+    "texte": "Partie 3 : isocèle et rectangle au compas, hauteur, puis l'aire.",
+    "dit": "Partie trois : construire les triangles particuliers et calculer leur aire. Nous tracerons un triangle isocèle et un triangle rectangle au compas et à l'équerre, puis le geste de la hauteur, avant de terminer par la formule de l'aire et son cas particulier pour le triangle rectangle."
+   }
+  }
+ ]
+}

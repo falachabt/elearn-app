@@ -1,0 +1,512 @@
+{
+ "cours": 6106,
+ "ecrans": {
+  "absolue": {
+   "kicker": "Méthodes avancées · valeur absolue",
+   "tex": [
+    "|x - 2| = 3",
+    "x - 2 = 3 \\Rightarrow x = 5",
+    "x - 2 = -3 \\Rightarrow x = -1"
+   ],
+   "titre": "Deux cas, selon le signe",
+   "type": "etape"
+  },
+  "bacteries": {
+   "kicker": "Application · croissance exponentielle",
+   "tex": [
+    "P(t) = 1000 \\times 2^{t/3}",
+    "P(12) = 1000 \\times 2^4 = 16000"
+   ],
+   "titre": "Un doublement toutes les trois heures",
+   "type": "etape"
+  },
+  "benefice": {
+   "kicker": "Application · le seuil de bénéfice",
+   "tex": [
+    "\\text{bénéfice} = (10 - 5)x - 1000",
+    "5x - 1000 = 2000 \\Rightarrow x = 600"
+   ],
+   "titre": "Combien d'articles pour deux mille euros de bénéfice",
+   "type": "etape"
+  },
+  "canonique": {
+   "kicker": "La forme canonique",
+   "tex": [
+    "2x^2 + 4x - 6 = 0",
+    "2(x^2 + 2x + 1 - 1) - 6 = 0",
+    "2(x + 1)^2 - 8 = 0",
+    "\\alpha = -1 \\qquad \\beta = -8"
+   ],
+   "titre": "Compléter le carré, sur un exemple",
+   "type": "etape"
+  },
+  "changement": {
+   "kicker": "Exponentielles · changement de variable",
+   "tex": [
+    "e^{2x} + 3e^x - 4 = 0 \\qquad y = e^x",
+    "y^2 + 3y - 4 = 0 \\Rightarrow y = 1 \\text{ ou } y = -4",
+    "e^x = 1 \\Rightarrow x = 0 \\qquad e^x = -4 : \\text{ impossible}"
+   ],
+   "titre": "Poser y égale exponentielle de ixe",
+   "type": "etape"
+  },
+  "dioph": {
+   "kicker": "Méthodes avancées · diophantiennes",
+   "tex": [
+    "2x + 3y = 17",
+    "\\text{particulière : } (x, y) = (4, 3)",
+    "\\text{générale : } x = 4 + 3k, \\quad y = 3 - 2k",
+    "\\text{positives : } (7, 1), (4, 3), (1, 5)"
+   ],
+   "titre": "Des solutions entières seulement",
+   "type": "etape"
+  },
+  "discriminant": {
+   "kicker": "Le discriminant",
+   "note": "Δ > 0 : deux solutions ; Δ = 0 : une double ; Δ < 0 : aucune réelle.",
+   "tex": "\\Delta = b^2 - 4ac",
+   "type": "formule"
+  },
+  "domaine": {
+   "kicker": "Logarithmes · la définition",
+   "note": "Par définition : x + 2 = 9, donc x = 7 — et l'argument reste positif, solution valide.",
+   "tex": "\\log_3(x + 2) = 2",
+   "type": "formule"
+  },
+  "ex_log": {
+   "kicker": "Exemple · équation logarithmique",
+   "tex": [
+    "\\log_2 x + \\log_2(x - 1) = 1",
+    "\\log_2\\big(x(x - 1)\\big) = 1 \\Rightarrow x^2 - x - 2 = 0",
+    "x = 2 \\text{ ou } x = -1",
+    "x = 2 \\text{ seul : } \\log_2(-1) \\text{ n'existe pas}"
+   ],
+   "titre": "Regrouper, résoudre, puis filtrer",
+   "type": "etape"
+  },
+  "ex_premier": {
+   "kicker": "Exemple · premier degré",
+   "tex": [
+    "3x + 7 = 13",
+    "3x = 13 - 7 = 6",
+    "x = \\tfrac{6}{3} = 2"
+   ],
+   "titre": "Isoler, pas à pas",
+   "type": "etape"
+  },
+  "ex_second": {
+   "kicker": "Exemple · second degré",
+   "tex": [
+    "x^2 - 5x + 6 = 0 \\qquad \\Delta = 25 - 24 = 1",
+    "x_1 = \\tfrac{5 - 1}{2} = 2 \\qquad x_2 = \\tfrac{5 + 1}{2} = 3"
+   ],
+   "titre": "Le discriminant, puis les deux racines",
+   "type": "etape"
+  },
+  "ex_systeme": {
+   "kicker": "Systèmes · la substitution",
+   "tex": [
+    "x = 20 - y",
+    "(20 - y) + 1{,}5y = 26 \\Rightarrow 0{,}5y = 6",
+    "y = 12 \\qquad x = 20 - 12 = 8"
+   ],
+   "titre": "Remplacer, puis résoudre à une inconnue",
+   "type": "etape"
+  },
+  "exponentielle": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Les équations exponentielles",
+   "note": "L'inconnue est dans l'exposant : croissance, décroissance, intérêts composés.",
+   "tex": "a^{f(x)} = b",
+   "type": "formule"
+  },
+  "fractions": {
+   "kicker": "Premier degré · avec fractions",
+   "tex": [
+    "\\tfrac{x}{2} + 1 = \\tfrac{x}{3} + 2 \\quad (\\times 6)",
+    "3x + 6 = 2x + 12",
+    "x = 6"
+   ],
+   "titre": "Chasser les dénominateurs d'un coup",
+   "type": "etape"
+  },
+  "inequation": {
+   "kicker": "Les inéquations du premier degré",
+   "tex": [
+    "-2x + 4 \\leq 6",
+    "-2x \\leq 2",
+    "x \\geq -1 \\qquad [-1, +\\infty["
+   ],
+   "titre": "Diviser par un négatif renverse le sens",
+   "type": "etape",
+   "anim": {
+    "nom": "droite_numerique_fig",
+    "hauteur": 160
+   }
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Résoudre, c'est isoler l'inconnue par des transformations qui conservent les solutions — et vérifier à la fin.",
+   "type": "phrase"
+  },
+  "irrationnelle": {
+   "kicker": "Méthodes avancées · irrationnelles",
+   "tex": [
+    "\\sqrt{x + 2} = x",
+    "x + 2 = x^2 \\Rightarrow x^2 - x - 2 = 0",
+    "x = 2 \\text{ ou } x = -1",
+    "\\text{vérification : seul } x = 2 \\text{ convient}"
+   ],
+   "titre": "Élever au carré, puis vérifier",
+   "type": "etape"
+  },
+  "log_outil": {
+   "kicker": "Exponentielles · le logarithme",
+   "tex": [
+    "3^x = 10",
+    "x \\log 3 = \\log 10 = 1",
+    "x = \\tfrac{1}{\\log 3} \\approx 2{,}10"
+   ],
+   "titre": "Quand la même base est impossible",
+   "type": "etape"
+  },
+  "log_proprietes": {
+   "kicker": "Les logarithmes · propriétés",
+   "tex": [
+    "\\log_b(xy) = \\log_b x + \\log_b y",
+    "\\log_b\\left(\\tfrac{x}{y}\\right) = \\log_b x - \\log_b y",
+    "\\log_b(x^p) = p \\log_b x",
+    "\\log_2(8x^2) - \\log_2(4x) = 1 + \\log_2 x"
+   ],
+   "titre": "Produit, quotient, puissance",
+   "type": "etape"
+  },
+  "melange": {
+   "kicker": "Application · mélange de solutions",
+   "tex": [
+    "x + y = 10",
+    "0{,}15x + 0{,}25y = 0{,}20 \\times 10 = 2",
+    "x = 5 \\qquad y = 5"
+   ],
+   "titre": "Dix litres à vingt pour cent",
+   "type": "etape"
+  },
+  "meme_base": {
+   "kicker": "Exponentielles · même base",
+   "tex": [
+    "2^x = 8 = 2^3 \\Rightarrow x = 3",
+    "5^x = 125 = 5^3 \\Rightarrow x = 3",
+    "2^{x+1} = 16 = 2^4 \\Rightarrow x = 3"
+   ],
+   "titre": "Égaler les exposants",
+   "type": "etape"
+  },
+  "modelisation": {
+   "kicker": "Modéliser un problème",
+   "texte": "Nommer les inconnues, traduire les relations en équations, résoudre, puis interpréter la réponse dans le contexte du problème.",
+   "type": "phrase"
+  },
+  "premier_degre": {
+   "kicker": "Le premier degré",
+   "note": "Si a valait zéro, il n'y aurait plus d'inconnue : aucune solution, ou toutes.",
+   "tex": "ax + b = 0 \\qquad a \\ne 0",
+   "type": "formule"
+  },
+  "recap1": {
+   "etapes": [
+    "Premier degré : isoler, diviser, vérifier",
+    "Fractions : multiplier par le PPCM",
+    "Second degré : Δ décide du nombre de solutions",
+    "Forme canonique : le sommet se lit dessus",
+    "Systèmes : substitution ou combinaison"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Même base : égaler les exposants",
+    "Sinon, logarithme des deux membres",
+    "Changement de variable : retour au second degré",
+    "Logarithme : argument strictement positif",
+    "Diviser par un négatif renverse le sens"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Degrés un et deux : isoler, Δ, canonique",
+    "Systèmes : deux méthodes, un couple solution",
+    "Expo et log : les deux inverses, domaine d'abord",
+    "Avancé : cas et vérifications finales"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "second_degre": {
+   "kicker": "Le second degré",
+   "note": "La forme canonique a(x − α)² + β lit le sommet de la parabole : α = −b/(2a).",
+   "tex": "ax^2 + bx + c = 0 \\qquad a \\ne 0",
+   "type": "formule"
+  },
+  "signe": {
+   "kicker": "Inéquations du second degré",
+   "tex": [
+    "x^2 - 4x + 3 < 0",
+    "\\text{racines : } x = 1 \\text{ et } x = 3",
+    "\\text{négatif entre les racines : } ]1, 3["
+   ],
+   "titre": "Le signe du trinôme, entre les racines",
+   "type": "etape",
+   "anim": {
+    "nom": "signe_parabole_fig",
+    "hauteur": 170
+   }
+  },
+  "strategie": {
+   "etapes": [
+    "Lire, nommer les inconnues, traduire",
+    "Résoudre avec la méthode du type repéré",
+    "Vérifier dans l'équation d'origine",
+    "Interpréter : la réponse répond au problème"
+   ],
+   "kicker": "La méthode, face à un problème",
+   "type": "recap"
+  },
+  "systeme": {
+   "kicker": "Les systèmes · le boulanger",
+   "tex": [
+    "x + y = 20",
+    "x + 1{,}5y = 26"
+   ],
+   "titre": "Deux inconnues, deux informations",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Concours ESSEC · Mathématiques générales",
+   "sous": "Premier et second degré, systèmes, exponentielles, logarithmes, inéquations et méthodes avancées",
+   "titre": "Équations et inéquations : résoudre, du premier degré aux logarithmes",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Premier degré, second degré et systèmes"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : exponentielles, logarithmes et inéquations. L'inconnue passe dans l'exposant, puis dans le logarithme, avant de terminer par les inégalités et le signe du trinôme.",
+    "texte": "Partie 2 : exponentielles, logarithmes et inéquations."
+   },
+   "sous_titre": "Exponentielles, logarithmes et inéquations"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : les méthodes avancées et la modélisation. Équations diophantiennes, valeurs absolues et irrationnelles, puis trois problèmes concrets traduits en équations.",
+    "texte": "Partie 3 : méthodes avancées et problèmes d'application."
+   },
+   "sous_titre": "Méthodes avancées et modélisation"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques générales pour le concours ESSEC, consacré aux équations et aux inéquations. Au programme : premier et second degré, systèmes, exponentielles, logarithmes, inéquations, puis méthodes avancées et modélisation. Un seul fil rouge : transformer l'équation sans jamais perdre ni inventer de solution, et vérifier à la fin.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Équations et inéquations : toutes les méthodes de résolution."
+  },
+  {
+   "dit": "Une équation affirme une égalité entre deux expressions et contient une inconnue, le plus souvent notée ixe. Résoudre, c'est trouver toutes les valeurs qui rendent l'égalité vraie. Une inéquation remplace l'égalité par une inégalité : sa solution est alors, le plus souvent, un intervalle entier de valeurs. On ne transforme qu'en appliquant la même opération aux deux membres.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Conserver les solutions, puis vérifier."
+  },
+  {
+   "dit": "L'équation du premier degré s'écrit sous forme canonique : a ixe plus b égale zéro, avec a différent de zéro. Si a valait zéro, l'inconnue disparaîtrait et ce ne serait plus une équation du premier degré. Toute la méthode tient ensuite en deux gestes : isoler le terme en ixe d'un côté, puis diviser par son coefficient.",
+   "ecran": "premier_degre",
+   "id": "p03",
+   "texte": "Premier degré : a ixe plus b égale zéro, a non nul."
+  },
+  {
+   "dit": "Premier exemple, pas à pas : trois ixe plus sept égale treize. On soustrait sept des deux côtés, il reste trois ixe égale six. On divise par trois : ixe égale deux. Et on vérifie toujours : trois fois deux, plus sept, font bien treize. Ce réflexe évitera la plupart des erreurs de signe le jour du concours.",
+   "ecran": "ex_premier",
+   "id": "p04",
+   "texte": "Trois ixe plus sept égale treize : ixe égale deux."
+  },
+  {
+   "dit": "Quand des fractions apparaissent, on les chasse d'un coup. Exemple : ixe sur deux, plus un, égale ixe sur trois, plus deux. Le plus petit commun multiple de deux et de trois est six : en multipliant chaque terme par six, on obtient trois ixe plus six égale deux ixe plus douze, d'où ixe égale six. Vérification : les deux membres valent quatre.",
+   "ecran": "fractions",
+   "id": "p05",
+   "texte": "Fractions : multiplier par six, ixe égale six."
+  },
+  {
+   "dit": "Passons au second degré : a ixe carré plus b ixe plus c égale zéro, toujours avec a non nul. La forme canonique le réécrit comme a facteur de ixe moins alpha, le tout au carré, plus bêta : alpha et bêta sont les coordonnées du sommet de la parabole, ce qui renseigne déjà sur le nombre de solutions.",
+   "ecran": "second_degre",
+   "id": "p06",
+   "texte": "Second degré : a ixe carré plus b ixe plus c égale zéro."
+  },
+  {
+   "dit": "Construisons la forme canonique de deux ixe carré plus quatre ixe moins six. On factorise deux, puis on complète le carré en ajoutant et en retranchant un dans la parenthèse : on obtient deux facteur de ixe plus un, le tout au carré, moins huit. Alpha vaut moins un, bêta vaut moins huit : le sommet de la parabole est en moins un, moins huit.",
+   "ecran": "canonique",
+   "id": "p07",
+   "texte": "Deux ixe carré plus quatre ixe moins six : sommet en moins un, moins huit."
+  },
+  {
+   "dit": "L'outil central du second degré est le discriminant, noté delta : b carré moins quatre a c. Son signe décide de tout. Strictement positif : deux solutions réelles distinctes. Nul : une seule solution, dite double. Strictement négatif : aucune solution réelle, les solutions sont complexes, hors du terrain de ce cours.",
+   "ecran": "discriminant",
+   "id": "p08",
+   "texte": "Delta égale b carré moins quatre a c."
+  },
+  {
+   "dit": "Exemple complet : ixe carré moins cinq ixe plus six égale zéro. Le discriminant vaut vingt-cinq moins vingt-quatre, c'est-à-dire un. Les deux solutions sont cinq moins un, le tout sur deux, soit deux, et cinq plus un, le tout sur deux, soit trois. Pensez aussi à la factorisation : ixe moins deux, facteur de ixe moins trois.",
+   "ecran": "ex_second",
+   "id": "p09",
+   "texte": "Ixe carré moins cinq ixe plus six : solutions deux et trois."
+  },
+  {
+   "dit": "Deux inconnues exigent deux informations. Un boulanger vend des croissants à un euro et des pains au chocolat à un euro cinquante : vingt articles vendus, pour vingt-six euros au total. En notant ixe les croissants et igrec les pains au chocolat : ixe plus igrec égale vingt, et ixe plus un virgule cinq igrec égale vingt-six. Résoudre, c'est trouver le couple qui vérifie les deux équations à la fois.",
+   "ecran": "systeme",
+   "id": "p10",
+   "texte": "Le boulanger : vingt articles, vingt-six euros."
+  },
+  {
+   "dit": "Résolvons par substitution. De la première équation, ixe égale vingt moins igrec. On remplace dans la seconde : vingt moins igrec, plus un virgule cinq igrec, égale vingt-six, soit zéro virgule cinq igrec égale six, donc igrec égale douze. On reporte : ixe égale huit. La combinaison linéaire, qui élimine une inconnue en additionnant les équations, donne exactement le même couple.",
+   "ecran": "ex_systeme",
+   "id": "p11",
+   "texte": "Substitution : huit croissants, douze pains au chocolat."
+  },
+  {
+   "dit": "Récapitulons. Au premier degré, on isole, on divise, on vérifie, et les fractions disparaissent en multipliant par le plus petit commun multiple. Au second degré, le discriminant décide du nombre de solutions et la forme canonique fait lire le sommet. Pour les systèmes, substitution et combinaison mènent au même couple solution.",
+   "ecran": "recap1",
+   "id": "p12",
+   "texte": "L'essentiel de la partie un."
+  },
+  {
+   "dit": "Changeons de famille : dans une équation exponentielle, l'inconnue figure dans l'exposant. Deux puissance ixe égale huit se résout d'un coup d'œil, car huit est une puissance de deux. Ces équations modélisent croissances et décroissances : population, radioactivité, intérêts composés. Trois méthodes couvrent presque tous les cas.",
+   "ecran": "exponentielle",
+   "id": "p13",
+   "texte": "Exponentielle : l'inconnue est dans l'exposant."
+  },
+  {
+   "dit": "Première méthode, la plus rapide : réduire les deux membres à la même base, puis égaler les exposants. Deux puissance ixe égale huit, c'est-à-dire deux au cube, donne ixe égale trois. Cinq puissance ixe égale cent vingt-cinq donne encore trois. Et deux puissance ixe plus un égale seize donne ixe plus un égale quatre, donc trois. Réflexe du concours : mémoriser les petites puissances de deux, de trois et de cinq.",
+   "ecran": "meme_base",
+   "id": "p14",
+   "texte": "Même base : deux, cinq, seize — toujours ixe égale trois."
+  },
+  {
+   "dit": "Quand la même base est impossible, le logarithme prend le relais. Pour trois puissance ixe égale dix, on applique le logarithme décimal aux deux membres : ixe fois logarithme de trois égale un, donc ixe égale un sur logarithme de trois, environ deux virgule dix. La propriété qui fait tout fonctionner : le logarithme d'une puissance fait descendre l'exposant en facteur.",
+   "ecran": "log_outil",
+   "id": "p15",
+   "texte": "Trois puissance ixe égale dix : ixe environ deux virgule dix."
+  },
+  {
+   "dit": "Troisième méthode : le changement de variable. Dans exponentielle de deux ixe, plus trois exponentielle de ixe, moins quatre, égale zéro, on pose igrec égale exponentielle de ixe. Le trinôme igrec carré plus trois igrec moins quatre a pour racines un et moins quatre. Mais une exponentielle est toujours positive : moins quatre est impossible, et il reste ixe égale zéro, unique solution.",
+   "ecran": "changement",
+   "id": "p16",
+   "texte": "Changement de variable : ixe égale zéro, l'autre racine est impossible."
+  },
+  {
+   "dit": "Les équations logarithmiques reposent sur trois propriétés : le logarithme d'un produit est la somme des logarithmes, celui d'un quotient est leur différence, et celui d'une puissance fait descendre l'exposant. Exemple : logarithme en base deux de huit ixe carré, moins logarithme en base deux de quatre ixe, se simplifie en un plus logarithme en base deux de ixe.",
+   "ecran": "log_proprietes",
+   "id": "p17",
+   "texte": "Les propriétés des logarithmes, puis un exemple."
+  },
+  {
+   "dit": "Exemple complet : logarithme en base deux de ixe, plus logarithme en base deux de ixe moins un, égale un. La propriété du produit regroupe : ixe facteur de ixe moins un égale deux. Le trinôme ixe carré moins ixe moins deux donne deux racines, deux et moins un. Mais moins un rendrait les logarithmes impossibles : solution étrangère, rejetée. Seul ixe égale deux est solution.",
+   "ecran": "ex_log",
+   "id": "p18",
+   "texte": "Logarithmes : deux racines calculées, une seule retenue."
+  },
+  {
+   "dit": "Le cas le plus simple se traite par la définition : logarithme en base trois de ixe plus deux, égale deux, signifie ixe plus deux égale trois au carré, donc ixe égale sept. La vérification n'est pas un luxe : l'argument d'un logarithme doit rester strictement positif. Devant toute équation logarithmique, écrivez le domaine avant le moindre calcul.",
+   "ecran": "domaine",
+   "id": "p19",
+   "texte": "Logarithme en base trois de ixe plus deux égale deux : ixe égale sept."
+  },
+  {
+   "dit": "Les inéquations du premier degré se résolvent comme les équations, avec une règle supplémentaire, la plus piégeuse du chapitre : diviser par un nombre négatif renverse le sens de l'inégalité. Exemple : moins deux ixe plus quatre, inférieur ou égal à six, donne moins deux ixe inférieur ou égal à deux, puis, en divisant par moins deux, ixe supérieur ou égal à moins un.",
+   "ecran": "inequation",
+   "id": "p20",
+   "texte": "Moins deux ixe plus quatre inférieur ou égal à six : ixe supérieur ou égal à moins un."
+  },
+  {
+   "dit": "Au second degré, tout passe par le signe du trinôme. Pour ixe carré moins quatre ixe plus trois, strictement négatif, l'équation associée a pour racines un et trois. Un trinôme est du signe de a à l'extérieur des racines, et du signe contraire entre elles. Ici a est positif : le trinôme est négatif entre un et trois, et la solution est l'intervalle ouvert de un à trois.",
+   "ecran": "signe",
+   "id": "p21",
+   "texte": "Ixe carré moins quatre ixe plus trois négatif entre un et trois."
+  },
+  {
+   "dit": "Récapitulons. Exponentielles : même base si possible, logarithme sinon, changement de variable quand l'exponentielle apparaît au carré. Logarithmes : domaine d'abord, propriétés pour regrouper, filtrage final des solutions étrangères. Inéquations : le sens se renverse en divisant par un négatif, et le second degré se lit sur le signe du trinôme.",
+   "ecran": "recap2",
+   "id": "p22",
+   "texte": "L'essentiel de la partie deux."
+  },
+  {
+   "dit": "Certaines équations ne cherchent que des solutions entières : ce sont les équations diophantiennes. Acheter des pommes à deux euros et des oranges à trois euros avec dix-sept euros conduit à deux ixe plus trois igrec égale dix-sept. Une solution particulière est quatre et trois ; toutes les autres s'en déduisent : ixe égale quatre plus trois k, igrec égale trois moins deux k. En ne gardant que les positifs : sept et un, quatre et trois, un et cinq.",
+   "ecran": "dioph",
+   "id": "p23",
+   "texte": "Diophantienne : trois couples positifs pour deux ixe plus trois igrec égale dix-sept."
+  },
+  {
+   "dit": "Les valeurs absolues se traitent par disjonction de cas, selon le signe de ce qu'elles contiennent. Pour valeur absolue de ixe moins deux, égale trois : si ixe dépasse deux, ixe moins deux égale trois donne cinq, compatible. Sinon, deux moins ixe égale trois donne moins un, lui aussi compatible. Deux solutions : cinq et moins un.",
+   "ecran": "absolue",
+   "id": "p24",
+   "texte": "Valeur absolue de ixe moins deux égale trois : cinq et moins un."
+  },
+  {
+   "dit": "Les équations irrationnelles contiennent des radicaux. La méthode : isoler la racine, puis élever au carré. Racine carrée de ixe plus deux, égale ixe, donne ixe carré moins ixe moins deux égale zéro, de racines deux et moins un. Mais élever au carré peut créer des solutions : en vérifiant, moins un échoue, car racine de un vaut un. Seul ixe égale deux est solution.",
+   "ecran": "irrationnelle",
+   "id": "p25",
+   "texte": "Racine de ixe plus deux égale ixe : seul deux survit à la vérification."
+  },
+  {
+   "dit": "Au concours, les équations arrivent déguisées en problèmes. La modélisation suit cinq temps : identifier les inconnues et les nommer, repérer les relations entre les grandeurs, les traduire en équations en surveillant unités et contraintes, résoudre, puis interpréter. Une longueur négative ou un nombre d'articles fractionnaire signale une erreur de traduction, pas une réponse.",
+   "ecran": "modelisation",
+   "id": "p26",
+   "texte": "Modéliser : nommer, traduire, résoudre, interpréter."
+  },
+  {
+   "dit": "Premier problème traité : préparer dix litres d'une solution à vingt pour cent de sel, en mélangeant une solution à quinze pour cent et une à vingt-cinq pour cent. Les volumes ixe et igrec somment à dix, et le sel se conserve : zéro virgule quinze ixe plus zéro virgule vingt-cinq igrec égale deux. Résultat : cinq litres de chaque solution.",
+   "ecran": "melange",
+   "id": "p27",
+   "texte": "Mélange : cinq litres de chaque solution."
+  },
+  {
+   "dit": "Deuxième problème : une population de bactéries double toutes les trois heures, en partant de mille individus. Après t heures, elle vaut mille fois deux puissance t sur trois. Après douze heures, l'exposant vaut quatre : mille fois seize, soit seize mille bactéries. On écrit la loi exponentielle une fois, puis on remplace le temps.",
+   "ecran": "bacteries",
+   "id": "p28",
+   "texte": "Bactéries : seize mille après douze heures."
+  },
+  {
+   "dit": "Troisième problème, linéaire : des articles coûtent cinq euros, sont vendus dix euros, avec mille euros de coûts fixes. Chaque article rapporte cinq euros de marge : le bénéfice s'écrit cinq ixe moins mille. Pour deux mille euros de bénéfice, on obtient ixe égale six cents articles. C'est un seuil : en dessous, l'entreprise perd de l'argent.",
+   "ecran": "benefice",
+   "id": "p29",
+   "texte": "Bénéfice : six cents articles pour atteindre deux mille euros."
+  },
+  {
+   "dit": "Face à un énoncé du concours, gardez la même discipline : lire attentivement, nommer les inconnues, traduire, résoudre avec la méthode du type repéré, puis vérifier et interpréter. Les exercices progressifs du cours et ses deux examens blancs servent exactement à automatiser cette chaîne avant le jour J.",
+   "ecran": "strategie",
+   "id": "p30",
+   "texte": "Face à un problème : quatre temps, toujours les mêmes."
+  },
+  {
+   "dit": "Pour terminer, retenez l'enchaînement complet. Degrés un et deux : isoler, discriminant, forme canonique. Systèmes : substitution ou combinaison. Exponentielles et logarithmes : deux familles inverses, avec domaine et vérification en garde-fous. Méthodes avancées : cas, carrés, entiers. Et toujours la même exigence : aucune solution perdue, aucune solution inventée.",
+   "ecran": "recap_final",
+   "id": "p31",
+   "texte": "Équations et inéquations : le cours en quatre lignes."
+  }
+ ],
+ "titre": "Équations et inéquations : résoudre, du premier degré aux logarithmes"
+}

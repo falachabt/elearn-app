@@ -1,0 +1,435 @@
+{
+ "cours": 7296,
+ "titre": "Probabilités et variables aléatoires : de l'univers fini à la loi binomiale",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Probabilités",
+   "titre": "Probabilités et variables aléatoires : de l'univers fini à la loi binomiale",
+   "sous": "Équiprobabilité, espérance et variance, puis Bernoulli répété : compter les succès",
+   "anim": {
+    "nom": "urne_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Le hasard se décrit : des issues, des événements, des nombres.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 150
+   }
+  },
+  "univers": {
+   "type": "phrase",
+   "kicker": "Univers et événements",
+   "texte": "Ω : toutes les issues ; A : une partie de Ω.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 150
+   }
+  },
+  "ex_de": {
+   "type": "etape",
+   "kicker": "Exemple · le dé",
+   "titre": "Un dé à six faces",
+   "tex": [
+    "\\Omega = \\{1, 2, 3, 4, 5, 6\\}",
+    "A = \\{2, 4, 6\\} \\text{ : nombre pair}"
+   ]
+  },
+  "axiomes": {
+   "type": "etape",
+   "kicker": "Définition · une probabilité",
+   "titre": "Trois règles, et rien d'autre",
+   "tex": [
+    "0 \\leq P(A) \\leq 1",
+    "P(\\Omega) = 1",
+    "A \\cap B = \\emptyset \\Rightarrow P(A \\cup B) = P(A) + P(B)"
+   ]
+  },
+  "equiproba": {
+   "type": "formule",
+   "kicker": "Cas d'équiprobabilité",
+   "tex": "P(A) = \\frac{\\text{Card}(A)}{n}",
+   "note": "Cas favorables sur cas possibles, issues également probables"
+  },
+  "proprietes": {
+   "type": "formule",
+   "kicker": "Propriétés utiles",
+   "tex": "P(\\overline{A}) = 1 - P(A)",
+   "note": "Et P(A ∪ B) = P(A) + P(B) − P(A ∩ B) en général"
+  },
+  "ex_carte": {
+   "type": "etape",
+   "kicker": "Exemple résolu · une carte",
+   "titre": "Un roi dans un jeu de trente-deux cartes",
+   "tex": [
+    "P = \\tfrac{4}{32} = \\tfrac{1}{8}"
+   ]
+  },
+  "var_def": {
+   "type": "phrase",
+   "kicker": "Variable aléatoire · définition",
+   "texte": "X : une fonction de Ω vers les nombres réels.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 150
+   }
+  },
+  "ex_somme": {
+   "type": "phrase",
+   "kicker": "Exemple · deux dés",
+   "texte": "X = somme des faces : de 2 à 12.",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 150
+   }
+  },
+  "loi_piece": {
+   "type": "etape",
+   "kicker": "Loi de probabilité · exemple",
+   "titre": "Nombre de pile en deux lancers",
+   "tex": [
+    "P(X = 0) = \\tfrac{1}{4}",
+    "P(X = 1) = \\tfrac{1}{2} \\qquad P(X = 2) = \\tfrac{1}{4}",
+    "\\tfrac{1}{4} + \\tfrac{1}{2} + \\tfrac{1}{4} = 1"
+   ]
+  },
+  "esperance": {
+   "type": "formule",
+   "kicker": "Espérance mathématique",
+   "tex": "E(X) = \\sum_i x_i p_i",
+   "note": "Moyenne des valeurs, pondérée par leurs probabilités"
+  },
+  "ex_esperance": {
+   "type": "etape",
+   "kicker": "Exemple résolu · espérance",
+   "titre": "Le nombre de pile, en moyenne",
+   "tex": [
+    "E(X) = 0 \\times \\tfrac{1}{4} + 1 \\times \\tfrac{1}{2} + 2 \\times \\tfrac{1}{4}",
+    "E(X) = 1"
+   ]
+  },
+  "variance": {
+   "type": "formule",
+   "kicker": "Variance et écart-type",
+   "tex": "V(X) = E(X^2) - (E(X))^2",
+   "note": "La dispersion autour de l'espérance ; σ(X) est sa racine carrée"
+  },
+  "ex_variance": {
+   "type": "etape",
+   "kicker": "Exemple résolu · variance",
+   "titre": "Toujours le nombre de pile",
+   "tex": [
+    "E(X^2) = 0 + \\tfrac{1}{2} + 4 \\times \\tfrac{1}{4} = 1{,}5",
+    "V(X) = 1{,}5 - 1 = 0{,}5",
+    "\\sigma(X) = \\sqrt{0{,}5} \\approx 0{,}71"
+   ]
+  },
+  "affine": {
+   "type": "formule",
+   "kicker": "Transformer une variable",
+   "tex": "E(aX + b) = aE(X) + b",
+   "note": "Et V(aX + b) = a²V(X) : le décalage b ne disperse pas"
+  },
+  "ex_affine": {
+   "type": "etape",
+   "kicker": "Exemple résolu · transformation",
+   "titre": "Y égale trois X plus deux",
+   "tex": [
+    "E(Y) = 3 \\times 1 + 2 = 5",
+    "V(Y) = 9 \\times 0{,}5 = 4{,}5"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : à retenir",
+   "etapes": [
+    "P(A) : cas favorables sur cas possibles",
+    "P(contraire) = 1 − P(A), toujours utile",
+    "Loi de X : valeurs et probabilités, somme 1",
+    "Espérance : moyenne pondérée des valeurs",
+    "Variance : dispersion, σ sa racine carrée"
+   ]
+  },
+  "bernoulli": {
+   "type": "phrase",
+   "kicker": "Épreuve de Bernoulli",
+   "texte": "Deux issues seulement : succès ou échec.",
+   "anim": {
+    "nom": "urne_fig",
+    "hauteur": 150
+   }
+  },
+  "bernoulli_param": {
+   "type": "formule",
+   "kicker": "Bernoulli · paramètres",
+   "tex": "E(X) = p \\qquad V(X) = p(1 - p)",
+   "note": "X vaut un si succès, zéro si échec, p probabilité du succès"
+  },
+  "schema": {
+   "type": "phrase",
+   "kicker": "Schéma de Bernoulli",
+   "texte": "Répéter, indépendamment, la même épreuve : compter les succès.",
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 180
+   }
+  },
+  "coef": {
+   "type": "formule",
+   "kicker": "Coefficient binomial",
+   "tex": "\\binom{n}{k} = \\frac{n!}{k!(n - k)!}",
+   "note": "Le nombre de façons de placer k succès parmi n répétitions"
+  },
+  "formule_binom": {
+   "type": "formule",
+   "kicker": "Loi binomiale · la formule",
+   "tex": "P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k}",
+   "note": "Choisir les succès, puis succès et échecs à leurs puissances"
+  },
+  "ex_binom": {
+   "type": "etape",
+   "kicker": "Exemple résolu · loi binomiale",
+   "titre": "Exactement deux six en cinq lancers",
+   "tex": [
+    "P(X = 2) = \\binom{5}{2} \\left(\\tfrac{1}{6}\\right)^2 \\left(\\tfrac{5}{6}\\right)^3",
+    "= 10 \\times \\tfrac{1}{36} \\times \\tfrac{125}{216} \\approx 0{,}161"
+   ]
+  },
+  "param_binom": {
+   "type": "formule",
+   "kicker": "Binomiale · paramètres",
+   "tex": "E(X) = np \\qquad V(X) = np(1 - p)",
+   "note": "Et σ(X) est la racine carrée de np fois un moins p"
+  },
+  "ex_param": {
+   "type": "etape",
+   "kicker": "Exemple · paramètres",
+   "titre": "Cinq lancers, succès un sixième",
+   "tex": [
+    "E(X) = 5 \\times \\tfrac{1}{6} = \\tfrac{5}{6} \\approx 0{,}83",
+    "V(X) = 5 \\times \\tfrac{1}{6} \\times \\tfrac{5}{6} = \\tfrac{25}{36}"
+   ]
+  },
+  "cumul": {
+   "type": "formule",
+   "kicker": "Probabilités cumulées",
+   "tex": "P(X \\geq 1) = 1 - P(X = 0)",
+   "note": "Au moins un succès : passer par le contraire, aucun succès"
+  },
+  "ex_cumul": {
+   "type": "etape",
+   "kicker": "Exemple résolu · au moins un",
+   "titre": "Au moins un six en cinq lancers",
+   "tex": [
+    "P(X = 0) = \\left(\\tfrac{5}{6}\\right)^5 \\approx 0{,}402",
+    "P(X \\geq 1) = 1 - 0{,}402 = 0{,}598"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Bernoulli : succès p, échec un moins p",
+    "Binomiale : n répétitions indépendantes",
+    "P(X = k) : coefficient, p et un moins p",
+    "Espérance np, variance np fois un moins p",
+    "Au moins un : un moins aucun succès"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de probabilités. Nous partons de l'univers fini et de l'équiprobabilité, nous définissons les variables aléatoires avec leur espérance et leur variance, puis nous construisons la loi binomiale.",
+   "texte": "Cours : probabilités, variables, loi binomiale.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Une expérience aléatoire est une expérience dont le résultat dépend du hasard, comme un lancer de dé ou un tirage de carte. Avant de calculer quoi que ce soit, on commence toujours par décrire précisément toutes les issues possibles.",
+   "texte": "Le hasard se décrit avant de se calculer.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "L'ensemble de tous les résultats possibles s'appelle l'univers, noté oméga. Un événement est une partie de cet univers, c'est-à-dire un ensemble d'issues que l'on regroupe parce qu'elles partagent la même propriété.",
+   "texte": "Ω : toutes les issues ; A : une partie de Ω.",
+   "ecran": "univers"
+  },
+  {
+   "id": "p04",
+   "dit": "Exemple avec un dé à six faces. L'univers contient les nombres de un à six. L'événement obtenir un nombre pair regroupe les issues deux, quatre et six. Décrire l'univers et l'événement, c'est déjà la moitié du travail.",
+   "texte": "Dé : Ω de 1 à 6, pair = {2, 4, 6}.",
+   "ecran": "ex_de"
+  },
+  {
+   "id": "p05",
+   "dit": "Une probabilité associe à chaque événement un nombre compris entre zéro et un. La probabilité de l'univers entier vaut un. Et si deux événements sont incompatibles, sans issue commune, la probabilité de leur réunion est la somme de leurs probabilités.",
+   "texte": "Trois règles définissent une probabilité.",
+   "ecran": "axiomes"
+  },
+  {
+   "id": "p06",
+   "dit": "Dans le cas de l'équiprobabilité, toutes les issues ont la même probabilité. La probabilité d'un événement est alors le nombre de cas favorables divisé par le nombre de cas possibles. C'est la formule de comptage de presque tous les exercices de ce chapitre.",
+   "texte": "Équiprobabilité : favorables sur possibles.",
+   "ecran": "equiproba"
+  },
+  {
+   "id": "p07",
+   "dit": "Deux propriétés servent en permanence. La probabilité de l'événement contraire vaut un moins la probabilité de l'événement. Et pour deux événements quelconques, la probabilité de la réunion retranche la probabilité de l'intersection, comptée deux fois sinon.",
+   "texte": "Contraire : 1 − P(A), un réflexe permanent.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p08",
+   "dit": "Premier exemple. On tire une carte d'un jeu de trente-deux cartes. Il y a quatre rois, cas favorables, pour trente-deux cas possibles. La probabilité d'obtenir un roi vaut donc quatre trente-deuxièmes, c'est-à-dire un huitième.",
+   "texte": "Un roi : 4/32 = 1/8.",
+   "ecran": "ex_carte"
+  },
+  {
+   "id": "p09",
+   "dit": "Une variable aléatoire est une fonction qui associe à chaque issue de l'univers un nombre réel. Elle transforme un résultat du hasard, souvent qualitatif, en une quantité que l'on peut additionner, moyenner et comparer.",
+   "texte": "X transforme chaque issue en un nombre.",
+   "ecran": "var_def"
+  },
+  {
+   "id": "p10",
+   "dit": "Exemple. On lance deux dés et on note iks la somme des faces obtenues. La variable iks prend toutes les valeurs entières de deux à douze. Ce n'est plus le détail des deux dés qui compte, mais seulement leur somme.",
+   "texte": "Deux dés : X = la somme, de 2 à 12.",
+   "ecran": "ex_somme"
+  },
+  {
+   "id": "p11",
+   "dit": "La loi de probabilité d'une variable donne toutes ses valeurs et la probabilité de chacune, souvent dans un tableau, avec une somme totale égale à un. Pour le nombre de piles en deux lancers équilibrés, on obtient un quart pour zéro, un demi pour un, et un quart pour deux.",
+   "texte": "Loi du nombre de pile : 1/4, 1/2, 1/4.",
+   "ecran": "loi_piece"
+  },
+  {
+   "id": "p12",
+   "dit": "L'espérance d'une variable est la moyenne de ses valeurs, pondérée par leurs probabilités. On multiplie chaque valeur par sa probabilité, puis on additionne. Elle s'interprète comme la valeur moyenne obtenue sur un très grand nombre de répétitions.",
+   "texte": "Espérance : la moyenne pondérée.",
+   "ecran": "esperance"
+  },
+  {
+   "id": "p13",
+   "dit": "Pour le nombre de piles, l'espérance vaut zéro fois un quart, plus un fois un demi, plus deux fois un quart, ce qui donne un. Sur beaucoup de doubles lancers, on obtient donc en moyenne un pile par série de deux lancers.",
+   "texte": "Nombre de pile : E(X) = 1.",
+   "ecran": "ex_esperance"
+  },
+  {
+   "id": "p14",
+   "dit": "La variance mesure la dispersion des valeurs autour de l'espérance. On la calcule par l'espérance du carré, moins le carré de l'espérance. L'écart-type est la racine carrée de la variance, et il a l'avantage de s'exprimer dans la même unité que la variable.",
+   "texte": "Variance : la dispersion autour de E(X).",
+   "ecran": "variance"
+  },
+  {
+   "id": "p15",
+   "dit": "Reprenons le nombre de piles, d'espérance un. L'espérance du carré vaut zéro, plus un demi, plus quatre fois un quart, soit un virgule cinq. La variance vaut donc un virgule cinq moins un, soit zéro virgule cinq, et l'écart-type vaut environ zéro virgule soixante et onze.",
+   "texte": "V = 0,5 et σ ≈ 0,71 pour le nombre de pile.",
+   "ecran": "ex_variance"
+  },
+  {
+   "id": "p16",
+   "dit": "Quand on transforme une variable par une fonction affine, l'espérance suit la même transformation : multiplier par a, puis ajouter bé. La variance, en revanche, est seulement multipliée par le carré de a : le décalage bé ne change rien à la dispersion.",
+   "texte": "Affine : E suit, V ignore le décalage.",
+   "ecran": "affine"
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple. Si i grec vaut trois iks plus deux, avec une espérance de iks égale à un et une variance de zéro virgule cinq, alors l'espérance de i grec vaut trois fois un plus deux, soit cinq, et sa variance vaut neuf fois zéro virgule cinq, soit quatre virgule cinq.",
+   "texte": "Y = 3X + 2 : E(Y) = 5, V(Y) = 4,5.",
+   "ecran": "ex_affine"
+  },
+  {
+   "id": "p18",
+   "dit": "Retenons cette première partie. Équiprobabilité, favorables sur possibles. Contraire, un moins la probabilité. Loi complète, somme égale à un. Espérance, moyenne pondérée. Et variance, la dispersion, dont l'écart-type est la racine carrée.",
+   "texte": "Partie 1 : probabilités et paramètres.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p19",
+   "dit": "Une épreuve de Bernoulli est une expérience aléatoire à deux issues seulement : un succès, de probabilité pé, et un échec, de probabilité un moins pé. La variable associée vaut un en cas de succès et zéro en cas d'échec. Obtenir un six avec un dé en est un exemple, avec pé égal à un sixième.",
+   "texte": "Bernoulli : succès p, échec 1 − p.",
+   "ecran": "bernoulli"
+  },
+  {
+   "id": "p20",
+   "dit": "Pour une variable de Bernoulli, l'espérance vaut simplement pé, et la variance vaut pé fois un moins pé. Retenez ce couple, car la loi binomiale de la suite n'en sera que la répétition.",
+   "texte": "Bernoulli : E(X) = p, V(X) = p(1 − p).",
+   "ecran": "bernoulli_param"
+  },
+  {
+   "id": "p21",
+   "dit": "Un schéma de Bernoulli répète èn fois, de façon indépendante et dans les mêmes conditions, une même épreuve de Bernoulli. La variable qui compte les succès suit la loi binomiale de paramètres èn et pé. Trois conditions : indépendance, même probabilité, nombre fixé à l'avance.",
+   "texte": "Schéma répété : X suit B(n, p).",
+   "ecran": "schema"
+  },
+  {
+   "id": "p22",
+   "dit": "Pour appliquer la formule, il faut compter les façons de placer les succès. Le coefficient binomial, èn parmi ka, donne le nombre de façons de choisir ka succès parmi èn répétitions. Il se calcule avec des factorielles : factorielle èn, divisée par factorielle ka fois factorielle èn moins ka.",
+   "texte": "Coefficient : choisir k succès parmi n.",
+   "ecran": "coef"
+  },
+  {
+   "id": "p23",
+   "dit": "Voici la formule de la loi binomiale. La probabilité d'obtenir exactement ka succès vaut le coefficient èn parmi ka, fois pé à la puissance ka pour les succès, et un moins pé à la puissance èn moins ka pour les échecs. Chaque facteur a son rôle.",
+   "texte": "P(X = k) : coefficient × succès × échecs.",
+   "ecran": "formule_binom"
+  },
+  {
+   "id": "p24",
+   "dit": "Exemple résolu. On lance cinq fois un dé équilibré et on compte les six : la variable suit la loi binomiale de paramètres cinq et un sixième. Pour exactement deux succès, le coefficient cinq parmi deux vaut dix, et le calcul donne environ zéro virgule cent soixante et un.",
+   "texte": "Exactement deux 6 en 5 lancers : ≈ 0,161.",
+   "ecran": "ex_binom"
+  },
+  {
+   "id": "p25",
+   "dit": "Les paramètres de la loi binomiale se retiennent sans aucun calcul de tableau. L'espérance vaut èn fois pé, et la variance vaut èn fois pé fois un moins pé. L'écart-type est la racine carrée de cette variance.",
+   "texte": "Binomiale : E = np, V = np(1 − p).",
+   "ecran": "param_binom"
+  },
+  {
+   "id": "p26",
+   "dit": "Pour nos cinq lancers de dé, l'espérance vaut cinq fois un sixième, soit cinq sixièmes, environ zéro virgule quatre-vingt-trois. La variance vaut cinq fois un sixième fois cinq sixièmes, soit vingt-cinq trente-sixièmes. En moyenne, on obtient donc moins d'un six sur cinq lancers.",
+   "texte": "Cinq lancers : E(X) ≈ 0,83.",
+   "ecran": "ex_param"
+  },
+  {
+   "id": "p27",
+   "dit": "Pour une probabilité cumulée, on additionne les probabilités concernées, ou on passe par l'événement complémentaire quand c'est plus rapide. Le cas typique est au moins un succès : sa probabilité vaut un moins la probabilité de n'avoir aucun succès.",
+   "texte": "Au moins un = 1 − aucun : le complémentaire.",
+   "ecran": "cumul"
+  },
+  {
+   "id": "p28",
+   "dit": "Dernier exemple. La probabilité de n'obtenir aucun six en cinq lancers vaut cinq sixièmes à la puissance cinq, environ zéro virgule quatre cent deux. Donc la probabilité d'obtenir au moins un six vaut un moins ce nombre, soit environ zéro virgule cinq cent quatre-vingt-dix-huit.",
+   "texte": "Au moins un 6 en 5 lancers : ≈ 0,598.",
+   "ecran": "ex_cumul"
+  },
+  {
+   "id": "p29",
+   "dit": "Pour conclure, gardez l'enchaînement complet. Bernoulli, deux issues. Schéma, èn répétitions indépendantes. Binomiale, coefficient fois les puissances. Espérance èn pé, variance èn pé fois un moins pé. Et devant au moins un, le passage par le complémentaire.",
+   "texte": "Bernoulli répété : la loi binomiale.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Probabilités, variables aléatoires et paramètres"
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "Bernoulli et loi binomiale",
+   "pont": {
+    "texte": "Partie 2 : Bernoulli répété, la loi binomiale.",
+    "dit": "Partie deux, de Bernoulli à la loi binomiale. Nous répétons une épreuve à deux issues, nous comptons les succès, et nous calculons leurs probabilités, leurs moyennes et leurs dispersions."
+   }
+  }
+ ]
+}

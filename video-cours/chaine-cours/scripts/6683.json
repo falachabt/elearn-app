@@ -1,0 +1,276 @@
+{
+ "cours": 6683,
+ "titre": "La proportionnalité : reconnaître, calculer et appliquer",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Proportionnalité",
+   "titre": "La proportionnalité : reconnaître, calculer et appliquer",
+   "sous": "Coefficient, quatrième proportionnelle, pourcentages et échelles : un même outil"
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Deux grandeurs liées par un même nombre : voilà la proportionnalité, et elle se cache dans les prix, les soldes et les plans."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition",
+   "tex": "y = k \\times x \\qquad k \\ne 0",
+   "note": "x et y : les deux grandeurs ; k : le coefficient, toujours le même.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 200
+   }
+  },
+  "tableau_baguettes": {
+   "type": "etape",
+   "kicker": "Exemple · le prix des baguettes",
+   "titre": "Le tableau des baguettes",
+   "tex": [
+    "2 \\quad 5 \\quad 7 \\quad \\text{baguettes}",
+    "2{,}40 \\quad 6 \\quad 8{,}40 \\quad \\text{euros}"
+   ]
+  },
+  "quotients": {
+   "type": "etape",
+   "kicker": "Reconnaître · le test des quotients",
+   "titre": "Les quotients sont tous égaux",
+   "tex": [
+    "\\tfrac{2{,}40}{2} = 1{,}2",
+    "\\tfrac{6}{5} = 1{,}2",
+    "\\tfrac{8{,}40}{7} = 1{,}2"
+   ]
+  },
+  "sens_coefficient": {
+   "type": "etape",
+   "kicker": "Le coefficient de proportionnalité",
+   "titre": "Multiplier, ou diviser pour revenir",
+   "tex": [
+    "x \\xrightarrow{\\times k} y",
+    "y \\xrightarrow{\\div k} x"
+   ]
+  },
+  "coefficient_ex": {
+   "type": "etape",
+   "kicker": "Exemple · coefficient un virgule deux",
+   "titre": "Dix baguettes, puis un budget",
+   "tex": [
+    "10 \\times 1{,}2 = 12 \\ \\text{euros}",
+    "14{,}40 \\div 1{,}2 = 12 \\ \\text{baguettes}"
+   ]
+  },
+  "quatrieme": {
+   "type": "formule",
+   "kicker": "La quatrième proportionnelle",
+   "tex": "a \\times d = b \\times c",
+   "note": "Produits en croix égaux : l'inconnue x se déduit des trois valeurs connues."
+  },
+  "voiture_tableau": {
+   "type": "etape",
+   "kicker": "Exemple · la consommation d'une voiture",
+   "titre": "Cent kilomètres pour six litres",
+   "tex": [
+    "100 \\ \\text{km} \\quad \\text{pour} \\quad 6 \\ \\text{L}",
+    "x \\ \\text{km} \\quad \\text{pour} \\quad 15 \\ \\text{L}"
+   ]
+  },
+  "voiture": {
+   "type": "etape",
+   "kicker": "Exemple · produits en croix",
+   "titre": "La distance avec quinze litres",
+   "tex": [
+    "6 \\times x = 100 \\times 15",
+    "6x = 1500",
+    "x = \\tfrac{1500}{6} = 250 \\ \\text{km}"
+   ]
+  },
+  "applications": {
+   "type": "phrase",
+   "kicker": "Deux applications partout présentes",
+   "texte": "Pourcentages et échelles ne sont pas de nouvelles notions : ce sont des coefficients de proportionnalité déguisés."
+  },
+  "pourcentage": {
+   "type": "formule",
+   "kicker": "Appliquer un pourcentage",
+   "tex": "Q \\times \\frac{t}{100}",
+   "note": "Prendre t pour cent de Q : un pourcentage est une fraction sur cent."
+  },
+  "soldes": {
+   "type": "etape",
+   "kicker": "Exemple · les soldes",
+   "titre": "Vingt-cinq pour cent de réduction",
+   "tex": [
+    "80 \\times \\tfrac{25}{100} = 80 \\times 0{,}25 = 20",
+    "80 - 20 = 60 \\ \\text{euros}"
+   ]
+  },
+  "echelle": {
+   "type": "formule",
+   "kicker": "Utiliser une échelle",
+   "tex": "\\text{échelle} = \\frac{\\text{distance plan}}{\\text{distance réelle}}",
+   "note": "Même unité des deux côtés ; un sur cent : un centimètre pour un mètre réel."
+  },
+  "echelle_ex": {
+   "type": "etape",
+   "kicker": "Exemple · un mur sur un plan",
+   "titre": "Trois virgule cinq centimètres sur le plan",
+   "tex": [
+    "3{,}5 \\times 200 = 700 \\ \\text{cm}",
+    "700 \\ \\text{cm} = 7 \\ \\text{m}"
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode, avant tout calcul",
+   "etapes": [
+    "Identifier les deux grandeurs",
+    "Vérifier la proportionnalité",
+    "Choisir : coefficient, croix, unité",
+    "Contrôler l'ordre de grandeur"
+   ]
+  },
+  "passage_unite": {
+   "type": "phrase",
+   "kicker": "Comparer · le passage à l'unité",
+   "texte": "Pour comparer deux offres, on ramène chaque prix à un kilogramme : une même unité, et la comparaison devient juste."
+  },
+  "paquets": {
+   "type": "etape",
+   "kicker": "Exemple · deux paquets au prix au kilo",
+   "titre": "Le prix au kilogramme décide",
+   "tex": [
+    "\\tfrac{3{,}30}{0{,}750} = 4{,}40 \\ \\text{euros par kg}",
+    "\\tfrac{5{,}04}{1{,}2} = 4{,}20 \\ \\text{euros par kg}",
+    "4{,}20 < 4{,}40"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Quotients égaux : proportionnalité",
+    "Le coefficient multiplie, ou divise",
+    "Produits en croix : l'inconnue x",
+    "Pourcentages et échelles : même outil"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré à la proportionnalité. Nous apprendrons à la reconnaître, à utiliser son coefficient, à calculer une valeur manquante, puis à appliquer le même outil aux pourcentages et aux échelles.",
+   "texte": "La proportionnalité : un même nombre relie deux grandeurs.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Deux grandeurs sont proportionnelles lorsque l'on obtient les valeurs de l'une en multipliant les valeurs de l'autre par un même nombre. Ce nombre, toujours le même, est le fil rouge de tout le cours.",
+   "texte": "Deux grandeurs, un même nombre pour passer de l'une à l'autre.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Ce nombre s'appelle le coefficient de proportionnalité. Différent de zéro, il agit comme un opérateur : il transforme chaque valeur de la première grandeur en la valeur correspondante de la seconde.",
+   "texte": "Le coefficient k : l'opérateur qui relie les deux grandeurs.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Premier exemple : des baguettes de pain identiques. Deux baguettes coûtent deux euros et quarante centimes, cinq coûtent six euros, sept coûtent huit euros et quarante centimes. Ce tableau est-il de proportionnalité ?",
+   "texte": "Baguettes et prix : le tableau à tester.",
+   "ecran": "tableau_baguettes"
+  },
+  {
+   "id": "p05",
+   "dit": "On calcule les quotients des valeurs correspondantes : deux virgule quarante sur deux, six sur cinq, huit virgule quarante sur sept. Chacun donne un virgule deux. Tous égaux : le tableau est de proportionnalité, et un virgule deux est le prix d'une baguette.",
+   "texte": "Quotients tous égaux à 1,2 : proportionnalité prouvée.",
+   "ecran": "quotients"
+  },
+  {
+   "id": "p06",
+   "dit": "Le coefficient sert dans les deux sens : multiplier par le coefficient pour passer de la première ligne à la seconde, diviser par le coefficient pour remonter de la seconde à la première.",
+   "texte": "Multiplier pour descendre, diviser pour remonter.",
+   "ecran": "sens_coefficient"
+  },
+  {
+   "id": "p07",
+   "dit": "Avec le coefficient un virgule deux, dix baguettes coûtent dix fois un virgule deux, soit douze euros. Et quatorze virgule quarante divisé par un virgule deux donne douze baguettes.",
+   "texte": "10 baguettes : 12 euros ; 14,40 euros : 12 baguettes.",
+   "ecran": "coefficient_ex"
+  },
+  {
+   "id": "p08",
+   "dit": "Quand une valeur manque dans un tableau à quatre cases, c'est la quatrième proportionnelle. On la trouve par les produits en croix : le produit des extrêmes égale toujours le produit des moyens.",
+   "texte": "La quatrième proportionnelle : les produits en croix sont égaux.",
+   "ecran": "quatrieme"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple : une voiture consomme six litres pour cent kilomètres. Quelle distance avec quinze litres ? Le tableau place l'inconnue, notée ixe, face aux quinze litres.",
+   "texte": "Voiture : 100 km pour 6 L, quelle distance pour 15 L ?",
+   "ecran": "voiture_tableau"
+  },
+  {
+   "id": "p10",
+   "dit": "Produits en croix : six fois ixe égale cent fois quinze, soit mille cinq cents. Donc ixe égale mille cinq cents sur six, soit deux cent cinquante kilomètres avec quinze litres.",
+   "texte": "Produits en croix : x = 250 km avec 15 L.",
+   "ecran": "voiture"
+  },
+  {
+   "id": "p11",
+   "dit": "Pourcentages et échelles ne sont pas des notions séparées : ce sont des applications de la proportionnalité, un coefficient multiplicatif écrit sous une autre forme.",
+   "texte": "Pourcentages et échelles : la proportionnalité en action.",
+   "ecran": "applications"
+  },
+  {
+   "id": "p12",
+   "dit": "Un pourcentage est une fraction de dénominateur cent. Prendre té pour cent d'une quantité, c'est la multiplier par té sur cent : un pourcentage est un coefficient écrit en fraction sur cent.",
+   "texte": "Prendre t % d'une quantité : multiplier par t/100.",
+   "ecran": "pourcentage"
+  },
+  {
+   "id": "p13",
+   "dit": "Soldes : un article à quatre-vingts euros, réduit de vingt-cinq pour cent. La réduction vaut quatre-vingts fois vingt-cinq sur cent, soit vingt euros. Prix soldé : quatre-vingts moins vingt, soixante euros.",
+   "texte": "Soldes : 80 euros, réduction 20 euros, prix soldé 60 euros.",
+   "ecran": "soldes"
+  },
+  {
+   "id": "p14",
+   "dit": "L'échelle d'un plan est le quotient de la distance sur le plan par la distance réelle, dans la même unité. Un sur cent signifie : un centimètre sur le plan pour cent centimètres, soit un mètre, en réalité.",
+   "texte": "Échelle : distance sur le plan divisée par distance réelle.",
+   "ecran": "echelle"
+  },
+  {
+   "id": "p15",
+   "dit": "Sur un plan au un sur deux cents, un mur mesure trois virgule cinq centimètres. Réel : trois virgule cinq fois deux cents, sept cents centimètres, c'est-à-dire sept mètres.",
+   "texte": "Plan au 1/200 : 3,5 cm sur le plan, 7 m en réalité.",
+   "ecran": "echelle_ex"
+  },
+  {
+   "id": "p16",
+   "dit": "Avant tout calcul : identifier les deux grandeurs, vérifier la proportionnalité, choisir la méthode, coefficient, produit en croix ou passage à l'unité, puis contrôler l'ordre de grandeur du résultat.",
+   "texte": "La méthode : identifier, vérifier, choisir, contrôler.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p17",
+   "dit": "Le passage à l'unité sert à comparer : on ramène chaque offre à une même unité, par exemple le prix d'un kilogramme, et ce prix unitaire départage les offres.",
+   "texte": "Comparer : ramener chaque prix à la même unité.",
+   "ecran": "passage_unite"
+  },
+  {
+   "id": "p18",
+   "dit": "Trois virgule trente divisé par zéro virgule sept cent cinquante donne quatre virgule quarante euros par kilogramme. Cinq virgule zéro quatre divisé par un virgule deux donne quatre virgule vingt. Le second paquet est donc le plus avantageux.",
+   "texte": "Prix au kilo : 4,40 euros contre 4,20 euros, le second gagne.",
+   "ecran": "paquets"
+  },
+  {
+   "id": "p19",
+   "dit": "À retenir : quotients égaux, donc proportionnalité ; un coefficient qui multiplie ou divise ; la quatrième proportionnelle par les produits en croix ; et les pourcentages et les échelles, qui sont ce même outil en contexte.",
+   "texte": "Proportionnalité : quotients, coefficient, croix, applications.",
+   "ecran": "recap"
+  }
+ ]
+}

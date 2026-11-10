@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { lireDernierResultat, type ResultatMission } from '@/services/mission';
+import { lireDernierResultat, lireHistorique, type ResultatMission } from '@/services/mission';
 import { lireCorrection, statuts, type Correction } from '@/services/correction';
 import { doitProposerNotifications } from '@/services/proposerNotifications';
 import { doitProposerRappel } from '@/services/rappels';
@@ -25,6 +25,7 @@ import { LigneLien } from '../LigneLien';
 import { Rebond } from '../Rebond';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { ResultatsQuiz } from '../quiz/ResultatsQuiz';
+import { SerieMission } from './SerieMission';
 
 function Chiffre({ valeur, legende, jaune }: { valeur: string; legende: string; jaune?: boolean }) {
   const { theme } = useTheme();
@@ -50,13 +51,15 @@ export function FinMission() {
   const invite = session?.user.is_anonymous ?? true;
   const [correction, setCorrection] = useState<Correction | null>(null);
   const [leconsOuvertes, setLeconsOuvertes] = useState(false);
+  const [joues, setJoues] = useState<string[]>([]);
 
   // Relu à chaque retour sur l'écran : « Refaire mes erreurs » met à jour le résultat et la grille.
   useFocusEffect(
     useCallback(() => {
       let actif = true;
-      void Promise.all([lireDernierResultat(), lireCorrection()]).then(([x, c]) => {
+      void Promise.all([lireDernierResultat(), lireCorrection(), lireHistorique()]).then(([x, c, historique]) => {
         if (!actif) return;
+        setJoues(historique);
         setR(x);
         // La grille n'a de sens que si la correction gardée est bien celle de cette mission.
         setCorrection(x && c?.source === 'mission' && c.questions.length === x.total ? c : null);
@@ -93,7 +96,14 @@ export function FinMission() {
 
   return (
     <>
-    <Ecran pied={<Bouton libelle={t('mission.fin')} onPress={terminer} />}>
+    <Ecran
+      pied={
+        <View style={styles.pied}>
+          <SerieMission serie={r.serie} joues={joues} compact />
+          <Bouton libelle={t('mission.fin')} onPress={terminer} />
+        </View>
+      }
+    >
       <BoutonFermer libelle={t('mission.fin')} onPress={terminer} />
       <Apparition>
         <View style={styles.titre}>
@@ -115,7 +125,6 @@ export function FinMission() {
       ) : null}
       <Apparition delai={80}>
         <View style={styles.ligne}>
-          <Chiffre jaune valeur={String(r.serie)} legende={t(r.serie > 1 ? 'mission.joursDeSuite' : 'mission.jourDeSuite')} />
           <Chiffre valeur={t('mission.minutes', { n: Math.max(1, Math.round(r.dureeS / 60)) })} legende={t('mission.deRevision')} />
         </View>
       </Apparition>
@@ -168,6 +177,7 @@ export function FinMission() {
 
 const styles = StyleSheet.create({
   titre: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
+  pied: { gap: espace[4] },
   trophee: { width: 60, height: 60, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   flex: { flex: 1 },
   ligne: { flexDirection: 'row', gap: espace[4] },

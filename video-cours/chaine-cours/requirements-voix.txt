@@ -1,0 +1,7 @@
+# Dépendances du job « voix » (GitHub Actions) : génération OmniVoice sur CPU.
+# Versions épinglées sur l'environnement validé (voir sorties/ENVIRONNEMENT.txt).
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.14.1
+torchaudio==2.11.0
+omnivoice==0.2.1
+soundfile==0.14.0

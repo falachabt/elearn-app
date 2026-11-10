@@ -1,0 +1,434 @@
+{
+ "cours": 6345,
+ "titre": "Les facteurs cinétiques : la théorie des collisions à l'œuvre",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Cinétique chimique",
+   "titre": "Les facteurs cinétiques : la théorie des collisions à l'œuvre",
+   "sous": "Concentration, température, pression et surface de contact : quatre leviers pour piloter le temps des réactions",
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Deux réactions, deux mondes",
+   "texte": "Un morceau de fer qui rouille sur une clôture : des années. Un ruban de magnésium qui brûle dans une flamme : quelques secondes. Deux réactions, deux vitesses radicalement différentes — et quatre leviers pour passer de l'une à l'autre."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "La vitesse de réaction",
+   "tex": "v = -\\frac{1}{a}\\,\\frac{\\Delta [A]}{\\Delta t} \\qquad aA + bB \\longrightarrow cC + dD",
+   "note": "Le signe moins garantit une vitesse positive, car la concentration d'un réactif diminue."
+  },
+  "exemple_iodure": {
+   "type": "etape",
+   "kicker": "Exemple chiffré",
+   "titre": "L'iodure oxydé par l'eau oxygénée",
+   "tex": [
+    "2\\,I^- + 2\\,H^+ + H_2O_2 \\longrightarrow I_2 + 2\\,H_2O",
+    "[I^-] : 0{,}10 \\rightarrow 0{,}06\\ \\text{mol/L en } 50\\ \\text{s}",
+    "v = -\\tfrac{\\Delta [I^-]}{\\Delta t} = 8{,}0 \\times 10^{-4}\\ \\text{mol}\\,\\text{L}^{-1}\\,\\text{s}^{-1}"
+   ],
+   "anim": {
+    "nom": "courbe_disparition_fig",
+    "hauteur": 110
+   }
+  },
+  "conditions": {
+   "type": "etape",
+   "kicker": "La théorie des collisions",
+   "titre": "Trois conditions pour qu'un choc réagisse",
+   "tex": [
+    "\\text{les molécules entrent en collision}",
+    "\\text{avec une orientation favorable}",
+    "\\text{et une énergie} \\geq E_a \\text{ (énergie d'activation)}"
+   ]
+  },
+  "profil": {
+   "type": "etape",
+   "kicker": "La barrière d'activation",
+   "titre": "Le complexe activé, au sommet de la colline",
+   "tex": [
+    "\\text{réactifs} \\xrightarrow{E_a} \\text{complexe activé} \\longrightarrow \\text{produits}",
+    "H_2 + I_2 \\longrightarrow [H \\cdots H \\cdots I \\cdots I] \\longrightarrow 2\\,HI",
+    "\\Delta H : \\text{écart d'énergie produits} - \\text{réactifs}"
+   ],
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 110
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Fondations : ce qu'il faut retenir",
+   "etapes": [
+    "La vitesse suit les concentrations",
+    "v = −(1/a)·Δ[A]/Δt, toujours positive",
+    "Un choc efficace : 3 conditions",
+    "Ea, la barrière à franchir",
+    "Au sommet : le complexe activé"
+   ]
+  },
+  "experience_croix": {
+   "type": "etape",
+   "kicker": "Facteur 1 : la concentration",
+   "titre": "L'expérience de la croix qui disparaît",
+   "tex": [
+    "S_2O_3^{2-} + 2\\,H^+ \\longrightarrow S\\,(s) + SO_2 + H_2O",
+    "[S_2O_3^{2-}] = 0{,}10\\ \\text{mol/L} \\Rightarrow t = 120\\ \\text{s}",
+    "[S_2O_3^{2-}] = 0{,}20\\ \\text{mol/L} \\Rightarrow t = 60\\ \\text{s}",
+    "v \\approx \\tfrac{1}{t} : \\text{concentrer double la vitesse}"
+   ]
+  },
+  "lois_vitesse": {
+   "type": "etape",
+   "kicker": "Des collisions aux lois de vitesse",
+   "titre": "La fréquence des chocs devient une loi",
+   "tex": [
+    "Z_{AB} \\propto [A] \\times [B]",
+    "v = k\\,[A]^m\\,[B]^n \\quad \\text{(ordres partiels } m \\text{ et } n\\text{)}",
+    "\\text{ordre 1 : } [A] \\times 2 \\Rightarrow v \\times 2 \\qquad \\text{ordre 2 : } [A] \\times 2 \\Rightarrow v \\times 4",
+    "\\text{ordre 0 : } v = k \\text{, indépendante de } [A]"
+   ]
+  },
+  "bac_ordres": {
+   "type": "etape",
+   "kicker": "Exercice type bac : déterminer les ordres",
+   "titre": "Trois expériences, une loi de vitesse",
+   "tex": [
+    "\\text{exp. 1 : } [I^-]_0 = 0{,}10,\\ [S_2O_8^{2-}]_0 = 0{,}10 \\Rightarrow v_0 = 1{,}2 \\times 10^{-5}",
+    "\\text{exp. 2 : } [I^-]_0 \\times 2 \\Rightarrow v_0 \\times 2 \\Rightarrow \\text{ordre 1 en } I^-",
+    "\\text{exp. 3 : } [S_2O_8^{2-}]_0 \\times 2 \\Rightarrow v_0 \\times 2 \\Rightarrow \\text{ordre 1 en } S_2O_8^{2-}",
+    "v = k\\,[I^-]\\,[S_2O_8^{2-}]"
+   ]
+  },
+  "bac_constante": {
+   "type": "etape",
+   "kicker": "Exercice type bac : la constante k",
+   "titre": "Calculer k, puis prédire une vitesse",
+   "tex": [
+    "k = \\tfrac{v_0}{[I^-]_0\\,[S_2O_8^{2-}]_0} = \\tfrac{1{,}2 \\times 10^{-5}}{0{,}10 \\times 0{,}10}",
+    "k = 1{,}2 \\times 10^{-3}\\ \\text{L}\\,\\text{mol}^{-1}\\,\\text{s}^{-1}",
+    "v_0 = k \\times 0{,}15 \\times 0{,}30 = 5{,}4 \\times 10^{-5}\\ \\text{mol}\\,\\text{L}^{-1}\\,\\text{s}^{-1}"
+   ]
+  },
+  "arrhenius": {
+   "type": "formule",
+   "kicker": "Facteur 2 : la température",
+   "tex": "k = A\\,e^{-\\frac{E_a}{RT}}",
+   "note": "Règle de van 't Hoff : +10 °C multiplie souvent la vitesse par 2 ou 3."
+  },
+  "boltzmann": {
+   "type": "etape",
+   "kicker": "Pourquoi la température est si puissante",
+   "titre": "La distribution des énergies se déplace",
+   "tex": [
+    "f \\approx e^{-\\tfrac{E_a}{RT}} \\quad \\text{(fraction des molécules assez énergétiques)}",
+    "E_a = 50\\ \\text{kJ/mol} : \\text{de } 300 \\text{ à } 310\\ \\text{K},\\ \\tfrac{f_2}{f_1} \\approx 2{,}1",
+    "\\text{l'énergie moyenne bouge peu, la fraction explose}"
+   ],
+   "anim": {
+    "nom": "distribution_boltzmann_fig",
+    "hauteur": 110
+   }
+  },
+  "arrhenius_resolu": {
+   "type": "etape",
+   "kicker": "Exemple résolu : mesurer Ea",
+   "titre": "Deux constantes de vitesse, une barrière",
+   "tex": [
+    "k_1 = 2{,}50 \\times 10^{-3} \\text{ à } 298\\ \\text{K} \\qquad k_2 = 1{,}25 \\times 10^{-2} \\text{ à } 318\\ \\text{K}",
+    "\\ln \\tfrac{k_2}{k_1} = -\\tfrac{E_a}{R}\\left(\\tfrac{1}{T_2} - \\tfrac{1}{T_1}\\right) = \\ln 5",
+    "E_a \\approx 63{,}4\\ \\text{kJ/mol}",
+    "\\text{de } 298 \\text{ à } 308\\ \\text{K} : v \\text{ multipliée par } \\approx 2{,}3"
+   ]
+  },
+  "pression": {
+   "type": "etape",
+   "kicker": "Facteur 3 : la pression (gaz)",
+   "titre": "Comprimer, c'est concentrer",
+   "tex": [
+    "C = \\tfrac{n}{V} = \\tfrac{P}{RT} \\quad \\text{(gaz parfait)}",
+    "P \\times \\alpha \\Rightarrow v \\times \\alpha^{n} \\quad (n : \\text{ordre global})",
+    "\\text{Haber-Bosch à } 500\\ ^\\circ\\text{C} : 200\\ \\text{atm} \\Rightarrow \\text{rendement} \\approx 15\\ \\%",
+    "1000\\ \\text{atm} \\Rightarrow \\text{rendement} \\approx 80\\ \\% \\text{ et vitesse très élevée}"
+   ]
+  },
+  "exercice_no": {
+   "type": "etape",
+   "kicker": "Exercice guidé : l'oxydation du monoxyde d'azote",
+   "titre": "Tripler la pression, multiplier la vitesse",
+   "tex": [
+    "2\\,NO + O_2 \\longrightarrow 2\\,NO_2 \\qquad v = k\\,[NO]^2\\,[O_2]",
+    "P \\times 3 \\Rightarrow v \\times 3^{3} = 27",
+    "P_{NO} \\times 3 \\text{ seul} \\Rightarrow v \\times 3^{2} = 9"
+   ],
+   "anim": {
+    "nom": "piston",
+    "hauteur": 110
+   }
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Concentration, température, pression",
+   "etapes": [
+    "Concentrer : plus de collisions",
+    "Les ordres se mesurent (v = k[A]ᵐ[B]ⁿ)",
+    "Arrhenius : k = A·e^(−Ea/RT)",
+    "Chauffer gonfle la fraction active",
+    "Comprimer un gaz, c'est concentrer"
+   ]
+  },
+  "surface_principe": {
+   "type": "etape",
+   "kicker": "Facteur 4 : la surface de contact",
+   "titre": "Seule la surface du solide réagit",
+   "tex": [
+    "\\text{réaction hétérogène : le solide ne réagit qu'à sa surface}",
+    "\\text{les particules internes sont cachées, inaccessibles}",
+    "\\text{diviser le solide} \\Rightarrow \\text{plus de sites} \\Rightarrow v \\text{ augmente}"
+   ],
+   "anim": {
+    "nom": "division_surface_fig",
+    "hauteur": 110
+   }
+  },
+  "surface_maths": {
+   "type": "etape",
+   "kicker": "La mathématique de la division",
+   "titre": "Même volume, surface multipliée",
+   "tex": [
+    "\\text{cube d'arête } a : S = 6a^{2}, \\quad V = a^{3}",
+    "n^{3} \\text{ petits cubes} \\Rightarrow S_{totale} = S_{initiale} \\times n",
+    "n = 10 \\Rightarrow S \\times 10 \\qquad n = 1000 \\Rightarrow S \\times 1000"
+   ]
+  },
+  "zinc": {
+   "type": "etape",
+   "kicker": "La preuve par le zinc",
+   "titre": "Grenaille lente, poudre vive",
+   "tex": [
+    "Zn\\,(s) + 2\\,H^+\\,(aq) \\longrightarrow Zn^{2+}\\,(aq) + H_2\\,(g)",
+    "\\text{même masse : grenaille, bulles lentes ; poudre, effervescence}",
+    "\\text{bloc : } \\approx 10^{-3}\\ \\text{m}^2/\\text{g} \\qquad \\text{nanoparticules : } > 100\\ \\text{m}^2/\\text{g}",
+    "\\text{poussières de farine ou de charbon : combustion quasi instantanée}"
+   ]
+  },
+  "bac_peroxo": {
+   "type": "etape",
+   "kicker": "Exercice type bac : lire une courbe",
+   "titre": "La vitesse à un instant, par la pente",
+   "tex": [
+    "S_2O_8^{2-} + 2\\,I^- \\longrightarrow 2\\,SO_4^{2-} + I_2",
+    "[S_2O_8^{2-}] : 3{,}7 \\times 10^{-3} \\text{ (50 s)} \\rightarrow 2{,}0 \\times 10^{-3} \\text{ (150 s)}",
+    "v(100\\ \\text{s}) \\approx \\tfrac{(3{,}7 - 2{,}0) \\times 10^{-3}}{100} = 1{,}7 \\times 10^{-5}",
+    "\\text{expérience B } ([I^-]_0 \\times 2) : \\text{courbe plus pentue, réaction plus rapide}"
+   ]
+  },
+  "synthese": {
+   "type": "etape",
+   "kicker": "Synthèse : tout relire par les collisions",
+   "titre": "Quatre leviers, un seul modèle",
+   "tex": [
+    "\\text{concentration et pression} \\Rightarrow Z \\text{ (fréquence des chocs)}",
+    "\\text{température} \\Rightarrow \\text{fraction } E \\geq E_a \\text{ (effet dominant)}",
+    "\\text{surface} \\Rightarrow \\text{sites accessibles} \\Rightarrow \\text{chocs possibles}",
+    "\\text{aucun ne modifie } E_a \\text{ : seul un catalyseur abaisse la barrière}"
+   ]
+  },
+  "applications": {
+   "type": "etape",
+   "kicker": "Du laboratoire au quotidien",
+   "titre": "Ralentir ici, accélérer là",
+   "tex": [
+    "\\text{réfrigérateur } (4\\ ^\\circ\\text{C}) \\text{ et congélateur} : \\text{dégradation ralentie}",
+    "\\text{stérilisation} > 100\\ ^\\circ\\text{C} : \\text{micro-organismes détruits vite}",
+    "NaN_3 \\text{ (airbag)} \\longrightarrow N_2 \\text{ en quelques millisecondes}",
+    "\\text{grisou} + \\text{poussière de charbon : le mélange explosif des mines}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Vitesse : l'évolution des concentrations",
+    "Choc efficace : rencontre, orientation, Ea",
+    "Concentration et pression : la fréquence Z",
+    "Température : la fraction active explose",
+    "Surface : diviser multiplie les sites"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux facteurs cinétiques, ces paramètres qui décident si une réaction prend quelques secondes ou plusieurs années. La thermodynamique nous dit si une réaction est possible ; la cinétique, elle, nous dit à quelle vitesse elle se déroule, et surtout comment la régler. Nous partirons de la définition de la vitesse et de la théorie des collisions, puis nous étudierons un à un les quatre grands leviers : la concentration, la température, la pression et la surface de contact. Chaque levier sera quantifié, avec des exemples résolus comme au baccalauréat.",
+   "texte": "Les facteurs cinétiques : régler la vitesse des réactions.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Imaginez deux scènes. D'un côté, un morceau de fer qui rouille lentement sur une vieille clôture, un processus qui peut prendre des années. De l'autre, la combustion vive d'un ruban de magnésium dans une flamme, une lumière blanche éblouissante en quelques secondes. Ces deux phénomènes sont des réactions chimiques, mais leur vitesse diffère radicalement. Pourquoi ? La cinétique chimique étudie précisément la vitesse des réactions et les mécanismes par lesquels elles ont lieu. Et cette vitesse n'est pas une fatalité : c'est un paramètre sensible, une variable que l'on peut orchestrer.",
+   "texte": "Rouille en des années, magnésium en des secondes.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par mesurer. La vitesse d'une réaction suit l'évolution des quantités de matière des réactifs ou des produits en fonction du temps. Pour une réaction générale, la vitesse moyenne de disparition d'un réactif est l'opposé de la variation de sa concentration, divisée par l'intervalle de temps et par son coefficient stœchiométrique. Le signe moins est là pour une raison simple : la concentration d'un réactif diminue, et l'on veut une vitesse positive. Comme les réactifs sont consommés, la vitesse ralentit en général au cours du temps : c'est ce ralentissement que la théorie des collisions va expliquer.",
+   "texte": "v = −(1/a)·Δ[A]/Δt : la vitesse, en mol·L⁻¹·s⁻¹.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Premier calcul. Considérons l'oxydation des ions iodure par l'eau oxygénée en milieu acide : il se forme du diiode et de l'eau. Si la concentration en ions iodure passe de zéro virgule dix à zéro virgule zéro six mole par litre en cinquante secondes, la vitesse moyenne de disparition de l'iodure vaut huit fois dix puissance moins quatre mole par litre et par seconde. Retenez la démarche : une variation de concentration, un intervalle de temps, un quotient. Toute la suite du cours consiste à comprendre ce qui fait changer ce quotient.",
+   "texte": "I⁻ : 0,10 → 0,06 mol/L en 50 s, soit v = 8,0×10⁻⁴ mol·L⁻¹·s⁻¹.",
+   "ecran": "exemple_iodure"
+  },
+  {
+   "id": "p05",
+   "dit": "Pourquoi une réaction ralentit-elle quand les réactifs s'épuisent ? La théorie des collisions, développée au début du vingtième siècle, répond par un modèle simple. Pour qu'une réaction ait lieu entre des molécules, trois conditions doivent être réunies : elles doivent d'abord entrer en collision ; ensuite, se présenter avec une orientation favorable, les bons atomes face à face ; enfin, posséder une énergie suffisante pour franchir une barrière énergétique. Imaginez une salle de bal : pour qu'un couple se forme, deux danseurs doivent se rencontrer, se faire face correctement, et avoir assez d'élan pour vaincre leur timidité.",
+   "texte": "Collision + bonne orientation + énergie ≥ Ea : le choc efficace.",
+   "ecran": "conditions"
+  },
+  {
+   "id": "p06",
+   "dit": "L'énergie d'activation, introduite par Svante Arrhenius en mille huit cent quatre-vingt-neuf, est l'énergie minimale que les molécules doivent posséder lors de la collision pour réagir. Sur le profil énergétique, les réactifs doivent gravir une colline avant de redescendre vers les produits. Au sommet se forme le complexe activé, ou état de transition : une entité instable où les anciennes liaisons ne sont pas encore rompues et les nouvelles pas encore formées. Pour l'hydrogène et le diiode qui donnent l'iodure d'hydrogène, ce complexe ressemble à quatre atomes faiblement liés, dans un état intermédiaire.",
+   "texte": "Ea : la colline à franchir ; au sommet, le complexe activé.",
+   "ecran": "profil"
+  },
+  {
+   "id": "p07",
+   "dit": "Fixons les fondations avant d'attaquer les leviers. La vitesse d'une réaction mesure l'évolution des concentrations au cours du temps, et la définition la rend toujours positive. Les réactions ralentissent parce que les collisions efficaces se raréfient : il faut un choc, une bonne orientation et une énergie au moins égale à l'énergie d'activation. Au sommet de la barrière siège le complexe activé, l'instant fragile où tout se joue. Nous avons maintenant le modèle ; voyons comment les quatre facteurs cinétiques jouent sur ces collisions.",
+   "texte": "Fondations : vitesse, collisions, barrière Ea.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p08",
+   "dit": "Premier levier : la concentration. L'expérience classique oppose les ions thiosulfate à des ions hydrogène : il se forme un précipité de soufre qui trouble la solution. On place le bécher sur une croix noire dessinée sur une feuille, et l'on chronomètre le moment où la croix disparaît. Quand la concentration initiale en thiosulfate passe de zéro virgule dix à zéro virgule vingt mole par litre, le temps de réaction chute de cent vingt à soixante secondes. La vitesse apparente, estimée par l'inverse du temps, double. Le sens de variation est sans équivoque : plus concentré, plus rapide.",
+   "texte": "[Thiosulfate] ×2 → temps ÷2 : la vitesse double.",
+   "ecran": "experience_croix"
+  },
+  {
+   "id": "p09",
+   "dit": "L'explication tient en un mot : la fréquence des collisions. Pour une étape élémentaire entre deux espèces, la fréquence des chocs est proportionnelle au produit des concentrations. Mais toutes les collisions ne sont pas efficaces : seule une fraction possède l'énergie et l'orientation requises. On obtient la loi de vitesse, où la constante k rassemble ces fractions. Les exposants, appelés ordres partiels, se déterminent expérimentalement : ils ne coïncident pas forcément avec les coefficients stœchiométriques. Ainsi, la décomposition du pentaoxyde de diazote est d'ordre un, alors que son équation affiche un coefficient deux.",
+   "texte": "v = k[A]ᵐ[B]ⁿ : les ordres se mesurent, ils ne se lisent pas.",
+   "ecran": "lois_vitesse"
+  },
+  {
+   "id": "p10",
+   "dit": "Entraînement, dans le format du baccalauréat. On étudie la réaction entre les ions iodure et les ions peroxodisulfate, et l'on mesure les vitesses initiales. Première expérience : les deux concentrations valent zéro virgule dix, la vitesse vaut un virgule deux fois dix puissance moins cinq. Deuxième expérience : on double l'iodure seul, la vitesse double — l'ordre partiel par rapport à l'iodure est donc un. Troisième expérience : on double le peroxodisulfate seul, la vitesse double encore — ordre un également. La loi de vitesse s'écrit donc comme le produit des deux concentrations, multiplié par la constante k.",
+   "texte": "Ordres partiels : 1 et 1 — v = k·[I⁻]·[S₂O₈²⁻].",
+   "ecran": "bac_ordres"
+  },
+  {
+   "id": "p11",
+   "dit": "Reste à chiffrer la constante de vitesse. Avec les valeurs de la première expérience, k vaut le quotient de la vitesse par le produit des concentrations : on obtient un virgule deux fois dix puissance moins trois, en litre par mole et par seconde. Cette constante en main, on peut prédire n'importe quelle vitesse initiale. Par exemple, avec un iodure à zéro virgule quinze et un peroxodisulfate à zéro virgule trente mole par litre, la vitesse initiale atteindrait cinq virgule quatre fois dix puissance moins cinq mole par litre et par seconde. Mesurer, trouver la loi, puis prédire : c'est toute la démarche cinétique.",
+   "texte": "k = 1,2×10⁻³ L·mol⁻¹·s⁻¹ ; prévision : 5,4×10⁻⁵.",
+   "ecran": "bac_constante"
+  },
+  {
+   "id": "p12",
+   "dit": "Deuxième levier, le plus puissant : la température. Une règle empirique, dite de van 't Hoff, énonce qu'une élévation de dix degrés double ou triple la vitesse de nombreuses réactions. En mille huit cent quatre-vingt-neuf, Arrhenius a donné à ce phénomène sa loi mathématique : la constante de vitesse est le produit d'un facteur de fréquence, qui compte les collisions bien orientées, par un terme exponentiel. Ce terme représente la fraction des molécules dont l'énergie dépasse l'énergie d'activation. Il dépend de cette barrière, de la constante des gaz parfaits et de la température absolue, en kelvins.",
+   "texte": "k = A·e^(−Ea/RT) : la loi d'Arrhenius.",
+   "ecran": "arrhenius"
+  },
+  {
+   "id": "p13",
+   "dit": "D'où vient cette sensibilité spectaculaire ? Les molécules d'un échantillon n'ont pas toutes la même énergie : leurs énergies cinétiques suivent une distribution statistique, dite de Maxwell-Boltzmann. Quand la température monte, la courbe se déplace et s'élargit : l'énergie moyenne augmente peu, mais la queue de la distribution, du côté des hautes énergies, gonfle énormément. Pour une barrière de cinquante kilojoules par mole, passer de trois cents à trois cent dix kelvins multiplie par environ deux la fraction des molécules capables de franchir la barrière. C'est cette fraction qui commande la vitesse.",
+   "texte": "+10 K : la fraction des molécules actives double.",
+   "ecran": "boltzmann"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple résolu, avec son corrigé. Pour une décomposition, la constante de vitesse vaut deux virgule cinquante fois dix puissance moins trois à deux cent quatre-vingt-dix-huit kelvins, et un virgule vingt-cinq fois dix puissance moins deux à trois cent dix-huit kelvins. La forme intégrée de la loi d'Arrhenius relie le logarithme du rapport des constantes aux inverses des températures. Le calcul donne une énergie d'activation d'environ soixante-trois kilojoules par mole. Vérification utile : entre deux cent quatre-vingt-dix-huit et trois cent huit kelvins, la vitesse est multipliée par deux virgule trois environ — on retrouve la règle de van 't Hoff.",
+   "texte": "Ea ≈ 63,4 kJ/mol ; +10 K → vitesse × 2,3.",
+   "ecran": "arrhenius_resolu"
+  },
+  {
+   "id": "p15",
+   "dit": "Troisième levier : la pression, pour les réactions en phase gazeuse. L'équation des gaz parfaits le montre immédiatement : à température constante, la concentration d'un gaz est proportionnelle à sa pression. Comprimer un gaz, c'est donc le concentrer, et la fréquence des collisions grimpe. Si la pression est multipliée par un certain facteur, la vitesse est multipliée par ce facteur élevé à la puissance de l'ordre global. Le procédé Haber-Bosch exploite ce levier à l'extrême : pour la synthèse de l'ammoniac, monter de deux cents à mille atmosphères fait passer le rendement d'environ quinze à environ quatre-vingts pour cent, avec une vitesse très élevée.",
+   "texte": "C = P/(RT) : la pression concentre les gaz.",
+   "ecran": "pression"
+  },
+  {
+   "id": "p16",
+   "dit": "Exercice guidé, corrigé par la leçon. L'oxydation du monoxyde d'azote est une réaction élémentaire : sa loi de vitesse suit ses coefficients, ordre deux en monoxyde d'azote, ordre un en dioxygène, soit un ordre global de trois. Si l'on triple la pression totale en gardant les proportions du mélange, chaque concentration triple, et la vitesse est multipliée par trois puissance trois, c'est-à-dire vingt-sept. Si l'on ne triple que la pression partielle du monoxyde d'azote, le facteur tombe à trois puissance deux, soit neuf : l'effet d'un réactif dépend de son ordre partiel.",
+   "texte": "P ×3 → v ×27 ; P(NO) ×3 seul → v ×9.",
+   "ecran": "exercice_no"
+  },
+  {
+   "id": "p17",
+   "dit": "Récapitulons les trois premiers leviers. La concentration augmente la fréquence des collisions, et les lois de vitesse chiffrent cet effet par des ordres mesurés expérimentalement. La température agit plus fort : par la loi d'Arrhenius, elle gonfle exponentiellement la fraction des molécules capables de franchir la barrière. La pression, elle, n'est qu'une concentration déguisée pour les gaz. Remarquez un point commun : aucun de ces leviers ne modifie l'énergie d'activation elle-même. Il reste un quatrième levier, purement géométrique : la surface de contact.",
+   "texte": "Z, fraction active, concentration : trois leviers chiffrés.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p18",
+   "dit": "Quatrième levier : la surface de contact, la zone frontière où les réactifs se rencontrent. Pour une réaction hétérogène, qui met en jeu des phases différentes, cette surface est le théâtre exclusif de la réaction : seules les particules situées à la surface d'un solide sont exposées aux autres réactifs, celles de l'intérieur sont cachées et inaccessibles. Diviser le solide multiplie donc les postes frontaliers actifs. Un château fort avec une seule porte laisse entrer les assaillants au compte-gouttes ; percez-en des dizaines, et le flux explose. L'explosion du cargo Mont-Blanc à Halifax, en mille neuf cent dix-sept, l'a tragiquement illustré : une poudre finement divisée présente une surface de contact immense, et la combustion devient explosion.",
+   "texte": "Réaction hétérogène : seule la surface du solide travaille.",
+   "ecran": "surface_principe"
+  },
+  {
+   "id": "p19",
+   "dit": "Chiffrons ce levier. Un cube d'arête donnée possède une surface proportionnelle au carré de cette arête. Découpons-le en petits cubes identiques, en coupant chaque arête en un même nombre de parts : nous obtenons un très grand nombre de petits cubes. Le volume total ne change pas, mais la surface totale est multipliée par le facteur de division. Diviser l'arête par dix multiplie la surface par dix ; réduire le solide en poudre microscopique, avec un facteur mille, multiplie la surface par mille. Les ordres de grandeur parlent d'eux-mêmes : un bloc présente environ dix puissance moins trois mètre carré par gramme, des nanoparticules dépassent cent mètres carrés par gramme.",
+   "texte": "Diviser en n³ cubes multiplie la surface par n.",
+   "ecran": "surface_maths"
+  },
+  {
+   "id": "p20",
+   "dit": "L'expérience du zinc le prouve en quelques secondes. Deux béchers, le même acide chlorhydrique, la même masse de zinc : dans le premier, un morceau massif, où le dégagement de dihydrogène reste localisé et lent ; dans le second, une poudre fine, et la réaction devient vive, presque effervescente, comme si le métal bouillait. Le nombre d'atomes de zinc est pourtant identique : dans la poudre, presque tous sont exposés en surface, immédiatement accessibles. C'est le même principe qui rend les poussières de farine ou de charbon explosives dans les silos et les mines, alors qu'un bloc brûle tranquillement.",
+   "texte": "Zn : même masse, la poudre réagit en effervescence.",
+   "ecran": "zinc"
+  },
+  {
+   "id": "p21",
+   "dit": "Dernier entraînement : l'analyse d'un document expérimental. On suit la concentration en ions peroxodisulfate au cours de sa réaction avec les ions iodure. Dans l'expérience A, la concentration vaut trois virgule sept fois dix puissance moins trois mole par litre à cinquante secondes, et deux fois dix puissance moins trois à cent cinquante secondes. Le taux d'accroissement entre ces deux instants donne la vitesse volumique à cent secondes : environ un virgule sept fois dix puissance moins cinq mole par litre et par seconde. Dans l'expérience B, où la concentration initiale en iodure est doublée, la courbe chute plus vite : on retrouve l'effet de la concentration, lu directement sur la pente.",
+   "texte": "v(100 s) ≈ 1,7×10⁻⁵ mol·L⁻¹·s⁻¹, lue sur la pente.",
+   "ecran": "bac_peroxo"
+  },
+  {
+   "id": "p22",
+   "dit": "Relisons maintenant les quatre facteurs avec le modèle des collisions. La concentration et la pression jouent sur la fréquence des chocs : plus de particules par unité de volume, plus de rencontres. La température joue surtout sur la fraction des chocs efficaces : c'est l'effet dominant, et il est exponentiel. La surface de contact joue sur le nombre de sites accessibles pour les réactions hétérogènes. Et l'énergie d'activation, dans tout cela ? Aucun de ces quatre leviers ne la modifie. Seul un catalyseur abaisse la barrière, en ouvrant un chemin réactionnel alternatif plus facile à franchir.",
+   "texte": "Z, fraction, sites : un modèle pour quatre leviers.",
+   "ecran": "synthese"
+  },
+  {
+   "id": "p23",
+   "dit": "Ces leviers gouvernent notre quotidien. Pour conserver les aliments, on joue la température à rebours : le réfrigérateur, à quatre degrés, et le congélateur ralentissent drastiquement les réactions de dégradation. Pour stériliser, on fait l'inverse : au-delà de cent degrés, la destruction des micro-organismes devient fulgurante. Dans un airbag, la décomposition de l'azoture de sodium libère le diazote qui gonfle le coussin en quelques millisecondes. Et dans les mines, le grisou, ce méthane mélangé à l'air, devient catastrophique quand la poussière de charbon en suspension ajoute sa surface immense à l'explosion.",
+   "texte": "Frigo, stérilisation, airbag, mines : les facteurs en action.",
+   "ecran": "applications"
+  },
+  {
+   "id": "p24",
+   "dit": "Terminons par l'essentiel. La vitesse d'une réaction suit l'évolution des concentrations, et elle s'explique par les collisions : il faut une rencontre, une bonne orientation et une énergie au moins égale à l'énergie d'activation. La concentration et la pression augmentent la fréquence des chocs ; la température gonfle exponentiellement la fraction des chocs efficaces ; la surface de contact multiplie les sites où la réaction peut avoir lieu. Aucun de ces leviers ne déplace la barrière elle-même. Piloter ces paramètres, c'est piloter le temps des réactions, du laboratoire à l'usine, de la cuisine à la sécurité des mines.",
+   "texte": "L'essentiel : quatre leviers, un modèle.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La vitesse et la théorie des collisions"
+  },
+  {
+   "debut": "p08",
+   "sous_titre": "La concentration et la température, chiffrées",
+   "pont": {
+    "dit": "Partie deux : la concentration et la température, deux leviers que l'on peut chiffrer. Nous allons voir comment chacun agit sur les collisions, et résoudre au passage un exercice complet dans le format du baccalauréat.",
+    "texte": "Partie 2 : concentration et température, chiffrées."
+   }
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "La pression, la surface de contact et la synthèse",
+   "pont": {
+    "dit": "Partie trois : la pression, la surface de contact et la synthèse. Nous terminerons le tour des leviers, relirons tout le cours à la lumière des collisions, et nous entraînerons une dernière fois sur un document expérimental.",
+    "texte": "Partie 3 : pression, surface de contact, synthèse."
+   }
+  }
+ ]
+}

@@ -1,0 +1,375 @@
+{
+ "cours": 6819,
+ "ecrans": {
+  "alimentation": {
+   "kicker": "L'alimentation",
+   "tex": [
+    "\\text{secteur : courant alternatif 220 V}",
+    "\\text{continu basse tension}",
+    "\\text{3,3 V, 5 V, 12 V}"
+   ],
+   "titre": "Du secteur aux composants",
+   "type": "etape"
+  },
+  "bus": {
+   "kicker": "Les bus",
+   "tex": [
+    "\\text{bus de données}",
+    "\\text{bus d'adresses}",
+    "\\text{bus de commande}"
+   ],
+   "titre": "Trois bus, trois rôles",
+   "type": "etape"
+  },
+  "bus_largeur": {
+   "kicker": "La largeur du bus",
+   "tex": [
+    "\\text{liaisons électriques}",
+    "\\text{transfert entre composants}",
+    "\\text{largeur en bits : quantité simultanée}"
+   ],
+   "titre": "La largeur décide du débit",
+   "type": "etape"
+  },
+  "carte_mere": {
+   "kicker": "La carte mère",
+   "tex": [
+    "\\text{circuit imprimé principal}",
+    "\\text{relie tous les composants}",
+    "\\text{chipset : flux de données}"
+   ],
+   "titre": "Le circuit qui relie tout",
+   "type": "etape"
+  },
+  "cmos": {
+   "kicker": "La pile CMOS",
+   "tex": [
+    "\\text{alimente la mémoire CMOS}",
+    "\\text{configuration du BIOS}",
+    "\\text{date, heure, paramètres matériels}"
+   ],
+   "titre": "La mémoire qui survit à l'extinction",
+   "type": "etape"
+  },
+  "compilateur": {
+   "kicker": "Le compilateur",
+   "tex": [
+    "\\text{langage évolué : C, Java}",
+    "\\text{traduit en langage machine}",
+    "\\text{compréhensible par le processeur}"
+   ],
+   "titre": "De l'évolué au machine",
+   "type": "etape"
+  },
+  "cpu": {
+   "kicker": "Le processeur",
+   "tex": [
+    "\\text{Central Processing Unit}",
+    "\\text{le cerveau de l'ordinateur}",
+    "\\text{vitesse en hertz, en gigahertz}"
+   ],
+   "titre": "Le cerveau qui exécute",
+   "type": "etape"
+  },
+  "ddr": {
+   "kicker": "SDRAM et DDRAM",
+   "tex": [
+    "\\text{SDRAM : synchronisée au bus}",
+    "\\text{DDRAM : deux fronts d'horloge}",
+    "\\text{débit doublé}"
+   ],
+   "titre": "Synchronisée, puis doublée",
+   "type": "etape"
+  },
+  "ddr_exemple": {
+   "kicker": "Exemple : DDRAM à 800 MHz",
+   "note": "Deux fois 800 millions fois 64 bits par seconde, soit 12,8 gigaoctets par seconde",
+   "tex": "2 \\times 800 \\times 10^6 \\times 64 = 12{,}8 \\text{ Go/s}",
+   "type": "formule"
+  },
+  "ddr_formule": {
+   "kicker": "Le débit de la DDRAM",
+   "note": "DDRAM à 800 mégahertz, bus de 64 bits : débit de 12,8 gigaoctets par seconde",
+   "tex": "\\text{Débit} = 2 \\times \\text{Fréquence} \\times \\text{Largeur}",
+   "type": "formule"
+  },
+  "ex_cpu": {
+   "kicker": "Exemple : 3,5 GHz",
+   "note": "Un processeur à 3,5 gigahertz exécute 3,5 milliards de cycles par seconde",
+   "tex": "3{,}5 \\text{ GHz} = 3{,}5 \\times 10^9 \\text{ cycles/s}",
+   "type": "formule"
+  },
+  "install": {
+   "kicker": "Installer un logiciel applicatif",
+   "tex": [
+    "\\text{1. exécuter le fichier d'installation}",
+    "\\text{2. accepter la licence}",
+    "\\text{3. choisir le dossier, lancer}"
+   ],
+   "titre": "Exécuter, accepter, choisir, lancer",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "tex": [
+    "\\text{matériel : composants physiques}",
+    "\\text{logiciels : programmes}",
+    "\\text{interaction permanente}"
+   ],
+   "titre": "Physique et programmes, en interaction",
+   "type": "etape"
+  },
+  "pilotes": {
+   "kicker": "Les pilotes",
+   "tex": [
+    "\\text{drivers}",
+    "\\text{système vers périphérique}",
+    "\\text{imprimante, carte graphique}"
+   ],
+   "titre": "Faire dialoguer système et périphérique",
+   "type": "etape"
+  },
+  "ram": {
+   "kicker": "La mémoire vive",
+   "tex": [
+    "\\text{RAM : Random Access Memory}",
+    "\\text{volatile : perdue sans courant}",
+    "\\text{programmes en cours d'exécution}"
+   ],
+   "titre": "Temporaire, en cours d'exécution",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Matériel : carte mère, processeur, alimentation, bus, pile CMOS, mémoires.",
+    "Logiciels système : système d'exploitation, utilitaires, compilateur, pilotes.",
+    "Logiciels applicatifs : un besoin précis, une installation en quatre étapes.",
+    "Connaître matériel et logiciels, c'est comprendre l'ordinateur et installer en autonomie."
+   ],
+   "kicker": "Synthèse : matériel et logiciels",
+   "type": "recap"
+  },
+  "rom": {
+   "kicker": "La mémoire morte",
+   "tex": [
+    "\\text{ROM : Read Only Memory}",
+    "\\text{non volatile : conservée sans courant}",
+    "\\text{instructions de démarrage}"
+   ],
+   "titre": "Conservée, même éteinte",
+   "type": "etape"
+  },
+  "rom_types": {
+   "kicker": "Variantes de la ROM",
+   "tex": [
+    "\\text{PROM : programmable une fois}",
+    "\\text{EPROM : effaçable aux ultraviolets}",
+    "\\text{EEPROM, FLASH : électrique, rapide}"
+   ],
+   "titre": "Programmable, effaçable, rapide",
+   "type": "etape"
+  },
+  "se": {
+   "kicker": "Le système d'exploitation",
+   "tex": [
+    "\\text{Windows, Linux, macOS}",
+    "\\text{gère les ressources matérielles}",
+    "\\text{exécute les programmes, interface}"
+   ],
+   "titre": "Le logiciel principal",
+   "type": "etape"
+  },
+  "sys_intro": {
+   "kicker": "Les logiciels système",
+   "tex": [
+    "\\text{système d'exploitation}",
+    "\\text{utilitaires}",
+    "\\text{compilateur, pilotes}"
+   ],
+   "titre": "Quatre familles système",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Informatique · Composants internes et logiciels système",
+   "sous": "Carte mère, processeur, mémoires, logiciels système et installation d'un applicatif",
+   "titre": "Composants internes et logiciels système",
+   "type": "titre"
+  },
+  "utilitaires": {
+   "kicker": "Les utilitaires",
+   "tex": [
+    "\\text{antivirus}",
+    "\\text{compression, défragmentation}",
+    "\\text{sauvegarde}"
+   ],
+   "titre": "Aider à gérer le système",
+   "type": "etape"
+  },
+  "applicatifs": {
+   "kicker": "Les logiciels applicatifs",
+   "tex": [
+    "\\text{traitement de texte}",
+    "\\text{tableur, navigateur web}",
+    "\\text{besoin précis de l'utilisateur}"
+   ],
+   "titre": "Un besoin, une application",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Composants internes et mémoires"
+  },
+  {
+   "debut": "p16",
+   "pont": {
+    "dit": "Partie deux : les logiciels. Nous verrons les logiciels système, du système d'exploitation aux pilotes, puis les logiciels applicatifs et l'installation d'un traitement de texte.",
+    "texte": "Partie 2 : logiciels système et applicatifs."
+   },
+   "sous_titre": "Logiciels système, applicatifs et installation"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce module sur la connaissance du matériel et des logiciels. L'ordinateur est un ensemble de composants matériels, physiques, et logiciels, des programmes, qui travaillent en interaction. Ce module présente les composants internes de l'unité centrale, les différents types de mémoires, les logiciels système et l'installation d'un logiciel applicatif.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Matériel et logiciels, en interaction."
+  },
+  {
+   "dit": "Commençons par les composants internes de l'unité centrale, en interaction permanente entre le physique et les programmes.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Composants internes : physique et programmes."
+  },
+  {
+   "dit": "Premier composant : la carte mère. La carte mère est le circuit imprimé principal qui relie tous les composants. Elle contient le chipset, qui gère les flux de données entre les composants, et des connecteurs pour le processeur, la mémoire et les cartes d'extension.",
+   "ecran": "carte_mere",
+   "id": "p03",
+   "texte": "Carte mère : circuit principal, chipset, connecteurs."
+  },
+  {
+   "dit": "Deuxième composant : le processeur, ou CPU, Central Processing Unit. C'est le cerveau de l'ordinateur. Il exécute les instructions des programmes. Sa vitesse se mesure en Hertz, généralement en gigahertz. Il effectue les opérations arithmétiques et logiques.",
+   "ecran": "cpu",
+   "id": "p04",
+   "texte": "Processeur : le cerveau, en gigahertz."
+  },
+  {
+   "dit": "Par exemple, un processeur à trois virgule cinq gigahertz peut exécuter trois virgule cinq milliards de cycles par seconde.",
+   "ecran": "ex_cpu",
+   "id": "p05",
+   "texte": "3,5 GHz : 3,5 milliards de cycles par seconde."
+  },
+  {
+   "dit": "Troisième composant : l'alimentation. L'alimentation convertit le courant alternatif du secteur, à deux cent vingt volts, en courant continu basse tension, trois virgule trois volts, cinq volts, douze volts, nécessaire aux composants internes.",
+   "ecran": "alimentation",
+   "id": "p06",
+   "texte": "Alimentation : 220 V alternatifs, 3,3, 5 et 12 V continus."
+  },
+  {
+   "dit": "Quatrième composant : les bus. Un bus est un ensemble de liaisons électriques qui permettent le transfert de données entre les composants. On distingue le bus de données, le bus d'adresses et le bus de commande.",
+   "ecran": "bus",
+   "id": "p07",
+   "texte": "Bus : données, adresses, commande."
+  },
+  {
+   "dit": "La largeur d'un bus, en bits, détermine la quantité de données transférables simultanément.",
+   "ecran": "bus_largeur",
+   "id": "p08",
+   "texte": "Largeur en bits : quantité simultanée."
+  },
+  {
+   "dit": "Cinquième composant : la pile CMOS, Complementary Metal Oxide Semiconductor. Elle alimente la mémoire CMOS qui conserve la configuration du BIOS, date, heure et paramètres matériels, lorsque l'ordinateur est éteint.",
+   "ecran": "cmos",
+   "id": "p09",
+   "texte": "Pile CMOS : la configuration survit à l'extinction."
+  },
+  {
+   "dit": "Passons aux différentes mémoires, classées d'abord selon la volatilité. La mémoire morte, ROM, Read Only Memory, est non volatile : elle conserve les données sans alimentation. Elle contient les instructions de démarrage.",
+   "ecran": "rom",
+   "id": "p10",
+   "texte": "ROM : non volatile, instructions de démarrage."
+  },
+  {
+   "dit": "Ses variantes : la PROM, programmable une seule fois ; l'EPROM, effaçable par rayons ultraviolets ; l'EEPROM, effaçable électriquement ; et la FLASH, un type d'EEPROM rapide, utilisée pour le BIOS.",
+   "ecran": "rom_types",
+   "id": "p11",
+   "texte": "PROM, EPROM, EEPROM, FLASH : quatre variantes."
+  },
+  {
+   "dit": "La mémoire vive, RAM, Random Access Memory, est volatile : elle perd son contenu à la coupure du courant. Elle stocke temporairement les programmes en cours d'exécution.",
+   "ecran": "ram",
+   "id": "p12",
+   "texte": "RAM : volatile, programmes en cours."
+  },
+  {
+   "dit": "Exemple : la SDRAM, Synchronous Dynamic RAM, est synchronisée avec le bus du processeur. La DDRAM, Double Data Rate RAM, transfère des données sur les deux fronts du signal d'horloge, doublant ainsi le débit.",
+   "ecran": "ddr",
+   "id": "p13",
+   "texte": "SDRAM synchronisée, DDRAM à débit doublé."
+  },
+  {
+   "dit": "La formule du débit de la DDRAM : le débit égale deux fois la fréquence fois la largeur du bus.",
+   "ecran": "ddr_formule",
+   "id": "p14",
+   "texte": "Débit = 2 × fréquence × largeur du bus."
+  },
+  {
+   "dit": "Application : une DDRAM à huit cents mégahertz avec un bus de soixante-quatre bits offre un débit de deux fois huit cents millions fois soixante-quatre bits par seconde, soit douze virgule huit gigaoctets par seconde.",
+   "ecran": "ddr_exemple",
+   "id": "p15",
+   "texte": "800 MHz, 64 bits : 12,8 Go par seconde."
+  },
+  {
+   "dit": "Troisième volet : les logiciels système. Ils se répartissent en quatre familles : le système d'exploitation, les utilitaires, le compilateur et les pilotes.",
+   "ecran": "sys_intro",
+   "id": "p16",
+   "texte": "Logiciels système : quatre familles."
+  },
+  {
+   "dit": "Le système d'exploitation, Windows, Linux ou macOS, est le logiciel principal qui gère les ressources matérielles, exécute les programmes et fournit l'interface utilisateur.",
+   "ecran": "se",
+   "id": "p17",
+   "texte": "Système d'exploitation : le logiciel principal."
+  },
+  {
+   "dit": "Les utilitaires sont des programmes d'aide à la gestion du système : antivirus, outils de compression, de défragmentation et de sauvegarde.",
+   "ecran": "utilitaires",
+   "id": "p18",
+   "texte": "Utilitaires : antivirus, compression, sauvegarde."
+  },
+  {
+   "dit": "Le compilateur traduit un programme écrit en langage évolué, comme le C ou le Java, en langage machine compréhensible par le processeur.",
+   "ecran": "compilateur",
+   "id": "p19",
+   "texte": "Compilateur : de l'évolué au langage machine."
+  },
+  {
+   "dit": "Les pilotes, ou drivers, sont des logiciels qui permettent au système d'exploitation de communiquer avec un périphérique spécifique, comme une imprimante ou une carte graphique.",
+   "ecran": "pilotes",
+   "id": "p20",
+   "texte": "Pilotes : système vers périphérique."
+  },
+  {
+   "dit": "Quatrième volet : les logiciels applicatifs. Un logiciel applicatif est un programme qui répond à un besoin précis de l'utilisateur : traitement de texte, tableur, navigateur web, et bien d'autres.",
+   "ecran": "applicatifs",
+   "id": "p21",
+   "texte": "Applicatif : un besoin précis de l'utilisateur."
+  },
+  {
+   "dit": "Exemple résolu : l'installation d'un traitement de texte. Étapes d'installation : exécuter le fichier d'installation, accepter la licence, choisir le dossier d'installation, puis lancer l'installation.",
+   "ecran": "install",
+   "id": "p22",
+   "texte": "Installer : exécuter, accepter, choisir, lancer."
+  },
+  {
+   "dit": "En conclusion, la connaissance du matériel, processeur, mémoires, carte mère, et des logiciels, système et applicatifs, permet de comprendre le fonctionnement global d'un ordinateur, d'identifier les composants et de réaliser des opérations d'installation en autonomie.",
+   "ecran": "recap",
+   "id": "p23",
+   "texte": "Connaître, identifier, installer en autonomie."
+  }
+ ],
+ "titre": "Composants internes et logiciels système"
+}

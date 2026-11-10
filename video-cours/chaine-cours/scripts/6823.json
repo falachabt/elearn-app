@@ -1,0 +1,307 @@
+{
+ "cours": 6823,
+ "titre": "Architecture et représentation de l'information",
+ "matiere": "Informatique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Informatique · Architecture et information",
+   "titre": "Architecture et représentation de l'information",
+   "sous": "Von Neumann, processeur, binaire, ASCII et structures de données"
+  },
+  "von_neumann": {
+   "type": "etape",
+   "kicker": "Le modèle de Von Neumann",
+   "titre": "Quatre éléments reliés par des bus",
+   "tex": [
+    "\\text{unité centrale de traitement}",
+    "\\text{mémoire : instructions et données}",
+    "\\text{unités d'entrée : clavier, souris}",
+    "\\text{unités de sortie : écran, imprimante}"
+   ]
+  },
+  "cpu": {
+   "type": "etape",
+   "kicker": "Le processeur, cerveau du système",
+   "titre": "Contrôle, calcul, registres",
+   "tex": [
+    "\\text{unité de contrôle : coordonne}",
+    "\\text{unité arithmétique et logique}",
+    "\\text{registres : mémoires ultra-rapides}"
+   ]
+  },
+  "composants": {
+   "type": "etape",
+   "kicker": "Les composants principaux",
+   "titre": "Carte mère, RAM, disque, ports",
+   "tex": [
+    "\\text{carte mère : relie tous les composants}",
+    "\\text{RAM : stockage temporaire, volatile}",
+    "\\text{disque dur ou SSD : permanent}",
+    "\\text{ports d'entrée et de sortie}"
+   ]
+  },
+  "cycle": {
+   "type": "etape",
+   "kicker": "Le cycle de traitement",
+   "titre": "Entrée, traitement, sortie",
+   "tex": [
+    "\\text{acquisition : saisie des données}",
+    "\\text{traitement : calculs par l'UAL}",
+    "\\text{restitution : résultats affichés}"
+   ]
+  },
+  "cycle_base": {
+   "type": "etape",
+   "kicker": "Le cycle de base de Von Neumann",
+   "titre": "Charger, décoder, exécuter, écrire",
+   "tex": [
+    "\\text{instructions et données}",
+    "\\text{stockées dans la même mémoire}",
+    "\\text{traitées séquentiellement}"
+   ]
+  },
+  "ex_moy": {
+   "type": "formule",
+   "kicker": "Exemple : moyenne de 12 et 16",
+   "tex": "\\frac{12 + 16}{2} = 14",
+   "note": "Entrée : saisie de 12 et 16 au clavier ; traitement : le processeur calcule ; sortie : affichage de 14 à l'écran"
+  },
+  "risc": {
+   "type": "etape",
+   "kicker": "RISC et CISC : deux jeux d'instructions",
+   "titre": "ARM simple, x86 combiné",
+   "tex": [
+    "\\text{RISC : instructions simples}",
+    "\\text{ARM : ADD R1, R2 en une fois}",
+    "\\text{CISC : instructions combinées}",
+    "\\text{x86 : ADD mémoire, R1}"
+   ]
+  },
+  "entretien": {
+   "type": "etape",
+   "kicker": "Entretenir un microordinateur",
+   "titre": "Physique et logiciel",
+   "tex": [
+    "\\text{dépoussiérer à l'air comprimé}",
+    "\\text{défragmenter le disque dur}",
+    "\\text{mettre à jour pilotes et système}",
+    "\\text{supprimer fichiers et programmes}"
+   ]
+  },
+  "entretien_ex": {
+   "type": "etape",
+   "kicker": "Exemple : ajouter de la RAM",
+   "titre": "Compatibilité, puis encoche",
+   "tex": [
+    "\\text{vérifier le type DDR4}",
+    "\\text{vérifier la fréquence}",
+    "\\text{insérer en respectant l'encoche}",
+    "\\text{de détrompage}"
+   ]
+  },
+  "donnee": {
+   "type": "etape",
+   "kicker": "Donnée ou information ?",
+   "titre": "Brute, ou interprétée",
+   "tex": [
+    "\\text{donnée : une valeur brute, 65}",
+    "\\text{information : 65 interprété}",
+    "\\text{65, code ASCII de la lettre A}",
+    "\\text{structures : tableau, CSV, base}"
+   ]
+  },
+  "binaire": {
+   "type": "etape",
+   "kicker": "Le binaire : deux états seulement",
+   "titre": "Courant présent, 1 ; absent, 0",
+   "tex": [
+    "\\text{système à base 2}",
+    "\\text{divisions successives par 2}",
+    "\\text{restes lus de bas en haut}"
+   ]
+  },
+  "ex13": {
+   "type": "formule",
+   "kicker": "Exemple : convertir 13 en binaire",
+   "tex": "13 = 1101_{2}",
+   "note": "Vérification : 8 plus 4 plus 0 plus 1 égale 13"
+  },
+  "conv": {
+   "type": "formule",
+   "kicker": "Conversion binaire vers décimal",
+   "tex": "1011_{2} = 11_{10}",
+   "note": "Chaque bit de position i a un poids de deux puissance i : 8 plus 0 plus 2 plus 1 égale 11"
+  },
+  "hexa": {
+   "type": "formule",
+   "kicker": "Hexadécimal vers binaire",
+   "tex": "1A_{16} = 0001\\,1010_{2}",
+   "note": "Chaque chiffre hexadécimal correspond à 4 bits"
+  },
+  "ascii": {
+   "type": "etape",
+   "kicker": "Le code ASCII",
+   "titre": "De 0 à 127, sur 7 bits",
+   "tex": [
+    "\\text{chiffres : codes 48 à 57}",
+    "\\text{majuscules : codes 65 à 90}",
+    "\\text{minuscules : codes 97 à 122}",
+    "\\text{UTF-8 : extension compatible}"
+   ]
+  },
+  "ex_ok": {
+   "type": "formule",
+   "kicker": "Exemple : coder le mot OK",
+   "tex": "O = 79, \\quad K = 75",
+   "note": "O vaut 01001111 et K vaut 01001011 en binaire ; le mot OK est donc 01001111 01001011"
+  },
+  "tableau": {
+   "type": "formule",
+   "kicker": "Exemple : tableau de 5 notes",
+   "tex": "T = [12,\\ 15,\\ 8,\\ 17,\\ 10]",
+   "note": "Somme 62, moyenne 62 sur 5 égale 12,4"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Von Neumann : UCT, mémoire, entrées et sorties reliées par des bus",
+    "Le processeur calcule, la RAM est temporaire et volatile",
+    "Le binaire ne connaît que 0 et 1 ; l'hexadécimal regroupe 4 bits",
+    "ASCII code les caractères de 0 à 127, UTF-8 l'étend",
+    "Choisir sa structure de données selon l'usage : tri, recherche, calcul"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Machine, binaire, caractères, données.",
+   "dit": "Bienvenue dans ce cours sur l'architecture d'un microordinateur et la représentation de l'information. Nous ouvrirons la machine, nous suivrons le trajet d'un calcul, puis nous apprendrons comment elle code les nombres et les lettres."
+  },
+  {
+   "id": "p02",
+   "ecran": "von_neumann",
+   "texte": "Von Neumann, 1945 : quatre éléments, des bus.",
+   "dit": "Un microordinateur est un système informatique complet dont l'unité centrale de traitement est un microprocesseur. Son architecture repose sur le modèle de Von Neumann, de 1945, organisé autour de quatre éléments reliés par des bus, ces canaux de communication : l'unité centrale de traitement, la mémoire, les unités d'entrée et les unités de sortie."
+  },
+  {
+   "id": "p03",
+   "ecran": "cpu",
+   "texte": "Processeur : contrôle, calcul, registres.",
+   "dit": "Le processeur, ou CPU, est le cerveau du système. Il comprend l'unité de contrôle, qui coordonne les opérations, l'unité arithmétique et logique, l'UAL, qui effectue les calculs et les comparaisons, et les registres, des mémoires ultra-rapides pour stocker temporairement les données en cours de traitement."
+  },
+  {
+   "id": "p04",
+   "ecran": "composants",
+   "texte": "Carte mère, RAM volatile, disque permanent.",
+   "dit": "Les composants principaux : la carte mère, circuit imprimé reliant tous les composants ; le processeur, pour les calculs et le contrôle ; la mémoire vive RAM, stockage temporaire des données en cours d'utilisation, volatile, car son contenu s'efface à la coupure de l'alimentation ; le disque dur ou SSD, pour le stockage permanent ; et les ports d'entrée et de sortie."
+  },
+  {
+   "id": "p05",
+   "ecran": "cycle",
+   "texte": "Entrée, traitement, sortie.",
+   "dit": "Le fonctionnement suit le cycle de traitement en trois phases : l'acquisition, ou entrée, les données sont saisies via les périphériques d'entrée et transmises au processeur ; le traitement, le processeur exécute les instructions, calculs, comparaisons et transferts, via l'UAL, en utilisant la RAM comme espace de travail ; et la restitution, ou sortie, les résultats sont envoyés vers les périphériques de sortie."
+  },
+  {
+   "id": "p06",
+   "ecran": "cycle_base",
+   "texte": "Von Neumann : charger, décoder, exécuter, écrire.",
+   "dit": "Principe de Von Neumann : les instructions et les données sont stockées dans la même mémoire et traitées séquentiellement. Le cycle de base est : charger, décoder, exécuter, écrire."
+  },
+  {
+   "id": "p07",
+   "ecran": "ex_moy",
+   "texte": "Moyenne de 12 et 16 : 14 à l'écran.",
+   "dit": "Exemple résolu : le calcul de la moyenne de deux notes. Entrée : saisie de douze et seize au clavier. Traitement : le processeur calcule douze plus seize sur deux, ce qui donne quatorze. Sortie : affichage de quatorze à l'écran."
+  },
+  {
+   "id": "p08",
+   "ecran": "risc",
+   "texte": "RISC simple, CISC combiné.",
+   "dit": "Le jeu d'instructions est l'ensemble des opérations élémentaires qu'un processeur peut exécuter directement. Exemple : un processeur ARM, de type RISC, exécute l'addition en une seule instruction simple, ADD R un, R deux, tandis qu'un processeur x86, de type CISC, peut exécuter ADD mémoire, R un, qui combine lecture mémoire et addition."
+  },
+  {
+   "id": "p09",
+   "ecran": "entretien",
+   "texte": "Entretien : physique et logiciel.",
+   "dit": "La maintenance regroupe les actions préventives et correctives pour assurer le bon fonctionnement de la machine : le nettoyage physique, dépoussiérer l'intérieur, ventilateurs et dissipateurs, avec de l'air comprimé, et nettoyer les contacts des barrettes mémoire avec une gomme ; la défragmentation du disque dur, regrouper les fichiers fragmentés pour accélérer l'accès ; la mise à jour des pilotes et du système, pour corriger les failles de sécurité ; et le nettoyage logiciel, supprimer les fichiers temporaires et les programmes inutiles."
+  },
+  {
+   "id": "p10",
+   "ecran": "entretien_ex",
+   "texte": "Ajouter de la RAM : compatibilité, encoche.",
+   "dit": "Exemple : avant une mise à niveau, on vérifie la compatibilité de la RAM, type DDR quatre et fréquence, puis on l'insère en respectant l'encoche de détrompage."
+  },
+  {
+   "id": "p11",
+   "ecran": "donnee",
+   "texte": "Donnée brute, information interprétée.",
+   "dit": "Changeons de registre : qu'est-ce qu'une donnée ? Une donnée est une valeur brute, par exemple soixante-cinq, tandis que l'information est la donnée interprétée dans un contexte : soixante-cinq, c'est le code ASCII de la lettre A. Les données structurées sont organisées selon un format précis, tableau, fichier CSV ou base de données. Et une donnée est définie par son type, entier, réel, caractère ou booléen, qui détermine les opérations possibles et l'espace mémoire occupé."
+  },
+  {
+   "id": "p12",
+   "ecran": "binaire",
+   "texte": "Binaire : deux états, base deux.",
+   "dit": "Un microordinateur manipule uniquement des informations codées en binaire, système à base deux, car les circuits électroniques ne connaissent que deux états : courant présent, un, ou absent, zéro. Conversion décimal vers binaire : divisions successives par deux, lecture des restes de bas en haut."
+  },
+  {
+   "id": "p13",
+   "ecran": "ex13",
+   "texte": "Treize en binaire : un un zéro un.",
+   "dit": "Exemple résolu : convertir treize en binaire. Treize égale un un zéro un en base deux. Vérification : un fois deux puissance trois, plus un fois deux puissance deux, plus zéro fois deux puissance un, plus un fois deux puissance zéro, soit huit plus quatre plus zéro plus un, égale treize."
+  },
+  {
+   "id": "p14",
+   "ecran": "conv",
+   "texte": "Binaire vers décimal : poids en puissances de deux.",
+   "dit": "Dans l'autre sens, conversion binaire vers décimal : chaque bit de position i, en partant de zéro à droite, a un poids de deux puissance i. Exemple résolu : un zéro un un en base deux égale un fois deux puissance trois, plus zéro, plus un fois deux, plus un, soit huit plus zéro plus deux plus un, égale onze en base dix."
+  },
+  {
+   "id": "p15",
+   "ecran": "hexa",
+   "texte": "Hexadécimal : un chiffre, quatre bits.",
+   "dit": "Conversion hexadécimale vers binaire : chaque chiffre hexadécimal correspond à quatre bits. Exemple : un A en base seize égale zéro zéro zéro un, un zéro un zéro en base deux."
+  },
+  {
+   "id": "p16",
+   "ecran": "ascii",
+   "texte": "ASCII : de zéro à cent vingt-sept, sept bits.",
+   "dit": "Le codage est l'opération qui associe une représentation binaire à une information. Le code ASCII attribue un nombre de zéro à cent vingt-sept, sur sept bits, à chaque caractère : lettres, chiffres, symboles et caractères de contrôle. Les chiffres de zéro à neuf ont les codes quarante-huit à cinquante-sept, les majuscules de A à Z les codes soixante-cinq à quatre-vingt-dix, et les minuscules de a à z les codes quatre-vingt-dix-sept à cent vingt-deux."
+  },
+  {
+   "id": "p17",
+   "ecran": "ex_ok",
+   "texte": "Le mot OK en binaire : deux octets.",
+   "dit": "Exemple résolu : coder le mot OK en ASCII. La lettre O a le code soixante-dix-neuf, soit zéro un zéro zéro un un un un en binaire. La lettre K a le code soixante-quinze, soit zéro un zéro zéro un zéro un un. Le mot OK est donc représenté par la séquence binaire zéro un zéro zéro un un un un, zéro un zéro zéro un zéro un un. Pour les caractères accentués et les symboles du monde entier, on utilise UTF-8, extension de l'ASCII sur huit bits ou plus, qui reste compatible avec l'ASCII sur les cent vingt-huit premiers codes."
+  },
+  {
+   "id": "p18",
+   "ecran": "tableau",
+   "texte": "Tableau de notes : somme soixante-deux, moyenne 12,4.",
+   "dit": "Dernier exemple, côté structures de données. Une structure de données est un format organisé permettant de stocker et manipuler efficacement les informations, et le choix de la structure dépend de l'usage prévu : tri, recherche ou calcul. On crée un tableau T de cinq entiers pour stocker des notes : douze, quinze, huit, dix-sept et dix. La somme vaut douze plus quinze plus huit plus dix-sept plus dix, soit soixante-deux, et la moyenne vaut soixante-deux sur cinq, soit douze virgule quatre."
+  },
+  {
+   "id": "p19",
+   "ecran": "recap",
+   "texte": "Von Neumann, binaire, ASCII, structures.",
+   "dit": "En synthèse, les compétences attendues : identifier les composants d'un microordinateur et expliquer le rôle de chacun, convertir un nombre décimal en binaire, choisir et manipuler une structure de données adaptée à un problème simple. Retenez : l'architecture de Von Neumann, le processeur et ses jeux d'instructions RISC ou CISC, l'entretien physique et logiciel, le codage binaire avec les conversions vers l'hexadécimal, et les caractères représentés par le code ASCII."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Architecture de Von Neumann et entretien"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "texte": "Partie 2 : binaire, ASCII et structures de données.",
+    "dit": "Partie deux : la représentation de l'information. Nous passerons du nombre brut au code binaire, de l'hexadécimal au code ASCII, puis aux structures de données avec un tableau de notes."
+   },
+   "sous_titre": "Binaire, ASCII et structures de données"
+  }
+ ]
+}

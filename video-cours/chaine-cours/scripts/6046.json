@@ -1,0 +1,504 @@
+{
+ "cours": 6046,
+ "ecrans": {
+  "applications_photo": {
+   "kicker": "Applications",
+   "texte": "Cellules photovoltaïques, photomultiplicateurs, capteurs d'image numériques.",
+   "type": "phrase"
+  },
+  "complementarite": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "prisme"
+   },
+   "kicker": "Le principe de complémentarité",
+   "texte": "Bohr : les deux descriptions sont complémentaires ; l'expérience choisit le visage observé.",
+   "type": "phrase"
+  },
+  "compton": {
+   "anim": {
+    "nom": "choc"
+   },
+   "kicker": "L'effet Compton",
+   "texte": "Des rayons X sur du graphite : les photons diffusés ont un λ plus grand.",
+   "type": "phrase"
+  },
+  "compton_ex": {
+   "kicker": "Exemple · rayons X",
+   "tex": [
+    "\\lambda = 0{,}1\\ \\text{nm} \\quad \\theta = 60^\\circ",
+    "\\dfrac{h}{mc} \\approx 2{,}43 \\times 10^{-12}\\ \\text{m} \\quad 1 - \\cos 60^\\circ = 0{,}5",
+    "\\Delta\\lambda \\approx 1{,}2 \\times 10^{-12}\\ \\text{m} \\quad \\lambda' \\approx 0{,}101\\ \\text{nm}"
+   ],
+   "titre": "Diffusion à soixante degrés",
+   "type": "etape"
+  },
+  "compton_formule": {
+   "kicker": "Le décalage Compton",
+   "tex": [
+    "\\Delta\\lambda = \\lambda' - \\lambda",
+    "\\Delta\\lambda = \\dfrac{h}{mc}\\left(1 - \\cos\\theta\\right)"
+   ],
+   "titre": "Une collision photon-électron",
+   "type": "etape"
+  },
+  "conditions": {
+   "kicker": "Conditions d'interférence",
+   "tex": [
+    "\\delta = m\\lambda \\quad \\text{frange brillante}",
+    "\\delta = \\left(m + \\tfrac{1}{2}\\right)\\lambda \\quad \\text{frange sombre}",
+    "x = \\dfrac{D\\,\\delta}{a}"
+   ],
+   "titre": "Brillante ou sombre ?",
+   "type": "etape"
+  },
+  "corps_noir": {
+   "anim": {
+    "nom": "rayonnement"
+   },
+   "kicker": "Le rayonnement du corps noir",
+   "texte": "Tout corps chaud émet un rayonnement, dont l'énergie passe par un maximum.",
+   "type": "phrase"
+  },
+  "diffraction": {
+   "kicker": "La diffraction",
+   "texte": "L'onde contourne les obstacles de taille comparable à sa longueur d'onde.",
+   "type": "phrase",
+   "anim": {
+    "nom": "diffraction_fig",
+    "hauteur": 240
+   }
+  },
+  "dualite": {
+   "kicker": "L'énigme de la dualité",
+   "texte": "Ni onde seulement, ni particules seulement : la lumière présente les deux comportements.",
+   "type": "phrase"
+  },
+  "einstein": {
+   "kicker": "L'équation d'Einstein",
+   "note": "W : travail d'extraction · au seuil : hν₀ = W",
+   "tex": "E_{c\\,max} = h\\nu - W",
+   "type": "formule"
+  },
+  "enigme": {
+   "etapes": [
+    "L'énergie des électrons ne dépend que de la fréquence",
+    "Fréquence seuil : en dessous, aucun électron éjecté",
+    "L'émission est instantanée, sans accumulation"
+   ],
+   "kicker": "Trois faits troublants",
+   "type": "recap"
+  },
+  "franges": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "interference"
+   },
+   "etapes": [
+    "En phase : les amplitudes s'ajoutent, frange brillante",
+    "En opposition de phase : elles s'annulent, frange sombre",
+    "Frange centrale brillante : différence de marche nulle"
+   ],
+   "kicker": "Franges brillantes, franges sombres",
+   "type": "recap"
+  },
+  "interfrange": {
+   "kicker": "L'interfrange",
+   "note": "D : distance fentes-écran · a : distance entre les fentes",
+   "tex": "i = \\dfrac{\\lambda D}{a}",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "nom": "sinusoide"
+   },
+   "kicker": "Un vieux débat",
+   "texte": "Newton : un flux de corpuscules. Huygens : une onde qui se propage.",
+   "type": "phrase"
+  },
+  "marche": {
+   "kicker": "Différence de marche",
+   "tex": [
+    "\\delta = d_1 - d_2 \\qquad d_1 = \\sqrt{D^2 + \\left(x + \\tfrac{a}{2}\\right)^2}",
+    "d_2 = \\sqrt{D^2 + \\left(x - \\tfrac{a}{2}\\right)^2}",
+    "\\delta = \\frac{a\\,x}{D}"
+   ],
+   "titre": "Deux rayons, deux trajets",
+   "type": "etape"
+  },
+  "millikan": {
+   "kicker": "La vérification de Millikan",
+   "tex": [
+    "E_c = e\\,V_s",
+    "e\\,V_s = h\\nu - h\\nu_0",
+    "V_s = \\dfrac{h}{e}\\left(\\nu - \\nu_0\\right)"
+   ],
+   "titre": "La tension d'arrêt",
+   "type": "etape"
+  },
+  "onde_em": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "onde_em"
+   },
+   "kicker": "L'onde électromagnétique",
+   "note": "c : célérité dans le vide, 3×10⁸ m/s · λ en mètres, f en hertz",
+   "tex": "\\lambda = \\dfrac{c}{f}",
+   "type": "formule"
+  },
+  "photo_intro": {
+   "kicker": "L'effet photoélectrique",
+   "texte": "Une plaque métallique éclairée éjecte des électrons.",
+   "type": "phrase",
+   "anim": {
+    "nom": "photoelectrique_fig",
+    "hauteur": 240
+   }
+  },
+  "photon": {
+   "kicker": "Le photon d'Einstein",
+   "note": "h = 6,626 × 10⁻³⁴ J·s : constante de Planck · ν : fréquence",
+   "tex": "E = h\\nu",
+   "type": "formule"
+  },
+  "photon_energie": {
+   "kicker": "Exemple · lumière rouge",
+   "tex": [
+    "E = h\\nu = 6{,}626 \\times 10^{-34} \\times 4{,}6 \\times 10^{14}",
+    "E \\approx 3{,}0 \\times 10^{-19}\\ \\text{J} \\approx 1{,}9\\ \\text{eV}"
+   ],
+   "titre": "L'énergie d'un photon",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Interférences et diffraction : la lumière se comporte en onde",
+    "Différence de marche δ = ax/D ; interfrange i = λD/a",
+    "Effet photoélectrique : le photon cède hν à un seul électron",
+    "Énergie du photon : E = hν ; seuil : hν₀ = W",
+    "Effet Compton : le photon rebondit comme une particule"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "reseau": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "spectre"
+   },
+   "kicker": "Le réseau de diffraction",
+   "texte": "Des centaines de fentes parallèles : les couleurs se séparent avec précision.",
+   "type": "phrase"
+  },
+  "spectre_em": {
+   "anim": {
+    "nom": "spectre"
+   },
+   "kicker": "Le spectre électromagnétique",
+   "texte": "Radio, micro-ondes, infrarouge, visible, ultraviolet, rayons X, rayons gamma.",
+   "type": "phrase"
+  },
+  "tache": {
+   "kicker": "Diffraction par une fente",
+   "tex": [
+    "\\ell \\approx \\dfrac{2\\lambda L}{a}",
+    "\\lambda = 650\\ \\text{nm} \\quad a = 0{,}1\\ \\text{mm} \\quad L = 1\\ \\text{m}",
+    "\\ell \\approx \\dfrac{2 \\times 650 \\times 10^{-9} \\times 1}{10^{-4}} = 1{,}3 \\times 10^{-2}\\ \\text{m}"
+   ],
+   "titre": "La tache centrale",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "prisme"
+   },
+   "kicker": "Physique",
+   "sous": "Interférences, diffraction, effet photoélectrique et effet Compton",
+   "titre": "Lumière : Aspects Ondulatoire et Corpusculaire",
+   "type": "titre"
+  },
+  "wien": {
+   "kicker": "Loi de Wien",
+   "note": "σw = 2,898 × 10⁻³ m·K : constante de Wien · T en kelvins",
+   "tex": "\\lambda_{max} \\times T = \\sigma_w",
+   "type": "formule"
+  },
+  "wien_ex": {
+   "kicker": "Exemple · le corps humain",
+   "tex": [
+    "T = 37 + 273 = 310\\ \\text{K}",
+    "\\lambda_{max} = \\dfrac{\\sigma_w}{T} = \\dfrac{2{,}898 \\times 10^{-3}}{310}",
+    "\\lambda_{max} \\approx 9{,}3 \\times 10^{-6}\\ \\text{m}"
+   ],
+   "titre": "Un corps noir à 310 kelvins",
+   "type": "etape"
+  },
+  "young": {
+   "anim": {
+    "nom": "interference"
+   },
+   "kicker": "Les fentes de Young",
+   "texte": "Un faisceau monochromatique, deux fentes fines : des franges brillantes et sombres.",
+   "type": "phrase"
+  },
+  "young_ex": {
+   "kicker": "Exemple · fentes de Young",
+   "tex": [
+    "a = 0{,}5\\ \\text{mm} \\quad D = 1\\ \\text{m} \\quad \\lambda = 600\\ \\text{nm}",
+    "i = \\dfrac{\\lambda D}{a} = \\dfrac{600 \\times 10^{-9} \\times 1}{0{,}5 \\times 10^{-3}}",
+    "i = 1{,}2 \\times 10^{-3}\\ \\text{m} = 1{,}2\\ \\text{mm}"
+   ],
+   "titre": "Calculer l'interfrange",
+   "type": "etape"
+  },
+  "zinc_ex": {
+   "kicker": "Exemple · plaque de zinc",
+   "tex": [
+    "W = 4{,}3\\ \\text{eV} \\quad \\nu = 1{,}2 \\times 10^{15}\\ \\text{Hz}",
+    "h\\nu \\approx 7{,}95 \\times 10^{-19}\\ \\text{J} \\approx 4{,}97\\ \\text{eV}",
+    "E_{c\\,max} = 4{,}97 - 4{,}3 \\approx 0{,}67\\ \\text{eV}"
+   ],
+   "titre": "Énergie cinétique maximale",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  5502,
+  5878,
+  5503,
+  5504,
+  5505,
+  5506,
+  5507,
+  5509
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le visage ondulatoire : interférences et diffraction"
+  },
+  {
+   "debut": "p18",
+   "pont": {
+    "dit": "Partie deux : le visage corpusculaire de la lumière, de l'effet photoélectrique à l'effet Compton.",
+    "texte": "Partie 2 : le visage corpusculaire de la lumière."
+   },
+   "sous_titre": "Le visage corpusculaire : photons, effet photoélectrique et effet Compton"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Aujourd'hui, la lumière sous ses deux visages : l'onde, qui interfère et se diffracte, et le photon, qui frappe la matière par paquets d'énergie.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Bonjour à tous. Aujourd'hui, la lumière sous ses deux visages : onde et photon."
+  },
+  {
+   "dit": "Pendant des siècles, deux théories se sont affrontées. Pour Newton, la lumière est un flux de corpuscules. Pour Huygens, c'est une onde qui se propage, comme les vagues sur l'eau.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.7,
+   "texte": "Deux théories rivales : les corpuscules de Newton, l'onde de Huygens."
+  },
+  {
+   "dit": "Au début du vingtième siècle, l'expérience tranche : la lumière présente les deux comportements à la fois. Ni simple onde, ni simple flux de particules : c'est la dualité onde-corpuscule.",
+   "ecran": "dualite",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "La lumière montre les deux comportements : c'est la dualité onde-corpuscule."
+  },
+  {
+   "dit": "Dans la vision ondulatoire, la lumière est une onde électromagnétique : un champ électrique et un champ magnétique qui oscillent perpendiculairement l'un à l'autre, et à la direction de propagation. Elle voyage dans le vide, sans support matériel.",
+   "ecran": "onde_em",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Une onde électromagnétique transversale, qui se propage même dans le vide."
+  },
+  {
+   "dit": "Selon leur longueur d'onde, elles se classent en domaines : radio, micro-ondes, infrarouges, visible, ultraviolets, rayons X et rayons gamma. Le visible n'occupe qu'une toute petite fenêtre de ce spectre immense.",
+   "ecran": "spectre_em",
+   "id": "p05",
+   "pause_apres": 0.7,
+   "texte": "Du radio au gamma : le visible n'est qu'une petite fenêtre du spectre."
+  },
+  {
+   "dit": "Tout corps chaud émet un rayonnement. Pour le corps noir, qui absorbe tout et réémet tout, la loi de Planck montre que l'énergie rayonnée passe par un maximum, pour une longueur d'onde précise : lambda max.",
+   "ecran": "corps_noir",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Le corps noir émet un rayonnement dont l'énergie passe par un maximum."
+  },
+  {
+   "dit": "La loi de Wien relie ce maximum à la température : lambda max fois la température absolue est constant. Plus un corps est chaud, plus son maximum se déplace vers les courtes longueurs d'onde.",
+   "ecran": "wien",
+   "id": "p07",
+   "pause_apres": 1.0,
+   "texte": "Loi de Wien : le produit λmax par T reste constant."
+  },
+  {
+   "dit": "Exemple : le corps humain, à trente-sept degrés, soit trois cent dix kelvins. Lambda max, la constante de Wien divisée par trois cent dix : environ neuf virgule trois fois dix puissance moins six mètres. De l'infrarouge, invisible à l'œil, visible aux caméras thermiques.",
+   "ecran": "wien_ex",
+   "id": "p08",
+   "pause_apres": 0.9,
+   "texte": "Exemple : le corps humain émet surtout à 9,3 × 10⁻⁶ m, dans l'infrarouge."
+  },
+  {
+   "dit": "Première preuve ondulatoire : les fentes de Young. Un faisceau monochromatique traverse deux fentes fines. Sur l'écran, au lieu de deux bandes lumineuses, on observe des franges alternativement brillantes et sombres.",
+   "ecran": "young",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Fentes de Young : un faisceau, deux fentes, et des franges qui apparaissent."
+  },
+  {
+   "dit": "Les franges brillantes naissent là où les ondes des deux fentes arrivent en phase : crête sur crête, les amplitudes s'ajoutent, l'interférence est constructive. Les franges sombres, là où elles arrivent en opposition de phase : crête sur creux, elles s'annulent.",
+   "ecran": "franges",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "En phase : frange brillante. En opposition de phase : frange sombre."
+  },
+  {
+   "dit": "Pour prévoir la position des franges, on calcule la différence de marche, notée delta : la différence des distances parcourues par les deux rayons, d un moins d deux. Pythagore, puis une approximation, donnent un résultat très simple : delta égale a fois x divisé par D.",
+   "ecran": "marche",
+   "id": "p11",
+   "pause_apres": 1.0,
+   "texte": "Différence de marche : δ = d₁ − d₂ = ax/D."
+  },
+  {
+   "dit": "Tout dépend de delta. Si delta est un multiple entier de la longueur d'onde, l'interférence est constructive : frange brillante. Si delta vaut un multiple impair de la demi-longueur d'onde, frange sombre. La frange centrale, brillante, correspond à delta nul.",
+   "ecran": "conditions",
+   "id": "p12",
+   "pause_apres": 1.0,
+   "texte": "δ = mλ : frange brillante. δ = (m + 1/2)λ : frange sombre."
+  },
+  {
+   "dit": "La distance entre deux franges brillantes consécutives est l'interfrange, notée i. Elle vaut lambda fois D divisé par a : elle grandit avec la longueur d'onde et la distance à l'écran, et diminue quand les fentes s'écartent.",
+   "ecran": "interfrange",
+   "id": "p13",
+   "pause_apres": 1.0,
+   "texte": "Interfrange : i = λD/a."
+  },
+  {
+   "dit": "Exemple numérique, tiré du cours. Fentes distantes de zéro virgule cinq millimètres, écran à un mètre, lumière de six cents nanomètres. L'interfrange vaut six cents fois dix puissance moins neuf, divisé par zéro virgule cinq fois dix puissance moins trois : un virgule deux millimètres.",
+   "ecran": "young_ex",
+   "id": "p14",
+   "pause_apres": 0.9,
+   "texte": "Exemple : i = λD/a = 1,2 mm."
+  },
+  {
+   "dit": "Deuxième preuve : la diffraction. Quand la lumière rencontre un obstacle ou une ouverture de la taille de sa longueur d'onde, elle ne va plus en ligne droite : elle contourne l'obstacle et s'étale. Chaque point de l'ouverture devient une petite source d'ondes.",
+   "ecran": "diffraction",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "La diffraction : l'onde contourne les obstacles de taille proche de λ."
+  },
+  {
+   "dit": "Derrière une fente fine, on obtient une tache centrale brillante, deux fois plus large que les taches secondaires. Sa largeur vaut environ deux lambda L divisé par a. Avec un laser rouge, une fente d'un dixième de millimètre et un écran à un mètre : treize millimètres.",
+   "ecran": "tache",
+   "id": "p16",
+   "pause_apres": 0.9,
+   "texte": "Tache centrale : ℓ ≈ 2λL/a ; exemple du laser rouge : 13 mm."
+  },
+  {
+   "dit": "Un réseau de diffraction aligne des centaines de fentes parallèles régulièrement espacées. La figure devient très nette et les couleurs se séparent avec précision : c'est l'outil de base de la spectroscopie et des instruments d'astronomie.",
+   "ecran": "reseau",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Le réseau : des centaines de fentes pour séparer finement les couleurs."
+  },
+  {
+   "dit": "Changeons de registre. On éclaire une plaque métallique : sous certaines conditions, des électrons sont arrachés de la surface. C'est l'effet photoélectrique, qui va mettre la théorie ondulatoire en échec.",
+   "ecran": "photo_intro",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "L'effet photoélectrique : la lumière arrache des électrons à un métal."
+  },
+  {
+   "dit": "Trois faits résistent à l'explication par les ondes. L'énergie des électrons ne dépend que de la fréquence, jamais de l'intensité. Sous une fréquence seuil, aucun électron ne sort, même en lumière intense. Et l'émission est instantanée, sans temps d'accumulation.",
+   "ecran": "enigme",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Trois faits que l'onde classique ne peut pas expliquer."
+  },
+  {
+   "dit": "En mille neuf cent cinq, Einstein a la clé : la lumière est un flux de photons, des grains d'énergie. L'énergie d'un photon est proportionnelle à sa fréquence : E égale h fois nu, où h est la constante de Planck. Un photon interagit avec un seul électron.",
+   "ecran": "photon",
+   "id": "p20",
+   "pause_apres": 1.0,
+   "texte": "Le photon : un grain de lumière d'énergie E = hν."
+  },
+  {
+   "dit": "Le bilan d'énergie : le photon cède son énergie. Une partie arrache l'électron, c'est le travail d'extraction, noté W ; le reste devient l'énergie cinétique maximale de l'électron. Au seuil, l'énergie du photon couvre juste le travail d'extraction.",
+   "ecran": "einstein",
+   "id": "p21",
+   "pause_apres": 1.0,
+   "texte": "Équation d'Einstein : Ec max = hν − W ; au seuil, hν₀ = W."
+  },
+  {
+   "dit": "Exemple du cours : une plaque de zinc, travail d'extraction quatre virgule trois électronvolts, éclairée à la fréquence un virgule deux fois dix puissance quinze hertz. Le photon apporte environ quatre virgule quatre-vingt-dix-sept électronvolts. L'énergie cinétique maximale vaut donc zéro virgule soixante-sept électronvolt.",
+   "ecran": "zinc_ex",
+   "id": "p22",
+   "pause_apres": 0.9,
+   "texte": "Exemple : photon de 4,97 eV, zinc à 4,3 eV, électrons à 0,67 eV."
+  },
+  {
+   "dit": "Millikan vérifie la théorie entre mille neuf cent douze et seize. Sa tension d'arrêt freine les électrons jusqu'à annuler le courant : l'énergie cinétique vaut alors e fois V s. La tension d'arrêt en fonction de la fréquence est une droite, de pente h sur e : théorie confirmée, et h est mesurée.",
+   "ecran": "millikan",
+   "id": "p23",
+   "pause_apres": 0.9,
+   "texte": "Millikan : Vs en fonction de ν est une droite de pente h/e."
+  },
+  {
+   "dit": "L'effet photoélectrique travaille partout : les cellules photovoltaïques convertissent les photons solaires en électricité, les photomultiplicateurs amplifient les signaux lumineux faibles, les capteurs de caméras transforment la lumière en signal électrique.",
+   "ecran": "applications_photo",
+   "id": "p24",
+   "pause_apres": 0.7,
+   "texte": "Panneaux solaires, photomultiplicateurs, capteurs d'image : le même effet."
+  },
+  {
+   "dit": "Deuxième preuve corpusculaire : l'effet Compton, en mille neuf cent vingt-trois. Des rayons X frappent une cible de graphite. Certains photons ressortent diffusés, avec une longueur d'onde plus grande que les photons incidents : une onde ne changerait pas de longueur d'onde.",
+   "ecran": "compton",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Effet Compton : les rayons X diffusés ressortent avec un λ plus grand."
+  },
+  {
+   "dit": "Compton traite le choc comme une collision de billard entre photon et électron : énergie et quantité de mouvement se conservent. Le photon perd de l'énergie, donc sa longueur d'onde augmente. Le décalage, delta lambda, ne dépend que de l'angle de diffusion, thêta.",
+   "ecran": "compton_formule",
+   "id": "p26",
+   "pause_apres": 1.0,
+   "texte": "Δλ = (h/mc)(1 − cos θ) : le décalage ne dépend que de l'angle θ."
+  },
+  {
+   "dit": "Exemple du cours : un photon X de zéro virgule un nanomètre, diffusé à soixante degrés. Le décalage vaut un virgule deux fois dix puissance moins douze mètres ; la longueur d'onde diffusée passe à zéro virgule cent un nanomètres.",
+   "ecran": "compton_ex",
+   "id": "p27",
+   "pause_apres": 0.9,
+   "texte": "Exemple : Δλ ≈ 1,2 × 10⁻¹² m ; λ' ≈ 0,101 nm."
+  },
+  {
+   "dit": "Dernier calcul : l'énergie d'un photon rouge, de fréquence quatre virgule six fois dix puissance quatorze hertz. E égale h fois nu : environ trois fois dix puissance moins dix-neuf joules, soit un virgule neuf électronvolt.",
+   "ecran": "photon_energie",
+   "id": "p28",
+   "pause_apres": 0.9,
+   "texte": "Photon rouge : E ≈ 3,0 × 10⁻¹⁹ J ≈ 1,9 eV."
+  },
+  {
+   "dit": "Comment concilier les deux visages ? Bohr répond par la complémentarité : les deux descriptions sont complémentaires, toutes deux nécessaires, mais une expérience donnée n'en révèle qu'une à la fois, comme les deux faces d'une pièce de monnaie.",
+   "ecran": "complementarite",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "Complémentarité de Bohr : une expérience, un seul visage à la fois."
+  },
+  {
+   "dit": "À retenir. Interférences et diffraction prouvent le visage ondulatoire : différence de marche et interfrange. Photoélectrique et Compton prouvent le visage corpusculaire : le photon, d'énergie h fois nu, agit comme une particule. La lumière est les deux à la fois.",
+   "ecran": "recap",
+   "id": "p30",
+   "pause_apres": 0.9,
+   "texte": "À retenir : onde pour les franges, photon pour les chocs — la dualité."
+  }
+ ],
+ "titre": "Lumière : Aspects Ondulatoire et Corpusculaire"
+}

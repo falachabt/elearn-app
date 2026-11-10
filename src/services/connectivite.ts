@@ -353,13 +353,22 @@ async function sondeParDefaut(): Promise<unknown> {
   try {
     // `fetch` n'accepte pas d'annulation ici : la minuterie borne l'attente et est toujours nettoyée.
     // La clé publique évite un 401 sans signification : on veut un 200, réponse explicite du serveur.
-    return await Promise.race([
+    const reponse = await Promise.race([
       fetch(`${base.replace(/\/+$/, '')}/auth/v1/health`, {
         method: 'GET',
         headers: cle ? { apikey: cle } : undefined,
       }),
       delai,
     ]);
+    // Une réponse ne suffit pas : elle doit venir du serveur, pas d'un intermédiaire. Retour terrain du
+    // 23 octobre 2026 — un portail captif (ou un Wi-Fi « revenu » sans internet derrière) répond 200 en HTML :
+    // l'ancienne sonde comptait ça comme « en ligne », l'app lançait ses vrais appels dans le vide et la session
+    // tombait. La route de santé de Supabase répond 200 en JSON ; tout le reste n'est pas le serveur.
+    const typeContenu = reponse.headers?.get?.('content-type') ?? null;
+    if (!reponse.ok || (typeContenu !== null && !typeContenu.includes('application/json'))) {
+      throw new Error('réponse de sonde inattendue : ce n’est pas le serveur qui a répondu');
+    }
+    return reponse;
   } finally {
     clearTimeout(minuterieDelai);
   }

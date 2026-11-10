@@ -1,0 +1,616 @@
+{
+ "cours": 6982,
+ "ecrans": {
+  "am_pm": {
+   "kicker": "Les heures officielles",
+   "tex": [
+    "\\text{a.m. : midnight to noon}",
+    "\\text{p.m. : noon to midnight}",
+    "\\text{It's eight p.m.}"
+   ],
+   "titre": "Matin a.m., soir p.m.",
+   "type": "etape"
+  },
+  "demie_quart": {
+   "kicker": "Demi-heures et quarts d'heure",
+   "tex": [
+    "\\text{half past + hour}",
+    "\\text{a quarter past + hour}",
+    "\\text{a quarter to + next hour}"
+   ],
+   "titre": "Demie, quart, moins le quart",
+   "type": "etape"
+  },
+  "ecrire_heure": {
+   "kicker": "Écrire l'heure",
+   "tex": [
+    "\\text{British format : 8.30}",
+    "\\text{Numeric format : 8:30}",
+    "\\text{It's ten fifteen a.m.}"
+   ],
+   "titre": "Point ou deux-points",
+   "type": "etape"
+  },
+  "ecrire_quotidien": {
+   "kicker": "Écrire une date au quotidien",
+   "tex": [
+    "\\text{Monday, 3rd March 2025}",
+    "\\text{Dear Tom, How are you ?}"
+   ],
+   "titre": "En haut d'une page, d'une lettre",
+   "type": "etape"
+  },
+  "emploi_complet": {
+   "kicker": "Présenter un emploi du temps complet",
+   "tex": [
+    "\\text{On Monday at eight o'clock,}",
+    "\\text{I have Maths.}",
+    "\\text{At nine o'clock,}",
+    "\\text{I have English.}"
+   ],
+   "titre": "Jour, heure, matière, en phrases",
+   "type": "etape"
+  },
+  "emploi_exemple": {
+   "kicker": "Exemple complet modèle",
+   "tex": [
+    "\\text{On Monday at eight o'clock,}",
+    "\\text{I have Maths. At nine o'clock,}",
+    "\\text{I have English. At ten o'clock,}",
+    "\\text{I have a break.}"
+   ],
+   "titre": "Lundi, de huit heures à la pause",
+   "type": "etape"
+  },
+  "emploi_structure": {
+   "kicker": "Écrire une phrase sur l'emploi du temps",
+   "tex": [
+    "\\text{On + day + at + time,}",
+    "\\text{I have + subject.}",
+    "\\text{On Monday at 8 o'clock,}",
+    "\\text{I have English.}"
+   ],
+   "titre": "Une structure, quatre briques",
+   "type": "etape"
+  },
+  "erreurs_emploi": {
+   "kicker": "Erreurs fréquentes à éviter",
+   "tex": [
+    "\\text{at 8 o'clock, never}",
+    "\\text{in 8 o'clock}",
+    "\\text{on Monday, never}",
+    "\\text{in Monday}"
+   ],
+   "titre": "At devant l'heure, on devant le jour",
+   "type": "etape"
+  },
+  "exemple_date": {
+   "kicker": "Exemple résolu : le 3 mars 2025",
+   "tex": [
+    "\\text{British : 3rd March 2025}",
+    "\\text{American : March 3rd, 2025}",
+    "\\text{It's the third of March.}"
+   ],
+   "titre": "Trois, March, deux formats",
+   "type": "etape"
+  },
+  "exercices_heure": {
+   "kicker": "Exercices d'application : réponses",
+   "tex": [
+    "\\text{It's six o'clock.}",
+    "\\text{It's ten to eight.}",
+    "\\text{It's half past nine.}",
+    "\\text{It's seven a.m.}"
+   ],
+   "titre": "O'clock, to, past, a.m.",
+   "type": "etape"
+  },
+  "formats_date": {
+   "kicker": "Écrire la date : les deux formats",
+   "tex": [
+    "\\text{British : day + month + year}",
+    "\\text{5th September 2024}",
+    "\\text{American : month + day + year}",
+    "\\text{September 5th, 2024}"
+   ],
+   "titre": "Jour d'abord, ou mois d'abord",
+   "type": "etape"
+  },
+  "jours": {
+   "kicker": "Les jours de la semaine",
+   "tex": [
+    "\\text{Monday, Tuesday, Wednesday,}",
+    "\\text{Thursday, Friday,}",
+    "\\text{Saturday, Sunday}"
+   ],
+   "titre": "Sept jours, toujours une majuscule",
+   "type": "etape"
+  },
+  "methode_emploi": {
+   "kicker": "Méthode pour ton propre emploi du temps",
+   "tex": [
+    "\\text{Choose a day : On Monday}",
+    "\\text{Add the time : at 8 o'clock}",
+    "\\text{Add the subject : I have Maths}",
+    "\\text{End with your favourite subject}"
+   ],
+   "titre": "Cinq gestes, dans cet ordre",
+   "type": "etape"
+  },
+  "minutes": {
+   "kicker": "Les minutes : past et to",
+   "tex": [
+    "\\text{1 to 29 minutes : past}",
+    "\\text{31 to 59 minutes : to}",
+    "\\text{It's twenty to nine.}"
+   ],
+   "titre": "Après l'heure, ou avant la suivante",
+   "type": "etape"
+  },
+  "ordinaux": {
+   "kicker": "Les nombres ordinaux",
+   "tex": [
+    "\\text{1st first, 2nd second,}",
+    "\\text{3rd third, 5th fifth,}",
+    "\\text{8th eighth, 4th fourth}"
+   ],
+   "titre": "First, second, third, puis th",
+   "type": "etape"
+  },
+  "pleines": {
+   "kicker": "L'heure pleine",
+   "tex": [
+    "\\text{It's + hour + o'clock}",
+    "\\text{It's seven o'clock.}",
+    "\\text{o'clock : minutes = zero}"
+   ],
+   "titre": "Sept heures pile : seven o'clock",
+   "type": "etape"
+  },
+  "question_heure": {
+   "kicker": "Demander et dire l'heure",
+   "tex": [
+    "\\text{What time is it ?}",
+    "\\text{What's the time ?}",
+    "\\text{It's + hour + minutes}"
+   ],
+   "titre": "Deux questions, une réponse",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Jours et mois : toujours une majuscule ; le jour du mois se dit avec un ordinal.",
+    "Format britannique : jour avant mois ; format américain : mois avant jour.",
+    "Pour dire la date : It's the, puis l'ordinal, puis of, puis le mois.",
+    "L'heure se dit avec o'clock, past et to ; l'emploi du temps avec On, day, at, time, I have, subject."
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "titre": {
+   "kicker": "Anglais · Date, heure et emploi du temps",
+   "sous": "Dire et écrire la date, dire l'heure, présenter son emploi du temps scolaire",
+   "titre": "Dire la date et l'heure, présenter son emploi du temps",
+   "type": "titre"
+  },
+  "jours__2": {
+   "kicker": "Les jours de la semaine",
+   "tex": [
+    "\\text{Monday, Tuesday, Wednesday,}",
+    "\\text{Thursday, Friday,}",
+    "\\text{Saturday, Sunday}"
+   ],
+   "titre": "Sept jours, toujours une majuscule",
+   "type": "etape"
+  },
+  "ordinaux__2": {
+   "kicker": "Les nombres ordinaux",
+   "tex": [
+    "\\text{1st first, 2nd second,}",
+    "\\text{3rd third, 5th fifth,}",
+    "\\text{8th eighth, 4th fourth}"
+   ],
+   "titre": "First, second, third, puis th",
+   "type": "etape"
+  },
+  "ordinaux__3": {
+   "kicker": "Les nombres ordinaux",
+   "tex": [
+    "\\text{1st first, 2nd second,}",
+    "\\text{3rd third, 5th fifth,}",
+    "\\text{8th eighth, 4th fourth}"
+   ],
+   "titre": "First, second, third, puis th",
+   "type": "etape"
+  },
+  "formats_date__2": {
+   "kicker": "Écrire la date : les deux formats",
+   "tex": [
+    "\\text{British : day + month + year}",
+    "\\text{5th September 2024}",
+    "\\text{American : month + day + year}",
+    "\\text{September 5th, 2024}"
+   ],
+   "titre": "Jour d'abord, ou mois d'abord",
+   "type": "etape"
+  },
+  "formats_date__3": {
+   "kicker": "Écrire la date : les deux formats",
+   "tex": [
+    "\\text{British : day + month + year}",
+    "\\text{5th September 2024}",
+    "\\text{American : month + day + year}",
+    "\\text{September 5th, 2024}"
+   ],
+   "titre": "Jour d'abord, ou mois d'abord",
+   "type": "etape"
+  },
+  "formats_date__4": {
+   "kicker": "Écrire la date : les deux formats",
+   "tex": [
+    "\\text{British : day + month + year}",
+    "\\text{5th September 2024}",
+    "\\text{American : month + day + year}",
+    "\\text{September 5th, 2024}"
+   ],
+   "titre": "Jour d'abord, ou mois d'abord",
+   "type": "etape"
+  },
+  "exemple_date__2": {
+   "kicker": "Exemple résolu : le 3 mars 2025",
+   "tex": [
+    "\\text{British : 3rd March 2025}",
+    "\\text{American : March 3rd, 2025}",
+    "\\text{It's the third of March.}"
+   ],
+   "titre": "Trois, March, deux formats",
+   "type": "etape"
+  },
+  "ecrire_quotidien__2": {
+   "kicker": "Écrire une date au quotidien",
+   "tex": [
+    "\\text{Monday, 3rd March 2025}",
+    "\\text{Dear Tom, How are you ?}"
+   ],
+   "titre": "En haut d'une page, d'une lettre",
+   "type": "etape"
+  },
+  "ecrire_quotidien__3": {
+   "kicker": "Écrire une date au quotidien",
+   "tex": [
+    "\\text{Monday, 3rd March 2025}",
+    "\\text{Dear Tom, How are you ?}"
+   ],
+   "titre": "En haut d'une page, d'une lettre",
+   "type": "etape"
+  },
+  "question_heure__2": {
+   "kicker": "Demander et dire l'heure",
+   "tex": [
+    "\\text{What time is it ?}",
+    "\\text{What's the time ?}",
+    "\\text{It's + hour + minutes}"
+   ],
+   "titre": "Deux questions, une réponse",
+   "type": "etape"
+  },
+  "demie_quart__2": {
+   "kicker": "Demi-heures et quarts d'heure",
+   "tex": [
+    "\\text{half past + hour}",
+    "\\text{a quarter past + hour}",
+    "\\text{a quarter to + next hour}"
+   ],
+   "titre": "Demie, quart, moins le quart",
+   "type": "etape"
+  },
+  "exercices_heure__2": {
+   "kicker": "Exercices d'application : réponses",
+   "tex": [
+    "\\text{It's six o'clock.}",
+    "\\text{It's ten to eight.}",
+    "\\text{It's half past nine.}",
+    "\\text{It's seven a.m.}"
+   ],
+   "titre": "O'clock, to, past, a.m.",
+   "type": "etape"
+  },
+  "emploi_structure__2": {
+   "kicker": "Écrire une phrase sur l'emploi du temps",
+   "tex": [
+    "\\text{On + day + at + time,}",
+    "\\text{I have + subject.}",
+    "\\text{On Monday at 8 o'clock,}",
+    "\\text{I have English.}"
+   ],
+   "titre": "Une structure, quatre briques",
+   "type": "etape"
+  },
+  "emploi_structure__3": {
+   "kicker": "Écrire une phrase sur l'emploi du temps",
+   "tex": [
+    "\\text{On + day + at + time,}",
+    "\\text{I have + subject.}",
+    "\\text{On Monday at 8 o'clock,}",
+    "\\text{I have English.}"
+   ],
+   "titre": "Une structure, quatre briques",
+   "type": "etape"
+  },
+  "emploi_structure__4": {
+   "kicker": "Écrire une phrase sur l'emploi du temps",
+   "tex": [
+    "\\text{On + day + at + time,}",
+    "\\text{I have + subject.}",
+    "\\text{On Monday at 8 o'clock,}",
+    "\\text{I have English.}"
+   ],
+   "titre": "Une structure, quatre briques",
+   "type": "etape"
+  },
+  "emploi_structure__5": {
+   "kicker": "Écrire une phrase sur l'emploi du temps",
+   "tex": [
+    "\\text{On + day + at + time,}",
+    "\\text{I have + subject.}",
+    "\\text{On Monday at 8 o'clock,}",
+    "\\text{I have English.}"
+   ],
+   "titre": "Une structure, quatre briques",
+   "type": "etape"
+  },
+  "emploi_complet__2": {
+   "kicker": "Présenter un emploi du temps complet",
+   "tex": [
+    "\\text{On Monday at eight o'clock,}",
+    "\\text{I have Maths.}",
+    "\\text{At nine o'clock,}",
+    "\\text{I have English.}"
+   ],
+   "titre": "Jour, heure, matière, en phrases",
+   "type": "etape"
+  }
+ },
+ "matiere": "Anglais",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Dire et écrire la date"
+  },
+  {
+   "debut": "p17",
+   "pont": {
+    "dit": "Partie deux : demander et dire l'heure. Nous verrons les heures pleines, les demies et les quarts, past et to, les heures officielles et les exercices de la leçon.",
+    "texte": "Partie 2 : dire l'heure."
+   },
+   "sous_titre": "Dire l'heure"
+  },
+  {
+   "debut": "p26",
+   "pont": {
+    "dit": "Partie trois : présenter ton emploi du temps scolaire avec des phrases très simples. Nous verrons la structure en quatre briques, un emploi du temps complet, la méthode en cinq gestes et les erreurs à éviter.",
+    "texte": "Partie 3 : présenter son emploi du temps."
+   },
+   "sous_titre": "Présenter son emploi du temps"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'anglais : dire et écrire la date, dire l'heure, et présenter ton emploi du temps scolaire avec des phrases très simples. Trois leçons, un même objectif : te repérer dans le temps, à l'écrit comme à l'oral.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Date, heure, emploi du temps : se repérer dans le temps."
+  },
+  {
+   "dit": "Premier objectif : dire et écrire la date en anglais, jour, mois et année, utiliser les nombres ordinaux pour le jour du mois, et écrire une date simple dans la vie quotidienne, sur un cahier, une carte postale ou un message court.",
+   "ecran": "jours",
+   "id": "p02",
+   "texte": "Objectifs : date, ordinaux, date au quotidien."
+  },
+  {
+   "dit": "Les jours de la semaine prennent toujours une majuscule en anglais : Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. Les mois aussi prennent toujours une majuscule.",
+   "ecran": "jours__2",
+   "id": "p03",
+   "texte": "Jours et mois : toujours une majuscule."
+  },
+  {
+   "dit": "Pour dire le jour du mois, on utilise un nombre ordinal, pas un nombre normal. Règle générale : on ajoute th au nombre. Quatre devient fourth, six devient sixth, onze devient eleventh.",
+   "ecran": "ordinaux",
+   "id": "p04",
+   "texte": "Le jour du mois se dit avec un ordinal."
+  },
+  {
+   "dit": "Attention aux exceptions importantes : un devient first, première forme courte 1st, deux devient second, 2nd, trois devient third, 3rd, cinq devient fifth, huit devient eighth.",
+   "ecran": "ordinaux__2",
+   "id": "p05",
+   "texte": "First, second, third, fifth, eighth : les exceptions."
+  },
+  {
+   "dit": "À l'écrit, on peut utiliser la forme courte : 1st, 2nd, 3rd, 4th, et ainsi de suite, avec le nombre suivi des deux dernières lettres de l'ordinal.",
+   "ecran": "ordinaux__3",
+   "id": "p06",
+   "texte": "À l'écrit : la forme courte, 1st, 2nd, 3rd."
+  },
+  {
+   "dit": "Écrire la date : deux formats. Le format britannique met le jour, puis le mois, puis l'année. Le format américain met le mois, puis le jour, puis l'année.",
+   "ecran": "formats_date",
+   "id": "p07",
+   "texte": "Britannique : jour, mois, année. Américain : mois, jour, année."
+  },
+  {
+   "dit": "Exemple : le 5 septembre 2024 s'écrit, en britannique, 5th September 2024, et en américain, September 5th, 2024, avec une virgule après le jour.",
+   "ecran": "formats_date__2",
+   "id": "p08",
+   "texte": "5 septembre 2024, dans les deux formats."
+  },
+  {
+   "dit": "Pour dire la date à l'oral, la formule de base est : It's, puis the, puis l'ordinal, puis of, puis le mois. Exemple : It's the fifth of September, c'est le cinq septembre.",
+   "ecran": "formats_date__3",
+   "id": "p09",
+   "texte": "À l'oral : It's the, ordinal, of, mois."
+  },
+  {
+   "dit": "En anglais américain, on dit souvent : It's September fifth, c'est septembre cinq, sans the ni of.",
+   "ecran": "formats_date__4",
+   "id": "p10",
+   "texte": "En américain : It's September fifth."
+  },
+  {
+   "dit": "Exemple résolu : écris la date du 3 mars 2025 en anglais, dans les deux formats, puis rédige une phrase complète. Étape un : le jour du mois est trois, donc third, forme courte 3rd. Étape deux : le mois est March.",
+   "ecran": "exemple_date",
+   "id": "p11",
+   "texte": "Exemple : le 3 mars 2025, étape par étape."
+  },
+  {
+   "dit": "Étape trois, l'écriture de la date : en britannique, 3rd March 2025, en américain, March 3rd, 2025. Étape quatre, la phrase complète : It's the third of March.",
+   "ecran": "exemple_date__2",
+   "id": "p12",
+   "texte": "Réponse : 3rd March 2025, March 3rd, 2025."
+  },
+  {
+   "dit": "Dans la vie quotidienne, on utilise la date pour écrire la date en haut d'une page de cahier, pour dater une carte postale ou une lettre, et pour donner un rendez-vous.",
+   "ecran": "ecrire_quotidien",
+   "id": "p13",
+   "texte": "Cahier, carte postale, lettre, rendez-vous."
+  },
+  {
+   "dit": "Exemple de début de lettre : Monday, 3rd March 2025, puis Dear Tom, cher Tom, puis How are you, comment vas-tu. La date ouvre la lettre, avant la salutation.",
+   "ecran": "ecrire_quotidien__2",
+   "id": "p14",
+   "texte": "Début de lettre : date, Dear Tom, How are you ?"
+  },
+  {
+   "dit": "Retenons pour la date : jours et mois avec une majuscule, jour du mois avec un ordinal, format britannique jour avant mois, format américain mois avant jour, et à l'oral, It's the, puis l'ordinal, puis of, puis le mois.",
+   "ecran": "ecrire_quotidien__3",
+   "id": "p15",
+   "texte": "Date : majuscule, ordinal, deux formats."
+  },
+  {
+   "dit": "Deuxième leçon, en transition : elle reprend la date pour introduire l'heure, et elle nous mènera à l'emploi du temps. Passons maintenant à l'heure elle-même.",
+   "ecran": "question_heure",
+   "id": "p16",
+   "texte": "De la date à l'heure, puis à l'emploi du temps."
+  },
+  {
+   "dit": "Pour demander l'heure, on utilise la question : What time is it, quelle heure est-il, ou What's the time, c'est la même question en plus court. Pour répondre, deux structures sont possibles : It's, puis l'heure, puis o'clock, pour les heures pleines, ou It's, puis l'heure, puis les minutes.",
+   "ecran": "question_heure__2",
+   "id": "p17",
+   "texte": "What time is it ? It's, heure, minutes."
+  },
+  {
+   "dit": "Le mot o'clock ne s'emploie que lorsque les minutes sont égales à zéro. Exemple résolu : What time is it ? Réponse : It's three o'clock, il est trois heures pile.",
+   "ecran": "pleines",
+   "id": "p18",
+   "texte": "O'clock seulement quand les minutes sont à zéro."
+  },
+  {
+   "dit": "Heures pleines : on dit le nombre d'heures suivi de o'clock. Sept heures se dit : It's seven o'clock. Pour exprimer et demie, on utilise half past, puis l'heure : cinq heures trente se dit It's half past five.",
+   "ecran": "demie_quart",
+   "id": "p19",
+   "texte": "Sept heures pile, cinq heures et demie."
+  },
+  {
+   "dit": "Quarts d'heure : a quarter past, puis l'heure, veut dire et quart, quinze minutes. A quarter to, puis l'heure suivante, veut dire moins le quart, quarante-cinq minutes. Exemple résolu : six heures quarante-cinq se dit It's a quarter to seven.",
+   "ecran": "demie_quart__2",
+   "id": "p20",
+   "texte": "A quarter past, et quart ; a quarter to, moins le quart."
+  },
+  {
+   "dit": "Les minutes partagent le cadran en deux moitiés : de une à vingt-neuf minutes, on utilise past, après l'heure ; de trente et une à cinquante-neuf minutes, on utilise to, avant l'heure suivante. Exemple résolu : huit heures quarante se dit It's twenty to nine, vingt minutes avant neuf heures.",
+   "ecran": "minutes",
+   "id": "p21",
+   "texte": "De 1 à 29 : past ; de 31 à 59 : to."
+  },
+  {
+   "dit": "Pour éviter toute confusion entre matin et soir, on ajoute a.m., de minuit à midi, ante meridiem, ou p.m., de midi à minuit, post meridiem. Exemple résolu : huit heures du soir se dit It's eight p.m. On peut aussi utiliser le format sur vingt-quatre heures : It's 14:30.",
+   "ecran": "am_pm",
+   "id": "p22",
+   "texte": "Matin : a.m. ; après-midi et soir : p.m."
+  },
+  {
+   "dit": "À l'écrit, deux formats coexistent : le format britannique, 8.30, avec un point, et le format numérique, 8:30, avec deux-points. Exemple résolu : il est dix heures quinze se dit It's ten fifteen a.m., et s'écrit 10:15 a.m.",
+   "ecran": "ecrire_heure",
+   "id": "p23",
+   "texte": "À l'écrit : 8.30 britannique, 8:30 numérique."
+  },
+  {
+   "dit": "Exercices d'application de la leçon, avec leurs réponses. Un : It's six, puis un blanc, pour six heures : o'clock. Deux : It's ten, puis un blanc, eight, pour sept heures cinquante : to. Trois : It's half, puis un blanc, nine, pour neuf heures trente : past.",
+   "ecran": "exercices_heure",
+   "id": "p24",
+   "texte": "Exercices : o'clock, to, past."
+  },
+  {
+   "dit": "Quatre : It's seven, puis un blanc, pour sept heures du matin : o'clock, puis a.m. Retiens la série : zéro minute, o'clock ; quinze minutes, a quarter past ; trente minutes, half past ; quarante-cinq minutes, a quarter to.",
+   "ecran": "exercices_heure__2",
+   "id": "p25",
+   "texte": "Sept heures du matin : seven o'clock, a.m."
+  },
+  {
+   "dit": "Troisième leçon : présenter ton emploi du temps scolaire à l'écrit, avec des phrases très simples. Rappel d'abord : deux façons de dire l'heure. La façon simple : on lit les chiffres, huit heures quinze se dit eight fifteen.",
+   "ecran": "emploi_structure",
+   "id": "p26",
+   "texte": "Deux façons de dire l'heure : chiffres, ou past et to."
+  },
+  {
+   "dit": "La façon classique utilise past et to : pour les minutes de une à trente, on utilise past, huit heures dix se dit ten past eight ; pour les minutes de trente et une à cinquante-neuf, on utilise to en comptant les minutes qui restent, huit heures cinquante se dit ten to nine.",
+   "ecran": "emploi_structure__2",
+   "id": "p27",
+   "texte": "Past de 1 à 30, to de 31 à 59."
+  },
+  {
+   "dit": "Exemple résolu : écris sept heures quarante-cinq en anglais. Quarante-cinq minutes, c'est quinze minutes avant huit heures. On utilise donc to : a quarter to eight.",
+   "ecran": "emploi_structure__3",
+   "id": "p28",
+   "texte": "7 h 45 : a quarter to eight."
+  },
+  {
+   "dit": "Structure de base d'une phrase d'emploi du temps : On, puis le jour, puis at, puis l'heure, puis I have, puis la matière. Exemple résolu : On Monday at 8 o'clock, I have English, le lundi à huit heures, j'ai anglais.",
+   "ecran": "emploi_structure__4",
+   "id": "p29",
+   "texte": "On, jour, at, heure, I have, matière."
+  },
+  {
+   "dit": "Pour dire qu'on n'a pas cours : On Sunday, I don't have school, le dimanche, je n'ai pas école.",
+   "ecran": "emploi_structure__5",
+   "id": "p30",
+   "texte": "Pas de cours : On Sunday, I don't have school."
+  },
+  {
+   "dit": "Présenter un emploi du temps complet, en trois étapes. Étape un : le tableau. Étape deux : les phrases. On Monday at eight o'clock, I have Maths. On Monday at nine o'clock, I have English. On Tuesday at a quarter past ten, I have P.E.",
+   "ecran": "emploi_complet",
+   "id": "p31",
+   "texte": "Tableau, puis phrases, jour par jour."
+  },
+  {
+   "dit": "Étape trois : ajouter une conclusion simple. My favourite subject is English, ma matière préférée est l'anglais. I like P.E. because it is fun, j'aime le sport parce que c'est amusant.",
+   "ecran": "emploi_complet__2",
+   "id": "p32",
+   "texte": "Conclusion : ta matière préférée, et pourquoi."
+  },
+  {
+   "dit": "Méthode pour rédiger ton propre emploi du temps, en cinq gestes. Un : choisis un jour, On Monday. Deux : indique l'heure, at 8 o'clock. Trois : ajoute la matière, I have Maths. Quatre : répète pour chaque cours de la journée. Cinq : termine par une phrase sur ta matière préférée.",
+   "ecran": "methode_emploi",
+   "id": "p33",
+   "texte": "Méthode en cinq gestes."
+  },
+  {
+   "dit": "Exemple complet modèle : On Monday at eight o'clock, I have Maths. At nine o'clock, I have English. At ten o'clock, I have a break. At half past ten, I have History. My favourite subject is English.",
+   "ecran": "emploi_exemple",
+   "id": "p34",
+   "texte": "Modèle complet : lundi, de huit heures à l'histoire."
+  },
+  {
+   "dit": "Erreurs fréquentes à éviter. Ne pas oublier at devant l'heure : at 8 o'clock, et non in 8 o'clock. Ne pas oublier on devant le jour : on Monday, et non in Monday. Utiliser have, et non has, avec I : I have Maths. Écrire les jours et les matières avec une majuscule : Monday, English.",
+   "ecran": "erreurs_emploi",
+   "id": "p35",
+   "texte": "At devant l'heure, on devant le jour, I have."
+  },
+  {
+   "dit": "Retenons l'essentiel : jours et mois avec une majuscule, jour du mois avec un ordinal, deux formats de date, l'heure avec o'clock, past et to, et l'emploi du temps avec On, puis le jour, puis at, puis l'heure, puis I have, puis la matière. Une phrase simple suffit pour décrire chaque cours de la journée.",
+   "ecran": "recap",
+   "id": "p36",
+   "texte": "Date, heure, emploi du temps : le récapitulatif."
+  }
+ ],
+ "titre": "Dire la date et l'heure, présenter son emploi du temps"
+}

@@ -1,0 +1,537 @@
+{
+ "cours": 5956,
+ "titre": "L'oxydoréduction : généralités et notion de couples redox",
+ "matiere": "Chimie",
+ "lecons": [
+  4878,
+  4879,
+  4880,
+  4881,
+  4882,
+  4883,
+  4884,
+  4885
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · L'oxydoréduction",
+   "titre": "Généralités et couples redox",
+   "sous": "Oxydation, réduction, nombre d'oxydation et potentiel standard",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Un phénomène omniprésent",
+   "texte": "Respiration cellulaire, piles et batteries, corrosion des métaux : derrière tous ces phénomènes, des électrons qui passent d'une espèce chimique à une autre.",
+   "anim": {
+    "nom": "pile_daniell_fig",
+    "hauteur": 170
+   }
+  },
+  "oxydation": {
+   "type": "formule",
+   "kicker": "L'oxydation",
+   "tex": "\\mathrm{Fe} \\rightarrow \\mathrm{Fe}^{2+} + 2e^{-}",
+   "note": "l'oxydation est une perte d'électrons : le nombre d'oxydation augmente"
+  },
+  "reduction": {
+   "type": "formule",
+   "kicker": "La réduction",
+   "tex": "\\mathrm{Cu}^{2+} + 2e^{-} \\rightarrow \\mathrm{Cu}",
+   "note": "la réduction est un gain d'électrons : le nombre d'oxydation diminue"
+  },
+  "moyen_memo": {
+   "type": "phrase",
+   "kicker": "Le moyen de ne plus confondre",
+   "texte": "Oxydation = Perte · Réduction = Gain : les initiales O-P et R-G ne trompent jamais.",
+   "anim": {
+    "nom": "ion_formation_fig",
+    "hauteur": 160
+   }
+  },
+  "rouille": {
+   "type": "etape",
+   "kicker": "L'exemple familier",
+   "titre": "La formation de la rouille",
+   "tex": [
+    "4\\,\\mathrm{Fe} + 3\\,\\mathrm{O}_2 \\rightarrow 2\\,\\mathrm{Fe}_2\\mathrm{O}_3"
+   ]
+  },
+  "toujours_couplees": {
+   "type": "phrase",
+   "kicker": "Un duo inséparable",
+   "texte": "Les électrons perdus par une espèce sont forcément reçus par une autre : oxydation et réduction se produisent toujours simultanément.",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 170
+   }
+  },
+  "couple_formule": {
+   "type": "formule",
+   "kicker": "Le couple redox",
+   "tex": "\\text{Oxydant} + n\\,e^{-} \\rightleftharpoons \\text{Réducteur}",
+   "note": "la demi-équation relie la forme oxydée et la forme réduite du couple"
+  },
+  "roles": {
+   "type": "etape",
+   "kicker": "Les rôles dans le couple",
+   "titre": "Qui fait quoi ?",
+   "tex": [
+    "\\text{Oxydant} + e^{-} \\rightarrow \\text{forme réduite}",
+    "\\text{Réducteur} \\rightarrow \\text{forme oxydée} + e^{-}"
+   ]
+  },
+  "demi_equation_fer": {
+   "type": "formule",
+   "kicker": "Un couple simple",
+   "tex": "\\mathrm{Fe}^{3+} + e^{-} \\rightleftharpoons \\mathrm{Fe}^{2+}",
+   "note": "Fe trois plus est l'oxydant, Fe deux plus le réducteur du couple"
+  },
+  "exemples_couples": {
+   "type": "etape",
+   "kicker": "Des couples à connaître",
+   "titre": "L'oxydant toujours en premier",
+   "tex": [
+    "\\mathrm{Fe}^{3+}/\\mathrm{Fe}^{2+} \\qquad \\mathrm{Cu}^{2+}/\\mathrm{Cu}",
+    "\\mathrm{O}_2/\\mathrm{H}_2\\mathrm{O} \\qquad \\mathrm{Zn}^{2+}/\\mathrm{Zn}",
+    "\\mathrm{Cl}_2/\\mathrm{Cl}^{-}"
+   ]
+  },
+  "reaction_fer_cuivre": {
+   "type": "etape",
+   "kicker": "Deux couples en réaction",
+   "titre": "Le fer déplace le cuivre",
+   "tex": [
+    "\\mathrm{Fe} + \\mathrm{Cu}^{2+} \\rightarrow \\mathrm{Fe}^{2+} + \\mathrm{Cu}",
+    "\\mathrm{Fe} \\rightarrow \\mathrm{Fe}^{2+} + 2e^{-} \\quad \\text{(oxydation)}",
+    "\\mathrm{Cu}^{2+} + 2e^{-} \\rightarrow \\mathrm{Cu} \\quad \\text{(réduction)}"
+   ]
+  },
+  "premier_bilan": {
+   "type": "recap",
+   "kicker": "Premier bilan",
+   "etapes": [
+    "Oxydation : perdre des électrons",
+    "Réduction : gagner des électrons",
+    "Toujours couplées, jamais seules",
+    "Un couple : Oxydant / Réducteur"
+   ]
+  },
+  "no_def": {
+   "type": "phrase",
+   "kicker": "Le nombre d'oxydation",
+   "texte": "Le nombre d'oxydation est la charge fictive d'un atome dans une molécule, calculée comme si toutes les liaisons étaient ioniques."
+  },
+  "no_eau": {
+   "type": "formule",
+   "kicker": "Premier exemple : l'eau",
+   "tex": "\\text{dans } \\mathrm{H}_2\\mathrm{O} : \\quad \\mathrm{O} \\to -\\mathrm{II}, \\quad \\mathrm{H} \\to +\\mathrm{I}",
+   "note": "la somme des nombres d'oxydation d'une molécule neutre vaut zéro"
+  },
+  "no_kmno4": {
+   "type": "etape",
+   "kicker": "À vous de calculer",
+   "titre": "Le manganèse dans le permanganate",
+   "tex": [
+    "\\mathrm{K} = +\\mathrm{I}, \\qquad \\mathrm{O} = -\\mathrm{II}",
+    "(+\\mathrm{I}) + x + 4 \\times (-\\mathrm{II}) = 0",
+    "x = +\\mathrm{VII}"
+   ]
+  },
+  "no_methode": {
+   "type": "recap",
+   "kicker": "La méthode d'identification",
+   "etapes": [
+    "Repérer les éléments et leurs formules",
+    "Calculer les nombres d'oxydation",
+    "Comparer réactifs et produits",
+    "Hausse : oxydation ; baisse : réduction",
+    "Conclure : redox si variation"
+   ]
+  },
+  "no_exemple": {
+   "type": "etape",
+   "kicker": "Exercice des leçons",
+   "titre": "Redox ou pas ? Le fer et le dichlore",
+   "tex": [
+    "2\\,\\mathrm{FeCl}_2 + \\mathrm{Cl}_2 \\rightarrow 2\\,\\mathrm{FeCl}_3",
+    "\\mathrm{Fe} : +\\mathrm{II} \\rightarrow +\\mathrm{III} \\quad \\text{(oxydation)}",
+    "\\mathrm{Cl} : 0 \\rightarrow -\\mathrm{I} \\quad \\text{(réduction)}"
+   ]
+  },
+  "no_contre_exemple": {
+   "type": "formule",
+   "kicker": "Le contre-exemple",
+   "tex": "\\mathrm{Ag}^{+} + \\mathrm{Cl}^{-} \\rightarrow \\mathrm{AgCl}",
+   "note": "aucun nombre d'oxydation ne change : ce n'est pas une réaction redox"
+  },
+  "identifier_couples": {
+   "type": "etape",
+   "kicker": "Identifier les couples",
+   "titre": "La méthode en trois temps",
+   "tex": [
+    "\\mathrm{Zn} + \\mathrm{Cu}^{2+} \\rightarrow \\mathrm{Zn}^{2+} + \\mathrm{Cu}",
+    "\\mathrm{Zn} : 0 \\rightarrow +\\mathrm{II} \\quad \\text{(il s'oxyde)}",
+    "\\mathrm{Cu} : +\\mathrm{II} \\rightarrow 0 \\quad \\text{(il se réduit)}"
+   ]
+  },
+  "exercice_iode": {
+   "type": "etape",
+   "kicker": "Entraînement corrigé",
+   "titre": "Le fer trois et les ions iodure",
+   "tex": [
+    "2\\,\\mathrm{Fe}^{3+} + 2\\,\\mathrm{I}^{-} \\rightarrow 2\\,\\mathrm{Fe}^{2+} + \\mathrm{I}_2",
+    "\\text{couples : } \\mathrm{Fe}^{3+}/\\mathrm{Fe}^{2+} \\text{ et } \\mathrm{I}_2/\\mathrm{I}^{-}"
+   ]
+  },
+  "potentiel_def": {
+   "type": "phrase",
+   "kicker": "Le potentiel standard",
+   "texte": "Chaque couple redox possède un potentiel standard E°, exprimé en volts : il mesure sa tendance à se réduire, dans les conditions standard (25 °C, 1 bar, 1 mol/L)."
+  },
+  "esh": {
+   "type": "formule",
+   "kicker": "La référence des mesures",
+   "tex": "E^\\circ(\\mathrm{H}^{+}/\\mathrm{H}_2) = 0\\ \\text{V}",
+   "note": "l'électrode standard à hydrogène : le zéro de tous les potentiels"
+  },
+  "lecture_echelle": {
+   "type": "phrase",
+   "kicker": "Lire l'échelle",
+   "texte": "En haut de l'échelle, les oxydants les plus forts ; en bas, les réducteurs les plus forts. Plus E° est grand, plus l'oxydant du couple attire les électrons."
+  },
+  "prediction_regle": {
+   "type": "etape",
+   "kicker": "La règle de prédiction",
+   "titre": "Le couple le plus haut impose son sens",
+   "tex": [
+    "E^\\circ(\\text{couple oxydant}) > E^\\circ(\\text{couple réducteur})",
+    "\\Rightarrow \\text{réaction spontanée}"
+   ]
+  },
+  "prediction_exemple": {
+   "type": "etape",
+   "kicker": "Prédiction vérifiée",
+   "titre": "Zinc et ions cuivre : qui gagne ?",
+   "tex": [
+    "\\mathrm{Cu}^{2+} + \\mathrm{Zn} \\rightarrow \\mathrm{Cu} + \\mathrm{Zn}^{2+}",
+    "E^\\circ(\\mathrm{Cu}^{2+}/\\mathrm{Cu}) = +0{,}34\\ \\text{V}",
+    "E^\\circ(\\mathrm{Zn}^{2+}/\\mathrm{Zn}) = -0{,}76\\ \\text{V}"
+   ]
+  },
+  "fem": {
+   "type": "formule",
+   "kicker": "Application : la pile",
+   "tex": "E^\\circ_{\\text{pile}} = 0{,}34 - (-0{,}76) = 1{,}10\\ \\text{V}",
+   "note": "la force électromotrice : la différence des potentiels des deux couples"
+  },
+  "corrosion": {
+   "type": "phrase",
+   "kicker": "Retour sur la corrosion",
+   "texte": "La rouille s'explique par les couples Fe²⁺/Fe et O₂/H₂O : le fer s'oxyde, le dioxygène se réduit, et l'eau sert de milieu réactionnel.",
+   "anim": {
+    "nom": "corrosion_fig",
+    "hauteur": 170
+   }
+  },
+  "applications": {
+   "type": "phrase",
+   "kicker": "Le redox au travail",
+   "texte": "Respiration et photosynthèse, piles et batteries, électrolyse, corrosion : les réactions redox font tourner le vivant et nos technologies.",
+   "anim": {
+    "nom": "electrolyse_fig",
+    "hauteur": 160
+   }
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Points clés du cours",
+   "etapes": [
+    "Oxydation : perte d'électrons",
+    "Couple redox : Oxydant / Réducteur",
+    "Le nombre d'oxydation traque les échanges",
+    "E° classe les couples sur une échelle",
+    "Le E° le plus haut impose le sens spontané"
+   ]
+  },
+  "echelle_oxydants": {
+   "type": "etape",
+   "kicker": "L'échelle redox",
+   "titre": "En haut : les oxydants forts",
+   "tex": [
+    "\\mathrm{F}_2/\\mathrm{F}^{-} : +2{,}87\\ \\text{V}",
+    "\\mathrm{Cl}_2/\\mathrm{Cl}^{-} : +1{,}36\\ \\text{V} \\quad \\mathrm{O}_2/\\mathrm{H}_2\\mathrm{O} : +1{,}23\\ \\text{V}",
+    "\\mathrm{Fe}^{3+}/\\mathrm{Fe}^{2+} : +0{,}77\\ \\text{V} \\quad \\mathrm{Cu}^{2+}/\\mathrm{Cu} : +0{,}34\\ \\text{V}"
+   ],
+   "anim": {
+    "nom": "echelle_redox_fig",
+    "hauteur": 120
+   }
+  },
+  "echelle_reducteurs": {
+   "type": "etape",
+   "kicker": "L'échelle redox",
+   "titre": "En bas : les réducteurs forts",
+   "tex": [
+    "\\mathrm{H}^{+}/\\mathrm{H}_2 : 0\\ \\text{V} \\qquad \\mathrm{Pb}^{2+}/\\mathrm{Pb} : -0{,}13\\ \\text{V}",
+    "\\mathrm{Zn}^{2+}/\\mathrm{Zn} : -0{,}76\\ \\text{V} \\qquad \\mathrm{Na}^{+}/\\mathrm{Na} : -2{,}71\\ \\text{V}"
+   ],
+   "anim": {
+    "nom": "echelle_redox_fig",
+    "hauteur": 150
+   }
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "pause_apres": 0.9,
+   "dit": "Bienvenue dans ce premier chapitre consacré à l'oxydoréduction. Nous poserons d'abord les définitions : ce que sont l'oxydation, la réduction et un couple redox. Nous découvrirons ensuite le nombre d'oxydation, l'outil qui traque les électrons échangés. Nous terminerons par le potentiel standard, qui classe les couples et permet de prédire le sens des réactions.",
+   "texte": "L'oxydoréduction : généralités et notion de couples redox."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "pause_apres": 0.8,
+   "dit": "L'oxydoréduction est partout autour de nous. C'est elle qui fait respirer nos cellules et produit leur énergie, elle qui fait fonctionner les piles et les batteries, et elle encore qui ronge lentement les métaux par la corrosion. Derrière tous ces phénomènes, un même mécanisme : des électrons qui passent d'une espèce chimique à une autre.",
+   "texte": "Respiration, batteries, corrosion : des électrons qui changent de main."
+  },
+  {
+   "id": "p03",
+   "ecran": "oxydation",
+   "pause_apres": 0.8,
+   "dit": "Commençons par l'oxydation. Oxyder une espèce chimique, c'est lui faire perdre des électrons. Regardez le fer : en perdant deux électrons, il devient l'ion fer deux plus. En perdant ses électrons, l'espèce voit son nombre d'oxydation augmenter. Retenez l'image du don : l'espèce oxydée est un donneur d'électrons.",
+   "texte": "L'oxydation : une perte d'électrons."
+  },
+  {
+   "id": "p04",
+   "ecran": "reduction",
+   "pause_apres": 0.8,
+   "dit": "La réduction est le mouvement inverse : une espèce gagne des électrons. Regardez l'ion cuivre deux plus : en captant deux électrons, il devient du cuivre métal. En gagnant des électrons, l'espèce voit son nombre d'oxydation diminuer. L'espèce réduite est donc un receveur d'électrons.",
+   "texte": "La réduction : un gain d'électrons."
+  },
+  {
+   "id": "p05",
+   "ecran": "moyen_memo",
+   "pause_apres": 0.8,
+   "dit": "Comment ne plus jamais confondre les deux ? Retenez cette phrase toute simple : oxydation égale perte, réduction égale gain. Les initiales vous guident : le O de oxydation va avec le P de perte, et le R de réduction va avec le G de gain. C'est le moyen mnémotechnique des leçons, et il ne trompe jamais.",
+   "texte": "Oxydation = Perte · Réduction = Gain."
+  },
+  {
+   "id": "p06",
+   "ecran": "rouille",
+   "pause_apres": 0.8,
+   "dit": "Voyons cela sur l'exemple le plus familier : la rouille. Quand le fer rencontre le dioxygène de l'air, il se forme un oxyde de fer, la rouille. Le fer perd des électrons : il s'oxyde. Le dioxygène capte ces électrons : il se réduit. Les deux transformations se produisent en même temps, dans une seule et même réaction.",
+   "texte": "La rouille : le fer s'oxyde, le dioxygène se réduit."
+  },
+  {
+   "id": "p07",
+   "ecran": "toujours_couplees",
+   "pause_apres": 0.8,
+   "dit": "Une question vient alors naturellement : peut-on observer une oxydation toute seule, sans réduction ? La réponse est non. Les électrons perdus par une espèce doivent bien aller quelque part : une autre espèce les reçoit. Oxydation et réduction sont donc toujours couplées, et leur ensemble porte un nom : la réaction d'oxydoréduction, ou réaction redox.",
+   "texte": "Jamais l'une sans l'autre : c'est la réaction redox."
+  },
+  {
+   "id": "p08",
+   "ecran": "couple_formule",
+   "pause_apres": 0.8,
+   "dit": "Pour décrire ces échanges, les chimistes utilisent la notion de couple redox. Un couple redox rassemble deux espèces : une forme oxydée et sa forme réduite, liées par un transfert d'électrons. On écrit le couple en mettant l'oxydant en premier : oxydant, barre oblique, réducteur. La demi-équation de l'écran montre le passage de l'un à l'autre.",
+   "texte": "Un couple redox : Oxydant / Réducteur, liés par des électrons."
+  },
+  {
+   "id": "p09",
+   "ecran": "roles",
+   "pause_apres": 0.8,
+   "dit": "Dans un couple, chacun a son rôle. L'oxydant est l'espèce capable de capter des électrons : lorsqu'il les capte, on dit qu'il se fait réduire. Le réducteur est l'espèce capable de céder des électrons : lorsqu'il les cède, il se fait oxyder. Attention au piège classique : l'oxydant n'est pas l'espèce qui s'oxyde, c'est celle qui provoque l'oxydation de l'autre.",
+   "texte": "L'oxydant capte et se réduit ; le réducteur cède et s'oxyde."
+  },
+  {
+   "id": "p10",
+   "ecran": "demi_equation_fer",
+   "pause_apres": 0.8,
+   "dit": "Prenons le couple le plus simple : l'ion fer trois plus et l'ion fer deux plus. Sa demi-équation s'écrit : fer trois plus, plus un électron, donne fer deux plus, et la réaction peut aussi repartir en sens inverse. Ici, fer trois plus est l'oxydant : il reçoit l'électron. Fer deux plus est le réducteur : il peut le donner.",
+   "texte": "Le couple Fe³⁺/Fe²⁺ : une demi-équation à un électron."
+  },
+  {
+   "id": "p11",
+   "ecran": "exemples_couples",
+   "pause_apres": 0.8,
+   "dit": "Voici quelques couples à reconnaître au premier coup d'œil. Le fer trois sur le fer deux, le cuivre deux sur le cuivre métal, le dioxygène sur l'eau, le zinc deux sur le zinc métal, et le dichlore sur l'ion chlorure. Dans chaque couple, l'espèce écrite en premier est toujours la forme oxydée, l'oxydant.",
+   "texte": "Des couples fréquents : Fe³⁺/Fe²⁺, Cu²⁺/Cu, O₂/H₂O, Zn²⁺/Zn, Cl₂/Cl⁻."
+  },
+  {
+   "id": "p12",
+   "ecran": "reaction_fer_cuivre",
+   "pause_apres": 0.8,
+   "dit": "Assemblons maintenant deux couples dans une vraie réaction : le fer métal plongé dans une solution d'ions cuivre. Le fer s'oxyde et passe en solution sous forme d'ions fer deux plus, pendant que les ions cuivre se réduisent et déposent du cuivre métal. En additionnant les deux demi-équations, les électrons échangés disparaissent de l'équation bilan : ils ont simplement changé de camp.",
+   "texte": "Fe + Cu²⁺ → Fe²⁺ + Cu : deux demi-équations, un bilan."
+  },
+  {
+   "id": "p13",
+   "ecran": "premier_bilan",
+   "pause_apres": 0.8,
+   "dit": "Récapitulons cette première partie. L'oxydation est une perte d'électrons, la réduction un gain, et les deux marchent toujours ensemble. Un couple redox rassemble un oxydant et son réducteur, reliés par une demi-équation. Dans la deuxième partie, nous verrons l'outil qui permet de repérer ces échanges dans n'importe quelle réaction : le nombre d'oxydation.",
+   "texte": "Oxydation, réduction, couples : les bases sont posées."
+  },
+  {
+   "id": "p14",
+   "ecran": "no_def",
+   "pause_apres": 0.8,
+   "dit": "Voici le nombre d'oxydation. Il représente la charge fictive d'un atome dans une molécule, calculée comme si toutes ses liaisons étaient ioniques, c'est-à-dire comme si les électrons de liaison appartenaient entièrement à l'un des deux atomes. Fictive, donc, mais redoutablement utile : elle traque les électrons et révèle les réactions redox cachées.",
+   "texte": "Le nombre d'oxydation : une charge fictive qui traque les électrons."
+  },
+  {
+   "id": "p15",
+   "ecran": "no_eau",
+   "pause_apres": 0.8,
+   "dit": "Premier exemple, l'eau. Dans la molécule d'eau, l'oxygène porte le nombre d'oxydation moins deux, et chaque hydrogène porte le nombre plus un. Vérifions : deux fois plus un, plus moins deux, donne zéro, et c'est bien ce qu'exige une molécule neutre : la somme des nombres d'oxydation y est toujours nulle.",
+   "texte": "Dans H₂O : O → −II, H → +I, et la somme vaut zéro."
+  },
+  {
+   "id": "p16",
+   "ecran": "no_kmno4",
+   "pause_apres": 0.8,
+   "dit": "À vous de vérifier, avec l'exemple posé dans les leçons : quel est le nombre d'oxydation du manganèse dans le permanganate de potassium ? On connaît celui du potassium, plus un, et celui de l'oxygène, moins deux. La molécule est neutre, donc la somme doit être nulle. Il reste une inconnue, et le calcul donne plus sept : le manganèse y est au degré plus sept.",
+   "texte": "KMnO₄ : K → +I, O → −II, donc Mn → +VII."
+  },
+  {
+   "id": "p17",
+   "ecran": "no_methode",
+   "pause_apres": 0.8,
+   "dit": "Ces nombres donnent une méthode complète pour reconnaître une réaction redox. On repère les éléments présents, on calcule leur nombre d'oxydation dans les réactifs puis dans les produits, et on compare. Si un nombre augmente, il y a oxydation ; s'il diminue, réduction. Et si au moins un élément varie, la réaction est une réaction d'oxydoréduction.",
+   "texte": "La méthode : calculer, comparer, conclure."
+  },
+  {
+   "id": "p18",
+   "ecran": "no_exemple",
+   "pause_apres": 0.8,
+   "dit": "Testons la méthode sur un exercice des leçons : le chlorure de fer deux réagit avec le dichlore pour donner du chlorure de fer trois. Le fer passe du degré plus deux au degré plus trois : son nombre augmente, il s'oxyde. Le chlore passe du degré zéro au degré moins un : son nombre diminue, il se réduit. Verdict : c'est bien une réaction redox.",
+   "texte": "Fe : +II → +III ; Cl : 0 → −I. C'est une réaction redox."
+  },
+  {
+   "id": "p19",
+   "ecran": "no_contre_exemple",
+   "pause_apres": 0.8,
+   "dit": "Et voici le contre-exemple qui piège beaucoup d'élèves : les ions argent et les ions chlorure se rencontrent et forment un précipité de chlorure d'argent. Aucun électron n'est échangé, aucun nombre d'oxydation ne change : l'argent reste au degré plus un, le chlore au degré moins un. Ce n'est donc pas une réaction redox, mais une simple précipitation.",
+   "texte": "Ag⁺ + Cl⁻ → AgCl : aucun degré ne change, pas de redox."
+  },
+  {
+   "id": "p20",
+   "ecran": "identifier_couples",
+   "pause_apres": 0.8,
+   "dit": "Dernière méthode de cette partie : identifier les couples dans une réaction déjà écrite, comme celle du zinc et des ions cuivre. Première étape : repérer l'élément dont le degré change, ici le zinc et le cuivre. Deuxième étape : identifier ses deux formes, le métal et l'ion. Troisième étape : écrire les couples, forme oxydée en premier. On obtient le couple zinc deux sur zinc, et le couple cuivre deux sur cuivre.",
+   "texte": "Zinc : 0 → +II ; cuivre : +II → 0. Couples : Zn²⁺/Zn et Cu²⁺/Cu."
+  },
+  {
+   "id": "p21",
+   "ecran": "exercice_iode",
+   "pause_apres": 0.8,
+   "dit": "Dernier entraînement : le fer trois réagit avec les ions iodure. Le corrigé des leçons donne les deux couples en jeu : fer trois sur fer deux, et diiode sur ion iodure. Le fer trois capte un électron et devient fer deux : il se réduit. Les ions iodure cèdent leurs électrons et forment du diiode : ils s'oxydent. Vous savez désormais mener ce raisonnement seuls.",
+   "texte": "Couples : Fe³⁺/Fe²⁺ et I₂/I⁻ — le fer trois se réduit, l'iodure s'oxyde."
+  },
+  {
+   "id": "p22",
+   "ecran": "potentiel_def",
+   "pause_apres": 0.8,
+   "dit": "Passons à la mesure de la force. Chaque couple redox possède un potentiel standard, exprimé en volts. Il mesure la tendance du couple à se réduire : plus il est élevé, plus l'oxydant du couple est fort et attire les électrons. Il se mesure dans des conditions bien précises : vingt-cinq degrés, une pression d'un bar, et des concentrations d'une mole par litre, par comparaison avec une électrode de référence.",
+   "texte": "Le potentiel standard E° : la tendance d'un couple à se réduire."
+  },
+  {
+   "id": "p23",
+   "ecran": "esh",
+   "pause_apres": 0.8,
+   "dit": "La référence de toutes ces mesures, c'est l'électrode standard à hydrogène : une électrode de platine baignant dans une solution d'ions hydrogène, sous un gaz hydrogène à un bar. Par convention, le potentiel du couple ion hydrogène sur dihydrogène vaut exactement zéro volt. Tous les autres potentiels sont mesurés par rapport à ce zéro.",
+   "texte": "L'électrode standard à hydrogène : le zéro de l'échelle."
+  },
+  {
+   "id": "p24",
+   "ecran": "echelle_oxydants",
+   "pause_apres": 0.8,
+   "dit": "En rangeant tous les couples par potentiel croissant, on obtient l'échelle redox. Dans sa partie haute, les potentiels positifs : le difluor culmine à plus deux virgule quatre-vingt-sept volts, un oxydant redoutable, suivi du dichlore, du dioxygène, du fer trois et du cuivre.",
+   "texte": "En haut de l'échelle : F₂/F⁻ à +2,87 V, l'oxydant le plus fort."
+  },
+  {
+   "id": "p25",
+   "ecran": "echelle_reducteurs",
+   "pause_apres": 0.8,
+   "dit": "Dans la partie basse, on franchit le zéro de l'hydrogène, puis les potentiels deviennent négatifs : le plomb, le zinc, et tout en bas le sodium, à moins deux virgule soixante et onze volts, un réducteur extrêmement puissant. Plus on descend dans l'échelle, plus le réducteur du couple est fort.",
+   "texte": "En bas de l'échelle : Na⁺/Na à −2,71 V, le réducteur le plus fort."
+  },
+  {
+   "id": "p26",
+   "ecran": "lecture_echelle",
+   "pause_apres": 0.8,
+   "dit": "Comment lire cette échelle ? Un potentiel positif signale un couple qui aime se réduire : son oxydant est fort. Un potentiel négatif signale un couple qui préfère s'oxyder : son réducteur est fort. Et plus la valeur est éloignée de zéro, dans un sens ou dans l'autre, plus la tendance est marquée.",
+   "texte": "Positif : fort oxydant. Négatif : fort réducteur."
+  },
+  {
+   "id": "p27",
+   "ecran": "prediction_regle",
+   "pause_apres": 0.8,
+   "dit": "Cette échelle livre une règle d'or pour prédire le sens des réactions. Si l'on met en présence deux couples, la réaction spontanée met en scène l'oxydant du couple le plus haut placé, celui dont le potentiel est le plus élevé, et le réducteur du couple le plus bas. Le couple le plus haut impose son sens : son oxydant se réduit, l'autre réducteur s'oxyde.",
+   "texte": "La règle : l'oxydant du couple au E° le plus haut gagne."
+  },
+  {
+   "id": "p28",
+   "ecran": "prediction_exemple",
+   "pause_apres": 0.8,
+   "dit": "Vérifions sur l'exemple des leçons : le zinc métal face aux ions cuivre. Le couple du cuivre affiche plus zéro virgule trente-quatre volts, celui du zinc moins zéro virgule soixante-seize volt. Le couple du cuivre est le plus haut : son oxydant, l'ion cuivre, se réduit en cuivre métal, et le zinc s'oxyde en ions zinc. C'est exactement la réaction que nous avons écrite dans la première partie.",
+   "texte": "+0,34 V contre −0,76 V : Cu²⁺ se réduit, Zn s'oxyde."
+  },
+  {
+   "id": "p29",
+   "ecran": "fem",
+   "pause_apres": 0.8,
+   "dit": "Cette différence de potentiels a une application immédiate : la tension d'une pile. La force électromotrice d'une pile, c'est la différence entre le potentiel du couple le plus haut et celui du couple le plus bas. Pour la pile zinc-cuivre, cela donne zéro virgule trente-quatre, moins moins zéro virgule soixante-seize, soit un virgule dix volt : la célèbre pile Daniell.",
+   "texte": "f.é.m. = E°₊ − E°₋ = 0,34 − (−0,76) = 1,10 V : la pile Daniell."
+  },
+  {
+   "id": "p30",
+   "ecran": "corrosion",
+   "pause_apres": 0.8,
+   "dit": "L'échelle explique aussi la corrosion du fer, notre rouille du début. Les couples en jeu sont le fer deux sur fer, et le dioxygène sur l'eau. Le fer s'oxyde en ions fer deux ou fer trois, pendant que le dioxygène se réduit en eau. L'eau joue un double rôle : milieu de la réaction, et fournisseur de protons. Sans elle, pas de rouille.",
+   "texte": "Corrosion : couples Fe²⁺/Fe et O₂/H₂O, l'eau comme milieu."
+  },
+  {
+   "id": "p31",
+   "ecran": "applications",
+   "pause_apres": 0.8,
+   "dit": "Terminons par le tour d'horizon des applications rencontrées dans les leçons. La respiration cellulaire et la photosynthèse font tourner des chaînes de réactions redox. Les piles et les batteries convertissent l'énergie chimique en électricité. L'électrolyse fait le chemin inverse, en forçant des réactions par le courant. Et la corrosion rappelle que ces réactions travaillent aussi contre nous.",
+   "texte": "Respiration, piles, électrolyse, corrosion : le redox partout."
+  },
+  {
+   "id": "p32",
+   "ecran": "recap_final",
+   "pause_apres": 0.8,
+   "dit": "Vous avez maintenant les fondations complètes de l'oxydoréduction. L'oxydation est une perte d'électrons, la réduction un gain, et les couples redox organisent ces échanges. Le nombre d'oxydation permet de repérer les réactions redox à coup sûr, et le potentiel standard classe les couples pour prédire le sens des réactions. La suite du programme : équilibrer pas à pas les équations redox.",
+   "texte": "Fondations posées : couples, nombres d'oxydation, potentiels."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Oxydation, réduction et couples redox"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Le nombre d'oxydation, l'outil de traque",
+   "pont": {
+    "dit": "Partie deux : le nombre d'oxydation, l'outil de traque. Après les couples redox, voici la grandeur qui permet de suivre les électrons échangés et de reconnaître à coup sûr une réaction d'oxydoréduction.",
+    "texte": "Partie 2 : le nombre d'oxydation, l'outil de traque."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Le potentiel standard et l'échelle redox",
+   "pont": {
+    "dit": "Partie trois : le potentiel standard et l'échelle redox. Après les nombres d'oxydation, nous allons classer les couples selon leur force, et apprendre à prédire le sens spontané d'une réaction.",
+    "texte": "Partie 3 : classer les couples et prédire le sens des réactions."
+   }
+  }
+ ]
+}

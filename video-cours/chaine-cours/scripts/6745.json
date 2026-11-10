@@ -1,0 +1,461 @@
+{
+ "cours": 6745,
+ "titre": "Analyser une solution : dosage acido-basique et identification des ions",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Analyse des solutions",
+   "titre": "Analyser une solution : dosage acido-basique et identification des ions",
+   "sous": "Doser un acide par une base jusqu'à l'équivalence, puis reconnaître les ions d'une solution à leurs précipités",
+   "anim": {
+    "nom": "dosage_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "Deux questions d'analyste : quelle concentration, et quels ions ?"
+  },
+  "principe": {
+   "type": "etape",
+   "kicker": "Le principe du dosage",
+   "titre": "Déterminer une concentration par une réaction totale",
+   "tex": [
+    "\\text{doser : déterminer la concentration d'une espèce en solution}",
+    "\\text{solution titrée : concentration inconnue, dans le bécher}",
+    "\\text{solution titrante : concentration connue, dans la burette}"
+   ],
+   "anim": {
+    "nom": "dosage_fig",
+    "hauteur": 110
+   }
+  },
+  "equation": {
+   "type": "formule",
+   "kicker": "L'équation-bilan de la réaction",
+   "tex": "H_3O^+ + OH^- \\rightarrow 2\\,H_2O",
+   "note": "Na⁺ et Cl⁻ sont spectateurs : la réaction est totale et rapide."
+  },
+  "equivalence": {
+   "type": "etape",
+   "kicker": "L'équivalence acido-basique",
+   "titre": "Les réactifs introduits en proportions stœchiométriques",
+   "tex": [
+    "\\text{à l'équivalence : les quantités introduites sont égales}",
+    "n(H_3O^+) = n(OH^-) \\text{, et toutes deux consommées}",
+    "\\text{repérage : le virage d'un indicateur coloré}"
+   ]
+  },
+  "indicateurs": {
+   "type": "etape",
+   "kicker": "Les indicateurs colorés",
+   "titre": "Trois indicateurs à connaître",
+   "tex": [
+    "\\text{hélianthine : rouge en acide, jaune en base}",
+    "\\text{BBT (bleu de bromothymol) : jaune en acide, bleu en base}",
+    "\\text{phénolphtaléine : incolore en acide, rose en base}"
+   ],
+   "anim": {
+    "nom": "ph",
+    "debut": 2,
+    "cible": 12,
+    "hauteur": 110
+   }
+  },
+  "relation": {
+   "type": "formule",
+   "kicker": "La relation fondamentale",
+   "tex": "C_a \\times V_a = C_b \\times V_b",
+   "note": "C en mol/L, V en litres ; Vb est le volume versé à l'équivalence."
+  },
+  "exemple_donnees": {
+   "type": "etape",
+   "kicker": "Exemple résolu : les données",
+   "titre": "Dosage de l'acide chlorhydrique par la soude",
+   "tex": [
+    "V_a = 20{,}0\\ \\text{mL d'acide chlorhydrique, } C_a \\text{ inconnue}",
+    "C_b = 0{,}10\\ \\text{mol/L : la soude, solution titrante}",
+    "V_b = 12{,}5\\ \\text{mL versés pour atteindre l'équivalence}"
+   ]
+  },
+  "exemple_calcul": {
+   "type": "etape",
+   "kicker": "Exemple résolu : le calcul",
+   "titre": "Une division, et la concentration tombe",
+   "tex": [
+    "C_a = \\tfrac{C_b \\times V_b}{V_a} = \\tfrac{0{,}10 \\times 12{,}5}{20{,}0}",
+    "C_a = 0{,}0625\\ \\text{mol/L} = 6{,}25 \\times 10^{-2}\\ \\text{mol/L}"
+   ]
+  },
+  "protocole": {
+   "type": "etape",
+   "kicker": "Le protocole expérimental",
+   "titre": "Cinq gestes, de la pipette au calcul",
+   "tex": [
+    "\\text{1. pipette jaugée : } V_a \\text{ dans l'erlenmeyer, + l'indicateur}",
+    "\\text{2. burette rincée à la soude, remplie au zéro, sans bulle d'air}",
+    "\\text{3. verser sous agitation, ralentir quand la couleur persiste}",
+    "\\text{4. virage persistant : noter } V_b \\text{ ; 5. calculer, puis refaire}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Doser : une réaction totale et rapide",
+    "Équivalence : les quantités sont égales",
+    "Le virage de l'indicateur la signale",
+    "Ca × Va = Cb × Vb : la relation clé",
+    "Protocole : pipette, burette, agitation"
+   ]
+  },
+  "intro_anions": {
+   "type": "phrase",
+   "kicker": "Identifier les ions",
+   "texte": "Des ions invisibles, des précipités qui parlent."
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "La méthode générale",
+   "titre": "Un réactif spécifique, un signal observable",
+   "tex": [
+    "\\text{1. observer la couleur de la solution}",
+    "\\text{2. prélever un échantillon à tester}",
+    "\\text{3. ajouter un réactif spécifique de l'ion cherché}",
+    "\\text{4. observer : précipité, gaz ou coloration}"
+   ]
+  },
+  "chlorure": {
+   "type": "etape",
+   "kicker": "Test de l'ion chlorure",
+   "titre": "Le précipité blanc qui noircit à la lumière",
+   "tex": [
+    "\\text{réactif : le nitrate d'argent } AgNO_3",
+    "Ag^+ + Cl^- \\rightarrow AgCl{(s)} \\downarrow",
+    "\\text{précipité blanc, qui noircit à la lumière}"
+   ],
+   "anim": {
+    "nom": "precipite_fig",
+    "hauteur": 110
+   }
+  },
+  "sulfate": {
+   "type": "etape",
+   "kicker": "Test de l'ion sulfate",
+   "titre": "Un blanc qui résiste même à l'acide",
+   "tex": [
+    "\\text{réactif : le chlorure de baryum } BaCl_2",
+    "Ba^{2+} + SO_4^{2-} \\rightarrow BaSO_4{(s)} \\downarrow",
+    "\\text{précipité blanc, insoluble dans l'acide chlorhydrique}"
+   ]
+  },
+  "nitrate": {
+   "type": "etape",
+   "kicker": "Test de l'ion nitrate",
+   "titre": "L'anneau brun, signature du nitrate",
+   "tex": [
+    "\\text{réactif : } FeSO_4 \\text{ + acide sulfurique concentré}",
+    "\\text{résultat : un anneau brun à l'interface des deux liquides}",
+    "\\text{le nitrate est un oxydant en milieu acide}"
+   ]
+  },
+  "sulfure": {
+   "type": "etape",
+   "kicker": "Test de l'ion sulfure",
+   "titre": "Le seul précipité noir de la série",
+   "tex": [
+    "\\text{réactif : le nitrate de plomb } Pb(NO_3)_2",
+    "Pb^{2+} + S^{2-} \\rightarrow PbS{(s)} \\downarrow",
+    "\\text{précipité noir de sulfure de plomb}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Cl⁻ + AgNO₃ : AgCl blanc",
+    "SO₄²⁻ + BaCl₂ : BaSO₄ blanc",
+    "NO₃⁻ : l'anneau brun à l'interface",
+    "S²⁻ + Pb²⁺ : PbS noir",
+    "Un réactif par ion, un signal par test"
+   ]
+  },
+  "intro_cations": {
+   "type": "phrase",
+   "kicker": "Les cations à la soude",
+   "texte": "La soude, réactif passe-partout des cations."
+  },
+  "fer": {
+   "type": "etape",
+   "kicker": "Tests des ions fer",
+   "titre": "Vert contre rouille : le fer se trahit",
+   "tex": [
+    "\\text{réactif commun : la soude } NaOH",
+    "Fe^{2+} + 2\\,OH^- \\rightarrow Fe(OH)_2{(s)} \\text{ : vert, rouille à l'air}",
+    "Fe^{3+} + 3\\,OH^- \\rightarrow Fe(OH)_3{(s)} \\text{ : précipité rouille}"
+   ]
+  },
+  "cuivre": {
+   "type": "etape",
+   "kicker": "Test de l'ion cuivre(II)",
+   "titre": "Le précipité bleu, inimitable",
+   "tex": [
+    "\\text{réactif : la soude } NaOH",
+    "Cu^{2+} + 2\\,OH^- \\rightarrow Cu(OH)_2{(s)} \\downarrow",
+    "\\text{précipité bleu d'hydroxyde de cuivre(II)}"
+   ]
+  },
+  "zinc_aluminium": {
+   "type": "etape",
+   "kicker": "Tests des ions zinc et aluminium",
+   "titre": "Deux blancs qui disparaissent dans l'excès de soude",
+   "tex": [
+    "Zn^{2+} + 2\\,OH^- \\rightarrow Zn(OH)_2{(s)} \\text{ : précipité blanc}",
+    "Al^{3+} + 3\\,OH^- \\rightarrow Al(OH)_3{(s)} \\text{ : blanc gélatineux}",
+    "\\text{les deux précipités se redissolvent dans un excès de soude}",
+    "\\text{l'hydroxyde de zinc est dit amphotère}"
+   ]
+  },
+  "baryum_argent": {
+   "type": "etape",
+   "kicker": "Tests des ions baryum et argent",
+   "titre": "Deux cations, deux autres réactifs",
+   "tex": [
+    "\\text{baryum : réactif, l'acide sulfurique } H_2SO_4",
+    "Ba^{2+} + SO_4^{2-} \\rightarrow BaSO_4{(s)} \\text{ : blanc, insoluble dans les acides}",
+    "\\text{argent : réactif, le chlorure de sodium } NaCl",
+    "Ag^+ + Cl^- \\rightarrow AgCl{(s)} \\text{ : blanc, noircit à la lumière}"
+   ]
+  },
+  "sodium": {
+   "type": "etape",
+   "kicker": "Test de l'ion sodium",
+   "titre": "Pas de précipité : la flamme parle",
+   "tex": [
+    "\\text{test à la flamme du bec Bunsen : une flamme jaune vif}",
+    "\\text{chaque cation émet sa couleur caractéristique}"
+   ]
+  },
+  "exemple_enonce": {
+   "type": "etape",
+   "kicker": "Exemple résolu : l'énoncé",
+   "titre": "Un cation inconnu dans une solution incolore",
+   "tex": [
+    "\\text{une solution incolore contient un seul cation}",
+    "\\text{quelques gouttes de soude : un précipité blanc se forme}",
+    "\\text{un excès de soude : le précipité se redissout}"
+   ]
+  },
+  "exemple_resolution": {
+   "type": "etape",
+   "kicker": "Exemple résolu : le raisonnement",
+   "titre": "Éliminer, apparier, conclure",
+   "tex": [
+    "\\text{blanc : ni le cuivre (bleu), ni les fers (vert, rouille)}",
+    "\\text{précipité blanc à la soude : le zinc ou l'aluminium}",
+    "\\text{redissolution dans l'excès : les deux restent possibles}",
+    "\\text{conclusion : zinc ou aluminium, un test de plus tranchera}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Réactif spécifique, signal observable",
+    "La soude révèle presque tous les cations",
+    "Vert, rouille, bleu : fers et cuivre",
+    "Blanc qui se redissout : Zn²⁺ ou Al³⁺",
+    "Na⁺ : la flamme jaune vif du sodium"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "pause_apres": 0.9,
+   "dit": "Bienvenue dans ce cours de chimie analytique, consacré aux solutions. Deux questions guident tout le travail de l'analyste : quelle est la concentration de cette solution, et quels ions contient-elle ? Pour la première, nous apprendrons le dosage acido-basique : faire réagir un acide et une base jusqu'à l'équivalence, puis calculer la concentration inconnue. Pour la seconde, nous passerons en revue les tests d'identification des ions, ces réactions qui font apparaître un précipité coloré, signature de l'ion cherché.",
+   "texte": "Doser une solution, puis identifier ses ions."
+  },
+  {
+   "id": "p02",
+   "ecran": "accroche",
+   "dit": "Imaginez deux fioles sans étiquette sur la paillasse. La première contient un acide dont on ignore tout, sauf qu'il faudrait bien connaître sa concentration avant de l'utiliser. La seconde contient une solution limpide dont on se demande quels ions s'y cachent. Aucun appareil miracle ne répondra à notre place : c'est la chimie elle-même qui va parler, par une réaction que l'on pilote et par des précipités que l'on observe. Deux méthodes, deux gestes d'analyste, que ce cours va détailler.",
+   "texte": "Deux fioles sans étiquette : la chimie va parler."
+  },
+  {
+   "id": "p03",
+   "ecran": "principe",
+   "dit": "Commençons par le dosage, appelé aussi titrage. Doser une espèce chimique, c'est déterminer sa concentration en solution en utilisant une réaction chimique totale. Dans un dosage acido-basique, on fait réagir un acide avec une base. Le vocabulaire est à fixer dès maintenant : la solution titrée est celle dont la concentration est inconnue ; elle est placée dans un bécher ou un erlenmeyer. La solution titrante est celle dont la concentration est connue ; elle est versée progressivement, à l'aide d'une burette graduée, comme le montre le montage.",
+   "texte": "Titrée : inconnue au bécher ; titrante : connue à la burette."
+  },
+  {
+   "id": "p04",
+   "ecran": "equation",
+   "dit": "Quelle réaction pilote le dosage ? Prenons l'exemple des leçons : l'acide chlorhydrique dosé par l'hydroxyde de sodium, la soude. En réalité, ce sont leurs ions qui réagissent : l'ion hydronium, caractéristique des solutions acides, et l'ion hydroxyde, caractéristique des solutions basiques. Les ions sodium et les ions chlorure, eux, ne réagissent pas : ce sont des ions spectateurs. L'équation-bilan s'écrit donc avec les seuls ions actifs, et elle donne uniquement de l'eau. Cette réaction est totale et rapide : c'est exactement ce qu'exige un bon dosage.",
+   "texte": "Hydronium + hydroxyde → eau : totale et rapide."
+  },
+  {
+   "id": "p05",
+   "ecran": "equivalence",
+   "dit": "Le moment clé du dosage s'appelle l'équivalence. Définition : l'équivalence est le moment où les réactifs ont été introduits dans les proportions stœchiométriques de la réaction. Autrement dit, les quantités de matière d'ions hydronium et d'ions hydroxyde introduites sont égales, et elles sont totalement consommées : il ne reste ni acide ni base en excès. Toute la difficulté pratique est de repérer cet instant précis ; c'est là qu'intervient le changement de couleur d'un indicateur coloré, qui signale le point d'équivalence.",
+   "texte": "Équivalence : quantités égales, tout est consommé."
+  },
+  {
+   "id": "p06",
+   "ecran": "indicateurs",
+   "dit": "Un indicateur coloré est une espèce dont la couleur dépend de l'acidité du milieu : il change de couleur, il vire, au voisinage de l'équivalence. Le tableau des leçons en donne trois à connaître. L'hélianthine est rouge en milieu acide et jaune en milieu basique. Le bleu de bromothymol est jaune en milieu acide et bleu en milieu basique. La phénolphtaléine est incolore en milieu acide et rose en milieu basique. Pour doser un acide fort par une base forte, on choisit en pratique la phénolphtaléine ou le bleu de bromothymol.",
+   "texte": "Hélianthine, BBT, phénolphtaléine : trois virages."
+  },
+  {
+   "id": "p07",
+   "ecran": "relation",
+   "dit": "Voici la relation fondamentale du dosage, celle qui transforme une lecture de burette en concentration. À l'équivalence, les quantités de matière d'acide et de base ayant réagi sont égales. Or une quantité de matière, c'est une concentration multipliée par un volume. La relation s'écrit donc : la concentration de l'acide, multipliée par le volume d'acide prélevé, égale la concentration de la base, multipliée par le volume de base versé à l'équivalence. Quatre grandeurs, une seule inconnue : si l'on connaît les trois autres, la quatrième se calcule immédiatement.",
+   "texte": "Ca × Va = Cb × Vb : une inconnue, trois mesures."
+  },
+  {
+   "id": "p08",
+   "ecran": "exemple_donnees",
+   "dit": "Exemple résolu, tiré des leçons. On dose un volume de vingt millilitres d'une solution d'acide chlorhydrique, de concentration inconnue, par une solution d'hydroxyde de sodium de concentration égale à zéro virgule dix mole par litre. On verse la soude progressivement, et l'équivalence, repérée au virage de l'indicateur, est obtenue après avoir versé douze virgule cinq millilitres de solution basique. Toutes les données sont réunies : un volume d'acide, une concentration de base connue, et un volume de base lu sur la burette.",
+   "texte": "20,0 mL d'acide ; soude à 0,10 mol/L ; Vb = 12,5 mL."
+  },
+  {
+   "id": "p09",
+   "ecran": "exemple_calcul",
+   "dit": "Appliquons la relation fondamentale. La concentration de l'acide vaut la concentration de la base, multipliée par le volume de base versé, le tout divisé par le volume d'acide. Numériquement : zéro virgule dix, multiplié par douze virgule cinq, divisé par vingt. Les volumes sont tous deux en millilitres, ils se simplifient dans le rapport. Le résultat tombe : la concentration de l'acide chlorhydrique vaut zéro virgule zéro six cent vingt-cinq mole par litre, que l'on écrit aussi six virgule vingt-cinq fois dix puissance moins deux mole par litre.",
+   "texte": "Ca = (0,10 × 12,5) / 20,0 = 6,25 × 10⁻² mol/L."
+  },
+  {
+   "id": "p10",
+   "ecran": "protocole",
+   "dit": "Reste le protocole expérimental, en cinq gestes. Préparation : verser un volume précis de solution acide dans un erlenmeyer, à l'aide d'une pipette jaugée, et ajouter quelques gouttes d'indicateur coloré. Remplissage : rincer la burette avec la solution de soude, puis la remplir jusqu'au zéro, sans bulle d'air. Titrage : verser la base progressivement, sous agitation, avec un agitateur magnétique ; au début, la solution reste incolore. Repérage : ralentir le versement dès que la couleur commence à persister ; l'équivalence est atteinte quand la couleur rose, ou bleue avec l'autre indicateur, persiste après agitation ; noter alors le volume versé. Calcul, enfin, avec la relation fondamentale. Et par rigueur, le dosage se réalise au moins deux fois, pour vérifier que le volume équivalent se reproduit.",
+   "texte": "Pipette, burette au zéro, agitation, virage, calcul."
+  },
+  {
+   "id": "p11",
+   "ecran": "recap1",
+   "dit": "Récapitulons cette première partie. Le dosage détermine une concentration grâce à une réaction totale et rapide entre l'ion hydronium et l'ion hydroxyde. L'équivalence est le moment où les quantités introduites sont égales et totalement consommées ; un indicateur coloré la signale par son virage. La relation fondamentale relie les concentrations et les volumes des deux solutions, et l'exemple des leçons donne une concentration d'acide de six virgule vingt-cinq fois dix puissance moins deux mole par litre. Place maintenant à la seconde question de l'analyste : quels ions se cachent dans une solution ?",
+   "texte": "Le dosage acido-basique : l'essentiel."
+  },
+  {
+   "id": "p12",
+   "ecran": "intro_anions",
+   "dit": "Passons à l'identification des ions, et d'abord aux anions, les ions négatifs. Un ion en solution est incolore ou coloré, mais son apparence seule ne permet jamais de l'identifier avec certitude. Il faut le faire réagir, et observer le signal qu'il produit. Nous verrons la méthode générale, puis quatre tests d'anions à connaître : le chlorure, le sulfate, le nitrate et le sulfure.",
+   "texte": "Identifier les anions : méthode, puis quatre tests."
+  },
+  {
+   "id": "p13",
+   "ecran": "methode",
+   "dit": "La méthode générale d'identification comporte quatre gestes. Premier geste : observer la couleur de la solution, c'est un indice préliminaire, jamais une preuve. Deuxième geste : prélever un échantillon de la solution à tester. Troisième geste : ajouter un réactif spécifique, c'est-à-dire une solution contenant un ion qui réagit sélectivement avec l'ion recherché. Quatrième geste : observer le résultat, qui peut être la formation d'un précipité, un dégagement gazeux ou une coloration caractéristique. Un mot de vocabulaire : un précipité est un solide qui se forme lors d'une réaction chimique entre deux ions en solution ; sa couleur et sa solubilité permettent d'identifier l'ion testé.",
+   "texte": "Observer, prélever, ajouter le réactif, observer le signal."
+  },
+  {
+   "id": "p14",
+   "ecran": "chlorure",
+   "dit": "Premier test : l'ion chlorure. Le réactif est une solution de nitrate d'argent. Si l'ion chlorure est présent, l'ion argent et l'ion chlorure se combinent pour former du chlorure d'argent solide : un précipité blanc apparaît, comme celui de la figure. Détail caractéristique à retenir : ce précipité blanc noircit à la lumière, ce qui confirme le diagnostic. Retenez le couple : nitrate d'argent en réactif, précipité blanc qui noircit pour l'ion chlorure.",
+   "texte": "Cl⁻ + AgNO₃ → AgCl blanc, qui noircit à la lumière."
+  },
+  {
+   "id": "p15",
+   "ecran": "sulfate",
+   "dit": "Deuxième test : l'ion sulfate. Le réactif est une solution de chlorure de baryum. L'ion baryum et l'ion sulfate forment du sulfate de baryum solide : là encore, un précipité blanc. Comment le distinguer du chlorure d'argent du test précédent ? Par un caractère propre : le sulfate de baryum est insoluble dans l'acide chlorhydrique, alors que beaucoup d'autres précipités blancs s'y dissolvent. Blanc ne suffit donc pas : c'est la résistance à l'acide qui signe l'ion sulfate.",
+   "texte": "SO₄²⁻ + BaCl₂ → BaSO₄ blanc, insoluble dans l'acide."
+  },
+  {
+   "id": "p16",
+   "ecran": "nitrate",
+   "dit": "Troisième test : l'ion nitrate, le plus spectaculaire de la série. Le réactif est une solution de sulfate de fer deux, à laquelle on ajoute de l'acide sulfurique concentré. Le résultat positif ne prend pas la forme d'un précipité, mais celle d'un anneau brun qui apparaît à l'interface des deux liquides : les anglo-saxons surnomment ce test le test de l'anneau. Remarque des leçons : ce test met en évidence le caractère oxydant de l'ion nitrate en milieu acide, c'est toute sa chimie qui s'y joue.",
+   "texte": "NO₃⁻ : un anneau brun à l'interface des liquides."
+  },
+  {
+   "id": "p17",
+   "ecran": "sulfure",
+   "dit": "Quatrième test : l'ion sulfure. Le réactif est une solution de nitrate de plomb. L'ion plomb et l'ion sulfure forment du sulfure de plomb solide : un précipité noir, le seul précipité noir de toute la série des tests de ce cours. Sa couleur sombre le rend impossible à confondre avec les précipités blancs des chlorures et des sulfates. Retenez : nitrate de plomb en réactif, précipité noir pour l'ion sulfure.",
+   "texte": "S²⁻ + Pb²⁺ → PbS : un précipité noir, unique en son genre."
+  },
+  {
+   "id": "p18",
+   "ecran": "recap2",
+   "dit": "Récapitulons les tests d'anions. L'ion chlorure donne, avec le nitrate d'argent, un précipité blanc qui noircit à la lumière. L'ion sulfate donne, avec le chlorure de baryum, un précipité blanc insoluble dans l'acide chlorhydrique. L'ion nitrate se révèle par un anneau brun à l'interface des liquides. L'ion sulfure donne, avec le nitrate de plomb, un précipité noir. La logique est toujours la même : un réactif spécifique pour chaque ion, et un signal observable sans ambiguïté. Passons maintenant aux cations, les ions positifs.",
+   "texte": "Les tests des anions : l'essentiel."
+  },
+  {
+   "id": "p19",
+   "ecran": "intro_cations",
+   "dit": "Après les anions, les cations. Bonne nouvelle : un seul réactif, la soude, c'est-à-dire l'hydroxyde de sodium, permet de tester la plupart d'entre eux, car beaucoup de cations forment avec l'ion hydroxyde un hydroxyde solide aux couleurs caractéristiques. Nous passerons en revue les deux fers, le cuivre, le zinc et l'aluminium, puis le baryum et l'argent, qui demandent d'autres réactifs, et enfin le sodium, qui se trahit dans la flamme.",
+   "texte": "Les cations : la soude révèle presque tout."
+  },
+  {
+   "id": "p20",
+   "ecran": "fer",
+   "dit": "Commençons par les deux ions du fer, que le tableau des leçons présente côte à côte, car le même réactif, la soude, les distingue par la couleur. L'ion fer deux réagit avec les ions hydroxyde pour donner l'hydroxyde de fer deux : un précipité vert, qui prend à l'air une teinte rouille en s'oxydant. L'ion fer trois donne l'hydroxyde de fer trois : un précipité de couleur rouille, d'emblée. Vert d'un côté, rouille de l'autre : la soude sépare les deux degrés du fer sans hésitation.",
+   "texte": "Fe²⁺ : précipité vert ; Fe³⁺ : précipité rouille."
+  },
+  {
+   "id": "p21",
+   "ecran": "cuivre",
+   "dit": "L'ion cuivre deux, ensuite. Avec la soude, toujours elle, les ions hydroxyde le transforment en hydroxyde de cuivre deux solide : un précipité bleu, d'un bleu franc et immédiatement reconnaissable. Aucun autre cation de ce cours ne donne cette couleur avec la soude ; de plus, les solutions de cuivre sont souvent bleues dès le départ, ce qui en fait un indice préliminaire précieux. Précipité bleu à la soude : c'est le cuivre, sans discussion.",
+   "texte": "Cu²⁺ + soude → Cu(OH)₂ : le précipité bleu."
+  },
+  {
+   "id": "p22",
+   "ecran": "zinc_aluminium",
+   "dit": "Voici maintenant les deux jumeaux trompeurs du cours : l'ion zinc et l'ion aluminium. Avec la soude, l'ion zinc donne un précipité blanc d'hydroxyde de zinc, et l'ion aluminium un précipité blanc gélatineux d'hydroxyde d'aluminium. Point commun décisif : les deux précipités se redissolvent lorsqu'on ajoute la soude en excès. Pour l'hydroxyde de zinc, les leçons nomment cette propriété : il est amphotère, capable de réagir aussi bien avec un acide qu'avec une base. Un précipité blanc qui disparaît dans l'excès de soude oriente donc vers le zinc ou l'aluminium, et vers eux seulement.",
+   "texte": "Zn²⁺ et Al³⁺ : blancs, redissous dans l'excès de soude."
+  },
+  {
+   "id": "p23",
+   "ecran": "baryum_argent",
+   "dit": "Deux cations échappent à la soude et demandent leurs propres réactifs. L'ion baryum se teste avec l'acide sulfurique : il forme le sulfate de baryum, un précipité blanc insoluble dans les acides ; c'est la réaction miroir du test de l'ion sulfate, où le baryum servait de réactif. L'ion argent se teste avec une solution de chlorure de sodium : les ions chlorure y jouent le rôle de réactif, et l'on retrouve le précipité blanc de chlorure d'argent, qui noircit à la lumière, déjà rencontré dans le test de l'ion chlorure. Les tests se répondent : chaque couple ion et réactif peut se lire dans les deux sens.",
+   "texte": "Ba²⁺ par l'acide sulfurique ; Ag⁺ par le chlorure de sodium."
+  },
+  {
+   "id": "p24",
+   "ecran": "sodium",
+   "dit": "Dernier cation : l'ion sodium, qui ne donne aucun précipité utile. Pour lui, on change complètement de méthode : c'est un test physique, le test à la flamme. On porte le sel de sodium à la flamme d'un bec Bunsen, et le sodium émet alors une couleur caractéristique : une flamme jaune vif, intense et reconnaissable entre toutes. Le principe est général : porté à la flamme, chaque cation émet sa propre couleur ; la flamme devient un outil d'identification complémentaire des tests chimiques.",
+   "texte": "Na⁺ : la flamme jaune vif du bec Bunsen."
+  },
+  {
+   "id": "p25",
+   "ecran": "exemple_enonce",
+   "dit": "Exemple résolu, pour assembler tout cela : c'est l'exercice de synthèse des leçons. Une solution incolore contient un seul cation, inconnu. On y ajoute quelques gouttes de soude : un précipité blanc se forme. Puis l'on ajoute la soude en excès : le précipité se redissout. Question : identifier le cation. Avant de conclure trop vite, raisonnons par élimination, comme le font les leçons, en utilisant le tableau des tests cation par cation.",
+   "texte": "Énoncé : précipité blanc à la soude, redissous en excès."
+  },
+  {
+   "id": "p26",
+   "ecran": "exemple_resolution",
+   "dit": "Raisonnons. Premier pas, la couleur : le précipité est blanc, ce qui élimine l'ion cuivre, qui aurait donné du bleu, l'ion fer deux, qui aurait donné du vert, et l'ion fer trois, qui aurait donné une couleur rouille. Deuxième pas, l'appariement : parmi nos cations, ceux qui donnent un précipité blanc avec la soude sont l'ion zinc et l'ion aluminium. Troisième pas, l'excès de soude : précisément, les précipités d'hydroxyde de zinc et d'hydroxyde d'aluminium sont ceux qui se redissolvent dans un excès de soude ; l'observation confirme donc la piste. Conclusion des leçons : le cation est soit l'ion zinc, soit l'ion aluminium ; un test complémentaire, comme le test à la flamme ou une réaction avec un autre réactif, sera nécessaire pour trancher entre les deux.",
+   "texte": "Blanc + redissolution : zinc ou aluminium."
+  },
+  {
+   "id": "p27",
+   "ecran": "recap_final",
+   "dit": "Terminons par l'essentiel de ce cours. Analyser une solution, c'est répondre à deux questions. Combien ? Par le dosage acido-basique : une réaction totale, une équivalence repérée au virage d'un indicateur, et la relation entre concentrations et volumes qui livre la concentration inconnue. Quoi ? Par les tests d'identification : un réactif spécifique pour chaque ion, un précipité dont la couleur parle, blanc pour les chlorures, les sulfates, le zinc et l'aluminium, vert et rouille pour les fers, bleu pour le cuivre, noir pour les sulfures, et la flamme jaune vif pour le sodium. Deux méthodes, un même réflexe d'analyste : faire réagir, observer, conclure.",
+   "texte": "Doser pour le combien, tester pour le quoi."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le dosage acido-basique : équivalence et relation fondamentale"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Identifier les anions : la méthode et les quatre tests",
+   "pont": {
+    "texte": "Partie 2 : identifier les anions.",
+    "dit": "Partie deux : identifier les anions. La concentration est mesurée ; il faut maintenant découvrir quels ions négatifs la solution contient, grâce à des réactifs spécifiques et à leurs précipités caractéristiques."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "Identifier les cations : la soude, la flamme et l'exemple résolu",
+   "pont": {
+    "texte": "Partie 3 : identifier les cations.",
+    "dit": "Partie trois : identifier les cations. Après les ions négatifs, voici les ions positifs : la soude y joue le rôle de réactif passe-partout, et un exemple résolu assemblera toute la méthode."
+   }
+  }
+ ]
+}

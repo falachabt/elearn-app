@@ -22,9 +22,9 @@ const BLANC = palette.papier[0];
 export type PhotoPrise = { uri: string; largeur: number; hauteur: number };
 
 /** Bouton carré blanc sur fond noir (fermer, flash, galerie, retourner). */
-function BoutonCarre({ libelle, onPress, children, desactive }: { libelle: string; onPress: () => void; children: React.ReactNode; desactive?: boolean }) {
+function BoutonCarre({ libelle, hint, onPress, children, desactive }: { libelle: string; hint?: string; onPress: () => void; children: React.ReactNode; desactive?: boolean }) {
   return (
-    <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={onPress} disabled={desactive} decalage={0} rayon={rayon.m}>
+    <Appui accessibilityRole="button" accessibilityLabel={libelle} accessibilityHint={hint} onPress={onPress} disabled={desactive} decalage={0} rayon={rayon.m}>
       <View style={[styles.carre, desactive && styles.desactive]}>{children}</View>
     </Appui>
   );
@@ -91,7 +91,7 @@ export function Camera({ onPhoto, onHistorique }: { onPhoto: (p: PhotoPrise) => 
   return (
     <View style={[styles.racine, { paddingTop: top + espace[3], paddingBottom: espace[3] }]}>
       <View style={styles.haut}>
-        <BoutonCarre libelle={t('photo.fermer')} onPress={fermer}>
+        <BoutonCarre libelle={t('photo.fermer')} hint={t('photo.hintFermer') || 'Ferme l’appareil photo et revient à l’écran précédent.'} onPress={fermer}>
           <X size={20} strokeWidth={2.5} color={NOIR} />
         </BoutonCarre>
         {libelle ? (
@@ -102,10 +102,10 @@ export function Camera({ onPhoto, onHistorique }: { onPhoto: (p: PhotoPrise) => 
         ) : (
           <View style={styles.vide} />
         )}
-        <BoutonCarre libelle={t('photo.historique')} onPress={onHistorique}>
+        <BoutonCarre libelle={t('photo.historique')} hint={t('photo.hintHistorique') || 'Affiche l’historique de vos corrections photos passées.'} onPress={onHistorique}>
           <History size={20} strokeWidth={2.5} color={NOIR} />
         </BoutonCarre>
-        <BoutonCarre libelle={t(flash ? 'photo.flashCoupe' : 'photo.flash')} onPress={() => setFlash((f) => !f)} desactive={!autorisee || cote === 'front'}>
+        <BoutonCarre libelle={t(flash ? 'photo.flashCoupe' : 'photo.flash')} hint={t('photo.hintFlash') || 'Active ou désactive la torche de l’appareil photo.'} onPress={() => setFlash((f) => !f)} desactive={!autorisee || cote === 'front'}>
           {flash ? <Zap size={20} strokeWidth={2.5} color={NOIR} fill={palette.soleil[400]} /> : <ZapOff size={20} strokeWidth={2.5} color={NOIR} />}
         </BoutonCarre>
       </View>
@@ -131,12 +131,13 @@ export function Camera({ onPhoto, onHistorique }: { onPhoto: (p: PhotoPrise) => 
       </View>
 
       <View style={styles.bas}>
-        <BoutonCarre libelle={t('photo.galerie')} onPress={() => void galerie()}>
+        <BoutonCarre libelle={t('photo.galerie')} hint={t('photo.hintGalerie') || 'Ouvre la galerie pour sélectionner une photo existante.'} onPress={() => void galerie()}>
           <IconeImage size={20} strokeWidth={2.5} color={NOIR} />
         </BoutonCarre>
         <Appui
           accessibilityRole="button"
           accessibilityLabel={t('photo.prendre')}
+          accessibilityHint={t('photo.hintPrendre') || 'Prend la photo de l’exercice pour analyse.'}
           accessibilityState={{ disabled: !autorisee || !prete || prise }}
           disabled={!autorisee || !prete || prise}
           onPress={() => void photographier()}
@@ -149,7 +150,7 @@ export function Camera({ onPhoto, onHistorique }: { onPhoto: (p: PhotoPrise) => 
             {prise ? <ActivityIndicator color={NOIR} /> : <IconeCamera size={28} strokeWidth={2.5} color={NOIR} />}
           </View>
         </Appui>
-        <BoutonCarre libelle={t('photo.retourner')} onPress={() => setCote((c) => (c === 'back' ? 'front' : 'back'))} desactive={!autorisee}>
+        <BoutonCarre libelle={t('photo.retourner')} hint={t('photo.hintChangerCamera') || 'Bascule entre la caméra avant et arrière.'} onPress={() => setCote((c) => (c === 'back' ? 'front' : 'back'))} desactive={!autorisee}>
           <RefreshCw size={20} strokeWidth={2.5} color={NOIR} />
         </BoutonCarre>
       </View>

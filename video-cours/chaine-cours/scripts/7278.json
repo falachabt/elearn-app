@@ -1,0 +1,327 @@
+{
+ "cours": 7278,
+ "titre": "Statistiques descriptives : moyenne, médiane et écart-type",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Statistiques descriptives",
+   "titre": "Statistiques descriptives : moyenne, médiane et écart-type",
+   "sous": "Effectifs, fréquences et représentations : résumer une série de notes par ses paramètres",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 250
+   }
+  },
+  "methode": {
+   "type": "phrase",
+   "kicker": "La démarche",
+   "texte": "Organiser, calculer les fréquences, puis dégager un centre et une dispersion."
+  },
+  "serie": {
+   "type": "etape",
+   "kicker": "Séries statistiques et vocabulaire",
+   "titre": "Une série, une population, un caractère",
+   "tex": [
+    "\\text{une série : des données}",
+    "\\text{le caractère : la note étudiée}",
+    "\\text{chaque élève : un individu}"
+   ]
+  },
+  "caracteres": {
+   "type": "etape",
+   "kicker": "Les types de caractères",
+   "titre": "Quantitatif ou qualitatif",
+   "tex": [
+    "\\text{quantitatif discret : valeurs isolées}",
+    "\\text{quantitatif continu : un intervalle}",
+    "\\text{qualitatif : des catégories}"
+   ]
+  },
+  "effectifs": {
+   "type": "formule",
+   "kicker": "Effectifs et fréquences",
+   "tex": "f_i = \\frac{n_i}{N} \\qquad N = \\sum_{i=1}^{k} n_i",
+   "note": "La somme de toutes les fréquences vaut toujours un."
+  },
+  "tableau_notes": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge · les notes de vingt élèves",
+   "titre": "Le tableau de la série : valeurs, effectifs, fréquences",
+   "tex": [
+    "x_i = 8,\\ 10,\\ 12,\\ 14,\\ 16",
+    "n_i = 2,\\ 5,\\ 7,\\ 4,\\ 2 \\qquad N = 20",
+    "f_i = 0{,}10,\\ 0{,}25,\\ 0{,}35,\\ 0{,}20,\\ 0{,}10"
+   ]
+  },
+  "verif": {
+   "type": "etape",
+   "kicker": "Vérifier le tableau",
+   "titre": "Deux totaux qui doivent tomber juste",
+   "tex": [
+    "2 + 5 + 7 + 4 + 2 = 20",
+    "0{,}10 + 0{,}25 + 0{,}35 + 0{,}20 + 0{,}10 = 1"
+   ]
+  },
+  "batons_histo": {
+   "type": "etape",
+   "kicker": "Représentations graphiques",
+   "titre": "Bâtons pour le discret, histogramme pour le continu",
+   "tex": [
+    "\\text{bâtons : hauteur selon l'effectif}",
+    "\\text{bâtons : caractère discret}",
+    "\\text{histogramme : continu, en classes}"
+   ],
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 110
+   }
+  },
+  "circulaire": {
+   "type": "formule",
+   "kicker": "Le diagramme circulaire",
+   "tex": "\\text{angle} = f_i \\times 360^\\circ",
+   "note": "Pour la note douze : 0,35 × 360° = 126°."
+  },
+  "ex_angle": {
+   "type": "etape",
+   "kicker": "Exemple · les angles des cinq notes",
+   "titre": "Chaque secteur se calcule avec sa fréquence",
+   "tex": [
+    "8 : 0{,}10 \\times 360^\\circ = 36^\\circ",
+    "10 : 0{,}25 \\times 360^\\circ = 90^\\circ",
+    "12 : 0{,}35 \\times 360^\\circ = 126^\\circ",
+    "14 : 0{,}20 \\times 360^\\circ = 72^\\circ",
+    "16 : 0{,}10 \\times 360^\\circ = 36^\\circ \\qquad \\text{total} : 360^\\circ"
+   ]
+  },
+  "moyenne": {
+   "type": "formule",
+   "kicker": "Paramètres de position · la moyenne",
+   "tex": "\\bar{x} = \\frac{1}{N}\\sum_{i=1}^{k} n_i x_i = \\sum_{i=1}^{k} f_i x_i",
+   "note": "Chaque valeur compte autant de fois que son effectif."
+  },
+  "ex_moyenne": {
+   "type": "etape",
+   "kicker": "Exemple · la moyenne des notes",
+   "titre": "Pondérer chaque note par son effectif",
+   "tex": [
+    "\\bar{x} = \\tfrac{2 \\times 8 + 5 \\times 10 + 7 \\times 12 + 4 \\times 14 + 2 \\times 16}{20}",
+    "= \\tfrac{238}{20} = 11{,}9"
+   ]
+  },
+  "mediane": {
+   "type": "etape",
+   "kicker": "Paramètres de position · la médiane",
+   "titre": "La valeur centrale de la série ordonnée",
+   "tex": [
+    "\\text{partage en deux groupes égaux}",
+    "N \\text{ impair : la valeur de rang } \\tfrac{N+1}{2}",
+    "N \\text{ pair : moyenne des rangs } \\tfrac{N}{2} \\text{ et } \\tfrac{N}{2}+1"
+   ]
+  },
+  "cumules": {
+   "type": "etape",
+   "kicker": "Exemple · la médiane par les cumulés",
+   "titre": "Cumuler les effectifs pour localiser le centre",
+   "tex": [
+    "\\text{effectifs cumulés : } 2,\\ 7,\\ 14,\\ 18,\\ 20",
+    "N = 20 \\text{ : on vise les rangs } 10 \\text{ et } 11",
+    "Me = 12"
+   ],
+   "anim": {
+    "nom": "distribution_bars_fig",
+    "hauteur": 120
+   }
+  },
+  "mediane_extremes": {
+   "type": "etape",
+   "kicker": "Médiane contre moyenne",
+   "titre": "La médiane résiste aux valeurs extrêmes",
+   "tex": [
+    "\\text{note extrême : moyenne tirée}",
+    "\\text{médiane : bouge à peine}",
+    "\\text{moyenne et médiane se complètent}"
+   ]
+  },
+  "variance": {
+   "type": "formule",
+   "kicker": "Paramètres de dispersion · la variance",
+   "tex": "V = \\frac{1}{N}\\sum_{i=1}^{k} n_i (x_i - \\bar{x})^2",
+   "note": "On moyenne les carrés des écarts à la moyenne."
+  },
+  "ex_variance": {
+   "type": "etape",
+   "kicker": "Exemple · la variance des notes",
+   "titre": "Les carrés des écarts, pondérés par les effectifs",
+   "tex": [
+    "2(8-11{,}9)^2 + 5(10-11{,}9)^2 = 48{,}47",
+    "7(12-11{,}9)^2 + 4(14-11{,}9)^2 = 17{,}71",
+    "2(16-11{,}9)^2 = 33{,}62 \\qquad \\text{somme} : 99{,}8",
+    "V = \\tfrac{99{,}8}{20} = 4{,}99"
+   ]
+  },
+  "ecart_type": {
+   "type": "formule",
+   "kicker": "L'écart-type",
+   "tex": "\\sigma = \\sqrt{V} = \\sqrt{4{,}99} \\approx 2{,}23",
+   "note": "Même unité que les données : ici, des points de note."
+  },
+  "interpretation": {
+   "type": "phrase",
+   "kicker": "Interpréter la dispersion",
+   "texte": "Même moyenne, deux étalements : σ petit, valeurs resserrées ; σ grand, valeurs dispersées.",
+   "anim": {
+    "nom": "deux_distributions_fig",
+    "hauteur": 200
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Effectif total N, fréquence f = n/N, somme 1",
+    "Moyenne : somme des n·x divisée par N",
+    "Médiane : la valeur centrale ordonnée",
+    "Variance : moyenne des carrés des écarts",
+    "Écart-type σ = √V : il mesure la dispersion"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de statistiques descriptives. À partir des notes de vingt élèves, nous allons résumer une série de données par quelques nombres bien choisis : la moyenne, la médiane et l'écart-type.",
+   "texte": "Statistiques descriptives : résumer une série par ses paramètres.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Résumer une série suit toujours le même chemin : on organise les données dans un tableau, on calcule les effectifs et les fréquences, puis on dégage un centre, la moyenne ou la médiane, et enfin une dispersion, l'écart-type.",
+   "texte": "La démarche : organiser, centrer, mesurer la dispersion.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p03",
+   "dit": "Une série statistique est un ensemble de données recueillies sur une population. Ici, la population est un groupe de vingt élèves, chaque élève est un individu, et le caractère étudié est sa note.",
+   "texte": "Une série : des données, une population, un caractère.",
+   "ecran": "serie"
+  },
+  {
+   "id": "p04",
+   "dit": "Le caractère peut être quantitatif ou qualitatif. Il est quantitatif discret quand il prend des valeurs isolées, comme nos notes, quantitatif continu quand il varie dans un intervalle, et qualitatif quand il décrit des catégories.",
+   "texte": "Discret, continu ou qualitatif : trois natures de caractère.",
+   "ecran": "caracteres"
+  },
+  {
+   "id": "p05",
+   "dit": "Pour chaque valeur, l'effectif compte le nombre d'individus qui la portent, et l'effectif total est la somme de tous les effectifs. La fréquence d'une valeur, c'est son effectif divisé par l'effectif total : elle indique la part de la population concernée.",
+   "texte": "La fréquence : l'effectif divisé par l'effectif total.",
+   "ecran": "effectifs"
+  },
+  {
+   "id": "p06",
+   "dit": "Voici notre exemple fil rouge : les notes huit, dix, douze, quatorze et seize, portées par deux, cinq, sept, quatre et deux élèves. Leurs fréquences sont zéro virgule dix, zéro virgule vingt-cinq, zéro virgule trente-cinq, zéro virgule vingt et zéro virgule dix.",
+   "texte": "Notes de vingt élèves : effectifs deux, cinq, sept, quatre, deux.",
+   "ecran": "tableau_notes"
+  },
+  {
+   "id": "p07",
+   "dit": "Deux vérifications ferment le tableau : les effectifs se somment en vingt, l'effectif total, et les fréquences se somment en un, c'est-à-dire cent pour cent. Si un total est faux, tous les calculs suivants le seront aussi.",
+   "texte": "Totaux à vérifier : effectifs vingt, fréquences un.",
+   "ecran": "verif"
+  },
+  {
+   "id": "p08",
+   "dit": "Pour voir la série, le diagramme en bâtons dessine chaque valeur avec une hauteur proportionnelle à son effectif : c'est le graphique du caractère discret. Pour un caractère continu regroupé en classes, on utilise à la place un histogramme, où les rectangles se touchent.",
+   "texte": "Bâtons pour le discret, histogramme pour le continu.",
+   "ecran": "batons_histo"
+  },
+  {
+   "id": "p09",
+   "dit": "Le diagramme circulaire partage un disque selon les fréquences : l'angle de chaque secteur vaut la fréquence multipliée par trois cent soixante degrés. Pour la note douze, de fréquence zéro virgule trente-cinq, l'angle vaut cent vingt-six degrés.",
+   "texte": "Angle d'un secteur : fréquence fois trois cent soixante degrés.",
+   "ecran": "circulaire"
+  },
+  {
+   "id": "p10",
+   "dit": "Appliquons la règle à toutes les notes : trente-six degrés pour le huit, quatre-vingt-dix pour le dix, cent vingt-six pour le douze, soixante-douze pour le quatorze et trente-six pour le seize. La somme redonne bien trois cent soixante degrés, le tour complet.",
+   "texte": "Les cinq angles somment à trois cent soixante degrés.",
+   "ecran": "ex_angle"
+  },
+  {
+   "id": "p11",
+   "dit": "Premier paramètre de position : la moyenne. On multiplie chaque valeur par son effectif, on additionne tous ces produits, puis on divise par l'effectif total. On peut aussi multiplier chaque valeur par sa fréquence et additionner : les deux écritures donnent le même résultat.",
+   "texte": "La moyenne : une somme pondérée par les effectifs.",
+   "ecran": "moyenne"
+  },
+  {
+   "id": "p12",
+   "dit": "Calculons la moyenne des notes : deux fois huit, plus cinq fois dix, plus sept fois douze, plus quatre fois quatorze, plus deux fois seize, le tout divisé par vingt. Le numérateur vaut deux cent trente-huit : la moyenne vaut donc onze virgule neuf.",
+   "texte": "Moyenne des notes : deux cent trente-huit sur vingt, onze virgule neuf.",
+   "ecran": "ex_moyenne"
+  },
+  {
+   "id": "p13",
+   "dit": "Deuxième paramètre de position : la médiane, la valeur qui partage la série ordonnée en deux groupes de même effectif. Si l'effectif total est impair, c'est la valeur centrale ; s'il est pair, c'est la moyenne des deux valeurs centrales.",
+   "texte": "La médiane : la valeur qui coupe la série en deux.",
+   "ecran": "mediane"
+  },
+  {
+   "id": "p14",
+   "dit": "Pour trouver la médiane de notre série, on cumule les effectifs : deux, puis sept, puis quatorze, puis dix-huit, puis vingt. L'effectif total vingt est pair : on vise les rangs dix et onze, et tous deux tombent sur la note douze. La médiane vaut donc douze.",
+   "texte": "Cumulés deux, sept, quatorze, dix-huit, vingt : médiane douze.",
+   "ecran": "cumules"
+  },
+  {
+   "id": "p15",
+   "dit": "Retenez la différence : une note extrême, très basse ou très haute, tire la moyenne vers elle, mais la médiane, simple valeur centrale, bouge à peine. La médiane résiste donc mieux aux valeurs extrêmes, et les deux paramètres se complètent.",
+   "texte": "La médiane résiste aux valeurs extrêmes.",
+   "ecran": "mediane_extremes"
+  },
+  {
+   "id": "p16",
+   "dit": "La moyenne donne le centre, mais pas l'étalement. La variance mesure la dispersion : pour chaque valeur, on calcule son écart à la moyenne, on élève cet écart au carré, on pondère par l'effectif, puis on moyenne le tout sur l'effectif total.",
+   "texte": "La variance : la moyenne des carrés des écarts.",
+   "ecran": "variance"
+  },
+  {
+   "id": "p17",
+   "dit": "Calculons avec la moyenne onze virgule neuf : les carrés des écarts, pondérés par les effectifs, se somment en quatre-vingt-dix-neuf virgule huit. Divisée par l'effectif total vingt, la variance vaut quatre virgule quatre-vingt-dix-neuf.",
+   "texte": "Variance des notes : quatre virgule quatre-vingt-dix-neuf.",
+   "ecran": "ex_variance"
+  },
+  {
+   "id": "p18",
+   "dit": "L'écart-type est simplement la racine carrée de la variance : ici, la racine de quatre virgule quatre-vingt-dix-neuf, soit environ deux virgule vingt-trois. Contrairement à la variance, il s'exprime dans la même unité que les données, ici des points de note.",
+   "texte": "Écart-type : environ deux virgule vingt-trois points.",
+   "ecran": "ecart_type"
+  },
+  {
+   "id": "p19",
+   "dit": "Comment lire un écart-type ? Petit, il dit que les valeurs sont regroupées autour de la moyenne ; grand, qu'elles sont dispersées. Deux classes peuvent donc avoir la même moyenne et des écart-types très différents : la moyenne seule ne suffit jamais à décrire une série.",
+   "texte": "Même moyenne, deux dispersions : il faut l'écart-type.",
+   "ecran": "interpretation"
+  },
+  {
+   "id": "p20",
+   "dit": "Pour finir, retenez l'enchaînement : un tableau d'effectifs et de fréquences, vérifié par ses totaux, une moyenne et une médiane pour situer le centre, et un écart-type pour mesurer l'étalement. Ces paramètres résument l'essentiel d'une série et permettent de comparer des populations.",
+   "texte": "À retenir : centre et dispersion résument la série.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Organiser et représenter une série statistique"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Moyenne, médiane et écart-type",
+   "pont": {
+    "texte": "Partie 2 : moyenne, médiane, variance et écart-type.",
+    "dit": "Partie deux : résumer la série par ses paramètres. Nous calculons la moyenne et la médiane pour situer le centre de la série, puis la variance et l'écart-type pour mesurer sa dispersion."
+   }
+  }
+ ]
+}

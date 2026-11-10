@@ -1,0 +1,418 @@
+{
+ "cours": 6708,
+ "ecrans": {
+  "autres_dipoles": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "induction"
+   },
+   "etapes": [
+    "Pression : une membrane déformée fait varier une résistance",
+    "Rhéostat : un curseur déplace la valeur de la résistance",
+    "Relais : une bobine commande un contact de puissance",
+    "Écouteurs : le trajet inverse, du signal électrique au son"
+   ],
+   "kicker": "Autres dipôles commandés",
+   "type": "recap"
+  },
+  "capteur": {
+   "kicker": "Le capteur",
+   "texte": "Le capteur convertit la grandeur à mesurer en grandeur électrique exploitable. Il associe un corps d'épreuve, le dipôle commandé qui réagit à la grandeur, et un conditionneur, qui transforme cette réaction en signal utilisable.",
+   "type": "phrase",
+   "anim": {
+    "nom": "chaine_electronique_fig",
+    "hauteur": 160
+   }
+  },
+  "chaine": {
+   "kicker": "La chaîne électronique",
+   "texte": "Une chaîne électronique organise trois blocs en cascade : le capteur acquiert la grandeur physique, le traitement exploite le signal, l'actionneur réalise l'action. Chaque bloc reçoit l'information de l'amont et transmet un signal électrique à l'aval.",
+   "type": "phrase",
+   "anim": {
+    "nom": "chaine_electronique_fig",
+    "hauteur": 150
+   }
+  },
+  "conception": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "circuit"
+   },
+   "etapes": [
+    "Le transistor NPN travaille en commutation : la base commande",
+    "Une résistance protège toujours la DEL, de 330 Ω à 1 kΩ",
+    "Le potentiomètre ajuste le seuil sans changer le montage",
+    "Capteur et potentiomètre forment le diviseur de commande"
+   ],
+   "kicker": "Concevoir un montage simple",
+   "type": "recap"
+  },
+  "ctn": {
+   "anim": {
+    "nom": "courbe_ctn_kty_fig",
+    "hauteur": 140
+   },
+   "kicker": "La thermistance CTN",
+   "texte": "La thermistance CTN, à coefficient de température négatif, est une résistance qui diminue quand la température augmente. Pour chaque température, sa caractéristique tension-courant reste une droite par l'origine, mais la pente diminue quand il fait plus chaud. On la retrouve dans les thermostats et les sondes de température médicales.",
+   "type": "phrase"
+  },
+  "ctn_loi": {
+   "kicker": "La loi de la CTN",
+   "note": "T en kelvins · R0 : résistance à la température T0 · B : constante du matériau",
+   "tex": "R(\\theta) = R_0\\, e^{B\\left(\\frac{1}{T} - \\frac{1}{T_0}\\right)}",
+   "titre": "Une décroissance presque exponentielle",
+   "type": "formule"
+  },
+  "dipole_commande": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "circuit"
+   },
+   "kicker": "Le dipôle commandé",
+   "texte": "Un dipôle commandé est un dipôle dont la grandeur de sortie, tension, courant ou résistance, dépend d'une grandeur physique d'entrée : température, lumière, pression, onde. C'est l'élément essentiel de tout capteur.",
+   "type": "phrase"
+  },
+  "diviseur": {
+   "kicker": "Le diviseur de tension",
+   "note": "La tension de base est la tension aux bornes du potentiomètre R2",
+   "tex": "U_{BE} = U_{cc} \\times \\frac{R_2}{R_P + R_1 + R_2}",
+   "titre": "Le capteur et le potentiomètre fixent la commande",
+   "type": "formule"
+  },
+  "ex_ctn": {
+   "kicker": "Exemple · une CTN",
+   "note": "La relation n'est pas affine : la CTN est un capteur non linéaire",
+   "tex": [
+    "R(25\\,^{\\circ}\\text{C}) = 1000\\ \\Omega",
+    "R(60\\,^{\\circ}\\text{C}) = 400\\ \\Omega"
+   ],
+   "titre": "Mille ohms à vingt-cinq degrés, quatre cents à soixante",
+   "type": "etape"
+  },
+  "ex_eau": {
+   "kicker": "Exemple · le seuil de l'eau",
+   "note": "Au-delà de 96 kΩ, le courant de base est insuffisant et le transistor se bloque",
+   "tex": [
+    "I_B = \\frac{U_{cc} - U_{BE}}{R_2 + R_{eau}}",
+    "R_2 + R_{eau} \\leq \\frac{6 - 0{,}7}{50 \\times 10^{-6}} = 106\\ \\text{k}\\Omega",
+    "R_{eau} \\leq 96\\ \\text{k}\\Omega"
+   ],
+   "titre": "Six volts, dix kilo-ohms, cinquante microampères minimum",
+   "type": "etape"
+  },
+  "ex_ldr": {
+   "kicker": "Exemple · une photorésistance",
+   "note": "La variation n'est pas proportionnelle à l'éclairement : capteur non linéaire",
+   "tex": [
+    "R = 10\\ \\text{M}\\Omega \\quad \\text{dans l'obscurité}",
+    "R = 1\\ \\text{k}\\Omega \\quad \\text{à} \\quad 100\\ \\text{lux}"
+   ],
+   "titre": "De l'obscurité à cent lux",
+   "type": "etape"
+  },
+  "ex_sirene": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "sonnerie"
+   },
+   "kicker": "Exemple · détecteur de nuit",
+   "texte": "Le jour, la photorésistance vaut un kilo-ohm : la tension de base reste sous le seuil, le transistor est bloqué, la sirène se tait. Dans l'obscurité, elle grimpe à dix kilo-ohms : la tension de base dépasse zéro virgule sept volts, le transistor conduit et la sirène sonne.",
+   "type": "phrase"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "caracteristique"
+   },
+   "kicker": "Introduction",
+   "texte": "Mesurer une température, détecter la nuit, surveiller un niveau d'eau : derrière chacune de ces tâches, un capteur traduit une grandeur physique en signal électrique, qu'une chaîne électronique traite pour commander une action.",
+   "type": "phrase"
+  },
+  "kty": {
+   "kicker": "La thermistance KTY",
+   "note": "α ≈ 0,007 par degré · capteur linéaire, utilisé dans l'automobile et la compensation thermique",
+   "tex": "R(\\theta) = R_0\\, (1 + \\alpha\\, \\theta)",
+   "titre": "Une résistance qui croît presque en droite",
+   "type": "formule"
+  },
+  "ldr": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "caracteristique"
+   },
+   "kicker": "La photorésistance",
+   "texte": "La photorésistance, ou LDR, voit sa résistance s'effondrer sous la lumière : de plusieurs mégohms dans l'obscurité à quelques centaines d'ohms sous un fort éclairement. Elle commande les détecteurs de crépuscule et l'allumage automatique de l'éclairage public.",
+   "type": "phrase"
+  },
+  "linearite": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "caracteristique"
+   },
+   "kicker": "Linéaire ou non",
+   "texte": "Un capteur est linéaire quand sa sortie est une fonction affine de son entrée : c'est le cas de la KTY et de la photodiode. La CTN et la photorésistance sont non linéaires. La linéarité simplifie le traitement du signal, sans être toujours indispensable.",
+   "type": "phrase"
+  },
+  "niveau_eau": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "circuit"
+   },
+   "kicker": "Exemple · le niveau d'eau",
+   "texte": "Deuxième montage : deux électrodes plongent dans un réservoir. Quand l'eau, légèrement conductrice, les touche toutes les deux, elle ferme le circuit de base du transistor, qui conduit et allume une DEL. Sans eau, pas de courant de base : la DEL reste éteinte.",
+   "type": "phrase"
+  },
+  "ondes_pression": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "onde_em"
+   },
+   "kicker": "Ondes et pression",
+   "texte": "L'antenne capte les ondes électromagnétiques et les convertit en tension alternative de même fréquence ; le microphone convertit les variations de pression de l'air en tension ; le capteur de pression déforme une membrane dont la jauge voit sa résistance varier avec la pression.",
+   "type": "phrase"
+  },
+  "photodiode": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "diode"
+   },
+   "kicker": "La photodiode",
+   "texte": "La photodiode convertit directement la lumière en courant : son courant inverse augmente proportionnellement au flux lumineux reçu. C'est un capteur linéaire en éclairement, celui des télécommandes infrarouges et des appareils photo. Son symbole est celui d'une diode que la lumière vient frapper.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Capteur : du physique vers l'électrique",
+    "CTN, LDR : non linéaires ; KTY : linéaire",
+    "Chaîne : capteur, traitement, actionneur",
+    "Transistor : seuil de 0,7 V, commutation",
+    "Le diviseur de tension dimensionne la chaîne"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "seuil": {
+   "kicker": "Le seuil du transistor",
+   "note": "Au-delà de 0,7 V, le transistor conduit et la sirène sonne ; en dessous, il est bloqué",
+   "tex": "U_{BE} > 0{,}7\\ \\text{V}",
+   "titre": "Conduire ou bloquer : une question de seuil",
+   "type": "formule"
+  },
+  "sirene_montage": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "sonnerie"
+   },
+   "kicker": "Exemple · la sirène de nuit",
+   "texte": "Premier montage complet : une photorésistance capte la lumière, un transistor bipolaire NPN travaille en commutation, tel un interrupteur, et une sirène placée dans son circuit collecteur sert d'actionneur. Un potentiomètre règle le seuil de déclenchement.",
+   "type": "phrase"
+  },
+  "synthese": {
+   "kicker": "L'outil de la synthèse",
+   "note": "Avec la loi d'Ohm et la loi des mailles, il suffit à concevoir ces montages",
+   "tex": "U_{\\text{sortie}} = U_{cc} \\times \\frac{R_{\\text{inf}}}{R_{\\text{sup}} + R_{\\text{inf}}}",
+   "titre": "Le diviseur de tension dimensionne la chaîne",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "caracteristique"
+   },
+   "kicker": "Physique",
+   "sous": "Les capteurs qui traduisent le monde physique en signaux, et les chaînes électroniques qui les exploitent",
+   "titre": "Capteurs et électronique",
+   "type": "titre"
+  }
+ },
+ "lecons": [
+  9492,
+  9493
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les capteurs : température, lumière, ondes et pression"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : la chaîne électronique en action, avec deux montages complets, la sirène de nuit et l'indicateur de niveau d'eau.",
+    "texte": "Partie 2 : la chaîne électronique, du capteur à l'actionneur."
+   },
+   "sous_titre": "La chaîne électronique en action"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique consacré aux capteurs et à l'électronique : comment un capteur traduit une grandeur physique en signal électrique, et comment une chaîne électronique exploite ce signal pour commander une action.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Des capteurs aux chaînes électroniques complètes."
+  },
+  {
+   "dit": "Une thermistance qui surveille une température, une photorésistance qui détecte la tombée de la nuit, des électrodes qui guettent un niveau d'eau : ces montages partagent la même architecture, que ce cours démonte pièce par pièce.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Trois montages, une même architecture."
+  },
+  {
+   "dit": "Tout commence par le dipôle commandé : un dipôle dont la grandeur de sortie, tension, courant ou résistance, dépend d'une grandeur physique d'entrée, comme la température, la lumière, la pression ou une onde. C'est lui qui rend la mesure possible.",
+   "ecran": "dipole_commande",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Le dipôle commandé : une sortie réglée par une grandeur physique."
+  },
+  {
+   "dit": "Le capteur est le dispositif complet : un corps d'épreuve, le dipôle commandé qui réagit à la grandeur à mesurer, et un conditionneur qui transforme cette réaction en signal électrique exploitable. La chaîne de mesure va ainsi de la grandeur physique à l'information, en passant par la grandeur électrique.",
+   "ecran": "capteur",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Grandeur physique → grandeur électrique → information."
+  },
+  {
+   "dit": "Premier capteur de température : la thermistance CTN, à coefficient de température négatif. Sa résistance diminue lorsque la température augmente, selon une loi proche d'une exponentielle : elle équipe les thermostats et les sondes de température médicales.",
+   "ecran": "ctn",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "CTN : la résistance chute quand la température monte."
+  },
+  {
+   "dit": "La résistance de la CTN s'écrit R zéro fois l'exponentielle de B multiplié par la différence des inverses des températures, exprimées en kelvins. R zéro est la résistance à la température de référence T zéro, et B une constante propre au matériau.",
+   "ecran": "ctn_loi",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "La loi exponentielle de la CTN."
+  },
+  {
+   "dit": "Exemple du cours : une CTN vaut mille ohms à vingt-cinq degrés et plus que quatre cents ohms à soixante degrés. La chute n'est pas proportionnelle à l'écart de température : la relation n'est pas affine, la CTN est un capteur non linéaire.",
+   "ecran": "ex_ctn",
+   "id": "p07",
+   "pause_apres": 0.7,
+   "texte": "Résultat : de 1 000 Ω à 400 Ω, et ce n'est pas affine."
+  },
+  {
+   "dit": "Sa cousine, la thermistance KTY, a un coefficient positif : sa résistance augmente avec la température, et presque en ligne droite, avec un coefficient alpha d'environ zéro virgule zéro zéro sept par degré. C'est un capteur linéaire, employé dans l'automobile et la compensation thermique.",
+   "ecran": "kty",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "KTY : une droite, donc un capteur linéaire."
+  },
+  {
+   "dit": "Côté lumière, la photorésistance, ou LDR, voit sa résistance chuter quand l'éclairement augmente : plusieurs mégohms dans l'obscurité, quelques centaines d'ohms seulement sous un fort éclairement. Pour chaque éclairement, sa caractéristique reste une droite par l'origine, mais la pente change.",
+   "ecran": "ldr",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "LDR : la résistance s'effondre sous la lumière."
+  },
+  {
+   "dit": "Exemple : dans le noir complet, la photorésistance vaut dix mégohms ; sous cent lux, plus qu'un kilo-ohm. La variation n'étant pas proportionnelle à l'éclairement, la photorésistance est, elle aussi, un capteur non linéaire.",
+   "ecran": "ex_ldr",
+   "id": "p10",
+   "pause_apres": 0.7,
+   "texte": "Résultat : 10 MΩ dans le noir, 1 kΩ à 100 lux."
+  },
+  {
+   "dit": "La photodiode, elle, convertit directement la lumière en courant électrique : son courant inverse augmente proportionnellement au flux lumineux reçu. Dans sa zone de fonctionnement, c'est un capteur linéaire en éclairement : télécommandes infrarouges et appareils photo l'utilisent.",
+   "ecran": "photodiode",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Photodiode : la lumière devient un courant, proportionnel."
+  },
+  {
+   "dit": "D'autres capteurs veillent sur les ondes et la pression. L'antenne convertit une onde électromagnétique en tension alternative de même fréquence ; le microphone transforme les variations de pression de l'air en tension ; et le capteur de pression déforme une membrane dont la jauge change de résistance.",
+   "ecran": "ondes_pression",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Antenne, microphone, capteur de pression."
+  },
+  {
+   "dit": "Le paysage se complète : le rhéostat, dont un curseur règle la résistance ; le relais, interrupteur commandé par une bobine, qui pilote un circuit de puissance avec un faible signal ; et les écouteurs, qui font le trajet inverse en transformant le signal électrique en son.",
+   "ecran": "autres_dipoles",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Rhéostat, relais, écouteurs : les autres acteurs."
+  },
+  {
+   "dit": "Un capteur est dit linéaire si sa grandeur de sortie est une fonction affine de sa grandeur d'entrée : la KTY et la photodiode le sont, la CTN et la photorésistance ne le sont pas. La linéarité simplifie le traitement du signal, mais un capteur non linéaire reste utilisable sur une plage restreinte.",
+   "ecran": "linearite",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Linéaire : une fonction affine entre entrée et sortie."
+  },
+  {
+   "dit": "Ces capteurs prennent place dans une chaîne électronique commandée : le capteur convertit la grandeur physique en signal électrique, un circuit de traitement exploite ce signal, et un actionneur réalise l'action. Le thermostat en est l'image : la thermistance mesure, le circuit compare à une consigne, le relais commande la chauffe.",
+   "ecran": "chaine",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Capteur → traitement → actionneur."
+  },
+  {
+   "dit": "Premier montage complet : détecter l'obscurité et déclencher une sirène. La photorésistance capte la lumière ; un transistor bipolaire NPN, utilisé en commutation comme un interrupteur, traite le signal ; la sirène, placée dans le circuit collecteur, est l'actionneur. Un potentiomètre permet de régler le seuil.",
+   "ecran": "sirene_montage",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "LDR + transistor en commutation + sirène."
+  },
+  {
+   "dit": "Le transistor obéit à un seuil simple : si la tension entre sa base et son émetteur dépasse zéro virgule sept volts, il conduit, saturé, et le courant du collecteur traverse la sirène. Sous ce seuil, il est bloqué et aucun courant ne passe.",
+   "ecran": "seuil",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Seuil : U_BE > 0,7 V, le transistor conduit."
+  },
+  {
+   "dit": "La tension de commande est celle aux bornes du potentiomètre. Elle se calcule par le diviseur de tension : la tension d'alimentation, multipliée par R deux, divisée par la somme des résistances du pont, photorésistance, R un et R deux.",
+   "ecran": "diviseur",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "U_BE = U_cc·R2/(R_P + R1 + R2)."
+  },
+  {
+   "dit": "Vérifions avec les valeurs du cours, sous neuf volts. Le jour, la photorésistance vaut un kilo-ohm : la tension de base reste faible, sous le seuil, le transistor est bloqué et la sirène est silencieuse. La nuit, la photorésistance grimpe à dix kilo-ohms : la tension de base dépasse le seuil, le transistor sature et la sirène sonne. C'est un détecteur de nuit.",
+   "ecran": "ex_sirene",
+   "id": "p19",
+   "pause_apres": 0.7,
+   "texte": "Résultat : la sirène sonne dans l'obscurité."
+  },
+  {
+   "dit": "Deuxième montage : un indicateur de niveau d'eau. Deux électrodes métalliques plongent dans le réservoir. Quand l'eau atteint leur niveau, elle conduit le courant entre elles : un courant de base circule, le transistor conduit et la diode électroluminescente s'allume. Si le niveau est trop bas, le circuit de base est ouvert et tout reste éteint.",
+   "ecran": "niveau_eau",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "L'eau ferme le circuit de base : la DEL s'allume."
+  },
+  {
+   "dit": "Jusqu'où ce montage fonctionne-t-il ? Le courant de base vaut la tension d'alimentation moins zéro virgule sept volts, divisée par la somme de R deux et de la résistance de l'eau. Pour garder au moins cinquante microampères, cette somme ne doit pas dépasser cent six kilo-ohms : la résistance de l'eau doit donc rester sous quatre-vingt-seize kilo-ohms.",
+   "ecran": "ex_eau",
+   "id": "p21",
+   "pause_apres": 0.7,
+   "texte": "Résultat : la DEL s'allume si R_eau ≤ 96 kΩ."
+  },
+  {
+   "dit": "Quatre règles pratiques pour concevoir ces montages : le transistor NPN s'utilise en commutation, la base commande et le collecteur porte l'actionneur ; une résistance de protection limite toujours le courant d'une diode ; le potentiomètre ajuste le seuil sans refaire le montage ; et le capteur forme avec lui le diviseur qui fixe la commande.",
+   "ecran": "conception",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Commutation, protection, seuil réglable, diviseur."
+  },
+  {
+   "dit": "Au fond, la conception d'un circuit électronique simple repose sur trois outils : la loi d'Ohm, la loi des mailles, et le diviseur de tension, qui donne la tension de sortie d'un pont de résistances à partir de la tension d'alimentation et des deux résistances du pont.",
+   "ecran": "synthese",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Loi d'Ohm, loi des mailles, diviseur de tension."
+  },
+  {
+   "dit": "Retenez l'essentiel : le capteur convertit une grandeur physique en signal électrique ; la CTN et la photorésistance sont non linéaires, la KTY et la photodiode sont linéaires ; une chaîne électronique enchaîne capteur, traitement et actionneur ; le transistor commute au seuil de zéro virgule sept volts ; et le diviseur de tension est l'outil qui dimensionne la commande.",
+   "ecran": "recap",
+   "id": "p24",
+   "pause_apres": 0.5,
+   "texte": "Capteurs, chaîne, transistor et diviseur : à retenir."
+  }
+ ],
+ "titre": "Capteurs et électronique"
+}

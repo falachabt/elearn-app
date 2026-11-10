@@ -1,0 +1,348 @@
+{
+  "cours": 7255,
+  "titre": "Les triangles : reconnaître, construire, calculer",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Géométrie",
+      "titre": "Les triangles : reconnaître, construire, calculer",
+      "sous": "Types de triangles, inégalité triangulaire, somme des angles, constructions et aire",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 250
+      }
+    },
+    "objectifs": {
+      "type": "phrase",
+      "kicker": "Objectifs du cours",
+      "texte": "Reconnaître, décider, calculer, construire.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 150
+      }
+    },
+    "definition": {
+      "type": "phrase",
+      "kicker": "Définition · le triangle",
+      "texte": "Trois points non alignés, trois segments, une figure fermée.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 200
+      }
+    },
+    "vocab": {
+      "type": "etape",
+      "kicker": "Le vocabulaire",
+      "titre": "Trois sommets, trois côtés, trois angles",
+      "tex": [
+        "\\text{Sommets : } A,\\ B,\\ C",
+        "\\text{Côtés : } [AB],\\ [BC],\\ [CA]",
+        "\\text{Angles : } \\widehat{A},\\ \\widehat{B},\\ \\widehat{C}"
+      ]
+    },
+    "types": {
+      "type": "etape",
+      "kicker": "Les types de triangles",
+      "titre": "Quatre types à reconnaître",
+      "tex": [
+        "\\text{quelconque : rien de particulier}",
+        "\\text{isocèle : deux côtés égaux}",
+        "\\text{équilatéral : trois côtés égaux}",
+        "\\text{rectangle : un angle droit}"
+      ]
+    },
+    "ex_isocele": {
+      "type": "etape",
+      "kicker": "Exemple résolu · reconnaître",
+      "titre": "Cinq, cinq, trois : quel type ?",
+      "tex": [
+        "AB = 5\\ \\text{cm},\\ BC = 5\\ \\text{cm},\\ AC = 3\\ \\text{cm}",
+        "AB = BC \\text{ : deux côtés égaux}",
+        "\\text{isocèle en } B,\\ \\text{base } [AC]"
+      ],
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 110
+      }
+    },
+    "inegalite": {
+      "type": "etape",
+      "kicker": "Inégalité triangulaire",
+      "titre": "Chaque côté, plus court que la somme des deux autres",
+      "tex": [
+        "AB < AC + CB",
+        "AC < AB + BC",
+        "BC < AB + AC"
+      ],
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 110
+      }
+    },
+    "cas_plat": {
+      "type": "phrase",
+      "kicker": "Le cas limite",
+      "texte": "Égalité : points alignés, triangle plat.",
+      "anim": {
+        "nom": "triangle_plat_fig",
+        "hauteur": 230
+      }
+    },
+    "ex_inegalite": {
+      "type": "etape",
+      "kicker": "Exemple résolu · existence",
+      "titre": "Trois, quatre, neuf centimètres",
+      "tex": [
+        "3 + 4 = 7 < 9",
+        "AC < AB + BC \\text{ : faux}",
+        "\\text{ce triangle n'existe pas}"
+      ]
+    },
+    "somme_angles": {
+      "type": "formule",
+      "kicker": "Somme des angles",
+      "tex": "\\widehat{A} + \\widehat{B} + \\widehat{C} = 180^{\\circ}",
+      "note": "Deux angles connus, le troisième se calcule",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 215
+      }
+    },
+    "consequences": {
+      "type": "etape",
+      "kicker": "Conséquences utiles",
+      "titre": "Trois cas à connaître par cœur",
+      "tex": [
+        "\\text{équilatéral : chaque angle } = 60^{\\circ}",
+        "\\text{rectangle : angles aigus complémentaires}",
+        "\\text{isocèle : angles à la base égaux}"
+      ]
+    },
+    "ex_angles": {
+      "type": "etape",
+      "kicker": "Exemple résolu · angles",
+      "titre": "Cinquante degrés, soixante-cinq degrés",
+      "tex": [
+        "\\widehat{C} = 180^{\\circ} - 50^{\\circ} - 65^{\\circ} = 65^{\\circ}",
+        "\\widehat{B} = \\widehat{C} \\text{ : isocèle en } A"
+      ]
+    },
+    "construction_intro": {
+      "type": "phrase",
+      "kicker": "Construire un triangle",
+      "texte": "Trois côtés au compas, ou un côté et deux angles au rapporteur.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 150
+      }
+    },
+    "construction_cotes": {
+      "type": "etape",
+      "kicker": "Méthode · trois côtés donnés",
+      "titre": "Règle et compas, en quatre gestes",
+      "tex": [
+        "\\text{1. tracer } [AB] = 6\\ \\text{cm}",
+        "\\text{2. arc de centre } A, \\text{ rayon } 5\\ \\text{cm}",
+        "\\text{3. arc de centre } B, \\text{ rayon } 4\\ \\text{cm}",
+        "\\text{4. intersection des arcs : le point } C"
+      ]
+    },
+    "construction_angles": {
+      "type": "etape",
+      "kicker": "Méthode · un côté, deux angles",
+      "titre": "Le rapporteur aux deux extrémités",
+      "tex": [
+        "\\text{1. tracer le côté connu}",
+        "\\text{2. deux angles au rapporteur}",
+        "\\text{3. intersection des demi-droites : } C"
+      ],
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 110
+      }
+    },
+    "verification": {
+      "type": "phrase",
+      "kicker": "Vérifier sa construction",
+      "texte": "Mesurer côtés et angles, comparer à l'énoncé.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 130
+      }
+    },
+    "aire": {
+      "type": "formule",
+      "kicker": "Aire d'un triangle",
+      "tex": "\\mathcal{A} = \\frac{b \\times h}{2}",
+      "note": "b : base ; h : hauteur perpendiculaire à la base",
+      "anim": {
+        "nom": "triangle_hauteur_fig",
+        "hauteur": 215
+      }
+    },
+    "hauteur": {
+      "type": "phrase",
+      "kicker": "La hauteur, dedans ou dehors",
+      "texte": "Perpendiculaire à la base, parfois sur son prolongement.",
+      "anim": {
+        "nom": "triangle_hauteur_fig",
+        "hauteur": 230
+      }
+    },
+    "ex_aire": {
+      "type": "etape",
+      "kicker": "Exemple résolu · aire",
+      "titre": "Base huit centimètres, hauteur cinq",
+      "tex": [
+        "\\mathcal{A} = \\tfrac{8 \\times 5}{2} = \\tfrac{40}{2}",
+        "\\mathcal{A} = 20\\ \\text{cm}^2"
+      ]
+    },
+    "aire_rectangle": {
+      "type": "formule",
+      "kicker": "Cas particulier · triangle rectangle",
+      "tex": "\\mathcal{A} = \\frac{AB \\times AC}{2}",
+      "note": "Rectangle en A : AB et AC sont perpendiculaires"
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Trois sommets, trois côtés, trois angles",
+        "Chaque côté < somme des deux autres",
+        "Somme des angles : toujours 180°",
+        "Construire : arcs au compas, angles au rapporteur",
+        "Aire : base × hauteur, le tout sur deux"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Triangles : reconnaître, construire, calculer.",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux triangles. Nous allons apprendre à les reconnaître, à décider s'ils existent, et à calculer leurs angles et leur aire, puis à les construire."
+    },
+    {
+      "id": "p02",
+      "ecran": "objectifs",
+      "texte": "Objectif : nommer, classer, calculer, tracer.",
+      "dit": "À la fin de ce cours, vous saurez nommer les éléments d'un triangle, distinguer un triangle isocèle, équilatéral ou rectangle, appliquer l'inégalité triangulaire, utiliser la somme des angles et construire un triangle."
+    },
+    {
+      "id": "p03",
+      "ecran": "definition",
+      "texte": "Un polygone à trois côtés, noté par ses sommets.",
+      "dit": "Un triangle est un polygone à trois côtés, noté par ses trois sommets, par exemple a bé cé. Trois points non alignés, trois segments qui les relient, et la figure est fermée."
+    },
+    {
+      "id": "p04",
+      "ecran": "vocab",
+      "texte": "Sommets, côtés, angles : le trio de base.",
+      "dit": "Le triangle a bé cé possède trois sommets, a, bé et cé, trois côtés, les segments a bé, bé cé et cé a, et trois angles, aux sommets a, bé et cé."
+    },
+    {
+      "id": "p05",
+      "ecran": "types",
+      "texte": "Quelconque, isocèle, équilatéral, rectangle.",
+      "dit": "On reconnaît un triangle à ses côtés et à ses angles. Le quelconque n'a aucune propriété particulière. L'isocèle a deux côtés de même longueur, l'équilatéral en a trois, et le rectangle possède un angle droit."
+    },
+    {
+      "id": "p06",
+      "ecran": "ex_isocele",
+      "texte": "Deux côtés égaux : isocèle en B.",
+      "dit": "Exemple : le triangle a bé cé a pour côtés a bé et bé cé de cinq centimètres, et a cé de trois centimètres. Comme a bé égale bé cé, il est isocèle en bé, le sommet principal, opposé à la base a cé."
+    },
+    {
+      "id": "p07",
+      "ecran": "inegalite",
+      "texte": "Chaque côté, plus court que la somme des deux autres.",
+      "dit": "Pour qu'un triangle existe, chaque côté doit être plus court que la somme des deux autres : c'est l'inégalité triangulaire, vraie pour les trois côtés à la fois."
+    },
+    {
+      "id": "p08",
+      "ecran": "cas_plat",
+      "texte": "Égalité : les trois points sont alignés.",
+      "dit": "Cas limite : si un côté égale exactement la somme des deux autres, les trois points sont alignés. Le triangle est plat, il n'existe pas vraiment. L'inégalité doit donc rester stricte."
+    },
+    {
+      "id": "p09",
+      "ecran": "ex_inegalite",
+      "texte": "Trois plus quatre, sept : plus petit que neuf.",
+      "dit": "Peut-on construire un triangle de côtés trois, quatre et neuf centimètres ? Trois plus quatre font sept, plus petit que neuf. Le grand côté dépasse la somme des deux autres : ce triangle n'existe pas."
+    },
+    {
+      "id": "p10",
+      "ecran": "somme_angles",
+      "texte": "La somme des trois angles vaut toujours cent quatre-vingts.",
+      "dit": "Dans tout triangle, la somme des mesures des trois angles vaut toujours cent quatre-vingts degrés. Si l'on connaît deux angles, on retrouve le troisième par soustraction."
+    },
+    {
+      "id": "p11",
+      "ecran": "consequences",
+      "texte": "Équilatéral, rectangle, isocèle : trois raccourcis.",
+      "dit": "Trois conséquences à retenir. Dans un triangle équilatéral, chaque angle mesure soixante degrés. Dans un triangle rectangle, les deux angles aigus sont complémentaires, de somme quatre-vingt-dix degrés. Et dans un isocèle, les deux angles à la base sont égaux."
+    },
+    {
+      "id": "p12",
+      "ecran": "ex_angles",
+      "texte": "Le troisième angle vaut soixante-cinq degrés.",
+      "dit": "Exemple : dans un triangle a bé cé, l'angle a mesure cinquante degrés et l'angle bé soixante-cinq degrés. L'angle cé vaut cent quatre-vingts moins cinquante moins soixante-cinq, soit soixante-cinq degrés. Les angles bé et cé sont égaux : le triangle est isocèle en a."
+    },
+    {
+      "id": "p13",
+      "ecran": "construction_intro",
+      "texte": "Deux méthodes selon les données de l'énoncé.",
+      "dit": "Passons à la construction. Deux méthodes reviennent sans cesse : les trois côtés connus, traités au compas, ou un côté et deux angles connus, traités au rapporteur."
+    },
+    {
+      "id": "p14",
+      "ecran": "construction_cotes",
+      "texte": "Deux arcs de cercle se croisent en C.",
+      "dit": "Première méthode : construire a bé cé avec a bé six centimètres, bé cé quatre et a cé cinq. On trace le segment a bé, un arc de centre a et de rayon cinq centimètres, puis un arc de centre bé et de rayon quatre. Leur intersection est le point cé."
+    },
+    {
+      "id": "p15",
+      "ecran": "construction_angles",
+      "texte": "Le point d'intersection donne le troisième sommet.",
+      "dit": "Deuxième méthode : un côté et deux angles sont connus. On trace le côté, on construit les deux angles à ses extrémités au rapporteur, et l'intersection des deux demi-droites donne le troisième sommet."
+    },
+    {
+      "id": "p16",
+      "ecran": "verification",
+      "texte": "Une construction finie se contrôle toujours.",
+      "dit": "Une construction se vérifie toujours : on mesure côtés et angles obtenus, et on les compare aux données. Un écart visible signale un arc ou un angle mal reporté."
+    },
+    {
+      "id": "p17",
+      "ecran": "aire",
+      "texte": "Base fois hauteur, le tout divisé par deux.",
+      "dit": "Dernière grandeur : l'aire, qui vaut la base multipliée par la hauteur, le tout divisé par deux. La hauteur est la distance perpendiculaire à la base, depuis le sommet opposé."
+    },
+    {
+      "id": "p18",
+      "ecran": "hauteur",
+      "texte": "La hauteur peut tomber à l'extérieur du triangle.",
+      "dit": "Attention, la hauteur n'est pas toujours à l'intérieur. Dans un triangle avec un angle obtus, elle tombe à l'extérieur, sur le prolongement de la base. On la repère à l'angle droit qu'elle forme avec la base."
+    },
+    {
+      "id": "p19",
+      "ecran": "ex_aire",
+      "texte": "Huit fois cinq, sur deux : vingt centimètres carrés.",
+      "dit": "Exemple : une base de huit centimètres et une hauteur de cinq centimètres. L'aire vaut huit fois cinq, quarante, divisé par deux, soit vingt centimètres carrés."
+    },
+    {
+      "id": "p20",
+      "ecran": "aire_rectangle",
+      "texte": "Rectangle : les deux côtés de l'angle droit jouent les deux rôles.",
+      "dit": "Cas particulier du triangle rectangle : les côtés de l'angle droit sont perpendiculaires. L'un sert de base, l'autre de hauteur, et l'aire vaut leur produit divisé par deux."
+    },
+    {
+      "id": "p21",
+      "ecran": "recap",
+      "texte": "Triangles : à retenir.",
+      "dit": "Pour retenir l'essentiel : un triangle se reconnaît à ses côtés et à ses angles, il n'existe que si chaque côté reste plus court que la somme des deux autres, ses angles totalisent cent quatre-vingts degrés, et son aire vaut la moitié de la base fois la hauteur."
+    }
+  ]
+}

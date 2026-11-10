@@ -1,0 +1,351 @@
+{
+  "cours": 7367,
+  "lecons": [
+    10580,
+    10581,
+    10582,
+    10583
+  ],
+  "titre": "Oscillations mécaniques",
+  "matiere": "Physique · Terminale",
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "dit": "Bonjour à tous ! Aujourd'hui, on étudie les oscillations mécaniques : le mouvement harmonique, les pendules, et l'amortissement.",
+      "texte": "Bonjour à tous ! Aujourd'hui, on étudie les oscillations mécaniques.",
+      "pause_apres": 0.9
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "dit": "Un mouvement harmonique simple est un mouvement périodique. La force de rappel est proportionnelle au déplacement, et dirigée vers la position d'équilibre.",
+      "texte": "Un mouvement harmonique simple : une force de rappel proportionnelle au déplacement.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p03",
+      "ecran": "loi",
+      "dit": "D'après la deuxième loi de Newton et la loi de Hooke, m fois d deux x sur d t deux égale moins k x. La solution est une cosinusoïde.",
+      "texte": "m·d²x/dt² = −k·x, avec pour solution x(t) = A·cos(ωt + φ).",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p04",
+      "ecran": "omega",
+      "dit": "La pulsation oméga vaut racine carrée de k sur m. La période vaut deux pi sur oméga, soit deux pi racine carrée de m sur k.",
+      "texte": "ω = √(k/m) et T = 2π/ω = 2π√(m/k).",
+      "pause_apres": 1.1
+    },
+    {
+      "id": "p05",
+      "ecran": "isochrone",
+      "dit": "Remarque : la période ne dépend pas de l'amplitude. C'est la propriété d'isochronisme du mouvement harmonique idéal.",
+      "texte": "La période ne dépend pas de l'amplitude : c'est l'isochronisme.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p06",
+      "ecran": "energie",
+      "dit": "Sans frottement, l'énergie mécanique se conserve. Elle s'écrit un demi m v carré, plus un demi k x carré, et reste constante.",
+      "texte": "Énergie mécanique constante : Em = ½mv² + ½kx².",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p07",
+      "ecran": "vertical",
+      "dit": "Pour un pendule élastique vertical, la gravité déplace seulement la position d'équilibre, de m g sur k. Une fois l'équilibre pris en compte, l'équation redevient la même.",
+      "texte": "Pendule vertical : l'équilibre est décalé de Δl = mg/k, mais l'équation reste la même.",
+      "pause_apres": 1.2
+    },
+    {
+      "id": "p08",
+      "ecran": "methode",
+      "dit": "Pour résoudre un problème, procédez en quatre étapes : calculer oméga, écrire la solution générale, appliquer les conditions initiales, puis déduire la période.",
+      "texte": "Méthode : calculer ω, écrire x(t), appliquer les conditions initiales, déduire T.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p09",
+      "ecran": "exemple_enonce",
+      "dit": "Exemple : une masse de zéro virgule vingt-cinq kilogramme, sur un ressort de cent newtons par mètre, est lâchée du repos à cinq centimètres sous l'équilibre.",
+      "texte": "Exemple : m = 0,25 kg, k = 100 N·m⁻¹, lâchée au repos à 5 cm sous l'équilibre.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p10",
+      "ecran": "exemple_omega",
+      "dit": "La pulsation vaut racine carrée de cent sur zéro virgule vingt-cinq, soit racine carrée de quatre cents : vingt radians par seconde.",
+      "texte": "ω₀ = √(100 / 0,25) = √400 = 20 rad·s⁻¹.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p11",
+      "ecran": "exemple_x",
+      "dit": "Comme la masse est lâchée au repos, la phase vaut zéro, et l'amplitude vaut cinq centimètres. L'équation du mouvement est x de t égale zéro virgule zéro cinq cosinus de vingt t.",
+      "texte": "Conditions initiales : x(0) = 0,05 m, v(0) = 0, donc φ = 0 et x(t) = 0,05·cos(20t).",
+      "pause_apres": 1.1
+    },
+    {
+      "id": "p12",
+      "ecran": "exemple_T",
+      "dit": "La période vaut deux pi sur vingt, soit pi sur dix : environ zéro virgule trois cent quatorze seconde. La fréquence vaut environ trois virgule dix-huit hertz.",
+      "texte": "T = 2π / 20 = π/10 ≈ 0,314 s, et f = 1/T ≈ 3,18 Hz.",
+      "pause_apres": 1.2
+    },
+    {
+      "id": "p13",
+      "ecran": "pendule_torsion",
+      "dit": "Passons au pendule de torsion. Le fil exerce un couple de rappel proportionnel à l'angle : C égale moins kappa theta. Sa période vaut deux pi racine carrée de I sur kappa.",
+      "texte": "Pendule de torsion : C = −κθ, et T = 2π√(I/κ).",
+      "pause_apres": 1.1
+    },
+    {
+      "id": "p14",
+      "ecran": "torsion_ex",
+      "dit": "Exemple : un moment d'inertie de deux virgule cinq fois dix puissance moins trois, et un couple de un virgule deux fois dix puissance moins deux. La période vaut environ deux virgule quatre-vingt-sept seconde.",
+      "texte": "I = 2,5 × 10⁻³ kg·m², κ = 1,2 × 10⁻² N·m·rad⁻¹ : T = 2π√(I/κ) ≈ 2,87 s.",
+      "pause_apres": 1.2
+    },
+    {
+      "id": "p15",
+      "ecran": "pieges",
+      "dit": "Attention : pour le pendule de torsion, la période ne dépend pas de g, mais seulement de kappa et de I. Ne confondez pas I et la masse m.",
+      "texte": "Attention : la période de torsion ne dépend pas de g. Ne confondez pas I et m.",
+      "pause_apres": 1.1
+    },
+    {
+      "id": "p16",
+      "ecran": "amorti",
+      "dit": "Avec un frottement visqueux gamma, l'équation devient m x seconde, plus gamma x point, plus k x, égal zéro. Pour un amortissement léger, l'amplitude décroît exponentiellement.",
+      "texte": "m·ẍ + γ·ẋ + k·x = 0 : amortissement léger, amplitude en e^(−γt/2m).",
+      "pause_apres": 1.2
+    },
+    {
+      "id": "p17",
+      "ecran": "amorti_ex",
+      "dit": "Exemple : masse de zéro virgule cinq kilogramme, ressort de vingt newtons par mètre, frottement de un kilogramme par seconde. On vérifie d'abord le critère : deux racine de m k vaut environ six virgule trente-deux.",
+      "texte": "m = 0,5 kg, k = 20 N·m⁻¹, γ = 1,0 kg·s⁻¹ : critère 2√(mk) ≈ 6,32 ; γ < 6,32, donc léger.",
+      "pause_apres": 1.1
+    },
+    {
+      "id": "p18",
+      "ecran": "amorti_wd",
+      "dit": "La pulsation amortie vaut racine carrée de quarante moins un, soit environ six virgule vingt-quatre radians par seconde.",
+      "texte": "ω_d = √(ω₀² − (γ/2m)²) = √(40 − 1) ≈ 6,24 rad·s⁻¹.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p19",
+      "ecran": "amorti_t",
+      "dit": "Pour le temps de demi-décroissance, on résout e puissance moins gamma sur deux m t égale un demi. Cela donne deux m sur gamma, fois ln deux : environ zéro virgule six neuf seconde.",
+      "texte": "Temps de demi-décroissance : t½ = (2m/γ)·ln 2 ≈ 0,69 s.",
+      "pause_apres": 1.2
+    },
+    {
+      "id": "p20",
+      "ecran": "resonance",
+      "dit": "Si le système est soumis à une force extérieure harmonique, son amplitude dépend de la fréquence d'excitation. Elle est maximale près de la fréquence propre : c'est la résonance.",
+      "texte": "Résonance : l'amplitude est maximale quand la fréquence d'excitation est proche de la fréquence propre.",
+      "pause_apres": 1.1
+    },
+    {
+      "id": "p21",
+      "ecran": "facteur_q",
+      "dit": "Le facteur de qualité Q mesure la finesse du pic. Plus Q est grand, plus le pic est étroit et haut.",
+      "texte": "Facteur de qualité : Q = √(mk) / γ. Plus Q est grand, plus le pic est étroit.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p22",
+      "ecran": "limite",
+      "dit": "Dans un système réel, l'amortissement limite toujours l'amplitude de résonance. Concevoir un système résonnant suppose donc un compromis entre performance et sécurité.",
+      "texte": "Dans un système réel, l'amortissement limite l'amplitude : compromis entre performance et sécurité.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p23",
+      "ecran": "recap",
+      "dit": "À retenir : la période d'un oscillateur harmonique vaut deux pi racine de m sur k, indépendante de l'amplitude. Le pendule de torsion vaut deux pi racine de I sur kappa. Le frottement diminue l'amplitude, et la résonance dépend de Q.",
+      "texte": "À retenir : T = 2π√(m/k) ; torsion T = 2π√(I/κ) ; l'amortissement fait décroître l'amplitude ; Q règle la résonance.",
+      "pause_apres": 0.0
+    }
+  ],
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Physique · Terminale",
+      "titre": "Oscillations mécaniques",
+      "sous": "Mouvement harmonique, pendules et amortissement"
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Une force de rappel proportionnelle au déplacement."
+    },
+    "loi": {
+      "type": "formule",
+      "kicker": "Loi fondamentale",
+      "tex": "m\\,\\dfrac{d^2x}{dt^2}=-k\\,x",
+      "note": "solution : x(t) = A cos(ωt + φ)",
+      "anim": {
+        "nom": "ressort"
+      }
+    },
+    "omega": {
+      "type": "etape",
+      "kicker": "Pulsation et période",
+      "tex": [
+        "\\omega=\\sqrt{\\dfrac{k}{m}}",
+        "T=\\dfrac{2\\pi}{\\omega}=2\\pi\\sqrt{\\dfrac{m}{k}}"
+      ]
+    },
+    "isochrone": {
+      "type": "phrase",
+      "kicker": "Remarque",
+      "texte": "La période ne dépend pas de l'amplitude : c'est l'isochronisme."
+    },
+    "energie": {
+      "type": "formule",
+      "kicker": "Énergie sans frottement",
+      "tex": "E_m=\\dfrac{1}{2}mv^2+\\dfrac{1}{2}kx^2=\\text{constante}"
+    },
+    "vertical": {
+      "type": "etape",
+      "kicker": "Pendule vertical",
+      "tex": [
+        "mg-k\\,\\Delta l=0 \\;\\Rightarrow\\; \\Delta l=\\dfrac{mg}{k}",
+        "m\\,\\ddot{x}=-kx \\;\\text{(même équation)}"
+      ],
+      "anim": {
+        "nom": "ressort",
+        "decal": 40
+      }
+    },
+    "methode": {
+      "type": "recap",
+      "kicker": "Méthode",
+      "etapes": [
+        "Calculer la pulsation ω₀",
+        "Écrire la solution générale x(t)",
+        "Appliquer les conditions initiales",
+        "Déduire la période T"
+      ]
+    },
+    "exemple_enonce": {
+      "type": "lignes",
+      "kicker": "Exemple résolu",
+      "tex": [
+        "m=0{,}25\\ \\text{kg}, \\quad k=100\\ \\text{N}\\,\\text{m}^{-1}",
+        "x(0)=5\\ \\text{cm}, \\quad \\dot{x}(0)=0"
+      ]
+    },
+    "exemple_omega": {
+      "type": "etape",
+      "kicker": "Exemple · pulsation",
+      "tex": [
+        "\\omega_0=\\sqrt{\\dfrac{100}{0{,}25}}=\\sqrt{400}",
+        "\\omega_0=20\\ \\text{rad}\\,\\text{s}^{-1}"
+      ]
+    },
+    "exemple_x": {
+      "type": "etape",
+      "kicker": "Exemple · équation du mouvement",
+      "tex": [
+        "x(0)=A\\cos\\varphi=0{,}05, \\quad \\dot{x}(0)=0",
+        "\\Rightarrow\\; \\varphi=0",
+        "x(t)=0{,}05\\cos(20\\,t)"
+      ]
+    },
+    "exemple_T": {
+      "type": "etape",
+      "kicker": "Exemple · période et fréquence",
+      "tex": [
+        "T=\\dfrac{2\\pi}{20}=\\dfrac{\\pi}{10}\\approx0{,}314\\ \\text{s}",
+        "f=\\dfrac{1}{T}\\approx3{,}18\\ \\text{Hz}"
+      ]
+    },
+    "pendule_torsion": {
+      "type": "formule",
+      "kicker": "Pendule de torsion",
+      "tex": "T=2\\pi\\sqrt{\\dfrac{I}{\\kappa}}",
+      "note": "couple de rappel C = −κθ",
+      "anim": {
+        "nom": "torsion"
+      }
+    },
+    "torsion_ex": {
+      "type": "etape",
+      "kicker": "Exemple · torsion",
+      "tex": [
+        "I=2{,}5\\times10^{-3}, \\quad \\kappa=1{,}2\\times10^{-2}",
+        "T=2\\pi\\sqrt{\\dfrac{2{,}5\\times10^{-3}}{1{,}2\\times10^{-2}}}\\approx2{,}87\\ \\text{s}"
+      ]
+    },
+    "pieges": {
+      "type": "phrase",
+      "kicker": "Attention",
+      "texte": "La période de torsion ne dépend pas de g. Ne confondez pas I et m."
+    },
+    "amorti": {
+      "type": "formule",
+      "kicker": "Oscillations amorties",
+      "tex": "m\\ddot{x}+\\gamma\\dot{x}+kx=0",
+      "note": "amortissement léger : amplitude en e^{−γt/2m}",
+      "anim": {
+        "nom": "ressort",
+        "amorti": true
+      }
+    },
+    "amorti_ex": {
+      "type": "etape",
+      "kicker": "Exemple · nature de l'amortissement",
+      "tex": [
+        "m=0{,}5, \\quad k=20, \\quad \\gamma=1{,}0",
+        "2\\sqrt{mk}\\approx6{,}32 > \\gamma \\;\\Rightarrow\\; \\text{léger}"
+      ]
+    },
+    "amorti_wd": {
+      "type": "etape",
+      "kicker": "Exemple · pulsation amortie",
+      "tex": [
+        "\\omega_d=\\sqrt{\\omega_0^2-\\left(\\dfrac{\\gamma}{2m}\\right)^2}",
+        "\\omega_d=\\sqrt{40-1}\\approx6{,}24\\ \\text{rad}\\,\\text{s}^{-1}"
+      ]
+    },
+    "amorti_t": {
+      "type": "etape",
+      "kicker": "Exemple · demi-décroissance",
+      "tex": [
+        "t_{1/2}=\\dfrac{2m}{\\gamma}\\ln2",
+        "t_{1/2}\\approx0{,}69\\ \\text{s}"
+      ]
+    },
+    "resonance": {
+      "type": "phrase",
+      "kicker": "Résonance",
+      "texte": "L'amplitude est maximale quand la fréquence d'excitation est proche de la fréquence propre."
+    },
+    "facteur_q": {
+      "type": "formule",
+      "kicker": "Facteur de qualité",
+      "tex": "Q=\\dfrac{\\sqrt{mk}}{\\gamma}",
+      "note": "plus Q est grand, plus le pic est étroit"
+    },
+    "limite": {
+      "type": "phrase",
+      "kicker": "Limite",
+      "texte": "L'amortissement limite toujours l'amplitude de résonance."
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "T = 2π√(m/k) : indépendante de l'amplitude",
+        "Torsion : T = 2π√(I/κ)",
+        "Amortissement : amplitude qui décroît",
+        "Résonance : pic réglé par le facteur Q"
+      ]
+    }
+  }
+}

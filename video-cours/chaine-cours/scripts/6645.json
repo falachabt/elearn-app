@@ -1,0 +1,500 @@
+{
+ "cours": 6645,
+ "ecrans": {
+  "animation": {
+   "kicker": "Animer un objet",
+   "tex": [
+    "\\text{Animations, Ajouter une animation}",
+    "\\text{Apparition, Fondu, Survol, Disparition}",
+    "\\text{au clic, avec, ou après la précédente}"
+   ],
+   "titre": "Sélectionner, effet, déclenchement",
+   "type": "etape"
+  },
+  "bulletin": {
+   "kicker": "Le bulletin de notes",
+   "tex": [
+    "\\text{moyenne : MOYENNE, plage}",
+    "\\text{somme : SOMME, plage}",
+    "\\text{maximum : MAX, minimum : MIN}"
+   ],
+   "titre": "Élève, matières, moyenne, appréciation",
+   "type": "etape"
+  },
+  "creation": {
+   "kicker": "Créer une diapositive",
+   "tex": [
+    "\\text{ouvrir, modèle ou présentation vierge}",
+    "\\text{Nouvelle diapositive, contrôle plus M}",
+    "\\text{disposition, zones de texte, enregistrer}"
+   ],
+   "titre": "Modèle, disposition, texte, enregistrement",
+   "type": "etape"
+  },
+  "diapo": {
+   "kicker": "Diapositive et diaporama",
+   "tex": [
+    "\\text{diapositive : une page élémentaire}",
+    "\\text{texte, images, formes, tableaux}",
+    "\\text{diaporama : suite ordonnée, plein écran}"
+   ],
+   "titre": "Une page, puis une suite ordonnée",
+   "type": "etape"
+  },
+  "diaporama": {
+   "kicker": "Visualiser en mode diaporama",
+   "tex": [
+    "\\text{Diaporama, À partir du début, F5}",
+    "\\text{pointeur laser : contrôle plus clic}",
+    "\\text{orthographe, contraste, animations}"
+   ],
+   "titre": "Tester avant de présenter",
+   "type": "etape"
+  },
+  "equipe": {
+   "kicker": "Travailler en équipe",
+   "tex": [
+    "\\text{répartition équilibrée des diapositives}",
+    "\\text{polices, couleurs, tailles de titre}",
+    "\\text{relire les autres, connaître l'ensemble}"
+   ],
+   "titre": "Une charte graphique commune",
+   "type": "etape"
+  },
+  "ex_bulletin": {
+   "kicker": "Exemple : la moyenne générale",
+   "note": "Notes de 14, 12, 13, 15, 11, 16, 17 et 18 ; maximum 18, minimum 11, moyenne 14,5 sur 20",
+   "tex": "\\frac{116}{8} = 14{,}5",
+   "type": "formule"
+  },
+  "ex_lignes": {
+   "kicker": "Exemple : les lignes de la facture",
+   "tex": [
+    "50 \\times 2{,}50 = 125{,}00",
+    "30 \\times 1{,}80 = 54{,}00",
+    "20 \\times 4{,}00 = 80{,}00"
+   ],
+   "titre": "Trois lignes, trois montants",
+   "type": "etape"
+  },
+  "ex_totaux": {
+   "kicker": "Exemple : les totaux",
+   "note": "Total HT 259 euros, TVA 51,80 euros, total TTC 310,80 euros ; tout se recalcule si une quantité ou un prix change",
+   "tex": "259 + 51{,}80 = 310{,}80",
+   "type": "formule"
+  },
+  "exemple_preao": {
+   "kicker": "Exemple résolu : trois arguments",
+   "tex": [
+    "\\text{3 puces, Apparition, au clic}",
+    "\\text{durée : 0,5 s chacune}",
+    "\\text{transition Fondu, 1 s}"
+   ],
+   "titre": "Apparition au clic, fondu d'une seconde",
+   "type": "etape"
+  },
+  "facture_struct": {
+   "kicker": "La structure d'une facture",
+   "tex": [
+    "\\text{vendeur, client, date, numéro}",
+    "\\text{désignation, quantité, prix unitaire}",
+    "\\text{total HT, TVA, total TTC}"
+   ],
+   "titre": "Coordonnées, tableau, totaux",
+   "type": "etape"
+  },
+  "formes": {
+   "kicker": "Formes, tableau, graphique",
+   "tex": [
+    "\\text{Insertion, Formes}",
+    "\\text{rectangle, flèche, cercle}",
+    "\\text{tableau 2 colonnes, graphique circulaire}"
+   ],
+   "titre": "Formes, tableau, graphique",
+   "type": "etape"
+  },
+  "formules_facture": {
+   "kicker": "Les quatre formules de la facture",
+   "tex": [
+    "M = Q \\times PU",
+    "HT = \\sum M_i",
+    "TVA = HT \\times 0{,}20",
+    "TTC = HT + TVA"
+   ],
+   "titre": "Montant, total, TVA, total TTC",
+   "type": "etape"
+  },
+  "garde": {
+   "kicker": "Exemple : une page de garde",
+   "tex": [
+    "\\text{page vide au début, contrôle Entrée}",
+    "\\text{titre centré, 22 points, gras}",
+    "\\text{auteur, date, style Titre}"
+   ],
+   "titre": "Titre, auteur, établissement, date",
+   "type": "etape"
+  },
+  "illustr_entetes": {
+   "kicker": "Illustrations, en-têtes, pieds",
+   "tex": [
+    "\\text{légende par illustration, puis table}",
+    "\\text{en-tête en haut, pied en bas}",
+    "\\text{numéro : Page 1 sur 5}"
+   ],
+   "titre": "Légendes, pages, numéros",
+   "type": "etape"
+  },
+  "image": {
+   "kicker": "Insérer une image",
+   "tex": [
+    "\\text{Insertion, puis Image}",
+    "\\text{fichier local ou image en ligne}",
+    "\\text{poignées d'angle, touche Maj : proportions}"
+   ],
+   "titre": "Insertion, choix, proportions",
+   "type": "etape"
+  },
+  "logiciels": {
+   "kicker": "Choisir son logiciel de PréAO",
+   "tex": [
+    "\\text{Impress : extension .odp}",
+    "\\text{PowerPoint : extension .pptx}",
+    "\\text{choix : coût, collaboration, compatibilité}"
+   ],
+   "titre": "Disponibilité, coût, collaboration",
+   "type": "etape"
+  },
+  "pratiques": {
+   "kicker": "Bonnes pratiques",
+   "tex": [
+    "\\text{données brutes hors des formules}",
+    "\\text{références de cellules, pas de valeurs fixes}",
+    "\\text{cohérence, format, décimales}"
+   ],
+   "titre": "Données brutes, références, présentation",
+   "type": "etape"
+  },
+  "preao": {
+   "kicker": "Définir : la PréAO",
+   "tex": [
+    "\\text{PréAO : techniques et logiciels}",
+    "\\text{structurer visuellement un exposé}",
+    "\\text{renforcer la clarté du message}"
+   ],
+   "titre": "Créer, animer, diffuser un exposé",
+   "type": "etape"
+  },
+  "rapport": {
+   "kicker": "Produire un rapport",
+   "tex": [
+    "\\text{page de garde, table des matières}",
+    "\\text{corps stylé, table des illustrations}",
+    "\\text{conclusion, en-têtes, pagination}"
+   ],
+   "titre": "Garde, tables, corps, conclusion",
+   "type": "etape"
+  },
+  "regle66": {
+   "kicker": "La règle des six par six",
+   "tex": [
+    "\\text{6 lignes de texte au maximum}",
+    "\\text{6 mots par ligne au maximum}",
+    "\\text{lisibilité garantie}"
+   ],
+   "titre": "Sobre, pour rester lisible",
+   "type": "etape"
+  },
+  "sauts": {
+   "kicker": "Sauts de page et de section",
+   "tex": [
+    "\\text{saut de page : contrôle Entrée}",
+    "\\text{saut de section : nouvelle mise en page}",
+    "\\text{exemple : une page en paysage}"
+   ],
+   "titre": "Changer de page, changer de mise en page",
+   "type": "etape"
+  },
+  "section_style": {
+   "kicker": "Section et style",
+   "tex": [
+    "\\text{section : mise en page indépendante}",
+    "\\text{style : formats nommés, titre, normal}",
+    "\\text{modifier un style met tout à jour}"
+   ],
+   "titre": "Deux notions fondamentales",
+   "type": "etape"
+  },
+  "style_citation": {
+   "kicker": "Exemple : un style Citation",
+   "tex": [
+    "\\text{panneau des styles, touche F onze}",
+    "\\text{Nouveau style, nom Citation}",
+    "\\text{Times New Roman, italique, 11 points}"
+   ],
+   "titre": "Italique, onze points, bordure",
+   "type": "etape"
+  },
+  "tableur": {
+   "kicker": "Qu'est-ce qu'un tableur ?",
+   "tex": [
+    "\\text{cellule : intersection ligne, colonne}",
+    "\\text{plage : cellules contiguës, B2:D5}",
+    "\\text{formule : commence par égal}"
+   ],
+   "titre": "Une grille qui calcule toute seule",
+   "type": "etape"
+  },
+  "tdm": {
+   "kicker": "La table des matières",
+   "tex": [
+    "\\text{Titre 1, Titre 2 sur les titres}",
+    "\\text{curseur après la page de garde}",
+    "\\text{Références, Table des matières}"
+   ],
+   "titre": "Générée depuis les styles de titres",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Informatique · Bureautique et outils numériques",
+   "sous": "PréAO, traitement de texte et tableur : créer, structurer et calculer des documents professionnels",
+   "titre": "Bureautique : présentation, traitement de texte et tableur",
+   "type": "titre"
+  },
+  "traitement": {
+   "kicker": "Le traitement de texte",
+   "tex": [
+    "\\text{Word, Writer, Google Docs}",
+    "\\text{Apache OpenOffice Writer}",
+    "\\text{documents saisis et mis en forme}"
+   ],
+   "titre": "Saisir, mettre en forme, imprimer",
+   "type": "etape"
+  },
+  "trans_anim": {
+   "kicker": "Transition ou animation ?",
+   "tex": [
+    "\\text{transition : entre deux diapositives}",
+    "\\text{exemples : fondu, balayage, zoom}",
+    "\\text{animation : sur un objet, dans une page}"
+   ],
+   "titre": "Entre deux pages, ou dans une page",
+   "type": "etape"
+  },
+  "transition": {
+   "kicker": "Ajouter une transition",
+   "tex": [
+    "\\text{sélectionner la diapositive cible}",
+    "\\text{Transitions : fondu, poussée, aléatoire}",
+    "\\text{durée, manuel ou automatique}"
+   ],
+   "titre": "Un seul style cohérent par présentation",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "PréAO : diapositives, animations, diaporama"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : le traitement de texte. Nous verrons la page de garde, les tables automatiques, les en-têtes et les styles, puis la production d'un rapport complet.",
+    "texte": "Partie 2 : traitement de texte."
+   },
+   "sous_titre": "Traitement de texte : du style au rapport"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : le tableur. Nous définirons la grille et son vocabulaire, puis nous construirons une facture simple, de ses formules à ses totaux, et un bulletin de notes, avant les bonnes pratiques.",
+    "texte": "Partie 3 : le tableur."
+   },
+   "sous_titre": "Tableur : facture et bulletin"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de bureautique : présentation assistée par ordinateur, traitement de texte et tableur. Trois outils pour un seul but, produire des documents clairs et professionnels, de la diapositive à la facture.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Trois outils, un seul but : des documents clairs."
+  },
+  {
+   "dit": "La PréAO, c'est l'ensemble des techniques et des logiciels qui permettent de créer, d'animer et de diffuser un diaporama. Son objectif est de structurer visuellement un exposé oral, pour renforcer la clarté du message.",
+   "ecran": "preao",
+   "id": "p02",
+   "texte": "PréAO : créer, animer, diffuser un diaporama."
+  },
+  {
+   "dit": "Une diapositive est la page élémentaire d'un diaporama : elle contient du texte, des images, des formes ou des tableaux, organisés selon une mise en page. Le diaporama, lui, est la suite ordonnée de ces diapositives, présentées en plein écran.",
+   "ecran": "diapo",
+   "id": "p03",
+   "texte": "Une diapositive, puis un diaporama ordonné."
+  },
+  {
+   "dit": "Ne confondez pas transition et animation, c'est la différence fondamentale du chapitre. Une transition agit entre deux diapositives, comme un fondu ou un balayage ; une animation agit sur un objet à l'intérieur d'une seule diapositive.",
+   "ecran": "trans_anim",
+   "id": "p04",
+   "texte": "Transition entre pages, animation dans la page."
+  },
+  {
+   "dit": "Plusieurs logiciels permettent de réaliser des présentations, et le choix dépend de la disponibilité, du coût, des fonctions collaboratives et de la compatibilité. Retenez surtout les extensions : point o d p pour Impress, point p p t x pour PowerPoint.",
+   "ecran": "logiciels",
+   "id": "p05",
+   "texte": "Impress en .odp, PowerPoint en .pptx."
+  },
+  {
+   "dit": "Pour créer une diapositive, ouvrez le logiciel et choisissez un modèle ou une présentation vierge, puis cliquez sur Nouvelle diapositive, ou utilisez le raccourci contrôle plus M. Choisissez ensuite une disposition, comme titre seul ou titre plus contenu, renseignez les zones de texte, et enregistrez régulièrement.",
+   "ecran": "creation",
+   "id": "p06",
+   "texte": "Modèle, nouvelle diapositive, disposition, texte."
+  },
+  {
+   "dit": "Le conseil pédagogique du chapitre, c'est la règle des six par six : six lignes de texte au maximum par diapositive, et six mots au maximum par ligne. C'est elle qui garantit la lisibilité de votre présentation.",
+   "ecran": "regle66",
+   "id": "p07",
+   "texte": "Six lignes, six mots : la règle des six par six."
+  },
+  {
+   "dit": "Les objets d'une diapositive sont le texte, l'image, la forme, le tableau, le graphique, la vidéo ou l'audio. Pour une image, allez dans l'onglet Insertion puis Image, choisissez le fichier ou une image en ligne, et redimensionnez avec les poignées d'angle en maintenant la touche Maj pour conserver les proportions.",
+   "ecran": "image",
+   "id": "p08",
+   "texte": "Insertion, image, proportions conservées."
+  },
+  {
+   "dit": "Pour une forme, même chemin par l'onglet Insertion puis Formes : choisissez un rectangle, une flèche ou un cercle, dessinez en maintenant le clic glissé, puis réglez remplissage et contour dans l'onglet Format. Et pour illustrer un budget, insérez un tableau à deux colonnes, Poste et Montant, sur quatre lignes, puis un graphique circulaire à partir de ces données.",
+   "ecran": "formes",
+   "id": "p09",
+   "texte": "Forme, tableau à deux colonnes, graphique circulaire."
+  },
+  {
+   "dit": "Pour animer un objet, sélectionnez-le, puis allez dans l'onglet Animations et choisissez Ajouter une animation : Apparition, Fondu, Survol pour la mise en évidence, ou Disparition. Réglez ensuite le déclenchement, au clic, avec la précédente ou après la précédente, puis la durée en secondes et le délai éventuel.",
+   "ecran": "animation",
+   "id": "p10",
+   "texte": "Animer un objet : effet, déclenchement, durée."
+  },
+  {
+   "dit": "Pour une transition, sélectionnez la diapositive cible, celle qui apparaît, puis choisissez un effet dans l'onglet Transitions, fondu, poussée ou aléatoire, et réglez la durée et le déclenchement, manuel ou automatique après un nombre de secondes. Règle de bon usage : un seul type d'animation cohérent par présentation, car les animations guident le regard au lieu de décorer.",
+   "ecran": "transition",
+   "id": "p11",
+   "texte": "Transition sur la cible, un style cohérent."
+  },
+  {
+   "dit": "Exemple résolu : pour une diapositive listant trois arguments, appliquez une animation Apparition à chaque puce, déclenchée au clic, avec une durée de zéro virgule cinq seconde chacune. Pour passer de la première à la deuxième diapositive, appliquez une transition Fondu d'une seconde.",
+   "ecran": "exemple_preao",
+   "id": "p12",
+   "texte": "Trois puces au clic, fondu d'une seconde."
+  },
+  {
+   "dit": "Le mode diaporama affiche les diapositives en plein écran, dans l'ordre défini, avec les animations et les transitions telles que le public les percevra. Lancez-le depuis l'onglet Diaporama, À partir du début, ou avec la touche F cinq, utilisez le pointeur laser virtuel en maintenant contrôle et clic, et avant de présenter, testez tout une fois, vérifiez l'orthographe, le contraste et que rien n'est masqué.",
+   "ecran": "diaporama",
+   "id": "p13",
+   "texte": "Mode diaporama : plein écran, puis vérifications."
+  },
+  {
+   "dit": "La PréAO s'inscrit souvent dans un projet collectif : répartissez les diapositives de façon équilibrée entre les membres du groupe, respectez une charte graphique commune pour les polices, les couleurs et les tailles de titre, et relisez le travail des autres. Chaque membre doit connaître l'ensemble du contenu pour répondre aux questions de l'auditoire.",
+   "ecran": "equipe",
+   "id": "p14",
+   "texte": "Équipe : répartition, charte, relecture."
+  },
+  {
+   "dit": "Passons au traitement de texte : un logiciel qui permet de saisir, de mettre en forme et d'imprimer des documents. Les exemples courants sont Microsoft Word, LibreOffice Writer, Google Docs et Apache OpenOffice Writer.",
+   "ecran": "traitement",
+   "id": "p15",
+   "texte": "Traitement de texte : saisir, mettre en forme, imprimer."
+  },
+  {
+   "dit": "Deux notions fondamentales. Une section est une partie du document dont la mise en page, marges, orientation ou colonnes, peut être définie indépendamment des autres. Un style est un ensemble nommé de formats, police, taille, interligne et espacement, appliqué à un type d'élément : modifier un style met à jour automatiquement tous les éléments qui l'utilisent.",
+   "ecran": "section_style",
+   "id": "p16",
+   "texte": "Section : mise en page propre. Style : formats nommés."
+  },
+  {
+   "dit": "La page de garde est la première page du document : titre, nom de l'auteur, établissement et date. Dans LibreOffice Writer, insérez une page vide au début avec contrôle et Entrée, centrez le titre en police vingt-deux points gras, saisissez le nom de l'auteur puis la date, et appliquez le style Titre au titre via le menu Styles.",
+   "ecran": "garde",
+   "id": "p17",
+   "texte": "Page de garde : titre, auteur, établissement, date."
+  },
+  {
+   "dit": "La table des matières liste les titres et sous-titres avec leurs numéros de page, et elle se génère automatiquement à partir des styles de titres appliqués dans le document. Appliquez les styles Titre un et Titre deux, placez le curseur à l'endroit voulu, souvent après la page de garde, puis allez dans le menu Références, Table des matières, et mettez à jour après toute modification.",
+   "ecran": "tdm",
+   "id": "p18",
+   "texte": "Table des matières : générée depuis les titres."
+  },
+  {
+   "dit": "La table des illustrations répertorie les figures, tableaux ou images avec leur légende et leur page : ajoutez une légende à chaque illustration, puis générez la table depuis le menu Références. L'en-tête, en haut de chaque page, et le pied de page, en bas, contiennent souvent le titre, l'auteur et les numéros de page, par exemple Page un sur cinq.",
+   "ecran": "illustr_entetes",
+   "id": "p19",
+   "texte": "Légendes, tables, en-têtes, pieds, numéros."
+  },
+  {
+   "dit": "Un saut de page force le début d'une nouvelle page, avec le raccourci contrôle et Entrée. Un saut de section crée une nouvelle section et permet de changer la mise en page. Exemple : pour passer une seule page en paysage, placez le curseur à la fin de la page précédente, choisissez Mise en page, Sauts, puis Saut de section, et dans la nouvelle section, Orientation puis Paysage.",
+   "ecran": "sauts",
+   "id": "p20",
+   "texte": "Saut de page, saut de section, page en paysage."
+  },
+  {
+   "dit": "Pour créer un style, allez dans le menu Styles puis Nouveau style, définissez le nom, la police, la taille et l'interligne, puis enregistrez ; pour l'appliquer, sélectionnez le texte et double-cliquez sur le style dans le panneau. Exemple : un style Citation en Times New Roman onze points italique avec bordure, créé depuis le panneau ouvert avec la touche F onze, puis appliqué aux citations du document.",
+   "ecran": "style_citation",
+   "id": "p21",
+   "texte": "Style Citation : italique, onze points, bordure."
+  },
+  {
+   "dit": "Un rapport combine tous ces éléments : page de garde, table des matières, corps du texte avec des titres stylés et des sauts de section si besoin, table des illustrations si des figures sont présentes, conclusion, et en-têtes et pieds de page avec pagination. Rédigez avec les styles de titres, insérez les images avec légendes, créez la page de garde, insérez les deux tables, ajoutez en-têtes et numéros, puis vérifiez la mise en page et mettez à jour les index.",
+   "ecran": "rapport",
+   "id": "p22",
+   "texte": "Rapport : garde, tables, corps, conclusion."
+  },
+  {
+   "dit": "Troisième outil, le tableur : un logiciel qui crée, modifie et exploite des tableaux de données numériques dans une grille de cellules, chacune contenant une valeur ou une formule, et qui recalcule tout automatiquement en temps réel. Retenez le vocabulaire : une cellule est l'intersection d'une ligne et d'une colonne, comme B trois ; une plage est un ensemble de cellules contiguës ; une formule commence par égal, et une fonction est une formule prédéfinie, comme SOMME ou MOYENNE. En ligne, Google Sheets permet même à plusieurs utilisateurs de travailler simultanément sur le même document.",
+   "ecran": "tableur",
+   "id": "p23",
+   "texte": "Tableur : une grille qui calcule toute seule."
+  },
+  {
+   "dit": "Première production, la facture simple. Elle contient les coordonnées du vendeur et du client, la date et le numéro de facture, un tableau avec désignation, quantité, prix unitaire et montant total, puis le total hors taxes, la TVA, taxe sur la valeur ajoutée, et le total toutes taxes comprises.",
+   "ecran": "facture_struct",
+   "id": "p24",
+   "texte": "Vendeur, client, date, tableau, totaux, TVA."
+  },
+  {
+   "dit": "Les quatre formules de base, avec un taux de TVA de vingt pour cent. Le montant d'une ligne, c'est la quantité multipliée par le prix unitaire, par exemple en cellule D deux, égal B deux fois C deux. Le total hors taxes est la somme des montants, en D six, égal SOMME de D deux à D quatre. La TVA vaut le total hors taxes fois zéro virgule vingt, en D sept. Et le total toutes taxes comprises vaut le total hors taxes plus la TVA, en D huit.",
+   "ecran": "formules_facture",
+   "id": "p25",
+   "texte": "Montant, total, TVA à vingt pour cent, total TTC."
+  },
+  {
+   "dit": "Exemple résolu, étape par étape. En D deux, cinquante fois deux virgule cinquante donne cent vingt-cinq euros. En D trois, trente fois un virgule quatre-vingts donne cinquante-quatre euros. En D quatre, vingt fois quatre donne quatre-vingts euros.",
+   "ecran": "ex_lignes",
+   "id": "p26",
+   "texte": "Trois lignes : 125, 54 et 80 euros."
+  },
+  {
+   "dit": "En D six, la somme des trois montants donne un total hors taxes de deux cent cinquante-neuf euros. En D sept, deux cent cinquante-neuf fois zéro virgule vingt donne une TVA de cinquante et un euros quatre-vingts. En D huit, deux cent cinquante-neuf plus cinquante et un virgule quatre-vingts donne un total toutes taxes comprises de trois cent dix euros quatre-vingts. Et l'avantage clé : si une quantité ou un prix change, tous les résultats sont recalculés automatiquement.",
+   "ecran": "ex_totaux",
+   "id": "p27",
+   "texte": "259 plus 51,80 égale 310,80 euros TTC."
+  },
+  {
+   "dit": "Deuxième production, le bulletin de notes. Il comprend les informations de l'élève, nom, prénom et classe, la liste des matières avec les notes, la moyenne générale et éventuellement l'appréciation du conseil de classe. Les fonctions utiles sont la moyenne, la somme, le maximum et le minimum sur une plage.",
+   "ecran": "bulletin",
+   "id": "p28",
+   "texte": "Bulletin : élève, matières, moyenne, appréciation."
+  },
+  {
+   "dit": "Exemple résolu : saisissez les notes en colonne B, de B deux à B neuf, puis calculez la moyenne en B dix avec MOYENNE de B deux à B neuf. La somme des huit notes vaut cent seize, divisée par huit, la moyenne générale est de quatorze virgule cinq sur vingt. En complément, le maximum vaut dix-huit et le minimum vaut onze.",
+   "ecran": "ex_bulletin",
+   "id": "p29",
+   "texte": "Cent seize divisé par huit : 14,5 sur 20."
+  },
+  {
+   "dit": "Pour conclure, quatre bonnes pratiques : saisissez les données brutes dans des cellules séparées, jamais dans les formules ; utilisez des références de cellules plutôt que des valeurs fixes, pour permettre la mise à jour automatique ; vérifiez la cohérence des résultats ; et soignez la présentation, format monétaire, pourcentage et nombre de décimales. Le tableur est ainsi un outil polyvalent de calcul et d'analyse, de la facture au bulletin.",
+   "ecran": "pratiques",
+   "id": "p30",
+   "texte": "Données brutes, références, présentation soignée."
+  }
+ ],
+ "titre": "Bureautique : présentation, traitement de texte et tableur"
+}

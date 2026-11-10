@@ -1,0 +1,518 @@
+{
+ "cours": 6239,
+ "ecrans": {
+  "agents_erosion": {
+   "kicker": "Quatre agents d'érosion",
+   "tex": [
+    "\\text{eau : ruissellement, dissolution}",
+    "\\text{vent : déflation, corrasion}",
+    "\\text{glace : arrachement, abrasion}",
+    "\\text{vivant : racines, acides, bioturbation}"
+   ],
+   "titre": "Eau, vent, glace et vivant sculptent la surface",
+   "type": "etape"
+  },
+  "alpes_himalaya": {
+   "kicker": "Deux chaînes, deux âges, un même combat",
+   "tex": [
+    "\\text{Himalaya : jeune, surrection rapide}",
+    "\\text{Alpes : matures, équilibre dynamique}",
+    "\\text{Appalaches : vieilles, aplanies}",
+    "\\text{le bilan soulèvement moins érosion}"
+   ],
+   "titre": "Jeune, mature ou vieille : le bilan décide",
+   "type": "etape"
+  },
+  "andes": {
+   "kicker": "Étude de cas : les Andes",
+   "tex": [
+    "\\text{Nazca plonge sous l'Amérique du Sud}",
+    "\\text{de six à huit centimètres par an}",
+    "\\text{épaississement crustal, surrection}",
+    "\\text{érosion extrême, canyon du Colca}"
+   ],
+   "titre": "Subduction active, chaîne qui s'élève",
+   "type": "etape"
+  },
+  "bilan_thermique": {
+   "kicker": "Le bilan thermique de la Terre",
+   "tex": [
+    "\\text{chaleur primordiale : vingt à trente}",
+    "\\text{pour cent, accrétion planétaire}",
+    "\\text{chaleur radiogénique : soixante-dix}",
+    "\\text{à quatre-vingts pour cent, désintégration}"
+   ],
+   "titre": "Quarante-quatre à quarante-sept térawatts dissipés",
+   "type": "etape"
+  },
+  "cycle_roches": {
+   "kicker": "Le cycle des roches, en boucle",
+   "tex": [
+    "\\text{magma, solidification : magmatique}",
+    "\\text{altération, transport, dépôt}",
+    "\\text{enfouissement, chaleur, pression}",
+    "\\text{métamorphique, puis fusion}"
+   ],
+   "titre": "Trois familles, un recyclage permanent",
+   "type": "etape"
+  },
+  "diagenese": {
+   "kicker": "La diagenèse : de sédiment à roche",
+   "tex": [
+    "\\text{compaction : enfouissement, expulsion}",
+    "\\text{de l'eau interstitielle, cimentation :}",
+    "\\text{silice, calcite, oxydes de fer}",
+    "\\text{recristallisation : aragonite en calcite}"
+   ],
+   "titre": "Compaction, cimentation, recristallisation",
+   "type": "etape"
+  },
+  "isostasie_airy": {
+   "kicker": "L'isostasie, modèle d'Airy",
+   "note": "ρm manteau, ρc croûte, T racine crustale.",
+   "tex": "\\Delta h = \\tfrac{\\rho_m - \\rho_c}{\\rho_m} \\times T",
+   "type": "formule"
+  },
+  "isostasie_modeles": {
+   "kicker": "Deux modèles d'isostasie",
+   "tex": [
+    "\\text{Pratt : même masse par surface,}",
+    "\\text{densités différentes, reliefs légers}",
+    "\\text{Airy : densité constante, épaisseur}",
+    "\\text{variable, racines crustales profondes}"
+   ],
+   "titre": "La lithosphère flotte sur l'asthénosphère",
+   "type": "etape"
+  },
+  "rebond_glaciaire": {
+   "kicker": "Le rebond post-glaciaire",
+   "note": "U remontée, U0 initiale, τ relaxation, viscosité du manteau.",
+   "tex": "U(t) = U_0 \\cdot e^{-t/\\tau}",
+   "type": "formule"
+  },
+  "recap1": {
+   "etapes": [
+    "Interne : chaleur, tectonique, reliefs",
+    "Externe : Soleil, gravité, érosion",
+    "47 TW dissipés, 87 mW par m²",
+    "Conduction, convection, advection",
+    "Isostasie : la croûte flotte, se réajuste"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Relief : dH/dt = soulèvement − érosion",
+    "Érosion : eau, vent, glace, vivant",
+    "Transport : fond, suspension, solution",
+    "Sédimentation, puis diagenèse",
+    "Cycle des roches : 3 familles en boucle"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Interne construit, externe démantèle",
+    "Isostasie : décharge, soulèvement",
+    "Cycle des roches, recyclage permanent",
+    "Andes, Himalaya, Rift, rebond glaciaire",
+    "Le relief est un équilibre dynamique"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "recyclage_croutes": {
+   "kicker": "Deux recyclages, deux vitesses",
+   "tex": [
+    "\\text{croûte océanique : moins de deux}",
+    "\\text{cents millions d'années, recyclée}",
+    "\\text{en subduction, croûte continentale :}",
+    "\\text{légère, résiste, recyclée par érosion}"
+   ],
+   "titre": "Océanique rapide, continentale lente",
+   "type": "etape"
+  },
+  "relief_equation": {
+   "kicker": "L'équation du relief",
+   "note": "H altitude, U soulèvement, E érosion, variables en espace et temps.",
+   "tex": "\\tfrac{dH}{dt} = U(x, y, t) - E(x, y, t)",
+   "type": "formule"
+  },
+  "rift": {
+   "kicker": "Étude de cas : le Rift Est-Africain",
+   "tex": [
+    "\\text{extension, panache mantellique}",
+    "\\text{graben, volcans alcalins, lacs}",
+    "\\text{Nyiragongo, Ol Doinyo Lengai}",
+    "\\text{dans dix à cinquante millions d'années}"
+   ],
+   "titre": "La naissance d'un océan, sous nos yeux",
+   "type": "etape"
+  },
+  "sedimentation": {
+   "kicker": "Les environnements sédimentaires",
+   "tex": [
+    "\\text{fluviatile : sables, graviers, vases}",
+    "\\text{deltaïque : séquence progradante}",
+    "\\text{marin littoral : plages, calcaires}",
+    "\\text{marin profond : vases, turbidites}"
+   ],
+   "titre": "Chaque milieu laisse sa signature",
+   "type": "etape"
+  },
+  "temps_echelles": {
+   "kicker": "Des temps incomparables",
+   "tex": [
+    "\\text{séisme : secondes à minutes}",
+    "\\text{éruption : minutes à années}",
+    "\\text{érosion fluviatile : jours à}",
+    "\\text{millions d'années, plaques : centimètres}"
+   ],
+   "titre": "L'humain ne voit qu'un instant du film",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "SVT · Géodynamique",
+   "sous": "Interne et externe, construction et démantèlement : la Terre comme un système couplé, du manteau au paysage",
+   "titre": "La géodynamique : une Terre en équilibre dynamique",
+   "type": "titre",
+   "anim": {
+    "nom": "cycle_roches_fig",
+    "hauteur": 250
+   }
+  },
+  "transferts_chaleur": {
+   "kicker": "Trois transferts de chaleur",
+   "tex": [
+    "\\text{conduction : par contact, dans}",
+    "\\text{les plaques rigides, convection :}",
+    "\\text{par mouvement de matière, manteau}",
+    "\\text{advection : par remontée de magma}"
+   ],
+   "titre": "Contact, mouvement, transport de matière",
+   "type": "etape"
+  },
+  "transport": {
+   "kicker": "Le transport : le grand voyage",
+   "tex": [
+    "\\text{par l'eau : fond, suspension, solution}",
+    "\\text{par le vent : saltation, suspension}",
+    "\\text{par la glace : tout, des blocs}",
+    "\\text{vitesse doublée : capacité fois 64}"
+   ],
+   "titre": "Compétence et capacité dépendent de l'énergie",
+   "type": "etape"
+  },
+  "turbidite": {
+   "kicker": "La turbidite, un dépôt codifié",
+   "tex": [
+    "\\text{à la base : conglomérat ou sable}",
+    "\\text{grossier, puis sables à stratifications}",
+    "\\text{entrecroisées, puis silts laminés}",
+    "\\text{au sommet : argiles pélagiques}"
+   ],
+   "titre": "Du grossier à la base au fin au sommet",
+   "type": "etape"
+  },
+  "temps_echelles2": {
+   "kicker": "Des vitesses incomparables",
+   "tex": [
+    "\\text{séisme : deux à quatre kilomètres}",
+    "\\text{par seconde, éruption : un à cent}",
+    "\\text{mètres par seconde, érosion :}",
+    "\\text{zéro virgule zéro un à dix millimètres}"
+   ],
+   "titre": "Secondes, années, millions d'années",
+   "type": "etape"
+  },
+  "temps_echelles3": {
+   "kicker": "Cinq outils pour mesurer la Terre",
+   "tex": [
+    "\\text{géodésie spatiale, millimètre par an}",
+    "\\text{tomographie sismique, scanner interne}",
+    "\\text{modélisation numérique, géochimie}",
+    "\\text{isotopique, modèles réduits}"
+   ],
+   "titre": "Mesurer, imager, simuler, dater",
+   "type": "etape"
+  },
+  "transferts_chaleur2": {
+   "kicker": "Le nombre de Rayleigh, en bref",
+   "tex": [
+    "\\text{pesanteur, expansion thermique,}",
+    "\\text{différence de température, épaisseur}",
+    "\\text{diffusivité thermique, viscosité}",
+    "\\text{assez grand : la couche convecte}"
+   ],
+   "titre": "Convecter ou conduire, selon Rayleigh",
+   "type": "etape"
+  },
+  "isostasie_airy2": {
+   "kicker": "Airy en formule, à l'examen",
+   "tex": [
+    "\\text{élévation égale différence de densité}",
+    "\\text{sur densité du manteau, fois}",
+    "\\text{épaisseur de la racine crustale}",
+    "\\text{plus la racine est épaisse, plus ça s'élève}"
+   ],
+   "titre": "La racine porte le relief",
+   "type": "etape"
+  },
+  "recyclage_croutes2": {
+   "kicker": "Rétroactions entre interne et externe",
+   "tex": [
+    "\\text{dénudation : allègement, remontée}",
+    "\\text{subsidence, plus de sédiments}",
+    "\\text{sédiments subduits, magma}"
+   ],
+   "titre": "Chaque action appelle une réaction",
+   "type": "etape"
+  },
+  "alpes_himalaya2": {
+   "kicker": "Les Alpes, un livre ouvert",
+   "tex": [
+    "\\text{collision Afrique-Europe, trente à}",
+    "\\text{quarante millions d'années, plis,}",
+    "\\text{chevauchements, métamorphisme}",
+    "\\text{érosion, puis rebond post-glaciaire}"
+   ],
+   "titre": "Construire, sculpter, rebondir",
+   "type": "etape"
+  },
+  "applications": {
+   "kicker": "À quoi sert la géodynamique ?",
+   "tex": [
+    "\\text{risques : séismes de Cascadia,}",
+    "\\text{éruptions, instabilité des pentes}",
+    "\\text{ressources : métaux, hydrocarbures}",
+    "\\text{climat : altération des silicates}"
+   ],
+   "titre": "Prévoir, explorer, réguler le climat",
+   "type": "etape"
+  },
+  "modelisation": {
+   "kicker": "La modélisation numérique",
+   "tex": [
+    "\\text{équations de la chaleur couplée}",
+    "\\text{au mouvement, mécanique des}",
+    "\\text{milieux continus, thermique, surface}",
+    "\\text{et si l'érosion doublait ?}"
+   ],
+   "titre": "Le terrain d'expérimentation virtuel",
+   "type": "etape"
+  },
+  "cycle_roches2": {
+   "kicker": "Le cycle des roches, en boucle",
+   "tex": [
+    "\\text{magmatique : granite, basalte}",
+    "\\text{sédimentaire : grès, calcaire}",
+    "\\text{métamorphique : gneiss, marbre}",
+    "\\text{puis fusion, et ça recommence}"
+   ],
+   "titre": "Trois familles, un recyclage permanent",
+   "type": "etape"
+  }
+ },
+ "matiere": "SVT",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Interne, externe et moteur thermique"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : le combat qui fait les reliefs. Nous verrons l'équation du relief et l'isostasie, puis les agents d'érosion, le transport, la sédimentation et la diagenèse, avant de boucler le cycle des roches.",
+    "texte": "Partie 2 : relief, érosion, sédimentation, cycle."
+   },
+   "sous_titre": "Relief, érosion, sédimentation et cycle"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : quatre études de cas pour voir le système en action. Nous irons dans les Andes, dans l'Himalaya, dans le Rift Est-Africain et dans la Scandinavie post-glaciaire, avant de conclure sur l'unité du système Terre.",
+    "texte": "Partie 3 : Andes, Himalaya, Rift, rebond glaciaire."
+   },
+   "sous_titre": "Quatre terrains, un seul système couplé"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de géodynamique, la science qui étudie les processus physiques responsables de l'évolution de la Terre, des profondeurs de son noyau jusqu'à la fine pellicule de son atmosphère. Imaginez que vous puissiez comprimer les quatre milliards six cents millions d'années d'histoire de la Terre en une seule journée : à minuit, la planète se forme, les premiers continents apparaissent en fin de matinée, la vie complexe en début d'après-midi, les dinosaures règnent jusqu'à la fin de l'après-midi, puis disparaissent, et l'homme moderne n'apparaît que dans les dernières secondes avant minuit. Pendant toute cette journée, un phénomène ne s'arrête jamais : le mouvement.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "4,6 milliards d'années en une journée."
+  },
+  {
+   "dit": "La géodynamique se divise en deux grands domaines, à ne pas opposer trop rigidement. La géodynamique interne étudie les processus d'origine profonde : tectonique des plaques, volcanisme, séismes, métamorphisme, avec pour source d'énergie la chaleur interne de la Terre, et pour direction la construction des reliefs, sur des millions à des milliards d'années. La géodynamique externe étudie l'érosion, le transport, la sédimentation et l'altération, avec pour sources d'énergie le Soleil et la gravité, et pour direction la destruction des reliefs, sur des jours à des millions d'années. Un volcan, processus interne, émet des cendres qui seront érodées et transportées, processus externe : la frontière n'est pas nette, c'est un système en boucle.",
+   "ecran": "temps_echelles",
+   "id": "p02",
+   "texte": "Interne construit, externe démantèle, en boucle."
+  },
+  {
+   "dit": "Au cœur de la géodynamique interne se trouve un principe simple : la Terre est une machine thermique. La chaleur accumulée lors de sa formation et générée par la désintégration d'éléments radioactifs doit s'évacuer. Le bilan est le suivant : la chaleur primordiale, résiduelle de l'accrétion planétaire, représente vingt à trente pour cent, et la chaleur radiogénique, issue de la désintégration de l'uranium, du thorium et du potassium, représente soixante-dix à quatre-vingts pour cent. La puissance thermique totale dissipée par la Terre est d'environ quarante-quatre à quarante-sept térawatts, soit environ trois fois la consommation énergétique mondiale actuelle. Les leçons donnent quarante-sept térawatts dans un chapitre et quarante-quatre dans un autre : retenez l'ordre de grandeur, une quarantaine de térawatts.",
+   "ecran": "bilan_thermique",
+   "id": "p03",
+   "texte": "47 TW ou 44 TW : l'ordre, une quarantaine."
+  },
+  {
+   "dit": "Le flux thermique moyen, estimé à quatre-vingt-sept milliwatts par mètre carré, est le moteur des mouvements internes. La chaleur se propage selon trois mécanismes. La conduction, transfert par contact, domine dans les plaques lithosphériques rigides. La convection, transfert par mouvement de matière, domine dans le manteau et le noyau externe. L'advection, transport de chaleur par mouvement de matériaux, comme la remontée de magma, complète le tableau. C'est la convection mantellique qui, en surface, se traduit par le mouvement des plaques.",
+   "ecran": "transferts_chaleur",
+   "id": "p04",
+   "texte": "Conduction, convection, advection : 87 mW/m²."
+  },
+  {
+   "dit": "Le nombre de Rayleigh, un nombre sans dimension, détermine le régime convectif : il combine la pesanteur, le coefficient d'expansion thermique, la différence de température, l'épaisseur de la couche, la diffusivité thermique et la viscosité cinématique. Inutile de le calculer ici : retenez l'idée. Si le nombre est suffisamment grand, la couche convecte ; sinon, elle transfère sa chaleur par conduction. Et si la Terre se refroidissait complètement, la convection s'arrêterait, la tectonique aussi, et la planète deviendrait géodynamiquement morte, comme Mars aujourd'hui. La chaleur est le carburant, la convection le moteur.",
+   "ecran": "transferts_chaleur2",
+   "id": "p05",
+   "texte": "Rayleigh : convecter ou conduire, il faut choisir."
+  },
+  {
+   "dit": "La véritable compréhension émerge quand on considère les interactions entre processus internes et externes, en boucle fermée. Les processus internes construisent les reliefs et créent une élévation topographique. Cette élévation crée un gradient gravitaire, qui alimente les processus externes : dénudation et sédimentation. Les sédiments s'enfouissent, sont recyclés, et retournent aux processus internes. C'est un système, pas une succession de chapitres indépendants. Chaque fin est un nouveau commencement, et le cycle des roches en est la manifestation tangible.",
+   "ecran": "cycle_roches",
+   "id": "p06",
+   "texte": "Construire, éroder, enfouir, recycler."
+  },
+  {
+   "dit": "Un concept relie directement l'interne et l'externe : l'isostasie. Elle postule que la lithosphère flotte sur l'asthénosphère plus ductile, selon le principe d'Archimède. Deux modèles l'expliquent. Le modèle de Pratt : les colonnes crustales ont la même masse par unité de surface, mais des densités différentes, et les reliefs sont compensés par une densité crustale plus faible. Le modèle d'Airy : la densité crustale est constante, mais l'épaisseur de la croûte varie, et les reliefs sont soutenus par des racines crustales plus profondes, comme un iceberg dans l'eau. La compensation isostatique s'écrit comme une intégrale des densités sur la profondeur, égale à une constante.",
+   "ecran": "isostasie_modeles",
+   "id": "p07",
+   "texte": "Pratt ou Airy : flotter, compenser, se réajuster."
+  },
+  {
+   "dit": "L'exemple concret est l'Himalaya. La collision continentale, processus interne, a créé les plus hautes montagnes du monde. L'érosion intense, processus externe, enlève environ un millimètre de matériel par an, ce qui provoque un réajustement isostatique avec un soulèvement d'environ un demi-millimètre par an. C'est une danse permanente entre construction et destruction : l'érosion décharge la croûte, la croûte remonte, et la remontée réactive l'érosion. Le relief n'est jamais figé, il est la résultante temporaire de ce combat.",
+   "ecran": "isostasie_airy",
+   "id": "p08",
+   "texte": "Himalaya : érosion 1 mm/an, rebond 0,5 mm/an."
+  },
+  {
+   "dit": "Un mot sur les échelles de temps, le défi majeur de la géodynamique. Un séisme dure de quelques secondes à quelques minutes, avec des ondes qui se propagent à deux à quatre kilomètres par seconde. Une éruption dure de quelques minutes à quelques années, avec des éjectas à un à cent mètres par seconde. L'érosion fluviatile agit à zéro virgule zéro un à dix millimètres par an, sur des jours à des millions d'années. Le mouvement des plaques, à un à dix centimètres par an, se joue sur des millions d'années. Et le cycle supercontinental, ouverture et fermeture des océans, dure quatre cents à six cents millions d'années. Notre perception humaine ne couvre qu'un infime segment de ce cadran.",
+   "ecran": "temps_echelles2",
+   "id": "p09",
+   "texte": "Secondes, années, millions d'années : un seul film."
+  },
+  {
+   "dit": "Enfin, les outils de la géodynamique moderne. La géodésie spatiale, positionnement par satellite et interférométrie radar, mesure des déformations de l'ordre du millimètre par an. La tomographie sismique, scanner de l'intérieur terrestre par analyse des ondes, image les variations de température et de densité. La modélisation numérique simule les processus sur supercalculateurs. La géochimie isotopique trace les flux de matière et date les événements. Et les modèles réduits en laboratoire simulent les processus naturels. Exemple : le positionnement par satellite a révélé que les Alpes continuent de se soulever à un ou deux millimètres par an, malgré l'arrêt de la collision il y a des millions d'années, par réponse isostatique à l'érosion glaciaire qui a déchargé les massifs.",
+   "ecran": "temps_echelles3",
+   "id": "p10",
+   "texte": "GPS, tomographie, modèles : mesurer l'invisible."
+  },
+  {
+   "dit": "Récapitulons cette première partie. La géodynamique interne, chaleur et tectonique, construit les reliefs ; la géodynamique externe, Soleil et gravité, les démantèle, et les deux forment un système en boucle. La Terre dissipe environ quarante-quatre à quarante-sept térawatts, avec un flux moyen de quatre-vingt-sept milliwatts par mètre carré. La chaleur se transfère par conduction, convection et advection. Et l'isostasie explique que la croûte flotte et se réajuste quand on la charge ou quand on la décharge.",
+   "ecran": "recap1",
+   "id": "p11",
+   "texte": "L'essentiel de la partie 1."
+  },
+  {
+   "dit": "Passons au combat qui fait les reliefs, avec son équation fondamentale. L'altitude d'une région évolue selon une relation simple et profonde : la variation de l'altitude dans le temps vaut le soulèvement tectonique, moins l'érosion, les deux variant dans l'espace et dans le temps. Si le soulèvement l'emporte sur l'érosion, le relief s'accroît, comme le jeune Himalaya. Si les deux s'équilibrent, le relief atteint un état d'équilibre dynamique, comme les Alpes matures. Si l'érosion l'emporte, le relief s'aplanit, comme les vieilles Appalaches. Tout paysage est un bilan instantané entre ces deux termes.",
+   "ecran": "relief_equation",
+   "id": "p12",
+   "texte": "dH/dt = soulèvement − érosion : tout le relief."
+  },
+  {
+   "dit": "Formalisons l'isostasie avec le modèle d'Airy, utile à l'examen. L'élévation topographique vaut la différence entre la densité du manteau et la densité de la croûte, divisée par la densité du manteau, multipliée par l'épaisseur de la racine crustale. Autrement dit : plus la racine est épaisse, plus le relief est élevé, pour une même différence de densité. C'est ce qui explique que l'épaississement crustal créé par le raccourcissement tectonique soit compensé par une surrection : la chaîne s'élève pour atteindre l'équilibre, comme un iceberg qui émerge d'autant plus qu'il est épais sous l'eau.",
+   "ecran": "isostasie_airy2",
+   "id": "p13",
+   "texte": "Δh = (ρm − ρc)/ρm × T : la racine porte le relief."
+  },
+  {
+   "dit": "Venons-en aux agents de l'érosion, les sculpteurs de la surface. L'eau est l'agent le plus puissant à l'échelle globale : impact des gouttes de pluie, ruissellement, abrasion des cours d'eau chargés en particules, et action chimique par dissolution des calcaires et hydrolyse des silicates, comme le feldspath du granite qui devient de l'argile. Le vent, prédominant dans les milieux arides et littoraux, agit par déflation, soulèvement des particules fines, et corrasion, polissage par le sable projeté. La glace, véritable bulldozer, érode par arrachement et abrasion, et crée cirques, vallées en auge et roches moutonnées. Le vivant, souvent sous-estimé, fissure les roches par ses racines, les altère par des acides organiques, et remue les sols par bioturbation. La vie accélère l'altération d'un facteur dix à mille.",
+   "ecran": "agents_erosion",
+   "id": "p14",
+   "texte": "Eau, vent, glace, vivant : quatre sculpteurs."
+  },
+  {
+   "dit": "Une fois détachées, les particules entament un voyage dont la distance dépend de leur taille, de l'énergie de l'agent et de la pente. Par l'eau, le transport se fait en charge de fond, par roulement et saltation des galets et des sables, en suspension pour les limons et les argiles, ou en solution pour les ions dissous comme le calcium et les bicarbonates. Par le vent, les sables se déplacent par saltation, les limons et poussières en suspension. Par la glace, le transport est passif et emporte tout, des blocs de plusieurs tonnes aux poussières. La compétence, taille maximale transportée, et la capacité, volume maximal transporté, dépendent de l'énergie cinétique : pour un cours d'eau, une vitesse doublée multiplie par soixante-quatre sa capacité en charge de fond, car elle varie comme la vitesse à la puissance six.",
+   "ecran": "transport",
+   "id": "p15",
+   "texte": "Vitesse ×2 : capacité ×64, loi en v⁶."
+  },
+  {
+   "dit": "Quand l'énergie du milieu transporteur diminue, les particules se déposent : c'est la sédimentation, avec un ordre dicté par la taille et la densité. Chaque environnement laisse sa signature. Le milieu fluviatile donne des sables et graviers à stratifications entrecroisées, et des plaines d'inondation vaseuses. Le milieu deltaïque donne une séquence progradante, sables grossiers frontaux surmontés d'argiles. Le milieu marin littoral donne des plages de sables bien triés et des plateformes carbonatées. Le milieu marin profond donne des vases pélagiques et des turbidites, des dépôts gravitaires sous-marins. Une turbidite classique montre une séquence codifiée : à la base, un conglomérat ou un sable grossier, puis des sables à stratifications planes puis entrecroisées, puis des silts laminés, et au sommet des argiles pélagiques, du grossier au fin, de bas en haut.",
+   "ecran": "sedimentation",
+   "id": "p16",
+   "texte": "Fluivatile, delta, littoral, profond : 4 signatures."
+  },
+  {
+   "dit": "La sédimentation n'est que la première étape : les sédiments meubles deviennent des roches cohérentes par diagenèse, à basses températures et pressions. Trois mécanismes : la compaction, par enfouissement et expulsion de l'eau interstitielle ; la cimentation, par précipitation de minéraux comme la silice, la calcite ou les oxydes de fer dans les pores ; et la recristallisation, modification de la taille ou de la forme des cristaux, comme l'aragonite qui devient de la calcite. C'est ainsi qu'un sable devient un grès, une vase un schiste, et une boue carbonatée un calcaire.",
+   "ecran": "diagenese",
+   "id": "p17",
+   "texte": "Compaction, cimentation, recristallisation."
+  },
+  {
+   "dit": "Bouclons le cycle des roches, le grand mécanisme de recyclage de la croûte. Trois familles : les roches magmatiques, par solidification d'un magma, granite en profondeur ou basalte en surface ; les roches sédimentaires, par accumulation et compaction de débris, grès, calcaire, charbon ; et les roches métamorphiques, par transformation à l'état solide sous chaleur et pression, gneiss, schiste, marbre. Une roche magmatique exposée s'altère et s'érode, devient sédiment, puis roche sédimentaire, puis, enfouie, roche métamorphique, puis, si la température dépasse le solidus, fond partiellement et donne un nouveau magma. Le cycle n'est pas une simple boucle : c'est un réseau de voies interconnectées, alimenté par l'énergie interne et par l'énergie solaire.",
+   "ecran": "cycle_roches2",
+   "id": "p18",
+   "texte": "Magmatique, sédimentaire, métamorphique : boucle."
+  },
+  {
+   "dit": "Le recyclage n'est pas le même pour les deux croûtes. La croûte océanique, jeune et dense, a une espérance de vie limitée, inférieure à deux cents millions d'années : elle naît aux dorsales, s'éloigne, se refroidit, s'hydrate, puis plonge en subduction, où une partie est recyclée dans le manteau et une partie fond pour donner un magma andésitique. La croûte continentale, plus légère, flotte sur l'asthénosphère et résiste à la subduction : son recyclage est partiel et se fait surtout par érosion. Les montagnes sont rabotées, les sédiments transportés vers les bassins, et une faible partie peut être recyclée en profondeur. Le temps de résidence moyen d'un atome de silicium dans la croûte continentale est estimé à environ six cents millions d'années, contre moins de deux cents millions dans la croûte océanique.",
+   "ecran": "recyclage_croutes",
+   "id": "p19",
+   "texte": "Océanique < 200 Ma, continentale ~600 Ma."
+  },
+  {
+   "dit": "Les processus externes ne sont pas un simple rasoir qui nivelle les reliefs : ils interagissent en profondeur avec l'interne. La dénudation allège une chaîne, la croûte remonte par réajustement isostatique, et ce soulèvement peut réactiver l'érosion : c'est une boucle de rétroaction positive. La sédimentation alourdit un bassin, la croûte s'enfonce par subsidence, et crée de l'espace pour encore plus de sédiments. Et les sédiments enfouis en zone de convergence peuvent être métamorphisés, fondus, et recyclés dans le magmatisme d'arc, pour resurgir dans de nouveaux volcans. L'exploration pétrolière repose d'ailleurs sur cette lecture : roche-mère argileuse riche en matière organique, roche-réservoir poreuse, roche-couverture imperméable, disposées en piège structural.",
+   "ecran": "recyclage_croutes2",
+   "id": "p20",
+   "texte": "Dénudation, subsidence, recyclage : rétroactions."
+  },
+  {
+   "dit": "Récapitulons cette deuxième partie. Le relief évolue comme le soulèvement moins l'érosion. Quatre agents érodent : eau, vent, glace et vivant. Le transport se fait en charge de fond, en suspension ou en solution, et une vitesse doublée multiplie la capacité par soixante-quatre. La sédimentation dépose selon les milieux, puis la diagenèse transforme le sédiment en roche. Et le cycle des roches boucle magmatique, sédimentaire et métamorphique en un recyclage permanent, rapide pour la croûte océanique, lent pour la croûte continentale.",
+   "ecran": "recap2",
+   "id": "p21",
+   "texte": "L'essentiel de la partie 2."
+  },
+  {
+   "dit": "Passons aux terrains, avec les Andes, l'archétype d'une chaîne de subduction active. La plaque océanique Nazca plonge sous la plaque continentale sud-américaine à six ou huit centimètres par an. L'épaississement crustal créé par le raccourcissement tectonique est compensé par une surrection isostatique, selon le modèle d'Airy. En réponse, l'érosion extrême, notamment dans le canyon du Colca, soulage les contraintes et favorise la surrection, ou au contraire limite-t-elle la croissance de la chaîne ? La question reste ouverte, et c'est précisément ce dialogue entre interne et externe qui fait l'intérêt du terrain.",
+   "ecran": "andes",
+   "id": "p22",
+   "texte": "Andes : Nazca plonge à 6-8 cm/an."
+  },
+  {
+   "dit": "Deuxième terrain : l'Himalaya et le plateau tibétain, la collision continentale par excellence. Il y a environ cinquante millions d'années, le sous-continent indien est entré en collision avec l'Eurasie, et la collision, toujours active, épaissit et raccourcit la croûte, qui ne peut pas subducter car elle est trop légère. La surrection a radicalement modifié le climat régional, avec la mousson asiatique, dont les précipitations intenses provoquent une érosion fluviale et glaciaire massive. L'érosion enlève les roches en surface, décharge la croûte, et permet aux roches profondes et chaudes de remonter par réajustement isostatique : l'érosion externe tire littéralement la roche vers le haut. Le taux d'érosion dans l'Himalaya central, de plusieurs millimètres par an, est du même ordre de grandeur que le taux de surrection tectonique.",
+   "ecran": "alpes_himalaya",
+   "id": "p23",
+   "texte": "Himalaya : collision, mousson, exhumation."
+  },
+  {
+   "dit": "Troisième terrain : le Rift Est-Africain, la naissance d'un océan sous nos yeux. La plaque africaine commence à se disloquer sous l'effet de forces d'extension liées à un panache mantellique. C'est un processus interne, la divergence, qui crée directement un relief externe : vallée du rift, volcans, lacs. La sismologie cartographie les séismes normaux et la géométrie du rift, la gravimétrie modélise l'amincissement crustal et la remontée du manteau, le positionnement par satellite mesure des taux d'extension de quelques millimètres par an, et la volcanologie étudie le magmatisme alcalin caractéristique, comme le Nyiragongo ou l'Ol Doinyo Lengai. Dans dix à cinquante millions d'années, la mer Rouge pourrait s'élargir, inonder le rift et initier un nouvel océan, séparant la Corne de l'Afrique du reste du continent.",
+   "ecran": "rift",
+   "id": "p24",
+   "texte": "Rift : extension, volcans alcalins, futur océan."
+  },
+  {
+   "dit": "Quatrième terrain : les cycles glaciaires et interglaciaires, où le climat devient un acteur géodynamique majeur. Les inlandsis de plusieurs kilomètres d'épaisseur qui ont recouvert l'Amérique du Nord et la Scandinavie ont enfoncé la lithosphère par charge. Leur retrait, il y a dix mille ans, a déclenché une remontée, le rebond post-glaciaire, toujours mesurable aujourd'hui. La vitesse de remontée décroît exponentiellement avec le temps, selon un temps de relaxation lié à la viscosité du manteau, et sa mesure par satellite est une méthode clé pour estimer la viscosité du manteau supérieur. En Scandinavie, le rebond atteint environ un centimètre par an, si bien que des ports médiévaux se retrouvent aujourd'hui à l'intérieur des terres. La déglaciation rapide peut même réactiver des failles anciennes et induire une sismicité intraplaque.",
+   "ecran": "rebond_glaciaire",
+   "id": "p25",
+   "texte": "Rebond glaciaire : Scandinavie, 1 cm/an."
+  },
+  {
+   "dit": "Ajoutons un terrain de synthèse : les Alpes. Leur construction, par la collision entre l'Afrique et l'Europe il y a trente à quarante millions d'années, a plissé, chevauché et métamorphisé la croûte. Puis l'érosion glaciaire et fluviatile les a sculptées, et le rebond isostatique post-glaciaire continue de les soulever d'un ou deux millimètres par an. Les Alpes sont donc un livre ouvert sur l'interaction : construction interne, démantèlement externe, et réajustement isostatique, les trois temps du même système. Et ce système se retrouve partout : un paysage n'est jamais figé, il est la résultante temporaire et dynamique du combat entre la force qui le pousse vers le ciel et les agents qui le rabotent.",
+   "ecran": "alpes_himalaya2",
+   "id": "p26",
+   "texte": "Alpes : collision, érosion, rebond, un livre ouvert."
+  },
+  {
+   "dit": "La géodynamique n'est pas qu'une science théorique, elle sert directement aux sociétés. Pour les risques naturels, elle aide à comprendre la cyclicité des séismes, comme dans la région de Cascadia, les déclencheurs d'éruptions volcaniques, ou l'instabilité des pentes en contexte tectonique actif. Pour les ressources, elle prédit la localisation des gisements minéraux, liés aux fluides magmatiques ou hydrothermaux, et des hydrocarbures, piégés dans des structures formées par la tectonique. Et pour le climat à long terme, l'évolution des reliefs, comme l'Himalaya, contrôle l'altération des silicates, un puits majeur de dioxyde de carbone atmosphérique sur des échelles de temps géologiques.",
+   "ecran": "applications",
+   "id": "p27",
+   "texte": "Risques, ressources, climat : trois usages."
+  },
+  {
+   "dit": "Enfin, la compréhension moderne de ces interactions repose sur la modélisation numérique, le terrain d'expérimentation virtuel de la géodynamique. Ces modèles intègrent les équations de la mécanique des milieux continus, de la thermique et de la surface, pour simuler l'évolution des systèmes. Ils permettent de tester des hypothèses impossibles à tester sur le terrain : et si le taux d'érosion était doublé, comment la topographie évoluerait-elle ? Et si la convergence tectonique s'arrêtait, que deviendrait la chaîne ? La modélisation ne remplace pas le terrain, elle le prolonge, et elle oblige à expliciter chaque hypothèse, chaque paramètre, chaque incertitude.",
+   "ecran": "modelisation",
+   "id": "p28",
+   "texte": "Modéliser : tester ce que le terrain ne permet pas."
+  },
+  {
+   "dit": "Pour conclure : la géodynamique interne construit, la géodynamique externe démantèle, et l'isostasie réajuste en permanence l'équilibre. Le cycle des roches recycle la matière, vite pour la croûte océanique, lentement pour la croûte continentale. Les Andes montrent la subduction en action, l'Himalaya la collision et la rétroaction climatique, le Rift la naissance d'un océan, et la Scandinavie le rebond d'une lithosphère déchargée de ses glaces. Une montagne n'est pas une sculpture figée : c'est un état transitoire, un déséquilibre dynamique qui est, en fait, l'état normal de notre planète vivante.",
+   "ecran": "recap_final",
+   "id": "p29",
+   "texte": "Le relief, un déséquilibre dynamique normal."
+  }
+ ],
+ "titre": "La géodynamique : une Terre en équilibre dynamique"
+}

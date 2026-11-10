@@ -1,0 +1,493 @@
+{
+  "cours": 7312,
+  "titre": "Barycentre et transformations du plan",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Géométrie",
+      "titre": "Barycentre et transformations du plan",
+      "sous": "Le point d'équilibre des points pondérés, puis composer translations, symétries et rotations",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 240
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Deux outils : équilibrer des points, déplacer des figures.",
+      "anim": {
+        "nom": "levier",
+        "hauteur": 150
+      }
+    },
+    "def_bary": {
+      "type": "formule",
+      "kicker": "Définition · le barycentre",
+      "tex": "\\sum_{i=1}^{n} a_i \\overrightarrow{GA_i} = \\vec{0}",
+      "note": "Somme des coefficients non nulle : G existe et est unique",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 130
+      }
+    },
+    "deux_points": {
+      "type": "formule",
+      "kicker": "Cas de deux points",
+      "tex": "\\overrightarrow{AG} = \\frac{b}{a+b} \\overrightarrow{AB}",
+      "note": "Si a = b, G est le milieu de [AB]",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 130
+      }
+    },
+    "reduction": {
+      "type": "formule",
+      "kicker": "La formule de réduction",
+      "tex": "\\sum a_i \\overrightarrow{MA_i} = S \\overrightarrow{MG}",
+      "note": "Valable pour tout point M ; S est la somme des coefficients",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 130
+      }
+    },
+    "proprietes": {
+      "type": "etape",
+      "kicker": "Deux propriétés qui servent partout",
+      "titre": "Homogénéité et associativité",
+      "tex": [
+        "\\text{homogénéité : coeffs } \\times k \\text{, même } G",
+        "\\text{associativité : sous-système remplacé}",
+        "\\text{par son barycentre (coeff. = somme)}"
+      ]
+    },
+    "ex_bary": {
+      "type": "etape",
+      "kicker": "Exemple résolu · placer un barycentre",
+      "titre": "(A, 2), (B, 3), (C, −1) : S vaut quatre",
+      "tex": [
+        "S = 2 + 3 - 1 = 4 \\neq 0",
+        "4\\overrightarrow{CG} = 2\\overrightarrow{CA} + 3\\overrightarrow{CB}",
+        "\\overrightarrow{CG} = \\tfrac{1}{2}\\overrightarrow{CA} + \\tfrac{3}{4}\\overrightarrow{CB}"
+      ]
+    },
+    "coord": {
+      "type": "etape",
+      "kicker": "Coordonnées dans un repère",
+      "titre": "Des moyennes pondérées, coordonnée par coordonnée",
+      "tex": [
+        "x_G = \\tfrac{a x_A + b x_B + c x_C}{a+b+c}",
+        "y_G = \\tfrac{a y_A + b y_B + c y_C}{a+b+c}"
+      ]
+    },
+    "ex_coord": {
+      "type": "etape",
+      "kicker": "Exemple résolu · coordonnées",
+      "titre": "A(1, 2), B(3, −1), C(−2, 4), coefficients 1, 1, 2",
+      "tex": [
+        "x_G = \\tfrac{1 + 3 - 4}{4} = 0",
+        "y_G = \\tfrac{2 - 1 + 8}{4} = \\tfrac{9}{4}",
+        "G\\left(0, \\tfrac{9}{4}\\right)"
+      ]
+    },
+    "barycentriques": {
+      "type": "formule",
+      "kicker": "Coordonnées barycentriques",
+      "tex": "\\begin{aligned} M &= \\mathrm{bar}\\{(A,\\alpha), (B,\\beta), (C,\\gamma)\\} \\\\ \\alpha + \\beta + \\gamma &= 1 \\end{aligned}",
+      "note": "Intérieur : α, β, γ tous positifs ; sur (BC) : α = 0",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 130
+      }
+    },
+    "gravite": {
+      "type": "formule",
+      "kicker": "Le centre de gravité du triangle",
+      "tex": "\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}",
+      "note": "Barycentre de (A, 1), (B, 1), (C, 1) : coefficients égaux",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 150
+      }
+    },
+    "mediane": {
+      "type": "etape",
+      "kicker": "Associativité et médianes",
+      "titre": "I, milieu de [BC] : G est sur la médiane",
+      "tex": [
+        "I = \\mathrm{bar}\\{(B,1), (C,1)\\}",
+        "G = \\mathrm{bar}\\{(A,1), (I,2)\\}",
+        "\\overrightarrow{AG} = \\tfrac{2}{3}\\overrightarrow{AI}"
+      ]
+    },
+    "methode": {
+      "type": "etape",
+      "kicker": "La méthode générale",
+      "titre": "Traduire, vérifier, réduire, associer",
+      "tex": [
+        "\\text{1. traduire en points pondérés}",
+        "\\text{2. somme des coefficients } \\neq 0",
+        "\\text{3. réduire, point } M \\text{ bien choisi}",
+        "\\text{4. associer : milieux, alignements}"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : à retenir",
+      "etapes": [
+        "Barycentre : somme pondérée des GA nulle",
+        "Réduction : somme des MA égale S fois MG",
+        "Coordonnées : moyennes pondérées",
+        "Gravité : aux deux tiers de la médiane"
+      ]
+    },
+    "transfo": {
+      "type": "formule",
+      "kicker": "Une transformation du plan",
+      "tex": "M' = f(M)",
+      "note": "Bijection : une unique image, un unique antécédent",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 170
+      }
+    },
+    "composee": {
+      "type": "formule",
+      "kicker": "La composée de deux transformations",
+      "tex": "(g \\circ f)(M) = g\\big(f(M)\\big)",
+      "note": "On applique d'abord f, puis g : l'ordre compte",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 130
+      }
+    },
+    "prop_comp": {
+      "type": "etape",
+      "kicker": "Propriétés de la composition",
+      "titre": "Associative, mais pas commutative",
+      "tex": [
+        "\\text{associative : } h \\circ (g \\circ f) = (h \\circ g) \\circ f",
+        "\\text{en général : } g \\circ f \\neq f \\circ g",
+        "\\text{isométrie } \\circ \\text{ isométrie = isométrie}",
+        "\\text{rapports : } k_1 \\text{ puis } k_2 \\text{ donne } k_1 k_2"
+      ]
+    },
+    "translations": {
+      "type": "formule",
+      "kicker": "Composée de deux translations",
+      "tex": "t_{\\vec{v}} \\circ t_{\\vec{u}} = t_{\\vec{u} + \\vec{v}}",
+      "note": "Les translations commutent entre elles",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 150
+      }
+    },
+    "ex_trans": {
+      "type": "etape",
+      "kicker": "Exemple résolu · deux translations",
+      "titre": "u(2, −1) puis v(1, 3)",
+      "tex": [
+        "\\vec{u} + \\vec{v} = (2 + 1, -1 + 3) = (3, 2)",
+        "A(0, 0) \\longmapsto A''(3, 2)"
+      ],
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 120
+      }
+    },
+    "sym_centrales": {
+      "type": "formule",
+      "kicker": "Composée de deux symétries centrales",
+      "tex": "s_{O'} \\circ s_{O} = t_{2\\overrightarrow{OO'}}",
+      "note": "Exemple : O(0, 0), O'(1, 2) donnent le vecteur (2, 4)",
+      "anim": {
+        "nom": "symetrie_fig",
+        "hauteur": 150
+      }
+    },
+    "sym_axiales": {
+      "type": "etape",
+      "kicker": "Composée de deux symétries axiales",
+      "titre": "Parallèles : translation ; sécantes : rotation",
+      "tex": [
+        "\\text{axes parallèles : translation } 2\\vec{n}",
+        "\\text{axes sécants : rotation } 2\\theta",
+        "y = 0 \\text{ puis } y = 3 \\text{ : vecteur } (0, 6)"
+      ],
+      "anim": {
+        "nom": "symetrie_fig",
+        "hauteur": 100
+      }
+    },
+    "rotations": {
+      "type": "formule",
+      "kicker": "Composée de deux rotations de même centre",
+      "tex": "r_{O,\\beta} \\circ r_{O,\\alpha} = r_{O,\\alpha + \\beta}",
+      "note": "Soixante degrés puis cent vingt : cent quatre-vingts, la symétrie centrale"
+    },
+    "isometrie": {
+      "type": "formule",
+      "kicker": "Les isométries",
+      "tex": "f(A)f(B) = AB",
+      "note": "Distances conservées, donc angles, aires, milieux et parallélisme aussi",
+      "anim": {
+        "nom": "transfert",
+        "hauteur": 130
+      }
+    },
+    "classification": {
+      "type": "etape",
+      "kicker": "Classification des isométries",
+      "titre": "Quatre familles, plus leurs composées",
+      "tex": [
+        "\\text{translations et rotations}",
+        "\\text{symétries axiales}",
+        "\\text{symétries centrales : rotation de } 180^{\\circ}",
+        "\\text{composées : les symétries glissées}"
+      ]
+    },
+    "similitude": {
+      "type": "formule",
+      "kicker": "Les similitudes",
+      "tex": "f(A)f(B) = k \\cdot AB, \\qquad k > 0",
+      "note": "Toute isométrie est une similitude de rapport un",
+      "anim": {
+        "nom": "transfert",
+        "hauteur": 130
+      }
+    },
+    "prop_sim": {
+      "type": "etape",
+      "kicker": "Propriétés des similitudes",
+      "titre": "Angles conservés, longueurs et aires mises à l'échelle",
+      "tex": [
+        "\\text{angles et parallélisme conservés}",
+        "\\text{longueurs multipliées par } k",
+        "\\text{aires multipliées par } k^2",
+        "\\text{composée : rapport } k_1 k_2"
+      ]
+    },
+    "ex_sim": {
+      "type": "etape",
+      "kicker": "Exemple résolu · une similitude directe",
+      "titre": "Homothétie de rapport deux, puis rotation de quatre-vingt-dix degrés",
+      "tex": [
+        "\\text{similitude directe : rapport } 2, \\text{ angle } 90^{\\circ}",
+        "[AB] = 3 \\longmapsto 2 \\times 3 = 6"
+      ]
+    },
+    "tableau_comp": {
+      "type": "etape",
+      "kicker": "Le tableau des composées",
+      "titre": "Quatre composées à connaître par cœur",
+      "tex": [
+        "t_{\\vec{v}} \\circ t_{\\vec{u}} = t_{\\vec{u} + \\vec{v}}",
+        "s_{O'} \\circ s_{O} = t_{2\\overrightarrow{OO'}}",
+        "s_{d'} \\circ s_{d} : \\text{translation ou rotation}",
+        "r_{O,\\beta} \\circ r_{O,\\alpha} = r_{O,\\alpha + \\beta}"
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Barycentre : somme pondérée des GA nulle",
+        "Réduction : somme des MA égale S fois MG",
+        "Coordonnées : moyennes pondérées",
+        "Composée : g rond f, f d'abord",
+        "Isométrie k = 1, similitude rapport k"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré au barycentre et aux transformations du plan. D'abord le point d'équilibre de points pondérés, ses coordonnées et les médianes. Ensuite les transformations, et surtout leurs composées.",
+      "texte": "Cours : barycentre et transformations du plan.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Le fil du cours est double. Le barycentre répond à une question d'équilibre : où se place le point qui balance des points affectés de coefficients. Les transformations répondent à une question de mouvement : que devient une figure quand on enchaîne deux déplacements.",
+      "texte": "Deux questions : équilibrer, puis déplacer.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Définition. On donne des points du plan, chacun affecté d'un coefficient réel. Si la somme des coefficients est non nulle, il existe un unique point, noté gé, appelé barycentre des points pondérés : la somme des coefficients fois les vecteurs gé a y est le vecteur nul.",
+      "texte": "Le barycentre : la somme pondérée des vecteurs GA est nulle.",
+      "ecran": "def_bary"
+    },
+    {
+      "id": "p04",
+      "dit": "Premier cas à maîtriser, deux points. Pour le barycentre de a affecté de a et de bé affecté de bé, le vecteur a gé vaut la fraction bé sur a plus bé, fois le vecteur a bé. Si les deux coefficients sont égaux, gé est simplement le milieu du segment.",
+      "texte": "Deux points : AG vaut b sur a plus b, fois AB.",
+      "ecran": "deux_points"
+    },
+    {
+      "id": "p05",
+      "dit": "L'outil de calcul central est la formule de réduction. Pour tout point èm, la somme des coefficients fois les vecteurs èm a vaut la somme des coefficients, notée ès, fois le vecteur èm gé. Bien choisir èm simplifie tous les calculs.",
+      "texte": "Réduction : la somme des MA vaut S fois MG, pour tout M.",
+      "ecran": "reduction"
+    },
+    {
+      "id": "p06",
+      "dit": "Deux propriétés rendent le barycentre maniable. L'homogénéité : multiplier tous les coefficients par un même nombre non nul ne change pas gé. L'associativité : on peut remplacer un groupe de points par son barycentre, affecté de la somme de leurs coefficients.",
+      "texte": "Homogénéité et associativité : les deux leviers.",
+      "ecran": "proprietes"
+    },
+    {
+      "id": "p07",
+      "dit": "Exemple résolu. A, bé et cé non alignés, gé barycentre de a affecté de deux, bé affecté de trois et cé affecté de moins un. La somme vaut quatre, non nulle. La réduction avec èm égal cé donne quatre fois cé gé égal deux fois cé a plus trois fois cé bé. Donc cé gé vaut un demi de cé a plus trois quarts de cé bé.",
+      "texte": "Exemple : CG vaut un demi de CA plus trois quarts de CB.",
+      "ecran": "ex_bary"
+    },
+    {
+      "id": "p08",
+      "dit": "Dans un repère, les coordonnées de gé sont des moyennes pondérées. L'abscisse de gé est la somme des coefficients fois les abscisses des points, divisée par la somme des coefficients. Même recette pour l'ordonnée, avec les ordonnées des points.",
+      "texte": "Coordonnées de G : des moyennes pondérées.",
+      "ecran": "coord"
+    },
+    {
+      "id": "p09",
+      "dit": "Exemple chiffré. A de coordonnées un et deux, bé trois et moins un, cé moins deux et quatre, coefficients un, un et deux. L'abscisse de gé vaut un plus trois moins quatre, sur quatre, soit zéro. Son ordonnée vaut deux moins un plus huit, sur quatre, soit neuf quarts.",
+      "texte": "Exemple : G a pour coordonnées 0 et 9/4.",
+      "ecran": "ex_coord"
+    },
+    {
+      "id": "p10",
+      "dit": "On décrit aussi un point èm du plan du triangle a bé cé par trois coefficients de somme un : ses coordonnées barycentriques. Tous strictement positifs, èm est à l'intérieur du triangle. Coefficient de a nul, èm est sur la droite bé cé.",
+      "texte": "Coordonnées barycentriques : trois coefficients, somme un.",
+      "ecran": "barycentriques"
+    },
+    {
+      "id": "p11",
+      "dit": "Cas vedette : le centre de gravité d'un triangle. C'est le barycentre des trois sommets affectés du même coefficient un. Il vérifie donc que la somme des vecteurs gé a, gé bé et gé cé est le vecteur nul. Ses coordonnées barycentriques sont un tiers, un tiers, un tiers.",
+      "texte": "Centre de gravité : coefficients égaux, un tiers chacun.",
+      "ecran": "gravite"
+    },
+    {
+      "id": "p12",
+      "dit": "L'associativité explique sa position. I, milieu de bé cé, est le barycentre de bé et cé affectés de un. Gé devient le barycentre de a affecté de un et de i affecté de deux : a, gé et i sont alignés, et a gé vaut deux tiers de a i. Gé est aux deux tiers de chaque médiane, d'où leur concourance.",
+      "texte": "G est aux deux tiers de la médiane : AG vaut 2/3 de AI.",
+      "ecran": "mediane"
+    },
+    {
+      "id": "p13",
+      "dit": "Retenez la méthode générale en quatre gestes. Traduire l'énoncé en système de points pondérés. Vérifier que la somme des coefficients est non nulle. Réduire avec un point èm bien choisi. Puis exploiter l'associativité pour faire apparaître milieux, alignements ou concours.",
+      "texte": "Méthode : traduire, vérifier, réduire, associer.",
+      "ecran": "methode"
+    },
+    {
+      "id": "p14",
+      "dit": "Retenons la première partie. Le barycentre annule la somme pondérée des vecteurs. La réduction ramène tout calcul au vecteur èm gé. Les coordonnées sont des moyennes pondérées. Et le centre de gravité se lit par associativité, aux deux tiers de la médiane.",
+      "texte": "Partie 1 : le barycentre, à retenir.",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p15",
+      "dit": "Passons aux transformations. Une transformation du plan est une bijection du plan dans lui-même : chaque point a une unique image et un unique antécédent. Translations, rotations et symétries en sont des exemples.",
+      "texte": "Transformation : bijection, image et antécédent uniques.",
+      "ecran": "transfo"
+    },
+    {
+      "id": "p16",
+      "dit": "On enchaîne les transformations par la composition. La composée de èf puis gé, notée gé rond èf, envoie èm sur l'image par gé de l'image par èf. Attention à l'ordre : on applique d'abord èf, celle qui est écrite à droite, puis gé.",
+      "texte": "Composée g rond f : f d'abord, g ensuite.",
+      "ecran": "composee"
+    },
+    {
+      "id": "p17",
+      "dit": "La composition a trois propriétés immédiates. Elle est associative : les parenthèses ne comptent pas. Elle n'est pas commutative en général. Enfin, la composée de deux isométries est une isométrie, et celle de deux similitudes multiplie leurs rapports.",
+      "texte": "Associative, pas commutative, rapports multipliés.",
+      "ecran": "prop_comp"
+    },
+    {
+      "id": "p18",
+      "dit": "Premier tableau de composées, les translations. La composée de la translation de vecteur u puis de celle de vecteur vé est la translation de vecteur u plus vé. Les translations commutent : leur ordre n'a aucune importance.",
+      "texte": "Deux translations : les vecteurs s'ajoutent.",
+      "ecran": "translations"
+    },
+    {
+      "id": "p19",
+      "dit": "Exemple. La translation de vecteur u, de coordonnées deux et moins un, suivie de celle de vecteur vé, de coordonnées un et trois. Le vecteur total a pour coordonnées trois et deux. Le point a, origine du repère, a donc pour image le point de coordonnées trois et deux.",
+      "texte": "Exemple : u plus v donne le vecteur (3, 2).",
+      "ecran": "ex_trans"
+    },
+    {
+      "id": "p20",
+      "dit": "Deux symétries centrales donnent une translation. La composée de la symétrie de centre o puis de celle de centre o prime est la translation de vecteur deux fois le vecteur o o prime. Exemple : o à l'origine et o prime de coordonnées un et deux donnent le vecteur deux et quatre.",
+      "texte": "Deux symétries centrales : translation de vecteur 2 OO'.",
+      "ecran": "sym_centrales"
+    },
+    {
+      "id": "p21",
+      "dit": "Deux symétries axiales donnent deux résultats selon les axes. Axes parallèles : une translation, de vecteur deux fois le vecteur qui joint un axe à l'autre. Axes sécants en o : une rotation de centre o, d'angle double de l'angle des axes. Exemple : y égal zéro puis y égal trois donnent le vecteur zéro et six.",
+      "texte": "Axes parallèles : translation ; axes sécants : rotation.",
+      "ecran": "sym_axiales"
+    },
+    {
+      "id": "p22",
+      "dit": "Deux rotations de même centre donnent une rotation : les angles s'ajoutent, le centre ne change pas. Exemple : soixante degrés puis cent vingt degrés donnent cent quatre-vingts degrés, la symétrie centrale de même centre.",
+      "texte": "Même centre : les angles des rotations s'ajoutent.",
+      "ecran": "rotations"
+    },
+    {
+      "id": "p23",
+      "dit": "Une isométrie conserve les distances : la distance des images égale celle des points. Elle conserve aussi les angles, les aires, l'alignement, les milieux et le parallélisme.",
+      "texte": "Isométrie : les distances sont conservées.",
+      "ecran": "isometrie"
+    },
+    {
+      "id": "p24",
+      "dit": "La classification tient en quatre familles : translations, rotations, symétries axiales, et symétries centrales, des rotations d'un demi-tour. Leurs composées donnent la symétrie glissée, une symétrie axiale suivie d'une translation le long de son axe.",
+      "texte": "Translations, rotations, symétries, symétries glissées.",
+      "ecran": "classification"
+    },
+    {
+      "id": "p25",
+      "dit": "Une similitude de rapport ka positif multiplie toutes les distances par ka. Elle conserve angles et parallélisme, multiplie les longueurs par ka et les aires par ka au carré. Une isométrie est le cas où ka vaut un.",
+      "texte": "Similitude : distances multipliées par k, aires par k².",
+      "ecran": "similitude"
+    },
+    {
+      "id": "p26",
+      "dit": "Les similitudes se composent comme leurs rapports : deux rapports ka un et ka deux donnent le produit. Une similitude directe se décompose en rotation, homothétie et translation ; une indirecte fait intervenir une symétrie axiale.",
+      "texte": "Similitudes : les rapports se multiplient.",
+      "ecran": "prop_sim"
+    },
+    {
+      "id": "p27",
+      "dit": "Exemple. Une homothétie de centre o et de rapport deux, suivie d'une rotation de centre o de quatre-vingt-dix degrés, donne une similitude directe de rapport deux. Un segment de longueur trois devient un segment de longueur six.",
+      "texte": "Exemple : un segment de 3 devient un segment de 6.",
+      "ecran": "ex_sim"
+    },
+    {
+      "id": "p28",
+      "dit": "Rassemblons le tableau des composées. Deux translations ajoutent leurs vecteurs. Deux symétries centrales donnent une translation. Deux symétries axiales, une translation ou une rotation. Deux rotations de même centre ajoutent leurs angles.",
+      "texte": "Le tableau des quatre composées usuelles.",
+      "ecran": "tableau_comp"
+    },
+    {
+      "id": "p29",
+      "dit": "Pour conclure. Le barycentre équilibre des points pondérés et se calcule par réduction ou par moyennes pondérées. Les transformations se composent, dans un ordre qui compte. Isométries et similitudes dominent le paysage.",
+      "texte": "Barycentre, composées, isométries, similitudes : à retenir.",
+      "ecran": "recap_final"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Le barycentre : définition, coordonnées et médianes"
+    },
+    {
+      "debut": "p15",
+      "sous_titre": "Transformations du plan et leurs composées",
+      "pont": {
+        "texte": "Partie 2 : transformations et composées.",
+        "dit": "Partie deux, les transformations du plan. Après le point d'équilibre, passons aux bijections qui déplacent les figures, à leur composition, puis aux isométries et aux similitudes."
+      }
+    }
+  ]
+}

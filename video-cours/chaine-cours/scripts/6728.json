@@ -1,0 +1,456 @@
+{
+ "cours": 6728,
+ "lecons": [
+  9529
+ ],
+ "titre": "Mécanique : forces et mouvements",
+ "matiere": "Physique",
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bonjour à tous. Aujourd'hui, la mécanique des forces : le travail d'une force, la puissance, les énergies cinétique, potentielle et mécanique. Nous terminerons par les transferts thermiques et le calorimètre.",
+   "texte": "Bonjour à tous. Aujourd'hui : travail, puissance, énergies, puis la chaleur.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Première question : que vaut l'effet d'une force quand elle déplace son point d'application ? C'est le travail. Nous verrons comment il nourrit la puissance, puis l'énergie cinétique d'un solide.",
+   "texte": "Que vaut l'effet d'une force qui déplace ? Le travail.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p03",
+   "ecran": "travail_def",
+   "dit": "Le travail d'une force constante, lors d'un déplacement rectiligne A B, égale le produit de la force par la longueur du déplacement et par le cosinus de l'angle entre les deux. Il s'exprime en joules.",
+   "texte": "Travail : W = F × AB × cos(α).",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p04",
+   "ecran": "signes",
+   "dit": "Le signe du travail dit tout : positif, le travail est moteur, la force favorise le mouvement ; négatif, il est résistant ; et si la force est perpendiculaire au déplacement, le travail est nul.",
+   "texte": "Moteur si W > 0, résistant si W < 0, nul si la force est perpendiculaire.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p05",
+   "ecran": "ex_travail",
+   "dit": "Exemple : une force de vingt newtons s'exerce à soixante degrés sur un déplacement de cinq mètres. Vingt fois cinq fois cosinus soixante degrés, cela donne un travail de cinquante joules.",
+   "texte": "Exemple : 20 N à 60° sur 5 m donnent 50 J.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p06",
+   "ecran": "poids",
+   "dit": "Le poids est une force conservative : son travail ne dépend pas du chemin suivi, seulement des altitudes de départ et d'arrivée. Il vaut m fois g fois z A moins z B.",
+   "texte": "Travail du poids : m g (z_A − z_B), indépendant du chemin.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p07",
+   "ecran": "ressort_travail",
+   "dit": "Pour un ressort de raideur k, la force de rappel s'oppose à l'allongement. Son travail, de l'allongement nul à l'allongement x, vaut moins un demi de k fois x au carré.",
+   "texte": "Travail de la force de rappel : −½ k x².",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p08",
+   "ecran": "moment",
+   "dit": "En rotation, le travail fait intervenir le moment de la force, c'est-à-dire la force multipliée par son bras de levier, la distance à l'axe. Le travail égale le moment multiplié par l'angle de rotation.",
+   "texte": "En rotation : W = M × θ.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p09",
+   "ecran": "puissance",
+   "dit": "La puissance mesure la rapidité avec laquelle un travail est fourni : c'est le travail divisé par la durée. Son unité est le watt, qui vaut un joule par seconde.",
+   "texte": "Puissance : P = W/Δt, en watts.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p10",
+   "ecran": "puissance_ex",
+   "dit": "Quand le moment est constant, la puissance égale le moment multiplié par la vitesse angulaire. Exemple : un moteur de couple dix newtons-mètres tournant à vingt radians par seconde développe deux cents watts.",
+   "texte": "Exemple : 10 N·m à 20 rad/s donnent 200 W.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p11",
+   "ecran": "ec_translation",
+   "dit": "L'énergie cinétique d'un solide en translation vaut un demi de m fois v au carré : elle croît avec la masse, et surtout avec le carré de la vitesse.",
+   "texte": "Translation : E_c = ½ m v².",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p12",
+   "ecran": "ec_rotation",
+   "dit": "En rotation, l'énergie cinétique vaut un demi de J fois oméga au carré, où J est le moment d'inertie. Et si le solide roule, translation et rotation se combinent : on additionne les deux énergies.",
+   "texte": "Rotation : E_c = ½ J ω² ; combiné : la somme des deux.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p13",
+   "ecran": "ex_roue",
+   "dit": "Exemple : une roue de deux kilogrammes, de moment d'inertie zéro virgule cinq, roule à trois mètres par seconde et tourne à six radians par seconde. Neuf joules de translation, neuf joules de rotation : dix-huit joules en tout.",
+   "texte": "Exemple : la roue totalise 18 J.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p14",
+   "ecran": "tec",
+   "dit": "Voici le théorème de l'énergie cinétique : entre deux instants, la variation d'énergie cinétique d'un solide égale la somme des travaux de toutes les forces extérieures appliquées.",
+   "texte": "ΔE_c = somme des travaux des forces extérieures.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p15",
+   "ecran": "epp",
+   "dit": "Aux forces conservatives correspondent des énergies potentielles. Pour le poids, l'énergie potentielle de pesanteur vaut m fois g fois z, en choisissant zéro à l'altitude de référence.",
+   "texte": "Énergie potentielle de pesanteur : E_pp = m g z.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p16",
+   "ecran": "epe",
+   "dit": "Pour le ressort, l'énergie potentielle élastique vaut un demi de k fois x au carré : c'est l'énergie stockée dans l'étirement, prête à être restituée.",
+   "texte": "Énergie potentielle élastique : E_pe = ½ k x².",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p17",
+   "ecran": "em",
+   "dit": "L'énergie mécanique est la somme de l'énergie cinétique et des énergies potentielles. C'est elle que nous allons suivre, car elle obéit à une loi de conservation très pratique.",
+   "texte": "Énergie mécanique : E_m = E_c + E_p.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p18",
+   "ecran": "conservation",
+   "dit": "Si seules des forces conservatives travaillent, l'énergie mécanique se conserve : ce que l'énergie cinétique gagne, l'énergie potentielle le perd, et réciproquement.",
+   "texte": "Forces conservatives seules : E_m se conserve.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p19",
+   "ecran": "ex_chute",
+   "dit": "Application : une balle lâchée sans vitesse initiale d'une hauteur h. Au sol, toute l'énergie potentielle est devenue cinétique, et la masse se simplifie : la vitesse d'arrivée vaut racine de deux g h.",
+   "texte": "Chute libre : v = √(2gh) à l'arrivée au sol.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p20",
+   "ecran": "non_conservation",
+   "dit": "Mais si des forces non conservatives travaillent, comme les frottements, l'énergie mécanique n'est plus conservée : sa variation égale le travail de ces forces, et elle diminue.",
+   "texte": "Frottements : E_m diminue de leur travail.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p21",
+   "ecran": "chaleur",
+   "dit": "Pour élever la température d'un corps sans changement d'état, la quantité de chaleur à fournir est proportionnelle à sa masse et à l'élévation de température : Q égale m fois c fois delta T.",
+   "texte": "Sans changement d'état : Q = m c ΔT.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p22",
+   "ecran": "etat",
+   "dit": "Lors d'un changement d'état, en revanche, la température reste fixe, et la chaleur échangée vaut la masse multipliée par la chaleur latente, notée L.",
+   "texte": "Changement d'état : Q = m L, à température constante.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p23",
+   "ecran": "modes",
+   "dit": "La chaleur se transmet de trois façons : par conduction, de proche en proche dans la matière ; par convection, grâce à un fluide qui bouge ; et par rayonnement, sans aucun contact.",
+   "texte": "Conduction, convection, rayonnement.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p24",
+   "ecran": "principe",
+   "dit": "Principe des échanges de chaleur : dans un système isolé thermiquement, la somme des quantités de chaleur échangées est nulle. Ce que le corps chaud cède, le corps froid le reçoit.",
+   "texte": "Système isolé : Σ Q_i = 0.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p25",
+   "ecran": "calorimetre",
+   "dit": "Pour mesurer ces échanges, on utilise un calorimètre : une enceinte isolée thermiquement, avec un vase intérieur, un couvercle, un thermomètre et un agitateur. Ses appareils cousins ? Le thermos et la glacière.",
+   "texte": "Le calorimètre mesure les quantités de chaleur.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p26",
+   "ecran": "capacite",
+   "dit": "La capacité calorifique d'un corps, c'est sa masse multipliée par sa chaleur massique. Pour le calorimètre, on parle de valeur en eau : la masse d'eau qui aurait la même capacité thermique que lui.",
+   "texte": "Capacité C = m c ; valeur en eau μ du calorimètre.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p27",
+   "ecran": "ex_melange",
+   "dit": "Exemple : on verse cinquante grammes d'eau à quatre-vingts degrés dans deux cents grammes d'eau à vingt degrés. La température finale est la moyenne pondérée : trente-deux degrés.",
+   "texte": "Exemple : le mélange se stabilise à 32 °C.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p28",
+   "ecran": "recap",
+   "dit": "Récapitulons : un travail en joules, une puissance en watts, des énergies qui se transforment et parfois se conservent, et des chaleurs qui s'échangent en se compensant dans un système isolé.",
+   "texte": "Travail, puissance, énergies et chaleurs : l'essentiel.",
+   "pause_apres": 1.0
+  }
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique",
+   "titre": "Mécanique : forces et mouvements",
+   "sous": "Travail, puissance et énergies — puis les transferts thermiques",
+   "anim": {
+    "nom": "travail_angle_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Le travail mesure l'effet d'une force sur un déplacement.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 190
+   }
+  },
+  "travail_def": {
+   "type": "formule",
+   "kicker": "Le travail d'une force",
+   "tex": "W_{AB}(\\vec{F}) = F \\times AB \\times \\cos(\\alpha)",
+   "note": "α : angle entre la force et le déplacement ; W s'exprime en joules (J)."
+  },
+  "signes": {
+   "type": "recap",
+   "kicker": "Le signe du travail",
+   "etapes": [
+    "Travail moteur : W > 0, la force favorise le mouvement",
+    "Travail résistant : W < 0, la force s'oppose au mouvement",
+    "Travail nul : W = 0, force perpendiculaire au déplacement"
+   ],
+   "anim": {
+    "nom": "travail_angle_fig",
+    "hauteur": 130
+   }
+  },
+  "ex_travail": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Une force de 20 N inclinée à 60°, sur 5 m",
+   "tex": [
+    "W = 20 \\times 5 \\times \\cos(60°)",
+    "W = 50\\ \\text{J}"
+   ]
+  },
+  "poids": {
+   "type": "formule",
+   "kicker": "Le travail du poids",
+   "tex": "W_{AB}(\\vec{P}) = m g (z_A - z_B)",
+   "note": "Force conservative : le travail ne dépend que des altitudes de départ et d'arrivée."
+  },
+  "ressort_travail": {
+   "type": "formule",
+   "kicker": "Le travail de la force de rappel",
+   "tex": "W(\\vec{F}) = -\\frac{1}{2} k x^2",
+   "note": "k : raideur du ressort ; x : allongement. La force de rappel vaut F = −k Δl.",
+   "anim": {
+    "nom": "ressort",
+    "hauteur": 150
+   }
+  },
+  "moment": {
+   "type": "formule",
+   "kicker": "Travail et moment d'une force",
+   "tex": "W = M_{\\Delta}(\\vec{F}) \\times \\theta",
+   "note": "M : moment de la force, en newtons-mètres ; θ : angle de rotation, en radians.",
+   "anim": {
+    "nom": "levier",
+    "hauteur": 150
+   }
+  },
+  "puissance": {
+   "type": "formule",
+   "kicker": "La puissance d'une force",
+   "tex": "P = \\frac{W}{\\Delta t}",
+   "note": "La puissance s'exprime en watts : 1 W = 1 J/s."
+  },
+  "puissance_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Puissance d'un moment constant",
+   "tex": [
+    "P = M_{\\Delta}(\\vec{F}) \\times \\omega",
+    "P = 10 \\times 20 = 200\\ \\text{W}"
+   ]
+  },
+  "ec_translation": {
+   "type": "formule",
+   "kicker": "L'énergie cinétique",
+   "tex": "E_c = \\frac{1}{2} m v^2",
+   "note": "Énergie cinétique d'un solide en translation."
+  },
+  "ec_rotation": {
+   "type": "formule",
+   "kicker": "L'énergie cinétique",
+   "tex": "E_c = \\frac{1}{2} J \\omega^2",
+   "note": "J : moment d'inertie, en kg·m² ; en mouvement combiné, les deux énergies s'ajoutent."
+  },
+  "ex_roue": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Une roue qui roule : m = 2 kg, J = 0,5 kg·m², v = 3 m/s, ω = 6 rad/s",
+   "tex": [
+    "E_c = \\frac{1}{2} \\times 2 \\times 3^2 + \\frac{1}{2} \\times 0{,}5 \\times 6^2",
+    "E_c = 9 + 9 = 18\\ \\text{J}"
+   ]
+  },
+  "tec": {
+   "type": "formule",
+   "kicker": "Le théorème de l'énergie cinétique",
+   "tex": "\\Delta E_c = \\sum W_{AB}(\\vec{F}_{\\text{ext}})",
+   "note": "La variation d'énergie cinétique égale la somme des travaux des forces extérieures."
+  },
+  "epp": {
+   "type": "formule",
+   "kicker": "L'énergie potentielle de pesanteur",
+   "tex": "E_{pp} = m g z",
+   "note": "Nulle à l'altitude de référence z = 0."
+  },
+  "epe": {
+   "type": "formule",
+   "kicker": "L'énergie potentielle élastique",
+   "tex": "E_{pe} = \\frac{1}{2} k x^2",
+   "note": "Énergie stockée par un ressort allongé de x.",
+   "anim": {
+    "nom": "ressort",
+    "hauteur": 150
+   }
+  },
+  "em": {
+   "type": "formule",
+   "kicker": "L'énergie mécanique",
+   "tex": "E_m = E_c + E_p",
+   "note": "E_p : somme des énergies potentielles du système."
+  },
+  "conservation": {
+   "type": "formule",
+   "kicker": "La conservation de l'énergie mécanique",
+   "tex": "\\Delta E_c = -\\Delta E_p",
+   "note": "Valable si seules des forces conservatives travaillent : E_m reste constante."
+  },
+  "ex_chute": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Une balle lâchée sans vitesse initiale, d'une hauteur h",
+   "tex": [
+    "m g h = \\frac{1}{2} m v^2",
+    "v = \\sqrt{2 g h}"
+   ]
+  },
+  "non_conservation": {
+   "type": "formule",
+   "kicker": "Quand l'énergie mécanique ne se conserve pas",
+   "tex": "\\Delta E_m = \\sum W(\\vec{F}_{\\text{non conserv.}})",
+   "note": "Avec des frottements, l'énergie mécanique diminue : leur travail est résistant."
+  },
+  "chaleur": {
+   "type": "formule",
+   "kicker": "La quantité de chaleur",
+   "tex": "Q = m c \\Delta T",
+   "note": "Sans changement d'état ; c : chaleur massique, en J·kg⁻¹·K⁻¹.",
+   "anim": {
+    "nom": "transfert",
+    "hauteur": 150
+   }
+  },
+  "etat": {
+   "type": "formule",
+   "kicker": "La quantité de chaleur",
+   "tex": "Q = m L",
+   "note": "Avec changement d'état ; L : chaleur latente, en J·kg⁻¹. La température reste constante.",
+   "anim": {
+    "nom": "phases",
+    "hauteur": 150
+   }
+  },
+  "modes": {
+   "type": "recap",
+   "kicker": "Les modes de transfert de chaleur",
+   "etapes": [
+    "Conduction : propagation de proche en proche, par contact",
+    "Convection : un fluide en mouvement transporte la chaleur",
+    "Rayonnement : la chaleur voyage sans contact"
+   ],
+   "anim": {
+    "nom": "convection_fig",
+    "hauteur": 130
+   }
+  },
+  "principe": {
+   "type": "formule",
+   "kicker": "Le principe des échanges de chaleur",
+   "tex": "\\sum Q_i = 0",
+   "note": "Dans un système thermiquement isolé, les chaleurs échangées se compensent."
+  },
+  "calorimetre": {
+   "type": "phrase",
+   "kicker": "Le calorimètre",
+   "texte": "Une enceinte isolée thermiquement, pour mesurer les quantités de chaleur.",
+   "anim": {
+    "nom": "calorimetre_fig",
+    "hauteur": 210
+   }
+  },
+  "capacite": {
+   "type": "etape",
+   "kicker": "Les grandeurs du calorimètre",
+   "titre": "Capacité calorifique et valeur en eau",
+   "tex": [
+    "C = m c",
+    "C_{\\text{cal}} = \\mu \\times c_{\\text{eau}}"
+   ]
+  },
+  "ex_melange": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Mélange : 200 g d'eau à 20 °C, puis 50 g d'eau à 80 °C",
+   "tex": [
+    "T_f = \\frac{200 \\times 20 + 50 \\times 80}{250}",
+    "T_f = 32\\ ^\\circ\\text{C}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Travail : W = F × AB × cos α, en joules",
+    "Puissance : P = W/Δt, ou M × ω en rotation",
+    "Énergies : E_c = ½mv², E_pp = mgz, E_m = E_c + E_p",
+    "Chaleur : Q = mcΔT, Q = mL, et ΣQ = 0 en système isolé"
+   ]
+  }
+ },
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Travail, puissance et énergies"
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Transferts thermiques et calorimétrie",
+   "pont": {
+    "texte": "Partie 2 : les transferts thermiques et le calorimètre.",
+    "dit": "Partie deux : après l'énergie mécanique, place à la chaleur, ses transferts et leur mesure dans le calorimètre."
+   }
+  }
+ ]
+}

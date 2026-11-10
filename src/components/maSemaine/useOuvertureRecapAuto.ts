@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 
 import { DELAI_REPRISE_MS, derniereSemaineVue, doitTenterOuvertureAuto, lireRecap } from '@/services/maSemaine';
+import { feuilleRechargePrioritaire, noterRecapAutoPresente } from '@/services/rechargePass';
 import { useRepriseInviteEnCours } from '@/services/repriseInvite';
 import { getSupabase } from '@/services/supabase';
 import { useSession } from '@/session/SessionProvider';
@@ -35,6 +36,7 @@ export function useOuvertureRecapAuto(): void {
   }, []);
 
   const invite = session?.user.is_anonymous ?? true;
+  const utilisateur = session?.user.id ?? null;
   useEffect(() => {
     if (statut !== 'pret' || repriseEnCours || pathname !== '/') return;
     if (derniereVerifiee.current === passe) return;
@@ -45,7 +47,13 @@ export function useOuvertureRecapAuto(): void {
       if (!actif || !doitTenterOuvertureAuto({ invite, derniereVue: vue })) return;
       try {
         const { recap } = await lireRecap(getSupabase());
-        if (actif && recap) router.push({ pathname: '/ma-semaine', params: { semaine: recap.semaine, source: 'auto' } });
+        if (!actif || !recap) return;
+        // Issue #124 : une feuille « recharger le Pass » urgente (veille, dernier jour, Pass expiré) et due à
+        // cette ouverture passe avant le récap — il s'ouvrira à la suivante, la feuille étant bornée à une
+        // fois par jour. Sinon, le récap s'ouvre et la feuille attend l'ouverture suivante.
+        if (utilisateur && (await feuilleRechargePrioritaire(getSupabase(), utilisateur).catch(() => false))) return;
+        noterRecapAutoPresente();
+        router.push({ pathname: '/ma-semaine', params: { semaine: recap.semaine, source: 'auto' } });
       } catch {
         // Pas de réseau ou serveur indisponible : pas d'ouverture automatique, la notification reste disponible.
       }
@@ -53,5 +61,5 @@ export function useOuvertureRecapAuto(): void {
     return () => {
       actif = false;
     };
-  }, [statut, repriseEnCours, pathname, passe, invite]);
+  }, [statut, repriseEnCours, pathname, passe, invite, utilisateur]);
 }

@@ -1,0 +1,617 @@
+{
+ "cours": 6817,
+ "ecrans": {
+  "boot": {
+   "kicker": "La séquence de démarrage",
+   "tex": [
+    "\\text{1. mise sous tension}",
+    "\\text{2. tests internes BIOS, UEFI}",
+    "\\text{3. chargement du système, bureau}"
+   ],
+   "titre": "Sous tension, tests, système, bureau",
+   "type": "etape"
+  },
+  "boutons": {
+   "kicker": "Les boutons de l'unité centrale",
+   "tex": [
+    "\\text{Power : allume, éteint}",
+    "\\text{Reset : redémarre en cas de blocage}",
+    "\\text{Éjection : ouvre le lecteur optique}"
+   ],
+   "titre": "Marche, redémarrage, éjection",
+   "type": "etape"
+  },
+  "bus": {
+   "kicker": "Les bus de communication",
+   "tex": [
+    "\\text{bus de données}",
+    "\\text{bus d'adresses, bus de commande}",
+    "\\text{informations binaires, 0 et 1}"
+   ],
+   "titre": "Les autoroutes des informations",
+   "type": "etape"
+  },
+  "cycle": {
+   "kicker": "Le cycle d'exécution",
+   "note": "Chargement, décodage, exécution : le processeur répète ce cycle pour chaque instruction",
+   "tex": "\\text{fetch} + \\text{decode} + \\text{execute}",
+   "type": "formule"
+  },
+  "ex_applis": {
+   "kicker": "Exemple : préparer un exposé",
+   "tex": [
+    "\\text{navigateur : rechercher}",
+    "\\text{traitement de texte, tableur}",
+    "\\text{présentation : diaporama final}"
+   ],
+   "titre": "Quatre applications, quatre besoins",
+   "type": "etape"
+  },
+  "ex_branchement": {
+   "kicker": "Exemple : brancher un poste complet",
+   "tex": [
+    "\\text{clavier USB, souris USB}",
+    "\\text{écran HDMI, bouton Power}",
+    "\\text{le système se charge}"
+   ],
+   "titre": "USB, HDMI, Power",
+   "type": "etape"
+  },
+  "ex_classer": {
+   "kicker": "Exemple : clavier, clé USB, imprimante",
+   "tex": [
+    "\\text{clavier : entrée}",
+    "\\text{clé USB : stockage, entrée, sortie}",
+    "\\text{imprimante : sortie}"
+   ],
+   "titre": "Écrire, enregistrer, imprimer",
+   "type": "etape"
+  },
+  "ex_cycle": {
+   "kicker": "Exemple : 8 Go et 3,5 GHz",
+   "note": "Fréquence 3,5 gigahertz : 3,5 milliards de cycles par seconde ; chaque cycle dure environ 2,86 fois dix puissance moins dix secondes",
+   "tex": "\\frac{1}{3{,}5 \\times 10^9} \\approx 2{,}86 \\times 10^{-10} \\text{ s}",
+   "type": "formule"
+  },
+  "ex_docx": {
+   "kicker": "Exemple : le fichier rapport.docx",
+   "tex": [
+    "\\text{document texteur}",
+    "\\text{double-clic : ouverture}",
+    "\\text{logiciel associé : Word}"
+   ],
+   "titre": "Double-clic, logiciel associé",
+   "type": "etape"
+  },
+  "ex_dossier": {
+   "kicker": "Exemple : le dossier Mes documents",
+   "tex": [
+    "\\text{clic sur l'icône}",
+    "\\text{fenêtre : contenu affiché}",
+    "\\text{Enregistrer sous : boîte de dialogue}"
+   ],
+   "titre": "Icône, fenêtre, dialogue",
+   "type": "etape"
+  },
+  "ex_hdmi": {
+   "kicker": "Exemple : brancher un écran moderne",
+   "tex": [
+    "\\text{port HDMI}",
+    "\\text{connecteur trapézoïdal}",
+    "\\text{insertion dans un seul sens}"
+   ],
+   "titre": "Une forme, un seul sens",
+   "type": "etape"
+  },
+  "ex_hub": {
+   "kicker": "Exemple : un hub USB à 4 ports",
+   "tex": [
+    "\\text{souris, clavier}",
+    "\\text{clé USB, imprimante}",
+    "\\text{un seul port USB de l'ordinateur}"
+   ],
+   "titre": "Quatre périphériques, un seul port",
+   "type": "etape"
+  },
+  "fichiers": {
+   "kicker": "Le fichier",
+   "tex": [
+    "\\text{unité d'information stockée}",
+    "\\text{nom, extension, icône}",
+    "\\text{disque dur, clé USB}"
+   ],
+   "titre": "Nom, extension, type",
+   "type": "etape"
+  },
+  "fichiers_consulter": {
+   "kicker": "Consulter un fichier",
+   "tex": [
+    "\\text{double-clic sur l'icône}",
+    "\\text{explorateur de fichiers}",
+    "\\text{clic droit : propriétés}"
+   ],
+   "titre": "Ouvrir, localiser, propriétés",
+   "type": "etape"
+  },
+  "fonctions_se": {
+   "kicker": "Fonctions du système d'exploitation",
+   "tex": [
+    "\\text{amorçage, ressources, périphériques}",
+    "\\text{exécution des applications}",
+    "\\text{fichiers, utilisateurs, droits}"
+   ],
+   "titre": "Six fonctions essentielles",
+   "type": "etape"
+  },
+  "interconnexion": {
+   "kicker": "Procédure d'interconnexion",
+   "tex": [
+    "\\text{1. identifier périphérique et port}",
+    "\\text{2. connecter, orientation respectée}",
+    "\\text{3. secteur, périphériques, unité centrale}"
+   ],
+   "titre": "Identifier, connecter, allumer",
+   "type": "etape"
+  },
+  "interface": {
+   "kicker": "L'interface graphique",
+   "tex": [
+    "\\text{icône : petite image}",
+    "\\text{fenêtre : zone rectangulaire}",
+    "\\text{boîte de dialogue : confirmation}"
+   ],
+   "titre": "Icône, fenêtre, dialogue",
+   "type": "etape"
+  },
+  "logiciel": {
+   "kicker": "Qu'est-ce qu'un logiciel ?",
+   "tex": [
+    "\\text{ensemble d'instructions}",
+    "\\text{programmes}",
+    "\\text{exécuter des tâches précises}"
+   ],
+   "titre": "Des instructions pour agir",
+   "type": "etape"
+  },
+  "logiciels_app": {
+   "kicker": "Les logiciels d'application",
+   "tex": [
+    "\\text{tâche spécifique}",
+    "\\text{texte, calcul, Internet}",
+    "\\text{s'appuie sur le système}"
+   ],
+   "titre": "Un besoin, une application",
+   "type": "etape"
+  },
+  "logiciels_base": {
+   "kicker": "Les logiciels de base",
+   "tex": [
+    "\\text{système d'exploitation}",
+    "\\text{utilitaires}",
+    "\\text{pilotes, drivers}"
+   ],
+   "titre": "Indispensables au fonctionnement",
+   "type": "etape"
+  },
+  "logiciels_sys": {
+   "kicker": "Les logiciels système",
+   "tex": [
+    "\\text{indispensables à l'ordinateur}",
+    "\\text{gèrent les ressources matérielles}",
+    "\\text{intermédiaire vers les applications}"
+   ],
+   "titre": "Entre matériel et applications",
+   "type": "etape"
+  },
+  "memoires": {
+   "kicker": "Les mémoires",
+   "tex": [
+    "\\text{RAM : volatile, temporaire}",
+    "\\text{ROM : non volatile, démarrage}",
+    "\\text{cache : intégrée au processeur}"
+   ],
+   "titre": "Vive, morte, cache",
+   "type": "etape"
+  },
+  "peripheriques": {
+   "kicker": "Les périphériques",
+   "tex": [
+    "\\text{entrée : clavier, souris}",
+    "\\text{sortie : écran, imprimante}",
+    "\\text{stockage : entrée et sortie}"
+   ],
+   "titre": "Trois catégories",
+   "type": "etape"
+  },
+  "phases": {
+   "kicker": "Fonctionnement en quatre phases",
+   "tex": [
+    "\\text{1. saisie, 2. traitement}",
+    "\\text{3. stockage, 4. sortie}",
+    "\\text{entrée, calcul, mémoire, restitution}"
+   ],
+   "titre": "Saisie, traitement, stockage, sortie",
+   "type": "etape"
+  },
+  "ports": {
+   "kicker": "Interfaces d'entrée, sortie et ports",
+   "tex": [
+    "\\text{interfaces : circuits de communication}",
+    "\\text{ports : connecteurs du boîtier}",
+    "\\text{avant ou arrière du boîtier}"
+   ],
+   "titre": "Communiquer par des connecteurs",
+   "type": "etape"
+  },
+  "ram_go": {
+   "kicker": "Mesurer la mémoire vive",
+   "note": "Un gigaoctet vaut un milliard d'octets, soit mille vingt-quatre mégaoctets",
+   "tex": "1 \\text{ Go} = 10^9 \\text{ octets} = 1024 \\text{ Mo}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Le matériel est le corps de l'ordinateur, le logiciel de base son système nerveux.",
+    "Les logiciels applicatifs lui donnent son utilité pratique pour l'utilisateur.",
+    "Un même document peut passer d'un traitement de texte à une présentation, grâce au système.",
+    "Le logiciel de base gère le matériel ; sans lui, aucun applicatif ne fonctionne."
+   ],
+   "kicker": "Synthèse : corps, système nerveux, utilité",
+   "type": "recap"
+  },
+  "stockage": {
+   "kicker": "Les supports de stockage",
+   "tex": [
+    "\\text{disque dur, clé USB}",
+    "\\text{carte mémoire}",
+    "\\text{disque optique, CD, DVD}"
+   ],
+   "titre": "Conserver durablement",
+   "type": "etape"
+  },
+  "uc": {
+   "kicker": "L'unité centrale et son rôle",
+   "tex": [
+    "\\text{processeur : calculs}",
+    "\\text{mémoire vive : temporaire}",
+    "\\text{carte mère : interconnexion}"
+   ],
+   "titre": "Le boîtier principal",
+   "type": "etape"
+  },
+  "uc_ual": {
+   "kicker": "Les deux unités du processeur",
+   "tex": [
+    "\\text{contrôle : lit, décode, coordonne}",
+    "\\text{arithmétique et logique : calcule}",
+    "\\text{addition, multiplication, comparaison}"
+   ],
+   "titre": "Contrôle et calcul",
+   "type": "etape"
+  },
+  "utilitaires": {
+   "kicker": "Les logiciels utilitaires",
+   "tex": [
+    "\\text{entretien, optimisation}",
+    "\\text{sécurité}",
+    "\\text{non indispensables au démarrage}"
+   ],
+   "titre": "Utiles, sans être indispensables",
+   "type": "etape"
+  },
+  "von_neumann": {
+   "kicker": "L'architecture de von Neumann",
+   "tex": [
+    "\\text{unité centrale}",
+    "\\text{mémoires, périphériques}",
+    "\\text{bus de communication}"
+   ],
+   "titre": "Quatre éléments reliés par des bus",
+   "type": "etape"
+  },
+  "word": {
+   "kicker": "Exemple : le traitement de texte Word",
+   "tex": [
+    "\\text{logiciel d'application}",
+    "\\text{rédiger, mettre en forme}",
+    "\\text{documents}"
+   ],
+   "titre": "Rédiger et mettre en forme",
+   "type": "etape"
+  },
+  "demarreur": {
+   "kicker": "Le démarqueur",
+   "tex": [
+    "\\text{un port unique}",
+    "\\text{devient plusieurs ports}",
+    "\\text{exemple : hub USB}"
+   ],
+   "titre": "Multiplier les ports",
+   "type": "etape"
+  },
+  "windows": {
+   "kicker": "Exemple : Windows",
+   "tex": [
+    "\\text{logiciel système}",
+    "\\text{sans lui, pas de démarrage}",
+    "\\text{pas d'autres programmes}"
+   ],
+   "titre": "Le système d'abord",
+   "type": "etape"
+  },
+  "couches": {
+   "kicker": "Les couches logicielles",
+   "tex": [
+    "\\text{Matériel}",
+    "\\text{Système d'exploitation}",
+    "\\text{Applications, Utilisateur}"
+   ],
+   "titre": "Du matériel à l'utilisateur",
+   "type": "etape"
+  },
+  "antivirus": {
+   "kicker": "Exemple : l'antivirus",
+   "tex": [
+    "\\text{utilitaire de protection}",
+    "\\text{le système fonctionne sans lui}",
+    "\\text{mais avec des risques}"
+   ],
+   "titre": "Protège, sans être indispensable",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Informatique · Exploration matérielle et logicielle",
+   "sous": "Unité centrale et périphériques, logiciels système et applications, architecture du microordinateur",
+   "titre": "Exploration matérielle et logicielle : unité centrale, logiciels, architecture",
+   "type": "titre"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Unité centrale, périphériques, ports et démarrage"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : les logiciels. Nous distinguerons les logiciels système et les applications, puis le système d'exploitation, ses utilitaires, son interface graphique et ses fichiers.",
+    "texte": "Partie 2 : les logiciels."
+   },
+   "sous_titre": "Logiciels système, applications et fichiers"
+  },
+  {
+   "debut": "p28",
+   "pont": {
+    "dit": "Partie trois : l'architecture du microordinateur. Nous verrons le modèle de von Neumann, le processeur et ses mémoires, les logiciels de base et les applicatifs, puis les quatre phases du fonctionnement global.",
+    "texte": "Partie 3 : architecture et fonctionnement global."
+   },
+   "sous_titre": "Architecture matérielle, logicielle et fonctionnement"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'exploration matérielle et logicielle. Nous allons d'abord explorer le matériel, de l'unité centrale à ses périphériques, puis les logiciels, du système d'exploitation aux applications, et enfin l'architecture du microordinateur.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Explorer le matériel, puis les logiciels."
+  },
+  {
+   "dit": "Première partie : l'unité centrale et son rôle. L'unité centrale, c'est le boîtier principal qui contient les composants essentiels au fonctionnement de l'ordinateur : le processeur, pour les calculs, la mémoire vive, pour le stockage temporaire, et la carte mère, pour l'interconnexion. Elle traite les données et coordonne l'ensemble des périphériques.",
+   "ecran": "uc",
+   "id": "p02",
+   "texte": "Unité centrale : processeur, mémoire vive, carte mère."
+  },
+  {
+   "dit": "Un périphérique est tout équipement connecté à l'unité centrale et qui permet d'échanger des informations avec elle. On distingue trois catégories : les périphériques d'entrée, les périphériques de sortie, et les supports de stockage, qui relèvent de l'entrée et de la sortie.",
+   "ecran": "peripheriques",
+   "id": "p03",
+   "texte": "Périphériques : entrée, sortie, stockage."
+  },
+  {
+   "dit": "Un support de stockage est un périphérique conçu pour conserver durablement des données : disque dur, clé USB, carte mémoire, disque optique, CD ou DVD.",
+   "ecran": "stockage",
+   "id": "p04",
+   "texte": "Stockage durable : disque dur, clé USB, carte, CD, DVD."
+  },
+  {
+   "dit": "Exemple résolu. Un élève utilise un clavier pour écrire un devoir, puis l'enregistre sur une clé USB et l'imprime. Classification : le clavier est un périphérique d'entrée, la clé USB est un support de stockage, en entrée et sortie, l'imprimante est un périphérique de sortie.",
+   "ecran": "ex_classer",
+   "id": "p05",
+   "texte": "Clavier entrée, clé USB stockage, imprimante sortie."
+  },
+  {
+   "dit": "Les interfaces d'entrée et de sortie sont les circuits qui assurent la communication entre l'unité centrale et les périphériques. Elles sont matérialisées physiquement par des ports, des connecteurs situés à l'arrière ou à l'avant du boîtier.",
+   "ecran": "ports",
+   "id": "p06",
+   "texte": "Interfaces : circuits ; ports : connecteurs."
+  },
+  {
+   "dit": "Exemple résolu. Pour connecter un écran moderne à un ordinateur, on utilise le port HDMI : la forme trapézoïdale du connecteur permet une insertion dans un seul sens, évitant toute erreur de branchement.",
+   "ecran": "ex_hdmi",
+   "id": "p07",
+   "texte": "HDMI : forme trapézoïdale, un seul sens."
+  },
+  {
+   "dit": "Les boutons de l'unité centrale : le bouton Power allume et éteint l'ordinateur, marche et arrêt ; le bouton Reset redémarre l'ordinateur en cas de blocage, il est rare sur les modèles récents ; le bouton d'éjection ouvre le lecteur optique, si le poste en possède un.",
+   "ecran": "boutons",
+   "id": "p08",
+   "texte": "Power, Reset, éjection : les trois boutons."
+  },
+  {
+   "dit": "Procédure d'interconnexion, en quatre gestes : identifier chaque périphérique et son port correspondant, selon sa forme et sa couleur ; connecter chaque périphérique au port adapté en respectant l'orientation ; brancher l'unité centrale au secteur ; allumer les périphériques, l'écran par exemple, puis l'unité centrale.",
+   "ecran": "interconnexion",
+   "id": "p09",
+   "texte": "Identifier, connecter, brancher, allumer."
+  },
+  {
+   "dit": "La séquence de démarrage, ou boot, suit un ordre précis : mise sous tension, tests internes par le BIOS ou l'UEFI, chargement du système d'exploitation depuis le support de stockage principal, puis affichage du bureau.",
+   "ecran": "boot",
+   "id": "p10",
+   "texte": "Boot : tension, tests, système, bureau."
+  },
+  {
+   "dit": "Exemple résolu, procédure complète : brancher le clavier sur un port USB, la souris sur le port USB adjacent, l'écran sur le port HDMI, puis appuyer sur le bouton Power. L'ordinateur démarre et charge le système d'exploitation.",
+   "ecran": "ex_branchement",
+   "id": "p11",
+   "texte": "Clavier USB, souris USB, écran HDMI, Power."
+  },
+  {
+   "dit": "Le démarqueur, ou répartiteur, est un dispositif qui permet de multiplier un port unique en plusieurs ports, par exemple un hub USB. Il facilite la connexion simultanée de nombreux périphériques à l'unité centrale.",
+   "ecran": "demarreur",
+   "id": "p12",
+   "texte": "Démarqueur : un port devient plusieurs ports."
+  },
+  {
+   "dit": "Exemple résolu : un hub USB à quatre ports permet de connecter simultanément une souris, un clavier, une clé USB et une imprimante sur un seul port USB de l'ordinateur.",
+   "ecran": "ex_hub",
+   "id": "p13",
+   "texte": "Hub 4 ports : souris, clavier, clé, imprimante."
+  },
+  {
+   "dit": "Deuxième partie : les logiciels. Un logiciel est un ensemble d'instructions, de programmes, qui permet à un ordinateur d'exécuter des tâches précises. On distingue deux grandes catégories de logiciels.",
+   "ecran": "logiciel",
+   "id": "p14",
+   "texte": "Logiciel : un ensemble d'instructions."
+  },
+  {
+   "dit": "Première catégorie : les logiciels système. Un logiciel système est un programme indispensable au fonctionnement de l'ordinateur. Il gère les ressources matérielles et sert d'intermédiaire entre le matériel et les logiciels d'application.",
+   "ecran": "logiciels_sys",
+   "id": "p15",
+   "texte": "Logiciel système : indispensable, intermédiaire."
+  },
+  {
+   "dit": "Exemple résolu : le système d'exploitation Windows est un logiciel système : sans lui, l'ordinateur ne peut pas démarrer ni exécuter d'autres programmes.",
+   "ecran": "windows",
+   "id": "p16",
+   "texte": "Windows : sans système, pas de démarrage."
+  },
+  {
+   "dit": "Deuxième catégorie : les logiciels d'application. Un logiciel d'application est un programme qui permet à l'utilisateur d'effectuer une tâche spécifique, rédiger un texte, calculer, naviguer sur Internet, et il s'appuie sur le système d'exploitation pour fonctionner.",
+   "ecran": "logiciels_app",
+   "id": "p17",
+   "texte": "Application : une tâche précise, sur le système."
+  },
+  {
+   "dit": "Exemple résolu : le logiciel de traitement de texte Word est un logiciel d'application : il permet de rédiger et de mettre en forme des documents.",
+   "ecran": "word",
+   "id": "p18",
+   "texte": "Word : rédiger et mettre en forme."
+  },
+  {
+   "dit": "Le système d'exploitation est le logiciel système principal. Ses fonctions essentielles sont : démarrer l'ordinateur, l'amorçage ; gérer les ressources matérielles, processeur, mémoire, disques ; gérer les périphériques, clavier, souris, imprimante ; permettre l'exécution des logiciels d'application ; gérer les fichiers, création, copie, suppression ; gérer les utilisateurs et les droits d'accès.",
+   "ecran": "fonctions_se",
+   "id": "p19",
+   "texte": "Système : amorçage, ressources, fichiers, droits."
+  },
+  {
+   "dit": "La relation entre les couches logicielles peut être représentée ainsi : matériel, puis système d'exploitation, puis logiciels d'application, puis utilisateur.",
+   "ecran": "couches",
+   "id": "p20",
+   "texte": "Matériel, système, applications, utilisateur."
+  },
+  {
+   "dit": "Troisième famille : les logiciels utilitaires. Un utilitaire est un logiciel système qui remplit une fonction d'entretien, d'optimisation ou de sécurité de l'ordinateur, sans être indispensable à son démarrage.",
+   "ecran": "utilitaires",
+   "id": "p21",
+   "texte": "Utilitaire : entretien, optimisation, sécurité."
+  },
+  {
+   "dit": "Exemple résolu : un antivirus est un utilitaire : il protège l'ordinateur contre les virus, mais le système d'exploitation fonctionne sans lui, avec des risques.",
+   "ecran": "antivirus",
+   "id": "p22",
+   "texte": "Antivirus : un utilitaire, pas un système."
+  },
+  {
+   "dit": "L'interface graphique d'un système d'exploitation présente plusieurs éléments. L'icône est une petite image représentant un programme, un fichier ou un dossier, et un clic sur une icône déclenche une action. La fenêtre est une zone rectangulaire à l'écran qui affiche le contenu d'un programme ou d'un dossier, et elle peut être agrandie, réduite, déplacée ou fermée. La boîte de dialogue est une petite fenêtre qui s'ouvre pour demander une information à l'utilisateur ou proposer des options, et elle exige une action de confirmation, OK ou Annuler.",
+   "ecran": "interface",
+   "id": "p23",
+   "texte": "Interface : icône, fenêtre, boîte de dialogue."
+  },
+  {
+   "dit": "Exemple résolu : lorsqu'on clique sur l'icône du dossier Mes documents, une fenêtre s'ouvre affichant son contenu. Si on souhaite enregistrer un fichier, une boîte de dialogue Enregistrer sous apparaît pour choisir l'emplacement.",
+   "ecran": "ex_dossier",
+   "id": "p24",
+   "texte": "Mes documents : icône, fenêtre, Enregistrer sous."
+  },
+  {
+   "dit": "Un fichier est une unité d'information stockée sur un support, disque dur ou clé USB. Il porte un nom, une extension, le suffixe après le point, et une icône qui indique son type.",
+   "ecran": "fichiers",
+   "id": "p25",
+   "texte": "Fichier : nom, extension, icône de type."
+  },
+  {
+   "dit": "Pour consulter un fichier, on peut faire un double-clic sur son icône pour l'ouvrir avec le logiciel associé, utiliser l'explorateur de fichiers pour le localiser, ou afficher ses propriétés, taille, date et type, par clic droit.",
+   "ecran": "fichiers_consulter",
+   "id": "p26",
+   "texte": "Consulter : double-clic, explorateur, clic droit."
+  },
+  {
+   "dit": "Un texteur est un logiciel d'application spécialisé dans la création et la mise en forme de documents textuels, appelé aussi traitement de texte. Exemple résolu : le fichier rapport point docx est un fichier de type document texteur. En double-cliquant dessus, il s'ouvre automatiquement dans le logiciel Word, ou équivalent, qui est le logiciel associé à cette extension.",
+   "ecran": "ex_docx",
+   "id": "p27",
+   "texte": "rapport.docx : document texteur, ouvert par Word."
+  },
+  {
+   "dit": "Troisième volet : l'architecture matérielle d'un microordinateur. L'architecture matérielle désigne l'ensemble des composants physiques, le hardware, d'un ordinateur. Le modèle de référence est l'architecture de von Neumann, qui organise le système autour de quatre éléments reliés par des bus de communication : l'unité centrale, les mémoires, les périphériques d'entrée et de sortie, et les bus.",
+   "ecran": "von_neumann",
+   "id": "p28",
+   "texte": "Von Neumann : unité centrale, mémoires, périphériques, bus."
+  },
+  {
+   "dit": "L'unité centrale, ou processeur, est le cerveau de l'ordinateur. Elle se compose de deux éléments principaux : l'unité de contrôle, qui lit et décode les instructions, puis coordonne leur exécution en envoyant des signaux de commande aux autres composants ; et l'unité arithmétique et logique, qui effectue les opérations de calcul, addition et multiplication, et les opérations logiques, comparaison, ET, OU.",
+   "ecran": "uc_ual",
+   "id": "p29",
+   "texte": "Processeur : contrôle qui décode, unité qui calcule."
+  },
+  {
+   "dit": "Le processeur exécute les instructions selon le cycle suivant : chargement, puis décodage, puis exécution.",
+   "ecran": "cycle",
+   "id": "p30",
+   "texte": "Cycle : chargement, décodage, exécution."
+  },
+  {
+   "dit": "On distingue deux grandes catégories de mémoires. La mémoire vive, RAM, est volatile : elle stocke temporairement les données et programmes en cours d'utilisation. Sa capacité se mesure en octets, kilo-octets, méga-octets, giga-octets. La mémoire morte, ROM, est non volatile : elle contient les instructions de démarrage, le BIOS, qui ne peuvent pas être modifiées par l'utilisateur. On trouve également la mémoire cache, intégrée au processeur, qui accélère l'accès aux données fréquemment utilisées.",
+   "ecran": "memoires",
+   "id": "p31",
+   "texte": "RAM volatile, ROM de démarrage, cache rapide."
+  },
+  {
+   "dit": "Un gigaoctet vaut un milliard d'octets, soit mille vingt-quatre mégaoctets.",
+   "ecran": "ram_go",
+   "id": "p32",
+   "texte": "1 Go = un milliard d'octets = 1024 Mo."
+  },
+  {
+   "dit": "Exemple résolu : un ordinateur possède une RAM de huit gigaoctets et un processeur cadencé à trois virgule cinq gigahertz. La fréquence de trois virgule cinq gigahertz signifie que le processeur effectue trois virgule cinq milliards de cycles par seconde. Chaque cycle d'exécution dure donc environ deux virgule huit six fois dix puissance moins dix secondes.",
+   "ecran": "ex_cycle",
+   "id": "p33",
+   "texte": "3,5 GHz : cycle d'environ 2,86 fois 10 puissance moins 10 secondes."
+  },
+  {
+   "dit": "Côté architecture logicielle, les logiciels de base sont les programmes indispensables au fonctionnement de la machine : le système d'exploitation, Windows, Linux ou macOS, qui gère les ressources matérielles, organise les fichiers et permet l'interaction avec l'utilisateur ; les utilitaires, programmes d'optimisation, de sauvegarde, de diagnostic ou de sécurité, comme l'antivirus ; et les pilotes, ou drivers, qui assurent la communication entre le système et les périphériques. Le système d'exploitation sert d'interface entre l'utilisateur et le matériel, et il est chargé au démarrage par la mémoire ROM.",
+   "ecran": "logiciels_base",
+   "id": "p34",
+   "texte": "Logiciels de base : système, utilitaires, pilotes."
+  },
+  {
+   "dit": "Les logiciels applicatifs répondent à des besoins précis de l'utilisateur et se classent par fonction. Exemple résolu : pour préparer un exposé de sciences, un élève utilise un navigateur web pour rechercher des informations, un traitement de texte pour rédiger le rapport, un tableur pour tracer un graphique de résultats, et un logiciel de présentation pour le diaporama final. Chaque application couvre un besoin distinct, tandis que le système d'exploitation gère l'ensemble en arrière-plan.",
+   "ecran": "ex_applis",
+   "id": "p35",
+   "texte": "Exposé : navigateur, texteur, tableur, présentation."
+  },
+  {
+   "dit": "Le fonctionnement d'un ordinateur suit un schéma en quatre phases. Saisie : les périphériques d'entrée, clavier, souris, microphone, transmettent les données à l'unité centrale. Traitement : le processeur exécute les instructions du programme chargé en RAM, et les données transitent par l'unité arithmétique et logique pour les calculs. Stockage : les résultats sont conservés en mémoire de masse, disque dur ou SSD, pour une utilisation ultérieure. Sortie : les périphériques de sortie, écran, imprimante, haut-parleurs, restituent les résultats à l'utilisateur. La communication entre ces éléments s'effectue via les bus de données, qui transportent les informations binaires, zéro et un, à une vitesse mesurée en octets par seconde.",
+   "ecran": "phases",
+   "id": "p36",
+   "texte": "Saisie, traitement, stockage, sortie, par les bus."
+  },
+  {
+   "dit": "En synthèse : le logiciel de base assure la gestion du matériel et fournit l'environnement d'exécution, et sans lui, aucun logiciel applicatif ne peut fonctionner. Les logiciels applicatifs exploitent les ressources fournies par le système pour réaliser des tâches spécifiques. La complémentarité joue à plein : un même document peut être créé avec un traitement de texte, puis intégré dans une présentation, et le partage de données entre applications est facilité par le système d'exploitation. En résumé, le matériel constitue le corps de l'ordinateur, le logiciel de base en est le système nerveux, et les logiciels applicatifs lui donnent son utilité pratique pour l'utilisateur citoyen numérique.",
+   "ecran": "recap",
+   "id": "p37",
+   "texte": "Corps, système nerveux, utilité : la synthèse."
+  }
+ ],
+ "titre": "Exploration matérielle et logicielle : unité centrale, logiciels, architecture"
+}

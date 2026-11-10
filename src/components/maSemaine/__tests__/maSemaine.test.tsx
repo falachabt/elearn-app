@@ -21,7 +21,7 @@ jest.mock('expo-router', () => ({
   router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => true) },
   useLocalSearchParams: () => mockParams,
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/services/retours', () => ({ ...jest.requireActual('@/services/retours'), jouerMoment: jest.fn() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: (...a: unknown[]) => mockRpc(...a) }) }));
 jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => 'u1' }));
@@ -298,7 +298,7 @@ describe('carte 3 : à rattraper', () => {
     await suivant();
     await suivant();
     await fireEvent.press(screen.getByText(t.refaireErreurs));
-    expect(router.push).toHaveBeenCalledWith('/mission/erreurs');
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/erreurs-semaine', params: { semaine: '2026-09-28' } });
     expect(suivre).toHaveBeenCalledWith('week_recap_cta', { cta: 'refaire_erreurs', semaine: '2026-09-28' });
     await suivant();
     expect(screen.getByTestId('carte-credits')).toBeTruthy();

@@ -8,6 +8,8 @@ import { CLE_DERNIERE_SEMAINE_VUE, semainePrecedente } from '@/services/maSemain
 import { useOuvertureRecapAuto } from '../useOuvertureRecapAuto';
 
 const mockRpc = jest.fn();
+const mockPrioritaire = jest.fn(async () => false);
+const mockNoterRecap = jest.fn();
 let mockPathname = '/';
 let mockSession: { statut: string; session: { user: { is_anonymous: boolean } } | null } = { statut: 'pret', session: { user: { is_anonymous: false } } };
 let mockReprise = false;
@@ -19,6 +21,10 @@ jest.mock('expo-router', () => ({
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession }));
 jest.mock('@/services/repriseInvite', () => ({ useRepriseInviteEnCours: () => mockReprise }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: (...a: unknown[]) => mockRpc(...a) }) }));
+jest.mock('@/services/rechargePass', () => ({
+  feuilleRechargePrioritaire: () => mockPrioritaire(),
+  noterRecapAutoPresente: () => mockNoterRecap(),
+}));
 
 const SEMAINE = semainePrecedente();
 const BRUT = { semaine: SEMAINE, missions: 3, lecons_validees: 0, quiz_termines: 0, exercices_faits: 0, questions_ratees: 0, credits_utilises: 0, pass_actif: false, solde: 10, recharge_lundi: 25 };
@@ -161,6 +167,24 @@ describe('ouverture automatique de « Ma semaine »', () => {
     await attendre();
     expect(mockRpc).toHaveBeenCalledTimes(1);
     expect(router.push).toHaveBeenCalledTimes(1);
+  });
+
+  it('feuille « recharger le Pass » urgente et due (#124) : le récap cède et s’ouvrira à la suivante', async () => {
+    mockSession = { statut: 'pret', session: { user: { id: 'u-1', is_anonymous: false } } } as typeof mockSession;
+    mockPrioritaire.mockResolvedValue(true);
+    await lancer();
+    await attendre();
+    expect(mockPrioritaire).toHaveBeenCalled();
+    expect(router.push).not.toHaveBeenCalled();
+    expect(mockNoterRecap).not.toHaveBeenCalled();
+  });
+
+  it('feuille « recharger le Pass » non prioritaire (#124) : le récap s’ouvre et se signale', async () => {
+    mockSession = { statut: 'pret', session: { user: { id: 'u-1', is_anonymous: false } } } as typeof mockSession;
+    mockPrioritaire.mockResolvedValue(false);
+    await lancer();
+    await waitFor(() => expect(router.push).toHaveBeenCalledTimes(1));
+    expect(mockNoterRecap).toHaveBeenCalledTimes(1);
   });
 
   it('reprise après 31 minutes mais semaine vue entre-temps : ne rouvre pas', async () => {

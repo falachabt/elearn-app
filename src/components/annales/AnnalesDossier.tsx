@@ -1,26 +1,24 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { suivre } from '@/services/analytics';
-import { lireDocuments, lireDossiers, type Document, type Dossier } from '@/services/annales';
+import { correspond, lireDocuments, lireDossiers, type Document, type Dossier } from '@/services/annales';
 import { useEtatMemorise } from '@/services/memoire';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { espace, typo } from '@/theme/theme';
+import { typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
 import { PuceCout } from '../credits/PuceCout';
-import { useDepenseCredits } from '../credits/useDepenseCredits';
 import { useOuverts } from '../credits/useOuverts';
-import { Feuille } from '../Feuille';
 import { Ecran } from '../Ecran';
 import { LigneLien } from '../LigneLien';
 import { BoutonFermer } from '../arrivee/MiniTest';
+import { BarreRecherche } from './BarreRecherche';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; dossiers: Dossier[]; documents: Document[] };
 
@@ -31,6 +29,8 @@ export function AnnalesDossier() {
   const { solde } = useCredits();
   const { id, nom } = useLocalSearchParams<{ id: string; nom?: string }>();
   const pret = useSessionPrete();
+  const [requete, setRequete] = useState('');
+  const cherche = requete.trim().length > 0;
   const [etat, setEtat] = useEtatMemorise<Etat>(`annales.dossier.${id}`, { statut: 'chargement' });
 
   useEffect(() => {
@@ -41,7 +41,12 @@ export function AnnalesDossier() {
         const client = getSupabase();
         const profil = await lireProfil();
         const [dossiers, documents] = await Promise.all([
-          lireDossiers(client, { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM', parent: id }),
+          lireDossiers(client, {
+            niveau: profil?.niveau ?? '3e',
+            pays: profil?.pays ?? 'CM',
+            parent: id,
+            ...(profil?.type === 'eleve' && profil.serie?.id ? { serie: profil.serie.id } : {}),
+          }),
           lireDocuments(client, id),
         ]);
         if (actif) setEtat({ statut: 'pret', dossiers, documents });
@@ -55,33 +60,17 @@ export function AnnalesDossier() {
   }, [id, pret, setEtat]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
-  // L'adresse du PDF ne vient que de depenser_credits (M18-04). Un PDF déjà ouvert ne redemande rien, quelques documents
-  // sont gratuits ; les autres coûtent des crédits. Plus de crédits : une feuille du bas (« Recharger »), pas un message
-  // perdu en haut de la liste.
-  const { lancer, feuilles } = useDepenseCredits({ rechargeSimple: true });
-  const [reseau, setReseau] = useState(false);
+  // Le PDF ne s'ouvre plus d'ici : la page de détails du document (temps de travail, sujet, corrigé, correction IA) s'en charge,
+  // comme pour un concours. Les pastilles de coût restent sur la ligne.
   const refs = etat.statut === 'pret' ? etat.documents.flatMap((d) => [d.id, ...(d.correctionId ? [d.correctionId] : [])]).map(String) : [];
   const acces = useOuverts('document_pdf', refs);
-  const ouvrir = async (d: Document, correction = false) => {
-    const ref = correction && d.correctionId ? d.correctionId : d.id;
-    let r;
-    try {
-      r = await lancer<{ url?: string | null }>('document_pdf', ref, { deja: acces.sansFrais(String(ref)) });
-    } catch {
-      setReseau(true);
-      return;
-    }
-    const url = r?.contenu?.url;
-    if (!url) return;
-    void acces.relire();
-    suivre('class_document_opened', { correction });
-    router.push({ pathname: '/document', params: { url, titre: correction ? `${d.nom} · ${t('annales.correctionTitre')}` : d.nom } });
-  };
+  const detail = (d: Document) => router.push({ pathname: '/annales/sujet', params: { id: d.id, kind: 'document', nom: d.nom, ...(nom ? { cat: String(nom) } : {}), ...(d.correctionId ? { corr: d.correctionId } : {}) } });
   const puce = (ref: string | number) => solde?.illimite ? null : <PuceCout cout={acces.cout} etat={acces.etat(String(ref))} />;
 
   return (
     <>
     <Ecran
+      retourHautApres={0.5}
       entete={
         <>
           <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
@@ -93,7 +82,8 @@ export function AnnalesDossier() {
       {etat.statut === 'erreur' ? <Banniere ton="erreur" titre={t('annales.erreur')} /> : null}
       {etat.statut === 'pret' ? (
         <>
-          {etat.dossiers.map((d) => (
+          <BarreRecherche valeur={requete} onChange={setRequete} />
+          {(cherche ? etat.dossiers.filter((d) => correspond(requete, d.nom)) : etat.dossiers).map((d) => (
             <LigneLien
               key={d.id}
               icone="folder-outline"
@@ -102,29 +92,20 @@ export function AnnalesDossier() {
               onPress={() => router.push({ pathname: '/annales/dossier', params: { id: d.id, nom: d.nom } })}
             />
           ))}
-          {etat.documents.map((d) => (
-            <View key={d.id} style={styles.document}>
-              <LigneLien icone="document-text-outline" titre={d.nom} detail={d.correctionId ? t('annales.sujetCorrige') : undefined} droite={puce(d.id)} onPress={() => void ouvrir(d)} />
-              {d.correctionId ? <LigneLien icone="checkmark-done-outline" titre={t('annales.ouvrirCorrection')} droite={puce(d.correctionId)} onPress={() => void ouvrir(d, true)} /> : null}
-            </View>
+          {(cherche ? etat.documents.filter((d) => correspond(requete, d.nom)) : etat.documents).map((d) => (
+            <LigneLien key={d.id} icone="document-text-outline" titre={d.nom} detail={d.correctionId ? t('annales.sujetCorrige') : undefined} droite={puce(d.id)} onPress={() => detail(d)} />
           ))}
           {!etat.dossiers.length && !etat.documents.length ? <Banniere ton="info" titre={t('annales.dossierVide')} /> : null}
+          {cherche && !etat.dossiers.some((d) => correspond(requete, d.nom)) && !etat.documents.some((d) => correspond(requete, d.nom)) && (etat.dossiers.length || etat.documents.length) ? (
+            <Banniere ton="info" titre={t('annales.aucunResultat', { q: requete.trim() })} texte={t('annales.aucunResultatTexte')} />
+          ) : null}
         </>
       ) : null}
     </Ecran>
-    {feuilles}
-    <Feuille
-      ouverte={reseau}
-      onFermer={() => setReseau(false)}
-      icone="cloud-offline-outline"
-      titre={t('payant.erreur')}
-      actions={[{ libelle: t('credits.fermer'), onPress: () => setReseau(false) }]}
-    />
     </>
   );
 }
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  document: { gap: espace[2] },
 });

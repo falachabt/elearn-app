@@ -1,0 +1,348 @@
+{
+ "cours": 7354,
+ "ecrans": {
+  "arith_def": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "suite_arith_fig"
+   },
+   "kicker": "Suites arithmétiques",
+   "note": "r : la raison · terme général et somme se lisent depuis n'importe quel rang p.",
+   "tex": "u_{n+1} = u_n + r",
+   "type": "formule"
+  },
+  "arith_somme": {
+   "kicker": "Arithmétique · terme général et somme depuis un rang p",
+   "tex": [
+    "u_n = u_p + (n-p)\\, r",
+    "S = (n-p+1) \\times \\tfrac{u_p + u_n}{2}",
+    "u_{10} = 43 \\qquad S = 253"
+   ],
+   "titre": "Compter les termes, puis moyenner les extrêmes",
+   "type": "etape"
+  },
+  "bornee": {
+   "kicker": "Suites majorées, minorées, bornées",
+   "tex": [
+    "\\exists M, \\ u_n \\leq M : \\text{ majorée}",
+    "\\exists m, \\ u_n \\geq m : \\text{ minorée}",
+    "|u_n| \\leq M : \\text{ bornée}"
+   ],
+   "titre": "Trois mots, trois encadrements",
+   "type": "etape"
+  },
+  "bornee_ex": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "suite_convergente_fig"
+   },
+   "kicker": "Exemple · une suite bornée",
+   "tex": [
+    "u_n = \\tfrac{1}{n}, \\quad n \\geq 1",
+    "0 < u_n \\leq 1 \\quad \\text{(décroissante)}"
+   ],
+   "titre": "Un sur n : entre zéro et un",
+   "type": "etape"
+  },
+  "def": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "nuage_suite_fig"
+   },
+   "kicker": "Généralités · définition d'une suite",
+   "note": "(u_n) : la suite · u_n : le terme d'indice n · explicite : u_n = f(n) · récurrente : u_{n+1} = f(u_n).",
+   "tex": "u : \\mathbb{N} \\to \\mathbb{R}, \\quad n \\mapsto u_n",
+   "type": "formule"
+  },
+  "gendarmes": {
+   "kicker": "Théorème des gendarmes",
+   "note": "Coincée entre deux suites de même limite, la suite du milieu hérite de cette limite.",
+   "tex": "\\begin{aligned} v_n &\\leq u_n \\leq w_n \\\\ v_n &\\to \\ell, \\quad w_n \\to \\ell \\\\ u_n &\\to \\ell \\end{aligned}",
+   "type": "formule"
+  },
+  "gendarmes_ex": {
+   "kicker": "Exemple · les gendarmes en action",
+   "tex": [
+    "-1 \\leq \\sin n \\leq 1",
+    "-\\tfrac{1}{n} \\leq \\tfrac{\\sin n}{n} \\leq \\tfrac{1}{n}",
+    "\\lim \\tfrac{\\sin n}{n} = 0"
+   ],
+   "titre": "Sinus n sur n : coincé entre deux zéros",
+   "type": "etape"
+  },
+  "geom_def": {
+   "kicker": "Suites géométriques",
+   "note": "q : la raison, différente de zéro · on multiplie toujours par le même nombre.",
+   "tex": "u_{n+1} = q \\times u_n \\quad (q \\neq 0)",
+   "type": "formule"
+  },
+  "geom_ex": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "escalier_sommes_fig"
+   },
+   "kicker": "Géométrique · exemple complet",
+   "tex": [
+    "u_4 = 2 \\times \\left(\\tfrac{1}{3}\\right)^4 = \\tfrac{2}{81}",
+    "S = 3 \\left(1 - \\tfrac{1}{243}\\right) = \\tfrac{242}{81}",
+    "\\lim u_n = 0 \\quad (|q| < 1)"
+   ],
+   "titre": "Raison un tiers : terme, somme et limite",
+   "type": "etape"
+  },
+  "geom_lim": {
+   "kicker": "Géométrique · limite selon la raison",
+   "tex": [
+    "q > 1 : \\lim q^n = +\\infty",
+    "|q| < 1 : \\lim q^n = 0",
+    "q \\leq -1 : \\text{ pas de limite}"
+   ],
+   "titre": "Trois cas pour q puissance n",
+   "type": "etape"
+  },
+  "geom_somme": {
+   "kicker": "Géométrique · terme général et somme depuis un rang p",
+   "tex": [
+    "u_n = u_p \\, q^{\\,n-p}",
+    "S = u_p \\times \\tfrac{1 - q^{n-p+1}}{1 - q} \\quad (q \\neq 1)",
+    "q = 1 : \\ S = (n-p+1)\\, u_p"
+   ],
+   "titre": "Terme général et somme des termes",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Un seul cours de synthèse : variation, bornes, convergence, sommes des deux familles, et quatre méthodes pour calculer une limite.",
+   "type": "phrase"
+  },
+  "lim_def": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "bande_epsilon_fig"
+   },
+   "kicker": "Convergence · limite finie ou infinie",
+   "note": "Limite infinie : à partir d'un certain rang, tous les termes dépassent tout seuil donné.",
+   "tex": "\\lim_{n \\to +\\infty} u_n = \\ell",
+   "type": "formule"
+  },
+  "lim_ex": {
+   "kicker": "Exemple · une limite par factorisation",
+   "tex": [
+    "u_n = \\tfrac{2n^2 + 3n}{5n^2 - 1} = \\tfrac{2 + 3/n}{5 - 1/n^2}",
+    "\\lim u_n = \\tfrac{2}{5}"
+   ],
+   "titre": "Factoriser par n au carré, le terme dominant",
+   "type": "etape"
+  },
+  "lim_proprietes": {
+   "kicker": "Convergence · propriétés",
+   "tex": [
+    "\\text{limite unique si elle existe}",
+    "\\text{convergente } \\Rightarrow \\text{ bornée}",
+    "u_n \\leq v_n \\Rightarrow \\ell \\leq \\ell'"
+   ],
+   "titre": "Unicité, bornitude, comparaison des limites",
+   "type": "etape"
+  },
+  "methodes": {
+   "etapes": [
+    "Explicite : factoriser le terme dominant",
+    "Récurrente : point fixe, après la convergence",
+    "Monotone et bornée : convergence assurée",
+    "Encadrer : le théorème des gendarmes"
+   ],
+   "kicker": "Méthodes de calcul de limite",
+   "type": "recap"
+  },
+  "mono_conv": {
+   "kicker": "Théorème de convergence monotone",
+   "tex": [
+    "\\text{croissante et majorée : elle converge}",
+    "\\text{décroissante et minorée : elle converge}"
+   ],
+   "titre": "La monotonie plus une borne donnent la convergence",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Variation : signe de uₙ₊₁ − uₙ",
+    "Bornée : majorée et minorée à la fois",
+    "Gendarmes : coincée, donc même limite",
+    "Sommes : compter les termes, puis la formule",
+    "Limite : factoriser, encadrer, point fixe"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "suite_convergente_fig"
+   },
+   "kicker": "Mathématique · Suites numériques",
+   "sous": "Variation, bornes, gendarmes et convergence monotone : calculer les limites et les sommes",
+   "titre": "Suites numériques : convergence et sommes",
+   "type": "titre"
+  },
+  "variation": {
+   "kicker": "Sens de variation",
+   "tex": [
+    "u_{n+1} \\geq u_n : \\text{ croissante}",
+    "u_{n+1} \\leq u_n : \\text{ décroissante}",
+    "u_{n+1} = u_n : \\text{ constante}"
+   ],
+   "titre": "Croissante, décroissante, constante",
+   "type": "etape"
+  },
+  "variation_methode": {
+   "kicker": "Méthode · étudier la variation",
+   "note": "Termes strictement positifs : comparer le quotient de deux termes consécutifs au nombre un.",
+   "tex": "\\text{signe de } u_{n+1} - u_n",
+   "type": "formule"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Généralités, variation, bornes et convergence"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : les théorèmes de convergence en action, puis les sommes. Nous appliquerons la convergence monotone, nous écrirons les sommes arithmétiques et géométriques depuis un rang quelconque, et nous finirons par les quatre méthodes de calcul de limite, avec un exemple de factorisation.",
+    "texte": "Partie 2 : convergence monotone, sommes des deux familles et méthodes de limite."
+   },
+   "sous_titre": "Convergence monotone, sommes et méthodes de limite"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de synthèse consacré aux suites numériques, leur convergence et leurs sommes. Nous poserons les généralités, le sens de variation et les suites bornées, puis la convergence avec ses deux grands théorèmes. Nous écrirons ensuite les sommes des suites arithmétiques et géométriques, et nous finirons par les méthodes de calcul de limite.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Suites numériques : convergence et sommes."
+  },
+  {
+   "dit": "Ce cours rassemble tout l'essentiel en un seul parcours. D'abord décrire la suite : comment elle varie, et si ses termes restent encadrés. Ensuite décider si elle converge, et vers quoi. Enfin calculer : les sommes des deux grandes familles, et les limites par quatre méthodes.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Décrire, faire converger, calculer : le plan du cours."
+  },
+  {
+   "dit": "Une suite numérique est une fonction qui va de l'ensemble des entiers naturels vers l'ensemble des réels : à chaque entier n, elle associe le nombre u indice n. Elle est explicite quand le terme général est donné directement en fonction de n, et récurrente quand chaque terme se fabrique à partir du précédent.",
+   "ecran": "def",
+   "id": "p03",
+   "texte": "u_n : l'image de n · explicite ou récurrente."
+  },
+  {
+   "dit": "Une suite est croissante quand chaque terme est supérieur ou égal au précédent, pour tout indice. Elle est décroissante quand chaque terme est inférieur ou égal au précédent. Et elle est constante quand tous ses termes sont égaux. Une suite croissante ou décroissante est dite monotone.",
+   "ecran": "variation",
+   "id": "p04",
+   "texte": "Croissante, décroissante ou constante : monotone."
+  },
+  {
+   "dit": "Pour étudier le sens de variation, la méthode générale consiste à calculer la différence de deux termes consécutifs, u indice n plus un moins u indice n, et à étudier son signe. Quand tous les termes sont strictement positifs, on peut aussi comparer le quotient de deux termes consécutifs au nombre un.",
+   "ecran": "variation_methode",
+   "id": "p05",
+   "texte": "Variation : le signe de uₙ₊₁ − uₙ décide."
+  },
+  {
+   "dit": "Une suite est majorée quand il existe un nombre réel qui dépasse ou égale tous ses termes. Elle est minorée quand il existe un nombre réel qui reste en dessous de tous ses termes. Et elle est bornée quand elle est à la fois majorée et minorée : ses termes restent alors coincés entre deux bornes fixes.",
+   "ecran": "bornee",
+   "id": "p06",
+   "texte": "Majorée, minorée, bornée : trois encadrements."
+  },
+  {
+   "dit": "Exemple : la suite de terme général u indice n égale un sur n, pour n supérieur ou égal à un. Elle est décroissante : ses termes valent un, puis un demi, puis un tiers. Elle est majorée par un, son premier terme, et minorée par zéro, qu'elle ne touche jamais : elle est donc bornée, et ses termes se resserrent vers zéro.",
+   "ecran": "bornee_ex",
+   "id": "p07",
+   "texte": "1/n : décroissante, entre 0 et 1, donc bornée."
+  },
+  {
+   "dit": "Une suite converge vers un nombre réel, noté l, quand tout intervalle ouvert contenant l finit par contenir tous les termes de la suite, à partir d'un certain rang. Si les termes dépassent tout seuil donné à partir d'un certain rang, la suite diverge vers plus l'infini. Et une suite qui n'admet ni limite finie ni limite infinie est divergente.",
+   "ecran": "lim_def",
+   "id": "p08",
+   "texte": "Converger : entrer dans toute bande autour de ℓ."
+  },
+  {
+   "dit": "Trois propriétés organisent la suite du cours. La limite, quand elle existe, est unique. Toute suite convergente est bornée, mais la réciproque est fausse : une suite bornée peut osciller sans converger. Et la comparaison passe à la limite : si u reste sous v et si les deux convergent, leurs limites gardent le même ordre. S'ajoutent les opérations usuelles sur les limites.",
+   "ecran": "lim_proprietes",
+   "id": "p09",
+   "texte": "Unicité, bornitude, comparaison : les trois propriétés."
+  },
+  {
+   "dit": "Premier grand théorème : les gendarmes. Si, à partir d'un certain rang, une suite est coincée entre deux autres suites qui convergent vers le même nombre l, alors la suite du milieu converge elle aussi vers l. C'est l'outil des encadrements : quand un calcul direct est impossible, on encadre, puis on laisse les bornes décider.",
+   "ecran": "gendarmes",
+   "id": "p10",
+   "texte": "Gendarmes : coincée entre deux suites de même limite."
+  },
+  {
+   "dit": "Exemple classique : la suite de terme général sinus de n, sur n. Le sinus reste toujours compris entre moins un et un. En divisant par n, la suite se retrouve coincée entre moins un sur n et un sur n. Or ces deux gardes tendent vers zéro : par le théorème des gendarmes, sinus de n sur n tend donc vers zéro, bien que le sinus oscille sans limite propre.",
+   "ecran": "gendarmes_ex",
+   "id": "p11",
+   "texte": "sin(n)/n : coincé entre −1/n et 1/n, limite 0."
+  },
+  {
+   "dit": "Deuxième grand théorème : la convergence monotone. Toute suite croissante et majorée converge, et toute suite décroissante et minorée converge. La borne joue le rôle de butée : la suite avance toujours dans le même sens sans pouvoir la dépasser, donc elle se stabilise vers une limite, dont le théorème affirme l'existence sans donner la valeur.",
+   "ecran": "mono_conv",
+   "id": "p12",
+   "texte": "Croissante et majorée : la convergence est assurée."
+  },
+  {
+   "dit": "Passons aux sommes, avec la première famille. Une suite est arithmétique de raison r quand on passe d'un terme au suivant en ajoutant toujours r : u indice n plus un égale u indice n plus r. Sur un graphique, les points sont alignés, avec un écart vertical constant égal à la raison.",
+   "ecran": "arith_def",
+   "id": "p13",
+   "texte": "Arithmétique : on ajoute toujours r."
+  },
+  {
+   "dit": "Le terme général se lit depuis n'importe quel rang p : u indice n égale u indice p, plus n moins p, le tout fois r. La somme des termes, du rang p au rang n, vaut le nombre de termes, n moins p plus un, multiplié par la demi-somme des deux termes extrêmes. Exemple : premier terme trois, raison quatre. Le terme de rang dix vaut quarante-trois, et la somme des onze premiers termes vaut onze fois vingt-trois, soit deux cent cinquante-trois.",
+   "ecran": "arith_somme",
+   "id": "p14",
+   "texte": "Depuis le rang p : compter les termes, moyenner les extrêmes."
+  },
+  {
+   "dit": "Deuxième famille : les suites géométriques. Une suite est géométrique de raison q, différente de zéro, quand on passe d'un terme au suivant en multipliant toujours par q : u indice n plus un égale q fois u indice n. Là où l'arithmétique ajoute sa raison, la géométrique multiplie par la sienne.",
+   "ecran": "geom_def",
+   "id": "p15",
+   "texte": "Géométrique : on multiplie toujours par q."
+  },
+  {
+   "dit": "Le terme général devient une puissance : u indice n égale u indice p fois q puissance n moins p. La somme des termes, du rang p au rang n, vaut u indice p fois un, moins q puissance le nombre de termes, le tout divisé par un moins q, si la raison diffère de un. Si elle vaut un, tous les termes sont égaux : la somme vaut le nombre de termes fois le terme de départ.",
+   "ecran": "geom_somme",
+   "id": "p16",
+   "texte": "u_n = u_p qⁿ⁻ᵖ · somme par la formule en q."
+  },
+  {
+   "dit": "Enfin, la limite d'une suite géométrique se lit sur sa raison. Si q est supérieur à un, q puissance n tend vers plus l'infini. Si la valeur absolue de q est strictement inférieure à un, q puissance n tend vers zéro. Et si q est inférieur ou égal à moins un, la puissance oscille ou explose en changeant de signe : elle n'a pas de limite.",
+   "ecran": "geom_lim",
+   "id": "p17",
+   "texte": "Limite de qⁿ : +∞ si q > 1, 0 si |q| < 1."
+  },
+  {
+   "dit": "Exemple complet : premier terme deux, raison un tiers. Le terme de rang quatre vaut deux fois un tiers puissance quatre, soit deux sur quatre-vingt-un. La somme des cinq premiers termes vaut deux cent quarante-deux sur quatre-vingt-un, un peu moins de trois. Et comme la valeur absolue de la raison est inférieure à un, la suite converge vers zéro.",
+   "ecran": "geom_ex",
+   "id": "p18",
+   "texte": "u₀ = 2, q = 1/3 : u₄ = 2/81 et S = 242/81."
+  },
+  {
+   "dit": "Terminons par les quatre méthodes de calcul de limite, à choisir selon la forme. Forme explicite : factoriser le terme dominant. Forme récurrente : si la suite converge et si la fonction est continue, passer par le point fixe. Suite monotone : vérifier la bornitude et appliquer la convergence monotone. Forme coincée : encadrer, puis appliquer les gendarmes.",
+   "ecran": "methodes",
+   "id": "p19",
+   "texte": "Quatre méthodes : factoriser, point fixe, monotone, encadrer."
+  },
+  {
+   "dit": "Exemple de la première méthode : deux n au carré plus trois n, sur cinq n au carré moins un. On factorise par n au carré, le terme dominant, en haut et en bas : la suite devient deux, plus trois sur n, le tout sur cinq, moins un sur n au carré. Les termes en un sur n disparaissent à la limite : elle vaut deux cinquièmes.",
+   "ecran": "lim_ex",
+   "id": "p20",
+   "texte": "(2n² + 3n)/(5n² − 1) : la limite vaut 2/5."
+  },
+  {
+   "dit": "Pour conclure, retenez le parcours complet. Décrire la suite : sa variation, ses bornes éventuelles. Décider de sa convergence : gendarmes si elle est coincée, convergence monotone si elle avance dans le même sens sous une borne. Puis calculer : les sommes en comptant d'abord les termes, et les limites avec la bonne méthode parmi les quatre.",
+   "ecran": "recap",
+   "id": "p21",
+   "texte": "Suites : convergence et sommes, à retenir."
+  }
+ ],
+ "titre": "Suites numériques : convergence et sommes"
+}

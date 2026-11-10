@@ -1,0 +1,553 @@
+{
+  "cours": 6289,
+  "ecrans": {
+    "asymptote_oblique": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "branche_infinie_fig"
+      },
+      "kicker": "L'asymptote oblique",
+      "tex": [
+        "f(x) = \\tfrac{2x^2 - 3x + 1}{x - 1} = 2x - 1 \\quad (x \\neq 1)",
+        "\\text{l'écart entre courbe et droite tend vers } 0"
+      ],
+      "titre": "Quand la courbe épouse une droite de pente non nulle",
+      "type": "etape"
+    },
+    "bornes": {
+      "kicker": "Le théorème des bornes atteintes",
+      "tex": [
+        "f \\text{ continue sur } [a, b] \\Rightarrow f \\text{ bornée}",
+        "\\exists \\, c, d \\in [a, b] :",
+        "f(c) = \\min f, \\quad f(d) = \\max f"
+      ],
+      "titre": "Sur un segment, le minimum et le maximum existent vraiment",
+      "type": "etape"
+    },
+    "conjuguee_infini": {
+      "kicker": "Forme ∞ − ∞ : la quantité conjuguée",
+      "tex": [
+        "\\lim_{x \\to +\\infty} (\\sqrt{x+1} - \\sqrt{x}) \\; \\text{: FI } \\infty - \\infty",
+        "\\sqrt{x+1} - \\sqrt{x} = \\tfrac{1}{\\sqrt{x+1} + \\sqrt{x}}",
+        "\\lim_{x \\to +\\infty} \\tfrac{1}{\\sqrt{x+1} + \\sqrt{x}} = 0"
+      ],
+      "titre": "Deux racines immenses dont la différence s'évanouit",
+      "type": "etape"
+    },
+    "continuite_intervalle": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "lecture_graphique_fig"
+      },
+      "kicker": "La continuité sur un intervalle",
+      "texte": "Continue sur un intervalle : continue en chaque point, sans exception.",
+      "type": "phrase"
+    },
+    "continuite_point": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "discontinuites_fig"
+      },
+      "kicker": "La continuité en un point",
+      "note": "Trois conditions : f(a) existe, la limite existe, les deux coïncident.",
+      "tex": "\\lim_{x \\to a} f(x) = f(a)",
+      "type": "formule"
+    },
+    "croissances": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "log_courbes_fig"
+      },
+      "kicker": "Croissances comparées",
+      "note": "En +∞ : le logarithme est le plus lent, l'exponentielle écrase les puissances.",
+      "tex": "\\ln x \\ll x^n \\ll e^x",
+      "type": "formule"
+    },
+    "dichotomie": {
+      "kicker": "La dichotomie : le TVI en algorithme",
+      "tex": [
+        "m = \\tfrac{a + b}{2} \\; \\text{: on coupe l'intervalle en deux}",
+        "\\text{on garde la moitié où } f \\text{ change de signe}",
+        "\\text{erreur} \\leq \\tfrac{b - a}{2^{n+1}}"
+      ],
+      "titre": "Couper en deux, garder la moitié où le signe change",
+      "type": "etape"
+    },
+    "discontinuites": {
+      "anim": {
+        "hauteur": 110,
+        "nom": "discontinuites_fig"
+      },
+      "kicker": "Les trois types de discontinuités",
+      "tex": [
+        "\\text{éliminable : un trou dans la courbe}",
+        "\\text{saut : deux limites latérales différentes}",
+        "\\text{seconde espèce : limite infinie ou absente}"
+      ],
+      "titre": "Trou, saut, ou seconde espèce",
+      "type": "etape"
+    },
+    "epsilon_delta": {
+      "kicker": "La définition ε–δ de Weierstrass",
+      "note": "ε : marge permise sur f(x) · δ : proximité exigée de x.",
+      "tex": "\\begin{aligned} &\\forall \\varepsilon > 0,\\ \\exists \\delta > 0 : \\\\ &0 < |x-a| < \\delta \\Rightarrow |f(x)-L| < \\varepsilon \\end{aligned}",
+      "type": "formule",
+      "anim": {
+        "nom": "bande_epsilon_fonction_fig",
+        "hauteur": 190
+      }
+    },
+    "factorisation": {
+      "kicker": "Lever une forme 0/0 : factoriser",
+      "tex": [
+        "\\lim_{x \\to 2} \\tfrac{x^2 - 4}{x - 2} \\; \\text{: forme } \\tfrac{0}{0}",
+        "\\tfrac{x^2 - 4}{x - 2} = \\tfrac{(x-2)(x+2)}{x-2} = x + 2",
+        "\\lim_{x \\to 2} (x + 2) = 4"
+      ],
+      "titre": "Simplifier par (x − 2), licite car x ≠ 2",
+      "type": "etape"
+    },
+    "formes_indeterminees": {
+      "kicker": "Les formes indéterminées",
+      "tex": [
+        "\\text{FI : } \\infty - \\infty, \\quad \\tfrac{\\infty}{\\infty}, \\quad \\tfrac{0}{0}, \\quad 0 \\times \\infty",
+        "\\text{FI puissances : } 1^{\\infty}, \\quad \\infty^{0}, \\quad 0^{0}"
+      ],
+      "titre": "Sept combinaisons qui exigent une étude plus poussée",
+      "type": "etape"
+    },
+    "gendarmes": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "sinusoide"
+      },
+      "kicker": "Le théorème des gendarmes",
+      "note": "Les deux gardes tendent vers 0 : la fonction coincée entre elles aussi.",
+      "tex": "-x^2 \\leq x^2 \\sin\\left(\\frac{1}{x}\\right) \\leq x^2",
+      "type": "formule"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 190,
+        "nom": "lecture_graphique_fig"
+      },
+      "kicker": "Introduction",
+      "texte": "S'approcher d'un point, ce n'est pas l'atteindre : c'est observer les valeurs autour.",
+      "type": "phrase"
+    },
+    "limite_infinie": {
+      "anim": {
+        "hauteur": 160,
+        "nom": "discontinuites_fig"
+      },
+      "kicker": "Limite infinie en un point",
+      "note": "La courbe s'envole le long de l'asymptote verticale x = 0.",
+      "tex": "\\lim_{x \\to 0} \\frac{1}{x^2} = +\\infty",
+      "type": "formule"
+    },
+    "limite_point": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "lecture_graphique_fig"
+      },
+      "kicker": "La limite en un point",
+      "note": "Près de 2, les carrés se resserrent près de 4, des deux côtés.",
+      "tex": "\\lim_{x \\to 2} x^2 = 4",
+      "type": "formule"
+    },
+    "limites_infini": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "branche_infinie_fig"
+      },
+      "kicker": "Limite finie à l'infini",
+      "note": "La droite y = L devient asymptote horizontale à la courbe.",
+      "tex": "\\lim_{x \\to +\\infty} f(x) = L",
+      "type": "formule"
+    },
+    "morceaux": {
+      "kicker": "Méthode : continuité d'une fonction par morceaux",
+      "tex": [
+        "x \\leq 2 : \\; f(x) = x^2 + 1 \\to 5",
+        "x > 2 : \\; f(x) = 3x - 1 \\to 5",
+        "f(2) = 5 \\; \\text{: limite et valeur coïncident}"
+      ],
+      "titre": "Valeur, limites latérales, comparaison : en 2",
+      "type": "etape"
+    },
+    "operations": {
+      "kicker": "Opérations sur les limites",
+      "tex": [
+        "\\lim (f + g) = L + L'",
+        "\\lim (f \\times g) = L \\times L'",
+        "\\lim \\tfrac{f}{g} = \\tfrac{L}{L'} \\quad (L' \\neq 0)"
+      ],
+      "titre": "Si f tend vers L et g vers L′, les combinaisons suivent",
+      "type": "etape"
+    },
+    "operations_continues": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Opérations et fonctions continues",
+      "texte": "Sommes, produits, quotients et composées de fonctions continues restent continues.",
+      "type": "phrase"
+    },
+    "prolongement": {
+      "kicker": "Le prolongement par continuité",
+      "tex": [
+        "\\lim_{x \\to 1} \\tfrac{x^2 - 1}{x - 1} = \\lim_{x \\to 1} (x + 1) = 2",
+        "\\tilde{f}(1) = 2 \\; \\text{: le trou est réparé}",
+        "\\lim_{x \\to 0} \\tfrac{\\sin x}{x} = 1 \\; \\text{: on pose } \\mathrm{sinc}(0) = 1"
+      ],
+      "titre": "Poser la valeur manquante égale à la limite",
+      "type": "etape"
+    },
+    "rationalisation": {
+      "kicker": "Forme 0/0 avec racine : la quantité conjuguée",
+      "tex": [
+        "\\lim_{x \\to 0} \\tfrac{\\sqrt{x+1} - 1}{x} \\; \\text{: forme } \\tfrac{0}{0}",
+        "\\tfrac{\\sqrt{x+1} - 1}{x} = \\tfrac{x}{x(\\sqrt{x+1} + 1)}",
+        "\\lim_{x \\to 0} \\tfrac{1}{\\sqrt{x+1} + 1} = \\tfrac{1}{2}"
+      ],
+      "titre": "Multiplier par la conjuguée pour faire apparaître x",
+      "type": "etape"
+    },
+    "recap1": {
+      "etapes": [
+        "Limite en a : gauche = droite, sinon rien",
+        "FI : factoriser, conjuguer, comparer",
+        "À l'infini : degrés et asymptotes",
+        "ε–δ : à chaque marge, sa proximité"
+      ],
+      "kicker": "Limites : l'essentiel",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Limite égale valeur : fonction continue",
+        "Trois cassures : trou, saut, seconde espèce",
+        "Prolonger : poser f(a) égale à la limite",
+        "TVI : aucune valeur intermédiaire sautée",
+        "Sur [a, b] : bornes atteintes, dichotomie"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "references": {
+      "anim": {
+        "hauteur": 110,
+        "nom": "log_courbes_fig"
+      },
+      "kicker": "Les limites de référence",
+      "tex": [
+        "\\lim_{x \\to +\\infty} x^n = +\\infty \\qquad \\lim_{x \\to +\\infty} \\tfrac{1}{x} = 0",
+        "\\lim_{x \\to +\\infty} e^x = +\\infty \\qquad \\lim_{x \\to -\\infty} e^x = 0",
+        "\\lim_{x \\to +\\infty} \\ln x = +\\infty \\qquad \\lim_{x \\to 0^+} \\ln x = -\\infty"
+      ],
+      "titre": "Le bagage à connaître par cœur",
+      "type": "etape"
+    },
+    "substitution": {
+      "kicker": "Premier réflexe : substituer",
+      "tex": [
+        "\\lim_{x \\to 3} (2x^2 - 5x + 1)",
+        "= 2 \\times 9 - 5 \\times 3 + 1 = 4"
+      ],
+      "titre": "Un polynôme se calcule directement",
+      "type": "etape"
+    },
+    "synthese": {
+      "kicker": "Synthèse : limites, continuité, prolongement",
+      "tex": [
+        "f(x) = \\tfrac{x^2 - 4}{x^2 - x - 2}, \\quad D_f = \\mathbb{R} \\setminus \\{-1, 2\\}",
+        "\\lim_{x \\to 2} f(x) = \\tfrac{4}{3} \\; \\text{: prolongeable en } 2",
+        "\\lim_{x \\to -1} f(x) \\; \\text{n'existe pas : asymptote en } -1"
+      ],
+      "titre": "Un point prolongeable, un point infranchissable",
+      "type": "etape"
+    },
+    "terme_dominant": {
+      "kicker": "Quotient de polynômes : le terme dominant",
+      "tex": [
+        "\\lim_{x \\to +\\infty} \\tfrac{3x^2 - 2x + 1}{2x^2 + 5} \\; \\text{: FI } \\tfrac{\\infty}{\\infty}",
+        "\\tfrac{3x^2 - 2x + 1}{2x^2 + 5} = \\tfrac{3 - \\tfrac{2}{x} + \\tfrac{1}{x^2}}{2 + \\tfrac{5}{x^2}}",
+        "\\text{donc la limite vaut } \\tfrac{3}{2}"
+      ],
+      "titre": "Factoriser par x², simplifier, puis lire les coefficients",
+      "type": "etape"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 240,
+        "nom": "discontinuites_fig"
+      },
+      "kicker": "Mathématique · Limites et continuité",
+      "sous": "Approcher sans atteindre, calculer à l'infini, tracer sans lever le crayon",
+      "titre": "Limites et continuité",
+      "type": "titre"
+    },
+    "tvi": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "lecture_graphique_fig"
+      },
+      "kicker": "Le théorème des valeurs intermédiaires",
+      "tex": [
+        "f \\text{ continue sur } [a, b], \\quad k \\text{ entre } f(a) \\text{ et } f(b)",
+        "\\exists \\, c \\in [a, b] \\; : \\; f(c) = k"
+      ],
+      "titre": "Aucune valeur entre f(a) et f(b) n'est sautée",
+      "type": "etape"
+    },
+    "tvi_cube": {
+      "kicker": "Application du TVI : une racine garantie",
+      "tex": [
+        "f(x) = x^3 - 3x + 1 \\quad \\text{sur } [0, 1]",
+        "f(0) = 1 > 0 \\qquad f(1) = -1 < 0",
+        "\\exists \\, c \\in ]0, 1[ \\; : \\; f(c) = 0"
+      ],
+      "titre": "Des signes opposés suffisent à prouver l'existence",
+      "type": "etape"
+    },
+    "tvi_expo": {
+      "kicker": "Application du TVI : une équation transcendante",
+      "tex": [
+        "e^x = 2 - x \\iff e^x + x - 2 = 0",
+        "f(0) = -1 < 0 \\qquad f(1) = e - 1 > 0",
+        "\\exists \\, c \\in ]0, 1[ \\; : \\; e^c = 2 - c"
+      ],
+      "titre": "Existence prouvée, unicité non garantie",
+      "type": "etape"
+    },
+    "unilaterales": {
+      "kicker": "Limites à gauche et à droite",
+      "tex": [
+        "\\lim_{x \\to 2^-} E(x) = 1",
+        "\\lim_{x \\to 2^+} E(x) = 2",
+        "\\lim_{x \\to a} f(x) = L \\iff L^- = L^+ = L"
+      ],
+      "titre": "La partie entière en 2 : les deux côtés ne se rejoignent pas",
+      "type": "etape"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Limites en un point : approcher, définir, calculer"
+    },
+    {
+      "debut": "p11",
+      "pont": {
+        "dit": "Partie deux : les limites à l'infini et les discontinuités. Nous quitterons le voisinage d'un point pour observer les fonctions au loin, leurs asymptotes et leurs croissances comparées, nous affronterons les sept formes indéterminées, puis nous ouvrirons le dossier de la continuité avec sa définition et ses premières cassures.",
+        "texte": "Partie 2 : à l'infini, FI et discontinuités."
+      },
+      "sous_titre": "À l'infini, formes indéterminées et discontinuités"
+    },
+    {
+      "debut": "p22",
+      "pont": {
+        "dit": "Partie trois : prolongement et grands théorèmes. Nous réparerons les trous des fonctions par le prolongement par continuité, nous appliquerons la méthode d'étude en un point, puis viendront le théorème des valeurs intermédiaires, celui des bornes atteintes et la dichotomie, avant une synthèse complète.",
+        "texte": "Partie 3 : prolongement, TVI et bornes atteintes."
+      },
+      "sous_titre": "Prolongement, valeurs intermédiaires et bornes atteintes"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours consacré aux limites et à la continuité, les deux idées qui fondent toute l'analyse. Nous apprendrons à décrire ce qui se passe près d'un point ou à l'infini, à lever les formes indéterminées, puis à reconnaître une courbe que l'on peut tracer sans lever le crayon, jusqu'au théorème des valeurs intermédiaires.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Limites et continuité : approcher, calculer, prolonger."
+    },
+    {
+      "dit": "Imaginez un pont qui s'étire vers un horizon lointain : vous pouvez vous en approcher aussi près que vous le souhaitez, sans jamais poser le pied sur l'autre rive. La limite, c'est exactement cela : le comportement d'une fonction quand la variable s'approche infiniment près d'une valeur, sans nécessairement l'atteindre. Sur la courbe, on lit ce comportement en partant de la variable, en montant jusqu'à la courbe, puis en traversant vers son image.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "S'approcher sans atteindre : l'idée de limite."
+    },
+    {
+      "dit": "Premier exemple : la fonction carré, près de deux. Pour un virgule neuf, le carré vaut trois virgule soixante et un ; pour un virgule quatre-vingt-dix-neuf, il approche trois virgule quatre-vingt-seize. Des deux côtés, plus ixe se rapproche de deux, plus son carré se rapproche de quatre : la limite du carré de ixe, quand ixe tend vers deux, vaut quatre.",
+      "ecran": "limite_point",
+      "id": "p03",
+      "texte": "x² près de 2 : les valeurs se resserrent près de 4."
+    },
+    {
+      "dit": "Pour rendre cette idée rigoureuse, Weierstrass a proposé le jeu des deux lettres grecques epsilon et delta. Epsilon est la marge d'erreur que vous imposez sur les valeurs de la fonction, aussi petite soit-elle. Le défi : trouver une proximité delta telle que, dès que la variable est à distance moindre que delta du point, sans jamais l'égaler, la valeur de la fonction est à moins d'epsilon de la limite. Si un delta répond à chaque epsilon, la limite est prouvée.",
+      "ecran": "epsilon_delta",
+      "id": "p04",
+      "texte": "ε–δ : à chaque marge imposée, une proximité suffit."
+    },
+    {
+      "dit": "Parfois, le côté d'approche change tout. Pour la fonction partie entière, qui donne le plus grand entier inférieur ou égal à ixe, l'approche de deux par la gauche donne un, car juste avant deux, la partie entière vaut encore un. Par la droite, elle donne deux. Les deux limites latérales existent mais diffèrent : la limite en deux n'existe donc pas. Retenez le théorème : une limite existe si et seulement si les limites à gauche et à droite existent et sont égales.",
+      "ecran": "unilaterales",
+      "id": "p05",
+      "texte": "Gauche ≠ droite : pas de limite en 2 pour E(x)."
+    },
+    {
+      "dit": "Une fonction peut aussi s'envoler. Pour l'inverse du carré, quand ixe s'approche de zéro, par la gauche comme par la droite, les valeurs dépassent n'importe quel seuil fixé à l'avance : dix, mille, un million. On écrit que la limite est plus l'infini, et la droite verticale d'abscisse zéro devient une asymptote à la courbe. En physique, ces explosions modélisent des singularités, comme un champ qui devient immense près d'une masse ponctuelle.",
+      "ecran": "limite_infinie",
+      "id": "p06",
+      "texte": "1/x² en 0 : plus l'infini, des deux côtés."
+    },
+    {
+      "dit": "Premier réflexe devant une limite : substituer. Si la fonction est un polynôme, ou plus généralement si elle est continue au point, la limite est simplement son image. Pour deux ixe carré moins cinq ixe plus un, en trois, on remplace : deux fois neuf, moins cinq fois trois, plus un, soit quatre. C'est seulement quand la substitution produit une forme indéterminée que le vrai travail commence.",
+      "ecran": "substitution",
+      "id": "p07",
+      "texte": "Substituer d'abord : 2·9 − 5·3 + 1 = 4."
+    },
+    {
+      "dit": "Quand la substitution directe donne zéro sur zéro, rien n'est perdu : c'est une forme indéterminée, pas un résultat. Exemple : le quotient de ixe carré moins quatre par ixe moins deux, quand ixe tend vers deux. On factorise le numérateur, ixe moins deux fois ixe plus deux, puis on simplifie par ixe moins deux, ce qui est licite puisque ixe n'égale pas deux. Il reste ixe plus deux, dont la limite est quatre. La fonction n'est pas définie en deux, mais sa limite, elle, existe.",
+      "ecran": "factorisation",
+      "id": "p08",
+      "texte": "0/0 en 2 : factoriser, simplifier, limite 4."
+    },
+    {
+      "dit": "Avec des racines, l'arme est la quantité conjuguée. Pour la limite, quand ixe tend vers zéro, de racine de ixe plus un, moins un, le tout sur ixe, on multiplie en haut et en bas par la conjuguée, racine de ixe plus un, plus un. Le numérateur devient ixe, grâce à l'identité remarquable ; on simplifie par ixe, et il reste un sur la conjuguée, dont la limite est un demi.",
+      "ecran": "rationalisation",
+      "id": "p09",
+      "texte": "Racines : la conjuguée fait apparaître x, limite 1/2."
+    },
+    {
+      "dit": "Certaines fonctions oscillent trop pour avoir une limite : sinus de un sur ixe, près de zéro, balance entre moins un et un, de plus en plus vite, sans jamais se stabiliser. Mais multipliez-la par ixe carré : le théorème des gendarmes, ou théorème du sandwich, la coince entre moins ixe carré et ixe carré, deux gardes qui tendent vers zéro. Coincée entre les deux, elle tend donc vers zéro elle aussi.",
+      "ecran": "gendarmes",
+      "id": "p10",
+      "texte": "Coincée entre −x² et x² : elle tend vers 0."
+    },
+    {
+      "dit": "Changeons d'échelle : au lieu d'approcher un point, laissons ixe grandir sans borne. Si les valeurs de la fonction se resserrent autour d'un nombre, on dit que ce nombre est sa limite en plus l'infini, et la droite horizontale de même ordonnée devient une asymptote : la courbe s'en approche sans cesse, au loin. Si au contraire les valeurs dépassent tout seuil, la limite est plus l'infini.",
+      "ecran": "limites_infini",
+      "id": "p11",
+      "texte": "En +∞ : une valeur L, et y = L pour asymptote."
+    },
+    {
+      "dit": "Avant de combiner, retenez le bagage des fonctions de référence. Les puissances partent vers plus l'infini ; l'inverse de ixe s'écrase vers zéro ; l'exponentielle explose en plus l'infini et s'approche de zéro en moins l'infini, sans jamais l'atteindre ; le logarithme grimpe très lentement vers plus l'infini, et plonge vers moins l'infini près de zéro. Ces briques élémentaires servent dans presque tous les calculs.",
+      "ecran": "references",
+      "id": "p12",
+      "texte": "Puissances, inverse, exponentielle, logarithme."
+    },
+    {
+      "dit": "Bonne nouvelle : les limites respectent l'algèbre. Si une première fonction tend vers une limite et une seconde vers une autre, alors la somme tend vers la somme des limites, le produit vers le produit des limites, et le quotient vers le quotient des limites, à condition que la limite du dénominateur ne soit pas nulle. Même esprit pour la composition : la limite de l'exponentielle de un sur ixe, en plus l'infini, vaut exponentielle de zéro, donc un, car un sur ixe tend vers zéro et l'exponentielle est continue en zéro.",
+      "ecran": "operations",
+      "id": "p13",
+      "texte": "Somme, produit, quotient, composition : les limites se combinent."
+    },
+    {
+      "dit": "Mais sept combinaisons résistent à ces règles : ce sont les formes indéterminées. Infini moins infini, infini sur infini, zéro sur zéro, zéro fois infini, et trois formes avec des puissances : un puissance infini, infini puissance zéro, zéro puissance zéro. Une forme indéterminée n'est pas une réponse : c'est une alarme qui dit que tout dépend de la vitesse relative des deux tendances, et qu'il faut transformer l'expression.",
+      "ecran": "formes_indeterminees",
+      "id": "p14",
+      "texte": "Sept FI : une alarme, jamais un résultat."
+    },
+    {
+      "dit": "Pour un quotient de polynômes à l'infini, factorisez par le terme de plus haut degré. Exemple : trois ixe carré moins deux ixe plus un, sur deux ixe carré plus cinq. On factorise ixe carré en haut et en bas, on simplifie, et tous les termes en un sur ixe ou un sur ixe carré s'effacent vers zéro : il reste trois sur deux. Règle générale : degrés égaux, la limite est le rapport des coefficients dominants ; degré du haut plus petit, zéro ; plus grand, l'infini.",
+      "ecran": "terme_dominant",
+      "id": "p15",
+      "texte": "Degrés égaux en +∞ : 3/2, rapport des dominants."
+    },
+    {
+      "dit": "La quantité conjuguée sert aussi à l'infini. La différence entre racine de ixe plus un et racine de ixe semble opposer deux infinis. Multipliez et divisez par la somme des deux racines : le numérateur devient un, le dénominateur part vers l'infini, et la différence tend vers zéro. Deux quantités immenses peuvent donc se compenser presque parfaitement : leur écart s'évanouit.",
+      "ecran": "conjuguee_infini",
+      "id": "p16",
+      "texte": "√(x+1) − √x en +∞ : la différence tend vers 0."
+    },
+    {
+      "dit": "Tous les infinis ne se valent pas : il existe une hiérarchie des croissances. Le logarithme grimpe le plus lentement, les puissances le dépassent, et l'exponentielle écrase toutes les puissances : ixe au cube fois l'exponentielle de moins ixe, par exemple, tend vers zéro, car une fois réécrit ixe au cube sur l'exponentielle de ixe, le dénominateur gagne toujours. C'est ce réflexe qui tranche la plupart des produits zéro fois infini.",
+      "ecran": "croissances",
+      "id": "p17",
+      "texte": "ln x ≪ xⁿ ≪ eˣ : l'exponentielle gagne toujours."
+    },
+    {
+      "dit": "Dernier paysage à l'infini : l'asymptote oblique. Pour la fraction deux ixe carré moins trois ixe plus un, sur ixe moins un, la division donne exactement deux ixe moins un : la fonction coïncide avec cette droite partout sauf en un. En général, quand l'écart entre la courbe et une droite de pente non nulle tend vers zéro à l'infini, cette droite est une asymptote oblique, et la courbe finit par l'épouser.",
+      "ecran": "asymptote_oblique",
+      "id": "p18",
+      "texte": "Asymptote oblique : y = 2x − 1 pour cet exemple."
+    },
+    {
+      "dit": "Récapitulons le bloc des limites. Une limite décrit le voisinage d'un point, jamais le point seul ; elle existe quand les approches par la gauche et par la droite coïncident. Les formes indéterminées se lèvent par factorisation, quantité conjuguée ou croissances comparées, et à l'infini, les termes dominants commandent, avec les asymptotes pour portrait géométrique.",
+      "ecran": "recap1",
+      "id": "p19",
+      "texte": "Les limites : l'essentiel avant la continuité."
+    },
+    {
+      "dit": "La continuité répond à une question simple : peut-on tracer la courbe sans lever le crayon ? Une fonction est continue en un point si trois conditions sont réunies : elle est définie en ce point, sa limite en ce point existe, et cette limite égale exactement sa valeur. Un seul résumé : la limite de la fonction, quand la variable tend vers le point, égale la valeur de la fonction en ce point. La moindre des trois conditions qui tombe, et le crayon doit sauter.",
+      "ecran": "continuite_point",
+      "id": "p20",
+      "texte": "Continue en a : limite et valeur coïncident."
+    },
+    {
+      "dit": "Quand le fil se rompt, on classe la cassure. Discontinuité éliminable : la limite existe, mais la valeur manque ou est ailleurs, comme un trou dans la courbe. Discontinuité de saut : les limites à gauche et à droite existent mais diffèrent, comme la partie entière en chaque entier, ou la fonction de Heaviside en zéro, qui passe de zéro à un. Discontinuité de seconde espèce : au moins une limite latérale est infinie ou n'existe pas, comme l'inverse de ixe en zéro.",
+      "ecran": "discontinuites",
+      "id": "p21",
+      "texte": "Trou, saut, seconde espèce : classer la cassure."
+    },
+    {
+      "dit": "Un trou peut se réparer : c'est le prolongement par continuité. La fraction ixe carré moins un, sur ixe moins un, n'existe pas en un, mais sa limite y vaut deux : on définit donc la valeur en un comme deux, et la fonction prolongée devient continue. Même geste célèbre pour sinus de ixe sur ixe, dont la limite en zéro vaut un : prolongée par un en zéro, elle devient la fonction sinus cardinal, continue partout et centrale en traitement du signal.",
+      "ecran": "prolongement",
+      "id": "p22",
+      "texte": "Prolonger : poser la valeur égale à la limite."
+    },
+    {
+      "dit": "Méthode complète, sur une fonction définie par morceaux : ixe carré plus un jusqu'à deux inclus, trois ixe moins un au-delà. Étape un, la valeur en deux vaut cinq. Étape deux, les limites latérales : à gauche, quatre plus un, cinq ; à droite, six moins un, cinq. Étape trois, on compare : limite et valeur coïncident, la fonction est continue en deux, malgré sa définition en deux formules.",
+      "ecran": "morceaux",
+      "id": "p23",
+      "texte": "En 2 : valeur 5, limites 5 et 5, donc continue."
+    },
+    {
+      "dit": "La continuité se transmet par les opérations. Si deux fonctions sont continues en un point, leur somme, leur produit et leur quotient, quand le dénominateur ne s'annule pas, restent continus ; la composée de deux fonctions continues est continue. Voilà pourquoi les polynômes, les fractions rationnelles hors de leurs pôles, les exponentielles, les logarithmes et les fonctions trigonométriques sont continus sur tout leur domaine : on peut les manier sans craindre de saut caché.",
+      "ecran": "operations_continues",
+      "id": "p24",
+      "texte": "Les fonctions usuelles : continues sur leur domaine."
+    },
+    {
+      "dit": "Passer du point à l'intervalle est naturel : une fonction est continue sur un intervalle si elle est continue en chaque point de cet intervalle, avec, aux bornes d'un intervalle fermé, la continuité du seul côté intérieur. C'est cette régularité globale qui va débloquer les grands théorèmes : sur un segment, une fonction continue ne peut ni sauter par-dessus une valeur, ni s'envoler sans borne.",
+      "ecran": "continuite_intervalle",
+      "id": "p25",
+      "texte": "Sur un intervalle : régulière en chaque point."
+    },
+    {
+      "dit": "Voici le théorème des valeurs intermédiaires, le joyau du chapitre. Si une fonction est continue sur un segment, alors entre ses valeurs aux deux bornes, aucune valeur n'est sautée : pour tout nombre compris entre les deux valeurs aux bornes, il existe au moins un réel du segment dont l'image est exactement ce nombre. Géométriquement, la droite horizontale à cette hauteur coupe forcément la courbe, au moins une fois.",
+      "ecran": "tvi",
+      "id": "p26",
+      "texte": "TVI : toute valeur entre f(a) et f(b) est atteinte."
+    },
+    {
+      "dit": "Application immédiate : prouver qu'une équation a une solution, sans la résoudre. Pour ixe au cube moins trois ixe plus un, sur le segment de zéro à un : la fonction est polynomiale, donc continue ; elle vaut un en zéro et moins un en un. Les signes opposés déclenchent le corollaire du théorème, dit théorème des zéros : il existe un réel, strictement entre zéro et un, qui annule la fonction. Existence garantie, valeur inconnue : c'est déjà énorme.",
+      "ecran": "tvi_cube",
+      "id": "p27",
+      "texte": "x³ − 3x + 1 : une racine entre 0 et 1, prouvée."
+    },
+    {
+      "dit": "Deuxième application, avec une exponentielle : une équation où l'exponentielle de la variable égale deux moins la variable. On ramène tout d'un même côté : exponentielle de la variable, plus la variable, moins deux. Cette fonction est continue sur le segment de zéro à un, elle vaut moins un en zéro et la constante d'Euler moins un, donc un nombre positif, en un. Le théorème des zéros s'applique encore : une solution existe entre zéro et un. Attention, le théorème donne l'existence, jamais l'unicité : il peut y avoir plusieurs solutions.",
+      "ecran": "tvi_expo",
+      "id": "p28",
+      "texte": "eˣ = 2 − x : une solution entre 0 et 1."
+    },
+    {
+      "dit": "Le deuxième grand théorème est celui des bornes atteintes, dû à Weierstrass : une fonction continue sur un intervalle fermé et borné est bornée, et elle atteint son minimum et son maximum en de vrais points du segment. L'hypothèse fermé est vitale : l'inverse de ixe, sur l'intervalle ouvert en zéro et fermé en un, s'envole vers l'infini près de zéro, précisément parce que zéro n'appartient pas à l'intervalle.",
+      "ecran": "bornes",
+      "id": "p29",
+      "texte": "Sur [a, b] fermé : bornée, min et max atteints."
+    },
+    {
+      "dit": "Le théorème des valeurs intermédiaires fournit même un algorithme : la dichotomie. Pour approcher la solution, on coupe l'intervalle en deux, on évalue la fonction au milieu, et on conserve la moitié où le signe change. À chaque étape, l'incertitude est divisée par deux : après un nombre donné d'étapes, l'erreur est au plus la longueur initiale divisée par deux puissance ce nombre plus un. C'est la méthode des calculatrices et des ordinateurs pour traquer les racines.",
+      "ecran": "dichotomie",
+      "id": "p30",
+      "texte": "Dichotomie : l'erreur est divisée par 2 à chaque pas."
+    },
+    {
+      "dit": "Synthèse finale, avec la fraction ixe carré moins quatre, sur ixe carré moins ixe moins deux. Le dénominateur s'annule en deux et en moins un : le domaine exclut ces deux points. En deux, numérateur et dénominateur se factorisent par ixe moins deux, la limite vaut quatre tiers : discontinuité éliminable, prolongement possible. En moins un, le numérateur tend vers moins trois pendant que le dénominateur tend vers zéro : aucune limite finie, aucun prolongement, c'est une asymptote.",
+      "ecran": "synthese",
+      "id": "p31",
+      "texte": "En 2 : prolongeable par 4/3. En −1 : asymptote."
+    },
+    {
+      "dit": "Pour conclure : la continuité, c'est la rencontre exacte entre la limite et la valeur. Elle se reconnaît à ses cassures, trou, saut ou explosion ; elle se répare par prolongement quand la limite existe ; et sur un segment, elle garantit les valeurs intermédiaires, les bornes atteintes et la dichotomie. Limites et continuité sont les fondations sur lesquelles la dérivation, au prochain cours, va s'appuyer.",
+      "ecran": "recap_final",
+      "id": "p32",
+      "texte": "Limites et continuité : à retenir."
+    }
+  ],
+  "titre": "Limites et continuité"
+}

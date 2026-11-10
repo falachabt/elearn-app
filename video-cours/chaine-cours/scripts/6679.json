@@ -1,0 +1,323 @@
+{
+ "cours": 6679,
+ "titre": "Mesures et incertitudes",
+ "matiere": "Physique",
+ "lecons": [
+  9440
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique",
+   "titre": "Mesures et incertitudes",
+   "sous": "Erreur, incertitude et analyse dimensionnelle",
+   "anim": {
+    "nom": "regle_incertitude_fig",
+    "hauteur": 250
+   }
+  },
+  "erreur": {
+   "type": "formule",
+   "kicker": "Erreur sur la mesure",
+   "tex": "\\varepsilon = x_m - x_v",
+   "note": "x_m : valeur mesurée · x_v : valeur vraie, inconnue"
+  },
+  "types_erreurs": {
+   "type": "recap",
+   "kicker": "Deux types d'erreurs",
+   "titre": "Systématique ou aléatoire",
+   "etapes": [
+    "Systématique : défaut d'étalonnage ou de méthode",
+    "Reproductible, elle déplace tout dans le même sens",
+    "Aléatoire : fluctuations imprévisibles des conditions",
+    "Elle varie d'une mesure à l'autre"
+   ]
+  },
+  "incertitude": {
+   "type": "formule",
+   "kicker": "Incertitude sur la mesure",
+   "tex": "x = x_m \\pm U",
+   "note": "U estime l'intervalle où se trouve la valeur vraie"
+  },
+  "incertitude_serie": {
+   "type": "formule",
+   "kicker": "Incertitude-type d'une série",
+   "tex": "u(x) = \\sqrt{\\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})^2}{n \\, (n-1)}}",
+   "note": "C'est l'écart-type de la série, divisé par la racine de n"
+  },
+  "mesure_unique": {
+   "type": "formule",
+   "kicker": "Incertitude-type d'une mesure unique",
+   "tex": "u(x) = \\frac{\\text{résolution}}{\\sqrt{3}}",
+   "note": "Estimation liée à l'instrument, pour une loi uniforme"
+  },
+  "elargie": {
+   "type": "formule",
+   "kicker": "Incertitude élargie",
+   "tex": "U = k \\cdot u(x)",
+   "note": "Avec k = 2, le niveau de confiance vaut environ 95 %"
+  },
+  "qualites": {
+   "type": "recap",
+   "kicker": "Qualités d'un instrument",
+   "titre": "Justesse et fidélité",
+   "etapes": [
+    "Justesse : des valeurs proches de la valeur vraie",
+    "Fidélité : des résultats répétés proches entre eux",
+    "Les deux qualités se jugent sur une série de mesures"
+   ]
+  },
+  "exemple_donnees": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "La longueur d'une table, mesurée cinq fois (règle au millimètre)",
+   "tex": [
+    "120{,}3 \\quad 120{,}5 \\quad 120{,}4 \\quad 120{,}6 \\quad 120{,}2 \\ \\text{cm}"
+   ],
+   "anim": {
+    "nom": "regle_incertitude_fig",
+    "hauteur": 150
+   }
+  },
+  "exemple_calcul": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Moyenne, écart-type, incertitude-type",
+   "tex": [
+    "\\bar{x} = 120{,}4 \\ \\text{cm}",
+    "\\sigma \\approx 0{,}158 \\ \\text{cm}",
+    "u(x) = \\frac{0{,}158}{\\sqrt{5}} = 0{,}071 \\ \\text{cm}"
+   ]
+  },
+  "exemple_resultat": {
+   "type": "formule",
+   "kicker": "Résultat de la mesure",
+   "tex": "x = 120{,}40 \\pm 0{,}14 \\ \\text{cm}",
+   "note": "Avec k = 2, au niveau de confiance de 95 %"
+  },
+  "si": {
+   "type": "etape",
+   "kicker": "Le Système International",
+   "titre": "Les sept grandeurs de base et leurs unités",
+   "tex": [
+    "\\text{Longueur : m} \\qquad \\text{Masse : kg} \\qquad \\text{Temps : s}",
+    "\\text{Intensité : A} \\qquad \\text{Température : K}",
+    "\\text{Quantité de matière : mol} \\qquad \\text{Lumière : cd}"
+   ]
+  },
+  "derivees": {
+   "type": "etape",
+   "kicker": "Unités dérivées",
+   "titre": "Des combinaisons d'unités de base",
+   "tex": [
+    "v : \\text{m} \\cdot \\text{s}^{-1} \\qquad F : \\text{kg} \\cdot \\text{m} \\cdot \\text{s}^{-2}",
+    "E : \\text{kg} \\cdot \\text{m}^{2} \\cdot \\text{s}^{-2}"
+   ]
+  },
+  "conventions": {
+   "type": "etape",
+   "kicker": "Dimensions d'une grandeur",
+   "titre": "Les symboles des dimensions fondamentales",
+   "tex": [
+    "[L] = L \\qquad [m] = M \\qquad [t] = T \\qquad [I] = I",
+    "[\\theta] = \\Theta \\qquad [n] = N \\qquad [J] = J"
+   ]
+  },
+  "dim_exemples": {
+   "type": "etape",
+   "kicker": "Équation aux dimensions",
+   "titre": "Vitesse et accélération",
+   "tex": [
+    "[v] = L \\cdot T^{-1}",
+    "[a] = L \\cdot T^{-2}"
+   ]
+  },
+  "dim_force": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "La dimension de la force, d'après F = m a",
+   "tex": [
+    "[F] = [m] \\cdot [a]",
+    "[F] = M \\cdot L \\cdot T^{-2}",
+    "1 \\ \\text{N} = 1 \\ \\text{kg} \\cdot \\text{m} \\cdot \\text{s}^{-2}"
+   ]
+  },
+  "homogeneite": {
+   "type": "phrase",
+   "kicker": "Homogénéité d'une relation",
+   "texte": "Une relation est homogène si ses deux membres ont la même dimension : un contrôle de cohérence pour toute formule."
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "Méthode de vérification",
+   "titre": "Vérifier l'homogénéité en deux temps",
+   "etapes": [
+    "Écrire l'équation aux dimensions de chaque terme",
+    "Vérifier que tous les termes ont la même dimension"
+   ]
+  },
+  "exemple_pendule": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "La période du pendule simple est-elle homogène ?",
+   "tex": [
+    "T = 2\\pi \\, \\sqrt{\\tfrac{L}{g}}",
+    "\\left[\\sqrt{\\tfrac{L}{g}}\\right] = \\sqrt{\\tfrac{L}{L \\cdot T^{-2}}}",
+    "= \\sqrt{T^2} = T"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Points essentiels",
+   "titre": "Mesures et incertitudes",
+   "etapes": [
+    "La valeur vraie est inaccessible : moyenne et incertitude",
+    "k = 2 donne un niveau de confiance d'environ 95 %",
+    "Une équation non homogène est nécessairement fausse",
+    "L'analyse dimensionnelle vérifie et retrouve les unités"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de physique consacré aux mesures et aux incertitudes. Au programme : l'erreur et l'incertitude d'une mesure, puis l'analyse dimensionnelle, qui permet de vérifier la cohérence de n'importe quelle formule.",
+   "ecran": "titre",
+   "pause_apres": 0.7,
+   "texte": "Mesures et incertitudes : erreur, puis dimensions."
+  },
+  {
+   "id": "p02",
+   "dit": "L'erreur d'une mesure est l'écart entre la valeur mesurée, notée x indice m, et la valeur vraie, notée x indice v. Comme la valeur vraie est inaccessible, l'erreur elle-même reste inconnue.",
+   "ecran": "erreur",
+   "pause_apres": 0.6,
+   "texte": "Erreur : valeur mesurée moins valeur vraie."
+  },
+  {
+   "id": "p03",
+   "dit": "On distingue deux erreurs. L'erreur systématique, due à un défaut d'étalonnage ou de méthode, est reproductible et déplace toutes les mesures dans le même sens. L'erreur aléatoire, due aux fluctuations imprévisibles des conditions, varie d'une mesure à l'autre.",
+   "ecran": "types_erreurs",
+   "pause_apres": 0.6,
+   "texte": "Systématique : même sens. Aléatoire : variable."
+  },
+  {
+   "id": "p04",
+   "dit": "Puisque la valeur vraie échappe, on annonce une incertitude : une estimation de l'intervalle dans lequel elle se trouve, avec une probabilité donnée. Le résultat s'écrit : x égale x indice m, plus ou moins grand U.",
+   "ecran": "incertitude",
+   "pause_apres": 0.6,
+   "texte": "Résultat : x = x_m ± U."
+  },
+  {
+   "id": "p05",
+   "dit": "Pour une série de mesures, l'incertitude-type combine l'écart des mesures à leur moyenne et le nombre de mesures : plus la série est longue, plus l'incertitude-type sur la moyenne diminue.",
+   "ecran": "incertitude_serie",
+   "pause_apres": 0.6,
+   "texte": "Incertitude-type d'une série : elle baisse quand n grandit."
+  },
+  {
+   "id": "p06",
+   "dit": "Pour une mesure unique, pas de statistique possible : l'incertitude-type vient de l'instrument. On l'estime souvent à la résolution de l'appareil divisée par la racine carrée de trois, pour une loi uniforme.",
+   "ecran": "mesure_unique",
+   "pause_apres": 0.6,
+   "texte": "Mesure unique : la résolution de l'instrument décide."
+  },
+  {
+   "id": "p07",
+   "dit": "En multipliant l'incertitude-type par un facteur k, on obtient l'incertitude élargie. Avec un facteur deux, le niveau de confiance atteint environ quatre-vingt-quinze pour cent.",
+   "ecran": "elargie",
+   "pause_apres": 0.6,
+   "texte": "U = k · u(x) ; k = 2 donne environ 95 % de confiance."
+  },
+  {
+   "id": "p08",
+   "dit": "Un bon instrument réunit deux qualités. La justesse : ses valeurs sont proches de la valeur vraie, l'erreur systématique est faible. La fidélité : ses résultats répétés sont proches les uns des autres.",
+   "ecran": "qualites",
+   "pause_apres": 0.6,
+   "texte": "Justesse et fidélité : les qualités d'un instrument."
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple résolu : on mesure cinq fois la longueur d'une table avec une règle graduée au millimètre. Les valeurs, en centimètres : cent vingt virgule trois ; cent vingt virgule cinq ; cent vingt virgule quatre ; cent vingt virgule six ; cent vingt virgule deux.",
+   "ecran": "exemple_donnees",
+   "pause_apres": 0.6,
+   "texte": "Cinq mesures d'une table, entre 120,2 et 120,6 cm."
+  },
+  {
+   "id": "p10",
+   "dit": "La moyenne vaut cent vingt virgule quatre centimètres. L'écart-type expérimental vaut environ zéro virgule seize centimètre, et l'incertitude-type, environ zéro virgule zéro sept centimètre.",
+   "ecran": "exemple_calcul",
+   "pause_apres": 0.6,
+   "texte": "Moyenne 120,4 cm, σ ≈ 0,158 cm, u(x) = 0,071 cm."
+  },
+  {
+   "id": "p11",
+   "dit": "Avec un facteur deux, l'incertitude élargie vaut zéro virgule quatorze centimètre. Résultat final : x égale cent vingt virgule quarante, plus ou moins zéro virgule quatorze centimètre, au niveau de confiance de quatre-vingt-quinze pour cent.",
+   "ecran": "exemple_resultat",
+   "pause_apres": 0.6,
+   "texte": "x = 120,40 ± 0,14 cm, à 95 % de confiance."
+  },
+  {
+   "id": "p12",
+   "dit": "Passons aux dimensions. Toute grandeur s'exprime à partir de sept grandeurs de base du Système international : longueur, masse, temps, intensité électrique, température, quantité de matière et intensité lumineuse.",
+   "ecran": "si",
+   "pause_apres": 0.6,
+   "texte": "Sept grandeurs de base, sept unités du SI."
+  },
+  {
+   "id": "p13",
+   "dit": "Les autres unités sont des combinaisons d'unités de base : la vitesse en mètres par seconde, la force en newtons, l'énergie en joules.",
+   "ecran": "derivees",
+   "pause_apres": 0.6,
+   "texte": "Vitesse, force, énergie : des unités dérivées."
+  },
+  {
+   "id": "p14",
+   "dit": "La dimension d'une grandeur s'écrit entre crochets, en fonction des dimensions fondamentales : L pour la longueur, M pour la masse, T pour le temps, I pour l'intensité, thêta pour la température, N pour la quantité de matière et J pour la lumière.",
+   "ecran": "conventions",
+   "pause_apres": 0.6,
+   "texte": "Les symboles : L, M, T, I, Θ, N, J."
+  },
+  {
+   "id": "p15",
+   "dit": "Ainsi, la dimension de la vitesse est L fois T puissance moins un, et celle de l'accélération, L fois T puissance moins deux.",
+   "ecran": "dim_exemples",
+   "pause_apres": 0.6,
+   "texte": "[v] = L·T⁻¹ et [a] = L·T⁻²."
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple résolu : la force est le produit de la masse par l'accélération. Sa dimension est donc M fois L fois T puissance moins deux, et son unité, le kilogramme mètre par seconde carrée, porte un nom : le newton.",
+   "ecran": "dim_force",
+   "pause_apres": 0.6,
+   "texte": "[F] = M·L·T⁻² : le newton."
+  },
+  {
+   "id": "p17",
+   "dit": "Troisième outil : l'homogénéité. Une relation physique est homogène si ses deux membres ont la même dimension. Vérifier l'homogénéité permet de valider la cohérence d'une formule, ou de retrouver l'unité d'une grandeur.",
+   "ecran": "homogeneite",
+   "pause_apres": 0.6,
+   "texte": "Homogène : la même dimension des deux côtés."
+  },
+  {
+   "id": "p18",
+   "dit": "La méthode tient en deux temps : écrire l'équation aux dimensions de chaque terme, puis vérifier que tous les termes ont bien la même dimension.",
+   "ecran": "methode",
+   "pause_apres": 0.6,
+   "texte": "Chaque terme, puis la comparaison des dimensions."
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple résolu : la période d'un pendule simple fait intervenir la racine carrée de la longueur divisée par l'accélération de la pesanteur. Le facteur deux pi est sans dimension ; sous la racine, on obtient un temps au carré, dont la racine est un temps : la relation est homogène.",
+   "ecran": "exemple_pendule",
+   "pause_apres": 0.6,
+   "texte": "La période du pendule : une dimension de temps, homogène."
+  },
+  {
+   "id": "p20",
+   "dit": "Pour retenir l'essentiel : la valeur vraie est inaccessible, on l'estime par la moyenne et on quantifie l'incertitude. Et toute équation physique doit être homogène : sinon, elle est nécessairement fausse.",
+   "ecran": "recap",
+   "pause_apres": 0.5,
+   "texte": "Valeur vraie inaccessible, équations homogènes."
+  }
+ ]
+}

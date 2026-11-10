@@ -1,0 +1,551 @@
+{
+  "cours": 7250,
+  "ecrans": {
+    "addition": {
+      "kicker": "Formules d'addition",
+      "tex": [
+        "\\cos(a+b) = \\cos a \\cos b - \\sin a \\sin b",
+        "\\cos(a-b) = \\cos a \\cos b + \\sin a \\sin b",
+        "\\sin(a+b) = \\sin a \\cos b + \\cos a \\sin b",
+        "\\sin(a-b) = \\sin a \\cos b - \\cos a \\sin b"
+      ],
+      "titre": "Cosinus et sinus d'une somme et d'une différence",
+      "type": "etape"
+    },
+    "arc_centre": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "cercle_rayon_fig"
+      },
+      "kicker": "Vocabulaire · arc et angle au centre",
+      "texte": "Arc AB : la portion de cercle entre A et B. Angle au centre : sommet en O.",
+      "type": "phrase"
+    },
+    "assoc_angles": {
+      "kicker": "Angles associés",
+      "tex": [
+        "\\cos(\\pi - x) = -\\cos x",
+        "\\sin(\\pi - x) = \\sin x",
+        "\\cos(\\pi + x) = -\\cos x",
+        "\\sin(\\pi + x) = -\\sin x"
+      ],
+      "titre": "Pi moins x, pi plus x, pi sur deux moins x",
+      "type": "etape"
+    },
+    "associes": {
+      "kicker": "Angles inscrits associés",
+      "note": "Deux inscrits, un même arc : des mesures égales",
+      "tex": "\\widehat{AMB} = \\widehat{ANB}",
+      "type": "formule"
+    },
+    "cercle_trigo": {
+      "anim": {
+        "hauteur": 220,
+        "nom": "cercle_trigo_fig"
+      },
+      "kicker": "Le cercle trigonométrique",
+      "texte": "Cercle de centre O, de rayon 1, orienté dans le sens direct.",
+      "type": "phrase"
+    },
+    "chasles": {
+      "kicker": "Relation de Chasles",
+      "note": "En échangeant u et v, l'angle change de signe",
+      "tex": "(\\vec{u}, \\vec{w}) = (\\vec{u}, \\vec{v}) + (\\vec{v}, \\vec{w})",
+      "type": "formule"
+    },
+    "coord": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "cercle_trigo_fig"
+      },
+      "kicker": "Cosinus et sinus d'un réel",
+      "note": "Abscisse : cosinus. Ordonnée : sinus. Tous deux entre moins un et un",
+      "tex": "M(\\cos x,\\ \\sin x)",
+      "type": "formule"
+    },
+    "demi_cercle": {
+      "kicker": "Cas particulier · demi-cercle",
+      "note": "AB diamètre : l'angle au centre est plat, sa moitié est un droit",
+      "tex": "\\widehat{AMB} = 90^{\\circ}",
+      "type": "formule"
+    },
+    "demo": {
+      "kicker": "Application · démontrer une égalité",
+      "tex": [
+        "\\widehat{ACB} = \\tfrac{1}{2}\\,\\widehat{AOB}",
+        "\\widehat{ADB} = \\tfrac{1}{2}\\,\\widehat{AOB} \\qquad \\text{donc } \\widehat{ACB} = \\widehat{ADB}"
+      ],
+      "titre": "Deux inscrits sur la même corde AB",
+      "type": "etape"
+    },
+    "duplication": {
+      "kicker": "Formules de duplication",
+      "tex": [
+        "\\cos 2a = \\cos^2 a - \\sin^2 a",
+        "= 2\\cos^2 a - 1 = 1 - 2\\sin^2 a",
+        "\\sin 2a = 2 \\sin a \\cos a"
+      ],
+      "titre": "L'angle double",
+      "type": "etape"
+    },
+    "eq_cos": {
+      "kicker": "Équations trigonométriques · cosinus",
+      "tex": [
+        "\\cos x = \\cos a",
+        "x \\equiv a \\quad \\text{ou} \\quad x \\equiv -a \\pmod{2\\pi}"
+      ],
+      "titre": "Cosinus x égal cosinus a",
+      "type": "etape"
+    },
+    "eq_sin": {
+      "kicker": "Équations trigonométriques · sinus",
+      "tex": [
+        "\\sin x = \\sin a",
+        "x \\equiv a \\quad \\text{ou} \\quad x \\equiv \\pi - a \\pmod{2\\pi}"
+      ],
+      "titre": "Sinus x égal sinus a",
+      "type": "etape"
+    },
+    "ex_addition": {
+      "kicker": "Exemple résolu · formule d'addition",
+      "tex": [
+        "\\cos \\tfrac{\\pi}{12} = \\cos \\tfrac{\\pi}{3} \\cos \\tfrac{\\pi}{4} + \\sin \\tfrac{\\pi}{3} \\sin \\tfrac{\\pi}{4}",
+        "= \\tfrac{1}{2} \\cdot \\tfrac{\\sqrt{2}}{2} + \\tfrac{\\sqrt{3}}{2} \\cdot \\tfrac{\\sqrt{2}}{2}",
+        "\\cos \\tfrac{\\pi}{12} = \\tfrac{\\sqrt{2} + \\sqrt{6}}{4}"
+      ],
+      "titre": "Cosinus de pi sur douze, pi sur trois moins pi sur quatre",
+      "type": "etape"
+    },
+    "ex_assoc_trigo": {
+      "kicker": "Exemple résolu · angle associé",
+      "tex": [
+        "\\cos \\tfrac{5\\pi}{6} = -\\cos \\tfrac{\\pi}{6} = -\\tfrac{\\sqrt{3}}{2}",
+        "\\sin \\tfrac{5\\pi}{6} = \\sin \\tfrac{\\pi}{6} = \\tfrac{1}{2}"
+      ],
+      "titre": "Cinq pi sur six, c'est pi moins pi sur six",
+      "type": "etape"
+    },
+    "ex_associes": {
+      "kicker": "Exemple résolu · angles associés",
+      "tex": [
+        "\\widehat{ANB} = \\widehat{AMB}",
+        "\\widehat{ANB} = 47^{\\circ}"
+      ],
+      "titre": "Un angle de quarante-sept degrés",
+      "type": "etape"
+    },
+    "ex_duplication": {
+      "kicker": "Exemple résolu · duplication",
+      "tex": [
+        "\\cos a = \\tfrac{4}{5}",
+        "\\sin 2a = 2 \\times \\tfrac{3}{5} \\times \\tfrac{4}{5}",
+        "\\sin 2a = \\tfrac{24}{25}"
+      ],
+      "titre": "Sinus a vaut trois cinquièmes, a aigu",
+      "type": "etape"
+    },
+    "ex_eq": {
+      "kicker": "Exemple résolu · équation en cosinus",
+      "tex": [
+        "\\cos x = \\cos \\tfrac{\\pi}{3}",
+        "x = \\tfrac{\\pi}{3} \\quad \\text{ou} \\quad x = -\\tfrac{\\pi}{3} \\equiv \\tfrac{5\\pi}{3}"
+      ],
+      "titre": "Cosinus x égal un demi, entre zéro et deux pi",
+      "type": "etape"
+    },
+    "ex_inscrit": {
+      "kicker": "Exemple résolu · angle inscrit",
+      "tex": [
+        "\\widehat{AMB} = \\tfrac{1}{2} \\times 120^{\\circ}",
+        "\\widehat{AMB} = 60^{\\circ}"
+      ],
+      "titre": "Angle au centre de cent vingt degrés",
+      "type": "etape",
+      "anim": {
+        "nom": "angle_inscrit_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_polaire": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "polaire_fig"
+      },
+      "kicker": "Exemple résolu · coordonnées polaires",
+      "tex": [
+        "x = 2 \\cos \\tfrac{\\pi}{3} = 1",
+        "y = 2 \\sin \\tfrac{\\pi}{3} = \\sqrt{3}"
+      ],
+      "titre": "Distance deux, angle pi sur trois",
+      "type": "etape"
+    },
+    "ex_rectangle": {
+      "kicker": "Exemple résolu · triangle rectangle inscrit",
+      "tex": [
+        "\\widehat{AMB} = 90^{\\circ}",
+        "\\widehat{ABM} = 180^{\\circ} - 90^{\\circ} - 35^{\\circ} = 55^{\\circ}"
+      ],
+      "titre": "Diamètre AB, angle en A de trente-cinq degrés",
+      "type": "etape"
+    },
+    "inscrit_def": {
+      "kicker": "Définition · angle inscrit",
+      "texte": "Sommet sur le cercle, côtés qui coupent le cercle en A et en B.",
+      "type": "phrase",
+      "anim": {
+        "nom": "angle_inscrit_fig",
+        "hauteur": 230
+      }
+    },
+    "modulo": {
+      "kicker": "Mesures modulo deux pi",
+      "tex": [
+        "\\tfrac{7\\pi}{3} - 2\\pi = \\tfrac{\\pi}{3}",
+        "\\text{mesure principale dans } ]-\\pi,\\ \\pi]"
+      ],
+      "titre": "Mesure principale de sept pi sur trois",
+      "type": "etape"
+    },
+    "objectifs": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "cercle_rayon_fig"
+      },
+      "kicker": "Objectifs du cours",
+      "texte": "Calculer des angles dans un cercle, puis lire cosinus et sinus sur le cercle trigonométrique.",
+      "type": "phrase"
+    },
+    "orientes": {
+      "kicker": "Angles orientés",
+      "note": "De u vers v, dans le sens direct : inverse des aiguilles d'une montre",
+      "tex": "(\\vec{u}, \\vec{v})",
+      "type": "formule"
+    },
+    "polaire": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "polaire_fig"
+      },
+      "kicker": "Application · repérage polaire",
+      "note": "Un point : une distance r et un angle thêta depuis l'axe des abscisses",
+      "tex": "x = r \\cos \\theta \\qquad y = r \\sin \\theta",
+      "type": "formule"
+    },
+    "proprietes": {
+      "kicker": "Propriétés fondamentales",
+      "tex": [
+        "\\cos^2 x + \\sin^2 x = 1",
+        "\\cos(-x) = \\cos x \\qquad \\sin(-x) = -\\sin x",
+        "\\cos(x + 2\\pi) = \\cos x",
+        "\\sin(x + 2\\pi) = \\sin x"
+      ],
+      "titre": "Relation, parité, périodicité",
+      "type": "etape"
+    },
+    "radian": {
+      "kicker": "Mesure en radians",
+      "note": "Un radian : un arc de longueur un sur un cercle de rayon un",
+      "tex": "180^{\\circ} = \\pi\\ \\text{rad} \\qquad x^{\\circ} = \\frac{\\pi x}{180}\\ \\text{rad}",
+      "type": "formule"
+    },
+    "recap1": {
+      "etapes": [
+        "Angle inscrit : la moitié de l'angle au centre",
+        "Même arc intercepté : inscrits égaux",
+        "Diamètre comme côté : triangle rectangle",
+        "Un inscrit connu donne tous les associés"
+      ],
+      "kicker": "Partie 1 : à retenir",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Inscrit : moitié de l'angle au centre",
+        "Diamètre : l'inscrit vaut quatre-vingt-dix",
+        "Cercle trigo : M de cos x et sin x",
+        "cos² x + sin² x = 1, période deux pi",
+        "Addition, duplication : calculer l'inconnu"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "theoreme": {
+      "kicker": "Théorème de l'angle inscrit",
+      "note": "Même arc AB intercepté : l'inscrit vaut la moitié du centre",
+      "tex": "\\widehat{AMB} = \\frac{1}{2}\\,\\widehat{AOB}",
+      "type": "formule",
+      "anim": {
+        "nom": "angle_inscrit_fig",
+        "hauteur": 215
+      }
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 250,
+        "nom": "cercle_rayon_fig"
+      },
+      "kicker": "Mathématique · Angles et trigonométrie",
+      "sous": "L'angle inscrit vaut la moitié de l'angle au centre, puis le cercle trigonométrique relie angles et longueurs",
+      "titre": "Angles inscrits et trigonométrie",
+      "type": "titre"
+    },
+    "usuels": {
+      "kicker": "Angles usuels",
+      "tex": [
+        "30^{\\circ} = \\tfrac{\\pi}{6} \\qquad 45^{\\circ} = \\tfrac{\\pi}{4}",
+        "60^{\\circ} = \\tfrac{\\pi}{3} \\qquad 90^{\\circ} = \\tfrac{\\pi}{2}"
+      ],
+      "titre": "Quatre conversions à connaître par cœur",
+      "type": "etape"
+    },
+    "valeurs": {
+      "kicker": "Valeurs remarquables",
+      "tex": [
+        "x : 0,\\ \\tfrac{\\pi}{6},\\ \\tfrac{\\pi}{4},\\ \\tfrac{\\pi}{3},\\ \\tfrac{\\pi}{2}",
+        "\\cos x : 1,\\ \\tfrac{\\sqrt{3}}{2},\\ \\tfrac{\\sqrt{2}}{2},\\ \\tfrac{1}{2},\\ 0",
+        "\\sin x : 0,\\ \\tfrac{1}{2},\\ \\tfrac{\\sqrt{2}}{2},\\ \\tfrac{\\sqrt{3}}{2},\\ 1"
+      ],
+      "titre": "Cosinus et sinus des angles usuels",
+      "type": "etape"
+    },
+    "assoc_angles2": {
+      "type": "etape",
+      "kicker": "Angles associés",
+      "titre": "Pi sur deux moins x : cosinus et sinus échangés",
+      "tex": [
+        "\\cos\\left(\\tfrac{\\pi}{2} - x\\right) = \\sin x",
+        "\\sin\\left(\\tfrac{\\pi}{2} - x\\right) = \\cos x"
+      ]
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Angles inscrits : la moitié de l'angle au centre"
+    },
+    {
+      "debut": "p13",
+      "pont": {
+        "dit": "Partie deux : les angles orientés. Après les angles du cercle, nous mesurons maintenant en radians, nous décomposons avec la relation de Chasles, et nous lisons cosinus et sinus sur le cercle trigonométrique.",
+        "texte": "Partie 2 : angles orientés, radians et cercle trigonométrique."
+      },
+      "sous_titre": "Angles orientés et cercle trigonométrique"
+    },
+    {
+      "debut": "p24",
+      "pont": {
+        "dit": "Partie trois : les calculs. Nous résolvons les équations en cosinus et en sinus, nous calculons avec les formules d'addition et de duplication, et nous terminons par le repérage polaire d'un point.",
+        "texte": "Partie 3 : équations, addition, duplication, repérage polaire."
+      },
+      "sous_titre": "Équations, formules et repérage polaire"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours consacré aux angles dans le cercle et à la trigonométrie. D'abord les angles inscrits, moitié des angles au centre. Ensuite les angles orientés, en radians, et le cercle trigonométrique, qui donne cosinus et sinus de tout angle.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Angles inscrits et trigonométrie."
+    },
+    {
+      "dit": "À la fin de ce cours, vous saurez calculer un angle inscrit depuis un angle au centre, reconnaître un triangle rectangle inscrit, convertir les degrés en radians, et calculer un cosinus ou un sinus grâce au cercle trigonométrique et aux formules.",
+      "ecran": "objectifs",
+      "id": "p02",
+      "texte": "Objectif : des angles du cercle aux cosinus et sinus."
+    },
+    {
+      "dit": "Posons le vocabulaire. Sur un cercle de centre o, un arc est la portion du cercle délimitée par deux points a et bé. L'angle au centre a son sommet au centre o : l'angle a o bé intercepte l'arc a bé, il le regarde et le découpe.",
+      "ecran": "arc_centre",
+      "id": "p03",
+      "texte": "Arc AB et angle au centre AOB : le vocabulaire."
+    },
+    {
+      "dit": "L'angle inscrit, lui, a son sommet sur le cercle, et ses côtés coupent le cercle en deux autres points. Avec le sommet èm, sur le cercle, l'angle a èm bé intercepte le même arc a bé que l'angle au centre a o bé. Toute la suite compare ces deux angles.",
+      "ecran": "inscrit_def",
+      "id": "p04",
+      "texte": "Angle inscrit AMB : sommet sur le cercle."
+    },
+    {
+      "dit": "Voici le théorème de l'angle inscrit. Dans un cercle, un angle inscrit vaut la moitié de l'angle au centre qui intercepte le même arc. Si a èm bé est inscrit et a o bé l'angle au centre correspondant, alors a èm bé vaut la moitié de a o bé.",
+      "ecran": "theoreme",
+      "id": "p05",
+      "texte": "AMB = ½ AOB : le théorème central."
+    },
+    {
+      "dit": "Premier exemple. L'angle au centre a o bé mesure cent vingt degrés. Calculer l'angle inscrit a èm bé, sur le même arc. D'après le théorème, il vaut la moitié de cent vingt, soit soixante degrés. Le réflexe : repérer l'arc commun, puis diviser par deux.",
+      "ecran": "ex_inscrit",
+      "id": "p06",
+      "texte": "Exemple : 120° au centre, 60° inscrit."
+    },
+    {
+      "dit": "Conséquence immédiate : deux angles inscrits qui interceptent le même arc ont la même mesure. Ce sont des angles inscrits associés. Si èm et èn sont deux points du cercle, distincts de a et de bé, l'angle a èm bé égale l'angle a èn bé : chacun vaut la moitié du même angle au centre.",
+      "ecran": "associes",
+      "id": "p07",
+      "texte": "Même arc : AMB = ANB."
+    },
+    {
+      "dit": "Deuxième exemple. Quatre points a, bé, èm et èn sont sur un cercle, èm et èn du même côté de la corde a bé, et l'angle a èm bé mesure quarante-sept degrés. Déterminer a èn bé. Les deux angles interceptent le même arc : ce sont des associés, donc a èn bé vaut aussi quarante-sept degrés, sans calcul.",
+      "ecran": "ex_associes",
+      "id": "p08",
+      "texte": "Exemple : ANB vaut aussi 47°."
+    },
+    {
+      "dit": "Cas particulier à connaître par cœur. Si le segment a bé est un diamètre et èm un point du cercle, distinct de a et de bé, alors le triangle a èm bé est rectangle en èm. L'angle au centre est plat, cent quatre-vingts degrés : sa moitié, l'angle inscrit, vaut quatre-vingt-dix degrés.",
+      "ecran": "demi_cercle",
+      "id": "p09",
+      "texte": "Diamètre AB : l'angle inscrit vaut 90°."
+    },
+    {
+      "dit": "Troisième exemple. Le segment a bé est un diamètre, èm est sur le cercle, et l'angle èm a bé mesure trente-cinq degrés. Calculer a bé èm. Le triangle est rectangle en èm : l'angle en èm vaut quatre-vingt-dix degrés. La somme des angles vaut cent quatre-vingts, donc l'angle cherché vaut cent quatre-vingts, moins quatre-vingt-dix, moins trente-cinq : cinquante-cinq degrés.",
+      "ecran": "ex_rectangle",
+      "id": "p10",
+      "texte": "Exemple : 180 − 90 − 35 = 55°."
+    },
+    {
+      "dit": "Application en démonstration. Quatre points a, bé, cé et dé sont sur un même cercle, et les angles a cé bé et a dé bé interceptent la même corde a bé. Chacun est inscrit sur l'arc a bé : chacun vaut la moitié de l'angle au centre a o bé. Deux moitiés de la même mesure : les deux angles sont bien égaux.",
+      "ecran": "demo",
+      "id": "p11",
+      "texte": "Démonstration : ACB = ADB par la moitié commune."
+    },
+    {
+      "dit": "Retenons la première partie. Un angle inscrit vaut la moitié de l'angle au centre sur le même arc. Deux inscrits sur le même arc sont égaux. Et si un côté du triangle inscrit est un diamètre, le triangle est rectangle.",
+      "ecran": "recap1",
+      "id": "p12",
+      "texte": "Angles inscrits : à retenir."
+    },
+    {
+      "dit": "Changeons de point de vue avec les angles orientés. Le plan est orienté dans le sens direct, inverse des aiguilles d'une montre. Un angle orienté, défini par deux vecteurs u et vé, est la rotation qui envoie u vers vé. Sa mesure est algébrique : positive dans le sens direct, négative dans l'autre. On le note entre parenthèses, u puis vé.",
+      "ecran": "orientes",
+      "id": "p13",
+      "texte": "Angle orienté (u, v) : une rotation signée."
+    },
+    {
+      "dit": "L'unité naturelle de l'angle orienté est le radian : un angle d'un radian intercepte un arc de longueur un sur un cercle de rayon un. Conversion de référence : cent quatre-vingts degrés valent pi radians. Un angle de x degrés vaut donc pi fois x, divisé par cent quatre-vingts, en radians.",
+      "ecran": "radian",
+      "id": "p14",
+      "texte": "180° = π rad : la conversion."
+    },
+    {
+      "dit": "Quatre conversions reviennent sans cesse. Trente degrés, pi sur six. Quarante-cinq degrés, pi sur quatre. Soixante degrés, pi sur trois. Quatre-vingt-dix degrés, pi sur deux. Ce sont les angles des valeurs remarquables, lues bientôt sur le cercle trigonométrique.",
+      "ecran": "usuels",
+      "id": "p15",
+      "texte": "30° = π/6, 45° = π/4, 60° = π/3, 90° = π/2."
+    },
+    {
+      "dit": "Un angle orienté possède une infinité de mesures, qui diffèrent d'un nombre entier de tours, donc de multiples de deux pi : on travaille modulo deux pi. La mesure principale appartient à l'intervalle moins pi, pi. Exemple : sept pi sur trois, moins un tour, donne pi sur trois. C'est sa mesure principale.",
+      "ecran": "modulo",
+      "id": "p16",
+      "texte": "Exemple : 7π/3 se ramène à π/3."
+    },
+    {
+      "dit": "La relation de Chasles décompose un angle orienté. Pour trois vecteurs non nuls, l'angle de u vers double vé égale l'angle de u vers vé, plus l'angle de vé vers double vé, modulo deux pi. Conséquence : échanger les deux vecteurs change le signe. L'angle de vé vers u est l'opposé de celui de u vers vé.",
+      "ecran": "chasles",
+      "id": "p17",
+      "texte": "Chasles : (u, w) = (u, v) + (v, w)."
+    },
+    {
+      "dit": "Voici l'outil central de la trigonométrie : le cercle trigonométrique, cercle de centre o et de rayon un, orienté dans le sens direct. À tout réel x, on associe un point èm du cercle, tel que l'angle orienté de o i vers o èm mesure x radians. Le point i a pour coordonnées un, zéro.",
+      "ecran": "cercle_trigo",
+      "id": "p18",
+      "texte": "Le cercle trigonométrique : rayon 1, sens direct."
+    },
+    {
+      "dit": "Le point èm associé au réel x a des coordonnées qui portent des noms : son abscisse est le cosinus de x, son ordonnée le sinus de x. Comme le point est sur un cercle de rayon un, cosinus et sinus restent toujours compris entre moins un et un.",
+      "ecran": "coord",
+      "id": "p19",
+      "texte": "M(cos x, sin x) : la lecture du cercle."
+    },
+    {
+      "dit": "Trois familles de propriétés. La relation fondamentale : cosinus au carré plus sinus au carré égale un. La parité : cosinus pair, sinus impair. La périodicité : ajouter deux pi à x ne change ni cosinus ni sinus, on a fait un tour complet du cercle.",
+      "ecran": "proprietes",
+      "id": "p20",
+      "texte": "cos² + sin² = 1, parité, période 2π."
+    },
+    {
+      "dit": "Voici les valeurs remarquables. Pour zéro : cosinus un, sinus zéro. Pour pi sur six : racine de trois sur deux, et un demi. Pour pi sur quatre : racine de deux sur deux, pour les deux. Pour pi sur trois : un demi, et racine de trois sur deux. Pour pi sur deux : cosinus zéro, sinus un.",
+      "ecran": "valeurs",
+      "id": "p21",
+      "texte": "Valeurs remarquables : le tableau à connaître."
+    },
+    {
+      "dit": "Les angles associés se lisent sur le cercle par symétries. Pour pi moins x : le cosinus change de signe, le sinus est conservé. Pour pi plus x : les deux changent de signe.",
+      "ecran": "assoc_angles",
+      "id": "p22",
+      "texte": "Angles associés : π − x, π + x, π/2 − x."
+    },
+    {
+      "id": "p22b",
+      "ecran": "assoc_angles2",
+      "dit": "Pour pi sur deux moins x : le cosinus devient le sinus de x, le sinus devient le cosinus de x. Tout angle se ramène ainsi aux valeurs remarquables.",
+      "texte": "Angles associés : π/2 − x, cosinus et sinus échangés."
+    },
+    {
+      "dit": "Exemple. Calculer cosinus et sinus de cinq pi sur six. Cinq pi sur six s'écrit pi moins pi sur six : un angle associé. Son cosinus est l'opposé de celui de pi sur six, moins racine de trois sur deux. Son sinus égale celui de pi sur six, un demi. Une symétrie, une valeur remarquable, aucun calcul.",
+      "ecran": "ex_assoc_trigo",
+      "id": "p23",
+      "texte": "Exemple : cos 5π/6 = −√3/2, sin 5π/6 = 1/2."
+    },
+    {
+      "dit": "Passons aux équations trigonométriques. Cosinus x égale cosinus a a deux familles de solutions, modulo deux pi : x égale a, ou x égale moins a. Sur le cercle, deux points symétriques par rapport à l'axe des abscisses, qui partagent la même abscisse.",
+      "ecran": "eq_cos",
+      "id": "p24",
+      "texte": "cos x = cos a : x = a ou x = −a."
+    },
+    {
+      "dit": "Exemple. Résoudre cosinus x égale un demi, entre zéro et deux pi. Un demi est le cosinus de pi sur trois. Solutions : pi sur trois, et moins pi sur trois, qui ramené dans l'intervalle vaut cinq pi sur trois. Deux solutions sur un tour complet.",
+      "ecran": "ex_eq",
+      "id": "p25",
+      "texte": "Exemple : cos x = 1/2 donne π/3 et 5π/3."
+    },
+    {
+      "dit": "Pour le sinus, sinus x égale sinus a donne aussi deux familles, modulo deux pi : x égale a, ou x égale pi moins a. Sur le cercle, deux points symétriques par rapport à l'axe des ordonnées, même ordonnée. Le contraste à retenir : moins a pour le cosinus, pi moins a pour le sinus.",
+      "ecran": "eq_sin",
+      "id": "p26",
+      "texte": "sin x = sin a : x = a ou x = π − a."
+    },
+    {
+      "dit": "Les formules d'addition calculent cosinus et sinus d'une somme ou d'une différence. Pour le cosinus, les signes se renversent : cosinus de a plus bé égale cosinus a cosinus bé, moins sinus a sinus bé. Pour le sinus, ils se conservent : sinus de a plus bé égale sinus a cosinus bé, plus cosinus a sinus bé. Les différences changent le signe du milieu.",
+      "ecran": "addition",
+      "id": "p27",
+      "texte": "Formules d'addition : cos et sin de a ± b."
+    },
+    {
+      "dit": "Exemple. Calculer le cosinus de pi sur douze. Ce n'est pas une valeur remarquable, mais c'est pi sur trois moins pi sur quatre, deux angles connus. La formule de la différence donne : un demi fois racine de deux sur deux, plus racine de trois sur deux fois racine de deux sur deux. Total : racine de deux plus racine de six, sur quatre.",
+      "ecran": "ex_addition",
+      "id": "p28",
+      "texte": "Exemple : cos π/12 = (√2 + √6) / 4."
+    },
+    {
+      "dit": "Les formules de duplication sont le cas où les deux angles sont égaux. Cosinus de deux a égale cosinus au carré moins sinus au carré, soit aussi deux cosinus au carré moins un, ou un moins deux sinus au carré. Sinus de deux a égale deux fois sinus a fois cosinus a. Elles relient un angle à son double.",
+      "ecran": "duplication",
+      "id": "p29",
+      "texte": "Duplication : cos 2a et sin 2a = 2 sin a cos a."
+    },
+    {
+      "dit": "Exemple. Sinus de a vaut trois cinquièmes, a aigu. Par la relation fondamentale, cosinus au carré vaut un moins neuf vingt-cinquièmes, seize vingt-cinquièmes : le cosinus vaut quatre cinquièmes. Alors sinus de deux a vaut deux fois trois cinquièmes fois quatre cinquièmes : vingt-quatre vingt-cinquièmes.",
+      "ecran": "ex_duplication",
+      "id": "p30",
+      "texte": "Exemple : sin a = 3/5 donne sin 2a = 24/25."
+    },
+    {
+      "dit": "Application finale : le repérage polaire. Tout point èm, différent de o, est repéré par sa distance r, égale à o èm, et par son angle thêta, de o i vers o èm. Ses coordonnées s'en déduisent : abscisse r fois cosinus thêta, ordonnée r fois sinus thêta. Le cercle trigonométrique, à l'échelle r.",
+      "ecran": "polaire",
+      "id": "p31",
+      "texte": "Polaire : x = r cos θ, y = r sin θ."
+    },
+    {
+      "dit": "Exemple. Distance deux, angle pi sur trois. L'abscisse vaut deux fois le cosinus de pi sur trois, deux fois un demi : un. L'ordonnée vaut deux fois le sinus de pi sur trois, deux fois racine de trois sur deux : racine de trois. Coordonnées du point : un, racine de trois.",
+      "ecran": "ex_polaire",
+      "id": "p32",
+      "texte": "Exemple : r = 2, θ = π/3 donne (1, √3)."
+    },
+    {
+      "dit": "Pour conclure. L'angle inscrit vaut la moitié de l'angle au centre sur le même arc, et le diamètre donne un angle droit. Sur le cercle trigonométrique, le cosinus se lit en abscisse, le sinus en ordonnée. Valeurs remarquables, angles associés, équations, addition et duplication : tout part de ce cercle de rayon un.",
+      "ecran": "recap_final",
+      "id": "p33",
+      "texte": "Angles inscrits et trigonométrie : à retenir."
+    }
+  ],
+  "titre": "Angles inscrits et trigonométrie"
+}

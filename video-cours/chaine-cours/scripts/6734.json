@@ -1,0 +1,310 @@
+{
+ "cours": 6734,
+ "titre": "Le théorème de Thalès : calculer et démontrer le parallélisme",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Géométrie",
+   "titre": "Le théorème de Thalès : calculer et démontrer le parallélisme",
+   "sous": "Configuration, propriété directe et réciproque : des rapports égaux pour les longueurs et le parallélisme"
+  },
+  "config": {
+   "type": "phrase",
+   "kicker": "La configuration de Thalès",
+   "texte": "Deux droites sécantes en A, M sur (AB), N sur (AC) : le petit triangle AMN vit dans le grand ABC."
+  },
+  "ordre": {
+   "type": "etape",
+   "kicker": "La configuration de Thalès",
+   "titre": "Le même ordre sur les deux droites",
+   "tex": [
+    "A,\\ M,\\ B \\text{ alignés, dans cet ordre}",
+    "A,\\ N,\\ C \\text{ alignés, dans cet ordre}",
+    "M \\in (AB) \\qquad N \\in (AC)"
+   ]
+  },
+  "proportion": {
+   "type": "phrase",
+   "kicker": "L'idée : la proportionnalité",
+   "texte": "AMN est une réduction de ABC : tous les rapports de longueurs correspondantes sont égaux."
+  },
+  "directe": {
+   "type": "formule",
+   "kicker": "Propriété directe de Thalès",
+   "tex": "\\frac{AM}{AB} = \\frac{AN}{AC} = \\frac{MN}{BC}",
+   "note": "Si (MN) est parallèle à (BC) : les trois rapports sont égaux."
+  },
+  "conditions": {
+   "type": "etape",
+   "kicker": "Propriété directe de Thalès",
+   "titre": "Les conditions d'application",
+   "tex": [
+    "\\text{deux droites sécantes en } A",
+    "\\text{(MN) et (BC) parallèles}",
+    "\\text{M et N du même côté que B et C}"
+   ]
+  },
+  "ex1_donnees": {
+   "type": "etape",
+   "kicker": "Exemple : calculer une longueur",
+   "titre": "Les données du calcul",
+   "tex": [
+    "AB = 6\\ \\text{cm} \\qquad AC = 9\\ \\text{cm}",
+    "AM = 4\\ \\text{cm} \\qquad (MN) \\parallel (BC)"
+   ]
+  },
+  "ex1_rapports": {
+   "type": "etape",
+   "kicker": "Exemple : calculer une longueur",
+   "titre": "Écrire l'égalité des rapports",
+   "tex": [
+    "\\tfrac{AM}{AB} = \\tfrac{AN}{AC}",
+    "\\tfrac{4}{6} = \\tfrac{AN}{9}"
+   ]
+  },
+  "ex1_calcul": {
+   "type": "etape",
+   "kicker": "Exemple : calculer une longueur",
+   "titre": "Le produit en croix",
+   "tex": [
+    "AN = \\tfrac{4 \\times 9}{6} = \\tfrac{36}{6}",
+    "AN = 6\\ \\text{cm}"
+   ]
+  },
+  "troisieme": {
+   "type": "phrase",
+   "kicker": "Le troisième rapport",
+   "texte": "Le rapport MN/BC sert de la même façon : un seul rapport connu donne toutes les longueurs."
+  },
+  "methode_directe": {
+   "type": "recap",
+   "kicker": "Méthode : la directe",
+   "etapes": [
+    "Parallélisme connu ou démontré",
+    "Écrire AM/AB = AN/AC = MN/BC",
+    "Remplacer, produit en croix",
+    "Conclure avec l'unité"
+   ]
+  },
+  "reciproque": {
+   "type": "formule",
+   "kicker": "Propriété réciproque de Thalès",
+   "tex": "\\frac{AM}{AB} = \\frac{AN}{AC} \\implies (MN) \\parallel (BC)",
+   "note": "Deux conditions : le même ordre des points, et l'égalité des rapports."
+  },
+  "reciproque_conditions": {
+   "type": "phrase",
+   "kicker": "Propriété réciproque de Thalès",
+   "texte": "Deux conditions, pas une : l'ordre des points ET l'égalité des rapports, en valeurs exactes."
+  },
+  "ex2_donnees": {
+   "type": "etape",
+   "kicker": "Exemple : démontrer un parallélisme",
+   "titre": "Les données de la démonstration",
+   "tex": [
+    "AB = 8\\ \\text{cm} \\qquad AC = 12\\ \\text{cm}",
+    "AM = 5\\ \\text{cm} \\qquad AN = 7{,}5\\ \\text{cm}"
+   ]
+  },
+  "ex2_ordre": {
+   "type": "phrase",
+   "kicker": "Exemple : démontrer un parallélisme",
+   "texte": "Premier réflexe : M entre A et B, N entre A et C — le même ordre des deux côtés."
+  },
+  "ex2_rapports": {
+   "type": "etape",
+   "kicker": "Exemple : démontrer un parallélisme",
+   "titre": "Calculer les deux rapports, séparément",
+   "tex": [
+    "\\tfrac{AM}{AB} = \\tfrac{5}{8} = 0{,}625",
+    "\\tfrac{AN}{AC} = \\tfrac{7{,}5}{12} = 0{,}625"
+   ]
+  },
+  "ex2_conclusion": {
+   "type": "phrase",
+   "kicker": "Exemple : démontrer un parallélisme",
+   "texte": "Rapports égaux + même ordre ⇒ (MN) ∥ (BC), par la réciproque de Thalès."
+  },
+  "piege": {
+   "type": "phrase",
+   "kicker": "Le piège classique",
+   "texte": "Le piège : apparier AM avec AC — chaque rapport reste sur sa propre droite, depuis A."
+  },
+  "comparaison": {
+   "type": "etape",
+   "kicker": "Directe ou réciproque",
+   "titre": "Ne pas confondre les deux sens",
+   "tex": [
+    "\\text{directe : parallélisme} \\rightarrow \\text{calculer}",
+    "\\text{réciproque : rapports égaux} \\rightarrow \\text{démontrer}"
+   ]
+  },
+  "vigilance": {
+   "type": "recap",
+   "kicker": "Points de vigilance",
+   "etapes": [
+    "Directe : calculer une longueur",
+    "Réciproque : prouver le parallélisme",
+    "Toujours vérifier l'ordre des points",
+    "Comparer les rapports en valeurs exactes"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Configuration : deux triangles emboîtés",
+    "Parallèles ⇒ trois rapports égaux",
+    "Rapports égaux + ordre ⇒ parallèles",
+    "Calculer ou démontrer : choisir le sens"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré au théorème de Thalès. Deux triangles emboîtés, des droites parallèles, et des rapports de longueurs tous égaux : voilà l'outil qui permet de calculer une longueur inconnue, ou de démontrer que deux droites sont parallèles. Nous verrons la configuration, la propriété directe avec un calcul complet, puis la propriété réciproque avec une démonstration complète.",
+   "texte": "Thalès : des rapports égaux, deux usages.",
+   "ecran": "titre",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p02",
+   "dit": "Une configuration de Thalès apparaît quand deux droites sécantes se coupent en un sommet commun, ici le point A, et portent chacune un point intermédiaire : le point M sur la première droite, le point N sur la deuxième. Le petit triangle ainsi formé et le grand triangle partagent le même sommet et ont leurs côtés portés par les mêmes droites.",
+   "texte": "Deux droites sécantes en A, un point sur chacune.",
+   "ecran": "config"
+  },
+  {
+   "id": "p03",
+   "dit": "Un point ne suffit pas : il faut aussi l'ordre des points. Sur la première droite, les points A, M et B doivent être alignés dans le même ordre ; sur la deuxième droite, les points A, N et C également. Concrètement, M est entre A et B, et N est entre A et C : le petit triangle est bien emboîté dans le grand.",
+   "texte": "Le même ordre : A, M, B et A, N, C.",
+   "ecran": "ordre"
+  },
+  {
+   "id": "p04",
+   "dit": "Quand les deux triangles sont ainsi emboîtés et que leurs bases sont parallèles, leurs longueurs sont proportionnelles : le petit triangle est une réduction du grand. Chaque longueur du petit triangle s'obtient en multipliant la longueur correspondante du grand par un même nombre, le rapport de réduction. C'est ce rapport que la propriété de Thalès écrit sous forme d'égalités.",
+   "texte": "Proportionnalité : un même rapport partout.",
+   "ecran": "proportion"
+  },
+  {
+   "id": "p05",
+   "dit": "Voici la propriété directe. Dans un triangle, si une droite parallèle à un côté coupe les deux autres côtés, alors elle découpe des segments proportionnels : le rapport des longueurs sur la première droite est égal au rapport sur la deuxième droite, et aussi au rapport entre le segment parallèle et le côté auquel il est parallèle. Trois rapports, une seule valeur.",
+   "texte": "Directe : AM/AB = AN/AC = MN/BC.",
+   "ecran": "directe"
+  },
+  {
+   "id": "p06",
+   "dit": "Pour appliquer la propriété directe, trois conditions doivent être réunies : deux droites sécantes en un même point, une configuration en triangle avec les points dans le même ordre, et deux droites parallèles. C'est le parallélisme, connu ou déjà démontré, qui déclenche l'égalité des rapports.",
+   "texte": "Conditions : sécantes, même ordre, parallèles.",
+   "ecran": "conditions"
+  },
+  {
+   "id": "p07",
+   "dit": "Premier exemple, un calcul de longueur. Dans un triangle, le grand côté mesure six centimètres et l'autre grand côté neuf centimètres. Un point est placé sur le premier côté, à quatre centimètres du sommet commun. La parallèle au côté opposé, menée par ce point, coupe le deuxième côté en un second point : on cherche la distance de ce point au sommet.",
+   "texte": "Exemple 1 : AB = 6, AC = 9, AM = 4 — trouver AN.",
+   "ecran": "ex1_donnees"
+  },
+  {
+   "id": "p08",
+   "dit": "On reconnaît une configuration de Thalès avec deux droites parallèles : la propriété directe donne l'égalité des rapports sur les deux droites. On remplace par les longueurs connues : quatre sur six, pour la première droite, est égal au rapport de la longueur cherchée sur neuf, pour la deuxième droite.",
+   "texte": "Rapports : 4/6 = AN/9.",
+   "ecran": "ex1_rapports"
+  },
+  {
+   "id": "p09",
+   "dit": "Il reste un produit en croix : la longueur cherchée vaut quatre fois neuf, divisé par six, c'est-à-dire trente-six sur six, donc six centimètres. On conclut en rédigeant la réponse avec son unité : la distance cherchée mesure six centimètres.",
+   "texte": "AN = (4 × 9) / 6 = 6 cm.",
+   "ecran": "ex1_calcul",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p10",
+   "dit": "Le troisième rapport joue le même rôle pour les bases des deux triangles : si l'on connaît la longueur du grand côté parallèle, le même produit en croix donne la longueur du segment parallèle du petit triangle. Retenez la logique complète : un seul rapport connu suffit à retrouver toutes les longueurs de la configuration.",
+   "texte": "MN/BC : le même produit en croix.",
+   "ecran": "troisieme"
+  },
+  {
+   "id": "p11",
+   "dit": "Récapitulons la méthode directe : elle sert à calculer une longueur, et seulement quand le parallélisme est connu ou déjà démontré. On écrit l'égalité des trois rapports, on remplace par les longueurs connues, on résout par un produit en croix, et on conclut avec l'unité.",
+   "texte": "La directe : calculer, parallélisme connu.",
+   "ecran": "methode_directe",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p12",
+   "dit": "Voici la propriété réciproque. Si deux points sont placés sur les côtés d'un triangle, dans le même ordre à partir du sommet commun, et si les rapports des longueurs sur les deux droites sont égaux, alors la droite qui joint ces deux points est parallèle au côté opposé. L'égalité des rapports devient la preuve du parallélisme.",
+   "texte": "Réciproque : rapports égaux ⇒ parallèles.",
+   "ecran": "reciproque"
+  },
+  {
+   "id": "p13",
+   "dit": "La réciproque exige deux conditions, et pas une seule : d'abord l'ordre des points, identique sur les deux droites, ensuite l'égalité des rapports. Oublier l'ordre est une faute classique : des rapports égaux avec des points en désordre ne permettent pas de conclure. Et les rapports doivent être comparés en valeurs exactes, jamais avec des arrondis hâtifs.",
+   "texte": "Ordre des points + rapports égaux : les deux.",
+   "ecran": "reciproque_conditions"
+  },
+  {
+   "id": "p14",
+   "dit": "Deuxième exemple, une démonstration de parallélisme. Dans un triangle, les deux grands côtés mesurent huit centimètres et douze centimètres. Un point est placé sur le premier côté, à cinq centimètres du sommet ; un autre point est placé sur le deuxième côté, à sept centimètres et demi du sommet. Il faut démontrer que la droite qui joint ces deux points est parallèle au côté opposé.",
+   "texte": "Exemple 2 : AB = 8, AC = 12, AM = 5, AN = 7,5.",
+   "ecran": "ex2_donnees"
+  },
+  {
+   "id": "p15",
+   "dit": "Premier réflexe de la démonstration : vérifier l'ordre des points. Le premier point est entre le sommet et l'extrémité du premier côté ; le deuxième point est entre le sommet et l'extrémité du deuxième côté. Les points sont donc alignés dans le même ordre sur les deux droites : la première condition de la réciproque est remplie.",
+   "texte": "Condition 1 : le même ordre, vérifié.",
+   "ecran": "ex2_ordre"
+  },
+  {
+   "id": "p16",
+   "dit": "On calcule ensuite les deux rapports, séparément. Sur la première droite : cinq sur huit, soit zéro virgule six cent vingt-cinq. Sur la deuxième droite : sept virgule cinq sur douze, soit également zéro virgule six cent vingt-cinq. Les deux rapports sont exactement égaux : la deuxième condition est remplie.",
+   "texte": "Rapports : 5/8 = 0,625 et 7,5/12 = 0,625.",
+   "ecran": "ex2_rapports"
+  },
+  {
+   "id": "p17",
+   "dit": "Les deux conditions de la propriété réciproque sont vérifiées : le même ordre des points, et des rapports égaux. On peut donc conclure, en citant la réciproque du théorème de Thalès, que les deux droites sont parallèles. Une démonstration complète tient en trois temps : l'ordre, les rapports, la conclusion.",
+   "texte": "Conclusion : (MN) ∥ (BC).",
+   "ecran": "ex2_conclusion"
+  },
+  {
+   "id": "p18",
+   "dit": "Le piège le plus fréquent consiste à mélanger les droites : chaque rapport compare les deux longueurs portées par une même droite, en partant du sommet commun. Écrivez toujours les rapports dans le même sens, le petit segment sur le grand, droite par droite, et la configuration devient impossible à confondre.",
+   "texte": "Chaque rapport reste sur sa droite.",
+   "ecran": "piege"
+  },
+  {
+   "id": "p19",
+   "dit": "Directe et réciproque se lisent en sens inverse, et tout l'enjeu est de choisir la bonne. La directe part du parallélisme et aboutit à des égalités de rapports, pour calculer une longueur. La réciproque part de l'égalité des rapports, avec l'ordre des points, et aboutit au parallélisme, pour le démontrer.",
+   "texte": "Directe : calculer. Réciproque : démontrer.",
+   "ecran": "comparaison"
+  },
+  {
+   "id": "p20",
+   "dit": "Trois points de vigilance pour terminer. La directe calcule une longueur quand le parallélisme est acquis ; la réciproque démontre un parallélisme quand les rapports sont égaux ; et dans les deux sens, la précision compte : un rapport arrondi trop tôt peut faire conclure à tort, dans un sens comme dans l'autre.",
+   "texte": "Vigilance : sens, ordre, précision.",
+   "ecran": "vigilance"
+  },
+  {
+   "id": "p21",
+   "dit": "Pour retenir l'essentiel : une configuration de Thalès, ce sont deux triangles emboîtés dans le même ordre. Si les bases sont parallèles, les trois rapports de longueurs sont égaux, et l'on calcule. Si les rapports sont égaux et l'ordre vérifié, les bases sont parallèles, et l'on démontre. Calculer ou démontrer : tout dépend de ce qui est donné et de ce qui est cherché.",
+   "texte": "L'essentiel : calculer ou démontrer.",
+   "ecran": "recap",
+   "pause_apres": 0.5
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La propriété directe : calculer une longueur"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "La réciproque : démontrer le parallélisme",
+   "pont": {
+    "texte": "Partie 2 : la réciproque, démontrer le parallélisme.",
+    "dit": "Partie deux : la propriété réciproque. Cette fois, le parallélisme n'est plus donné : c'est lui qu'il faut démontrer, en vérifiant l'ordre des points et l'égalité des rapports, sur un exemple complet."
+   }
+  }
+ ]
+}

@@ -15,8 +15,8 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { BoutonFermer } from '../arrivee/MiniTest';
-import { CarteListe } from '../liste/CarteListe';
 import { EcranErreur } from '../liste/EcranErreur';
+import { GroupeColle, LigneGroupe } from '../liste/ListeCollee';
 import { Pastille } from '../liste/Pastille';
 import { Progressive } from '../liste/Progressive';
 import { PastilleType } from '../liste/PastilleType';
@@ -47,7 +47,7 @@ const SEUIL_VERT = 50;
 export function ChapitreEntrainement() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { cours, nom, onglet } = useLocalSearchParams<{ cours: string; nom?: string; onglet?: Filtre }>();
+  const { cours, nom, matiere, onglet } = useLocalSearchParams<{ cours: string; nom?: string; matiere?: string; onglet?: Filtre }>();
   const [etat, setEtat] = useEtatMemorise<Etat>(`entrainement.chapitre.${cours}`, { statut: 'chargement' });
   const [filtre, setFiltre] = useState<Filtre>(onglet === 'quiz' || onglet === 'exercices' ? onglet : 'tout');
   const pret = useSessionPrete();
@@ -116,41 +116,44 @@ export function ChapitreEntrainement() {
         <Vide texte={t(filtre === 'quiz' ? 'entrainement.videQuiz' : 'entrainement.videExercices')} bouton={t('entrainement.autresChapitres')} onPress={retour} />
       ) : null}
       {etat.statut === 'pret' && liste.length ? (
-        <View style={styles.groupe}>
+        <GroupeColle>
           <Progressive
             items={liste}
             initial={10}
             pas={10}
-            rendu={(el) => {
+            rendu={(el, i) => {
             if (el.type === 'quiz') {
               const score = etat.scores[el.q.id];
+              const fini = quizFini(etat, el.q);
               return (
-                <CarteListe
+                <LigneGroupe
                   key={el.q.id}
+                  premier={i === 0}
+                  fond={fini ? theme.marque.douce : undefined}
                   gauche={<PastilleType type="quiz" />}
                   titre={nomQuiz(el.q)}
                   sousTitre={t('entrainement.questions', { n: el.q.questions })}
                   droite={score !== undefined ? <Pastille texte={`${score} %`} vert={score >= SEUIL_VERT} /> : undefined}
-                  fini={quizFini(etat, el.q)}
                   onPress={() => void ouvrirQuiz(el.q, String(cours), chapitre)}
                 />
               );
             }
             const fait = !!etat.faits[el.e.id];
             return (
-              <CarteListe
+              <LigneGroupe
                 key={el.e.id}
+                premier={i === 0}
+                fond={fait ? theme.marque.douce : undefined}
                 gauche={<PastilleType type="exercice" />}
                 titre={titreExercice(el.e.titre, chapitre) || t('entrainement.exerciceN', { n: el.i + 1 })}
                 sousTitre={t('entrainement.exerciceRang', { n: el.i + 1, total: etat.exercices.length })}
                 droite={fait ? <Pastille texte={t('entrainement.fait')} vert /> : undefined}
-                fini={fait}
-                onPress={() => router.push({ pathname: '/entrainement/exercice', params: { id: el.e.id, cours: String(cours) } })}
+                onPress={() => router.push({ pathname: '/entrainement/exercice', params: { id: el.e.id, cours: String(cours), ...(matiere ? { matiere } : {}) } })}
               />
             );
             }}
           />
-        </View>
+        </GroupeColle>
       ) : null}
     </Ecran>
   );

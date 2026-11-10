@@ -1,0 +1,383 @@
+{
+ "cours": 6380,
+ "ecrans": {
+  "benioff": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "plaques_fig"
+   },
+   "kicker": "Le plan de Benioff-Wadati",
+   "texte": "Les séismes dessinent le plongement de la plaque.",
+   "type": "phrase"
+  },
+  "collision": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "plaques_fig"
+   },
+   "kicker": "La collision continentale",
+   "texte": "Continent contre continent : les géants s'élèvent.",
+   "type": "phrase"
+  },
+  "convection": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "convection_fig"
+   },
+   "kicker": "Le moteur : la convection",
+   "texte": "Le manteau convecte : les plaques sont entraînées.",
+   "type": "phrase"
+  },
+  "convergence": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "volcan_fig"
+   },
+   "kicker": "Frontières convergentes",
+   "texte": "Subduction ou collision : les plaques se rencontrent.",
+   "type": "phrase"
+  },
+  "cycle_wilson": {
+   "kicker": "Le cycle de Wilson",
+   "tex": [
+    "\\text{rift} \\rightarrow \\text{océan jeune}",
+    "\\text{océan mature} \\rightarrow \\text{subduction}",
+    "\\text{collision} \\rightarrow \\text{nouveau rift}"
+   ],
+   "titre": "Ouvrir, fermer, rouvrir un océan",
+   "type": "etape"
+  },
+  "divergence": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "plaques_fig"
+   },
+   "kicker": "Frontières divergentes",
+   "texte": "Les plaques s'écartent : une dorsale crée de la croûte.",
+   "type": "phrase"
+  },
+  "dorsale": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "plaques_fig"
+   },
+   "kicker": "La dorsale, usine à croûte",
+   "texte": "Plus de 60 000 kilomètres de dorsales sous les océans.",
+   "type": "phrase"
+  },
+  "everest": {
+   "kicker": "La fosse des Mariannes",
+   "note": "Onze mille mètres de profondeur : l'Everest, huit mille huit cent quarante-neuf mètres, y resterait sous plus de deux mille mètres d'eau",
+   "tex": "-11\\,000\\,\\text{m}",
+   "type": "formule"
+  },
+  "isostasie": {
+   "kicker": "L'isostasie",
+   "texte": "Les masses crustales flottent sur le manteau, comme des icebergs.",
+   "type": "phrase"
+  },
+  "magnetisme": {
+   "kicker": "La preuve magnétique",
+   "tex": [
+    "\\text{lave qui se solidifie}",
+    "\\text{champ magnétique figé}",
+    "\\text{bandes parallèles et symétriques}"
+   ],
+   "titre": "Le magnétisme enregistre l'expansion",
+   "type": "etape"
+  },
+  "megathrust": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "plaques_fig"
+   },
+   "kicker": "Le mégathrust",
+   "texte": "La faille géante des fosses : source des plus grands séismes.",
+   "type": "phrase"
+  },
+  "plaques": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "plaques_fig"
+   },
+   "kicker": "Les plaques, pièces du puzzle",
+   "texte": "Une douzaine de plaques majeures, des milliers de kilomètres.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Wegener 1912 : les continents dérivent",
+    "Dorsales : création de croûte océanique",
+    "Subduction et collision : destruction et montagnes",
+    "Transformantes : coulissement, séismes",
+    "Convection : le moteur, cycle de Wilson"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "san_andreas": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "plaques_fig"
+   },
+   "kicker": "San Andreas, en Californie",
+   "texte": "Coulissement latéral : la faille transformante type.",
+   "type": "phrase"
+  },
+  "stick_slip": {
+   "kicker": "Le cycle stick-slip",
+   "tex": [
+    "\\text{bloquée : contrainte accumulée}",
+    "\\text{rupture soudaine}",
+    "\\text{réajustement, répliques}"
+   ],
+   "titre": "Bloquée, chargée, rompue",
+   "type": "etape"
+  },
+  "subduction": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "volcan_fig"
+   },
+   "kicker": "La subduction",
+   "texte": "La plaque océanique plonge sous l'autre plaque.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "plaques_fig"
+   },
+   "kicker": "Biologie · Tectonique des plaques",
+   "sous": "Dorsales, subduction, failles transformantes : la danse silencieuse des continents",
+   "titre": "Activité tectonique et mouvements des plaques",
+   "type": "titre"
+  },
+  "vitesse": {
+   "kicker": "La vitesse des plaques",
+   "note": "Un centimètre par an, c'est cent kilomètres en dix millions d'années",
+   "tex": "v = \\frac{d}{t}",
+   "type": "formule"
+  },
+  "vitesse_cm": {
+   "kicker": "À la vitesse de vos ongles",
+   "note": "La dorsale médio-atlantique s'écarte d'environ deux virgule cinq centimètres par an",
+   "tex": "2{,}5\\,\\text{cm/an}",
+   "type": "formule"
+  },
+  "wegener": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "plaques_fig"
+   },
+   "kicker": "Wegener, 1912",
+   "texte": "Les côtes d'Afrique et d'Amérique du Sud s'emboîtent.",
+   "type": "phrase"
+  },
+  "preuves_wegener": {
+   "kicker": "Trois preuves",
+   "tex": [
+    "\\text{formations géologiques prolongées}",
+    "\\text{mêmes fossiles des deux côtés}",
+    "\\text{glaciations anciennes identiques}"
+   ],
+   "titre": "Roches, fossiles, glaciations",
+   "type": "etape"
+  },
+  "oubli": {
+   "kicker": "Le quoi sans le comment",
+   "tex": [
+    "\\text{le quoi : les continents bougent}",
+    "\\text{le comment : forces inconnues}",
+    "\\text{la théorie sombre dans l'oubli}"
+   ],
+   "titre": "Une idée sans moteur",
+   "type": "etape"
+  },
+  "frontieres": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "plaques_fig"
+   },
+   "kicker": "Trois frontières",
+   "texte": "Divergente, convergente, transformante : trois frontières.",
+   "type": "phrase"
+  },
+  "forces": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "convection_fig"
+   },
+   "kicker": "Le bras de fer tectonique",
+   "texte": "Traction, poussée, traînée : le bras de fer tectonique.",
+   "type": "phrase"
+  },
+  "vivante": {
+   "kicker": "Une théorie vivante",
+   "texte": "Une théorie vivante, mesurée en direct.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Biologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "De Wegener aux frontières des plaques"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : le moteur de la machine et le cycle qui ouvre et referme les océans. Nous verrons la convection, les fosses et les mégathrusts, puis le cycle de Wilson, de la déchirure d'un continent à la collision.",
+    "texte": "Partie 2 : moteur, fosses et cycle de Wilson."
+   },
+   "sous_titre": "Moteur, fosses et cycle de Wilson"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur l'activité tectonique et les mouvements des plaques. Imaginez un puzzle colossal dont les pièces mesurent des milliers de kilomètres : elles glissent, se heurtent et s'éloignent, sculptent nos montagnes, creusent nos océans et déclenchent les séismes.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "La danse silencieuse des continents."
+  },
+  {
+   "dit": "Notre voyage commence en mille neuf cent douze, avec le météorologue allemand Alfred Wegener. Il propose que les continents se déplacent : la dérive des continents. Il est frappé par la correspondance presque parfaite entre les côtes de l'Afrique et de l'Amérique du Sud.",
+   "ecran": "wegener",
+   "id": "p02",
+   "texte": "Les côtes d'Afrique et d'Amérique du Sud s'emboîtent."
+  },
+  {
+   "dit": "Trois preuves appuient Wegener : les formations géologiques se prolongent d'un continent à l'autre, les mêmes fossiles d'espèces incapables de traverser un océan se trouvent des deux côtés de l'Atlantique, et des traces de glaciations anciennes identiques apparaissent en Afrique du Sud, en Inde et en Australie, aujourd'hui tropicales.",
+   "ecran": "preuves_wegener",
+   "id": "p03",
+   "texte": "Roches, fossiles, glaciations : trois preuves."
+  },
+  {
+   "dit": "Mais Wegener identifie le quoi, pas le comment : il ne peut expliquer quelles forces colossales déplacent les continents, et sa théorie sombre dans l'oubli. Il faudra attendre les années mille neuf cent cinquante et soixante, et l'exploration des fonds océaniques, pour la ressusciter.",
+   "ecran": "oubli",
+   "id": "p04",
+   "texte": "Le quoi sans le comment : la théorie s'oublie."
+  },
+  {
+   "dit": "Grâce au sonar développé pendant la guerre, les océanographes cartographient les fonds marins et découvrent une immense chaîne sous-marine au milieu de l'Atlantique : la dorsale médio-océanique, avec une activité sismique et volcanique intense le long de son axe et un fossé central, le rift, à son sommet.",
+   "ecran": "dorsale",
+   "id": "p05",
+   "texte": "Une chaîne sous-marine au milieu de l'Atlantique."
+  },
+  {
+   "dit": "Le paysage d'une frontière divergente active, c'est cette dorsale : une chaîne continue de plus de soixante mille kilomètres de long, dont le rift axial, vallée étroite et profonde, peut atteindre un à trois kilomètres de profondeur. Au centre, le magma remonte et crée de la croûte neuve.",
+   "ecran": "divergence",
+   "id": "p06",
+   "texte": "Plus de 60 000 kilomètres de dorsales."
+  },
+  {
+   "dit": "La preuve décisive vient du magnétisme. La Terre a inversé son champ de nombreuses fois ; quand la lave se solidifie à la dorsale, elle fige l'orientation du champ du moment. On observe donc des bandes d'anomalies magnétiques parallèles et symétriques de part et d'autre de la dorsale : seule l'expansion des fonds océaniques l'explique.",
+   "ecran": "magnetisme",
+   "id": "p07",
+   "texte": "Bandes symétriques de part et d'autre de la dorsale."
+  },
+  {
+   "dit": "Connaissant l'âge d'une bande magnétique et sa distance à la dorsale, on calcule la vitesse de la plaque par vitesse égale distance divisée par temps. Les plaques avancent de l'ordre du centimètre par an, à peu près la vitesse de croissance de vos ongles : un centimètre par an, c'est cent kilomètres en dix millions d'années.",
+   "ecran": "vitesse",
+   "id": "p08",
+   "texte": "Vitesse égale distance divisée par temps."
+  },
+  {
+   "dit": "La dorsale médio-atlantique, par exemple, s'écarte à une vitesse moyenne d'environ deux virgule cinq centimètres par an. Sur deux cents millions d'années, cela suffit pour ouvrir un océan entier, puis le refermer ailleurs.",
+   "ecran": "vitesse_cm",
+   "id": "p09",
+   "texte": "Deux virgule cinq centimètres par an à la dorsale atlantique."
+  },
+  {
+   "dit": "Dans les années mille neuf cent soixante, Wilson, McKenzie et Parker synthétisent ces découvertes : la théorie de la tectonique des plaques. La lithosphère, rigide, est cassée en une douzaine de plaques majeures et de nombreuses microplaques, qui flottent et glissent sur l'asthénosphère ductile.",
+   "ecran": "plaques",
+   "id": "p10",
+   "texte": "Une douzaine de plaques majeures sur l'asthénosphère."
+  },
+  {
+   "dit": "Trois types de frontières organisent l'activité. Divergentes, les plaques s'écartent, comme à la dorsale médio-atlantique. Convergentes, elles se rencontrent, en subduction ou en collision. Transformantes, elles coulissent latéralement, comme à la faille de San Andreas en Californie.",
+   "ecran": "frontieres",
+   "id": "p11",
+   "texte": "Divergente, convergente, transformante : trois frontières."
+  },
+  {
+   "dit": "En convergence, trois scénarios sont possibles selon les plaques en présence : océan contre océan, océan contre continent, ou continent contre continent. Dans les deux premiers cas, la plaque océanique, plus dense, plonge : c'est la subduction. Dans le troisième, aucun des deux continents ne plonge facilement : c'est la collision.",
+   "ecran": "convergence",
+   "id": "p12",
+   "texte": "Subduction ou collision : les plaques se rencontrent."
+  },
+  {
+   "dit": "La collision épaissit la croûte et élève les géants : l'Himalaya, entre les plaques indienne et eurasienne, en est l'exemple. L'équilibre de ces masses sur le manteau ductile s'approche par l'isostasie, comme des icebergs flottant sur l'eau.",
+   "ecran": "collision",
+   "id": "p13",
+   "texte": "Continent contre continent : les géants s'élèvent."
+  },
+  {
+   "dit": "Le moteur caché de cette machine est la convection mantellique : chauffé à sa base, le matériel monte, refroidit près de la lithosphère, puis redescend. La convection peut s'organiser en une seule boucle à travers tout le manteau, ou en deux couches séparées à six cent soixante kilomètres.",
+   "ecran": "convection",
+   "id": "p14",
+   "texte": "Le manteau convecte : les plaques sont entraînées."
+  },
+  {
+   "dit": "Plusieurs forces tirent et poussent les plaques dans ce bras de fer tectonique : la traction de la plaque plongeante, la poussée de la dorsale, et la traînée du manteau. La tomographie sismique, scanner global, visualise ces mouvements dans le manteau et confirme le recyclage de la lithosphère.",
+   "ecran": "forces",
+   "id": "p15",
+   "texte": "Traction, poussée, traînée : le bras de fer tectonique."
+  },
+  {
+   "dit": "Là où la plaque plonge commence sa descente se creuse une fosse océanique, dépression linéaire étroite et très profonde. La fosse des Mariannes, à moins onze mille mètres, en est l'exemple ultime : si l'on y plaçait l'Everest, huit mille huit cent quarante-neuf mètres, son sommet resterait à plus de deux mille mètres sous la surface.",
+   "ecran": "everest",
+   "id": "p16",
+   "texte": "Moins onze mille mètres : la fosse des Mariannes."
+  },
+  {
+   "dit": "Le long de la plaque plongeante, les séismes dessinent une surface inclinée, le plan de Benioff-Wadati : superficiels près de la fosse, de zéro à soixante-dix kilomètres, puis de plus en plus profonds en s'éloignant. C'est l'échiquier des séismes de subduction.",
+   "ecran": "benioff",
+   "id": "p17",
+   "texte": "Les séismes dessinent le plongement de la plaque."
+  },
+  {
+   "dit": "Le contact entre les deux plaques au niveau de la fosse est une faille géante, le mégathrust. C'est la structure responsable des séismes les plus puissants, et la rupture d'un mégathrust sous-marin est le principal générateur de tsunamis dévastateurs.",
+   "ecran": "megathrust",
+   "id": "p18",
+   "texte": "La faille géante des fosses : source des plus grands séismes."
+  },
+  {
+   "dit": "Le magma né de la subduction, moins dense, remonte et forme un arc volcanique : continental, comme la Cordillère des Andes, ou insulaire, comme la ceinture de feu du Pacifique. L'Islande, elle, est un cas unique : c'est le seul endroit où une dorsale émerge au-dessus du niveau de la mer, grâce à un point chaud.",
+   "ecran": "subduction",
+   "id": "p19",
+   "texte": "La plaque plonge, le magma remonte : l'arc volcanique."
+  },
+  {
+   "dit": "Aux frontières transformantes, les plaques coulissent sans créer ni détruire de croûte. La faille de San Andreas en Californie en est le cas emblématique. Le mouvement s'y fait par à-coups, le cycle dit stick-slip : bloquée par le frottement, la faille accumule la contrainte, puis rompt soudainement, et c'est le séisme.",
+   "ecran": "san_andreas",
+   "id": "p20",
+   "texte": "Coulissement latéral : la faille transformante type."
+  },
+  {
+   "dit": "Le cycle stick-slip explique donc le cycle sismique des transformantes : chargement lent, accumulation, rupture brutale, puis réajustement et répliques. Les paysages en gardent la cicatrice : vallées décalées, rivières détournées, escarpements sculptés par le cisaillement.",
+   "ecran": "stick_slip",
+   "id": "p21",
+   "texte": "Bloquée, chargée, rompue : la faille glisse par à-coups."
+  },
+  {
+   "dit": "Enfin, le cycle de Wilson, théorisé par le géophysicien J. Tuzo Wilson, raconte la vie d'un océan sur des centaines de millions d'années : un continent se déchire en rift, un océan jeune s'ouvre, mûrit, puis se referme par subduction, jusqu'à la collision, avant qu'un nouveau rift ne rouvre le cycle ailleurs.",
+   "ecran": "cycle_wilson",
+   "id": "p22",
+   "texte": "Ouvrir, fermer, rouvrir un océan."
+  },
+  {
+   "dit": "La tectonique des plaques est donc une théorie vivante : elle prévoit les aléas sismiques et volcaniques, guide l'exploration des ressources, reconstruit les paléo-environnements, et se mesure aujourd'hui en direct par géodésie, au centimètre près, sur des plaques en mouvement sous nos pieds.",
+   "ecran": "vivante",
+   "id": "p23",
+   "texte": "Une théorie vivante, mesurée en direct."
+  },
+  {
+   "dit": "Retenons l'essentiel : Wegener propose la dérive en mille neuf cent douze ; les dorsales créent la croûte océanique ; la subduction la recycle et la collision élève les montagnes ; les transformantes coulissent et rompent par à-coups ; la convection mantellique entraîne le tout, dans le cycle de Wilson.",
+   "ecran": "recap",
+   "id": "p24",
+   "texte": "Wegener, dorsales, subduction, transformantes, convection."
+  }
+ ],
+ "titre": "Activité tectonique et mouvements des plaques"
+}

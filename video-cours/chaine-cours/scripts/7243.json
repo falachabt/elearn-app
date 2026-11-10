@@ -1,0 +1,334 @@
+{
+ "cours": 7243,
+ "ecrans": {
+  "asympt": {
+   "kicker": "Asymptote horizontale",
+   "note": "Degrés égaux : le rapport des dominants vaut un.",
+   "tex": "\\lim_{x \\to \\pm\\infty} F(x) = 1 \\qquad y = 1",
+   "titre": "À l'infini, F tend vers un",
+   "type": "formule"
+  },
+  "concl_signe": {
+   "kicker": "Exemple résolu · conclusion",
+   "note": "Le trou en deux reste exclu du domaine.",
+   "tex": [
+    "F(x) \\geq 0 \\iff x \\in ]-\\infty; -2] \\cup ]1; +\\infty[",
+    "(x \\neq 2)"
+   ],
+   "titre": "Positif avant moins deux, puis après un",
+   "type": "etape"
+  },
+  "def_rat": {
+   "kicker": "Définition · fraction rationnelle",
+   "note": "Domaine : les réels privés des zéros de Q.",
+   "tex": "F(x) = \\frac{P(x)}{Q(x)}",
+   "titre": "Un quotient de deux polynômes",
+   "type": "formule"
+  },
+  "definition": {
+   "kicker": "Définition · fonction polynôme",
+   "note": "Degré n · coefficients réels · a indice n non nul",
+   "tex": [
+    "P(x) = a_n x^n + a_{n-1} x^{n-1} + \\cdots",
+    "+ a_1 x + a_0"
+   ],
+   "titre": "La forme générale, du degré n au terme constant",
+   "type": "etape"
+  },
+  "degres": {
+   "kicker": "Degrés usuels",
+   "tex": [
+    "f(x) = ax + b \\qquad \\text{droite de coefficient } a",
+    "f(x) = ax^2 + bx + c",
+    "S\\left(-\\frac{b}{2a};\\, f\\left(-\\frac{b}{2a}\\right)\\right)"
+   ],
+   "titre": "Droite au degré un, parabole au degré deux",
+   "type": "etape"
+  },
+  "ex_conclusion": {
+   "kicker": "Exemple résolu · conclusion",
+   "note": "Positif entre zéro et un, puis après deux.",
+   "tex": "P(x) \\geq 0 \\iff x \\in [0; 1] \\cup [2; +\\infty[",
+   "titre": "Positif entre zéro et un, puis après deux",
+   "type": "formule"
+  },
+  "ex_domaine": {
+   "kicker": "Exemple résolu · fraction rationnelle",
+   "tex": [
+    "F(x) = \\tfrac{x^2 - 4}{x^2 - 3x + 2}",
+    "x^2 - 3x + 2 = (x - 1)(x - 2)",
+    "D_F = \\mathbb{R} \\setminus \\{1; 2\\}"
+   ],
+   "titre": "D'abord le domaine",
+   "type": "etape"
+  },
+  "ex_factorisation": {
+   "kicker": "Exemple résolu · polynôme",
+   "tex": [
+    "P(x) = x^3 - 3x^2 + 2x",
+    "= x(x^2 - 3x + 2)",
+    "= x(x - 1)(x - 2)"
+   ],
+   "titre": "Factoriser pas à pas",
+   "type": "etape"
+  },
+  "ex_signe": {
+   "kicker": "Exemple résolu · tableau de signes",
+   "tex": [
+    "P(x) \\; - \\; 0 \\; + \\; 0 \\; - \\; 0 \\; +",
+    "\\text{racines : } 0,\\ 1,\\ 2"
+   ],
+   "titre": "Le signe alterne à chaque racine simple",
+   "type": "etape"
+  },
+  "ex_simplification": {
+   "kicker": "Exemple résolu · simplification",
+   "tex": [
+    "x^2 - 4 = (x - 2)(x + 2)",
+    "F(x) = \\tfrac{(x - 2)(x + 2)}{(x - 1)(x - 2)}",
+    "= \\tfrac{x + 2}{x - 1} \\quad (x \\neq 2)"
+   ],
+   "titre": "Le facteur commun se simplifie",
+   "type": "etape"
+  },
+  "exemples": {
+   "kicker": "Exemples · le degré se lit sur le plus haut terme",
+   "tex": [
+    "P(x) = 3x^2 - 5x + 1 \\qquad \\text{degré } 2",
+    "Q(x) = -2x^3 + x \\qquad \\text{degré } 3",
+    "R(x) = 7 \\qquad \\text{degré } 0"
+   ],
+   "titre": "Trois polynômes, trois degrés",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Introduction",
+   "texte": "Deux familles, deux gestes : factoriser, puis lire un tableau de signes.",
+   "type": "phrase"
+  },
+  "limites": {
+   "kicker": "Comportement à l'infini",
+   "note": "Le terme dominant dicte limites et signe lointain.",
+   "tex": "P(x) \\sim a_n x^n \\qquad (x \\to \\pm\\infty)",
+   "titre": "Seul le terme dominant compte",
+   "type": "formule"
+  },
+  "methode": {
+   "kicker": "Méthode générale d'étude",
+   "tex": [
+    "\\text{1. domaine : résoudre } Q(x) = 0",
+    "\\text{2. factoriser, puis simplifier}",
+    "\\text{3. tableau de signes}",
+    "\\text{4. pôles et asymptotes}"
+   ],
+   "titre": "La méthode en quatre gestes",
+   "type": "etape"
+  },
+  "pole_trou": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Pôle ou trou : la simplification tranche",
+   "tex": [
+    "\\text{pôle : } x = 1 \\text{, asymptote verticale}",
+    "\\text{trou : } x = 2 \\text{, valeur interdite levée}"
+   ],
+   "titre": "Un pôle, un trou : ne pas les confondre",
+   "type": "etape"
+  },
+  "racines": {
+   "kicker": "Racines · factorisation",
+   "note": "Une racine, un facteur, un degré de moins.",
+   "tex": [
+    "P(r) = 0 \\implies P(x) = (x - r) Q(x)",
+    "\\deg Q = n - 1"
+   ],
+   "titre": "Une racine, un facteur",
+   "type": "etape"
+  },
+  "recap_final": {
+   "etapes": [
+    "Polynôme : degré, coefficients, racines",
+    "Racine r ⇒ facteur (x − r), degré moins un",
+    "Fraction rationnelle : domaine hors zéros de Q",
+    "Simplifier : pôle en un, trou en deux",
+    "Verticale x = 1, horizontale y = 1"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "signe_poly": {
+   "kicker": "Le signe d'un polynôme factorisé",
+   "tex": [
+    "P(x) = (x - r_1) (x - r_2) \\cdots (x - r_k)",
+    "\\text{chaque facteur change}",
+    "\\text{de signe en sa racine}"
+   ],
+   "titre": "Le signe se lit facteur par facteur",
+   "type": "etape"
+  },
+  "signe_rat": {
+   "kicker": "Exemple résolu · tableau de signes",
+   "tex": [
+    "x + 2 \\qquad - \\qquad 0 \\qquad + \\qquad +",
+    "x - 1 \\qquad - \\qquad - \\qquad 0 \\qquad +",
+    "F(x) \\qquad + \\qquad 0 \\qquad - \\qquad +"
+   ],
+   "titre": "Tableau de signes, de moins l'infini à plus l'infini",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "parabole_fig"
+   },
+   "kicker": "Mathématique · Fonctions polynômes et fractions rationnelles",
+   "sous": "Degré, racines et factorisation, puis domaine, pôles et asymptotes",
+   "titre": "Fonctions polynômes et fractions rationnelles",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Polynômes : degré, racines et factorisation"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux, les fractions rationnelles. Un quotient de polynômes, un domaine à déterminer, une simplification qui distingue le pôle du trou, et des asymptotes à repérer.",
+    "texte": "Partie 2 : fractions rationnelles, domaine, pôles et asymptotes."
+   },
+   "sous_titre": "Fractions rationnelles : domaine, pôles et asymptotes"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux fonctions polynômes et aux fractions rationnelles. Deux familles liées par une même idée, écrire, factoriser, puis étudier le signe.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Polynômes et fractions rationnelles : factoriser pour étudier."
+  },
+  {
+   "dit": "Un polynôme, ce sont des puissances de x additionnées avec des coefficients. Une fraction rationnelle, c'est un polynôme divisé par un autre polynôme. Tout le cours tient dans deux gestes, factoriser, puis lire un tableau de signes.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Fonction, puis quotient : deux gestes, factoriser et lire le signe."
+  },
+  {
+   "dit": "Commençons par la définition. Une fonction polynôme de degré n est une fonction définie sur tous les réels par P de x égale a indice n fois x puissance n, plus les termes suivants jusqu'à a indice un fois x plus a indice zéro, avec a indice n différent de zéro. Le nombre n est le degré, et les a indice i sont les coefficients.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "P(x) = aₙxⁿ + … + a₁x + a₀, aₙ ≠ 0"
+  },
+  {
+   "dit": "Trois exemples pour fixer le vocabulaire. Trois x au carré moins cinq x plus un est de degré deux. Moins deux x au cube plus x est de degré trois, le terme manquant en x au carré ne change rien. Sept tout seul est un polynôme constant, de degré zéro.",
+   "ecran": "exemples",
+   "id": "p04",
+   "texte": "Degré 2, degré 3, degré 0 : trois exemples."
+  },
+  {
+   "dit": "Selon le degré, la courbe change de visage. Au degré un, a x plus b est une fonction affine, sa courbe est une droite de coefficient directeur a. Au degré deux, a x au carré plus b x plus c dessine une parabole, dont le sommet a pour abscisse moins b sur deux a. Au-delà, les courbes se diversifient, mais le terme de plus haut degré garde la main.",
+   "ecran": "degres",
+   "id": "p05",
+   "texte": "Degré 1 : droite · Degré 2 : parabole."
+  },
+  {
+   "dit": "Aux extrémités, seul le terme de plus haut degré compte. Quand x tend vers plus ou moins l'infini, le polynôme se comporte comme son terme dominant, a indice n fois x puissance n. C'est lui qui donne le signe lointain et l'allure de la courbe.",
+   "ecran": "limites",
+   "id": "p06",
+   "texte": "À l'infini : seul aₙxⁿ compte."
+  },
+  {
+   "dit": "Un nombre r est une racine quand P de r vaut zéro. On peut alors mettre x moins r en facteur, et le quotient restant perd exactement un degré. Chaque racine consomme donc un facteur, et un polynôme de degré n possède au plus n racines réelles.",
+   "ecran": "racines",
+   "id": "p07",
+   "texte": "P(r) = 0 ⇒ P(x) = (x − r)·Q(x)."
+  },
+  {
+   "dit": "Une fois factorisé, le signe se lit facteur par facteur. Chaque facteur change de signe à sa racine, et le signe global est le produit des signes. C'est exactement ce que le tableau de signes organise.",
+   "ecran": "signe_poly",
+   "id": "p08",
+   "texte": "Signe = produit des signes des facteurs."
+  },
+  {
+   "dit": "Premier exemple résolu. Soit P de x égale x au cube moins trois x au carré plus deux x, à factoriser, puis à étudier en signe. On met d'abord x en facteur, puis on factorise le trinôme restant. On obtient x fois x moins un fois x moins deux.",
+   "ecran": "ex_factorisation",
+   "id": "p09",
+   "texte": "P(x) = x(x − 1)(x − 2) : factorisation complète."
+  },
+  {
+   "dit": "Les racines sont zéro, un et deux. Le signe alterne à chaque racine simple, moins avant zéro, plus entre zéro et un, moins entre un et deux, plus après deux. Aux racines elles-mêmes, le polynôme s'annule.",
+   "ecran": "ex_signe",
+   "id": "p10",
+   "texte": "Signe : −, 0, +, 0, −, 0, +."
+  },
+  {
+   "dit": "Conclusion, P de x est positif ou nul sur l'intervalle fermé de zéro à un, puis à partir de deux. Négatif ailleurs, nul aux racines, le tableau est complet.",
+   "ecran": "ex_conclusion",
+   "id": "p11",
+   "texte": "P(x) ≥ 0 sur [0; 1] ∪ [2; +∞[."
+  },
+  {
+   "dit": "Une fraction rationnelle est un quotient de deux polynômes, P de x sur Q de x. Son domaine est l'ensemble des réels privés des valeurs qui annulent le dénominateur, ce qu'on appelle les valeurs interdites.",
+   "ecran": "def_rat",
+   "id": "p12",
+   "texte": "F(x) = P(x)/Q(x) · domaine hors zéros de Q."
+  },
+  {
+   "dit": "La méthode générale tient en quatre gestes. Déterminer le domaine en résolvant Q de x égale zéro. Factoriser et simplifier si possible. Étudier le signe avec un tableau, numérateur et dénominateur. Enfin, repérer les pôles et les asymptotes éventuelles.",
+   "ecran": "methode",
+   "id": "p13",
+   "texte": "Méthode : domaine, simplification, signe, asymptotes."
+  },
+  {
+   "dit": "Deuxième exemple résolu. Soit F de x égale x au carré moins quatre sur x au carré moins trois x plus deux. Le dénominateur se factorise en x moins un fois x moins deux. Le domaine est donc tous les réels privés de un et de deux.",
+   "ecran": "ex_domaine",
+   "id": "p14",
+   "texte": "F(x) = (x²−4)/(x²−3x+2) · D = ℝ∖{1, 2}."
+  },
+  {
+   "dit": "On factorise aussi le numérateur, x au carré moins quatre égale x moins deux fois x plus deux. Le facteur x moins deux se simplifie, et il reste x plus deux sur x moins un, valable pour x différent de deux, puisque deux reste interdit au départ.",
+   "ecran": "ex_simplification",
+   "id": "p15",
+   "texte": "Simplification : (x−2) se simplifie, x = 2 reste interdit."
+  },
+  {
+   "dit": "C'est ici que tout se joue. Un est un pôle, le dénominateur simplifié s'y annule encore, la courbe part vers l'infini, c'est une asymptote verticale. Deux, en revanche, n'annule plus le dénominateur simplifié, c'est un trou, une valeur interdite levée par la simplification, pas une asymptote.",
+   "ecran": "pole_trou",
+   "id": "p16",
+   "texte": "x = 1 : pôle · x = 2 : trou, pas d'asymptote."
+  },
+  {
+   "dit": "Regardons enfin le comportement lointain. Quand x tend vers plus ou moins l'infini, F de x tend vers un, car les termes dominants du numérateur et du dénominateur sont tous deux en x au carré. La droite d'équation y égale un est donc une asymptote horizontale.",
+   "ecran": "asympt",
+   "id": "p17",
+   "texte": "x → ±∞ : F(x) → 1 · asymptote y = 1."
+  },
+  {
+   "dit": "Appliquons le tableau de signes à la forme simplifiée, x plus deux sur x moins un. Le numérateur s'annule en moins deux, le dénominateur en un. Ligne par ligne, de moins l'infini à plus l'infini, on lit plus, zéro, moins, puis plus pour F de x.",
+   "ecran": "signe_rat",
+   "id": "p18",
+   "texte": "Signe de (x+2)/(x−1) : +, 0, −, +."
+  },
+  {
+   "dit": "Conclusion, F de x est positive ou nulle sur l'intervalle de moins l'infini à moins deux fermé, puis après un, en gardant en tête le trou en deux, où la fonction n'est pas définie.",
+   "ecran": "concl_signe",
+   "id": "p19",
+   "texte": "F(x) ≥ 0 sur ]−∞; −2] ∪ ]1; +∞[, sauf le trou en 2."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement. Un polynôme se lit par son degré et ses racines, chaque racine donnant un facteur. Une fraction rationnelle se définit hors des zéros de son dénominateur. Sa simplification distingue le pôle du trou. Et ses asymptotes, verticale et horizontale, se lisent sur le dénominateur simplifié et sur le comportement lointain.",
+   "ecran": "recap_final",
+   "id": "p20",
+   "texte": "Polynômes et fractions rationnelles : à retenir."
+  }
+ ],
+ "titre": "Fonctions polynômes et fractions rationnelles"
+}
