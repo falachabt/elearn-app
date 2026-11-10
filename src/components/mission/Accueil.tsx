@@ -364,14 +364,10 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
 
       {/* Planning d'études (issue #65) : après la mission du jour, seulement quand l'élève a une date à venir. */}
       {echeance && idUtilisateur ? (
-        <Apparition delai={60}>
-          <CartePlanning idUtilisateur={idUtilisateur} />
-        </Apparition>
+        <CartePlanning idUtilisateur={idUtilisateur} />
       ) : null}
 
-      <Apparition delai={80}>
-        <AssistantConfiguration />
-      </Apparition>
+      <AssistantConfiguration />
 
       <Reprise />
 
