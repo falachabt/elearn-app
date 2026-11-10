@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { calculerSerie, chargerMission, jourLocal, lireAlerteSerie, lireDernierResultat, lireHistorique, noterAlerteSerie, type Mission, type ResultatMission } from '@/services/mission';
+import { calculerSerie, chargerMission, estMomentAlerteSerie, jourLocal, lireAlerteSerie, lireDernierResultat, lireHistorique, noterAlerteSerie, type Mission, type ResultatMission } from '@/services/mission';
 import { lireRythme } from '@/services/rythme';
 import { lireProfil, profilDepuisCompte, type Profil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
@@ -209,8 +209,8 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           setJoues(historique);
           setEtat((e) => ({ ...e, serie, faite }));
         }
-        // Série en danger à l'ouverture (mission du jour pas faite) : feuille ouverte toute seule, une fois par jour.
-        if (actif && serie > 0 && !faite && (await lireAlerteSerie()) !== jour) {
+        // Série en danger : seulement quand il reste au plus 40 % de la journée, une fois par jour.
+        if (actif && serie > 0 && !faite && estMomentAlerteSerie(maintenant) && (await lireAlerteSerie()) !== jour) {
           await noterAlerteSerie(jour);
           setSerieEnDanger(true);
           setFeuilleSerie(true);
