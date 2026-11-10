@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Award, ChevronDown, GraduationCap, Trophy } from 'lucide-react-native';
 import { router, useFocusEffect } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -10,6 +10,8 @@ import { lireRythme } from '@/services/rythme';
 import { lireProfil, profilDepuisCompte, type Profil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
 import { doitRappelerCompte, noterRappelCompte } from '@/services/rappels';
+import { lireEtatHorsLigne } from '@/services/horsLigne';
+import { doitProposerHorsLigne, noterPropositionHorsLigne, variantePourStatut, type VarianteProposition } from '@/services/propositionHorsLigne';
 import { getSupabase } from '@/services/supabase';
 import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -21,6 +23,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
+import { Feuille } from '../Feuille';
 import { FeuilleCompte, useInvite } from '../FeuilleCompte';
 import { Cloche } from '../notifications/Cloche';
 import { CompteARebours } from '../accueil/CompteARebours';
@@ -127,6 +130,15 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
   const [rappelCompte, setRappelCompte] = useState(false);
   const [joues, setJoues] = useState<string[]>([]);
   const [feuilleSerie, setFeuilleSerie] = useState(false);
+  const [proposition, setProposition] = useState<VarianteProposition | null>(null);
+  const feuilleSerieRef = useRef(false);
+  const rappelCompteRef = useRef(false);
+  useEffect(() => {
+    feuilleSerieRef.current = feuilleSerie;
+  }, [feuilleSerie]);
+  useEffect(() => {
+    rappelCompteRef.current = rappelCompte;
+  }, [rappelCompte]);
   const [serieEnDanger, setSerieEnDanger] = useState(false);
   // Prochaine échéance de la classe (issue #65) : null tant que la base n'a rien, ou pour un invité ou un concours.
   // Liée à la clé (classe, pays, session) qui l'a calculée : une valeur d'une autre classe ou session n'est jamais affichée.
@@ -157,6 +169,31 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       setTotalXp(info.total);
     });
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (!pret) return;
+      let actif = true;
+      void (async () => {
+        const [p, etatPack] = await Promise.all([lireProfil(), lireEtatHorsLigne()]);
+        if (!actif) return;
+        const ok = await doitProposerHorsLigne(
+          { invite, profilTermine: !!p?.termine, statutPack: etatPack?.statut ?? null, declencheur: pret === 'hors-ligne' || etat.faite !== null },
+          maintenant,
+        );
+        if (!actif || !ok || feuilleSerieRef.current || rappelCompteRef.current) return;
+        const variante = variantePourStatut(etatPack?.statut ?? null);
+        if (!variante) return;
+        await noterPropositionHorsLigne(maintenant);
+        if (!actif) return;
+        suivre('offline_prompt_shown', { variante });
+        setProposition(variante);
+      })().catch(() => {});
+      return () => {
+        actif = false;
+      };
+    }, [pret, invite, maintenant, etat.faite]),
+  );
 
   // Compte à rebours : seulement pour un élève connecté avec une classe et un pays. Une erreur ou une base vide cache la carte.
   useEffect(() => {
@@ -366,6 +403,32 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       }}
     />
     <FeuilleCompte raison={rappelCompte ? 'rappel' : null} onFermer={() => setRappelCompte(false)} onCompte={() => setRappelCompte(false)} />
+    <Feuille
+      ouverte={proposition !== null}
+      onFermer={() => setProposition(null)}
+      icone="cloud-download-outline"
+      titre={proposition === 'partiel' ? t('horsLigne.propositionTitrePartiel') : t('horsLigne.propositionTitre')}
+      texte={proposition === 'partiel' ? t('horsLigne.propositionTextePartiel') : t('horsLigne.propositionTexte')}
+      mention={t('horsLigne.propositionMention')}
+      actions={[
+        {
+          libelle: proposition === 'partiel' ? t('horsLigne.propositionBoutonPartiel') : t('horsLigne.propositionBouton'),
+          onPress: () => {
+            suivre('offline_prompt_answered', { choix: 'telecharger', variante: proposition ?? 'absent' });
+            setProposition(null);
+            router.push('/hors-ligne');
+          },
+        },
+        {
+          libelle: t('horsLigne.propositionPlusTard'),
+          variante: 'texte',
+          onPress: () => {
+            suivre('offline_prompt_answered', { choix: 'plus_tard', variante: proposition ?? 'absent' });
+            setProposition(null);
+          },
+        },
+      ]}
+    />
     </View>
   );
 }
