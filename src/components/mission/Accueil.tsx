@@ -1,16 +1,18 @@
 import { Ionicons } from '@expo/vector-icons';
+import { Award, ChevronDown, GraduationCap, Trophy } from 'lucide-react-native';
 import { router, useFocusEffect } from 'expo-router';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { calculerSerie, chargerMission, jourLocal, lireDernierResultat, lireHistorique, type Mission, type ResultatMission } from '@/services/mission';
+import { calculerSerie, chargerMission, estMomentAlerteSerie, jourLocal, lireAlerteSerie, lireDernierResultat, lireHistorique, noterAlerteSerie, type Mission, type ResultatMission } from '@/services/mission';
 import { lireRythme } from '@/services/rythme';
-import { lireProfil } from '@/services/profil';
+import { lireProfil, profilDepuisCompte, type Profil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
 import { doitRappelerCompte, noterRappelCompte } from '@/services/rappels';
+import { lireEtatHorsLigne } from '@/services/horsLigne';
+import { doitProposerHorsLigne, noterPropositionHorsLigne, variantePourStatut, type VarianteProposition } from '@/services/propositionHorsLigne';
 import { getSupabase } from '@/services/supabase';
-import { identiteDe } from '@/services/identite';
 import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -21,12 +23,23 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
+import { Feuille } from '../Feuille';
 import { FeuilleCompte, useInvite } from '../FeuilleCompte';
 import { Cloche } from '../notifications/Cloche';
+import { CompteARebours } from '../accueil/CompteARebours';
+import { CartePlanning } from '../planning/CartePlanning';
+import { lireCalendrierClasse, prochaineEcheance, type EcheanceClasse } from '@/services/calendrier';
+import { AvatarNiveau } from '../xp/AvatarNiveau';
 import { AssistantConfiguration } from './AssistantConfiguration';
+import { FeuilleSerie } from './FeuilleSerie';
 import { Reprise } from './Reprise';
+import { identiteDe } from '@/services/identite';
+import { ecouterGainXp, lireUserXp } from '@/services/xp';
 
 type Etat = { mission: Mission | null; serie: number; faite: ResultatMission | null };
+
+/** Exemple du compte à rebours en développement : une date dans 243 jours. Jamais utilisée en production. */
+const CIBLE_EXEMPLE = new Date(Date.now() + 243 * 86_400_000);
 
 /** Titre de la carte : trois lignes au plus (une leçon au titre très long ne pousse plus le reste de l'écran vers le bas). */
 const LIGNES_TITRE = 3;
@@ -39,24 +52,68 @@ export function titreMission(m: Mission | null): string | null {
 }
 
 /**
- * « Bonjour » ou « Bonsoir » seul : sur la même ligne que la série, l'éclair et la cloche, « Bonsoir Aïcha » ne tient
- * pas et se tronquait. Le prénom reste dans le libellé d'accessibilité, lu par le lecteur d'écran.
+ * Libellé court du profil affiché dans le sélecteur d'en-tête :
+ * - élève : classe seule (ex. 3e, Tle) sans le pays
+ * - concours : sigle seul (ex. ENS, Médecine) sans le pays
+ * - certification : sigle court de l'examen en capitales (ex. TOEIC)
  */
-function Salutation({ heure }: { heure: number }) {
+export function libelleProfil(profil: Profil | null): string {
+  if (!profil) return '3e';
+  if (profil.type === 'certification') return (profil.exam ?? 'toeic').toUpperCase();
+  if (profil.type === 'concours') {
+    return (
+      profil.concours?.sigle ??
+      (profil.niveau === 'ens'
+        ? 'ENS'
+        : profil.niveau === 'medecine'
+          ? 'Médecine'
+          : profil.niveau === 'ingenieurs'
+            ? 'Ingénieurs'
+            : profil.niveau ?? 'Concours')
+    );
+  }
+  const classe = profil.niveau || '3e';
+  const court = profil.serie?.nom ? profil.serie.nom.replace(/^(s[eé]rie|seconde|premi[eè]re|terminale)\s+/i, '').trim() : '';
+  return court && court.toLowerCase() !== classe.toLowerCase() ? `${classe} ${court}` : classe;
+}
+
+/**
+ * Sélecteur de classe, de programme ou de certification actuel : sous forme de menu select,
+ * un appui ouvre l'écran permettant de changer de parcours.
+ * Même gabarit et hauteur que les pastilles voisines (série, éclair, cloche).
+ */
+export function SelecteurClasse({ profil }: { profil: Profil | null }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { session } = useSession();
-  const prenom = identiteDe(session?.user).prenom;
-  const soir = heure >= 17;
+  const libelle = libelleProfil(profil);
+  const concours = profil?.type === 'concours';
+  const certification = profil?.type === 'certification';
+
   return (
-    <Text
-      accessibilityRole="header"
-      accessibilityLabel={prenom ? t(soir ? 'mission.bonsoirNom' : 'mission.bonjourNom', { prenom }) : undefined}
-      numberOfLines={1}
-      style={[typo.h1, styles.flex, { color: theme.texte.principal }]}
-    >
-      {t(soir ? 'mission.bonsoir' : 'mission.bonjour')}
-    </Text>
+    <View style={styles.zoneSelecteur}>
+      <Appui
+        accessibilityRole="button"
+        accessibilityLabel={t(certification ? 'classe.selecteurCertificationA11y' : 'classe.selecteurA11y', { classe: libelle })}
+        onPress={() => router.push('/profil/changer')}
+        rayon={rayon.s}
+        decalage={2}
+        hitSlop={4}
+      >
+        <View style={[styles.selecteur, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+          {concours ? (
+            <Trophy size={14} strokeWidth={2.2} color={theme.texte.principal} />
+          ) : certification ? (
+            <Award size={14} strokeWidth={2.2} color={theme.texte.principal} />
+          ) : (
+            <GraduationCap size={14} strokeWidth={2.2} color={theme.texte.principal} />
+          )}
+          <Text numberOfLines={1} style={[styles.texteSelecteur, { color: theme.texte.principal }]}>
+            {libelle}
+          </Text>
+          <ChevronDown size={14} strokeWidth={2.2} color={theme.texte.secondaire} />
+        </View>
+      </Appui>
+    </View>
   );
 }
 
@@ -64,10 +121,92 @@ function Salutation({ heure }: { heure: number }) {
 export function Accueil({ maintenant }: { maintenant?: Date }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const { session } = useSession();
   const [etat, setEtat] = useState<Etat>({ mission: null, serie: 0, faite: null });
+  const [profil, setProfil] = useState<Profil | null>(null);
+  const [totalXp, setTotalXp] = useState(0);
   const pret = useSessionPrete();
   const invite = useInvite();
   const [rappelCompte, setRappelCompte] = useState(false);
+  const [joues, setJoues] = useState<string[]>([]);
+  const [feuilleSerie, setFeuilleSerie] = useState(false);
+  const [proposition, setProposition] = useState<VarianteProposition | null>(null);
+  const feuilleSerieRef = useRef(false);
+  const rappelCompteRef = useRef(false);
+  useEffect(() => {
+    feuilleSerieRef.current = feuilleSerie;
+  }, [feuilleSerie]);
+  useEffect(() => {
+    rappelCompteRef.current = rappelCompte;
+  }, [rappelCompte]);
+  const [serieEnDanger, setSerieEnDanger] = useState(false);
+  // Prochaine échéance de la classe (issue #65) : null tant que la base n'a rien, ou pour un invité ou un concours.
+  // Liée à la clé (classe, pays, session) qui l'a calculée : une valeur d'une autre classe ou session n'est jamais affichée.
+  const [echeanceCalculee, setEcheanceCalculee] = useState<{ cle: string; echeance: EcheanceClasse | null } | null>(null);
+  const cleEcheance = !pret || pret === 'hors-ligne' || invite || profil?.type !== 'eleve' || !profil.niveau || !profil.pays ? null : `${pret}|${profil.niveau}|${profil.pays}`;
+  const echeance = cleEcheance && echeanceCalculee?.cle === cleEcheance ? echeanceCalculee.echeance : null;
+
+  const user = session?.user;
+  const idUtilisateur = user?.id;
+  const { nom, photo } = identiteDe(user);
+
+  useEffect(() => {
+    let actif = true;
+    void (async () => {
+      const p = await lireProfil();
+      const effectif = (!p || !p.niveau) && user ? (profilDepuisCompte(user) ?? p) : p;
+      if (actif && effectif) setProfil(effectif);
+    })();
+    return () => {
+      actif = false;
+    };
+    // idUtilisateur suffit pour recharger le profil lors d'un changement de compte sans relancer l'effet a chaque re-render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idUtilisateur]);
+
+  useEffect(() => {
+    return ecouterGainXp((info) => {
+      setTotalXp(info.total);
+    });
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (!pret) return;
+      let actif = true;
+      void (async () => {
+        const [p, etatPack] = await Promise.all([lireProfil(), lireEtatHorsLigne()]);
+        if (!actif) return;
+        const ok = await doitProposerHorsLigne(
+          { invite, profilTermine: !!p?.termine, statutPack: etatPack?.statut ?? null, declencheur: pret === 'hors-ligne' || etat.faite !== null },
+          maintenant,
+        );
+        if (!actif || !ok || feuilleSerieRef.current || rappelCompteRef.current) return;
+        const variante = variantePourStatut(etatPack?.statut ?? null);
+        if (!variante) return;
+        await noterPropositionHorsLigne(maintenant);
+        if (!actif) return;
+        suivre('offline_prompt_shown', { variante });
+        setProposition(variante);
+      })().catch(() => {});
+      return () => {
+        actif = false;
+      };
+    }, [pret, invite, maintenant, etat.faite]),
+  );
+
+  // Compte à rebours : seulement pour un élève connecté avec une classe et un pays. Une erreur ou une base vide cache la carte.
+  useEffect(() => {
+    if (!cleEcheance || !profil?.niveau || !profil.pays) return;
+    let actif = true;
+    const cle = cleEcheance;
+    lireCalendrierClasse(getSupabase(), profil.niveau, profil.pays)
+      .then((echeances) => actif && setEcheanceCalculee({ cle, echeance: prochaineEcheance(echeances, new Date()) }))
+      .catch(() => actif && setEcheanceCalculee({ cle, echeance: null }));
+    return () => {
+      actif = false;
+    };
+  }, [cleEcheance, profil?.niveau, profil?.pays]);
 
   // Rappel à l'invité de lier un compte pour ne pas perdre sa progression, quelques jours après la première ouverture.
   useFocusEffect(
@@ -92,19 +231,37 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       let actif = true;
       void (async () => {
         const jour = jourLocal(maintenant);
-        const [profil, historique, dernier, taille] = await Promise.all([lireProfil(), lireHistorique(), lireDernierResultat(), lireRythme()]);
+        const [p, historique, dernier, taille, xp] = await Promise.all([
+          lireProfil(),
+          lireHistorique(),
+          lireDernierResultat(),
+          lireRythme(),
+          lireUserXp(getSupabase(), idUtilisateur).catch(() => 0),
+        ]);
         const { serie } = calculerSerie(historique, jour);
         const faite = dernier?.jour === jour ? dernier : null;
-        if (actif) setEtat((e) => ({ ...e, serie, faite }));
+        if (actif) {
+          setProfil(p);
+          setTotalXp(xp);
+          setJoues(historique);
+          setEtat((e) => ({ ...e, serie, faite }));
+        }
+        // Série en danger : seulement quand il reste au plus 40 % de la journée, une fois par jour.
+        if (actif && serie > 0 && !faite && estMomentAlerteSerie(maintenant) && (await lireAlerteSerie()) !== jour) {
+          await noterAlerteSerie(jour);
+          setSerieEnDanger(true);
+          setFeuilleSerie(true);
+        }
         if (!pret) return;
         // Tirée dès l'accueil : la mission est prête (et jouable hors ligne) avant le premier appui.
         const mission = await chargerMission(getSupabase(), {
-          niveau: profil?.niveau ?? '3e',
-          pays: profil?.pays ?? 'CM',
+          niveau: p?.niveau ?? '3e',
+          pays: p?.pays ?? 'CM',
           vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') },
           jour,
           taille: taille ?? undefined,
-          concours: profil?.type === 'concours' ? profil.concours?.id : null,
+          concours: p?.type === 'concours' ? p.concours?.id : null,
+          ...(p?.type === 'eleve' && p.serie?.id ? { serie: p.serie.id } : {}),
         }).catch(() => null);
         // Un résultat d'une autre mission du jour (taille changée, nouvelle version) ne compte pas comme faite.
         const aJour = faite && mission && faite.total !== mission.questions.length ? null : faite;
@@ -113,31 +270,65 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       return () => {
         actif = false;
       };
-    }, [maintenant, t, pret]),
+    }, [maintenant, t, pret, idUtilisateur]),
   );
 
-  const heure = (maintenant ?? new Date()).getHours();
   const matieres = [...new Set(etat.mission?.questions.map((q) => q.libelleMatiere).filter((m): m is string => !!m) ?? [])].slice(0, 3);
   const surVert = theme.texte.surCouleur;
+  const elementCompteARebours =
+    echeance || __DEV__ ? (
+      <CompteARebours
+        type={echeance?.type ?? 'examen'}
+        cible={echeance?.dateCible ?? CIBLE_EXEMPLE}
+        libelle={
+          echeance
+            ? `${echeance.libelle} · ${echeance.dateCible.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}`
+            : 'EXEMPLE · BEPC'
+        }
+        estime={echeance ? echeance.statut === 'reprise' : true}
+      />
+    ) : undefined;
 
   return (
     <View style={styles.racine}>
-    <Ecran insetBas={false}>
+    <Ecran insetBas={false} pied={elementCompteARebours} piedStyle={elementCompteARebours ? styles.piedCompteARebours : undefined}>
       <Apparition>
         <View style={styles.entete}>
-          <Salutation heure={heure} />
+          <SelecteurClasse profil={profil} />
           {etat.serie > 0 ? (
-            <View accessible accessibilityLabel={t('mission.serieLibelle', { n: etat.serie })} style={[styles.serie, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-              <Ionicons name="flame" size={14} color={surVert} />
-              <Text style={[typo.etiquette, { color: surVert }]}>{t('mission.serie', { n: etat.serie })}</Text>
-            </View>
+            <Appui
+              accessibilityRole="button"
+              accessibilityLabel={t('mission.serieLibelle', { n: etat.serie })}
+              onPress={() => {
+                setSerieEnDanger(false);
+                setFeuilleSerie(true);
+              }}
+              rayon={rayon.s}
+              decalage={2}
+              hitSlop={4}
+            >
+              <View style={[styles.serie, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                <Ionicons name="flame" size={14} color={surVert} />
+                <Text style={[typo.etiquette, { color: surVert }]}>{t('mission.serie', { n: etat.serie })}</Text>
+              </View>
+            </Appui>
           ) : null}
           <CompteurCredits />
           <Cloche />
+          <Appui
+            accessibilityRole="button"
+            accessibilityLabel={t('onglets.moi')}
+            onPress={() => router.push('/moi')}
+            rayon={rayon.pilule}
+            decalage={0}
+            hitSlop={4}
+          >
+            <AvatarNiveau photo={photo} nom={nom} totalXp={totalXp} taille={38} />
+          </Appui>
         </View>
       </Apparition>
 
-      <Apparition delai={60}>
+      <Apparition delai={40}>
         <Carte style={{ backgroundColor: theme.marque.principale }}>
           <View style={styles.groupe}>
             <View style={styles.entete}>
@@ -171,6 +362,13 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         </Carte>
       </Apparition>
 
+      {/* Planning d'études (issue #65) : après la mission du jour, seulement quand l'élève a une date à venir. */}
+      {echeance && idUtilisateur ? (
+        <CartePlanning idUtilisateur={idUtilisateur} />
+      ) : null}
+
+      <AssistantConfiguration />
+
       <Reprise />
 
       <Apparition delai={120}>
@@ -183,13 +381,50 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
               <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('mission.photoTitre')}</Text>
               <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('mission.photoTexte')}</Text>
             </View>
-            <Ionicons name="chevron-forward" size={18} color={theme.texte.principal} />
+            <Ionicons name="chevron-forward" size={18} color={theme.texte.principal} style={styles.chevronPhoto} />
           </View>
         </Appui>
       </Apparition>
+      
     </Ecran>
-    <AssistantConfiguration />
+    <FeuilleSerie
+      ouverte={feuilleSerie}
+      onFermer={() => setFeuilleSerie(false)}
+      serie={etat.serie}
+      joues={joues}
+      enDanger={serieEnDanger}
+      onFaireMission={() => {
+        setFeuilleSerie(false);
+        router.push('/mission');
+      }}
+    />
     <FeuilleCompte raison={rappelCompte ? 'rappel' : null} onFermer={() => setRappelCompte(false)} onCompte={() => setRappelCompte(false)} />
+    <Feuille
+      ouverte={proposition !== null}
+      onFermer={() => setProposition(null)}
+      icone="cloud-download-outline"
+      titre={proposition === 'partiel' ? t('horsLigne.propositionTitrePartiel') : t('horsLigne.propositionTitre')}
+      texte={proposition === 'partiel' ? t('horsLigne.propositionTextePartiel') : t('horsLigne.propositionTexte')}
+      mention={t('horsLigne.propositionMention')}
+      actions={[
+        {
+          libelle: proposition === 'partiel' ? t('horsLigne.propositionBoutonPartiel') : t('horsLigne.propositionBouton'),
+          onPress: () => {
+            suivre('offline_prompt_answered', { choix: 'telecharger', variante: proposition ?? 'absent' });
+            setProposition(null);
+            router.push('/hors-ligne');
+          },
+        },
+        {
+          libelle: t('horsLigne.propositionPlusTard'),
+          variante: 'texte',
+          onPress: () => {
+            suivre('offline_prompt_answered', { choix: 'plus_tard', variante: proposition ?? 'absent' });
+            setProposition(null);
+          },
+        },
+      ]}
+    />
     </View>
   );
 }
@@ -205,6 +440,29 @@ const styles = StyleSheet.create({
   // Étiquettes de matières : deux lignes au plus (hauteur fixe par étiquette, le reste est rogné) ; un nom trop long se raccourcit (…).
   tags: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3], maxHeight: HAUTEUR_ETIQUETTE * 2 + espace[3], overflow: 'hidden' },
   tag: { height: HAUTEUR_ETIQUETTE, maxWidth: '100%', justifyContent: 'center', paddingHorizontal: espace[3], borderWidth: bord.normal, borderRadius: rayon.s },
-  photo: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
+  photo: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
+  chevronPhoto: { alignSelf: 'center' },
   icone: { width: 40, height: 40, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  zoneSelecteur: { flex: 1, flexDirection: 'row', alignItems: 'center' },
+  selecteur: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espace[2],
+    paddingHorizontal: espace[3],
+    paddingVertical: espace[2],
+    borderWidth: bord.normal,
+    borderRadius: rayon.s,
+  },
+  texteSelecteur: {
+    fontFamily: 'SpaceGrotesk-Bold',
+    fontSize: 13,
+    lineHeight: 16,
+    maxWidth: 160,
+  },
+  piedCompteARebours: {
+  paddingTop: espace[4],
+  paddingBottom: 0,
+  marginBottom: -espace[4],
+  gap: 0,
+  },
 });

@@ -1,0 +1,519 @@
+{
+ "cours": 5891,
+ "titre": "Équations différentielles : du premier ordre aux systèmes couplés",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Équations différentielles",
+   "titre": "Équations différentielles : du premier ordre aux systèmes couplés",
+   "sous": "Modéliser le changement : résoudre, prévoir, comprendre les oscillations et les systèmes",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Le monde change : les équations différentielles le décrivent.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 180
+   }
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Qu'est-ce qu'une équation différentielle ?",
+   "tex": "F\\left(x,\\ y,\\ y',\\ \\ldots,\\ y^{(n)}\\right) = 0",
+   "note": "L'inconnue est une fonction : résoudre, c'est trouver toutes les fonctions solutions."
+  },
+  "chute": {
+   "type": "etape",
+   "kicker": "Premier exemple : la chute d'une bille",
+   "titre": "L'accélération constante, intégrée deux fois",
+   "tex": [
+    "x'' = -g",
+    "x(t) = -\\tfrac{g\\,t^2}{2} + v_0\\,t + x_0"
+   ]
+  },
+  "classement": {
+   "type": "etape",
+   "kicker": "Classer une équation différentielle",
+   "titre": "Trois questions : ordre, linéarité, homogénéité",
+   "tex": [
+    "\\text{ordre : la plus haute dérivée présente}",
+    "y' + 2y = x \\quad \\text{linéaire}",
+    "y' + y^2 = 0 \\quad \\text{non linéaire}"
+   ]
+  },
+  "forme_lineaire": {
+   "type": "formule",
+   "kicker": "Linéaire du premier ordre : forme générale",
+   "tex": "y' + p(x)\\,y = q(x)",
+   "note": "Exemple : p(x) = 2x et q(x) = x² · Le terme y², lui, briserait la linéarité."
+  },
+  "separables": {
+   "type": "formule",
+   "kicker": "Premier ordre : variables séparables",
+   "tex": "y' = h(x)\\,g(y)",
+   "note": "On sépare : les y d'un côté, les x de l'autre, puis on intègre les deux membres.",
+   "anim": {
+    "nom": "champ_pentes_fig",
+    "hauteur": 170
+   }
+  },
+  "ex_separable": {
+   "type": "etape",
+   "kicker": "Exemple résolu : variables séparables",
+   "titre": "Séparer, intégrer, exponentier",
+   "tex": [
+    "y' = x\\,y",
+    "\\tfrac{1}{y}\\,dy = x\\,dx",
+    "\\ln|y| = \\tfrac{x^2}{2} + C",
+    "y = A\\,e^{x^2/2}"
+   ]
+  },
+  "facteur": {
+   "type": "etape",
+   "kicker": "Premier ordre linéaire : le facteur intégrant",
+   "titre": "Multiplier pour faire apparaître une dérivée de produit",
+   "tex": [
+    "\\mu(x) = e^{\\int p(x)\\,dx}",
+    "\\left(\\mu\\,y\\right)' = \\mu\\,q",
+    "y = \\tfrac{1}{\\mu}\\int \\mu\\,q\\,dx"
+   ]
+  },
+  "croissance": {
+   "type": "formule",
+   "kicker": "Modèle fondateur : croissance et décroissance",
+   "tex": "P(t) = P_0\\,e^{kt}",
+   "note": "L'équation : dP/dt = kP · k positif : croissance ; k négatif : décroissance.",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_bacteries": {
+   "type": "etape",
+   "kicker": "Exemple chiffré : une population de bactéries",
+   "titre": "Mille bactéries, deux pour cent par heure",
+   "tex": [
+    "P_0 = 1000 \\qquad k = 0{,}02",
+    "P(10) = 1000\\,e^{0{,}02 \\times 10} = 1000\\,e^{0{,}2}",
+    "P(10) \\approx 1221\\ \\text{bactéries}"
+   ]
+  },
+  "melange": {
+   "type": "etape",
+   "kicker": "Mélange et décroissance : même famille",
+   "titre": "Un réservoir qui se dilue, un isotope qui s'éteint",
+   "tex": [
+    "\\tfrac{dC}{dt} = -0{,}02\\,C \\qquad C(0) = 5",
+    "C(t) = 5\\,e^{-0{,}02\\,t}",
+    "C(10) \\approx 4{,}09\\ \\text{g/L}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Résoudre : trouver la fonction inconnue",
+    "Classer : ordre, linéarité, homogénéité",
+    "Séparables : séparer, intégrer, exponentier",
+    "Linéaire : le facteur intégrant rend exact",
+    "Croissance et décroissance : exponentielles"
+   ]
+  },
+  "forme_second": {
+   "type": "formule",
+   "kicker": "Second ordre : forme générale",
+   "tex": "a(x)\\,y'' + b(x)\\,y' + c(x)\\,y = f(x)",
+   "note": "Homogène si f(x) = 0 · Le ressort : m y'' + k y = 0.",
+   "anim": {
+    "nom": "ressort",
+    "hauteur": 200
+   }
+  },
+  "caracteristique": {
+   "type": "formule",
+   "kicker": "Coefficients constants : l'équation caractéristique",
+   "tex": "a\\,r^2 + b\\,r + c = 0",
+   "note": "On cherche des solutions en e puissance r x : chaque racine donne une solution."
+  },
+  "trois_cas": {
+   "type": "etape",
+   "kicker": "Les trois cas de racines",
+   "titre": "Le discriminant décide de la forme des solutions",
+   "tex": [
+    "r_1 \\neq r_2 :\\quad y = C_1 e^{r_1 x} + C_2 e^{r_2 x}",
+    "r \\text{ double} :\\quad y = (C_1 + C_2 x)\\,e^{r x}",
+    "\\alpha \\pm i\\beta :\\quad y = e^{\\alpha x}\\left[C_1 \\cos(\\beta x) + C_2 \\sin(\\beta x)\\right]"
+   ]
+  },
+  "ex_amorti": {
+   "type": "etape",
+   "kicker": "Exemple résolu : des racines complexes",
+   "titre": "Une oscillation qui s'éteint",
+   "tex": [
+    "y'' + 2y' + 5y = 0 \\qquad \\Delta = -16",
+    "r = -1 \\pm 2i",
+    "y = e^{-x}\\left[C_1 \\cos(2x) + C_2 \\sin(2x)\\right]"
+   ],
+   "anim": {
+    "nom": "amortie",
+    "hauteur": 120
+   }
+  },
+  "ex_conditions": {
+   "type": "etape",
+   "kicker": "Exemple résolu : avec conditions initiales",
+   "titre": "Les constantes se fixent à la fin",
+   "tex": [
+    "r^2 - 4r + 3 = 0 \\quad \\Rightarrow \\quad r = 1 \\text{ ou } 3",
+    "y = C_1 e^{x} + C_2 e^{3x}",
+    "C_1 + C_2 = 1, \\quad C_1 + 3C_2 = 2",
+    "y = \\tfrac{1}{2} e^{x} + \\tfrac{1}{2} e^{3x}"
+   ]
+  },
+  "non_homogene": {
+   "type": "etape",
+   "kicker": "Second ordre non homogène",
+   "titre": "Solution homogène plus solution particulière",
+   "tex": [
+    "y = y_h + y_p",
+    "\\text{variation des constantes : } y_p = u_1 y_1 + u_2 y_2",
+    "\\text{la force extérieure } f(x) \\text{ crée la réponse forcée}"
+   ]
+  },
+  "mhs_eq": {
+   "type": "formule",
+   "kicker": "Le mouvement harmonique simple",
+   "tex": "m\\,x'' + k\\,x = 0 \\qquad \\omega = \\sqrt{\\tfrac{k}{m}}",
+   "note": "Masse et ressort, ou pendule aux petits angles : la même équation.",
+   "anim": {
+    "nom": "ressort",
+    "hauteur": 200
+   }
+  },
+  "mhs_sol": {
+   "type": "formule",
+   "kicker": "La solution du mouvement harmonique simple",
+   "tex": "x(t) = A\\,\\cos(\\omega t + \\varphi)",
+   "note": "Période T = 2π/ω · Un pendule d'un mètre : T vaut environ deux secondes.",
+   "anim": {
+    "nom": "sinusoide",
+    "hauteur": 200
+   }
+  },
+  "amorti_force": {
+   "type": "formule",
+   "kicker": "Amortissement et oscillations forcées",
+   "tex": "m\\,x'' + b\\,x' + k\\,x = F(t)",
+   "note": "Selon b : sous-amorti, critique ou sur-amorti · Circuits RLC : même structure.",
+   "anim": {
+    "nom": "amortie",
+    "hauteur": 180
+   }
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Second ordre : a y'' + b y' + c y = f",
+    "Caractéristique : a r² + b r + c = 0",
+    "Trois cas selon les racines de l'équation",
+    "Non homogène : homogène plus particulière",
+    "MHS : sinus, période deux pi sur oméga"
+   ]
+  },
+  "bernoulli": {
+   "type": "formule",
+   "kicker": "Non linéaire : l'équation de Bernoulli",
+   "tex": "y' + P(x)\\,y = Q(x)\\,y^n",
+   "note": "n différent de zéro et de un · La substitution z = y puissance un moins n la rend linéaire."
+  },
+  "ex_bernoulli": {
+   "type": "etape",
+   "kicker": "Exemple résolu : une équation de Bernoulli",
+   "titre": "Un changement d'inconnue, et tout devient linéaire",
+   "tex": [
+    "y' + y = x\\,y^2 \\qquad n = 2",
+    "z = \\tfrac{1}{y} \\quad \\Rightarrow \\quad z' - z = -x",
+    "z = x + 1 + C\\,e^{x}",
+    "y = \\tfrac{1}{x + 1 + C\\,e^{x}}"
+   ]
+  },
+  "edp": {
+   "type": "formule",
+   "kicker": "Plusieurs variables : les dérivées partielles",
+   "tex": "\\frac{\\partial u}{\\partial t} = \\alpha\\,\\nabla^2 u",
+   "note": "L'équation de la chaleur : une EDP · Température selon le lieu et le temps."
+  },
+  "systemes": {
+   "type": "etape",
+   "kicker": "Les systèmes : des équations couplées",
+   "titre": "Lotka et Volterra : proies et prédateurs",
+   "tex": [
+    "x' = a\\,x - b\\,x\\,y",
+    "y' = -c\\,y + d\\,x\\,y",
+    "\\text{chaque population pilote l'autre}"
+   ],
+   "anim": {
+    "nom": "phase_lv_fig",
+    "hauteur": 110
+   }
+  },
+  "jacobienne": {
+   "type": "etape",
+   "kicker": "Systèmes linéaires : valeurs propres et stabilité",
+   "titre": "La matrice du système décide du comportement",
+   "tex": [
+    "J = \\begin{pmatrix} a_{11} & a_{12} \\\\ a_{21} & a_{22} \\end{pmatrix}",
+    "\\text{stable si toutes les parties réelles sont négatives}"
+   ]
+  },
+  "ex_systeme": {
+   "type": "etape",
+   "kicker": "Exemple résolu : un système linéaire",
+   "titre": "Valeurs propres deux et trois, vecteurs propres associés",
+   "tex": [
+    "x' = x + 2y \\qquad y' = -x + 4y",
+    "\\lambda^2 - 5\\lambda + 6 = 0 \\quad \\Rightarrow \\quad \\lambda = 2,\\ 3",
+    "v_2 = (2,\\ 1), \\quad v_3 = (1,\\ 1)",
+    "x = 2C_1 e^{2t} + C_2 e^{3t}, \\quad y = C_1 e^{2t} + C_2 e^{3t}"
+   ]
+  },
+  "chimie": {
+   "type": "etape",
+   "kicker": "Les systèmes au travail : la cinétique chimique",
+   "titre": "Trois concentrations, trois équations liées",
+   "tex": [
+    "\\tfrac{d[A]}{dt} = -k\\,[A]\\,[B]",
+    "\\tfrac{d[B]}{dt} = -k\\,[A]\\,[B]",
+    "\\tfrac{d[C]}{dt} = +k\\,[A]\\,[B]"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Premier ordre : séparables, facteur intégrant",
+    "Modèles : exponentielles, mélanges, circuits",
+    "Second ordre : l'équation caractéristique",
+    "Oscillations : MHS, amortissement, forçage",
+    "Non linéaire et systèmes : coupler, linéariser"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux équations différentielles, les équations du changement. Partout où une grandeur évolue, sa vitesse de variation obéit à une loi : une population qui croît, un objet qui refroidit, une masse qui oscille au bout d'un ressort. Nous partirons de la définition et du classement de ces équations, nous résoudrons celles du premier ordre avec leurs modèles de croissance et de décroissance, puis celles du second ordre, jusqu'au mouvement harmonique simple. Nous terminerons par les équations non linéaires et les systèmes couplés, ceux des proies et des prédateurs.",
+   "texte": "Modéliser le changement : les équations différentielles.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Une équation ordinaire cherche un nombre inconnu. Ici, l'inconnue est une fonction entière : on connaît la règle qui gouverne ses variations, et l'on veut retrouver son évolution complète. La vitesse est la dérivée de la position, l'accélération est la dérivée de la vitesse : relier une fonction à ses dérivées, c'est décrire un monde dynamique au lieu d'un monde figé. C'est pour cela que ces équations irriguent la physique, la biologie, la chimie et l'économie.",
+   "texte": "L'inconnue n'est plus un nombre : c'est une fonction.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Définition précise : une équation différentielle est une relation entre une variable, une fonction inconnue de cette variable et une ou plusieurs de ses dérivées. Résoudre une telle équation, c'est trouver toutes les fonctions qui la vérifient. En général, la solution n'est pas unique : elle contient des constantes arbitraires, et ce sont les conditions initiales, la valeur de la fonction et parfois de sa dérivée en un point, qui choisissent la solution correspondant à une situation donnée.",
+   "texte": "Relier une fonction à ses dérivées : voilà l'équation.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Premier exemple, la chute d'une bille. Son accélération est constante : la dérivée seconde de sa position vaut moins gé, où gé est l'accélération de la pesanteur. Pour résoudre, on intègre deux fois : la vitesse est une fonction affine du temps, et la position une fonction quadratique, avec deux constantes, la position initiale et la vitesse initiale. Vous connaissez déjà cette parabole de chute libre : elle n'est rien d'autre que la solution d'une équation différentielle du second ordre.",
+   "texte": "La chute libre : intégrer deux fois l'accélération.",
+   "ecran": "chute"
+  },
+  {
+   "id": "p05",
+   "dit": "Avant de résoudre, on classe. L'ordre d'une équation est celui de sa plus haute dérivée : premier ordre si seule la dérivée première apparaît, second ordre si la dérivée seconde intervient. Une équation est linéaire si la fonction et ses dérivées n'apparaissent qu'à la puissance un, sans produit entre elles et sans fonction composée : un terme en igrec au carré la rend non linéaire, et donc bien plus difficile. Enfin, elle est homogène si le terme indépendant, celui qui ne contient ni la fonction ni ses dérivées, est nul. Retenez le réflexe de l'exercice type : devant chaque équation, annoncer son ordre, sa linéarité et son homogénéité.",
+   "texte": "Trois questions pour classer chaque équation.",
+   "ecran": "classement"
+  },
+  {
+   "id": "p06",
+   "dit": "Concentrons-nous sur le premier ordre linéaire. Sa forme générale s'écrit : dérivée de igrec, plus pé de ixe fois igrec, égale ku de ixe, où pé et ku sont des fonctions connues. Par exemple, avec pé de ixe égal à deux ixe et ku de ixe égal à ixe au carré, l'équation est bien linéaire. En revanche, un terme en igrec au carré détruirait la linéarité. Cette forme n'est pas un hasard : c'est exactement celle que la méthode du facteur intégrant va résoudre dans tous les cas, dans quelques minutes.",
+   "texte": "La forme à reconnaître : y' + p(x)y = q(x).",
+   "ecran": "forme_lineaire"
+  },
+  {
+   "id": "p07",
+   "dit": "Première méthode, la plus simple : les variables séparables. Quand la dérivée s'écrit comme un produit d'une fonction de ixe par une fonction de igrec, on peut séparer les variables : tous les igrec d'un côté de l'égalité, tous les ixe de l'autre. Il ne reste qu'à intégrer chaque membre séparément, puis à isoler igrec si c'est possible. Toute la difficulté consiste à repérer la factorisation qui rend la séparation possible.",
+   "texte": "Séparer les variables, puis intégrer chaque côté.",
+   "ecran": "separables"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple complet : résoudre dérivée de igrec égale ixe fois igrec. L'équation est séparable : un sur igrec, fois dé igrec, égale ixe dé ixe. On intègre : le logarithme de la valeur absolue de igrec vaut ixe au carré sur deux, plus une constante. On exponentie les deux membres : igrec est une constante arbitraire fois l'exponentielle de ixe au carré sur deux. Attention au piège classique : le sur deux appartient à l'exposant, il ne sort pas devant l'exponentielle. La vérification est immédiate : dériver cette solution redonne bien ixe fois igrec.",
+   "texte": "Exemple : y = A·e^(x²/2), le 2 reste dans l'exposant.",
+   "ecran": "ex_separable"
+  },
+  {
+   "id": "p09",
+   "dit": "Deuxième méthode, pour les équations linéaires qui ne se séparent pas : le facteur intégrant. On multiplie toute l'équation par une fonction mu de ixe, choisie pour que le membre de gauche devienne exactement la dérivée du produit mu fois igrec. Ce choix impose mu égal à l'exponentielle d'une primitive de pé. Après multiplication, on intègre les deux membres, puis on divise par mu. La méthode est systématique : identifier pé et ku, calculer mu, multiplier, intégrer. Elle résout toutes les équations linéaires du premier ordre.",
+   "texte": "Le facteur intégrant transforme le membre de gauche.",
+   "ecran": "facteur"
+  },
+  {
+   "id": "p10",
+   "dit": "Ces méthodes servent d'abord à modéliser. Le modèle fondateur : une population dont la variation est proportionnelle à son effectif. La dérivée de pé par rapport au temps vaut ka fois pé. C'est une équation séparable, et sa solution est une exponentielle : la population initiale, fois l'exponentielle de ka té. Si ka est positif, c'est une croissance exponentielle ; si ka est négatif, le même modèle décrit une décroissance, comme celle d'une substance radioactive, caractérisée par sa demi-vie, le temps au bout duquel la moitié a disparu.",
+   "texte": "Un modèle, deux destins : croître ou décroître.",
+   "ecran": "croissance"
+  },
+  {
+   "id": "p11",
+   "dit": "Exemple chiffré, tiré du cours : une population de bactéries compte mille individus, avec un taux de croissance de deux pour cent par heure. La population initiale vaut mille et ka vaut zéro virgule zéro deux. Après dix heures, la formule donne mille fois l'exponentielle de zéro virgule zéro deux fois dix, soit mille fois l'exponentielle de zéro virgule deux, environ mille deux cent vingt et une bactéries. Retenez la démarche : traduire l'énoncé en population initiale et en taux, puis appliquer la formule en vérifiant l'ordre de grandeur du résultat.",
+   "texte": "Mille bactéries deviennent environ mille deux cent vingt et une.",
+   "ecran": "ex_bacteries"
+  },
+  {
+   "id": "p12",
+   "dit": "Même famille de modèles pour le mélange : un réservoir de cent litres contient une solution à cinq grammes de sel par litre. On y injecte de l'eau pure, et la solution s'écoule au même débit de deux litres par minute. La concentration vérifie une équation linéaire très simple : sa dérivée vaut moins zéro virgule zéro deux fois la concentration. La solution est donc cinq fois l'exponentielle de moins zéro virgule zéro deux té, et après dix minutes, la concentration vaut environ quatre virgule zéro neuf grammes par litre. La décroissance radioactive suit exactement la même loi, avec une constante tirée de la demi-vie.",
+   "texte": "Dilution et radioactivité : la même exponentielle.",
+   "ecran": "melange"
+  },
+  {
+   "id": "p13",
+   "dit": "Récapitulons cette première partie. Résoudre une équation différentielle, c'est trouver une fonction, et les conditions initiales fixent les constantes. On classe chaque équation par son ordre, sa linéarité et son homogénéité. Au premier ordre, deux méthodes suffisent presque toujours : séparer les variables quand c'est possible, et le facteur intégrant pour les équations linéaires. Enfin, le modèle exponentiel gouverne la croissance, la décroissance, les mélanges et de nombreux phénomènes du premier ordre.",
+   "texte": "L'essentiel de la partie 1.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p14",
+   "dit": "Passons au second ordre : la dérivée seconde entre en jeu. Ces équations décrivent les systèmes où l'accélération dépend de la position et de la vitesse : un ressort, un pendule, un circuit électrique. La forme générale linéaire fait intervenir la dérivée seconde, la dérivée première et la fonction elle-même, avec un second membre éf de ixe qui représente une excitation extérieure. Si ce second membre est nul, l'équation est homogène : le système évolue librement, sans apport extérieur. C'est par ce cas que commence la résolution.",
+   "texte": "Le second ordre : position, vitesse et accélération.",
+   "ecran": "forme_second"
+  },
+  {
+   "id": "p15",
+   "dit": "Pour les coefficients constants, il existe une méthode d'une élégance redoutable. On cherche des solutions de la forme exponentielle de ère ixe. En reportant ce candidat dans l'équation, l'exponentielle se factorise et il reste une simple équation du second degré en ère, appelée équation caractéristique : a ère au carré, plus bé ère, plus cé, égale zéro. Résoudre l'équation différentielle se ramène donc à résoudre une équation polynomiale, dont les racines dictent la forme de toutes les solutions.",
+   "texte": "L'équation caractéristique ramène tout au second degré.",
+   "ecran": "caracteristique"
+  },
+  {
+   "id": "p16",
+   "dit": "Trois cas se présentent, selon les racines. Si l'équation caractéristique a deux racines réelles distinctes, la solution générale est une combinaison de deux exponentielles, une par racine. Si la racine est double, une seule exponentielle ne suffit pas : la seconde solution fait apparaître un facteur ixe devant l'exponentielle. Si les racines sont complexes conjuguées, la solution devient une exponentielle, qui règle la croissance ou l'amortissement, multipliée par une combinaison de cosinus et de sinus, qui règle l'oscillation. C'est le discriminant qui choisit le régime.",
+   "texte": "Trois cas : exponentielles, racine double, oscillations.",
+   "ecran": "trois_cas"
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple du cours : igrec seconde, plus deux igrec prime, plus cinq igrec, égale zéro. L'équation caractéristique est ère au carré, plus deux ère, plus cinq, égale zéro. Son discriminant vaut quatre moins vingt, soit moins seize : les racines sont complexes, moins un plus deux i, et moins un moins deux i. La partie réelle, moins un, donne l'exponentielle décroissante ; la partie imaginaire, deux, donne la pulsation. La solution est donc l'exponentielle de moins ixe, multipliée par une combinaison de cosinus deux ixe et de sinus deux ixe : une oscillation amortie, comme un pendule dont l'amplitude s'éteint peu à peu.",
+   "texte": "Racines −1 ± 2i : une oscillation amortie.",
+   "ecran": "ex_amorti"
+  },
+  {
+   "id": "p18",
+   "dit": "Dernier pas : fixer les constantes par les conditions initiales. Exemple : igrec seconde, moins quatre igrec prime, plus trois igrec, égale zéro, avec igrec de zéro égal à un et igrec prime de zéro égal à deux. L'équation caractéristique donne deux racines, un et trois, donc la solution générale combine l'exponentielle de ixe et l'exponentielle de trois ixe. La première condition donne la somme des constantes égale à un ; la dérivée donne une seconde équation. On trouve deux constantes égales à un demi, et la solution particulière s'écrit un demi d'exponentielle de ixe, plus un demi d'exponentielle de trois ixe. Vérifiez toujours en dérivant : le contrôle prend dix secondes.",
+   "texte": "Les conditions initiales fixent les deux constantes.",
+   "ecran": "ex_conditions"
+  },
+  {
+   "id": "p19",
+   "dit": "Reste le cas non homogène, quand une force extérieure agit sur le système. La structure de la solution est un théorème à connaître par cœur : la solution générale de l'équation complète est la somme de la solution générale de l'équation homogène associée et d'une solution particulière de l'équation complète. Pour trouver cette solution particulière, la méthode générale est la variation des constantes : on part des deux solutions de l'homogène, et l'on cherche leurs coefficients comme des fonctions, déterminées par des formules qui font intervenir le second membre. Retenez surtout l'architecture : réponse libre, plus réponse forcée.",
+   "texte": "Non homogène : solution libre plus solution forcée.",
+   "ecran": "non_homogene"
+  },
+  {
+   "id": "p20",
+   "dit": "L'application reine du second ordre est le mouvement harmonique simple. Une masse accrochée à un ressort vérifie : la masse fois l'accélération, plus la raideur fois le déplacement, égale zéro. Son équation caractéristique a des racines imaginaires pures, plus ou moins i fois oméga, où oméga, la pulsation, est la racine carrée du rapport de la raideur à la masse. Le pendule simple, pour de petites oscillations, obéit à la même équation, avec une raideur équivalente liée à la pesanteur et à la longueur du fil.",
+   "texte": "Le ressort et le pendule : la même équation.",
+   "ecran": "mhs_eq"
+  },
+  {
+   "id": "p21",
+   "dit": "La solution est une oscillation sinusoïdale pure : le déplacement est une amplitude, fois le cosinus de oméga té plus une phase. La période vaut deux pi divisé par oméga : elle ne dépend ni de l'amplitude ni des conditions initiales, seulement du système lui-même. Application : un pendule d'un mètre de long a une pulsation égale à la racine carrée de gé, environ trois virgule un radians par seconde, donc une période d'environ deux secondes. C'est le pendule qui bat la seconde, celui des horloges anciennes : chaque aller-retour dure deux secondes.",
+   "texte": "Une période fixe : environ deux secondes pour un mètre.",
+   "ecran": "mhs_sol"
+  },
+  {
+   "id": "p22",
+   "dit": "Le modèle idéal ignore les frottements. En réalité, une force d'amortissement, proportionnelle à la vitesse, s'ajoute au ressort, et une force extérieure peut exciter le système : c'est l'équation de l'oscillateur amorti et forcé. Selon la taille du coefficient d'amortissement, trois régimes apparaissent : sous-amorti, l'oscillation s'éteint progressivement ; critique, le retour à l'équilibre est le plus rapide sans oscillation ; sur-amorti, le retour est lent et sans oscillation. Le circuit R L C, avec résistance, inductance et capacité, vérifie exactement la même équation : la charge du condensateur joue le rôle du déplacement.",
+   "texte": "Amorti ou forcé : les trois régimes d'oscillation.",
+   "ecran": "amorti_force"
+  },
+  {
+   "id": "p23",
+   "dit": "Récapitulons cette deuxième partie. Au second ordre à coefficients constants, tout passe par l'équation caractéristique : deux racines réelles donnent des exponentielles, une racine double fait apparaître un facteur ixe, et des racines complexes donnent des oscillations, amorties si la partie réelle est négative. Pour une équation non homogène, on ajoute une solution particulière à la solution homogène. Et le mouvement harmonique simple est le cas pur des racines imaginaires : une sinusoïde de période fixée par le système.",
+   "texte": "L'essentiel de la partie 2.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p24",
+   "dit": "Sortons maintenant du monde linéaire. Une équation non linéaire ne respecte plus le principe de superposition : la somme de deux solutions n'est en général plus une solution, et il n'existe aucune méthode universelle. Certaines familles, pourtant, se ramènent au linéaire par un changement d'inconnue astucieux. La plus célèbre est l'équation de Bernoulli : la dérivée, plus une fonction fois igrec, égale une fonction fois une puissance de igrec. La substitution zède égal à igrec puissance un moins ène la transforme en une équation linéaire du premier ordre, que le facteur intégrant sait résoudre.",
+   "texte": "Bernoulli : un changement d'inconnue rend linéaire.",
+   "ecran": "bernoulli"
+  },
+  {
+   "id": "p25",
+   "dit": "Exemple complet : igrec prime, plus igrec, égale ixe fois igrec au carré. C'est une équation de Bernoulli de puissance deux. On pose donc zède égal à un sur igrec. En divisant l'équation par igrec au carré, elle devient : zède prime, moins zède, égale moins ixe, une équation linéaire. Le facteur intégrant la résout et donne zède égal à ixe, plus un, plus une constante fois l'exponentielle de ixe. On revient alors à igrec, l'inverse de zède : un, divisé par ixe plus un, plus la constante fois l'exponentielle de ixe. Le réflexe à garder : devant une puissance de igrec au second membre, pensez Bernoulli.",
+   "texte": "Exemple Bernoulli : y = 1/(x + 1 + C·e^x).",
+   "ecran": "ex_bernoulli"
+  },
+  {
+   "id": "p26",
+   "dit": "Élargissons encore : quand la grandeur dépend de plusieurs variables, par exemple du temps et de la position, les dérivées deviennent des dérivées partielles, et l'on parle d'équations aux dérivées partielles. L'exemple classique est l'équation de la chaleur : la dérivée de la température par rapport au temps est proportionnelle à son laplacien, qui mesure son écart à la moyenne de son voisinage. Là où une équation ordinaire décrit une évolution dans le temps, une équation aux dérivées partielles décrit un champ qui évolue dans l'espace et le temps : la difficulté monte d'un cran, et les méthodes aussi.",
+   "texte": "La chaleur : une équation aux dérivées partielles.",
+   "ecran": "edp"
+  },
+  {
+   "id": "p27",
+   "dit": "Dernière étape : les systèmes d'équations différentielles. Souvent, plusieurs grandeurs évoluent ensemble et se pilotent mutuellement : il faut alors une équation par grandeur, et les équations sont couplées. Le modèle historique est celui de Lotka et Volterra, pour des proies et leurs prédateurs. Sans prédateurs, les proies croissent exponentiellement ; les rencontres avec les prédateurs les font diminuer. Sans proies, les prédateurs déclinent ; les rencontres les font croître. Le résultat est célèbre : les deux populations oscillent en déphasage, les prédateurs suivant les proies avec un temps de retard, sans jamais s'éteindre dans ce modèle idéal.",
+   "texte": "Proies et prédateurs : deux équations couplées.",
+   "ecran": "systemes"
+  },
+  {
+   "id": "p28",
+   "dit": "Pour analyser un système, l'outil central est la matrice formée des coefficients, ou, pour un système non linéaire, la matrice jacobienne des dérivées partielles, évaluée en un point d'équilibre : c'est la linéarisation. Les valeurs propres de cette matrice racontent le comportement au voisinage de l'équilibre. Si toutes leurs parties réelles sont négatives, les trajectoires reviennent vers l'équilibre : le système est stable. Si l'une d'elles est positive, l'équilibre est instable. Pour Lotka et Volterra linéarisé à l'origine, les valeurs propres sont de signes opposés : l'origine est un point selle, instable, ce que l'écologie confirme, une population ne reste jamais durablement à zéro.",
+   "texte": "Les valeurs propres racontent la stabilité.",
+   "ecran": "jacobienne"
+  },
+  {
+   "id": "p29",
+   "dit": "Exemple résolu : un système linéaire à coefficients constants, ixe prime égal à ixe plus deux igrec, et igrec prime égal à moins ixe plus quatre igrec. La matrice a pour trace cinq et pour déterminant six : ses valeurs propres vérifient lambda au carré, moins cinq lambda, plus six, égale zéro, ce qui donne deux et trois. À la valeur propre deux correspond le vecteur de composantes deux et un ; à la valeur propre trois, le vecteur un et un. La solution générale combine alors les deux modes exponentiels : chaque coordonnée est une combinaison des exponentielles de deux té et de trois té, avec les poids donnés par les vecteurs propres.",
+   "texte": "Système résolu : valeurs propres deux et trois.",
+   "ecran": "ex_systeme"
+  },
+  {
+   "id": "p30",
+   "dit": "Les systèmes sont partout. En cinétique chimique, une réaction où A et B donnent C fait évoluer trois concentrations à la fois : A et B disparaissent au rythme du produit de leurs concentrations, et C apparaît au même rythme. Le système obtenu est non linéaire, car les inconnues y sont multipliées entre elles : on l'étudie par linéarisation et par simulation. Retenez la démarche générale face à un phénomène à plusieurs grandeurs liées : écrire une équation par grandeur, identifier les couplages, puis analyser équilibres et stabilité avant de calculer.",
+   "texte": "Trois concentrations liées : la cinétique chimique.",
+   "ecran": "chimie"
+  },
+  {
+   "id": "p31",
+   "dit": "Pour conclure ce cours, gardez la carte complète du territoire. Au premier ordre : séparer les variables, ou multiplier par le facteur intégrant, et vous résolvez les modèles exponentiels de croissance, de mélange et de dilution. Au second ordre : l'équation caractéristique décide de tout, des exponentielles aux oscillations du mouvement harmonique simple, amorties ou forcées. Au-delà du linéaire : certains changements d'inconnue, comme celui de Bernoulli, ramènent au cas connu, et les systèmes couplés s'analysent par leurs valeurs propres. Une équation différentielle n'est jamais qu'une phrase : elle dit comment une grandeur change, et la résoudre, c'est raconter son histoire entière.",
+   "texte": "La carte complète : résoudre, c'est raconter une évolution.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir, classer et résoudre au premier ordre"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Le second ordre : équation caractéristique et oscillations",
+   "pont": {
+    "texte": "Partie 2 : le second ordre, l'équation caractéristique et les oscillations.",
+    "dit": "Partie deux : le second ordre. La dérivée seconde entre en jeu, l'équation caractéristique ramène la résolution à un polynôme du second degré, et ses racines feront naître les oscillations du mouvement harmonique simple, amorties ou forcées."
+   }
+  },
+  {
+   "debut": "p24",
+   "sous_titre": "Non linéaire, dérivées partielles et systèmes couplés",
+   "pont": {
+    "texte": "Partie 3 : non linéaire, dérivées partielles et systèmes couplés.",
+    "dit": "Partie trois : au-delà du linéaire. Nous verrons comment un changement d'inconnue résout les équations de Bernoulli, ce que changent les dérivées partielles, et comment les systèmes couplés décrivent des grandeurs qui se pilotent mutuellement, comme les proies et les prédateurs."
+   }
+  }
+ ]
+}

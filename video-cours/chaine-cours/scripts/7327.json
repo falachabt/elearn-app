@@ -1,0 +1,332 @@
+{
+ "cours": 7327,
+ "ecrans": {
+  "chambre_noire": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "chambre"
+   },
+   "kicker": "Preuve : la chambre noire",
+   "texte": "Image renversée : la lumière va en ligne droite.",
+   "type": "phrase"
+  },
+  "classement_production": {
+   "kicker": "Autre classement : comment la lumière est produite",
+   "tex": [
+    "\\text{incandescence : corps chaud}",
+    "\\text{luminescence : lumière froide}"
+   ],
+   "titre": "Chaud ou froid : deux productions",
+   "type": "etape"
+  },
+  "classement_sources": {
+   "kicker": "Deux familles de sources",
+   "tex": [
+    "\\text{naturelles : Soleil, étoiles, éclairs}",
+    "\\text{artificielles : lampe, LED, laser}"
+   ],
+   "titre": "Naturelles ou artificielles",
+   "type": "etape"
+  },
+  "faisceaux": {
+   "kicker": "Trois faisceaux",
+   "tex": [
+    "\\text{parallèle : rayons parallèles}",
+    "\\text{divergent : rayons qui s'écartent}",
+    "\\text{convergent : rayons qui se rejoignent}"
+   ],
+   "titre": "Parallèle, divergent, convergent",
+   "type": "etape"
+  },
+  "lampe_torche": {
+   "kicker": "Exemple : la lampe torche",
+   "texte": "Source quasi ponctuelle : faisceau divergent.",
+   "type": "phrase"
+  },
+  "lune_miroir": {
+   "kicker": "Ne pas confondre",
+   "texte": "Lune, miroir, écran éteint : pas des sources.",
+   "type": "phrase"
+  },
+  "objet_source": {
+   "kicker": "Définition : une source",
+   "texte": "Elle émet la lumière qu'elle produit elle-même.",
+   "type": "phrase"
+  },
+  "ombres": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "chambre"
+   },
+   "kicker": "Conséquence : ombres et pénombre",
+   "texte": "Objet opaque : ombre nette, pénombre partielle.",
+   "type": "phrase"
+  },
+  "panneau_solaire": {
+   "kicker": "Exemple : le panneau solaire",
+   "texte": "Il reçoit la lumière : c'est un récepteur.",
+   "type": "phrase"
+  },
+  "propagation": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "chambre"
+   },
+   "kicker": "Propagation rectiligne",
+   "texte": "En milieu homogène transparent : ligne droite.",
+   "type": "phrase"
+  },
+  "rayon_definition": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "chambre"
+   },
+   "kicker": "Le rayon lumineux",
+   "texte": "Une droite fléchée : direction et sens de la lumière.",
+   "type": "phrase"
+  },
+  "recepteur_definition": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "oeil"
+   },
+   "kicker": "Définition : un récepteur",
+   "texte": "Il reçoit la lumière et réagit à cette réception.",
+   "type": "phrase"
+  },
+  "recepteurs_familles": {
+   "kicker": "Récepteurs naturels et artificiels",
+   "tex": [
+    "\\text{naturels : œil, peau, feuilles}",
+    "\\text{artificiels : panneau, capteur photo}"
+   ],
+   "titre": "Naturels ou artificiels, eux aussi",
+   "type": "etape"
+  },
+  "recepteurs_reactions": {
+   "kicker": "Deux réactions possibles",
+   "tex": [
+    "\\text{physiologique ou chimique : voir, bronzer}",
+    "\\text{physique : tension, résistance qui varie}"
+   ],
+   "titre": "Réagir chimiquement ou physiquement",
+   "type": "etape"
+  },
+  "sources_exemples": {
+   "kicker": "Exemples de sources",
+   "tex": [
+    "\\text{Soleil, flamme de bougie}",
+    "\\text{lampe allumée, luciole}"
+   ],
+   "titre": "Elles brillent par elles-mêmes",
+   "type": "etape"
+  },
+  "temps_soleil": {
+   "kicker": "Exemple : le temps de la lumière du Soleil",
+   "note": "Cinq cents secondes, soit huit minutes et vingt secondes : la lumière reçue a été émise il y a plus de huit minutes.",
+   "tex": "t = \\frac{d}{c} = \\frac{1{,}50 \\times 10^{11}}{3{,}00 \\times 10^{8}} = 5{,}00 \\times 10^{2}\\ \\text{s}",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "chambre"
+   },
+   "kicker": "Sciences Physiques et Technologie · Optique",
+   "sous": "Ce qui émet la lumière, ce qui la reçoit, et la ligne droite qu'elle suit",
+   "titre": "Lumière : sources et propagation",
+   "type": "titre"
+  },
+  "vitesse": {
+   "kicker": "Vitesse de la lumière dans le vide",
+   "note": "Environ trois cent mille kilomètres par seconde : la vitesse maximale possible dans la nature.",
+   "tex": "c \\approx 3{,}00 \\times 10^{8}\\ \\text{m/s}",
+   "type": "formule"
+  },
+  "vitesse_milieux": {
+   "kicker": "Vitesse dans un milieu matériel",
+   "texte": "Dans l'eau ou le verre : plus lente, mais très grande.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Sources et récepteurs de lumière"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : la propagation rectiligne de la lumière, ses ombres, ses rayons et sa vitesse.",
+    "texte": "Partie 2 : propagation rectiligne, ombres, rayons et vitesse."
+   },
+   "sous_titre": "Propagation rectiligne, ombres et vitesse"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur la lumière, ses sources et sa propagation. Nous allons d'abord distinguer ce qui produit la lumière de ce qui la reçoit, puis suivre la ligne droite que la lumière parcourt, jusqu'à sa vitesse vertigineuse.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Sources, récepteurs, puis la ligne droite de la lumière."
+  },
+  {
+   "dit": "Un objet est dit source de lumière s'il émet lui-même de la lumière qu'il produit. Il est visible par lui-même et éclaire les objets qui l'entourent.",
+   "ecran": "objet_source",
+   "id": "p02",
+   "texte": "Elle émet la lumière qu'elle produit elle-même."
+  },
+  {
+   "dit": "Exemples : le Soleil, une flamme de bougie, une lampe allumée, une luciole. Tous brillent par eux-mêmes, même dans le noir.",
+   "ecran": "sources_exemples",
+   "id": "p03",
+   "texte": "Soleil, bougie, lampe, luciole : des sources."
+  },
+  {
+   "dit": "On distingue deux grandes familles selon l'origine de la lumière émise. Les sources naturelles existent sans intervention de l'homme : le Soleil, les étoiles, les éclairs, la lave volcanique, les lucioles, les méduses bioluminescentes. Les sources artificielles sont fabriquées par l'homme : lampe à incandescence, LED, tube fluorescent, écran de téléphone, laser, bougie.",
+   "ecran": "classement_sources",
+   "id": "p04",
+   "texte": "Naturelles ou artificielles : deux familles."
+  },
+  {
+   "dit": "On peut aussi classer selon la manière dont la lumière est produite : par incandescence, quand un corps chaud émet de la lumière, ou par luminescence, une lumière dite froide.",
+   "ecran": "classement_production",
+   "id": "p05",
+   "texte": "Chaud ou froid : deux productions."
+  },
+  {
+   "dit": "Exercice de classement : le Soleil, un miroir, une bougie allumée, la Lune, un écran de téléphone allumé. Le Soleil est une source naturelle par incandescence ; la bougie allumée est une source artificielle par incandescence, car sa flamme est chaude ; l'écran allumé est une source artificielle par luminescence.",
+   "ecran": "classement_production",
+   "id": "p06",
+   "texte": "Soleil, bougie, écran allumé : trois sources."
+  },
+  {
+   "dit": "Le miroir et la Lune, eux, ne produisent pas de lumière : ils renvoient celle qu'ils reçoivent. Ce ne sont donc pas des sources, ce sont des récepteurs.",
+   "ecran": "lune_miroir",
+   "id": "p07",
+   "texte": "Lune, miroir, écran éteint : pas des sources."
+  },
+  {
+   "dit": "Un récepteur de lumière est un objet qui reçoit de la lumière et réagit à cette réception. Il ne produit pas la lumière qu'il capte.",
+   "ecran": "recepteur_definition",
+   "id": "p08",
+   "texte": "Il reçoit la lumière et réagit à cette réception."
+  },
+  {
+   "dit": "On distingue les récepteurs naturels, l'œil, la peau, les feuilles d'une plante pour la photosynthèse, et les récepteurs artificiels, la cellule photovoltaïque du panneau solaire, la photorésistance, le capteur d'appareil photo, la diode photodétectrice.",
+   "ecran": "recepteurs_familles",
+   "id": "p09",
+   "texte": "Naturels : œil, peau, feuilles ; artificiels : capteurs."
+  },
+  {
+   "dit": "Un récepteur peut réagir de deux façons. Réaction physiologique ou chimique : l'œil perçoit une image, la peau bronze, la plante fabrique de la matière organique. Réaction physique : une cellule photovoltaïque produit une tension électrique, une photorésistance voit sa résistance varier.",
+   "ecran": "recepteurs_reactions",
+   "id": "p10",
+   "texte": "Réagir chimiquement ou physiquement."
+  },
+  {
+   "dit": "Exemple résolu : un panneau solaire éclairé par le Soleil produit une tension mesurable. Est-il source ou récepteur ? Il reçoit la lumière du Soleil et la convertit en énergie électrique : c'est un récepteur artificiel de lumière. Il ne produit pas lui-même la lumière qu'il utilise.",
+   "ecran": "panneau_solaire",
+   "id": "p11",
+   "texte": "Il reçoit la lumière : c'est un récepteur."
+  },
+  {
+   "dit": "Ne pas confondre : un objet peut être source dans une situation et récepteur dans une autre, mais jamais pour la même lumière. La Lune est un récepteur : elle diffuse la lumière du Soleil, elle ne l'émet pas. Un écran de téléphone éteint est un récepteur, il renvoie la lumière ambiante ; allumé, il devient une source. Un miroir est un récepteur : il réfléchit la lumière reçue.",
+   "ecran": "lune_miroir",
+   "id": "p12",
+   "texte": "Source ou récepteur : ça dépend de la situation."
+  },
+  {
+   "dit": "Retenons pour les sources et les récepteurs : une source émet la lumière qu'elle produit, un récepteur reçoit la lumière et y réagit, les sources se classent en naturelles et artificielles, et en incandescence et luminescence, et la Lune, un miroir ou un écran éteint ne sont pas des sources.",
+   "ecran": "recepteurs_reactions",
+   "id": "p13",
+   "texte": "Sources, récepteurs : le point avant la propagation."
+  },
+  {
+   "dit": "Nous passons maintenant à la deuxième moitié du cours : comment la lumière se propage. C'est un autre chapitre de la même leçon, avec ses propres expériences.",
+   "ecran": "propagation",
+   "id": "p14",
+   "texte": "Sources et récepteurs vus : place à la propagation."
+  },
+  {
+   "dit": "Dans un milieu homogène, de même composition partout, et transparent, la lumière se propage en ligne droite. C'est la propagation rectiligne.",
+   "ecran": "propagation",
+   "id": "p15",
+   "texte": "En milieu homogène transparent : ligne droite."
+  },
+  {
+   "dit": "Preuve expérimentale : la chambre noire. Une source lumineuse ponctuelle éclaire un objet opaque percé d'un petit trou. Sur l'écran, l'image obtenue est renversée, haut et bas, gauche et droite. Ce renversement ne s'explique que si la lumière suit des trajets rectilignes traversant le trou.",
+   "ecran": "chambre_noire",
+   "id": "p16",
+   "texte": "Image renversée : la lumière va en ligne droite."
+  },
+  {
+   "dit": "Conséquence : les ombres. Un objet opaque placé devant une source crée une zone d'ombre, où la lumière est totalement bloquée, et une zone de pénombre, où la lumière est partiellement bloquée, si la source n'est pas ponctuelle. Les bords de l'ombre sont nets avec une source ponctuelle, flous avec une source étendue.",
+   "ecran": "ombres",
+   "id": "p17",
+   "texte": "Objet opaque : ombre nette, pénombre partielle."
+  },
+  {
+   "dit": "Exemple résolu : un bâton vertical de hauteur un mètre cinquante est éclairé par le Soleil. Son ombre mesure deux mètres au sol. Un immeuble voisin projette une ombre de vingt-quatre mètres. Quelle est sa hauteur ? Les rayons solaires sont parallèles et rectilignes : les triangles formés sont semblables.",
+   "ecran": "ombres",
+   "id": "p18",
+   "texte": "Bâton 1,5 m, ombre 2 m ; immeuble, ombre 24 m."
+  },
+  {
+   "dit": "Le rapport des hauteurs égale le rapport des ombres : la hauteur de l'immeuble vaut un virgule cinq fois vingt-quatre divisé par deux, soit dix-huit mètres. L'immeuble mesure dix-huit mètres.",
+   "ecran": "ombres",
+   "id": "p19",
+   "texte": "H = 1,5 × 24 / 2,0 = 18 m."
+  },
+  {
+   "dit": "Un rayon lumineux est une ligne droite fléchée indiquant la direction et le sens de propagation de la lumière. C'est un modèle : on le représente par une droite, mais un faisceau réel est constitué d'une infinité de rayons.",
+   "ecran": "rayon_definition",
+   "id": "p20",
+   "texte": "Une droite fléchée : direction et sens de la lumière."
+  },
+  {
+   "dit": "On distingue trois faisceaux : le faisceau parallèle, aux rayons parallèles entre eux, comme la lumière du Soleil ou un laser ; le faisceau divergent, aux rayons qui s'écartent depuis une source ponctuelle ; le faisceau convergent, aux rayons qui se rejoignent en un point, par exemple après une lentille.",
+   "ecran": "faisceaux",
+   "id": "p21",
+   "texte": "Parallèle, divergent, convergent."
+  },
+  {
+   "dit": "Exemple résolu : on schématise une lampe torche éclairant un mur. La lampe se comporte comme une source quasi ponctuelle : on trace depuis la lampe plusieurs droites fléchées vers le mur. Le faisceau obtenu est divergent. Si l'on place un cache percé d'un trou devant la lampe, seul un rayon traverse le trou : la tache sur le mur se réduit à un point.",
+   "ecran": "lampe_torche",
+   "id": "p22",
+   "texte": "Source quasi ponctuelle : faisceau divergent."
+  },
+  {
+   "dit": "Dans le vide, la lumière se propage à une vitesse constante, notée c, d'environ trois virgule zéro zéro fois dix puissance huit mètres par seconde, soit environ trois cent mille kilomètres par seconde. C'est la vitesse maximale possible dans la nature.",
+   "ecran": "vitesse",
+   "id": "p23",
+   "texte": "c ≈ 3,00 × 10⁸ m/s, vitesse maximale."
+  },
+  {
+   "dit": "Dans un milieu matériel transparent, eau, verre ou air, la vitesse est plus faible que dans le vide, mais reste très grande. Dans l'air, elle est pratiquement égale à c. Conséquence : à l'échelle humaine, la lumière semble se propager instantanément ; à l'échelle astronomique, son trajet prend un temps mesurable.",
+   "ecran": "vitesse_milieux",
+   "id": "p24",
+   "texte": "Dans l'eau ou le verre : plus lente, mais très grande."
+  },
+  {
+   "dit": "Exemple résolu : la distance Terre-Soleil vaut un virgule cinquante fois dix puissance onze mètres. Combien de temps la lumière du Soleil met-elle pour nous parvenir ? Le temps vaut la distance divisée par la vitesse, soit un virgule cinquante fois dix puissance onze divisé par trois virgule zéro zéro fois dix puissance huit, soit cinq virgule zéro zéro fois dix puissance deux secondes.",
+   "ecran": "temps_soleil",
+   "id": "p25",
+   "texte": "t = d / c = 5,00 × 10² s."
+  },
+  {
+   "dit": "Soit environ cinq cents secondes, c'est-à-dire huit minutes et vingt secondes. La lumière que nous recevons du Soleil a donc été émise il y a plus de huit minutes : nous voyons le Soleil tel qu'il était, pas tel qu'il est.",
+   "ecran": "temps_soleil",
+   "id": "p26",
+   "texte": "500 s, soit 8 min 20 s : un Soleil vieux de 8 minutes."
+  },
+  {
+   "dit": "Retenons la méthode : pour interpréter une expérience, identifier la source, le milieu et le trajet supposé rectiligne des rayons, puis expliquer l'observation, ombre, image renversée ou tache lumineuse, par ce trajet rectiligne. Et retenons la vitesse : trois fois dix puissance huit mètres par seconde dans le vide.",
+   "ecran": "rayon_definition",
+   "id": "p27",
+   "texte": "Source, milieu, trajet rectiligne : expliquer l'observation."
+  }
+ ],
+ "titre": "Lumière : sources et propagation"
+}

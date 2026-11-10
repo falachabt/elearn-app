@@ -1,0 +1,432 @@
+{
+ "cours": 5904,
+ "ecrans": {
+  "applications": {
+   "etapes": [
+    "Ballons, pneus, bouteilles de plongée : des volumes et des pressions à calculer",
+    "Moteurs à combustion : la compression du mélange air-carburant",
+    "Industrie : le procédé Haber-Bosch fabrique l'ammoniac à haute pression et haute température",
+    "Météorologie et atmosphère : le comportement de l'air à toutes les altitudes"
+   ],
+   "kicker": "Applications",
+   "titre": "Le modèle au travail",
+   "type": "recap"
+  },
+  "avogadro": {
+   "kicker": "Loi d'Avogadro",
+   "note": "À pression et température constantes · Des volumes égaux de gaz différents contiennent le même nombre de molécules · Exemple : 2 mol occupent 44,8 L, donc 4 mol occupent 89,6 L",
+   "tex": "\\frac{V_1}{n_1} = \\frac{V_2}{n_2}",
+   "titre": "Le volume suit la quantité de matière",
+   "type": "formule"
+  },
+  "boyle": {
+   "kicker": "Loi de Boyle-Mariotte",
+   "note": "À température constante : si le volume diminue, la pression augmente dans la même proportion — pensez à la seringue que l'on comprime",
+   "tex": "P_1\\, V_1 = P_2\\, V_2",
+   "titre": "Pression et volume sont inversement proportionnels",
+   "type": "formule",
+   "anim": {
+    "nom": "piston",
+    "hauteur": 280
+   }
+  },
+  "charles": {
+   "kicker": "Loi de Charles",
+   "note": "À pression constante · Les températures sont obligatoirement en kelvins : 25 °C = 298,15 K et 50 °C = 323,15 K",
+   "tex": "\\frac{V_1}{T_1} = \\frac{V_2}{T_2}",
+   "titre": "Le volume suit la température absolue",
+   "type": "formule"
+  },
+  "conditions": {
+   "kicker": "Domaine de validité",
+   "texte": "Aucun gaz réel n'est parfait, mais à basse pression et à température élevée, beaucoup de gaz s'en approchent assez pour que le modèle soit une excellente approximation. Et la température mesure l'agitation : plus elle est élevée, plus l'énergie cinétique moyenne des molécules est grande.",
+   "type": "phrase",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 260
+   }
+  },
+  "dalton": {
+   "kicker": "Mélanges de gaz",
+   "note": "Loi de Dalton : chaque gaz se comporte comme s'il occupait seul tout le volume du mélange",
+   "tex": "P_{\\text{totale}} = P_1 + P_2 + \\dots + P_n",
+   "titre": "La pression totale est la somme des pressions partielles",
+   "type": "formule",
+   "anim": {
+    "nom": "melange",
+    "hauteur": 280
+   }
+  },
+  "equation": {
+   "kicker": "Équation d'état",
+   "note": "P : pression en pascals (Pa) · V : volume en mètres cubes (m³) · n : quantité de matière en moles (mol) · R = 8,314 J·mol⁻¹·K⁻¹ · T : température en kelvins (K)",
+   "tex": "P\\, V = n\\, R\\, T",
+   "titre": "L'équation d'état des gaz parfaits",
+   "type": "formule"
+  },
+  "ex_boyle": {
+   "kicker": "Exemple",
+   "tex": [
+    "P_1 = 1\\ \\text{atm} \\quad V_1 = 2\\ \\text{L}",
+    "V_2 = 1\\ \\text{L}",
+    "P_2 = \\dfrac{P_1 V_1}{V_2} = \\dfrac{1 \\times 2}{1} = 2\\ \\text{atm}"
+   ],
+   "titre": "Un ballon comprimé à température constante",
+   "type": "etape",
+   "anim": {
+    "nom": "piston",
+    "hauteur": 240
+   }
+  },
+  "ex_charles": {
+   "kicker": "Exemple",
+   "tex": [
+    "V_1 = 5\\ \\text{L}",
+    "T_1 = 298{,}15\\ \\text{K} \\quad T_2 = 323{,}15\\ \\text{K}",
+    "V_2 = \\dfrac{V_1\\, T_2}{T_1} \\approx 5{,}43\\ \\text{L}"
+   ],
+   "titre": "Un ballon d'hélium que l'on chauffe",
+   "type": "etape"
+  },
+  "ex_helium": {
+   "kicker": "Exemple",
+   "tex": [
+    "n = 2\\ \\text{mol d'hélium}",
+    "T = 25\\,^{\\circ}\\text{C} = 298{,}15\\ \\text{K}",
+    "V = 5\\ \\text{L} = 0{,}005\\ \\text{m}^3",
+    "P = \\dfrac{nRT}{V}"
+   ],
+   "titre": "La pression de l'hélium dans un ballon",
+   "type": "etape"
+  },
+  "ex_helium_res": {
+   "kicker": "Exemple · résultat",
+   "note": "Près de dix fois la pression atmosphérique : deux moles enfermées dans seulement cinq litres, le résultat est cohérent",
+   "tex": "P \\approx 986\\ 500\\ \\text{Pa} \\approx 9{,}87\\ \\text{atm}",
+   "titre": "Une pression élevée, mais cohérente",
+   "type": "formule"
+  },
+  "ex_mole": {
+   "kicker": "Exemple",
+   "tex": [
+    "n = 1\\ \\text{mol}",
+    "P = 1\\ \\text{atm} = 101325\\ \\text{Pa}",
+    "T = 25\\,^{\\circ}\\text{C} = 298\\ \\text{K}",
+    "V = \\dfrac{nRT}{P}"
+   ],
+   "titre": "Le volume d'une mole de gaz",
+   "type": "etape"
+  },
+  "ex_mole_res": {
+   "kicker": "Exemple · résultat",
+   "note": "Un ordre de grandeur à retenir : une mole de gaz occupe environ le volume d'un grand bidon, dans les conditions ordinaires",
+   "tex": "V \\approx 0{,}0245\\ \\text{m}^3 \\approx 24{,}5\\ \\text{L}",
+   "titre": "Environ vingt-quatre litres et demi",
+   "type": "formule"
+  },
+  "ex_plongee": {
+   "kicker": "Exemple · plongée",
+   "tex": [
+    "P_{\\text{totale}} = 200\\ \\text{bars}",
+    "P_{\\text{azote}} = 0{,}78 \\times 200 = 156\\ \\text{bars}",
+    "P_{\\text{oxygène}} = 0{,}21 \\times 200 = 42\\ \\text{bars}",
+    "P_{\\text{autres gaz}} = 2\\ \\text{bars}"
+   ],
+   "titre": "Les pressions partielles dans une bouteille de plongée",
+   "type": "etape",
+   "anim": {
+    "nom": "melange",
+    "hauteur": 220
+   }
+  },
+  "fractions": {
+   "kicker": "Mélanges de gaz",
+   "tex": [
+    "x_i = \\dfrac{n_i}{n_{\\text{totale}}}",
+    "\\sum_i x_i = 1",
+    "P_i = x_i \\times P_{\\text{totale}}"
+   ],
+   "titre": "Fractions molaires et pressions partielles",
+   "type": "etape",
+   "anim": {
+    "nom": "melange",
+    "hauteur": 240
+   }
+  },
+  "hypotheses": {
+   "etapes": [
+    "Les molécules sont ponctuelles : leur volume propre est négligeable devant celui du récipient",
+    "Aucune interaction entre les molécules : ni attraction, ni répulsion",
+    "Les collisions, entre elles et avec les parois, sont parfaitement élastiques : aucune énergie perdue"
+   ],
+   "kicker": "Le modèle du gaz parfait",
+   "titre": "Trois hypothèses simplificatrices",
+   "type": "recap",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 280
+   }
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "L'air que nous respirons est un mélange complexe de molécules en mouvement incessant. Les décrire une à une est impossible : le modèle du gaz parfait simplifie le problème en décrivant l'ensemble.",
+   "type": "phrase",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 280
+   }
+  },
+  "kelvin": {
+   "kicker": "Température absolue",
+   "note": "Le zéro absolu vaut −273,15 °C : l'agitation des molécules y est nulle · En degrés Celsius, les calculs de gaz donnent des résultats faux",
+   "tex": "T_{\\text{K}} = T_{^{\\circ}\\text{C}} + 273{,}15",
+   "titre": "Toujours convertir en kelvins",
+   "type": "formule"
+  },
+  "limites": {
+   "kicker": "Limites du modèle",
+   "texte": "À haute pression, les molécules se rapprochent : leurs attractions freinent leurs chocs sur les parois et la pression réelle baisse ; à très courte distance, leurs répulsions gonflent le volume occupé. Le modèle ne prévoit pas non plus le point critique, où liquide et gaz cessent de se distinguer.",
+   "type": "phrase",
+   "anim": {
+    "nom": "phases",
+    "hauteur": 260
+   }
+  },
+  "masse_molaire": {
+   "kicker": "Masse et quantité de matière",
+   "note": "m : masse du gaz · M : masse molaire du gaz · n : quantité de matière en moles",
+   "tex": "n = \\dfrac{m}{M}",
+   "titre": "De la masse aux moles",
+   "type": "formule"
+  },
+  "methode": {
+   "etapes": [
+    "Identifier les grandeurs connues et l'inconnue",
+    "Choisir la bonne équation : PV = nRT ou l'une des trois lois",
+    "Convertir toutes les unités dans le système international",
+    "Isoler l'inconnue, calculer, puis vérifier la cohérence du résultat"
+   ],
+   "kicker": "Méthode de résolution",
+   "titre": "Résoudre un problème de gaz parfait",
+   "type": "recap"
+  },
+  "recap": {
+   "etapes": [
+    "Équation d'état : PV = nRT, avec T en kelvins et R = 8,314 en unités du système international",
+    "Trois lois : Boyle-Mariotte (PV constant), Charles (V / T constant), Avogadro (V / n constant)",
+    "Mélanges : pression totale = somme des pressions partielles, et Pᵢ = xᵢ × P totale",
+    "Limites : haute pression ou basse température, l'équation de van der Waals corrige le modèle"
+   ],
+   "kicker": "À retenir",
+   "titre": "Gaz parfaits",
+   "type": "recap",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 100
+   }
+  },
+  "titre": {
+   "kicker": "Physique · Terminale",
+   "sous": "Le modèle, l'équation d'état PV = nRT, les mélanges et les limites",
+   "titre": "Les gaz parfaits",
+   "type": "titre",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 250
+   }
+  },
+  "vdw": {
+   "kicker": "Équation de van der Waals",
+   "note": "a corrige les attractions entre molécules · b corrige leur volume propre · a et b sont propres à chaque gaz",
+   "tex": "\\left( P + a\\, \\frac{n^2}{V^2} \\right) \\left( V - n b \\right) = n\\, R\\, T",
+   "titre": "Un modèle plus réaliste pour les gaz réels",
+   "type": "formule"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le modèle et l'équation d'état"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : mettre l'équation en pratique, traiter les mélanges de gaz, et découvrir les limites du modèle du gaz parfait.",
+    "texte": "Partie 2 : applications, mélanges et limites du modèle."
+   },
+   "sous_titre": "Applications, mélanges et limites du modèle"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré aux gaz parfaits : un modèle qui simplifie le comportement des gaz, et l'équation d'état qui relie la pression, le volume, la quantité de matière et la température.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Les gaz parfaits : le modèle et l'équation d'état PV = nRT."
+  },
+  {
+   "dit": "Imaginez l'air que vous respirez : un mélange de molécules d'azote, d'oxygène et d'autres gaz, en mouvement incessant. Les suivre une à une est impossible, même pour les ordinateurs les plus puissants. Le modèle du gaz parfait simplifie le problème : il décrit les propriétés de l'ensemble, en négligeant les interactions entre les molécules.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Un mélange impossible à suivre molécule par molécule."
+  },
+  {
+   "dit": "Ce modèle repose sur trois hypothèses. Premièrement, les molécules sont ponctuelles : leur volume propre est négligeable devant le volume du récipient. Deuxièmement, elles n'interagissent pas entre elles : ni attraction, ni répulsion. Troisièmement, leurs collisions sont parfaitement élastiques : aucune énergie cinétique n'est perdue dans les chocs.",
+   "ecran": "hypotheses",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Trois hypothèses : points, aucune interaction, chocs élastiques."
+  },
+  {
+   "dit": "Aucun gaz réel n'est parfait, mais à basse pression et à température élevée, beaucoup de gaz s'en approchent assez pour que le modèle soit une excellente approximation. Retenez aussi que la température mesure l'agitation : plus elle est élevée, plus l'énergie cinétique moyenne des molécules est grande.",
+   "ecran": "conditions",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Le modèle est excellent à basse pression et haute température."
+  },
+  {
+   "dit": "Tout le comportement du gaz parfait tient dans son équation d'état : P fois V égale n fois R fois T. Elle relie la pression, le volume, la quantité de matière et la température. R est la constante des gaz parfaits : huit virgule trois cent quatorze, dans le système international.",
+   "ecran": "equation",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "L'équation d'état : PV = nRT."
+  },
+  {
+   "dit": "Attention, la température de cette équation est la température absolue, en kelvins. Pour convertir : la température en kelvins égale la température en degrés Celsius plus deux cent soixante-treize virgule quinze. Le zéro kelvin, le zéro absolu, est le point où l'agitation des molécules s'arrête.",
+   "ecran": "kelvin",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "La température absolue : T en kelvins, toujours."
+  },
+  {
+   "dit": "Premier exemple, tiré du cours : quel volume occupe une mole de gaz parfait, sous une pression d'une atmosphère, soit cent un mille trois cent vingt-cinq pascals, à vingt-cinq degrés Celsius, soit deux cent quatre-vingt-dix-huit kelvins ? On isole le volume dans l'équation d'état.",
+   "ecran": "ex_mole",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Exemple : le volume d'une mole de gaz."
+  },
+  {
+   "dit": "Le calcul donne environ zéro virgule zéro deux cent quarante-cinq mètre cube, soit environ vingt-quatre litres et demi. C'est le volume d'une seule mole de gaz dans les conditions ordinaires : un ordre de grandeur à retenir.",
+   "ecran": "ex_mole_res",
+   "id": "p08",
+   "pause_apres": 0.7,
+   "texte": "Résultat : une mole de gaz occupe environ 24,5 litres."
+  },
+  {
+   "dit": "Avant l'équation d'état, trois lois partielles l'ont préparée. La première, la loi de Boyle-Mariotte : à température constante, le produit de la pression par le volume reste constant. Si le volume diminue, la pression augmente dans la même proportion, et inversement.",
+   "ecran": "boyle",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Boyle-Mariotte : à T constante, PV reste constant."
+  },
+  {
+   "dit": "Exemple de la seringue : un ballon gonflé à une atmosphère occupe deux litres. On le comprime jusqu'à un litre, sans changer la température. Le produit pression fois volume étant constant, la nouvelle pression vaut une fois deux, divisé par un : deux atmosphères.",
+   "ecran": "ex_boyle",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Exemple : comprimer le ballon double sa pression."
+  },
+  {
+   "dit": "Deuxième loi, celle de Charles : à pression constante, le volume est directement proportionnel à la température absolue. Le rapport du volume sur la température reste donc constant, à condition d'exprimer la température en kelvins, jamais en degrés Celsius.",
+   "ecran": "charles",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Charles : à P constante, V est proportionnel à T."
+  },
+  {
+   "dit": "Exemple : un ballon d'hélium de cinq litres passe de vingt-cinq à cinquante degrés Celsius, à pression constante. Converties en kelvins, les températures valent deux cent quatre-vingt-dix-huit virgule quinze et trois cent vingt-trois virgule quinze. Le volume augmente dans le même rapport : environ cinq virgule quarante-trois litres.",
+   "ecran": "ex_charles",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Exemple : chauffer le ballon le fait gonfler un peu."
+  },
+  {
+   "dit": "Troisième loi, celle d'Avogadro : à pression et température constantes, le volume est proportionnel à la quantité de matière, et des volumes égaux de gaz différents contiennent le même nombre de molécules. Si deux moles occupent quarante-quatre virgule huit litres, quatre moles en occuperont le double : quatre-vingt-neuf virgule six litres.",
+   "ecran": "avogadro",
+   "id": "p13",
+   "pause_apres": 0.7,
+   "texte": "Avogadro : à P et T constantes, V est proportionnel à n."
+  },
+  {
+   "dit": "Pour résoudre un problème de gaz parfait, suivez une méthode en quatre temps : identifier les grandeurs connues et l'inconnue, choisir la bonne équation, convertir toutes les unités dans le système international, puis isoler l'inconnue et vérifier que le résultat est cohérent.",
+   "ecran": "methode",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Une méthode en quatre temps pour tous les calculs."
+  },
+  {
+   "dit": "Souvent, l'énoncé donne une masse plutôt qu'une quantité de matière. Le passage de l'une à l'autre est simple : n égale m sur M, la masse divisée par la masse molaire du gaz. C'est le pont entre la balance et l'équation d'état.",
+   "ecran": "masse_molaire",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "La masse donne les moles : n = m / M."
+  },
+  {
+   "dit": "Exemple résolu du cours : un ballon contient deux moles d'hélium, à vingt-cinq degrés Celsius, dans un volume de cinq litres. Quelle est la pression du gaz ? On convertit : deux cent quatre-vingt-dix-huit virgule quinze kelvins, et cinq litres valent zéro virgule zéro zéro cinq mètre cube. On calcule P égale n R T sur V.",
+   "ecran": "ex_helium",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Exemple : la pression de deux moles d'hélium dans cinq litres."
+  },
+  {
+   "dit": "Le calcul donne environ neuf cent quatre-vingt-six mille cinq cents pascals, soit près de dix fois la pression atmosphérique. Un résultat élevé, mais cohérent pour deux moles enfermées dans seulement cinq litres.",
+   "ecran": "ex_helium_res",
+   "id": "p17",
+   "pause_apres": 0.7,
+   "texte": "Résultat : environ 986 500 pascals."
+  },
+  {
+   "dit": "Passons aux mélanges, comme l'air, fait de plusieurs gaz. Chacun exerce sa propre pression, appelée pression partielle, comme s'il occupait seul tout le volume. La loi de Dalton dit que la pression totale du mélange est la somme des pressions partielles.",
+   "ecran": "dalton",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Dalton : la pression totale est la somme des partielles."
+  },
+  {
+   "dit": "La composition d'un mélange se décrit par les fractions molaires : pour chaque gaz, le nombre de ses moles divisé par le nombre total de moles. Leur somme vaut toujours un. Et la pression partielle d'un gaz s'obtient en multipliant sa fraction molaire par la pression totale.",
+   "ecran": "fractions",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Fractions molaires : la composition du mélange en un nombre."
+  },
+  {
+   "dit": "Exemple du cours : une bouteille de plongée contient de l'air comprimé à deux cents bars, fait de soixante-dix-huit pour cent d'azote et vingt et un pour cent d'oxygène. La pression partielle de l'azote vaut donc cent cinquante-six bars, celle de l'oxygène quarante-deux bars, et il reste deux bars pour les autres gaz.",
+   "ecran": "ex_plongee",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Exemple : les pressions partielles dans la bouteille de plongée."
+  },
+  {
+   "dit": "Il faut maintenant regarder les limites du modèle. À haute pression, les molécules se rapprochent : leurs attractions mutuelles freinent leurs chocs contre les parois, et la pression réelle devient plus faible que prévue. À très courte distance, leurs répulsions empêchent tout chevauchement et gonflent le volume occupé. Le modèle ne prévoit pas non plus le point critique, au-delà duquel liquide et gaz ne se distinguent plus.",
+   "ecran": "limites",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "À haute pression, les interactions entre molécules comptent."
+  },
+  {
+   "dit": "Pour corriger ces deux défauts, van der Waals a proposé une équation d'état plus réaliste : la constante a tient compte des attractions entre molécules, et la constante b de leur volume propre. Chaque gaz a ses propres constantes a et b.",
+   "ecran": "vdw",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Van der Waals : deux constantes corrigent le modèle."
+  },
+  {
+   "dit": "Ces idées servent partout : calculer la pression d'un pneu ou le volume d'un ballon, comprendre la compression dans un moteur, régler la synthèse industrielle de l'ammoniac, prévoir le temps en météorologie, ou plonger en sécurité, car la quantité de gaz dissous dans le sang dépend directement de la pression.",
+   "ecran": "applications",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Des ballons aux moteurs : les applications du modèle."
+  },
+  {
+   "dit": "Retenez l'équation d'état et ses unités, les trois lois qui la composent, la loi de Dalton pour les mélanges, et les limites du modèle, que l'équation de van der Waals vient corriger.",
+   "ecran": "recap",
+   "id": "p24",
+   "pause_apres": 0.5,
+   "texte": "Gaz parfaits : équation, lois, mélanges et limites — à retenir."
+  }
+ ],
+ "titre": "Les gaz parfaits"
+}

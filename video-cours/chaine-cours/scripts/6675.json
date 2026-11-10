@@ -1,0 +1,479 @@
+{
+ "cours": 6675,
+ "lecons": [
+  9434,
+  9435,
+  10612,
+  10613
+ ],
+ "titre": "Énergie et forces",
+ "matiere": "Physique",
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bonjour à tous. Aujourd'hui, on étudie l'énergie et les forces : le travail d'une force, la puissance, puis les énergies cinétique et potentielle et leur conservation.",
+   "texte": "Bonjour à tous. Aujourd'hui : l'énergie et les forces.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Une force qui déplace un objet fait un travail, et ce travail fait varier l'énergie du système. Travail et énergie se mesurent dans la même unité, le joule, et ce chapitre apprend à passer de l'un à l'autre.",
+   "texte": "Le travail d'une force fait varier l'énergie du système : les deux se mesurent en joules.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p03",
+   "ecran": "travail",
+   "dit": "Le travail d'une force constante le long d'un déplacement rectiligne est le produit scalaire de la force par le déplacement : F fois AB fois le cosinus de l'angle alpha entre la force et le déplacement. C'est une grandeur scalaire, positive ou négative.",
+   "texte": "Travail d'une force constante : produit scalaire de la force par le déplacement.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "signes",
+   "dit": "Le signe du travail dépend de l'angle alpha. S'il est aigu, le cosinus est positif et le travail est moteur. Si l'angle est droit, le travail est nul : une force perpendiculaire au déplacement ne travaille pas. Si l'angle est obtus, le travail est négatif : la force est résistante.",
+   "texte": "Angle aigu : travail moteur. Angle droit : travail nul. Angle obtus : travail résistant.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p05",
+   "ecran": "poids",
+   "dit": "Une force est conservative si son travail ne dépend pas du chemin suivi, mais seulement des positions de départ et d'arrivée. C'est le cas du poids : son travail vaut la masse fois g fois l'altitude de départ moins l'altitude d'arrivée.",
+   "texte": "Le poids est une force conservative : son travail ne dépend que des altitudes.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p06",
+   "ecran": "poids_ex",
+   "dit": "Exemple. Un objet de deux kilogrammes descend de l'altitude de cinq mètres à celle de deux mètres. Le travail du poids vaut deux fois neuf virgule huit fois trois, soit cinquante-huit virgule huit joules : il est positif, donc moteur, car l'objet descend.",
+   "texte": "Exemple : descente de 5 mètres à 2 mètres, travail du poids égal à 58,8 joules, moteur.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p07",
+   "ecran": "couple",
+   "dit": "Un couple, ce sont deux forces parallèles, opposées et de même intensité, qui font tourner un solide. Quand il tourne d'un angle thêta, le travail du couple vaut son moment M fois thêta, avec M égal à F fois la distance entre les droites d'action.",
+   "texte": "Travail d'un couple : moment fois angle de rotation.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p08",
+   "ecran": "levier_txt",
+   "dit": "De façon générale, une force appliquée à une distance d d'un axe de rotation exerce un moment égal à F fois d : cette distance est le bras de levier. En tournant d'un angle thêta, la force fournit un travail égal au moment fois thêta.",
+   "texte": "Moment d'une force : F fois le bras de levier. Travail en rotation : M fois thêta.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p09",
+   "ecran": "moment_ex",
+   "dit": "Exemple. Une force de cinquante newtons, appliquée tangentiellement à une roue de vingt centimètres de rayon, exerce un moment de cinquante fois zéro virgule deux, soit dix newtons-mètres. Quand la roue tourne de trois radians, le travail vaut dix fois trois, soit trente joules.",
+   "texte": "Exemple : moment de 10 newtons-mètres, rotation de 3 radians, travail de 30 joules.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p10",
+   "ecran": "ressort_travail",
+   "dit": "Pour étirer un ressort de raideur k depuis sa position naturelle jusqu'à l'allongement x, l'opérateur fournit un travail égal à un demi de k fois x au carré. Ce travail est toujours positif, et la force de rappel du ressort est elle aussi conservative.",
+   "texte": "Travail pour étirer un ressort : un demi de k fois x au carré, toujours positif.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p11",
+   "ecran": "ressort_ex",
+   "dit": "Exemple. Un ressort de raideur deux cents newtons par mètre est comprimé de cinq centimètres. Le travail vaut un demi fois deux cents fois zéro virgule zéro cinq au carré, soit zéro virgule vingt-cinq joule.",
+   "texte": "Exemple : ressort de 200 newtons par mètre comprimé de 5 centimètres, travail de 0,25 joule.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p12",
+   "ecran": "puissance",
+   "dit": "La puissance d'une force est le travail qu'elle fournit par unité de temps : c'est le travail divisé par la durée. Elle s'exprime en watts, et un watt vaut un joule par seconde.",
+   "texte": "Puissance : travail par unité de temps, en watts.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p13",
+   "ecran": "puissance_force",
+   "dit": "Si le point d'application d'une force constante se déplace à vitesse constante, la puissance est le produit scalaire de la force par la vitesse : F fois v fois le cosinus de l'angle entre les deux.",
+   "texte": "Puissance d'une force constante : produit scalaire de la force par la vitesse.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p14",
+   "ecran": "puissance_couple",
+   "dit": "Pour un couple de moment constant, la puissance vaut M fois la vitesse angulaire oméga. Exemple : un moteur de moment quinze newtons-mètres à trois cents tours par minute tourne à environ trente et un virgule quatre radians par seconde, soit quatre cent soixante et onze watts.",
+   "texte": "Puissance en rotation : M fois oméga. Exemple du moteur : environ 471 watts.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p15",
+   "ecran": "machines",
+   "dit": "Ces relations permettent d'analyser les machines simples : le levier, la poulie, le plan incliné. Elles modifient la force à fournir ou la distance à parcourir, mais le produit de la force par la distance, c'est-à-dire le travail, reste cohérent avec le bilan énergétique.",
+   "texte": "Machines simples : elles transforment force et distance, jamais le bilan de travail.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p16",
+   "ecran": "ec",
+   "dit": "L'énergie cinétique est l'énergie qu'un système possède du fait de son mouvement. Pour un solide en translation, dont tous les points ont la même vitesse, elle vaut un demi de la masse fois le carré de la vitesse.",
+   "texte": "Énergie cinétique de translation : un demi de m fois v au carré.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p17",
+   "ecran": "ec_ex",
+   "dit": "Exemple. Une voiture de mille kilogrammes qui roule à vingt mètres par seconde possède une énergie cinétique d'un demi fois mille fois vingt au carré, soit deux cent mille joules, ou deux cents kilojoules.",
+   "texte": "Exemple : une voiture de 1000 kilogrammes à 20 mètres par seconde, 200 kilojoules.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p18",
+   "ecran": "rotation",
+   "dit": "Pour un solide en rotation autour d'un axe fixe, l'énergie cinétique vaut un demi du moment d'inertie J fois le carré de la vitesse angulaire. Le moment d'inertie joue, pour la rotation, le même rôle que la masse pour la translation.",
+   "texte": "Énergie cinétique de rotation : un demi de J fois oméga au carré.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p19",
+   "ecran": "roulement",
+   "dit": "Un solide qui roule sans glisser cumule les deux énergies, la vitesse du centre valant le rayon fois la vitesse angulaire. Exemple : une roue de deux kilogrammes et trente centimètres de rayon, à six mètres par seconde, possède trente-six joules de translation et dix-huit de rotation : cinquante-quatre joules.",
+   "texte": "Roulement sans glissement : énergie de translation plus énergie de rotation.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p20",
+   "ecran": "tec",
+   "dit": "Le théorème de l'énergie cinétique relie les forces au mouvement : dans un référentiel galiléen, la variation d'énergie cinétique entre deux positions est égale à la somme des travaux de toutes les forces extérieures. Il est valable pour toutes les forces, conservatives ou non.",
+   "texte": "Théorème de l'énergie cinétique : la variation d'énergie cinétique égale le travail total des forces extérieures.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p21",
+   "ecran": "toboggan",
+   "dit": "Exemple. Un élève de soixante kilogrammes glisse sur un toboggan de huit mètres incliné à trente degrés, avec un coefficient de frottement de zéro virgule deux. Travail moteur du poids, moins travail résistant du frottement : l'arrivée se fait à environ six virgule deux mètres par seconde.",
+   "texte": "Exemple du toboggan : poids moteur, frottement résistant, arrivée à environ 6,2 mètres par seconde.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p22",
+   "ecran": "chute",
+   "dit": "En chute libre sans frottement, le travail du poids se transforme entièrement en énergie cinétique : la vitesse d'arrivée vaut la racine carrée de deux fois g fois la hauteur. Une noix qui tombe d'un baobab de vingt mètres arrive ainsi à environ dix-neuf virgule huit mètres par seconde.",
+   "texte": "Chute libre : la vitesse d'arrivée vaut racine de deux g h.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p23",
+   "ecran": "epp",
+   "dit": "L'énergie potentielle est l'énergie qu'un système possède du fait de sa position. Pour la pesanteur, elle vaut la masse fois g fois l'altitude, plus une constante arbitraire : on choisit souvent zéro au sol. Sa variation entre deux altitudes ne dépend pas de ce choix.",
+   "texte": "Énergie potentielle de pesanteur : m fois g fois z, à une constante près.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p24",
+   "ecran": "epp_ex",
+   "dit": "Exemple. Une balle de zéro virgule un kilogramme qui monte de zéro à cinq mètres voit son énergie potentielle de pesanteur augmenter de zéro virgule un fois neuf virgule huit fois cinq, soit quatre virgule neuf joules.",
+   "texte": "Exemple : une balle de 100 grammes élevée de 5 mètres gagne 4,9 joules d'énergie potentielle.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p25",
+   "ecran": "epe",
+   "dit": "Un ressort comprimé ou allongé stocke une énergie potentielle élastique égale à un demi de k fois x au carré. Comme le travail de l'opérateur, elle est toujours positive ou nulle.",
+   "texte": "Énergie potentielle élastique : un demi de k fois x au carré, toujours positive.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p26",
+   "ecran": "em",
+   "dit": "L'énergie mécanique d'un système est la somme de son énergie cinétique et de ses énergies potentielles, de pesanteur et élastique. C'est elle dont on suit la conservation ou la variation.",
+   "texte": "Énergie mécanique : énergie cinétique plus énergies potentielles.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p27",
+   "ecran": "conservation",
+   "dit": "Si seules des forces conservatives travaillent, l'énergie mécanique reste constante : ce que l'énergie cinétique gagne, l'énergie potentielle le perd. Pour un pendule sans frottement, l'énergie cinétique est maximale en bas de la trajectoire, l'énergie potentielle minimale.",
+   "texte": "Forces conservatives seules : l'énergie mécanique se conserve, cinétique et potentielle se convertissent.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p28",
+   "ecran": "frottements",
+   "dit": "Avec des forces non conservatives comme les frottements, l'énergie mécanique diminue : sa variation égale leur travail, et l'énergie perdue part en chaleur. Au freinage, la distance d'arrêt croît comme le carré de la vitesse : deux fois plus vite, quatre fois plus de distance.",
+   "texte": "Frottements : l'énergie mécanique diminue, dissipée en chaleur. La distance de freinage croît comme le carré de la vitesse.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p29",
+   "ecran": "recap",
+   "dit": "À retenir : le travail d'une force vaut F fois le déplacement fois le cosinus de l'angle ; la puissance est le travail par unité de temps ; l'énergie cinétique vaut un demi de m v au carré ; sa variation égale le travail total des forces ; et sans forces non conservatives, l'énergie mécanique se conserve.",
+   "texte": "À retenir : travail, puissance, énergie cinétique, théorème de l'énergie cinétique, conservation.",
+   "pause_apres": 0.9
+  }
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique · Première",
+   "titre": "Énergie et forces",
+   "sous": "Travail, puissance et conservation de l'énergie",
+   "anim": {
+    "nom": "pendule",
+    "hauteur": 190
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Une force qui déplace son point d'application fait un travail : ce travail fait varier l'énergie du système.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 180
+   }
+  },
+  "travail": {
+   "type": "formule",
+   "kicker": "Travail d'une force constante",
+   "tex": "W_{AB}(\\vec{F}) = \\vec{F} \\cdot \\vec{AB} = F \\cdot AB \\cdot \\cos\\alpha",
+   "note": "α : angle entre la force et le déplacement · W en joules : c'est un scalaire"
+  },
+  "signes": {
+   "type": "recap",
+   "kicker": "Le signe du travail",
+   "etapes": [
+    "α entre 0° et 90° : W positif, force motrice",
+    "α égal à 90° : W nul, force perpendiculaire",
+    "α entre 90° et 180° : W négatif, force résistante"
+   ],
+   "anim": {
+    "nom": "travail_angle_fig",
+    "hauteur": 150
+   }
+  },
+  "poids": {
+   "type": "formule",
+   "kicker": "Travail du poids, force conservative",
+   "tex": "W_{AB}(\\vec{P}) = m g (z_A - z_B)",
+   "note": "le travail ne dépend que des altitudes de départ et d'arrivée, pas du chemin"
+  },
+  "poids_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Travail du poids en descente",
+   "tex": [
+    "m = 2 \\ \\text{kg} \\quad z_A = 5 \\ \\text{m} \\quad z_B = 2 \\ \\text{m}",
+    "W = 2 \\times 9{,}8 \\times (5 - 2) = 58{,}8 \\ \\text{J}"
+   ]
+  },
+  "couple": {
+   "type": "formule",
+   "kicker": "Travail d'un couple de forces",
+   "tex": "W = M \\cdot \\theta \\quad M = F \\cdot d",
+   "note": "M : moment du couple en newtons-mètres · θ : angle de rotation en radians"
+  },
+  "levier_txt": {
+   "type": "phrase",
+   "kicker": "Moment d'une force et bras de levier",
+   "texte": "Moment d'une force par rapport à un axe : M = F · d, où d est le bras de levier.",
+   "anim": {
+    "nom": "levier",
+    "hauteur": 180
+   }
+  },
+  "moment_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Force tangentielle sur une roue",
+   "tex": [
+    "F = 50 \\ \\text{N} \\quad r = 0{,}2 \\ \\text{m} \\quad \\theta = 3 \\ \\text{rad}",
+    "M = 50 \\times 0{,}2 = 10 \\ \\text{N} \\cdot \\text{m}",
+    "W = M \\theta = 10 \\times 3 = 30 \\ \\text{J}"
+   ]
+  },
+  "ressort_travail": {
+   "type": "formule",
+   "kicker": "Travail de la tension d'un ressort",
+   "tex": "W = \\frac{1}{2} k x^2",
+   "note": "travail de l'opérateur qui étire le ressort depuis sa position naturelle (x = 0)",
+   "anim": {
+    "nom": "ressort",
+    "hauteur": 150
+   }
+  },
+  "ressort_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Compression d'un ressort",
+   "tex": [
+    "k = 200 \\ \\text{N/m} \\quad x = 0{,}05 \\ \\text{m}",
+    "W = \\frac{1}{2} \\times 200 \\times 0{,}05^2 = 0{,}25 \\ \\text{J}"
+   ],
+   "anim": {
+    "nom": "ressort",
+    "hauteur": 120
+   }
+  },
+  "puissance": {
+   "type": "formule",
+   "kicker": "Puissance d'une force",
+   "tex": "P = \\frac{W}{\\Delta t}",
+   "note": "P en watts (W) · un watt vaut un joule par seconde"
+  },
+  "puissance_force": {
+   "type": "formule",
+   "kicker": "Puissance d'une force constante",
+   "tex": "P = \\vec{F} \\cdot \\vec{v} = F v \\cos\\alpha",
+   "note": "le point d'application de la force se déplace à la vitesse constante v"
+  },
+  "puissance_couple": {
+   "type": "etape",
+   "kicker": "Puissance d'un couple",
+   "titre": "Exemple : puissance d'un moteur",
+   "tex": [
+    "P = M \\omega \\quad M = 15 \\ \\text{N} \\cdot \\text{m}",
+    "\\omega = 300 \\times \\frac{2\\pi}{60} = 10\\pi \\approx 31{,}4 \\ \\text{rad/s}",
+    "P = 15 \\times 31{,}4 = 471 \\ \\text{W}"
+   ]
+  },
+  "machines": {
+   "type": "phrase",
+   "kicker": "Synthèse · les machines simples",
+   "texte": "Levier, poulie, plan incliné : la force ou la distance change, le travail reste le même.",
+   "anim": {
+    "nom": "levier",
+    "hauteur": 170
+   }
+  },
+  "ec": {
+   "type": "formule",
+   "kicker": "Énergie cinétique de translation",
+   "tex": "E_c = \\frac{1}{2} m v^2",
+   "note": "tous les points du solide ont la même vitesse v"
+  },
+  "ec_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Énergie cinétique d'une voiture",
+   "tex": [
+    "m = 1000 \\ \\text{kg} \\quad v = 20 \\ \\text{m/s}",
+    "E_c = \\frac{1}{2} \\times 1000 \\times 20^2 = 200 \\ \\text{kJ}"
+   ]
+  },
+  "rotation": {
+   "type": "formule",
+   "kicker": "Énergie cinétique de rotation",
+   "tex": "E_c = \\frac{1}{2} J \\omega^2",
+   "note": "J : moment d'inertie en kilogrammes-mètres carrés · ω en radians par seconde"
+  },
+  "roulement": {
+   "type": "etape",
+   "kicker": "Translation et rotation combinées",
+   "titre": "Exemple : une roue qui roule sans glisser",
+   "tex": [
+    "J = \\frac{1}{2} m R^2 = 0{,}09 \\ \\text{kg} \\cdot \\text{m}^2 \\quad \\omega = \\frac{v}{R} = 20 \\ \\text{rad/s}",
+    "E_c = \\frac{1}{2} \\times 2 \\times 6^2 + \\frac{1}{2} \\times 0{,}09 \\times 20^2",
+    "E_c = 36 + 18 = 54 \\ \\text{J}"
+   ]
+  },
+  "tec": {
+   "type": "formule",
+   "kicker": "Théorème de l'énergie cinétique",
+   "tex": "\\Delta E_c = E_c(B) - E_c(A) = \\sum W_{ext}",
+   "note": "dans un référentiel galiléen · relie les forces à la variation de vitesse, sans équations du mouvement"
+  },
+  "toboggan": {
+   "type": "etape",
+   "kicker": "Application du théorème",
+   "titre": "Exemple : descente d'un toboggan avec frottements",
+   "tex": [
+    "f = \\mu m g \\cos\\alpha \\quad W_f = -f d",
+    "m g d \\sin\\alpha - f d = \\frac{1}{2} m v^2",
+    "v \\approx 6{,}2 \\ \\text{m/s}"
+   ]
+  },
+  "chute": {
+   "type": "etape",
+   "kicker": "Application du théorème",
+   "titre": "Chute libre : vitesse d'arrivée au sol",
+   "tex": [
+    "m g h = \\frac{1}{2} m v^2 \\quad \\Rightarrow \\quad v = \\sqrt{2 g h}",
+    "h = 20 \\ \\text{m} \\quad \\Rightarrow \\quad v \\approx 19{,}8 \\ \\text{m/s}"
+   ]
+  },
+  "epp": {
+   "type": "formule",
+   "kicker": "Énergie potentielle de pesanteur",
+   "tex": "E_{pp} = m g z + C",
+   "note": "C : constante arbitraire, souvent nulle au sol · ΔE_pp = m g (z_B − z_A) ne dépend pas de C"
+  },
+  "epp_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Élévation d'une balle",
+   "tex": [
+    "m = 0{,}1 \\ \\text{kg} \\quad z_B - z_A = 5 \\ \\text{m}",
+    "\\Delta E_{pp} = 0{,}1 \\times 9{,}8 \\times 5 = 4{,}9 \\ \\text{J}"
+   ]
+  },
+  "epe": {
+   "type": "formule",
+   "kicker": "Énergie potentielle élastique",
+   "tex": "E_{pe} = \\frac{1}{2} k x^2",
+   "note": "x : allongement ou compression par rapport à la longueur à vide · toujours positive",
+   "anim": {
+    "nom": "ressort",
+    "hauteur": 140
+   }
+  },
+  "em": {
+   "type": "formule",
+   "kicker": "Énergie mécanique",
+   "tex": "E_m = E_c + E_{pp} + E_{pe}",
+   "note": "somme de l'énergie cinétique et des énergies potentielles du système"
+  },
+  "conservation": {
+   "type": "phrase",
+   "kicker": "Conservation de l'énergie mécanique",
+   "texte": "Forces conservatives seules : E_m constante. En bas, E_c maximale ; en haut, E_pp maximale.",
+   "anim": {
+    "nom": "pendule",
+    "hauteur": 200
+   }
+  },
+  "frottements": {
+   "type": "phrase",
+   "kicker": "Non-conservation : le rôle des frottements",
+   "texte": "ΔE_m = travail des forces non conservatives, négatif : l'énergie perdue part en chaleur.",
+   "anim": {
+    "nom": "choc",
+    "hauteur": 180
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Travail : W = F · AB · cos α, en joules",
+    "Puissance : P = W/Δt ; en rotation, P = M · ω",
+    "Énergie cinétique E_c = un demi de m v carré ; TEC : ΔE_c = travaux",
+    "E_m conservée si les forces sont conservatives"
+   ]
+  }
+ },
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Travail d'une force et puissance"
+  },
+  {
+   "debut": "p16",
+   "sous_titre": "Énergies et conservation de l'énergie mécanique",
+   "pont": {
+    "texte": "Partie 2 : les énergies et leur conservation.",
+    "dit": "Partie deux : les énergies cinétique et potentielle, le théorème de l'énergie cinétique et la conservation de l'énergie mécanique."
+   }
+  }
+ ]
+}

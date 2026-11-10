@@ -31,7 +31,7 @@ jest.mock('expo-router', () => ({
     useEffect(f, [f]);
   },
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
 jest.mock('@/session/CreditsProvider', () => ({ useCredits: () => mockCredits() }));
 jest.mock('expo-clipboard', () => ({ setStringAsync: jest.fn(() => Promise.resolve(true)) }));
@@ -267,6 +267,11 @@ describe('C5 · Ma progression', () => {
     });
     expect(screen.getByText(fr.profil.tempsGlobal)).toBeTruthy();
     expect(screen.getByTestId('progression-mois')).toBeTruthy();
+    expect(screen.getByText(fr.profil.legendeMission)).toBeTruthy();
+    expect(screen.getByText(fr.profil.legendeCours)).toBeTruthy();
+    expect(screen.getByText(fr.profil.legendeExercice)).toBeTruthy();
+    expect(screen.getByText(fr.profil.legendeAnnale)).toBeTruthy();
+    expect(screen.getByText(fr.profil.legendeQuiz)).toBeTruthy();
   });
 });
 

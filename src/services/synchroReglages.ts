@@ -2,7 +2,7 @@ import type { SupabaseClient, User } from '@supabase/supabase-js';
 
 import { changerLangue, i18n, langueSupportee, type Langue } from '@/i18n';
 
-import { appliquerAffichage, lireAffichage, type ReglageTheme, type TailleTexte } from './affichage';
+import { appliquerAffichage, lireAffichage, type ReglageTaille, type ReglageTheme } from './affichage';
 import { repriseInviteEnCours } from './repriseInvite';
 import { definirWifiSeulement, lireWifiSeulement } from './donnees';
 import { enregistrerProfil, lireProfil, type Profil } from './profil';
@@ -16,10 +16,10 @@ type Client = Pick<SupabaseClient, 'auth'>;
 export type Reglages = {
   preferences: Preferences;
   langue: Langue;
-  profil?: Pick<Profil, 'type' | 'niveau' | 'pays' | 'concours'>;
+  profil?: Pick<Profil, 'type' | 'niveau' | 'pays' | 'serie' | 'concours' | 'exam'>;
   /** Taille de la mission du jour choisie (M4-08). */
   rythme?: number | null;
-  affichage?: { theme: ReglageTheme; taille: TailleTexte };
+  affichage?: { theme: ReglageTheme; taille: ReglageTaille };
   wifiSeulement?: boolean;
   maj: string;
 };
@@ -29,7 +29,16 @@ export async function construireReglages(maj?: string | null): Promise<Reglages>
   return {
     preferences: { ...lirePreferences() },
     langue: langueSupportee(i18n.language) ?? 'fr',
-    ...(profil && { profil: { type: profil.type, niveau: profil.niveau, pays: profil.pays, concours: profil.concours ?? null } }),
+    ...(profil && {
+      profil: {
+        type: profil.type,
+        niveau: profil.niveau,
+        pays: profil.pays,
+        ...(profil.serie ? { serie: profil.serie } : {}),
+        concours: profil.concours ?? null,
+        ...(profil.exam ? { exam: profil.exam } : {}),
+      },
+    }),
     rythme: await lireRythme(),
     affichage: lireAffichage(),
     wifiSeulement: await lireWifiSeulement(),
@@ -64,8 +73,16 @@ export async function appliquerReglages(r: Reglages): Promise<void> {
     if (langue && langue !== i18n.language) await changerLangue(langue);
     if (r.affichage) await appliquerAffichage(r.affichage);
     if (typeof r.wifiSeulement === 'boolean') await definirWifiSeulement(r.wifiSeulement);
-    if (r.profil?.type === 'eleve' || r.profil?.type === 'concours') {
-      await enregistrerProfil({ type: r.profil.type, niveau: r.profil.niveau, pays: r.profil.pays, concours: r.profil.concours ?? null, termine: true });
+    if (r.profil?.type === 'eleve' || r.profil?.type === 'concours' || r.profil?.type === 'certification') {
+      await enregistrerProfil({
+        type: r.profil.type,
+        niveau: r.profil.niveau,
+        pays: r.profil.pays,
+        ...(r.profil.serie ? { serie: r.profil.serie } : {}),
+        concours: r.profil.concours ?? null,
+        ...(r.profil.exam ? { exam: r.profil.exam } : {}),
+        termine: true,
+      });
     }
     if (typeof r.rythme === 'number') await enregistrerRythme(r.rythme);
   });
@@ -98,7 +115,9 @@ export async function synchroniserReglages(client: Client, user: Pick<User, 'use
   if (repriseInviteEnCours()) return 'rien';
   const distants = lireReglagesCompte(user);
   const locale = await lireMajReglages();
-  if (distants && (!locale || Date.parse(distants.maj) > Date.parse(locale))) {
+  const profilLocal = await lireProfil();
+  const profilManquant = !profilLocal || !profilLocal.niveau;
+  if (distants && (!locale || Date.parse(distants.maj) > Date.parse(locale) || (profilManquant && distants.profil?.niveau))) {
     await appliquerReglages(distants);
     return 'applique';
   }
@@ -117,7 +136,9 @@ export async function appliquerReglagesCompteSiPlusRecent(user: Pick<User, 'user
   const distants = lireReglagesCompte(user);
   if (!distants) return false;
   const locale = await lireMajReglages();
-  if (locale && Date.parse(distants.maj) <= Date.parse(locale)) return false;
+  const profilLocal = await lireProfil();
+  const profilManquant = !profilLocal || !profilLocal.niveau;
+  if (locale && Date.parse(distants.maj) <= Date.parse(locale) && !profilManquant) return false;
   await appliquerReglages(distants);
   return true;
 }

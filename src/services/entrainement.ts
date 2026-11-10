@@ -6,6 +6,8 @@ import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
 import { signalerProgressionLocale } from './progressionLocale';
 import { avecCopie, lireLocalHorsLigne, rpc } from './reviser';
+import { lireContenus } from './stockageContenu';
+import { crediterXp } from './xp';
 
 type Client = Pick<SupabaseClient, 'rpc'>;
 
@@ -53,9 +55,9 @@ export type ProgresChapitre = { meilleur?: number; faits: number; quizFaits: num
 
 export async function lireProgresChapitres(cours: readonly number[]): Promise<Record<number, ProgresChapitre>> {
   if (!cours.length) return {};
-  const [copies, scores, faits] = await Promise.all([AsyncStorage.multiGet(cours.map((c) => `entrainement.cours.${c}`)), lireMeilleursScores(), lireExercicesFaits()]);
+  const [copies, scores, faits] = await Promise.all([lireContenus(cours.map((c) => `entrainement.cours.${c}`)), lireMeilleursScores(), lireExercicesFaits()]);
   const sortie: Record<number, ProgresChapitre> = {};
-  copies.forEach(([, brut], k) => {
+  copies.forEach((brut, k) => {
     if (!brut) return;
     try {
       const e = JSON.parse(brut) as { quiz: QuizLibre[]; exercices: Exercice[] };
@@ -144,7 +146,11 @@ export const lireExercicesFaits = () => lireObjet<true>(CLE_EXERCICES_FAITS);
 export const CLE_EXERCICES_DATES = 'entrainement.exercicesDates';
 export const lireDatesExercices = () => lireObjet<string>(CLE_EXERCICES_DATES);
 
-export async function basculerExerciceFait(exercice: string, maintenant = new Date()): Promise<boolean> {
+/** Compte connecté : ses XP sont écrits sur le serveur. Sans compte, ils restent sur l'appareil. */
+export type CompteXp = { client: Parameters<typeof crediterXp>[0]; userId: string | null | undefined };
+export const CLE_XP_EXERCICE = (userId: string | null | undefined, exercice: string) => `xp.exercice_credite_${userId ?? 'anonyme'}_${exercice}`;
+
+export async function basculerExerciceFait(exercice: string, maintenant = new Date(), compte?: CompteXp): Promise<boolean> {
   const faits = await lireExercicesFaits();
   const fait = !faits[exercice];
   const suite = { ...faits };
@@ -157,6 +163,15 @@ export async function basculerExerciceFait(exercice: string, maintenant = new Da
   // de changer d'état, et le bouton « fait » semblerait mort.
   await AsyncStorage.multiSet([[CLE_EXERCICES_FAITS, JSON.stringify(suite)], [CLE_EXERCICES_DATES, JSON.stringify(dates)]]).catch(() => {});
   signalerProgressionLocale();
+  if (fait) {
+    // Une seule fois par exercice : décocher puis recocher ne rapporte rien de plus. Avec un compte, le gain part au
+    // serveur (sans quoi le niveau annoncé par les confettis ne serait jamais celui que Moi affiche).
+    const cle = CLE_XP_EXERCICE(compte?.userId, exercice);
+    if ((await AsyncStorage.getItem(cle).catch(() => null)) !== '1') {
+      await AsyncStorage.setItem(cle, '1').catch(() => {});
+      void crediterXp(compte?.userId ? compte.client : null, compte?.userId ?? null, 15, 'exercise', exercice);
+    }
+  }
   return fait;
 }
 

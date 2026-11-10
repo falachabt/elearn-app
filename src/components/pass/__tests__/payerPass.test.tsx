@@ -18,7 +18,7 @@ const mockChariow = jest.fn();
 const mockPays = jest.fn();
 const mockRafraichir = jest.fn(async () => {});
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: () => true }, useLocalSearchParams: () => ({ offre: 'month' }) }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/services/chariow', () => {
   class ErreurChariow extends Error {
     code: string;

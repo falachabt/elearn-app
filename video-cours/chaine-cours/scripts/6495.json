@@ -1,0 +1,368 @@
+{
+ "cours": 6495,
+ "titre": "Les fonctions usuelles : formes, domaines et courbes",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Fonctions usuelles",
+   "titre": "Les fonctions usuelles : formes, domaines et courbes",
+   "sous": "Affine, carré, cube, inverse, racine carrée et valeur absolue",
+   "anim": {
+    "nom": "courbe_synthese_fig",
+    "hauteur": 250
+   }
+  },
+  "machine": {
+   "type": "phrase",
+   "kicker": "Une fonction, une machine",
+   "texte": "Une fonction transforme chaque antécédent en une unique image.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 170
+   }
+  },
+  "affine": {
+   "type": "formule",
+   "kicker": "La fonction affine",
+   "tex": "f(x)=ax+b",
+   "note": "a : coefficient directeur · b : ordonnée à l'origine · domaine : R"
+  },
+  "lineaire": {
+   "type": "formule",
+   "kicker": "Cas particulier : linéaire",
+   "tex": "f(x)=ax",
+   "note": "b = 0 : proportionnalité, la droite passe par l'origine"
+  },
+  "location": {
+   "type": "etape",
+   "kicker": "Exemple : location de voiture",
+   "titre": "Frais fixes plus prix au kilomètre",
+   "tex": [
+    "P(d)=\\tfrac{3}{10}d+50",
+    "P(100)=\\tfrac{3}{10}\\times 100+50",
+    "P(100)=30+50=80"
+   ]
+  },
+  "droite": {
+   "type": "etape",
+   "kicker": "Représentation graphique",
+   "titre": "Une droite, une pente, une ordonnée à l'origine",
+   "tex": [
+    "a=\\tfrac{y_B-y_A}{x_B-x_A}",
+    "a>0 : \\text{ croissante}",
+    "a<0 : \\text{ décroissante}",
+    "a=0 : \\text{ constante}"
+   ]
+  },
+  "determiner": {
+   "type": "etape",
+   "kicker": "Méthode : déterminer une affine",
+   "titre": "Par deux points : la pente, puis l'ordonnée à l'origine",
+   "tex": [
+    "A(0\\,;\\,3),\\quad B(2\\,;\\,7)",
+    "a=\\tfrac{7-3}{2-0}=2",
+    "b=f(0)=3,\\quad f(x)=2x+3"
+   ]
+  },
+  "carre": {
+   "type": "formule",
+   "kicker": "La fonction carré",
+   "tex": "f(x)=x^2",
+   "note": "Domaine : R · paire : f(−x) = f(x) · courbe : parabole de sommet O",
+   "anim": {
+    "nom": "symetrie_fig",
+    "hauteur": 150
+   }
+  },
+  "carre_var": {
+   "type": "etape",
+   "kicker": "Carré : variations et équation",
+   "titre": "Décroissante avant zéro, croissante après",
+   "tex": [
+    "x^2=9 \\iff x=3",
+    "\\text{ou } x=-3",
+    "(-2)^2=2^2=4"
+   ]
+  },
+  "cube": {
+   "type": "formule",
+   "kicker": "La fonction cube",
+   "tex": "f(x)=x^3",
+   "note": "Domaine : R · impaire : f(−x) = −f(x) · strictement croissante sur R",
+   "anim": {
+    "nom": "courbe_cubique_fig",
+    "hauteur": 150
+   }
+  },
+  "cube_var": {
+   "type": "etape",
+   "kicker": "Cube : signe conservé",
+   "titre": "Le cube garde le signe de départ",
+   "tex": [
+    "(-2)^3=-8,\\quad 2^3=8",
+    "x^3=27 \\iff x=3",
+    "x^3=-8 \\iff x=-2"
+   ],
+   "anim": {
+    "nom": "tableau_variations_cubique_fig",
+    "hauteur": 130
+   }
+  },
+  "inverse": {
+   "type": "formule",
+   "kicker": "La fonction inverse",
+   "tex": "f(x)=\\frac{1}{x}",
+   "note": "Domaine : R privé de zéro · courbe : hyperbole · asymptotes x = 0 et y = 0",
+   "anim": {
+    "nom": "hyperbole_fig",
+    "hauteur": 150
+   }
+  },
+  "inverse_var": {
+   "type": "etape",
+   "kicker": "Inverse : variations",
+   "titre": "Décroissante sur chaque intervalle, séparément",
+   "tex": [
+    "\\text{sur } ]-\\infty\\,;\\,0[",
+    "\\text{et sur } ]0\\,;\\,+\\infty[",
+    "f(2)=\\tfrac{1}{2},\\ f(-2)=-\\tfrac{1}{2}"
+   ]
+  },
+  "racine": {
+   "type": "formule",
+   "kicker": "La fonction racine carrée",
+   "tex": "f(x)=\\sqrt{x}",
+   "note": "Domaine : les réels positifs ou nuls · courbe : demi-parabole · croissante"
+  },
+  "racine_regle": {
+   "type": "etape",
+   "kicker": "Racine : la règle d'or",
+   "titre": "La racine du carré redonne la valeur absolue",
+   "tex": [
+    "(\\sqrt{x})^2=x,\\ x\\ge 0",
+    "\\sqrt{x^2}=|x|",
+    "\\sqrt{(-5)^2}=5"
+   ]
+  },
+  "absolue": {
+   "type": "formule",
+   "kicker": "La fonction valeur absolue",
+   "tex": "f(x)=|x|",
+   "note": "Domaine : R · paire · courbe en V, point anguleux en zéro",
+   "anim": {
+    "nom": "point_anguleux_fig",
+    "hauteur": 150
+   }
+  },
+  "absolue_def": {
+   "type": "etape",
+   "kicker": "Valeur absolue par morceaux",
+   "titre": "Deux demi-droites, un seul sommet",
+   "tex": [
+    "|x|=x \\text{ si } x\\ge 0",
+    "|x|=-x \\text{ si } x<0",
+    "|-7|=7,\\quad |3|=3"
+   ]
+  },
+  "domaine_regles": {
+   "type": "etape",
+   "kicker": "Domaine : la chasse aux interdits",
+   "titre": "Trois interdits seulement, au départ",
+   "tex": [
+    "\\text{dénominateur } \\ne 0",
+    "\\text{sous la racine } \\ge 0",
+    "\\text{sinon, tout réel convient}"
+   ]
+  },
+  "domaine_ex": {
+   "type": "etape",
+   "kicker": "Exemple : domaine combiné",
+   "titre": "Racine au dénominateur : interdit renforcé",
+   "tex": [
+    "f(x)=\\tfrac{1}{\\sqrt{x-2}}",
+    "x-2>0 \\iff x>2",
+    "\\mathcal{D}_f=]2\\,;\\,+\\infty["
+   ]
+  },
+  "operations": {
+   "type": "etape",
+   "kicker": "Opérations sur les fonctions",
+   "titre": "Somme, produit, quotient, composée",
+   "tex": [
+    "(f+g)(x)=f(x)+g(x)",
+    "(fg)(x)=f(x)\\,g(x)",
+    "(g\\circ f)(x)=g(f(x))"
+   ]
+  },
+  "transform": {
+   "type": "etape",
+   "kicker": "Transformations graphiques",
+   "titre": "Décaler, étirer, retourner",
+   "tex": [
+    "f(x)+k : \\text{ monter de } k",
+    "f(x-k) : \\text{ glisser à droite}",
+    "-f(x) : \\text{ symétrie horizontale}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Affine : droite, pente a, ordonnée b",
+    "Carré : parabole paire, cube : impaire",
+    "Inverse : jamais en zéro, hyperbole",
+    "Racine : départ à zéro, domaine positif",
+    "Valeur absolue : le V, point en zéro"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux fonctions usuelles. Nous rencontrerons six familles qui reviennent partout : la fonction affine, le carré, le cube, l'inverse, la racine carrée et la valeur absolue. Pour chacune, nous retiendrons sa formule, son domaine, sa courbe et ses variations.",
+   "texte": "Six familles, un même réflexe : formule, domaine, courbe.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Une fonction est une machine : on entre un antécédent, elle rend une image, et surtout une seule. Deux questions ouvrent donc toujours l'étude : pour quelles valeurs la machine accepte-t-elle d'avancer, c'est le domaine, et comment les images évoluent-elles, ce sont les variations.",
+   "texte": "Une entrée, une seule image : domaine, puis variations.",
+   "ecran": "machine"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par la fonction affine, définie par f de x égale a x plus b. Le nombre a est le coefficient directeur, le nombre b est l'ordonnée à l'origine. Aucune valeur n'est interdite : le domaine est l'ensemble de tous les réels.",
+   "texte": "Affine : a x plus b, définie sur tous les réels.",
+   "ecran": "affine"
+  },
+  {
+   "id": "p04",
+   "dit": "Quand b vaut zéro, l'affine devient linéaire : f de x égale a x. C'est la proportionnalité pure, comme des stylos au même prix unitaire. La droite passe alors forcément par l'origine du repère.",
+   "texte": "Si b vaut zéro : proportionnalité, droite par l'origine.",
+   "ecran": "lineaire"
+  },
+  {
+   "id": "p05",
+   "dit": "Exemple concret, tiré des leçons : louer une voiture coûte des frais fixes, plus un prix par kilomètre. Pour cent kilomètres, le prix vaut trois dixièmes fois cent, plus les frais, soit quatre-vingts euros. Les frais fixes, c'est b, le prix au kilomètre, c'est a.",
+   "texte": "Location : frais fixes + prix au kilomètre = 80 € pour 100 km.",
+   "ecran": "location"
+  },
+  {
+   "id": "p06",
+   "dit": "Graphiquement, une affine est toujours une droite. La pente se lit entre deux points : variation verticale divisée par variation horizontale. Pente positive, la fonction monte, pente négative, elle descend, pente nulle, elle reste constante.",
+   "texte": "Une droite : le signe de a décide du sens de variation.",
+   "ecran": "droite"
+  },
+  {
+   "id": "p07",
+   "dit": "Méthode à maîtriser : déterminer une affine qui passe par deux points. On calcule d'abord la pente avec la différence des ordonnées sur la différence des abscisses, puis on lit b comme l'image de zéro. Ici, la pente vaut deux et b vaut trois.",
+   "texte": "Par deux points : pente d'abord, ordonnée à l'origine ensuite.",
+   "ecran": "determiner"
+  },
+  {
+   "id": "p08",
+   "dit": "Passons à la fonction carré, f de x égale x au carré. Elle est définie partout, elle est paire : l'image d'un opposé est la même. Sa courbe est la parabole, symétrique par rapport à l'axe des ordonnées, de sommet à l'origine.",
+   "texte": "Carré : parabole paire, sommet à l'origine.",
+   "ecran": "carre"
+  },
+  {
+   "id": "p09",
+   "dit": "Le carré décroît sur les réels négatifs, puis croît sur les positifs. Conséquence directe pour les équations : x au carré égale neuf a deux solutions, trois et moins trois. Oublier la solution négative est l'erreur classique du chapitre.",
+   "texte": "x² = 9 : deux solutions, 3 et −3.",
+   "ecran": "carre_var"
+  },
+  {
+   "id": "p10",
+   "dit": "La fonction cube, f de x égale x au cube, change de caractère : elle est impaire et strictement croissante sur tous les réels. Sa courbe traverse l'origine en forme de selle allongée, symétrique par rapport à l'origine elle-même.",
+   "texte": "Cube : impaire, strictement croissante, symétrie centrale.",
+   "ecran": "cube"
+  },
+  {
+   "id": "p11",
+   "dit": "Le cube conserve le signe : le cube d'un nombre négatif reste négatif. Une équation comme x au cube égale vingt-sept n'a donc qu'une seule solution réelle, trois. C'est la grande différence avec le carré, qui en donnait deux.",
+   "texte": "Le cube garde le signe : une seule solution pour x³ = 27.",
+   "ecran": "cube_var"
+  },
+  {
+   "id": "p12",
+   "dit": "La fonction inverse, f de x égale un sur x, introduit le premier interdit du cours : zéro au dénominateur est impossible. Le domaine exclut donc zéro, et la courbe, l'hyperbole, se compose de deux branches qui ne se rejoignent jamais.",
+   "texte": "Inverse : zéro interdit, hyperbole en deux branches.",
+   "ecran": "inverse"
+  },
+  {
+   "id": "p13",
+   "dit": "L'inverse est décroissante sur chaque intervalle de son domaine, pris séparément : à gauche de zéro, puis à droite de zéro. Attention au piège : on ne la dit jamais décroissante sur tout le domaine d'un bloc, car la branche de gauche est au-dessus de celle de droite.",
+   "texte": "Décroissante intervalle par intervalle, jamais globalement.",
+   "ecran": "inverse_var"
+  },
+  {
+   "id": "p14",
+   "dit": "La fonction racine carrée ne démarre qu'à zéro : on ne prend la racine que d'un nombre positif ou nul. Son domaine est donc l'intervalle des réels positifs, et sa courbe est une demi-parabole couchée, qui monte de plus en plus lentement.",
+   "texte": "Racine : domaine positif, demi-parabole croissante.",
+   "ecran": "racine"
+  },
+  {
+   "id": "p15",
+   "dit": "Une règle d'or à graver : la racine du carré d'un nombre redonne sa valeur absolue, pas le nombre lui-même. Ainsi, la racine de vingt-cinq, obtenu comme le carré de moins cinq, vaut cinq. Ce réflexe évitera bien des erreurs de signe.",
+   "texte": "√(x²) = |x| : la règle qui protège des signes.",
+   "ecran": "racine_regle"
+  },
+  {
+   "id": "p16",
+   "dit": "Dernière famille : la valeur absolue, qui rend tout nombre positif. Sa courbe forme un V parfait, avec un point anguleux à l'origine : elle change brutalement de direction, sans tangente unique en ce point.",
+   "texte": "Valeur absolue : le V, point anguleux en zéro.",
+   "ecran": "absolue"
+  },
+  {
+   "id": "p17",
+   "dit": "Par morceaux, la valeur absolue se lit simplement : pour un nombre positif, elle ne change rien, pour un nombre négatif, elle prend son opposé. La valeur absolue de moins sept vaut sept, celle de trois vaut trois.",
+   "texte": "|x| : x si positif, −x si négatif.",
+   "ecran": "absolue_def"
+  },
+  {
+   "id": "p18",
+   "dit": "Réunissons maintenant l'outil qui sert pour toutes les fonctions : le domaine de définition. Au départ, seuls deux interdits comptent : un dénominateur ne s'annule jamais, et l'intérieur d'une racine carrée reste positif ou nul.",
+   "texte": "Domaine : dénominateur non nul, racine positive.",
+   "ecran": "domaine_regles"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple combiné des leçons : un sur la racine de x moins deux. La racine impose x moins deux positif ou nul, mais le dénominateur interdit l'égalité. Il reste donc x strictement supérieur à deux : le domaine commence après deux, exclus.",
+   "texte": "1/√(x−2) : domaine ]2 ; +∞[, deux exclu.",
+   "ecran": "domaine_ex"
+  },
+  {
+   "id": "p20",
+   "dit": "On peut aussi fabriquer de nouvelles fonctions : ajouter, multiplier, diviser deux fonctions, ou les composer, c'est-à-dire appliquer la seconde au résultat de la première. Chaque opération hérite des interdits des fonctions de départ.",
+   "texte": "Somme, produit, quotient, composée : interdits hérités.",
+   "ecran": "operations"
+  },
+  {
+   "id": "p21",
+   "dit": "Enfin, les transformations déplacent les courbes sans les déformer : ajouter une constante monte la courbe, retrancher dans la variable la glisse vers la droite, et changer le signe retourne la courbe par rapport à l'axe horizontal.",
+   "texte": "Translations et symétries : déplacer sans déformer.",
+   "ecran": "transform"
+  },
+  {
+   "id": "p22",
+   "dit": "Récapitulons. L'affine est une droite pilotée par sa pente, le carré une parabole paire, le cube une courbe impaire qui garde le signe, l'inverse une hyperbole qui évite zéro, la racine une demi-parabole sur les positifs, et la valeur absolue un V. Devant toute fonction, commencez par son domaine.",
+   "texte": "Retenez la silhouette et le domaine de chaque famille.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Affine, carré et cube"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Inverse, racine, valeur absolue et domaines",
+   "pont": {
+    "texte": "Partie 2 : les fonctions à interdits, puis le domaine.",
+    "dit": "Partie deux : les fonctions qui posent des interdits. Nous verrons l'inverse et son zéro interdit, la racine carrée et son domaine positif, la valeur absolue et son V, puis la méthode générale des domaines de définition et les opérations sur les fonctions."
+   }
+  }
+ ]
+}

@@ -1,0 +1,434 @@
+{
+  "cours": 6276,
+  "titre": "Les polynômes : construire, calculer, factoriser",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Les polynômes",
+      "titre": "Les polynômes : construire, calculer, factoriser",
+      "sous": "Définir, évaluer, opérer, diviser : la boîte à outils complète de l'algèbre",
+      "anim": {
+        "nom": "factorisation_fig",
+        "hauteur": 240
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Une seule structure, mille usages",
+      "texte": "Trajectoires, aires, bénéfices : une même écriture, aₙxⁿ + … + a₁x + a₀.",
+      "anim": {
+        "nom": "parabole_fig",
+        "hauteur": 170
+      }
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "Définition",
+      "tex": "P(x) = a_n x^n + \\cdots + a_1 x + a_0 \\ (a_n \\neq 0)",
+      "note": "Coefficients réels, exposants entiers positifs ou nuls : rien d'autre n'est permis."
+    },
+    "pas_polynome": {
+      "type": "formule",
+      "kicker": "Ce qui n'est pas un polynôme",
+      "tex": "3\\sqrt{x} + 2 \\qquad \\frac{2}{x} + x^2",
+      "note": "Racine de la variable ou variable au dénominateur : exposants interdits."
+    },
+    "degre": {
+      "type": "formule",
+      "kicker": "Le degré",
+      "tex": "\\deg(P) = n \\quad \\text{si} \\quad a_n \\neq 0",
+      "note": "Exemple : deg(3x⁵ − 2x³ + 7x − 4) = 5 · Le polynôme nul n'a pas de degré."
+    },
+    "familles": {
+      "type": "etape",
+      "kicker": "Quatre familles",
+      "titre": "Le degré donne la forme de la courbe",
+      "tex": [
+        "P(x) = c",
+        "P(x) = ax + b",
+        "P(x) = ax^2 + bx + c",
+        "P(x) = ax^3 + bx^2 + cx + d"
+      ]
+    },
+    "evaluation": {
+      "type": "etape",
+      "kicker": "Évaluer un polynôme",
+      "titre": "Remplacer, puis calculer",
+      "tex": [
+        "P(x) = 2x^3 - 3x^2 + x - 5",
+        "P(1) = 2 - 3 + 1 - 5 = -5",
+        "P(-2) = -16 - 12 - 2 - 5 = -35"
+      ]
+    },
+    "horner": {
+      "type": "phrase",
+      "kicker": "Le schéma de Hörner",
+      "texte": "P(x) = 3x³ − 2x² + 5x − 7 évalué en 2 : le reste du tableau vaut 19.",
+      "anim": {
+        "nom": "horner_fig",
+        "hauteur": 230,
+        "coeffs": [
+          3,
+          -2,
+          5,
+          -7
+        ],
+        "a": 2
+      }
+    },
+    "principe_addition": {
+      "type": "phrase",
+      "kicker": "Addition et soustraction",
+      "texte": "Termes semblables uniquement : même variable, même exposant, on combine les coefficients."
+    },
+    "addition_exemple": {
+      "type": "etape",
+      "kicker": "Exemple : addition et soustraction",
+      "titre": "A(x) = 2x³ − 5x² + 3x − 1 et B(x) = 4x³ + 2x² − x + 7",
+      "tex": [
+        "A(x) + B(x) = 6x^3 - 3x^2 + 2x + 6",
+        "A(x) - B(x) = -2x^3 - 7x^2 + 4x - 8"
+      ]
+    },
+    "piege_soustraction": {
+      "type": "formule",
+      "kicker": "Le piège du signe moins",
+      "tex": "(a + b) - (c + d) = a + b - c - d",
+      "note": "Le moins devant la parenthèse change le signe de chaque terme intérieur."
+    },
+    "multiplication": {
+      "type": "etape",
+      "kicker": "Multiplication : la distributivité",
+      "titre": "Chaque terme fois chaque terme, puis on réduit",
+      "tex": [
+        "(3x + 2)(x^2 - 4x + 1)",
+        "= 3x^3 - 12x^2 + 3x + 2x^2 - 8x + 2",
+        "= 3x^3 - 10x^2 - 5x + 2"
+      ]
+    },
+    "identites": {
+      "type": "etape",
+      "kicker": "Les identités remarquables",
+      "titre": "Trois produits à connaître par cœur",
+      "tex": [
+        "(a + b)^2 = a^2 + 2ab + b^2",
+        "(a - b)^2 = a^2 - 2ab + b^2",
+        "(a + b)(a - b) = a^2 - b^2"
+      ]
+    },
+    "identite_exemple": {
+      "type": "formule",
+      "kicker": "Identité en action",
+      "tex": "(2x - 3)^2 = 4x^2 - 12x + 9",
+      "note": "Le double produit 2 × 2x × 3 = 12x : c'est lui qu'on oublie le plus souvent."
+    },
+    "degre_produit": {
+      "type": "formule",
+      "kicker": "Degré d'un produit",
+      "tex": "\\deg(P \\times Q) = \\deg(P) + \\deg(Q)",
+      "note": "Degré 2 fois degré 3 donne degré 5 : un contrôle immédiat de vos produits."
+    },
+    "division": {
+      "type": "formule",
+      "kicker": "Division euclidienne",
+      "tex": "\\begin{aligned} &P(x) = D(x) \\times Q(x) + R(x) \\\\ &\\deg(R) < \\deg(D) \\end{aligned}",
+      "note": "Dividende, diviseur, quotient, reste : le reste est toujours de degré inférieur.",
+      "anim": {
+        "nom": "division_euclidienne_fig",
+        "hauteur": 150
+      }
+    },
+    "division_exemple": {
+      "type": "etape",
+      "kicker": "Division posée : exemple",
+      "titre": "Diviser 2x³ − 7x² + 4x − 5 par x − 3",
+      "tex": [
+        "2x^3 - 7x^2 + 4x - 5",
+        "= (x - 3)(2x^2 - x + 1) - 2",
+        "\\text{quotient : } 2x^2 - x + 1 \\qquad \\text{reste : } -2"
+      ]
+    },
+    "reste_bezout": {
+      "type": "formule",
+      "kicker": "Le reste de la division par x − a",
+      "tex": "P(x) = (x - a) \\, Q(x) + P(a)",
+      "note": "Exemple : le reste de x³ − 4x² + 2x + 1 divisé par x − 2 vaut P(2) = −3."
+    },
+    "racine": {
+      "type": "formule",
+      "kicker": "Racines et facteurs",
+      "tex": "P(a) = 0 \\iff (x - a) \\text{ divise } P(x)",
+      "note": "a racine de P signifie exactement que (x − a) est un facteur de P."
+    },
+    "factorisation": {
+      "type": "phrase",
+      "kicker": "Factoriser",
+      "texte": "Écrire P comme un produit de facteurs plus simples : la structure devient visible.",
+      "anim": {
+        "nom": "factorisation_fig",
+        "hauteur": 200
+      }
+    },
+    "facteur_commun": {
+      "type": "etape",
+      "kicker": "Factorisation : le facteur commun",
+      "titre": "Le facteur présent dans tous les termes sort devant",
+      "tex": [
+        "P(x) = 6x^3 - 9x^2 + 3x",
+        "P(x) = 3x \\, (2x^2 - 3x + 1)"
+      ]
+    },
+    "identites_facto": {
+      "type": "etape",
+      "kicker": "Factorisation : les identités",
+      "titre": "Reconnaître un carré parfait ou une différence de carrés",
+      "tex": [
+        "a^2 - b^2 = (a - b)(a + b)",
+        "9x^2 - 24x + 16 = (3x - 4)^2"
+      ]
+    },
+    "somme_produit": {
+      "type": "etape",
+      "kicker": "Trinômes : somme et produit",
+      "titre": "Deux nombres : somme b, produit c (cas unitaire)",
+      "tex": [
+        "x^2 - 5x + 6 = (x - 2)(x - 3)",
+        "6x^2 - x - 2 = (3x - 2)(2x + 1)"
+      ]
+    },
+    "produit_nul": {
+      "type": "formule",
+      "kicker": "Le théorème du produit nul",
+      "tex": "A \\times B = 0 \\iff A = 0 \\ \\text{ou} \\ B = 0",
+      "note": "Une équation factorisée se résout facteur par facteur."
+    },
+    "cascade": {
+      "type": "etape",
+      "kicker": "Factorisation en cascade",
+      "titre": "Poser X = x² : le degré 4 devient un trinôme",
+      "tex": [
+        "P(x) = x^4 - 5x^2 + 4 = (x^2 - 1)(x^2 - 4)",
+        "P(x) = (x - 1)(x + 1)(x - 2)(x + 2)"
+      ]
+    },
+    "resolution_degre3": {
+      "type": "etape",
+      "kicker": "Résoudre au degré 3",
+      "titre": "Racine évidente 1, division, puis trinôme",
+      "tex": [
+        "x^3 - 2x^2 - 5x + 6 = (x - 1)(x^2 - x - 6)",
+        "= (x - 1)(x - 3)(x + 2)",
+        "S = \\{-2 \\ ; \\ 1 \\ ; \\ 3\\}"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "Récapitulatif",
+      "etapes": [
+        "Degré : plus grande puissance présente",
+        "Addition : termes semblables seulement",
+        "Produit : degré = somme des degrés",
+        "Division : reste de degré inférieur",
+        "Factoriser : commun, identités, somme-produit"
+      ]
+    },
+    "transition_division": {
+      "type": "phrase",
+      "kicker": "La division euclidienne",
+      "texte": "L'opération inverse du développement : retrouver les facteurs pour résoudre."
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours consacré aux polynômes, ces expressions qui modélisent aussi bien la trajectoire d'une balle que le bénéfice d'une entreprise. Nous allons apprendre à les reconnaître, à mesurer leur degré, à les évaluer, puis à les combiner par l'addition, la soustraction et la multiplication. Dans un second temps, nous les diviserons, nous les factoriserons, et nous résoudrons les équations qu'ils portent.",
+      "texte": "Les polynômes : définir, évaluer, combiner, factoriser.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Un polynôme se construit uniquement avec des additions, des soustractions et des multiplications, et les exposants de la variable sont toujours des entiers positifs ou nuls. L'aire d'un carré, le volume d'un cube, un prix formé d'un forfait et d'un coût par unité : derrière ces situations familières se cache déjà un polynôme.",
+      "texte": "Additions, multiplications, exposants entiers : la matière des polynômes.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Voici la forme générale. Un polynôme est une somme de termes, et chaque terme est le produit d'un nombre, appelé coefficient, par une puissance de la variable. Le premier coefficient, celui de la plus grande puissance, ne doit pas être nul, sinon ce terme disparaîtrait.",
+      "texte": "P(x) : une somme de termes a·x puissance k.",
+      "ecran": "definition"
+    },
+    {
+      "id": "p04",
+      "dit": "Attention aux imposteurs. Une racine carrée de la variable, ou la variable au dénominateur, font sortir du monde des polynômes : les exposants fractionnaires et les exposants négatifs sont interdits. Les coefficients, eux, ont tous les droits : ils peuvent être irrationnels, comme racine de deux ou pi.",
+      "texte": "Exposant fractionnaire ou négatif : ce n'est plus un polynôme.",
+      "ecran": "pas_polynome"
+    },
+    {
+      "id": "p05",
+      "dit": "Le degré d'un polynôme est la plus grande puissance de la variable dont le coefficient est non nul. C'est sa carte d'identité : il annonce la forme de sa courbe et sa vitesse de croissance quand la variable devient très grande. Le polynôme nul, lui, fait exception : on lui refuse tout degré.",
+      "texte": "Le degré : la plus grande puissance au coefficient non nul.",
+      "ecran": "degre"
+    },
+    {
+      "id": "p06",
+      "dit": "Quatre familles à reconnaître au premier coup d'œil. Degré zéro : une constante. Degré un : un polynôme linéaire, dont la courbe est une droite. Degré deux : un quadratique, dont la courbe est une parabole. Degré trois : un cubique, qui peut présenter un point d'inflexion.",
+      "texte": "Degrés 0, 1, 2, 3 : constante, droite, parabole, cubique.",
+      "ecran": "familles"
+    },
+    {
+      "id": "p07",
+      "dit": "Évaluer un polynôme, c'est remplacer la variable par un nombre et calculer. Pour notre exemple, en un, les termes se compensent presque et il reste moins cinq. En moins deux, les puissances paires et impaires jouent en sens contraires, et le résultat tombe à moins trente-cinq. Retenez le piège : un nombre négatif élevé au carré devient positif.",
+      "texte": "P(1) = −5 et P(−2) = −35 : attention aux signes des puissances.",
+      "ecran": "evaluation"
+    },
+    {
+      "id": "p08",
+      "dit": "Il existe un raccourci élégant pour évaluer sans calculer les puissances : le schéma de Hörner. On descend le premier coefficient, on multiplie par la valeur testée, on ajoute le coefficient suivant, et on recommence. Ici, pour la valeur deux, la dernière case livre le résultat : dix-neuf.",
+      "texte": "Hörner : descendre, multiplier, ajouter — P(2) = 19 sans puissances.",
+      "ecran": "horner"
+    },
+    {
+      "id": "p09",
+      "dit": "Passons aux opérations. Pour additionner ou soustraire deux polynômes, une seule règle : on ne combine que les termes de même degré, les termes semblables, en ajoutant ou en soustrayant leurs coefficients. C'est comme les unités : on n'additionne pas des mètres avec des kilogrammes.",
+      "texte": "On ne combine que les termes semblables, degré par degré.",
+      "ecran": "principe_addition"
+    },
+    {
+      "id": "p10",
+      "dit": "Exemple complet. Nos deux polynômes ont des termes en cube, en carré, en variable et des constantes. En additionnant degré par degré, les cubes donnent six, les carrés moins trois, les termes en variable deux, et les constantes six. En soustrayant, chaque coefficient du second polynôme change de signe avant le regroupement.",
+      "texte": "A + B = 6x³ − 3x² + 2x + 6 ; A − B = −2x³ − 7x² + 4x − 8.",
+      "ecran": "addition_exemple"
+    },
+    {
+      "id": "p11",
+      "dit": "Le piège numéro un de la soustraction : le signe moins devant une parenthèse change le signe de tous les termes à l'intérieur, sans exception. Oublier un seul changement de signe fausse tout le résultat. Une vérification simple : testez votre résultat avec une valeur numérique facile, par exemple un, des deux côtés.",
+      "texte": "Soustraction : le moins change TOUS les signes de la parenthèse.",
+      "ecran": "piege_soustraction"
+    },
+    {
+      "id": "p12",
+      "dit": "La multiplication repose sur la distributivité : chaque terme du premier polynôme multiplie chaque terme du second, puis on réduit les termes semblables. Ici, le premier facteur a deux termes, le second en a trois : le produit brut compte donc six termes, qui se réduisent à quatre après regroupement.",
+      "texte": "(3x + 2)(x² − 4x + 1) = 3x³ − 10x² − 5x + 2.",
+      "ecran": "multiplication"
+    },
+    {
+      "id": "p13",
+      "dit": "Trois produits reviennent si souvent qu'ils portent un nom : les identités remarquables. Le carré d'une somme, le carré d'une différence, et le produit d'une somme par une différence. Les connaître par cœur transforme un long développement en une seule ligne.",
+      "texte": "(a + b)², (a − b)², (a + b)(a − b) : les identités remarquables.",
+      "ecran": "identites"
+    },
+    {
+      "id": "p14",
+      "dit": "Exemple d'identité : le carré d'une différence. Le carré du premier terme, moins le double produit, plus le carré du second. Et surtout, retenez l'erreur la plus fréquente des copies : le carré d'une somme n'est jamais la somme des carrés, le double produit ne doit pas disparaître.",
+      "texte": "(2x − 3)² = 4x² − 12x + 9 : ne jamais oublier le double produit.",
+      "ecran": "identite_exemple"
+    },
+    {
+      "id": "p15",
+      "dit": "Une propriété précieuse pour contrôler vos calculs : le degré d'un produit est la somme des degrés des deux facteurs. Un polynôme de degré deux multiplié par un polynôme de degré trois donne un polynôme de degré cinq, car les deux termes dominants se multiplient. Si votre développement annonce un autre degré, il y a une erreur quelque part.",
+      "texte": "deg(P × Q) = deg(P) + deg(Q) : un contrôle gratuit du calcul.",
+      "ecran": "degre_produit"
+    },
+    {
+      "id": "p16",
+      "dit": "Nous savons construire et combiner les polynômes. Reste l'opération inverse de la multiplication : la division. Elle permettra de décomposer un polynôme en facteurs, de tester ses racines, et finalement de résoudre des équations de degré trois ou plus en les ramenant, pas à pas, au second degré.",
+      "texte": "Partie 2 : diviser pour factoriser, factoriser pour résoudre.",
+      "ecran": "transition_division"
+    },
+    {
+      "id": "p17",
+      "dit": "La division euclidienne des polynômes copie celle des entiers. Diviser dix-sept par cinq donne un quotient de trois et un reste de deux, plus petit que le diviseur. Pour les polynômes, plus petit veut dire : le degré du reste est strictement inférieur au degré du diviseur. Quotient et reste existent toujours, et ils sont uniques.",
+      "texte": "P = D × Q + R, avec deg(R) < deg(D) : comme 17 = 5 × 3 + 2.",
+      "ecran": "division"
+    },
+    {
+      "id": "p18",
+      "dit": "Exemple posé pas à pas. On divise le terme dominant du dividende par celui du diviseur pour obtenir chaque terme du quotient, on multiplie, on soustrait, et on recommence. Au bout du compte, notre polynôme de degré trois s'écrit : le diviseur, fois un quotient de degré deux, plus un reste constant de moins deux.",
+      "texte": "2x³ − 7x² + 4x − 5 = (x − 3)(2x² − x + 1) − 2.",
+      "ecran": "division_exemple"
+    },
+    {
+      "id": "p19",
+      "dit": "Cas précieux entre tous : diviser par un binôme de la forme variable moins a. Le reste est alors une constante, et cette constante n'est autre que la valeur du polynôme en a. Pour le vérifier, il suffit de remplacer la variable par a dans l'égalité de division : le terme du quotient s'annule et il ne reste que le reste.",
+      "texte": "Reste de la division par (x − a) : c'est P(a), tout simplement.",
+      "ecran": "reste_bezout"
+    },
+    {
+      "id": "p20",
+      "dit": "Conséquence immédiate : si la valeur en a vaut zéro, le reste est nul, la division est exacte, et le binôme est un facteur du polynôme. On dit alors que a est une racine du polynôme. Tester une racine et diviser sont donc deux visages d'une même opération, et le schéma de Hörner les réalise toutes les deux en un seul tableau.",
+      "texte": "P(a) = 0 si et seulement si (x − a) divise P(x) : a est racine.",
+      "ecran": "racine"
+    },
+    {
+      "id": "p21",
+      "dit": "Nous voici au cœur de la seconde partie : la factorisation. Factoriser, c'est écrire un polynôme comme un produit de polynômes plus simples, exactement comme on décompose un nombre en facteurs premiers. C'est l'opération inverse du développement, et c'est elle qui révèle les racines.",
+      "texte": "Factoriser : retrouver les facteurs, comme pour les nombres premiers.",
+      "ecran": "factorisation"
+    },
+    {
+      "id": "p22",
+      "dit": "Première piste, toujours : le facteur commun. Si tous les termes partagent un même facteur, on le met en évidence. Ici, trois et la variable apparaissent partout : une fois sortis, il reste un trinôme de degré deux. Vérifiez toujours votre factorisation en redéveloppant : vous devez retrouver l'expression de départ.",
+      "texte": "6x³ − 9x² + 3x = 3x(2x² − 3x + 1) : le facteur commun d'abord.",
+      "ecran": "facteur_commun"
+    },
+    {
+      "id": "p23",
+      "dit": "Deuxième piste : les identités remarquables, lues dans l'autre sens. Une différence de deux carrés se factorise en produit d'une somme et d'une différence. Et un trinôme dont les deux termes extrêmes sont des carrés, avec le bon double produit au centre, se referme en un carré parfait, comme dans notre exemple.",
+      "texte": "9x² − 24x + 16 = (3x − 4)² : l'identité lue à l'envers.",
+      "ecran": "identites_facto"
+    },
+    {
+      "id": "p24",
+      "dit": "Troisième piste, pour les trinômes : la méthode somme et produit. Pour un trinôme unitaire, on cherche deux nombres dont la somme donne le coefficient central et dont le produit donne la constante. Moins deux et moins trois conviennent ici. Quand le coefficient dominant n'est pas un, on cherche le même couple avec le produit des coefficients extrêmes, puis on regroupe.",
+      "texte": "x² − 5x + 6 = (x − 2)(x − 3) : somme −5, produit 6.",
+      "ecran": "somme_produit"
+    },
+    {
+      "id": "p25",
+      "dit": "Pourquoi tant d'efforts pour factoriser ? Parce qu'un produit est nul exactement quand l'un de ses facteurs est nul. Une équation polynomiale factorisée se scinde en petites équations simples, que l'on résout une à une. C'est le théorème du produit nul, la clé de toutes les résolutions qui suivent.",
+      "texte": "A × B = 0 ⟺ A = 0 ou B = 0 : le théorème du produit nul.",
+      "ecran": "produit_nul"
+    },
+    {
+      "id": "p26",
+      "dit": "Démonstration par un exemple en cascade. Ce polynôme de degré quatre ne contient que des puissances paires : en posant grand X égal au carré de la variable, il devient un trinôme ordinaire, qui se factorise. On revient ensuite à la variable, et deux différences de carrés achèvent le travail : quatre facteurs, quatre racines.",
+      "texte": "x⁴ − 5x² + 4 = (x − 1)(x + 1)(x − 2)(x + 2), racines ±1, ±2.",
+      "ecran": "cascade"
+    },
+    {
+      "id": "p27",
+      "dit": "Dernier exemple, la stratégie complète pour le degré trois. On teste une racine évidente parmi les diviseurs du terme constant : un convient. On divise, le quotient est un trinôme que l'on factorise, et l'équation se résout entièrement : moins deux, un et trois. Racine évidente, division, factorisation : le trio gagnant.",
+      "texte": "x³ − 2x² − 5x + 6 = 0 ⟺ x ∈ {−2 ; 1 ; 3}.",
+      "ecran": "resolution_degre3"
+    },
+    {
+      "id": "p28",
+      "dit": "Récapitulons la boîte à outils. Un polynôme est une somme de termes dont le degré est la plus grande puissance présente. On additionne les termes semblables, on multiplie par distributivité, on divise avec un reste de degré inférieur, et on factorise en cherchant d'abord le facteur commun, puis les identités, puis la méthode somme et produit. Chaque forme a son usage : développée pour calculer, factorisée pour résoudre.",
+      "texte": "Développer pour calculer, factoriser pour résoudre.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définir, mesurer le degré et évaluer"
+    },
+    {
+      "debut": "p10",
+      "sous_titre": "Opérations et division euclidienne",
+      "pont": {
+        "texte": "Partie 2 : addition, multiplication, puis la division.",
+        "dit": "Partie deux : calculer avec les polynômes. Nous additionnons et soustrayons en exemples complets, nous multiplions par distributivité avec les identités remarquables, puis nous découvrons la division euclidienne, qui ramène un polynôme à un quotient et un reste de degré inférieur."
+      }
+    },
+    {
+      "debut": "p20",
+      "sous_titre": "Racines, factorisation et résolution d'équations",
+      "pont": {
+        "texte": "Partie 3 : des racines aux solutions des équations.",
+        "dit": "Partie trois : racines, factorisation et résolution. Une racine testée par la division devient un facteur, les méthodes de factorisation s'enchaînent, du facteur commun à la méthode somme et produit, et le théorème du produit nul livre enfin les solutions des équations."
+      }
+    }
+  ]
+}

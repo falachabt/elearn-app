@@ -1,0 +1,533 @@
+{
+ "cours": 6173,
+ "titre": "Droites et plans dans l'espace : représentations, intersections et positions relatives",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Droites et plans dans l'espace",
+   "titre": "Droites et plans dans l'espace : représentations, intersections et positions relatives",
+   "sous": "Paramétrer, écrire en cartésien, puis décider si les objets se coupent, sont parallèles ou confondus",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Une feuille, un fil tendu, un rayon lumineux : décrire droites et plans par des équations.",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 180
+   }
+  },
+  "acteurs": {
+   "type": "etape",
+   "kicker": "Les acteurs de l'espace",
+   "titre": "Point, droite, plan : une, deux, trois dimensions",
+   "tex": [
+    "\\text{point : dimension }0",
+    "\\text{droite : dimension }1,\\ \\text{un vecteur directeur}",
+    "\\text{plan : dimension }2,\\ \\text{deux vecteurs ou un normal}"
+   ]
+  },
+  "droite_param": {
+   "type": "etape",
+   "kicker": "Droite · représentation paramétrique",
+   "titre": "Un point de départ, une direction, un paramètre",
+   "tex": [
+    "x=x_A+t\\,a",
+    "y=y_A+t\\,b",
+    "z=z_A+t\\,c"
+   ]
+  },
+  "ex_droite": {
+   "type": "etape",
+   "kicker": "Exemple · paramétrer une droite",
+   "titre": "A(1, 0, 2) et u(3, −1, 4)",
+   "tex": [
+    "x=1+3t",
+    "y=-t",
+    "z=2+4t"
+   ]
+  },
+  "plan_param": {
+   "type": "etape",
+   "kicker": "Plan · représentation paramétrique",
+   "titre": "Un point, deux directions, deux paramètres",
+   "tex": [
+    "x=x_A+t\\,a+s\\,a'",
+    "y=y_A+t\\,b+s\\,b'",
+    "z=z_A+t\\,c+s\\,c'"
+   ]
+  },
+  "plan_cart": {
+   "type": "formule",
+   "kicker": "Plan · équation cartésienne",
+   "tex": "ax+by+cz+d=0",
+   "note": "Le vecteur n(a, b, c) est normal au plan : orthogonal à tous ses vecteurs · (a, b, c) non nul",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 190
+   }
+  },
+  "ex_plan_normal": {
+   "type": "etape",
+   "kicker": "Exemple · plan par point et normale",
+   "titre": "A(1, 2, 3) et n(2, −1, 4)",
+   "tex": [
+    "2(x-1)-(y-2)+4(z-3)=0",
+    "2x-y+4z-12=0"
+   ]
+  },
+  "passage_plan": {
+   "type": "etape",
+   "kicker": "Passage · du paramétrique au cartésien",
+   "titre": "Le produit vectoriel donne la normale",
+   "tex": [
+    "\\vec{u}=(2,1,-1),\\ \\vec{v}=(0,3,1)",
+    "\\vec{n}=\\vec{u}\\wedge\\vec{v}=(4,-2,6)\\sim(2,-1,3)",
+    "2x-y+3z-8=0"
+   ],
+   "anim": {
+    "nom": "produit_vectoriel_fig",
+    "hauteur": 130
+   }
+  },
+  "droite_cart": {
+   "type": "etape",
+   "kicker": "Droite · équations cartésiennes",
+   "titre": "Une droite est l'intersection de deux plans",
+   "tex": [
+    "a_1x+b_1y+c_1z+d_1=0",
+    "a_2x+b_2y+c_2z+d_2=0",
+    "\\text{deux plans non parallèles}"
+   ],
+   "anim": {
+    "nom": "plans_secants_fig",
+    "hauteur": 130
+   }
+  },
+  "ex_conversion": {
+   "type": "etape",
+   "kicker": "Exemple · éliminer le paramètre",
+   "titre": "x = 1 + 2t, y = 3 − t, z = 2 + 3t",
+   "tex": [
+    "t=\\tfrac{x-1}{2}",
+    "x+2y-7=0",
+    "3x-2z+1=0"
+   ]
+  },
+  "directeur_cross": {
+   "type": "formule",
+   "kicker": "Vecteur directeur d'une droite cartésienne",
+   "tex": "\\vec{u}=\\vec{n}_1\\wedge\\vec{n}_2",
+   "note": "Le directeur est orthogonal aux deux normales : le produit vectoriel les croise en une seule étape",
+   "anim": {
+    "nom": "produit_vectoriel_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_directeur": {
+   "type": "etape",
+   "kicker": "Exemple · droite parallèle par un point",
+   "titre": "Par A(1, −2, 3), parallèle à la droite des deux plans",
+   "tex": [
+    "\\vec{n}_1=(2,-1,1),\\ \\vec{n}_2=(1,3,-2)",
+    "\\vec{u}=\\vec{n}_1\\wedge\\vec{n}_2=(-1,5,7)",
+    "x=1-t,\\ y=-2+5t,\\ z=3+7t"
+   ]
+  },
+  "deux_droites": {
+   "type": "etape",
+   "kicker": "Positions de deux droites",
+   "titre": "Colinéarité d'abord, point commun ensuite",
+   "tex": [
+    "\\text{directeurs colinéaires : parallèles ou confondues}",
+    "\\text{non colinéaires et coplanaires : sécantes}",
+    "\\text{non coplanaires : gauches}"
+   ],
+   "anim": {
+    "nom": "droites_gauches_fig",
+    "hauteur": 130
+   }
+  },
+  "ex_avions": {
+   "type": "etape",
+   "kicker": "Exemple · deux trajectoires coplanaires",
+   "titre": "Même altitude : A(0, 0, 10), u(1, 2, 0) · B(5, 0, 10), v(2, 1, 0)",
+   "tex": [
+    "t'=2t",
+    "t=5+4t\\ \\Rightarrow\\ t=-\\tfrac{5}{3}",
+    "\\text{croisement dans le passé : elles s'éloignent}"
+   ]
+  },
+  "test_droite_plan": {
+   "type": "formule",
+   "kicker": "Droite et plan · le test décisif",
+   "tex": "\\vec{u}\\cdot\\vec{n}=0\\iff \\text{droite parallèle au plan}",
+   "note": "Si le produit est non nul : sécante en un point · s'il est nul : incluse ou strictement parallèle, selon un point test",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 170
+   }
+  },
+  "methode_inter": {
+   "type": "etape",
+   "kicker": "Méthode · intersection droite et plan",
+   "titre": "Substituer, résoudre, reporter",
+   "tex": [
+    "x=x_A+t\\,u_x,\\ y=y_A+t\\,u_y,\\ z=z_A+t\\,u_z",
+    "a(x_A+tu_x)+b(y_A+tu_y)+c(z_A+tu_z)+d=0",
+    "t=-\\frac{ax_A+by_A+cz_A+d}{\\vec{u}\\cdot\\vec{n}}"
+   ],
+   "anim": {
+    "nom": "percement_fig",
+    "hauteur": 130
+   }
+  },
+  "ex_laser": {
+   "type": "etape",
+   "kicker": "Exemple · le rayon et le miroir",
+   "titre": "A(1, 2, 3), u(2, −1, 1), plan 3x − y + 2z − 5 = 0",
+   "tex": [
+    "3(1+2t)-(2-t)+2(3+t)-5=0",
+    "9t+2=0\\ \\Rightarrow\\ t=-\\tfrac{2}{9}",
+    "I\\left(\\tfrac{5}{9},\\tfrac{20}{9},\\tfrac{25}{9}\\right)"
+   ],
+   "anim": {
+    "nom": "percement_fig",
+    "hauteur": 130
+   }
+  },
+  "ex_toit": {
+   "type": "etape",
+   "kicker": "Exemple · la poutre et le toit",
+   "titre": "Plan 2x + y − z = 5 · A(1, 2, 3), u(1, −1, 2)",
+   "tex": [
+    "\\vec{u}\\cdot\\vec{n}=2-1-2=-1\\neq0",
+    "1-t=5\\ \\Rightarrow\\ t=-4",
+    "I=(-3\\ ;\\ 6\\ ;\\ -5)"
+   ]
+  },
+  "deux_plans": {
+   "type": "etape",
+   "kicker": "Positions de deux plans",
+   "titre": "Tout se joue sur les vecteurs normaux",
+   "tex": [
+    "\\text{normaux colinéaires : parallèles ou confondus}",
+    "\\text{normaux non colinéaires : sécants}",
+    "\\text{intersection : une droite}"
+   ],
+   "anim": {
+    "nom": "plans_secants_fig",
+    "hauteur": 130
+   }
+  },
+  "ex_plans": {
+   "type": "etape",
+   "kicker": "Exemple · angle entre deux plans",
+   "titre": "n₁(2, −1, 3) et n₂(1, 2, −1)",
+   "tex": [
+    "\\vec{n}_1,\\vec{n}_2\\ \\text{non colinéaires : plans sécants}",
+    "\\cos\\alpha=\\tfrac{|{-3}|}{\\sqrt{14}\\sqrt{6}}=\\tfrac{3}{\\sqrt{84}}",
+    "\\alpha\\approx70{,}9^{\\circ}"
+   ]
+  },
+  "caracterisations": {
+   "type": "etape",
+   "kicker": "Directeurs et normaux",
+   "titre": "Parallèle à l'objet, ou perpendiculaire",
+   "tex": [
+    "\\text{droite : un point }+\\text{ un vecteur directeur}",
+    "\\text{plan : un point }+\\text{ deux directeurs}",
+    "\\text{plan : un point }+\\text{ un vecteur normal}"
+   ]
+  },
+  "ex_trois_points": {
+   "type": "etape",
+   "kicker": "Exemple · plan par trois points",
+   "titre": "A(1, 0, 1), B(2, 1, 0), C(0, 1, 2)",
+   "tex": [
+    "\\overrightarrow{AB}=(1,1,-1),\\ \\overrightarrow{AC}=(-1,1,1)",
+    "\\vec{n}=\\overrightarrow{AB}\\wedge\\overrightarrow{AC}=(2,0,2)",
+    "x+z-2=0"
+   ]
+  },
+  "ex_toit_angle": {
+   "type": "etape",
+   "kicker": "Exemple corrigé · inclinaison d'un toit",
+   "titre": "A(0, 0, 3), B(10, 0, 5), C(0, 8, 4)",
+   "tex": [
+    "\\overrightarrow{AB}=(10,0,2),\\ \\overrightarrow{AC}=(0,8,1)",
+    "\\vec{n}=(-16,-10,80)",
+    "\\cos\\theta=\\tfrac{80}{\\sqrt{6756}}\\approx0{,}97\\ \\Rightarrow\\ \\theta\\approx13{,}4^{\\circ}"
+   ]
+  },
+  "ex_satellite": {
+   "type": "etape",
+   "kicker": "Exemple corrigé · trajectoire et plan",
+   "titre": "A(200, 100, 300), vitesse (10, −5, 15), plan 2x − y + 3z = 1000",
+   "tex": [
+    "1200+70t=1000\\ \\Rightarrow\\ t=-\\tfrac{20}{7}",
+    "I\\left(\\tfrac{1200}{7},\\tfrac{800}{7},\\tfrac{1800}{7}\\right)",
+    "\\text{point obtenu avant l'instant zéro}"
+   ]
+  },
+  "ex_synthese": {
+   "type": "etape",
+   "kicker": "Synthèse · droite contre plan",
+   "titre": "P : 3x − 2y + z = 6 · D par A(1, −1, 2), B(3, 0, 1)",
+   "tex": [
+    "\\vec{u}=(2,1,-1),\\ \\vec{n}\\cdot\\vec{u}=3\\neq0",
+    "1+3t=0\\ \\Rightarrow\\ t=-\\tfrac{1}{3}",
+    "I\\left(\\tfrac{1}{3},-\\tfrac{4}{3},\\tfrac{7}{3}\\right)"
+   ]
+  },
+  "ex_plans_par": {
+   "type": "etape",
+   "kicker": "Exemple · plans parallèles distincts",
+   "titre": "P₁ : x + 2y − z = 3 · P₂ : 2x + 4y − 2z = 7",
+   "tex": [
+    "\\vec{n}_2=2\\vec{n}_1\\ \\text{: normaux colinéaires}",
+    "2\\times3=6\\neq7\\ \\text{: aucun point commun}",
+    "\\text{plans strictement parallèles}"
+   ]
+  },
+  "recap_positions": {
+   "type": "recap",
+   "kicker": "Positions relatives",
+   "etapes": [
+    "Deux droites : sécantes, parallèles, gauches",
+    "Droite et plan : sécante, incluse, parallèle",
+    "Deux plans : sécants, parallèles, confondus",
+    "Toujours distinguer parallèle et confondu"
+   ]
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "Stratégie d'épreuve",
+   "etapes": [
+    "Extraire point, directeur et normale",
+    "Tester colinéarité ou produit u · n",
+    "Tester un point pour trancher les cas",
+    "Substituer pour calculer l'intersection"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Droite : un point, un directeur, un paramètre",
+    "Plan : un point, un normal, une équation",
+    "u · n = 0 : droite parallèle au plan",
+    "Intersection : substituer puis résoudre"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux droites et aux plans dans l'espace. Une arête de table est une droite, sa surface est un plan, et un rayon lumineux qui la frappe pose la question centrale du cours : ces objets se rencontrent-ils, où, et sous quel angle. Nous allons apprendre à les décrire par des équations, puis à décider de toutes leurs positions relatives.",
+   "texte": "Droites et plans : représentations, intersections et positions.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Notre terrain est l'espace à trois dimensions, où chaque point est repéré par trois coordonnées. Le point n'a pas de dimension, la droite s'étend dans une direction, le plan dans deux directions. Un objet de dimension trois remplirait tout l'espace : il n'y a donc que ces trois acteurs, mais leurs rencontres produisent toute la géométrie du cours.",
+   "texte": "Point, droite, plan : les trois acteurs de l'espace.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Pour tenir une droite, il faut une direction : un vecteur directeur, non nul, colinéaire au vecteur joignant deux quelconques de ses points. Pour tenir un plan, il faut deux directions non colinéaires, ou, ce qui reviendra sans cesse, un seul vecteur normal, perpendiculaire à toutes les directions du plan.",
+   "texte": "Une direction pour la droite, deux ou une normale pour le plan.",
+   "ecran": "acteurs"
+  },
+  {
+   "id": "p04",
+   "dit": "La représentation paramétrique d'une droite raconte un mouvement. On part d'un point connu, on ajoute un multiple du vecteur directeur, et le paramètre, en parcourant tous les réels, fait défiler tous les points de la droite. Paramètre nul : on est au point de départ. Paramètre positif ou négatif : on avance ou on recule le long de la direction.",
+   "texte": "Paramétrer une droite : partir d'un point, suivre une direction.",
+   "ecran": "droite_param"
+  },
+  {
+   "id": "p05",
+   "dit": "Exemple immédiat : la droite qui passe par le point de coordonnées un, zéro et deux, dirigée par le vecteur de coordonnées trois, moins un et quatre. Son abscisse est un plus trois fois le paramètre, son ordonnée est moins le paramètre, et sa cote est deux plus quatre fois le paramètre. Chaque valeur du paramètre donne un point, et tous les points sont obtenus.",
+   "texte": "Droite par (1, 0, 2), direction (3, −1, 4).",
+   "ecran": "ex_droite"
+  },
+  {
+   "id": "p06",
+   "dit": "Pour un plan, un seul paramètre ne suffit plus : il en faut deux, un pour chaque direction. On part d'un point du plan, on ajoute une combinaison des deux vecteurs directeurs, avec deux coefficients réels indépendants. Fixer l'un des paramètres et faire varier l'autre décrit une droite du plan : le plan est tissé de droites.",
+   "texte": "Plan paramétrique : deux directions, deux paramètres.",
+   "ecran": "plan_param"
+  },
+  {
+   "id": "p07",
+   "dit": "L'autre visage du plan est son équation cartésienne, une seule équation linéaire. Les coefficients des trois inconnues forment exactement les coordonnées d'un vecteur normal au plan. Cette équation ne fabrique pas les points, elle les teste : un point appartient au plan si et seulement si ses coordonnées la vérifient.",
+   "texte": "Plan cartésien : ax + by + cz + d = 0, normale (a, b, c).",
+   "ecran": "plan_cart"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple : le plan qui passe par le point de coordonnées un, deux et trois, de vecteur normal de coordonnées deux, moins un et quatre. On écrit que le vecteur joignant le point à un point quelconque du plan est orthogonal à la normale, on développe, et on obtient deux x, moins y, plus quatre z, moins douze, égale zéro.",
+   "texte": "Plan par point et normale : 2x − y + 4z − 12 = 0.",
+   "ecran": "ex_plan_normal"
+  },
+  {
+   "id": "p09",
+   "dit": "Pour passer du paramétrique au cartésien, le produit vectoriel des deux vecteurs directeurs fournit directement un vecteur normal. Dans l'exemple de l'écran, les directeurs donnent une normale proportionnelle à deux, moins un et trois, et le plan passant par le point de départ a pour équation deux x, moins y, plus trois z, moins huit, égale zéro. Vérifiez toujours le résultat sur le point de départ.",
+   "texte": "Du paramétrique au cartésien : la normale par produit vectoriel.",
+   "ecran": "passage_plan"
+  },
+  {
+   "id": "p10",
+   "dit": "Une droite, elle, n'a pas une seule équation cartésienne : une équation linéaire définit un plan, pas une droite. Une droite s'écrit donc comme l'intersection de deux plans non parallèles, par un système de deux équations. Chaque condition linéaire fait perdre une dimension : deux conditions, et il reste une droite dans l'espace à trois dimensions.",
+   "texte": "Droite cartésienne : deux plans sécants, deux équations.",
+   "ecran": "droite_cart"
+  },
+  {
+   "id": "p11",
+   "dit": "Le passage inverse pour une droite consiste à éliminer le paramètre. On l'exprime depuis l'équation la plus simple, on le reporte dans les deux autres, et le système cartésien apparaît. Dans l'exemple de l'écran, les deux plans obtenus sont x plus deux y moins sept égale zéro, et trois x moins deux z plus un égale zéro. Contrôlez toujours avec le point de départ, il doit vérifier les deux équations.",
+   "texte": "Éliminer t : deux équations, contrôlées au point de départ.",
+   "ecran": "ex_conversion"
+  },
+  {
+   "id": "p12",
+   "dit": "Si une droite est donnée par deux plans, son vecteur directeur s'obtient d'un coup : c'est le produit vectoriel des vecteurs normaux des deux plans. Logique, puisque ce vecteur doit être orthogonal aux deux normales à la fois. C'est l'outil qui permet de repasser du cartésien au paramétrique.",
+   "texte": "Directeur d'une droite cartésienne : n₁ ∧ n₂.",
+   "ecran": "directeur_cross"
+  },
+  {
+   "id": "p13",
+   "dit": "Application complète : on cherche la droite passant par le point de coordonnées un, moins deux et trois, parallèle à une droite donnée par deux plans de normales deux, moins un, un et un, trois, moins deux. Le produit vectoriel de ces normales donne le directeur moins un, cinq et sept, et la représentation paramétrique s'écrit aussitôt depuis le point imposé.",
+   "texte": "Directeur (−1, 5, 7) par produit vectoriel des normales.",
+   "ecran": "ex_directeur"
+  },
+  {
+   "id": "p14",
+   "dit": "Venons-en aux positions relatives de deux droites, la grande nouveauté de l'espace. Si leurs vecteurs directeurs sont colinéaires, elles sont parallèles ou confondues, et un point commun permet de trancher. Sinon, deux cas : coplanaires, elles se coupent en un point ; non coplanaires, elles sont gauches, sans point commun et sans plan commun. Ne pas se couper ne signifie donc plus être parallèles.",
+   "texte": "Deux droites : sécantes, parallèles, confondues ou gauches.",
+   "ecran": "deux_droites"
+  },
+  {
+   "id": "p15",
+   "dit": "Exemple de navigation : deux avions volent à la même altitude, donc dans un même plan horizontal. Leurs trajectoires se résolvent comme dans le plan, et le système donne un paramètre négatif, moins cinq tiers. Traduction : leurs routes se sont croisées dans le passé, au sens du paramétrage, et les deux avions s'éloignent désormais l'un de l'autre.",
+   "texte": "Trajectoires coplanaires : croisement dans le passé.",
+   "ecran": "ex_avions"
+  },
+  {
+   "id": "p16",
+   "dit": "Pour une droite face à un plan, un seul produit scalaire décide presque tout : celui du vecteur directeur de la droite avec le vecteur normal du plan. Non nul, la droite perce le plan en exactement un point. Nul, la droite est parallèle au plan au sens large : reste à tester un de ses points pour savoir si elle est incluse dans le plan ou strictement parallèle.",
+   "texte": "Le test u · n : nul ou non, tout se décide.",
+   "ecran": "test_droite_plan"
+  },
+  {
+   "id": "p17",
+   "dit": "Quand la droite est sécante, la méthode est mécanique. On écrit la droite sous forme paramétrique, on substitue ses trois coordonnées dans l'équation du plan, et on obtient une équation du premier degré en le paramètre. On la résout, puis on reporte la valeur dans la représentation paramétrique : les coordonnées du point d'intersection tombent.",
+   "texte": "Intersection : substituer, résoudre en t, reporter.",
+   "ecran": "methode_inter"
+  },
+  {
+   "id": "p18",
+   "dit": "Exemple détaillé : un rayon laser part du point de coordonnées un, deux et trois, dans la direction de coordonnées deux, moins un et un, et frappe un miroir plan. La substitution donne neuf fois le paramètre plus deux égale zéro, donc un paramètre de moins deux neuvièmes. Le point d'impact a pour coordonnées cinq neuvièmes, vingt neuvièmes et vingt-cinq neuvièmes, et il vérifie bien l'équation du plan.",
+   "texte": "Rayon et miroir : impact en (5/9, 20/9, 25/9).",
+   "ecran": "ex_laser"
+  },
+  {
+   "id": "p19",
+   "dit": "Autre rencontre : une poutre perce un toit. Le produit du vecteur directeur de la poutre avec la normale du toit vaut moins un, il est non nul, donc la poutre est sécante au plan du toit. La substitution donne le paramètre moins quatre, et le point de percement a pour coordonnées moins trois, six et moins cinq, ce que l'équation du toit confirme.",
+   "texte": "Poutre et toit : percement en (−3, 6, −5).",
+   "ecran": "ex_toit"
+  },
+  {
+   "id": "p20",
+   "dit": "Deux plans, maintenant. Tout se joue sur leurs vecteurs normaux. Normaux colinéaires : les plans sont parallèles ou confondus, et un point test tranche entre les deux. Normaux non colinéaires : les plans sont sécants, et leur intersection est une droite, décrite par le système de leurs deux équations, comme les murs d'une pièce se coupent en une arête.",
+   "texte": "Deux plans : normaux colinéaires ou sécants selon une droite.",
+   "ecran": "deux_plans"
+  },
+  {
+   "id": "p21",
+   "dit": "L'angle de deux plans sécants est l'angle de leurs vecteurs normaux, ramené à un angle aigu par la valeur absolue. Pour les normales de coordonnées deux, moins un, trois et un, deux, moins un, le produit vaut moins trois, les normes racine de quatorze et racine de six : le cosinus vaut trois sur racine de quatre-vingt-quatre, et l'angle vaut environ soixante-dix virgule neuf degrés.",
+   "texte": "Angle entre plans : l'angle des normales, environ 70,9 degrés.",
+   "ecran": "ex_plans"
+  },
+  {
+   "id": "p22",
+   "dit": "Retenez la dualité qui organise tout le cours. Un vecteur directeur est parallèle à l'objet qu'il décrit, un vecteur normal lui est perpendiculaire. Une droite se donne par un point et un directeur, un plan par un point et deux directeurs, ou, plus économiquement, par un point et un seul vecteur normal. Choisir la bonne caractérisation, c'est choisir le calcul le plus court.",
+   "texte": "Directeur : parallèle. Normal : perpendiculaire.",
+   "ecran": "caracterisations"
+  },
+  {
+   "id": "p23",
+   "dit": "Exemple de synthèse : le plan par trois points. On forme deux vecteurs joignant le premier point aux deux autres, leur produit vectoriel donne une normale, ici deux, zéro et deux, que l'on peut simplifier en un, zéro et un. Le plan a alors pour équation x plus z moins deux égale zéro, et chacun des trois points la vérifie.",
+   "texte": "Plan par trois points : x + z − 2 = 0.",
+   "ecran": "ex_trois_points"
+  },
+  {
+   "id": "p24",
+   "dit": "Exemple d'architecture, calculé avec soin : un toit passe par trois points dont deux vecteurs ont pour coordonnées dix, zéro, deux et zéro, huit, un. Leur produit vectoriel a pour coordonnées moins seize, moins dix et quatre-vingts. Le cosinus de l'angle entre cette normale et la verticale vaut quatre-vingts sur racine de six mille sept cent cinquante-six, environ zéro virgule quatre-vingt-dix-sept : l'inclinaison vaut environ treize virgule quatre degrés.",
+   "texte": "Toit : normale (−16, −10, 80), inclinaison environ 13,4 degrés.",
+   "ecran": "ex_toit_angle"
+  },
+  {
+   "id": "p25",
+   "dit": "Exemple de trajectoire : un satellite part du point de coordonnées deux cents, cent et trois cents, avec une vitesse de coordonnées dix, moins cinq et quinze. En substituant sa trajectoire dans l'équation du plan, on obtient mille deux cents plus soixante-dix fois le paramètre égale mille, donc un paramètre de moins vingt septièmes. Le point de rencontre a pour coordonnées mille deux cents septièmes, huit cents septièmes et mille huit cents septièmes.",
+   "texte": "Satellite : rencontre en (1200/7, 800/7, 1800/7).",
+   "ecran": "ex_satellite"
+  },
+  {
+   "id": "p26",
+   "dit": "Dernier exercice complet, qui enchaîne tout : un plan d'équation trois x, moins deux y, plus z, égale six, et la droite joignant deux points dont le vecteur directeur a pour coordonnées deux, un et moins un. Son produit avec la normale vaut trois, non nul : la droite est sécante. La substitution donne un paramètre de moins un tiers, et le point d'intersection a pour coordonnées un tiers, moins quatre tiers et sept tiers.",
+   "texte": "Synthèse : intersection en (1/3, −4/3, 7/3).",
+   "ecran": "ex_synthese"
+  },
+  {
+   "id": "p27",
+   "dit": "Un dernier cas à ne jamais confondre : deux plans de normales colinéaires ne sont pas forcément confondus. Ici, la seconde normale est le double de la première, mais le double du second membre de la première équation donne six, pas sept : aucun point commun, les plans sont strictement parallèles, comme un plancher et un plafond.",
+   "texte": "Normales colinéaires, constantes non proportionnelles : parallèles.",
+   "ecran": "ex_plans_par"
+  },
+  {
+   "id": "p28",
+   "dit": "Le tableau des positions relatives tient en trois questions. Les directeurs ou les normaux sont-ils colinéaires, ou leur produit scalaire est-il nul. Un point de l'un appartient-il à l'autre. Et sinon, l'intersection est-elle un point, une droite, ou vide. Ces trois questions classent toutes les configurations du cours.",
+   "texte": "Trois questions pour classer toutes les configurations.",
+   "ecran": "recap_positions"
+  },
+  {
+   "id": "p29",
+   "dit": "Face à un problème, la stratégie est toujours la même : extraire calmement le point, le vecteur directeur et le vecteur normal, appliquer le test adapté, trancher les cas limites par un point, puis seulement calculer l'intersection par substitution. L'ordre compte : décider d'abord, calculer ensuite.",
+   "texte": "Décider d'abord par les vecteurs, calculer ensuite.",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p30",
+   "dit": "Pour finir, retenez l'architecture du cours. Une droite se paramètre par un point, un directeur et un paramètre ; un plan s'écrit par un point, une normale et une équation ; le produit du directeur par la normale décide du parallélisme ; et la substitution livre les intersections. Avec ces quatre gestes, toute la géométrie des droites et des plans dans l'espace devient calculable.",
+   "texte": "Droites et plans : paramétrer, tester, substituer.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Représenter droites et plans"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Positions relatives et intersections",
+   "pont": {
+    "texte": "Partie 2 : deux droites, droite et plan, deux plans, et leurs intersections.",
+    "dit": "Partie deux : les positions relatives et les intersections. Deux droites peuvent être gauches, une droite peut percer un plan, et deux plans se coupent selon une droite : nous allons décider chaque cas par les vecteurs, puis calculer les points de rencontre."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Angles, caractérisations et synthèse",
+   "pont": {
+    "texte": "Partie 3 : angle de deux plans, directeurs et normaux, problèmes de synthèse.",
+    "dit": "Partie trois : angles entre plans, caractérisations et problèmes de synthèse. Nous réunirons vecteurs directeurs et vecteurs normaux dans des exemples complets, du plan par trois points au toit incliné et à la trajectoire d'un satellite."
+   }
+  }
+ ]
+}

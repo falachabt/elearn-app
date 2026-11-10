@@ -1,0 +1,605 @@
+{
+  "cours": 6670,
+  "titre": "Statistiques, dénombrement, graphes et géométrie analytique",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématiques · Panorama",
+      "titre": "Statistiques, dénombrement, graphes et géométrie analytique",
+      "sous": "Séries en classes, coefficients binomiaux, degrés des graphes, distances et tangentes",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction · Statistiques",
+      "texte": "Premier thème : résumer une série regroupée en classes par sa position et sa dispersion.",
+      "anim": {
+        "nom": "distribution_bars_fig",
+        "hauteur": 200
+      }
+    },
+    "classes": {
+      "type": "etape",
+      "kicker": "Statistiques · La série des tailles",
+      "titre": "Trois classes, leurs centres, les cumulés",
+      "tex": [
+        "c_1 = 152{,}5 \\qquad c_2 = 157{,}5 \\qquad c_3 = 162{,}5",
+        "n_1 = 4 \\qquad n_2 = 10 \\qquad n_3 = 6 \\qquad N = 20",
+        "\\text{ECC} : 4 \\qquad 14 \\qquad 20"
+      ]
+    },
+    "moyenne": {
+      "type": "formule",
+      "kicker": "Statistiques · La moyenne",
+      "titre": "Pondérer chaque centre par son effectif",
+      "tex": "\\bar{x} = \\frac{\\sum n_i c_i}{N} = \\sum f_i c_i",
+      "note": "Le centre c_i représente toute sa classe ; f_i est la fréquence de la classe"
+    },
+    "moyenne_ex": {
+      "type": "etape",
+      "kicker": "Statistiques · Exemple",
+      "titre": "La moyenne des tailles, pas à pas",
+      "tex": [
+        "4 \\times 152{,}5 = 610 \\qquad 10 \\times 157{,}5 = 1575",
+        "6 \\times 162{,}5 = 975",
+        "610 + 1575 + 975 = 3160",
+        "\\bar{x} = \\tfrac{3160}{20} = 158\\ \\text{cm}"
+      ]
+    },
+    "mode": {
+      "type": "phrase",
+      "kicker": "Statistiques · Classe modale et mode",
+      "texte": "Classe modale [155 ; 160[ , la plus remplie : le mode est son centre, 157,5 cm.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 150
+      }
+    },
+    "mediane": {
+      "type": "formule",
+      "kicker": "Statistiques · La médiane",
+      "titre": "Interpoler dans l'intervalle médian",
+      "tex": "M_e = a + \\frac{\\frac{N}{2} - E_a}{n} \\times (b - a)",
+      "note": "a : début de l'intervalle médian, E_a : ECC avant, n : son effectif"
+    },
+    "mediane_ex": {
+      "type": "etape",
+      "kicker": "Statistiques · Exemple",
+      "titre": "La médiane des tailles, par interpolation",
+      "tex": [
+        "\\text{ECC} : 4 \\qquad 14 \\qquad 20 \\qquad \\tfrac{N}{2} = 10",
+        "M_e = 155 + \\tfrac{10 - 4}{10} \\times 5",
+        "M_e = 155 + 3 = 158\\ \\text{cm}"
+      ]
+    },
+    "variance": {
+      "type": "formule",
+      "kicker": "Statistiques · La dispersion",
+      "titre": "Variance et écart-type autour de la moyenne",
+      "tex": "V = \\frac{\\sum n_i (c_i - \\bar{x})^2}{N} \\qquad \\sigma = \\sqrt{V}",
+      "note": "Écart moyen : moyenne des écarts |c_i − x̄|, pondérée par les n_i"
+    },
+    "dispersion_ex": {
+      "type": "etape",
+      "kicker": "Statistiques · Exemple",
+      "titre": "La dispersion des tailles, en chiffres",
+      "tex": [
+        "4 \\times 30{,}25 = 121 \\qquad 10 \\times 0{,}25 = 2{,}5",
+        "6 \\times 20{,}25 = 121{,}5 \\qquad V = \\tfrac{245}{20}",
+        "V = 12{,}25 \\qquad \\sigma = 3{,}5\\ \\text{cm}"
+      ],
+      "anim": {
+        "nom": "dispersion_mesures_fig",
+        "hauteur": 130
+      }
+    },
+    "histogramme": {
+      "type": "phrase",
+      "kicker": "Statistiques · Histogramme",
+      "texte": "Histogramme : l'aire de chaque rectangle est proportionnelle à l'effectif de la classe.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 220
+      }
+    },
+    "courbe_cumulee": {
+      "type": "phrase",
+      "kicker": "Statistiques · Courbe des cumulés",
+      "texte": "La courbe des effectifs cumulés monte par segments : la médiane se lit à mi-hauteur, en N/2.",
+      "anim": {
+        "nom": "distribution_bars_fig",
+        "hauteur": 200
+      }
+    },
+    "bilan_stats": {
+      "type": "phrase",
+      "kicker": "Statistiques · Bilan",
+      "texte": "Position : moyenne, médiane, mode. Dispersion : écart moyen, variance, écart-type."
+    },
+    "cardinal": {
+      "type": "formule",
+      "kicker": "Dénombrement · Le cardinal",
+      "titre": "La réunion, sans compter deux fois",
+      "tex": "|A \\cup B| = |A| + |B| - |A \\cap B|",
+      "note": "L'intersection est comptée deux fois : on la retranche une fois.",
+      "anim": {
+        "nom": "venn",
+        "hauteur": 200
+      }
+    },
+    "venn_ex": {
+      "type": "etape",
+      "kicker": "Dénombrement · Exemple",
+      "titre": "Football, basket, et les deux sports",
+      "tex": [
+        "|F \\cup B| = 18 + 12 - 5 = 25",
+        "\\text{aucun sport} : 30 - 25 = 5"
+      ],
+      "anim": {
+        "nom": "venn",
+        "hauteur": 150
+      }
+    },
+    "listes": {
+      "type": "etape",
+      "kicker": "Dénombrement · Les listes",
+      "titre": "Listes, arrangements, permutations",
+      "tex": [
+        "\\text{avec répétition} : n^p",
+        "A_n^p = \\tfrac{n!}{(n - p)!}",
+        "\\text{permutations} : A_n^n = n!"
+      ],
+      "anim": {
+        "nom": "arbre_fig",
+        "hauteur": 120
+      }
+    },
+    "listes_ex": {
+      "type": "etape",
+      "kicker": "Dénombrement · Exemples",
+      "titre": "Codes à quatre chiffres et podiums",
+      "tex": [
+        "\\text{codes} : 10^4 = 10000",
+        "A_{10}^3 = 10 \\times 9 \\times 8 = 720"
+      ]
+    },
+    "combinaisons": {
+      "type": "formule",
+      "kicker": "Dénombrement · Les combinaisons",
+      "titre": "Choisir sans ordre et sans répétition",
+      "tex": "\\binom{n}{p} = \\frac{n!}{p!\\,(n - p)!}",
+      "note": "Sans ordre, sans répétition ; choisir p éléments, c'est en écarter n − p"
+    },
+    "combi_ex": {
+      "type": "etape",
+      "kicker": "Dénombrement · Exemples",
+      "titre": "Comités de trois et parties d'un ensemble",
+      "tex": [
+        "\\tbinom{10}{3} = \\tfrac{10!}{3! \\times 7!}",
+        "= \\tfrac{10 \\times 9 \\times 8}{3 \\times 2 \\times 1} = 120",
+        "2^5 = 32 \\qquad \\text{parties d'un ensemble de 5}"
+      ],
+      "anim": {
+        "nom": "parties_fig",
+        "hauteur": 140
+      }
+    },
+    "pascal": {
+      "type": "formule",
+      "kicker": "Dénombrement · Pascal et Newton",
+      "titre": "Le triangle qui développe les puissances",
+      "tex": "(a + b)^n = \\sum_{p=0}^{n} \\binom{n}{p} a^{n - p} b^p",
+      "note": "Relation de Pascal : chaque coefficient est la somme des deux au-dessus"
+    },
+    "methode_denombrement": {
+      "type": "phrase",
+      "kicker": "Dénombrement · La méthode",
+      "texte": "Deux questions avant tout calcul : l'ordre compte-t-il ? La répétition est-elle autorisée ?",
+      "anim": {
+        "nom": "arbre_fig",
+        "hauteur": 180
+      }
+    },
+    "graphe_def": {
+      "type": "phrase",
+      "kicker": "Graphes · Définition",
+      "texte": "Un graphe : des sommets reliés par des arêtes, comme les stations et les liaisons d'un métro.",
+      "anim": {
+        "nom": "graphe_fig",
+        "hauteur": 220
+      }
+    },
+    "graphe_vocab": {
+      "type": "etape",
+      "kicker": "Graphes · Vocabulaire",
+      "titre": "Un triangle et un sommet isolé",
+      "tex": [
+        "d(A) = 2 \\qquad d(B) = 2 \\qquad d(C) = 2",
+        "d(D) = 0 \\qquad \\text{D est isolé}",
+        "\\text{ordre } n = 4 \\qquad 3\\ \\text{arêtes}"
+      ]
+    },
+    "graphe_types": {
+      "type": "phrase",
+      "kicker": "Graphes · Trois types",
+      "texte": "Simple : ni boucle ni arête double. Orienté : des arcs. Complet : toutes les paires reliées.",
+      "anim": {
+        "nom": "graphe_fig",
+        "hauteur": 170
+      }
+    },
+    "somme_degres": {
+      "type": "formule",
+      "kicker": "Graphes · La somme des degrés",
+      "titre": "Chaque arête compte pour deux",
+      "tex": "\\sum_{s \\in S} d(s) = 2 \\times |A|",
+      "note": "Chaque arête contribue pour un au degré de ses deux extrémités"
+    },
+    "poignees": {
+      "type": "etape",
+      "kicker": "Graphes · Exemple",
+      "titre": "Cinq personnes, trois poignées chacun",
+      "tex": [
+        "\\textstyle\\sum d(P_i) = 5 \\times 3 = 15",
+        "2|A| = 15 \\qquad |A| = 7{,}5 : \\text{impossible}"
+      ]
+    },
+    "vecteur_normal": {
+      "type": "formule",
+      "kicker": "Droites · Vecteur normal",
+      "titre": "Le vecteur normal se lit dans l'équation",
+      "tex": "\\vec{n}(a\\,;\\,b) \\quad \\text{pour la droite} \\quad ax + by + c = 0",
+      "note": "Exemple : pour 2x − 3y + 1 = 0, un vecteur normal est n(2 ; −3)"
+    },
+    "equation_normale": {
+      "type": "formule",
+      "kicker": "Droites · Équation normale",
+      "titre": "Diviser par la norme du vecteur normal",
+      "tex": "x\\cos\\alpha + y\\sin\\alpha = p \\qquad p \\geq 0",
+      "note": "Pour 3x + 4y − 5 = 0, on divise par 5 : coefficients 3/5 et 4/5"
+    },
+    "distance": {
+      "type": "formule",
+      "kicker": "Droites · Distance point-droite",
+      "titre": "La plus courte distance à la droite",
+      "tex": "d(A, (d)) = \\frac{|a x_A + b y_A + c|}{\\sqrt{a^2 + b^2}}",
+      "note": "Le numérateur évalue l'équation de la droite au point A",
+      "anim": {
+        "nom": "distance_point_droite_fig",
+        "hauteur": 190
+      }
+    },
+    "distance_ex": {
+      "type": "etape",
+      "kicker": "Droites · Exemple",
+      "titre": "Distance nulle : le point est sur la droite",
+      "tex": [
+        "|3(1) - 4(2) + 5| = 0 \\qquad \\sqrt{3^2 + 4^2} = 5",
+        "d(A, (d)) = \\tfrac{0}{5} = 0"
+      ]
+    },
+    "cercle_param": {
+      "type": "formule",
+      "kicker": "Cercles · Équations paramétriques",
+      "titre": "Parcourir le cercle avec un angle",
+      "tex": "\\begin{cases} x = x_C + R\\cos\\theta \\\\ y = y_C + R\\sin\\theta \\end{cases}",
+      "note": "Exemple : centre C(2 ; −1), rayon 3 : x = 2 + 3cos θ, y = −1 + 3sin θ",
+      "anim": {
+        "nom": "cercle_rayon_fig",
+        "hauteur": 180
+      }
+    },
+    "tangente": {
+      "type": "phrase",
+      "kicker": "Cercles · La tangente",
+      "texte": "La tangente en M est perpendiculaire au rayon (CM) : elle ne touche le cercle qu'en M.",
+      "anim": {
+        "nom": "positions_droite_cercle_fig",
+        "hauteur": 200
+      }
+    },
+    "tangente_ex": {
+      "type": "etape",
+      "kicker": "Cercles · Exemple",
+      "titre": "La tangente en M(3 ; 4)",
+      "tex": [
+        "3(x - 3) + 4(y - 4) = 0",
+        "3x + 4y = 25"
+      ]
+    },
+    "tangentes_ext": {
+      "type": "etape",
+      "kicker": "Cercles · Exemple",
+      "titre": "Deux tangentes depuis P(2 ; 0)",
+      "tex": [
+        "x^2 + y^2 = 1 \\qquad (x - 2)x + y^2 = 0",
+        "1 - 2x = 0 \\qquad x = \\tfrac{1}{2}",
+        "y = \\pm\\tfrac{\\sqrt{3}}{2} \\qquad T_1,\\ T_2"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Statistiques : moyenne, médiane, écart-type",
+        "Dénombrement : ordre et répétition d'abord",
+        "Graphes : somme des degrés = 2 × arêtes",
+        "Droite : vecteur normal n(a ; b)",
+        "Cercle : tangente perpendiculaire au rayon"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours panorama de mathématiques : nous allons décrire des séries statistiques regroupées en classes, compter avec les arrangements et les combinaisons, découvrir les graphes, puis travailler sur les droites et les cercles du plan.",
+      "texte": "Statistiques, dénombrement, graphes, droites et cercles.",
+      "ecran": "titre",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p02",
+      "dit": "Premier thème : les statistiques. Une série regroupée en classes associe à chaque classe un effectif, et les effectifs cumulés croissants additionnent les classes les unes après les autres. Toute la leçon consiste à résumer cette série par quelques nombres bien choisis : où se concentrent les valeurs, et à quel point elles se dispersent.",
+      "texte": "Résumer une série : la position et la dispersion.",
+      "ecran": "intro",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p03",
+      "dit": "Voici notre fil conducteur : des tailles en centimètres, réparties en trois classes. Chaque classe est remplacée par son centre, le milieu de ses bornes. Les effectifs sont quatre, dix et six, pour un total de vingt élèves. Les effectifs cumulés croissants valent quatre, puis quatorze, puis vingt : ils serviront à placer la médiane.",
+      "texte": "Trois classes, vingt élèves, les ECC : 4, 14, 20.",
+      "ecran": "classes",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p04",
+      "dit": "La moyenne d'une série regroupée se calcule avec les centres des classes : on multiplie chaque centre par son effectif, on additionne, et on divise par l'effectif total. C'est aussi la somme des fréquences multipliées par les centres. Le centre joue le rôle de représentant de toute sa classe.",
+      "texte": "La moyenne : les centres, pondérés par les effectifs.",
+      "ecran": "moyenne",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p05",
+      "dit": "Appliquons la formule aux tailles. Quatre fois cent cinquante-deux et demi font six cent dix ; dix fois cent cinquante-sept et demi font mille cinq cent soixante-quinze ; six fois cent soixante-deux et demi font neuf cent soixante-quinze. La somme vaut trois mille cent soixante, divisée par vingt : la moyenne est de cent cinquante-huit centimètres.",
+      "texte": "Exemple : la moyenne des tailles vaut 158 cm.",
+      "ecran": "moyenne_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p06",
+      "dit": "La classe modale est la classe la plus fréquente : ici, celle des tailles entre cent cinquante-cinq et cent soixante, avec dix élèves. Son centre, cent cinquante-sept et demi, s'appelle le mode de la série. Retenez que, dans ce programme, le mode se lit à partir des effectifs, jamais à partir des hauteurs d'un histogramme à classes inégales.",
+      "texte": "Classe modale [155 ; 160[ , mode : 157,5 cm.",
+      "ecran": "mode",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p07",
+      "dit": "La médiane partage la série en deux moitiés de même effectif. On repère d'abord l'intervalle médian : la première classe dont l'effectif cumulé atteint la moitié de l'effectif total. Dans cet intervalle, l'interpolation linéaire suppose une répartition régulière : on avance depuis la borne basse, au prorata de l'effectif qui manque pour atteindre la moitié.",
+      "texte": "La médiane : interpolation linéaire dans l'intervalle médian.",
+      "ecran": "mediane",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p08",
+      "dit": "Sur nos tailles : la moitié de vingt vaut dix. L'effectif cumulé avant l'intervalle médian vaut quatre, et la classe compte dix élèves. La médiane vaut donc cent cinquante-cinq, plus six dixièmes de la largeur cinq, c'est-à-dire plus trois : cent cinquante-huit centimètres. La moitié des élèves mesurent moins que cette valeur, l'autre moitié davantage.",
+      "texte": "Exemple : la médiane vaut aussi 158 cm.",
+      "ecran": "mediane_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p09",
+      "dit": "Passons à la dispersion. L'écart moyen mesure la distance moyenne des centres à la moyenne, en valeur absolue. La variance fait de même avec des carrés, ce qui pénalise davantage les grands écarts : c'est la moyenne des carrés des écarts. Sa racine carrée, l'écart-type, revient dans l'unité de la série et devient le nombre de dispersion de référence.",
+      "texte": "Variance et écart-type : la dispersion autour de la moyenne.",
+      "ecran": "variance",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p10",
+      "dit": "Chiffrons la dispersion des tailles autour de cent cinquante-huit. Les écarts des centres valent cinq et demi, un demi et quatre et demi. Leurs carrés pondérés donnent cent vingt et un, deux et demi et cent vingt et un et demi. La variance vaut deux cent quarante-cinq divisé par vingt, soit douze virgule vingt-cinq, et l'écart-type vaut trois virgule cinq centimètres. L'écart moyen, lui, vaut deux virgule sept centimètres.",
+      "texte": "Exemple : V = 12,25 et écart-type 3,5 cm.",
+      "ecran": "dispersion_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p11",
+      "dit": "Côté graphique, l'histogramme représente chaque classe par un rectangle dont l'aire est proportionnelle à l'effectif. Quand toutes les classes ont la même amplitude, la hauteur peut suivre l'effectif. Sinon, il faut diviser l'effectif par l'amplitude : la hauteur devient une densité, et seule l'aire garde un sens.",
+      "texte": "Histogramme : c'est l'aire qui compte, pas la hauteur.",
+      "ecran": "histogramme",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p12",
+      "dit": "La courbe des effectifs cumulés relie les points placés aux bornes supérieures des classes, à hauteur de l'effectif cumulé. Elle monte par segments jusqu'à l'effectif total. Son grand intérêt : la médiane se lit graphiquement, comme l'abscisse du point de la courbe situé à mi-hauteur, à la moitié de l'effectif total.",
+      "texte": "La courbe des cumulés : la médiane se lit à mi-hauteur.",
+      "ecran": "courbe_cumulee",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p13",
+      "dit": "Bilan de cette première partie : la moyenne, la médiane et le mode décrivent la position d'une série, là où les valeurs se concentrent. L'écart moyen, la variance et l'écart-type décrivent sa dispersion, son étalement autour du centre. Un bon résumé donne toujours un paramètre de chaque famille, jamais un seul des deux.",
+      "texte": "Position et dispersion : un paramètre de chaque famille.",
+      "ecran": "bilan_stats",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p14",
+      "dit": "Le cardinal d'un ensemble fini est simplement son nombre d'éléments. Pour une réunion, attention au double compte : les éléments de l'intersection appartiennent aux deux ensembles, ils ont été comptés deux fois, donc on les retranche une fois. Le diagramme de Venn, avec ses deux régions qui se chevauchent, rend ce double compte visible.",
+      "texte": "Le cardinal d'une réunion : retrancher l'intersection.",
+      "ecran": "cardinal",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p15",
+      "dit": "Exemple : dans une classe de trente élèves, dix-huit pratiquent le football et douze le basket, et cinq pratiquent les deux sports. La réunion compte dix-huit plus douze moins cinq, soit vingt-cinq élèves sportifs. Ceux qui ne pratiquent aucun sport sont donc trente moins vingt-cinq : cinq élèves.",
+      "texte": "Exemple : 18 + 12 − 5 = 25, donc 5 sans sport.",
+      "ecran": "venn_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p16",
+      "dit": "Quand on forme une liste ordonnée, trois cas se présentent. Avec répétition autorisée, chaque position se choisit indépendamment : le nombre de listes est une puissance. Sans répétition, on obtient un arrangement : les choix possibles diminuent d'un cran à chaque position, ce qui mène aux factorielles. Si la liste épuise tous les éléments, c'est une permutation.",
+      "texte": "Listes : puissances avec répétition, arrangements sans.",
+      "ecran": "listes",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p17",
+      "dit": "Deux applications immédiates. Un code à quatre chiffres autorise la répétition : dix choix à chaque position, donc dix puissance quatre, dix mille codes. Un podium parmi dix coureurs refuse la répétition et tient à l'ordre : dix fois neuf fois huit, soit sept cent vingt podiums possibles.",
+      "texte": "Exemples : 10 000 codes, 720 podiums.",
+      "ecran": "listes_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p18",
+      "dit": "Une combinaison, c'est un choix sans ordre et sans répétition : un sous-ensemble, comme un comité ou une main de cartes. Pour la compter, on part des arrangements, où l'ordre compte, puis on divise par le nombre de façons d'ordonner les éléments choisis, c'est-à-dire par factorielle du nombre choisi. D'où le coefficient binomial, au cœur de toute la suite.",
+      "texte": "La combinaison : un sous-ensemble, sans ordre.",
+      "ecran": "combinaisons",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p19",
+      "dit": "Exemple : les comités de trois personnes parmi dix. Le calcul donne dix fois neuf fois huit, divisé par trois fois deux fois un : cent vingt comités. Autre application du même coefficient : un ensemble de cinq éléments possède deux puissance cinq parties, soit trente-deux sous-ensembles, de l'ensemble vide à l'ensemble entier.",
+      "texte": "Exemples : 120 comités, 32 parties pour 5 éléments.",
+      "ecran": "combi_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p20",
+      "dit": "La relation de Pascal construit les coefficients de proche en proche : chaque coefficient est la somme des deux coefficients situés au-dessus de lui dans le triangle. Ce triangle alimente la formule du binôme de Newton, qui développe une puissance de somme en une somme de termes, chacun pondéré par un coefficient binomial. Pour la puissance trois, on retrouve un, trois, trois, un.",
+      "texte": "Pascal et Newton : les coefficients du développement.",
+      "ecran": "pascal",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p21",
+      "dit": "Devant un problème de dénombrement, posez toujours les deux mêmes questions, dans cet ordre. L'ordre des éléments compte-t-il ? Une répétition est-elle autorisée ? Les réponses désignent l'outil : puissance, arrangement ou combinaison. L'arbre de dénombrement, le tableau à double entrée et le diagramme de Venn servent à vérifier les petits cas avant de généraliser.",
+      "texte": "La méthode : ordre ? répétition ? puis l'outil.",
+      "ecran": "methode_denombrement",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p22",
+      "dit": "Changeons d'objet : un graphe est un dessin de sommets reliés par des arêtes. Pensez au plan de métro : les stations sont les sommets, les liaisons directes sont les arêtes. L'ordre du graphe est son nombre de sommets. Le degré d'un sommet compte les arêtes qui le touchent, et deux sommets reliés par une arête sont dits adjacents. Un sommet sans aucune arête est isolé.",
+      "texte": "Un graphe : des sommets, des arêtes, des degrés.",
+      "ecran": "graphe_def",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p23",
+      "dit": "Prenons un graphe de quatre sommets, a, bé, cé et dé, avec trois arêtes qui forment un triangle entre a, bé et cé. Chaque sommet du triangle a pour degré deux. Le sommet dé, sans arête, est isolé : son degré vaut zéro. Les sommets adjacents à a sont bé et cé. Tout le vocabulaire du chapitre tient dans ce petit exemple.",
+      "texte": "Exemple : degrés 2, 2, 2 et 0, D isolé.",
+      "ecran": "graphe_vocab",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p24",
+      "dit": "Trois types de graphes à distinguer. Le graphe simple n'a ni boucle, ni arête double entre deux mêmes sommets. Le graphe orienté donne un sens à ses liaisons, qui deviennent des arcs : une rue à sens unique, par exemple. Le graphe complet relie chaque paire de sommets : à quatre sommets, chacun a pour degré trois.",
+      "texte": "Simple, orienté, complet : trois types de graphes.",
+      "ecran": "graphe_types",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p25",
+      "dit": "La propriété centrale des graphes tient en une égalité : la somme des degrés de tous les sommets vaut deux fois le nombre d'arêtes. La raison est simple : chaque arête possède deux extrémités, elle contribue donc pour un au degré de deux sommets. Conséquence immédiate : cette somme est toujours un nombre pair, ce qui servira de test de cohérence.",
+      "texte": "Somme des degrés = 2 × nombre d'arêtes.",
+      "ecran": "somme_degres",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p26",
+      "dit": "Application redoutable : cinq personnes se rencontrent, et chacune serre la main de exactement trois autres. Chaque sommet aurait pour degré trois, donc la somme des degrés vaudrait cinq fois trois, quinze. Mais quinze est impair et ne peut pas valoir deux fois un nombre d'arêtes. Une telle situation est donc impossible : la théorie vient de trancher sans aucun dessin.",
+      "texte": "Exemple : 5 × 3 = 15, impair, donc impossible.",
+      "ecran": "poignees",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p27",
+      "dit": "Un vecteur normal à une droite est un vecteur non nul perpendiculaire à la droite, donc orthogonal à tout vecteur directeur. La lecture est immédiate dans l'équation cartésienne : pour une droite d'équation a ixe plus bé igrec plus cé égal zéro, le vecteur de coordonnées a et bé est déjà un vecteur normal. Pour deux ixe moins trois igrec plus un, c'est le vecteur de coordonnées deux et moins trois.",
+      "texte": "Vecteur normal : n(a ; b), lu dans l'équation.",
+      "ecran": "vecteur_normal",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p28",
+      "dit": "En divisant l'équation d'une droite par la norme de son vecteur normal, on obtient son équation normale, où les coefficients sont un cosinus et un sinus. Pour trois ixe plus quatre igrec moins cinq, la norme vaut cinq, racine de neuf plus seize : l'équation normale affiche trois cinquièmes et quatre cinquièmes. Cette forme prépare la formule de distance.",
+      "texte": "Équation normale : diviser par la norme, ici 5.",
+      "ecran": "equation_normale",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p29",
+      "dit": "La distance d'un point à une droite est la longueur de la perpendiculaire menée du point à la droite. La formule évalue l'équation de la droite au point, prend la valeur absolue, et divise par la norme du vecteur normal. La valeur absolue garantit une distance positive, et le dénominateur remet l'expression à l'échelle des longueurs.",
+      "texte": "La distance d'un point à une droite : la formule.",
+      "ecran": "distance",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p30",
+      "dit": "Exemple : la distance du point de coordonnées un et deux à la droite d'équation trois ixe moins quatre igrec plus cinq. Le numérateur vaut trois, moins huit, plus cinq, en valeur absolue : zéro. Le dénominateur vaut cinq. La distance est donc nulle, et ce n'est pas un hasard : une distance nulle signifie que le point appartient à la droite, ce qu'un calcul direct confirme.",
+      "texte": "Exemple : distance 0, le point est sur la droite.",
+      "ecran": "distance_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p31",
+      "dit": "Un cercle se parcourt avec un angle : chaque point du cercle de centre cé et de rayon grand air s'obtient en ajoutant au centre un déplacement horizontal en cosinus et un déplacement vertical en sinus, amplifiés par le rayon. Pour le centre de coordonnées deux et moins un et le rayon trois, on écrit ixe égal deux plus trois cosinus thêta, et igrec égal moins un plus trois sinus thêta.",
+      "texte": "Le cercle paramétré par l'angle θ.",
+      "ecran": "cercle_param",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p32",
+      "dit": "La tangente à un cercle en un de ses points est la perpendiculaire au rayon mené en ce point : elle ne touche le cercle qu'en ce point et n'y entre jamais. Son équation s'écrit avec un produit scalaire nul entre le rayon et un vecteur de la tangente. C'est cette orthogonalité, et elle seule, qui pilote tous les calculs de tangentes.",
+      "texte": "La tangente : perpendiculaire au rayon au point de contact.",
+      "ecran": "tangente",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p33",
+      "dit": "Exemple : le cercle d'équation ixe au carré plus igrec au carré égal vingt-cinq, de rayon cinq, et le point de coordonnées trois et quatre, qui est bien sur le cercle. La tangente en ce point a pour équation trois ixe plus quatre igrec égal vingt-cinq. Vérification éclair : le point de contact satisfait cette équation, et le rayon est bien perpendiculaire à la droite obtenue.",
+      "texte": "Exemple : la tangente en (3 ; 4) est 3x + 4y = 25.",
+      "ecran": "tangente_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p34",
+      "dit": "Problème complet : depuis le point de coordonnées deux et zéro, extérieur au cercle unité, mener les tangentes au cercle. Le point de contact inconnu appartient au cercle, et le rayon mené en ce point est perpendiculaire à la tangente. Ces deux conditions donnent l'abscisse un demi, puis l'ordonnée plus ou moins racine de trois sur deux. Il y a donc deux tangentes, symétriques par rapport à l'axe des abscisses, comme le dessin le laissait prévoir.",
+      "texte": "Exemple : deux tangentes, T1 et T2 symétriques.",
+      "ecran": "tangentes_ext",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p35",
+      "dit": "Pour terminer, retenez l'enchaînement de ce panorama. En statistiques, un paramètre de position et un paramètre de dispersion résument une série. En dénombrement, les questions d'ordre et de répétition choisissent l'outil. En graphes, la somme des degrés vaut deux fois le nombre d'arêtes. Et en géométrie analytique, le vecteur normal et l'orthogonalité règlent distances et tangentes.",
+      "texte": "Quatre thèmes, cinq formules à retenir.",
+      "ecran": "recap",
+      "pause_apres": 0.5
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Statistiques : position et dispersion"
+    },
+    {
+      "debut": "p14",
+      "sous_titre": "Dénombrement et graphes",
+      "pont": {
+        "texte": "Partie 2 : dénombrement et graphes.",
+        "dit": "Partie deux : compter, puis relier. Nous commençons par le dénombrement, l'art de compter des listes, des arrangements et des combinaisons sans rien oublier ni compter deux fois. Nous enchaînerons avec les graphes, où des sommets et des arêtes modélisent des réseaux, et une seule égalité sur les degrés résout déjà des problèmes entiers."
+      }
+    },
+    {
+      "debut": "p27",
+      "sous_titre": "Droites et cercles : distances et tangentes",
+      "pont": {
+        "texte": "Partie 3 : vecteur normal, distance, cercle et tangentes.",
+        "dit": "Partie trois : droites et cercles, côté calcul. Un vecteur normal lu directement dans l'équation d'une droite donnera la distance d'un point à cette droite. Puis le cercle prendra le relais, avec ses équations paramétriques et ses tangentes, jusqu'à un problème complet de tangentes issues d'un point extérieur."
+      }
+    }
+  ]
+}

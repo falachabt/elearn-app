@@ -1,0 +1,575 @@
+{
+ "cours": 6054,
+ "titre": "Électricité générale",
+ "matiere": "Physique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique · Concours",
+   "titre": "Électricité générale",
+   "sous": "Courant, tension, résistance, puissance, composants, associations, lois de Kirchhoff et modèles équivalents",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un circuit électrique canalise le courant : une source, des conducteurs, des récepteurs qui convertissent l'énergie, et un interrupteur pour commander.",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 240
+   }
+  },
+  "courant": {
+   "type": "formule",
+   "kicker": "Le courant électrique",
+   "tex": "I = \\dfrac{Q}{t}",
+   "titre": "La charge qui traverse, par unité de temps",
+   "note": "Q en coulombs, t en secondes : un ampère vaut un coulomb par seconde"
+  },
+  "sens": {
+   "type": "phrase",
+   "kicker": "Le sens conventionnel",
+   "texte": "Par convention, le courant va du pôle plus vers le pôle moins à l'extérieur du générateur ; les électrons, eux, circulent en sens inverse.",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 240
+   }
+  },
+  "tension": {
+   "type": "formule",
+   "kicker": "La tension électrique",
+   "tex": "U = \\dfrac{W}{Q}",
+   "titre": "Le travail fourni par unité de charge",
+   "note": "W : travail en joules · Q : charge déplacée, en coulombs"
+  },
+  "tension_points": {
+   "type": "etape",
+   "kicker": "La tension entre deux points",
+   "titre": "Une différence de potentiel entre les bornes",
+   "tex": [
+    "U_{AB} = V_A - V_B",
+    "U_{AB} = -U_{BA}"
+   ]
+  },
+  "resistance": {
+   "type": "formule",
+   "kicker": "La résistance électrique",
+   "tex": "R = \\dfrac{\\rho\\, L}{S}",
+   "titre": "L'opposition au passage du courant",
+   "note": "ρ : résistivité du matériau · L : longueur · S : section du conducteur"
+  },
+  "ohm": {
+   "type": "formule",
+   "kicker": "La loi d'Ohm",
+   "tex": "U = R\\, I",
+   "titre": "Tension, résistance et intensité sont liées",
+   "note": "Exemple du cours : dix volts aux bornes de dix ohms donnent un ampère"
+  },
+  "ex_fil": {
+   "type": "etape",
+   "kicker": "Exemple",
+   "titre": "La résistance d'un fil de cuivre",
+   "tex": [
+    "\\rho = 1{,}7 \\times 10^{-8}\\ \\Omega\\,\\text{m}",
+    "L = 10\\ \\text{m} \\qquad S = 1\\ \\text{mm}^2 = 10^{-6}\\ \\text{m}^2",
+    "R = \\dfrac{\\rho\\, L}{S} = 0{,}17\\ \\Omega"
+   ]
+  },
+  "puissance": {
+   "type": "formule",
+   "kicker": "La puissance électrique",
+   "tex": "P = U\\, I",
+   "titre": "La vitesse de transfert de l'énergie",
+   "note": "P en watts, U en volts, I en ampères"
+  },
+  "joule": {
+   "type": "etape",
+   "kicker": "La loi de Joule",
+   "titre": "La puissance dissipée par une résistance",
+   "tex": [
+    "P = R\\, I^2",
+    "P = \\dfrac{U^2}{R}"
+   ]
+  },
+  "ex_puissance": {
+   "type": "etape",
+   "kicker": "Exemple",
+   "titre": "Choisir une résistance qui ne brûle pas",
+   "tex": [
+    "R = 10\\ \\Omega \\qquad I = 2\\ \\text{A}",
+    "P = R\\, I^2 = 10 \\times 2^2 = 40\\ \\text{W}"
+   ]
+  },
+  "energie": {
+   "type": "formule",
+   "kicker": "L'énergie électrique",
+   "tex": "E = P\\, t",
+   "titre": "La consommation, et sa facturation",
+   "note": "En joules si t est en secondes · un kilowattheure vaut 3,6 millions de joules"
+  },
+  "composants": {
+   "type": "recap",
+   "kicker": "Les composants de base",
+   "etapes": [
+    "Générateurs : ils fournissent l'énergie au circuit",
+    "Récepteurs : ils convertissent l'énergie électrique",
+    "Mesure et connexion : appareils idéaux, fils parfaits"
+   ],
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 220
+   }
+  },
+  "resistor": {
+   "type": "formule",
+   "kicker": "Le résistor",
+   "tex": "U = R\\, I",
+   "titre": "Le récepteur par excellence",
+   "note": "Il convertit l'énergie électrique en chaleur : c'est l'effet Joule",
+   "anim": {
+    "nom": "resistor_symbole_fig",
+    "hauteur": 190
+   }
+  },
+  "moteur": {
+   "type": "formule",
+   "kicker": "Le moteur",
+   "tex": "U = E^{\\prime} + r^{\\prime}\\, I",
+   "titre": "De l'énergie électrique à l'énergie mécanique",
+   "note": "E prime : force contre-électromotrice · r prime : résistance interne",
+   "anim": {
+    "nom": "moteur_symbole_fig",
+    "hauteur": 190
+   }
+  },
+  "source_tension": {
+   "type": "etape",
+   "kicker": "La source de tension",
+   "titre": "Une tension imposée, une résistance interne",
+   "tex": [
+    "U = E - r\\, I",
+    "U = E \\qquad \\text{si } r = 0"
+   ],
+   "anim": {
+    "nom": "caracteristique",
+    "hauteur": 130
+   }
+  },
+  "source_courant": {
+   "type": "formule",
+   "kicker": "La source de courant",
+   "tex": "I = I_g",
+   "titre": "Un courant imposé, quelle que soit la tension",
+   "note": "Elle impose le courant qui la traverse, quelle que soit la tension",
+   "anim": {
+    "nom": "source_courant_symbole_fig",
+    "hauteur": 190
+   }
+  },
+  "mesures": {
+   "type": "phrase",
+   "kicker": "Les appareils de mesure",
+   "texte": "L'ampèremètre se branche en série, le voltmètre en dérivation. Idéaux, ils mesurent sans perturber le circuit.",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 240
+   }
+  },
+  "serie": {
+   "type": "etape",
+   "kicker": "Le montage en série",
+   "titre": "Même courant partout, tensions qui s'ajoutent",
+   "tex": [
+    "R_{\\text{eq}} = R_1 + R_2 + \\cdots + R_n",
+    "E_{\\text{eq}} = E_1 + \\cdots + E_n \\qquad r_{\\text{eq}} = r_1 + \\cdots + r_n"
+   ]
+  },
+  "parallele": {
+   "type": "etape",
+   "kicker": "Le montage en parallèle",
+   "titre": "Même tension partout, courants qui s'ajoutent",
+   "tex": [
+    "\\frac{1}{R_{\\text{eq}}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\cdots + \\frac{1}{R_n}",
+    "R_{\\text{eq}} = \\frac{R_1\\, R_2}{R_1 + R_2} \\qquad I_{\\text{eq}} = I_1 + \\cdots + I_n"
+   ]
+  },
+  "ex_associations": {
+   "type": "etape",
+   "kicker": "Exemple",
+   "titre": "Trois résistances en série sous douze volts",
+   "tex": [
+    "R_{\\text{eq}} = 5 + 10 + 15 = 30\\ \\Omega",
+    "I = \\dfrac{U}{R_{\\text{eq}}} = \\dfrac{12}{30} = 0{,}4\\ \\text{A}"
+   ]
+  },
+  "vocabulaire": {
+   "type": "recap",
+   "kicker": "Vocabulaire des circuits",
+   "etapes": [
+    "Nœud : point où se rejoignent plusieurs branches",
+    "Branche : portion de circuit entre deux nœuds consécutifs",
+    "Maille : chemin fermé qui revient à son point de départ",
+    "Mailles indépendantes : m égale b moins n moins un"
+   ]
+  },
+  "noeuds": {
+   "type": "etape",
+   "kicker": "Loi des nœuds",
+   "titre": "La conservation de la charge",
+   "tex": [
+    "\\sum I_i = 0",
+    "-I_1 - I_2 + I_3 = 0"
+   ]
+  },
+  "mailles": {
+   "type": "etape",
+   "kicker": "Loi des mailles",
+   "titre": "La conservation de l'énergie",
+   "tex": [
+    "\\sum U_i = 0",
+    "E_1 - U_1 - U_6 + E_3 + U_2 - E_2 = 0"
+   ]
+  },
+  "pouillet": {
+   "type": "etape",
+   "kicker": "Lois dérivées de Kirchhoff",
+   "titre": "Pouillet et les ponts diviseurs",
+   "tex": [
+    "I = \\frac{\\sum E_i - \\sum E'_i}{\\sum R}",
+    "U_1 = \\frac{R_1}{R_1 + R_2}\\, U \\qquad I_1 = \\frac{R_2}{R_1 + R_2}\\, I"
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "Méthode d'analyse d'un circuit",
+   "etapes": [
+    "Identifier les nœuds et les mailles du circuit",
+    "Orienter les courants de branche et les tensions",
+    "Loi des nœuds : n moins un équations pour n nœuds",
+    "Loi des mailles et loi d'Ohm sur chaque résistance",
+    "Résoudre le système obtenu"
+   ]
+  },
+  "ex_kirchhoff": {
+   "type": "etape",
+   "kicker": "Étude de cas",
+   "titre": "Les courants de branche du circuit du cours",
+   "tex": [
+    "I_1 = 0{,}26\\ \\text{A} \\qquad I_2 = -0{,}20\\ \\text{A}",
+    "I_3 = -0{,}085\\ \\text{A} \\qquad I_5 = 0{,}06\\ \\text{A}"
+   ]
+  },
+  "thevenin": {
+   "type": "recap",
+   "kicker": "Le théorème de Thévenin",
+   "etapes": [
+    "Retirer la charge entre les bornes A et B",
+    "E de Thévenin : la tension à vide entre A et B",
+    "R de Thévenin : résistance vue de A et B, sources éteintes",
+    "Le modèle : un générateur en série avec R de Thévenin"
+   ],
+   "anim": {
+    "nom": "thevenin_modele_fig",
+    "hauteur": 120
+   }
+  },
+  "norton": {
+   "type": "formule",
+   "kicker": "Le théorème de Norton",
+   "tex": "E_{th} = R_{th}\\, I_n",
+   "titre": "La transformation Thévenin-Norton",
+   "note": "I n : courant de court-circuit entre A et B · R n est égale à R th",
+   "anim": {
+    "nom": "thevenin_modele_fig",
+    "hauteur": 180
+   }
+  },
+  "ex_thevenin": {
+   "type": "etape",
+   "kicker": "Exemple",
+   "titre": "Le circuit du cours, réduit à son modèle",
+   "tex": [
+    "R_{th} = 17{,}22\\ \\Omega \\qquad I_n = 0{,}126\\ \\text{A}",
+    "E_{th} = 17{,}22 \\times 0{,}126 \\approx 2{,}17\\ \\text{V}"
+   ]
+  },
+  "regimes": {
+   "type": "phrase",
+   "kicker": "Régimes permanent et transitoire",
+   "texte": "Permanent : courants et tensions constants, les lois s'appliquent directement. Transitoire : à la mise sous tension ou à un changement, les grandeurs évoluent avant de se stabiliser.",
+   "anim": {
+    "nom": "regimes",
+    "hauteur": 240
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Grandeurs : I = Q/t, U = W/Q, R = ρL/S, loi d'Ohm U = RI",
+    "Puissance P = UI, effet Joule, énergie E = Pt en kWh",
+    "Série : les résistances s'ajoutent ; parallèle : leurs inverses",
+    "Kirchhoff : somme des courants nulle, somme des tensions nulle",
+    "Thévenin et Norton : un modèle simple entre deux bornes"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours d'électricité générale, pensé pour les concours. Nous y reprenons tout depuis le début : le courant, la tension et la résistance, la puissance et l'énergie, les composants et leurs associations, les lois de Kirchhoff, et les modèles de Thévenin et de Norton.",
+   "texte": "Électricité générale : le cours complet des circuits en continu.",
+   "ecran": "titre",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p02",
+   "dit": "Pour utiliser l'électricité, il faut la canaliser dans un circuit : un chemin fermé où circule le courant. On y trouve une source qui fournit l'énergie, des fils conducteurs qui la transportent, des récepteurs qui la convertissent en lumière, en chaleur ou en mouvement, et un interrupteur qui commande le passage du courant.",
+   "texte": "Un circuit : une source, des fils, des récepteurs, un interrupteur.",
+   "ecran": "intro",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "dit": "Le courant électrique est un déplacement ordonné d'électrons dans un conducteur, comme le cuivre ou l'aluminium. Son intensité, notée I, est la charge électrique qui traverse une section du conducteur pendant une durée donnée : I égale Q sur t. Elle se mesure en ampères, et un ampère vaut un coulomb par seconde.",
+   "texte": "I égale Q sur t : la charge par unité de temps.",
+   "ecran": "courant",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "dit": "Petite subtilité historique : le sens du courant a été fixé avant la découverte de l'électron. Par convention, le courant circule du pôle positif vers le pôle négatif à l'extérieur du générateur, alors que les électrons, chargés négativement, se déplacent en réalité dans le sens inverse. C'est le sens conventionnel qui est utilisé sur tous les schémas.",
+   "texte": "Le sens conventionnel : du plus vers le moins.",
+   "ecran": "sens",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "dit": "Si le courant est le déplacement des électrons, la tension est la cause qui les pousse. La tension entre deux points est le travail à fournir pour déplacer une charge de l'un à l'autre, rapporté à cette charge : U égale W sur Q. Elle se mesure en volts.",
+   "texte": "U égale W sur Q : le travail par unité de charge.",
+   "ecran": "tension",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "dit": "Entre les bornes A et B d'un dipôle, la tension U indice A B est la différence des potentiels : le potentiel en A moins le potentiel en B. L'ordre des lettres compte : échanger A et B change le signe de la tension. Sur un schéma, une flèche de tension indique cet ordre.",
+   "texte": "U indice A B égale V indice A moins V indice B.",
+   "ecran": "tension_points",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p07",
+   "dit": "Tous les conducteurs s'opposent plus ou moins au passage du courant : c'est la résistance, qui se mesure en ohms. Pour un fil cylindrique, elle vaut R égale rhô fois L sur S : elle augmente avec la longueur et avec la résistivité du matériau, et elle diminue quand la section grandit. La résistivité ne dépend que du matériau.",
+   "texte": "R égale rhô L sur S : longueur, section et matériau.",
+   "ecran": "resistance",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "dit": "La loi d'Ohm relie les trois grandeurs pour un conducteur ohmique : la tension à ses bornes est le produit de sa résistance par l'intensité qui le traverse, U égale R fois I. L'exemple du cours : dix volts aux bornes d'un conducteur de dix ohms laissent passer un courant d'un ampère.",
+   "texte": "La loi d'Ohm : U égale R fois I.",
+   "ecran": "ohm",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple tiré des exercices du cours : quelle est la résistance d'un fil de cuivre de dix mètres de long et d'un millimètre carré de section ? La résistivité du cuivre vaut un virgule sept fois dix puissance moins huit ohm mètre. On applique R égale rhô L sur S, et l'on trouve zéro virgule dix-sept ohm : un très bon conducteur.",
+   "texte": "Exemple : un fil de cuivre de dix mètres vaut zéro virgule dix-sept ohm.",
+   "ecran": "ex_fil",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p10",
+   "dit": "La puissance électrique est la vitesse à laquelle l'énergie est transférée ou consommée dans un circuit. Elle vaut le produit de la tension par l'intensité : P égale U fois I, et elle se mesure en watts. L'exemple du cours : une lampe sous deux cent trente volts, traversée par un courant d'un demi-ampère, consomme cent quinze watts.",
+   "texte": "P égale U fois I, en watts.",
+   "ecran": "puissance",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p11",
+   "dit": "Pour une résistance, la loi d'Ohm donne deux autres écritures de la puissance : P égale R fois I au carré, ou U au carré sur R. C'est la puissance transformée en chaleur : l'effet Joule. Attention donc au choix des composants : une résistance qui dissipe trop de puissance surchauffe et peut brûler.",
+   "texte": "Loi de Joule : P égale R I carré, ou U carré sur R.",
+   "ecran": "joule",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple du cours : une résistance de dix ohms est traversée par un courant de deux ampères. La puissance dissipée vaut dix fois deux au carré, soit quarante watts. Il faudra donc choisir une résistance dont la puissance nominale dépasse quarante watts, sinon elle surchauffera.",
+   "texte": "Exemple : dix ohms et deux ampères dissipent quarante watts.",
+   "ecran": "ex_puissance",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p13",
+   "dit": "L'énergie consommée est le produit de la puissance par la durée de fonctionnement : E égale P fois t. En joules quand la durée est en secondes ; mais les fournisseurs facturent le kilowattheure, bien plus pratique : un kilowattheure vaut trois virgule six millions de joules. Une télévision de cent watts allumée quatre heures consomme zéro virgule quatre kilowattheure.",
+   "texte": "E égale P fois t : joules ou kilowattheures.",
+   "ecran": "energie",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "dit": "Un circuit assemble des composants que l'on classe par familles. Les générateurs fournissent l'énergie électrique. Les récepteurs la convertissent en une autre forme d'énergie. Les fils de connexion relient le tout, et les appareils de mesure observent les grandeurs. Nous détaillons maintenant les composants essentiels, avec leur symbole et leur caractéristique.",
+   "texte": "Générateurs, récepteurs, connexions et appareils de mesure.",
+   "ecran": "composants",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "dit": "Le récepteur par excellence est le résistor, caractérisé par sa résistance R en ohms. Il convertit l'énergie électrique en énergie thermique, c'est l'effet Joule, et il sert aussi à contrôler le courant dans un circuit. Sa caractéristique est la loi d'Ohm : U égale R fois I, une droite qui passe par l'origine, de pente R.",
+   "texte": "Le résistor : U égale R fois I, une droite par l'origine.",
+   "ecran": "resistor",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p16",
+   "dit": "Le moteur convertit l'énergie électrique en énergie mécanique. Sa tension aux bornes s'écrit U égale E prime plus r prime fois I : E prime est sa force contre-électromotrice, la tension minimale qu'il exige pour tourner, et r prime sa résistance interne. Retenez l'apostrophe : elle distingue le moteur du générateur.",
+   "texte": "Le moteur : U égale E prime plus r prime fois I.",
+   "ecran": "moteur",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p17",
+   "dit": "Une source de tension impose la différence de potentiel à ses bornes. Sa caractéristique s'écrit U égale E moins r fois I : la tension baisse légèrement quand le courant débité augmente, à cause de la résistance interne r. Si cette résistance est nulle, la source est idéale et maintient U égale E, sa force électromotrice, quel que soit le courant.",
+   "texte": "Source réelle : U égale E moins r I ; idéale : U égale E.",
+   "ecran": "source_tension",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p18",
+   "dit": "La source de courant joue le rôle symétrique : elle n'impose pas la tension à ses bornes, mais le courant qui la traverse. Pour une source idéale, ce courant reste constant et égal à son courant propre, noté I indice g, quelle que soit la charge branchée à ses bornes.",
+   "texte": "La source de courant impose I, constant.",
+   "ecran": "source_courant",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p19",
+   "dit": "Deux appareils mesurent ces grandeurs. L'ampèremètre se branche en série dans la branche où l'on veut connaître le courant. Le voltmètre se branche en dérivation, aux bornes du dipôle dont on veut la tension. On les suppose idéaux : ils mesurent sans perturber le circuit.",
+   "texte": "Ampèremètre en série, voltmètre en dérivation.",
+   "ecran": "mesures",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p20",
+   "dit": "Deux dipôles sont en série lorsqu'ils sont placés l'un à la suite de l'autre : ils sont alors traversés par le même courant, et la tension totale est la somme des tensions. Des résistances en série sont équivalentes à une seule résistance, somme de toutes les résistances. Même règle pour des générateurs en série : les forces électromotrices s'ajoutent, et les résistances internes aussi.",
+   "texte": "En série : les résistances et les f.é.m. s'ajoutent.",
+   "ecran": "serie",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p21",
+   "dit": "En parallèle, ou en dérivation, les dipôles sont branchés entre les mêmes deux nœuds : ils ont la même tension, et le courant total se partage. Pour des résistances, ce sont les inverses qui s'ajoutent ; et pour deux résistances, la résistance équivalente vaut le produit divisé par la somme. Elle est toujours plus petite que la plus petite des deux. Des sources de courant en parallèle s'ajoutent de la même façon.",
+   "texte": "En parallèle : les inverses des résistances s'ajoutent.",
+   "ecran": "parallele",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p22",
+   "dit": "Exemple tiré des exercices du cours : trois résistances de cinq, dix et quinze ohms sont connectées en série, sous une tension de douze volts. La résistance équivalente vaut cinq plus dix plus quinze, soit trente ohms. Le courant dans le circuit vaut alors douze divisé par trente : zéro virgule quatre ampère, le même partout puisque tout est en série.",
+   "texte": "Exemple : cinq, dix et quinze ohms en série sous douze volts.",
+   "ecran": "ex_associations",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p23",
+   "dit": "Pour analyser un circuit, trois mots sont indispensables. Un nœud est un point où se rejoignent plusieurs fils. Une branche est une portion de circuit entre deux nœuds consécutifs, traversée par un courant unique. Une maille est un chemin fermé qui revient à son point de départ. Et le nombre de mailles indépendantes se calcule : m égale b moins, entre parenthèses, n moins un, où b est le nombre de branches et n le nombre de nœuds.",
+   "texte": "Nœud, branche, maille : m égale b moins n moins un.",
+   "ecran": "vocabulaire",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p24",
+   "dit": "Première loi de Kirchhoff : la loi des nœuds, qui traduit la conservation de la charge. En un nœud, la somme algébrique des courants est nulle : ce qui entre doit ressortir, la charge ne peut ni apparaître ni disparaître. On compte positivement les courants entrants et négativement les sortants. Au nœud D du circuit du cours, cela donne : moins I un, moins I deux, plus I trois, égale zéro.",
+   "texte": "Loi des nœuds : la somme des courants en un nœud est nulle.",
+   "ecran": "noeuds",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p25",
+   "dit": "Deuxième loi : la loi des mailles, qui traduit la conservation de l'énergie. En parcourant une maille fermée dans un sens choisi, la somme algébrique des tensions est nulle : l'énergie gagnée aux sources est exactement perdue dans les récepteurs. Une tension est positive si sa flèche va dans le sens du parcours, négative sinon. Le cours l'applique à une maille à six dipôles.",
+   "texte": "Loi des mailles : la somme des tensions d'une maille est nulle.",
+   "ecran": "mailles",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p26",
+   "dit": "De ces lois découlent des formules toutes faites. Pour un circuit à une seule maille, la loi de Pouillet donne directement le courant : la somme des forces électromotrices, moins la somme des forces contre-électromotrices, divisée par la somme des résistances. Et deux ponts diviseurs : en série, la tension se partage au prorata des résistances ; en parallèle, le courant se partage en raison inverse des résistances.",
+   "texte": "Pouillet, diviseur de tension, diviseur de courant.",
+   "ecran": "pouillet",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p27",
+   "dit": "Voici la méthode générale d'analyse d'un circuit, en cinq temps. Elle combine les deux lois de Kirchhoff et la loi d'Ohm, et elle fonctionne pour tous les circuits : il faut autant d'équations que d'inconnues, les inconnues étant en général les courants de branche.",
+   "texte": "La méthode : nœuds, mailles, Ohm, puis le système.",
+   "ecran": "methode",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p28",
+   "dit": "Le cours applique cette méthode à un circuit mixte assez touffu, avec trois mailles et sept résistances. Après résolution du système, on obtient par exemple un courant I un de zéro virgule vingt-six ampère, mais I deux vaut moins zéro virgule vingt ampère : le signe négatif signifie simplement que le courant réel circule dans le sens opposé au sens choisi au départ.",
+   "texte": "Étude de cas : un signe négatif inverse le sens réel.",
+   "ecran": "ex_kirchhoff",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p29",
+   "dit": "Quand un circuit devient trop complexe, le théorème de Thévenin le remplace, entre deux bornes A et B, par un modèle très simple : un générateur idéal en série avec une résistance. Quatre étapes : retirer la charge, mesurer la tension à vide, calculer la résistance équivalente sources éteintes, puis brancher la charge sur le modèle.",
+   "texte": "Thévenin : tout circuit devient un générateur et une résistance.",
+   "ecran": "thevenin",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p30",
+   "dit": "Le théorème de Norton donne le modèle symétrique : un générateur de courant idéal en parallèle avec une résistance. Cette résistance est la même que celle de Thévenin, et les deux modèles se déduisent l'un de l'autre par la relation E indice t h égale R indice t h fois I indice n : la tension de Thévenin est le produit de la résistance par le courant de Norton, le courant de court-circuit entre A et B.",
+   "texte": "Norton : E de Thévenin égale R fois I de Norton.",
+   "ecran": "norton",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p31",
+   "dit": "Sur le circuit du cours, la réduction donne une résistance de Thévenin de dix-sept virgule vingt-deux ohms et un courant de Norton de zéro virgule cent vingt-six ampère. La transformation fournit la tension de Thévenin : dix-sept virgule vingt-deux fois zéro virgule cent vingt-six, environ deux virgule dix-sept volts. Tout le circuit tient alors en un générateur et une résistance.",
+   "texte": "Exemple : R égale dix-sept virgule vingt-deux ohms, E environ deux virgule dix-sept volts.",
+   "ecran": "ex_thevenin",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p32",
+   "dit": "Dernier chapitre : les régimes. En régime permanent, courants et tensions sont constants dans le temps et les lois de Kirchhoff s'appliquent directement. Mais à la mise sous tension, ou quand un interrupteur change le circuit, les grandeurs évoluent pendant un régime transitoire, gouverné par des équations différentielles, avant de se stabiliser. Nous les étudierons en détail dans le cours sur les oscillateurs électriques.",
+   "texte": "Permanent : tout est constant. Transitoire : tout évolue, puis se stabilise.",
+   "ecran": "regimes",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p33",
+   "dit": "À retenir : les trois grandeurs et la loi d'Ohm, la puissance et l'énergie, les composants et leurs caractéristiques, les associations série et parallèle, les deux lois de Kirchhoff avec la méthode de résolution, et les modèles de Thévenin et de Norton pour réduire n'importe quel circuit entre deux bornes.",
+   "texte": "Électricité générale : grandeurs, lois et modèles équivalents.",
+   "ecran": "recap",
+   "pause_apres": 0.5
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Grandeurs fondamentales, puissance et énergie"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Composants de base et associations",
+   "pont": {
+    "texte": "Partie 2 : les composants et leurs associations.",
+    "dit": "Partie deux : les composants de base, résistor, moteur et sources, puis leurs associations en série et en parallèle."
+   }
+  },
+  {
+   "debut": "p24",
+   "sous_titre": "Lois de Kirchhoff, analyse et modèles équivalents",
+   "pont": {
+    "texte": "Partie 3 : Kirchhoff, Thévenin et Norton.",
+    "dit": "Partie trois : les lois de Kirchhoff pour analyser les circuits, puis les modèles de Thévenin et de Norton, et un mot sur les régimes."
+   }
+  }
+ ]
+}

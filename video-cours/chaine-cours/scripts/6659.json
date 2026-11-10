@@ -1,0 +1,584 @@
+{
+  "cours": 6659,
+  "ecrans": {
+    "conjecture": {
+      "kicker": "Conjecturer depuis la courbe",
+      "texte": "Sur une courbe, la symétrie se voit : des points opposés en abscisse avec la même ordonnée suggèrent une fonction paire. Mais une conjecture visuelle ne devient une certitude qu'après le calcul de f(−x).",
+      "type": "phrase"
+    },
+    "continuite": {
+      "anim": {
+        "hauteur": 200,
+        "nom": "discontinuites_fig"
+      },
+      "kicker": "Continuité en un point",
+      "note": "La courbe se trace sans lever le crayon : ni saut, ni trou.",
+      "tex": "\\text{continue en } x_0 \\iff \\lim_{x \\to x_0} f(x) = f(x_0)",
+      "type": "formule"
+    },
+    "derivees": {
+      "kicker": "Dérivées des fonctions élémentaires",
+      "tex": [
+        "k \\mapsto 0 \\qquad x \\mapsto 1",
+        "x^n \\mapsto n x^{n-1}",
+        "\\tfrac{1}{x} \\mapsto -\\tfrac{1}{x^2}",
+        "\\sqrt{x} \\mapsto \\tfrac{1}{2\\sqrt{x}}"
+      ],
+      "titre": "Les dérivées à connaître",
+      "type": "etape"
+    },
+    "discriminant": {
+      "anim": {
+        "hauteur": 190,
+        "nom": "parabole_fig"
+      },
+      "kicker": "Second degré · le discriminant",
+      "note": "Positif : deux racines ; nul : une racine double ; négatif : aucune racine réelle.",
+      "tex": "\\Delta = b^2 - 4ac",
+      "type": "formule"
+    },
+    "domaine": {
+      "kicker": "Fractions rationnelles · le domaine",
+      "note": "L'expression n'existe que si le dénominateur ne s'annule pas : cx + d ≠ 0.",
+      "tex": "D = \\mathbb{R} \\setminus \\{-\\tfrac{d}{c}\\}",
+      "type": "formule"
+    },
+    "domaine_sym": {
+      "kicker": "Parité · le domaine d'abord",
+      "texte": "Un domaine est symétrique par rapport à zéro si, chaque fois qu'un nombre y figure, son opposé y figure aussi. Sans ce domaine, parler de parité n'a aucun sens.",
+      "type": "phrase"
+    },
+    "eq_frac": {
+      "kicker": "Équation fractionnaire",
+      "tex": [
+        "3x+1 \\neq 0 \\iff x \\neq -\\tfrac{1}{3}",
+        "\\tfrac{2x-6}{3x+1} = 0 \\iff 2x-6 = 0",
+        "x = 3 \\qquad S = \\{3\\}"
+      ],
+      "titre": "Le numérateur seul décide",
+      "type": "etape"
+    },
+    "ex_continuite": {
+      "kicker": "Exemple · un trou que l'on peut combler",
+      "tex": [
+        "h(x) = \\tfrac{(x-1)(x+1)}{x-1} = x+1",
+        "\\lim_{x \\to 1} h(x) = 2",
+        "h(1) \\text{ prolongé par } 2 : \\text{ continu}"
+      ],
+      "titre": "Un trou que l'on peut combler",
+      "type": "etape"
+    },
+    "ex_derive": {
+      "kicker": "Exemple · le carré en trois",
+      "tex": [
+        "f'(3) = \\lim_{h \\to 0} \\tfrac{(3+h)^2 - 9}{h}",
+        "\\tfrac{6h + h^2}{h} = 6 + h \\to 6"
+      ],
+      "titre": "Le taux d'accroissement du carré en trois",
+      "type": "etape"
+    },
+    "ex_impaire": {
+      "kicker": "Exemple · une fonction impaire",
+      "tex": [
+        "g(x) = x^3 - 2x \\text{ sur } [-3\\,;\\,3]",
+        "g(-x) = -x^3 + 2x",
+        "-g(x) = -x^3 + 2x",
+        "g(-x) = -g(x) : g \\text{ est impaire}"
+      ],
+      "titre": "Exemple : un polynôme impair",
+      "type": "etape"
+    },
+    "ex_limite": {
+      "kicker": "Exemple · un dénominateur qui s'annule",
+      "tex": [
+        "x \\to 3^+ : x-3 > 0, \\ 2x+1 \\to 7",
+        "x \\to 3^- : x-3 < 0, \\ 2x+1 \\to 7",
+        "\\lim_{3^+} g = +\\infty, \\ \\lim_{3^-} g = -\\infty"
+      ],
+      "titre": "Un dénominateur qui s'annule en trois",
+      "type": "etape"
+    },
+    "ex_paire": {
+      "kicker": "Exemple · une fonction paire",
+      "tex": [
+        "f(x) = x^2 - 1 \\text{ sur } [-2\\,;\\,2]",
+        "f(-x) = (-x)^2 - 1 = x^2 - 1",
+        "f(-x) = f(x) : f \\text{ est paire}"
+      ],
+      "titre": "Exemple : un trinôme pair",
+      "type": "etape"
+    },
+    "ex_produit": {
+      "kicker": "Exemple · dériver un produit",
+      "tex": [
+        "f'(x) = 2x + 3",
+        "(fg)'(x) = \\tfrac{2x+3}{x} - \\tfrac{x^2+3x-1}{x^2}"
+      ],
+      "titre": "Un produit dérivé terme à terme",
+      "type": "etape"
+    },
+    "ex_quotient": {
+      "kicker": "Exemple · dériver un quotient",
+      "tex": [
+        "h'(x) = \\tfrac{2x \\times x - (x^2+1)}{x^2}",
+        "h'(x) = \\tfrac{x^2 - 1}{x^2}"
+      ],
+      "titre": "Un quotient dérivé pas à pas",
+      "type": "etape"
+    },
+    "ex_racine": {
+      "kicker": "Exemple · la racine carrée en quatre",
+      "tex": [
+        "f'(x) = \\tfrac{1}{2\\sqrt{x}} \\qquad f'(4) = \\tfrac{1}{4}",
+        "y = \\tfrac{1}{4}(x-4) + 2 = \\tfrac{x}{4} + 1"
+      ],
+      "titre": "La racine carrée en quatre",
+      "type": "etape"
+    },
+    "ex_second": {
+      "kicker": "Exemple · deux racines distinctes",
+      "tex": [
+        "\\Delta = (-3)^2 - 4 \\times 2 \\times (-2) = 25",
+        "x_1 = \\tfrac{3+5}{4} = 2",
+        "x_2 = \\tfrac{3-5}{4} = -\\tfrac{1}{2}"
+      ],
+      "titre": "Deux racines distinctes",
+      "type": "etape"
+    },
+    "impaire": {
+      "kicker": "Fonction impaire",
+      "note": "La courbe est symétrique par rapport à l'origine du repère.",
+      "tex": "f(-x) = -f(x)",
+      "type": "formule"
+    },
+    "ineq_frac": {
+      "kicker": "Inéquation fractionnaire",
+      "tex": [
+        "x-2 = 0 \\iff x = 2",
+        "x+1 = 0 \\iff x = -1",
+        "\\text{signes par intervalle : } +, -, +",
+        "S = ]-\\infty;-1[ \\cup [2;+\\infty["
+      ],
+      "titre": "Le signe d'un quotient, ligne par ligne",
+      "type": "etape"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Introduction",
+      "texte": "Quatre leçons, un même geste : préciser le domaine, étudier le signe, puis regarder le comportement local. C'est cette méthode que nous allons répéter, des fractions rationnelles jusqu'à la tangente.",
+      "type": "phrase"
+    },
+    "limite": {
+      "kicker": "Limite en un point",
+      "note": "f(x) aussi proche de l que l'on veut, dès que x est assez proche de x₀.",
+      "tex": "\\lim_{x \\to x_0} f(x) = l",
+      "type": "formule"
+    },
+    "limites_lat": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "hyperbole_fig"
+      },
+      "kicker": "Limites à droite et à gauche",
+      "tex": [
+        "\\lim_{x \\to 0^+} \\tfrac{1}{x} = +\\infty",
+        "\\lim_{x \\to 0^-} \\tfrac{1}{x} = -\\infty"
+      ],
+      "titre": "La fonction inverse au voisinage de zéro",
+      "type": "etape"
+    },
+    "methode": {
+      "kicker": "Méthode générale",
+      "texte": "Trois temps : vérifier que la fonction est dérivable au point, calculer la fonction dérivée par les formules, puis évaluer cette dérivée au point choisi. La tangente s'écrit ensuite en une ligne.",
+      "type": "phrase"
+    },
+    "nombre_derive": {
+      "anim": {
+        "hauteur": 190,
+        "nom": "secante_tangente_fig"
+      },
+      "kicker": "Nombre dérivé en un point",
+      "note": "Le nombre dérivé est le coefficient directeur de la tangente en x₀.",
+      "tex": "f'(x_0) = \\lim_{h \\to 0} \\tfrac{f(x_0+h)-f(x_0)}{h}",
+      "type": "formule"
+    },
+    "operations": {
+      "kicker": "Opérations sur les dérivées",
+      "tex": [
+        "(f+g)' = f' + g' \\qquad (kf)' = kf'",
+        "(fg)' = f'g + fg'",
+        "\\left(\\tfrac{f}{g}\\right)' = \\tfrac{f'g - fg'}{g^2}"
+      ],
+      "titre": "Somme, produit, quotient",
+      "type": "etape"
+    },
+    "paire": {
+      "kicker": "Fonction paire",
+      "note": "D symétrique : la courbe est symétrique par rapport à l'axe des ordonnées.",
+      "tex": "f(-x) = f(x)",
+      "type": "formule"
+    },
+    "probleme": {
+      "kicker": "Problème concret · le rectangle",
+      "tex": [
+        "x + y = 10 \\qquad xy = 24",
+        "x(10-x) = 24 \\iff x^2 - 10x + 24 = 0",
+        "\\Delta = 4 \\qquad x = 6 \\text{ ou } x = 4"
+      ],
+      "titre": "Rectangle : périmètre 20 m, aire 24 m²",
+      "type": "etape"
+    },
+    "recap1": {
+      "etapes": [
+        "Fraction nulle : annuler le numérateur",
+        "Inéquation : tableau de signes du quotient",
+        "Δ > 0, = 0, < 0 : deux, une, zéro racine",
+        "Signe du trinôme : celui de a dehors",
+        "Système : substituer, puis vérifier"
+      ],
+      "kicker": "Partie 1 : à retenir",
+      "type": "recap"
+    },
+    "recap2": {
+      "etapes": [
+        "Parité : domaine symétrique d'abord",
+        "Paire : f(−x) = f(x), axe des ordonnées",
+        "Impaire : f(−x) = −f(x), origine",
+        "Limite : regarder à droite et à gauche",
+        "Continue en x0 : limite = f(x0)"
+      ],
+      "kicker": "Partie 2 : à retenir",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Dérivée : limite du taux d'accroissement",
+        "Tangente : y = f′(x0)(x − x0) + f(x0)",
+        "Dérivées usuelles : puissances, inverse, racine",
+        "Produit : f′g + fg′ ; quotient : sur g²",
+        "Méthode : dériver, puis évaluer en x0"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "signe_second": {
+      "kicker": "Signe et factorisation du trinôme",
+      "tex": [
+        "\\Delta = 1 \\qquad x_1 = 2, \\ x_2 = 3",
+        "P(x) = (x-2)(x-3)",
+        "P(x) > 0 \\text{ hors des racines}",
+        "P(x) < 0 \\text{ entre } 2 \\text{ et } 3"
+      ],
+      "titre": "Le signe du trinôme",
+      "type": "etape"
+    },
+    "systeme": {
+      "kicker": "Systèmes · la substitution",
+      "tex": [
+        "3x + 2y = 8 \\qquad x - y = 1",
+        "x = y+1 \\qquad 3(y+1) + 2y = 8",
+        "5y = 5 \\qquad y = 1 \\qquad x = 2",
+        "S = \\{(2\\,;\\,1)\\}"
+      ],
+      "titre": "Substitution pas à pas",
+      "type": "etape"
+    },
+    "systeme_second": {
+      "kicker": "Systèmes · retour au second degré",
+      "tex": [
+        "y = 5-x \\qquad x(5-x) = 6",
+        "x^2 - 5x + 6 = 0 \\qquad \\Delta = 1",
+        "S = \\{(2\\,;\\,3), (3\\,;\\,2)\\}"
+      ],
+      "titre": "Un système qui devient du second degré",
+      "type": "etape"
+    },
+    "tangente": {
+      "anim": {
+        "hauteur": 160,
+        "nom": "secante_tangente_fig"
+      },
+      "kicker": "Équation de la tangente",
+      "note": "Exemple : pour le carré en trois, f(3) = 9 et f′(3) = 6, d'où y = 6x − 9.",
+      "tex": "y = f'(x_0)(x - x_0) + f(x_0)",
+      "type": "formule"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 240,
+        "nom": "secante_tangente_fig"
+      },
+      "kicker": "Mathématique · Algèbre et analyse",
+      "sous": "Fractions et second degré, fonctions paires et impaires, continuité et nombre dérivé : quatre leçons, une méthode",
+      "titre": "Équations, parité, limites et dérivation",
+      "type": "titre"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Équations, inéquations et systèmes"
+    },
+    {
+      "debut": "p13",
+      "pont": {
+        "dit": "Partie deux : la parité, les limites et la continuité. Nous changeons de regard : après les calculs d'équations et de systèmes, place aux propriétés des fonctions elles-mêmes, leur symétrie par rapport à zéro, leur comportement au voisinage d'un point, et cette question simple en apparence : la courbe se trace-t-elle sans lever le crayon.",
+        "texte": "Partie 2 : parité, limites et continuité."
+      },
+      "sous_titre": "Parité, limites et continuité"
+    },
+    {
+      "debut": "p25",
+      "pont": {
+        "dit": "Partie trois : la dérivation. Du comportement local, nous passons à la pente : le nombre dérivé mesure la variation instantanée, il donne l'équation de la tangente, et la fonction dérivée rassemble toutes ces pentes en une nouvelle fonction, que l'on apprend à calculer par les formules élémentaires et par les règles d'opérations.",
+        "texte": "Partie 3 : nombre dérivé, tangente et fonction dérivée."
+      },
+      "sous_titre": "La dérivation : nombre dérivé et fonction dérivée"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématique qui traverse quatre territoires : les équations et les systèmes, la parité des fonctions, les limites et la continuité, et enfin la dérivation. Un même fil rouge les relie : avant de calculer, toujours savoir où l'on travaille, sur quel domaine, avec quel signe, et avec quel comportement au voisinage du point qui nous intéresse.",
+      "ecran": "titre",
+      "id": "p01",
+      "pause_apres": 0.8,
+      "texte": "Équations, parité, limites, dérivation : le programme."
+    },
+    {
+      "dit": "Commençons par la méthode qui servira partout. Devant une expression, trois questions, toujours dans le même ordre : où est-elle définie, quel est son signe, et que fait-elle près du point étudié. Les équations demandent le domaine et le signe, la parité demande un domaine bien choisi, les limites et la dérivation décrivent le comportement local. Gardez ces trois questions en tête : chacune des quatre leçons y répondra à sa manière.",
+      "ecran": "intro",
+      "id": "p02",
+      "pause_apres": 0.6,
+      "texte": "Recentrer sur l'essentiel : domaine, signe, comportement local."
+    },
+    {
+      "dit": "Première leçon, les fractions rationnelles. Une expression comme a ixe plus bé, divisée par cé ixe plus dé, n'existe que si son dénominateur ne s'annule pas. Le domaine de définition est donc l'ensemble des réels, privé de la valeur interdite, moins dé sur cé, celle qui annule le dénominateur. Toute résolution commence par là : une solution qui tombe sur la valeur interdite n'en est tout simplement pas une, et il faudra la rejeter à la fin.",
+      "ecran": "domaine",
+      "id": "p03",
+      "pause_apres": 0.6,
+      "texte": "Le dénominateur ne s'annule jamais impunément."
+    },
+    {
+      "dit": "Sur son domaine, une fraction est nulle exactement quand son numérateur est nul : le dénominateur, lui, n'a pas le droit de l'être. Exemple : deux ixe moins six, sur trois ixe plus un, égale zéro. Le domaine exclut moins un tiers. Le numérateur deux ixe moins six s'annule pour ixe égal à trois. Trois n'est pas la valeur interdite, on le garde : l'ensemble des solutions contient uniquement trois. Retenez le geste : domaine d'abord, numérateur ensuite, vérification à la fin.",
+      "ecran": "eq_frac",
+      "id": "p04",
+      "pause_apres": 0.6,
+      "texte": "Une fraction est nulle quand son numérateur l'est."
+    },
+    {
+      "dit": "Pour une inéquation, on ne multiplie jamais au hasard par le dénominateur, dont le signe change : on dresse un tableau de signes. Exemple : ixe moins deux, sur ixe plus un, positive ou nulle. Le numérateur s'annule en deux, le dénominateur en moins un, valeur interdite signalée par une double barre. À gauche de moins un, deux signes négatifs donnent un quotient positif ; entre moins un et deux, le quotient est négatif ; au-delà de deux, il redevient positif. Solution : avant moins un, ou à partir de deux.",
+      "ecran": "ineq_frac",
+      "id": "p05",
+      "pause_apres": 0.7,
+      "texte": "Inéquation fractionnaire : le tableau de signes décide."
+    },
+    {
+      "dit": "Deuxième bloc de la leçon : le second degré. Un trinôme a ixe carré plus bé ixe plus cé se met sous forme canonique, et tout se joue dans un seul nombre, le discriminant, delta égal à bé carré moins quatre a cé. Si delta est strictement positif, l'équation a deux solutions réelles distinctes ; s'il est nul, une solution double, moins bé sur deux a ; s'il est négatif, aucune solution réelle. La parabole confirme : elle coupe l'axe deux fois, le touche, ou le fuit.",
+      "ecran": "discriminant",
+      "id": "p06",
+      "pause_apres": 0.6,
+      "texte": "Δ = b² − 4ac : trois signes, trois destins."
+    },
+    {
+      "dit": "Exemple complet : deux ixe carré moins trois ixe moins deux, égal à zéro. Delta vaut neuf, moins quatre fois deux fois moins deux, c'est-à-dire neuf plus seize, vingt-cinq : positif, donc deux racines. La première : trois plus cinq, sur quatre, soit deux. La deuxième : trois moins cinq, sur quatre, soit moins un demi. L'ensemble des solutions contient moins un demi et deux. Remarquez le piège classique : le signe moins du coefficient constant a transformé la soustraction en addition dans le calcul de delta.",
+      "ecran": "ex_second",
+      "id": "p07",
+      "pause_apres": 0.7,
+      "texte": "Δ = 25 : deux racines, 2 et −1/2."
+    },
+    {
+      "dit": "Quand delta est positif ou nul, le trinôme se factorise : a, facteur de ixe moins la première racine, facteur de ixe moins la deuxième. Son signe suit une règle à connaître par cœur : le signe de a à l'extérieur des racines, le signe opposé entre les racines. Exemple : ixe carré moins cinq ixe plus six, de discriminant un, de racines deux et trois. Il se factorise en ixe moins deux, fois ixe moins trois ; il est positif avant deux et après trois, négatif entre deux et trois, exactement comme le montre la parabole.",
+      "ecran": "signe_second",
+      "id": "p08",
+      "pause_apres": 0.7,
+      "texte": "Le signe de a dehors, son opposé entre les racines."
+    },
+    {
+      "dit": "Passons aux systèmes de deux équations à deux inconnues. Deux méthodes : la substitution, où l'on exprime une inconnue grâce à une équation et on la remplace dans l'autre ; et la combinaison linéaire, où l'on multiplie les équations pour éliminer une inconnue. Exemple par substitution : trois ixe plus deux igrec égal à huit, et ixe moins igrec égal à un. La seconde donne ixe égal à igrec plus un ; reporté dans la première, trois igrec plus trois, plus deux igrec, égal à huit, donc igrec vaut un et ixe vaut deux. On vérifie toujours le couple obtenu dans les deux équations.",
+      "ecran": "systeme",
+      "id": "p09",
+      "pause_apres": 0.7,
+      "texte": "Système résolu : le couple (2 ; 1)."
+    },
+    {
+      "dit": "Certains systèmes se ramènent au second degré. Exemple : ixe plus igrec égal à cinq, et ixe fois igrec égal à six. De la somme, igrec vaut cinq moins ixe ; reporté dans le produit, ixe fois cinq moins ixe égal à six, ce qui donne ixe carré moins cinq ixe plus six égal à zéro, l'équation que nous venons de factoriser. Ses racines sont deux et trois : si ixe vaut deux, igrec vaut trois ; si ixe vaut trois, igrec vaut deux. Deux couples solutions, symétriques, comme l'échange des rôles le laissait prévoir.",
+      "ecran": "systeme_second",
+      "id": "p10",
+      "pause_apres": 0.7,
+      "texte": "Somme 5, produit 6 : les couples (2 ; 3) et (3 ; 2)."
+    },
+    {
+      "dit": "La leçon se referme sur un problème concret : un rectangle a un périmètre de vingt mètres et une aire de vingt-quatre mètres carrés, trouver ses dimensions. Appelons ixe la longueur et igrec la largeur : deux ixe plus deux igrec égal à vingt, donc ixe plus igrec égal à dix, et ixe fois igrec égal à vingt-quatre. Même système que précédemment, déguisé en géométrie : ixe vérifie ixe carré moins dix ixe plus vingt-quatre égal à zéro, de discriminant quatre, donc ixe vaut six ou quatre. Les dimensions sont six mètres et quatre mètres.",
+      "ecran": "probleme",
+      "id": "p11",
+      "pause_apres": 0.7,
+      "texte": "Le rectangle cherché : 6 m sur 4 m."
+    },
+    {
+      "dit": "Récapitulons cette première partie. Une fraction s'annule par son numérateur, jamais par son dénominateur, et son signe se lit dans un tableau. Le discriminant tranche toutes les questions du second degré : nombre de racines, factorisation, signe du trinôme. Un système se résout par substitution ou par combinaison, et certains systèmes somme-produit retombent sur une équation du second degré. Dans tous les cas, on termine par une vérification.",
+      "ecran": "recap1",
+      "id": "p12",
+      "pause_apres": 0.5,
+      "texte": "L'essentiel de la partie 1."
+    },
+    {
+      "dit": "Deuxième leçon : la parité. Tout commence par le domaine. Un ensemble est symétrique par rapport à zéro si, chaque fois qu'un nombre lui appartient, son opposé lui appartient aussi. L'intervalle de moins trois à trois est symétrique ; celui de moins deux à cinq ne l'est pas, car cinq y figure sans son opposé. Une réunion comme moins quatre à moins un, et un à quatre, est également symétrique. Sans domaine symétrique, une fonction ne peut être ni paire ni impaire : c'est la première vérification, avant tout calcul.",
+      "ecran": "domaine_sym",
+      "id": "p13",
+      "pause_apres": 0.6,
+      "texte": "Parité : le domaine doit être symétrique par rapport à zéro."
+    },
+    {
+      "dit": "Une fonction définie sur un domaine symétrique est paire si, pour tout ixe du domaine, eff de moins ixe égale eff de ixe. Autrement dit, deux abscisses opposées donnent la même image. Graphiquement, la courbe est symétrique par rapport à l'axe des ordonnées : la moitié gauche est le miroir de la moitié droite. La méthode tient en trois temps : vérifier le domaine, calculer eff de moins ixe en remplaçant ixe par moins ixe, puis comparer à eff de ixe.",
+      "ecran": "paire",
+      "id": "p14",
+      "pause_apres": 0.6,
+      "texte": "Paire : f(−x) = f(x)."
+    },
+    {
+      "dit": "Exemple résolu : eff de ixe égal à ixe carré moins un, sur l'intervalle de moins deux à deux. Le domaine est symétrique par rapport à zéro, première condition remplie. Calculons eff de moins ixe : moins ixe, le tout au carré, moins un ; le carré gomme le signe moins, il reste ixe carré moins un. C'est exactement eff de ixe. Conclusion : la fonction est paire sur son intervalle, et sa courbe est symétrique par rapport à l'axe des ordonnées, comme toute parabole d'équation en ixe carré.",
+      "ecran": "ex_paire",
+      "id": "p15",
+      "pause_apres": 0.7,
+      "texte": "x² − 1 sur [−2 ; 2] : une fonction paire."
+    },
+    {
+      "dit": "La sœur de la parité : l'imparité. Une fonction est impaire si, pour tout ixe de son domaine symétrique, eff de moins ixe égale moins eff de ixe. Cette fois, deux abscisses opposées donnent des images opposées. Graphiquement, la courbe est symétrique par rapport à l'origine du repère : un demi-tour autour de l'origine la laisse inchangée. La méthode est la même en trois temps, seule la comparaison finale change : on compare eff de moins ixe à moins eff de ixe.",
+      "ecran": "impaire",
+      "id": "p16",
+      "pause_apres": 0.6,
+      "texte": "Impaire : f(−x) = −f(x)."
+    },
+    {
+      "dit": "Exemple résolu : gé de ixe égal à ixe cube moins deux ixe, sur l'intervalle de moins trois à trois, symétrique. Calculons gé de moins ixe : moins ixe au cube donne moins ixe cube, et moins deux fois moins ixe donne plus deux ixe ; total, moins ixe cube plus deux ixe. Calculons maintenant moins gé de ixe : moins ixe cube plus deux ixe. Les deux expressions coïncident : gé est impaire, et sa courbe est symétrique par rapport à l'origine. Remarquez que chaque terme de gé a gardé un signe moins global, parce que toutes ses puissances sont impaires.",
+      "ecran": "ex_impaire",
+      "id": "p17",
+      "pause_apres": 0.7,
+      "texte": "x³ − 2x sur [−3 ; 3] : une fonction impaire."
+    },
+    {
+      "dit": "On peut aussi conjecturer une parité en regardant une courbe. Exemple : une fonction définie entre moins quatre et quatre, dont la courbe passe par les points d'abscisses deux et moins deux avec la même ordonnée trois, et par quatre et moins quatre avec la même ordonnée moins un. Chaque point semble avoir son miroir par rapport à l'axe des ordonnées : on conjecture une fonction paire. Mais attention, une conjecture reste une hypothèse visuelle ; seule la vérification par le calcul de eff de moins ixe la transforme en certitude.",
+      "ecran": "conjecture",
+      "id": "p18",
+      "pause_apres": 0.6,
+      "texte": "Voir une symétrie ne suffit pas : il faut la prouver."
+    },
+    {
+      "dit": "Troisième leçon : les limites en un point. Dire que eff de ixe tend vers un nombre el quand ixe tend vers ixe zéro signifie que les valeurs de la fonction se rapprochent autant qu'on veut de el, dès que ixe est suffisamment proche de ixe zéro. Pour conjecturer cette limite, deux outils : la lecture graphique, en suivant la courbe près du point, et la table de valeurs, en calculant la fonction pour des abscisses de plus en plus proches, à droite comme à gauche.",
+      "ecran": "limite",
+      "id": "p19",
+      "pause_apres": 0.6,
+      "texte": "La limite : f(x) s'approche de l quand x s'approche de x₀."
+    },
+    {
+      "dit": "Il faut souvent séparer les deux côtés. La limite à droite regarde les valeurs de ixe supérieures au point ; la limite à gauche, les valeurs inférieures. La limite tout court existe si et seulement si les deux limites latérales existent et sont égales. Contre-exemple célèbre : la fonction inverse en zéro. À droite, ixe petit et positif, un sur ixe devient immense et positif ; à gauche, ixe petit et négatif, un sur ixe devient immense et négatif. Les deux côtés divergent : pas de limite finie en zéro.",
+      "ecran": "limites_lat",
+      "id": "p20",
+      "pause_apres": 0.7,
+      "texte": "1/x en zéro : +∞ à droite, −∞ à gauche."
+    },
+    {
+      "dit": "En pratique, trois situations. Si le point appartient au domaine d'une fonction usuelle, on substitue directement. Si la substitution donne zéro sur zéro, on factorise et on simplifie avant de conclure. Et si le dénominateur tend vers zéro sans que le numérateur suive, la limite est infinie, et son signe se décide en étudiant le signe du dénominateur de chaque côté. Exemple : deux ixe plus un, sur ixe moins trois, en trois. Le numérateur tend vers sept, positif ; le dénominateur change de signe en trois : limite plus l'infini à droite, moins l'infini à gauche.",
+      "ecran": "ex_limite",
+      "id": "p21",
+      "pause_apres": 0.7,
+      "texte": "En 3 : +∞ à droite, −∞ à gauche."
+    },
+    {
+      "dit": "La limite débouche sur la continuité. Une fonction est continue en un point ixe zéro si elle y est définie et si sa limite en ce point égale sa valeur : limite égale eff de ixe zéro. Sur un intervalle, elle est continue si elle l'est en chaque point. L'image à retenir : la courbe se trace sans lever le crayon ; une discontinuité est un saut ou un trou. Polynômes, valeur absolue, fonctions rationnelles sur leur domaine, trigonométriques, exponentielle et logarithme sont continues sur leur domaine, et toute combinaison de fonctions continues reste continue.",
+      "ecran": "continuite",
+      "id": "p22",
+      "pause_apres": 0.6,
+      "texte": "Continue en x₀ : la limite vaut f(x₀)."
+    },
+    {
+      "dit": "Exemple subtil : ache de ixe égal à ixe carré moins un, sur ixe moins un, pour ixe différent de un. C'est une fonction rationnelle, continue sur son domaine, les réels privés de un. En un, elle n'est pas définie : le dénominateur s'annule. Mais pour ixe différent de un, on factorise le numérateur en ixe moins un, fois ixe plus un, on simplifie, et ache de ixe vaut ixe plus un : sa limite en un est donc deux. La fonction n'est pas continue en un, puisqu'elle n'y existe pas ; mais en posant ache de un égal à deux, la fonction prolongée le devient : le trou est comblé.",
+      "ecran": "ex_continuite",
+      "id": "p23",
+      "pause_apres": 0.7,
+      "texte": "Un trou en 1, comblé par la valeur 2."
+    },
+    {
+      "dit": "Récapitulons. La parité exige d'abord un domaine symétrique par rapport à zéro ; paire si eff de moins ixe égale eff de ixe, avec une symétrie par rapport à l'axe des ordonnées ; impaire si eff de moins ixe égale moins eff de ixe, avec une symétrie par rapport à l'origine. Une conjecture graphique se prouve toujours par le calcul. La limite en un point se décide en comparant la droite et la gauche, et la continuité ajoute une condition : la limite doit égaler la valeur de la fonction au point.",
+      "ecran": "recap2",
+      "id": "p24",
+      "pause_apres": 0.5,
+      "texte": "L'essentiel de la partie 2."
+    },
+    {
+      "dit": "Quatrième et dernière leçon : la dérivation. Le taux d'accroissement entre ixe zéro et ixe zéro plus ache mesure la pente moyenne de la courbe entre deux points. Si ce taux admet une limite finie quand ache tend vers zéro, la fonction est dérivable en ixe zéro, et cette limite est le nombre dérivé, noté eff prime de ixe zéro. Graphiquement, la sécante devient tangente : le nombre dérivé est le coefficient directeur de la tangente à la courbe au point d'abscisse ixe zéro.",
+      "ecran": "nombre_derive",
+      "id": "p25",
+      "pause_apres": 0.6,
+      "texte": "f′(x₀) : la limite du taux d'accroissement."
+    },
+    {
+      "dit": "Premier calcul, à la main : la fonction carré en ixe zéro égal à trois. Le taux d'accroissement vaut trois plus ache, le tout au carré, moins neuf, divisé par ache. En développant, le numérateur devient six ache plus ache carré ; on factorise par ache et on simplifie : il reste six plus ache. Quand ache tend vers zéro, ce taux tend vers six. Le nombre dérivé du carré en trois est donc six : en ce point, la courbe monte avec une pente de six, ce que la tangente va confirmer.",
+      "ecran": "ex_derive",
+      "id": "p26",
+      "pause_apres": 0.7,
+      "texte": "Le carré en 3 : le nombre dérivé vaut 6."
+    },
+    {
+      "dit": "Si la fonction est dérivable en ixe zéro, la tangente à sa courbe au point d'abscisse ixe zéro a une équation universelle : igrec égal à eff prime de ixe zéro, facteur de ixe moins ixe zéro, plus eff de ixe zéro. Pour la construire, on place le point, puis on avance d'une unité horizontalement et de eff prime unités verticalement. Exemple du carré en trois : eff de trois vaut neuf, eff prime de trois vaut six, la tangente est donc igrec égal à six, facteur de ixe moins trois, plus neuf, c'est-à-dire six ixe moins neuf.",
+      "ecran": "tangente",
+      "id": "p27",
+      "pause_apres": 0.7,
+      "texte": "Tangente en 3 au carré : y = 6x − 9."
+    },
+    {
+      "dit": "Quand la fonction est dérivable en tout point d'un intervalle ouvert, on obtient une nouvelle fonction, la fonction dérivée, qui associe à chaque ixe le nombre dérivé en ixe. Cinq dérivées élémentaires à connaître : une constante se dérive en zéro ; ixe se dérive en un ; ixe puissance n se dérive en n fois ixe puissance n moins un ; un sur ixe se dérive en moins un sur ixe carré, sur les réels non nuls ; et la racine carrée se dérive en un sur deux racine de ixe, pour ixe strictement positif.",
+      "ecran": "derivees",
+      "id": "p28",
+      "pause_apres": 0.6,
+      "texte": "Constante : 0 ; xⁿ : n·xⁿ⁻¹ ; 1/x : −1/x² ; racine : 1/(2√x)."
+    },
+    {
+      "dit": "Les dérivées se combinent par trois familles de règles. La somme se dérive terme à terme, et un facteur constant réel sort tel quel de la dérivation. Le produit demande plus de soin : la dérivée de eff fois gé est eff prime gé, plus eff gé prime ; oublier le second terme est la faute classique. Le quotient, enfin : eff prime gé moins eff gé prime, le tout sur gé carré, à condition que gé ne s'annule pas. Et l'inverse d'une fonction se dérive en moins gé prime sur gé carré : c'est le quotient avec un numérateur constant.",
+      "ecran": "operations",
+      "id": "p29",
+      "pause_apres": 0.6,
+      "texte": "Somme, produit, quotient : trois règles de dérivation."
+    },
+    {
+      "dit": "Exemple de produit : eff de ixe égal à ixe carré plus trois ixe moins un, et gé de ixe égal à un sur ixe, sur les réels strictement positifs. La dérivée de eff est deux ixe plus trois. La règle du produit donne : deux ixe plus trois, fois un sur ixe, plus ixe carré plus trois ixe moins un, fois moins un sur ixe carré. Le résultat s'écrit donc deux ixe plus trois, sur ixe, moins ixe carré plus trois ixe moins un, sur ixe carré. Chaque facteur a été dérivé à son tour, l'autre restant intact : c'est toute la règle.",
+      "ecran": "ex_produit",
+      "id": "p30",
+      "pause_apres": 0.7,
+      "texte": "Dériver un produit : deux termes, jamais un seul."
+    },
+    {
+      "dit": "Exemple de quotient : ache de ixe égal à ixe carré plus un, divisé par ixe, toujours pour ixe strictement positif. La règle du quotient donne, au numérateur : la dérivée du haut, deux ixe, fois le bas, ixe, moins le haut, ixe carré plus un, fois la dérivée du bas, un ; au dénominateur, ixe carré. Le numérateur se simplifie en deux ixe carré moins ixe carré moins un, soit ixe carré moins un. Résultat : ache prime de ixe égal à ixe carré moins un, sur ixe carré.",
+      "ecran": "ex_quotient",
+      "id": "p31",
+      "pause_apres": 0.7,
+      "texte": "Dériver (x² + 1)/x : (x² − 1)/x²."
+    },
+    {
+      "dit": "Dernier exemple, qui boucle la leçon : la racine carrée en ixe zéro égal à quatre. Sa dérivée est un sur deux racine de ixe ; en quatre, racine de quatre vaut deux, donc le nombre dérivé vaut un sur quatre, un quart. La tangente au point d'abscisse quatre et d'ordonnée deux s'écrit : igrec égal à un quart, facteur de ixe moins quatre, plus deux, c'est-à-dire ixe sur quatre plus un. Trois temps : dériver par la formule, évaluer au point, écrire la tangente.",
+      "ecran": "ex_racine",
+      "id": "p32",
+      "pause_apres": 0.7,
+      "texte": "La racine en 4 : nombre dérivé 1/4, tangente y = x/4 + 1."
+    },
+    {
+      "dit": "Gardons la méthode générale de la leçon. Pour trouver le nombre dérivé en un point : d'abord vérifier que la fonction est dérivable en ce point, par le taux d'accroissement si nécessaire ; ensuite calculer la fonction dérivée à l'aide du tableau des dérivées élémentaires et des règles d'opérations ; enfin évaluer cette dérivée au point choisi. Le nombre dérivé donne alors la tangente, et la tangente donne le comportement local de la courbe : toute la leçon tient dans cet enchaînement.",
+      "ecran": "methode",
+      "id": "p33",
+      "pause_apres": 0.6,
+      "texte": "La méthode : dérivable, dériver, évaluer."
+    },
+    {
+      "dit": "Pour conclure ce cours, retenez l'enchaînement complet. Domaine, signe, comportement local : les équations se résolvent dans cet ordre, le discriminant gouverne le second degré, et les systèmes se ramènent souvent à lui. La parité se prouve en trois temps, domaine, calcul, comparaison. La limite compare la droite et la gauche, la continuité exige l'égalité avec la valeur. Et la dérivation couronne le tout : le nombre dérivé, limite du taux d'accroissement, donne la tangente, pendant que la fonction dérivée se calcule par formules et par règles.",
+      "ecran": "recap_final",
+      "id": "p34",
+      "pause_apres": 0.5,
+      "texte": "Dérivation : à retenir."
+    }
+  ],
+  "titre": "Équations, parité, limites et dérivation"
+}

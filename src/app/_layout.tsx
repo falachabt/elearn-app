@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font';
-import { Stack, usePathname, useRouter } from 'expo-router';
+import { Stack, usePathname, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AppState, Platform, StyleSheet } from 'react-native';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -10,10 +10,15 @@ import { BandeauApplication } from '@/components/BandeauApplication';
 import { BarresSysteme } from '@/components/BarresSysteme';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { BienvenueCredits } from '@/components/credits/BienvenueCredits';
+import { ToastRechargeCredits } from '@/components/credits/ToastRechargeCredits';
+import { ToastGainXp } from '@/components/xp/ToastGainXp';
 import { useOuvertureRecapAuto } from '@/components/maSemaine/useOuvertureRecapAuto';
 import { BienvenuePass } from '@/components/pass/BienvenuePass';
+import { FeuilleRechargePass } from '@/components/pass/FeuilleRechargePass';
+import { GardeAppareilActif } from '@/components/compte/GardeAppareilActif';
 import { useReduireAnimations } from '@/components/useReduireAnimations';
 import { MiseAJour } from '@/components/MiseAJour';
+import { ToastProvider } from '@/components/Toast';
 import { useDemandeSupportAuto } from '@/components/support/useDemandeSupportAuto';
 import { VisiteProvider } from '@/components/Visite';
 import { restaurerLangue } from '@/i18n';
@@ -21,7 +26,8 @@ import { demarrerConnectivite } from '@/services/connectivite';
 import { ecouterLiensParrainage } from '@/services/lienProfond';
 import { precharger } from '@/services/retours';
 import { suivreOuvertures } from '@/services/rappels';
-import { initAnalytics, suivre } from '@/services/analytics';
+import { initAnalytics, suivre, suivreEcran } from '@/services/analytics';
+import { demarrerSuivi, nomEcran } from '@/services/suivi';
 import { installerHandlerGlobal } from '@/services/erreurs';
 import { lirePaiementAttente } from '@/services/reprisePaiement';
 import { CreditsProvider } from '@/session/CreditsProvider';
@@ -32,6 +38,9 @@ import { mouvement } from '@/theme/theme';
 import { useRepriseInviteEnCours } from '@/services/repriseInvite';
 import { finirRetourOAuthWebUneFois } from '@/services/retourOAuthWeb';
 import { getSupabase } from '@/services/supabase';
+
+const debutDemarrage = Date.now();
+let demarrageMesure = false;
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 initAnalytics();
@@ -61,6 +70,16 @@ function Navigation() {
   useOuvertureRecapAuto();
   useDemandeSupportAuto();
   useRetourOAuthWeb();
+
+  // Pages vues : nom de la route (sans paramètres), avec l'écran précédent.
+  const segments = useSegments();
+  const nomCourant = nomEcran(segments);
+  const ecranPrecedent = useRef<string | null>(null);
+  useEffect(() => {
+    if (nomCourant === ecranPrecedent.current) return;
+    suivreEcran(nomCourant, ecranPrecedent.current);
+    ecranPrecedent.current = nomCourant;
+  }, [nomCourant]);
 
   useEffect(() => {
     if (statut === 'pret' && repriseEnCours && pathname !== '/compte/reprise') {
@@ -128,7 +147,10 @@ export default function RootLayout() {
     const arreterLiens = ecouterLiensParrainage();
     // Observation du réseau : la garde des actions serveur et l'indicateur en dépendent (issue #25).
     const arreterReseau = demarrerConnectivite();
+    // Suivi : propriétés de la personne, premier lancement, coupures réseau, envoi de la file hors ligne.
+    const arreterSuivi = demarrerSuivi();
     return () => {
+      arreterSuivi();
       arreterNotifications();
       arreterLiens?.();
       arreterReseau();
@@ -140,6 +162,11 @@ export default function RootLayout() {
   useEffect(() => {
     if (pret) {
       SplashScreen.hideAsync().catch(() => {});
+      // Cold start (issue #14) : du chargement du module jusqu'à l'écran prêt. Une seule mesure par lancement.
+      if (!demarrageMesure) {
+        demarrageMesure = true;
+        suivre('app_cold_start', { duration_ms: Date.now() - debutDemarrage });
+      }
     }
   }, [pret]);
 
@@ -148,23 +175,33 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={styles.racine}>
       <ThemeProvider>
-        <ErrorBoundary>
-          <SessionProvider>
-            <CreditsProvider>
-              <NotificationsProvider>
-                <VisiteProvider>
-                  <BottomSheetModalProvider>
-                    <BandeauApplication />
-                    <Navigation />
-                  </BottomSheetModalProvider>
-                  <BienvenueCredits />
-                  <BienvenuePass />
-                  <MiseAJour />
-                </VisiteProvider>
-              </NotificationsProvider>
-            </CreditsProvider>
-          </SessionProvider>
-        </ErrorBoundary>
+        <ToastProvider>
+          <ErrorBoundary>
+            <SessionProvider>
+              <CreditsProvider>
+                <NotificationsProvider>
+                  <VisiteProvider>
+                    <BottomSheetModalProvider>
+                      <BandeauApplication />
+                      <Navigation />
+                      {/* Issue #124 : la feuille rend un BottomSheetModal — elle doit vivre SOUS le provider,
+                          sinon la librairie lève « 'BottomSheetModalInternalContext' cannot be null! » au premier
+                          affichage (régression du 25/10/2026 : écran « Oups » au toucher d'une notification
+                          pass_ending). Garde-fou : src/__tests__/garde-feuille-racine.test.ts. */}
+                      <FeuilleRechargePass />
+                    </BottomSheetModalProvider>
+                    <BienvenueCredits />
+                    <ToastRechargeCredits />
+                    <ToastGainXp />
+                    <BienvenuePass />
+                    <MiseAJour />
+                    <GardeAppareilActif />
+                  </VisiteProvider>
+                </NotificationsProvider>
+              </CreditsProvider>
+            </SessionProvider>
+          </ErrorBoundary>
+        </ToastProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
   );

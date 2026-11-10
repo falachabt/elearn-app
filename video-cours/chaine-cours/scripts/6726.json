@@ -1,0 +1,334 @@
+{
+ "cours": 6726,
+ "ecrans": {
+  "contraintes": {
+   "etapes": [
+    "Un domaine de validité à respecter",
+    "Des unités cohérentes, système international",
+    "Une vérification expérimentale obligatoire"
+   ],
+   "kicker": "Les contraintes d'une loi",
+   "type": "recap"
+  },
+  "donnees": {
+   "kicker": "Organiser les données",
+   "texte": "Un tableau propre, puis le graphique adapté : nuage de points, courbe d'étalonnage ou droite modélisée.",
+   "type": "phrase",
+   "anim": {
+    "nom": "graphique_mesures_fig",
+    "hauteur": 210
+   }
+  },
+  "elargie": {
+   "kicker": "Incertitude élargie",
+   "note": "k : facteur d'élargissement, selon la confiance visée",
+   "tex": "U(x) = k \\times u(x)",
+   "type": "formule"
+  },
+  "erreur_incertitude": {
+   "kicker": "Erreur et incertitude",
+   "texte": "L'erreur : l'écart à la valeur vraie, inconnue. L'incertitude : l'estimation chiffrée de cette erreur.",
+   "type": "phrase"
+  },
+  "exemple_ohm": {
+   "kicker": "Exemple · loi d'Ohm",
+   "texte": "Les points s'alignent sur une droite par l'origine, de pente cent ohms, et les barres couvrent la droite : loi validée.",
+   "type": "phrase",
+   "anim": {
+    "nom": "graphique_mesures_fig",
+    "hauteur": 200
+   }
+  },
+  "exemple_pile": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "4{,}52 \\ ; \\ 4{,}48 \\ ; \\ 4{,}50 \\ ; \\ 4{,}51 \\ ; \\ 4{,}49 \\ \\text{V}",
+    "\\bar{x} = 4{,}50 \\ \\text{V} \\quad s = 0{,}016 \\ \\text{V}",
+    "u(\\bar{x}) = \\frac{0{,}016}{\\sqrt{5}} = 7{,}2 \\times 10^{-3} \\ \\text{V}"
+   ],
+   "titre": "Cinq mesures d'une tension",
+   "type": "etape"
+  },
+  "instrument": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "regle_incertitude_fig"
+   },
+   "etapes": [
+    "Justesse : pas d'erreur systématique",
+    "Fidélité : mesures répétées proches",
+    "Résolution : plus petite variation détectée"
+   ],
+   "kicker": "Qualités d'un instrument",
+   "type": "recap"
+  },
+  "intervalle": {
+   "kicker": "Intervalle de confiance",
+   "note": "la valeur vraie y est avec une probabilité de quatre-vingt-quinze pour cent",
+   "tex": "[\\bar{x} - 2u(\\bar{x}) \\ ; \\ \\bar{x} + 2u(\\bar{x})]",
+   "type": "formule"
+  },
+  "loi": {
+   "kicker": "Deux lois fondamentales",
+   "tex": [
+    "U = R \\times I \\quad \\text{(loi d'Ohm)}",
+    "P V = n R T \\quad \\text{(gaz parfaits)}"
+   ],
+   "titre": "Des relations validées par la mesure",
+   "type": "etape"
+  },
+  "modele": {
+   "kicker": "Notion de modèle",
+   "texte": "Un modèle simplifie le réel par des hypothèses choisies : il prévoit et explique, dans leurs limites.",
+   "type": "phrase"
+  },
+  "modeles_ex": {
+   "etapes": [
+    "Gaz parfait : molécules sans interaction",
+    "Point matériel : dimensions négligées",
+    "Oscillateur harmonique : sans frottement"
+   ],
+   "kicker": "Trois modèles classiques",
+   "type": "recap"
+  },
+  "moyenne_ecarttype": {
+   "kicker": "Moyenne et écart-type",
+   "tex": [
+    "\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i",
+    "s = \\sqrt{\\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})^2}{n - 1}}"
+   ],
+   "titre": "Résumer une série de mesures",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Observer et formuler une question",
+    "Hypothèses, puis modèle mathématique",
+    "Mesurer avec un instrument adapté",
+    "Incertitudes : estimer et comparer",
+    "Conclure sur la validité du modèle"
+   ],
+   "kicker": "À retenir · démarche scientifique",
+   "type": "recap"
+  },
+  "resultat": {
+   "kicker": "Écrire un résultat",
+   "note": "x̄ : valeur estimée · U(x) : incertitude élargie",
+   "tex": "x = \\bar{x} \\pm U(x)",
+   "type": "formule"
+  },
+  "resultat_pile": {
+   "kicker": "Résultat de l'exemple",
+   "tex": [
+    "U(x) = 2 \\times 7{,}2 \\times 10^{-3} \\approx 0{,}02 \\ \\text{V}",
+    "\\text{Tension de la pile : } (4{,}50 \\pm 0{,}02) \\ \\text{V}"
+   ],
+   "titre": "Avec k égal à deux, confiance quatre-vingt-quinze pour cent",
+   "type": "etape"
+  },
+  "serie": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "dispersion_mesures_fig"
+   },
+   "kicker": "Une série de mesures",
+   "texte": "Les valeurs répétées se dispersent : la moyenne les résume, l'écart-type mesure la dispersion.",
+   "type": "phrase"
+  },
+  "table_k": {
+   "etapes": [
+    "Confiance soixante-huit pour cent : k égal à un",
+    "Confiance quatre-vingt-quinze pour cent : k égal à deux",
+    "Confiance quatre-vingt-dix-neuf pour cent : k égal à trois"
+   ],
+   "kicker": "Le facteur d'élargissement",
+   "type": "recap"
+  },
+  "tester_loi": {
+   "etapes": [
+    "Formuler les hypothèses simplificatrices",
+    "Établir la relation mathématique",
+    "Tracer le graphique, vérifier la forme",
+    "Valider ou rejeter selon les incertitudes"
+   ],
+   "kicker": "Tester une loi",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "dispersion_mesures_fig"
+   },
+   "kicker": "Physique",
+   "sous": "Incertitudes types, intervalles de confiance et démarche scientifique",
+   "titre": "Mesures et incertitudes",
+   "type": "titre"
+  },
+  "type_a": {
+   "kicker": "Incertitude-type · type A",
+   "note": "s : écart-type expérimental · n : nombre de mesures",
+   "tex": "u(\\bar{x}) = \\frac{s}{\\sqrt{n}}",
+   "type": "formule"
+  },
+  "type_b": {
+   "kicker": "Incertitude-type · type B",
+   "note": "p : résolution de l'instrument · loi rectangulaire",
+   "tex": "u(x) = \\frac{p}{\\sqrt{12}}",
+   "type": "formule"
+  }
+ },
+ "lecons": [
+  9527
+ ],
+ "matiere": "Physique",
+ "phrases": [
+  {
+   "dit": "Bonjour à tous. Ce cours est consacré à la mesure : comment obtenir une valeur fiable, chiffrer son incertitude et décider si un modèle physique tient devant l'expérience.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Mesures et incertitudes : fiabilité, intervalles de confiance, modèles."
+  },
+  {
+   "dit": "Mesurer, c'est comparer une grandeur à une référence de même nature : l'unité. Le résultat s'écrit toujours sous la même forme : la valeur estimée, plus ou moins l'incertitude élargie.",
+   "ecran": "resultat",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Mesurer : comparer à l'unité. Résultat : valeur, plus ou moins incertitude."
+  },
+  {
+   "dit": "Un bon instrument réunit trois qualités : la justesse, c'est-à-dire pas d'erreur systématique ; la fidélité, des résultats proches quand on répète ; et la résolution, la plus petite variation qu'il détecte.",
+   "ecran": "instrument",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Justesse, fidélité, résolution : les trois qualités d'un instrument."
+  },
+  {
+   "dit": "Attention au vocabulaire : l'erreur est l'écart entre la valeur mesurée et la valeur vraie, que l'on ne connaît jamais. L'incertitude, elle, est l'estimation chiffrée de cette erreur : c'est elle que l'on annonce.",
+   "ecran": "erreur_incertitude",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Erreur : écart au vrai, inconnu. Incertitude : son estimation chiffrée."
+  },
+  {
+   "dit": "Quand on répète une mesure, les valeurs se dispersent un peu. Toute la méthode consiste à résumer cette dispersion par deux nombres : la moyenne des valeurs et leur écart-type.",
+   "ecran": "serie",
+   "id": "p05",
+   "pause_apres": 0.7,
+   "texte": "Répéter les mesures : une dispersion à résumer par deux nombres."
+  },
+  {
+   "dit": "La moyenne est la somme des valeurs divisée par leur nombre. L'écart-type expérimental mesure la dispersion autour d'elle : somme des écarts au carré, divisée par le nombre de mesures moins un.",
+   "ecran": "moyenne_ecarttype",
+   "id": "p06",
+   "pause_apres": 0.9,
+   "texte": "Moyenne et écart-type : les deux résumés d'une série."
+  },
+  {
+   "dit": "L'incertitude-type sur la moyenne, dite de type A, vaut l'écart-type divisé par la racine carrée du nombre de mesures : répéter les mesures resserre le résultat.",
+   "ecran": "type_a",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Type A : l'écart-type divisé par racine du nombre de mesures."
+  },
+  {
+   "dit": "Pour une mesure unique, on passe par le type B : avec un instrument de résolution p, l'incertitude-type vaut souvent p divisé par la racine de douze, selon la loi rectangulaire.",
+   "ecran": "type_b",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Type B : mesure unique, résolution divisée par racine de douze."
+  },
+  {
+   "dit": "Exemple : on mesure cinq fois la tension d'une pile. La moyenne vaut quatre virgule cinquante volts et l'écart-type zéro virgule zéro seize volts. L'incertitude-type vaut donc zéro virgule zéro seize divisé par racine de cinq, soit sept virgule deux fois dix puissance moins trois volts.",
+   "ecran": "exemple_pile",
+   "id": "p09",
+   "pause_apres": 0.9,
+   "texte": "Exemple : cinq tensions, une moyenne, une incertitude-type."
+  },
+  {
+   "dit": "L'incertitude élargie s'obtient en multipliant l'incertitude-type par un facteur k, choisi selon le niveau de confiance que l'on veut annoncer.",
+   "ecran": "elargie",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Incertitude élargie : l'incertitude-type fois le facteur k."
+  },
+  {
+   "dit": "Trois repères à connaître : avec k égal à un, la confiance est de soixante-huit pour cent ; avec k égal à deux, quatre-vingt-quinze pour cent ; avec k égal à trois, quatre-vingt-dix-neuf pour cent.",
+   "ecran": "table_k",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "k égal à un, deux ou trois : soixante-huit, quatre-vingt-quinze, quatre-vingt-dix-neuf pour cent."
+  },
+  {
+   "dit": "À quatre-vingt-quinze pour cent de confiance, la valeur vraie se trouve, avec une probabilité de quatre-vingt-quinze pour cent, entre la moyenne moins deux incertitudes-types et la moyenne plus deux incertitudes-types.",
+   "ecran": "intervalle",
+   "id": "p12",
+   "pause_apres": 0.9,
+   "texte": "Intervalle de confiance à quatre-vingt-quinze pour cent : plus ou moins deux u."
+  },
+  {
+   "dit": "Fin de l'exemple : avec k égal à deux, l'incertitude élargie vaut environ zéro virgule zéro deux volts. La tension de la pile s'écrit donc : quatre virgule cinquante volts, plus ou moins zéro virgule zéro deux.",
+   "ecran": "resultat_pile",
+   "id": "p13",
+   "pause_apres": 0.9,
+   "texte": "Résultat : quatre virgule cinquante, plus ou moins zéro virgule zéro deux volts."
+  },
+  {
+   "dit": "Pour exploiter une série de mesures, on commence par un tableau propre : grandeurs, unités, incertitudes. Puis un graphique adapté : nuage de points pour une tendance, courbe d'étalonnage, ou droite si la relation est linéaire.",
+   "ecran": "donnees",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "Tableaux puis graphiques : organiser avant d'interpréter."
+  },
+  {
+   "dit": "Un modèle est une représentation simplifiée du réel, construite sur des hypothèses que l'on choisit. Il sert à prévoir et à expliquer les observations, dans les limites de ces hypothèses.",
+   "ecran": "modele",
+   "id": "p15",
+   "pause_apres": 0.7,
+   "texte": "Un modèle : une simplification assumée du réel."
+  },
+  {
+   "dit": "Trois modèles classiques : le gaz parfait, où les molécules n'interagissent pas ; le point matériel, dont on néglige les dimensions ; et l'oscillateur harmonique, un mouvement périodique sans frottement.",
+   "ecran": "modeles_ex",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "Gaz parfait, point matériel, oscillateur harmonique."
+  },
+  {
+   "dit": "Une loi physique est une relation mathématique entre grandeurs, établie par l'observation et validée par la mesure. Deux exemples à connaître par cœur : la loi d'Ohm et la loi des gaz parfaits.",
+   "ecran": "loi",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Une loi : une relation entre grandeurs, validée par la mesure."
+  },
+  {
+   "dit": "Une loi ne s'applique pas partout : elle a un domaine de validité, elle exige des unités cohérentes, celles du système international, et elle doit passer l'épreuve de la vérification expérimentale.",
+   "ecran": "contraintes",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "Domaine de validité, unités cohérentes, vérification."
+  },
+  {
+   "dit": "Pour tester une loi : on formule des hypothèses simplificatrices, on établit la relation mathématique, on trace le graphique adapté, puis on valide ou on rejette le modèle selon les incertitudes.",
+   "ecran": "tester_loi",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Tester une loi en quatre temps, du modèle au verdict."
+  },
+  {
+   "dit": "Exemple : pour vérifier la loi d'Ohm, on trace la tension en fonction de l'intensité. Les points s'alignent sur une droite passant par l'origine, de pente cent ohms, et les barres d'incertitude couvrent la droite : la loi est validée.",
+   "ecran": "exemple_ohm",
+   "id": "p20",
+   "pause_apres": 0.9,
+   "texte": "Ohm vérifiée : droite par l'origine, barres compatibles."
+  },
+  {
+   "dit": "À retenir : mesurer, c'est comparer ; le résultat s'écrit avec son incertitude élargie ; et une loi n'est acceptée que si les mesures, avec leurs barres d'incertitude, restent compatibles avec le modèle.",
+   "ecran": "recap",
+   "id": "p21",
+   "pause_apres": 0.9,
+   "texte": "À retenir : la démarche scientifique complète."
+  }
+ ],
+ "titre": "Mesures et incertitudes"
+}

@@ -1,0 +1,322 @@
+{
+ "cours": 6114,
+ "titre": "Escompte commercial et équivalence des effets",
+ "matiere": "Mathématiques financières",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématiques financières · Concours ESSEC",
+   "titre": "Escompte commercial et équivalence des effets",
+   "sous": "Céder une créance avant son échéance, actualiser et comparer des effets à une même date",
+   "anim": {
+    "nom": "escompte_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Une créance qui dort quatre-vingt-dix jours, c'est de la trésorerie bloquée : l'escompte la transforme en liquidités immédiates, moyennant une retenue."
+  },
+  "besoin": {
+   "type": "phrase",
+   "kicker": "Le besoin de liquidité",
+   "texte": "Vendre à crédit, c'est attendre : l'escompte échange ce délai contre une somme disponible tout de suite, légèrement inférieure à la créance."
+  },
+  "acteurs": {
+   "type": "etape",
+   "kicker": "Les trois acteurs",
+   "titre": "Qui cède, qui avance, qui paiera",
+   "tex": [
+    "\\text{le négociant : l'entreprise qui cède sa créance}",
+    "\\text{l'escompteur : la banque qui avance les fonds}",
+    "\\text{le débiteur : le client qui paiera à l'échéance}"
+   ]
+  },
+  "formule_escompte": {
+   "type": "formule",
+   "kicker": "Le calcul de l'escompte",
+   "tex": "E = V_N \\times t \\times \\frac{n}{360}",
+   "note": "En dehors : calculé sur la valeur nominale. t : taux annuel, n : jours restant à courir."
+  },
+  "valeur_actuelle": {
+   "type": "formule",
+   "kicker": "La valeur actuelle",
+   "tex": "V_A = V_N - E",
+   "note": "En dedans, plus rare : l'escompte est calculé sur la valeur actuelle elle-même."
+  },
+  "conventions": {
+   "type": "phrase",
+   "kicker": "Conventions de calcul",
+   "texte": "Durée en jours, taux annuel, année commerciale de trois cent soixante jours : trois conventions à vérifier avant tout calcul."
+  },
+  "ex_simple": {
+   "type": "etape",
+   "kicker": "Exemple · soixante jours",
+   "titre": "Dix mille euros à huit pour cent",
+   "tex": [
+    "E = 10000 \\times 0{,}08 \\times \\tfrac{60}{360} = 133{,}33",
+    "V_A = 10000 - 133{,}33 = 9866{,}67"
+   ]
+  },
+  "ex_90": {
+   "type": "etape",
+   "kicker": "Exemple · quatre-vingt-dix jours",
+   "titre": "Le même effet, un taux qui monte",
+   "tex": [
+    "E = 10000 \\times 0{,}08 \\times \\tfrac{90}{360} = 200",
+    "V_A = 10000 - 200 = 9800",
+    "\\text{à } 10\\,\\% : E = 250 \\qquad V_A = 9750"
+   ]
+  },
+  "compose": {
+   "type": "phrase",
+   "kicker": "L'escompte composé",
+   "texte": "Escompter deux fois : chaque retenue se calcule sur la valeur déjà réduite par la précédente, et toujours sur la durée restant à courir.",
+   "anim": {
+    "nom": "equivalence_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_compose": {
+   "type": "etape",
+   "kicker": "Exemple · deux escomptes successifs",
+   "titre": "Il reste cent vingt jours, puis soixante jours",
+   "tex": [
+    "E_1 = 10000 \\times 0{,}05 \\times \\tfrac{120}{360} = 166{,}67 \\qquad V_1 = 9833{,}33",
+    "E_2 = 9833{,}33 \\times 0{,}06 \\times \\tfrac{60}{360} = 98{,}33",
+    "V_2 = 9833{,}33 - 98{,}33 = 9735{,}00"
+   ]
+  },
+  "actualisation": {
+   "type": "formule",
+   "kicker": "Actualiser · ramener au présent",
+   "tex": "V_A = \\frac{V_F}{(1 + i)^n}",
+   "note": "i : taux par période, n : nombre de périodes. Plus le taux est haut, plus la valeur présente baisse.",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_actualisation": {
+   "type": "etape",
+   "kicker": "Exemple · mille cent euros dans un an",
+   "titre": "La réponse dépend du taux",
+   "tex": [
+    "\\tfrac{1100}{1{,}05} = 1047{,}62 \\qquad \\tfrac{1100}{1{,}10} = 1000",
+    "\\text{à cinq pour cent, attendre vaut mieux que mille euros tout de suite}",
+    "\\text{au-delà de dix pour cent, mille euros immédiats gagnent}"
+   ]
+  },
+  "equivalence": {
+   "type": "phrase",
+   "kicker": "Le principe d'équivalence",
+   "texte": "Deux effets sont équivalents si, transportés à une même date de comparaison, ils y ont la même valeur : on capitalise vers l'avant, on actualise vers l'arrière.",
+   "anim": {
+    "nom": "equivalence_fig",
+    "hauteur": 170
+   }
+  },
+  "ex_equiv_avant": {
+   "type": "etape",
+   "kicker": "Exemple · comparer à neuf mois",
+   "titre": "Trois effets transportés à la date la plus lointaine",
+   "tex": [
+    "1000 \\times 1{,}0125^2 = 1025{,}16",
+    "1500 \\times 1{,}0125 = 1518{,}75",
+    "1025{,}16 + 1518{,}75 + 800 = 3343{,}91"
+   ]
+  },
+  "ex_equiv_cas": {
+   "type": "etape",
+   "kicker": "Cas pratique · comparer à six mois",
+   "titre": "Deux effets de cinq mille euros, à trois et six mois",
+   "tex": [
+    "5000 \\times 1{,}015 = 5075",
+    "5075 + 5000 = 10075"
+   ]
+  },
+  "ex_equiv_present": {
+   "type": "etape",
+   "kicker": "Exemple · comparer aujourd'hui",
+   "titre": "Trois effets actualisés au taux mensuel de zéro virgule cinq pour cent",
+   "tex": [
+    "\\tfrac{500}{1{,}005^2} = 495{,}04 \\qquad \\tfrac{800}{1{,}005^4} = 784{,}20",
+    "\\tfrac{1200}{1{,}005^6} = 1164{,}62",
+    "\\text{total : } 495{,}04 + 784{,}20 + 1164{,}62 = 2443{,}86"
+   ]
+  },
+  "cas_nego": {
+   "type": "etape",
+   "kicker": "Cas de négociation · vingt-cinq mille euros à cent vingt jours",
+   "titre": "Payer tout de suite, ou en deux effets",
+   "tex": [
+    "\\text{immédiat : } E = 583{,}33 \\qquad \\text{net payé : } 24416{,}67",
+    "\\text{deux effets : } 12354{,}17 + 12281{,}25 = 24635{,}42",
+    "\\text{en valeur actuelle, le paiement immédiat coûte moins}"
+   ]
+  },
+  "synthese": {
+   "type": "etape",
+   "kicker": "Le tableau des formules",
+   "titre": "Trois formules à connaître par cœur",
+   "tex": [
+    "E = V_N \\times T \\times \\tfrac{J}{360}",
+    "V_A = V_N - E",
+    "V_A = \\tfrac{V_N}{1 + T \\times J / 360} \\quad \\text{(actualisation simple)}"
+   ]
+  },
+  "limites": {
+   "type": "phrase",
+   "kicker": "Limites et risques",
+   "texte": "Un taux supposé constant, un débiteur supposé solvable : l'escompte transfère le délai, pas le risque de défaut, et les frais bancaires s'ajoutent à la retenue."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Escompte : nominal × taux × jours sur 360",
+    "Valeur actuelle = nominal moins escompte",
+    "Composé : recalculer sur la valeur réduite",
+    "Actualiser : diviser par (1 + i) puissance n",
+    "Équivalence : une même date de comparaison"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques financières consacré à l'escompte commercial et à l'équivalence des effets, deux outils du financement à court terme au programme du concours.",
+   "texte": "Escompte et équivalence des effets : le financement à court terme.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le point de départ est un problème de liquidité. Une entreprise a livré sa commande, mais son client ne paiera que dans quatre-vingt-dix jours, alors qu'elle doit payer ses fournisseurs maintenant. L'escompte résout ce décalage : elle cède sa créance à sa banque et reçoit l'argent tout de suite, diminué d'une retenue.",
+   "texte": "Une créance future contre des liquidités immédiates.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Trois acteurs se partagent l'opération. Le négociant détient la créance et la cède. L'escompteur, la banque, avance les fonds et supportera l'attente. Le débiteur, le client, paiera à l'échéance prévue, entre les mains de la banque.",
+   "texte": "Le négociant cède, la banque avance, le client paiera.",
+   "ecran": "acteurs"
+  },
+  {
+   "id": "p04",
+   "dit": "Le calcul repose sur une formule d'intérêt simple. L'escompte égale la valeur nominale, multipliée par le taux annuel, multipliée par la durée restant à courir en fraction d'année, souvent en jours sur trois cent soixante. Calculé sur le nominal, on parle d'escompte en dehors : c'est la pratique bancaire courante.",
+   "texte": "E : la retenue, proportionnelle au nominal, au taux et au délai.",
+   "ecran": "formule_escompte"
+  },
+  {
+   "id": "p05",
+   "dit": "Ce que l'entreprise touche réellement, c'est la valeur actuelle : la valeur nominale diminuée de l'escompte. Il existe une variante, l'escompte en dedans, où la retenue se calcule sur la valeur actuelle elle-même plutôt que sur le nominal. Elle est plus rare, mais il faut savoir la distinguer de la méthode en dehors dans un énoncé.",
+   "texte": "La valeur actuelle : ce qui arrive vraiment sur le compte.",
+   "ecran": "valeur_actuelle"
+  },
+  {
+   "id": "p06",
+   "dit": "Avant tout calcul, vérifiez les conventions de l'énoncé. La durée se compte en jours, le taux est toujours un taux annuel, et l'année commerciale compte trois cent soixante jours, sauf mention contraire où l'on prendra trois cent soixante-cinq jours. Une convention mal lue fausse tout le résultat, même avec la bonne formule.",
+   "texte": "Trois cent soixante ou trois cent soixante-cinq jours : tout change.",
+   "ecran": "conventions"
+  },
+  {
+   "id": "p07",
+   "dit": "Premier exemple complet. Une créance de dix mille euros arrive à échéance dans soixante jours ; la banque l'escompte à huit pour cent. L'escompte vaut dix mille, fois zéro virgule zéro huit, fois soixante sur trois cent soixante, soit cent trente-trois euros et trente-trois centimes. L'entreprise reçoit donc neuf mille huit cent soixante-six euros et soixante-sept centimes, immédiatement.",
+   "texte": "Soixante jours à huit pour cent : cent trente-trois euros de retenue.",
+   "ecran": "ex_simple"
+  },
+  {
+   "id": "p08",
+   "dit": "Même effet, échéance plus lointaine : quatre-vingt-dix jours au lieu de soixante. L'escompte monte à deux cents euros et la valeur actuelle tombe à neuf mille huit cents euros. Et si le taux passait à dix pour cent, la retenue serait de deux cent cinquante euros : plus l'attente est longue ou le taux élevé, plus l'escompte coûte cher.",
+   "texte": "Quatre-vingt-dix jours : deux cents euros ; à dix pour cent, deux cent cinquante.",
+   "ecran": "ex_90"
+  },
+  {
+   "id": "p09",
+   "dit": "Un effet peut changer de mains plusieurs fois avant son échéance : c'est l'escompte composé de ces leçons. À chaque opération, la retenue se calcule sur la valeur déjà réduite par l'escompte précédent, au taux de la nouvelle banque, et sur la durée qui reste à courir. On avance pas à pas, sans formule globale.",
+   "texte": "Chaque escompte repart de la valeur réduite par le précédent.",
+   "ecran": "compose"
+  },
+  {
+   "id": "p10",
+   "dit": "Exemple pas à pas. Un effet de dix mille euros échoit dans six mois. Premier escompte, à cent vingt jours de l'échéance, à cinq pour cent : retenue de cent soixante-six euros et soixante-sept centimes, valeur réduite à neuf mille huit cent trente-trois euros et trente-trois centimes. Second escompte, à soixante jours, à six pour cent : quatre-vingt-dix-huit euros et trente-trois centimes. Valeur finale : neuf mille sept cent trente-cinq euros.",
+   "texte": "Deux escomptes successifs : valeur finale neuf mille sept cent trente-cinq euros.",
+   "ecran": "ex_compose"
+  },
+  {
+   "id": "p11",
+   "dit": "Changeons de perspective avec l'actualisation. Comparer de l'argent disponible à des dates différentes n'a de sens qu'après avoir tout ramené à une même date. Actualiser, c'est diviser une somme future par un plus le taux, élevé à la puissance du nombre de périodes. Plus le taux est élevé, plus la somme future vaut peu aujourd'hui.",
+   "texte": "Actualiser : diviser la somme future par le facteur de capitalisation.",
+   "ecran": "actualisation"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple de décision. Que valent mille cent euros reçus dans un an ? À cinq pour cent, leur valeur actuelle est de mille quarante-sept euros et soixante-deux centimes : attendre vaut mieux que mille euros immédiats. À dix pour cent, les deux options se valent exactement. Au-delà de dix pour cent seulement, les mille euros tout de suite deviennent le meilleur choix.",
+   "texte": "Mille cent euros dans un an : mille quarante-sept euros à cinq pour cent.",
+   "ecran": "ex_actualisation"
+  },
+  {
+   "id": "p13",
+   "dit": "Nous pouvons définir l'équivalence. Deux effets sont équivalents lorsque, transportés à une même date de comparaison, ils y ont exactement la même valeur. Pour avancer une somme vers le futur, on la capitalise ; pour la ramener au présent, on l'actualise. Toute l'erreur à éviter consiste à mélanger les deux sens.",
+   "texte": "Capitaliser vers l'avant, actualiser vers l'arrière : jamais l'inverse.",
+   "ecran": "equivalence"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple complet : trois effets de mille, mille cinq cents et huit cents euros, échéant dans trois, six et neuf mois. Comparons-les à neuf mois, au taux trimestriel de un virgule vingt-cinq pour cent. Le premier est capitalisé sur deux trimestres : mille vingt-cinq euros et seize centimes. Le deuxième, sur un trimestre : mille cinq cent dix-huit euros et soixante-quinze centimes. Total avec le troisième : trois mille trois cent quarante-trois euros et quatre-vingt-onze centimes.",
+   "texte": "À neuf mois : trois mille trois cent quarante-trois euros et quatre-vingt-onze centimes.",
+   "ecran": "ex_equiv_avant"
+  },
+  {
+   "id": "p15",
+   "dit": "Vérifions la méthode sur un cas court : deux effets de cinq mille euros chacun, l'un à trois mois, l'autre à six mois, au taux annuel de six pour cent. À la date de six mois, le premier effet a été capitalisé d'un trimestre : cinq mille soixante-quinze euros. L'ensemble équivaut donc à dix mille soixante-quinze euros à six mois.",
+   "texte": "Deux effets de cinq mille : dix mille soixante-quinze euros à six mois.",
+   "ecran": "ex_equiv_cas"
+  },
+  {
+   "id": "p16",
+   "dit": "Le même principe, en ramenant tout à aujourd'hui. Trois effets de cinq cents, huit cents et mille deux cents euros, échéant dans deux, quatre et six mois, au taux mensuel de zéro virgule cinq pour cent. Actualisés un à un, ils valent quatre cent quatre-vingt-quinze euros et quatre centimes, sept cent quatre-vingt-quatre euros et vingt centimes, et mille cent soixante-quatre euros et soixante-deux centimes. Total : deux mille quatre cent quarante-trois euros et quatre-vingt-six centimes.",
+   "texte": "Aujourd'hui : deux mille quatre cent quarante-trois euros et quatre-vingt-six centimes.",
+   "ecran": "ex_equiv_present"
+  },
+  {
+   "id": "p17",
+   "dit": "Dernier cas, une vraie négociation. Vous devez vingt-cinq mille euros dans cent vingt jours et proposez de payer tout de suite, avec un escompte de sept pour cent : retenue de cinq cent quatre-vingt-trois euros et trente-trois centimes, vous payez vingt-quatre mille quatre cent seize euros et soixante-sept centimes. Le fournisseur préfère deux effets de douze mille cinq cents euros, à soixante et quatre-vingt-dix jours, valant aujourd'hui vingt-quatre mille six cent trente-cinq euros et quarante-deux centimes. Payer immédiatement coûte donc moins cher en valeur actuelle.",
+   "texte": "Paiement immédiat contre deux effets : l'immédiat coûte moins en valeur actuelle.",
+   "ecran": "cas_nego"
+  },
+  {
+   "id": "p18",
+   "dit": "Retenez le tableau des trois formules. L'escompte commercial : nominal, fois taux, fois jours, sur trois cent soixante. La valeur actuelle : le nominal moins l'escompte. Et l'actualisation simple : le nominal divisé par un plus taux fois jours sur trois cent soixante.",
+   "texte": "Trois formules : escompte, valeur actuelle, actualisation simple.",
+   "ecran": "synthese"
+  },
+  {
+   "id": "p19",
+   "dit": "Gardons enfin un regard critique. Ces calculs supposent un taux constant et un débiteur qui paiera à coup sûr : en réalité, la banque facture aussi des frais et des commissions, et elle conserve un recours contre le négociant si le client fait défaut. L'escompte achète du temps, il ne supprime ni le risque ni le coût du crédit.",
+   "texte": "Un taux constant, un débiteur solvable : des hypothèses, pas des garanties.",
+   "ecran": "limites"
+  },
+  {
+   "id": "p20",
+   "dit": "Pour conclure : calculer l'escompte sur le nominal et la durée restante, en déduire la valeur actuelle, traiter les escomptes successifs pas à pas, et ne comparer des effets qu'à une même date, en capitalisant vers l'avant et en actualisant vers l'arrière.",
+   "texte": "Escompte, valeur actuelle, équivalence : la méthode complète.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'escompte commercial et l'actualisation"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "L'équivalence des effets : comparer à une même date",
+   "pont": {
+    "texte": "Partie 2 : l'équivalence des effets, comparer à une même date.",
+    "dit": "Partie deux : l'équivalence des effets. Après l'escompte et l'actualisation, nous allons comparer des effets d'échéances différentes en les transportant tous à une même date de référence, puis traiter un cas complet de négociation."
+   }
+  }
+ ]
+}

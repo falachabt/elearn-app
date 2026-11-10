@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Linking, StyleSheet, Text, View } from 'react-native';
 
 import type { CleTexte } from '@/i18n';
+import { suivre } from '@/services/analytics';
 import { useTraduction } from '@/i18n/useTraduction';
 import { INDICATIFS, lienSupport, retrouverAncienCompte, validerTelephone } from '@/services/ancienCompte';
 import { cleErreur } from '@/services/compte';
@@ -74,6 +75,7 @@ export function AncienCompte() {
   };
 
   const ecrireAuSupport = () => {
+    suivre('whatsapp_opened', { contexte: 'support' });
     Linking.openURL(lienSupport(t('ancien.messageSupport', { telephone: telephone.trim() || '…' }))).catch(() => {});
   };
 

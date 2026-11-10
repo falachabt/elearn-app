@@ -1,0 +1,484 @@
+{
+  "cours": 6312,
+  "titre": "Variables aléatoires discrètes : loi, répartition et lois usuelles",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Probabilités",
+      "titre": "Variables aléatoires discrètes : loi, répartition et lois usuelles",
+      "sous": "Traduire le hasard en nombres : décrire une loi, la cumuler, la résumer, puis reconnaître les lois classiques",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Une variable aléatoire traduit chaque issue du hasard en un nombre, puis sa loi dit la chance de chaque nombre.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 140
+      }
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "Variable aléatoire",
+      "tex": "X : \\Omega \\longrightarrow \\mathbb{R}",
+      "note": "À chaque issue, un nombre réel : la somme de deux dés vaut deux, trois, jusqu'à douze.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 150
+      }
+    },
+    "discret": {
+      "type": "etape",
+      "kicker": "Le caractère discret",
+      "titre": "Des valeurs isolées, que l'on peut lister",
+      "tex": [
+        "\\text{valeurs finies ou dénombrables : } x_1, x_2, \\ldots",
+        "\\text{ex. : dé, somme de dés, comptage}",
+        "\\text{continu : une durée de vie exacte}"
+      ]
+    },
+    "deux_des": {
+      "type": "etape",
+      "kicker": "Exemple · somme de deux dés",
+      "titre": "Trente-six issues, une loi en pyramide",
+      "tex": [
+        "S \\in \\{2, 3, \\ldots, 12\\}, \\quad 36 \\text{ issues}",
+        "P(S{=}7) = \\tfrac{6}{36} = \\tfrac{1}{6}",
+        "P(S{=}2) = P(S{=}12) = \\tfrac{1}{36}"
+      ],
+      "anim": {
+        "nom": "grille_des_fig",
+        "hauteur": 120
+      }
+    },
+    "loi_def": {
+      "type": "formule",
+      "kicker": "Loi de probabilité",
+      "tex": "p_X(x_i) = P(X = x_i)",
+      "note": "La loi donne, pour chaque valeur possible, la probabilité qu'elle sorte.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 150
+      }
+    },
+    "conditions": {
+      "type": "etape",
+      "kicker": "Deux conditions à vérifier",
+      "titre": "Positivité et somme égale à un",
+      "tex": [
+        "p_i \\geq 0 \\quad \\text{pour tout } i",
+        "\\sum_i p_i = 1",
+        "\\text{dés : } \\tfrac{1+2+3+4+5+6+5+4+3+2+1}{36} = 1"
+      ]
+    },
+    "invalide": {
+      "type": "etape",
+      "kicker": "Valider une loi",
+      "titre": "Une somme différente de un disqualifie la loi",
+      "tex": [
+        "P(X{=}k) = \\tfrac{k}{10}, \\ k = 1, 2, 3",
+        "\\text{somme : } \\tfrac{1+2+3}{10} = 0{,}6 \\neq 1",
+        "\\text{corrigée : } \\tfrac{k}{6} \\text{, somme } = 1"
+      ]
+    },
+    "deux_pieces": {
+      "type": "etape",
+      "kicker": "Exemple · deux pièces",
+      "titre": "Le nombre de faces en deux lancers",
+      "tex": [
+        "X \\in \\{0, 1, 2\\}",
+        "P(X{=}0) = \\tfrac{1}{4}, \\quad P(X{=}1) = \\tfrac{1}{2}",
+        "P(X{=}2) = \\tfrac{1}{4}"
+      ]
+    },
+    "repartition": {
+      "type": "formule",
+      "kicker": "Fonction de répartition",
+      "tex": "F_X(x) = P(X \\leq x)",
+      "note": "Elle cumule les probabilités jusqu'au seuil : en escalier, croissante, de zéro à un."
+    },
+    "repartition_ex": {
+      "type": "etape",
+      "kicker": "Répartition · deux pièces",
+      "titre": "Des sauts exactement égaux aux probabilités",
+      "tex": [
+        "F_X(0) = \\tfrac{1}{4}",
+        "F_X(1) = \\tfrac{1}{4} + \\tfrac{1}{2} = \\tfrac{3}{4}",
+        "F_X(2) = 1"
+      ]
+    },
+    "intervalles": {
+      "type": "formule",
+      "kicker": "Probabilité d'un intervalle",
+      "tex": "P(a < X \\leq b) = F_X(b) - F_X(a)",
+      "note": "Exemple au dé : entre deux exclu et cinq inclus, cinq sixièmes moins deux sixièmes, un demi."
+    },
+    "mediane": {
+      "type": "formule",
+      "kicker": "Quantiles et médiane",
+      "tex": "F_X(q_{\\alpha}) \\geq \\alpha",
+      "note": "La médiane est le quantile d'ordre un demi : pour le gain aux deux pièces, elle vaut un."
+    },
+    "uniforme_bernoulli": {
+      "type": "etape",
+      "kicker": "Lois usuelles · uniforme et Bernoulli",
+      "titre": "Les deux briques élémentaires",
+      "tex": [
+        "\\text{uniforme : } P(X{=}k) = \\tfrac{1}{n}",
+        "\\text{Bernoulli : } P(X{=}1) = p",
+        "P(X{=}0) = 1 - p",
+        "\\text{certaine : } P(X{=}a) = 1"
+      ]
+    },
+    "binomiale": {
+      "type": "formule",
+      "kicker": "Lois usuelles · binomiale",
+      "tex": "P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}",
+      "note": "Compter les succès de Bernoulli indépendantes : défauts sur cinquante pièces.",
+      "anim": {
+        "nom": "arbre_fig",
+        "hauteur": 150
+      }
+    },
+    "poisson": {
+      "type": "formule",
+      "kicker": "Lois usuelles · Poisson",
+      "tex": "P(X = k) = \\frac{e^{-\\lambda} \\lambda^k}{k!}",
+      "note": "Compter des événements rares à taux moyen constant : cinq appels par heure en moyenne.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 150
+      }
+    },
+    "geometrique": {
+      "type": "formule",
+      "kicker": "Lois usuelles · géométrique",
+      "tex": "P(X = k) = (1-p)^{k-1} p",
+      "note": "Attendre le premier succès : elle est sans mémoire, l'attente passée ne change rien."
+    },
+    "hypergeometrique": {
+      "type": "formule",
+      "kicker": "Lois usuelles · hypergéométrique",
+      "tex": "P(X = k) = \\frac{\\binom{K}{k} \\binom{N-K}{n-k}}{\\binom{N}{n}}",
+      "note": "Sans remise, population finie : deux as en cinq cartes, environ quatre pour cent.",
+      "anim": {
+        "nom": "urne_fig",
+        "hauteur": 150
+      }
+    },
+    "esperance": {
+      "type": "formule",
+      "kicker": "Espérance",
+      "tex": "E(X) = \\sum_i x_i \\, p_i",
+      "note": "La moyenne pondérée par les probabilités : le centre de gravité de la loi, son prix équitable.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 150
+      }
+    },
+    "roulette_esp": {
+      "type": "etape",
+      "kicker": "Exemple · roulette à quatre cases",
+      "titre": "Un gain moyen de trois euros par partie",
+      "tex": [
+        "E(X) = 1(0{,}1) + 2(0{,}2) + 3(0{,}3) + 4(0{,}4)",
+        "= 0{,}1 + 0{,}4 + 0{,}9 + 1{,}6 = 3{,}0",
+        "\\text{prix équitable du jeu : } 3 \\text{ euros}"
+      ]
+    },
+    "linearite": {
+      "type": "etape",
+      "kicker": "Linéarité de l'espérance",
+      "titre": "L'outil qui simplifie tous les calculs",
+      "tex": [
+        "E(aX + b) = a \\, E(X) + b",
+        "E(X + Y) = E(X) + E(Y)",
+        "\\text{vrai même sans indépendance}"
+      ]
+    },
+    "variance": {
+      "type": "formule",
+      "kicker": "Variance et écart-type",
+      "tex": "V(X) = E(X^2) - [E(X)]^2",
+      "note": "La dispersion autour de la moyenne ; l'écart-type, sa racine, revient dans l'unité de départ.",
+      "anim": {
+        "nom": "deux_distributions_fig",
+        "hauteur": 150
+      }
+    },
+    "roulette_var": {
+      "type": "etape",
+      "kicker": "Exemple · dispersion de la roulette",
+      "titre": "Même jeu, écart-type d'un euro",
+      "tex": [
+        "E(X^2) = 1(0{,}1) + 4(0{,}2)",
+        "+ 9(0{,}3) + 16(0{,}4) = 10",
+        "V(X) = 10 - 3^2 = 1",
+        "\\sigma(X) = \\sqrt{1} = 1 \\text{ euro}"
+      ]
+    },
+    "investissement": {
+      "type": "etape",
+      "kicker": "Application · un placement risqué",
+      "titre": "Trois pour cent en moyenne, mais volatil",
+      "tex": [
+        "E(R) = -5(0{,}2) + 2(0{,}5) + 10(0{,}3) = 3",
+        "E(R^2) = 25(0{,}2) + 4(0{,}5) + 100(0{,}3) = 37",
+        "V(R) = 37 - 9 = 28, \\quad \\sigma \\approx 5{,}29"
+      ]
+    },
+    "anniversaires": {
+      "type": "etape",
+      "kicker": "Étude de cas · anniversaires",
+      "titre": "Trente élèves, une coïncidence très probable",
+      "tex": [
+        "P(\\text{tous différents}) \\approx 0{,}294",
+        "P(\\text{au moins une coïncidence}) = 1 - 0{,}294",
+        "\\approx 0{,}706"
+      ]
+    },
+    "des_difference": {
+      "type": "etape",
+      "kicker": "Exercice guidé · différence de deux dés",
+      "titre": "La valeur absolue de la différence",
+      "tex": [
+        "Y \\in \\{0, 1, 2, 3, 4, 5\\}",
+        "P(Y{=}0) = \\tfrac{1}{6}, \\quad P(Y{=}5) = \\tfrac{1}{18}",
+        "E(Y) = \\tfrac{35}{18} \\approx 1{,}94"
+      ]
+    },
+    "collectionneur": {
+      "type": "etape",
+      "kicker": "Exercice guidé · le collectionneur",
+      "titre": "Compléter quatre cartes coûte en moyenne huit paquets",
+      "tex": [
+        "E(T_4) = 1 + \\tfrac{4}{3} + 2 + 4",
+        "= \\tfrac{25}{3} \\approx 8{,}33",
+        "E(T_n) = n \\sum_{j=1}^{n} \\tfrac{1}{j}"
+      ]
+    },
+    "petersbourg": {
+      "type": "etape",
+      "kicker": "Défi · paradoxe de Saint-Pétersbourg",
+      "titre": "Une espérance infinie que personne ne paiera",
+      "tex": [
+        "P(G = 2^k) = \\tfrac{1}{2^k}",
+        "E(G) = \\sum_{k} 2^k \\times \\tfrac{1}{2^k} = +\\infty"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Variable : chaque issue devient un nombre",
+        "Loi : p_i positifs, de somme égale à 1",
+        "Répartition : F(x) = P(X ≤ x), en escalier",
+        "Lois usuelles : choisir selon la question",
+        "E(X) centre, V(X) dispersion, σ même unité"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours consacré aux variables aléatoires discrètes. Nous apprendrons à traduire une expérience de hasard en nombres, à décrire complètement leur comportement par une loi de probabilité, à cumuler cette loi par la fonction de répartition, puis à reconnaître les grandes lois usuelles et à résumer chacune par son espérance et sa variance.",
+      "texte": "Variables aléatoires discrètes : loi, répartition, lois usuelles.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Une machine à sous, un lancer de dés, un comptage de défauts : ces expériences ont des issues très différentes, mais on peut toutes les ramener à des nombres. C'est exactement le travail d'une variable aléatoire : transformer le résultat, souvent qualitatif, d'une expérience aléatoire en une valeur numérique que l'on peut étudier.",
+      "texte": "Traduire chaque issue du hasard en un nombre.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Formellement, une variable aléatoire est une fonction : à chaque issue de l'expérience, elle associe un nombre réel. Pour deux dés, la somme associe deux à la paire de uns, sept à de nombreuses paires, et douze à la paire de six. Avant le lancer, cette valeur est inconnue ; après, elle est fixée. Tout le cours décrit ce qui se passe avant.",
+      "texte": "Une fonction des issues vers les nombres réels.",
+      "ecran": "definition"
+    },
+    {
+      "id": "p04",
+      "dit": "Une variable est dite discrète quand ses valeurs possibles sont isolées et peuvent se lister : un nombre fini de valeurs, ou une suite que l'on peut énumérer. Le résultat d'un dé, un nombre de faces, un comptage de pièces défectueuses sont discrets. Une durée de vie exacte, qui peut prendre n'importe quelle valeur réelle positive, serait continue : ce n'est pas l'objet de ce cours.",
+      "texte": "Valeurs isolées et listables : le monde discret.",
+      "ecran": "discret"
+    },
+    {
+      "id": "p05",
+      "dit": "Prenons la somme de deux dés équilibrés : trente-six issues équiprobables, des valeurs de deux à douze. La valeur sept est la plus probable, avec six issues favorables ; les valeurs deux et douze sont les plus rares, avec une seule issue chacune. La loi complète forme une pyramide symétrique, centrée sur sept : la forme elle-même est déjà une information.",
+      "texte": "Sept est la somme la plus probable : six chances sur trente-six.",
+      "ecran": "deux_des"
+    },
+    {
+      "id": "p06",
+      "dit": "Connaître les valeurs ne suffit pas : il faut la chance de chacune. La loi de probabilité associe à chaque valeur possible la probabilité que la variable l'atteigne exactement. On la présente en tableau, en formule, ou en diagramme en bâtons, où chaque bâton a pour hauteur la probabilité de sa valeur. C'est la carte d'identité complète de la variable.",
+      "texte": "La loi : une probabilité pour chaque valeur possible.",
+      "ecran": "loi_def"
+    },
+    {
+      "id": "p07",
+      "dit": "Deux conditions fondent toute loi de probabilité. Chaque probabilité est positive ou nulle, et leur somme vaut exactement un, car la variable prend forcément l'une de ses valeurs. Pour la somme de deux dés, les numérateurs un, deux, trois, quatre, cinq, six, puis cinq, quatre, trois, deux, un totalisent trente-six, sur trente-six : la loi est valide.",
+      "texte": "Positives, et de somme égale à un : toujours vérifier.",
+      "ecran": "conditions"
+    },
+    {
+      "id": "p08",
+      "dit": "Ce contrôle disqualifie vite une fausse loi. Proposer des probabilités d'un dixième, deux dixièmes et trois dixièmes pour trois valeurs donne une somme de six dixièmes, pas un : ce n'est pas une loi. En divisant par six au lieu de dix, la somme devient un et la loi devient valide. Réflexe à garder pour chaque tableau que l'on vous propose.",
+      "texte": "Une somme de six dixièmes : ce n'est pas une loi.",
+      "ecran": "invalide"
+    },
+    {
+      "id": "p09",
+      "dit": "Autre loi de référence, très simple : on lance deux pièces équilibrées et on compte les faces. La variable vaut zéro, un ou deux, avec des probabilités d'un quart, un demi et un quart. Un seul cas donne zéro face, deux cas donnent une face, un cas donne deux faces. Cette petite loi servira d'exemple fil rouge pour la fonction de répartition.",
+      "texte": "Deux pièces : un quart, un demi, un quart.",
+      "ecran": "deux_pieces"
+    },
+    {
+      "id": "p10",
+      "dit": "La loi répond à la question de la valeur exacte ; la fonction de répartition répond à une question cumulative : quelle est la probabilité que la variable reste au plus égale à un seuil donné. Pour une variable discrète, elle avance en escalier, constante entre deux valeurs possibles, avec un saut à chaque valeur, et elle grimpe de zéro à un.",
+      "texte": "La répartition cumule les probabilités jusqu'au seuil.",
+      "ecran": "repartition"
+    },
+    {
+      "id": "p11",
+      "dit": "Sur l'exemple des deux pièces, les sauts racontent la loi : un saut d'un quart en zéro, un saut d'un demi en un, un saut d'un quart en deux. La fonction vaut donc un quart avant un, trois quarts entre un et deux, puis un. Réciproquement, mesurer la hauteur de chaque saut redonne exactement la probabilité de chaque valeur.",
+      "texte": "Chaque saut de l'escalier est une probabilité.",
+      "ecran": "repartition_ex"
+    },
+    {
+      "id": "p12",
+      "dit": "Avec la répartition, les probabilités d'intervalles deviennent des soustractions. La probabilité d'être strictement au-dessus d'une borne et au plus égal à l'autre est la différence des deux valeurs de la fonction. Au dé, obtenir plus de deux et au plus cinq vaut cinq sixièmes moins deux sixièmes, soit un demi : les faces trois, quatre et cinq.",
+      "texte": "Un intervalle : une différence de deux cumuls.",
+      "ecran": "intervalles"
+    },
+    {
+      "id": "p13",
+      "dit": "La répartition sert aussi à situer la loi. Le quantile d'ordre alpha est la plus petite valeur dont le cumul atteint au moins alpha, et la médiane correspond à alpha égal à un demi : elle partage la probabilité en deux moitiés. Pour le gain d'un euro par face avec deux pièces, le cumul atteint trois quarts dès la valeur un : la médiane vaut donc un euro.",
+      "texte": "La médiane partage la probabilité en deux moitiés.",
+      "ecran": "mediane"
+    },
+    {
+      "id": "p14",
+      "dit": "Passons aux lois usuelles, ces modèles prêts à l'emploi. La loi uniforme donne la même probabilité à chaque valeur, comme un dé équilibré. La loi de Bernoulli ne connaît que deux valeurs, zéro et un, pour un échec et un succès : c'est la brique élémentaire dont naîtront plusieurs autres lois. La variable certaine, elle, ne prend qu'une valeur, avec probabilité un.",
+      "texte": "Uniforme, Bernoulli, certaine : les briques de base.",
+      "ecran": "uniforme_bernoulli"
+    },
+    {
+      "id": "p15",
+      "dit": "En répétant des épreuves de Bernoulli indépendantes, on obtient la loi binomiale, qui compte les succès. Sa formule combine le nombre de chemins et les probabilités des succès et des échecs. On la rencontre en contrôle qualité, quand on compte les pièces défectueuses d'un échantillon, et dans les sondages, quand on compte les réponses favorables.",
+      "texte": "La binomiale compte les succès d'épreuves répétées.",
+      "ecran": "binomiale"
+    },
+    {
+      "id": "p16",
+      "dit": "La loi de Poisson compte, elle, des événements qui surviennent à un rythme moyen constant, indépendamment les uns des autres : appels dans un centre d'appels, particules émises par une substance radioactive. Avec une moyenne de cinq appels par heure, la probabilité d'en recevoir exactement trois vaut environ quatorze pour cent. C'est aussi l'approximation des binomiales à événements rares.",
+      "texte": "Poisson : compter des événements à rythme moyen constant.",
+      "ecran": "poisson"
+    },
+    {
+      "id": "p17",
+      "dit": "La loi géométrique répond à une question d'attente : combien d'essais faut-il mener avant le premier succès. Chaque échec coûte une tentative de plus, puis le succès arrête le compteur. Sa propriété célèbre est l'absence de mémoire : avoir déjà attendu longtemps sans succès ne rapproche en rien du but, le compteur repart statistiquement de zéro.",
+      "texte": "La géométrique compte l'attente du premier succès.",
+      "ecran": "geometrique"
+    },
+    {
+      "id": "p18",
+      "dit": "Dernière loi usuelle : l'hypergéométrique, pour les tirages sans remise dans une population finie. Contrairement à la binomiale, chaque tirage modifie la composition restante. Dans un jeu de cinquante-deux cartes, tirer cinq cartes sans remise donne exactement deux as avec une probabilité d'environ quatre pour cent. Si la population est immense devant l'échantillon, on retombe presque sur la binomiale.",
+      "texte": "Sans remise dans une population finie : l'hypergéométrique.",
+      "ecran": "hypergeometrique"
+    },
+    {
+      "id": "p19",
+      "dit": "Résumer une loi par deux nombres commence par l'espérance : la moyenne des valeurs, pondérée par leurs probabilités. C'est la valeur attendue en moyenne sur un très grand nombre de répétitions, et le prix équitable d'un jeu. Imaginez des masses égales aux probabilités, posées aux positions des valeurs : l'espérance est exactement leur centre de gravité.",
+      "texte": "L'espérance : la moyenne pondérée, centre de gravité.",
+      "ecran": "esperance"
+    },
+    {
+      "id": "p20",
+      "dit": "Exemple complet : une roulette à quatre cases, de probabilités un dixième, deux dixièmes, trois dixièmes et quatre dixièmes, qui rapporte le numéro en euros. L'espérance multiplie chaque gain par sa probabilité et additionne : on obtient trois euros par partie en moyenne. Payer trois euros et demi pour jouer serait donc, à long terme, une mauvaise affaire.",
+      "texte": "Gain moyen de trois euros : le prix équitable du jeu.",
+      "ecran": "roulette_esp"
+    },
+    {
+      "id": "p21",
+      "dit": "L'espérance possède la propriété la plus utile du chapitre : la linéarité. L'espérance d'une somme est la somme des espérances, même sans indépendance, et multiplier la variable multiplie son espérance dans la même proportion. Convertir une température des degrés Celsius vers les degrés Fahrenheit devient alors un simple calcul sur la moyenne.",
+      "texte": "Linéarité : l'espérance d'une somme est la somme des espérances.",
+      "ecran": "linearite"
+    },
+    {
+      "id": "p22",
+      "dit": "La moyenne ne dit pas le risque. Deux placements peuvent partager la même espérance, l'un stable, l'autre qui oscille violemment. La variance mesure cette dispersion : la moyenne des carrés des écarts à l'espérance, calculée en pratique comme l'espérance du carré moins le carré de l'espérance. Sa racine carrée, l'écart-type, s'exprime dans la même unité que la variable.",
+      "texte": "Variance et écart-type : mesurer la dispersion.",
+      "ecran": "variance"
+    },
+    {
+      "id": "p23",
+      "dit": "Pour notre roulette, l'espérance du carré vaut dix : la variance vaut donc dix moins neuf, soit un, et l'écart-type un euro. Le gain moyen est de trois euros, avec une fluctuation typique d'un euro autour de cette moyenne. L'espérance dit où l'on va en moyenne, l'écart-type dit à quel point le voyage est agité.",
+      "texte": "Roulette : variance un, écart-type un euro.",
+      "ecran": "roulette_var"
+    },
+    {
+      "id": "p24",
+      "dit": "Même lecture en finance : un placement rapporte moins cinq pour cent, deux pour cent ou dix pour cent selon l'état de l'économie. Son espérance vaut trois pour cent, mais sa variance vaut vingt-huit et son écart-type environ cinq pour cent et demi. Le rendement réel d'une année donnée peut donc s'écarter nettement de la moyenne : c'est ce que chiffre le risque.",
+      "texte": "Trois pour cent en moyenne, écart-type de cinq pour cent et demi.",
+      "ecran": "investissement"
+    },
+    {
+      "id": "p25",
+      "dit": "Étude de cas célèbre : dans une classe de trente élèves, la probabilité qu'au moins deux partagent leur jour d'anniversaire dépasse soixante-dix pour cent. Le calcul passe par le complémentaire : la probabilité que tous les anniversaires soient différents ne vaut qu'environ vingt-neuf pour cent. Notre intuition sous-estime gravement le nombre de paires possibles.",
+      "texte": "Trente élèves : plus de soixante-dix pour cent de coïncidence.",
+      "ecran": "anniversaires"
+    },
+    {
+      "id": "p26",
+      "dit": "Exercice guidé : on lance deux dés et on prend la valeur absolue de leur différence, de zéro à cinq. La différence nulle a six issues favorables, la différence de cinq seulement deux. En pondérant chaque valeur par sa probabilité, l'espérance vaut trente-cinq dix-huitièmes, environ un virgule quatre-vingt-quatorze : les petites différences dominent logiquement.",
+      "texte": "Différence de deux dés : espérance environ un virgule quatre-vingt-quatorze.",
+      "ecran": "des_difference"
+    },
+    {
+      "id": "p27",
+      "dit": "Autre classique : compléter une collection de quatre cartes vendues au hasard. La première carte est toujours nouvelle, puis chaque nouvelle carte demande une attente géométrique de plus en plus longue. Au total, l'espérance vaut vingt-cinq tiers de paquets, environ huit paquets et un tiers. La formule générale fait intervenir la somme des inverses des entiers, qui croît très lentement.",
+      "texte": "Quatre cartes à compléter : environ huit paquets et un tiers.",
+      "ecran": "collectionneur"
+    },
+    {
+      "id": "p28",
+      "dit": "Terminons par un paradoxe historique : on joue à pile ou face jusqu'au premier pile, et le gain double à chaque lancer d'attente. Chaque gain possible a pour produit, gain fois probabilité, exactement un euro : sommés à l'infini, l'espérance devient infinie. Pourtant, personne ne paierait une fortune pour jouer : l'espérance seule ne capture pas la valeur réelle d'un jeu risqué.",
+      "texte": "Espérance infinie, mise raisonnable finie : le paradoxe.",
+      "ecran": "petersbourg"
+    },
+    {
+      "id": "p29",
+      "dit": "Pour retenir l'essentiel : une variable aléatoire discrète traduit les issues en nombres ; sa loi attribue une probabilité positive à chaque valeur, avec une somme égale à un ; sa fonction de répartition cumule ces probabilités en escalier ; les lois usuelles se choisissent selon la question posée ; et l'espérance centre la loi, pendant que la variance mesure sa dispersion.",
+      "texte": "L'essentiel du cours en cinq points.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définir une variable discrète et sa loi"
+    },
+    {
+      "debut": "p10",
+      "sous_titre": "Fonction de répartition et lois usuelles",
+      "pont": {
+        "texte": "Partie 2 : fonction de répartition, quantiles et lois usuelles.",
+        "dit": "Partie deux : cumuler, puis reconnaître les modèles. Nous construirons la fonction de répartition, ses sauts et ses quantiles, avant de parcourir les lois usuelles, de la loi uniforme aux tirages sans remise."
+      }
+    },
+    {
+      "debut": "p21",
+      "sous_titre": "Linéarité, dispersion et études de cas",
+      "pont": {
+        "texte": "Partie 3 : linéarité de l'espérance, variance et études de cas.",
+        "dit": "Partie trois : exploiter les résumés et appliquer. Nous utiliserons la linéarité de l'espérance, puis la variance et l'écart-type pour mesurer le risque, avant les études de cas des anniversaires, du collectionneur et du paradoxe de Saint-Pétersbourg."
+      }
+    }
+  ]
+}

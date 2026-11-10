@@ -15,7 +15,8 @@ type Props = {
   ouverte: boolean;
   /** Appelé quand la feuille se ferme (glissée vers le bas, fond touché ou action secondaire). */
   onFermer: () => void;
-  icone?: keyof typeof Ionicons.glyphMap;
+  icone?: (keyof typeof Ionicons.glyphMap) | ReactNode;
+  couleurPastille?: string;
   titre: string;
   texte?: string;
   actions: ActionFeuille[];
@@ -46,7 +47,7 @@ function FondBloquant(props: BottomSheetBackdropProps) {
  * part du bas de l'écran du téléphone, au-dessus de la barre d'onglets, quel que soit l'endroit où on la déclare
  * (dans un défilement, sous un en-tête...).
  */
-export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, mention, avant, illustration, centre, bloquante = false, children }: Props) {
+export function Feuille({ ouverte, onFermer, icone, couleurPastille, titre, texte, actions, mention, avant, illustration, centre, bloquante = false, children }: Props) {
   const { theme } = useTheme();
   const { top, bottom } = useSafeAreaInsets();
   const feuille = useRef<BottomSheetModal>(null);
@@ -66,6 +67,9 @@ export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, menti
       ref={feuille}
       enableDynamicSizing
       topInset={top}
+      keyboardBehavior="interactive"
+      keyboardBlurBehavior="restore"
+      android_keyboardInputMode="adjustResize"
       enablePanDownToClose={!bloquante}
       enableContentPanningGesture={!bloquante}
       enableHandlePanningGesture={!bloquante}
@@ -81,8 +85,12 @@ export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, menti
           {avant}
           {illustration}
           {icone ? (
-            <View style={[styles.pastille, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-              <Ionicons name={icone} size={24} color={theme.texte.surCouleur} />
+            <View style={[styles.pastille, { backgroundColor: couleurPastille ?? theme.accent.soleil, borderColor: theme.bord.fort }]}>
+              {typeof icone === 'string' ? (
+                <Ionicons name={icone as never} size={24} color={theme.texte.surCouleur} />
+              ) : (
+                icone
+              )}
             </View>
           ) : null}
           <Text accessibilityRole="header" style={[typo.h2, centre && styles.mention, { color: theme.texte.principal }]}>{titre}</Text>

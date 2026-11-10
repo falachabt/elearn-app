@@ -6,7 +6,7 @@ import { bord, typeContenu } from '@/theme/theme';
 
 export type TypeContenu = keyof typeof typeContenu;
 
-const ICONES = { quiz: CircleHelp, exercice: PencilLine, lecon: GraduationCap, annale: FileText } as const;
+const ICONES = { quiz: CircleHelp, exercice: PencilLine, lecon: GraduationCap, annale: FileText, video: Play } as const;
 
 /** Pastille qui dit le type d'un contenu (revue design, règle 5) : couleur `typeContenu`, icône Lucide noire. `play` : leçon à reprendre (accueil). */
 export function PastilleType({ type, taille = 34, play }: { type: TypeContenu; taille?: number; play?: boolean }) {

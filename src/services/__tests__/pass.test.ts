@@ -1,7 +1,7 @@
-import { suivre } from '../analytics';
+import { definirProprietesUtilisateur, suivre } from '../analytics';
 import { creerLienParent, formaterMontant, lienWhatsApp, lireAcces, lireOffres, URL_PAIEMENT_PARENT } from '../pass';
 
-jest.mock('../analytics', () => ({ suivre: jest.fn() }));
+jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 
 const ligne = (code: string, montant: number, ordre: number, recommande = false) => ({
   product_code: code,
@@ -55,6 +55,13 @@ describe('pass', () => {
       fin: '2026-11-01T00:00:00Z',
       source: 'order',
     });
+  });
+
+  it('accès : la propriété « avec ou sans Pass » suit la lecture, sans appel de plus', async () => {
+    await lireAcces(clientFaux({ rpc: [] }) as never);
+    expect(definirProprietesUtilisateur).toHaveBeenLastCalledWith({ pass_actif: false, pass_offre: null });
+    await lireAcces(clientFaux({ rpc: [{ product_code: 'week', ends_at: '2026-11-01T00:00:00Z', source: 'order' }] }) as never);
+    expect(definirProprietesUtilisateur).toHaveBeenLastCalledWith({ pass_actif: true, pass_offre: 'week' });
   });
 
   it('crée le lien parent côté serveur et suit l’événement', async () => {

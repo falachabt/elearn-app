@@ -1,0 +1,266 @@
+{
+ "cours": 6826,
+ "titre": "Algorithmique et développement logiciel",
+ "matiere": "Informatique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Informatique · Algorithmique et logiciel",
+   "titre": "Algorithmique et développement logiciel",
+   "sous": "Du LDA à l'algorigramme, du code source au logiciel fini"
+  },
+  "def": {
+   "type": "etape",
+   "kicker": "Définir : un algorithme",
+   "titre": "Suite finie et ordonnée d'opérations",
+   "tex": [
+    "\\text{non ambigu : chaque étape claire}",
+    "\\text{déterministe : même entrées}",
+    "\\text{même résultat}",
+    "\\text{se termine en un nombre fini}"
+   ]
+  },
+  "ex_moy": {
+   "type": "formule",
+   "kicker": "Exemple : moyenne de deux notes",
+   "tex": "m = \\frac{a + b}{2}",
+   "note": "Lire a et b, calculer m, afficher m"
+  },
+  "lda": {
+   "type": "etape",
+   "kicker": "Le LDA, langage de définition",
+   "titre": "Formalisme indépendant des langages",
+   "tex": [
+    "\\text{décrire un algorithme}",
+    "\\text{syntaxe : les règles d'écriture}",
+    "\\text{sémantique : la signification}",
+    "\\text{l'effet de chaque instruction}"
+   ]
+  },
+  "var_const": {
+   "type": "etape",
+   "kicker": "Variable ou constante ?",
+   "titre": "L'une change, l'autre jamais",
+   "tex": [
+    "\\text{variable : espace mémoire nommé}",
+    "\\text{valeur changeable en cours}",
+    "\\text{constante : ne change jamais}",
+    "\\text{note : Réel, compteur : Entier}",
+    "\\text{PI = 3,14159}"
+   ]
+  },
+  "affect": {
+   "type": "formule",
+   "kicker": "L'affectation, flèche vers la gauche",
+   "tex": "x \\leftarrow 5, \\quad x \\leftarrow x + 2",
+   "note": "Le membre de droite est évalué, puis placé dans la variable de gauche ; x vaut maintenant 7"
+  },
+  "si": {
+   "type": "etape",
+   "kicker": "Structure Si... Alors... Sinon",
+   "titre": "Exécuter selon une condition booléenne",
+   "tex": [
+    "\\text{Si condition Alors}",
+    "\\text{instructions si vrai}",
+    "\\text{Sinon instructions si faux}",
+    "\\text{Fin Si}"
+   ]
+  },
+  "ex_admis": {
+   "type": "etape",
+   "kicker": "Exemple : admis ou refusé ?",
+   "titre": "La note décide, seuil dix",
+   "tex": [
+    "\\text{Variable note : Réel}",
+    "\\text{Lire(note)}",
+    "\\text{Si note de 10 ou plus Alors}",
+    "\\text{Afficher Admis, Sinon Refusé}"
+   ]
+  },
+  "tantque": {
+   "type": "etape",
+   "kicker": "La boucle TantQue",
+   "titre": "Répéter tant que c'est vrai",
+   "tex": [
+    "\\text{TantQue condition Faire}",
+    "\\text{instructions}",
+    "\\text{Fin TantQue}"
+   ]
+  },
+  "ex_somme": {
+   "type": "etape",
+   "kicker": "Exemple : somme de 1 à n",
+   "titre": "Initialiser, répéter, afficher",
+   "tex": [
+    "\\text{n, i, somme : Entier}",
+    "\\text{Lire(n) ; somme à 0 ; i à 1}",
+    "\\text{TantQue i de n ou moins Faire}",
+    "\\text{somme plus i ; i plus 1}",
+    "\\text{Fin TantQue ; Afficher(somme)}"
+   ]
+  },
+  "algorigramme": {
+   "type": "etape",
+   "kicker": "L'algorigramme",
+   "titre": "L'algorithme en dessin",
+   "tex": [
+    "\\text{rectangles : les traitements}",
+    "\\text{losanges : les conditions}",
+    "\\text{flèches : le flux d'exécution}"
+   ]
+  },
+  "programme": {
+   "type": "etape",
+   "kicker": "Programme ou logiciel ?",
+   "titre": "Code, ou produit complet",
+   "tex": [
+    "\\text{programme : instructions}",
+    "\\text{en Python, C, Java}",
+    "\\text{source : texte du programmeur}",
+    "\\text{exécutable : fichier machine}",
+    "\\text{logiciel : programmes, données, doc}"
+   ]
+  },
+  "trad": {
+   "type": "etape",
+   "kicker": "Compilateur ou interpréteur ?",
+   "titre": "Tout d'un coup, ou pas à pas",
+   "tex": [
+    "\\text{compilateur : tout le source}",
+    "\\text{en exécutable, en une fois, C}",
+    "\\text{interpréteur : instruction}",
+    "\\text{par instruction, Python}"
+   ]
+  },
+  "ide": {
+   "type": "etape",
+   "kicker": "L'IDE, l'atelier du programmeur",
+   "titre": "Éditeur, traduction, débogueur",
+   "tex": [
+    "\\text{éditeur de code}",
+    "\\text{compilateur ou interpréteur}",
+    "\\text{débogueur}"
+   ]
+  },
+  "cycle": {
+   "type": "etape",
+   "kicker": "Le cycle de vie d'un logiciel",
+   "titre": "Cascade, itératif, prototype",
+   "tex": [
+    "\\text{cascade : étapes séquentielles}",
+    "\\text{itératif : versions successives}",
+    "\\text{prototypage : valider le besoin}",
+    "\\text{avec l'utilisateur, avant tout}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Algorithme : fini, ordonné, non ambigu, déterministe",
+    "LDA : syntaxe et sémantique, variables, affectation",
+    "Si... Sinon, TantQue, algorigramme : trois représentations",
+    "Compilateur d'un coup, interpréteur pas à pas, IDE complet",
+    "Cascade ou itératif, prototyper avant de développer"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "De l'idée à l'algorithme, du code au logiciel.",
+   "dit": "Bienvenue dans ce cours d'algorithmique et de développement logiciel. Nous partirons de l'idée d'algorithme, nous l'écrirons dans un langage de description, puis nous suivrons le chemin du code source jusqu'au logiciel fini."
+  },
+  {
+   "id": "p02",
+   "ecran": "def",
+   "texte": "Algorithme : fini, ordonné, non ambigu, déterministe.",
+   "dit": "Un algorithme est une suite finie et ordonnée d'opérations permettant de résoudre un problème donné. Il doit être non ambigu, chaque étape est clairement définie, déterministe, le même résultat est obtenu pour les mêmes entrées, et se terminer après un nombre fini d'étapes."
+  },
+  {
+   "id": "p03",
+   "ecran": "ex_moy",
+   "texte": "Moyenne de a et b : lire, calculer, afficher.",
+   "dit": "Exemple résolu : l'algorithme pour calculer la moyenne de deux notes a et b. Lire a et b, calculer m égale a plus b sur deux, puis afficher m."
+  },
+  {
+   "id": "p04",
+   "ecran": "lda",
+   "texte": "LDA : décrire, sans langage de programmation.",
+   "dit": "Le langage de définition des algorithmes, le LDA, est un formalisme standardisé, indépendant de tout langage de programmation, utilisé pour décrire un algorithme. On distingue la syntaxe, les règles d'écriture, la forme du code, et la sémantique, la signification de chaque instruction, l'effet produit."
+  },
+  {
+   "id": "p05",
+   "ecran": "var_const",
+   "texte": "Variable qui change, constante qui ne change jamais.",
+   "dit": "Une variable est un espace mémoire nommé dont la valeur peut changer durant l'exécution. Une constante est une valeur qui ne change jamais. Déclaration : variable note de type Réel, variable compteur de type Entier, constante PI égale trois virgule un quatre un cinq neuf."
+  },
+  {
+   "id": "p06",
+   "ecran": "affect",
+   "texte": "Affectation : la flèche stocke la valeur.",
+   "dit": "L'affectation, notée par une flèche vers la gauche, stocke une valeur dans une variable. Le membre de droite est évalué, puis le résultat est placé dans la variable de gauche. Exemple : variable x de type Entier, x reçoit cinq, puis x reçoit x plus deux, et x vaut maintenant sept."
+  },
+  {
+   "id": "p07",
+   "ecran": "si",
+   "texte": "Si... Alors... Sinon : la condition décide.",
+   "dit": "Première structure de contrôle en LDA, la structure alternative : Si, alors, sinon permet d'exécuter des instructions selon une condition booléenne. On écrit : Si condition, Alors instructions si vrai, Sinon instructions si faux, Fin Si."
+  },
+  {
+   "id": "p08",
+   "ecran": "ex_admis",
+   "texte": "Note de dix ou plus : Admis, sinon Refusé.",
+   "dit": "Exemple résolu : variable note de type Réel, lire la note, si la note est supérieure ou égale à dix, alors afficher « Admis », sinon afficher « Refusé », fin Si."
+  },
+  {
+   "id": "p09",
+   "ecran": "tantque",
+   "texte": "TantQue : répéter tant que c'est vrai.",
+   "dit": "Deuxième structure, la structure itérative : la boucle TantQue répète des instructions tant qu'une condition reste vraie. On écrit : TantQue condition, Faire instructions, Fin TantQue."
+  },
+  {
+   "id": "p10",
+   "ecran": "ex_somme",
+   "texte": "Somme de un à n : initialiser, boucler, afficher.",
+   "dit": "Exemple résolu, la somme des entiers de un à n : variables n, i et somme de type Entier, lire n, somme reçoit zéro, i reçoit un, tant que i est inférieur ou égal à n, faire somme reçoit somme plus i, puis i reçoit i plus un, fin TantQue, afficher somme."
+  },
+  {
+   "id": "p11",
+   "ecran": "algorigramme",
+   "texte": "Algorigramme : rectangles, losanges, flèches.",
+   "dit": "Un algorigramme, ou organigramme de programmation, est la représentation graphique d'un algorithme : les rectangles représentent les traitements, les losanges les conditions, et les flèches indiquent le flux d'exécution."
+  },
+  {
+   "id": "p12",
+   "ecran": "programme",
+   "texte": "Programme : instructions ; logiciel : produit complet.",
+   "dit": "Du programme au logiciel. Un programme est un ensemble d'instructions écrites dans un langage de programmation, Python, C ou Java, qui peut être exécuté par une machine. Le code source est le texte écrit par le programmeur ; le code exécutable est le fichier que la machine peut directement exécuter. Un logiciel est un ensemble cohérent de programmes, de données et de documentation formant un produit complet, par exemple un traitement de texte."
+  },
+  {
+   "id": "p13",
+   "ecran": "trad",
+   "texte": "Compilateur : tout d'un coup. Interpréteur : pas à pas.",
+   "dit": "La traduction du code source prend deux formes. Le compilateur traduit tout le code source en code exécutable en une seule fois, par exemple pour le langage C. L'interpréteur traduit et exécute le code instruction par instruction, par exemple pour Python."
+  },
+  {
+   "id": "p14",
+   "ecran": "ide",
+   "texte": "IDE : éditeur, traduction, débogueur réunis.",
+   "dit": "L'IDE, environnement de développement intégré, est un outil regroupant un éditeur de code, un compilateur ou interpréteur, et un débogueur."
+  },
+  {
+   "id": "p15",
+   "ecran": "cycle",
+   "texte": "Cycle de vie : cascade, itératif, prototype.",
+   "dit": "Le cycle de vie logiciel décrit les étapes de la création d'un logiciel. Deux approches principales existent : le cycle en cascade, à étapes séquentielles, et le cycle itératif, développement par versions successives. Le prototypage est particulièrement utile pour valider rapidement un besoin avec l'utilisateur avant le développement complet."
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Concevoir en LDA, réaliser en logiciel.",
+   "dit": "En conclusion, ce chapitre introduit la démarche algorithmique, conception abstraite via le LDA, et la démarche logicielle, réalisation concrète. La maîtrise du LDA permet de concevoir des solutions structurées avant leur implémentation dans un langage de programmation."
+  }
+ ]
+}

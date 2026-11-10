@@ -1,0 +1,5 @@
+# Dépendances du job « montage » (GitHub Actions) : chronologie + rendu Chromium.
+# Pas de torch ici : lancer.py n'importe OmniVoice que dans la phase voix,
+# et ce job réutilise les clips produits par le job « voix ».
+playwright==1.64.1
+soundfile==0.14.0

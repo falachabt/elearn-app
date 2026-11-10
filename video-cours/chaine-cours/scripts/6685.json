@@ -1,0 +1,588 @@
+{
+  "cours": 6685,
+  "titre": "Géométrie plane : droites, cercles, triangles et symétries",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Géométrie plane",
+      "titre": "Géométrie plane : droites, cercles, triangles et symétries",
+      "sous": "Positions des droites, segments, cercles, angles, triangles, parallélogrammes et les deux symétries",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Tout le vocabulaire de la géométrie plane en un cours : droites et segments, cercles et angles, triangles, parallélogrammes et symétries."
+    },
+    "droite": {
+      "type": "etape",
+      "kicker": "Droites et points alignés",
+      "titre": "Alignés : sur une même droite",
+      "tex": [
+        "A \\in (d) \\qquad B \\in (d) \\qquad C \\in (d)",
+        "M \\notin (d)"
+      ]
+    },
+    "partage": {
+      "type": "phrase",
+      "kicker": "Demi-plans et demi-droites",
+      "texte": "Une droite partage le plan en deux demi-plans. Une demi-droite [Ax) part de son origine A et se prolonge sans fin d'un seul côté."
+    },
+    "secantes_perp": {
+      "type": "etape",
+      "kicker": "Droites sécantes et perpendiculaires",
+      "titre": "Sécantes, perpendiculaires si angle droit",
+      "tex": [
+        "\\text{un seul point d'intersection}",
+        "(d_1) \\perp (d_2)"
+      ]
+    },
+    "unicite": {
+      "type": "phrase",
+      "kicker": "Une seule droite par un point",
+      "texte": "Par deux points distincts passe une seule droite. Et par un point donné passent une seule perpendiculaire et une seule parallèle à une droite donnée."
+    },
+    "paralleles": {
+      "type": "etape",
+      "kicker": "Droites parallèles",
+      "titre": "Parallèles : jamais sécantes",
+      "tex": [
+        "(d_1) \\parallel (d_2)",
+        "d \\parallel d_1 \\Rightarrow d \\parallel d_2",
+        "d_1 \\perp d_3, \\ d_2 \\perp d_3 \\Rightarrow d_1 \\parallel d_2"
+      ]
+    },
+    "construction_droites": {
+      "type": "phrase",
+      "kicker": "Construire à l'équerre et à la règle",
+      "texte": "Perpendiculaire : l'équerre glisse le long de la droite jusqu'au point. Parallèle : l'équerre glisse le long de la règle jusqu'au point."
+    },
+    "segment": {
+      "type": "etape",
+      "kicker": "Segments et longueurs",
+      "titre": "Le segment et son support",
+      "tex": [
+        "[AB] : \\text{ entre } A \\text{ et } B",
+        "(AB) : \\text{ le support de } [AB]"
+      ]
+    },
+    "longueur": {
+      "type": "etape",
+      "kicker": "Longueur et distance",
+      "titre": "Un point du segment partage la longueur",
+      "tex": [
+        "M \\in [AB] \\qquad MA + MB = AB",
+        "MB = 7 - 3 = 4 \\ \\text{cm}"
+      ]
+    },
+    "milieu": {
+      "type": "formule",
+      "kicker": "Le milieu d'un segment",
+      "tex": "MA = MB = \\frac{AB}{2}",
+      "note": "Exemple : si AB vaut six centimètres, chaque moitié vaut trois centimètres."
+    },
+    "mediatrice": {
+      "type": "etape",
+      "kicker": "La médiatrice d'un segment",
+      "titre": "La médiatrice de [AB]",
+      "tex": [
+        "\\text{perpendiculaire à } [AB] \\text{ en son milieu}",
+        "P \\text{ sur la médiatrice} \\Rightarrow PA = PB"
+      ],
+      "anim": {
+        "nom": "mediatrice_exemple_fig",
+        "hauteur": 150
+      }
+    },
+    "notations": {
+      "type": "recap",
+      "kicker": "Les notations à connaître",
+      "etapes": [
+        "Droite : (d) ou (AB) ; demi-droite : [Ax)",
+        "[AB] : segment ; AB : sa longueur",
+        "Perpendiculaires : ⊥ ; parallèles : ∥",
+        "Appartenance : ∈ ; sinon : ∉"
+      ]
+    },
+    "cercle_def": {
+      "type": "formule",
+      "kicker": "Le cercle et le disque",
+      "tex": "OM = r",
+      "note": "Rayon r, diamètre 2r ; le disque, c'est OM ≤ r.",
+      "anim": {
+        "nom": "cercle_rayon_fig",
+        "hauteur": 220
+      }
+    },
+    "position_cercle": {
+      "type": "etape",
+      "kicker": "Position d'un point et cercle",
+      "titre": "Trois zones autour du centre",
+      "tex": [
+        "OM < r : \\text{ intérieur}",
+        "OM = r : \\text{ sur le cercle}",
+        "OM > r : \\text{ extérieur}"
+      ]
+    },
+    "cercle_formules": {
+      "type": "formule",
+      "kicker": "Périmètre et aire du cercle",
+      "tex": "P = 2\\pi r = \\pi d \\qquad A = \\pi r^2",
+      "note": "d vaut deux fois le rayon ; pi vaut environ trois virgule quatorze."
+    },
+    "cercle_calc": {
+      "type": "etape",
+      "kicker": "Exemple · un rayon de cinq centimètres",
+      "titre": "Rayon cinq : périmètre et aire",
+      "tex": [
+        "P = 2\\pi \\times 5 = 10\\pi \\approx 31{,}4 \\ \\text{cm}",
+        "A = \\pi \\times 5^2 = 25\\pi \\approx 78{,}5 \\ \\text{cm}^2"
+      ]
+    },
+    "angle_def": {
+      "type": "etape",
+      "kicker": "Les angles · notion",
+      "titre": "Deux demi-droites, un sommet",
+      "tex": [
+        "\\widehat{AOB} : \\text{ sommet } O",
+        "\\text{côtés : deux demi-droites}"
+      ]
+    },
+    "classification": {
+      "type": "etape",
+      "kicker": "Classification des angles",
+      "titre": "De l'angle nul à l'angle plein",
+      "tex": [
+        "0^\\circ : \\text{ nul} \\qquad 90^\\circ : \\text{ droit}",
+        "0^\\circ < \\alpha < 90^\\circ : \\text{ aigu}",
+        "90^\\circ < \\alpha < 180^\\circ : \\text{ obtus}",
+        "180^\\circ : \\text{ plat} \\qquad 360^\\circ : \\text{ plein}"
+      ]
+    },
+    "construction_angle": {
+      "type": "phrase",
+      "kicker": "Mesurer et construire au rapporteur",
+      "texte": "Construire 55° : tracer [OA), placer le rapporteur au sommet O, repérer la graduation 55, marquer B, puis tracer [OB)."
+    },
+    "bissectrice": {
+      "type": "etape",
+      "kicker": "La bissectrice d'un angle",
+      "titre": "Partager l'angle en deux angles égaux",
+      "tex": [
+        "\\widehat{AOM} = \\widehat{MOB}",
+        "\\text{on divise la mesure par deux}"
+      ]
+    },
+    "triangle_vocab": {
+      "type": "etape",
+      "kicker": "Les triangles · vocabulaire",
+      "titre": "Trois sommets, trois côtés, trois angles",
+      "tex": [
+        "\\text{trois sommets : } A, \\ B, \\ C",
+        "\\text{trois côtés, trois angles}"
+      ],
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 140
+      }
+    },
+    "triangles_particuliers": {
+      "type": "etape",
+      "kicker": "Triangles particuliers",
+      "titre": "Isocèle, équilatéral, rectangle",
+      "tex": [
+        "\\text{isocèle : deux côtés égaux}",
+        "\\text{équilatéral : trois côtés égaux, } 60^\\circ",
+        "\\text{rectangle : un angle droit}"
+      ]
+    },
+    "droites_triangle": {
+      "type": "etape",
+      "kicker": "Droites particulières du triangle",
+      "titre": "Quatre droites à ne pas confondre",
+      "tex": [
+        "\\text{hauteur : perpendiculaire au côté opposé}",
+        "\\text{médiane : vers le milieu du côté opposé}",
+        "\\text{bissectrice : partage l'angle du sommet}",
+        "\\text{médiatrice : perpendiculaire en un milieu}"
+      ]
+    },
+    "aire_triangle": {
+      "type": "etape",
+      "kicker": "Périmètre et aire du triangle",
+      "titre": "Aire : base huit, hauteur cinq",
+      "tex": [
+        "A = \\tfrac{\\text{base} \\times \\text{hauteur}}{2}",
+        "A = \\tfrac{8 \\times 5}{2} = 20 \\ \\text{cm}^2"
+      ]
+    },
+    "construction_sss": {
+      "type": "etape",
+      "kicker": "Construire · trois côtés connus",
+      "titre": "Règle et compas : trois côtés",
+      "tex": [
+        "\\text{tracer } [AB] = 6 \\ \\text{cm}",
+        "\\text{arc de centre } A, \\text{ rayon } 4 \\ \\text{cm}",
+        "\\text{arc de centre } B, \\text{ rayon } 5 \\ \\text{cm}",
+        "\\text{leur intersection : le point } C"
+      ]
+    },
+    "construction_sas": {
+      "type": "phrase",
+      "kicker": "Construire · deux côtés et l'angle formé",
+      "texte": "Tracer [AB] de 5 cm, construire l'angle de 40° en A, placer C à 4 cm de A sur la demi-droite, puis relier B et C."
+    },
+    "parallelogramme_def": {
+      "type": "etape",
+      "kicker": "Le parallélogramme",
+      "titre": "Côtés opposés parallèles deux à deux",
+      "tex": [
+        "(AB) \\parallel (CD) \\qquad (BC) \\parallel (AD)",
+        "AB = CD \\qquad BC = AD",
+        "\\hat{A} = \\hat{C} \\qquad \\hat{B} = \\hat{D}",
+        "\\text{diagonales : elles ont le même milieu}"
+      ]
+    },
+    "parallelogramme_ex": {
+      "type": "etape",
+      "kicker": "Exemple · un parallélogramme donné",
+      "titre": "Côté cinq, angle soixante degrés",
+      "tex": [
+        "AB = 5 \\ \\text{cm} \\Rightarrow CD = 5 \\ \\text{cm}",
+        "\\hat{A} = 60^\\circ \\Rightarrow \\hat{C} = 60^\\circ"
+      ]
+    },
+    "cas_particuliers": {
+      "type": "etape",
+      "kicker": "Cas particuliers du parallélogramme",
+      "titre": "Rectangle, losange et carré",
+      "tex": [
+        "\\text{rectangle : angles droits, diagonales égales}",
+        "\\text{losange : côtés égaux}",
+        "\\text{diagonales perpendiculaires}",
+        "\\text{carré : rectangle et losange à la fois}"
+      ]
+    },
+    "aires_quad": {
+      "type": "etape",
+      "kicker": "Périmètres et aires des quadrilatères",
+      "titre": "Les formules des quatre figures",
+      "tex": [
+        "P = 2(a + b) \\qquad A = b \\times h",
+        "A_{\\text{rectangle}} = L \\times l \\; A_{\\text{carré}} = c^2",
+        "A_{\\text{losange}} = \\tfrac{d \\times d'}{2}"
+      ]
+    },
+    "aire_parallelo_ex": {
+      "type": "etape",
+      "kicker": "Exemple · aire d'un parallélogramme",
+      "titre": "Base huit, hauteur trois",
+      "tex": [
+        "A = b \\times h",
+        "A = 8 \\times 3 = 24 \\ \\text{cm}^2"
+      ]
+    },
+    "symetrie_axiale": {
+      "type": "etape",
+      "kicker": "Symétrie orthogonale · par rapport à une droite",
+      "titre": "L'axe est la médiatrice",
+      "tex": [
+        "(d) \\text{ est la médiatrice de } [MM']",
+        "\\text{elle conserve longueurs et angles}"
+      ]
+    },
+    "sym_construction": {
+      "type": "phrase",
+      "kicker": "Construire le symétrique d'un point",
+      "texte": "Tracer la perpendiculaire à l'axe passant par le point, puis reporter sa distance à l'axe de l'autre côté : le point obtenu est le symétrique."
+    },
+    "symetrie_centrale": {
+      "type": "etape",
+      "kicker": "Symétrie centrale · par rapport à un point",
+      "titre": "Le centre est le milieu",
+      "tex": [
+        "O \\text{ est le milieu de } [MM']",
+        "OM' = OM = 4 \\ \\text{cm}"
+      ]
+    },
+    "identifier_sym": {
+      "type": "etape",
+      "kicker": "Exemple · le centre du parallélogramme",
+      "titre": "A et C symétriques par rapport à O",
+      "tex": [
+        "O : \\text{ milieu de } [AC]",
+        "A \\text{ et } C \\text{ symétriques par rapport à } O"
+      ]
+    },
+    "symetries_figures": {
+      "type": "recap",
+      "kicker": "Axes et centres des figures usuelles",
+      "etapes": [
+        "Rectangle : deux axes, un centre",
+        "Losange : deux axes, un centre",
+        "Carré : quatre axes, un centre",
+        "Parallélogramme : un centre seul"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Droites : parallèles, perpendiculaires",
+        "Cercle : P = 2πr ; disque : A = πr²",
+        "Triangle : somme des angles 180°",
+        "Symétries : un axe, ou un centre"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de géométrie plane. Nous construirons tout le vocabulaire de base : les droites et les segments, le cercle et les angles, les triangles, puis les parallélogrammes et les deux grandes symétries du plan.",
+      "texte": "Géométrie plane : droites, cercles, triangles, symétries.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Ce cours pose les objets et les notations que tout le reste de la géométrie utilise. Une droite, un segment, un cercle : chaque objet a une définition précise, une notation précise, et des propriétés que l'on apprendra à reconnaître d'un coup d'œil.",
+      "texte": "Les objets de base, leurs notations et leurs propriétés.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Une droite est un ensemble infini de points, parfaitement droit et sans épaisseur ; on la note entre parenthèses. Des points sont alignés s'ils appartiennent à une même droite. Ici, a, b et c sont sur la droite d, donc alignés, tandis que le point m, hors de la droite, ne l'est pas avec eux.",
+      "texte": "Alignés : a, b et c sur (d) ; m hors de (d).",
+      "ecran": "droite"
+    },
+    {
+      "id": "p04",
+      "dit": "Une droite partage le plan en deux demi-plans : les points situés d'un côté, ceux situés de l'autre côté, et la droite elle-même. Sur une droite, une demi-droite part d'un point appelé son origine et ne se prolonge que d'un seul côté, comme la demi-droite d'origine a passant par b.",
+      "texte": "Une droite, deux demi-plans ; une demi-droite, un seul côté.",
+      "ecran": "partage"
+    },
+    {
+      "id": "p05",
+      "dit": "Deux droites sécantes se coupent en un seul point, leur point d'intersection. Quand elles se coupent en formant un angle droit, elles sont perpendiculaires. Retenez la notation : d un perpendiculaire à d deux s'écrit avec le symbole de l'angle droit entre les deux noms.",
+      "texte": "Sécantes : un point commun ; perpendiculaires : un angle droit.",
+      "ecran": "secantes_perp"
+    },
+    {
+      "id": "p06",
+      "dit": "Trois faits d'unicité organisent ces constructions. Par un point, il passe une infinité de droites, mais par deux points distincts, une seule. Et par un point donné, il passe une seule droite perpendiculaire à une droite donnée, et une seule droite parallèle à cette droite.",
+      "texte": "Unicité : une perpendiculaire, une parallèle par un point.",
+      "ecran": "unicite"
+    },
+    {
+      "id": "p07",
+      "dit": "Deux droites parallèles ne sont pas sécantes. Trois propriétés les relient : toute parallèle à l'une est parallèle à l'autre ; toute perpendiculaire à l'une est perpendiculaire à l'autre ; et deux droites perpendiculaires à une même troisième sont parallèles entre elles.",
+      "texte": "Parallèles : trois propriétés qui se transmettent.",
+      "ecran": "paralleles"
+    },
+    {
+      "id": "p08",
+      "dit": "Ces droites se construisent à l'équerre et à la règle. Pour la perpendiculaire passant par un point, on place l'équerre le long de la droite et on la fait glisser jusqu'au point. Pour la parallèle, on appuie la règle contre l'équerre et on fait glisser l'équerre le long de la règle jusqu'au point.",
+      "texte": "Construire : faire glisser l'équerre jusqu'au point.",
+      "ecran": "construction_droites"
+    },
+    {
+      "id": "p09",
+      "dit": "Le segment a b est l'ensemble des points de la droite a b situés entre a et b ; a et b sont ses extrémités. La droite a b, qui porte le segment et le prolonge des deux côtés, s'appelle le support du segment. Crochets pour le segment, parenthèses pour son support : la notation dit tout.",
+      "texte": "Segment [AB] entre A et B ; (AB), son support.",
+      "ecran": "segment"
+    },
+    {
+      "id": "p10",
+      "dit": "La longueur du segment a b, notée a b sans crochets ni parenthèses, est la distance entre a et b ; elle se mesure à la règle graduée. Si un point m est sur le segment, il le partage : m a plus m b égale a b. Avec a b égale sept centimètres et m a égale trois, on obtient m b égale quatre centimètres.",
+      "texte": "M sur [AB] : MA + MB = AB, donc MB = 4 cm.",
+      "ecran": "longueur"
+    },
+    {
+      "id": "p11",
+      "dit": "Le milieu d'un segment est le point du segment situé à égale distance de ses deux extrémités. Si m est le milieu de a b, alors m a égale m b, et chacune de ces longueurs vaut la moitié de a b. Pour le construire, on mesure le segment et on place le point à la moitié de sa longueur.",
+      "texte": "Milieu : MA = MB = AB/2, la moitié du segment.",
+      "ecran": "milieu"
+    },
+    {
+      "id": "p12",
+      "dit": "La médiatrice d'un segment est la droite perpendiculaire à ce segment qui passe par son milieu. Sa grande propriété : tout point de la médiatrice est à égale distance des deux extrémités du segment. On la construit en plaçant le milieu, puis en traçant la perpendiculaire à l'équerre en ce point.",
+      "texte": "Médiatrice : perpendiculaire au milieu, points équidistants.",
+      "ecran": "mediatrice"
+    },
+    {
+      "id": "p13",
+      "dit": "Avant de changer de chapitre, fixons les notations. Parenthèses pour les droites, crochet et parenthèse pour les demi-droites, crochets pour les segments, et le nom sans rien autour pour les longueurs. Les symboles disent perpendiculaire, parallèle, appartient et n'appartient pas : les relire dans le tableau, c'est apprendre à lire la géométrie.",
+      "texte": "Les notations : (d), [Ax), [AB], AB, ⊥, ∥, ∈.",
+      "ecran": "notations"
+    },
+    {
+      "id": "p14",
+      "dit": "Un cercle de centre o et de rayon r est l'ensemble des points situés à la distance r du point o. Le rayon joint le centre à un point du cercle, le diamètre vaut deux fois le rayon, une corde joint deux points du cercle, et le disque réunit le cercle et son intérieur, tous les points à distance au plus r.",
+      "texte": "Cercle : OM = r ; disque : OM ≤ r ; diamètre 2r.",
+      "ecran": "cercle_def"
+    },
+    {
+      "id": "p15",
+      "dit": "Un point m se classe par sa distance au centre. Si o m est inférieure au rayon, le point est à l'intérieur. Si o m égale le rayon, le point est sur le cercle. Si o m dépasse le rayon, le point est à l'extérieur. Le plan se partage ainsi en trois zones autour du centre.",
+      "texte": "Position : OM < r dedans, OM = r sur, OM > r dehors.",
+      "ecran": "position_cercle"
+    },
+    {
+      "id": "p16",
+      "dit": "Deux formules à connaître par cœur. Le périmètre d'un cercle, sa circonférence, vaut deux pi r, ce qui s'écrit aussi pi fois le diamètre. Et l'aire du disque vaut pi fois le rayon au carré. Dans les deux cas, pi vaut environ trois virgule quatorze.",
+      "texte": "Cercle : P = 2πr ; aire du disque : A = πr².",
+      "ecran": "cercle_formules"
+    },
+    {
+      "id": "p17",
+      "dit": "Exemple complet avec un rayon de cinq centimètres. Le périmètre vaut deux pi fois cinq, soit dix pi, environ trente et un virgule quatre centimètres. L'aire du disque vaut pi fois cinq au carré, soit vingt-cinq pi, environ soixante-dix-huit virgule cinq centimètres carrés.",
+      "texte": "Rayon 5 cm : P ≈ 31,4 cm ; A ≈ 78,5 cm².",
+      "ecran": "cercle_calc"
+    },
+    {
+      "id": "p18",
+      "dit": "Un angle est formé par deux demi-droites de même origine. Cette origine est le sommet de l'angle, et les deux demi-droites en sont les côtés. L'angle de sommet o, passant par a et b, se note a o b avec un chapeau, ou simplement par la lettre de son sommet.",
+      "texte": "Angle AOB : sommet O, deux demi-droites pour côtés.",
+      "ecran": "angle_def"
+    },
+    {
+      "id": "p19",
+      "dit": "On classe les angles par leur mesure en degrés. Nul à zéro degré, aigu entre zéro et quatre-vingt-dix, droit à quatre-vingt-dix, obtus entre quatre-vingt-dix et cent quatre-vingts, plat à cent quatre-vingts, rentrant jusqu'à trois cent soixante, et plein à trois cent soixante degrés.",
+      "texte": "Angles : aigu < 90°, droit 90°, obtus, plat 180°.",
+      "ecran": "classification"
+    },
+    {
+      "id": "p20",
+      "dit": "On mesure un angle avec un rapporteur, et on le construit de la même façon. Pour un angle de cinquante-cinq degrés : on trace une première demi-droite, on place le centre du rapporteur au sommet, on repère la graduation cinquante-cinq, on marque le point, puis on trace la seconde demi-droite.",
+      "texte": "Construire 55° : le rapporteur, pas à pas.",
+      "ecran": "construction_angle"
+    },
+    {
+      "id": "p21",
+      "dit": "La bissectrice d'un angle est la demi-droite issue du sommet qui partage l'angle en deux angles égaux. Pour la construire au rapporteur, on mesure l'angle, on divise sa mesure par deux, et on trace la demi-droite correspondant à cette demi-mesure depuis le sommet.",
+      "texte": "Bissectrice : l'angle coupé en deux angles égaux.",
+      "ecran": "bissectrice"
+    },
+    {
+      "id": "p22",
+      "dit": "Un triangle a b c possède trois sommets, trois côtés et trois angles. Retenez dès maintenant la propriété fondamentale qui servira partout : la somme des angles d'un triangle vaut toujours cent quatre-vingts degrés, quels que soient sa forme et sa taille.",
+      "texte": "Triangle ABC : la somme des angles vaut 180°.",
+      "ecran": "triangle_vocab"
+    },
+    {
+      "id": "p23",
+      "dit": "Trois triangles particuliers reviennent sans cesse. Le triangle isocèle a deux côtés égaux et ses angles à la base sont égaux. Le triangle équilatéral a ses trois côtés égaux et ses trois angles de soixante degrés. Le triangle rectangle a un angle droit, et ses deux autres angles sont complémentaires.",
+      "texte": "Isocèle, équilatéral 60°, rectangle : les particuliers.",
+      "ecran": "triangles_particuliers"
+    },
+    {
+      "id": "p24",
+      "dit": "Quatre droites particulières traversent un triangle, à ne pas confondre. La hauteur passe par un sommet et est perpendiculaire au côté opposé. La médiane joint un sommet au milieu du côté opposé. La bissectrice partage un angle. Et la médiatrice d'un côté est perpendiculaire à ce côté en son milieu.",
+      "texte": "Hauteur, médiane, bissectrice, médiatrice du triangle.",
+      "ecran": "droites_triangle"
+    },
+    {
+      "id": "p25",
+      "dit": "Le périmètre d'un triangle est la somme des longueurs de ses trois côtés. Son aire vaut la base multipliée par la hauteur, le tout divisé par deux. Exemple : une base de huit centimètres et une hauteur de cinq donnent huit fois cinq sur deux, soit vingt centimètres carrés.",
+      "texte": "Aire du triangle : base × hauteur / 2 = 20 cm².",
+      "ecran": "aire_triangle"
+    },
+    {
+      "id": "p26",
+      "dit": "Construire un triangle dont on connaît les trois côtés se fait à la règle et au compas. On trace le segment a b de six centimètres, on trace un arc de cercle de centre a et de rayon quatre, puis un arc de centre b et de rayon cinq : leur intersection donne le troisième sommet, le point c.",
+      "texte": "Trois côtés : deux arcs de compas se croisent en C.",
+      "ecran": "construction_sss"
+    },
+    {
+      "id": "p27",
+      "dit": "Autre construction : deux côtés et l'angle qu'ils forment. On trace a b de cinq centimètres, on construit en a l'angle de quarante degrés, on place le point c sur cette demi-droite à quatre centimètres de a, puis on relie b et c pour fermer le triangle.",
+      "texte": "Deux côtés et l'angle formé : 5 cm, 40°, 4 cm.",
+      "ecran": "construction_sas"
+    },
+    {
+      "id": "p28",
+      "dit": "Un parallélogramme est un quadrilatère dont les côtés opposés sont parallèles deux à deux. Il en découle tout le reste : les côtés opposés ont la même longueur, les angles opposés ont la même mesure, et les diagonales se coupent en leur milieu, qui est leur point commun.",
+      "texte": "Parallélogramme : opposés parallèles, égaux, même milieu.",
+      "ecran": "parallelogramme_def"
+    },
+    {
+      "id": "p29",
+      "dit": "Exemple immédiat : dans un parallélogramme a b c d, le côté a b mesure cinq centimètres et l'angle a vaut soixante degrés. Le côté opposé c d mesure donc aussi cinq centimètres, et l'angle opposé c vaut aussi soixante degrés, sans aucun autre calcul.",
+      "texte": "Parallélogramme : CD = 5 cm et l'angle C vaut 60°.",
+      "ecran": "parallelogramme_ex"
+    },
+    {
+      "id": "p30",
+      "dit": "Le rectangle, le losange et le carré sont des parallélogrammes particuliers. Le rectangle ajoute un angle droit, donc quatre, et des diagonales de même longueur. Le losange ajoute deux côtés consécutifs égaux, donc quatre côtés égaux et des diagonales perpendiculaires. Le carré réunit les deux : rectangle et losange à la fois.",
+      "texte": "Rectangle, losange, carré : des parallélogrammes en plus.",
+      "ecran": "cas_particuliers"
+    },
+    {
+      "id": "p31",
+      "dit": "Les périmètres et les aires suivent la même famille de formules. Un parallélogramme a pour périmètre deux fois la somme de deux côtés consécutifs, et pour aire base fois hauteur. Le rectangle donne longueur fois largeur, le carré côté au carré, et le losange la moitié du produit de ses diagonales.",
+      "texte": "Aires : parallélogramme b×h, losange d×d′/2.",
+      "ecran": "aires_quad"
+    },
+    {
+      "id": "p32",
+      "dit": "Exemple : un parallélogramme a une base de huit centimètres et une hauteur de trois centimètres. Son aire vaut base fois hauteur, soit huit fois trois, donc vingt-quatre centimètres carrés. Attention à utiliser la hauteur relative à la base choisie, jamais un côté penché.",
+      "texte": "Aire du parallélogramme : 8 × 3 = 24 cm².",
+      "ecran": "aire_parallelo_ex"
+    },
+    {
+      "id": "p33",
+      "dit": "Deux points m et m prime sont symétriques par rapport à une droite d lorsque cette droite est la médiatrice du segment m m prime ; la droite est alors l'axe de symétrie. Cette symétrie, dite orthogonale, conserve l'alignement, les longueurs, les mesures d'angles et les formes.",
+      "texte": "Symétrie axiale : l'axe est la médiatrice de [MM′].",
+      "ecran": "symetrie_axiale"
+    },
+    {
+      "id": "p34",
+      "dit": "Pour construire le symétrique d'un point par rapport à une droite, on trace la perpendiculaire à l'axe passant par ce point, elle coupe l'axe en un point, puis on reporte la distance du point à l'axe de l'autre côté. Le point obtenu est exactement le symétrique cherché.",
+      "texte": "Construire un symétrique : perpendiculaire, puis reporter.",
+      "ecran": "sym_construction"
+    },
+    {
+      "id": "p35",
+      "dit": "Deux points m et m prime sont symétriques par rapport à un point o lorsque o est le milieu du segment m m prime ; o est le centre de symétrie. Si m est à quatre centimètres de o, son symétrique est sur la droite m o, à quatre centimètres de o, mais de l'autre côté de o.",
+      "texte": "Symétrie centrale : O milieu de [MM′], OM′ = OM.",
+      "ecran": "symetrie_centrale"
+    },
+    {
+      "id": "p36",
+      "dit": "Les symétries servent aussi à reconnaître les figures. Un rectangle et un losange ont deux axes et un centre, un carré a quatre axes et un centre, et un parallélogramme général n'a qu'un centre : le milieu de ses diagonales, par rapport auquel a et c, comme b et d, sont symétriques.",
+      "texte": "Figures : compter leurs axes et leur centre.",
+      "ecran": "identifier_sym"
+    },
+    {
+      "id": "p37",
+      "dit": "Pour finir, gardez l'enchaînement : des droites parallèles ou perpendiculaires, des segments avec leur milieu et leur médiatrice, le cercle et ses deux formules, les angles et les triangles, les parallélogrammes, et les deux symétries, axiale et centrale, qui conservent tout.",
+      "texte": "À retenir : droites, cercle, triangles, symétries.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Droites, segments, milieu et médiatrice"
+    },
+    {
+      "debut": "p14",
+      "sous_titre": "Cercle, angles et triangles",
+      "pont": {
+        "texte": "Partie 2 : cercle, angles et triangles.",
+        "dit": "Partie deux : le cercle, les angles et les triangles. Nous mesurerons un cercle, classerons les angles, tracerons leur bissectrice, puis nous construirons des triangles à la règle, au rapporteur et au compas."
+      }
+    },
+    {
+      "debut": "p28",
+      "sous_titre": "Parallélogrammes et symétries",
+      "pont": {
+        "texte": "Partie 3 : parallélogrammes et symétries.",
+        "dit": "Partie trois : les parallélogrammes et les symétries. Nous verrons les propriétés du parallélogramme et de ses cas particuliers, puis les symétries par rapport à une droite et par rapport à un point."
+      }
+    }
+  ]
+}

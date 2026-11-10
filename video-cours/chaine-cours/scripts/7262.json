@@ -1,0 +1,369 @@
+{
+  "cours": 7262,
+  "titre": "Statistique descriptive : décrire une série",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Statistique",
+      "titre": "Statistique descriptive : décrire une série",
+      "sous": "Effectifs, fréquences et diagrammes, puis moyenne et médiane : deux résumés à interpréter",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 250
+      }
+    },
+    "objectifs": {
+      "type": "phrase",
+      "kicker": "Objectifs du chapitre",
+      "texte": "Organiser, représenter, résumer, interpréter.",
+      "anim": {
+        "nom": "etoiles_barres_fig",
+        "hauteur": 150
+      }
+    },
+    "vocabulaire": {
+      "type": "phrase",
+      "kicker": "Le vocabulaire de base",
+      "texte": "Population, caractère : qualitatif ou quantitatif.",
+      "anim": {
+        "nom": "etoiles_barres_fig",
+        "hauteur": 150
+      }
+    },
+    "frequence": {
+      "type": "formule",
+      "kicker": "Effectif et fréquence",
+      "tex": "f = \\frac{\\text{effectif de la valeur}}{\\text{effectif total } N}",
+      "note": "Une fréquence vit entre 0 et 1 ; en pourcentage, multiplier par 100",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 110
+      }
+    },
+    "tableau_notes": {
+      "type": "etape",
+      "kicker": "La série fil rouge · vingt élèves",
+      "titre": "Notes, effectifs, fréquences",
+      "tex": [
+        "\\text{note : } 8,\\ 10,\\ 12,\\ 14,\\ 16",
+        "\\text{effectif : } 2,\\ 5,\\ 6,\\ 4,\\ 3",
+        "\\text{fréquence : } 0{,}10,\\ 0{,}25,\\ 0{,}30,\\ 0{,}20,\\ 0{,}15"
+      ]
+    },
+    "ex_frequence": {
+      "type": "etape",
+      "kicker": "Exemple résolu · une fréquence",
+      "titre": "La note douze, six élèves sur vingt",
+      "tex": [
+        "N = 2 + 5 + 6 + 4 + 3 = 20",
+        "f = \\tfrac{6}{20} = 0{,}30",
+        "0{,}30 \\times 100 = 30\\ \\%"
+      ]
+    },
+    "representations": {
+      "type": "phrase",
+      "kicker": "Trois représentations",
+      "texte": "Bâtons, circulaire, histogramme : choisir selon les données.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 170
+      }
+    },
+    "circulaire": {
+      "type": "formule",
+      "kicker": "Le diagramme circulaire",
+      "tex": "\\text{angle} = \\frac{\\text{effectif}}{N} \\times 360^{\\circ}",
+      "note": "Chaque secteur est proportionnel à son effectif",
+      "anim": {
+        "nom": "camembert_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_angle": {
+      "type": "etape",
+      "kicker": "Exemple résolu · un angle de secteur",
+      "titre": "La note douze dans le diagramme circulaire",
+      "tex": [
+        "\\tfrac{6}{20} \\times 360^{\\circ}",
+        "= 108^{\\circ}"
+      ]
+    },
+    "histogramme": {
+      "type": "phrase",
+      "kicker": "L'histogramme",
+      "texte": "Des classes, des intervalles : l'histogramme prend le relais.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 180
+      }
+    },
+    "moyenne": {
+      "type": "formule",
+      "kicker": "La moyenne pondérée",
+      "tex": "\\bar{x} = \\frac{\\sum n_i x_i}{N}",
+      "note": "Chaque valeur compte autant de fois que son effectif",
+      "anim": {
+        "nom": "graphique_mesures_fig",
+        "hauteur": 110
+      }
+    },
+    "ex_moyenne": {
+      "type": "etape",
+      "kicker": "Exemple résolu · moyenne des notes",
+      "titre": "Deux cent quarante-deux, divisé par vingt",
+      "tex": [
+        "\\bar{x} = \\tfrac{2 \\times 8 + 5 \\times 10 + 6 \\times 12 + 4 \\times 14 + 3 \\times 16}{20}",
+        "\\bar{x} = \\tfrac{242}{20} = 12{,}1"
+      ]
+    },
+    "mediane_def": {
+      "type": "phrase",
+      "kicker": "La médiane",
+      "texte": "La valeur centrale : la moitié en dessous, la moitié au-dessus.",
+      "anim": {
+        "nom": "droite_donnees_fig",
+        "hauteur": 230
+      }
+    },
+    "mediane_methode": {
+      "type": "etape",
+      "kicker": "Méthode · trouver la médiane",
+      "titre": "Ordonner d'abord, puis viser le milieu",
+      "tex": [
+        "\\text{série ordonnée, } N \\text{ impair : rang } \\tfrac{N+1}{2}",
+        "N \\text{ pair : moyenne des rangs } \\tfrac{N}{2} \\text{ et } \\tfrac{N}{2} + 1"
+      ],
+      "anim": {
+        "nom": "droite_donnees_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_mediane_impair": {
+      "type": "etape",
+      "kicker": "Exemple résolu · effectif impair",
+      "titre": "Sept valeurs : celle du milieu",
+      "tex": [
+        "3,\\ 5,\\ 5,\\ 7,\\ 9,\\ 10,\\ 12",
+        "\\text{rang } \\tfrac{7+1}{2} = 4",
+        "\\text{médiane} = 7"
+      ]
+    },
+    "ex_mediane_pair": {
+      "type": "etape",
+      "kicker": "Exemple résolu · effectif pair",
+      "titre": "Huit valeurs : entre les deux du milieu",
+      "tex": [
+        "3,\\ 5,\\ 5,\\ 7,\\ 9,\\ 10,\\ 12,\\ 15",
+        "\\text{médiane} = \\tfrac{7 + 9}{2} = 8"
+      ]
+    },
+    "interpretation": {
+      "type": "phrase",
+      "kicker": "Interpréter les deux paramètres",
+      "texte": "Moyenne sensible aux extrêmes, médiane robuste.",
+      "anim": {
+        "nom": "graphique_mesures_fig",
+        "hauteur": 150
+      }
+    },
+    "ex_salaires": {
+      "type": "etape",
+      "kicker": "Exemple résolu · cinq salaires",
+      "titre": "Un salaire très élevé dans la série",
+      "tex": [
+        "\\bar{x} = \\tfrac{1200 + 1300 + 1400 + 1500 + 8000}{5}",
+        "\\bar{x} = 2680\\ \\text{euros}",
+        "\\text{médiane} = 1400\\ \\text{euros}"
+      ]
+    },
+    "ex_salaires_lecture": {
+      "type": "phrase",
+      "kicker": "Exemple · quel résumé choisir",
+      "texte": "2680 euros de moyenne, 1400 de médiane : la médiane décrit le typique.",
+      "anim": {
+        "nom": "etoiles_barres_fig",
+        "hauteur": 150
+      }
+    },
+    "choix": {
+      "type": "phrase",
+      "kicker": "Choisir le bon outil",
+      "texte": "Le type de caractère décide de la représentation.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 130
+      }
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Effectif, fréquence : la répartition",
+        "Bâtons, circulaire, histogramme",
+        "Moyenne : l'équilibre de la série",
+        "Médiane : la position centrale",
+        "Toujours interpréter dans le contexte"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : à retenir",
+      "etapes": [
+        "Effectif et fréquence : la répartition",
+        "Série fil rouge : vingt notes d'élèves",
+        "Bâtons : hauteurs proportionnelles",
+        "Circulaire : angle proportionnel",
+        "Histogramme : données en classes"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré à la statistique descriptive. Nous allons apprendre à décrire une série de données : l'organiser en tableau, la représenter en diagramme, puis la résumer par deux nombres, la moyenne et la médiane.",
+      "texte": "Statistique descriptive : décrire une série.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "À la fin de ce chapitre, vous saurez organiser des données en tableaux d'effectifs et de fréquences, choisir et construire la bonne représentation graphique, calculer une moyenne et une médiane, et interpréter ces paramètres dans leur contexte.",
+      "texte": "Objectif : organiser, représenter, résumer, interpréter.",
+      "ecran": "objectifs"
+    },
+    {
+      "id": "p03",
+      "dit": "Une série statistique est un ensemble de données recueillies sur une population. Ce que l'on étudie sur chaque élément s'appelle un caractère : une couleur des yeux, une note, une taille. Le caractère est qualitatif quand il n'est pas numérique, quantitatif quand il se mesure par des nombres.",
+      "texte": "Vocabulaire : population, caractère, série.",
+      "ecran": "vocabulaire"
+    },
+    {
+      "id": "p04",
+      "dit": "L'effectif d'une valeur est le nombre de fois où elle apparaît, et l'effectif total, noté èn, est la somme de tous les effectifs. La fréquence d'une valeur est son effectif divisé par l'effectif total : un nombre entre zéro et un, que l'on multiplie par cent pour l'exprimer en pourcentage.",
+      "texte": "Fréquence = effectif / effectif total, entre 0 et 1.",
+      "ecran": "frequence"
+    },
+    {
+      "id": "p05",
+      "dit": "Notre série fil rouge : les notes de vingt élèves. Deux élèves ont eu huit, cinq ont eu dix, six ont eu douze, quatre ont eu quatorze et trois ont eu seize. Le tableau donne aussi les fréquences : zéro dix, zéro vingt-cinq, zéro trente, zéro vingt et zéro quinze.",
+      "texte": "Série fil rouge : 20 élèves, notes de 8 à 16.",
+      "ecran": "tableau_notes"
+    },
+    {
+      "id": "p06",
+      "dit": "Vérifions l'effectif total : deux plus cinq plus six plus quatre plus trois, cela fait vingt élèves. La fréquence de la note douze vaut six sur vingt, soit zéro trente, autrement dit trente pour cent des élèves.",
+      "texte": "Exemple : la note 12 vaut 30 % de la classe.",
+      "ecran": "ex_frequence"
+    },
+    {
+      "id": "p07",
+      "dit": "Trois représentations à connaître. Le diagramme en bâtons, pour un caractère quantitatif : la hauteur de chaque bâton est proportionnelle à l'effectif. Le diagramme circulaire, pour tout type de caractère : chaque secteur a un angle proportionnel à l'effectif. Et l'histogramme, quand les données sont regroupées en classes.",
+      "texte": "Représenter : bâtons, circulaire, histogramme.",
+      "ecran": "representations"
+    },
+    {
+      "id": "p08",
+      "dit": "Pour le diagramme circulaire, la règle est une proportionnalité : l'angle d'un secteur vaut l'effectif de la valeur, divisé par l'effectif total, multiplié par trois cent soixante degrés, le tour complet du cercle.",
+      "texte": "Circulaire : angle = effectif / N × 360°.",
+      "ecran": "circulaire"
+    },
+    {
+      "id": "p09",
+      "dit": "Exemple : le secteur de la note douze. Son angle vaut six sur vingt, multiplié par trois cent soixante degrés. Six vingtièmes de trois cent soixante, cela fait cent huit degrés, presque un tiers du cercle, comme sa fréquence de trente pour cent.",
+      "texte": "Exemple : le secteur de la note 12 fait 108°.",
+      "ecran": "ex_angle"
+    },
+    {
+      "id": "p10",
+      "dit": "L'histogramme sert quand les valeurs sont regroupées en classes, c'est-à-dire en intervalles, par exemple des tailles de cinq centimètres en cinq centimètres. Chaque classe devient un rectangle, et c'est la surface qui porte l'information, pas seulement la hauteur.",
+      "texte": "Histogramme : pour les données en classes.",
+      "ecran": "histogramme"
+    },
+    {
+      "id": "p11",
+      "dit": "Retenons cette première partie : effectifs et fréquences décrivent la répartition, le tableau organise la série des notes, et trois diagrammes la représentent, en bâtons, en secteurs ou en histogramme, selon la forme des données.",
+      "texte": "Partie 1 : à retenir.",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p12",
+      "dit": "La moyenne, notée x barre, se calcule en ajoutant toutes les valeurs, chacune répétée autant de fois que son effectif, puis en divisant par l'effectif total. C'est le résumé équilibre de la série : chaque valeur pèse selon son effectif.",
+      "texte": "Moyenne x̄ : somme pondérée divisée par N.",
+      "ecran": "moyenne"
+    },
+    {
+      "id": "p13",
+      "dit": "Exemple avec nos notes. Au numérateur : deux fois huit, plus cinq fois dix, plus six fois douze, plus quatre fois quatorze, plus trois fois seize, ce qui donne deux cent quarante-deux. Divisé par vingt élèves, la moyenne vaut douze virgule un.",
+      "texte": "Exemple : moyenne des notes = 12,1.",
+      "ecran": "ex_moyenne"
+    },
+    {
+      "id": "p14",
+      "dit": "La médiane est la valeur qui partage la série ordonnée en deux groupes de même effectif. Au moins la moitié des valeurs lui sont inférieures ou égales, et au moins la moitié lui sont supérieures ou égales. C'est la position centrale de la série.",
+      "texte": "Médiane : la valeur qui partage la série en deux.",
+      "ecran": "mediane_def"
+    },
+    {
+      "id": "p15",
+      "dit": "La méthode commence toujours par ranger les valeurs dans l'ordre croissant. Si l'effectif total est impair, la médiane est la valeur de rang èn plus un, divisé par deux. Si l'effectif total est pair, on prend la moyenne des deux valeurs centrales, de rangs èn sur deux et èn sur deux plus un.",
+      "texte": "Méthode médiane : ordonner, puis le rang central.",
+      "ecran": "mediane_methode"
+    },
+    {
+      "id": "p16",
+      "dit": "Exemple avec sept valeurs ordonnées : trois, cinq, cinq, sept, neuf, dix, douze. L'effectif est impair, la médiane est la valeur de rang sept plus un, divisé par deux, soit le rang quatre. La quatrième valeur est sept : la médiane vaut sept.",
+      "texte": "Exemple impair : 7 valeurs, médiane 7.",
+      "ecran": "ex_mediane_impair"
+    },
+    {
+      "id": "p17",
+      "dit": "Avec huit valeurs, on ajoute quinze à la série précédente. L'effectif est pair : la médiane est la moyenne des valeurs de rangs quatre et cinq, sept et neuf. Sept plus neuf, divisé par deux, cela fait huit. La médiane vaut huit, alors même qu'aucune valeur ne vaut huit.",
+      "texte": "Exemple pair : médiane (7 + 9) / 2 = 8.",
+      "ecran": "ex_mediane_pair"
+    },
+    {
+      "id": "p18",
+      "dit": "Moyenne et médiane ne réagissent pas de la même façon. La moyenne est sensible aux valeurs extrêmes : une valeur très grande ou très petite la tire fortement. La médiane, elle, est peu sensible aux extrêmes. Quand les deux sont proches, la série est à peu près symétrique.",
+      "texte": "Interpréter : la moyenne tire, la médiane résiste.",
+      "ecran": "interpretation"
+    },
+    {
+      "id": "p19",
+      "dit": "Exemple : cinq salaires mensuels, mille deux cents, mille trois cents, mille quatre cents, mille cinq cents et huit mille euros. La moyenne vaut treize mille quatre cents divisé par cinq, soit deux mille six cent quatre-vingts euros. La médiane, la troisième valeur ordonnée, vaut mille quatre cents euros.",
+      "texte": "Exemple salaires : moyenne 2680 €, médiane 1400 €.",
+      "ecran": "ex_salaires"
+    },
+    {
+      "id": "p20",
+      "dit": "La moyenne est presque le double de la médiane, parce que le salaire de huit mille euros tire la moyenne vers le haut. Pour décrire le salaire typique de cette petite entreprise, la médiane est donc le meilleur résumé. Un paramètre se choisit et s'interprète toujours dans son contexte.",
+      "texte": "Le salaire typique, c'est la médiane : 1400 €.",
+      "ecran": "ex_salaires_lecture"
+    },
+    {
+      "id": "p21",
+      "dit": "Retenez le réflexe de choix : le type de caractère et la forme des données décident de la représentation. Des valeurs isolées : des bâtons. Des parts d'un tout : le circulaire. Des données en classes : l'histogramme. Et pour résumer, moyenne ou médiane selon la présence de valeurs extrêmes.",
+      "texte": "Choisir : selon le caractère et les extrêmes.",
+      "ecran": "choix"
+    },
+    {
+      "id": "p22",
+      "dit": "Pour conclure : effectifs et fréquences décrivent la répartition, les diagrammes la montrent, la moyenne résume la série par son équilibre, la médiane par sa position centrale, et chaque résultat s'interprète dans le contexte de l'énoncé, jamais hors contexte.",
+      "texte": "Effectifs, diagrammes, moyenne, médiane : à retenir.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Organiser et représenter : effectifs, fréquences, diagrammes"
+    },
+    {
+      "debut": "p12",
+      "sous_titre": "Résumer et interpréter : moyenne et médiane",
+      "pont": {
+        "texte": "Partie 2 : moyenne et médiane, deux résumés à interpréter.",
+        "dit": "Partie deux : résumer la série. Après les tableaux et les diagrammes, deux nombres vont résumer les données, la moyenne et la médiane, et il faudra apprendre à les interpréter."
+      }
+    }
+  ]
+}

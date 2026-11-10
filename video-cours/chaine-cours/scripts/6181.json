@@ -1,0 +1,336 @@
+{
+ "cours": 6181,
+ "titre": "La loi binomiale : compter les succès",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Loi binomiale",
+   "titre": "La loi binomiale : compter les succès",
+   "sous": "De l'épreuve de Bernoulli aux applications : formule, moments, cumulées, sondages et contrôle qualité",
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Répéter une épreuve à deux issues et compter les succès : c'est toute la loi binomiale.",
+   "anim": {
+    "nom": "urne_fig",
+    "hauteur": 190
+   }
+  },
+  "bernoulli": {
+   "type": "formule",
+   "kicker": "L'épreuve de Bernoulli",
+   "tex": "P(X = 1) = p, \\qquad P(X = 0) = 1 - p",
+   "note": "Succès ou échec : la désignation du succès est une convention de modélisation.",
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 190
+   }
+  },
+  "bern_moments": {
+   "type": "etape",
+   "kicker": "Bernoulli · espérance et variance",
+   "titre": "Une brique élémentaire, déjà résumée",
+   "tex": [
+    "E(X) = p",
+    "V(X) = p(1 - p) \\qquad \\sigma(X) = \\sqrt{p(1 - p)}",
+    "\\text{variance maximale en } p = \\tfrac{1}{2}"
+   ]
+  },
+  "ex_techno": {
+   "type": "etape",
+   "kicker": "Exemple · TechnoComp, deux pour cent de défauts",
+   "titre": "Un processeur au hasard : succès signifie défectueux",
+   "tex": [
+    "p = 0{,}02 \\qquad E(X) = 0{,}02",
+    "V(X) = 0{,}02 \\times 0{,}98 = 0{,}0196",
+    "\\sigma(X) = \\sqrt{0{,}0196} \\approx 0{,}14"
+   ]
+  },
+  "conditions": {
+   "type": "etape",
+   "kicker": "Le schéma binomial",
+   "titre": "Trois conditions pour répéter",
+   "tex": [
+    "\\text{le nombre } n \\text{ d'épreuves est fixé à l'avance}",
+    "\\text{les épreuves sont indépendantes}",
+    "\\text{la probabilité } p \\text{ du succès reste constante}"
+   ]
+  },
+  "binomiale": {
+   "type": "formule",
+   "kicker": "La loi binomiale",
+   "tex": "P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k}",
+   "note": "X ~ B(n, p) compte les succès dans n épreuves de Bernoulli indépendantes.",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 200
+   }
+  },
+  "anatomie": {
+   "type": "etape",
+   "kicker": "Anatomie de la formule",
+   "titre": "Des chemins, fois la probabilité d'un chemin",
+   "tex": [
+    "\\textstyle \\binom{n}{k} = \\frac{n!}{k!(n - k)!} \\quad \\text{: chemins vers } k \\text{ succès}",
+    "p^k \\quad \\text{: } k \\text{ succès indépendants}",
+    "(1 - p)^{n - k} \\quad \\text{: les } n - k \\text{ échecs}"
+   ]
+  },
+  "ex_test": {
+   "type": "etape",
+   "kicker": "Exemple · quatre patients malades testés",
+   "titre": "Sensibilité quatre-vingt-quinze pour cent",
+   "tex": [
+    "X \\sim \\mathcal{B}(4, \\, 0{,}95)",
+    "P(X = 4) = (0{,}95)^4 \\approx 0{,}8145",
+    "P(X = 3) = 4 \\times (0{,}95)^3 \\times 0{,}05 \\approx 0{,}1715"
+   ]
+  },
+  "moments": {
+   "type": "formule",
+   "kicker": "Espérance et variance de la binomiale",
+   "tex": "E(X) = np, \\qquad V(X) = np(1 - p), \\qquad \\sigma(X) = \\sqrt{np(1 - p)}",
+   "note": "La binomiale est une somme de n variables de Bernoulli indépendantes.",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 160
+   }
+  },
+  "cumulees": {
+   "type": "etape",
+   "kicker": "Probabilités cumulées",
+   "titre": "Au plus, au moins : sommer ou passer au complémentaire",
+   "tex": [
+    "P(X \\leq k) = \\sum_{i = 0}^{k} \\binom{n}{i} p^i (1 - p)^{n - i}",
+    "P(X \\geq k) = 1 - P(X \\leq k - 1)"
+   ]
+  },
+  "ex_cumule": {
+   "type": "etape",
+   "kicker": "Exemple · vingt pièces, cinq pour cent de défauts",
+   "titre": "Exactement deux, au plus une, au moins deux",
+   "tex": [
+    "P(X = 2) = \\tbinom{20}{2} (0{,}05)^2 (0{,}95)^{18} \\approx 0{,}1887",
+    "P(X \\leq 1) \\approx 0{,}3585 + 0{,}3774 = 0{,}7359",
+    "P(X \\geq 2) = 1 - 0{,}7359 \\approx 0{,}2641"
+   ]
+  },
+  "calculatrice": {
+   "type": "etape",
+   "kicker": "À la calculatrice",
+   "titre": "Deux fonctions à connaître",
+   "tex": [
+    "\\text{binompdf}(n, p, k) = P(X = k)",
+    "\\text{binomcdf}(n, p, k) = P(X \\leq k)",
+    "P(X \\geq k) = 1 - \\text{binomcdf}(n, p, k - 1)"
+   ]
+  },
+  "ex_controle": {
+   "type": "etape",
+   "kicker": "Exemple · accepter un lot",
+   "titre": "Cinquante composants, au plus deux défectueux",
+   "tex": [
+    "X \\sim \\mathcal{B}(50, \\, 0{,}02) \\qquad E(X) = 1",
+    "P(X = 0) \\approx 0{,}364 \\qquad P(X = 1) \\approx 0{,}372",
+    "P(X = 2) \\approx 0{,}186 \\qquad P(X \\leq 2) \\approx 0{,}922"
+   ]
+  },
+  "sondage": {
+   "type": "etape",
+   "kicker": "Application · les sondages",
+   "titre": "Mille personnes, quarante-cinq pour cent favorables",
+   "tex": [
+    "X \\sim \\mathcal{B}(1000, \\, 0{,}45) \\qquad E(X) = 450",
+    "\\sigma(X) = \\sqrt{1000 \\times 0{,}45 \\times 0{,}55} \\approx 15{,}7",
+    "\\text{marge à 95 \\%} \\approx 1{,}96 \\, \\frac{\\sigma(X)}{1000} \\approx 3{,}1 \\text{ points}"
+   ]
+  },
+  "approx": {
+   "type": "formule",
+   "kicker": "Deux approximations",
+   "tex": "\\mathcal{B}(n, p) \\approx \\mathcal{N}\\big(np, \\, np(1 - p)\\big)",
+   "note": "Normale si np > 5 et n(1 − p) > 5 ; Poisson de paramètre np si n grand et p petit."
+  },
+  "ex_avion": {
+   "type": "etape",
+   "kicker": "Exemple · la fiabilité d'un avion",
+   "titre": "Quatre moteurs, un pour cent de panne chacun",
+   "tex": [
+    "X \\sim \\mathcal{B}(4, \\, 0{,}01) \\quad \\text{: le vol réussit si } X \\leq 2",
+    "P(X = 0) \\approx 0{,}9606 \\qquad P(X = 1) \\approx 0{,}0388",
+    "P(\\text{succès}) \\approx 0{,}999996"
+   ]
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "Stratégie d'épreuve",
+   "etapes": [
+    "Vérifier les trois conditions du schéma",
+    "Identifier n, p et ce que compte X",
+    "Exactement : la formule ; au moins : le complémentaire",
+    "Résumer par np et racine de np(1 − p)"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Bernoulli : une épreuve, deux issues",
+    "Binomiale : n répétitions indépendantes",
+    "P(X = k) : chemins fois probabilité",
+    "E(X) = np, V(X) = np(1 − p)",
+    "Cumulées : sommer ou complémenter"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré à la loi binomiale et à ses applications. Nous partirons d'une seule épreuve à deux issues, l'épreuve de Bernoulli, puis nous la répéterons pour construire la loi binomiale, sa formule et ses deux résumés, l'espérance et la variance. Nous apprendrons ensuite à calculer les probabilités cumulées, avant de mettre la loi au travail : contrôle qualité, sondages, marges d'erreur et fiabilité des systèmes.",
+   "texte": "Compter les succès : toute la loi binomiale.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Tout repose sur un geste élémentaire : répéter une même épreuve et compter combien de fois le résultat recherché se produit. Tester des composants, interroger des électeurs, lancer une pièce : à chaque fois, on ne retient que deux verdicts possibles, et l'on compte les succès. Cette simplification extrême est précisément ce qui rend le modèle si puissant et si fréquent.",
+   "texte": "Répéter, puis compter les succès.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Une épreuve de Bernoulli est une expérience aléatoire à exactement deux issues, appelées succès et échec, exclusives et exhaustives : l'une des deux se produit toujours, jamais les deux. La variable associée vaut un en cas de succès, avec probabilité pé, et zéro en cas d'échec, avec probabilité un moins pé. Le choix de ce qui s'appelle succès est une convention : en contrôle qualité, le succès peut très bien désigner le produit défectueux, si c'est lui que l'on compte.",
+   "texte": "Deux issues, une probabilité p.",
+   "ecran": "bernoulli"
+  },
+  {
+   "id": "p04",
+   "dit": "Cette brique élémentaire possède déjà ses deux résumés. Son espérance vaut simplement pé : zéro fois un moins pé, plus un fois pé. Sa variance vaut pé fois un moins pé, et son écart-type en est la racine carrée. Remarquez que la variance est maximale quand pé vaut un demi : c'est lorsque les deux issues sont équiprobables que l'incertitude est la plus grande ; elle s'effondre quand l'issue devient presque certaine.",
+   "texte": "Bernoulli : E = p, V = p(1 − p).",
+   "ecran": "bern_moments"
+  },
+  {
+   "id": "p05",
+   "dit": "Exemple : chez TechnoComp, deux pour cent des processeurs présentent un défaut. Tester un processeur au hasard est une épreuve de Bernoulli de paramètre zéro virgule zéro deux, où le succès est le défaut. L'espérance vaut zéro virgule zéro deux, la variance zéro virgule zéro deux fois zéro virgule quatre-vingt-dix-huit, et l'écart-type environ zéro virgule quatorze. Mais la vraie question arrive quand on teste cent processeurs : c'est l'objet de la loi binomiale.",
+   "texte": "Un processeur : p = 0,02, σ ≈ 0,14.",
+   "ecran": "ex_techno"
+  },
+  {
+   "id": "p06",
+   "dit": "Répéter une épreuve de Bernoulli ne donne une loi binomiale que sous trois conditions strictes. Le nombre d'épreuves, noté ène, est fixé à l'avance. Les épreuves sont indépendantes : le résultat de l'une n'influence pas les autres. Et la probabilité du succès reste la même à chaque épreuve. Un tirage sans remise dans un petit ensemble viole ces conditions, car il modifie les probabilités au fil des tirages.",
+   "texte": "Trois conditions : n fixé, indépendance, p constant.",
+   "ecran": "conditions"
+  },
+  {
+   "id": "p07",
+   "dit": "Voici la loi binomiale : si ixe compte le nombre de succès dans ène épreuves de Bernoulli indépendantes de paramètre pé, on dit que ixe suit la loi binomiale de paramètres ène et pé. La probabilité d'obtenir exactement ka succès est le coefficient binomial ka parmi ène, multiplié par pé puissance ka, multiplié par un moins pé puissance ène moins ka. Toute la suite du cours consiste à comprendre, calculer et interpréter cette formule.",
+   "texte": "P(X = k) : la formule centrale du cours.",
+   "ecran": "binomiale"
+  },
+  {
+   "id": "p08",
+   "dit": "Décortiquons la formule, elle a une logique parfaite. Pour obtenir exactement ka succès, il faut d'abord choisir leurs positions parmi les ène épreuves : c'est le coefficient binomial, le nombre de chemins possibles. Chaque chemin précis a pour probabilité pé puissance ka pour ses succès, fois un moins pé puissance ène moins ka pour ses échecs, par indépendance. On multiplie donc le nombre de chemins par la probabilité d'un chemin.",
+   "texte": "Chemins × probabilité d'un chemin.",
+   "ecran": "anatomie"
+  },
+  {
+   "id": "p09",
+   "dit": "Premier calcul complet : un test détecte quatre-vingt-quinze pour cent des malades, on teste quatre patients malades, et ixe compte les tests positifs. La probabilité que les quatre soient positifs vaut zéro virgule quatre-vingt-quinze puissance quatre, environ zéro virgule quatre-vingt-un quarante-cinq. Celle d'en avoir exactement trois vaut quatre chemins fois zéro virgule quatre-vingt-quinze au cube fois zéro virgule zéro cinq, environ zéro virgule dix-sept quinze : même un bon test laisse une vraie place au hasard.",
+   "texte": "Quatre malades testés : 81,45 % de quadruple détection.",
+   "ecran": "ex_test"
+  },
+  {
+   "id": "p10",
+   "dit": "Deux nombres résument toute la loi. L'espérance vaut ène fois pé : on répète ène fois une épreuve de probabilité pé, on attend donc en moyenne ène pé succès, ce que confirme la linéarité de l'espérance appliquée à la somme des variables de Bernoulli. La variance vaut ène pé fois un moins pé, et l'écart-type en est la racine carrée : c'est la fluctuation typique autour de la moyenne, indispensable pour juger si une observation est normale ou suspecte.",
+   "texte": "E(X) = np, V(X) = np(1 − p).",
+   "ecran": "moments"
+  },
+  {
+   "id": "p11",
+   "dit": "En pratique, on demande rarement une valeur exacte : on veut au plus ka succès, ou au moins ka succès. Au plus se calcule en sommant les probabilités de zéro à ka. Au moins se traite presque toujours par le complémentaire : un moins la probabilité d'être au plus à ka moins un. Retenez ce réflexe, il divise le travail : pour au moins deux, on ne calcule que zéro et un, puis on soustrait de un.",
+   "texte": "Au moins : le complémentaire d'abord.",
+   "ecran": "cumulees"
+  },
+  {
+   "id": "p12",
+   "dit": "Application : vingt pièces prélevées, cinq pour cent de défectueuses. La probabilité d'exactement deux défectueuses vaut cent quatre-vingt-dix chemins fois zéro virgule zéro cinq au carré fois zéro virgule quatre-vingt-quinze puissance dix-huit, environ zéro virgule dix-huit quatre-vingt-sept. La probabilité d'au plus une vaut environ zéro virgule soixante-treize cinquante-neuf, donc celle d'au moins deux vaut un moins cette valeur, environ zéro virgule vingt-six quarante et un.",
+   "texte": "Vingt pièces : P(X = 2) ≈ 18,87 %, P(X ≥ 2) ≈ 26,41 %.",
+   "ecran": "ex_cumule"
+  },
+  {
+   "id": "p13",
+   "dit": "Pour les calculs longs, la calculatrice prend le relais avec deux fonctions. Binom p d f donne la probabilité d'exactement ka succès, et binom c d f donne la probabilité cumulée d'au plus ka succès. Pour au moins ka, on calcule un moins binom c d f en ka moins un. L'enjeu n'est pas la touche, mais le choix : savoir quelle probabilité l'énoncé demande vraiment, exacte, au plus ou au moins.",
+   "texte": "binompdf pour l'exact, binomcdf pour le cumulé.",
+   "ecran": "calculatrice"
+  },
+  {
+   "id": "p14",
+   "dit": "Mettons la loi au travail avec un plan de contrôle industriel : un lot contient deux pour cent de composants défectueux, on en prélève cinquante, et le lot est accepté si l'on trouve au plus deux défectueux. L'espérance vaut un défectueux par échantillon. Les probabilités de zéro, un et deux défectueux valent environ zéro virgule trois cent soixante-quatre, zéro virgule trois cent soixante-douze et zéro virgule cent quatre-vingt-six : au total, le lot est accepté avec probabilité environ zéro virgule neuf cent vingt-deux.",
+   "texte": "Plan de contrôle : 92,2 % d'acceptation.",
+   "ecran": "ex_controle"
+  },
+  {
+   "id": "p15",
+   "dit": "Le risque symétrique éclaire la décision : si le taux de défaut double et passe à quatre pour cent, la probabilité d'acceptation tombe à environ zéro virgule six cent soixante-dix-sept. Le consommateur garde donc environ trente-deux pour cent de risque d'accepter un mauvais lot, tandis que le producteur subissait environ huit pour cent de risque de voir rejeter un bon lot. Tout plan de contrôle est ce compromis chiffré entre deux risques.",
+   "texte": "Deux risques : rejeter le bon, accepter le mauvais.",
+   "ecran": "ex_controle"
+  },
+  {
+   "id": "p16",
+   "dit": "Deuxième grand terrain : les sondages. Mille personnes interrogées, quarante-cinq pour cent de favorables dans la population : le nombre de favorables suit une binomiale d'espérance quatre cent cinquante et d'écart-type environ quinze virgule sept. Rapporté à l'échantillon, l'écart-type de la proportion vaut environ un virgule six point, et la marge d'erreur à quatre-vingt-quinze pour cent vaut environ trois virgule un points : c'est la fameuse marge de trois points des sondages de mille personnes.",
+   "texte": "Sondage de 1000 : marge d'environ 3,1 points.",
+   "ecran": "sondage"
+  },
+  {
+   "id": "p17",
+   "dit": "Quand ène devient grand, deux approximations prennent le relais. Si pé reste modéré, avec ène pé et ène fois un moins pé tous deux supérieurs à cinq, la binomiale est très bien approchée par une loi normale de même espérance et de même variance : les calculs de sondages deviennent des calculs de cloche. Si au contraire pé est petit, la loi de Poisson de paramètre ène pé approxime la binomiale : c'est le régime des événements rares.",
+   "texte": "Normale si p est modéré, Poisson si p est petit.",
+   "ecran": "approx"
+  },
+  {
+   "id": "p18",
+   "dit": "Dernier exemple, celui de la fiabilité : un avion possède quatre moteurs indépendants, chacun avec une probabilité de panne de un pour cent, et il peut voler avec deux moteurs en panne au maximum. La probabilité qu'aucun moteur ne tombe en panne vaut environ zéro virgule quatre-vingt-seize zéro six, celle d'exactement une panne environ zéro virgule zéro trois quatre-vingt-huit. Au total, le vol réussit dans environ neuf cent quatre-vingt-dix-neuf mille neuf cent quatre-vingt-seize cas sur un million : la redondance transforme un risque visible en risque infime.",
+   "texte": "Redondance : un succès à 99,9996 %.",
+   "ecran": "ex_avion"
+  },
+  {
+   "id": "p19",
+   "dit": "Face à un énoncé, la stratégie est toujours la même : vérifier les trois conditions du schéma de Bernoulli, identifier ène, pé et ce que compte exactement la variable, puis choisir le bon calcul, formule directe pour exactement, somme ou complémentaire pour les questions cumulées. Et toujours interpréter le résultat avec l'espérance et l'écart-type, qui disent ce qui est normal et ce qui doit alerter.",
+   "texte": "Trois conditions, deux paramètres, un réflexe.",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p20",
+   "dit": "Pour finir, retenez l'édifice complet : une épreuve de Bernoulli, deux issues et un paramètre pé ; sa répétition indépendante donne la loi binomiale, dont la formule multiplie le nombre de chemins par la probabilité d'un chemin. L'espérance ène pé donne la tendance, la variance ène pé fois un moins pé donne la fluctuation, et les probabilités cumulées pilotent les décisions réelles, du contrôle qualité aux sondages.",
+   "texte": "Bernoulli répété : la binomiale décide.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "De l'épreuve de Bernoulli à la loi binomiale"
+  },
+  {
+   "debut": "p08",
+   "sous_titre": "La formule en action : calculs exacts et cumulés",
+   "pont": {
+    "texte": "Partie 2 : anatomie de la formule, exemples et probabilités cumulées.",
+    "dit": "Partie deux : la formule en action. Nous décortiquerons le coefficient binomial et la probabilité d'un chemin, nous calculerons nos premiers exemples complets, puis nous passerons aux questions cumulées, au plus et au moins, avec le réflexe du complémentaire et les fonctions de la calculatrice."
+   }
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Applications : contrôle qualité, sondages et fiabilité",
+   "pont": {
+    "texte": "Partie 3 : la binomiale décide, du lot industriel à l'avion.",
+    "dit": "Partie trois : la loi binomiale au travail. Nous l'appliquerons à un plan de contrôle industriel avec ses deux risques, aux sondages et à leur marge d'erreur, aux approximations par les lois normale et de Poisson, et enfin à la fiabilité d'un système redondant."
+   }
+  }
+ ]
+}

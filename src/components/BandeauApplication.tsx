@@ -1,5 +1,5 @@
 import { usePathname } from 'expo-router';
-import { Download, Smartphone, X } from 'lucide-react-native';
+import { Smartphone, X } from 'lucide-react-native';
 import { useEffect, useRef, useState } from 'react';
 import { Linking, Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
@@ -11,6 +11,8 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from './Appui';
+import { LogoApple } from './LogoApple';
+import { LogoGooglePlay } from './LogoGooglePlay';
 
 /** Vrai dans une PWA installée : le bandeau n'a alors aucun sens. */
 function installee(): boolean {
@@ -102,7 +104,7 @@ export function BandeauApplication() {
               style={etroit ? styles.flex : undefined}
             >
               <View style={styles.magasin}>
-                <Download size={20} color="#0A0A0A" strokeWidth={2} />
+                {magasin === 'play' ? <LogoGooglePlay taille={22} /> : <LogoApple taille={22} />}
                 <View>
                   <Text style={[typo.legende, styles.noir]}>{intro}</Text>
                   <Text style={[typo.texteFort, styles.noir]}>{nom}</Text>

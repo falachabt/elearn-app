@@ -1,4 +1,4 @@
-import { acheterPass, achatIntegreDisponible, attendreAcces, lirePrixApple, restaurerAchats, type Package, type SdkAchats } from '../achatsIntegres';
+import { acheterPass, achatIntegreDisponible, attendreAcces, lirePrixApple, type Package, type SdkAchats } from '../achatsIntegres';
 import { definirIosSimule } from '../plateformeDev';
 
 jest.mock('../developpement', () => ({ modeDeveloppement: () => true }));
@@ -10,7 +10,6 @@ const faux = (surcharge: Partial<SdkAchats> = {}): SdkAchats => ({
   logOut: jest.fn(async () => ({})),
   getOfferings: jest.fn(async () => ({ current: { availablePackages: [paquet('week', '1,99 €'), paquet('month', '4,99 €'), paquet('inconnu', '9,99 €')] } })),
   purchasePackage: jest.fn(async () => ({})),
-  restorePurchases: jest.fn(async () => ({})),
   ...surcharge,
 });
 
@@ -55,12 +54,6 @@ describe('achats intégrés Apple', () => {
   it('autre erreur d’achat : remontée', async () => {
     const sdk = faux({ purchasePackage: jest.fn(async () => { throw new Error('réseau'); }) });
     await expect(acheterPass(paquet('week', '1,99 €'), sdk)).rejects.toThrow('réseau');
-  });
-
-  it('restaurer les achats', async () => {
-    const sdk = faux();
-    await restaurerAchats(sdk);
-    expect(sdk.restorePurchases).toHaveBeenCalledTimes(1);
   });
 
   it('attend que le serveur ait créé l’accès', async () => {

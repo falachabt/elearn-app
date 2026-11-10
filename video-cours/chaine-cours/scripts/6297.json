@@ -1,0 +1,468 @@
+{
+  "cours": 6297,
+  "titre": "Tangentes et convexité : lire la courbure d'une fonction",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Tangentes et convexité",
+      "titre": "Tangentes et convexité",
+      "sous": "Position par rapport à la tangente, signe de la dérivée seconde et points d'inflexion",
+      "anim": {
+        "nom": "tangente_courbe_fig",
+        "hauteur": 240
+      }
+    },
+    "accroche": {
+      "type": "phrase",
+      "kicker": "Une question de courbure",
+      "texte": "Un bol tourné vers le haut, un dôme tourné vers le bas : deux courbures, un seul outil, la dérivée seconde.",
+      "anim": {
+        "nom": "convexite_fig",
+        "hauteur": 150
+      }
+    },
+    "tangente_def": {
+      "type": "formule",
+      "kicker": "La tangente · équation",
+      "tex": "y = f'(a)(x - a) + f(a)",
+      "note": "La tangente au point d'abscisse a : elle passe par le point de la courbe et sa pente vaut la dérivée en a."
+    },
+    "secantes": {
+      "type": "etape",
+      "kicker": "La tangente · limite des sécantes",
+      "titre": "D'où vient cette droite ?",
+      "tex": [
+        "m_{sec} = \\frac{f(a + h) - f(a)}{h}",
+        "f'(a) = \\lim_{h \\to 0} m_{sec}"
+      ]
+    },
+    "difference": {
+      "type": "formule",
+      "kicker": "Position relative · l'outil",
+      "tex": "d(x) = f(x) - f'(a)(x - a) - f(a)",
+      "note": "La différence entre la courbe et sa tangente : son signe dit qui est au-dessus de l'autre."
+    },
+    "dl2": {
+      "type": "etape",
+      "kicker": "Position relative · le développement d'ordre deux",
+      "titre": "Le signe de la différence vient de la dérivée seconde",
+      "tex": [
+        "f(x) = f(a) + f'(a)(x - a)",
+        "+ \\tfrac{f''(a)}{2}(x - a)^2 + \\cdots",
+        "d(x) \\approx \\tfrac{f''(a)}{2}(x - a)^2"
+      ]
+    },
+    "theoreme_local": {
+      "type": "etape",
+      "kicker": "Théorème · position locale",
+      "titre": "Trois cas, selon la dérivée seconde au point",
+      "tex": [
+        "f''(a) > 0 \\Rightarrow \\text{courbe au-dessus}",
+        "f''(a) < 0 \\Rightarrow \\text{courbe en dessous}",
+        "f''(a) = 0 \\Rightarrow \\text{aucune conclusion directe}"
+      ]
+    },
+    "erreur": {
+      "type": "phrase",
+      "kicker": "À quoi ça sert · l'erreur d'approximation",
+      "texte": "Remplacer la courbe par sa tangente fait une erreur : la position relative donne son signe.",
+      "anim": {
+        "nom": "tangente_courbe_fig",
+        "hauteur": 150
+      }
+    },
+    "ex_parabole": {
+      "type": "etape",
+      "kicker": "Exemple · la parabole",
+      "titre": "La fonction carré au point d'abscisse un",
+      "tex": [
+        "f(x) = x^2, \\quad a = 1",
+        "y = 2x - 1",
+        "d(x) = (x - 1)^2 \\geq 0"
+      ],
+      "anim": {
+        "nom": "parabole_fig",
+        "hauteur": 140
+      }
+    },
+    "ex_racine": {
+      "type": "etape",
+      "kicker": "Exemple · la racine carrée",
+      "titre": "La fonction racine au point d'abscisse un",
+      "tex": [
+        "g(x) = \\sqrt{x}, \\quad a = 1",
+        "y = \\tfrac{1}{2}x + \\tfrac{1}{2}",
+        "g''(x) < 0 \\text{ : courbe en dessous}"
+      ]
+    },
+    "convexite_def": {
+      "type": "phrase",
+      "kicker": "La convexité · définition géométrique",
+      "texte": "Convexe : la courbe reste sous chacune de ses cordes. Concave : elle reste au-dessus.",
+      "anim": {
+        "nom": "convexite_fig",
+        "hauteur": 170
+      }
+    },
+    "jensen": {
+      "type": "formule",
+      "kicker": "La convexité · l'inégalité de Jensen",
+      "tex": "f(ta + (1 - t)b) \\leq tf(a) + (1 - t)f(b)",
+      "note": "Pour t entre zéro et un : l'image d'un barycentre est sous le barycentre des images."
+    },
+    "critere": {
+      "type": "etape",
+      "kicker": "Le critère de la dérivée seconde",
+      "titre": "Un signe à étudier sur tout l'intervalle",
+      "tex": [
+        "f'' \\geq 0 \\text{ sur } I \\iff f \\text{ est convexe sur } I",
+        "f'' \\leq 0 \\text{ sur } I \\iff f \\text{ est concave sur } I",
+        "f \\text{ convexe} \\iff f' \\text{ est croissante}"
+      ]
+    },
+    "tangentes_prop": {
+      "type": "phrase",
+      "kicker": "Convexité et tangentes · le test global",
+      "texte": "Convexe sur un intervalle : la courbe est au-dessus de toutes ses tangentes, partout.",
+      "anim": {
+        "nom": "tangente_courbe_fig",
+        "hauteur": 150
+      }
+    },
+    "ex_sinus": {
+      "type": "etape",
+      "kicker": "Exemple · la fonction sinus",
+      "titre": "Concave, puis convexe, sur un tour complet",
+      "tex": [
+        "f(x) = \\sin x \\text{ sur } [0, 2\\pi]",
+        "f''(x) = -\\sin x",
+        "\\text{concave puis convexe, inflexion en } \\pi"
+      ]
+    },
+    "inflexion_def": {
+      "type": "phrase",
+      "kicker": "Le point d'inflexion · définition",
+      "texte": "Là où la convexité change, la courbe traverse sa tangente : c'est le point d'inflexion.",
+      "anim": {
+        "nom": "inflexion_fig",
+        "hauteur": 170
+      }
+    },
+    "inflexion_cond": {
+      "type": "etape",
+      "kicker": "Le point d'inflexion · conditions",
+      "titre": "S'annuler ne suffit pas : il faut changer de signe",
+      "tex": [
+        "f''(a) = 0 \\text{ : nécessaire, pas suffisant}",
+        "x^4 \\text{ en } 0 \\text{ : } f''(0) = 0, \\text{ aucune inflexion}",
+        "\\text{le critère : } f'' \\text{ change de signe en } a"
+      ]
+    },
+    "methode": {
+      "type": "etape",
+      "kicker": "Méthode · chercher les inflexions",
+      "titre": "Un protocole en quatre temps",
+      "tex": [
+        "\\text{calculer } f''(x)",
+        "\\text{résoudre } f''(x) = 0",
+        "\\text{étudier le signe de } f'' \\text{ autour des candidats}",
+        "\\text{conclure uniquement si le signe change}"
+      ]
+    },
+    "ex_cubique": {
+      "type": "etape",
+      "kicker": "Exemple complet · une cubique décalée",
+      "titre": "Concave avant un, convexe après, inflexion horizontale",
+      "tex": [
+        "f'(x) = (x - 1)^2",
+        "f''(x) = 2(x - 1)",
+        "A\\left(1, \\tfrac{4}{3}\\right), \\quad \\text{tangente : } y = \\tfrac{4}{3}"
+      ],
+      "anim": {
+        "nom": "inflexion_fig",
+        "hauteur": 130
+      }
+    },
+    "ex_resolu": {
+      "type": "etape",
+      "kicker": "Exemple résolu · position par rapport à la tangente",
+      "titre": "Factoriser la différence : elle devient un cube parfait",
+      "tex": [
+        "f(x) = x^3 - 3x^2 + 4, \\quad a = 1",
+        "T : y = -3x + 5",
+        "f(x) - (-3x + 5) = (x - 1)^3"
+      ]
+    },
+    "gaussienne": {
+      "type": "etape",
+      "kicker": "Exemple · la courbe en cloche",
+      "titre": "Deux inflexions symétriques pour la gaussienne",
+      "tex": [
+        "h(x) = e^{-x^2}",
+        "h''(x) = (4x^2 - 2)e^{-x^2}",
+        "\\text{inflexions en } \\pm \\tfrac{1}{\\sqrt{2}}"
+      ]
+    },
+    "rationnelle": {
+      "type": "etape",
+      "kicker": "Exemple · une fonction rationnelle",
+      "titre": "Trois points d'inflexion pour x sur x au carré plus un",
+      "tex": [
+        "g(x) = \\tfrac{x}{x^2 + 1}",
+        "g''(x) = \\tfrac{2x(x^2 - 3)}{(x^2 + 1)^3}",
+        "\\text{inflexions en } 0 \\text{ et } \\pm \\sqrt{3}"
+      ]
+    },
+    "optimisation": {
+      "type": "etape",
+      "kicker": "Application · optimiser un bénéfice",
+      "titre": "Maximum en dix, inflexion en quatre",
+      "tex": [
+        "B(x) = -x^3 + 12x^2 + 60x",
+        "B'(x) = 0 \\Rightarrow x = 10",
+        "B''(x) = 6(4 - x) \\text{ : inflexion en } 4"
+      ]
+    },
+    "physique": {
+      "type": "phrase",
+      "kicker": "Application · la physique du mouvement",
+      "texte": "Position, vitesse, accélération : f, f prime et f seconde sont la même histoire racontée trois fois.",
+      "anim": {
+        "nom": "trajectoire",
+        "hauteur": 150
+      }
+    },
+    "economie": {
+      "type": "phrase",
+      "kicker": "Application · utilité et rendements",
+      "texte": "Utilité concave : chaque unité supplémentaire rapporte moins que la précédente.",
+      "anim": {
+        "nom": "convexite_fig",
+        "hauteur": 150
+      }
+    },
+    "pieges": {
+      "type": "etape",
+      "kicker": "Pièges classiques",
+      "titre": "Ce que le point d'inflexion n'est pas",
+      "tex": [
+        "\\text{inflexion} \\neq \\text{tangente horizontale}",
+        "x^3 + x \\text{ : inflexion en } 0, \\text{ pente } 1",
+        "f'' \\text{ absente : étudier la position}"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Tangente : y = f prime de a fois x moins a, plus f de a",
+        "Position : le signe de la différence d de x",
+        "Convexe si et seulement si f seconde positive",
+        "Inflexion : f seconde change de signe",
+        "Au point d'inflexion, la courbe traverse"
+      ]
+    },
+    "cloture": {
+      "type": "phrase",
+      "kicker": "Pour conclure",
+      "texte": "Le local détermine le global : une information en un point éclaire toute la courbe.",
+      "anim": {
+        "nom": "tangente_courbe_fig",
+        "hauteur": 150
+      }
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours consacré aux tangentes et à la convexité. Une courbe ne se résume pas à ses variations : elle se creuse, elle se bombe, elle traverse parfois sa propre tangente. Nous allons d'abord mesurer la position d'une courbe par rapport à sa tangente en un point, puis globaliser cette lecture sur un intervalle entier avec la convexité et le signe de la dérivée seconde, et enfin traquer les points d'inflexion, là où la courbure change de sens, à travers des exemples résolus pas à pas.",
+      "texte": "Tangentes, convexité, inflexions : lire la courbure.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Prenez deux courbes qui montent toutes les deux : l'une se creuse comme un bol, l'autre se bombe comme un dôme. Le signe de la dérivée première, qui dit si la fonction monte ou descend, est incapable de les distinguer. Ce qui les sépare, c'est la manière dont la pente elle-même évolue : c'est la courbure. Tout ce cours consiste à la mesurer, d'abord localement, au voisinage d'un point, puis globalement, sur tout un intervalle.",
+      "texte": "Monter ne dit pas comment on se courbe : il faut f″.",
+      "ecran": "accroche"
+    },
+    {
+      "id": "p03",
+      "dit": "Rappel fondamental : si la fonction f est dérivable au point d'abscisse a, la tangente à sa courbe en ce point est la droite qui passe par le point de la courbe et dont le coefficient directeur est le nombre dérivé en a. Son équation s'écrit : y égal f prime de a, facteur de x moins a, plus f de a. C'est la meilleure approximation affine de la fonction au voisinage de a : près du point de contact, la courbe et sa tangente se confondent presque.",
+      "texte": "Tangente en a : pente f′(a), point (a, f(a)).",
+      "ecran": "tangente_def"
+    },
+    {
+      "id": "p04",
+      "dit": "Cette droite ne sort pas de nulle part : c'est la position limite des sécantes. Prenez un second point de la courbe, tout proche du premier ; la droite qui joint les deux points est une sécante, et son coefficient directeur est le taux d'accroissement. Quand le second point glisse vers le premier, la sécante pivote et tend vers la tangente, pendant que le taux d'accroissement tend vers le nombre dérivé. Sans dérivabilité, pas de tangente : pensez à la valeur absolue en zéro, avec son point anguleux.",
+      "texte": "La tangente : la sécante quand le second point rejoint le premier.",
+      "ecran": "secantes"
+    },
+    {
+      "id": "p05",
+      "dit": "Le cœur du chapitre est une question simple : au voisinage du point de contact, la courbe est-elle au-dessus ou en dessous de sa tangente ? Pour y répondre, on construit la fonction différence, notée d : en chaque abscisse x, elle vaut la valeur de la fonction moins celle de la tangente. Si cette différence est positive, la courbe est au-dessus ; si elle est négative, la courbe est en dessous ; et au point de contact lui-même, elle vaut évidemment zéro.",
+      "texte": "d(x) = courbe − tangente : le signe tranche.",
+      "ecran": "difference"
+    },
+    {
+      "id": "p06",
+      "dit": "Pourquoi la dérivée seconde décide-t-elle de cette position ? Écrivons le développement limité de la fonction à l'ordre deux au voisinage de a. La différence entre la courbe et sa tangente se réduit alors, au premier terme non nul, à la dérivée seconde en a divisée par deux, multipliée par le carré de l'écart x moins a. Or un carré est toujours positif : près de a, le signe de la différence est donc celui de la dérivée seconde en a, à condition qu'elle ne soit pas nulle.",
+      "texte": "d(x) ≈ f″(a)/2 × (x − a)² : le carré impose le signe de f″.",
+      "ecran": "dl2"
+    },
+    {
+      "id": "p07",
+      "dit": "Voici le théorème local à retenir. Si la dérivée seconde au point de contact est strictement positive, la courbe est au-dessus de sa tangente au voisinage du point. Si elle est strictement négative, la courbe est en dessous. Et si elle est nulle, on ne peut rien conclure directement : tout devient possible, et il faudra étudier la situation de plus près. Ce troisième cas n'est pas un détail : c'est la porte d'entrée vers les points d'inflexion.",
+      "texte": "f″(a) > 0 : dessus ; f″(a) < 0 : dessous ; = 0 : mystère.",
+      "ecran": "theoreme_local"
+    },
+    {
+      "id": "p08",
+      "dit": "Cette position relative a une lecture très concrète. Utiliser la tangente, c'est remplacer la fonction par une approximation affine : le calcul devient simple, mais on commet une erreur. Si la courbe est au-dessus de sa tangente, l'approximation sous-estime la fonction ; si elle est en dessous, elle la surestime. En ingénierie comme en calcul numérique, connaître le signe de l'erreur est souvent aussi précieux que l'approximation elle-même.",
+      "texte": "Courbe au-dessus : l'approximation linéaire sous-estime.",
+      "ecran": "erreur"
+    },
+    {
+      "id": "p09",
+      "dit": "Premier exemple : la fonction carré, au point d'abscisse un. La dérivée vaut deux x, donc deux au point de contact, et l'équation de la tangente est y égal deux x moins un. La différence entre la courbe et cette tangente se calcule exactement : x au carré moins deux x plus un, c'est-à-dire le carré de x moins un. Elle est toujours positive : la parabole est partout au-dessus de cette tangente, qu'elle ne touche qu'au point de contact. Et c'est cohérent : la dérivée seconde de la fonction carré vaut deux, elle est positive.",
+      "texte": "x² en 1 : d(x) = (x − 1)² ≥ 0, courbe toujours au-dessus.",
+      "ecran": "ex_parabole"
+    },
+    {
+      "id": "p10",
+      "dit": "Exemple inverse : la fonction racine carrée, au point d'abscisse un. Sa dérivée en un vaut un demi, donc la tangente a pour équation y égal un demi de x plus un demi. Cette fois, la dérivée seconde est négative pour tout x strictement positif : le théorème local annonce une courbe en dessous de sa tangente, et le calcul direct le confirme. Retenez le contraste : la parabole vit au-dessus de ses tangentes, la racine vit en dessous des siennes. Ce contraste, généralisé à tout un intervalle, s'appellera convexité et concavité.",
+      "texte": "√x en 1 : f″ < 0, courbe en dessous de sa tangente.",
+      "ecran": "ex_racine"
+    },
+    {
+      "id": "p11",
+      "dit": "Globalisons. Une fonction est dite convexe sur un intervalle si, pour deux points quelconques de sa courbe, le segment qui les joint, appelé la corde, reste entièrement au-dessus de la courbe. La courbe se creuse vers le bas, comme un bol qui contiendrait la corde. À l'inverse, une fonction concave a sa courbe au-dessus de toutes ses cordes, comme un dôme. Attention à ne pas inverser : pour une fonction convexe, c'est la corde qui est au-dessus, et la courbe qui est en dessous.",
+      "texte": "Convexe : corde au-dessus, courbe en dessous (le bol).",
+      "ecran": "convexite_def"
+    },
+    {
+      "id": "p12",
+      "dit": "Cette définition géométrique se traduit par une inégalité algébrique, l'inégalité de convexité, associée au nom de Jensen. Prenez deux abscisses a et b de l'intervalle, et un coefficient t compris entre zéro et un. La valeur de la fonction au barycentre des deux abscisses est inférieure ou égale au barycentre des deux valeurs. Autrement dit : calculer d'abord la fonction puis moyenner donne davantage que moyenner d'abord puis calculer. Pour une fonction concave, l'inégalité est renversée.",
+      "texte": "Jensen : f du barycentre ≤ barycentre des f.",
+      "ecran": "jensen"
+    },
+    {
+      "id": "p13",
+      "dit": "Voici le théorème qui rend la convexité calculable. Pour une fonction deux fois dérivable sur un intervalle, elle est convexe si et seulement si sa dérivée seconde est positive ou nulle partout sur l'intervalle, et concave si et seulement si la dérivée seconde est négative ou nulle. L'intuition : la dérivée seconde est la dérivée de la pente. Quand elle est positive, la pente augmente sans cesse, la tangente tourne vers le haut, et la courbe se creuse en bol. Étudier une convexité devient alors une banale étude de signe.",
+      "texte": "Convexité globale = signe de f″ sur tout l'intervalle.",
+      "ecran": "critere"
+    },
+    {
+      "id": "p14",
+      "dit": "Le pont entre le local et le global est le suivant : une fonction est convexe sur un intervalle si et seulement si sa courbe est située au-dessus de chacune de ses tangentes sur tout l'intervalle, et concave si et seulement si elle est en dessous de chacune d'elles. Notre théorème local, appliqué en chaque point, devient une propriété globale. C'est aussi un outil de démonstration redoutable : pour majorer ou minorer une fonction, il suffit souvent de la comparer à une tangente bien choisie.",
+      "texte": "Convexe : au-dessus de toutes ses tangentes, partout.",
+      "ecran": "tangentes_prop"
+    },
+    {
+      "id": "p15",
+      "dit": "Exemple : la fonction sinus, sur l'intervalle de zéro à deux pi. Sa dérivée seconde est l'opposée du sinus. Sur la première moitié de l'intervalle, le sinus est positif, donc la dérivée seconde est négative : la fonction est concave, c'est l'arche du dôme. Sur la seconde moitié, la dérivée seconde devient positive : la fonction est convexe, c'est le creux du bol. Entre les deux, en pi, la dérivée seconde s'annule en changeant de signe. Ce point de bascule porte un nom, que la partie suivante va définir proprement.",
+      "texte": "Sinus : concave sur [0, π], convexe sur [π, 2π].",
+      "ecran": "ex_sinus"
+    },
+    {
+      "id": "p16",
+      "dit": "Un point d'inflexion est un point de la courbe où la convexité change : la fonction y passe de concave à convexe, ou l'inverse. Sa signature géométrique est spectaculaire : en ce point, la courbe traverse sa tangente, au lieu de rester sagement d'un seul côté comme elle le fait ailleurs. La tangente d'inflexion ne frôle plus la courbe, elle la transperce. C'est l'analogue, pour la courbure, de ce qu'un extremum est pour les variations.",
+      "texte": "Inflexion : la convexité change, la courbe traverse.",
+      "ecran": "inflexion_def"
+    },
+    {
+      "id": "p17",
+      "dit": "Comment repérer un point d'inflexion ? Si la fonction est deux fois dérivable, une condition nécessaire est que la dérivée seconde s'annule au point. Mais elle n'est pas suffisante, et le contre-exemple à connaître par cœur est la fonction puissance quatre en zéro : sa dérivée seconde s'y annule, mais elle reste positive des deux côtés, la fonction reste convexe partout, et il n'y a aucune inflexion. Le vrai critère est le changement de signe de la dérivée seconde. Sans changement de signe, pas d'inflexion, même si la dérivée seconde s'annule.",
+      "texte": "f″(a) = 0 sans changement de signe : pas d'inflexion.",
+      "ecran": "inflexion_cond"
+    },
+    {
+      "id": "p18",
+      "dit": "La méthode de recherche tient en quatre temps. Calculez la dérivée seconde. Résolvez l'équation qui l'annule : chaque solution est un candidat. Étudiez le signe de la dérivée seconde de part et d'autre de chaque candidat, dans un tableau de signes. Ne concluez à un point d'inflexion que pour les candidats où le signe change effectivement, et calculez alors l'ordonnée du point et, si on le demande, l'équation de la tangente, qui traverse la courbe en ce point.",
+      "texte": "Calculer f″, annuler, signer, conclure si ça change.",
+      "ecran": "methode"
+    },
+    {
+      "id": "p19",
+      "dit": "Exemple complet : la fonction définie par un tiers de x au cube, moins x au carré, plus x, plus un. Sa dérivée première est le carré de x moins un, et sa dérivée seconde vaut deux fois x moins un. Elle s'annule en un et change de signe : négative avant, positive après. La fonction est donc concave avant un et convexe après un, et le point d'abscisse un, d'ordonnée quatre tiers, est un point d'inflexion. Particularité élégante : la dérivée première s'annule aussi en un, donc la tangente d'inflexion est horizontale, d'équation y égal quatre tiers, et la courbe la traverse en s'y aplatissant.",
+      "texte": "Inflexion en (1, 4/3), avec une tangente horizontale.",
+      "ecran": "ex_cubique"
+    },
+    {
+      "id": "p20",
+      "dit": "Exemple résolu de bout en bout : la fonction qui à x associe x au cube moins trois x au carré plus quatre, étudiée au point d'abscisse un. L'ordonnée vaut deux, la pente vaut moins trois, donc la tangente a pour équation y égal moins trois x plus cinq. La différence entre la fonction et cette tangente se factorise miraculeusement : c'est exactement le cube de x moins un. Son signe est celui de x moins un : la courbe est en dessous de la tangente avant un, au-dessus après un, et elle la traverse en un. Nous venons de prouver, sans dérivée seconde, que ce point est un point d'inflexion : les deux lectures, locale et globale, se rejoignent.",
+      "texte": "Différence = (x − 1)³ : la traversée est prouvée.",
+      "ecran": "ex_resolu"
+    },
+    {
+      "id": "p21",
+      "dit": "Exemple : la fonction gaussienne, celle de la courbe en cloche des probabilités, définie par l'exponentielle de moins x au carré. Sa dérivée seconde est le produit d'une exponentielle, toujours positive, par le polynôme quatre x au carré moins deux. Le signe ne dépend donc que de ce polynôme, qui s'annule en moins un sur racine de deux et en un sur racine de deux. La cloche est concave au centre, entre ces deux abscisses, et convexe à l'extérieur : elle possède deux points d'inflexion symétriques, là où la descente de la cloche change de régime.",
+      "texte": "Gaussienne : concave au centre, inflexions en ±1/√2.",
+      "ecran": "gaussienne"
+    },
+    {
+      "id": "p22",
+      "dit": "Dernier exemple calculatoire : la fonction qui à x associe x divisé par x au carré plus un. Sa dérivée seconde, après simplification, a pour numérateur deux x multiplié par x au carré moins trois. Elle s'annule en zéro, en racine de trois et en moins racine de trois, et change de signe en chacun de ces points : la courbe possède trois points d'inflexion. À l'origine, la tangente d'inflexion a pour équation y égal x. Moralité : une même courbe peut changer de courbure plusieurs fois, et seul le tableau de signes de la dérivée seconde les révèle tous.",
+      "texte": "Trois annulations, trois changements de signe, trois inflexions.",
+      "ecran": "rationnelle"
+    },
+    {
+      "id": "p23",
+      "dit": "Application à l'économie : un bénéfice modélisé, en fonction des milliers d'unités produites, par moins x au cube plus douze x au carré plus soixante x, entre zéro et dix. La dérivée première s'annule en dix, et la dérivée seconde y est négative : c'est le maximum. Mais la dérivée seconde, qui vaut six fois quatre moins x, s'annule aussi en quatre, en changeant de signe : c'est un point d'inflexion. Lecture économique : jusqu'à quatre mille unités, la croissance du bénéfice s'accélère ; au-delà, elle ralentit, bien que le bénéfice continue de monter jusqu'à dix mille unités. Le point d'inflexion est le premier signal d'alerte, bien avant le maximum.",
+      "texte": "L'inflexion en 4 annonce le ralentissement avant le max en 10.",
+      "ecran": "optimisation"
+    },
+    {
+      "id": "p24",
+      "dit": "En physique, la même mécanique s'applique au mouvement. Si une fonction donne la position d'un mobile en fonction du temps, sa dérivée première est la vitesse et sa dérivée seconde est l'accélération. Une position convexe signifie une accélération positive, donc une vitesse qui augmente ; une position concave, une vitesse qui diminue. Un point d'inflexion de la trajectoire temporelle marque l'instant où l'accélération s'annule en changeant de signe : le mobile cesse d'accélérer pour commencer à ralentir, ou l'inverse. Et le sommet d'une parabole de chute, où la tangente est horizontale, n'est pas un point d'inflexion : la concavité n'y change pas.",
+      "texte": "Inflexion temporelle : l'accélération change de signe.",
+      "ecran": "physique"
+    },
+    {
+      "id": "p25",
+      "dit": "En économie, la concavité modélise la satiété. Une fonction d'utilité est le plus souvent concave : sa dérivée, l'utilité marginale, décroît, parce que le premier verre d'eau procure bien plus de satisfaction que le dixième. Symétriquement, une fonction convexe garantit une propriété précieuse en optimisation : tout minimum local y est un minimum global. C'est pour cela que les algorithmes d'apprentissage automatique chérissent les fonctions de perte convexes : descendre la pente mène forcément au meilleur point, sans piège.",
+      "texte": "Concave : la satiété. Convexe : le minimum local est global.",
+      "ecran": "economie"
+    },
+    {
+      "id": "p26",
+      "dit": "Trois pièges classiques pour terminer. Premier piège : croire qu'un point d'inflexion a forcément une tangente horizontale. La fonction qui à x associe x au cube plus x a un point d'inflexion à l'origine, avec une tangente de pente un, bien oblique. Deuxième piège, déjà rencontré : annuler la dérivée seconde sans vérifier le changement de signe. Troisième piège : quand la dérivée seconde n'existe pas au point candidat, par exemple pour une fonction définie par morceaux, les critères habituels tombent, et il faut revenir à la définition : étudier directement la position de la courbe par rapport à sa tangente, ou le changement de convexité de part et d'autre.",
+      "texte": "Inflexion ≠ tangente horizontale ; vérifier le signe.",
+      "ecran": "pieges"
+    },
+    {
+      "id": "p27",
+      "dit": "Récapitulons. La tangente en un point a pour équation y égal f prime de a fois x moins a, plus f de a, et la position de la courbe par rapport à cette tangente se lit dans le signe de leur différence. Localement, ce signe est celui de la dérivée seconde au point ; globalement, une fonction est convexe exactement quand sa dérivée seconde garde un signe constant positif, et sa courbe reste alors au-dessus de toutes ses tangentes. Enfin, un point d'inflexion est un point où la dérivée seconde change de signe : la courbe y traverse sa tangente.",
+      "texte": "Tangente, signe de f″, traversée : le trio du cours.",
+      "ecran": "recap"
+    },
+    {
+      "id": "p28",
+      "dit": "Pour conclure, retenez la philosophie de ce chapitre : en analyse, le local détermine le global. Une quantité calculée en un seul point, la dérivée seconde, renseigne sur la forme de la courbe sur un intervalle entier, et un changement de signe ponctuel signale un basculement de régime, en mathématiques comme en économie ou en physique. Gardez la double vision que nous avons construite : le microscope des tangentes pour le détail local, et le télescope de la convexité pour la forme d'ensemble.",
+      "texte": "Le microscope des tangentes, le télescope de la convexité.",
+      "ecran": "cloture"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "La tangente et la position relative de la courbe"
+    },
+    {
+      "debut": "p11",
+      "sous_titre": "Convexité sur un intervalle et points d'inflexion",
+      "pont": {
+        "texte": "Partie 2 : de la position locale à la convexité globale.",
+        "dit": "Partie deux : la convexité et les points d'inflexion. Nous généralisons la lecture locale à un intervalle entier : définition géométrique par les cordes, inégalité de Jensen, critère de la dérivée seconde, puis définition rigoureuse du point d'inflexion et la méthode pour le débusquer sans tomber dans le piège de la puissance quatre."
+      }
+    },
+    {
+      "debut": "p20",
+      "sous_titre": "Exemples résolus, applications et pièges classiques",
+      "pont": {
+        "texte": "Partie 3 : exemples résolus pas à pas et applications.",
+        "dit": "Partie trois : la pratique. Nous résoudrons des études complètes pas à pas, une cubique à inflexion horizontale, une différence qui se factorise en cube parfait, la gaussienne et une fonction rationnelle à trois inflexions, puis nous appliquerons la convexité à l'optimisation d'un bénéfice, à la physique du mouvement et aux pièges classiques des énoncés."
+      }
+    }
+  ]
+}

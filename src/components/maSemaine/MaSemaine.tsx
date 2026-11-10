@@ -450,7 +450,7 @@ export function MaSemaine() {
     pied =
       carte === 'ratees' ? (
         <>
-          <BoutonRecap icone={RotateCw} libelle={t('maSemaine.refaireErreurs')} onPress={sortir('refaire_erreurs', () => router.push('/mission/erreurs'))} />
+          <BoutonRecap icone={RotateCw} libelle={t('maSemaine.refaireErreurs')} onPress={sortir('refaire_erreurs', () => router.push({ pathname: '/erreurs-semaine', params: { semaine } }))} />
           {suite('secondaire')}
         </>
       ) : carte === 'credits' ? (

@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { StyleSheet, Text, View, type GestureResponderEvent } from 'react-native';
+import { useState, useSyncExternalStore } from 'react';
+import { Pressable, StyleSheet, Text, View, type GestureResponderEvent } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { definirTaille, TAILLES, type TailleTexte } from '@/services/affichage';
+import { abonnerAffichage, definirTaille, definirTailleAuto, lireAffichage, TAILLES, type TailleTexte } from '@/services/affichage';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
@@ -21,13 +21,16 @@ export function cranPour(x: number, largeur: number, n = TAILLES.length): number
 export function ReglageTailleTexte() {
   const { t } = useTraduction();
   const { theme, taille } = useTheme();
+  const reglage = useSyncExternalStore(abonnerAffichage, lireAffichage, lireAffichage).taille;
+  const auto = reglage === 'auto';
   const [largeur, setLargeur] = useState(0);
   const index = Math.max(0, TAILLES.indexOf(taille as TailleTexte));
 
+  // Toucher un cran fixe la taille : le réglage passe en manuel et garde cette valeur.
   const choisir = (i: number) => void definirTaille(TAILLES[i]);
   const depuis = (e: GestureResponderEvent) => {
     const i = cranPour(e.nativeEvent.locationX, largeur);
-    if (TAILLES[i] !== taille) choisir(i);
+    if (auto || TAILLES[i] !== taille) choisir(i);
   };
 
   const position = largeur ? (index / (TAILLES.length - 1)) * largeur : 0;
@@ -35,7 +38,18 @@ export function ReglageTailleTexte() {
     <View style={styles.zone}>
       <View style={styles.entete}>
         <Text style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{t('reglages.taille')}</Text>
-        <Text style={[typo.donnee, { color: theme.texte.secondaire }]}>{t('reglages.tailleValeur', { n: TAILLES[index] })}</Text>
+        <Text style={[typo.donnee, { color: theme.texte.secondaire }]}>
+          {auto ? t('reglages.tailleAuto', { n: taille }) : t('reglages.tailleValeur', { n: TAILLES[index] })}
+        </Text>
+        <Pressable
+          accessibilityRole="radio"
+          accessibilityState={{ checked: auto }}
+          accessibilityLabel={t('reglages.tailleAutoBouton')}
+          onPress={() => void definirTailleAuto()}
+          style={[styles.auto, { borderColor: theme.bord.fort, backgroundColor: auto ? theme.fond.inverse : theme.fond.surface }]}
+        >
+          <Text style={[typo.boutonPetit, { color: auto ? theme.texte.inverse : theme.texte.principal }]}>{t('reglages.tailleAutoBouton')}</Text>
+        </Pressable>
       </View>
       <View style={styles.ligne}>
         <Text style={[styles.petitA, { color: theme.texte.principal }]}>A</Text>
@@ -75,6 +89,8 @@ export function ReglageTailleTexte() {
 
 const styles = StyleSheet.create({
   zone: { gap: espace[3] },
+  // Bouton « Auto » : même gabarit que les choix du réglage (cadre 2, rayon s), à côté de la valeur.
+  auto: { minHeight: 32, paddingHorizontal: espace[3], justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   flex: { flex: 1 },
   ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },

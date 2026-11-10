@@ -1,0 +1,319 @@
+{
+ "cours": 5943,
+ "titre": "Notion d'avancement de réaction : tableaux et applications",
+ "matiere": "Chimie",
+ "lecons": [
+  4729,
+  4730,
+  4731,
+  4732,
+  4733,
+  4735,
+  4736
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Stœchiométrie",
+   "titre": "L'avancement de réaction",
+   "sous": "Tableaux d'avancement et applications",
+   "anim": {
+    "nom": "tableau_avancement_fig",
+    "hauteur": 250
+   }
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "La définition",
+   "tex": "\\xi \\text{ : avancement de réaction, en mol}",
+   "note": "L'avancement, noté ξ (ksi), quantifie l'évolution d'une réaction chimique : il représente la quantité de réaction qui s'est produite à un instant donné. Il est toujours positif et augmente au cours de la réaction."
+  },
+  "combustion": {
+   "type": "etape",
+   "kicker": "Un premier exemple",
+   "titre": "La combustion du méthane",
+   "tex": [
+    "\\mathrm{CH_4 + 2\\,O_2 \\longrightarrow CO_2 + 2\\,H_2O}",
+    "\\xi = 1\\ \\text{mol} \\Rightarrow \\text{une mole de } \\mathrm{CH_4} \\text{ a réagi}",
+    "\\xi = 0{,}5\\ \\text{mol} \\Rightarrow \\text{la moitié de la réaction s'est déroulée}"
+   ]
+  },
+  "relations": {
+   "type": "etape",
+   "kicker": "Le calcul de l'avancement",
+   "titre": "Les quantités à un instant t",
+   "tex": [
+    "\\mathrm{A + 2\\,B \\longrightarrow 3\\,C}",
+    "n_A = n_{A,0} - \\xi \\qquad n_B = n_{B,0} - 2\\xi",
+    "n_C = 3\\xi"
+   ]
+  },
+  "exemple_xi": {
+   "type": "etape",
+   "kicker": "Le calcul de l'avancement",
+   "titre": "Un premier calcul, pas à pas",
+   "tex": [
+    "n_{A,0} = 2\\ \\text{mol} \\qquad n_A = 1\\ \\text{mol}",
+    "n_A = n_{A,0} - \\xi \\Rightarrow 1 = 2 - \\xi",
+    "\\xi = 1\\ \\text{mol} \\qquad n_B = 4 - 2 = 2\\ \\text{mol} \\qquad n_C = 3\\ \\text{mol}"
+   ]
+  },
+  "generale": {
+   "type": "etape",
+   "kicker": "La relation générale",
+   "titre": "Les nombres stœchiométriques signés",
+   "tex": [
+    "\\mathrm{a\\,A + b\\,B \\rightleftharpoons c\\,C + d\\,D}",
+    "n_i(t) = n_i(0) - \\nu_i\\,\\xi \\quad \\text{(réactifs)}",
+    "n_i(t) = n_i(0) + \\nu_i\\,\\xi \\quad \\text{(produits)}"
+   ]
+  },
+  "extensive": {
+   "type": "phrase",
+   "kicker": "Un point clé",
+   "texte": "L'avancement est une grandeur extensive : si l'on double les quantités de réactifs, l'avancement double lui aussi au même instant.",
+   "anim": {
+    "nom": "courbe_avancement_fig",
+    "hauteur": 190
+   }
+  },
+  "tableau_structure": {
+   "type": "etape",
+   "kicker": "Le tableau d'avancement",
+   "titre": "La structure du tableau",
+   "tex": [
+    "\\text{État initial : } n_{A,i},\\ n_{B,i},\\ n_{C,i},\\ n_{D,i}",
+    "\\text{Variation : } -a\\xi,\\ -b\\xi,\\ +c\\xi,\\ +d\\xi",
+    "\\text{État final : } n_{A,i} - a\\xi,\\ \\dots,\\ n_{D,i} + d\\xi"
+   ]
+  },
+  "tableau_ammoniac": {
+   "type": "etape",
+   "kicker": "Le tableau d'avancement",
+   "titre": "La synthèse de l'ammoniac",
+   "tex": [
+    "\\mathrm{N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3}",
+    "n(\\mathrm{N_2}) = 2 - x \\qquad n(\\mathrm{H_2}) = 6 - 3x",
+    "n(\\mathrm{NH_3}) = 2x"
+   ]
+  },
+  "limitant": {
+   "type": "etape",
+   "kicker": "Réactif limitant",
+   "titre": "L'avancement maximal",
+   "tex": [
+    "2 - x_{max} = 0 \\Rightarrow x_{max} = 2\\ \\text{mol}",
+    "n(\\mathrm{NH_3}) = 2\\,x_{max} = 4\\ \\text{mol}",
+    "n(\\mathrm{H_2}) = 6 - 3\\,x_{max} = 0\\ \\text{mol}"
+   ]
+  },
+  "exces": {
+   "type": "phrase",
+   "kicker": "Réactif limitant",
+   "texte": "Avec une mole de diazote et quatre moles de dihydrogène, le diazote reste le réactif limitant : il se forme deux moles d'ammoniac et il reste une mole de dihydrogène en excès."
+  },
+  "cas_equilibre": {
+   "type": "etape",
+   "kicker": "Cas concret",
+   "titre": "Un équilibre mesuré",
+   "tex": [
+    "n(\\mathrm{NH_3}) = 2x_f = 0{,}5\\ \\text{mol}",
+    "x_f = 0{,}25\\ \\text{mol}",
+    "n(\\mathrm{N_2}) = 0{,}75\\ \\text{mol} \\qquad n(\\mathrm{H_2}) = 2{,}25\\ \\text{mol}"
+   ]
+  },
+  "cas_combustion": {
+   "type": "etape",
+   "kicker": "Cas concret",
+   "titre": "Une combustion limitée par un réactif",
+   "tex": [
+    "\\mathrm{CH_4 + 2\\,O_2 \\longrightarrow CO_2 + 2\\,H_2O}",
+    "x_{max} = 1\\ \\text{mol} \\quad \\text{(le méthane est limitant)}",
+    "n(\\mathrm{O_2}) = 1\\ \\text{mol} \\qquad n(\\mathrm{CO_2}) = 1\\ \\text{mol}",
+    "n(\\mathrm{H_2O}) = 2\\ \\text{mol}"
+   ]
+  },
+  "rendement": {
+   "type": "formule",
+   "kicker": "Le rendement",
+   "tex": "\\eta = \\frac{n_{\\text{obtenue}}}{n_{\\text{théorique}}}",
+   "note": "Le tableau permet de calculer le rendement d'une réaction en comparant la quantité de produit obtenue à la quantité théorique. Pour l'estérification, de rendement soixante pour cent, une mole d'acide et une mole d'éthanol donnent zéro virgule six mole d'acétate d'éthyle."
+  },
+  "avance_quelconque": {
+   "type": "etape",
+   "kicker": "Le tableau à l'envers",
+   "titre": "Retrouver l'avancement depuis un produit",
+   "tex": [
+    "\\mathrm{A + B \\longrightarrow C}",
+    "n_{A,0} = 2\\ \\text{mol} \\qquad n_{B,0} = 3\\ \\text{mol}",
+    "n_C = x = 1\\ \\text{mol}"
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode complète",
+   "etapes": [
+    "Écrire l'équation équilibrée",
+    "Repérer les quantités connues et inconnues",
+    "Construire le tableau d'avancement",
+    "Relier x à une quantité connue, puis calculer",
+    "Vérifier la cohérence des résultats"
+   ]
+  },
+  "exercice_corrige": {
+   "type": "etape",
+   "kicker": "Exercice corrigé",
+   "titre": "L'ammoniac, une mole formée",
+   "tex": [
+    "n(\\mathrm{NH_3}) = 2x = 1\\ \\text{mol} \\Rightarrow x = 0{,}5\\ \\text{mol}",
+    "n(\\mathrm{N_2}) = 2 - 0{,}5 = 1{,}5\\ \\text{mol}",
+    "n(\\mathrm{H_2}) = 6 - 3 \\times 0{,}5 = 4{,}5\\ \\text{mol}"
+   ]
+  },
+  "pieges": {
+   "type": "recap",
+   "kicker": "Les pièges à éviter",
+   "etapes": [
+    "Ne pas oublier les coefficients stœchiométriques",
+    "Ne pas confondre quantités initiales et finales",
+    "L'avancement mesure la progression, pas une quantité d'espèce",
+    "Identifier le réactif limitant avant l'avancement maximal"
+   ]
+  },
+  "conclusion": {
+   "type": "phrase",
+   "kicker": "Pour conclure",
+   "texte": "L'avancement et son tableau : un outil pour suivre, prédire et vérifier n'importe quelle réaction chimique."
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours sur l'avancement de réaction et les tableaux d'avancement. Nous commencerons par définir l'avancement et apprendre à le calculer, puis nous construirons le tableau d'avancement, ligne par ligne. Nous l'appliquerons ensuite à des cas concrets : réactif limitant, avancement maximal et rendement. Nous terminerons par la méthode complète et les pièges à éviter.",
+   "texte": "L'avancement de réaction : définition, tableaux et applications."
+  },
+  {
+   "id": "p02",
+   "ecran": "definition",
+   "dit": "L'avancement de réaction, noté ksi, quantifie l'évolution d'une réaction chimique : c'est la quantité de réaction qui s'est produite à un instant donné. Son unité est la mole, il est toujours positif et il augmente au cours de la réaction.",
+   "texte": "L'avancement ξ : la quantité de réaction écoulée, en moles."
+  },
+  {
+   "id": "p03",
+   "ecran": "combustion",
+   "dit": "Prenons la combustion du méthane : une mole de méthane réagit avec deux moles de dioxygène pour donner une mole de dioxyde de carbone et deux moles d'eau. Un avancement d'une mole signifie qu'une mole de méthane a réagi ; un avancement d'une demi-mole, que la moitié de la réaction s'est déroulée.",
+   "texte": "Combustion du méthane : lire l'avancement sur l'équation."
+  },
+  {
+   "id": "p04",
+   "ecran": "relations",
+   "dit": "Pour la réaction A plus deux B donne trois C, les relations sont directes : la quantité de A diminue de ksi, celle de B diminue de deux ksi, et celle de C augmente de trois ksi. Les réactifs portent le signe moins, les produits le signe plus.",
+   "texte": "Les quantités à un instant t, en fonction de ξ."
+  },
+  {
+   "id": "p05",
+   "ecran": "exemple_xi",
+   "dit": "Exemple : on part de deux moles de A et de quatre moles de B, et à un instant donné il reste une mole de A. Alors un égale deux moins ksi, donc ksi vaut une mole. On en déduit qu'il reste deux moles de B et qu'il s'est formé trois moles de C.",
+   "texte": "Un premier calcul : retrouver ξ depuis la quantité de A."
+  },
+  {
+   "id": "p06",
+   "ecran": "generale",
+   "dit": "Pour une réaction générale, chaque quantité s'écrit à partir de la quantité initiale et du nombre stœchiométrique : moins nu fois ksi pour un réactif, plus nu fois ksi pour un produit. Le nombre stœchiométrique est donc négatif pour les réactifs et positif pour les produits.",
+   "texte": "La relation générale, avec les nombres stœchiométriques signés."
+  },
+  {
+   "id": "p07",
+   "ecran": "extensive",
+   "dit": "Retenez aussi que l'avancement est une grandeur extensive : il dépend de la quantité de matière présente. La même réaction, menée avec des quantités doublées, présente un avancement double au même instant.",
+   "texte": "L'avancement est une grandeur extensive."
+  },
+  {
+   "id": "p08",
+   "ecran": "tableau_structure",
+   "dit": "Le tableau d'avancement organise le suivi : une ligne par espèce chimique, avec l'état initial en moles, le nombre stœchiométrique signé, la variation en fonction de l'avancement, et l'état final, somme de l'état initial et de la variation. Souvent, la quantité initiale d'un produit est nulle.",
+   "texte": "Le tableau d'avancement : initial, variation, final."
+  },
+  {
+   "id": "p09",
+   "ecran": "tableau_ammoniac",
+   "dit": "Exemple : on introduit deux moles de diazote et six moles de dihydrogène pour synthétiser l'ammoniac. Dans le tableau, le diazote passe de deux à deux moins x, le dihydrogène de six à six moins trois x, et l'ammoniac formé vaut deux x.",
+   "texte": "Le tableau de la synthèse de l'ammoniac."
+  },
+  {
+   "id": "p10",
+   "ecran": "limitant",
+   "dit": "Si la réaction est complète, le réactif limitant est celui qui disparaît le premier : ici, le diazote. Deux moins l'avancement maximal égale zéro donne un avancement maximal de deux moles, donc quatre moles d'ammoniac formées, et le dihydrogène est lui aussi entièrement consommé.",
+   "texte": "Réactif limitant et avancement maximal."
+  },
+  {
+   "id": "p11",
+   "ecran": "exces",
+   "dit": "Autre cas : une mole de diazote et quatre moles de dihydrogène. Le diazote est encore le réactif limitant : la réaction s'arrête à une mole d'avancement, il se forme deux moles d'ammoniac et il reste une mole de dihydrogène en excès.",
+   "texte": "Un réactif en excès : le dihydrogène."
+  },
+  {
+   "id": "p12",
+   "ecran": "cas_equilibre",
+   "dit": "Cas concret : on introduit une mole de diazote et trois moles de dihydrogène, et à l'équilibre on mesure une demi-mole d'ammoniac. Deux fois l'avancement final égale zéro virgule cinq, donc l'avancement final vaut zéro virgule vingt-cinq mole. Il reste alors zéro virgule soixante-quinze mole de diazote et deux virgule vingt-cinq moles de dihydrogène.",
+   "texte": "Cas concret : un équilibre mesuré."
+  },
+  {
+   "id": "p13",
+   "ecran": "cas_combustion",
+   "dit": "Deuxième cas : une mole de méthane et trois moles de dioxygène. Le méthane est le réactif limitant : l'avancement maximal vaut une mole. À la fin, il reste une mole de dioxygène, et il s'est formé une mole de dioxyde de carbone et deux moles d'eau.",
+   "texte": "Cas concret : une combustion limitée."
+  },
+  {
+   "id": "p14",
+   "ecran": "rendement",
+   "dit": "Le tableau permet enfin les calculs de rendement, en comparant la quantité de produit obtenue à la quantité théorique. Exemple de la leçon : l'estérification, de rendement soixante pour cent, donne, à partir d'une mole d'acide acétique et d'une mole d'éthanol, zéro virgule six mole d'acétate d'éthyle.",
+   "texte": "Le rendement : quantité obtenue contre quantité théorique."
+  },
+  {
+   "id": "p15",
+   "ecran": "avance_quelconque",
+   "dit": "Le tableau fonctionne aussi à l'envers : pour la réaction A plus B donne C, avec deux moles de A et trois moles de B au départ, si l'on mesure une mole de C formée, alors l'avancement vaut exactement une mole.",
+   "texte": "Retrouver l'avancement depuis la quantité de produit."
+  },
+  {
+   "id": "p16",
+   "ecran": "methode",
+   "dit": "Voici la méthode complète, en cinq temps : écrire l'équation équilibrée, repérer les quantités connues et inconnues, construire le tableau d'avancement, relier l'avancement à une quantité connue pour le calculer, et enfin vérifier la cohérence des résultats.",
+   "texte": "La méthode en cinq temps."
+  },
+  {
+   "id": "p17",
+   "ecran": "exercice_corrige",
+   "dit": "Exercice corrigé : deux moles de diazote, six moles de dihydrogène, et l'on mesure une mole d'ammoniac à l'équilibre. Deux fois l'avancement égale un, donc l'avancement vaut une demi-mole. Il reste alors une mole et demie de diazote et quatre moles et demie de dihydrogène : des quantités positives et cohérentes.",
+   "texte": "Exercice corrigé : l'ammoniac à l'équilibre."
+  },
+  {
+   "id": "p18",
+   "ecran": "pieges",
+   "dit": "Quatre pièges classiques à éviter : oublier les coefficients stœchiométriques, confondre les quantités initiales et celles de l'équilibre, prendre l'avancement pour la quantité d'une espèce, et calculer l'avancement maximal sans avoir identifié le réactif limitant.",
+   "texte": "Les quatre pièges classiques."
+  },
+  {
+   "id": "p19",
+   "ecran": "conclusion",
+   "dit": "Vous maîtrisez maintenant l'outil complet : définir l'avancement, construire son tableau, trouver le réactif limitant et l'avancement maximal, et traiter les équilibres comme les rendements. À vous de pratiquer sur d'autres réactions pour ancrer la méthode.",
+   "texte": "À vous de pratiquer."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'avancement et le tableau d'avancement"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Cas concrets, méthode et pièges",
+   "pont": {
+    "dit": "Partie deux : les cas concrets et la méthode. Après la construction du tableau, place à la pratique : équilibres mesurés, réactif limitant, rendement, puis la méthode complète et les pièges à éviter.",
+    "texte": "Partie 2 : cas concrets, méthode et pièges."
+   }
+  }
+ ]
+}

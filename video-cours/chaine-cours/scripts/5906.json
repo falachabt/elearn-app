@@ -1,0 +1,406 @@
+{
+ "cours": 5906,
+ "ecrans": {
+  "application": {
+   "etapes": [
+    "Flash photographique : charge lente, décharge brutale du condensateur",
+    "Temporisation : un retard réglé par la constante de temps",
+    "Filtres RC et RL : la constante de temps fixe la fréquence de coupure",
+    "Relais : temps de réponse commandé par τ = L/R de la bobine"
+   ],
+   "kicker": "Applications",
+   "type": "recap"
+  },
+  "bobine": {
+   "kicker": "La bobine, garde du courant",
+   "texte": "La bobine stocke l'énergie magnétique et s'oppose à toute variation du courant.",
+   "type": "phrase",
+   "anim": {
+    "nom": "circuit_rl",
+    "hauteur": 280
+   }
+  },
+  "bobine_loi": {
+   "kicker": "La loi de la bobine",
+   "note": "L : inductance en henrys (H) · di/dt : variation du courant par unité de temps",
+   "tex": "v_L(t) = L\\, \\frac{di}{dt}",
+   "titre": "Une tension proportionnelle à la variation du courant",
+   "type": "formule"
+  },
+  "canonique": {
+   "kicker": "Équations différentielles",
+   "note": "v : la grandeur suivie (tension ou courant) · f(t) : excitation imposée par la source",
+   "tex": "\\tau\\, \\frac{dv}{dt} + v = f(t)",
+   "titre": "La même équation pour tous ces circuits",
+   "type": "formule"
+  },
+  "charge_eq": {
+   "kicker": "Équation différentielle",
+   "note": "v_C : tension aux bornes du condensateur · E : tension de la source",
+   "tex": "\\frac{d v_C}{dt} + \\frac{1}{RC}\\, v_C = \\frac{E}{RC}",
+   "titre": "La loi des mailles, pendant la charge",
+   "type": "formule"
+  },
+  "charge_sol": {
+   "kicker": "La charge du condensateur",
+   "note": "Exponentielle croissante : nulle à t = 0, elle tend vers E sans jamais le dépasser",
+   "tex": "v_C(t) = E\\left(1 - e^{-t/\\tau}\\right)",
+   "titre": "La tension monte en exponentielle",
+   "type": "formule",
+   "anim": {
+    "nom": "charge",
+    "hauteur": 280
+   }
+  },
+  "cinq_tau": {
+   "kicker": "La règle des cinq tau",
+   "texte": "Après cinq constantes de temps, le transitoire est considéré comme terminé.",
+   "type": "phrase",
+   "anim": {
+    "nom": "charge",
+    "hauteur": 240
+   }
+  },
+  "circuit_rc": {
+   "kicker": "Le circuit RC série",
+   "texte": "Une source, une résistance et un condensateur en série : le terrain d'étude de la charge.",
+   "type": "phrase",
+   "anim": {
+    "nom": "circuit_rc",
+    "hauteur": 280
+   }
+  },
+  "composants": {
+   "etapes": [
+    "Condensateur : il stocke l'énergie électrostatique — sa tension ne varie jamais d'un coup",
+    "Bobine : elle stocke l'énergie magnétique — son courant ne varie jamais d'un coup",
+    "Résistance : elle limite le courant et dissipe l'énergie en chaleur"
+   ],
+   "kicker": "Les deux responsables",
+   "type": "recap"
+  },
+  "decharge": {
+   "kicker": "La décharge du condensateur",
+   "note": "V₀ : tension initiale · à t = τ, il reste 36,8 % de la tension de départ",
+   "tex": "v_C(t) = V_0\\, e^{-t/\\tau}",
+   "titre": "La tension s'éteint en exponentielle",
+   "type": "formule",
+   "anim": {
+    "nom": "decharge",
+    "hauteur": 280
+   }
+  },
+  "ex_dech_res": {
+   "kicker": "Exemple · décharge",
+   "tex": "v_C(\\tau) = 12\\, e^{-1} \\approx 4{,}4\\ \\text{V}",
+   "titre": "La tension après une constante de temps",
+   "type": "formule"
+  },
+  "ex_rc": {
+   "kicker": "Exemple",
+   "tex": [
+    "R = 1\\ \\text{k}\\Omega",
+    "C = 10\\ \\mu\\text{F}",
+    "E = 12\\ \\text{V}",
+    "\\tau = RC = 10\\ \\text{ms}"
+   ],
+   "titre": "Les données de l'exercice du cours",
+   "type": "etape"
+  },
+  "ex_rc_res": {
+   "kicker": "Exemple · résultat",
+   "tex": "v_C(\\tau) = 12\\,(1 - e^{-1}) \\approx 7{,}6\\ \\text{V}",
+   "titre": "La tension après une constante de temps",
+   "type": "formule"
+  },
+  "ex_rl": {
+   "kicker": "Exemple",
+   "tex": [
+    "R = 10\\ \\Omega",
+    "L = 2\\ \\text{H}",
+    "E = 12\\ \\text{V}",
+    "\\tau = \\frac{L}{R} = 0{,}2\\ \\text{s}"
+   ],
+   "titre": "Les données de l'exercice du cours",
+   "type": "etape"
+  },
+  "ex_rl_res": {
+   "kicker": "Exemple · résultat",
+   "tex": "i(\\tau) = 1{,}2\\,(1 - e^{-1}) \\approx 0{,}76\\ \\text{A}",
+   "titre": "Le courant après une constante de temps",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Un régime transitoire : la transition entre deux états stables, ni instantanée ni éternelle.",
+   "type": "phrase"
+  },
+  "methode": {
+   "etapes": [
+    "Solution homogène : A · e^(−t/τ), la réponse libre du circuit",
+    "Solution particulière : le régime permanent, quand le transitoire s'est éteint",
+    "Condition initiale : continuité de la tension du condensateur, ou du courant de la bobine",
+    "Autre outil, pour les circuits plus durs : la transformée de Laplace"
+   ],
+   "kicker": "Méthode de résolution",
+   "type": "recap"
+  },
+  "recap": {
+   "etapes": [
+    "Constante de temps : τ = RC (condensateur), τ = L/R (bobine)",
+    "Charge : (1 − e^(−t/τ)) — décharge et rupture : e^(−t/τ)",
+    "À t = τ : 63,2 % atteint, ou 36,8 % restant ; transitoire terminé vers 5τ",
+    "Continuité : la tension d'un condensateur et le courant d'une bobine ne sautent jamais"
+   ],
+   "kicker": "À retenir",
+   "type": "recap",
+   "anim": {
+    "nom": "charge",
+    "hauteur": 100
+   }
+  },
+  "rl_eq": {
+   "kicker": "Circuit RL série",
+   "note": "Le courant ne saute pas : il part de zéro et s'établit progressivement",
+   "tex": "E = R\\, i + L\\, \\frac{di}{dt}",
+   "titre": "La loi des mailles, à la fermeture",
+   "type": "formule",
+   "anim": {
+    "nom": "circuit_rl",
+    "hauteur": 260
+   }
+  },
+  "rl_sol": {
+   "kicker": "Établissement du courant",
+   "note": "Même forme que la charge du condensateur : le facteur (1 − e^(−t/τ))",
+   "tex": "i(t) = \\frac{E}{R}\\left(1 - e^{-t/\\tau}\\right)",
+   "titre": "Le courant monte en exponentielle",
+   "type": "formule",
+   "anim": {
+    "nom": "circuit_rl",
+    "hauteur": 260
+   }
+  },
+  "rupture": {
+   "kicker": "Rupture du courant",
+   "note": "C'est cette décroissance lente qui rend les ruptures de courant inductif délicates : étincelles à l'ouverture",
+   "tex": "i(t) = \\frac{E}{R}\\, e^{-t/\\tau}",
+   "titre": "Le courant s'éteint en exponentielle",
+   "type": "formule",
+   "anim": {
+    "nom": "decharge",
+    "hauteur": 260
+   }
+  },
+  "tau_rc": {
+   "kicker": "Constante de temps",
+   "note": "R en ohms, C en farads, τ en secondes · plus τ est petit, plus la charge est rapide",
+   "tex": "\\tau = RC",
+   "titre": "Le produit qui règle la rapidité",
+   "type": "formule"
+  },
+  "tau_rl": {
+   "kicker": "Constante de temps RL",
+   "note": "L en henrys, R en ohms, τ en secondes · augmenter R, au contraire, accélère l'établissement",
+   "tex": "\\tau = \\frac{L}{R}",
+   "titre": "Le quotient qui règle la rapidité",
+   "type": "formule"
+  },
+  "titre": {
+   "kicker": "Physique · Terminale",
+   "sous": "Charge et décharge du condensateur, établissement et rupture du courant dans une bobine",
+   "titre": "Les régimes transitoires",
+   "type": "titre",
+   "anim": {
+    "nom": "charge",
+    "hauteur": 250
+   }
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le condensateur : charge, décharge et constante de temps"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : la bobine. Établissement et rupture du courant, la méthode de résolution des équations différentielles, et les applications.",
+    "texte": "Partie 2 : la bobine, la méthode et les applications."
+   },
+   "sous_titre": "La bobine et les applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré aux régimes transitoires : comment un circuit réagit, dans le temps, quand on bascule un interrupteur.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Les régimes transitoires : la réponse des circuits dans le temps."
+  },
+  {
+   "dit": "Quand on ferme ou qu'on ouvre un interrupteur, un circuit ne passe pas instantanément d'un état stable à un autre. Pendant un temps limité, les tensions et les courants évoluent : c'est le régime transitoire, la transition entre deux régimes permanents.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Ni instantané, ni éternel : le temps de la transition."
+  },
+  {
+   "dit": "Deux composants sont à l'origine de ces transitions : le condensateur, qui stocke l'énergie sous forme électrostatique, et la bobine, qui la stocke sous forme magnétique. Chacun impose sa continuité : la tension d'un condensateur ne saute jamais, le courant d'une bobine non plus.",
+   "ecran": "composants",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Condensateur et bobine : les deux composants qui stockent l'énergie."
+  },
+  {
+   "dit": "Commençons par le condensateur. On branche en série une source de tension continue, une résistance et un condensateur, puis on ferme l'interrupteur. La résistance limite le courant : le condensateur ne se charge pas d'un coup, mais progressivement.",
+   "ecran": "circuit_rc",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Le circuit série qui charge le condensateur."
+  },
+  {
+   "dit": "La loi des mailles traduit ce comportement en une équation différentielle du premier ordre : la dérivée de la tension du condensateur, plus cette tension divisée par le produit de la résistance et de la capacité, égale la tension de la source divisée par ce même produit.",
+   "ecran": "charge_eq",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "L'équation différentielle de la charge."
+  },
+  {
+   "dit": "Sa résolution donne la loi de charge : la tension du condensateur part de zéro et croît selon une exponentielle, pour tendre vers la tension de la source. C'est la courbe que tout élève doit reconnaître au premier coup d'œil.",
+   "ecran": "charge_sol",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "La loi de charge : une exponentielle croissante."
+  },
+  {
+   "dit": "Le produit de la résistance par la capacité fixe la rapidité de cette charge : c'est la constante de temps, notée tau. Au bout d'un temps égal à tau, la tension a déjà atteint soixante-trois virgule deux pour cent de sa valeur finale.",
+   "ecran": "tau_rc",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "La constante de temps : tau égale R fois C."
+  },
+  {
+   "dit": "Exemple, tiré des exercices du cours. Une résistance de un kilo-ohm, un condensateur de dix microfarads et une source de douze volts. On calcule d'abord la constante de temps.",
+   "ecran": "ex_rc",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Exemple : les données du circuit de charge."
+  },
+  {
+   "dit": "La constante de temps vaut dix millisecondes. Au bout de ces dix millisecondes, la tension aux bornes du condensateur atteint environ sept virgule six volts, soit soixante-trois virgule deux pour cent des douze volts de la source.",
+   "ecran": "ex_rc_res",
+   "id": "p09",
+   "pause_apres": 0.7,
+   "texte": "Résultat : environ 7,6 V après 10 ms."
+  },
+  {
+   "dit": "Chargeons le condensateur, puis débranchons la source et relions-le à la seule résistance. Il se décharge selon une exponentielle décroissante : sa tension part de sa valeur initiale et s'éteint progressivement, avec la même constante de temps.",
+   "ecran": "decharge",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "La décharge : une exponentielle décroissante."
+  },
+  {
+   "dit": "Même circuit, en décharge cette fois : le condensateur, chargé à douze volts, est relié à la résistance. Au bout de dix millisecondes, une constante de temps, sa tension est tombée à environ quatre virgule quatre volts.",
+   "ecran": "ex_dech_res",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Résultat : environ 4,4 V après 10 ms de décharge."
+  },
+  {
+   "dit": "Une règle pratique pour finir : après cinq constantes de temps, le régime transitoire est considéré comme terminé. Le condensateur est chargé à plus de quatre-vingt-dix-neuf pour cent, ou déchargé à moins de un pour cent. La durée d'un transitoire vaut donc, en pratique, cinq tau.",
+   "ecran": "cinq_tau",
+   "id": "p12",
+   "pause_apres": 0.7,
+   "texte": "Cinq tau : la durée pratique d'un transitoire."
+  },
+  {
+   "dit": "Passons à la bobine. Elle stocke l'énergie sous forme magnétique et s'oppose à toute variation du courant qui la traverse : quand on veut faire bondir le courant, elle réagit et le freine. C'est l'inertie du courant.",
+   "ecran": "bobine",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "La bobine : l'inertie du courant."
+  },
+  {
+   "dit": "Cette opposition se lit dans sa loi : la tension aux bornes d'une bobine est proportionnelle à la vitesse de variation du courant. Si le courant veut changer vite, la tension aux bornes de la bobine devient grande.",
+   "ecran": "bobine_loi",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "La loi de la bobine : v = L di/dt."
+  },
+  {
+   "dit": "Brancheons en série une source, une résistance et une bobine, et fermons l'interrupteur. La loi des mailles donne l'équation différentielle du courant : la source alimente la résistance et la bobine ensemble.",
+   "ecran": "rl_eq",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "L'équation différentielle de l'établissement."
+  },
+  {
+   "dit": "La solution a la même allure que la charge du condensateur : le courant croît selon une exponentielle et tend vers sa valeur permanente, le quotient de la tension de la source par la résistance.",
+   "ecran": "rl_sol",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "L'établissement du courant : une exponentielle croissante."
+  },
+  {
+   "dit": "La constante de temps change de formule : pour une bobine, c'est le quotient de l'inductance par la résistance. Au bout d'un temps égal à tau, le courant atteint soixante-trois virgule deux pour cent de sa valeur finale. Plus l'inductance est grande, plus l'établissement est lent.",
+   "ecran": "tau_rl",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "La constante de temps : tau égale L sur R."
+  },
+  {
+   "dit": "Exemple, tiré du cours. Une résistance de dix ohms, une inductance de deux henrys et une source de douze volts. On calcule la constante de temps, puis la valeur finale du courant.",
+   "ecran": "ex_rl",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Exemple : les données du circuit RL."
+  },
+  {
+   "dit": "La constante de temps vaut zéro virgule deux seconde, et le courant final un virgule deux ampère. Au bout de zéro virgule deux seconde, le courant atteint donc environ zéro virgule soixante-seize ampère.",
+   "ecran": "ex_rl_res",
+   "id": "p19",
+   "pause_apres": 0.7,
+   "texte": "Résultat : environ 0,76 A après 0,2 s."
+  },
+  {
+   "dit": "Symétriquement, quand on coupe l'alimentation d'un circuit où le courant est établi dans une bobine, le courant ne s'annule pas d'un coup : l'énergie magnétique stockée se dissipe dans la résistance, et le courant décroît exponentiellement, avec la même constante de temps.",
+   "ecran": "rupture",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "La rupture : une exponentielle décroissante."
+  },
+  {
+   "dit": "Tous ces circuits obéissent à la même équation canonique : tau fois la dérivée de la grandeur, plus la grandeur elle-même, égale le terme d'excitation. C'est elle qu'on résout, pour un condensateur comme pour une bobine.",
+   "ecran": "canonique",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Une seule forme d'équation pour tous ces transitoires."
+  },
+  {
+   "dit": "La méthode de résolution tient en trois temps. On cherche d'abord la solution homogène, une exponentielle décroissante. On y ajoute la solution particulière, qui n'est autre que le régime permanent. Et la constante se règle sur la condition initiale, grâce à la continuité de la tension du condensateur ou du courant de la bobine.",
+   "ecran": "methode",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Homogène plus particulière, constante fixée par la condition initiale."
+  },
+  {
+   "dit": "Ces transitoires ne sont pas qu'une affaire de calculs. Le flash d'un appareil photo charge lentement son condensateur, puis le décharge d'un coup dans la lampe. Les temporisations règlent leurs retards sur la constante de temps, les filtres coupent les fréquences grâce à elle, et le temps de réponse d'un relais dépend de la constante de temps de sa bobine.",
+   "ecran": "application",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Flash, temporisation, filtres, relais : les transitoires au quotidien."
+  },
+  {
+   "dit": "Retenez l'essentiel : deux constantes de temps, un produit pour le condensateur, un quotient pour la bobine ; deux exponentielles, une qui monte et une qui descend ; et la règle des cinq tau pour déclarer le transitoire terminé.",
+   "ecran": "recap",
+   "id": "p24",
+   "pause_apres": 0.5,
+   "texte": "Constantes de temps et exponentielles : à retenir."
+  }
+ ],
+ "titre": "Les régimes transitoires"
+}

@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   effacerRepriseInvite,
+  lireEtatReprise,
   lireRepriseInvite,
   preparerRepriseInvite,
   reprendreApresRedemarrage,
@@ -69,13 +70,17 @@ it('efface un marqueur illisible au redémarrage plutôt que de bloquer les sync
   expect(await AsyncStorage.getItem('compte.repriseInvite')).toBeNull();
 });
 
-it('ignore les réglages système par défaut et détecte les vraies avancées d’apprentissage', async () => {
+it('ignore les réglages système et le profil d’arrivée, et détecte les vraies avancées d’apprentissage', async () => {
   await AsyncStorage.setItem('affichage.theme', 'sombre');
   await AsyncStorage.setItem('retours.preferences', '{}');
   await AsyncStorage.setItem('reglages.maj', '2026-10-04T00:00:00Z');
+  await AsyncStorage.setItem('profil.arrivee', JSON.stringify({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true }));
   expect(await progressionInviteeLocalePresente()).toBe(false);
 
   await AsyncStorage.setItem('mission.historique', '[]');
+  expect(await progressionInviteeLocalePresente()).toBe(false);
+
+  await AsyncStorage.setItem('mission.historique', JSON.stringify([{ mission: 1 }]));
   expect(await progressionInviteeLocalePresente()).toBe(true);
 });
 
@@ -100,5 +105,19 @@ describe('web : connexion Google d’un invité', () => {
       natif.setItemAsync.mockImplementation(async (cle: string, valeur: string) => mockSecureStore.set(cle, valeur));
       natif.getItemAsync.mockImplementation(async (cle: string) => mockSecureStore.get(cle) ?? null);
     }
+  });
+});
+
+describe('lireEtatReprise (issue #119)', () => {
+  it('aucun état rangé : null', async () => {
+    expect(await lireEtatReprise()).toBeNull();
+  });
+
+  it('état présent mais jeton perdu : l’état reste lisible, là où lireRepriseInvite renvoie null', async () => {
+    await preparerRepriseInvite('invite-1', 'refresh-1');
+    await terminerOAuthRepriseInvite('invite-1', 'compte-2');
+    mockSecureStore.delete('compte.repriseInvite.jeton');
+    expect(await lireRepriseInvite()).toBeNull();
+    expect(await lireEtatReprise()).toMatchObject({ inviteId: 'invite-1', compteId: 'compte-2', etat: 'a-confirmer' });
   });
 });

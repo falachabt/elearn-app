@@ -1,0 +1,531 @@
+{
+  "cours": 6270,
+  "titre": "Ensembles et applications",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Ensembles et applications",
+      "titre": "Ensembles et applications",
+      "sous": "Décrire et combiner des collections, puis relier deux ensembles : images, antécédents, injections, bijections",
+      "anim": {
+        "nom": "venn",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Pourquoi des ensembles partout",
+      "texte": "Regrouper pour comprendre : le geste du bibliothécaire, formalisé par Cantor.",
+      "anim": {
+        "nom": "venn",
+        "hauteur": 150
+      }
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "Qu'est-ce qu'un ensemble ?",
+      "tex": "V = \\{a,\\ e,\\ i,\\ o,\\ u,\\ y\\}",
+      "note": "Un ensemble : une collection bien définie d'objets distincts, ses éléments.",
+      "anim": {
+        "nom": "venn",
+        "hauteur": 170
+      }
+    },
+    "appartenance": {
+      "type": "etape",
+      "kicker": "Appartenance et non-appartenance",
+      "titre": "Le premier réflexe : tester l'appartenance",
+      "tex": [
+        "e \\in V \\qquad b \\notin V",
+        "3 \\in \\{1,\\ 2,\\ 3\\} \\qquad 4 \\notin \\{1,\\ 2,\\ 3\\}",
+        "\\in \\text{ : appartient} \\qquad \\notin \\text{ : n'appartient pas}"
+      ]
+    },
+    "descriptions": {
+      "type": "etape",
+      "kicker": "Décrire un ensemble",
+      "titre": "En extension, ou en compréhension",
+      "tex": [
+        "P = \\{0,\\ 2,\\ 4,\\ 6,\\ 8\\}",
+        "B = \\{x \\in \\mathbb{R} \\mid x^2 < 4\\}",
+        "\\{a,\\ b,\\ c\\} = \\{c,\\ a,\\ b\\}"
+      ]
+    },
+    "numeriques": {
+      "type": "formule",
+      "kicker": "Les ensembles de nombres",
+      "tex": "\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R} \\subset \\mathbb{C}",
+      "note": "Naturels, relatifs, rationnels, réels, complexes : ils s'emboîtent.",
+      "anim": {
+        "nom": "inclusion_numeriques_fig",
+        "hauteur": 190
+      }
+    },
+    "cardinal": {
+      "type": "etape",
+      "kicker": "Cardinal et ensemble vide",
+      "titre": "Compter les éléments, même les ensembles vides",
+      "tex": [
+        "\\#V = 6 \\qquad \\#\\varnothing = 0",
+        "\\#\\{\\varnothing\\} = 1",
+        "F = \\{1,\\ 2,\\ \\{3,\\ 4\\}\\} \\Rightarrow \\#F = 3"
+      ]
+    },
+    "inclusion": {
+      "type": "etape",
+      "kicker": "Appartenance contre inclusion",
+      "titre": "Appartenir n'est pas être inclus",
+      "tex": [
+        "E = \\{1,\\ 2,\\ \\{3\\}\\}",
+        "1 \\in E \\qquad \\{1\\} \\subset E",
+        "3 \\notin E \\qquad \\{3\\} \\in E \\qquad \\{\\{3\\}\\} \\subset E"
+      ]
+    },
+    "parties": {
+      "type": "formule",
+      "kicker": "L'ensemble des parties",
+      "tex": "\\mathcal{P}(E) = \\{\\varnothing,\\ \\{a\\},\\ \\{b\\},\\ \\{a,\\ b\\}\\}",
+      "note": "Pour E = {a, b} : 4 parties — en général 2^n pour n éléments.",
+      "anim": {
+        "nom": "parties_fig",
+        "hauteur": 190
+      }
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : l'essentiel",
+      "etapes": [
+        "Décrire : en extension ou en compréhension",
+        "Appartenir ∈, inclure ⊂ : ne pas confondre",
+        "Cardinal : ∅ compte 0, {∅} compte 1",
+        "Parties de E : 2^n pour n éléments"
+      ]
+    },
+    "union_inter": {
+      "type": "etape",
+      "kicker": "Union et intersection",
+      "titre": "Le « ou » inclusif et le « et » logique",
+      "tex": [
+        "A = \\{1,\\ 3,\\ 5,\\ 7\\} \\qquad B = \\{2,\\ 3,\\ 5,\\ 8\\}",
+        "A \\cup B = \\{1,\\ 2,\\ 3,\\ 5,\\ 7,\\ 8\\}",
+        "A \\cap B = \\{3,\\ 5\\}"
+      ],
+      "anim": {
+        "nom": "venn",
+        "hauteur": 150
+      }
+    },
+    "complementaire": {
+      "type": "etape",
+      "kicker": "Complémentaire et lois de De Morgan",
+      "titre": "Tout sauf A, et les lois de De Morgan",
+      "tex": [
+        "A = \\{2,\\ 4,\\ 6\\} \\subset U \\Rightarrow A^C = \\{1,\\ 3,\\ 5\\}",
+        "(A \\cup B)^C = A^C \\cap B^C",
+        "(A \\cap B)^C = A^C \\cup B^C"
+      ],
+      "anim": {
+        "nom": "venn_morgan_fig",
+        "hauteur": 120
+      }
+    },
+    "exemple_classe": {
+      "type": "etape",
+      "kicker": "Exemple résolu · inclusion-exclusion",
+      "titre": "Une classe, deux sports : inclusion-exclusion",
+      "tex": [
+        "|F \\cup B| = 15 + 12 - 8 = 19",
+        "|F \\setminus B| = 15 - 8 = 7",
+        "|(F \\cup B)^C| = 30 - 19 = 11"
+      ],
+      "anim": {
+        "nom": "venn",
+        "hauteur": 150
+      }
+    },
+    "application": {
+      "type": "formule",
+      "kicker": "Qu'est-ce qu'une application ?",
+      "tex": "f : E \\to F, \\qquad x \\mapsto f(x)",
+      "note": "Chaque élément de E a une image, et une seule, dans F.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 200
+      }
+    },
+    "image": {
+      "type": "etape",
+      "kicker": "Images directes",
+      "titre": "L'image d'un élément, d'une partie, de tout E",
+      "tex": [
+        "f(3) = 9 \\qquad f(-2) = 4 \\qquad f(0) = 0",
+        "f(\\{-2,\\ -1,\\ 0,\\ 1,\\ 2\\}) = \\{0,\\ 1,\\ 4\\}",
+        "f(\\mathbb{R}) = [0,\\ +\\infty["
+      ]
+    },
+    "antecedent": {
+      "type": "etape",
+      "kicker": "Antécédents",
+      "titre": "Un antécédent, plusieurs, ou aucun",
+      "tex": [
+        "f^{-1}(\\{4\\}) = \\{-2,\\ 2\\}",
+        "f^{-1}(\\{0\\}) = \\{0\\}",
+        "f^{-1}(\\{-1\\}) = \\varnothing"
+      ]
+    },
+    "image_reciproque": {
+      "type": "formule",
+      "kicker": "Image réciproque d'une partie",
+      "tex": "f^{-1}(B) = \\{x \\in E \\mid f(x) \\in B\\}",
+      "note": "Exemple, pour f(x) = x² : f⁻¹([1, 4]) = [−2, −1] ∪ [1, 2]."
+    },
+    "valeur_absolue": {
+      "type": "etape",
+      "kicker": "Exemple résolu · la valeur absolue",
+      "titre": "Deuxième exemple : la valeur absolue",
+      "tex": [
+        "g(x) = |x|",
+        "g([-2,\\ 1]) = [0,\\ 2]",
+        "g^{-1}([0,\\ 2]) = [-2,\\ 2]"
+      ]
+    },
+    "constante_identite": {
+      "type": "etape",
+      "kicker": "Deux applications extrêmes",
+      "titre": "Constante et identité : deux extrêmes",
+      "tex": [
+        "c(x) = 5 \\quad \\forall x \\qquad \\text{Im}(c) = \\{5\\}",
+        "c^{-1}(\\{5\\}) = \\mathbb{R} \\qquad c^{-1}(\\{y\\}) = \\varnothing \\ (y \\neq 5)",
+        "\\text{id}_E(x) = x"
+      ]
+    },
+    "pieges": {
+      "type": "phrase",
+      "kicker": "Pièges et subtilités",
+      "texte": "f(x) ≠ f(E) — et f⁻¹(B) existe même sans bijection.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 130
+      }
+    },
+    "recap2": {
+      "type": "recap",
+      "kicker": "Partie 2 : l'essentiel",
+      "etapes": [
+        "Union : ou inclusif ; intersection : et",
+        "Complémentaire : tout sauf, dans U",
+        "Application : une image unique par élément",
+        "Réciproque d'une partie : sans bijection"
+      ]
+    },
+    "injection": {
+      "type": "formule",
+      "kicker": "L'injection : ne pas mélanger",
+      "tex": "f(x_1) = f(x_2) \\Rightarrow x_1 = x_2",
+      "note": "Équivalent : deux éléments distincts ont toujours des images distinctes.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 160
+      }
+    },
+    "surjection": {
+      "type": "formule",
+      "kicker": "La surjection : tout couvrir",
+      "tex": "\\forall y \\in F, \\ \\exists x \\in E, \\ f(x) = y",
+      "note": "Autrement dit : f(E) = F, l'image remplit toute l'arrivée.",
+      "anim": {
+        "nom": "sagittal_types_fig",
+        "hauteur": 190
+      }
+    },
+    "bijection": {
+      "type": "formule",
+      "kicker": "La bijection : la correspondance parfaite",
+      "tex": "\\forall y \\in F, \\ \\exists!\\ x \\in E, \\ f(x) = y",
+      "note": "Injective et surjective : la correspondance est parfaite, et réversible.",
+      "anim": {
+        "nom": "sagittal_types_fig",
+        "hauteur": 190
+      }
+    },
+    "reciproque_affine": {
+      "type": "etape",
+      "kicker": "Exemple résolu · la réciproque",
+      "titre": "La réciproque de deux x plus trois",
+      "tex": [
+        "f(x) = 2x + 3",
+        "f^{-1}(y) = \\tfrac{y-3}{2}",
+        "f^{-1}(f(x)) = \\tfrac{(2x+3)-3}{2} = x"
+      ]
+    },
+    "methode": {
+      "type": "phrase",
+      "kicker": "Méthode d'analyse",
+      "texte": "Injectivité : un contre-exemple, ou f(x₁) = f(x₂) ⇒ x₁ = x₂."
+    },
+    "analyse_calculs": {
+      "type": "etape",
+      "kicker": "Analyse complète · les calculs",
+      "titre": "f(x) = x² − 3x + 2 : les premiers calculs",
+      "tex": [
+        "f(0) = 2 \\quad f(1) = f(2) = 0 \\quad f(3) = 2",
+        "x^2 - 3x + 2 = 0 \\Rightarrow \\Delta = 1, \\ x = 1 \\text{ ou } 2"
+      ]
+    },
+    "analyse_verdict": {
+      "type": "etape",
+      "kicker": "Analyse complète · le verdict",
+      "titre": "Ni injective, ni surjective — mais corrigeable",
+      "tex": [
+        "f(1) = f(2), \\ 1 \\neq 2 \\Rightarrow \\text{non injective}",
+        "\\Delta = 1 + 4y < 0, \\ y < -\\tfrac{1}{4} \\Rightarrow \\text{non surjective}",
+        "f : [\\tfrac{3}{2},\\ +\\infty[ \\to [-\\tfrac{1}{4},\\ +\\infty[ \\ \\text{est bijective}"
+      ]
+    },
+    "comptage": {
+      "type": "etape",
+      "kicker": "Compter les applications",
+      "titre": "Compter les applications : p puissance n",
+      "tex": [
+        "p^n \\ \\text{applications de } E \\text{ dans } F",
+        "\\tfrac{p!}{(p-n)!} \\ \\text{injections, si } n \\leq p",
+        "4^3 = 64 \\qquad 4 \\times 3 \\times 2 = 24"
+      ],
+      "anim": {
+        "nom": "tiroirs_fig",
+        "hauteur": 120
+      }
+    },
+    "cantor": {
+      "type": "phrase",
+      "kicker": "Perspective · Cantor et les cardinaux",
+      "texte": "Même cardinal ⟺ une bijection — Cantor et les tailles d'infini.",
+      "anim": {
+        "nom": "diagonale",
+        "hauteur": 200
+      }
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Injection : au plus un antécédent",
+        "Surjection : au moins un antécédent",
+        "Bijection : exactement un, réciproque",
+        "Compter : p^n applications en tout",
+        "Injections : p!/(p−n)! si n ≤ p"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "dit": "Bienvenue dans ce cours consacré aux ensembles et aux applications, le langage de base de toutes les mathématiques. Nous apprendrons d'abord à décrire des collections d'objets, à les combiner et à les compter, puis à relier deux ensembles par des applications, avant de classer ces applications selon le nombre d'antécédents de chaque élément.",
+      "texte": "Ensembles et applications : le langage des collections."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "dit": "Imaginez un bibliothécaire devant un océan de livres éparpillés : sa première tâche n'est pas de les lire, mais de les regrouper, les romans ici, les biographies là, les livres de science ailleurs. Sans le savoir, il manipule des ensembles. Formalisée par Georg Cantor à la fin du dix-neuvième siècle, cette idée simple est devenue la pierre angulaire des mathématiques modernes.",
+      "texte": "Regrouper pour comprendre : l'idée de Cantor."
+    },
+    {
+      "id": "p03",
+      "ecran": "definition",
+      "dit": "Un ensemble est une collection bien définie d'objets distincts, considérés comme un tout : ces objets sont ses éléments. Bien définie signifie que, pour tout objet, on peut dire sans ambiguïté s'il appartient ou non à l'ensemble. Les grands nombres ne forment pas un ensemble, car grand ne veut rien dire de précis ; les voyelles de l'alphabet, elles, en forment un, avec six éléments.",
+      "texte": "Une collection bien définie, des éléments distincts."
+    },
+    {
+      "id": "p04",
+      "ecran": "appartenance",
+      "dit": "Premier symbole à maîtriser : l'appartenance. On écrit e appartient à V pour dire que la lettre e est une voyelle, et b n'appartient pas à V, car b est une consonne. Le symbole se lit appartient à, et sa négation, barrée, se lit n'appartient pas à. Toute la théorie repose sur cette question élémentaire : cet objet est-il, oui ou non, dans cet ensemble ?",
+      "texte": "∈ : appartient — ∉ : n'appartient pas."
+    },
+    {
+      "id": "p05",
+      "ecran": "descriptions",
+      "dit": "Deux façons de décrire un ensemble. En extension, on liste tous ses éléments entre accolades : les chiffres pairs à un chiffre sont zéro, deux, quatre, six et huit. En compréhension, on donne la propriété qui les caractérise : les réels dont le carré est inférieur à quatre. Deux règles d'or : l'ordre des éléments ne compte pas, et on ne répète jamais un élément.",
+      "texte": "Lister les éléments, ou donner leur propriété."
+    },
+    {
+      "id": "p06",
+      "ecran": "numeriques",
+      "dit": "Retenez la chaîne des ensembles de nombres. Les naturels : zéro, un, deux, trois, et ainsi de suite. Les entiers relatifs ajoutent les négatifs. Les rationnels sont les fractions d'entiers, avec un dénominateur non nul. Les réels ajoutent les irrationnels, comme pi ou racine de deux. Et les complexes fermeront la marche plus tard. Chacun contient le précédent : c'est une inclusion en chaîne.",
+      "texte": "ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ ⊂ ℂ : la chaîne des nombres."
+    },
+    {
+      "id": "p07",
+      "ecran": "cardinal",
+      "dit": "Le cardinal d'un ensemble fini est simplement le nombre de ses éléments. Six pour les voyelles. Zéro pour l'ensemble vide, l'unique ensemble qui ne contient rien. Attention au piège classique : l'ensemble qui contient l'ensemble vide n'est pas vide, il a exactement un élément. Et un ensemble peut contenir un autre ensemble comme élément : un, deux, et l'ensemble formé de trois et quatre forment un ensemble à trois éléments.",
+      "texte": "Le cardinal : #∅ = 0, mais #{∅} = 1."
+    },
+    {
+      "id": "p08",
+      "ecran": "inclusion",
+      "dit": "Deuxième distinction cruciale : appartenir relie un élément à un ensemble, être inclus relie deux ensembles. Prenons E formé de un, de deux, et de l'ensemble singleton trois. Un appartient à E, et le singleton un est inclus dans E. En revanche, trois n'appartient pas à E : c'est l'ensemble singleton trois qui en est un élément, et le singleton du singleton trois est, lui, inclus dans E.",
+      "texte": "∈ pour un élément, ⊂ pour un ensemble."
+    },
+    {
+      "id": "p09",
+      "ecran": "parties",
+      "dit": "Un sous-ensemble de E est un ensemble dont tous les éléments appartiennent à E. L'ensemble de toutes les parties de E, noté P de E, rassemble tous ses sous-ensembles. Pour E formé de a et de b, il y en a quatre : le vide, le singleton a, le singleton b, et E lui-même. Résultat à retenir : un ensemble à n éléments possède deux puissance n parties, car chaque élément est, ou n'est pas, dans la partie choisie.",
+      "texte": "𝒫(E) : toutes les parties — 2^n pour n éléments."
+    },
+    {
+      "id": "p10",
+      "ecran": "recap1",
+      "dit": "Récapitulons cette première partie. Un ensemble se décrit en extension, par la liste de ses éléments, ou en compréhension, par une propriété. Il ne faut jamais confondre l'appartenance, entre un élément et un ensemble, et l'inclusion, entre deux ensembles. Le cardinal compte les éléments, et l'ensemble des parties d'un ensemble à n éléments en compte deux puissance n.",
+      "texte": "Partie 1 : l'essentiel des ensembles."
+    },
+    {
+      "id": "p11",
+      "ecran": "union_inter",
+      "dit": "L'union de A et B rassemble les éléments qui sont dans A ou dans B, le ou étant inclusif : un élément des deux ensembles n'apparaît qu'une fois. L'intersection ne garde que les éléments communs aux deux. Avec A formé de un, trois, cinq et sept, et B formé de deux, trois, cinq et huit, l'union compte six éléments et l'intersection deux : trois et cinq. Si l'intersection est vide, les ensembles sont dits disjoints, comme les pairs et les impairs.",
+      "texte": "A ∪ B : tout — A ∩ B : seulement le commun."
+    },
+    {
+      "id": "p12",
+      "ecran": "complementaire",
+      "dit": "Le complémentaire ne se définit que dans un univers de référence : c'est tout ce qui est dans l'univers sans être dans A. Pour les faces d'un dé, le complémentaire des faces paires est l'ensemble des faces impaires. Les lois de De Morgan relient les trois opérations : le complémentaire d'une union est l'intersection des complémentaires, et le complémentaire d'une intersection est l'union des complémentaires. Autrement dit, le non échange le ou et le et.",
+      "texte": "De Morgan : le complémentaire échange ∪ et ∩."
+    },
+    {
+      "id": "p13",
+      "ecran": "exemple_classe",
+      "dit": "Exemple complet. Dans une classe de trente élèves, quinze pratiquent le football, douze le basket, et huit les deux. Combien pratiquent au moins un sport ? Le principe d'inclusion-exclusion dit : quinze plus douze, moins huit, car les élèves des deux sports ont été comptés deux fois. Résultat : dix-neuf. Sept élèves ne font que du football, et onze élèves ne pratiquent aucun des deux sports.",
+      "texte": "|F ∪ B| = 15 + 12 − 8 = 19 — ni l'un ni l'autre : 11."
+    },
+    {
+      "id": "p14",
+      "ecran": "application",
+      "dit": "Une application de E dans F associe à tout élément de E un élément de F, et un seul. Deux conditions, à ne jamais oublier : l'existence, aucun élément de départ n'est orphelin, et l'unicité, aucun élément n'a deux images. L'image de ixe par f se note f de ixe. C'est exactement le comportement d'une machine bien réglée : une entrée, toujours la même sortie.",
+      "texte": "Une application : chaque x, une seule image f(x)."
+    },
+    {
+      "id": "p15",
+      "ecran": "image",
+      "dit": "Prenons l'application carré, de R dans R. L'image de trois est neuf, celle de moins deux est quatre, celle de zéro est zéro. L'image d'une partie est l'ensemble des images de ses éléments : pour moins deux, moins un, zéro, un et deux, on obtient zéro, un et quatre, sans répétition. Et l'image de l'application entière, c'est l'ensemble des valeurs réellement atteintes : ici, tous les réels positifs ou nuls.",
+      "texte": "f(x) : un élément — f(A) : une partie de F."
+    },
+    {
+      "id": "p16",
+      "ecran": "antecedent",
+      "dit": "Dans l'autre sens, un élément de l'arrivée peut avoir un, plusieurs, ou aucun antécédent. Toujours avec le carré : quatre a deux antécédents, deux et moins deux. Zéro n'en a qu'un, lui-même. Et moins un n'en a aucun, car un carré n'est jamais négatif. C'est cette asymétrie qui rendra si intéressante la classification des applications, dans la troisième partie.",
+      "texte": "Antécédents de 4 : −2 et 2 — de −1 : aucun."
+    },
+    {
+      "id": "p17",
+      "ecran": "image_reciproque",
+      "dit": "L'image réciproque d'une partie B est l'ensemble des éléments de départ dont l'image tombe dans B. Pour le carré, quels réels ont un carré entre un et quatre ? Ceux entre moins deux et moins un, et ceux entre un et deux. Attention à la notation : l'image réciproque existe pour toute application, même non inversible. Elle prend une partie en entrée et rend une partie : ce n'est pas une application réciproque.",
+      "texte": "f⁻¹([1, 4]) = [−2, −1] ∪ [1, 2] pour le carré."
+    },
+    {
+      "id": "p18",
+      "ecran": "valeur_absolue",
+      "dit": "Deuxième exemple résolu : la valeur absolue, de R dans R. Quelle est l'image de l'intervalle moins deux, un ? Les valeurs absolues vont de zéro, atteint à l'intérieur, jusqu'à deux, atteint en moins deux : l'image est l'intervalle zéro, deux. Et l'image réciproque de zéro, deux est l'intervalle moins deux, deux tout entier : ce sont exactement les réels dont la valeur absolue ne dépasse pas deux.",
+      "texte": "|x| : image de [−2, 1] = [0, 2]."
+    },
+    {
+      "id": "p19",
+      "ecran": "constante_identite",
+      "dit": "Deux applications extrêmes à connaître. L'application constante envoie tout réel sur cinq : son image est le singleton cinq, l'antécédent de cinq est R tout entier, et tout autre nombre n'a aucun antécédent. À l'opposé, l'application identité ne change rien : chaque élément est sa propre image, et chacun a exactement un antécédent, lui-même. Retenez ce contraste, il prépare la notion de bijection.",
+      "texte": "Constante : tout sur 5 — identité : rien ne bouge."
+    },
+    {
+      "id": "p20",
+      "ecran": "pieges",
+      "dit": "Trois pièges ferment cette partie. D'abord, ne confondez pas l'image d'un élément, qui est un élément de l'arrivée, et l'image de l'application, qui est un sous-ensemble de l'arrivée. Ensuite, l'image réciproque d'une partie existe toujours, même sans bijection. Enfin, une application est définie sur tout son ensemble de départ : la fraction un sur ixe n'est pas une application de R dans R, car zéro n'a pas d'image.",
+      "texte": "f(x) ≠ f(E) — et f⁻¹(B) existe sans bijection."
+    },
+    {
+      "id": "p21",
+      "ecran": "recap2",
+      "dit": "Récapitulons. Union, intersection et complémentaire combinent les ensembles, et les lois de De Morgan font passer le complémentaire à travers les deux autres. Une application associe à chaque élément du départ une unique image. On lit ses effets dans les deux sens : l'image directe d'une partie, et l'image réciproque, qui ramène une partie de l'arrivée vers le départ.",
+      "texte": "Partie 2 : l'essentiel."
+    },
+    {
+      "id": "p22",
+      "ecran": "injection",
+      "dit": "Une application est injective si tout élément de l'arrivée a au plus un antécédent : deux éléments distincts du départ ne peuvent jamais avoir la même image. Formellement, si f de ixe un égale f de ixe deux, alors ixe un égale ixe deux. Exemple : l'application qui associe à chaque citoyen son numéro d'identification est injective. Contre-exemple : le carré ne l'est pas, car deux et moins deux ont la même image.",
+      "texte": "Injection : au plus un antécédent par élément."
+    },
+    {
+      "id": "p23",
+      "ecran": "surjection",
+      "dit": "Une application est surjective si tout élément de l'arrivée a au moins un antécédent : l'image de l'application remplit tout l'ensemble d'arrivée. Exemple : quatre personnes choisissent une couleur parmi rouge, bleu et vert, et les trois couleurs sont choisies au moins une fois : l'application est surjective, même si rouge est choisie deux fois. Elle cesserait de l'être si une quatrième couleur, jaune, n'était choisie par personne.",
+      "texte": "Surjection : au moins un antécédent par élément."
+    },
+    {
+      "id": "p24",
+      "ecran": "bijection",
+      "dit": "Une application bijective est à la fois injective et surjective : chaque élément de l'arrivée a exactement un antécédent. Pensez à une salle de spectacle où chaque spectateur a une place numérotée unique, et où toutes les places sont occupées. Une bijection admet une application réciproque, qui fait le chemin inverse, et les deux composées redonnent l'identité dans les deux sens.",
+      "texte": "Bijection : exactement un antécédent par élément."
+    },
+    {
+      "id": "p25",
+      "ecran": "reciproque_affine",
+      "dit": "Exemple complet : l'application qui à ixe associe deux ixe plus trois, de R dans R. Pour inverser, on résout igrec égale deux ixe plus trois : ixe égale igrec moins trois, le tout sur deux. C'est la réciproque. Vérification : en l'appliquant à deux ixe plus trois, on retrouve ixe. Elle est bijective, comme toute application affine non constante entre R et R.",
+      "texte": "f(x) = 2x + 3 → f⁻¹(y) = (y − 3)/2."
+    },
+    {
+      "id": "p26",
+      "ecran": "methode",
+      "dit": "La méthode d'analyse tient en trois questions. Pour l'injectivité, partez de deux éléments d'images égales et montrez qu'ils sont égaux, ou exhibez un contre-exemple. Pour la surjectivité, prenez un élément quelconque de l'arrivée et résolvez l'équation f de ixe égale igrec, ou exhibez un élément sans antécédent. Pour la bijectivité, vérifiez les deux, ou construisez directement la réciproque.",
+      "texte": "Injectivité : un contre-exemple ou f(x₁) = f(x₂) ⇒ x₁ = x₂."
+    },
+    {
+      "id": "p27",
+      "ecran": "analyse_calculs",
+      "dit": "Analyse complète d'un exemple : f de ixe égale ixe carré moins trois ixe plus deux, de R dans R. Les premières valeurs parlent d'elles-mêmes : f de zéro vaut deux, f de un et f de deux valent zéro, f de trois vaut deux. L'équation f de ixe égale zéro se résout par le discriminant : un, puis les deux racines un et deux. Zéro a donc deux antécédents.",
+      "texte": "f(1) = f(2) = 0 : déjà un signal."
+    },
+    {
+      "id": "p28",
+      "ecran": "analyse_verdict",
+      "dit": "Verdict : f n'est pas injective, car un et deux, distincts, ont la même image. Elle n'est pas surjective non plus : pour un igrec strictement inférieur à moins un quart, le discriminant un plus quatre igrec est négatif, et l'équation n'a aucune solution. Mais en restreignant le départ à la branche croissante, à partir de trois demis, et l'arrivée à partir de moins un quart, la même formule devient une bijection.",
+      "texte": "Restreinte à [3/2, +∞[ → [−1/4, +∞[ : bijection."
+    },
+    {
+      "id": "p29",
+      "ecran": "comptage",
+      "dit": "Comptons. Si E a n éléments et F en a p, chaque élément de E choisit son image parmi p possibilités, indépendamment des autres : il y a p puissance n applications de E dans F. Pour les injections, les choix se resserrent : p choix pour la première image, p moins un pour la deuxième, et ainsi de suite. Exemple : de trois éléments vers quatre, soixante-quatre applications, dont vingt-quatre injections. Et si n dépasse p, aucune injection n'existe : c'est le principe des tiroirs.",
+      "texte": "p^n applications — p!/(p−n)! injections."
+    },
+    {
+      "id": "p30",
+      "ecran": "cantor",
+      "dit": "Pourquoi les bijections comptent-elles autant ? Parce que deux ensembles ont le même cardinal exactement quand il existe une bijection entre eux. Cantor a ainsi montré que les entiers naturels, les relatifs et les rationnels ont le même cardinal, alors que les réels sont strictement plus nombreux : aucun appariement parfait entre naturels et réels n'existe. Il existe donc plusieurs tailles d'infini.",
+      "texte": "Même cardinal ⟺ une bijection — Cantor et les infinis."
+    },
+    {
+      "id": "p31",
+      "ecran": "recap_final",
+      "dit": "Pour finir, retenez la grille de lecture complète. Une injection laisse au plus un antécédent à chaque élément, une surjection lui en garantit au moins un, une bijection exactement un, avec une réciproque. Entre ensembles finis, on compte p puissance n applications et, si n ne dépasse pas p, p factorielle sur p moins n factorielle injections. Ensembles et applications : vous tenez le langage de base des mathématiques.",
+      "texte": "Ensembles et applications : à retenir."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Décrire les ensembles : éléments, descriptions, parties"
+    },
+    {
+      "debut": "p11",
+      "sous_titre": "Opérations sur les ensembles et applications",
+      "pont": {
+        "texte": "Partie 2 : opérations sur les ensembles, puis les applications.",
+        "dit": "Partie deux : combiner les ensembles, puis les relier. Nous verrons les trois opérations fondamentales, union, intersection et complémentaire, avec un problème de dénombrement complet, puis nous définirons les applications, leurs images et leurs antécédents."
+      }
+    },
+    {
+      "debut": "p22",
+      "sous_titre": "Injections, surjections, bijections et dénombrement",
+      "pont": {
+        "texte": "Partie 3 : injections, surjections, bijections, comptages.",
+        "dit": "Partie trois : classer les applications, et compter. Selon le nombre d'antécédents de chaque élément de l'arrivée, une application est injective, surjective ou bijective. Nous verrons la méthode d'analyse, un exemple complet, puis le dénombrement des applications entre ensembles finis."
+      }
+    }
+  ]
+}

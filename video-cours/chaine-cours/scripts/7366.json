@@ -1,0 +1,524 @@
+{
+ "cours": 7366,
+ "titre": "Mouvements dans les champs uniformes et gravitation",
+ "matiere": "Physique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique · Terminale",
+   "titre": "Mouvements dans les champs uniformes et gravitation",
+   "sous": "Pesanteur, champ électrique, champ magnétique : des trajectoires aux orbites",
+   "anim": {
+    "nom": "trajectoire",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un point commun : dans un champ uniforme, la force est constante, donc l'accélération aussi. La gravitation, elle, varie avec la distance.",
+   "anim": {
+    "nom": "champ_radial_fig",
+    "hauteur": 190
+   }
+  },
+  "champ_uniforme": {
+   "type": "formule",
+   "kicker": "Champ de pesanteur uniforme",
+   "tex": "\\vec{g} = \\text{constante} \\qquad g \\approx 9{,}81\\ \\text{m/s}^2",
+   "note": "Lignes de champ parallèles ; au bac, on prend souvent g = 10 m/s²"
+  },
+  "poids": {
+   "type": "formule",
+   "kicker": "Le poids",
+   "tex": "\\vec{P} = m\\,\\vec{g}",
+   "note": "Même direction que g : verticale, vers le bas ; intensité P = m g"
+  },
+  "equations_verticales": {
+   "type": "etape",
+   "kicker": "Mouvement vertical",
+   "titre": "Les équations du mouvement uniformément accéléré",
+   "tex": [
+    "v_y(t) = v_{0y} - g\\,t",
+    "y(t) = y_0 + v_{0y}\\,t - \\frac{1}{2}\\,g\\,t^2",
+    "v_y^2 = v_{0y}^2 - 2\\,g\\left(y - y_0\\right)"
+   ]
+  },
+  "symetrie": {
+   "type": "phrase",
+   "kicker": "Montée et descente",
+   "texte": "Lancé vers le haut, le corps monte, s'arrête un instant au sommet, puis redescend : montée et descente se répondent en miroir.",
+   "anim": {
+    "nom": "trajectoire",
+    "hauteur": 170
+   }
+  },
+  "lancer_enonce": {
+   "type": "phrase",
+   "kicker": "Exemple",
+   "texte": "Un projectile est lancé verticalement vers le haut, depuis le sol, à 20 m/s. On prend g = 10 m/s². Trois questions : temps de montée, hauteur maximale, durée totale.",
+   "anim": {
+    "nom": "graphes_cinematique_fig",
+    "hauteur": 160
+   }
+  },
+  "lancer_calculs": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Le lancer vertical, pas à pas",
+   "tex": [
+    "t_{\\text{max}} = \\frac{20}{10} = 2\\ \\text{s}",
+    "y_{\\text{max}} = 20 \\times 2 - \\frac{1}{2} \\times 10 \\times 2^2 = 20\\ \\text{m}",
+    "T_{\\text{total}} = 2 \\times t_{\\text{max}} = 4\\ \\text{s}"
+   ]
+  },
+  "recap_pesanteur": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "titre": "Le champ de pesanteur uniforme",
+   "etapes": [
+    "g constant, environ 9,81 m/s² (ou 10 au bac)",
+    "Le poids : P = m g, vertical vers le bas",
+    "MUA vertical : les trois équations horaires",
+    "Au sommet, v = 0 ; vol symétrique"
+   ],
+   "anim": {
+    "nom": "graphes_cinematique_fig",
+    "hauteur": 120
+   }
+  },
+  "champ_e": {
+   "type": "formule",
+   "kicker": "Champ électrostatique uniforme",
+   "tex": "\\vec{E} = \\frac{\\vec{F}}{q_0}",
+   "note": "En volts par mètre, ou newtons par coulomb ; lignes parallèles et équidistantes"
+  },
+  "condensateur": {
+   "type": "formule",
+   "kicker": "Le condensateur plan",
+   "tex": "E = \\frac{U}{d}",
+   "note": "Entre deux plaques parallèles de charges opposées, le champ est uniforme",
+   "anim": {
+    "nom": "condensateur_plan",
+    "hauteur": 160
+   }
+  },
+  "force_charge": {
+   "type": "formule",
+   "kicker": "Force sur une charge",
+   "tex": "\\vec{F} = q\\,\\vec{E}",
+   "note": "Même sens que E si q est positive, sens opposé si q est négative"
+  },
+  "acceleration_charge": {
+   "type": "formule",
+   "kicker": "L'accélération de la charge",
+   "tex": "\\vec{a} = \\frac{q}{m}\\,\\vec{E}",
+   "note": "Constante, comme g : tout le cours de pesanteur se transpose"
+  },
+  "equations_charge": {
+   "type": "etape",
+   "kicker": "Trajectoire d'une charge",
+   "titre": "Les équations du mouvement parabolique",
+   "tex": [
+    "x(t) = v_{0x}\\,t",
+    "y(t) = v_{0y}\\,t + \\tfrac{1}{2}\\,a_y\\,t^2",
+    "y = \\tfrac{a_y}{2\\,v_{0x}^2}\\,x^2 + \\tfrac{v_{0y}}{v_{0x}}\\,x"
+   ],
+   "anim": {
+    "nom": "deviation_electrique_fig",
+    "hauteur": 120
+   }
+  },
+  "deviation_enonce": {
+   "type": "phrase",
+   "kicker": "Exemple",
+   "texte": "Une charge positive traverse un condensateur : E = 400 V/m vers le haut, v₀ = 15 m/s horizontale, plaques de 0,30 m. De combien se dévie-t-elle ?",
+   "anim": {
+    "nom": "deviation_electrique_fig",
+    "hauteur": 170
+   }
+  },
+  "deviation_calculs": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "La déviation, pas à pas",
+   "tex": [
+    "a = \\frac{qE}{m} = \\tfrac{2 \\times 10^{-6} \\times 400}{5 \\times 10^{-4}} = 1{,}6\\ \\text{m/s}^2",
+    "t = \\frac{L}{v_0} = \\frac{0{,}30}{15} = 0{,}02\\ \\text{s}",
+    "h = \\frac{1}{2}\\,a\\,t^2 = 3{,}2 \\times 10^{-4}\\ \\text{m} = 0{,}32\\ \\text{mm}"
+   ]
+  },
+  "lorentz": {
+   "type": "formule",
+   "kicker": "Le champ magnétique",
+   "tex": "\\vec{F}_m = q\\,\\vec{v} \\times \\vec{B}",
+   "note": "La force de Lorentz : perpendiculaire à la vitesse, elle courbe la trajectoire"
+  },
+  "rayon_periode": {
+   "type": "etape",
+   "kicker": "Mouvement circulaire dans B",
+   "titre": "Rayon de courbure et période",
+   "tex": [
+    "|q|\\,v\\,B = \\frac{m\\,v^2}{\\rho}",
+    "\\rho = \\frac{m\\,v}{|q|\\,B} \\qquad T = \\frac{2\\pi\\,m}{|q|\\,B}"
+   ],
+   "anim": {
+    "nom": "deviation_magnetique_fig",
+    "hauteur": 130
+   }
+  },
+  "filtre_vitesse": {
+   "type": "phrase",
+   "kicker": "Champs croisés",
+   "texte": "Quand E et B se croisent bien, une seule vitesse passe tout droit : v = E/B. C'est le filtre de vitesse des spectromètres de masse.",
+   "anim": {
+    "nom": "deviation_magnetique_fig",
+    "hauteur": 150
+   }
+  },
+  "electron_enonce": {
+   "type": "phrase",
+   "kicker": "Exemple",
+   "texte": "Un électron entre perpendiculairement dans un champ B = 0,5 T, à la vitesse de 2×10⁶ m/s. Quel est le rayon de sa trajectoire ? Et sa période ?",
+   "anim": {
+    "nom": "orbite",
+    "hauteur": 170
+   }
+  },
+  "electron_calculs": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Rayon et période de l'électron",
+   "tex": [
+    "\\rho = \\tfrac{9{,}11 \\times 10^{-31} \\times 2 \\times 10^{6}}{1{,}6 \\times 10^{-19} \\times 0{,}5}",
+    "\\rho \\approx 2{,}28 \\times 10^{-5}\\ \\text{m} \\approx 22{,}8\\ \\mu\\text{m}",
+    "T = \\frac{2\\pi\\,m}{|q|\\,B} \\approx 7{,}2 \\times 10^{-11}\\ \\text{s}"
+   ]
+  },
+  "kepler1": {
+   "type": "phrase",
+   "kicker": "Première loi de Kepler",
+   "texte": "L'orbite est une ellipse, et le corps central occupe l'un des foyers. Un cercle est une ellipse particulière, d'excentricité nulle.",
+   "anim": {
+    "nom": "kepler",
+    "hauteur": 200
+   }
+  },
+  "kepler2": {
+   "type": "phrase",
+   "kicker": "Deuxième loi de Kepler",
+   "texte": "Le segment qui joint le corps central au satellite balaie des aires égales en des temps égaux : le satellite va plus vite quand il est proche.",
+   "anim": {
+    "nom": "kepler",
+    "hauteur": 170
+   }
+  },
+  "kepler3": {
+   "type": "formule",
+   "kicker": "Troisième loi de Kepler",
+   "tex": "T^2 = \\frac{4\\pi^2}{G\\,M}\\,a^3",
+   "note": "Le carré de la période est proportionnel au cube du demi-grand axe a"
+  },
+  "vitesse_orbitale": {
+   "type": "etape",
+   "kicker": "Satellite en orbite circulaire",
+   "titre": "Vitesse et période déduites de Newton",
+   "tex": [
+    "G\\,\\tfrac{M\\,m}{r^2} = m\\,\\tfrac{v^2}{r}",
+    "v = \\sqrt{\\tfrac{G\\,M}{r}}",
+    "T = \\tfrac{2\\pi\\,r}{v}"
+   ]
+  },
+  "approximation": {
+   "type": "phrase",
+   "kicker": "Deux modèles, une même gravitation",
+   "texte": "Près du sol, h reste petit devant le rayon de la Terre : g semble constant et les trajectoires sont des paraboles. En altitude, il faut le modèle de Newton en 1/r².",
+   "anim": {
+    "nom": "champ_gravitation_fig",
+    "hauteur": 170
+   }
+  },
+  "satellite_enonce": {
+   "type": "phrase",
+   "kicker": "Exemple",
+   "texte": "Un satellite artificiel décrit une orbite circulaire de rayon r = 7,0×10⁶ m autour de la Terre. Calculer sa vitesse orbitale et sa période.",
+   "anim": {
+    "nom": "orbite",
+    "hauteur": 170
+   }
+  },
+  "satellite_calculs": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Un satellite en orbite basse",
+   "tex": [
+    "v = \\sqrt{\\frac{G\\,M_T}{r}} = \\sqrt{5{,}69 \\times 10^{7}}",
+    "v \\approx 7{,}54 \\times 10^{3}\\ \\text{m/s}",
+    "T = \\frac{2\\pi\\,r}{v} \\approx 5{,}83 \\times 10^{3}\\ \\text{s} \\approx 97\\ \\text{min}"
+   ]
+  },
+  "pieges_kepler": {
+   "type": "recap",
+   "kicker": "Pièges classiques",
+   "titre": "Trois pièges sur les orbites",
+   "etapes": [
+    "Ne pas confondre demi-grand axe a et rayon r",
+    "La loi des aires vient du moment cinétique",
+    "Passer de Kepler à la forme complète de Newton"
+   ],
+   "anim": {
+    "nom": "kepler",
+    "hauteur": 130
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "titre": "L'essentiel du cours",
+   "etapes": [
+    "Champ uniforme : a constante, trajectoire parabolique",
+    "Pesanteur : a = g ; électricité : a = qE/m",
+    "Magnétique : cercle, ρ = mv/(|q|B), T libre de v",
+    "Kepler : T² = (4π²/GM)·a³ et v = √(GM/r)"
+   ],
+   "anim": {
+    "nom": "orbite",
+    "hauteur": 120
+   }
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours consacré aux mouvements dans les champs uniformes et à la gravitation. Nous verrons d'abord le champ de pesanteur et le mouvement vertical, puis le champ électrostatique et la déviation des particules chargées, avec un détour par le champ magnétique, et nous finirons par les lois de Kepler et les satellites.",
+   "texte": "Champs uniformes et gravitation.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Le fil conducteur du cours est simple : dans un champ uniforme, le vecteur champ est le même en tout point, la force est constante, donc l'accélération est constante, et les trajectoires se calculent par intégrations successives. Nous appliquerons cette idée à la pesanteur, puis au champ électrique. Mais à grande échelle, la gravitation n'est plus uniforme : elle diminue avec la distance, et c'est là qu'interviennent les lois de Kepler.",
+   "texte": "Le fil conducteur : a constante, puis Kepler.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p03",
+   "ecran": "champ_uniforme",
+   "dit": "Un champ de pesanteur est dit uniforme lorsque le vecteur g est le même en tout point de la région étudiée : même intensité, environ neuf virgule quatre-vingt-un mètres par seconde carrée, et même direction, la verticale. Les lignes de champ sont alors des droites parallèles. C'est une bonne approximation près du sol, tant que les déplacements restent petits devant le rayon de la Terre.",
+   "texte": "g constant : lignes parallèles.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p04",
+   "ecran": "poids",
+   "dit": "Dans ce champ, la force exercée par la Terre sur un corps de masse m est son poids : P égale m fois g, un vecteur vertical, dirigé vers le bas, d'intensité m g. La masse, elle, ne change pas d'un endroit à l'autre ; seul g pourrait varier, et dans un champ uniforme, on le considère constant.",
+   "texte": "Le poids : P = m·g.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p05",
+   "ecran": "equations_verticales",
+   "dit": "Un corps libre dans ce champ, sans frottement, ne subit que son poids : son accélération vaut moins g, selon l'axe vertical orienté vers le haut. On retrouve les équations du mouvement uniformément accéléré : la vitesse verticale diminue de g chaque seconde, la position suit le terme en moins un demi de g t au carré, et une troisième relation relie la vitesse à la hauteur, sans faire intervenir le temps.",
+   "texte": "Les équations du MUA vertical.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p06",
+   "ecran": "symetrie",
+   "dit": "Regardons le mouvement vertical de près. Pendant la montée, la vitesse diminue de g chaque seconde, jusqu'à s'annuler au sommet. Pendant la descente, elle augmente de g chaque seconde. Et tout est symétrique : le temps de montée égale le temps de descente, et le corps repasse par son point de départ avec une vitesse de même valeur, mais de sens opposé.",
+   "texte": "Montée et descente : la symétrie.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p07",
+   "ecran": "lancer_enonce",
+   "dit": "Exemple type examen. Un projectile est lancé verticalement vers le haut, depuis le sol, avec une vitesse initiale de vingt mètres par seconde. On néglige la résistance de l'air, et on prend g égale dix mètres par seconde carrée. On demande : le temps pour atteindre la hauteur maximale, cette hauteur maximale, et le temps total entre le lancement et le retour au sol.",
+   "texte": "Exemple : le lancer vertical à 20 m/s.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p08",
+   "ecran": "lancer_calculs",
+   "dit": "Au sommet, la vitesse s'annule : zéro égale vingt moins dix fois t, donc le temps de montée vaut deux secondes. La hauteur maximale suit : vingt fois deux, moins un demi de dix fois deux au carré, c'est-à-dire quarante moins vingt, vingt mètres. Et par symétrie, le temps total de vol est le double du temps de montée : quatre secondes. L'équation de position le confirme : le projectile repasse par le sol à quatre secondes.",
+   "texte": "2 s de montée, 20 m, 4 s de vol.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p09",
+   "ecran": "recap_pesanteur",
+   "dit": "Retenons l'essentiel sur la pesanteur : un champ uniforme donne une accélération constante g, le poids s'écrit simplement m g, et le mouvement vertical obéit aux trois équations du mouvement uniformément accéléré, avec une belle symétrie entre la montée et la descente. La clé, au bac : la maîtrise des signes et des unités.",
+   "texte": "Pesanteur uniforme : l'essentiel.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p10",
+   "ecran": "champ_e",
+   "dit": "Changeons de champ : le champ électrostatique. Son intensité E se définit comme la force exercée sur une petite charge témoin, divisée par la valeur de cette charge. Elle se mesure en volts par mètre, ou en newtons par coulomb. Le champ est uniforme quand ses lignes sont parallèles et également espacées : le vecteur E est alors constant en tout point.",
+   "texte": "Le champ E : force par unité de charge.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p11",
+   "ecran": "condensateur",
+   "dit": "Le dispositif type qui fabrique un champ uniforme, ce sont deux plaques parallèles portant des charges opposées : un condensateur plan. Entre les plaques, le champ est uniforme, et son intensité vaut la tension U divisée par la distance d entre les plaques. Plus la tension est élevée, ou les plaques rapprochées, plus le champ est intense.",
+   "texte": "Condensateur plan : E = U/d.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p12",
+   "ecran": "force_charge",
+   "dit": "Une charge q placée dans ce champ subit la force F, égale à q fois E. Si la charge est positive, la force va dans le même sens que le champ ; si elle est négative, comme pour un électron, la force va dans le sens opposé. C'est le signe de la charge qui décide de la direction de la déviation : on y veillera dans tous les exercices.",
+   "texte": "F = q·E : le signe de q décide du sens.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p13",
+   "ecran": "acceleration_charge",
+   "dit": "Appliquons la deuxième loi de Newton : la masse fois l'accélération égale q fois E, donc l'accélération vaut q sur m, fois E. Elle est constante en grandeur et en direction, exactement comme g dans le champ de pesanteur. Toute la mécanique du projectile se transpose donc, en remplaçant g par q E sur m. La trajectoire d'une charge lancée dans le champ sera, là encore, une parabole.",
+   "texte": "a = qE/m : l'analogue de g.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p14",
+   "ecran": "equations_charge",
+   "dit": "Décomposons le mouvement sur deux axes. Horizontalement, aucune force : la vitesse reste constante et x croît régulièrement. Verticalement, l'accélération constante a y déforme la trajectoire. En éliminant le temps entre les deux équations, on obtient l'équation cartésienne de la trajectoire : y est une fonction du second degré de x. C'est une parabole, dont le sens d'ouverture dépend du signe de la charge.",
+   "texte": "Une parabole, comme un projectile.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p15",
+   "ecran": "deviation_enonce",
+   "dit": "Exemple type examen. Dans un condensateur, le champ vaut quatre cents volts par mètre, dirigé verticalement vers le haut. Une charge positive, de masse cinq fois dix puissance moins quatre kilogrammes et de charge plus deux fois dix puissance moins six coulombs, est lancée horizontalement, à quinze mètres par seconde, depuis la plaque inférieure. Les plaques mesurent zéro virgule trente mètre de long. Question : de quelle hauteur la charge se dévie-t-elle en sortant des plaques ?",
+   "texte": "Exemple : déviation dans un condensateur.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p16",
+   "ecran": "deviation_calculs",
+   "dit": "D'abord l'accélération : q E divisé par m donne un virgule six mètres par seconde carrée, vers le haut puisque la charge est positive. Ensuite le temps de traversée : horizontalement, le mouvement est uniforme, t égale L sur v zéro, soit zéro virgule zéro deux secondes. Enfin la déviation : un demi de a t au carré, soit trois virgule deux fois dix puissance moins quatre mètres, zéro virgule trente-deux millimètres vers le haut. Une parabole très aplatie : petite accélération, courte distance.",
+   "texte": "Déviation : 0,32 mm vers le haut.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p17",
+   "ecran": "lorentz",
+   "dit": "Introduisons maintenant un champ magnétique uniforme B. La force change de nature : c'est la force magnétique de Lorentz, q fois le produit vectoriel de la vitesse par B. Elle est perpendiculaire à la vitesse à chaque instant : elle ne modifie pas la norme de la vitesse, seulement sa direction. Et si la vitesse est perpendiculaire au champ, la trajectoire devient un cercle.",
+   "texte": "Lorentz : F = q v × B, perpendiculaire à v.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p18",
+   "ecran": "rayon_periode",
+   "dit": "Sur ce cercle, la force magnétique joue le rôle de force centripète : valeur absolue de q, fois v, fois B, égale m v carré sur rho. On en tire le rayon de courbure : rho égale m v, divisé par la valeur absolue de q, fois B. Et la période de révolution, deux pi m sur valeur absolue de q fois B, a une propriété remarquable : elle ne dépend ni de la vitesse, ni du rayon.",
+   "texte": "ρ = mv/(|q|B) ; T indépendante de v.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p19",
+   "ecran": "filtre_vitesse",
+   "dit": "En croisant un champ électrique et un champ magnétique, on peut fabriquer un filtre de vitesse : la force électrique et la force magnétique s'annulent pour une vitesse bien précise, v égale E sur B. Seules les particules qui ont cette vitesse traversent sans dévier : c'est le principe des spectromètres de masse. Et si la vitesse possède une composante parallèle au champ magnétique, la trajectoire devient une hélice.",
+   "texte": "Filtre de vitesse : v = E/B.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p20",
+   "ecran": "electron_enonce",
+   "dit": "Exemple type examen. Un électron, de charge moins un virgule six fois dix puissance moins dix-neuf coulombs et de masse neuf virgule onze fois dix puissance moins trente et un kilogrammes, entre perpendiculairement dans un champ magnétique uniforme de zéro virgule cinq tesla. Sa vitesse vaut deux fois dix puissance six mètres par seconde. On demande le rayon de courbure de sa trajectoire, et sa période de révolution.",
+   "texte": "Exemple : l'électron dans B = 0,5 T.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p21",
+   "ecran": "electron_calculs",
+   "dit": "Le rayon : masse fois vitesse, divisé par la valeur absolue de la charge, fois B. Le calcul donne deux virgule vingt-huit fois dix puissance moins cinq mètres, soit environ vingt-deux virgule huit micromètres : une trajectoire minuscule, typique des particules rapides dans un champ de l'ordre du tesla. La période : environ sept virgule deux fois dix puissance moins onze secondes, calculée directement par sa formule, sans passer par le rayon ni par la vitesse.",
+   "texte": "ρ ≈ 22,8 µm ; T ≈ 7,2×10⁻¹¹ s.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p22",
+   "ecran": "kepler1",
+   "dit": "Première loi de Kepler, la loi des orbites : un satellite ou une planète décrit une ellipse, et le corps central, la Terre ou le Soleil, occupe l'un des foyers de cette ellipse. La forme de l'orbite est mesurée par son excentricité e : si e vaut zéro, l'ellipse devient un cercle parfait. Derrière cette loi, il y a une force centrale, qui diminue comme l'inverse du carré de la distance.",
+   "texte": "Kepler 1 : des ellipses, un foyer occupé.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p23",
+   "ecran": "kepler2",
+   "dit": "Deuxième loi de Kepler, la loi des aires : le segment qui relie le corps central au satellite balaie des aires égales pendant des durées égales. Conséquence visible : le satellite avance plus vite quand il est proche du corps central, au périastre, et plus lentement quand il en est loin, à l'aphastre. Cette loi traduit la conservation du moment cinétique : masse, fois carré de la distance, fois vitesse angulaire.",
+   "texte": "Kepler 2 : des aires égales, une vitesse variable.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p24",
+   "ecran": "kepler3",
+   "dit": "Troisième loi de Kepler, la loi des périodes : le carré de la période de révolution est proportionnel au cube du demi-grand axe de l'orbite. Newton en donne la forme complète : T au carré égale quatre pi au carré, divisé par G fois M, le tout multiplié par a au cube. C'est cette loi qui permet de comparer les orbites entre elles, et même de déterminer la masse des corps centraux.",
+   "texte": "Kepler 3 : T² proportionnel à a³.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p25",
+   "ecran": "vitesse_orbitale",
+   "dit": "Reprenons la gravitation de Newton pour un satellite en orbite circulaire de rayon r. La force de gravitation, G M m sur r au carré, fournit exactement la force centripète, m v carré sur r. La masse du satellite se simplifie : la vitesse orbitale vaut racine carrée de G M sur r. Elle ne dépend que du corps central et du rayon : plus l'orbite est basse, plus le satellite va vite. Et la période suit, deux pi r divisé par v : on retrouve la troisième loi de Kepler.",
+   "texte": "v = √(GM/r) : Newton redonne Kepler.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p26",
+   "ecran": "approximation",
+   "dit": "Comment les deux mondes se rejoignent-ils ? Près de la surface, l'altitude h reste très petite devant le rayon de la Terre : g semble constant, et nous retrouvons nos paraboles de projectile. Mais dès que l'altitude devient comparable au rayon terrestre, la variation de g compte, et seul le modèle de Newton, en un sur r au carré, décrit les orbites képlériennes. Le champ uniforme n'est qu'une approximation locale du champ réel.",
+   "texte": "Champ uniforme : une approximation locale.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p27",
+   "ecran": "satellite_enonce",
+   "dit": "Exemple : un satellite artificiel tourne sur une orbite circulaire de rayon sept fois dix puissance six mètres autour de la Terre. On donne la masse de la Terre, cinq virgule quatre-vingt-dix-sept fois dix puissance vingt-quatre kilogrammes, et la constante de gravitation G. On demande sa vitesse orbitale, puis sa période de révolution.",
+   "texte": "Exemple : le satellite en orbite basse.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p28",
+   "ecran": "satellite_calculs",
+   "dit": "On suit la méthode : identifier le modèle, un cercle sous gravitation ; écrire que la gravitation fournit la force centripète ; isoler la vitesse, puis la période ; substituer les valeurs en unités du système international ; et vérifier l'ordre de grandeur. La vitesse : racine carrée de G M sur r, soit racine de cinq virgule soixante-neuf fois dix puissance sept, environ sept virgule cinquante-quatre fois dix puissance trois mètres par seconde. La période : deux pi r sur v, environ cinq virgule quatre-vingt-trois fois dix puissance trois secondes, c'est-à-dire quatre-vingt-dix-sept minutes. Cohérent avec les orbites basses.",
+   "texte": "v ≈ 7,54×10³ m/s ; T ≈ 97 min.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p29",
+   "ecran": "pieges_kepler",
+   "dit": "Trois pièges ferment ce chapitre. Ne pas confondre le demi-grand axe a, qui vaut pour les ellipses en général, et le rayon r, réservé aux cercles, même si pour un cercle les deux coïncident. Ne pas réciter la loi des aires sans son origine : la conservation du moment cinétique. Et savoir passer de la proportionnalité de Kepler, T carré proportionnel à a cube, à la formule complète de Newton, avec G et la masse du corps central.",
+   "texte": "Pièges Kepler : a ou r, moment cinétique, Newton.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p30",
+   "ecran": "recap",
+   "dit": "Récapitulons tout le cours. Dans un champ uniforme, l'accélération est constante et les trajectoires sont des paraboles : a égale g pour la pesanteur, q E sur m pour une charge dans un champ électrique. Un champ magnétique, lui, courbe la trajectoire en cercle, avec un rayon m v sur valeur absolue de q fois B, et une période indépendante de la vitesse. Enfin, pour les orbites, les lois de Kepler, éclairées par Newton, donnent la période et la vitesse des satellites. Bon courage pour vos exercices.",
+   "texte": "L'essentiel : champs uniformes, Lorentz, Kepler.",
+   "pause_apres": 0.9
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le champ de pesanteur uniforme et le mouvement vertical"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Le champ électrostatique uniforme et la déviation des particules",
+   "pont": {
+    "texte": "Partie 2 : champ électrique, déviation et champ magnétique.",
+    "dit": "Partie deux : le champ électrostatique uniforme et la déviation des particules chargées. Nous allons traiter le champ électrique exactement comme la pesanteur, puis découvrir ce que change un champ magnétique."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Les lois de Kepler et les satellites",
+   "pont": {
+    "texte": "Partie 3 : lois de Kepler et satellites.",
+    "dit": "Partie trois : les lois de Kepler et les satellites. Nous quittons les champs uniformes pour la gravitation réelle, celle qui diminue avec la distance et qui organise le mouvement des planètes et des satellites."
+   }
+  }
+ ]
+}

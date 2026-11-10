@@ -8,10 +8,11 @@ import { getSupabase } from './supabase';
 
 const CLE_ACTIONS = 'accueil.assistantConfiguration.actions';
 
-export type ActionSuivie = 'quiz' | 'correction' | 'fil' | 'parametres';
+export type ActionSuivie = 'planning' | 'quiz' | 'correction' | 'fil' | 'parametres';
 
 export type ProgressionAssistant = {
   mission: boolean;
+  planning: boolean;
   lecon: boolean;
   quiz: boolean;
   exercice: boolean;
@@ -38,13 +39,15 @@ export async function lireProgressionAssistant(): Promise<ProgressionAssistant> 
     lireEtatHorsLigne(),
   ]);
   const actions = actionsBrut ? (JSON.parse(actionsBrut) as Partial<Record<ActionSuivie, boolean>>) : {};
-  const [correctionDistante, filDistant] = await Promise.all([
+  const [correctionDistante, filDistant, copiePlanning] = await Promise.all([
     actions.correction ? Promise.resolve(false) : actionDistante('correction', userId),
     actions.fil ? Promise.resolve(false) : actionDistante('fil', userId),
+    actions.planning || !userId ? Promise.resolve(null) : AsyncStorage.getItem(`planning.copie.${userId}`),
   ]);
 
   return {
     mission: rythme !== null,
+    planning: !!actions.planning || !!copiePlanning,
     lecon: Object.keys(lecons).length > 0,
     quiz: !!actions.quiz || Object.values(entrainement.quiz_sessions).some((sessions) => sessions.length > 0),
     exercice: Object.values(entrainement.exercises_done).some(Boolean),
@@ -96,3 +99,50 @@ async function actionDistante(action: 'correction' | 'fil', userId: string | nul
     return false;
   }
 }
+
+const CLE_DATE_COMPLETION = 'accueil.assistantConfiguration.dateCompletion';
+
+export function dateAujourdhuiLocale(): string {
+  const d = new Date();
+  const annee = d.getFullYear();
+  const mois = String(d.getMonth() + 1).padStart(2, '0');
+  const jour = String(d.getDate()).padStart(2, '0');
+  return `${annee}-${mois}-${jour}`;
+}
+
+export async function enregistrerCompletionAssistant(): Promise<void> {
+  const aujourdhui = dateAujourdhuiLocale();
+  const existant = await AsyncStorage.getItem(CLE_DATE_COMPLETION);
+  if (!existant) {
+    await AsyncStorage.setItem(CLE_DATE_COMPLETION, aujourdhui);
+  }
+  try {
+    const client = getSupabase();
+    const { data: session } = await client.auth.getSession();
+    if (session.session?.user && !session.session.user.user_metadata?.assistant_termine_le) {
+      await client.auth.updateUser({ data: { assistant_termine_le: aujourdhui } });
+    }
+  } catch (erreur) {
+    console.warn('Impossible de synchroniser la complétion de l’assistant.', erreur);
+  }
+}
+
+export async function estAssistantMasque(): Promise<boolean> {
+  let dateCompletee = await AsyncStorage.getItem(CLE_DATE_COMPLETION);
+  if (!dateCompletee) {
+    try {
+      const client = getSupabase();
+      const { data: session } = await client.auth.getSession();
+      const distante = session.session?.user.user_metadata?.assistant_termine_le as string | undefined;
+      if (distante) {
+        dateCompletee = distante;
+        await AsyncStorage.setItem(CLE_DATE_COMPLETION, distante);
+      }
+    } catch {
+      // Réseau indisponible ou non connecté : repli sur le local
+    }
+  }
+  if (!dateCompletee) return false;
+  return dateAujourdhuiLocale() > dateCompletee;
+}
+

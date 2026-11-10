@@ -11,6 +11,7 @@ import { ErreurChariow, ouvrirPaiementChariow } from '@/services/chariow';
 import { etiquetteRabais, motifDepuisServeur } from '@/services/codePromo';
 import { formaterMontant, type CodeOffre } from '@/services/pass';
 import { ajoutEnFin, drapeauPays, exempleNumero, listerPays, nomPays, numeroPlausible } from '@/services/pays';
+import { chargerPaysFermes, estPaysFerme, filtrerPaysOuverts, usePaysFermes } from '@/services/paysOuverts';
 import {
   activerPassGratuit, annulerCommande, ErreurPaiement, lireMethodes, lirePaysPaiement, lireStatutCommande, modeEssai, payerMobileMoney, suivreCommande,
   type MethodesPays, type Operateur, type PaysPaiement, type ResultatPaiement,
@@ -98,6 +99,11 @@ export function PayerPass() {
   const [offre, setOffre] = useState<CodeOffre>(offreParam);
 
   const [pays, setPays] = useState<string | null>(null);
+  // Miroir du pays courant pour les lectures asynchrones (configuration des pays ouverts, M14-03).
+  const paysRef = useRef<string | null>(null);
+  useEffect(() => {
+    paysRef.current = pays;
+  }, [pays]);
   const promo = useCodePromo({ offre, pays, horsLigne, ecran: 'e2' });
   const [recuPromo, setRecuPromo] = useState<{ code: string; etiquette: string; initial: string; paye: string; gratuit: boolean } | null>(null);
   /** Indicatifs fournis par pawaPay (pour l'affichage du numéro Mobile Money) ; la liste des pays, elle, est locale. */
@@ -186,7 +192,30 @@ export function PayerPass() {
       .then((p) => setIndicatifs(Object.fromEntries(p.map((x) => [x.alpha2, x.prefix]))))
       .catch(() => setIndicatifs({}));
   };
-  const listePays = useMemo(() => listerPays(langue, indicatifs ?? {}), [langue, indicatifs]);
+  // Pays fermés par la configuration serveur (M14-03) : retirés de la liste, donc non sélectionnables,
+  // et aucun paiement n'est proposé pour eux. Configuration inconnue ou en échec : aucun filtrage.
+  const fermes = usePaysFermes();
+  const listePays = useMemo(() => filtrerPaysOuverts(listerPays(langue, indicatifs ?? {}), fermes), [langue, indicatifs, fermes]);
+  // Pays de départ fermé par la configuration : bascule sur le premier pays ouvert dès qu'elle est
+  // connue, avec la même remise à zéro qu'un changement de pays par l'élève. Une reprise de paiement
+  // en attente garde son pays : la commande existe déjà.
+  useEffect(() => {
+    if (params.reprise) return;
+    let actif = true;
+    void chargerPaysFermes().then((f) => {
+      if (!actif) return;
+      const actuel = paysRef.current;
+      if (!actuel || !estPaysFerme(actuel, f)) return;
+      const premier = filtrerPaysOuverts(listerPays(langue, {}), f)[0];
+      if (!premier || premier.alpha2 === actuel) return;
+      setMethodes('chargement');
+      setOperateur(null);
+      setPays(premier.alpha2);
+    });
+    return () => {
+      actif = false;
+    };
+  }, [params.reprise, langue, pays]);
 
   const m = typeof methodes === 'object' ? methodes : null;
   const offreChoisie = m?.offers.find((o) => o.code === offre) ?? null;

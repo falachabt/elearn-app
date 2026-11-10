@@ -1,0 +1,315 @@
+{
+  "cours": 7249,
+  "ecrans": {
+    "aire_lat": {
+      "kicker": "Formule · aire latérale",
+      "note": "P : périmètre de la base ; h : hauteur du prisme",
+      "tex": "\\mathcal{A}_{lat} = \\mathcal{P} \\times h",
+      "type": "formule"
+    },
+    "aire_tot": {
+      "kicker": "Formule · aire totale",
+      "note": "Les deux bases sont superposables, donc égales",
+      "tex": "\\mathcal{A}_{totale} = \\mathcal{A}_{lat} + 2 \\times \\mathcal{A}_{base}",
+      "type": "formule"
+    },
+    "def_prisme": {
+      "anim": {
+        "nom": "prisme_fig",
+        "hauteur": 230
+      },
+      "kicker": "Définition · le prisme droit",
+      "texte": "Deux bases identiques et parallèles, des rectangles autour.",
+      "type": "phrase"
+    },
+    "ex_aires": {
+      "kicker": "Exemple résolu · les deux aires",
+      "tex": [
+        "\\mathcal{A}_{base} = \\tfrac{3 \\times 4}{2} = 6\\ \\text{cm}^2",
+        "\\mathcal{P} = 3 + 4 + 5 = 12\\ \\text{cm}",
+        "\\mathcal{A}_{lat} = 12 \\times 10 = 120\\ \\text{cm}^2",
+        "\\mathcal{A}_{totale} = 120 + 2 \\times 6 = 132\\ \\text{cm}^2"
+      ],
+      "titre": "Fil rouge : latérale cent vingt, totale cent trente-deux",
+      "type": "etape"
+    },
+    "ex_faces": {
+      "kicker": "Exemple · décrire le fil rouge",
+      "tex": [
+        "\\text{base : triangle } 3,\\ 4,\\ 5\\ \\text{cm} \\qquad h = 10\\ \\text{cm}",
+        "3 \\times 10,\\quad 4 \\times 10,\\quad 5 \\times 10\\ \\text{cm}"
+      ],
+      "titre": "Trois rectangles, un par côté de la base",
+      "type": "etape"
+    },
+    "ex_patron": {
+      "kicker": "Exemple résolu · le patron du fil rouge",
+      "tex": [
+        "h = 10\\ \\text{cm}",
+        "3,\\ 4,\\ 5\\ \\text{cm : largeurs des rectangles}",
+        "\\text{deux triangles superposables}"
+      ],
+      "titre": "Largeurs trois, quatre, cinq ; hauteur dix",
+      "type": "etape",
+      "anim": {
+        "nom": "patron_prisme_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_volume": {
+      "kicker": "Exemple résolu · le volume",
+      "tex": [
+        "\\mathcal{A}_{base} = \\tfrac{3 \\times 4}{2} = 6\\ \\text{cm}^2",
+        "\\mathcal{V} = 6 \\times 10 = 60\\ \\text{cm}^3"
+      ],
+      "titre": "Fil rouge : soixante centimètres cubes",
+      "type": "etape"
+    },
+    "familles": {
+      "anim": {
+        "nom": "prisme_fig",
+        "hauteur": 230
+      },
+      "kicker": "Les familles de prismes",
+      "texte": "Le nom vient de la base : triangle, rectangle, pentagone.",
+      "type": "phrase"
+    },
+    "hauteur": {
+      "anim": {
+        "nom": "prisme_fig",
+        "hauteur": 230
+      },
+      "kicker": "La hauteur du prisme",
+      "texte": "h : la distance entre les deux bases.",
+      "type": "phrase"
+    },
+    "lien": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "pave_fig"
+      },
+      "kicker": "Du patron à la formule",
+      "texte": "Déplié, le latéral devient une grande bande.",
+      "type": "phrase"
+    },
+    "objectifs": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "pave_fig"
+      },
+      "kicker": "Objectifs du cours",
+      "texte": "Décrire le solide, dessiner son patron, calculer ses aires et son volume.",
+      "type": "phrase"
+    },
+    "patron_def": {
+      "anim": {
+        "nom": "patron_prisme_fig",
+        "hauteur": 230
+      },
+      "kicker": "Le patron",
+      "texte": "Le solide déplié à plat, prêt à être replié.",
+      "type": "phrase"
+    },
+    "patron_methode": {
+      "kicker": "Méthode · construire un patron",
+      "tex": [
+        "\\text{1. tracer une base}",
+        "\\text{2. bande : rectangles de hauteur } h",
+        "\\text{3. seconde base sur un rectangle}"
+      ],
+      "titre": "Une base, une bande de rectangles, une base",
+      "type": "etape",
+      "anim": {
+        "nom": "patron_prisme_fig",
+        "hauteur": 215
+      }
+    },
+    "recap": {
+      "etapes": [
+        "Deux bases superposables et parallèles",
+        "Faces latérales : des rectangles",
+        "Patron : 2 bases + bande de rectangles",
+        "Aire latérale : A = P × h",
+        "Volume : V = Aire base × h"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "reconnaitre": {
+      "anim": {
+        "nom": "prisme_fig",
+        "hauteur": 230
+      },
+      "kicker": "Reconnaître un prisme droit",
+      "texte": "Bases identiques, rectangles, arêtes latérales égales.",
+      "type": "phrase"
+    },
+    "tableau": {
+      "kicker": "Les trois formules",
+      "tex": [
+        "\\mathcal{A}_{lat} = \\mathcal{P} \\times h",
+        "\\mathcal{A}_{totale} = \\mathcal{A}_{lat} + 2\\mathcal{A}_{base}",
+        "\\mathcal{V} = \\mathcal{A}_{base} \\times h"
+      ],
+      "titre": "Périmètre ou aire de base, fois la hauteur",
+      "type": "etape"
+    },
+    "titre": {
+      "anim": {
+        "nom": "prisme_fig",
+        "hauteur": 250
+      },
+      "kicker": "Mathématique · Géométrie dans l'espace",
+      "sous": "Deux bases, des rectangles autour : reconnaître, déplier, calculer",
+      "titre": "Le prisme droit : patron, aires et volume",
+      "type": "titre"
+    },
+    "unites": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "pave_fig"
+      },
+      "kicker": "Les unités parlent",
+      "texte": "cm, cm², cm³ : l'unité dit la grandeur calculée.",
+      "type": "phrase"
+    },
+    "volume": {
+      "kicker": "Formule · volume",
+      "note": "Volume en cm³, aires en cm², longueurs en cm",
+      "tex": "\\mathcal{V} = \\mathcal{A}_{base} \\times h",
+      "type": "formule"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Reconnaître le prisme et construire son patron"
+    },
+    {
+      "debut": "p11",
+      "pont": {
+        "dit": "Partie deux : les aires et le volume. Le patron déplié donne l'aire latérale, l'aire totale ajoute les deux bases, et le volume empile la base sur toute la hauteur.",
+        "texte": "Partie 2 : aires et volume du prisme droit."
+      },
+      "sous_titre": "Aires et volume du prisme droit"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématiques consacré au prisme droit. Nous allons apprendre à reconnaître ce solide, à construire son patron à plat, puis à calculer son aire latérale, son aire totale et son volume, toujours sur le même exemple fil rouge.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Le prisme droit : patron, aires, volume."
+    },
+    {
+      "dit": "À la fin de ce cours, vous saurez décrire un prisme droit par ses bases et sa hauteur, dessiner son patron, et appliquer les trois formules du cours : l'aire latérale, l'aire totale et le volume.",
+      "ecran": "objectifs",
+      "id": "p02",
+      "texte": "Objectifs : décrire, déplier, calculer."
+    },
+    {
+      "dit": "Un prisme droit est un solide qui possède deux faces particulières, appelées les bases : deux polygones superposables, donc identiques, et parallèles entre eux. Toutes les autres faces sont des rectangles perpendiculaires aux bases : ce sont les faces latérales.",
+      "ecran": "def_prisme",
+      "id": "p03",
+      "texte": "Deux bases identiques et parallèles."
+    },
+    {
+      "dit": "La hauteur, notée h, est la distance entre les deux bases. C'est aussi la longueur des arêtes latérales, qui relient les deux bases : elles sont parallèles entre elles et mesurent toutes h. Attention, cette hauteur n'est pas une hauteur de la base.",
+      "ecran": "hauteur",
+      "id": "p04",
+      "texte": "h : la distance entre les deux bases."
+    },
+    {
+      "dit": "Le nom du prisme vient de la forme de sa base. Base triangulaire, prisme à base triangulaire. Base rectangulaire, c'est le pavé droit, le prisme de la figure. Base pentagonale, prisme à base pentagonale. Le nombre de faces latérales suit toujours le nombre de côtés de la base.",
+      "ecran": "familles",
+      "id": "p05",
+      "texte": "Le nom vient de la base du prisme."
+    },
+    {
+      "dit": "Notre exemple fil rouge : un prisme droit à base triangulaire, dont la base est un triangle de côtés trois, quatre et cinq centimètres, et dont la hauteur vaut dix centimètres. Ses deux bases sont deux triangles identiques, et ses trois faces latérales sont trois rectangles : trois par dix, quatre par dix et cinq par dix centimètres.",
+      "ecran": "ex_faces",
+      "id": "p06",
+      "texte": "Fil rouge : base 3-4-5, hauteur 10 cm."
+    },
+    {
+      "dit": "Pour reconnaître un prisme droit sur une figure, vérifiez trois choses. Deux faces polygones identiques et parallèles. Des faces latérales qui sont toutes des rectangles. Et des arêtes latérales parallèles et de même longueur. Si un seul de ces points manque, ce n'est pas un prisme droit.",
+      "ecran": "reconnaitre",
+      "id": "p07",
+      "texte": "Reconnaître : bases, rectangles, arêtes."
+    },
+    {
+      "dit": "Un patron est une figure plane qui, une fois découpée et pliée, reconstitue le solide. Le patron d'un prisme droit contient exactement les deux bases et tous les rectangles latéraux, attachés les uns aux autres. En pliant le long des arêtes, les rectangles se redressent et les deux bases viennent fermer le solide.",
+      "ecran": "patron_def",
+      "id": "p08",
+      "texte": "Le patron : le solide déplié à plat."
+    },
+    {
+      "dit": "La méthode pour construire un patron tient en trois gestes. D'abord, tracer une première base. Ensuite, dessiner les rectangles latéraux côte à côte, en bande : chacun a pour largeur le côté correspondant de la base et pour hauteur la hauteur du prisme. Enfin, attacher la seconde base, identique, à l'un des rectangles.",
+      "ecran": "patron_methode",
+      "id": "p09",
+      "texte": "Patron : une base, une bande, une base."
+    },
+    {
+      "dit": "Exemple : le patron de notre prisme fil rouge. On dessine le triangle de base, puis la bande des trois rectangles, tous de hauteur dix centimètres, et de largeurs trois, quatre et cinq centimètres, dans l'ordre des côtés. On attache le second triangle, identique au premier, sur l'un des rectangles. Au pliage, on retrouve exactement le prisme.",
+      "ecran": "ex_patron",
+      "id": "p10",
+      "texte": "Patron du fil rouge : 3 rectangles, 2 triangles."
+    },
+    {
+      "dit": "Le patron explique la première formule. Quand on déplie le prisme, les rectangles latéraux forment une grande bande. Sa longueur est le tour complet de la base, son périmètre, et sa largeur est la hauteur du prisme. L'aire de cette bande est donc le périmètre multiplié par la hauteur.",
+      "ecran": "lien",
+      "id": "p11",
+      "texte": "Déplié, le latéral devient une bande."
+    },
+    {
+      "dit": "L'aire latérale est la somme des aires des faces rectangulaires, sans les bases. D'après le patron, elle vaut le périmètre de la base multiplié par la hauteur. Retenez la logique : on fait le tour de la base, puis on monte de la hauteur.",
+      "ecran": "aire_lat",
+      "id": "p12",
+      "texte": "Aire latérale = périmètre × hauteur."
+    },
+    {
+      "dit": "L'aire totale ajoute les deux bases à l'aire latérale. Elle vaut donc l'aire latérale plus deux fois l'aire d'une base, puisque les deux bases sont identiques. C'est l'aire de tout le patron, la quantité de matériau nécessaire pour fabriquer le solide.",
+      "ecran": "aire_tot",
+      "id": "p13",
+      "texte": "Aire totale = latérale + deux bases."
+    },
+    {
+      "dit": "Calculons sur le fil rouge. La base est un triangle rectangle, dont les côtés de l'angle droit valent trois et quatre centimètres : son aire vaut trois fois quatre divisé par deux, six centimètres carrés. Son périmètre vaut trois plus quatre plus cinq, douze centimètres. L'aire latérale vaut douze fois dix, cent vingt centimètres carrés. Et l'aire totale vaut cent vingt plus deux fois six, cent trente-deux centimètres carrés.",
+      "ecran": "ex_aires",
+      "id": "p14",
+      "texte": "Fil rouge : latérale 120, totale 132 cm²."
+    },
+    {
+      "dit": "Le volume mesure l'espace occupé par le solide. Pour un prisme droit, il vaut l'aire de la base multipliée par la hauteur. L'idée est simple : on empile la base, couche après couche, sur toute la hauteur. Le résultat s'exprime en centimètres cubes.",
+      "ecran": "volume",
+      "id": "p15",
+      "texte": "Volume = aire de la base × hauteur."
+    },
+    {
+      "dit": "Exemple : toujours le fil rouge. L'aire de la base vaut six centimètres carrés, calculée à l'étape des aires. Le volume vaut donc six fois dix, soixante centimètres cubes. Vérifiez l'unité : une aire en centimètres carrés fois une longueur en centimètres donne bien des centimètres cubes.",
+      "ecran": "ex_volume",
+      "id": "p16",
+      "texte": "Fil rouge : V = 6 × 10 = 60 cm³."
+    },
+    {
+      "dit": "Un dernier réflexe sur les unités, elles racontent ce que l'on calcule. Le périmètre et la hauteur sont des longueurs, en centimètres. Les aires sont en centimètres carrés. Le volume est en centimètres cubes. Si votre volume sort en centimètres carrés, c'est une aire que vous avez calculée, pas un volume.",
+      "ecran": "unites",
+      "id": "p17",
+      "texte": "cm, cm², cm³ : l'unité dit la grandeur."
+    },
+    {
+      "dit": "Rassemblons les trois formules du cours dans un seul tableau. L'aire latérale, le périmètre de la base fois la hauteur. L'aire totale, l'aire latérale plus deux fois l'aire de la base. Et le volume, l'aire de la base fois la hauteur. Deux formules partent de l'aire de la base, une du périmètre : ne les confondez pas.",
+      "ecran": "tableau",
+      "id": "p18",
+      "texte": "Trois formules : P × h, + 2 bases, A × h."
+    },
+    {
+      "dit": "Pour conclure. Un prisme droit a deux bases identiques et parallèles et des faces latérales rectangulaires. Son patron contient les deux bases et la bande des rectangles. L'aire latérale vaut le périmètre fois la hauteur, l'aire totale ajoute les deux bases, et le volume vaut l'aire de la base fois la hauteur.",
+      "ecran": "recap",
+      "id": "p19",
+      "texte": "Prisme droit : à retenir."
+    }
+  ],
+  "titre": "Le prisme droit : patron, aires et volume"
+}

@@ -35,6 +35,29 @@ describe('entrainement', () => {
     expect(await lireExercicesFaits()).toEqual({});
   });
 
+  it('exercice fait avec un compte : les 15 XP partent au serveur (non-régression : niveau des confettis = niveau de Moi), une seule fois', async () => {
+    const insert = jest.fn().mockResolvedValue({ error: null });
+    const maybeSingle = jest.fn().mockResolvedValue({ data: { total_xp: 20 }, error: null });
+    const bd = { from: jest.fn((table: string) => (table === 'xp_history' ? { insert } : { select: () => ({ eq: () => ({ maybeSingle }) }), upsert: jest.fn().mockResolvedValue({ error: null }) })) };
+    const compte = { client: bd as never, userId: 'u1' };
+    await basculerExerciceFait('ex1', new Date(), compte);
+    await new Promise((r) => setTimeout(r, 0));
+    expect(insert).toHaveBeenCalledWith(expect.objectContaining({ userid: 'u1', xp_gained: 15, source_id: 'ex1' }));
+    // Décocher puis recocher ne rapporte rien de plus.
+    await basculerExerciceFait('ex1', new Date(), compte);
+    await basculerExerciceFait('ex1', new Date(), compte);
+    await new Promise((r) => setTimeout(r, 0));
+    expect(insert).toHaveBeenCalledTimes(1);
+  });
+
+  it('exercice fait sans compte : XP gardés sur l\u2019appareil, aucun appel serveur', async () => {
+    const bd = { from: jest.fn() };
+    await basculerExerciceFait('ex2', new Date(), { client: bd as never, userId: null });
+    await new Promise((r) => setTimeout(r, 0));
+    expect(bd.from).not.toHaveBeenCalled();
+    expect(Number(await AsyncStorage.getItem('xp.totalLocal'))).toBeGreaterThanOrEqual(15);
+  });
+
   it('exercice terminé : sa date est gardée, et retirée quand il est défait', async () => {
     await basculerExerciceFait('e', new Date('2026-10-06T10:00:00.000Z'));
     await basculerExerciceFait('f', new Date('2026-10-07T08:30:00.000Z'));

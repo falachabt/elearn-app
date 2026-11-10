@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useSyncExternalStore, type ReactNode } from 'react';
-import { Appearance, useColorScheme } from 'react-native';
+import { Appearance, useColorScheme, useWindowDimensions } from 'react-native';
 
 import { appliquerCouleurNavigateur } from '@/services/couleurNavigateur';
-import { abonnerAffichage, chargerAffichage, lireAffichage, type ReglageTheme } from '@/services/affichage';
+import { abonnerAffichage, chargerAffichage, lireAffichage, lireTailleEffective, signalerEcran, type ReglageTheme } from '@/services/affichage';
 
 import { themes, type Theme } from './theme';
 
@@ -18,6 +18,11 @@ const ThemeContext = createContext<Valeur>({ theme: themes.light, sombre: false,
 export function ThemeProvider({ reglage: force, children }: { reglage?: ReglageTheme; children: ReactNode }) {
   const systeme = useColorScheme();
   const affichage = useSyncExternalStore(abonnerAffichage, lireAffichage, lireAffichage);
+  // Taille de l'écran (plus petite dimension, en dp) : sert au mode automatique de la taille du texte.
+  const { width, height } = useWindowDimensions();
+  useEffect(() => {
+    signalerEcran(Math.min(width, height));
+  }, [width, height]);
   useEffect(() => {
     void chargerAffichage();
   }, []);
@@ -36,11 +41,24 @@ export function ThemeProvider({ reglage: force, children }: { reglage?: ReglageT
   useEffect(() => {
     appliquerCouleurNavigateur((sombre ? themes.dark : themes.light).fond.app);
   }, [sombre]);
+  // Taille effective : le réglage de l'élève, ou la taille automatique de l'écran (recalculée à chaque publication).
   const valeur = useMemo(
-    () => ({ theme: sombre ? themes.dark : themes.light, sombre, reglage, taille: affichage.taille }),
-    [sombre, reglage, affichage.taille],
+    () => ({ theme: sombre ? themes.dark : themes.light, sombre, reglage, taille: lireTailleEffective() }),
+    // `affichage` change à chaque publication (taille choisie, écran, thème) : c'est le signal de redessin.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [sombre, reglage, affichage],
   );
   return <ThemeContext.Provider value={valeur}>{children}</ThemeContext.Provider>;
 }
 
 export const useTheme = () => useContext(ThemeContext);
+
+/**
+ * Force le thème sombre sur un sous-arbre (écran d'examen, qui reste sombre dans les deux thèmes). Sans effet de bord :
+ * le réglage de l'app, la barre du navigateur et le mode nuit du système ne changent pas.
+ */
+export function ForcerSombre({ children }: { children: ReactNode }) {
+  const courant = useContext(ThemeContext);
+  const valeur = useMemo(() => ({ ...courant, theme: themes.dark, sombre: true }), [courant]);
+  return <ThemeContext.Provider value={valeur}>{children}</ThemeContext.Provider>;
+}

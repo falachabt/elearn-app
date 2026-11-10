@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { noterCorrection } from './erreursSemaine';
 import type { QuestionTiree } from './miniTest';
 
 /** Dernier quiz terminé (mission, leçon, erreurs, quiz libre) : de quoi revoir chaque question hors ligne (M5-10). */
@@ -30,6 +31,8 @@ export function oublierCorrectionEnMemoire(): void {
 export async function enregistrerCorrection(c: Correction): Promise<void> {
   derniereCorrection = c;
   await AsyncStorage.setItem(CLE_CORRECTION, JSON.stringify(c)).catch(() => {});
+  // Journal des erreurs de la semaine (rapport hebdomadaire) : ne bloque jamais la correction.
+  await noterCorrection(c).catch(() => {});
 }
 
 export async function lireCorrection(): Promise<Correction | null> {

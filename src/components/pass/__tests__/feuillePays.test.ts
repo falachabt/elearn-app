@@ -49,4 +49,25 @@ describe('recherche dans le sélecteur de pays', () => {
     expect(normaliser('  CÔTE D’IVOIRE ')).toBe('cote d ivoire');
     expect(normaliser('Cameroun')).toBe('cameroun');
   });
+
+  it('trouve la Côte d’Ivoire même sans apostrophe ou tout attaché', () => {
+    expect(codes("cote d'ivoire")[0]).toBe('CI');
+    expect(codes('cote divoire')[0]).toBe('CI');
+    expect(codes('cotedivoire')[0]).toBe('CI');
+    expect(codes('ivory coast')[0]).toBe('CI');
+  });
+
+  it('trouve par synonymes usuels (RDC, USA, UK)', () => {
+    expect(codes('rdc')[0]).toBe('CD');
+    expect(codes('RDC')[0]).toBe('CD');
+    expect(codes('usa')[0]).toBe('US');
+    expect(codes('uk')[0]).toBe('GB');
+  });
+
+  it('trouve par nom français même si la liste a des noms bruts sans Intl', () => {
+    const paysHermes = [{ alpha2: 'CI', name: 'CI', flag: null, prefix: '225', currencies: [] }];
+    expect(filtrerPays(paysHermes, "cote d'ivoire")[0]?.alpha2).toBe('CI');
+    expect(filtrerPays(paysHermes, '+225')[0]?.alpha2).toBe('CI');
+    expect(filtrerPays(paysHermes, '225')[0]?.alpha2).toBe('CI');
+  });
 });

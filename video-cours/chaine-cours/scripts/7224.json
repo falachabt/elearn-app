@@ -1,0 +1,380 @@
+{
+ "cours": 7224,
+ "ecrans": {
+  "addition_contraires": {
+   "kicker": "Addition · Signes contraires",
+   "note": "Signes contraires : on soustrait, signe du plus grand.",
+   "tex": "(-6) + (+2{,}5) = -3{,}5",
+   "type": "formule"
+  },
+  "addition_meme": {
+   "kicker": "Addition · Même signe",
+   "note": "Même signe : on additionne les distances, on garde le signe.",
+   "tex": "(-3{,}5) + (-1{,}2) = -4{,}7",
+   "type": "formule"
+  },
+  "application_temperature": {
+   "kicker": "Application · Une température qui monte",
+   "note": "La température monte mais reste négative.",
+   "tex": "-7{,}3 + 4{,}4 = -2{,}9",
+   "type": "formule"
+  },
+  "comparaison": {
+   "kicker": "Comparaison · Les trois règles",
+   "tex": [
+    "\\text{positif} > \\text{négatif, toujours}",
+    "\\text{entre positifs :}",
+    "\\text{plus grande distance gagne}",
+    "\\text{entre négatifs :}",
+    "\\text{plus petite distance gagne}"
+   ],
+   "titre": "Comparer, c'est d'abord regarder les signes",
+   "type": "etape"
+  },
+  "comparaison_ex": {
+   "kicker": "Comparaison · Un exemple pas à pas",
+   "tex": [
+    "-7{,}3 \\quad ? \\quad -2{,}9",
+    "7{,}3 > 2{,}9 \\qquad \\text{(distances à zéro)}",
+    "-7{,}3 < -2{,}9 \\qquad \\text{(entre négatifs)}"
+   ],
+   "titre": "Deux négatifs : on compare les distances",
+   "type": "etape"
+  },
+  "definition": {
+   "kicker": "Définition · Un nombre décimal relatif",
+   "tex": "\\text{nombre relatif} = \\text{signe} + \\text{distance à zéro}",
+   "type": "formule"
+  },
+  "division_ex": {
+   "kicker": "Division · Mêmes règles de signe",
+   "note": "Même signe : quotient positif ; signes contraires : négatif.",
+   "tex": "\\frac{-8{,}4}{-2{,}1} = +4 \\qquad \\frac{7{,}5}{-2{,}5} = -3",
+   "type": "formule"
+  },
+  "division_zero": {
+   "kicker": "Division · L'interdiction absolue",
+   "note": "Un diviseur nul : le quotient n'existe pas.",
+   "tex": "\\frac{a}{0} \\quad \\text{interdit}",
+   "type": "formule"
+  },
+  "droite": {
+   "kicker": "Droite graduée · Placer les nombres",
+   "tex": [
+    "\\text{à droite de zéro : les nombres positifs}",
+    "\\text{à gauche de zéro : les nombres négatifs}",
+    "\\text{distance à zéro : l'écart avec zéro}"
+   ],
+   "titre": "Zéro au centre, les signes de chaque côté",
+   "type": "etape"
+  },
+  "exemple_produits": {
+   "kicker": "Exemple complet · Étape 1 : les produits",
+   "tex": [
+    "E = (-2{,}5) \\times (-4) + (-3) \\times 1{,}5",
+    "(-2{,}5) \\times (-4) = +10",
+    "(-3) \\times 1{,}5 = -4{,}5"
+   ],
+   "titre": "Deux produits à calculer séparément",
+   "type": "etape"
+  },
+  "exemple_somme": {
+   "kicker": "Exemple complet · Étape 2 : la somme",
+   "tex": [
+    "E = 10 + (-4{,}5)",
+    "10 - 4{,}5 = 5{,}5 \\qquad \\text{(signe du plus grand)}"
+   ],
+   "titre": "Une addition de signes contraires",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction · Pourquoi des nombres négatifs ?",
+   "tex": [
+    "\\text{température sous zéro :}",
+    "\\text{moins cinq degrés}",
+    "\\text{solde bancaire : un découvert}",
+    "\\text{altitude : sous le niveau de la mer}"
+   ],
+   "titre": "Trois situations, un même besoin",
+   "type": "etape"
+  },
+  "methode": {
+   "kicker": "Méthode · Les trois réflexes",
+   "tex": [
+    "\\text{1. le signe, avant tout calcul}",
+    "\\text{2. les distances à zéro, ensuite}",
+    "\\text{3. vérifier l'ordre de grandeur}"
+   ],
+   "titre": "Dans cet ordre, on ne se trompe plus",
+   "type": "etape"
+  },
+  "multiplication_contraires": {
+   "kicker": "Multiplication · Signes contraires",
+   "note": "Signes contraires : le produit est négatif.",
+   "tex": "(-3) \\times 1{,}5 = -4{,}5",
+   "type": "formule"
+  },
+  "multiplication_demarche": {
+   "kicker": "Multiplication · La démarche en deux temps",
+   "tex": [
+    "\\text{1. déterminer le signe du produit}",
+    "\\text{2. multiplier les distances à zéro}",
+    "\\text{le signe ne dépend que des signes}"
+   ],
+   "titre": "Le signe d'abord, les distances ensuite",
+   "type": "etape"
+  },
+  "multiplication_meme": {
+   "kicker": "Multiplication · Même signe",
+   "note": "Même signe : le produit est positif.",
+   "tex": "(-2{,}5) \\times (-4) = +10",
+   "type": "formule"
+  },
+  "oppose": {
+   "kicker": "L'opposé · Même distance, signe contraire",
+   "tex": [
+    "\\text{opposé de } +4{,}2 \\text{ : } -4{,}2",
+    "\\text{même distance à zéro, signe contraire}",
+    "\\text{opposé de } 0 \\text{ : } 0"
+   ],
+   "titre": "Changer de côté sans changer d'écart",
+   "type": "etape"
+  },
+  "opposes_somme": {
+   "kicker": "Addition · Deux opposés",
+   "note": "Deux opposés s'annulent : leur somme vaut zéro.",
+   "tex": "(-4{,}3) + (+4{,}3) = 0",
+   "type": "formule"
+  },
+  "recap1": {
+   "etapes": [
+    "Relatif : signe plus distance à zéro",
+    "Droite : positifs à droite, négatifs à gauche",
+    "Opposé : même distance, signe contraire",
+    "Comparer : attention aux deux négatifs",
+    "Addition : signe, puis distances"
+   ],
+   "kicker": "Partie 1 · À retenir",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Signe d'abord, distances ensuite",
+    "Opposés : somme nulle",
+    "Soustraire, c'est ajouter l'opposé",
+    "Multiplier : règle des signes",
+    "Jamais diviser par zéro"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "regle_signes": {
+   "kicker": "Multiplication · La règle des signes",
+   "tex": [
+    "+ \\times + = + \\qquad + \\times - = -",
+    "- \\times + = - \\qquad - \\times - = +"
+   ],
+   "titre": "Deux signes identiques, ou différents",
+   "type": "etape"
+  },
+  "signes": {
+   "kicker": "Les signes · Plus, moins, et zéro",
+   "tex": [
+    "+3{,}5 = 3{,}5 \\qquad \\text{(signe plus souvent omis)}",
+    "-2{,}4 \\qquad \\text{(signe moins toujours écrit)}",
+    "0 \\qquad \\text{(aucun signe)}"
+   ],
+   "titre": "Le signe se lit, zéro n'en a pas",
+   "type": "etape"
+  },
+  "soustraction_ex": {
+   "kicker": "Soustraction · Deux exemples",
+   "tex": [
+    "3{,}5 - (-2{,}4) = 3{,}5 + 2{,}4 = 5{,}9",
+    "-1{,}8 - 4 = -1{,}8 + (-4) = -5{,}8"
+   ],
+   "titre": "Transformer, puis additionner",
+   "type": "etape"
+  },
+  "soustraction_regle": {
+   "kicker": "Soustraction · La règle",
+   "note": "Soustraire, c'est ajouter l'opposé.",
+   "tex": "a - b = a + (-b)",
+   "type": "formule"
+  },
+  "titre": {
+   "kicker": "Mathématique · Les nombres relatifs",
+   "sous": "Signes, droite graduée, comparaison et les quatre opérations",
+   "titre": "Les nombres décimaux relatifs",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Signes, droite graduée, comparaison et addition"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : multiplier et diviser les nombres relatifs, puis un exemple complet résolu pas à pas.",
+    "texte": "Partie 2 : multiplier, diviser, exemple complet."
+   },
+   "sous_titre": "Multiplication, division et exemple complet"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux nombres décimaux relatifs : les nombres à signe qui servent à décrire les températures sous zéro, les découverts bancaires et les altitudes sous le niveau de la mer. Nous verrons ce qu'est un nombre relatif, comment le placer sur une droite graduée, comment comparer deux relatifs, puis comment les additionner, les soustraire, les multiplier et les diviser.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Les relatifs : des nombres à signe, pour le concret."
+  },
+  {
+   "dit": "Jusqu'ici, nous n'avons croisé que des nombres positifs. Mais comment noter une température de moins cinq degrés, un solde bancaire en découvert, ou une altitude située sous le niveau de la mer ? Il faut des nombres qui portent un signe : c'est exactement le rôle des nombres relatifs.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Sous zéro, en découvert, sous la mer : il faut un signe."
+  },
+  {
+   "dit": "Un nombre décimal relatif est un nombre décimal muni d'un signe, plus ou moins. Le signe dit de quel côté de zéro se situe le nombre, et la distance à zéro dit de combien il s'en écarte. Retenez cette décomposition : un relatif, c'est un signe plus une distance à zéro.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "Définition : un signe, une distance à zéro."
+  },
+  {
+   "dit": "Un nombre positif porte le signe plus, souvent omis à l'écrit : plus trois virgule cinq s'écrit simplement trois virgule cinq. Un nombre négatif porte le signe moins, toujours écrit : moins deux virgule quatre. Quant à zéro, il n'a pas de signe : il n'est ni d'un côté ni de l'autre.",
+   "ecran": "signes",
+   "id": "p04",
+   "texte": "Plus omis, moins toujours écrit, zéro sans signe."
+  },
+  {
+   "dit": "Sur une droite graduée, zéro marque l'origine. Les nombres positifs se placent à sa droite, les nombres négatifs à sa gauche. La distance à zéro d'un nombre est l'écart qui le sépare de zéro sur cette droite : c'est elle qui servira dans tous les calculs.",
+   "ecran": "droite",
+   "id": "p05",
+   "texte": "La droite : zéro au centre, les signes de chaque côté."
+  },
+  {
+   "dit": "L'opposé d'un nombre est le nombre qui a la même distance à zéro, mais le signe contraire. L'opposé de plus quatre virgule deux est donc moins quatre virgule deux, et réciproquement. L'opposé de zéro est zéro lui-même, puisqu'il n'a pas de signe.",
+   "ecran": "oppose",
+   "id": "p06",
+   "texte": "L'opposé : changer de côté, garder l'écart."
+  },
+  {
+   "dit": "Pour comparer deux nombres relatifs, trois règles suffisent. Tout nombre positif est supérieur à tout nombre négatif. Entre deux nombres positifs, le plus grand est celui qui a la plus grande distance à zéro. Entre deux nombres négatifs, c'est l'inverse : le plus grand est celui qui a la plus petite distance à zéro.",
+   "ecran": "comparaison",
+   "id": "p07",
+   "texte": "Comparer : trois règles, un piège chez les négatifs."
+  },
+  {
+   "dit": "Comparons moins sept virgule trois et moins deux virgule neuf. Ce sont deux nombres négatifs : on compare donc leurs distances à zéro. Sept virgule trois est supérieur à deux virgule neuf, donc moins sept virgule trois est inférieur à moins deux virgule neuf. Entre négatifs, la plus grande distance donne le plus petit nombre.",
+   "ecran": "comparaison_ex",
+   "id": "p08",
+   "texte": "Moins sept virgule trois contre moins deux virgule neuf."
+  },
+  {
+   "dit": "Additionnons deux nombres de même signe : on additionne leurs distances à zéro et on garde le signe commun. Moins trois virgule cinq plus moins un virgule deux : les distances trois virgule cinq et un virgule deux s'ajoutent en quatre virgule sept, et le signe commun est moins. Le résultat est moins quatre virgule sept.",
+   "ecran": "addition_meme",
+   "id": "p09",
+   "texte": "Même signe : on ajoute les distances, on garde le signe."
+  },
+  {
+   "dit": "Additionnons maintenant deux nombres de signes contraires : on soustrait leurs distances à zéro et on garde le signe du nombre qui a la plus grande distance. Moins six plus plus deux virgule cinq : six moins deux virgule cinq vaut trois virgule cinq, et le plus grand, en distance, est le négatif. Le résultat est moins trois virgule cinq.",
+   "ecran": "addition_contraires",
+   "id": "p10",
+   "texte": "Signes contraires : on retranche, signe du plus grand."
+  },
+  {
+   "dit": "Cas particulier à connaître par cœur : la somme de deux nombres opposés vaut zéro. Moins quatre virgule trois plus plus quatre virgule trois : les distances à zéro sont égales, elles s'annulent exactement. Deux nombres opposés se compensent toujours.",
+   "ecran": "opposes_somme",
+   "id": "p11",
+   "texte": "Deux opposés qui se rencontrent : zéro."
+  },
+  {
+   "dit": "Passons à la soustraction. La règle tient en une ligne : soustraire un nombre revient à ajouter son opposé. Autrement dit, a moins b, c'est a plus l'opposé de b. Dès qu'une soustraction vous gêne, transformez-la en addition : le calcul devient immédiat.",
+   "ecran": "soustraction_regle",
+   "id": "p12",
+   "texte": "Soustraire : transformer en addition de l'opposé."
+  },
+  {
+   "dit": "Deux exemples pour fixer le geste. Trois virgule cinq moins moins deux virgule quatre devient trois virgule cinq plus deux virgule quatre, soit cinq virgule neuf : soustraire un négatif, c'est ajouter. De même, moins un virgule huit moins quatre devient moins un virgule huit plus moins quatre, soit moins cinq virgule huit.",
+   "ecran": "soustraction_ex",
+   "id": "p13",
+   "texte": "Deux soustractions transformées, deux résultats."
+  },
+  {
+   "dit": "Fin de la première partie : un relatif, c'est un signe plus une distance à zéro ; sur la droite, les positifs sont à droite et les négatifs à gauche ; l'opposé change le signe sans changer la distance ; entre deux négatifs, attention, la plus petite distance gagne ; et pour additionner, on combine les distances en gardant le bon signe.",
+   "ecran": "recap1",
+   "id": "p14",
+   "texte": "Partie 1 : signes, droite, opposé, comparaison, addition."
+  },
+  {
+   "dit": "Pour multiplier, on procède en deux temps. D'abord, on détermine le signe du produit à partir des signes des facteurs. Ensuite seulement, on multiplie les distances à zéro, comme avec des nombres positifs. Le signe ne dépend que des signes : jamais des valeurs elles-mêmes.",
+   "ecran": "multiplication_demarche",
+   "id": "p15",
+   "texte": "Multiplier : d'abord le signe, ensuite les distances."
+  },
+  {
+   "dit": "Voici la règle des signes, à connaître par cœur. Plus fois plus donne plus. Plus fois moins donne moins. Moins fois plus donne moins. Et moins fois moins donne plus. Deux signes identiques donnent un produit positif, deux signes différents un produit négatif.",
+   "ecran": "regle_signes",
+   "id": "p16",
+   "texte": "La règle des signes : identiques ou différents."
+  },
+  {
+   "dit": "Premier exemple : moins deux virgule cinq fois moins quatre. Les deux facteurs ont le même signe, le produit est donc positif. Deux virgule cinq fois quatre vaut dix : le résultat est plus dix.",
+   "ecran": "multiplication_meme",
+   "id": "p17",
+   "texte": "Moins par moins : un produit positif."
+  },
+  {
+   "dit": "Deuxième exemple : moins trois fois un virgule cinq. Les signes sont contraires, le produit est donc négatif. Trois fois un virgule cinq vaut quatre virgule cinq : le résultat est moins quatre virgule cinq.",
+   "ecran": "multiplication_contraires",
+   "id": "p18",
+   "texte": "Moins par plus : un produit négatif."
+  },
+  {
+   "dit": "La division suit exactement les mêmes règles de signe que la multiplication. Moins huit virgule quatre divisé par moins deux virgule un : même signe, le quotient est positif et vaut quatre. Sept virgule cinq divisé par moins deux virgule cinq : signes contraires, le quotient est négatif et vaut moins trois.",
+   "ecran": "division_ex",
+   "id": "p19",
+   "texte": "Diviser : la même règle des signes que multiplier."
+  },
+  {
+   "dit": "Une seule interdiction, absolue : on ne divise jamais par zéro. Un quotient dont le diviseur est zéro n'existe pas, quels que soient les autres nombres. Devant une division, vérifiez toujours que le diviseur est différent de zéro.",
+   "ecran": "division_zero",
+   "id": "p20",
+   "texte": "Zéro au diviseur : quotient impossible."
+  },
+  {
+   "dit": "Mettons tout ensemble dans un exemple complet, résolu pas à pas. On calcule l'expression suivante : moins deux virgule cinq fois moins quatre, plus moins trois fois un virgule cinq. On commence par les deux produits, séparément : le premier vaut plus dix, le second vaut moins quatre virgule cinq.",
+   "ecran": "exemple_produits",
+   "id": "p21",
+   "texte": "Exemple complet : d'abord les deux produits."
+  },
+  {
+   "dit": "Il reste une addition de signes contraires : dix plus moins quatre virgule cinq. On soustrait les distances : dix moins quatre virgule cinq vaut cinq virgule cinq, et le signe est celui du plus grand, en distance, c'est-à-dire plus. Le résultat final est cinq virgule cinq.",
+   "ecran": "exemple_somme",
+   "id": "p22",
+   "texte": "Puis l'addition finale : cinq virgule cinq."
+  },
+  {
+   "dit": "Une application concrète, avec une température. Le matin, il fait moins sept virgule trois degrés, puis la température monte de quatre virgule quatre degrés. Moins sept virgule trois plus quatre virgule quatre : les signes sont contraires, sept virgule trois moins quatre virgule quatre vaut deux virgule neuf, et le plus grand est le négatif. Il fait donc moins deux virgule neuf degrés.",
+   "ecran": "application_temperature",
+   "id": "p23",
+   "texte": "Le thermomètre monte, mais reste sous zéro."
+  },
+  {
+   "dit": "La méthode, en trois réflexes. Premier réflexe : le signe, avant tout calcul. Deuxième réflexe : les distances à zéro, ensuite. Troisième réflexe : vérifier l'ordre de grandeur, en refaisant le calcul avec des nombres ronds si besoin. Signe, distances, vérification : dans cet ordre, on ne se trompe plus.",
+   "ecran": "methode",
+   "id": "p24",
+   "texte": "Trois réflexes, toujours dans le même ordre."
+  },
+  {
+   "dit": "Pour conclure, retenez l'enchaînement complet : le signe d'abord, les distances ensuite ; deux opposés s'annulent ; soustraire, c'est ajouter l'opposé ; multiplier et diviser obéissent à la même règle des signes ; et on ne divise jamais par zéro. Avec ces cinq réflexes, tous les calculs sur les relatifs deviennent routiniers.",
+   "ecran": "recap_final",
+   "id": "p25",
+   "texte": "Nombres relatifs : les cinq réflexes à retenir."
+  }
+ ],
+ "titre": "Les nombres décimaux relatifs"
+}

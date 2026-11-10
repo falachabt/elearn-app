@@ -16,7 +16,7 @@ import {
   validerMotDePasse,
 } from '../compte';
 
-jest.mock('../analytics', () => ({ suivre: jest.fn() }));
+jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 
 const mockSecureStore = new Map<string, string>();
 jest.mock('expo-secure-store', () => ({
@@ -128,7 +128,8 @@ describe('creerCompteEmail', () => {
   it('propage l’erreur Supabase (e-mail déjà pris)', async () => {
     const c = faux(invite, { updateUser: jest.fn().mockResolvedValue({ data: {}, error: { code: 'email_exists', message: 'x' } }) });
     await expect(creerCompteEmail(c, { email: 'a@b.cc', motDePasse: 'motdepasse1' })).rejects.toMatchObject({ code: 'email_exists' });
-    expect(suivre).not.toHaveBeenCalled();
+    expect(suivre).toHaveBeenCalledWith('compte_echec', { methode: 'email', etape: 'mise_a_jour', raison: 'email_exists' });
+    expect(suivre).not.toHaveBeenCalledWith('compte_cree', expect.anything());
   });
 });
 
@@ -232,6 +233,35 @@ describe('Google', () => {
     expect(await lireRepriseInvite()).toBeNull();
   });
 
+  it('n’ouvre pas la reprise si l’invité a juste fait l’arrivée (profil) sans aucune activité', async () => {
+    await AsyncStorage.setItem('profil.arrivee', JSON.stringify({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true }));
+    const c = faux(invite, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: invite } })
+        .mockResolvedValueOnce({ data: { session: membre } }),
+    });
+    c.functions.invoke.mockResolvedValueOnce({
+      data: { ok: true, has_progress: false, guest_refresh_token: 'refresh-rotated' },
+      error: null,
+    });
+    await connecterEmail(c, { email: 'eleve@test.com', motDePasse: 'secret123' });
+    expect(repriseInviteEnCours()).toBe(false);
+    expect(await lireRepriseInvite()).toBeNull();
+  });
+
+  it('session invitée sans refresh_token : connexion Google réussit sans bloquer avec erreur', async () => {
+    const inviteSansRefresh = { ...invite, refresh_token: '' };
+    const c = faux(inviteSansRefresh, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: inviteSansRefresh } })
+        .mockResolvedValueOnce({ data: { session: membre } }),
+    });
+    await expect(
+      connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g_sans_token' }), null, { connexionDirecte: true }),
+    ).resolves.toBe(false);
+    expect(c.auth.signInWithOAuth).toHaveBeenCalled();
+  });
+
   it('rattachement explicite (ancien compte) déjà lié : message lisible, pas de repli', async () => {
     const c = faux(membre);
     await expect(
@@ -295,5 +325,18 @@ describe('Apple', () => {
   it('annulation par l’utilisateur', async () => {
     const c = faux(null);
     await expect(connecterApple(c, deps({ demander: jest.fn().mockRejectedValue({ code: 'ERR_REQUEST_CANCELED' }) }))).rejects.toMatchObject({ cle: 'compte.erreurs.annule' });
+  });
+
+  it('session invitée sans refresh_token : connexion Apple réussit sans bloquer avec erreur', async () => {
+    const inviteSansRefresh = { ...invite, refresh_token: '' };
+    const c = faux(inviteSansRefresh, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: inviteSansRefresh } })
+        .mockResolvedValueOnce({ data: { session: membre } }),
+    });
+    await expect(
+      connecterApple(c, deps(), null, { connexionDirecte: true }),
+    ).resolves.toBe(false);
+    expect(c.auth.signInWithIdToken).toHaveBeenCalled();
   });
 });

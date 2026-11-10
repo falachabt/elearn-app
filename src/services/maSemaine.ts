@@ -65,6 +65,8 @@ export function depuisReponse(brut: unknown): Recap | null {
 
 const deuxChiffres = (n: number) => String(n).padStart(2, '0');
 const enTexte = (d: Date) => `${d.getFullYear()}-${deuxChiffres(d.getMonth() + 1)}-${deuxChiffres(d.getDate())}`;
+/** Date locale en AAAA-MM-JJ. */
+export const jourEnTexte = enTexte;
 /** Midi local : évite tout décalage dû à l'heure d'été ou au fuseau quand on ajoute des jours. */
 const depuisTexte = (s: string) => new Date(Number(s.slice(0, 4)), Number(s.slice(5, 7)) - 1, Number(s.slice(8, 10)), 12);
 

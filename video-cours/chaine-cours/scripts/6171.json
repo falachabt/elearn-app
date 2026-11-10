@@ -1,0 +1,475 @@
+{
+ "cours": 6171,
+ "titre": "Vecteurs dans l'espace : coordonnées, colinéarité, coplanarité",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Géométrie dans l'espace",
+   "titre": "Vecteurs dans l'espace : coordonnées, colinéarité, coplanarité",
+   "sous": "Décrire les déplacements en trois dimensions, tester l'alignement et la planéité par le calcul",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 240
+   }
+  },
+  "definition": {
+   "type": "phrase",
+   "kicker": "Qu'est-ce qu'un vecteur ?",
+   "texte": "Direction, sens, norme : trois informations, et aucune position. Deux flèches équipollentes représentent le même vecteur.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 200
+   }
+  },
+  "decomposition": {
+   "type": "formule",
+   "kicker": "Les coordonnées dans la base orthonormée",
+   "tex": "\\vec{v} = x\\,\\vec{i} + y\\,\\vec{j} + z\\,\\vec{k}, \\qquad \\vec{v}\\,(x\\ ;\\ y\\ ;\\ z)",
+   "note": "Base (i, j, k) : vecteurs unitaires, deux à deux orthogonaux. La décomposition est unique.",
+   "anim": {
+    "nom": "repere3d_fig",
+    "hauteur": 180
+   }
+  },
+  "drone": {
+   "type": "etape",
+   "kicker": "Exemple : le déplacement d'un drone",
+   "titre": "Trois mètres à l'est, deux au nord, quatre en altitude",
+   "tex": [
+    "\\vec{v}\\,(3\\ ;\\ 2\\ ;\\ 4)",
+    "\\|\\vec{v}\\| = \\sqrt{3^2 + 2^2 + 4^2} = \\sqrt{29} \\approx 5{,}39"
+   ]
+  },
+  "addition": {
+   "type": "etape",
+   "kicker": "Additionner : composante par composante",
+   "titre": "L'avion, son vent, et la vitesse réelle par rapport au sol",
+   "tex": [
+    "\\vec{u} + \\vec{v} = (x + x'\\ ;\\ y + y'\\ ;\\ z + z')",
+    "\\vec{v}_p + \\vec{w} = (200\\ ;\\ 0\\ ;\\ 0) + (-30\\ ;\\ 15\\ ;\\ 0) = (170\\ ;\\ 15\\ ;\\ 0)"
+   ]
+  },
+  "scalaire": {
+   "type": "etape",
+   "kicker": "Multiplier par un scalaire, combiner",
+   "titre": "Un calcul complet avec les vecteurs de la leçon",
+   "tex": [
+    "k\\,\\vec{v} = (k x\\ ;\\ k y\\ ;\\ k z)",
+    "2\\vec{u} - 3\\vec{v} = (7\\ ;\\ -14\\ ;\\ 6) \\quad \\text{pour } \\vec{u}(2;-1;3),\\ \\vec{v}(-1;4;0)"
+   ]
+  },
+  "regles_geo": {
+   "type": "phrase",
+   "kicker": "Les deux images de l'addition",
+   "texte": "Règle du triangle : les déplacements s'enchaînent. Règle du parallélogramme : la somme est la diagonale, et l'ordre ne compte pas.",
+   "anim": {
+    "nom": "diagonale",
+    "hauteur": 200
+   }
+  },
+  "chasles": {
+   "type": "etape",
+   "kicker": "La relation de Chasles et le théorème des milieux",
+   "titre": "Découper un trajet en étapes, sans changer le bilan",
+   "tex": [
+    "\\textstyle \\overrightarrow{AC} = \\overrightarrow{AB} + \\overrightarrow{BC}, \\qquad \\overrightarrow{AB} = \\overrightarrow{OB} - \\overrightarrow{OA}",
+    "\\textstyle \\overrightarrow{MN} = \\tfrac{1}{2}\\,\\overrightarrow{BC} \\quad \\text{(} M, N \\text{ milieux de } AB, AC \\text{)}"
+   ]
+  },
+  "ab_formule": {
+   "type": "formule",
+   "kicker": "Les coordonnées d'un vecteur défini par deux points",
+   "tex": "\\overrightarrow{AB}\\,(x_B - x_A\\ ;\\ y_B - y_A\\ ;\\ z_B - z_A)",
+   "note": "Extrémité moins origine, axe par axe : c'est la formule la plus utilisée du cours."
+  },
+  "navigation": {
+   "type": "etape",
+   "kicker": "Exemple résolu : le déplacement d'un avion",
+   "titre": "De l'aéroport au point de croisière, en kilomètres",
+   "tex": [
+    "A(2\\ ;\\ 5\\ ;\\ 0), \\quad B(12\\ ;\\ 15\\ ;\\ 10)",
+    "\\overrightarrow{AB} = (12 - 2\\ ;\\ 15 - 5\\ ;\\ 10 - 0) = (10\\ ;\\ 10\\ ;\\ 10)"
+   ]
+  },
+  "norme_f": {
+   "type": "formule",
+   "kicker": "Norme d'un vecteur, distance de deux points",
+   "tex": "\\|\\vec{u}\\| = \\sqrt{x^2 + y^2 + z^2}, \\qquad AB = \\|\\overrightarrow{AB}\\|",
+   "note": "La distance entre deux points est la norme du vecteur qui les joint : un seul réflexe pour deux questions."
+  },
+  "distance_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu : une distance et une combinaison",
+   "titre": "Deux calculs types, menés jusqu'au résultat",
+   "tex": [
+    "P(1;2;3), \\ Q(4;6;1) : \\ \\overrightarrow{PQ} = (3\\ ;\\ 4\\ ;\\ -2), \\quad PQ = \\sqrt{29} \\approx 5{,}39",
+    "\\overrightarrow{AB} + 2\\overrightarrow{AC} = (-2\\ ;\\ 7\\ ;\\ 0) \\quad \\text{pour } A(1;-1;2), B(3;0;4), C(-1;2;1)"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Bilan : coordonnées et opérations",
+   "etapes": [
+    "Un vecteur : direction, sens, norme",
+    "AB : extrémité moins origine",
+    "Addition et produit : axe par axe",
+    "Norme : racine de la somme des carrés"
+   ]
+  },
+  "colinearite_f": {
+   "type": "formule",
+   "kicker": "La colinéarité : la même direction",
+   "tex": "\\vec{u} \\text{ et } \\vec{v} \\text{ colinéaires} \\iff \\exists\\, k \\in \\mathbb{R},\\ \\vec{v} = k\\,\\vec{u}",
+   "note": "k positif : même sens. k négatif : sens opposés. Le vecteur nul est colinéaire à tout vecteur."
+  },
+  "colin_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu : un test de colinéarité",
+   "titre": "Le coefficient moins deux tranche en une ligne",
+   "tex": [
+    "\\vec{u}\\,(2\\ ;\\ -1\\ ;\\ 3), \\qquad \\vec{v}\\,(-4\\ ;\\ 2\\ ;\\ -6)",
+    "\\vec{v} = -2\\,\\vec{u} \\quad \\Rightarrow \\quad \\vec{u} \\text{ et } \\vec{v} \\text{ colinéaires, sens opposés}"
+   ]
+  },
+  "produits_croix": {
+   "type": "etape",
+   "kicker": "Le test pratique : les produits en croix",
+   "titre": "La proportionnalité des coordonnées, sans diviser",
+   "tex": [
+    "x y' = x' y, \\qquad x z' = x' z, \\qquad y z' = y' z",
+    "\\text{coordonnée nulle d'un côté} \\Rightarrow \\text{coordonnée nulle en face}"
+   ]
+  },
+  "alignement": {
+   "type": "etape",
+   "kicker": "Application : tester l'alignement de trois points",
+   "titre": "Trois points alignés si deux vecteurs sont colinéaires",
+   "tex": [
+    "A(1;\\,0;\\,2), \\quad B(3;\\,2;\\,1), \\quad C(5;\\,4;\\,0)",
+    "\\overrightarrow{AB} = (2;\\,2;\\,-1)",
+    "\\overrightarrow{AC} = (4;\\,4;\\,-2) = 2\\,\\overrightarrow{AB}"
+   ]
+  },
+  "alignement2": {
+   "type": "etape",
+   "kicker": "Exercice de synthèse : un alignement à démontrer",
+   "titre": "Le coefficient deux, encore lui, mais à découvrir",
+   "tex": [
+    "A(1;\\,2;\\,-1), \\quad B(3;\\,1;\\,0), \\quad C(5;\\,0;\\,1)",
+    "\\overrightarrow{AB} = (2;\\,-1;\\,1)",
+    "\\overrightarrow{AC} = (4;\\,-2;\\,2) = 2\\,\\overrightarrow{AB}"
+   ]
+  },
+  "droite": {
+   "type": "phrase",
+   "kicker": "Le vecteur directeur et la droite",
+   "texte": "Une droite = un point + un vecteur directeur. Tous ses vecteurs directeurs sont colinéaires entre eux : une direction, une droite.",
+   "anim": {
+    "nom": "droites_affines_fig",
+    "hauteur": 200
+   }
+  },
+  "droite_f": {
+   "type": "formule",
+   "kicker": "La représentation paramétrique d'une droite",
+   "tex": "\\begin{cases} x = 1 + 2t \\\\ y = 2 - t \\\\ z = 3 + t \\end{cases} \\qquad t \\in \\mathbb{R}",
+   "note": "Droite par A(1 ; 2 ; 3), de vecteur directeur u(2 ; −1 ; 1) : AM = t·u, coordonnée par coordonnée."
+  },
+  "coplanaire_f": {
+   "type": "formule",
+   "kicker": "La coplanarité : vivre dans un même plan",
+   "tex": "\\vec{w} = \\alpha\\,\\vec{u} + \\beta\\,\\vec{v}",
+   "note": "Trois vecteurs sont coplanaires si l'un est combinaison linéaire des deux autres.",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 120
+   }
+  },
+  "det_intro": {
+   "type": "phrase",
+   "kicker": "Le déterminant, détective de la coplanarité",
+   "texte": "Le déterminant des trois vecteurs est le volume du parallélépipède qu'ils construisent : volume nul, édifice aplati, vecteurs coplanaires.",
+   "anim": {
+    "nom": "determinant_dev_fig",
+    "hauteur": 200
+   }
+  },
+  "det_f": {
+   "type": "formule",
+   "kicker": "Le critère du déterminant nul",
+   "tex": "\\det(\\vec{u}, \\vec{v}, \\vec{w}) = \\begin{vmatrix} x_1 & x_2 & x_3 \\\\ y_1 & y_2 & y_3 \\\\ z_1 & z_2 & z_3 \\end{vmatrix} = 0 \\iff \\text{coplanaires}",
+   "note": "Les colonnes sont les trois vecteurs ; le développement donne six produits de trois coordonnées."
+  },
+  "det_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu : un déterminant qui s'annule",
+   "titre": "Les vecteurs un deux trois, quatre cinq six, sept huit neuf",
+   "tex": [
+    "\\det = 1(45 - 48) - 4(18 - 24) + 7(12 - 15) = -3 + 24 - 21 = 0",
+    "\\vec{w} = -\\vec{u} + 2\\vec{v} \\quad \\text{(vérification par combinaison)}"
+   ]
+  },
+  "points_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu : quatre points dans un même plan",
+   "titre": "Un des vecteurs est l'opposé d'un autre : le verdict est immédiat",
+   "tex": [
+    "A(1;\\,0;\\,1), \\quad B(2;\\,1;\\,0)",
+    "C(3;\\,2;\\,1), \\quad D(0;\\,-1;\\,2)",
+    "\\overrightarrow{AB} = (1;\\,1;\\,-1), \\quad \\overrightarrow{AC} = (2;\\,2;\\,0)",
+    "\\overrightarrow{AD} = (-1;\\,-1;\\,1) = -\\overrightarrow{AB}"
+   ]
+  },
+  "param_k": {
+   "type": "etape",
+   "kicker": "Exemple résolu : trouver le paramètre de coplanarité",
+   "titre": "Le déterminant devient une équation en l'inconnue k",
+   "tex": [
+    "\\vec{u}(1;2;-1), \\ \\vec{v}(3;1;2), \\ \\vec{w}(4;5;k)",
+    "\\det = -5k - 5 = 0 \\quad \\Rightarrow \\quad k = -1"
+   ]
+  },
+  "forces": {
+   "type": "etape",
+   "kicker": "Application : l'équilibre d'un objet suspendu",
+   "titre": "Deux câbles, un poids, et une somme vectorielle nulle",
+   "tex": [
+    "T_1 \\cos 30^\\circ = T_2 \\cos 45^\\circ, \\qquad T_1 \\sin 30^\\circ + T_2 \\sin 45^\\circ = mg",
+    "T_1 \\approx 718\\ \\text{N}, \\qquad T_2 \\approx 879\\ \\text{N} \\quad (m = 100\\ \\text{kg})"
+   ]
+  },
+  "synthese_d": {
+   "type": "etape",
+   "kicker": "Exercice de synthèse : construire un point par combinaison",
+   "titre": "Trois opérations enchaînées, un point trouvé",
+   "tex": [
+    "\\overrightarrow{AB} = (3;4;0), \\quad \\overrightarrow{AC} = (1;-2;2)",
+    "\\overrightarrow{AD} = 3\\overrightarrow{AB} - \\overrightarrow{AC} = (8;14;-2) \\quad \\Rightarrow \\quad D(9;16;1)"
+   ]
+  },
+  "vers_analytique": {
+   "type": "phrase",
+   "kicker": "Vers la géométrie analytique",
+   "texte": "Droites et plans deviendront des équations ; angles et distances appelleront le produit scalaire, puis le produit vectoriel.",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 200
+   }
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Colinéaires : v = k·u, produits en croix",
+    "Alignement : tester AB et AC",
+    "Coplanaires : w = αu + βv, det = 0",
+    "Un point, des vecteurs : tout se calcule"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans la géométrie vectorielle de l'espace. Un vecteur n'est pas un point : c'est un déplacement, une force, une direction, tout ce qui possède une direction, un sens et une longueur. Nous apprendrons à le décrire par trois coordonnées dans un repère orthonormé, à additionner et combiner les vecteurs, puis à répondre par le calcul à deux grandes questions : ces vecteurs pointent-ils le long d'une même droite, et vivent-ils dans un même plan ? Ces deux tests, colinéarité et coplanarité, structurent tout le cours.",
+   "texte": "Direction, sens, norme : le langage des déplacements.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Un vecteur est défini par trois caractéristiques, et trois seulement : une direction, la droite qui le porte ; un sens, l'orientation choisie sur cette droite ; et une norme, sa longueur. Point capital : un vecteur n'a pas de position. Deux flèches parallèles, de même sens et de même longueur, placées à des endroits différents, représentent le même vecteur : on dit qu'elles sont équipollentes. Un vecteur noté A B va du point A au point B, mais il peut être redessiné depuis n'importe quel point de l'espace sans changer de nature.",
+   "texte": "Ni position, ni point : un déplacement libre.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p03",
+   "dit": "Dans un repère orthonormé, porté par trois vecteurs unitaires deux à deux orthogonaux, tout vecteur s'écrit de manière unique comme combinaison des vecteurs de base. Les trois coefficients sont ses coordonnées : la première mesure le déplacement selon le premier axe, la deuxième selon le deuxième axe, la troisième selon l'axe vertical. Cette écriture transforme un objet géométrique en un triplet de nombres, donc en un objet calculable. Toute la géométrie analytique naît de ce passage du dessin au nombre.",
+   "texte": "Trois nombres suffisent : la géométrie devient calcul.",
+   "ecran": "decomposition"
+  },
+  {
+   "id": "p04",
+   "dit": "Exemple fondateur : le déplacement d'un drone, trois mètres vers l'est, deux vers le nord, quatre vers le haut. Ses coordonnées sont trois, deux, quatre. Sa norme, sa longueur réelle dans l'espace, généralise le théorème de Pythagore : c'est la racine carrée de la somme des carrés des coordonnées, ici racine de vingt-neuf, environ cinq virgule trois neuf mètres. Retenez le réflexe : multiplier un vecteur par un nombre multiplie sa norme par la valeur absolue de ce nombre, et renverse son sens si le nombre est négatif.",
+   "texte": "‖v‖ = √(x² + y² + z²) : Pythagore en trois dimensions.",
+   "ecran": "drone"
+  },
+  {
+   "id": "p05",
+   "dit": "L'addition de deux vecteurs se fait coordonnée par coordonnée : on additionne les premières entre elles, les deuxièmes entre elles, les troisièmes entre elles. Exemple concret : un avion vole vers l'est à deux cents kilomètres par heure, mais un vent latéral souffle avec des composantes moins trente et quinze. Sa vitesse par rapport au sol est la somme des deux vecteurs : cent soixante-dix et quinze. Géométriquement, additionner revient à mettre les flèches bout à bout, ou à construire un parallélogramme dont la somme est la diagonale.",
+   "texte": "On additionne axe par axe : (170 ; 15 ; 0).",
+   "ecran": "addition"
+  },
+  {
+   "id": "p06",
+   "dit": "Multiplier un vecteur par un nombre réel, un scalaire, multiplie chacune de ses coordonnées par ce nombre. En combinant addition et multiplication, on forme des combinaisons linéaires, l'opération générale du calcul vectoriel. Exemple complet de la leçon : avec u de coordonnées deux, moins un, trois, et v de coordonnées moins un, quatre, zéro, le double de u moins le triple de v donne sept, moins quatorze, six. Aucune géométrie à dessiner : le calcul analytique, composante par composante, suffit et ne se trompe pas.",
+   "texte": "2u − 3v = (7 ; −14 ; 6) : tout se calcule axe par axe.",
+   "ecran": "scalaire"
+  },
+  {
+   "id": "p07",
+   "dit": "Deux images géométriques portent toute l'algèbre des vecteurs. La règle du triangle : placer le second vecteur au bout du premier, la somme joint le départ à l'arrivée, comme deux déplacements enchaînés. La règle du parallélogramme : placer les deux vecteurs à la même origine, la somme est la diagonale du parallélogramme construit sur eux. C'est cette deuxième image qui rend la commutativité évidente : échanger les deux vecteurs ne change pas la diagonale. L'addition est aussi associative, le vecteur nul est neutre, et chaque vecteur possède un opposé, de même norme et de sens contraire.",
+   "texte": "Triangle ou parallélogramme : la même somme.",
+   "ecran": "regles_geo"
+  },
+  {
+   "id": "p08",
+   "dit": "La relation de Chasles est la règle du triangle écrite pour trois points : aller de A à C, c'est aller de A à B puis de B à C. En passant par l'origine du repère, elle donne la formule mère des coordonnées d'un vecteur défini par deux points : extrémité moins origine. Application élégante : si M et N sont les milieux de deux côtés d'un triangle, alors le vecteur M N vaut la moitié du troisième côté. Le segment des milieux est donc parallèle au troisième côté et deux fois plus court : un théorème de géométrie devient une ligne de calcul vectoriel.",
+   "texte": "Chasles : AC = AB + BC ; les milieux donnent MN = ½ BC.",
+   "ecran": "chasles"
+  },
+  {
+   "id": "p09",
+   "dit": "Voici la formule la plus utilisée du cours : les coordonnées du vecteur A B s'obtiennent en soustrayant, axe par axe, les coordonnées de l'origine A à celles de l'extrémité B. Elle découle directement de Chasles et de la décomposition dans la base. Attention au piège classique : les coordonnées d'un point donnent une position absolue dans le repère, tandis que les coordonnées d'un vecteur donnent un déplacement relatif. Confondre les deux, ou permuter l'ordre des axes, sont les deux erreurs qui coûtent le plus de points.",
+   "texte": "AB = extrémité − origine, axe par axe.",
+   "ecran": "ab_formule"
+  },
+  {
+   "id": "p10",
+   "dit": "Exemple résolu : un avion décolle du point A, de coordonnées deux, cinq, zéro, et atteint son point de croisière B, de coordonnées douze, quinze, dix, en kilomètres. Le vecteur déplacement s'obtient par soustraction : dix, dix, dix. Lecture concrète : dix kilomètres vers l'est, dix vers le nord, dix d'altitude gagnée. Toute la navigation, du drone au satellite, repose sur ce calcul élémentaire répété des milliers de fois : une position n'est jamais qu'un vecteur dont l'origine est le repère lui-même.",
+   "texte": "AB = (10 ; 10 ; 10) : est, nord et altitude d'un coup.",
+   "ecran": "navigation"
+  },
+  {
+   "id": "p11",
+   "dit": "La norme d'un vecteur est sa longueur : racine carrée de la somme des carrés de ses coordonnées, le théorème de Pythagore étendu à l'espace. Conséquence immédiate : la distance entre deux points est la norme du vecteur qui les joint. Retenez qu'un vecteur de norme un est dit unitaire : les vecteurs de base en sont l'exemple parfait. Et méfiez-vous du vocabulaire : la norme n'est jamais négative, et seul le vecteur nul a une norme nulle. Ces deux formules ferment la boîte à outils des coordonnées ; nous pouvons maintenant tester des configurations.",
+   "texte": "Distance = norme du vecteur joint.",
+   "ecran": "norme_f"
+  },
+  {
+   "id": "p12",
+   "dit": "Deux calculs types pour verrouiller la méthode. D'abord une distance : entre P de coordonnées un, deux, trois et Q de coordonnées quatre, six, un, le vecteur P Q vaut trois, quatre, moins deux, et sa norme vaut racine de vingt-neuf, environ cinq virgule trois neuf. Ensuite une combinaison : pour les points A, B et C écrits à l'écran, le vecteur A B plus le double du vecteur A C donne moins deux, sept, zéro. Si vous savez mener ces deux calculs sans hésiter, la première moitié du cours est acquise.",
+   "texte": "PQ = √29 ≈ 5,39 ; AB + 2AC = (−2 ; 7 ; 0).",
+   "ecran": "distance_ex"
+  },
+  {
+   "id": "p13",
+   "dit": "Bilan de cette première partie. Un vecteur est un déplacement caractérisé par sa direction, son sens et sa norme, indépendamment de toute position. Dans un repère orthonormé, il devient un triplet de coordonnées : le vecteur A B s'obtient par extrémité moins origine, l'addition et la multiplication par un scalaire se font axe par axe, et la norme généralise Pythagore. La relation de Chasles relie tout cela à la géométrie des points. Nous avons des nombres ; il est temps de leur faire tester des configurations.",
+   "texte": "Coordonnées acquises : place aux tests.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p14",
+   "dit": "Nouvelle question : quand deux vecteurs pointent-ils le long de la même droite ? Réponse : quand l'un est le produit de l'autre par un nombre réel. C'est la colinéarité. Le coefficient dit tout : positif, les vecteurs ont le même sens ; négatif, des sens opposés ; égal à un, ils sont égaux. La relation est symétrique et transitive : être colinéaire classe les vecteurs par direction. Par convention, le vecteur nul est colinéaire à tous les vecteurs, ce qui évite des exceptions dans tous les énoncés.",
+   "texte": "v = k·u : une seule droite porte les deux vecteurs.",
+   "ecran": "colinearite_f"
+  },
+  {
+   "id": "p15",
+   "dit": "Testons la définition sur l'exemple de la leçon : u de coordonnées deux, moins un, trois, et v de coordonnées moins quatre, deux, moins six. Chaque coordonnée de v est exactement le double de celle de u, au signe près : v vaut moins deux fois u. Les vecteurs sont donc colinéaires, et de sens opposés. La méthode générale est identique : chercher le coefficient sur une coordonnée non nulle, puis le vérifier sur les deux autres. Si un seul axe résiste, le verdict tombe : les vecteurs ne sont pas colinéaires.",
+   "texte": "v = −2u : colinéaires, de sens opposés.",
+   "ecran": "colin_ex"
+  },
+  {
+   "id": "p16",
+   "dit": "En pratique, on évite les divisions : deux vecteurs sont colinéaires si et seulement si leurs coordonnées sont proportionnelles, ce qui se teste par les produits en croix. On croise chaque paire de coordonnées : les trois égalités écrites à l'écran doivent tenir simultanément. Le cas délicat est celui des zéros : si une coordonnée du premier vecteur est nulle, la coordonnée correspondante du second doit l'être aussi, sinon la proportionnalité est impossible. Ce test algébrique remplace avantageusement tout dessin, impossible à fiabiliser dans l'espace.",
+   "texte": "Produits en croix égaux : colinéaires.",
+   "ecran": "produits_croix"
+  },
+  {
+   "id": "p17",
+   "dit": "Première grande application : trois points sont alignés si et seulement si les vecteurs construits sur eux sont colinéaires. Pour les points A, B et C de l'écran, le vecteur A B vaut deux, deux, moins un, et le vecteur A C vaut exactement son double : quatre, quatre, moins deux. Les vecteurs sont colinéaires, donc C se trouve sur la droite menée par A dans la direction de A B : les trois points sont alignés. Tout problème d'alignement dans l'espace se ramène ainsi à un test de colinéarité, donc à de la proportionnalité.",
+   "texte": "AC = 2AB : A, B, C sont alignés.",
+   "ecran": "alignement"
+  },
+  {
+   "id": "p18",
+   "dit": "Exercice de synthèse, dans l'esprit de ceux des leçons : A de coordonnées un, deux, moins un ; B, trois, un, zéro ; C, cinq, zéro, un. Le vecteur A B vaut deux, moins un, un. Le vecteur A C vaut quatre, moins deux, deux : exactement le double. Les points sont donc alignés, et B est même le milieu du segment A C, puisque le coefficient vaut deux avec B entre A et C. Remarquez la démarche complète : calculer deux vecteurs, repérer le coefficient sur un axe, le vérifier sur les autres, conclure en langage géométrique.",
+   "texte": "AB = (2 ; −1 ; 1), AC = 2AB : alignés, B milieu de AC.",
+   "ecran": "alignement2"
+  },
+  {
+   "id": "p19",
+   "dit": "Un vecteur non nul qui a la direction d'une droite s'appelle un vecteur directeur de cette droite. Tous les vecteurs directeurs d'une même droite sont colinéaires entre eux : la droite possède une direction, mais une infinité de vecteurs directeurs. Réciproquement, un point et un vecteur directeur suffisent à définir une droite : ce sont tous les points atteints en partant du point et en avançant le long du vecteur directeur, d'un paramètre réel quelconque. En cinématique, le vecteur vitesse d'un mobile rectiligne est précisément un vecteur directeur de sa trajectoire.",
+   "texte": "Un point, un vecteur directeur : une droite.",
+   "ecran": "droite"
+  },
+  {
+   "id": "p20",
+   "dit": "Écrivons la droite précédente en équations : elle passe par le point A de coordonnées un, deux, trois, avec le vecteur directeur de coordonnées deux, moins un, un. Un point M appartient à la droite si le vecteur A M est un multiple du vecteur directeur. Coordonnée par coordonnée, on obtient le système paramétrique écrit à l'écran : chaque coordonnée est une fonction affine du même paramètre. Faire varier le paramètre fait défiler tous les points de la droite : c'est le premier pont vers la géométrie analytique, qui clora ce cours.",
+   "texte": "x = 1 + 2t, y = 2 − t, z = 3 + t : la droite en équations.",
+   "ecran": "droite_f"
+  },
+  {
+   "id": "p21",
+   "dit": "Montons d'une dimension : après la droite, le plan. Trois vecteurs sont coplanaires si, représentés depuis une même origine, ils vivent dans un même plan. La traduction algébrique est limpide : l'un d'eux doit être une combinaison linéaire des deux autres. Deux vecteurs, eux, sont toujours coplanaires, puisqu'ils définissent un plan. Et si deux des trois vecteurs sont colinéaires, la coplanarité est automatique. Pour quatre points, on construit les trois vecteurs issus d'un même point, et on teste ces trois vecteurs.",
+   "texte": "w = αu + βv : le troisième vit dans le plan des deux autres.",
+   "ecran": "coplanaire_f"
+  },
+  {
+   "id": "p22",
+   "dit": "Comment tester la coplanarité en coordonnées ? Par le déterminant des trois vecteurs, qu'on appelle aussi produit mixte. Sa valeur absolue a une signification géométrique magnifique : c'est le volume du parallélépipède construit sur les trois vecteurs. Si ce volume est nul, l'édifice est aplati, écrasé dans un plan : les trois vecteurs sont coplanaires. Le déterminant est donc un détective parfait : un seul nombre, calculé sur les neuf coordonnées, répond oui ou non à la question du plan.",
+   "texte": "Volume nul = parallélépipède aplati = coplanaires.",
+   "ecran": "det_intro"
+  },
+  {
+   "id": "p23",
+   "dit": "Le critère est donc le suivant : les trois vecteurs sont coplanaires si et seulement si leur déterminant est nul. On écrit les coordonnées en colonnes, et le développement du déterminant combine les coordonnées par produits croisés, avec des signes alternés. Ne retenez pas la formule développée par cœur : retenez le principe, le calcul se fait méthodiquement, ligne après ligne, et nous allons le mener entièrement sur l'exemple des leçons. Un déterminant non nul, au contraire, certifie que les trois vecteurs forment un vrai trièdre, une base de l'espace.",
+   "texte": "det = 0 si et seulement si coplanaires.",
+   "ecran": "det_f"
+  },
+  {
+   "id": "p24",
+   "dit": "Exemple résolu entièrement : les vecteurs de coordonnées un, deux, trois ; quatre, cinq, six ; sept, huit, neuf. Le développement du déterminant donne moins trois, plus vingt-quatre, moins vingt et un : total zéro. Les vecteurs sont donc coplanaires. Vérification indépendante, par la définition : on cherche à écrire le troisième comme combinaison des deux autres, et l'on trouve moins le premier plus le double du second. Les deux méthodes se confirment : quand le déterminant parle, la combinaison peut toujours témoigner.",
+   "texte": "det = 0, et w = −u + 2v : double confirmation.",
+   "ecran": "det_ex"
+  },
+  {
+   "id": "p25",
+   "dit": "Quatre points sont coplanaires si les trois vecteurs issus de l'un d'eux le sont. Pour les points A, B, C et D de l'écran, les vecteurs A B, A C et A D se calculent par soustraction. Or le troisième est exactement l'opposé du premier : ils sont colinéaires, donc le déterminant des trois vecteurs est nul sans aucun calcul supplémentaire. Les quatre points vivent dans un même plan, et D se trouve même sur la droite A B. Savoir repérer une colinéarité avant de développer un déterminant fait gagner un temps précieux le jour de l'examen.",
+   "texte": "AD = −AB : coplanarité immédiate, sans déterminant.",
+   "ecran": "points_ex"
+  },
+  {
+   "id": "p26",
+   "dit": "Dernier type d'exercice : les vecteurs dépendent d'un paramètre, et l'on demande pour quelle valeur ils sont coplanaires. On écrit le déterminant, on le développe patiemment : il devient une expression affine du paramètre, ici moins cinq k moins cinq. L'annuler donne la valeur moins un. Pour cette valeur, et elle seule, les trois vecteurs basculent dans un même plan ; pour toute autre, ils engendrent tout l'espace. C'est un exercice complet : coordonnées, déterminant, équation du premier degré, interprétation géométrique.",
+   "texte": "det = −5k − 5 : coplanaires pour k = −1.",
+   "ecran": "param_k"
+  },
+  {
+   "id": "p27",
+   "dit": "Application physique : un objet de cent kilogrammes est suspendu par deux câbles inclinés, l'un à trente degrés, l'autre à quarante-cinq degrés de l'horizontale. À l'équilibre, la somme des deux tensions et du poids est le vecteur nul. En projetant sur les deux axes, on obtient deux équations pour deux inconnues : la résolution donne environ sept cent dix-huit newtons dans le câble le moins incliné, et huit cent soixante-dix-neuf dans l'autre. Le câble le plus vertical porte le plus : le calcul vectoriel le démontre, l'intuition le confirme.",
+   "texte": "Équilibre : T₁ ≈ 718 N, T₂ ≈ 879 N.",
+   "ecran": "forces"
+  },
+  {
+   "id": "p28",
+   "dit": "Exercice de synthèse des leçons : à partir des points A, B et C écrits à l'écran, on calcule d'abord les vecteurs A B et A C, puis la combinaison trois fois A B moins A C, qui donne huit, quatorze, moins deux. Ce vecteur est le vecteur A D cherché : en ajoutant ses coordonnées à celles de A, on obtient le point D, de coordonnées neuf, seize, un. Toute la méthode du cours tient dans cet enchaînement : traduire en vecteurs, calculer en coordonnées, retraduire en points. C'est exactement ainsi que travaillent les logiciels de conception en trois dimensions.",
+   "texte": "AD = 3AB − AC = (8 ; 14 ; −2), donc D(9 ; 16 ; 1).",
+   "ecran": "synthese_d"
+  },
+  {
+   "id": "p29",
+   "dit": "Ce cours se termine au seuil de la géométrie analytique. Avec les vecteurs directeurs, un plan se décrira comme l'ensemble des points atteints par deux combinaisons linéaires depuis un point, exactement comme la droite avec une seule. Les prochaines questions seront métriques : mesurer des angles, des distances, des aires et des volumes. Elles appelleront deux nouveaux outils, le produit scalaire et le produit vectoriel, que les leçons annoncent sans encore les construire. Vous avez le langage ; la suite vous donnera la règle et le compas algébriques.",
+   "texte": "Droites, plans, puis produits scalaire et vectoriel.",
+   "ecran": "vers_analytique"
+  },
+  {
+   "id": "p30",
+   "dit": "Pour conclure ce cours : un vecteur de l'espace est un triplet de coordonnées, obtenu par extrémité moins origine, sur lequel toutes les opérations se font axe par axe. La colinéarité, proportionnalité des coordonnées, teste l'alignement des points et donne les vecteurs directeurs des droites. La coplanarité, combinaison linéaire ou déterminant nul, teste l'appartenance à un même plan pour les vecteurs comme pour les points. Avec ces deux tests et la relation de Chasles, vous disposez du langage complet pour décrire, prouver et calculer dans l'espace.",
+   "texte": "Colinéarité, coplanarité : les deux grands tests.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le vecteur et ses coordonnées"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Norme, colinéarité et droites",
+   "pont": {
+    "texte": "Partie 2 : norme, colinéarité et droites.",
+    "dit": "Partie deux : la norme, la colinéarité et les droites. Nous mesurerons d'abord les vecteurs et les distances, puis nous apprendrons à tester si deux vecteurs partagent la même direction, à prouver l'alignement de trois points et à écrire l'équation paramétrique d'une droite."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Coplanarité et applications",
+   "pont": {
+    "texte": "Partie 3 : coplanarité, déterminant et applications.",
+    "dit": "Partie trois : la coplanarité et ses applications. Nous testerons si trois vecteurs vivent dans un même plan, grâce à la combinaison linéaire et au déterminant, avant d'appliquer tout le cours à l'équilibre des forces et à un exercice de synthèse complet."
+   }
+  }
+ ]
+}

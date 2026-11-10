@@ -1,0 +1,468 @@
+{
+  "cours": 6681,
+  "titre": "Nombres et calculs : entiers, fractions, décimaux et relatifs",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Nombres et calculs",
+      "titre": "Nombres et calculs : entiers, fractions, décimaux et relatifs",
+      "sous": "Entiers naturels et multiples, fractions, décimaux, relatifs et règles de priorité",
+      "anim": {
+        "nom": "camembert_fig",
+        "hauteur": 240
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Le fil rouge du cours",
+      "texte": "Compter, partager, mesurer, signer : quatre gestes, une seule boîte à outils pour tous les calculs."
+    },
+    "naturels": {
+      "type": "etape",
+      "kicker": "Entiers naturels · définition et ordre",
+      "titre": "Compter avec les entiers naturels",
+      "tex": [
+        "0, 1, 2, 3, 4, \\ldots \\qquad \\mathbb{N}",
+        "\\text{consécutifs : } n \\text{ et } n + 1",
+        "\\text{comparer : les chiffres, puis à gauche}"
+      ]
+    },
+    "comparer_entiers": {
+      "type": "etape",
+      "kicker": "Entiers naturels · comparer",
+      "titre": "Comparer : les chiffres d'abord",
+      "tex": [
+        "235 < 342",
+        "\\text{même nombre de chiffres}",
+        "\\text{: comparer à gauche}"
+      ]
+    },
+    "multiples": {
+      "type": "etape",
+      "kicker": "Multiples et diviseurs · définitions",
+      "titre": "Multiples et diviseurs, les deux sens",
+      "tex": [
+        "6 \\times k, \\quad k \\in \\mathbb{N}",
+        "\\text{diviseurs de } 18 : 1, 2, 3, 6, 9, 18"
+      ]
+    },
+    "criteres": {
+      "type": "etape",
+      "kicker": "Divisibilité · les critères",
+      "titre": "Reconnaître un diviseur sans diviser",
+      "tex": [
+        "\\text{divisible par deux : chiffre des unités pair}",
+        "\\text{divisible par cinq : unités zéro ou cinq}",
+        "\\text{divisible par trois : somme des chiffres}",
+        "\\text{divisible par neuf : somme des chiffres}"
+      ]
+    },
+    "proprietes_entiers": {
+      "type": "etape",
+      "kicker": "Entiers · propriétés des opérations",
+      "titre": "Échanger et regrouper pour calculer",
+      "tex": [
+        "a + b = b + a \\qquad a \\times b = b \\times a",
+        "(a + b) + c = a + (b + c)",
+        "25 + 38 + 75 = 138"
+      ]
+    },
+    "def_fraction": {
+      "type": "formule",
+      "kicker": "Fractions · définition",
+      "tex": "\\frac{a}{b}, \\quad b \\neq 0",
+      "note": "En haut le numérateur, en bas le dénominateur.",
+      "anim": {
+        "nom": "camembert_fig",
+        "hauteur": 180
+      }
+    },
+    "simplifier": {
+      "type": "etape",
+      "kicker": "Fractions · fractions égales",
+      "titre": "Simplifier : diviser haut et bas",
+      "tex": [
+        "\\tfrac{a}{b} = \\tfrac{a \\times k}{b \\times k}",
+        "\\tfrac{18}{24} = \\tfrac{18 \\div 6}{24 \\div 6} = \\tfrac{3}{4}",
+        "3{,}75 = \\tfrac{375}{100} = \\tfrac{15}{4}"
+      ]
+    },
+    "add_fractions": {
+      "type": "etape",
+      "kicker": "Fractions · addition et soustraction",
+      "titre": "Additionner : le même dénominateur",
+      "tex": [
+        "\\tfrac{a}{c} + \\tfrac{b}{c} = \\tfrac{a + b}{c}",
+        "\\tfrac{2}{3} = \\tfrac{4}{6} \\text{ : même dénominateur}",
+        "\\tfrac{2}{3} + \\tfrac{1}{6} = \\tfrac{5}{6}"
+      ]
+    },
+    "mult_fractions": {
+      "type": "etape",
+      "kicker": "Fractions · multiplication et division",
+      "titre": "Multiplier, diviser : l'inverse",
+      "tex": [
+        "\\tfrac{a}{b}\\times\\tfrac{c}{d}=\\tfrac{ac}{bd}",
+        "\\tfrac{a}{b}\\div\\tfrac{c}{d}=\\tfrac{a}{b}\\times\\tfrac{d}{c}",
+        "\\tfrac{2}{3}\\times\\tfrac{9}{4}=\\tfrac{18}{12}=\\tfrac{3}{2}"
+      ]
+    },
+    "comparer_fractions": {
+      "type": "etape",
+      "kicker": "Fractions · comparer",
+      "titre": "Comparer deux fractions",
+      "tex": [
+        "\\text{même dénominateur :}",
+        "\\text{ordre des numérateurs}",
+        "\\tfrac{3}{8} < \\tfrac{3}{5} \\text{ : même numérateur}"
+      ]
+    },
+    "decimal_def": {
+      "type": "etape",
+      "kicker": "Décimaux · lire et écrire",
+      "titre": "Dixièmes, centièmes, millièmes",
+      "tex": [
+        "24{,}375 : \\text{partie entière } 24",
+        "\\tfrac{3}{10} + \\tfrac{7}{100} + \\tfrac{5}{1000}"
+      ]
+    },
+    "add_decimal": {
+      "type": "etape",
+      "kicker": "Décimaux · addition et soustraction",
+      "titre": "Additionner : virgules alignées",
+      "tex": [
+        "15{,}4 + 3{,}78 = 19{,}18",
+        "\\text{aligner les virgules, puis calculer}"
+      ]
+    },
+    "mult_decimal": {
+      "type": "etape",
+      "kicker": "Décimaux · multiplication",
+      "titre": "Multiplier : compter les décimales",
+      "tex": [
+        "25 \\times 34 = 850",
+        "\\text{un chiffre après la virgule, deux fois}",
+        "2{,}5 \\times 3{,}4 = 8{,}5"
+      ]
+    },
+    "div_decimal": {
+      "type": "etape",
+      "kicker": "Décimaux · division",
+      "titre": "Diviser : un diviseur entier",
+      "tex": [
+        "6{,}4 \\div 0{,}2 = 64 \\div 2 = 32",
+        "\\text{rendre le diviseur entier par dix}"
+      ]
+    },
+    "comparer_decimal": {
+      "type": "etape",
+      "kicker": "Décimaux · comparer",
+      "titre": "Comparer : partie entière, puis décimales",
+      "tex": [
+        "7{,}23 > 7{,}19",
+        "\\text{dixièmes : deux contre un}"
+      ]
+    },
+    "proprietes_dec": {
+      "type": "etape",
+      "kicker": "Décimaux · propriétés utiles",
+      "titre": "Neutres et distributivité",
+      "tex": [
+        "a + 0 = a \\qquad a \\times 1 = a",
+        "a \\times (b + c) = a \\times b + a \\times c",
+        "\\text{neutres : zéro pour plus, un pour fois}"
+      ]
+    },
+    "relatifs": {
+      "type": "etape",
+      "kicker": "Nombres relatifs · définition et addition",
+      "titre": "Des nombres avec un signe",
+      "tex": [
+        "\\ldots, -3, -2, -1, 0, +1, +2, +3, \\ldots",
+        "(-5) + (-3) = -8",
+        "(-2{,}5) + (+3{,}7) = +1{,}2"
+      ]
+    },
+    "oppose": {
+      "type": "etape",
+      "kicker": "Relatifs · opposé et comparaison",
+      "titre": "L'opposé et les comparaisons",
+      "tex": [
+        "\\text{opposé de } -4{,}3 : +4{,}3",
+        "(-4{,}3) + (+4{,}3) = 0",
+        "\\text{deux négatifs : } -2{,}4 > -2{,}9"
+      ]
+    },
+    "vocab": {
+      "type": "etape",
+      "kicker": "Calculs · le vocabulaire",
+      "titre": "Le vocabulaire des opérations",
+      "tex": [
+        "\\text{addition : une somme et ses termes}",
+        "\\text{soustraction : une différence}",
+        "\\text{multiplication : un produit, ses facteurs}",
+        "\\text{division : un quotient}"
+      ]
+    },
+    "prio_parentheses": {
+      "type": "etape",
+      "kicker": "Priorités · avec parenthèses",
+      "titre": "Les parenthèses d'abord",
+      "tex": [
+        "A = (5 + 3) \\times 2",
+        "= 8 \\times 2 = 16"
+      ]
+    },
+    "prio_sans": {
+      "type": "etape",
+      "kicker": "Priorités · sans parenthèses",
+      "titre": "Fois et diviser avant plus et moins",
+      "tex": [
+        "B = 7 + 4 \\times 3 - 2",
+        "4 \\times 3 = 12 \\qquad 7 + 12 - 2 = 17",
+        "12 + 5 \\times 3 = 27"
+      ]
+    },
+    "gauche_droite": {
+      "type": "etape",
+      "kicker": "Priorités · de gauche à droite",
+      "titre": "Même niveau : de gauche à droite",
+      "tex": [
+        "C = 36 \\div 4 \\times 3 = 27",
+        "\\text{de gauche à droite, toujours}"
+      ]
+    },
+    "litteral": {
+      "type": "formule",
+      "kicker": "Calcul littéral · valeur d'une expression",
+      "tex": "a + 4 = 2{,}5 + 4 = 6{,}5",
+      "note": "Remplacer la lettre par sa valeur, puis calculer.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 140
+      }
+    },
+    "ex_complet": {
+      "type": "etape",
+      "kicker": "Exemple résolu · un calcul complet",
+      "titre": "Un calcul complet, dans l'ordre",
+      "tex": [
+        "D = (8 + 2) \\times 3 - 10 \\div 2",
+        "= 10 \\times 3 - 5",
+        "= 25"
+      ]
+    },
+    "astuces": {
+      "type": "etape",
+      "kicker": "Calcul malin · regrouper",
+      "titre": "Calcul malin : regrouper",
+      "tex": [
+        "25 + 75 = 100",
+        "100 + 17 = 117"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Entiers : multiples, diviseurs, critères",
+        "Fractions : même dénominateur, inverse",
+        "Décimaux : aligner, compter, comparer",
+        "Priorités : parenthèses, fois et diviser"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de nombres et de calculs. Nous partirons des entiers naturels, avec les multiples, les diviseurs et les critères de divisibilité, puis nous travaillerons les fractions, les nombres décimaux et les nombres relatifs, avant de finir par les règles de priorité qui ordonnent tous les calculs.",
+      "texte": "Entiers, fractions, décimaux, relatifs : le programme.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Le fil rouge du cours : chaque famille de nombres sert à un geste précis. Les entiers comptent, les fractions partagent, les décimaux mesurent avec précision, les relatifs ajoutent un signe, et les règles de priorité disent dans quel ordre effectuer les opérations quand tout se mélange dans un même calcul.",
+      "texte": "Compter, partager, mesurer, signer : quatre gestes.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Un entier naturel est un nombre qui sert à compter : zéro, un, deux, trois, quatre, et ainsi de suite. Leur ensemble se note grand enne. Deux entiers sont consécutifs quand ils se suivent, comme enne et enne plus un : de sept à douze, les entiers consécutifs sont sept, huit, neuf, dix, onze, douze, et il y en a six. Comparer deux entiers, c'est dire lequel est le plus petit, ou s'ils sont égaux.",
+      "texte": "Les entiers naturels : compter et dénombrer.",
+      "ecran": "naturels"
+    },
+    {
+      "id": "p04",
+      "dit": "Pour comparer deux entiers, on compare d'abord leur nombre de chiffres : le plus grand nombre de chiffres gagne. À nombre de chiffres égal, on compare chiffre par chiffre en partant de la gauche. Exemple : deux cent trente-cinq et trois cent quarante-deux ont trois chiffres chacun, et aux centaines, deux est plus petit que trois, donc deux cent trente-cinq est plus petit que trois cent quarante-deux.",
+      "texte": "Comparer : nombre de chiffres, puis de gauche à droite.",
+      "ecran": "comparer_entiers"
+    },
+    {
+      "id": "p05",
+      "dit": "Un multiple d'un entier a est un produit de a par un entier : les multiples de six sont zéro, six, douze, dix-huit, vingt-quatre, et ainsi de suite. Dans l'autre sens, un diviseur d'un entier b est un entier qui le divise avec un reste nul. Les diviseurs de dix-huit sont un, deux, trois, six, neuf et dix-huit. Multiple et diviseur sont les deux lectures d'une même multiplication.",
+      "texte": "Multiples de 6, diviseurs de 18 : deux lectures.",
+      "ecran": "multiples"
+    },
+    {
+      "id": "p06",
+      "dit": "Les critères de divisibilité évitent de poser la division. Par deux : le chiffre des unités est pair. Par cinq : le nombre se termine par zéro ou cinq. Par trois : la somme des chiffres est divisible par trois. Par neuf : la somme des chiffres est divisible par neuf. Exemple : quatre mille sept cent vingt-cinq a pour somme de chiffres dix-huit, donc il est divisible par neuf, et aussi par trois.",
+      "texte": "Divisible par 2, 5, 3 ou 9 : les critères rapides.",
+      "ecran": "criteres"
+    },
+    {
+      "id": "p07",
+      "dit": "L'addition et la multiplication des entiers ont deux propriétés précieuses. La commutativité : on peut échanger l'ordre des termes ou des facteurs. L'associativité : on peut regrouper les calculs comme on veut. Exemple malin : vingt-cinq plus trente-huit plus soixante-quinze se calcule en regroupant vingt-cinq et soixante-quinze, qui font cent, puis cent plus trente-huit, égale cent trente-huit.",
+      "texte": "Échanger et regrouper : 25 + 38 + 75 = 138.",
+      "ecran": "proprietes_entiers"
+    },
+    {
+      "id": "p08",
+      "dit": "Une fraction est un nombre écrit comme un quotient de deux entiers, avec un dénominateur différent de zéro. Le nombre du haut est le numérateur, celui du bas est le dénominateur. Dans la fraction trois septièmes, le numérateur vaut trois et le dénominateur vaut sept : on partage un tout en sept parts égales, et on en prend trois. La fraction est l'outil du partage en parts égales.",
+      "texte": "Une fraction : un numérateur, un dénominateur.",
+      "ecran": "def_fraction"
+    },
+    {
+      "id": "p09",
+      "dit": "Deux fractions sont égales quand elles représentent la même quantité. On ne change pas une fraction en multipliant, ou en divisant, le haut et le bas par un même nombre non nul. Simplifier, c'est diviser pour obtenir un dénominateur plus petit : dix-huit vingt-quatrièmes, divisé par six, donne trois quarts. Et un décimal devient une fraction sur une puissance de dix : trois virgule soixante-quinze égale quinze quarts.",
+      "texte": "Simplifier 18/24 : on obtient 3/4.",
+      "ecran": "simplifier"
+    },
+    {
+      "id": "p10",
+      "dit": "Pour additionner ou soustraire deux fractions de même dénominateur, on additionne les numérateurs et on garde le dénominateur. Si les dénominateurs diffèrent, on commence par écrire les fractions au même dénominateur. Exemple : deux tiers plus un sixième. Deux tiers égale quatre sixièmes, et quatre sixièmes plus un sixième égale cinq sixièmes. Le dénominateur commun est toujours la première étape.",
+      "texte": "Additionner : d'abord le même dénominateur.",
+      "ecran": "add_fractions"
+    },
+    {
+      "id": "p11",
+      "dit": "L'inverse d'une fraction s'obtient en échangeant numérateur et dénominateur : l'inverse de trois cinquièmes est cinq tiers. Pour multiplier deux fractions, on multiplie les numérateurs entre eux et les dénominateurs entre eux. Pour diviser par une fraction, on multiplie par son inverse. Exemple : deux tiers fois neuf quarts égale dix-huit douzièmes, qui se simplifie en trois demis.",
+      "texte": "Multiplier les numérateurs, diviser par l'inverse.",
+      "ecran": "mult_fractions"
+    },
+    {
+      "id": "p12",
+      "dit": "Comparer deux fractions devient simple dans deux cas. À dénominateur égal, la plus petite est celle qui a le plus petit numérateur. À numérateur égal, la plus petite est celle qui a le plus grand dénominateur, car les parts sont plus petites. Exemple : trois huitièmes est plus petit que trois cinquièmes, car un huitième de part est plus petit qu'un cinquième de part, et on en prend trois dans les deux cas.",
+      "texte": "Même numérateur : le plus grand dénominateur perd.",
+      "ecran": "comparer_fractions"
+    },
+    {
+      "id": "p13",
+      "dit": "Un nombre décimal s'écrit avec une partie entière et une partie décimale, séparées par une virgule. Chaque chiffre après la virgule a une valeur selon sa position : dixième, puis centième, puis millième. Exemple : vingt-quatre virgule trois cent soixante-quinze a pour partie entière vingt-quatre, et sa partie décimale vaut trois dixièmes, plus sept centièmes, plus cinq millièmes.",
+      "texte": "24,375 : partie entière 24, trois rangs décimaux.",
+      "ecran": "decimal_def"
+    },
+    {
+      "id": "p14",
+      "dit": "Pour additionner ou soustraire des décimaux, on aligne les virgules verticalement, puis on calcule comme avec des entiers, en complétant par des zéros si besoin. Exemple : quinze virgule quatre plus trois virgule soixante-dix-huit. On écrit quinze virgule quarante, on aligne, et on obtient dix-neuf virgule dix-huit. Toutes les erreurs viennent d'un mauvais alignement : la virgule est le repère.",
+      "texte": "Additionner des décimaux : aligner les virgules.",
+      "ecran": "add_decimal"
+    },
+    {
+      "id": "p15",
+      "dit": "Pour multiplier deux décimaux, on ignore les virgules et on multiplie comme des entiers, puis on place la virgule en comptant le nombre total de chiffres après la virgule dans les facteurs. Exemple : deux virgule cinq fois trois virgule quatre. Sans virgules, vingt-cinq fois trente-quatre égale huit cent cinquante. Un chiffre après la virgule dans chaque facteur, donc deux au résultat : huit virgule cinq.",
+      "texte": "Multiplier : ignorer, multiplier, replacer la virgule.",
+      "ecran": "mult_decimal"
+    },
+    {
+      "id": "p16",
+      "dit": "Pour diviser par un nombre décimal, on multiplie le dividende et le diviseur par la puissance de dix qui rend le diviseur entier, sans changer le quotient. Exemple : six virgule quatre divisé par zéro virgule deux. On multiplie les deux par dix : soixante-quatre divisé par deux, égale trente-deux. Donc six virgule quatre divisé par zéro virgule deux égale trente-deux.",
+      "texte": "Diviser : rendre le diviseur entier.",
+      "ecran": "div_decimal"
+    },
+    {
+      "id": "p17",
+      "dit": "Pour comparer deux décimaux, on compare d'abord les parties entières. Si elles sont égales, on compare les chiffres des dixièmes, puis ceux des centièmes, et ainsi de suite. Exemple : sept virgule vingt-trois et sept virgule dix-neuf ont la même partie entière, sept, et aux dixièmes, deux est plus grand que un : sept virgule vingt-trois est donc plus grand que sept virgule dix-neuf.",
+      "texte": "Comparer : parties entières, puis dixièmes.",
+      "ecran": "comparer_decimal"
+    },
+    {
+      "id": "p18",
+      "dit": "Les décimaux suivent les mêmes propriétés que les entiers : commutativité et associativité, déjà rencontrées. Deux autres propriétés complètent le tableau, lues dans les tables du cours : les éléments neutres, zéro pour l'addition et un pour la multiplication, qui laissent un nombre inchangé, et la distributivité, qui permet de développer un produit sur une somme, ou de factoriser une somme de produits.",
+      "texte": "Neutres : 0 et 1. Distributivité : développer.",
+      "ecran": "proprietes_dec"
+    },
+    {
+      "id": "p19",
+      "dit": "Les entiers relatifs sont les entiers précédés d'un signe plus ou d'un signe moins : moins trois, moins deux, moins un, zéro, plus un, plus deux, plus trois. Pour les additionner, deux cas. Même signe : on additionne les valeurs absolues et on garde le signe commun, comme moins cinq plus moins trois, égale moins huit. Signes différents : on soustrait les valeurs absolues et on garde le signe de la plus grande.",
+      "texte": "Relatifs : même signe ou signes différents.",
+      "ecran": "relatifs"
+    },
+    {
+      "id": "p20",
+      "dit": "L'opposé d'un nombre est le nombre qui, additionné à lui, donne zéro : l'opposé de moins quatre virgule trois est plus quatre virgule trois. Même règle pour les décimaux relatifs : moins deux virgule cinq plus plus trois virgule sept donne plus un virgule deux. Pour deux négatifs, attention : le plus petit est celui qui a la plus grande valeur absolue, donc moins deux virgule quatre est plus grand que moins deux virgule neuf.",
+      "texte": "L'opposé annule le nombre : leur somme vaut 0.",
+      "ecran": "oppose"
+    },
+    {
+      "id": "p21",
+      "dit": "Avant les règles de calcul, le vocabulaire. L'addition calcule une somme, et ses nombres sont les termes. La soustraction calcule une différence. La multiplication calcule un produit, et ses nombres sont les facteurs. La division calcule un quotient. Et comparer deux nombres, c'est dire lequel est le plus petit ou le plus grand. Ces mots précis évitent les confusions dans les énoncés et dans les copies.",
+      "texte": "Somme, différence, produit, quotient : les mots justes.",
+      "ecran": "vocab"
+    },
+    {
+      "id": "p22",
+      "dit": "Première règle de priorité : dans une expression avec parenthèses, on effectue d'abord les calculs entre parenthèses, de l'intérieur vers l'extérieur quand elles sont imbriquées. Exemple : a égale la quantité cinq plus trois, fois deux. On commence par la parenthèse, cinq plus trois égale huit, puis on multiplie, huit fois deux égale seize. Donc a égale seize.",
+      "texte": "Avec parenthèses : l'intérieur d'abord.",
+      "ecran": "prio_parentheses"
+    },
+    {
+      "id": "p23",
+      "dit": "Sans parenthèses, on effectue d'abord les multiplications et les divisions, de gauche à droite, puis les additions et les soustractions, aussi de gauche à droite. Exemple : b égale sept plus quatre fois trois moins deux. La multiplication d'abord : quatre fois trois égale douze, puis sept plus douze moins deux égale dix-sept. Même réflexe pour douze plus cinq fois trois : quinze d'abord, puis vingt-sept.",
+      "texte": "Sans parenthèses : fois et diviser d'abord.",
+      "ecran": "prio_sans"
+    },
+    {
+      "id": "p24",
+      "dit": "Dans une suite de multiplications et de divisions, on avance strictement de gauche à droite. Exemple : c égale trente-six divisé par quatre, fois trois. D'abord neuf, puis neuf fois trois égale vingt-sept. Attention au piège : calculer quatre fois trois d'abord donnerait trente-six divisé par douze, donc trois, ce qui est faux. L'ordre de lecture est obligatoire.",
+      "texte": "De gauche à droite : 36 ÷ 4 × 3 = 27, jamais 3.",
+      "ecran": "gauche_droite"
+    },
+    {
+      "id": "p25",
+      "dit": "Une expression littérale contient des lettres, appelées variables, qui représentent des nombres. Pour donner sa valeur numérique, on remplace chaque lettre par sa valeur, puis on applique les règles de priorité. Exemple : si a vaut deux virgule cinq, alors a plus quatre se calcule en remplaçant a par deux virgule cinq : deux virgule cinq plus quatre égale six virgule cinq.",
+      "texte": "Calcul littéral : remplacer, puis calculer.",
+      "ecran": "litteral"
+    },
+    {
+      "id": "p26",
+      "dit": "Exemple complet pour assembler toutes les règles : d égale la quantité huit plus deux, fois trois, moins dix divisé par deux. Étape un, la parenthèse : huit plus deux égale dix. Étape deux, la multiplication et la division : dix fois trois égale trente, dix divisé par deux égale cinq. Étape trois, la soustraction : trente moins cinq égale vingt-cinq. Donc d égale vingt-cinq, et chaque étape respecte l'ordre des priorités.",
+      "texte": "Un calcul complet : D = 25, étape par étape.",
+      "ecran": "ex_complet"
+    },
+    {
+      "id": "p27",
+      "dit": "Les propriétés servent aussi au calcul rapide. Pour vingt-cinq plus dix-sept plus soixante-quinze, la commutativité permet de regrouper vingt-cinq et soixante-quinze, qui font cent, puis cent plus dix-sept égale cent dix-sept : bien plus rapide que l'ordre d'écriture. Et terminez toujours par un contrôle : un ordre de grandeur vérifie que le résultat est plausible avant de passer à la suite.",
+      "texte": "Calcul malin : regrouper ce qui fait 100.",
+      "ecran": "astuces"
+    },
+    {
+      "id": "p28",
+      "dit": "Pour finir, retenez l'enchaînement. Les entiers se comparent et se divisent, avec des critères rapides pour les diviseurs. Les fractions se simplifient, s'additionnent au même dénominateur, se multiplient numérateur par numérateur, et diviser revient à multiplier par l'inverse. Les décimaux se calculent virgules alignées, les relatifs ajoutent la règle des signes, et les priorités ordonnent tous les calculs.",
+      "texte": "Entiers, fractions, décimaux, priorités : à retenir.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Entiers naturels, multiples et fractions"
+    },
+    {
+      "debut": "p13",
+      "sous_titre": "Décimaux et nombres relatifs",
+      "pont": {
+        "texte": "Partie 2 : décimaux et nombres relatifs.",
+        "dit": "Partie deux : les décimaux et les nombres relatifs. Nous apprendrons à calculer avec les virgules, à comparer des décimaux, puis à donner un signe aux nombres et à additionner des nombres relatifs en suivant la règle des signes."
+      }
+    },
+    {
+      "debut": "p21",
+      "sous_titre": "Priorités des opérations et calcul littéral",
+      "pont": {
+        "texte": "Partie 3 : priorités et calcul littéral.",
+        "dit": "Partie trois : l'ordre des opérations. Pour finir, nous mettrons de l'ordre dans les calculs : les parenthèses d'abord, les multiplications et divisions ensuite, toujours de gauche à droite, et nous évaluerons nos premières expressions littérales."
+      }
+    }
+  ]
+}

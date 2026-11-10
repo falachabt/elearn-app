@@ -30,8 +30,11 @@ const CLE_PRECHARGES = 'documents.precharges';
 /** Au-delà, les documents ouverts le moins récemment quittent le téléphone (M6-08). */
 export const PLAFOND_OCTETS = 500 * 1024 * 1024;
 
+/** D'où vient le document : permet de rouvrir la page de détail du sujet depuis « Mes documents ». `corr` : corrigé d'un document de classe. */
+export type OrigineSujet = { kind: 'exam' | 'document'; ref: string; corr?: string };
+
 /** `sujet` : identifiant de l'annale, pour marquer « Hors ligne » dans la liste des sujets. */
-export type DocumentGarde = { url: string; titre: string; taille: number; le: string; page?: number; sujet?: number; uniforme?: boolean };
+export type DocumentGarde = { url: string; titre: string; taille: number; le: string; page?: number; sujet?: number; uniforme?: boolean; origine?: OrigineSujet };
 
 async function lireIndex(): Promise<Record<string, DocumentGarde>> {
   try {
@@ -137,7 +140,7 @@ async function uniformiserFichier(fichier: File): Promise<boolean> {
 }
 
 /** Chemin local du document : la copie gardée, sinon téléchargée maintenant (réseau requis). Note l'ouverture. */
-export async function ouvrirDocument(url: string, titre = '', maintenant = new Date(), plafond = PLAFOND_OCTETS, sujet?: number): Promise<string> {
+export async function ouvrirDocument(url: string, titre = '', maintenant = new Date(), plafond = PLAFOND_OCTETS, sujet?: number, origine?: OrigineSujet): Promise<string> {
   let uri = documentLocal(url);
   if (!uri) {
     const d = dossier();
@@ -147,7 +150,7 @@ export async function ouvrirDocument(url: string, titre = '', maintenant = new D
   const index = await lireIndex();
   const uniforme = index[url]?.uniforme || (await uniformiserFichier(new File(dossier(), nomFichier(url))));
   const taille = new File(dossier(), nomFichier(url)).size;
-  index[url] = { ...index[url], url, uniforme, titre: titre || index[url]?.titre || '', taille, le: maintenant.toISOString(), ...(sujet ? { sujet } : {}) };
+  index[url] = { ...index[url], url, uniforme, titre: titre || index[url]?.titre || '', taille, le: maintenant.toISOString(), ...(sujet ? { sujet } : {}), ...(origine ? { origine } : {}) };
   const precharges = await lirePrecharges();
   delete precharges[url];
   await AsyncStorage.setItem(CLE_PRECHARGES, JSON.stringify(precharges));

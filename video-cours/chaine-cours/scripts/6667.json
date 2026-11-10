@@ -1,0 +1,521 @@
+{
+ "cours": 6667,
+ "titre": "Équations, systèmes, trigonométrie et fonctions",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Algèbre et fonctions",
+   "titre": "Équations, systèmes et fonctions",
+   "sous": "Second degré, trigonométrie et généralités sur les fonctions",
+   "anim": {
+    "nom": "signe_parabole_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Le trinôme du second degré ouvre le cours : équations, signes, factorisations et problèmes passent par lui.",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 180
+   }
+  },
+  "forme": {
+   "type": "formule",
+   "kicker": "Équation du second degré",
+   "tex": "ax^2 + bx + c = 0 \\quad (a \\neq 0)",
+   "note": "Le trinôme : trois coefficients, une inconnue."
+  },
+  "discriminant": {
+   "type": "formule",
+   "kicker": "Le discriminant",
+   "tex": "\\Delta = b^2 - 4ac",
+   "note": "Le signe de Δ décide du nombre de racines."
+  },
+  "trois_cas": {
+   "type": "etape",
+   "kicker": "Résolution selon le discriminant",
+   "titre": "Trois cas, un seul critère",
+   "tex": [
+    "\\Delta > 0 : x = \\tfrac{-b \\pm \\sqrt{\\Delta}}{2a}",
+    "\\Delta = 0 : x_0 = \\tfrac{-b}{2a}",
+    "\\Delta < 0 : \\text{aucune racine réelle}"
+   ]
+  },
+  "ex_trinome": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Un trinôme, deux racines",
+   "tex": [
+    "2x^2 - 5x + 2 = 0",
+    "\\Delta = 25 - 16 = 9",
+    "x_1 = \\tfrac{5 + 3}{4} = 2",
+    "x_2 = \\tfrac{5 - 3}{4} = \\tfrac{1}{2}"
+   ]
+  },
+  "signe": {
+   "type": "phrase",
+   "kicker": "Signe du trinôme",
+   "texte": "Du signe de a à l'extérieur des racines, du signe opposé entre les racines : la parabole le montre d'un coup d'œil.",
+   "anim": {
+    "nom": "signe_parabole_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_ineq": {
+   "type": "etape",
+   "kicker": "Exemple résolu · inéquation",
+   "titre": "Négatif à l'extérieur des racines",
+   "tex": [
+    "\\Delta = 9 + 16 = 25",
+    "x_1 = -1 \\qquad x_2 = 4",
+    "S = ]-\\infty ; -1] \\cup [4 ; +\\infty["
+   ]
+  },
+  "param2": {
+   "type": "etape",
+   "kicker": "Équation avec paramètre",
+   "titre": "Un discriminant qui se factorise",
+   "tex": [
+    "\\Delta = (m + 1)^2 - 4m = (m - 1)^2",
+    "m = 1 : x_0 = 1",
+    "m \\neq 1 : x = 1 \\text{ ou } x = m"
+   ]
+  },
+  "degre3": {
+   "type": "formule",
+   "kicker": "Polynômes de degré trois",
+   "tex": "P(x) = (x - \\alpha)(ax^2 + \\beta x + \\gamma)",
+   "note": "Valable dès que P(α) = 0 : un zéro, un facteur."
+  },
+  "ex_degre3": {
+   "type": "etape",
+   "kicker": "Exemple résolu · degré trois",
+   "titre": "Factoriser, puis tableau de signes",
+   "tex": [
+    "P(1) = 1 - 2 - 1 + 2 = 0",
+    "P(x) = (x - 1)(x^2 - x - 2)",
+    "P(x) = (x - 1)(x + 1)(x - 2)",
+    "P(x) \\leq 0 \\iff x \\in ]-\\infty ; -1] \\cup [1 ; 2]"
+   ]
+  },
+  "irrat": {
+   "type": "phrase",
+   "kicker": "Équations irrationnelles",
+   "texte": "Quatre temps : condition d'existence, signe du second membre, élévation au carré, puis vérification des candidats."
+  },
+  "ex_irrat": {
+   "type": "etape",
+   "kicker": "Exemple résolu · irrationnelle",
+   "titre": "Élever au carré, puis vérifier",
+   "tex": [
+    "\\sqrt{2x + 3} = x + 1, \\quad x \\geq -1",
+    "2x + 3 = (x + 1)^2",
+    "x^2 = 2, \\quad x = \\sqrt{2} \\text{ ou } -\\sqrt{2}",
+    "-\\sqrt{2} < -1 : S = \\{\\sqrt{2}\\}"
+   ]
+  },
+  "somme_produit": {
+   "type": "etape",
+   "kicker": "Système ramené au second degré",
+   "titre": "Somme et produit donnent le trinôme",
+   "tex": [
+    "x + y = 5, \\quad xy = 6",
+    "x^2 - 5x + 6 = 0",
+    "(x ; y) = (2 ; 3) \\text{ ou } (3 ; 2)"
+   ]
+  },
+  "cramer": {
+   "type": "formule",
+   "kicker": "Systèmes linéaires · déterminant",
+   "tex": "\\Delta = ab' - a'b",
+   "note": "Cramer : deux quotients si Δ ≠ 0."
+  },
+  "ex_cramer": {
+   "type": "etape",
+   "kicker": "Exemple résolu · Cramer",
+   "titre": "Deux quotients, une solution",
+   "tex": [
+    "\\Delta = 2 \\times (-1) - 1 \\times 3 = -5",
+    "x = \\tfrac{-10}{-5} = 2",
+    "y = \\tfrac{-5}{-5} = 1"
+   ]
+  },
+  "gauss": {
+   "type": "phrase",
+   "kicker": "Systèmes trois par trois",
+   "texte": "Le pivot de Gauss élimine une inconnue ligne après ligne jusqu'au système triangulaire, puis on remonte."
+  },
+  "ex_gauss": {
+   "type": "etape",
+   "kicker": "Exemple résolu · pivot de Gauss",
+   "titre": "Triangulariser, puis remonter",
+   "tex": [
+    "x + y + z = 6, \\quad x - y + z = 2",
+    "2x + y - z = 1",
+    "L_2 - L_1 : -2y = -4 \\Rightarrow y = 2",
+    "z = 3, \\quad x = 1"
+   ]
+  },
+  "param_sys": {
+   "type": "etape",
+   "kicker": "Système avec paramètre",
+   "titre": "Le déterminant décide",
+   "tex": [
+    "\\Delta = m^2 - 1 = (m - 1)(m + 1)",
+    "m \\neq \\pm 1 : x = 0, \\ y = 1",
+    "m = 1 \\text{ ou } m = -1 : \\text{infinité}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Récapitulatif · partie un",
+   "etapes": [
+    "Δ = b² − 4ac : trois cas de racines",
+    "Signe de a à l'extérieur des racines",
+    "Degré 3 : un zéro, puis factoriser",
+    "Systèmes : Cramer ou pivot de Gauss"
+   ]
+  },
+  "addition_cos": {
+   "type": "formule",
+   "kicker": "Formules d'addition",
+   "tex": "\\cos(a + b) = \\cos a \\cos b - \\sin a \\sin b",
+   "note": "Pour une différence, le signe central se renverse."
+  },
+  "addition_sin": {
+   "type": "etape",
+   "kicker": "Formules d'addition",
+   "titre": "Sinus et tangente d'une somme",
+   "tex": [
+    "\\sin(a + b) = \\sin a \\cos b + \\cos a \\sin b",
+    "\\tan(a + b) = \\tfrac{\\tan a + \\tan b}{1 - \\tan a \\tan b}"
+   ],
+   "anim": {
+    "nom": "cercle_trigo_fig",
+    "hauteur": 140
+   }
+  },
+  "ex_cos12": {
+   "type": "etape",
+   "kicker": "Exemple résolu · valeur exacte",
+   "titre": "Pi sur douze, différence connue",
+   "tex": [
+    "\\tfrac{\\pi}{12} = \\tfrac{\\pi}{3} - \\tfrac{\\pi}{4}",
+    "\\cos\\tfrac{\\pi}{12} = \\tfrac{\\sqrt2}{4} + \\tfrac{\\sqrt6}{4}",
+    "\\cos\\tfrac{\\pi}{12} = \\tfrac{\\sqrt{2} + \\sqrt{6}}{4}"
+   ]
+  },
+  "forme_amplitude": {
+   "type": "formule",
+   "kicker": "Transformation amplitude et phase",
+   "tex": "a \\cos X + b \\sin X = A \\cos(X + \\varphi)",
+   "note": "A = √(a² + b²) · cos φ = a/A, sin φ = −b/A"
+  },
+  "ex_trigo_eq": {
+   "type": "etape",
+   "kicker": "Exemple résolu · équation",
+   "titre": "Transformer, puis résoudre",
+   "tex": [
+    "\\cos X + \\sqrt{3} \\sin X = 2 \\cos(X - \\tfrac{\\pi}{3})",
+    "\\cos(X - \\tfrac{\\pi}{3}) = \\tfrac{\\sqrt{2}}{2}",
+    "X = \\tfrac{\\pi}{12} \\text{ ou } X = \\tfrac{7\\pi}{12}"
+   ]
+  },
+  "eq_fond": {
+   "type": "etape",
+   "kicker": "Équations trigonométriques",
+   "titre": "Les angles associés sur le cercle",
+   "tex": [
+    "\\cos X = \\cos \\alpha \\Rightarrow X \\equiv \\pm \\alpha \\; [2\\pi]",
+    "\\sin X = \\sin \\alpha \\Rightarrow X \\equiv \\alpha \\; [2\\pi]",
+    "\\text{ou } X \\equiv \\pi - \\alpha \\; [2\\pi]"
+   ]
+  },
+  "ineq_trigo": {
+   "type": "phrase",
+   "kicker": "Inéquations trigonométriques",
+   "texte": "Le cercle délimite les arcs solutions : cos X ≥ √2/2 sur [0, 2π] donne [0, π/4] ∪ [7π/4, 2π].",
+   "anim": {
+    "nom": "cercle_trigo_fig",
+    "hauteur": 200
+   }
+  },
+  "domaine": {
+   "type": "etape",
+   "kicker": "Fonctions · ensemble de définition",
+   "titre": "Racine et dénominateur veillent",
+   "tex": [
+    "x - 1 \\geq 0 \\quad \\text{et} \\quad x - 3 \\neq 0",
+    "D_f = [1 ; 3[ \\cup ]3 ; +\\infty["
+   ]
+  },
+  "injective": {
+   "type": "phrase",
+   "kicker": "Applications et bijections",
+   "texte": "Injective : au plus un antécédent. Surjective : au moins un. Bijective : les deux, donc une réciproque existe.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 190
+   }
+  },
+  "composee": {
+   "type": "etape",
+   "kicker": "Composée et réciproque",
+   "titre": "Appliquer, puis défaire",
+   "tex": [
+    "(g \\circ f)(x) = \\sqrt{x^2 + 1}",
+    "f^{-1}(y) = \\tfrac{y - 3}{2}"
+   ],
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 140
+   }
+  },
+  "parite": {
+   "type": "phrase",
+   "kicker": "Parité et symétries",
+   "texte": "Paire : symétrie d'axe les ordonnées. Impaire : symétrie de centre l'origine. Un axe x = a se teste avec f(a + h) et f(a − h).",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 170
+   }
+  },
+  "associees": {
+   "type": "phrase",
+   "kicker": "Fonctions associées",
+   "texte": "f(x) + k translate en vertical, f(x + k) en horizontal, −f(x) et f(−x) donnent les deux symétries par rapport aux axes.",
+   "anim": {
+    "nom": "symetrie_fig",
+    "hauteur": 160
+   }
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Récapitulatif final",
+   "etapes": [
+    "Δ = b² − 4ac décide des racines",
+    "Systèmes : Cramer en 2×2, Gauss en 3×3",
+    "cos(a ± b) : formules d'addition",
+    "a cos X + b sin X = A cos(X + φ)",
+    "Domaine, parité, composée, réciproque"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Équations, systèmes, trigonométrie et fonctions : voici les outils qui reviennent dans presque tous les exercices de mathématiques.",
+   "texte": "Algèbre, trigonométrie et fonctions : le programme en une vidéo.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Nous commençons par le trinôme du second degré, le couteau suisse de l'algèbre : équations, inéquations et problèmes concrets passent presque tous par lui.",
+   "texte": "Le trinôme du second degré ouvre le cours.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Une équation du second degré s'écrit a x au carré plus b x plus c égale zéro, avec a différent de zéro. Le coefficient a donne la forme de la parabole, et tout le reste dépend d'un seul nombre : le discriminant.",
+   "texte": "Forme générale : ax² + bx + c = 0, a ≠ 0.",
+   "ecran": "forme"
+  },
+  {
+   "id": "p04",
+   "dit": "Le discriminant, noté delta, vaut b au carré moins quatre a c. Il se cache dans la forme canonique du trinôme, et son signe décide du nombre de solutions avant même de les calculer.",
+   "texte": "Discriminant : Δ = b² − 4ac.",
+   "ecran": "discriminant"
+  },
+  {
+   "id": "p05",
+   "dit": "Trois cas seulement. Si delta est strictement positif, deux racines distinctes données par la formule avec racine carrée de delta. Si delta est nul, une racine double. Si delta est négatif, aucune racine réelle.",
+   "texte": "Δ > 0 : deux racines · Δ = 0 : double · Δ < 0 : aucune.",
+   "ecran": "trois_cas"
+  },
+  {
+   "id": "p06",
+   "dit": "Exemple : deux x au carré moins cinq x plus deux égale zéro. Delta vaut vingt-cinq moins seize, donc neuf. Les racines sont cinq plus trois sur quatre, c'est-à-dire deux, et cinq moins trois sur quatre, c'est-à-dire un demi.",
+   "texte": "2x² − 5x + 2 = 0 → Δ = 9, racines 2 et 1/2.",
+   "ecran": "ex_trinome"
+  },
+  {
+   "id": "p07",
+   "dit": "Le signe du trinôme suit une règle visuelle : il est du signe de a à l'extérieur des racines, et du signe opposé entre les racines. Sur la parabole, cela se lit d'un coup d'œil.",
+   "texte": "Signe de a hors des racines, opposé entre elles.",
+   "ecran": "signe"
+  },
+  {
+   "id": "p08",
+   "dit": "Application : moins x au carré plus trois x plus quatre inférieur ou égal à zéro. Les racines sont moins un et quatre, et comme a est négatif, le trinôme est négatif à l'extérieur des racines. Les solutions vont de moins l'infini à moins un, puis de quatre à plus l'infini.",
+   "texte": "−x² + 3x + 4 ≤ 0 → S = ]−∞ ; −1] ∪ [4 ; +∞[.",
+   "ecran": "ex_ineq"
+  },
+  {
+   "id": "p09",
+   "dit": "Avec un paramètre, le discriminant devient lui-même une expression à étudier. Ici, il se factorise en un carré parfait, donc il est toujours positif ou nul, et les racines se lisent directement : un et le paramètre.",
+   "texte": "Δ = (m − 1)² ≥ 0 → racines 1 et m.",
+   "ecran": "param2"
+  },
+  {
+   "id": "p10",
+   "dit": "Un polynôme de degré trois se factorise dès que l'on connaît un zéro, c'est-à-dire une valeur qui l'annule. On divise alors par x moins ce zéro, et il reste un trinôme du second degré que l'on sait traiter.",
+   "texte": "P(α) = 0 → P(x) = (x − α)(ax² + βx + γ).",
+   "ecran": "degre3"
+  },
+  {
+   "id": "p11",
+   "dit": "Pour x au cube moins deux x au carré moins x plus deux, un est un zéro évident. La factorisation donne trois facteurs, de racines moins un, un et deux. Le tableau de signes donne l'inéquation : négatif ou nul avant moins un, puis entre un et deux.",
+   "texte": "P ≤ 0 sur ]−∞ ; −1] ∪ [1 ; 2], après factorisation.",
+   "ecran": "ex_degre3"
+  },
+  {
+   "id": "p12",
+   "dit": "Une équation avec une racine carrée se traite en quatre temps : condition d'existence, condition de signe du second membre, élévation au carré, puis vérification. Sans la vérification, on garde de fausses solutions.",
+   "texte": "Irrationnelles : conditions, carré, vérification.",
+   "ecran": "irrat"
+  },
+  {
+   "id": "p13",
+   "dit": "Exemple : racine carrée de deux x plus trois égale x plus un. Il faut x supérieur ou égal à moins un. En élevant au carré, les termes en x se simplifient et il reste x au carré égale deux. On garde racine carrée de deux, et on rejette son opposé, trop petit pour la condition.",
+   "texte": "√(2x + 3) = x + 1 → x² = 2 → S = {√2}.",
+   "ecran": "ex_irrat"
+  },
+  {
+   "id": "p14",
+   "dit": "Certains systèmes se ramènent au second degré : si la somme de x et de y vaut cinq et leur produit six, alors x et y sont les deux racines du trinôme x au carré moins cinq x plus six. Les couples solutions sont deux, trois et trois, deux.",
+   "texte": "x + y = 5, xy = 6 → couples (2 ; 3) et (3 ; 2).",
+   "ecran": "somme_produit"
+  },
+  {
+   "id": "p15",
+   "dit": "Passons aux systèmes linéaires. Pour deux équations à deux inconnues, le déterminant du système vaut a b prime moins a prime b. S'il est différent de zéro, les formules de Cramer donnent l'unique solution en deux quotients.",
+   "texte": "Déterminant : Δ = ab′ − a′b · Cramer si Δ ≠ 0.",
+   "ecran": "cramer"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple : deux x plus trois y égale sept, et x moins y égale un. Le déterminant vaut moins cinq. Le quotient pour x donne deux, celui pour y donne un : la solution unique est le couple deux, un.",
+   "texte": "Δ = −5 → x = 2, y = 1.",
+   "ecran": "ex_cramer"
+  },
+  {
+   "id": "p17",
+   "dit": "À trois inconnues, on préfère le pivot de Gauss : on élimine une inconnue ligne après ligne jusqu'à obtenir un système triangulaire, puis on remonte en substituant de bas en haut.",
+   "texte": "Pivot de Gauss : triangulariser, puis remonter.",
+   "ecran": "gauss"
+  },
+  {
+   "id": "p18",
+   "dit": "Exemple : la somme x plus y plus z vaut six. En retranchant la première ligne de la deuxième, on obtient y égale deux. La troisième ligne donne alors z égale trois, et la première redonne x égale un. Solution : un, deux, trois.",
+   "texte": "Gauss → y = 2, z = 3, x = 1.",
+   "ecran": "ex_gauss"
+  },
+  {
+   "id": "p19",
+   "dit": "Quand un paramètre entre dans un système, le déterminant décide. Ici, m au carré moins un. Hors de un et moins un, solution unique : zéro pour x, un pour y. Pour un comme pour moins un, les équations se confondent : solutions en nombre infini.",
+   "texte": "Δ = m² − 1 · m = ±1 : équations confondues, infinité.",
+   "ecran": "param_sys"
+  },
+  {
+   "id": "p20",
+   "dit": "Récapitulons cette première partie : le discriminant tranche pour le second degré, le signe suit celui de a hors des racines, un zéro évident ouvre le degré trois, et les systèmes se règlent par Cramer ou par le pivot de Gauss.",
+   "texte": "Partie 1 : discriminant, signes, Cramer, Gauss.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p21",
+   "dit": "Les formules d'addition expriment le cosinus et le sinus d'une somme à partir des angles séparés. Pour le cosinus d'une somme, produits des cosinus moins produits des sinus : attention, le signe se renverse pour une différence.",
+   "texte": "cos(a + b) = cos a cos b − sin a sin b.",
+   "ecran": "addition_cos"
+  },
+  {
+   "id": "p22",
+   "dit": "Pour le sinus d'une somme, les produits se mélangent et les signes se conservent. La tangente d'une somme suit ensuite par quotient, avec une somme au numérateur et un moins le produit au dénominateur.",
+   "texte": "sin(a + b) et tan(a + b) : produits croisés.",
+   "ecran": "addition_sin"
+  },
+  {
+   "id": "p23",
+   "dit": "Application : pi sur douze est la différence de pi sur trois et pi sur quatre, dont on connaît toutes les valeurs. La formule de différence donne racine de deux plus racine de six, le tout sur quatre.",
+   "texte": "cos(π/12) = (√2 + √6) / 4.",
+   "ecran": "ex_cos12"
+  },
+  {
+   "id": "p24",
+   "dit": "Une combinaison a cosinus plus b sinus se compresse en une seule oscillation : une amplitude A, racine carrée de a au carré plus b au carré, et un déphasage dont le cosinus et le sinus se lisent sur a et b.",
+   "texte": "a cos X + b sin X = A cos(X + φ).",
+   "ecran": "forme_amplitude"
+  },
+  {
+   "id": "p25",
+   "dit": "Exemple complet : cosinus x plus racine de trois sinus x devient deux cosinus de x moins pi sur trois. L'équation avec racine de deux se ramène à un cosinus connu : solutions pi sur douze et sept pi sur douze.",
+   "texte": "cos X + √3 sin X = √2 → X = π/12 ou 7π/12.",
+   "ecran": "ex_trigo_eq"
+  },
+  {
+   "id": "p26",
+   "dit": "Les équations fondamentales se lisent sur le cercle : un même cosinus donne l'angle ou son opposé, à un tour près ; un même sinus donne l'angle ou son supplémentaire ; une même tangente donne l'angle à un demi-tour près.",
+   "texte": "cos, sin, tan : les angles associés sur le cercle.",
+   "ecran": "eq_fond"
+  },
+  {
+   "id": "p27",
+   "dit": "Pour une inéquation, le cercle trigonométrique délimite directement les arcs solutions : cosinus x supérieur ou égal à racine de deux sur deux, sur un tour, donne les angles proches de zéro, au début et à la fin du tour.",
+   "texte": "cos X ≥ √2/2 : arcs [0, π/4] et [7π/4, 2π].",
+   "ecran": "ineq_trigo"
+  },
+  {
+   "id": "p28",
+   "dit": "Côté fonctions, l'ensemble de définition rassemble les valeurs où l'expression a un sens : rien de négatif sous une racine, et aucun dénominateur nul. Ici, on obtient de un inclus à l'infini, en retirant trois.",
+   "texte": "D_f = [1 ; 3[ ∪ ]3 ; +∞[.",
+   "ecran": "domaine"
+  },
+  {
+   "id": "p29",
+   "dit": "Une application est injective si chaque image a au plus un antécédent, surjective si chaque valeur d'arrivée en a au moins un, et bijective si elle est les deux à la fois : c'est la condition pour posséder une réciproque.",
+   "texte": "Injective, surjective, bijective : les antécédents.",
+   "ecran": "injective"
+  },
+  {
+   "id": "p30",
+   "dit": "La composée applique d'abord f, puis g au résultat. Avec f de x égale x au carré plus un et g la racine carrée, la composée est la racine de x au carré plus un, définie partout. Pour deux x plus trois, la réciproque enlève trois puis divise par deux.",
+   "texte": "g ∘ f et f⁻¹ : appliquer, puis défaire.",
+   "ecran": "composee"
+  },
+  {
+   "id": "p31",
+   "dit": "La parité se lit sur la courbe : fonction paire, symétrie par rapport à l'axe des ordonnées ; impaire, symétrie par rapport à l'origine. Une droite verticale peut aussi être un axe, comme x égale un pour le trinôme x au carré moins deux x plus un.",
+   "texte": "Paire : axe des ordonnées · Impaire : origine.",
+   "ecran": "parite"
+  },
+  {
+   "id": "p32",
+   "dit": "À partir d'une courbe connue, les fonctions associées s'obtiennent par des gestes simples : ajouter une constante translate verticalement, décaler l'argument translate horizontalement, et les signes changent la courbe en symétrique.",
+   "texte": "Translations et symétries à partir de C_f.",
+   "ecran": "associees"
+  },
+  {
+   "id": "p33",
+   "dit": "Pour terminer : discriminant et signe pour le trinôme, Cramer et Gauss pour les systèmes, formules d'addition et forme amplitude phase en trigonométrie, et pour les fonctions, domaine, parité, composée et réciproque.",
+   "texte": "L'essentiel du cours en cinq lignes.",
+   "ecran": "recap2"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Second degré, degré trois, irrationnelles et systèmes"
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Trigonométrie et généralités sur les fonctions",
+   "pont": {
+    "texte": "Partie 2 : trigonométrie, puis généralités sur les fonctions.",
+    "dit": "Partie deux : trigonométrie et fonctions. Les formules d'addition transforment les sommes d'angles, la forme amplitude phase résout les équations, puis nous décrirons les fonctions : domaine, parité, composée et réciproque."
+   }
+  }
+ ]
+}

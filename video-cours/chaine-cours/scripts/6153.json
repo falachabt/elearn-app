@@ -1,0 +1,398 @@
+{
+ "cours": 6153,
+ "titre": "Espaces vectoriels : l'architecture commune des vecteurs, polynômes et fonctions",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Espaces vectoriels",
+   "titre": "Espaces vectoriels : l'architecture commune des vecteurs, polynômes et fonctions",
+   "sous": "Huit axiomes, deux opérations : reconnaître un espace, un sous-espace, et combiner les sous-espaces par intersection, somme et formule de Grassmann",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Des objets très différents, une même structure : c'est l'abstraction."
+  },
+  "def_espace": {
+   "type": "etape",
+   "kicker": "La définition : deux opérations, huit axiomes",
+   "titre": "Un ensemble, un corps de scalaires, des règles de calcul",
+   "tex": [
+    "\\text{addition : associative, commutative, neutre } \\vec{0}, \\text{ opposé}",
+    "\\text{multiplication par un scalaire : deux distributivités}",
+    "(\\lambda \\mu)\\, v = \\lambda (\\mu v) \\qquad 1 \\cdot v = v",
+    "\\text{les axiomes de l'addition font de } (V, +) \\text{ un groupe abélien}"
+   ]
+  },
+  "consequences": {
+   "type": "etape",
+   "kicker": "Premières conséquences des axiomes",
+   "titre": "Ce qui se déduit, sans être un axiome",
+   "tex": [
+    "0 \\cdot v = \\vec{0} \\qquad \\lambda \\cdot \\vec{0} = \\vec{0}",
+    "(-1) \\cdot v = -v",
+    "\\lambda v = \\vec{0} \\ \\Rightarrow \\ \\lambda = 0 \\ \\text{ ou } \\ v = \\vec{0}"
+   ]
+  },
+  "rn": {
+   "type": "formule",
+   "kicker": "L'archétype : l'espace des n-uplets",
+   "tex": "\\mathbb{R}^n = \\{(x_1, \\dots, x_n) \\mid x_i \\in \\mathbb{R}\\}",
+   "note": "Addition et multiplication par un scalaire : composante par composante. Vecteur nul : que des zéros."
+  },
+  "rn_ex": {
+   "type": "etape",
+   "kicker": "Calculer dans l'espace à trois dimensions",
+   "titre": "u = (1, −2, 3), v = (4, 0, −1) : tout se fait coordonnée par coordonnée",
+   "tex": [
+    "u + v = (5,\\ -2,\\ 2)",
+    "2u = (2,\\ -4,\\ 6)",
+    "3u - 2v = (-5,\\ -6,\\ 11)"
+   ]
+  },
+  "polynomes": {
+   "type": "formule",
+   "kicker": "Les polynômes, un autre espace",
+   "tex": "\\mathbb{R}_n[X] = \\{a_0 + a_1 X + \\dots + a_n X^n\\}",
+   "note": "Dimension n + 1, base canonique 1, X, …, Xⁿ. Sans limite de degré : dimension infinie.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 150
+   }
+  },
+  "interp": {
+   "type": "etape",
+   "kicker": "Exemple : l'interpolation, calcul vérifié",
+   "titre": "Le polynôme de degré deux passant par trois points imposés",
+   "tex": [
+    "P(0) = 2, \\ P(1) = 3, \\ P(2) = 6 \\quad \\Rightarrow \\quad a = 2, \\ b + c = 1, \\ b + 2c = 2",
+    "b = 0, \\qquad c = 1",
+    "P(X) = 2 + X^2 \\qquad \\text{contrôle : } P(1) = 3, \\ P(2) = 6"
+   ]
+  },
+  "isomorphisme": {
+   "type": "phrase",
+   "kicker": "Deux mondes, une même structure",
+   "texte": "Les coefficients d'un polynôme sont ses coordonnées : un isomorphisme.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 180
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Deux opérations, huit axiomes",
+    "Le vecteur nul et les opposés se déduisent",
+    "Rⁿ : calculer composante par composante",
+    "Les polynômes : un espace, base 1, X, X²…",
+    "Isomorphisme : coefficients égale coordonnées"
+   ]
+  },
+  "sev_critere": {
+   "type": "formule",
+   "kicker": "Le critère des sous-espaces",
+   "tex": "F \\neq \\emptyset \\quad \\text{et} \\quad \\lambda u + \\mu v \\in F",
+   "note": "Non vide et stable par toute combinaison linéaire : F est un sous-espace. Le vecteur nul y est forcément.",
+   "anim": {
+    "nom": "combinaison_lineaire_fig",
+    "hauteur": 170
+   }
+  },
+  "sev_droite": {
+   "type": "etape",
+   "kicker": "Exemple complet : une droite vectorielle",
+   "titre": "D : trois x moins deux y égal à zéro, dans le plan",
+   "tex": [
+    "(0,\\ 0) \\in D \\quad \\text{car } 0 = 0",
+    "3(x_1 + x_2) - 2(y_1 + y_2) = 0 + 0 = 0",
+    "3(\\lambda x) - 2(\\lambda y) = \\lambda \\cdot 0 = 0 \\quad : \\ D \\text{ est un sous-espace, direction } (2,\\ 3)"
+   ]
+  },
+  "sev_contre": {
+   "type": "phrase",
+   "kicker": "Les contre-exemples qui font comprendre",
+   "texte": "Second membre non nul, degré exactement fixé : le zéro manque ou la somme s'échappe.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 140
+   }
+  },
+  "engendre": {
+   "type": "formule",
+   "kicker": "Le sous-espace engendré",
+   "tex": "\\mathrm{Vect}(A) = \\left\\{ \\sum_i \\lambda_i a_i \\right\\}",
+   "note": "Plus petit sous-espace contenant A. Exemple : Vect{(1,0,0), (0,1,0)} est le plan z = 0."
+  },
+  "intersection": {
+   "type": "etape",
+   "kicker": "Intersection et union : l'une marche, pas l'autre",
+   "titre": "Deux axes du plan montrent la différence",
+   "tex": [
+    "F_1 \\cap F_2 \\quad : \\text{ toujours un sous-espace}",
+    "(1,\\ 0) + (0,\\ 1) = (1,\\ 1) \\notin F_1 \\cup F_2",
+    "\\text{l'union n'est un sous-espace que si l'un contient l'autre}"
+   ],
+   "anim": {
+    "nom": "plans_secants_fig",
+    "hauteur": 130
+   }
+  },
+  "somme": {
+   "type": "formule",
+   "kicker": "La somme de deux sous-espaces",
+   "tex": "F + G = \\{u + v \\mid u \\in F,\\ v \\in G\\}",
+   "note": "Le plus petit sous-espace contenant F et G à la fois."
+  },
+  "grassmann": {
+   "type": "formule",
+   "kicker": "La formule de Grassmann",
+   "tex": "\\dim(F + G) = \\dim F + \\dim G - \\dim(F \\cap G)",
+   "note": "Ce qui est compté deux fois, l'intersection, se retranche une fois.",
+   "anim": {
+    "nom": "plans_secants_fig",
+    "hauteur": 170
+   }
+  },
+  "directe": {
+   "type": "formule",
+   "kicker": "La somme directe",
+   "tex": "F \\cap G = \\{0\\} \\iff F + G = F \\oplus G",
+   "note": "Équivalent : toute décomposition d'un vecteur de F + G est unique."
+  },
+  "ex_grassmann": {
+   "type": "etape",
+   "kicker": "Exemple complet : Grassmann en dimension quatre",
+   "titre": "Deux sous-espaces définis par des équations homogènes",
+   "tex": [
+    "F : x + y = 0, \\ z - t = 0 \\qquad \\dim F = 2",
+    "G : x - y = 0, \\ z + t = 0 \\qquad \\dim G = 2",
+    "F \\cap G = \\{0\\} \\qquad F + G = \\mathbb{R}^4 \\qquad 2 + 2 - 0 = 4"
+   ]
+  },
+  "matrices_sym": {
+   "type": "etape",
+   "kicker": "Exemple avancé : symétriques et antisymétriques",
+   "titre": "Toute matrice carrée se décompose, de manière unique",
+   "tex": [
+    "M = \\tfrac{M + M^{T}}{2} + \\tfrac{M - M^{T}}{2}",
+    "\\mathcal{M}_n(\\mathbb{R}) = S \\oplus A"
+   ]
+  },
+  "sev_poly": {
+   "type": "etape",
+   "kicker": "Exemple guidé : un sous-espace de polynômes",
+   "titre": "Les polynômes de degré deux avec P en un égal à P en deux",
+   "tex": [
+    "P = aX^2 + bX + c, \\quad P(1) = P(2) \\ \\Rightarrow \\ 3a + b = 0",
+    "P = a(X^2 - 3X) + c \\cdot 1",
+    "\\text{base : } \\{X^2 - 3X,\\ 1\\} \\qquad \\dim = 2"
+   ]
+  },
+  "diffeq": {
+   "type": "formule",
+   "kicker": "Application : les équations différentielles",
+   "tex": "y'' - 3y' + 2y = 0 \\ \\Rightarrow \\ y = \\lambda e^{x} + \\mu e^{2x}",
+   "note": "Solutions : un sous-espace de dimension deux, l'ordre de l'équation.",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 150
+   }
+  },
+  "choix": {
+   "type": "recap",
+   "kicker": "La méthode face à un ensemble nouveau",
+   "etapes": [
+    "Le vecteur nul est-il dedans ? Sinon, stop",
+    "Sommes et multiples restent-ils dedans ?",
+    "Équations homogènes : presque toujours oui",
+    "Un contre-exemple suffit pour dire non"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Huit axiomes, deux opérations, un cadre",
+    "Sous-espace : stable par combinaisons",
+    "Intersection toujours, union presque jamais",
+    "Grassmann : les dimensions se compensent",
+    "Somme directe : intersection réduite à zéro"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux espaces vectoriels, l'architecture de toute l'algèbre linéaire. L'idée fondatrice est une abstraction : des objets très différents, flèches du plan, n-uplets de nombres, polynômes, fonctions, matrices, obéissent exactement aux mêmes règles de calcul. En extrayant ces règles sous forme d'axiomes, on démontre une fois pour toutes des résultats qui s'appliquent à chacun de ces mondes. Nous verrons la définition, les grands exemples, puis les sous-espaces, leur critère de reconnaissance, et enfin comment les combiner par intersection, somme et formule de Grassmann.",
+   "texte": "Espaces vectoriels : une structure pour des mondes différents.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Un espace vectoriel réunit trois acteurs : un ensemble, dont les éléments sont appelés des vecteurs, un corps de scalaires, pour nous les nombres réels ou complexes, et deux opérations, l'addition des vecteurs et la multiplication d'un vecteur par un scalaire. Huit axiomes régissent ces opérations : quatre pour l'addition, associativité, commutativité, existence d'un vecteur nul et d'un opposé pour chaque vecteur, et quatre qui relient les deux opérations, dont les deux distributivités et la règle selon laquelle multiplier par un ne change rien.",
+   "texte": "Deux opérations, huit axiomes : les règles du jeu.",
+   "ecran": "def_espace"
+  },
+  {
+   "id": "p03",
+   "dit": "De ces seuls axiomes, on déduit déjà beaucoup. Le vecteur nul est unique, et l'opposé de chaque vecteur aussi. Multiplier n'importe quel vecteur par le scalaire zéro donne le vecteur nul, multiplier le vecteur nul par n'importe quel scalaire le laisse inchangé, et multiplier par moins un donne exactement l'opposé. Surtout, un produit d'un scalaire par un vecteur ne peut être nul que si l'un des deux facteurs est nul. Aucune de ces propriétés n'est un axiome : ce sont des théorèmes, obtenus par pure logique à partir des huit règles.",
+   "texte": "Le zéro, les opposés : des conséquences, pas des axiomes.",
+   "ecran": "consequences"
+  },
+  {
+   "id": "p04",
+   "dit": "Le premier exemple, l'archétype, est l'ensemble des n-uplets de nombres réels. Un vecteur y est une liste ordonnée de n nombres, on additionne deux listes composante par composante, et on multiplie une liste par un scalaire en multipliant chaque composante. Le vecteur nul est la liste de zéros, et l'opposé change tous les signes. Chaque axiome se vérifie alors composante par composante, grâce aux propriétés ordinaires des nombres réels : c'est le modèle sur lequel calquer son intuition.",
+   "texte": "L'archétype : les n-uplets, composante par composante.",
+   "ecran": "rn"
+  },
+  {
+   "id": "p05",
+   "dit": "Calculons concrètement dans l'espace à trois dimensions, avec u de coordonnées un, moins deux, trois, et vé de coordonnées quatre, zéro, moins un. Leur somme vaut cinq, moins deux, deux. Le double de u vaut deux, moins quatre, six. Et trois u moins deux vé vaut moins cinq, moins six, onze : on multiplie d'abord chaque vecteur, composante par composante, puis on additionne. Toute l'algèbre des espaces vectoriels, dans cet exemple comme dans les autres, repose sur ces deux gestes élémentaires, répétés avec discipline.",
+   "texte": "Dans R trois : cinq moins deux deux, et moins cinq moins six onze.",
+   "ecran": "rn_ex"
+  },
+  {
+   "id": "p06",
+   "dit": "Deuxième grande famille : les polynômes. L'ensemble des polynômes de degré inférieur ou égal à n, à coefficients réels, forme un espace vectoriel : on additionne les coefficients de même degré, et on multiplie tous les coefficients par le scalaire. Le polynôme nul, dont tous les coefficients sont nuls, y joue le rôle du vecteur nul. Cet espace possède une base naturelle, la famille formée de un, ixe, ixe carré, jusqu'à ixe puissance n, et sa dimension vaut n plus un. Sans limite de degré, l'espace de tous les polynômes est, lui, de dimension infinie.",
+   "texte": "Polynômes de degré au plus n : dimension n plus un.",
+   "ecran": "polynomes"
+  },
+  {
+   "id": "p07",
+   "dit": "Les polynômes donnent un bel exemple complet : trouver le polynôme de degré au plus deux qui vaut deux en zéro, trois en un et six en deux. On écrit le polynôme avec des coefficients inconnus a, b et c. Les trois conditions forment un système : a vaut deux, b plus c vaut un, et b plus deux c vaut deux, d'où c vaut un et b vaut zéro. Le polynôme cherché est donc deux plus ixe carré, et le contrôle est immédiat : en un, il vaut bien trois, et en deux, bien six. Remarquez le pont avec le cours précédent : une question de polynômes est devenue un système linéaire.",
+   "texte": "Interpolation : le polynôme deux plus ixe carré, vérifié.",
+   "ecran": "interp"
+  },
+  {
+   "id": "p08",
+   "dit": "Ce pont a un nom : un isomorphisme. L'application qui envoie un polynôme de degré au plus n sur la liste de ses coefficients est bijective et respecte les deux opérations : les polynômes de degré au plus n et les listes de n plus un nombres sont, du point de vue de l'algèbre linéaire, le même espace sous deux habits différents. C'est la leçon profonde de ce chapitre : ce qui définit un espace vectoriel, ce n'est pas la nature de ses éléments, mais les relations entre eux, codifiées par les axiomes.",
+   "texte": "Coefficients ou coordonnées : le même espace, deux habits.",
+   "ecran": "isomorphisme"
+  },
+  {
+   "id": "p09",
+   "dit": "Récapitulons cette première partie. Un espace vectoriel est un ensemble muni de deux opérations obéissant à huit axiomes, d'où découlent l'unicité du vecteur nul et des opposés. Les n-uplets réels en sont l'archétype géométrique, les polynômes la version algébrique, reliés par un isomorphisme qui identifie coefficients et coordonnées. Il reste à explorer l'intérieur de ces espaces : quelles parties héritent de la structure tout entière ? Ce sont les sous-espaces vectoriels.",
+   "texte": "L'essentiel de la partie un.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p10",
+   "dit": "Un sous-espace vectoriel est une partie d'un espace qui est elle-même un espace vectoriel pour les mêmes opérations. Inutile de revérifier les huit axiomes : un critère en trois points suffit. La partie doit être non vide, stable par addition, c'est-à-dire que la somme de deux de ses vecteurs y reste, et stable par multiplication par un scalaire. Mieux encore, ces stabilités se condensent en une seule : toute combinaison linéaire de deux vecteurs de la partie, avec des coefficients scalaires quelconques, doit rester dans la partie.",
+   "texte": "Le critère : non vide, stable par combinaisons linéaires.",
+   "ecran": "sev_critere"
+  },
+  {
+   "id": "p11",
+   "dit": "Une conséquence immédiate sert de test éclair : tout sous-espace contient forcément le vecteur nul, car en multipliant un de ses vecteurs par le scalaire zéro on obtient le vecteur nul, qui doit donc y appartenir. Si le vecteur nul n'est pas dans la partie examinée, la réponse est non, immédiatement, sans aucun autre calcul. En revanche, contenir le vecteur nul ne suffit pas : il faut encore vérifier les stabilités. Retenez l'ordre de la méthode : le zéro d'abord, les combinaisons ensuite.",
+   "texte": "Test éclair : pas de vecteur nul, pas de sous-espace.",
+   "ecran": "sev_critere"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple complet dans le plan : la partie définie par l'équation trois ixe moins deux igrec égal à zéro est-elle un sous-espace ? Le couple zéro, zéro vérifie l'équation, la partie contient donc le vecteur nul. Pour la somme de deux vecteurs de la partie, l'expression trois ixe moins deux igrec appliquée à la somme se sépare en deux expressions nulles : la somme y reste. Pour un multiple scalaire, l'expression vaut le scalaire fois zéro : le multiple y reste aussi. Conclusion : c'est un sous-espace, la droite vectorielle dirigée par le vecteur de coordonnées deux, trois.",
+   "texte": "La droite trois x moins deux y zéro : un sous-espace.",
+   "ecran": "sev_droite"
+  },
+  {
+   "id": "p13",
+   "dit": "Les contre-exemples valent autant que les exemples. Changez le second membre : trois ixe moins deux igrec égal à cinq définit une droite qui ne passe pas par l'origine, donc ne contient pas le vecteur nul : ce n'est pas un sous-espace, mais une droite affine, translatée d'un sous-espace. Autre piège classique : les polynômes de degré exactement trois ne forment pas un sous-espace, car la somme de ixe cube et de moins ixe cube est le polynôme nul, de degré inférieur : la stabilité par addition y fait défaut. Un seul contre-exemple suffit toujours à conclure non.",
+   "texte": "Droite affine, degré exact : deux non classiques.",
+   "ecran": "sev_contre"
+  },
+  {
+   "id": "p14",
+   "dit": "Parmi les sous-espaces, le plus utile est celui engendré par une partie quelconque : c'est l'ensemble de toutes les combinaisons linéaires finies de ses éléments, et c'est le plus petit sous-espace qui la contient. Exemple : les combinaisons des deux vecteurs de coordonnées un, zéro, zéro et zéro, un, zéro remplissent exactement le plan d'équation zède égal à zéro dans l'espace à trois dimensions. Engendrer, c'est donc décrire un sous-espace par quelques vecteurs bien choisis, au lieu d'une équation.",
+   "texte": "Engendré : toutes les combinaisons d'une famille.",
+   "ecran": "engendre"
+  },
+  {
+   "id": "p15",
+   "dit": "Peut-on combiner deux sous-espaces ? L'intersection, l'ensemble des vecteurs communs, est toujours un sous-espace : le vecteur nul y est, et les combinaisons y restent, puisqu'elles restent dans chacun des deux. L'union, en revanche, échoue presque toujours. Prenez les deux axes du plan : l'axe des abscisses contient le vecteur de coordonnées un, zéro, l'axe des ordonnées contient zéro, un, mais leur somme, un, un, n'est dans aucun des deux axes. L'union n'est un sous-espace que dans le cas dégénéré où l'un des deux contient l'autre.",
+   "texte": "Intersection toujours sous-espace, union presque jamais.",
+   "ecran": "intersection"
+  },
+  {
+   "id": "p16",
+   "dit": "Pour réunir deux sous-espaces, l'opération correcte est la somme : l'ensemble de toutes les sommes d'un vecteur du premier et d'un vecteur du second. C'est un sous-espace, et même le plus petit qui contienne les deux à la fois. Deux exemples à retenir : la somme des deux axes du plan est le plan tout entier, et tout polynôme se décompose en une partie paire plus une partie impaire, si bien que la somme des polynômes pairs et des polynômes impairs remplit tout l'espace des polynômes.",
+   "texte": "La somme : le plus petit sous-espace contenant les deux.",
+   "ecran": "somme"
+  },
+  {
+   "id": "p17",
+   "dit": "Comment les dimensions de ces constructions se relient-elles ? La formule de Grassmann répond : la dimension de la somme vaut la dimension du premier, plus la dimension du second, moins la dimension de l'intersection. L'intuition est celle d'un double comptage : ce qui appartient aux deux sous-espaces a été compté deux fois, on le retranche donc une fois. Pour deux plans vectoriels distincts de l'espace à trois dimensions, qui se coupent selon une droite, on obtient deux plus deux moins un égal à trois : leur somme est l'espace entier.",
+   "texte": "Grassmann : deux plus deux moins un, égal à trois.",
+   "ecran": "grassmann"
+  },
+  {
+   "id": "p18",
+   "dit": "Un cas particulier domine les applications : la somme directe. On dit que deux sous-espaces sont en somme directe quand leur intersection est réduite au seul vecteur nul. C'est équivalent à une propriété d'unicité : tout vecteur de la somme s'écrit alors d'une seule manière comme somme d'un vecteur de chaque sous-espace. Et par Grassmann, c'est aussi équivalent, en dimension finie, à l'égalité entre la dimension de la somme et la somme des dimensions. Unicité des écritures, intersection triviale, dimensions qui s'ajoutent : trois visages d'une même situation.",
+   "texte": "Somme directe : intersection nulle, écriture unique.",
+   "ecran": "directe"
+  },
+  {
+   "id": "p19",
+   "dit": "Vérifions tout cela sur un exemple complet en dimension quatre. Le premier sous-espace impose ixe plus igrec égal à zéro et zède moins t égal à zéro : sa dimension vaut deux. Le second impose ixe moins igrec égal à zéro et zède plus t égal à zéro : dimension deux également. Leur intersection impose à la fois igrec égal à moins ixe et igrec égal à ixe, donc ixe et igrec nuls, et de même zède et t nuls : elle est réduite au vecteur nul. Grassmann donne alors deux plus deux moins zéro égal à quatre : la somme des deux est l'espace entier, et la somme est directe.",
+   "texte": "En dimension quatre : deux plus deux moins zéro, quatre.",
+   "ecran": "ex_grassmann"
+  },
+  {
+   "id": "p20",
+   "dit": "L'exemple avancé du cours couronne ces notions : l'espace de toutes les matrices carrées se décompose en somme directe des matrices symétriques et des matrices antisymétriques. Toute matrice est en effet la somme de sa partie symétrique, la moyenne de la matrice et de sa transposée, et de sa partie antisymétrique, la moitié de leur différence. Et une matrice à la fois symétrique et antisymétrique est nécessairement nulle : l'intersection est triviale, la décomposition est unique, la somme est directe.",
+   "texte": "Matrices : symétrique plus antisymétrique, somme directe.",
+   "ecran": "matrices_sym"
+  },
+  {
+   "id": "p21",
+   "dit": "Encore un exemple guidé, cette fois chez les polynômes : les polynômes de degré au plus deux dont la valeur en un égale la valeur en deux forment-ils un sous-espace, et de quelle dimension ? Les conditions sont des équations linéaires homogènes en les coefficients, donc le critère est satisfait. L'égalité des deux valeurs donne trois a plus b égal à zéro, donc b vaut moins trois a. Chaque polynôme s'écrit alors comme un multiple de ixe carré moins trois ixe, plus un multiple du polynôme constant un : la base compte deux polynômes, la dimension vaut deux.",
+   "texte": "Polynômes contraints : une base de deux polynômes.",
+   "ecran": "sev_poly"
+  },
+  {
+   "id": "p22",
+   "dit": "Terminons par une application qui montre la portée du concept : l'ensemble des solutions d'une équation différentielle linéaire homogène est un sous-espace vectoriel de l'espace des fonctions. Pour l'équation y seconde moins trois y prime plus deux y égal à zéro, les fonctions exponentielle ixe et exponentielle deux ixe sont solutions, et toute solution est une combinaison linéaire de ces deux-là : l'espace des solutions est de dimension deux, exactement l'ordre de l'équation. La structure d'espace vectoriel organise ainsi des objets qui n'ont, en apparence, rien de géométrique.",
+   "texte": "Solutions d'une équation différentielle : un sous-espace.",
+   "ecran": "diffeq"
+  },
+  {
+   "id": "p23",
+   "dit": "Face à un ensemble nouveau, la méthode tient en quatre gestes. D'abord, le vecteur nul y est-il ? Sinon, ce n'est pas un sous-espace, et l'on s'arrête là. Ensuite, les sommes restent-elles dedans, et les multiples par un scalaire aussi ? Si l'ensemble est défini par des équations linéaires homogènes, la réponse est presque toujours oui, par un calcul de stabilité. Enfin, si l'on soupçonne un non, un seul contre-exemple explicite suffit à le prouver : exhibez deux vecteurs de l'ensemble dont la somme en sort.",
+   "texte": "La méthode : le zéro, les stabilités, ou un contre-exemple.",
+   "ecran": "choix"
+  },
+  {
+   "id": "p24",
+   "dit": "Pour terminer, retenez l'architecture complète. Un espace vectoriel est défini par deux opérations et huit axiomes, et ce cadre unique couvre les n-uplets, les polynômes, les fonctions et les matrices. À l'intérieur, les sous-espaces se reconnaissent à leur stabilité par combinaisons linéaires, avec le vecteur nul comme test éclair. On les combine par l'intersection, toujours un sous-espace, et par la somme, dont la formule de Grassmann donne la dimension ; quand l'intersection se réduit au vecteur nul, la somme est directe et chaque écriture est unique.",
+   "texte": "Espaces vectoriels : à retenir.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Axiomes, n-uplets, polynômes et isomorphismes"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Sous-espaces vectoriels : critère, exemples et sous-espace engendré",
+   "pont": {
+    "texte": "Partie 2 : sous-espaces vectoriels, critère et exemples.",
+    "dit": "Partie deux : les sous-espaces vectoriels. Nous énoncerons le critère de reconnaissance en trois points, avec le test éclair du vecteur nul, nous le vérifierons sur une droite du plan, nous passerons en revue les contre-exemples classiques, puis nous définirons le sous-espace engendré par une famille de vecteurs."
+   }
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Somme, formule de Grassmann et somme directe",
+   "pont": {
+    "texte": "Partie 3 : somme, Grassmann, somme directe et applications.",
+    "dit": "Partie trois : combiner les sous-espaces. Après l'intersection et la somme, la formule de Grassmann reliera leurs dimensions, et le cas de la somme directe donnera des décompositions uniques, vérifiées sur un exemple en dimension quatre et sur la décomposition des matrices en parties symétrique et antisymétrique."
+   }
+  }
+ ]
+}

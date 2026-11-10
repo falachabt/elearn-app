@@ -1,0 +1,252 @@
+{
+ "cours": 6744,
+ "titre": "Troncs de pyramide et de cône : la section qui réduit tout",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Géométrie dans l'espace",
+   "titre": "Troncs de pyramide et de cône : la section qui réduit tout",
+   "sous": "Couper parallèlement à la base : les longueurs par k, les aires par k au carré, les volumes par k au cube"
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un plan parallèle à la base découpe une pyramide ou un cône en deux solides : un petit solide semblable au départ, et le tronc. Une seule valeur, le rapport de réduction k, commande alors toutes les longueurs, toutes les aires et tous les volumes."
+  },
+  "section": {
+   "type": "etape",
+   "kicker": "La section par un plan parallèle à la base",
+   "titre": "Une figure réduite, de même nature que la base",
+   "tex": [
+    "\\text{pyramide : un polygone}",
+    "\\text{semblable à la base}",
+    "\\text{cône : un cercle, centré sur la hauteur}",
+    "\\text{même forme, dimensions réduites}"
+   ]
+  },
+  "ex_cone": {
+   "type": "etape",
+   "kicker": "Exemple · le rayon de la section d'un cône",
+   "titre": "Rayon six, hauteur dix, coupe à quatre du sommet",
+   "tex": [
+    "k = \\tfrac{SS'}{SO} = \\tfrac{4}{10} = 0{,}4",
+    "r = k \\times R = 0{,}4 \\times 6",
+    "r = 2{,}4 \\text{ cm}"
+   ]
+  },
+  "tronc": {
+   "type": "etape",
+   "kicker": "Le tronc : ce qui reste après la coupe",
+   "titre": "Deux bases parallèles et une hauteur",
+   "tex": [
+    "\\text{grande base : la base d'origine}",
+    "\\text{petite base : la section}",
+    "\\text{hauteur du tronc : distance des deux bases}"
+   ]
+  },
+  "reduction": {
+   "type": "etape",
+   "kicker": "Le théorème de réduction",
+   "titre": "Un même rapport, trois puissances",
+   "tex": [
+    "\\text{longueurs} \\times k",
+    "\\text{aires} \\times k^2",
+    "\\text{volumes} \\times k^3"
+   ]
+  },
+  "formules_tronc": {
+   "type": "etape",
+   "kicker": "Les formules du tronc",
+   "titre": "Tout part du grand solide et du rapport k",
+   "tex": [
+    "k = \\tfrac{h}{H} \\qquad A_{section} = k^2 A",
+    "V_{petit} = k^3 V \\qquad V_{tronc} = V(1 - k^3)"
+   ]
+  },
+  "aires_tronc": {
+   "type": "etape",
+   "kicker": "Aire latérale et aire totale du tronc",
+   "titre": "Par différence, puis en ajoutant les deux bases",
+   "tex": [
+    "A_{lat} = A_{lat, grand} - A_{lat, petit}",
+    "A_{totale} = A_{lat} + A_{grande base} + A_{petite base}"
+   ]
+  },
+  "ex_tronc": {
+   "type": "etape",
+   "kicker": "Exemple · le volume d'un tronc de pyramide",
+   "titre": "Volume cent vingt, coupe à mi-hauteur",
+   "tex": [
+    "k = 0{,}5 \\qquad V_{petit} = 0{,}5^3 \\times 120",
+    "V_{petit} = 15 \\text{ cm}^3",
+    "V_{tronc} = 120 - 15 = 105 \\text{ cm}^3"
+   ]
+  },
+  "ex_aire_section": {
+   "type": "etape",
+   "kicker": "Application · l'aire de la section du cône",
+   "titre": "Le même cône, côté aires cette fois",
+   "tex": [
+    "A_{base} = \\pi \\times 6^2 = 36\\pi",
+    "A_{section} = k^2 \\times 36\\pi = 0{,}16 \\times 36\\pi",
+    "A_{section} = 5{,}76\\pi \\approx 18{,}1 \\text{ cm}^2"
+   ]
+  },
+  "cone_lateral": {
+   "type": "formule",
+   "kicker": "L'aire latérale d'un cône",
+   "tex": "A_{lat} = \\pi \\times r \\times g",
+   "note": "r : rayon de la base ; g : génératrice, le côté oblique du cône. Pour un tronc de cône, on soustrait l'aire latérale du petit cône retiré."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Section parallèle : une réduction de rapport k",
+    "Longueurs par k, aires par k², volumes par k³",
+    "Volume du tronc : V fois un moins k au cube",
+    "Aires du tronc : par différence, bases ajoutées",
+    "Aire latérale d'un cône : π fois r fois g"
+   ]
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "Réflexes d'exercice",
+   "etapes": [
+    "Calculer k d'abord : une hauteur sur l'autre",
+    "Ne jamais appliquer k aux aires ni aux volumes",
+    "Tronc : grand solide moins petit solide",
+    "Vérifier : le tronc vaut moins que le grand solide"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux troncs de pyramide et de cône. Le point de départ est un geste simple : couper un solide par un plan parallèle à sa base. Ce geste fait apparaître un petit solide semblable au solide de départ, et, en dessous, le tronc. Nous verrons qu'un seul nombre, le rapport de réduction, permet alors de calculer le rayon d'une section, l'aire d'une coupe et le volume du tronc.",
+   "texte": "Troncs de pyramide et de cône : la coupe qui réduit.",
+   "ecran": "titre",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p02",
+   "dit": "La section d'un solide par un plan est la surface obtenue en le coupant par ce plan. Toute la suite repose sur un mot : parallèle. Si le plan de coupe n'est pas parallèle à la base, la section se déforme et presque rien de ce cours ne s'applique. S'il l'est, la section est une réduction fidèle de la base, et les calculs deviennent d'une simplicité remarquable.",
+   "texte": "Tout repose sur un mot : parallèle.",
+   "ecran": "intro",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "dit": "La propriété centrale, admise dans ce cours : la section d'une pyramide ou d'un cône par un plan parallèle à la base est une figure réduite de la base, de même nature. Pour une pyramide, c'est un polygone semblable au polygone de base : même forme, angles égaux, dimensions réduites. Pour un cône, c'est un cercle, dont le centre se trouve sur la hauteur du cône. Même forme, plus petite : c'est la définition même d'une réduction.",
+   "texte": "La section : la base en plus petit, même forme.",
+   "ecran": "section",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "dit": "Premier exemple résolu, sur un cône de révolution. Sa base a un rayon de six centimètres et sa hauteur vaut dix centimètres. On le coupe par un plan parallèle à la base, situé à quatre centimètres du sommet : quel est le rayon du cercle de section ? Le plan coupe la hauteur en un point situé à quatre centimètres du sommet, donc le rapport de réduction vaut quatre dixièmes, soit zéro virgule quatre. Le rayon de la section vaut ce rapport fois le rayon de la base : zéro virgule quatre fois six, soit deux virgule quatre centimètres.",
+   "texte": "Exemple : le rayon de section vaut 2,4 cm.",
+   "ecran": "ex_cone",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "dit": "Regardons maintenant ce que la coupe laisse derrière elle. Couper une pyramide ou un cône parallèlement à la base produit deux solides : en haut, la petite pyramide ou le petit cône, semblable au solide entier ; en bas, le tronc, la partie restante entre la base et le plan de coupe. Le tronc possède deux faces parallèles, que l'on appelle ses bases : la grande base, qui est la base d'origine, et la petite base, qui est la section. La distance entre ces deux bases est la hauteur du tronc.",
+   "texte": "Le tronc : deux bases, une hauteur.",
+   "ecran": "tronc",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "dit": "Pour dessiner un tronc en perspective, la recette suit la définition : on conserve la base d'origine, on trace au-dessus la section, plus petite et parallèle à la base, puis on relie les sommets correspondants par les arêtes latérales. Pour une pyramide tronquée, les faces latérales deviennent des trapèzes ; pour un cône tronqué, la surface latérale est une surface incurvée en forme d'anneau. Retenez cette image du solide à deux étages : elle évite de confondre la hauteur du tronc avec celle du solide entier.",
+   "texte": "Dessiner le tronc : base, section, arêtes.",
+   "ecran": "tronc",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p07",
+   "dit": "Venons-en au théorème qui fait tout calculer : le théorème de réduction. Quand les longueurs d'un solide sont multipliées par un facteur k, compris entre zéro et un pour une réduction, les aires sont multipliées par k au carré et les volumes par k au cube. L'intuition est géométrique : une aire se mesure avec deux longueurs, un volume avec trois. C'est l'erreur classique du chapitre que d'appliquer le même rapport partout : chaque grandeur a sa puissance.",
+   "texte": "Longueurs par k, aires par k², volumes par k³.",
+   "ecran": "reduction",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "dit": "Appliquons le théorème au tronc. On considère un solide de volume V, dont la base a une aire A et dont la hauteur vaut H. Le plan de coupe est placé de sorte que le petit solide du sommet ait pour hauteur h. Le rapport de réduction est alors k égale h sur H : une hauteur du petit solide divisée par la hauteur correspondante du grand. L'aire de la section, qui est la petite base du tronc, vaut k au carré fois A, et le volume du petit solide vaut k au cube fois V.",
+   "texte": "k = h/H : le rapport des hauteurs.",
+   "ecran": "formules_tronc",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "dit": "Le volume du tronc s'en déduit par une simple soustraction : c'est le volume du grand solide moins le volume du petit solide retiré, soit V fois un moins k au cube. Cette écriture est la plus rentable du chapitre : un seul calcul donne directement le tronc, sans passer par le détail du petit solide. Et elle offre un contrôle immédiat : le résultat doit être positif et inférieur au volume du solide entier.",
+   "texte": "Le volume du tronc : V × (1 − k³).",
+   "ecran": "formules_tronc",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "dit": "Pour les aires du tronc, la logique est la même, par différence. L'aire latérale du tronc est l'aire latérale du grand solide moins celle du petit solide retiré : chez une pyramide tronquée, on retrouve ainsi la somme des aires des trapèzes latéraux. L'aire totale ajoute ensuite les deux bases : l'aire latérale, plus l'aire de la grande base, plus l'aire de la petite base, c'est-à-dire la section. Oublier l'une des deux bases est la faute la plus fréquente sur cette question.",
+   "texte": "Aires du tronc : différence, puis deux bases.",
+   "ecran": "aires_tronc",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p11",
+   "dit": "Exemple complet sur le volume. Une pyramide régulière à base carrée a un volume de cent vingt centimètres cubes. On la coupe par un plan parallèle à la base, situé à mi-hauteur depuis le sommet. Le petit solide du sommet a donc une hauteur égale à la moitié de la hauteur totale : le rapport de réduction vaut zéro virgule cinq. Son volume vaut k au cube fois V, soit zéro virgule cent vingt-cinq fois cent vingt, c'est-à-dire quinze centimètres cubes. Le volume du tronc vaut donc cent vingt moins quinze : cent cinq centimètres cubes.",
+   "texte": "Exemple : le tronc vaut 105 cm³.",
+   "ecran": "ex_tronc",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p12",
+   "dit": "Remarquez la leçon cachée de ce calcul : couper à mi-hauteur ne retire pas la moitié du volume, mais seulement un huitième. Le petit solide du sommet, malgré sa hauteur moitié, ne pèse qu'un huitième du volume total, parce que le rapport un demi est élevé au cube. Le tronc conserve donc sept huitièmes du volume. C'est exactement le genre de résultat qu'un énoncé aime piéger, et que le théorème de réduction donne en deux lignes.",
+   "texte": "À mi-hauteur : seulement un huitième retiré.",
+   "ecran": "ex_tronc",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p13",
+   "dit": "Deuxième application, côté aires, en reprenant le cône du début : rayon six centimètres, rapport de réduction zéro virgule quatre. L'aire de sa base vaut pi fois six au carré, soit trente-six pi. L'aire de la section vaut k au carré fois cette aire : zéro virgule seize fois trente-six pi, soit cinq virgule soixante-seize pi, environ dix-huit virgule un centimètres carrés. Même solide, même rapport : au carré pour les aires, au cube pour les volumes, jamais l'un pour l'autre.",
+   "texte": "L'aire de la section : environ 18,1 cm².",
+   "ecran": "ex_aire_section",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "dit": "Un dernier outil, pour l'aire latérale d'un cône : elle vaut pi fois le rayon fois la génératrice, la génératrice étant le côté oblique du cône, du sommet au bord de la base. Pour un tronc de cône, on calcule l'aire latérale du grand cône et celle du petit cône retiré, puis on soustrait, exactement comme pour les volumes. Ces notions servent concrètement : maquettes réduites, moules tronqués à fabriquer, ou quantité de liquide dans un récipient conique partiellement rempli.",
+   "texte": "Aire latérale d'un cône : π × r × g.",
+   "ecran": "cone_lateral",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "dit": "Pour conclure, retenez l'enchaînement : une coupe parallèle à la base crée une réduction de rapport k, lu sur les hauteurs ; les longueurs suivent k, les aires suivent k au carré, les volumes suivent k au cube ; et le tronc s'obtient toujours par différence entre le grand solide et le petit solide du sommet.",
+   "texte": "À retenir : un rapport, trois puissances.",
+   "ecran": "recap",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p16",
+   "dit": "Et les réflexes d'exercice : calculer k en tout premier, à partir des hauteurs ; ne jamais appliquer k directement à une aire ou à un volume ; penser le tronc comme le grand solide moins le petit ; et vérifier à la fin que le volume du tronc est bien inférieur à celui du solide entier. Ces quatre gestes couvrent l'essentiel des énoncés du chapitre.",
+   "texte": "Les réflexes : k d'abord, différence ensuite.",
+   "ecran": "strategie",
+   "pause_apres": 0.6
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Section parallèle et naissance du tronc"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "Volumes et aires du tronc, exemples résolus",
+   "pont": {
+    "texte": "Partie 2 : volumes et aires du tronc.",
+    "dit": "Partie deux : volumes et aires du tronc. Nous écrivons la formule du volume du tronc, puis celle de ses aires, avant de résoudre l'exemple de la pyramide coupée à mi-hauteur et de revenir au cône pour son aire de section."
+   }
+  }
+ ]
+}

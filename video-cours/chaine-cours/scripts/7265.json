@@ -1,0 +1,339 @@
+{
+  "cours": 7265,
+  "ecrans": {
+    "addition": {
+      "anim": {
+        "hauteur": 200,
+        "nom": "vecteurs"
+      },
+      "kicker": "Addition · bout à bout",
+      "texte": "Le second vecteur commence où le premier finit.",
+      "type": "phrase"
+    },
+    "chasles": {
+      "anim": {
+        "nom": "vecteur_chasles_fig",
+        "hauteur": 230
+      },
+      "kicker": "Relation de Chasles",
+      "note": "Le point du milieu, B, s'efface",
+      "tex": "\\vec{AB} + \\vec{BC} = \\vec{AC}",
+      "type": "formule"
+    },
+    "conclusion_milieux": {
+      "kicker": "Exemple résolu · conclusion",
+      "texte": "IJ parallèle à BC, et moitié de BC : théorème des milieux.",
+      "type": "phrase"
+    },
+    "definition": {
+      "kicker": "Définition · le vecteur",
+      "texte": "Direction, sens et norme : trois caractéristiques.",
+      "type": "phrase",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 230
+      }
+    },
+    "demo_align": {
+      "kicker": "Démontrer · alignement",
+      "note": "k réel : même direction, donc points alignés",
+      "tex": "\\vec{AC} = k \\vec{AB}",
+      "type": "formule"
+    },
+    "demo_intro": {
+      "kicker": "Démontrer avec les vecteurs",
+      "texte": "Parallélogramme, alignement, milieu : une égalité chacun.",
+      "type": "phrase"
+    },
+    "demo_milieu": {
+      "kicker": "Démontrer · milieu",
+      "note": "Ou encore, en vecteurs : AI = IB",
+      "tex": "\\vec{AI} = \\frac{1}{2} \\vec{AB}",
+      "type": "formule"
+    },
+    "demo_para": {
+      "kicker": "Démontrer · parallélogramme",
+      "note": "L'ordre des sommets de la figure visée guide l'égalité",
+      "tex": "\\vec{AB} = \\vec{DC} \\Rightarrow ABCD \\text{ parallélogramme}",
+      "type": "formule"
+    },
+    "egaux": {
+      "kicker": "Vecteurs égaux",
+      "note": "Même direction, même sens, même norme",
+      "tex": "\\vec{AB} = \\vec{CD}",
+      "type": "formule",
+      "anim": {
+        "nom": "vecteurs_egaux_fig",
+        "hauteur": 230
+      }
+    },
+    "ex_chasles": {
+      "anim": {
+        "nom": "vecteur_chasles_fig",
+        "hauteur": 215
+      },
+      "kicker": "Exemple résolu · Chasles",
+      "tex": [
+        "\\vec{AB} + \\vec{BC} + \\vec{CD} = \\vec{AC} + \\vec{CD}",
+        "= \\vec{AD}"
+      ],
+      "titre": "Trois vecteurs en chaîne, un seul résultat",
+      "type": "etape"
+    },
+    "ex_egaux": {
+      "kicker": "Exemple résolu · vecteurs égaux",
+      "tex": [
+        "\\vec{AB} = (2 ; 3)",
+        "\\vec{CD} = (2 ; 3)",
+        "\\text{coordonnées égales : } \\vec{AB} = \\vec{CD}"
+      ],
+      "titre": "Coordonnées égales, vecteurs égaux",
+      "type": "etape",
+      "anim": {
+        "nom": "vecteurs_egaux_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_milieux": {
+      "kicker": "Exemple résolu · calcul",
+      "tex": [
+        "\\vec{IJ} = \\vec{IA} + \\vec{AJ}",
+        "\\vec{IA} = -\\tfrac{1}{2}\\vec{AB} \\qquad \\vec{AJ} = \\tfrac{1}{2}\\vec{AC}",
+        "\\vec{IJ} = \\tfrac{1}{2}\\left( \\vec{AC} - \\vec{AB} \\right)",
+        "\\vec{IJ} = \\tfrac{1}{2}\\vec{BC}"
+      ],
+      "titre": "Chasles, puis les deux moitiés",
+      "type": "etape"
+    },
+    "ex_milieux_enonce": {
+      "kicker": "Exemple résolu · les milieux",
+      "texte": "I milieu de AB, J milieu de AC : montrer IJ = BC / 2.",
+      "type": "phrase",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_norme": {
+      "kicker": "Exemple résolu · norme",
+      "tex": [
+        "\\vec{AB} = (3 ; 4)",
+        "|\\vec{AB}| = \\sqrt{3^2 + 4^2} = \\sqrt{25}",
+        "|\\vec{AB}| = 5"
+      ],
+      "titre": "A(1 ; 2) et B(4 ; 6) : norme cinq",
+      "type": "etape"
+    },
+    "fleche": {
+      "kicker": "La flèche et sa norme",
+      "note": "Origine A, extrémité B ; norme de AB = longueur AB",
+      "tex": "\\vec{AB}",
+      "type": "formule",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 230
+      }
+    },
+    "objectifs": {
+      "kicker": "Objectifs du cours",
+      "texte": "Décrire, additionner, puis démontrer avec les vecteurs.",
+      "type": "phrase",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 230
+      }
+    },
+    "parallelogramme": {
+      "kicker": "Égalité et parallélogramme",
+      "note": "Attention à l'ordre des sommets : A, B, D, C",
+      "tex": "\\vec{AB} = \\vec{CD} \\Leftrightarrow \\text{parallélogramme}",
+      "type": "formule",
+      "anim": {
+        "nom": "regle_parallelogramme_fig",
+        "hauteur": 230
+      }
+    },
+    "proprietes": {
+      "kicker": "Propriétés de l'addition",
+      "tex": [
+        "\\vec{u} + \\vec{v} = \\vec{v} + \\vec{u}",
+        "(\\vec{u} + \\vec{v}) + \\vec{w} = \\vec{u} + (\\vec{v} + \\vec{w})",
+        "\\vec{u} + \\vec{0} = \\vec{u}"
+      ],
+      "titre": "Commutative, associative, vecteur nul",
+      "type": "etape"
+    },
+    "recap": {
+      "etapes": [
+        "Vecteur : direction, sens et norme",
+        "Égaux : mêmes direction, sens et norme",
+        "Chasles : AB + BC = AC, bout à bout",
+        "Parallélogramme : une égalité de vecteurs",
+        "Alignement : multiple ; milieu : moitié"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 250,
+        "nom": "vecteurs"
+      },
+      "kicker": "Mathématique · Vecteurs",
+      "sous": "Direction, sens, norme : additionner avec Chasles, puis démontrer",
+      "titre": "Vecteurs : addition et démonstration",
+      "type": "titre"
+    },
+    "translation": {
+      "kicker": "La translation",
+      "note": "M devient M prime : toute la figure glisse de u",
+      "tex": "\\vec{MM'} = \\vec{u}",
+      "type": "formule"
+    },
+    "translation_prop": {
+      "kicker": "Translation · conservation",
+      "texte": "Longueurs, angles, alignement, aires : tout est conservé.",
+      "type": "phrase",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 230
+      }
+    }
+  },
+  "matiere": "Mathématique",
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours consacré aux vecteurs. Nous verrons ce qu'est un vecteur, comment additionner deux vecteurs avec la relation de Chasles, et comment démontrer : parallélogrammes, alignements et milieux.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Vecteurs : addition et démonstration."
+    },
+    {
+      "dit": "À la fin de ce cours, vous saurez décrire un vecteur par sa direction, son sens et sa norme, calculer une norme, reconnaître des vecteurs égaux et mener une démonstration vectorielle.",
+      "ecran": "objectifs",
+      "id": "p02",
+      "texte": "Objectif : décrire, additionner, démontrer."
+    },
+    {
+      "dit": "Un vecteur est un objet mathématique défini par trois caractéristiques : sa direction, celle de la droite qui le porte, son sens, l'orientation le long de cette direction, et sa norme, sa longueur.",
+      "ecran": "definition",
+      "id": "p03",
+      "texte": "Un vecteur : direction, sens, norme."
+    },
+    {
+      "dit": "On représente un vecteur par une flèche qui va d'une origine a vers une extrémité bé. On le note vecteur a bé. Sa norme est tout simplement la longueur du segment a bé.",
+      "ecran": "fleche",
+      "id": "p04",
+      "texte": "Une flèche de A vers B, une norme égale à AB."
+    },
+    {
+      "dit": "Premier exemple : a a pour coordonnées un et deux, bé quatre et six. Le vecteur a bé a pour coordonnées trois et quatre. Sa norme vaut racine de trois au carré plus quatre au carré, soit racine de vingt-cinq, égale à cinq.",
+      "ecran": "ex_norme",
+      "id": "p05",
+      "texte": "Exemple : la norme de AB vaut cinq."
+    },
+    {
+      "dit": "Deux vecteurs sont égaux lorsqu'ils ont la même direction, le même sens et la même norme. En pratique, l'égalité de deux vecteurs se lit directement sur leurs coordonnées.",
+      "ecran": "egaux",
+      "id": "p06",
+      "texte": "Égaux : direction, sens et norme identiques."
+    },
+    {
+      "dit": "Exemple : a est l'origine, bé deux et trois, cé un et zéro, dé trois et trois. Les vecteurs a bé et cé dé ont tous deux pour coordonnées deux et trois. Coordonnées égales, donc les deux vecteurs sont égaux.",
+      "ecran": "ex_egaux",
+      "id": "p07",
+      "texte": "Exemple : AB et CD, mêmes coordonnées (2 ; 3)."
+    },
+    {
+      "dit": "L'égalité de deux vecteurs a une traduction géométrique précieuse : le vecteur a bé égale le vecteur cé dé si et seulement si a bé dé cé est un parallélogramme. Attention à l'ordre des sommets.",
+      "ecran": "parallelogramme",
+      "id": "p08",
+      "texte": "Vecteurs égaux, donc parallélogramme ABDC."
+    },
+    {
+      "dit": "Pour additionner deux vecteurs, on les place bout à bout : l'origine du second à l'extrémité du premier. La somme relie alors l'origine du premier à l'extrémité du second.",
+      "ecran": "addition",
+      "id": "p09",
+      "texte": "Bout à bout : la somme ferme le trajet."
+    },
+    {
+      "dit": "Ce placement bout à bout donne la relation de Chasles : pour trois points quelconques a, bé et cé, vecteur a bé plus vecteur bé cé égale vecteur a cé. Le point du milieu s'efface.",
+      "ecran": "chasles",
+      "id": "p10",
+      "texte": "Chasles : AB + BC = AC."
+    },
+    {
+      "dit": "L'addition des vecteurs a trois propriétés : commutative, l'ordre ne change pas la somme, associative, le groupement ne change rien, et le vecteur nul laisse tout vecteur inchangé.",
+      "ecran": "proprietes",
+      "id": "p11",
+      "texte": "Commutative, associative, vecteur nul."
+    },
+    {
+      "dit": "Exemple : vecteur a bé plus vecteur bé cé plus vecteur cé dé. Chasles regroupe les deux premiers en vecteur a cé, puis avec le troisième on obtient le vecteur a dé.",
+      "ecran": "ex_chasles",
+      "id": "p12",
+      "texte": "Exemple : AB + BC + CD = AD."
+    },
+    {
+      "dit": "La translation de vecteur u déplace chaque point èm vers un point èm prime tel que le vecteur èm èm prime égale u. Toute la figure glisse dans la même direction, du même sens et de la même longueur.",
+      "ecran": "translation",
+      "id": "p13",
+      "texte": "Translation : chaque point glisse du vecteur u."
+    },
+    {
+      "dit": "Une translation conserve tout : les longueurs, les angles, l'alignement et les aires. Elle transforme donc une figure en une figure superposable, déplacée mais identique.",
+      "ecran": "translation_prop",
+      "id": "p14",
+      "texte": "La translation conserve tout."
+    },
+    {
+      "dit": "Les vecteurs servent surtout à démontrer. Trois démonstrations reviennent sans cesse : prouver un parallélogramme, un alignement, un milieu. Chacune tient en une égalité vectorielle.",
+      "ecran": "demo_intro",
+      "id": "p15",
+      "texte": "Trois démonstrations, trois égalités."
+    },
+    {
+      "dit": "Pour démontrer un parallélogramme, une égalité suffit : si le vecteur a bé égale le vecteur dé cé, alors a bé cé dé est un parallélogramme. L'ordre des sommets de la figure visée guide l'égalité à prouver.",
+      "ecran": "demo_para",
+      "id": "p16",
+      "texte": "Parallélogramme : montrer AB = DC, en vecteurs."
+    },
+    {
+      "dit": "Pour démontrer que a, bé et cé sont alignés, on montre que le vecteur a cé est un multiple du vecteur a bé : il existe un réel ka tel que vecteur a cé égale ka fois vecteur a bé. Même direction, donc alignement.",
+      "ecran": "demo_align",
+      "id": "p17",
+      "texte": "Alignement : AC multiple de AB."
+    },
+    {
+      "dit": "Pour démontrer qu'un point i est le milieu du segment a bé, on montre que le vecteur a i égale le vecteur i bé, ou, en une seule égalité, que le vecteur a i égale la moitié du vecteur a bé.",
+      "ecran": "demo_milieu",
+      "id": "p18",
+      "texte": "Milieu : AI égale la moitié de AB."
+    },
+    {
+      "dit": "Exemple résolu : a, bé et cé sont trois points, i milieu de a bé et jé milieu de a cé. Montrons que le vecteur i jé vaut la moitié du vecteur bé cé : c'est le théorème des milieux en version vectorielle.",
+      "ecran": "ex_milieux_enonce",
+      "id": "p19",
+      "texte": "Exemple : les milieux I et J, IJ moitié de BC."
+    },
+    {
+      "dit": "On décompose avec Chasles : le vecteur i jé égale vecteur i a plus vecteur a jé. Or i a vaut moins la moitié de a bé, puisque i est le milieu, et a jé la moitié de a cé. En regroupant, on obtient la moitié de bé cé.",
+      "ecran": "ex_milieux",
+      "id": "p20",
+      "texte": "Calcul : Chasles, puis les deux moitiés."
+    },
+    {
+      "dit": "Le vecteur i jé est donc un multiple du vecteur bé cé : les droites i jé et bé cé sont parallèles, et i jé mesure la moitié de bé cé. C'est exactement le théorème des milieux.",
+      "ecran": "conclusion_milieux",
+      "id": "p21",
+      "texte": "Conclusion : IJ parallèle à BC, moitié de BC."
+    },
+    {
+      "dit": "Pour finir : un vecteur, c'est une direction, un sens et une norme. Chasles additionne bout à bout. Une égalité de vecteurs donne un parallélogramme, un multiple un alignement, une moitié un milieu.",
+      "ecran": "recap",
+      "id": "p22",
+      "texte": "Vecteurs : l'essentiel à retenir."
+    }
+  ],
+  "titre": "Vecteurs : addition et démonstration"
+}

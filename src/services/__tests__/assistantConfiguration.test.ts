@@ -32,6 +32,7 @@ beforeEach(async () => {
 it('reflète les actions réellement terminées', async () => {
   await AsyncStorage.multiSet([
     [CLE_RYTHME, '20'],
+    ['planning.copie.user-1', JSON.stringify({ status: 'ready' })],
     [CLE_LUES, JSON.stringify({ 12: 4 })],
     [CLE_SESSIONS, JSON.stringify({ quiz1: [{ le: '2026-10-01', score: 2, total: 3 }] })],
     [CLE_EXERCICES_FAITS, JSON.stringify({ exercice1: true })],
@@ -42,6 +43,7 @@ it('reflète les actions réellement terminées', async () => {
 
   await expect(lireProgressionAssistant()).resolves.toMatchObject({
     mission: true,
+    planning: true,
     lecon: true,
     quiz: true,
     exercice: true,

@@ -1,0 +1,349 @@
+{
+ "cours": 6793,
+ "ecrans": {
+  "actions_enonce": {
+   "kicker": "Le principe des actions réciproques",
+   "tex": [
+    "\\text{même direction : la}",
+    "\\text{droite des deux corps}",
+    "\\text{sens opposés}",
+    "\\text{même intensité, même valeur}"
+   ],
+   "titre": "Trois caractères, deux actions",
+   "type": "etape"
+  },
+  "bateau_creux": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "poussee_archimede_fig"
+   },
+   "kicker": "Pourquoi un bateau flotte",
+   "texte": "Acier plus dense que l'eau, mais coque creuse.",
+   "type": "phrase"
+  },
+  "bateau_resultat": {
+   "kicker": "Exemple : le bateau de 5000 kg",
+   "note": "Poids 50 000 N, eau rho = 1000 kg/m³, g = 10 N/kg",
+   "tex": "V_{\\text{immergé}} = \\frac{50000}{1000 \\times 10} = 5\\, \\mathrm{m^3}",
+   "type": "formule"
+  },
+  "bateau_formule": {
+   "kicker": "La flottaison d'un bateau",
+   "tex": [
+    "\\text{flotter : } P_{\\text{bateau}} = F_A",
+    "\\text{soit } \\rho_{\\text{eau}} \\times V_{\\text{immergé}} \\times g",
+    "\\text{chargé : il}",
+    "\\text{s'enfonce, déplace plus d'eau}"
+   ],
+   "titre": "Poids du bateau, poids de l'eau déplacée",
+   "type": "etape"
+  },
+  "cube_conversion": {
+   "kicker": "Exemple : le cube de fer",
+   "note": "Volume 200 cm³, eau rho = 1000 kg/m³, g = 10 N/kg",
+   "tex": "V = 200 \\times 10^{-6} = 2 \\times 10^{-4}\\, \\mathrm{m^3}",
+   "type": "formule"
+  },
+  "cube_resultat": {
+   "kicker": "Exemple : le cube de fer",
+   "note": "F = 1000 × 2 × 10⁻⁴ × 10",
+   "tex": "F_A = 2\\, \\mathrm{N}",
+   "type": "formule"
+  },
+  "dynamometre": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "poussee_archimede_fig"
+   },
+   "kicker": "L'expérience du dynamomètre",
+   "texte": "Suspendu, puis immergé : l'aiguille descend.",
+   "type": "phrase"
+  },
+  "facteurs_depend": {
+   "kicker": "La poussée dépend de…",
+   "tex": [
+    "\\text{volume immergé } V \\text{ :}",
+    "\\text{plus grand, plus forte}",
+    "\\text{masse volumique du fluide :}",
+    "\\text{plus dense, plus forte}"
+   ],
+   "titre": "Volume et densité du fluide",
+   "type": "etape"
+  },
+  "facteurs_independants": {
+   "kicker": "La poussée ne dépend pas de…",
+   "tex": [
+    "\\text{la profondeur d'immersion}",
+    "\\text{la masse du corps immergé}",
+    "\\text{la forme du corps}"
+   ],
+   "titre": "Ni profondeur, ni masse, ni forme",
+   "type": "etape"
+  },
+  "flottaison": {
+   "kicker": "Couler, flotter, rester en équilibre",
+   "tex": [
+    "\\text{si } P > F_A \\text{ : le corps coule}",
+    "\\text{si } P = F_A \\text{ : il est en équilibre}",
+    "\\text{si } P < F_A \\text{ : il remonte et flotte}"
+   ],
+   "titre": "Poids contre poussée : trois cas",
+   "type": "etape"
+  },
+  "formule_archimede": {
+   "kicker": "Le théorème d'Archimède",
+   "note": "F en newtons, rho en kg/m³, V en m³, g en N/kg",
+   "tex": "F_A = \\rho_{\\text{fluide}} \\times V_{\\text{immergé}} \\times g",
+   "type": "formule"
+  },
+  "formule_reciproques": {
+   "kicker": "La relation vectorielle",
+   "note": "Le signe moins dit : sens opposés",
+   "tex": "\\vec{F}_{A/B} = -\\vec{F}_{B/A}",
+   "type": "formule"
+  },
+  "interaction": {
+   "kicker": "Une action n'est jamais seule",
+   "tex": [
+    "\\text{un acteur agit sur un receveur}",
+    "\\text{le receveur agit en retour sur l'acteur}",
+    "\\text{exemple : on pousse un}",
+    "\\text{mur, le mur nous pousse}"
+   ],
+   "titre": "Acteur et receveur, toujours les deux",
+   "type": "etape"
+  },
+  "livre_table": {
+   "kicker": "Exemple : le livre et la table",
+   "tex": [
+    "\\text{livre de 0,5 kg, poids : } P",
+    "= 0{,}5 \\times 10 = 5\\, \\mathrm{N}",
+    "\\text{la table répond : } R = 5\\, \\mathrm{N} \\text{ vers le haut}",
+    "\\text{même droite, sens opposés, même valeur}"
+   ],
+   "titre": "Cinq newtons vers le bas, cinq vers le haut",
+   "type": "etape"
+  },
+  "ne_pas_confondre": {
+   "kicker": "Ne pas confondre",
+   "tex": [
+    "\\text{actions réciproques :}",
+    "\\text{sur deux corps différents}",
+    "\\text{somme des forces : sur un seul corps}",
+    "\\text{elles ne peuvent}",
+    "\\text{jamais s'annuler entre elles}"
+   ],
+   "titre": "Deux corps, pas un seul",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Archimède : force verticale vers le haut, poids du fluide déplacé",
+    "Poussée : dépend de V et de rho, pas de la profondeur ni de la forme",
+    "Flottaison : P contre F, bateau creux qui déplace beaucoup d'eau",
+    "Actions réciproques : égales, opposées, sur deux corps",
+    "Contact ou distance : le principe est universel"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "synthese": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "champ_gravitation_fig"
+   },
+   "kicker": "Un principe universel",
+   "texte": "Contact ou distance, toute action a sa réaction.",
+   "type": "phrase"
+  },
+  "terre_lune": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "champ_gravitation_fig"
+   },
+   "kicker": "Actions à distance",
+   "texte": "La Terre attire la Lune, la Lune attire la Terre.",
+   "type": "phrase"
+  },
+  "theoreme": {
+   "kicker": "L'énoncé du théorème",
+   "tex": [
+    "\\text{tout corps immergé reçoit une poussée}",
+    "\\text{verticale, de bas en haut}",
+    "\\text{égale au poids du fluide déplacé}"
+   ],
+   "titre": "Le poids du fluide déplacé",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "poussee_archimede_fig"
+   },
+   "kicker": "Sciences Physiques et Technologie · Forces et interactions",
+   "sous": "La poussée d'Archimède, la flottaison des bateaux et les actions réciproques",
+   "titre": "Poussée d'Archimède et actions réciproques",
+   "type": "titre"
+  },
+  "verification": {
+   "kicker": "La vérification expérimentale",
+   "tex": [
+    "\\text{on pèse l'eau débordée dans un bécher}",
+    "\\text{son poids égale exactement } P - P'",
+    "\\text{donc } F_A = P_{\\text{fluide déplacé}}"
+   ],
+   "titre": "L'eau débordée pèse la poussée",
+   "type": "etape"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La poussée d'Archimède et la flottaison"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : le principe des actions réciproques. Nous verrons que toute action mécanique s'accompagne d'une réaction égale et opposée, sur un autre corps, que l'interaction soit de contact ou à distance.",
+    "texte": "Partie 2 : le principe des actions réciproques."
+   },
+   "sous_titre": "Le principe des actions réciproques"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur la poussée d'Archimède et les actions réciproques. Nous commencerons par l'expérience qui révèle la poussée, puis par la flottaison des bateaux, avant de découvrir pourquoi toute action s'accompagne d'une réaction.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Poussée d'Archimède et actions réciproques."
+  },
+  {
+   "dit": "Suspendez un corps solide, par exemple un cylindre métallique, à un dynamomètre, et notez son poids P. Immergez ensuite complètement le corps dans l'eau : le dynamomètre indique une valeur P prime, inférieure à P.",
+   "ecran": "dynamometre",
+   "id": "p02",
+   "texte": "Suspendu, puis immergé : l'aiguille descend."
+  },
+  {
+   "dit": "L'eau exerce sur le corps immergé une force verticale dirigée vers le haut, qui s'oppose partiellement à son poids. Cette force est appelée poussée d'Archimède, notée F indice A. Définition : tout corps immergé dans un fluide, liquide ou gaz, subit de la part de ce fluide une force verticale, dirigée de bas en haut.",
+   "ecran": "theoreme",
+   "id": "p03",
+   "texte": "Tout corps immergé est poussé vers le haut."
+  },
+  {
+   "dit": "La poussée d'Archimède dépend de deux facteurs : le volume du corps immergé, plus le volume immergé est grand, plus la poussée est importante, et la masse volumique du fluide, plus le fluide est dense, plus la poussée est importante.",
+   "ecran": "facteurs_depend",
+   "id": "p04",
+   "texte": "Volume immergé et densité du fluide."
+  },
+  {
+   "dit": "En revanche, elle ne dépend pas de la profondeur d'immersion, ni de la masse du corps immergé, ni de la forme du corps.",
+   "ecran": "facteurs_independants",
+   "id": "p05",
+   "texte": "Ni profondeur, ni masse, ni forme."
+  },
+  {
+   "dit": "Le théorème d'Archimède l'énonce ainsi : tout corps immergé dans un fluide reçoit de la part de ce fluide une poussée verticale, dirigée de bas en haut, dont l'intensité est égale au poids du fluide déplacé.",
+   "ecran": "theoreme",
+   "id": "p06",
+   "texte": "Égale au poids du fluide déplacé."
+  },
+  {
+   "dit": "L'intensité de la poussée s'exprime par la relation F indice A égale rhô du fluide fois V immergé fois g, avec F indice A en newtons, rhô la masse volumique du fluide en kilogrammes par mètre cube, V immergé en mètres cubes, et g l'intensité de la pesanteur, environ neuf virgule huit newtons par kilogramme sur Terre.",
+   "ecran": "formule_archimede",
+   "id": "p07",
+   "texte": "Poussée : F = rho × V × g."
+  },
+  {
+   "dit": "Vérification expérimentale : on suspend un solide à un dynamomètre, on mesure son poids P, puis on place un récipient rempli d'eau à ras bord sous le solide et on l'immerge. L'eau déborde dans un bécher. On pèse l'eau recueillie : son poids est exactement égal à la différence P moins P prime mesurée au dynamomètre. On vérifie ainsi que la poussée égale le poids du fluide déplacé.",
+   "ecran": "verification",
+   "id": "p08",
+   "texte": "L'eau débordée pèse la poussée."
+  },
+  {
+   "dit": "Exemple résolu : un cube de fer de volume deux cents centimètres cubes est complètement immergé dans l'eau, de masse volumique mille kilogrammes par mètre cube, et on prendra g égal à dix newtons par kilogramme. Première étape : convertir le volume en mètres cubes, deux cents centimètres cubes valent deux cents fois dix puissance moins six mètres cubes, soit deux fois dix puissance moins quatre mètres cubes.",
+   "ecran": "cube_conversion",
+   "id": "p09",
+   "texte": "Cube : 200 cm³ = 2 × 10⁻⁴ m³."
+  },
+  {
+   "dit": "Deuxième étape : appliquer la formule. La poussée vaut mille fois deux fois dix puissance moins quatre fois dix, soit deux newtons. La poussée exercée par l'eau sur le cube est de deux newtons.",
+   "ecran": "cube_resultat",
+   "id": "p10",
+   "texte": "Cube : poussée de 2 N."
+  },
+  {
+   "dit": "Pour la flottaison, un corps immergé est soumis à deux forces verticales opposées : son poids vers le bas, et la poussée vers le haut. Trois cas : si P est supérieur à F indice A, le corps coule ; si P égale F indice A, le corps est en équilibre, immobile dans le fluide ; si P est inférieur à F indice A, le corps remonte et flotte.",
+   "ecran": "flottaison",
+   "id": "p11",
+   "texte": "Poids contre poussée : couler, flotter, équilibre."
+  },
+  {
+   "dit": "Un bateau en acier, dont la masse volumique est supérieure à celle de l'eau, flotte pourtant, car sa forme creuse lui permet de déplacer un grand volume d'eau. Le poids de l'eau déplacée, c'est-à-dire la poussée, devient alors égal au poids total du bateau.",
+   "ecran": "bateau_creux",
+   "id": "p12",
+   "texte": "Acier plus dense que l'eau, mais coque creuse."
+  },
+  {
+   "dit": "Condition de flottaison d'un bateau : le poids du bateau égale la poussée, soit rhô de l'eau fois le volume immergé fois g. Un bateau flotte lorsque le poids du volume d'eau qu'il déplace est égal à son propre poids. C'est pour cela qu'un bateau s'enfonce davantage lorsqu'il est chargé : son poids augmente, il doit donc déplacer un plus grand volume d'eau.",
+   "ecran": "bateau_formule",
+   "id": "p13",
+   "texte": "Flotter : poids du bateau = poids de l'eau déplacée."
+  },
+  {
+   "dit": "Exemple résolu : un bateau a une masse totale de cinq mille kilogrammes. Quel volume d'eau doit-il déplacer pour flotter ? Son poids vaut cinq mille fois dix, soit cinquante mille newtons. Pour flotter, il faut que la poussée égale le poids, donc le volume immergé vaut cinquante mille divisé par mille fois dix, soit cinq mètres cubes. Le bateau doit déplacer un volume d'eau de cinq mètres cubes pour flotter.",
+   "ecran": "bateau_resultat",
+   "id": "p14",
+   "texte": "Bateau de 5000 kg : 5 m³ d'eau déplacée."
+  },
+  {
+   "dit": "Une action mécanique est toujours exercée par un acteur, un objet ou un système, sur un receveur, un autre objet ou système. On parle d'interaction car cette action n'est jamais unilatérale : lorsque l'acteur agit sur le receveur, le receveur agit simultanément sur l'acteur. Exemple concret : lorsque vous poussez un mur, le mur vous pousse également en retour, et vous ressentez cette action dans votre main, même si le mur ne bouge pas.",
+   "ecran": "interaction",
+   "id": "p15",
+   "texte": "Une action n'est jamais seule."
+  },
+  {
+   "dit": "Le principe des actions réciproques l'énonce ainsi : si un corps A exerce une action mécanique sur un corps B, alors le corps B exerce simultanément une action mécanique sur le corps A. Ces deux actions ont même direction, la droite qui relie les centres des deux corps, des sens opposés, et la même intensité.",
+   "ecran": "actions_enonce",
+   "id": "p16",
+   "texte": "Même direction, sens opposés, même intensité."
+  },
+  {
+   "dit": "On note souvent ces actions F de A sur B et F de B sur A, et la relation vectorielle s'écrit : F de A sur B égale moins F de B sur A. Le signe négatif indique que les deux vecteurs ont des sens opposés.",
+   "ecran": "formule_reciproques",
+   "id": "p17",
+   "texte": "F de A sur B = moins F de B sur A."
+  },
+  {
+   "dit": "Exemple résolu : un livre de masse zéro virgule cinq kilogramme est posé immobile sur une table horizontale. Le livre exerce une action sur la table : c'est son poids, dirigé vers le bas, verticalement, d'intensité zéro virgule cinq fois dix, soit cinq newtons. D'après le principe des actions réciproques, la table exerce une action sur le livre, verticale, dirigée vers le haut, d'intensité cinq newtons. Le livre reste immobile car ces deux actions se compensent exactement.",
+   "ecran": "livre_table",
+   "id": "p18",
+   "texte": "Livre : 5 N vers le bas, table : 5 N vers le haut."
+  },
+  {
+   "dit": "Le principe s'applique aussi aux actions qui ne nécessitent pas de contact. Exemple : la Terre attire la Lune par action gravitationnelle, mais la Lune attire aussi la Terre avec une force de même intensité. La différence d'effet visible vient des masses différentes des deux corps, pas d'une différence d'intensité des forces.",
+   "ecran": "terre_lune",
+   "id": "p19",
+   "texte": "La Terre attire la Lune, la Lune attire la Terre."
+  },
+  {
+   "dit": "Il est essentiel de ne pas confondre les deux actions réciproques, qui s'exercent sur des corps différents, A sur B et B sur A, avec la somme des forces sur un même corps, qui détermine son mouvement ou son immobilité. Les actions réciproques s'exercent chacune sur un corps différent ; elles ne peuvent donc jamais s'annuler mutuellement.",
+   "ecran": "ne_pas_confondre",
+   "id": "p20",
+   "texte": "Deux corps différents : jamais d'annulation."
+  },
+  {
+   "dit": "En synthèse, le principe des actions réciproques est fondamental et universel : il s'applique à toutes les interactions, qu'elles soient de contact ou à distance, et quelle que soit la nature des corps en présence.",
+   "ecran": "synthese",
+   "id": "p21",
+   "texte": "Contact ou distance : un principe universel."
+  },
+  {
+   "dit": "Retenons l'essentiel : la poussée d'Archimède est verticale vers le haut et égale au poids du fluide déplacé, elle dépend du volume immergé et de la densité du fluide, la flottaison compare poids et poussée, et les actions réciproques sont égales, opposées, et portées par deux corps différents.",
+   "ecran": "recap",
+   "id": "p22",
+   "texte": "Archimède, flottaison, actions réciproques."
+  }
+ ],
+ "titre": "Poussée d'Archimède et actions réciproques"
+}

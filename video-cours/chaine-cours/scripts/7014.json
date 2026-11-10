@@ -1,0 +1,327 @@
+{
+ "cours": 7014,
+ "ecrans": {
+  "but_c": {
+   "kicker": "But · phrase complexe",
+   "tex": [
+    "\\text{pour que}",
+    "\\text{afin que}",
+    "\\text{de peur que}"
+   ],
+   "titre": "Subordonnée de but, verbe au subjonctif",
+   "type": "etape"
+  },
+  "but_s": {
+   "kicker": "But · phrase simple",
+   "tex": [
+    "\\text{pour, afin de}",
+    "\\text{de peur de}"
+   ],
+   "titre": "But recherché, ou but évité",
+   "type": "etape"
+  },
+  "cause_c": {
+   "kicker": "Cause · phrase complexe",
+   "tex": [
+    "\\text{parce que, puisque}",
+    "\\text{comme, car}",
+    "\\text{à cause de, grâce à}"
+   ],
+   "titre": "Subordination, coordination, groupe nominal",
+   "type": "etape"
+  },
+  "cause_s": {
+   "kicker": "Cause · phrase simple",
+   "tex": [
+    "\\text{à cause de}",
+    "\\text{grâce à}"
+   ],
+   "titre": "Négative avec à cause de, positive avec grâce à",
+   "type": "etape"
+  },
+  "complexe": {
+   "kicker": "Phrase complexe",
+   "tex": [
+    "\\text{plusieurs propositions}",
+    "\\text{subordination}",
+    "\\text{coordination}"
+   ],
+   "titre": "Juxtaposées, coordonnées, subordonnées",
+   "type": "etape"
+  },
+  "conseq_c": {
+   "kicker": "Conséquence · phrase complexe",
+   "tex": [
+    "\\text{si bien que}",
+    "\\text{donc, par conséquent}",
+    "\\text{tellement... que}"
+   ],
+   "titre": "Subordination, coordination, corrélation",
+   "type": "etape"
+  },
+  "conseq_s": {
+   "kicker": "Conséquence · phrase simple",
+   "tex": [
+    "\\text{à force de}"
+   ],
+   "titre": "Résultat progressif d'une action répétée",
+   "type": "etape"
+  },
+  "deux_sens": {
+   "kicker": "Même relation, deux sens",
+   "texte": "Il pleut, donc je prends mon parapluie ; parce qu'il pleut, je le prends.",
+   "type": "phrase"
+  },
+  "methode": {
+   "kicker": "Méthode d'analyse",
+   "tex": [
+    "\\text{repérer le complément}",
+    "\\text{poser la question}",
+    "\\text{identifier l'introducteur}",
+    "\\text{nommer la circonstance}"
+   ],
+   "titre": "Repérer, questionner, identifier, nommer",
+   "type": "etape"
+  },
+  "ne_expletif": {
+   "kicker": "Le ne explétif",
+   "tex": [
+    "\\text{de peur qu'il ne rate}"
+   ],
+   "titre": "Ne sans valeur négative, après de peur que",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Dans la phrase simple, la circonstance est un complément circonstanciel déplaçable et supprimable ; dans la phrase complexe, elle relie deux propositions.",
+    "Cause, avant le fait ; conséquence, après le fait ; but, visée vers l'avenir. L'introducteur porte la nuance : positive ou négative, recherchée ou évitée.",
+    "Pour le but : même sujet, infinitif ; sujets différents, subordonnée au subjonctif ; après de peur que ou de crainte que, le ne explétif n'a pas de valeur négative."
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "regle_sujet": {
+   "kicker": "But · infinitif ou subjonctif",
+   "tex": [
+    "\\text{même sujet : infinitif}",
+    "\\text{sujets différents : que}"
+   ],
+   "titre": "Pour réussir ; pour que je réussisse",
+   "type": "etape"
+  },
+  "simple": {
+   "kicker": "Phrase simple · repère",
+   "tex": [
+    "\\text{un seul verbe}",
+    "\\text{complément déplaçable}",
+    "\\text{complément supprimable}"
+   ],
+   "titre": "Un verbe, un complément mobile",
+   "type": "etape"
+  },
+  "test": {
+   "kicker": "Test de substitution",
+   "tex": [
+    "\\text{pour gagner : but}",
+    "\\text{à cause de : cause}",
+    "\\text{à force de : conséquence}"
+   ],
+   "titre": "Courir, trois sens selon l'introducteur",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Français · Circonstances",
+   "sous": "Pourquoi, avec quel résultat, dans quel but ?",
+   "titre": "Exprimer les circonstances : cause, conséquence et but",
+   "type": "titre"
+  }
+ },
+ "matiere": "Français",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La phrase simple : cause, conséquence, but"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : la phrase complexe. Cause et conséquence entre propositions, dans les deux sens.",
+    "texte": "Partie 2 : phrase complexe, cause et conséquence."
+   },
+   "sous_titre": "La phrase complexe : cause et conséquence"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : le but en phrase complexe. Subordonnée au subjonctif, ne explétif, et infinitif ou subjonctif selon le sujet.",
+    "texte": "Partie 3 : la subordonnée de but."
+   },
+   "sous_titre": "La subordonnée de but"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de français sur les circonstances : la cause, la conséquence et le but. Nous verrons d'abord la phrase simple, puis la phrase complexe, et enfin la subordonnée de but.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Pourquoi, avec quel résultat, dans quel but ?"
+  },
+  {
+   "dit": "Rappel : une phrase simple ne contient qu'un seul verbe conjugué, donc une seule proposition. Elle peut néanmoins exprimer des circonstances : la cause, la conséquence et le but, à l'aide de groupes nominaux prépositionnels, comme à cause de, grâce à ou pour, de participes, ou de propositions subordonnées, hors de ce chapitre pour la phrase simple, car elles relèvent de la phrase complexe.",
+   "ecran": "simple",
+   "id": "p02",
+   "texte": "Une phrase simple, trois circonstances."
+  },
+  {
+   "dit": "Repère fondamental : dans la phrase simple, la circonstance est un complément circonstanciel déplaçable et supprimable. On peut le déplacer ou l'enlever sans casser la phrase.",
+   "ecran": "simple",
+   "id": "p03",
+   "texte": "Déplaçable, supprimable : c'est un circonstanciel."
+  },
+  {
+   "dit": "Première circonstance, la cause. Elle désigne l'origine, la raison d'un fait ou d'une action, et répond à la question : pourquoi, pour quelle raison ? Nuances : à cause de introduit une cause négative ; grâce à, une cause positive.",
+   "ecran": "cause_s",
+   "id": "p04",
+   "texte": "Pourquoi ? Cause négative ou positive."
+  },
+  {
+   "dit": "Exemple résolu : il a été félicité grâce à son travail remarquable. Question : pourquoi a-t-il été félicité ? Réponse : grâce à son travail remarquable, complément circonstanciel de cause. Cause positive, un mérite, d'où l'emploi de grâce à.",
+   "ecran": "cause_s",
+   "id": "p05",
+   "texte": "Félicité grâce à son travail."
+  },
+  {
+   "dit": "Deuxième circonstance, la conséquence. Elle désigne le résultat, l'effet produit par un fait, et répond à la question : quel est le résultat, qu'entraîne ce fait ? Attention : la conséquence s'oppose logiquement à la cause, elle se situe après le fait initial.",
+   "ecran": "conseq_s",
+   "id": "p06",
+   "texte": "Quel résultat ? Après le fait."
+  },
+  {
+   "dit": "Exemple résolu : à force de crier, il a perdu sa voix. Fait initial : crier, répété. Résultat : perdre sa voix. À force de marque la conséquence progressive d'une action répétée.",
+   "ecran": "conseq_s",
+   "id": "p07",
+   "texte": "À force de crier, il perd sa voix."
+  },
+  {
+   "dit": "Troisième circonstance, le but. Il désigne l'objectif visé, l'intention d'une action, et répond à la question : dans quel but, pour quoi faire ? Nuances : pour ou afin de, but recherché ; de peur de ou de crainte de, but évité, peur d'un résultat.",
+   "ecran": "but_s",
+   "id": "p08",
+   "texte": "Dans quel but ? Recherché ou évité."
+  },
+  {
+   "dit": "Exemple résolu : elle révise afin d'obtenir son diplôme. Action : réviser. But visé : obtenir son diplôme. Afin de, suivi de l'infinitif, marque un but recherché.",
+   "ecran": "but_s",
+   "id": "p09",
+   "texte": "Réviser afin d'obtenir son diplôme."
+  },
+  {
+   "dit": "Pour distinguer les trois, le test de substitution : remplacer le complément par un autre introducteur pour vérifier la notion. Il court pour gagner : but, intention. Il court à cause de la peur : cause, origine. Il court à force de s'entraîner : conséquence, résultat.",
+   "ecran": "test",
+   "id": "p10",
+   "texte": "Trois introducteurs, trois sens."
+  },
+  {
+   "dit": "Méthode d'analyse, en quatre étapes : repérer le complément circonstanciel, déplaçable et supprimable ; poser la question, pourquoi, quel résultat, pour quoi faire ; identifier l'introducteur et sa nuance ; nommer la circonstance, cause, conséquence ou but.",
+   "ecran": "methode",
+   "id": "p11",
+   "texte": "Repérer, questionner, identifier, nommer."
+  },
+  {
+   "dit": "À retenir pour la phrase simple : elle peut exprimer ces trois circonstances sans subordonnée ; les groupes nominaux prépositionnels et les participes sont les outils privilégiés ; chaque notion a ses marqueurs et sa position logique, cause avant, conséquence après, but visé ; l'introducteur porte souvent une nuance, positive ou négative, recherchée ou évitée, à respecter.",
+   "ecran": "methode",
+   "id": "p12",
+   "texte": "Sans subordonnée, avec des marqueurs."
+  },
+  {
+   "dit": "Passons à la phrase complexe. Elle contient plusieurs propositions, autant de verbes conjugués. Ces propositions peuvent être juxtaposées, coordonnées ou subordonnées. Exprimer la cause ou la conséquence consiste souvent à relier deux propositions par une subordination, conjonction ou locution conjonctive, ou une coordination, conjonction de coordination. Exemple de base : il pleut, donc je prends mon parapluie ; la seconde proposition exprime la conséquence de la première.",
+   "ecran": "complexe",
+   "id": "p13",
+   "texte": "Plusieurs propositions, reliées."
+  },
+  {
+   "dit": "La cause, en phrase complexe, est ce qui provoque, explique ou motive un fait ; la subordonnée de cause répond à la question pourquoi. Moyens : subordination, parce que, puisque, comme, étant donné que, vu que, sous prétexte que, d'autant plus que ; coordination, car, en effet, ce dernier plutôt en incise ; groupe nominal prépositionnel, à cause de, grâce à, en raison de, suivi d'un nom.",
+   "ecran": "cause_c",
+   "id": "p14",
+   "texte": "Parce que, car, à cause de : trois voies."
+  },
+  {
+   "dit": "Propriétés à retenir : comme et puisque se placent en tête de phrase ; parce que peut suivre la principale. Puisque introduit une cause connue ou admise de l'interlocuteur ; parce que apporte une information nouvelle. Grâce à exprime une cause positive, à cause de une cause négative.",
+   "ecran": "cause_c",
+   "id": "p15",
+   "texte": "Comme et puisque en tête ; puisque, cause connue."
+  },
+  {
+   "dit": "Exemple résolu : comme le train avait du retard, nous avons manqué la correspondance. Proposition principale : nous avons manqué la correspondance. Subordonnée de cause : comme le train avait du retard, elle répond à pourquoi avons-nous manqué la correspondance. Comme est en tête de phrase et introduit une cause déjà connue.",
+   "ecran": "cause_c",
+   "id": "p16",
+   "texte": "Comme le train avait du retard..."
+  },
+  {
+   "dit": "La conséquence est le résultat produit par un fait ; la subordonnée de conséquence répond à la question, à quel résultat cela aboutit-il. Moyens : subordination, si bien que, de sorte que, au point que, tant que, tellement que, si que ; coordination, donc, c'est pourquoi, par conséquent, aussi, en tête de phrase avec inversion ; groupe nominal prépositionnel, à tel point que, de là, dans un raisonnement.",
+   "ecran": "conseq_c",
+   "id": "p17",
+   "texte": "Si bien que, donc, tellement que."
+  },
+  {
+   "dit": "Propriétés : la subordonnée de conséquence suit généralement la principale. Les corrélations si que, tant que, tellement que encadrent un adjectif, un adverbe ou un verbe : elles marquent l'intensité de la cause et introduisent la conséquence. Donc et par conséquent marquent une conséquence logique ; si bien que, une conséquence factuelle.",
+   "ecran": "conseq_c",
+   "id": "p18",
+   "texte": "Intensité, puis résultat."
+  },
+  {
+   "dit": "Exemple résolu : il a tellement couru qu'il est arrivé essoufflé. Proposition principale : il a tellement couru, cause avec intensité. Subordonnée de conséquence : qu'il est arrivé essoufflé. La corrélation tellement que souligne l'intensité de la cause et introduit le résultat.",
+   "ecran": "conseq_c",
+   "id": "p19",
+   "texte": "Tellement couru qu'essoufflé."
+  },
+  {
+   "dit": "Attention : une même relation peut s'exprimer dans les deux sens. Il pleut, donc je prends mon parapluie, conséquence, équivaut à je prends mon parapluie parce qu'il pleut, cause. Le connecteur choisi détermine le rapport logique.",
+   "ecran": "deux_sens",
+   "id": "p20",
+   "texte": "Même faits, deux lectures."
+  },
+  {
+   "dit": "Passons au but en phrase complexe. Exprimer le but, c'est indiquer l'objectif visé, le résultat que l'on veut atteindre par une action ; il répond à : dans quel dessein, pour quelle finalité. Ne pas le confondre avec la cause, qui explique pourquoi un fait a eu lieu, dans le passé : le but est tourné vers l'avenir, vers une intention. Cause : il est parti parce qu'il pleuvait, fait réel, déjà accompli. But : il part pour qu'il ne soit pas mouillé, intention, résultat visé.",
+   "ecran": "but_c",
+   "id": "p21",
+   "texte": "But vers l'avenir, cause vers le passé."
+  },
+  {
+   "dit": "Pour exprimer le but, on relie généralement une proposition principale, l'action, et une proposition subordonnée introduite par un mot subordonnant de but. Exemple résolu : je travaille dur pour que je réussisse mon examen. Principale : je travaille dur, action. Subordonnée de but : pour que je réussisse mon examen, objectif visé.",
+   "ecran": "but_c",
+   "id": "p22",
+   "texte": "Je travaille pour que je réussisse."
+  },
+  {
+   "dit": "Propriété essentielle : le verbe de la subordonnée de but est toujours au subjonctif, car le but est une intention, non un fait réalisé. Exemple : elle parle doucement afin que tout le monde puisse l'entendre ; puisse est au subjonctif présent, car l'objectif n'est pas encore réalisé.",
+   "ecran": "but_c",
+   "id": "p23",
+   "texte": "Subjonctif, car l'objectif n'est pas réalisé."
+  },
+  {
+   "dit": "Attention au ne explétif : après de peur que ou de crainte que, on ajoute souvent ne, qui n'a pas de valeur négative. Exemple : il se dépêche de peur qu'il ne rate son train.",
+   "ecran": "ne_expletif",
+   "id": "p24",
+   "texte": "Ne explétif, sans négation."
+  },
+  {
+   "dit": "Le but peut aussi s'exprimer sans subordonnée conjuguée : groupe prépositionnel et infinitif, pour, afin de, dans le but de, en vue de ; proposition infinitive de but, quand les deux verbes ont le même sujet, on emploie l'infinitif ; de peur de, de crainte de, suivi de l'infinitif. Règle clé : si le sujet des deux verbes est identique, infinitif, pour réussir ; si les sujets sont différents, subordonnée au subjonctif, pour que je réussisse.",
+   "ecran": "regle_sujet",
+   "id": "p25",
+   "texte": "Même sujet, infinitif ; sujets différents, subjonctif."
+  },
+  {
+   "dit": "Exemple résolu : nous nous dépêchons afin de ne pas arriver en retard, sujet identique, nous, donc infinitif. Nous nous dépêchons afin que vous ne soyez pas en retard, sujets différents, donc subjonctif.",
+   "ecran": "regle_sujet",
+   "id": "p26",
+   "texte": "Afin de, ou afin que, selon le sujet."
+  },
+  {
+   "dit": "Retenons l'essentiel. Dans la phrase simple, la circonstance est un complément déplaçable et supprimable ; dans la phrase complexe, elle relie deux propositions. Cause avant le fait, conséquence après le fait, but visé vers l'avenir. Pour le but : même sujet, infinitif ; sujets différents, subordonnée au subjonctif ; après de peur que, le ne explétif n'a pas de valeur négative.",
+   "ecran": "recap",
+   "id": "p27",
+   "texte": "Cause, conséquence, but : place et marqueurs."
+  }
+ ],
+ "titre": "Exprimer les circonstances : cause, conséquence et but"
+}

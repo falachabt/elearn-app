@@ -1,0 +1,572 @@
+{
+ "cours": 6221,
+ "ecrans": {
+  "airbag": {
+   "kicker": "Application : l'airbag",
+   "note": "quelques millisecondes pour produire le gaz du coussin.",
+   "tex": "2\\,NaN_3(s) \\rightarrow 2\\,Na(s) + 3\\,N_2(g)",
+   "type": "formule"
+  },
+  "conversion": {
+   "kicker": "La conversion fondamentale",
+   "note": "m en grammes, M en grammes par mole : on navigue entre les deux mondes.",
+   "tex": "n = \\frac{m}{M}",
+   "type": "formule"
+  },
+  "dosage": {
+   "kicker": "Application : le dosage",
+   "tex": [
+    "n(NaOH) = 0{,}100 \\times 0{,}0245 = 2{,}45 \\times 10^{-3}\\ \\text{mol}",
+    "n(HCl) = n(NaOH) \\quad \\text{(rapport } 1:1\\text{)}",
+    "C(HCl) = \\tfrac{2{,}45 \\times 10^{-3}}{0{,}0200} = 0{,}1225\\ \\text{mol/L}"
+   ],
+   "titre": "La concentration inconnue de l'acide",
+   "type": "etape"
+  },
+  "equation": {
+   "kicker": "L'équation chimique",
+   "note": "les coefficients comptent les molécules, puis les moles.",
+   "tex": "CH_4 + 2\\,O_2 \\rightarrow CO_2 + 2\\,H_2O",
+   "type": "formule"
+  },
+  "equilibrage": {
+   "kicker": "Équilibrer une équation",
+   "tex": [
+    "N_2 + H_2 \\rightarrow NH_3",
+    "N : 2 = 2 \\Rightarrow 2\\,NH_3",
+    "H : 6 = 6 \\Rightarrow 3\\,H_2",
+    "N_{2(g)} + 3\\,H_{2(g)} \\rightarrow 2\\,NH_{3(g)}"
+   ],
+   "titre": "La synthèse de l'ammoniac, pas à pas",
+   "type": "etape"
+  },
+  "examen_alcl3": {
+   "kicker": "Entraînement : scénario deux",
+   "tex": [
+    "2\\,Al + 3\\,Cl_2 \\rightarrow 2\\,AlCl_3",
+    "n(Al)=\\tfrac{10{,}0}{27{,}0}\\approx0{,}370\\qquad n(Cl_2)=\\tfrac{35{,}0}{71{,}0}\\approx0{,}493\\ \\text{mol}",
+    "\\tfrac{0{,}370}{2} = 0{,}185 \\qquad \\tfrac{0{,}493}{3} \\approx 0{,}164 \\Rightarrow Cl_2\\ \\text{limitant}",
+    "m(AlCl_3) = 0{,}493 \\times \\tfrac{2}{3} \\times 133{,}5 \\approx 43{,}9\\ \\text{g}"
+   ],
+   "titre": "Le réactif limitant par les paquets",
+   "type": "etape"
+  },
+  "examen_caco3": {
+   "kicker": "Entraînement : scénario trois",
+   "tex": [
+    "n(CO_2) = \\tfrac{0{,}250}{24{,}0} \\approx 0{,}0104\\ \\text{mol} = n(CaCO_3)",
+    "m(CaCO_3) = 0{,}0104 \\times 100{,}1 \\approx 1{,}04\\ \\text{g}",
+    "\\text{Pureté} = \\tfrac{1{,}04}{2{,}00} \\times 100 \\approx 52{,}0\\ \\%",
+    "\\text{Rendement } 90\\,\\% : m \\approx 1{,}16\\ \\text{g de } CaCO_3 \\text{ pur}"
+   ],
+   "titre": "La pureté d'un échantillon de carbonate",
+   "type": "etape"
+  },
+  "examen_fe": {
+   "kicker": "Entraînement : scénario un",
+   "tex": [
+    "4\\,Fe + 3\\,O_2 \\rightarrow 2\\,Fe_2O_3",
+    "n(Fe) = \\tfrac{50{,}0}{55{,}8} \\approx 0{,}896\\ \\text{mol}",
+    "n(Fe_2O_3) = 0{,}896 \\times \\tfrac{2}{4} = 0{,}448\\ \\text{mol}",
+    "m(Fe_2O_3) = 0{,}448 \\times 159{,}6 \\approx 71{,}5\\ \\text{g}"
+   ],
+   "titre": "Le calcul direct, sans piège",
+   "type": "etape"
+  },
+  "exercice_al": {
+   "kicker": "Exercice résolu",
+   "tex": [
+    "4\\,Al + 3\\,O_2 \\rightarrow 2\\,Al_2O_3",
+    "n(Al) = \\tfrac{50{,}0}{26{,}98} = 1{,}853\\ \\text{mol}",
+    "n(O_2) = \\tfrac{100{,}0}{32{,}00} = 3{,}125\\ \\text{mol}",
+    "\\text{Produit par } Al : 0{,}9265\\ \\text{mol} \\quad < \\quad \\text{par } O_2 : 2{,}083\\ \\text{mol}"
+   ],
+   "titre": "Aluminium contre dioxygène : qui limite ?",
+   "type": "etape"
+  },
+  "gaz_ex": {
+   "kicker": "Exemple : les gaz aux conditions standard",
+   "tex": [
+    "n(N_2) = \\tfrac{33{,}6}{22{,}4} = 1{,}5\\ \\text{mol}",
+    "n(NH_3) = 1{,}5 \\times 2 = 3{,}0\\ \\text{mol}",
+    "V(NH_3) = 3{,}0 \\times 22{,}4 = 67{,}2\\ \\text{L}"
+   ],
+   "titre": "Du diazote à l'ammoniac, en litres",
+   "type": "etape"
+  },
+  "gaz_parfaits": {
+   "kicker": "La loi des gaz parfaits",
+   "note": "R = 0,0821 en litres et atmosphères ; 8,314 en unités internationales.",
+   "tex": "PV = nRT",
+   "type": "formule"
+  },
+  "hematite": {
+   "kicker": "Application industrielle",
+   "tex": [
+    "n(Fe) = \\tfrac{1{,}00 \\times 10^{6}}{55{,}85} \\approx 1{,}79 \\times 10^{4}\\ \\text{mol}",
+    "n(Fe_2O_3) = \\tfrac{n(Fe)}{2} = 8{,}95 \\times 10^{3}\\ \\text{mol}",
+    "M(Fe_2O_3) = 2 \\times 55{,}85 + 3 \\times 16{,}00 = 159{,}70\\ \\text{g/mol}",
+    "m(Fe_2O_3) \\approx 1{,}43 \\times 10^{6}\\ \\text{g} = 1{,}43\\ \\text{t}"
+   ],
+   "titre": "Une tonne de fer : combien d'hématite ?",
+   "type": "etape"
+  },
+  "lavoisier": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "balance_atomes_fig"
+   },
+   "kicker": "La loi de conservation de la masse",
+   "texte": "Rien ne se perd, rien ne se crée, tout se transforme.",
+   "type": "phrase"
+  },
+  "limitant": {
+   "kicker": "Le réactif limitant",
+   "note": "cinq moles de diazote, douze de dihydrogène : qui s'épuisera le premier ?",
+   "tex": "N_2 + 3\\,H_2 \\rightarrow 2\\,NH_3",
+   "type": "formule"
+  },
+  "limitant_calcul": {
+   "kicker": "Déterminer le réactif limitant",
+   "tex": [
+    "n(NH_3) \\text{ par } N_2 : 5{,}0 \\times \\tfrac{2}{1} = 10{,}0\\ \\text{mol}",
+    "n(NH_3) \\text{ par } H_2 : 12{,}0 \\times \\tfrac{2}{3} = 8{,}0\\ \\text{mol}",
+    "H_2 \\text{ limitant : } n(N_2) \\text{ consommé} = 12{,}0 \\times \\tfrac{1}{3} = 4{,}0\\ \\text{mol}",
+    "N_2 \\text{ en excès} : 5{,}0 - 4{,}0 = 1{,}0\\ \\text{mol}"
+   ],
+   "titre": "Le plus petit produit désigne le limitant",
+   "type": "etape"
+  },
+  "masse_molaire": {
+   "kicker": "La masse molaire",
+   "tex": [
+    "M(C) = 12{,}00\\ \\text{g/mol} \\text{ : la référence}",
+    "M(H) = 1{,}01\\ \\text{g/mol} \\qquad M(O) = 16{,}00\\ \\text{g/mol}",
+    "M(H_2O) = 2 \\times 1{,}01 + 16{,}00 = 18{,}02\\ \\text{g/mol}"
+   ],
+   "titre": "Celle de l'eau, atome par atome",
+   "type": "etape"
+  },
+  "methode4": {
+   "etapes": [
+    "Écrire et équilibrer l'équation",
+    "Convertir la donnée en moles",
+    "Appliquer le rapport molaire",
+    "Reconvertir dans l'unité demandée"
+   ],
+   "kicker": "La méthode en quatre étapes",
+   "type": "recap"
+  },
+  "methode_finale": {
+   "etapes": [
+    "Lire : données, inconnue, unités",
+    "Équation équilibrée, états notés",
+    "Tout convertir en moles",
+    "Rapport molaire, réactif limitant",
+    "Reconvertir et vérifier le résultat"
+   ],
+   "kicker": "La feuille de route",
+   "type": "recap"
+  },
+  "mole": {
+   "kicker": "La mole et le nombre d'Avogadro",
+   "note": "une mole de grains de sable couvrirait un pays sous des kilomètres de sable.",
+   "tex": "N_A = 6{,}022 \\times 10^{23}\\ \\text{entités par mole}",
+   "type": "formule"
+  },
+  "nacl": {
+   "kicker": "Des moles aux grammes",
+   "note": "M(NaCl) = 22,99 + 35,45 = 58,44 g/mol.",
+   "tex": "m = n \\times M = 0{,}150 \\times 58{,}44 \\approx 8{,}77\\ \\text{g}",
+   "type": "formule"
+  },
+  "propane_gaz": {
+   "kicker": "Exemple : hors conditions standard",
+   "tex": [
+    "n(C_3H_8) = \\tfrac{11{,}0}{44{,}0} = 0{,}250\\ \\text{mol}",
+    "n(CO_2) = 0{,}250 \\times 3 = 0{,}750\\ \\text{mol}",
+    "V = \\tfrac{nRT}{P} = \\tfrac{0{,}750 \\times 0{,}0821 \\times 308{,}15}{0{,}989} \\approx 19{,}2\\ \\text{L}"
+   ],
+   "titre": "Le propane d'une journée chaude",
+   "type": "etape"
+  },
+  "rapport": {
+   "kicker": "Le rapport molaire",
+   "note": "le rapport un, trois, deux se lit directement dans les coefficients.",
+   "tex": "n(NH_3) = 150 \\times \\frac{2}{3} = 100\\ \\text{mol}",
+   "type": "formule"
+  },
+  "recap1": {
+   "etapes": [
+    "Équilibrer : coefficients, pas les formules",
+    "La mole relie les grammes aux atomes",
+    "Masse molaire : la somme des atomes",
+    "n = m / M : le triangle d'or",
+    "Les coefficients donnent le rapport molaire"
+   ],
+   "kicker": "Points clés de la partie",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Convertir en moles, toujours",
+    "Le rapport molaire vient des coefficients",
+    "Aux CSTP : 22,4 litres par mole de gaz",
+    "Hors CSTP : la loi des gaz parfaits",
+    "Le limitant donne le moins de produit"
+   ],
+   "kicker": "Points clés de la partie",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Tout passe par les moles",
+    "Le rapport molaire lit les coefficients",
+    "22,4 litres par mole de gaz aux CSTP",
+    "Le réactif limitant fixe le maximum",
+    "Rendement : le réel sur le théorique"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "rendement": {
+   "kicker": "Le rendement d'une réaction",
+   "note": "réel : ce que l'on obtient ; théorique : le maximum calculé.",
+   "tex": "\\text{Rendement} = \\frac{\\text{réel}}{\\text{théorique}} \\times 100",
+   "type": "formule"
+  },
+  "rendement_ex": {
+   "kicker": "Le rendement de l'exercice",
+   "note": "la masse théorique : 0,9265 mole, soit 94,47 grammes d'oxyde.",
+   "tex": "\\frac{78{,}5}{94{,}47} \\times 100 = 83{,}1\\ \\%",
+   "type": "formule"
+  },
+  "saccharose": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "M(C_{12}H_{22}O_{11}) = 12 \\times 12{,}01 + 22 \\times 1{,}01 + 11 \\times 16{,}00",
+    "= 144{,}12 + 22{,}22 + 176{,}00 = 342{,}34\\ \\text{g/mol}",
+    "n = \\tfrac{10{,}0}{342{,}34} \\approx 0{,}0292\\ \\text{mol}",
+    "0{,}0292 \\times 6{,}022 \\times 10^{23} \\approx 1{,}76 \\times 10^{22}\\ \\text{molécules}"
+   ],
+   "titre": "Dix grammes de sucre dans le café",
+   "type": "etape"
+  },
+  "synthese_ex": {
+   "kicker": "Exemple complet",
+   "tex": [
+    "n(N_2) = \\tfrac{10{,}0}{28{,}0} \\approx 0{,}357\\ \\text{mol}",
+    "n(NH_3) = 0{,}357 \\times \\tfrac{2}{1} = 0{,}714\\ \\text{mol}",
+    "m(NH_3) = 0{,}714 \\times 17{,}0 \\approx 12{,}1\\ \\text{g}"
+   ],
+   "titre": "Dix grammes de diazote, combien d'ammoniac ?",
+   "type": "etape"
+  },
+  "synthese_propane": {
+   "kicker": "Exercice de synthèse",
+   "tex": [
+    "n(C_3H_8) = \\tfrac{10{,}0}{44{,}0} \\approx 0{,}227\\ \\text{mol}",
+    "V(CO_2) : 0{,}227 \\times 3 = 0{,}681\\ \\text{mol} \\Rightarrow 0{,}681 \\times 22{,}4 \\approx 15{,}3\\ \\text{L}",
+    "n(O_2) = \\tfrac{20{,}0}{22{,}4} \\approx 0{,}893 \\quad < \\quad 0{,}227 \\times 5 = 1{,}135\\ \\text{mol}",
+    "O_2 \\text{ limitant} : 0{,}893 \\times \\tfrac{4}{5} = 0{,}714\\ \\text{mol} \\Rightarrow 12{,}9\\ \\text{g}"
+   ],
+   "titre": "Propane : masse, volume et limitant",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "balance_atomes_fig"
+   },
+   "kicker": "Chimie · Stœchiométrie",
+   "sous": "Équations, moles, gaz et réactif limitant",
+   "titre": "La stœchiométrie : compter la matière qui réagit",
+   "type": "titre"
+  },
+  "usine": {
+   "kicker": "Application : l'industrie",
+   "tex": [
+    "n(N_2) = \\tfrac{500\\,000}{28{,}0} \\approx 17\\,857\\ \\text{mol}",
+    "n(NH_3) = 17\\,857 \\times 2 = 35\\,714\\ \\text{mol}",
+    "m(NH_3) = 35\\,714 \\times 17{,}0 \\approx 607\\,000\\ \\text{g} = 607\\ \\text{kg}"
+   ],
+   "titre": "Cinq cents kilos d'azote pour l'usine",
+   "type": "etape"
+  },
+  "volume_molaire": {
+   "kicker": "Le volume molaire",
+   "tex": [
+    "V_m = \\tfrac{RT}{P} = \\tfrac{0{,}0821 \\times 273{,}15}{1} \\approx 22{,}4\\ \\text{L/mol}",
+    "32\\ \\text{g de } O_2,\\ \\ 2\\ \\text{g de } H_2,\\ \\ 44\\ \\text{g de } CO_2 \\Rightarrow 22{,}4\\ \\text{L}"
+   ],
+   "titre": "Vingt-deux litres quatre, pour tous les gaz",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  6694,
+  6695,
+  6696,
+  6697,
+  6698,
+  6699,
+  6700
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'équation équilibrée, la mole et les rapports"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : la méthode complète et les gaz. Nous allons d'abord fixer la méthode en quatre étapes qui résout tous les problèmes, puis apprendre à compter les gaz, avec le volume molaire et la loi des gaz parfaits.",
+    "texte": "Partie 2 : la méthode en quatre temps, puis les gaz."
+   },
+   "sous_titre": "La méthode complète et la stœchiométrie des gaz"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : le réactif limitant décide, puis l'entraînement. Nous allons mesurer l'efficacité réelle des réactions avec le rendement, parcourir les grandes applications, de l'usine au dosage, et terminer par trois scénarios d'examen résolus pas à pas.",
+    "texte": "Partie 3 : rendement, applications et scénarios d'examen."
+   },
+   "sous_titre": "Réactif limitant, rendement et entraînement d'examen"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de stœchiométrie, l'art de mesurer les réactions chimiques. Le mot vient du grec : élément, et mesure. Nous allons apprendre à compter la matière qui réagit : d'abord l'équation équilibrée et sa loi de conservation, puis la mole, ce pont entre les atomes invisibles et les grammes de la balance. Ensuite viendront les rapports molaires, les gaz, le réactif limitant, et enfin l'entraînement aux problèmes complets, comme le jour de l'examen.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Compter la matière qui réagit, en moles et en grammes."
+  },
+  {
+   "dit": "Commençons par l'équation de la combustion du méthane, le gaz naturel de nos cuisinières. À gauche de la flèche, les réactifs : une molécule de méthane et deux molécules de dioxygène. À droite, les produits : une molécule de dioxyde de carbone et deux molécules d'eau. La flèche se lit donne, ou produit. Les nombres placés devant les formules sont les coefficients : ils fixent les proportions exactes dans lesquelles les substances réagissent et se forment.",
+   "ecran": "equation",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "CH₄ + 2 O₂ → CO₂ + 2 H₂O : la phrase de la combustion."
+  },
+  {
+   "dit": "En mille sept cent quatre-vingt-neuf, Lavoisier énonce la loi qui gouverne tout ce cours : rien ne se perd, rien ne se crée, tout se transforme. Dans un système fermé, la masse des réactifs égale la masse des produits, car les atomes se réarrangent sans jamais disparaître. Quand un morceau de bois brûle et semble perdre sa masse, elle n'a pas disparu : elle est partie dans les gaz invisibles, dioxyde de carbone et vapeur d'eau, échappés dans l'air.",
+   "ecran": "lavoisier",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "La masse se conserve : les atomes se réarrangent."
+  },
+  {
+   "dit": "Équilibrer, c'est faire respecter la conservation, atome par atome. On ne touche jamais aux formules : l'eau restera toujours l'eau. On ajuste seulement les coefficients. Pour la synthèse de l'ammoniac, l'azote d'abord : deux atomes à gauche, il faut donc deux molécules d'ammoniac à droite. L'hydrogène suit : six atomes à droite imposent trois molécules de dihydrogène à gauche. Vérification finale : deux azotes et six hydrogènes des deux côtés, et les codes entre parenthèses précisent l'état de chaque substance, gazeux pour les trois.",
+   "ecran": "equilibrage",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "On ajuste les coefficients, jamais les formules."
+  },
+  {
+   "dit": "Voici le pont entre les deux mondes : la mole. Une mole, c'est un nombre, le nombre d'Avogadro : environ six cent deux mille milliards de milliards d'entités. Comme une douzaine compte douze objets, la mole compte les atomes et les molécules, à l'échelle astronomique qu'exige leur petitesse. C'est l'unité de quantité de matière, celle dans laquelle les coefficients des équations vont bientôt parler.",
+   "ecran": "mole",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "La mole : la douzaine du chimiste, en immense."
+  },
+  {
+   "dit": "La masse molaire est la masse d'une mole de substance, en grammes par mole. Pour le carbone douze, elle vaut exactement douze grammes par mole : le nombre d'Avogadro a été choisi pour créer ce lien parfait entre l'échelle atomique et la balance. Pour une molécule, on additionne les masses molaires de tous ses atomes. L'eau réunit deux hydrogènes et un oxygène : deux fois un virgule zéro un, plus seize, égale dix-huit virgule zéro deux grammes par mole.",
+   "ecran": "masse_molaire",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "18,02 g/mol : la masse d'une mole d'eau."
+  },
+  {
+   "dit": "Trois grandeurs se répondent : la masse, en grammes, la quantité de matière, en moles, et la masse molaire. Leur relation tient en une fraction : la quantité de matière égale la masse divisée par la masse molaire. C'est la clé de voûte du cours, le triangle d'or des conversions. Au passage, si le chlore affiche trente-cinq virgule quarante-cinq, un nombre non entier, c'est qu'il mélange deux isotopes : sa masse molaire est une moyenne pondérée.",
+   "ecran": "conversion",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "n = m / M : le triangle d'or des conversions."
+  },
+  {
+   "dit": "Utilisons la relation dans l'autre sens. Un protocole demande zéro virgule cent cinquante mole de chlorure de sodium : quelle masse peser sur la balance ? La masse molaire du sel s'obtient en additionnant le sodium et le chlore. Puis on multiplie la quantité par la masse molaire : le résultat, environ huit grammes soixante-dix-sept, est la masse à peser avec précision.",
+   "ecran": "nacl",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Le protocole donne des moles, la balance veut des grammes."
+  },
+  {
+   "dit": "Premier exemple complet : le sucre du café. Vous dissolvez dix grammes de saccharose : combien de moles de molécules avez-vous versées ? D'abord, la masse molaire : douze carbones, vingt-deux hydrogènes et onze oxygènes donnent près de trois cent quarante-deux grammes par mole. Puis la division : dix grammes divisés par cette masse donnent zéro virgule zéro deux cent quatre-vingt-douze mole. Multipliez par le nombre d'Avogadro : cela représente tout de même environ dix-sept mille milliards de milliards de molécules de sucre.",
+   "ecran": "saccharose",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "0,0292 mol de sucre dans un café."
+  },
+  {
+   "dit": "Passons à l'échelle industrielle : le fer sort de son minerai, l'hématite. Pour obtenir une tonne de fer, on convertit d'abord en moles, puis on utilise la formule du minerai : chaque unité d'hématite contient deux atomes de fer, il en faut donc moitié moins en moles. Le retour à la masse donne environ une tonne quarante-trois de minerai pour une tonne de fer. L'écart, c'est l'oxygène du minerai : ce calcul décide de la rentabilité d'une mine.",
+   "ecran": "hematite",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "1,43 tonne de minerai pour 1 tonne de fer."
+  },
+  {
+   "dit": "Les coefficients d'une équation équilibrée parlent en molécules, mais grâce au nombre d'Avogadro, ils parlent aussi en moles : c'est le rapport molaire. Dans la synthèse de l'ammoniac, une mole de diazote réagit avec trois moles de dihydrogène pour donner deux moles d'ammoniac : un, trois, deux. Application immédiate : un réacteur consomme cent cinquante moles de dihydrogène ; le produit en croix donne cent moles d'ammoniac produites.",
+   "ecran": "rapport",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Le rapport 1 : 3 : 2 de la synthèse de l'ammoniac."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Une équation équilibrée respecte la conservation de la masse : on y ajuste les coefficients, jamais les formules. La mole compte la matière par paquets d'Avogadro, la masse molaire convertit ces paquets en grammes, et la relation entre masse et moles fait la navette entre la balance et la réaction. Enfin, les coefficients de l'équation fournissent le rapport molaire, notre facteur de conversion entre substances.",
+   "ecran": "recap1",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Équilibrer, compter en moles, convertir."
+  },
+  {
+   "dit": "Voici la boussole de tous les problèmes de stœchiométrie, en quatre étapes. Un : écrire et équilibrer l'équation, le point de départ non négociable. Deux : convertir la quantité donnée en moles, le langage universel de la réaction. Trois : appliquer le rapport molaire lu dans les coefficients pour obtenir les moles de la substance cherchée. Quatre : reconvertir ces moles dans l'unité demandée, grammes, litres ou molécules.",
+   "ecran": "methode4",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Quatre étapes pour tous les problèmes."
+  },
+  {
+   "dit": "Appliquons la boussole à la synthèse de l'ammoniac. Question : quelle masse d'ammoniac peut-on produire à partir de dix grammes de diazote ? Étape deux : dix grammes divisés par vingt-huit grammes par mole donnent environ zéro virgule trois cent cinquante-sept mole de diazote. Étape trois : le rapport un vers deux double ce nombre, zéro virgule sept cent quatorze mole d'ammoniac. Étape quatre : multipliées par dix-sept grammes par mole, elles donnent environ douze grammes d'ammoniac.",
+   "ecran": "synthese_ex",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "10,0 g de N₂ donnent 12,1 g de NH₃."
+  },
+  {
+   "dit": "La précision de ces calculs peut sauver des vies. Le gonflement d'un airbag repose sur la décomposition éclair de l'azoture de sodium : deux unités donnent deux atomes de sodium et trois molécules de diazote gazeux. Les ingénieurs calculent la masse exacte de ce solide pour produire, en quelques millisecondes, juste le volume de gaz qui gonfle le coussin. Trop peu, le coussin ne protège pas ; trop, il devient dangereux.",
+   "ecran": "airbag",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "L'airbag : un calcul qui doit être exact."
+  },
+  {
+   "dit": "Pour les gaz, une loi relie tout : le produit de la pression par le volume égale la quantité de matière, multipliée par une constante universelle et par la température absolue, en kelvins. Cette constante vaut zéro virgule zéro huit cent vingt et un lorsque la pression est en atmosphères et le volume en litres. La loi résume des siècles d'observations, de Boyle à Avogadro, et elle gouverne tous les calculs de gaz qui suivent.",
+   "ecran": "gaz_parfaits",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "PV = nRT : pression, volume, moles, température."
+  },
+  {
+   "dit": "Dans des conditions standard, zéro degré et une atmosphère, la loi des gaz parfaits donne un résultat remarquable : une mole de n'importe quel gaz occupe environ vingt-deux litres quatre. C'est le volume molaire. Trente-deux grammes de dioxygène, deux grammes de dihydrogène, quarante-quatre grammes de dioxyde de carbone : des masses très différentes, mais exactement le même volume, car le même nombre de molécules.",
+   "ecran": "volume_molaire",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Aux CSTP, une mole de gaz vaut 22,4 litres."
+  },
+  {
+   "dit": "Premier calcul de gaz, dans les conditions standard. Quel volume d'ammoniac obtient-on à partir de trente-trois litres six de diazote ? On divise par le volume molaire : une mole et demie de diazote. Le rapport molaire un vers deux donne trois moles d'ammoniac. On multiplie par le volume molaire : soixante-sept litres deux. Le volume a doublé, exactement comme le rapport des coefficients, un vers deux.",
+   "ecran": "gaz_ex",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "33,6 L de N₂ deviennent 67,2 L de NH₃."
+  },
+  {
+   "dit": "Hors des conditions standard, c'est la loi des gaz parfaits qui travaille. On brûle onze grammes de propane par une journée chaude, trente-cinq degrés et presque une atmosphère : quel volume de dioxyde de carbone sort du moteur ? Les moles de propane, zéro virgule deux cent cinquante, triplent en moles de dioxyde de carbone. Puis la loi donne le volume : environ dix-neuf litres deux. Attention au réflexe : la température se convertit toujours en kelvins.",
+   "ecran": "propane_gaz",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Hors CSTP, la température passe en kelvins."
+  },
+  {
+   "dit": "Que se passe-t-il quand les réactifs ne sont pas dans les proportions de l'équation ? L'un d'eux s'épuise le premier et arrête la réaction : c'est le réactif limitant, les autres restent en excès. Comme dans un atelier qui possède trois moteurs et vingt roues : trois voitures seulement sortiront. Mélangeons cinq moles de diazote et douze moles de dihydrogène pour fabriquer l'ammoniac : lequel des deux s'épuisera le premier ?",
+   "ecran": "limitant",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Le premier épuisé arrête la réaction."
+  },
+  {
+   "dit": "La méthode : calculez le produit que chaque réactif permettrait, s'il réagissait seul. Le diazote donnerait dix moles d'ammoniac ; le dihydrogène, huit moles seulement. Le plus petit résultat désigne le limitant : le dihydrogène. Tout le calcul se base donc sur lui. Il consomme quatre moles de diazote, et il en restera une mole en excès. Ce bilan, quantités initiales, variations et quantités finales, est le tableau d'avancement de la réaction.",
+   "ecran": "limitant_calcul",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "8,0 contre 10,0 : le plus petit produit gagne."
+  },
+  {
+   "dit": "Récapitulons. Tout problème suit le même chemin : convertir en moles, appliquer le rapport molaire, reconvertir. Pour les gaz, le volume molaire sert aux conditions standard, et la loi des gaz parfaits prend le relais partout ailleurs. Et dès que plusieurs réactifs sont donnés en quantité, une question précède toutes les autres : lequel s'épuisera le premier ? C'est lui qui fixera la quantité de produit. Nous y arrivons.",
+   "ecran": "recap2",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Moles, rapports, gaz, limitant : le chemin est tracé."
+  },
+  {
+   "dit": "Le calcul donne toujours un maximum théorique. La réalité est plus modeste : réactions incomplètes, pertes lors des manipulations, réactions parasites, impuretés des réactifs. Le rendement en pourcentage compare le réel au théorique. Le procédé Haber-Bosch lui-même n'est devenu rentable qu'après des années d'optimisation de la pression, de la température et du catalyseur, tant l'équilibre résistait.",
+   "ecran": "rendement",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "Le réel reste sous le maximum théorique."
+  },
+  {
+   "dit": "Exercice complet : on brûle cinquante grammes d'aluminium dans cent grammes de dioxygène. L'équation d'abord, puis les moles : environ une virgule quatre-vingt-cinq mole d'aluminium, trois virgule cent vingt-cinq moles de dioxygène. Que chacun produise son oxyde : l'aluminium n'en donnerait qu'environ zéro virgule quatre-vingt-treize mole, le dioxygène plus du double. L'aluminium est donc le limitant, et la masse théorique d'oxyde d'aluminium atteint quatre-vingt-quatorze grammes quarante-sept.",
+   "ecran": "exercice_al",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "Aluminium limitant : 94,47 g théoriques."
+  },
+  {
+   "dit": "L'expérience, elle, ne livre que soixante-dix-huit grammes cinq d'oxyde d'aluminium. Le rendement compare ce réel au théorique calculé : soixante-dix-huit virgule cinq divisé par quatre-vingt-quatorze virgule quarante-sept, soit quatre-vingt-trois virgule un pour cent. Un bon rendement : les pertes viennent sans doute de la poudre volatile et d'une oxydation incomplète. Retenez le schéma : limitant, théorique, puis rendement.",
+   "ecran": "rendement_ex",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "83,1 % : le rendement de l'exercice."
+  },
+  {
+   "dit": "Retour à l'usine : cinq cents kilogrammes de diazote, du dihydrogène en excès, quelle masse d'ammoniac attendre ? Le chemin est désormais familier : les kilos deviennent des grammes, les grammes des moles, le rapport un vers deux double le nombre, et le retour en masse donne environ six cent sept kilogrammes d'ammoniac. En pratique, l'ingénieur corrige toujours ce maximum par le rendement réel de son installation.",
+   "ecran": "usine",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "500 kg d'azote, environ 607 kg d'ammoniac."
+  },
+  {
+   "dit": "Au laboratoire du pharmacien, la stœchiométrie devient un dosage. Vingt millilitres d'acide chlorhydrique de concentration inconnue sont neutralisés par vingt-quatre millilitres cinq de soude à zéro virgule cent mole par litre. Les moles de soude versées se calculent par concentration fois volume ; l'équation, un pour un, les égale aux moles d'acide. La division par le volume d'acide donne sa concentration : zéro virgule un deux deux cinq mole par litre.",
+   "ecran": "dosage",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Un dosage : retrouver une concentration inconnue."
+  },
+  {
+   "dit": "Exercice de synthèse : la combustion du propane réunit masse, volume et réactif limitant. Dix grammes de propane, c'est zéro virgule deux cent vingt-sept mole. Avec du dioxygène en excès, le volume de dioxyde de carbone aux conditions normales atteint environ quinze litres trois. Mais avec seulement vingt litres de dioxygène, le calcul change : il en faudrait plus de vingt-cinq litres, le dioxygène devient le limitant, et l'eau produite tombe à environ douze grammes neuf.",
+   "ecran": "synthese_propane",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "Masse, volume et limitant dans un seul exercice."
+  },
+  {
+   "dit": "Scénario d'examen numéro un, le calcul direct : quelle masse d'oxyde de fer peut naître de cinquante grammes de fer, avec du dioxygène en excès ? Les moles de fer, environ zéro virgule huit cent quatre-vingt-seize ; le rapport quatre vers deux les divise par deux ; le retour en masse donne environ soixante et onze grammes cinq d'oxyde. Le piège classique serait d'oublier le rapport des coefficients : quatre fers ne donnent que deux oxydes.",
+   "ecran": "examen_fe",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "50,0 g de fer donnent 71,5 g d'oxyde."
+  },
+  {
+   "dit": "Scénario numéro deux, le classique : dix grammes d'aluminium et trente-cinq grammes de dichlore. Comptez les paquets de réaction que chaque réactif permet : l'aluminium en offre zéro virgule cent quatre-vingt-cinq, le dichlore seulement zéro virgule cent soixante-quatre. Le plus petit paquet désigne le limitant, le dichlore. Tous les calculs partent de lui : on obtient environ quarante-trois grammes neuf de chlorure d'aluminium, et un peu d'aluminium restera en excès.",
+   "ecran": "examen_alcl3",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "Cl₂ limitant : 43,9 g de chlorure d'aluminium."
+  },
+  {
+   "dit": "Scénario numéro trois, le synthétique : la pureté d'un échantillon de carbonate de calcium, deux grammes, attaqué par un acide en excès. Le gaz recueilli, deux cent cinquante millilitres, devient des moles grâce au volume molaire fourni par l'énoncé. Rapport un pour un, puis masse : un gramme zéro quatre de carbonate pur, soit cinquante-deux pour cent de l'échantillon. Avec une collecte à quatre-vingt-dix pour cent, la masse pure réelle monte à environ un gramme seize.",
+   "ecran": "examen_caco3",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "Pureté de l'échantillon : 52,0 %."
+  },
+  {
+   "dit": "Avant de conclure, la feuille de route à garder en tête le jour de l'épreuve. Lisez l'énoncé et repérez données et inconnue. Écrivez l'équation équilibrée, avec les états. Convertissez tout en moles. Lisez le rapport molaire, et vérifiez s'il existe un réactif limitant dès que plusieurs réactifs sont donnés. Calculez, reconvertissez dans l'unité demandée, puis contrôlez l'ordre de grandeur : votre résultat doit avoir un sens.",
+   "ecran": "methode_finale",
+   "id": "p32",
+   "pause_apres": 0.8,
+   "texte": "La checklist : lire, équilibrer, convertir, vérifier."
+  },
+  {
+   "dit": "Vous voici arrivés au bout du cours. La stœchiométrie est un langage complet : l'équation équilibrée donne les proportions, la mole traduit les grammes en nombre de particules, les rapports molaires circulent d'une substance à l'autre, et le réactif limitant dit jusqu'où la réaction peut aller, quand le rendement mesure ce qu'elle livre vraiment. Ingénieur d'usine, pharmacien ou pilote de fusée : tous comptent comme vous venez d'apprendre à compter.",
+   "ecran": "recap_final",
+   "id": "p33",
+   "pause_apres": 0.8,
+   "texte": "Compter comme un chimiste, du bécher à la fusée."
+  }
+ ],
+ "titre": "La stœchiométrie : compter la matière qui réagit"
+}

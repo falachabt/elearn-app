@@ -1,0 +1,326 @@
+{
+ "cours": 6700,
+ "titre": "Mesures et incertitudes",
+ "matiere": "Physique",
+ "lecons": [
+  9478
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique",
+   "titre": "Mesures et incertitudes",
+   "sous": "Module transversal de Terminale D : erreur, incertitude, dimensions et validation d'un modèle",
+   "anim": {
+    "nom": "regle_incertitude_fig",
+    "hauteur": 250
+   }
+  },
+  "erreur": {
+   "type": "formule",
+   "kicker": "Erreur sur la mesure",
+   "tex": "\\varepsilon = x_m - x_v",
+   "note": "x_m : valeur mesurée · x_v : valeur vraie, inconnue"
+  },
+  "types_erreurs": {
+   "type": "recap",
+   "kicker": "Deux types d'erreurs",
+   "titre": "Systématique ou aléatoire",
+   "etapes": [
+    "Systématique : défaut d'étalonnage ou de méthode",
+    "Reproductible, elle peut être corrigée",
+    "Aléatoire : fluctuations des conditions expérimentales",
+    "Imprévisible, elle se traite statistiquement"
+   ]
+  },
+  "mesure_unique": {
+   "type": "formule",
+   "kicker": "Cas d'une mesure unique",
+   "tex": "u(x) = \\frac{r}{2\\sqrt{3}}",
+   "note": "r : résolution de l'appareil de mesure"
+  },
+  "serie": {
+   "type": "formule",
+   "kicker": "Cas d'une série de mesures",
+   "tex": "u(\\bar{x}) = \\frac{s}{\\sqrt{n}}",
+   "note": "s : écart-type expérimental de la série"
+  },
+  "ecriture": {
+   "type": "formule",
+   "kicker": "Écrire le résultat",
+   "tex": "x = \\bar{x} \\pm u(\\bar{x})",
+   "note": "Pour une mesure unique : x = x_m ± u(x)"
+  },
+  "exemple_donnees": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "La tension d'une pile, mesurée cinq fois (voltmètre, résolution 0,1 V)",
+   "tex": [
+    "4{,}5 \\quad 4{,}6 \\quad 4{,}5 \\quad 4{,}7 \\quad 4{,}5 \\ \\text{V}"
+   ]
+  },
+  "exemple_calcul": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Moyenne, écart-type, incertitude-type",
+   "tex": [
+    "\\bar{x} = 4{,}56 \\ \\text{V}",
+    "s \\approx 0{,}089 \\ \\text{V}",
+    "u(\\bar{x}) = \\frac{0{,}089}{\\sqrt{5}} \\approx 0{,}04 \\ \\text{V}"
+   ]
+  },
+  "exemple_resultat": {
+   "type": "formule",
+   "kicker": "Résultat de la mesure",
+   "tex": "U = 4{,}56 \\pm 0{,}04 \\ \\text{V}",
+   "note": "La tension de la pile, avec son incertitude"
+  },
+  "qualites": {
+   "type": "recap",
+   "kicker": "Qualités d'un instrument",
+   "titre": "Justesse, fidélité, exactitude",
+   "etapes": [
+    "Justesse : liée aux erreurs systématiques",
+    "Fidélité : liée aux erreurs aléatoires",
+    "Juste et fidèle à la fois : un instrument exact"
+   ]
+  },
+  "si": {
+   "type": "etape",
+   "kicker": "Le Système International",
+   "titre": "Les sept grandeurs de base et leurs unités",
+   "tex": [
+    "\\text{Longueur : m} \\qquad \\text{Masse : kg} \\qquad \\text{Temps : s}",
+    "\\text{Intensité : A} \\qquad \\text{Température : K}",
+    "\\text{Quantité de matière : mol} \\qquad \\text{Lumière : cd}"
+   ]
+  },
+  "dimensions": {
+   "type": "etape",
+   "kicker": "Équation aux dimensions",
+   "titre": "Dimensions de quatre grandeurs courantes",
+   "tex": [
+    "[v] = L \\cdot T^{-1} \\qquad [a] = L \\cdot T^{-2}",
+    "[F] = M \\cdot L \\cdot T^{-2}",
+    "[E] = M \\cdot L^{2} \\cdot T^{-2}"
+   ]
+  },
+  "coulomb": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "La dimension de la constante de la loi de Coulomb",
+   "tex": [
+    "F = k \\, \\tfrac{q_1 q_2}{d^2} \\qquad [k] = \\frac{[F] \\, [d^2]}{[q_1] \\, [q_2]}",
+    "[k] = \\tfrac{M \\, L \\, T^{-2} \\cdot L^2}{I^2 \\, T^2}",
+    "[k] = M \\cdot L^3 \\cdot T^{-4} \\cdot I^{-2}"
+   ]
+  },
+  "homogeneite": {
+   "type": "phrase",
+   "kicker": "Homogénéité d'une relation",
+   "texte": "Une relation est homogène si ses deux membres ont la même dimension : elle peut alors être juste, sinon elle est fausse à coup sûr."
+  },
+  "exemple_energie": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "L'énergie cinétique est-elle homogène ?",
+   "tex": [
+    "E = \\frac{1}{2} \\, m \\, v^2",
+    "[E] = M \\cdot L^2 \\cdot T^{-2}",
+    "\\left[\\frac{1}{2} m v^2\\right] = M \\cdot (L \\cdot T^{-1})^2 = M \\cdot L^2 \\cdot T^{-2}"
+   ]
+  },
+  "validation": {
+   "type": "recap",
+   "kicker": "Valider une expression",
+   "titre": "Trois regards pour valider un modèle",
+   "etapes": [
+    "L'analyse dimensionnelle : l'expression est homogène",
+    "Les cas limites : variable vers 0 ou vers l'infini",
+    "Les données expérimentales, dans les incertitudes"
+   ]
+  },
+  "hypothese": {
+   "type": "recap",
+   "kicker": "Proposer une hypothèse",
+   "titre": "Ce qu'une bonne hypothèse doit être",
+   "etapes": [
+    "Testable par l'expérience",
+    "Compatible avec les connaissances existantes",
+    "Précise, et quantitative si possible"
+   ]
+  },
+  "hypothese_exemple": {
+   "type": "phrase",
+   "kicker": "Exemple d'hypothèse",
+   "texte": "La période du pendule dépendrait de la longueur du fil, pas de la masse : on fait varier un seul paramètre à la fois.",
+   "anim": {
+    "nom": "pendule",
+    "hauteur": 200
+   }
+  },
+  "ordres": {
+   "type": "etape",
+   "kicker": "Ordres de grandeur",
+   "titre": "La puissance de dix la plus proche",
+   "tex": [
+    "m \\approx 10^{3} \\ \\text{kg} \\quad \\text{(une voiture)}",
+    "t \\approx 10^{0} \\ \\text{s} \\quad \\text{(un battement de coeur)}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Points essentiels",
+   "titre": "Mesures et incertitudes",
+   "etapes": [
+    "Une incertitude encadre toujours la valeur vraie",
+    "Systématique : la justesse ; aléatoire : la fidélité",
+    "Toute relation physique doit être homogène",
+    "L'équation aux dimensions vérifie les formules",
+    "Valider : dimensions, cas limites, expérience"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce module de physique de Terminale D consacré aux mesures et aux incertitudes. Nous verrons l'erreur et l'incertitude d'une mesure, l'analyse dimensionnelle, la validation d'un modèle, et les ordres de grandeur.",
+   "ecran": "titre",
+   "pause_apres": 0.7,
+   "texte": "Mesures et incertitudes : le module de Terminale D."
+  },
+  {
+   "id": "p02",
+   "dit": "L'erreur est l'écart entre la valeur mesurée, x indice m, et la valeur vraie, x indice v, qui reste inconnue. Elle peut être systématique ou aléatoire.",
+   "ecran": "erreur",
+   "pause_apres": 0.6,
+   "texte": "Erreur : valeur mesurée moins valeur vraie."
+  },
+  {
+   "id": "p03",
+   "dit": "L'erreur systématique vient d'un défaut d'étalonnage ou de méthode : reproductible, elle peut être corrigée. L'erreur aléatoire vient des fluctuations des conditions : imprévisible, elle se traite statistiquement.",
+   "ecran": "types_erreurs",
+   "pause_apres": 0.6,
+   "texte": "Systématique : corrigeable. Aléatoire : statistique."
+  },
+  {
+   "id": "p04",
+   "dit": "Pour une mesure unique, l'incertitude-type s'estime à partir de la résolution de l'appareil, notée r : elle vaut r divisé par deux racines de trois.",
+   "ecran": "mesure_unique",
+   "pause_apres": 0.6,
+   "texte": "Mesure unique : u(x) = r / (2√3)."
+  },
+  {
+   "id": "p05",
+   "dit": "Pour une série de mesures, on calcule la moyenne et l'écart-type expérimental, noté s. L'incertitude-type sur la moyenne est l'écart-type divisé par la racine carrée du nombre de mesures.",
+   "ecran": "serie",
+   "pause_apres": 0.6,
+   "texte": "Série : u(x̄) = s / √n."
+  },
+  {
+   "id": "p06",
+   "dit": "Le résultat s'écrit alors : x égale la moyenne, plus ou moins l'incertitude-type sur la moyenne. Pour une mesure unique : x égale la valeur mesurée, plus ou moins son incertitude-type.",
+   "ecran": "ecriture",
+   "pause_apres": 0.6,
+   "texte": "Résultat : x = moyenne ± incertitude-type."
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple résolu : on mesure cinq fois la tension d'une pile avec un voltmètre de résolution zéro virgule un volt. Résultats, en volts : quatre virgule cinq ; quatre virgule six ; quatre virgule cinq ; quatre virgule sept ; quatre virgule cinq.",
+   "ecran": "exemple_donnees",
+   "pause_apres": 0.6,
+   "texte": "Cinq tensions d'une pile, entre 4,5 et 4,7 V."
+  },
+  {
+   "id": "p08",
+   "dit": "La moyenne vaut quatre virgule cinquante-six volts. L'écart-type vaut environ zéro virgule zéro quatre-vingt-neuf volt, et l'incertitude-type, environ zéro virgule zéro quatre volt.",
+   "ecran": "exemple_calcul",
+   "pause_apres": 0.6,
+   "texte": "Moyenne 4,56 V, s ≈ 0,089 V, u ≈ 0,04 V."
+  },
+  {
+   "id": "p09",
+   "dit": "Le résultat de la mesure s'écrit donc : quatre virgule cinquante-six, plus ou moins zéro virgule zéro quatre volt.",
+   "ecran": "exemple_resultat",
+   "pause_apres": 0.6,
+   "texte": "U = 4,56 ± 0,04 V."
+  },
+  {
+   "id": "p10",
+   "dit": "Les qualités d'un instrument se lisent dans ces erreurs : la justesse dépend des erreurs systématiques, la fidélité des erreurs aléatoires. Un instrument juste et fidèle à la fois est dit exact.",
+   "ecran": "qualites",
+   "pause_apres": 0.6,
+   "texte": "Justesse, fidélité, et l'instrument exact."
+  },
+  {
+   "id": "p11",
+   "dit": "Le Système international définit sept unités de base, une par grandeur fondamentale : longueur, masse, temps, intensité, température, quantité de matière et intensité lumineuse.",
+   "ecran": "si",
+   "pause_apres": 0.6,
+   "texte": "Sept grandeurs de base, sept unités du SI."
+  },
+  {
+   "id": "p12",
+   "dit": "Voici les dimensions de quatre grandeurs courantes : la vitesse, l'accélération, la force et l'énergie, toutes exprimées avec les dimensions de la longueur, de la masse et du temps.",
+   "ecran": "dimensions",
+   "pause_apres": 0.6,
+   "texte": "[v], [a], [F], [E] en fonction de L, M et T."
+  },
+  {
+   "id": "p13",
+   "dit": "Exemple résolu : quelle est la dimension de la constante k de la loi de Coulomb ? On isole k dans la formule, on remplace chaque grandeur par sa dimension, et le calcul donne : M fois L au cube, fois T puissance moins quatre, fois I puissance moins deux.",
+   "ecran": "coulomb",
+   "pause_apres": 0.6,
+   "texte": "[k] = M·L³·T⁻⁴·I⁻²."
+  },
+  {
+   "id": "p14",
+   "dit": "Une relation est homogène si ses deux membres ont la même dimension. Vérifier l'homogénéité permet de valider une expression ou de détecter une erreur.",
+   "ecran": "homogeneite",
+   "pause_apres": 0.6,
+   "texte": "Homogène : même dimension dans les deux membres."
+  },
+  {
+   "id": "p15",
+   "dit": "Exemple résolu : l'énergie cinétique, un demi de m fois v au carré. Le membre de gauche a pour dimension M L carré T moins deux ; le membre de droite donne exactement la même dimension : la relation est homogène.",
+   "ecran": "exemple_energie",
+   "pause_apres": 0.6,
+   "texte": "E = ½mv² : les deux membres ont même dimension."
+  },
+  {
+   "id": "p16",
+   "dit": "Pour valider une expression ou un modèle, on confronte trois regards : l'analyse dimensionnelle d'abord ; les cas limites ensuite, quand une variable tend vers zéro ou vers l'infini ; enfin les données expérimentales, à reproduire dans le cadre des incertitudes.",
+   "ecran": "validation",
+   "pause_apres": 0.6,
+   "texte": "Valider : dimensions, cas limites, expérience."
+  },
+  {
+   "id": "p17",
+   "dit": "Une hypothèse est une proposition provisoire, formulée avant l'expérience pour expliquer un phénomène. Elle doit être testable expérimentalement, compatible avec les connaissances existantes, et formulée de manière précise, quantitative si possible.",
+   "ecran": "hypothese",
+   "pause_apres": 0.6,
+   "texte": "Une hypothèse : testable, compatible, précise."
+  },
+  {
+   "id": "p18",
+   "dit": "Exemple d'hypothèse : la période d'oscillation d'un pendule simple ne dépend pas de la masse, mais de la longueur du fil. Pour la vérifier, on fait varier un seul paramètre à la fois.",
+   "ecran": "hypothese_exemple",
+   "pause_apres": 0.6,
+   "texte": "La période dépendrait de la longueur, pas de la masse."
+  },
+  {
+   "id": "p19",
+   "dit": "Dernier outil : l'ordre de grandeur, c'est-à-dire la puissance de dix la plus proche d'une valeur. Une voiture pèse environ dix puissance trois kilogrammes ; un battement de cœur dure environ dix puissance zéro seconde, c'est-à-dire une seconde.",
+   "ecran": "ordres",
+   "pause_apres": 0.6,
+   "texte": "Voiture ≈ 10³ kg ; battement de cœur ≈ 10⁰ s."
+  },
+  {
+   "id": "p20",
+   "dit": "Pour retenir l'essentiel : une mesure s'accompagne toujours d'une incertitude qui encadre la valeur vraie ; l'erreur systématique affecte la justesse, l'aléatoire la fidélité ; et valider un modèle combine dimensions, cas limites et expérience.",
+   "ecran": "recap",
+   "pause_apres": 0.5,
+   "texte": "Incertitude, homogénéité, validation : l'essentiel."
+  }
+ ]
+}

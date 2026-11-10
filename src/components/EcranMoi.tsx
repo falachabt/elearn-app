@@ -1,19 +1,19 @@
 import * as Clipboard from 'expo-clipboard';
-import { Image } from 'expo-image';
 import { router, useFocusEffect } from 'expo-router';
-import { CircleHelp, FileText, Gift, IdCard, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
+import { CalendarDays, CircleHelp, Clock, FileText, Gift, IdCard, LogOut, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { estInvite } from '@/services/compte';
+import { cleErreur, deconnecter, estInvite } from '@/services/compte';
 import { paiementPossible } from '@/services/plateforme';
 import { identiteDe } from '@/services/identite';
+import { lireActivitesJours } from '@/services/activite';
 import { lireDocuments } from '@/services/documents';
 import { calculerProgression, lirePassages } from '@/services/progression';
 import { lireContactParent, lireDemandeSuppression } from '@/services/moi';
 import { lireAcces, type Acces } from '@/services/pass';
-import { lireProfil, type Profil } from '@/services/profil';
+import { enregistrerProfil, lireProfil, profilDepuisCompte, type Profil } from '@/services/profil';
 import { joursAvant } from '@/services/quand';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
@@ -24,10 +24,16 @@ import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 import { Appui } from './Appui';
 import { Banniere } from './Banniere';
 import { Bouton } from './Bouton';
+import { Feuille } from './Feuille';
+import { Carte } from './Carte';
 import { Ecran } from './Ecran';
+import { ProgressionToeic } from './certification/ProgressionToeic';
 import { CarteCredits } from './moi/CarteCredits';
 import { enMo } from './MesDocuments';
 import { Groupe, LigneGroupe } from './parametres/Groupe';
+import { AvatarNiveau } from './xp/AvatarNiveau';
+import { CarteXp } from './xp/CarteXp';
+import { ecouterGainXp, lireUserXp } from '@/services/xp';
 
 type Resume = { minutes: number | null; documents: { n: number; octets: number } | null };
 
@@ -36,7 +42,8 @@ type Resume = { minutes: number | null; documents: { n: number; octets: number }
  * jaune du pass, la carte « Mes crédits » ou la carte d'invitation à créer un compte, et deux cartes de lignes.
  * Chaque ligne ouvre son écran ; celles dont l'écran n'existe pas encore ne sont pas affichées.
  */
-export function EcranMoi() {
+/** Moi. `toeic` : même page, progression vers l'objectif à la place de la carte XP et lignes TOEIC (maquette TOEIC-N2). */
+export function EcranMoi({ toeic = false }: { toeic?: boolean } = {}) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const { session, statut } = useSession();
@@ -46,39 +53,66 @@ export function EcranMoi() {
   const [resume, setResume] = useState<Resume>({ minutes: null, documents: null });
   const [parent, setParent] = useState<string | null>(null);
   const [identifiantCopie, setIdentifiantCopie] = useState(false);
+  const [confirmerSortie, setConfirmerSortie] = useState(false);
+  const [sortieEnCours, setSortieEnCours] = useState(false);
+  const [sortieErreur, setSortieErreur] = useState<string | null>(null);
+  const [totalXp, setTotalXp] = useState(0);
+  const [utilisateurFrais, setUtilisateurFrais] = useState(session?.user);
 
-  const user = session?.user;
+  const user = utilisateurFrais ?? session?.user;
   const invite = estInvite(user);
   const connecte = !!user && !invite;
   const idUtilisateur = user?.id;
   const { nom, photo } = identiteDe(user);
-  const initiale = (nom ?? '').charAt(0).toUpperCase();
 
-  // Relu à chaque retour sur l'onglet : classe changée, mission faite, document gardé, contact ajouté.
+  useEffect(() => {
+    return ecouterGainXp((info) => {
+      setTotalXp(info.total);
+    });
+  }, []);
+
+  // Relu à chaque retour sur l'onglet : classe changée, mission faite, document gardé, contact ajouté, XP gagnés.
   useFocusEffect(
     useCallback(() => {
       let actif = true;
       void (async () => {
         const client = getSupabase();
-        const [p, docs, passages] = await Promise.all([
-          lireProfil(),
+        let p = await lireProfil();
+        if ((!p || !p.niveau) && user) {
+          const depuisCompte = profilDepuisCompte(user);
+          if (depuisCompte) {
+            p = depuisCompte;
+            void enregistrerProfil(depuisCompte);
+          }
+        }
+        const [docs, passages, activites, xp] = await Promise.all([
           lireDocuments().catch(() => []),
           lirePassages(client).catch(() => null),
+          lireActivitesJours().catch(() => ({})),
+          lireUserXp(client, idUtilisateur).catch(() => 0),
         ]);
         if (!actif) return;
         setProfil(p);
+        setTotalXp(xp);
         setResume({
-          minutes: passages ? calculerProgression(passages).minutesSemaine : null,
+          minutes: passages ? calculerProgression(passages, undefined, activites).minutesSemaine : null,
           documents: { n: docs.length, octets: docs.reduce((s, d) => s + d.taille, 0) },
         });
         if (!connecte) return;
         const [c] = await Promise.all([lireContactParent(client).catch(() => null), lireDemandeSuppression(client).catch(() => null)]);
-        if (actif) setParent(c?.telephone ? c.nom : null);
+        if (actif) {
+          setParent(c?.telephone ? c.nom : null);
+          if (typeof client.auth?.getUser === 'function' && (!user?.user_metadata?.avatar_url || !user?.user_metadata?.full_name)) {
+            client.auth.getUser().then(({ data }) => {
+              if (actif && data?.user) setUtilisateurFrais(data.user);
+            }).catch(() => {});
+          }
+        }
       })();
       return () => {
         actif = false;
       };
-    }, [connecte]),
+    }, [connecte, idUtilisateur, user]),
   );
 
   useEffect(() => {
@@ -93,6 +127,20 @@ export function EcranMoi() {
   }, [idUtilisateur]);
 
   // L'identifiant sert au support WhatsApp : l'élève le copie et le colle dans la conversation (spec : docs/maquettes/support-confirmer.md).
+  const sortir = async () => {
+    setSortieEnCours(true);
+    setSortieErreur(null);
+    try {
+      await deconnecter(getSupabase());
+      router.replace('/bienvenue');
+    } catch (e) {
+      setSortieErreur(t(cleErreur(e) === 'compte.erreurs.reseau' ? 'compte.erreurs.reseau' : 'moi.deconnexionErreur'));
+    } finally {
+      setSortieEnCours(false);
+      setConfirmerSortie(false);
+    }
+  };
+
   const copierIdentifiant = async () => {
     if (!idUtilisateur) return;
     await Clipboard.setStringAsync(idUtilisateur).catch(() => {});
@@ -100,9 +148,15 @@ export function EcranMoi() {
     setTimeout(() => setIdentifiantCopie(false), 2500);
   };
 
+  const serieCourt = profil?.type === 'eleve' && profil.serie?.nom
+    ? profil.serie.nom.replace(/^(s[eé]rie|seconde|premi[eè]re|terminale)\s+/i, '').trim()
+    : '';
+  const classeEleve = profil?.niveau
+    ? (serieCourt && serieCourt.toLowerCase() !== profil.niveau.toLowerCase() ? `${profil.niveau} ${serieCourt}` : profil.niveau)
+    : '';
   const classePays = profil?.niveau
     ? t('profil.classeSous', {
-        classe: profil.type === 'concours' ? t(`classe.concoursListe.${profil.niveau as 'ens'}`) : profil.niveau,
+        classe: profil.type === 'concours' ? t(`classe.concoursListe.${profil.niveau as 'ens'}`) : classeEleve,
         pays: profil.pays ? t(`pays.${profil.pays as 'CM'}`) : '',
       })
     : null;
@@ -112,10 +166,24 @@ export function EcranMoi() {
   const jours = finPass ? joursAvant(finPass) : null;
   const date = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long' });
 
+  const nomAffiche = invite ? t('profil.invite') : (nom ?? (user?.email ? user.email.split('@')[0] : t('profil.monCompte')));
+  const sousProfil = profil?.niveau
+    ? t('profilChoix.monProfilSous', {
+        type: profil.type === 'concours' ? t('profilChoix.typeConcours') : t('profilChoix.typeSecondaire'),
+        classe: profil.type === 'concours' ? t(`classe.concoursListe.${profil.niveau as 'ens'}`) : classeEleve,
+      })
+    : undefined;
+
+  const sousTitre = invite ? t('profil.inviteSous') : (classePays ?? (user?.email ? user.email : ''));
+
   return (
     <Ecran insetBas={false}>
-      <View style={styles.entete}>
-        <Text accessibilityRole="header" style={[typo.h1, styles.flex, { color: theme.texte.principal }]}>{t('moi.titre')}</Text>
+      <View style={styles.identite}>
+        <AvatarNiveau photo={photo} nom={nomAffiche} totalXp={totalXp} taille={60} />
+        <View style={styles.flex}>
+          <Text style={[typo.h2, { color: theme.texte.principal }]}>{nomAffiche}</Text>
+          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{sousTitre}</Text>
+        </View>
         <Appui accessibilityRole="button" accessibilityLabel={t('profil.reglagesLibelle')} onPress={() => router.push('/parametres')} decalage={0} rayon={rayon.m} hitSlop={4}>
           <View style={[styles.roue, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
             <Settings size={20} strokeWidth={2} color={theme.texte.principal} />
@@ -123,19 +191,7 @@ export function EcranMoi() {
         </Appui>
       </View>
 
-      <View style={styles.identite}>
-        <View style={[styles.avatar, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-          {photo ? (
-            <Image source={{ uri: photo }} style={styles.photo} contentFit="cover" accessibilityLabel={nom ?? undefined} accessibilityIgnoresInvertColors />
-          ) : (
-            <Text style={[typo.h3, { color: theme.texte.surCouleur }]}>{initiale || '?'}</Text>
-          )}
-        </View>
-        <View style={styles.flex}>
-          <Text style={[typo.h2, { color: theme.texte.principal }]}>{nom ?? t('profil.invite')}</Text>
-          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{invite ? t('profil.inviteSous') : classePays ?? ''}</Text>
-        </View>
-      </View>
+      {toeic ? <ProgressionToeic /> : connecte && totalXp >= 0 ? <CarteXp totalXp={totalXp} /> : null}
 
       {statut === 'erreur' ? <Banniere ton="erreur" titre={t('erreur.banniere')} texte={t('moi.sessionErreur')} /> : null}
 
@@ -179,8 +235,16 @@ export function EcranMoi() {
           icone={Target}
           titre={t('profil.progression')}
           sousTitre={resume.minutes !== null ? t('profil.progSous', { n: resume.minutes }) : undefined}
-          onPress={() => router.push('/progression')}
+          onPress={() => router.push(toeic ? '/statistiques' : '/progression')}
         />
+        {connecte ? (
+          <LigneGroupe
+            icone={CalendarDays}
+            titre={t('profil.rapportHebdo')}
+            sousTitre={t('profil.rapportHebdoSous')}
+            onPress={() => router.push(toeic ? '/certification/semaine' as never : { pathname: '/ma-semaine', params: { source: 'inbox' } })}
+          />
+        ) : null}
         <LigneGroupe
           icone={FileText}
           titre={t('profil.documents')}
@@ -199,7 +263,7 @@ export function EcranMoi() {
       </Groupe>
 
       <Groupe>
-        <LigneGroupe icone={RefreshCw} titre={t('profil.classe')} sousTitre={classePays ?? undefined} onPress={() => router.push({ pathname: '/classe', params: { modifier: '1' } })} />
+        <LigneGroupe icone={RefreshCw} titre={t('profilChoix.monProfil')} sousTitre={toeic ? t('certification.moiToeic.monProfilAide') : sousProfil} onPress={() => router.push('/profil/choisir' as never)} />
         {connecte ? (
           <LigneGroupe icone={Shield} titre={t('moi.parent')} sousTitre={parent ? t('profil.parentSous', { nom: parent }) : t(paiementPossible() ? 'profil.parentAucun' : 'profil.parentAucunSansPaiement')} onPress={() => router.push('/profil/parent')} />
         ) : null}
@@ -215,18 +279,43 @@ export function EcranMoi() {
         ) : null}
         <LigneGroupe icone={CircleHelp} titre={t('profil.aide')} onPress={() => router.push('/aide')} />
       </Groupe>
+
+      {toeic ? (
+        <Groupe>
+          <LigneGroupe icone={Target} titre={t('certification.moiToeic.objectif')} onPress={() => router.push({ pathname: '/certification/objectif', params: { modifier: '1' } } as never)} />
+          <LigneGroupe icone={Clock} titre={t('certification.moiToeic.temps')} onPress={() => router.push({ pathname: '/certification/temps', params: { modifier: '1' } } as never)} />
+          <LigneGroupe icone={Settings} titre={t('certification.moiToeic.reglages')} sousTitre={t('certification.moiToeic.reglagesAide')} onPress={() => router.push('/parametres')} />
+          <View style={[styles.pointille, { borderColor: theme.bord.fort }]}>
+  <LigneGroupe icone={LogOut} titre={t('certification.moiToeic.deconnexion')} sousTitre={t('certification.moiToeic.deconnexionAide')} onPress={() => setConfirmerSortie(true)} />
+          </View>
+        </Groupe>
+      ) : null}
+
+      {toeic ? (
+        <Feuille
+          ouverte={confirmerSortie}
+          onFermer={() => setConfirmerSortie(false)}
+          titre={t('certification.moiToeic.deconnexionTitre')}
+          texte={sortieErreur ? `${t('certification.moiToeic.deconnexionTexte')}\n${sortieErreur}` : t('certification.moiToeic.deconnexionTexte')}
+          actions={[
+            { libelle: t('certification.moiToeic.deconnexionAnnuler'), onPress: () => setConfirmerSortie(false) },
+            { libelle: t('certification.moiToeic.deconnexionBouton'), onPress: () => void sortir(), variante: 'secondaire' },
+          ]}
+        />
+      ) : null}
     </Ecran>
   );
 }
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   roue: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   identite: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   avatar: { width: 56, height: 56, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   photo: { width: '100%', height: '100%' },
   carteJaune: { gap: espace[3], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   ligne: { flexDirection: 'row', alignItems: 'center' },
+  // Séparateur en tirets au-dessus de « Se déconnecter » (maquette N2-2).
+  pointille: { borderTopWidth: bord.normal, borderStyle: 'dashed' },
   jours: { borderWidth: bord.normal, borderRadius: rayon.s, paddingHorizontal: espace[3], paddingVertical: espace[1] },
 });

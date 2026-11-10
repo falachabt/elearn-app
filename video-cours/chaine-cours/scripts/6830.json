@@ -1,0 +1,541 @@
+{
+ "cours": 6830,
+ "ecrans": {
+  "amorti_eq": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "amortie"
+   },
+   "kicker": "Oscillations amorties",
+   "note": "Frottement visqueux f = −αv · α : coefficient d'amortissement (kg/s)",
+   "tex": "m\\frac{d^2x}{dt^2} + \\alpha \\frac{dx}{dt} + kx = 0",
+   "titre": "Un terme de frottement dans l'équation",
+   "type": "formule"
+  },
+  "amorties_obs": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "amortie"
+   },
+   "kicker": "Oscillations amorties",
+   "texte": "Écarté puis lâché, un pendule élastique oscille : sans frottements, l'amplitude reste constante ; avec des frottements, elle diminue progressivement, jusqu'à l'arrêt complet.",
+   "type": "phrase"
+  },
+  "elastique": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "ressort"
+   },
+   "kicker": "Le pendule élastique",
+   "texte": "Un solide de masse m accroché à un ressort à spires non jointives, de constante de raideur k. On néglige les frottements et on suit le centre d'inertie G du solide.",
+   "type": "phrase"
+  },
+  "elastique_eq": {
+   "kicker": "Pendule élastique",
+   "tex": [
+    "m\\tfrac{d^2X}{dt^2} = -kX \\qquad X = x - x_0",
+    "\\tfrac{d^2X}{dt^2} + \\tfrac{k}{m}X = 0",
+    "\\tfrac{d^2X}{dt^2} + \\omega_0^2 X = 0 \\qquad \\omega_0 = \\sqrt{\\tfrac{k}{m}}"
+   ],
+   "titre": "L'élongation X obéit à l'équation harmonique",
+   "type": "etape"
+  },
+  "elastique_forces": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "ressort"
+   },
+   "kicker": "Pendule élastique",
+   "tex": [
+    "\\vec{P} = m\\vec{g} \\qquad \\vec{F} = -k(x - x_0)\\,\\vec{i}",
+    "\\sum \\vec{F}_{ext} = m\\,\\vec{a}_G"
+   ],
+   "titre": "Les forces, puis la deuxième loi de Newton",
+   "type": "etape"
+  },
+  "elastique_solution": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "sinusoide"
+   },
+   "kicker": "Pendule élastique",
+   "tex": [
+    "X(t) = X_m \\cos(\\omega_0 t + \\varphi)",
+    "T_0 = 2\\pi\\sqrt{\\frac{m}{k}} \\qquad f_0 = \\frac{1}{2\\pi}\\sqrt{\\frac{k}{m}}"
+   ],
+   "titre": "Solution, période et fréquence propres",
+   "type": "etape"
+  },
+  "exemple_amorti": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "T_0 = 2\\pi\\sqrt{\\frac{m}{k}} = 2\\pi\\sqrt{\\frac{0{,}20}{20}} \\approx 0{,}63\\ \\text{s}",
+    "T = 0{,}64\\ \\text{s} \\qquad \\frac{T - T_0}{T_0} \\approx 1{,}6\\ \\%"
+   ],
+   "titre": "Pseudo-période et période propre comparées",
+   "type": "etape"
+  },
+  "exemple_elastique": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "k = 20\\ \\text{N/m} \\qquad m = 0{,}5\\ \\text{kg}",
+    "\\omega_0 = \\sqrt{\\frac{20}{0{,}5}} = \\sqrt{40} \\approx 6{,}32\\ \\text{rad/s}",
+    "T_0 = \\frac{2\\pi}{\\omega_0} \\approx 0{,}99\\ \\text{s}"
+   ],
+   "titre": "Un ressort de vingt newtons par mètre",
+   "type": "etape"
+  },
+  "exemple_pendule": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "L = 0{,}40\\ \\text{m} \\qquad \\theta_0 = 0{,}10\\ \\text{rad}",
+    "\\omega_0 = \\sqrt{\\tfrac{g}{L}} = \\sqrt{\\tfrac{9{,}81}{0{,}40}} \\approx 4{,}95\\ \\text{rad/s}",
+    "T_0 = 2\\pi\\sqrt{\\tfrac{L}{g}} \\approx 1{,}27\\ \\text{s}"
+   ],
+   "titre": "Un pendule simple de quarante centimètres",
+   "type": "etape"
+  },
+  "exemple_pendule_ci": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\theta(0) = \\theta_m \\cos\\varphi = 0{,}10",
+    "\\dot{\\theta}(0) = -\\theta_m \\omega_0 \\sin\\varphi = 0 \\;\\Rightarrow\\; \\varphi = 0",
+    "\\theta_m = 0{,}10\\ \\text{rad} \\qquad \\theta(t) = 0{,}10\\cos(4{,}95\\,t)"
+   ],
+   "titre": "Les conditions initiales fixent amplitude et phase",
+   "type": "etape"
+  },
+  "exemple_resonance": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "f_0 = 2{,}0\\ \\text{Hz}",
+    "f_r = 1{,}95\\ \\text{Hz} \\qquad \\Delta f = 0{,}05\\ \\text{Hz}"
+   ],
+   "titre": "Un vibreur balaye les fréquences",
+   "type": "etape"
+  },
+  "exemple_torsion": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "J_\\Delta = 2 \\times 10^{-4}\\ \\text{kg}\\, \\text{m}^{2} \\qquad C = 8 \\times 10^{-3}\\ \\text{N}\\, \\text{m/rad}",
+    "\\omega_0 = \\sqrt{\\frac{8 \\times 10^{-3}}{2 \\times 10^{-4}}} = \\sqrt{40} \\approx 6{,}32\\ \\text{rad/s}",
+    "T_0 = \\frac{2\\pi}{\\omega_0} \\approx 0{,}99\\ \\text{s}"
+   ],
+   "titre": "Un disque au bout d'un fil de torsion",
+   "type": "etape"
+  },
+  "forcees": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "sinusoide"
+   },
+   "kicker": "Oscillations forcées",
+   "texte": "Un excitateur extérieur impose sa fréquence f à l'oscillateur. Après un régime transitoire, l'oscillateur oscille à cette fréquence imposée, avec une amplitude constante.",
+   "type": "phrase"
+  },
+  "harmonique": {
+   "kicker": "Oscillateur harmonique",
+   "note": "ω₀ : pulsation propre, caractéristique du système",
+   "tex": "\\frac{d^2\\theta}{dt^2} + \\omega_0^2 \\theta = 0",
+   "titre": "L'équation qui définit l'oscillateur harmonique",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "pendule"
+   },
+   "kicker": "Introduction",
+   "texte": "Un oscillateur mécanique répète son mouvement autour d'une position d'équilibre stable : écarté puis lâché, il oscille de part et d'autre de cette position.",
+   "type": "phrase"
+  },
+  "periodes": {
+   "kicker": "Période propre",
+   "tex": [
+    "T_0 = \\tfrac{2\\pi}{\\omega_0}",
+    "T_0 = 2\\pi\\sqrt{\\tfrac{L}{g}} \\qquad \\text{(pendule simple)}",
+    "T_0 = 2\\pi\\sqrt{\\tfrac{J_\\Delta}{mgd}} \\qquad \\text{(pendule pesant)}"
+   ],
+   "titre": "Une période propre pour chaque système",
+   "type": "etape"
+  },
+  "pesant": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "pendule"
+   },
+   "kicker": "Le pendule pesant",
+   "texte": "Un solide mobile autour d'un axe horizontal fixe, qui ne passe pas par son centre de gravité G, dans un champ de pesanteur uniforme. À l'équilibre, G est à la verticale sous l'axe.",
+   "type": "phrase"
+  },
+  "pesant_eq": {
+   "kicker": "Pendule pesant",
+   "note": "JΔ : moment d'inertie par rapport à l'axe · d : distance de l'axe à G",
+   "tex": "J_\\Delta \\frac{d^2\\theta}{dt^2} = -mgd\\sin\\theta",
+   "titre": "Le moment du poids ramène le pendule",
+   "type": "formule"
+  },
+  "pesant_petites": {
+   "kicker": "Pendule pesant",
+   "tex": [
+    "\\sin\\theta \\approx \\theta \\quad \\text{(θ petit)}",
+    "J_\\Delta \\frac{d^2\\theta}{dt^2} + mgd\\,\\theta = 0",
+    "\\frac{d^2\\theta}{dt^2} + \\omega_0^2 \\theta = 0 \\qquad \\omega_0 = \\sqrt{\\frac{mgd}{J_\\Delta}}"
+   ],
+   "titre": "Petites oscillations : on linéarise",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Pendule simple : T₀ = 2π√(L/g)",
+    "Ressort : ω₀ = √(k/m) · torsion : ω₀ = √(C/J_Δ)",
+    "Solution : un cosinus (amplitude, phase)",
+    "Amorti : l'amplitude décroît peu à peu",
+    "Résonance : amplitude max quand f ≈ f₀"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "regimes": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "amortie"
+   },
+   "etapes": [
+    "α < αc : pseudo-périodique, l'amplitude décroît",
+    "α = αc : critique, retour rapide sans oscillation",
+    "α > αc : apériodique, retour lent sans oscillation"
+   ],
+   "kicker": "Les trois régimes d'amortissement",
+   "type": "recap"
+  },
+  "resonance_amort": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "resonance"
+   },
+   "kicker": "La résonance",
+   "texte": "Plus l'amortissement est faible, plus la résonance est aiguë : pic d'amplitude élevé et étroit, et fréquence de résonance très proche de la fréquence propre.",
+   "type": "phrase"
+  },
+  "resonance_def": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "resonance"
+   },
+   "kicker": "La résonance",
+   "texte": "L'amplitude des oscillations forcées devient maximale lorsque la fréquence de l'excitateur est voisine de la fréquence propre de l'oscillateur : c'est la résonance.",
+   "type": "phrase"
+  },
+  "simple": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "pendule"
+   },
+   "kicker": "Le pendule simple",
+   "texte": "Un point matériel de masse m, suspendu à un fil inextensible de longueur L et de masse négligeable, qui oscille dans un plan vertical.",
+   "type": "phrase"
+  },
+  "simple_eq": {
+   "kicker": "Pendule simple",
+   "tex": [
+    "mL\\tfrac{d^2\\theta}{dt^2} = -mg\\sin\\theta",
+    "\\tfrac{d^2\\theta}{dt^2} + \\tfrac{g}{L}\\sin\\theta = 0",
+    "\\tfrac{d^2\\theta}{dt^2} + \\tfrac{g}{L}\\theta = 0 \\qquad \\omega_0 = \\sqrt{\\tfrac{g}{L}}"
+   ],
+   "titre": "Du théorème du centre d'inertie à l'équation",
+   "type": "etape"
+  },
+  "solution": {
+   "kicker": "Oscillateur harmonique",
+   "note": "θm : amplitude · φ : phase à l'origine · ω₀t + φ : phase à l'instant t",
+   "tex": "\\theta(t) = \\theta_m \\cos(\\omega_0 t + \\varphi)",
+   "titre": "La solution est un cosinus",
+   "type": "formule"
+  },
+  "synthese": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "sinusoide"
+   },
+   "etapes": [
+    "Solution sinusoïdale pour les trois oscillateurs",
+    "Période indépendante de l'amplitude : isochronisme",
+    "Sans frottements, l'énergie mécanique se conserve",
+    "Mesurer T₀ donne k pour le ressort, J_Δ pour la torsion"
+   ],
+   "kicker": "Synthèse",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "pendule"
+   },
+   "kicker": "Physique",
+   "sous": "Pendules, ressort, torsion : des oscillations libres, amorties, jusqu'à la résonance",
+   "titre": "Oscillateurs mécaniques",
+   "type": "titre"
+  },
+  "torsion": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "torsion"
+   },
+   "kicker": "Le pendule de torsion",
+   "texte": "Un solide suspendu à un fil dont l'extrémité supérieure est fixe. Écarté d'un angle θ, le fil tordu exerce un couple de rappel proportionnel à cet angle.",
+   "type": "phrase"
+  },
+  "torsion_eq": {
+   "kicker": "Pendule de torsion",
+   "tex": [
+    "\\mathcal{M} = -C\\theta",
+    "J_\\Delta \\frac{d^2\\theta}{dt^2} = -C\\theta",
+    "\\frac{d^2\\theta}{dt^2} + \\omega_0^2 \\theta = 0 \\qquad \\omega_0 = \\sqrt{\\frac{C}{J_\\Delta}}"
+   ],
+   "titre": "Le couple de rappel, proportionnel à l'angle",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  9684,
+  9685,
+  9686
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Pendules et oscillateur harmonique"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : le pendule élastique et le pendule de torsion. Après les pendules pesants, voici deux autres oscillateurs qui obéissent à la même équation.",
+    "texte": "Partie 2 : pendule élastique et pendule de torsion."
+   },
+   "sous_titre": "Le pendule élastique et le pendule de torsion"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : oscillations amorties et résonance. Jusqu'ici, pas de frottements ; voyons maintenant ce qui se passe dans le monde réel.",
+    "texte": "Partie 3 : amortissement et résonance."
+   },
+   "sous_titre": "Oscillations amorties et résonance"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique consacré aux oscillateurs mécaniques : les pendules, le ressort et le pendule de torsion. Nous verrons comment décrire leurs oscillations libres, puis ce que les frottements changent, jusqu'au phénomène de résonance.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Oscillateurs mécaniques : pendules, ressort et torsion."
+  },
+  {
+   "dit": "Un oscillateur mécanique est un système qui, écarté de sa position d'équilibre stable puis lâché, revient vers elle et la dépasse : il oscille de part et d'autre de cette position. Toute la question est de décrire ce va-et-vient : quelle est sa période, et comment évolue son amplitude ?",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Osciller autour d'une position d'équilibre stable."
+  },
+  {
+   "dit": "Commençons par le pendule pesant : c'est un solide mobile autour d'un axe horizontal fixe, qui ne passe pas par son centre de gravité G, le tout dans un champ de pesanteur uniforme. Au repos, le centre de gravité se place à la verticale, juste sous l'axe : c'est sa position d'équilibre stable.",
+   "ecran": "pesant",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Le pendule pesant : un solide qui tourne autour d'un axe."
+  },
+  {
+   "dit": "Écartons le pendule d'un angle thêta. Le théorème du moment cinétique, appliqué par rapport à l'axe de rotation, donne : J delta fois la dérivée seconde de thêta égale moins m g d sinus thêta. Le signe moins montre que le moment du poids ramène toujours le pendule vers son équilibre.",
+   "ecran": "pesant_eq",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "JΔ·θ″ = −mgd·sin θ : le moment du poids rappelle le pendule."
+  },
+  {
+   "dit": "Pour de petits angles, exprimés en radians, sinus thêta est presque égal à thêta. L'équation se linéarise : thêta double point, plus oméga zéro au carré fois thêta, égale zéro, avec oméga zéro égale à la racine carrée de m g d sur J delta. C'est la pulsation propre du pendule pesant.",
+   "ecran": "pesant_petites",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Petites oscillations : ω₀ = √(mgd/JΔ)."
+  },
+  {
+   "dit": "Le pendule simple est le modèle épuré du pendule pesant : un point matériel de masse m, suspendu à un fil inextensible de longueur L et de masse négligeable. Il oscille dans un plan vertical, et on repère sa position par l'angle thêta que fait le fil avec la verticale.",
+   "ecran": "simple",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Le pendule simple : une masse, un fil de longueur L."
+  },
+  {
+   "dit": "Projetons le théorème du centre d'inertie sur la tangente à la trajectoire : m L thêta double point égale moins m g sinus thêta. Pour de petites oscillations, on obtient thêta double point plus g sur L fois thêta égale zéro : la pulsation propre vaut donc racine carrée de g sur L.",
+   "ecran": "simple_eq",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Pendule simple : ω₀ = √(g/L)."
+  },
+  {
+   "dit": "Retenez la forme commune à tous ces systèmes : un oscillateur mécanique est dit harmonique si son équation différentielle s'écrit élongation double point, plus oméga zéro au carré fois élongation, égale zéro. Oméga zéro, la pulsation propre, ne dépend que du système lui-même.",
+   "ecran": "harmonique",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Oscillateur harmonique : θ″ + ω₀²θ = 0."
+  },
+  {
+   "dit": "La solution générale est un cosinus : thêta de t égale thêta m fois cosinus de oméga zéro t plus phi. Thêta m est l'amplitude, c'est-à-dire l'écart angulaire maximal ; phi est la phase à l'origine. Ces deux constantes se déterminent grâce aux conditions initiales : la position et la vitesse au départ.",
+   "ecran": "solution",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "θ(t) = θm·cos(ω₀t + φ) : amplitude et phase."
+  },
+  {
+   "dit": "La période propre, durée d'une oscillation complète, vaut deux pi sur oméga zéro. Pour le pendule simple, cela donne deux pi racine de L sur g ; pour le pendule pesant, deux pi racine de J delta sur m g d. Remarquez que la masse du pendule simple a disparu : seule sa longueur compte.",
+   "ecran": "periodes",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "T₀ = 2π/ω₀ : une formule par pendule."
+  },
+  {
+   "dit": "Passons à un exemple complet. Un pendule simple de longueur quarante centimètres est écarté de zéro virgule dix radian et lâché sans vitesse initiale. Sa pulsation propre vaut racine de neuf virgule quatre-vingt-un sur zéro virgule quarante, soit environ quatre virgule quatre-vingt-quinze radians par seconde ; sa période propre vaut environ une virgule vingt-sept seconde.",
+   "ecran": "exemple_pendule",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Exemple : L = 0,40 m, ω₀ ≈ 4,95 rad/s, T₀ ≈ 1,27 s."
+  },
+  {
+   "dit": "Il reste à fixer l'amplitude et la phase. À l'instant initial, l'angle vaut zéro virgule dix radian et la vitesse angulaire est nulle : la condition sur la vitesse donne sinus phi égal à zéro, donc phi égal à zéro, et l'amplitude vaut zéro virgule dix radian. L'équation horaire est donc : thêta de t égale zéro virgule dix cosinus de quatre virgule quatre-vingt-quinze t.",
+   "ecran": "exemple_pendule_ci",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "φ = 0 et θm = 0,10 rad : θ(t) = 0,10·cos(4,95 t)."
+  },
+  {
+   "dit": "Changeons de système avec le pendule élastique : un solide de masse m accroché à l'extrémité d'un ressort à spires non jointives, de constante de raideur k. On néglige les frottements, et on étudie le mouvement du centre d'inertie G du solide, repéré par son abscisse x sur un axe horizontal.",
+   "ecran": "elastique",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Le pendule élastique : une masse m, un ressort de raideur k."
+  },
+  {
+   "dit": "Deux forces agissent sur le solide : son poids, et la force de rappel élastique du ressort, qui vaut moins k fois x moins x zéro, où x zéro est la longueur à vide du ressort. Cette force de rappel est toujours dirigée vers la position d'équilibre : c'est elle qui fait osciller le solide.",
+   "ecran": "elastique_forces",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "F = −k(x − x₀) : la force de rappel du ressort."
+  },
+  {
+   "dit": "Projetons la loi de Newton sur l'axe horizontal, en posant X égale x moins x zéro, l'élongation du ressort : m fois la dérivée seconde de X égale moins k X. Autrement dit, X double point plus k sur m fois X égale zéro, avec une pulsation propre égale à racine carrée de k sur m.",
+   "ecran": "elastique_eq",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Élongation X : X″ + (k/m)X = 0, ω₀ = √(k/m)."
+  },
+  {
+   "dit": "Exemple : un ressort de raideur vingt newtons par mètre supporte une masse de zéro virgule cinq kilogramme. La pulsation propre vaut racine de vingt sur zéro virgule cinq, c'est-à-dire racine de quarante, environ six virgule trente-deux radians par seconde. La période propre vaut alors environ zéro virgule quatre-vingt-dix-neuf seconde.",
+   "ecran": "exemple_elastique",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Exemple : k = 20 N/m, m = 0,5 kg, T₀ ≈ 0,99 s."
+  },
+  {
+   "dit": "La solution est encore un cosinus : X de t égale X m fois cosinus de oméga zéro t plus phi. La période propre vaut deux pi racine de m sur k, et la fréquence propre, son inverse, un sur deux pi fois racine de k sur m. Position, vitesse et accélération sont toutes sinusoïdales, avec la même pulsation.",
+   "ecran": "elastique_solution",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "X(t) = Xm·cos(ω₀t + φ) ; T₀ = 2π√(m/k)."
+  },
+  {
+   "dit": "Troisième oscillateur : le pendule de torsion. Un solide est suspendu à un fil, ou à une lame, dont l'extrémité supérieure est fixe. Quand on écarte le solide d'un angle thêta, le fil tordu exerce un couple de rappel, proportionnel à l'angle de torsion : tout est prêt pour osciller.",
+   "ecran": "torsion",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Le pendule de torsion : un fil qui se tord et rappelle."
+  },
+  {
+   "dit": "Le moment du couple de rappel s'écrit moins C fois thêta, où C est la constante de torsion du fil, en newtons mètres par radian. Le théorème du moment cinétique donne alors J delta thêta double point égale moins C thêta : on retrouve l'équation harmonique, avec oméga zéro égale racine de C sur J delta.",
+   "ecran": "torsion_eq",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Couple de rappel M = −Cθ ; ω₀ = √(C/JΔ)."
+  },
+  {
+   "dit": "Exemple : un disque de moment d'inertie deux fois dix puissance moins quatre kilogrammes mètres carrés est fixé à un fil de constante de torsion huit fois dix puissance moins trois. La pulsation propre vaut racine de quarante, environ six virgule trente-deux radians par seconde, et la période propre environ zéro virgule quatre-vingt-dix-neuf seconde.",
+   "ecran": "exemple_torsion",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Exemple : JΔ = 2×10⁻⁴, C = 8×10⁻³, T₀ ≈ 0,99 s."
+  },
+  {
+   "dit": "Que retenir de ces trois oscillateurs ? Tous sont harmoniques, avec une solution sinusoïdale ; leur période ne dépend pas de l'amplitude, c'est l'isochronisme ; et sans frottements, leur énergie mécanique se conserve. Mieux : mesurer la période permet de déterminer la raideur d'un ressort ou le moment d'inertie d'un solide.",
+   "ecran": "synthese",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Synthèse : même équation, même solution sinusoïdale."
+  },
+  {
+   "dit": "Reprenons un pendule élastique horizontal. Sans frottements, ses oscillations sont périodiques et l'amplitude reste constante : c'est le cas idéal que nous venons d'étudier. Mais avec des frottements, dans l'air ou sur un support, l'amplitude diminue peu à peu, jusqu'à l'arrêt complet du système.",
+   "ecran": "amorties_obs",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Avec frottements, l'amplitude diminue jusqu'à l'arrêt."
+  },
+  {
+   "dit": "Un oscillateur est dit amorti lorsque son énergie mécanique diminue au cours du temps, à cause des frottements. Si le frottement est visqueux, proportionnel à la vitesse, l'équation du mouvement gagne un terme : m x double point, plus alpha x point, plus k x, égale zéro, où alpha est le coefficient d'amortissement.",
+   "ecran": "amorti_eq",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Oscillateur amorti : mx″ + αx′ + kx = 0."
+  },
+  {
+   "dit": "La solution dépend de alpha, comparé à l'amortissement critique, alpha c égale deux racine de k m. En dessous, le régime est pseudo-périodique : les oscillations subsistent, d'amplitude décroissante, et l'on définit une pseudo-période entre deux passages par l'équilibre dans le même sens. Au-dessus, le régime est apériodique : retour lent, sans oscillation.",
+   "ecran": "regimes",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Trois régimes selon α par rapport à αc = 2√(km)."
+  },
+  {
+   "dit": "Exemple : un pendule élastique de masse deux cents grammes et de raideur vingt newtons par mètre oscille dans l'air. Sa pseudo-période mesurée vaut zéro virgule soixante-quatre seconde, alors que sa période propre vaut zéro virgule soixante-trois seconde. L'écart relatif n'est que de un virgule six pour cent : l'amortissement est faible, et le régime est pseudo-périodique.",
+   "ecran": "exemple_amorti",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Exemple : T = 0,64 s contre T₀ = 0,63 s, écart de 1,6 %."
+  },
+  {
+   "dit": "Pour compenser les pertes dues aux frottements, on peut entretenir les oscillations : un oscillateur est dit forcé lorsqu'un excitateur extérieur lui impose sa propre fréquence, indépendante de la fréquence propre. Après un régime transitoire, l'oscillateur adopte un régime permanent : il oscille à la fréquence imposée, avec une amplitude constante.",
+   "ecran": "forcees",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Oscillateur forcé : l'excitateur impose sa fréquence."
+  },
+  {
+   "dit": "L'amplitude des oscillations forcées dépend de la fréquence imposée, de la fréquence propre et de l'amortissement. Quand la fréquence de l'excitateur devient voisine de la fréquence propre, l'amplitude passe par un maximum : c'est la résonance. La fréquence correspondante s'appelle la fréquence de résonance.",
+   "ecran": "resonance_def",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Résonance : amplitude maximale quand f approche f₀."
+  },
+  {
+   "dit": "L'amortissement pilote la résonance : plus il est faible, plus la résonance est aiguë, avec une amplitude maximale grande et un pic étroit, et plus la fréquence de résonance se rapproche de la fréquence propre. À la limite, sans aucun frottement, l'amplitude deviendrait infinie à la résonance : l'amortissement est donc aussi une protection.",
+   "ecran": "resonance_amort",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Amortissement faible : résonance aiguë, pic élevé."
+  },
+  {
+   "dit": "Exemple : un vibreur impose ses vibrations à un pendule élastique de fréquence propre deux hertz. En balayant les fréquences, on mesure une amplitude maximale pour un virgule quatre-vingt-quinze hertz : c'est la résonance. La fréquence de résonance est très proche de la fréquence propre : l'amortissement est donc faible, mais non nul.",
+   "ecran": "exemple_resonance",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "Exemple : f₀ = 2,0 Hz, résonance à fr = 1,95 Hz."
+  },
+  {
+   "dit": "Résumons : pendules, ressort et torsion sont des oscillateurs harmoniques de solution sinusoïdale, chacun avec sa pulsation propre. Les frottements amortissent les oscillations libres et font décroître l'amplitude. Enfin, un excitateur peut forcer l'oscillateur, et lorsque sa fréquence approche la fréquence propre, c'est la résonance, avec une amplitude maximale.",
+   "ecran": "recap",
+   "id": "p30",
+   "pause_apres": 0.7,
+   "texte": "À retenir : harmonique, amortissement, résonance."
+  }
+ ],
+ "titre": "Oscillateurs mécaniques"
+}

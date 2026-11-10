@@ -6,6 +6,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { changerLangue } from '@/i18n';
 import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
+import { lireActivitesJours } from '@/services/activite';
 import { lireCorrection, statuts } from '@/services/correction';
 import { CLE_SCORES, enregistrerSession, finChapitreVue, lireEntrainement, lireSessions, lireExercicesFaits, lireMeilleursScores, noterDernier } from '@/services/entrainement';
 import { enregistrerProfil } from '@/services/profil';
@@ -115,7 +116,7 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(screen.queryByText('Fractions')).toBeNull();
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.toutes }));
     await fireEvent.press(screen.getByText('Fractions'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions', matiere: 'Mathématique' } });
   });
 
   it('changer d’onglet ne remonte rien : l’onglet quitté reste monté, son chargement n’est pas relancé', async () => {
@@ -408,6 +409,38 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.arretPlusTard }));
     expect(mockDispatch).toHaveBeenCalledWith({ type: 'GO_BACK' });
     expect(await lireExercicesFaits()).toEqual({});
+    maintenant.mockRestore();
+  });
+
+  it('exercice : le temps passé est enregistré sous le nom de la matière reçue en paramètre, jamais sous l’identifiant du cours', async () => {
+    const maintenant = jest.spyOn(Date, 'now').mockReturnValue(3_000_000);
+    mockParams = { id: 'e1', cours: '1', matiere: 'Mathématique' };
+    const vue = await monter(<ExerciceLibre />);
+    await waitFor(() => expect(screen.getByText('Simplifie la fraction 6/8.')).toBeTruthy());
+    maintenant.mockReturnValue(3_000_000 + 30_000);
+    // Le chrono recalcule chaque seconde à partir de Date.now : attendre son affichage à 30 s.
+    await waitFor(() => expect(screen.getByText('0:30')).toBeTruthy(), { timeout: 5000 });
+    vue.unmount();
+    await waitFor(async () => {
+      const jour = Object.values(await lireActivitesJours())[0];
+      expect(jour?.parMatiere).toEqual({ Mathématique: 30 });
+      expect(jour?.sessions[0]?.matiere).toBe('Mathématique');
+    });
+    maintenant.mockRestore();
+  });
+
+  it('exercice sans matière en paramètre : le temps tombe sous « Général », jamais sous l’identifiant du cours', async () => {
+    const maintenant = jest.spyOn(Date, 'now').mockReturnValue(4_000_000);
+    mockParams = { id: 'e1', cours: '1' };
+    const vue = await monter(<ExerciceLibre />);
+    await waitFor(() => expect(screen.getByText('Simplifie la fraction 6/8.')).toBeTruthy());
+    maintenant.mockReturnValue(4_000_000 + 30_000);
+    await waitFor(() => expect(screen.getByText('0:30')).toBeTruthy(), { timeout: 5000 });
+    vue.unmount();
+    await waitFor(async () => {
+      const jour = Object.values(await lireActivitesJours())[0];
+      expect(jour?.parMatiere).toEqual({ Général: 30 });
+    });
     maintenant.mockRestore();
   });
 

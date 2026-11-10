@@ -13,7 +13,7 @@ import { BandeauApplication } from '../BandeauApplication';
 const mockChemin = { valeur: '/' };
 const mockLiens: { play: string | null; appstore: string | null } = { play: 'https://play.example/app', appstore: null };
 jest.mock('expo-router', () => ({ usePathname: () => mockChemin.valeur }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/config/magasins', () => ({
   get LIEN_GOOGLE_PLAY() {
     return mockLiens.play;

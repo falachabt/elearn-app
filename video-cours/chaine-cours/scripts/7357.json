@@ -1,0 +1,358 @@
+{
+ "cours": 7357,
+ "titre": "Le barycentre et ses applications géométriques",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Géométrie",
+   "titre": "Le barycentre et ses applications géométriques",
+   "sous": "Points pondérés, coordonnées, associativité : un seul point qui résume toute une configuration",
+   "anim": {
+    "nom": "barycentre_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Des points, des poids, un équilibre : le barycentre concentre une configuration en un seul point."
+  },
+  "point_pondere": {
+   "type": "formule",
+   "kicker": "Point pondéré",
+   "tex": "(A, \\alpha)",
+   "note": "Un point A et un réel alpha, son poids, aussi appelé sa masse."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition du barycentre",
+   "tex": "\\sum_{i=1}^{n} \\alpha_i \\overrightarrow{GA_i} = \\vec{0}",
+   "note": "G est l'unique point qui annule la somme pondérée des vecteurs GA indice i.",
+   "anim": {
+    "nom": "barycentre_fig",
+    "hauteur": 170
+   }
+  },
+  "existence": {
+   "type": "etape",
+   "kicker": "Existence et unicité",
+   "titre": "Une seule condition : la somme des poids",
+   "tex": [
+    "\\sum \\alpha_i \\neq 0 \\Rightarrow G \\ \\text{existe et est unique}",
+    "\\sum \\alpha_i = 0 \\Rightarrow \\text{pas de barycentre}"
+   ]
+  },
+  "cas_particuliers": {
+   "type": "etape",
+   "kicker": "Cas particulier · poids égaux",
+   "titre": "L'isobarycentre, le barycentre équilibré",
+   "tex": [
+    "\\alpha_1 = \\alpha_2 = \\dots = \\alpha_n \\Rightarrow \\text{isobarycentre}",
+    "\\text{deux points égaux : le milieu}"
+   ]
+  },
+  "exemple1_enonce": {
+   "type": "etape",
+   "kicker": "Exemple résolu · deux points",
+   "titre": "Deux points, des poids deux et un",
+   "tex": [
+    "A(1, 2) \\qquad B(4, -1)",
+    "2\\overrightarrow{GA} + \\overrightarrow{GB} = \\vec{0}"
+   ]
+  },
+  "exemple1_calcul": {
+   "type": "etape",
+   "kicker": "Exemple résolu · le calcul",
+   "titre": "Les coordonnées, poids par poids",
+   "tex": [
+    "x_G = \\tfrac{2 \\times 1 + 1 \\times 4}{3} = 2",
+    "y_G = \\tfrac{2 \\times 2 + 1 \\times (-1)}{3} = 1",
+    "G(2, 1)"
+   ]
+  },
+  "coordonnees": {
+   "type": "etape",
+   "kicker": "Coordonnées du barycentre",
+   "titre": "La moyenne pondérée des coordonnées",
+   "tex": [
+    "x_G = \\frac{\\sum \\alpha_i x_i}{\\sum \\alpha_i}",
+    "y_G = \\frac{\\sum \\alpha_i y_i}{\\sum \\alpha_i}"
+   ]
+  },
+  "homogeneite": {
+   "type": "etape",
+   "kicker": "Homogénéité",
+   "titre": "Changer d'échelle ne déplace pas G",
+   "tex": [
+    "\\text{bar}(A_i, \\alpha_i) = \\text{bar}(A_i, k\\alpha_i)",
+    "k \\neq 0"
+   ]
+  },
+  "associativite": {
+   "type": "etape",
+   "kicker": "Associativité · regroupement",
+   "titre": "Remplacer deux points par leur barycentre partiel",
+   "tex": [
+    "H = \\text{bar}\\{(A_1, \\alpha_1), (A_2, \\alpha_2)\\}",
+    "G = \\text{bar}\\{(H, \\alpha_1 + \\alpha_2), (A_3, \\alpha_3)\\}"
+   ],
+   "anim": {
+    "nom": "associativite_fig",
+    "hauteur": 150
+   }
+  },
+  "position": {
+   "type": "formule",
+   "kicker": "Position du barycentre de deux points",
+   "tex": "\\overrightarrow{AG} = \\frac{\\beta}{\\alpha + \\beta} \\overrightarrow{AB}",
+   "note": "G appartient à la droite AB : il partage le segment dans le rapport des poids."
+  },
+  "exemple2": {
+   "type": "etape",
+   "kicker": "Exemple résolu · trois points",
+   "titre": "Poids un, un et deux",
+   "tex": [
+    "x_G = \\tfrac{-1 + 2 + 0}{4} = \\tfrac{1}{4}",
+    "y_G = \\tfrac{0 + 3 - 2}{4} = \\tfrac{1}{4}",
+    "G\\left(\\tfrac{1}{4}, \\tfrac{1}{4}\\right)"
+   ]
+  },
+  "milieu": {
+   "type": "etape",
+   "kicker": "Application · le milieu",
+   "titre": "Le milieu, un isobarycentre de deux points",
+   "tex": [
+    "I = \\text{bar}\\{(A, 1), (B, 1)\\}",
+    "\\overrightarrow{IA} + \\overrightarrow{IB} = \\vec{0}"
+   ]
+  },
+  "gravite": {
+   "type": "formule",
+   "kicker": "Centre de gravité d'un triangle",
+   "tex": "\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}",
+   "note": "G est l'isobarycentre des trois sommets A, B et C du triangle.",
+   "anim": {
+    "nom": "gravite_fig",
+    "hauteur": 170
+   }
+  },
+  "mediane": {
+   "type": "etape",
+   "kicker": "Théorème de la médiane",
+   "titre": "G se place aux deux tiers de la médiane",
+   "tex": [
+    "I \\ \\text{milieu de } [BC]",
+    "\\overrightarrow{AG} = \\tfrac{2}{3} \\overrightarrow{AI}"
+   ],
+   "anim": {
+    "nom": "gravite_fig",
+    "hauteur": 150
+   }
+  },
+  "mediane_preuve": {
+   "type": "etape",
+   "kicker": "Théorème de la médiane · preuve",
+   "titre": "Un seul regroupement suffit",
+   "tex": [
+    "G = \\text{bar}\\{(A, 1), (B, 1), (C, 1)\\}",
+    "G = \\text{bar}\\{(A, 1), (I, 2)\\}",
+    "\\overrightarrow{GA} + 2 \\overrightarrow{GI} = \\vec{0}"
+   ]
+  },
+  "alignement": {
+   "type": "phrase",
+   "kicker": "Alignement et concours",
+   "texte": "Un point barycentre de deux autres est aligné avec eux : le critère qui prouve alignements et concours."
+  },
+  "reduction": {
+   "type": "formule",
+   "kicker": "Réduction vectorielle",
+   "tex": "\\sum \\alpha_i \\overrightarrow{MA_i} = \\left(\\sum \\alpha_i\\right) \\overrightarrow{MG}",
+   "note": "Pour tout point M du plan : la somme pondérée se réduit à un seul vecteur, MG.",
+   "anim": {
+    "nom": "vecteur_chasles_fig",
+    "hauteur": 150
+   }
+  },
+  "reduction_ex": {
+   "type": "etape",
+   "kicker": "Réduction vectorielle · exemple",
+   "titre": "Deux points, des poids deux et trois",
+   "tex": [
+    "G = \\text{bar}\\{(A, 2), (B, 3)\\}",
+    "2\\overrightarrow{MA} + 3\\overrightarrow{MB} = 5\\overrightarrow{MG}"
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode",
+   "etapes": [
+    "Vérifier la somme des poids non nulle",
+    "Coordonnées : la moyenne pondérée",
+    "Regrouper : barycentres partiels d'abord",
+    "Gravité : AG vaut deux tiers de AI",
+    "Réduction : tout ramener au vecteur MG"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Barycentre : la somme pondérée est nulle",
+    "Condition : somme des poids non nulle",
+    "Coordonnées : moyennes pondérées",
+    "Associativité : regrouper les points",
+    "Centre de gravité : aux deux tiers"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré au barycentre et à ses applications en géométrie. L'idée vient de la physique : attachez des masses à des points, et il existe un point d'équilibre unique, le barycentre. Nous le définirons, calculerons ses coordonnées, puis retrouverons le centre de gravité d'un triangle.",
+   "texte": "Le barycentre : le point d'équilibre d'une configuration.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Pourquoi un tel outil ? Parce qu'un seul point peut résumer toute une configuration : le milieu d'un segment, le centre de gravité d'un triangle, le point de concours de trois droites. Le barycentre transforme une question de géométrie en un calcul de poids et de vecteurs, souvent plus court.",
+   "texte": "Un seul point pour résumer toute une configuration.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Tout commence par le point pondéré : un couple formé d'un point du plan, grand a, et d'un nombre réel, alpha, appelé son poids ou sa masse. Plus le poids est grand, plus le barycentre sera attiré vers ce point. Un point sans poids indiqué porte, par convention, le poids un.",
+   "texte": "Un point pondéré : un point et son poids alpha.",
+   "ecran": "point_pondere"
+  },
+  {
+   "id": "p04",
+   "dit": "Voici la définition. Étant donnés des points pondérés, de points a indice i et de poids alpha indice i, leur barycentre est l'unique point, grand gé, qui vérifie la relation affichée : la somme des poids multipliés par les vecteurs gé a indice i est égale au vecteur nul.",
+   "texte": "Définition : la somme pondérée des vecteurs GA est nulle.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p05",
+   "dit": "Une condition décide de tout : la somme des poids doit être non nulle. Si elle est non nulle, le barycentre existe et il est unique. Si au contraire elle vaut zéro, le barycentre n'existe pas, sauf cas dégénéré. Premier réflexe, dans chaque exercice : vérifier cette somme.",
+   "texte": "Condition d'existence : la somme des poids non nulle.",
+   "ecran": "existence"
+  },
+  {
+   "id": "p06",
+   "dit": "Cas particulier immédiat : lorsque tous les poids sont égaux, le barycentre porte un nom, c'est l'isobarycentre, le barycentre équilibré. Pour deux points de même poids, c'est simplement le milieu du segment. Pour trois points, ce sera le centre de gravité du triangle.",
+   "texte": "Poids égaux : l'isobarycentre, milieu ou centre de gravité.",
+   "ecran": "cas_particuliers"
+  },
+  {
+   "id": "p07",
+   "dit": "Premier exemple résolu. Le point a a pour coordonnées un et deux, le point b quatre et moins un, avec les poids deux pour a et un pour b. Par définition, gé vérifie : deux fois le vecteur gé a, plus une fois le vecteur gé b, égale le vecteur nul. Il reste à passer aux coordonnées.",
+   "texte": "Exemple : A et B, poids deux et un.",
+   "ecran": "exemple1_enonce"
+  },
+  {
+   "id": "p08",
+   "dit": "L'abscisse de gé est la moyenne pondérée des abscisses : deux fois un plus une fois quatre, divisé par trois, ce qui donne deux. Même calcul pour l'ordonnée : deux fois deux plus une fois moins un, divisé par trois, ce qui donne un. Le barycentre est le point de coordonnées deux et un.",
+   "texte": "Le barycentre : le point de coordonnées deux et un.",
+   "ecran": "exemple1_calcul"
+  },
+  {
+   "id": "p09",
+   "dit": "Généralisons : dans un repère, l'abscisse du barycentre est la somme des poids multipliés par les abscisses, divisée par la somme des poids, et l'ordonnée suit la même formule. On parle de moyenne pondérée des coordonnées, et ces poids sont les coordonnées barycentriques de gé.",
+   "texte": "Les coordonnées de G : des moyennes pondérées.",
+   "ecran": "coordonnees"
+  },
+  {
+   "id": "p10",
+   "dit": "Première propriété : l'homogénéité. Si l'on multiplie tous les poids par un même nombre réel non nul, le barycentre ne change pas. Seuls comptent les rapports entre les poids. Cette liberté permet souvent de simplifier les poids, par exemple en les rendant entiers.",
+   "texte": "Homogénéité : multiplier les poids ne déplace pas G.",
+   "ecran": "homogeneite"
+  },
+  {
+   "id": "p11",
+   "dit": "Deuxième propriété, la plus utile : l'associativité, ou regroupement. On peut remplacer un groupe de points pondérés par leur barycentre partiel, affecté de la somme des poids du groupe. Le barycentre de trois points se calcule alors en deux temps : un barycentre partiel, puis le barycentre final.",
+   "texte": "Associativité : regrouper, puis barycentrer à nouveau.",
+   "ecran": "associativite"
+  },
+  {
+   "id": "p12",
+   "dit": "Pour deux points, la position de gé se lit directement : le vecteur a gé vaut la fraction bêta sur alpha plus bêta, multipliée par le vecteur a b. Conséquences : gé appartient toujours à la droite a b, et il se place d'autant plus près d'un point que le poids de l'autre est grand. C'est le principe du levier.",
+   "texte": "Deux points : G est sur la droite AB, côté du plus lourd.",
+   "ecran": "position"
+  },
+  {
+   "id": "p13",
+   "dit": "Deuxième exemple, à trois points : a de coordonnées moins un et zéro, b deux et trois, c zéro et moins un, poids un, un et deux. La somme des poids vaut quatre. L'abscisse de gé vaut un quart, et son ordonnée vaut un quart aussi, par le même calcul.",
+   "texte": "Trois points pondérés : G en un quart, un quart.",
+   "ecran": "exemple2"
+  },
+  {
+   "id": "p14",
+   "dit": "Passons aux applications géométriques. Le milieu d'un segment est l'isobarycentre de ses deux extrémités, chacune de poids un : le vecteur i a plus le vecteur i b vaut le vecteur nul, c'est la définition du milieu. Toute propriété des milieux devient un cas particulier du barycentre.",
+   "texte": "Le milieu : l'isobarycentre des deux extrémités.",
+   "ecran": "milieu"
+  },
+  {
+   "id": "p15",
+   "dit": "Pour un triangle a b c, le centre de gravité, grand gé, est l'isobarycentre des trois sommets : le vecteur gé a, plus le vecteur gé b, plus le vecteur gé c, égale le vecteur nul. C'est le point d'équilibre du triangle, le point où il tiendrait en équilibre sur une pointe, et nous allons voir qu'il est situé sur chaque médiane, à une position très précise.",
+   "texte": "Centre de gravité : l'isobarycentre des trois sommets.",
+   "ecran": "gravite"
+  },
+  {
+   "id": "p16",
+   "dit": "Théorème de la médiane : si i est le milieu du côté b c, alors le vecteur a gé vaut les deux tiers du vecteur a i. Autrement dit, gé se trouve sur la médiane issue de a, aux deux tiers de sa longueur en partant du sommet. Le même résultat vaut pour les deux autres médianes.",
+   "texte": "Le centre de gravité : aux deux tiers de chaque médiane.",
+   "ecran": "mediane"
+  },
+  {
+   "id": "p17",
+   "dit": "La preuve tient en un regroupement. Regroupons b et c : leur barycentre partiel est leur milieu i, de poids deux. Gé devient le barycentre de a, de poids un, et de i, de poids deux, d'où la relation : vecteur gé a plus deux fois le vecteur gé i égale le vecteur nul. On en tire exactement les deux tiers annoncés.",
+   "texte": "Preuve : regrouper B et C en leur milieu I, poids deux.",
+   "ecran": "mediane_preuve"
+  },
+  {
+   "id": "p18",
+   "dit": "Le barycentre fournit aussi un critère d'alignement et de concours. Trois points sont alignés si et seulement si l'un d'eux est le barycentre des deux autres avec des poids convenables. Et pour montrer que trois droites sont concourantes, on montre que leur point commun est un même barycentre.",
+   "texte": "Alignement et concours se prouvent par le barycentre.",
+   "ecran": "alignement"
+  },
+  {
+   "id": "p19",
+   "dit": "Dernier outil, fondamental : la réduction vectorielle. Pour tout point m du plan, la somme des poids multipliés par les vecteurs m a indice i se réduit à la somme des poids, multipliée par le seul vecteur m gé. Derrière cette formule, il y a la relation de Chasles, visible sur la figure : chaque vecteur m a indice i se décompose en passant par gé, et les termes en gé s'annulent par définition du barycentre.",
+   "texte": "Réduction : une somme de vecteurs devient un seul, MG.",
+   "ecran": "reduction"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple immédiat : si gé est le barycentre de a, de poids deux, et de b, de poids trois, alors pour tout point m, deux fois le vecteur m a plus trois fois le vecteur m b vaut cinq fois le vecteur m gé, cinq étant la somme des poids. Les expressions vectorielles se simplifient en une ligne.",
+   "texte": "Exemple : deux MA plus trois MB valent cinq MG.",
+   "ecran": "reduction_ex"
+  },
+  {
+   "id": "p21",
+   "dit": "La méthode tient en cinq gestes : vérifier que la somme des poids est non nulle, calculer les coordonnées par moyennes pondérées, regrouper les points par barycentres partiels, placer le centre de gravité aux deux tiers de la médiane, et réduire toute somme vectorielle en un vecteur m gé.",
+   "texte": "La méthode en cinq gestes, dans l'ordre.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p22",
+   "dit": "Pour terminer, retenez l'enchaînement : le barycentre est l'unique point qui annule la somme pondérée des vecteurs, il existe dès que la somme des poids est non nulle, ses coordonnées sont des moyennes pondérées, l'associativité le construit par regroupements, la réduction simplifie les sommes de vecteurs, et le centre de gravité est aux deux tiers de chaque médiane.",
+   "texte": "Le barycentre : l'essentiel à retenir.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir et calculer le barycentre"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Centre de gravité, médianes et réduction vectorielle",
+   "pont": {
+    "texte": "Partie 2 : centre de gravité, médianes et réduction vectorielle.",
+    "dit": "Partie deux : le barycentre au service de la géométrie. Nous retrouverons le milieu et le centre de gravité d'un triangle, nous prouverons le théorème de la médiane, puis nous terminerons par la réduction vectorielle, l'outil qui simplifie toutes les sommes de vecteurs."
+   }
+  }
+ ]
+}

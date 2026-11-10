@@ -1,0 +1,453 @@
+{
+  "cours": 7299,
+  "titre": "Angles orientés et trigonométrie",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Trigonométrie",
+      "titre": "Angles orientés et trigonométrie",
+      "sous": "Mesurer un angle, lire le cercle, transformer et résoudre",
+      "anim": {
+        "nom": "cercle_trigo_fig",
+        "hauteur": 240
+      }
+    },
+    "angle_def": {
+      "type": "phrase",
+      "kicker": "Définition · angle orienté",
+      "texte": "Un couple de vecteurs, un sens, une mesure en radians.",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 140
+      }
+    },
+    "mesure_principale": {
+      "type": "formule",
+      "kicker": "La mesure principale",
+      "tex": "x \\in ]-\\pi,\\ \\pi] \\qquad \\text{autres : } x + 2k\\pi,\\ k \\in \\mathbb{Z}",
+      "note": "Une seule mesure principale par angle orienté"
+    },
+    "chasles": {
+      "type": "formule",
+      "kicker": "Relation de Chasles",
+      "tex": "(\\vec{u}, \\vec{w}) = (\\vec{u}, \\vec{v}) + (\\vec{v}, \\vec{w})",
+      "note": "À un multiple de deux pi près",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 110
+      }
+    },
+    "cercle_def": {
+      "type": "phrase",
+      "kicker": "Le cercle trigonométrique",
+      "texte": "Rayon un, centre O, sens direct : la droite s'enroule.",
+      "anim": {
+        "nom": "cercle_trigo_fig",
+        "hauteur": 170
+      }
+    },
+    "cos_sin": {
+      "type": "formule",
+      "kicker": "Cosinus et sinus d'un réel",
+      "tex": "M(\\cos x,\\ \\sin x)",
+      "note": "Abscisse de M : cosinus ; ordonnée de M : sinus"
+    },
+    "identite": {
+      "type": "formule",
+      "kicker": "La relation fondamentale",
+      "tex": "\\cos^2 x + \\sin^2 x = 1",
+      "note": "Le théorème de Pythagore dans le cercle unité",
+      "anim": {
+        "nom": "cercle_trigo_fig",
+        "hauteur": 120
+      }
+    },
+    "valeurs": {
+      "type": "etape",
+      "kicker": "Valeurs remarquables",
+      "titre": "Cinq angles de référence",
+      "tex": [
+        "x : \\ 0,\\ \\tfrac{\\pi}{6},\\ \\tfrac{\\pi}{4},\\ \\tfrac{\\pi}{3},\\ \\tfrac{\\pi}{2}",
+        "\\cos x : \\ 1,\\ \\tfrac{\\sqrt{3}}{2},\\ \\tfrac{\\sqrt{2}}{2},\\ \\tfrac{1}{2},\\ 0",
+        "\\sin x : \\ 0,\\ \\tfrac{1}{2},\\ \\tfrac{\\sqrt{2}}{2},\\ \\tfrac{\\sqrt{3}}{2},\\ 1"
+      ]
+    },
+    "parite": {
+      "type": "etape",
+      "kicker": "Parité et périodicité",
+      "titre": "Cosinus paire, sinus impaire, période deux pi",
+      "tex": [
+        "\\cos(-x) = \\cos x, \\quad \\sin(-x) = -\\sin x",
+        "\\cos(x + 2\\pi) = \\cos x",
+        "\\sin(x + 2\\pi) = \\sin x"
+      ]
+    },
+    "associes": {
+      "type": "etape",
+      "kicker": "Angles associés",
+      "titre": "Ramener à un angle de référence",
+      "tex": [
+        "\\cos(\\pi - x) = -\\cos x",
+        "\\sin(\\pi - x) = \\sin x",
+        "\\cos(\\pi + x) = -\\cos x",
+        "\\sin(\\pi + x) = -\\sin x"
+      ]
+    },
+    "tangente": {
+      "type": "formule",
+      "kicker": "La tangente",
+      "tex": "\\tan x = \\frac{\\sin x}{\\cos x}, \\quad \\cos x \\neq 0",
+      "note": "Période pi, là où le cosinus ne s'annule pas"
+    },
+    "ex_sin56": {
+      "type": "etape",
+      "kicker": "Exemple résolu · angle associé",
+      "titre": "Le sinus de cinq pi sur six",
+      "tex": [
+        "\\sin \\tfrac{5\\pi}{6} = \\sin\\left(\\pi - \\tfrac{\\pi}{6}\\right)",
+        "= \\sin \\tfrac{\\pi}{6} = \\tfrac{1}{2}"
+      ]
+    },
+    "equations": {
+      "type": "etape",
+      "kicker": "Équations trigonométriques",
+      "titre": "Trois formes de base",
+      "tex": [
+        "\\cos x = \\cos a \\iff x = \\pm a + 2k\\pi",
+        "\\sin x = \\sin a \\iff x = a + 2k\\pi",
+        "\\text{ou } x = \\pi - a + 2k\\pi",
+        "\\tan x = \\tan a \\iff x = a + k\\pi"
+      ]
+    },
+    "ex_cos_eq": {
+      "type": "etape",
+      "kicker": "Exemple résolu · équation en cosinus",
+      "titre": "Dans moins pi exclu, pi inclus",
+      "tex": [
+        "\\cos x = \\tfrac{\\sqrt{2}}{2} = \\cos \\tfrac{\\pi}{4}",
+        "x = \\tfrac{\\pi}{4} \\ \\text{ou}\\ x = -\\tfrac{\\pi}{4}"
+      ]
+    },
+    "ex_sin_eq": {
+      "type": "etape",
+      "kicker": "Exemple résolu · équation en sinus",
+      "titre": "Sinus égale moins un demi, dans les réels",
+      "tex": [
+        "\\sin x = -\\tfrac{1}{2} = \\sin\\left(-\\tfrac{\\pi}{6}\\right)",
+        "x = -\\tfrac{\\pi}{6} + 2k\\pi",
+        "\\text{ou}\\ x = \\tfrac{7\\pi}{6} + 2k\\pi, \\quad k \\in \\mathbb{Z}"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : à retenir",
+      "etapes": [
+        "Une mesure principale par angle",
+        "Chasles : les angles s'ajoutent",
+        "Cercle unité : cos abscisse, sin ordonnée",
+        "Valeurs remarquables de référence",
+        "Équations : deux familles de solutions"
+      ]
+    },
+    "addition": {
+      "type": "etape",
+      "kicker": "Formules d'addition",
+      "titre": "Somme et différence d'angles",
+      "tex": [
+        "\\cos(a - b) = \\cos a \\cos b + \\sin a \\sin b",
+        "\\cos(a + b) = \\cos a \\cos b - \\sin a \\sin b",
+        "\\sin(a + b) = \\sin a \\cos b + \\cos a \\sin b",
+        "\\sin(a - b) = \\sin a \\cos b - \\cos a \\sin b"
+      ]
+    },
+    "memo_signes": {
+      "type": "phrase",
+      "kicker": "Retenir les signes",
+      "texte": "Une formule à retenir, trois qui s'en déduisent.",
+      "anim": {
+        "nom": "cercle_trigo_fig",
+        "hauteur": 120
+      }
+    },
+    "ex_cos12": {
+      "type": "etape",
+      "kicker": "Exemple résolu · valeur exacte",
+      "titre": "Le cosinus de pi sur douze",
+      "tex": [
+        "\\cos \\tfrac{\\pi}{12} = \\cos\\left(\\tfrac{\\pi}{3} - \\tfrac{\\pi}{4}\\right)",
+        "= \\tfrac{1}{2} \\times \\tfrac{\\sqrt{2}}{2} + \\tfrac{\\sqrt{3}}{2} \\times \\tfrac{\\sqrt{2}}{2}",
+        "= \\tfrac{\\sqrt{2} + \\sqrt{6}}{4}"
+      ]
+    },
+    "ex_sin512": {
+      "type": "etape",
+      "kicker": "Exemple résolu · valeur exacte",
+      "titre": "Le sinus de cinq pi sur douze",
+      "tex": [
+        "\\sin \\tfrac{5\\pi}{12} = \\sin\\left(\\tfrac{\\pi}{3} + \\tfrac{\\pi}{4}\\right)",
+        "= \\tfrac{\\sqrt{3}}{2} \\times \\tfrac{\\sqrt{2}}{2} + \\tfrac{1}{2} \\times \\tfrac{\\sqrt{2}}{2}",
+        "= \\tfrac{\\sqrt{6} + \\sqrt{2}}{4}"
+      ]
+    },
+    "duplication": {
+      "type": "etape",
+      "kicker": "Formules de duplication",
+      "titre": "L'angle double, cas particulier de l'addition",
+      "tex": [
+        "\\sin(2a) = 2 \\sin a \\cos a",
+        "\\cos(2a) = \\cos^2 a - \\sin^2 a",
+        "\\cos(2a) = 2\\cos^2 a - 1 = 1 - 2\\sin^2 a"
+      ]
+    },
+    "ex_duplication": {
+      "type": "etape",
+      "kicker": "Exemple résolu · duplication",
+      "titre": "Cosinus de a égale trois cinquièmes",
+      "tex": [
+        "\\cos a = \\tfrac{3}{5}, \\quad a \\in \\left]0, \\tfrac{\\pi}{2}\\right[",
+        "\\sin^2 a = 1 - \\tfrac{9}{25} = \\tfrac{16}{25}, \\quad \\sin a = \\tfrac{4}{5}",
+        "\\cos(2a) = 2 \\times \\tfrac{9}{25} - 1 = -\\tfrac{7}{25}",
+        "\\sin(2a) = 2 \\times \\tfrac{4}{5} \\times \\tfrac{3}{5} = \\tfrac{24}{25}"
+      ]
+    },
+    "linearisation": {
+      "type": "formule",
+      "kicker": "Formules de linéarisation",
+      "tex": "\\begin{aligned} \\cos^2 a &= \\frac{1 + \\cos(2a)}{2} \\\\ \\sin^2 a &= \\frac{1 - \\cos(2a)}{2} \\end{aligned}",
+      "note": "Des carrés remplacés par un cosinus d'angle double"
+    },
+    "ex_linearisation": {
+      "type": "etape",
+      "kicker": "Exemple résolu · linéarisation",
+      "titre": "Cosinus carré moins sinus carré",
+      "tex": [
+        "E = \\cos^2 a - \\sin^2 a = \\cos(2a)",
+        "a = \\tfrac{\\pi}{8} \\Rightarrow E = \\cos \\tfrac{\\pi}{4} = \\tfrac{\\sqrt{2}}{2}"
+      ]
+    },
+    "ex_eq_double": {
+      "type": "etape",
+      "kicker": "Application · équation et angle double",
+      "titre": "Cosinus de deux ixe égale cosinus de ixe",
+      "tex": [
+        "\\cos(2x) = \\cos x",
+        "2x = x + 2k\\pi \\ \\text{ou}\\ 2x = -x + 2k\\pi",
+        "x = 2k\\pi \\ \\text{ou}\\ x = \\tfrac{2k\\pi}{3}, \\quad k \\in \\mathbb{Z}"
+      ]
+    },
+    "piege": {
+      "type": "phrase",
+      "kicker": "Piège à éviter",
+      "texte": "Diviser par cos x ou sin x fait perdre des solutions.",
+      "anim": {
+        "nom": "cercle_trigo_fig",
+        "hauteur": 110
+      }
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Addition : une formule mère, trois déduites",
+        "Duplication : angle double, trois formes",
+        "Linéarisation : les carrés sans exposant",
+        "Valeurs exactes par différence d'angles",
+        "Équations : ne jamais diviser sans vérifier"
+      ]
+    },
+    "associes2": {
+      "type": "etape",
+      "kicker": "Angles associés",
+      "titre": "Pi sur deux moins x : les rôles échangés",
+      "tex": [
+        "\\cos(\\tfrac{\\pi}{2} - x) = \\sin x",
+        "\\sin(\\tfrac{\\pi}{2} - x) = \\cos x"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux angles orientés et à la trigonométrie. Nous mesurerons les angles dans les deux sens, nous lirons cosinus et sinus sur le cercle trigonométrique, puis les formules d'addition transformeront les angles et résoudront des équations.",
+      "texte": "Angles orientés et trigonométrie."
+    },
+    {
+      "id": "p02",
+      "ecran": "angle_def",
+      "dit": "Un angle orienté est défini par un couple de vecteurs, u puis v, et une mesure en radians. Positive quand on tourne de u vers v dans le sens direct, le sens contraire des aiguilles d'une montre, négative dans le sens indirect. Le même angle a une infinité de mesures, à un nombre entier de tours près.",
+      "texte": "Couple de vecteurs, mesure en radians."
+    },
+    {
+      "id": "p03",
+      "ecran": "mesure_principale",
+      "dit": "Parmi toutes ces mesures, une seule appartient à l'intervalle moins pi exclu, pi inclus : c'est la mesure principale. Toute autre mesure s'obtient en lui ajoutant un multiple entier de deux pi, autant de tours complets que l'on veut, dans un sens ou dans l'autre.",
+      "texte": "Une mesure principale, des tours en plus."
+    },
+    {
+      "id": "p04",
+      "ecran": "chasles",
+      "dit": "La relation de Chasles additionne les angles orientés. L'angle de u à w est la somme de l'angle de u à v et de l'angle de v à w, à deux pi près : on insère un vecteur intermédiaire quelconque. Exemple : pi sur trois suivi de pi sur quatre donne sept pi sur douze.",
+      "texte": "Chasles : insérer un vecteur intermédiaire."
+    },
+    {
+      "id": "p05",
+      "ecran": "cercle_def",
+      "dit": "Le cercle trigonométrique est le cercle de centre o et de rayon un, parcouru dans le sens direct. À tout réel ixe correspond un unique point èm, en partant du point i, à droite du cercle : la longueur de l'arc de i à èm vaut exactement ixe.",
+      "texte": "Cercle unité : chaque réel devient un point."
+    },
+    {
+      "id": "p06",
+      "ecran": "cos_sin",
+      "dit": "Les coordonnées de èm définissent les deux fonctions du cours. Son abscisse est le cosinus de ixe, son ordonnée est le sinus de ixe. Cette lecture sur le cercle donne les signes, les valeurs nulles et les valeurs extrêmes, un ou moins un.",
+      "texte": "Cosinus en abscisse, sinus en ordonnée."
+    },
+    {
+      "id": "p07",
+      "ecran": "identite",
+      "dit": "Le point èm est sur le cercle de rayon un : par le théorème de Pythagore, le carré du cosinus plus le carré du sinus vaut un, pour tout réel ixe. C'est l'identité la plus utilisée du chapitre : elle retrouve un sinus depuis un cosinus, et réciproquement.",
+      "texte": "Cosinus carré plus sinus carré égale un."
+    },
+    {
+      "id": "p08",
+      "ecran": "valeurs",
+      "dit": "Cinq angles de référence donnent des valeurs exactes à connaître par cœur : zéro, pi sur six, pi sur quatre, pi sur trois et pi sur deux. Leurs cosinus valent un, racine de trois sur deux, racine de deux sur deux, un demi et zéro ; leurs sinus suivent l'ordre inverse, de zéro à un.",
+      "texte": "Cinq angles, dix valeurs exactes."
+    },
+    {
+      "id": "p09",
+      "ecran": "parite",
+      "dit": "Deux symétries organisent les fonctions. Le cosinus est pair : cosinus de moins ixe égale cosinus de ixe. Le sinus est impair : sinus de moins ixe égale moins sinus de ixe. Et les deux sont périodiques de période deux pi : un tour complet ne change rien.",
+      "texte": "Parité et période deux pi."
+    },
+    {
+      "id": "p10",
+      "ecran": "associes",
+      "dit": "Les angles associés ramènent un angle quelconque à un angle de référence. Pi moins ixe change le signe du cosinus et garde le sinus. Pi plus ixe change le signe des deux.",
+      "texte": "Angles associés : signes et échanges."
+    },
+    {
+      "id": "p10b",
+      "ecran": "associes2",
+      "dit": "Pi sur deux moins ixe échange les rôles : son cosinus est le sinus de ixe, son sinus le cosinus de ixe.",
+      "texte": "Angles associés : π/2 − x échange cosinus et sinus."
+    },
+    {
+      "id": "p11",
+      "ecran": "tangente",
+      "dit": "La tangente complète le trio. Là où le cosinus ne s'annule pas, la tangente de ixe est le quotient du sinus par le cosinus. Sa période est pi, moitié de celle du cosinus et du sinus, car un demi-tour change les deux signes à la fois.",
+      "texte": "Tangente : sinus sur cosinus, période pi."
+    },
+    {
+      "id": "p12",
+      "ecran": "ex_sin56",
+      "dit": "Exemple d'angle associé. Le sinus de cinq pi sur six : cinq pi sur six s'écrit pi moins pi sur six, et le sinus de pi moins ixe est le sinus de ixe. Le résultat est donc le sinus de pi sur six, c'est-à-dire un demi.",
+      "texte": "Exemple : sinus de cinq pi sur six, un demi."
+    },
+    {
+      "id": "p13",
+      "ecran": "equations",
+      "dit": "Résoudre une équation trigonométrique commence par la ramener à une égalité de même nature. Cosinus contre cosinus : ixe égale a, ou ixe égale moins a, à deux ka pi près. Sinus contre sinus : ixe égale a, ou pi moins a. Tangente contre tangente : une seule famille, à ka pi près.",
+      "texte": "Trois formes, leurs familles de solutions."
+    },
+    {
+      "id": "p14",
+      "ecran": "ex_cos_eq",
+      "dit": "Premier exemple. Résoudre cosinus ixe égale racine de deux sur deux, dans moins pi exclu, pi inclus. Or racine de deux sur deux est le cosinus de pi sur quatre. Les solutions sont pi sur quatre et moins pi sur quatre, toutes deux dans l'intervalle demandé.",
+      "texte": "Exemple : plus ou moins pi sur quatre."
+    },
+    {
+      "id": "p15",
+      "ecran": "ex_sin_eq",
+      "dit": "Deuxième exemple. Résoudre sinus ixe égale moins un demi, dans les réels. Or moins un demi est le sinus de moins pi sur six. Les solutions sont moins pi sur six plus deux ka pi, ou sept pi sur six plus deux ka pi, pour tout entier relatif ka.",
+      "texte": "Exemple : deux familles, à deux ka pi près."
+    },
+    {
+      "id": "p16",
+      "ecran": "recap1",
+      "dit": "Retenons la première partie. Une mesure principale par angle, la relation de Chasles pour additionner, le cosinus en abscisse et le sinus en ordonnée sur le cercle unité, et trois formes d'équations avec leurs familles de solutions.",
+      "texte": "Angles et cercle : à retenir."
+    },
+    {
+      "id": "p17",
+      "ecran": "addition",
+      "dit": "Voici les formules d'addition, admises dans ce cours. Le cosinus d'une différence est cosinus fois cosinus plus sinus fois sinus ; pour une somme, seul le signe central change. Le sinus d'une somme est sinus fois cosinus plus cosinus fois sinus ; pour une différence, le signe devient moins. Le cosinus garde ses fonctions, le sinus les mélange.",
+      "texte": "Addition : le cosinus garde, le sinus mélange."
+    },
+    {
+      "id": "p18",
+      "ecran": "memo_signes",
+      "dit": "Pour retenir les signes, un seul effort : mémoriser le cosinus d'une différence, cosinus, cosinus, plus, sinus, sinus. Les trois autres formules s'en déduisent en remplaçant bé par moins bé, grâce à la parité du cosinus et à l'imparité du sinus. Une formule en donne quatre.",
+      "texte": "Une formule mère pour les quatre."
+    },
+    {
+      "id": "p19",
+      "ecran": "ex_cos12",
+      "dit": "Première valeur exacte. Le cosinus de pi sur douze : pi sur douze est la différence de pi sur trois et pi sur quatre, deux angles remarquables. La formule donne un demi fois racine de deux sur deux, plus racine de trois sur deux fois racine de deux sur deux, soit racine de deux plus racine de six, sur quatre.",
+      "texte": "Exemple : cosinus de pi sur douze, exact."
+    },
+    {
+      "id": "p20",
+      "ecran": "ex_sin512",
+      "dit": "Deuxième valeur exacte. Le sinus de cinq pi sur douze, somme de pi sur trois et pi sur quatre. La formule donne racine de trois sur deux fois racine de deux sur deux, plus un demi fois racine de deux sur deux, soit racine de six plus racine de deux, sur quatre.",
+      "texte": "Exemple : sinus de cinq pi sur douze, exact."
+    },
+    {
+      "id": "p21",
+      "ecran": "duplication",
+      "dit": "En posant bé égal a dans les formules d'addition, on obtient les formules de duplication, celles de l'angle double. Le sinus de deux a vaut deux fois sinus a fois cosinus a. Le cosinus de deux a vaut cosinus au carré moins sinus au carré, ou deux cosinus au carré moins un, ou un moins deux sinus au carré.",
+      "texte": "Duplication : bé devient a."
+    },
+    {
+      "id": "p22",
+      "ecran": "ex_duplication",
+      "dit": "Exemple de duplication. Le cosinus de a vaut trois cinquièmes, a angle aigu. Le sinus au carré vaut un moins neuf vingt-cinquièmes, soit seize vingt-cinquièmes, donc le sinus vaut quatre cinquièmes. Le cosinus de deux a vaut moins sept vingt-cinquièmes, et le sinus de deux a vaut vingt-quatre vingt-cinquièmes.",
+      "texte": "Exemple : moins sept et vingt-quatre vingt-cinquièmes."
+    },
+    {
+      "id": "p23",
+      "ecran": "linearisation",
+      "dit": "La linéarisation lit la duplication à l'envers. Le cosinus au carré de a vaut un plus cosinus de deux a, sur deux. Le sinus au carré de a vaut un moins cosinus de deux a, sur deux. Les carrés disparaissent, remplacés par un cosinus d'angle double.",
+      "texte": "Linéarisation : les carrés disparaissent."
+    },
+    {
+      "id": "p24",
+      "ecran": "ex_linearisation",
+      "dit": "Exemple. Cosinus au carré de a moins sinus au carré de a n'est autre que le cosinus de deux a. Pour a égal pi sur huit, deux a vaut pi sur quatre, dont le cosinus est racine de deux sur deux.",
+      "texte": "Exemple : pi sur huit donne racine de deux sur deux."
+    },
+    {
+      "id": "p25",
+      "ecran": "ex_eq_double",
+      "dit": "Dernière application. Résoudre cosinus de deux ixe égale cosinus de ixe, dans les réels. La forme cosinus contre cosinus donne deux ixe égale ixe plus deux ka pi, ou deux ixe égale moins ixe plus deux ka pi. Solutions : ixe égal deux ka pi, ou deux ka pi sur trois.",
+      "texte": "Application : deux familles de solutions."
+    },
+    {
+      "id": "p26",
+      "ecran": "piege",
+      "dit": "Un dernier piège. Ne divisez jamais une équation trigonométrique par le cosinus ou le sinus sans vérifier qu'ils ne s'annulent pas : diviser par une quantité qui peut être nulle fait disparaître des solutions.",
+      "texte": "Ne jamais diviser sans vérifier."
+    },
+    {
+      "id": "p27",
+      "ecran": "recap_final",
+      "dit": "Pour conclure. Les formules d'addition transforment sommes et différences d'angles, la duplication en est le cas des angles égaux, et la linéarisation fait disparaître les carrés. Avec les valeurs remarquables, elles donnent des valeurs exactes nouvelles et ramènent les équations aux trois formes de base.",
+      "texte": "Transformations : à retenir."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Angles orientés, cercle trigonométrique et équations"
+    },
+    {
+      "debut": "p17",
+      "sous_titre": "Formules d'addition, duplication et linéarisation",
+      "pont": {
+        "texte": "Partie 2 : addition, duplication, linéarisation.",
+        "dit": "Partie deux, les formules de transformation. Additionner et soustraire des angles, doubler les angles, faire disparaître les carrés, et appliquer le tout à des valeurs exactes et à des équations."
+      }
+    }
+  ]
+}

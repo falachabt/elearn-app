@@ -1,0 +1,309 @@
+{
+ "cours": 6747,
+ "titre": "Équations, inéquations et systèmes du premier degré",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Équations et systèmes du premier degré",
+   "titre": "Équations, inéquations et systèmes du premier degré",
+   "sous": "Résoudre, étudier les signes, puis traiter les systèmes et les problèmes",
+   "anim": {
+    "nom": "droites_trois_cas_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Résoudre, c'est trouver toutes les valeurs qui rendent une égalité ou une inégalité vraie, ni plus, ni moins."
+  },
+  "equation": {
+   "type": "formule",
+   "kicker": "Équation du premier degré",
+   "tex": "ax + b = 0 \\iff x = -\\frac{b}{a}",
+   "note": "a non nul : une équation du premier degré a exactement une solution."
+  },
+  "ex_equation": {
+   "type": "etape",
+   "kicker": "Exemple · isoler l'inconnue",
+   "titre": "Les x d'un côté, les constantes de l'autre",
+   "tex": [
+    "3x - 7 = 2x + 5",
+    "3x - 2x = 5 + 7",
+    "x = 12 \\qquad S = \\{12\\}"
+   ]
+  },
+  "produit": {
+   "type": "formule",
+   "kicker": "Équation produit",
+   "tex": "A \\times B = 0 \\iff A = 0 \\ \\text{ou} \\ B = 0",
+   "note": "Ne pas développer : annuler chaque facteur séparément."
+  },
+  "ex_produit": {
+   "type": "etape",
+   "kicker": "Exemple · deux facteurs, deux solutions",
+   "titre": "Chaque facteur donne sa petite équation",
+   "tex": [
+    "(2x - 1)(x + 3) = 0",
+    "2x - 1 = 0 \\Rightarrow x = \\tfrac{1}{2}",
+    "x + 3 = 0 \\Rightarrow x = -3"
+   ]
+  },
+  "signe_binome": {
+   "type": "etape",
+   "kicker": "Le signe du binôme ax + b",
+   "titre": "Un changement de signe à la racine",
+   "tex": [
+    "x_0 = -\\tfrac{b}{a}",
+    "a > 0 : ax + b < 0 \\text{ avant } x_0",
+    "a > 0 : ax + b > 0 \\text{ après } x_0"
+   ],
+   "note": "Si a est négatif, les signes sont inversés.",
+   "anim": {
+    "nom": "droite_racine_fig",
+    "hauteur": 120
+   }
+  },
+  "tableau_signes": {
+   "type": "etape",
+   "kicker": "Tableau de signes · l'exemple complet",
+   "titre": "Le produit est négatif entre les deux racines",
+   "tex": [
+    "(x - 2)(x + 1) \\leq 0",
+    "x + 1 = 0 \\Rightarrow x = -1",
+    "x - 2 = 0 \\Rightarrow x = 2",
+    "S = [-1\\,;\\,2]"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Équation ax + b = 0 : une seule solution",
+    "Produit nul : un facteur au moins est nul",
+    "Binôme : signe selon la racine −b/a",
+    "Tableau de signes : lire les solutions"
+   ]
+  },
+  "systeme": {
+   "type": "formule",
+   "kicker": "Systèmes · la définition",
+   "tex": "\\begin{cases} ax + by = c \\\\ a'x + b'y = c' \\end{cases}",
+   "note": "Un couple solution vérifie les deux équations en même temps."
+  },
+  "substitution": {
+   "type": "etape",
+   "kicker": "Méthode de substitution",
+   "titre": "Exprimer une inconnue, la remplacer partout",
+   "tex": [
+    "y = 7 - 2x",
+    "x - 3(7 - 2x) = -7 \\Rightarrow 7x = 14",
+    "x = 2 \\qquad y = 7 - 4 = 3"
+   ]
+  },
+  "combinaison": {
+   "type": "etape",
+   "kicker": "Méthode de combinaison linéaire",
+   "titre": "Multiplier pour éliminer une inconnue",
+   "tex": [
+    "x - y = 1 \\Rightarrow 2x - 2y = 2",
+    "5x = 14 \\Rightarrow x = \\tfrac{14}{5}",
+    "y = \\tfrac{14}{5} - 1 = \\tfrac{9}{5}"
+   ]
+  },
+  "choix_methode": {
+   "type": "phrase",
+   "kicker": "Choisir sa méthode",
+   "texte": "Substitution si une inconnue s'isole vite ; combinaison quand les coefficients se prêtent à l'élimination. Toujours vérifier à la fin."
+  },
+  "demi_plan": {
+   "type": "formule",
+   "kicker": "Inéquation à deux inconnues",
+   "tex": "ax + by \\leq c",
+   "note": "La droite frontière borne un demi-plan ; on teste un point, souvent l'origine."
+  },
+  "systeme_inequations": {
+   "type": "etape",
+   "kicker": "Système d'inéquations · l'exemple graphique",
+   "titre": "L'intersection des demi-plans est un triangle",
+   "tex": [
+    "x + y \\leq 3, \\quad x \\geq 0, \\quad y \\geq 0",
+    "\\text{sommets} : (0\\,;\\,0), (3\\,;\\,0), (0\\,;\\,3)"
+   ]
+  },
+  "methode_probleme": {
+   "type": "recap",
+   "kicker": "Modéliser un problème",
+   "etapes": [
+    "Identifier les inconnues",
+    "Traduire chaque condition",
+    "Résoudre le système obtenu",
+    "Vérifier la cohérence"
+   ]
+  },
+  "ex_rectangle": {
+   "type": "etape",
+   "kicker": "Exemple · le rectangle",
+   "titre": "Périmètre vingt huit mètres, longueur égale largeur plus deux",
+   "tex": [
+    "2x + 2y = 28 \\qquad x = y + 2",
+    "2(y + 2) + 2y = 28 \\Rightarrow y = 6",
+    "x = 8 \\qquad y = 6"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Système : substitution ou combinaison",
+    "Toujours vérifier le couple solution",
+    "Demi-plan : tracer, tester un point",
+    "Système d'inéquations : intersection",
+    "Problème : modéliser, résoudre, vérifier"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux équations et aux inéquations du premier degré. Nous apprendrons à résoudre une équation, une équation produit, puis à étudier les signes avec un tableau. Nous passerons ensuite aux systèmes de deux équations à deux inconnues, à leur lecture graphique dans le plan, et à la modélisation de problèmes concrets.",
+   "texte": "Équations, inéquations et systèmes : le programme.",
+   "ecran": "titre",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge est simple : résoudre, c'est chercher toutes les valeurs qui rendent une égalité ou une inégalité vraie, ni plus, ni moins. Chaque méthode de ce cours se termine donc de la même façon, par un ensemble de solutions clairement écrit, et chaque résultat important se vérifie en remplaçant l'inconnue par la valeur trouvée.",
+   "texte": "Résoudre : toutes les valeurs, ni plus, ni moins.",
+   "ecran": "intro",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "dit": "Une équation du premier degré à une inconnue peut toujours s'écrire sous la forme a x plus b égale zéro, avec a non nul. Elle admet une unique solution : x égale moins b sur a. Toute la technique consiste à y parvenir par des opérations qui ne changent pas les solutions : regrouper les termes en x d'un côté, les constantes de l'autre, puis diviser par le coefficient de x.",
+   "texte": "ax + b = 0 : une unique solution, −b/a.",
+   "ecran": "equation",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "dit": "Exemple : résoudre trois x moins sept égale deux x plus cinq. On regroupe les termes en x à gauche et les constantes à droite : trois x moins deux x égale cinq plus sept. Il reste x égale douze. L'ensemble des solutions contient donc un seul nombre, douze, et la vérification est immédiate en remplaçant x par douze dans les deux membres.",
+   "texte": "3x − 7 = 2x + 5 : solution unique, 12.",
+   "ecran": "ex_equation",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "dit": "Une équation produit repose sur une propriété fondamentale : un produit de facteurs est nul si et seulement si l'un au moins des facteurs est nul. Au lieu de développer le produit, ce qui compliquerait tout, on résout séparément chaque équation obtenue en annulant un facteur. Les solutions de l'équation de départ sont alors la réunion des solutions de ces petites équations.",
+   "texte": "Produit nul : un facteur au moins est nul.",
+   "ecran": "produit",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "dit": "Exemple : le produit de deux x moins un par x plus trois égale zéro. Premier facteur nul : deux x moins un égale zéro, donc x égale un demi. Deuxième facteur nul : x plus trois égale zéro, donc x égale moins trois. L'équation possède exactement deux solutions : moins trois et un demi.",
+   "texte": "Deux facteurs nuls : deux solutions.",
+   "ecran": "ex_produit",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p07",
+   "dit": "Pour résoudre une inéquation, il faut connaître le signe du binôme a x plus b. Ce binôme s'annule en sa racine, moins b sur a, et change de signe en la traversant. Si a est positif, le binôme est négatif avant la racine et positif après. Si a est négatif, les signes sont inversés. Sur le graphique, la racine est simplement le point où la droite représentant le binôme coupe l'axe des abscisses.",
+   "texte": "Le binôme change de signe à sa racine.",
+   "ecran": "signe_binome",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "dit": "Le tableau de signes organise ce travail quand plusieurs facteurs interviennent. Exemple : le produit de x moins deux par x plus un, inférieur ou égal à zéro. Les racines sont moins un et deux. Avant moins un, les deux facteurs sont négatifs, le produit est positif. Entre moins un et deux, les signes diffèrent, le produit est négatif. Après deux, le produit redevient positif. Les solutions forment donc l'intervalle fermé de moins un à deux, bornes comprises car l'inégalité est large.",
+   "texte": "(x − 2)(x + 1) ≤ 0 : solutions de −1 à 2.",
+   "ecran": "tableau_signes",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "dit": "Récapitulons cette première partie. Une équation du premier degré donne une unique solution, obtenue en isolant l'inconnue. Une équation produit se ramène à annuler chaque facteur séparément. Et une inéquation se résout par l'étude des signes, facteur par facteur, résumée dans un tableau qui fait apparaître l'ensemble des solutions.",
+   "texte": "Partie 1 : équations, produits, signes.",
+   "ecran": "recap1",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "dit": "Un système de deux équations linéaires à deux inconnues cherche un couple qui vérifie les deux équations en même temps. Graphiquement, chaque équation est une droite, et le couple solution est le point d'intersection des deux droites, quand elles se coupent. Deux méthodes algébriques conduisent à ce couple : la substitution et la combinaison linéaire.",
+   "texte": "Un système : un couple, deux équations.",
+   "ecran": "systeme",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p11",
+   "dit": "La substitution consiste à exprimer une inconnue en fonction de l'autre, puis à la remplacer partout. Dans notre exemple, la première équation donne y égale sept moins deux x. En remplaçant dans la seconde, on obtient x moins trois fois la parenthèse sept moins deux x, égale moins sept, ce qui se réduit à sept x égale quatorze, donc x égale deux. On revient alors à la première relation : y vaut sept moins quatre, soit trois. Le couple solution est deux, trois, et il vérifie bien les deux équations.",
+   "texte": "Substitution : le couple solution est (2 ; 3).",
+   "ecran": "substitution",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p12",
+   "dit": "La combinaison linéaire élimine une inconnue en additionnant les équations, après les avoir multipliées par des nombres bien choisis. Ici, on multiplie la seconde équation par deux pour faire apparaître deux y et moins deux y, qui s'annuleront par addition avec la première. Il reste cinq x égale quatorze, donc x égale quatorze cinquièmes. En reportant dans la seconde équation, y égale neuf cinquièmes. Le couple solution est donc quatorze cinquièmes, neuf cinquièmes.",
+   "texte": "Combinaison : éliminer, puis remonter.",
+   "ecran": "combinaison",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p13",
+   "dit": "Comment choisir entre les deux méthodes ? La substitution est rapide quand une inconnue est déjà presque isolée, ou quand un coefficient vaut un ou moins un. La combinaison est préférable quand aucun coefficient ne se prête à l'isolement, car elle élimine directement. Dans les deux cas, la dernière étape ne change jamais : vérifier le couple en le replaçant dans les deux équations de départ.",
+   "texte": "Choisir selon les coefficients, vérifier toujours.",
+   "ecran": "choix_methode",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "dit": "Passons au graphique. Une inéquation du premier degré à deux inconnues ne désigne plus un intervalle, mais un demi plan du plan tout entier. La frontière est la droite d'équation correspondante, tracée en trait plein pour une inégalité large. Pour savoir quel côté garder, on teste un point simple, souvent l'origine : si le point vérifie l'inéquation, on garde son côté, sinon l'autre.",
+   "texte": "Une inéquation à deux inconnues : un demi-plan.",
+   "ecran": "demi_plan",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "dit": "Un système d'inéquations garde l'intersection des demi plans solutions, c'est à dire la région qui satisfait toutes les conditions à la fois. Pour x plus y inférieur ou égal à trois, avec x et y positifs ou nuls, on trace la droite d'équation x plus y égale trois et on garde le côté de l'origine. Avec les deux axes, la région obtenue est un triangle de sommets l'origine, le point de coordonnées trois et zéro, et le point de coordonnées zéro et trois.",
+   "texte": "Intersection des demi-plans : un triangle.",
+   "ecran": "systeme_inequations",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p16",
+   "dit": "Face à un problème, la méthode est toujours la même, en quatre temps. Identifier les inconnues et les nommer clairement. Traduire chaque condition de l'énoncé par une équation. Résoudre le système obtenu, par la méthode la plus adaptée. Et vérifier que les résultats sont cohérents avec la situation : des dimensions négatives, par exemple, dénonceraient une erreur de traduction.",
+   "texte": "Modéliser en quatre temps, toujours les mêmes.",
+   "ecran": "methode_probleme",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple complet : un rectangle a un périmètre de vingt huit mètres, et sa longueur dépasse sa largeur de deux mètres. Appelons x la longueur et y la largeur. Le périmètre donne deux x plus deux y égale vingt huit, et la comparaison donne x égale y plus deux. Par substitution, deux fois y plus deux, plus deux y, égale vingt huit : quatre y plus quatre égale vingt huit, donc y égale six, puis x égale huit. Le rectangle mesure huit mètres sur six mètres, et son périmètre vaut bien vingt huit mètres.",
+   "texte": "Le rectangle : huit mètres sur six mètres.",
+   "ecran": "ex_rectangle",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p18",
+   "dit": "Pour conclure, gardez la progression complète. Isoler l'inconnue pour les équations, annuler chaque facteur pour les produits, étudier les signes pour les inéquations. Pour les systèmes, substituer ou combiner, puis vérifier le couple. Et pour les problèmes, modéliser d'abord : les équations ne sont que la traduction fidèle de l'énoncé.",
+   "texte": "Équations, systèmes, problèmes : à retenir.",
+   "ecran": "recap_final",
+   "pause_apres": 0.6
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Équations et inéquations du premier degré"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Systèmes, résolution graphique et problèmes",
+   "pont": {
+    "texte": "Partie 2 : systèmes, demi-plans et problèmes.",
+    "dit": "Partie deux : deux inconnues. Nous résoudrons les systèmes par substitution et par combinaison, nous lirons leurs solutions sur un graphique avec les demi plans, puis nous modéliserons un problème concret."
+   }
+  }
+ ]
+}

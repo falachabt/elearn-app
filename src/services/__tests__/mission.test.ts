@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { suivre } from '../analytics';
 import { calculerSerie, chargerMission, envoyerPassages, lirePassagesLocaux, CLE_MISSION, convertir, coursRates, jourLocal, lireDernierResultat, lireErreurs, lireHistorique, terminerMission, type LigneMission } from '../mission';
 
-jest.mock('../analytics', () => ({ suivre: jest.fn() }));
+jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 
 const VF = { vrai: 'Vrai', faux: 'Faux' };
 const ligne = (i: number, p: Partial<LigneMission> = {}): LigneMission => ({
@@ -201,6 +201,17 @@ describe('terminerMission', () => {
       { id: 2, nom: 'B', erreurs: 2 },
       { id: 1, nom: 'A', erreurs: 1 },
     ]);
+  });
+
+  it('attribue 50 XP la première fois du jour, mais pas lors d’une seconde complétion', async () => {
+    const questions = [convertir(ligne(1), VF, () => 0)!];
+    const c = clientFaux({});
+    await terminerMission(c as never, { questions, reponses: [questions[0].bonne], niveau: '3e', dureeS: 10, jour: '2026-10-14' });
+    expect(await AsyncStorage.getItem('mission.xp_recompensee_2026-10-14')).toBe('1');
+
+    // Seconde fois le même jour
+    await terminerMission(c as never, { questions, reponses: [questions[0].bonne], niveau: '3e', dureeS: 10, jour: '2026-10-14' });
+    expect(await AsyncStorage.getItem('mission.xp_recompensee_2026-10-14')).toBe('1');
   });
 
   it('jour local AAAA-MM-JJ', () => {

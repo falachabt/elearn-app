@@ -1,0 +1,535 @@
+{
+ "cours": 5895,
+ "titre": "Arithmétique : divisibilité, congruences et nombres premiers",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Arithmétique",
+   "titre": "Arithmétique : divisibilité, congruences et nombres premiers",
+   "sous": "Division euclidienne, algorithme d'Euclide, Bézout, Gauss, Fermat et Euler",
+   "anim": {
+    "nom": "crible_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un entier se comprend par ses diviseurs, ses multiples et les restes de ses divisions : c'est le fil rouge de tout le cours."
+  },
+  "entiers": {
+   "type": "formule",
+   "kicker": "Les entiers relatifs",
+   "tex": "\\mathbb{Z} = \\{ \\dots, -2, -1, 0, 1, 2, \\dots \\}",
+   "note": "Aucune partie fractionnaire : l'ensemble des entiers relatifs."
+  },
+  "divisibilite": {
+   "type": "formule",
+   "kicker": "La divisibilité",
+   "tex": "b \\mid a \\iff a = b k, \\quad k \\in \\mathbb{Z}, \\ b \\neq 0",
+   "note": "b diviseur de a, a multiple de b : par exemple 3 | 12."
+  },
+  "division": {
+   "type": "formule",
+   "kicker": "La division euclidienne",
+   "tex": "a = b q + r, \\qquad 0 \\le r < b",
+   "note": "q quotient, r reste : existence et unicité du couple."
+  },
+  "ex_division": {
+   "type": "etape",
+   "kicker": "Exemple · divisions euclidiennes",
+   "titre": "Deux divisions, et les diviseurs de 24",
+   "tex": [
+    "17 = 5 \\times 3 + 2, \\quad 0 \\le 2 < 5",
+    "47 = 8 \\times 5 + 7, \\quad 0 \\le 7 < 8",
+    "24 : \\text{diviseurs } 1, 2, 3, 4, 6, 8, 12, 24"
+   ]
+  },
+  "pgcd": {
+   "type": "etape",
+   "kicker": "Le plus grand commun diviseur",
+   "titre": "Comparer les listes de diviseurs de 12 et 18",
+   "tex": [
+    "\\text{diviseurs de } 12 : 1, 2, 3, 4, 6, 12",
+    "\\text{diviseurs de } 18 : 1, 2, 3, 6, 9, 18",
+    "\\text{PGCD}(12, 18) = 6"
+   ]
+  },
+  "euclide": {
+   "type": "etape",
+   "kicker": "L'algorithme d'Euclide",
+   "titre": "PGCD(48, 18) : remplacer par le reste, jusqu'au reste nul",
+   "tex": [
+    "48 = 18 \\times 2 + 12",
+    "18 = 12 \\times 1 + 6",
+    "12 = 6 \\times 2 + 0 \\qquad \\text{PGCD} = 6"
+   ],
+   "anim": {
+    "nom": "euclide_fig",
+    "hauteur": 110
+   }
+  },
+  "ppcm": {
+   "type": "formule",
+   "kicker": "Le plus petit commun multiple",
+   "tex": "\\text{PGCD}(a,b) \\times \\text{PPCM}(a,b) = a \\times b",
+   "note": "Premiers entre eux : PPCM(a, b) = a × b."
+  },
+  "ex_ppcm": {
+   "type": "etape",
+   "kicker": "Exemple · synchroniser deux cycles",
+   "titre": "Deux machines, de périodes 12 s et 18 s",
+   "tex": [
+    "\\text{PGCD}(12, 18) = 6",
+    "\\text{PPCM}(12, 18) = \\tfrac{12 \\times 18}{6} = 36",
+    "12\\ \\text{s et } 18\\ \\text{s} \\rightarrow 36\\ \\text{s}"
+   ]
+  },
+  "premiers": {
+   "type": "etape",
+   "kicker": "Les nombres premiers",
+   "titre": "Premiers, composés, et le cas de 1",
+   "tex": [
+    "2, 3, 5, 7, 11, 13, 17, 19, 23, \\dots",
+    "4 = 2 \\times 2 \\qquad 6 = 2 \\times 3 \\qquad 9 = 3 \\times 3",
+    "1 : \\text{ni premier, ni composé}"
+   ]
+  },
+  "crible": {
+   "type": "phrase",
+   "kicker": "Le crible d'Ératosthène",
+   "texte": "Le crible d'Ératosthène : barrer les multiples, il reste les premiers.",
+   "anim": {
+    "nom": "crible_fig",
+    "hauteur": 225
+   }
+  },
+  "decomposition": {
+   "type": "etape",
+   "kicker": "Le théorème fondamental",
+   "titre": "Décomposer 72, et lire un PGCD sur les facteurs",
+   "tex": [
+    "72 = 2^3 \\times 3^2",
+    "30 = 2 \\times 3 \\times 5 \\qquad 12 = 2^2 \\times 3",
+    "\\text{PGCD}(105, 252) = 3 \\times 7 = 21"
+   ],
+   "anim": {
+    "nom": "divisions_fig",
+    "hauteur": 110
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Divisibilité : b | a si a = b × k",
+    "Division euclidienne : a = bq + r, r < b",
+    "Euclide : PGCD(a, b) = PGCD(b, reste)",
+    "PGCD × PPCM = a × b",
+    "Premiers : décomposition unique"
+   ]
+  },
+  "congruences": {
+   "type": "formule",
+   "kicker": "Les congruences",
+   "tex": "a \\equiv b \\pmod{n} \\iff n \\mid (a - b)",
+   "note": "Même reste modulo n : 17 ≡ 2 (mod 5), −3 ≡ 2 (mod 5).",
+   "anim": {
+    "nom": "modulo_fig",
+    "hauteur": 170
+   }
+  },
+  "proprietes_cong": {
+   "type": "etape",
+   "kicker": "Propriétés des congruences",
+   "titre": "Addition, multiplication et puissances passent modulo n",
+   "tex": [
+    "a \\equiv b, \\ c \\equiv d \\Rightarrow a + c \\equiv b + d \\pmod{n}",
+    "a \\equiv b, \\ c \\equiv d \\Rightarrow ac \\equiv bd \\pmod{n}",
+    "a \\equiv b \\Rightarrow a^k \\equiv b^k \\pmod{n}"
+   ]
+  },
+  "applications": {
+   "type": "phrase",
+   "kicker": "Applications des congruences",
+   "texte": "Horloge modulo 12, preuve par 9, codes correcteurs et cryptographie : les restes sont partout."
+  },
+  "ex_congruences": {
+   "type": "etape",
+   "kicker": "Exemple · un test de congruence",
+   "titre": "12345 et 6789 sont-ils congrus modulo 11 ?",
+   "tex": [
+    "12345 \\equiv 3 \\pmod{11}",
+    "6789 \\equiv 2 \\pmod{11}",
+    "3 \\not\\equiv 2 \\pmod{11} : \\text{non congrus}"
+   ]
+  },
+  "crt": {
+   "type": "etape",
+   "kicker": "Le théorème des restes chinois",
+   "titre": "L'énigme de Sun Tzu : trois restes, un seul nombre",
+   "tex": [
+    "x \\equiv 2 \\pmod{3}, \\quad x \\equiv 3 \\pmod{5}, \\quad x \\equiv 2 \\pmod{7}",
+    "2 \\times 35 \\times 2 + 3 \\times 21 + 2 \\times 15 = 233",
+    "233 \\equiv 23 \\pmod{105} \\qquad x = 23"
+   ]
+  },
+  "bezout": {
+   "type": "formule",
+   "kicker": "Le théorème de Bézout",
+   "tex": "a x + b y = \\text{PGCD}(a, b)",
+   "note": "Une combinaison linéaire : 12 × (−1) + 18 × 1 = 6."
+  },
+  "euclide_etendu": {
+   "type": "etape",
+   "kicker": "L'algorithme d'Euclide étendu",
+   "titre": "Remonter les divisions de 48 et 18",
+   "tex": [
+    "6 = 18 - 12",
+    "6 = 18 - (48 - 2 \\times 18)",
+    "6 = 48 \\times (-1) + 18 \\times 3"
+   ]
+  },
+  "diophantienne": {
+   "type": "etape",
+   "kicker": "Équations diophantiennes",
+   "titre": "Résoudre 12x + 18y = 30, de la condition aux solutions",
+   "tex": [
+    "\\text{PGCD}(12, 18) = 6 \\mid 30",
+    "12 \\times (-5) + 18 \\times 5 = 30",
+    "x = -5 + 3k, \\quad y = 5 - 2k"
+   ]
+  },
+  "gauss": {
+   "type": "formule",
+   "kicker": "Le théorème de Gauss",
+   "tex": "a \\mid bc, \\ \\text{PGCD}(a, b) = 1 \\Rightarrow a \\mid c",
+   "note": "Exemple : 9 | 4 × 18 et PGCD(9, 4) = 1, donc 9 | 18."
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Congruence : même reste modulo n",
+    "Congruences : +, × et puissances",
+    "Restes chinois : modules premiers entre eux",
+    "Bézout : ax + by = PGCD(a, b)",
+    "Gauss : a | bc et PGCD(a, b) = 1 ⇒ a | c"
+   ]
+  },
+  "fermat": {
+   "type": "formule",
+   "kicker": "Le petit théorème de Fermat",
+   "tex": "a^{p-1} \\equiv 1 \\pmod{p}",
+   "note": "p premier, p ne divise pas a : un reste toujours égal à 1."
+  },
+  "preuve_fermat": {
+   "type": "phrase",
+   "kicker": "L'idée de la démonstration",
+   "texte": "Multiplier par a permute les restes : chaque case reçoit un seul reste.",
+   "anim": {
+    "nom": "permutation_restes_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_fermat": {
+   "type": "etape",
+   "kicker": "Exemple · Fermat en chiffres",
+   "titre": "Deux vérifications complètes du théorème",
+   "tex": [
+    "2^4 = 16 \\equiv 1 \\pmod{5}",
+    "3^6 = 729 \\equiv 1 \\pmod{7}",
+    "729 - 1 = 728 = 7 \\times 104"
+   ]
+  },
+  "wilson": {
+   "type": "formule",
+   "kicker": "Le théorème de Wilson",
+   "tex": "(n - 1)! \\equiv -1 \\pmod{n} \\iff n \\text{ premier}",
+   "note": "5 : 4! = 24 ≡ −1 (mod 5) · 6 composé : 5! ≡ 0 (mod 6)."
+  },
+  "euler_phi": {
+   "type": "formule",
+   "kicker": "La fonction d'Euler",
+   "tex": "\\varphi(n) = n \\prod_{p \\mid n} \\left(1 - \\frac{1}{p}\\right)",
+   "note": "p parcourt les facteurs premiers distincts de n."
+  },
+  "ex_euler": {
+   "type": "etape",
+   "kicker": "Exemple · calculer phi",
+   "titre": "Phi de 12 et phi de 36 par la formule",
+   "tex": [
+    "\\varphi(12) = 12 \\times \\tfrac{1}{2} \\times \\tfrac{2}{3} = 4",
+    "36 = 2^2 \\times 3^2",
+    "\\varphi(36) = 36 \\times \\tfrac{1}{2} \\times \\tfrac{2}{3} = 12"
+   ]
+  },
+  "theoreme_euler": {
+   "type": "formule",
+   "kicker": "Le théorème d'Euler",
+   "tex": "a^{\\varphi(n)} \\equiv 1 \\pmod{n}, \\quad \\text{PGCD}(a, n) = 1",
+   "note": "n premier : φ(n) = n − 1, on retrouve Fermat."
+  },
+  "ex_pgcd_geant": {
+   "type": "etape",
+   "kicker": "Exercice complet · Euclide",
+   "titre": "PGCD de 1260 et 1980, étape par étape",
+   "tex": [
+    "1980 = 1260 \\times 1 + 720",
+    "1260 = 720 \\times 1 + 540",
+    "720 = 540 \\times 1 + 180",
+    "540 = 180 \\times 3 + 0 \\qquad \\text{PGCD} = 180"
+   ]
+  },
+  "ex_bezout_final": {
+   "type": "etape",
+   "kicker": "Exercice complet · Bézout",
+   "titre": "Résoudre 17x + 23y = 1",
+   "tex": [
+    "1 = 3 \\times 23 - 4 \\times 17",
+    "17 \\times (-4) + 23 \\times 3 = 1",
+    "x = -4 + 23k, \\quad y = 3 - 17k"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Euclide : divisions jusqu'au reste nul",
+    "Bézout : le PGCD en combinaison linéaire",
+    "Congruences : ne garder que les restes",
+    "Fermat et Euler : a puissance φ(n) ≡ 1",
+    "Premiers : la factorisation protège RSA"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours d'arithmétique, la théorie des nombres entiers. Nous partirons de la divisibilité et de la division euclidienne, nous calculerons des plus grands communs diviseurs grâce à l'algorithme d'Euclide, nous découvrirons les nombres premiers et leur décomposition, puis nous travaillerons modulo un entier avec les congruences, les théorèmes de Bézout, de Gauss, de Fermat et d'Euler, jusqu'aux équations diophantiennes et à la cryptographie.",
+   "texte": "Arithmétique : divisibilité, congruences et nombres premiers.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge est simple : un entier se comprend par ses diviseurs, ses multiples et le reste de ses divisions. Chaque notion nouvelle répond à une question concrète : partager sans reste, synchroniser deux cycles, retrouver un nombre à partir de ses restes, ou élever à une grande puissance en ne gardant que le reste. Gardez ce fil, et les théorèmes du cours deviendront des outils, pas des formules à réciter.",
+   "texte": "Recentrer sur l'essentiel : diviseurs, multiples et restes.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par l'ensemble des entiers relatifs, noté z : zéro, un, deux, trois, et leurs opposés. Un entier n'a aucune partie fractionnaire. L'arithmétique étudie ces nombres apparemment simples, leurs opérations, et surtout leurs relations de divisibilité. L'addition et la multiplication sont commutatives et associatives, et la multiplication est distributive par rapport à l'addition : ce sont les règles du jeu pour tous les calculs qui suivent.",
+   "texte": "Les entiers relatifs : zéro, les positifs et leurs opposés.",
+   "ecran": "entiers"
+  },
+  {
+   "id": "p04",
+   "dit": "Première relation fondamentale : b divise a s'il existe un entier k tel que a égale b fois k. On dit alors que b est un diviseur de a, et que a est un multiple de b. Par exemple, trois divise douze car douze égale trois fois quatre. Deux propriétés serviront partout : la divisibilité est transitive, et si a divise b et c, alors a divise toute combinaison de b et de c à coefficients entiers.",
+   "texte": "b divise a : a est un multiple de b.",
+   "ecran": "divisibilite"
+  },
+  {
+   "id": "p05",
+   "dit": "Quand la division ne tombe pas juste, le théorème de la division euclidienne prend le relais : pour a et b avec b strictement positif, il existe un unique couple, le quotient et le reste, tel que a égale b fois le quotient plus le reste, avec un reste positif ou nul et strictement inférieur à b. L'unicité est essentielle : chaque division a exactement une bonne réponse.",
+   "texte": "a = bq + r, avec le reste inférieur au diviseur.",
+   "ecran": "division"
+  },
+  {
+   "id": "p06",
+   "dit": "Deux exemples pour fixer le geste. Dix-sept divisé par cinq donne trois, reste deux : dix-sept égale cinq fois trois plus deux, et deux est bien inférieur à cinq. Quarante-sept divisé par huit donne cinq, reste sept : quarante-sept égale huit fois cinq plus sept. Réflexe d'examen : toujours vérifier que le reste est inférieur au diviseur, sinon le quotient est trop petit.",
+   "texte": "17 = 5 × 3 + 2 et 47 = 8 × 5 + 7 : le reste d'abord.",
+   "ecran": "ex_division"
+  },
+  {
+   "id": "p07",
+   "dit": "Avec plusieurs diviseurs vient une question naturelle : quel est le plus grand diviseur commun à deux nombres ? Pour douze et dix-huit, les diviseurs de douze sont un, deux, trois, quatre, six et douze ; ceux de dix-huit sont un, deux, trois, six, neuf et dix-huit. Le plus grand commun est six. Si ce plus grand commun diviseur vaut un, les deux nombres sont dits premiers entre eux.",
+   "texte": "PGCD(12, 18) = 6 : le plus grand diviseur commun.",
+   "ecran": "pgcd"
+  },
+  {
+   "id": "p08",
+   "dit": "Énumérer les diviseurs devient vite impossible pour de grands nombres. L'algorithme d'Euclide remplace le problème par une suite de divisions : le plus grand commun diviseur de a et b est celui de b et du reste de leur division. Pour quarante-huit et dix-huit : quarante-huit égale dix-huit fois deux plus douze, puis dix-huit égale douze plus six, puis douze égale six fois deux. Le dernier reste non nul, six, est le résultat.",
+   "texte": "Euclide : le dernier reste non nul est le PGCD.",
+   "ecran": "euclide"
+  },
+  {
+   "id": "p09",
+   "dit": "Le pendant du plus grand commun diviseur est le plus petit commun multiple : le plus petit entier positif divisible par les deux nombres. Les deux notions sont liées par une relation précieuse : leur produit égale le produit des deux nombres. Si les nombres sont premiers entre eux, le plus petit commun multiple est donc simplement leur produit.",
+   "texte": "PGCD × PPCM = a × b : les deux notions sont liées.",
+   "ecran": "ppcm"
+  },
+  {
+   "id": "p10",
+   "dit": "Application immédiate : pour douze et dix-huit, le plus grand commun diviseur vaut six, donc le plus petit commun multiple vaut douze fois dix-huit divisé par six, c'est-à-dire trente-six. Concrètement, deux machines qui se déclenchent l'une toutes les douze secondes et l'autre toutes les dix-huit secondes, ensemble au départ, se retrouveront ensemble toutes les trente-six secondes.",
+   "texte": "PPCM(12, 18) = 36 : resynchronisation à 36 secondes.",
+   "ecran": "ex_ppcm"
+  },
+  {
+   "id": "p11",
+   "dit": "Certains entiers résistent à toute division : un nombre premier est un entier supérieur à un qui n'a pour diviseurs que un et lui-même. Deux, trois, cinq, sept, onze et treize ouvrent la liste. Un, lui, n'est ni premier ni composé : l'exclure protège l'unicité de la décomposition qui vient. Et à part deux, tout nombre premier est impair, car un premier pair supérieur à deux serait divisible par deux.",
+   "texte": "Premiers : seuls diviseurs, 1 et lui-même.",
+   "ecran": "premiers"
+  },
+  {
+   "id": "p12",
+   "dit": "Pour lister les nombres premiers jusqu'à une limite, le crible d'Ératosthène procède par élimination : on garde deux, on barre tous ses multiples, on garde le suivant non barré, trois, on barre ses multiples, et ainsi de suite avec cinq, sept, et cetera, jusqu'à la racine carrée de la limite. Ce qui n'est jamais barré est premier. La grille ci-contre est exactement ce filtre : la figure signature de ce cours.",
+   "texte": "Le crible : barrer les multiples, garder les premiers.",
+   "ecran": "crible"
+  },
+  {
+   "id": "p13",
+   "dit": "Le théorème fondamental de l'arithmétique affirme que tout entier supérieur à un se décompose en un produit de nombres premiers, et que cette décomposition est unique à l'ordre près. Les premiers sont les atomes des entiers. Exemple : soixante-douze se divise par deux trois fois, puis par trois deux fois : soixante-douze égale deux puissance trois fois trois puissance deux. Même geste pour trente, qui vaut deux fois trois fois cinq, et le plus grand commun diviseur de cent cinq et deux cent cinquante-deux se lit sur leurs facteurs communs, trois et sept : vingt et un.",
+   "texte": "72 = 2³ × 3² : les premiers, atomes des entiers.",
+   "ecran": "decomposition"
+  },
+  {
+   "id": "p14",
+   "dit": "Récapitulons cette première partie. La divisibilité dit quand un partage tombe juste ; la division euclidienne gère le reste, toujours inférieur au diviseur. Le plus grand commun diviseur se calcule vite par l'algorithme d'Euclide, le plus petit commun multiple s'en déduit par le produit des deux nombres. Les nombres premiers sont les atomes des entiers : chaque entier se décompose en facteurs premiers, d'une seule façon.",
+   "texte": "Partie 1 : l'essentiel à retenir.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p15",
+   "dit": "Changeons de regard : en arithmétique modulaire, seul le reste compte. Deux entiers sont congrus modulo n s'ils laissent le même reste dans la division par n, ce qui revient à dire que n divise leur différence. Dix-sept est congru à deux modulo cinq, car leur différence, quinze, est divisible par cinq. Même un nombre négatif a sa place : moins trois est aussi congru à deux modulo cinq.",
+   "texte": "Congruence : même reste, différence divisible par n.",
+   "ecran": "congruences"
+  },
+  {
+   "id": "p16",
+   "dit": "Bonne nouvelle : les congruences se manipulent presque comme des égalités. Elles sont réflexives, symétriques et transitives, et surtout compatibles avec l'addition, la multiplication et les puissances : on peut réduire chaque facteur modulo n avant de calculer. C'est ce qui rend possibles des calculs de puissances énormes en ne gardant, à chaque étape, que des restes petits.",
+   "texte": "Réduire modulo n avant de calculer : le grand gain.",
+   "ecran": "proprietes_cong"
+  },
+  {
+   "id": "p17",
+   "dit": "Les applications sont quotidiennes. Une horloge travaille modulo douze : quatorze heures, c'est deux heures. La preuve par neuf contrôle un calcul grâce aux restes modulo neuf. Les codes correcteurs détectent les erreurs de transmission avec des restes, et la cryptographie moderne, comme le système R S A, repose entièrement sur les congruences et les grands nombres premiers.",
+   "texte": "Horloge, preuve par 9, RSA : les restes partout.",
+   "ecran": "applications"
+  },
+  {
+   "id": "p18",
+   "dit": "Entraînons le réflexe sur un test de congruence : douze mille trois cent quarante-cinq et six mille sept cent quatre-vingt-neuf sont-ils congrus modulo onze ? Leurs restes valent respectivement trois et deux : ils diffèrent, donc la réponse est non. Autre lecture : leur différence, cinq mille cinq cent cinquante-six, n'est pas divisible par onze, car il s'en faut d'une unité.",
+   "texte": "Modulo 11 : restes 3 et 2, donc non congrus.",
+   "ecran": "ex_congruences"
+  },
+  {
+   "id": "p19",
+   "dit": "Le théorème des restes chinois résout les systèmes de congruences quand les modules sont deux à deux premiers entre eux : la solution existe et elle est unique modulo le produit des modules. La construction utilise, pour chaque module, le produit des autres modules et son inverse. L'énigme de Sun Tzu, au troisième siècle, cherche un nombre de reste deux modulo trois, trois modulo cinq et deux modulo sept. La réponse est vingt-trois, unique modulo cent cinq, le produit de trois, cinq et sept.",
+   "texte": "Sun Tzu : restes 2, 3, 2 — réponse 23, modulo 105.",
+   "ecran": "crt"
+  },
+  {
+   "id": "p20",
+   "dit": "Le théorème de Bézout relie le plus grand commun diviseur à une combinaison des deux nombres : il existe toujours des entiers ixe et igrec tels que a fois ixe plus b fois igrec égale le plus grand commun diviseur de a et b. Pour douze et dix-huit, moins un et un conviennent : moins douze plus dix-huit égale six. Ces coefficients sont la clé de toutes les équations qui suivent.",
+   "texte": "Bézout : le PGCD comme combinaison de a et b.",
+   "ecran": "bezout"
+  },
+  {
+   "id": "p21",
+   "dit": "Comment trouver ces coefficients ? On remonte l'algorithme d'Euclide à l'envers. Pour quarante-huit et dix-huit, le dernier reste non nul donne six égale dix-huit moins douze ; on remplace douze par quarante-huit moins deux fois dix-huit, et l'on obtient six égale moins quarante-huit plus trois fois dix-huit. Les coefficients sont donc moins un pour quarante-huit et trois pour dix-huit.",
+   "texte": "Euclide étendu : remonter pour trouver les coefficients.",
+   "ecran": "euclide_etendu"
+  },
+  {
+   "id": "p22",
+   "dit": "Une équation diophantienne du premier degré cherche des solutions entières à a ixe plus b igrec égale c. Elle en possède si et seulement si le plus grand commun diviseur de a et b divise c. Exemple traité pas à pas : douze ixe plus dix-huit igrec égale trente. Le diviseur six divise trente, et une solution particulière est moins cinq et cinq, car moins soixante plus quatre-vingt-dix égale trente. Toutes les solutions s'en déduisent en ajoutant trois fois un entier quelconque à ixe et en retranchant deux fois ce même entier à igrec. À l'inverse, quinze ixe plus vingt-cinq igrec égale douze n'a aucune solution, car cinq ne divise pas douze.",
+   "texte": "12x + 18y = 30 : solution −5 et 5, puis toutes les autres.",
+   "ecran": "diophantienne"
+  },
+  {
+   "id": "p23",
+   "dit": "Le théorème de Gauss, le vrai, est un lemme de divisibilité redoutable : si un entier a divise le produit b c, et si a est premier avec b, alors a divise nécessairement c. Autrement dit, un facteur premier avec a ne peut pas absorber la divisibilité à sa place. C'est lui qui prouve l'unicité des décompositions et qui simplifie les fractions et les congruences. Ne le confondez pas avec le théorème des restes chinois, rencontré juste avant : les deux résultats sont distincts.",
+   "texte": "Gauss : a | bc et a premier avec b, donc a | c.",
+   "ecran": "gauss"
+  },
+  {
+   "id": "p24",
+   "dit": "Récapitulons cette deuxième partie. Une congruence compare des restes, et se calcule comme une égalité, additions, produits et puissances compris. Le théorème des restes chinois reconstruit un nombre à partir de ses restes, quand les modules sont premiers entre eux. Bézout écrit le plus grand commun diviseur comme une combinaison des deux nombres, ce qui décide et résout les équations diophantiennes. Et Gauss fait passer une divisibilité d'un produit à l'un de ses facteurs, dès que l'autre lui est étranger.",
+   "texte": "Partie 2 : l'essentiel à retenir.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p25",
+   "dit": "Le petit théorème de Fermat est d'une élégance rare : si p est premier et si a n'est pas divisible par p, alors a puissance p moins un est congru à un modulo p. Élever à une puissance énorme puis prendre le reste devient soudain prévisible. C'est un test de primalité rapide, et une brique du chiffrement R S A, même si certains nombres composés, dits pseudo-premiers, le trompent parfois.",
+   "texte": "Fermat : a^(p−1) ≡ 1 (mod p), si p est premier.",
+   "ecran": "fermat"
+  },
+  {
+   "id": "p26",
+   "dit": "L'idée de la démonstration tient en une image de tiroirs : multipliez les nombres de un à p moins un par a, et regardez leurs restes modulo p. Deux produits ne peuvent pas tomber dans le même tiroir, sinon a permettrait de simplifier et les deux nombres de départ seraient égaux. Les restes occupent donc toutes les cases, dans un autre ordre : c'est une permutation, et multiplier tous les éléments des deux côtés donne le théorème.",
+   "texte": "Multiplier par a permute les restes modulo p.",
+   "ecran": "preuve_fermat"
+  },
+  {
+   "id": "p27",
+   "dit": "Vérifions sur deux exemples. Avec p égal à cinq et a égal à deux : deux puissance quatre égale seize, congru à un modulo cinq. Avec p égal à sept et a égal à trois : trois puissance six égale sept cent vingt-neuf, et sept cent vingt-neuf moins un, sept cent vingt-huit, est exactement sept fois cent quatre, donc le reste vaut un modulo sept. Le théorème est vérifié deux fois.",
+   "texte": "2⁴ = 16 ≡ 1 (mod 5) et 3⁶ = 729 ≡ 1 (mod 7).",
+   "ecran": "ex_fermat"
+  },
+  {
+   "id": "p28",
+   "dit": "Le théorème de Wilson donne un critère exact de primalité : un entier supérieur à un est premier si et seulement si la factorielle de son prédécesseur est congrue à moins un modulo lui-même. Pour cinq : factorielle quatre égale vingt-quatre, congrue à moins un modulo cinq. Pour six, composé, factorielle cinq égale cent vingt, de reste zéro : le critère échoue, comme prévu. Reste que calculer une factorielle géante est impraticable : Wilson est un théorème de structure, pas un test rapide.",
+   "texte": "Wilson : (n − 1)! ≡ −1 (mod n) si et seulement si n est premier.",
+   "ecran": "wilson"
+  },
+  {
+   "id": "p29",
+   "dit": "La fonction d'Euler, notée phi, compte les entiers de un à n qui sont premiers avec n, c'est-à-dire dont le plus grand commun diviseur avec n vaut un. Pour douze, ce sont un, cinq, sept et onze : phi de douze vaut quatre. La formule évite l'énumération : on part de n, et pour chaque facteur premier distinct p de n, on multiplie par un moins un sur p.",
+   "texte": "φ(n) compte les entiers premiers avec n.",
+   "ecran": "euler_phi"
+  },
+  {
+   "id": "p30",
+   "dit": "Appliquons la formule. Douze vaut deux au carré fois trois, donc phi de douze vaut douze fois un demi fois deux tiers, c'est-à-dire quatre. Trente-six vaut deux au carré fois trois au carré : seuls deux et trois comptent, et phi de trente-six vaut douze. Retenez le point fin : dans la formule, chaque premier distinct n'apparaît qu'une fois, quel que soit son exposant dans la décomposition.",
+   "texte": "φ(12) = 4 et φ(36) = 12 : chaque premier compte une fois.",
+   "ecran": "ex_euler"
+  },
+  {
+   "id": "p31",
+   "dit": "Le théorème d'Euler généralise Fermat : si a et n sont premiers entre eux, alors a puissance phi de n est congru à un modulo n. Pour n premier, phi de n vaut n moins un, et l'on retrouve exactement Fermat. Vérification : avec a égal à trois et n égal à dix, phi de dix vaut quatre, et trois puissance quatre égale quatre-vingt-un, congru à un modulo dix. C'est ce mécanisme qui fait fonctionner le déchiffrement R S A.",
+   "texte": "Euler : a^φ(n) ≡ 1 (mod n), généralisation de Fermat.",
+   "ecran": "theoreme_euler"
+  },
+  {
+   "id": "p32",
+   "dit": "Exercice complet, pris dans les leçons : le plus grand commun diviseur de mille deux cent soixante et mille neuf cent quatre-vingts, par l'algorithme d'Euclide. Mille neuf cent quatre-vingts égale mille deux cent soixante plus sept cent vingt ; puis mille deux cent soixante égale sept cent vingt plus cinq cent quarante ; puis sept cent vingt égale cinq cent quarante plus cent quatre-vingts ; enfin cinq cent quarante est exactement trois fois cent quatre-vingts. Le dernier reste non nul est cent quatre-vingts. Leurs décompositions confirment le calcul : les facteurs premiers communs sont deux, trois et cinq, avec les bons exposants.",
+   "texte": "PGCD(1260, 1980) = 180, par Euclide et par les facteurs.",
+   "ecran": "ex_pgcd_geant"
+  },
+  {
+   "id": "p33",
+   "dit": "Dernier défi des leçons : résoudre dix-sept ixe plus vingt-trois igrec égale un. L'algorithme d'Euclide étendu donne un égale trois fois vingt-trois moins quatre fois dix-sept : une solution particulière est donc moins quatre pour ixe et trois pour igrec. Toutes les solutions s'obtiennent en ajoutant vingt-trois fois un entier quelconque à ixe, et en retranchant dix-sept fois ce même entier à igrec.",
+   "texte": "17x + 23y = 1 : x = −4, y = 3, puis la famille complète.",
+   "ecran": "ex_bezout_final"
+  },
+  {
+   "id": "p34",
+   "dit": "Pour conclure, retenez la chaîne complète des outils. La division euclidienne produit le reste ; Euclide en tire le plus grand commun diviseur ; Bézout l'écrit comme une combinaison et résout les équations diophantiennes ; les congruences calculent avec les seuls restes ; Fermat, Wilson et Euler gouvernent les puissances modulo un premier ou un entier quelconque. Et derrière la cryptographie moderne, il y a toujours la difficulté de factoriser de grands entiers.",
+   "texte": "Arithmétique : à retenir pour l'examen.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Divisibilité, division euclidienne, PGCD, PPCM et nombres premiers"
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "Congruences, restes chinois, Bézout et Gauss",
+   "pont": {
+    "texte": "Partie 2 : congruences, restes chinois, Bézout et Gauss.",
+    "dit": "Partie deux : travailler avec les restes. Nous définirons les congruences et leurs règles de calcul, nous résoudrons un système de restes par le théorème chinois, puis nous écrirons le plus grand commun diviseur comme une combinaison des deux nombres grâce à Bézout, ce qui ouvrira la résolution des équations diophantiennes et le théorème de Gauss."
+   }
+  },
+  {
+   "debut": "p25",
+   "sous_titre": "Fermat, Wilson, Euler et exercices complets",
+   "pont": {
+    "texte": "Partie 3 : Fermat, Wilson, Euler et exercices complets.",
+    "dit": "Partie trois : les grandes puissances et le comptage des nombres premiers entre eux. Le petit théorème de Fermat et le théorème de Wilson testeront la primalité, la fonction d'Euler comptera les entiers premiers avec un nombre donné, et son théorème généralisera Fermat. Nous finirons par deux exercices complets, traités de bout en bout."
+   }
+  }
+ ]
+}

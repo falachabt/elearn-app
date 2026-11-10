@@ -1,0 +1,342 @@
+{
+ "cours": 6360,
+ "ecrans": {
+  "avantage": {
+   "type": "recap",
+   "kicker": "L'avantage de l'hétérozygote",
+   "etapes": [
+    "drépanocytose : homozygote malade, hétérozygote protégé",
+    "le porteur résiste mieux au paludisme",
+    "un allèle grave peut donc persister",
+    "la sélection ne voit que le phénotype"
+   ]
+  },
+  "bases": {
+   "type": "recap",
+   "kicker": "Les fondations",
+   "etapes": [
+    "46 chromosomes, soit 23 paires",
+    "22 paires d'autosomes, identiques chez les deux sexes",
+    "23e paire : les chromosomes sexuels, XX ou XY",
+    "ce cours ne traite que les autosomes"
+   ]
+  },
+  "cas_dominant": {
+   "type": "recap",
+   "kicker": "Le cas dominant de base",
+   "etapes": [
+    "parent atteint hétérozygote croisé avec un parent sain",
+    "chaque enfant : 1/2 de risque d'être atteint",
+    "un parent atteint homozygote : tous les enfants atteints",
+    "un individu sain ne transmet pas le caractère"
+   ]
+  },
+  "cas_récessif": {
+   "type": "recap",
+   "kicker": "Le cas récessif de base",
+   "etapes": [
+    "deux parents porteurs sains, croisés entre eux",
+    "enfant atteint : 1/4",
+    "enfant porteur sain : 1/2",
+    "enfant non porteur : 1/4"
+   ]
+  },
+  "conseil": {
+   "type": "recap",
+   "kicker": "Le conseil génétique",
+   "etapes": [
+    "dépistage des porteurs avant une grossesse",
+    "diagnostic prénatal et diagnostic préimplantatoire",
+    "dépistage néonatal, comme pour la mucoviscidose",
+    "le chiffre éclaire, il ne décide jamais seul"
+   ]
+  },
+  "dominance": {
+   "type": "recap",
+   "kicker": "Dominance et récessivité",
+   "etapes": [
+    "dominant : l'hétérozygote exprime le caractère",
+    "récessif : seul l'homozygote exprime le caractère",
+    "exemple récessif : la mucoviscidose",
+    "exemple dominant : la chorée de Huntington"
+   ]
+  },
+  "galerie": {
+   "type": "recap",
+   "kicker": "Quatre maladies repères",
+   "etapes": [
+    "mucoviscidose : récessive, enfance, gène CFTR",
+    "chorée de Huntington : dominante, 30 à 50 ans",
+    "hémochromatose : récessive, surcharge en fer",
+    "neurofibromatose : dominante, expressivité variable"
+   ]
+  },
+  "hardy": {
+   "kicker": "La loi de Hardy-Weinberg",
+   "note": "À l'équilibre, sans sélection ni migration ni mutation",
+   "tex": "p + q = 1 \\qquad p^2 + 2pq + q^2 = 1",
+   "type": "formule"
+  },
+  "hw_application": {
+   "kicker": "Application : les porteurs de mucoviscidose",
+   "tex": [
+    "\\text{naissances atteintes : } q^2 = \\tfrac{1}{2500}",
+    "\\text{donc } q = \\sqrt{\\tfrac{1}{2500}} = \\tfrac{1}{50}",
+    "\\text{porteurs : } 2pq \\approx \\tfrac{2}{50} = \\tfrac{1}{25}",
+    "\\text{soit environ 4\\% de la population}"
+   ],
+   "titre": "De la maladie à la fréquence des porteurs",
+   "type": "etape"
+  },
+  "méthode": {
+   "type": "recap",
+   "kicker": "La méthode en quatre gestes",
+   "etapes": [
+    "lire le pedigree : qui est atteint, qui ne l'est pas",
+    "tester les deux hypothèses, dominante et récessive",
+    "déduire les génotypes possibles des parents",
+    "calculer, en conditionnant sur ce qui est connu"
+   ]
+  },
+  "nuances": {
+   "type": "recap",
+   "kicker": "Les nuances du modèle",
+   "etapes": [
+    "pénétrance incomplète : l'allèle ne s'exprime pas toujours",
+    "expressivité variable : même génotype, tableaux différents",
+    "mutation nouvelle : un atteint sans parent atteint",
+    "exemple : hémochromatose, pénétrance de 10 à 50%"
+   ]
+  },
+  "pedigree_signes": {
+   "kicker": "Le langage du pedigree",
+   "tex": [
+    "\\text{carré : homme ; cercle : femme}",
+    "\\text{symbole plein : individu atteint}",
+    "\\text{losange : sexe non spécifié}",
+    "\\text{double trait : union consanguine}"
+   ],
+   "titre": "Carrés, cercles et pleins",
+   "type": "etape"
+  },
+  "porteur_conditionnel": {
+   "kicker": "L'enfant sain est-il porteur ?",
+   "note": "On conditionne sur le fait qu'il est sain",
+   "tex": "P(\\text{porteur} \\mid \\text{sain}) = \\frac{\\tfrac{1}{2}}{\\tfrac{3}{4}} = \\tfrac{2}{3}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Autosomes : 22 paires, hors détermination du sexe",
+    "Dominant : vertical ; récessif : horizontal",
+    "Deux porteurs : 1 atteint sur 4",
+    "Enfant sain : 2 chances sur 3 d'être porteur",
+    "Hardy-Weinberg relie maladie et porteurs"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "risque_combine": {
+   "kicker": "Le risque combiné",
+   "tex": [
+    "\\text{Pierre : } \\tfrac{2}{3} \\text{ porteur}",
+    "\\text{partenaire : } \\tfrac{1}{25} \\text{ porteuse}",
+    "\\tfrac{2}{3} \\times \\tfrac{1}{25} \\times \\tfrac{1}{4} = \\tfrac{1}{150}",
+    "\\text{si } \\tfrac{1}{30} \\text{ : } \\tfrac{1}{180}"
+   ],
+   "titre": "Famille plus population, multipliées",
+   "type": "etape"
+  },
+  "segregation": {
+   "kicker": "La ségrégation, rappel de Mendel",
+   "note": "Chaque gamète ne reçoit qu'un seul allèle de la paire",
+   "tex": "Aa \\ \\rightarrow \\ \\tfrac{1}{2} \\ A, \\ \\tfrac{1}{2} \\ a",
+   "type": "formule"
+  },
+  "signatures": {
+   "type": "recap",
+   "kicker": "Les deux signatures du pedigree",
+   "etapes": [
+    "dominante : verticale, à chaque génération",
+    "dominante : au moins un parent de l'atteint est atteint",
+    "récessive : horizontale, souvent une seule fratrie",
+    "récessive : les deux parents sont sains et porteurs"
+   ]
+  },
+  "titre": {
+   "kicker": "Biologie · La transmission autosomique",
+   "sous": "Des chromosomes non sexuels aux risques chiffrés pour une famille",
+   "titre": "Transmission autosomique : hérédité des chromosomes non sexuels",
+   "type": "titre"
+  },
+  "vocabulaire": {
+   "kicker": "Le vocabulaire",
+   "tex": [
+    "\\text{gène : une unité d'information à un locus}",
+    "\\text{allèle : une version du gène}",
+    "\\text{génotype : les allèles portés}",
+    "\\text{phénotype : le caractère observé}"
+   ],
+   "titre": "Quatre mots, un exemple",
+   "type": "etape"
+  }
+ },
+ "matiere": "Biologie",
+ "phrases": [
+  {
+   "dit": "Bienvenue dans la transmission autosomique, c'est-à-dire l'hérédité portée par les chromosomes qui ne déterminent pas le sexe. Imaginez un livre d'instructions vieux de plusieurs générations, écrit dans un langage chimique universel, qui détermine la couleur de vos yeux, la forme de votre nez, et parfois une prédisposition à une maladie. Nous allons apprendre à lire les pages autosomiques de ce livre : d'abord les fondations, puis les deux modes de transmission, dominante et récessive, et enfin le calcul des risques pour une famille.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Hérédité hors chromosomes sexuels."
+  },
+  {
+   "dit": "Commençons par les fondations. Dans le noyau de nos cellules, l'information génétique est emballée en chromosomes. Chez l'être humain, on compte quarante-six chromosomes, organisés en vingt-trois paires. Les vingt-deux premières paires sont les autosomes : ils sont identiques dans leur structure fondamentale chez les hommes et chez les femmes, et portent les gènes de la grande majorité de nos caractères. La vingt-troisième paire, les chromosomes sexuels, détermine principalement le sexe : ce cours ne traite que des autosomes.",
+   "ecran": "bases",
+   "id": "p02",
+   "texte": "46 chromosomes, 22 paires d'autosomes."
+  },
+  {
+   "dit": "Fixons le vocabulaire, avec un exemple concret. Un gène est une unité d'information héréditaire située à un endroit précis du chromosome, le locus. Un allèle est une version particulière de ce gène. Le génotype est la constitution allélique d'un individu pour un gène donné. Le phénotype est l'expression observable de ce génotype, influencée par l'environnement. Exemple : le gène du groupe sanguin ABO se trouve sur le chromosome neuf, avec trois allèles principaux ; un génotype donné détermine un groupe sanguin précis.",
+   "ecran": "vocabulaire",
+   "id": "p03",
+   "texte": "Gène, allèle, génotype, phénotype."
+  },
+  {
+   "dit": "Le moteur de toute la transmission est la première loi de Mendel, la ségrégation. Chaque individu possède deux allèles pour chaque gène, et lors de la formation des gamètes, les deux allèles se séparent, de sorte que chaque gamète ne reçoit qu'un seul allèle de la paire. Un individu hétérozygote produit donc deux types de gamètes en proportions égales. Tout le calcul des risques découle de cette règle simple, combinée aux règles des probabilités.",
+   "ecran": "segregation",
+   "id": "p04",
+   "texte": "Séparer la paire : la règle de base."
+  },
+  {
+   "dit": "Vient ensuite la relation entre les allèles. Si un allèle est dominant, l'hétérozygote exprime le caractère, comme l'homozygote dominant. Si un allèle est récessif, seul l'homozygote récessif exprime le caractère ; l'hétérozygote est un porteur sain, qui ne montre rien mais peut transmettre. Retenez deux exemples repères : la mucoviscidose, récessive, et la chorée de Huntington, dominante. Toute la lecture d'un arbre généalogique repose sur cette distinction.",
+   "ecran": "dominance",
+   "id": "p05",
+   "texte": "Dominant s'exprime, récessif se cache."
+  },
+  {
+   "dit": "Pour lire une famille, on dessine un pedigree, un arbre généalogique codifié. Les symboles sont simples : un carré pour un homme, un cercle pour une femme, un losange quand le sexe n'est pas spécifié. Un symbole plein désigne un individu atteint. Une ligne horizontale relie un couple, une ligne verticale relie les parents aux enfants, et un double trait signale une union consanguine. Ce langage visuel, une fois appris, permet de reconnaître un mode de transmission en un coup d'œil.",
+   "ecran": "pedigree_signes",
+   "id": "p06",
+   "texte": "Carré, cercle, plein : lire une famille."
+  },
+  {
+   "dit": "Chaque mode de transmission laisse une signature dans le pedigree. La transmission dominante est verticale : elle apparaît à chaque génération, et au moins un parent d'un individu atteint est lui-même atteint, sauf en cas de mutation nouvelle. La transmission récessive est horizontale : elle touche souvent une seule fratrie, et les deux parents d'un individu atteint sont sains mais porteurs obligatoires. De plus, un individu sain peut transmettre un caractère récessif, jamais un caractère dominant. Ces règles suffisent souvent à trancher.",
+   "ecran": "signatures",
+   "id": "p07",
+   "texte": "Verticale : dominante. Horizontale : récessive."
+  },
+  {
+   "dit": "Prenons le cas dominant de base, le plus simple à calculer. Un parent atteint hétérozygote croisé avec un parent sain : chaque enfant a une chance sur deux d'être atteint, indépendamment de ses frères et sœurs. Si le parent atteint est homozygote, tous ses enfants reçoivent l'allèle et expriment le caractère. Et un individu sain ne transmet pas le caractère : il n'a pas l'allèle à transmettre. Exemple emblématique : la chorée de Huntington, qui se manifeste typiquement entre trente et cinquante ans, avec un risque d'une moitié pour chaque enfant d'un parent atteint.",
+   "ecran": "cas_dominant",
+   "id": "p08",
+   "texte": "Dominant : 1 enfant sur 2 atteint."
+  },
+  {
+   "dit": "Passons au cas récessif de base, le plus important en conseil génétique. Deux parents porteurs sains, croisés entre eux, donnent à chaque naissance : un quart d'enfants atteints, homozygotes récessifs ; la moitié d'enfants porteurs sains, hétérozygotes ; et un quart d'enfants non porteurs, homozygotes sains. Ces proportions valent à chaque naissance, indépendamment des précédentes : avoir déjà trois enfants atteints ne change rien au risque pour le quatrième.",
+   "ecran": "cas_récessif",
+   "id": "p09",
+   "texte": "Deux porteurs : 1/4 atteint, 1/2 porteur."
+  },
+  {
+   "dit": "Voici l'exemple chiffré central, celui de la mucoviscidose. Deux parents porteurs sains consultent : quel est le risque pour leur enfant ? L'échiquier de Punnett donne quatre combinaisons équiprobables : un quart d'enfants sains non porteurs, la moitié d'enfants porteurs sains, un quart d'enfants atteints. Le risque d'un enfant atteint est donc d'un quart, et le risque d'un enfant porteur sain est d'une moitié. C'est le calcul que tout conseil génétique pour une maladie récessive commence par poser.",
+   "ecran": "cas_récessif",
+   "id": "p10",
+   "texte": "Mucoviscidose : 1/4 atteint, 1/2 porteur."
+  },
+  {
+   "dit": "Mais attention à un piège classique : la probabilité conditionnelle. Si les deux parents sont porteurs et que leur enfant est sain, quelle est la probabilité qu'il soit porteur ? Elle n'est plus d'une moitié. Parmi les trois issues qui donnent un enfant sain, deux sont porteuses et une seule ne l'est pas. La probabilité qu'un enfant sain soit porteur est donc de deux tiers. C'est ce raisonnement, conditionner sur ce que l'on sait déjà, qui fait toute la finesse du conseil génétique.",
+   "ecran": "porteur_conditionnel",
+   "id": "p11",
+   "texte": "Enfant sain : 2 chances sur 3 porteur."
+  },
+  {
+   "dit": "Pour passer d'une famille à une population, on utilise la loi de Hardy-Weinberg. Pour un gène à deux allèles, de fréquences respectives p et q, avec p plus q égal à un, les fréquences génotypiques à l'équilibre sont : p au carré pour les homozygotes dominants, deux p q pour les hétérozygotes, q au carré pour les homozygotes récessifs, et la somme vaut un. Cette loi suppose l'absence de sélection, de migration, de mutation et de dérive : c'est un modèle de référence, pas une photographie exacte, mais il suffit pour estimer des fréquences de porteurs.",
+   "ecran": "hardy",
+   "id": "p12",
+   "texte": "p + q = 1, p² + 2pq + q² = 1."
+  },
+  {
+   "dit": "Appliquons-la à la mucoviscidose. La fréquence des naissances d'enfants atteints, q au carré, est d'environ un sur deux mille cinq cents en Europe du Nord. On en déduit q, la racine carrée, soit un cinquantième, environ deux pour cent. La fréquence des porteurs, deux p q, vaut donc environ deux cinquantièmes, soit un sur vingt-cinq, environ quatre pour cent de la population. Voilà comment une maladie rare à la naissance correspond à un porteur sur vingt-cinq dans la population : les porteurs sains sont beaucoup plus nombreux que les malades.",
+   "ecran": "hw_application",
+   "id": "p13",
+   "texte": "1/2500 atteints → 1/25 porteurs."
+  },
+  {
+   "dit": "Combinons maintenant l'histoire familiale et le risque de la population, comme le fait un vrai conseil génétique. Pierre est sain, mais son frère est atteint de mucoviscidose : ses parents sont donc porteurs obligatoires, et Pierre, sachant qu'il est sain, a deux chances sur trois d'être porteur. Si sa partenaire, sans antécédent familial, a une chance sur vingt-cinq d'être porteuse, le risque pour leur enfant d'être atteint vaut deux tiers fois un vingt-cinquième fois un quart, soit un sur cent cinquante. Avec une fréquence de porteurs d'un trentième, le risque deviendrait un sur cent quatre-vingts. Deux chiffres d'apparence proches, deux risques différents : le calcul exact compte.",
+   "ecran": "risque_combine",
+   "id": "p14",
+   "texte": "2/3 × 1/25 × 1/4 = 1/150."
+  },
+  {
+   "dit": "Un dernier facteur modifie fortement les risques récessifs : la consanguinité. Quand les parents partagent des ancêtres, ils ont plus de chances de porter le même allèle rare hérité d'un ancêtre commun, et le risque d'un enfant homozygote augmente. Cet effet est fortement augmenté pour les maladies récessives, alors qu'il n'augmente pas le risque pour les maladies dominantes, où un seul allèle suffit et où la parenté ne change pas la transmission. C'est pourquoi les arbres généalogiques signalent les unions consanguines par un double trait.",
+   "ecran": "pedigree_signes",
+   "id": "p15",
+   "texte": "Consanguinité : le risque récessif grimpe."
+  },
+  {
+   "dit": "Le modèle simple a aussi ses nuances, qu'il faut connaître pour ne pas surinterpréter un pedigree. La pénétrance peut être incomplète : un individu porteur de l'allèle ne développe pas toujours la maladie, comme dans l'hémochromatose, dont la pénétrance est estimée entre dix et cinquante pour cent. L'expressivité peut être variable : un même génotype donne des tableaux cliniques très différents, comme dans la neurofibromatose de type un. Et une mutation nouvelle peut créer un individu atteint sans parent atteint, même en dominant. Le pedigree oriente, il ne prouve jamais seul.",
+   "ecran": "nuances",
+   "id": "p16",
+   "texte": "Pénétrance, expressivité, mutation nouvelle."
+  },
+  {
+   "dit": "Pourquoi des allèles graves persistent-ils dans les populations ? Parfois parce que l'hétérozygote y gagne un avantage. Le cas classique est la drépanocytose : l'homozygote est malade, avec anémie et crises douloureuses, mais l'hétérozygote, porteur sain, résiste mieux au paludisme. Dans les régions où le paludisme est endémique, les porteurs sont donc favorisés par la sélection, et l'allèle se maintient à des fréquences élevées, jusqu'à un tiers des porteurs dans certaines régions. La sélection ne voit que le phénotype, pas le génotype caché.",
+   "ecran": "avantage",
+   "id": "p17",
+   "texte": "Porteur protégé : l'allèle persiste."
+  },
+  {
+   "dit": "Retenons enfin quatre maladies repères, qui résument tout le chapitre. La mucoviscidose, récessive, qui débute dans l'enfance, liée au gène CFTR. La chorée de Huntington, dominante, qui débute entre trente et cinquante ans. L'hémochromatose héréditaire, récessive, qui provoque une surcharge en fer à l'âge adulte, traitable par saignées. Et la neurofibromatose de type un, dominante, à l'expressivité très variable dès l'enfance. Quatre tableaux, deux modes de transmission, et les mêmes règles de calcul.",
+   "ecran": "galerie",
+   "id": "p18",
+   "texte": "Quatre maladies, deux modes, mêmes règles."
+  },
+  {
+   "dit": "Pour résoudre un cas, suivez la méthode en quatre gestes. D'abord lire le pedigree : qui est atteint, qui ne l'est pas, sur combien de générations. Ensuite tester les deux hypothèses, dominante et récessive, en cherchant la signature qui les distingue. Puis déduire les génotypes possibles des parents, en repérant les porteurs obligatoires. Enfin calculer, en conditionnant sur tout ce qui est déjà connu : un enfant sain, un frère atteint, une fréquence dans la population. C'est cette discipline qui évite les erreurs les plus fréquentes.",
+   "ecran": "méthode",
+   "id": "p19",
+   "texte": "Lire, tester, déduire, calculer."
+  },
+  {
+   "dit": "À quoi sert tout ce calcul ? Au conseil génétique, un dialogue chiffré et humain. Le dépistage des porteurs avant une grossesse, le diagnostic prénatal, le diagnostic préimplantatoire, le dépistage néonatal pour certaines maladies : autant d'outils qui s'appuient sur les probabilités que vous savez maintenant calculer. Mais retenez la limite essentielle : le chiffre éclaire une décision, il ne la prend jamais seul, car derrière chaque fraction, il y a une famille.",
+   "ecran": "conseil",
+   "id": "p20",
+   "texte": "Le chiffre éclaire, il ne décide pas."
+  },
+  {
+   "dit": "Récapitulons. Les autosomes sont les vingt-deux paires de chromosomes hors détermination du sexe. La transmission dominante est verticale, à chaque génération ; la récessive est horizontale, souvent dans une seule fratrie. Deux parents porteurs donnent un enfant atteint sur quatre. Un enfant sain de deux porteurs a deux chances sur trois d'être porteur. Et la loi de Hardy-Weinberg relie la fréquence d'une maladie à celle de ses porteurs dans la population.",
+   "ecran": "recap",
+   "id": "p21",
+   "texte": "22 paires, vertical, horizontal, 1/4, 2/3."
+  },
+  {
+   "dit": "Vous savez maintenant lire une famille comme un généticien : repérer le mode de transmission dans un pedigree, calculer un risque en combinant famille et population, et reconnaître les nuances qui rendent chaque cas unique. La transmission autosomique n'est plus une liste de maladies : c'est un langage, celui par lequel les générations se parlent en chiffres.",
+   "ecran": "recap",
+   "id": "p22",
+   "texte": "Lire une famille, calculer, décider."
+  }
+ ],
+ "titre": "Transmission autosomique : hérédité des chromosomes non sexuels",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Fondations et transmission dominante"
+  },
+  {
+   "debut": "p09",
+   "pont": {
+    "dit": "Partie deux : la transmission récessive et le calcul des risques. Nous poserons le cas de deux porteurs, nous piégerons la probabilité conditionnelle, nous passerons à la population avec Hardy-Weinberg, puis nous combinerons famille et population, et nous verrons l'effet de la consanguinité.",
+    "texte": "Partie 2 : récessif et calcul des risques."
+   },
+   "sous_titre": "Transmission récessive et calcul des risques"
+  },
+  {
+   "debut": "p16",
+   "pont": {
+    "dit": "Partie trois : les nuances, les cas cliniques et la méthode. Nous verrons la pénétrance et l'expressivité, l'avantage de l'hétérozygote, quatre maladies repères, puis la méthode en quatre gestes et le rôle du conseil génétique.",
+    "texte": "Partie 3 : nuances, cas et méthode."
+   },
+   "sous_titre": "Nuances, cas cliniques et méthode"
+  }
+ ]
+}

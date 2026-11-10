@@ -1,0 +1,412 @@
+{
+  "cours": 6182,
+  "titre": "Espérance, variance et écart-type : résumer le hasard",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Probabilités",
+      "titre": "Espérance, variance et écart-type : résumer le hasard",
+      "sous": "Le centre, la dispersion, le risque : trois nombres pour décrire une loi",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Pourquoi résumer une loi ?",
+      "texte": "Une loi complète est trop riche : trois indicateurs la résument, le centre et la dispersion."
+    },
+    "esperance": {
+      "type": "formule",
+      "kicker": "L'espérance",
+      "tex": "E(X) = \\sum_i x_i\\, p_i",
+      "note": "Chaque valeur est pondérée par sa probabilité : c'est le centre de gravité de la loi.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 200
+      }
+    },
+    "de_esperance": {
+      "type": "etape",
+      "kicker": "Exemple · le dé équilibré",
+      "titre": "L'espérance du dé : trois et demi, une valeur impossible",
+      "tex": [
+        "E(X) = \\tfrac{1+2+3+4+5+6}{6} = \\tfrac{21}{6}",
+        "E(X) = 3{,}5"
+      ]
+    },
+    "roulette": {
+      "type": "etape",
+      "kicker": "Exemple · la roulette simplifiée",
+      "titre": "Miser sur le sept : un jeu défavorable",
+      "tex": [
+        "P(G = 7) = \\tfrac{1}{10} \\qquad P(G = -1) = \\tfrac{9}{10}",
+        "E(G) = 7 \\times \\tfrac{1}{10} - 1 \\times \\tfrac{9}{10} = -0{,}2"
+      ]
+    },
+    "grands_nombres": {
+      "type": "phrase",
+      "kicker": "L'interprétation",
+      "texte": "Sur mille lancers, la moyenne observée colle à l'espérance : c'est la loi des grands nombres."
+    },
+    "continu": {
+      "type": "formule",
+      "kicker": "Le cas continu",
+      "tex": "E(X) = \\int_{-\\infty}^{+\\infty} x\\, f(x)\\, dx",
+      "note": "La somme devient une intégrale · Loi uniforme sur [a ; b] : E(X) = (a + b)/2, le milieu."
+    },
+    "linearite": {
+      "type": "formule",
+      "kicker": "La linéarité de l'espérance",
+      "tex": "E(aX + bY) = a\\, E(X) + b\\, E(Y)",
+      "note": "Valable sans aucune hypothèse d'indépendance · Pour le dé : E(2X + 5) = 2 × 3,5 + 5 = 12."
+    },
+    "portefeuille": {
+      "type": "etape",
+      "kicker": "Application · le portefeuille",
+      "titre": "La moyenne pondérée des rendements",
+      "tex": [
+        "R_p = 0{,}4\\, R_A + 0{,}3\\, R_B + 0{,}3\\, R_C",
+        "E(R_p) = 0{,}4 \\cdot 8 + 0{,}3 \\cdot 6 + 0{,}3 \\cdot 10 = 8\\ \\%"
+      ]
+    },
+    "variance_intro": {
+      "type": "phrase",
+      "kicker": "La moyenne ne suffit pas",
+      "texte": "Même espérance de deux euros et demi : un jeu sans risque, un jeu à cinq mille euros rares.",
+      "anim": {
+        "nom": "deux_distributions_fig",
+        "hauteur": 190
+      }
+    },
+    "variance": {
+      "type": "formule",
+      "kicker": "La variance",
+      "tex": "V(X) = E\\left[\\left(X - E(X)\\right)^2\\right]",
+      "note": "Les écarts signés s'annulent en moyenne : on les élève au carré, ce qui pénalise les grands écarts."
+    },
+    "konig": {
+      "type": "formule",
+      "kicker": "Le théorème de König-Huygens",
+      "tex": "V(X) = E(X^2) - [E(X)]^2",
+      "note": "La moyenne des carrés, moins le carré de la moyenne : deux nombres suffisent."
+    },
+    "de_variance": {
+      "type": "etape",
+      "kicker": "Exemple · la variance du dé",
+      "titre": "König-Huygens sur le dé, pas à pas",
+      "tex": [
+        "E(X^2) = \\tfrac{1+4+9+16+25+36}{6} = \\tfrac{91}{6} \\approx 15{,}17",
+        "V(X) = \\tfrac{91}{6} - (3{,}5)^2 = \\tfrac{35}{12} \\approx 2{,}92",
+        "\\sigma(X) = \\sqrt{\\tfrac{35}{12}} \\approx 1{,}71"
+      ]
+    },
+    "bernoulli": {
+      "type": "formule",
+      "kicker": "La variance d'une Bernoulli",
+      "tex": "V(X) = p\\,(1-p)",
+      "note": "Maximale en p = 0,5 : 0,25, le maximum d'incertitude · Nulle en p = 0 ou p = 1 : la certitude."
+    },
+    "deux_pieces": {
+      "type": "etape",
+      "kicker": "Exemple · deux pièces équilibrées",
+      "titre": "Le nombre de faces : la définition contre König-Huygens",
+      "tex": [
+        "P(X{=}0) = \\tfrac{1}{4} \\qquad P(X{=}1) = \\tfrac{1}{2}",
+        "P(X{=}2) = \\tfrac{1}{4}",
+        "E(X) = 1 \\qquad E(X^2) = \\tfrac{3}{2}",
+        "V(X) = \\tfrac{3}{2} - 1^2 = 0{,}5"
+      ]
+    },
+    "proprietes": {
+      "type": "etape",
+      "kicker": "Les propriétés de la variance",
+      "titre": "Translater ne change rien, multiplier met au carré",
+      "tex": [
+        "V(c) = 0 \\qquad V(X + c) = V(X)",
+        "V(aX) = a^2\\, V(X)",
+        "V(aX + b) = a^2\\, V(X)"
+      ]
+    },
+    "lois": {
+      "type": "etape",
+      "kicker": "Les variances des lois classiques",
+      "titre": "Trois variances à connaître",
+      "tex": [
+        "X \\sim \\mathcal{B}(n, p) : \\quad V(X) = n p (1-p)",
+        "X \\sim \\mathcal{U}([a, b]) : \\quad V(X) = \\tfrac{(b-a)^2}{12}",
+        "X \\sim \\mathcal{E}(\\lambda) : \\quad V(X) = \\tfrac{1}{\\lambda^2}"
+      ]
+    },
+    "investissement": {
+      "type": "etape",
+      "kicker": "Exemple complet · deux projets",
+      "titre": "Même ordre de gain, un risque très différent",
+      "tex": [
+        "E(X_A) = 23 \\qquad E(X_A^2) = 970",
+        "V(X_A) = 970 - 23^2 = 441 \\quad \\sigma(X_A) = 21",
+        "E(X_B) = 24{,}5 \\qquad E(X_B^2) = 1572{,}5",
+        "V(X_B) = 972{,}25 \\qquad \\sigma(X_B) \\approx 31{,}18"
+      ]
+    },
+    "ecart_type": {
+      "type": "formule",
+      "kicker": "L'écart-type",
+      "tex": "\\sigma(X) = \\sqrt{V(X)}",
+      "note": "La racine carrée de la variance : la dispersion typique, dans la même unité que la variable.",
+      "anim": {
+        "nom": "dispersion_mesures_fig",
+        "hauteur": 210
+      }
+    },
+    "regle": {
+      "type": "etape",
+      "kicker": "La règle empirique",
+      "titre": "Pour une distribution en cloche",
+      "tex": [
+        "\\mu \\pm \\sigma : \\quad \\text{environ } 68\\ \\text{\\% des valeurs}",
+        "\\mu \\pm 2\\sigma : \\quad \\text{environ } 95\\ \\text{\\% des valeurs}",
+        "\\mu \\pm 3\\sigma : \\quad \\text{environ } 99{,}7\\ \\text{\\% des valeurs}"
+      ]
+    },
+    "qualite": {
+      "type": "etape",
+      "kicker": "Application · le contrôle qualité",
+      "titre": "Des tiges de cent centimètres, écart-type zéro virgule quinze",
+      "tex": [
+        "\\mu = 100{,}0\\ \\text{cm} \\qquad \\sigma = 0{,}15\\ \\text{cm}",
+        "\\mu \\pm 2\\sigma = [99{,}7\\ ;\\ 100{,}3]\\ \\text{cm}",
+        "\\tfrac{100{,}5 - 100{,}0}{0{,}15} \\approx 3{,}33\\ \\sigma"
+      ]
+    },
+    "emplois": {
+      "type": "etape",
+      "kicker": "Exemple · deux emplois de vacances",
+      "titre": "Le salaire fixe contre la commission",
+      "tex": [
+        "E(B) = 0{,}8 \\times 1600 + 0{,}2 \\times 1000 = 1480",
+        "E(B^2) = 2248000 \\qquad V(B) = 57600",
+        "\\sigma(B) = 240 \\qquad A : \\ E = 1500, \\ V = 0"
+      ]
+    },
+    "cv": {
+      "type": "formule",
+      "kicker": "Le coefficient de variation",
+      "tex": "CV = \\frac{\\sigma}{\\mu}",
+      "note": "Sans unité : il compare le risque relatif · Stratégie prudente : 0,15 · Stratégie risquée : 0,48."
+    },
+    "comparaison": {
+      "type": "etape",
+      "kicker": "Comparer deux distributions",
+      "titre": "Deux promotions : niveau contre homogénéité",
+      "tex": [
+        "\\text{Promotion un : } \\mu = 12{,}5 \\qquad \\sigma = 2{,}85",
+        "\\text{Promotion deux : } \\mu = 13{,}1 \\qquad \\sigma = 3{,}54"
+      ]
+    },
+    "methode": {
+      "type": "recap",
+      "kicker": "La méthode en cinq étapes",
+      "etapes": [
+        "Calculer espérance, variance, écart-type",
+        "Lire centre et dispersion ensemble",
+        "Comparer les échelles avec le CV",
+        "Relier les nombres au contexte réel",
+        "Toujours donner position et dispersion"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "E(X) : le centre, une moyenne pondérée",
+        "V(X) : la dispersion, par König-Huygens",
+        "σ : la dispersion dans la bonne unité",
+        "Linéarité de E, sans indépendance",
+        "Jamais la moyenne sans la dispersion"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours consacré aux trois nombres qui résument une variable aléatoire : l'espérance, la variance et l'écart-type. Avant de lancer un dé, vous aimeriez savoir si le jeu est équilibré, ce que vous pouvez gagner en moyenne sur le long terme, et si les résultats seront stables ou imprévisibles. C'est exactement à ces trois questions que répondent nos trois indicateurs.",
+      "texte": "Espérance, variance, écart-type : résumer le hasard.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Une variable aléatoire est décrite par sa loi de probabilité : un tableau, une densité, un graphique. Cette description complète est souvent trop riche pour comparer deux jeux, deux investissements ou deux traitements. Les indicateurs numériques en extraient l'essentiel : une tendance centrale, autour de quelle valeur les résultats se concentrent, et une dispersion, sont-ils groupés ou très étalés autour de ce centre.",
+      "texte": "Résumer une loi : un centre et une dispersion.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Premier pilier : l'espérance mathématique, notée grand E de ixe, ou mu. C'est la moyenne des valeurs possibles, pondérée par leurs probabilités : on multiplie chaque valeur par sa probabilité, puis on additionne. Pensez à une balance dont chaque plateau porte une valeur, attachée par un fil dont l'épaisseur figure la probabilité : l'espérance est le point d'équilibre, le centre de gravité de la loi.",
+      "texte": "L'espérance : chaque valeur pondérée par sa probabilité.",
+      "ecran": "esperance"
+    },
+    {
+      "id": "p04",
+      "dit": "Exemple fondateur : le lancer d'un dé équilibré. Chaque face a pour probabilité un sixième. L'espérance vaut donc un plus deux plus trois plus quatre plus cinq plus six, le tout divisé par six : vingt et un sixièmes, c'est-à-dire trois et demi. Remarquez que trois et demi n'est pas une face du dé : l'espérance est un centre théorique, pas forcément une valeur que la variable peut prendre.",
+      "texte": "Le dé : une espérance de trois et demi, jamais obtenue.",
+      "ecran": "de_esperance"
+    },
+    {
+      "id": "p05",
+      "dit": "Deuxième exemple, taillé pour décider : une roulette de dix cases numérotées de zéro à neuf, et vous misez un euro sur le sept. Si le sept sort, votre gain net est de sept euros ; sinon, vous perdez votre euro. L'espérance vaut sept fois un dixième, moins un fois neuf dixièmes : moins zéro virgule deux euro par partie. Sur cent parties, attendez-vous à perdre environ vingt euros : une espérance négative signe un jeu défavorable au joueur.",
+      "texte": "Roulette : moins zéro virgule deux euro par partie en moyenne.",
+      "ecran": "roulette"
+    },
+    {
+      "id": "p06",
+      "dit": "Comment interpréter ce nombre sur le terrain ? Par la loi des grands nombres : si vous répétez l'expérience un très grand nombre de fois, la moyenne des résultats observés se rapproche de l'espérance. Avec dix lancers de dé, la moyenne peut encore être loin de trois et demi ; avec dix mille lancers, elle en sera toute proche. L'espérance est une promesse de long terme, jamais une garantie à chaque coup.",
+      "texte": "La loi des grands nombres : la moyenne rejoint l'espérance.",
+      "ecran": "grands_nombres"
+    },
+    {
+      "id": "p07",
+      "dit": "Le même concept existe pour les variables continues : la somme discrète devient une intégrale, celle de ixe multiplié par la densité. L'espérance reste l'abscisse du centre de gravité de l'aire sous la courbe. Pour une loi uniforme sur un intervalle, le résultat est celui que l'intuition attendait : l'espérance est exactement au milieu de l'intervalle.",
+      "texte": "Cas continu : la somme devient une intégrale.",
+      "ecran": "continu"
+    },
+    {
+      "id": "p08",
+      "dit": "Voici maintenant l'outil le plus puissant du chapitre : la linéarité de l'espérance. L'espérance d'une combinaison linéaire est la combinaison linéaire des espérances, et cela sans aucune hypothèse d'indépendance entre les variables. Pour le dé, l'espérance de deux ixe plus cinq vaut deux fois trois et demi, plus cinq : douze, sans jamais avoir à déterminer la loi de la variable transformée.",
+      "texte": "Linéarité : sans aucune hypothèse d'indépendance.",
+      "ecran": "linearite"
+    },
+    {
+      "id": "p09",
+      "dit": "La linéarité brille dans les applications. Un portefeuille investi à quarante pour cent sur un actif de rendement espéré huit pour cent, trente pour cent sur un actif à six pour cent et trente pour cent sur un actif à dix pour cent a un rendement espéré qui se calcule en une ligne : la moyenne pondérée des rendements, soit huit pour cent. Même réflexe en entreprise : un profit égal à vingt-cinq fois le nombre de commandes moins huit cents a pour espérance vingt-cinq fois l'espérance des commandes, moins huit cents.",
+      "texte": "Portefeuille : le rendement espéré est une moyenne pondérée.",
+      "ecran": "portefeuille"
+    },
+    {
+      "id": "p10",
+      "dit": "Mais la moyenne seule peut mentir. Deux jeux ont la même espérance de deux euros et demi : le premier verse deux euros et demi à chaque partie, sans aucun risque ; le second verse cinq mille euros avec une probabilité de un sur deux mille, et rien sinon. Même centre, risque radicalement différent. Il manque un deuxième nombre, celui qui mesure l'étalement autour du centre : la variance.",
+      "texte": "Même espérance, risque opposé : il faut mesurer l'étalement.",
+      "ecran": "variance_intro"
+    },
+    {
+      "id": "p11",
+      "dit": "Pourquoi ne pas moyenner simplement les écarts à l'espérance ? Parce que ces écarts sont tantôt positifs, tantôt négatifs, et que leur moyenne vaut toujours zéro : ils s'annulent. La solution retenue est de les élever au carré, ce qui supprime le signe et pénalise fortement les grands écarts. La variance est donc l'espérance du carré de l'écart à la moyenne. Faible, les valeurs sont concentrées ; élevée, elles sont très étalées.",
+      "texte": "La variance : l'espérance du carré des écarts.",
+      "ecran": "variance"
+    },
+    {
+      "id": "p12",
+      "dit": "Calculer la variance par sa définition est souvent fastidieux. Le théorème de König-Huygens offre un chemin bien plus direct : la variance égale l'espérance du carré, moins le carré de l'espérance. Autrement dit, deux nombres suffisent : la moyenne des carrés et la moyenne. Toute la démonstration tient en trois lignes : développer le carré, puis utiliser la linéarité de l'espérance.",
+      "texte": "König-Huygens : la moyenne des carrés moins le carré de la moyenne.",
+      "ecran": "konig"
+    },
+    {
+      "id": "p13",
+      "dit": "Appliquons la formule au dé. L'espérance du carré vaut la moyenne des carrés des faces : quatre-vingt-onze sixièmes, environ quinze virgule dix-sept. La variance vaut quatre-vingt-onze sixièmes moins trois et demi au carré : trente-cinq douzièmes, environ deux virgule quatre-vingt-douze. Et sa racine carrée, l'écart-type, vaut environ un virgule soixante et onze : en moyenne, un lancer s'écarte de trois et demi d'environ un virgule sept point.",
+      "texte": "Le dé : variance trente-cinq douzièmes, écart-type un virgule sept.",
+      "ecran": "de_variance"
+    },
+    {
+      "id": "p14",
+      "dit": "Un résultat à connaître par cœur : pour une variable de Bernoulli, qui vaut un avec probabilité p et zéro sinon, l'espérance vaut p et l'espérance du carré vaut aussi p, donc la variance vaut p fois un moins p. Elle est maximale pour p égal à un demi, où elle vaut zéro virgule vingt-cinq : c'est le point d'incertitude maximale. Elle s'annule pour p égal à zéro ou à un : la certitude absolue.",
+      "texte": "Bernoulli : variance p fois un moins p, maximale en un demi.",
+      "ecran": "bernoulli"
+    },
+    {
+      "id": "p15",
+      "dit": "Vérifions König-Huygens sur un deuxième exemple complet : le nombre de faces obtenues en lançant deux pièces équilibrées. La loi donne un quart pour zéro, un demi pour un, un quart pour deux. L'espérance vaut un, l'espérance du carré vaut trois demis, et la variance vaut trois demis moins un : un demi. Le calcul direct, par la définition, donne exactement le même un demi : la formule est un raccourci, pas une approximation.",
+      "texte": "Deux pièces : variance un demi, par les deux méthodes.",
+      "ecran": "deux_pieces"
+    },
+    {
+      "id": "p16",
+      "dit": "Trois propriétés gouvernent les calculs quotidiens. La variance d'une constante est nulle : aucune dispersion. Ajouter une constante à une variable ne change pas sa variance : la translation déplace le centre, pas l'étalement. En revanche, multiplier la variable par un facteur a multiplie sa variance par a au carré : c'est le carré de la définition qui parle. Attention au piège classique : contrairement à l'espérance, la variance n'est pas linéaire.",
+      "texte": "Translation : rien. Multiplication par a : variance fois a au carré.",
+      "ecran": "proprietes"
+    },
+    {
+      "id": "p17",
+      "dit": "Ces outils donnent en quelques lignes les variances des lois classiques. Pour une loi binomiale de paramètres n et p, somme de n variables de Bernoulli indépendantes, la variance vaut n fois p fois un moins p. Pour une loi uniforme continue sur un intervalle, elle vaut la longueur de l'intervalle au carré, divisée par douze. Pour une loi exponentielle de paramètre lambda, elle vaut un sur lambda au carré.",
+      "texte": "Binomiale, uniforme, exponentielle : trois variances classiques.",
+      "ecran": "lois"
+    },
+    {
+      "id": "p18",
+      "dit": "Exemple complet, celui qui fait choisir : deux projets d'investissement, rendements en milliers d'euros selon le scénario économique. Le projet A a une espérance de vingt-trois et une variance de quatre cent quarante et un, soit un écart-type de vingt et un. Le projet B a une espérance légèrement supérieure, vingt-quatre et demi, mais une variance de neuf cent soixante-douze virgule vingt-cinq, soit un écart-type d'environ trente et un virgule dix-huit. Gain moyen un peu plus élevé, risque beaucoup plus grand : le choix dépendra de votre aversion au risque.",
+      "texte": "Projet B : un peu plus de gain espéré, beaucoup plus de risque.",
+      "ecran": "investissement"
+    },
+    {
+      "id": "p19",
+      "dit": "Reste le défaut de la variance : elle s'exprime dans l'unité au carré de la variable, des euros carrés ou des centimètres carrés, ce qui ne parle à personne. On prend donc sa racine carrée : l'écart-type, noté sigma. Il mesure la distance typique entre les valeurs et leur moyenne, dans la même unité que la variable. C'est lui, le plus souvent, que l'on communique.",
+      "texte": "L'écart-type : la dispersion, dans la même unité que la variable.",
+      "ecran": "ecart_type"
+    },
+    {
+      "id": "p20",
+      "dit": "Pour les distributions en forme de cloche, l'écart-type se lit avec la règle empirique : environ soixante-huit pour cent des valeurs se situent à moins d'un écart-type de la moyenne, environ quatre-vingt-quinze pour cent à moins de deux écarts-types, et environ quatre-vingt-dix-neuf virgule sept pour cent à moins de trois écarts-types. Au-delà de trois écarts-types, une valeur devient un signal d'alerte.",
+      "texte": "Soixante-huit, quatre-vingt-quinze, quatre-vingt-dix-neuf virgule sept.",
+      "ecran": "regle"
+    },
+    {
+      "id": "p21",
+      "dit": "Illustration en contrôle qualité : une usine produit des tiges de longueur moyenne cent centimètres, avec un écart-type de zéro virgule quinze centimètre. Environ quatre-vingt-quinze pour cent des tiges mesurent donc entre quatre-vingt-dix-neuf virgule sept et cent virgule trois centimètres. Une tige de cent virgule cinq centimètres se trouve à plus de trois écarts-types de la moyenne : un événement très rare, qui peut signaler un déréglage de la machine.",
+      "texte": "Une tige à plus de trois sigma : un signal de déréglage.",
+      "ecran": "qualite"
+    },
+    {
+      "id": "p22",
+      "dit": "Revenons à la question des deux emplois de vacances. L'emploi A paie un salaire fixe de mille cinq cents euros. L'emploi B paie mille six cents euros avec probabilité zéro virgule huit, et mille euros sinon. Son espérance vaut mille quatre cent quatre-vingts euros, déjà inférieure au salaire fixe, et son écart-type vaut deux cent quarante euros. Ici, les deux indicateurs désignent le même vainqueur : sauf goût du risque, l'emploi A domine.",
+      "texte": "Emploi B : espérance mille quatre cent quatre-vingts, écart-type deux cent quarante.",
+      "ecran": "emplois"
+    },
+    {
+      "id": "p23",
+      "dit": "Un dernier outil pour comparer des distributions d'échelles différentes : le coefficient de variation, le rapport de l'écart-type à la moyenne. Sans unité, il mesure le risque relatif. Une stratégie d'espérance deux mille euros et d'écart-type trois cents euros affiche un coefficient de zéro virgule quinze ; sa rivale, d'espérance deux mille cinq cents et d'écart-type mille deux cents, affiche zéro virgule quarante-huit : un risque relatif plus de trois fois supérieur.",
+      "texte": "Le coefficient de variation : le risque relatif, sans unité.",
+      "ecran": "cv"
+    },
+    {
+      "id": "p24",
+      "dit": "Même méthode pour comparer deux promotions d'étudiants. La première a une moyenne de douze virgule cinq sur vingt et un écart-type de deux virgule quatre-vingt-cinq ; la seconde, une moyenne de treize virgule un et un écart-type de trois virgule cinquante-quatre. La seconde a un niveau moyen légèrement supérieur, mais la première est plus homogène. Une moyenne plus élevée compense-t-elle une plus grande inégalité des résultats ? La réponse dépend de l'objectif, et c'est exactement le type de décision que ces indicateurs éclairent.",
+      "texte": "Niveau moyen contre homogénéité : les deux nombres décident.",
+      "ecran": "comparaison"
+    },
+    {
+      "id": "p25",
+      "dit": "Pour caractériser une distribution, suivez une démarche en cinq étapes : calculer les trois indicateurs fondamentaux ; les interpréter conjointement, position contre dispersion ; standardiser avec le coefficient de variation quand les échelles diffèrent ; contextualiser les résultats dans le problème réel ; et communiquer toujours la position et la dispersion ensemble, jamais la moyenne seule.",
+      "texte": "La méthode : calculer, lire ensemble, standardiser, décider.",
+      "ecran": "methode"
+    },
+    {
+      "id": "p26",
+      "dit": "Pour finir, retenez le triptyque complet. L'espérance est le centre de gravité d'une loi, une moyenne pondérée par les probabilités, fidèle sur le long terme et linéaire sans hypothèse. La variance mesure la dispersion par les carrés des écarts, et König-Huygens la ramène à deux nombres. L'écart-type, sa racine carrée, rend cette dispersion lisible dans la bonne unité. Ne résumez jamais une loi par sa seule moyenne : le centre sans l'étalement est une demi-information.",
+      "texte": "Centre, dispersion, risque : le triptyque complet.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "L'espérance : le centre de gravité d'une loi"
+    },
+    {
+      "debut": "p10",
+      "sous_titre": "La variance : mesurer la dispersion et le risque",
+      "pont": {
+        "texte": "Partie 2 : la variance, König-Huygens et les lois classiques.",
+        "dit": "Partie deux : la variance. La moyenne ne dit pas tout, il faut mesurer la dispersion autour d'elle. Nous définirons la variance, nous la calculerons vite grâce à König-Huygens, puis nous l'appliquerons aux lois classiques et à un vrai choix d'investissement."
+      }
+    },
+    {
+      "debut": "p19",
+      "sous_titre": "L'écart-type : comparer, décider, conclure",
+      "pont": {
+        "texte": "Partie 3 : l'écart-type, le coefficient de variation et la comparaison.",
+        "dit": "Partie trois : l'écart-type et l'art de comparer. Nous rendrons la dispersion lisible dans la bonne unité, nous lirons les intervalles en multiples de sigma, puis nous comparerons des distributions entières pour décider."
+      }
+    }
+  ]
+}

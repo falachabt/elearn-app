@@ -196,12 +196,15 @@ describe('catégories et destinations', () => {
   it('ouvre la question quand le serveur donne son identifiant', () => {
     expect(destinationDe('post_reply', { post_id: 'q1' })).toEqual({ pathname: '/question', params: { id: 'q1' } });
     expect(destinationDe('poll_revealed', { post_id: 'q2', screen: '/credits' })).toEqual({ pathname: '/question', params: { id: 'q2' } });
+    expect(destinationDe('level_up', { niveau: 2 })).toEqual({ pathname: '/xp' });
   });
 
   it('une correction prête ouvre cette correction quand son identifiant est donné, sinon l’historique', () => {
     expect(destinationDe('photo_ready', { correction_id: 'c-1' })).toEqual({ pathname: '/photo', params: { id: 'c-1' } });
     expect(destinationDe('photo_ready', { photoId: 'p-2' })).toEqual({ pathname: '/photo', params: { id: 'p-2' } });
     expect(destinationDe('photo_ready', {})).toEqual({ pathname: '/photo', params: { historique: '1' } });
+    expect(destinationDe('photo_ready', { exam_attempt_id: 's-1', paper_kind: 'document', paper_ref: 'd-9' })).toEqual({ pathname: '/annales/session', params: { id: 's-1', kind: 'document', ref: 'd-9' } });
+    expect(destinationDe('photo_ready', { exam_attempt_id: 's-2', paper_kind: 'exam', paper_ref: '12' })).toEqual({ pathname: '/annales/session', params: { id: 's-2', kind: 'exam', ref: '12' } });
     expect(destinationDe('photo_refunded', { screen: '/photo' })).toEqual({ pathname: '/photo', params: { historique: '1' } });
     expect(destinationDe('credits_low', { screen: '/credits', balance: 4 })).toEqual({ pathname: '/credits' });
     expect(destinationDe('credits_low', {})).toEqual({ pathname: '/credits' });
@@ -230,8 +233,11 @@ describe('catégories et destinations', () => {
     expect(destinationDe('weekly_summary', {})).toEqual({ pathname: '/ma-semaine', params: { source: 'push' } });
     expect(destinationDe('weekly_summary', { week_start: '2026-09-28', screen: '/ma-semaine' }, 'inbox')).toEqual({ pathname: '/ma-semaine', params: { semaine: '2026-09-28', source: 'inbox' } });
     expect(destinationDe('weekly_summary', { week_start: 'pas-une-date' })).toEqual({ pathname: '/ma-semaine', params: { source: 'push' } });
-    expect(destinationDe('pass_ending', { screen: '/paiements', days_left: 3 })).toEqual({ pathname: '/paiements' });
-    expect(destinationDe('pass_ending', undefined)).toEqual({ pathname: '/paiements' });
+  });
+
+  it('une fin de Pass mène aux offres, jamais à « Mes paiements », même si le serveur envoie son ancien écran (#124)', () => {
+    expect(destinationDe('pass_ending', { screen: '/paiements', days_left: 3 })).toEqual({ pathname: '/offres', params: { declencheur: 'recharge-pass' } });
+    expect(destinationDe('pass_ending', undefined)).toEqual({ pathname: '/offres', params: { declencheur: 'recharge-pass' } });
   });
 
   it('ne suit jamais une destination qui n’est pas un chemin interne', () => {
@@ -266,5 +272,17 @@ describe('réglages', () => {
 
   it('remonte l’erreur d’écriture', async () => {
     await expect(ecrireReglagesNotifications({ rpc: async () => ({ error: new Error('refusé') }), from: jest.fn() } as never, { enabled: true })).rejects.toThrow('refusé');
+  });
+});
+
+describe('planning d’études : notifications', () => {
+  it('« planning prêt » et « planning changé » sont des rappels (réglage coupé avec les rappels)', () => {
+    expect(categorieDe('study_plan_ready')).toBe('reminders');
+    expect(categorieDe('study_plan_updated')).toBe('reminders');
+  });
+
+  it('le toucher ouvre le planning, avec l’origine pour la mesure', () => {
+    expect(destinationDe('study_plan_ready', { screen: '/planning' }, 'push')).toEqual({ pathname: '/planning', params: { source: 'push' } });
+    expect(destinationDe('study_plan_updated', undefined, 'inbox')).toEqual({ pathname: '/planning', params: { source: 'inbox' } });
   });
 });

@@ -21,6 +21,11 @@
 - Respecte scrupuleusement les tokens sémantiques (couleurs, typographie, espacements).
 - Règles de travail design (ajuster l'existant, pas d'emojis, Lucide, thèmes clair et sombre, crédits épuisés, limites Figma) : **docs/design-regles.md**.
 
+## 4 bis. Vérification visuelle en fin de développement (16 octobre 2026, consigne de Benny)
+- À la fin de chaque développement d'écran, lancer l'app en version web (Expo web en dev) et la parcourir avec Playwright ou le navigateur intégré. Chromium est préinstallé : ne jamais lancer `playwright install` ; utiliser `executablePath: '/opt/pw-browsers/chromium'` si besoin.
+- Parcourir les écrans touchés, en clair et en sombre, prendre des captures et les comparer à la maquette (identifiant TOEIC-…). Corriger les écarts avant de déclarer le travail fini.
+- Dans le rapport : indiquer ce qui a été vérifié et joindre les captures. Si l'app web ne démarre pas, ou si une donnée manque (session, contenu), le dire au lieu de déclarer que tout va bien.
+
 ## 5. Mise à jour des consignes
 - Si je te donne de nouvelles règles ou consignes de travail en cours de session, **tu as la consigne de mettre à jour ce fichier AGENTS.md** toi-même pour t'en souvenir lors de nos futures sessions.
 
@@ -88,7 +93,7 @@ Le skill `.claude/skills/caveman` réduit la consommation de tokens. Il s'appliq
 
 ### 16 bis. Expiration du contenu hors ligne : passer par `lireLocalHorsLigne`
 
-- **Le cache hors ligne est éparpillé en plusieurs clés**, chacune rangée par la préparation et lue par son propre chemin : `reviser.quiz.horsLigne.*`, `entrainement.exercice.corrige.*`, `mission.horsLigne.*`. Les contenus rangés par `avecCopie` (cours, leçons, fiches, exercices, quiz libres, annales) passent par ce même point.
+- **Le cache hors ligne est éparpillé en plusieurs clés**, chacune rangée par la préparation et lue par son propre chemin : `reviser.quiz.horsLigne.*`, `entrainement.exercice.corrige.*`, `mission.horsLigne.*`, et pour le profil TOEIC `cert.cache.revision.*`, `cert.cache.carnet.*`, `cert.cache.fiche.*`, `cert.cache.stats.*` (lus par `lireAvecCopie`, `src/services/certification/copie.ts`). Les contenus rangés par `avecCopie` (cours, leçons, fiches, exercices, quiz libres, annales) passent par ce même point.
 - **Toute lecture d'une clé locale de contenu doit passer par `lireLocalHorsLigne()`** (`src/services/reviser.ts`), qui applique l'expiration. Un `AsyncStorage.getItem()` direct **contourne la règle** — c'est l'erreur commise deux fois, en annonçant à tort que l'expiration bloquait le contenu alors que quiz et corrigés restaient accessibles.
 - Ne pas recopier `contenuHorsLigneValide()` au cas par cas : le contrôle vit dans `lireLocalHorsLigne` et `avecCopie`. Une nouvelle clé locale de contenu doit être ajoutée à la liste ci-dessus **et** couverte par un test.
 - `src/services/__tests__/reviser.test.ts` contient le bloc « clés locales hors ligne : toutes soumises à l'expiration », qui couvre chaque clé. **Toute nouvelle clé de contenu local doit y ajouter son test.**
@@ -110,3 +115,17 @@ Le skill `.claude/skills/caveman` réduit la consommation de tokens. Il s'appliq
 
 ## 19. App Store (iOS)
 - Plan et règles Apple : **docs/app-store.md**. Sur iOS, aucune mention d'Android ni de paiement externe (Mobile Money, pawaPay) ; partout où Google est proposé pour se connecter, Apple l'est aussi (règle 4.8). Achats iOS via RevenueCat.
+
+## 20. Analytics PostHog (13 octobre 2026)
+- Dictionnaire, propriétés, identité, vie privée et plan d'entrepôt : **docs/analytics/**. Tout évènement passe par `suivre()` (`src/services/analytics.ts`) et par le type `Evenements` (`src/services/evenements.ts`) ; ajouter l'évènement au type **et** à `docs/analytics/dictionnaire-evenements.md`.
+- **Jamais de donnée personnelle** dans un évènement ou une propriété : pas d'e-mail, de téléphone, de mot de passe, de jeton ni de contenu de question ou de réponse. `confidentialite.ts` retire et masque, mais ce n'est qu'un dernier filet.
+- Un bouton n'est suivi que par un nom stable (`suivi` sur `Appui`, libellé sur `Bouton`), jamais par un `accessibilityLabel` qui peut porter du contenu.
+- Les pages vues sont automatiques (`$screen`, nom de route sans paramètres) : ne pas ajouter d'évènement « écran ouvert ».
+- Hors ligne : le SDK range les évènements dans une file persistée (horodatage et identifiant d'origine) et la vide au retour du réseau ; ne pas réécrire une file maison. `src/services/__tests__/analytics.horsligne.test.ts` utilise le vrai SDK et doit rester vert.
+- Identité : `identifier()` à la connexion, alias de l'invité vers le compte quand l'identifiant change, `reinitialiserIdentite()` à la déconnexion (déjà branchés dans `SessionProvider`). Respect du réglage « Aider à améliorer l'application ».
+- Pas de capture de `console.error` par le SDK (il y écrit ses propres échecs d'envoi hors ligne). Les crashs natifs demandent `@posthog/react-native-plugin` : nouvel APK et §17.
+
+## 21. Maquettes avant écrans, blocages en feuille du bas (consignes de Benny, 23 octobre 2026)
+- **Avant d'implémenter un nouvel écran ou une nouvelle feuille, proposer d'abord la maquette de design EN IMAGE** : une planche de parcours style Figma (écrans côte à côte, flèches, étapes numérotées, légendes) — jamais une simple description texte. Attendre la validation de Benny ; ne jamais coder l'écran d'abord et montrer ensuite.
+- **La base des maquettes, ce sont des captures RÉELLES de l'app** (Playwright sur l'app lancée en local, ou app.elearnprepa.com) : Benny trouve les écrans redessinés à la main moches et pas fidèles (« on dirait des images générées par IA »). Un écran qui n'existe pas encore se dessine en s'appuyant sur les captures réelles des écrans voisins, aux jetons du thème. Les maquettes validées vivent dans l'artefact « Maquettes design Elearn », mis à jour au fil des validations.
+- **Un blocage se présente par une feuille du bas** (composant `Feuille`) qui dit la raison à l'élève — par exemple « Tu es hors ligne » pour une action impossible sans réseau — et non par une bannière discrète ou un message système. L'action bloquée ne doit rien écrire ni laisser d'état partiel.

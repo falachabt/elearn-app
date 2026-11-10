@@ -1,0 +1,501 @@
+{
+  "cours": 6230,
+  "titre": "La nomenclature IUPAC : le langage universel des molécules",
+  "matiere": "Chimie",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Chimie · Nomenclature organique",
+      "titre": "La nomenclature IUPAC : le langage universel des molécules",
+      "sous": "Lire une molécule dans son nom, et nommer sans ambiguïté",
+      "anim": {
+        "nom": "chaine_carbonee_fig",
+        "hauteur": 250
+      }
+    },
+    "chaos": {
+      "type": "phrase",
+      "kicker": "Avant l'IUPAC : le chaos des noms",
+      "texte": "Le méthane était le « gaz des marais », l'éthanol l'« esprit de vin » : avant l'IUPAC, chaque chimiste nommait à sa façon."
+    },
+    "anatomie": {
+      "type": "etape",
+      "kicker": "Anatomie d'un nom",
+      "titre": "Le 2-méthylpentane, morceau par morceau",
+      "tex": [
+        "2\\text{-méthylpentane}",
+        "2- : \\text{localisant} \\qquad \\text{méthyl-} : \\text{substituant}",
+        "pent- : \\text{chaîne de } 5\\ C \\qquad \\text{-ane} : \\text{alcane}",
+        "\\text{localisants} + \\text{préfixes} + \\text{chaîne} + \\text{suffixe}"
+      ]
+    },
+    "racines": {
+      "type": "etape",
+      "kicker": "L'alphabet numérique",
+      "titre": "Les racines selon le nombre de carbones",
+      "tex": [
+        "1 : \\text{méth-} \\quad 2 : \\text{éth-} \\quad 3 : \\text{prop-} \\quad 4 : \\text{but-}",
+        "5 : \\text{pent-} \\quad 6 : \\text{hex-} \\quad 7 : \\text{hept-} \\quad 8 : \\text{oct-}",
+        "9 : \\text{non-} \\qquad 10 : \\text{déc-}"
+      ]
+    },
+    "alcanes_formule": {
+      "type": "etape",
+      "kicker": "Les alcanes, la famille de base",
+      "titre": "Des liaisons simples, et des groupes alkyles",
+      "tex": [
+        "C_nH_{2n+2} \\qquad \\text{alcane : suffixe -ane}",
+        "CH_3- : \\text{méthyle} \\qquad CH_3CH_2- : \\text{éthyle}",
+        "\\text{alcane} - H \\Rightarrow \\text{alkyle : -ane devient -yle}"
+      ]
+    },
+    "methode_alcane": {
+      "type": "etape",
+      "kicker": "Nommer un alcane ramifié",
+      "titre": "La méthode, sur le 2-méthylbutane",
+      "tex": [
+        "CH_3-CH(CH_3)-CH_2-CH_3",
+        "\\text{chaîne la plus longue : } 4\\ C \\Rightarrow \\text{butane}",
+        "\\text{méthyle en } 2 \\ (2 < 3) \\Rightarrow 2\\text{-méthylbutane}"
+      ],
+      "anim": {
+        "nom": "chaine_carbonee_fig",
+        "hauteur": 110
+      }
+    },
+    "substituants": {
+      "type": "etape",
+      "kicker": "Plusieurs substituants",
+      "titre": "Multiplicateurs et ordre alphabétique",
+      "tex": [
+        "2,3\\text{-diméthylpentane} \\quad (\\text{di-, tri-, tétra-})",
+        "4\\text{-éthyl-}3\\text{-méthylheptane}",
+        "\\text{ordre alphabétique, sans tenir compte de di-, tri-}"
+      ]
+    },
+    "exercice_heptane": {
+      "type": "etape",
+      "kicker": "Exercice guidé",
+      "titre": "Un heptane déguisé en chaîne brisée",
+      "tex": [
+        "CH_3-CH_2-CH(CH_3)-CH_2-CH(C_2H_5)-CH_2-CH_3",
+        "\\text{chaîne la plus longue : } 7\\ C \\Rightarrow \\text{heptane}",
+        "\\text{méthyle en } 3, \\text{ éthyle en } 5",
+        "5\\text{-éthyl-}3\\text{-méthylheptane}"
+      ]
+    },
+    "butanol": {
+      "type": "etape",
+      "kicker": "Premier groupe fonctionnel : l'alcool",
+      "titre": "Le butan-2-ol, pas à pas",
+      "tex": [
+        "CH_3-CH(OH)-CH_2-CH_3",
+        "\\text{chaîne portant } -OH : 4\\ C \\Rightarrow \\text{but-}",
+        "\\text{suffixe -ol} ;\\ -OH \\text{ en } 2 \\ (2 < 3)",
+        "\\text{butan-}2\\text{-ol}"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Points clés de la partie",
+      "etapes": [
+        "Un nom IUPAC = une seule structure",
+        "Nom = localisants + préfixes + chaîne + suffixe",
+        "Racines : méth- (1) à déc- (10)",
+        "Chaîne la plus longue, numéros les plus bas",
+        "Alkyle : -ane devient -yle ; alcool : -ol"
+      ]
+    },
+    "familles": {
+      "type": "etape",
+      "kicker": "Les insaturations",
+      "titre": "Trois familles, trois formules générales",
+      "tex": [
+        "C_nH_{2n+2} \\qquad \\text{alcane (-ane)}",
+        "C_nH_{2n} \\qquad \\text{alcène (-ène)}",
+        "C_nH_{2n-2} \\qquad \\text{alcyne (-yne)}",
+        "\\text{l'insaturation commande chaîne et numérotation}"
+      ]
+    },
+    "hexene": {
+      "type": "etape",
+      "kicker": "Numéroter pour l'insaturation",
+      "titre": "L'hex-2-ène",
+      "tex": [
+        "CH_3-CH_2-CH=CH-CH_2-CH_3",
+        "\\text{de gauche : liaison en } 3 \\qquad \\text{de droite : en } 2",
+        "\\text{le plus petit gagne} \\Rightarrow \\text{hex-}2\\text{-ène}"
+      ]
+    },
+    "dienes": {
+      "type": "etape",
+      "kicker": "Plusieurs insaturations",
+      "titre": "Diènes, diynes et suffixes composés",
+      "tex": [
+        "CH_2=CH-CH=CH_2 \\Rightarrow \\text{buta-}1,3\\text{-diène}",
+        "\\text{deux doubles : -diène ; deux triples : -diyne}",
+        "\\text{double + triple : -ényne}"
+      ]
+    },
+    "dimethylpentene": {
+      "type": "etape",
+      "kicker": "Alcène ramifié",
+      "titre": "Le 3,4-diméthylpent-1-ène",
+      "tex": [
+        "CH_2=CH-CH(CH_3)-CH(CH_3)-CH_3",
+        "\\text{chaîne avec } C=C : 5\\ C \\Rightarrow \\text{pentène}",
+        "\\text{double liaison en } 1 \\text{ (prioritaire)}",
+        "\\text{méthyles en } 3 \\text{ et } 4 \\Rightarrow 3,4\\text{-diméthylpent-}1\\text{-ène}"
+      ]
+    },
+    "enyne": {
+      "type": "etape",
+      "kicker": "Double et triple liaisons",
+      "titre": "Le pent-1-èn-4-yne, et la règle d'égalité",
+      "tex": [
+        "CH\\equiv C-CH_2-CH=CH_2",
+        "\\text{par la gauche : } \\{1,4\\} \\qquad \\text{par la droite : } \\{1,4\\}",
+        "\\text{égalité : la double liaison reçoit le } 1",
+        "\\text{pent-}1\\text{-èn-}4\\text{-yne}"
+      ]
+    },
+    "cycles_exercice": {
+      "type": "etape",
+      "kicker": "Cycles et exercice de synthèse",
+      "titre": "Du cyclohexène au dièn-yne",
+      "tex": [
+        "\\text{cycle : double liaison implicite en } 1,2",
+        "3\\text{-méthylcyclohexène}",
+        "CH_2=C(CH_3)-CH=CH-C\\equiv CH",
+        "2\\text{-méthylhexa-}1,3\\text{-dièn-}5\\text{-yne}"
+      ]
+    },
+    "recap2": {
+      "type": "recap",
+      "kicker": "Points clés de la partie",
+      "etapes": [
+        "Insaturation : un déficit d'hydrogènes",
+        "Chaîne et numéros dictés par l'insaturation",
+        "Diène, diyne, ényne : les suffixes composés",
+        "Égalité des numéros : la double liaison d'abord",
+        "Cycle : la double liaison est en 1, implicite"
+      ]
+    },
+    "groupes": {
+      "type": "phrase",
+      "kicker": "Les groupes fonctionnels",
+      "texte": "Un groupe fonctionnel est le centre de réactivité d'une molécule : un seul, le plus prioritaire, donnera son suffixe au nom."
+    },
+    "hierarchie": {
+      "type": "etape",
+      "kicker": "La hiérarchie des priorités",
+      "titre": "Du plus prioritaire au moins prioritaire",
+      "tex": [
+        "-COOH : \\text{acide, -oïque} \\qquad -CHO : \\text{aldéhyde, -al}",
+        ">C=O : \\text{cétone, -one} \\qquad -OH : \\text{alcool, -ol}",
+        "-NH_2 : \\text{amine, -amine} \\qquad C=C,\\ C\\equiv C : \\text{en dernier}",
+        "\\text{non prioritaire : hydroxy-, oxo-, halogéno-}"
+      ]
+    },
+    "hydroxybutanoique": {
+      "type": "etape",
+      "kicker": "Exemple guidé : deux groupes oxygénés",
+      "titre": "L'acide l'emporte sur l'alcool",
+      "tex": [
+        "HOOC-CH_2-CH(OH)-CH_3",
+        "\\text{acide} > \\text{alcool} \\Rightarrow \\text{suffixe -oïque}",
+        "C_1 = \\text{carboxyle} ;\\ -OH \\text{ en } 3 \\Rightarrow \\text{hydroxy-}",
+        "\\text{acide } 3\\text{-hydroxybutanoïque}"
+      ]
+    },
+    "enal_pentenol": {
+      "type": "etape",
+      "kicker": "Le groupe prioritaire commande les numéros",
+      "titre": "Aldéhyde devant alcène, alcool devant alcène",
+      "tex": [
+        "CH_3-CH=CH-CHO \\Rightarrow \\text{but-}2\\text{-énal}",
+        "\\text{l'aldéhyde est } C_1 \\text{ par construction}",
+        "CH_3-CH=CH-CH(OH)-CH_3 \\Rightarrow \\text{pent-}4\\text{-èn-}2\\text{-ol}",
+        "\\text{on numérote pour le } -OH, \\text{ pas pour } C=C"
+      ]
+    },
+    "oxopentanoique": {
+      "type": "etape",
+      "kicker": "Exercice guidé",
+      "titre": "Une cétone devenue préfixe oxo-",
+      "tex": [
+        "CH_3-CO-CH_2-CH_2-COOH",
+        "\\text{acide} > \\text{cétone} \\Rightarrow \\text{chaîne de } 5\\ C",
+        "C_1 = COOH \\Rightarrow \\text{cétone en } 4 : \\text{oxo-}",
+        "\\text{acide } 4\\text{-oxopentanoïque}"
+      ]
+    },
+    "dimethylhexane": {
+      "type": "etape",
+      "kicker": "Atelier : la chaîne cachée",
+      "titre": "Six carbones, pas cinq",
+      "tex": [
+        "CH_3-CH(CH_3)-CH_2-CH(C_2H_5)-CH_3",
+        "\\text{piège : la chaîne de } 5 \\text{ n'est pas la plus longue}",
+        "\\text{par l'éthyle : } 6\\ C, \\text{ méthyles en } 2 \\text{ et } 4",
+        "2,4\\text{-diméthylhexane}"
+      ]
+    },
+    "stereo": {
+      "type": "etape",
+      "kicker": "Atelier : la stéréochimie des alcènes",
+      "titre": "Le 3-méthylpent-2-ène existe en deux formes",
+      "tex": [
+        "CH_3-CH=C(CH_3)-CH_2-CH_3",
+        "\\text{prioritaires du même côté} \\Rightarrow (Z)",
+        "\\text{prioritaires opposés} \\Rightarrow (E)",
+        "(Z)\\text{- et } (E)\\text{-}3\\text{-méthylpent-}2\\text{-ène}"
+      ]
+    },
+    "multifonctionnel": {
+      "type": "etape",
+      "kicker": "Atelier : la molécule multifonctionnelle",
+      "titre": "Quatre groupes, un seul suffixe",
+      "tex": [
+        "CH_2=CH-CH(CH_3)-CH(OH)-CH(Br)-CH_3",
+        "\\text{alcool prioritaire} \\Rightarrow \\text{numéroter de droite}",
+        "-OH \\text{ en } 3,\\ Br \\text{ en } 2,\\ \\text{méthyle en } 4,\\ C=C \\text{ en } 5",
+        "2\\text{-bromo-}4\\text{-méthylhex-}5\\text{-èn-}3\\text{-ol}"
+      ]
+    },
+    "erreurs": {
+      "type": "etape",
+      "kicker": "Atelier : chasse aux erreurs",
+      "titre": "Trois noms faux à corriger",
+      "tex": [
+        "1,1\\text{-diméthyléthane} \\Rightarrow 2\\text{-méthylpropane}",
+        "\\text{hex-}3\\text{-ène-}2\\text{-ol} \\Rightarrow \\text{hex-}3\\text{-èn-}2\\text{-ol}",
+        "2\\text{-méthyl-}3\\text{-butylpentane} \\Rightarrow 3\\text{-éthyl-}2\\text{-méthylheptane}"
+      ]
+    },
+    "trio_final": {
+      "type": "etape",
+      "kicker": "Atelier : le trio final",
+      "titre": "Trois hydrocarbures à nommer",
+      "tex": [
+        "CH_3-CH(CH_3)-CH_2-C\\equiv C-CH_3 \\Rightarrow 5\\text{-méthylhex-}2\\text{-yne}",
+        "CH_2=CH-CH(C_2H_5)-CH=CH_2 \\Rightarrow 3\\text{-éthylpenta-}1,4\\text{-diène}",
+        "CH_3-C(CH_3)_2-CH_2-CH_3 \\Rightarrow 2,2\\text{-diméthylbutane}"
+      ]
+    },
+    "applications": {
+      "type": "phrase",
+      "kicker": "À quoi ça sert ?",
+      "texte": "Ibuprofène, lindane, acide sorbique : derrière chaque nom systématique, une structure unique, lisible par tous les chimistes du monde."
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Points clés du cours",
+      "etapes": [
+        "Chaîne principale : celle du groupe prioritaire",
+        "Numéros les plus bas au groupe prioritaire",
+        "Substituants cités par ordre alphabétique",
+        "Un seul suffixe : celui du groupe prioritaire",
+        "Les autres groupes deviennent des préfixes"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de nomenclature organique, le langage universel des molécules. Avant l'IUPAC, chaque chimiste nommait les composés à sa façon, et le même produit portait dix noms différents selon les laboratoires. Nous allons apprendre la grammaire qui a mis fin à ce chaos : comment un nom décrit une structure, et comment une structure se traduit en un nom unique. D'abord les alcanes, la famille de base. Puis les doubles et triples liaisons. Enfin, les groupes fonctionnels et leur hiérarchie, avant un atelier d'exercices corrigés.",
+      "texte": "IUPAC : un nom, une structure.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Imaginez un monde où le méthane s'appellerait tantôt gaz des marais, tantôt carbure d'hydrogène. Où l'éthanol serait esprit de vin pour l'un, alcool éthylique pour l'autre. Ce désordre a régné jusqu'à la création de l'IUPAC, l'Union internationale de chimie pure et appliquée, chargée d'établir une langue commune. Son principe fondateur est d'une simplicité redoutable : à une structure donnée correspond un seul nom, et à un nom donné correspond une seule structure. Le nom n'est plus une étiquette, c'est la description codée de la molécule.",
+      "texte": "Avant l'IUPAC : gaz des marais, esprit de vin…",
+      "ecran": "chaos"
+    },
+    {
+      "id": "p03",
+      "dit": "Prenons le deux-méthylpentane et décomposons son nom comme une phrase. Le deux initial est un localisant : il indique la position d'un événement sur la chaîne, ici le carbone numéro deux. Méthyl désigne le substituant, un petit groupe d'un carbone accroché à la chaîne. Pent annonce la racine : la chaîne principale compte cinq carbones. Et le suffixe ane révèle la famille : un alcane, où toutes les liaisons carbone-carbone sont simples. Tout nom IUPAC s'assemble ainsi : des localisants, des préfixes pour les substituants, la chaîne principale, puis le suffixe du groupe principal.",
+      "texte": "2-méthylpentane : localisant + préfixe + racine + suffixe.",
+      "ecran": "anatomie"
+    },
+    {
+      "id": "p04",
+      "dit": "Avant d'aller plus loin, voici l'alphabet numérique de la chimie organique, à connaître par cœur comme une table de multiplication. Un carbone : méth. Deux : éth. Trois : prop. Quatre : but. Ces quatre premiers sont des noms historiques. À partir de cinq, la logique grecque prend le relais : pent pour cinq, hex pour six, hept pour sept, oct pour huit, non pour neuf et déc pour dix. Pour retenir les quatre premiers, pensez à la phrase : Mon Élève Profondément Bête. Pour les suivants, pensez aux polygones : pentagone, hexagone.",
+      "texte": "Méth- 1, éth- 2, prop- 3, but- 4, pent- 5… déc- 10.",
+      "ecran": "racines"
+    },
+    {
+      "id": "p05",
+      "dit": "Les alcanes sont les hydrocarbures saturés : uniquement des liaisons simples, et une formule générale qui dit tout, C n H deux n plus deux. Leur suffixe est ane. De l'alcane naît le groupe alkyle : on lui retire un hydrogène, et le suffixe ane devient yle. Le méthane donne le groupe méthyle, l'éthane donne l'éthyle, le propane donne le propyle. Ces alkyles seront nos substituants, les branches que l'on greffe sur la chaîne principale. Retenez aussi que le nombre d'isomères explose avec la taille : soixante-quinze pour le décane, plus de trois cent soixante-six mille pour vingt carbones.",
+      "texte": "Alcanes : CnH2n+2 ; alkyle = alcane − H (−yle).",
+      "ecran": "alcanes_formule"
+    },
+    {
+      "id": "p06",
+      "dit": "Voici la méthode pour nommer un alcane ramifié, en cinq étapes. Un : repérer la chaîne carbonée continue la plus longue, c'est la chaîne principale, elle donne le nom de base. Deux : la numéroter en donnant les plus petits numéros possibles aux substituants. Trois : identifier et nommer chaque substituant. Quatre : assembler le nom, localisants d'abord. Cinq : gérer les cas particuliers, nous y venons. Sur notre exemple, la plus longue chaîne compte quatre carbones : base butane. Le groupe méthyle est en position deux dans un sens, trois dans l'autre ; on choisit deux. Résultat : deux-méthylbutane.",
+      "texte": "2-méthylbutane : la méthode en cinq étapes.",
+      "ecran": "methode_alcane"
+    },
+    {
+      "id": "p07",
+      "dit": "Quand plusieurs substituants identiques se greffent sur la chaîne, on les compte avec les préfixes multiplicateurs di, tri, tétra : le deux-trois-diméthylpentane porte deux groupes méthyle, en positions deux et trois. Quand les substituants sont différents, on les cite par ordre alphabétique, sans tenir compte de ces préfixes : dans le quatre-éthyl-trois-méthylheptane, éthyl passe avant méthyl parce que e précède m. Et si deux numérotations donnent les mêmes numéros les plus bas, le premier substituant dans l'ordre alphabétique reçoit le plus petit numéro.",
+      "texte": "Di-, tri- : compter ; ordre alphabétique : citer.",
+      "ecran": "substituants"
+    },
+    {
+      "id": "p08",
+      "dit": "Exercice guidé : nommons cette molécule en zigzag. Le piège serait de suivre la ligne horizontale et de conclure trop vite. En suivant les carbones en zigzag, la chaîne continue la plus longue en compte sept : c'est un heptane. La numérotation correcte place un groupe méthyle en position trois et un groupe éthyle en position cinq. On cite les substituants par ordre alphabétique : éthyl avant méthyl. Nom final : cinq-éthyl-trois-méthylheptane. C'est exactement la démarche de la méthode : d'abord la chaîne, ensuite les numéros, enfin l'assemblage.",
+      "texte": "5-éthyl-3-méthylheptane.",
+      "ecran": "exercice_heptane"
+    },
+    {
+      "id": "p09",
+      "dit": "Faisons entrer un premier groupe fonctionnel : le groupe hydroxyle, qui définit les alcools. La chaîne principale devient la plus longue chaîne qui contient ce groupe. Ici, quatre carbones : racine but. Le suffixe de l'alcool est ol, il remplace le ane de l'alcane. On numérote pour donner le plus petit numéro au carbone qui porte le groupe hydroxyle : position deux dans un sens, trois dans l'autre, on retient deux. Assemblage : butan-deux-ol. Remarquez le réflexe : ce n'est plus le substituant qui commande les numéros, c'est le groupe fonctionnel.",
+      "texte": "Butan-2-ol : le -OH choisit la chaîne et les numéros.",
+      "ecran": "butanol"
+    },
+    {
+      "id": "p10",
+      "dit": "Résumons cette première partie. Un nom IUPAC désigne une structure unique, et il s'assemble toujours dans le même ordre : localisants, substituants, chaîne principale, suffixe. Les racines numériques vont de méth, un carbone, à déc, dix carbones. Pour un alcane, on choisit la chaîne la plus longue, on numérote au plus bas, on cite les substituants par ordre alphabétique. Et dès qu'un groupe fonctionnel apparaît, c'est lui qui choisit la chaîne et les numéros, comme le groupe hydroxyle de notre butan-deux-ol.",
+      "texte": "Un nom = localisants + préfixes + chaîne + suffixe.",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p11",
+      "dit": "Une insaturation, c'est une double ou une triple liaison carbone-carbone, ou un cycle : la molécule compte moins d'hydrogènes que l'alcane de même squelette. Les alcènes portent au moins une double liaison et prennent le suffixe ène ; leur formule générale est C n H deux n. Les alcynes portent au moins une triple liaison et prennent le suffixe yne ; formule C n H deux n moins deux. La règle d'or change par rapport aux alcanes : la chaîne principale est la plus longue qui contient l'insaturation, et on la numérote pour donner les plus petits numéros aux carbones de la liaison multiple.",
+      "texte": "Alcène CnH2n (-ène), alcyne CnH2n−2 (-yne).",
+      "ecran": "familles"
+    },
+    {
+      "id": "p12",
+      "dit": "Exemple : cette chaîne de six carbones porte une double liaison. Numéroter de gauche à droite la placerait entre les carbones trois et quatre. Numéroter de droite à gauche la place entre les carbones deux et trois. On choisit toujours la numérotation qui donne le plus petit numéro à l'insaturation : ici deux. Le nom indique la position par le numéro du premier carbone de la liaison : hex-deux-ène. Retenez le réflexe : pour un alcène, on ne cherche pas d'abord les substituants, on cherche la double liaison, et tout le reste suit.",
+      "texte": "Hex-2-ène : le plus petit numéro pour C=C.",
+      "ecran": "hexene"
+    },
+    {
+      "id": "p13",
+      "dit": "Quand les insaturations se multiplient, les suffixes se composent. Deux doubles liaisons font un diène : le buta-un-trois-diène aligne ses deux doubles liaisons en positions un et trois, et l'on conserve le a de buta pour la prononciation. Deux triples liaisons font un diyne. Et lorsqu'une double et une triple liaison cohabitent, le suffixe devient ényne. La numérotation, elle, doit donner l'ensemble de numéros le plus bas possible pour l'ensemble des insaturations. Ces suffixes composés se lisent dans le tableau des leçons, qu'il faut connaître.",
+      "texte": "Buta-1,3-diène ; double + triple = -ényne.",
+      "ecran": "dienes"
+    },
+    {
+      "id": "p14",
+      "dit": "Combinons insaturation et ramifications. Sur cette molécule, la plus longue chaîne contenant la double liaison compte cinq carbones : un pentène. Pour donner le plus petit numéro à la double liaison, on numérote depuis l'extrémité de la liaison : elle est en position un. Restent deux groupes méthyle, l'un sur le carbone trois, l'autre sur le carbone quatre. Assemblage, par ordre alphabétique et avec le préfixe di : trois-quatre-diméthylpent-un-ène. Notez que la question piège, pourquoi pas pent-quatre-ène, se règle toujours par la même règle : l'insaturation d'abord.",
+      "texte": "3,4-diméthylpent-1-ène.",
+      "ecran": "dimethylpentene"
+    },
+    {
+      "id": "p15",
+      "dit": "Le défi suivant : une molécule qui porte à la fois une triple et une double liaison, un én-yne. En numérotant d'un côté, la triple liaison est en un et la double en quatre ; de l'autre côté, c'est l'inverse. Les deux ensembles de numéros sont identiques : un et quatre. Il faut un juge de paix : à égalité, c'est la double liaison qui reçoit le plus petit numéro. On numérote donc depuis la double liaison, et le nom s'écrit avec le suffixe ène avant le suffixe yne : pent-un-èn-quatre-yne. L'ordre des suffixes dans le nom suit la même priorité.",
+      "texte": "Pent-1-èn-4-yne : à égalité, la double liaison gagne.",
+      "ecran": "enyne"
+    },
+    {
+      "id": "p16",
+      "dit": "Deux cas pour finir cette partie. D'abord les cycles : pour un cycloalcène, la double liaison est toujours entre les carbones un et deux, elle est implicite ; on numérote ensuite le cycle pour donner les plus petits numéros aux substituants, comme dans le trois-méthylcyclohexène. Ensuite, un exercice complet : cette chaîne de six carbones porte deux doubles liaisons, en un et en trois, une triple en cinq, et un méthyle en deux. Son nom condense tout ce que nous avons vu : deux-méthylhexa-un-trois-dièn-cinq-yne.",
+      "texte": "3-méthylcyclohexène ; 2-méthylhexa-1,3-dièn-5-yne.",
+      "ecran": "cycles_exercice"
+    },
+    {
+      "id": "p17",
+      "dit": "Résumons. Une insaturation est un déficit d'hydrogènes qui rend la molécule plus réactive. La chaîne principale est la plus longue contenant l'insaturation, et la numérotation lui donne les numéros les plus bas. Les suffixes se composent : diène, diyne, ényne. À égalité de numéros entre une double et une triple liaison, la double liaison reçoit le plus petit. Et dans un cycle, la double liaison occupe implicitement les positions un et deux.",
+      "texte": "L'insaturation d'abord, toujours.",
+      "ecran": "recap2"
+    },
+    {
+      "id": "p18",
+      "dit": "Un groupe fonctionnel est un arrangement caractéristique d'atomes, responsable des propriétés chimiques de la molécule : c'est son centre de réactivité, son site actif. Le groupe hydroxyle fait l'alcool, le carboxyle fait l'acide. Mais une molécule peut porter plusieurs groupes fonctionnels, et un nom ne peut porter qu'un seul suffixe. Il faut donc un arbitre : la priorité. Le groupe le plus prioritaire donne son suffixe et choisit la chaîne principale ; tous les autres sont relégués au rang de préfixes, cités comme de simples substituants.",
+      "texte": "Un groupe fonctionnel = un centre de réactivité.",
+      "ecran": "groupes"
+    },
+    {
+      "id": "p19",
+      "dit": "Voici la hiérarchie à retenir, du plus prioritaire au moins prioritaire. En tête, les acides carboxyliques, suffixe oïque. Puis les aldéhydes, suffixe al. Puis les cétones, suffixe one. Puis les alcools, suffixe ol. Puis les amines. Et seulement ensuite les alcènes et les alcynes. Les halogènes, eux, ne sont jamais prioritaires : ils restent des préfixes, comme chloro ou bromo. Deux préfixes à connaître absolument : hydroxy pour un alcool non prioritaire, et oxo pour un carbonyle non prioritaire. Pour retenir le sommet du classement : Un Acide Aime Certainement l'Alcool.",
+      "texte": "-oïque > -al > -one > -ol > -amine > -ène/-yne.",
+      "ecran": "hierarchie"
+    },
+    {
+      "id": "p20",
+      "dit": "Premier duel : cette molécule porte un acide carboxylique à une extrémité et un alcool sur le carbone trois. L'acide est plus prioritaire que l'alcool : le suffixe sera donc oïque, et la chaîne principale est la plus longue qui contient le carboxyle, quatre carbones. Le carbone de l'acide est le numéro un par construction ; l'alcool, en position trois, devient le préfixe hydroxy. Nom final : acide trois-hydroxybutanoïque. L'alcool n'a pas disparu du nom, il a simplement changé de statut : de suffixe, il est devenu préfixe.",
+      "texte": "Acide 3-hydroxybutanoïque.",
+      "ecran": "hydroxybutanoique"
+    },
+    {
+      "id": "p21",
+      "dit": "Deuxième duel : un aldéhyde contre une double liaison. L'aldéhyde gagne : son carbone est le numéro un, la double liaison se retrouve entre les carbones deux et trois, et le nom devient but-deux-énal. Troisième duel, plus subtil : un alcool contre une double liaison. L'alcool est prioritaire, donc on numérote pour lui donner le plus petit numéro, même si la double liaison y perd : numérotée depuis l'alcool, notre molécule devient le pent-quatre-èn-deux-ol. La double liaison est reléguée en infixe, èn, juste avant le suffixe ol.",
+      "texte": "But-2-énal ; pent-4-èn-2-ol.",
+      "ecran": "enal_pentenol"
+    },
+    {
+      "id": "p22",
+      "dit": "Exercice guidé, entièrement corrigé dans les leçons. Cette molécule de cinq carbones porte une cétone et un acide carboxylique. Premier réflexe : lister les groupes. Deuxième : consulter la hiérarchie — l'acide bat la cétone. La chaîne principale compte cinq carbones, en incluant le carbone de l'acide, qui devient le numéro un. La cétone se retrouve alors en position quatre, et comme elle n'est pas prioritaire, elle prend le préfixe oxo. Nom final : acide quatre-oxopentanoïque. Vous voyez la mécanique : un suffixe, et des préfixes pour tout le reste.",
+      "texte": "Acide 4-oxopentanoïque.",
+      "ecran": "oxopentanoique"
+    },
+    {
+      "id": "p23",
+      "dit": "Atelier, premier exercice : nommez cette molécule ramifiée. La lecture horizontale suggère une chaîne de cinq carbones avec un méthyle et un éthyle, et c'est le piège. En partant de l'extrémité du groupe éthyle et en remontant à travers la molécule jusqu'au bout du méthyle, on obtient une chaîne continue de six carbones. C'est elle, la chaîne principale : un hexane. Les deux groupes qui dépassent sont deux méthyles, en positions deux et quatre. Nom correct : deux-quatre-diméthylhexane. Moralité : la chaîne principale ne se voit pas toujours au premier coup d'œil, il faut la chercher.",
+      "texte": "2,4-diméthylhexane : la chaîne de 6 était cachée.",
+      "ecran": "dimethylhexane"
+    },
+    {
+      "id": "p24",
+      "dit": "Atelier, deuxième exercice : la dimension spatiale. Une double liaison est rigide et plane : elle peut figer deux arrangements différents des mêmes atomes. Sur le trois-méthylpent-deux-ène, chaque carbone de la double liaison porte deux groupes différents. Si les deux groupes prioritaires, désignés par les règles de priorité des substituants, sont du même côté, la forme est dite Z. S'ils sont de part et d'autre, la forme est dite E. Même formule, même connectivité, mais deux composés distincts : la nomenclature les distingue par ce simple préfixe, Z ou E, entre parenthèses.",
+      "texte": "(Z) ou (E)-3-méthylpent-2-ène.",
+      "ecran": "stereo"
+    },
+    {
+      "id": "p25",
+      "dit": "Atelier, troisième exercice : la molécule multifonctionnelle. Six carbones, une double liaison, un alcool, un brome et un méthyle. Inventaire fait, on consulte la hiérarchie : l'alcool est le groupe prioritaire, le suffixe sera ol. On numérote donc pour donner le plus petit numéro à l'alcool : depuis la droite, il est en position trois, contre quatre depuis la gauche. Dans cette numérotation, le brome est en deux, le méthyle en quatre et la double liaison en cinq. Assemblage par ordre alphabétique : deux-bromo-quatre-méthylhex-cinq-èn-trois-ol.",
+      "texte": "2-bromo-4-méthylhex-5-èn-3-ol.",
+      "ecran": "multifonctionnel"
+    },
+    {
+      "id": "p26",
+      "dit": "Atelier, quatrième exercice : la chasse aux erreurs, trois noms faux à corriger. Le un-un-diméthyléthane prétend décrire une chaîne de deux carbones coiffée de deux méthyles ; en réalité, cela forme une chaîne de trois : c'est le deux-méthylpropane. Le hex-trois-ène-deux-ol mélange les rôles : l'alcool étant prioritaire, l'alcène devient un infixe, et l'on écrit hex-trois-èn-deux-ol. Enfin, le deux-méthyl-trois-butylpentane cache une chaîne plus longue que son nom : en la déroulant, on obtient le trois-éthyl-deux-méthylheptane.",
+      "texte": "1,1-diméthyléthane → 2-méthylpropane.",
+      "ecran": "erreurs"
+    },
+    {
+      "id": "p27",
+      "dit": "Dernier entraînement : le trio final des leçons, trois hydrocarbures à nommer. Le premier cache sa triple liaison dans une chaîne de six carbones : numérotée pour la triple liaison, elle donne le cinq-méthylhex-deux-yne. Le deuxième porte deux doubles liaisons et un éthyle sur une chaîne de cinq : c'est le trois-éthylpenta-un-quatre-diène. Le troisième est un butane chargé de deux méthyles sur le même carbone : le deux-deux-diméthylbutane. Si vous avez suivi ces trois résolutions, la méthode est acquise.",
+      "texte": "5-méthylhex-2-yne ; 3-éthylpenta-1,4-diène ; 2,2-diméthylbutane.",
+      "ecran": "trio_final"
+    },
+    {
+      "id": "p28",
+      "dit": "À quoi sert cette grammaire ? À parler de la même molécule, partout dans le monde. L'ibuprofène de votre armoire à pharmacie porte un nom systématique qui permet à n'importe quel laboratoire de le synthétiser et de le contrôler sans ambiguïté. Le lindane, un polluant surveillé, est identifié par son nom systématique dans toutes les réglementations. Et l'acide sorbique, conservateur de vos yaourts, se lit comme une structure dès que l'on connaît le code. Le système a ses limites pour les très grosses molécules, où les noms usuels survivent — mais l'esprit reste : un nom clair et unique.",
+      "texte": "Ibuprofène, lindane, acide sorbique : des noms qui décrivent.",
+      "ecran": "applications"
+    },
+    {
+      "id": "p29",
+      "dit": "Pour terminer, la méthode complète en une phrase : identifier le groupe fonctionnel le plus prioritaire, choisir la chaîne principale qui le porte, numéroter au plus bas pour lui, puis citer les autres groupes comme préfixes, par ordre alphabétique, avant le suffixe du vainqueur. Chaîne, numéros, préfixes, suffixe : vous savez désormais lire une molécule dans son nom, et écrire le nom d'une molécule. C'est la langue commune de toute la chimie organique.",
+      "texte": "Groupe prioritaire → chaîne → numéros → préfixes → suffixe.",
+      "ecran": "recap_final"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Un langage commun, et les alcanes"
+    },
+    {
+      "debut": "p11",
+      "sous_titre": "Les insaturations : alcènes, alcynes, énynes",
+      "pont": {
+        "dit": "Partie deux : les insaturations, doubles et triples liaisons. Nous quittons les alcanes pour les alcènes et les alcynes, plus réactifs, dont la présence dans une molécule rebat les cartes : c'est désormais l'insaturation qui choisit la chaîne principale et qui impose la numérotation.",
+        "texte": "Partie 2 : alcènes et alcynes."
+      }
+    },
+    {
+      "debut": "p18",
+      "sous_titre": "La priorité des groupes fonctionnels, et l'atelier",
+      "pont": {
+        "dit": "Partie trois : les groupes fonctionnels et leur hiérarchie, puis l'atelier. Nous allons classer les grandes familles de la chimie organique, apprendre quel groupe impose son suffixe au nom, et terminer par des exercices corrigés qui combinent tout le cours.",
+        "texte": "Partie 3 : priorités et atelier."
+      }
+    }
+  ]
+}

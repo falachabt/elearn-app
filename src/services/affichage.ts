@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { typo } from '@/theme/theme';
 
-import { suivre } from './analytics';
+import { definirProprietesUtilisateur, suivre } from './analytics';
 import { signalerModification } from './reglagesLocaux';
 
 /**
@@ -13,23 +13,49 @@ export type ReglageTheme = 'clair' | 'sombre' | 'systeme';
 
 export const CLE_THEME = 'affichage.theme';
 export const CLE_TAILLE = 'affichage.taille';
+/** Drapeau : le mode auto a été posé comme défaut (une seule fois, à la mise à jour qui l'introduit). */
+export const CLE_TAILLE_AUTO_DEFAUT = 'affichage.tailleAutoDefaut';
 
 /** Tailles proposées, en pour cent de la taille de base. 130 % au plus (consigne d'accessibilité du guide). */
 export const TAILLES = [80, 90, 100, 110, 120, 130] as const;
 export type TailleTexte = (typeof TAILLES)[number];
-export const TAILLE_DEFAUT: TailleTexte = 90;
+/** « auto » : la taille suit la taille de l'écran. Dès que l'élève choisit une taille, le réglage passe en manuel. */
+export type ReglageTaille = TailleTexte | 'auto';
+export const TAILLE_DEFAUT: ReglageTaille = 'auto';
+const TAILLE_MAX = 130;
 
-type Etat = { theme: ReglageTheme; taille: TailleTexte };
+/** Facteur automatique selon la plus petite dimension de l'écran (en dp) : petit téléphone, téléphone, grand téléphone, tablette. */
+export function tailleAuto(dpMin: number): number {
+  // Seuils revus sur un Galaxy S25 Ultra (384 dp de large) : 90 % jugé juste par l'élève, 100 % trop grand.
+  const facteur = dpMin < 420 ? 90 : dpMin < 600 ? 100 : 110;
+  return Math.min(facteur, TAILLE_MAX);
+}
+
+/** Taille réellement appliquée : le réglage de l'élève, ou la taille automatique de l'écran. */
+export function tailleEffective(reglage: ReglageTaille, dpMinimum: number): number {
+  return reglage === 'auto' ? tailleAuto(dpMinimum) : reglage;
+}
+
+type Etat = { theme: ReglageTheme; taille: ReglageTaille };
 
 let etat: Etat = { theme: 'systeme', taille: TAILLE_DEFAUT };
+/** Plus petite dimension de l'écran, en dp (renseignée par le ThemeProvider). 360 tant qu'elle n'est pas connue. */
+let dpMin = 360;
 let charge: Promise<void> | null = null;
 const ecouteurs = new Set<() => void>();
 
 // Copie des tailles d'origine : la taille du texte se calcule toujours depuis elles.
+// Gardée sur globalThis : au fast refresh ce module est réévalué alors que `typo` est déjà réduit ; une copie locale
+// capturerait ces tailles réduites et chaque rechargement les réduirait encore (texte qui rétrécit à chaque modification).
 type CleTypo = keyof typeof typo;
-const base = Object.fromEntries(
-  (Object.keys(typo) as CleTypo[]).map((k) => [k, { fontSize: typo[k].fontSize, lineHeight: typo[k].lineHeight, letterSpacing: 'letterSpacing' in typo[k] ? typo[k].letterSpacing : undefined }]),
-) as Record<CleTypo, { fontSize: number; lineHeight: number; letterSpacing?: number }>;
+type BaseTypo = Record<CleTypo, { fontSize: number; lineHeight: number; letterSpacing?: number }>;
+const cleBase = '__elearnTypoBase';
+const globale = globalThis as typeof globalThis & { [cleBase]?: BaseTypo };
+const base: BaseTypo =
+  globale[cleBase] ??
+  (globale[cleBase] = Object.fromEntries(
+    (Object.keys(typo) as CleTypo[]).map((k) => [k, { fontSize: typo[k].fontSize, lineHeight: typo[k].lineHeight, letterSpacing: 'letterSpacing' in typo[k] ? typo[k].letterSpacing : undefined }]),
+  ) as BaseTypo);
 
 /**
  * Applique la taille du texte aux styles `typo` partagés par tous les écrans. Les écrans lisent `typo` au rendu ;
@@ -51,15 +77,30 @@ export function appliquerTaille(taille: number): void {
 }
 
 const estTheme = (v: unknown): v is ReglageTheme => v === 'clair' || v === 'sombre' || v === 'systeme';
-const estTaille = (v: unknown): v is TailleTexte => TAILLES.includes(v as TailleTexte);
+const estTaille = (v: unknown): v is ReglageTaille => v === 'auto' || TAILLES.includes(v as TailleTexte);
 
 function publier(nouvel: Etat) {
   etat = nouvel;
-  appliquerTaille(etat.taille);
+  appliquerTaille(tailleEffective(etat.taille, dpMin));
+  // Propriété de la personne : « auto » ou la taille manuelle choisie (pour la répartition dans PostHog).
+  definirProprietesUtilisateur({ taille_texte_reglage: etat.taille === 'auto' ? 'auto' : String(etat.taille) });
   ecouteurs.forEach((f) => f());
 }
 
 export const lireAffichage = (): Etat => etat;
+
+/** Taille effective pour l'écran courant (réglage manuel, ou taille automatique). */
+export const lireTailleEffective = (): number => tailleEffective(etat.taille, dpMin);
+
+/**
+ * Le ThemeProvider signale la taille de l'écran (et ses changements : rotation, fenêtre du navigateur).
+ * En mode auto, la taille du texte est recalculée et tout l'écran est redessiné.
+ */
+export function signalerEcran(dp: number): void {
+  if (dp === dpMin) return;
+  dpMin = dp;
+  if (etat.taille === 'auto') publier({ ...etat });
+}
 
 export function abonnerAffichage(f: () => void): () => void {
   ecouteurs.add(f);
@@ -70,8 +111,17 @@ export function abonnerAffichage(f: () => void): () => void {
 export function chargerAffichage(): Promise<void> {
   charge ??= (async () => {
     try {
-      const [[, theme], [, taille]] = await AsyncStorage.multiGet([CLE_THEME, CLE_TAILLE]);
-      const t = Number(taille);
+      const [[, theme], [, taille], [, migre]] = await AsyncStorage.multiGet([CLE_THEME, CLE_TAILLE, CLE_TAILLE_AUTO_DEFAUT]);
+      const t = taille === 'auto' ? 'auto' : Number(taille);
+      // Une seule fois : le mode auto devient le défaut, même pour un réglage manuel gardé avant cette version.
+      if (migre !== '1') {
+        publier({ theme: estTheme(theme) ? theme : etat.theme, taille: 'auto' });
+        await AsyncStorage.multiSet([
+          [CLE_TAILLE, 'auto'],
+          [CLE_TAILLE_AUTO_DEFAUT, '1'],
+        ]).catch(() => {});
+        return;
+      }
       publier({ theme: estTheme(theme) ? theme : etat.theme, taille: estTaille(t) ? t : etat.taille });
     } catch {
       // Valeurs par défaut.
@@ -87,11 +137,21 @@ export async function definirTheme(theme: ReglageTheme): Promise<void> {
   await signalerModification();
 }
 
+/** Choix manuel d'une taille : le réglage passe en manuel et garde cette valeur. */
 export async function definirTaille(taille: TailleTexte): Promise<void> {
   if (taille === etat.taille) return;
   publier({ ...etat, taille });
-  suivre('display_setting_changed', { taille });
+  suivre('display_setting_changed', { taille, mode: 'manuel' });
   await AsyncStorage.setItem(CLE_TAILLE, String(taille)).catch(() => {});
+  await signalerModification();
+}
+
+/** Retour au mode automatique : la taille suit de nouveau l'écran. */
+export async function definirTailleAuto(): Promise<void> {
+  if (etat.taille === 'auto') return;
+  publier({ ...etat, taille: 'auto' });
+  suivre('display_setting_changed', { taille: lireTailleEffective(), mode: 'auto' });
+  await AsyncStorage.setItem(CLE_TAILLE, 'auto').catch(() => {});
   await signalerModification();
 }
 

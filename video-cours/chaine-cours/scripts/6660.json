@@ -1,0 +1,565 @@
+{
+  "cours": 6660,
+  "ecrans": {
+    "arrangements": {
+      "kicker": "Les arrangements",
+      "tex": [
+        "A_n^p = \\tfrac{n!}{(n-p)!}",
+        "A_{10}^{3} = 10 \\times 9 \\times 8 = 720"
+      ],
+      "titre": "Les podiums : ordre sans répétition",
+      "type": "etape"
+    },
+    "canonique": {
+      "anim": {
+        "hauteur": 180,
+        "nom": "parabole_fig"
+      },
+      "kicker": "Second degré · la forme canonique",
+      "note": "α = −b/(2a) et β = f(α) : le sommet de la parabole est le point S(α ; β).",
+      "tex": "f(x) = a(x - \\alpha)^2 + \\beta",
+      "type": "formule"
+    },
+    "combinaisons": {
+      "kicker": "Les combinaisons",
+      "tex": [
+        "C_n^p = \\tfrac{n!}{p!\\,(n-p)!}",
+        "\\tbinom{8}{3} = 56 \\text{ comités de trois}"
+      ],
+      "titre": "Les comités : sans ordre",
+      "type": "etape"
+    },
+    "complementaire": {
+      "kicker": "Ensembles finis · le complémentaire",
+      "tex": [
+        "9^4 = 6561 \\text{ codes sans le chiffre } 0",
+        "10^4 - 9^4 = 3439 \\text{ codes avec un } 0"
+      ],
+      "titre": "Le complémentaire, sans se tromper",
+      "type": "etape"
+    },
+    "cumules": {
+      "kicker": "Effectifs cumulés",
+      "tex": [
+        "\\text{ECC} : 8, \\ 13, \\ 20",
+        "\\text{ECD} : 20, \\ 12, \\ 7",
+        "M_e = 14 \\text{ (dixième et onzième valeurs)}"
+      ],
+      "titre": "Cumuler pour trouver la médiane",
+      "type": "etape"
+    },
+    "ensembles": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "venn"
+      },
+      "kicker": "Ensembles finis · réunion",
+      "note": "Exemple : 18 + 12 − 5 = 25 élèves pratiquent au moins un des deux sports.",
+      "tex": "\\begin{aligned} card(A \\cup B) &= card(A) + card(B) \\\\ &- card(A \\cap B) \\end{aligned}",
+      "type": "formule"
+    },
+    "etude_complete": {
+      "kicker": "Étude complète · frères et sœurs",
+      "tex": [
+        "\\bar{x} = \\tfrac{0+12+16+12}{30} \\approx 1{,}33",
+        "M_e = 1 \\qquad V \\approx 0{,}89",
+        "\\sigma \\approx 0{,}94"
+      ],
+      "titre": "Étude complète : frères et sœurs",
+      "type": "etape"
+    },
+    "ex_canonique": {
+      "kicker": "Exemple · un maximum lu d'un coup d'œil",
+      "tex": [
+        "f(x) = -2(x-2)^2 + 5",
+        "\\alpha = 2 \\qquad \\beta = 5",
+        "a < 0 : \\text{ maximum } 5 \\text{ en } 2"
+      ],
+      "titre": "Un maximum lu sur la forme canonique",
+      "type": "etape"
+    },
+    "ex_moyenne": {
+      "kicker": "Exemple · la moyenne par les centres",
+      "tex": [
+        "\\bar{x} = \\tfrac{4 \\times 5 + 6 \\times 15 + 10 \\times 25}{20}",
+        "\\bar{x} = \\tfrac{360}{20} = 18"
+      ],
+      "titre": "La moyenne par les centres de classes",
+      "type": "etape"
+    },
+    "ex_valabs": {
+      "kicker": "Exemple · la valeur absolue d'une parabole",
+      "tex": [
+        "g(x) = |x^2 - 1|",
+        "f(x) \\geq 0 : \\text{ partie gardée}",
+        "f(x) < 0 : \\text{ partie relevée}"
+      ],
+      "titre": "Relever la partie négative",
+      "type": "etape"
+    },
+    "ex_variance": {
+      "kicker": "Exemple · la dispersion des classes",
+      "tex": [
+        "V = \\tfrac{4 \\times 169 + 6 \\times 9 + 10 \\times 49}{20}",
+        "V = \\tfrac{1220}{20} = 61",
+        "\\sigma = \\sqrt{61} \\approx 7{,}8"
+      ],
+      "titre": "La dispersion des classes, en chiffres",
+      "type": "etape"
+    },
+    "forme_reduite": {
+      "kicker": "Homographiques · forme réduite",
+      "tex": [
+        "f(x) = \\tfrac{2x+1}{x-1} = 2 + \\tfrac{3}{x-1}",
+        "\\beta = 1 : \\text{ asymptote verticale } x = 1",
+        "k = 3 > 0 : f \\text{ décroissante}"
+      ],
+      "titre": "Forme réduite et asymptote",
+      "type": "etape"
+    },
+    "frequences": {
+      "kicker": "Effectifs et fréquences",
+      "tex": [
+        "N = 20 \\qquad f_{12} = \\tfrac{8}{20} = 0{,}4",
+        "n_{12} = 8, \\ n_{14} = 5, \\ n_{16} = 7"
+      ],
+      "titre": "Effectifs et fréquences : les notes",
+      "type": "etape"
+    },
+    "homographique": {
+      "anim": {
+        "hauteur": 190,
+        "nom": "hyperbole_fig"
+      },
+      "kicker": "Fonctions homographiques",
+      "note": "Condition : ad − bc différent de zéro ; domaine : les réels privés de −d/c.",
+      "tex": "f(x) = \\tfrac{ax+b}{cx+d}, \\ c \\neq 0",
+      "type": "formule"
+    },
+    "ineq_homo": {
+      "kicker": "Inéquation homographique",
+      "tex": [
+        "x-1 = 0 \\iff x = 1",
+        "x+2 = 0 \\iff x = -2",
+        "\\text{quotient négatif entre } -2 \\text{ et } 1",
+        "S = ]-2\\,;\\,1["
+      ],
+      "titre": "Une inéquation homographique",
+      "type": "etape"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Introduction",
+      "texte": "Trois leçons, trois métiers : décrire des courbes et leurs variations, compter des choix sans les énumérer, et résumer une masse de données par quelques nombres. Nous les traiterons dans cet ordre.",
+      "type": "phrase"
+    },
+    "lecture_graph": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "parabole_fig"
+      },
+      "kicker": "Résolution graphique",
+      "texte": "Résoudre graphiquement, c'est croiser des courbes : les solutions de f(x) = 0 sont les abscisses des intersections avec l'axe des abscisses, et celles de f(x) = m sont les intersections avec la droite horizontale y = m. Compter les intersections, c'est compter les solutions.",
+      "type": "phrase"
+    },
+    "mediane": {
+      "kicker": "Caractéristique de position · la médiane",
+      "note": "Si N est impair, c'est la valeur centrale, de rang (N + 1) sur deux.",
+      "tex": "N \\text{ pair} : M_e = \\tfrac{x_{N/2} + x_{N/2+1}}{2}",
+      "type": "formule"
+    },
+    "methode_denomb": {
+      "kicker": "Méthode de dénombrement",
+      "texte": "Devant un problème de dénombrement, deux questions avant toute formule : le choix est-il ordonné, et la répétition est-elle autorisée ? Les réponses désignent l'outil, et l'on vérifie à la fin que le résultat reste cohérent, en particulier que p ne dépasse pas n.",
+      "type": "phrase"
+    },
+    "moyenne": {
+      "kicker": "Caractéristique de position · la moyenne",
+      "note": "Pour des classes, on remplace chaque valeur par le centre de la classe.",
+      "tex": "\\textstyle \\bar{x} = \\frac{\\sum_{i=1}^{p} n_i x_i}{N}",
+      "type": "formule"
+    },
+    "permutations": {
+      "kicker": "Les permutations",
+      "note": "Cinq personnes sur cinq chaises alignées : cent vingt façons de s'asseoir.",
+      "tex": "n! = n \\times (n-1) \\times \\cdots \\times 2 \\times 1",
+      "type": "formule"
+    },
+    "produit": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "arbre_choix_fig"
+      },
+      "kicker": "Produit cartésien · les menus",
+      "tex": [
+        "card(A \\times B) = card(A) \\times card(B)",
+        "3 \\times 4 = 12 \\text{ menus}"
+      ],
+      "titre": "Le produit cartésien : les menus",
+      "type": "etape"
+    },
+    "puplets": {
+      "kicker": "Les p-uplets",
+      "note": "Ordre et répétitions : un code de quatre chiffres donne dix mille codes.",
+      "tex": "\\text{nombre de } p\\text{-uplets} = n^p",
+      "type": "formule"
+    },
+    "recap1": {
+      "etapes": [
+        "Canonique : sommet S(α ; β), α = −b/2a",
+        "a > 0 : minimum ; a < 0 : maximum",
+        "Homographique : asymptote x = −d/c",
+        "Forme réduite : k décide du sens",
+        "Graphique : f(x) = m, droite y = m"
+      ],
+      "kicker": "Partie 1 : à retenir",
+      "type": "recap"
+    },
+    "recap2": {
+      "etapes": [
+        "Ordre + répétition : p-uplets, n^p",
+        "Ordre, sans répéter : arrangements",
+        "Tous les éléments : permutations, n!",
+        "Sans ordre : combinaisons C(n,p)",
+        "Union : ajouter, puis retirer A∩B"
+      ],
+      "kicker": "Partie 2 : à retenir",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Fréquence : f = n/N, entre 0 et 1",
+        "Moyenne : somme pondérée divisée par N",
+        "Médiane : la série coupée en deux",
+        "Variance : König, σ = racine de V",
+        "Cumulés : la médiane se lit à N/2"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "representations": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "distribution_bars_fig"
+      },
+      "kicker": "Représentations graphiques",
+      "texte": "Deux dessins portent toute la série : l'histogramme, rectangles adjacents dont la hauteur suit l'effectif de chaque classe, et les polygones des effectifs cumulés, croissants ou décroissants. Sur le polygone croissant, l'horizontale menée à la moitié de l'effectif total descend exactement sur la médiane.",
+      "type": "phrase"
+    },
+    "tableau_ex": {
+      "kicker": "Tableau de variations sur un intervalle borné",
+      "tex": [
+        "f(x) = (x-2)^2 - 1",
+        "f(0) = 3 \\qquad f(2) = -1 \\qquad f(5) = 8",
+        "\\text{minimum } -1 \\text{ en } x = 2"
+      ],
+      "titre": "Tableau sur un intervalle borné",
+      "type": "etape"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 250,
+        "nom": "parabole_fig"
+      },
+      "kicker": "Mathématique · Fonctions, dénombrement, statistiques",
+      "sous": "Paraboles et homographies, listes et combinaisons, moyennes et écarts types : compter, tracer, résumer",
+      "titre": "Second degré, dénombrement et statistiques",
+      "type": "titre"
+    },
+    "transformations": {
+      "kicker": "Fonctions associées · transformations",
+      "tex": [
+        "-f(x) : \\text{ symétrie, axe des abscisses}",
+        "|f(x)| : \\text{ partie négative relevée}",
+        "f(x-a) + b : \\text{ translation } (a\\,;\\,b)"
+      ],
+      "titre": "Transformer une courbe",
+      "type": "etape"
+    },
+    "variance": {
+      "kicker": "Caractéristique de dispersion · la variance",
+      "note": "L'écart type est la racine de la variance, dans l'unité des données.",
+      "tex": "\\textstyle V = \\frac{\\sum n_i x_i^2}{N} - \\bar{x}^2",
+      "type": "formule"
+    },
+    "variations": {
+      "kicker": "Second degré · sens de variation",
+      "tex": [
+        "a > 0 : \\text{ décroissante puis croissante}",
+        "a < 0 : \\text{ croissante puis décroissante}",
+        "\\text{extremum } \\beta \\text{ atteint en } \\alpha"
+      ],
+      "titre": "Le sens de variation selon le signe de a",
+      "type": "etape"
+    },
+    "vocabulaire": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "distribution_bars_fig"
+      },
+      "kicker": "Statistiques · le vocabulaire",
+      "texte": "Une population est l'ensemble étudié, un individu en est un élément, et le caractère est la propriété observée. Discret quand il prend des valeurs isolées, il se regroupe en classes d'égales amplitudes quand il varie dans un intervalle continu.",
+      "type": "phrase"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Second degré et fonctions homographiques"
+    },
+    {
+      "debut": "p14",
+      "pont": {
+        "dit": "Partie deux : dénombrer. Compter sans énumérer un à un, voilà le programme : réunions et complémentaires d'ensembles finis, listes ordonnées, permutations, arrangements et combinaisons. Deux questions décideront de la formule à chaque fois : l'ordre compte-t-il, et la répétition est-elle permise.",
+        "texte": "Partie 2 : ensembles, p-uplets, arrangements, combinaisons."
+      },
+      "sous_titre": "Dénombrer : ensembles, listes et choix"
+    },
+    {
+      "debut": "p23",
+      "pont": {
+        "dit": "Partie trois : les statistiques descriptives. Une série de données se résume par quelques nombres bien choisis : une position, moyenne ou médiane, et une dispersion, variance et écart type. Nous les calculerons sur des exemples complets, des notes d'une classe à une enquête entière, en finissant par les représentations graphiques.",
+        "texte": "Partie 3 : moyenne, médiane, variance et représentations."
+      },
+      "sous_titre": "Décrire une série statistique"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématique en trois leçons. D'abord les fonctions du second degré et les fonctions homographiques : leurs formes réduites, leurs sommets, leurs asymptotes et leurs tableaux de variations. Ensuite le dénombrement : comment compter des choix, des listes et des groupes sans jamais les énumérer un à un. Enfin les statistiques descriptives : comment résumer une série de données par sa moyenne, sa médiane et sa dispersion. Compter, tracer, résumer : voilà le programme.",
+      "ecran": "titre",
+      "id": "p01",
+      "pause_apres": 0.8,
+      "texte": "Second degré, dénombrement, statistiques : le programme."
+    },
+    {
+      "dit": "Ces trois leçons semblent éloignées, elles partagent pourtant le même réflexe : remplacer un travail interminable par une forme réduite. Une parabole tient dans son sommet et le signe de son coefficient ; un dénombrement tient dans une seule formule choisie selon deux questions ; une série de données tient dans quelques caractéristiques bien choisies. Dans chaque leçon, cherchez la forme qui résume : c'est elle qui rend le problème facile.",
+      "ecran": "intro",
+      "id": "p02",
+      "pause_apres": 0.6,
+      "texte": "Trois métiers : tracer, compter, résumer."
+    },
+    {
+      "dit": "Une fonction polynôme du second degré s'écrit a ixe carré plus bé ixe plus cé, avec a différent de zéro. Sa forme canonique la réécrit a, facteur de ixe moins alpha, le tout au carré, plus bêta, où alpha vaut moins bé sur deux a, et bêta est l'image de alpha. Géométriquement, la parabole s'obtient en translatant la courbe de a ixe carré par le vecteur de coordonnées alpha et bêta : le point alpha, bêta est le sommet, et toute la courbe s'organise autour de lui.",
+      "ecran": "canonique",
+      "id": "p03",
+      "pause_apres": 0.6,
+      "texte": "La forme canonique : le sommet devient visible."
+    },
+    {
+      "dit": "La forme canonique donne immédiatement le sens de variation. Si a est positif, la fonction décroît jusqu'au sommet puis croît : elle admet un minimum, bêta, atteint en alpha ; la parabole est une vallée. Si a est négatif, elle croît puis décroît : elle admet un maximum, bêta, atteint en alpha ; la parabole est une colline. Sur un intervalle borné, on intersecte simplement ces deux branches avec l'intervalle étudié. Un seul signe, celui de a, décide donc de toute l'allure de la courbe.",
+      "ecran": "variations",
+      "id": "p04",
+      "pause_apres": 0.6,
+      "texte": "Le signe de a décide : vallée ou colline."
+    },
+    {
+      "dit": "Exemple : eff de ixe égal à moins deux ixe carré plus huit ixe moins trois. Alpha vaut moins huit, divisé par moins quatre, c'est-à-dire deux ; et l'image de deux vaut moins huit, plus seize, moins trois, soit cinq. La forme canonique est donc moins deux, facteur de ixe moins deux au carré, plus cinq. Comme a est négatif, la fonction croît jusqu'à deux, puis décroît, et son maximum est cinq, atteint en deux. Trois informations lues d'un coup d'œil sur la forme canonique, sans aucun calcul de dérivée.",
+      "ecran": "ex_canonique",
+      "id": "p05",
+      "pause_apres": 0.7,
+      "texte": "−2x² + 8x − 3 : maximum 5 en x = 2."
+    },
+    {
+      "dit": "Deuxième famille de la leçon : les fonctions homographiques, de la forme a ixe plus bé, divisé par cé ixe plus dé, avec cé différent de zéro et a dé différent de bé cé, la condition qui empêche la fraction de se simplifier en une constante. Le domaine exclut la valeur qui annule le dénominateur, moins dé sur cé. Toute homographique s'écrit aussi alpha, plus ka divisé par ixe moins bêta : sa courbe est alors une hyperbole, translatée de celle de ka sur ixe, et la droite verticale d'équation ixe égal à bêta en est une asymptote.",
+      "ecran": "homographique",
+      "id": "p06",
+      "pause_apres": 0.6,
+      "texte": "L'homographique : une hyperbole décalée."
+    },
+    {
+      "dit": "Exemple : eff de ixe égal à deux ixe plus un, divisé par ixe moins un. Une division euclidienne du numérateur par le dénominateur donne : eff de ixe égal à deux, plus trois divisé par ixe moins un. La forme réduite est sous nos yeux : alpha vaut deux, ka vaut trois, bêta vaut un. La droite d'équation ixe égal à un est donc asymptote verticale à la courbe. Et comme ka est positif, la fonction est décroissante sur chacun des deux intervalles de son domaine ; si ka était négatif, elle serait croissante sur chacun d'eux.",
+      "ecran": "forme_reduite",
+      "id": "p07",
+      "pause_apres": 0.7,
+      "texte": "(2x + 1)/(x − 1) = 2 + 3/(x − 1) : asymptote x = 1."
+    },
+    {
+      "dit": "Assemblons la méthode sur un exemple borné : eff de ixe égal à ixe carré moins quatre ixe plus trois, sur l'intervalle de zéro à cinq. Sa forme canonique est ixe moins deux, le tout au carré, moins un : sommet en deux, valeur moins un. Comme a est positif, la fonction décroît de zéro à deux, puis croît de deux à cinq. Il reste les valeurs aux bornes : en zéro, trois ; au sommet, moins un ; en cinq, vingt-cinq moins vingt plus trois, huit. Le tableau est complet : trois, descente vers moins un, montée vers huit, et le minimum sur l'intervalle est moins un, en deux.",
+      "ecran": "tableau_ex",
+      "id": "p08",
+      "pause_apres": 0.7,
+      "texte": "Sur [0 ; 5] : 3, descente vers −1, montée vers 8."
+    },
+    {
+      "dit": "La courbe sert aussi à résoudre. Les solutions de l'équation eff de ixe égal à zéro sont les abscisses des points où la courbe croise l'axe des abscisses. Plus généralement, pour un polynôme du second degré, les solutions de eff de ixe égal à em sur un intervalle sont les abscisses des intersections de la courbe avec la droite horizontale d'équation igrec égal à em. Selon la hauteur de cette droite, on lira zéro, une ou deux solutions : déplacer la droite, c'est voir le nombre de solutions changer sous les yeux.",
+      "ecran": "lecture_graph",
+      "id": "p09",
+      "pause_apres": 0.6,
+      "texte": "f(x) = m : compter les intersections, c'est compter les solutions."
+    },
+    {
+      "dit": "On retrouve enfin les inéquations de la forme fractionnaire : on signe le numérateur et le dénominateur séparément, puis on applique la règle des signes dans un tableau. Exemple : ixe moins un, divisé par ixe plus deux, strictement négatif. Le numérateur est positif après un ; le dénominateur est positif après moins deux. Le quotient n'est négatif que lorsque les deux signes diffèrent, c'est-à-dire entre moins deux et un. Solution : ixe appartient à l'intervalle ouvert de moins deux à un, les deux bornes exclues, l'une interdite, l'autre strictement négative oblige.",
+      "ecran": "ineq_homo",
+      "id": "p10",
+      "pause_apres": 0.7,
+      "texte": "(x − 1)/(x + 2) < 0 : solution ]−2 ; 1[."
+    },
+    {
+      "dit": "Dernière propriété de la leçon : les transformations usuelles des courbes. Changer eff en moins eff symétrise la courbe par rapport à l'axe des abscisses. Passer à la valeur absolue de eff conserve la partie positive et symétrise la partie négative par rapport au même axe. Remplacer ixe par ixe moins a translate la courbe horizontalement, du vecteur de coordonnées a et zéro ; ajouter bé à eff la translate verticalement ; et les deux combinés donnent la translation du vecteur de coordonnées a et bé. Cinq lignes de tableau, toute une géométrie des courbes.",
+      "ecran": "transformations",
+      "id": "p11",
+      "pause_apres": 0.6,
+      "texte": "−f, |f|, translations : trois gestes sur une courbe."
+    },
+    {
+      "dit": "Exemple d'application : construire la courbe de gé de ixe égal à valeur absolue de ixe carré moins un, à partir de la parabole de eff de ixe égal à ixe carré moins un. Là où la parabole est au-dessus de l'axe des abscisses, c'est-à-dire avant moins un et après un, on la conserve telle quelle. Là où elle plonge sous l'axe, entre moins un et un, on relève son symétrique : le creux de la parabole devient une bosse qui culmine à un, en zéro. La courbe obtenue ne descend jamais sous l'axe : c'est la signature de toute valeur absolue.",
+      "ecran": "ex_valabs",
+      "id": "p12",
+      "pause_apres": 0.7,
+      "texte": "|x² − 1| : garder ce qui est au-dessus, relever le reste."
+    },
+    {
+      "dit": "Récapitulons cette première partie. La forme canonique expose le sommet et l'extremum d'une parabole ; le signe de a choisit entre minimum et maximum. L'homographique se réduit à une hyperbole translatée, avec son asymptote verticale. Le tableau de variations sur un intervalle borné assemble domaine, forme réduite et valeurs aux bornes. Et la lecture graphique transforme équations et inéquations en questions d'intersections et de signes.",
+      "ecran": "recap1",
+      "id": "p13",
+      "pause_apres": 0.5,
+      "texte": "L'essentiel de la partie 1."
+    },
+    {
+      "dit": "Deuxième leçon : dénombrer, en commençant par les ensembles finis. Pour deux ensembles a et bé, le cardinal de la réunion vaut le cardinal de a, plus celui de bé, moins celui de l'intersection : les éléments communs ont été comptés deux fois, on les retire une fois. Exemple : dans une classe de trente élèves, dix-huit pratiquent le football, douze le basket, et cinq les deux sports. Ceux qui pratiquent au moins un sport sont dix-huit plus douze moins cinq, vingt-cinq. Le diagramme de Venn, avec ses deux cercles qui se croisent, rend ce double compte visible.",
+      "ecran": "ensembles",
+      "id": "p14",
+      "pause_apres": 0.6,
+      "texte": "Réunion : 18 + 12 − 5 = 25, l'intersection était comptée deux fois."
+    },
+    {
+      "dit": "Le complémentaire compte ce qui reste : le cardinal du complémentaire de a dans un ensemble fini euh vaut le cardinal de euh moins celui de a. Application aux codes de carte à quatre chiffres, de zéro à neuf. Les codes qui ne contiennent pas le chiffre zéro laissent neuf choix à chaque position : neuf puissance quatre, six mille cinq cent soixante et un codes. Le complémentaire, les codes qui contiennent au moins un zéro, se compte alors par différence : dix mille moins six mille cinq cent soixante et un, trois mille quatre cent trente-neuf. Attention à ne pas échanger les deux nombres.",
+      "ecran": "complementaire",
+      "id": "p15",
+      "pause_apres": 0.7,
+      "texte": "Codes sans zéro : 6 561 ; codes avec un zéro : 3 439."
+    },
+    {
+      "dit": "Troisième outil des ensembles finis : le produit cartésien. Le nombre de couples formés d'un élément de a et d'un élément de bé vaut le produit des deux cardinaux. Exemple gourmand : un restaurant propose trois entrées et quatre plats principaux ; le nombre de menus, une entrée et un plat, est trois fois quatre, douze. On le visualise par un arbre de choix, chaque branche d'entrée se ramifiant en quatre plats, ou par un tableau à double entrée de trois lignes et quatre colonnes.",
+      "ecran": "produit",
+      "id": "p16",
+      "pause_apres": 0.7,
+      "texte": "3 entrées, 4 plats : 12 menus."
+    },
+    {
+      "dit": "Passons aux listes. Un pé-uplet d'un ensemble à n éléments est une liste ordonnée de pé éléments, avec répétition possible. Leur nombre est n puissance pé : chaque position offre n choix, indépendamment des autres. L'exemple de référence est le code à quatre chiffres : dix choix par position, quatre positions, dix puissance quatre, dix mille codes. Deux mots-clés définissent l'outil : ordre, car deux listes qui diffèrent par l'ordre sont différentes ; et répétition, car un même élément peut revenir plusieurs fois.",
+      "ecran": "puplets",
+      "id": "p17",
+      "pause_apres": 0.6,
+      "texte": "p-uplets : n^p, l'ordre compte et l'on peut répéter."
+    },
+    {
+      "dit": "Si la liste doit utiliser tous les éléments, chacun exactement une fois, on parle de permutation : un arrangement ordonné de l'ensemble entier. Leur nombre est n factorielle, le produit de tous les entiers de n jusqu'à un : au premier emplacement n choix, puis n moins un, et ainsi de suite en décroissant. Exemple : cinq personnes et cinq chaises alignées donnent cinq factorielle, cinq fois quatre fois trois fois deux fois un, cent vingt dispositions différentes.",
+      "ecran": "permutations",
+      "id": "p18",
+      "pause_apres": 0.6,
+      "texte": "Permutations : n!, tous les éléments, un seul passage."
+    },
+    {
+      "dit": "Entre les deux, l'arrangement : un choix ordonné de pé éléments distincts parmi n, sans répétition, avec pé inférieur ou égal à n. Leur nombre, noté a n pé, vaut n fois n moins un, et ainsi de suite, pé facteurs en tout, ce qui s'écrit aussi n factorielle sur n moins pé factorielle. Exemple : les podiums d'une course de dix coureurs, premier, deuxième, troisième, sont des arrangements de trois parmi dix : dix fois neuf fois huit, sept cent vingt podiums possibles.",
+      "ecran": "arrangements",
+      "id": "p19",
+      "pause_apres": 0.7,
+      "texte": "Arrangements : A(10,3) = 720 podiums."
+    },
+    {
+      "dit": "Dernier outil : la combinaison, un sous-ensemble de pé éléments parmi n, sans aucun ordre. Pour la compter, on part des arrangements, qui ordonnent chaque groupe de pé façons factorielle différentes, et on divise par pé factorielle : le nombre de combinaisons vaut donc n factorielle, sur pé factorielle fois n moins pé factorielle. Propriété utile : choisir pé éléments ou choisir les n moins pé que l'on écarte, c'est pareil, les deux nombres sont égaux. Exemple : un comité de trois personnes parmi huit candidats, huit fois sept fois six, divisé par six, cinquante-six comités.",
+      "ecran": "combinaisons",
+      "id": "p20",
+      "pause_apres": 0.7,
+      "texte": "Combinaisons : C(8,3) = 56 comités."
+    },
+    {
+      "dit": "La méthode de résolution tient en quatre pas. D'abord, identifier si le choix est ordonné ou non : un podium est ordonné, un comité ne l'est pas. Ensuite, décider si la répétition est autorisée : un code la permet, un tirage de personnes distinctes l'interdit. Ces deux réponses désignent la formule, pé-uplet, arrangement, permutation ou combinaison, que l'on applique, parfois en combinant plusieurs étapes. Enfin, vérifier la cohérence du résultat, notamment que pé ne dépasse pas n pour les arrangements et les combinaisons.",
+      "ecran": "methode_denomb",
+      "id": "p21",
+      "pause_apres": 0.6,
+      "texte": "Deux questions : ordre ? répétition ? Puis la formule."
+    },
+    {
+      "dit": "Récapitulons. La réunion ajoute les cardinaux et retire l'intersection comptée deux fois ; le complémentaire soustrait ; le produit cartésien multiplie. Pour les listes, tout dépend de deux questions : l'ordre compte-t-il, et peut-on répéter. Ordre et répétition donnent les pé-uplets en n puissance pé ; ordre sans répétition, les arrangements, et les permutations quand on prend tout ; aucun ordre, les combinaisons, où l'on divise par les réordonnancements.",
+      "ecran": "recap2",
+      "id": "p22",
+      "pause_apres": 0.5,
+      "texte": "L'essentiel de la partie 2."
+    },
+    {
+      "dit": "Troisième leçon : les statistiques descriptives. Le vocabulaire d'abord : la population est l'ensemble étudié, un individu en est un élément, et le caractère est la propriété observée, par exemple le nombre d'enfants ou la taille. Si le caractère prend des valeurs isolées, on parle de caractère discret. S'il varie dans un intervalle continu, comme les tailles, on regroupe les valeurs en classes d'égales amplitudes. Pour chaque valeur, l'effectif compte les individus concernés, et la fréquence est l'effectif divisé par l'effectif total.",
+      "ecran": "vocabulaire",
+      "id": "p23",
+      "pause_apres": 0.6,
+      "texte": "Population, individu, caractère : discret ou en classes."
+    },
+    {
+      "dit": "Premier exemple, qui nous suivra : les notes de vingt élèves. Huit élèves ont douze, cinq ont quatorze, sept ont seize. L'effectif total est vingt. La fréquence de la note douze vaut huit sur vingt, zéro virgule quatre : quarante pour cent de la classe. Les fréquences font le lien entre les comptes et les proportions, et leur somme vaut toujours un. Ce petit tableau, valeurs, effectifs, fréquences, est la matière première de toutes les caractéristiques qui viennent.",
+      "ecran": "frequences",
+      "id": "p24",
+      "pause_apres": 0.6,
+      "texte": "Notes : 8 élèves à 12, 5 à 14, 7 à 16 ; f(12) = 0,4."
+    },
+    {
+      "dit": "Première caractéristique de position : la moyenne. Pour une série discrète, on multiplie chaque valeur par son effectif, on additionne, et on divise par l'effectif total : c'est une somme pondérée, où chaque valeur pèse selon le nombre d'individus qui la portent. Pour une série regroupée en classes, la même formule s'applique en remplaçant chaque classe par son centre, le milieu de l'intervalle. La moyenne résume la série en un nombre unique, sensible à toutes les valeurs, y compris les plus extrêmes.",
+      "ecran": "moyenne",
+      "id": "p25",
+      "pause_apres": 0.6,
+      "texte": "La moyenne : la somme pondérée divisée par l'effectif total."
+    },
+    {
+      "dit": "Exemple avec des classes : trois classes, de zéro à dix, de dix à vingt, de vingt à trente, d'effectifs quatre, six et dix. Les centres sont cinq, quinze et vingt-cinq. La moyenne vaut donc quatre fois cinq, plus six fois quinze, plus dix fois vingt-cinq, le tout sur vingt. Au numérateur : vingt, plus quatre-vingt-dix, plus deux cent cinquante, trois cent soixante. Divisé par vingt, la moyenne est dix-huit. Notez que dix-huit n'est la note d'aucun groupe en particulier : c'est un centre d'équilibre de toute la série.",
+      "ecran": "ex_moyenne",
+      "id": "p26",
+      "pause_apres": 0.7,
+      "texte": "Centres 5, 15, 25 : la moyenne vaut 18."
+    },
+    {
+      "dit": "Pour situer les valeurs, on cumule. L'effectif cumulé croissant à une valeur additionne les effectifs de toutes les valeurs inférieures ou égales ; le cumulé décroissant additionne celles des valeurs supérieures ou égales ; et l'on définit de même les fréquences cumulées. Sur nos notes : cumulés croissants huit, treize, vingt ; cumulés décroissants vingt, douze, sept. L'effectif total vingt est pair : la médiane est la moyenne des dixième et onzième valeurs de la série ordonnée. Or, de la neuvième à la treizième valeur, toutes valent quatorze : la médiane est donc quatorze.",
+      "ecran": "cumules",
+      "id": "p27",
+      "pause_apres": 0.7,
+      "texte": "ECC : 8, 13, 20 ; la médiane des notes est 14."
+    },
+    {
+      "dit": "Précisons la médiane, la valeur qui partage la série ordonnée en deux parties d'effectifs égaux. Si l'effectif total est impair, c'est la valeur du rang central, le rang n plus un, sur deux. S'il est pair, c'est la moyenne des deux valeurs centrales, celles des rangs n sur deux et n sur deux plus un. Pour une série en classes, on la repère là où l'effectif cumulé croissant atteint la moitié de l'effectif total, et le polygone des cumulés, que nous verrons bientôt, permet de la lire graphiquement.",
+      "ecran": "mediane",
+      "id": "p28",
+      "pause_apres": 0.6,
+      "texte": "Médiane : la valeur qui coupe la série ordonnée en deux moitiés."
+    },
+    {
+      "dit": "La position ne suffit pas : il faut mesurer la dispersion. La variance est la moyenne des carrés des écarts à la moyenne, et la formule de König la calcule plus vite : la moyenne des carrés des valeurs, moins le carré de la moyenne. Pour des classes, on remplace encore les valeurs par les centres. Sa racine carrée, l'écart type, se note sigma et s'exprime dans la même unité que les données, ce qui le rend directement lisible : plus sigma est grand, plus la série est étalée autour de sa moyenne.",
+      "ecran": "variance",
+      "id": "p29",
+      "pause_apres": 0.6,
+      "texte": "Variance : la moyenne des carrés, moins le carré de la moyenne."
+    },
+    {
+      "dit": "Calculons la dispersion de notre exemple de classes, de moyenne dix-huit. La variance vaut quatre fois l'écart entre cinq et dix-huit, au carré, plus six fois l'écart entre quinze et dix-huit, au carré, plus dix fois l'écart entre vingt-cinq et dix-huit, au carré, le tout sur vingt. Cela donne quatre fois cent soixante-neuf, six fois neuf, dix fois quarante-neuf : six cent soixante-seize, plus cinquante-quatre, plus quatre cent quatre-vingt-dix, mille deux cent vingt, divisé par vingt, soixante et un. L'écart type, racine de soixante et un, vaut environ sept virgule huit.",
+      "ecran": "ex_variance",
+      "id": "p30",
+      "pause_apres": 0.7,
+      "texte": "Variance 61, écart type environ 7,8."
+    },
+    {
+      "dit": "Deux représentations portent ces résultats. L'histogramme, pour une série en classes d'égales amplitudes, juxtapose des rectangles adjacents dont la hauteur est proportionnelle à l'effectif de chaque classe. Les polygones des effectifs cumulés relient, eux, les points dont l'abscisse est une valeur ou une borne de classe, et l'ordonnée le cumulé correspondant, croissant ou décroissant. Lecture précieuse : sur le polygone croissant, on repère l'ordonnée moitié de l'effectif total, on suit l'horizontale jusqu'à la courbe, puis la verticale jusqu'à l'axe : l'abscisse lue est la médiane.",
+      "ecran": "representations",
+      "id": "p31",
+      "pause_apres": 0.6,
+      "texte": "Histogramme et polygones cumulés : la médiane se lit à N/2."
+    },
+    {
+      "dit": "Refermons la leçon par l'étude complète d'une enquête : le nombre de frères et sœurs de trente élèves. Les données : zéro pour six élèves, un pour douze, deux pour huit, trois pour quatre. La moyenne vaut zéro fois six, plus un fois douze, plus deux fois huit, plus trois fois quatre, le tout sur trente : quarante sur trente, environ un virgule trente-trois. Les cumulés croissants sont six, dix-huit, vingt-six, trente ; l'effectif est pair, les quinzième et seizième valeurs valent un : la médiane est un. La variance vaut environ zéro virgule quatre-vingt-neuf, et l'écart type environ zéro virgule quatre-vingt-quatorze.",
+      "ecran": "etude_complete",
+      "id": "p32",
+      "pause_apres": 0.7,
+      "texte": "Frères et sœurs : moyenne 1,33, médiane 1, σ environ 0,94."
+    },
+    {
+      "dit": "Pour conclure ce cours, retenez la démarche statistique complète : collecter, classer, tabuler effectifs et fréquences, cumuler dans les deux sens, calculer moyenne et médiane pour la position, variance et écart type pour la dispersion, tracer histogramme et polygones, puis interpréter, en comparant moyenne et médiane et en lisant l'étalement dans sigma. Et pour l'ensemble du cours : une forme réduite pour chaque courbe, deux questions pour chaque dénombrement, quelques nombres pour chaque série.",
+      "ecran": "recap_final",
+      "id": "p33",
+      "pause_apres": 0.5,
+      "texte": "Statistiques : à retenir, et bilan du cours."
+    }
+  ],
+  "titre": "Second degré, dénombrement et statistiques"
+}

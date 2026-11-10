@@ -1,0 +1,450 @@
+{
+ "cours": 7332,
+ "ecrans": {
+  "adaptation_definition": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Adapter : faire coïncider",
+   "texte": "Fournir au récepteur sa tension et son intensité nominales.",
+   "type": "phrase"
+  },
+  "adaptation_moyens": {
+   "kicker": "Comment adapter ?",
+   "tex": [
+    "\\text{choisir un générateur adapté}",
+    "\\text{associer des générateurs}",
+    "\\text{résistor en série, alimentation réglable}"
+   ],
+   "titre": "Quatre leviers d'adaptation",
+   "type": "etape"
+  },
+  "derivation_definition": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Association en dérivation",
+   "texte": "Chaque lampe forme une branche, aux mêmes bornes.",
+   "type": "phrase"
+  },
+  "derivation_exemple": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Exemple : dévisser L₁ en dérivation",
+   "texte": "L₂ brille toujours : sa branche reste fermée.",
+   "type": "phrase"
+  },
+  "derivation_proprietes": {
+   "kicker": "Propriétés en dérivation",
+   "tex": [
+    "\\text{chaque lampe brille normalement}",
+    "\\text{une lampe grillée n'éteint pas l'autre}",
+    "\\text{le courant se partage entre branches}"
+   ],
+   "titre": "Lampes indépendantes",
+   "type": "etape"
+  },
+  "generateur": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Le générateur",
+   "texte": "Il fournit l'énergie : le courant sort par +.",
+   "type": "phrase"
+  },
+  "generateur_tension": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Tension d'un générateur réel",
+   "note": "Force électromotrice E, résistance interne r : la tension utile est réduite par la chute interne.",
+   "tex": "U = E - r \\cdot I",
+   "type": "formule"
+  },
+  "habitation": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Dans une habitation",
+   "texte": "Les lampes sont en dérivation : indépendantes.",
+   "type": "phrase"
+  },
+  "lampe_adaptation_donnees": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Exemple : lampe et pile",
+   "texte": "Lampe (6,0 V ; 0,30 A), pile E = 4,5 V.",
+   "type": "phrase"
+  },
+  "lampe_trop_faible": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Étape 1 : tension trop faible",
+   "texte": "4,5 V < 6,0 V : la lampe brille faiblement.",
+   "type": "phrase"
+  },
+  "lampe_trop_forte": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Étape 2 : tension trop forte",
+   "texte": "Deux piles : 9,0 V > 6,0 V, la lampe risque de griller.",
+   "type": "phrase"
+  },
+  "piles_exemple": {
+   "kicker": "Exemple : trois piles de 1,5 V",
+   "note": "Trois piles identiques en série se comportent comme une pile unique de 4,5 V.",
+   "tex": "U_{totale} = 1{,}5 + 1{,}5 + 1{,}5 = 4{,}5\\ \\text{V}",
+   "type": "formule"
+  },
+  "piles_orientation": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Orientation des piles en série",
+   "texte": "Chaque + relié au − suivant, même sens partout.",
+   "type": "phrase"
+  },
+  "piles_serie_definition": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Piles en série : en cascade",
+   "texte": "La borne + de l'une reliée à la borne − de l'autre.",
+   "type": "phrase"
+  },
+  "piles_tension_totale": {
+   "kicker": "Tension totale en série",
+   "note": "L'association en série augmente la tension disponible.",
+   "tex": "U_{totale} = U_1 + U_2 + \\dots + U_n",
+   "type": "formule"
+  },
+  "piles_verification": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Vérifier au voltmètre",
+   "texte": "En dérivation aux bornes libres : on lit la somme.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Générateur : fournit l'énergie, courant sort par + ; récepteur : la transforme, courant entre par +",
+    "Adapter : fournir tension et intensité nominales, par générateur, association ou résistor",
+    "Lampes : en série elles s'éteignent ensemble, en dérivation elles sont indépendantes",
+    "Piles en série : tensions qui s'additionnent, même orientation, vérifier au voltmètre"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "recepteur": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Le récepteur",
+   "texte": "Il reçoit l'énergie et la transforme.",
+   "type": "phrase"
+  },
+  "recepteur_ohm": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "resistor_symbole_fig"
+   },
+   "kicker": "Conducteur ohmique",
+   "note": "Pour un conducteur ohmique de résistance R, la tension vaut R fois I.",
+   "tex": "U = R \\cdot I",
+   "type": "formule"
+  },
+  "resistor_adaptation": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "resistor_symbole_fig"
+   },
+   "kicker": "Étape 3 : le résistor en série",
+   "note": "Chute à absorber : 9,0 − 6,0 = 3,0 V ; intensité 0,30 A.",
+   "tex": "R = \\frac{U_R}{I} = \\frac{3{,}0}{0{,}30} = 10\\ \\Omega",
+   "type": "formule"
+  },
+  "serie_definition": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Association en série",
+   "texte": "Les lampes l'une à la suite de l'autre, une seule boucle.",
+   "type": "phrase"
+  },
+  "serie_exemple": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Exemple : dévisser L₁ en série",
+   "texte": "L₂ s'éteint : le circuit n'est plus fermé.",
+   "type": "phrase"
+  },
+  "serie_proprietes": {
+   "kicker": "Propriétés en série",
+   "tex": [
+    "\\text{même courant dans les deux lampes}",
+    "\\text{une lampe grillée éteint l'autre}",
+    "\\text{chaque lampe brille moins fort}"
+   ],
+   "titre": "Une seule boucle, un seul courant",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "circuit"
+   },
+   "kicker": "Sciences Physiques et Technologie · Électricité",
+   "sous": "Générateur et récepteur, lampes en série ou en dérivation, piles en série",
+   "titre": "Bien associer générateurs et récepteurs",
+   "type": "titre"
+  },
+  "vigilance_pile_envers": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit"
+   },
+   "kicker": "Vigilance : une pile à l'envers",
+   "texte": "Sa tension se retranche au lieu de s'ajouter.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Générateur, récepteur et adaptation d'une lampe"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : associer des lampes, en série puis en dérivation, et comparer leurs comportements.",
+    "texte": "Partie 2 : lampes en série et en dérivation."
+   },
+   "sous_titre": "Lampes en série et en dérivation"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : associer des piles en série pour augmenter la tension, avec l'orientation à respecter et la vérification au voltmètre.",
+    "texte": "Partie 3 : piles en série."
+   },
+   "sous_titre": "Piles en série"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur la bonne association des générateurs et des récepteurs. Nous verrons d'abord ce qui fournit l'énergie et ce qui la reçoit, puis comment adapter un générateur à un récepteur, et enfin comment associer des lampes et des piles.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Fournir, recevoir, associer : le bon branchement."
+  },
+  {
+   "dit": "Un générateur est un dipôle qui fournit de l'énergie électrique au circuit. Il possède une borne positive et une borne négative. Le courant sort par la borne positive et entre par la borne négative. Exemples : une pile, une batterie, une génératrice, une alimentation stabilisée.",
+   "ecran": "generateur",
+   "id": "p02",
+   "texte": "Il fournit l'énergie : le courant sort par +."
+  },
+  {
+   "dit": "Un générateur est caractérisé par sa force électromotrice, notée E, en volts, et sa résistance interne, notée r, en ohms. La tension à ses bornes vaut la force électromotrice moins la résistance interne fois l'intensité.",
+   "ecran": "generateur_tension",
+   "id": "p03",
+   "texte": "U = E − r·I : la tension utile d'un générateur réel."
+  },
+  {
+   "dit": "Un récepteur est un dipôle qui reçoit de l'énergie électrique et la transforme, en lumière, en chaleur, en mouvement, et ainsi de suite. Le courant entre par sa borne positive et sort par sa borne négative. Exemples : une lampe, un résistor, un conducteur ohmique, un moteur, un électrolyseur.",
+   "ecran": "recepteur",
+   "id": "p04",
+   "texte": "Il reçoit l'énergie et la transforme."
+  },
+  {
+   "dit": "Pour un conducteur ohmique de résistance R, la tension à ses bornes vaut R fois I. C'est la loi d'Ohm appliquée au récepteur.",
+   "ecran": "recepteur_ohm",
+   "id": "p05",
+   "texte": "Conducteur ohmique : U = R × I."
+  },
+  {
+   "dit": "Pourquoi adapter ? Chaque récepteur possède des valeurs nominales, tension et intensité, indiquées par le fabricant. Si la tension ou l'intensité fournie par le générateur est trop faible, le récepteur fonctionne mal ; si elle est trop élevée, il peut être détruit.",
+   "ecran": "adaptation_definition",
+   "id": "p06",
+   "texte": "Trop faible : il fonctionne mal ; trop fort : il grille."
+  },
+  {
+   "dit": "Adapter un générateur à un récepteur, c'est faire en sorte que le générateur fournisse au récepteur la tension et l'intensité qui lui conviennent. C'est faire coïncider l'offre du générateur et la demande du récepteur.",
+   "ecran": "adaptation_definition",
+   "id": "p07",
+   "texte": "Fournir au récepteur sa tension et son intensité nominales."
+  },
+  {
+   "dit": "On peut agir de plusieurs façons : choisir un générateur adapté, en sélectionnant une pile ou une alimentation dont la force électromotrice correspond à la tension nominale du récepteur ; associer des générateurs, en mettant des piles en série pour augmenter la tension, ou en dérivation pour augmenter l'intensité disponible ; utiliser un montage diviseur, en plaçant un résistor en série avec le récepteur pour abaisser la tension à ses bornes ; ou régler l'alimentation, avec une alimentation stabilisée, dont on ajuste directement la tension délivrée.",
+   "ecran": "adaptation_moyens",
+   "id": "p08",
+   "texte": "Choisir, associer, diviser, régler : quatre leviers."
+  },
+  {
+   "dit": "Exemple résolu : adapter une lampe à une pile. Énoncé : une lampe porte les indications six volts, zéro virgule trente ampère. On dispose d'une pile de force électromotrice quatre virgule cinq volts et de résistance interne négligeable.",
+   "ecran": "lampe_adaptation_donnees",
+   "id": "p09",
+   "texte": "Lampe (6,0 V ; 0,30 A), pile E = 4,5 V."
+  },
+  {
+   "dit": "Première étape : la tension de la pile, quatre virgule cinq volts, est inférieure à la tension nominale de la lampe, six volts : la lampe brille faiblement. Elle est sous-alimentée.",
+   "ecran": "lampe_trop_faible",
+   "id": "p10",
+   "texte": "4,5 V < 6,0 V : la lampe brille faiblement."
+  },
+  {
+   "dit": "Pour l'adapter, on associe en série deux piles identiques de quatre virgule cinq volts. La tension totale devient quatre virgule cinq plus quatre virgule cinq, soit neuf volts.",
+   "ecran": "lampe_trop_forte",
+   "id": "p11",
+   "texte": "Deux piles en série : 4,5 + 4,5 = 9,0 V."
+  },
+  {
+   "dit": "Mais cette tension de neuf volts est maintenant supérieure à six volts : la lampe risque d'être détruite. On est passé d'un défaut à l'autre, il faut donc un troisième geste.",
+   "ecran": "lampe_trop_forte",
+   "id": "p12",
+   "texte": "9,0 V > 6,0 V : la lampe risque de griller."
+  },
+  {
+   "dit": "On intercale alors un résistor en série pour faire chuter la tension. La tension aux bornes de la lampe doit valoir six volts, donc la chute dans le résistor doit être neuf moins six, soit trois volts. L'intensité dans le circuit est zéro virgule trente ampère, celle de la lampe en série. On en déduit que R vaut trois divisé par zéro virgule trente, soit dix ohms.",
+   "ecran": "resistor_adaptation",
+   "id": "p13",
+   "texte": "R = 3,0 / 0,30 = 10 Ω en série avec la lampe."
+  },
+  {
+   "dit": "La lampe est ainsi correctement adaptée : elle reçoit bien six volts et zéro virgule trente ampère. Retenons la méthode : comparer à la valeur nominale, associer si besoin, puis ajuster avec un résistor.",
+   "ecran": "resistor_adaptation",
+   "id": "p14",
+   "texte": "Adaptée : 6,0 V et 0,30 A pour la lampe."
+  },
+  {
+   "dit": "Nous changeons d'échelle : après un générateur et un récepteur, associons maintenant plusieurs récepteurs, puis plusieurs générateurs.",
+   "ecran": "serie_definition",
+   "id": "p15",
+   "texte": "Un générateur adapté : place aux associations."
+  },
+  {
+   "dit": "Rappel du circuit simple : un circuit électrique fermé comporte un générateur, une pile, des fils de connexion et un récepteur, ici une lampe. Le courant circule de la borne positive vers la borne négative du générateur. Pour associer des lampes, on ajoute une deuxième lampe au circuit. Il existe deux façons de la brancher.",
+   "ecran": "serie_definition",
+   "id": "p16",
+   "texte": "Circuit simple : pile, fils, une lampe, puis deux."
+  },
+  {
+   "dit": "Deux lampes sont associées en série lorsqu'elles sont branchées l'une à la suite de l'autre, formant une seule boucle. Le courant traverse d'abord une lampe, puis la seconde.",
+   "ecran": "serie_definition",
+   "id": "p17",
+   "texte": "Les lampes l'une à la suite de l'autre, une seule boucle."
+  },
+  {
+   "dit": "Propriétés observées en série : les deux lampes sont traversées par le même courant, une seule boucle ; si l'une des lampes est dévissée ou grillée, le circuit est ouvert et l'autre lampe s'éteint aussi ; chaque lampe brille moins fort que si elle était seule, car la pile doit partager son énergie entre les deux lampes.",
+   "ecran": "serie_proprietes",
+   "id": "p18",
+   "texte": "Même courant, extinction commune, éclat plus faible."
+  },
+  {
+   "dit": "Exemple résolu : on branche une pile, une lampe L indice un, puis une lampe L indice deux, en série. On dévisse L indice un. Que se passe-t-il pour L indice deux ? Le circuit n'est plus fermé, donc plus aucun courant ne circule, et L indice deux s'éteint. C'est la propriété caractéristique du montage en série.",
+   "ecran": "serie_exemple",
+   "id": "p19",
+   "texte": "L₁ dévissée en série : L₂ s'éteint."
+  },
+  {
+   "dit": "Deux lampes sont associées en dérivation, ou en parallèle, lorsqu'elles sont branchées côte à côte, chacune formant une branche distincte reliée aux mêmes bornes du générateur. Le circuit comporte alors plusieurs boucles.",
+   "ecran": "derivation_definition",
+   "id": "p20",
+   "texte": "Chaque lampe forme une branche, aux mêmes bornes."
+  },
+  {
+   "dit": "Propriétés observées en dérivation : chaque lampe est branchée directement aux bornes du générateur, elle brille normalement, comme si elle était seule ; si une lampe est dévissée ou grillée, l'autre continue de briller, car sa branche reste fermée ; le courant se partage entre les deux branches.",
+   "ecran": "derivation_proprietes",
+   "id": "p21",
+   "texte": "Lampes indépendantes, éclat normal, courant partagé."
+  },
+  {
+   "dit": "Exemple résolu : on branche une pile, puis deux lampes L indice un et L indice deux, en dérivation. On dévisse L indice un. Que se passe-t-il pour L indice deux ? La branche de L indice deux reste fermée et reliée à la pile : L indice deux brille toujours. C'est la propriété caractéristique du montage en dérivation.",
+   "ecran": "derivation_exemple",
+   "id": "p22",
+   "texte": "L₁ dévissée en dérivation : L₂ brille toujours."
+  },
+  {
+   "dit": "Comparaison à retenir : en série, une seule boucle, un seul chemin pour le courant, des lampes qui brillent faiblement et s'éteignent ensemble ; en dérivation, plusieurs boucles, des lampes indépendantes qui brillent normalement. Dans une habitation, les lampes sont montées en dérivation : ainsi, éteindre ou griller une lampe n'éteint pas les autres.",
+   "ecran": "habitation",
+   "id": "p23",
+   "texte": "Dans une habitation : dérivation, lampes indépendantes."
+  },
+  {
+   "dit": "Passons aux générateurs. Un dipôle isolé, une seule pile, fournit une tension fixe. Pour obtenir une tension plus élevée, on associe plusieurs piles. Ce chapitre étudie l'association en série. Rappel : une pile est un dipôle polarisé, borne positive et borne négative, dont la tension, appelée force électromotrice, se mesure en volts avec un voltmètre branché en dérivation. Exemple : une pile plate vaut quatre virgule cinq volts, une pile ronde un virgule cinq volt.",
+   "ecran": "piles_serie_definition",
+   "id": "p24",
+   "texte": "Une pile seule : tension fixe ; plusieurs : on associe."
+  },
+  {
+   "dit": "Deux piles sont associées en série lorsque la borne positive de l'une est reliée à la borne négative de l'autre. On dit qu'elles sont montées en cascade. Le montage forme une chaîne : borne libre négative, pile un, pile deux, borne libre positive.",
+   "ecran": "piles_serie_definition",
+   "id": "p25",
+   "texte": "La borne + de l'une reliée à la borne − de l'autre."
+  },
+  {
+   "dit": "Propriété : lorsque des piles sont en série, la tension aux bornes de l'ensemble est égale à la somme des tensions de chaque pile. Les tensions s'additionnent : l'association en série augmente la tension disponible.",
+   "ecran": "piles_tension_totale",
+   "id": "p26",
+   "texte": "U totale = U₁ + U₂ + … + Uₙ."
+  },
+  {
+   "dit": "Autre propriété : le sens du courant. Les piles en série doivent être orientées dans le même sens, chaque plus relié au moins suivant. Le courant circule alors dans un seul sens dans tout le circuit.",
+   "ecran": "piles_orientation",
+   "id": "p27",
+   "texte": "Chaque + relié au − suivant, même sens partout."
+  },
+  {
+   "dit": "Exemple résolu : on associe en série trois piles identiques de un virgule cinq volt chacune. La tension totale vaut un virgule cinq plus un virgule cinq plus un virgule cinq, soit quatre virgule cinq volts. L'ensemble se comporte comme une pile unique de quatre virgule cinq volts.",
+   "ecran": "piles_exemple",
+   "id": "p28",
+   "texte": "Trois piles de 1,5 V : 4,5 V au total."
+  },
+  {
+   "dit": "Pour réaliser l'association : placer les piles dans un support ou un boîtier les maintenant alignées ; relier la borne plus de la première à la borne moins de la suivante, par un fil ou une lame métallique ; laisser libres la borne moins de la première et la borne plus de la dernière, ce sont les bornes du générateur équivalent ; vérifier le montage avec un voltmètre, on doit lire la somme des tensions.",
+   "ecran": "piles_verification",
+   "id": "p29",
+   "texte": "Support, + vers −, bornes libres, vérification."
+  },
+  {
+   "dit": "Point de vigilance : si une pile est montée à l'envers, borne plus reliée à borne plus, sa tension se retranche au lieu de s'ajouter. Le montage doit donc respecter l'orientation de chaque pile.",
+   "ecran": "vigilance_pile_envers",
+   "id": "p30",
+   "texte": "Une pile à l'envers : sa tension se retranche."
+  },
+  {
+   "dit": "Mesure et vérification : on mesure la tension totale avec un voltmètre branché en dérivation aux bornes libres de l'association. La valeur lue doit être égale à la somme des tensions individuelles. Deux piles de un virgule cinq volt en série donnent trois volts ; le voltmètre affiche bien trois volts.",
+   "ecran": "piles_verification",
+   "id": "p31",
+   "texte": "Deux piles de 1,5 V : le voltmètre affiche 3 V."
+  },
+  {
+   "dit": "Retenons l'essentiel. Le générateur fournit l'énergie, le courant sort par sa borne plus ; le récepteur la transforme, le courant entre par sa borne plus. Adapter, c'est fournir tension et intensité nominales, par le choix du générateur, une association ou un résistor. Les lampes en série s'éteignent ensemble, en dérivation elles sont indépendantes. Et les piles en série additionnent leurs tensions, dans le même sens, à vérifier au voltmètre.",
+   "ecran": "recap",
+   "id": "p32",
+   "texte": "Générateurs, récepteurs, associations : le récapitulatif."
+  }
+ ],
+ "titre": "Bien associer générateurs et récepteurs"
+}

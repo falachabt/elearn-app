@@ -1,0 +1,469 @@
+{
+ "cours": 7239,
+ "ecrans": {
+  "demarche": {
+   "kicker": "Mettre un problème en équation",
+   "tex": [
+    "\\text{1. choisir l'inconnue et la nommer } x",
+    "\\text{2. traduire l'énoncé en équation}",
+    "\\text{3. résoudre l'équation}",
+    "\\text{4. vérifier la cohérence, puis conclure}"
+   ],
+   "titre": "Quatre étapes, dans l'ordre",
+   "type": "etape"
+  },
+  "distributivite": {
+   "kicker": "Développer · la distributivité",
+   "tex": [
+    "a(b + c) = ab + ac",
+    "(a + b)(c + d) = ac + ad + bc + bd"
+   ],
+   "titre": "Distributivité simple, puis double",
+   "type": "etape"
+  },
+  "entiers": {
+   "kicker": "Exemple · deux entiers consécutifs",
+   "tex": [
+    "x + (x + 1) = 47",
+    "2x + 1 = 47 \\qquad x = 23",
+    "\\text{les entiers sont } 23 \\text{ et } 24"
+   ],
+   "titre": "Somme quarante-sept, deux entiers à trouver",
+   "type": "etape"
+  },
+  "equation_def": {
+   "kicker": "Résoudre une équation",
+   "tex": [
+    "\\text{égalité avec une inconnue, notée } x",
+    "\\text{résoudre} = \\text{trouver les valeurs}",
+    "\\text{qui vérifient l'égalité}",
+    "\\text{ces valeurs sont les solutions}"
+   ],
+   "titre": "Une égalité avec une inconnue",
+   "type": "etape"
+  },
+  "erreurs": {
+   "kicker": "Les erreurs fréquentes",
+   "tex": [
+    "-(x + 2) = -x - 2",
+    "(a + b)^2 \\ne a^2 + b^2",
+    "\\text{réduire jusqu'au bout}"
+   ],
+   "titre": "Trois pièges à éviter",
+   "type": "etape"
+  },
+  "ex_develop": {
+   "kicker": "Exemple résolu · avec développement",
+   "tex": [
+    "2(x + 3) = 5x - (x - 4)",
+    "2x + 6 = 4x + 4",
+    "6 - 4 = 4x - 2x",
+    "2 = 2x \\qquad x = 1"
+   ],
+   "titre": "Développer d'abord, résoudre ensuite",
+   "type": "etape"
+  },
+  "ex_ineg_neg": {
+   "kicker": "Exemple résolu · facteur négatif",
+   "tex": [
+    "-2x + 3 \\le 7",
+    "-2x \\le 4",
+    "x \\ge -2 \\qquad [-2 ; +\\infty["
+   ],
+   "titre": "Diviser par moins deux inverse le sens",
+   "type": "etape"
+  },
+  "ex_ineg_pos": {
+   "kicker": "Exemple résolu · facteur positif",
+   "tex": [
+    "3x - 1 > 2x + 4",
+    "3x - 2x > 4 + 1",
+    "x > 5 \\qquad ]5 ; +\\infty["
+   ],
+   "titre": "Le sens ne change pas",
+   "type": "etape"
+  },
+  "ex_simple": {
+   "kicker": "Exemple résolu · équation simple",
+   "tex": [
+    "3x + 5 = 2x - 1",
+    "3x - 2x = -1 - 5",
+    "x = -6"
+   ],
+   "titre": "Regrouper, puis isoler x",
+   "type": "etape"
+  },
+  "exemple_b": {
+   "kicker": "Exemple · développer puis réduire",
+   "tex": [
+    "B = 3(2x - 5) + (x + 1)(x + 4)",
+    "= 6x - 15 + x^2 + 4x + x + 4",
+    "= x^2 + 11x - 11"
+   ],
+   "titre": "Deux produits, puis un regroupement",
+   "type": "etape"
+  },
+  "exemple_d": {
+   "kicker": "Exemple · développer un carré",
+   "tex": [
+    "D = (2x + 3)^2",
+    "= (2x)^2 + 2 \\times 2x \\times 3 + 3^2",
+    "= 4x^2 + 12x + 9"
+   ],
+   "titre": "Carré, double produit, carré",
+   "type": "etape"
+  },
+  "exemple_e": {
+   "kicker": "Exemple · factoriser une différence de carrés",
+   "tex": [
+    "E = x^2 - 25 = x^2 - 5^2",
+    "E = (x - 5)(x + 5)"
+   ],
+   "titre": "La troisième identité, lue à l'envers",
+   "type": "etape"
+  },
+  "exemple_f": {
+   "kicker": "Exemple complet · développer puis réduire",
+   "tex": [
+    "F = (3x - 1)(3x + 1) - (x + 2)^2",
+    "= (9x^2 - 1) - (x^2 + 4x + 4)",
+    "= 8x^2 - 4x - 5"
+   ],
+   "titre": "Identité, carré, signe moins, réduction",
+   "type": "etape"
+  },
+  "factoriser": {
+   "kicker": "Factoriser · le facteur commun",
+   "tex": [
+    "C = 6x^2 + 9x",
+    "C = 3x(2x + 3)"
+   ],
+   "titre": "L'opération inverse du développement",
+   "type": "etape"
+  },
+  "identites": {
+   "kicker": "Les identités remarquables",
+   "tex": [
+    "(a + b)^2 = a^2 + 2ab + b^2",
+    "(a - b)^2 = a^2 - 2ab + b^2",
+    "(a + b)(a - b) = a^2 - b^2"
+   ],
+   "titre": "Trois égalités fondamentales",
+   "type": "etape"
+  },
+  "inequation": {
+   "kicker": "Résoudre une inéquation",
+   "tex": [
+    "\\text{une inéquation compare}",
+    "\\text{deux expressions}",
+    "\\text{signes : } <, >, \\le, \\ge",
+    "\\text{facteur négatif} \\Rightarrow \\text{sens inversé}"
+   ],
+   "titre": "Mêmes règles, une exception",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Deux chapitres, un même réflexe : transformer sans changer la valeur.",
+   "type": "phrase"
+  },
+  "litterale": {
+   "kicker": "Les expressions littérales",
+   "tex": [
+    "\\text{une lettre} = \\text{un nombre quelconque}",
+    "\\text{réduire} = \\text{regrouper}",
+    "\\text{les termes semblables}",
+    "x \\text{ désigne un nombre quelconque}"
+   ],
+   "titre": "Une lettre représente un nombre quelconque",
+   "type": "etape"
+  },
+  "piege": {
+   "kicker": "Le piège · diviser par x",
+   "tex": [
+    "\\text{ne jamais diviser par une expression en } x",
+    "\\text{sans être certain qu'elle n'est pas nulle}",
+    "\\text{on risquerait de perdre des solutions}"
+   ],
+   "titre": "Ne jamais diviser sans certitude",
+   "type": "etape"
+  },
+  "produit_nul": {
+   "kicker": "Le produit nul",
+   "tex": [
+    "x^2 - 9 = (x - 3)(x + 3) = 0",
+    "x - 3 = 0 \\qquad \\text{ou} \\qquad x + 3 = 0",
+    "x = 3 \\qquad \\text{ou} \\qquad x = -3"
+   ],
+   "titre": "Factoriser, puis annuler chaque facteur",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Réduire : regrouper les termes semblables",
+    "Développer : produit vers somme",
+    "Factoriser : somme vers produit",
+    "Identités : carré et différence de carrés",
+    "Double produit : ne jamais l'oublier"
+   ],
+   "kicker": "Partie 1 · à retenir",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Développer, factoriser, réduire",
+    "Équation : isoler x, deux membres égaux",
+    "Produit nul : chaque facteur peut être nul",
+    "Inéquation : négatif, sens inversé",
+    "Vérifier toujours dans l'équation de départ"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "reduire_ex": {
+   "kicker": "Exemple · réduire",
+   "tex": [
+    "A = 5x + 3 - 2x + 7",
+    "A = (5x - 2x) + (3 + 7)",
+    "A = 3x + 10"
+   ],
+   "titre": "Regrouper les x ensemble, les constantes ensemble",
+   "type": "etape"
+  },
+  "regles": {
+   "kicker": "Les deux règles de transformation",
+   "tex": [
+    "\\text{ajouter ou retrancher le même nombre}",
+    "\\text{multiplier ou diviser}",
+    "\\text{par un nombre non nul}"
+   ],
+   "titre": "Même opération sur les deux membres",
+   "type": "etape"
+  },
+  "strategie": {
+   "kicker": "Méthode · choisir la bonne stratégie",
+   "tex": [
+    "\\text{développer : distributivité ou identité}",
+    "\\text{factoriser : facteur commun}",
+    "\\text{puis identité}",
+    "\\text{toujours réduire à la fin}"
+   ],
+   "titre": "Développer ou factoriser, puis réduire",
+   "type": "etape"
+  },
+  "synthese": {
+   "kicker": "La méthode générale",
+   "tex": [
+    "\\text{simplifier : développer et réduire d'abord}",
+    "\\text{isoler } x \\text{ :}",
+    "\\text{mêmes opérations des deux côtés}",
+    "\\text{inéquation : inverser}",
+    "\\text{si le facteur est négatif}"
+   ],
+   "titre": "Simplifier, isoler, inverser si besoin, vérifier",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Mathématique · Calcul littéral et équations",
+   "sous": "Développer, factoriser, réduire, puis résoudre équations et inéquations",
+   "titre": "Calcul littéral et équations",
+   "type": "titre"
+  },
+  "verification": {
+   "kicker": "Vérifier une solution",
+   "tex": [
+    "2(1 + 3) = 2 \\times 4 = 8",
+    "5 \\times 1 - (1 - 4) = 5 - (-3) = 8",
+    "\\text{les deux membres sont égaux}"
+   ],
+   "titre": "Les deux membres doivent être égaux",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Calcul littéral : développer, factoriser, réduire"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux, les équations et les inéquations. Nous verrons les règles qui conservent les solutions, la vérification, la méthode du produit nul, puis les inéquations et la mise en équation d'un problème.",
+    "texte": "Partie 2 : équations, inéquations, mise en équation."
+   },
+   "sous_titre": "Équations et inéquations : résoudre et vérifier"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré au calcul littéral et aux équations. Nous allons transformer des expressions avec des lettres, puis résoudre des équations et des inéquations, avec la même rigueur du début à la fin.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Calcul littéral et équations : transformer avec rigueur."
+  },
+  {
+   "dit": "En calcul littéral, on transforme une expression sans changer sa valeur. En équation, on transforme une égalité sans changer ses solutions. Deux chapitres, un même réflexe, transformer proprement, étape par étape.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Transformer sans changer la valeur ni les solutions."
+  },
+  {
+   "dit": "Une expression littérale contient des lettres. Chaque lettre, appelée variable, représente un nombre quelconque. Réduire une expression, c'est regrouper les termes de même nature pour l'écrire plus simplement.",
+   "ecran": "litterale",
+   "id": "p03",
+   "texte": "Une lettre = un nombre quelconque à regrouper."
+  },
+  {
+   "dit": "Réduisons grand A, cinq x plus trois moins deux x plus sept. Cinq x moins deux x donnent trois x, trois plus sept donnent dix. Le résultat est donc trois x plus dix.",
+   "ecran": "reduire_ex",
+   "id": "p04",
+   "texte": "A = 3x + 10 : regrouper les semblables."
+  },
+  {
+   "dit": "Développer, c'est transformer un produit en somme ou en différence, grâce à la distributivité. La distributivité simple donne a facteur de b plus c égal a b plus a c. La double multiplie chaque terme du premier facteur par chaque terme du second, soit quatre produits.",
+   "ecran": "distributivite",
+   "id": "p05",
+   "texte": "Distributivité : chaque terme multiplie chaque terme."
+  },
+  {
+   "dit": "Développons grand B, trois facteur de deux x moins cinq, plus x plus un facteur de x plus quatre. Le premier produit donne six x moins quinze, le second x au carré plus quatre x plus x plus quatre. En regroupant, on obtient x au carré plus onze x moins onze.",
+   "ecran": "exemple_b",
+   "id": "p06",
+   "texte": "B = x² + 11x − 11 : développer, puis réduire."
+  },
+  {
+   "dit": "Factoriser, c'est l'opération inverse. On transforme une somme en produit en repérant un facteur commun. Pour grand C, six x au carré plus neuf x, le facteur commun est trois x. On obtient trois x facteur de deux x plus trois.",
+   "ecran": "factoriser",
+   "id": "p07",
+   "texte": "C = 3x(2x + 3) : le facteur commun sort."
+  },
+  {
+   "dit": "Trois égalités accélèrent tous les calculs. Le carré d'une somme vaut le carré du premier terme, plus le double produit, plus le carré du second. Le carré d'une différence retire le double produit. Le produit d'une somme par une différence vaut la différence des carrés.",
+   "ecran": "identites",
+   "id": "p08",
+   "texte": "Trois identités à connaître par cœur."
+  },
+  {
+   "dit": "Développons grand D, deux x plus trois au carré. Le carré de deux x donne quatre x au carré, le double produit douze x, le carré de trois neuf. Le résultat est quatre x au carré plus douze x plus neuf.",
+   "ecran": "exemple_d",
+   "id": "p09",
+   "texte": "D = 4x² + 12x + 9 : carré, double produit, carré."
+  },
+  {
+   "dit": "Factorisons grand E, x au carré moins vingt-cinq. C'est une différence de carrés, x au carré moins cinq au carré, qui se factorise en x moins cinq facteur de x plus cinq. C'est la troisième identité, lue de droite à gauche.",
+   "ecran": "exemple_e",
+   "id": "p10",
+   "texte": "E = (x − 5)(x + 5) : reconnaître la différence."
+  },
+  {
+   "dit": "Voici un exemple complet. Grand F est égal à trois x moins un facteur de trois x plus un, moins x plus deux au carré. Le premier produit donne neuf x au carré moins un, le carré donne x au carré plus quatre x plus quatre. En distribuant le signe moins puis en réduisant, on obtient huit x au carré moins quatre x moins cinq.",
+   "ecran": "exemple_f",
+   "id": "p11",
+   "texte": "F = 8x² − 4x − 5 : identité, carré, réduction."
+  },
+  {
+   "dit": "Attention aux trois erreurs fréquentes. Distribuer un signe moins change tous les signes, moins x plus deux devient moins x moins deux. Le carré d'une somme n'est jamais la somme des carrés, le double produit est indispensable. Enfin, réduisez entièrement, sans oublier un seul terme semblable.",
+   "ecran": "erreurs",
+   "id": "p12",
+   "texte": "Signe moins, double produit, réduction complète."
+  },
+  {
+   "dit": "Pour choisir la bonne stratégie, retenez trois gestes. Pour développer, la distributivité simple ou double, ou une identité remarquable. Pour factoriser, d'abord un facteur commun, sinon une identité remarquable. Et dans tous les cas, réduisez l'expression obtenue.",
+   "ecran": "strategie",
+   "id": "p13",
+   "texte": "Développer ou factoriser, puis toujours réduire."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Réduire, c'est regrouper les termes semblables. Développer transforme un produit en somme, factoriser une somme en produit. Les identités accélèrent les calculs, sans jamais oublier le double produit.",
+   "ecran": "recap1",
+   "id": "p14",
+   "texte": "Partie 1 : à retenir."
+  },
+  {
+   "dit": "Une équation est une égalité qui contient une inconnue, notée en général x. Résoudre l'équation, c'est trouver toutes les valeurs de x qui rendent l'égalité vraie. Ces valeurs sont les solutions de l'équation.",
+   "ecran": "equation_def",
+   "id": "p15",
+   "texte": "Équation : une égalité à résoudre pour x."
+  },
+  {
+   "dit": "Deux règles conservent les solutions d'une équation. On peut ajouter ou soustraire un même nombre aux deux membres. On peut aussi multiplier ou diviser les deux membres par un même nombre, à condition qu'il ne soit pas nul.",
+   "ecran": "regles",
+   "id": "p16",
+   "texte": "Deux règles, appliquées aux deux membres."
+  },
+  {
+   "dit": "Résolvons trois x plus cinq égal deux x moins un. On regroupe les x à gauche et les nombres à droite, trois x moins deux x égal moins un moins cinq. Il reste x égal moins six.",
+   "ecran": "ex_simple",
+   "id": "p17",
+   "texte": "3x + 5 = 2x − 1 : solution x = −6."
+  },
+  {
+   "dit": "Conseil essentiel, avant de résoudre, développez et réduisez chaque membre dès que possible. Prenons deux facteur de x plus trois égal cinq x moins x moins quatre. La gauche donne deux x plus six, la droite donne quatre x plus quatre. L'équation devient deux x plus six égal quatre x plus quatre, d'où x égal un.",
+   "ecran": "ex_develop",
+   "id": "p18",
+   "texte": "Développer d'abord : 2x + 6 = 4x + 4."
+  },
+  {
+   "dit": "Vérifions toujours une solution dans l'équation de départ. Remplaçons x par un dans deux facteur de x plus trois égal cinq x moins x moins quatre. La gauche vaut deux fois quatre, soit huit. La droite vaut cinq moins moins trois, soit huit aussi. Les deux membres sont égaux, la solution est correcte.",
+   "ecran": "verification",
+   "id": "p19",
+   "texte": "Vérification : 8 = 8, solution correcte."
+  },
+  {
+   "dit": "Une identité remarquable peut aussi résoudre une équation. Prenons x au carré moins neuf égal zéro. La gauche se factorise en x moins trois facteur de x plus trois. Un produit est nul si l'un au moins de ses facteurs est nul. On obtient deux solutions, x égal trois ou x égal moins trois.",
+   "ecran": "produit_nul",
+   "id": "p20",
+   "texte": "x² − 9 = 0 : deux solutions, 3 et −3."
+  },
+  {
+   "dit": "Attention à un piège. On ne divise jamais les deux membres d'une équation par une expression contenant x sans être certain qu'elle n'est pas nulle. Diviser par une expression qui peut s'annuler, c'est risquer de perdre des solutions.",
+   "ecran": "piege",
+   "id": "p21",
+   "texte": "Piège : ne jamais diviser par une expression en x."
+  },
+  {
+   "dit": "Une inéquation compare deux expressions par un symbole d'ordre, inférieur, supérieur, inférieur ou égal, supérieur ou égal. La résoudre, c'est trouver toutes les valeurs de x qui vérifient l'inégalité. Les règles sont les mêmes que pour les équations, sauf une, multiplier ou diviser par un nombre négatif inverse le sens.",
+   "ecran": "inequation",
+   "id": "p22",
+   "texte": "Inéquation : un intervalle, un sens à surveiller."
+  },
+  {
+   "dit": "Résolvons moins deux x plus trois inférieur ou égal à sept. On retranche trois, moins deux x devient inférieur ou égal à quatre. On divise par moins deux, qui est négatif, donc le sens change. On obtient x supérieur ou égal à moins deux, soit l'intervalle de moins deux inclus à plus l'infini.",
+   "ecran": "ex_ineg_neg",
+   "id": "p23",
+   "texte": "−2x + 3 ≤ 7 : x ≥ −2, intervalle fermé à gauche."
+  },
+  {
+   "dit": "Second exemple, avec une division par un positif, qui ne change pas le sens. Trois x moins un supérieur à deux x plus quatre donne, après regroupement, x supérieur à cinq. L'ensemble des solutions est l'intervalle ouvert de cinq à plus l'infini.",
+   "ecran": "ex_ineg_pos",
+   "id": "p24",
+   "texte": "3x − 1 > 2x + 4 : x > 5, intervalle ouvert."
+  },
+  {
+   "dit": "Pour mettre un problème en équation, suivez quatre étapes. Choisir l'inconnue et la nommer x. Traduire l'énoncé par une équation. Résoudre l'équation. Vérifier la cohérence avec le contexte, puis conclure.",
+   "ecran": "demarche",
+   "id": "p25",
+   "texte": "Problème : inconnue, équation, résolution, conclusion."
+  },
+  {
+   "dit": "Appliquons la démarche. La somme de deux entiers consécutifs vaut quarante-sept. Notons x le plus petit, le second vaut x plus un. L'équation x plus x plus un égal quarante-sept donne deux x plus un égal quarante-sept, donc x égal vingt-trois. Les deux entiers sont vingt-trois et vingt-quatre.",
+   "ecran": "entiers",
+   "id": "p26",
+   "texte": "47 = 23 + 24 : deux entiers consécutifs."
+  },
+  {
+   "dit": "Retenez enfin la méthode générale. Simplifiez d'abord, en développant et en réduisant chaque membre. Isolez ensuite x en appliquant les mêmes opérations aux deux membres. Pour une inéquation, inversez le sens si vous multipliez ou divisez par un négatif. Et vérifiez toujours votre solution dans l'équation de départ.",
+   "ecran": "synthese",
+   "id": "p27",
+   "texte": "Méthode : simplifier, isoler, vérifier."
+  },
+  {
+   "dit": "Pour conclure, retenez l'essentiel. Développer, factoriser, réduire, les trois gestes du calcul littéral. Une équation se résout en isolant x, une inéquation donne un intervalle, un produit nul donne chaque facteur égal à zéro. Toute solution se vérifie dans l'équation de départ.",
+   "ecran": "recap_final",
+   "id": "p28",
+   "texte": "Calcul littéral et équations : à retenir."
+  }
+ ],
+ "titre": "Calcul littéral et équations"
+}

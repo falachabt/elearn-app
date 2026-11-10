@@ -108,4 +108,25 @@ describe('useMiseAJour', () => {
     expect(result.current.visible).toBe(true);
     expect(result.current.etat).toBe('disponible');
   });
+
+  it('charge le changelog dynamique et rend la mise à jour obligatoire si changelog.obligatoire est vrai', async () => {
+    dispo();
+    const changelogMock = {
+      id: 'cl-test',
+      version: '2.0.0',
+      title_fr: 'Nouveautés majeures',
+      title_en: 'Major update',
+      content_fr: 'Notes de version',
+      content_en: 'Release notes',
+      obligatoire: true,
+      published_at: '2026-10-12T00:00:00Z',
+    };
+    const changelogService = jest.requireActual<{ chargerDernierChangelog: () => unknown }>('../changelog');
+    jest.spyOn(changelogService, 'chargerDernierChangelog').mockResolvedValue(changelogMock as never);
+
+    const { result } = await renderHook(() => useMiseAJour(true));
+    await waitFor(() => expect(result.current.etat).toBe('disponible'));
+    expect(result.current.changelog).toEqual(changelogMock);
+    expect(result.current.obligatoire).toBe(true);
+  });
 });

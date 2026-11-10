@@ -17,6 +17,7 @@ import { Ecran } from '../Ecran';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { couleurDouce } from '../entrainement/Entrainement';
 import { CarteListe } from '../liste/CarteListe';
+import { GroupeColle, LigneGroupe } from '../liste/ListeCollee';
 import { Pastille } from '../liste/Pastille';
 import { Squelettes } from '../liste/Squelettes';
 import { leconEnCours } from './Chapitre';
@@ -45,7 +46,7 @@ async function trouverSuite(matiere: Matiere, lues: Record<string, number>): Pro
 
 /**
  * D1d · Une matière (M5-15, revue design du 01/10) : bandeau à la couleur de la matière (icône, nombre de cours,
- * progression), « Continuer » puis la liste des cours en cartes de 78 px, comme S'entraîner.
+ * progression), « Continuer » puis la liste des cours en liste collée (lot 1bis, 26/10).
  */
 export function MatiereCours() {
   const { t } = useTraduction();
@@ -130,14 +131,16 @@ export function MatiereCours() {
           }}
         />
       ) : null}
-      {etat.statut === 'pret'
-        ? etat.matiere.cours.map((c, i) => {
+      {etat.statut === 'pret' ? (
+        <GroupeColle>
+          {etat.matiere.cours.map((c, i) => {
             const lues = lesLues(c, etat.lues);
             const fini = c.lecons > 0 && lues >= c.lecons;
             return (
-              <CarteListe
+              <LigneGroupe
                 key={c.id}
-                fini={fini}
+                premier={i === 0}
+                fond={fini ? theme.marque.douce : undefined}
                 gauche={
                   <View testID={fini ? `chapitre-fini-${c.id}` : undefined} style={[styles.carre, { backgroundColor: fini ? theme.marque.principale : couleurDouce(couleur, theme.fond.surface, sombre), borderColor: theme.bord.fort }]}>
                     {fini ? <Check size={18} strokeWidth={3} color={theme.texte.surCouleur} /> : <Text style={[typo.donnee, styles.chiffre, { color: theme.texte.principal }]}>{i + 1}</Text>}
@@ -159,8 +162,9 @@ export function MatiereCours() {
                 onPress={() => ouvrir(c)}
               />
             );
-          })
-        : null}
+          })}
+        </GroupeColle>
+      ) : null}
     </Ecran>
   );
 }

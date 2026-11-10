@@ -1,0 +1,362 @@
+{
+ "cours": 6722,
+ "titre": "PGCD et PPCM : diviseurs, multiples et algorithmes",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Arithmétique",
+   "titre": "PGCD et PPCM : diviseurs, multiples et algorithmes",
+   "sous": "Soustractions, Euclide et la formule qui relie les deux",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Le fil du cours",
+   "texte": "Partager sans reste, ou se retrouver au même instant : deux questions, deux outils."
+  },
+  "diviseur": {
+   "type": "formule",
+   "kicker": "Diviseurs et multiples",
+   "tex": "b = a \\times k \\qquad a \\mid b",
+   "note": "b est un multiple de a, et a est un diviseur de b.",
+   "anim": {
+    "nom": "divisions_fig",
+    "hauteur": 170
+   }
+  },
+  "diviseur_ex": {
+   "type": "etape",
+   "kicker": "Premier exemple",
+   "titre": "Un diviseur se vérifie par un produit",
+   "tex": [
+    "72 = 12 \\times 6",
+    "12 \\mid 72 \\qquad 72 \\text{ est un multiple de } 12"
+   ]
+  },
+  "pgcd_def": {
+   "type": "formule",
+   "kicker": "Plus grand commun diviseur",
+   "tex": "\\text{PGCD}(a\\,;\\,b)",
+   "note": "Le plus grand entier qui divise à la fois a et b."
+  },
+  "pgcd_ex": {
+   "type": "etape",
+   "kicker": "Exemple : lister les diviseurs",
+   "titre": "Le plus grand des diviseurs communs",
+   "tex": [
+    "D(18) = \\{1, 2, 3, 6, 9, 18\\}",
+    "D(24) = \\{1, 2, 3, 4, 6, 8, 12, 24\\}",
+    "\\text{PGCD}(18\\,;\\,24) = 6"
+   ]
+  },
+  "soust_prop": {
+   "type": "formule",
+   "kicker": "Algorithme des soustractions",
+   "tex": "\\text{PGCD}(a\\,;\\,b) = \\text{PGCD}(a-b\\,;\\,b)",
+   "note": "Valable pour a supérieur ou égal à b."
+  },
+  "soust_ex_a": {
+   "type": "etape",
+   "kicker": "Exemple pas à pas",
+   "titre": "Soustraire, encore et encore",
+   "tex": [
+    "72 - 30 = 42",
+    "42 - 30 = 12",
+    "30 - 12 = 18"
+   ]
+  },
+  "soust_ex_b": {
+   "type": "etape",
+   "kicker": "Exemple pas à pas, suite",
+   "titre": "Jusqu’à deux nombres égaux",
+   "tex": [
+    "18 - 12 = 6",
+    "12 - 6 = 6",
+    "\\text{PGCD}(72\\,;\\,30) = 6"
+   ]
+  },
+  "euclide_prop": {
+   "type": "formule",
+   "kicker": "Algorithme d’Euclide",
+   "tex": "\\text{PGCD}(a\\,;\\,b) = \\text{PGCD}(b\\,;\\,r)",
+   "note": "Avec a égal à b fois q plus r, et r inférieur à b."
+  },
+  "euclide_methode": {
+   "type": "phrase",
+   "kicker": "La méthode d’Euclide",
+   "texte": "Diviser, garder le reste, recommencer : le dernier reste non nul est le PGCD."
+  },
+  "euclide_ex": {
+   "type": "etape",
+   "kicker": "Exemple express",
+   "titre": "Un reste nul dès le départ",
+   "tex": [
+    "252 = 36 \\times 7 + 0",
+    "\\text{PGCD}(252\\,;\\,36) = 36"
+   ]
+  },
+  "euclide_ex2": {
+   "type": "etape",
+   "kicker": "Exemple complet",
+   "titre": "Trois divisions suffisent",
+   "tex": [
+    "72 = 30 \\times 2 + 12",
+    "30 = 12 \\times 2 + 6",
+    "12 = 6 \\times 2 + 0 \\qquad \\text{PGCD} = 6"
+   ]
+  },
+  "ppcm_def": {
+   "type": "formule",
+   "kicker": "Plus petit commun multiple",
+   "tex": "\\text{PPCM}(a\\,;\\,b)",
+   "note": "Le plus petit entier multiple à la fois de a et de b."
+  },
+  "ppcm_ex": {
+   "type": "etape",
+   "kicker": "Exemple : lister les multiples",
+   "titre": "Le premier multiple rencontré des deux côtés",
+   "tex": [
+    "M(4) : 4, 8, 12, 16, 20, 24",
+    "M(6) : 6, 12, 18, 24, 30, 36",
+    "\\text{PPCM}(4\\,;\\,6) = 12"
+   ]
+  },
+  "lien": {
+   "type": "formule",
+   "kicker": "Le lien entre les deux",
+   "tex": "\\text{PPCM}(a\\,;\\,b) \\times \\text{PGCD}(a\\,;\\,b) = a \\times b",
+   "note": "Le produit des deux nombres se partage entre PGCD et PPCM."
+  },
+  "ppcm_calc": {
+   "type": "etape",
+   "kicker": "Exemple calculé",
+   "titre": "Le PGCD connu donne le PPCM",
+   "tex": [
+    "\\text{PPCM}(72\\,;\\,30) = \\tfrac{72 \\times 30}{6}",
+    "\\text{PPCM}(72\\,;\\,30) = \\tfrac{2160}{6} = 360",
+    "360 = 72 \\times 5 = 30 \\times 12"
+   ]
+  },
+  "pb1": {
+   "type": "phrase",
+   "kicker": "Problème de partage",
+   "texte": "84 roses rouges, 126 roses blanches : le plus de bouquets identiques possible."
+  },
+  "pb1_ex": {
+   "type": "etape",
+   "kicker": "Problème de partage, solution",
+   "titre": "Le nombre de bouquets est un diviseur commun",
+   "tex": [
+    "126 - 84 = 42",
+    "84 - 42 = 42",
+    "\\text{PGCD}(126\\,;\\,84) = 42"
+   ]
+  },
+  "pb1_suite": {
+   "type": "phrase",
+   "kicker": "Problème de partage, composition",
+   "texte": "42 bouquets, chacun avec 2 roses rouges et 3 roses blanches : tout est utilisé."
+  },
+  "pb2": {
+   "type": "phrase",
+   "kicker": "Problème de périodicité",
+   "texte": "Un feu toutes les 18 secondes, l’autre toutes les 24 : quand se retrouvent-ils ?"
+  },
+  "pb2_ex": {
+   "type": "etape",
+   "kicker": "Problème de périodicité, solution",
+   "titre": "On cherche un multiple commun, le plus petit",
+   "tex": [
+    "\\text{PGCD}(18\\,;\\,24) = 6",
+    "\\text{PPCM}(18\\,;\\,24) = \\tfrac{18 \\times 24}{6}",
+    "\\text{PPCM}(18\\,;\\,24) = \\tfrac{432}{6} = 72"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Diviseur : b égal à a fois k",
+    "PGCD : soustractions ou Euclide",
+    "PPCM égal à a fois b sur PGCD",
+    "Partage : PGCD, période : PPCM"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours d’arithmétique consacré au plus grand commun diviseur et au plus petit commun multiple, les deux outils qui organisent les diviseurs et les multiples des entiers naturels.",
+   "texte": "PGCD et PPCM : les deux outils de l’arithmétique.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Deux questions guideront tout le cours. Comment partager une collection en parts identiques, sans rien laisser de côté ? Et quand deux événements réguliers, partis ensemble, se retrouveront-ils au même instant ? La première question appelle le plus grand commun diviseur, la seconde le plus petit commun multiple.",
+   "texte": "Partager sans reste, se retrouver ensemble : deux questions.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par le vocabulaire. Un entier naturel a est un diviseur d’un entier b lorsqu’il existe un entier k tel que b égale a fois k. On dit aussi que b est un multiple de a, et on note que a divise b.",
+   "texte": "b = a × k : a divise b, b est multiple de a.",
+   "ecran": "diviseur"
+  },
+  {
+   "id": "p04",
+   "dit": "Un exemple simple : douze est un diviseur de soixante-douze, car soixante-douze égale douze fois six. Autrement dit, soixante-douze est un multiple de douze, et la division de soixante-douze par douze tombe juste, sans reste.",
+   "texte": "72 = 12 × 6 : la division tombe juste.",
+   "ecran": "diviseur_ex"
+  },
+  {
+   "id": "p05",
+   "dit": "Le plus grand commun diviseur de deux entiers naturels a et b est tout simplement le plus grand entier naturel qui les divise tous les deux. On le note pé gé cé dé de a et b.",
+   "texte": "Le plus grand diviseur commun à a et b.",
+   "ecran": "pgcd_def"
+  },
+  {
+   "id": "p06",
+   "dit": "Pour le trouver à la main, on peut lister les diviseurs. Ceux de dix-huit sont un, deux, trois, six, neuf et dix-huit. Ceux de vingt-quatre sont un, deux, trois, quatre, six, huit, douze et vingt-quatre. Les diviseurs communs sont un, deux, trois et six : le plus grand est six.",
+   "texte": "Diviseurs communs de 18 et 24 : le plus grand est 6.",
+   "ecran": "pgcd_ex"
+  },
+  {
+   "id": "p07",
+   "dit": "Lister devient vite pénible pour de grands nombres. Première méthode systématique : l’algorithme des soustractions. Il repose sur une propriété admise : si a est supérieur ou égal à b, le plus grand commun diviseur de a et b est le même que celui de a moins b et b.",
+   "texte": "Remplacer le grand nombre par la différence ne change pas le PGCD.",
+   "ecran": "soust_prop"
+  },
+  {
+   "id": "p08",
+   "dit": "Concrètement, on soustrait le plus petit nombre du plus grand, on remplace le plus grand par cette différence, et on recommence jusqu’à obtenir deux nombres égaux. Ce nombre égal est le résultat cherché.",
+   "texte": "Soustraire, remplacer, recommencer jusqu’à l’égalité.",
+   "ecran": "soust_prop"
+  },
+  {
+   "id": "p09",
+   "dit": "Appliquons la méthode à soixante-douze et trente. Soixante-douze moins trente donne quarante-deux. Quarante-deux moins trente donne douze. Puis trente moins douze donne dix-huit.",
+   "texte": "72 et 30 deviennent 42 et 30, puis 12 et 30, puis 12 et 18.",
+   "ecran": "soust_ex_a"
+  },
+  {
+   "id": "p10",
+   "dit": "On continue : dix-huit moins douze donne six, puis douze moins six donne six. Les deux nombres sont égaux à six, on s’arrête : le plus grand commun diviseur de soixante-douze et trente est six.",
+   "texte": "Deux nombres égaux à 6 : PGCD(72 ; 30) = 6.",
+   "ecran": "soust_ex_b"
+  },
+  {
+   "id": "p11",
+   "dit": "Deuxième méthode, bien plus rapide : l’algorithme d’Euclide. Sa propriété fondamentale dit que si la division euclidienne de a par b s’écrit a égale b fois q plus r, alors le plus grand commun diviseur de a et b est celui de b et du reste r.",
+   "texte": "Le PGCD de a et b est celui de b et du reste r.",
+   "ecran": "euclide_prop"
+  },
+  {
+   "id": "p12",
+   "dit": "La méthode est directe : on effectue la division euclidienne du grand nombre par le petit, on remplace le couple par le diviseur et le reste, et on répète jusqu’à obtenir un reste nul. Le dernier reste non nul est le plus grand commun diviseur.",
+   "texte": "Diviser, garder le reste, répéter jusqu’au reste nul.",
+   "ecran": "euclide_methode"
+  },
+  {
+   "id": "p13",
+   "dit": "Exemple express : deux cent cinquante-deux divisé par trente-six donne trente-six fois sept plus zéro. Le reste est nul dès la première division, donc trente-six divise deux cent cinquante-deux, et le plus grand commun diviseur vaut trente-six.",
+   "texte": "252 = 36 × 7 + 0 : PGCD(252 ; 36) = 36.",
+   "ecran": "euclide_ex"
+  },
+  {
+   "id": "p14",
+   "dit": "Reprenons soixante-douze et trente par Euclide, pour comparer. Soixante-douze égale trente fois deux plus douze. Trente égale douze fois deux plus six. Douze égale six fois deux plus zéro. Le dernier reste non nul est six : on retrouve le même résultat, en trois divisions seulement.",
+   "texte": "Euclide retrouve 6 en trois divisions seulement.",
+   "ecran": "euclide_ex2"
+  },
+  {
+   "id": "p15",
+   "dit": "Passons à l’autre outil. Le plus petit commun multiple de deux entiers naturels a et b est le plus petit entier naturel qui soit à la fois un multiple de a et un multiple de b. On le note pé pé cé em de a et b.",
+   "texte": "Le plus petit multiple commun à a et b.",
+   "ecran": "ppcm_def"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple par les listes : les multiples de quatre sont quatre, huit, douze, seize, vingt, vingt-quatre. Ceux de six sont six, douze, dix-huit, vingt-quatre, trente. Les multiples communs commencent par douze, vingt-quatre, trente-six : le plus petit est douze.",
+   "texte": "Multiples communs de 4 et 6 : le premier est 12.",
+   "ecran": "ppcm_ex"
+  },
+  {
+   "id": "p17",
+   "dit": "Inutile de lister longtemps : une propriété fondamentale relie les deux outils. Le produit du plus petit commun multiple et du plus grand commun diviseur de a et b égale exactement le produit de a par b.",
+   "texte": "PPCM × PGCD = a × b : la formule centrale.",
+   "ecran": "lien"
+  },
+  {
+   "id": "p18",
+   "dit": "Autrement dit, dès que le plus grand commun diviseur est connu, le plus petit commun multiple s’obtient en divisant le produit des deux nombres par ce diviseur commun. C’est la formule de calcul à retenir.",
+   "texte": "PPCM = (a × b) ÷ PGCD : un seul calcul suffit.",
+   "ecran": "lien"
+  },
+  {
+   "id": "p19",
+   "dit": "Application : pour soixante-douze et trente, le plus grand commun diviseur vaut six, déjà calculé. Le plus petit commun multiple égale donc soixante-douze fois trente, soit deux mille cent soixante, divisé par six, ce qui donne trois cent soixante.",
+   "texte": "(72 × 30) ÷ 6 = 360 : le PPCM de 72 et 30.",
+   "ecran": "ppcm_calc"
+  },
+  {
+   "id": "p20",
+   "dit": "Vérifions : trois cent soixante égale soixante-douze fois cinq, et aussi trente fois douze. C’est bien un multiple commun des deux nombres, et la formule garantit que c’est le plus petit.",
+   "texte": "360 = 72 × 5 = 30 × 12 : multiple commun vérifié.",
+   "ecran": "ppcm_calc"
+  },
+  {
+   "id": "p21",
+   "dit": "Premier problème type : un fleuriste dispose de quatre-vingt-quatre roses rouges et de cent vingt-six roses blanches. Il veut composer des bouquets identiques, en utilisant toutes les fleurs, avec le même nombre de rouges et le même nombre de blanches dans chaque bouquet. Combien de bouquets au maximum ?",
+   "texte": "Des bouquets identiques, sans aucune fleur restante.",
+   "ecran": "pb1"
+  },
+  {
+   "id": "p22",
+   "dit": "Le nombre de bouquets doit diviser à la fois quatre-vingt-quatre et cent vingt-six, et on veut le plus grand possible : c’est donc leur plus grand commun diviseur. Cent vingt-six moins quatre-vingt-quatre donne quarante-deux, puis quatre-vingt-quatre moins quarante-deux donne quarante-deux. Le résultat est quarante-deux bouquets.",
+   "texte": "PGCD(126 ; 84) = 42 : au maximum 42 bouquets.",
+   "ecran": "pb1_ex"
+  },
+  {
+   "id": "p23",
+   "dit": "Et la composition suit par division : quatre-vingt-quatre divisé par quarante-deux donne deux roses rouges par bouquet, et cent vingt-six divisé par quarante-deux donne trois roses blanches. Toutes les fleurs sont utilisées, sans reste.",
+   "texte": "Chaque bouquet : 2 rouges et 3 blanches.",
+   "ecran": "pb1_suite"
+  },
+  {
+   "id": "p24",
+   "dit": "Deuxième problème type : deux feux de signalisation clignotent, l’un toutes les dix-huit secondes, l’autre toutes les vingt-quatre secondes. Ils clignotent ensemble à midi. Dans combien de secondes clignoteront-ils à nouveau ensemble ?",
+   "texte": "Deux rythmes différents : quand coïncident-ils ?",
+   "ecran": "pb2"
+  },
+  {
+   "id": "p25",
+   "dit": "On cherche cette fois le plus petit multiple commun de dix-huit et vingt-quatre. Leur plus grand commun diviseur vaut six. Le plus petit commun multiple égale donc dix-huit fois vingt-quatre, soit quatre cent trente-deux, divisé par six, ce qui donne soixante-douze. Les deux feux se retrouveront dans soixante-douze secondes.",
+   "texte": "PPCM(18 ; 24) = 72 : retrouvailles dans 72 secondes.",
+   "ecran": "pb2_ex"
+  },
+  {
+   "id": "p26",
+   "dit": "Récapitulons. Un diviseur partage sans reste, un multiple est le résultat d’un produit. Le plus grand commun diviseur se calcule par soustractions successives ou, plus vite, par l’algorithme d’Euclide. Le plus petit commun multiple s’en déduit par le produit des deux nombres divisé par leur diviseur commun. Et face à un problème, partage équitable rime avec diviseur commun, rendez-vous périodique avec multiple commun.",
+   "texte": "L’essentiel du cours en quatre idées.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Diviseurs, PGCD et les deux algorithmes"
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "PPCM, formule du produit et problèmes",
+   "pont": {
+    "texte": "Partie 2 : le PPCM, la formule du produit et les problèmes types.",
+    "dit": "Partie deux : le plus petit commun multiple. Nous définirons cet autre outil, nous verrons la formule qui le relie au plus grand commun diviseur, puis nous traiterons les deux problèmes types, le partage équitable et le rendez-vous périodique."
+   }
+  }
+ ]
+}

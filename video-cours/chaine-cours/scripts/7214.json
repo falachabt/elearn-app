@@ -1,0 +1,473 @@
+{
+ "cours": 7214,
+ "ecrans": {
+  "classement": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "venn"
+   },
+   "kicker": "Exemple : classer cinq nombres",
+   "tex": [
+    "-3 \\in \\mathbb{Z} \\qquad \\tfrac{5}{4} \\in \\mathbb{Q}",
+    "\\sqrt{9} = 3 \\in \\mathbb{N} \\qquad 0{,}333\\ldots = \\tfrac{1}{3} \\in \\mathbb{Q}",
+    "\\sqrt{2} \\in \\mathbb{R} \\qquad \\sqrt{2} \\notin \\mathbb{Q}"
+   ],
+   "titre": "Chaque nombre trouve son ensemble",
+   "type": "etape"
+  },
+  "ensembles": {
+   "kicker": "Les ensembles de nombres",
+   "note": "Chaque ensemble est contenu dans le suivant, jusqu'aux réels.",
+   "tex": "\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{D} \\subset \\mathbb{Q} \\subset \\mathbb{R}",
+   "type": "formule"
+  },
+  "equation_definition": {
+   "kicker": "L'équation du premier degré",
+   "note": "Une seule solution, et l'ensemble solution S ne contient qu'elle.",
+   "tex": "ax + b = 0 \\quad (a \\neq 0) \\iff x = -\\frac{b}{a}",
+   "type": "formule"
+  },
+  "equation_produit": {
+   "kicker": "L'équation produit",
+   "note": "Un produit est nul si et seulement si un facteur est nul.",
+   "tex": "A \\times B = 0 \\iff A = 0 \\text{ ou } B = 0",
+   "type": "formule"
+  },
+  "equation_quotient": {
+   "kicker": "L'équation quotient",
+   "note": "Toujours exclure les valeurs qui annulent le dénominateur.",
+   "tex": "\\frac{A}{B} = 0 \\iff A = 0 \\quad (B \\neq 0)",
+   "type": "formule"
+  },
+  "exemple_absolue": {
+   "kicker": "Exemple : résoudre avec une valeur absolue",
+   "tex": [
+    "|x - 2| \\leq 3 \\iff -3 \\leq x - 2 \\leq 3",
+    "-3 + 2 \\leq x \\leq 3 + 2",
+    "S = [-1,5]"
+   ],
+   "titre": "Une distance inférieure ou égale à trois",
+   "type": "etape"
+  },
+  "exemple_developpement": {
+   "kicker": "Exemple : développer et réduire",
+   "tex": [
+    "A = (2x - 3)^2 - (x + 1)(x - 1)",
+    "A = 4x^2 - 12x + 9 - (x^2 - 1)",
+    "A = 3x^2 - 12x + 10"
+   ],
+   "titre": "Un carré, une différence de carrés, puis on réduit",
+   "type": "etape"
+  },
+  "exemple_encadrement": {
+   "kicker": "Exemple : encadrer en inversant l'ordre",
+   "tex": [
+    "-2 < x < 1",
+    "\\text{par } -3 \\text{ : } -3 < -3x < 6",
+    "\\text{plus } 1 \\text{ : } -2 < -3x + 1 < 7"
+   ],
+   "titre": "Multiplier par un négatif inverse les inégalités",
+   "type": "etape"
+  },
+  "exemple_equation": {
+   "kicker": "Exemple : résoudre pas à pas",
+   "tex": [
+    "3(x - 2) + 5 = 2x + 7",
+    "3x - 6 + 5 = 2x + 7 \\iff 3x - 1 = 2x + 7",
+    "x = 8",
+    "S = \\{8\\}"
+   ],
+   "titre": "Développer, regrouper, isoler l'inconnue",
+   "type": "etape"
+  },
+  "exemple_inequation": {
+   "kicker": "Exemple : résoudre une inéquation",
+   "tex": [
+    "-2x + 5 \\leq 11 \\iff -2x \\leq 6",
+    "\\text{division par } -2 < 0 \\text{ : le sens s'inverse}",
+    "x \\geq -3 \\qquad S = [-3,+\\infty["
+   ],
+   "titre": "Diviser par un négatif inverse le sens",
+   "type": "etape"
+  },
+  "exemple_produit": {
+   "kicker": "Exemple : une équation produit",
+   "tex": [
+    "(2x - 4)(x + 3) = 0",
+    "2x - 4 = 0 \\text{ ou } x + 3 = 0",
+    "x = 2 \\text{ ou } x = -3 \\qquad S = \\{-3,2\\}"
+   ],
+   "titre": "Chaque facteur donne une solution",
+   "type": "etape"
+  },
+  "exemple_quotient": {
+   "kicker": "Exemple : une équation quotient",
+   "tex": [
+    "\\tfrac{x - 1}{x + 2} = 0 \\qquad x \\neq -2",
+    "x - 1 = 0 \\iff x = 1 \\qquad S = \\{1\\}"
+   ],
+   "titre": "La condition d'abord, le numérateur ensuite",
+   "type": "etape"
+  },
+  "identites": {
+   "kicker": "Les identités remarquables",
+   "tex": [
+    "(a + b)^2 = a^2 + 2ab + b^2",
+    "(a - b)^2 = a^2 - 2ab + b^2",
+    "(a - b)(a + b) = a^2 - b^2"
+   ],
+   "titre": "Trois formules à connaître par cœur",
+   "type": "etape"
+  },
+  "inequation_regles": {
+   "kicker": "Les inéquations du premier degré",
+   "tex": [
+    "\\text{ajouter ou retrancher : le sens ne change pas}",
+    "\\text{multiplier par un positif : le sens ne change pas}",
+    "\\text{multiplier par un négatif : le sens s'inverse}"
+   ],
+   "titre": "Les mêmes gestes, un sens à surveiller",
+   "type": "etape"
+  },
+  "intervalles": {
+   "kicker": "Les intervalles",
+   "tex": [
+    "[a,b] = \\{x \\in \\mathbb{R} \\mid a \\leq x \\leq b\\}",
+    "]a,+\\infty[ = \\{x \\in \\mathbb{R} \\mid x > a\\}",
+    "[a,b[ = \\{x \\in \\mathbb{R} \\mid a \\leq x < b\\}"
+   ],
+   "titre": "Un intervalle regroupe les réels d'une inégalité",
+   "type": "etape"
+  },
+  "oppose_distributivite": {
+   "kicker": "Opposé, inverse, distributivité",
+   "tex": [
+    "a + (-a) = 0 \\qquad a \\times \\tfrac{1}{a} = 1 \\text{ si } a \\neq 0",
+    "a(b + c) = ab + ac",
+    "(-a)(-b) = ab \\qquad -(a + b) = -a - b",
+    "\\text{la distributivité développe, puis on réduit}"
+   ],
+   "titre": "Quatre réflexes de calcul",
+   "type": "etape"
+  },
+  "ordre": {
+   "kicker": "L'ordre sur les réels",
+   "tex": [
+    "\\text{transitivité : si } a < b \\text{ et } b < c \\text{, alors } a < c",
+    "\\text{addition : si } a < b \\text{, alors } a + c < b + c",
+    "\\text{par } k > 0 \\text{ : si } a < b \\text{, alors } ka < kb",
+    "\\text{par } k < 0 \\text{ : si } a < b \\text{, alors } ka > kb"
+   ],
+   "titre": "Comparer, puis conserver ou inverser le sens",
+   "type": "etape"
+  },
+  "quotients": {
+   "kicker": "Les règles des quotients",
+   "tex": [
+    "\\tfrac{a}{b} + \\tfrac{c}{d} = \\tfrac{ad + bc}{bd} \\qquad b, d \\neq 0",
+    "\\tfrac{a}{b} \\times \\tfrac{c}{d} = \\tfrac{ac}{bd}",
+    "\\tfrac{a}{b} \\div \\tfrac{c}{d} = \\tfrac{a}{b} \\times \\tfrac{d}{c}"
+   ],
+   "titre": "Additionner, multiplier, diviser des fractions",
+   "type": "etape"
+  },
+  "rationnels": {
+   "kicker": "Rationnels et irrationnels",
+   "tex": [
+    "\\text{rationnel : quotient de deux entiers, dénominateur non nul}",
+    "\\text{décimale finie ou périodique : } \\tfrac{1}{3} = 0{,}333\\ldots",
+    "\\text{irrationnel : } \\sqrt{2}, \\pi \\text{, décimale ni finie ni périodique}"
+   ],
+   "titre": "Deux sortes de réels",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "R contient N, Z, D, Q et les irrationnels",
+    "Calcul : distributivité, identités remarquables",
+    "Ordre conservé par un positif, inversé sinon",
+    "Valeur absolue : la distance à zéro",
+    "Encadrer, c'est donner une précision"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Premier degré : solution unique, moins b sur a",
+    "Produit nul : un facteur nul suffit",
+    "Quotient : numérateur nul, dénominateur non nul",
+    "Négatif : le sens de l'inéquation s'inverse",
+    "Tableau de signes : lecture ligne par ligne"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "regles_calcul": {
+   "kicker": "Les règles de calcul dans R",
+   "tex": [
+    "a + b = b + a \\qquad a \\times b = b \\times a",
+    "(a + b) + c = a + (b + c) \\qquad (a \\times b) \\times c = a \\times (b \\times c)",
+    "a + 0 = a \\qquad a \\times 1 = a"
+   ],
+   "titre": "Commutativité, associativité, neutres",
+   "type": "etape"
+  },
+  "tableau_exemple": {
+   "kicker": "Exemple : le signe d'un produit",
+   "tex": [
+    "x + 1 \\text{ : } - \\quad 0 \\quad + \\quad +",
+    "x - 2 \\text{ : } - \\quad - \\quad 0 \\quad +",
+    "\\text{produit : } + \\quad 0 \\quad - \\quad 0 \\quad +",
+    "S = ]-\\infty,-1] \\cup [2,+\\infty["
+   ],
+   "titre": "Lire le tableau, puis conclure",
+   "type": "etape"
+  },
+  "tableau_methode": {
+   "kicker": "Le tableau de signes",
+   "tex": [
+    "\\text{racines : } x + 1 = 0 \\text{ donne } -1 \\text{, } x - 2 = 0 \\text{ donne } 2",
+    "\\text{chaque facteur change de signe à sa racine}",
+    "\\text{le produit suit la règle des signes, ligne par ligne}"
+   ],
+   "titre": "Le signe d'un produit, facteur par facteur",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "venn"
+   },
+   "kicker": "Mathématique · Les nombres réels",
+   "sous": "Ensembles, ordre, valeur absolue, puis équations et inéquations résolues pas à pas",
+   "titre": "Les nombres réels et les équations du premier degré",
+   "type": "titre"
+  },
+  "valeur_absolue": {
+   "kicker": "La valeur absolue",
+   "tex": [
+    "|x| = x \\text{ si } x \\geq 0 \\qquad |x| = -x \\text{ si } x < 0",
+    "|x| \\geq 0 \\qquad |xy| = |x| \\times |y|",
+    "|x| = |y| \\iff x = y \\text{ ou } x = -y"
+   ],
+   "titre": "La distance à zéro, sans signe",
+   "type": "etape"
+  },
+  "valeur_approchee": {
+   "kicker": "Valeur approchée et encadrement",
+   "tex": [
+    "2{,}23 < \\sqrt{5} < 2{,}24",
+    "\\text{amplitude : } 2{,}24 - 2{,}23 = 0{,}01",
+    "\\text{précision au centième, par défaut et par excès}"
+   ],
+   "titre": "Encadrer, c'est mesurer la précision",
+   "type": "etape"
+  },
+  "recap_p1": {
+   "etapes": [
+    "R contient N, Z, D, Q et les irrationnels",
+    "Calcul : commutativité, associativité, neutres",
+    "Distributivité et identités remarquables",
+    "Fractions : même dénominateur, inverse",
+    "Développer, puis réduire, pas à pas"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les nombres réels : ensembles et règles de calcul"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : l'ordre, les intervalles et la valeur absolue. Nous verrons comment comparer les réels, écrire des intervalles, mesurer une distance à zéro, puis encadrer un nombre avec sa précision.",
+    "texte": "Partie 2 : ordre, intervalles et valeur absolue."
+   },
+   "sous_titre": "Ordre, intervalles et valeur absolue"
+  },
+  {
+   "debut": "p18",
+   "pont": {
+    "dit": "Partie trois : les équations et les inéquations du premier degré. Nous résoudrons une équation classique, puis les équations produit et quotient, avant les inéquations et le tableau de signes, qui donne la solution d'un produit ou d'un quotient.",
+    "texte": "Partie 3 : équations, inéquations et tableau de signes."
+   },
+   "sous_titre": "Équations et inéquations du premier degré"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux nombres réels et aux équations du premier degré. Nous commencerons par les ensembles de nombres et les règles de calcul, puis par l'ordre, les intervalles et la valeur absolue, avant de résoudre des équations et des inéquations pas à pas, avec des exemples entièrement détaillés.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Des réels aux équations : le programme du cours."
+  },
+  {
+   "dit": "L'ensemble des nombres réels regroupe tous les nombres que l'on peut placer sur une droite graduée. Il contient les ensembles déjà connus, emboîtés les uns dans les autres : les entiers naturels, puis les entiers relatifs, puis les décimaux, puis les rationnels, et enfin les réels, qui ajoutent les irrationnels.",
+   "ecran": "ensembles",
+   "id": "p02",
+   "texte": "N ⊂ Z ⊂ D ⊂ Q ⊂ R : des ensembles emboîtés."
+  },
+  {
+   "dit": "Un réel est soit rationnel, c'est-à-dire le quotient de deux entiers, avec un dénominateur différent de zéro, et une écriture décimale finie ou périodique, soit irrationnel, comme la racine carrée de deux ou le nombre pi, dont l'écriture décimale n'est ni finie ni périodique.",
+   "ecran": "rationnels",
+   "id": "p03",
+   "texte": "Rationnel ou irrationnel : deux écritures décimales."
+  },
+  {
+   "dit": "Classons cinq nombres. Moins trois est un entier relatif. Cinq quarts est un rationnel. La racine carrée de neuf vaut trois, donc c'est un entier naturel. Zéro virgule trois trois trois à l'infini vaut un tiers, donc c'est un rationnel. Et la racine carrée de deux est un réel, mais pas un rationnel : c'est un irrationnel.",
+   "ecran": "classement",
+   "id": "p04",
+   "texte": "−3, 5/4, √9, 0,333…, √2 : chacun à sa place."
+  },
+  {
+   "dit": "Dans les réels, l'addition et la multiplication vérifient les mêmes règles que dans les ensembles plus petits. L'ordre des termes ne change rien, c'est la commutativité. La façon de regrouper ne change rien, c'est l'associativité. Et zéro est neutre pour l'addition, un est neutre pour la multiplication.",
+   "ecran": "regles_calcul",
+   "id": "p05",
+   "texte": "Commutativité, associativité, éléments neutres."
+  },
+  {
+   "dit": "Quatre réflexes complètent le calcul. Tout nombre ajouté à son opposé donne zéro. Tout nombre non nul multiplié par son inverse donne un. La distributivité permet de développer un produit sur une somme. Et le produit de deux opposés redonne le produit de départ, tandis que l'opposé d'une somme change chaque signe.",
+   "ecran": "oppose_distributivite",
+   "id": "p06",
+   "texte": "Opposé, inverse, distributivité : quatre réflexes."
+  },
+  {
+   "dit": "Pour les quotients, trois règles suffisent. Pour additionner deux fractions, on les met au même dénominateur. Pour les multiplier, on multiplie les numérateurs entre eux et les dénominateurs entre eux. Et pour diviser par une fraction, on multiplie par son inverse, à condition que les dénominateurs ne soient pas nuls.",
+   "ecran": "quotients",
+   "id": "p07",
+   "texte": "Fractions : additionner, multiplier, diviser."
+  },
+  {
+   "dit": "Trois identités remarquables sont à connaître par cœur, car elles reviennent partout. Le carré d'une somme ajoute le double produit. Le carré d'une différence retranche le double produit. Et le produit d'une différence par une somme donne la différence des deux carrés.",
+   "ecran": "identites",
+   "id": "p08",
+   "texte": "(a+b)², (a−b)², (a−b)(a+b) : par cœur."
+  },
+  {
+   "dit": "Appliquons-les. Développer A, qui vaut le carré de deux x moins trois, moins le produit de x plus un par x moins un. Le carré donne quatre x carrés moins douze x plus neuf. Le produit donne x carré moins un, retranché. Il reste trois x carrés moins douze x plus dix.",
+   "ecran": "exemple_developpement",
+   "id": "p09",
+   "texte": "A = (2x−3)² − (x+1)(x−1) = 3x² − 12x + 10."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Les réels contiennent les entiers naturels, les entiers relatifs, les décimaux, les rationnels et les irrationnels. Le calcul repose sur la commutativité, l'associativité et les éléments neutres, puis sur la distributivité et les identités remarquables. Pour les fractions, on met au même dénominateur, et diviser revient à multiplier par l'inverse. Et développer, c'est appliquer ces règles, puis réduire.",
+   "ecran": "recap_p1",
+   "id": "p10",
+   "texte": "L'essentiel de la partie 1."
+  },
+  {
+   "dit": "Passons à l'ordre. Dire que a est plus petit que b, c'est dire que la différence b moins a est positive, ce que la droite graduée montre bien. L'ordre est transitif, il se conserve quand on ajoute un même nombre aux deux membres, il se conserve quand on multiplie par un nombre positif, et il s'inverse quand on multiplie par un nombre négatif.",
+   "ecran": "ordre",
+   "id": "p11",
+   "texte": "Ordre : transitif, conservé ou inversé."
+  },
+  {
+   "dit": "Un intervalle regroupe les réels qui vérifient une inégalité. Un crochet fermé inclut la borne, un crochet ouvert l'exclut. L'intervalle fermé de a à b contient tous les réels entre a et b, bornes comprises. Et l'intervalle ouvert de a à plus l'infini contient tous les réels strictement supérieurs à a.",
+   "ecran": "intervalles",
+   "id": "p12",
+   "texte": "[a,b], ]a,+∞[ : crochets ouverts ou fermés."
+  },
+  {
+   "dit": "La valeur absolue d'un nombre, c'est sa distance à zéro, donc toujours sans signe. Elle vaut le nombre lui-même s'il est positif ou nul, et son opposé s'il est négatif. Elle est toujours positive ou nulle, la valeur absolue d'un produit est le produit des valeurs absolues, et deux nombres ont même valeur absolue s'ils sont égaux ou opposés.",
+   "ecran": "valeur_absolue",
+   "id": "p13",
+   "texte": "|x| : la distance à zéro, sans signe."
+  },
+  {
+   "dit": "Résolvons la valeur absolue de x moins deux, inférieure ou égale à trois. Cela veut dire que x moins deux est compris entre moins trois et trois. En ajoutant deux partout, x est compris entre moins un et cinq. L'ensemble solution est donc l'intervalle fermé de moins un à cinq.",
+   "ecran": "exemple_absolue",
+   "id": "p14",
+   "texte": "|x−2| ≤ 3 ⟺ S = [−1, 5]."
+  },
+  {
+   "dit": "Encadrons maintenant moins trois x plus un, sachant que x est compris entre moins deux et un. Multiplier par moins trois inverse les inégalités : moins trois x est compris entre moins trois et six. En ajoutant un, moins trois x plus un est compris entre moins deux et sept.",
+   "ecran": "exemple_encadrement",
+   "id": "p15",
+   "texte": "−2 < x < 1 ⟹ −2 < −3x+1 < 7."
+  },
+  {
+   "dit": "Un réel peut aussi être encadré par deux décimaux, et la différence entre les deux bornes s'appelle l'amplitude. La racine carrée de cinq est comprise entre deux virgule vingt-trois et deux virgule vingt-quatre, donc avec une amplitude de un centième : c'est un encadrement au centième près, par défaut et par excès.",
+   "ecran": "valeur_approchee",
+   "id": "p16",
+   "texte": "2,23 < √5 < 2,24 : amplitude 0,01."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Les réels contiennent les entiers, les décimaux, les rationnels et les irrationnels. Le calcul repose sur la distributivité et les identités remarquables. L'ordre se conserve par un positif et s'inverse par un négatif. La valeur absolue mesure une distance à zéro. Et encadrer un nombre, c'est donner sa précision.",
+   "ecran": "recap1",
+   "id": "p17",
+   "texte": "L'essentiel de la partie 2."
+  },
+  {
+   "dit": "Une équation est une égalité qui contient une inconnue, ici notée x. Résoudre dans les réels, c'est trouver toutes les valeurs réelles qui rendent l'égalité vraie, et l'ensemble solution les regroupe. Une équation du premier degré se ramène à la forme a x plus b égale zéro, avec a différent de zéro, et elle admet alors une unique solution, moins b sur a.",
+   "ecran": "equation_definition",
+   "id": "p18",
+   "texte": "ax+b = 0 (a ≠ 0) : une seule solution."
+  },
+  {
+   "dit": "La méthode tient en trois gestes : développer, regrouper les termes en x d'un côté et les constantes de l'autre, puis isoler x. Résolvons trois fois x moins deux, plus cinq, égale deux x plus sept. Le développement donne trois x moins un égale deux x plus sept. En regroupant, x vaut huit. L'ensemble solution est donc le singleton huit.",
+   "ecran": "exemple_equation",
+   "id": "p19",
+   "texte": "3(x−2)+5 = 2x+7 ⟹ S = {8}."
+  },
+  {
+   "dit": "Pour une équation produit, la règle est simple et puissante : un produit est nul si et seulement si l'un de ses facteurs est nul. Il suffit donc d'annuler chaque facteur séparément, puis de réunir les solutions obtenues dans l'ensemble solution.",
+   "ecran": "equation_produit",
+   "id": "p20",
+   "texte": "A × B = 0 ⟺ A = 0 ou B = 0."
+  },
+  {
+   "dit": "Appliquons-la au produit de deux x moins quatre par x plus trois, égal à zéro. Le premier facteur s'annule pour x égale deux, le second pour x égale moins trois. L'ensemble solution contient donc moins trois et deux.",
+   "ecran": "exemple_produit",
+   "id": "p21",
+   "texte": "(2x−4)(x+3) = 0 ⟹ S = {−3, 2}."
+  },
+  {
+   "dit": "Pour une équation quotient, la règle change légèrement : une fraction est nulle si et seulement si son numérateur est nul, à condition que son dénominateur ne le soit pas. On commence donc toujours par exclure les valeurs qui annulent le dénominateur, avant de résoudre le numérateur.",
+   "ecran": "equation_quotient",
+   "id": "p22",
+   "texte": "A/B = 0 ⟺ A = 0, avec B ≠ 0."
+  },
+  {
+   "dit": "Résolvons x moins un sur x plus deux, égal à zéro. La condition est que x soit différent de moins deux, sinon le dénominateur s'annule. Le numérateur s'annule pour x égale un, qui respecte la condition. L'ensemble solution est donc le singleton un.",
+   "ecran": "exemple_quotient",
+   "id": "p23",
+   "texte": "(x−1)/(x+2) = 0, x ≠ −2 ⟹ S = {1}."
+  },
+  {
+   "dit": "Une inéquation est une inégalité qui contient une inconnue, et la résoudre, c'est trouver tous les réels qui la vérifient. Ajouter ou retrancher un même nombre ne change pas le sens. Multiplier ou diviser par un nombre strictement positif ne change pas le sens non plus. Mais multiplier ou diviser par un nombre strictement négatif inverse le sens : c'est le piège classique.",
+   "ecran": "inequation_regles",
+   "id": "p24",
+   "texte": "Inéquation : le sens s'inverse par un négatif."
+  },
+  {
+   "dit": "Résolvons moins deux x plus cinq, inférieur ou égal à onze. En retranchant cinq, moins deux x est inférieur ou égal à six. Diviser par moins deux inverse le sens : x est supérieur ou égal à moins trois. L'ensemble solution est donc l'intervalle de moins trois à plus l'infini, borne comprise.",
+   "ecran": "exemple_inequation",
+   "id": "p25",
+   "texte": "−2x+5 ≤ 11 ⟹ S = [−3, +∞[."
+  },
+  {
+   "dit": "Pour une inéquation avec un produit ou un quotient, on étudie le signe de chaque facteur dans un tableau de signes. On commence par les racines : x plus un s'annule en moins un, x moins deux s'annule en deux. Chaque facteur change de signe à sa racine, et le signe du produit se déduit ligne par ligne, avec la règle des signes.",
+   "ecran": "tableau_methode",
+   "id": "p26",
+   "texte": "Tableau de signes : racines, puis ligne par ligne."
+  },
+  {
+   "dit": "Résolvons le produit de x moins deux par x plus un, supérieur ou égal à zéro. Le facteur x plus un est négatif, puis nul en moins un, puis positif. Le facteur x moins deux est négatif, puis nul en deux, puis positif. Le produit est donc positif, puis nul, puis négatif, puis nul, puis positif. Il est supérieur ou égal à zéro avant moins un et après deux, bornes comprises.",
+   "ecran": "tableau_exemple",
+   "id": "p27",
+   "texte": "(x−2)(x+1) ≥ 0 ⟹ S = ]−∞, −1] ∪ [2, +∞[."
+  },
+  {
+   "dit": "Pour conclure : une équation du premier degré admet une seule solution, moins b sur a. Une équation produit s'annule facteur par facteur. Une équation quotient exige un numérateur nul et un dénominateur non nul. Dans une inéquation, un facteur négatif inverse le sens. Et pour un produit ou un quotient, le tableau de signes donne la solution, qui se lit ligne par ligne.",
+   "ecran": "recap_final",
+   "id": "p28",
+   "texte": "L'essentiel : solution unique, sens, tableau."
+  }
+ ],
+ "titre": "Les nombres réels et les équations du premier degré"
+}

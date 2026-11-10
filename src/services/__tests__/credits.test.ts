@@ -5,7 +5,7 @@ import { Platform } from 'react-native';
 import { suivre } from '../analytics';
 import { appliquerTempsReel, CLE_APPAREIL, delaiJusqua, depenser, identifiantAppareil, lireCouts, lireSemaine, lireSolde, peutVoir, suivreSolde } from '../credits';
 
-jest.mock('../analytics', () => ({ suivre: jest.fn() }));
+jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('expo-application', () => ({ getAndroidId: jest.fn(), getIosIdForVendorAsync: jest.fn() }));
 
 const ligneSolde = {

@@ -1,0 +1,367 @@
+{
+ "cours": 7220,
+ "ecrans": {
+  "config": {
+   "kicker": "La configuration de Thalès",
+   "tex": [
+    "\\text{triangle : } M \\in [AB],\\ N \\in [AC]",
+    "\\text{papillon : } A \\text{ entre } M \\text{ et } B,",
+    "A \\text{ entre } N \\text{ et } C",
+    "(MN) \\parallel (BC) \\text{ : hypothèse commune}"
+   ],
+   "titre": "Un sommet commun, deux cas de figure",
+   "type": "etape"
+  },
+  "ex_metriques": {
+   "kicker": "Exemple · hauteur et projections",
+   "tex": [
+    "AH^2 = 2 \\times 8 = 16 \\qquad AH = 4 \\text{ cm}",
+    "BC = 2 + 8 = 10 \\text{ cm}",
+    "AB^2 = 10 \\times 2 = 20 \\qquad AB = 2\\sqrt{5} \\text{ cm}"
+   ],
+   "titre": "BH deux, HC huit : AH quatre",
+   "type": "etape"
+  },
+  "ex_papillon": {
+   "kicker": "Exemple résolu · configuration papillon",
+   "tex": [
+    "\\tfrac{3}{5} = \\tfrac{AN}{7{,}5}",
+    "AN = \\tfrac{3 \\times 7{,}5}{5} = 4{,}5 \\text{ cm}"
+   ],
+   "titre": "AB cinq, AM trois, AC sept et demi",
+   "type": "etape"
+  },
+  "ex_parallele": {
+   "kicker": "Exemple · démontrer un parallélisme",
+   "tex": [
+    "\\tfrac{AM}{AB} = \\tfrac{2}{5} = 0{,}4 \\qquad \\tfrac{AN}{AC} = \\tfrac{3}{7{,}5} = 0{,}4",
+    "(MN) \\parallel (BC) \\text{ : réciproque}"
+   ],
+   "titre": "Deux rapports égaux à zéro virgule quatre",
+   "type": "etape"
+  },
+  "ex_pyth": {
+   "kicker": "Exemple · calculer l'hypoténuse",
+   "tex": [
+    "BC^2 = 3^2 + 4^2 = 9 + 16 = 25",
+    "BC = \\sqrt{25} = 5 \\text{ cm}"
+   ],
+   "titre": "Le triplet trois, quatre, cinq",
+   "type": "etape"
+  },
+  "ex_triangle": {
+   "kicker": "Exemple résolu · configuration triangle",
+   "tex": [
+    "\\tfrac{4}{6} = \\tfrac{AN}{9} = \\tfrac{MN}{12}",
+    "AN = \\tfrac{4 \\times 9}{6} = 6 \\text{ cm}",
+    "MN = \\tfrac{4 \\times 12}{6} = 8 \\text{ cm}"
+   ],
+   "titre": "AB six, AC neuf, BC douze, AM quatre",
+   "type": "etape"
+  },
+  "ex_trigo_angle": {
+   "kicker": "Exemple · calculer un angle",
+   "tex": [
+    "\\cos \\widehat{B} = \\tfrac{4}{8} = 0{,}5",
+    "\\widehat{B} = 60^{\\circ}"
+   ],
+   "titre": "Adjacent quatre, hypoténuse huit",
+   "type": "etape"
+  },
+  "ex_trigo_long": {
+   "kicker": "Exemple · calculer une longueur",
+   "tex": [
+    "\\sin 30^{\\circ} = \\tfrac{AC}{10}",
+    "AC = 10 \\times \\sin 30^{\\circ} = 10 \\times 0{,}5 = 5 \\text{ cm}"
+   ],
+   "titre": "Angle trente degrés, hypoténuse dix",
+   "type": "etape"
+  },
+  "fond": {
+   "kicker": "La relation fondamentale",
+   "note": "Pour tout angle aigu x.",
+   "tex": "\\cos^2 x + \\sin^2 x = 1 \\qquad \\tan x = \\frac{\\sin x}{\\cos x}",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Mesurer sans mesurer : calculer à partir de mesures accessibles.",
+   "type": "phrase"
+  },
+  "methode": {
+   "kicker": "La méthode en quatre gestes",
+   "tex": [
+    "\\text{1. vérifier } (MN) \\parallel (BC)",
+    "\\text{triangle ou papillon}",
+    "\\text{2. écrire les trois rapports dans l'ordre}",
+    "\\text{3. remplacer par les longueurs connues}",
+    "\\text{4. produit en croix pour isoler l'inconnue}"
+   ],
+   "titre": "Identifier, écrire, remplacer, isoler",
+   "type": "etape"
+  },
+  "metriques": {
+   "kicker": "Les quatre relations métriques",
+   "tex": [
+    "c^2 = a \\cdot p \\qquad b^2 = a \\cdot q",
+    "h^2 = p \\cdot q",
+    "a \\cdot h = b \\cdot c"
+   ],
+   "titre": "Côtés, hauteur, projections, aire",
+   "type": "etape"
+  },
+  "metriques_notations": {
+   "kicker": "Relations métriques · notations",
+   "tex": [
+    "a = BC \\qquad b = AC \\qquad c = AB",
+    "h = AH \\qquad p = BH \\qquad q = HC"
+   ],
+   "titre": "Hauteur et projections sur l'hypoténuse",
+   "type": "etape"
+  },
+  "pythagore": {
+   "kicker": "Le théorème de Pythagore",
+   "note": "Triangle rectangle en A ; BC est l'hypoténuse.",
+   "tex": "BC^2 = AB^2 + AC^2",
+   "type": "formule"
+  },
+  "recap1": {
+   "etapes": [
+    "Configuration triangle ou papillon, parallèles",
+    "Trois rapports égaux : AM/AB = AN/AC = MN/BC",
+    "Méthode : ordre, valeurs, produit en croix",
+    "Réciproque : rapports égaux, même ordre",
+    "Contraposée : inégaux, donc non parallèles"
+   ],
+   "kicker": "Partie 1 : à retenir",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Thalès : rapports égaux, longueurs calculées",
+    "Réciproque de Thalès : prouver un parallélisme",
+    "Pythagore : BC² = AB² + AC², et réciproque",
+    "Métriques : h² = p·q, c² = a·p, b² = a·q",
+    "Trigonométrie : cos, sin, tan et cos² + sin² = 1"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "reciproque": {
+   "kicker": "Réciproque et contraposée",
+   "tex": [
+    "\\text{rapports égaux, même ordre : parallèles}",
+    "\\text{rapports inégaux : non parallèles}"
+   ],
+   "titre": "Lire Thalès à l'envers",
+   "type": "etape"
+  },
+  "remarques": {
+   "kicker": "Trois précautions",
+   "tex": [
+    "\\text{partir de } A \\text{, sommet commun}",
+    "\\text{ordre respecté}",
+    "\\text{même unité pour toutes les longueurs}",
+    "\\text{trois rapports égaux}"
+   ],
+   "titre": "Partir du sommet commun, dans l'ordre",
+   "type": "etape"
+  },
+  "test_rectangle": {
+   "kicker": "Réciproque · prouver un angle droit",
+   "tex": [
+    "10^2 = 100 \\qquad 6^2 + 8^2 = 36 + 64 = 100",
+    "\\text{égalité vérifiée : le triangle est rectangle}"
+   ],
+   "titre": "Triangle six, huit, dix : rectangle",
+   "type": "etape"
+  },
+  "thales": {
+   "kicker": "La propriété de Thalès",
+   "note": "A est le sommet commun ; même unité partout.",
+   "tex": "\\frac{AM}{AB} = \\frac{AN}{AC} = \\frac{MN}{BC}",
+   "type": "formule"
+  },
+  "titre": {
+   "kicker": "Mathématique · Thalès et Pythagore",
+   "sous": "Rapports égaux, carrés des côtés, hauteur et angles : deux théorèmes pour calculer sans mesurer",
+   "titre": "Thalès et Pythagore : mesurer les triangles",
+   "type": "titre"
+  },
+  "trigo": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "cercle_trigo_fig"
+   },
+   "kicker": "Trigonométrie · cosinus, sinus, tangente",
+   "tex": [
+    "\\cos \\widehat{B} = \\tfrac{AB}{BC}",
+    "\\sin \\widehat{B} = \\tfrac{AC}{BC}",
+    "\\tan \\widehat{B} = \\tfrac{AC}{AB}"
+   ],
+   "titre": "CAH, SOH, TOA pour l'angle B",
+   "type": "etape"
+  },
+  "usage": {
+   "kicker": "À quoi sert Thalès",
+   "texte": "Hauteur d'un arbre, largeur d'une rivière : l'inaccessible calculé.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Thalès : rapports, méthode et réciproque"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux, le triangle rectangle. Pythagore relie les trois côtés, les relations métriques exploitent la hauteur et ses projections, et la trigonométrie relie enfin les longueurs aux angles.",
+    "texte": "Partie 2 : Pythagore, relations métriques et trigonométrie."
+   },
+   "sous_titre": "Pythagore, relations métriques et trigonométrie"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré à deux théorèmes qui mesurent les triangles. D'abord Thalès, qui compare des rapports de longueurs quand deux droites sont parallèles. Puis Pythagore, qui relie les côtés du triangle rectangle, avec ses relations métriques et sa trigonométrie.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Thalès et Pythagore : mesurer les triangles."
+  },
+  {
+   "dit": "Le point commun de ces théorèmes est simple. Quand une longueur est inaccessible, on ne la mesure pas. On mesure d'autres longueurs, accessibles, puis on calcule. Thalès et Pythagore sont les deux outils de ce calcul.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Mesurer sans mesurer : calculer à partir du mesurable."
+  },
+  {
+   "dit": "La configuration de Thalès part d'un triangle a bé cé. On place èm sur la droite a bé et èn sur la droite a cé, tous deux différents de a. Deux cas seulement. Dans le premier, èm est sur le segment a bé et èn sur le segment a cé, c'est la configuration triangle. Dans le second, èm et bé sont de part et d'autre de a, comme èn et cé, c'est la configuration papillon.",
+   "ecran": "config",
+   "id": "p03",
+   "texte": "Configuration de Thalès : triangle ou papillon."
+  },
+  {
+   "dit": "Dans les deux cas, si les droites èm èn et bé cé sont parallèles, alors les rapports de longueurs sont égaux. Le rapport de a èm sur a bé égale le rapport de a èn sur a cé, et égale le rapport de èm èn sur bé cé. Autrement dit, les triangles a èm èn et a bé cé ont leurs longueurs proportionnelles.",
+   "ecran": "thales",
+   "id": "p04",
+   "texte": "Parallèles, donc trois rapports égaux."
+  },
+  {
+   "dit": "Trois précautions avant tout calcul. D'abord, partir toujours du sommet commun a, dans les deux rapports, et respecter l'ordre des points. Ensuite, exprimer toutes les longueurs dans la même unité. Enfin, trois rapports égaux suffisent souvent pour retrouver une longueur inconnue.",
+   "ecran": "remarques",
+   "id": "p05",
+   "texte": "Sommet commun, ordre, même unité."
+  },
+  {
+   "dit": "La méthode tient en quatre gestes. Identifier la configuration et vérifier le parallélisme des deux droites. Écrire l'égalité des trois rapports en respectant l'ordre des points. Remplacer par les longueurs connues. Puis utiliser le produit en croix pour isoler la longueur cherchée.",
+   "ecran": "methode",
+   "id": "p06",
+   "texte": "Identifier, écrire, remplacer, produit en croix."
+  },
+  {
+   "dit": "Premier exemple, en configuration triangle : a bé six centimètres, a cé neuf, bé cé douze. Le point èm est sur a bé, a èm quatre centimètres, et sa parallèle à bé cé coupe a cé en èn. Les rapports donnent quatre sixièmes, égal à a èn sur neuf, égal à èm èn sur douze. Par produit en croix, a èn vaut quatre fois neuf sur six, soit six centimètres, et èm èn huit centimètres.",
+   "ecran": "ex_triangle",
+   "id": "p07",
+   "texte": "Exemple triangle : AN six, MN huit."
+  },
+  {
+   "dit": "Deuxième exemple, en configuration papillon. Deux droites se coupent en a, a bé cinq centimètres et a èm trois, de part et d'autre de a. Sur la seconde, a cé vaut sept centimètres et demi, et les droites èm èn et bé cé sont parallèles. Le rapport trois cinquièmes égale a èn sur sept et demi. Par produit en croix, a èn vaut trois fois sept et demi divisé par cinq, soit quatre centimètres et demi.",
+   "ecran": "ex_papillon",
+   "id": "p08",
+   "texte": "Exemple papillon : AN quatre et demi."
+  },
+  {
+   "dit": "Thalès se lit aussi à l'envers, et c'est la réciproque. Si a, èm et bé sont alignés dans le même ordre que a, èn et cé, et si le rapport de a èm sur a bé égale le rapport de a èn sur a cé, alors les droites èm èn et bé cé sont parallèles. La contraposée dit l'inverse : rapports inégaux, droites non parallèles.",
+   "ecran": "reciproque",
+   "id": "p09",
+   "texte": "Réciproque : rapports égaux, parallèles."
+  },
+  {
+   "dit": "Exemple. Alignés, a èm deux centimètres et a bé cinq centimètres, puis a èn trois centimètres et a cé sept et demi. Le premier rapport vaut deux cinquièmes, soit zéro virgule quatre, le second trois sur sept et demi, soit aussi zéro virgule quatre. Rapports égaux et même ordre, donc, d'après la réciproque, les droites èm èn et bé cé sont parallèles.",
+   "ecran": "ex_parallele",
+   "id": "p10",
+   "texte": "Démonstration : deux rapports à zéro virgule quatre."
+  },
+  {
+   "dit": "À quoi sert Thalès en pratique. À calculer des longueurs inaccessibles, comme la hauteur d'un arbre ou la largeur d'une rivière, à partir de mesures réalisables au sol. Il suffit de créer une configuration parallèle, puis de laisser les rapports calculer.",
+   "ecran": "usage",
+   "id": "p11",
+   "texte": "L'inaccessible calculé depuis le sol."
+  },
+  {
+   "dit": "Retenons la première partie : une configuration, deux parallèles, trois rapports égaux. La méthode, écrire les rapports dans l'ordre, remplacer, puis produit en croix. Et la réciproque, rapports égaux et même ordre, droites parallèles.",
+   "ecran": "recap1",
+   "id": "p12",
+   "texte": "Thalès : à retenir."
+  },
+  {
+   "dit": "Dans un triangle rectangle, le carré de l'hypoténuse est égal à la somme des carrés des deux autres côtés. Si le triangle a bé cé est rectangle en a, alors bé cé au carré égale a bé au carré plus a cé au carré. L'hypoténuse, opposée à l'angle droit, est le plus long côté.",
+   "ecran": "pythagore",
+   "id": "p13",
+   "texte": "Pythagore : le carré de l'hypoténuse."
+  },
+  {
+   "dit": "Exemple de calcul. Un triangle a bé cé rectangle en a, avec a bé égal à trois centimètres et a cé à quatre centimètres. Alors bé cé au carré vaut neuf plus seize, soit vingt-cinq. Donc bé cé vaut la racine carrée de vingt-cinq, soit cinq centimètres. C'est le célèbre triplet trois, quatre, cinq.",
+   "ecran": "ex_pyth",
+   "id": "p14",
+   "texte": "Trois, quatre, cinq : l'hypoténuse vaut cinq."
+  },
+  {
+   "dit": "Pythagore sert aussi à prouver qu'un triangle est rectangle, ou non. C'est sa réciproque : carré du plus grand côté égal à la somme des deux autres carrés, triangle rectangle, sinon non. Exemple, un triangle de côtés six, huit et dix. Dix au carré vaut cent, et six au carré plus huit au carré vaut trente-six plus soixante-quatre, soit cent. L'égalité est vérifiée, le triangle est rectangle.",
+   "ecran": "test_rectangle",
+   "id": "p15",
+   "texte": "Six, huit, dix : l'égalité prouve l'angle droit."
+  },
+  {
+   "dit": "Passons aux relations métriques. Dans le triangle a bé cé rectangle en a, hache est le pied de la hauteur issue de a sur bé cé. On note a pour bé cé, bé pour a cé, cé pour a bé, hache pour la hauteur, pé pour bé hache et ku pour hache cé.",
+   "ecran": "metriques_notations",
+   "id": "p16",
+   "texte": "Notations : a, b, c, h, p, q."
+  },
+  {
+   "dit": "Voici les quatre relations à connaître. Le carré de chaque côté de l'angle droit égale l'hypoténuse fois sa projection. Donc cé au carré égale a fois pé, et bé au carré égale a fois ku. Le carré de la hauteur égale le produit des deux projections, hache au carré égale pé fois ku. Et l'aire donne une dernière égalité, a fois hache égale bé fois cé.",
+   "ecran": "metriques",
+   "id": "p17",
+   "texte": "Quatre relations : côtés, hauteur, aire."
+  },
+  {
+   "dit": "Exemple, bé hache deux centimètres et hache cé huit centimètres. Alors a hache au carré vaut deux fois huit, soit seize, donc a hache vaut quatre centimètres. L'hypoténuse vaut deux plus huit, soit dix centimètres. Donc a bé au carré vaut vingt, et a bé vaut deux racines carrées de cinq centimètres.",
+   "ecran": "ex_metriques",
+   "id": "p18",
+   "texte": "Exemple métrique : AH quatre, AB deux racines de cinq."
+  },
+  {
+   "dit": "Passons à la trigonométrie du triangle rectangle. Pour l'angle aigu bé du triangle rectangle en a, trois rapports. Le cosinus, côté adjacent sur hypoténuse, soit a bé sur bé cé. Le sinus, côté opposé sur hypoténuse, soit a cé sur bé cé. La tangente, côté opposé sur côté adjacent, soit a cé sur a bé. Le moyen mnémotechnique est cah, soh, toa.",
+   "ecran": "trigo",
+   "id": "p19",
+   "texte": "Cosinus, sinus, tangente : CAH, SOH, TOA."
+  },
+  {
+   "dit": "Exemple de calcul de longueur. Un triangle a bé cé rectangle en a, avec un angle bé de trente degrés et une hypoténuse bé cé de dix centimètres. Le sinus de trente degrés vaut a cé sur dix. Or le sinus de trente degrés vaut zéro virgule cinq. Donc a cé vaut dix fois zéro virgule cinq, soit cinq centimètres.",
+   "ecran": "ex_trigo_long",
+   "id": "p20",
+   "texte": "Sinus trente degrés : AC vaut cinq."
+  },
+  {
+   "dit": "Exemple de calcul d'angle. Un triangle a bé cé rectangle en a, avec a bé égal à quatre centimètres et bé cé à huit centimètres. Le cosinus de l'angle bé vaut quatre sur huit, soit zéro virgule cinq. L'angle dont le cosinus vaut zéro virgule cinq est de soixante degrés. Donc l'angle bé mesure soixante degrés.",
+   "ecran": "ex_trigo_angle",
+   "id": "p21",
+   "texte": "Cosinus un demi : l'angle vaut soixante degrés."
+  },
+  {
+   "dit": "Pour terminer, la relation fondamentale, valable pour tout angle aigu. Le carré du cosinus plus le carré du sinus vaut un. Et la tangente égale le sinus divisé par le cosinus. De quoi retrouver un rapport à partir de l'autre.",
+   "ecran": "fond",
+   "id": "p22",
+   "texte": "Cos² + sin² = 1, tan = sin / cos."
+  },
+  {
+   "dit": "Pour conclure. Thalès, rapports égaux et réciproque pour prouver un parallélisme. Pythagore, un carré égal à la somme de deux carrés, et sa réciproque pour prouver un angle droit. Les relations métriques, hauteur et projections. Et la trigonométrie, cosinus, sinus et tangente, pour passer des longueurs aux angles.",
+   "ecran": "recap_final",
+   "id": "p23",
+   "texte": "Thalès, Pythagore, trigonométrie : à retenir."
+  }
+ ],
+ "titre": "Thalès et Pythagore : mesurer les triangles"
+}

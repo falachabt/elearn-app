@@ -1,0 +1,593 @@
+{
+ "cours": 5944,
+ "ecrans": {
+  "aufbau": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "cases_quantiques_fig"
+   },
+   "kicker": "Le principe d'Aufbau",
+   "texte": "Construire l'atome : remplir d'abord les orbitales de plus basse énergie.",
+   "type": "phrase"
+  },
+  "bohr_energie": {
+   "kicker": "L'énergie des niveaux",
+   "note": "constante de Rydberg : R_H ≈ 2,18 × 10⁻¹⁸ J ; n, nombre quantique principal",
+   "tex": "E_n = -\\frac{R_H}{n^2}",
+   "type": "formule"
+  },
+  "bohr_exemple": {
+   "kicker": "Exercice des leçons",
+   "tex": [
+    "E_3 = -\\frac{R_H}{3^2} = -\\frac{R_H}{9}",
+    "E_3 = -\\frac{2{,}18 \\times 10^{-18}}{9}",
+    "E_3 \\approx -2{,}42 \\times 10^{-19}\\ \\text{J}"
+   ],
+   "titre": "L'énergie du niveau n = 3 (hydrogène)",
+   "type": "etape"
+  },
+  "bohr_limites": {
+   "etapes": [
+    "Échec pour les atomes à plusieurs électrons",
+    "Intensité des raies : non prédite",
+    "Effet Zeeman : non pris en compte"
+   ],
+   "kicker": "Les limites de Bohr",
+   "type": "recap"
+  },
+  "bohr_paradoxe": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "atome_bohr_fig"
+   },
+   "kicker": "Le paradoxe à résoudre",
+   "texte": "Un électron qui tourne devrait spiraler vers le noyau : l'atome s'effondrerait.",
+   "type": "phrase"
+  },
+  "bohr_postulats": {
+   "etapes": [
+    "Orbites stationnaires, sans rayonnement",
+    "Énergie quantifiée : des niveaux discrets",
+    "Transitions : absorption ou émission d'un photon",
+    "Résultat : stabilité et spectres en raies"
+   ],
+   "kicker": "Les postulats de Bohr (1913)",
+   "type": "recap"
+  },
+  "bohr_transitions": {
+   "kicker": "Les transitions électroniques",
+   "note": "le photon émis ou absorbé emporte exactement la différence d'énergie",
+   "tex": "\\Delta E = E_{\\text{final}} - E_{\\text{initial}} = h\\nu",
+   "type": "formule"
+  },
+  "dalton_postulats": {
+   "etapes": [
+    "Des atomes indivisibles et indestructibles",
+    "Même élément : atomes identiques",
+    "Éléments différents : atomes différents",
+    "Réactions : réorganisation des atomes",
+    "Composés : rapports simples et entiers"
+   ],
+   "kicker": "Le modèle de Dalton (1803)",
+   "type": "recap"
+  },
+  "dalton_rapport": {
+   "kicker": "Les rapports simples en action",
+   "note": "deux atomes de fer pour trois d'oxygène : un rapport simple et entier",
+   "tex": "\\mathrm{Fe}_2\\mathrm{O}_3",
+   "type": "formule"
+  },
+  "exception_cuivre": {
+   "kicker": "Une exception célèbre",
+   "note": "et non 3d⁹ 4s² : une sous-couche d pleine stabilise l'atome",
+   "tex": "\\mathrm{Cu} : [\\mathrm{Ar}]\\,3d^{10}\\,4s^{1}",
+   "type": "formule"
+  },
+  "exemple_carbone": {
+   "kicker": "Premier exemple : le carbone",
+   "note": "six électrons : deux en 1s, deux en 2s, deux en 2p",
+   "tex": "\\mathrm{C} : 1s^2\\,2s^2\\,2p^2",
+   "type": "formule"
+  },
+  "exemple_sodium": {
+   "kicker": "Exemple complet des leçons",
+   "tex": [
+    "1s^2",
+    "1s^2\\,2s^2",
+    "1s^2\\,2s^2\\,2p^6",
+    "1s^2\\,2s^2\\,2p^6\\,3s^1"
+   ],
+   "titre": "Le sodium (Z = 11), pas à pas",
+   "type": "etape"
+  },
+  "exercice_couche_m": {
+   "kicker": "Exercice corrigé des leçons",
+   "tex": [
+    "3s : 2 \\text{ électrons}",
+    "3p : 6 \\text{ électrons}",
+    "3d : 10 \\text{ électrons}",
+    "\\text{total} = 2 + 6 + 10 = 18"
+   ],
+   "titre": "La couche M (n = 3) au complet",
+   "type": "etape"
+  },
+  "exercices_corriges": {
+   "kicker": "Corrigés des leçons",
+   "tex": [
+    "\\mathrm{O} : 1s^2\\,2s^2\\,2p^4",
+    "\\mathrm{Cl} : 1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^5",
+    "\\mathrm{Fe} : 1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6\\,4s^2\\,3d^6"
+   ],
+   "titre": "Oxygène, chlore et fer",
+   "type": "etape"
+  },
+  "groupes_valence": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "ecran_alcalins_fig"
+   },
+   "kicker": "Le lien avec le tableau périodique",
+   "texte": "Même groupe, mêmes électrons de valence : les alcalins, un seul électron externe.",
+   "type": "phrase"
+  },
+  "histoire": {
+   "kicker": "Une idée très ancienne",
+   "texte": "De Démocrite à Dalton : l'atome devient un concept scientifique.",
+   "type": "phrase"
+  },
+  "identifier_element": {
+   "kicker": "Exercice des leçons",
+   "tex": [
+    "1s^2\\,2s^2\\,2p^6\\,3s^1",
+    "Z = 11 \\Rightarrow \\text{sodium (Na)}"
+   ],
+   "titre": "À quel élément appartient cette configuration ?",
+   "type": "etape"
+  },
+  "isotopes": {
+   "kicker": "Les isotopes",
+   "tex": [
+    "^{12}_{6}\\mathrm{C} : Z = 6, \\ N = 6",
+    "^{14}_{6}\\mathrm{C} : Z = 6, \\ N = 8"
+   ],
+   "titre": "Même élément, masses différentes",
+   "type": "etape"
+  },
+  "l_azimutal": {
+   "kicker": "Le nombre quantique azimutal l",
+   "tex": [
+    "l = 0 \\to s \\quad \\text{(sphérique)}",
+    "l = 1 \\to p \\quad \\text{(haltère)}",
+    "l = 2 \\to d",
+    "l = 3 \\to f"
+   ],
+   "titre": "La forme de l'orbitale",
+   "type": "etape"
+  },
+  "ml_magnetique": {
+   "kicker": "Le nombre quantique magnétique",
+   "tex": [
+    "m_l = -l, \\ldots, 0, \\ldots, +l",
+    "l = 1 \\Rightarrow m_l = -1, 0, +1",
+    "l = 2 \\Rightarrow m_l = -2, \\ldots, +2"
+   ],
+   "titre": "Les orientations dans l'espace",
+   "type": "etape"
+  },
+  "ms_spin": {
+   "kicker": "Le nombre quantique de spin",
+   "note": "le spin : l'électron tourne sur lui-même, « haut » ou « bas »",
+   "tex": "m_s = +\\frac{1}{2} \\quad \\text{ou} \\quad m_s = -\\frac{1}{2}",
+   "type": "formule"
+  },
+  "n_principal": {
+   "kicker": "Le nombre quantique principal n",
+   "note": "couches K, L, M… : plus n grandit, plus l'électron est loin et énergétique",
+   "tex": "n = 1, 2, 3, \\ldots",
+   "type": "formule"
+  },
+  "nombre_masse": {
+   "kicker": "Les deux nombres du noyau",
+   "note": "Z : les protons, l'identité de l'élément ; N : les neutrons",
+   "tex": "A = Z + N",
+   "type": "formule"
+  },
+  "noyau_composition": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "noyau"
+   },
+   "kicker": "Dans le noyau",
+   "tex": [
+    "\\mathrm{p}^{+} : q = +1, \\quad m \\approx 1\\ \\text{u}",
+    "\\mathrm{n}^{0} : q = 0, \\quad m \\approx 1\\ \\text{u}"
+   ],
+   "titre": "Protons et neutrons",
+   "type": "etape"
+  },
+  "ordre_remplissage": {
+   "kicker": "La règle de Klechkowski",
+   "tex": [
+    "1s \\to 2s \\to 2p \\to 3s \\to 3p \\to 4s \\to 3d \\to 4p",
+    "5s \\to 4d \\to 5p \\to 6s \\to 4f \\to 5d \\to 6p \\to 7s",
+    "5f \\to 6d \\to 7p",
+    "s \\le 2 \\quad p \\le 6 \\quad d \\le 10 \\quad f \\le 14"
+   ],
+   "titre": "L'ordre de remplissage et les capacités",
+   "type": "etape"
+  },
+  "quantiques_intro": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "orbitales_formes_fig"
+   },
+   "kicker": "Le regard quantique",
+   "texte": "Fini les trajectoires : des probabilités de présence, dans des orbitales.",
+   "type": "phrase"
+  },
+  "recap_final": {
+   "etapes": [
+    "Les modèles se succèdent et se corrigent",
+    "Le noyau : Z protons, A = Z + N",
+    "Bohr : E_n = −R_H / n²",
+    "Quatre nombres quantiques par électron",
+    "Aufbau et Hund : la configuration"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "regle_hund": {
+   "kicker": "La règle de Hund",
+   "tex": [
+    "\\mathrm{N} : 1s^2\\,2s^2\\,2p^3",
+    "2p : \\uparrow\\ \\uparrow\\ \\uparrow"
+   ],
+   "titre": "L'azote : un électron par orbitale 2p",
+   "type": "etape"
+  },
+  "rutherford_experience": {
+   "kicker": "L'expérience de la feuille d'or (1911)",
+   "texte": "Des particules alpha bombardent une mince feuille d'or.",
+   "type": "phrase",
+   "anim": {
+    "nom": "experience_rutherford_fig",
+    "hauteur": 230
+   }
+  },
+  "rutherford_modele": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "orbite"
+   },
+   "kicker": "Le modèle planétaire",
+   "texte": "Un noyau minuscule et dense, des électrons autour, et du vide.",
+   "type": "phrase"
+  },
+  "rutherford_resultats": {
+   "kicker": "Un résultat stupéfiant",
+   "note": "une particule sur huit mille est fortement déviée, certaines rebondissent",
+   "tex": "\\frac{1}{8000}",
+   "type": "formule"
+  },
+  "spectre_hydrogene": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "spectre_raies_fig"
+   },
+   "kicker": "Le triomphe de Bohr",
+   "texte": "Le spectre de l'hydrogène : des raies, signatures des sauts entre niveaux.",
+   "type": "phrase"
+  },
+  "thomson_electron": {
+   "kicker": "La découverte de l'électron (1897)",
+   "texte": "Les rayons cathodiques : un faisceau de particules négatives, les électrons.",
+   "type": "phrase",
+   "anim": {
+    "nom": "tube_rayons_cathodiques_fig",
+    "hauteur": 230
+   }
+  },
+  "thomson_modele": {
+   "kicker": "Le modèle de Thomson",
+   "texte": "Le « pudding aux raisins » : une sphère positive, des électrons dedans.",
+   "type": "phrase",
+   "anim": {
+    "nom": "modele_thomson_fig",
+    "hauteur": 230
+   }
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "atome_bohr_fig"
+   },
+   "kicker": "Chimie · Atomistique",
+   "sous": "Modèles atomiques, noyau, nombres quantiques et remplissage des orbitales",
+   "titre": "De Dalton à la configuration électronique",
+   "type": "titre"
+  }
+ },
+ "lecons": [
+  4737,
+  4738,
+  4739,
+  4740,
+  4741,
+  4742,
+  4743,
+  4744,
+  4745,
+  4746
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Des modèles anciens au noyau"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : Bohr et les nombres quantiques. Après le noyau de Rutherford, nous allons quantifier l'atome avec le modèle de Bohr, puis décrire chaque électron par quatre nombres quantiques.",
+    "texte": "Partie 2 : Bohr et les nombres quantiques."
+   },
+   "sous_titre": "Bohr et les nombres quantiques"
+  },
+  {
+   "debut": "p26",
+   "pont": {
+    "dit": "Partie trois : la configuration électronique. Munis des nombres quantiques, nous allons maintenant remplir les orbitales, électron par électron, avec le principe d'Aufbau et la règle de Hund.",
+    "texte": "Partie 3 : construire la configuration électronique."
+   },
+   "sous_titre": "La configuration électronique"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'atomistique, le voyage au cœur de la matière. Nous suivrons d'abord l'histoire des modèles de l'atome, de Démocrite à Bohr, en passant par Dalton, Thomson et Rutherford. Nous décrirons ensuite le noyau et ses particules, puis les quatre nombres quantiques. Nous terminerons en construisant la configuration électronique des atomes, électron par électron.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "L'atomistique : des modèles de l'atome à la configuration électronique."
+  },
+  {
+   "dit": "L'idée d'atome naît dans la Grèce antique : au cinquième siècle avant notre ère, Leucippe et Démocrite imaginent que la matière est faite de particules indivisibles, les atomos. Mais sans aucune preuve expérimentale, cette intuition purement philosophique sommeille pendant des siècles. Il faut attendre mille huit cent trois et John Dalton pour que l'atome devienne un concept scientifique, appuyé sur des expériences.",
+   "ecran": "histoire",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "De Démocrite à Dalton : l'atome devient une science."
+  },
+  {
+   "dit": "Le modèle de Dalton repose sur cinq postulats. La matière est constituée d'atomes indivisibles et indestructibles. Les atomes d'un même élément sont identiques en masse et en propriétés, et ils diffèrent d'un élément à l'autre. Lors d'une réaction, les atomes se réorganisent, sans être ni créés ni détruits. Enfin, les composés naissent de combinaisons d'atomes en rapports simples et entiers.",
+   "ecran": "dalton_postulats",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Les cinq postulats de Dalton."
+  },
+  {
+   "dit": "Ce dernier postulat se vérifie sur l'exemple des leçons : l'oxyde de fer trois. Deux atomes de fer s'y combinent à trois atomes d'oxygène : un rapport simple et entier, exactement comme l'exige Dalton. Et comme les atomes ne font que se réorganiser pendant une réaction, rien ne se perd : c'est la loi de conservation de la masse.",
+   "ecran": "dalton_rapport",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Fe₂O₃ : deux fers pour trois oxygènes."
+  },
+  {
+   "dit": "En mille huit cent quatre-vingt-dix-sept, Thomson étudie les rayons cathodiques, ces faisceaux émis dans un tube sous vide. Il démontre qu'ils sont faits de particules chargées négativement, déviées par les champs électrique et magnétique : les électrons. Et comme le faisceau ne dépend pas du métal de la cathode, l'électron apparaît comme un constituant universel de la matière. L'atome indivisible de Dalton vient de voler en éclats.",
+   "ecran": "thomson_electron",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "1897 : Thomson découvre l'électron."
+  },
+  {
+   "dit": "Thomson propose alors son modèle, surnommé le pudding aux raisins. Imaginez une sphère remplie d'une charge positive diffuse, comme une pâte, dans laquelle sont plantés les électrons, chargés négativement, comme des raisins dans un gâteau. La charge positive compense exactement celle des électrons : l'atome reste globalement neutre. C'est la première image d'un atome qui possède un intérieur.",
+   "ecran": "thomson_modele",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Le pudding aux raisins de Thomson."
+  },
+  {
+   "dit": "En mille neuf cent onze, Ernest Rutherford bombarde une feuille d'or très mince avec des particules alpha, des noyaux d'hélium chargés positivement. Si le modèle de Thomson était juste, ces particules massives traverseraient la feuille presque sans dévier. Avec ses collaborateurs Geiger et Marsden, Rutherford observe donc les impacts, un par un. Et le résultat va dépasser tout ce qu'ils imaginaient.",
+   "ecran": "rutherford_experience",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "La feuille d'or bombardée de particules alpha."
+  },
+  {
+   "dit": "La plupart des particules traversent effectivement la feuille sans déviation, comme si elles ne rencontraient rien. Mais environ une sur huit mille est fortement déviée, et quelques-unes rebondissent littéralement en arrière. Avec une charge diffuse comme celle du pudding de Thomson, un tel rebond est impossible. Il faut donc que la charge positive soit concentrée en un point minuscule et très dense.",
+   "ecran": "rutherford_resultats",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Une sur huit mille rebondit : la charge est concentrée."
+  },
+  {
+   "dit": "Rutherford propose alors le modèle planétaire. L'atome est presque entièrement vide. Toute sa charge positive, et presque toute sa masse, sont concentrées dans un noyau minuscule au centre. Les électrons, négatifs, orbitent autour de ce noyau, très loin de lui, retenus par l'attraction électrostatique. Comme un système solaire en miniature, avec le noyau dans le rôle du Soleil.",
+   "ecran": "rutherford_modele",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Le modèle planétaire de Rutherford."
+  },
+  {
+   "dit": "Zoomons sur ce noyau, avec la leçon qui lui est consacrée. Si l'atome avait la taille d'un stade, le noyau serait un grain de sable en son centre. Il contient deux types de particules : les protons, chargés positivement, et les neutrons, sans charge, chacun pesant environ une unité de masse atomique. Et ce qui empêche les protons, qui se repoussent électriquement, de faire éclater le noyau, c'est la force nucléaire forte, immense à courte portée.",
+   "ecran": "noyau_composition",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Protons et neutrons : charge et masse du tableau des leçons."
+  },
+  {
+   "dit": "Deux nombres décrivent le noyau. Le numéro atomique, c'est le nombre de protons : il définit l'élément, son identité chimique. Le nombre de masse, c'est le total des protons et des neutrons. L'hydrogène possède un seul proton, l'hélium en possède deux : changez le nombre de protons, et vous changez d'élément.",
+   "ecran": "nombre_masse",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "A = Z + N : le nombre de masse additionne protons et neutrons."
+  },
+  {
+   "dit": "Mais le nombre de neutrons, lui, peut varier pour un même élément : on parle alors d'isotopes. Le carbone douze possède six protons et six neutrons. Le carbone quatorze, utilisé pour dater les objets anciens, possède les mêmes six protons, mais huit neutrons. Même élément, même chimie ou presque, mais des masses différentes : voilà ce que le modèle de Dalton ne pouvait pas expliquer.",
+   "ecran": "isotopes",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Carbone 12 et carbone 14 : six protons, six ou huit neutrons."
+  },
+  {
+   "dit": "Le modèle de Rutherford cache pourtant un paradoxe fatal. Selon l'électromagnétisme classique, un électron qui tourne autour du noyau devrait rayonner de l'énergie, ralentir, et spiraler jusqu'à s'écraser sur le noyau. L'atome devrait s'effondrer presque aussitôt. Or les atomes sont stables. En mille neuf cent treize, Niels Bohr résout le paradoxe en osant quantifier l'atome.",
+   "ecran": "bohr_paradoxe",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Le paradoxe : l'électron de Rutherford devrait tomber sur le noyau."
+  },
+  {
+   "dit": "Le modèle de Bohr repose sur trois postulats. Premier : l'électron ne peut occuper que certaines orbites précises, les orbites stationnaires, sur lesquelles il ne rayonne pas. Deuxième : sur chaque orbite, son énergie est fixée, quantifiée, et dépend d'un entier, le nombre quantique principal. Troisième : l'électron ne change d'orbite qu'en absorbant ou en émettant un photon, d'énergie égale à la différence entre les deux niveaux.",
+   "ecran": "bohr_postulats",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "Trois postulats : orbites, énergie quantifiée, transitions."
+  },
+  {
+   "dit": "Voici la formule de Bohr pour l'atome d'hydrogène. L'énergie du niveau n vaut moins la constante de Rydberg divisée par n au carré. Plus n est grand, plus l'orbite est éloignée du noyau, et plus l'énergie est élevée, c'est-à-dire moins négative. Au niveau un, l'état fondamental, elle vaut environ moins deux virgule dix-huit dix puissance moins dix-huit joules.",
+   "ecran": "bohr_energie",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Eₙ = −R_H / n² : des niveaux d'énergie discrets."
+  },
+  {
+   "dit": "Appliquons la formule, comme le demande l'exercice des leçons : quelle est l'énergie de l'électron sur la troisième orbite de l'hydrogène ? On remplace n par trois : moins la constante de Rydberg, divisée par neuf. Le calcul donne environ moins deux virgule quarante-deux dix puissance moins dix-neuf joules. L'énergie a bien augmenté par rapport au niveau un.",
+   "ecran": "bohr_exemple",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "E₃ ≈ −2,42 × 10⁻¹⁹ J : le calcul, pas à pas."
+  },
+  {
+   "dit": "Quand un électron saute d'un niveau à un autre, l'atome échange un photon. La différence d'énergie entre les deux niveaux vaut exactement l'énergie du photon : h fois nu, où h est la constante de Planck et nu la fréquence du rayonnement. Si l'électron descend, le photon est émis ; s'il monte, le photon doit être absorbé.",
+   "ecran": "bohr_transitions",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "ΔE = hν : chaque saut, une fréquence précise."
+  },
+  {
+   "dit": "C'est le triomphe de Bohr : il explique le spectre de l'hydrogène. L'hydrogène n'émet que certaines fréquences, qui forment des raies lumineuses séparées. La série de Lyman rassemble toutes les chutes vers le niveau un. Et la chute du niveau quatre au niveau deux libère environ quatre virgule zéro neuf dix puissance moins dix-neuf joules, sous forme d'un photon. Chaque raie est la signature d'un saut entre deux niveaux.",
+   "ecran": "spectre_hydrogene",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "Les raies de l'hydrogène : la série de Lyman vers le niveau 1."
+  },
+  {
+   "dit": "Le modèle de Bohr a pourtant ses limites, et les leçons les énoncent clairement. Il ne fonctionne correctement que pour l'hydrogène : dès qu'il y a plusieurs électrons, ses prédictions dévient. Il ne dit rien de l'intensité des raies spectrales. Et il ignore l'effet Zeeman, la modification du spectre par un champ magnétique. Il faudra aller plus loin : décrire l'électron par des nombres quantiques.",
+   "ecran": "bohr_limites",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Limites de Bohr : polyélectroniques, intensités, effet Zeeman."
+  },
+  {
+   "dit": "La mécanique quantique change notre regard sur l'électron. On ne peut plus dire où il se trouve exactement, ni quelle trajectoire il suit : on parle de probabilité de présence, dans une région de l'espace appelée orbitale. Pour décrire complètement l'état d'un électron, il faut quatre nombres, les nombres quantiques. Imaginez l'atome comme un immeuble : ils donnent l'étage, la forme de l'appartement, son orientation et la rotation de l'habitant.",
+   "ecran": "quantiques_intro",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Quatre nombres quantiques décrivent chaque électron."
+  },
+  {
+   "dit": "Le premier nombre quantique, le nombre principal, noté n, indique la couche électronique, comme l'étage d'un immeuble. Il vaut un, deux, trois, et ainsi de suite. La couche un s'appelle couche K, la couche deux, couche L, la couche trois, couche M. Plus n est grand, plus l'électron est éloigné du noyau en moyenne, et plus son énergie est élevée.",
+   "ecran": "n_principal",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "n : la couche — K, L, M… — et l'énergie."
+  },
+  {
+   "dit": "Le deuxième nombre, le nombre azimutal, noté l, décrit la sous-couche et la forme de l'orbitale. Pour une couche donnée, il prend les valeurs entières de zéro jusqu'à n moins un. Zéro correspond à la sous-couche s, de forme sphérique ; un, à la sous-couche p, en forme d'haltère ; deux, à la sous-couche d, aux formes plus complexes ; et trois, à la sous-couche f, plus complexes encore.",
+   "ecran": "l_azimutal",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "l : la sous-couche — s sphérique, p en haltère, d et f complexes."
+  },
+  {
+   "dit": "Le troisième nombre, le nombre magnétique, décrit l'orientation de l'orbitale dans l'espace. Il prend toutes les valeurs entières entre moins l et plus l. Une sous-couche s n'a qu'une seule orientation. Une sous-couche p en a trois : pensez à trois haltères orientées le long des trois axes de l'espace. Une sous-couche d en a cinq.",
+   "ecran": "ml_magnetique",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "m_l : l'orientation — 1 pour s, 3 pour p, 5 pour d."
+  },
+  {
+   "dit": "Le quatrième nombre est le nombre de spin. L'électron se comporte comme s'il tournait sur lui-même, et ce spin ne peut prendre que deux valeurs : plus un demi, le spin haut, ou moins un demi, le spin bas. Deux électrons qui partagent la même orbitale auront donc des spins opposés.",
+   "ecran": "ms_spin",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "m_s : le spin, +1/2 ou −1/2."
+  },
+  {
+   "dit": "Vérifions sur l'exercice corrigé des leçons : combien d'électrons la couche M, la couche trois, peut-elle contenir au maximum ? Pour n égal trois, l vaut zéro, un ou deux : ce sont les sous-couches trois s, trois p et trois d. La trois s accueille deux électrons, la trois p six, et la trois d dix. Total : deux plus six plus dix, dix-huit électrons au maximum dans la couche M.",
+   "ecran": "exercice_couche_m",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Couche M : 2 + 6 + 10 = 18 électrons au maximum."
+  },
+  {
+   "dit": "Passons à la construction des atomes, électron par électron. Le principe d'Aufbau, le mot allemand pour construction, dit que les électrons remplissent d'abord les orbitales de plus basse énergie, comme des locataires qui choisissent les appartements les moins chers. Tout repose donc sur l'ordre de remplissage des sous-couches, donné par la règle de Klechkowski, que voici.",
+   "ecran": "aufbau",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Aufbau : remplir par énergie croissante."
+  },
+  {
+   "dit": "Lisez l'ordre de remplissage sur l'écran : un s, deux s, deux p, trois s, trois p, puis quatre s avant trois d, car la quatre s est légèrement moins énergétique. L'écran donne aussi les capacités : deux électrons au maximum dans une sous-couche s, six dans une p, dix dans une d, quatorze dans une f. Attention au piège classique : ce n'est pas l'ordre des numéros qui compte, mais l'ordre des énergies.",
+   "ecran": "ordre_remplissage",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Klechkowski : 4s avant 3d ; capacités s 2, p 6, d 10, f 14."
+  },
+  {
+   "dit": "Premier exemple, le carbone, qui possède six électrons. On remplit la un s avec deux électrons, puis la deux s avec deux autres, et les deux derniers vont dans la deux p. La configuration électronique du carbone s'écrit donc : un s deux, deux s deux, deux p deux. Les exposants indiquent simplement combien d'électrons occupent chaque sous-couche.",
+   "ecran": "exemple_carbone",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "Carbone : 1s² 2s² 2p²."
+  },
+  {
+   "dit": "Encore faut-il répartir les électrons à l'intérieur d'une sous-couche : c'est la règle de Hund. Les électrons occupent d'abord chacun une orbitale séparée, avec des spins parallèles, avant de commencer à s'apparier. Pour l'azote, les trois électrons de la deux p se placent donc chacun dans son orbitale, comme trois personnes qui choisissent des chambres séparées avant de partager.",
+   "ecran": "regle_hund",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "Hund : un électron par orbitale avant l'appariement."
+  },
+  {
+   "dit": "Exemple complet, tiré des leçons : le sodium et ses onze électrons. Deux dans la un s, deux dans la deux s, six dans les deux p, et le onzième, seul, dans la trois s. La configuration du sodium s'écrit : un s deux, deux s deux, deux p six, trois s un. Cet unique électron de la couche externe explique déjà la grande réactivité du sodium.",
+   "ecran": "exemple_sodium",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "Sodium : 1s² 2s² 2p⁶ 3s¹."
+  },
+  {
+   "dit": "À vous de vérifier avec les corrigés des leçons. L'oxygène, huit électrons : un s deux, deux s deux, deux p quatre. Le chlore, dix-sept électrons, pousse le remplissage jusqu'à trois p cinq. Le fer, vingt-six électrons, remplit la quatre s avant d'entamer la trois d avec six électrons. Vous remarquerez que l'ordre de Klechkowski est respecté à chaque fois.",
+   "ecran": "exercices_corriges",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "Corrigés : O en 2p⁴, Cl en 3p⁵, Fe en 4s² 3d⁶."
+  },
+  {
+   "dit": "Il existe pourtant des exceptions au principe d'Aufbau, liées à la stabilité particulière des sous-couches à moitié ou complètement remplies. Le cuivre en est l'exemple donné par les leçons : sa configuration réelle se termine par trois d dix, quatre s un, et non par trois d neuf, quatre s deux comme le prédirait la règle simple. La sous-couche d pleine stabilise l'atome, au prix d'une exception.",
+   "ecran": "exception_cuivre",
+   "id": "p32",
+   "pause_apres": 0.8,
+   "texte": "Cuivre : [Ar] 3d¹⁰ 4s¹, et non 3d⁹ 4s²."
+  },
+  {
+   "dit": "Exercice d'identification, posé dans les leçons : un atome a pour configuration un s deux, deux s deux, deux p six, trois s un. Additionnez les exposants : deux plus deux plus six plus un, onze électrons, donc un numéro atomique de onze. C'est le sodium, que nous avons construit tout à l'heure. Et son électron unique en couche externe le range dans le groupe des alcalins.",
+   "ecran": "identifier_element",
+   "id": "p33",
+   "pause_apres": 0.8,
+   "texte": "Onze électrons, un seul en couche externe : le sodium."
+  },
+  {
+   "dit": "Ce dernier point mérite d'être retenu, car les leçons le démontrent : les éléments d'un même groupe du tableau périodique ont des propriétés chimiques semblables parce qu'ils partagent le même nombre d'électrons de valence, ceux de la couche externe. Les alcalins, lithium, sodium, potassium, ont tous un seul électron de valence : ils réagissent de la même façon et forment des ions de charge plus un. C'est la force du tableau périodique : la configuration électronique prédit la chimie de l'élément.",
+   "ecran": "groupes_valence",
+   "id": "p34",
+   "pause_apres": 0.8,
+   "texte": "Même groupe : mêmes électrons de valence, même réactivité."
+  },
+  {
+   "dit": "Récapitulons tout le parcours. Les modèles se sont succédé, de la bille de Dalton au pudding de Thomson, puis au noyau de Rutherford et aux orbites quantifiées de Bohr. Le noyau rassemble protons et neutrons, décrits par le numéro atomique et le nombre de masse. Les nombres quantiques décrivent chaque électron, et Aufbau et Hund permettent d'écrire la configuration de n'importe quel atome, puis de comprendre ses propriétés chimiques. Vous tenez la grammaire de la matière : la suite sera de comprendre comment ces électrons créent les liaisons chimiques.",
+   "ecran": "recap_final",
+   "id": "p35",
+   "pause_apres": 0.8,
+   "texte": "Modèles, noyau, nombres quantiques, configuration : le parcours est complet."
+  }
+ ],
+ "titre": "L'atomistique : des modèles de l'atome à la configuration électronique"
+}

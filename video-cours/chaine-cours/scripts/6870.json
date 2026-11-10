@@ -1,0 +1,382 @@
+{
+ "cours": 6870,
+ "ecrans": {
+  "accord_cuanto": {
+   "kicker": "L'accord de cuánto",
+   "texte": "¿Cuánto dinero tienes ? ¿Cuántas personas hay ? : accord avec le nom interrogé.",
+   "type": "phrase"
+  },
+  "adjectifs_accord": {
+   "kicker": "Accord des adjectifs",
+   "texte": "Un bolígrafo azul, una carpeta azul, unos bolígrafos azules.",
+   "type": "phrase"
+  },
+  "adjectifs_place": {
+   "kicker": "La place de l'adjectif",
+   "texte": "Après le nom : distinctif. Avant le nom : affectif. Ici, après le nom.",
+   "type": "phrase"
+  },
+  "chemin": {
+   "kicker": "Indiquer le chemin",
+   "texte": "Siga recto, gire a la izquierda en el semáforo, tome la segunda calle.",
+   "type": "phrase"
+  },
+  "chemin_verbes": {
+   "kicker": "Verbes pour orienter",
+   "texte": "Ir, seguir, girar, cruzar, tomar : Vaya, Siga recto, Gire, Cruce, Tome.",
+   "type": "phrase"
+  },
+  "contractions": {
+   "kicker": "Contractions obligatoires",
+   "texte": "A plus el donne al, de plus el donne del : Voy al mercado, Cerca del parque.",
+   "type": "phrase"
+  },
+  "decrire_pourquoi": {
+   "kicker": "Pourquoi décrire ?",
+   "texte": "Assez d'informations pour identifier ou se représenter l'objet sans le voir.",
+   "type": "phrase"
+  },
+  "decrire_vocab": {
+   "kicker": "Quatre catégories",
+   "texte": "Forme, taille, matière, couleur : redondo, pequeño, de madera, rojo.",
+   "type": "phrase"
+  },
+  "demonstratifs": {
+   "kicker": "Les démonstratifs",
+   "texte": "Esta mochila es azul ; aquella es verde.",
+   "type": "phrase"
+  },
+  "dialogue_mairie": {
+   "kicker": "Mini-dialogue type",
+   "texte": "Perdone, ¿dónde está el ayuntamiento ? Siga recto, cruce la plaza, gire a la izquierda.",
+   "type": "phrase"
+  },
+  "exemple_boite": {
+   "kicker": "Exemple résolu",
+   "note": "C'est une boîte petite, carrée et en bois.",
+   "tex": "\\text{una caja pequeña, cuadrada}",
+   "type": "formule"
+  },
+  "exemple_bouteille": {
+   "kicker": "Exemple final",
+   "note": "Bouteille allongée, moyenne, transparente, en verre, bouchon rouge, pleine.",
+   "tex": "\\text{una botella de cristal}",
+   "type": "formule"
+  },
+  "exemple_montre": {
+   "kicker": "Exemple résolu complet",
+   "note": "Article, nom, forme, taille, couleur, matière.",
+   "tex": "\\text{un reloj redondo, pequeño}",
+   "type": "formule"
+  },
+  "exemple_telephone": {
+   "kicker": "Exemple résolu",
+   "texte": "El móvil es negro, tiene una pantalla grande y está apagado.",
+   "type": "phrase"
+  },
+  "incertitude": {
+   "kicker": "Ne pas savoir",
+   "texte": "No lo sé, No estoy seguro, Creo que, Pienso que.",
+   "type": "phrase"
+  },
+  "interrogatifs": {
+   "kicker": "Les mots interrogatifs",
+   "texte": "Toujours accentués, entre ¿ et ? : dónde, qué, cuál, cuánto, cómo, quién.",
+   "type": "phrase"
+  },
+  "inversion": {
+   "kicker": "L'inversion sujet-verbe",
+   "texte": "¿Dónde vive tu hermana ?, et non ¿Dónde tu hermana vive ?",
+   "type": "phrase"
+  },
+  "localiser_estar": {
+   "kicker": "Estar pour localiser",
+   "texte": "El libro está sobre la mesa. Los niños están en el jardín.",
+   "type": "phrase"
+  },
+  "methode_questions": {
+   "kicker": "Synthèse opérationnelle",
+   "texte": "Choisir la technique, interrogatif en tête, répondre ciblé ou dire son incertitude.",
+   "type": "phrase"
+  },
+  "pharmacie": {
+   "kicker": "Exemple résolu",
+   "texte": "¿Dónde está la farmacia ? Está al lado del supermercado, entre la panadería y el banco.",
+   "type": "phrase"
+  },
+  "quantificateurs": {
+   "kicker": "Les quantificateurs",
+   "texte": "Muy grande, bastante pesado, un poco pequeño.",
+   "type": "phrase"
+  },
+  "que_cual": {
+   "kicker": "Cuál ou qué ?",
+   "texte": "Qué : une définition. Cuál : un choix dans un ensemble.",
+   "type": "phrase"
+  },
+  "que_nom": {
+   "kicker": "Qué + nom, ou qué seul",
+   "texte": "¿Qué quieres ? pronom. ¿Qué libro quieres ? déterminant + nom.",
+   "type": "phrase"
+  },
+  "question_partielle": {
+   "kicker": "Question partielle",
+   "texte": "Interrogatif en tête, suivi du verbe : ¿Dónde está la biblioteca ?",
+   "type": "phrase"
+  },
+  "question_totale": {
+   "kicker": "Question totale",
+   "texte": "Même structure que la phrase, seuls ¿, ? et l'intonation changent.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Questions : totale oui/non, partielle en tête, qué ou cuál.",
+    "Cuánto accordé ; réponses ciblées, No lo sé, Creo que.",
+    "Décrire : forme, taille, matière, couleur ; adjectif accordé.",
+    "Verbes : ser permanent, tener possession, estar état et lieu.",
+    "Localiser : estar, prépositions ; orienter : impératif, al, del."
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "reponses_partielle": {
+   "kicker": "Répondre à une partielle",
+   "texte": "¿Dónde vives ? Vivo en París. ¿Cuántos hermanos tienes ? Tengo dos hermanos.",
+   "type": "phrase"
+  },
+  "reponses_totale": {
+   "kicker": "Répondre oui ou non",
+   "texte": "Sí + reprise ou information. No + phrase négative, no devant le verbe.",
+   "type": "phrase"
+  },
+  "ser_estar_questions": {
+   "kicker": "Ser ou estar en question",
+   "texte": "¿Cómo es ? description durable. ¿Cómo está ? état passager.",
+   "type": "phrase"
+  },
+  "titre": {
+   "kicker": "Espagnol · Questions et environnement",
+   "sous": "Poser des questions, décrire un objet, localiser et orienter",
+   "titre": "Poser des questions et décrire son environnement",
+   "type": "titre"
+  },
+  "vocab_echange": {
+   "kicker": "Vocabulaire de l'échange",
+   "texte": "Preguntar, responder, ¿Puedes decirme ?, ¿Es verdad que ?, Es decir, por favor.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Espagnol",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Poser des questions et y répondre"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : décrire un objet. Nous classerons le vocabulaire descriptif, nous accorderons et placerons les adjectifs, nous choisirons entre ser, tener et estar, et nous finirons par la méthode en quatre étapes.",
+    "texte": "Partie 2 : décrire un objet."
+   },
+   "sous_titre": "Décrire un objet"
+  },
+  {
+   "debut": "p25",
+   "pont": {
+    "dit": "Partie trois : localiser et orienter. Nous situerons avec estar et les prépositions de lieu, nous indiquerons le chemin à l'impératif, puis nous appliquerons les contractions al et del dans un mini-dialogue.",
+    "texte": "Partie 3 : localiser et orienter."
+   },
+   "sous_titre": "Localiser et orienter"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'espagnol : poser des questions, décrire son environnement, localiser et orienter, avec le vocabulaire et la grammaire qui vont avec.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Questions, description, localisation, orientation."
+  },
+  {
+   "dit": "Les mots interrogatifs espagnols portent toujours l'accent écrit, la tilde, et s'emploient entre les signes ¿ et ?. Les interrogatifs attestés dans la leçon sont dónde, qué, cuál, cuánto, cómo, quién, et a qué hora.",
+   "ecran": "interrogatifs",
+   "id": "p02",
+   "texte": "Interrogatifs accentués, entre ¿ et ?"
+  },
+  {
+   "dit": "Première technique, la question totale, qui appelle une réponse par oui ou non. Elle reprend la structure de la phrase, sans changement d'ordre des mots ; seuls les signes ¿ et ? et l'intonation montante la distinguent. Exemples : ¿Hablas español ? ; ¿Tienes hermanos ?",
+   "ecran": "question_totale",
+   "id": "p03",
+   "texte": "Question totale : oui ou non, même ordre."
+  },
+  {
+   "dit": "Deuxième technique, la question partielle, avec interrogatif. L'interrogatif se place en tête, suivi du verbe ; l'ordre sujet-verbe peut s'inverser, mais reste souvent souple. Exemples : ¿Dónde está la biblioteca ? ; ¿Qué quieres comer ? Remarque : après une préposition, on emploie quién ou qué, comme dans ¿Con quién vas ? ou ¿De qué hablas ?",
+   "ecran": "question_partielle",
+   "id": "p04",
+   "texte": "Partielle : interrogatif en tête, puis verbe."
+  },
+  {
+   "dit": "Troisième technique, le choix entre cuál et qué. ¿Qué ? demande une définition, une nature : ¿Qué es esto ?, qu'est-ce que c'est ? ¿Cuál ? demande un choix dans un ensemble : ¿Cuál es tu color favorito ? Exemple résolu : ¿Qué libro lees ?, quel type de livre, contre ¿Cuál de estos libros lees ?, lequel parmi ceux-ci ?",
+   "ecran": "que_cual",
+   "id": "p05",
+   "texte": "Qué : une nature. Cuál : un choix."
+  },
+  {
+   "dit": "En question partielle, le verbe précède souvent le sujet pour éviter l'ambiguïté : ¿Dónde vive tu hermana ?, et non ¿Dónde tu hermana vive ?",
+   "ecran": "inversion",
+   "id": "p06",
+   "texte": "Verbe avant le sujet en partielle."
+  },
+  {
+   "dit": "Cuánto s'accorde en genre et en nombre avec le nom qu'il interroge : ¿Cuánto dinero tienes ?, au masculin singulier ; ¿Cuántas personas hay ?, au féminin pluriel.",
+   "ecran": "accord_cuanto",
+   "id": "p07",
+   "texte": "Cuánto s'accorde avec le nom interrogé."
+  },
+  {
+   "dit": "Qué, suivi d'un nom, ou qué seul : ¿Qué quieres ?, qué pronom ; ¿Qué libro quieres ?, qué déterminant, suivi d'un nom.",
+   "ecran": "que_nom",
+   "id": "p08",
+   "texte": "¿Qué quieres ? ¿Qué libro quieres ?"
+  },
+  {
+   "dit": "L'emploi de ser et estar dans les questions : ¿Cómo es ? appelle une description, caractère ou apparence durable ; ¿Cómo está ? appelle un état passager, santé ou humeur. Exemple résolu : ¿Cómo es tu profesor ? Es alto y simpático. ¿Cómo está tu profesor ? Está enfermo hoy.",
+   "ecran": "ser_estar_questions",
+   "id": "p09",
+   "texte": "¿Cómo es ? durable. ¿Cómo está ? passager."
+  },
+  {
+   "dit": "Répondre de manière appropriée. Réponse affirmative : Sí, suivi d'une reprise ou d'une information. Réponse négative : No, suivi d'une phrase négative, ne, pas, se traduisant par no devant le verbe.",
+   "ecran": "reponses_totale",
+   "id": "p10",
+   "texte": "Sí ou No, avec reprise ou négation."
+  },
+  {
+   "dit": "Réponse à une question partielle : on répond directement sur l'information demandée, sans reprendre l'interrogatif. Exemples : ¿Dónde vives ? Vivo en París. ¿Cuántos hermanos tienes ? Tengo dos hermanos.",
+   "ecran": "reponses_partielle",
+   "id": "p11",
+   "texte": "Répondre sur l'information demandée."
+  },
+  {
+   "dit": "Quand on ne connaît pas la réponse, on emploie No lo sé, je ne sais pas ; No estoy seguro ou segura, je ne suis pas sûr ou sûre ; Creo que ou Pienso que, je crois ou je pense que. Exemple résolu : ¿A qué hora empieza la película ? Creo que empieza a las ocho, pero no estoy seguro.",
+   "ecran": "incertitude",
+   "id": "p12",
+   "texte": "No lo sé, No estoy seguro, Creo que."
+  },
+  {
+   "dit": "Vocabulaire de l'échange d'information : poser une question, preguntar, hacer una pregunta, querer saber ; répondre, responder, contestar, decir ; demander une information, ¿Puedes decirme ?, ¿Sabes si ? ; vérifier, ¿Es verdad que ?, ¿De verdad ? ; reformuler, Es decir, O sea ; marqueurs de politesse, por favor, gracias, perdón, disculpe.",
+   "ecran": "vocab_echange",
+   "id": "p13",
+   "texte": "Preguntar, responder, ¿Puedes decirme ?"
+  },
+  {
+   "dit": "Synthèse opérationnelle : choisir la technique, totale ou partielle ; placer l'interrogatif en tête, accorder cuánto, inverser si nécessaire ; répondre, sí ou no pour la totale, information ciblée pour la partielle, no lo sé ou creo que en cas d'incertitude. Exercice type : transformer Vives en Barcelona en question partielle donne ¿Dónde vives ?",
+   "ecran": "methode_questions",
+   "id": "p14",
+   "texte": "Choisir, placer, répondre : la méthode."
+  },
+  {
+   "dit": "Décrire un objet, c'est donner suffisamment d'informations pour que l'interlocuteur puisse l'identifier ou se le représenter mentalement sans le voir. En espagnol, cette fonction repose sur trois piliers : le vocabulaire descriptif, les adjectifs, et l'accord en genre et en nombre avec le nom.",
+   "ecran": "decrire_pourquoi",
+   "id": "p15",
+   "texte": "Décrire : identifier sans voir."
+  },
+  {
+   "dit": "Pour décrire un objet, on mobilise quatre catégories d'informations : la forme, redondo ou redonda, rond, cuadrado ou cuadrada, carré, rectangular, alargado ou alargada, allongé ; la taille, grande, pequeño ou pequeña, mediano ou mediana, largo ou larga, long, corto ou corta, court ; la matière, de madera, en bois, de plástico, de metal, de tela, en tissu, de cristal, en verre ; la couleur, rojo ou roja, azul, verde, negro ou negra, blanco ou blanca, amarillo ou amarilla.",
+   "ecran": "decrire_vocab",
+   "id": "p16",
+   "texte": "Forme, taille, matière, couleur."
+  },
+  {
+   "dit": "Exemple résolu : Es una caja pequeña, cuadrada y de madera, c'est une boîte petite, carrée et en bois.",
+   "ecran": "exemple_boite",
+   "id": "p17",
+   "texte": "Una caja pequeña, cuadrada y de madera."
+  },
+  {
+   "dit": "L'adjectif espagnol s'accorde toujours avec le nom qu'il qualifie. Règle : on ajoute a au féminin, s au pluriel, ou es si l'adjectif se termine par une consonne. Exemple résolu : un bolígrafo azul, puis una carpeta azul, puis unos bolígrafos azules.",
+   "ecran": "adjectifs_accord",
+   "id": "p18",
+   "texte": "Adjectif accordé : a, s, es."
+  },
+  {
+   "dit": "La place de l'adjectif : après le nom, valeur descriptive et distinctive, comme una mochila roja, un sac rouge, parmi d'autres ; avant le nom, valeur affective ou généralisante, comme una gran casa, une grande maison, au sens valorisant. Pour ce chapitre, on privilégie la place après le nom, plus neutre et plus fréquente dans la description objective.",
+   "ecran": "adjectifs_place",
+   "id": "p19",
+   "texte": "Après le nom : distinctif. Avant : affectif."
+  },
+  {
+   "dit": "La structure descriptive type, l'ordre canonique recommandé : sujet, verbe, nom, adjectifs, dans l'ordre taille, forme, couleur, matière. Exemple résolu complet : Es un reloj redondo, pequeño, negro y de metal. Décomposition : article un, nom reloj, forme redondo, taille pequeño, couleur negro, matière de metal.",
+   "ecran": "exemple_montre",
+   "id": "p20",
+   "texte": "Un reloj redondo, pequeño, negro y de metal."
+  },
+  {
+   "dit": "Les verbes utiles : ser, tener, estar. Ser décrit une caractéristique permanente, Es de plástico. Tener indique une possession ou un attribut interne, Tiene una pantalla grande. Estar décrit un état temporaire, Está roto, il est cassé. Exemple résolu : El móvil es negro, tiene una pantalla grande y está apagado.",
+   "ecran": "exemple_telephone",
+   "id": "p21",
+   "texte": "Ser permanent, tener possession, estar état."
+  },
+  {
+   "dit": "Les démonstratifs servent à situer l'objet dans l'espace. Exemple résolu : Esta mochila es azul ; aquella es verde.",
+   "ecran": "demonstratifs",
+   "id": "p22",
+   "texte": "Esta mochila es azul ; aquella es verde."
+  },
+  {
+   "dit": "Les quantificateurs : muy, suivi d'un adjectif, muy grande ; bastante, suivi d'un adjectif, bastante pesado ; un poco, suivi d'un adjectif, un poco pequeño. Exemple résolu : Es una caja muy pequeña pero bastante pesada.",
+   "ecran": "quantificateurs",
+   "id": "p23",
+   "texte": "Muy, bastante, un poco + adjectif."
+  },
+  {
+   "dit": "Récapitulatif, la méthode en quatre étapes : choisir le verbe, ser, tener ou estar ; nommer l'objet avec son article ; ajouter les adjectifs dans l'ordre taille, forme, couleur, matière ; vérifier l'accord en genre et en nombre. Exemple final : Es una botella alargada, mediana, transparente y de cristal. Tiene un tapón rojo y está llena.",
+   "ecran": "exemple_bouteille",
+   "id": "p24",
+   "texte": "Méthode en 4 étapes, exemple final."
+  },
+  {
+   "dit": "Localiser : pour situer un objet ou une personne, on utilise estar, et non ser. Exemples : El libro está sobre la mesa. Los niños están en el jardín. Accord : está au singulier, están au pluriel.",
+   "ecran": "localiser_estar",
+   "id": "p25",
+   "texte": "Localiser avec estar, jamais ser."
+  },
+  {
+   "dit": "Les prépositions de lieu attestées dans la leçon : sobre, en, al lado de, entre, cerca de, delante de, detrás de, a la derecha, a la izquierda, al fondo. Remarque : delante de, detrás de et les autres prépositions en de se contractent avec l'article, de plus el donne del. Exemple résolu : ¿Dónde está la farmacia ? Está al lado del supermercado, entre la panadería y el banco. Décomposition : al lado de, entre, contraction del.",
+   "ecran": "pharmacie",
+   "id": "p26",
+   "texte": "Al lado del supermercado, entre deux commerces."
+  },
+  {
+   "dit": "S'orienter : demander et indiquer le chemin. Pour indiquer le chemin, les verbes et directions : ir, aller, Vaya ou Ve, à l'impératif ; seguir, suivre, Siga recto ; girar ou torcer, tourner, Gire a la derecha ; cruzar, traverser, Cruce la calle ; tomar ou coger, prendre, Tome la segunda calle.",
+   "ecran": "chemin_verbes",
+   "id": "p27",
+   "texte": "Vaya, Siga recto, Gire, Cruce, Tome."
+  },
+  {
+   "dit": "Exemple résolu : pour aller à la gare, siga recto, gire a la izquierda en el semáforo y tome la segunda calle. La estación está al fondo. Structure : impératifs, siga, gire, tome, et prépositions, a la izquierda, al fondo.",
+   "ecran": "chemin",
+   "id": "p28",
+   "texte": "Siga recto, gire, tome la segunda calle."
+  },
+  {
+   "dit": "Grammaire liée : l'impératif du vouvoiement usted pour orienter, comme Siga recto y gire a la derecha. Contractions obligatoires : a plus el donne al, Voy al mercado ; de plus el donne del, Cerca del parque. Différence ser et estar : ser, caractéristique permanente, La tienda es grande ; estar, localisation ou état, La tienda está en la esquina. Exemple contrasté : El banco es moderno y está a la derecha de la plaza. Question avec ¿Dónde ? : ¿Dónde, suivi de estar et du sujet, comme ¿Dónde están las llaves ?",
+   "ecran": "contractions",
+   "id": "p29",
+   "texte": "Impératif usted, al, del, ser et estar."
+  },
+  {
+   "dit": "Application, mini-dialogue type : Perdone, ¿dónde está el ayuntamiento ? Está cerca de aquí. Siga recto, cruce la plaza y gire a la izquierda. Está delante de la iglesia. Muchas gracias. De nada. Repères mobilisés : cerca de, recto, cruzar, a la izquierda, delante de.",
+   "ecran": "dialogue_mairie",
+   "id": "p30",
+   "texte": "¿Dónde está el ayuntamiento ?"
+  },
+  {
+   "dit": "Retenons l'essentiel : les questions, totale oui ou non, partielle avec interrogatif en tête, qué pour une nature, cuál pour un choix ; cuánto s'accorde avec le nom ; réponses ciblées, ou No lo sé et Creo que en cas d'incertitude ; décrire, forme, taille, matière, couleur, adjectif accordé, ordre taille, forme, couleur, matière ; verbes, ser pour le permanent, tener pour la possession, estar pour l'état et le lieu ; localiser, estar et prépositions ; orienter, impératif usted ; contractions al et del.",
+   "ecran": "recap",
+   "id": "p31",
+   "texte": "Questions, description, localisation : l'essentiel."
+  }
+ ],
+ "titre": "Poser des questions et décrire son environnement"
+}

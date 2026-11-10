@@ -1,0 +1,297 @@
+{
+ "cours": 6753,
+ "titre": "Lois internes et groupes : la structure en quatre vérifications",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Structures algébriques",
+   "titre": "Lois internes et groupes : la structure en quatre vérifications",
+   "sous": "Associativité, élément neutre, symétriques, commutativité : de la loi a étoile b au groupe commutatif",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Additionner, multiplier… et si l'opération elle-même devenait l'objet d'étude ?"
+  },
+  "lci_def": {
+   "type": "formule",
+   "kicker": "Loi de composition interne",
+   "tex": "* : E \\times E \\to E, \\quad (a, b) \\mapsto a * b \\in E",
+   "note": "Deux éléments de E entrent, un élément de E ressort : on ne quitte jamais l'ensemble."
+  },
+  "ex_lci": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge · une loi sur les réels",
+   "titre": "La loi que nous suivrons jusqu'au groupe",
+   "tex": [
+    "a * b = a + b - 3",
+    "a, b \\in \\mathbb{R} \\Rightarrow a * b \\in \\mathbb{R}"
+   ]
+  },
+  "assoc_def": {
+   "type": "formule",
+   "kicker": "Propriété · associativité",
+   "tex": "(a * b) * c = a * (b * c)",
+   "note": "Les parenthèses ne comptent pas : on peut composer dans l'ordre qu'on veut."
+  },
+  "ex_assoc": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge · associativité",
+   "titre": "Les deux parenthésages donnent le même résultat",
+   "tex": [
+    "(a * b) * c = (a + b - 3) + c - 3",
+    "a * (b * c) = a + (b + c - 3) - 3",
+    "(a * b) * c = a * (b * c) = a + b + c - 6"
+   ]
+  },
+  "neutre_def": {
+   "type": "formule",
+   "kicker": "Propriété · élément neutre",
+   "tex": "a * e = e * a = a",
+   "note": "e ne change rien, ni à droite ni à gauche : c'est l'identité de la loi."
+  },
+  "ex_neutre": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge · chercher le neutre",
+   "titre": "Résoudre a étoile e égale a",
+   "tex": [
+    "a * e = a + e - 3 = a",
+    "e - 3 = 0 \\qquad e = 3",
+    "a * 3 = a + 3 - 3 = a"
+   ]
+  },
+  "sym_def": {
+   "type": "formule",
+   "kicker": "Propriété · élément symétrique",
+   "tex": "a * a' = a' * a = e",
+   "note": "Le symétrique a prime annule a : leur composée redonne l'élément neutre."
+  },
+  "ex_sym": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge · chercher le symétrique",
+   "titre": "Résoudre a étoile a prime égale le neutre",
+   "tex": [
+    "a * a' = a + a' - 3 = 3",
+    "a' = 6 - a",
+    "a * (6 - a) = 3"
+   ]
+  },
+  "commut": {
+   "type": "etape",
+   "kicker": "Propriété · commutativité",
+   "titre": "L'ordre des deux éléments ne compte pas",
+   "tex": [
+    "a * b = b * a",
+    "a * b = a + b - 3 = b + a - 3 = b * a"
+   ]
+  },
+  "groupe_def": {
+   "type": "etape",
+   "kicker": "Structure de groupe",
+   "titre": "Trois conditions, et quatre avec la commutativité",
+   "tex": [
+    "\\text{associativité}",
+    "e \\text{ neutre dans } G",
+    "a' \\text{ symétrique dans } G"
+   ]
+  },
+  "ex_groupe": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge · le verdict",
+   "titre": "Notre loi coche toutes les cases",
+   "tex": [
+    "e = 3 \\qquad a' = 6 - a",
+    "(\\mathbb{R}, *) \\text{ groupe commutatif}"
+   ]
+  },
+  "equation": {
+   "type": "formule",
+   "kicker": "Équations dans un groupe",
+   "tex": "a * x = b \\iff x = a^{-1} * b",
+   "note": "Une seule solution, toujours : on compose à gauche par le symétrique de a."
+  },
+  "eq_demo": {
+   "type": "etape",
+   "kicker": "Pourquoi la solution est unique",
+   "titre": "Composer par le symétrique, des deux côtés",
+   "tex": [
+    "a * (a^{-1} * b) = (a * a^{-1}) * b = b",
+    "a^{-1} * (a * x) = a^{-1} * b",
+    "x = a^{-1} * b"
+   ]
+  },
+  "groupe_add": {
+   "type": "etape",
+   "kicker": "Groupe fondamental · l'addition des réels",
+   "titre": "Le modèle que tout le monde connaît",
+   "tex": [
+    "(\\mathbb{R}, +) \\text{ groupe commutatif}",
+    "e = 0 \\qquad \\text{symétrique : } -a"
+   ]
+  },
+  "groupe_mult": {
+   "type": "etape",
+   "kicker": "Groupe fondamental · la multiplication",
+   "titre": "Il faut retirer zéro pour que tout marche",
+   "tex": [
+    "(\\mathbb{R}^*, \\times) \\text{ groupe commutatif}",
+    "e = 1 \\qquad \\text{symétrique : } \\frac{1}{a}"
+   ]
+  },
+  "piege": {
+   "type": "etape",
+   "kicker": "Le piège · un faux groupe",
+   "titre": "Un seul élément sans symétrique suffit à tout casser",
+   "tex": [
+    "(\\mathbb{R}, \\times) \\text{ : pas un groupe}",
+    "0 \\text{ sans inverse}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "LCI : E × E → E, on reste dans E",
+    "Associativité : parenthèses libres",
+    "Neutre e, symétrique a′ pour chacun",
+    "Groupe : les trois conditions réunies",
+    "Équation a ∗ x = b : solution unique"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Lois internes et groupes : vérifier avant de conclure.",
+   "dit": "Bienvenue dans ce cours consacré aux lois de composition internes et aux groupes. Question de départ : que faut-il vérifier pour qu'une opération fabrique une vraie structure ? Nous suivrons une seule loi fil rouge, de sa définition jusqu'au groupe commutatif, nous montrerons pourquoi les équations y ont une solution unique, et nous retrouverons les deux groupes que vous utilisez depuis toujours."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "texte": "Et si l'opération devenait l'objet d'étude ?",
+   "dit": "D'habitude, on calcule avec l'addition et la multiplication sans les regarder. Ici, nous inversons le point de vue : l'opération devient l'objet d'étude. On la nomme étoile, on l'applique à un ensemble, et on examine ses propriétés une à une. C'est la naissance des structures algébriques, et le groupe en est la première grande forme."
+  },
+  {
+   "id": "p03",
+   "ecran": "lci_def",
+   "texte": "Une LCI : deux éléments de E, un résultat encore dans E.",
+   "dit": "On appelle loi de composition interne sur un ensemble E une application de E croix E dans E : à deux éléments a et b de E, elle associe un unique élément, noté a étoile b, qui appartient encore à E. Le mot interne est l'essentiel : le résultat ne sort jamais de l'ensemble. L'addition est interne aux réels ; la soustraction, elle, n'est pas interne aux entiers naturels."
+  },
+  {
+   "id": "p04",
+   "ecran": "ex_lci",
+   "texte": "Fil rouge : a ∗ b = a + b − 3, interne aux réels.",
+   "dit": "Voici notre loi fil rouge, définie sur les réels par a étoile b égale a plus b moins trois. Montrons qu'elle est interne : si a et b sont réels, a plus b est réel, et retrancher trois donne encore un réel. Donc a étoile b appartient aux réels. Toute la suite consiste à tester cette loi, propriété après propriété."
+  },
+  {
+   "id": "p05",
+   "ecran": "assoc_def",
+   "texte": "Associativité : les parenthèses ne comptent pas.",
+   "dit": "Première propriété : l'associativité. Une loi étoile est associative si, pour tous a, b et c, a étoile b, le tout étoile c, égale a étoile, b étoile c. Les parenthèses indiquent l'ordre de composition : si elles ne changent pas le résultat, on écrit a étoile b étoile c sans ambiguïté. Sans associativité, chaque parenthésage devient un calcul différent."
+  },
+  {
+   "id": "p06",
+   "ecran": "ex_assoc",
+   "texte": "Fil rouge : les deux calculs donnent a + b + c − 6.",
+   "dit": "Testons l'associativité. D'un côté, a étoile b vaut a plus b moins trois ; composer avec c donne a plus b plus c moins six. De l'autre, b étoile c vaut b plus c moins trois ; composer a avec ce résultat donne encore a plus b plus c moins six. Les deux parenthésages coïncident : la loi est associative."
+  },
+  {
+   "id": "p07",
+   "ecran": "neutre_def",
+   "texte": "Neutre e : composer avec lui ne change rien.",
+   "dit": "Deuxième objet : l'élément neutre. Une loi admet un neutre e si, pour tout a, a étoile e égale e étoile a égale a. Composer avec e ne doit rien changer, ni à droite ni à gauche, car rien ne dit que la loi est commutative. Pour l'addition, le neutre est zéro ; pour la multiplication, c'est un. Toute la question est de le retrouver quand la loi est nouvelle."
+  },
+  {
+   "id": "p08",
+   "ecran": "ex_neutre",
+   "texte": "Fil rouge : a + e − 3 = a donne e = 3.",
+   "dit": "Cherchons le neutre de notre loi. On veut e tel que a étoile e égale a pour tout a. Or a étoile e vaut a plus e moins trois : l'égalité donne e moins trois égale zéro, donc e égale trois. Vérification : a étoile trois vaut a, et trois étoile a aussi. Le neutre de cette loi décalée n'est pas zéro, c'est trois : le décalage de la loi l'a déplacé."
+  },
+  {
+   "id": "p09",
+   "ecran": "sym_def",
+   "texte": "Symétrique : celui qui ramène au neutre.",
+   "dit": "Troisième objet : le symétrique. Quand une loi admet un neutre e, un élément a possède un symétrique, noté a prime, si a étoile a prime égale a prime étoile a égale e. Le symétrique annule a : leur composée redonne le neutre. Pour l'addition, c'est l'opposé ; pour la multiplication des non nuls, c'est l'inverse. Une loi nouvelle impose de le recalculer."
+  },
+  {
+   "id": "p10",
+   "ecran": "ex_sym",
+   "texte": "Fil rouge : le symétrique de a est 6 − a.",
+   "dit": "Cherchons le symétrique d'un réel a. On veut a prime tel que a étoile a prime égale le neutre, trois. Or a étoile a prime vaut a plus a prime moins trois : l'égalité donne a prime égale six moins a, qui est bien un réel. Tout élément possède donc un symétrique. Vérification : a étoile, six moins a, vaut trois, le neutre attendu."
+  },
+  {
+   "id": "p11",
+   "ecran": "commut",
+   "texte": "Fil rouge : a ∗ b = b ∗ a, la loi est commutative.",
+   "dit": "Dernière propriété : la commutativité. Une loi est commutative si a étoile b égale b étoile a pour tous a et b : l'ordre ne change pas le résultat. Pour notre loi, a étoile b vaut a plus b moins trois, et b étoile a vaut b plus a moins trois : comme l'addition des réels est commutative, la loi est commutative. Elle n'est pas nécessaire pour former un groupe, seulement un confort supplémentaire."
+  },
+  {
+   "id": "p12",
+   "ecran": "groupe_def",
+   "texte": "Groupe : associative, neutre, symétriques pour tous.",
+   "dit": "Assemblons la définition centrale. Un ensemble G muni d'une loi interne étoile est un groupe si trois conditions sont réunies : la loi est associative, elle admet un élément neutre dans G, et tout élément de G admet un symétrique dans G. Si de plus la loi est commutative, le groupe est dit commutatif, ou abélien. Sans associativité, les calculs deviennent ambigus ; sans neutre, pas de repère ; sans symétriques, impossible de revenir en arrière."
+  },
+  {
+   "id": "p13",
+   "ecran": "ex_groupe",
+   "texte": "Verdict : (ℝ, ∗) est un groupe commutatif.",
+   "dit": "Verdict pour notre loi fil rouge. Elle est interne aux réels, associative, elle admet le neutre trois, tout réel a possède le symétrique six moins a, et elle est commutative. Toutes les cases sont cochées : les réels munis de cette loi forment un groupe commutatif. Retenez la méthode, valable pour tout énoncé de ce type : vérifier les conditions dans l'ordre, en réutilisant les résultats déjà démontrés."
+  },
+  {
+   "id": "p14",
+   "ecran": "equation",
+   "texte": "Dans un groupe : a ∗ x = b a exactement une solution.",
+   "dit": "La récompense est immédiate. Dans un groupe, l'équation a étoile ixe égale b admet une solution unique : ixe égale le symétrique de a, composé avec b. On note souvent ce symétrique a puissance moins un. On peut donc toujours isoler l'inconnue, comme avec une addition ordinaire, sans aucune discussion de cas."
+  },
+  {
+   "id": "p15",
+   "ecran": "eq_demo",
+   "texte": "Composer par le symétrique : existence et unicité.",
+   "dit": "Pourquoi cette solution marche-t-elle, et pourquoi est-elle la seule ? Existence : par associativité, a étoile, le symétrique de a étoile b, se regroupe en le neutre étoile b, soit b. Unicité : si a étoile ixe égale b, on compose à gauche par le symétrique de a des deux côtés ; le membre de gauche se simplifie en ixe, et l'on obtient forcément ixe égale le symétrique de a étoile b. Une seule solution, et elle fonctionne."
+  },
+  {
+   "id": "p16",
+   "ecran": "groupe_add",
+   "texte": "(ℝ, +) : neutre 0, symétrique −a, groupe commutatif.",
+   "dit": "Premier groupe fondamental : les réels munis de l'addition. La somme de deux réels est un réel, l'addition est associative et commutative, son neutre est zéro, et le symétrique de a est son opposé, moins a, car a plus moins a vaut zéro. Les réels avec l'addition forment un groupe commutatif, le modèle de référence du chapitre."
+  },
+  {
+   "id": "p17",
+   "ecran": "groupe_mult",
+   "texte": "(ℝ*, ×) : neutre 1, symétrique 1/a, groupe commutatif.",
+   "dit": "Deuxième groupe fondamental : les réels non nuls munis de la multiplication. Le produit de deux non nuls est non nul, la multiplication est associative et commutative, son neutre est un, et le symétrique de a est son inverse, un sur a. Les réels non nuls avec la multiplication forment donc un groupe commutatif. Le mot non nuls est décisif, comme le montre le piège qui suit."
+  },
+  {
+   "id": "p18",
+   "ecran": "piege",
+   "texte": "(ℝ, ×) n'est pas un groupe : 0 n'a pas d'inverse.",
+   "dit": "Piège classique : les réels munis de la multiplication ne forment pas un groupe. Neutre, associativité, commutativité semblent réunis, mais un élément fait tout échouer : zéro. Aucun réel multiplié par zéro ne donne un, le neutre : zéro n'a pas de symétrique. C'est pour cela que le groupe multiplicatif retire zéro dès le départ. Une structure se juge sur tous ses éléments, sans exception."
+  },
+  {
+   "id": "p19",
+   "ecran": "recap",
+   "texte": "Quatre vérifications, un groupe, une équation résolue.",
+   "dit": "Pour finir, retenez la méthode complète. Une loi interne ne fait jamais sortir de l'ensemble. On teste l'associativité, on cherche le neutre, puis le symétrique de chaque élément : réunies, ces trois conditions définissent un groupe, commutatif si l'ordre ne compte pas. Dans un groupe, toute équation se résout en composant par le symétrique. Vos deux modèles : les réels avec l'addition, et les réels non nuls avec la multiplication."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La loi interne et ses quatre propriétés"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Le groupe, ses équations et les modèles dans les réels",
+   "pont": {
+    "texte": "Partie 2 : le groupe, ses équations et les groupes des réels.",
+    "dit": "Partie deux : assembler la structure de groupe. Nous réunirons les trois conditions, nous appliquerons le verdict à notre loi fil rouge, nous résoudrons les équations dans un groupe, puis nous retrouverons les deux groupes fondamentaux des réels et le piège de la multiplication."
+   }
+  }
+ ]
+}

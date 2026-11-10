@@ -37,6 +37,7 @@ export function validerTelephone(brut: string, indicatif = INDICATIFS.CM): CleTe
  * ne plus avoir de mot de passe. Les comptes créés par e-mail sont retrouvés par Google (rapprochement par e-mail).
  */
 export async function retrouverAncienCompte(client: Client, p: { telephone: string; motDePasse: string; indicatif?: string }): Promise<Session> {
+  suivre('login_started', { methode: 'ancien_compte' });
   const phone = normaliserTelephone(p.telephone, p.indicatif);
   const { data, error } = await client.auth.signInWithPassword({ phone, password: p.motDePasse });
   if (error) {

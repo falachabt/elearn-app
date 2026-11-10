@@ -1,0 +1,278 @@
+{
+ "cours": 6697,
+ "titre": "Inégalité triangulaire et médiatrice d'un segment",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Géométrie des distances",
+   "titre": "Inégalité triangulaire et médiatrice d'un segment",
+   "sous": "Distances et points équidistants : décider si un triangle existe, et où se trouve un point",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Tout ce cours compare des distances : des sommes de longueurs qui décident d'une position."
+  },
+  "inegalite": {
+   "type": "formule",
+   "kicker": "Inégalité triangulaire",
+   "tex": "AC \\leq AB + BC",
+   "note": "Vraie pour le plus grand côté comme pour chacun des trois côtés."
+  },
+  "egalite": {
+   "type": "phrase",
+   "kicker": "Le cas d'égalité",
+   "texte": "Égalité : le détour par B ne coûte rien, B est sur le segment [AC]."
+  },
+  "ex_impossible": {
+   "type": "etape",
+   "kicker": "Exemple · trois, cinq, neuf",
+   "titre": "Le plus grand côté décide",
+   "tex": [
+    "3 + 5 = 8\\ \\text{cm} \\qquad 8 < 9",
+    "\\text{donc } 3 + 5 < 9 \\text{ : pas de triangle}"
+   ]
+  },
+  "methode": {
+   "type": "phrase",
+   "kicker": "La méthode",
+   "texte": "Méthode : comparer le plus grand côté à la somme des deux autres."
+  },
+  "segment": {
+   "type": "formule",
+   "kicker": "Caractériser un segment",
+   "tex": "M \\in [AB] \\iff MA + MB = AB",
+   "note": "Une égalité de distances suffit à placer le point sur le segment."
+  },
+  "segment_sens": {
+   "type": "etape",
+   "kicker": "Les deux sens de la propriété",
+   "titre": "Un aller-retour complet",
+   "tex": [
+    "M \\in [AB] \\Rightarrow MA + MB = AB",
+    "MA + MB = AB \\Rightarrow M \\in [AB]"
+   ]
+  },
+  "ex_segment": {
+   "type": "etape",
+   "kicker": "Exemple · segment de sept",
+   "titre": "Quatre plus trois égale sept",
+   "tex": [
+    "MA + MB = 4 + 3 = 7\\ \\text{cm} = AB",
+    "\\text{donc } M \\in [AB]"
+   ]
+  },
+  "mediatrice_def": {
+   "type": "phrase",
+   "kicker": "La médiatrice · définition",
+   "texte": "La médiatrice : la perpendiculaire au segment, en son milieu.",
+   "anim": {
+    "nom": "lieu_equidistant_fig",
+    "hauteur": 200
+   }
+  },
+  "mediatrice_prop": {
+   "type": "formule",
+   "kicker": "La médiatrice · caractérisation",
+   "tex": "\\begin{aligned} & M \\text{ sur la médiatrice de } [AB] \\\\ & \\iff MA = MB \\end{aligned}",
+   "note": "Être sur la médiatrice, c'est être à égale distance de A et de B."
+  },
+  "ex_mediatrice": {
+   "type": "etape",
+   "kicker": "Exemple · cinq et cinq",
+   "titre": "Équidistant, donc sur la médiatrice",
+   "tex": [
+    "MA = MB = 5\\ \\text{cm}",
+    "\\text{donc } M \\text{ sur la médiatrice de } [AB]"
+   ],
+   "anim": {
+    "nom": "mediatrice_exemple_fig",
+    "hauteur": 140
+   }
+  },
+  "mediatrice_sens": {
+   "type": "etape",
+   "kicker": "La médiatrice · les deux sens",
+   "titre": "Équidistance dans les deux sens",
+   "tex": [
+    "M \\text{ sur la médiatrice} \\Rightarrow MA = MB",
+    "MA = MB \\Rightarrow M \\text{ sur la médiatrice}"
+   ]
+  },
+  "construction_a": {
+   "type": "etape",
+   "kicker": "Construire la médiatrice · début",
+   "titre": "Ouvrir le compas, premier arc",
+   "tex": [
+    "\\text{un : ouvrir le compas,}",
+    "\\text{plus que la moitié de } AB",
+    "\\text{deux : un arc centré en } A"
+   ]
+  },
+  "construction_b": {
+   "type": "etape",
+   "kicker": "Construire la médiatrice · fin",
+   "titre": "Second arc, puis la droite",
+   "tex": [
+    "\\text{trois : un arc centré en } B \\text{, même ouverture}",
+    "\\text{les arcs se coupent en } M \\text{ et } N",
+    "\\text{quatre : tracer la droite } (MN)"
+   ]
+  },
+  "justification": {
+   "type": "phrase",
+   "kicker": "Pourquoi ça marche",
+   "texte": "M et N sont équidistants de A et de B : la droite (MN) est la médiatrice."
+  },
+  "ex_construction": {
+   "type": "etape",
+   "kicker": "Exemple · segment de quatre",
+   "titre": "Une ouverture de trois suffit",
+   "tex": [
+    "AB = 4\\ \\text{cm} \\qquad \\tfrac{AB}{2} = 2\\ \\text{cm}",
+    "\\text{ouverture choisie : } 3\\ \\text{cm} > 2\\ \\text{cm}",
+    "\\text{arcs en } A \\text{ et } B \\text{, puis la droite } (MN)"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Un côté ≤ somme des deux autres",
+    "Égalité : B est entre A et C",
+    "M sur [AB] si MA + MB = AB",
+    "M sur la médiatrice si MA = MB",
+    "Construction : deux arcs, droite (MN)"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de géométrie consacré aux distances. Trois questions le traversent : quand trois longueurs peuvent-elles former un triangle, comment reconnaître qu'un point appartient à un segment, et comment décrire les points situés à égale distance de deux autres. Les réponses tiennent en trois égalités ou inégalités très simples, que nous allons énoncer, appliquer et construire.",
+   "texte": "Inégalité triangulaire et médiatrice : les distances décident.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge est le suivant : comparer des distances permet de décider d'une position. Une somme de deux longueurs, comparée à une troisième, dira si un triangle existe. Une somme comparée à la longueur du segment dira si un point est dessus. Une égalité entre deux distances dira si un point est sur une droite remarquable, la médiatrice.",
+   "texte": "Comparer des distances pour décider d'une position.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Première propriété, l'inégalité triangulaire : pour trois points a, bé et cé du plan, la distance a cé est toujours inférieure ou égale à la somme des distances a bé et bé cé. Autrement dit, aller directement de a à cé n'est jamais plus long que de passer par bé : le détour ne raccourcit jamais le trajet. L'énoncé vaut pour chaque côté d'un triangle, pas seulement pour celui que l'on a dessiné.",
+   "texte": "AC ≤ AB + BC : le détour ne raccourcit jamais.",
+   "ecran": "inegalite"
+  },
+  {
+   "id": "p04",
+   "dit": "Regardons le cas limite, celui de l'égalité. Si a cé égale a bé plus bé cé, alors le détour par bé ne coûte rien du tout, ce qui n'est possible que si bé se trouve exactement sur le trajet : les trois points sont alignés, et bé appartient au segment a cé. Retenez ce réflexe : une égalité dans l'inégalité triangulaire signale toujours un alignement.",
+   "texte": "Égalité : les trois points sont alignés.",
+   "ecran": "egalite"
+  },
+  {
+   "id": "p05",
+   "dit": "Premier exemple résolu : peut-on construire un triangle dont les côtés mesurent trois centimètres, cinq centimètres et neuf centimètres ? On commence par repérer la plus grande longueur, neuf centimètres. On additionne les deux autres : trois plus cinq égale huit centimètres. Or huit est strictement plus petit que neuf : la somme des deux petits côtés ne suffit même pas à atteindre le grand côté.",
+   "texte": "3, 5 et 9 cm : le test du plus grand côté.",
+   "ecran": "ex_impossible"
+  },
+  {
+   "id": "p06",
+   "dit": "Conclusion de l'exemple : l'inégalité triangulaire n'est pas vérifiée, donc ce triangle n'est pas constructible. Aucun tracé au compas ne pourra jamais le fermer : les deux petits côtés, mis bout à bout, restent trop courts. La méthode générale est donc très courte : identifier le plus grand côté, le comparer à la somme des deux autres, et conclure.",
+   "texte": "8 < 9 : ce triangle n'existe pas.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p07",
+   "dit": "Deuxième idée du cours : caractériser un segment par les distances. Un point emme appartient au segment a bé si et seulement si la somme des distances emme a et emme bé égale exactement la longueur a bé. Si le point est sur le segment, le trajet de a à bé en passant par emme ne fait aucun détour, donc les deux morceaux reconstituent le segment entier.",
+   "texte": "M ∈ [AB] si et seulement si MA + MB = AB.",
+   "ecran": "segment"
+  },
+  {
+   "id": "p08",
+   "dit": "Cette propriété fonctionne dans les deux sens, et c'est ce qui la rend si utile. Sens direct : si emme est sur le segment, alors emme a plus emme bé égale a bé. Sens réciproque : si l'égalité de distances est vérifiée, alors emme est nécessairement sur le segment, entre a et bé. En exercice, c'est presque toujours le sens réciproque qui sert : on calcule la somme, et on conclut sur la position.",
+   "texte": "Deux sens : du point vers l'égalité, et retour.",
+   "ecran": "segment_sens"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple : un segment a bé mesure sept centimètres, et un point emme vérifie emme a égale quatre centimètres et emme bé égale trois centimètres. Où se trouve emme ? On calcule la somme : quatre plus trois égale sept centimètres. Cette somme égale exactement a bé, donc, d'après la caractérisation, emme appartient au segment a bé, à quatre centimètres de a et à trois centimètres de bé.",
+   "texte": "4 + 3 = 7 = AB : M est sur le segment.",
+   "ecran": "ex_segment"
+  },
+  {
+   "id": "p10",
+   "dit": "Troisième idée, la médiatrice d'un segment. Par définition, la médiatrice du segment a bé est la droite perpendiculaire à ce segment et passant par son milieu. Elle coupe donc le segment en deux parties égales, à angle droit. C'est une droite de symétrie du segment : en pliant le long de la médiatrice, le point a vient exactement sur le point bé.",
+   "texte": "La médiatrice : perpendiculaire, au milieu.",
+   "ecran": "mediatrice_def"
+  },
+  {
+   "id": "p11",
+   "dit": "La propriété qui fait tout l'intérêt de la médiatrice est sa caractérisation par les distances : un point emme appartient à la médiatrice du segment a bé si et seulement si emme a égale emme bé, c'est-à-dire si emme est à égale distance des deux extrémités. Là encore, les deux sens comptent : tout point de la médiatrice est équidistant de a et de bé, et tout point équidistant de a et de bé est sur la médiatrice.",
+   "texte": "Sur la médiatrice ⇔ MA = MB : équidistant.",
+   "ecran": "mediatrice_prop"
+  },
+  {
+   "id": "p11b",
+   "dit": "Déplions cette caractérisation dans les deux sens, car les exercices utilisent tantôt l'un, tantôt l'autre. Si un point est sur la médiatrice, alors il est automatiquement à égale distance des deux extrémités : c'est le sens qui donne une égalité à exploiter dans un calcul. Et réciproquement, si un point est à égale distance des deux extrémités, alors il est forcément sur la médiatrice : c'est le sens qui permet de placer un point sur une droite sans même la tracer.",
+   "texte": "Deux sens : de la médiatrice vers l'égalité, et retour.",
+   "ecran": "mediatrice_sens"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple : un segment a bé mesure six centimètres, et un point emme vérifie emme a égale emme bé égale cinq centimètres. Que peut-on dire de emme ? Puisque ses distances à a et à bé sont égales, emme est équidistant des deux extrémités : d'après la caractérisation, il appartient à la médiatrice du segment a bé. Au passage, le triangle a emme bé est isocèle en emme, puisque ses deux côtés emme a et emme bé sont égaux.",
+   "texte": "MA = MB = 5 cm : M est sur la médiatrice.",
+   "ecran": "ex_mediatrice"
+  },
+  {
+   "id": "p13",
+   "dit": "Reste à savoir construire cette médiatrice, à la règle et au compas. Première étape : ouvrir le compas à une longueur supérieure à la moitié du segment. Ce détail est essentiel : avec une ouverture trop petite, les arcs ne se rencontreraient jamais. Deuxième étape : tracer un arc de cercle centré en a, assez grand pour dépasser des deux côtés du segment.",
+   "texte": "Temps un et deux : ouvrir large, arc centré en A.",
+   "ecran": "construction_a"
+  },
+  {
+   "id": "p13b",
+   "dit": "Troisième étape : sans changer l'ouverture du compas, tracer un arc de cercle centré en bé. Les deux arcs se coupent en deux points, l'un d'un côté du segment, l'autre de l'autre côté ; on les appelle emme et enne. Quatrième étape : tracer à la règle la droite qui passe par emme et par enne. C'est la médiatrice cherchée, obtenue sans aucune mesure de longueur.",
+   "texte": "Temps trois et quatre : second arc, droite (MN).",
+   "ecran": "construction_b"
+  },
+  {
+   "id": "p14",
+   "dit": "Pourquoi cette construction fonctionne-t-elle ? Les points emme et enne sont sur les deux arcs, tracés avec le même rayon : chacun d'eux est donc à égale distance de a et de bé. D'après la caractérisation, emme et enne appartiennent tous les deux à la médiatrice du segment. Or deux points suffisent à définir une droite : la droite emme enne est donc exactement la médiatrice.",
+   "texte": "M et N équidistants : (MN) est la médiatrice.",
+   "ecran": "justification"
+  },
+  {
+   "id": "p15",
+   "dit": "Exemple complet : construire la médiatrice d'un segment a bé de quatre centimètres. La moitié de a bé vaut deux centimètres : on ouvre donc le compas à environ trois centimètres, ce qui est bien supérieur à deux. On trace un arc centré en a, puis un arc centré en bé avec la même ouverture ; les arcs se coupent en emme et en enne. On trace la droite emme enne : c'est la médiatrice du segment.",
+   "texte": "AB = 4 cm, ouverture 3 cm : les arcs, puis (MN).",
+   "ecran": "ex_construction"
+  },
+  {
+   "id": "p16",
+   "dit": "Récapitulons. Dans un triangle, chaque côté est inférieur ou égal à la somme des deux autres, avec égalité seulement si les points sont alignés. Un point est sur un segment exactement quand la somme de ses distances aux extrémités égale la longueur du segment. Un point est sur la médiatrice exactement quand il est équidistant des extrémités. Et la médiatrice se construit au compas, par deux arcs de même rayon.",
+   "texte": "Trois critères de position, une construction.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Inégalité triangulaire et points d'un segment"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "La médiatrice : définition, propriété et construction",
+   "pont": {
+    "texte": "Partie 2 : la médiatrice, ses points équidistants et sa construction au compas.",
+    "dit": "Partie deux : la médiatrice d'un segment. Nous allons la définir, découvrir sa propriété d'équidistance qui permet de reconnaître ses points à coup sûr, puis apprendre à la construire à la règle et au compas, avec sa justification complète."
+   }
+  }
+ ]
+}

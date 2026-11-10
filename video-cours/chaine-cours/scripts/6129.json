@@ -1,0 +1,406 @@
+{
+ "cours": 6129,
+ "titre": "Emprunts : mensualités, coût total et tableau d'amortissement",
+ "matiere": "Mathématiques financières",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Concours ESSEC · Mathématiques financières",
+   "titre": "Emprunts : mensualités, coût total et tableau d'amortissement",
+   "sous": "Annuités constantes, taux annuel effectif global, in fine, taux variable et différé : calculer juste, puis choisir",
+   "anim": {
+    "nom": "emprunt_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Recevoir un capital aujourd'hui, le rendre demain avec intérêts.",
+   "anim": {
+    "nom": "emprunt_fig",
+    "hauteur": 150
+   }
+  },
+  "vocabulaire": {
+   "type": "etape",
+   "kicker": "Le vocabulaire de l'emprunt",
+   "titre": "Quatre grandeurs à identifier dans chaque énoncé",
+   "tex": [
+    "C : \\text{le capital emprunté, reçu aujourd'hui}",
+    "i, \\ n : \\text{le taux par période et le nombre d'échéances}",
+    "A : \\text{la mensualité constante qui rembourse tout}"
+   ]
+  },
+  "types": {
+   "type": "etape",
+   "kicker": "Les types d'emprunts",
+   "titre": "Le taux d'abord, l'objet ensuite",
+   "tex": [
+    "\\text{taux fixe : la mensualité ne bouge jamais}",
+    "\\text{taux variable : indexé, par exemple sur l'Euribor}",
+    "\\text{immobilier : quinze à vingt-cinq ans}",
+    "\\text{auto et personnel : plus courts, plus libres}"
+   ]
+  },
+  "principe": {
+   "type": "etape",
+   "kicker": "L'amortissement par mensualités constantes",
+   "titre": "Une mensualité constante, deux parts qui basculent",
+   "tex": [
+    "A = I_k + Am_k",
+    "I_k = i \\times CRD_{k-1} \\qquad Am_k = A - I_k"
+   ],
+   "anim": {
+    "nom": "emprunt_fig",
+    "hauteur": 170,
+    "mode": "tableau"
+   }
+  },
+  "mensualite_formule": {
+   "type": "formule",
+   "kicker": "La formule de la mensualité",
+   "tex": "A = C \\times \\frac{i \\, (1 + i)^n}{(1 + i)^n - 1}",
+   "note": "i : taux par période, annuel divisé par douze si mensuel."
+  },
+  "ex_mensualite": {
+   "type": "etape",
+   "kicker": "Exemple · cent mille euros sur vingt ans",
+   "titre": "Convertir le taux, compter les mois, appliquer",
+   "tex": [
+    "C = 100\\,000\\ \\text{€}, \\quad i = \\tfrac{2\\,\\%}{12} \\approx 0{,}1667\\,\\%, \\quad n = 240",
+    "A \\approx 505{,}88\\ \\text{€ par mois}",
+    "\\text{total remboursé} \\approx 121\\,412\\ \\text{€}"
+   ]
+  },
+  "sensibilite": {
+   "type": "phrase",
+   "kicker": "L'influence des paramètres",
+   "texte": "Capital et taux poussent la mensualité, la durée l'allège.",
+   "anim": {
+    "nom": "emprunt_fig",
+    "hauteur": 150
+   }
+  },
+  "cout_formule": {
+   "type": "formule",
+   "kicker": "Le coût total d'un emprunt",
+   "tex": "\\text{Coût total} = A \\times n \\qquad \\text{Intérêts} = A \\times n - C",
+   "note": "Le coût réel d'un emprunt, ce sont ses intérêts."
+  },
+  "ex_cout": {
+   "type": "etape",
+   "kicker": "Exemple · le prix de la durée",
+   "titre": "Même capital, deux durées, deux coûts",
+   "tex": [
+    "100\\,000\\ \\text{€ sur } 20 \\ \\text{ans : intérêts} \\approx 21\\,412\\ \\text{€}",
+    "\\text{sur } 15 \\ \\text{ans : } A \\approx 643{,}51\\ \\text{€}, \\ \\text{intérêts} \\approx 15\\,832\\ \\text{€}",
+    "\\text{plus court : mensualité plus lourde, emprunt moins cher}"
+   ]
+  },
+  "tableau": {
+   "type": "etape",
+   "kicker": "Le tableau d'amortissement",
+   "titre": "Trois relations, répétées ligne après ligne",
+   "tex": [
+    "\\text{colonnes : période, } CRD, \\ A, \\ I, \\ Am",
+    "I = i \\times CRD_{\\text{début}} \\qquad Am = A - I",
+    "CRD_{\\text{fin}} = CRD_{\\text{début}} - Am"
+   ],
+   "anim": {
+    "nom": "emprunt_fig",
+    "hauteur": 120,
+    "mode": "tableau"
+   }
+  },
+  "ex_tableau": {
+   "type": "etape",
+   "kicker": "Exemple · les trois premières lignes",
+   "titre": "Dix mille euros, cinq pour cent, trente-six mois",
+   "tex": [
+    "A \\approx 299{,}71\\ \\text{€} \\quad (10\\,000\\ \\text{€}, \\ 5\\,\\%, \\ 36 \\ \\text{mois})",
+    "\\text{mois } 1 : I = 41{,}67, \\ Am = 258{,}04, \\ CRD = 9\\,741{,}96",
+    "\\text{mois } 2 : I = 40{,}59, \\ Am = 259{,}12, \\ CRD = 9\\,482{,}84",
+    "\\text{mois } 3 : I = 39{,}51, \\ Am = 260{,}20, \\ CRD = 9\\,222{,}64"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Récap · calculer un emprunt",
+   "etapes": [
+    "La mensualité : inverser la valeur actuelle",
+    "Taux mensuel = taux annuel divisé par douze",
+    "Coût total = mensualité fois nombre de mois",
+    "Intérêts = coût total moins capital emprunté",
+    "Au tableau : les intérêts fondent, le CRD suit"
+   ]
+  },
+  "panorama": {
+   "type": "phrase",
+   "kicker": "Le panorama des emprunts",
+   "texte": "Amortissable, in fine, relais : trois logiques de remboursement.",
+   "anim": {
+    "nom": "emprunt_fig",
+    "hauteur": 150,
+    "mode": "tableau"
+   }
+  },
+  "taeg": {
+   "type": "etape",
+   "kicker": "Comparer · le taux annuel effectif global",
+   "titre": "Le taux affiché ne dit pas le coût réel",
+   "tex": [
+    "\\text{offre A : nominal } 2\\,\\%, \\quad TAEG \\ 2{,}5\\,\\%",
+    "\\text{offre B : nominal } 1{,}8\\,\\%, \\quad TAEG \\ 2{,}7\\,\\%",
+    "\\text{B affiche moins, A coûte moins : le TAEG tranche}"
+   ]
+  },
+  "dupont_taux": {
+   "type": "etape",
+   "kicker": "Exemple · l'impact du taux",
+   "titre": "Cent mille euros sur quinze ans, à deux puis trois pour cent",
+   "tex": [
+    "\\text{à } 2\\,\\% : A \\approx 643{,}51\\ \\text{€}, \\ \\text{intérêts} \\approx 15\\,832\\ \\text{€}",
+    "\\text{à } 3\\,\\% : A \\approx 690{,}58\\ \\text{€}, \\ \\text{intérêts} \\approx 24\\,305\\ \\text{€}",
+    "+1 \\ \\text{point de taux} : +47{,}07\\ \\text{€ par mois}",
+    "\\text{et environ } +8\\,473\\ \\text{€ d'intérêts au total}"
+   ]
+  },
+  "banques": {
+   "type": "etape",
+   "kicker": "Exemple · deux banques, deux philosophies",
+   "titre": "Deux cent mille euros : payer moins par mois, ou moins au total ?",
+   "tex": [
+    "\\text{A : } 2{,}5\\,\\%, \\ 20 \\ \\text{ans} : A \\approx 1\\,059{,}81\\ \\text{€}, \\ \\text{total} \\approx 254\\,353\\ \\text{€}",
+    "\\text{B : } 3\\,\\%, \\ 15 \\ \\text{ans} : A \\approx 1\\,381{,}16\\ \\text{€}, \\ \\text{total} \\approx 248\\,609\\ \\text{€}",
+    "\\text{B coûte moins au total, A pèse moins chaque mois}",
+    "\\text{le bon choix dépend du budget et de l'horizon}"
+   ]
+  },
+  "infini_formule": {
+   "type": "formule",
+   "kicker": "Cas spécial · l'emprunt in fine",
+   "tex": "\\text{Mensualité in fine} = C \\times i",
+   "note": "Intérêts seuls chaque période ; le capital entier tombe à la fin.",
+   "anim": {
+    "nom": "emprunt_fig",
+    "hauteur": 170
+   }
+  },
+  "ex_infini": {
+   "type": "etape",
+   "kicker": "Exemple · in fine en chiffres",
+   "titre": "Des mensualités légères, une sortie massive",
+   "tex": [
+    "100\\,000\\ \\text{€}, \\ 5 \\ \\text{ans}, \\ 5\\,\\% : \\ 416{,}67\\ \\text{€ par mois}",
+    "\\text{intérêts totaux} = 25\\,000\\ \\text{€} \\quad \\text{puis } 100\\,000\\ \\text{€ d'un coup}",
+    "\\text{exercice : } 50\\,000\\ \\text{€}, \\ 3 \\ \\text{ans}, \\ 6\\,\\% \\rightarrow 250\\ \\text{€ par mois, } 9\\,000\\ \\text{€ d'intérêts}"
+   ]
+  },
+  "variable_differe": {
+   "type": "etape",
+   "kicker": "Cas spéciaux · variable et différé",
+   "titre": "La souplesse se paie, en risque ou en intérêts",
+   "tex": [
+    "\\text{variable : le taux suit un indice, la mensualité peut grimper}",
+    "\\text{différé : intérêts seuls au début, capital intact}",
+    "\\text{les deux coûtent plus cher au total, en général}"
+   ]
+  },
+  "ex_final": {
+   "type": "etape",
+   "kicker": "Synthèse · l'exercice type du concours",
+   "titre": "Cent cinquante mille euros sur vingt ans",
+   "tex": [
+    "150\\,000\\ \\text{€}, \\ 20 \\ \\text{ans}, \\ 2\\,\\% : A \\approx 758{,}83\\ \\text{€}",
+    "\\text{coût total} \\approx 182\\,118\\ \\text{€}, \\ \\text{intérêts} \\approx 32\\,118\\ \\text{€}",
+    "\\text{à } 3\\,\\% : A \\approx 831{,}90\\ \\text{€}, \\ \\text{soit } +73{,}07\\ \\text{€ par mois}",
+    "\\text{méthode : convertir, calculer, puis interpréter}"
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "Stratégie de résolution",
+   "etapes": [
+    "Identifier : capital, taux, durée, type",
+    "Convertir le taux à la période du versement",
+    "Choisir la formule selon l'inconnue cherchée",
+    "Calculer, puis vérifier l'ordre de grandeur",
+    "Interpréter : coût total et profil de risque"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Mensualité constante : intérêts puis capital",
+    "Le TAEG, seul juge pour comparer deux offres",
+    "In fine : peu chaque mois, tout à la fin",
+    "Variable et différé : souplesse contre coût",
+    "Un emprunt se choisit au coût total"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Emprunts : calculer juste, puis choisir.",
+   "dit": "Bienvenue dans ce cours de mathématiques financières consacré aux emprunts. Emprunter, c'est recevoir un capital aujourd'hui et le rendre demain, augmenté d'intérêts, selon un échéancier précis. Nous allons calculer la mensualité, mesurer le coût total réel, lire un tableau d'amortissement, puis comparer les emprunts comme le jury l'attend."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "texte": "Un contrat : du capital contre un échéancier.",
+   "dit": "Un emprunt est un contrat : l'emprunteur reçoit une somme du prêteur et s'engage à la rembourser, augmentée d'intérêts, selon un échéancier fixé à l'avance. C'est un échange dans le temps : de l'argent tout de suite, contre une série de paiements futurs. Tout le cours consiste à donner un prix exact à cet échange."
+  },
+  {
+   "id": "p03",
+   "ecran": "vocabulaire",
+   "texte": "Capital, taux, durée, mensualité : les quatre données.",
+   "dit": "Quatre grandeurs structurent chaque énoncé. Le capital emprunté, la somme reçue au départ. Le taux d'intérêt, le prix de l'emprunt, exprimé en pourcentage annuel. La durée, le nombre d'échéances du remboursement. Et la mensualité, le paiement régulier qui éteint peu à peu la dette, capital et intérêts mêlés."
+  },
+  {
+   "id": "p04",
+   "ecran": "types",
+   "texte": "Fixe ou variable, immobilier, auto ou personnel.",
+   "dit": "On classe d'abord les emprunts par leur taux. À taux fixe, le taux ne bouge jamais : les mensualités sont prévisibles du premier au dernier mois. À taux variable, le taux suit un indice de référence, comme l'Euribor : la mensualité peut baisser, mais aussi grimper. On les classe aussi par leur objet : immobilier, sur quinze à vingt-cinq ans ; automobile, plus court ; personnel, libre d'emploi."
+  },
+  {
+   "id": "p05",
+   "ecran": "principe",
+   "texte": "Chaque mensualité paie des intérêts et rembourse du capital.",
+   "dit": "Le régime le plus courant est l'amortissement par mensualités constantes. Chaque mensualité se partage en deux parts : les intérêts, calculés sur le capital restant dû, et l'amortissement, la part qui rembourse vraiment le capital. Au fil du temps, le capital restant dû baisse, donc les intérêts fondent, et la part d'amortissement grossit d'autant : la mensualité, elle, ne change pas."
+  },
+  {
+   "id": "p06",
+   "ecran": "mensualite_formule",
+   "texte": "La mensualité : inverser la valeur actuelle du capital.",
+   "dit": "La formule de la mensualité vient du chapitre des annuités : le capital emprunté est la valeur actuelle des mensualités futures. On inverse donc la formule de la valeur actuelle. Deux conversions avant tout calcul : le taux périodique, taux annuel divisé par le nombre d'échéances par an, et le nombre total d'échéances, durée multipliée par ce même nombre."
+  },
+  {
+   "id": "p07",
+   "ecran": "ex_mensualite",
+   "texte": "Cent mille euros sur vingt ans : environ cinq cent six euros.",
+   "dit": "Exemple complet : cent mille euros empruntés sur vingt ans, au taux annuel de deux pour cent, remboursés chaque mois. Le taux mensuel vaut deux pour cent divisé par douze, et le nombre d'échéances vaut deux cent quarante. La formule donne une mensualité d'environ cinq cent six euros, pour un total remboursé proche de cent vingt et un mille quatre cents euros."
+  },
+  {
+   "id": "p08",
+   "ecran": "sensibilite",
+   "texte": "Trois paramètres, trois effets à connaître par cœur.",
+   "dit": "Trois effets à retenir. Plus le capital est élevé, plus la mensualité est lourde : c'est proportionnel à l'effort demandé. Plus le taux est élevé, plus la mensualité grimpe, car l'argent coûte plus cher. Plus la durée est longue, plus la mensualité s'allège, mais le coût total augmente, car les intérêts courent plus longtemps. Toute la comparaison d'offres joue sur ces trois leviers."
+  },
+  {
+   "id": "p09",
+   "ecran": "cout_formule",
+   "texte": "Coût total : la mensualité fois le nombre d'échéances.",
+   "dit": "Le coût total d'un emprunt se calcule en une ligne : la mensualité, multipliée par le nombre d'échéances. En retranchant le capital emprunté, on isole les intérêts, qui sont le vrai prix de l'emprunt, la rémunération du prêteur pour son argent et son risque. C'est ce chiffre, bien plus que la mensualité seule, qui permet de juger une offre."
+  },
+  {
+   "id": "p10",
+   "ecran": "ex_cout",
+   "texte": "Cinq ans de moins : environ cinq mille six cents euros gagnés.",
+   "dit": "Reprenons nos cent mille euros à deux pour cent. Sur vingt ans, les intérêts atteignent environ vingt et un mille quatre cents euros. Sur quinze ans, la mensualité monte à environ six cent quarante-quatre euros, mais les intérêts tombent à environ quinze mille huit cents euros. Raccourcir la durée coûte chaque mois, et économise au total : c'est l'arbitrage central de tout emprunteur."
+  },
+  {
+   "id": "p11",
+   "ecran": "tableau",
+   "texte": "Le tableau : intérêts, amortissement, capital restant dû.",
+   "dit": "Le tableau d'amortissement déroule l'emprunt ligne par ligne. Chaque ligne donne la période, le capital restant dû, la mensualité, les intérêts et l'amortissement. La construction est mécanique : les intérêts valent le taux multiplié par le capital restant dû en début de période ; l'amortissement est la mensualité moins ces intérêts ; le nouveau capital restant dû baisse d'autant."
+  },
+  {
+   "id": "p12",
+   "ecran": "ex_tableau",
+   "texte": "Premières lignes : les intérêts fondent dès le départ.",
+   "dit": "Exemple : dix mille euros sur trois ans, au taux annuel de cinq pour cent, soit une mensualité d'environ deux cent quatre-vingt-dix-neuf euros et soixante et onze centimes. Premier mois : quarante et un euros et soixante-sept centimes d'intérêts, deux cent cinquante-huit euros d'amortissement. Troisième mois : les intérêts sont déjà tombés sous les quarante euros, et l'amortissement dépasse deux cent soixante euros. La bascule est en marche."
+  },
+  {
+   "id": "p13",
+   "ecran": "recap1",
+   "texte": "Calculer un emprunt : l'essentiel.",
+   "dit": "Récapitulons ce premier bloc. La mensualité constante s'obtient en inversant la valeur actuelle, après conversion du taux à la période. Le coût total vaut la mensualité fois le nombre d'échéances, et les intérêts sont ce total moins le capital. Le tableau d'amortissement, enfin, montre ligne par ligne la bascule des intérêts vers l'amortissement."
+  },
+  {
+   "id": "p14",
+   "ecran": "panorama",
+   "texte": "Trois logiques : amortir, différer, ou tout rendre à la fin.",
+   "dit": "Au-delà de l'emprunt amortissable classique, trois logiques coexistent. L'emprunt in fine ne paie que les intérêts chaque période, et rend tout le capital d'un coup à la fin. Le prêt relais finance un nouvel achat avant la vente de l'ancien bien, pour une courte durée. Et l'emprunt amortissable classique, le plus répandu, éteint la dette progressivement. Choisir, c'est d'abord comparer leurs coûts réels."
+  },
+  {
+   "id": "p15",
+   "ecran": "taeg",
+   "texte": "Comparer au TAEG, jamais au seul taux nominal.",
+   "dit": "Comparer deux emprunts au seul taux nominal est un piège : les frais de dossier, l'assurance et les garanties alourdissent la facture. Le taux annuel effectif global, lui, intègre tous ces coûts. Exemple : une offre à deux pour cent nominal affiche un taux effectif de deux virgule cinq ; une autre, à un virgule huit nominal, monte à deux virgule sept effectif. La seconde semble moins chère, la première l'est vraiment."
+  },
+  {
+   "id": "p16",
+   "ecran": "dupont_taux",
+   "texte": "Un point de taux en plus : environ huit mille cinq cents euros.",
+   "dit": "Mesurons l'impact du taux sur un cas complet : cent mille euros sur quinze ans. À deux pour cent, la mensualité vaut environ six cent quarante-quatre euros et les intérêts environ quinze mille huit cents euros. À trois pour cent, la mensualité grimpe d'environ quarante-sept euros, et les intérêts bondissent à environ vingt-quatre mille trois cents euros. Un seul point de taux vaut donc près de huit mille cinq cents euros d'intérêts."
+  },
+  {
+   "id": "p17",
+   "ecran": "banques",
+   "texte": "Moins par mois, ou moins au total : il faut choisir.",
+   "dit": "Deux banques, deux cent mille euros. La première propose deux virgule cinq pour cent sur vingt ans : environ mille soixante euros par mois, pour un total proche de deux cent cinquante-quatre mille euros. La seconde propose trois pour cent sur quinze ans : environ mille trois cent quatre-vingt-un euros par mois, mais un total proche de deux cent quarante-huit mille six cents euros. La seconde coûte moins au total, la première pèse moins chaque mois : le profil de l'emprunteur tranche."
+  },
+  {
+   "id": "p18",
+   "ecran": "infini_formule",
+   "texte": "In fine : la mensualité ne paie que les intérêts.",
+   "dit": "Premier cas spécial : l'emprunt in fine. Pendant toute la durée, l'emprunteur ne paie que les intérêts : la mensualité vaut donc simplement le capital multiplié par le taux périodique. Le capital, lui, reste intact et tombe en une seule échéance, à la fin. C'est une formule légère chaque mois, mais risquée : il faut être certain de pouvoir réunir la somme finale."
+  },
+  {
+   "id": "p19",
+   "ecran": "ex_infini",
+   "texte": "In fine : vingt-cinq mille euros d'intérêts, puis le capital.",
+   "dit": "En chiffres : cent mille euros en in fine sur cinq ans, à cinq pour cent. La mensualité vaut environ quatre cent dix-sept euros, uniquement des intérêts, soit vingt-cinq mille euros d'intérêts sur la durée, puis cent mille euros à débourser d'un coup à l'échéance. En exercice : cinquante mille euros sur trois ans à six pour cent donnent deux cent cinquante euros par mois, et neuf mille euros d'intérêts au total."
+  },
+  {
+   "id": "p20",
+   "ecran": "variable_differe",
+   "texte": "Variable : le risque du taux. Différé : le prix du délai.",
+   "dit": "Deux autres cas spéciaux. L'emprunt à taux variable démarre souvent moins cher qu'un fixe, mais sa mensualité peut grimper si l'indice monte : c'est un pari sur les taux. L'emprunt avec différé, lui, ne rembourse que les intérêts pendant une première période, parfois rien du tout : le soulagement initial se paie par un coût total plus élevé, car le capital intact continue de produire des intérêts."
+  },
+  {
+   "id": "p21",
+   "ecran": "ex_final",
+   "texte": "Synthèse : cent cinquante mille euros, deux scénarios de taux.",
+   "dit": "Exercice de synthèse, format concours : cent cinquante mille euros sur vingt ans, à taux fixe de deux pour cent. La mensualité vaut environ sept cent cinquante-neuf euros, le coût total approche cent quatre-vingt-deux mille euros, dont environ trente-deux mille euros d'intérêts. Si le taux passait à trois pour cent, la mensualité grimperait d'environ soixante-treize euros : voilà le type de sensibilité qu'un jury attend, chiffres à l'appui."
+  },
+  {
+   "id": "p22",
+   "ecran": "methode",
+   "texte": "La méthode : identifier, convertir, calculer, interpréter.",
+   "dit": "Devant tout énoncé d'emprunt, la méthode tient en cinq gestes. Identifier les données : capital, taux, durée, type d'amortissement. Convertir le taux à la période du versement. Choisir la formule selon l'inconnue cherchée. Calculer avec soin, en vérifiant chaque étape. Et interpréter le résultat : un coût total, un écart, une recommandation. C'est cette discipline qui transforme une formule en points."
+  },
+  {
+   "id": "p23",
+   "ecran": "recap",
+   "texte": "Emprunts : à retenir.",
+   "dit": "Pour conclure : un emprunt se lit en trois chiffres, la mensualité, le coût total et ses intérêts. La mensualité constante cache une bascule, des intérêts qui fondent vers l'amortissement, que le tableau rend visible. Les offres se comparent au taux effectif global, jamais au taux affiché, et les cas spéciaux, in fine, variable ou différé, échangent toujours de la souplesse contre du coût ou du risque."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Calculer la mensualité et le coût d'un emprunt"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Tableau d'amortissement et comparaison des offres",
+   "pont": {
+    "texte": "Partie 2 : tableau d'amortissement et comparaison d'offres.",
+    "dit": "Partie deux : lire le tableau et comparer les offres. Nous déroulerons le tableau d'amortissement ligne par ligne, puis nous départagerons les offres au taux annuel effectif global et mesurerons ce que coûte un point de taux en plus."
+   }
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Cas spéciaux : in fine, variable, différé et synthèse",
+   "pont": {
+    "texte": "Partie 3 : in fine, variable, différé et synthèse.",
+    "dit": "Partie trois : les cas spéciaux et la synthèse. Emprunt in fine, taux variable et différé : nous traiterons les formes qui sortent du cadre classique, avant un exercice de synthèse complet, au format du concours."
+   }
+  }
+ ]
+}

@@ -1,0 +1,324 @@
+{
+ "cours": 6361,
+ "ecrans": {
+  "cascade": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "plante_fig"
+   },
+   "kicker": "Des relations aux écosystèmes",
+   "texte": "Un prédateur en moins, et tout un paysage change.",
+   "type": "phrase"
+  },
+  "commensalisme": {
+   "kicker": "Trois visages du bénéfice sans coût",
+   "tex": [
+    "\\text{commensalisme : } + \\text{ et } 0",
+    "\\text{phorésie : le transport}",
+    "\\text{inquilinisme : l'hébergement}",
+    "\\text{trophique : les restes du repas}"
+   ],
+   "titre": "Profiter sans nuire, ou presque",
+   "type": "etape"
+  },
+  "competition": {
+   "kicker": "Compétition : deux visages",
+   "tex": [
+    "\\text{interférence : on se bat directement}",
+    "\\text{exploitation : on vide la ressource}",
+    "\\text{issue : exclusion, ou partage de niche}",
+    "\\text{Gause : niches identiques}"
+   ],
+   "titre": "La guerre des ressources",
+   "type": "etape"
+  },
+  "cooperation": {
+   "kicker": "Coopération et altruisme",
+   "tex": [
+    "\\text{chasse en meute, défense collective}",
+    "\\text{soins aux jeunes, eusocialité}",
+    "\\text{altruisme si } r \\times b > c",
+    "\\text{le bénéfice aux apparentés compte}"
+   ],
+   "titre": "Pourquoi aider, quand aider coûte ?",
+   "type": "etape"
+  },
+  "exemple": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\tfrac{dN}{dt} = rN - aNP",
+    "\\tfrac{dP}{dt} = caNP - dP",
+    "\\text{proies en hausse} \\rightarrow \\text{prédateurs en hausse}",
+    "\\text{prédateurs en hausse} \\rightarrow \\text{proies en baisse}"
+   ],
+   "titre": "Le ballet prédateur-proie, en équations",
+   "type": "etape"
+  },
+  "fleur": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "fleur_fig"
+   },
+   "kicker": "Mutualisme",
+   "texte": "L'abeille et la fleur : nourriture contre pollinisation.",
+   "type": "phrase"
+  },
+  "intra": {
+   "kicker": "La compétition entre semblables",
+   "tex": [
+    "\\text{même espèce, mêmes besoins}",
+    "\\text{près de } K \\text{ : mortalité en hausse}",
+    "\\text{territoires et hiérarchies stabilisent}",
+    "\\text{auto-éclaircie dans une forêt dense}"
+   ],
+   "titre": "La densité régule la population",
+   "type": "etape"
+  },
+  "logistique": {
+   "kicker": "La croissance freinée par le réel",
+   "note": "Au plafond, la croissance s'arrête : la population plafonne.",
+   "tex": "\\frac{dN}{dt} = rN\\left(1 - \\frac{N}{K}\\right)",
+   "type": "formule"
+  },
+  "logistique2": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "logistique_fig"
+   },
+   "kicker": "La courbe logistique",
+   "texte": "Départ exponentiel, inflexion, puis plafond.",
+   "type": "phrase"
+  },
+  "matrice": {
+   "kicker": "La matrice des interactions",
+   "tex": [
+    "\\text{compétition : } - \\text{ et } -",
+    "\\text{prédation, parasitisme : } + \\text{ et } -",
+    "\\text{mutualisme : } + \\text{ et } +",
+    "\\text{commensalisme : } + \\text{ et } 0"
+   ],
+   "titre": "Un signe par partenaire, et tout se lit",
+   "type": "etape"
+  },
+  "niche": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "plante_fig"
+   },
+   "kicker": "La niche écologique",
+   "texte": "La niche : le rôle, pas seulement l'adresse.",
+   "type": "phrase"
+  },
+  "parasitisme": {
+   "kicker": "Parasitisme",
+   "tex": [
+    "\\text{endoparasites : à l'intérieur de l'hôte}",
+    "\\text{ectoparasites : à la surface de l'hôte}",
+    "\\text{parasitoïdes : l'hôte finit tué}",
+    "\\text{course aux armements permanente}"
+   ],
+   "titre": "Exploiter durablement, sans tuer trop vite",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Intra : même espèce ; inter : autres espèces",
+    "Compétition : exclusion, ou partage de niche",
+    "Prédation : cycles, régulation des populations",
+    "Mutualisme, parasitisme, commensalisme",
+    "Coopération et compétition coexistent"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "recif": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "fleur_fig"
+   },
+   "kicker": "Des écosystèmes en miniature",
+   "texte": "Corail et algues : un mutualisme qui bâtit des récifs.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "plante_fig"
+   },
+   "kicker": "Biologie · Les relations dans les écosystèmes",
+   "sous": "Compétition, prédation, mutualisme, parasitisme, coopération",
+   "titre": "Vivre ensemble : les relations qui structurent les écosystèmes",
+   "type": "titre"
+  }
+ },
+ "matiere": "Biologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Intra ou inter, niche et matrice des interactions"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Prédation, parasitisme, mutualisme, commensalisme",
+   "pont": {
+    "dit": "Partie deux : les relations entre espèces différentes, de la prédation au mutualisme, puis les relations entre semblables, où compétition et coopération s'équilibrent, et enfin les équations qui résument tout cela.",
+    "texte": "Partie 2 : prédation, mutualisme, coopération, équations."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "Entre semblables : compétition, coopération, synthèse",
+   "pont": {
+    "dit": "Partie trois : les relations entre semblables, où la compétition régule par la densité pendant que la coopération soude le groupe, et la synthèse de tout le réseau.",
+    "texte": "Partie 3 : entre semblables, puis la synthèse."
+   }
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux relations entre les êtres vivants, la trame invisible qui tient les écosystèmes. Aucune espèce ne vit seule : chacune mange, est mangée, aide, gêne ou héberge d'autres espèces, et les individus d'une même espèce se disputent ou s'entraident entre eux. Nous verrons d'abord comment classer ces relations, puis les grandes relations entre espèces différentes, et enfin les relations entre semblables, où compétition et coopération coexistent.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Aucune espèce ne vit seule."
+  },
+  {
+   "dit": "Premier partage, fondamental. Une relation est intraspécifique quand elle unit des individus de la même espèce, et interspécifique quand elle unit des espèces différentes. Les premières agissent surtout sur la dynamique des populations, naissances, morts et dispersions. Les secondes façonnent la structure des communautés et la biodiversité. Une meute de loups chassant ensemble, c'est de l'intraspécifique. Le pic nichant dans le chêne, c'est de l'interspécifique.",
+   "ecran": "niche",
+   "id": "p02",
+   "texte": "Intra : même espèce. Inter : espèces différentes."
+  },
+  {
+   "dit": "Pour comprendre ces relations, il faut la notion de niche écologique. La niche n'est pas seulement l'adresse d'une espèce, son habitat. C'est son rôle complet : ce qu'elle mange, quand elle est active, où elle se nourrit, comment elle se reproduit. Deux espèces peuvent partager le même lieu tout en occupant des niches différentes, par exemple en se nourrissant à des hauteurs différentes ou à des heures différentes.",
+   "ecran": "niche",
+   "id": "p03",
+   "texte": "La niche : le rôle, pas seulement l'adresse."
+  },
+  {
+   "dit": "Prenez deux espèces de passereaux granivores qui mangent exactement les mêmes graines, aux mêmes endroits, aux mêmes moments. La compétition sera féroce. Soit l'une élimine l'autre, soit la sélection naturelle favorise une spécialisation, une taille de bec différente, une hauteur de nourrissage différente, qui réduit le chevauchement des niches. C'est le principe d'exclusion compétitive, formulé par Gause.",
+   "ecran": "niche",
+   "id": "p04",
+   "texte": "Même niche, même graines : l'exclusion menace."
+  },
+  {
+   "dit": "Toutes les relations entre espèces se résument alors dans une matrice très simple, un signe par partenaire. La compétition coûte aux deux partenaires : moins et moins. La prédation, le parasitisme et l'herbivorie profitent à l'un et coûtent à l'autre : plus et moins. Le mutualisme profite aux deux : plus et plus. Le commensalisme profite à l'un sans rien coûter à l'autre : plus et zéro. L'amensalisme, enfin, coûte à l'un sans rien rapporter à l'autre, comme un grand arbre qui fait de l'ombre à une mousse.",
+   "ecran": "matrice",
+   "id": "p05",
+   "texte": "Moins moins, plus moins, plus plus, plus zéro."
+  },
+  {
+   "dit": "Avec cette grille en tête, entrons dans la première grande relation : la compétition entre espèces différentes, la guerre des ressources. Elle a deux visages. La compétition par interférence est directe : on se bat, on se menace, on s'exclut physiquement. La compétition par exploitation est indirecte : on vide la ressource avant l'autre, sans jamais se rencontrer. Dans les deux cas, l'issue est la même : exclusion de l'une des espèces, ou différenciation des niches pour coexister.",
+   "ecran": "competition",
+   "id": "p06",
+   "texte": "Interférence : se battre. Exploitation : vider la ressource."
+  },
+  {
+   "dit": "L'expérience historique est celle de Gause, dans les années mille neuf cent trente. Deux espèces de paramécies, cultivées ensemble dans un milieu à ressources limitées, ne peuvent pas coexister : la plus efficace exploite la ressource et exclut l'autre. Deux espèces aux besoins écologiques identiques ne coexistent donc pas indéfiniment dans le même habitat. C'est la loi la plus dure de l'écologie des communautés.",
+   "ecran": "competition",
+   "id": "p07",
+   "texte": "Gause : deux paramécies, une seule survivante."
+  },
+  {
+   "dit": "Une population ne croît jamais indéfiniment, même sans compétiteur d'une autre espèce. Sa croissance est d'abord exponentielle, puis freinée par les ressources limitées, jusqu'à plafonner à la capacité porteuse du milieu, notée K. L'équation logistique résume ce freinage : la croissance est proportionnelle à la population, multipliée par un terme qui s'annule quand la population atteint K.",
+   "ecran": "logistique",
+   "id": "p08",
+   "texte": "Croissance freinée : dN/dt = rN(1 − N/K)."
+  },
+  {
+   "dit": "Sur la courbe, cela se lit en trois temps : un départ exponentiel, une inflexion quand la population atteint la moitié de K, où la croissance est la plus rapide, puis un ralentissement jusqu'au plafond K. Toute relation qui change la ressource disponible déplace ce plafond, et c'est ainsi que les relations entre espèces sculptent les effectifs.",
+   "ecran": "logistique2",
+   "id": "p09",
+   "texte": "Exponentiel, inflexion à K/2, puis plafond K."
+  },
+  {
+   "dit": "La compétition entre espèces se modélise de la même façon, en ajoutant à chaque espèce l'effet de l'autre sur son plafond. Quatre issues sont possibles. Si une espèce est beaucoup plus efficace, elle exclut l'autre, dans un sens ou dans l'autre. Si chaque espèce se gêne elle-même plus qu'elle ne gêne l'autre, elles coexistent de façon stable. Si chacune gêne l'autre plus qu'elle-même, l'issue est instable et dépend des effectifs de départ.",
+   "ecran": "competition",
+   "id": "p10",
+   "texte": "Quatre issues : exclusion, coexistence ou instabilité."
+  },
+  {
+   "dit": "Retenons la leçon de cette première partie : classer une relation, c'est d'abord dire si elle est intra ou interspécifique, puis lire ses signes, plus ou moins, et enfin se demander si les niches se chevauchent. La suite passe aux relations qui lient des espèces différentes par la prédation, le parasitisme et l'entraide.",
+   "ecran": "matrice",
+   "id": "p11",
+   "texte": "Classer : intra ou inter, signes, chevauchement des niches."
+  },
+  {
+   "dit": "Deuxième grande relation : la prédation, l'art de la chasse et de la fuite. Le prédateur gagne, la proie perd, mais la relation est bien plus qu'un simple repas. Elle régule les populations, elle sélectionne les proies les plus rapides ou les mieux camouflées, et elle déclenche une course aux armements évolutive : chaque amélioration du chasseur sélectionne une amélioration de la proie, et réciproquement.",
+   "ecran": "cascade",
+   "id": "p12",
+   "texte": "Prédation : réguler, sélectionner, faire évoluer."
+  },
+  {
+   "dit": "Suivons le modèle fondateur, les équations de Lotka et Volterra, des années mille neuf cent vingt. Les proies croissent, puis sont prélevées au prorata des rencontres avec les prédateurs. Les prédateurs, eux, ne croissent qu'en convertissant les proies mangées, et meurent en l'absence de proies. Résolvez ce système pas à pas : les proies en hausse font monter les prédateurs, les prédateurs en hausse font baisser les proies, les proies en baisse font chuter les prédateurs, et le cycle recommence. C'est le ballet des populations, oscillant sans jamais se fixer.",
+   "ecran": "exemple",
+   "id": "p13",
+   "texte": "Proies ↑ → prédateurs ↑ → proies ↓ → cycle."
+  },
+  {
+   "dit": "Le modèle a ses limites, et les leçons les nomment : il ignore les refuges des proies, l'apprentissage des chasseurs et les autres nourritures des prédateurs. Mais il capture l'essentiel : la prédation n'extermine pas, elle régule, et ses oscillations se propagent en cascade dans tout le réseau trophique, comme le montre la réintroduction du loup à Yellowstone, où le retour du prédateur a changé jusqu'à la végétation des berges.",
+   "ecran": "cascade",
+   "id": "p14",
+   "texte": "Lotka-Volterra : simple, mais il capture la régulation."
+  },
+  {
+   "dit": "Troisième relation : le parasitisme, l'art subtil de l'exploitation durable. Le parasite profite, l'hôte paie, mais sans tuer trop vite, car un hôte mort est une ressource perdue. On distingue les endoparasites, qui vivent à l'intérieur, comme le plasmodium du paludisme ou le ténia, les ectoparasites de surface, comme les tiques, les puces et les sangsues, et les parasitoïdes, qui finissent par tuer leur hôte, comme les guêpes qui pondent dans des larves d'insectes.",
+   "ecran": "parasitisme",
+   "id": "p15",
+   "texte": "Parasite : profiter sans tuer trop vite."
+  },
+  {
+   "dit": "Le parasitisme déclenche lui aussi une course aux armements : défenses de l'hôte contre attaques du parasite, en boucle. C'est l'inverse exact du mutualisme, notre quatrième relation, où les deux partenaires gagnent. Les mutualismes sont trophiques, comme l'abeille qui prend le nectar et pollinise la fleur, défensifs, comme les fourmis qui protègent les acacias, ou de dispersion, quand un animal transporte les graines d'une plante.",
+   "ecran": "fleur",
+   "id": "p16",
+   "texte": "Abeille et fleur : nectar contre pollinisation."
+  },
+  {
+   "dit": "Le mutualisme le plus fondateur est peut-être celui du corail et de ses algues symbiotiques, les zooxanthelles : l'algue photosynthétise à l'abri dans les tissus du corail, le corail reçoit l'essentiel de son énergie de l'algue, et c'est ce couple qui bâtit les récifs, des cités sous-marines entières. Sans mutualisme, pas de récif. Mais attention : un mutualisme n'est jamais un conte de fées, chaque partenaire paie un coût, et la coopération ne tient que si le bénéfice dépasse ce coût pour chacun.",
+   "ecran": "recif",
+   "id": "p17",
+   "texte": "Corail et algues : le couple qui bâtit les récifs."
+  },
+  {
+   "dit": "Cinquième relation, plus discrète : le commensalisme, profiter sans nuire, ou presque. Le rémora se fixe sur le requin et voyage sans le gêner. Les épiphytes s'installent sur les branches sans parasiter l'arbre. On distingue la phorésie, le transport, l'inquilinisme, l'hébergement, et le commensalisme trophique, qui profite des restes d'un repas. La frontière est floue : un commensal qui devient trop nombreux finit souvent par coûter à son hôte.",
+   "ecran": "commensalisme",
+   "id": "p18",
+   "texte": "Rémora et requin : voyager sans gêner."
+  },
+  {
+   "dit": "Passons aux relations entre semblables. La compétition intraspécifique est souvent la plus rude, car les besoins sont exactement les mêmes. Quand une population approche de sa capacité porteuse, la concurrence pour la nourriture, l'espace et les partenaires augmente la mortalité et baisse la natalité : c'est la régulation densité-dépendante. Les jeunes lions mâles chassés de la troupe, l'auto-éclaircie qui tue les arbres les plus faibles d'une forêt dense, en sont des illustrations directes.",
+   "ecran": "intra",
+   "id": "p19",
+   "texte": "Même espèce, mêmes besoins : la lutte la plus rude."
+  },
+  {
+   "dit": "Pourtant, les semblables s'entraident aussi. Chasse en meute, défense collective, soins aux jeunes, et jusqu'à l'eusocialité des abeilles, où des ouvrières stériles aident leur mère, la reine, à se reproduire. Le paradoxe de l'altruisme se résout par la sélection de parentèle : aider coûte à l'individu, mais si le bénéfice pour l'apparenté, pondéré par le degré de parenté, dépasse ce coût, le comportement se répand. C'est la règle de Hamilton, qui explique pourquoi l'aide va d'abord aux proches.",
+   "ecran": "cooperation",
+   "id": "p20",
+   "texte": "Aider coûte, mais aider un parent rapporte aux gènes."
+  },
+  {
+   "dit": "La vie sociale stabilise aussi les populations autrement : par les territoires et les hiérarchies. Le chant des oiseaux marque un territoire et évite la surexploitation locale. L'ordre de picorage des poules donne un accès prioritaire aux ressources sans combat permanent. Territoires et hiérarchies réduisent les conflits coûteux et répartissent les ressources dans l'espace, ce qui stabilise les effectifs.",
+   "ecran": "intra",
+   "id": "p21",
+   "texte": "Territoires et hiérarchies : moins de combats, plus de stabilité."
+  },
+  {
+   "dit": "Coopération et compétition ne s'excluent donc pas : elles coexistent dans chaque population, et leur balance dépend de la densité, des ressources et de la parenté. La théorie des jeux évolutifs le résume par le dilemme du prisonnier : coopérer rapporte à tous si tous coopèrent, mais tricher rapporte davantage à un tricheur isolé. Les populations réelles oscillent entre ces stratégies, sans jamais se fixer à un extrême.",
+   "ecran": "cooperation",
+   "id": "p22",
+   "texte": "Coopérer ou tricher : le dilemme de chaque groupe."
+  },
+  {
+   "dit": "Regardez enfin comment les relations sculptent les écosystèmes entiers. Une relation ne reste jamais locale : la prédation régule les herbivores, qui libèrent la végétation, qui abrite d'autres espèces, et ainsi de suite. Plus le réseau de relations est riche et redondant, plus l'écosystème absorbe les chocs : si une espèce disparaît, une autre assume son rôle. C'est l'hypothèse de la stabilité par la complexité, et elle fait de la biodiversité à la fois le résultat et le moteur des relations.",
+   "ecran": "cascade",
+   "id": "p23",
+   "texte": "Relations riches = écosystème qui absorbe les chocs."
+  },
+  {
+   "dit": "Récapitulons. Une relation se classe d'abord en intra ou interspécifique, puis se lit dans la matrice des signes. La compétition exclut ou pousse au partage de niche. La prédation régule en cycles, modélisés par Lotka et Volterra. Le parasitisme exploite durablement, le mutualisme fait gagner les deux partenaires, le commensalisme profite sans nuire. Et entre semblables, la compétition régule par la densité pendant que la coopération, expliquée par la parenté, soude le groupe. Le vivant n'est pas une collection d'espèces, c'est un réseau de relations.",
+   "ecran": "recap",
+   "id": "p24",
+   "texte": "Le vivant : un réseau de relations, pas une collection."
+  }
+ ],
+ "titre": "Vivre ensemble : les relations qui structurent les écosystèmes"
+}

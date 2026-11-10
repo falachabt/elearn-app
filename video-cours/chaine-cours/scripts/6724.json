@@ -1,0 +1,407 @@
+{
+ "cours": 6724,
+ "titre": "Nombres réels, racines carrées et puissances",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Nombres réels",
+   "titre": "Nombres réels, racines carrées et puissances",
+   "sous": "Ensembles emboîtés, radicaux, encadrements et intervalles",
+   "anim": {
+    "nom": "droite_numerique_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Le fil du cours",
+   "texte": "Des entiers aux réels : classer, extraire des racines, comparer et encadrer."
+  },
+  "ensembles": {
+   "type": "formule",
+   "kicker": "Les ensembles de nombres",
+   "tex": "\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{D} \\subset \\mathbb{Q} \\subset \\mathbb{R}",
+   "note": "Chaque ensemble contient le précédent, comme des poupées russes.",
+   "anim": {
+    "nom": "inclusion_numeriques_fig",
+    "hauteur": 170
+   }
+  },
+  "ensembles_ex": {
+   "type": "etape",
+   "kicker": "Les ensembles en exemples",
+   "titre": "Cinq familles emboîtées",
+   "tex": [
+    "\\text{naturels : } 0,\\ 1,\\ 2,\\ 3,\\ \\ldots",
+    "\\text{relatifs : } \\ldots,\\ -2,\\ -1,\\ 0,\\ 1,\\ 2,\\ \\ldots",
+    "\\text{décimaux : } -3{,}5\\ ;\\ 0{,}25\\ ;\\ 7",
+    "\\text{rationnels : } \\tfrac{2}{3}\\ ;\\ -\\tfrac{5}{7}"
+   ]
+  },
+  "irrationnels": {
+   "type": "phrase",
+   "kicker": "Les irrationnels",
+   "texte": "√2 et π sont des réels, mais aucune fraction ne peut les écrire : ils sont irrationnels."
+  },
+  "racine_def": {
+   "type": "formule",
+   "kicker": "Racine carrée",
+   "tex": "(\\sqrt{a})^2 = a \\qquad \\sqrt{a} \\geq 0",
+   "note": "Pour a positif : l’unique nombre positif dont le carré vaut a."
+  },
+  "racine_ex": {
+   "type": "etape",
+   "kicker": "Exemple de définition",
+   "titre": "Vérifier une racine par son carré",
+   "tex": [
+    "7^2 = 49 \\qquad 7 > 0",
+    "\\sqrt{49} = 7"
+   ]
+  },
+  "racine_prop": {
+   "type": "etape",
+   "kicker": "Propriétés des racines",
+   "titre": "Produit, quotient et carré",
+   "tex": [
+    "\\sqrt{a^2} = |a|",
+    "\\sqrt{a\\,b} = \\sqrt{a} \\times \\sqrt{b}",
+    "\\sqrt{\\tfrac{a}{b}} = \\tfrac{\\sqrt{a}}{\\sqrt{b}}"
+   ]
+  },
+  "piege": {
+   "type": "phrase",
+   "kicker": "Le piège classique",
+   "texte": "√(a + b) n’est pas √a + √b : la racine ne se distribue pas sur une somme."
+  },
+  "radicaux": {
+   "type": "phrase",
+   "kicker": "Réduire des radicaux",
+   "texte": "Même racine après réduction, puis on additionne les coefficients."
+  },
+  "radicaux_ex": {
+   "type": "etape",
+   "kicker": "Exemple de réduction",
+   "titre": "Tout ramener à la même racine",
+   "tex": [
+    "A = 3\\sqrt{8} - 2\\sqrt{2} + \\sqrt{18}",
+    "A = 3\\sqrt{4 \\times 2} - 2\\sqrt{2} + \\sqrt{9 \\times 2}",
+    "A = 6\\sqrt{2} - 2\\sqrt{2} + 3\\sqrt{2}",
+    "A = 7\\sqrt{2}"
+   ]
+  },
+  "conjuguee": {
+   "type": "formule",
+   "kicker": "Expression conjuguée",
+   "tex": "\\frac{1}{\\sqrt{a}} = \\frac{\\sqrt{a}}{a}",
+   "note": "Multiplier en haut et en bas par la racine chasse le radical du bas."
+  },
+  "conjuguee_ex": {
+   "type": "etape",
+   "kicker": "Exemple conjugué",
+   "titre": "Plus de radical au dénominateur",
+   "tex": [
+    "B = \\tfrac{3}{\\sqrt{5}}",
+    "B = \\tfrac{3 \\times \\sqrt{5}}{\\sqrt{5} \\times \\sqrt{5}}",
+    "B = \\tfrac{3\\sqrt{5}}{5}"
+   ]
+  },
+  "comparaison": {
+   "type": "phrase",
+   "kicker": "Comparer des réels",
+   "texte": "Entre nombres positifs, comparer les carrés revient à comparer les nombres."
+  },
+  "comparaison_ex": {
+   "type": "etape",
+   "kicker": "Exemple de comparaison",
+   "titre": "Comparer par les carrés",
+   "tex": [
+    "(\\sqrt{2})^2 = 2",
+    "\\left(\\tfrac{3}{2}\\right)^2 = \\tfrac{9}{4} = 2{,}25",
+    "\\sqrt{2} < \\tfrac{3}{2}"
+   ]
+  },
+  "encadr_calc": {
+   "type": "etape",
+   "kicker": "Encadrer à la calculatrice",
+   "titre": "Deux décimaux qui piègent la racine",
+   "tex": [
+    "\\sqrt{7} \\approx 2{,}64575\\ldots",
+    "2{,}64 < \\sqrt{7} < 2{,}65"
+   ]
+  },
+  "encadr_op": {
+   "type": "etape",
+   "kicker": "Encadrer des opérations",
+   "titre": "Additionner, soustraire, multiplier, diviser",
+   "tex": [
+    "a + c < x + y < b + d",
+    "a - d < x - y < b - c",
+    "a\\,c < x\\,y < b\\,d",
+    "\\textstyle \\tfrac{a}{d} < \\tfrac{x}{y} < \\tfrac{b}{c}"
+   ]
+  },
+  "encadr_ex": {
+   "type": "etape",
+   "kicker": "Exemple d’encadrement",
+   "titre": "Encadrer une somme, borne à borne",
+   "tex": [
+    "2 + 1 < x + y < 3 + 4",
+    "3 < x + y < 7"
+   ]
+  },
+  "intervalles": {
+   "type": "etape",
+   "kicker": "Intervalles de réels",
+   "titre": "Fermé, ouvert, semi-ouvert, non borné",
+   "tex": [
+    "[a\\,;\\,b] : a \\leq x \\leq b",
+    "]a\\,;\\,b[ : a < x < b",
+    "[a\\,;\\,b[ : a \\leq x < b",
+    "]-\\infty\\,;\\,b] : x \\leq b"
+   ]
+  },
+  "intervalle_ex": {
+   "type": "etape",
+   "kicker": "Exemple d’appartenance",
+   "titre": "Un nombre dans son intervalle",
+   "tex": [
+    "3 \\leq 3{,}5 \\leq 4",
+    "3{,}5 \\in [3\\,;\\,4]"
+   ]
+  },
+  "puissances_def": {
+   "type": "etape",
+   "kicker": "Puissances entières",
+   "titre": "Produit répété, inverse et exposant zéro",
+   "tex": [
+    "a^n = a \\times a \\times \\cdots \\times a",
+    "a^{-n} = \\tfrac{1}{a^n}",
+    "a^0 = 1"
+   ],
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 130
+   }
+  },
+  "puissances_prop": {
+   "type": "etape",
+   "kicker": "Règles des puissances",
+   "titre": "Cinq règles, trois lignes",
+   "tex": [
+    "a^m \\times a^n = a^{m+n} \\qquad \\tfrac{a^m}{a^n} = a^{m-n}",
+    "(a^m)^n = a^{m \\times n} \\qquad (a\\,b)^n = a^n \\times b^n",
+    "\\left(\\tfrac{a}{b}\\right)^n = \\tfrac{a^n}{b^n}"
+   ]
+  },
+  "puissances_ex": {
+   "type": "etape",
+   "kicker": "Exemple de simplification",
+   "titre": "Additionner les exposants",
+   "tex": [
+    "C = \\tfrac{2^3 \\times 2^{-5}}{2^2}",
+    "C = 2^{3 + (-5) - 2} = 2^{-4}",
+    "C = \\tfrac{1}{16}"
+   ]
+  },
+  "calculatrice": {
+   "type": "phrase",
+   "kicker": "Valeurs approchées",
+   "texte": "Troncature : on coupe. Arrondi : on regarde le chiffre suivant pour décider."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Ensembles : N dans Z dans D dans Q dans R",
+    "Racine : le positif dont le carré vaut a",
+    "Comparer : passer par les carrés",
+    "Puissances : additionner les exposants"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux nombres réels. Nous classerons les nombres en familles emboîtées, puis nous travaillerons la racine carrée, avant de comparer et d’encadrer les réels, de décrire les intervalles, et de terminer par les puissances.",
+   "texte": "Réels, racines, encadrements, intervalles et puissances.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "L’ensemble des nombres réels, noté R, contient tous les nombres utilisés en mathématiques. Il regroupe plusieurs sous-ensembles emboîtés les uns dans les autres, des plus simples aux plus généraux.",
+   "texte": "Tout nombre rencontré appartient à l’ensemble des réels.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Voici la chaîne des inclusions : les entiers naturels sont contenus dans les entiers relatifs, eux-mêmes contenus dans les nombres décimaux, eux-mêmes contenus dans les nombres rationnels, tous contenus dans les nombres réels. Chaque famille élargit la précédente.",
+   "texte": "N ⊂ Z ⊂ D ⊂ Q ⊂ R : des familles emboîtées.",
+   "ecran": "ensembles"
+  },
+  {
+   "id": "p04",
+   "dit": "En exemples : les naturels sont zéro, un, deux, trois, et ainsi de suite. Les relatifs ajoutent les négatifs. Les décimaux s’écrivent avec un nombre fini de chiffres après la virgule, comme moins trois virgule cinq. Les rationnels sont les fractions d’entiers, comme deux tiers.",
+   "texte": "Naturels, relatifs, décimaux, rationnels : un exemple chacun.",
+   "ecran": "ensembles_ex"
+  },
+  {
+   "id": "p05",
+   "dit": "Reste une dernière famille : un nombre irrationnel est un réel qui n’est pas rationnel, c’est-à-dire qu’aucune fraction ne peut l’écrire exactement. Les exemples célèbres sont racine carrée de deux et le nombre pi.",
+   "texte": "√2 et π : des réels qu’aucune fraction n’écrit.",
+   "ecran": "irrationnels"
+  },
+  {
+   "id": "p06",
+   "dit": "Passons à la racine carrée. Pour un nombre a positif ou nul, la racine carrée de a est l’unique nombre positif dont le carré est égal à a. Deux conséquences immédiates : la racine carrée de a, élevée au carré, redonne a, et une racine carrée est toujours positive ou nulle.",
+   "texte": "La racine : le nombre positif dont le carré vaut a.",
+   "ecran": "racine_def"
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple direct : racine carrée de quarante-neuf égale sept, car sept au carré égale quarante-neuf, et sept est bien un nombre positif. C’est exactement la définition, appliquée à l’envers.",
+   "texte": "7² = 49 et 7 positif : donc √49 = 7.",
+   "ecran": "racine_ex"
+  },
+  {
+   "id": "p08",
+   "dit": "Trois propriétés fondamentales gouvernent les calculs. La racine du carré d’un nombre donne sa valeur absolue. La racine d’un produit est le produit des racines. Et la racine d’un quotient est le quotient des racines, pour un dénominateur strictement positif.",
+   "texte": "Produit et quotient : la racine se partage, en respectant les conditions.",
+   "ecran": "racine_prop"
+  },
+  {
+   "id": "p09",
+   "dit": "Attention au piège classique : la racine d’une somme n’est pas la somme des racines. Racine de a plus b est différente de racine de a plus racine de b, sauf cas très particuliers. Ce réflexe faux est l’erreur la plus fréquente sur ce chapitre.",
+   "texte": "√(a + b) ≠ √a + √b : le piège à éviter.",
+   "ecran": "piege"
+  },
+  {
+   "id": "p10",
+   "dit": "Pour additionner des racines, une seule méthode : d’abord les réduire, c’est-à-dire les écrire toutes avec le même nombre sous la racine, le plus petit possible. Ensuite seulement, on additionne les coefficients, comme on additionne des inconnues identiques.",
+   "texte": "D’abord réduire à la même racine, ensuite additionner.",
+   "ecran": "radicaux"
+  },
+  {
+   "id": "p11",
+   "dit": "Exemple : A égale trois racines de huit, moins deux racines de deux, plus racine de dix-huit. Huit s’écrit quatre fois deux, donc trois racines de huit deviennent six racines de deux. Dix-huit s’écrit neuf fois deux, donc racine de dix-huit devient trois racines de deux.",
+   "texte": "√8 et √18 se réduisent tous deux en racines de 2.",
+   "ecran": "radicaux_ex"
+  },
+  {
+   "id": "p12",
+   "dit": "Il ne reste qu’à additionner les coefficients : six, moins deux, plus trois, cela fait sept. Le résultat final est donc sept racines de deux. Toute l’astuce tenait dans la réduction préalable.",
+   "texte": "6 − 2 + 3 = 7 : A = 7√2.",
+   "ecran": "radicaux_ex"
+  },
+  {
+   "id": "p13",
+   "dit": "Autre technique : chasser le radical du dénominateur. Pour l’inverse de racine de a, on multiplie le numérateur et le dénominateur par racine de a. Le dénominateur devient a, et la fraction s’écrit racine de a sur a, sans radical en bas.",
+   "texte": "1/√a = √a/a : le radical passe au numérateur.",
+   "ecran": "conjuguee"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple : B égale trois sur racine de cinq. On multiplie en haut et en bas par racine de cinq. En bas, racine de cinq fois racine de cinq donne cinq. En haut, il reste trois racines de cinq. B s’écrit donc trois racines de cinq sur cinq.",
+   "texte": "B = 3√5/5 : plus aucun radical au dénominateur.",
+   "ecran": "conjuguee_ex"
+  },
+  {
+   "id": "p15",
+   "dit": "Troisième bloc : comparer et encadrer. Première règle : pour comparer deux nombres positifs, on peut comparer leurs carrés, car l’ordre est conservé. Pour un rationnel face à un irrationnel, on passe par des encadrements ou par la calculatrice.",
+   "texte": "Entre positifs, l’ordre des carrés est l’ordre des nombres.",
+   "ecran": "comparaison"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple : comparons racine de deux et trois demis. Le carré de racine de deux vaut deux. Le carré de trois demis vaut neuf quarts, soit deux virgule vingt-cinq. Comme deux est inférieur à deux virgule vingt-cinq, et que les deux nombres sont positifs, racine de deux est inférieure à trois demis.",
+   "texte": "2 < 2,25 donc √2 < 3/2.",
+   "ecran": "comparaison_ex"
+  },
+  {
+   "id": "p17",
+   "dit": "La calculatrice donne aussi des encadrements précis. Racine de sept vaut environ deux virgule six quatre cinq sept cinq. On en déduit l’encadrement par deux décimaux : deux virgule soixante-quatre est inférieur à racine de sept, elle-même inférieure à deux virgule soixante-cinq.",
+   "texte": "2,64 < √7 < 2,65 : encadrement au centième.",
+   "ecran": "encadr_calc"
+  },
+  {
+   "id": "p18",
+   "dit": "On peut aussi encadrer le résultat d’une opération. Si x est entre a et b, et y entre c et d, alors la somme x plus y est entre a plus c et b plus d. La différence x moins y est entre a moins d et b moins c : attention, les bornes se croisent pour une soustraction.",
+   "texte": "Somme : les bornes s’ajoutent. Différence : elles se croisent.",
+   "ecran": "encadr_op"
+  },
+  {
+   "id": "p19",
+   "dit": "Si tout est positif, le produit x fois y est entre a fois c et b fois d, et le quotient x sur y est entre a sur d et b sur c. Le quotient croise les bornes du dénominateur.",
+   "texte": "Produit et quotient positifs : des bornes croisées pour diviser.",
+   "ecran": "encadr_op"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple simple : x est entre deux et trois, y est entre un et quatre. La somme x plus y est donc entre deux plus un et trois plus quatre, c’est-à-dire entre trois et sept.",
+   "texte": "2 < x < 3 et 1 < y < 4 donnent 3 < x + y < 7.",
+   "ecran": "encadr_ex"
+  },
+  {
+   "id": "p21",
+   "dit": "Quatrième bloc : les intervalles. Un intervalle est un ensemble de nombres réels compris entre deux bornes. Selon que les bornes sont incluses ou exclues, l’intervalle est fermé, ouvert ou semi-ouvert, et il peut même partir vers l’infini d’un côté.",
+   "texte": "Un intervalle : tous les réels entre deux bornes.",
+   "ecran": "intervalles"
+  },
+  {
+   "id": "p22",
+   "dit": "Les notations à connaître : crochet fermé des deux côtés pour inclure les deux bornes, crochets ouverts pour les exclure, un de chaque pour l’intervalle semi-ouvert, et une borne infinie pour un intervalle non borné, comme tous les réels inférieurs ou égaux à b.",
+   "texte": "[a ; b], ]a ; b[, [a ; b[ et ]−∞ ; b] : quatre formes.",
+   "ecran": "intervalles"
+  },
+  {
+   "id": "p23",
+   "dit": "Exemple d’appartenance : trois virgule cinq appartient à l’intervalle fermé de trois à quatre, tout simplement parce que trois est inférieur ou égal à trois virgule cinq, lui-même inférieur ou égal à quatre. L’appartenance se vérifie par un double encadrement.",
+   "texte": "3 ≤ 3,5 ≤ 4 donc 3,5 ∈ [3 ; 4].",
+   "ecran": "intervalle_ex"
+  },
+  {
+   "id": "p24",
+   "dit": "Dernier bloc : les puissances à exposant entier relatif. Pour un nombre a non nul, a puissance n est le produit de n facteurs tous égaux à a. L’exposant négatif donne l’inverse : a puissance moins n égale un sur a puissance n. Et tout nombre non nul à la puissance zéro vaut un.",
+   "texte": "aⁿ : n facteurs a. a⁻ⁿ : l’inverse. a⁰ = 1.",
+   "ecran": "puissances_def"
+  },
+  {
+   "id": "p25",
+   "dit": "Cinq règles suffisent. Le produit de puissances de même base additionne les exposants, le quotient les soustrait. Une puissance de puissance les multiplie. La puissance d’un produit ou d’un quotient se distribue sur chaque terme.",
+   "texte": "Même base : on joue sur les exposants.",
+   "ecran": "puissances_prop"
+  },
+  {
+   "id": "p26",
+   "dit": "Exemple de simplification : C égale deux puissance trois, fois deux puissance moins cinq, le tout sur deux puissance deux. On additionne les exposants du numérateur et on soustrait celui du dénominateur : trois, moins cinq, moins deux, cela fait moins quatre. C égale donc deux puissance moins quatre, c’est-à-dire un seizième.",
+   "texte": "C = 2⁻⁴ = 1/16 : les exposants font tout le travail.",
+   "ecran": "puissances_ex"
+  },
+  {
+   "id": "p27",
+   "dit": "Un dernier mot sur la calculatrice : elle sert à obtenir des valeurs approchées des racines, par troncature ou par arrondi. La troncature coupe simplement les décimales au rang choisi, tandis que l’arrondi tient compte du chiffre suivant pour décider de monter ou non.",
+   "texte": "Troncature : couper. Arrondi : regarder le chiffre suivant.",
+   "ecran": "calculatrice"
+  },
+  {
+   "id": "p28",
+   "dit": "Récapitulons. Les ensembles s’emboîtent des naturels aux réels. La racine carrée se réduit avant de s’additionner et se chasse des dénominateurs. Comparer passe par les carrés, encadrer se fait borne à borne, et les puissances se manipulent par les exposants.",
+   "texte": "L’essentiel du cours en quatre idées.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Ensembles de nombres et racine carrée"
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "Comparaison, encadrements, intervalles et puissances",
+   "pont": {
+    "texte": "Partie 2 : comparer, encadrer, décrire par intervalles, puis les puissances.",
+    "dit": "Partie deux : comparer, encadrer et passer aux puissances. Nous verrons comment comparer deux réels par leurs carrés, comment encadrer une somme ou un produit borne à borne, comment décrire ces encadrements par des intervalles, et nous terminerons par les puissances à exposant entier relatif."
+   }
+  }
+ ]
+}

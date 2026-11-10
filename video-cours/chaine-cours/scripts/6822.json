@@ -1,0 +1,309 @@
+{
+ "cours": 6822,
+ "titre": "Initiation à l'algorithmique",
+ "matiere": "Informatique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Informatique · Algorithmique",
+   "titre": "Initiation à l'algorithmique",
+   "sous": "Suite finie d'instructions, séquencement, conditions et boucles"
+  },
+  "def": {
+   "type": "etape",
+   "kicker": "Définir : un algorithme",
+   "titre": "Suite finie et ordonnée d'instructions",
+   "tex": [
+    "\\text{résoudre un problème donné}",
+    "\\text{instructions claires, sans ambiguïté}",
+    "\\text{se termine après un nombre fini}",
+    "\\text{d'étapes}"
+   ]
+  },
+  "caract": {
+   "type": "etape",
+   "kicker": "Quatre caractéristiques essentielles",
+   "titre": "Finitude, précision, efficacité, sortie",
+   "tex": [
+    "\\text{finitude : étapes en nombre limité}",
+    "\\text{précision : aucune ambiguïté}",
+    "\\text{efficacité : chaque instruction}",
+    "\\text{est exécutable ; une sortie attendue}"
+   ]
+  },
+  "ex_moy": {
+   "type": "formule",
+   "kicker": "Exemple : moyenne de deux notes",
+   "tex": "s = a + b, \\quad m = \\frac{s}{2}",
+   "note": "Lire a et b, calculer la somme s, puis la moyenne m, puis afficher m"
+  },
+  "seq": {
+   "type": "etape",
+   "kicker": "Le séquencement des étapes",
+   "titre": "Instruction par instruction, dans l'ordre",
+   "tex": [
+    "\\text{ordre imposé par la logique}",
+    "\\text{décomposer un problème complexe}",
+    "\\text{en actions simples et ordonnées}"
+   ]
+  },
+  "ex_the": {
+   "type": "etape",
+   "kicker": "Exemple : préparer une boisson chaude",
+   "titre": "Cinq étapes dans l'ordre",
+   "tex": [
+    "\\text{faire bouillir l'eau}",
+    "\\text{sachet de thé dans la tasse}",
+    "\\text{verser l'eau bouillante}",
+    "\\text{infuser trois minutes}",
+    "\\text{retirer le sachet}"
+   ]
+  },
+  "controle": {
+   "type": "etape",
+   "kicker": "Les structures de contrôle",
+   "titre": "Modifier le déroulement séquentiel",
+   "tex": [
+    "\\text{selon des conditions}",
+    "\\text{ou selon des répétitions}",
+    "\\text{alternative et itération}"
+   ]
+  },
+  "alt": {
+   "type": "etape",
+   "kicker": "L'alternative : si... alors... sinon",
+   "titre": "Exécuter seulement si la condition est vraie",
+   "tex": [
+    "\\text{condition : vraie ou fausse}",
+    "\\text{si C vraie, exécuter A}",
+    "\\text{sinon, exécuter B}"
+   ]
+  },
+  "ex_pair": {
+   "type": "formule",
+   "kicker": "Exemple : pair ou impair",
+   "tex": "r = n \\bmod 2, \\quad r = 0 \\Rightarrow \\text{pair}",
+   "note": "Lire n, calculer le reste r de la division de n par 2 ; si r vaut 0, afficher que n est pair, sinon qu'il est impair"
+  },
+  "alt_mult": {
+   "type": "etape",
+   "kicker": "L'alternative multiple",
+   "titre": "Plusieurs cas, premier vrai exécuté",
+   "tex": [
+    "\\text{conditions évaluées dans l'ordre}",
+    "\\text{m de 16 à 20 : Très bien}",
+    "\\text{de 12 à 16 : Bien}",
+    "\\text{de 10 à 12 : Assez bien}",
+    "\\text{moins de 10 : Insuffisant}"
+   ]
+  },
+  "iter": {
+   "type": "etape",
+   "kicker": "L'itération, ou boucle",
+   "titre": "Répéter un bloc d'instructions",
+   "tex": [
+    "\\text{un certain nombre de fois}",
+    "\\text{ou tant qu'une condition est vraie}"
+   ]
+  },
+  "tantque": {
+   "type": "etape",
+   "kicker": "La boucle « Tant que »",
+   "titre": "Répéter tant que la condition est vraie",
+   "tex": [
+    "\\text{condition testée avant chaque tour}",
+    "\\text{le bloc doit modifier la condition}",
+    "\\text{sinon, la boucle est infinie}"
+   ]
+  },
+  "ex_somme": {
+   "type": "etape",
+   "kicker": "Exemple : somme de 1 à n",
+   "titre": "Initialiser, répéter, afficher",
+   "tex": [
+    "\\text{initialiser s à 0 et i à 1}",
+    "\\text{tant que i est inférieur ou égal à n}",
+    "\\text{répéter le bloc}",
+    "\\text{afficher la valeur de s}"
+   ]
+  },
+  "repeter": {
+   "type": "etape",
+   "kicker": "La boucle « Répéter »",
+   "titre": "Quand le nombre de tours est connu",
+   "tex": [
+    "\\text{bloc exécuté exactement k fois}",
+    "\\text{exemple : les 5 premiers multiples}",
+    "\\text{de 3, pour i allant de 1 à 5}"
+   ]
+  },
+  "criteres": {
+   "type": "etape",
+   "kicker": "Choisir sa structure : deux critères",
+   "titre": "Justesse et pertinence",
+   "tex": [
+    "\\text{justesse : résultat correct}",
+    "\\text{dans tous les cas possibles}",
+    "\\text{pertinence : la plus simple}",
+    "\\text{et la plus naturelle}"
+   ]
+  },
+  "ex_choix": {
+   "type": "etape",
+   "kicker": "Exemple : l'élève a-t-il la moyenne ?",
+   "titre": "Décision binaire : alternative simple",
+   "tex": [
+    "\\text{condition : note de 10 ou plus}",
+    "\\text{deux issues possibles seulement}",
+    "\\text{aucune répétition nécessaire}"
+   ]
+  },
+  "demarche": {
+   "type": "etape",
+   "kicker": "La démarche de résolution",
+   "titre": "Cinq gestes, dans l'ordre",
+   "tex": [
+    "\\text{identifier entrées et sortie}",
+    "\\text{décomposer en étapes ordonnées}",
+    "\\text{repérer décisions et répétitions}",
+    "\\text{choisir la structure adaptée}",
+    "\\text{rédiger clairement, sans formalisme}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Un algorithme : suite finie, ordonnée, sans ambiguïté",
+    "Séquencement : une instruction après l'autre",
+    "Alternative : si la condition est vraie, sinon",
+    "Boucles : tant que, ou répéter un nombre connu de fois",
+    "Choisir selon la justesse et la pertinence"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Algorithmes : ordonner, décider, répéter.",
+   "dit": "Bienvenue dans ce cours d'initiation aux algorithmes. Un algorithme, c'est une recette rigoureuse : une suite d'instructions qui résout un problème, à condition de respecter l'ordre, les décisions et les répétitions."
+  },
+  {
+   "id": "p02",
+   "ecran": "def",
+   "texte": "Algorithme : suite finie et ordonnée.",
+   "dit": "Qu'est-ce qu'un algorithme ? C'est une suite finie et ordonnée d'instructions permettant de résoudre un problème donné. Chaque instruction doit être claire, sans ambiguïté, et l'exécution de l'algorithme doit se terminer après un nombre fini d'étapes."
+  },
+  {
+   "id": "p03",
+   "ecran": "caract",
+   "texte": "Finitude, précision, efficacité, sortie.",
+   "dit": "Quatre caractéristiques essentielles : la finitude, le nombre d'étapes est limité ; la précision, chaque étape est définie sans ambiguïté ; l'efficacité, chaque instruction est exécutable ; et la sortie, l'algorithme produit un résultat attendu."
+  },
+  {
+   "id": "p04",
+   "ecran": "ex_moy",
+   "texte": "Moyenne de a et b : somme, puis moitié.",
+   "dit": "Exemple résolu : calculer la moyenne de deux notes a et b. Première étape, lire les valeurs de a et de b. Deuxième étape, calculer la somme s égale a plus b. Troisième étape, calculer la moyenne m égale s sur deux. Quatrième étape, afficher la valeur de m."
+  },
+  {
+   "id": "p05",
+   "ecran": "seq",
+   "texte": "Séquencement : dans l'ordre écrit.",
+   "dit": "Un algorithme s'exécute séquentiellement, c'est-à-dire instruction par instruction, dans l'ordre où elles sont écrites. Ce principe fondamental permet de décomposer un problème complexe en une série d'actions simples et ordonnées."
+  },
+  {
+   "id": "p06",
+   "ecran": "ex_the",
+   "texte": "Le thé : cinq étapes, un ordre imposé.",
+   "dit": "Exemple résolu : préparer une boisson chaude. Faire bouillir l'eau, mettre le sachet de thé dans la tasse, verser l'eau bouillante sur le sachet, laisser infuser trois minutes, puis retirer le sachet. Chaque étape dépend de la précédente : l'ordre est ici imposé par la logique du problème."
+  },
+  {
+   "id": "p07",
+   "ecran": "controle",
+   "texte": "Structures de contrôle : changer le cours.",
+   "dit": "Mais l'ordre n'est pas toujours linéaire. Une structure de contrôle est un mécanisme qui permet de modifier le déroulement séquentiel d'un algorithme : elle détermine l'ordre d'exécution des instructions selon des conditions ou des répétitions. On distingue principalement l'alternative et l'itération."
+  },
+  {
+   "id": "p08",
+   "ecran": "alt",
+   "texte": "Alternative : si vrai, alors ; sinon.",
+   "dit": "La structure alternative, ou conditionnelle, permet d'exécuter certaines instructions seulement si une condition est vraie. Une condition est une expression logique qui peut être vraie ou fausse. Forme générale : si la condition C est vraie, alors exécuter les instructions A ; sinon, exécuter les instructions B."
+  },
+  {
+   "id": "p09",
+   "ecran": "ex_pair",
+   "texte": "Pair ou impair : le reste par deux.",
+   "dit": "Exemple résolu : déterminer si un nombre n est pair ou impair. Lire la valeur de n, calculer le reste r de la division de n par deux, puis si r vaut zéro, afficher que n est pair, sinon afficher que n est impair."
+  },
+  {
+   "id": "p10",
+   "ecran": "alt_mult",
+   "texte": "Alternative multiple : mentions selon la note.",
+   "dit": "Lorsque plusieurs cas doivent être distingués, on combine plusieurs conditions : on les évalue dans l'ordre et on exécute le premier bloc dont la condition est vraie. Exemple résolu, la mention selon la note m sur vingt : si m est supérieur ou égal à seize, mention « Très bien » ; si m est entre douze et seize, « Bien » ; entre dix et douze, « Assez bien » ; si m est inférieur à dix, « Insuffisant »."
+  },
+  {
+   "id": "p11",
+   "ecran": "iter",
+   "texte": "Itération : répéter un bloc.",
+   "dit": "Deuxième grande structure, l'itération, ou boucle : elle permet de répéter un bloc d'instructions un certain nombre de fois, ou tant qu'une condition est vérifiée."
+  },
+  {
+   "id": "p12",
+   "ecran": "tantque",
+   "texte": "« Tant que » : tester avant chaque tour.",
+   "dit": "La boucle « Tant que » répète tant que la condition est vraie, et la condition est testée avant chaque exécution du bloc. Condition importante : les instructions du bloc doivent modifier la condition, sinon la boucle est infinie."
+  },
+  {
+   "id": "p13",
+   "ecran": "ex_somme",
+   "texte": "Somme de 1 à n : initialiser, répéter.",
+   "dit": "Exemple résolu : afficher la somme des entiers de un à n. On initialise s à zéro et i à un, puis tant que i est inférieur ou égal à n, on répète le bloc, et on affiche la valeur de s."
+  },
+  {
+   "id": "p14",
+   "ecran": "repeter",
+   "texte": "« Répéter » : nombre de tours connu.",
+   "dit": "Lorsque le nombre de répétitions est connu à l'avance, on peut utiliser une boucle qui exécute le bloc exactement k fois. Exemple résolu : afficher les cinq premiers multiples de trois, pour i allant de un à cinq."
+  },
+  {
+   "id": "p15",
+   "ecran": "criteres",
+   "texte": "Choisir : justesse, puis pertinence.",
+   "dit": "Comment choisir la structure appropriée face à un problème réel ? On s'appuie sur deux critères : la justesse, la structure retenue doit produire le résultat correct dans tous les cas possibles ; et la pertinence, la structure doit être la plus simple et la plus naturelle pour le problème posé."
+  },
+  {
+   "id": "p16",
+   "ecran": "ex_choix",
+   "texte": "La moyenne : décision binaire, donc alternative.",
+   "dit": "Exemple résolu : un professeur veut savoir si un élève a la moyenne, c'est-à-dire une note supérieure ou égale à dix. Structure choisie : l'alternative simple, avec la condition note supérieure ou égale à dix. Justification : le problème est une décision binaire, il n'y a que deux issues possibles, et aucune répétition n'est nécessaire."
+  },
+  {
+   "id": "p17",
+   "ecran": "demarche",
+   "texte": "La démarche : cinq gestes ordonnés.",
+   "dit": "Pour finir, la démarche complète face à un problème simple : identifier les données d'entrée et le résultat attendu, la sortie ; décomposer le problème en étapes séquentielles ordonnées ; repérer les décisions à prendre, structures alternatives, et les actions répétitives, boucles ; choisir la structure de contrôle adaptée selon la justesse et la pertinence ; puis rédiger l'algorithme de manière claire et non formelle, en respectant l'ordre des étapes."
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Fini, ordonné, décider, répéter, choisir.",
+   "dit": "En résumé : un algorithme est une suite finie et ordonnée d'instructions, sans ambiguïté, qui se termine et produit une sortie. Il s'exécute en séquence, il décide avec l'alternative, il répète avec les boucles tant que ou répéter, et on choisit chaque structure selon sa justesse et sa pertinence. Cette démarche garantit qu'un problème réel peut être résolu de manière systématique et reproductible."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Algorithme, séquencement et alternatives"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "texte": "Partie 2 : boucles, choix et démarche.",
+    "dit": "Partie deux : les boucles, le choix de la structure et la démarche complète. Nous verrons les boucles tant que et répéter, les deux critères de choix, puis la démarche de résolution en cinq gestes."
+   },
+   "sous_titre": "Boucles, choix de structure et démarche"
+  }
+ ]
+}

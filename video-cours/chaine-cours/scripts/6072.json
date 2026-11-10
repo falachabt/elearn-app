@@ -1,0 +1,477 @@
+{
+ "cours": 6072,
+ "titre": "Les biomolécules et leur métabolisme : glucides, lipides, protides",
+ "matiere": "Biologie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Biologie · Les biomolécules",
+   "titre": "Les biomolécules et leur métabolisme : glucides, lipides, protides",
+   "sous": "Trois familles, une même logique : construire, stocker, transformer",
+   "anim": {
+    "nom": "chaine_polymere_fig",
+    "hauteur": 250
+   }
+  },
+  "organisation": {
+   "type": "phrase",
+   "kicker": "La matière vivante : une question d'organisation",
+   "texte": "Mêmes briques, organisation différente : voilà le vivant."
+  },
+  "familles": {
+   "type": "etape",
+   "kicker": "Les trois familles",
+   "titre": "Trois piliers, trois rôles complémentaires",
+   "tex": [
+    "\\text{glucides : énergie rapide et structures}",
+    "\\text{lipides : réserves et membranes}",
+    "\\text{protides : les acteurs polyvalents}"
+   ]
+  },
+  "glucides_def": {
+   "type": "formule",
+   "kicker": "Les glucides : définition",
+   "tex": "(CH_2O)_n",
+   "note": "Carbone, hydrogène, oxygène : la formule des oses."
+  },
+  "monosaccharides": {
+   "type": "etape",
+   "kicker": "Les monosaccharides",
+   "titre": "Les sucres simples, unités de base",
+   "tex": [
+    "C_6H_{12}O_6 \\quad \\text{glucose, fructose, galactose}",
+    "\\text{non hydrolysables : ce sont les briques}",
+    "\\text{glucose : le carburant des cellules}"
+   ]
+  },
+  "oligosaccharides": {
+   "type": "etape",
+   "kicker": "Les oligosaccharides",
+   "titre": "De deux à dix unités, liées entre elles",
+   "tex": [
+    "\\text{saccharose : glucose + fructose}",
+    "\\text{lactose : glucose + galactose}",
+    "\\text{maltose : glucose + glucose}"
+   ]
+  },
+  "polysaccharides": {
+   "type": "etape",
+   "kicker": "Les polysaccharides",
+   "titre": "De longues chaînes de glucose, ou presque",
+   "tex": [
+    "\\text{amidon : la réserve des végétaux}",
+    "\\text{glycogène : la réserve des animaux}",
+    "\\text{cellulose : la paroi des végétaux}",
+    "\\text{chitine : l'exosquelette des arthropodes}"
+   ],
+   "anim": {
+    "nom": "chaine_polymere_fig",
+    "hauteur": 110
+   }
+  },
+  "proprietes_glucides": {
+   "type": "etape",
+   "kicker": "Propriétés des glucides",
+   "titre": "Solubilité, pouvoir réducteur, chiralité",
+   "tex": [
+    "\\text{solubles : beaucoup de groupes } OH",
+    "\\text{réducteurs : un carbonyle libre}",
+    "\\text{chiraux : ils font tourner la lumière}"
+   ]
+  },
+  "roles_glucides": {
+   "type": "etape",
+   "kicker": "Les rôles des glucides",
+   "titre": "Quatre rôles, du carburant au message",
+   "tex": [
+    "\\text{énergie : le glucose, puis l'ATP}",
+    "\\text{structure : cellulose, chitine}",
+    "\\text{réserve : amidon, glycogène}",
+    "\\text{reconnaissance : groupes sanguins}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Glucides : (CH₂O)n, sucres simples ou polymères",
+    "Mono : glucose, fructose, galactose",
+    "Di : saccharose, lactose, maltose",
+    "Poly : amidon, glycogène, cellulose",
+    "Énergie, structure, réserve, reconnaissance"
+   ]
+  },
+  "lipides_def": {
+   "type": "phrase",
+   "kicker": "Les lipides : un groupe hétérogène",
+   "texte": "Hydrophobes : insolubles dans l'eau, solubles dans l'éther."
+  },
+  "acides_gras": {
+   "type": "etape",
+   "kicker": "Les acides gras",
+   "titre": "Les briques des lipides",
+   "tex": [
+    "\\text{chaîne hydrocarbonée de 4 à 36 carbones}",
+    "\\text{terminée par } COOH",
+    "\\text{saturés : solides ; insaturés : liquides}"
+   ]
+  },
+  "familles_lipides": {
+   "type": "etape",
+   "kicker": "Les familles de lipides",
+   "titre": "Cinq familles à reconnaître",
+   "tex": [
+    "\\text{triglycérides : glycérol + 3 acides gras}",
+    "\\text{phospholipides : la membrane}",
+    "\\text{sphingolipides : le système nerveux}",
+    "\\text{stéroïdes : cholestérol, hormones}"
+   ]
+  },
+  "proprietes_lipides": {
+   "type": "etape",
+   "kicker": "Propriétés des lipides",
+   "titre": "Fusion, saponification, indice d'iode",
+   "tex": [
+    "\\text{point de fusion : chaîne et insaturation}",
+    "\\text{saponification : base + triglycéride}",
+    "\\text{indice d'iode : le degré d'insaturation}"
+   ]
+  },
+  "saponification": {
+   "type": "etape",
+   "kicker": "Exemple chiffré : la saponification",
+   "titre": "Un triglycéride de trois acides oléiques",
+   "tex": [
+    "\\text{trioléine : } 884 \\ \\text{g/mol}",
+    "\\text{1 mol réagit avec 3 mol de soude}",
+    "\\tfrac{3 \\times 40}{884} \\approx 0{,}136 \\ \\text{g de soude par gramme}",
+    "\\text{soit 136 mg par gramme}"
+   ]
+  },
+  "roles_lipides": {
+   "type": "etape",
+   "kicker": "Les rôles des lipides",
+   "titre": "Réserve dense, membrane, message",
+   "tex": [
+    "\\text{1 g de lipide : environ 9 kcal}",
+    "\\text{1 g de glucide : environ 4 kcal}",
+    "\\text{bicouche : phospholipides et cholestérol}",
+    "\\text{hormones : des messagers lipidiques}"
+   ]
+  },
+  "acides_amines": {
+   "type": "etape",
+   "kicker": "Les acides aminés",
+   "titre": "Vingt briques, une structure commune",
+   "tex": [
+    "NH_2\\text{-}CH(R)\\text{-}COOH",
+    "\\text{amine, acide, carbone alpha, chaîne } R",
+    "\\text{la chaîne R décide de tout}"
+   ]
+  },
+  "liaison_peptidique": {
+   "type": "etape",
+   "kicker": "La liaison peptidique",
+   "titre": "La couture des protéines",
+   "tex": [
+    "\\text{carboxyle + amine, moins une eau}",
+    "\\text{structure primaire : la séquence}",
+    "\\text{la séquence décide de la fonction}"
+   ]
+  },
+  "structures": {
+   "type": "etape",
+   "kicker": "Les quatre structures",
+   "titre": "Du fil à la machine en trois dimensions",
+   "tex": [
+    "\\text{secondaire : hélice alpha, feuillet bêta}",
+    "\\text{tertiaire : le repliement global}",
+    "\\text{quaternaire : plusieurs sous-unités}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Lipides : hydrophobes, acides gras en briques",
+    "Triglycérides, phospholipides, stéroïdes",
+    "Saponification : 136 mg de soude par gramme",
+    "Protides : 20 acides aminés, liaison peptidique",
+    "Séquence, puis repliement en trois dimensions"
+   ]
+  },
+  "proprietes_protides": {
+   "type": "etape",
+   "kicker": "Propriétés des protides",
+   "titre": "Polarité, charge, dénaturation",
+   "tex": [
+    "\\text{radicaux polaires : solubles dans l'eau}",
+    "\\text{radicaux apolaires : insolubles}",
+    "\\text{dénaturation : chaleur, pH, solvants}"
+   ],
+   "anim": {
+    "nom": "liaison_hydrogene_fig",
+    "hauteur": 110
+   }
+  },
+  "roles_protides": {
+   "type": "etape",
+   "kicker": "Les rôles des protides",
+   "titre": "Bâtir, catalyser, transporter, réguler",
+   "tex": [
+    "\\text{structure : collagène, élastine}",
+    "\\text{enzymes : amylase, pepsine}",
+    "\\text{transport : hémoglobine}",
+    "\\text{régulation : insuline, hormones}"
+   ]
+  },
+  "metab_glucides": {
+   "type": "etape",
+   "kicker": "Le métabolisme glucidique",
+   "titre": "Du glucose à l'énergie, en trois temps",
+   "tex": [
+    "\\text{glycolyse : glucose vers pyruvate}",
+    "\\text{Krebs, puis chaîne respiratoire}",
+    "\\text{néoglucogenèse : refaire du glucose}"
+   ]
+  },
+  "metab_lipides": {
+   "type": "etape",
+   "kicker": "Le métabolisme lipidique",
+   "titre": "Stocker, puis brûler les graisses",
+   "tex": [
+    "\\text{lipolyse : triglycérides vers acides gras}",
+    "\\text{bêta-oxydation : vers acétyl-CoA}",
+    "\\text{lipogenèse : refaire des acides gras}"
+   ]
+  },
+  "metab_protides": {
+   "type": "etape",
+   "kicker": "Le métabolisme protidique",
+   "titre": "Construire et déconstruire",
+   "tex": [
+    "\\text{protéolyse : les liaisons coupées}",
+    "\\text{cycle de l'urée : éliminer l'ammoniac}",
+    "\\text{traduction : de l'ARN aux protéines}"
+   ]
+  },
+  "interdependance": {
+   "type": "phrase",
+   "kicker": "Une interdépendance permanente",
+   "texte": "Les trois voies se parlent : un même carrefour, l'acétyl-CoA."
+  },
+  "exemple_energie": {
+   "type": "etape",
+   "kicker": "Exemple chiffré : la densité énergétique",
+   "titre": "Dix grammes, deux énergies très différentes",
+   "tex": [
+    "\\text{10 g de lipides : } 10 \\times 9 = 90 \\ \\text{kcal}",
+    "\\text{10 g de glucides : } 10 \\times 4 = 40 \\ \\text{kcal}",
+    "\\text{plus du double, pour le même poids}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Trois familles, trois logiques complémentaires",
+    "Glucides : énergie, structure, réserve",
+    "Lipides : 9 kcal par gramme, membranes",
+    "Protides : séquence, repliement, fonction",
+    "Métabolismes liés, carrefour acétyl-CoA"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours sur les biomolécules, les grandes familles de molécules qui font la matière vivante. Avant d'étudier les glucides, les lipides et les protides en détail, une idée centrale : ce qui distingue le vivant de l'inerte, ce n'est pas seulement la composition chimique, c'est l'organisation. Les mêmes briques, assemblées différemment, donnent un château ou une simple tour, une cellule ou un caillou. Nous suivrons les trois familles, puis leurs métabolismes, ces voies qui les transforment en énergie et en matière.",
+   "texte": "Trois familles, une même logique du vivant.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Commençons par cette organisation hiérarchique, de l'atome à l'organisme. L'eau, les sels minéraux, les glucides, les lipides et les protides existent aussi dans la matière inerte, mais dans la cellule ils sont organisés de façon complexe et dynamique, en structures qui interagissent en permanence. C'est cette organisation, et non la simple présence des molécules, qui permet le fonctionnement du vivant. Gardez cette image en tête pour tout le cours : chaque famille que nous verrons tire sa fonction de sa structure, et de sa place dans l'organisation cellulaire.",
+   "texte": "Mêmes briques, organisation différente.",
+   "ecran": "organisation"
+  },
+  {
+   "id": "p03",
+   "dit": "Ce cours se concentre sur trois grandes familles. Les glucides, ou hydrates de carbone, sont les sources d'énergie primaires de l'organisme, avec aussi un rôle structural. Les lipides, ou graisses, sont les réserves énergétiques majeures, les constituants des membranes et des précurseurs d'hormones. Les protides, ou protéines, sont les acteurs polyvalents : structure, enzymes, hormones, transport. Trois familles, trois logiques, un même organisme à faire fonctionner.",
+   "texte": "Glucides, lipides, protides : les trois piliers.",
+   "ecran": "familles"
+  },
+  {
+   "id": "p04",
+   "dit": "Les glucides, aussi appelés saccharides, sont des composés organiques de carbone, d'hydrogène et d'oxygène, généralement dans un rapport proche de un carbone pour deux hydrogènes et un oxygène, répété un certain nombre de fois. Cette formule de famille, un groupe CH deux O répété, résume bien leur parenté chimique. On les classe selon le nombre d'unités de sucres simples qu'ils contiennent : un seul, quelques-uns, ou de très longues chaînes.",
+   "texte": "Glucides : carbone, hydrogène, oxygène.",
+   "ecran": "glucides_def"
+  },
+  {
+   "id": "p05",
+   "dit": "Les monosaccharides sont les unités de base, les sucres simples. Ils ne peuvent pas être décomposés par l'eau en sucres plus simples. Les trois plus importants partagent la même formule brute, six carbones, douze hydrogènes et six oxygènes, mais pas la même structure : le glucose, le sucre le plus abondant et la source d'énergie principale des cellules ; le fructose, le sucre des fruits, plus sucré que le glucose ; le galactose, un composant du sucre du lait.",
+   "texte": "Trois sucres, une même formule, trois structures.",
+   "ecran": "monosaccharides"
+  },
+  {
+   "id": "p06",
+   "dit": "Les oligosaccharides assemblent de deux à dix monosaccharides par des liaisons glycosidiques. Le plus connu est le saccharose, le sucre de table : un glucose lié à un fructose. Le lactose, le sucre du lait, associe un glucose et un galactose. Le maltose, produit de la digestion de l'amidon, associe deux glucoses. Retenez les couples : chaque disaccharide se reconnaît à ses deux unités et à sa liaison, et c'est cette liaison qui décidera s'il est digestible ou non.",
+   "texte": "Disaccharides : deux unités, une liaison.",
+   "ecran": "oligosaccharides"
+  },
+  {
+   "id": "p07",
+   "dit": "Les polysaccharides sont de longues chaînes de plus de dix monosaccharides. L'amidon, réserve énergétique des végétaux, associe une chaîne linéaire et une chaîne ramifiée, toutes deux de glucose. Le glycogène, réserve des animaux, stocké dans le foie et les muscles, est très ramifié, lui aussi de glucose. La cellulose, structure des parois végétales, est une chaîne linéaire de glucose dont les liaisons rendent la molécule indigeste pour l'homme. La chitine, enfin, structure l'exosquelette des arthropodes et la paroi de certains champignons.",
+   "texte": "Amidon, glycogène, cellulose, chitine.",
+   "ecran": "polysaccharides"
+  },
+  {
+   "id": "p08",
+   "dit": "Les propriétés des glucides découlent de leur structure. D'abord la solubilité : les monosaccharides, riches en groupes hydroxyle, forment des liaisons hydrogène avec l'eau et s'y dissolvent très bien, tandis que les longues chaînes comme l'amidon ou la cellulose y sont peu solubles. Ensuite le pouvoir réducteur : un groupement carbonyle libre, aldéhyde ou cétone, peut réduire la liqueur de Fehling ou le réactif de Benedict. Enfin la chiralité : la plupart des monosaccharides possèdent des carbones asymétriques et font tourner le plan de la lumière polarisée.",
+   "texte": "Solubles, réducteurs, chiraux : trois propriétés.",
+   "ecran": "proprietes_glucides"
+  },
+  {
+   "id": "p09",
+   "dit": "Quatre rôles pour les glucides. D'abord l'énergie : par la glycolyse, puis le cycle de Krebs et la chaîne respiratoire, le glucose est dégradé en libérant de l'énergie sous forme d'adénosine triphosphate, la monnaie énergétique de la cellule. Ensuite la structure : cellulose des parois végétales, chitine des arthropodes. Puis la réserve : glycogène chez les animaux, amidon chez les végétaux. Enfin la reconnaissance : liés à des protéines ou à des lipides, les glucides de surface participent à l'adhésion, à la signalisation et à l'immunité, et déterminent par exemple les groupes sanguins.",
+   "texte": "Énergie, structure, réserve, reconnaissance.",
+   "ecran": "roles_glucides"
+  },
+  {
+   "id": "p10",
+   "dit": "Récapitulons cette première partie. Les glucides répondent à une formule de famille et se classent en sucres simples, en oligosaccharides et en polysaccharides. Les monosaccharides glucose, fructose et galactose partagent une même formule brute. Les disaccharides saccharose, lactose et maltose se distinguent par leurs unités. Les polysaccharides amidon, glycogène, cellulose et chitine couvrent réserve et structure. Et les glucides servent à la fois d'énergie, de structure, de réserve et de reconnaissance.",
+   "texte": "L'essentiel de la partie 1.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p11",
+   "dit": "Partie deux : les lipides. Ils forment un groupe hétérogène de molécules organiques, unies non par une structure commune mais par une propriété : hydrophobes, ils repoussent l'eau et se dissolvent dans les solvants organiques comme l'éther ou le chloroforme. La plupart sont construits à partir d'acides gras, des molécules linéaires formées d'une longue chaîne hydrocarbonée terminée par un groupe carboxyle.",
+   "texte": "Lipides : unis par l'hydrophobie, pas par la structure.",
+   "ecran": "lipides_def"
+  },
+  {
+   "id": "p12",
+   "dit": "Un acide gras se reconnaît à sa chaîne, de quatre à trente-six carbones, et à ses liaisons. Saturé : que des liaisons simples, la molécule est droite et le corps gras généralement solide à température ambiante, comme le beurre. Insaturé : une ou plusieurs doubles liaisons, la chaîne se coude et le corps gras est généralement liquide, comme l'huile d'olive. On distingue les monoinsaturés, une seule double liaison, et les polyinsaturés, plusieurs doubles liaisons, dont la configuration cis ou trans change fortement les propriétés.",
+   "texte": "Saturé solide, insaturé liquide : la liaison décide.",
+   "ecran": "acides_gras"
+  },
+  {
+   "id": "p13",
+   "dit": "Cinq familles de lipides. Les triglycérides, les plus abondants, sont formés par l'estérification du glycérol avec trois acides gras : ce sont les réserves. Les phospholipides remplacent un acide gras par un groupe phosphate polaire : amphiphiles, ils forment les membranes. Les sphingolipides, bâtis sur la sphingosine, peuplent les membranes, notamment du système nerveux. Les stéroïdes, molécules cycliques dont le cholestérol, structurent les membranes et donnent des hormones. Les cétides, enfin, assemblent des unités acétate.",
+   "texte": "Triglycérides, phospholipides, stéroïdes : cinq familles.",
+   "ecran": "familles_lipides"
+  },
+  {
+   "id": "p14",
+   "dit": "Trois propriétés physiques et chimiques à retenir. La solubilité d'abord : insolubles dans l'eau, solubles dans les solvants apolaires. Le point de fusion ensuite : plus la chaîne est longue et saturée, plus il est élevé. La saponification : l'hydrolyse basique d'un triglycéride donne du glycérol et des savons, des sels d'acides gras. Et l'indice d'iode, qui mesure le degré d'insaturation : plus il est élevé, plus la molécule est riche en doubles liaisons.",
+   "texte": "Fusion, saponification, indice d'iode.",
+   "ecran": "proprietes_lipides"
+  },
+  {
+   "id": "p15",
+   "dit": "Faisons le calcul demandé par la leçon : l'indice de saponification d'un triglycéride formé de trois acides oléiques. Chaque acide oléique pèse deux cent quatre-vingt-deux grammes par mole. Le triglycéride, glycérol plus trois acides moins trois eaux, pèse huit cent quatre-vingt-quatre grammes par mole. Une mole de triglycéride réagit avec trois moles de soude, soit trois fois quarante grammes, cent vingt grammes. Divisez cent vingt par huit cent quatre-vingt-quatre : environ zéro virgule cent trente-six gramme de soude par gramme de lipide, soit environ cent trente-six milligrammes par gramme.",
+   "texte": "Saponification : 136 mg de soude par gramme.",
+   "ecran": "saponification"
+  },
+  {
+   "id": "p16",
+   "dit": "Les lipides ne sont pas que des réserves. Certes, les triglycérides sont les principales molécules de réserve, et leur densité énergétique explique le choix de l'organisme : un gramme de lipide fournit environ neuf kilocalories, contre quatre pour un gramme de glucide ou de protéine. Mais les phospholipides et les stérols comme le cholestérol forment aussi la bicouche des membranes, qui délimite la cellule et régule les échanges. Et certains lipides sont des messagers : des hormones stéroïdiennes aux signaux dérivés d'acides gras.",
+   "texte": "Neuf kilocalories par gramme, et des membranes.",
+   "ecran": "roles_lipides"
+  },
+  {
+   "id": "p17",
+   "dit": "Passons aux protides, qui commencent par les acides aminés. Chaque acide aminé possède une structure commune : un groupe carboxyle acide, un groupe amine basique, un carbone central appelé carbone alpha, et une chaîne latérale, notée R, variable. Il existe vingt acides aminés standard, différenciés par cette chaîne latérale : apolaires et hydrophobes comme l'alanine, polaires comme la sérine, chargées négativement comme l'acide aspartique, chargées positivement comme la lysine.",
+   "texte": "Vingt acides aminés, une structure commune.",
+   "ecran": "acides_amines"
+  },
+  {
+   "id": "p18",
+   "dit": "Les acides aminés s'assemblent par la liaison peptidique, une liaison covalente entre le carboxyle d'un acide aminé et l'amine du suivant, avec libération d'une molécule d'eau. La structure primaire d'une protéine, c'est la séquence linéaire de ses acides aminés, dictée par l'information génétique. Cette séquence détermine toutes les autres structures, donc la fonction : une modification même minime peut avoir des conséquences dramatiques, comme dans l'anémie falciforme, où l'hémoglobine est altérée.",
+   "texte": "Liaison peptidique : la séquence décide de tout.",
+   "ecran": "liaison_peptidique"
+  },
+  {
+   "id": "p19",
+   "dit": "La chaîne se replie ensuite en trois dimensions. La structure secondaire, ce sont les arrangements locaux réguliers, stabilisés par des liaisons hydrogène : l'hélice alpha et le feuillet bêta. La structure tertiaire, c'est le repliement global d'une chaîne, stabilisé par des liaisons hydrogène, des interactions hydrophobes, des ponts salins et des ponts disulfures. La structure quaternaire, enfin, associe plusieurs chaînes, plusieurs sous-unités, en un complexe fonctionnel, comme l'hémoglobine.",
+   "texte": "Secondaire, tertiaire, quaternaire : le repliement.",
+   "ecran": "structures"
+  },
+  {
+   "id": "p20",
+   "dit": "Récapitulons cette deuxième partie. Les lipides sont hydrophobes et bâtis sur des acides gras, saturés ou insaturés, en cinq familles dont les triglycérides de réserve et les phospholipides des membranes. La saponification d'un triglycéride d'acide oléique demande environ cent trente-six milligrammes de soude par gramme. Les protides partent de vingt acides aminés, assemblés par liaison peptidique en une séquence qui détermine le repliement, donc la fonction.",
+   "texte": "L'essentiel de la partie 2.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p21",
+   "dit": "Partie trois : les propriétés et les rôles des protides, puis leurs métabolismes. La solubilité d'une protéine dépend de ses radicaux : majoritairement hydrophile, elle se dissout dans l'eau ; majoritairement hydrophobe, elle ne s'y dissout pas. La dénaturation, c'est la perte de la structure tridimensionnelle, donc de la fonction, sous l'effet de la chaleur, d'un pH extrême, d'un solvant organique ou d'un agent réducteur qui casse les ponts disulfures. C'est ce qui se passe quand le blanc d'œuf coagule à la cuisson.",
+   "texte": "Dénaturation : perdre sa forme, perdre sa fonction.",
+   "ecran": "proprietes_protides"
+  },
+  {
+   "id": "p22",
+   "dit": "Quatre rôles pour les protides. Structurels : le collagène solidifie les tissus conjonctifs, l'élastine leur donne de l'élasticité. Enzymatiques : les enzymes sont des catalyseurs biologiques, spécifiques comme une clé pour sa serrure, de l'amylase qui hydrolyse l'amidon à l'ADN polymérase qui réplique l'ADN. De transport : l'hémoglobine porte l'oxygène des poumons vers les tissus. De régulation : l'insuline régule la glycémie, l'hormone de croissance stimule la croissance, et d'autres protéines contrôlent l'expression des gènes.",
+   "texte": "Collagène, enzymes, hémoglobine, insuline.",
+   "ecran": "roles_protides"
+  },
+  {
+   "id": "p23",
+   "dit": "Le métabolisme glucidique transforme les glucides en énergie. La glycolyse, dans le cytoplasme et sans oxygène, dégrade le glucose en pyruvate en dix étapes, avec un petit gain d'énergie et des porteurs d'électrons. En présence d'oxygène, le pyruvate entre dans la mitochondrie, devient de l'acétyl-CoA, alimente le cycle de Krebs puis la chaîne respiratoire, qui produit l'essentiel de l'énergie par phosphorylation oxydative. Et quand les réserves baissent, la néoglucogenèse, surtout dans le foie et les reins, refait du glucose à partir de lactate, de pyruvate, de glycérol ou de certains acides aminés.",
+   "texte": "Glycolyse, Krebs, néoglucogenèse.",
+   "ecran": "metab_glucides"
+  },
+  {
+   "id": "p24",
+   "dit": "Le métabolisme lipidique gère les réserves. La lipolyse dégrade les triglycérides du tissu adipeux en acides gras et glycérol. Les acides gras gagnent les mitochondries, où la bêta-oxydation les découpe en acétyl-CoA, avec des porteurs d'électrons qui alimentent le cycle de Krebs et la chaîne respiratoire. Dans l'autre sens, la lipogenèse synthétise des acides gras à partir d'acétyl-CoA, sous le contrôle de l'insuline, pour stocker l'énergie sous forme de triglycérides.",
+   "texte": "Lipolyse, bêta-oxydation, lipogenèse.",
+   "ecran": "metab_lipides"
+  },
+  {
+   "id": "p25",
+   "dit": "Le métabolisme protidique construit et déconstruit. La dégradation commence par la protéolyse, la rupture des liaisons peptidiques, qui libère des acides aminés réutilisables pour de nouvelles protéines ou dégradés pour produire de l'énergie. Le cycle de l'urée élimine alors l'ammoniac, toxique, issu du catabolisme des acides aminés. La synthèse, elle, passe par la transcription de l'ADN en ARN messager, puis par la traduction de cet ARN en protéines par les ribosomes.",
+   "texte": "Protéolyse, urée, traduction.",
+   "ecran": "metab_protides"
+  },
+  {
+   "id": "p26",
+   "dit": "Ces voies ne sont pas isolées : elles interagissent en permanence. Les produits d'une voie alimentent une autre, autour de carrefours comme l'acétyl-CoA, issu du glucose, des acides gras ou de certains acides aminés. Comprendre ces interrelations, c'est comprendre le métabolisme énergétique global, et non trois chapitres séparés. C'est aussi pourquoi un déséquilibre alimentaire ou hormonal se répercute sur les trois familles à la fois.",
+   "texte": "Un carrefour commun : l'acétyl-CoA.",
+   "ecran": "interdependance"
+  },
+  {
+   "id": "p27",
+   "dit": "Vérifions la densité énergétique par un calcul simple. Dix grammes de lipides apportent dix fois neuf kilocalories, soit quatre-vingt-dix kilocalories. Dix grammes de glucides apportent dix fois quatre kilocalories, soit quarante kilocalories. Pour le même poids, les lipides apportent plus du double d'énergie, et ils occupent moins de volume une fois stockés sans eau : voilà pourquoi l'organisme stocke préférentiellement ses réserves sous forme de triglycérides, et non de glucides.",
+   "texte": "Dix grammes : 90 kcal contre 40 kcal.",
+   "ecran": "exemple_energie"
+  },
+  {
+   "id": "p28",
+   "dit": "Pour conclure : trois familles, trois logiques complémentaires. Les glucides fournissent l'énergie rapide, la structure et les réserves mobilisables. Les lipides concentrent l'énergie, neuf kilocalories par gramme, et bâtissent les membranes. Les protides, de la séquence au repliement, assurent structure, catalyse, transport et régulation. Et leurs métabolismes, reliés par l'acétyl-CoA, font de l'organisme une usine intégrée, pas trois ateliers séparés.",
+   "texte": "Trois familles, une usine intégrée.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La matière vivante et les glucides"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Lipides et protides : briques et structures",
+   "pont": {
+    "dit": "Partie deux : les lipides, puis les protides. Nous verrons les acides gras et les familles de lipides, un calcul de saponification, et les acides aminés qui s'assemblent en protéines.",
+    "texte": "Partie 2 : lipides, acides aminés, protéines."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Propriétés, rôles et métabolismes",
+   "pont": {
+    "dit": "Partie trois : les propriétés et les rôles des protides, puis les trois métabolismes, glucidique, lipidique et protidique, et leur interdépendance.",
+    "texte": "Partie 3 : rôles, métabolismes, interdépendance."
+   }
+  }
+ ]
+}

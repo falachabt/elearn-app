@@ -1,0 +1,305 @@
+{
+ "cours": 7285,
+ "titre": "Dérivation : du nombre dérivé au tableau de variation",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Dérivation",
+   "titre": "Dérivation : du nombre dérivé au tableau de variation",
+   "sous": "Nombre dérivé et tangente, règles de calcul, signe de la dérivée, extremums",
+   "anim": {
+    "nom": "secante_tangente_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "L'idée de départ",
+   "texte": "Une sécante qui pivote jusqu'à devenir tangente : toute la dérivation est là.",
+   "anim": {
+    "nom": "secante_tangente_fig",
+    "hauteur": 150
+   }
+  },
+  "taux": {
+   "type": "formule",
+   "kicker": "Le taux d'accroissement",
+   "tex": "\\frac{f(a+h) - f(a)}{h}",
+   "note": "Le coefficient directeur de la sécante (AM) : A(a ; f(a)) et M(a + h ; f(a + h)).",
+   "anim": {
+    "nom": "secante_tangente_fig",
+    "hauteur": 170
+   }
+  },
+  "nombre_derive": {
+   "type": "formule",
+   "kicker": "Le nombre dérivé en un point",
+   "tex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a+h) - f(a)}{h}",
+   "note": "f′(a) est la pente de la tangente à la courbe au point d'abscisse a."
+  },
+  "ex_nombre_derive": {
+   "type": "etape",
+   "kicker": "Exemple · la fonction carré en 3",
+   "titre": "Simplifier par h, puis faire tendre h vers 0",
+   "tex": [
+    "\\tfrac{f(3+h)-f(3)}{h} = \\tfrac{(3+h)^2 - 9}{h}",
+    "= \\tfrac{6h + h^2}{h} = 6 + h",
+    "h \\to 0 : \\ f'(3) = 6"
+   ]
+  },
+  "tangente": {
+   "type": "formule",
+   "kicker": "Équation de la tangente",
+   "tex": "y = f'(a)(x - a) + f(a)",
+   "note": "La tangente passe par le point (a ; f(a)) et a pour pente f′(a)."
+  },
+  "fonction_derivee": {
+   "type": "formule",
+   "kicker": "La fonction dérivée",
+   "tex": "f' : x \\mapsto f'(x)",
+   "note": "f est dérivable sur un intervalle si f′(x) existe en tout point de cet intervalle."
+  },
+  "usuelles": {
+   "type": "etape",
+   "kicker": "Dérivées des fonctions de référence",
+   "titre": "Avec leurs domaines de validité",
+   "tex": [
+    "k \\to 0 \\qquad x \\to 1",
+    "x^n \\to n\\,x^{n-1}",
+    "\\tfrac{1}{x} \\to -\\tfrac{1}{x^2} \\qquad \\sqrt{x} \\to \\tfrac{1}{2\\sqrt{x}}"
+   ]
+  },
+  "operations": {
+   "type": "etape",
+   "kicker": "Opérations sur les dérivées",
+   "titre": "Somme, constante, produit, quotient",
+   "tex": [
+    "(u + v)' = u' + v' \\qquad (k u)' = k u'",
+    "(u v)' = u' v + u v'",
+    "\\left(\\tfrac{u}{v}\\right)' = \\tfrac{u' v - u v'}{v^2}"
+   ]
+  },
+  "ex_produit": {
+   "type": "etape",
+   "kicker": "Exemple · la règle du produit",
+   "titre": "Poser u et v, puis appliquer u′v + uv′",
+   "tex": [
+    "u = 2x + 1, \\quad u' = 2",
+    "v = x^2 - 3, \\quad v' = 2x",
+    "f'(x) = 2(x^2 - 3) + (2x + 1)(2x)",
+    "f'(x) = 6x^2 + 2x - 6"
+   ]
+  },
+  "theoreme": {
+   "type": "etape",
+   "kicker": "Signe de la dérivée et variations",
+   "titre": "Le théorème fondamental",
+   "tex": [
+    "f'(x) > 0 \\Rightarrow f \\text{ strictement croissante}",
+    "f'(x) < 0 \\Rightarrow f \\text{ strictement décroissante}",
+    "f'(x) = 0 \\Rightarrow f \\text{ constante}"
+   ],
+   "anim": {
+    "nom": "tableau_variations_fig",
+    "hauteur": 110
+   }
+  },
+  "methode_tableau": {
+   "type": "recap",
+   "kicker": "Méthode · le tableau de variation",
+   "etapes": [
+    "Calculer f′(x) et son domaine",
+    "Résoudre f′(x) = 0",
+    "Étudier le signe de f′(x)",
+    "Dresser le tableau, valeurs de f"
+   ]
+  },
+  "ex_tableau": {
+   "type": "etape",
+   "kicker": "Exemple complet · x³ − 3x",
+   "titre": "Factoriser f′, signer, conclure",
+   "tex": [
+    "f'(x) = 3x^2 - 3 = 3(x - 1)(x + 1)",
+    "f' > 0 \\text{ sur } ]-\\infty;-1[ \\cup ]1;+\\infty[",
+    "f' < 0 \\text{ sur } ]-1;1[",
+    "f(-1) = 2 \\qquad f(1) = -2"
+   ]
+  },
+  "extremums_def": {
+   "type": "etape",
+   "kicker": "Extremums · définitions",
+   "titre": "Local : on ne regarde qu'au voisinage du point",
+   "tex": [
+    "f(x) \\leq f(a) \\text{ près de } a : \\text{max local}",
+    "f(x) \\geq f(a) \\text{ près de } a : \\text{min local}"
+   ]
+  },
+  "condition_necessaire": {
+   "type": "formule",
+   "kicker": "Extremums · condition nécessaire",
+   "tex": "f \\text{ a un extremum en } a \\Rightarrow f'(a) = 0",
+   "note": "Tangente horizontale au sommet ou au creux — mais la réciproque est fausse."
+  },
+  "condition_suffisante": {
+   "type": "etape",
+   "kicker": "Extremums · condition suffisante",
+   "titre": "Le changement de signe de f′ décide",
+   "tex": [
+    "f' : + \\to - \\ \\Rightarrow \\text{maximum local}",
+    "f' : - \\to + \\ \\Rightarrow \\text{minimum local}",
+    "x^3-3x : \\max = 2 \\text{ en } -1",
+    "x^3-3x : \\min = -2 \\text{ en } 1"
+   ]
+  },
+  "piege": {
+   "type": "formule",
+   "kicker": "Le piège · x³ en 0",
+   "tex": "f(x) = x^3 \\qquad f'(0) = 0",
+   "note": "Aucun extremum en 0 : f′ garde le même signe, f reste croissante sur ℝ."
+  },
+  "synthese": {
+   "type": "recap",
+   "kicker": "Synthèse · étudier une fonction",
+   "etapes": [
+    "Déterminer l'ensemble de définition",
+    "Calculer f′(x)",
+    "Étudier le signe de f′(x)",
+    "Dresser le tableau de variation",
+    "Extremums et tangentes remarquables"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours consacré à la dérivation, l'outil qui mesure comment une fonction varie, point par point. Nous partirons du taux d'accroissement, la pente d'une sécante, pour aboutir au nombre dérivé, la pente de la tangente. Nous apprendrons ensuite à calculer les dérivées des fonctions usuelles, des produits et des quotients, puis nous lirons le signe de la dérivée pour dresser le tableau de variation et traquer les extremums.",
+   "texte": "La dérivée : mesurer la variation, point par point."
+  },
+  {
+   "id": "p02",
+   "ecran": "accroche",
+   "dit": "Imaginez deux points sur une courbe, reliés par une droite sécante. Faites glisser le second point vers le premier : la sécante pivote, sa pente se stabilise, et à la limite elle devient la tangente à la courbe, la droite qui l'épouse au plus près. Cette pente limite a un nom : le nombre dérivé. C'est lui qui commande tout le cours.",
+   "texte": "La sécante devient tangente : le nombre dérivé naît."
+  },
+  {
+   "id": "p03",
+   "ecran": "taux",
+   "dit": "Entre le point A, d'abscisse a, et le point M, d'abscisse a plus h, sur la courbe, le taux d'accroissement est le quotient de la variation des images par la variation des abscisses : f de a plus h moins f de a, le tout divisé par h. Géométriquement, c'est exactement le coefficient directeur, la pente, de la sécante qui joint A et M. Toute la dérivation consiste à regarder ce qui se passe quand h se resserre vers zéro.",
+   "texte": "Taux d'accroissement : la pente de la sécante (AM)."
+  },
+  {
+   "id": "p04",
+   "ecran": "nombre_derive",
+   "dit": "Le nombre dérivé de f en a, noté f prime de a, est la limite du taux d'accroissement lorsque h tend vers zéro, lorsque le point M glisse le long de la courbe jusqu'à se confondre avec A. Si cette limite existe, elle donne le coefficient directeur de la tangente à la courbe au point d'abscisse a : le nombre dérivé est une pente locale, la vitesse instantanée de variation de la fonction en ce point précis.",
+   "texte": "f′(a) : limite du taux, pente de la tangente."
+  },
+  {
+   "id": "p05",
+   "ecran": "ex_nombre_derive",
+   "dit": "Premier calcul complet : la fonction carré, au point d'abscisse trois. Le taux d'accroissement vaut f de trois plus h moins f de trois, divisé par h, soit trois plus h au carré moins neuf, divisé par h. En développant, le numérateur devient six h plus h au carré ; on simplifie par h, qui est non nul : il reste six plus h. Quand h tend vers zéro, six plus h tend vers six. Le nombre dérivé de la fonction carré en trois vaut donc six.",
+   "texte": "Pour x² en a = 3 : f′(3) = 6."
+  },
+  {
+   "id": "p06",
+   "ecran": "tangente",
+   "dit": "La tangente mérite son équation, car elle sert partout. Au point d'abscisse a, elle passe par le point de la courbe de coordonnées a et f de a, et sa pente est f prime de a. Son équation s'écrit donc : igrec égale f prime de a, facteur de ixe moins a, plus f de a. Retenez la structure : une pente, un point de contact, et l'équation suit.",
+   "texte": "Tangente : y = f′(a)(x − a) + f(a)."
+  },
+  {
+   "id": "p07",
+   "ecran": "fonction_derivee",
+   "dit": "En faisant varier le point a le long de l'intervalle, on obtient une nouvelle fonction : la fonction dérivée, notée f prime, qui associe à chaque ixe le nombre dérivé f prime de ixe, partout où il existe. Une fonction est dérivable sur un intervalle si elle admet un nombre dérivé en chacun de ses points. C'est cette fonction f prime que nous allons maintenant apprendre à calculer directement, sans repasser par la limite à chaque fois.",
+   "texte": "f′ : la fonction qui donne toutes les pentes."
+  },
+  {
+   "id": "p08",
+   "ecran": "usuelles",
+   "dit": "Voici les dérivées des fonctions de référence, à connaître par cœur. Une constante a pour dérivée zéro : elle ne varie pas. La fonction identité, ixe, a pour dérivée un. La puissance ixe exposant n a pour dérivée n fois ixe exposant n moins un. La fonction inverse, un sur ixe, a pour dérivée moins un sur ixe au carré, pour ixe non nul. Et la racine carrée a pour dérivée un sur deux racine de ixe, mais seulement pour ixe strictement positif : en zéro, la tangente est verticale, il n'y a pas de nombre dérivé.",
+   "texte": "Dérivées usuelles : constantes, puissances, inverse, racine."
+  },
+  {
+   "id": "p09",
+   "ecran": "operations",
+   "dit": "Pour les fonctions construites à partir de u et de v, quatre règles suffisent. La dérivée d'une somme est la somme des dérivées, et une constante multiplicative k se recopie simplement devant la dérivée. Le produit demande plus de soin : la dérivée de u fois v est u prime fois v, plus u fois v prime ; les deux facteurs jouent tour à tour le rôle principal. Le quotient, enfin : u prime fois v moins u fois v prime, le tout sur v au carré, avec v non nulle. C'est la règle la plus fautive : l'ordre des termes et le carré du dénominateur sont à vérifier deux fois.",
+   "texte": "Somme, produit, quotient : les quatre règles."
+  },
+  {
+   "id": "p10",
+   "ecran": "ex_produit",
+   "dit": "Application de la règle du produit : f de ixe égale deux ixe plus un, facteur de ixe au carré moins trois. On pose u égale deux ixe plus un, donc u prime égale deux, et v égale ixe au carré moins trois, donc v prime égale deux ixe. La règle donne : deux, facteur de ixe au carré moins trois, plus deux ixe plus un, facteur de deux ixe. On développe avec soin : deux ixe au carré moins six, plus quatre ixe au carré plus deux ixe. Total : f prime de ixe égale six ixe au carré plus deux ixe moins six.",
+   "texte": "Produit : f′(x) = 6x² + 2x − 6."
+  },
+  {
+   "id": "p11",
+   "ecran": "theoreme",
+   "dit": "Voici le théorème qui justifie tout le chapitre : le signe de la dérivée commande le sens de variation. Si f prime est strictement positive sur un intervalle, la fonction y est strictement croissante, car toutes ses tangentes montent. Si f prime est strictement négative, la fonction est strictement décroissante. Et si f prime est nulle partout sur l'intervalle, la fonction y est constante. Étudier les variations d'une fonction revient donc à étudier le signe de sa dérivée : un problème de signe, bien plus simple à traiter.",
+   "texte": "Le signe de f′ donne les variations de f."
+  },
+  {
+   "id": "p12",
+   "ecran": "methode_tableau",
+   "dit": "Le tableau de variation rassemble tout, et sa construction suit quatre étapes fixes. Un : calculer f prime de ixe et préciser où elle existe. Deux : résoudre l'équation f prime de ixe égale zéro, pour trouver les abscisses candidates aux extremums. Trois : étudier le signe de f prime sur chaque intervalle. Quatre : dresser le tableau, avec les valeurs de f aux points critiques et les flèches de variation.",
+   "texte": "Tableau de variation : la méthode en 4 étapes."
+  },
+  {
+   "id": "p13",
+   "ecran": "ex_tableau",
+   "dit": "Exemple complet, le plus important du cours : f de ixe égale ixe au cube moins trois ixe, sur l'ensemble des réels. Sa dérivée vaut trois ixe au carré moins trois, que l'on factorise en trois, facteur de ixe moins un, facteur de ixe plus un. Elle s'annule en moins un et en un. Son signe est celui d'un trinôme : positif à l'extérieur des racines, négatif entre elles. Donc f croît jusqu'à moins un, décroît jusqu'à un, puis croît à nouveau jusqu'à plus l'infini. Les valeurs clés : f de moins un égale deux, et f de un égale moins deux.",
+   "texte": "x³ − 3x : croît, décroît, croît ; f(−1) = 2, f(1) = −2."
+  },
+  {
+   "id": "p14",
+   "ecran": "extremums_def",
+   "dit": "Un extremum est un maximum ou un minimum. Plus précisément, f admet un maximum local en a si, au voisinage de a, toutes les valeurs f de ixe restent inférieures ou égales à f de a : la courbe culmine, localement. C'est un minimum local si, au voisinage de a, toutes les valeurs restent supérieures ou égales à f de a : la courbe y creuse un creux. Le mot local compte : on ne regarde que près du point, pas toute la courbe.",
+   "texte": "Maximum local : f(x) ≤ f(a) près de a."
+  },
+  {
+   "id": "p15",
+   "ecran": "condition_necessaire",
+   "dit": "Première condition, nécessaire : si une fonction dérivable admet un extremum en un point a, alors son nombre dérivé en a est nul. C'est géométriquement évident : au sommet d'une colline comme au fond d'un creux, la tangente est horizontale, sa pente vaut zéro. Tout candidat extremum intérieur se cherche donc parmi les zéros de la dérivée. Mais attention, ce n'est qu'une condition nécessaire, pas suffisante : un contre-exemple arrive dans un instant.",
+   "texte": "Extremum en a ⇒ f′(a) = 0. Nécessaire, pas suffisant."
+  },
+  {
+   "id": "p16",
+   "ecran": "condition_suffisante",
+   "dit": "La condition suffisante, elle, regarde le changement de signe de la dérivée. Si f prime passe du positif au négatif en a, la fonction monte puis descend : f de a est un maximum local. Si f prime passe du négatif au positif, la fonction descend puis monte : f de a est un minimum local. Sur notre exemple, ixe au cube moins trois ixe : en moins un, le signe passe de plus à moins, f de moins un égale deux est un maximum local ; en un, il passe de moins à plus, f de un égale moins deux est un minimum local.",
+   "texte": "Changement de signe de f′ : extremum confirmé."
+  },
+  {
+   "id": "p17",
+   "ecran": "piege",
+   "dit": "Le piège classique, pour ne plus jamais confondre nécessaire et suffisant : la fonction cube a une dérivée, trois ixe au carré, qui s'annule en zéro. Pourtant, il n'y a aucun extremum en zéro : la dérivée reste positive de part et d'autre, la fonction est croissante sur tout l'ensemble des réels, et la courbe traverse son point à tangente horizontale sans culminer ni creuser. Un zéro de la dérivée sans changement de signe n'est pas un extremum.",
+   "texte": "f′(0) = 0 sans extremum : le cas de x³."
+  },
+  {
+   "id": "p18",
+   "ecran": "synthese",
+   "dit": "Pour conclure, voici la démarche complète d'étude d'une fonction, celle qui structure tous les exercices. Déterminer l'ensemble de définition. Calculer la fonction dérivée avec les règles du cours. Étudier le signe de cette dérivée. Dresser le tableau de variation complet. Et enfin, identifier les extremums, grâce au changement de signe, ainsi que les tangentes remarquables. Maîtriser cette chaîne, c'est maîtriser l'étude de fonctions.",
+   "texte": "La démarche d'étude complète, en cinq temps."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le nombre dérivé et la tangente"
+  },
+  {
+   "debut": "p08",
+   "sous_titre": "Calculer les dérivées et dresser le tableau de variation",
+   "pont": {
+    "texte": "Partie 2 : règles de calcul et tableau de variation.",
+    "dit": "Partie deux : calculer les dérivées et dresser le tableau de variation. Après les dérivées des fonctions de référence et les règles de calcul sur les sommes, les produits et les quotients, le signe de la dérivée nous donnera les variations, jusqu'au tableau complet."
+   }
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Extremums : conditions et pièges",
+   "pont": {
+    "texte": "Partie 3 : extremums, conditions et piège.",
+    "dit": "Partie trois : les extremums. Nous définirons les maximums et minimums locaux, puis nous distinguerons la condition nécessaire, la tangente horizontale, de la condition suffisante, le changement de signe, avant le piège classique de la fonction cube."
+   }
+  }
+ ]
+}

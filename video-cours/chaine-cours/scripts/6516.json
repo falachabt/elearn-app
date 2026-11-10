@@ -1,0 +1,486 @@
+{
+  "cours": 6516,
+  "titre": "Probabilités : modéliser et calculer le hasard",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Probabilités",
+      "titre": "Probabilités : modéliser et calculer le hasard",
+      "sous": "Expériences aléatoires, événements, équiprobabilité et probabilités conditionnelles",
+      "anim": {
+        "nom": "arbre_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Lancer une pièce, tirer une boule, choisir un élève au hasard : le hasard se décrit avant de se calculer.",
+      "anim": {
+        "nom": "urne_fig",
+        "hauteur": 140
+      }
+    },
+    "experience": {
+      "type": "etape",
+      "kicker": "Expérience aléatoire",
+      "titre": "Des résultats connus, un imprévisible",
+      "tex": [
+        "\\text{tous les résultats possibles sont connus}",
+        "\\text{résultat d'une réalisation imprévisible}",
+        "\\text{l'expérience se répète à l'identique}"
+      ]
+    },
+    "univers": {
+      "type": "etape",
+      "kicker": "L'univers des possibles",
+      "titre": "Oméga rassemble tous les résultats",
+      "tex": [
+        "\\Omega = \\{1, 2, 3, 4, 5, 6\\} \\qquad |\\Omega| = 6",
+        "\\Omega = \\{\\text{Pile}, \\text{Face}\\} \\qquad |\\Omega| = 2"
+      ],
+      "anim": {
+        "nom": "grille_des_fig",
+        "hauteur": 140
+      }
+    },
+    "evenements": {
+      "type": "etape",
+      "kicker": "Les événements",
+      "titre": "Un événement : une partie de l'univers",
+      "tex": [
+        "A = \\{2, 4, 6\\} \\qquad B = \\{5, 6\\}",
+        "A \\cap B = \\{6\\}"
+      ],
+      "anim": {
+        "nom": "venn",
+        "hauteur": 150
+      }
+    },
+    "types": {
+      "type": "etape",
+      "kicker": "Types d'événements",
+      "titre": "Quatre cas à reconnaître d'un coup d'œil",
+      "tex": [
+        "\\text{élémentaire : un seul résultat}",
+        "\\text{certain : } \\Omega \\text{ tout entier}",
+        "\\text{impossible : } \\varnothing",
+        "\\text{incompatibles : intersection vide}"
+      ]
+    },
+    "laplace": {
+      "type": "formule",
+      "kicker": "La règle de Laplace",
+      "tex": "P(A) = \\frac{|A|}{|\\Omega|}",
+      "note": "Cas équiprobable seulement : favorables divisés par possibles."
+    },
+    "laplace_ex": {
+      "type": "etape",
+      "kicker": "Exemple · le dé équilibré",
+      "titre": "Pair, ou nombre premier : une chance sur deux",
+      "tex": [
+        "P(\\text{pair}) = \\tfrac{3}{6} = \\tfrac{1}{2}",
+        "P(\\text{premier}) = \\tfrac{3}{6} = \\tfrac{1}{2}"
+      ]
+    },
+    "vocabulaire": {
+      "type": "etape",
+      "kicker": "Contraire, intersection, réunion",
+      "titre": "Le vocabulaire des événements, sur un dé",
+      "tex": [
+        "\\bar{A} = \\{1, 3, 5\\}",
+        "A \\cap B = \\{6\\} \\qquad A \\cup B = \\{2, 4, 5, 6\\}"
+      ],
+      "anim": {
+        "nom": "venn_morgan_fig",
+        "hauteur": 140
+      }
+    },
+    "cartes": {
+      "type": "etape",
+      "kicker": "Application · jeu de trente-deux cartes",
+      "titre": "Cœur et figure : compter sans doublon",
+      "tex": [
+        "|\\Omega| = 32",
+        "C \\cap F : \\text{trois figures de cœur}",
+        "|C \\cup F| = 8 + 12 - 3 = 17"
+      ]
+    },
+    "urne": {
+      "type": "etape",
+      "kicker": "Exemple · l'urne aux trois couleurs",
+      "titre": "Trois rouges, deux bleues, une verte",
+      "tex": [
+        "P(R) = \\tfrac{3}{6} = 0{,}5",
+        "P(B) = \\tfrac{2}{6} \\qquad P(V) = \\tfrac{1}{6}",
+        "P(\\text{non } R) = 1 - \\tfrac{1}{2} = \\tfrac{1}{2}"
+      ],
+      "anim": {
+        "nom": "urne_fig",
+        "hauteur": 140
+      }
+    },
+    "deux_des": {
+      "type": "etape",
+      "kicker": "Deux dés · les sommes",
+      "titre": "Trente-six couples, une somme favorite",
+      "tex": [
+        "|\\Omega| = 6 \\times 6 = 36",
+        "P(S = 7) = \\tfrac{6}{36} = \\tfrac{1}{6}",
+        "P(\\text{double}) = \\tfrac{6}{36} = \\tfrac{1}{6}"
+      ],
+      "anim": {
+        "nom": "grille_des_fig",
+        "hauteur": 140
+      }
+    },
+    "somme_inc": {
+      "type": "etape",
+      "kicker": "Règle de la somme · incompatibles",
+      "titre": "Pair ou cinq : on additionne",
+      "tex": [
+        "P(A) = \\tfrac{1}{2} \\qquad P(B) = \\tfrac{1}{6}",
+        "P(A \\cup B) = \\tfrac{1}{2} + \\tfrac{1}{6} = \\tfrac{2}{3}"
+      ]
+    },
+    "somme_gen": {
+      "type": "etape",
+      "kicker": "Règle de la somme · cas général",
+      "titre": "Pair ou plus de trois : retirer le doublon",
+      "tex": [
+        "A \\cap C = \\{4, 6\\} \\qquad P(A \\cap C) = \\tfrac{1}{3}",
+        "P(A \\cup C) = 1 - \\tfrac{1}{3} = \\tfrac{2}{3}"
+      ]
+    },
+    "complementaire": {
+      "type": "formule",
+      "kicker": "La règle du complémentaire",
+      "tex": "P(\\bar{A}) = 1 - P(A)",
+      "note": "Un événement et son contraire partagent l'univers : total un."
+    },
+    "au_moins": {
+      "type": "etape",
+      "kicker": "Au moins une fois · le raccourci",
+      "titre": "Dix lancers de pièce : le contraire fait tout",
+      "tex": [
+        "P(\\text{aucune face}) = \\left(\\tfrac{1}{2}\\right)^{10}",
+        "P(\\text{au moins une}) = 1 - \\tfrac{1}{1024} \\approx 0{,}999"
+      ]
+    },
+    "qualite": {
+      "type": "etape",
+      "kicker": "Application · contrôle qualité",
+      "titre": "Deux défauts possibles sur un composant",
+      "tex": [
+        "P(A \\cup B) = 0{,}05 + 0{,}03 - 0{,}01 = 0{,}07",
+        "P(\\text{sans défaut}) = 1 - 0{,}07 = 0{,}93"
+      ]
+    },
+    "conditionnelle": {
+      "type": "formule",
+      "kicker": "Probabilité conditionnelle",
+      "tex": "P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}",
+      "note": "Condition : la probabilité de B est strictement positive."
+    },
+    "cond_ex": {
+      "type": "etape",
+      "kicker": "Exemple · musique et théâtre",
+      "titre": "Sachant le théâtre, la musique ?",
+      "tex": [
+        "P(M \\cap T) = \\tfrac{7}{30} \\qquad P(T) = \\tfrac{12}{30}",
+        "P(M \\mid T) = \\tfrac{7}{12} \\approx 0{,}583"
+      ]
+    },
+    "independance": {
+      "type": "formule",
+      "kicker": "Indépendance",
+      "tex": "P(A \\cap B) = P(A) \\times P(B)",
+      "note": "Savoir que B a eu lieu ne change alors rien à A."
+    },
+    "distinction": {
+      "type": "etape",
+      "kicker": "Le piège classique",
+      "titre": "Incompatible n'est pas indépendant",
+      "tex": [
+        "A \\cap B = \\varnothing \\qquad P(A \\cap B) = 0",
+        "P(A) \\times P(B) = \\tfrac{1}{4} \\neq 0"
+      ]
+    },
+    "bayes_test": {
+      "type": "etape",
+      "kicker": "Exemple · le test de dépistage",
+      "titre": "Positif, mais probablement pas malade",
+      "tex": [
+        "P(M \\cap +) = 0{,}01 \\times 0{,}95 = 0{,}0095",
+        "P(+) = 0{,}0095 + 0{,}099 = 0{,}1085",
+        "P(M \\mid +) = \\tfrac{0{,}0095}{0{,}1085} \\approx 0{,}088"
+      ],
+      "anim": {
+        "nom": "arbre_fig",
+        "hauteur": 140
+      }
+    },
+    "totales_usine": {
+      "type": "etape",
+      "kicker": "Probabilités totales et Bayes · l'usine",
+      "titre": "D'où vient un composant défectueux ?",
+      "tex": [
+        "P(D) = 0{,}010 + 0{,}009 + 0{,}008 = 0{,}027",
+        "P(M_1 \\mid D) = \\tfrac{0{,}010}{0{,}027} \\approx 0{,}37"
+      ],
+      "anim": {
+        "nom": "arbre_fig",
+        "hauteur": 150
+      }
+    },
+    "bayes": {
+      "type": "formule",
+      "kicker": "Le théorème de Bayes",
+      "tex": "P(A \\mid B) = \\frac{P(B \\mid A) \\times P(A)}{P(B)}",
+      "note": "Inverser un conditionnement : ne jamais confondre les deux sens."
+    },
+    "tirages": {
+      "type": "etape",
+      "kicker": "Avec ou sans remise · l'urne",
+      "titre": "Deux tirages de suite dans l'urne",
+      "tex": [
+        "P(R_1 \\cap R_2) = \\tfrac{3}{5} \\times \\tfrac{2}{4}",
+        "= \\tfrac{3}{10} \\qquad \\text{avec remise : } \\tfrac{9}{25}"
+      ],
+      "anim": {
+        "nom": "urne_fig",
+        "hauteur": 150
+      }
+    },
+    "anniversaires": {
+      "type": "phrase",
+      "kicker": "Le paradoxe des anniversaires",
+      "texte": "Dans un groupe de vingt-trois personnes seulement, la probabilité que deux d'entre elles partagent leur jour d'anniversaire dépasse déjà une chance sur deux : notre intuition du hasard sous-estime largement les coïncidences.",
+      "anim": {
+        "nom": "distribution_bars_fig",
+        "hauteur": 140
+      }
+    },
+    "methode": {
+      "type": "recap",
+      "kicker": "Méthode en cinq étapes",
+      "etapes": [
+        "Définir l'expérience et l'univers",
+        "Vérifier l'équiprobabilité d'abord",
+        "OU : additionner, retirer le doublon",
+        "Au moins un : passer par le contraire",
+        "Sans remise : les chances changent"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Oméga : tous les résultats possibles",
+        "Événement : un sous-ensemble de l'univers",
+        "Laplace : favorables sur possibles",
+        "La réunion : sommer, moins l'intersection",
+        "Conditionner : diviser par le connu"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de probabilités. Lancer une pièce, tirer une boule, choisir un élève au hasard : comment donner un nombre à l'incertitude ? Nous construirons l'outil complet : univers et événements, règle de Laplace, règles de la somme et du complémentaire, puis probabilités conditionnelles et théorème de Bayes.",
+      "texte": "Probabilités : donner un nombre à l'incertitude.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Vous lancez une pièce : pile ou face, impossible de savoir avant la chute. Ces situations partagent trois traits : tous les résultats possibles sont connus, le résultat d'une réalisation reste imprévisible, et l'expérience peut être répétée à l'identique. C'est la définition d'une expérience aléatoire.",
+      "texte": "Le hasard quotidien, en trois traits.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Une expérience aléatoire est donc une action dont on décrit tous les résultats à l'avance, sans pouvoir prédire celui d'une réalisation particulière, et que l'on peut répéter dans les mêmes conditions. Même un lancer de dé, déterministe en théorie, est aléatoire en pratique : ses paramètres sont trop complexes à mesurer.",
+      "texte": "Une expérience aléatoire : connue, imprévisible, répétable.",
+      "ecran": "experience"
+    },
+    {
+      "id": "p04",
+      "dit": "Tous les résultats possibles forment l'univers, noté oméga. Pour un dé, six faces ; pour une pièce, pile et face ; pour deux lancers de pièce, quatre couples. Le nombre d'éléments de l'univers est son cardinal. Bien définir oméga est la première étape de toute modélisation, et la plus importante.",
+      "texte": "Oméga : l'ensemble de tous les résultats.",
+      "ecran": "univers"
+    },
+    {
+      "id": "p05",
+      "dit": "Un événement est un sous-ensemble de l'univers : des résultats qui partagent une propriété. Sur un dé, obtenir un pair rassemble deux, quatre et six ; obtenir plus de quatre rassemble cinq et six. Leur point commun, le six, montre qu'ils sont compatibles. Un diagramme de Venn visualise ces recouvrements.",
+      "texte": "Un événement : une partie de l'univers.",
+      "ecran": "evenements"
+    },
+    {
+      "id": "p06",
+      "dit": "Quatre types à retenir. Élémentaire : un seul résultat, comme obtenir un trois. Certain : l'univers entier, il se produit toujours. Impossible : l'ensemble vide, comme obtenir un sept au dé. Incompatibles : deux événements qui ne peuvent pas se produire ensemble, leur intersection est vide.",
+      "texte": "Élémentaire, certain, impossible, incompatibles.",
+      "ecran": "types"
+    },
+    {
+      "id": "p07",
+      "dit": "La probabilité d'un événement est un nombre entre zéro et un : zéro pour l'impossible, un pour le certain. Quand tous les résultats ont la même chance, le cas équiprobable, la règle de Laplace donne ce nombre par un quotient : les résultats favorables, divisés par tous les résultats possibles. Compter devient calculer.",
+      "texte": "Laplace : favorables divisés par possibles.",
+      "ecran": "laplace"
+    },
+    {
+      "id": "p08",
+      "dit": "Sur le dé équilibré : obtenir un pair, trois faces sur six, probabilité un demi. Obtenir un nombre premier, les faces deux, trois et cinq, encore un demi. Mais la règle exige l'équiprobabilité : avec un dé pipé où le six sort deux fois plus souvent, sa probabilité réelle vaut deux septièmes, pas un sixième.",
+      "texte": "Le dé équilibré : un demi, et un demi.",
+      "ecran": "laplace_ex"
+    },
+    {
+      "id": "p09",
+      "dit": "Le vocabulaire des relations, sur un dé. Le contraire de pair est impair : tout ce qui n'est pas l'événement. L'intersection, a inter b, garde les résultats communs : pair et plus de quatre donne le seul six. La réunion, a union b, rassemble l'un ou l'autre ou les deux : deux, quatre, cinq et six.",
+      "texte": "Contraire, inter, union : le vocabulaire complet.",
+      "ecran": "vocabulaire"
+    },
+    {
+      "id": "p10",
+      "dit": "Sur un jeu de trente-deux cartes, tirer un cœur et une figure à la fois donne trois cartes : valet, dame et roi de cœur. Tirer un cœur ou une figure demande de compter sans doublon : huit cœurs, plus douze figures, moins les trois figures de cœur, soit dix-sept cartes. Retenez ce moins le doublon.",
+      "texte": "Trente-deux cartes : dix-sept cœurs ou figures.",
+      "ecran": "cartes"
+    },
+    {
+      "id": "p11",
+      "dit": "L'urne, laboratoire du probabiliste : trois boules rouges, deux bleues, une verte, indiscernables au toucher. Six résultats équiprobables. Rouge : trois sixièmes, un demi. Bleue : deux sixièmes. Verte : un sixième. Et déjà le réflexe du contraire : ne pas tirer une rouge vaut un, moins la probabilité d'une rouge.",
+      "texte": "L'urne : trois rouges, deux bleues, une verte.",
+      "ecran": "urne"
+    },
+    {
+      "id": "p12",
+      "dit": "Deux dés lancés ensemble : six fois six couples, trente-six issues équiprobables. La somme favorite est sept, obtenue de six façons : probabilité un sixième. Un double, les deux dés égaux, compte aussi six couples. Mais les sommes extrêmes, deux et douze, n'ont qu'une décomposition chacune : les sommes ne sont pas équiprobables.",
+      "texte": "Deux dés : trente-six couples, le sept en tête.",
+      "ecran": "deux_des"
+    },
+    {
+      "id": "p13",
+      "dit": "Règle de la somme, cas des incompatibles. Sur un dé, pair et obtenir un cinq ne peuvent pas arriver ensemble : la probabilité de pair ou cinq est la somme, un demi plus un sixième, soit deux tiers. Vérification : la réunion rassemble deux, quatre, cinq et six, quatre issues sur six. Sans chevauchement, les chances s'additionnent.",
+      "texte": "Incompatibles : les probabilités s'additionnent.",
+      "ecran": "somme_inc"
+    },
+    {
+      "id": "p14",
+      "dit": "Si les événements se chevauchent, additionner compte deux fois la partie commune. La règle générale corrige : probabilité de a union b égale probabilité de a, plus probabilité de b, moins probabilité de a inter b. Pair ou plus de trois : un demi, plus un demi, moins un tiers, soit deux tiers.",
+      "texte": "La règle générale : retirer l'intersection.",
+      "ecran": "somme_gen"
+    },
+    {
+      "id": "p15",
+      "dit": "La règle du complémentaire : un événement et son contraire sont incompatibles, et leur réunion est l'univers, de probabilité un. Donc la probabilité du contraire égale un, moins celle de l'événement. Ne pas obtenir un pair au dé, c'est obtenir un impair : un demi. Cette règle devient décisive devant les mots au moins un.",
+      "texte": "Le complémentaire : un moins la probabilité.",
+      "ecran": "complementaire"
+    },
+    {
+      "id": "p16",
+      "dit": "Obtenir au moins une face en dix lancers de pièce : compter directement les cas favorables serait un cauchemar. Le contraire est enfantin : aucune face, c'est dix piles de suite, un cas sur mille vingt-quatre. Réponse : un, moins un sur mille vingt-quatre, presque un. Devant un au moins un, pensez au contraire.",
+      "texte": "Au moins une face : le contraire fait tout.",
+      "ecran": "au_moins"
+    },
+    {
+      "id": "p17",
+      "dit": "Au contrôle qualité : un composant présente un défaut a dans cinq pour cent des cas, un défaut b dans trois pour cent des cas, les deux dans un pour cent des cas. Au moins un défaut : cinq plus trois moins un, sept pour cent. Aucun défaut, par le complémentaire : quatre-vingt-treize pour cent. Deux règles, deux lignes.",
+      "texte": "Contrôle qualité : sept pour cent défectueux.",
+      "ecran": "qualite"
+    },
+    {
+      "id": "p18",
+      "dit": "Que devient une probabilité quand on apprend quelque chose ? Dans une classe de trente élèves, dix-huit font de la musique, douze du théâtre, sept les deux. Sachant que l'élève choisi fait du théâtre, quelle est la probabilité qu'il fasse de la musique ? L'univers se restreint aux douze élèves de théâtre : sept douzièmes.",
+      "texte": "Sachant le théâtre : sept douzièmes pour la musique.",
+      "ecran": "cond_ex"
+    },
+    {
+      "id": "p19",
+      "dit": "La formule formalise ce rétrécissement : la probabilité de a sachant b égale la probabilité de a et b à la fois, divisée par la probabilité de b, si celle-ci est strictement positive. Dans la classe : sept trentièmes divisé par douze trentièmes, soit sept douzièmes. Savoir, c'est restreindre l'univers.",
+      "texte": "La conditionnelle : diviser par le connu.",
+      "ecran": "conditionnelle"
+    },
+    {
+      "id": "p20",
+      "dit": "Cas particulier : l'indépendance. Deux événements sont indépendants quand savoir l'un ne change pas la probabilité de l'autre. Leur intersection vaut alors le produit des probabilités. Deux lancers de dé : un six puis un quatre vaut un sixième fois un sixième, un trente-sixième. La remise rend aussi les tirages indépendants.",
+      "texte": "Indépendants : l'intersection vaut le produit.",
+      "ecran": "independance"
+    },
+    {
+      "id": "p21",
+      "dit": "Le piège classique : confondre incompatible et indépendant. Pair et impair, au dé, sont incompatibles : intersection vide, probabilité zéro. Mais le produit de leurs probabilités vaut un quart, pas zéro : ils ne sont pas indépendants. Si le résultat est pair, il n'est pas impair : l'information change tout.",
+      "texte": "Incompatible et indépendant : deux notions opposées.",
+      "ecran": "distinction"
+    },
+    {
+      "id": "p22",
+      "dit": "L'arbre de probabilités enchaîne les conditionnements. Un test de dépistage : la maladie touche un pour cent de la population, le test détecte quatre-vingt-quinze pour cent des malades et déclare positifs dix pour cent des personnes saines. Malade et positif : zéro virgule zéro zéro neuf cinq. Au total, un positif survient avec probabilité zéro virgule cent huit cinq.",
+      "texte": "Le test en chiffres : multiplier le long des branches.",
+      "ecran": "bayes_test"
+    },
+    {
+      "id": "p23",
+      "dit": "Sachant le test positif, quelle est la probabilité d'être vraiment malade ? On divise la branche malade et positif par le total des positifs : environ zéro virgule zéro quatre-vingt-huit, moins de neuf pour cent. La maladie est rare, les personnes saines très nombreuses : plus de neuf positifs sur dix sont de fausses alertes.",
+      "texte": "Positif ne veut pas dire malade : neuf pour cent.",
+      "ecran": "bayes_test"
+    },
+    {
+      "id": "p24",
+      "dit": "Dans une usine, trois machines produisent la moitié, trente pour cent et vingt pour cent des composants, avec deux, trois et quatre pour cent de défectueux. Un composant défectueux a pour probabilité la somme des trois contributions : zéro virgule zéro vingt-sept. C'est la formule des probabilités totales : décomposer selon toutes les causes.",
+      "texte": "Probabilités totales : zéro virgule zéro vingt-sept.",
+      "ecran": "totales_usine"
+    },
+    {
+      "id": "p25",
+      "dit": "Et si le composant est défectueux, d'où vient-il ? La part de la première machine vaut zéro virgule zéro dix, divisé par zéro virgule zéro vingt-sept : environ zéro virgule trente-sept. C'est le théorème de Bayes, qui inverse le conditionnement. L'erreur la plus fréquente : confondre les deux sens, sachant le test et sachant la maladie.",
+      "texte": "Bayes : remonter de l'effet vers la cause.",
+      "ecran": "bayes"
+    },
+    {
+      "id": "p26",
+      "dit": "Dernier entraînement : une urne de trois rouges et deux bleues, deux tirages. Sans remise, deux rouges valent trois cinquièmes, fois deux quarts, soit trois dixièmes : chaque tirage modifie l'urne. Avec remise, les tirages sont indépendants : trois cinquièmes fois trois cinquièmes, neuf vingt-cinquièmes.",
+      "texte": "Sans remise : trois dixièmes ; avec remise : neuf vingt-cinquièmes.",
+      "ecran": "tirages"
+    },
+    {
+      "id": "p27",
+      "dit": "Le paradoxe des anniversaires résume le cours : dans un groupe de vingt-trois personnes, la probabilité qu'au moins deux partagent leur jour de naissance dépasse déjà une chance sur deux, alors que l'intuition attendait un nombre bien plus grand. Le calcul passe par le complémentaire : tous les anniversaires différents.",
+      "texte": "Vingt-trois personnes : une coïncidence sur deux.",
+      "ecran": "anniversaires"
+    },
+    {
+      "id": "p28",
+      "dit": "La méthode en cinq étapes : définir l'expérience et l'univers ; vérifier l'équiprobabilité avant Laplace ; devant un ou, additionner en retirant l'intersection ; devant un au moins un, passer par le contraire ; et sans remise, se souvenir que les probabilités changent à chaque tirage.",
+      "texte": "La méthode : cinq réflexes avant de calculer.",
+      "ecran": "methode"
+    },
+    {
+      "id": "p29",
+      "dit": "À retenir : oméga rassemble tous les résultats, un événement en est un sous-ensemble, Laplace compte les favorables sur les possibles en cas équiprobable, la réunion se calcule moins l'intersection, et le conditionnement divise par la probabilité de ce que l'on sait. Le hasard ne se prédit pas, mais il se mesure.",
+      "texte": "Probabilités : l'essentiel à retenir.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Univers, événements et vocabulaire du hasard"
+    },
+    {
+      "debut": "p11",
+      "sous_titre": "Équiprobabilité, règles de calcul et conditionnement",
+      "pont": {
+        "texte": "Partie 2 : Laplace en action, somme, complémentaire et premières probabilités conditionnelles.",
+        "dit": "Partie deux : mettre la règle de Laplace au travail. Nous calculerons dans une urne et avec deux dés, puis nous combinerons les événements avec la règle de la somme et celle du complémentaire, avant de découvrir comment une information nouvelle crée les probabilités conditionnelles."
+      }
+    },
+    {
+      "debut": "p21",
+      "sous_titre": "Bayes, tirages et méthode de résolution",
+      "pont": {
+        "texte": "Partie 3 : le piège incompatible ou indépendant, Bayes en action, puis les tirages.",
+        "dit": "Partie trois : exploiter le conditionnement sans tomber dans ses pièges. Nous distinguerons incompatible et indépendant, nous inverserons un test de dépistage et une chaîne de production avec le théorème de Bayes, puis nous comparerons les tirages avec et sans remise avant la méthode finale."
+      }
+    }
+  ]
+}

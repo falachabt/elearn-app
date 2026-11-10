@@ -11,6 +11,22 @@ import { Platform } from 'react-native';
  * `getExpoPushTokenAsync` échoue, rien n'est enregistré et les rappels locaux restent la seule voie.
  */
 export const CLE_JETON_PUSH = 'push.jetonEnregistre';
+/** Dernier enregistrement réussi : jeton, compte et date. Évite de relancer la même RPC à chaque ouverture (issue #14). */
+export const CLE_DERNIER_ENREGISTREMENT_PUSH = 'push.dernierEnregistrement';
+const DUREE_ENREGISTREMENT_MS = 24 * 60 * 60 * 1000;
+
+type DernierEnregistrement = { jeton: string; utilisateur: string; quand: number };
+
+async function enregistrementRecent(jeton: string, utilisateur: string): Promise<boolean> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_DERNIER_ENREGISTREMENT_PUSH);
+    if (!brut) return false;
+    const d = JSON.parse(brut) as DernierEnregistrement;
+    return d.jeton === jeton && d.utilisateur === utilisateur && Date.now() - d.quand < DUREE_ENREGISTREMENT_MS;
+  } catch {
+    return false;
+  }
+}
 /** Canal Android utilisé par les notifications envoyées par le serveur (`channelId: "default"`). */
 export const CANAL_PAR_DEFAUT = 'default';
 
@@ -35,7 +51,7 @@ export type DiagnosticPush = {
 /**
  * Diagnostic complet et enregistrement du jeton push (avec messages d'erreur clairs en Preview/Dev).
  */
-export async function diagnostiquerEtEnregistrerPush(client: Client, options: { demander?: boolean } = {}): Promise<DiagnosticPush> {
+export async function diagnostiquerEtEnregistrerPush(client: Client, options: { demander?: boolean; utilisateur?: string } = {}): Promise<DiagnosticPush> {
   const demander = options.demander ?? true;
   if (Platform.OS === 'web') {
     return { actif: false, permissionAccordee: false, jeton: null, erreur: 'Push indisponible sur Web' };
@@ -74,11 +90,18 @@ export async function diagnostiquerEtEnregistrerPush(client: Client, options: { 
     if (!jeton) {
       return { actif: false, permissionAccordee: true, jeton: null, erreur: 'Aucun jeton push renvoyé par Expo' };
     }
+    if (options.utilisateur && (await enregistrementRecent(jeton, options.utilisateur))) {
+      return { actif: true, permissionAccordee: true, jeton, erreur: null };
+    }
     const { data: ok, error } = await client.rpc('register_push_token', { p_token: jeton });
     if (error || ok === false) {
       return { actif: false, permissionAccordee: true, jeton, erreur: `RPC Supabase échoué: ${error?.message ?? 'inconnu'}` };
     }
     await AsyncStorage.setItem(CLE_JETON_PUSH, jeton);
+    if (options.utilisateur) {
+      const memo: DernierEnregistrement = { jeton, utilisateur: options.utilisateur, quand: Date.now() };
+      await AsyncStorage.setItem(CLE_DERNIER_ENREGISTREMENT_PUSH, JSON.stringify(memo)).catch(() => {});
+    }
     return { actif: true, permissionAccordee: true, jeton, erreur: null };
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
@@ -90,7 +113,7 @@ export async function diagnostiquerEtEnregistrerPush(client: Client, options: { 
  * Enregistre le jeton push du téléphone sur le compte, sans jamais demander la permission (elle se demande au bon
  * moment, ailleurs). Ne lève jamais ; renvoie true quand le jeton est enregistré.
  */
-export async function enregistrerJetonPush(client: Client): Promise<boolean> {
-  const diag = await diagnostiquerEtEnregistrerPush(client, { demander: false });
+export async function enregistrerJetonPush(client: Client, utilisateur?: string): Promise<boolean> {
+  const diag = await diagnostiquerEtEnregistrerPush(client, { demander: false, utilisateur });
   return diag.actif;
 }

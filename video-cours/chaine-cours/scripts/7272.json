@@ -1,0 +1,412 @@
+{
+  "cours": 7272,
+  "ecrans": {
+    "affine_def": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Définition · application affine",
+      "note": "a : coefficient directeur ; b : ordonnée à l'origine",
+      "tex": "f(x) = ax + b",
+      "type": "formule"
+    },
+    "ex_deux_points": {
+      "kicker": "Exemple résolu · déterminer a et b",
+      "tex": [
+        "a = \\tfrac{10 - 4}{3 - 1} = \\tfrac{6}{2} = 3",
+        "b = 4 - 3 \\times 1 = 1",
+        "f(x) = 3x + 1",
+        "f(3) = 3 \\times 3 + 1 = 10"
+      ],
+      "titre": "A(1, 4) et B(3, 10)",
+      "type": "etape"
+    },
+    "ex_droite": {
+      "kicker": "Exemple résolu · équation par deux points",
+      "tex": [
+        "m = \\tfrac{7 - 3}{3 - 1} = \\tfrac{4}{2} = 2",
+        "y = 2x + p",
+        "3 = 2 \\times 1 + p \\qquad p = 1",
+        "y = 2x + 1"
+      ],
+      "titre": "A(1, 3) et B(3, 7)",
+      "type": "etape"
+    },
+    "ex_paralleles": {
+      "kicker": "Exemple · deux parallèles",
+      "tex": [
+        "d_1 : y = -3x + 5, \\quad d_2 : y = -3x - 2",
+        "m_1 = m_2 = -3, \\quad 5 \\neq -2"
+      ],
+      "titre": "Même pente moins trois, départs différents",
+      "type": "etape",
+      "anim": {
+        "nom": "droites_paralleles_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_perp": {
+      "kicker": "Exemple résolu · perpendicularité",
+      "tex": [
+        "m_1 = \\tfrac{2}{3}, \\quad m_2 = -\\tfrac{3}{2}",
+        "m_1 \\times m_2 = \\tfrac{2}{3} \\times \\left( -\\tfrac{3}{2} \\right) = -1",
+        "d_1 \\perp d_2"
+      ],
+      "titre": "Pentes deux tiers et moins trois demis",
+      "type": "etape",
+      "anim": {
+        "nom": "droites_perpendiculaires_fig",
+        "hauteur": 215
+      }
+    },
+    "ex_perp_point": {
+      "kicker": "Exemple résolu · perpendiculaire par un point",
+      "tex": [
+        "m = -\\tfrac{1}{4}",
+        "1 = -\\tfrac{1}{4} \\times 2 + p = -\\tfrac{1}{2} + p",
+        "p = \\tfrac{3}{2}",
+        "y = -\\tfrac{1}{4}x + \\tfrac{3}{2}"
+      ],
+      "titre": "Par C(2, 1), perpendiculaire à y = 4x - 3",
+      "type": "etape"
+    },
+    "ex_valeurs": {
+      "kicker": "Exemple résolu · calculer des images",
+      "tex": [
+        "f(-1) = 3 \\times (-1) - 5 = -8",
+        "f(0) = -5",
+        "f(2) = 3 \\times 2 - 5 = 1"
+      ],
+      "titre": "f(x) = 3x - 5, avec a = 3 et b = -5",
+      "type": "etape"
+    },
+    "forme": {
+      "kicker": "Équation de droite",
+      "note": "m : coefficient directeur ; p : ordonnée à l'origine",
+      "tex": "y = mx + p",
+      "type": "formule"
+    },
+    "graphe": {
+      "kicker": "Représentation graphique",
+      "texte": "La représentation d'une application affine est une droite.",
+      "type": "phrase",
+      "anim": {
+        "nom": "droite_affine_fig",
+        "hauteur": 230
+      }
+    },
+    "intro": {
+      "kicker": "Introduction",
+      "texte": "Deux nombres décrivent une droite : sa pente et son départ.",
+      "type": "phrase",
+      "anim": {
+        "nom": "droite_affine_fig",
+        "hauteur": 230
+      }
+    },
+    "lineaire": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Cas particulier · fonction linéaire",
+      "texte": "b = 0 : fonction linéaire, proportionnalité.",
+      "type": "phrase"
+    },
+    "lire_b": {
+      "kicker": "Lire l'ordonnée à l'origine",
+      "note": "La droite coupe l'axe des ordonnées au point (0, b)",
+      "tex": "f(0) = b",
+      "type": "formule"
+    },
+    "methode_point": {
+      "kicker": "Méthode · un point et une pente",
+      "note": "On remplace x et y par le point connu, on résout pour p",
+      "tex": "p = y_A - m x_A",
+      "type": "formule"
+    },
+    "paralleles": {
+      "kicker": "Droites parallèles",
+      "note": "Même pente ; ordonnées à l'origine différentes : distinctes",
+      "tex": "d_1 \\parallel d_2 \\iff m_1 = m_2",
+      "type": "formule",
+      "anim": {
+        "nom": "droites_paralleles_fig",
+        "hauteur": 215
+      }
+    },
+    "pente": {
+      "kicker": "Coefficient directeur · la formule",
+      "note": "Deux points distincts, d'abscisses différentes",
+      "tex": "m = \\frac{y_B - y_A}{x_B - x_A}",
+      "type": "formule",
+      "anim": {
+        "nom": "droite_affine_fig",
+        "hauteur": 215
+      }
+    },
+    "perp": {
+      "kicker": "Droites perpendiculaires",
+      "note": "La seconde pente est l'opposé de l'inverse de la première",
+      "tex": "d_1 \\perp d_2 \\iff m_1 \\times m_2 = -1",
+      "type": "formule",
+      "anim": {
+        "nom": "droites_perpendiculaires_fig",
+        "hauteur": 215
+      }
+    },
+    "recap1": {
+      "etapes": [
+        "Droite : y = mx + p, verticale : x = c",
+        "Pente : m = Δy / Δx entre deux points",
+        "Parallèles : m1 = m2",
+        "Perpendiculaires : m1 × m2 = -1"
+      ],
+      "kicker": "Partie 1 : à retenir",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Affine : f(x) = ax + b, droite graphique",
+        "Linéaire si b = 0 : proportionnalité",
+        "a : pente et sens de variation",
+        "b : intersection avec l'axe des ordonnées"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "sens": {
+      "kicker": "Sens de variation",
+      "tex": [
+        "a > 0 \\text{ : } f \\text{ croissante}",
+        "a < 0 \\text{ : } f \\text{ décroissante}",
+        "a = 0 \\text{ : } f \\text{ constante}"
+      ],
+      "titre": "Le signe de a donne le sens",
+      "type": "etape"
+    },
+    "synthese": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Le lien entre les deux leçons",
+      "texte": "Même droite, même pente, même départ : deux langages.",
+      "type": "phrase"
+    },
+    "taux": {
+      "kicker": "Taux d'accroissement",
+      "note": "Entre deux valeurs distinctes de x",
+      "tex": "a = \\frac{f(x_2) - f(x_1)}{x_2 - x_1}",
+      "type": "formule"
+    },
+    "titre": {
+      "kicker": "Mathématique · Droites et fonctions affines",
+      "sous": "Équation d'une droite, pente et ordonnée à l'origine : lire, tracer, déterminer",
+      "titre": "Droites et applications affines",
+      "type": "titre",
+      "anim": {
+        "nom": "droite_affine_fig",
+        "hauteur": 250
+      }
+    },
+    "trace": {
+      "kicker": "Exemple résolu · tracer la droite",
+      "tex": [
+        "x = 0 \\Rightarrow f(0) = 1 \\quad A(0, 1)",
+        "x = 2 \\Rightarrow f(2) = 5 \\quad B(2, 5)",
+        "(AB)"
+      ],
+      "titre": "f(x) = 2x + 1, par deux points",
+      "type": "etape",
+      "anim": {
+        "nom": "droite_affine_fig",
+        "hauteur": 215
+      }
+    },
+    "variation": {
+      "kicker": "Interprétation de la pente",
+      "tex": [
+        "\\Delta x = 1 \\Rightarrow \\Delta y = m",
+        "m = \\frac{\\Delta y}{\\Delta x}"
+      ],
+      "titre": "Quand x avance de un, y varie de m",
+      "type": "etape"
+    },
+    "verticale": {
+      "kicker": "Cas particulier · droite verticale",
+      "note": "Droite verticale : pas de coefficient directeur",
+      "tex": "x = c",
+      "type": "formule"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Équations de droites, parallèles et perpendiculaires"
+    },
+    {
+      "debut": "p15",
+      "pont": {
+        "dit": "Partie deux : les applications affines. Nous retrouvons les mêmes droites, décrites comme des fonctions : à chaque nombre x, on associe a x plus bé, et les pentes se relisent en images et en variations.",
+        "texte": "Partie 2 : les applications affines."
+      },
+      "sous_titre": "Les applications affines et leur droite"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux droites et aux applications affines. Une droite se décrit par deux nombres, sa pente et son ordonnée à l'origine, et ces deux nombres sont aussi ceux d'une fonction affine.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Droites et applications affines."
+    },
+    {
+      "dit": "Le fil du cours est simple. D'abord les droites et leurs équations : calculer une pente, reconnaître des parallèles et des perpendiculaires, déterminer une équation. Ensuite les applications affines, qui racontent la même histoire en langage de fonctions.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "Droites d'abord, fonctions ensuite : même objet."
+    },
+    {
+      "dit": "Dans le plan muni d'un repère, toute droite non verticale admet une équation de la forme y égal à èm x plus pé. Le nombre èm est le coefficient directeur, c'est la pente de la droite. Le nombre pé est l'ordonnée à l'origine, la valeur de y quand x vaut zéro.",
+      "ecran": "forme",
+      "id": "p03",
+      "texte": "y = mx + p : pente et départ."
+    },
+    {
+      "dit": "Cas à part : une droite verticale n'a pas de coefficient directeur, car x n'y varie pas. Son équation s'écrit simplement x égal à cé, où cé est l'abscisse commune de tous ses points. Elle ne sera jamais la représentation graphique d'une fonction.",
+      "ecran": "verticale",
+      "id": "p04",
+      "texte": "Verticale : x = c, pas de pente."
+    },
+    {
+      "dit": "Si a et bé sont deux points distincts d'une droite non verticale, son coefficient directeur est le quotient de l'écart des ordonnées par l'écart des abscisses : y de bé moins y de a, divisé par x de bé moins x de a. Les abscisses doivent être différentes, sinon on diviserait par zéro.",
+      "ecran": "pente",
+      "id": "p05",
+      "texte": "m = Δy / Δx entre A et B."
+    },
+    {
+      "dit": "Le coefficient directeur mesure l'inclinaison de la droite. Quand x augmente de un, y augmente exactement de èm si èm est positif, ou diminue de sa valeur absolue si èm est négatif. Une pente de deux signifie que la droite monte de deux par unité en abscisse.",
+      "ecran": "variation",
+      "id": "p06",
+      "texte": "x augmente de 1 : y varie de m."
+    },
+    {
+      "dit": "Exemple résolu. Déterminer l'équation de la droite qui passe par a, de coordonnées un et trois, et bé, de coordonnées trois et sept. La pente vaut sept moins trois, divisé par trois moins un, soit quatre demis, donc deux. On écrit y égal à deux x plus pé, puis le point a donne trois égal à deux plus pé, donc pé vaut un. L'équation est y égal à deux x plus un.",
+      "ecran": "ex_droite",
+      "id": "p07",
+      "texte": "Exemple : y = 2x + 1."
+    },
+    {
+      "dit": "Deux droites non verticales sont parallèles exactement quand elles ont le même coefficient directeur. Même pente, même direction. Avec des ordonnées à l'origine différentes, elles sont distinctes et ne se rencontrent jamais.",
+      "ecran": "paralleles",
+      "id": "p08",
+      "texte": "Parallèles si et seulement si même pente."
+    },
+    {
+      "dit": "Exemple. La droite dé un a pour équation y égal à moins trois x plus cinq, et dé deux y égal à moins trois x moins deux. Leurs coefficients directeurs sont égaux, tous deux égaux à moins trois. Les droites sont donc parallèles, et distinctes, car cinq et moins deux sont différents.",
+      "ecran": "ex_paralleles",
+      "id": "p09",
+      "texte": "Exemple : m = -3 des deux côtés."
+    },
+    {
+      "dit": "Deux droites non verticales sont perpendiculaires exactement quand le produit de leurs coefficients directeurs vaut moins un. Autrement dit, la pente de la seconde est l'opposé de l'inverse de la pente de la première.",
+      "ecran": "perp",
+      "id": "p10",
+      "texte": "Perpendiculaires si et seulement si produit -1."
+    },
+    {
+      "dit": "Exemple. La droite dé un a pour pente deux tiers, la droite dé deux a pour pente moins trois demis. Leur produit vaut deux tiers fois moins trois demis, soit moins un. Le produit vaut moins un, donc les deux droites sont perpendiculaires.",
+      "ecran": "ex_perp",
+      "id": "p11",
+      "texte": "Exemple : produit des pentes, -1."
+    },
+    {
+      "dit": "Pour déterminer une équation, un point et une pente suffisent. On écrit y égal à èm x plus pé avec la pente connue, on remplace x et y par les coordonnées du point, et on résout pour trouver pé. Même idée pour une parallèle, qui garde la pente, ou une perpendiculaire, de pente opposée de l'inverse.",
+      "ecran": "methode_point",
+      "id": "p12",
+      "texte": "Un point et une pente : on résout pour p."
+    },
+    {
+      "dit": "Exemple résolu. Cherchons la droite passant par cé, de coordonnées deux et un, perpendiculaire à la droite d'équation y égal à quatre x moins trois. Sa pente est l'opposé de l'inverse de quatre, soit moins un quart. Le point cé donne un égal à moins un quart fois deux, plus pé, soit moins un demi plus pé. Donc pé vaut trois demis, et l'équation est y égal à moins un quart de x, plus trois demis.",
+      "ecran": "ex_perp_point",
+      "id": "p13",
+      "texte": "Exemple : pente -1/4, départ 3/2."
+    },
+    {
+      "dit": "Retenons cette première partie. Une droite non verticale s'écrit y égal à èm x plus pé, sa pente est l'écart des ordonnées divisé par l'écart des abscisses, les parallèles partagent la même pente, et les perpendiculaires ont des pentes de produit moins un.",
+      "ecran": "recap1",
+      "id": "p14",
+      "texte": "Droites : à retenir."
+    },
+    {
+      "dit": "Une application affine, ou fonction affine, est une fonction qui à tout nombre x associe le nombre a x plus bé, où a et bé sont deux réels fixés. Le nombre a est le coefficient directeur de la fonction, et bé son ordonnée à l'origine : exactement les deux nombres de l'équation de droite.",
+      "ecran": "affine_def",
+      "id": "p15",
+      "texte": "f(x) = ax + b : a et b fixés."
+    },
+    {
+      "dit": "Cas particulier fondateur : si bé vaut zéro, la fonction s'écrit f de x égal à a x, et on dit qu'elle est linéaire. Une fonction linéaire traduit une situation de proportionnalité : les images sont proportionnelles à x, de coefficient a.",
+      "ecran": "lineaire",
+      "id": "p16",
+      "texte": "b = 0 : linéaire, proportionnalité."
+    },
+    {
+      "dit": "Exemple. Soit f définie par f de x égal à trois x moins cinq : ici a vaut trois et bé vaut moins cinq. Pour x égal à moins un, l'image vaut moins huit. Pour x égal à zéro, elle vaut moins cinq, et pour x égal à deux, elle vaut un. Comme bé n'est pas nul, cette fonction est affine mais pas linéaire.",
+      "ecran": "ex_valeurs",
+      "id": "p17",
+      "texte": "f(x) = 3x - 5 : images -8, -5, 1."
+    },
+    {
+      "dit": "La propriété fondamentale relie tout : dans un repère, la représentation graphique d'une application affine est une droite, jamais parallèle à l'axe des ordonnées. Et réciproquement, toute droite non parallèle à cet axe est la représentation graphique d'une application affine.",
+      "ecran": "graphe",
+      "id": "p18",
+      "texte": "Une affine se dessine : une droite."
+    },
+    {
+      "dit": "Pour tracer cette droite, deux points suffisent, reliés à la règle. Exemple avec f de x égal à deux x plus un. Pour x égal à zéro, l'image vaut un : c'est le point a, de coordonnées zéro et un. Pour x égal à deux, l'image vaut cinq : c'est le point bé, de coordonnées deux et cinq. On place a et bé, on trace la droite a bé, et le dessin est terminé.",
+      "ecran": "trace",
+      "id": "p19",
+      "texte": "Tracer par A(0, 1) et B(2, 5)."
+    },
+    {
+      "dit": "L'ordonnée à l'origine se lit directement sur le graphique : c'est l'ordonnée du point où la droite coupe l'axe des ordonnées. Ce point a pour abscisse zéro, donc son ordonnée est l'image de zéro, c'est-à-dire bé. Sur l'exemple précédent, la droite coupe l'axe en un, et bé vaut bien un.",
+      "ecran": "lire_b",
+      "id": "p20",
+      "texte": "b se lit où la droite coupe l'axe des ordonnées."
+    },
+    {
+      "dit": "Le coefficient directeur donne aussi le sens de variation. Si a est strictement positif, la droite monte et la fonction est croissante. Si a est strictement négatif, la droite descend et la fonction est décroissante. Si a est nul, la droite est horizontale et la fonction est constante, toujours égale à bé.",
+      "ecran": "sens",
+      "id": "p21",
+      "texte": "Signe de a : monte, descend, ou constant."
+    },
+    {
+      "dit": "Entre deux valeurs distinctes de x, le coefficient directeur est le taux d'accroissement de la fonction : l'écart des images divisé par l'écart des valeurs. C'est la formule de la pente, relue avec des images au lieu d'ordonnées.",
+      "ecran": "taux",
+      "id": "p22",
+      "texte": "a : écart des images sur écart des x."
+    },
+    {
+      "dit": "Exemple résolu. Une droite passe par a, de coordonnées un et quatre, et bé, de coordonnées trois et dix. Le coefficient directeur vaut dix moins quatre, divisé par trois moins un, soit six demis, donc trois. Puis l'ordonnée à l'origine vaut quatre, moins trois fois un, soit un. La fonction est donc f de x égal à trois x plus un, Vérification : l'image de trois vaut dix, l'ordonnée du second point.",
+      "ecran": "ex_deux_points",
+      "id": "p23",
+      "texte": "Exemple : f(x) = 3x + 1, vérifié."
+    },
+    {
+      "dit": "Vous l'avez remarqué : déterminer une application affine à partir de deux points, c'est exactement déterminer l'équation d'une droite à partir de deux points. La pente devient le coefficient directeur, l'ordonnée à l'origine reste l'ordonnée à l'origine. Deux langages, un seul calcul, appris une seule fois.",
+      "ecran": "synthese",
+      "id": "p24",
+      "texte": "Deux langages, un seul calcul."
+    },
+    {
+      "dit": "Pour conclure. Une application affine s'écrit f de x égal à a x plus bé, sa représentation est une droite qui coupe l'axe des ordonnées en bé, le signe de a donne son sens de variation, et deux points suffisent pour la déterminer, comme pour une équation de droite.",
+      "ecran": "recap_final",
+      "id": "p25",
+      "texte": "Applications affines : à retenir."
+    }
+  ],
+  "titre": "Droites et applications affines"
+}

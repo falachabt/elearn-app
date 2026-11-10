@@ -1,0 +1,417 @@
+{
+  "cours": 6687,
+  "titre": "Droite graduée, cube, pavé droit et cylindre",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Repérage et solides",
+      "titre": "Droite graduée, cube, pavé droit et cylindre",
+      "sous": "Abscisses, distances et milieux, puis faces, patrons, aires et volumes des solides usuels",
+      "anim": {
+        "nom": "pave_fig",
+        "hauteur": 240
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Le programme du cours",
+      "texte": "D'abord repérer des nombres sur une droite, ensuite décrire et mesurer les solides usuels."
+    },
+    "droite_def": {
+      "type": "etape",
+      "kicker": "La droite graduée",
+      "titre": "Trois choix pour graduer une droite",
+      "tex": [
+        "\\text{une origine } O \\text{, choisie sur la droite}",
+        "\\text{une unité de longueur répétée}",
+        "\\text{un sens, le plus souvent de gauche à droite}"
+      ]
+    },
+    "abscisse": {
+      "type": "formule",
+      "kicker": "L'abscisse d'un point",
+      "tex": "A(3) \\qquad O(0) \\qquad C(4{,}5)",
+      "note": "Chaque point a une abscisse ; celle de l'origine vaut zéro."
+    },
+    "placer": {
+      "type": "etape",
+      "kicker": "Placer un point",
+      "titre": "Partir de l'origine, compter, placer",
+      "tex": [
+        "\\text{partir de l'origine } O",
+        "\\text{compter les unités dans le bon sens}",
+        "\\text{à droite si positif, à gauche si négatif}"
+      ]
+    },
+    "placer_ex": {
+      "type": "etape",
+      "kicker": "Exemple · placer deux points",
+      "titre": "Un point de chaque côté de l'origine",
+      "tex": [
+        "B(-2) : \\text{ deux unités à gauche de } O",
+        "A(3) : \\text{ trois unités à droite de } O"
+      ]
+    },
+    "lire": {
+      "type": "etape",
+      "kicker": "Déterminer une abscisse",
+      "titre": "Compter depuis l'origine, puis signer",
+      "tex": [
+        "\\text{repérer l'origine } O",
+        "\\text{compter les unités entre } O \\text{ et le point}",
+        "\\text{signe plus à droite, signe moins à gauche}"
+      ]
+    },
+    "distance": {
+      "type": "formule",
+      "kicker": "La distance entre deux points",
+      "tex": "AB = |a - b|",
+      "note": "La plus grande abscisse moins la plus petite : toujours positif."
+    },
+    "distance_ex": {
+      "type": "etape",
+      "kicker": "Exemple · une distance",
+      "titre": "De moins trois à cinq",
+      "tex": [
+        "AB = 5 - (-3) = 5 + 3 = 8",
+        "\\text{la distance vaut huit unités}"
+      ]
+    },
+    "milieu": {
+      "type": "formule",
+      "kicker": "L'abscisse du milieu",
+      "tex": "x_M = \\frac{a + b}{2}",
+      "note": "On additionne les deux abscisses, puis on divise par deux."
+    },
+    "milieu_ex": {
+      "type": "etape",
+      "kicker": "Exemple · un milieu",
+      "titre": "Entre moins quatre et six",
+      "tex": [
+        "x_M = \\tfrac{-4 + 6}{2} = \\tfrac{2}{2} = 1",
+        "M(1) : \\text{ le milieu est à droite de } O"
+      ]
+    },
+    "synthese": {
+      "type": "etape",
+      "kicker": "Exercice de synthèse",
+      "titre": "Milieu et distance : un exercice complet",
+      "tex": [
+        "x_G = \\tfrac{-2 + 3}{2} = 0{,}5",
+        "EG = |0{,}5 - (-2)| = 2{,}5"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : l'essentiel",
+      "etapes": [
+        "Origine, unité, sens : la droite graduée",
+        "À droite positif, à gauche négatif",
+        "Distance AB = |a-b| : toujours positive",
+        "Milieu : moyenne des deux abscisses"
+      ]
+    },
+    "pave_def": {
+      "type": "etape",
+      "kicker": "Le cube et le pavé droit",
+      "titre": "Six faces, douze arêtes, huit sommets",
+      "tex": [
+        "\\text{six faces : rectangles, carrés pour le cube}",
+        "\\text{douze arêtes, huit sommets}",
+        "\\text{faces opposées : parallèles et de même aire}"
+      ]
+    },
+    "pave_groupes": {
+      "type": "etape",
+      "kicker": "Les dimensions du pavé droit",
+      "titre": "Trois groupes de quatre arêtes",
+      "tex": [
+        "\\text{longueur } L \\text{, largeur } l \\text{, hauteur } h",
+        "\\text{en un sommet, trois arêtes}",
+        "\\text{perpendiculaires deux à deux}"
+      ]
+    },
+    "pave_formules": {
+      "type": "etape",
+      "kicker": "Volume et aire du pavé droit",
+      "titre": "Les deux formules du pavé droit",
+      "tex": [
+        "V = L \\times l \\times h",
+        "A = 2(L\\,l + L\\,h + l\\,h)"
+      ]
+    },
+    "cube": {
+      "type": "formule",
+      "kicker": "Le cube, un pavé particulier",
+      "tex": "V = c^3 \\qquad A = 6c^2",
+      "note": "Le cube : six faces carrées égales, douze arêtes égales."
+    },
+    "pave_ex": {
+      "type": "etape",
+      "kicker": "Exemple · un pavé droit",
+      "titre": "Cinq, trois et quatre centimètres",
+      "tex": [
+        "V = 5 \\times 3 \\times 4 = 60\\ \\text{cm}^3",
+        "A = 2(15 + 20 + 12) = 2 \\times 47",
+        "A = 94\\ \\text{cm}^2"
+      ]
+    },
+    "conversions": {
+      "type": "formule",
+      "kicker": "Convertir les volumes",
+      "tex": "1\\ \\text{m}^3 = 1000\\ \\text{dm}^3",
+      "note": "Chaque unité de volume vaut mille fois la suivante."
+    },
+    "patron": {
+      "type": "phrase",
+      "kicker": "Les patrons de solides",
+      "texte": "Un patron : six faces à plat, qui se replient sans se chevaucher.",
+      "anim": {
+        "nom": "pave_fig",
+        "hauteur": 200
+      }
+    },
+    "cylindre_def": {
+      "type": "etape",
+      "kicker": "Le cylindre de révolution",
+      "titre": "Un rectangle qui tourne autour d'un côté",
+      "tex": [
+        "\\text{deux bases : disques égaux, parallèles}",
+        "\\text{une surface latérale courbe qui les relie}",
+        "\\text{la hauteur } h \\text{ : distance entre les bases}"
+      ]
+    },
+    "cylindre_patron": {
+      "type": "formule",
+      "kicker": "Le patron du cylindre",
+      "tex": "L = 2\\pi r",
+      "note": "Deux disques, plus un rectangle de longueur le périmètre de base.",
+      "anim": {
+        "nom": "cylindre_fig",
+        "hauteur": 160
+      }
+    },
+    "cylindre_patron_ex": {
+      "type": "etape",
+      "kicker": "Exemple · le patron d'un cylindre",
+      "titre": "Rayon trois, hauteur sept centimètres",
+      "tex": [
+        "L = 2 \\times \\pi \\times 3 = 6\\pi",
+        "L \\approx 18{,}8\\ \\text{cm}",
+        "\\text{largeur du rectangle} = 7\\ \\text{cm}"
+      ]
+    },
+    "cylindre_formules": {
+      "type": "etape",
+      "kicker": "Aires et volume du cylindre",
+      "titre": "Trois formules avec le rayon et la hauteur",
+      "tex": [
+        "A_{\\text{lat}} = 2\\pi r h",
+        "A_{\\text{tot}} = A_{\\text{lat}} + 2\\pi r^2",
+        "V = \\pi r^2 h"
+      ]
+    },
+    "cylindre_ex": {
+      "type": "etape",
+      "kicker": "Exemple · un cylindre complet",
+      "titre": "Rayon deux, hauteur cinq centimètres",
+      "tex": [
+        "V = \\pi \\times 4 \\times 5 = 20\\pi \\approx 62{,}8\\ \\text{cm}^3",
+        "A_{\\text{lat}} = 20\\pi \\approx 62{,}8\\ \\text{cm}^2",
+        "A_{\\text{tot}} = 28\\pi \\approx 87{,}9\\ \\text{cm}^2"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Pavé : six faces, douze arêtes, huit sommets",
+        "Pavé : V = L × l × h ; cube : V = c³",
+        "Un patron se replie sans chevauchement",
+        "Cylindre : deux disques et un rectangle",
+        "Cylindre : V = π r² h"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de mathématique qui réunit deux savoir-faire de base : repérer des nombres sur une droite graduée, avec les abscisses, les distances et les milieux, puis décrire les solides usuels, cube, pavé droit et cylindre, et calculer leurs aires et leurs volumes.",
+      "texte": "Droite graduée et solides usuels : repérer, puis mesurer.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Le programme tient en deux temps. D'abord, une droite devient un véritable instrument de mesure dès qu'on la gradue : chaque point y reçoit un nombre. Ensuite, nous passerons aux solides, dont il faudra connaître les éléments, les patrons et les formules de volume et d'aire.",
+      "texte": "Deux temps : la droite graduée, puis les solides.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Une droite graduée est une droite sur laquelle on a fait trois choix : une origine, souvent notée o, une unité de longueur, qui permet des graduations régulières et toujours également espacées, et un sens, le plus souvent de gauche à droite. Une demi-droite graduée, elle, part de l'origine et ne s'étend que dans un seul sens : elle ne repère que les nombres positifs et le zéro.",
+      "texte": "Origine, unité, sens : trois choix à faire.",
+      "ecran": "droite_def"
+    },
+    {
+      "id": "p04",
+      "dit": "Chaque point de la droite correspond à un nombre, appelé son abscisse. L'origine a pour abscisse zéro. Si le point a est placé à trois graduations à droite de l'origine, son abscisse vaut trois, et on note a de trois entre parenthèses. Un point situé à quatre unités et demie à droite aura de même pour abscisse quatre virgule cinq.",
+      "texte": "L'abscisse : le nombre qui repère chaque point.",
+      "ecran": "abscisse"
+    },
+    {
+      "id": "p05",
+      "dit": "Pour placer un point d'abscisse donnée, la méthode tient en trois gestes : partir de l'origine, compter le nombre d'unités indiqué par l'abscisse, vers la droite si elle est positive et vers la gauche si elle est négative, puis placer le point. Une abscisse peut aussi être décimale : on compte alors les unités entières, puis les fractions d'unité.",
+      "texte": "Placer : partir de l'origine et compter dans le bon sens.",
+      "ecran": "placer"
+    },
+    {
+      "id": "p06",
+      "dit": "Premier exemple : placer le point b d'abscisse moins deux, sur une droite d'unité un centimètre. On part de l'origine, et comme l'abscisse est négative, on compte deux unités vers la gauche : le point b se place à deux centimètres à gauche de l'origine. Le point a d'abscisse trois, lui, se place symétriquement à droite.",
+      "texte": "B(−2) à gauche, A(3) à droite de l'origine.",
+      "ecran": "placer_ex"
+    },
+    {
+      "id": "p07",
+      "dit": "Le geste inverse consiste à déterminer l'abscisse d'un point déjà placé. On repère l'origine, on compte le nombre d'unités qui séparent l'origine du point, puis on attribue le signe : positif si le point est à droite de l'origine, négatif s'il est à gauche. C'est exactement la lecture que nous venons de faire dans l'autre sens.",
+      "texte": "Lire une abscisse : compter, puis donner le signe.",
+      "ecran": "lire"
+    },
+    {
+      "id": "p08",
+      "dit": "La distance entre deux points a et b est la longueur du segment qui les joint. Si leurs abscisses sont a minuscule et b minuscule, cette distance vaut la valeur absolue de leur différence : concrètement, on soustrait toujours la plus petite abscisse à la plus grande, de sorte que le résultat est toujours positif, comme doit l'être une longueur.",
+      "texte": "AB = |a − b| : une longueur, donc positive.",
+      "ecran": "distance"
+    },
+    {
+      "id": "p09",
+      "dit": "Exemple : le point a a pour abscisse moins trois et le point b a pour abscisse cinq. La plus grande abscisse est cinq, la plus petite est moins trois. La distance vaut donc cinq moins moins trois, c'est-à-dire cinq plus trois, soit huit unités. Remarquez le piège classique : oublier que soustraire un nombre négatif revient à additionner.",
+      "texte": "De −3 à 5 : AB = 5 − (−3) = 8 unités.",
+      "ecran": "distance_ex"
+    },
+    {
+      "id": "p10",
+      "dit": "Le milieu d'un segment est le point situé à égale distance de ses deux extrémités. Son abscisse se calcule d'une formule très simple : c'est la moyenne des deux abscisses, leur somme divisée par deux. Cette formule marche dans tous les cas, que les abscisses soient positives, négatives, ou de signes contraires.",
+      "texte": "Le milieu : la moyenne des deux abscisses.",
+      "ecran": "milieu"
+    },
+    {
+      "id": "p11",
+      "dit": "Exemple : le point a a pour abscisse moins quatre et le point b a pour abscisse six. L'abscisse du milieu vaut moins quatre plus six, le tout divisé par deux, soit deux divisé par deux, donc un. Le milieu se trouve ainsi à une unité à droite de l'origine, bien entre les deux points, plus près de a que de b en apparence, mais exactement à mi-chemin.",
+      "texte": "Milieu de A(−4) et B(6) : x = 1.",
+      "ecran": "milieu_ex"
+    },
+    {
+      "id": "p12",
+      "dit": "Exercice de synthèse : trois points, e d'abscisse moins deux, f d'abscisse trois, et g, le milieu du segment e f. L'abscisse de g vaut moins deux plus trois, divisé par deux, soit un demi, zéro virgule cinq. La distance de e à g vaut alors zéro virgule cinq moins moins deux, soit deux virgule cinq unités : exactement la moitié du segment, qui en mesure cinq.",
+      "texte": "Milieu G : 0,5 ; distance EG : 2,5 unités.",
+      "ecran": "synthese"
+    },
+    {
+      "id": "p13",
+      "dit": "Récapitulons cette première partie. Une droite graduée demande une origine, une unité et un sens. À droite de l'origine, les abscisses sont positives ; à gauche, elles sont négatives. La distance entre deux points est la valeur absolue de la différence de leurs abscisses, et l'abscisse du milieu est la moyenne des deux abscisses.",
+      "texte": "La droite graduée : l'essentiel.",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p14",
+      "dit": "Passons aux solides. Un pavé droit, aussi appelé parallélépipède rectangle, est un solide dont les six faces sont des rectangles. Le cube en est un cas particulier : ses six faces sont des carrés. Pavé et cube possèdent chacun six faces, douze arêtes et huit sommets. Deux faces qui ne se touchent pas sont dites opposées : elles sont parallèles et ont la même aire.",
+      "texte": "Pavé et cube : 6 faces, 12 arêtes, 8 sommets.",
+      "ecran": "pave_def"
+    },
+    {
+      "id": "p15",
+      "dit": "Les douze arêtes du pavé droit se rangent en trois groupes de quatre arêtes parallèles et de même longueur : un groupe pour la longueur, un pour la largeur, un pour la hauteur. Les trois arêtes qui se rencontrent en un même sommet sont perpendiculaires entre elles. Pour le cube, tout se simplifie : les douze arêtes ont la même longueur, notée c.",
+      "texte": "Trois dimensions : longueur, largeur, hauteur.",
+      "ecran": "pave_groupes"
+    },
+    {
+      "id": "p16",
+      "dit": "Le volume d'un solide mesure l'espace qu'il occupe, et l'aire totale est la somme des aires de toutes ses faces. Pour un pavé droit, le volume vaut longueur fois largeur fois hauteur. L'aire totale vaut deux fois la somme des trois produits deux à deux : longueur fois largeur, plus longueur fois hauteur, plus largeur fois hauteur, car les faces vont par paires égales.",
+      "texte": "Pavé : V = L × l × h ; aire par paires de faces.",
+      "ecran": "pave_formules"
+    },
+    {
+      "id": "p17",
+      "dit": "Pour un cube de côté c, les formules deviennent immédiates : le volume vaut c fois c fois c, soit c au cube, et l'aire totale vaut six fois c fois c, soit six c au carré, puisqu'il y a six faces carrées toutes égales. Retenez le contraste : le volume grandit comme le cube du côté, l'aire seulement comme son carré.",
+      "texte": "Cube : V = c³ et A = 6c².",
+      "ecran": "cube"
+    },
+    {
+      "id": "p18",
+      "dit": "Exemple complet : un pavé droit mesure cinq centimètres de longueur, trois de largeur et quatre de hauteur. Son volume vaut cinq fois trois fois quatre, soit soixante centimètres cubes. Son aire totale vaut deux fois quinze plus vingt plus douze, soit deux fois quarante-sept, donc quatre-vingt-quatorze centimètres carrés. Notez les unités : cubes pour un volume, carrées pour une aire.",
+      "texte": "Pavé 5 × 3 × 4 : V = 60 cm³, A = 94 cm².",
+      "ecran": "pave_ex"
+    },
+    {
+      "id": "p19",
+      "dit": "Les volumes se convertissent d'une unité à l'autre par paquets de mille : un mètre cube vaut mille décimètres cubes, un décimètre cube vaut mille centimètres cubes, et un centimètre cube vaut mille millimètres cubes. Chaque unité est donc mille fois plus grande que celle qui la suit immédiatement : c'est trois fois le facteur dix des longueurs, une dimension par axe.",
+      "texte": "Volumes : × 1000 d'une unité à la suivante.",
+      "ecran": "conversions"
+    },
+    {
+      "id": "p20",
+      "dit": "Un patron d'un solide est une figure plane qui, pliée le long des arêtes, reconstruit le solide sans superposition. Pour fabriquer un patron de cube ou de pavé droit, on dessine les six faces, carrés ou rectangles, disposées de sorte que chaque face touche au moins une voisine par une arête. Après découpage et pliage, toutes les faces se rejoignent exactement.",
+      "texte": "Le patron : le solide mis à plat, prêt à plier.",
+      "ecran": "patron"
+    },
+    {
+      "id": "p21",
+      "dit": "Deuxième solide : le cylindre de révolution, obtenu en faisant tourner un rectangle autour d'un de ses côtés, qui devient son axe. Il possède deux bases, qui sont des disques égaux et parallèles, une surface latérale courbe qui relie les deux bases, et une hauteur, qui est la distance entre les deux bases, mesurée perpendiculairement.",
+      "texte": "Cylindre : deux disques, une surface courbe, une hauteur.",
+      "ecran": "cylindre_def"
+    },
+    {
+      "id": "p22",
+      "dit": "Le patron d'un cylindre réunit trois pièces : les deux disques de base, de rayon r, et un rectangle qui formera la surface latérale une fois enroulé. La largeur de ce rectangle est la hauteur du cylindre, et sa longueur doit épouser exactement le tour de la base : elle vaut donc le périmètre du disque, deux fois pi fois le rayon.",
+      "texte": "Patron du cylindre : longueur = 2πr.",
+      "ecran": "cylindre_patron"
+    },
+    {
+      "id": "p23",
+      "dit": "Exemple de patron : pour un cylindre de rayon trois centimètres et de hauteur sept centimètres, le rectangle du patron a pour longueur deux fois pi fois trois, soit six pi, environ dix-huit virgule huit centimètres avec pi pris égal à trois virgule quatorze, et pour largeur sept centimètres, la hauteur du cylindre.",
+      "texte": "Rayon 3, hauteur 7 : rectangle de 6π ≈ 18,8 cm sur 7 cm.",
+      "ecran": "cylindre_patron_ex"
+    },
+    {
+      "id": "p24",
+      "dit": "Trois formules gouvernent le cylindre. L'aire latérale vaut deux fois pi fois le rayon fois la hauteur : c'est l'aire du rectangle du patron. L'aire totale s'obtient en ajoutant l'aire des deux disques, deux fois pi fois le rayon au carré. Et le volume vaut pi fois le rayon au carré fois la hauteur : l'aire de la base, multipliée par la hauteur.",
+      "texte": "Cylindre : aire latérale, aire totale, volume.",
+      "ecran": "cylindre_formules"
+    },
+    {
+      "id": "p25",
+      "dit": "Exemple complet : un cylindre de rayon deux centimètres et de hauteur cinq centimètres. Son volume vaut pi fois quatre fois cinq, soit vingt pi, environ soixante-deux virgule huit centimètres cubes. Son aire latérale vaut aussi vingt pi, environ soixante-deux virgule huit centimètres carrés. Son aire totale vaut vingt-huit pi, environ quatre-vingt-sept virgule neuf centimètres carrés.",
+      "texte": "Cylindre r = 2, h = 5 : V ≈ 62,8 cm³, A ≈ 87,9 cm².",
+      "ecran": "cylindre_ex"
+    },
+    {
+      "id": "p26",
+      "dit": "Pour finir, gardez la carte complète des solides. Le pavé droit et le cube comptent six faces, douze arêtes et huit sommets, avec un volume qui multiplie les trois dimensions. Un patron se replie sans chevauchement. Le cylindre combine deux disques et un rectangle enroulé, et son volume vaut l'aire de la base fois la hauteur. Et tout commence par la droite graduée, qui mesure les longueurs.",
+      "texte": "Solides usuels : à retenir.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "La droite graduée : abscisses et distances"
+    },
+    {
+      "debut": "p10",
+      "sous_titre": "Le milieu d'un segment, puis le cube et le pavé droit",
+      "pont": {
+        "texte": "Partie 2 : le milieu d'un segment, puis cube et pavé droit.",
+        "dit": "Partie deux : le milieu d'un segment, puis les premiers solides. Nous calculerons l'abscisse du milieu, nous résoudrons un exercice de synthèse, avant de décrire le cube et le pavé droit et de calculer leurs volumes et leurs aires."
+      }
+    },
+    {
+      "debut": "p19",
+      "sous_titre": "Conversions, patrons et cylindre de révolution",
+      "pont": {
+        "texte": "Partie 3 : conversions de volumes, patrons et cylindre.",
+        "dit": "Partie trois : conversions, patrons et cylindre de révolution. Nous convertirons les unités de volume, nous fabriquerons des patrons de solides, puis nous étudierons le cylindre, son patron, ses aires et son volume."
+      }
+    }
+  ]
+}

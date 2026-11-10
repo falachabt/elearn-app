@@ -1,0 +1,353 @@
+{
+ "cours": 6362,
+ "ecrans": {
+  "allostasie": {
+   "kicker": "Au-delà du point fixe",
+   "texte": "L'allostasie : la stabilité par le changement, mais à un coût.",
+   "type": "phrase",
+   "anim": {
+    "nom": "equilibre_dynamique_fig",
+    "hauteur": 200
+   }
+  },
+  "baroreflexe": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "equilibre_dynamique_fig"
+   },
+   "kicker": "Un réflexe en quelques secondes",
+   "texte": "Debout trop vite : la pression chute, le réflexe la redresse.",
+   "type": "phrase"
+  },
+  "boucle": {
+   "kicker": "La boucle de régulation",
+   "tex": [
+    "\\text{perturbation}",
+    "\\text{récepteurs}",
+    "\\text{centre intégrateur}",
+    "\\text{effecteurs} \\rightarrow \\text{correction}"
+   ],
+   "titre": "Cinq maillons, un même circuit",
+   "type": "etape"
+  },
+  "calcium": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "equilibre_dynamique_fig"
+   },
+   "kicker": "Un autre équilibre",
+   "texte": "Le calcium du sang, réglé par trois hormones.",
+   "type": "phrase"
+  },
+  "commande": {
+   "kicker": "La réponse corrective",
+   "note": "La réponse s'oppose à la déviation, elle ne l'amplifie pas.",
+   "tex": "R \\propto -(T - T_c) = -\\Delta T",
+   "type": "formule"
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "equilibre_dynamique_fig"
+   },
+   "kicker": "Définition",
+   "texte": "Un milieu intérieur stable, malgré un monde qui change.",
+   "type": "phrase"
+  },
+  "duo": {
+   "kicker": "Nerfs et hormones",
+   "tex": [
+    "\\text{nerveux : millisecondes, effet bref}",
+    "\\text{endocrine : secondes à jours}",
+    "\\text{nerveux : fils dédiés}",
+    "\\text{endocrine : sang, diffusion générale}"
+   ],
+   "titre": "Le sprinter et le marathonien",
+   "type": "etape"
+  },
+  "ecart": {
+   "kicker": "Le langage de la régulation",
+   "note": "L'écart entre la consigne et la valeur réelle.",
+   "tex": "e(t) = r - y(t)",
+   "type": "formule"
+  },
+  "exemple": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\text{à jeun : } G = 0{,}80\\ \\text{g/L}",
+    "\\text{après le repas : } G > 1{,}10\\ \\text{g/L}",
+    "\\text{insuline} \\rightarrow G \\text{ redescend}",
+    "\\text{à jeun : glucagon} \\rightarrow G \\text{ remonte}"
+   ],
+   "titre": "Un repas, puis un jeûne : que fait le pancréas ?",
+   "type": "etape"
+  },
+  "gain": {
+   "kicker": "L'efficacité du système",
+   "note": "Un gain élevé corrige presque toute la perturbation.",
+   "tex": "G = \\frac{\\text{correction}}{\\text{perturbation}}",
+   "type": "formule"
+  },
+  "glycemie": {
+   "kicker": "La glycémie de consigne",
+   "note": "Soit environ cinq virgule cinq millimoles par litre.",
+   "tex": "G \\approx 1\\ \\text{g/L}",
+   "type": "formule"
+  },
+  "hormones": {
+   "kicker": "Deux hormones antagonistes",
+   "tex": [
+    "\\text{glycémie haute} \\rightarrow \\text{insuline}",
+    "\\text{le glucose entre et se stocke}",
+    "\\text{glycémie basse} \\rightarrow \\text{glucagon}",
+    "\\text{le foie libère du glucose}"
+   ],
+   "titre": "Insuline et glucagon se relaient",
+   "type": "etape"
+  },
+  "positive": {
+   "kicker": "L'exception qui confirme",
+   "texte": "Rétroaction positive : amplifier, jusqu'au point de non-retour.",
+   "type": "phrase",
+   "anim": {
+    "nom": "equilibre_dynamique_fig",
+    "hauteur": 200
+   }
+  },
+  "recap": {
+   "etapes": [
+    "Milieu intérieur dans des limites étroites",
+    "Boucle : capter, comparer, corriger, revenir",
+    "Température tenue autour de trente-sept degrés",
+    "Glycémie réglée par insuline et glucagon",
+    "La rupture de boucle, c'est la maladie"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "ruptures": {
+   "kicker": "Quand l'équilibre rompt",
+   "tex": [
+    "\\text{diabète : la boucle insuline est rompue}",
+    "\\text{fièvre : consigne relevée}",
+    "\\text{hypertension : norme relevée}"
+   ],
+   "titre": "Trois ruptures à connaître",
+   "type": "etape"
+  },
+  "thermo": {
+   "kicker": "La thermorégulation",
+   "tex": [
+    "\\text{chaud : vasodilatation et sueur}",
+    "\\text{froid : vasoconstriction et frissons}",
+    "\\text{centre : hypothalamus}",
+    "\\text{consigne : environ trente-sept degrés}"
+   ],
+   "titre": "Trop chaud, trop froid : deux réponses opposées",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "equilibre_dynamique_fig"
+   },
+   "kicker": "Biologie · L'homéostasie",
+   "sous": "Milieu intérieur, boucles de rétroaction, température et glycémie",
+   "titre": "L'homéostasie : un équilibre intérieur toujours en mouvement",
+   "type": "titre"
+  },
+  "valeurs": {
+   "kicker": "Des plages étroites",
+   "tex": [
+    "T \\approx 37\\ ^{\\circ}\\text{C}",
+    "\\text{pH} = 7{,}35\\text{--}7{,}45",
+    "G = 0{,}70\\text{--}1{,}10\\ \\text{g/L}",
+    "P = 90\\text{--}140\\ \\text{mmHg}"
+   ],
+   "titre": "Quatre constantes sous haute surveillance",
+   "type": "etape"
+  }
+ },
+ "matiere": "Biologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir l'équilibre : valeurs, boucle et gain"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Température et glycémie : deux régulations en action",
+   "pont": {
+    "dit": "Partie deux : les deux grandes régulations en action, la température et le sucre du sang, puis les deux systèmes qui les pilotent, nerfs et hormones, et enfin les cas où l'équilibre rompt ou se réajuste.",
+    "texte": "Partie 2 : température, glycémie, nerfs, hormones, ruptures."
+   }
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Nerfs, hormones et limites de la régulation",
+   "pont": {
+    "dit": "Partie trois : le système nerveux sprinter, les hormones marathoniennes, et les cas où l'équilibre rompt ou se réajuste, jusqu'à l'allostasie.",
+    "texte": "Partie 3 : nerfs, hormones, ruptures, allostasie."
+   }
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré à l'homéostasie, l'équilibre intérieur qui nous maintient en vie. Imaginez un funambule sur son fil : chaque muscle et chaque souffle sont ajustés sans cesse pour ne pas tomber. Votre organisme réalise la même performance, à chaque instant, pour des centaines de paramètres à la fois. Nous verrons d'abord ce qu'est cet équilibre, puis les boucles qui le défendent, et enfin ses limites, quand il vacille ou se réajuste.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Le funambule intérieur : tenir en équilibre, sans cesse."
+  },
+  {
+   "dit": "Le mot lui-même dit le programme. Forgé en mille neuf cent vingt-six par le physiologiste Cannon, il joint deux racines grecques : semblable, et état. L'homéostasie désigne donc l'ensemble des processus qui maintiennent les constantes du milieu intérieur, le sang, la lymphe et le liquide entre les cellules, dans des limites compatibles avec la vie, malgré les variations du monde extérieur.",
+   "ecran": "definition",
+   "id": "p02",
+   "texte": "Cannon, 1926 : semblable, et état."
+  },
+  {
+   "dit": "Claude Bernard l'avait pressenti dès le dix-neuvième siècle : la fixité du milieu intérieur est la condition d'une vie libre et indépendante. Cet équilibre n'est pas figé : il est dynamique, constamment réajusté, il coûte de l'énergie, et ses limites sont étroites et propres à chaque paramètre.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "Bernard : la fixité du milieu intérieur libère la vie."
+  },
+  {
+   "dit": "Mesurez l'étroitesse de ces plages. La température centrale normale va de trente-six virgule un à trente-sept virgule huit degrés. Le pH sanguin artériel ne tolère que sept virgule trente-cinq à sept virgule quarante-cinq. La glycémie à jeun, de zéro virgule soixante-dix à un virgule dix gramme par litre. La pression systolique, de quatre-vingt-dix à cent quarante millimètres de mercure. En dehors, ce sont l'hypothermie, l'acidose, l'hypoglycémie ou l'hypertension.",
+   "ecran": "valeurs",
+   "id": "p04",
+   "texte": "Température, pH, glycémie, pression : des plages étroites."
+  },
+  {
+   "dit": "Tout système homéostatique partage la même architecture, en cinq maillons. Une perturbation écarte la variable de sa consigne. Des récepteurs détectent l'écart. Un centre intégrateur compare la mesure à la consigne et décide. Des effecteurs exécutent la correction. Et la variable revient vers sa consigne, ce qui ferme la boucle.",
+   "ecran": "boucle",
+   "id": "p05",
+   "texte": "Perturbation, capteurs, centre, effecteurs, retour."
+  },
+  {
+   "dit": "Pourquoi dit-on que la boucle est négative ? Négative ne veut pas dire mauvaise. Cela veut dire que la réponse s'oppose à la déviation initiale, comme un thermostat domestique qui chauffe quand la pièce refroidit et s'arrête quand la consigne est atteinte. La boucle corrige, elle stabilise, elle ne pousse jamais plus loin dans le même sens.",
+   "ecran": "boucle",
+   "id": "p06",
+   "texte": "Négative veut dire correctrice, pas mauvaise."
+  },
+  {
+   "dit": "On peut écrire cette idée simplement. L'écart, noté e de t, est la différence entre la consigne r et la valeur réelle y de t. Le centre de contrôle produit une commande proportionnelle à cet écart, avec un gain. Dans une régulation idéale, quand le temps passe, l'écart tend vers zéro et la valeur réelle rejoint la consigne.",
+   "ecran": "ecart",
+   "id": "p07",
+   "texte": "Écart = consigne − valeur réelle."
+  },
+  {
+   "dit": "Pour la température, la règle devient limpide : la réponse est proportionnelle à l'écart, mais de signe opposé. Plus la déviation est grande, plus la correction est forte, et toujours dans la direction inverse. C'est cette proportionnalité inversée qui garantit la stabilité.",
+   "ecran": "commande",
+   "id": "p08",
+   "texte": "Réponse = − écart : forte si l'écart est grand."
+  },
+  {
+   "dit": "L'efficacité d'un tel système se mesure par son gain, le rapport entre la correction apportée et la perturbation subie. Un gain élevé indique un système très efficace, capable de corriger presque entièrement une perturbation. La régulation de la pression artérielle, par exemple, a un gain d'environ deux, ce qui corrige à peu près deux tiers de toute perturbation.",
+   "ecran": "gain",
+   "id": "p09",
+   "texte": "Gain = correction ÷ perturbation."
+  },
+  {
+   "dit": "Commençons par la température, le cas d'école de la boucle de rétroaction.",
+   "ecran": "thermo",
+   "id": "p10",
+   "texte": "La température, cas d'école de la boucle."
+  },
+  {
+   "dit": "Votre température centrale est tenue autour de trente-sept degrés, et les réactions de vos enzymes ne supportent que quelques degrés d'écart. Les thermorécepteurs de la peau et du centre envoient leurs mesures à l'hypothalamus, le thermostat du cerveau, qui compare et commande.",
+   "ecran": "thermo",
+   "id": "p11",
+   "texte": "L'hypothalamus, thermostat du cerveau."
+  },
+  {
+   "dit": "S'il fait trop chaud, par exemple pendant un effort sous le soleil, la réponse est double : les vaisseaux de la peau se dilatent pour évacuer la chaleur, et la sueur s'évapore en refroidissant la peau. S'il fait froid, c'est l'inverse : les vaisseaux se resserrent pour garder la chaleur au centre, les muscles frissonnent pour en produire, et le métabolisme augmente.",
+   "ecran": "thermo",
+   "id": "p12",
+   "texte": "Chaud : dilater, suer. Froid : resserrer, frissonner."
+  },
+  {
+   "dit": "Un détail spectaculaire : les frissons peuvent multiplier par plusieurs fois la production de chaleur des muscles. Et la fièvre n'est pas une panne du thermostat : pendant une infection, des substances pyrogènes réajustent temporairement la consigne vers trente-neuf degrés, parce qu'une température modérément élevée aide les défenses et gêne certains microbes.",
+   "ecran": "thermo",
+   "id": "p13",
+   "texte": "Frissons : une chaudière musculaire. Fièvre : consigne relevée."
+  },
+  {
+   "dit": "Passons au sucre du sang. Le glucose est le carburant universel des cellules, et les neurones du cerveau en dépendent totalement. La glycémie doit donc rester autour d'un gramme par litre, soit environ cinq virgule cinq millimoles par litre, entre zéro virgule soixante-dix et un virgule dix gramme par litre à jeun.",
+   "ecran": "glycemie",
+   "id": "p14",
+   "texte": "Glycémie de consigne : environ 1 g/L."
+  },
+  {
+   "dit": "Le pancréas tient cette consigne avec deux hormones antagonistes, fabriquées dans les îlots de Langerhans. L'insuline, sécrétée par les cellules bêta, fait baisser la glycémie : elle ouvre l'entrée du glucose dans les cellules et ordonne son stockage sous forme de glycogène ou de graisses. Le glucagon, sécrété par les cellules alpha, la fait remonter : il ordonne au foie de libérer ses réserves.",
+   "ecran": "hormones",
+   "id": "p15",
+   "texte": "Insuline : faire baisser. Glucagon : faire remonter."
+  },
+  {
+   "dit": "Suivons un exemple complet, pas à pas. À jeun, la glycémie est de zéro virgule quatre-vingts gramme par litre, bien dans la fourchette. Après un repas riche en glucides, elle dépasse un virgule dix gramme par litre. Les cellules bêta détectent l'excès et sécrètent de l'insuline. Le glucose entre dans les cellules et se stocke, la glycémie redescend, et la baisse de glycémie freine à son tour la sécrétion d'insuline : la boucle se referme.",
+   "ecran": "exemple",
+   "id": "p16",
+   "texte": "Repas → insuline → stockage → retour à la consigne."
+  },
+  {
+   "dit": "Le scénario inverse est symétrique. À jeun ou pendant un effort prolongé, la glycémie passe sous zéro virgule soixante-dix gramme par litre. Les cellules alpha sécrètent alors du glucagon, le foie libère du glucose, la glycémie remonte, et la remontée coupe la sécrétion de glucagon. Deux boucles antagonistes, un seul point d'équilibre.",
+   "ecran": "exemple",
+   "id": "p17",
+   "texte": "Jeûne → glucagon → foie libère → retour à la consigne."
+  },
+  {
+   "dit": "Changez d'échelle de temps pour voir le système nerveux à l'œuvre. Vous vous levez brusquement : la gravité fait chuter la pression au niveau du cerveau. En moins d'une seconde, les barorécepteurs des sinus carotidiens et de la crosse aortique détectent la baisse, le centre vasomoteur du bulbe commande, le cœur accélère et les vaisseaux se resserrent. En deux à trois secondes, la pression est rétablie, et l'étourdissement évité.",
+   "ecran": "baroreflexe",
+   "id": "p18",
+   "texte": "Lever brusque : pression rétablie en 2 à 3 secondes."
+  },
+  {
+   "dit": "Nerfs et hormones forment un duo complémentaire, le sprinter et le marathonien. Le message nerveux est une impulsion électrochimique qui voyage par des fils dédiés, les neurones, en quelques millisecondes, pour un effet bref et précis. Le message hormonal est une molécule transportée par le sang partout dans le corps, plus lente à agir, de quelques secondes à plusieurs jours, mais durable.",
+   "ecran": "duo",
+   "id": "p19",
+   "texte": "Nerfs : vite, bref, précis. Hormones : lent, durable, général."
+  },
+  {
+   "dit": "L'hypothalamus incarne ce partenariat : à la fois structure nerveuse et endocrine, il commande l'hypophyse, la glande maîtresse, et relie ainsi le cerveau aux régulations hormonales de longue durée. C'est par cet axe que le stress, par exemple, mobilise le cortisol, qui augmente la glycémie disponible, puis freine sa propre production par rétroaction négative.",
+   "ecran": "duo",
+   "id": "p20",
+   "texte": "Hypothalamus : le pont entre nerfs et hormones."
+  },
+  {
+   "dit": "Le même schéma régit d'autres constantes, comme le calcium du sang, indispensable à la contraction musculaire, à la conduction nerveuse et à la coagulation. Quand la calcémie baisse, la parathormone la fait remonter en agissant sur les os, les reins et l'intestin, aidée par la vitamine D active, tandis que la calcitonine de la thyroïde freine dans l'autre sens quand elle est trop haute.",
+   "ecran": "calcium",
+   "id": "p21",
+   "texte": "Calcium : parathormone pour monter, calcitonine pour freiner."
+  },
+  {
+   "dit": "Un mot sur l'exception qui confirme la règle : la rétroaction positive. Ici, la réponse amplifie le stimulus au lieu de le corriger. L'entrée de sodium ouvre davantage de canaux à sodium pendant le potentiel d'action, les contractions de l'accouchement stimulent l'ocytocine qui les renforce, la coagulation s'auto-amplifie en cascade. Ces boucles poussent le système vers un point de non-retour, puis s'arrêtent d'elles-mêmes une fois le processus achevé.",
+   "ecran": "positive",
+   "id": "p22",
+   "texte": "Positive : amplifier jusqu'au point de non-retour."
+  },
+  {
+   "dit": "Quand une boucle se rompt, c'est la maladie. Dans le diabète de type un, les cellules bêta sont détruites par le système immunitaire : plus d'insuline, la glycémie reste haute. Dans le diabète de type deux, les cellules répondent mal à l'insuline, puis les cellules bêta s'épuisent. Dans les deux cas, le traitement vise à restaurer artificiellement l'équilibre perdu.",
+   "ecran": "ruptures",
+   "id": "p23",
+   "texte": "Diabète : une boucle rompue, un équilibre à restaurer."
+  },
+  {
+   "dit": "D'autres dérèglements sont des réajustements de la consigne elle-même. La fièvre relève temporairement le thermostat, nous l'avons vu. L'hypertension chronique, elle, peut installer durablement une pression plus haute comme nouvelle norme, et le baroréflexe finit par la traiter comme telle. Comprendre si la consigne a bougé ou si la boucle est cassée change entièrement le traitement.",
+   "ecran": "ruptures",
+   "id": "p24",
+   "texte": "Consigne déplacée ou boucle cassée : deux diagnostics."
+  },
+  {
+   "dit": "Dernier raffinement : l'allostasie, décrite en mille neuf cent quatre-vingt-huit. L'organisme n'atteint pas toujours la stabilité en tenant un point fixe, il l'atteint par le changement, en déplaçant ses consignes selon les circonstances. Mais ce déplacement a un coût : sollicités sans relâche, les systèmes s'usent, et cette charge allostatique, faite d'intensité, de durée et de fréquence des perturbations, prépare les maladies chroniques.",
+   "ecran": "allostasie",
+   "id": "p25",
+   "texte": "Allostasie : stabilité par le changement, usure en contrepartie."
+  },
+  {
+   "dit": "Récapitulons. L'homéostasie maintient le milieu intérieur dans des limites étroites, par des boucles qui captent un écart, le comparent à une consigne, corrigent, puis reviennent. La température est tenue autour de trente-sept degrés par l'hypothalamus, la glycémie autour d'un gramme par litre par l'insuline et le glucagon. Les nerfs répondent vite, les hormones durent. Et quand une boucle rompt ou qu'une consigne dérive, l'équilibre devient maladie. Retenez l'image du funambule : la stabilité du vivant n'est jamais immobile, elle se gagne à chaque instant.",
+   "ecran": "recap",
+   "id": "p26",
+   "texte": "La stabilité du vivant se gagne à chaque instant."
+  }
+ ],
+ "titre": "L'homéostasie : un équilibre intérieur toujours en mouvement"
+}

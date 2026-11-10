@@ -1,5 +1,4 @@
 import BottomSheet, { BottomSheetBackdrop, BottomSheetView, type BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
-import { router } from 'expo-router';
 import { forwardRef, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -42,17 +41,7 @@ export function OptionsCompte({ onSauvegarde, onPlusTard, onContinuer, scoreInvi
       {scoreInvite ? (
         <Bouton variante="secondaire" libelle={t('score.continuerSansCompte')} onPress={onContinuer ?? onPlusTard} />
       ) : (
-        <>
-          <Bouton
-            variante="texte"
-            libelle={t('sauvegarde.email')}
-            onPress={() => {
-              onPlusTard();
-              router.push('/compte/creer');
-            }}
-          />
-          <Bouton variante="texte" libelle={t('sauvegarde.plusTard')} onPress={onPlusTard} />
-        </>
+        <Bouton variante="texte" libelle={t('sauvegarde.plusTard')} onPress={onPlusTard} />
       )}
       <MentionsLegales />
     </View>

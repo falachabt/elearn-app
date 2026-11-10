@@ -1,0 +1,483 @@
+{
+ "cours": 6156,
+ "ecrans": {
+  "definition": {
+   "kicker": "La définition",
+   "note": "v non nul, lambda réel ou complexe : la direction est conservée, seule l'échelle change.",
+   "tex": "A\\vec{v} = \\lambda \\vec{v}, \\qquad \\vec{v} \\neq \\vec{0}",
+   "type": "formule",
+   "anim": {
+    "nom": "vecteur_propre_fig",
+    "hauteur": 170
+   }
+  },
+  "diag_conditions": {
+   "kicker": "Quand peut-on diagonaliser ?",
+   "tex": [
+    "\\text{assez de vecteurs propres : } n \\text{ indépendants}",
+    "\\text{pour chaque } \\lambda \\text{ : géométrique égale algébrique}",
+    "\\text{la somme des dimensions des } E_\\lambda \\text{ vaut } n",
+    "\\text{valeurs propres toutes distinctes : toujours diagonalisable}"
+   ],
+   "titre": "Trois conditions équivalentes, et un cas cadeau",
+   "type": "etape"
+  },
+  "diag_def": {
+   "kicker": "Diagonaliser",
+   "note": "P : les vecteurs propres en colonnes. D : les valeurs propres, dans le même ordre.",
+   "tex": "A = P D P^{-1} \\qquad D = P^{-1} A P",
+   "type": "formule"
+  },
+  "diag_exemple": {
+   "kicker": "Exemple complet de diagonalisation",
+   "tex": [
+    "A = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix} \\qquad \\lambda_1 = 2, \\quad \\lambda_2 = 5",
+    "P = \\begin{pmatrix} 1 & 1 \\\\ -2 & 1 \\end{pmatrix} \\qquad D = \\begin{pmatrix} 2 & 0 \\\\ 0 & 5 \\end{pmatrix}"
+   ],
+   "titre": "Deux vecteurs indépendants pour une matrice deux par deux : c'est gagné",
+   "type": "etape"
+  },
+  "edo": {
+   "kicker": "Équations différentielles découplées",
+   "tex": [
+    "A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix} \\qquad \\lambda_1 = 1, \\quad \\lambda_2 = 3",
+    "x(t) = c_1 e^{t} + c_2 e^{3t} \\qquad y(t) = -c_1 e^{t} + c_2 e^{3t}"
+   ],
+   "titre": "Le système couplé devient deux équations indépendantes",
+   "type": "etape"
+  },
+  "equation": {
+   "kicker": "La condition clé",
+   "note": "Équivalent : (A − λI)v = 0 admet une solution non nulle, donc A − λI n'est pas inversible.",
+   "tex": "\\det(A - \\lambda I_n) = 0",
+   "type": "formule"
+  },
+  "ex2_poly": {
+   "kicker": "Exemple deux par deux : le polynôme",
+   "tex": [
+    "A - \\lambda I_2 = \\begin{pmatrix} 3-\\lambda & 1 \\\\ 0 & 2-\\lambda \\end{pmatrix}",
+    "P_A(\\lambda) = (3-\\lambda)(2-\\lambda)"
+   ],
+   "titre": "A = (3, 1 ; 0, 2), triangulaire supérieure",
+   "type": "etape"
+  },
+  "ex2_valeurs": {
+   "kicker": "Exemple deux par deux : les valeurs propres",
+   "tex": [
+    "P_A(\\lambda) = 0 \\iff \\lambda_1 = 3, \\quad \\lambda_2 = 2",
+    "\\lambda_1 + \\lambda_2 = 5 = \\text{tr}(A) \\qquad \\lambda_1 \\lambda_2 = 6 = \\det A"
+   ],
+   "titre": "Deux racines réelles distinctes, et le contrôle par trace et déterminant",
+   "type": "etape"
+  },
+  "ex3": {
+   "kicker": "Exemple trois par trois",
+   "tex": [
+    "A = \\begin{pmatrix} 3 & 1 & -1 \\\\ 1 & 3 & -1 \\\\ -1 & -1 & 5 \\end{pmatrix}",
+    "P_A(\\lambda) = -(\\lambda - 2)(\\lambda - 3)(\\lambda - 6) \\qquad \\lambda \\in \\{2, 3, 6\\}"
+   ],
+   "titre": "Somme onze, produit trente-six : le contrôle passe",
+   "type": "etape"
+  },
+  "fibo": {
+   "kicker": "Puissances en action : une récurrence couplée",
+   "tex": [
+    "A = \\begin{pmatrix} 3 & 2 \\\\ 1 & 2 \\end{pmatrix} \\qquad \\lambda_1 = 1, \\quad \\lambda_2 = 4",
+    "u_n = \\tfrac{1}{3}(1 + 2 \\times 4^n) \\qquad v_n = \\tfrac{1}{3}(-1 + 4^n)"
+   ],
+   "titre": "Une formule fermée au lieu de cent étapes de calcul",
+   "type": "etape"
+  },
+  "formes_quad": {
+   "kicker": "Formes quadratiques et axes principaux",
+   "tex": [
+    "Q(x, y) = 5x^2 + 8xy + 5y^2 \\qquad A = \\begin{pmatrix} 5 & 4 \\\\ 4 & 5 \\end{pmatrix}",
+    "\\lambda_1 = 9, \\quad \\lambda_2 = 1 \\qquad 9y_1^2 + y_2^2 = 1 : \\text{ une ellipse}"
+   ],
+   "titre": "Une conique tournée, redressée par les vecteurs propres",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "vecteurs"
+   },
+   "kicker": "Introduction",
+   "texte": "Un même geste partout : trouver les directions que la transformation se contente d'étirer.",
+   "type": "phrase"
+  },
+  "jordan": {
+   "kicker": "Quand la diagonalisation échoue",
+   "tex": [
+    "J = \\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix} \\qquad P_J(\\lambda) = (2 - \\lambda)^2",
+    "\\dim E_2 = 1 < 2 : \\text{ non diagonalisable, forme de Jordan}"
+   ],
+   "titre": "Le bloc de Jordan : presque diagonale",
+   "type": "etape"
+  },
+  "lecture": {
+   "kicker": "Lire une valeur propre",
+   "tex": [
+    "\\lambda > 1 : \\text{ étirement, même sens}",
+    "\\lambda = 1 : \\text{ inchangé} \\qquad 0 < \\lambda < 1 : \\text{ contraction}",
+    "\\lambda < 0 : \\text{ sens renversé} \\qquad \\lambda = 0 : \\text{ écrasé sur le vecteur nul}"
+   ],
+   "titre": "Le signe et la taille de lambda racontent l'effet",
+   "type": "etape"
+  },
+  "markov": {
+   "kicker": "Chaînes de Markov : l'état stable",
+   "tex": [
+    "T = \\begin{pmatrix} 0{,}8 & 0{,}6 \\\\ 0{,}2 & 0{,}4 \\end{pmatrix} \\qquad T\\vec{s} = \\vec{s}",
+    "\\vec{s} = \\begin{pmatrix} 0{,}75 \\\\ 0{,}25 \\end{pmatrix} \\qquad s_1 + s_2 = 1"
+   ],
+   "titre": "Beau temps et pluie : le vecteur propre de la valeur un",
+   "type": "etape"
+  },
+  "multiplicites": {
+   "kicker": "Deux multiplicités à ne pas confondre",
+   "tex": [
+    "P_B(\\lambda) = (\\lambda - 3)^2 : \\text{ multiplicité algébrique } 2",
+    "\\dim E_3 = 1 : \\text{ multiplicité géométrique } 1",
+    "\\text{diagonalisable} \\iff \\text{égalité pour chaque } \\lambda"
+   ],
+   "titre": "Algébrique : dans le polynôme. Géométrique : dans l'espace propre",
+   "type": "etape"
+  },
+  "pagerank": {
+   "kicker": "PageRank : le vecteur propre de Google",
+   "note": "Mini-web de trois pages : v vaut environ (0,22 ; 0,33 ; 0,44). La troisième page, la mieux reliée, est la plus importante.",
+   "tex": "M\\vec{v} = \\vec{v}",
+   "type": "formule"
+  },
+  "polynome": {
+   "kicker": "Le polynôme caractéristique",
+   "note": "Polynôme de degré n en lambda : ses racines sont exactement les valeurs propres de A.",
+   "tex": "P_A(\\lambda) = \\det(A - \\lambda I_n)",
+   "type": "formule"
+  },
+  "population": {
+   "kicker": "Dynamique des populations",
+   "tex": [
+    "M = \\begin{pmatrix} 0{,}3 & 1{,}2 \\\\ 0{,}6 & 0{,}2 \\end{pmatrix} \\qquad P_M(\\lambda) = \\lambda^2 - 0{,}5\\lambda - 0{,}66",
+    "\\lambda_1 = 1{,}1 \\qquad \\lambda_2 = -0{,}6 \\qquad \\text{croissance d'environ } 10\\,\\% \\text{ par an}"
+   ],
+   "titre": "Jeunes et adultes : la valeur dominante décide du destin",
+   "type": "etape"
+  },
+  "puissances": {
+   "kicker": "La récompense : les puissances",
+   "note": "D puissance k : chaque valeur propre élevée à la puissance k. Les multiplications en chaîne disparaissent.",
+   "tex": "A^k = P D^k P^{-1}",
+   "type": "formule"
+  },
+  "recap_diag": {
+   "etapes": [
+    "Valeurs propres, puis sous-espaces propres",
+    "Géométrique égale algébrique : le test",
+    "P : vecteurs propres en colonnes",
+    "D : valeurs propres, dans le même ordre"
+   ],
+   "kicker": "Diagonaliser : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Direction conservée : A v = λ v, v non nul",
+    "Valeurs propres : racines de det(A − λI) = 0",
+    "Trace = somme, déterminant = produit",
+    "Diagonalisable : assez de vecteurs propres",
+    "A = PDP⁻¹ : puissances et systèmes découplés"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "rotation": {
+   "kicker": "Quand le réel ne suffit pas",
+   "note": "Rotation d'un quart de tour : aucune direction réelle invariante, deux valeurs propres complexes conjuguées.",
+   "tex": "P_R(\\lambda) = \\lambda^2 + 1 = 0 \\quad \\Rightarrow \\quad \\lambda = i \\ \\text{ou} \\ \\lambda = -i",
+   "type": "formule"
+  },
+  "sous_espaces": {
+   "kicker": "Les sous-espaces propres",
+   "note": "Toutes les solutions de (A − λI)v = 0 : un sous-espace. Un vecteur propre n'est jamais unique : tout multiple non nul convient.",
+   "tex": "E_\\lambda = \\ker(A - \\lambda I_n)",
+   "type": "formule"
+  },
+  "spectral": {
+   "kicker": "Le théorème spectral",
+   "tex": [
+    "\\text{valeurs propres toujours réelles}",
+    "\\text{vecteurs propres de valeurs distinctes : orthogonaux}",
+    "A = Q D Q^T \\qquad Q^{-1} = Q^T"
+   ],
+   "titre": "Les matrices symétriques réelles : le cas parfait",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Mathématique · Valeurs propres",
+   "sous": "Les directions qui ne tournent pas : polynôme caractéristique, sous-espaces propres et applications",
+   "titre": "Valeurs propres, vecteurs propres et diagonalisation",
+   "type": "titre",
+   "anim": {
+    "nom": "vecteur_propre_fig",
+    "hauteur": 250
+   }
+  },
+  "trace_det": {
+   "kicker": "Trace et déterminant : le contrôle",
+   "tex": [
+    "P_A(\\lambda) = \\lambda^2 - \\text{tr}(A)\\,\\lambda + \\det A",
+    "\\lambda_1 + \\lambda_2 = \\text{tr}(A) \\qquad \\lambda_1 \\lambda_2 = \\det A",
+    "\\text{vrai en toute taille, multiplicités comprises}"
+   ],
+   "titre": "En taille deux, tout tient en une ligne",
+   "type": "etape"
+  },
+  "triangulaire": {
+   "kicker": "Le cas triangulaire",
+   "note": "Matrice triangulaire ou diagonale : les valeurs propres se lisent directement sur la diagonale, sans calcul.",
+   "tex": "P_T(\\lambda) = (t_{11} - \\lambda)(t_{22} - \\lambda) \\cdots (t_{nn} - \\lambda)",
+   "type": "formule"
+  },
+  "vec2": {
+   "kicker": "Vecteurs propres pour lambda égale deux",
+   "tex": [
+    "\\begin{pmatrix} 1 & 1 \\\\ 0 & 0 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\vec{0} \\Rightarrow x + y = 0",
+    "\\vec{v}_2 = \\begin{pmatrix} 1 \\\\ -1 \\end{pmatrix} \\qquad A\\vec{v}_2 = \\begin{pmatrix} 2 \\\\ -2 \\end{pmatrix} = 2\\vec{v}_2"
+   ],
+   "titre": "Résoudre (A − 2I)v = 0, puis vérifier",
+   "type": "etape"
+  },
+  "vec3": {
+   "kicker": "Vecteurs propres pour lambda égale trois",
+   "tex": [
+    "\\begin{pmatrix} 0 & 1 \\\\ 0 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\vec{0} \\Rightarrow y = 0",
+    "\\vec{v}_1 = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} \\qquad E_3 = \\text{axe des } x"
+   ],
+   "titre": "Résoudre (A − 3I)v = 0",
+   "type": "etape"
+  },
+  "vibrations": {
+   "kicker": "Vibrations couplées : les modes normaux",
+   "tex": [
+    "A = \\begin{pmatrix} -2 & 1 \\\\ 1 & -2 \\end{pmatrix} \\qquad \\lambda_1 = -1, \\quad \\lambda_2 = -3",
+    "\\text{mode un : en phase} \\qquad \\text{mode deux : en opposition de phase}"
+   ],
+   "titre": "Deux masses, des ressorts, deux modes indépendants",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définitions, polynôme caractéristique et premiers exemples"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : des valeurs propres aux directions, puis à la diagonalisation. Nous donnerons leur structure aux sous-espaces propres, nous distinguerons les deux multiplicités, puis nous assemblerons la matrice de passage et sa diagonale, avant le premier calcul de puissances.",
+    "texte": "Partie 2 : sous-espaces propres, multiplicités et diagonalisation."
+   },
+   "sous_titre": "Sous-espaces propres et diagonalisation"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : les applications. Équations différentielles découplées, états stables des chaînes de Markov, croissance des populations, axes des coniques, modes de vibration, matrices symétriques, forme de Jordan et classement des pages web : un même outil partout.",
+    "texte": "Partie 3 : les applications de la diagonalisation."
+   },
+   "sous_titre": "Applications : systèmes, populations, géométrie et PageRank"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux valeurs propres et aux vecteurs propres, les directions secrètes des transformations linéaires. Une matrice déforme l'espace dans presque toutes les directions, sauf quelques-unes, privilégiées, qu'elle se contente d'étirer ou de comprimer. Nous apprendrons à trouver ces directions et leurs facteurs d'échelle, puis à changer de base pour diagonaliser la matrice, et enfin à exploiter cette forme simple : puissances, équations différentielles, populations, vibrations et classement de pages web.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Les directions qui ne tournent pas : valeurs et vecteurs propres."
+  },
+  {
+   "dit": "Imaginez une pièce remplie de ressorts et de poulies : vous tirez sur une corde, tout se déforme et se tord. Pourtant, il existe peut-être une direction où le système ne fait que s'allonger ou se raccourcir, sans se tordre. Cette direction privilégiée est l'idée de départ de tout le cours : comprendre une transformation, c'est d'abord trouver les directions où son action devient élémentaire.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Chercher les directions où tout devient simple."
+  },
+  {
+   "dit": "Voici la définition centrale. Un vecteur non nul est un vecteur propre de la matrice A si son image par A est un simple multiple de lui-même : A fois vé égale lambda fois vé. Le nombre lambda est la valeur propre associée. Géométriquement, la direction du vecteur est préservée : seule sa longueur change, et son sens aussi si lambda est négatif. Le vecteur nul est exclu, car il vérifierait l'égalité pour n'importe quel lambda et ne dirait rien.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "A v = λ v, v non nul : la direction est conservée."
+  },
+  {
+   "dit": "Une valeur propre se lit comme un mode d'emploi. Si lambda dépasse un, le vecteur est étiré. Si lambda vaut un, il ne bouge pas. Entre zéro et un, il est contracté. Si lambda est négatif, il est en plus retourné, comme par un miroir. Et si lambda vaut zéro, il est écrasé sur le vecteur nul : la transformation aplatit toute cette direction, et c'est exactement le noyau qui apparaît.",
+   "ecran": "lecture",
+   "id": "p04",
+   "texte": "Étirer, contracter, retourner, écraser : lire λ."
+  },
+  {
+   "dit": "Comment trouver ces couples cachés ? On réécrit l'équation : A fois vé, moins lambda fois vé, égale zéro, c'est-à-dire A moins lambda fois l'identité, le tout appliqué à vé, égale zéro. Nous cherchons donc un vecteur non nul dans le noyau de cette nouvelle matrice. Or un système homogène n'a de solution non triviale que si la matrice n'est pas inversible, donc si son déterminant est nul. Voilà la condition clé : déterminant de A moins lambda identité égale zéro.",
+   "ecran": "equation",
+   "id": "p05",
+   "texte": "La condition : det(A − λI) = 0."
+  },
+  {
+   "dit": "Ce déterminant n'est pas un nombre : comme lambda apparaît sur toute la diagonale, son calcul produit un polynôme en lambda, de degré égal à la taille de la matrice. On l'appelle le polynôme caractéristique. Toute la méthode tient alors en deux temps : les racines de ce polynôme sont les valeurs propres, et pour chacune, on résoudra un système homogène pour trouver les vecteurs propres associés.",
+   "ecran": "polynome",
+   "id": "p06",
+   "texte": "Le polynôme caractéristique : ses racines sont les λ."
+  },
+  {
+   "dit": "Premier exemple complet, avec la matrice de coefficients trois et un sur la première ligne, zéro et deux sur la seconde. On soustrait lambda sur la diagonale : il reste trois moins lambda et deux moins lambda en diagonale, un et zéro hors diagonale. La matrice est triangulaire, donc son déterminant est le produit de sa diagonale : le polynôme caractéristique vaut trois moins lambda, fois deux moins lambda.",
+   "ecran": "ex2_poly",
+   "id": "p07",
+   "texte": "Triangulaire : le déterminant est le produit diagonal."
+  },
+  {
+   "dit": "Annuler ce produit donne aussitôt les deux valeurs propres : trois et deux, réelles et distinctes. Et voici le contrôle à faire systématiquement : leur somme, cinq, égale la trace de la matrice, la somme de sa diagonale ; leur produit, six, égale son déterminant. Si vos racines ne passent pas ce double test, il y a une erreur de calcul quelque part, et il faut la trouver avant de continuer.",
+   "ecran": "ex2_valeurs",
+   "id": "p08",
+   "texte": "Somme 5 = trace, produit 6 = déterminant."
+  },
+  {
+   "dit": "Passons aux vecteurs propres. Pour lambda égale trois, on forme A moins trois fois l'identité : la matrice de coefficients zéro et un, zéro et moins un. Le système associé se réduit à une seule information : igrec égale zéro, ixe restant libre. Le sous-espace propre est donc l'axe des abscisses, engendré par le vecteur de coordonnées un et zéro. Le long de cet axe, la transformation triple tous les vecteurs.",
+   "ecran": "vec3",
+   "id": "p09",
+   "texte": "Pour λ = 3 : E₃ est l'axe des x, vecteur (1, 0)."
+  },
+  {
+   "dit": "Pour lambda égale deux, la matrice A moins deux fois l'identité donne le système ixe plus igrec égale zéro, donc ixe égale moins igrec. Le sous-espace propre est la droite engendrée par le vecteur de coordonnées un et moins un. Vérifions : son image par A vaut deux et moins deux, c'est-à-dire exactement deux fois le vecteur de départ. La direction est conservée, l'échelle est doublée, comme promis.",
+   "ecran": "vec2",
+   "id": "p10",
+   "texte": "Pour λ = 2 : direction (1, −1), et A v₂ = 2 v₂."
+  },
+  {
+   "dit": "L'exemple illustre une formule générale en taille deux : le polynôme caractéristique vaut lambda au carré, moins la trace fois lambda, plus le déterminant. Et les relations entre racines et coefficients donnent les deux identités universelles : la somme des valeurs propres égale la trace, leur produit égale le déterminant, en toute taille, à condition de compter chaque valeur propre avec sa multiplicité et d'accepter les racines complexes.",
+   "ecran": "trace_det",
+   "id": "p11",
+   "texte": "λ² − tr(A)λ + det A : somme et produit inclus."
+  },
+  {
+   "dit": "En taille trois, la méthode est identique, seul le déterminant demande plus de soin. Pour la matrice symétrique de diagonale trois, trois et cinq, le développement du déterminant donne un polynôme de degré trois, qui se factorise en moins, lambda moins deux, fois lambda moins trois, fois lambda moins six. Les valeurs propres sont deux, trois et six. Contrôle : leur somme vaut onze, la trace ; leur produit vaut trente-six, le déterminant. Tout est cohérent.",
+   "ecran": "ex3",
+   "id": "p12",
+   "texte": "Valeurs propres 2, 3, 6 : somme 11, produit 36."
+  },
+  {
+   "dit": "Revenons sur la structure des vecteurs propres. Pour une valeur propre fixée, l'ensemble de ses vecteurs propres, auquel on ajoute le vecteur nul, forme un sous-espace vectoriel : le sous-espace propre, qui n'est autre que le noyau de A moins lambda identité. Sa dimension s'appelle la multiplicité géométrique. Et retenez le point de vigilance : un vecteur propre n'est jamais unique, tout multiple non nul d'un vecteur propre en est un autre, pour la même valeur propre.",
+   "ecran": "sous_espaces",
+   "id": "p13",
+   "texte": "E_λ = ker(A − λI) : une direction, jamais un seul vecteur."
+  },
+  {
+   "dit": "Il faut donc distinguer deux multiplicités. La multiplicité algébrique compte les répétitions d'une racine dans le polynôme caractéristique. La multiplicité géométrique mesure la dimension du sous-espace propre, et elle est toujours comprise entre un et la multiplicité algébrique. Exemple à retenir : pour une certaine matrice, le polynôme vaut lambda moins trois, le tout au carré, mais le sous-espace propre n'est qu'une droite. Il manque une direction : ce déficit décidera de la diagonalisation.",
+   "ecran": "multiplicites",
+   "id": "p14",
+   "texte": "Algébrique 2, géométrique 1 : il manque une direction."
+  },
+  {
+   "dit": "Un cas cadeau avant d'aller plus loin : pour une matrice triangulaire, supérieure ou inférieure, le déterminant est le produit de la diagonale, donc le polynôme caractéristique se factorise tout seul, et les valeurs propres sont exactement les coefficients diagonaux, sans aucun calcul. C'est ce qui rendait notre premier exemple si rapide, et c'est un réflexe précieux le jour de l'examen : repérer la forme triangulaire avant de développer quoi que ce soit.",
+   "ecran": "triangulaire",
+   "id": "p15",
+   "texte": "Triangulaire : les λ se lisent sur la diagonale."
+  },
+  {
+   "dit": "Toutes les matrices réelles n'ont pas de valeurs propres réelles. La rotation d'un quart de tour envoie chaque direction sur une direction différente : aucune droite n'est conservée. Son polynôme caractéristique vaut lambda au carré plus un, dont les racines sont i et moins i, les unités imaginaires. Moralité : le spectre complet d'une matrice de taille n compte toujours n valeurs propres, mais à condition de travailler dans les nombres complexes et de compter les multiplicités.",
+   "ecran": "rotation",
+   "id": "p16",
+   "texte": "Rotation de 90° : λ = i et λ = −i, rien de réel."
+  },
+  {
+   "dit": "Nous arrivons au but du voyage : la diagonalisation. Une matrice est diagonalisable s'il existe une base entièrement formée de vecteurs propres. Dans cette base, la transformation devient diagonale : chaque direction est étirée indépendamment des autres. Algébriquement, A s'écrit P fois D fois P moins un, où D est la diagonale des valeurs propres et P la matrice de passage, dont les colonnes sont les vecteurs propres, dans le même ordre que les valeurs propres.",
+   "ecran": "diag_def",
+   "id": "p17",
+   "texte": "A = PDP⁻¹ : changer de base pour tout découpler."
+  },
+  {
+   "dit": "Quand ce changement de base est-il possible ? Trois formulations équivalentes : la matrice possède n vecteurs propres linéairement indépendants ; ou, pour chaque valeur propre, la multiplicité géométrique égale la multiplicité algébrique ; ou encore, la somme des dimensions de tous les sous-espaces propres vaut n. Et le cas le plus simple : si toutes les valeurs propres sont distinctes, la diagonalisation est automatique, sans vérification supplémentaire.",
+   "ecran": "diag_conditions",
+   "id": "p18",
+   "texte": "Le test : géométrique égale algébrique, pour chaque λ."
+  },
+  {
+   "dit": "Exemple complet : la matrice de coefficients quatre et un, deux et trois. Son polynôme vaut lambda au carré moins sept lambda plus dix, de racines deux et cinq. Pour deux, le système donne igrec égale moins deux ixe, d'où le vecteur un et moins deux. Pour cinq, igrec égale ixe, d'où le vecteur un et un. Deux vecteurs indépendants en dimension deux : la matrice est diagonalisable, avec P formée de ces deux colonnes et D la diagonale deux, cinq.",
+   "ecran": "diag_exemple",
+   "id": "p19",
+   "texte": "λ = 2 et 5, P = (1, 1 ; −2, 1), D = diag(2, 5)."
+  },
+  {
+   "dit": "Récapitulons le cœur de la méthode. On calcule le polynôme caractéristique et ses racines, les valeurs propres. Pour chacune, on résout le système homogène pour obtenir le sous-espace propre et sa dimension. On compare alors les deux multiplicités : si elles coïncident partout, on assemble la matrice de passage avec les vecteurs propres en colonnes, et la diagonale avec les valeurs propres dans le même ordre. L'ordre est crucial : permuter une colonne sans permuter la diagonale détruit le résultat.",
+   "ecran": "recap_diag",
+   "id": "p20",
+   "texte": "La méthode de diagonalisation en quatre temps."
+  },
+  {
+   "dit": "Pourquoi tant d'efforts ? Parce qu'une matrice diagonale se manipule sans peine, à commencer par ses puissances : élever D à la puissance k revient à élever chaque valeur propre à cette puissance. Comme les P et P moins un intermédiaires s'annulent deux à deux, la puissance de A devient P fois D puissance k fois P moins un. Calculer A puissance cent ne demande plus ni cent multiplications, ni même neuf : juste des puissances de nombres.",
+   "ecran": "puissances",
+   "id": "p21",
+   "texte": "Aᵏ = PDᵏP⁻¹ : les λ font tout le travail."
+  },
+  {
+   "dit": "Application immédiate : deux suites couplées, où chaque terme dépend des deux suites à la fois, s'écrivent comme une matrice appliquée au vecteur des deux termes. Ici la matrice de coefficients trois et deux, un et deux, a pour valeurs propres un et quatre. La diagonalisation livre une formule fermée : u indice n vaut un tiers de un plus deux fois quatre puissance n, et v indice n un tiers de quatre puissance n moins un. Le terme de rang cent s'obtient directement, sans calculer les quatre-vingt-dix-neuf précédents.",
+   "ecran": "fibo",
+   "id": "p22",
+   "texte": "Récurrence couplée : uₙ = (1 + 2·4ⁿ)/3."
+  },
+  {
+   "dit": "Même découplage pour les systèmes d'équations différentielles. Prenons le système où la dérivée de ixe vaut deux ixe plus igrec, et celle de igrec ixe plus deux igrec. La matrice de coefficients deux et un, un et deux, a pour valeurs propres un et trois, de vecteurs propres un et moins un, puis un et un. Dans la base propre, le système se sépare en deux équations indépendantes, chacune exponentielle : la solution générale combine une exponentielle de t et une exponentielle de trois t, avec deux constantes libres.",
+   "ecran": "edo",
+   "id": "p23",
+   "texte": "Découpler : eᵗ et e³ᵗ gouvernent la solution."
+  },
+  {
+   "dit": "Les chaînes de Markov offrent une autre lecture du même objet. Une météo simplifiée passe du beau temps à la pluie selon une matrice de transition. L'état à long terme est un vecteur que la matrice laisse inchangé : c'est un vecteur propre associé à la valeur propre un, toujours présente pour une matrice de transition. Ici, l'équation donne trois quarts de beau temps et un quart de pluie : sur le long terme, il fait beau soixante-quinze pour cent du temps, quel que soit le temps du premier jour.",
+   "ecran": "markov",
+   "id": "p24",
+   "texte": "État stable : 75 % de beau temps, 25 % de pluie."
+  },
+  {
+   "dit": "Pour une population partagée entre jeunes et adultes, la matrice de transition de coefficients zéro virgule trois et un virgule deux, zéro virgule six et zéro virgule deux, a pour polynôme lambda au carré moins zéro virgule cinq lambda moins zéro virgule soixante-six. Ses racines sont environ un virgule un et moins zéro virgule six. La valeur dominante, un virgule un, dépasse un : la population croît d'environ dix pour cent par an, et son vecteur propre donne la répartition stable entre jeunes et adultes. La valeur négative explique les oscillations de court terme.",
+   "ecran": "population",
+   "id": "p25",
+   "texte": "λ dominante 1,1 : croissance d'environ 10 % par an."
+  },
+  {
+   "dit": "En géométrie, les vecteurs propres redressent les coniques. La forme cinq ixe au carré plus huit ixe igrec plus cinq igrec au carré a pour matrice cinq et quatre, quatre et cinq, de valeurs propres neuf et un. Dans la base des vecteurs propres, dirigée à quarante-cinq degrés, le terme croisé disparaît : l'équation devient neuf y un au carré plus y deux au carré égale un, une ellipse dont les axes sont exactement les directions propres, le grand axe le long de la valeur propre un, le petit le long de la valeur neuf.",
+   "ecran": "formes_quad",
+   "id": "p26",
+   "texte": "Ellipse redressée : 9y₁² + y₂² = 1."
+  },
+  {
+   "dit": "En mécanique, deux masses reliées par des ressorts obéissent à un système couplé gouverné par la matrice moins deux et un, un et moins deux, de valeurs propres moins un et moins trois. Chaque valeur propre donne un mode normal de vibration : dans le premier, les deux masses oscillent en phase ; dans le second, en opposition de phase, et les carrés des fréquences sont proportionnels aux valeurs propres. Au lieu de deux équations emmêlées, deux oscillateurs indépendants : c'est la diagonalisation qui parle le langage de la physique.",
+   "ecran": "vibrations",
+   "id": "p27",
+   "texte": "Modes normaux : en phase, puis en opposition."
+  },
+  {
+   "dit": "Le plus beau des cas particuliers : les matrices symétriques réelles. Le théorème spectral garantit que leurs valeurs propres sont toujours réelles, que les vecteurs propres de valeurs distinctes sont orthogonaux, et qu'elles sont toujours diagonalisables, par une matrice orthogonale, c'est-à-dire une rotation : P moins un égale alors la transposée de P. C'est ce résultat qui fonde l'analyse en composantes principales, l'outil qui résume des données en gardant leurs directions de plus grande variance.",
+   "ecran": "spectral",
+   "id": "p28",
+   "texte": "Symétrique réelle : spectre réel, base orthogonale."
+  },
+  {
+   "dit": "Et quand la diagonalisation échoue ? La matrice de coefficients deux et un, zéro et deux, a une seule valeur propre, deux, de multiplicité algébrique deux, mais un sous-espace propre de dimension un seulement : il manque un vecteur propre, elle n'est pas diagonalisable. Tout n'est pas perdu : la forme de Jordan approche la diagonale au plus près, avec des blocs portant un un au-dessus de la diagonale. C'est la forme normale ultime, qui généralise la diagonalisation à toutes les matrices.",
+   "ecran": "jordan",
+   "id": "p29",
+   "texte": "Un seul vecteur propre pour λ double : bloc de Jordan."
+  },
+  {
+   "dit": "Terminons par l'application la plus célèbre : le classement des pages web. Dans un mini-internet de trois pages reliées entre elles, la matrice de transition possède, comme toute matrice stochastique, la valeur propre un. Son vecteur propre, normalisé pour que ses composantes somment à un, vaut environ zéro virgule vingt-deux, zéro virgule trente-trois et zéro virgule quarante-quatre. La troisième page, la mieux reliée, est donc la plus importante. À l'échelle du web réel, c'est exactement ce vecteur propre géant que l'algorithme PageRank calcule.",
+   "ecran": "pagerank",
+   "id": "p30",
+   "texte": "PageRank : le vecteur propre de la valeur 1 classe les pages."
+  },
+  {
+   "dit": "Pour conclure ce cours : une valeur propre est un facteur d'échelle pur, un vecteur propre la direction qui le subit. Le polynôme caractéristique livre les valeurs, les systèmes homogènes livrent les directions, et leur comparaison décide de la diagonalisation. Une fois la matrice écrite P fois D fois P moins un, puissances, équations différentielles, états stables et axes principaux deviennent des calculs directs. Diagonaliser, c'est trouver le point de vue où une transformation compliquée redevient simple.",
+   "ecran": "recap_final",
+   "id": "p31",
+   "texte": "Valeurs propres et diagonalisation : à retenir."
+  }
+ ],
+ "titre": "Valeurs propres, vecteurs propres et diagonalisation"
+}

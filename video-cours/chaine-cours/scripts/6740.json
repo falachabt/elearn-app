@@ -1,0 +1,282 @@
+{
+ "cours": 6740,
+ "titre": "Homothéties : agrandir et réduire depuis un centre",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Homothéties",
+   "titre": "Homothéties : agrandir et réduire depuis un centre",
+   "sous": "Un centre, un rapport : les longueurs sont multipliées, les angles sont conservés",
+   "anim": {
+    "nom": "rotation_homothetie_fig",
+    "hauteur": 230
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Le fil du cours",
+   "texte": "Agrandir ou réduire une figure sans la déformer : un centre, un rapport, et tout suit par proportionnalité."
+  },
+  "def": {
+   "type": "formule",
+   "kicker": "Définition",
+   "tex": "\\overrightarrow{OM'} = k\\overrightarrow{OM}",
+   "note": "Centre O, rapport k non nul : M prime est l'image de M.",
+   "anim": {
+    "nom": "rotation_homothetie_fig",
+    "hauteur": 170
+   }
+  },
+  "cas": {
+   "type": "etape",
+   "kicker": "Le rôle du signe de k",
+   "titre": "Où se place l'image selon le rapport",
+   "tex": [
+    "k > 0 : M' \\text{ du même côté que } M",
+    "k < 0 : M' \\text{ de l'autre côté de } O",
+    "k = 1 : \\text{ identité},\\ M' = M",
+    "k = -1 : \\text{ symétrie centrale de centre } O"
+   ]
+  },
+  "centre": {
+   "type": "phrase",
+   "kicker": "Le point qui ne bouge pas",
+   "texte": "Le centre O est invariant : son image est lui-même, quel que soit le rapport."
+  },
+  "effet_k": {
+   "type": "phrase",
+   "kicker": "Agrandir ou réduire",
+   "texte": "Valeur absolue de k supérieure à 1 : agrandissement. Inférieure à 1 : réduction.",
+   "anim": {
+    "nom": "rotation_homothetie_fig",
+    "hauteur": 150
+   }
+  },
+  "construction": {
+   "type": "etape",
+   "kicker": "Construire l'image d'un point · méthode",
+   "titre": "Trois gestes, dans l'ordre",
+   "tex": [
+    "\\text{Tracer la droite } (OM)",
+    "k > 0 : M' \\text{ sur } [OM),\\ OM' = k \\times OM",
+    "k < 0 : M' \\text{ opposée},\\ OM' = |k| \\times OM"
+   ]
+  },
+  "construction_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · rapport deux",
+   "titre": "M est à trois centimètres du centre",
+   "tex": [
+    "k = 2,\\ OM = 3\\ \\text{cm}",
+    "OM' = 2 \\times 3 = 6\\ \\text{cm}",
+    "O,\\ M,\\ M' \\text{ alignés dans cet ordre}"
+   ]
+  },
+  "segment_image": {
+   "type": "phrase",
+   "kicker": "De l'image d'un point à celle d'une figure",
+   "texte": "Pour imager un segment ou un polygone, on image ses extrémités et ses sommets, puis on relie."
+  },
+  "droite_centre": {
+   "type": "phrase",
+   "kicker": "Le cas de la droite par le centre",
+   "texte": "Une droite qui passe par le centre est sa propre image : elle ne se déplace pas."
+  },
+  "longueurs": {
+   "type": "formule",
+   "kicker": "Effet sur les longueurs",
+   "tex": "A'B' = |k| \\times AB",
+   "note": "L'image d'un segment est un segment : toutes les longueurs sont multipliées par la valeur absolue de k."
+  },
+  "aires": {
+   "type": "formule",
+   "kicker": "Effet sur les aires",
+   "tex": "\\mathcal{A}' = k^2 \\times \\mathcal{A}",
+   "note": "Les aires sont multipliées par le carré du rapport."
+  },
+  "conservations": {
+   "type": "etape",
+   "kicker": "Ce qui ne change pas",
+   "titre": "Trois conservations à retenir",
+   "tex": [
+    "\\text{Angles : conservés}",
+    "\\text{Parallélisme : conservé}",
+    "\\text{Orthogonalité : conservée}"
+   ]
+  },
+  "triangle_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · un triangle, rapport trois",
+   "titre": "Rectangle en A : quatre, trois et cinq centimètres",
+   "tex": [
+    "AB = 4,\\ AC = 3,\\ BC = 5\\ \\text{cm},\\ k = 3",
+    "A'B' = 12,\\ A'C' = 9,\\ B'C' = 15\\ \\text{cm}",
+    "\\text{Aire : } 6 \\to 3^2 \\times 6 = 54\\ \\text{cm}^2"
+   ],
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 120
+   }
+  },
+  "triangle_note": {
+   "type": "phrase",
+   "kicker": "Exemple résolu · le triangle image",
+   "texte": "Le triangle image reste rectangle en A prime : les angles sont conservés, la forme ne change pas.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 150
+   }
+  },
+  "rectangle_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · un rectangle, rapport un demi",
+   "titre": "Six centimètres sur quatre, une réduction",
+   "tex": [
+    "L = 6,\\ l = 4\\ \\text{cm},\\ k = 0{,}5",
+    "L' = 3\\ \\text{cm},\\ l' = 2\\ \\text{cm}",
+    "\\text{Aire : } 24 \\to 0{,}25 \\times 24 = 6\\ \\text{cm}^2"
+   ]
+  },
+  "semblable": {
+   "type": "phrase",
+   "kicker": "La figure image",
+   "texte": "L'image d'une figure est une figure semblable : mêmes angles, longueurs proportionnelles, aires au carré du rapport."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Un centre O et un rapport k non nul",
+    "Image : le vecteur OM prime vaut k fois OM",
+    "Valeur de k plus grande que 1 : agrandissement",
+    "Longueurs par |k|, aires par le carré de k",
+    "Angles et parallélisme conservés"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux homothéties, les transformations qui agrandissent ou réduisent les figures sans les déformer. Nous verrons comment une homothétie se définit par un centre et un rapport, comment construire l'image d'un point, et ce qui arrive aux longueurs, aux aires et aux angles.",
+   "texte": "Homothéties : agrandir, réduire, sans déformer.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "L'idée de départ est celle d'un agrandissement photographique : la figure grandit ou rapetisse, mais elle garde exactement la même forme. Une homothétie réalise ce changement d'échelle à partir d'un point fixe, le centre, qui joue le rôle d'un œil d'où tout semble partir.",
+   "texte": "Même forme, autre taille : tout part du centre.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Définition : étant donné un point O, appelé centre, et un nombre réel non nul k, appelé rapport, l'homothétie de centre O et de rapport k est la transformation qui, à tout point M, associe le point M prime tel que le vecteur O M prime soit égal au produit du réel k par le vecteur O M. Le point M prime est l'image de M.",
+   "texte": "Centre O, rapport k : OM′ = k OM en vecteurs.",
+   "ecran": "def"
+  },
+  {
+   "id": "p04",
+   "dit": "Le signe du rapport décide de quel côté du centre se place l'image. Si k est positif, M prime est sur la même demi-droite que M, du même côté de O. Si k est négatif, M prime est sur la demi-droite opposée, de l'autre côté de O. Deux cas limites : pour k égal à un, chaque point est sa propre image, c'est l'identité ; pour k égal à moins un, l'homothétie devient la symétrie centrale de centre O.",
+   "texte": "Signe de k : même côté, ou côté opposé.",
+   "ecran": "cas"
+  },
+  {
+   "id": "p05",
+   "dit": "Un point au moins ne bouge jamais : le centre lui-même. Son image est lui-même, quel que soit le rapport, car le vecteur nul multiplié par n'importe quel réel reste nul. C'est le point invariant de la transformation, le pivot de tout l'agrandissement.",
+   "texte": "Le centre O est invariant : son image, c'est lui.",
+   "ecran": "centre"
+  },
+  {
+   "id": "p06",
+   "dit": "La valeur du rapport, elle, décide de la taille. Si la valeur absolue de k est supérieure à un, la figure est agrandie. Si elle est comprise entre zéro et un, la figure est réduite. Retenez le réflexe : on compare toujours la valeur absolue du rapport au nombre un.",
+   "texte": "|k| > 1 : agrandissement ; |k| < 1 : réduction.",
+   "ecran": "effet_k"
+  },
+  {
+   "id": "p07",
+   "dit": "Pour construire l'image d'un point M, on procède en trois gestes. D'abord, on trace la droite qui joint le centre au point. Ensuite, si le rapport est positif, on place M prime sur la demi-droite d'origine O passant par M, à la distance voulue. Si le rapport est négatif, on le place sur la demi-droite opposée, toujours à la distance voulue.",
+   "texte": "Construire M′ : la droite (OM), puis la distance.",
+   "ecran": "construction"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple : le rapport vaut deux et le point M est à trois centimètres du centre. Le rapport étant positif, M prime est sur la même demi-droite que M, et sa distance au centre vaut deux fois trois, c'est-à-dire six centimètres. Les points O, M et M prime sont donc alignés, dans cet ordre.",
+   "texte": "k = 2, OM = 3 cm : OM′ = 6 cm, alignés.",
+   "ecran": "construction_ex"
+  },
+  {
+   "id": "p09",
+   "dit": "Pour passer d'un point à une figure entière, on applique la même construction aux points qui la décrivent. Pour un segment, on construit les images de ses deux extrémités, puis on les relie : le segment obtenu est l'image du segment de départ. Pour un polygone, on fait de même avec chacun de ses sommets.",
+   "texte": "Un segment s'image par ses deux extrémités.",
+   "ecran": "segment_image"
+  },
+  {
+   "id": "p10",
+   "dit": "Un cas particulier mérite d'être noté pour les droites : si une droite passe par le centre, son image est elle-même, car chaque point de la droite a son image sur cette même droite. C'est seulement lorsqu'elle ne passe pas par le centre que son image est une autre droite, parallèle à la première.",
+   "texte": "Droite par le centre : elle est sa propre image.",
+   "ecran": "droite_centre"
+  },
+  {
+   "id": "p11",
+   "dit": "Passons aux effets sur une figure entière. L'image d'un segment est un segment, et sa longueur est celle du segment de départ multipliée par la valeur absolue du rapport. Autrement dit, toutes les longueurs, sans exception, sont multipliées par le même coefficient : c'est la proportionnalité des agrandissements.",
+   "texte": "Longueurs : toutes multipliées par |k|.",
+   "ecran": "longueurs"
+  },
+  {
+   "id": "p12",
+   "dit": "Pour les aires, l'effet est plus fort : elles sont multipliées par le carré du rapport. Un rapport de deux double les longueurs, mais il quadruple les aires, car l'aire grandit dans les deux directions à la fois. C'est le point le plus souvent oublié dans les exercices.",
+   "texte": "Aires : multipliées par k², pas par k.",
+   "ecran": "aires"
+  },
+  {
+   "id": "p13",
+   "dit": "En revanche, trois choses ne changent pas. Les angles gardent leur mesure : l'image d'un angle est un angle de même mesure. Le parallélisme est conservé : l'image d'une droite est une droite parallèle, sauf si elle passe par le centre. Et l'orthogonalité est conservée : deux droites perpendiculaires ont des images perpendiculaires.",
+   "texte": "Angles, parallélisme, orthogonalité : conservés.",
+   "ecran": "conservations"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple complet : un triangle A B C, rectangle en A, a des côtés de quatre, trois et cinq centimètres. On lui applique une homothétie de rapport trois. Les longueurs sont triplées : douze, neuf et quinze centimètres. L'aire de départ vaut six centimètres carrés ; l'aire de l'image vaut neuf fois six, c'est-à-dire cinquante-quatre centimètres carrés.",
+   "texte": "Rapport 3 : côtés ×3, aire 6 → 54 cm².",
+   "ecran": "triangle_ex"
+  },
+  {
+   "id": "p15",
+   "dit": "Et comme les angles sont conservés, le triangle image reste rectangle, en le point image de A. Sa forme est identique à celle du départ : seule sa taille a changé, exactement comme un agrandissement photographique bien fait.",
+   "texte": "Le triangle image reste rectangle en A′.",
+   "ecran": "triangle_note"
+  },
+  {
+   "id": "p16",
+   "dit": "Deuxième exemple, dans l'autre sens : un rectangle de six centimètres sur quatre subit une homothétie de rapport un demi. Ses dimensions sont divisées par deux : trois centimètres sur deux. Son aire, de vingt-quatre centimètres carrés, est multipliée par un quart et devient six centimètres carrés, ce que confirme le produit de trois par deux.",
+   "texte": "Rapport 0,5 : 6 × 4 devient 3 × 2, aire 24 → 6.",
+   "ecran": "rectangle_ex"
+  },
+  {
+   "id": "p17",
+   "dit": "En résumé, l'image d'une figure par une homothétie est une figure semblable à la figure d'origine : les longueurs sont multipliées par la valeur absolue du rapport, les aires par son carré, et les angles sont conservés. Agrandir ou réduire, sans jamais déformer.",
+   "texte": "Figure semblable : mêmes angles, longueurs proportionnelles.",
+   "ecran": "semblable"
+  },
+  {
+   "id": "p18",
+   "dit": "Retenez l'essentiel. Une homothétie, c'est un centre et un rapport. La relation vectorielle donne la position de chaque image, la valeur absolue du rapport multiplie les longueurs, son carré multiplie les aires, et les angles comme le parallélisme traversent la transformation sans changer.",
+   "texte": "Centre, rapport, longueurs, aires, angles.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définition, rôle du rapport et construction d'une image"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Effets sur les longueurs, les aires et les angles",
+   "pont": {
+    "texte": "Partie 2 : ce que l'homothétie fait aux longueurs, aux aires et aux angles.",
+    "dit": "Partie deux : les effets de l'homothétie sur une figure entière. Nous chiffrerons ce qui arrive aux longueurs et aux aires, ce qui est conservé, et nous traiterons deux exemples complets, un agrandissement et une réduction."
+   }
+  }
+ ]
+}

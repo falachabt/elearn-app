@@ -1,0 +1,531 @@
+{
+ "cours": 6712,
+ "ecrans": {
+  "applications": {
+   "etapes": [
+    "Portes automatiques et détecteurs de présence",
+    "Panneaux solaires photovoltaïques",
+    "Capteurs d'appareils photo",
+    "Détecteurs d'incendie sensibles aux ultraviolets"
+   ],
+   "kicker": "Les applications",
+   "type": "recap"
+  },
+  "cellule": {
+   "etapes": [
+    "Tension positive : le courant sature",
+    "Tension négative : le champ freine les électrons",
+    "Potentiel d'arrêt U₀ : le courant s'annule"
+   ],
+   "kicker": "La cellule photoélectrique",
+   "type": "recap",
+   "anim": {
+    "nom": "cellule_photo_fig",
+    "hauteur": 120
+   }
+  },
+  "coincidence": {
+   "kicker": "En lumière blanche",
+   "note": "deux ordres différents se superposent au même endroit",
+   "tex": "k_1 \\lambda_1 = k_2 \\lambda_2",
+   "type": "formule"
+  },
+  "compton": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "compton_fig"
+   },
+   "kicker": "L'effet Compton",
+   "texte": "Un photon X percute un électron : le photon repart avec une longueur d'onde plus grande.",
+   "type": "phrase"
+  },
+  "compton_formule": {
+   "kicker": "Le décalage Compton",
+   "note": "h/(mₑc) = 2,43 × 10⁻¹² m : longueur d'onde de Compton",
+   "tex": "\\Delta\\lambda = \\frac{h}{m_e c}\\,(1 - \\cos\\theta)",
+   "type": "formule"
+  },
+  "conditions": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "interference"
+   },
+   "etapes": [
+    "Frange brillante : δ = kλ, ondes en phase",
+    "Frange sombre : δ = (k + ½)λ, ondes en opposition"
+   ],
+   "kicker": "Brillante ou sombre",
+   "type": "recap"
+  },
+  "difference_marche": {
+   "kicker": "La différence de marche",
+   "note": "b : distance des fentes · x : position sur l'écran · D : distance à l'écran",
+   "tex": "\\delta = S_2M - S_1M = \\frac{b \\, x}{D}",
+   "type": "formule"
+  },
+  "diffraction": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "diffraction_fig"
+   },
+   "kicker": "La diffraction",
+   "texte": "Près d'une fente étroite, l'onde s'étale : une tache centrale, des taches secondaires.",
+   "type": "phrase"
+  },
+  "diffraction_formule": {
+   "kicker": "L'étalement de la tache",
+   "tex": [
+    "\\theta = \\frac{\\lambda}{a}",
+    "d = \\frac{2\\lambda D}{a}"
+   ],
+   "titre": "Angle et largeur de la tache centrale",
+   "type": "etape"
+  },
+  "emission_absorption": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "niveaux_atome_fig"
+   },
+   "etapes": [
+    "Absorption : niveau bas vers niveau haut, photon absorbé",
+    "Émission : niveau haut vers niveau bas, photon émis"
+   ],
+   "kicker": "Absorption ou émission",
+   "type": "recap"
+  },
+  "energie_cinetique": {
+   "kicker": "Le bilan d'énergie",
+   "note": "un photon, un électron : tout le photon est absorbé",
+   "tex": "E_{c,max} = h\\nu - W_0 = h(\\nu - \\nu_0)",
+   "type": "formule"
+  },
+  "etats": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "niveaux_atome_fig"
+   },
+   "kicker": "Fondamental, excités, ionisé",
+   "texte": "n égal un : l'état fondamental. n supérieur : les états excités. n infini : l'atome ionisé.",
+   "type": "phrase"
+  },
+  "exemple_balmer": {
+   "kicker": "Exemple résolu",
+   "note": "656 nm : le rouge du visible, la raie Hα de Balmer",
+   "tex": [
+    "E_3 = -\\tfrac{13{,}6}{3^2} = -1{,}51 \\ \\text{eV} \\qquad E_2 = -\\tfrac{13{,}6}{2^2} = -3{,}40 \\ \\text{eV}",
+    "\\Delta E = E_3 - E_2 = 1{,}89 \\ \\text{eV}",
+    "\\lambda = \\frac{hc}{\\Delta E} = \\frac{1240}{1{,}89} \\approx 656 \\ \\text{nm}"
+   ],
+   "titre": "La transition du niveau trois au niveau deux",
+   "type": "etape"
+  },
+  "exemple_cesium": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\nu = \\frac{c}{\\lambda} = 7{,}5 \\times 10^{14} \\ \\text{Hz}",
+    "h\\nu = 3{,}10 \\ \\text{eV} \\qquad E_{c,max} = 3{,}10 - 2{,}14",
+    "E_{c,max} = 0{,}96 \\ \\text{eV} \\qquad U_0 = 0{,}96 \\ \\text{V}"
+   ],
+   "titre": "Une cathode de césium à quatre cents nanomètres",
+   "type": "etape"
+  },
+  "exemple_compton": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\Delta\\lambda = 2{,}43 \\times 10^{-12} \\times (1 - \\cos 90^\\circ)",
+    "\\Delta\\lambda = 0{,}00243 \\ \\text{nm}",
+    "\\lambda' = \\lambda + \\Delta\\lambda = 0{,}02243 \\ \\text{nm}"
+   ],
+   "titre": "Un photon X diffusé à quatre-vingt-dix degrés",
+   "type": "etape"
+  },
+  "exemple_diffraction": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "d = \\frac{2 \\times 650 \\times 10^{-9} \\times 2{,}0}{0{,}10 \\times 10^{-3}}",
+    "d = 2{,}6 \\times 10^{-2} \\ \\text{m} = 2{,}6 \\ \\text{cm}"
+   ],
+   "titre": "Un laser rouge derrière une fente fine",
+   "type": "etape"
+  },
+  "exemple_interfrange": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "i = \\frac{\\lambda D}{b} = \\frac{550 \\times 10^{-9} \\times 1{,}0}{0{,}50 \\times 10^{-3}}",
+    "i = 1{,}1 \\times 10^{-3} \\ \\text{m} = 1{,}1 \\ \\text{mm}"
+   ],
+   "titre": "Mesurer une interfrange",
+   "type": "etape"
+  },
+  "interfrange": {
+   "kicker": "L'interfrange",
+   "note": "proportionnelle à λ et à D, inversement proportionnelle à b",
+   "tex": "i = \\frac{\\lambda D}{b}",
+   "type": "formule"
+  },
+  "longueur_onde": {
+   "kicker": "La longueur d'onde du photon",
+   "note": "astuce de calcul : hc = 1240 eV·nm, λ sort en nanomètres",
+   "tex": "\\lambda = \\frac{c}{\\nu} = \\frac{hc}{\\Delta E}",
+   "type": "formule"
+  },
+  "methode": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "niveaux_atome_fig"
+   },
+   "etapes": [
+    "Calculer les deux énergies : E_n = −13,6/n² eV",
+    "Prendre l'écart ΔE en valeur absolue",
+    "Convertir en joules si nécessaire",
+    "Appliquer λ = hc/ΔE, avec hc = 1240 eV·nm"
+   ],
+   "kicker": "La méthode générale",
+   "type": "recap"
+  },
+  "niveaux": {
+   "kicker": "Les niveaux d'énergie",
+   "note": "E₀ = 13,6 eV · n : nombre quantique principal",
+   "tex": "E_n = -\\frac{E_0}{n^2}",
+   "type": "formule"
+  },
+  "ondulatoire": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "onde_em"
+   },
+   "kicker": "La nature ondulatoire",
+   "texte": "La lumière se propage comme une onde électromagnétique, de longueur d'onde lambda.",
+   "type": "phrase"
+  },
+  "photoelectrique": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "photoelectrique_fig"
+   },
+   "kicker": "L'effet photoélectrique",
+   "texte": "Un métal éclairé émet des électrons : la lumière est faite de photons.",
+   "type": "phrase"
+  },
+  "potentiel_arret": {
+   "kicker": "Le potentiel d'arrêt",
+   "tex": [
+    "eU_0 = E_{c,max}",
+    "U_0 = \\frac{h}{e}\\,(\\nu - \\nu_0)"
+   ],
+   "titre": "Mesurer l'énergie des photoélectrons",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Niveaux quantifiés : E_n = −13,6/n² eV",
+    "Transition : un photon d'énergie ΔE = |E_f − E_i|",
+    "Onde : diffraction et interférences de Young",
+    "Photons : effet photoélectrique et effet Compton"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "series": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "spectre_em_fig"
+   },
+   "etapes": [
+    "Lyman : retour au niveau un, ultraviolet",
+    "Balmer : retour au niveau deux, visible",
+    "Paschen : retour au niveau trois, infrarouge"
+   ],
+   "kicker": "Les séries spectrales",
+   "type": "recap"
+  },
+  "seuil": {
+   "kicker": "Le seuil photoélectrique",
+   "note": "W₀ : travail d'extraction, propre à chaque métal",
+   "tex": "W_0 = h\\nu_0",
+   "type": "formule"
+  },
+  "spectres": {
+   "kicker": "Les spectres de raies",
+   "texte": "Émission : des raies brillantes sur fond noir. Absorption : des raies noires aux mêmes positions.",
+   "type": "phrase",
+   "anim": {
+    "nom": "spectre_raies_fig",
+    "hauteur": 220
+   }
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "niveaux_atome_fig"
+   },
+   "kicker": "Physique",
+   "sous": "Niveaux d'énergie, spectres, ondes et photons",
+   "titre": "De l'atome à la lumière",
+   "type": "titre"
+  },
+  "transitions": {
+   "kicker": "Les transitions",
+   "note": "h : constante de Planck · ν : fréquence du photon",
+   "tex": "h\\nu = |E_f - E_i| = \\Delta E",
+   "type": "formule"
+  },
+  "young": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "interference"
+   },
+   "kicker": "Les fentes de Young",
+   "texte": "Deux fentes éclairées ensemble : deux sources cohérentes, et des franges sur l'écran.",
+   "type": "phrase"
+  }
+ },
+ "lecons": [
+  9503,
+  9504,
+  9505
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les niveaux d'énergie et les spectres"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : la lumière ondulatoire. Deux phénomènes prouvent que la lumière se comporte comme une onde : la diffraction et les interférences.",
+    "texte": "Partie 2 : la lumière ondulatoire, diffraction et interférences."
+   },
+   "sous_titre": "La lumière ondulatoire : diffraction et interférences"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : la lumière corpusculaire. Après l'onde, voici le grain de lumière : deux effets montrent que la lumière est aussi faite de particules, les photons.",
+    "texte": "Partie 3 : la lumière corpusculaire, effet photoélectrique et effet Compton."
+   },
+   "sous_titre": "La lumière corpusculaire : photoélectrique et Compton"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bonjour à tous, et bienvenue dans ce cours : de l'atome à la lumière. Nous partirons des niveaux d'énergie de l'atome d'hydrogène et de ses spectres, nous verrons ensuite la lumière comme une onde, avec la diffraction et les interférences, et nous finirons par le photon : l'effet photoélectrique et l'effet Compton.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "De l'atome à la lumière : niveaux, spectres, ondes et photons."
+  },
+  {
+   "dit": "Premier fait : l'atome d'hydrogène ne peut exister que dans des états d'énergie bien définis, ses niveaux d'énergie. Cette énergie est quantifiée : elle vaut moins E zéro divisé par n au carré, où n est un entier, le nombre quantique principal, et E zéro vaut treize virgule six électron-volts.",
+   "ecran": "niveaux",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Les niveaux d'énergie de l'hydrogène : une énergie quantifiée."
+  },
+  {
+   "dit": "Regardez le diagramme : pour n égal un, l'état fondamental, l'énergie est la plus basse, moins treize virgule six électron-volts, et l'électron est lié au noyau. Pour n égal deux, trois, et au-delà, ce sont les états excités. Et quand n tend vers l'infini, l'énergie tend vers zéro : l'atome est ionisé, l'électron est libre.",
+   "ecran": "etats",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "État fondamental, états excités, et l'ionisation à l'infini."
+  },
+  {
+   "dit": "Un atome peut changer de niveau : en absorbant un photon, il monte vers un niveau plus haut ; en émettant un photon, il redescend. Dans les deux cas, l'énergie du photon égale exactement l'écart entre les deux niveaux : h fois nu égale la valeur absolue de E final moins E initial.",
+   "ecran": "transitions",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Une transition : un photon absorbé ou émis, d'énergie delta E."
+  },
+  {
+   "dit": "Connaissant l'énergie du photon, on obtient sa longueur d'onde : lambda égale c sur nu, c'est-à-dire h fois c divisé par delta E. Astuce de calcul à retenir : le produit h fois c vaut mille deux cent quarante électron-volts nanomètres, ce qui donne lambda directement en nanomètres.",
+   "ecran": "longueur_onde",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "La longueur d'onde du photon : lambda égale h c sur delta E."
+  },
+  {
+   "dit": "Résumons les deux sens possibles. En absorption, l'atome passe d'un niveau bas à un niveau haut : il lui faut un photon d'énergie exactement égale à l'écart. En émission, il passe d'un niveau haut à un niveau bas et libère un photon de cette même énergie.",
+   "ecran": "emission_absorption",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Absorption : l'atome monte. Émission : l'atome redescend."
+  },
+  {
+   "dit": "Ces transitions se lisent dans les spectres. Un gaz d'hydrogène excité émet des raies brillantes et colorées sur fond noir : le spectre d'émission. Le même gaz, froid et éclairé en lumière blanche, absorbe exactement les mêmes longueurs d'onde : des raies noires apparaissent aux mêmes positions. Chaque raie est la signature d'une transition, et l'ensemble forme l'empreinte de l'atome.",
+   "ecran": "spectres",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Spectres d'émission et d'absorption : des raies aux mêmes positions."
+  },
+  {
+   "dit": "Les transitions qui aboutissent au même niveau final forment une série. Celles qui finissent sur le niveau un donnent la série de Lyman, dans l'ultraviolet. Celles qui finissent sur le niveau deux donnent la série de Balmer, dans le visible. Et celles qui finissent sur le niveau trois, la série de Paschen, dans l'infrarouge.",
+   "ecran": "series",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Lyman, Balmer, Paschen : trois familles de raies."
+  },
+  {
+   "dit": "Exemple résolu : la transition du niveau trois vers le niveau deux. Le niveau trois vaut moins un virgule cinquante et un électron-volts, le niveau deux moins trois virgule quarante. L'écart vaut un virgule quatre-vingt-neuf électron-volts. Lambda vaut alors mille deux cent quarante divisé par un virgule quatre-vingt-neuf, soit environ six cent cinquante-six nanomètres. Cette raie est-elle dans le visible ? Oui : c'est le rouge, la célèbre raie H alpha de la série de Balmer.",
+   "ecran": "exemple_balmer",
+   "id": "p09",
+   "pause_apres": 0.9,
+   "texte": "Exemple : du niveau trois au niveau deux, six cent cinquante-six nanomètres, le rouge."
+  },
+  {
+   "dit": "Retenez la méthode générale pour toute transition : d'abord calculer l'énergie des deux niveaux avec la formule en un sur n au carré ; ensuite prendre l'écart en valeur absolue, en électron-volts ; au besoin, convertir en joules ; et enfin appliquer lambda égale h c sur delta E.",
+   "ecran": "methode",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Méthode : deux énergies, un écart, puis la longueur d'onde."
+  },
+  {
+   "dit": "La lumière se propage comme une onde électromagnétique, caractérisée par sa longueur d'onde lambda. Deux phénomènes ne s'expliquent que par ce modèle ondulatoire : la diffraction, quand l'onde rencontre un obstacle, et les interférences, quand deux ondes se superposent.",
+   "ecran": "ondulatoire",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "La lumière, une onde électromagnétique de longueur d'onde lambda."
+  },
+  {
+   "dit": "Premier phénomène : la diffraction. Quand une onde lumineuse rencontre un obstacle ou une fente étroite, elle se propage dans des directions où l'optique géométrique ne l'attend pas. Sur un écran, on observe une tache centrale brillante, entourée de taches secondaires plus faibles.",
+   "ecran": "diffraction",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "La diffraction : l'onde s'étale après la fente."
+  },
+  {
+   "dit": "L'étalement se mesure par un angle, thêta, égal à lambda divisé par a, la largeur de la fente. Sur un écran placé à la distance D, la tache centrale a pour largeur d égale deux lambda D sur a. Retenez le sens physique : plus la fente est étroite, plus la tache s'étale ; et le rouge, de plus grande longueur d'onde, se diffracte plus que le bleu.",
+   "ecran": "diffraction_formule",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Thêta égale lambda sur a ; la tache vaut deux lambda D sur a."
+  },
+  {
+   "dit": "Exemple : une fente de zéro virgule dix millimètre, éclairée par un laser rouge de six cent cinquante nanomètres, avec un écran à deux mètres. La tache centrale vaut deux fois six cent cinquante fois dix puissance moins neuf, fois deux, divisé par zéro virgule dix fois dix puissance moins trois : deux virgule six centimètres. Une fente d'un dixième de millimètre donne une tache de plusieurs centimètres : l'effet est bien visible.",
+   "ecran": "exemple_diffraction",
+   "id": "p14",
+   "pause_apres": 0.9,
+   "texte": "Exemple : la tache du laser rouge vaut deux virgule six centimètres."
+  },
+  {
+   "dit": "Deuxième phénomène : les interférences, avec le dispositif des fentes de Young. Deux fentes fines, distantes de b, sont éclairées par une source monochromatique. Elles se comportent comme deux sources cohérentes, et sur l'écran on observe une alternance régulière de franges brillantes et de franges sombres.",
+   "ecran": "young",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Les fentes de Young : deux sources cohérentes, des franges."
+  },
+  {
+   "dit": "En un point M de l'écran, les deux ondes n'ont pas parcouru le même chemin. Leur différence de marche, delta, vaut S deux M moins S un M, c'est-à-dire b fois x divisé par D, où x mesure la position du point par rapport au centre de l'écran.",
+   "ecran": "difference_marche",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "La différence de marche : delta égale b x sur D."
+  },
+  {
+   "dit": "Tout dépend de la différence de marche. Si elle vaut un nombre entier de longueurs d'onde, les ondes arrivent en phase : l'interférence est constructive, la frange est brillante. Si elle vaut un nombre entier plus un demi de longueurs d'onde, les ondes arrivent en opposition : l'interférence est destructive, la frange est sombre.",
+   "ecran": "conditions",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Brillante si delta vaut k lambda, sombre si delta vaut k plus un demi lambda."
+  },
+  {
+   "dit": "La distance entre deux franges brillantes consécutives s'appelle l'interfrange. Elle vaut lambda fois D divisé par b : elle grandit avec la longueur d'onde et avec la distance à l'écran, et elle diminue quand les fentes s'écartent.",
+   "ecran": "interfrange",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "L'interfrange : i égale lambda D sur b."
+  },
+  {
+   "dit": "Exemple : deux fentes distantes de zéro virgule cinquante millimètre, une lumière de cinq cent cinquante nanomètres, un écran à un mètre. L'interfrange vaut cinq cent cinquante fois dix puissance moins neuf, fois un, divisé par zéro virgule cinquante fois dix puissance moins trois : un virgule un millimètre. C'est petit, mais mesurable : et mesurer l'interfrange, c'est mesurer la longueur d'onde.",
+   "ecran": "exemple_interfrange",
+   "id": "p19",
+   "pause_apres": 0.9,
+   "texte": "Exemple : une interfrange d'un virgule un millimètre."
+  },
+  {
+   "dit": "En lumière blanche, chaque couleur fabrique son propre système de franges. Au centre, toutes les franges brillantes coïncident : la frange centrale est blanche. Ailleurs, les couleurs se décalent et donnent des franges irisées. Deux franges de couleurs différentes coïncident quand k un lambda un égale k deux lambda deux.",
+   "ecran": "coincidence",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Lumière blanche : frange centrale blanche, franges irisées."
+  },
+  {
+   "dit": "L'effet photoélectrique, c'est l'émission d'électrons par une surface métallique éclairée par un rayonnement de fréquence assez élevée. Découvert par Hertz, il a été expliqué par Einstein : la lumière est un flux de photons, et chaque photon porte l'énergie h fois nu.",
+   "ecran": "photoelectrique",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "L'effet photoélectrique : des électrons arrachés par la lumière."
+  },
+  {
+   "dit": "Pour arracher un électron au métal, il faut lui fournir au minimum le travail d'extraction, W zéro, propre à chaque métal. Cela fixe une fréquence seuil, nu zéro, telle que W zéro égale h fois nu zéro. En dessous de ce seuil, aucune émission, quelle que soit l'intensité de la lumière. Au-dessus, l'émission est quasi instantanée.",
+   "ecran": "seuil",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Le seuil photoélectrique : en dessous de nu zéro, rien ne sort."
+  },
+  {
+   "dit": "On étudie l'effet dans une cellule photoélectrique : une cathode éclairée, une anode qui recueille les électrons. Quand la tension est positive, le courant croît puis sature : tous les électrons émis sont collectés, et ce palier grandit avec l'intensité lumineuse. Quand la tension devient négative, le champ freine les électrons, jusqu'au potentiel d'arrêt où le courant s'annule.",
+   "ecran": "cellule",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "La cellule photoélectrique : saturation, freinage, potentiel d'arrêt."
+  },
+  {
+   "dit": "Le bilan d'énergie est simple : le photon cède toute son énergie à un électron. Une partie paie l'extraction, le reste devient l'énergie cinétique maximale des photoélectrons : E c max égale h nu moins W zéro, c'est-à-dire h fois nu moins nu zéro.",
+   "ecran": "energie_cinetique",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "Énergie cinétique maximale : h nu moins W zéro."
+  },
+  {
+   "dit": "Le potentiel d'arrêt mesure cette énergie cinétique : c'est la tension qui stoppe même les électrons les plus rapides, donc e fois U zéro égale E c max. On en tire U zéro égale h sur e, fois nu moins nu zéro : une droite en fonction de la fréquence, dont la pente donne la constante de Planck.",
+   "ecran": "potentiel_arret",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Le potentiel d'arrêt : e U zéro égale l'énergie cinétique maximale."
+  },
+  {
+   "dit": "Exemple : une cathode de césium, de travail d'extraction deux virgule quatorze électron-volts, éclairée par une radiation de quatre cents nanomètres. La fréquence vaut sept virgule cinq fois dix puissance quatorze hertz, et l'énergie du photon trois virgule dix électron-volts. L'énergie cinétique maximale vaut donc trois virgule dix moins deux virgule quatorze : zéro virgule quatre-vingt-seize électron-volt. Et le potentiel d'arrêt vaut zéro virgule quatre-vingt-seize volt.",
+   "ecran": "exemple_cesium",
+   "id": "p26",
+   "pause_apres": 0.9,
+   "texte": "Exemple : le césium sous quatre cents nanomètres, arrêt à zéro virgule quatre-vingt-seize volt."
+  },
+  {
+   "dit": "Les applications vous entourent : les cellules photoélectriques ouvrent les portes automatiques et détectent les présences, les panneaux solaires convertissent la lumière en électricité, les capteurs des appareils photo enregistrent l'image, et des cellules sensibles aux ultraviolets veillent comme détecteurs d'incendie.",
+   "ecran": "applications",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Applications : portes automatiques, panneaux solaires, capteurs photo."
+  },
+  {
+   "dit": "Second effet corpusculaire : l'effet Compton. Un photon X rencontre un électron libre et le percute comme une bille : il lui transfère une partie de son énergie et de sa quantité de mouvement. L'électron est éjecté, et le photon repart diffusé, avec une énergie plus faible, donc une longueur d'onde plus grande.",
+   "ecran": "compton",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "L'effet Compton : un choc entre un photon et un électron."
+  },
+  {
+   "dit": "Le décalage de longueur d'onde ne dépend que de l'angle de diffusion, thêta : delta lambda égale h sur m e c, fois un moins cosinus thêta. Le rapport h sur m e c vaut deux virgule quarante-trois fois dix puissance moins douze mètres : c'est la longueur d'onde de Compton de l'électron. Le décalage est maximal en rétrodiffusion, à cent quatre-vingts degrés, et nul si le photon n'est pas dévié.",
+   "ecran": "compton_formule",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "Le décalage Compton : il ne dépend que de l'angle de diffusion."
+  },
+  {
+   "dit": "Exemple : un photon X de longueur d'onde zéro virgule zéro deux nanomètres est diffusé à quatre-vingt-dix degrés. Le cosinus de quatre-vingt-dix degrés vaut zéro : le décalage égale donc la longueur d'onde de Compton, deux virgule quarante-trois fois dix puissance moins douze mètres, soit zéro virgule zéro zéro deux cent quarante-trois nanomètres. La longueur d'onde du photon diffusé vaut zéro virgule zéro deux mille deux cent quarante-trois nanomètres.",
+   "ecran": "exemple_compton",
+   "id": "p30",
+   "pause_apres": 0.9,
+   "texte": "Exemple : à quatre-vingt-dix degrés, le décalage vaut la longueur de Compton."
+  },
+  {
+   "dit": "À retenir pour tout le cours : l'énergie de l'atome est quantifiée, et chaque transition échange un photon dont l'énergie est l'écart des niveaux. La diffraction et les interférences prouvent que la lumière est une onde. L'effet photoélectrique et l'effet Compton prouvent qu'elle est aussi faite de photons. Cette double nature, ondulatoire et corpusculaire, c'est la marque du monde quantique.",
+   "ecran": "recap",
+   "id": "p31",
+   "pause_apres": 0.9,
+   "texte": "À retenir : des niveaux quantifiés, une lumière onde et photons."
+  }
+ ],
+ "titre": "De l'atome à la lumière"
+}

@@ -1,0 +1,654 @@
+{
+  "cours": 6661,
+  "ecrans": {
+    "addition": {
+      "kicker": "Trigonométrie · formules d'addition",
+      "tex": [
+        "\\cos(a + b) = \\cos a \\cos b - \\sin a \\sin b",
+        "\\cos(a - b) = \\cos a \\cos b + \\sin a \\sin b",
+        "\\sin(a + b) = \\sin a \\cos b + \\cos a \\sin b",
+        "\\sin(a - b) = \\sin a \\cos b - \\cos a \\sin b"
+      ],
+      "titre": "Cosinus et sinus d'une somme",
+      "type": "etape"
+    },
+    "bijection": {
+      "kicker": "Injectivité, surjectivité, bijectivité",
+      "tex": [
+        "f(x_1) = f(x_2) \\Rightarrow x_1 = x_2 : \\text{ injective}",
+        "\\text{tout } y \\text{ a un antécédent : surjective}",
+        "f(x) = 2x + 1 : \\text{ bijective, } x = \\tfrac{y - 1}{2}"
+      ],
+      "titre": "Au plus un, au moins un, exactement un",
+      "type": "etape"
+    },
+    "combinaisons": {
+      "kicker": "Méthode par combinaisons",
+      "tex": [
+        "2x + 3y = 7 \\qquad 5x - 2y = 8",
+        "4x + 6y = 14 \\qquad 15x - 6y = 24",
+        "19x = 38 \\qquad x = 2 \\qquad y = 1"
+      ],
+      "titre": "Éliminer une inconnue par addition",
+      "type": "etape"
+    },
+    "composee": {
+      "anim": {
+        "hauteur": 200,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Composition et réciproque",
+      "note": "D'abord f, puis g : la réciproque refait le chemin inverse.",
+      "tex": "(g \\circ f)(x) = g(f(x))",
+      "type": "formule"
+    },
+    "cramer": {
+      "kicker": "Formules de Cramer",
+      "note": "Remplacer la colonne de l'inconnue par les seconds membres.",
+      "tex": "x = \\frac{\\Delta_x}{\\Delta} \\qquad y = \\frac{\\Delta_y}{\\Delta}",
+      "type": "formule"
+    },
+    "degre2_def": {
+      "kicker": "Second degré · forme canonique",
+      "note": "La forme canonique fait apparaître le discriminant et les racines.",
+      "tex": "ax^2 + bx + c = a\\left(x + \\frac{b}{2a}\\right)^2 - \\frac{b^2 - 4ac}{4a}",
+      "type": "formule"
+    },
+    "degre3": {
+      "kicker": "Degré trois · zéro et factorisation",
+      "tex": [
+        "P(2) = 0 \\Rightarrow P(x) = (x - 2)Q(x)",
+        "P(x) = (x - 2)(x^2 - x - 6)",
+        "P(x) = (x - 2)(x - 3)(x + 2)"
+      ],
+      "titre": "Un zéro ouvre la factorisation",
+      "type": "etape"
+    },
+    "discriminant": {
+      "kicker": "Second degré · le discriminant",
+      "note": "Le signe de delta décide du nombre de racines réelles.",
+      "tex": "\\Delta = b^2 - 4ac",
+      "type": "formule"
+    },
+    "domaine": {
+      "kicker": "Fonctions · ensemble de définition",
+      "tex": [
+        "f(x) = \\tfrac{\\sqrt{x - 1}}{x - 2} \\qquad x - 1 \\geq 0",
+        "x \\neq 2 \\qquad D_f = [1; 2[ \\cup ]2; +\\infty["
+      ],
+      "titre": "Racine et quotient : deux conditions",
+      "type": "etape"
+    },
+    "ex_cramer": {
+      "kicker": "Exemple · Cramer en chiffres",
+      "tex": [
+        "\\Delta = -14 \\qquad \\Delta_x = -28 \\qquad \\Delta_y = -14",
+        "x = \\tfrac{-28}{-14} = 2",
+        "y = \\tfrac{-14}{-14} = 1 \\qquad S = \\{(2; 1)\\}"
+      ],
+      "titre": "Trois déterminants, deux quotients",
+      "type": "etape"
+    },
+    "ex_degre2": {
+      "kicker": "Exemple · une équation du second degré",
+      "tex": [
+        "2x^2 - 3x - 5 = 0",
+        "\\Delta = (-3)^2 - 4 \\times 2 \\times (-5) = 49",
+        "x_1 = -1 \\qquad x_2 = \\tfrac{5}{2}"
+      ],
+      "titre": "Deux racines distinctes",
+      "type": "etape"
+    },
+    "ex_degre3": {
+      "kicker": "Exemple · équation de degré trois",
+      "tex": [
+        "P(1) = 0 \\qquad P(x) = (x - 1)(x^2 - x - 6)",
+        "P(x) = (x - 1)(x + 2)(x - 3)",
+        "S = \\{-2; 1; 3\\}"
+      ],
+      "titre": "Zéro évident, puis factoriser",
+      "type": "etape"
+    },
+    "ex_signe": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "signe_parabole_fig"
+      },
+      "kicker": "Exemple · une inéquation du second degré",
+      "tex": [
+        "x^2 - 4x + 3 = (x - 1)(x - 3)",
+        "x^2 - 4x + 3 \\leq 0 \\iff x \\in [1, 3]"
+      ],
+      "titre": "Négatif entre les racines",
+      "type": "etape"
+    },
+    "ex_sin": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "cercle_trigo_fig"
+      },
+      "kicker": "Exemple · sinus égal un demi",
+      "tex": [
+        "\\sin x = \\tfrac{1}{2} \\qquad \\alpha = \\tfrac{\\pi}{6}",
+        "S = \\left\\{\\tfrac{\\pi}{6}; \\tfrac{5\\pi}{6}\\right\\}"
+      ],
+      "titre": "Deux solutions sur un tour",
+      "type": "etape"
+    },
+    "ex_transformation": {
+      "kicker": "Exemple · transformer puis résoudre",
+      "tex": [
+        "\\cos x + \\sqrt{3}\\sin x = 2\\cos\\left(x - \\tfrac{\\pi}{3}\\right)",
+        "2\\cos\\left(x - \\tfrac{\\pi}{3}\\right) = \\sqrt{2}",
+        "x = \\tfrac{\\pi}{12} \\text{ ou } x = \\tfrac{7\\pi}{12}"
+      ],
+      "titre": "Une seule fonction cosinus décalée",
+      "type": "etape"
+    },
+    "factorisation": {
+      "kicker": "Factorisation du second degré",
+      "note": "Le signe se lit ensuite facteur par facteur, racine par racine.",
+      "tex": "ax^2 + bx + c = a(x - x_1)(x - x_2)",
+      "type": "formule"
+    },
+    "fondamentales": {
+      "kicker": "Équations trigonométriques fondamentales",
+      "tex": [
+        "\\cos x = a \\iff x = \\pm\\alpha + 2k\\pi",
+        "\\sin x = a : x = \\alpha \\text{ ou } \\pi - \\alpha \\ (+2k\\pi)",
+        "\\tan x = a \\iff x = \\alpha + k\\pi"
+      ],
+      "titre": "Trois lectures sur le cercle",
+      "type": "etape"
+    },
+    "gauss": {
+      "kicker": "Pivot de Gauss",
+      "tex": [
+        "y - 3z = -7 \\qquad -4y - z = -11",
+        "-13z = -39 \\qquad z = 3",
+        "y = 2 \\qquad x = 1 \\qquad S = \\{(1; 2; 3)\\}"
+      ],
+      "titre": "Trianguler, puis remonter",
+      "type": "etape"
+    },
+    "ineq_irrationnel": {
+      "kicker": "Inéquation irrationnelle",
+      "tex": [
+        "\\sqrt{x + 1} < 2 \\qquad x + 1 \\geq 0",
+        "x + 1 < 4 \\qquad S = [-1; 3["
+      ],
+      "titre": "Existence d'abord, carré ensuite",
+      "type": "etape"
+    },
+    "inequations_trigo": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "cercle_trigo_fig"
+      },
+      "kicker": "Inéquations trigonométriques",
+      "tex": [
+        "\\cos x \\geq \\tfrac{1}{2}",
+        "S = [0; \\tfrac{\\pi}{3}] \\cup [\\tfrac{5\\pi}{3}; 2\\pi]"
+      ],
+      "titre": "Délimiter l'arc sur le cercle",
+      "type": "etape"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 200,
+        "nom": "parabole_fig"
+      },
+      "kicker": "Introduction",
+      "texte": "Équations, systèmes, trigonométrie, fonctions : chaque méthode finit par une vérification.",
+      "type": "phrase"
+    },
+    "irrationnel": {
+      "kicker": "Équation irrationnelle",
+      "tex": [
+        "\\sqrt{2x + 3} = x \\Rightarrow 2x + 3 = x^2",
+        "x^2 - 2x - 3 = 0 \\Rightarrow x = 3 \\text{ ou } x = -1",
+        "x = -1 \\text{ rejeté} \\qquad S = \\{3\\}"
+      ],
+      "titre": "Carré, résolution, vérification",
+      "type": "etape"
+    },
+    "operations": {
+      "kicker": "Opérations sur les fonctions",
+      "tex": [
+        "(f + g)(x) = f(x) + g(x)",
+        "(fg)(x) = f(x)g(x)",
+        "\\tfrac{f}{g}(x) = \\tfrac{f(x)}{g(x)}, \\ g(x) \\neq 0",
+        "PQ = (x^2 + 1)(x - 1) = x^3 - x^2 + x - 1"
+      ],
+      "titre": "Point par point, domaines intersectés",
+      "type": "etape"
+    },
+    "parite": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "parabole_fig"
+      },
+      "kicker": "Parité des fonctions",
+      "tex": [
+        "f(-x) = f(x) : \\text{ paire}",
+        "f(-x) = -f(x) : \\text{ impaire}"
+      ],
+      "titre": "Tester f de moins ixe",
+      "type": "etape"
+    },
+    "probleme_produits": {
+      "kicker": "Problème · deux produits vendus",
+      "tex": [
+        "x + y = 40 \\qquad 15x + 25y = 760",
+        "15(40 - y) + 25y = 760 \\qquad y = 16",
+        "x = 24 \\qquad 24 \\times 15 + 16 \\times 25 = 760"
+      ],
+      "titre": "Nommer, traduire, résoudre, vérifier",
+      "type": "etape"
+    },
+    "recap1": {
+      "etapes": [
+        "Delta tranche : deux, une ou zéro racine",
+        "Signe de a, sauf entre les racines",
+        "Degré trois : un zéro, puis factoriser",
+        "Irrationnel : carrer, puis vérifier",
+        "Somme et produit : retour au second degré"
+      ],
+      "kicker": "Partie 1 : l'essentiel",
+      "type": "recap"
+    },
+    "recap2": {
+      "etapes": [
+        "Substitution : exprimer, puis remplacer",
+        "Combinaisons : éliminer par addition",
+        "Cramer : trois déterminants, deux quotients",
+        "Trois inconnues : trianguler par Gauss",
+        "Problème : nommer, traduire, vérifier"
+      ],
+      "kicker": "Partie 2 : l'essentiel",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Second degré : delta, racines, signe",
+        "Systèmes : substitution, combinaisons, Gauss",
+        "Trigo : addition, transformer, cercle",
+        "Fonctions : domaine, bijection, composée",
+        "Toujours vérifier les solutions trouvées"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "signe": {
+      "kicker": "Signe d'un polynôme du second degré",
+      "tex": [
+        "\\Delta > 0 : \\text{ contraire entre } x_1 \\text{ et } x_2",
+        "\\Delta = 0 : \\text{ signe de } a \\text{ partout}",
+        "\\Delta < 0 : \\text{ signe de } a \\text{ partout}"
+      ],
+      "titre": "Signe de a, sauf entre les racines",
+      "type": "etape"
+    },
+    "substitution": {
+      "kicker": "Méthode par substitution",
+      "tex": [
+        "x + 2y = 5 \\qquad 3x - y = 1",
+        "x = 5 - 2y \\qquad 3(5 - 2y) - y = 1",
+        "y = 2 \\qquad x = 1 \\qquad S = \\{(1; 2)\\}"
+      ],
+      "titre": "Exprimer, puis remplacer",
+      "type": "etape"
+    },
+    "symetries": {
+      "kicker": "Périodicité et symétries",
+      "tex": [
+        "f(x + T) = f(x) : \\text{ périodique}",
+        "f(a + x) = f(a - x) : \\text{ axe } x = a",
+        "f(a + x) + f(a - x) = 2b : \\text{ centre } A(a; b)"
+      ],
+      "titre": "Période, axe et centre de symétrie",
+      "type": "etape"
+    },
+    "sys_def": {
+      "kicker": "Systèmes linéaires · déterminant",
+      "tex": [
+        "ax + by = c \\qquad a'x + b'y = c'",
+        "\\Delta = ab' - a'b",
+        "\\Delta \\neq 0 : \\text{une seule solution}"
+      ],
+      "titre": "Deux équations, un déterminant",
+      "type": "etape"
+    },
+    "sys_second": {
+      "kicker": "Système somme et produit",
+      "tex": [
+        "x + y = 7 \\qquad xy = 12",
+        "y = 7 - x \\qquad x(7 - x) = 12",
+        "x^2 - 7x + 12 = 0 \\qquad S = \\{(3; 4), (4; 3)\\}"
+      ],
+      "titre": "La substitution ramène au second degré",
+      "type": "etape"
+    },
+    "tangente_ex": {
+      "kicker": "Tangente d'une somme · exemple",
+      "tex": [
+        "\\tan(a + b) = \\tfrac{\\tan a + \\tan b}{1 - \\tan a \\tan b}",
+        "\\tfrac{\\pi}{12} = \\tfrac{\\pi}{3} - \\tfrac{\\pi}{4}",
+        "\\cos\\tfrac{\\pi}{12} = \\tfrac{\\sqrt{2} + \\sqrt{6}}{4}"
+      ],
+      "titre": "Un angle inconnu par deux angles connus",
+      "type": "etape"
+    },
+    "terrain": {
+      "kicker": "Problème · périmètre et aire",
+      "tex": [
+        "x + y = 20 \\qquad xy = 96",
+        "x^2 - 20x + 96 = 0 \\qquad \\Delta = 16",
+        "x = 12 \\text{ ou } x = 8 \\qquad 12\\ \\text{m et } 8\\ \\text{m}"
+      ],
+      "titre": "Un terrain de quarante mètres de périmètre",
+      "type": "etape"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 250,
+        "nom": "signe_parabole_fig"
+      },
+      "kicker": "Mathématique · Algèbre et fonctions",
+      "sous": "Du discriminant au pivot de Gauss, du cercle trigonométrique aux bijections",
+      "titre": "Équations et systèmes, trigonométrie et fonctions",
+      "type": "titre"
+    },
+    "transformation": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "sinusoide"
+      },
+      "kicker": "Transformer a cosinus plus b sinus",
+      "note": "A : racine carrée de a carré plus bé carré.",
+      "tex": "a\\cos x + b\\sin x = A\\cos(x + \\varphi)",
+      "type": "formule"
+    },
+    "trois_combi": {
+      "kicker": "Trois inconnues · combinaisons",
+      "tex": [
+        "3x + 3y = 5 \\qquad x + 5y = 5",
+        "y = \\tfrac{5}{6} \\qquad x = \\tfrac{5}{6}",
+        "S = \\left(\\tfrac{5}{6}; \\tfrac{5}{6}; \\tfrac{3}{2}\\right)"
+      ],
+      "titre": "Éliminer une inconnue à la fois",
+      "type": "etape"
+    },
+    "trois_subst": {
+      "kicker": "Trois inconnues · substitution",
+      "tex": [
+        "z = 6 - x - y",
+        "x - 2y = -3 \\qquad 2x + 3y = 9",
+        "x = \\tfrac{9}{7} \\qquad y = \\tfrac{15}{7}",
+        "z = \\tfrac{18}{7}"
+      ],
+      "titre": "Ramener à deux inconnues",
+      "type": "etape"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Équations du second degré, degré trois et irrationnelles"
+    },
+    {
+      "debut": "p16",
+      "pont": {
+        "dit": "Partie deux : les systèmes linéaires. Trois méthodes pour deux inconnues, substitution, combinaisons et déterminants, puis les mêmes idées à trois inconnues, jusqu'au pivot de Gauss, et un problème concret pour terminer.",
+        "texte": "Partie 2 : systèmes linéaires, deux puis trois inconnues."
+      },
+      "sous_titre": "Systèmes linéaires à deux et trois inconnues"
+    },
+    {
+      "debut": "p26",
+      "pont": {
+        "dit": "Partie trois : la trigonométrie, puis les fonctions en général. Nous transformerons les sommes d'angles, nous résoudrons équations et inéquations sur le cercle trigonométrique, puis nous poserons le vocabulaire des fonctions : domaine, bijection, composée, parité et courbes associées.",
+        "texte": "Partie 3 : trigonométrie et fonctions."
+      },
+      "sous_titre": "Trigonométrie et généralités sur les fonctions"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux équations, aux systèmes, à la trigonométrie et aux fonctions. Nous partirons des équations du second degré et de leur discriminant, nous factoriserons des polynômes de degré trois, nous résoudrons des systèmes à deux et trois inconnues, puis nous transformerons les expressions trigonométriques avant de poser les bases des fonctions : domaine, bijection, composée, parité et fonctions associées.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Équations et systèmes, trigonométrie et fonctions."
+    },
+    {
+      "dit": "Le fil rouge de ce cours est simple : chaque type d'équation possède sa méthode, et chaque méthode se termine par une vérification. Le discriminant tranche pour le second degré, un zéro évident ouvre le degré trois, la substitution ramène les systèmes à une seule inconnue, et le cercle trigonométrique tranche pour les équations en sinus et cosinus. Gardez ce réflexe : résoudre, puis contrôler.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "Chaque méthode se termine par une vérification."
+    },
+    {
+      "dit": "Une équation du second degré s'écrit a ixe carré plus bé ixe plus cé égal zéro, avec a différent de zéro. La forme canonique réécrit le polynôme à l'aide d'un carré : a facteur de ixe plus bé sur deux a, le tout au carré, moins bé carré moins quatre a cé, le tout sur quatre a. C'est elle qui fait apparaître le discriminant et les racines.",
+      "ecran": "degre2_def",
+      "id": "p03",
+      "texte": "ax² + bx + c = 0, avec a ≠ 0 : la forme canonique."
+    },
+    {
+      "dit": "Le discriminant, noté delta, vaut bé carré moins quatre a cé. Son signe décide de tout : s'il est strictement positif, l'équation possède deux racines réelles distinctes, données par moins bé moins racine de delta sur deux a, et moins bé plus racine de delta sur deux a. S'il est nul, il reste une racine double, moins bé sur deux a. S'il est négatif, aucune racine réelle.",
+      "ecran": "discriminant",
+      "id": "p04",
+      "texte": "Δ = b² − 4ac : son signe décide du nombre de racines."
+    },
+    {
+      "dit": "Premier exemple résolu : deux ixe carré moins trois ixe moins cinq égal zéro. Le discriminant vaut neuf plus quarante, donc quarante-neuf, strictement positif. La racine de quarante-neuf vaut sept : la première racine vaut trois moins sept sur quatre, soit moins un, et la seconde trois plus sept sur quatre, soit cinq demis. L'ensemble solution réunit moins un et cinq demis.",
+      "ecran": "ex_degre2",
+      "id": "p05",
+      "texte": "2x² − 3x − 5 = 0 : Δ = 49, racines −1 et 5/2."
+    },
+    {
+      "dit": "Quand un polynôme du second degré possède deux racines, ixe un et ixe deux, il se factorise en a facteur de ixe moins ixe un, facteur de ixe moins ixe deux. Cette factorisation est la clé du signe : chaque facteur change de signe en sa racine, et le signe du produit se lit facteur par facteur.",
+      "ecran": "factorisation",
+      "id": "p06",
+      "texte": "a(x − x₁)(x − x₂) : la factorisation par les racines."
+    },
+    {
+      "dit": "Pour le signe, retenez la règle : le polynôme garde le signe de a partout, sauf entre ses deux racines, où il prend le signe contraire, lorsque le discriminant est strictement positif. Si le discriminant est négatif, le polynôme garde le signe de a sur tout l'ensemble des réels. S'il est nul, le polynôme garde encore le signe de a, en s'annulant seulement en la racine double.",
+      "ecran": "signe",
+      "id": "p07",
+      "texte": "Signe de a partout, sauf entre les racines."
+    },
+    {
+      "dit": "Exemple : résoudre ixe carré moins quatre ixe plus trois inférieur ou égal à zéro. Le polynôme se factorise en ixe moins un, facteur de ixe moins trois : ses racines sont un et trois. Le coefficient de ixe carré est positif, donc le polynôme est négatif ou nul entre les racines : l'ensemble solution est l'intervalle fermé de un à trois.",
+      "ecran": "ex_signe",
+      "id": "p08",
+      "texte": "x² − 4x + 3 ≤ 0 : solution [1 ; 3]."
+    },
+    {
+      "dit": "Certains systèmes se ramènent au second degré. Quand on connaît la somme et le produit de deux nombres, par exemple somme sept et produit douze, la substitution donne igrec égal sept moins ixe, puis ixe facteur de sept moins ixe égal douze, soit l'équation ixe carré moins sept ixe plus douze égal zéro. Son discriminant vaut un : les deux nombres sont trois et quatre, et le système admet les couples trois, quatre et quatre, trois.",
+      "ecran": "sys_second",
+      "id": "p09",
+      "texte": "Somme 7, produit 12 : les nombres sont 3 et 4."
+    },
+    {
+      "dit": "Un réel est un zéro d'un polynôme quand le polynôme s'annule en ce point. Le théorème de factorisation dit alors que le polynôme se factorise par ixe moins ce réel. Exemple : le polynôme ixe cube moins trois ixe carré moins quatre ixe plus douze s'annule en deux, donc il se factorise par ixe moins deux, avec un quotient du second degré, ixe carré moins ixe moins six, qui se factorise encore en ixe moins trois, facteur de ixe plus deux.",
+      "ecran": "degre3",
+      "id": "p10",
+      "texte": "P(2) = 0, donc (x − 2) divise P."
+    },
+    {
+      "dit": "Méthode complète pour le degré trois : chercher d'abord un zéro évident parmi les diviseurs du terme constant, puis factoriser, puis résoudre. Pour ixe cube moins deux ixe carré moins cinq ixe plus six, le zéro évident est un : le polynôme devient ixe moins un, facteur de ixe carré moins ixe moins six, puis ixe moins un, facteur de ixe plus deux, facteur de ixe moins trois. Les solutions sont moins deux, un et trois.",
+      "ecran": "ex_degre3",
+      "id": "p11",
+      "texte": "Degré 3 : zéro évident 1, puis S = {−2 ; 1 ; 3}."
+    },
+    {
+      "dit": "Une équation irrationnelle contient l'inconnue sous une racine carrée. La méthode comporte trois temps : élever au carré, résoudre l'équation obtenue, puis vérifier chaque candidat, car élever au carré peut créer des solutions parasites. Pour racine de deux ixe plus trois égal ixe, on obtient ixe carré moins deux ixe moins trois égal zéro, donc trois ou moins un. Mais moins un donnerait racine de un égal moins un, ce qui est faux : seule la solution trois survit.",
+      "ecran": "irrationnel",
+      "id": "p12",
+      "texte": "√(2x + 3) = x : seul x = 3 survit à la vérification."
+    },
+    {
+      "dit": "Pour une inéquation irrationnelle, on ajoute la condition d'existence : l'expression sous la racine doit être positive ou nulle, et le membre de droite doit rester positif ou nul avant d'élever au carré. Pour racine de ixe plus un strictement inférieur à deux, la condition donne ixe supérieur ou égal à moins un, et le carré donne ixe plus un strictement inférieur à quatre, donc ixe strictement inférieur à trois. Solution : l'intervalle de moins un inclus à trois exclu.",
+      "ecran": "ineq_irrationnel",
+      "id": "p13",
+      "texte": "√(x + 1) < 2 : solution [−1 ; 3[."
+    },
+    {
+      "dit": "Problème concret pour refermer cette partie : un terrain rectangulaire a un périmètre de quarante mètres et une aire de quatre-vingt-seize mètres carrés. La demi-somme des dimensions vaut vingt et leur produit quatre-vingt-seize : on retombe sur le système somme et produit. L'équation ixe carré moins vingt ixe plus quatre-vingt-seize égal zéro a pour discriminant seize : les dimensions sont douze mètres et huit mètres.",
+      "ecran": "terrain",
+      "id": "p14",
+      "texte": "Périmètre 40 m, aire 96 m² : 12 m sur 8 m."
+    },
+    {
+      "dit": "Récapitulons cette première partie : le discriminant décide du nombre de racines, la factorisation donne le signe, un zéro évident ouvre le degré trois, et les équations irrationnelles exigent une vérification finale, car le passage au carré crée des candidats qui ne sont pas toujours des solutions.",
+      "ecran": "recap1",
+      "id": "p15",
+      "texte": "Partie 1 : l'essentiel."
+    },
+    {
+      "dit": "Un système linéaire à deux inconnues cherche les couples ixe, igrec qui vérifient deux équations à la fois. Son déterminant, noté ici delta, vaut a bé prime moins a prime bé. S'il est différent de zéro, le système admet une unique solution. S'il est nul, il faut regarder de plus près : soit aucune solution, soit une infinité de couples alignés sur une même droite.",
+      "ecran": "sys_def",
+      "id": "p16",
+      "texte": "Δ ≠ 0 : une unique solution ; Δ = 0 : zéro ou une infinité."
+    },
+    {
+      "dit": "La substitution consiste à exprimer une inconnue dans une équation, puis à la remplacer dans l'autre. Pour ixe plus deux igrec égal cinq et trois ixe moins igrec égal un, la première équation donne ixe égal cinq moins deux igrec. En remplaçant, trois facteur de cinq moins deux igrec, moins igrec, égal un : il vient moins sept igrec égal moins quatorze, donc igrec égal deux, puis ixe égal un. La solution est le couple un, deux.",
+      "ecran": "substitution",
+      "id": "p17",
+      "texte": "Substitution : la solution est le couple (1 ; 2)."
+    },
+    {
+      "dit": "Les combinaisons linéaires éliminent une inconnue par addition. Pour deux ixe plus trois igrec égal sept et cinq ixe moins deux igrec égal huit, multipliez la première équation par deux et la seconde par trois : les termes en igrec deviennent opposés, six igrec et moins six igrec. En additionnant, dix-neuf ixe égal trente-huit, donc ixe égal deux, puis igrec égal un en revenant à la première équation.",
+      "ecran": "combinaisons",
+      "id": "p18",
+      "texte": "Combinaisons : 19x = 38, donc (2 ; 1)."
+    },
+    {
+      "dit": "Quand le déterminant principal est différent de zéro, les formules de Cramer donnent directement la solution : ixe vaut delta ixe sur delta, et igrec vaut delta igrec sur delta. Chaque déterminant secondaire s'obtient en remplaçant, dans le déterminant principal, la colonne de l'inconnue par la colonne des seconds membres.",
+      "ecran": "cramer",
+      "id": "p19",
+      "texte": "Cramer : x = Δx/Δ et y = Δy/Δ."
+    },
+    {
+      "dit": "Exemple : trois ixe plus deux igrec égal huit, et ixe moins quatre igrec égal moins deux. Le déterminant vaut moins douze moins deux, donc moins quatorze. Le déterminant en ixe vaut moins trente-deux plus quatre, donc moins vingt-huit, et ixe vaut deux. Le déterminant en igrec vaut moins six moins huit, donc moins quatorze, et igrec vaut un. La solution est le couple deux, un, comme avec les autres méthodes.",
+      "ecran": "ex_cramer",
+      "id": "p20",
+      "texte": "Cramer : Δ = −14, x = 2, y = 1."
+    },
+    {
+      "dit": "À trois inconnues, la substitution suit le même principe, en deux étages. On exprime zède dans la première équation, zède égal six moins ixe moins igrec, puis on remplace dans les deux autres : il reste un système à deux inconnues, ixe moins deux igrec égal moins trois et deux ixe plus trois igrec égal neuf. Sa résolution donne igrec égal quinze septièmes et ixe égal neuf septièmes, puis zède égal dix-huit septièmes en revenant à la première équation.",
+      "ecran": "trois_subst",
+      "id": "p21",
+      "texte": "Trois inconnues : (9/7 ; 15/7 ; 18/7)."
+    },
+    {
+      "dit": "Les combinaisons, à trois inconnues, éliminent une inconnue à la fois. En additionnant les deux premières équations du système affiché, zède disparaît et il reste trois ixe plus trois igrec égal cinq. Une seconde combinaison donne ixe plus cinq igrec égal cinq. La différence livre igrec égal cinq sixièmes, puis ixe égal cinq sixièmes, et la première équation donne zède égal trois demis.",
+      "ecran": "trois_combi",
+      "id": "p22",
+      "texte": "Combinaisons à 3 inconnues : (5/6 ; 5/6 ; 3/2)."
+    },
+    {
+      "dit": "Le pivot de Gauss rend la méthode systématique : on transforme le système en système triangulaire, où chaque équation perd une inconnue. Ici, après élimination de ixe puis de igrec, la dernière ligne donne directement zède égal trois. On remonte ensuite : la deuxième ligne donne igrec égal deux, la première donne ixe égal un. La solution est le triplet un, deux, trois, le plus simple à vérifier de tête.",
+      "ecran": "gauss",
+      "id": "p23",
+      "texte": "Gauss : trianguler, remonter, (1 ; 2 ; 3)."
+    },
+    {
+      "dit": "Problème concret : une entreprise vend quarante articles en une journée, des articles de type A à quinze euros et des articles de type B à vingt-cinq euros, pour un total de sept cent soixante euros. Avec ixe articles de type A et igrec articles de type B, le système s'écrit ixe plus igrec égal quarante et quinze ixe plus vingt-cinq igrec égal sept cent soixante. La substitution donne igrec égal seize, puis ixe égal vingt-quatre, et la vérification redonne bien sept cent soixante euros.",
+      "ecran": "probleme_produits",
+      "id": "p24",
+      "texte": "40 articles, 760 euros : 24 de type A, 16 de type B."
+    },
+    {
+      "dit": "À retenir pour les systèmes : la substitution exprime et remplace, les combinaisons éliminent, Cramer quotiente trois déterminants, et Gauss triangule. Dans tous les cas, on termine en vérifiant le couple ou le triplet dans les équations de départ.",
+      "ecran": "recap2",
+      "id": "p25",
+      "texte": "Partie 2 : l'essentiel."
+    },
+    {
+      "dit": "Les formules d'addition expriment le cosinus et le sinus d'une somme à l'aide des cosinus et sinus séparés. Pour le cosinus, on croise cosinus cosinus et sinus sinus, avec un signe moins pour une somme et un signe plus pour une différence. Pour le sinus, on croise sinus cosinus et cosinus sinus, en gardant le signe de départ : plus pour une somme, moins pour une différence. Ces quatre formules sont admises, mais il faut les connaître par cœur.",
+      "ecran": "addition",
+      "id": "p26",
+      "texte": "Addition : cos croise avec signe inversé, sin en gardant le signe."
+    },
+    {
+      "dit": "La tangente d'une somme se calcule à partir des deux tangentes : somme des tangentes, divisée par un moins leur produit. Application précieuse : calculer le cosinus de pi sur douze. Pi sur douze se décompose en pi sur trois moins pi sur quatre, deux angles connus. La formule de différence donne un demi fois racine de deux sur deux, plus racine de trois sur deux fois racine de deux sur deux, soit racine de deux plus racine de six, le tout sur quatre.",
+      "ecran": "tangente_ex",
+      "id": "p27",
+      "texte": "cos(π/12) = (√2 + √6)/4, par π/3 − π/4."
+    },
+    {
+      "dit": "Toute combinaison a cosinus ixe plus bé sinus ixe peut se réécrire en une seule fonction cosinus décalée : A cosinus de ixe plus phi. L'amplitude A vaut la racine carrée de a carré plus bé carré. L'angle phi se détermine par son cosinus, a sur A, et son sinus, moins bé sur A. Cette transformation est la clé des équations où cosinus et sinus sont mélangés.",
+      "ecran": "transformation",
+      "id": "p28",
+      "texte": "a cos x + b sin x = A cos(x + φ)."
+    },
+    {
+      "dit": "Exemple complet : cosinus ixe plus racine de trois sinus ixe. L'amplitude vaut deux, le cosinus de phi vaut un demi et son sinus vaut moins racine de trois sur deux : phi vaut donc moins pi sur trois, et l'expression devient deux cosinus de ixe moins pi sur trois. L'équation qui l'égalait à racine de deux devient cosinus de ixe moins pi sur trois égal racine de deux sur deux, d'où, sur un tour complet, ixe égal pi sur douze ou sept pi sur douze.",
+      "ecran": "ex_transformation",
+      "id": "p29",
+      "texte": "cos x + √3 sin x = √2 : x = π/12 ou 7π/12."
+    },
+    {
+      "dit": "Les équations fondamentales se lisent sur le cercle trigonométrique. Cosinus ixe égal a donne ixe égal plus ou moins alpha, plus deux k pi, où alpha est l'angle de référence. Sinus ixe égal a donne alpha ou pi moins alpha, plus deux k pi. Tangente ixe égal a donne alpha plus k pi, car la tangente se répète tous les pi. Le nombre k parcourt les entiers relatifs : chaque tour ajoute les mêmes solutions décalées.",
+      "ecran": "fondamentales",
+      "id": "p30",
+      "texte": "cos : ±α ; sin : α ou π − α ; tan : α + kπ."
+    },
+    {
+      "dit": "Exemple : résoudre sinus ixe égal un demi sur un tour complet, de zéro à deux pi. L'angle de référence est pi sur six. La deuxième famille donne pi moins pi sur six, soit cinq pi sur six. Ce sont les deux seules solutions dans l'intervalle : pi sur six et cinq pi sur six, symétriques par rapport à la verticale du cercle.",
+      "ecran": "ex_sin",
+      "id": "p31",
+      "texte": "sin x = 1/2 sur [0, 2π] : π/6 et 5π/6."
+    },
+    {
+      "dit": "Pour une inéquation trigonométrique, on délimite sur le cercle l'arc des points qui conviennent, puis on traduit en intervalles. Cosinus ixe supérieur ou égal à un demi garde les angles entre moins pi sur trois et pi sur trois : sur un tour, de zéro à pi sur trois, puis de cinq pi sur trois à deux pi. Même démarche après transformation pour cosinus ixe plus sinus ixe strictement inférieur à un : la solution est l'intervalle ouvert de pi sur deux à deux pi.",
+      "ecran": "inequations_trigo",
+      "id": "p32",
+      "texte": "cos x ≥ 1/2 : deux arcs ; cos x + sin x < 1 : ]π/2, 2π[."
+    },
+    {
+      "dit": "L'ensemble de définition d'une fonction réunit tous les réels où son expression existe. Deux pièges classiques : une racine exige un contenu positif ou nul, et un quotient exige un dénominateur différent de zéro. Pour la racine de ixe moins un, sur ixe moins deux, il faut ixe supérieur ou égal à un et ixe différent de deux : le domaine est de un inclus à deux exclu, union de deux exclu à plus l'infini. La restriction d'une fonction est simplement la même règle, lue sur un intervalle plus petit.",
+      "ecran": "domaine",
+      "id": "p33",
+      "texte": "√(x − 1)/(x − 2) : D = [1, 2[ ∪ ]2, +∞[."
+    },
+    {
+      "dit": "Une application est injective quand chaque image possède au plus un antécédent : deux images égales forcent deux départs égaux. Elle est surjective quand chaque élément d'arrivée possède au moins un antécédent. Les deux à la fois donnent une bijection. Exemple : la fonction qui à ixe associe deux ixe plus un, définie des réels vers les réels, est bijective, car tout igrec possède exactement un antécédent, igrec moins un, le tout sur deux.",
+      "ecran": "bijection",
+      "id": "p34",
+      "texte": "Injective : au plus un ; surjective : au moins un."
+    },
+    {
+      "dit": "La composée de deux applications enchaîne leurs effets : g rond f applique d'abord f, puis g au résultat. Si f est bijective, elle possède une réciproque, notée f puissance moins un, qui défait exactement son action dans les deux sens. Exemple : le cube, des réels vers les réels, est bijectif, et sa réciproque est la racine cubique.",
+      "ecran": "composee",
+      "id": "p35",
+      "texte": "(g ∘ f)(x) = g(f(x)) : d'abord f, puis g."
+    },
+    {
+      "dit": "Les opérations sur les fonctions se font point par point : la somme ajoute les images, le produit les multiplie, et le quotient les divise, à condition que le dénominateur ne s'annule pas. Le domaine suit : intersection des domaines, en retirant les zéros du dénominateur. Pour les polynômes, même idée : avec P égal ixe carré plus un et Q égal ixe moins un, la somme vaut ixe carré plus ixe, et le produit vaut ixe cube moins ixe carré plus ixe moins un.",
+      "ecran": "operations",
+      "id": "p36",
+      "texte": "Somme, produit, quotient : point par point."
+    },
+    {
+      "dit": "La parité se lit dans la symétrie de la courbe. Une fonction est paire quand f de moins ixe égale f de ixe : la courbe est symétrique par rapport à l'axe des ordonnées, comme le carré. Elle est impaire quand f de moins ixe égale moins f de ixe : la courbe est symétrique par rapport à l'origine. Attention, le domaine doit lui-même être symétrique par rapport à zéro pour que le test ait un sens.",
+      "ecran": "parite",
+      "id": "p37",
+      "texte": "Paire : axe des ordonnées ; impaire : l'origine."
+    },
+    {
+      "dit": "Trois dernières lectures de courbes. Une fonction est périodique de période T quand f de ixe plus T égale f de ixe pour tout ixe : le motif se répète. La droite d'équation ixe égal a est un axe de symétrie quand f de a plus ixe égale f de a moins ixe, et un point est un centre de symétrie quand la somme des images symétriques vaut deux fois son ordonnée. Enfin, les fonctions associées se déduisent par translations et symétries, et la valeur absolue replie la partie négative de la courbe vers le haut.",
+      "ecran": "symetries",
+      "id": "p38",
+      "texte": "Période, axe, centre : lire les symétries de la courbe."
+    },
+    {
+      "dit": "Pour conclure ce cours : le second degré se tranche par le discriminant, les systèmes par l'élimination progressive, la trigonométrie par les formules d'addition et le cercle, et les fonctions par leur domaine et leurs symétries. Un même réflexe partout : appliquer la méthode dans l'ordre, puis vérifier le résultat dans l'énoncé de départ.",
+      "ecran": "recap_final",
+      "id": "p39",
+      "texte": "6661 : l'essentiel en cinq lignes."
+    }
+  ],
+  "titre": "Équations et systèmes, trigonométrie et fonctions"
+}

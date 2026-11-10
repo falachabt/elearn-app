@@ -17,7 +17,7 @@ const mockJeton = jest.fn();
 let mockInvite = false;
 
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), replace: jest.fn(), back: jest.fn() } }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => ({ session: { user: { is_anonymous: mockInvite } } }) }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: jest.fn() }) }));
 jest.mock('@/services/push', () => ({ enregistrerJetonPush: (...a: unknown[]) => mockJeton(...a) }));

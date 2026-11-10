@@ -1,27 +1,42 @@
-import { Minus, Plus } from 'lucide-react-native';
-import { router, useLocalSearchParams } from 'expo-router';
+import { BookOpenCheck, FileText, Hourglass, Minus, Plus, Sparkles, TriangleAlert } from 'lucide-react-native';
+import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, AppState, StyleSheet, Text, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { enregistrerTempsActivite, useChrono } from '@/services/activite';
+import { lireSujet } from '@/services/annales';
+import { lireContenu } from '@/services/stockageContenu';
+import { useContenuPayant } from '@/session/useContenuPayant';
 import { documentLocal, noterPage, ouvrirDocument, pageDocument } from '@/services/documents';
+import { annulerFinChrono, programmerFinChrono } from '@/services/finChrono';
+import { getSupabase } from '@/services/supabase';
+import type { TypeSujet } from '@/services/travailSujet';
 import { titreDocument } from '@/services/titres';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
+import { useOuverts } from './credits/useOuverts';
+import { FeuilleEpuise } from './credits/FeuilleEpuise';
+import { FeuilleCorrigerTravail } from './annales/travail/FeuilleCorrigerTravail';
+import { useDepenseCredits } from './credits/useDepenseCredits';
 import { Appui } from './Appui';
 import { ChronoPuce } from './ChronoPuce';
 import { Ecran } from './Ecran';
+import { useFeedback } from './useFeedback';
 import { Feuille } from './Feuille';
 import { BoutonFermer } from './arrivee/MiniTest';
 import { EcranErreur } from './liste/EcranErreur';
 
 const ZOOM_MAX = 3;
+type ActionNavigation = object;
+type NavigationSortie = {
+  addListener: (evenement: 'beforeRemove', rappel: (e: { preventDefault: () => void; data: { action: ActionNavigation } }) => void) => () => void;
+  dispatch: (action: ActionNavigation) => void;
+};
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; uri: string; horsLigne: boolean; depart: number };
 
@@ -32,58 +47,156 @@ type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; 
 export function LecteurPdf() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { url, titre, sujet, matiere, dureeMin } = useLocalSearchParams<{
+  const { url: urlParam, titre: titreParam, sujet, matiere, duree, kind, ref, corrAction, corrRef, vue: vueParam } = useLocalSearchParams<{
     url: string;
     titre?: string;
     sujet?: string;
     matiere?: string;
-    dureeMin?: string;
+    /** Temps choisi sur la page du sujet : 'libre' ou des secondes. */
+    duree?: string;
+    kind?: TypeSujet;
+    ref?: string;
+    corrAction?: string;
+    corrRef?: string;
+    vue?: string;
   }>();
+  // Bascule sujet / correction dans le même lecteur : les deux adresses sont gardées une fois obtenues.
+  const [vue, setVue] = useState<'sujet' | 'correction'>(vueParam === 'correction' ? 'correction' : 'sujet');
+  const [url, setUrl] = useState(urlParam);
+  const adresses = useRef<{ sujet?: string; correction?: string }>({ [vueParam === 'correction' ? 'correction' : 'sujet']: urlParam });
+  const [bascule, setBascule] = useState(false);
+  const [corriger, setCorriger] = useState(false);
+  const { lancer, feuilles: feuillesCredits } = useDepenseCredits({ rechargeSimple: true });
+  const payant = useContenuPayant();
+  const acces = useOuverts('document_pdf', corrAction === 'document_pdf' ? [String(ref), String(corrRef)] : []);
+  const suffixeCorrection = ` · ${t('annales.correctionTitre')}`;
+  const titreBase = (titreParam ?? '').endsWith(suffixeCorrection) ? (titreParam ?? '').slice(0, -suffixeCorrection.length) : (titreParam ?? '');
+  const titre = vue === 'correction' ? `${titreBase}${suffixeCorrection}` : titreBase;
+  const peutBasculer = !!kind && !!ref && !!corrAction && !!corrRef;
+  const secondes = duree && duree !== 'libre' ? Number(duree) : 0;
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [essai, setEssai] = useState(0);
   const [page, setPage] = useState({ n: 1, total: 0 });
   const [zoom, setZoom] = useState(1);
   const [reprise, setReprise] = useState(false);
-  const [menuChronoOuvert, setMenuChronoOuvert] = useState(false);
-  const [dureeChoisieS, setDureeChoisieS] = useState<number | undefined>(undefined);
-  const [sujetInfo, setSujetInfo] = useState<{ matiere?: string; dureeMin?: number } | null>(null);
+  const dureeChoisieS = secondes > 0 ? secondes : undefined;
+  const [sujetInfo, setSujetInfo] = useState<{ matiere?: string } | null>(null);
 
   useEffect(() => {
     if (!sujet) return;
-    void AsyncStorage.getItem('annales.catalogue').then((cat) => {
+    void lireContenu('annales.catalogue').then((cat) => {
       if (!cat) return;
       try {
-        const liste = JSON.parse(cat) as { id: number; matiere?: string; dureeMin?: number }[];
+        const liste = JSON.parse(cat) as { id: number; matiere?: string }[];
         const item = liste.find((s) => s.id === Number(sujet));
-        if (item) setSujetInfo({ matiere: item.matiere, dureeMin: item.dureeMin });
+        if (item) setSujetInfo({ matiere: item.matiere });
       } catch {}
     });
   }, [sujet]);
 
-  const dureeOfficielle = (dureeMin ? Number(dureeMin) : sujetInfo?.dureeMin) ?? undefined;
   const matiereEffective = matiere || sujetInfo?.matiere;
 
+  // Fin du compte à rebours : son et vibration de fin d'épreuve (réglages respectés), puis feuille « Temps écoulé ».
+  const { declencher } = useFeedback();
+  const declencherRef = useRef(declencher);
+  useEffect(() => {
+    declencherRef.current = declencher;
+  }, [declencher]);
+  const [tempsEcoule, setTempsEcoule] = useState(false);
+  const finChrono = useCallback(() => {
+    declencherRef.current('timerEnd');
+    setTempsEcoule(true);
+  }, []);
+  const alerteChrono = useCallback(() => declencherRef.current('timerWarning'), []);
   const chrono = useChrono({
     dureeInitialeS: dureeChoisieS,
+    onFin: finChrono,
+    onAlerte: alerteChrono,
   });
   const tempsRef = useRef(0);
   useEffect(() => {
     tempsRef.current = chrono.tempsEcouleS;
   }, [chrono.tempsEcouleS]);
 
+  // Application en arrière-plan à l'échéance : notification locale (jamais de demande de permission ici).
+  const notifTitre = t('travail.finChronoNotifTitre');
+  const notifCorps = t('travail.finChronoNotifCorps');
+  const notifCanal = t('travail.finChronoCanal');
   useEffect(() => {
+    if (dureeChoisieS === undefined || tempsEcoule) return;
+    let id: string | null = null;
+    let annule = false;
+    void programmerFinChrono(dureeChoisieS - tempsRef.current, { titre: notifTitre, corps: notifCorps, canal: notifCanal }).then((i) => {
+      id = i;
+      if (annule) void annulerFinChrono(i);
+    });
     return () => {
-      const dureeS = tempsRef.current;
-      if (dureeS >= 3) {
-        void enregistrerTempsActivite({
-          type: sujet ? 'annale' : 'cours',
-          dureeS,
-          matiere: matiereEffective || undefined,
-          titre: titre || undefined,
-        });
-      }
+      annule = true;
+      void annulerFinChrono(id);
     };
-  }, [url, sujet, matiereEffective, titre]);
+  }, [dureeChoisieS, tempsEcoule, notifTitre, notifCorps, notifCanal]);
+
+  const navigation = useNavigation() as unknown as NavigationSortie | null;
+  const [demandeSortie, setDemandeSortie] = useState(false);
+  const sortieAction = useRef<ActionNavigation | null>(null);
+  const autoriserSortie = useRef(false);
+  const initialisationChronoFaite = useRef(false);
+
+  // Le temps est choisi sur la page du sujet : le chrono démarre à l'ouverture, sans second menu. Sans temps choisi
+  // (document rouvert depuis « Mes documents »), il mesure le temps de lecture.
+  useEffect(() => {
+    if (etat.statut !== 'pret' || initialisationChronoFaite.current) return;
+    initialisationChronoFaite.current = true;
+    chrono.demarrer();
+  }, [etat.statut, chrono]);
+
+  useEffect(
+    () =>
+      navigation?.addListener?.('beforeRemove', (e) => {
+        if (autoriserSortie.current || tempsRef.current < 5) return;
+        e.preventDefault();
+        sortieAction.current = e.data.action;
+        setDemandeSortie(true);
+      }),
+    [navigation],
+  );
+
+  const quitterSession = () => {
+    setDemandeSortie(false);
+    autoriserSortie.current = true;
+    if (sortieAction.current && navigation) navigation.dispatch(sortieAction.current);
+    else retour();
+  };
+
+  const annulerSortie = () => {
+    setDemandeSortie(false);
+    sortieAction.current = null;
+  };
+
+  // Le temps passé compte dans « Ma progression » : catégorie Annale pour un ancien sujet (concours ou document de classe,
+  // reconnus à `sujet` ou `kind`), Cours pour un autre PDF. Enregistré à la sortie et à chaque passage en arrière-plan, par
+  // incréments (jamais deux fois la même seconde), avec les valeurs les plus récentes lues dans une référence.
+  const contexte = useRef({ ancien: false, matiere: undefined as string | undefined, titre: undefined as string | undefined });
+  useEffect(() => {
+    contexte.current = { ancien: !!sujet || !!kind, matiere: matiereEffective || undefined, titre: titreBase || undefined };
+  }, [sujet, kind, matiereEffective, titreBase]);
+  const dejaCompte = useRef(0);
+  const enregistrerTemps = useCallback(() => {
+    const dureeS = tempsRef.current - dejaCompte.current;
+    if (dureeS < 3) return;
+    dejaCompte.current = tempsRef.current;
+    const c = contexte.current;
+    void enregistrerTempsActivite({ type: c.ancien ? 'annale' : 'cours', dureeS, matiere: c.matiere, titre: c.titre });
+  }, []);
+  useEffect(() => {
+    const abo = AppState.addEventListener('change', (etatApp) => {
+      if (etatApp !== 'active') enregistrerTemps();
+    });
+    return () => {
+      abo.remove();
+      enregistrerTemps();
+    };
+  }, [enregistrerTemps]);
   // Le PDF descend jusqu'au bord de l'écran ; les boutons de zoom restent au-dessus de la barre de navigation.
   const { bottom } = useSafeAreaInsets();
 
@@ -93,7 +206,7 @@ export function LecteurPdf() {
       const horsLigne = !!documentLocal(String(url));
       try {
         // Copie gardée : affichée sans réseau ; sinon téléchargée une fois. Reprise à la dernière page lue.
-        const [uri, depart] = await Promise.all([ouvrirDocument(String(url), titre ?? '', new Date(), undefined, sujet ? Number(sujet) : undefined), pageDocument(String(url))]);
+        const [uri, depart] = await Promise.all([ouvrirDocument(String(url), titre ?? '', new Date(), undefined, sujet ? Number(sujet) : undefined, kind && ref ? { kind, ref: String(ref), ...(corrRef ? { corr: String(corrRef) } : {}) } : undefined), pageDocument(String(url))]);
         suivre('document_opened', { hors_ligne: horsLigne });
         if (!actif) return;
         setEtat({ statut: 'pret', uri, horsLigne, depart });
@@ -105,9 +218,39 @@ export function LecteurPdf() {
     return () => {
       actif = false;
     };
-  }, [url, titre, sujet, essai]);
+  }, [url, titre, sujet, kind, ref, corrRef, essai]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
+
+  const resoudre = async (cible: 'sujet' | 'correction'): Promise<string | null> => {
+    if (cible === 'correction') {
+      // Comme sur la page du sujet : un corrigé de concours passe par le droit du serveur (premier sujet gratuit), sans confirmation.
+      if (corrAction === 'exam_correction') return (await payant.ouvrir<{ url?: string | null }>('exam_correction', String(corrRef)))?.url ?? null;
+      return (await lancer<{ url?: string | null }>('document_pdf', String(corrRef), { deja: acces.sansFrais(String(corrRef)) }))?.contenu?.url ?? null;
+    }
+    if (corrAction === 'document_pdf') return (await lancer<{ url?: string | null }>('document_pdf', String(ref), { deja: acces.sansFrais(String(ref)) }))?.contenu?.url ?? null;
+    return (await lireSujet(getSupabase(), Number(ref))).urlSujet;
+  };
+  const basculerVue = async () => {
+    if (bascule) return;
+    const cible = vue === 'sujet' ? 'correction' : 'sujet';
+    setBascule(true);
+    try {
+      const adresse = adresses.current[cible] ?? (await resoudre(cible));
+      if (!adresse) return;
+      adresses.current[cible] = adresse;
+      suivre('annale_correction_toggle', { vers: cible });
+      setVue(cible);
+      setUrl(adresse);
+      setEtat({ statut: 'chargement' });
+      setPage({ n: 1, total: 0 });
+      setZoom(1);
+    } catch {
+      // Hors ligne ou refus : on reste sur le document affiché.
+    } finally {
+      setBascule(false);
+    }
+  };
   // Toast « Reprise à la page n » à l'ouverture, quelques secondes.
   useEffect(() => {
     if (!reprise) return;
@@ -130,7 +273,6 @@ export function LecteurPdf() {
             secondes={dureeChoisieS !== undefined ? (chrono.tempsRestantS ?? 0) : chrono.tempsEcouleS}
             compteARebours={dureeChoisieS !== undefined}
             alerte={dureeChoisieS !== undefined && (chrono.tempsRestantS ?? 0) <= 300}
-            onPress={() => setMenuChronoOuvert(true)}
           />
           {page.total ? (
             <View style={[styles.page, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
@@ -188,6 +330,19 @@ export function LecteurPdf() {
               <Text style={[typo.boutonPetit, { color: theme.texte.inverse }]}>{t('document.reprise', { n: etat.depart })}</Text>
             </View>
           ) : null}
+          <View style={[styles.actions, { bottom: bottom + espace[5] }]}>
+            {peutBasculer ? (
+              <BoutonLecteur
+                libelle={vue === 'sujet' ? t('travail.voirCorrection') : t('travail.voirSujet')}
+                desactive={bascule}
+                onPress={() => void basculerVue()}
+                icone={vue === 'sujet' ? <BookOpenCheck size={18} strokeWidth={2} color={theme.texte.principal} /> : <FileText size={18} strokeWidth={2} color={theme.texte.principal} />}
+              />
+            ) : null}
+            {kind && ref ? (
+              <BoutonLecteur libelle={t('travail.corriger')} onPress={() => setCorriger(true)} icone={<Sparkles size={18} strokeWidth={2} color={theme.texte.principal} />} />
+            ) : null}
+          </View>
           <View style={[styles.zoom, { bottom: bottom + espace[5], backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, shadowColor: theme.ombre }]}>
             <BoutonZoom libelle={t('document.zoomMoins')} onPress={() => setZoom((z) => Math.max(1, z - 0.5))}>
               <Minus size={18} strokeWidth={2} color={theme.texte.principal} />
@@ -199,61 +354,50 @@ export function LecteurPdf() {
         </View>
       ) : null}
     </Ecran>
+    {feuillesCredits}
+    <FeuilleEpuise ouverte={payant.refus?.raison === 'insuffisant'} onFermer={payant.effacerRefus} recharge />
+    {kind && ref ? (
+      <FeuilleCorrigerTravail
+        ouverte={corriger}
+        onFermer={() => setCorriger(false)}
+        sujet={{ kind, ref: String(ref), titre: titreBase, matiere: matiereEffective ?? null, tempsS: chrono.tempsEcouleS > 0 ? chrono.tempsEcouleS : null }}
+      />
+    ) : null}
     <Feuille
-      ouverte={menuChronoOuvert}
-      onFermer={() => setMenuChronoOuvert(false)}
-      icone="time-outline"
-      titre={t('annales.configurerChrono')}
-      texte={t('annales.choisirChrono')}
+      ouverte={tempsEcoule}
+      onFermer={() => setTempsEcoule(false)}
+      icone={<Hourglass size={24} strokeWidth={2} color={theme.texte.surCouleur} />}
+      couleurPastille={theme.accent.soleil}
+      titre={t('travail.tempsEcouleTitre')}
+      texte={t('travail.tempsEcouleTexte')}
       actions={[
-        ...(dureeOfficielle && dureeOfficielle > 0
-          ? [
-              {
-                libelle: `Durée officielle (${dureeOfficielle} min)`,
-                onPress: () => {
-                  setDureeChoisieS(dureeOfficielle * 60);
-                  chrono.demarrer();
-                  setMenuChronoOuvert(false);
-                },
-                variante: dureeChoisieS === dureeOfficielle * 60 ? ('principal' as const) : ('secondaire' as const),
-              },
-            ]
+        ...(peutBasculer && vue === 'sujet'
+          ? [{ libelle: t('travail.voirCorrection'), variante: 'principal' as const, onPress: () => { setTempsEcoule(false); void basculerVue(); } }]
           : []),
+        ...(kind && ref
+          ? [{ libelle: t('travail.corriger'), variante: peutBasculer && vue === 'sujet' ? ('secondaire' as const) : ('principal' as const), onPress: () => { setTempsEcoule(false); setCorriger(true); } }]
+          : []),
+        { libelle: t('travail.quitter'), variante: 'texte' as const, onPress: () => { setTempsEcoule(false); autoriserSortie.current = true; retour(); } },
+      ]}
+    />
+
+    <Feuille
+      ouverte={demandeSortie}
+      onFermer={annulerSortie}
+      icone={<TriangleAlert size={24} strokeWidth={2} color={theme.texte.surCouleur} />}
+      couleurPastille={theme.etat.alerte}
+      titre={t('annales.sortieTitre')}
+      texte={t('annales.sortieTexte')}
+      actions={[
         {
-          libelle: 'Chrono libre (montant)',
-          onPress: () => {
-            setDureeChoisieS(undefined);
-            chrono.demarrer();
-            setMenuChronoOuvert(false);
-          },
-          variante: dureeChoisieS === undefined ? ('principal' as const) : ('secondaire' as const),
+          libelle: t('annales.sortieContinuer'),
+          onPress: annulerSortie,
+          variante: 'principal',
         },
         {
-          libelle: '30 minutes',
-          onPress: () => {
-            setDureeChoisieS(30 * 60);
-            chrono.demarrer();
-            setMenuChronoOuvert(false);
-          },
-          variante: dureeChoisieS === 1800 ? ('principal' as const) : ('secondaire' as const),
-        },
-        {
-          libelle: '1 heure (60 min)',
-          onPress: () => {
-            setDureeChoisieS(60 * 60);
-            chrono.demarrer();
-            setMenuChronoOuvert(false);
-          },
-          variante: dureeChoisieS === 3600 ? ('principal' as const) : ('secondaire' as const),
-        },
-        {
-          libelle: '2 heures (120 min)',
-          onPress: () => {
-            setDureeChoisieS(120 * 60);
-            chrono.demarrer();
-            setMenuChronoOuvert(false);
-          },
-          variante: dureeChoisieS === 7200 ? ('principal' as const) : ('secondaire' as const),
+          libelle: t('annales.sortieQuitter'),
+          onPress: quitterSession,
+          variante: 'secondaire',
         },
       ]}
     />
@@ -311,6 +455,27 @@ const VuePdf = memo(
   (a, b) => a.uri === b.uri && a.depart === b.depart && a.zoom === b.zoom && a.fond === b.fond,
 );
 
+function BoutonLecteur({ libelle, onPress, icone, desactive }: { libelle: string; onPress: () => void; icone: React.ReactNode; desactive?: boolean }) {
+  const { theme } = useTheme();
+  return (
+    <Appui
+      accessibilityRole="button"
+      accessibilityLabel={libelle}
+      accessibilityState={{ disabled: !!desactive }}
+      disabled={desactive}
+      onPress={onPress}
+      decalage={0}
+      rayon={rayon.m}
+      hitSlop={4}
+    >
+      <View style={[styles.boutonLecteur, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, shadowColor: theme.ombre, opacity: desactive ? 0.6 : 1 }]}>
+        {icone}
+        <Text numberOfLines={1} style={[typo.boutonPetit, { color: theme.texte.principal }]}>{libelle}</Text>
+      </View>
+    </Appui>
+  );
+}
+
 function BoutonZoom({ libelle, onPress, children }: { libelle: string; onPress: () => void; children: React.ReactNode }) {
   return (
     <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={onPress} decalage={0} rayon={7} hitSlop={4}>
@@ -331,6 +496,20 @@ const styles = StyleSheet.create({
   cadre: { flex: 1, borderTopWidth: bord.normal },
   page: { paddingHorizontal: espace[3], paddingVertical: espace[1], borderWidth: bord.normal, borderRadius: rayon.pilule },
   toast: { position: 'absolute', top: espace[5], alignSelf: 'center', paddingHorizontal: espace[5], paddingVertical: espace[3], borderRadius: rayon.pilule },
+  actions: { position: 'absolute', left: espace[5], gap: espace[2], alignItems: 'flex-start' },
+  boutonLecteur: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espace[2],
+    minHeight: 48,
+    paddingHorizontal: espace[4],
+    borderWidth: bord.normal,
+    borderRadius: rayon.m,
+    shadowOffset: { width: ombre.carte, height: ombre.carte },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 0,
+  },
   zoom: {
     position: 'absolute',
     right: espace[5],

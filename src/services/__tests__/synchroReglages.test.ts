@@ -10,7 +10,7 @@ import { CLE_MAJ_REGLAGES, lireMajReglages } from '../reglagesLocaux';
 import { definirPreference, lirePreferences, PREFERENCES_PAR_DEFAUT, appliquerPreferences } from '../retours';
 import { construireReglages, suivreModifications, synchroniserReglages } from '../synchroReglages';
 
-jest.mock('../analytics', () => ({ suivre: jest.fn() }));
+jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 
 const client = (session: unknown = { user: { id: 'u1' } }) => ({
   auth: {

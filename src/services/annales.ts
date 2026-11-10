@@ -74,6 +74,21 @@ export function optionsFiltres(sujets: readonly Sujet[], f: Filtres = {}): { sig
   return { sigles, annees, matieres };
 }
 
+/** Minuscules sans accents : « Physique », « physique » et « PHYSIQUÉ » se valent. */
+export const normaliser = (texte: string): string => texte.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+/** Tous les mots de la recherche doivent se retrouver (dans n'importe quel ordre) dans l'un des textes donnés. */
+export function correspond(requete: string, ...textes: (string | number | null | undefined)[]): boolean {
+  const mots = normaliser(requete).split(/\s+/).filter(Boolean);
+  if (!mots.length) return true;
+  const foin = normaliser(textes.filter((x) => x !== null && x !== undefined).join(' '));
+  return mots.every((m) => foin.includes(m));
+}
+
+/** Recherche dans les sujets d'un concours : titre, matière, année, école et concours. */
+export const rechercherSujets = (sujets: readonly Sujet[], requete: string): Sujet[] =>
+  sujets.filter((s) => correspond(requete, s.titre, s.matiere, s.annee, s.sigle, s.ecole, s.concours));
+
 /** Ordre de la liste des sujets : année la plus récente d'abord, puis matière. */
 export function trierSujets(sujets: readonly Sujet[]): Sujet[] {
   return [...sujets].sort((a, b) => (b.annee ?? 0) - (a.annee ?? 0) || (a.matiere ?? a.titre).localeCompare(b.matiere ?? b.titre, 'fr'));
@@ -123,9 +138,14 @@ export function nomDocument(nom: string): string {
 }
 
 /** Dossiers d'annales de la classe (racines, ou sous-dossiers de `parent`). */
-export async function lireDossiers(client: Client, p: { niveau: string; pays: string; parent?: string | null }): Promise<Dossier[]> {
-  return avecCopie(`annales.dossiers.${p.niveau}.${p.pays}.${p.parent ?? ''}`, async () => {
-    const { data, error } = await client.rpc('class_document_folders', { p_level: p.niveau, p_country: p.pays, p_parent: p.parent ?? null });
+export async function lireDossiers(client: Client, p: { niveau: string; pays: string; serie?: string | null; parent?: string | null }): Promise<Dossier[]> {
+  return avecCopie(`annales.dossiers.${p.niveau}.${p.pays}${p.serie ? `.${p.serie}` : ''}.${p.parent ?? ''}`, async () => {
+    const { data, error } = await client.rpc('class_document_folders', {
+      p_level: p.niveau,
+      p_country: p.pays,
+      p_parent: p.parent ?? null,
+      ...(p.serie ? { p_series: p.serie } : {}),
+    });
     if (error) throw error;
     type Ligne = { folder_id: string; name: string; subfolders: number; documents: number };
     return ((data ?? []) as Ligne[]).filter((l) => l.documents > 0).map((l) => ({ id: l.folder_id, nom: nomDocument(l.name), sousDossiers: l.subfolders, documents: l.documents }));

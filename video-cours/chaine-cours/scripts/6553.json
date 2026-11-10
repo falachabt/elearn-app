@@ -1,0 +1,512 @@
+{
+ "cours": 6553,
+ "ecrans": {
+  "anagrammes": {
+   "kicker": "Combinatoire · permutations avec répétition",
+   "tex": [
+    "N = \\dfrac{n!}{n_1! \\, n_2! \\cdots n_k!}",
+    "\\dfrac{5!}{2!\\,2!\\,1!} = 30 \\qquad \\dfrac{6!}{2!\\,2!} = 180"
+   ],
+   "titre": "MAMAN et BANANE : diviser par les permutations internes",
+   "type": "etape"
+  },
+  "complementaire": {
+   "kicker": "Exemple type concours · le complémentaire",
+   "tex": [
+    "|\\Omega| = 32 \\times 31 \\times 30 = 29760",
+    "|\\overline{C}| = 24 \\times 8^3 = 12288",
+    "P(\\overline{C}) = \\dfrac{64}{155} \\qquad P(C) = 1 - \\dfrac{64}{155} = \\dfrac{91}{155}"
+   ],
+   "titre": "Au moins deux cartes de la même couleur (C)",
+   "type": "etape"
+  },
+  "cond_densite": {
+   "kicker": "Densité conditionnelle",
+   "note": "Même densité cxy : f_{Y|X}(y|0,5) = 0,5y sur [0, 2] · P(Y > 1 | X = 0,5) = ∫₁² 0,5y dy = 0,75",
+   "tex": "f_{Y|X}(y|x) = \\dfrac{f_{X,Y}(x, y)}{f_X(x)}",
+   "titre": "Conditionner une densité : diviser par la marginale",
+   "type": "formule"
+  },
+  "conditionnelle": {
+   "kicker": "Probabilités conditionnelles",
+   "note": "Condition : P(B) > 0 · Exemple : sachant la carte cœur, probabilité d'une figure : (3/52)/(13/52) = 3/13 · Erreur classique : inverser A et B, P(A|B) et P(B|A) diffèrent presque toujours",
+   "tex": "P(A|B) = \\dfrac{P(A \\cap B)}{P(B)}",
+   "titre": "Savoir, c'est restreindre l'univers",
+   "type": "formule"
+  },
+  "covariance": {
+   "kicker": "La covariance",
+   "tex": [
+    "\\text{Cov}(X, Y) = E(XY) - E(X)\\, E(Y)",
+    "V(X + Y) = V(X) + V(Y) + 2\\, \\text{Cov}(X, Y)",
+    "\\rho(X, Y) = \\dfrac{\\text{Cov}(X, Y)}{\\sigma(X)\\, \\sigma(Y)}"
+   ],
+   "titre": "Deux variables qui varient ensemble",
+   "type": "etape"
+  },
+  "densite": {
+   "kicker": "Densité conjointe",
+   "note": "Deux propriétés : f ≥ 0 partout, et l'intégrale sur tout le plan vaut 1 · La probabilité est le volume sous la surface au-dessus de D · Une densité peut dépasser 1 ; pour une variable continue, P(X = a) = 0",
+   "tex": "P((X, Y) \\in D) = \\iint_D f_{X,Y}(x, y) \\, dx \\, dy",
+   "titre": "Une masse de probabilité répartie sur le plan",
+   "type": "formule",
+   "anim": {
+    "nom": "surface_densite_fig",
+    "hauteur": 260
+   }
+  },
+  "esperance": {
+   "kicker": "L'espérance",
+   "note": "Linéarité, sans aucune hypothèse : E(aX + bY) = aE(X) + bE(Y) · Exemple du dé : gain −1 ou 2, chacun de probabilité 1/2, donc E(X) = 1/2",
+   "tex": "E(X) = \\sum_i x_i\\, p_i",
+   "titre": "Le centre de gravité d'une loi",
+   "type": "formule",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 240
+   }
+  },
+  "etoiles_barres": {
+   "kicker": "Combinatoire · répartitions",
+   "note": "Objets identiques, boîtes distinctes, vides autorisés · Boîtes toutes non vides : C(n − 1, k − 1) · Condition « au moins a » : retrancher a, répartir le reste",
+   "tex": "N = \\binom{n + k - 1}{k - 1} = \\binom{n + k - 1}{n}",
+   "titre": "Étoiles et barres : répartir des objets identiques",
+   "type": "formule",
+   "anim": {
+    "nom": "etoiles_barres_fig",
+    "hauteur": 240
+   }
+  },
+  "ex_boites": {
+   "kicker": "Exemple type concours · dix boules, quatre boîtes",
+   "tex": [
+    "\\tbinom{13}{3} = 286",
+    "\\tbinom{9}{3} = 84 \\qquad \\tbinom{10}{3} - \\tbinom{5}{3} = 110",
+    "P = \\frac{66}{286} = \\frac{33}{143}"
+   ],
+   "titre": "Sans contrainte, au moins une par boîte, contraintes mixtes, une boîte vide",
+   "type": "etape"
+  },
+  "ex_cartes": {
+   "kicker": "Exemple · deux cartes sans remise",
+   "tex": [
+    "|\\Omega| = 52 \\times 51 = 2652",
+    "P(A) = \\dfrac{4 \\times 51}{2652} = \\dfrac{1}{13}",
+    "|B| = 4 \\times 48 + 48 \\times 4 = 384 \\qquad P(B) = \\dfrac{32}{221}"
+   ],
+   "titre": "Un as en premier (A), ou exactement un as (B)",
+   "type": "etape"
+  },
+  "ex_covariance": {
+   "kicker": "Exemple type concours · l'urne sans remise",
+   "tex": [
+    "P(X{=}1, Y{=}1) = 0{,}1 \\qquad E(X) = E(Y) = 0{,}4",
+    "E(XY) = 0{,}1",
+    "\\text{Cov}(X, Y) = 0{,}1 - 0{,}4 \\times 0{,}4 = -0{,}06"
+   ],
+   "titre": "Une covariance négative, et c'est logique",
+   "type": "etape",
+   "anim": {
+    "nom": "urne_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_variance": {
+   "kicker": "Exemple · la variance d'une somme",
+   "tex": [
+    "V(X) = 0{,}4 - 0{,}16 = 0{,}24",
+    "V(X + Y) = 0{,}24 + 0{,}24 - 0{,}12 = 0{,}36",
+    "Z = X + Y : \\quad E(Z^2) = 1 \\quad V(Z) = 1 - 0{,}64 = 0{,}36"
+   ],
+   "titre": "Deux méthodes, un même résultat",
+   "type": "etape"
+  },
+  "independance": {
+   "kicker": "Indépendance",
+   "note": "Deux dés : « premier six » et « somme sept » sont indépendants (1/36 = 1/6 × 1/6) · Sans remise, les tirages s'influencent : 5/14 ≠ 25/64 · Indépendance ≠ incompatibilité ; indépendance deux à deux ≠ indépendance mutuelle",
+   "tex": "P(A \\cap B) = P(A)\\, P(B) \\iff P(A|B) = P(A)",
+   "titre": "Quand savoir ne change rien",
+   "type": "formule",
+   "anim": {
+    "nom": "grille_des_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Un même fil rouge traverse tout le cours : avant de calculer, il faut modéliser. Définir l'univers, nommer les événements, choisir le bon outil : c'est là que se gagnent les points, bien plus que dans les calculs eux-mêmes.",
+   "type": "phrase"
+  },
+  "marginale": {
+   "kicker": "Densité conjointe · marginales",
+   "tex": [
+    "c = 1 \\qquad f_X(x) = \\int_0^2 x y \\, dy = 2x",
+    "P(X > Y) = \\int_0^1 \\dfrac{x^3}{2} \\, dx = \\dfrac{1}{8}"
+   ],
+   "titre": "Densité c·xy sur un rectangle : constante, marginale, comparaison",
+   "type": "etape"
+  },
+  "minmax": {
+   "kicker": "Synthèse · minimum et écart de deux exponentielles",
+   "tex": [
+    "P(U > t) = e^{-\\lambda t} \\cdot e^{-\\lambda t} = e^{-2\\lambda t} \\qquad U \\sim \\mathcal{E}(2\\lambda)",
+    "P(U > u, V > v) = e^{-2\\lambda u} \\, e^{-\\lambda v} = P(U > u)\\, P(V > v)",
+    "V \\sim \\mathcal{E}(\\lambda), \\quad V \\text{ indépendante de } U"
+   ],
+   "titre": "Un résultat à connaître par cœur",
+   "type": "etape",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 150
+   }
+  },
+  "normalisation": {
+   "kicker": "Densité conjointe · normaliser",
+   "tex": [
+    "\\int_0^{1-x} (x + y) \\, dy = \\tfrac{1}{2} - \\tfrac{x^2}{2}",
+    "I = \\int_0^1 \\left( \\tfrac{1}{2} - \\tfrac{x^2}{2} \\right) dx = \\tfrac{1}{3} \\qquad k = 3",
+    "P\\left( X + Y \\leq \\tfrac{1}{2} \\right) = \\tfrac{1}{8}"
+   ],
+   "titre": "Trouver la constante sur un domaine triangulaire",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Conditionner : P(A|B) = P(A∩B)/P(B) ; Bayes inverse",
+    "Totales : décomposer selon un système complet",
+    "Dénombrement : anagrammes, étoiles et barres",
+    "Moments : E, V par König-Huygens, covariance",
+    "Densités : normaliser, borner, intégrer dans l'ordre"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "strategie": {
+   "etapes": [
+    "Modéliser d'abord : univers, événements, équiprobabilité",
+    "« Au moins un » : passer par le complémentaire",
+    "Conditionnement : ne jamais inverser P(A|B) et P(B|A)",
+    "Tests : écrire la VPP au brouillon, penser prévalence",
+    "Densités : dessiner le support avant toute intégrale"
+   ],
+   "kicker": "Stratégie d'épreuve",
+   "type": "recap"
+  },
+  "symetrie": {
+   "kicker": "Vitesse de concours · la symétrie des tirages",
+   "tex": [
+    "P(A) = \\dfrac{6}{10} = 0{,}6 \\qquad |\\Omega| = A_{10}^{3} = 720",
+    "P(B \\cap A) = \\dfrac{4 \\times 6 \\times 8}{720} = \\dfrac{4}{15}",
+    "P(B|A) = \\dfrac{4/15}{6/10} = \\dfrac{4}{9}"
+   ],
+   "titre": "La troisième boule (A) et la première noire (B)",
+   "type": "etape"
+  },
+  "test_calcul": {
+   "kicker": "Exemple type concours · le test en chiffres",
+   "tex": [
+    "P(M \\cap +) = 0{,}02 \\times 0{,}95 = 0{,}019 \\qquad P(M \\cap -) = 0{,}001",
+    "P(\\overline{M} \\cap +) = 0{,}098 \\qquad P(\\overline{M} \\cap -) = 0{,}882",
+    "P(+) = 0{,}019 + 0{,}098 = 0{,}117"
+   ],
+   "titre": "Les probabilités conjointes, puis le total",
+   "type": "etape",
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 200
+   }
+  },
+  "test_resultat": {
+   "kicker": "Le paradoxe des maladies rares",
+   "note": "P(M|−) ≈ 0,0011 : un test négatif rassure vraiment, VPN ≈ 0,9989 · La sensibilité est une propriété du test ; la valeur prédictive dépend de la prévalence",
+   "tex": "VPP = \\dfrac{0{,}019}{0{,}117} \\approx 0{,}162",
+   "titre": "Positif ne veut pas dire malade",
+   "type": "formule"
+  },
+  "test_variante": {
+   "kicker": "Même mécanisme, maladie plus rare",
+   "tex": [
+    "P(T^+) = 0{,}99 \\times 0{,}001 + 0{,}01 \\times 0{,}999 = 0{,}01098",
+    "P(M|T^+) = \\dfrac{0{,}00099}{0{,}01098} \\approx 0{,}090"
+   ],
+   "titre": "Quand la prévalence chute, la valeur prédictive s'effondre",
+   "type": "etape"
+  },
+  "tests": {
+   "kicker": "Tests diagnostiques · le vocabulaire",
+   "tex": [
+    "Se = P(+|M) \\qquad Sp = P(-|\\overline{M})",
+    "VPP = P(M|+) \\qquad VPN = P(\\overline{M}|-)"
+   ],
+   "titre": "Quatre cases, quatre indicateurs",
+   "type": "etape",
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 240
+   }
+  },
+  "titre": {
+   "kicker": "Concours Polytechnique L3",
+   "sous": "Modéliser, dénombrer, conditionner : les méthodes du concours, des tirages aux densités conjointes",
+   "titre": "Probabilités et statistiques",
+   "type": "titre",
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 250
+   }
+  },
+  "totales": {
+   "kicker": "Formule des probabilités totales",
+   "note": "Les B_i forment un système complet : deux à deux disjoints, de réunion Ω · Urne cinq rouges, trois noires, sans remise : P(R₂) = (4/7)(5/8) + (5/7)(3/8) = 5/8",
+   "tex": "P(A) = \\sum_{i=1}^{n} P(A|B_i)\\, P(B_i)",
+   "titre": "Décomposer selon toutes les causes possibles",
+   "type": "formule",
+   "anim": {
+    "nom": "urne_fig",
+    "hauteur": 200
+   }
+  },
+  "univers": {
+   "kicker": "Modéliser · l'univers",
+   "tex": [
+    "P(A) = \\frac{|A|}{|\\Omega|} \\qquad A_n^p = n(n-1) \\cdots (n-p+1)",
+    "\\binom{n}{p} = \\frac{n!}{p!\\, (n-p)!} \\qquad n^p"
+   ],
+   "titre": "L'univers équiprobable : arrangements, combinaisons, avec remise",
+   "type": "etape"
+  },
+  "variance": {
+   "kicker": "La variance",
+   "note": "König-Huygens : calculer E(X²) séparément, ce n'est pas [E(X)]² · σ(X) = √V(X), dans la même unité que X · V(aX + b) = a² V(X) : une translation ne change pas la dispersion",
+   "tex": "V(X) = E(X^2) - [E(X)]^2",
+   "titre": "Mesurer la dispersion autour de la moyenne",
+   "type": "formule",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 180
+   }
+  }
+ },
+ "matiere": "Concours Polytechnique L3",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Modéliser, dénombrer et conditionner"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : exploiter le conditionnement. La formule des probabilités totales décompose un événement selon ses causes, le théorème de Bayes inverse le conditionnement, et les tests diagnostiques montrent pourquoi la prévalence change tout. Nous terminerons par les deux premiers résumés d'une variable : l'espérance et la variance.",
+    "texte": "Partie 2 : probabilités totales, tests diagnostiques, espérance et variance."
+   },
+   "sous_titre": "Probabilités totales, tests de Bayes et premiers moments"
+  },
+  {
+   "debut": "p19",
+   "pont": {
+    "dit": "Partie trois : lier les variables entre elles. La covariance mesure leurs variations conjointes, puis les densités conjointes étendent le conditionnement au monde continu, jusqu'à un résultat de synthèse sur les lois exponentielles.",
+    "texte": "Partie 3 : covariance, densités conjointes et synthèse."
+   },
+   "sous_titre": "Covariance et densités conjointes"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de préparation au concours Polytechnique, consacré aux probabilités et aux statistiques : la modélisation, le dénombrement, les probabilités conditionnelles, les moments des variables aléatoires et les densités conjointes.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Probabilités et statistiques : les méthodes du concours."
+  },
+  {
+   "dit": "Le fil rouge de ce cours tient en une phrase : avant de calculer, il faut modéliser. Définir l'univers, nommer les événements, vérifier l'équiprobabilité, puis seulement choisir l'outil adapté. La plupart des erreurs de concours naissent avant le premier calcul.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Recentrer sur l'essentiel : modéliser avant de calculer."
+  },
+  {
+   "dit": "Tout commence par l'univers, l'ensemble des résultats possibles. Quand le tirage se fait au hasard, chaque résultat élémentaire a la même probabilité : la probabilité d'un événement devient le nombre de cas favorables divisé par le nombre de cas possibles. Trois dénombrements suffisent presque toujours : les arrangements quand l'ordre compte sans remise, les combinaisons quand l'ordre ne compte pas, et les puissances quand il y a remise.",
+   "ecran": "univers",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "L'univers équiprobable : favorables sur possibles."
+  },
+  {
+   "dit": "Exemple fondateur : on tire successivement deux cartes sans remise dans un jeu de cinquante-deux. L'univers compte cinquante-deux fois cinquante et un couples ordonnés. La première carte est un as dans quatre fois cinquante et un cas : probabilité un treizième. Pour exactement un as, on décompose en deux cas disjoints, as puis non-as ou non-as puis as : trois cent quatre-vingt-quatre cas, soit trente-deux sur deux cent vingt et un.",
+   "ecran": "ex_cartes",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Deux cartes sans remise : décomposer pour compter."
+  },
+  {
+   "dit": "Exemple type du concours : trois cartes tirées sans remise dans un jeu de trente-deux. On demande la probabilité d'obtenir au moins deux cartes de la même couleur. Le réflexe : passer par le complémentaire, trois couleurs toutes différentes, bien plus facile à compter. Vingt-quatre ordres de couleurs, huit choix de carte dans chacune : le complémentaire vaut soixante-quatre sur cent cinquante-cinq, et la réponse quatre-vingt-onze sur cent cinquante-cinq.",
+   "ecran": "complementaire",
+   "id": "p05",
+   "pause_apres": 0.7,
+   "texte": "« Au moins » : le complémentaire d'abord."
+  },
+  {
+   "dit": "Quand des objets se répètent, permuter deux exemplaires identiques ne crée rien de nouveau : il faut diviser par les permutations internes de chaque famille. Le mot MAMAN, cinq lettres dont deux m et deux a, possède donc cinq factorielle divisé par deux factorielle fois deux factorielle anagrammes distincts : trente. Même méthode pour BANANE, avec deux a et deux n : cent quatre-vingts.",
+   "ecran": "anagrammes",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Anagrammes : diviser par les répétitions."
+  },
+  {
+   "dit": "Autre classique : répartir des objets identiques dans des boîtes distinctes. On code chaque répartition par une rangée d'étoiles, qui figurent les objets, séparées par des barres, qui figurent les frontières entre les boîtes. Choisir les positions des barres parmi toutes les positions donne un coefficient binomial. Si chaque boîte doit recevoir au moins un objet, on en place d'abord un partout, puis on répartit le reste librement.",
+   "ecran": "etoiles_barres",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Étoiles et barres : coder chaque répartition."
+  },
+  {
+   "dit": "Application complète : dix boules identiques, quatre boîtes distinctes. Sans contrainte, deux cent quatre-vingt-six répartitions. Au moins une boule par boîte : quatre-vingt-quatre. Avec au moins trois boules dans la première boîte et au plus quatre dans la deuxième, on compte tout puis on retranche le cas interdit : cent dix. Et la première boîte est vide avec probabilité trente-trois sur cent quarante-trois.",
+   "ecran": "ex_boites",
+   "id": "p08",
+   "pause_apres": 0.7,
+   "texte": "Dix boules, quatre boîtes : deux cent quatre-vingt-six répartitions."
+  },
+  {
+   "dit": "Une information change les probabilités : savoir que la carte tirée est un cœur restreint l'univers aux treize cœurs, et la probabilité qu'elle soit une figure devient trois treizièmes. La probabilité conditionnelle formalise ce réflexe : probabilité de a sachant b, c'est la probabilité de a et b à la fois, divisée par la probabilité de b. L'erreur la plus fréquente du concours consiste à inverser les deux événements.",
+   "ecran": "conditionnelle",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "La probabilité conditionnelle : savoir restreint l'univers."
+  },
+  {
+   "dit": "Quand un événement peut arriver par plusieurs chemins exclusifs, on le décompose : la formule des probabilités totales somme, sur chaque cause, la probabilité conditionnelle multipliée par la probabilité de la cause. Dans une urne de cinq boules rouges et trois noires, sans remise, la probabilité que la deuxième soit rouge se calcule selon la couleur de la première : on retrouve cinq huitièmes, comme au premier tirage.",
+   "ecran": "totales",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Probabilités totales : sommer sur toutes les causes."
+  },
+  {
+   "dit": "Deux événements sont indépendants quand la réalisation de l'un n'apprend rien sur l'autre : la probabilité de leur intersection est le produit de leurs probabilités. Contre-intuition célèbre aux dés : obtenir un six au premier dé et une somme de sept sont indépendants. À l'inverse, des tirages sans remise ne le sont pas : le premier tirage modifie l'urne. Ne confondez jamais indépendance et incompatibilité.",
+   "ecran": "independance",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Indépendance : l'intersection vaut le produit."
+  },
+  {
+   "dit": "Un test binaire produit quatre cases : vrai positif et vrai négatif, faux positif et faux négatif. La sensibilité mesure sa capacité à détecter les malades, la spécificité sa capacité à écarter les personnes saines. Mais ce qui intéresse le patient, c'est l'inverse : sachant le test positif, quelle est la probabilité d'être réellement malade ? C'est la valeur prédictive positive, et elle dépend crucialement de la fréquence de la maladie.",
+   "ecran": "tests",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Tests : sensibilité et spécificité ne suffisent pas."
+  },
+  {
+   "dit": "L'exemple canonique : une maladie touche deux pour cent de la population ; le test détecte quatre-vingt-quinze pour cent des malades et déclare négatifs quatre-vingt-dix pour cent des personnes saines. On multiplie le long des branches de l'arbre : malade et positif, zéro virgule zéro dix-neuf ; sain et positif, zéro virgule zéro quatre-vingt-dix-huit. Au total, la probabilité d'un test positif vaut zéro virgule cent dix-sept.",
+   "ecran": "test_calcul",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Le test en chiffres : multiplier le long de l'arbre."
+  },
+  {
+   "dit": "Le théorème de Bayes inverse le conditionnement : parmi les tests positifs, la part des vrais malades vaut zéro virgule zéro dix-neuf divisé par zéro virgule cent dix-sept, soit environ seize pour cent seulement. Malgré un test fiable, cinq positifs sur six sont de fausses alertes, parce que la maladie est rare et les personnes saines très nombreuses. En revanche, un test négatif rassure presque complètement.",
+   "ecran": "test_resultat",
+   "id": "p14",
+   "pause_apres": 0.7,
+   "texte": "Bayes : seulement seize pour cent de vrais malades."
+  },
+  {
+   "dit": "Même mécanisme, avec une maladie dix fois plus rare encore : un pour mille de la population, un test qui détecte quatre-vingt-dix-neuf pour cent des malades avec un pour cent de faux positifs. La probabilité d'un test positif tombe à environ zéro virgule zéro onze, et celle d'être malade sachant le test positif à neuf pour cent seulement. Retenez le réflexe : devant un résultat de test, toujours demander la prévalence.",
+   "ecran": "test_variante",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Maladie dix fois plus rare : neuf pour cent seulement."
+  },
+  {
+   "dit": "Dernier exercice de cette partie, taillé pour la vitesse : six boules blanches et quatre noires, trois tirages sans remise. La troisième boule est blanche avec probabilité six dixièmes : par symétrie, chaque boule a la même chance d'occuper chaque position. Et sachant la troisième blanche, la première est noire avec probabilité quatre neuvièmes : définition du conditionnement, après un dénombrement ciblé de l'intersection.",
+   "ecran": "symetrie",
+   "id": "p16",
+   "pause_apres": 0.7,
+   "texte": "Symétrie des tirages : chaque position se vaut."
+  },
+  {
+   "dit": "Une variable aléatoire se résume d'abord par son espérance : la moyenne de ses valeurs, pondérée par leurs probabilités. Son arme secrète est la linéarité : l'espérance d'une somme est la somme des espérances, sans aucune hypothèse d'indépendance. Au dé, un gain de moins un euro ou de deux euros, chacun avec probabilité un demi, donne une espérance d'un demi-euro par partie.",
+   "ecran": "esperance",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "L'espérance : une moyenne pondérée, et linéaire."
+  },
+  {
+   "dit": "La moyenne ne dit pas tout : deux variables de même espérance peuvent être l'une concentrée, l'autre très étalée. La variance mesure cette dispersion, comme l'espérance du carré de l'écart à la moyenne. En pratique, on utilise la formule de König-Huygens : l'espérance du carré, moins le carré de l'espérance. Sa racine carrée, l'écart-type, s'exprime dans la même unité que la variable.",
+   "ecran": "variance",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "La variance : König-Huygens fait le calcul."
+  },
+  {
+   "dit": "Pour deux variables, la covariance mesure si elles varient dans le même sens : c'est l'espérance du produit, moins le produit des espérances. Positive, elles montent ensemble ; négative, l'une monte quand l'autre descend. Elle corrige la variance d'une somme : sans indépendance, oublier son terme est une faute classique. L'indépendance entraîne une covariance nulle, mais la réciproque est fausse.",
+   "ecran": "covariance",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "La covariance : le terme oublié des sommes."
+  },
+  {
+   "dit": "Exemple entièrement corrigé : une urne de deux boules rouges et trois noires, deux tirages sans remise. Ixe compte les rouges au premier tirage, igrec au second. Leur loi conjointe donne un dixième pour deux rouges. Chaque espérance vaut zéro virgule quatre, l'espérance du produit zéro virgule un : la covariance vaut moins zéro virgule zéro six. Négative, forcément : tirer une rouge d'abord en laisse moins pour le second tirage.",
+   "ecran": "ex_covariance",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Urne sans remise : covariance moins zéro virgule zéro six."
+  },
+  {
+   "dit": "La variance de chaque variable vaut zéro virgule vingt-quatre. La formule générale donne pour la somme : zéro virgule vingt-quatre, plus zéro virgule vingt-quatre, moins deux fois zéro virgule zéro six, soit zéro virgule trente-six. Contrôle par la loi de la somme : son espérance du carré vaut un, sa variance un moins zéro virgule soixante-quatre, même résultat. Au concours, ce double calcul est une assurance.",
+   "ecran": "ex_variance",
+   "id": "p21",
+   "pause_apres": 0.7,
+   "texte": "Variance d'une somme : zéro virgule trente-six, deux fois."
+  },
+  {
+   "dit": "Pour deux variables continues, la probabilité devient une surface : la densité conjointe répartit une masse totale de un sur le plan, et la probabilité d'un domaine est le volume situé sous la surface, au-dessus de ce domaine. Toute la difficulté pratique tient en une phrase : déterminer correctement les bornes d'intégration, en commençant toujours par dessiner le support de la densité.",
+   "ecran": "densite",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Densité conjointe : une probabilité est un volume."
+  },
+  {
+   "dit": "Exercice canonique : une densité proportionnelle à ixe plus igrec, sur le triangle des points à coordonnées positives dont la somme ne dépasse pas un. On intègre d'abord en igrec, à ixe fixé, jusqu'à un moins ixe : il vient un demi, moins ixe carré sur deux. Puis en ixe, de zéro à un : un tiers. La constante de normalisation vaut donc trois. Au passage, la probabilité que la somme des deux variables reste sous un demi vaut un huitième.",
+   "ecran": "normalisation",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Normaliser : la constante vaut trois."
+  },
+  {
+   "dit": "Sur un rectangle, tout se simplifie : pour la densité c fois ixe fois igrec, avec ixe entre zéro et un et igrec entre zéro et deux, la normalisation donne c égal à un. La densité marginale de ixe s'obtient en intégrant la densité conjointe en igrec, sur toute sa hauteur : deux ixe. Et la probabilité que ixe dépasse igrec demande de borner igrec par ixe, sous la diagonale du rectangle : elle vaut un huitième.",
+   "ecran": "marginale",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Marginale : intégrer sur toute la hauteur."
+  },
+  {
+   "dit": "Conditionner, pour les densités, c'est diviser la densité conjointe par la densité marginale de la variable connue. Dans l'exemple précédent, sachant ixe égal à un demi, la densité de igrec devient un demi de igrec, et la probabilité que igrec dépasse un vaut trois quarts. On retrouve, dans le monde continu, exactement le même geste que pour les événements.",
+   "ecran": "cond_densite",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Densité conditionnelle : diviser par la marginale."
+  },
+  {
+   "dit": "Synthèse finale : ixe et igrec, indépendantes, suivent la même loi exponentielle de paramètre lambda. Leur minimum, u, dépasse un seuil seulement si les deux le dépassent : les probabilités se multiplient, et u suit une loi exponentielle de paramètre deux lambda. Plus fort : l'écart vé entre le maximum et le minimum est indépendant du minimum et suit la loi de départ. C'est l'absence de mémoire, un classique des épreuves.",
+   "ecran": "minmax",
+   "id": "p26",
+   "pause_apres": 0.7,
+   "texte": "Minimum d'exponentielles : le paramètre double."
+  },
+  {
+   "dit": "Face à un énoncé, la stratégie tient en quelques réflexes : modéliser avant tout calcul, passer par le complémentaire devant un au moins, ne jamais inverser un conditionnement, écrire la formule de la valeur prédictive dès le brouillon, et dessiner le support avant toute intégrale double. Ces gestes, devenus automatiques, libèrent du temps pour les vraies difficultés du sujet.",
+   "ecran": "strategie",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "La stratégie : cinq réflexes avant de calculer."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement complet : modéliser, dénombrer, conditionner, inverser par Bayes, résumer par les moments, et intégrer les densités sur leur support. Chaque outil a ses conditions d'application : c'est leur vérification, bien plus que les formules elles-mêmes, qui fait une copie de concours.",
+   "ecran": "recap",
+   "id": "p28",
+   "pause_apres": 0.5,
+   "texte": "Probabilités et statistiques : à retenir."
+  }
+ ],
+ "titre": "Probabilités et statistiques"
+}

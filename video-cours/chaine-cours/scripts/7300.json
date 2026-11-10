@@ -1,0 +1,541 @@
+{
+  "cours": 7300,
+  "titre": "Fonctions : domaine, limites et continuité",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Fonctions",
+      "titre": "Fonctions : domaine, limites et continuité",
+      "sous": "Domaine, parité et périodicité, limites et asymptotes, continuité et valeurs intermédiaires",
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Un plan en trois temps : décrire, approcher, continuer.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 160
+      }
+    },
+    "domaine": {
+      "type": "formule",
+      "kicker": "Domaine de définition",
+      "tex": "D_f = \\{\\, x \\in \\mathbb{R} \\mid f(x)\\ \\text{existe} \\,\\}",
+      "note": "Le domaine rassemble tous les réels où le calcul est possible"
+    },
+    "regles_domaine": {
+      "type": "etape",
+      "kicker": "Trois conditions d'existence",
+      "titre": "Rationnelle, racine, logarithme",
+      "tex": [
+        "\\text{rationnelle : } Q(x) \\neq 0",
+        "\\text{racine : } u(x) \\geq 0",
+        "\\text{logarithme : } u(x) > 0"
+      ],
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 120
+      }
+    },
+    "ex_domaine": {
+      "type": "etape",
+      "kicker": "Exemple résolu · domaine",
+      "titre": "Une racine au numérateur, un dénominateur",
+      "tex": [
+        "f(x) = \\tfrac{\\sqrt{x-1}}{x-3}",
+        "x - 1 \\geq 0 \\quad\\text{et}\\quad x - 3 \\neq 0",
+        "D_f = [1,\\,3[ \\,\\cup\\, ]3,\\,+\\infty["
+      ]
+    },
+    "parite": {
+      "type": "etape",
+      "kicker": "Parité",
+      "titre": "Domaine symétrique par rapport à zéro, d'abord",
+      "tex": [
+        "f(-x) = f(x) \\quad : \\quad \\text{fonction paire}",
+        "f(-x) = -f(x) \\quad : \\quad \\text{fonction impaire}"
+      ]
+    },
+    "symetrie": {
+      "type": "phrase",
+      "kicker": "Ce que la parité dessine",
+      "texte": "Paire : axe des ordonnées. Impaire : origine.",
+      "anim": {
+        "nom": "symetrie_fig",
+        "hauteur": 170
+      }
+    },
+    "ex_parite": {
+      "type": "etape",
+      "kicker": "Exemple résolu · parité",
+      "titre": "Un cube moins la variable",
+      "tex": [
+        "f(x) = x^3 - x",
+        "f(-x) = -x^3 + x = -(x^3 - x) = -f(x)"
+      ]
+    },
+    "periodicite": {
+      "type": "formule",
+      "kicker": "Périodicité",
+      "tex": "f(x + T) = f(x)",
+      "note": "T : plus petite période strictement positive",
+      "anim": {
+        "nom": "sinusoide",
+        "hauteur": 150
+      }
+    },
+    "ex_periode": {
+      "type": "phrase",
+      "kicker": "Exemple · le sinus doublé",
+      "texte": "sin(2x) : période π, étude sur [0 ; π] puis recopie.",
+      "anim": {
+        "nom": "sinusoide",
+        "hauteur": 150
+      }
+    },
+    "courbe": {
+      "type": "formule",
+      "kicker": "La courbe représentative",
+      "tex": "\\mathcal{C}_f = \\{\\, M(x,\\,y) \\mid y = f(x) \\,\\}",
+      "note": "y : image de x ; x : antécédent de y"
+    },
+    "ex_courbe": {
+      "type": "etape",
+      "kicker": "Exemple résolu · courbe",
+      "titre": "Le carré moins un",
+      "tex": [
+        "f(x) = x^2 - 1 \\quad : \\quad \\text{paire}",
+        "f(x) = 0 \\iff x^2 = 1",
+        "x = -1 \\quad\\text{ou}\\quad x = 1"
+      ]
+    },
+    "methode_generale": {
+      "type": "etape",
+      "kicker": "Synthèse méthodologique",
+      "titre": "Quatre gestes avant de tracer",
+      "tex": [
+        "\\text{1. déterminer } D_f",
+        "\\text{2. tester la parité si } D_f \\text{ est symétrique}",
+        "\\text{3. chercher une période}",
+        "\\text{4. exploiter, puis tracer } \\mathcal{C}_f"
+      ]
+    },
+    "limite_point": {
+      "type": "formule",
+      "kicker": "Limite en un point",
+      "tex": "\\lim_{x \\to a} f(x) = L",
+      "note": "f(x) s'approche de L dès que x s'approche de a",
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 150
+      }
+    },
+    "gauche_droite": {
+      "type": "etape",
+      "kicker": "Limite à gauche, limite à droite",
+      "titre": "La valeur absolue divisée par la variable",
+      "tex": [
+        "x > 0 : \\tfrac{|x|}{x} = 1",
+        "x < 0 : \\tfrac{|x|}{x} = -1",
+        "\\text{limites différentes : pas de limite en } 0"
+      ]
+    },
+    "limites_usuelles": {
+      "type": "etape",
+      "kicker": "Limites usuelles",
+      "titre": "Trois limites à connaître par cœur",
+      "tex": [
+        "\\lim_{x \\to 0} \\tfrac{\\sin x}{x} = 1",
+        "\\lim_{x \\to 0} \\tfrac{\\sqrt{1+x}-1}{x} = \\tfrac{1}{2}",
+        "\\lim_{x \\to +\\infty} \\tfrac{1}{x} = 0"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : à retenir",
+      "etapes": [
+        "Domaine : conditions d'existence croisées",
+        "Parité : f(−x) comparé à f(x) et à −f(x)",
+        "Période : le motif se répète tous les T",
+        "Limite en a : gauche et droite d'accord"
+      ],
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 100
+      }
+    },
+    "limite_infini": {
+      "type": "formule",
+      "kicker": "Limite finie en l'infini",
+      "tex": "\\lim_{x \\to +\\infty} f(x) = L",
+      "note": "Pour x assez grand, f(x) reste aussi près de L qu'on veut",
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 150
+      }
+    },
+    "preuve_inverse": {
+      "type": "etape",
+      "kicker": "Exemple · l'inverse",
+      "titre": "Rendre l'écart plus petit que tout epsilon",
+      "tex": [
+        "\\left|\\tfrac{1}{x} - 0\\right| = \\tfrac{1}{x} < \\varepsilon",
+        "\\text{dès que } x > \\tfrac{1}{\\varepsilon}"
+      ]
+    },
+    "limite_infinie": {
+      "type": "formule",
+      "kicker": "Limite infinie en l'infini",
+      "tex": "\\lim_{x \\to +\\infty} x^2 = +\\infty",
+      "note": "Pour tout seuil M, x² dépasse M dès que x dépasse la racine de M"
+    },
+    "operations": {
+      "type": "etape",
+      "kicker": "Opérations sur les limites",
+      "titre": "Somme, produit, quotient : le tableau résumé",
+      "tex": [
+        "L,\\ L' : L + L',\\quad L \\times L',\\quad \\tfrac{L}{L'}",
+        "L,\\ \\pm\\infty : \\pm\\infty,\\quad \\text{règle du signe},\\quad 0",
+        "\\pm\\infty,\\ \\pm\\infty : \\text{F.I. pour somme et quotient}",
+        "0,\\ \\pm\\infty : \\text{F.I. pour le produit}"
+      ]
+    },
+    "formes_indeterminees": {
+      "type": "phrase",
+      "kicker": "Les formes indéterminées",
+      "texte": "0/0, ∞/∞, 0 × ∞, ∞ − ∞ : transformer avant de conclure.",
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 150
+      }
+    },
+    "ex_fi_quotient": {
+      "type": "etape",
+      "kicker": "Exemple résolu · zéro sur zéro",
+      "titre": "Factoriser avant de conclure",
+      "tex": [
+        "\\lim_{x \\to 2} \\tfrac{x^2-4}{x-2}",
+        "\\tfrac{(x-2)(x+2)}{x-2} = x + 2",
+        "\\text{limite} = 4"
+      ]
+    },
+    "ex_conjuguee": {
+      "type": "etape",
+      "kicker": "Exemple résolu · infini moins infini",
+      "titre": "La quantité conjuguée",
+      "tex": [
+        "\\sqrt{x^2+x} - x = \\tfrac{x}{\\sqrt{x^2+x}+x}",
+        "= \\tfrac{1}{\\sqrt{1+\\tfrac{1}{x}}+1}",
+        "\\text{limite} = \\tfrac{1}{2}"
+      ]
+    },
+    "ex_dominant": {
+      "type": "etape",
+      "kicker": "Exemple résolu · infini sur infini",
+      "titre": "Factoriser par le terme dominant",
+      "tex": [
+        "\\lim_{x \\to +\\infty} \\tfrac{3x^2-x+1}{x^2+4}",
+        "= \\tfrac{3-\\tfrac{1}{x}+\\tfrac{1}{x^2}}{1+\\tfrac{4}{x^2}}",
+        "\\text{limite} = 3"
+      ]
+    },
+    "asymptotes": {
+      "type": "etape",
+      "kicker": "Les trois asymptotes",
+      "titre": "Horizontale, verticale, oblique",
+      "tex": [
+        "y = L \\quad \\text{horizontale}",
+        "x = a \\quad \\text{verticale}",
+        "y = ax + b \\quad \\text{oblique, } a \\neq 0"
+      ],
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 130
+      }
+    },
+    "ex_asymptotes": {
+      "type": "etape",
+      "kicker": "Exemple résolu · asymptotes",
+      "titre": "Deux fonctions, trois droites",
+      "tex": [
+        "f(x) = \\tfrac{2x+1}{x-1} : y = 2,\\quad x = 1",
+        "g(x) = \\tfrac{x^2+1}{x} = x + \\tfrac{1}{x}",
+        "g : y = x \\text{ oblique},\\quad x = 0 \\text{ verticale}"
+      ]
+    },
+    "continuite": {
+      "type": "formule",
+      "kicker": "Continuité en un point",
+      "tex": "\\lim_{x \\to a} f(x) = f(a)",
+      "note": "Définie en a, limite finie en a, et égalité des deux"
+    },
+    "ex_continuite": {
+      "type": "etape",
+      "kicker": "Exemple résolu · continuité",
+      "titre": "Un trou comblé par la bonne valeur",
+      "tex": [
+        "f(x) = \\tfrac{x^2-1}{x-1} = x + 1 \\quad (x \\neq 1)",
+        "\\lim_{x \\to 1} f(x) = 2 = f(1)"
+      ]
+    },
+    "tvi": {
+      "type": "formule",
+      "kicker": "Théorème des valeurs intermédiaires",
+      "tex": "f(c) = k \\quad \\text{pour un } c \\in [a,\\,b]",
+      "note": "f continue sur [a, b] et k entre f(a) et f(b) : k est atteint"
+    },
+    "ex_tvi": {
+      "type": "etape",
+      "kicker": "Exemple résolu · existence et unicité",
+      "titre": "Un cube plus la variable moins un",
+      "tex": [
+        "f(x) = x^3 + x - 1",
+        "f(0) = -1 < 0 \\quad\\text{et}\\quad f(1) = 1 > 0",
+        "\\text{strictement croissante : solution unique}"
+      ]
+    },
+    "dichotomie": {
+      "type": "etape",
+      "kicker": "Résolution approchée · dichotomie",
+      "titre": "Couper l'intervalle en deux, garder le changement de signe",
+      "tex": [
+        "f(0{,}5) = -0{,}375 < 0",
+        "f(0{,}75) \\approx 0{,}172 > 0",
+        "c \\in ]0{,}5\\,;\\,0{,}75["
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Limites : opérations, puis lever les F.I.",
+        "Asymptotes : horizontale, verticale, oblique",
+        "Continuité : la limite vaut l'image",
+        "TVI et dichotomie : exister, puis encadrer"
+      ],
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 100
+      }
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Fonctions : domaine, limites et continuité.",
+      "dit": "Bienvenue dans ce cours consacré aux fonctions. Décrire : domaine, parité, périodicité, courbe. Approcher : limites et asymptotes. Continuer : continuité et valeurs intermédiaires."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "texte": "Décrire, approcher, continuer : le plan du cours.",
+      "dit": "Trois verbes pour le plan. Décrire : où la fonction existe, ses symétries. Approcher : ses valeurs près d'un point ou en l'infini. Continuer : si la courbe se trace sans lever le crayon."
+    },
+    {
+      "id": "p03",
+      "ecran": "domaine",
+      "texte": "Le domaine : tous les réels où f(x) existe.",
+      "dit": "Le domaine de définition, noté D indice f, rassemble les réels pour lesquels l'image existe, est calculable. Toute étude commence par là : une valeur interdite oubliée fausse limites, courbe et variations."
+    },
+    {
+      "id": "p04",
+      "ecran": "regles_domaine",
+      "texte": "Rationnelle, racine, logarithme : trois conditions.",
+      "dit": "Trois conditions reviennent. Rationnelle : dénominateur différent de zéro. Racine : expression positive ou nulle. Logarithme : expression strictement positive. Ensemble, elles se croisent : le domaine est leur intersection."
+    },
+    {
+      "id": "p05",
+      "ecran": "ex_domaine",
+      "texte": "Exemple : D = [1 ; 3[ ∪ ]3 ; +∞[.",
+      "dit": "Exemple résolu. Racine carrée de x moins un, divisée par x moins trois. La racine exige x supérieur ou égal à un. Le dénominateur exige x différent de trois. Domaine : de un à trois, trois exclu, réuni de trois à plus l'infini."
+    },
+    {
+      "id": "p06",
+      "ecran": "parite",
+      "texte": "Paire ou impaire : comparer f(−x) à f(x).",
+      "dit": "La parité ne se teste que sur un domaine symétrique par rapport à zéro : avec x, son opposé y est aussi. Paire si l'image de l'opposé égale l'image. Impaire si elle égale l'opposée de l'image. On ne calcule alors qu'une moitié de courbe."
+    },
+    {
+      "id": "p07",
+      "ecran": "symetrie",
+      "texte": "Paire : axe des ordonnées. Impaire : l'origine.",
+      "dit": "Graphiquement, c'est visible. Paire : la courbe est symétrique par rapport à l'axe des ordonnées, comme dans un miroir vertical. Impaire : symétrique par rapport à l'origine, un demi-tour autour de O la laisse inchangée."
+    },
+    {
+      "id": "p08",
+      "ecran": "ex_parite",
+      "texte": "Exemple : x³ − x est impaire.",
+      "dit": "Exemple résolu. Le cube moins x, défini sur tous les réels, domaine symétrique. L'image de l'opposé vaut moins le cube plus x, exactement l'opposée de l'image. La fonction est impaire, sa courbe symétrique par rapport à l'origine."
+    },
+    {
+      "id": "p09",
+      "ecran": "periodicite",
+      "texte": "Périodique : f(x + T) = f(x).",
+      "dit": "Périodique de période T, strictement positive, si ajouter T à la variable ne change ni domaine ni image. La période est la plus petite de ces valeurs. On étudie un motif, puis on le recopie par translations."
+    },
+    {
+      "id": "p10",
+      "ecran": "ex_periode",
+      "texte": "sin(2x) : période π, un seul motif à étudier.",
+      "dit": "Exemple résolu. Le sinus de deux x est périodique de période pi : ajouter pi à la variable ajoute deux pi à l'angle, le sinus ne change pas. On l'étudie de zéro à pi, puis on reproduit le motif sur tous les réels."
+    },
+    {
+      "id": "p11",
+      "ecran": "courbe",
+      "texte": "La courbe : tous les points M(x, f(x)).",
+      "dit": "La courbe rassemble les points d'abscisse dans le domaine et d'ordonnée l'image de cette abscisse. L'ordonnée est l'image, l'abscisse un antécédent. Où elle coupe l'axe des abscisses : les solutions de image égale zéro."
+    },
+    {
+      "id": "p12",
+      "ecran": "ex_courbe",
+      "texte": "Exemple : x² − 1 coupe l'axe en −1 et en 1.",
+      "dit": "Exemple résolu. Le carré moins un est pair : remplacer x par son opposé ne change pas le carré, la parabole est symétrique par rapport à l'axe des ordonnées. Il s'annule pour moins un et pour un : deux coupures de l'axe des abscisses."
+    },
+    {
+      "id": "p13",
+      "ecran": "methode_generale",
+      "texte": "Domaine, parité, période, puis le tracé.",
+      "dit": "Synthèse. Domaine en croisant les conditions. Domaine symétrique : tester la parité. Une période raccourcit l'étude. Puis exploiter ces réductions et tracer sur tout le domaine."
+    },
+    {
+      "id": "p14",
+      "ecran": "limite_point",
+      "texte": "Limite en a : f(x) s'approche de L.",
+      "dit": "Passons aux limites. Une fonction admet la limite L en a quand ses valeurs s'approchent de L dès que la variable s'approche de a. Elle n'a même pas besoin d'être définie en a : seule compte l'approche."
+    },
+    {
+      "id": "p15",
+      "ecran": "gauche_droite",
+      "texte": "|x|/x : 1 à droite, −1 à gauche, pas de limite.",
+      "dit": "Mais l'approche peut dépendre du côté. La valeur absolue de x divisée par x vaut un à droite de zéro, moins un à gauche. Limites à gauche et à droite différentes : pas de limite en zéro. Une limite exige l'accord des deux côtés."
+    },
+    {
+      "id": "p16",
+      "ecran": "limites_usuelles",
+      "texte": "Trois limites usuelles à connaître.",
+      "dit": "Trois limites usuelles. Le sinus de x divisé par x tend vers un en zéro. La racine de un plus x moins un, divisée par x, tend vers un demi. Et l'inverse de x tend vers zéro en plus l'infini, limite que nous retrouvons juste après."
+    },
+    {
+      "id": "p17",
+      "ecran": "recap1",
+      "texte": "Partie 1 : domaine, parité, période, limite.",
+      "dit": "Retenons cette partie. Domaine croisé, parité et sa symétrie, période et son motif. Et limite en un point seulement si gauche et droite sont d'accord."
+    },
+    {
+      "id": "p18",
+      "ecran": "limite_infini",
+      "texte": "Limite finie en +∞ : rester près de L.",
+      "dit": "En l'infini, une fonction admet la limite L si tout intervalle ouvert contenant L finit par contenir toutes ses valeurs, pour x suffisamment grand. Au-delà d'un certain rang, la courbe ne quitte plus le voisinage de L."
+    },
+    {
+      "id": "p19",
+      "ecran": "preuve_inverse",
+      "texte": "1/x < ε dès que x > 1/ε : limite zéro.",
+      "dit": "Exemple de preuve. L'inverse de x tend vers zéro en plus l'infini. Pour tout epsilon strictement positif, l'écart entre l'inverse de x et zéro devient plus petit qu'epsilon dès que x dépasse l'inverse d'epsilon. La limite est bien zéro."
+    },
+    {
+      "id": "p20",
+      "ecran": "limite_infinie",
+      "texte": "x² dépasse tout seuil : limite +∞.",
+      "dit": "La limite peut être infinie. Le carré tend vers plus l'infini : pour tout seuil, le carré le dépasse dès que la variable dépasse la racine carrée du seuil. De même se définissent les autres cas en plus ou moins l'infini."
+    },
+    {
+      "id": "p21",
+      "ecran": "operations",
+      "texte": "Somme, produit, quotient : le tableau des limites.",
+      "dit": "Les limites se combinent. Somme, produit, quotient de limites finies : terme à terme, dénominateur limite non nul. Avec un infini, somme et quotient concluent souvent, le produit suit la règle des signes. Certains mélanges refusent de conclure."
+    },
+    {
+      "id": "p22",
+      "ecran": "formes_indeterminees",
+      "texte": "Quatre formes indéterminées, quatre transformations.",
+      "dit": "Quatre formes indéterminées : zéro sur zéro, infini sur infini, zéro fois infini, infini moins infini. La forme seule ne décide pas : il faut transformer, factoriser, quantité conjuguée ou terme dominant."
+    },
+    {
+      "id": "p23",
+      "ecran": "ex_fi_quotient",
+      "texte": "Exemple : (x² − 4)/(x − 2) tend vers 4.",
+      "dit": "Premier exemple, zéro sur zéro : le carré moins quatre divisé par x moins deux, en deux. On factorise en x moins deux fois x plus deux, on simplifie, licite car x diffère de deux, il reste x plus deux. La limite vaut quatre."
+    },
+    {
+      "id": "p24",
+      "ecran": "ex_conjuguee",
+      "texte": "Exemple : √(x² + x) − x tend vers 1/2.",
+      "dit": "Deuxième exemple, infini moins infini : racine du carré plus x, moins x. La quantité conjuguée donne x en haut, la somme des racines en bas. Factoriser par x : un sur une expression tendant vers deux. Limite : un demi."
+    },
+    {
+      "id": "p25",
+      "ecran": "ex_dominant",
+      "texte": "Exemple : le quotient des carrés tend vers 3.",
+      "dit": "Troisième exemple, infini sur infini : trois carrés moins x plus un, sur carré plus quatre. On factorise par le carré, haut et bas. Les inverses tendent vers zéro, il reste trois sur un. Limite : trois, le rapport des coefficients dominants."
+    },
+    {
+      "id": "p26",
+      "ecran": "asymptotes",
+      "texte": "Trois asymptotes : y = L, x = a, y = ax + b.",
+      "dit": "Chaque limite dessine une droite approchée sans fin. Limite finie en l'infini : asymptote horizontale. Limite infinie en un point : verticale. Écart vers zéro avec une droite oblique : asymptote oblique."
+    },
+    {
+      "id": "p27",
+      "ecran": "ex_asymptotes",
+      "texte": "Exemples : y = 2 et x = 1 ; y = x et x = 0.",
+      "dit": "Exemples. Deux x plus un sur x moins un tend vers deux en l'infini : horizontale d'ordonnée deux, verticale en un. Carré plus un sur x vaut x plus inverse de x : oblique y égal x, verticale l'axe des ordonnées."
+    },
+    {
+      "id": "p28",
+      "ecran": "continuite",
+      "texte": "Continue en a : limite égale à l'image.",
+      "dit": "Continue en a si la limite en a égale l'image. Trois exigences : définie au point, limite finie, égalité. Polynômes, sinus, cosinus, racines et rationnelles hors valeurs interdites sont continues sur leur domaine."
+    },
+    {
+      "id": "p29",
+      "ecran": "ex_continuite",
+      "texte": "Exemple : le trou en 1 est comblé, f(1) = 2.",
+      "dit": "Exemple résolu. Carré moins un sur x moins un se simplifie, hors de un, en x plus un, de limite deux en un. Poser l'image de un égale à deux bouche exactement le trou : la fonction complétée est continue en un, par la seule bonne valeur."
+    },
+    {
+      "id": "p30",
+      "ecran": "tvi",
+      "texte": "TVI : toute valeur intermédiaire est atteinte.",
+      "dit": "Valeurs intermédiaires : continue sur un intervalle fermé, une fonction atteint toute valeur entre les images des bornes. Signes contraires aux bornes : une solution à image égale zéro. Strictement monotone : elle est unique."
+    },
+    {
+      "id": "p31",
+      "ecran": "ex_tvi",
+      "texte": "Exemple : x³ + x − 1 = 0, une unique solution.",
+      "dit": "Exemple. Cube plus x moins un, entre zéro et un, continue comme tout polynôme. Image en zéro : moins un. Image en un : un. Signes contraires : une solution. Strictement croissante : solution unique."
+    },
+    {
+      "id": "p32",
+      "ecran": "dichotomie",
+      "texte": "Dichotomie : 0,5 puis 0,75, l'encadrement se resserre.",
+      "dit": "Dichotomie : couper en deux, garder la moitié où le signe change. Image en zéro virgule cinq négative, solution après. Image en zéro virgule soixante-quinze positive, solution avant. Chaque étape divise l'incertitude par deux."
+    },
+    {
+      "id": "p33",
+      "ecran": "recap_final",
+      "texte": "Limites, asymptotes, continuité, TVI : à retenir.",
+      "dit": "Pour conclure. Limites par les opérations, formes indéterminées levées par transformation. Asymptotes horizontale, verticale, oblique. Continuité : limite égale image. Et valeurs intermédiaires puis dichotomie : exister, puis encadrer."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Décrire la fonction : domaine, parité, périodicité, limites en un point"
+    },
+    {
+      "debut": "p18",
+      "sous_titre": "Limites en l'infini, asymptotes, continuité et valeurs intermédiaires",
+      "pont": {
+        "texte": "Partie 2 : limites en l'infini, asymptotes, continuité et TVI.",
+        "dit": "Partie deux : les limites en l'infini et leurs asymptotes, puis la continuité, le théorème des valeurs intermédiaires et la dichotomie."
+      }
+    }
+  ]
+}

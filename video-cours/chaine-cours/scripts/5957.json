@@ -1,0 +1,584 @@
+{
+ "cours": 5957,
+ "titre": "Chapitre 2 : Oxydoréduction en solution aqueuse",
+ "matiere": "Chimie",
+ "lecons": [
+  4886,
+  4887,
+  4888,
+  4889,
+  4890,
+  4891,
+  4892,
+  4893
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Oxydoréduction",
+   "titre": "L'oxydoréduction en solution aqueuse",
+   "sous": "Définitions, potentiels standard, équilibrage et dosages redox",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Le jeu des électrons",
+   "texte": "Un transfert d'électrons entre deux espèces : l'une perd des électrons, l'autre les gagne. La rouille, les piles et la respiration vivent de ce jeu.",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 170
+   }
+  },
+  "oxydation": {
+   "type": "formule",
+   "kicker": "L'oxydation",
+   "tex": "\\mathrm{Fe} \\rightarrow \\mathrm{Fe}^{3+} + 3\\,e^{-}",
+   "note": "perte d'électrons : le nombre d'oxydation augmente"
+  },
+  "reduction": {
+   "type": "formule",
+   "kicker": "La réduction",
+   "tex": "\\mathrm{Cu}^{2+} + 2\\,e^{-} \\rightarrow \\mathrm{Cu}",
+   "note": "gain d'électrons : le nombre d'oxydation diminue"
+  },
+  "duo": {
+   "type": "phrase",
+   "kicker": "Un duo inséparable",
+   "texte": "Oxydation et réduction sont inséparables : les électrons perdus par une espèce sont forcément gagnés par une autre.",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 180
+   }
+  },
+  "roles": {
+   "type": "etape",
+   "kicker": "Les acteurs du transfert",
+   "titre": "Oxydant et réducteur : qui fait quoi ?",
+   "tex": [
+    "\\text{Réducteur} \\rightarrow \\text{forme oxydée} + e^{-} \\quad \\text{(il est oxydé)}",
+    "\\text{Oxydant} + e^{-} \\rightarrow \\text{forme réduite} \\quad \\text{(il est réduit)}"
+   ]
+  },
+  "no_regles": {
+   "type": "etape",
+   "kicker": "Le nombre d'oxydation",
+   "titre": "Les règles de calcul",
+   "tex": [
+    "\\text{Corps simple : } 0 \\qquad \\text{Ion monoatomique : sa charge}",
+    "\\text{Oxygène : } -2 \\qquad \\text{Hydrogène : } +1",
+    "\\sum \\text{ n.o.} = 0 \\text{ (neutre)} \\qquad \\sum \\text{ n.o.} = \\text{charge (ion)}"
+   ]
+  },
+  "no_kmno4": {
+   "type": "etape",
+   "kicker": "Le nombre d'oxydation",
+   "titre": "Le manganèse du permanganate de potassium",
+   "tex": [
+    "\\mathrm{K} = +1, \\qquad \\mathrm{O} = -2",
+    "(+1) + x + 4 \\times (-2) = 0",
+    "x = +7 \\quad \\text{: le degré du manganèse}"
+   ]
+  },
+  "identifier": {
+   "type": "phrase",
+   "kicker": "Identifier les acteurs",
+   "texte": "Trois indices : la variation du nombre d'oxydation, la nature des espèces, et la position du couple dans la série électrochimique.",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 150
+   }
+  },
+  "bilan_bases": {
+   "type": "recap",
+   "kicker": "Premier bilan",
+   "etapes": [
+    "Oxydation : perte d'électrons",
+    "Réduction : gain d'électrons",
+    "L'oxydant gagne et se réduit",
+    "Le réducteur perd et s'oxyde"
+   ]
+  },
+  "pile_volta": {
+   "type": "phrase",
+   "kicker": "La pile voltaïque",
+   "texte": "Zinc et cuivre plongés dans leurs ions et reliés par un fil : un courant naît de leur différence de tendance à perdre des électrons.",
+   "anim": {
+    "nom": "pile_daniell_fig",
+    "hauteur": 180
+   }
+  },
+  "demi_pile": {
+   "type": "etape",
+   "kicker": "La pile voltaïque",
+   "titre": "La pile zinc-cuivre au travail",
+   "tex": [
+    "\\mathrm{Zn \\rightarrow Zn^{2+} + 2\\,e^-} \\quad \\text{(oxydation)}",
+    "\\mathrm{Cu^{2+} + 2\\,e^- \\rightarrow Cu} \\quad \\text{(réduction)}",
+    "\\mathrm{Zn + Cu^{2+} \\rightarrow Zn^{2+} + Cu}"
+   ]
+  },
+  "esh": {
+   "type": "formule",
+   "kicker": "La référence des mesures",
+   "tex": "E^\\circ(\\mathrm{H}^{+}/\\mathrm{H}_2) = 0\\ \\text{V}",
+   "note": "la référence de tous les potentiels : 25 °C, 1 atm, 1 mol/L"
+  },
+  "echelle": {
+   "type": "etape",
+   "kicker": "L'échelle redox",
+   "titre": "Quelques couples classés par potentiel",
+   "tex": [
+    "\\mathrm{F}_2/\\mathrm{F}^{-} : +2{,}87\\ \\text{V} \\qquad \\mathrm{Ag}^{+}/\\mathrm{Ag} : +0{,}80\\ \\text{V}",
+    "\\mathrm{Cu}^{2+}/\\mathrm{Cu} : +0{,}34\\ \\text{V} \\qquad \\mathrm{H}^{+}/\\mathrm{H}_2 : 0\\ \\text{V}",
+    "\\mathrm{Fe}^{2+}/\\mathrm{Fe} : -0{,}44\\ \\text{V} \\qquad \\mathrm{Li}^{+}/\\mathrm{Li} : -3{,}04\\ \\text{V}"
+   ],
+   "anim": {
+    "nom": "echelle_redox_fig",
+    "hauteur": 120
+   }
+  },
+  "force_echelle": {
+   "type": "phrase",
+   "kicker": "Lire l'échelle",
+   "texte": "Plus E° est positif, plus l'oxydant est fort ; plus E° est négatif, plus le réducteur est fort : métaux alcalins très réducteurs, halogènes très oxydants.",
+   "anim": {
+    "nom": "echelle_redox_fig",
+    "hauteur": 150
+   }
+  },
+  "calcul_pile": {
+   "type": "etape",
+   "kicker": "Prédire la spontanéité",
+   "titre": "Le potentiel standard d'une pile",
+   "tex": [
+    "E^\\circ_{\\text{pile}} = E^\\circ(\\text{oxydant}) - E^\\circ(\\text{réducteur})",
+    "E^\\circ_{\\text{pile}} = 0{,}34 - (-0{,}76) = +1{,}10\\ \\text{V}",
+    "\\text{spontanée si } E^\\circ_{\\text{pile}} > 0 \\quad \\text{; quasi totale si } > 0{,}3\\ \\text{V}"
+   ]
+  },
+  "exercice_ag": {
+   "type": "etape",
+   "kicker": "Exercice des leçons",
+   "titre": "Le fer face aux ions argent",
+   "tex": [
+    "\\mathrm{Fe + 2\\,Ag^{+} \\rightarrow Fe^{2+} + 2\\,Ag}",
+    "E^\\circ_{\\text{pile}} = 0{,}80 - (-0{,}44) = +1{,}24\\ \\text{V} > 0 \\quad \\text{: spontanée}"
+   ]
+  },
+  "piege_cu": {
+   "type": "phrase",
+   "kicker": "Le piège à éviter",
+   "texte": "Le cuivre face aux ions chlorure : aucune réaction. L'ion chlorure est déjà la forme réduite de son couple ; seul le dichlore pourrait oxyder le cuivre.",
+   "anim": {
+    "nom": "echelle_redox_fig",
+    "hauteur": 150
+   }
+  },
+  "bilan_potentiels": {
+   "type": "recap",
+   "kicker": "Bilan : les potentiels",
+   "etapes": [
+    "E° : la tendance à se réduire",
+    "Référence : l'hydrogène à zéro volt",
+    "E° pile : différence des deux potentiels",
+    "Positive : la réaction est spontanée"
+   ]
+  },
+  "pourquoi_equilibrer": {
+   "type": "phrase",
+   "kicker": "Équilibrer les équations",
+   "texte": "Une équation équilibrée conserve les éléments et la charge : autant d'électrons perdus que d'électrons gagnés.",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 170
+   }
+  },
+  "methode_a": {
+   "type": "etape",
+   "kicker": "La méthode des demi-équations",
+   "titre": "La méthode, première moitié",
+   "tex": [
+    "\\text{1. Identifier l'espèce oxydée et l'espèce réduite}",
+    "\\text{2. Écrire les deux demi-équations}",
+    "\\text{3. Équilibrer les atomes autres que O et H}",
+    "\\text{4. O avec } \\mathrm{H_2O} \\text{ ; H avec } \\mathrm{H^+}"
+   ]
+  },
+  "methode_b": {
+   "type": "etape",
+   "kicker": "La méthode des demi-équations",
+   "titre": "La méthode, seconde moitié",
+   "tex": [
+    "\\text{5. Équilibrer la charge en ajoutant des } e^-",
+    "\\text{6. Multiplier pour égaler les électrons échangés}",
+    "\\text{7. Additionner les deux demi-équations}",
+    "\\text{8. Simplifier les espèces présentes des deux côtés}"
+   ]
+  },
+  "exemple_zn": {
+   "type": "etape",
+   "kicker": "Exemple guidé",
+   "titre": "Le zinc et l'acide chlorhydrique",
+   "tex": [
+    "\\mathrm{Zn \\rightarrow Zn^{2+} + 2\\,e^-} \\quad \\text{(oxydation)}",
+    "\\mathrm{2\\,H^+ + 2\\,e^- \\rightarrow H_2} \\quad \\text{(réduction)}",
+    "\\mathrm{Zn + 2\\,HCl \\rightarrow ZnCl_2 + H_2}"
+   ]
+  },
+  "exercice_mno4": {
+   "type": "etape",
+   "kicker": "Exercice des leçons",
+   "titre": "Permanganate et ions fer (II), en milieu acide",
+   "tex": [
+    "\\mathrm{MnO_4^- + 8\\,H^+ + 5\\,e^- \\rightarrow Mn^{2+} + 4\\,H_2O}",
+    "\\mathrm{Fe^{2+} \\rightarrow Fe^{3+} + e^-} \\quad (\\times\\, 5)",
+    "\\mathrm{MnO_4^- + 5\\,Fe^{2+} + 8\\,H^+ \\rightarrow Mn^{2+} + 5\\,Fe^{3+} + 4\\,H_2O}"
+   ]
+  },
+  "acides_fer": {
+   "type": "etape",
+   "kicker": "Les acides sur les métaux",
+   "titre": "Exercice : le fer et l'acide sulfurique",
+   "tex": [
+    "\\mathrm{Fe \\rightarrow Fe^{2+} + 2\\,e^-} \\quad \\text{(oxydation du métal)}",
+    "\\mathrm{2\\,H^+ + 2\\,e^- \\rightarrow H_2} \\quad \\text{(réduction)}",
+    "\\mathrm{Fe + H_2SO_4 \\rightarrow FeSO_4 + H_2}"
+   ]
+  },
+  "acides_remarques": {
+   "type": "phrase",
+   "kicker": "Ce qu'il faut retenir",
+   "texte": "Mêmes résultats avec l'acide chlorhydrique ou nitrique. L'or, l'argent et le cuivre résistent : leurs ions sont plus oxydants que l'ion hydrogène.",
+   "anim": {
+    "nom": "corrosion_fig",
+    "hauteur": 160
+   }
+  },
+  "dosage_principe": {
+   "type": "phrase",
+   "kicker": "Le dosage redox",
+   "texte": "Le titrant, de concentration connue, réagit quantitativement avec le titré, de concentration inconnue, jusqu'au point d'équivalence.",
+   "anim": {
+    "nom": "dosage_fig",
+    "hauteur": 170
+   }
+  },
+  "dosage_reaction": {
+   "type": "etape",
+   "kicker": "Le dosage redox",
+   "titre": "Le dosage de référence : fer (II) et permanganate",
+   "tex": [
+    "\\mathrm{5\\,Fe^{2+} + MnO_4^- + 8\\,H^+ \\rightarrow 5\\,Fe^{3+} + Mn^{2+} + 4\\,H_2O}",
+    "\\text{à l'équivalence : } n(\\mathrm{Fe}^{2+}) = 5 \\times n(\\mathrm{MnO_4^-})"
+   ]
+  },
+  "dosage_exercice": {
+   "type": "etape",
+   "kicker": "Exercice des leçons",
+   "titre": "La concentration d'une solution de fer (II)",
+   "tex": [
+    "n(\\mathrm{MnO_4^-}) = 0{,}0200 \\times 0{,}01500 = 3{,}00 \\times 10^{-4}\\ \\text{mol}",
+    "n(\\mathrm{Fe}^{2+}) = 5 \\times 3{,}00 \\times 10^{-4} = 1{,}50 \\times 10^{-3}\\ \\text{mol}",
+    "C = \\frac{1{,}50 \\times 10^{-3}}{25{,}00 \\times 10^{-3}} = 0{,}0600\\ \\text{mol/L}"
+   ]
+  },
+  "point_final": {
+   "type": "etape",
+   "kicker": "Repérer l'équivalence",
+   "titre": "Trois façons de voir le point final",
+   "tex": [
+    "\\text{À l'œil : première teinte violette persistante (permanganate)}",
+    "\\text{Indicateurs : diphénylamine, ferroïne, amidon}",
+    "\\text{Instrumental : la potentiométrie}"
+   ]
+  },
+  "dosage_conditions": {
+   "type": "recap",
+   "kicker": "Les conditions d'un bon dosage",
+   "etapes": [
+    "Une réaction totale, rapide et univoque",
+    "Le titrant : une solution de concentration connue",
+    "Étalons : permanganate et dichromate de potassium",
+    "Le diiode et le thiosulfate de sodium aussi"
+   ]
+  },
+  "applications": {
+   "type": "phrase",
+   "kicker": "Les applications des dosages",
+   "texte": "Environnement, agroalimentaire, pharmacie, médecine : les dosages redox mesurent polluants, vitamine C, pureté des médicaments et glucose sanguin.",
+   "anim": {
+    "nom": "dosage_fig",
+    "hauteur": 170
+   }
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Points clés du cours",
+   "etapes": [
+    "Oxydation : perte, réduction : gain",
+    "E° classe les couples, prédit le sens",
+    "Demi-équations : équilibrer en deux temps",
+    "Acides et métaux : le métal s'oxyde",
+    "Dosage : l'équivalence donne la concentration"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "pause_apres": 0.9,
+   "dit": "Bienvenue dans ce chapitre consacré à l'oxydoréduction en solution aqueuse. Nous commencerons par les définitions et les acteurs de ces réactions, puis nous découvrirons les potentiels standard, qui permettent de prédire leur sens. Nous apprendrons ensuite à équilibrer les équations redox, avant de terminer par deux grandes applications : l'action des acides sur les métaux et les dosages redox.",
+   "texte": "Oxydoréduction en solution aqueuse : définitions, potentiels, équilibrage, dosages."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "pause_apres": 0.8,
+   "dit": "Imaginez un jeu d'échange d'électrons. Certaines espèces en perdent, d'autres en gagnent, et ce transfert d'électrons anime une grande partie de la chimie : la rouille qui attaque le fer, les piles qui alimentent nos appareils, et même la respiration de nos cellules. Ce jeu porte un nom : l'oxydoréduction, ou réaction redox.",
+   "texte": "Un jeu d'échange d'électrons : l'oxydoréduction."
+  },
+  {
+   "id": "p03",
+   "ecran": "oxydation",
+   "pause_apres": 0.8,
+   "dit": "Premier mouvement du jeu : l'oxydation. Une espèce chimique perd des électrons, et son nombre d'oxydation augmente. Pensez à la rouille : le fer perd trois électrons et devient l'ion fer trois. L'espèce qui perd ses électrons est dite oxydée.",
+   "texte": "L'oxydation : une perte d'électrons."
+  },
+  {
+   "id": "p04",
+   "ecran": "reduction",
+   "pause_apres": 0.8,
+   "dit": "Le mouvement inverse s'appelle la réduction. Une espèce chimique gagne des électrons, et son nombre d'oxydation diminue. Les ions cuivre deux, en solution, captent deux électrons et deviennent du cuivre métallique. L'espèce qui gagne ces électrons est dite réduite.",
+   "texte": "La réduction : un gain d'électrons."
+  },
+  {
+   "id": "p05",
+   "ecran": "duo",
+   "pause_apres": 0.8,
+   "dit": "Ces deux mouvements peuvent-ils exister l'un sans l'autre ? Non, jamais. Les électrons perdus par une espèce sont forcément gagnés par une autre : il n'y a pas de réduction sans oxydation, et pas d'oxydation sans réduction. Les deux processus sont couplés, comme les deux raquettes d'un match de ping-pong électronique.",
+   "texte": "Jamais l'une sans l'autre : un duo inséparable."
+  },
+  {
+   "id": "p06",
+   "ecran": "roles",
+   "pause_apres": 0.8,
+   "dit": "Qui joue quel rôle dans ce transfert ? L'espèce qui perd des électrons est le réducteur : c'est elle qui fournit les électrons, et elle est oxydée. L'espèce qui les gagne est l'oxydant : elle capte les électrons, et elle est réduite. Attention au piège : l'oxydant n'est pas l'espèce qui s'oxyde, c'est celle qui oxyde l'autre.",
+   "texte": "Le réducteur donne et s'oxyde ; l'oxydant capte et se réduit."
+  },
+  {
+   "id": "p07",
+   "ecran": "no_regles",
+   "pause_apres": 0.8,
+   "dit": "Pour suivre ces échanges, les chimistes utilisent le nombre d'oxydation : la charge fictive que porterait un atome s'il était totalement ionisé. Retenez les règles de l'écran : zéro pour un corps simple, la charge pour un ion monoatomique, moins deux pour l'oxygène, plus un pour l'hydrogène, et une somme nulle pour une molécule neutre, égale à la charge pour un ion. Deux exceptions à noter : l'oxygène des peroxydes vaut moins un, et l'hydrogène des hydrures métalliques vaut moins un.",
+   "texte": "Les règles du nombre d'oxydation, et leurs deux exceptions."
+  },
+  {
+   "id": "p08",
+   "ecran": "no_kmno4",
+   "pause_apres": 0.8,
+   "dit": "Vérifions ces règles sur l'exemple des leçons : le permanganate de potassium. Le potassium vaut plus un, l'oxygène vaut moins deux, et la molécule est neutre, donc la somme doit être nulle. Plus un, plus l'inconnue, moins huit : l'inconnue vaut plus sept. Le manganèse est donc au nombre d'oxydation plus sept.",
+   "texte": "KMnO₄ : le manganèse est au degré plus sept."
+  },
+  {
+   "id": "p09",
+   "ecran": "identifier",
+   "pause_apres": 0.8,
+   "dit": "Comment identifier l'oxydant et le réducteur d'une réaction ? Trois indices se complètent : la variation du nombre d'oxydation, qui révèle les gains et les pertes ; la nature des espèces, car les métaux alcalins sont de forts réducteurs et les halogènes de forts oxydants ; et la position du couple dans la série électrochimique, que nous allons découvrir.",
+   "texte": "Identifier oxydant et réducteur : trois indices complémentaires."
+  },
+  {
+   "id": "p10",
+   "ecran": "bilan_bases",
+   "pause_apres": 0.8,
+   "dit": "Faisons un premier bilan. L'oxydation est une perte d'électrons, la réduction un gain, et les deux sont toujours couplées. L'oxydant gagne des électrons et se réduit ; le réducteur en perd et s'oxyde. Et le nombre d'oxydation permet de suivre tous ces échanges. Dans la partie suivante, nous classerons les couples selon leur force grâce aux potentiels standard.",
+   "texte": "Les bases sont posées : place aux potentiels."
+  },
+  {
+   "id": "p11",
+   "ecran": "pile_volta",
+   "pause_apres": 0.8,
+   "dit": "Direction le laboratoire, avec la pile voltaïque. Deux métaux différents, le zinc et le cuivre, plongent chacun dans une solution de leurs ions, et un fil conducteur les relie : un courant électrique apparaît. L'énergie chimique de la réaction se convertit en énergie électrique, parce que les deux métaux n'ont pas la même tendance à perdre leurs électrons.",
+   "texte": "La pile voltaïque : l'énergie chimique devient électrique."
+  },
+  {
+   "id": "p12",
+   "ecran": "demi_pile",
+   "pause_apres": 0.8,
+   "dit": "Que se passe-t-il dans cette pile ? Le zinc, plus réducteur que le cuivre, perd deux électrons : il s'oxyde et passe en solution sous forme d'ions zinc. Les électrons voyagent par le fil jusqu'au cuivre, où les ions cuivre les captent et se réduisent en cuivre métallique. En additionnant les deux demi-équations, on obtient la réaction globale de la pile.",
+   "texte": "Zinc oxydé, ions cuivre réduits : la pile au travail."
+  },
+  {
+   "id": "p13",
+   "ecran": "esh",
+   "pause_apres": 0.8,
+   "dit": "Pour comparer ces tendances, il faut une référence : l'électrode standard à hydrogène. Son potentiel est fixé par convention à zéro volt, et tous les autres potentiels se mesurent par rapport à elle. Le potentiel standard d'un couple se mesure à vingt-cinq degrés, sous une pression d'une atmosphère, avec des concentrations d'une mole par litre.",
+   "texte": "L'électrode standard à hydrogène : le zéro des potentiels."
+  },
+  {
+   "id": "p14",
+   "ecran": "echelle",
+   "pause_apres": 0.8,
+   "dit": "En rangeant les couples par potentiel standard croissant, on obtient l'échelle redox des leçons. Tout en haut, le difluor, à plus deux virgule quatre-vingt-sept volts : l'oxydant le plus puissant du tableau. Tout en bas, le lithium, à moins trois virgule zéro quatre volts : un réducteur extrême. Entre les deux : l'argent, le cuivre, l'hydrogène de référence, le fer et le zinc.",
+   "texte": "L'échelle redox : du difluor, en haut, au lithium, en bas."
+  },
+  {
+   "id": "p15",
+   "ecran": "force_echelle",
+   "pause_apres": 0.8,
+   "dit": "Comment lire cette échelle ? Plus le potentiel standard est positif, plus l'oxydant du couple est fort, car il attire puissamment les électrons. Plus il est négatif, plus le réducteur du couple est fort, car il cède facilement les siens. C'est ce qui rend les métaux alcalins si réducteurs, et les halogènes, comme le difluor ou le dichlore, si oxydants.",
+   "texte": "Positif : oxydant fort. Négatif : réducteur fort."
+  },
+  {
+   "id": "p16",
+   "ecran": "calcul_pile",
+   "pause_apres": 0.8,
+   "dit": "Cette échelle permet un calcul précieux : le potentiel standard d'une pile. C'est la différence entre le potentiel du couple de l'oxydant et celui du couple du réducteur. Pour la pile zinc-cuivre : zéro virgule trente-quatre, moins moins zéro virgule soixante-seize, égale plus un virgule dix volt. La règle de lecture est simple : si ce potentiel est positif, la réaction est spontanée ; au-delà de zéro virgule trois volt, elle est même quasi totale.",
+   "texte": "E° pile positif : réaction spontanée ; au-delà de 0,3 V : quasi totale."
+  },
+  {
+   "id": "p17",
+   "ecran": "exercice_ag",
+   "pause_apres": 0.8,
+   "dit": "Exerçons-nous avec l'exercice des leçons : le fer métal face à une solution d'ions argent. Le couple de l'argent affiche plus zéro virgule quatre-vingt volts, celui du fer moins zéro virgule quarante-quatre volts. La différence donne plus un virgule vingt-quatre volts : positive, donc la réaction est spontanée. Le fer s'oxyde en ions fer deux, et les ions argent se réduisent en argent métallique.",
+   "texte": "Fer et ions argent : E° pile de +1,24 V, réaction spontanée."
+  },
+  {
+   "id": "p18",
+   "ecran": "piege_cu",
+   "pause_apres": 0.8,
+   "dit": "Un dernier test, celui posé dans les leçons : le cuivre métallique réagira-t-il avec les ions chlorure ? Regardez l'échelle : l'ion chlorure est la forme réduite de son couple, il a déjà gagné ses électrons et ne peut pas en capter d'autres. Aucune réaction spontanée n'est donc possible : seul le dichlore, la forme oxydée du couple, attaquerait le cuivre.",
+   "texte": "Cuivre et ions chlorure : aucune réaction spontanée."
+  },
+  {
+   "id": "p19",
+   "ecran": "bilan_potentiels",
+   "pause_apres": 0.8,
+   "dit": "Bilan de cette partie. Le potentiel standard mesure la tendance d'un couple à se réduire, par rapport à l'hydrogène pris comme zéro. L'échelle redox classe tous les couples, des oxydants les plus forts, en haut, aux réducteurs les plus forts, en bas. Et la différence des potentiels prédit la spontanéité. Il nous reste à apprendre à écrire correctement ces réactions : place à l'équilibrage.",
+   "texte": "Potentiels : classer les couples, prédire le sens."
+  },
+  {
+   "id": "p20",
+   "ecran": "pourquoi_equilibrer",
+   "pause_apres": 0.8,
+   "dit": "Pourquoi équilibrer une équation redox ? Parce qu'une équation chimique doit respecter deux conservations : celle des éléments, avec le même nombre d'atomes de chaque côté, et celle de la charge électrique. Pour une réaction redox, cela signifie que le nombre d'électrons perdus dans l'oxydation égale exactement le nombre d'électrons gagnés dans la réduction.",
+   "texte": "Équilibrer : conserver les éléments et la charge."
+  },
+  {
+   "id": "p21",
+   "ecran": "methode_a",
+   "pause_apres": 0.8,
+   "dit": "La méthode des demi-équations décompose la réaction en deux demi-réactions, équilibrées séparément. Premiers pas : identifier les espèces oxydées et réduites, écrire les deux demi-équations, équilibrer les atomes autres que l'oxygène et l'hydrogène, puis équilibrer l'oxygène avec des molécules d'eau et l'hydrogène avec des ions hydrogène.",
+   "texte": "Demi-équations : séparer, puis équilibrer les atomes."
+  },
+  {
+   "id": "p22",
+   "ecran": "methode_b",
+   "pause_apres": 0.8,
+   "dit": "Suite et fin de la méthode. On équilibre ensuite la charge en ajoutant des électrons du bon côté de chaque demi-équation. On multiplie les deux demi-équations pour égaler le nombre d'électrons perdus et gagnés. Enfin, on additionne le tout et on simplifie les espèces qui apparaissent des deux côtés : l'équation globale équilibrée est obtenue.",
+   "texte": "Égaler les électrons, additionner, simplifier."
+  },
+  {
+   "id": "p23",
+   "ecran": "exemple_zn",
+   "pause_apres": 0.8,
+   "dit": "Appliquons la méthode à l'exemple des leçons : le zinc attaqué par l'acide chlorhydrique. L'oxydation donne le zinc qui devient ion zinc en libérant deux électrons. La réduction donne les ions hydrogène qui captent ces deux électrons et forment du dihydrogène. Les électrons s'équilibrent déjà : l'addition donne directement l'équation équilibrée.",
+   "texte": "Exemple : zinc et acide chlorhydrique, pas à pas."
+  },
+  {
+   "id": "p24",
+   "ecran": "exercice_mno4",
+   "pause_apres": 0.8,
+   "dit": "À vous de vérifier, sur le premier exercice des leçons : le permanganate oxyde les ions fer deux en milieu acide. La demi-équation de réduction consomme huit ions hydrogène et cinq électrons. Celle d'oxydation libère un électron par ion fer : on la multiplie donc par cinq. L'addition donne l'équation équilibrée de l'écran, que nous retrouverons dans les dosages.",
+   "texte": "Exercice : permanganate et fer (II), l'équation équilibrée."
+  },
+  {
+   "id": "p25",
+   "ecran": "acides_fer",
+   "pause_apres": 0.8,
+   "dit": "Changeons de décor : l'action des acides sur les métaux, avec l'exercice des leçons, le fer dans l'acide sulfurique. Le métal perd deux électrons et passe en solution ; les ions hydrogène de l'acide les captent et se dégagent en dihydrogène gazeux. On obtient du sulfate de fer et le gaz qui s'échappe en bulles.",
+   "texte": "Le fer dans l'acide sulfurique : du dihydrogène se dégage."
+  },
+  {
+   "id": "p26",
+   "ecran": "acides_remarques",
+   "pause_apres": 0.8,
+   "dit": "Trois remarques des leçons complètent ce tableau. Les résultats sont les mêmes avec l'acide chlorhydrique, sulfurique ou nitrique. Mais tous les métaux ne réagissent pas : l'or, l'argent et le cuivre résistent, car leurs ions sont plus oxydants que l'ion hydrogène. Enfin, la vitesse dépend du métal, de la concentration de l'acide, de la température et de la surface de contact : la poudre de zinc réagit bien plus vite qu'un morceau. C'est ce même mécanisme qui ronge les métaux par corrosion, et que l'industrie utilise pour produire du dihydrogène.",
+   "texte": "Métaux nobles, facteurs de vitesse, corrosion et production d'hydrogène."
+  },
+  {
+   "id": "p27",
+   "ecran": "dosage_principe",
+   "pause_apres": 0.8,
+   "dit": "Place maintenant aux dosages redox, la grande application quantitative de ce chapitre. Le principe : une solution de concentration connue, le titrant, réagit complètement avec la solution de concentration inconnue, le titré. La réaction doit être quantitative, et l'on s'arrête au point d'équivalence, le moment précis où oxydant et réducteur sont en proportions stœchiométriques exactes.",
+   "texte": "Le dosage redox : mesurer une concentration inconnue."
+  },
+  {
+   "id": "p28",
+   "ecran": "dosage_reaction",
+   "pause_apres": 0.8,
+   "dit": "Le dosage de référence des leçons oppose les ions fer deux au permanganate, en milieu acide. L'équation équilibrée montre qu'un ion permanganate oxyde cinq ions fer deux. À l'équivalence, la quantité de fer deux vaut donc exactement cinq fois la quantité de permanganate versée : c'est cette relation qui livre la concentration inconnue.",
+   "texte": "À l'équivalence : cinq ions fer (II) pour un ion permanganate."
+  },
+  {
+   "id": "p29",
+   "ecran": "dosage_exercice",
+   "pause_apres": 0.8,
+   "dit": "Résolvons l'exercice des leçons : vingt-cinq millilitres d'une solution de fer deux sont dosés par du permanganate à zéro virgule zéro deux mole par litre, et l'équivalence tombe à quinze millilitres. La quantité de permanganate vaut trois dix-millièmes de mole ; celle du fer, cinq fois plus. Divisée par le volume prélevé, elle donne une concentration de zéro virgule zéro six mole par litre.",
+   "texte": "Exercice : la concentration du fer (II) vaut 0,0600 mol/L."
+  },
+  {
+   "id": "p30",
+   "ecran": "point_final",
+   "pause_apres": 0.8,
+   "dit": "Comment repérer l'équivalence ? Parfois à l'œil nu : le permanganate est violet et son produit est incolore, il sert donc d'indicateur à lui tout seul, et l'on guette la première teinte persistante. Sinon, un indicateur redox change de couleur au bon potentiel : la diphénylamine passe de l'incolore au violet, la ferroïne du rouge au bleu pâle, et l'amidon signale le diiode en bleu foncé. La potentiométrie, elle, suit le potentiel électriquement.",
+   "texte": "Point final : œil nu, indicateurs colorés ou potentiométrie."
+  },
+  {
+   "id": "p31",
+   "ecran": "dosage_conditions",
+   "pause_apres": 0.8,
+   "dit": "Pour qu'un dosage soit fiable, sa réaction support doit remplir trois conditions : être totale, rapide, et univoque, c'est-à-dire sans réaction parasite. Les titrants de référence sont des solutions étalons bien connues : le permanganate de potassium, le dichromate de potassium, le diiode et le thiosulfate de sodium.",
+   "texte": "Un bon dosage : réaction totale, rapide, univoque."
+  },
+  {
+   "id": "p32",
+   "ecran": "applications",
+   "pause_apres": 0.8,
+   "dit": "Où utilise-t-on ces dosages ? Dans l'analyse environnementale, pour traquer les polluants des eaux et des sols ; dans l'industrie agroalimentaire, pour contrôler la qualité des produits, comme la vitamine C des jus de fruits ; dans l'industrie pharmaceutique, pour vérifier la pureté des médicaments ; et en médecine, par exemple pour le dosage du glucose sanguin.",
+   "texte": "Les dosages redox : environnement, alimentation, pharmacie, médecine."
+  },
+  {
+   "id": "p33",
+   "ecran": "recap_final",
+   "pause_apres": 0.8,
+   "dit": "Vous maîtrisez désormais l'oxydoréduction en solution aqueuse dans son ensemble. Les définitions et le nombre d'oxydation traquent les électrons ; les potentiels standard classent les couples et prédisent le sens des réactions ; la méthode des demi-équations équilibre n'importe quelle équation ; et les dosages transforment ces réactions en instruments de mesure précis.",
+   "texte": "Définitions, potentiels, équilibrage, dosages : le chapitre est bouclé."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le jeu des électrons : définitions et acteurs"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Potentiels standard et équilibrage des équations",
+   "pont": {
+    "dit": "Partie deux : les potentiels redox et l'équilibrage. Après les définitions, voici l'outil qui mesure la force des oxydants et des réducteurs, permet de prévoir le sens des réactions, puis la méthode pour équilibrer leurs équations.",
+    "texte": "Partie 2 : les potentiels redox et l'équilibrage."
+   }
+  },
+  {
+   "debut": "p25",
+   "sous_titre": "Acides sur les métaux et dosages redox",
+   "pont": {
+    "dit": "Partie trois : les applications. La théorie est en place et les équations s'équilibrent : voici le redox en action, avec l'attaque des métaux par les acides, puis les dosages, qui transforment ces réactions en instruments de mesure.",
+    "texte": "Partie 3 : acides sur les métaux et dosages redox."
+   }
+  }
+ ]
+}

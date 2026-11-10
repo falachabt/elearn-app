@@ -1,0 +1,501 @@
+{
+ "cours": 6652,
+ "titre": "Composés aromatiques et oxydoréduction : du benzène aux piles",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Aromatiques et oxydoréduction",
+   "titre": "Composés aromatiques et oxydoréduction : du benzène aux piles",
+   "sous": "Le cycle du benzène et ses réactions, puis le transfert d'électrons, les couples et les potentiels",
+   "anim": {
+    "nom": "benzene_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "Plastiques, parfums, rouille, piles : ces deux chimies sont partout dans votre quotidien."
+  },
+  "benzene_structure": {
+   "type": "etape",
+   "kicker": "Le benzène, molécule de référence",
+   "titre": "Un hexagone régulier et plan",
+   "tex": [
+    "C_6H_6 \\text{ : le benzène, le plus simple des aromatiques}",
+    "\\text{hexagone régulier et plan, angles de } 120^\\circ",
+    "\\text{six carbones hybridés } sp^2\\text{, une orbitale } p \\text{ chacun}"
+   ]
+  },
+  "delocalisation": {
+   "type": "etape",
+   "kicker": "Le nuage électronique",
+   "titre": "Des électrons π délocalisés sur tout le cycle",
+   "tex": [
+    "\\text{six orbitales } p \\text{ perpendiculaires au plan, recouvrantes}",
+    "\\text{électrons } \\pi \\text{ délocalisés sur l'ensemble du cycle}",
+    "\\text{nuage } \\pi \\text{ au-dessus et en dessous du plan}"
+   ]
+  },
+  "derives": {
+   "type": "etape",
+   "kicker": "Le noyau benzénique et ses dérivés",
+   "titre": "Remplacer un hydrogène, ou deux",
+   "tex": [
+    "C_6H_5\\text{-}CH_3 \\text{ toluène} \\qquad C_6H_5\\text{-}Cl \\text{ chlorobenzène}",
+    "C_6H_5\\text{-}OH \\text{ phénol} \\qquad C_6H_5\\text{-}NH_2 \\text{ aniline}",
+    "C_6H_5\\text{-}CHO \\text{ benzaldéhyde} \\qquad C_6H_5\\text{-}COOH \\text{ acide benzoïque}",
+    "\\text{deux substituants : ortho (1,2), méta (1,3), para (1,4)}"
+   ]
+  },
+  "exemple_nom": {
+   "type": "formule",
+   "kicker": "Exemple résolu : nommer un dérivé",
+   "tex": "C_6H_4(CH_3)(NO_2)",
+   "note": "Substituants en positions 1 et 4, dite para : c'est le 4-nitrotoluène."
+  },
+  "combustion": {
+   "type": "formule",
+   "kicker": "Propriétés chimiques : la combustion",
+   "tex": "2\\,C_6H_6 + 15\\,O_2 \\rightarrow 12\\,CO_2 + 6\\,H_2O",
+   "note": "Combustion complète du benzène : la flamme est fortement fuligineuse."
+  },
+  "additions": {
+   "type": "etape",
+   "kicker": "Les réactions d'addition",
+   "titre": "Possibles, mais à conditions sévères",
+   "tex": [
+    "C_6H_6 + 3\\,H_2 \\xrightarrow{Ni,\\ 200^\\circ C} C_6H_{12} \\text{ (cyclohexane)}",
+    "C_6H_6 + 3\\,Cl_2 \\xrightarrow{UV} C_6H_6Cl_6 \\text{ (hexachlorocyclohexane)}",
+    "\\text{le prix : la destruction du noyau aromatique}"
+   ]
+  },
+  "substitution": {
+   "type": "etape",
+   "kicker": "La substitution électrophile aromatique",
+   "titre": "Un hydrogène remplacé, le cycle conservé",
+   "tex": [
+    "C_6H_6 + Cl_2 \\xrightarrow{FeCl_3} C_6H_5Cl + HCl \\text{ (halogénation)}",
+    "C_6H_6 + HNO_3 \\xrightarrow{H_2SO_4} C_6H_5NO_2 + H_2O \\text{ (nitration)}",
+    "C_6H_6 + H_2SO_4 \\rightarrow C_6H_5SO_3H + H_2O \\text{ (sulfonation)}",
+    "C_6H_6 + CH_3Cl \\xrightarrow{AlCl_3} C_6H_5CH_3 + HCl \\text{ (Friedel-Crafts)}"
+   ]
+  },
+  "nitration_toluene": {
+   "type": "etape",
+   "kicker": "Le toluène face à l'acide nitrique fumant",
+   "titre": "Le méthyle active et oriente en ortho et para",
+   "tex": [
+    "C_6H_5CH_3 + HNO_3 \\xrightarrow{H_2SO_4} C_6H_4(CH_3)(NO_2) + H_2O",
+    "\\text{mélange de mononitrotoluènes, liquides jaunes}",
+    "\\text{produits : 2-nitrotoluène (ortho), 4-nitrotoluène (para)}"
+   ]
+  },
+  "securite": {
+   "type": "etape",
+   "kicker": "Sécurité et logos de danger",
+   "titre": "Des composés à manipuler avec précaution",
+   "tex": [
+    "\\text{benzène : cancérogène avéré, mutagène}",
+    "\\text{hotte, gants et lunettes, aucune source d'inflammation}",
+    "\\text{pictogrammes : Xn nocif, F inflammable}",
+    "\\text{T toxique, N dangereux pour l'environnement}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Benzène : hexagone plan, π délocalisés",
+    "Dérivés : ortho (1,2), méta (1,3), para (1,4)",
+    "Combustion fuligineuse, additions coûteuses",
+    "Substitution électrophile : le cycle survit",
+    "Sécurité : benzène cancérogène, sous hotte"
+   ]
+  },
+  "acide_metal": {
+   "type": "etape",
+   "kicker": "Un acide attaque un métal",
+   "titre": "Le zinc dans l'acide chlorhydrique",
+   "tex": [
+    "Zn_{(s)} + 2\\,H_3O^+ \\rightarrow Zn^{2+} + H_2\\uparrow + 2\\,H_2O",
+    "Zn \\rightarrow Zn^{2+} + 2e^- \\text{ : le zinc cède ses électrons}",
+    "2\\,H_3O^+ + 2e^- \\rightarrow H_2 + 2\\,H_2O \\text{ : l'hydronium les capte}"
+   ],
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 110
+   }
+  },
+  "metaux_acides": {
+   "type": "etape",
+   "kicker": "Tous les métaux ne se valent pas",
+   "titre": "Face aux acides : rapide, lent, ou rien",
+   "tex": [
+    "\\text{zinc : réaction rapide avec les acides}",
+    "Fe + 2\\,H_3O^+ \\rightarrow Fe^{2+} + H_2 + 2\\,H_2O \\text{ : le fer, lentement}",
+    "\\text{cuivre, argent, or : aucune réaction}"
+   ]
+  },
+  "metal_ion": {
+   "type": "etape",
+   "kicker": "Un métal face aux ions d'un autre métal",
+   "titre": "Le zinc déplace le cuivre",
+   "tex": [
+    "Zn_{(s)} + Cu^{2+} \\rightarrow Zn^{2+} + Cu_{(s)}",
+    "\\text{dépôt rougeâtre de cuivre, la solution bleue se décolore}",
+    "\\text{la réaction inverse (cuivre dans } Zn^{2+}\\text{) n'a pas lieu}"
+   ]
+  },
+  "definitions": {
+   "type": "etape",
+   "kicker": "Les définitions fondamentales",
+   "titre": "Perdre ou gagner des électrons",
+   "tex": [
+    "\\text{oxydation : perte d'électrons} \\qquad \\text{réduction : gain d'électrons}",
+    "\\text{oxydant : il capte les électrons, il subit la réduction}",
+    "\\text{réducteur : il cède les électrons, il subit l'oxydation}",
+    "\\text{pas d'oxydation sans réduction simultanée}"
+   ]
+  },
+  "couple": {
+   "type": "etape",
+   "kicker": "La notion de couple oxydant-réducteur",
+   "titre": "Deux espèces, une demi-équation",
+   "tex": [
+    "Ox + n\\,e^- \\rightleftharpoons Red",
+    "Zn^{2+} + 2e^- \\rightleftharpoons Zn \\qquad Cu^{2+} + 2e^- \\rightleftharpoons Cu",
+    "2\\,H_3O^+ + 2e^- \\rightleftharpoons H_2 + 2\\,H_2O"
+   ]
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "Écrire une équation d'oxydoréduction",
+   "titre": "La méthode en quatre gestes",
+   "tex": [
+    "\\text{1. identifier le réducteur et l'oxydant}",
+    "\\text{2. écrire les deux demi-équations}",
+    "\\text{3. équilibrer le nombre d'électrons échangés}",
+    "\\text{4. additionner : les électrons disparaissent}"
+   ]
+  },
+  "exemple_fer": {
+   "type": "etape",
+   "kicker": "Exemple résolu complet",
+   "titre": "Un clou en fer dans le sulfate de cuivre",
+   "tex": [
+    "Fe_{(s)} \\rightarrow Fe^{2+} + 2e^- \\text{ (oxydation du fer)}",
+    "Cu^{2+} + 2e^- \\rightarrow Cu_{(s)} \\text{ (réduction du cuivre)}",
+    "Fe_{(s)} + Cu^{2+} \\rightarrow Fe^{2+} + Cu_{(s)}",
+    "\\text{charge : } 2+ \\text{ des deux côtés, éléments conservés}"
+   ]
+  },
+  "classement_metaux": {
+   "type": "formule",
+   "kicker": "Le classement pratique des métaux",
+   "tex": "Zn > Fe > Cu > Ag > Au",
+   "note": "Du métal le plus réducteur au moins réducteur : le bilan des expériences."
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Oxydation : perte d'électrons",
+    "Réduction : gain d'électrons",
+    "Oxydant réduit, réducteur oxydé",
+    "Méthode : demi-équations équilibrées",
+    "Métaux : Zn > Fe > Cu > Ag > Au"
+   ]
+  },
+  "regle_gamma": {
+   "type": "etape",
+   "kicker": "La classification qualitative des couples",
+   "titre": "Une échelle, et la règle du gamma",
+   "tex": [
+    "\\text{réducteur fort} \\Longleftrightarrow \\text{son oxydant est faible}",
+    "\\text{oxydant fort} \\Longleftrightarrow \\text{son réducteur est faible}",
+    "\\text{règle du gamma : réaction avec l'oxydant d'un couple en dessous}"
+   ]
+  },
+  "demi_pile": {
+   "type": "etape",
+   "kicker": "Demi-pile et potentiel d'oxydoréduction",
+   "titre": "Mesurer le pouvoir d'un couple",
+   "tex": [
+    "\\text{demi-pile : un conducteur dans la solution de son couple}",
+    "E \\text{ : le potentiel du couple, en volts}",
+    "\\text{E dépend de la concentration et de la température}"
+   ]
+  },
+  "potentiel_standard": {
+   "type": "etape",
+   "kicker": "Le potentiel standard et sa référence",
+   "titre": "Des conditions fixées, une origine choisie",
+   "tex": [
+    "\\text{conditions standard : } 1\\ \\text{mol/L},\\ 1\\ \\text{bar},\\ 25\\,^\\circ\\text{C}",
+    "\\text{ESH : platine dans une solution acide, } H_2 \\text{ à } 1\\ \\text{bar}",
+    "E^\\circ(H_3O^+/H_2) = 0{,}00\\ \\text{V, par convention}",
+    "H_3O^+ + e^- \\rightleftharpoons \\tfrac{1}{2}\\,H_2 + H_2O"
+   ]
+  },
+  "tableau_e": {
+   "type": "etape",
+   "kicker": "La classification quantitative",
+   "titre": "Quelques potentiels standard à connaître",
+   "tex": [
+    "Li^+/Li : E^\\circ = -3{,}04\\ \\text{V} \\qquad Zn^{2+}/Zn : -0{,}76\\ \\text{V}",
+    "H_3O^+/H_2 : 0{,}00\\ \\text{V} \\text{ (la référence)}",
+    "Cu^{2+}/Cu : +0{,}34\\ \\text{V} \\qquad Cl_2/Cl^- : +1{,}36\\ \\text{V}",
+    "\\text{plus } E^\\circ \\text{ est grand, plus l'oxydant est fort}"
+   ]
+  },
+  "prevision": {
+   "type": "etape",
+   "kicker": "Prévoir une réaction spontanée",
+   "titre": "Comparer deux potentiels suffit",
+   "tex": [
+    "E^\\circ(Cu^{2+}/Cu) = +0{,}34\\ \\text{V} > E^\\circ(Zn^{2+}/Zn) = -0{,}76\\ \\text{V}",
+    "Zn + Cu^{2+} \\rightarrow Zn^{2+} + Cu \\text{ : spontanée}",
+    "\\text{le réducteur du plus petit } E^\\circ \\text{ réduit l'oxydant du plus grand}"
+   ],
+   "anim": {
+    "nom": "echelle_redox_fig",
+    "hauteur": 110
+   }
+  },
+  "pile": {
+   "type": "etape",
+   "kicker": "La pile électrochimique",
+   "titre": "Deux demi-piles, un pont salin, un courant",
+   "tex": [
+    "\\Delta E = E^\\circ_{cathode} - E^\\circ_{anode}",
+    "\\text{pile zinc-cuivre : } 0{,}34 - (-0{,}76) = 1{,}10\\ \\text{V}",
+    "\\text{anode} (-) : Zn \\text{ s'oxyde} \\qquad \\text{cathode} (+) : Cu^{2+} \\text{ se réduit}"
+   ],
+   "anim": {
+    "nom": "pile_daniell_fig",
+    "hauteur": 110
+   }
+  },
+  "couple_hydrogene": {
+   "type": "etape",
+   "kicker": "La place du couple de l'hydrogène",
+   "titre": "Le zéro qui explique les métaux et les acides",
+   "tex": [
+    "E^\\circ < 0 \\text{ : le métal réduit } H_3O^+ \\text{ en } H_2",
+    "E^\\circ > 0 \\text{ : le couple oxyde } H_2 \\text{ en } H_3O^+",
+    "\\text{zinc : dégagement de } H_2 \\text{ avec les acides ; cuivre : rien}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Aromatiques : la délocalisation protège",
+    "Redox : un transfert d'électrons",
+    "E° classe les couples, prévoit les réactions",
+    "Pile Zn/Cu : ΔE = 1,10 V",
+    "Le zéro de l'hydrogène trie les métaux"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de chimie en deux volets. Premier volet : les composés aromatiques, ces molécules bâties sur le cycle du benzène, leur structure, leurs dérivés et leurs réactions caractéristiques, jusqu'aux règles de sécurité qui encadrent leur manipulation. Deuxième volet : l'oxydoréduction, cet échange d'électrons entre espèces chimiques, depuis les expériences fondatrices et les définitions jusqu'à la classification des couples par leur potentiel, qui permet de prévoir les réactions et de comprendre le fonctionnement des piles.",
+   "texte": "Deux volets : le benzène, puis les électrons qui voyagent.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Deux univers qui se côtoient dans votre quotidien. Les dérivés du benzène sont à la base des plastiques, des colorants, des médicaments et des parfums. Et pendant ce temps, l'oxydoréduction fait rouiller le fer, alimente vos piles, laisse les acides attaquer certains métaux et fait respirer vos cellules. Par où commencer ? Par le plus célèbre des cycles : le benzène, dont la structure a fait réfléchir les chimistes du dix-neuvième siècle.",
+   "texte": "Plastiques, piles, rouille : ces deux chimies sont partout.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Le benzène, de formule brute cé six ache six, est le plus simple des composés aromatiques. Sa structure, élucidée par Kekulé au dix-neuvième siècle, est un hexagone régulier et parfaitement plan : les six atomes de carbone occupent les sommets, et tous les angles de liaison valent cent vingt degrés. Chaque carbone est hybridé esse-pé-deux : il lui reste donc une orbitale pé non hybride, perpendiculaire au plan de la molécule, qui jouera le rôle clé dans la suite du cours.",
+   "texte": "C₆H₆ : hexagone régulier, plan, angles de 120°.",
+   "ecran": "benzene_structure"
+  },
+  {
+   "id": "p04",
+   "dit": "Voici le trait génial du benzène : ses six orbitales pé se recouvrent latéralement, tout autour du cycle. Les électrons pi ne sont alors plus enfermés entre deux carbones voisins : ils forment un nuage délocalisé, au-dessus et en dessous du plan, réparti sur l'ensemble du cycle. Cette délocalisation confère au benzène une stabilité particulière, et elle explique sa faible réactivité dans les réactions d'addition. Pour la symboliser, on dessine un cercle au centre de l'hexagone.",
+   "texte": "Électrons π délocalisés : un cercle dans l'hexagone.",
+   "ecran": "delocalisation"
+  },
+  {
+   "id": "p05",
+   "dit": "Du benzène naît toute une famille : on remplace un ou plusieurs hydrogènes du cycle par d'autres atomes ou groupes d'atomes. À l'écran, les dérivés monosubstitués les plus connus : le toluène, le chlorobenzène, le phénol, l'aniline, le benzaldéhyde et l'acide benzoïque. Quand deux hydrogènes sont remplacés, tout dépend de leurs positions relatives : ortho pour les positions un et deux, méta pour un et trois, para pour un et quatre.",
+   "texte": "Toluène, phénol, aniline… ortho, méta, para.",
+   "ecran": "derives"
+  },
+  {
+   "id": "p06",
+   "dit": "Exercice de nommage, résolu dans les leçons. On considère un cycle qui porte un groupe méthyle et un groupe nitro, en positions un et quatre. Les deux substituants sont donc face à face : c'est la disposition para. Le composé se nomme quatre-nitrotoluène, ou pé-nitrotoluène : le méthyle donne le nom de base, le toluène, et le groupe nitro se cite en préfixe, avec son numéro de position.",
+   "texte": "Positions 1 et 4, dite para : le 4-nitrotoluène.",
+   "ecran": "exemple_nom"
+  },
+  {
+   "id": "p07",
+   "dit": "Côté propriétés, les composés aromatiques sont d'abord des combustibles : ils brûlent dans le dioxygène avec une flamme fortement fuligineuse, qui dégage des particules de carbone, signature de leur forte teneur en carbone. L'équation de la combustion complète du benzène est à l'écran : deux molécules de benzène réagissent avec quinze molécules de dioxygène pour donner douze molécules de dioxyde de carbone et six molécules d'eau.",
+   "texte": "2 C₆H₆ + 15 O₂ → 12 CO₂ + 6 H₂O : flamme fuligineuse.",
+   "ecran": "combustion"
+  },
+  {
+   "id": "p08",
+   "dit": "Le benzène peut, en principe, additionner le dihydrogène ou le dichlore, comme le ferait un alcène. Mais son noyau aromatique est si stable que ces réactions exigent des conditions énergétiques sévères. L'hydrogénation demande un catalyseur au nickel et deux cents degrés : elle donne le cyclohexane. L'addition du dichlore exige une irradiation aux ultraviolets : elle donne l'hexachlorocyclohexane. Dans les deux cas, le prix à payer est la destruction du noyau aromatique.",
+   "texte": "Hydrogénation et chloration : à conditions sévères.",
+   "ecran": "additions"
+  },
+  {
+   "id": "p09",
+   "dit": "La vraie réaction caractéristique des aromatiques est ailleurs : c'est la substitution électrophile aromatique. Un hydrogène du cycle est remplacé par un électrophile, sans destruction du noyau benzénique : la délocalisation électronique est conservée. Quatre exemples à connaître : l'halogénation, catalysée par un halogénure de fer ou d'aluminium ; la nitration, par le mélange sulfonitrique, dont l'électrophile est l'ion nitronium ; la sulfonation, par l'acide sulfurique fumant ; et les réactions de Friedel et Crafts, alkylation ou acylation catalysées par le chlorure d'aluminium.",
+   "texte": "Substitution électrophile : le cycle survit.",
+   "ecran": "substitution"
+  },
+  {
+   "id": "p10",
+   "dit": "Appliquons la nitration au toluène, avec l'acide nitrique fumant. Le groupe méthyle joue deux rôles : il active le cycle, qui réagit plus facilement que celui du benzène, et il oriente la substitution vers les positions ortho et para. On obtient un mélange de mononitrotoluènes, principalement le deux-nitrotoluène, en position ortho, et le quatre-nitrotoluène, en position para, dont l'équation est à l'écran. Ces dérivés nitrés sont des liquides jaunes, utilisés comme intermédiaires de synthèse.",
+   "texte": "Toluène nitré : ortho et para, le méthyle oriente.",
+   "ecran": "nitration_toluene"
+  },
+  {
+   "id": "p11",
+   "dit": "Manipuler ces composés n'est pas anodin. Le benzène est un cancérogène avéré pour l'homme, et il est aussi mutagène ; les composés nitrés aromatiques sont également dangereux. Leur manipulation impose donc des mesures strictes : travail sous hotte, port de gants et de lunettes, et interdiction de toute source d'inflammation. Les flacons préviennent par leurs logos de danger : nocif, inflammable, toxique pour certains dérivés nitrés, et dangereux pour l'environnement pour de nombreux aromatiques.",
+   "texte": "Benzène cancérogène : hotte, gants, lunettes.",
+   "ecran": "securite"
+  },
+  {
+   "id": "p12",
+   "dit": "Récapitulons ce premier volet. Le benzène est un hexagone régulier et plan, dont les six électrons pi délocalisés assurent une stabilité remarquable. Ses dérivés se nomment d'après leurs substituants et leurs positions relatives : ortho, méta, para. Côté réactions : une combustion très fuligineuse, des additions possibles mais coûteuses en énergie, et surtout la substitution électrophile, qui remplace un hydrogène sans détruire le cycle. Le tout sous haute sécurité, car ces composés sont dangereux pour la santé et pour l'environnement.",
+   "texte": "Aromatiques : structure, noms, réactions, sécurité.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p13",
+   "dit": "Entrons dans le deuxième volet par une expérience. On plonge un morceau de zinc dans une solution d'acide chlorhydrique : on observe un dégagement gazeux, et la dissolution progressive du zinc. Le gaz, approché d'une flamme, produit le petit aboiement caractéristique du dihydrogène. L'équation bilan est à l'écran, et elle se décompose en deux demi-équations : le zinc cède deux électrons, les ions hydronium les captent pour devenir du dihydrogène et de l'eau. Un transfert d'électrons : voilà le cœur de l'oxydoréduction.",
+   "texte": "Zn + acide : H₂ dégagé, le zinc se dissout.",
+   "ecran": "acide_metal"
+  },
+  {
+   "id": "p14",
+   "dit": "Tous les métaux ne réagissent pas de la même façon avec les acides, comme le résume le tableau des leçons. Le zinc réagit rapidement ; le fer et l'aluminium réagissent aussi, mais plus lentement que le zinc ; et le cuivre, l'argent et l'or ne réagissent pas du tout avec l'acide chlorhydrique ou l'acide sulfurique dilué. Cette hiérarchie des comportements annonce le classement des métaux que nous construirons à la fin de cette partie.",
+   "texte": "Zn rapide, Fe lent, Cu, Ag et Au : aucune réaction.",
+   "ecran": "metaux_acides"
+  },
+  {
+   "id": "p15",
+   "dit": "Deuxième expérience : on plonge une lame de zinc dans une solution de sulfate de cuivre. Un dépôt rougeâtre de cuivre métallique se forme sur la lame, et la solution se décolore progressivement : les ions cuivre, bleus, disparaissent. L'équation bilan est à l'écran : le zinc cède ses électrons aux ions cuivre, qui deviennent du métal. Et remarque capitale : la réaction inverse, une lame de cuivre dans une solution d'ions zinc, ne se produit pas. Le transfert d'électrons a un sens, et un seul.",
+   "texte": "Zn + Cu²⁺ → Zn²⁺ + Cu : l'inverse est impossible.",
+   "ecran": "metal_ion"
+  },
+  {
+   "id": "p16",
+   "dit": "Posons les définitions fondamentales, telles que les leçons les énoncent. L'oxydation est une perte d'électrons par une espèce chimique ; la réduction est un gain d'électrons. On appelle oxydant l'espèce capable de capter un ou plusieurs électrons : c'est elle qui subit la réduction. On appelle réducteur l'espèce capable de céder un ou plusieurs électrons : c'est elle qui subit l'oxydation. Et une réaction d'oxydoréduction est une réaction au cours de laquelle les électrons passent du réducteur à l'oxydant.",
+   "texte": "Oxydation = perte, réduction = gain d'électrons.",
+   "ecran": "definitions"
+  },
+  {
+   "id": "p17",
+   "dit": "Un oxydant et le réducteur qui lui correspond forment un couple oxydant-réducteur. Les deux espèces sont reliées par une demi-équation électronique : l'oxydant, plus un certain nombre d'électrons, est en équilibre avec le réducteur. Trois couples servent d'exemples dans tout ce volet : le couple des ions zinc et du zinc métal, celui des ions cuivre et du cuivre métal, et celui des ions hydronium et du dihydrogène, dont la demi-équation fait aussi intervenir l'eau.",
+   "texte": "Couple Ox/Red : Ox + n e⁻ ⇌ Red.",
+   "ecran": "couple"
+  },
+  {
+   "id": "p18",
+   "dit": "Voici la méthode pour écrire l'équation bilan d'une réaction d'oxydoréduction entre deux couples. Premier geste : identifier le réducteur qui cède les électrons, le plus actif, et l'oxydant qui les capte. Deuxième geste : écrire les deux demi-équations. Troisième geste : équilibrer le nombre d'électrons cédés et captés, en multipliant les demi-équations si nécessaire. Quatrième geste : additionner les deux demi-équations ; les électrons disparaissent de l'équation bilan.",
+   "texte": "Écrire une équation redox : la méthode en 4 gestes.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple résolu complet des leçons : on plonge un clou en fer dans une solution de sulfate de cuivre. Le fer métal est le réducteur, il cède des électrons ; les ions cuivre sont l'oxydant, ils les captent. Les deux demi-équations échangent déjà le même nombre d'électrons, deux : on les additionne directement, les électrons s'éliminent, et l'équation bilan est à l'écran. La vérification clôt la méthode : conservation des éléments, et conservation de la charge électrique, deux plus à gauche comme à droite.",
+   "texte": "Fe + Cu²⁺ → Fe²⁺ + Cu : charge 2+ des deux côtés.",
+   "ecran": "exemple_fer"
+  },
+  {
+   "id": "p20",
+   "dit": "Assemblons ce que les expériences nous ont appris. Un métal plus réducteur, qui cède facilement ses électrons, peut réduire les ions d'un métal moins réducteur. D'où le classement pratique des leçons, du métal le plus réducteur au moins réducteur : le zinc, puis le fer, puis le cuivre, puis l'argent, et enfin l'or. Ce classement explique tout ce que nous avons vu : le zinc déplace le cuivre de ses ions, le cuivre ne touche pas aux ions zinc, et les métaux les moins réducteurs laissent les acides tranquilles.",
+   "texte": "Zn > Fe > Cu > Ag > Au : du plus au moins réducteur.",
+   "ecran": "classement_metaux"
+  },
+  {
+   "id": "p21",
+   "dit": "Récapitulons. Une réaction d'oxydoréduction est un transfert d'électrons entre un réducteur, qui s'oxyde, et un oxydant, qui se réduit : les deux processus sont toujours simultanés. Les espèces s'organisent en couples, reliés par des demi-équations électroniques, et la méthode d'écriture équilibre les électrons échangés avant d'additionner. Enfin, les expériences sur les métaux débouchent sur un classement qualitatif des réducteurs. Reste à transformer ce classement en nombres : c'est l'objet de la dernière partie.",
+   "texte": "Transfert d'électrons, couples, méthode, classement.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p22",
+   "dit": "Comment classer les couples entre eux ? L'expérience de la lame donne le critère : on plonge un métal dans une solution contenant les ions d'un autre métal ; si une réaction a lieu, dépôt ou changement de couleur, le métal plongé est plus réducteur que celui dont les ions sont en solution. On empile ainsi les couples sur une échelle, du plus réducteur en haut au plus oxydant en bas. Règle du gamma : le réducteur d'un couple réagit avec l'oxydant d'un couple situé en dessous dans la classification. Et retenez la correspondance : un réducteur fort a un oxydant conjugué faible, un oxydant fort a un réducteur conjugué faible.",
+   "texte": "Échelle des couples et règle du gamma.",
+   "ecran": "regle_gamma"
+  },
+  {
+   "id": "p23",
+   "dit": "Pour passer aux nombres, on construit une demi-pile : un conducteur métallique plongeant dans une solution qui contient les deux espèces d'un couple. L'électrode prend alors un potentiel électrique mesurable. Ce potentiel d'oxydoréduction, noté grand e et exprimé en volts, mesure le pouvoir oxydant ou réducteur du couple dans les conditions de l'expérience. Attention : il n'est pas figé, il dépend de la concentration et de la température.",
+   "texte": "Demi-pile : un potentiel E, en volts, mesurable.",
+   "ecran": "demi_pile"
+  },
+  {
+   "id": "p24",
+   "dit": "Pour comparer les couples entre eux, on fixe des conditions standard : concentration d'une mole par litre, pression d'un bar, température de vingt-cinq degrés. Le potentiel mesuré dans ces conditions est le potentiel standard du couple. Il faut une origine : c'est l'électrode standard à hydrogène, une électrode de platine plongeant dans une solution acide, sous un flux de dihydrogène à un bar. Par convention, le potentiel standard du couple des ions hydronium et du dihydrogène vaut exactement zéro volt.",
+   "texte": "E° mesuré en conditions standard ; l'ESH vaut zéro.",
+   "ecran": "potentiel_standard"
+  },
+  {
+   "id": "p25",
+   "dit": "Voici le tableau des potentiels standard donné par les leçons. Le couple du lithium affiche moins trois virgule zéro quatre volts : son réducteur est le plus fort du tableau. Le zinc est à moins zéro virgule soixante-seize volt, le couple de l'hydrogène à zéro par définition, le cuivre à plus zéro virgule trente-quatre volt, et le dichlore à plus un virgule trente-six volts. La lecture est simple : plus le potentiel standard est grand, plus l'oxydant du couple est fort ; plus il est petit, voire négatif, plus le réducteur est fort.",
+   "texte": "Li −3,04 V ; Zn −0,76 ; référence 0 ; Cu +0,34 ; Cl₂ +1,36.",
+   "ecran": "tableau_e"
+  },
+  {
+   "id": "p26",
+   "dit": "Avec ces nombres, prévoir une réaction devient un jeu de comparaison. La réaction spontanée met en jeu le réducteur du couple de plus petit potentiel et l'oxydant du couple de plus grand potentiel. Reprenons l'exemple résolu des leçons, le zinc et les ions cuivre : le potentiel du couple du cuivre, plus zéro virgule trente-quatre volt, dépasse celui du couple du zinc, moins zéro virgule soixante-seize volt. Le zinc réduit donc spontanément les ions cuivre, exactement comme l'expérience de la lame l'avait montré.",
+   "texte": "+0,34 V > −0,76 V : Zn réduit Cu²⁺, spontanément.",
+   "ecran": "prevision"
+  },
+  {
+   "id": "p27",
+   "dit": "Séparons maintenant les deux demi-réactions dans deux demi-piles, reliées par un pont salin : nous avons fabriqué une pile électrochimique. L'anode, pôle négatif, est le siège de l'oxydation : c'est l'électrode du couple de plus petit potentiel. La cathode, pôle positif, est le siège de la réduction : celle du couple de plus grand potentiel. La force électromotrice de la pile est la différence des deux potentiels standard. Pour la pile zinc-cuivre : zéro virgule trente-quatre, moins moins zéro virgule soixante-seize, égale un virgule dix volt ; le zinc est le pôle négatif, le cuivre le pôle positif.",
+   "texte": "Pile Zn/Cu : ΔE = 0,34 − (−0,76) = 1,10 V.",
+   "ecran": "pile"
+  },
+  {
+   "id": "p28",
+   "dit": "Terminons par la place particulière du couple de l'hydrogène, celui de la référence. Tout couple dont le potentiel standard est négatif peut réduire les ions hydronium en dihydrogène ; tout couple de potentiel positif peut, à l'inverse, oxyder le dihydrogène en ions hydronium. Voilà qui explique d'un seul coup le comportement des métaux face aux acides : les métaux plus réducteurs que l'hydrogène, comme le zinc, réagissent avec les acides forts en dégageant du dihydrogène, contrairement aux métaux moins réducteurs, comme le cuivre. La boucle est bouclée avec la toute première expérience du cours.",
+   "texte": "E° < 0 : H₂ dégagé avec les acides ; E° > 0 : rien.",
+   "ecran": "couple_hydrogene"
+  },
+  {
+   "id": "p29",
+   "dit": "Récapitulons l'ensemble du cours. Les composés aromatiques vivent sous le signe de la délocalisation : un cycle régulier et stable, qui préfère la substitution à l'addition pour conserver son noyau. L'oxydoréduction vit sous le signe du transfert : des électrons qui passent d'un réducteur à un oxydant, organisés en couples reliés par des demi-équations. Et les potentiels standard mettent de l'ordre dans ces couples : ils prévoient les réactions spontanées, expliquent le comportement des métaux face aux acides et livrent la tension des piles, un virgule dix volt pour le couple historique du zinc et du cuivre.",
+   "texte": "Délocalisation, transfert d'électrons, potentiels.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les composés aromatiques : le benzène et ses réactions"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "L'oxydoréduction : transfert d'électrons, couples et méthode",
+   "pont": {
+    "texte": "Partie 2 : l'oxydoréduction, un transfert d'électrons.",
+    "dit": "Partie deux : l'oxydoréduction. Changement de décor : nous quittons le benzène et son cycle pour suivre des électrons qui passent d'une espèce chimique à une autre, du zinc attaqué par un acide aux couples oxydant-réducteur et à leur classement."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Classer les couples : potentiels standard, prévisions et piles",
+   "pont": {
+    "texte": "Partie 3 : potentiels standard, prévisions et piles.",
+    "dit": "Partie trois : classer les couples et prévoir les réactions. Après le classement qualitatif, nous allons ordonner les couples avec un nombre, le potentiel standard, prévoir les réactions spontanées, et assembler les deux demi-réactions en une pile qui délivre un courant."
+   }
+  }
+ ]
+}

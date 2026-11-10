@@ -102,6 +102,16 @@ describe('Ecran', () => {
     expect(screen.queryByRole('button', { name: 'Revenir en haut' })).toBeNull();
   });
 
+  it('retour en haut : seuil réglable pour une longue liste (dossier d\u2019annales)', async () => {
+    await render(avecTheme('clair', <Ecran retourHautApres={0.5}><Text>long</Text></Ecran>));
+    const defilement = screen.getByTestId('ecran-defilement');
+    await fireEvent.scroll(defilement, { nativeEvent: { contentOffset: { y: 100 } } });
+    expect(screen.queryByRole('button', { name: 'Revenir en haut' })).toBeNull();
+    // 0,5 hauteur d'écran suffit ; avec le seuil par défaut (1,5), ce défilement ne montrerait rien.
+    await fireEvent.scroll(defilement, { nativeEvent: { contentOffset: { y: 700 } } });
+    expect(screen.getByRole('button', { name: 'Revenir en haut' })).toBeTruthy();
+  });
+
   it('retour en haut désactivable', async () => {
     await render(avecTheme('clair', <Ecran retourHaut={false}><Text>long</Text></Ecran>));
     await fireEvent.scroll(screen.getByTestId('ecran-defilement'), { nativeEvent: { contentOffset: { y: 3000 } } });

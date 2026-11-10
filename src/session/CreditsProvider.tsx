@@ -53,6 +53,29 @@ const ContexteCredits = createContext<Credits>({
 });
 
 /** Un seul abonnement temps réel au solde pour toute l'app (M18-06). */
+const DEMO_STATS = __DEV__ && process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1';
+/** Solde d'exemple de la démo TOEIC (valeurs de la maquette X5, sans session). */
+/** Coûts d'exemple de la démo TOEIC (outil de développement, sans session) : copie de `credit_actions` pour l'affichage seul. */
+const COUTS_DEMO: Partial<Record<ActionCredit, number>> = {
+  cert_explanation: 1,
+  cert_mock_mini_ten: 3,
+  cert_mock_mini_twenty: 4,
+  cert_mock_half: 12,
+  cert_mock_full: 20,
+  cert_mock_review: 5,
+};
+const SOLDE_DEMO: Solde = {
+  total: 25,
+  semaine: 0,
+  recompenses: 12,
+  recharge: 25,
+  prochaineRecharge: '2026-10-26',
+  rechargeHebdo: true,
+  illimite: false,
+  illimiteJusqua: null,
+  expirationRecompenses: '2026-11-14T00:00:00.000Z',
+};
+
 export function CreditsProvider({ children }: { children: ReactNode }) {
   const { session } = useSession();
   const utilisateur = session?.user.id ?? null;
@@ -63,10 +86,11 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
   const soldeReel = etat && etat.pour === utilisateur ? etat.solde : null;
   // Solde simulé (page développeur) : remplace l'affichage, jamais le registre du serveur.
   const simule = useSyncExternalStore(ecouterSoldeSimule, soldeSimule, soldeSimule);
-  const solde = useMemo<Solde | null>(
-    () => (soldeReel && simule !== null ? { ...soldeReel, total: simule, semaine: simule, recompenses: 0, illimite: false, illimiteJusqua: null } : soldeReel),
-    [soldeReel, simule],
-  );
+  const solde = useMemo<Solde | null>(() => {
+    // Démo des explications TOEIC (outil de développement, avec EXPO_PUBLIC_CERT_DEMO_STATS=1) : solde d'exemple sans session.
+    if (__DEV__ && process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1' && !soldeReel) return SOLDE_DEMO;
+    return soldeReel && simule !== null ? { ...soldeReel, total: simule, semaine: simule, recompenses: 0, illimite: false, illimiteJusqua: null } : soldeReel;
+  }, [soldeReel, simule]);
   const majSolde = useCallback(
     (pour: string, f: (s: Solde | null) => Solde | null) =>
       setEtat((e) => {
@@ -75,7 +99,10 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
       }),
     [],
   );
-  const [couts, setCouts] = useState<Partial<Record<ActionCredit, number>>>({});
+  // Démo des explications TOEIC (outil de développement, avec EXPO_PUBLIC_CERT_DEMO_STATS=1) : sans session, les coûts ne se lisent pas.
+  const [couts, setCouts] = useState<Partial<Record<ActionCredit, number>>>(() =>
+    DEMO_STATS ? COUTS_DEMO : {},
+  );
   const [reglages, setReglages] = useState<ReglagesCredits | null>(null);
   const [depenses, setDepenses] = useState<{ pour: string; n: number } | null>(null);
   // Dépenses hors ligne en attente : tant qu'il en reste, le solde affiché n'est pas confirmé par le serveur.
@@ -91,7 +118,7 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
     majSolde(utilisateur, () => s);
     void garderSoldeLocal(utilisateur, s);
     const [c, r] = await Promise.all([lireCouts(client), lireReglages(client).catch(() => null)]);
-    setCouts(c);
+    if (!DEMO_STATS || Object.keys(c).length > 0) setCouts(c);
     if (r) setReglages(r);
   }, [utilisateur, majSolde]);
 
@@ -103,7 +130,7 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
       .then(([s, c, r]) => {
         majSolde(utilisateur, () => s);
         void garderSoldeLocal(utilisateur, s);
-        setCouts(c);
+        if (!DEMO_STATS || Object.keys(c).length > 0) setCouts(c);
         if (r) setReglages(r);
       })
       // Hors ligne au démarrage : on affiche le dernier solde confirmé, jamais celui d'un autre compte.

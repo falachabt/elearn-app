@@ -1,0 +1,402 @@
+{
+  "cours": 6304,
+  "ecrans": {
+    "aberrant": {
+      "kicker": "Le point aberrant",
+      "tex": [
+        "a \\approx 0{,}70 \\qquad b \\approx 103{,}0",
+        "\\text{sans le point } (65, 160) :",
+        "a \\approx 0{,}51 \\qquad b \\approx 109{,}4"
+      ],
+      "titre": "Âge et tension : un seul point déplace la droite",
+      "type": "etape"
+    },
+    "anscombe": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "graphique_mesures_fig"
+      },
+      "kicker": "Le quartet d'Anscombe",
+      "texte": "Quatre nuages, mêmes moyennes, même droite, même r : 0,816. Et pourtant quatre réalités complètement différentes.",
+      "type": "phrase"
+    },
+    "cafe": {
+      "kicker": "Étude de cas · cafés glacés",
+      "tex": [
+        "y \\approx 4{,}88x - 46{,}88 \\qquad r \\approx 0{,}998",
+        "\\hat{y}(32) \\approx 4{,}88 \\times 32 - 46{,}88",
+        "\\hat{y}(32) \\approx 109 \\text{ cafés glacés}"
+      ],
+      "titre": "Température et ventes sur dix jours",
+      "type": "etape"
+    },
+    "correlation": {
+      "kicker": "Le coefficient de corrélation",
+      "note": "Entre −1 et 1 : le signe donne le sens, la valeur absolue la force.",
+      "tex": "r = \\frac{\\text{Cov}(x, y)}{s_x \\cdot s_y}",
+      "type": "formule"
+    },
+    "critere": {
+      "kicker": "Le critère des moindres carrés",
+      "note": "Les carrés pénalisent les grandes erreurs et rendent le calcul possible.",
+      "tex": "S(a, b) = \\sum_{i=1}^{n} \\left[ y_i - (a x_i + b) \\right]^2",
+      "type": "formule"
+    },
+    "deux_droites": {
+      "kicker": "Deux régressions, deux droites",
+      "texte": "Prédire y depuis x, ou x depuis y : ce ne sont pas les mêmes droites. On n'inverse pas une équation de régression.",
+      "type": "phrase"
+    },
+    "echelle": {
+      "kicker": "Lire la valeur de r",
+      "tex": [
+        "0{,}9 \\leq |r| \\leq 1 : \\text{ très forte}",
+        "0{,}7 \\leq |r| < 0{,}9 : \\text{ forte}",
+        "0{,}5 \\leq |r| < 0{,}7 : \\text{ modérée}",
+        "|r| < 0{,}3 : \\text{ négligeable}"
+      ],
+      "titre": "Une échelle d'intensité, du négligeable au très fort",
+      "type": "etape"
+    },
+    "ex_correlation": {
+      "kicker": "Exemple · la corrélation de l'étude",
+      "tex": [
+        "r = \\tfrac{81}{\\sqrt{70 \\times 96{,}83}} \\approx 0{,}98",
+        "r^2 \\approx 0{,}97"
+      ],
+      "titre": "Le même exemple, côté corrélation",
+      "type": "etape"
+    },
+    "ex_etude": {
+      "kicker": "Exemple · temps d'étude et notes",
+      "tex": [
+        "\\bar{x} = 7 \\qquad \\bar{y} \\approx 14{,}17",
+        "a = \\tfrac{81}{70} \\approx 1{,}16",
+        "b \\approx 6{,}07 \\qquad y = 1{,}16x + 6{,}07"
+      ],
+      "titre": "Six étudiants : les sommes valent 81 et 70",
+      "type": "etape"
+    },
+    "ex_prevision": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "graphique_mesures_fig"
+      },
+      "kicker": "Interpréter la droite",
+      "texte": "Pour 9 heures d'étude, le modèle prédit environ 16,5 sur 20.",
+      "type": "phrase"
+    },
+    "ex_simple": {
+      "kicker": "Exemple · cinq étudiants alignés",
+      "tex": [
+        "\\sum x_i = 30 \\qquad \\sum y_i = 70",
+        "a = \\tfrac{2300 - 2100}{1100 - 900} = 1",
+        "b = 14 - 6 = 8 \\qquad y = x + 8"
+      ],
+      "titre": "La forme développée, pratique pour calculer à la main",
+      "type": "etape"
+    },
+    "formules": {
+      "kicker": "Les formules de la droite",
+      "tex": [
+        "a = \\frac{\\text{Cov}(x, y)}{V(x)}",
+        "b = \\bar{y} - a\\bar{x}"
+      ],
+      "titre": "La pente d'abord, l'ordonnée ensuite",
+      "type": "etape"
+    },
+    "hypotheses": {
+      "kicker": "Les hypothèses du modèle",
+      "tex": [
+        "\\text{linéarité : tendance moyenne droite}",
+        "\\text{indépendance : erreurs non liées}",
+        "\\text{homoscédasticité : dispersion constante}",
+        "\\text{normalité : pour les tests et intervalles}"
+      ],
+      "titre": "Quatre conditions cachées derrière la droite",
+      "type": "etape"
+    },
+    "intro": {
+      "kicker": "Introduction",
+      "texte": "Deux grandeurs liées, jamais parfaitement : c'est une relation statistique, et la droite est son modèle le plus simple.",
+      "type": "phrase"
+    },
+    "medicament": {
+      "kicker": "Étude de cas · dose et tension",
+      "tex": [
+        "y \\approx 0{,}75x + 1{,}2 \\qquad r \\approx 0{,}89",
+        "15 = 0{,}75x + 1{,}2 \\Rightarrow x \\approx 18{,}4\\ \\text{mg}"
+      ],
+      "titre": "Inverser la droite pour doser",
+      "type": "etape"
+    },
+    "normales": {
+      "kicker": "D'où viennent les formules ?",
+      "tex": [
+        "\\tfrac{\\partial S}{\\partial a} = 0",
+        "\\tfrac{\\partial S}{\\partial b} = 0",
+        "\\sum_i e_i = 0 \\qquad \\sum_i x_i e_i = 0"
+      ],
+      "titre": "Annuler les dérivées partielles de S",
+      "type": "etape"
+    },
+    "nuage": {
+      "anim": {
+        "hauteur": 240,
+        "nom": "graphique_mesures_fig"
+      },
+      "kicker": "Le nuage de points",
+      "texte": "Six étudiants : temps d'étude en abscisse, note en ordonnée. Les points montent, sans être alignés.",
+      "type": "phrase"
+    },
+    "pieges": {
+      "etapes": [
+        "Corrélation n'est pas causalité",
+        "r ne voit que les relations linéaires",
+        "Une valeur extrême peut tout fausser",
+        "Toujours regarder le nuage d'abord"
+      ],
+      "kicker": "Les pièges de la corrélation",
+      "type": "recap"
+    },
+    "point_moyen": {
+      "kicker": "Le point moyen",
+      "note": "Toujours sur la droite : un contrôle gratuit de vos calculs.",
+      "tex": "\\bar{y} = a\\bar{x} + b",
+      "type": "formule"
+    },
+    "r2": {
+      "kicker": "Le coefficient de détermination",
+      "tex": [
+        "r = 0{,}82 \\qquad r^2 \\approx 0{,}67",
+        "\\text{67 \\% de la variance des scores expliquée}"
+      ],
+      "titre": "Lecture et vocabulaire : r² dit ce que la droite explique",
+      "type": "etape"
+    },
+    "recap": {
+      "etapes": [
+        "Le nuage d'abord, la droite ensuite",
+        "a = Cov(x, y) / V(x) ; b = ȳ − a x̄",
+        "La droite passe par le point moyen",
+        "r : la force ; r² : la variance expliquée",
+        "Prédire dedans, se méfier dehors"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "residu": {
+      "kicker": "Le résidu",
+      "note": "Écart vertical point–droite : positif au-dessus, négatif au-dessous.",
+      "tex": "e_i = y_i - \\hat{y}_i = y_i - (a x_i + b)",
+      "type": "formule"
+    },
+    "residus_graph": {
+      "anim": {
+        "hauteur": 200,
+        "nom": "dispersion_mesures_fig"
+      },
+      "kicker": "Écouter les résidus",
+      "texte": "Graphique des résidus : un entonnoir signale une dispersion croissante, une courbe en U une relation non linéaire.",
+      "type": "phrase"
+    },
+    "titre": {
+      "kicker": "Mathématique · Statistiques",
+      "sous": "Nuage de points, corrélation, prédictions : modéliser une relation entre deux variables",
+      "titre": "Ajustement linéaire : la droite des moindres carrés",
+      "type": "titre"
+    },
+    "transformations": {
+      "kicker": "Quand la relation est courbe",
+      "texte": "Exponentielle ? Un logarithme la linéarise. Parabole ? Une régression polynomiale. La droite reste l'outil, après transformation.",
+      "type": "phrase"
+    },
+    "usages": {
+      "kicker": "Deux usages de la droite",
+      "texte": "Analyser : la pente quantifie l'effet moyen. Prédire : fiable dedans (interpolation), risqué dehors (extrapolation).",
+      "type": "phrase"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Construire la droite des moindres carrés"
+    },
+    {
+      "debut": "p12",
+      "pont": {
+        "dit": "Partie deux : mesurer la force de la liaison. Nous définirons le coefficient de corrélation et son carré, la proportion de variance expliquée, avant de mettre la droite au travail dans deux études de cas, un café et un laboratoire.",
+        "texte": "Partie 2 : le coefficient de corrélation, r² et la droite au travail."
+      },
+      "sous_titre": "Mesurer la liaison : corrélation et applications"
+    },
+    {
+      "debut": "p20",
+      "pont": {
+        "dit": "Partie trois : les limites du modèle. Nous passerons en revue ses hypothèses cachées, le diagnostic par les résidus, le quartet d'Anscombe et l'effet redoutable d'un seul point aberrant.",
+        "texte": "Partie 3 : les hypothèses du modèle et ses pièges."
+      },
+      "sous_titre": "Hypothèses, diagnostics et pièges"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours d'ajustement linéaire. Devant un nuage de points qui semble suivre une tendance, nous allons apprendre à tracer la meilleure droite possible, celle des moindres carrés, à mesurer la force de la liaison avec le coefficient de corrélation, puis à prédire, sans jamais oublier les limites du modèle.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Ajustement linéaire : la droite des moindres carrés."
+    },
+    {
+      "dit": "Pourquoi une droite ? Parce que deux grandeurs sont souvent liées de façon régulière : le temps d'étude et la note, la température et les ventes de glaces, le budget publicitaire et le chiffre d'affaires. Mais la relation n'est jamais parfaite : il reste une part d'aléa, d'imprécision de mesure et de facteurs oubliés. C'est une relation statistique, et la droite est le modèle le plus simple pour la décrire.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "Une relation statistique : régulière, jamais parfaite."
+    },
+    {
+      "dit": "Première étape, toujours : dessiner les données. Prenons six étudiants, avec leur temps d'étude hebdomadaire en heures et leur note sur vingt : deux heures et huit, quatre heures et dix, six heures et quatorze, huit heures et seize, dix heures et dix-huit, douze heures et dix-neuf. Les points ne sont pas alignés, mais ils montent nettement : c'est le nuage de points, notre matière première.",
+      "ecran": "nuage",
+      "id": "p03",
+      "texte": "Le nuage de points : la tendance avant les calculs."
+    },
+    {
+      "dit": "Cherchons une droite d'équation igrec égale a ixe plus bé. Pour chaque point, la droite prédit une valeur, notée igrec chapeau. L'écart entre la valeur observée et la valeur prédite s'appelle le résidu : visuellement, c'est la distance verticale entre le point et la droite. Toute la méthode consiste à rendre ces résidus, globalement, les plus petits possibles.",
+      "ecran": "residu",
+      "id": "p04",
+      "texte": "Le résidu : l'écart vertical au modèle."
+    },
+    {
+      "dit": "Comment choisir a et bé parmi toutes les droites possibles ? Legendre et Gauss ont proposé un critère d'une élégance redoutable : minimiser la somme des carrés des résidus. Les carrés empêchent les erreurs positives et négatives de s'annuler, ils pénalisent fortement les grandes erreurs, et ils rendent le problème soluble par le calcul différentiel. La droite obtenue est la droite des moindres carrés.",
+      "ecran": "critere",
+      "id": "p05",
+      "texte": "Minimiser la somme des carrés des résidus."
+    },
+    {
+      "dit": "Voici les formules qui donnent cette droite. La pente a est le quotient de la covariance de ixe et igrec par la variance de ixe : si les deux grandeurs varient ensemble, la covariance est positive et la droite monte. Une fois la pente connue, l'ordonnée à l'origine bé s'obtient en écrivant que la droite passe par le point moyen du nuage.",
+      "ecran": "formules",
+      "id": "p06",
+      "texte": "a = Cov(x, y) / V(x), puis b = ȳ − a x̄."
+    },
+    {
+      "dit": "Retenez ce point moyen : le couple formé de la moyenne des ixe et de la moyenne des igrec. La droite des moindres carrés passe toujours par lui, comme un pivot autour duquel elle s'équilibre. Après chaque calcul, vérifiez que votre droite passe bien par ce point : c'est un contrôle simple qui détecte la plupart des erreurs.",
+      "ecran": "point_moyen",
+      "id": "p07",
+      "texte": "La droite pivote autour du point moyen."
+    },
+    {
+      "dit": "D'où sortent ces formules ? On minimise la fonction S de a et bé en annulant ses deux dérivées partielles : c'est le système des équations normales. Sa résolution donne les formules de la pente et de l'ordonnée. Au passage, on obtient deux propriétés remarquables : la somme des résidus est nulle, et les résidus sont sans lien avec la variable explicative. La droite équilibre les points au-dessus et au-dessous d'elle.",
+      "ecran": "normales",
+      "id": "p08",
+      "texte": "Dériver, annuler, résoudre : les équations normales."
+    },
+    {
+      "dit": "Appliquons les formules à nos six étudiants. Les moyennes valent sept heures et environ quatorze virgule dix-sept. La somme des produits des écarts vaut quatre-vingt-un, celle des carrés des écarts de ixe vaut soixante-dix. La pente vaut donc quatre-vingt-un sur soixante-dix, environ un virgule seize, et l'ordonnée à l'origine environ six virgule zéro sept. Notre droite : igrec égale un virgule seize ixe plus six virgule zéro sept.",
+      "ecran": "ex_etude",
+      "id": "p09",
+      "texte": "Six étudiants : y = 1,16x + 6,07."
+    },
+    {
+      "dit": "Interprétons. La pente dit qu'en moyenne, chaque heure d'étude supplémentaire rapporte environ un virgule seize point de note. Pour neuf heures de travail, le modèle prédit environ seize et demi sur vingt. L'ordonnée à l'origine, six virgule zéro sept, serait la note d'un étudiant qui ne travaille pas du tout : une extrapolation théorique, à manier avec prudence.",
+      "ecran": "ex_prevision",
+      "id": "p10",
+      "texte": "Chaque heure : environ 1,16 point de plus."
+    },
+    {
+      "dit": "Deuxième exemple, avec des points parfaitement alignés : cinq étudiants, de deux à dix heures, avec des notes de dix à dix-huit. Les sommes valent trente pour les ixe, soixante-dix pour les igrec, deux cent vingt pour les carrés et quatre cent soixante pour les produits. La forme développée donne une pente de un exactement, puis une ordonnée de huit : la droite est igrec égale ixe plus huit, et elle passe par tous les points.",
+      "ecran": "ex_simple",
+      "id": "p11",
+      "texte": "Points alignés : y = x + 8, sans aucun résidu."
+    },
+    {
+      "dit": "Avant même de tracer la droite, on peut mesurer la force de la liaison linéaire grâce au coefficient de corrélation de Bravais-Pearson, noté r. C'est la covariance divisée par le produit des écarts-types : cette normalisation garantit que r reste toujours entre moins un et un. Proche de un, la liaison est forte et croissante ; proche de moins un, forte et décroissante ; proche de zéro, il n'y a pas de liaison linéaire visible.",
+      "ecran": "correlation",
+      "id": "p12",
+      "texte": "r : entre −1 et 1, sens et force de la liaison."
+    },
+    {
+      "dit": "Apprenons à lire cette valeur. Au-delà de zéro virgule neuf en valeur absolue, la corrélation est très forte : les points serrent la droite de près. Entre zéro virgule sept et zéro virgule neuf, elle est forte ; entre zéro virgule cinq et zéro virgule sept, modérée ; sous zéro virgule trois, négligeable. Mais attention : ces seuils décrivent la dispersion autour d'une droite, rien de plus.",
+      "ecran": "echelle",
+      "id": "p13",
+      "texte": "L'échelle de r : de négligeable à très fort."
+    },
+    {
+      "dit": "Pour nos six étudiants, le calcul donne r environ égal à zéro virgule quatre-vingt-dix-huit : une corrélation positive très forte, qui confirme que l'ajustement linéaire était pertinent. Son carré vaut environ zéro virgule quatre-vingt-dix-sept : nous verrons dans un instant ce que ce carré raconte de plus que r lui-même.",
+      "ecran": "ex_correlation",
+      "id": "p14",
+      "texte": "Étude et notes : r ≈ 0,98, liaison très forte."
+    },
+    {
+      "dit": "Ce carré, r deux, a une interprétation précieuse : c'est la proportion de la variance de igrec expliquée par la relation linéaire avec ixe. Exemple : pour le temps de lecture et les scores de vocabulaire, r vaut zéro virgule quatre-vingt-deux, donc r deux environ zéro virgule soixante-sept. Autrement dit, soixante-sept pour cent de la variabilité des scores s'explique par le temps de lecture ; le reste relève d'autres facteurs.",
+      "ecran": "r2",
+      "id": "p15",
+      "texte": "r² : la part de variance expliquée par la droite."
+    },
+    {
+      "dit": "Trois pièges guettent l'utilisateur de r. D'abord, corrélation n'est pas causalité : les ventes de glaces et les noyades sont corrélées, mais c'est la chaleur, variable cachée, qui cause les deux. Ensuite, r ne mesure que les relations linéaires : des points parfaitement rangés sur un cercle donnent un r proche de zéro. Enfin, une seule valeur extrême peut faire chuter ou gonfler r : on y reviendra.",
+      "ecran": "pieges",
+      "id": "p16",
+      "texte": "Corrélation n'est pas causalité : le mantra."
+    },
+    {
+      "dit": "À quoi sert la droite, concrètement ? À deux choses. Analyser : la pente quantifie l'effet moyen d'une variable sur l'autre, et l'ordonnée donne le niveau de base. Et prédire : estimer igrec pour une nouvelle valeur de ixe. Si cette valeur est à l'intérieur de l'intervalle observé, c'est une interpolation, généralement fiable. À l'extérieur, c'est une extrapolation, toujours risquée.",
+      "ecran": "usages",
+      "id": "p17",
+      "texte": "Analyser, prédire : dedans fiable, dehors risqué."
+    },
+    {
+      "dit": "Étude de cas : une chaîne de cafés relève, sur dix jours, la température et ses ventes de cafés glacés. La droite des moindres carrés donne une pente d'environ quatre virgule quatre-vingt-huit et une ordonnée d'environ moins quarante-six virgule quatre-vingt-huit, avec une corrélation presque parfaite. Pour une journée annoncée à trente-deux degrés, le gérant peut prévoir environ cent neuf cafés glacés et préparer ses stocks en conséquence.",
+      "ecran": "cafe",
+      "id": "p18",
+      "texte": "Cafés glacés : environ 109 ventes à 32 degrés."
+    },
+    {
+      "dit": "Autre cas, en médecine : la baisse de tension en fonction de la dose d'un médicament suit une droite de pente zéro virgule soixante-quinze et d'ordonnée un virgule deux, avec une corrélation forte. Pour viser une baisse de quinze millimètres de mercure, on inverse la droite : la dose estimée est d'environ dix-huit virgule quatre milligrammes. C'est un point de départ pour le médecin, jamais une prescription automatique.",
+      "ecran": "medicament",
+      "id": "p19",
+      "texte": "Dose pour 15 mmHg : environ 18,4 mg."
+    },
+    {
+      "dit": "La droite repose sur des hypothèses qu'il faut connaître. La relation moyenne doit être linéaire. Les erreurs doivent être indépendantes les unes des autres, ce qui exclut beaucoup de données temporelles. Leur dispersion doit rester constante le long de la droite : c'est l'homoscédasticité. Et pour les tests et les intervalles de confiance, on les suppose de plus distribuées selon une loi normale.",
+      "ecran": "hypotheses",
+      "id": "p20",
+      "texte": "Quatre hypothèses : linéarité, indépendance, dispersion, normalité."
+    },
+    {
+      "dit": "Une subtilité souvent manquée : la régression de igrec en ixe, qui prédit igrec depuis ixe, n'est pas la même droite que la régression de ixe en igrec. Chacune minimise des écarts dans sa propre direction, verticale pour l'une, horizontale pour l'autre. On ne peut donc jamais inverser algébriquement une équation de régression pour prédire dans l'autre sens : il faut refaire le calcul.",
+      "ecran": "deux_droites",
+      "id": "p21",
+      "texte": "Deux sens de prédiction, deux droites différentes."
+    },
+    {
+      "dit": "Et si la relation est courbe ? Tout n'est pas perdu. Une croissance exponentielle devient linéaire après un logarithme : on ajuste alors une droite sur les logarithmes. Une relation parabolique se traite par une régression polynomiale, qui reste linéaire dans ses paramètres. La stratégie est toujours la même : transformer jusqu'à retrouver une situation où la droite des moindres carrés s'applique.",
+      "ecran": "transformations",
+      "id": "p22",
+      "texte": "Courbe ? Transformer, puis ajuster une droite."
+    },
+    {
+      "dit": "Pour diagnostiquer un modèle, écoutez ses résidus : tracez-les en fonction des valeurs prédites. Un nuage sans motif rassure. Un motif en entonnoir, qui s'élargit, signale une dispersion croissante, donc une hétéroscédasticité. Une courbe en U révèle une relation non linéaire que la droite ne peut pas capter. Les résidus sont les messagers des hypothèses violées.",
+      "ecran": "residus_graph",
+      "id": "p23",
+      "texte": "Les résidus parlent : entonnoir ou courbe en U."
+    },
+    {
+      "dit": "La démonstration la plus célèbre de l'importance du graphique est le quartet d'Anscombe : quatre jeux de données qui partagent exactement les mêmes moyennes, la même droite de régression et le même coefficient de corrélation, zéro virgule huit cent seize. Pourtant, leurs nuages sont radicalement différents : un linéaire bruité, un curviligne, un avec valeur aberrante, un presque vertical. Les chiffres seuls peuvent mentir ; le nuage, non.",
+      "ecran": "anscombe",
+      "id": "p24",
+      "texte": "Anscombe : mêmes chiffres, quatre réalités."
+    },
+    {
+      "dit": "Dernier piège chiffré : l'âge et la tension artérielle, sur dix personnes dont une, âgée de soixante-cinq ans, affiche une tension de cent soixante. Avec tous les points, la pente vaut environ zéro virgule soixante-dix. Sans ce point aberrant, elle tombe à environ zéro virgule cinquante et un, et l'ordonnée passe d'environ cent trois à environ cent neuf virgule quatre. Un seul point a déplacé la droite : repérez-les avant de calculer.",
+      "ecran": "aberrant",
+      "id": "p25",
+      "texte": "Un point aberrant peut déplacer toute la droite."
+    },
+    {
+      "dit": "Récapitulons. Devant deux variables liées, on dessine le nuage, on calcule la droite des moindres carrés avec la covariance et la variance, on contrôle qu'elle passe par le point moyen, et on juge sa qualité avec r et r deux. Puis on l'utilise pour analyser et prédire, à l'intérieur du domaine observé, en gardant en tête ses hypothèses et ses pièges. Tous les modèles sont faux, disait George Box, mais certains sont utiles : cette droite, bien utilisée, en fait partie.",
+      "ecran": "recap",
+      "id": "p26",
+      "texte": "La droite des moindres carrés : à retenir."
+    }
+  ],
+  "titre": "Ajustement linéaire : la droite des moindres carrés"
+}

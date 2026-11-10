@@ -21,6 +21,7 @@ const mockConnecter = jest.fn();
 const mockGoogle = jest.fn();
 const mockDeconnecter = jest.fn();
 const mockFacebook = jest.fn();
+const mockApple = jest.fn();
 
 jest.mock('expo-router', () => ({
   router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: () => false },
@@ -30,7 +31,7 @@ jest.mock('expo-router', () => ({
     useEffect(f, [f]);
   },
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), consentementActif: jest.fn(() => true), definirConsentement: jest.fn(() => Promise.resolve()), definirProprietesUtilisateur: jest.fn(), drapeauActif: jest.fn(() => false), ecouterDrapeaux: jest.fn(() => () => {}) }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@/services/authNatif', () => ({ appleAffiche: true, facebookAffiche: true, depsOAuth: () => ({}), depsApple: () => ({}) }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
@@ -41,7 +42,8 @@ jest.mock('@/services/compte', () => ({
   deconnecter: (...a: unknown[]) => mockDeconnecter(...a),
   connecterGoogle: (...a: unknown[]) => mockGoogle(...a),
   connecterFacebook: (...a: unknown[]) => mockFacebook(...a),
-  connecterApple: jest.fn(),
+  connecterApple: (...a: unknown[]) => mockApple(...a),
+  connecterAppleWeb: (...a: unknown[]) => mockApple(...a),
 }));
 jest.mock('../Feuille', () => {
   const React = jest.requireActual<typeof import('react')>('react');
@@ -173,6 +175,22 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
     expect(mockGoogle).toHaveBeenLastCalledWith({}, {}, '', { connexionDirecte: true });
   });
 
+  it('doublon Apple : la feuille propose Google, Apple et Facebook, pour que l’élève retrouve son fournisseur', async () => {
+    mockApple.mockRejectedValueOnce({ code: 'identity_already_exists' }).mockResolvedValueOnce(undefined);
+    await monter(<FormulaireCompte mode="creer" emailActif />);
+    await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer avec Apple' : 'Continue with Apple' }));
+
+    const titre = langue === 'fr' ? 'Tu as déjà un compte Elearn' : 'You already have an Elearn account';
+    await waitFor(() => expect(screen.getByText(titre)).toBeTruthy());
+    expect(screen.getByText(langue === 'fr' ? 'Se connecter avec Google' : 'Sign in with Google')).toBeTruthy();
+    expect(screen.getByText(langue === 'fr' ? 'Se connecter avec Apple' : 'Sign in with Apple')).toBeTruthy();
+    expect(screen.getByText(langue === 'fr' ? 'Se connecter avec Facebook' : 'Sign in with Facebook')).toBeTruthy();
+
+    await fireEvent.press(screen.getByText(langue === 'fr' ? 'Se connecter avec Apple' : 'Sign in with Apple'));
+    await waitFor(() => expect(mockApple).toHaveBeenCalledTimes(2));
+    expect(mockApple).toHaveBeenLastCalledWith({}, {}, '', { connexionDirecte: true });
+  });
+
   it('Google, Apple (iOS) et Facebook (une fois activé) sont proposés', async () => {
     mockFacebook.mockResolvedValue(undefined);
     await monter(<FormulaireCompte mode="creer" emailActif />);
@@ -194,6 +212,22 @@ describe.each(['fr', 'en'] as const)('EcranMoi (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith('/compte/creer');
     await fireEvent.press(screen.getByRole('button', { name: x.profil.dejaCompte }));
     expect(router.push).toHaveBeenCalledWith('/compte/connexion');
+  });
+
+  it('compte sauvegardé : « Mon rapport hebdomadaire » ouvre Ma semaine ; absent pour un invité', async () => {
+    await monter(<EcranMoi />);
+    expect(screen.queryByText(x.profil.rapportHebdo)).toBeNull();
+    mockSession.mockReturnValue(membre);
+    await monter(<EcranMoi />);
+    await fireEvent.press(screen.getByText(x.profil.rapportHebdo));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/ma-semaine', params: { source: 'inbox' } });
+  });
+
+  it('compte sauvegardé TOEIC : le rapport hebdomadaire ouvre le récapitulatif TOEIC', async () => {
+    mockSession.mockReturnValue(membre);
+    await monter(<EcranMoi toeic />);
+    await fireEvent.press(screen.getByText(x.profil.rapportHebdo));
+    expect(router.push).toHaveBeenCalledWith('/certification/semaine');
   });
 
   it('compte sauvegardé : pas de carte de création, déconnexion dans Paramètres', async () => {

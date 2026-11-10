@@ -1,0 +1,523 @@
+{
+ "cours": 6160,
+ "ecrans": {
+  "bolzano": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Corollaire des zéros",
+   "note": "Corollaire de Bolzano : le changement de signe force un zéro.",
+   "tex": "f(a) \\times f(b) < 0 \\Rightarrow \\exists c \\in ]a, b[,\\ f(c) = 0",
+   "type": "formule"
+  },
+  "bornes": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Théorème des bornes atteintes",
+   "note": "Sur un segment seulement : 1/x sur ]0, 1] n'est pas bornée.",
+   "tex": "m \\leq f(x) \\leq M, \\quad f(x_m) = m, \\quad f(x_M) = M",
+   "type": "formule"
+  },
+  "catalogue": {
+   "kicker": "Les fonctions usuelles continues",
+   "tex": [
+    "\\text{polynômes, } \\exp, \\sin, \\cos \\text{ : continues sur } \\mathbb{R}",
+    "\\ln \\text{ sur } ]0, +\\infty[ \\qquad \\sqrt{\\ } \\text{ sur } [0, +\\infty[",
+    "f + g, \\quad f \\times g, \\quad f \\circ g \\text{ : continues}",
+    "\\tfrac{f}{g} \\text{ continue là où } g \\neq 0"
+   ],
+   "titre": "Le catalogue qui dispense des calculs",
+   "type": "etape"
+  },
+  "def_cont": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Continuité en un point",
+   "note": "Trois conditions : f(a) existe, la limite existe, elles sont égales.",
+   "tex": "\\lim_{x \\to a} f(x) = f(a)",
+   "type": "formule"
+  },
+  "dichotomie": {
+   "kicker": "La méthode de dichotomie",
+   "tex": [
+    "m = \\tfrac{a + b}{2} \\text{ : on évalue } f(m)",
+    "\\text{on garde la moitié où } f \\text{ change encore de signe}",
+    "\\text{erreur après } n \\text{ étapes : } \\tfrac{b - a}{2^n}"
+   ],
+   "titre": "Couper, tester le signe, recommencer",
+   "type": "etape"
+  },
+  "elim": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Discontinuité éliminable",
+   "tex": [
+    "h(x) = \\tfrac{x^2 - 1}{x - 1} = x + 1 \\quad (x \\neq 1)",
+    "\\lim_{x \\to 1} h(x) = 2 \\qquad h(1) \\text{ non défini}",
+    "\\text{prolongement : poser } h(1) = 2 \\text{, fonction continue}"
+   ],
+   "titre": "Un trou que l'on peut reboucher",
+   "type": "etape"
+  },
+  "epsilon": {
+   "kicker": "Le langage epsilon-delta",
+   "note": "Weierstrass : la formulation rigoureuse de « sans lever le crayon ».",
+   "tex": "\\forall\\, \\varepsilon > 0,\\ \\exists\\, \\delta > 0,\\quad |x - a| < \\delta \\Rightarrow |f(x) - f(a)| < \\varepsilon",
+   "type": "formule"
+  },
+  "ex_cubique": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Exemple · existence d'une racine",
+   "tex": [
+    "f(x) = x^3 + x - 1 \\text{ : un polynôme, continu sur } \\mathbb{R}",
+    "f(0) = -1 < 0 \\qquad f(1) = 1 > 0",
+    "\\text{corollaire : } \\exists c \\in ]0, 1[,\\ f(c) = 0"
+   ],
+   "titre": "x³ + x − 1 = 0 a une solution dans [0, 1]",
+   "type": "etape"
+  },
+  "ex_dicho_transc": {
+   "kicker": "Exemple · dichotomie sur eˣ + x² − 4",
+   "tex": [
+    "f(x) = e^x + x^2 - 4 \\text{ sur } [1 \\,;\\, 2]",
+    "m = 1{,}5 : f(m) \\approx 2{,}73 > 0 \\Rightarrow [1 \\,;\\, 1{,}5]",
+    "m = 1{,}25 : f(m) \\approx 1{,}05 > 0 \\Rightarrow [1 \\,;\\, 1{,}25]",
+    "m = 1{,}125 \\text{ puis } 1{,}0625 : \\text{racine} \\approx 1{,}058"
+   ],
+   "titre": "La racine voisine de 1,058",
+   "type": "etape"
+  },
+  "ex_fk": {
+   "kicker": "Extension · résoudre f(x) = k",
+   "tex": [
+    "f(x) = k \\iff g(x) = f(x) - k = 0",
+    "e^x = 3x + 1 \\iff g(x) = e^x - 3x - 1 = 0",
+    "\\text{on traque les changements de signe de } g"
+   ],
+   "titre": "Une soustraction ramène à zéro",
+   "type": "etape"
+  },
+  "ex_sqrt2": {
+   "kicker": "Exemple · approcher √2",
+   "tex": [
+    "f(x) = x^2 - 2, \\quad f(1) = -1, \\quad f(2) = 2",
+    "m = 1{,}5 : f(m) = 0{,}25 > 0 \\Rightarrow [1 \\,;\\, 1{,}5]",
+    "m = 1{,}25 : f(m) = -0{,}4375 < 0 \\Rightarrow [1{,}25 \\,;\\, 1{,}5]",
+    "m = 1{,}375 \\text{ puis } 1{,}406 : \\sqrt{2} \\in [1{,}406 \\,;\\, 1{,}438]"
+   ],
+   "titre": "Quatre étapes, un encadrement",
+   "type": "etape"
+  },
+  "ex_transc": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Exemple · équation transcendante",
+   "tex": [
+    "f(x) = e^x + x^2 - 4",
+    "f(1) = e - 3 \\approx -0{,}28 \\qquad f(2) = e^2 \\approx 7{,}39",
+    "\\text{changement de signe : une solution dans } ]1, 2["
+   ],
+   "titre": "eˣ = 4 − x² : insoluble par l'algèbre, tranchée par le TVI",
+   "type": "etape"
+  },
+  "heaviside": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Discontinuité de saut",
+   "tex": [
+    "H(x) = 0\\ (x<0), \\quad \\tfrac{1}{2}\\ (x=0), \\quad 1\\ (x>0)",
+    "\\lim_{x \\to 0^-} H(x) = 0 \\qquad \\lim_{x \\to 0^+} H(x) = 1",
+    "\\text{limites latérales différentes : discontinuité de saut}"
+   ],
+   "titre": "La fonction de Heaviside",
+   "type": "etape"
+  },
+  "image_intervalle": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Image d'un intervalle",
+   "note": "Exemple : la température d'une journée, de 5 °C à 22 °C, atteint tout l'intervalle.",
+   "tex": "f \\text{ continue sur } I \\Rightarrow f(I) \\text{ est un intervalle}",
+   "type": "formule"
+  },
+  "intervalle": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Continuité sur un intervalle",
+   "texte": "Continue sur I : continue en tout point de I. Sur [a, b], en a on ne demande que la continuité à droite, en b que celle à gauche.",
+   "type": "phrase"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Dessiner une montagne, le crayon glisse ; dessiner un escalier, il se lève à chaque marche. Cauchy et Bolzano ont fait de cette image une définition.",
+   "type": "phrase"
+  },
+  "limites_tvi": {
+   "kicker": "Ce que le TVI ne dit pas",
+   "tex": [
+    "\\text{existence garantie, unicité jamais : } \\sin \\text{ répète ses valeurs}",
+    "\\text{ni valeur exacte, ni méthode de calcul}",
+    "\\text{sans continuité, rien : le saut de } -1 \\text{ à } 1 \\text{ évite } 0"
+   ],
+   "titre": "Existence, et rien de plus",
+   "type": "etape"
+  },
+  "morceau": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Exemple · fonction par morceaux",
+   "tex": [
+    "f(2) = 2^2 + 1 = 5",
+    "\\lim_{x \\to 2^-} f(x) = 5 \\qquad \\lim_{x \\to 2^+} f(x) = 3 \\times 2 - 1 = 5",
+    "\\text{valeur = limites : } f \\text{ est continue en } 2"
+   ],
+   "titre": "Le raccord en x = 2",
+   "type": "etape"
+  },
+  "param": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Exemple · un paramètre impossible",
+   "tex": [
+    "F(0) = e^{0} - 1 = 0",
+    "\\lim_{x \\to 0^+} \\tfrac{\\sin(3x)}{2x} = \\tfrac{3}{2} \\qquad \\lim_{x \\to 0^-} F(x) = 0",
+    "0 \\neq \\tfrac{3}{2} \\text{ : aucun } k \\text{ ne rend } F \\text{ continue en } 0"
+   ],
+   "titre": "Aucune valeur de k ne répare le saut",
+   "type": "etape"
+  },
+  "pieges": {
+   "kicker": "Pièges de la recherche de racines",
+   "tex": [
+    "\\text{même signe aux bornes : deux traversées possibles, invisibles}",
+    "\\text{racine tangente : la courbe touche sans traverser}",
+    "\\text{premier intervalle : évaluer, esquisser, puis encadrer}"
+   ],
+   "titre": "Ce que le changement de signe ne voit pas",
+   "type": "etape"
+  },
+  "point_fixe": {
+   "kicker": "Application · le point fixe",
+   "note": "f([a, b]) ⊂ [a, b] : le TVI sur g = f − x donne un point fixe f(c) = c.",
+   "tex": "g(x) = f(x) - x \\Rightarrow g(a) \\geq 0,\\ g(b) \\leq 0",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Continuité : limite = valeur au point",
+    "Ruptures : trou, saut, essentielle",
+    "TVI : toute valeur intermédiaire atteinte",
+    "Bolzano + segment : zéros, max, min",
+    "Dichotomie : l'erreur ÷ 2 à chaque pas"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "recap1": {
+   "etapes": [
+    "Continuité : limite en a = valeur f(a)",
+    "Ruptures : trou, saut, essentielle",
+    "Segment : un seul côté aux bornes",
+    "Catalogue : usuelles continues sur leur domaine",
+    "Opérations : +, ×, ÷, ∘ conservent"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Image d'un intervalle : un intervalle",
+    "TVI : toute valeur intermédiaire atteinte",
+    "Bolzano : signe opposé ⇒ un zéro",
+    "Segment : maximum et minimum atteints",
+    "Existence seulement : ni unicité, ni valeur"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "strategie": {
+   "etapes": [
+    "Vérifier la continuité (catalogue, raccords)",
+    "Évaluer aux bornes, chercher le signe opposé",
+    "Conclure à l'existence par Bolzano",
+    "Approximer par dichotomie si besoin"
+   ],
+   "kicker": "Stratégie d'exercice",
+   "type": "recap"
+  },
+  "synthese_ex": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Synthèse · analyse complète",
+   "tex": [
+    "\\lim_{x \\to 2^-} f(x) = 2^2 - 1 = 3 \\qquad f(2) = 3",
+    "\\lim_{x \\to 2^+} f(x) = 2 \\times 2 + 1 = 5",
+    "3 \\neq 5 \\text{ : discontinuité de saut en } 2 \\text{, irréparable}"
+   ],
+   "titre": "Limites 3 et 5 en x = 2 : un saut",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Mathématique · Continuité",
+   "sous": "Continuité en un point, discontinuités, théorème des valeurs intermédiaires et dichotomie",
+   "titre": "Continuité des fonctions : sans lever le crayon",
+   "type": "titre"
+  },
+  "tvi": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Théorème des valeurs intermédiaires",
+   "note": "f continue sur le segment [a, b] : aucune hauteur intermédiaire n'est sautée.",
+   "tex": "\\forall k \\text{ entre } f(a) \\text{ et } f(b),\\ \\exists c \\in [a, b],\\ f(c) = k",
+   "type": "formule"
+  },
+  "types": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "discontinuites_fig"
+   },
+   "kicker": "Les trois discontinuités",
+   "tex": [
+    "1.\\ \\text{éliminable : limite finie, point absent ou déplacé}",
+    "2.\\ \\text{saut : limites à gauche et à droite différentes}",
+    "3.\\ \\text{essentielle : une limite n'existe pas (infinie)}"
+   ],
+   "titre": "Trois façons de rompre",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Continuité en un point et sur un intervalle"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : le théorème des valeurs intermédiaires. Une fonction continue transforme un intervalle en intervalle : elle ne peut donc sauter aucune valeur. Nous énoncerons le théorème, son corollaire des zéros, et nous prouverons l'existence de solutions d'équations que l'algèbre ne sait pas résoudre.",
+    "texte": "Partie 2 : le TVI, l'existence des solutions."
+   },
+   "sous_titre": "Le théorème des valeurs intermédiaires"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : de l'existence au calcul. La dichotomie coupe l'intervalle en deux, conserve la moitié où le signe change encore, et encadre la racine avec une précision que l'on choisit. Nous l'appliquerons à la racine carrée de deux et à une équation transcendante, avant la synthèse finale.",
+    "texte": "Partie 3 : la dichotomie, encadrer pour calculer."
+   },
+   "sous_titre": "Résoudre par dichotomie"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré à la continuité des fonctions. Une courbe que l'on trace sans lever le crayon, ou une courbe pleine de trous et de sauts : toute la différence tient en une égalité, celle de la limite et de la valeur. Nous définirons la continuité en un point et sur un intervalle, nous classerons les discontinuités, puis nous découvrirons le théorème des valeurs intermédiaires et son arme de localisation : la dichotomie.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Continuité : tracer sans lever le crayon."
+  },
+  {
+   "dit": "L'image de départ est enfantine : dessiner le profil d'une montagne, le crayon glisse sans se décoller du papier ; dessiner un escalier, il faut lever le crayon à chaque marche. Cauchy et Bolzano, au dix-neuvième siècle, ont transformé cette intuition en définition rigoureuse. Retenez le programme : vérifier la continuité, réparer ce qui peut l'être, et exploiter les théorèmes qu'elle rend possibles.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "De l'intuition du crayon à la définition rigoureuse."
+  },
+  {
+   "dit": "Une fonction est continue en un point a lorsque trois conditions sont réunies en même temps. Première condition : la valeur en a existe, le point est bien défini. Deuxième condition : la limite de la fonction quand ixe tend vers a existe. Troisième condition : ces deux valeurs coïncident, la limite vaut exactement la valeur au point. Si une seule condition manque, il y a discontinuité.",
+   "ecran": "def_cont",
+   "id": "p03",
+   "texte": "f(a) existe, la limite existe, et limite = f(a)."
+  },
+  {
+   "dit": "La même idée s'écrit dans le langage epsilon-delta, le langage de la précision. Pour tout epsilon strictement positif, aussi petit soit-il, il existe un delta strictement positif tel que, dès que ixe est à distance inférieure à delta de a, la valeur de la fonction est à distance inférieure à epsilon de la valeur en a. Autrement dit : en approchant ixe suffisamment près de a, on approche la valeur aussi près que l'on veut.",
+   "ecran": "epsilon",
+   "id": "p04",
+   "texte": "ε, δ : approcher x force l'approche de f(x)."
+  },
+  {
+   "dit": "Quand une condition tombe, la rupture prend trois visages. La discontinuité éliminable : la limite existe mais le point est absent ou mal placé, c'est un simple trou. La discontinuité de saut : les limites à gauche et à droite existent mais diffèrent, la courbe fait un bond. La discontinuité essentielle, ou infinie : une limite au moins n'existe pas ou explose, comme l'inverse de ixe en zéro. Savoir classer, c'est déjà savoir si la réparation est possible.",
+   "ecran": "types",
+   "id": "p05",
+   "texte": "Trou, saut, ou explosion : trois ruptures."
+  },
+  {
+   "dit": "Exemple fondateur : h de ixe égale ixe carré moins un, divisé par ixe moins un. Pour ixe différent de un, on factorise le numérateur par ixe moins un fois ixe plus un, on simplifie, et la fonction se comporte comme ixe plus un. En un, elle n'est pas définie : division par zéro. Pourtant sa limite en un vaut deux. C'est une discontinuité éliminable : on répare la fonction en posant h de un égale deux, et elle devient continue.",
+   "ecran": "elim",
+   "id": "p06",
+   "texte": "(x² − 1)/(x − 1) = x + 1, trou en x = 1, limite 2."
+  },
+  {
+   "dit": "La fonction de Heaviside, utilisée en physique et en ingénierie, vaut zéro avant zéro, un demi en zéro, et un après zéro. Sa limite à gauche en zéro vaut zéro, sa limite à droite vaut un. Les deux limites latérales existent mais ne coïncident pas : la limite en zéro n'existe pas, et aucune redéfinition de la valeur au point ne peut réparer ce saut. La fonction est discontinue en zéro, d'une discontinuité de saut.",
+   "ecran": "heaviside",
+   "id": "p07",
+   "texte": "Heaviside : 0 à gauche, 1 à droite — un saut."
+  },
+  {
+   "dit": "La continuité en un point est locale ; on l'étend aux intervalles en exigeant la continuité en chaque point. Sur un intervalle ouvert, aucun cas particulier. Sur un intervalle fermé, aux bornes, on ne demande que ce qui a un sens : la continuité à droite à la borne gauche, la continuité à gauche à la borne droite. Cette nuance comptera énormément : les grands théorèmes du cours exigent un intervalle fermé et borné, un segment.",
+   "ecran": "intervalle",
+   "id": "p08",
+   "texte": "Sur [a, b] : aux bornes, un seul côté compte."
+  },
+  {
+   "dit": "Exemple complet : une fonction définie par morceaux, ixe carré plus un à gauche de deux, trois ixe moins un à droite de deux. Chaque morceau est un polynôme, donc continu sur son domaine. Tout se joue au raccord, en deux : la valeur vaut deux au carré plus un, soit cinq ; la limite à gauche vaut cinq ; la limite à droite vaut trois fois deux moins un, soit cinq aussi. Valeur et limites coïncident : la fonction est continue en deux, donc sur les réels tout entiers.",
+   "ecran": "morceau",
+   "id": "p09",
+   "texte": "Raccord en x = 2 : 5 = 5 = 5, continue."
+  },
+  {
+   "dit": "Bonne nouvelle : les fonctions usuelles sont continues sur leur domaine, et les opérations conservent la continuité. Polynômes, exponentielle, sinus et cosinus sont continues sur les réels ; le logarithme sur les réels strictement positifs ; une racine carrée sur les réels positifs. Somme, produit et composée de fonctions continues sont continues, et un quotient aussi, là où son dénominateur ne s'annule pas. Ce catalogue dispense de presque tous les calculs de limites : on justifie, on ne recalcule pas.",
+   "ecran": "catalogue",
+   "id": "p10",
+   "texte": "Usuelles continues + opérations : le catalogue."
+  },
+  {
+   "dit": "Dernier exercice de cette partie : une fonction avec paramètre. À gauche de zéro, l'exponentielle de k fois ixe moins un ; à droite, sinus de trois ixe divisé par deux ixe. En zéro, la valeur et la limite à gauche valent zéro. Mais la limite à droite vaut trois demi, quel que soit k, par la limite classique du sinus. Zéro et trois demi ne coïncideront jamais : aucune valeur du paramètre ne rend cette fonction continue en zéro, la discontinuité est un saut de trois demi.",
+   "ecran": "param",
+   "id": "p11",
+   "texte": "Limite à droite 3/2 ≠ 0 : aucun k ne répare."
+  },
+  {
+   "dit": "Récapitulons. Continue en un point signifie : valeur définie, limite existante, et égalité des deux. Les ruptures sont le trou éliminable, le saut et la discontinuité essentielle. Sur un intervalle, on vérifie chaque point, avec un seul côté aux bornes d'un segment. Et le catalogue des fonctions usuelles, stable par somme, produit, quotient et composition, règle la majorité des cas sans calcul.",
+   "ecran": "recap1",
+   "id": "p12",
+   "texte": "L'essentiel de la partie 1."
+  },
+  {
+   "dit": "Premier fait d'armes de la continuité : l'image d'un intervalle par une fonction continue est toujours un intervalle. Prenez la température au cours d'une journée : si elle passe de cinq degrés à vingt-deux degrés en évoluant continûment, toutes les températures intermédiaires ont été atteintes au moins une fois. Aucun trou thermique n'est possible. C'est cette absence de trou que le théorème suivant formalise.",
+   "ecran": "image_intervalle",
+   "id": "p13",
+   "texte": "f(intervalle) = intervalle : aucun trou."
+  },
+  {
+   "dit": "Voici le théorème des valeurs intermédiaires. Soit une fonction continue sur un segment a, b. Pour toute valeur k comprise entre l'image de a et l'image de b, il existe au moins un réel c dans le segment tel que l'image de c vaille exactement k. Géométriquement : une courbe tracée sans lever le crayon, d'une hauteur à une autre, croise forcément toutes les hauteurs intermédiaires.",
+   "ecran": "tvi",
+   "id": "p14",
+   "texte": "Entre f(a) et f(b), toute valeur est atteinte."
+  },
+  {
+   "dit": "Le cas le plus utilisé vise la valeur zéro : c'est le corollaire de Bolzano. Si une fonction continue sur un segment prend des valeurs de signes opposés aux deux bornes, le produit de ces images est strictement négatif, alors elle s'annule au moins une fois entre les deux. Un changement de signe, pour une fonction continue, force un passage par zéro : toute la stratégie de résolution d'équations du cours repose sur cette phrase.",
+   "ecran": "bolzano",
+   "id": "p15",
+   "texte": "Changement de signe ⇒ au moins un zéro."
+  },
+  {
+   "dit": "Application : montrer que l'équation ixe au cube plus ixe moins un égale zéro admet une solution entre zéro et un. On pose la fonction associée, un polynôme, donc continue partout. Son image en zéro vaut moins un, son image en un vaut un. Changement de signe : le corollaire garantit un réel c entre zéro et un dont l'image est nulle. L'équation a donc au moins une racine dans cet intervalle, sans que nous sachions encore la calculer.",
+   "ecran": "ex_cubique",
+   "id": "p16",
+   "texte": "x³ + x − 1 : f(0) = −1, f(1) = 1 ⇒ racine."
+  },
+  {
+   "dit": "Le théorème brille là où l'algèbre échoue. Résoudre l'équation exponentielle de ixe égale quatre moins ixe carré est impossible par le calcul exact. On transporte tout à gauche : la fonction exponentielle plus ixe carré moins quatre, continue comme somme de fonctions continues. En un, elle vaut environ moins zéro virgule vingt-huit ; en deux, environ sept virgule trente-neuf. Changement de signe : il existe au moins une solution entre un et deux.",
+   "ecran": "ex_transc",
+   "id": "p17",
+   "texte": "eˣ = 4 − x² : une solution entre 1 et 2."
+  },
+  {
+   "dit": "Une application élégante : le point fixe. Si une fonction continue envoie un segment dans lui-même, elle admet au moins un point fixe, un point que l'image laisse en place. La preuve est un modèle du genre : on étudie la différence entre la fonction et l'identité. Aux bornes, cette différence change de signe ou s'annule, car la fonction ne peut pas sortir du segment. Le théorème des valeurs intermédiaires conclut. Ce résultat fonde les méthodes itératives et les équilibres en économie.",
+   "ecran": "point_fixe",
+   "id": "p18",
+   "texte": "f([a, b]) ⊂ [a, b] ⇒ un point fixe f(c) = c."
+  },
+  {
+   "dit": "Deuxième grand théorème : sur un segment, toute fonction continue est bornée et atteint ses bornes. Il existe donc un point où elle prend sa plus grande valeur, et un point où elle prend sa plus petite. Attention, le segment est indispensable : l'inverse de ixe, continue sur l'intervalle semi-ouvert zéro exclu, un inclus, n'est pas bornée du tout. Sur un intervalle ouvert ou non borné, maximum et minimum peuvent s'échapper.",
+   "ecran": "bornes",
+   "id": "p19",
+   "texte": "Sur un segment : bornée, max et min atteints."
+  },
+  {
+   "dit": "Il faut aussi savoir ce que le théorème ne dit pas. Il garantit l'existence, jamais l'unicité : le sinus, sur un grand intervalle, prend la même valeur une infinité de fois. Il ne donne ni la valeur exacte de la solution, ni une méthode de calcul. Et il exige la continuité sur tout l'intervalle : la fonction qui saute de moins un à un en zéro passe de moins un à un sans jamais valoir zéro. Sans continuité, pas de passage obligé.",
+   "ecran": "limites_tvi",
+   "id": "p20",
+   "texte": "Existence oui ; unicité et valeur exacte, non."
+  },
+  {
+   "dit": "Récapitulons cette deuxième partie. L'image d'un intervalle par une fonction continue est un intervalle. Le théorème des valeurs intermédiaires en découle : toute valeur entre les images des bornes est atteinte. Son corollaire des zéros prouve l'existence de racines dès qu'il y a changement de signe. Sur un segment, la fonction atteint en outre son maximum et son minimum. Reste une question : comment approcher ces solutions dont nous savons seulement qu'elles existent ?",
+   "ecran": "recap2",
+   "id": "p21",
+   "texte": "L'essentiel de la partie 2."
+  },
+  {
+   "dit": "La dichotomie transforme le théorème en algorithme. On part d'un intervalle où la fonction change de signe. On calcule le milieu et l'image du milieu. La racine se trouve dans la moitié où le changement de signe persiste : on conserve cette moitié, on recommence. À chaque étape, la longueur de l'intervalle est divisée par deux ; après n étapes, l'erreur maximale vaut la longueur initiale divisée par deux puissance n. Dix étapes réduisent l'intervalle d'un facteur mille vingt-quatre.",
+   "ecran": "dichotomie",
+   "id": "p22",
+   "texte": "Milieu, signe, moitié gardée : erreur ÷ 2 par pas."
+  },
+  {
+   "dit": "Exemple historique : approcher la racine carrée de deux, c'est-à-dire résoudre ixe carré moins deux égale zéro entre un et deux, où les images valent moins un et deux. Milieu un et demi : image zéro virgule vingt-cinq, positive, on garde la moitié de gauche. Milieu un virgule vingt-cinq : image négative, on garde la moitié de droite. En quatre étapes, la racine est encadrée entre un virgule trois cent soixante-quinze et un virgule cinq, puis resserrée entre un virgule quatre cent six et un virgule quatre cent trente-huit.",
+   "ecran": "ex_sqrt2",
+   "id": "p23",
+   "texte": "√2 ∈ [1,406 ; 1,438] après quatre étapes."
+  },
+  {
+   "dit": "Reprenons l'équation transcendante de la partie précédente, entre un et deux. Milieu un et demi : l'image vaut environ deux virgule soixante-treize, positive, on garde la moitié de gauche. Milieu un virgule vingt-cinq : image environ un virgule zéro cinq, positive encore. Milieu un virgule cent vingt-cinq : environ zéro virgule trente-cinq. Milieu un virgule zéro six deux cinq : environ zéro virgule zéro deux. La racine, proche de un virgule zéro cinq huit, est encadrée dans un intervalle de longueur zéro virgule zéro six deux cinq.",
+   "ecran": "ex_dicho_transc",
+   "id": "p24",
+   "texte": "Racine ≈ 1,058, dans [1 ; 1,0625]."
+  },
+  {
+   "dit": "La même machine résout les équations de la forme image de ixe égale k, pour n'importe quelle valeur k entre les images des bornes. L'astuce est une soustraction : résoudre l'équation revient à chercher les zéros de la fonction image de ixe moins k. Exemple : pour l'équation exponentielle de ixe égale trois ixe plus un, on étudie la fonction différence, exponentielle moins trois ixe moins un, et l'on traque ses changements de signe intervalle par intervalle.",
+   "ecran": "ex_fk",
+   "id": "p25",
+   "texte": "f(x) = k ⇔ chercher les zéros de f(x) − k."
+  },
+  {
+   "dit": "Trois pièges ferment la route des solutions faciles. D'abord, des images de même signe aux bornes ne prouvent rien : une fonction peut descendre, traverser l'axe deux fois et remonter. Ensuite, une racine tangente, où la courbe touche l'axe sans le traverser, est invisible au changement de signe : la dichotomie la manquera. Enfin, choisir le premier intervalle demande du travail : on évalue la fonction en des points régulièrement espacés, ou on esquisse son graphe, avant d'encadrer.",
+   "ecran": "pieges",
+   "id": "p26",
+   "texte": "Même signe ≠ rien ; racine tangente invisible."
+  },
+  {
+   "dit": "Dernier entraînement, une analyse complète. Fonction par morceaux : ixe carré moins un avant deux, trois en deux, deux ixe plus un après deux. Limite à gauche en deux : quatre moins un, soit trois. Limite à droite : cinq. Valeur au point : trois. La limite à gauche et la valeur coïncident, mais la limite à droite s'en écarte : discontinuité de saut en deux, irréparable, car déplacer la valeur casserait l'accord avec la gauche. La fonction est continue partout ailleurs.",
+   "ecran": "synthese_ex",
+   "id": "p27",
+   "texte": "En x = 2 : limites 3 et 5 — saut irréparable."
+  },
+  {
+   "dit": "Face à un exercice, la stratégie tient en quatre gestes. Un : vérifier la continuité, en citant le catalogue ou le raccord aux points de jonction. Deux : pour une équation, transporter, évaluer aux bornes et chercher le changement de signe. Trois : conclure à l'existence par le corollaire, sans prétendre donner la valeur. Quatre : si l'on demande une approximation, dérouler la dichotomie en gardant toujours la moitié où le signe change.",
+   "ecran": "strategie",
+   "id": "p28",
+   "texte": "La stratégie : vérifier, évaluer, conclure, encadrer."
+  },
+  {
+   "dit": "Pour finir, retenez l'architecture complète. La continuité en un point est une égalité entre limite et valeur ; ses ruptures sont le trou, le saut et l'explosion. Elle transforme les intervalles en intervalles, garantit toutes les valeurs intermédiaires, des bornes atteintes sur les segments, et l'existence de racines au moindre changement de signe. Et quand l'existence ne suffit plus, la dichotomie encadre la solution, moitié par moitié, aussi finement qu'on le souhaite.",
+   "ecran": "recap",
+   "id": "p29",
+   "texte": "Continuité et TVI : à retenir."
+  }
+ ],
+ "titre": "Continuité des fonctions : sans lever le crayon"
+}

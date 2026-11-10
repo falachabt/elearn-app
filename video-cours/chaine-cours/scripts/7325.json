@@ -1,0 +1,465 @@
+{
+ "cours": 7325,
+ "titre": "Dénombrer, puis mesurer le hasard",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Dénombrement et probabilités",
+   "titre": "Dénombrer, puis mesurer le hasard",
+   "sous": "Compter sans oublier ni répéter, puis transformer le comptage en probabilités",
+   "anim": {
+    "nom": "grille_des_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Compter juste est un art : ce cours donne les outils, puis les probabilités qui s'appuient dessus."
+  },
+  "principes": {
+   "type": "etape",
+   "kicker": "Deux principes pour compter",
+   "titre": "Ou : on additionne. Étapes successives : on multiplie",
+   "tex": [
+    "N = m + n \\quad \\text{(ou, cas disjoints)}",
+    "N = m \\times n \\quad \\text{(étapes successives)}"
+   ]
+  },
+  "ex_menu": {
+   "type": "etape",
+   "kicker": "Exemple · le menu",
+   "titre": "Entrée puis plat : des étapes, donc un produit",
+   "tex": [
+    "3 \\times 4 = 12 \\quad \\text{repas sans dessert}",
+    "3 \\times 4 \\times 2 = 24 \\quad \\text{menus complets}"
+   ]
+  },
+  "factorielle": {
+   "type": "formule",
+   "kicker": "Permutations et factorielle",
+   "tex": "n! = n \\times (n-1) \\times \\cdots \\times 2 \\times 1",
+   "note": "Permutation : rangement ordonné de n éléments · Convention : 0! = 1"
+  },
+  "ex_math": {
+   "type": "etape",
+   "kicker": "Exemple · anagrammes de MATH",
+   "titre": "Quatre lettres distinctes à ranger",
+   "tex": [
+    "4! = 4 \\times 3 \\times 2 \\times 1 = 24"
+   ]
+  },
+  "arrangement": {
+   "type": "formule",
+   "kicker": "Arrangements",
+   "tex": "A_n^p = \\frac{n!}{(n-p)!} = n(n-1)\\cdots(n-p+1)",
+   "note": "Liste ordonnée de p éléments distincts parmi n : l'ordre compte, sans répétition"
+  },
+  "ex_arrangement": {
+   "type": "etape",
+   "kicker": "Exemple · un bureau de trois rôles",
+   "titre": "Président, trésorier, secrétaire parmi dix élèves",
+   "tex": [
+    "A_{10}^3 = 10 \\times 9 \\times 8 = 720"
+   ]
+  },
+  "combinaison": {
+   "type": "formule",
+   "kicker": "Combinaisons",
+   "tex": "\\binom{n}{p} = \\frac{n!}{p!\\,(n-p)!} = \\frac{A_n^p}{p!}",
+   "note": "Sans ordre : chaque groupe de p est compté p! fois dans les arrangements, on divise"
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés des combinaisons",
+   "titre": "Symétrie et relation de Pascal",
+   "tex": [
+    "\\binom{n}{0} = \\binom{n}{n} = 1 \\qquad \\binom{n}{p} = \\binom{n}{n-p}",
+    "\\binom{n}{1} = n \\quad \\binom{n}{p} = \\binom{n-1}{p-1} + \\binom{n-1}{p}"
+   ]
+  },
+  "ex_delegues": {
+   "type": "etape",
+   "kicker": "Exemple · trois délégués parmi dix",
+   "titre": "Sans rôle distinct : une combinaison",
+   "tex": [
+    "\\binom{10}{3} = \\frac{10 \\times 9 \\times 8}{3 \\times 2 \\times 1} = 120"
+   ]
+  },
+  "choix_outil": {
+   "type": "etape",
+   "kicker": "Choisir l'outil",
+   "titre": "Deux questions : l'ordre compte-t-il ? Répète-t-on ?",
+   "tex": [
+    "\\text{Tous, ordonnés : } n!",
+    "\\text{Ordonnés, } p \\text{ parmi } n \\text{ : } A_n^p",
+    "\\text{Sans ordre : } \\binom{n}{p}"
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode de dénombrement",
+   "etapes": [
+    "Identifier objets et contraintes",
+    "Ordre ? Répétition ? Choisir l'outil",
+    "Cas disjoints : additionner",
+    "Étapes successives : multiplier"
+   ]
+  },
+  "ex_bureau": {
+   "type": "etape",
+   "kicker": "Exemple résolu · le bureau mixte",
+   "titre": "Deux rôles ordonnés, puis trois membres simples",
+   "tex": [
+    "A_{12}^2 = 12 \\times 11 = 132",
+    "\\binom{10}{3} = 120",
+    "132 \\times 120 = 15840"
+   ]
+  },
+  "ex_comite": {
+   "type": "etape",
+   "kicker": "Exemple résolu · comité avec contrainte",
+   "titre": "Exactement deux filles dans un comité de quatre",
+   "tex": [
+    "\\binom{6}{2} = 15 \\qquad \\binom{8}{2} = 28",
+    "15 \\times 28 = 420"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Dénombrement : l'essentiel",
+   "etapes": [
+    "Ou incompatibles : on additionne",
+    "Étapes successives : on multiplie",
+    "Permutation n! · Arrangement A",
+    "Sans ordre : combinaison, p parmi n",
+    "Toujours : ordre ? répétition ?"
+   ]
+  },
+  "vocabulaire": {
+   "type": "etape",
+   "kicker": "Probabilités · le vocabulaire",
+   "titre": "Univers, issues, événements",
+   "tex": [
+    "\\Omega = \\{\\omega_1, \\dots, \\omega_n\\}",
+    "A \\subset \\Omega \\quad \\text{(un événement)}"
+   ],
+   "anim": {
+    "nom": "venn",
+    "hauteur": 150
+   }
+  },
+  "proba_def": {
+   "type": "formule",
+   "kicker": "Équiprobabilité",
+   "tex": "P(A) = \\frac{\\mathrm{card}(A)}{\\mathrm{card}(\\Omega)}",
+   "note": "Cas favorables sur cas possibles · En général : P(A) somme les p_i des issues de A, et la somme totale vaut 1"
+  },
+  "ex_de": {
+   "type": "etape",
+   "kicker": "Exemple · un dé équilibré",
+   "titre": "Obtenir un nombre pair",
+   "tex": [
+    "A = \\{2, 4, 6\\}",
+    "P(A) = \\frac{3}{6} = \\frac{1}{2}"
+   ]
+  },
+  "proprietes_proba": {
+   "type": "etape",
+   "kicker": "Propriétés des probabilités",
+   "titre": "Contraire, réunion, incompatibilité",
+   "tex": [
+    "0 \\le P(A) \\le 1 \\qquad P(\\Omega) = 1",
+    "P(\\bar{A}) = 1 - P(A)",
+    "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)"
+   ],
+   "anim": {
+    "nom": "venn",
+    "hauteur": 140
+   }
+  },
+  "ex_cartes": {
+   "type": "etape",
+   "kicker": "Exemple · roi ou cœur, jeu de trente-deux",
+   "titre": "La réunion sans compter deux fois le roi de cœur",
+   "tex": [
+    "P(A) = \\tfrac{4}{32} \\qquad P(B) = \\tfrac{8}{32}",
+    "P(A \\cap B) = \\tfrac{1}{32}",
+    "P(A \\cup B) = \\tfrac{4}{32} + \\tfrac{8}{32} - \\tfrac{1}{32} = \\tfrac{11}{32}"
+   ]
+  },
+  "conditionnelle": {
+   "type": "formule",
+   "kicker": "Probabilités conditionnelles",
+   "tex": "P(B \\mid A) = \\frac{P(A \\cap B)}{P(A)}",
+   "note": "Exige P(A) non nulle · Formule de multiplication : P(A ∩ B) = P(A) × P(B sachant A)"
+  },
+  "ex_urne_cond": {
+   "type": "etape",
+   "kicker": "Exemple · urne sans remise",
+   "titre": "Trois rouges, deux vertes : deux rouges de suite",
+   "tex": [
+    "P(R_1) = \\tfrac{3}{5} \\qquad P(R_2 \\mid R_1) = \\tfrac{2}{4}",
+    "P(R_1 \\cap R_2) = \\tfrac{3}{5} \\times \\tfrac{2}{4} = \\tfrac{3}{10}"
+   ],
+   "anim": {
+    "nom": "urne_32_fig",
+    "hauteur": 150
+   }
+  },
+  "arbre_regles": {
+   "type": "etape",
+   "kicker": "L'arbre pondéré",
+   "titre": "Trois règles pour lire un arbre",
+   "tex": [
+    "\\text{Somme des branches d'un nœud} = 1",
+    "\\text{Le long d'un chemin : on multiplie}",
+    "\\text{Entre chemins : on additionne}"
+   ],
+   "anim": {
+    "nom": "arbre_urne_fig",
+    "hauteur": 140
+   }
+  },
+  "ex_arbre": {
+   "type": "etape",
+   "kicker": "Exemple · la deuxième boule rouge",
+   "titre": "Sommer les deux chemins qui mènent à rouge",
+   "tex": [
+    "P(R_2) = \\tfrac{3}{5} \\times \\tfrac{2}{4} + \\tfrac{2}{5} \\times \\tfrac{3}{4}",
+    "= \\tfrac{3}{10} + \\tfrac{3}{10} = \\tfrac{3}{5}"
+   ],
+   "anim": {
+    "nom": "arbre_urne_fig",
+    "hauteur": 160
+   }
+  },
+  "independance": {
+   "type": "formule",
+   "kicker": "Indépendance",
+   "tex": "P(A \\cap B) = P(A) \\times P(B)",
+   "note": "Équivaut à : savoir A ne change pas B · Attention : incompatibles et indépendants, ce n'est pas la même chose",
+   "anim": {
+    "nom": "grille_des_fig",
+    "hauteur": 240
+   }
+  },
+  "ex_des": {
+   "type": "etape",
+   "kicker": "Exemple · deux dés, le double six",
+   "titre": "Chaque dé ignore l'autre",
+   "tex": [
+    "P(A) = \\tfrac{1}{6} \\qquad P(B) = \\tfrac{1}{6}",
+    "P(A \\cap B) = \\tfrac{1}{6} \\times \\tfrac{1}{6} = \\tfrac{1}{36}"
+   ],
+   "anim": {
+    "nom": "grille_des_fig",
+    "hauteur": 200
+   }
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Univers, événement : une partie de Ω",
+    "Équiprobabilité : favorables sur possibles",
+    "Contraire : un moins P de A",
+    "Conditionnelle : savoir restreint tout",
+    "Indépendants : le produit des deux"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de dénombrement et de probabilités. Nous allons d'abord apprendre à compter : compter les menus, les bureaux, les comités, sans oublier aucun cas et sans jamais compter deux fois le même. Puis nous transformerons ces comptages en probabilités, avec les événements, le conditionnement, les arbres pondérés et l'indépendance.",
+   "texte": "Dénombrement et probabilités : compter, puis mesurer.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Compter paraît simple, et pourtant presque toutes les erreurs viennent de là : un cas oublié, un cas compté deux fois, un ordre pris en compte alors qu'il ne fallait pas. Toute la première partie repose sur deux principes et trois outils. Si vous savez choisir le bon outil, le calcul qui suit est presque toujours court.",
+   "texte": "Compter juste : ni oubli, ni double compte.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Premier principe, le principe additif : si une situation se réalise de ème façons ou de ène façons, avec des cas distincts et incompatibles, elle se réalise de ème plus ène façons. Deuxième principe, le principe multiplicatif : si une situation comporte des étapes successives, la première de ème façons et la seconde de ène façons, elle se réalise de ème fois ène façons. Ou, on additionne. Étapes, on multiplie.",
+   "texte": "Ou : additionner. Étapes : multiplier.",
+   "ecran": "principes"
+  },
+  {
+   "id": "p04",
+   "dit": "Exemple immédiat : un menu propose trois entrées et quatre plats. Un repas, entrée puis plat, se compose en deux étapes : trois fois quatre, douze repas possibles. Ajoutez deux desserts possibles, une troisième étape : trois fois quatre fois deux, vingt-quatre menus complets. Vous voyez le réflexe : décomposer en étapes, puis multiplier.",
+   "texte": "Le menu : 3 × 4 = 12, puis × 2 = 24 menus.",
+   "ecran": "ex_menu"
+  },
+  {
+   "id": "p05",
+   "dit": "Premier outil : la permutation, le rangement ordonné de ène éléments. Pour ranger ène éléments, on a ène choix pour la première place, ène moins un pour la deuxième, et ainsi de suite jusqu'à un. Le principe multiplicatif donne le produit de tous ces nombres : c'est ène factorielle, notée ène suivi d'un point d'exclamation dans les formules. Par convention, zéro factorielle vaut un.",
+   "texte": "n! : ranger n éléments dans l'ordre.",
+   "ecran": "factorielle"
+  },
+  {
+   "id": "p06",
+   "dit": "Application : combien d'anagrammes du mot MATH, quatre lettres toutes distinctes ? Chaque anagramme est un rangement des quatre lettres : quatre factorielle, c'est-à-dire quatre fois trois fois deux fois un, vingt-quatre anagrammes. Retenez le schéma : dès qu'il faut ranger tous les éléments, la réponse est une factorielle.",
+   "texte": "MATH : 4! = 24 anagrammes.",
+   "ecran": "ex_math"
+  },
+  {
+   "id": "p07",
+   "dit": "Deuxième outil : l'arrangement. On choisit pé éléments parmi ène et on les met en liste ordonnée, sans répétition : président, trésorier, secrétaire ne sont pas interchangeables. Le nombre d'arrangements, noté a de ène puissance pé, vaut ène factorielle divisé par ène moins pé factorielle, c'est-à-dire le produit de pé facteurs décroissants à partir de ène.",
+   "texte": "Arrangement : ordonné, sans répétition.",
+   "ecran": "arrangement"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple : élire un président, un trésorier et un secrétaire parmi dix élèves. L'ordre compte, car les rôles diffèrent, et personne ne cumule deux rôles. On calcule a de dix puissance trois : dix fois neuf fois huit, sept cent vingt bureaux possibles. Si les trois rôles étaient identiques, ce serait un autre outil, nous y venons.",
+   "texte": "Trois rôles parmi dix : 720 bureaux.",
+   "ecran": "ex_arrangement"
+  },
+  {
+   "id": "p09",
+   "dit": "Troisième outil : la combinaison. On choisit pé éléments parmi ène, sans ordre et sans répétition : un simple sous-ensemble. Le nombre de combinaisons, le coefficient binomial pé parmi ène, vaut ène factorielle divisé par pé factorielle fois ène moins pé factorielle. Pourquoi diviser par pé factorielle ? Parce que chaque groupe de pé éléments apparaît pé factorielle fois parmi les arrangements : on corrige le trop-compté.",
+   "texte": "Combinaison : un sous-ensemble, sans ordre.",
+   "ecran": "combinaison"
+  },
+  {
+   "id": "p10",
+   "dit": "Trois propriétés à connaître par cœur. Choisir zéro élément ou tout choisir : une seule façon, le coefficient vaut un. Choisir un élément : ène façons. La symétrie : choisir pé éléments parmi ène, c'est aussi choisir ceux qu'on laisse, ène moins pé. Et la relation de Pascal : le coefficient pé parmi ène est la somme des coefficients pé moins un et pé parmi ène moins un, la clé du triangle de Pascal.",
+   "texte": "Symétrie et Pascal : les raccourcis des binomiaux.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p11",
+   "dit": "Exemple : choisir trois délégués parmi dix élèves, sans distinction de rôle. L'ordre ne compte pas : c'est une combinaison. Trois parmi dix vaut dix fois neuf fois huit, divisé par trois fois deux fois un : cent vingt groupes de délégués. Comparez avec les sept cent vingt de l'exemple précédent : même choix de trois parmi dix, mais sans rôles, on divise par six, le nombre d'ordres possibles.",
+   "texte": "Trois délégués parmi dix : 120 groupes.",
+   "ecran": "ex_delegues"
+  },
+  {
+   "id": "p12",
+   "dit": "Comment choisir entre les trois outils ? Posez deux questions. Prend-on tous les éléments, rangés ? Alors factorielle. Prend-on pé éléments parmi ène avec un ordre ? Alors arrangement. Sans ordre ? Alors combinaison. Et dans tous les cas, demandez-vous s'il y a répétition : nos trois outils travaillent sans répétition. Ce tableau de choix doit devenir un réflexe avant tout calcul.",
+   "texte": "L'outil suit deux questions : ordre ? répétition ?",
+   "ecran": "choix_outil"
+  },
+  {
+   "id": "p13",
+   "dit": "La méthode générale tient en trois gestes. D'abord, identifier les objets à dénombrer et les contraintes de l'énoncé. Ensuite, décomposer le problème : en étapes successives, on multipliera ; en cas disjoints, on additionnera. Enfin, choisir l'outil adapté à chaque morceau : factorielle, arrangement ou combinaison. La plupart des exercices difficiles ne sont que des assemblages de ces trois gestes.",
+   "texte": "La méthode : identifier, décomposer, choisir l'outil.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple résolu complet : une classe de douze élèves forme un bureau de cinq personnes : un président, un vice-président et trois membres simples. Étape un, les deux rôles ordonnés : a de douze puissance deux, douze fois onze, cent trente-deux. Étape deux, les trois membres simples parmi les dix restants, sans ordre : trois parmi dix, cent vingt. Principe multiplicatif : cent trente-deux fois cent vingt, quinze mille huit cent quarante bureaux.",
+   "texte": "Le bureau mixte : 132 × 120 = 15 840.",
+   "ecran": "ex_bureau"
+  },
+  {
+   "id": "p15",
+   "dit": "Dernier exemple de comptage, avec une contrainte : parmi huit garçons et six filles, former un comité de quatre personnes contenant exactement deux filles. On choisit les deux filles : deux parmi six, quinze. On choisit les deux garçons : deux parmi huit, vingt-huit. Les deux choix sont des étapes indépendantes : quinze fois vingt-huit, quatre cent vingt comités. La contrainte se traite en séparant les catégories.",
+   "texte": "Exactement deux filles : 15 × 28 = 420 comités.",
+   "ecran": "ex_comite"
+  },
+  {
+   "id": "p16",
+   "dit": "Récapitulons cette première partie. Cas incompatibles : on additionne. Étapes successives : on multiplie. Ranger tous les éléments : factorielle. Choisir avec ordre : arrangement. Choisir sans ordre : combinaison. Et avant chaque calcul, les deux questions qui décident de tout : l'ordre compte-t-il, et y a-t-il répétition ?",
+   "texte": "Dénombrement : l'essentiel à retenir.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p17",
+   "dit": "Passons aux probabilités. Une expérience aléatoire est une expérience dont on connaît les issues possibles, sans pouvoir prédire laquelle se réalisera. L'ensemble de ces issues est l'univers, noté oméga. Un événement est une partie de l'univers : il est réalisé lorsque l'issue obtenue lui appartient. Sur la figure, deux événements a et b, et leur partie commune, a inter b, les issues qui réalisent les deux à la fois.",
+   "texte": "Univers Ω, événement : une partie de Ω.",
+   "ecran": "vocabulaire"
+  },
+  {
+   "id": "p18",
+   "dit": "Définir une probabilité, c'est associer à chaque issue un nombre positif, de sorte que la somme de tous ces nombres vaille un. La probabilité d'un événement est la somme des probabilités de ses issues. Cas fondamental, l'équiprobabilité : si toutes les issues ont la même probabilité, la probabilité d'un événement devient le nombre de cas favorables divisé par le nombre de cas possibles. C'est là que le dénombrement de la première partie devient un outil de probabilités.",
+   "texte": "Équiprobabilité : favorables sur possibles.",
+   "ecran": "proba_def"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple : on lance un dé équilibré à six faces. L'univers compte six issues équiprobables. Soit a l'événement obtenir un nombre pair : a contient deux, quatre et six, trois cas favorables. Sa probabilité vaut trois sixièmes, c'est-à-dire un demi. Tout le travail est dans le comptage : numérateur et dénominateur viennent du dénombrement.",
+   "texte": "Le dé pair : P(A) = 3/6 = 1/2.",
+   "ecran": "ex_de"
+  },
+  {
+   "id": "p20",
+   "dit": "Les propriétés à retenir. Toute probabilité est entre zéro et un ; l'événement impossible vaut zéro, l'univers vaut un. Le contraire : la probabilité de a barre vaut un moins la probabilité de a. La réunion : la probabilité de a union b vaut la somme des deux probabilités, moins celle de l'intersection, car la partie commune serait comptée deux fois. Si a et b sont incompatibles, l'intersection est vide et la formule devient une simple somme.",
+   "texte": "Contraire, réunion : ne rien compter deux fois.",
+   "ecran": "proprietes_proba"
+  },
+  {
+   "id": "p21",
+   "dit": "Exemple : dans un jeu de trente-deux cartes, on tire une carte. Soit a tirer un roi, quatre cartes sur trente-deux, et b tirer un cœur, huit cartes sur trente-deux. Leur intersection, le roi de cœur, vaut une carte sur trente-deux. La probabilité de tirer un roi ou un cœur vaut donc quatre plus huit moins un, sur trente-deux : onze trente-deuxièmes. Sans le moins un, le roi de cœur serait compté deux fois.",
+   "texte": "Roi ou cœur : 11/32, intersection retirée.",
+   "ecran": "ex_cartes"
+  },
+  {
+   "id": "p22",
+   "dit": "Nouvelle idée : le conditionnement. La probabilité de b sachant a est la probabilité que b se réalise, sachant que a est déjà réalisé. Elle vaut la probabilité de a inter b, divisée par la probabilité de a, qui doit être non nulle. Savoir, c'est restreindre l'univers aux seuls cas où a a lieu. On en déduit la formule de multiplication : la probabilité de a inter b vaut celle de a, fois celle de b sachant a.",
+   "texte": "Conditionner : restreindre l'univers au connu.",
+   "ecran": "conditionnelle"
+  },
+  {
+   "id": "p23",
+   "dit": "Exemple : une urne contient trois boules rouges et deux boules vertes. On tire deux boules successivement, sans remise. La première est rouge avec probabilité trois cinquièmes. Sachant qu'elle est rouge, il reste deux rouges sur quatre boules : la deuxième est rouge avec probabilité deux quarts. Deux rouges de suite : trois cinquièmes fois deux quarts, trois dixièmes. Sans remise, le premier tirage modifie l'urne : c'est tout le sens du conditionnement.",
+   "texte": "Sans remise : 3/5 × 2/4 = 3/10.",
+   "ecran": "ex_urne_cond"
+  },
+  {
+   "id": "p24",
+   "dit": "Pour organiser ces calculs, on dessine un arbre pondéré : chaque branche porte la probabilité conditionnelle de son étape. Trois règles le gouvernent. Les probabilités issues d'un même nœud somment à un. La probabilité d'un chemin est le produit des probabilités de ses branches. Et la probabilité d'un événement est la somme des probabilités des chemins qui le réalisent. L'arbre de l'urne sera spécifié dans le rapport de production : retenez dès maintenant ses trois règles.",
+   "texte": "L'arbre pondéré : produit le long, somme entre.",
+   "ecran": "arbre_regles"
+  },
+  {
+   "id": "p25",
+   "dit": "Appliquons l'arbre à l'urne : quelle est la probabilité que la deuxième boule soit rouge ? Deux chemins y mènent. Rouge puis rouge : trois cinquièmes fois deux quarts, trois dixièmes. Verte puis rouge : deux cinquièmes fois trois quarts, trois dixièmes. Somme : six dixièmes, c'est-à-dire trois cinquièmes, exactement comme au premier tirage. Ce n'est pas un hasard : c'est la symétrie des tirages sans remise.",
+   "texte": "La 2e rouge : 3/10 + 3/10 = 3/5.",
+   "ecran": "ex_arbre"
+  },
+  {
+   "id": "p26",
+   "dit": "Dernier concept : l'indépendance. Deux événements sont indépendants lorsque la réalisation de l'un ne modifie pas la probabilité de l'autre. Autrement dit, la probabilité de leur intersection est le produit de leurs probabilités, ou encore : la probabilité de b sachant a égale la probabilité de b. La figure montre les trente-six couples de deux dés : chaque case est un couple de résultats, et les dés ne se influencent pas. Attention au piège classique : incompatibles et indépendants sont deux notions différentes, presque opposées.",
+   "texte": "Indépendance : l'intersection vaut le produit.",
+   "ecran": "independance"
+  },
+  {
+   "id": "p27",
+   "dit": "Exemple : on lance deux dés équilibrés. Soit a le premier dé donne six, probabilité un sixième, et b le second dé donne six, probabilité un sixième. Les lancers sont indépendants, donc la probabilité du double six est le produit : un sixième fois un sixième, un trente-sixième. En revanche, deux événements incompatibles de probabilités non nulles ne sont jamais indépendants : si l'un se réalise, l'autre devient impossible, donc sa probabilité change.",
+   "texte": "Double six : 1/6 × 1/6 = 1/36.",
+   "ecran": "ex_des"
+  },
+  {
+   "id": "p28",
+   "dit": "Pour finir, retenez l'enchaînement complet. Un événement est une partie de l'univers. En équiprobabilité, on compte les cas favorables et les cas possibles. Le contraire se calcule par un moins. La conditionnelle restreint l'univers à ce qu'on sait, l'arbre organise les étapes, et l'indépendance autorise le produit direct. Dénombrement et probabilités ne font qu'un : bien compter, c'est déjà bien probabiliser.",
+   "texte": "Probabilités : à retenir.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Dénombrer : principes, permutations, arrangements, combinaisons"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Choisir l'outil, résoudre, et passer aux probabilités",
+   "pont": {
+    "texte": "Partie 2 : choisir l'outil, exemples résolus, puis les probabilités.",
+    "dit": "Partie deux : mettre le dénombrement au travail. Nous choisirons l'outil adapté à chaque situation, nous résoudrons deux exemples complets, puis nous passerons aux probabilités : l'univers, les événements, et la règle des cas favorables sur les cas possibles."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Probabilités conditionnelles, arbres pondérés et indépendance",
+   "pont": {
+    "texte": "Partie 3 : conditionnement, arbres pondérés et indépendance.",
+    "dit": "Partie trois : conditionner et conclure. Savoir qu'un événement est réalisé change les probabilités : nous définirons les probabilités conditionnelles, nous lirons les arbres pondérés, et nous terminerons par l'indépendance, le cas où savoir ne change rien."
+   }
+  }
+ ]
+}

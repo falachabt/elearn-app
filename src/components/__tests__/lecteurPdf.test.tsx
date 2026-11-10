@@ -8,6 +8,7 @@ import { fr } from '@/i18n/fr';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { adresseEncodee, effacerDocuments, lireDocuments, noterPage, nomFichier, ouvrirDocument, pageDocument, prechargerDocument, retirerTousDocuments } from '@/services/documents';
+import { lireActivitesJours } from '@/services/activite';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { LecteurPdf } from '../LecteurPdf';
@@ -21,7 +22,23 @@ jest.mock('expo-router', () => ({
     const { useEffect } = jest.requireActual('react');
     useEffect(f, [f]);
   },
+  useNavigation: () => ({ addListener: jest.fn(() => () => {}), dispatch: jest.fn() }),
 }));
+
+const mockDeclencher = jest.fn();
+jest.mock('../useFeedback', () => ({ useFeedback: () => ({ declencher: (...a: unknown[]) => mockDeclencher(...a) }) }));
+const mockProgrammerFin = jest.fn();
+const mockAnnulerFin = jest.fn();
+jest.mock('@/services/finChrono', () => ({
+  programmerFinChrono: (...a: unknown[]) => mockProgrammerFin(...a),
+  annulerFinChrono: (...a: unknown[]) => mockAnnulerFin(...a),
+}));
+
+const mockDepenser = jest.fn();
+jest.mock('@/session/CreditsProvider', () => ({
+  useCredits: () => ({ solde: null, couts: { exam_correction: 5, document_pdf: 3 }, depenser: (...a: unknown[]) => mockDepenser(...a), rafraichir: async () => {}, depensesEnAttente: 0 }),
+}));
+jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => 'u1', useSession: () => ({ session: { user: { id: 'u1', is_anonymous: false } } }) }));
 
 // Système de fichiers en mémoire : chemin → taille.
 const mockFichiers = new Map<string, number>();
@@ -70,7 +87,10 @@ const LOCAL = `file:///doc/documents/${nomFichier(URL_SUJET)}`;
 beforeEach(async () => {
   jest.clearAllMocks();
   mockFichiers.clear();
+  mockProgrammerFin.mockResolvedValue(null);
   await AsyncStorage.clear();
+  await AsyncStorage.setItem('annales.chrono.onboarding_vu', '1');
+  await AsyncStorage.setItem('annales.chrono.ne_plus_afficher', '1');
   mockParams = { url: URL_SUJET, titre: 'Sujet Maths 2024' };
   mockTelecharger.mockImplementation(async (_url: string, f: { uri: string }) => {
     mockFichiers.set(f.uri, 1000);
@@ -87,7 +107,7 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     await monter();
     await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
     expect(mockTelecharger).toHaveBeenCalledWith(URL_SUJET, expect.objectContaining({ uri: LOCAL }));
-    expect(screen.getByTestId('lecteur-pdf').props.accessibilityLabel).toBe(LOCAL);
+    expect(screen.getByTestId('lecteur-pdf', { includeHiddenElements: true }).props.accessibilityLabel).toBe(LOCAL);
     expect(screen.getByText('Sujet Maths 2024')).toBeTruthy();
     expect(screen.getByLabelText(x.document.page.replace('{{n}}', '1').replace('{{total}}', '3'))).toBeTruthy();
   });
@@ -122,7 +142,11 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText('Correction')).toBeTruthy());
     expect(screen.getAllByText(/^(Correction|Sujet Maths 2024)$/).map((e) => e.props.children)).toEqual(['Correction', 'Sujet Maths 2024']);
     await fireEvent.press(screen.getByText('Sujet Maths 2024'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: URL_SUJET, titre: 'Sujet Maths 2024' } });
+    // Annale de concours (sujet 7) : la page de détail du sujet, plus le lecteur direct.
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/sujet', params: { id: '7' } });
+    // Document sans origine connue : le lecteur seul, sans menu de chrono.
+    await fireEvent.press(screen.getByText('Correction'));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/c1.pdf', titre: 'Correction' } });
     await fireEvent.press(screen.getByRole('button', { name: x.document.retirer.replace('{{titre}}', 'Correction') }));
     await waitFor(() => expect(screen.queryByText('Correction')).toBeNull());
     expect((await lireDocuments()).map((d) => [d.titre, d.sujet])).toEqual([['Sujet Maths 2024', 7]]);
@@ -157,6 +181,133 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     expect(adresseEncodee(adresseEncodee(brute))).toBe('https://r2/docs/S%C3%A9quence%205%20COLLEGE.pdf');
     await ouvrirDocument(brute, 'Séquence 5');
     expect(mockTelecharger).toHaveBeenCalledWith('https://r2/docs/S%C3%A9quence%205%20COLLEGE.pdf', expect.anything());
+  });
+
+  it('sans temps choisi (document rouvert) : aucun menu de chrono, lecture directe', async () => {
+    await AsyncStorage.clear();
+    await monter();
+    await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+    expect(screen.queryByRole('checkbox')).toBeNull();
+    expect(AsyncStorage.getItem('annales.chrono.onboarding_vu')).resolves.toBeNull();
+  });
+
+  it('un ancien sujet gardé rouvre sa page de détail depuis « Mes documents »', async () => {
+    await ouvrirDocument('https://r2/s.pdf', 'Sujet Maths · Correction', new Date(), undefined, undefined, { kind: 'document', ref: 'abc', corr: 'def' });
+    const [d] = await lireDocuments();
+    expect(d.origine).toEqual({ kind: 'document', ref: 'abc', corr: 'def' });
+  });
+
+  describe('#72 · temps choisi, sujet / correction, correction du travail', () => {
+    const URL_CORR = 'https://r2/c1.pdf';
+    const parametres = (extra: Record<string, string> = {}) => ({
+      url: URL_SUJET,
+      titre: 'Sujet Maths 2024',
+      kind: 'exam',
+      ref: '1',
+      corrAction: 'exam_correction',
+      corrRef: '1',
+      sujet: '1',
+      duree: 'libre',
+      ...extra,
+    });
+    beforeEach(() => {
+      mockDepenser.mockResolvedValue({ statut: 'spent', cout: 0, solde: 20, contenu: { url: URL_CORR } });
+    });
+
+    it('temps déjà choisi sur la page du sujet : le lecteur s’ouvre directement', async () => {
+      await AsyncStorage.clear();
+      mockParams = parametres({ duree: '5400' });
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+    });
+
+    it('sans paramètres de sujet : aucun bouton de correction (documents de cours)', async () => {
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      expect(screen.queryByRole('button', { name: x.travail.voirCorrection })).toBeNull();
+      expect(screen.queryByRole('button', { name: x.travail.corriger })).toBeNull();
+    });
+
+    it('sujet sans corrigé : seule l’action « Corriger mon travail »', async () => {
+      mockParams = parametres({ corrRef: '' });
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      expect(screen.queryByRole('button', { name: x.travail.voirCorrection })).toBeNull();
+      expect(screen.getByRole('button', { name: x.travail.corriger })).toBeTruthy();
+    });
+
+    it('« Voir la correction » charge le corrigé dans le même lecteur, puis « Voir le sujet » revient sans redépenser', async () => {
+      mockParams = parametres();
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.voirCorrection }));
+      expect(mockDepenser).toHaveBeenCalledWith('exam_correction', '1');
+      await waitFor(() => expect(mockTelecharger).toHaveBeenCalledWith(URL_CORR, expect.anything()));
+      await waitFor(() => expect(screen.getByRole('button', { name: x.travail.voirSujet })).toBeTruthy());
+      expect(screen.getByText(`Sujet Maths 2024 · ${x.annales.correctionTitre}`)).toBeTruthy();
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.voirSujet }));
+      await waitFor(() => expect(screen.getByRole('button', { name: x.travail.voirCorrection })).toBeTruthy());
+      expect(mockDepenser).toHaveBeenCalledTimes(1);
+      expect(screen.getByText('Sujet Maths 2024')).toBeTruthy();
+    });
+
+    it('ouvert sur la correction : le titre ne double pas le suffixe', async () => {
+      mockParams = parametres({ url: URL_CORR, vue: 'correction', titre: `Sujet Maths 2024 · ${x.annales.correctionTitre}` });
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      expect(screen.getByText(`Sujet Maths 2024 · ${x.annales.correctionTitre}`)).toBeTruthy();
+      expect(screen.getByRole('button', { name: x.travail.voirSujet })).toBeTruthy();
+    });
+
+    it('crédits insuffisants : on reste sur le sujet', async () => {
+      mockDepenser.mockResolvedValue({ statut: 'insufficient', cout: 5, solde: 1, contenu: null });
+      mockParams = parametres();
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.voirCorrection }));
+      await waitFor(() => expect(mockDepenser).toHaveBeenCalled());
+      expect(screen.getByTestId('lecteur-pdf', { includeHiddenElements: true }).props.accessibilityLabel).toBe(LOCAL);
+      expect(mockTelecharger).not.toHaveBeenCalledWith(URL_CORR, expect.anything());
+    });
+
+    it('fin du chrono : son de fin, feuille « Temps écoulé » avec correction, correction du travail et quitter', async () => {
+      mockProgrammerFin.mockResolvedValue('notif-1');
+      mockParams = parametres({ duree: '1' });
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      expect(screen.queryByText(x.travail.tempsEcouleTitre)).toBeNull();
+      await waitFor(() => expect(screen.getByText(x.travail.tempsEcouleTitre)).toBeTruthy(), { timeout: 4000 });
+      expect(mockDeclencher).toHaveBeenCalledWith('timerEnd');
+      expect(mockProgrammerFin).toHaveBeenCalled();
+      expect(screen.getAllByRole('button', { name: x.travail.voirCorrection }).length).toBeGreaterThan(0);
+      expect(screen.getAllByRole('button', { name: x.travail.corriger }).length).toBeGreaterThan(0);
+      expect(screen.getAllByRole('button', { name: x.travail.quitter }).length).toBeGreaterThan(0);
+    });
+
+    it('fin du chrono sur un sujet sans corrigé : pas de « Voir la correction » dans la feuille', async () => {
+      mockParams = parametres({ duree: '1', corrRef: '' });
+      await monter();
+      await waitFor(() => expect(screen.getByText(x.travail.tempsEcouleTitre)).toBeTruthy(), { timeout: 4000 });
+      expect(screen.queryByRole('button', { name: x.travail.voirCorrection })).toBeNull();
+      expect(screen.getAllByRole('button', { name: x.travail.corriger }).length).toBeGreaterThan(0);
+    });
+
+    it('chrono libre : aucune feuille, aucune notification', async () => {
+      mockParams = parametres({ duree: 'libre' });
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      expect(screen.queryByText(x.travail.tempsEcouleTitre)).toBeNull();
+      expect(mockProgrammerFin).not.toHaveBeenCalled();
+    });
+
+    it('« Corriger mon travail » ouvre le choix photos / galerie', async () => {
+      mockParams = parametres();
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.corriger }));
+      await waitFor(() => expect(screen.getByText(x.travail.feuilleTitre)).toBeTruthy());
+      expect(screen.getByText(x.travail.prendre)).toBeTruthy();
+    });
   });
 
   it('déconnexion : les documents sont effacés', () => {
@@ -199,5 +350,39 @@ describe('quandOuvert', () => {
     expect(quandOuvert('2026-10-01T07:00:00', maintenant)).toBe('aujourdhui');
     expect(quandOuvert('2026-09-30T22:00:00', maintenant)).toBe('hier');
     expect(quandOuvert('2026-09-28T10:00:00', maintenant)).toBeNull();
+  });
+});
+
+describe('temps passé sur un ancien sujet : compté dans Ma progression', () => {
+  const passer = async (params: Record<string, string>) => {
+    jest.useFakeTimers();
+    try {
+      mockParams = { url: URL_SUJET, titre: 'Sujet Maths 2024', ...params };
+      const vue = await monter();
+      await act(async () => { await jest.advanceTimersByTimeAsync(500); });
+      await act(async () => { await jest.advanceTimersByTimeAsync(12_000); });
+      await vue.unmount();
+      await act(async () => { await jest.advanceTimersByTimeAsync(100); });
+    } finally {
+      jest.useRealTimers();
+    }
+    return Object.values(await lireActivitesJours())[0]?.parType;
+  };
+
+  it('un concours (sujet) compte en Annale', async () => {
+    const parType = await passer({ sujet: '7', kind: 'exam', ref: '7' });
+    expect(parType?.annale ?? 0).toBeGreaterThanOrEqual(10);
+    expect(parType?.cours ?? 0).toBe(0);
+  });
+
+  it('un document de classe (kind=document) compte aussi en Annale', async () => {
+    const parType = await passer({ kind: 'document', ref: '3' });
+    expect(parType?.annale ?? 0).toBeGreaterThanOrEqual(10);
+  });
+
+  it('un PDF de cours reste en Cours', async () => {
+    const parType = await passer({});
+    expect(parType?.cours ?? 0).toBeGreaterThanOrEqual(10);
+    expect(parType?.annale ?? 0).toBe(0);
   });
 });

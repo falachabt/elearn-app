@@ -1,0 +1,434 @@
+{
+ "cours": 6716,
+ "titre": "Cercles et vecteurs : tangentes, arcs et relation de Chasles",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Géométrie plane",
+   "titre": "Cercles et vecteurs : tangentes, arcs et relation de Chasles",
+   "sous": "Comparer une distance au rayon pour le cercle, additionner bout à bout pour les vecteurs",
+   "anim": {
+    "nom": "cercle_rayon_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Deux mondes, une même rigueur",
+   "texte": "Le cercle se décide par une comparaison ; le vecteur, par une direction, un sens et une longueur.",
+   "anim": {
+    "nom": "positions_droite_cercle_fig",
+    "hauteur": 170
+   }
+  },
+  "distance_cercle": {
+   "type": "formule",
+   "kicker": "Droite et cercle : la distance clé",
+   "tex": "d(O,\\,d)",
+   "note": "Longueur du segment perpendiculaire joignant le centre O à la droite.",
+   "anim": {
+    "nom": "cercle_rayon_fig",
+    "hauteur": 170
+   }
+  },
+  "positions": {
+   "type": "etape",
+   "kicker": "Positions relatives d'une droite et d'un cercle",
+   "titre": "Trois cas, une comparaison",
+   "tex": [
+    "d(O,\\,d) > r \\Rightarrow \\text{extérieure}",
+    "d(O,\\,d) = r \\Rightarrow \\text{tangente}",
+    "d(O,\\,d) < r \\Rightarrow \\text{sécante}"
+   ],
+   "anim": {
+    "nom": "positions_droite_cercle_fig",
+    "hauteur": 130
+   }
+  },
+  "positions_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Deux virgule cinq contre trois",
+   "tex": [
+    "r = 3\\ \\text{cm}",
+    "d(O,\\,d) = 2{,}5\\ \\text{cm}",
+    "2{,}5 < 3 : \\text{sécante}"
+   ]
+  },
+  "tangente_def": {
+   "type": "phrase",
+   "kicker": "La tangente à un cercle",
+   "texte": "Une tangente touche le cercle en exactement un point : le point de tangence.",
+   "anim": {
+    "nom": "secante_tangente_fig",
+    "hauteur": 180
+   }
+  },
+  "tangente": {
+   "type": "formule",
+   "kicker": "Propriété essentielle de la tangente",
+   "tex": "\\text{tangente en } A \\perp (OA)",
+   "note": "La tangente est perpendiculaire au rayon du point de tangence.",
+   "anim": {
+    "nom": "secante_tangente_fig",
+    "hauteur": 170
+   }
+  },
+  "construction_tangente": {
+   "type": "phrase",
+   "kicker": "Construire la tangente en un point du cercle",
+   "texte": "Trace le rayon [OA], puis la perpendiculaire à (OA) passant par A : c'est la tangente.",
+   "anim": {
+    "nom": "cercle_rayon_fig",
+    "hauteur": 170
+   }
+  },
+  "tangentes_ext": {
+   "type": "phrase",
+   "kicker": "Tangentes depuis un point extérieur",
+   "texte": "Depuis un point extérieur P, exactement deux tangentes au cercle : leurs points de contact sont T₁ et T₂.",
+   "anim": {
+    "nom": "secante_tangente_fig",
+    "hauteur": 160
+   }
+  },
+  "construction_ext": {
+   "type": "etape",
+   "kicker": "Construction depuis un point extérieur",
+   "titre": "Le cercle de diamètre OP",
+   "tex": [
+    "\\text{cercle de diamètre } [OP]",
+    "T_1,\\ T_2 : \\text{les intersections}",
+    "(PT_1),\\ (PT_2) : \\text{tangentes}"
+   ]
+  },
+  "angle_centre": {
+   "type": "formule",
+   "kicker": "Angle au centre et arc intercepté",
+   "tex": "\\text{mes}(\\widehat{AOB}) = \\text{mes}(\\overset{\\frown}{AB})",
+   "note": "Même mesure, en degrés, pour l'angle et pour son arc.",
+   "anim": {
+    "nom": "cercle_rayon_fig",
+    "hauteur": 180
+   }
+  },
+  "arcs_egaux": {
+   "type": "phrase",
+   "kicker": "Arcs égaux, angles égaux",
+   "texte": "Dans un même cercle : arcs de même mesure ⟺ angles au centre égaux.",
+   "anim": {
+    "nom": "cercle_rayon_fig",
+    "hauteur": 170
+   }
+  },
+  "arc_longueur": {
+   "type": "formule",
+   "kicker": "Longueur d'un arc de cercle",
+   "tex": "L = \\frac{\\alpha}{360} \\times 2\\pi r",
+   "note": "Alpha : angle au centre en degrés ; r : rayon du cercle."
+  },
+  "arc_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Soixante-douze degrés, rayon cinq",
+   "tex": [
+    "L = \\tfrac{72}{360} \\times 2\\pi \\times 5",
+    "L = \\tfrac{1}{5} \\times 10\\pi",
+    "L = 2\\pi",
+    "L \\approx 6{,}28\\ \\text{cm}"
+   ]
+  },
+  "secteur": {
+   "type": "phrase",
+   "kicker": "Le secteur angulaire",
+   "texte": "Un secteur : deux rayons et un arc. Angle de 90° = un quart du disque.",
+   "anim": {
+    "nom": "cercle_rayon_fig",
+    "hauteur": 170
+   }
+  },
+  "vecteur_def": {
+   "type": "etape",
+   "kicker": "Notion de vecteur",
+   "titre": "Direction, sens, longueur",
+   "tex": [
+    "\\text{direction : la droite } (AB)",
+    "\\text{sens : de } A \\text{ vers } B",
+    "\\text{longueur : } AB"
+   ],
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 140
+   }
+  },
+  "vecteur_nul": {
+   "type": "phrase",
+   "kicker": "Vecteur opposé et vecteur nul",
+   "texte": "BA : même direction, même longueur, sens opposé. AA : longueur nulle, c'est le vecteur nul.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 160
+   }
+  },
+  "egalite": {
+   "type": "formule",
+   "kicker": "Égalité de deux vecteurs",
+   "tex": "\\overrightarrow{AB} = \\overrightarrow{CD}",
+   "note": "Même direction, même sens, même longueur.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 160
+   }
+  },
+  "egalite_construction": {
+   "type": "phrase",
+   "kicker": "Reporter un vecteur",
+   "texte": "Pour tout point M, un unique point N avec MN = AB : parallèle par M, longueur reportée dans le bon sens.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 160
+   }
+  },
+  "parallelogramme": {
+   "type": "etape",
+   "kicker": "Vecteurs et parallélogramme",
+   "titre": "La caractérisation vectorielle",
+   "tex": [
+    "ABCD \\text{ parallélogramme}",
+    "\\iff \\overrightarrow{AB} = \\overrightarrow{DC}"
+   ]
+  },
+  "chasles": {
+   "type": "formule",
+   "kicker": "Addition : la relation de Chasles",
+   "tex": "\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}",
+   "note": "Les vecteurs se placent bout à bout.",
+   "anim": {
+    "nom": "somme_vecteurs_fig",
+    "hauteur": 170
+   }
+  },
+  "somme_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Additionner deux vecteurs quelconques",
+   "tex": [
+    "\\overrightarrow{BE} = \\overrightarrow{CD}",
+    "\\overrightarrow{AB}+\\overrightarrow{CD}=\\overrightarrow{AE}"
+   ]
+  },
+  "oppose": {
+   "type": "formule",
+   "kicker": "Opposé d'un vecteur",
+   "tex": "\\overrightarrow{AB} + \\overrightarrow{BA} = \\vec{0}",
+   "note": "L'opposé du vecteur AB est le vecteur BA."
+  },
+  "milieu": {
+   "type": "formule",
+   "kicker": "Caractérisation vectorielle du milieu",
+   "tex": "\\overrightarrow{IA} + \\overrightarrow{IB} = \\vec{0}",
+   "note": "Équivalent : le vecteur AI égale le vecteur IB."
+  },
+  "milieu_demo": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Pourquoi la somme est nulle",
+   "tex": [
+    "\\overrightarrow{IB} = -\\overrightarrow{IA}",
+    "\\overrightarrow{IA} + \\overrightarrow{IB}",
+    "= \\overrightarrow{IA} - \\overrightarrow{IA} = \\vec{0}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Droite et cercle : comparer d et le rayon",
+    "Tangente : perpendiculaire au rayon",
+    "Arc : angle au centre et fraction du tour",
+    "Vecteurs : Chasles, opposé, milieu"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Cercles et vecteurs : tangentes, arcs, Chasles.",
+   "dit": "Bienvenue dans ce cours de géométrie plane, en deux volets. Premier volet, le cercle : comment une droite se place par rapport à lui, ce qu'est une tangente et comment la construire, puis les angles au centre, les arcs et leur longueur. Second volet, les vecteurs : leur définition, leur égalité, leur addition par la relation de Chasles, et la caractérisation du milieu d'un segment."
+  },
+  {
+   "id": "p02",
+   "ecran": "accroche",
+   "texte": "Cercle : une comparaison. Vecteur : trois données.",
+   "dit": "Ces deux mondes ont chacun leur réflexe. Pour le cercle, tout se décide par une comparaison entre deux longueurs : la distance du centre à la droite, et le rayon. Pour les vecteurs, tout tient en trois données : une direction, un sens et une longueur. Gardez ces deux réflexes, le cours entier en découle."
+  },
+  {
+   "id": "p03",
+   "ecran": "distance_cercle",
+   "texte": "d(O, d) : la distance du centre à la droite.",
+   "dit": "Soit un cercle de centre O et de rayon r, et une droite. On appelle distance du centre à la droite la longueur du segment perpendiculaire qui joint le centre à la droite. C'est exactement la distance d'un point à une droite du cours précédent : le pied de la perpendiculaire joue encore le rôle central."
+  },
+  {
+   "id": "p04",
+   "ecran": "positions",
+   "texte": "d > r : 0 point ; d = r : 1 point ; d < r : 2 points.",
+   "dit": "La position de la droite par rapport au cercle dépend de la comparaison entre cette distance et le rayon. Si la distance dépasse le rayon, la droite est extérieure au cercle : aucun point commun. Si elle égale le rayon, la droite est tangente : un seul point commun. Si elle est inférieure au rayon, la droite est sécante : elle coupe le cercle en deux points."
+  },
+  {
+   "id": "p05",
+   "ecran": "positions_ex",
+   "texte": "2,5 < 3 : droite sécante, deux points communs.",
+   "dit": "Exemple : un cercle a pour rayon trois centimètres, et une droite passe à deux virgule cinq centimètres de son centre. Deux virgule cinq est inférieur à trois : la droite est donc sécante au cercle, elle le coupe en deux points. Une seule comparaison a suffi à trancher."
+  },
+  {
+   "id": "p06",
+   "ecran": "tangente_def",
+   "texte": "Tangente : exactement un point commun.",
+   "dit": "Arrêtons-nous sur le cas limite, la tangente. Une tangente à un cercle est une droite qui a exactement un point commun avec le cercle. Ce point unique porte un nom : le point de tangence. La droite effleure le cercle sans le traverser."
+  },
+  {
+   "id": "p07",
+   "ecran": "tangente",
+   "texte": "Tangente en A perpendiculaire au rayon [OA].",
+   "dit": "Propriété essentielle : en un point du cercle, la tangente est perpendiculaire au rayon qui aboutit à ce point. C'est le pont entre les deux volets de ce chapitre : la tangence est une affaire d'angle droit. Cette propriété donne immédiatement la construction de la tangente."
+  },
+  {
+   "id": "p08",
+   "ecran": "construction_tangente",
+   "texte": "Rayon [OA], puis perpendiculaire en A.",
+   "dit": "Pour construire la tangente en un point du cercle, deux gestes suffisent. D'abord, tracer le rayon qui joint le centre à ce point. Ensuite, tracer la droite perpendiculaire à ce rayon, passant par le point. Cette perpendiculaire est la tangente cherchée, par la propriété qui précède."
+  },
+  {
+   "id": "p09",
+   "ecran": "tangentes_ext",
+   "texte": "Point extérieur P : deux tangentes, T₁ et T₂.",
+   "dit": "Changeons de point de vue : le point est maintenant extérieur au cercle. Depuis un tel point, on peut tracer deux tangentes au cercle, ni une, ni trois. Leurs points de tangence se notent T indice un et T indice deux. Reste à les construire proprement."
+  },
+  {
+   "id": "p10",
+   "ecran": "construction_ext",
+   "texte": "Cercle de diamètre [OP] ⟹ T₁ et T₂.",
+   "dit": "La construction utilise un cercle auxiliaire : le cercle de diamètre le segment qui joint le centre au point extérieur. Ce cercle coupe le cercle de départ en deux points : ce sont les points de tangence. Les droites qui les joignent au point extérieur sont les deux tangentes. La justification tient en un angle droit : l'angle en chaque point de tangence, inscrit dans un demi-cercle, est droit, donc chaque droite est perpendiculaire au rayon correspondant."
+  },
+  {
+   "id": "p11",
+   "ecran": "angle_centre",
+   "texte": "mes(AOB) = mes(arc AB), en degrés.",
+   "dit": "Passons aux angles au centre. Un angle au centre a son sommet au centre du cercle, et ses côtés coupent le cercle en deux points. La portion de cercle entre ces deux points est l'arc intercepté. Propriété fondamentale : la mesure de l'angle au centre est égale à la mesure de l'arc qu'il intercepte, en degrés."
+  },
+  {
+   "id": "p12",
+   "ecran": "arcs_egaux",
+   "texte": "Arcs égaux ⟺ angles au centre égaux.",
+   "dit": "De cette égalité découlent toutes les correspondances. Deux angles au centre sont égaux si et seulement si les arcs interceptés ont la même mesure. Et dans un même cercle, deux arcs ont la même longueur si et seulement si leurs angles au centre sont égaux. Angle et arc se lisent l'un sur l'autre."
+  },
+  {
+   "id": "p13",
+   "ecran": "arc_longueur",
+   "texte": "L = (α/360) × 2πr : la fraction du tour complet.",
+   "dit": "On peut alors calculer la longueur d'un arc. Un tour complet vaut trois cent soixante degrés et mesure deux fois pi fois le rayon. Un arc intercepté par un angle alpha en degrés représente donc la fraction alpha sur trois cent soixante de ce tour complet. Sa longueur est cette fraction multipliée par le périmètre du cercle."
+  },
+  {
+   "id": "p14",
+   "ecran": "arc_ex",
+   "texte": "α = 72°, r = 5 cm ⟹ L = 2π ≈ 6,28 cm.",
+   "dit": "Exemple : dans un cercle de rayon cinq centimètres, un angle au centre mesure soixante-douze degrés. L'arc intercepté mesure lui aussi soixante-douze degrés. Sa longueur vaut soixante-douze sur trois cent soixante, fois deux pi, fois cinq : cela se simplifie en un cinquième de dix pi, c'est-à-dire deux pi, environ six virgule vingt-huit centimètres."
+  },
+  {
+   "id": "p15",
+   "ecran": "secteur",
+   "texte": "Secteur de 90° : exactement un quart du disque.",
+   "dit": "Dernier objet du cercle : le secteur angulaire. C'est la région du disque délimitée par deux rayons et par l'arc qui les relie, comme une part de tarte. Sa part du disque est la fraction alpha sur trois cent soixante. Un secteur de quatre-vingt-dix degrés représente ainsi un quart du disque complet. Place maintenant aux vecteurs."
+  },
+  {
+   "id": "p16",
+   "ecran": "vecteur_def",
+   "texte": "Vecteur AB : direction, sens, longueur.",
+   "dit": "Un vecteur est défini par trois données. Sa direction, celle de la droite qui le porte. Son sens, de son origine vers son extrémité. Et sa longueur, la distance entre ses deux extrémités. Le vecteur qui va du point B vers le point A a la même direction et la même longueur, mais le sens opposé."
+  },
+  {
+   "id": "p17",
+   "ecran": "vecteur_nul",
+   "texte": "Vecteur nul : longueur 0, ni direction ni sens.",
+   "dit": "Cas particulier : quand l'origine et l'extrémité se confondent, on obtient le vecteur nul. Sa longueur est nulle, et il n'a ni direction ni sens. Il jouera pour les vecteurs le rôle que le zéro joue pour les nombres, notamment dans la caractérisation du milieu en fin de cours."
+  },
+  {
+   "id": "p18",
+   "ecran": "egalite",
+   "texte": "Vecteurs égaux : direction, sens, longueur identiques.",
+   "dit": "Deux vecteurs sont égaux quand ils ont la même direction, le même sens et la même longueur. Les trois conditions en même temps, pas une de moins. Géométriquement, deux vecteurs égaux dessinent un parallélogramme, à condition de respecter l'ordre des lettres, qui est essentiel."
+  },
+  {
+   "id": "p19",
+   "ecran": "egalite_construction",
+   "texte": "Un vecteur se reporte en n'importe quel point, une seule fois.",
+   "dit": "Propriété fondamentale : étant donné un vecteur et un point quelconque, il existe un unique point tel que le vecteur construit depuis ce point égale le vecteur de départ. La construction est concrète : on trace la parallèle à la direction de départ passant par le point, puis on reporte la longueur dans le bon sens. Le point obtenu est unique."
+  },
+  {
+   "id": "p20",
+   "ecran": "parallelogramme",
+   "texte": "ABCD parallélogramme ⟺ vecteur AB = vecteur DC.",
+   "dit": "Voici la caractérisation vectorielle du parallélogramme, à connaître par cœur. Un quadrilatère est un parallélogramme si et seulement si le vecteur du premier côté égale le vecteur du côté opposé, lu dans le bon sens. On en déduit aussitôt l'égalité des longueurs et le parallélisme des deux droites."
+  },
+  {
+   "id": "p21",
+   "ecran": "chasles",
+   "texte": "AB + BC = AC : bout à bout.",
+   "dit": "Additionnons maintenant. La relation de Chasles dit que le vecteur qui va du premier point au deuxième, plus le vecteur qui va du deuxième au troisième, égale le vecteur qui va directement du premier au troisième. Le point intermédiaire disparaît dans la somme, comme un relais dans une course."
+  },
+  {
+   "id": "p22",
+   "ecran": "somme_ex",
+   "texte": "On reporte CD en B : AB + CD = AE.",
+   "dit": "Pour additionner deux vecteurs quelconques, on place le second à l'extrémité du premier, grâce au report unique vu plus haut. Exemple : pour additionner deux vecteurs donnés, on construit le point E tel que le vecteur de B vers E égale le second vecteur. La somme est alors le vecteur du départ du premier à l'arrivée de ce point E, par la relation de Chasles."
+  },
+  {
+   "id": "p23",
+   "ecran": "oppose",
+   "texte": "AB + BA = vecteur nul.",
+   "dit": "L'opposé d'un vecteur est le vecteur de même direction et de même longueur, mais de sens contraire : c'est le vecteur retour. Un vecteur plus son opposé donne le vecteur nul, exactement comme un nombre plus son opposé donne zéro. Aller puis revenir au point de départ, le déplacement total est nul."
+  },
+  {
+   "id": "p24",
+   "ecran": "milieu",
+   "texte": "I milieu de [AB] ⟺ IA + IB = vecteur nul.",
+   "dit": "Dernière caractérisation : le milieu d'un segment, en langage vectoriel. Un point est le milieu du segment si et seulement si la somme des deux vecteurs qui le joignent aux extrémités est le vecteur nul. Forme équivalente, souvent plus rapide : le vecteur du milieu vers une extrémité égale le vecteur de l'autre extrémité vers le milieu."
+  },
+  {
+   "id": "p25",
+   "ecran": "milieu_demo",
+   "texte": "IB = −IA, donc IA + IB = 0.",
+   "dit": "Vérifions-le sur un exemple. Si le point est le milieu, les deux vecteurs vers les extrémités ont la même direction, des sens opposés et la même longueur : le second est donc l'opposé du premier. Leur somme vaut le premier moins lui-même, c'est-à-dire le vecteur nul. La caractérisation est démontrée dans ce sens."
+  },
+  {
+   "id": "p26",
+   "ecran": "recap",
+   "texte": "Cercle : comparer et construire. Vecteurs : Chasles.",
+   "dit": "Récapitulons. Pour le cercle : comparer la distance du centre à la droite avec le rayon décide de la position, la tangente est perpendiculaire au rayon, et la longueur d'un arc est la fraction du tour complet dictée par l'angle au centre. Pour les vecteurs : direction, sens et longueur définissent, l'égalité dessine un parallélogramme, Chasles additionne bout à bout, et le milieu se reconnaît à une somme nulle."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le cercle : positions relatives et tangentes"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Angles au centre, arcs, et premiers vecteurs",
+   "pont": {
+    "texte": "Partie 2 : angles au centre, longueur d'arc, secteur, puis les vecteurs.",
+    "dit": "Partie deux : les angles au centre et les arcs du cercle, avec le calcul de la longueur d'un arc et le secteur angulaire. Nous ouvrirons ensuite le second volet du cours : les vecteurs, leur définition en direction, sens et longueur, et l'égalité de deux vecteurs."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "Vecteurs : parallélogramme, Chasles et milieu",
+   "pont": {
+    "texte": "Partie 3 : parallélogramme, relation de Chasles, opposé et milieu.",
+    "dit": "Partie trois : les vecteurs en action. Nous caractériserons le parallélogramme par une égalité de vecteurs, nous additionnerons avec la relation de Chasles, nous définirons l'opposé, et nous finirons par la caractérisation vectorielle du milieu d'un segment."
+   }
+  }
+ ]
+}

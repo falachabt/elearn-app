@@ -1,0 +1,267 @@
+{
+ "cours": 6056,
+ "ecrans": {
+  "aleatoire": {
+   "kicker": "Incertitude aléatoire",
+   "texte": "Imprévisibles, elles fluctuent de manière aléatoire autour d'une valeur moyenne. Causes : fluctuations thermiques, vibrations, erreurs de lecture humaine.",
+   "type": "phrase"
+  },
+  "comparaison": {
+   "etapes": [
+    "Aléatoire : imprévisible et fluctuante",
+    "Ses exemples : fluctuations thermiques, erreurs de lecture",
+    "Systématique : biaisée et constante",
+    "Ses exemples : instrument mal calibré, effet ignoré"
+   ],
+   "kicker": "Tableau récapitulatif",
+   "titre": "Aléatoire contre systématique",
+   "type": "recap"
+  },
+  "confiance": {
+   "kicker": "Niveau de confiance",
+   "texte": "Cette écriture ne donne qu'une estimation de l'incertitude : une analyse rigoureuse précise le niveau de confiance associé, par exemple 95 %.",
+   "type": "phrase"
+  },
+  "definition": {
+   "kicker": "Définition",
+   "texte": "L'incertitude reflète l'écart entre la valeur mesurée et la « vraie » valeur — une valeur que l'on ne peut jamais connaître avec une précision absolue.",
+   "type": "phrase"
+  },
+  "deux_types": {
+   "kicker": "Deux catégories",
+   "texte": "Les incertitudes se divisent en deux grandes catégories : les incertitudes aléatoires et les incertitudes systématiques.",
+   "type": "phrase"
+  },
+  "enjeu": {
+   "kicker": "L'enjeu",
+   "texte": "Sans estimation rigoureuse des incertitudes, un résultat peut être trompeur, voire inutile. En ingénierie, une erreur de conception peut coûter cher, et même être dangereuse.",
+   "type": "phrase"
+  },
+  "exemple_aleatoire": {
+   "kicker": "Exemple",
+   "texte": "Température d'une pièce au thermomètre : les fluctuations de l'air, ou les tremblements de la main, introduisent des variations aléatoires.",
+   "type": "phrase"
+  },
+  "exemple_resultat": {
+   "kicker": "Exemple chiffré",
+   "note": "La valeur réelle se situe probablement entre ces deux bornes",
+   "tex": [
+    "L = 120 \\pm 0{,}5\\ \\text{cm}",
+    "119{,}5\\ \\text{cm} \\leq L \\leq 120{,}5\\ \\text{cm}"
+   ],
+   "titre": "La longueur de la table, avec son incertitude",
+   "type": "etape"
+  },
+  "exemple_systematique": {
+   "kicker": "Exemples",
+   "texte": "Une règle usée à une extrémité fausse systématiquement toutes les mesures. Un voltmètre dont la pile est faible fausse systématiquement les tensions.",
+   "type": "phrase"
+  },
+  "exercice": {
+   "etapes": [
+    "Peser une pièce de monnaie dix fois, noter chaque mesure",
+    "Calculer la moyenne des dix mesures",
+    "Calculer l'écart type : l'incertitude aléatoire estimée",
+    "Écrire le résultat : masse moyenne ± incertitude"
+   ],
+   "kicker": "Exercice pratique",
+   "titre": "La masse d'une pièce de monnaie",
+   "type": "recap"
+  },
+  "mesure": {
+   "kicker": "La mesure",
+   "texte": "Vous mesurez la longueur d'une table avec une règle graduée en centimètres : 120 cm. Avez-vous vraiment mesuré exactement 120 cm ? Probablement pas.",
+   "type": "phrase",
+   "anim": {
+    "nom": "regle_incertitude_fig",
+    "hauteur": 200
+   }
+  },
+  "questions": {
+   "kicker": "Questions de réflexion",
+   "texte": "Quelles sont les sources d'incertitudes de l'expérience de la pièce ? Comment réduire l'aléatoire ? Comment détecter et corriger le systématique ?",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Toute mesure est approchée : la vraie valeur reste inconnue",
+    "Aléatoire : elle fluctue, l'écart type l'estime",
+    "Systématique : un biais constant, à détecter et corriger",
+    "Un résultat s'écrit : valeur mesurée ± incertitude",
+    "Penser au niveau de confiance, par exemple 95 %"
+   ],
+   "kicker": "À retenir",
+   "titre": "Calculs d'incertitudes",
+   "type": "recap"
+  },
+  "repetitions": {
+   "kicker": "Incertitude aléatoire",
+   "texte": "Mesure répétée : des valeurs légèrement différentes, réparties autour d'une moyenne. L'écart type de ces mesures estime l'incertitude aléatoire.",
+   "type": "phrase",
+   "anim": {
+    "nom": "dispersion_mesures_fig",
+    "hauteur": 200
+   }
+  },
+  "representation": {
+   "kicker": "Écrire un résultat",
+   "note": "Un résultat expérimental n'est complet qu'avec son incertitude associée",
+   "tex": "\\text{Valeur mesurée} \\pm \\text{Incertitude}",
+   "titre": "La forme à connaître",
+   "type": "formule"
+  },
+  "sources": {
+   "kicker": "La mesure",
+   "texte": "La précision de la règle est limitée, l'œil n'est pas parfait, et la table elle-même peut légèrement se déformer : ces imperfections introduisent des incertitudes.",
+   "type": "phrase"
+  },
+  "systematique": {
+   "kicker": "Incertitude systématique",
+   "texte": "Biaisées : elles introduisent un décalage constant entre la valeur mesurée et la valeur réelle. Causes : instrument mal calibré, méthode défectueuse, effet physique non pris en compte.",
+   "type": "phrase"
+  },
+  "titre": {
+   "kicker": "Physique",
+   "sous": "La mesure et ses incertitudes : aléatoire, systématique, et la bonne écriture d'un résultat",
+   "titre": "Calculs d'incertitudes",
+   "type": "titre",
+   "anim": {
+    "nom": "regle_incertitude_fig",
+    "hauteur": 250
+   }
+  }
+ },
+ "lecons": [
+  5555
+ ],
+ "matiere": "Physique",
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique consacré aux calculs d'incertitudes, un aspect fondamental de la science, souvent négligé, mais crucial pour interpréter avec rigueur les résultats expérimentaux.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Calculs d'incertitudes : aucun résultat ne se donne sans son incertitude."
+  },
+  {
+   "dit": "Mesurons la longueur d'une table avec une règle graduée en centimètres : nous lisons cent vingt centimètres. Mais avons-nous vraiment mesuré exactement cent vingt centimètres ? Probablement pas.",
+   "ecran": "mesure",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "120 cm lus sur la règle… mais exactement 120 cm ?"
+  },
+  {
+   "dit": "La précision de la règle est limitée, notre œil n'est pas parfait, et la table elle-même peut légèrement se déformer. Ces imperfections introduisent des incertitudes dans notre mesure.",
+   "ecran": "sources",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Règle limitée, œil imparfait, table qui se déforme."
+  },
+  {
+   "dit": "L'incertitude est inhérente à toute mesure. Elle reflète l'écart entre la valeur mesurée et la vraie valeur, une valeur que nous ne pouvons jamais connaître avec une précision absolue.",
+   "ecran": "definition",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Incertitude : l'écart entre valeur mesurée et vraie valeur."
+  },
+  {
+   "dit": "Sans une estimation rigoureuse des incertitudes, des résultats expérimentaux peuvent être trompeurs, voire inutiles. En ingénierie, une mauvaise estimation peut conduire à des erreurs de conception coûteuses, voire dangereuses.",
+   "ecran": "enjeu",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Sans incertitudes estimées, un résultat peut tromper."
+  },
+  {
+   "dit": "Les incertitudes se divisent en deux grandes catégories : les incertitudes aléatoires et les incertitudes systématiques. Regardons-les une à une.",
+   "ecran": "deux_types",
+   "id": "p06",
+   "pause_apres": 0.7,
+   "texte": "Deux catégories : aléatoire et systématique."
+  },
+  {
+   "dit": "Les incertitudes aléatoires sont imprévisibles : elles fluctuent de manière aléatoire autour d'une valeur moyenne. Elles sont dues à des facteurs imprévisibles, comme les fluctuations thermiques, les vibrations, ou les erreurs de lecture.",
+   "ecran": "aleatoire",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Aléatoire : imprévisible, fluctuante autour d'une moyenne."
+  },
+  {
+   "dit": "Si vous répétez la mesure de la longueur de la table plusieurs fois, vous obtiendrez des valeurs légèrement différentes, réparties autour d'une moyenne. L'écart type de ces mesures est une bonne estimation de l'incertitude aléatoire.",
+   "ecran": "repetitions",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Répéter la mesure : l'écart type estime l'incertitude aléatoire."
+  },
+  {
+   "dit": "Autre exemple : vous mesurez la température d'une pièce avec un thermomètre. Les fluctuations de l'air, ou les tremblements de votre main, introduisent des variations aléatoires d'une lecture à l'autre.",
+   "ecran": "exemple_aleatoire",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Thermomètre : l'air et la main font varier la lecture."
+  },
+  {
+   "dit": "Les incertitudes systématiques sont biaisées : elles introduisent un décalage constant entre la valeur mesurée et la valeur réelle. Leurs causes : un instrument mal calibré, une méthode de mesure défectueuse, ou un effet physique non pris en compte.",
+   "ecran": "systematique",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Systématique : un décalage constant, toujours dans le même sens."
+  },
+  {
+   "dit": "Par exemple, si votre règle est usée à une extrémité, toutes vos mesures seront systématiquement faussées. Autre cas courant : un voltmètre dont la pile est faible, qui fausse systématiquement les mesures de tension.",
+   "ecran": "exemple_systematique",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Règle usée, voltmètre faible : l'erreur se répète à l'identique."
+  },
+  {
+   "dit": "Le tableau récapitulatif oppose les deux types : aléatoire, imprévisible et fluctuante, par exemple les fluctuations thermiques ; systématique, biaisée et constante, par exemple un instrument mal calibré.",
+   "ecran": "comparaison",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Tableau : fluctuante contre biaisée et constante."
+  },
+  {
+   "dit": "Un résultat expérimental n'est pas complet sans son incertitude associée. On le représente généralement sous la forme : valeur mesurée, plus ou moins incertitude.",
+   "ecran": "representation",
+   "id": "p13",
+   "pause_apres": 0.7,
+   "texte": "Résultat = valeur mesurée ± incertitude."
+  },
+  {
+   "dit": "Reprenons la table : une longueur de cent vingt centimètres, avec une incertitude d'un demi-centimètre, s'écrit cent vingt plus ou moins zéro virgule cinq centimètres. La valeur réelle se situe alors probablement entre cent dix-neuf virgule cinq et cent vingt virgule cinq centimètres.",
+   "ecran": "exemple_resultat",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "L = 120 ± 0,5 cm : la vraie valeur est entre 119,5 et 120,5 cm."
+  },
+  {
+   "dit": "Attention : cette représentation ne donne qu'une estimation de l'incertitude. Pour une analyse plus rigoureuse, il faut souvent préciser le niveau de confiance associé, par exemple quatre-vingt-quinze pour cent de confiance.",
+   "ecran": "confiance",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Préciser le niveau de confiance, par exemple 95 %."
+  },
+  {
+   "dit": "Exercice pratique des leçons : avec une balance précise, pesez une pièce de monnaie dix fois et notez chaque mesure. Calculez la moyenne, puis l'écart type, qui estime l'incertitude aléatoire. Exprimez le résultat : masse moyenne, plus ou moins incertitude.",
+   "ecran": "exercice",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Dix pesées, une moyenne, un écart type."
+  },
+  {
+   "dit": "Trois questions pour réfléchir : quelles sont les sources d'incertitudes aléatoires et systématiques dans cette expérience ? Comment pourriez-vous réduire l'incertitude aléatoire ? Et comment détecter, puis corriger, une incertitude systématique ?",
+   "ecran": "questions",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Identifier les sources, réduire l'aléatoire, corriger le systématique."
+  },
+  {
+   "dit": "Retenez les bases : l'incertitude est inhérente à toute mesure ; elle est aléatoire quand elle fluctue, systématique quand elle biaise ; et un résultat complet s'écrit toujours valeur mesurée, plus ou moins incertitude.",
+   "ecran": "recap",
+   "id": "p18",
+   "pause_apres": 0.5,
+   "texte": "Valeur mesurée ± incertitude : la forme d'un résultat complet."
+  }
+ ],
+ "titre": "Calculs d'incertitudes"
+}

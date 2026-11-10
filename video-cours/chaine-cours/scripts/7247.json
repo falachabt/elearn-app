@@ -1,0 +1,363 @@
+{
+  "cours": 7247,
+  "ecrans": {
+    "bissectrices_prop": {
+      "anim": {
+        "nom": "bissectrice_fig",
+        "hauteur": 230
+      },
+      "kicker": "Propriété · les bissectrices",
+      "texte": "Concourantes en un point équidistant des côtés.",
+      "type": "phrase"
+    },
+    "circonscrit": {
+      "anim": {
+        "hauteur": 160,
+        "nom": "triangle_fig"
+      },
+      "kicker": "Le cercle circonscrit",
+      "note": "O : intersection des médiatrices du triangle",
+      "tex": "OA = OB = OC = R",
+      "type": "formule"
+    },
+    "constructions": {
+      "kicker": "Méthodes de construction",
+      "tex": [
+        "\\text{1. triangle : un côté, deux arcs}",
+        "\\text{2. circonscrit : deux médiatrices} \\to O",
+        "\\text{3. inscrit : deux bissectrices} \\to I"
+      ],
+      "titre": "Au compas : triangle, circonscrit, inscrit",
+      "type": "etape"
+    },
+    "def_cercle": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "cercle_rayon_fig"
+      },
+      "kicker": "Définition · le cercle",
+      "note": "O : centre ; r : rayon ; M : point du cercle",
+      "tex": "M \\in \\mathcal{C} \\iff OM = r",
+      "type": "formule"
+    },
+    "droites": {
+      "kicker": "Les droites remarquables",
+      "tex": [
+        "\\text{médiatrice} \\to O \\text{, centre circonscrit}",
+        "\\text{bissectrice} \\to I \\text{, centre inscrit}",
+        "\\text{hauteur} \\to \\text{orthocentre}",
+        "\\text{médiane} \\to \\text{centre de gravité}"
+      ],
+      "titre": "Quatre droites, quatre points de concours",
+      "type": "etape"
+    },
+    "ex_corde": {
+      "kicker": "Exemple résolu · distance à une corde",
+      "tex": [
+        "AH = \\tfrac{8}{2} = 4\\ \\text{cm}",
+        "OH^2 = 5^2 - 4^2 = 25 - 16 = 9",
+        "OH = \\sqrt{9} = 3\\ \\text{cm}"
+      ],
+      "titre": "Rayon cinq, corde huit : OH vaut trois",
+      "type": "etape"
+    },
+    "ex_inegalite": {
+      "kicker": "Exemple résolu · triangle possible ?",
+      "tex": [
+        "3 + 5 = 8 < 9 : \\text{impossible}",
+        "4 + 5 = 9 > 7 : \\text{possible}"
+      ],
+      "titre": "Comparer la plus grande longueur aux deux autres",
+      "type": "etape"
+    },
+    "ex_mediatrice": {
+      "kicker": "Exemple résolu · médiatrice",
+      "tex": [
+        "MB = MC = \\tfrac{8}{2} = 4\\ \\text{cm}",
+        "AB = AC \\Rightarrow A \\text{ sur la médiatrice } [BC]"
+      ],
+      "titre": "Triangle isocèle six, six, huit",
+      "type": "etape"
+    },
+    "ex_position": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "cercle_rayon_fig"
+      },
+      "kicker": "Exemple · trois positions",
+      "texte": "Rayon cinq : trois dedans, cinq sur, sept dehors.",
+      "type": "phrase"
+    },
+    "ex_rect": {
+      "kicker": "Exemple résolu · triangle rectangle",
+      "tex": [
+        "R = \\tfrac{BC}{2} = \\tfrac{5}{2} = 2{,}5\\ \\text{cm}",
+        "r = \\tfrac{AB + AC - BC}{2} = \\tfrac{3 + 4 - 5}{2}",
+        "r = \\tfrac{2}{2} = 1\\ \\text{cm}"
+      ],
+      "titre": "Côtés trois, quatre, cinq : les deux rayons",
+      "type": "etape"
+    },
+    "formule_d": {
+      "kicker": "Rayon et diamètre",
+      "note": "Le diamètre est la corde qui passe par le centre",
+      "tex": "d = 2r",
+      "type": "formule"
+    },
+    "inegalite": {
+      "kicker": "Inégalité triangulaire",
+      "note": "a : la plus grande des trois longueurs",
+      "tex": "a < b + c",
+      "type": "formule"
+    },
+    "inscrit": {
+      "anim": {
+        "nom": "bissectrice_fig",
+        "hauteur": 230
+      },
+      "kicker": "Le cercle inscrit",
+      "texte": "À l'intérieur, tangent aux trois côtés, centre I.",
+      "type": "phrase"
+    },
+    "mediatrice_corde": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "mediatrice_exemple_fig"
+      },
+      "kicker": "Propriété · corde et centre",
+      "texte": "La médiatrice d'une corde passe par le centre.",
+      "type": "phrase"
+    },
+    "mediatrices_prop": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "mediatrice_exemple_fig"
+      },
+      "kicker": "Propriété · les médiatrices",
+      "texte": "Concourantes en un point équidistant des sommets.",
+      "type": "phrase"
+    },
+    "objectifs": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "cercle_rayon_fig"
+      },
+      "kicker": "Objectifs du cours",
+      "texte": "Décrire un cercle, situer un point, construire les deux cercles du triangle.",
+      "type": "phrase"
+    },
+    "position": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "cercle_rayon_fig"
+      },
+      "kicker": "Position d'un point",
+      "tex": [
+        "d < r : M \\text{ intérieur}",
+        "d = r : M \\text{ sur le cercle}",
+        "d > r : M \\text{ extérieur}"
+      ],
+      "titre": "Comparer la distance d = OM au rayon r",
+      "type": "etape"
+    },
+    "recap1": {
+      "etapes": [
+        "Cercle : points à distance r du centre O",
+        "Position : comparer d au rayon r",
+        "Médiatrice d'une corde : par le centre",
+        "Triangle possible si a < b + c"
+      ],
+      "kicker": "Partie 1 : à retenir",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Médiatrices → centre du cercle circonscrit",
+        "Bissectrices → centre du cercle inscrit",
+        "Hauteurs → orthocentre du triangle",
+        "Médianes → centre de gravité",
+        "Rectangle : O milieu de l'hypoténuse"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 240,
+        "nom": "triangle_fig"
+      },
+      "kicker": "Mathématique · Géométrie",
+      "sous": "Le cercle et ses cordes, le triangle et ses quatre droites, le circonscrit et l'inscrit",
+      "titre": "Cercles et triangles : droites remarquables et cercles associés",
+      "type": "titre"
+    },
+    "triangle_def": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "triangle_fig"
+      },
+      "kicker": "Le triangle",
+      "texte": "Trois points non alignés, trois angles, une somme fixe.",
+      "type": "phrase"
+    },
+    "vocab": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "cercle_rayon_fig"
+      },
+      "kicker": "Vocabulaire du cercle",
+      "texte": "Rayon, corde, diamètre : trois segments à distinguer.",
+      "type": "phrase"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Le cercle et l'inégalité triangulaire"
+    },
+    {
+      "debut": "p14",
+      "pont": {
+        "dit": "Partie deux : les droites remarquables du triangle. Quatre familles de droites, quatre points de concours, et deux cercles à construire, le cercle circonscrit et le cercle inscrit.",
+        "texte": "Partie 2 : droites remarquables et cercles du triangle."
+      },
+      "sous_titre": "Droites remarquables, cercles circonscrit et inscrit"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux cercles et aux triangles. Nous allons décrire le cercle et ses cordes, tester si trois longueurs forment un triangle, puis rencontrer les quatre droites remarquables et les deux cercles associés au triangle, le circonscrit et l'inscrit.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Cercles et triangles : droites remarquables."
+    },
+    {
+      "dit": "À la fin de ce cours, vous saurez décrire un cercle par son centre et son rayon, situer un point par rapport à un cercle, décider si un triangle est constructible, et construire son cercle circonscrit et son cercle inscrit.",
+      "ecran": "objectifs",
+      "id": "p02",
+      "texte": "Objectifs : décrire, situer, construire."
+    },
+    {
+      "dit": "Un cercle de centre o et de rayon r est l'ensemble des points situés exactement à la distance r du centre. Un point èm est sur le cercle si et seulement si la distance de o à èm vaut r. Tous les points du cercle sont donc à la même distance du centre.",
+      "ecran": "def_cercle",
+      "id": "p03",
+      "texte": "Tous les points à distance r du centre O."
+    },
+    {
+      "dit": "Trois mots pour décrire le cercle. Le rayon est le segment qui joint le centre à un point du cercle, et tous les rayons ont la même longueur, r. Une corde est un segment qui joint deux points du cercle. Et le diamètre est la corde particulière qui passe par le centre.",
+      "ecran": "vocab",
+      "id": "p04",
+      "texte": "Rayon, corde, diamètre : le vocabulaire."
+    },
+    {
+      "dit": "Le diamètre traverse tout le cercle en passant par le centre, donc sa longueur vaut deux fois le rayon. Si le rayon vaut cinq centimètres, le diamètre vaut dix centimètres. Connaître l'un, c'est connaître l'autre.",
+      "ecran": "formule_d",
+      "id": "p05",
+      "texte": "d = 2r : le diamètre vaut deux rayons."
+    },
+    {
+      "dit": "Première propriété : la médiatrice d'une corde passe toujours par le centre du cercle. Autrement dit, la perpendiculaire menée du centre vers une corde la coupe en son milieu. C'est ce qui permet de calculer la distance du centre à la corde.",
+      "ecran": "mediatrice_corde",
+      "id": "p06",
+      "texte": "La médiatrice d'une corde passe par O."
+    },
+    {
+      "dit": "Exemple chiffré. Un cercle de centre o et de rayon cinq centimètres, et une corde a bé de huit centimètres. Le pied hache de la perpendiculaire issue de o est le milieu de la corde, donc a hache vaut quatre centimètres. Dans le triangle rectangle o hache a, Pythagore donne o hache au carré égal à vingt-cinq moins seize, donc o hache vaut trois centimètres.",
+      "ecran": "ex_corde",
+      "id": "p07",
+      "texte": "Corde de 8 cm, rayon 5 cm : OH = 3 cm."
+    },
+    {
+      "dit": "Où se trouve un point par rapport au cercle. On compare sa distance au centre, notée d, avec le rayon r. Si d est plus petite que r, le point est à l'intérieur. Si d égale r, le point est sur le cercle. Si d est plus grande que r, le point est à l'extérieur.",
+      "ecran": "position",
+      "id": "p08",
+      "texte": "Comparer d et r : dedans, sur, dehors."
+    },
+    {
+      "dit": "Petit test avec un rayon de cinq centimètres. Un point à trois centimètres du centre est à l'intérieur, car trois est plus petit que cinq. Un point à cinq centimètres est sur le cercle. Un point à sept centimètres est à l'extérieur, car sept dépasse cinq.",
+      "ecran": "ex_position",
+      "id": "p09",
+      "texte": "r = 5 : 3 dedans, 5 sur, 7 dehors."
+    },
+    {
+      "dit": "Passons au triangle. Un triangle est déterminé par trois points non alignés, ses trois sommets. Ses trois angles ne sont pas quelconques : leur somme vaut toujours cent quatre-vingts degrés, l'équivalent d'un angle plat.",
+      "ecran": "triangle_def",
+      "id": "p10",
+      "texte": "Trois sommets, des angles qui totalisent 180°."
+    },
+    {
+      "dit": "Toutes les longueurs ne forment pas un triangle. L'inégalité triangulaire dit que la plus grande des trois longueurs doit être strictement inférieure à la somme des deux autres. Si la plus grande dépasse cette somme, les deux autres côtés sont trop courts pour se rejoindre.",
+      "ecran": "inegalite",
+      "id": "p11",
+      "texte": "Inégalité triangulaire : a < b + c."
+    },
+    {
+      "dit": "Exemple. Peut-on construire un triangle de côtés trois, cinq et neuf centimètres. La plus grande longueur est neuf, et la somme des deux autres vaut trois plus cinq, huit. Huit est plus petit que neuf, donc c'est impossible. Avec quatre, cinq et sept centimètres, la somme des deux plus petits vaut neuf, plus que sept : le triangle existe.",
+      "ecran": "ex_inegalite",
+      "id": "p12",
+      "texte": "3, 5, 9 impossible ; 4, 5, 7 possible."
+    },
+    {
+      "dit": "Retenons cette première partie. Le cercle rassemble les points à distance r du centre, et la position d'un point se lit en comparant sa distance au rayon. La médiatrice d'une corde passe par le centre. Et un triangle n'existe que si la plus grande longueur reste sous la somme des deux autres.",
+      "ecran": "recap1",
+      "id": "p13",
+      "texte": "Cercle, positions, inégalité : à retenir."
+    },
+    {
+      "dit": "Un triangle possède quatre familles de droites remarquables, et dans chaque famille, les trois droites se coupent en un même point : elles sont concourantes. La médiatrice coupe un côté perpendiculairement en son milieu. La bissectrice partage un angle en deux angles égaux. La hauteur part d'un sommet et tombe perpendiculairement sur le côté opposé. La médiane joint un sommet au milieu du côté opposé.",
+      "ecran": "droites",
+      "id": "p14",
+      "texte": "Quatre droites, quatre points de concours."
+    },
+    {
+      "dit": "Zoom sur les médiatrices. Les trois médiatrices d'un triangle se coupent en un point unique, équidistant des trois sommets. Ce point est le centre du cercle qui passe par les trois sommets. Et tout point d'une médiatrice est lui-même équidistant des deux extrémités du segment, comme le montre la figure.",
+      "ecran": "mediatrices_prop",
+      "id": "p15",
+      "texte": "Médiatrices concourantes : un point, trois sommets."
+    },
+    {
+      "dit": "Zoom sur les bissectrices. Les trois bissectrices se coupent aussi en un point unique, mais celui-ci est équidistant des trois côtés du triangle. C'est le centre du cercle intérieur, tangent aux trois côtés. Ne confondez pas : médiatrices, équidistant des sommets ; bissectrices, équidistant des côtés.",
+      "ecran": "bissectrices_prop",
+      "id": "p16",
+      "texte": "Bissectrices : équidistant des côtés."
+    },
+    {
+      "dit": "Exemple. Un triangle a bé cé avec a bé et a cé égaux à six centimètres, et bé cé égal à huit centimètres. Le milieu èm de bé cé est à quatre centimètres de bé et de cé. Comme a bé égale a cé, le point a est équidistant de bé et de cé, donc a appartient à la médiatrice de bé cé : la médiatrice passe par le sommet a.",
+      "ecran": "ex_mediatrice",
+      "id": "p17",
+      "texte": "AB = AC : A est sur la médiatrice de [BC]."
+    },
+    {
+      "dit": "Le cercle circonscrit est le cercle qui passe par les trois sommets du triangle. Son centre, noté o, est l'intersection des médiatrices, et son rayon est la distance du centre à n'importe quel sommet : o a égale o bé égale o cé. Pour le construire, deux médiatrices suffisent, la troisième passe par le même point.",
+      "ecran": "circonscrit",
+      "id": "p18",
+      "texte": "Circonscrit : par les trois sommets, centre O."
+    },
+    {
+      "dit": "Le cercle inscrit est le cercle intérieur, tangent aux trois côtés du triangle : il touche chaque côté en un seul point, sans le traverser. Son centre, noté i, est l'intersection des bissectrices, et son rayon est la distance de i à chaque côté. Pour le construire, deux bissectrices suffisent, puis on abaisse la perpendiculaire de i sur un côté.",
+      "ecran": "inscrit",
+      "id": "p19",
+      "texte": "Inscrit : tangent aux trois côtés, centre I."
+    },
+    {
+      "dit": "Exemple complet avec le triangle trois, quatre, cinq, rectangle en a. Son hypoténuse bé cé vaut cinq centimètres. Le rayon du cercle circonscrit, noté grand r, vaut la moitié de l'hypoténuse, cinq divisé par deux, deux centimètres et demi, et son centre est le milieu de l'hypoténuse. Le rayon du cercle inscrit, noté petit r, vaut trois plus quatre moins cinq, le tout divisé par deux, soit un centimètre.",
+      "ecran": "ex_rect",
+      "id": "p20",
+      "texte": "Triangle 3-4-5 : R = 2,5 cm, r = 1 cm."
+    },
+    {
+      "dit": "Rassemblons les méthodes de construction. Pour un triangle dont on connaît les trois côtés, on trace un côté, puis on reporte les deux autres longueurs au compas depuis chaque extrémité : l'intersection des arcs donne le troisième sommet. Pour le cercle circonscrit, deux médiatrices donnent le centre o. Pour le cercle inscrit, deux bissectrices donnent le centre i, puis la perpendiculaire à un côté donne le rayon.",
+      "ecran": "constructions",
+      "id": "p21",
+      "texte": "Construire : compas, médiatrices, bissectrices."
+    },
+    {
+      "dit": "Pour conclure. Les médiatrices se coupent au centre du cercle circonscrit, équidistant des sommets. Les bissectrices se coupent au centre du cercle inscrit, équidistant des côtés. Les hauteurs se coupent à l'orthocentre et les médianes au centre de gravité. Et dans le triangle rectangle, le centre du cercle circonscrit est le milieu de l'hypoténuse.",
+      "ecran": "recap_final",
+      "id": "p22",
+      "texte": "Droites et cercles du triangle : à retenir."
+    }
+  ],
+  "titre": "Cercles et triangles : droites remarquables et cercles associés"
+}

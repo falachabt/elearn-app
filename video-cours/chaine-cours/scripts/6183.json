@@ -1,0 +1,399 @@
+{
+  "cours": 6183,
+  "titre": "Les intervalles de confiance : encadrer l'inconnu",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Statistique inférentielle",
+      "titre": "Les intervalles de confiance : encadrer l'inconnu",
+      "sous": "Proportion et moyenne : une fourchette honnête plutôt qu'un nombre trompeur",
+      "anim": {
+        "nom": "cloche_ic_fig",
+        "hauteur": 240
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Le problème de l'estimation ponctuelle",
+      "texte": "Soixante-cinq pour cent de vaccinés : un instantané figé, sans la variabilité d'échantillonnage."
+    },
+    "definition": {
+      "type": "phrase",
+      "kicker": "L'idée : encadrer plutôt que viser",
+      "texte": "Un intervalle construit sur l'échantillon, qui contient le vrai paramètre dans la proportion annoncée des cas.",
+      "anim": {
+        "nom": "intervalles_repetes_fig",
+        "hauteur": 190
+      }
+    },
+    "interpretation": {
+      "type": "phrase",
+      "kicker": "Que signifie quatre-vingt-quinze pour cent ?",
+      "texte": "La confiance porte sur la méthode : sur cent intervalles construits, environ quatre-vingt-quinze contiennent le paramètre.",
+      "anim": {
+        "nom": "intervalles_repetes_fig",
+        "hauteur": 190
+      }
+    },
+    "facteurs": {
+      "type": "recap",
+      "kicker": "Les trois facteurs de largeur",
+      "etapes": [
+        "Confiance plus haute : intervalle plus large",
+        "Échantillon plus grand : intervalle plus étroit",
+        "Données plus dispersées : intervalle plus large",
+        "Proportion proche de 0,5 : largeur maximale"
+      ]
+    },
+    "bus": {
+      "type": "etape",
+      "kicker": "Premier exemple · la satisfaction des usagers",
+      "titre": "Deux cents usagers interrogés, cent quarante-deux satisfaits",
+      "tex": [
+        "\\hat{p} = \\tfrac{142}{200} = 0{,}71 \\qquad \\sqrt{\\tfrac{0{,}71 \\times 0{,}29}{200}} \\approx 0{,}032",
+        "IC_{95\\%} = 0{,}71 \\pm 1{,}96 \\times 0{,}032",
+        "IC_{95\\%} = [0{,}647\\ ;\\ 0{,}773]"
+      ]
+    },
+    "estimateur": {
+      "type": "etape",
+      "kicker": "L'estimateur d'une proportion",
+      "titre": "La fréquence observée et sa variabilité",
+      "tex": [
+        "\\hat{p} = \\tfrac{X}{n} \\qquad E(\\hat{p}) = p",
+        "V(\\hat{p}) = \\tfrac{p\\,(1-p)}{n}",
+        "\\hat{p} \\approx \\mathcal{N}\\left(p,\\ \\sqrt{\\tfrac{p\\,(1-p)}{n}}\\right)"
+      ]
+    },
+    "proportion": {
+      "type": "formule",
+      "kicker": "L'intervalle pour une proportion",
+      "tex": "\\hat{p} \\pm z_{1-\\alpha/2}\\, \\sqrt{\\frac{\\hat{p}\\,(1-\\hat{p})}{n}}",
+      "note": "Estimateur ± marge d'erreur · z vaut 1,645 à 90 %, 1,96 à 95 %, 2,576 à 99 %.",
+      "anim": {
+        "nom": "cloche_ic_fig",
+        "hauteur": 190
+      }
+    },
+    "sondage": {
+      "type": "etape",
+      "kicker": "Exemple complet · le sondage électoral",
+      "titre": "Mille électeurs, cinq cent vingt pour le candidat A",
+      "tex": [
+        "\\hat{p} = \\tfrac{520}{1000} = 0{,}52",
+        "\\sqrt{\\tfrac{0{,}52 \\times 0{,}48}{1000}} \\approx 0{,}0158",
+        "ME = 1{,}96 \\times 0{,}0158 \\approx 0{,}031",
+        "IC_{95\\%}(p) = [0{,}489\\ ;\\ 0{,}551]"
+      ]
+    },
+    "conditions": {
+      "type": "phrase",
+      "kicker": "Les conditions de validité",
+      "texte": "Échantillon aléatoire, observations indépendantes, et au moins cinq succès et cinq échecs attendus."
+    },
+    "taille_prop": {
+      "type": "etape",
+      "kicker": "La taille d'échantillon",
+      "titre": "La marge fond comme un sur racine de n",
+      "tex": [
+        "n = 100 : \\ ME \\approx \\pm 9{,}8\\ \\text{\\%}",
+        "n = 1000 : \\ ME \\approx \\pm 3{,}1\\ \\text{\\%}",
+        "n \\approx \\left( \\tfrac{z_{1-\\alpha/2}}{ME} \\right)^2 \\times 0{,}25",
+        "ME = 3\\ \\text{\\%} \\ \\Rightarrow \\ n \\approx 1067"
+      ]
+    },
+    "lecture_ex": {
+      "type": "etape",
+      "kicker": "Exemple guidé · les jeunes lecteurs",
+      "titre": "Cinq cents jeunes, deux cent dix lecteurs réguliers, à quatre-vingt-dix pour cent",
+      "tex": [
+        "\\hat{p} = \\tfrac{210}{500} = 0{,}42 \\qquad z = 1{,}645",
+        "ME = 1{,}645 \\times \\sqrt{\\tfrac{0{,}42 \\times 0{,}58}{500}} \\approx 0{,}036",
+        "IC_{90\\%}(p) = [0{,}384\\ ;\\ 0{,}456]"
+      ]
+    },
+    "tcl": {
+      "type": "phrase",
+      "kicker": "Le théorème central limite",
+      "texte": "Quelle que soit la population, les moyennes d'échantillons dessinent une cloche centrée sur la vraie moyenne.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 200
+      }
+    },
+    "moyenne": {
+      "type": "formule",
+      "kicker": "L'intervalle pour une moyenne, sigma connu",
+      "tex": "\\bar{x} \\pm z_{1-\\alpha/2}\\, \\frac{\\sigma}{\\sqrt{n}}",
+      "note": "Le pivot est la moyenne centrée et réduite par l'erreur standard sigma sur racine de n.",
+      "anim": {
+        "nom": "cloche_ic_fig",
+        "hauteur": 190
+      }
+    },
+    "student": {
+      "type": "formule",
+      "kicker": "Le cas réel : sigma inconnu, loi de Student",
+      "tex": "\\bar{x} \\pm t_{1-\\alpha/2\\,;\\,n-1}\\, \\frac{s}{\\sqrt{n}}",
+      "note": "s estime sigma, avec n moins un au dénominateur · Queues plus épaisses : l'intervalle s'élargit honnêtement."
+    },
+    "valeurs": {
+      "type": "etape",
+      "kicker": "Les valeurs critiques",
+      "titre": "Student dépasse toujours la normale, surtout à petit n",
+      "tex": [
+        "90\\ \\text{\\%} : \\ z = 1{,}645 \\quad t_{9} = 1{,}833",
+        "95\\ \\text{\\%} : \\ z = 1{,}960 \\quad t_{9} = 2{,}262",
+        "99\\ \\text{\\%} : \\ z = 2{,}576 \\quad t_{9} = 3{,}250",
+        "t_{29} : \\ 1{,}699 \\qquad 2{,}045 \\qquad 2{,}756"
+      ]
+    },
+    "web": {
+      "type": "etape",
+      "kicker": "Exemple complet · le temps de chargement",
+      "titre": "Quarante mesures sur une page web",
+      "tex": [
+        "n = 40 \\qquad \\bar{x} = 1240\\ \\text{ms} \\qquad s = 180\\ \\text{ms}",
+        "ES = 180/\\sqrt{40} \\approx 28{,}46\\ \\text{ms} \\qquad t \\approx 2{,}023",
+        "ME = 2{,}023 \\times 28{,}46 \\approx 57{,}6\\ \\text{ms}",
+        "IC_{95\\%}(\\mu) = [1182{,}4\\ ;\\ 1297{,}6]\\ \\text{ms}"
+      ]
+    },
+    "cafe": {
+      "type": "etape",
+      "kicker": "Exemple complet · le contrôle des paquets de café",
+      "titre": "Trente-six paquets pesés, une cible manquée",
+      "tex": [
+        "n = 36 \\qquad \\bar{x} = 248\\ \\text{g} \\qquad s = 4\\ \\text{g}",
+        "t_{0{,}975\\,;\\,35} \\approx 2{,}030 \\qquad ET = \\tfrac{4}{\\sqrt{36}} \\approx 0{,}667\\ \\text{g}",
+        "ME = 2{,}030 \\times 0{,}667 \\approx 1{,}354\\ \\text{g}",
+        "IC_{95\\%}(\\mu) = [246{,}65\\ ;\\ 249{,}35]\\ \\text{g}"
+      ]
+    },
+    "precision": {
+      "type": "phrase",
+      "kicker": "Le triangle de la précision",
+      "texte": "Ressource, exigence, variabilité : diviser la marge par deux coûte quatre fois plus d'observations.",
+      "anim": {
+        "nom": "marge_racine_fig",
+        "hauteur": 190
+      }
+    },
+    "niveau": {
+      "type": "etape",
+      "kicker": "Le prix de la certitude",
+      "titre": "Le même sondage, trois niveaux de confiance",
+      "tex": [
+        "90\\ \\text{\\%} : \\ \\pm 4{,}1\\ \\text{\\%} \\qquad z = 1{,}645",
+        "95\\ \\text{\\%} : \\ \\pm 4{,}9\\ \\text{\\%} \\qquad z = 1{,}960",
+        "99\\ \\text{\\%} : \\ \\pm 6{,}4\\ \\text{\\%} \\qquad z = 2{,}576"
+      ]
+    },
+    "applications": {
+      "type": "phrase",
+      "kicker": "Décider avec un intervalle",
+      "texte": "La cible est dans l'intervalle : compatible. Elle est dehors : le signal d'un déréglage ou d'un effet réel."
+    },
+    "pieges": {
+      "type": "recap",
+      "kicker": "Les pièges d'interprétation",
+      "etapes": [
+        "Non : 95 % de chances pour ce paramètre-ci",
+        "Non : 95 % des valeurs de la population",
+        "Précis ne veut pas dire exact si biaisé",
+        "À 100 % de confiance : l'intervalle inutile"
+      ]
+    },
+    "methode": {
+      "type": "recap",
+      "kicker": "La méthode en cinq temps",
+      "etapes": [
+        "Identifier le paramètre : p ou mu",
+        "Vérifier les conditions d'application",
+        "Choisir le seuil : 90, 95 ou 99 %",
+        "Calculer erreur-type puis marge",
+        "Interpréter la méthode, pas le hasard"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Un intervalle, pas un nombre unique",
+        "p : fréquence ± z fois l'erreur-type",
+        "mu : moyenne ± t fois s sur racine de n",
+        "La confiance juge la méthode",
+        "La marge fond en un sur racine de n"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours consacré aux intervalles de confiance. Un chercheur en santé publique veut connaître la proportion de la population vaccinée : impossible d'interroger chaque citoyen, il prend un échantillon et trouve soixante-cinq pour cent de vaccinés. Peut-il affirmer que la proportion réelle vaut exactement soixante-cinq pour cent ? Non. Toute la question de ce cours est de remplacer ce nombre unique et trompeur par une fourchette honnête, accompagnée de son niveau de confiance.",
+      "texte": "Intervalles de confiance : encadrer l'inconnu.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Une estimation ponctuelle donne une fausse impression de précision : c'est un instantané figé, qui ignore la variabilité d'échantillonnage. Deux instituts interrogent deux échantillons différents et annoncent l'un cinquante-deux pour cent, l'autre quarante-huit pour cent pour le même candidat : les médias crient à la contradiction, alors que la vraie proportion pourrait valoir cinquante pour cent et rendre les deux résultats parfaitement plausibles.",
+      "texte": "Un nombre unique : la précision illusoire.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "L'idée de Neyman, dans les années trente, renverse la perspective : plutôt qu'une valeur unique, on fournit un intervalle calculé sur l'échantillon, construit de telle sorte que, si l'on répétait l'expérience un très grand nombre de fois, la proportion annoncée des intervalles contiendrait la vraie valeur du paramètre. Imaginez un filet lancé cent fois vers un banc de poissons invisible : un bon filet le capturerait environ quatre-vingt-quinze fois.",
+      "texte": "Un intervalle qui contient le paramètre, dans la proportion annoncée des cas.",
+      "ecran": "definition"
+    },
+    {
+      "id": "p04",
+      "dit": "Le point le plus subtil du cours : que signifie quatre-vingt-quinze pour cent de confiance ? Pas que le paramètre a quatre-vingt-quinze pour cent de chances d'être dans votre intervalle calculé. Une fois l'échantillon tiré, le paramètre, fixe mais inconnu, est soit dedans, soit dehors. Le quatre-vingt-quinze pour cent juge la méthode : sur un grand nombre d'échantillons, environ quatre-vingt-quinze pour cent des intervalles construits contiennent la vraie valeur.",
+      "texte": "La confiance juge la méthode, jamais un intervalle isolé.",
+      "ecran": "interpretation"
+    },
+    {
+      "id": "p05",
+      "dit": "La largeur de l'intervalle dépend de trois facteurs. Le niveau de confiance : plus on veut être sûr, plus l'intervalle s'élargit, car il faut attraper le paramètre plus souvent. La variabilité des données : des données très dispersées donnent des estimations moins stables. Et la taille de l'échantillon, le levier que nous contrôlons : plus elle grandit, plus l'intervalle se resserre, mais avec des rendements décroissants que nous chiffrerons.",
+      "texte": "Confiance, variabilité, taille : les trois facteurs de largeur.",
+      "ecran": "facteurs"
+    },
+    {
+      "id": "p06",
+      "dit": "Premier exemple, pour une proportion : on interroge deux cents usagers d'une ligne de bus, et cent quarante-deux se déclarent satisfaits. La proportion observée vaut zéro virgule soixante et onze. L'erreur-type vaut environ zéro virgule zéro trente-deux, la marge environ zéro virgule zéro soixante-trois : l'intervalle à quatre-vingt-quinze pour cent va de zéro virgule six cent quarante-sept à zéro virgule sept cent soixante-treize. Le vrai taux de satisfaction se situe très vraisemblablement entre soixante-quatre et soixante-dix-sept pour cent.",
+      "texte": "Usagers satisfaits : entre soixante-quatre et soixante-dix-sept pour cent.",
+      "ecran": "bus"
+    },
+    {
+      "id": "p07",
+      "dit": "Passons à la construction générale pour une proportion. Le nombre de succès dans l'échantillon suit une loi binomiale, et l'estimateur naturel est la fréquence observée, le nombre de succès divisé par la taille. Cet estimateur est sans biais : en moyenne, il vise juste. Sa variance vaut p fois un moins p, divisé par n : elle diminue quand l'échantillon grandit. Et pour un échantillon assez grand, la fréquence suit approximativement une loi normale : c'est la clé de la construction.",
+      "texte": "La fréquence observée : sans biais, et presque normale.",
+      "ecran": "estimateur"
+    },
+    {
+      "id": "p08",
+      "dit": "L'intervalle pour une proportion s'écrit alors : la fréquence observée, plus ou moins le quantile de la loi normale centrée réduite multiplié par l'erreur-type estimée, la racine carrée de p chapeau fois un moins p chapeau, divisé par n. Retenez les trois quantiles : un virgule six cent quarante-cinq pour quatre-vingt-dix pour cent, un virgule quatre-vingt-seize pour quatre-vingt-quinze pour cent, deux virgule cinq cent soixante-seize pour quatre-vingt-dix-neuf pour cent.",
+      "texte": "Proportion : fréquence plus ou moins z fois l'erreur-type.",
+      "ecran": "proportion"
+    },
+    {
+      "id": "p09",
+      "dit": "Exemple complet, le sondage électoral : mille électeurs interrogés, cinq cent vingt déclarent voter pour le candidat A. La fréquence vaut zéro virgule cinquante-deux. L'erreur-type vaut environ zéro virgule zéro seize, la marge d'erreur environ zéro virgule zéro trente et un. L'intervalle à quatre-vingt-quinze pour cent va donc de zéro virgule quatre cent quatre-vingt-neuf à zéro virgule cinq cent cinquante et un : entre quarante-huit virgule neuf et cinquante-cinq virgule un pour cent des intentions de vote.",
+      "texte": "Sondage : entre quarante-huit virgule neuf et cinquante-cinq virgule un pour cent.",
+      "ecran": "sondage"
+    },
+    {
+      "id": "p10",
+      "dit": "Cette construction n'est valable que sous conditions. L'échantillon doit être aléatoire et les observations indépendantes : interroger cent membres d'un même club soudé ne dirait rien de la population générale. Et l'approximation normale exige un effectif attendu suffisant : au moins cinq succès et au moins cinq échecs dans l'échantillon. Un intervalle précis mais construit sur un échantillon biaisé est pire qu'un intervalle large et honnête : il est étroit autour de la mauvaise valeur.",
+      "texte": "Aléatoire, indépendant, au moins cinq succès et cinq échecs.",
+      "ecran": "conditions"
+    },
+    {
+      "id": "p11",
+      "dit": "La marge d'erreur est inversement proportionnelle à la racine carrée de la taille de l'échantillon. Dans le pire cas, une proportion proche d'un demi, elle vaut environ neuf virgule huit pour cent pour cent personnes, et trois virgule un pour cent pour mille personnes. Pour viser une marge de trois pour cent à quatre-vingt-quinze pour cent, la formule inversée donne environ mille soixante-sept personnes : c'est le format classique des sondages nationaux, quelle que soit la taille du pays.",
+      "texte": "Mille soixante-sept personnes pour une marge de trois pour cent.",
+      "ecran": "taille_prop"
+    },
+    {
+      "id": "p12",
+      "dit": "À vous de vérifier sur un exemple guidé : cinq cents jeunes interrogés, deux cent dix déclarent lire au moins un livre par mois, et l'on vise quatre-vingt-dix pour cent de confiance. La fréquence vaut zéro virgule quarante-deux, le quantile vaut un virgule six cent quarante-cinq, la marge environ zéro virgule zéro trente-six. L'intervalle va de zéro virgule trois cent quatre-vingt-quatre à zéro virgule quatre cent cinquante-six : entre trente-huit et quarante-six pour cent de jeunes lecteurs réguliers, environ.",
+      "texte": "Jeunes lecteurs : entre trente-huit et quarante-six pour cent, à quatre-vingt-dix pour cent.",
+      "ecran": "lecture_ex"
+    },
+    {
+      "id": "p13",
+      "dit": "Changeons de paramètre : estimer une moyenne, une taille, un temps de réponse, un revenu. Le socle théorique est le théorème central limite : quelle que soit la distribution de la population, même très asymétrique, la distribution des moyennes d'échantillons de taille suffisante tend vers une courbe en cloche centrée sur la vraie moyenne, avec un écart-type égal à sigma divisé par la racine carrée de n. En pratique, une taille d'au moins trente suffit le plus souvent.",
+      "texte": "Théorème central limite : les moyennes dessinent une cloche.",
+      "ecran": "tcl"
+    },
+    {
+      "id": "p14",
+      "dit": "Si l'écart-type de la population était connu, l'intervalle pour la moyenne reprendrait la même architecture : la moyenne observée, plus ou moins le quantile normal multiplié par sigma sur racine de n. Le raisonnement part du pivot, la moyenne centrée et réduite, qui suit une loi normale centrée réduite, puis isole la vraie moyenne au centre de l'encadrement. Mais ce cas est rare : en pratique, sigma est inconnu.",
+      "texte": "Sigma connu : la moyenne plus ou moins z fois sigma sur racine de n.",
+      "ecran": "moyenne"
+    },
+    {
+      "id": "p15",
+      "dit": "Quand sigma est inconnu, on l'estime par l'écart-type de l'échantillon, calculé avec n moins un au dénominateur. Ce remplacement change la loi du pivot : ce n'est plus une loi normale, mais une loi de Student à n moins un degrés de liberté, aux queues plus épaisses. Cette épaisseur supplémentaire est honnête : elle paie l'incertitude due à l'estimation de sigma. Quand n devient grand, la loi de Student rejoint la normale.",
+      "texte": "Sigma inconnu : Student remplace la normale, queues plus épaisses.",
+      "ecran": "student"
+    },
+    {
+      "id": "p16",
+      "dit": "Comparez les valeurs critiques. À quatre-vingt-quinze pour cent, le quantile normal vaut un virgule quatre-vingt-seize ; le quantile de Student vaut deux virgule deux cent soixante-deux pour dix observations, et deux virgule zéro quarante-cinq pour trente observations. L'écart est le prix du petit échantillon : moins de données et un sigma seulement estimé imposent un intervalle plus large. À quatre-vingt-dix-neuf pour cent et dix observations, le quantile grimpe même à trois virgule deux cent cinquante.",
+      "texte": "Petit échantillon : le quantile de Student grimpe.",
+      "ecran": "valeurs"
+    },
+    {
+      "id": "p17",
+      "dit": "Exemple complet : une équipe web mesure le temps de chargement de sa page d'accueil sur quarante chargements. Moyenne observée : mille deux cent quarante millisecondes ; écart-type : cent quatre-vingts millisecondes. Avec trente-neuf degrés de liberté, le quantile vaut environ deux virgule zéro vingt-trois, l'erreur standard environ vingt-huit virgule cinq millisecondes, et la marge environ cinquante-sept virgule six. L'intervalle à quatre-vingt-quinze pour cent va de mille cent quatre-vingt-deux à mille deux cent quatre-vingt-dix-huit millisecondes : l'objectif de mille deux cents millisecondes n'est pas atteint de manière convaincante.",
+      "texte": "Temps de chargement : entre mille cent quatre-vingt-deux et mille deux cent quatre-vingt-dix-huit millisecondes.",
+      "ecran": "web"
+    },
+    {
+      "id": "p18",
+      "dit": "Deuxième exemple complet : une usine contrôle des paquets de café censés peser deux cent cinquante grammes. Sur trente-six paquets, la moyenne vaut deux cent quarante-huit grammes et l'écart-type quatre grammes. Le quantile de Student à trente-cinq degrés de liberté vaut environ deux virgule zéro trente, l'erreur-type deux tiers de gramme, la marge environ un virgule trente-cinq gramme. L'intervalle va de deux cent quarante-six virgule soixante-cinq à deux cent quarante-neuf virgule trente-cinq grammes. La cible de deux cent cinquante grammes est dehors : la méthode juge, à quatre-vingt-quinze pour cent, qu'il y a un problème de calibration.",
+      "texte": "Paquets de café : la cible de deux cent cinquante grammes est hors intervalle.",
+      "ecran": "cafe"
+    },
+    {
+      "id": "p19",
+      "dit": "Résumons ce qui règle la précision par un triangle : la ressource, la taille de l'échantillon que l'on peut payer ; l'exigence, le niveau de confiance que l'on s'impose ; et la contrainte, la variabilité de la population, que l'on subit. La loi des rendements décroissants gouverne le premier sommet : pour diviser la marge d'erreur par deux, il faut quadrupler l'échantillon. Doubler la précision coûte quatre fois plus cher, en temps comme en argent.",
+      "texte": "Diviser la marge par deux : quadrupler l'échantillon.",
+      "ecran": "precision"
+    },
+    {
+      "id": "p20",
+      "dit": "Le deuxième sommet se chiffre sur le sondage de quatre cents personnes à proportion partagée. À quatre-vingt-dix pour cent de confiance, la marge vaut environ quatre virgule un pour cent ; à quatre-vingt-quinze pour cent, quatre virgule neuf pour cent ; à quatre-vingt-dix-neuf pour cent, six virgule quatre pour cent. Plus de certitude se paie toujours en largeur : un intervalle à cent pour cent serait l'intervalle entier, certain mais totalement inutile.",
+      "texte": "Plus de certitude, plus de largeur : le prix de la confiance.",
+      "ecran": "niveau"
+    },
+    {
+      "id": "p21",
+      "dit": "À quoi sert concrètement un intervalle ? À décider. Une usine produit des pièces de quinze centimètres : l'intervalle construit sur cinquante pièces contient la valeur cible, le processus est jugé bien calibré. Un traitement contre l'hypertension donne une réduction moyenne dont l'intervalle, de sept virgule huit à neuf virgule deux millimètres de mercure, ne contient pas zéro : l'effet n'est vraisemblablement pas dû au hasard. La règle de lecture est simple : la valeur de référence est dedans, elle reste compatible ; elle est dehors, le signal est réel.",
+      "texte": "La valeur de référence dedans ou dehors : la décision suit.",
+      "ecran": "applications"
+    },
+    {
+      "id": "p22",
+      "dit": "Quatre pièges d'interprétation ferment la marche. Dire qu'il y a quatre-vingt-quinze pour cent de chances que le paramètre soit dans cet intervalle-ci : faux, la probabilité porte sur la méthode. Dire que quatre-vingt-quinze pour cent des valeurs de la population sont dans l'intervalle : faux, l'intervalle encadre un paramètre, pas des individus. Croire qu'un intervalle étroit garantit la vérité : faux, si l'échantillon est biaisé. Et viser cent pour cent de confiance : certain, mais vide.",
+      "texte": "Quatre pièges : la chance, les individus, le biais, le cent pour cent.",
+      "ecran": "pieges"
+    },
+    {
+      "id": "p23",
+      "dit": "La méthode de construction tient en cinq temps : identifier le paramètre, une proportion ou une moyenne ; vérifier les conditions d'application ; choisir le seuil de confiance adapté au contexte ; calculer l'erreur-type puis la marge d'erreur ; et interpréter le résultat en parlant de la méthode, jamais d'une probabilité sur le paramètre. Suivie dans l'ordre, cette démarche transforme un échantillon limité en une conclusion défendable.",
+      "texte": "Cinq temps : paramètre, conditions, seuil, marge, interprétation.",
+      "ecran": "methode"
+    },
+    {
+      "id": "p24",
+      "dit": "Pour finir, retenez l'enchaînement complet. Face à l'inconnu, on ne donne plus un nombre, mais un intervalle : l'estimateur, plus ou moins une marge. Pour une proportion, la marge vaut z fois la racine de p chapeau fois un moins p chapeau sur n ; pour une moyenne à sigma inconnu, t fois s sur racine de n. Le niveau de confiance juge la fiabilité de la méthode sur le long terme, et la précision s'achète en racine carrée de la taille. Plus on exige de certitude, moins on peut être précis : c'est le prix honnête de l'incertitude.",
+      "texte": "Un intervalle honnête vaut mieux qu'un nombre trompeur.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Le concept et la construction pour une proportion"
+    },
+    {
+      "debut": "p09",
+      "sous_titre": "Exemples, taille d'échantillon et intervalle pour une moyenne",
+      "pont": {
+        "texte": "Partie 2 : les exemples chiffrés, la taille, puis la moyenne.",
+        "dit": "Partie deux : mettre la construction en chiffres. Nous appliquerons l'intervalle pour une proportion à un sondage complet, nous chiffrerons la taille d'échantillon nécessaire, puis nous construirons l'intervalle pour une moyenne avec le théorème central limite et la loi de Student."
+      }
+    },
+    {
+      "debut": "p17",
+      "sous_titre": "Exemples pour la moyenne, précision et décisions",
+      "pont": {
+        "texte": "Partie 3 : exemples pour la moyenne, précision et décisions.",
+        "dit": "Partie trois : décider avec un intervalle. Deux exemples complets pour une moyenne ouvriront la partie, puis nous chiffrerons le prix de la précision et de la certitude, avant les applications et les pièges d'interprétation."
+      }
+    }
+  ]
+}

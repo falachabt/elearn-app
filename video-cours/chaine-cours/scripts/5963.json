@@ -1,0 +1,590 @@
+{
+ "cours": 5963,
+ "ecrans": {
+  "acides_faibles": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "dissociation_fig"
+   },
+   "kicker": "Acides faibles : l'équilibre partiel",
+   "tex": [
+    "\\mathrm{CH_3COOH} + \\mathrm{H_2O} \\rightleftharpoons \\mathrm{CH_3COO^-} + \\mathrm{H_3O^+}",
+    "K_a = \\tfrac{[\\mathrm{CH_3COO^-}][\\mathrm{H_3O^+}]}{[\\mathrm{CH_3COOH}]} = 1{,}8 \\times 10^{-5}",
+    "\\text{à l'équilibre, l'acide et ses ions coexistent}"
+   ],
+   "titre": "L'acide acétique ne se dissocie qu'en partie",
+   "type": "etape"
+  },
+  "applications": {
+   "kicker": "Nature et vivant : des équilibres",
+   "tex": [
+    "\\mathrm{CaCO_3(s)} \\rightleftharpoons \\mathrm{Ca^{2+}} + \\mathrm{CO_3^{2-}}",
+    "\\text{un acide consomme } \\mathrm{CO_3^{2-}} \\Rightarrow \\text{le calcaire se dissout}",
+    "\\mathrm{Hb} + \\mathrm{O_2} \\rightleftharpoons \\mathrm{HbO_2} \\text{ : des poumons vers les tissus}"
+   ],
+   "titre": "Le calcaire qui se dissout, le sang qui respire",
+   "type": "etape"
+  },
+  "autoprotolyse": {
+   "kicker": "L'autoprotolyse de l'eau",
+   "note": "Ke = 1,0×10⁻¹⁴ à 25 °C : le produit ionique de l'eau",
+   "tex": "2\\,\\mathrm{H_2O} \\rightleftharpoons \\mathrm{H_3O^+} + \\mathrm{OH^-}",
+   "type": "formule"
+  },
+  "avancement": {
+   "kicker": "Le tableau d'avancement",
+   "tex": [
+    "\\mathrm{N_2} : \\quad 1 \\;\\rightarrow\\; 1 - \\xi",
+    "3\\,\\mathrm{H_2} : \\quad 3 \\;\\rightarrow\\; 3 - 3\\xi",
+    "2\\,\\mathrm{NH_3} : \\quad 0 \\;\\rightarrow\\; 2\\xi"
+   ],
+   "titre": "Suivre chaque espèce, de l'initial à l'équilibre",
+   "type": "etape"
+  },
+  "chatelier": {
+   "kicker": "Le principe de Le Chatelier",
+   "texte": "« Si l'on modifie un facteur influençant un système en équilibre, le système évolue dans le sens qui tend à s'opposer à cette modification. »",
+   "type": "phrase",
+   "anim": {
+    "nom": "equilibre_dynamique_fig",
+    "hauteur": 190
+   }
+  },
+  "comparaison": {
+   "kicker": "Comparer Qr et K",
+   "tex": [
+    "Q_r < K \\Rightarrow \\text{sens direct : former des produits}",
+    "Q_r > K \\Rightarrow \\text{sens inverse : reformer des réactifs}",
+    "Q_r = K \\Rightarrow \\text{équilibre atteint, plus d'évolution}"
+   ],
+   "titre": "Le réflexe qui prédit le sens d'évolution",
+   "type": "etape"
+  },
+  "concentration": {
+   "kicker": "Perturbation : la concentration",
+   "tex": [
+    "\\text{ajout d'un réactif} \\Rightarrow \\text{sens direct}",
+    "\\text{ajout d'un produit} \\Rightarrow \\text{sens inverse}",
+    "\\text{retrait d'un réactif} \\Rightarrow \\text{sens inverse}",
+    "\\text{retrait d'un produit} \\Rightarrow \\text{sens direct}"
+   ],
+   "titre": "Consommer l'excès, remplacer le manque",
+   "type": "etape"
+  },
+  "constante_k": {
+   "kicker": "La constante d'équilibre K",
+   "note": "même forme que Qr, mais avec les concentrations à l'équilibre",
+   "tex": "K_c = \\frac{[C]^c\\,[D]^d}{[A]^a\\,[B]^b}",
+   "type": "formule"
+  },
+  "definition": {
+   "kicker": "La définition précise",
+   "note": "les concentrations restent constantes, la réaction continue",
+   "tex": "v_{\\text{directe}} = v_{\\text{inverse}}",
+   "type": "formule"
+  },
+  "dynamique": {
+   "kicker": "Un équilibre qui bouge encore",
+   "texte": "Deux fontaines, un bassin : le niveau est constant, l'eau circule. L'équilibre chimique est dynamique, pas figé.",
+   "type": "phrase",
+   "anim": {
+    "nom": "equilibre_dynamique_fig",
+    "hauteur": 200
+   }
+  },
+  "exemple_acetique": {
+   "kicker": "Exemple : l'acide acétique",
+   "tex": [
+    "C = 0{,}1\\ \\text{mol/L}, \\quad K_a = 1{,}8 \\times 10^{-5}",
+    "[\\mathrm{H_3O^+}] \\approx \\sqrt{K_a \\cdot C} = \\sqrt{1{,}8 \\times 10^{-5} \\times 0{,}1}",
+    "[\\mathrm{H_3O^+}] \\approx 1{,}34 \\times 10^{-3}\\ \\text{mol/L}"
+   ],
+   "titre": "La concentration en ions hydronium",
+   "type": "etape"
+  },
+  "exemple_comparaison": {
+   "kicker": "Exemple : prédire le sens",
+   "tex": [
+    "Q_r \\approx 14{,}8 \\qquad K = 10 \\text{ (à cette température)}",
+    "Q_r > K \\Rightarrow \\text{l'ammoniac se décompose}",
+    "\\text{jusqu'à ce que } Q_r \\text{ redescende à } K"
+   ],
+   "titre": "Trop d'ammoniac par rapport à l'équilibre",
+   "type": "etape"
+  },
+  "exemple_concentration": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "gaz"
+   },
+   "kicker": "Exemple : l'ammoniac perturbé",
+   "texte": "Ajouter N₂ ou retirer NH₃ déplace l'équilibre vers la droite. Kc, elle, ne bouge pas à température constante.",
+   "type": "phrase"
+  },
+  "exemple_ice": {
+   "kicker": "La méthode ICE en action",
+   "tex": [
+    "\\mathrm{A} + \\mathrm{B} \\rightleftharpoons \\mathrm{C}, \\qquad K_c = 10",
+    "\\text{après ajout de A : } A = 2, \\ B = 2, \\ C = 0",
+    "K_c = \\tfrac{x}{(2-x)^2} = 10 \\Rightarrow x = 1{,}6",
+    "[A] = [B] = 0{,}4 \\qquad [C] = 1{,}6\\ \\text{mol/L}"
+   ],
+   "titre": "Initial, Changement, Équilibre",
+   "type": "etape"
+  },
+  "exemple_kc": {
+   "kicker": "Exemple : calculer Kc",
+   "tex": [
+    "\\mathrm{CO} + \\mathrm{H_2O} \\rightleftharpoons \\mathrm{CO_2} + \\mathrm{H_2}",
+    "K_c = \\tfrac{[\\mathrm{CO_2}][\\mathrm{H_2}]}{[\\mathrm{CO}][\\mathrm{H_2O}]}",
+    "= \\tfrac{0{,}20 \\times 0{,}20}{0{,}10 \\times 0{,}10} = 4"
+   ],
+   "titre": "Monoxyde de carbone et vapeur d'eau",
+   "type": "etape"
+  },
+  "exemple_nh3": {
+   "kicker": "Exemple résolu : l'ammoniac chiffré",
+   "tex": [
+    "K_c = \\tfrac{(2\\xi)^2}{(1-\\xi)(3-3\\xi)^3} = 0{,}50 \\text{ à } 400\\,^\\circ\\mathrm{C}",
+    "\\xi \\approx 0{,}33\\ \\text{mol (résolution approchée)}",
+    "[\\mathrm{N_2}] \\approx 0{,}67 \\qquad [\\mathrm{H_2}] \\approx 1{,}99",
+    "[\\mathrm{NH_3}] \\approx 0{,}66\\ \\text{mol/L}"
+   ],
+   "titre": "Une équation à résoudre pour l'avancement",
+   "type": "etape"
+  },
+  "exemple_pression": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "piston"
+   },
+   "kicker": "Exemple : comprimer l'ammoniac",
+   "texte": "4 moles de gaz → 2 moles de gaz : comprimer déplace l'équilibre vers NH₃. L'industrie travaille sous forte pression.",
+   "type": "phrase"
+  },
+  "exemple_qr": {
+   "kicker": "Exemple : calculer Qr",
+   "tex": [
+    "\\mathrm{N_2} + 3\\,\\mathrm{H_2} \\rightleftharpoons 2\\,\\mathrm{NH_3}",
+    "[\\mathrm{N_2}] = 0{,}1 \\quad [\\mathrm{H_2}] = 0{,}3 \\quad [\\mathrm{NH_3}] = 0{,}2",
+    "Q_r = \\tfrac{[\\mathrm{NH_3}]^2}{[\\mathrm{N_2}][\\mathrm{H_2}]^3} = \\tfrac{0{,}2^2}{0{,}1 \\times 0{,}3^3} \\approx 14{,}8"
+   ],
+   "titre": "La synthèse de l'ammoniac, à un instant donné",
+   "type": "etape"
+  },
+  "exemple_tampon": {
+   "kicker": "Exemple : un tampon calculé",
+   "tex": [
+    "\\mathrm{p}K_a(\\mathrm{HCOOH}) = 3{,}74 \\quad [\\mathrm{HCOOH}] = 0{,}1 \\quad [\\mathrm{HCOO^-}] = 0{,}2",
+    "\\mathrm{pH} = 3{,}74 + \\log\\tfrac{0{,}2}{0{,}1} = 3{,}74 + 0{,}30",
+    "\\mathrm{pH} \\approx 4{,}0 \\text{ : et il bouge à peine si on ajoute un acide}"
+   ],
+   "titre": "Acide formique et formiate de sodium",
+   "type": "etape"
+  },
+  "exemple_temperature": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "agitation"
+   },
+   "kicker": "Exemple : l'iodure d'hydrogène",
+   "texte": "H₂ + I₂ ⇌ 2HI, ΔH = −9,5 kJ/mol : chauffer décompose HI, refroidir le forme.",
+   "type": "phrase"
+  },
+  "haber": {
+   "kicker": "Application : le procédé Haber-Bosch",
+   "tex": [
+    "\\text{pression élevée : } 4 \\text{ mol de gaz} \\rightarrow 2 \\text{ mol, sens direct}",
+    "\\text{température : un compromis entre rendement et vitesse}",
+    "\\text{catalyseur de fer : } K \\text{ inchangée, équilibre atteint plus vite}"
+   ],
+   "titre": "L'équilibre au service de l'industrie",
+   "type": "etape"
+  },
+  "hydrolyse_tampons": {
+   "kicker": "Hydrolyse et solutions tampons",
+   "tex": [
+    "\\mathrm{CH_3COO^-} + \\mathrm{H_2O} \\rightleftharpoons \\mathrm{CH_3COOH} + \\mathrm{OH^-} \\text{ : solution basique}",
+    "\\text{tampon : acide faible + sa base conjuguée}",
+    "\\mathrm{pH} = \\mathrm{p}K_a + \\log\\tfrac{[\\text{base conjuguée}]}{[\\text{acide faible}]}"
+   ],
+   "titre": "Des sels qui rendent basique, des mélanges qui résistent",
+   "type": "etape"
+  },
+  "pieges_concours": {
+   "kicker": "Entraînement concours",
+   "tex": [
+    "\\mathrm{CO} + \\mathrm{H_2O} \\rightleftharpoons \\mathrm{CO_2} + \\mathrm{H_2}, \\qquad \\Delta H < 0",
+    "T \\uparrow \\Rightarrow \\text{sens inverse : réaction exothermique}",
+    "P \\uparrow \\Rightarrow \\text{aucun effet : } 2 \\text{ mol de gaz} = 2 \\text{ mol de gaz}",
+    "\\text{ajout de } \\mathrm{CO_2} \\Rightarrow \\text{sens inverse}"
+   ],
+   "titre": "Trois perturbations, trois réflexes",
+   "type": "etape"
+  },
+  "pression_regles": {
+   "kicker": "Perturbation : la pression",
+   "tex": [
+    "P \\uparrow \\Rightarrow \\text{le côté avec le moins de moles de gaz}",
+    "P \\downarrow \\Rightarrow \\text{le côté avec le plus de moles de gaz}",
+    "\\text{moles de gaz égales des deux côtés} \\Rightarrow \\text{aucun effet}"
+   ],
+   "titre": "Compter les moles de gaz de chaque côté",
+   "type": "etape"
+  },
+  "quotient": {
+   "kicker": "Le quotient de réaction Qr",
+   "note": "à un instant quelconque : Qr photographie l'état du système",
+   "tex": "Q_r = \\frac{[C]^c\\,[D]^d}{[A]^a\\,[B]^b}",
+   "type": "formule"
+  },
+  "recap_final": {
+   "etapes": [
+    "Équilibre dynamique : vitesses égales",
+    "Qr contre K : prédire le sens",
+    "Le Chatelier : contrer la perturbation",
+    "Seule la température modifie K",
+    "Avancement : calculer l'état final"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "recap_partie1": {
+   "etapes": [
+    "Équilibre : deux vitesses égales",
+    "Qr : l'état à un instant quelconque",
+    "K : le même quotient, à l'équilibre",
+    "Qr comparé à K : le sens est prédit"
+   ],
+   "kicker": "Bilan de la première partie",
+   "type": "recap"
+  },
+  "recap_partie2": {
+   "etapes": [
+    "Ajout d'espèce : elle est consommée",
+    "Chauffer : sens endothermique",
+    "Comprimer : moins de moles de gaz",
+    "Température : elle seule change K"
+   ],
+   "kicker": "Bilan : déplacer l'équilibre",
+   "type": "recap"
+  },
+  "regles_k": {
+   "kicker": "Écrire K sans se tromper",
+   "tex": [
+    "\\text{solides purs : absents de l'expression}",
+    "\\text{liquides purs (le solvant) : absents aussi}",
+    "\\text{chaque concentration : puissance du coefficient}"
+   ],
+   "titre": "Deux règles d'écriture",
+   "type": "etape"
+  },
+  "temperature": {
+   "kicker": "Perturbation : la température",
+   "tex": [
+    "\\Delta H < 0 \\text{ : la chaleur est un produit (exothermique)}",
+    "\\Delta H > 0 \\text{ : la chaleur est un réactif (endothermique)}",
+    "\\text{chauffer} \\Rightarrow \\text{sens endothermique, qui absorbe la chaleur}"
+   ],
+   "titre": "La chaleur, réactif ou produit ?",
+   "type": "etape"
+  },
+  "temperature_k": {
+   "kicker": "La température change K",
+   "note": "ΔG = ΔH − TΔS : la température agit directement sur K",
+   "tex": "\\Delta G = -RT\\ln K",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "gaz"
+   },
+   "kicker": "Chimie · Les équilibres chimiques",
+   "sous": "Constante K, quotient Qr et principe de Le Chatelier",
+   "titre": "Les équilibres chimiques",
+   "type": "titre"
+  },
+  "vant_hoff": {
+   "kicker": "L'équation de van 't Hoff",
+   "tex": [
+    "\\ln K = -\\tfrac{\\Delta H}{R} \\cdot \\tfrac{1}{T} + \\tfrac{\\Delta S}{R}",
+    "\\text{pente de la droite} = -\\tfrac{\\Delta H}{R}",
+    "\\text{pente positive} \\Rightarrow \\Delta H < 0 \\text{ : exothermique}",
+    "\\text{pente négative} \\Rightarrow \\Delta H > 0 \\text{ : endothermique}"
+   ],
+   "titre": "La droite de ln K contre l'inverse de T",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  4936,
+  4937,
+  4938,
+  4939,
+  4940,
+  4941,
+  4942,
+  4943,
+  4944,
+  4945,
+  4946
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'équilibre dynamique, la constante K et le quotient Qr"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : le principe de Le Chatelier. L'équilibre est atteint ; que se passe-t-il si on le perturbe ? Ajout d'une espèce, changement de température ou de pression : le système réagit, et nous allons apprendre à prédire dans quel sens.",
+    "texte": "Partie 2 : perturber l'équilibre — le principe de Le Chatelier."
+   },
+   "sous_titre": "Le principe de Le Chatelier : concentration, température, pression"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : les équilibres en solution et les calculs. Après les prédictions qualitatives, place aux équilibres dans l'eau, aux tableaux d'avancement et aux concentrations calculées, jusqu'aux applications industrielles et biologiques.",
+    "texte": "Partie 3 : solutions aqueuses, calculs et applications."
+   },
+   "sous_titre": "Solutions aqueuses, calculs d'équilibre et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux équilibres chimiques. Nous verrons d'abord ce qu'est un équilibre dynamique, puis les deux outils qui le décrivent : le quotient de réaction et la constante d'équilibre. Nous apprendrons ensuite, avec le principe de Le Chatelier, à prédire comment un équilibre se déplace quand on le perturbe, avant de passer aux calculs et aux applications.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Les équilibres chimiques : K, Qr et Le Chatelier."
+  },
+  {
+   "dit": "Imaginez deux fontaines qui se déversent dans un même bassin : le niveau de l'eau devient constant quand le débit d'arrivée égale le débit de sortie, alors que l'eau continue de circuler. Une réaction chimique à l'équilibre fonctionne de la même façon : la réaction directe et la réaction inverse se déroulent en même temps, à la même vitesse. Rien ne semble bouger, mais au niveau microscopique, tout continue.",
+   "ecran": "dynamique",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "L'équilibre : les deux réactions se poursuivent, à la même vitesse."
+  },
+  {
+   "dit": "Précisons le vocabulaire. À l'équilibre, ce ne sont pas les concentrations des réactifs et des produits qui deviennent égales : ce sont les vitesses des deux réactions opposées. Les concentrations restent constantes au cours du temps, sans être forcément égales. Et ce que nous appelions autrefois la fin de la réaction n'est rien d'autre que cet état d'équilibre, atteint par toutes les réactions, totales ou limitées.",
+   "ecran": "definition",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "À l'équilibre : vitesses égales, concentrations constantes."
+  },
+  {
+   "dit": "Pour décrire l'état d'un système à un instant donné, on calcule le quotient de réaction, noté Qr. C'est le rapport des concentrations des produits sur celles des réactifs, chacune élevée à la puissance de son coefficient stœchiométrique. Pour les gaz, on utilise les pressions partielles à la place des concentrations. Qr change au fil de la réaction : c'est une photographie du système à l'instant t.",
+   "ecran": "quotient",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Qr : le rapport produits sur réactifs, à un instant quelconque."
+  },
+  {
+   "dit": "Premier calcul, sur la synthèse de l'ammoniac. À un instant donné, le diazote est à zéro virgule un mole par litre, le dihydrogène à zéro virgule trois, et l'ammoniac à zéro virgule deux. On écrit le quotient : la concentration d'ammoniac au carré, divisée par celle du diazote et celle du dihydrogène au cube. Le calcul donne un quotient voisin de quatorze virgule huit.",
+   "ecran": "exemple_qr",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "Qr = (0,2)² / (0,1 × (0,3)³) ≈ 14,8."
+  },
+  {
+   "dit": "Si l'on attend que le système atteigne l'équilibre et que l'on refait le même calcul, on obtient une valeur particulière : la constante d'équilibre, notée K. Elle a exactement la même forme que le quotient de réaction, mais avec les concentrations à l'équilibre. À température fixée, K ne change pas : c'est la carte d'identité de la réaction. Pour les gaz, on définit de la même façon la constante Kp, à partir des pressions partielles.",
+   "ecran": "constante_k",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "K : le quotient de réaction, mesuré à l'équilibre."
+  },
+  {
+   "dit": "Deux règles pour écrire correctement la constante. D'abord, les solides purs et les liquides purs, comme l'eau quand elle est le solvant, n'apparaissent pas dans l'expression : leur concentration reste pratiquement constante. Ensuite, chaque concentration est élevée à la puissance de son coefficient stœchiométrique, celui de l'équation équilibrée. Oublier un exposant est l'erreur la plus fréquente dans ces calculs.",
+   "ecran": "regles_k",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Solides et liquides purs : absents. Exposants : les coefficients."
+  },
+  {
+   "dit": "Comparer le quotient de réaction à la constante permet de prédire le sens d'évolution du système. Si le quotient est plus petit que la constante, les produits manquent : la réaction avance dans le sens direct pour en former. S'il est plus grand, les produits sont en excès : la réaction repart en sens inverse. S'ils sont égaux, le système est déjà à l'équilibre et n'évolue plus.",
+   "ecran": "comparaison",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Qr < K : sens direct. Qr > K : sens inverse. Qr = K : équilibre."
+  },
+  {
+   "dit": "Reprenons notre exemple de l'ammoniac, avec un quotient de quatorze virgule huit, et supposons que la constante d'équilibre vaille dix à cette température. Le quotient dépasse la constante : le système contient trop d'ammoniac par rapport à l'équilibre. Il va donc évoluer en sens inverse : c'est la décomposition de l'ammoniac qui sera favorisée, jusqu'à ce que le quotient redescende à dix.",
+   "ecran": "exemple_comparaison",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Qr ≈ 14,8 > K = 10 : l'ammoniac se décompose."
+  },
+  {
+   "dit": "Calculons maintenant une constante d'équilibre complète, l'exemple résolu des leçons. Pour la réaction entre le monoxyde de carbone et la vapeur d'eau, les concentrations à l'équilibre sont zéro virgule dix pour les deux réactifs, et zéro virgule vingt pour le dioxyde de carbone et le dihydrogène formés. Le rapport donne une constante égale à quatre. Et si l'on partait sans aucun produit, le quotient initial vaudrait zéro, donc la réaction avancerait dans le sens direct.",
+   "ecran": "exemple_kc",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Kc = (0,20 × 0,20) / (0,10 × 0,10) = 4."
+  },
+  {
+   "dit": "Récapitulons cette première partie. L'équilibre chimique est un état dynamique où les deux réactions opposées se compensent. Le quotient de réaction décrit le système à un instant quelconque, et la constante d'équilibre est ce même quotient mesuré à l'équilibre. Comparer les deux dit dans quel sens le système va évoluer. Retenez ce réflexe : calculer le quotient, le comparer à la constante, conclure.",
+   "ecran": "recap_partie1",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Calculer Qr, comparer à K, conclure : le réflexe de base."
+  },
+  {
+   "dit": "Énonçons le principe de Le Chatelier, formulé en mille huit cent quatre-vingt-quatre : si l'on modifie un facteur qui influence un système chimique en équilibre, le système évolue dans le sens qui tend à s'opposer à cette modification. Autrement dit, l'équilibre se déplace toujours de façon à contrer la perturbation. Trois perturbations nous intéressent : la concentration, la température et la pression.",
+   "ecran": "chatelier",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Le Chatelier : le système s'oppose à la perturbation."
+  },
+  {
+   "dit": "Première perturbation : la concentration. Si l'on ajoute un réactif, l'équilibre se déplace dans le sens direct, pour consommer une partie de l'excès ajouté. Si l'on ajoute un produit, il se déplace en sens inverse. Et retirer une espèce produit l'effet opposé à son ajout : retirer un réactif déplace l'équilibre en sens inverse, retirer un produit le déplace dans le sens direct. Dans tous les cas, le système consomme ce qu'on lui ajoute et remplace ce qu'on lui retire.",
+   "ecran": "concentration",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Ajouter fait consommer, retirer fait remplacer."
+  },
+  {
+   "dit": "Exemple sur la synthèse de l'ammoniac, à température constante. Ajouter du diazote déplace l'équilibre vers la droite : le diazote et le dihydrogène en excès forment davantage d'ammoniac. Retirer l'ammoniac formé déplace aussi l'équilibre vers la droite, pour compenser la perte. Point capital : ces ajouts ne changent pas la valeur de la constante d'équilibre. Seul le quotient est modifié temporairement, jusqu'au nouvel équilibre.",
+   "ecran": "exemple_concentration",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "Ajout ou retrait : K inchangée, seul Qr bouge temporairement."
+  },
+  {
+   "dit": "Deuxième perturbation : la température. Tout dépend du signe de l'enthalpie de réaction. Pour une réaction exothermique, la chaleur se comporte comme un produit : chauffer le système revient à ajouter un produit, et l'équilibre se déplace vers la gauche. Pour une réaction endothermique, la chaleur est un réactif : chauffer déplace l'équilibre vers la droite. Dans les deux cas, le système évolue dans le sens qui absorbe la chaleur fournie, le sens endothermique.",
+   "ecran": "temperature",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Chauffer favorise toujours le sens endothermique."
+  },
+  {
+   "dit": "La température a un statut particulier : c'est le seul facteur qui modifie la valeur de la constante d'équilibre elle-même. Ni la concentration ni la pression ne changent K ; elles ne font que déplacer le système. La température, elle, réécrit la carte d'identité de la réaction. Le lien est donné par l'enthalpie libre de réaction, reliée à la constante par la relation affichée à l'écran, qui fait intervenir la constante des gaz parfaits et la température absolue.",
+   "ecran": "temperature_k",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "ΔG = −RT ln K : la température agit directement sur K."
+  },
+  {
+   "dit": "En combinant ces relations, on obtient l'équation de van 't Hoff : le logarithme de la constante est une fonction affine de l'inverse de la température. La pente de cette droite vaut l'opposé de l'enthalpie de réaction divisé par la constante des gaz. Pente positive : l'enthalpie est négative, la réaction est exothermique et chauffer fait diminuer la constante. Pente négative : la réaction est endothermique et chauffer fait augmenter la constante.",
+   "ecran": "vant_hoff",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Pente de ln K contre 1/T : −ΔH/R. Son signe donne le type de réaction."
+  },
+  {
+   "dit": "Application : la synthèse de l'iodure d'hydrogène, à partir du dihydrogène et du diiode, est exothermique, avec une enthalpie de moins neuf virgule cinq kilojoules par mole. Si l'on chauffe le mélange à l'équilibre, le système absorbe la chaleur en repartant en sens inverse : l'iodure d'hydrogène se décompose partiellement. Si l'on refroidit, au contraire, la formation de l'iodure est favorisée et la constante augmente.",
+   "ecran": "exemple_temperature",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "HI, exothermique : chauffer le décompose, refroidir le forme."
+  },
+  {
+   "dit": "Troisième perturbation : la pression, qui ne concerne que les équilibres avec des gaz. Comprimer le système favorise le sens qui produit le moins de moles de gaz, car c'est celui qui fait baisser la pression. Détendre le système favorise le sens qui en produit le plus. Et si les deux membres comptent le même nombre de moles de gaz, la pression n'a aucun effet sur la position de l'équilibre. Elle ne modifie pas davantage la constante.",
+   "ecran": "pression_regles",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Comprimer : direction le côté le moins riche en moles de gaz."
+  },
+  {
+   "dit": "Sur la synthèse de l'ammoniac, le comptage est vite fait : quatre moles de gaz côté réactifs, une de diazote et trois de dihydrogène, contre deux moles d'ammoniac côté produits. Comprimer déplace donc l'équilibre vers la droite, vers l'ammoniac. C'est pour cela que l'industrie travaille sous de fortes pressions. À l'inverse, pour la dissociation du pentachlorure de phosphore, qui passe d'une mole de gaz à deux, la compression déplace l'équilibre vers la gauche.",
+   "ecran": "exemple_pression",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "NH₃ : 4 mol de gaz → 2 mol. Comprimer forme l'ammoniac."
+  },
+  {
+   "dit": "Bilan de cette partie. Face à une perturbation, demandez-vous toujours ce que le système doit faire pour s'y opposer. Ajouter une espèce la fait consommer ; chauffer favorise le sens endothermique ; comprimer favorise le côté le moins riche en moles de gaz. Et gardez la distinction nette : concentration et pression déplacent l'équilibre sans toucher à la constante ; la température, elle, change la constante.",
+   "ecran": "recap_partie2",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "Déplacer l'équilibre n'est pas changer K — sauf par la température."
+  },
+  {
+   "dit": "Passons aux équilibres dans l'eau. Même pure, l'eau réagit avec elle-même : une molécule cède un proton à une autre, c'est l'autoprotolyse. Il se forme des ions hydronium et des ions hydroxyde, en quantités minuscules. La constante de cet équilibre, le produit ionique de l'eau, vaut un virgule zéro fois dix puissance moins quatorze à vingt-cinq degrés. En solution neutre, les deux ions sont à égalité, à dix puissance moins sept mole par litre.",
+   "ecran": "autoprotolyse",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "2H₂O ⇌ H₃O⁺ + OH⁻ : Ke = 1,0×10⁻¹⁴ à 25 °C."
+  },
+  {
+   "dit": "Un acide faible, comme l'acide acétique, ne se dissocie que partiellement dans l'eau : son équilibre avec l'eau fait coexister l'acide, son ion acétate et l'ion hydronium. La constante de cet équilibre s'appelle la constante d'acidité, notée Ka. Plus elle est grande, plus l'acide est dissocié, donc fort. Pour l'acide acétique, elle vaut un virgule huit fois dix puissance moins cinq : un acide faible, mais pas négligeable.",
+   "ecran": "acides_faibles",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "CH₃COOH + H₂O ⇌ CH₃COO⁻ + H₃O⁺ : Ka = 1,8×10⁻⁵."
+  },
+  {
+   "dit": "Calculons la concentration en ions hydronium d'une solution d'acide acétique à zéro virgule un mole par litre, l'activité proposée dans les leçons. La dissociation étant faible, la concentration de l'acide reste voisine de sa valeur initiale, et celle des ions devient la racine carrée du produit de la constante par la concentration : environ un virgule trente-quatre fois dix puissance moins trois mole par litre.",
+   "ecran": "exemple_acetique",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "[H₃O⁺] ≈ √(Ka·C) ≈ 1,34×10⁻³ mol/L."
+  },
+  {
+   "dit": "Deux conséquences de ces équilibres. D'abord, l'hydrolyse : l'ion acétate d'un sel comme l'acétate de sodium réagit avec l'eau et produit des ions hydroxyde, la solution devient basique. Ensuite, les solutions tampons : un acide faible mélangé à sa base conjuguée résiste aux variations de pH quand on ajoute un peu d'acide ou de base. Leur pH se calcule par l'équation de Henderson-Hasselbalch, affichée à l'écran.",
+   "ecran": "hydrolyse_tampons",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Henderson-Hasselbalch : le pH des solutions tampons."
+  },
+  {
+   "dit": "L'exercice final des leçons met un tampon à l'épreuve : de l'acide formique à zéro virgule un mole par litre et son sel, le formiate de sodium, à zéro virgule deux. Le pKa de l'acide formique vaut trois virgule soixante-quatorze. L'équation de Henderson-Hasselbalch donne le pH : trois virgule soixante-quatorze plus le logarithme de deux, soit environ quatre virgule zéro. Et si l'on ajoute un peu d'acide fort, le formiate le consomme : le pH ne bouge presque pas.",
+   "ecran": "exemple_tampon",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Tampon formique : pH = 3,74 + log 2 ≈ 4,0."
+  },
+  {
+   "dit": "Pour calculer un état d'équilibre, l'outil roi est le tableau d'avancement. On y suit chaque espèce : concentration initiale, variation écrite avec l'avancement, noté ksi, et concentration à l'équilibre. Ici, le tableau de la synthèse de l'ammoniac, tiré des leçons : le diazote part d'une mole par litre, le dihydrogène de trois, l'ammoniac de zéro, et tout s'exprime en fonction de l'avancement.",
+   "ecran": "avancement",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Le tableau d'avancement : initial, variation, équilibre."
+  },
+  {
+   "dit": "Résolvons le problème quantitatif des leçons. À quatre cents degrés, la synthèse de l'ammoniac a une constante de zéro virgule cinquante. On introduit une mole de diazote et trois moles de dihydrogène dans un récipient d'un litre. La constante, écrite avec le tableau d'avancement, donne après résolution approchée un avancement voisin de zéro virgule trente-trois mole. Les concentrations à l'équilibre s'en déduisent, comme affiché à l'écran.",
+   "ecran": "exemple_nh3",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "ξ ≈ 0,33 mol : [N₂] ≈ 0,67 ; [H₂] ≈ 1,99 ; [NH₃] ≈ 0,66 mol/L."
+  },
+  {
+   "dit": "Autre entraînement, la méthode ICE, pour Initial, Changement, Équilibre. Une réaction entre deux espèces A et B formant C, de constante dix. Après l'ajout d'une mole par litre de A, le départ se fait à deux moles par litre de A et de B, sans produit. Le tableau d'avancement et la constante donnent l'avancement : une virgule six mole par litre réagit. À l'équilibre, il reste zéro virgule quatre mole par litre de chaque réactif, et le produit atteint une virgule six.",
+   "ecran": "exemple_ice",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "ICE : x = 1,6 → A = B = 0,4 mol/L et C = 1,6 mol/L."
+  },
+  {
+   "dit": "Application industrielle majeure : le procédé Haber-Bosch, qui produit l'ammoniac des engrais. Pour déplacer l'équilibre vers l'ammoniac, on comprime fortement le mélange, dans le sens des deux moles de gaz. On voudrait aussi refroidir, la réaction étant exothermique, mais le froid la rend désespérément lente : compromis industriel, plus un catalyseur à base de fer, qui ne déplace pas l'équilibre mais permet de l'atteindre rapidement.",
+   "ecran": "haber",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "Haber-Bosch : forte pression, température de compromis, catalyseur."
+  },
+  {
+   "dit": "Les équilibres gouvernent aussi la nature et le vivant. Le calcaire, carbonate de calcium, est très peu soluble ; mais un acide consomme ses ions carbonate, déplace l'équilibre de dissolution vers la droite, et le calcaire se dissout : c'est l'érosion des roches et des monuments. Dans le sang, l'hémoglobine fixe le dioxygène là où sa pression partielle est forte, dans les poumons, et le libère là où elle est faible, dans les tissus : un simple déplacement d'équilibre.",
+   "ecran": "applications",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "Calcaire dissous par les acides ; O₂ livré par l'hémoglobine."
+  },
+  {
+   "dit": "Dernier entraînement, le piège classique des concours, tiré des exercices des leçons. La réaction entre le monoxyde de carbone et l'eau est exothermique, et elle compte autant de moles de gaz des deux côtés. Chauffer la déplace donc en sens inverse. Comprimer, en revanche, ne change rien : deux moles de gaz contre deux moles de gaz. Et ajouter du dioxyde de carbone la déplace aussi en sens inverse, pour consommer l'excès. Trois perturbations, trois réflexes différents.",
+   "ecran": "pieges_concours",
+   "id": "p32",
+   "pause_apres": 0.8,
+   "texte": "CO + H₂O : chauffer → inverse ; comprimer → rien ; + CO₂ → inverse."
+  },
+  {
+   "dit": "Vous tenez maintenant la boîte à outils complète des équilibres. Un état dynamique décrit par le quotient et la constante. Une comparaison qui prédit le sens d'évolution. Le principe de Le Chatelier pour les déplacements, avec la température en seule vraie modifieuse de la constante. Et la méthode des tableaux d'avancement pour calculer les états finaux. Il ne reste qu'à vous entraîner : ce sont les exercices qui transforment ces réflexes en automatismes.",
+   "ecran": "recap_final",
+   "id": "p33",
+   "pause_apres": 0.8,
+   "texte": "Qr, K, Le Chatelier, avancement : la boîte à outils est complète."
+  }
+ ],
+ "titre": "Les équilibres chimiques : constante K, quotient Qr et principe de Le Chatelier"
+}

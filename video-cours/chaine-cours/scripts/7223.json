@@ -1,0 +1,462 @@
+{
+ "cours": 7223,
+ "ecrans": {
+  "absolue": {
+   "kicker": "Fonction valeur absolue",
+   "tex": [
+    "|x| = x \\text{ si } x \\ge 0 \\qquad |x| = -x \\text{ si } x < 0",
+    "\\text{décroissante sur } ]-\\infty;0]",
+    "\\text{croissante sur } [0;+\\infty[",
+    "\\min = 0 \\text{ en } x = 0 \\qquad f(-x) = f(x)"
+   ],
+   "titre": "Deux demi-droites en vé, fonction paire",
+   "type": "etape"
+  },
+  "affine": {
+   "kicker": "Fonction affine",
+   "tex": [
+    "f(x) = ax + b \\quad a, b \\in \\mathbb{R}",
+    "a > 0 \\Rightarrow f \\text{ strictement croissante}",
+    "a < 0 \\Rightarrow f \\text{ décroissante}",
+    "a = 0 \\Rightarrow f \\text{ constante}"
+   ],
+   "titre": "Le signe du coefficient décide du sens",
+   "type": "etape"
+  },
+  "carre": {
+   "kicker": "Fonction carré",
+   "tex": [
+    "f(x) = x^2 \\quad \\text{sur } \\mathbb{R}",
+    "\\text{décroissante sur } ]-\\infty;0]",
+    "\\text{croissante sur } [0;+\\infty[",
+    "\\min = 0 \\text{ en } x = 0 \\qquad f(-x) = f(x)"
+   ],
+   "titre": "Parabole de sommet l'origine, fonction paire",
+   "type": "etape"
+  },
+  "cube": {
+   "kicker": "Fonction cube",
+   "tex": [
+    "f(x) = x^3 \\quad \\text{sur } \\mathbb{R}",
+    "f \\text{ strictement croissante sur } \\mathbb{R}",
+    "f \\text{ impaire}",
+    "x^3 > 8 \\iff x > 2"
+   ],
+   "titre": "Strictement croissante partout, impaire",
+   "type": "etape"
+  },
+  "definition": {
+   "kicker": "Notion de fonction",
+   "note": "x est l'antécédent, f(x) est son image.",
+   "tex": "f : D \\to \\mathbb{R}, \\qquad x \\mapsto f(x)",
+   "type": "formule"
+  },
+  "domaine": {
+   "kicker": "Domaine de définition",
+   "tex": [
+    "\\text{quotient : } g(x) \\ne 0",
+    "\\text{racine carrée : } g(x) \\ge 0",
+    "\\text{polynôme : } D_f = \\mathbb{R}"
+   ],
+   "titre": "Les trois règles usuelles",
+   "type": "etape"
+  },
+  "ex_absolue": {
+   "kicker": "Exemple · valeur absolue",
+   "tex": "|x - 2| = 3 \\iff x = 5 \\text{ ou } x = -1",
+   "type": "formule"
+  },
+  "ex_affine": {
+   "kicker": "Exemple · affine",
+   "tex": [
+    "f(x) = -2x + 3 \\qquad a = -2 < 0",
+    "\\text{coupe } (Oy) \\text{ en } (0, 3)",
+    "\\text{coupe } (Ox) \\text{ en } (\\tfrac{3}{2}, 0)"
+   ],
+   "titre": "Moins deux ixe plus trois, décroissante",
+   "type": "etape"
+  },
+  "ex_complet": {
+   "kicker": "Exemple complet",
+   "tex": [
+    "f(x) = x^2 - 2x + 3 = (x-1)^2 + 2",
+    "\\text{décroît sur } ]-\\infty;1] \\text{, croît sur } [1;+\\infty[",
+    "\\min = 2 \\text{ en } x = 1 \\qquad S(1, 2)"
+   ],
+   "titre": "Ixe au carré moins deux ixe plus trois",
+   "type": "etape"
+  },
+  "ex_croissance": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "f(x) = 3x - 1",
+    "f(b) - f(a) = (3b-1) - (3a-1)",
+    "= 3(b-a)",
+    "a \\le b \\Rightarrow 3(b-a) \\ge 0 \\Rightarrow f(a) \\le f(b)"
+   ],
+   "titre": "Trois ixe moins un est croissante",
+   "type": "etape"
+  },
+  "ex_domaine": {
+   "kicker": "Exemple · domaine",
+   "tex": [
+    "f(x) = \\tfrac{\\sqrt{x-2}}{x-5}",
+    "x - 2 \\ge 0 \\qquad x - 5 \\ne 0",
+    "D_f = [2;5[ \\cup ]5;+\\infty["
+   ],
+   "titre": "Racine au numérateur, dénominateur non nul",
+   "type": "etape"
+  },
+  "ex_inverse": {
+   "kicker": "Exemple · inverse",
+   "note": "L'ordre s'inverse, car la fonction décroît sur cet intervalle.",
+   "tex": "-2 < x < -1 \\Rightarrow -1 < \\frac{1}{x} < -\\frac{1}{2}",
+   "type": "formule"
+  },
+  "ex_racine": {
+   "kicker": "Exemple · racine carrée",
+   "note": "Donc S = [9;+∞[ : par croissance, on élève au carré.",
+   "tex": "\\sqrt{x} \\ge 3 \\iff x \\ge 9",
+   "type": "formule"
+  },
+  "exemple_image": {
+   "kicker": "Premier exemple",
+   "tex": [
+    "f(x) = 2x + 3",
+    "f(5) = 2 \\times 5 + 3",
+    "f(5) = 13"
+   ],
+   "titre": "L'image de cinq par deux ixe plus trois",
+   "type": "etape"
+  },
+  "image_ensemble": {
+   "kicker": "Exemple · image d'un intervalle",
+   "tex": [
+    "f(x) = x^2 \\quad \\text{sur } [-2;3]",
+    "\\min = 0 \\text{ en } x = 0 \\qquad \\max = 9 \\text{ en } x = 3",
+    "f([-2;3]) = [0;9]"
+   ],
+   "titre": "Le carré sur moins deux à trois",
+   "type": "etape"
+  },
+  "image_notion": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Image d'un nombre et d'un ensemble",
+   "texte": "Image d'un nombre, image d'un ensemble.",
+   "type": "phrase"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Une fonction : une règle, un départ, un seul résultat.",
+   "type": "phrase"
+  },
+  "inverse": {
+   "kicker": "Fonction inverse",
+   "tex": [
+    "f(x) = \\tfrac{1}{x} \\quad \\text{sur } \\mathbb{R}^*",
+    "\\text{strictement décroissante}",
+    "\\text{sur } ]-\\infty;0[ \\text{ et sur } ]0;+\\infty[",
+    "f(-x) = -f(x) \\quad \\text{fonction impaire}"
+   ],
+   "titre": "Décroissante par morceaux, jamais sur R étoile entier",
+   "type": "etape"
+  },
+  "lecture": {
+   "kicker": "Représentations graphiques : lecture",
+   "texte": "Lire une courbe : monter, descendre, sommets.",
+   "type": "phrase"
+  },
+  "methode": {
+   "kicker": "Méthode d'étude d'une fonction élémentaire",
+   "tex": [
+    "\\text{1. domaine de définition}",
+    "\\text{2. parité éventuelle : paire ou impaire}",
+    "\\text{3. variations, tableau}",
+    "\\text{4. valeurs, puis courbe}"
+   ],
+   "titre": "Cinq gestes, dans l'ordre",
+   "type": "etape"
+  },
+  "methode_comparaison": {
+   "kicker": "Méthode d'étude des variations",
+   "note": "Comparer deux images suffit à prouver la croissance.",
+   "tex": "a \\le b \\text{ et } f(b) - f(a) \\ge 0 \\Rightarrow f \\text{ croissante}",
+   "type": "formule"
+  },
+  "piege_carre": {
+   "kicker": "Piège classique",
+   "note": "L'ordre ne se conserve pas : tout dépend de la position par rapport à zéro.",
+   "tex": "(-3)^2 = 9 > 4 = 2^2",
+   "type": "formule"
+  },
+  "racine": {
+   "kicker": "Fonction racine carrée",
+   "tex": [
+    "f(x) = \\sqrt{x} \\quad \\text{sur } [0;+\\infty[",
+    "\\text{strictement croissante sur } [0;+\\infty[",
+    "\\text{passe par } (0, 0), \\, (1, 1), \\, (4, 2)"
+   ],
+   "titre": "Croissante, demi-parabole d'axe horizontal",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Fonction : un antécédent, au plus une image",
+    "Domaine : les nombres où f(x) existe",
+    "Image d'un intervalle : entre min et max",
+    "Variations : flèches et extremums du tableau",
+    "Croissante si f(b) − f(a) ≥ 0 pour a ≤ b"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Définir : antécédent et image",
+    "Domaine : quotient, racine, polynôme",
+    "Variations : flèches, min et max",
+    "Six références à connaître par cœur",
+    "Méthode : domaine, parité, tableau, tracé"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "ref_intro": {
+   "kicker": "Fonctions de référence",
+   "texte": "Six références pour construire les élémentaires.",
+   "type": "phrase"
+  },
+  "tableau_carre": {
+   "kicker": "Tableau de variations",
+   "tex": [
+    "x \\qquad -\\infty \\qquad 0 \\qquad +\\infty",
+    "f(x) \\qquad +\\infty \\searrow 0 \\nearrow +\\infty"
+   ],
+   "titre": "Le carré : descente puis montée",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Mathématique · Les fonctions",
+   "sous": "Domaine, images, variations, puis les six fonctions de référence et la méthode complète",
+   "titre": "Les fonctions : définition, variations et fonctions de référence",
+   "type": "titre"
+  },
+  "variations": {
+   "kicker": "Variations d'une fonction",
+   "tex": [
+    "a \\le b \\Rightarrow f(a) \\le f(b) \\quad \\text{croissante}",
+    "a \\le b \\Rightarrow f(a) \\ge f(b) \\quad \\text{décroissante}",
+    "f(a) = f(b) \\quad \\text{constante}"
+   ],
+   "titre": "Trois sens possibles sur un intervalle",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Notion de fonction, domaine et variations"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : les quatre premières fonctions de référence. Nous passerons en revue la fonction affine, le carré, l'inverse et la racine carrée, avec leurs variations, leurs courbes et leurs pièges classiques.",
+    "texte": "Partie 2 : affine, carré, inverse et racine carrée."
+   },
+   "sous_titre": "Affine, carré, inverse et racine carrée"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : valeur absolue, cube et méthode complète. Nous terminerons les six fonctions de référence, puis nous appliquerons la méthode en cinq gestes à un exemple complet, avant le récapitulatif final.",
+    "texte": "Partie 3 : valeur absolue, cube, méthode et exemple complet."
+   },
+   "sous_titre": "Valeur absolue, cube, méthode et exemple complet"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux fonctions. Nous allons définir ce qu'est une fonction, déterminer son domaine de définition, étudier ses variations, puis passer en revue les six fonctions de référence et la méthode pour étudier une fonction élémentaire et tracer sa courbe.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Fonctions : de la définition aux courbes de référence."
+  },
+  {
+   "dit": "Commençons par l'idée la plus simple. Une fonction est une machine qui, à chaque nombre qu'on lui donne, associe au plus un seul résultat. On choisit un nombre de départ, on applique la règle de la fonction, et on obtient son image.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Une fonction : une règle, un départ, un seul résultat."
+  },
+  {
+   "dit": "En langage mathématique, une fonction effe associe à chaque réel ixe d'un ensemble de départ, noté dé, au plus un réel noté effe de ixe. Ixe est l'antécédent, le nombre de départ, et effe de ixe est son image, le résultat.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "f : D → ℝ, x ↦ f(x) : antécédent et image."
+  },
+  {
+   "dit": "Prenons un premier exemple très simple, effe de ixe égale deux ixe plus trois. L'image de cinq se calcule en remplaçant ixe par cinq : deux fois cinq plus trois, soit treize. L'image de cinq par effe vaut donc treize.",
+   "ecran": "exemple_image",
+   "id": "p04",
+   "texte": "f(5) = 2 × 5 + 3 = 13."
+  },
+  {
+   "dit": "Avant tout calcul, il faut savoir pour quels nombres la fonction existe : c'est le domaine de définition. Trois règles suffisent le plus souvent. Un quotient interdit un dénominateur nul, une racine carrée exige un nombre positif ou nul, et un polynôme, lui, est défini partout.",
+   "ecran": "domaine",
+   "id": "p05",
+   "texte": "Domaine : où la fonction existe."
+  },
+  {
+   "dit": "Appliquons ces règles à effe de ixe égale racine de ixe moins deux, divisée par ixe moins cinq. Il faut à la fois ixe moins deux positif ou nul, et ixe moins cinq différent de zéro, donc ixe supérieur ou égal à deux, et différent de cinq. Le domaine est l'intervalle de deux à cinq, cinq exclu, union l'intervalle de cinq exclu à l'infini.",
+   "ecran": "ex_domaine",
+   "id": "p06",
+   "texte": "√(x − 2)/(x − 5) : deux conditions à la fois."
+  },
+  {
+   "dit": "L'image d'un nombre se calcule directement, en remplaçant ixe par sa valeur. L'image d'un ensemble, elle, rassemble toutes les images des nombres de cet ensemble : pour un intervalle, il faut repérer le plus petit et le plus grand résultat atteint.",
+   "ecran": "image_notion",
+   "id": "p07",
+   "texte": "Image d'un nombre, image d'un ensemble."
+  },
+  {
+   "dit": "Prenons effe de ixe égale ixe au carré, sur l'intervalle de moins deux à trois. Le carré vaut zéro en zéro, c'est le minimum, et neuf en trois, c'est le maximum. L'image de l'intervalle entier est donc l'intervalle de zéro à neuf.",
+   "ecran": "image_ensemble",
+   "id": "p08",
+   "texte": "x² sur [−2 ; 3] : image [0 ; 9]."
+  },
+  {
+   "dit": "Venons-en aux variations. Sur un intervalle, une fonction est croissante si, quand ixe augmente, son image ne diminue jamais. Elle est décroissante si son image ne fait que diminuer ou stagner, et constante si son image ne change jamais.",
+   "ecran": "variations",
+   "id": "p09",
+   "texte": "Croissante, décroissante, constante : trois sens."
+  },
+  {
+   "dit": "Le tableau de variations résume tout cela avec des flèches. Pour ixe au carré, la flèche descend de l'infini jusqu'à zéro, puis monte de zéro jusqu'à l'infini : le minimum zéro est atteint en zéro, et c'est le sommet de la parabole.",
+   "ecran": "tableau_carre",
+   "id": "p10",
+   "texte": "x² : ↘ puis ↗, minimum 0 en 0."
+  },
+  {
+   "dit": "Pour prouver qu'une fonction est croissante, on prend deux nombres du même intervalle, le premier inférieur ou égal au second, et on montre que l'image du second moins l'image du premier est positive ou nulle.",
+   "ecran": "methode_comparaison",
+   "id": "p11",
+   "texte": "Comparer deux images pour prouver la croissance."
+  },
+  {
+   "dit": "Appliquons la méthode à effe de ixe égale trois ixe moins un. Pour un premier nombre inférieur ou égal à un second, la différence des images vaut trois fois la différence des deux nombres, donc un nombre positif ou nul. La fonction est bien croissante sur tous les réels.",
+   "ecran": "ex_croissance",
+   "id": "p12",
+   "texte": "3x − 1 : différence 3(b − a) ≥ 0."
+  },
+  {
+   "dit": "Retenons l'essentiel de cette première partie : une fonction associe à chaque antécédent au plus une image, son domaine rassemble les nombres où elle existe, l'image d'un intervalle se lit entre son minimum et son maximum, et les variations se prouvent en comparant deux images.",
+   "ecran": "recap1",
+   "id": "p13",
+   "texte": "Partie 1 : fonction, domaine, image, variations."
+  },
+  {
+   "dit": "Une fonction élémentaire se construit à partir des fonctions de référence en les additionnant, en les multipliant, en les divisant ou en les composant. Le programme de seconde C en retient six, et les étudier, c'est connaître leurs variations et leurs courbes par cœur.",
+   "ecran": "ref_intro",
+   "id": "p14",
+   "texte": "Six références pour construire les élémentaires."
+  },
+  {
+   "dit": "Première référence, la fonction affine : effe de ixe égale un coefficient fois ixe, plus une constante. Si le coefficient est strictement positif, la fonction est strictement croissante ; s'il est strictement négatif, strictement décroissante ; s'il est nul, la fonction est constante. Sa courbe est une droite.",
+   "ecran": "affine",
+   "id": "p15",
+   "texte": "Affine : le signe du coefficient décide du sens."
+  },
+  {
+   "dit": "Exemple : effe de ixe égale moins deux ixe plus trois. Le coefficient est négatif, la fonction est donc décroissante sur tous les réels. La droite coupe l'axe des ordonnées au point de coordonnées zéro et trois, et l'axe des abscisses au point d'abscisse trois demis et d'ordonnée zéro.",
+   "ecran": "ex_affine",
+   "id": "p16",
+   "texte": "−2x + 3 : décroissante, coupes (0 ; 3) et (3/2 ; 0)."
+  },
+  {
+   "dit": "Deuxième référence, la fonction carré : effe de ixe égale ixe au carré, définie partout, à valeurs positives ou nulles. Elle décroît jusqu'à zéro, puis croît à partir de zéro, avec un minimum zéro atteint en zéro. Sa courbe est une parabole de sommet l'origine, symétrique par rapport à l'axe des ordonnées : la fonction est paire.",
+   "ecran": "carre",
+   "id": "p17",
+   "texte": "Carré : parabole, sommet O, fonction paire."
+  },
+  {
+   "dit": "Attention au piège classique : comparer moins trois au carré et deux au carré. Moins trois est plus petit que deux, mais son carré, neuf, est plus grand que quatre. Quand la fonction n'est pas monotone sur l'intervalle, on ne peut pas comparer sans regarder la position par rapport à zéro.",
+   "ecran": "piege_carre",
+   "id": "p18",
+   "texte": "(−3)² = 9 > 4 = 2² : le piège."
+  },
+  {
+   "dit": "Troisième référence, la fonction inverse : effe de ixe égale un sur ixe, définie pour tous les réels sauf zéro. Elle est strictement décroissante sur chacun des deux intervalles séparés par zéro, mais attention, elle n'est pas décroissante sur son domaine tout entier, à cause de la coupure en zéro. Sa courbe est une hyperbole, symétrique par rapport à l'origine : la fonction est impaire.",
+   "ecran": "inverse",
+   "id": "p19",
+   "texte": "Inverse : décroissante par morceaux, hyperbole."
+  },
+  {
+   "dit": "Exemple : si ixe est compris entre moins deux et moins un, alors un sur ixe est compris entre moins un et moins un demi. L'intervalle se renverse, parce que la fonction décroît sur cet intervalle : l'ordre des images est l'inverse de l'ordre des antécédents.",
+   "ecran": "ex_inverse",
+   "id": "p20",
+   "texte": "−2 < x < −1 : l'encadrement se renverse."
+  },
+  {
+   "dit": "Quatrième référence, la racine carrée : effe de ixe égale racine de ixe, définie pour ixe positif ou nul. Elle est strictement croissante sur tout son domaine. Sa courbe est une demi-parabole d'axe horizontal, qui passe par l'origine, par le point de coordonnées un et un, et par le point de coordonnées quatre et deux.",
+   "ecran": "racine",
+   "id": "p21",
+   "texte": "Racine : croissante, demi-parabole."
+  },
+  {
+   "dit": "Exemple : résoudre racine de ixe supérieure ou égale à trois. Par croissance, il faut ixe supérieur ou égal à neuf : en élevant au carré, trois au carré donne neuf. L'ensemble des solutions est donc l'intervalle de neuf à l'infini.",
+   "ecran": "ex_racine",
+   "id": "p22",
+   "texte": "√x ≥ 3 : x ≥ 9, S = [9 ; +∞[."
+  },
+  {
+   "dit": "Cinquième référence, la valeur absolue : elle vaut ixe lui-même si ixe est positif ou nul, et moins ixe si ixe est négatif. Elle décroît jusqu'à zéro, puis croît à partir de zéro, avec un minimum zéro en zéro. Sa courbe forme un vé, avec deux demi-droites : la fonction est paire.",
+   "ecran": "absolue",
+   "id": "p23",
+   "texte": "Valeur absolue : un V, minimum 0."
+  },
+  {
+   "dit": "Exemple : résoudre valeur absolue de ixe moins deux égale trois. Cela signifie que ixe moins deux vaut trois, ou que ixe moins deux vaut moins trois. On obtient donc ixe égale cinq, ou ixe égale moins un : deux solutions.",
+   "ecran": "ex_absolue",
+   "id": "p24",
+   "texte": "|x − 2| = 3 : x = 5 ou x = −1."
+  },
+  {
+   "dit": "Sixième et dernière référence, la fonction cube : effe de ixe égale ixe au cube, définie partout. Elle est strictement croissante sur tous les réels, et c'est une fonction impaire. Conséquence utile : ixe au cube supérieur à huit équivaut à ixe supérieur à deux, car deux au cube vaut huit.",
+   "ecran": "cube",
+   "id": "p25",
+   "texte": "Cube : croissante partout, impaire."
+  },
+  {
+   "dit": "Pour étudier une fonction élémentaire et tracer sa courbe, suivez cinq gestes dans l'ordre : déterminer le domaine de définition, examiner la parité éventuelle, dresser le tableau de variations, calculer quelques valeurs clés, puis tracer la courbe dans un repère orthonormé.",
+   "ecran": "methode",
+   "id": "p26",
+   "texte": "Méthode : cinq gestes, dans l'ordre."
+  },
+  {
+   "dit": "Exemple complet : effe de ixe égale ixe au carré moins deux ixe plus trois, définie partout. En écrivant ixe au carré moins deux ixe plus trois sous la forme ixe moins un au carré, plus deux, on voit qu'elle décroît jusqu'à un, puis croît à partir de un. Son minimum vaut deux, atteint en un, et sa courbe est une parabole de sommet de coordonnées un et deux.",
+   "ecran": "ex_complet",
+   "id": "p27",
+   "texte": "(x − 1)² + 2 : sommet (1 ; 2), minimum 2."
+  },
+  {
+   "dit": "Savoir lire une courbe, c'est tout aussi important. Quand ixe augmente, une courbe qui monte traduit une fonction croissante, une courbe qui descend une fonction décroissante. Les sommets et les creux marquent les extremums, et une symétrie de la courbe traduit la parité de la fonction.",
+   "ecran": "lecture",
+   "id": "p28",
+   "texte": "Lire une courbe : monter, descendre, sommets."
+  },
+  {
+   "dit": "Pour conclure, retenez l'enchaînement : définir la fonction, trouver son domaine, étudier ses variations, reconnaître les six références, puis appliquer la méthode, domaine, parité, variations, valeurs, tracé. Avec ces gestes, chaque courbe se lit et se construit sans hésiter.",
+   "ecran": "recap_final",
+   "id": "p29",
+   "texte": "Fonctions : définir, délimiter, varier, reconnaître, tracer."
+  }
+ ],
+ "titre": "Les fonctions : définition, variations et fonctions de référence"
+}

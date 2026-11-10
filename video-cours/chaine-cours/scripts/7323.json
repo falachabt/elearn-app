@@ -1,0 +1,480 @@
+{
+  "cours": 7323,
+  "titre": "Statistique à deux variables : corrélation, régression et ajustements",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Statistique",
+      "titre": "Statistique à deux variables",
+      "sous": "Nuage de points et point moyen, corrélation linéaire, droite de régression, puis ajustements exponentiel et puissance",
+      "anim": {
+        "nom": "nuage_points_fig",
+        "hauteur": 230
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Deux mesures sur les mêmes individus : un lien à décrire, puis à prévoir.",
+      "anim": {
+        "nom": "nuage_points_fig",
+        "hauteur": 150
+      }
+    },
+    "donnees": {
+      "type": "etape",
+      "kicker": "La série double · l'exemple du cours",
+      "titre": "Cinq élèves : taille en cm, poids en kg",
+      "tex": [
+        "x_i : 150,\\ 160,\\ 165,\\ 175,\\ 180",
+        "y_i : 50,\\ 55,\\ 60,\\ 68,\\ 75"
+      ]
+    },
+    "nuage": {
+      "type": "phrase",
+      "kicker": "Le nuage de points",
+      "texte": "Chaque couple devient un point Mi du plan : la forme du nuage parle.",
+      "anim": {
+        "nom": "nuage_points_fig",
+        "hauteur": 170
+      }
+    },
+    "point_moyen": {
+      "type": "formule",
+      "kicker": "Le point moyen",
+      "tex": "\\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i,\\qquad \\bar{y} = \\frac{1}{n}\\sum_{i=1}^{n} y_i",
+      "note": "G(x̄, ȳ) : le centre de gravité du nuage"
+    },
+    "ex_moyennes": {
+      "type": "etape",
+      "kicker": "Exemple · les deux moyennes",
+      "titre": "Point moyen de la série taille et poids",
+      "tex": [
+        "\\bar{x} = \\tfrac{150 + 160 + 165 + 175 + 180}{5} = 166",
+        "\\bar{y} = \\tfrac{50 + 55 + 60 + 68 + 75}{5} = 61{,}6",
+        "G(166\\,;\\,61{,}6)"
+      ]
+    },
+    "cov_var": {
+      "type": "etape",
+      "kicker": "Covariance et variances",
+      "titre": "Mesurer les écarts, ensemble et séparément",
+      "tex": [
+        "\\mathrm{Cov}(x, y) = \\tfrac{1}{n}\\sum (x_i - \\bar{x})(y_i - \\bar{y})",
+        "V(x) = \\tfrac{1}{n}\\sum (x_i - \\bar{x})^2",
+        "\\sigma_x = \\sqrt{V(x)},\\quad \\sigma_y = \\sqrt{V(y)}"
+      ]
+    },
+    "ex_cov": {
+      "type": "etape",
+      "kicker": "Exemple · covariance et écarts types",
+      "titre": "Les valeurs de la série taille et poids",
+      "tex": [
+        "\\mathrm{Cov}(x, y) = 94{,}4",
+        "V(x) = 114,\\quad V(y) = 80{,}24",
+        "\\sigma_x \\approx 10{,}68,\\quad \\sigma_y \\approx 8{,}96"
+      ]
+    },
+    "coeff": {
+      "type": "formule",
+      "kicker": "Coefficient de corrélation linéaire",
+      "tex": "r = \\frac{\\mathrm{Cov}(x, y)}{\\sigma_x \\sigma_y}",
+      "note": "Toujours entre moins un et un : −1 ≤ r ≤ 1"
+    },
+    "lecture_r": {
+      "type": "etape",
+      "kicker": "Lire le coefficient r",
+      "titre": "Proche de un, de moins un, ou de zéro",
+      "tex": [
+        "r \\approx 1 : \\text{forte corrélation positive}",
+        "r \\approx -1 : \\text{forte corrélation négative}",
+        "r \\approx 0 : \\text{pas de corrélation linéaire}"
+      ],
+      "anim": {
+        "nom": "nuage_points_fig",
+        "hauteur": 120
+      }
+    },
+    "ex_r": {
+      "type": "etape",
+      "kicker": "Exemple · le coefficient de la série",
+      "titre": "Un alignement presque parfait",
+      "tex": [
+        "r = \\tfrac{94{,}4}{10{,}68 \\times 8{,}96} \\approx 0{,}99",
+        "\\text{ajustement linéaire justifié}"
+      ]
+    },
+    "regression": {
+      "type": "formule",
+      "kicker": "Droite de régression de y en x",
+      "tex": "a = \\frac{\\mathrm{Cov}(x, y)}{V(x)},\\qquad b = \\bar{y} - a\\bar{x}",
+      "note": "La droite y = ax + b passe par le point moyen G",
+      "anim": {
+        "nom": "graphique_mesures_fig",
+        "hauteur": 140
+      }
+    },
+    "ex_regression": {
+      "type": "etape",
+      "kicker": "Exemple · la droite de la série",
+      "titre": "Coefficient directeur et ordonnée à l'origine",
+      "tex": [
+        "a = \\tfrac{94{,}4}{114} \\approx 0{,}828",
+        "b = 61{,}6 - 0{,}828 \\times 166 \\approx -75{,}9",
+        "y = 0{,}828x - 75{,}9"
+      ]
+    },
+    "prevision": {
+      "type": "etape",
+      "kicker": "Prévision par la droite",
+      "titre": "Estimer le poids pour une taille de cent soixante-dix",
+      "tex": [
+        "y = 0{,}828 \\times 170 - 75{,}9",
+        "y \\approx 64{,}9\\ \\text{kg}"
+      ]
+    },
+    "prudence": {
+      "type": "phrase",
+      "kicker": "Interpolation et extrapolation",
+      "texte": "Dans l'intervalle observé : fiable. Au-delà : prévision fragile.",
+      "anim": {
+        "nom": "graphique_mesures_fig",
+        "hauteur": 150
+      }
+    },
+    "methode": {
+      "type": "recap",
+      "kicker": "La méthode en cinq temps",
+      "etapes": [
+        "Calculer x̄ et ȳ, le point moyen G",
+        "Calculer Cov, V(x), σx et σy",
+        "Calculer r, vérifier |r| proche de 1",
+        "Droite : a = Cov / V(x), b = ȳ − a x̄",
+        "Prévoir y pour un x donné"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Ajustement linéaire : à retenir",
+      "etapes": [
+        "Série double : des couples (xi, yi)",
+        "Nuage de points, centre G(x̄, ȳ)",
+        "r entre −1 et 1 : l'alignement",
+        "Si |r| proche de 1 : droite y = ax + b"
+      ]
+    },
+    "limite": {
+      "type": "phrase",
+      "kicker": "Quand la droite ne convient pas",
+      "texte": "r trop faible : pas de droite, mais peut-être une autre courbe.",
+      "anim": {
+        "nom": "nuage_points_fig",
+        "hauteur": 150
+      }
+    },
+    "lineariser": {
+      "type": "phrase",
+      "kicker": "L'idée : linéariser",
+      "texte": "Transformer les variables pour retrouver une droite, puis revenir.",
+      "anim": {
+        "nom": "exp_ln_fig",
+        "hauteur": 150
+      }
+    },
+    "expo_modele": {
+      "type": "formule",
+      "kicker": "Ajustement exponentiel · le modèle",
+      "tex": "y = k e^{ax},\\quad k > 0",
+      "note": "Croissance à taux relatif constant : populations, désintégration"
+    },
+    "expo_changement": {
+      "type": "etape",
+      "kicker": "Ajustement exponentiel · linéariser",
+      "titre": "Le logarithme transforme le modèle en droite",
+      "tex": [
+        "Z = \\ln y = \\ln k + ax",
+        "z = ax + b,\\quad k = e^b",
+        "y = k e^{ax}"
+      ],
+      "anim": {
+        "nom": "log_courbes_fig",
+        "hauteur": 120
+      }
+    },
+    "bacteries": {
+      "type": "etape",
+      "kicker": "Exemple résolu · des bactéries",
+      "titre": "Population en milliers, heure par heure",
+      "tex": [
+        "x : 0,\\ 1,\\ 2,\\ 3",
+        "y : 2,\\ 3,\\ 4{,}5,\\ 6{,}8",
+        "z = \\ln y : 0{,}69,\\ 1{,}10,\\ 1{,}50,\\ 1{,}92"
+      ]
+    },
+    "bacteries_modele": {
+      "type": "etape",
+      "kicker": "Exemple résolu · le modèle",
+      "titre": "Une droite sur z, une exponentielle sur y",
+      "tex": [
+        "z = 0{,}41x + 0{,}69",
+        "k = e^{0{,}69} \\approx 2",
+        "y \\approx 2e^{0{,}41x}"
+      ]
+    },
+    "bacteries_prev": {
+      "type": "etape",
+      "kicker": "Exemple résolu · prévision",
+      "titre": "La population au bout de cinq heures",
+      "tex": [
+        "y \\approx 2e^{0{,}41 \\times 5} = 2e^{2{,}05}",
+        "y \\approx 15{,}5 \\text{ milliers}"
+      ]
+    },
+    "puissance": {
+      "type": "formule",
+      "kicker": "Ajustement en puissance · le modèle",
+      "tex": "y = kx^a,\\quad x > 0,\\ k > 0",
+      "note": "Aires et volumes en fonction d'une longueur, en géométrie et physique"
+    },
+    "puissance_methode": {
+      "type": "etape",
+      "kicker": "Ajustement en puissance · linéariser",
+      "titre": "Deux logarithmes cette fois",
+      "tex": [
+        "X = \\ln x,\\quad Z = \\ln y",
+        "Z = aX + \\ln k",
+        "Z = aX + b,\\quad k = e^b,\\quad y = kx^a"
+      ]
+    },
+    "condition": {
+      "type": "phrase",
+      "kicker": "Condition d'emploi",
+      "texte": "ln exige des valeurs strictement positives, pour x comme pour y.",
+      "anim": {
+        "nom": "log_courbes_fig",
+        "hauteur": 140
+      }
+    },
+    "choix": {
+      "type": "etape",
+      "kicker": "Choisir le bon modèle",
+      "titre": "L'allure du nuage décide, r transformé valide",
+      "tex": [
+        "\\text{croissance accélérée : } Z = \\ln y \\text{ en } x",
+        "\\text{croissance plus modérée}",
+        "Z = \\ln y \\text{ en } X = \\ln x : \\text{puissance}",
+        "\\text{valider : } r \\text{ transformé proche de } \\pm 1"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Nuage de points et point moyen G(x̄, ȳ)",
+        "r dans [−1, 1] : qualité de l'alignement",
+        "Régression : y = ax + b, par le point G",
+        "Affine impossible : linéariser par ln",
+        "Expo : Z = ln y ; puissance : X et Z en ln"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de statistique à deux variables. Nous étudierons des couples de mesures pris sur les mêmes individus : d'abord le nuage de points et son point moyen, puis la corrélation linéaire et la droite de régression, et enfin les ajustements exponentiel et puissance.",
+      "texte": "Deux variables : décrire le lien, puis prévoir.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Une série statistique double observe deux caractères quantitatifs sur les mêmes individus. On obtient des couples de valeurs, un pour chaque individu, et toute la question est de savoir si les deux caractères évoluent ensemble, et comment prévoir l'un à partir de l'autre.",
+      "texte": "Des couples de mesures, un lien à trouver.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Notre exemple fil conducteur : la taille, en centimètres, et le poids, en kilogrammes, de cinq élèves. Les tailles sont cent cinquante, cent soixante, cent soixante-cinq, cent soixante-quinze et cent quatre-vingts. Les poids correspondants sont cinquante, cinquante-cinq, soixante, soixante-huit et soixante-quinze.",
+      "texte": "Cinq élèves : tailles et poids associés.",
+      "ecran": "donnees"
+    },
+    {
+      "id": "p04",
+      "dit": "Représentons chaque couple par un point dans un repère orthogonal : la taille en abscisse, le poids en ordonnée. L'ensemble de ces points forme le nuage de points. Sa forme donne déjà une première idée : ici, les points montent régulièrement, le poids augmente avec la taille.",
+      "texte": "Chaque couple devient un point du nuage.",
+      "ecran": "nuage"
+    },
+    {
+      "id": "p05",
+      "dit": "Le nuage possède un centre, le point moyen, noté gé. Son abscisse est la moyenne des valeurs de x, son ordonnée est la moyenne des valeurs de y. C'est le centre de gravité du nuage, le point d'équilibre autour duquel les observations se répartissent.",
+      "texte": "G(x̄, ȳ) : le centre du nuage.",
+      "ecran": "point_moyen"
+    },
+    {
+      "id": "p06",
+      "dit": "Calculons le point moyen de notre série. La somme des tailles vaut huit cent trente, divisée par cinq, la moyenne des tailles vaut cent soixante-six centimètres. La somme des poids vaut trois cent huit, divisée par cinq, la moyenne des poids vaut soixante et un virgule six kilogrammes. Le point gé a donc pour coordonnées cent soixante-six et soixante et un virgule six.",
+      "texte": "x̄ = 166 cm, ȳ = 61,6 kg : G est placé.",
+      "ecran": "ex_moyennes"
+    },
+    {
+      "id": "p07",
+      "dit": "Pour mesurer le lien entre les deux variables, trois outils. La covariance moyenne les produits des écarts à la moyenne : positive si les deux variables grandissent ensemble. La variance moyenne les carrés des écarts d'une variable à sa moyenne. Et l'écart type est la racine carrée de la variance.",
+      "texte": "Covariance, variances, écarts types.",
+      "ecran": "cov_var"
+    },
+    {
+      "id": "p08",
+      "dit": "Sur notre série, le calcul donne une covariance de quatre-vingt-quatorze virgule quatre. La variance des tailles vaut cent quatorze, celle des poids vaut quatre-vingts virgule vingt-quatre. Les écarts types valent environ dix virgule soixante-huit pour les tailles et huit virgule quatre-vingt-seize pour les poids.",
+      "texte": "Cov = 94,4 ; σx ≈ 10,68 ; σy ≈ 8,96.",
+      "ecran": "ex_cov"
+    },
+    {
+      "id": "p09",
+      "dit": "Le coefficient de corrélation linéaire, noté r, est le quotient de la covariance par le produit des deux écarts types. C'est un nombre sans unité, toujours compris entre moins un et un, qui résume la qualité de l'alignement des points.",
+      "texte": "r = Cov / (σx σy), entre −1 et 1.",
+      "ecran": "coeff"
+    },
+    {
+      "id": "p10",
+      "dit": "Comment lire ce coefficient. Proche de un, la corrélation est fortement positive : les points s'alignent en montant. Proche de moins un, elle est fortement négative : les points s'alignent en descendant. Proche de zéro, il n'y a pas de corrélation linéaire : aucune droite ne résume le nuage.",
+      "texte": "r ≈ 1, −1 ou 0 : trois lectures.",
+      "ecran": "lecture_r"
+    },
+    {
+      "id": "p11",
+      "dit": "Pour notre série, le coefficient vaut la covariance, quatre-vingt-quatorze virgule quatre, divisée par le produit des écarts types. On obtient environ zéro virgule quatre-vingt-dix-neuf. La corrélation est quasi parfaite : un ajustement du nuage par une droite est pleinement justifié.",
+      "texte": "r ≈ 0,99 : ajustement linéaire justifié.",
+      "ecran": "ex_r"
+    },
+    {
+      "id": "p12",
+      "dit": "Cette droite est la droite de régression de y en x. Son coefficient directeur a est le quotient de la covariance par la variance de x. Son ordonnée à l'origine b s'obtient en écrivant que la droite passe par le point moyen : b égale la moyenne de y, moins a fois la moyenne de x.",
+      "texte": "a = Cov / V(x), b = ȳ − a x̄, par G.",
+      "ecran": "regression"
+    },
+    {
+      "id": "p13",
+      "dit": "Calculons la droite de notre série. Le coefficient directeur vaut quatre-vingt-quatorze virgule quatre, divisé par cent quatorze, environ zéro virgule huit cent vingt-huit. L'ordonnée à l'origine vaut soixante et un virgule six, moins ce coefficient fois cent soixante-six, environ moins soixante-quinze virgule neuf. La droite a pour équation : y égale zéro virgule huit cent vingt-huit fois x, moins soixante-quinze virgule neuf.",
+      "texte": "y = 0,828x − 75,9 : la droite de régression.",
+      "ecran": "ex_regression"
+    },
+    {
+      "id": "p14",
+      "dit": "La droite sert à prévoir. Pour un élève mesurant cent soixante-dix centimètres, taille absente de la série, on remplace x par cent soixante-dix dans l'équation. On obtient un poids estimé d'environ soixante-quatre virgule neuf kilogrammes.",
+      "texte": "x = 170 cm : poids estimé ≈ 64,9 kg.",
+      "ecran": "prevision"
+    },
+    {
+      "id": "p15",
+      "dit": "Une précaution sur ces prévisions. Estimer entre les valeurs observées, c'est une interpolation, raisonnablement fiable. Estimer loin au-delà, c'est une extrapolation : la relation peut changer de nature, et la prévision devient fragile. La droite ne parle bien que près des données.",
+      "texte": "Interpolation fiable, extrapolation fragile.",
+      "ecran": "prudence"
+    },
+    {
+      "id": "p16",
+      "dit": "Retenons la méthode complète en cinq temps. D'abord les deux moyennes et le point moyen. Puis la covariance, les variances et les écarts types. Ensuite le coefficient de corrélation, pour vérifier que sa valeur absolue est proche de un. Puis la droite de régression, coefficient directeur et ordonnée à l'origine. Enfin, la prévision demandée.",
+      "texte": "Méthode : moyennes, covariance, r, droite, prévision.",
+      "ecran": "methode"
+    },
+    {
+      "id": "p17",
+      "dit": "Récapitulons l'ajustement linéaire. Une série double se dessine en nuage de points, centré sur son point moyen. Le coefficient r, entre moins un et un, mesure l'alignement. Quand sa valeur absolue est proche de un, la droite de régression décrit le lien et permet des prévisions.",
+      "texte": "Ajustement linéaire : à retenir.",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p18",
+      "dit": "Mais que faire quand le coefficient r, calculé sur les données brutes, reste loin de moins un et de un. Un ajustement par une droite n'est alors pas pertinent. Cela ne veut pas dire qu'il n'y a aucun lien : le nuage peut suivre une courbe, exponentielle, puissance, ou autre.",
+      "texte": "r trop faible : chercher une courbe, pas une droite.",
+      "ecran": "limite"
+    },
+    {
+      "id": "p19",
+      "dit": "La stratégie générale s'appelle linéariser. On effectue un changement de variable qui transforme la relation soupçonnée en relation affine. On calcule la droite de régression sur les variables transformées, puis on revient à la relation entre les variables d'origine.",
+      "texte": "Linéariser, régresser, revenir.",
+      "ecran": "lineariser"
+    },
+    {
+      "id": "p20",
+      "dit": "Premier modèle : l'ajustement exponentiel, pour les évolutions à taux relatif constant, comme une population qui croît ou une désintégration. On soupçonne une relation de la forme y égale k fois l'exponentielle de a fois x, avec k strictement positif.",
+      "texte": "y = k·e^(ax) : le modèle exponentiel.",
+      "ecran": "expo_modele"
+    },
+    {
+      "id": "p21",
+      "dit": "Le changement de variable est le logarithme. On pose z égale le logarithme de y. Le logarithme transforme le produit en somme : z devient une fonction affine de x, de coefficient directeur a, et d'ordonnée à l'origine le logarithme de k. On fait donc la régression de z en x, qui donne une droite, et on retrouve k comme l'exponentielle de l'ordonnée à l'origine.",
+      "texte": "Z = ln y : la droite cachée du modèle.",
+      "ecran": "expo_changement"
+    },
+    {
+      "id": "p22",
+      "dit": "Exemple résolu : une culture de bactéries, dont la population, en milliers, est mesurée chaque heure. Au départ deux mille, puis trois mille, puis quatre mille cinq cents, puis six mille huit cents. Les logarithmes de ces valeurs valent environ zéro virgule soixante-neuf, un virgule dix, un virgule cinquante et un virgule quatre-vingt-douze.",
+      "texte": "Bactéries : 2, 3, 4,5, 6,8 milliers.",
+      "ecran": "bacteries"
+    },
+    {
+      "id": "p23",
+      "dit": "Ces logarithmes progressent presque régulièrement, d'environ zéro virgule quarante et un par heure : le modèle exponentiel est pertinent. La droite de régression de z en x a pour équation z égale zéro virgule quarante et un fois x, plus zéro virgule soixante-neuf. Donc k, l'exponentielle de zéro virgule soixante-neuf, vaut environ deux, et le modèle s'écrit : y environ égale deux fois l'exponentielle de zéro virgule quarante et un fois x.",
+      "texte": "z = 0,41x + 0,69, donc y ≈ 2·e^(0,41x).",
+      "ecran": "bacteries_modele"
+    },
+    {
+      "id": "p24",
+      "dit": "Prévision avec ce modèle : au bout de cinq heures, on remplace x par cinq. Deux fois l'exponentielle de deux virgule zéro cinq, soit environ quinze virgule cinq. La population estimée est donc d'environ quinze mille cinq cents bactéries.",
+      "texte": "À 5 h : ≈ 15,5 milliers de bactéries.",
+      "ecran": "bacteries_prev"
+    },
+    {
+      "id": "p25",
+      "dit": "Deuxième modèle : l'ajustement en puissance, fréquent en géométrie et en physique, quand une aire ou un volume dépend d'une longueur. On soupçonne une relation de la forme y égale k fois x puissance a, avec x et k strictement positifs. L'exposant a est précisément ce que l'on cherche.",
+      "texte": "y = k·x^a : le modèle puissance.",
+      "ecran": "puissance"
+    },
+    {
+      "id": "p26",
+      "dit": "Ici, on prend le logarithme des deux variables. On pose grand x égale le logarithme de x, et z égale le logarithme de y. Alors z devient une fonction affine de grand x, dont le coefficient directeur est exactement l'exposant cherché, a. On fait la régression de z en grand x, puis on revient à y égale k fois x puissance a.",
+      "texte": "X = ln x, Z = ln y : Z affine en X.",
+      "ecran": "puissance_methode"
+    },
+    {
+      "id": "p27",
+      "dit": "Attention, une condition impérative : le logarithme n'est défini que pour des valeurs strictement positives. Le changement de variable ne s'applique donc que si toutes les valeurs de x, et toutes celles de y, sont strictement positives. Une seule valeur négative ou nulle, et la méthode est impossible.",
+      "texte": "ln exige x > 0 et y > 0.",
+      "ecran": "condition"
+    },
+    {
+      "id": "p28",
+      "dit": "Comment choisir entre les modèles devant un nuage non aligné. Si la croissance s'accélère fortement, ou si la décroissance tend vers zéro sans l'atteindre, testez le logarithme de y en fonction de x : c'est la piste exponentielle. Si les deux variables sont positives et la croissance plus modérée, testez le logarithme de y en fonction du logarithme de x : c'est la piste puissance. Dans les deux cas, validez avec le coefficient de corrélation calculé sur les variables transformées.",
+      "texte": "L'allure décide, r transformé valide.",
+      "ecran": "choix"
+    },
+    {
+      "id": "p29",
+      "dit": "Pour conclure. Un nuage de points et son point moyen décrivent une série double, le coefficient r juge l'alignement, et la droite de régression permet les prévisions. Quand la droite ne convient pas, on linéarise par le logarithme : modèle exponentiel avec z égale le logarithme de y, modèle puissance avec les logarithmes des deux variables.",
+      "texte": "Nuage, droite, ou ln : à retenir.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Nuage de points, point moyen et corrélation"
+    },
+    {
+      "debut": "p12",
+      "sous_titre": "Droite de régression, prévisions et linéarisation",
+      "pont": {
+        "texte": "Partie 2 : la droite de régression et les prévisions.",
+        "dit": "Partie deux : la droite de régression. Le coefficient est proche de un, nous traçons la droite qui résume le nuage, nous prévoyons, puis nous verrons quoi faire quand une droite ne suffit pas."
+      }
+    },
+    {
+      "debut": "p22",
+      "sous_titre": "Ajustements en pratique : bactéries et modèle puissance",
+      "pont": {
+        "texte": "Partie 3 : les ajustements en pratique.",
+        "dit": "Partie trois : les ajustements en pratique. Après le principe de linéarisation, place aux exemples complets, des bactéries au modèle puissance."
+      }
+    }
+  ]
+}

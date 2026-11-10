@@ -1,0 +1,493 @@
+{
+ "cours": 6666,
+ "titre": "Barycentre, transformations composées et orthogonalité dans l'espace",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Barycentre, transformations, orthogonalité",
+   "titre": "Barycentre, transformations composées et orthogonalité dans l'espace",
+   "sous": "Points pondérés et lignes de niveau, composées de transformations, droites et plans orthogonaux",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un point d'équilibre, des transformations qui se composent, des angles droits dans l'espace.",
+   "anim": {
+    "nom": "somme_vecteurs_fig",
+    "hauteur": 180
+   }
+  },
+  "bary_def": {
+   "type": "formule",
+   "kicker": "Barycentre de deux points pondérés",
+   "titre": "Le point d'équilibre de deux points pondérés",
+   "tex": "\\alpha \\, \\overrightarrow{GA} + \\beta \\, \\overrightarrow{GB} = \\overrightarrow{0}",
+   "note": "Condition : α + β ≠ 0 · le point G est alors unique",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 170
+   }
+  },
+  "bary_constr": {
+   "type": "etape",
+   "kicker": "Construction du barycentre",
+   "titre": "Placer G sur le segment, au prorata des poids",
+   "tex": [
+    "\\vec{AG} = \\tfrac{\\beta}{\\alpha + \\beta} \\, \\vec{AB}",
+    "\\overrightarrow{AG} = \\tfrac{3}{5} \\, \\overrightarrow{AB}"
+   ]
+  },
+  "bary_proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés du barycentre de deux points",
+   "titre": "Milieu, alignement, homogénéité",
+   "tex": [
+    "\\text{poids égaux : } G \\text{ milieu de } [AB]",
+    "G \\in (AB) \\text{ : toujours aligné avec } A, B",
+    "\\text{homogénéité : poids} \\times k \\text{, même } G"
+   ]
+  },
+  "bary_general": {
+   "type": "formule",
+   "kicker": "Barycentre de trois ou quatre points",
+   "titre": "La définition générale",
+   "tex": "\\sum_{i=1}^{n} \\alpha_i \\, \\overrightarrow{GA_i} = \\overrightarrow{0}",
+   "note": "Somme des coefficients non nulle · n vaut ici deux, trois ou quatre"
+  },
+  "bary_partiels": {
+   "type": "etape",
+   "kicker": "Barycentres partiels · exemple",
+   "titre": "Regrouper deux points, puis conclure",
+   "tex": [
+    "H \\text{ milieu de } [AB] \\qquad (A,1), (B,1)",
+    "G \\text{ barycentre de } (H,2), (C,2)",
+    "G \\text{ milieu de } [HC]"
+   ]
+  },
+  "bary_applis": {
+   "type": "phrase",
+   "kicker": "Applications géométriques du barycentre",
+   "texte": "Alignement et droites concourantes se prouvent par un même barycentre.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 180
+   }
+  },
+  "reduction": {
+   "type": "formule",
+   "kicker": "Réduction d'une somme vectorielle pondérée",
+   "titre": "Tout ramener au point G",
+   "tex": "\\sum_{i=1}^{n} \\alpha_i \\, \\overrightarrow{MA_i} = S \\, \\overrightarrow{MG}",
+   "note": "Pour tout point M, si S ≠ 0 · si S = 0 : vecteur constant"
+  },
+  "reduction_ex": {
+   "type": "etape",
+   "kicker": "Exemple · somme des coefficients nulle",
+   "titre": "Un vecteur qui ne dépend plus de M",
+   "tex": [
+    "\\overrightarrow{MA}-\\overrightarrow{MB}=\\overrightarrow{BA}",
+    "\\text{constant : indépendant du point } M"
+   ]
+  },
+  "niveau_somme": {
+   "type": "etape",
+   "kicker": "Lignes de niveau · somme de carrés",
+   "titre": "Un cercle de centre le milieu, ou rien",
+   "tex": [
+    "MA^2 + MB^2 = 2MI^2 + \\tfrac{AB^2}{2}",
+    "MI^2 = \\tfrac{2k - AB^2}{4}",
+    "k > \\tfrac{AB^2}{2} \\text{ : cercle de centre } I"
+   ]
+  },
+  "niveau_mixte": {
+   "type": "etape",
+   "kicker": "Lignes de niveau · différence et produit",
+   "titre": "Une droite perpendiculaire, ou un cercle",
+   "tex": [
+    "MA^2-MB^2=2\\,\\overrightarrow{MI}\\cdot\\overrightarrow{BA}",
+    "\\text{une droite perpendiculaire à } (AB)",
+    "\\vec{MA}\\cdot\\vec{MB}=MI^2-\\tfrac{AB^2}{4}",
+    "\\text{cercle de centre } I \\text{, un point, ou vide}"
+   ]
+  },
+  "niveau_norme": {
+   "type": "etape",
+   "kicker": "Lignes de niveau · norme d'une somme",
+   "titre": "La réduction transforme tout en distance à G",
+   "tex": [
+    "|2\\overrightarrow{MA} + 3\\overrightarrow{MB}| = 5",
+    "S = 5 \\qquad MG = \\tfrac{k}{|S|} = 1"
+   ]
+  },
+  "sym_def": {
+   "type": "phrase",
+   "kicker": "Symétrie orthogonale · rappel",
+   "texte": "L'axe est la médiatrice du segment joignant un point à son image.",
+   "anim": {
+    "nom": "mediatrice_exemple_fig",
+    "hauteur": 180
+   }
+  },
+  "sym_paralleles": {
+   "type": "formule",
+   "kicker": "Composée de deux symétries · axes parallèles",
+   "titre": "Deux symétries parallèles font une translation",
+   "tex": "\\vec{v} = 2 \\, \\overrightarrow{IJ}",
+   "note": "Translation perpendiculaire aux axes · axes à 3 cm : norme 6 cm",
+   "anim": {
+    "nom": "symetrie_fig",
+    "hauteur": 160
+   }
+  },
+  "sym_secantes": {
+   "type": "formule",
+   "kicker": "Composée de deux symétries · axes sécants",
+   "titre": "Deux symétries sécantes font une rotation",
+   "tex": "s_{\\Delta_2} \\circ s_{\\Delta_1} = r(O, 2\\theta)",
+   "note": "Centre : le point d'intersection O · angle : le double de l'angle des axes"
+  },
+  "rotations": {
+   "type": "etape",
+   "kicker": "Composée de deux rotations de même centre",
+   "titre": "Les angles s'ajoutent",
+   "tex": [
+    "r(O,\\beta) \\circ r(O,\\alpha) = r(O, \\alpha + \\beta)",
+    "r(O,40^\\circ) \\circ r(O,70^\\circ) = r(O,110^\\circ)"
+   ]
+  },
+  "homotheties": {
+   "type": "etape",
+   "kicker": "Composée de deux homothéties de même centre",
+   "titre": "Les rapports se multiplient",
+   "tex": [
+    "h(O,k_2) \\circ h(O,k_1) = h(O, k_1 k_2)",
+    "h(O,3) \\circ h(O,-2) = h(O,-6)"
+   ]
+  },
+  "homo_trans": {
+   "type": "etape",
+   "kicker": "Homothétie composée avec une translation",
+   "titre": "Même rapport, centre déplacé",
+   "tex": [
+    "\\overrightarrow{OO'}=\\tfrac{k}{1-k}\\,\\vec{u}",
+    "k \\neq 1 \\qquad k = 2 : \\overrightarrow{OO'} = -2\\vec{u}"
+   ]
+  },
+  "demo_transfo": {
+   "type": "phrase",
+   "kicker": "Démontrer par les transformations",
+   "texte": "Triangle isocèle : la médiane issue du sommet est aussi une hauteur.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 180
+   }
+  },
+  "synthese_comp": {
+   "type": "etape",
+   "kicker": "Synthèse des composées",
+   "titre": "Reconnaître le résultat d'une composée",
+   "tex": [
+    "\\text{symétries parallèles : une translation}",
+    "\\text{symétries sécantes : une rotation}",
+    "\\text{même centre : angles +, rapports} \\times"
+   ]
+  },
+  "ortho_droites": {
+   "type": "phrase",
+   "kicker": "Droites orthogonales dans l'espace",
+   "texte": "Orthogonales ne veut pas dire sécantes : perpendiculaires, si elles se coupent.",
+   "anim": {
+    "nom": "orthogonalite_fig",
+    "hauteur": 190
+   }
+  },
+  "ex_ortho_droites": {
+   "type": "etape",
+   "kicker": "Exemple · le cube, droites orthogonales",
+   "titre": "Remplacer une droite par une parallèle",
+   "tex": [
+    "(CG) \\parallel (BF) \\text{ : arêtes verticales}",
+    "(AB) \\perp (BF) \\text{ dans la face } ABFE",
+    "(AB) \\text{ et } (CG) \\text{ orthogonales}"
+   ]
+  },
+  "droite_plan_def": {
+   "type": "phrase",
+   "kicker": "Droite orthogonale à un plan",
+   "texte": "Orthogonale au plan : orthogonale à toutes les droites du plan.",
+   "anim": {
+    "nom": "orthogonalite_fig",
+    "hauteur": 170
+   }
+  },
+  "droite_plan": {
+   "type": "formule",
+   "kicker": "Théorème fondamental · droite et plan",
+   "titre": "Deux droites sécantes suffisent",
+   "tex": "d \\perp (AB), \\ d \\perp (AD) \\Rightarrow d \\perp (ABC)",
+   "note": "Les deux droites du plan doivent être sécantes",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 170
+   }
+  },
+  "ex_droite_plan": {
+   "type": "etape",
+   "kicker": "Exemple · le cube, droite orthogonale au plan",
+   "titre": "Une arête verticale face au plan de base",
+   "tex": [
+    "(AE) \\perp (AB) \\qquad (AE) \\perp (AD)",
+    "(AB) \\text{ et } (AD) \\text{ sécantes en } A",
+    "(AE) \\perp (ABC)"
+   ]
+  },
+  "plans_ortho": {
+   "type": "etape",
+   "kicker": "Plans orthogonaux",
+   "titre": "Une droite orthogonale contenue",
+   "tex": [
+    "(AE) \\perp (ABC) \\qquad (AE) \\subset (ABE)",
+    "(ABE) \\perp (ABC)"
+   ]
+  },
+  "methodes": {
+   "type": "etape",
+   "kicker": "Méthodes de démonstration · synthèse",
+   "titre": "Chaque objectif a son critère",
+   "tex": [
+    "\\text{droites : des parallèles perpendiculaires}",
+    "\\text{droite et plan : deux sécantes du plan}",
+    "\\text{plans : une droite orthogonale contenue}"
+   ]
+  },
+  "appli_pro": {
+   "type": "phrase",
+   "kicker": "Application · le montant vertical du menuisier",
+   "texte": "Un montant vertical est orthogonal au sol : on contrôle deux directions du sol.",
+   "anim": {
+    "nom": "pave_fig",
+    "hauteur": 170
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Barycentre : somme pondérée nulle en G",
+    "Réduction : la somme vaut S fois MG",
+    "Lignes de niveau : cercles, droites, vide",
+    "Composées : translation, rotation, produit",
+    "Orthogonalité : deux sécantes suffisent"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de géométrie qui avance en trois temps. Nous commencerons par le barycentre, le point d'équilibre de points pondérés, et par les lignes de niveau qu'il permet de décrire. Nous composerons ensuite les transformations du plan : symétries, rotations, homothéties et translations. Nous terminerons dans l'espace, avec l'orthogonalité des droites et des plans, toujours démontrée sur le cube.",
+   "texte": "Barycentre, transformations, orthogonalité : le programme.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil conducteur est simple : remplacer des configurations compliquées par un point, une transformation ou un critère unique. Le barycentre concentre tout un système de points en un seul. Une composée de transformations se reconnaît d'un coup d'œil quand on connaît les cinq résultats du cours. Et dans l'espace, deux droites sécantes suffisent pour prouver qu'une droite est orthogonale à tout un plan.",
+   "texte": "Concentrer, composer, prouver : trois gestes.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Soient deux points du plan, affectés de coefficients réels dont la somme n'est pas nulle. Le barycentre de ce système est l'unique point qui annule la somme pondérée des vecteurs qui le relient aux deux points : le coefficient du premier point multiplie le vecteur correspondant, celui du second fait de même, et le total est le vecteur nul. C'est un point d'équilibre : plus un coefficient est grand, plus le barycentre est proche de son point.",
+   "texte": "Le barycentre : la somme pondérée s'annule en G.",
+   "ecran": "bary_def"
+  },
+  {
+   "id": "p04",
+   "dit": "Pour construire ce point, une relation équivalente le place directement sur le segment : le vecteur qui va du premier point au barycentre vaut une fraction du vecteur qui joint les deux points, et cette fraction est le coefficient de l'autre point divisé par la somme des coefficients. Exemple : pour les coefficients deux et trois, le barycentre se place aux trois cinquièmes du segment en partant du premier point, donc plus près du point le plus lourd.",
+   "texte": "Placer G aux 3/5 du segment pour les poids 2 et 3.",
+   "ecran": "bary_constr"
+  },
+  {
+   "id": "p05",
+   "dit": "Trois propriétés fondamentales sont à retenir. Si les deux coefficients sont égaux, le barycentre est le milieu du segment : on l'appelle alors isobarycentre. Le barycentre de deux points appartient toujours à la droite qui les joint. Enfin, multiplier tous les coefficients par un même nombre non nul ne change pas le barycentre : seuls comptent les poids relatifs, pas leur échelle. C'est l'homogénéité du barycentre.",
+   "texte": "Poids égaux : milieu · toujours sur la droite (AB).",
+   "ecran": "bary_proprietes"
+  },
+  {
+   "id": "p06",
+   "dit": "La définition s'étend à trois ou quatre points, et au-delà : le barycentre est l'unique point qui annule la somme des vecteurs pondérés vers tous les points du système, à condition que la somme de tous les coefficients soit non nulle. Chaque point tire le barycentre vers lui, avec une force égale à son coefficient. Toute la géométrie du chapitre repose sur cette unique relation vectorielle.",
+   "texte": "De 2 à 4 points : même relation, somme nulle en G.",
+   "ecran": "bary_general"
+  },
+  {
+   "id": "p07",
+   "dit": "Pour construire un barycentre de plusieurs points, on regroupe : c'est la méthode des barycentres partiels. On remplace d'abord deux points par leur barycentre, affecté de la somme de leurs coefficients, puis on continue avec les points restants. Exemple : pour les coefficients un, un et deux, le milieu des deux premiers points, affecté du coefficient deux, a pour barycentre avec le troisième point le milieu du segment qui les joint.",
+   "texte": "Barycentres partiels : regrouper, puis conclure.",
+   "ecran": "bary_partiels"
+  },
+  {
+   "id": "p08",
+   "dit": "Le barycentre est aussi un outil de démonstration. Pour prouver que trois points sont alignés, on montre que l'un est le barycentre des deux autres avec des coefficients bien choisis. Pour prouver que trois droites sont concourantes, on montre qu'elles passent toutes par un même barycentre, construit par regroupements successifs. Beaucoup de problèmes de géométrie du triangle se résolvent ainsi en quelques lignes de calcul vectoriel.",
+   "texte": "Alignement et concours : un même barycentre prouve.",
+   "ecran": "bary_applis"
+  },
+  {
+   "id": "p09",
+   "dit": "Voici le théorème de réduction, le plus utile du chapitre. Pour un point quelconque du plan, la somme des vecteurs pondérés vers les points du système se réduit à un seul vecteur : la somme des coefficients multiplie le vecteur qui va du point quelconque au barycentre. Toute la configuration tient dans ce vecteur unique. Si la somme des coefficients est nulle, au contraire, la somme ne dépend plus du point choisi : c'est un vecteur constant.",
+   "texte": "Réduction : toute la somme vaut S fois le vecteur MG.",
+   "ecran": "reduction"
+  },
+  {
+   "id": "p10",
+   "dit": "Illustrons le cas de somme nulle avec la différence de deux vecteurs de même origine : le vecteur vers le premier point moins le vecteur vers le second donne toujours le vecteur qui joint le second point au premier, quel que soit le point de départ. Aucun barycentre n'existe alors, mais la somme garde un sens : elle est constante. Retenez le réflexe : somme non nulle, on réduit vers le barycentre ; somme nulle, on cherche le vecteur constant.",
+   "texte": "Somme nulle : un vecteur constant, ici le vecteur BA.",
+   "ecran": "reduction_ex"
+  },
+  {
+   "id": "p11",
+   "dit": "Les lignes de niveau décrivent l'ensemble des points qui vérifient une égalité donnée. Pour une somme de deux carrés de distances, on introduit le milieu du segment : la somme devient deux fois le carré de la distance au milieu, plus la moitié du carré de la longueur du segment. Selon que la constante dépasse, égale ou reste sous ce seuil, l'ensemble est un cercle de centre le milieu, le milieu seul, ou l'ensemble vide.",
+   "texte": "MA² + MB² = k : cercle de centre I, point, ou vide.",
+   "ecran": "niveau_somme"
+  },
+  {
+   "id": "p12",
+   "dit": "Pour une différence de carrés, le même milieu fait apparaître un produit scalaire : l'ensemble est une droite perpendiculaire au segment, dont la position dépend de la constante. Pour un produit scalaire de deux vecteurs d'origine mobile, on obtient la distance au milieu diminuée du quart du carré du segment : l'ensemble est encore un cercle de centre le milieu, un point unique, ou l'ensemble vide, selon la valeur de la constante.",
+   "texte": "Différence : une droite · produit : un cercle en I.",
+   "ecran": "niveau_mixte"
+  },
+  {
+   "id": "p13",
+   "dit": "Dernier type de ligne de niveau : la norme d'une somme pondérée de vecteurs. Grâce à la réduction, cette norme devient le produit de la somme des coefficients par la distance du point au barycentre. L'égalité se traduit donc en une distance constante au barycentre : un cercle. Exemple : avec les coefficients deux et trois, une norme égale à cinq donne une distance égale à un : le cercle de centre le barycentre et de rayon un.",
+   "texte": "Norme 5, coefficients 2 et 3 : cercle de rayon 1.",
+   "ecran": "niveau_norme"
+  },
+  {
+   "id": "p14",
+   "dit": "Passons aux transformations. Une symétrie orthogonale, ou symétrie axiale, envoie chaque point sur le point tel que l'axe soit la médiatrice du segment qui les joint. Composer deux symétries donne, selon la position relative des axes, deux résultats très différents que ce chapitre établit. Tout repose sur une question simple : les axes sont-ils parallèles, ou se coupent-ils en un point ?",
+   "texte": "Symétrie axiale : l'axe est la médiatrice de [MM'].",
+   "ecran": "sym_def"
+  },
+  {
+   "id": "p15",
+   "dit": "Si les deux axes sont parallèles, la composée des deux symétries est une translation. Son vecteur est le double du vecteur qui joint un point du premier axe à un point du second, pris perpendiculairement aux axes. La translation est donc perpendiculaire aux axes, dirigée du premier vers le second, et sa longueur vaut le double de la distance entre les axes. Exemple : des axes distants de trois centimètres donnent une translation de six centimètres.",
+   "texte": "Axes parallèles distants de 3 cm : translation de 6 cm.",
+   "ecran": "sym_paralleles"
+  },
+  {
+   "id": "p16",
+   "dit": "Si les deux axes se coupent en un point, la composée est une rotation. Son centre est le point d'intersection des axes, et son angle est le double de l'angle orienté qui va du premier axe vers le second. L'ordre des symétries compte donc pour le signe de l'angle. Deux réflexions successives remplacent ainsi un seul mouvement de rotation autour du point de croisement des axes.",
+   "texte": "Axes sécants : rotation de centre O, d'angle double.",
+   "ecran": "sym_secantes"
+  },
+  {
+   "id": "p17",
+   "dit": "Composer deux rotations de même centre est immédiat : on obtient une rotation de ce centre, dont l'angle est la somme des deux angles. Si la somme est nulle, ou fait un tour complet, la composée est l'identité, la transformation qui ne bouge aucun point. Si la somme vaut un angle plat, la composée est la symétrie centrale de ce centre. Exemple : quarante degrés puis soixante-dix degrés donnent une rotation de cent dix degrés.",
+   "texte": "Rotations de même centre : 40° + 70° = 110°.",
+   "ecran": "rotations"
+  },
+  {
+   "id": "p18",
+   "dit": "Même simplicité pour deux homothéties de même centre : la composée est une homothétie de ce centre, dont le rapport est le produit des deux rapports. Si le produit vaut un, la composée est l'identité ; s'il vaut moins un, c'est la symétrie centrale du centre. Exemple : les rapports trois et moins deux donnent le rapport moins six, c'est-à-dire une symétrie centrale suivie d'un agrandissement de facteur six.",
+   "texte": "Homothéties de même centre : 3 × (−2) = −6.",
+   "ecran": "homotheties"
+  },
+  {
+   "id": "p19",
+   "dit": "Composer une homothétie de rapport différent de un avec une translation donne encore une homothétie, de même rapport, mais dont le centre a bougé. La formule à l'écran donne le déplacement du centre en fonction du rapport et du vecteur de translation. Pour un rapport égal à deux, le nouveau centre vérifie que le vecteur qui le joint à l'ancien centre vaut moins deux fois le vecteur de translation : il se situe donc du côté opposé, à deux fois la longueur de ce vecteur.",
+   "texte": "Homothétie puis translation : rapport 2, centre déplacé.",
+   "ecran": "homo_trans"
+  },
+  {
+   "id": "p20",
+   "dit": "Les transformations servent à démontrer. Dans un triangle isocèle, la symétrie dont l'axe est la médiane issue du sommet principal échange les deux autres sommets, car les deux côtés égaux et les deux moitiés de la base se correspondent. Elle conserve les angles : les deux angles au pied de la médiane sont donc égaux, et comme ils sont supplémentaires, chacun est droit. La médiane est donc aussi une hauteur, sans aucun calcul.",
+   "texte": "Triangle isocèle : la symétrie prouve médiane = hauteur.",
+   "ecran": "demo_transfo"
+  },
+  {
+   "id": "p21",
+   "dit": "Retenez la table des composées. Deux symétries d'axes parallèles donnent une translation, d'axes sécants une rotation. Deux rotations de même centre ajoutent leurs angles, deux homothéties de même centre multiplient leurs rapports. Et une homothétie composée avec une translation reste une homothétie de même rapport, avec un centre déplacé. Identifier la composée, c'est souvent résoudre l'exercice avant même de calculer.",
+   "texte": "La table des composées : reconnaître avant de calculer.",
+   "ecran": "synthese_comp"
+  },
+  {
+   "id": "p22",
+   "dit": "Dernière partie, dans l'espace. Deux droites sont orthogonales si leurs parallèles menées par un même point sont perpendiculaires. Point capital : deux droites orthogonales de l'espace ne se coupent pas forcément. Quand elles sont dans un même plan, donc quand elles se coupent à angle droit, on dit plus précisément qu'elles sont perpendiculaires. Confondre les deux mots est l'erreur classique de ce chapitre.",
+   "texte": "Orthogonales : pas forcément sécantes, dans l'espace.",
+   "ecran": "ortho_droites"
+  },
+  {
+   "id": "p23",
+   "dit": "Exemple dans un cube : montrons que deux arêtes bien choisies sont orthogonales alors qu'elles ne se rencontrent pas. La deuxième droite est parallèle à une arête verticale de la même face que la première. Or, dans cette face carrée, la première droite est perpendiculaire à cette parallèle. Les deux droites de départ sont donc orthogonales, par la propriété caractéristique : on a remplacé une droite par une parallèle bien placée.",
+   "texte": "Cube : (AB) et (CG) orthogonales, sans se couper.",
+   "ecran": "ex_ortho_droites"
+  },
+  {
+   "id": "p24",
+   "dit": "Une droite est orthogonale à un plan si elle est orthogonale à toutes les droites de ce plan. Énoncée ainsi, la définition semble impossible à vérifier : il y a une infinité de droites dans un plan. C'est le théorème fondamental qui rend la notion utilisable, en réduisant cette infinité à deux vérifications seulement. Gardez ce contraste en tête : la définition parle de toutes les droites, la preuve n'en demande que deux.",
+   "texte": "Droite orthogonale au plan : toutes ses droites.",
+   "ecran": "droite_plan_def"
+  },
+  {
+   "id": "p25",
+   "dit": "Le théorème fondamental affirme ceci : si une droite est orthogonale à deux droites sécantes d'un plan, alors elle est orthogonale au plan tout entier. Les deux droites doivent être sécantes : deux droites parallèles ne suffiraient pas, car elles ne donnent qu'une seule direction. Une fois la droite orthogonale au plan, elle devient orthogonale à toutes les droites du plan, même celles qui ne passent pas par son pied.",
+   "texte": "Deux droites sécantes du plan suffisent.",
+   "ecran": "droite_plan"
+  },
+  {
+   "id": "p26",
+   "dit": "Application au cube : montrons qu'une arête verticale est orthogonale au plan de la base. Dans les deux faces carrées qui portent cette arête, elle est perpendiculaire aux deux côtés de la base issus du même sommet. Ces deux côtés sont sécants en ce sommet et appartiennent au plan de base. Le théorème fondamental conclut : l'arête est orthogonale au plan de base, donc à toutes les droites de ce plan.",
+   "texte": "Cube : (AE) orthogonale au plan (ABC).",
+   "ecran": "ex_droite_plan"
+  },
+  {
+   "id": "p27",
+   "dit": "Deux plans sont orthogonaux si l'un d'eux contient une droite orthogonale à l'autre plan. Conséquence directe : deux plans orthogonaux se coupent toujours suivant une droite. Dans le cube, le plan d'une face latérale contient l'arête verticale que nous venons de prouver orthogonale au plan de base : ces deux plans sont donc orthogonaux. La preuve tient en deux lignes dès que l'étape précédente est acquise.",
+   "texte": "Plans orthogonaux : (ABE) ⊥ (ABC) dans le cube.",
+   "ecran": "plans_ortho"
+  },
+  {
+   "id": "p28",
+   "dit": "La méthode se choisit selon l'objectif. Pour deux droites orthogonales, cherchez des parallèles perpendiculaires dans un plan. Pour une droite orthogonale à un plan, visez deux droites sécantes de ce plan. Pour deux plans orthogonaux, exhibez une droite de l'un orthogonale à l'autre. Le menuisier qui contrôle un montant vertical avec un niveau fait exactement cela : il vérifie l'orthogonalité à deux directions sécantes du sol.",
+   "texte": "Chaque objectif a son critère : la méthode en un coup d'œil.",
+   "ecran": "methodes"
+  },
+  {
+   "id": "p29",
+   "dit": "Ces critères ne servent pas qu'au cube : ils travaillent dans la vie réelle. Pour vérifier qu'un montant de menuiserie est bien vertical par rapport au sol, le niveau à bulle contrôle son orthogonalité au plan du sol. En pratique, on vérifie qu'il est orthogonal à deux directions sécantes de ce sol, exactement comme le théorème fondamental l'autorise : deux contrôles bien choisis remplacent une infinité de vérifications impossibles.",
+   "texte": "Le menuisier : deux directions du sol à contrôler.",
+   "ecran": "appli_pro"
+  },
+  {
+   "id": "p30",
+   "dit": "Pour conclure, retenez l'enchaînement complet. Le barycentre concentre un système pondéré en un point, la réduction ramène toute somme vectorielle à ce point, et les lignes de niveau deviennent des cercles ou des droites. Les composées de transformations se reconnaissent à leur table : translation, rotation, ou homothétie de rapport produit. Et dans l'espace, l'orthogonalité se prouve toujours par réduction : des parallèles pour les droites, deux sécantes pour un plan.",
+   "texte": "Barycentre, composées, orthogonalité : à retenir.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Barycentre : définition, construction et réduction"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Lignes de niveau et composées de transformations",
+   "pont": {
+    "texte": "Partie 2 : lignes de niveau et transformations composées.",
+    "dit": "Partie deux : exploitons le barycentre, puis composons les transformations. Les lignes de niveau décrivent les points qui vérifient une égalité de distances ou de produit scalaire, et les composées de symétries, de rotations et d'homothéties livrent leurs résultats caractéristiques."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Orthogonalité dans l'espace : droites et plans",
+   "pont": {
+    "texte": "Partie 3 : orthogonalité des droites et des plans.",
+    "dit": "Partie trois : l'orthogonalité dans l'espace. Nous quittons le plan pour le cube : droites orthogonales sans se couper, droite orthogonale à un plan grâce à deux droites sécantes, et plans orthogonaux."
+   }
+  }
+ ]
+}

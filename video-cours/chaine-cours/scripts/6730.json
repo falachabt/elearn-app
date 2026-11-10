@@ -1,0 +1,404 @@
+{
+ "cours": 6730,
+ "lecons": [
+  9531
+ ],
+ "titre": "Optique géométrique",
+ "matiere": "Physique",
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bonjour à tous. Aujourd'hui, l'optique géométrique : comment les lentilles minces forment les images, comment l'œil les reçoit, et ce que la lumière nous apprend, du microscope jusqu'au photon.",
+   "texte": "Bonjour à tous. Aujourd'hui : lentilles minces, œil, microscope et photon.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Le principe de l'optique géométrique : suivre les rayons lumineux comme des traits, et prédire où se forment les images. Notre fil rouge sera la lentille mince, présente partout, de l'œil au microscope.",
+   "texte": "Suivre les rayons, prédire les images.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p03",
+   "ecran": "definition",
+   "dit": "Une lentille mince est un milieu transparent limité par deux surfaces, dont l'une au moins est sphérique, et dont l'épaisseur est négligeable devant les rayons de courbure. Convergente, elle se dessine avec des flèches vers l'extérieur ; divergente, avec des flèches vers l'intérieur.",
+   "texte": "Lentille mince : convergente ou divergente, selon ses flèches.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p04",
+   "ecran": "elements",
+   "dit": "Les éléments à connaître : le centre optique O, que les rayons traversent sans dévier ; le foyer image F prime, où convergent les rayons parallèles à l'axe ; le foyer objet F, son symétrique ; et la distance focale, de O à F prime.",
+   "texte": "O, F, F' et la distance focale f'.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p05",
+   "ecran": "vergence",
+   "dit": "La vergence mesure la puissance d'une lentille : c'est l'inverse de la distance focale, et elle s'exprime en dioptries. Positive pour une convergente, négative pour une divergente.",
+   "texte": "Vergence : C = 1/f', en dioptries.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p06",
+   "ecran": "gauss",
+   "dit": "Les constructions qui suivent supposent les conditions de Gauss : des rayons peu inclinés par rapport à l'axe optique et proches de lui. L'image obtenue est alors nette et non déformée.",
+   "texte": "Conditions de Gauss : rayons paraxiaux.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p07",
+   "ecran": "trois_rayons",
+   "dit": "Pour construire l'image d'un objet, deux rayons suffisent parmi les trois rayons particuliers : celui qui passe par le centre optique, celui qui arrive parallèle à l'axe, et celui qui passe par le foyer objet.",
+   "texte": "Deux des trois rayons particuliers suffisent.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p08",
+   "ecran": "descartes",
+   "dit": "La relation de conjugaison de Descartes donne la position de l'image : un sur O A prime moins un sur O A égale un sur f prime, avec des distances algébriques comptées depuis le centre optique.",
+   "texte": "Descartes : 1/OA' − 1/OA = 1/f'.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p09",
+   "ecran": "grandissement",
+   "dit": "Le grandissement, gamma, compare la taille de l'image à celle de l'objet : c'est aussi le rapport des positions. Négatif, l'image est renversée ; de valeur absolue plus grande que un, elle est agrandie.",
+   "texte": "γ = A'B'/AB = OA'/OA.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p10",
+   "ecran": "exemple",
+   "dit": "Exemple résolu : un objet de deux centimètres, placé à vingt centimètres d'une lentille convergente de focale dix centimètres. L'image se forme à vingt centimètres de l'autre côté, réelle, renversée et de même taille, car gamma égale moins un.",
+   "texte": "Exemple : image à 20 cm, renversée, même taille.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p11",
+   "ecran": "association",
+   "dit": "Deux lentilles accolées se comportent comme une seule : leurs vergences s'ajoutent, c'est le théorème des vergences. Si elles sont séparées, on raisonne image par image, la première image servant d'objet à la seconde lentille.",
+   "texte": "Lentilles accolées : C = C_1 + C_2.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p12",
+   "ecran": "oeil",
+   "dit": "L'œil se modélise simplement : le cristallin joue la lentille convergente, la rétine joue l'écran où se forme l'image, et l'iris joue le diaphragme qui règle la quantité de lumière.",
+   "texte": "L'œil réduit : cristallin, rétine, iris.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p13",
+   "ecran": "accommodation",
+   "dit": "Pour voir net de près comme de loin, l'œil accommode : il modifie la vergence du cristallin. Le point le plus proche vu nettement, le punctum proximum, est vers vingt-cinq centimètres ; le plus éloigné, le punctum remotum, est à l'infini pour un œil normal.",
+   "texte": "Accommodation : PP vers 25 cm, PR à l'infini.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p14",
+   "ecran": "defauts",
+   "dit": "Deux défauts classiques : la myopie, où l'image des objets lointains se forme avant la rétine, corrigée par une lentille divergente ; et l'hypermétropie, où elle se forme après, corrigée par une lentille convergente.",
+   "texte": "Myopie et hypermétropie : défauts et corrections.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p15",
+   "ecran": "microscope",
+   "dit": "Le microscope associe deux lentilles convergentes : l'objectif, de courte focale, placé près de l'objet, et l'oculaire, qui joue le rôle de loupe. L'objet, placé entre le foyer et le double de la focale de l'objectif, donne une image intermédiaire réelle, agrandie et renversée.",
+   "texte": "Objectif + oculaire : une image intermédiaire agrandie.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p16",
+   "ecran": "grossissement",
+   "dit": "On caractérise le microscope par sa puissance, l'angle sous lequel l'œil voit l'image, divisé par la taille de l'objet, et par son grossissement, qui combine les deux lentilles et l'intervalle optique, noté delta.",
+   "texte": "Puissance P et grossissement G du microscope.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p17",
+   "ecran": "sources",
+   "dit": "D'où vient la lumière ? Une source monochromatique, comme un laser, n'émet qu'une seule longueur d'onde ; une source polychromatique, comme le Soleil ou une lampe, en émet plusieurs, qu'un prisme peut séparer.",
+   "texte": "Sources mono ou polychromatiques.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p18",
+   "ecran": "spectres",
+   "dit": "Le spectre est la carte d'identité d'une lumière. Un corps chaud donne un spectre continu, comme un arc-en-ciel ; des atomes isolés donnent un spectre de raies, lumineuses ou sombres, propre à chaque élément.",
+   "texte": "Continu pour les corps chauds, raies pour les atomes.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p19",
+   "ecran": "wien",
+   "dit": "La loi de Wien relie la température d'un corps noir à la longueur d'onde de son maximum d'émission : leur produit est constant. Pour le Soleil, à environ cinq mille huit cents kelvins, le maximum tombe vers cinq cents nanomètres, en plein visible.",
+   "texte": "Loi de Wien : λ_max × T = 2,9 × 10⁻³ m·K.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p20",
+   "ecran": "solaire",
+   "dit": "Le spectre solaire est continu, comme celui d'un corps chaud, mais parsemé de raies sombres : les atomes de l'atmosphère du Soleil absorbent leurs propres longueurs d'onde. Ces raies révèlent la composition chimique du Soleil.",
+   "texte": "Des raies sombres qui révèlent la composition du Soleil.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p21",
+   "ecran": "niveaux",
+   "dit": "Dernière idée, fondamentale : l'énergie d'un atome est quantifiée, elle ne prend que des valeurs discrètes, des niveaux. Descendre d'un niveau, c'est émettre un photon ; monter, c'est en absorber un.",
+   "texte": "Niveaux quantifiés : émission et absorption de photons.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p22",
+   "ecran": "photon",
+   "dit": "La lumière est constituée de photons, des grains d'énergie. Chacun transporte une énergie égale à h fois nu, la constante de Planck multipliée par la fréquence, soit encore h fois c divisé par la longueur d'onde.",
+   "texte": "Le photon : E = hν = hc/λ.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p23",
+   "ecran": "ex_photon",
+   "dit": "Exemple résolu : un atome passe du niveau moins trois virgule quatre au niveau moins treize virgule six électron-volts. L'énergie libérée, dix virgule deux électron-volts, part en un photon de longueur d'onde cent vingt-deux nanomètres, dans l'ultraviolet.",
+   "texte": "Exemple : une transition de 10,2 eV émet à 122 nm.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p24",
+   "ecran": "recap",
+   "dit": "Récapitulons : des lentilles qui forment des images selon Descartes, un œil qui accommode, un microscope qui grossit, la loi de Wien pour les corps chauds, et le photon, grain d'énergie des transitions atomiques.",
+   "texte": "Lentilles, œil, microscope, Wien et photon : l'essentiel.",
+   "pause_apres": 1.0
+  }
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique",
+   "titre": "Optique géométrique",
+   "sous": "Lentilles minces, œil et microscope — et la lumière en photons",
+   "anim": {
+    "nom": "rayons",
+    "hauteur": 190
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "L'optique géométrique suit les rayons lumineux et prédit leurs images.",
+   "anim": {
+    "nom": "chambre",
+    "hauteur": 190
+   }
+  },
+  "definition": {
+   "type": "phrase",
+   "kicker": "Les lentilles minces",
+   "texte": "Un milieu transparent, d'épaisseur négligeable devant les rayons de courbure.",
+   "anim": {
+    "nom": "lentilles",
+    "hauteur": 210
+   }
+  },
+  "elements": {
+   "type": "recap",
+   "kicker": "Les éléments caractéristiques",
+   "etapes": [
+    "O : centre optique, un rayon passant par O n'est pas dévié",
+    "F' : foyer image, où convergent les rayons parallèles à l'axe",
+    "F : foyer objet, symétrique de F' par rapport à O",
+    "f' = OF' : distance focale ; C = 1/f' : vergence, en dioptries"
+   ],
+   "anim": {
+    "nom": "lentilles",
+    "hauteur": 120
+   }
+  },
+  "vergence": {
+   "type": "formule",
+   "kicker": "La vergence",
+   "tex": "C = \\frac{1}{f'}",
+   "note": "C en dioptries (δ) si f' est en mètres ; C > 0 : convergente, C < 0 : divergente."
+  },
+  "gauss": {
+   "type": "phrase",
+   "kicker": "Les conditions de Gauss",
+   "texte": "Des rayons peu inclinés et proches de l'axe : l'image est nette, non déformée.",
+   "anim": {
+    "nom": "rayons",
+    "hauteur": 160
+   }
+  },
+  "trois_rayons": {
+   "type": "recap",
+   "kicker": "Construire une image : les trois rayons",
+   "etapes": [
+    "Par le centre optique O : le rayon n'est pas dévié",
+    "Parallèle à l'axe : il émerge en passant par F'",
+    "Passant par F : il émerge parallèle à l'axe"
+   ],
+   "anim": {
+    "nom": "rayons",
+    "hauteur": 140
+   }
+  },
+  "descartes": {
+   "type": "formule",
+   "kicker": "La relation de conjugaison",
+   "tex": "\\frac{1}{\\overline{OA'}} - \\frac{1}{\\overline{OA}} = \\frac{1}{f'}",
+   "note": "Relation de Descartes, origine au centre optique, distances algébriques."
+  },
+  "grandissement": {
+   "type": "formule",
+   "kicker": "Le grandissement",
+   "tex": "\\gamma = \\frac{\\overline{A'B'}}{\\overline{AB}} = \\frac{\\overline{OA'}}{\\overline{OA}}",
+   "note": "γ < 0 : image renversée ; |γ| > 1 : image agrandie."
+  },
+  "exemple": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Un objet de 2 cm, à 20 cm d'une lentille convergente de focale 10 cm",
+   "tex": [
+    "\\frac{1}{\\overline{OA'}} = \\frac{1}{10} + \\frac{1}{-20} = \\frac{1}{20}",
+    "\\overline{OA'} = 20\\ \\text{cm} \\qquad \\gamma = \\frac{20}{-20} = -1"
+   ]
+  },
+  "association": {
+   "type": "formule",
+   "kicker": "Association de deux lentilles",
+   "tex": "C = C_1 + C_2",
+   "note": "Théorème des vergences pour des lentilles accolées ; séparées, on construit image par image."
+  },
+  "oeil": {
+   "type": "phrase",
+   "kicker": "L'œil réduit",
+   "texte": "Cristallin : la lentille ; rétine : l'écran ; iris : le diaphragme.",
+   "anim": {
+    "nom": "oeil",
+    "hauteur": 210
+   }
+  },
+  "accommodation": {
+   "type": "phrase",
+   "kicker": "L'accommodation",
+   "texte": "Le cristallin change de vergence ; PP vers 25 cm, PR à l'infini pour un œil normal.",
+   "anim": {
+    "nom": "oeil",
+    "hauteur": 170
+   }
+  },
+  "defauts": {
+   "type": "phrase",
+   "kicker": "Défauts de l'œil et corrections",
+   "texte": "Myopie : image avant la rétine, lentille divergente. Hypermétropie : après, lentille convergente.",
+   "anim": {
+    "nom": "oeil",
+    "hauteur": 150
+   }
+  },
+  "microscope": {
+   "type": "phrase",
+   "kicker": "Le microscope",
+   "texte": "Un objectif de courte focale, un oculaire qui joue la loupe.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 200
+   }
+  },
+  "grossissement": {
+   "type": "etape",
+   "kicker": "Caractériser le microscope",
+   "titre": "Puissance et grossissement",
+   "tex": [
+    "P = \\frac{\\alpha'}{AB}",
+    "G = \\frac{d_m}{f'_1} \\times \\frac{\\Delta}{f'_2}"
+   ]
+  },
+  "sources": {
+   "type": "phrase",
+   "kicker": "Les sources de lumière",
+   "texte": "Monochromatique : une seule longueur d'onde. Polychromatique : plusieurs.",
+   "anim": {
+    "nom": "onde_em",
+    "hauteur": 190
+   }
+  },
+  "spectres": {
+   "type": "phrase",
+   "kicker": "Les spectres",
+   "texte": "Spectre continu : un corps chaud. Spectre de raies : des atomes isolés.",
+   "anim": {
+    "nom": "prisme",
+    "hauteur": 200
+   }
+  },
+  "wien": {
+   "type": "formule",
+   "kicker": "La loi de Wien",
+   "tex": "\\lambda_{max} \\times T = 2{,}9 \\times 10^{-3}",
+   "note": "λ_max en mètres, T en kelvins ; le produit vaut 2,9 × 10⁻³ m·K."
+  },
+  "solaire": {
+   "type": "phrase",
+   "kicker": "Le spectre solaire",
+   "texte": "Continu, mais parsemé de raies sombres : l'absorption révèle la composition du Soleil.",
+   "anim": {
+    "nom": "rayonnement",
+    "hauteur": 180
+   }
+  },
+  "niveaux": {
+   "type": "phrase",
+   "kicker": "Interaction lumière-matière",
+   "texte": "L'énergie d'un atome est quantifiée : des niveaux discrets, E_n.",
+   "anim": {
+    "nom": "niveaux_atome_fig",
+    "hauteur": 210
+   }
+  },
+  "photon": {
+   "type": "formule",
+   "kicker": "Le photon",
+   "tex": "E = h \\nu = \\frac{h c}{\\lambda}",
+   "note": "h : constante de Planck, 6,63 × 10⁻³⁴ J·s ; ν : fréquence ; λ = c/ν."
+  },
+  "ex_photon": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Une transition de l'hydrogène : de −3,4 eV à −13,6 eV",
+   "tex": [
+    "\\Delta E = 10{,}2\\ \\text{eV} = 1{,}63 \\times 10^{-18}\\ \\text{J}",
+    "\\lambda = \\frac{h c}{\\Delta E} = \\tfrac{6{,}63 \\times 10^{-34} \\times 3 \\times 10^8}{1{,}63 \\times 10^{-18}}",
+    "\\lambda = 1{,}22 \\times 10^{-7}\\ \\text{m} = 122\\ \\text{nm}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Conjugaison : 1/OA' − 1/OA = 1/f' ; γ = OA'/OA",
+    "L'œil accommode ; le microscope grossit en deux lentilles",
+    "Loi de Wien : λ_max × T constant, le Soleil culmine à 500 nm",
+    "Photon : E = hν = hc/λ, l'énergie des atomes est quantifiée"
+   ]
+  }
+ },
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les lentilles minces et l'œil"
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "Microscope, spectres et photon",
+   "pont": {
+    "texte": "Partie 2 : le microscope, les spectres et le photon.",
+    "dit": "Partie deux : un instrument qui grossit, le microscope, puis la lumière elle-même, ses spectres et ses photons."
+   }
+  }
+ ]
+}

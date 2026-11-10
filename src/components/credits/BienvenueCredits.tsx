@@ -5,6 +5,7 @@ import { Modal, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { suivre } from '@/services/analytics';
 import { lireBienvenueRecente } from '@/services/credits';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
@@ -47,7 +48,10 @@ export function BienvenueCredits() {
       const b = await lireBienvenueRecente(getSupabase(), new Date(Date.now() - FENETRE_BIENVENUE_MS).toISOString());
       // « Vu » se retient par ligne de bonus : un nouveau bonus affiche de nouveau l'écran.
       if (!b || (await AsyncStorage.getItem(`${CLE_BIENVENUE_VUE}.${utilisateur}`)) === b.id) return;
-      if (actif) setBonus(b);
+      if (actif) {
+        setBonus(b);
+        suivre('welcome_credits_seen', { montant: b.montant });
+      }
     })().catch(() => {});
     return () => {
       actif = false;

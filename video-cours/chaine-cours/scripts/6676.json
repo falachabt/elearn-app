@@ -1,0 +1,400 @@
+{
+ "cours": 6676,
+ "lecons": [
+  9436,
+  10614,
+  10615,
+  10616
+ ],
+ "titre": "Transferts thermiques",
+ "matiere": "Physique",
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bonjour à tous. Aujourd'hui, on étudie les transferts thermiques : comment la chaleur passe d'un corps à l'autre, et comment on la mesure grâce à la calorimétrie.",
+   "texte": "Bonjour à tous. Aujourd'hui : les transferts thermiques.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "manifestations",
+   "dit": "L'énergie thermique se manifeste partout autour de nous : la combustion d'un combustible, le rayonnement du Soleil, un radiateur électrique, les frottements d'un freinage, la géothermie. Dans tous ces cas, de l'énergie est transférée sous forme de chaleur.",
+   "texte": "Combustion, Soleil, radiateur, frottements : l'énergie se transfère sous forme de chaleur.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p03",
+   "ecran": "conduction",
+   "dit": "Premier mode : la conduction. La chaleur se propage de proche en proche, par contacts entre les particules, sans déplacement de matière : c'est ce qui se passe le long d'une tige métallique chauffée à une extrémité, ou dans le sol chauffé par le Soleil.",
+   "texte": "La conduction : la chaleur avance de proche en proche, sans déplacement de matière.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p04",
+   "ecran": "convection",
+   "dit": "Deuxième mode : la convection. C'est le fluide lui-même, liquide ou gaz, qui se déplace et transporte la chaleur avec lui : l'air chaud s'élève au-dessus d'un radiateur, l'eau chauffe dans la marmite, et la brise marine rafraîchit les côtes le soir.",
+   "texte": "La convection : un fluide en mouvement transporte la chaleur.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p05",
+   "ecran": "rayonnement",
+   "dit": "Troisième mode : le rayonnement. La chaleur voyage sous forme d'ondes électromagnétiques, sans aucun support matériel : c'est ainsi que la chaleur du Soleil parvient jusqu'à la Terre, à travers le vide de l'espace.",
+   "texte": "Le rayonnement : la chaleur voyage par ondes, sans support matériel.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p06",
+   "ecran": "flux",
+   "dit": "Le flux thermique est la quantité de chaleur transférée par unité de temps. Attention à bien distinguer : la chaleur est une énergie, qui s'exprime en joules ; la température est un état du corps, en degrés Celsius ou en kelvins. Le flux dépend de l'écart de température, pas des températures elles-mêmes.",
+   "texte": "Flux thermique : chaleur transférée par unité de temps, en watts.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "fourier",
+   "dit": "Pour une paroi plane, la loi de Fourier donne le flux de conduction : lambda, la conductivité thermique du matériau, fois la surface, fois l'écart de température, le tout divisé par l'épaisseur. Le flux circule toujours de la zone chaude vers la zone froide.",
+   "texte": "Loi de Fourier pour une paroi : le flux est proportionnel à l'écart de température.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p08",
+   "ecran": "resistance",
+   "dit": "Une paroi s'oppose plus ou moins au passage de la chaleur : sa résistance thermique vaut son épaisseur divisée par sa conductivité. Plus elle est grande, meilleure est l'isolation. Et pour des parois superposées, en série, les résistances s'ajoutent, comme en électricité.",
+   "texte": "Résistance thermique d'une paroi : épaisseur sur conductivité. En série, elles s'ajoutent.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p09",
+   "ecran": "materiaux",
+   "dit": "Quelques repères de conductivité : le polystyrène, excellent isolant, vaut environ zéro virgule zéro trois ; le banco des murs du Sahel, environ zéro virgule deux ; la brique rouge, zéro virgule sept ; le béton, un virgule quatre. Un mur de banco de trente centimètres a ainsi une résistance thermique de deux.",
+   "texte": "Conductivités : polystyrène 0,03 ; banco 0,2 ; brique 0,7 ; béton 1,4. Le mur de banco résiste bien.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p10",
+   "ecran": "isolation",
+   "dit": "Dans l'habitat des zones chaudes et sèches, on joue sur les trois modes : des murs de banco peu conducteurs contre la conduction, des toits ventilés dont l'air chasse la chaleur par convection, et des peintures blanches ou argentées qui rejettent le rayonnement solaire.",
+   "texte": "Isoler au Sahel : banco contre la conduction, toits ventilés, peintures réfléchissantes.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p11",
+   "ecran": "chaleur",
+   "dit": "Sans changement d'état, la chaleur échangée par un corps est proportionnelle à sa masse et à la variation de température : Q égale m fois c fois delta T. La constante c est la chaleur massique du matériau : c'est la chaleur qu'il faut à un kilogramme pour gagner un kelvin.",
+   "texte": "Sans changement d'état : Q égale m fois c fois delta T.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p12",
+   "ecran": "alu_ex",
+   "dit": "Exemple. Pour chauffer cinq cents grammes d'aluminium de vingt à quatre-vingts degrés, il faut zéro virgule cinq fois neuf cents fois soixante, soit vingt-sept mille joules, ou vingt-sept kilojoules.",
+   "texte": "Exemple : 500 grammes d'aluminium chauffés de 60 degrés, 27 kilojoules.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p13",
+   "ecran": "the_ex",
+   "dit": "Exemple du quotidien. Porter deux kilogrammes d'eau de vingt-cinq à cent degrés, pour le thé ou la bouillie, demande deux fois environ quatre mille deux cents fois soixante-quinze, soit six cent trente mille joules. L'huile de palme, de chaleur massique moitié moindre, chaufferait deux fois plus vite : l'eau est longue à chauffer.",
+   "texte": "Exemple : 2 kilogrammes d'eau portés à ébullition, environ 630 kilojoules.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p14",
+   "ecran": "latente",
+   "dit": "Pendant un changement d'état, toute la chaleur fournie sert à transformer la matière, pas à la chauffer : la température reste constante. La chaleur échangée vaut alors la masse fois la chaleur latente L : positive quand le corps absorbe, pour fondre ou se vaporiser, négative quand il libère de la chaleur en se solidifiant ou en se liquéfiant.",
+   "texte": "Changement d'état : Q égale m fois L, à température constante.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "latente_ex",
+   "dit": "Pour l'eau, la chaleur latente de fusion vaut trois virgule trente-quatre fois dix puissance cinq joules par kilogramme, et celle de vaporisation deux virgule vingt-six fois dix puissance six. Vaporiser cent grammes d'eau à cent degrés demande donc zéro virgule un fois deux virgule vingt-six fois dix puissance six, soit deux cent vingt-six mille joules.",
+   "texte": "Exemple : vaporiser 100 grammes d'eau à 100 degrés demande 226 kilojoules.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p16",
+   "ecran": "principe",
+   "dit": "Le principe des échanges de chaleur dit que, dans un système isolé, la chaleur perdue par les corps chauds est exactement gagnée par les corps froids : la somme des chaleurs reçues et des chaleurs cédées est nulle. C'est la base de la méthode des mélanges.",
+   "texte": "Système isolé : chaleur perdue par le chaud égale chaleur gagnée par le froid.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p17",
+   "ecran": "melange_ex",
+   "dit": "Exemple. On mélange deux cents grammes d'eau à quatre-vingts degrés avec trois cents grammes d'eau à vingt degrés. En écrivant que la somme des chaleurs est nulle, la température finale vaut la moyenne pondérée par les masses : zéro virgule deux fois quatre-vingts, plus zéro virgule trois fois vingt, divisé par zéro virgule cinq, soit quarante-quatre degrés.",
+   "texte": "Exemple : 200 grammes à 80 degrés plus 300 grammes à 20 degrés donnent 44 degrés.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p18",
+   "ecran": "calorimetre",
+   "dit": "Le calorimètre est l'appareil de ces mesures : une enceinte adiabatique, qui n'échange aucune chaleur avec l'extérieur. Il comprend un récipient isolé, souvent en polystyrène ou à double paroi vide d'air comme le vase Dewar, un couvercle, un thermomètre, et un agitateur qui homogénéise la température.",
+   "texte": "Le calorimètre : enceinte adiabatique, thermomètre et agitateur, pour mesurer les chaleurs.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p19",
+   "ecran": "valeur_eau",
+   "dit": "Le calorimètre lui-même absorbe un peu de chaleur : on le représente par sa valeur en eau, notée mu. C'est la masse d'eau qui aurait la même capacité calorifique que lui : mu vaut sa capacité calorifique divisée par la chaleur massique de l'eau, et il s'ajoute à la masse d'eau dans les calculs.",
+   "texte": "Valeur en eau mu : le calorimètre compte comme une masse d'eau supplémentaire.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p20",
+   "ecran": "calo_ex",
+   "dit": "Exemple. Dans un calorimètre de valeur en eau cinquante grammes, on verse cent grammes d'eau à vingt degrés, puis cent cinquante grammes d'eau à soixante degrés. En comptant les cinquante grammes avec l'eau froide, l'équation des échanges donne une température finale de quarante degrés.",
+   "texte": "Exemple : avec une valeur en eau de 50 grammes, le mélange s'équilibre à 40 degrés.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p21",
+   "ecran": "bilan_ex",
+   "dit": "Exemple de bilan complet. Au Burkina Faso, on chauffe deux kilogrammes d'eau dans une casserole d'acier de cinq cents grammes, de vingt-cinq à quatre-vingt-cinq degrés. L'eau demande environ cinq cent un mille six cents joules, la casserole quinze mille : le feu a fourni au total environ cinq cent dix-sept kilojoules.",
+   "texte": "Exemple de bilan : eau plus casserole chauffées, environ 517 kilojoules fournis par le feu.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p22",
+   "ecran": "regle_or",
+   "dit": "Retenez la règle d'or des bilans thermiques. Système isolé : la somme des chaleurs échangées est nulle. Système non isolé : il faut ajouter l'apport ou la perte vers l'extérieur, qu'il vienne du Soleil, de l'air ou des parois. C'est la conservation de l'énergie appliquée à la chaleur.",
+   "texte": "Règle d'or : système isolé, somme des chaleurs nulle ; sinon, compter les échanges extérieurs.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p23",
+   "ecran": "analogues",
+   "dit": "Le même principe d'isolation sert dans la vie quotidienne : la bouteille thermos conserve la température des boissons, la glacière isotherme limite les échanges, la marmite à double paroi réduit les pertes, et la serre piège le rayonnement infrarouge.",
+   "texte": "Thermos, glacière, marmite à double paroi, serre : le principe du calorimètre au quotidien.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p24",
+   "ecran": "recap",
+   "dit": "À retenir : la chaleur se transmet par conduction, convection et rayonnement ; sans changement d'état, Q vaut m fois c fois delta T ; lors d'un changement d'état, Q vaut m fois L à température constante ; et dans un système isolé, la somme des chaleurs échangées est toujours nulle.",
+   "texte": "À retenir : trois modes de transfert, Q égale m c delta T, Q égale m L, somme des chaleurs nulle.",
+   "pause_apres": 0.9
+  }
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique · Première",
+   "titre": "Transferts thermiques",
+   "sous": "Conduction, convection, rayonnement et calorimétrie",
+   "anim": {
+    "nom": "transfert",
+    "hauteur": 190
+   }
+  },
+  "manifestations": {
+   "type": "phrase",
+   "kicker": "L'énergie thermique au quotidien",
+   "texte": "Combustion, Soleil, radiateur, freinage, géothermie : de l'énergie transférée en chaleur.",
+   "anim": {
+    "nom": "agitation",
+    "hauteur": 180
+   }
+  },
+  "conduction": {
+   "type": "phrase",
+   "kicker": "Premier mode · la conduction",
+   "texte": "De proche en proche, sans déplacement de matière : la tige métallique chauffée à un bout.",
+   "anim": {
+    "nom": "transfert",
+    "hauteur": 170
+   }
+  },
+  "convection": {
+   "type": "phrase",
+   "kicker": "Deuxième mode · la convection",
+   "texte": "Le fluide en mouvement transporte la chaleur : air chaud qui monte, brise marine du soir.",
+   "anim": {
+    "nom": "convection_fig",
+    "hauteur": 230
+   }
+  },
+  "rayonnement": {
+   "type": "phrase",
+   "kicker": "Troisième mode · le rayonnement",
+   "texte": "Des ondes électromagnétiques, sans support : la chaleur du Soleil traverse le vide.",
+   "anim": {
+    "nom": "rayonnement",
+    "hauteur": 180
+   }
+  },
+  "flux": {
+   "type": "formule",
+   "kicker": "Flux thermique",
+   "tex": "\\Phi = \\frac{\\Delta Q}{\\Delta t}",
+   "note": "Φ en watts · la chaleur Q est une énergie (joules), la température un état (kelvins ou degrés)"
+  },
+  "fourier": {
+   "type": "formule",
+   "kicker": "Loi de Fourier · paroi plane",
+   "tex": "\\Phi = \\lambda A \\frac{\\Delta T}{d}",
+   "note": "λ : conductivité thermique du matériau · A : surface · d : épaisseur de la paroi"
+  },
+  "resistance": {
+   "type": "formule",
+   "kicker": "Résistance thermique d'une paroi",
+   "tex": "R = \\frac{d}{\\lambda}",
+   "note": "plus R est grand, plus l'isolation est efficace · en série : R total = R₁ + R₂ + …"
+  },
+  "materiaux": {
+   "type": "etape",
+   "kicker": "Repères",
+   "titre": "Conductivités thermiques λ (en W/m/K)",
+   "tex": [
+    "\\lambda_{polystyrène} \\approx 0{,}03 \\quad \\lambda_{banco} \\approx 0{,}2",
+    "\\lambda_{brique} \\approx 0{,}7 \\quad \\lambda_{béton} \\approx 1{,}4",
+    "R_{banco} = \\frac{0{,}30}{0{,}15} = 2{,}0"
+   ]
+  },
+  "isolation": {
+   "type": "phrase",
+   "kicker": "Application · l'habitat en zone chaude",
+   "texte": "Banco peu conducteur, toits ventilés par convection, peintures blanches contre le rayonnement.",
+   "anim": {
+    "nom": "rayonnement",
+    "hauteur": 160
+   }
+  },
+  "chaleur": {
+   "type": "formule",
+   "kicker": "Quantité de chaleur sans changement d'état",
+   "tex": "Q = m c \\Delta T",
+   "note": "c : chaleur massique en joules par kilogramme et par kelvin · eau : environ 4 180"
+  },
+  "alu_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Chauffer de l'aluminium",
+   "tex": [
+    "m = 0{,}5 \\ \\text{kg} \\quad c = 900 \\quad \\Delta T = 80 - 20 = 60 \\ \\text{K}",
+    "Q = 0{,}5 \\times 900 \\times 60 = 27\\,000 \\ \\text{J} = 27 \\ \\text{kJ}"
+   ]
+  },
+  "the_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Porter de l'eau à ébullition",
+   "tex": [
+    "m = 2 \\ \\text{kg} \\quad c_{eau} \\approx 4200 \\quad \\Delta T = 100 - 25 = 75 \\ \\text{K}",
+    "Q = 2 \\times 4200 \\times 75 = 630\\,000 \\ \\text{J} = 0{,}63 \\ \\text{MJ}"
+   ]
+  },
+  "latente": {
+   "type": "formule",
+   "kicker": "Quantité de chaleur lors d'un changement d'état",
+   "tex": "Q = m L",
+   "note": "L : chaleur latente en joules par kilogramme · la température reste constante",
+   "anim": {
+    "nom": "phases",
+    "hauteur": 150
+   }
+  },
+  "latente_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Vaporiser de l'eau à 100 degrés",
+   "tex": [
+    "L_f = 3{,}34 \\times 10^5 \\ \\text{J/kg} \\quad L_v = 2{,}26 \\times 10^6 \\ \\text{J/kg}",
+    "Q = 0{,}1 \\times 2{,}26 \\times 10^6 = 226\\,000 \\ \\text{J}"
+   ],
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 120
+   }
+  },
+  "principe": {
+   "type": "formule",
+   "kicker": "Principe des échanges de chaleur",
+   "tex": "\\sum Q_{reçus} + \\sum Q_{cédés} = 0",
+   "note": "système isolé, sans échange avec l'extérieur : c'est la méthode des mélanges"
+  },
+  "melange_ex": {
+   "type": "etape",
+   "kicker": "Méthode des mélanges",
+   "titre": "Exemple : mélange de deux eaux",
+   "tex": [
+    "m_1 c (T_f - 80) + m_2 c (T_f - 20) = 0",
+    "T_f = \\frac{0{,}2 \\times 80 + 0{,}3 \\times 20}{0{,}2 + 0{,}3} = 44^\\circ\\text{C}"
+   ],
+   "anim": {
+    "nom": "calorimetre_fig",
+    "hauteur": 120
+   }
+  },
+  "calorimetre": {
+   "type": "phrase",
+   "kicker": "Le calorimètre",
+   "texte": "Enceinte adiabatique : récipient isolé, couvercle, thermomètre et agitateur.",
+   "anim": {
+    "nom": "calorimetre_fig",
+    "hauteur": 210
+   }
+  },
+  "valeur_eau": {
+   "type": "formule",
+   "kicker": "Capacité calorifique et valeur en eau",
+   "tex": "\\mu = \\frac{C}{c_{eau}}",
+   "note": "C : capacité calorifique du calorimètre (Q = C ΔT) · μ s'exprime comme une masse d'eau"
+  },
+  "calo_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Mélange dans un calorimètre de valeur en eau 50 grammes",
+   "tex": [
+    "(0{,}100 + 0{,}050)(T_f - 20) + 0{,}150 (T_f - 60) = 0",
+    "0{,}30 \\, T_f = 12 \\quad \\Rightarrow \\quad T_f = 40^\\circ\\text{C}"
+   ]
+  },
+  "bilan_ex": {
+   "type": "etape",
+   "kicker": "Bilan énergétique",
+   "titre": "Exemple : chauffer l'eau et sa casserole",
+   "tex": [
+    "Q_{eau} = 2 \\times 4180 \\times 60 = 501\\,600 \\ \\text{J}",
+    "Q_{casserole} = 0{,}5 \\times 500 \\times 60 = 15\\,000 \\ \\text{J}",
+    "Q_{total} \\approx 517 \\ \\text{kJ}"
+   ]
+  },
+  "regle_or": {
+   "type": "phrase",
+   "kicker": "La règle d'or des bilans",
+   "texte": "Système isolé : somme des chaleurs nulle. Sinon, ajouter les apports et pertes extérieurs."
+  },
+  "analogues": {
+   "type": "phrase",
+   "kicker": "Des calorimètres au quotidien",
+   "texte": "Thermos, glacière isotherme, marmite à double paroi, serre : isoler pour conserver."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Trois modes : conduction, convection, rayonnement",
+    "Flux thermique : Φ = ΔQ/Δt, en watts",
+    "Sans changement d'état : Q = m c ΔT",
+    "Changement d'état Q = m L ; mélanges : somme des chaleurs nulle"
+   ]
+  }
+ },
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les modes de transfert et la conduction"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Calorimétrie : mesurer les chaleurs échangées",
+   "pont": {
+    "texte": "Partie 2 : la calorimétrie, mesurer les chaleurs échangées.",
+    "dit": "Partie deux : la calorimétrie, ou comment mesurer les chaleurs échangées."
+   }
+  }
+ ]
+}

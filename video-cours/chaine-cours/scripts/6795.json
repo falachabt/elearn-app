@@ -1,0 +1,413 @@
+{
+ "cours": 6795,
+ "ecrans": {
+  "air": {
+   "kicker": "La pollution de l'air",
+   "tex": [
+    "\\text{ammoniac } \\mathrm{NH_3} \\text{ : volatilisation}",
+    "\\text{protoxyde d'azote } \\mathrm{N_2O} \\text{ : dénitrification}",
+    "\\text{gaz à effet de serre et particules fines}"
+   ],
+   "titre": "Deux gaz azotés dans l'air",
+   "type": "etape"
+  },
+  "air_exemple": {
+   "kicker": "Exemple : l'ammoniac qui s'échappe",
+   "tex": [
+    "\\text{chaleur : une partie}",
+    "\\text{de l'azote s'échappe en } \\mathrm{NH_3}",
+    "\\text{il se combine à d'autres polluants}",
+    "\\text{particules fines irritantes}",
+    "\\text{pour les voies respiratoires}"
+   ],
+   "titre": "De l'engrais aux particules fines",
+   "type": "etape"
+  },
+  "besoins": {
+   "kicker": "Les besoins d'une culture",
+   "tex": [
+    "\\text{exprimés en quantité d'azote à apporter}",
+    "\\text{par unité de surface, en}",
+    "\\text{kg de N par hectare}",
+    "\\text{on utilise le}",
+    "\\text{pourcentage d'azote de l'étiquette}"
+   ],
+   "titre": "Combien d'azote par hectare ?",
+   "type": "etape"
+  },
+  "conclusion": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "plante_fig"
+   },
+   "kicker": "Une agriculture durable",
+   "texte": "Nourrir sans polluer : doser, raisonner, protéger.",
+   "type": "phrase"
+  },
+  "eau": {
+   "kicker": "La pollution de l'eau, la plus grave",
+   "tex": [
+    "\\text{lessivage : nitrates } \\mathrm{NO_3^-}",
+    "\\text{vers les nappes}",
+    "\\text{ruissellement : phosphates } \\mathrm{PO_4^{3-}}",
+    "\\text{vers les rivières et les lacs}",
+    "\\text{engrais entraînés par la pluie}"
+   ],
+   "titre": "Lessivage et ruissellement",
+   "type": "etape"
+  },
+  "engrais_def": {
+   "kicker": "Qu'est-ce qu'un engrais ?",
+   "tex": [
+    "\\text{substance naturelle ou synthétique}",
+    "\\text{minérale ou organique}",
+    "\\text{apportée aux sols ou aux plantes}"
+   ],
+   "titre": "Nourrir le sol, nourrir la plante",
+   "type": "etape"
+  },
+  "etiquette": {
+   "kicker": "Lire l'étiquette d'un engrais",
+   "tex": [
+    "\\text{formule N-P-K, nature des éléments}",
+    "\\text{masse nette du produit}",
+    "\\text{parfois :}",
+    "\\text{magnésium, soufre, oligoéléments}"
+   ],
+   "titre": "Formule, nature, masse nette",
+   "type": "etape"
+  },
+  "eutrophisation": {
+   "kicker": "L'eutrophisation",
+   "tex": [
+    "\\text{prolifération excessive d'algues}",
+    "\\text{elles consomment l'oxygène de l'eau}",
+    "\\text{mort des poissons, écosystème dégradé}"
+   ],
+   "titre": "Trop d'algues, plus d'oxygène",
+   "type": "etape"
+  },
+  "exemple_10152015": {
+   "kicker": "Exemple : l'engrais 10 – 20 – 15",
+   "tex": [
+    "\\text{10 % d'azote (N)}",
+    "\\text{20 % de phosphore, exprimé en } \\mathrm{P_2O_5}",
+    "\\text{15 % de potassium, exprimé en } \\mathrm{K_2O}"
+   ],
+   "titre": "Dix, vingt, quinze : trois pourcentages",
+   "type": "etape"
+  },
+  "exemple_nitrates": {
+   "kicker": "Exemple : la nappe contaminée",
+   "note": "Concentration mesurée 80 mg/L, norme 50 mg/L",
+   "tex": "80\\, \\mathrm{mg/L} > 50\\, \\mathrm{mg/L} \\text{ : eau impropre}",
+   "type": "formule"
+  },
+  "fertilisant": {
+   "kicker": "Fertilisant et élément fertilisant",
+   "tex": [
+    "\\text{fertilisant : produit destiné}",
+    "\\text{à nourrir les plantes}",
+    "\\text{l'engrais est un type de fertilisant}",
+    "\\text{trois éléments principaux : N, P, K}"
+   ],
+   "titre": "Nourrir, et les trois éléments clés",
+   "type": "etape"
+  },
+  "formule_dose": {
+   "kicker": "La dose d'engrais à épandre",
+   "note": "m azote nécessaire en kg, tN en fraction (0,15 pour 15 %)",
+   "tex": "m_{\\text{engrais}} = \\frac{m_{\\text{azote nécessaire}}}{t_{\\text{N}}}",
+   "type": "formule"
+  },
+  "formule_npk": {
+   "kicker": "La formule d'un engrais",
+   "note": "Teneurs massiques en pourcent de la masse totale",
+   "tex": "\\text{N} - \\text{P}_2\\text{O}_5 - \\text{K}_2\\text{O}",
+   "type": "formule"
+  },
+  "mais_etape1": {
+   "kicker": "Exemple : le maïs, étape 1",
+   "note": "Besoin 60 kg N/ha, parcelle de 2 ha",
+   "tex": "m(\\text{N}) = 60 \\times 2 = 120\\, \\mathrm{kg}",
+   "type": "formule"
+  },
+  "mais_resultat": {
+   "kicker": "Exemple : le maïs, résultat",
+   "note": "Engrais 20 – 10 – 10, tN = 0,20",
+   "tex": "m_{\\text{engrais}} = \\frac{120}{0{,}20} = 600\\, \\mathrm{kg}",
+   "type": "formule"
+  },
+  "moderation": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "profil_sol_fig"
+   },
+   "kicker": "Modération et doses",
+   "texte": "Excès d'engrais : sols et eaux pollués.",
+   "type": "phrase"
+  },
+  "ph_exemple": {
+   "kicker": "Exemple : le sol qui s'acidifie",
+   "note": "Engrais phosphatés en grandes quantités, chaque année",
+   "tex": "\\text{pH : } 6{,}5 \\rightarrow 4{,}8",
+   "type": "formule"
+  },
+  "pollution_def": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "profil_sol_fig"
+   },
+   "kicker": "Qu'est-ce que la pollution ?",
+   "texte": "Des substances nocives qui dégradent l'environnement.",
+   "type": "phrase"
+  },
+  "pratiques": {
+   "kicker": "Des pratiques adaptées",
+   "tex": [
+    "\\text{rotation des cultures}",
+    "\\text{cultures pièges à}",
+    "\\text{nitrates, bandes enherbées}",
+    "\\text{agriculture biologique : pas de synthèse}"
+   ],
+   "titre": "Rotation, pièges, bandes, bio",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Engrais : N-P-K, teneurs massiques en pourcent",
+    "Dose : masse d'engrais = azote nécessaire divisé par teneur",
+    "Pollution : air NH₃ et N₂O, eau nitrates et phosphates, sols acidifiés",
+    "Lutte : raisonner, organique, rotation, pièges, bandes",
+    "Eau : dénitrification et stations d'épuration"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "sac_25kg": {
+   "kicker": "Exemple : le sac de 25 kg",
+   "note": "Mention 15 – 5 – 20, azote à 15 %",
+   "tex": "m(\\text{N}) = \\frac{15}{100} \\times 25 = 3{,}75\\, \\mathrm{kg}",
+   "type": "formule"
+  },
+  "sols": {
+   "kicker": "La pollution des sols",
+   "tex": [
+    "\\text{acidification : les}",
+    "\\text{engrais azotés acidifient}",
+    "\\text{salinisation : excès de sels minéraux}",
+    "\\text{métaux lourds : cadmium, plomb, mercure}"
+   ],
+   "titre": "Acidifiés, salés, contaminés",
+   "type": "etape"
+  },
+  "source": {
+   "kicker": "Lutter à la source",
+   "tex": [
+    "\\text{fertilisation raisonnée, après}",
+    "\\text{analyse du sol}",
+    "\\text{engrais organiques : fumier, compost}",
+    "\\text{engrais à libération lente}"
+   ],
+   "titre": "Doser juste, diffuser lentement",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "plante_fig"
+   },
+   "kicker": "Sciences Physiques et Technologie · Engrais et environnement",
+   "sous": "Formules N-P-K, doses à épandre et pollution liée aux engrais",
+   "titre": "Les engrais : nourrir les plantes, protéger l'environnement",
+   "type": "titre"
+  },
+  "traitement_eaux": {
+   "kicker": "Traiter les eaux polluées",
+   "tex": [
+    "\\text{dénitrification des eaux souterraines}",
+    "\\text{stations d'épuration}",
+    "\\text{éliminer nitrates et}",
+    "\\text{phosphates avant rejet}"
+   ],
+   "titre": "Dénitrifier, épurer, rejeter propre",
+   "type": "etape"
+  }
+ },
+ "matiere": "Sciences Physiques et Technologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Formules N-P-K et doses à épandre"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : la pollution liée à l'utilisation des engrais. Nous verrons comment l'air, l'eau et les sols sont pollués, avec des exemples chiffrés.",
+    "texte": "Partie 2 : la pollution liée aux engrais."
+   },
+   "sous_titre": "La pollution de l'air, de l'eau et des sols"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : lutter contre la pollution par les engrais. Nous verrons la lutte à la source, les pratiques agricoles adaptées et le traitement des eaux polluées.",
+    "texte": "Partie 3 : lutter contre la pollution."
+   },
+   "sous_titre": "Lutter contre la pollution par les engrais"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur les engrais. Nous apprendrons d'abord à lire une formule d'engrais et à calculer la dose à épandre, puis nous verrons la pollution que leur usage excessif peut provoquer, et comment la limiter.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Les engrais : nourrir, doser, protéger."
+  },
+  {
+   "dit": "Un engrais est une substance naturelle ou synthétique, minérale ou organique, apportée aux sols ou aux plantes afin d'améliorer leur croissance et d'augmenter le rendement des cultures.",
+   "ecran": "engrais_def",
+   "id": "p02",
+   "texte": "Engrais : améliorer la croissance et le rendement."
+  },
+  {
+   "dit": "Un fertilisant est un produit destiné à nourrir les plantes : l'engrais est donc un type de fertilisant. Un élément fertilisant est un élément chimique essentiel à la croissance de la plante, présent dans un engrais, et les trois principaux sont l'azote, le phosphore et le potassium.",
+   "ecran": "fertilisant",
+   "id": "p03",
+   "texte": "Fertilisant, élément fertilisant, N, P, K."
+  },
+  {
+   "dit": "La formule d'un engrais est l'indication, sur son étiquette, des teneurs massiques en éléments fertilisants principaux, exprimées en pourcentage de la masse totale de l'engrais. Sa forme standard est N, P, K : le premier nombre indique le pourcentage massique d'azote, le deuxième celui du phosphore, exprimé en P deux O cinq, le troisième celui du potassium, exprimé en K deux O.",
+   "ecran": "formule_npk",
+   "id": "p04",
+   "texte": "Formule : N – P₂O₅ – K₂O."
+  },
+  {
+   "dit": "Exemple : un engrais noté dix, vingt, quinze contient dix pour cent d'azote, vingt pour cent de phosphore, exprimé en P deux O cinq, et quinze pour cent de potassium, exprimé en K deux O.",
+   "ecran": "exemple_10152015",
+   "id": "p05",
+   "texte": "10 – 20 – 15 : trois pourcentages."
+  },
+  {
+   "dit": "L'étiquette d'un engrais doit indiquer la formule N-P-K, la nature des éléments, la masse nette du produit, et parfois des éléments secondaires comme le magnésium et le soufre, ou des oligoéléments.",
+   "ecran": "etiquette",
+   "id": "p06",
+   "texte": "Étiquette : formule, nature, masse nette."
+  },
+  {
+   "dit": "Exemple résolu : un sac d'engrais de vingt-cinq kilogrammes porte la mention quinze, cinq, vingt. Quelle est la masse d'azote contenue dans ce sac ? Le pourcentage d'azote est quinze pour cent, la masse d'azote vaut donc quinze centièmes fois vingt-cinq, soit trois virgule soixante-quinze kilogrammes.",
+   "ecran": "sac_25kg",
+   "id": "p07",
+   "texte": "Sac de 25 kg à 15 % : 3,75 kg d'azote."
+  },
+  {
+   "dit": "Les besoins d'une culture sont généralement exprimés en quantité d'azote à apporter par unité de surface, par exemple en kilogrammes d'azote par hectare. Pour déterminer la masse d'engrais à épandre, on utilise le pourcentage d'azote indiqué sur l'étiquette.",
+   "ecran": "besoins",
+   "id": "p08",
+   "texte": "Besoins : des kilogrammes d'azote par hectare."
+  },
+  {
+   "dit": "La formule s'écrit : masse d'engrais égale masse d'azote nécessaire divisée par la teneur en azote, où la teneur est exprimée en fraction, par exemple zéro virgule quinze pour quinze pour cent.",
+   "ecran": "formule_dose",
+   "id": "p09",
+   "texte": "Dose : azote nécessaire divisé par la teneur."
+  },
+  {
+   "dit": "Exemple résolu : un agriculteur doit apporter soixante kilogrammes d'azote par hectare à sa parcelle de maïs, et il dispose d'un engrais de formule vingt, dix, dix. Première étape : la masse d'azote totale nécessaire vaut soixante fois deux hectares, soit cent vingt kilogrammes.",
+   "ecran": "mais_etape1",
+   "id": "p10",
+   "texte": "Maïs : 60 kg/ha sur 2 ha, 120 kg d'azote."
+  },
+  {
+   "dit": "Deuxième étape : la teneur en azote de l'engrais est de vingt pour cent, soit zéro virgule vingt. La masse d'engrais à épandre vaut cent vingt divisé par zéro virgule vingt, soit six cents kilogrammes. L'agriculteur doit donc épandre six cents kilogrammes de cet engrais sur sa parcelle de deux hectares.",
+   "ecran": "mais_resultat",
+   "id": "p11",
+   "texte": "Maïs : 120 / 0,20 = 600 kg d'engrais."
+  },
+  {
+   "dit": "Les engrais doivent être utilisés avec modération et selon les besoins réels des cultures. Un excès d'engrais peut entraîner une pollution des sols et des eaux, par les nitrates et les phosphates, un phénomène appelé eutrophisation. L'analyse du sol et le respect des doses recommandées sont essentiels pour une agriculture durable.",
+   "ecran": "moderation",
+   "id": "p12",
+   "texte": "Modération : excès, pollution, eutrophisation."
+  },
+  {
+   "dit": "La pollution, c'est la dégradation de l'environnement, air, eau et sols, par l'introduction de substances nocives, appelées polluants, qui perturbent l'équilibre des écosystèmes et menacent la santé des êtres vivants. Les engrais, apportés aux sols pour favoriser la croissance des plantes, contiennent de l'azote, du phosphore et du potassium, et leur utilisation massive et inappropriée génère des pollutions importantes.",
+   "ecran": "pollution_def",
+   "id": "p13",
+   "texte": "Pollution : des substances nocives dans l'environnement."
+  },
+  {
+   "dit": "Pour l'air, l'azote contenu dans les engrais peut se transformer et libérer des gaz dans l'atmosphère : l'ammoniac, par volatilisation à partir des engrais azotés, et le protoxyde d'azote, un gaz à effet de serre produit par les réactions microbiennes du sol, la dénitrification. Ces gaz contribuent au réchauffement climatique et à la formation de particules fines.",
+   "ecran": "air",
+   "id": "p14",
+   "texte": "Air : ammoniac et protoxyde d'azote."
+  },
+  {
+   "dit": "Exemple résolu : un champ reçoit un engrais azoté. Sous l'effet de la chaleur, une partie de l'azote s'échappe dans l'air sous forme d'ammoniac. Ce gaz se combine avec d'autres polluants atmosphériques et forme des particules fines irritantes pour les voies respiratoires.",
+   "ecran": "air_exemple",
+   "id": "p15",
+   "texte": "Chaleur : l'azote s'échappe en ammoniac."
+  },
+  {
+   "dit": "La pollution de l'eau est la forme la plus grave. Les engrais non absorbés par les plantes sont entraînés par les eaux de pluie : par lessivage, les nitrates s'infiltrent dans les nappes phréatiques, et par ruissellement, les phosphates sont transportés vers les rivières et les lacs.",
+   "ecran": "eau",
+   "id": "p16",
+   "texte": "Eau : lessivage des nitrates, ruissellement des phosphates."
+  },
+  {
+   "dit": "Ce phénomène provoque l'eutrophisation : la prolifération excessive d'algues qui consomment l'oxygène de l'eau, entraînant la mort des poissons et la dégradation de l'écosystème aquatique.",
+   "ecran": "eutrophisation",
+   "id": "p17",
+   "texte": "Eutrophisation : trop d'algues, plus d'oxygène."
+  },
+  {
+   "dit": "Exemple résolu : des analyses montrent une concentration de nitrates de quatre-vingts milligrammes par litre dans une nappe phréatique, alors que la norme est de cinquante milligrammes par litre. Cette contamination provient du lessivage des engrais épandus sur les cultures voisines, et l'eau devient impropre à la consommation humaine.",
+   "ecran": "exemple_nitrates",
+   "id": "p18",
+   "texte": "Nappe : 80 mg/L, norme 50 mg/L, eau impropre."
+  },
+  {
+   "dit": "L'accumulation d'engrais dans le sol provoque l'acidification, car les engrais azotés augmentent l'acidité du sol, la salinisation, par excès de sels minéraux, et la contamination par les métaux lourds, car certains engrais contiennent du cadmium, du plomb ou du mercure à l'état de traces. Ces phénomènes diminuent la fertilité naturelle des sols et réduisent la biodiversité des micro-organismes essentiels à leur équilibre.",
+   "ecran": "sols",
+   "id": "p19",
+   "texte": "Sols : acidifiés, salés, contaminés."
+  },
+  {
+   "dit": "Exemple résolu : un sol recevant chaque année de grandes quantités d'engrais phosphatés présente un pH qui passe de six virgule cinq à quatre virgule huit. Cette acidification rend le sol toxique pour les vers de terre et réduit la capacité des plantes à absorber les nutriments.",
+   "ecran": "ph_exemple",
+   "id": "p20",
+   "texte": "Sol : pH de 6,5 à 4,8."
+  },
+  {
+   "dit": "Première lutte, à la source : la fertilisation raisonnée, qui adapte la dose d'engrais aux besoins réels des plantes après analyse du sol, l'utilisation d'engrais organiques comme le fumier et le compost en remplacement partiel des engrais chimiques, et le choix d'engrais à libération lente, dont la diffusion progressive des nutriments limite le lessivage.",
+   "ecran": "source",
+   "id": "p21",
+   "texte": "À la source : raisonner, organique, libération lente."
+  },
+  {
+   "dit": "Deuxième lutte, par des pratiques agricoles adaptées : la rotation des cultures, qui alterne les cultures pour maintenir l'équilibre naturel du sol, les cultures intermédiaires pièges à nitrates, des plantes semées entre deux cultures principales qui absorbent l'excès d'azote du sol, les bandes enherbées, des zones végétalisées le long des cours d'eau qui filtrent les nitrates avant leur arrivée dans l'eau, et l'agriculture biologique, qui interdit les engrais chimiques de synthèse.",
+   "ecran": "pratiques",
+   "id": "p22",
+   "texte": "Rotation, pièges à nitrates, bandes enherbées, bio."
+  },
+  {
+   "dit": "Troisième lutte, le traitement des eaux polluées : la dénitrification des eaux, un traitement des eaux souterraines contaminées par des procédés biologiques ou physico-chimiques, et les stations d'épuration, qui éliminent les nitrates et les phosphates avant rejet dans le milieu naturel.",
+   "ecran": "traitement_eaux",
+   "id": "p23",
+   "texte": "Traiter : dénitrifier, épurer, rejeter propre."
+  },
+  {
+   "dit": "En conclusion, l'utilisation des engrais, indispensable pour nourrir la population mondiale, doit être maîtrisée pour limiter ses impacts sur l'environnement. Chaque acteur, agriculteur, industriel ou citoyen, a un rôle à jouer dans la protection de notre environnement.",
+   "ecran": "conclusion",
+   "id": "p24",
+   "texte": "Nourrir sans polluer : un rôle pour chacun."
+  },
+  {
+   "dit": "Retenons l'essentiel : un engrais se lit en N-P-K, la dose se calcule en divisant l'azote nécessaire par la teneur, les engrais polluent l'air, l'eau et les sols quand ils sont en excès, et la lutte passe par la fertilisation raisonnée, les pratiques adaptées et le traitement des eaux.",
+   "ecran": "recap",
+   "id": "p25",
+   "texte": "N-P-K, doses, pollutions, luttes."
+  }
+ ],
+ "titre": "Les engrais : nourrir les plantes, protéger l'environnement"
+}

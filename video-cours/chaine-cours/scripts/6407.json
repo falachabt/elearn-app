@@ -1,0 +1,510 @@
+{
+ "cours": 6407,
+ "ecrans": {
+  "bool": {
+   "kicker": "Vrai ou faux : le booléen",
+   "tex": [
+    "\\text{True, False : deux valeurs seulement}",
+    "\\text{comparaisons : } \\mathtt{>, <, ==, !=, >=, <=}",
+    "\\text{and : vrai si les deux sont vraies}",
+    "\\text{or : vrai si au moins une est vraie}",
+    "\\text{not : inverse la valeur}"
+   ],
+   "titre": "Deux valeurs, trois connecteurs",
+   "type": "etape"
+  },
+  "boucles_choix": {
+   "kicker": "For ou while : choisir",
+   "tex": [
+    "\\text{for : on sait combien de fois}",
+    "\\text{while : on répète tant que c'est vrai}",
+    "\\text{for : } \\text{range(5) donne 0 à 4}",
+    "\\text{while : attention à la boucle infinie}"
+   ],
+   "titre": "Nombre connu, ou condition",
+   "type": "etape"
+  },
+  "break_continue": {
+   "kicker": "Piloter la boucle",
+   "tex": [
+    "\\text{break : sortir de la boucle tout de suite}",
+    "\\text{continue : sauter à l'itération suivante}",
+    "\\text{boucles imbriquées : tableaux, grilles}",
+    "\\text{break avec parcimonie, pour rester lisible}"
+   ],
+   "titre": "Sortir, sauter, imbriquer",
+   "type": "etape"
+  },
+  "chaines": {
+   "kicker": "Les chaînes de caractères",
+   "tex": [
+    "\\text{mot Python, index dès 0}",
+    "\\text{nom[0] = P, nom[-1] = n}",
+    "\\text{nom[0:3] = Pyt, nom[::-1] = nohtyP}",
+    "\\text{upper, strip, replace : méthodes utiles}"
+   ],
+   "titre": "Une séquence, des positions",
+   "type": "etape"
+  },
+  "conditions": {
+   "kicker": "Décider : if, elif, else",
+   "tex": [
+    "\\text{if condition : bloc indenté}",
+    "\\text{elif : sinon, si une autre condition}",
+    "\\text{else : sinon, tous les autres cas}",
+    "\\text{premier vrai gagne, l'ordre est crucial}"
+   ],
+   "titre": "Une condition, puis les autres",
+   "type": "etape"
+  },
+  "dichotomie": {
+   "kicker": "Recherche dichotomique",
+   "note": "Liste triée : on divise l'espace de recherche par deux à chaque étape",
+   "tex": "O(n) \\rightarrow O(\\log_2 n)",
+   "type": "formule"
+  },
+  "fonctions": {
+   "kicker": "Anatomie d'une fonction",
+   "tex": [
+    "\\text{def : déclarer la fonction}",
+    "\\text{paramètres : les entrées de la fonction}",
+    "\\text{return : renvoyer la valeur}",
+    "\\text{sans return : la fonction renvoie None}"
+   ],
+   "titre": "Déclarer, entrer, renvoyer",
+   "type": "etape"
+  },
+  "fonctions_appel": {
+   "kicker": "Des fonctions qui s'appellent",
+   "tex": [
+    "\\text{surface rectangle : longueur × largeur}",
+    "\\text{carré : le rectangle, côté par côté}",
+    "\\text{prix total : surface × prix au mètre carré}",
+    "\\text{pièce 5 m de côté, 30 euros : 750 euros}"
+   ],
+   "titre": "Réutiliser, plutôt que recopier",
+   "type": "etape"
+  },
+  "haut_niveau": {
+   "kicker": "Du machine au haut niveau",
+   "tex": [
+    "\\text{machine : seulement des zéros et des uns}",
+    "\\text{haut niveau : un code proche de l'anglais}",
+    "\\text{Python : traduit en instructions machine}",
+    "\\text{résultat : moins d'erreurs, plus lisible}"
+   ],
+   "titre": "Parler humain, exécuter machine",
+   "type": "etape"
+  },
+  "hello": {
+   "kicker": "Anatomie du premier programme",
+   "tex": [
+    "\\text{# : un commentaire, ignoré par Python}",
+    "\\text{print() : une fonction qui affiche}",
+    "\\text{guillemets : délimiter le texte}",
+    "\\text{instruction par ligne, sans point-virgule}"
+   ],
+   "titre": "Quatre lignes, quatre leçons",
+   "type": "etape"
+  },
+  "indentation": {
+   "kicker": "L'indentation, règle d'or",
+   "tex": [
+    "\\text{quatre espaces par niveau}",
+    "\\text{pas d'accolades, pas de begin, pas de end}",
+    "\\text{le décalage définit le bloc}",
+    "\\text{mal indenté : erreur, pas de pitié}"
+   ],
+   "titre": "Le décalage fait la structure",
+   "type": "etape"
+  },
+  "installation": {
+   "kicker": "Installer Python",
+   "tex": [
+    "\\text{1. télécharger la version stable}",
+    "\\text{2. cocher Add Python to PATH}",
+    "\\text{3. vérifier : python --version}",
+    "\\text{éditeur : VS Code, extension Python}"
+   ],
+   "titre": "Trois étapes, un éditeur",
+   "type": "etape"
+  },
+  "methode": {
+   "kicker": "La méthode en quatre étapes",
+   "tex": [
+    "\\text{1. comprendre : objectif, entrées, sorties}",
+    "\\text{2. concevoir : découper, planifier}",
+    "\\text{3. coder simple, tester au fur et à mesure}",
+    "\\text{4. tester : normal, limite, erreur}"
+   ],
+   "titre": "Comprendre, concevoir, coder, tester",
+   "type": "etape"
+  },
+  "nommage": {
+   "kicker": "Nommer ses variables",
+   "tex": [
+    "\\text{commencer par une lettre ou un tiret bas}",
+    "\\text{lettres, chiffres et tirets bas ensuite}",
+    "\\text{sensible à la casse : score, Score, SCORE}",
+    "\\text{jamais un mot réservé : if, for, while}"
+   ],
+   "titre": "Quatre règles de nommage",
+   "type": "etape"
+  },
+  "notes": {
+   "kicker": "Exemple : le système de notes",
+   "tex": [
+    "\\text{score >= 90 : A, Excellent}",
+    "\\text{score >= 80 : B, Très bien}",
+    "\\text{score >= 70 : C, Bien}",
+    "\\text{score >= 60 : D, sinon F}"
+   ],
+   "titre": "Un score, une mention",
+   "type": "etape"
+  },
+  "operations": {
+   "kicker": "Quinze et quatre",
+   "tex": [
+    "15 + 4 = 19",
+    "15 \\times 4 = 60",
+    "15 / 4 = 3{,}75",
+    "15 \\bmod 4 = 3",
+    "15^{4} = 50625"
+   ],
+   "titre": "Addition, division, puissance",
+   "type": "etape"
+  },
+  "pgcd": {
+   "kicker": "Euclide, vingt-trois siècles plus tard",
+   "note": "Diviser, garder le reste, recommencer avec le diviseur et le reste",
+   "tex": "\\text{PGCD}(48, 18) = 6",
+   "type": "formule"
+  },
+  "pieges": {
+   "kicker": "Trois pièges classiques",
+   "tex": [
+    "\\text{== compare, = affecte : ne pas confondre}",
+    "\\text{indentation incohérente : erreur}",
+    "\\text{condition trop complexe : la décomposer}"
+   ],
+   "titre": "Comparer, indenter, décomposer",
+   "type": "etape"
+  },
+  "piliers": {
+   "kicker": "Les trois piliers",
+   "tex": [
+    "\\text{algorithme : la recette, la méthode}",
+    "\\text{langage : le vocabulaire et la grammaire}",
+    "\\text{environnement : là où le programme tourne}"
+   ],
+   "titre": "Recette, langage, terrain",
+   "type": "etape"
+  },
+  "plus_grand": {
+   "kicker": "Pensée computationnelle",
+   "tex": [
+    "\\text{premier nombre : le plus grand actuel}",
+    "\\text{pour chaque nombre suivant : comparer}",
+    "\\text{plus grand : il devient l'actuel}",
+    "\\text{à la fin : afficher le plus grand actuel}"
+   ],
+   "titre": "Le plus grand de cent nombres",
+   "type": "etape"
+  },
+  "portee": {
+   "kicker": "Portée : locale ou globale",
+   "tex": [
+    "\\text{locale : née là, détruite à la fin}",
+    "\\text{globale : lisible partout, prudence requise}",
+    "\\text{auto-suffisante : paramètres en entrée}",
+    "\\text{résultat en sortie, sans effet caché}"
+   ],
+   "titre": "La boîte noire bien fermée",
+   "type": "etape"
+  },
+  "pourquoi_python": {
+   "kicker": "Pourquoi Python ?",
+   "tex": [
+    "\\text{syntaxe claire : du pseudo-code exécutable}",
+    "\\text{polyvalent : données, web, automatisation}",
+    "\\text{communauté active, bibliothèques immenses}",
+    "\\text{philosophie : simple et lisible}"
+   ],
+   "titre": "Clair, polyvalent, entouré",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Parler à la machine : programme, langage, Python",
+    "Décider avec if, elif, else ; répéter avec for et while",
+    "Découper avec des fonctions petites et réutilisables",
+    "Méthode : comprendre, concevoir, coder, tester",
+    "Projet : un gestionnaire de tâches, de bout en bout"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "somme": {
+   "kicker": "La somme des n premiers entiers",
+   "note": "Pour n égal cent : S égal cinq mille cinquante",
+   "tex": "S = \\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}",
+   "type": "formule"
+  },
+  "titre": {
+   "kicker": "Informatique · Programmation",
+   "sous": "Du premier programme au projet complet : parler à la machine, décider, répéter, découper",
+   "titre": "Initiation à la programmation avec Python",
+   "type": "titre"
+  },
+  "tri": {
+   "kicker": "Le tri par sélection",
+   "tex": [
+    "\\text{trouver le plus petit élément}",
+    "\\text{l'échanger avec le premier}",
+    "\\text{recommencer avec le reste de la liste}",
+    "\\text{complexité : n au carré, échanges minimaux}"
+   ],
+   "titre": "Le plus petit d'abord, toujours",
+   "type": "etape"
+  },
+  "types": {
+   "kicker": "Les types de nombres",
+   "tex": [
+    "\\text{int : entier, sans limite pratique}",
+    "\\text{float : nombre à virgule, norme IEEE}",
+    "\\text{complex : partie imaginaire en j}",
+    "\\text{piège : 0,1 + 0,2 ne fait pas 0,3}"
+   ],
+   "titre": "Entiers, flottants, complexes",
+   "type": "etape"
+  },
+  "variables": {
+   "kicker": "Variables et affectation",
+   "tex": [
+    "\\text{nom = valeur : étiquette sur une valeur}",
+    "\\text{réaffectable, même avec un autre type}",
+    "\\text{typage dynamique : le type suit la valeur}",
+    "\\text{flexible, mais exigeant de la rigueur}"
+   ],
+   "titre": "Une étiquette, une valeur",
+   "type": "etape"
+  },
+  "while": {
+   "kicker": "La boucle while",
+   "tex": [
+    "\\text{tant que la condition est vraie, répéter}",
+    "\\text{usage roi : valider une saisie incertaine}",
+    "\\text{itérations inconnues d'avance}",
+    "\\text{oublier l'incrément : boucle infinie}"
+   ],
+   "titre": "Répéter tant que c'est vrai",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Programmer, Python, variables"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : nommer ses variables, distinguer les types, décider avec les conditions, puis répéter avec les premières boucles.",
+    "texte": "Partie 2 : noms, types, décisions, boucles."
+   },
+   "sous_titre": "Noms, types, décisions et premières boucles"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : répéter tant que c'est vrai, découper en fonctions, puis résoudre comme un artisan : Euclide, recherche dichotomique, tri par sélection, et enfin votre premier projet complet.",
+    "texte": "Partie 3 : boucles, fonctions, algorithmes, projet."
+   },
+   "sous_titre": "Boucles, fonctions, algorithmes et projet"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'initiation à la programmation avec Python. Programmer, c'est donner à une machine une suite d'instructions précises pour qu'elle résolve un problème à votre place, automatise une tâche répétitive, ou crée une expérience interactive.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Donner des instructions à une machine."
+  },
+  {
+   "dit": "Tout programme repose sur trois piliers. D'abord l'algorithme, la recette, la suite logique d'opérations qui résout le problème. Ensuite le langage, le vocabulaire et la grammaire pour exprimer cet algorithme. Enfin l'environnement d'exécution, le contexte où le programme tourne.",
+   "ecran": "piliers",
+   "id": "p02",
+   "texte": "Trois piliers : algorithme, langage, environnement."
+  },
+  {
+   "dit": "L'ordinateur, lui, ne comprend que le langage machine, des zéros et des uns. Écrire directement dans ce langage est fastidieux et truffé d'erreurs. Un langage de haut niveau, lui, ressemble presque à de l'anglais, et il est transformé automatiquement en instructions machine.",
+   "ecran": "haut_niveau",
+   "id": "p03",
+   "texte": "La machine ne connaît que zéros et uns."
+  },
+  {
+   "dit": "Nous avons choisi Python, et pour de bonnes raisons. Sa syntaxe est claire et lisible, on la décrit souvent comme du pseudo-code exécutable. Il est polyvalent : science des données, intelligence artificielle, développement web, automatisation. Et sa communauté immense fournit bibliothèques et documentation.",
+   "ecran": "pourquoi_python",
+   "id": "p04",
+   "texte": "Python : clair, polyvalent, bien entouré."
+  },
+  {
+   "dit": "Avant le premier programme, on prépare son terrain. On télécharge la version stable sur le site officiel, en cochant bien l'option qui ajoute Python au chemin d'accès pendant l'installation. Puis on vérifie dans le terminal que la version s'affiche. Pour écrire le code, l'éditeur recommandé ici est VS Code, avec son extension Python.",
+   "ecran": "installation",
+   "id": "p05",
+   "texte": "Installer Python, vérifier, choisir son éditeur."
+  },
+  {
+   "dit": "La tradition veut que le premier programme affiche Hello, World. Son anatomie tient en quatre leçons : le dièse introduit un commentaire, ignoré par Python. La fonction print, entre parenthèses, affiche du texte. Les guillemets délimitent ce texte. Et chaque instruction occupe sa propre ligne, sans point-virgule.",
+   "ecran": "hello",
+   "id": "p06",
+   "texte": "Hello, World : le rite de passage."
+  },
+  {
+   "dit": "Avant même d'écrire du code, il faut penser comme un informaticien. Prenez une liste de cent nombres dont vous cherchez le plus grand. Vous prenez le premier comme plus grand actuel, puis pour chaque nombre suivant, vous comparez, et s'il est plus grand, il devient le nouveau plus grand actuel. À la fin, vous l'affichez. Cette décomposition vient avant la moindre ligne de code.",
+   "ecran": "plus_grand",
+   "id": "p07",
+   "texte": "Penser avant de coder : le plus grand de cent nombres."
+  },
+  {
+   "dit": "La programmation est intimement liée aux mathématiques. La somme des n premiers nombres entiers vaut n fois n plus un, le tout divisé par deux. Pour n égal cent, cela fait cinq mille cinquante. Une boucle qui additionne un à un donne le même résultat : le programme vérifie la formule.",
+   "ecran": "somme",
+   "id": "p08",
+   "texte": "Somme des n premiers entiers : formule contre boucle."
+  },
+  {
+   "dit": "Venons-en à la grammaire de Python. Contrairement à d'autres langages, Python n'utilise ni accolades ni mots comme begin et end pour délimiter les blocs : c'est l'indentation, les espaces en début de ligne, qui définit le bloc. La convention est de quatre espaces par niveau, et elle n'est pas négociable.",
+   "ecran": "indentation",
+   "id": "p09",
+   "texte": "Quatre espaces, et le bloc existe."
+  },
+  {
+   "dit": "Une variable est une étiquette posée sur une valeur stockée en mémoire. On écrit nom égal valeur, sans mot-clé qui déclare le type. On peut ensuite réaffecter la variable, même avec une valeur d'un autre type : c'est le typage dynamique. Flexible, oui, mais il exige de la rigueur pour éviter les erreurs subtiles.",
+   "ecran": "variables",
+   "id": "p10",
+   "texte": "Variable : une étiquette sur une valeur."
+  },
+  {
+   "dit": "Pour nommer une variable, quatre règles. Commencer par une lettre ou un tiret bas. Continuer avec des lettres, des chiffres et des tirets bas. Savoir que la casse compte : score, Score et SCORE sont trois variables différentes. Et ne jamais utiliser un mot réservé du langage, comme if, for ou while.",
+   "ecran": "nommage",
+   "id": "p11",
+   "texte": "Nommer : lettre, casse, pas de mot réservé."
+  },
+  {
+   "dit": "Python distingue trois types de nombres. L'entier, sans limite pratique de taille. Le flottant, le nombre à virgule, stocké selon la norme IEEE, ce qui peut créer des imprécisions. Et le complexe, dont la partie imaginaire s'écrit avec la lettre j. Attention au piège célèbre : zéro virgule un plus zéro virgule deux n'affiche pas zéro virgule trois, mais une longue traîne de décimales.",
+   "ecran": "types",
+   "id": "p12",
+   "texte": "Int, float, complex : trois types de nombres."
+  },
+  {
+   "dit": "Les opérations de base sont intuitives. Prenons quinze et quatre : leur somme fait dix-neuf, leur différence onze, leur produit soixante. La division donne trois virgule soixante-quinze, toujours un flottant. La division entière donne le quotient trois, le modulo donne le reste trois, et la puissance quinze puissance quatre vaut cinquante mille six cent vingt-cinq.",
+   "ecran": "operations",
+   "id": "p13",
+   "texte": "Quinze et quatre : les opérations de base."
+  },
+  {
+   "dit": "Le booléen, lui, ne connaît que deux valeurs, True et False, avec une majuscule. Les opérateurs de comparaison produisent toujours un booléen. Et trois connecteurs logiques combinent les expressions : and exige que les deux soient vraies, or se contente d'une seule, not inverse la valeur.",
+   "ecran": "bool",
+   "id": "p14",
+   "texte": "True, False, and, or, not."
+  },
+  {
+   "dit": "Terminons cette première partie avec les chaînes de caractères, des séquences de caractères entre guillemets. L'index commence à zéro : dans le mot Python, la première lettre est P, la dernière, d'index moins un, est n. La tranche de zéro à trois donne Pyt, et le pas moins un renverse la chaîne en nohtyP. Des méthodes comme upper, strip ou replace transforment le texte.",
+   "ecran": "chaines",
+   "id": "p15",
+   "texte": "Python, lettre par lettre : Pyt, nohtyP."
+  },
+  {
+   "dit": "La décision commence avec if, si. On écrit if suivi de la condition et de deux-points, puis le bloc indenté, exécuté seulement si la condition est vraie. L'indentation définit le bloc, les deux-points sont obligatoires. Une condition est une expression booléenne : elle ne vaut que True ou False.",
+   "ecran": "conditions",
+   "id": "p16",
+   "texte": "If : si la condition est vraie, exécuter."
+  },
+  {
+   "dit": "Else, sinon, complète la décision binaire : un seul des deux blocs sera exécuté, ils s'excluent mutuellement. Et elif, contraction de else if, ouvre les multiples possibilités : dès qu'une condition est satisfaite, les suivantes sont ignorées. L'ordre des conditions est donc crucial, et c'est lui qui évite d'écrire des doubles inégalités.",
+   "ecran": "conditions",
+   "id": "p17",
+   "texte": "Else, elif : un seul bloc exécuté."
+  },
+  {
+   "dit": "Exemple complet, le système de notes. Un score d'au moins quatre-vingt-dix vaut A, Excellent. Au moins quatre-vingts, B, Très bien. Au moins soixante-dix, C, Bien. Au moins soixante, D, Satisfaisant. Sinon, F, Échec. L'ordre décroissant suffit : un score de quatre-vingt-cinq ne peut pas remonter jusqu'au A.",
+   "ecran": "notes",
+   "id": "p18",
+   "texte": "Un score, une mention : l'ordre fait le travail."
+  },
+  {
+   "dit": "Trois pièges guettent le débutant. Premier piège : confondre l'affectation, un seul signe égal, et la comparaison, deux signes égal. Deuxième piège : l'indentation incohérente, qui déclenche une erreur. Troisième piège : la condition trop complexe, qu'il faut décomposer en variables intermédiaires nommées clairement.",
+   "ecran": "pieges",
+   "id": "p19",
+   "texte": "Égal ou double égal, indenter, décomposer."
+  },
+  {
+   "dit": "Passons à la répétition. La boucle for est déterministe : on sait d'avance combien d'itérations seront nécessaires, on parcourt une séquence, élément par élément. La fonction range en est le moteur : range de cinq donne zéro, un, deux, trois, quatre. La boucle while, elle, répète tant qu'une condition reste vraie, sans connaître d'avance le nombre de tours.",
+   "ecran": "boucles_choix",
+   "id": "p20",
+   "texte": "For sait combien, while répète tant que."
+  },
+  {
+   "dit": "Le while excelle quand le nombre de répétitions est incertain, par exemple pour valider une saisie : on redemande tant que l'âge entré n'est pas valide. Mais gare au danger : si la condition ne devient jamais fausse, par exemple parce qu'on a oublié d'incrémenter le compteur, la boucle devient infinie et ne s'arrête jamais.",
+   "ecran": "while",
+   "id": "p21",
+   "texte": "Valider une saisie, éviter l'infini."
+  },
+  {
+   "dit": "Deux instructions affinent le pilotage des boucles. Break sort de la boucle immédiatement, par exemple dès qu'on a trouvé l'élément cherché. Continue saute à l'itération suivante, par exemple pour ne garder que les nombres impairs. Et les boucles peuvent s'imbriquer, pour traiter des tableaux ou des grilles, comme une table de multiplication.",
+   "ecran": "break_continue",
+   "id": "p22",
+   "texte": "Break sort, continue saute, imbriquer traite."
+  },
+  {
+   "dit": "Nous voici au tournant : les fonctions. On déclare une fonction avec le mot def, suivi de son nom et de parenthèses. Les paramètres, entre ces parenthèses, sont les entrées de la fonction. L'instruction return termine l'exécution et renvoie une valeur au code appelant. Sans return, la fonction renvoie implicitement None, le rien de Python.",
+   "ecran": "fonctions",
+   "id": "p23",
+   "texte": "Def, paramètres, return : l'anatomie."
+  },
+  {
+   "dit": "La portée est la règle de la boîte noire. Une variable définie dans une fonction est locale : elle n'existe que là, et meurt à la fin de l'appel. Une variable globale est lisible partout, mais il faut la manier avec prudence. Idéalement, une fonction est auto-suffisante : tout entre par les paramètres, tout sort par le retour, sans effet de bord caché.",
+   "ecran": "portee",
+   "id": "p24",
+   "texte": "Locale meurt à la fin, globale se surveille."
+  },
+  {
+   "dit": "La vraie puissance apparaît quand les fonctions s'appellent entre elles. La surface d'un rectangle, c'est longueur fois largeur. La surface d'un carré réutilise la fonction rectangle, côté par côté. Et le prix total multiplie la surface par le prix au mètre carré. Pour une pièce de cinq mètres de côté à trente euros le mètre carré, la surface est de vingt-cinq, et le carrelage coûte sept cent cinquante euros.",
+   "ecran": "fonctions_appel",
+   "id": "p25",
+   "texte": "Un carré n'est qu'un rectangle particulier."
+  },
+  {
+   "dit": "Devenez artisan avec une méthode en quatre étapes. D'abord comprendre : objectif exact, données d'entrée, format de sortie, cas particuliers. Ensuite concevoir : découper le problème, reconnaître les motifs connus, planifier les étapes. Puis coder, simple d'abord. Enfin tester : cas normaux, cas limites, cas d'erreur. Un programme non testé est un programme qui contient des bogues.",
+   "ecran": "methode",
+   "id": "p26",
+   "texte": "Comprendre, concevoir, coder, tester."
+  },
+  {
+   "dit": "Premier chef-d'œuvre, l'algorithme d'Euclide, vieux de vingt-trois siècles. Pour trouver le plus grand diviseur commun de quarante-huit et dix-huit, on divise, on garde le reste, puis on recommence avec le diviseur et le reste. Quand le reste devient nul, le diviseur est le PGCD : ici, six. Il est toujours utilisé, notamment en cryptographie.",
+   "ecran": "pgcd",
+   "id": "p27",
+   "texte": "Euclide : diviser, garder le reste, recommencer."
+  },
+  {
+   "dit": "Deuxième algorithme, la recherche dichotomique. Sur une liste triée, on ouvre au milieu : si l'élément cherché est avant, on garde la moitié gauche, sinon la moitié droite, et on recommence. L'espace de recherche est divisé par deux à chaque étape. Là où la recherche séquentielle coûte n étapes dans le pire cas, la dichotomie n'en coûte que logarithme base deux de n.",
+   "ecran": "dichotomie",
+   "id": "p28",
+   "texte": "Diviser par deux, à chaque étape."
+  },
+  {
+   "dit": "Troisième algorithme, le tri par sélection. On trouve le plus petit élément de la liste, on l'échange avec le premier, puis on recommence avec le reste. Sa complexité est de n au carré dans tous les cas, mais il ne fait qu'un minimum d'échanges. Pour une petite liste, c'est un excellent premier tri, simple à comprendre et à implémenter.",
+   "ecran": "tri",
+   "id": "p29",
+   "texte": "Le plus petit d'abord, puis recommencer."
+  },
+  {
+   "dit": "Votre mission finale : le gestionnaire de tâches en ligne de commande. Ajouter une tâche, afficher la liste, marquer une tâche comme terminée, supprimer une tâche, quitter proprement. Une tâche, c'est une description et un statut, rangés dans une liste de dictionnaires. Appliquez les piliers du code propre : lisibilité, simplicité, une fonction par responsabilité, et des commentaires qui expliquent le pourquoi. Comme le disait Guido van Rossum, le code est lu beaucoup plus souvent qu'il n'est écrit. Bon code !",
+   "ecran": "recap",
+   "id": "p30",
+   "texte": "Votre projet : un gestionnaire de tâches."
+  }
+ ],
+ "titre": "Initiation à la programmation avec Python"
+}

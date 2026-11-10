@@ -4,6 +4,7 @@ import { Paths } from 'expo-file-system';
 
 import { i18n } from '@/i18n';
 
+import { estErreurReseau } from './connectivite';
 import { prechargerDocument } from './documents';
 import { lireOuverts } from './credits';
 import { lireContenuEnCache, telechargerContenuPayant } from './creditsHorsLigne';
@@ -11,8 +12,9 @@ import { lireEntrainement, lireExercice, lireQuizLibre } from './entrainement';
 import { lireDossiers, lireDocuments } from './annales';
 import { prechargerMission } from './mission';
 import { lireAcces } from './pass';
+import { idsTachesSeances, jourLocalTexte, lirePlanning } from './planning';
 import { lireProfil, type Profil } from './profil';
-import { lireFiche, lireLecon, lireLecons, lireQuizLecon, lireCours, programmeDu } from './reviser';
+import { ecrireLocalHorsLigne, lireFiche, lireLecon, lireLecons, lireQuizLecon, lireCours, programmeDu } from './reviser';
 import { lireRythme } from './rythme';
 import { getSupabase } from './supabase';
 
@@ -35,10 +37,13 @@ type Tache = {
   document?: { id: string; titre: string };
   niveau?: string;
   pays?: string;
+  serie?: string | null;
   concours?: string | null;
   taille?: number;
   tailleOctets?: number;
   erreur?: string;
+  /** Vrai si le dernier échec vient du réseau (veille, coupure) : à la reprise, la tâche repart au lieu de rester en échec. */
+  erreurReseau?: boolean;
 };
 
 export type ProgressionCategorie = { total: number; faites: number; echecs: number };
@@ -55,8 +60,29 @@ export type EtatHorsLigne = {
   estimationCategories?: Record<CategorieHorsLigne, EstimationCategorie>;
   espaceDisponible: number;
   notification?: 'autorisee' | 'refusee' | 'echec';
+  /** Vrai quand le dernier arrêt vient d'un stockage plein (base locale saturée) : l'écran doit le dire, pas juste compter des échecs. */
+  erreurStockage?: boolean;
   actualiseLe: string;
 };
+
+/**
+ * Le téléchargement ne part pas : la place connue sur le téléphone est inférieure à la taille estimée du pack.
+ * Retour terrain du 23 octobre 2026 : sans ce refus, le moteur remplissait la base locale jusqu'à SQLITE_FULL,
+ * et même la connexion (qui écrit la session au même endroit) tombait en panne.
+ */
+export class ErreurEspaceInsuffisant extends Error {
+  constructor(readonly besoin: number, readonly libre: number) {
+    super('espace insuffisant pour le téléchargement hors ligne');
+    this.name = 'ErreurEspaceInsuffisant';
+  }
+}
+
+/** L'erreur dit-elle que le stockage est plein (base SQLite de l'app ou disque) ? Ces erreurs-là arrêtent tout. */
+export function estErreurStockage(erreur: unknown): boolean {
+  if (!erreur || typeof erreur !== 'object') return false;
+  const e = erreur as { name?: string; message?: string };
+  return /SQLITE_FULL|disk is full|database or disk|no space left|ENOSPC/i.test(`${e.name ?? ''} ${e.message ?? ''}`);
+}
 
 const ecouteurs = new Set<(etat: EtatHorsLigne | null) => void>();
 let execution: Promise<void> | null = null;
@@ -79,12 +105,28 @@ export async function lireEtatHorsLigne(): Promise<EtatHorsLigne | null> {
   }
 }
 
+let chaineEcriture: Promise<void> = Promise.resolve();
+let versionEtat = 0;
+
 async function enregistrer(etat: EtatHorsLigne): Promise<void> {
   etat.actualiseLe = new Date().toISOString();
-  await AsyncStorage.setItem(CLE_ETAT_HORS_LIGNE, JSON.stringify(etat));
   // Copie : la file mute le même objet d'une tâche à l'autre, et React ignore un `setEtat` qui reçoit la même référence
   // (les barres ne bougeaient qu'en quittant puis en rouvrant la page, qui relisait le disque).
   notifier({ ...etat, progression: { ...etat.progression }, taches: [...etat.taches] });
+  // Écritures sérialisées : avec des tâches en parallèle, écrire l'état entier dans le désordre laisserait une vieille
+  // version écraser la nouvelle sur le disque. Chaque version passe par la même file ; une version déjà dépassée par
+  // une plus récente au moment de son tour est sautée, la plus récente contient le même état à jour.
+  const version = ++versionEtat;
+  const ecriture = chaineEcriture.then(async () => {
+    if (version < versionEtat) return;
+    try {
+      await AsyncStorage.setItem(CLE_ETAT_HORS_LIGNE, JSON.stringify(etat));
+    } catch {
+      // État facultatif : au pire, la progression repart de la dernière version gardée.
+    }
+  });
+  chaineEcriture = ecriture;
+  await ecriture;
 }
 
 export async function aVuInvitationHorsLigne(): Promise<boolean> {
@@ -149,7 +191,7 @@ function documentsEstimes(taches: Tache[], documents: { id: string; titre: strin
 
 async function lireDocumentsProgramme(client: ReturnType<typeof getSupabase>, profil: Profil): Promise<{ id: string; titre: string; correctionId: string | null }[]> {
   const visiter = async (parent: string | null): Promise<{ id: string; titre: string; correctionId: string | null; tailleOctets?: number }[]> => {
-    const dossiers = await lireDossiers(client, { niveau: profil.niveau ?? '3e', pays: profil.pays ?? 'CM', parent });
+    const dossiers = await lireDossiers(client, { niveau: profil.niveau ?? '3e', pays: profil.pays ?? 'CM', ...(profil.serie?.id ? { serie: profil.serie.id } : {}), parent });
     const contenus = await Promise.all(dossiers.map(async (dossier) => {
       const [fichiers, enfants] = await Promise.all([
         lireDocuments(client, dossier.id),
@@ -163,6 +205,42 @@ async function lireDocumentsProgramme(client: ReturnType<typeof getSupabase>, pr
     return contenus.flat();
   };
   return visiter(null);
+}
+
+/**
+ * Réordonne les tâches du pack (issue #74, lot B) : les missions restent en tête, puis les contenus des
+ * séances des trois prochains jours, puis le reste du programme. Un téléchargement interrompu couvre
+ * ainsi d'abord ce que l'élève va réellement ouvrir. Partition stable : l'ordre relatif de chaque
+ * groupe est conservé.
+ */
+export function prioriserTachesSeances(taches: readonly Tache[], idsPrioritaires: ReadonlySet<string>): Tache[] {
+  const missions = taches.filter((t) => t.categorie === 'missions');
+  const autres = taches.filter((t) => t.categorie !== 'missions');
+  return [
+    ...missions,
+    ...autres.filter((t) => idsPrioritaires.has(t.id)),
+    ...autres.filter((t) => !idsPrioritaires.has(t.id)),
+  ];
+}
+
+/**
+ * Les tâches prioritaires du moment : les contenus des séances d'aujourd'hui, de demain et d'après-demain,
+ * lus dans le planning de l'élève connecté. Aucun planning (ou lecture impossible) : rien n'est prioritaire
+ * et le pack garde son ordre habituel — le préchargement ciblé ne doit jamais bloquer le pack entier.
+ */
+async function idsTachesSeancesProchaines(client: ReturnType<typeof getSupabase>): Promise<Set<string>> {
+  try {
+    if (typeof client.auth?.getSession !== 'function') return new Set();
+    const { data } = await client.auth.getSession();
+    const idUtilisateur = data?.session?.user.id;
+    if (!idUtilisateur) return new Set();
+    const { planning } = await lirePlanning(client, idUtilisateur);
+    if (planning.statut !== 'ready') return new Set();
+    const aujourdhui = jourLocalTexte();
+    return new Set(idsTachesSeances(planning, [0, 1, 2].map((decalage) => aujourdhuiPlus(aujourdhui, decalage))));
+  } catch {
+    return new Set();
+  }
 }
 
 async function lireRefsOuvertes(client: ReturnType<typeof getSupabase>, action: 'exercise_solution' | 'document_pdf', refs: string[]): Promise<Set<string>> {
@@ -186,7 +264,7 @@ export async function estimerTelechargement(): Promise<EstimationTelechargement>
       `${aujourdHui.getFullYear()}-${String(aujourdHui.getMonth() + 1).padStart(2, '0')}-${String(aujourdHui.getDate()).padStart(2, '0')}`,
       i,
     );
-    ajouterTache(taches, 'missions', jour, { jour, niveau: programme.niveau, pays: programme.pays, concours: programme.concours, taille: rythme ?? undefined });
+    ajouterTache(taches, 'missions', jour, { jour, niveau: programme.niveau, pays: programme.pays, ...(programme.serie ? { serie: programme.serie } : {}), concours: programme.concours, taille: rythme ?? undefined });
   }
 
   const [leconsParCours, documents] = await Promise.all([
@@ -226,14 +304,18 @@ export async function estimerTelechargement(): Promise<EstimationTelechargement>
       });
     }
   }
-  documentsEstimes(taches, documents);
+  // Lot B (issue #74) : les contenus des séances des trois prochains jours passent devant le reste du
+  // programme — un téléchargement interrompu couvre d'abord les séances imminentes.
+  const prioritaires = await idsTachesSeancesProchaines(client);
+  const tachesOrdonnees = prioritaires.size > 0 ? prioriserTachesSeances(taches, prioritaires) : taches;
+  documentsEstimes(tachesOrdonnees, documents);
 
-  const estimationCategories = estimerCategories(taches);
+  const estimationCategories = estimerCategories(tachesOrdonnees);
   return {
     profil: { niveau: profil.niveau, pays: profil.pays, concours: profil.concours },
-    taches,
-    progression: progression(taches),
-    estimationOctets: octetsEstimes(taches),
+    taches: tachesOrdonnees,
+    progression: progression(tachesOrdonnees),
+    estimationOctets: octetsEstimes(tachesOrdonnees),
     estimationCategories,
     espaceDisponible: Math.max(0, Paths.availableDiskSpace || 0),
   };
@@ -263,6 +345,7 @@ async function executerTache(tache: Tache): Promise<void> {
     await prechargerMission(client, {
       niveau: tache.niveau ?? '3e',
       pays: tache.pays ?? 'CM',
+      ...(tache.serie ? { serie: tache.serie } : {}),
       concours: tache.concours,
       jour: tache.jour,
       taille: tache.taille,
@@ -273,7 +356,7 @@ async function executerTache(tache: Tache): Promise<void> {
     else await lireFiche(client, tache.cours);
   } else if (tache.categorie === 'quiz' && tache.cours && tache.lecon) {
     const quiz = await lireQuizLecon(client, { cours: tache.cours, lecon: tache.lecon, vraiFaux: { vrai: i18n.t('mission.vrai'), faux: i18n.t('mission.faux') } });
-    await AsyncStorage.setItem(`reviser.quiz.horsLigne.${tache.lecon}`, JSON.stringify(quiz));
+    await ecrireLocalHorsLigne(`reviser.quiz.horsLigne.${tache.lecon}`, quiz);
   } else if (tache.categorie === 'quiz' && tache.quiz) {
     await lireQuizLibre(client, { quiz: tache.quiz, vraiFaux: { vrai: i18n.t('mission.vrai'), faux: i18n.t('mission.faux') } });
   } else if (tache.categorie === 'exercices' && tache.exercice) {
@@ -298,8 +381,15 @@ async function executerTache(tache: Tache): Promise<void> {
 }
 
 export async function lancerTelechargement(estimation?: EstimationTelechargement | EtatHorsLigne): Promise<void> {
-  await AsyncStorage.setItem(CLE_MODE_HORS_LIGNE, '1');
   const calculee = estimation ?? await estimerTelechargement();
+  const precedent = await lireEtatHorsLigne();
+  // Garde-fou espace : un lancement neuf ne part pas si la place connue est inférieure à l'estimation. Une reprise
+  // (« partiel ») n'est pas bloquée : elle ne concerne que le reste, et l'arrêt net en cours de route (executerFile)
+  // protège si le stockage sature quand même.
+  if (precedent?.statut !== 'partiel' && calculee.espaceDisponible > 0 && calculee.estimationOctets > calculee.espaceDisponible) {
+    throw new ErreurEspaceInsuffisant(calculee.estimationOctets, calculee.espaceDisponible);
+  }
+  await AsyncStorage.setItem(CLE_MODE_HORS_LIGNE, '1');
   let notification: EtatHorsLigne['notification'] = 'refusee';
   try {
     const permission = await Notifications.getPermissionsAsync();
@@ -309,7 +399,6 @@ export async function lancerTelechargement(estimation?: EstimationTelechargement
     notification = 'echec';
     console.warn('Impossible de vérifier l’autorisation des notifications hors ligne.', erreur);
   }
-  const precedent = await lireEtatHorsLigne();
   const taches = precedent?.statut === 'partiel'
     ? precedent.taches.map((t) => t.statut === 'echec' ? { ...t, statut: 'a-faire' as const } : t)
     : calculee.taches;
@@ -321,29 +410,102 @@ export async function lancerTelechargement(estimation?: EstimationTelechargement
     estimationCategories: estimerCategories(taches),
     statut: 'telechargement',
     notification,
+    erreurStockage: undefined,
     actualiseLe: new Date().toISOString(),
   };
   await enregistrer(etat);
   void executerFile();
 }
 
+/**
+ * Nombre de téléchargements menés de front, selon ce qui reste à faire (demande de Benny, tests de l'issue #74) :
+ * le pack entier compte des milliers d'éléments, une tâche après l'autre prenait des dizaines de minutes.
+ * Petit reste, peu de front ; gros pack, jusqu'à 32 (plafond relevé le 23 octobre à sa demande, après un premier
+ * palier à 16 qui tenait bien en terrain) — au-delà, le serveur et le téléphone saturent sans gagner de temps.
+ */
+export function concurrenceTelechargement(restantes: number): number {
+  if (restantes <= 0) return 0;
+  if (restantes <= 30) return Math.min(4, restantes);
+  if (restantes <= 200) return 10;
+  if (restantes <= 1000) return 20;
+  return 32;
+}
+
+const REESSAIS_RESEAU_MAX = 4;
+const DELAI_REESSAI_RESEAU_MS = 400;
+
+const attendreMs = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Exécute une tâche du pack. Une erreur réseau n'est pas un échec : la mise en veille coupe les connexions en cours,
+ * le réseau saute, et l'élève n'y est pour rien — la tâche attend un peu et repart, jusqu'à 4 fois. Pendant la veille,
+ * le code de l'app est de toute façon suspendu par le système : les délais courent au réveil et le téléchargement
+ * reprend tout seul. Seules les autres erreurs (contenu illisible, droit refusé) partent en échec, comme avant.
+ */
+async function executerTacheAvecReessais(tache: Tache): Promise<void> {
+  let reessais = 0;
+  for (;;) {
+    try {
+      await executerTache(tache);
+      return;
+    } catch (erreur) {
+      reessais++;
+      if (!estErreurReseau(erreur) || reessais > REESSAIS_RESEAU_MAX) throw erreur;
+      await attendreMs(DELAI_REESSAI_RESEAU_MS * reessais);
+    }
+  }
+}
+
 async function executerFile(): Promise<void> {
   if (execution) return execution;
   execution = (async () => {
-    let etat = await lireEtatHorsLigne();
-    if (!etat || etat.statut !== 'telechargement') return;
+    const etat = await lireEtatHorsLigne();
+    if (!etat || (etat.statut !== 'telechargement' && etat.statut !== 'partiel')) return;
+    // Reprise après interruption (veille, application tuée puis rouverte — demande de Benny, tests de l'issue #74) :
+    // un échec dû au réseau n'est pas un échec définitif. L'élément n'est pas complètement téléchargé, il repart
+    // entièrement ; son contenu partiel sera écrasé par le nouveau téléchargement. Les échecs des anciennes versions
+    // n'ont pas le drapeau : leur message fait foi. Les vrais échecs (droit refusé, contenu illisible) restent en
+    // attente du bouton « Réessayer » de l'écran, sinon ils repartiraient pour rien à chaque ouverture.
     for (const tache of etat.taches) {
-      if (tache.statut !== 'a-faire') continue;
-      try {
-        await executerTache(tache);
-        tache.statut = 'faite';
-      } catch (erreur) {
-        tache.statut = 'echec';
-        tache.erreur = erreur instanceof Error ? erreur.message : String(erreur);
+      if (tache.statut !== 'echec') continue;
+      const duReseau = tache.erreurReseau ?? (tache.erreur ? estErreurReseau({ message: tache.erreur }) : false);
+      if (duReseau) {
+        tache.statut = 'a-faire';
+        tache.erreur = undefined;
+        tache.erreurReseau = undefined;
       }
+    }
+    if (!etat.taches.some((t) => t.statut === 'a-faire')) return;
+    if (etat.statut !== 'telechargement') {
+      etat.statut = 'telechargement';
       etat.progression = progression(etat.taches);
       await enregistrer(etat);
     }
+    const aFaire = etat.taches.filter((t) => t.statut === 'a-faire');
+    let curseur = 0;
+    // Arrêt net si le stockage dit plein : continuer élément par élément ne ferait qu'empiler les échecs et gonfler
+    // une base déjà saturée (retour terrain du 23 octobre : la session elle-même ne pouvait plus s'écrire).
+    let arretStockage = false;
+    const ouvrier = async (): Promise<void> => {
+      while (!arretStockage && curseur < aFaire.length) {
+        const tache = aFaire[curseur++];
+        try {
+          await executerTacheAvecReessais(tache);
+          tache.statut = 'faite';
+          tache.erreur = undefined;
+          tache.erreurReseau = undefined;
+        } catch (erreur) {
+          tache.statut = 'echec';
+          tache.erreur = erreur instanceof Error ? erreur.message : String(erreur);
+          tache.erreurReseau = estErreurReseau(erreur) ? true : undefined;
+          if (estErreurStockage(erreur)) arretStockage = true;
+        }
+        etat.progression = progression(etat.taches);
+        await enregistrer(etat);
+      }
+    };
+    await Promise.all(Array.from({ length: concurrenceTelechargement(aFaire.length) }, () => ouvrier()));
+    etat.erreurStockage = arretStockage ? true : undefined;
     etat.statut = etat.taches.some((t) => t.statut === 'echec') ? 'partiel' : 'termine';
     await enregistrer(etat);
     if (etat.statut === 'termine') {

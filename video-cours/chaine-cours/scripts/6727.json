@@ -1,0 +1,405 @@
+{
+ "cours": 6727,
+ "titre": "Équations et inéquations du premier degré",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Premier degré",
+   "titre": "Équations et inéquations du premier degré",
+   "sous": "Une inconnue, une solution unique ou tout un intervalle de solutions",
+   "anim": {
+    "nom": "droite_racine_fig",
+    "hauteur": 230
+   }
+  },
+  "programme": {
+   "type": "etape",
+   "kicker": "Le programme",
+   "titre": "Égalité ou inégalité, même démarche",
+   "tex": [
+    "\\text{une seule inconnue, au premier degré}",
+    "\\text{une unique solution pour une équation}",
+    "\\text{un intervalle pour une inéquation}",
+    "\\text{un problème traduit, puis résolu}"
+   ]
+  },
+  "equation_def": {
+   "type": "formule",
+   "kicker": "Définition · l'équation",
+   "tex": "2x + 3 = 7",
+   "note": "Une égalité qui contient une ou plusieurs inconnues, désignées par une lettre."
+  },
+  "solution_def": {
+   "type": "etape",
+   "kicker": "Définition · la solution",
+   "titre": "Le nombre qui rend l'égalité vraie",
+   "tex": [
+    "3 \\times 2 - 6 = 0",
+    "\\text{deux est solution de } 3x - 6 = 0"
+   ]
+  },
+  "forme": {
+   "type": "formule",
+   "kicker": "La forme générale",
+   "tex": "ax + b = 0 \\quad (a \\neq 0)",
+   "note": "a et bé sont des nombres réels, avec a non nul : c'est le premier degré en iks.",
+   "anim": {
+    "nom": "droites_affines_fig",
+    "hauteur": 170
+   }
+  },
+  "regles_eq": {
+   "type": "recap",
+   "kicker": "Les règles qui ne changent pas les solutions",
+   "etapes": [
+    "Ajouter le même nombre des deux côtés",
+    "Soustraire le même nombre des deux côtés",
+    "Multiplier par un nombre non nul",
+    "Diviser par un nombre non nul"
+   ]
+  },
+  "solution_generale": {
+   "type": "formule",
+   "kicker": "La solution générale",
+   "tex": "x = -\\frac{b}{a}",
+   "note": "Une équation du premier degré admet une unique solution : moins bé sur a."
+  },
+  "ex_simple": {
+   "type": "etape",
+   "kicker": "Exemple · une équation simple",
+   "titre": "On isole iks en deux mouvements",
+   "tex": [
+    "3x - 6 = 0",
+    "3x = 6",
+    "x = \\tfrac{6}{3} = 2 \\quad ; \\quad S = \\{2\\}"
+   ]
+  },
+  "verification": {
+   "type": "etape",
+   "kicker": "La vérification",
+   "titre": "On remplace, on constate",
+   "tex": [
+    "3 \\times 2 - 6 = 6 - 6",
+    "= 0 \\quad \\text{égalité vérifiée}"
+   ]
+  },
+  "ramener": {
+   "type": "recap",
+   "kicker": "Méthode · se ramener au premier degré",
+   "etapes": [
+    "Développer et réduire chaque membre",
+    "Les iks d'un côté, les constantes de l'autre",
+    "Appliquer la solution générale"
+   ]
+  },
+  "ex_par_1": {
+   "type": "etape",
+   "kicker": "Exemple · avec parenthèses",
+   "titre": "Développer, regrouper, réduire",
+   "tex": [
+    "2(x - 3) = 5x + 1",
+    "2x - 6 = 5x + 1",
+    "2x - 5x = 1 + 6",
+    "-3x = 7"
+   ]
+  },
+  "ex_par_2": {
+   "type": "etape",
+   "kicker": "Exemple · solution et vérification",
+   "titre": "Les deux membres donnent le même nombre",
+   "tex": [
+    "x = -\\tfrac{7}{3}",
+    "S = \\left\\{ -\\tfrac{7}{3} \\right\\}",
+    "2\\left(-\\tfrac{7}{3} - 3\\right) = -\\tfrac{32}{3}",
+    "5 \\times \\left(-\\tfrac{7}{3}\\right) + 1 = -\\tfrac{32}{3}"
+   ]
+  },
+  "ineq_def": {
+   "type": "etape",
+   "kicker": "Définition · l'inéquation du premier degré",
+   "titre": "Quatre formes, avec a non nul",
+   "tex": [
+    "ax + b > 0 \\quad ; \\quad ax + b < 0",
+    "ax + b \\geq 0 \\quad ; \\quad ax + b \\leq 0"
+   ]
+  },
+  "regles_ineq": {
+   "type": "recap",
+   "kicker": "Les règles des inéquations",
+   "etapes": [
+    "Ajouter ou soustraire : le sens ne change pas",
+    "Multiplier par un positif : sens conservé",
+    "Multiplier par un négatif : sens inversé"
+   ]
+  },
+  "droite": {
+   "type": "phrase",
+   "kicker": "Lire les solutions sur une droite graduée",
+   "texte": "Sur une droite graduée, l'ensemble des solutions d'une inéquation se lit comme une demi-droite coloriée.",
+   "anim": {
+    "nom": "droite_numerique_fig",
+    "hauteur": 200
+   }
+  },
+  "selon_signe": {
+   "type": "etape",
+   "kicker": "Résoudre selon le signe de a",
+   "titre": "Pour a iks plus bé strictement positif",
+   "tex": [
+    "a > 0 : \\quad x > -\\tfrac{b}{a}",
+    "a < 0 : \\quad x < -\\tfrac{b}{a}"
+   ]
+  },
+  "intervalles": {
+   "type": "etape",
+   "kicker": "L'ensemble solution est un intervalle",
+   "titre": "La borne est moins bé sur a",
+   "tex": [
+    "S = \\left] -\\tfrac{b}{a} \\, ; \\, +\\infty \\right[",
+    "S = \\left] -\\infty \\, ; \\, -\\tfrac{b}{a} \\right["
+   ]
+  },
+  "ex_ineq_1": {
+   "type": "etape",
+   "kicker": "Exemple · une inéquation",
+   "titre": "On isole le terme en iks",
+   "tex": [
+    "-2x + 5 \\leq 1",
+    "-2x \\leq 1 - 5",
+    "-2x \\leq -4"
+   ]
+  },
+  "ex_ineq_2": {
+   "type": "etape",
+   "kicker": "Exemple · le moment délicat",
+   "titre": "Diviser par moins deux inverse le sens",
+   "tex": [
+    "x \\geq \\tfrac{-4}{-2}",
+    "x \\geq 2 \\quad ; \\quad S = [2 \\, ; \\, +\\infty["
+   ]
+  },
+  "methode_pb": {
+   "type": "recap",
+   "kicker": "Traduire un problème · la méthode",
+   "etapes": [
+    "Choisir et nommer l'inconnue",
+    "Traduire l'énoncé en inégalité",
+    "Résoudre l'inéquation obtenue",
+    "Interpréter dans le contexte"
+   ]
+  },
+  "pb_enonce": {
+   "type": "etape",
+   "kicker": "Problème · l'abonnement rentable",
+   "titre": "Comparer les deux façons de payer",
+   "tex": [
+    "\\text{sans abonnement : payer } x",
+    "\\text{avec abonnement : } 20 + 0{,}7x"
+   ]
+  },
+  "pb_resolution": {
+   "type": "etape",
+   "kicker": "Problème · la résolution",
+   "titre": "L'abonnement gagne quand son coût est le plus petit",
+   "tex": [
+    "20 + 0{,}7x < x",
+    "20 < 0{,}3x",
+    "x > \\tfrac{20}{0{,}3} \\approx 66{,}67"
+   ]
+  },
+  "pb_conclusion": {
+   "type": "formule",
+   "kicker": "Problème · la conclusion",
+   "tex": "x > 66{,}67\\ \\text{euros}",
+   "note": "Au-delà d'environ soixante-six euros soixante-sept d'achats, l'abonnement est rentable."
+  },
+  "tableau": {
+   "type": "recap",
+   "kicker": "Le tableau à retenir",
+   "etapes": [
+    "Équation : une unique solution",
+    "Inéquation : un intervalle de solutions",
+    "Négatif en division : sens inversé",
+    "Toujours vérifier la solution"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Équation du premier degré : ax + b = 0",
+    "Solution unique : x = -b/a",
+    "Inéquation : ensemble = un intervalle",
+    "Diviser par un négatif inverse le sens",
+    "Problème : traduire, résoudre, interpréter"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux équations et aux inéquations du premier degré. Une seule inconnue, des règles simples, et deux sortes de réponses : un nombre unique pour une équation, tout un intervalle pour une inéquation. La figure montre l'idée géométrique : résoudre, c'est trouver où la droite coupe l'axe des abscisses.",
+   "texte": "Équations et inéquations : une inconnue, deux sortes de réponses.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le programme tient en quatre idées. Une seule inconnue élevée à la puissance un, une unique solution pour chaque équation, un intervalle de solutions pour chaque inéquation, et à la fin un problème concret traduit en équation ou en inéquation, puis résolu.",
+   "texte": "Une inconnue, une solution ou un intervalle.",
+   "ecran": "programme"
+  },
+  {
+   "id": "p03",
+   "dit": "Une équation est une égalité qui contient une ou plusieurs inconnues, désignées par une lettre, souvent iks. L'exemple de l'écran, deux iks plus trois égal à sept, pose une question simple : pour quelle valeur de iks cette égalité devient-elle vraie.",
+   "texte": "Une équation : une égalité avec une inconnue.",
+   "ecran": "equation_def"
+  },
+  {
+   "id": "p04",
+   "dit": "Un nombre est solution d'une équation si, lorsqu'on le substitue à l'inconnue, l'égalité est vérifiée. Ainsi, deux est solution de trois iks moins six égal à zéro, car trois fois deux moins six donne bien zéro. Résoudre, c'est trouver toutes les solutions, et leur ensemble se note èsse.",
+   "texte": "Solution : le nombre qui rend l'égalité vraie.",
+   "ecran": "solution_def"
+  },
+  {
+   "id": "p05",
+   "dit": "Une équation du premier degré à une inconnue peut toujours s'écrire sous la forme a iks plus bé égal à zéro, où a et bé sont des nombres réels et où a est différent de zéro. Si a était nul, il n'y aurait plus d'inconnue du tout.",
+   "texte": "Forme générale : ax + b = 0, avec a ≠ 0.",
+   "ecran": "forme"
+  },
+  {
+   "id": "p06",
+   "dit": "La propriété fondamentale autorise deux gestes sans changer les solutions. Ajouter ou soustraire un même nombre aux deux membres, et multiplier ou diviser les deux membres par un même nombre non nul. Toute la résolution consiste à enchaîner ces gestes pour isoler iks.",
+   "texte": "Deux gestes libres : ajouter, ou multiplier par un non nul.",
+   "ecran": "regles_eq"
+  },
+  {
+   "id": "p07",
+   "dit": "Avec ces règles, l'équation a iks plus bé égal à zéro admet une unique solution : iks égal à moins bé sur a. L'ensemble solution contient donc un seul nombre, moins bé divisé par a.",
+   "texte": "Unique solution : x = −b/a.",
+   "ecran": "solution_generale"
+  },
+  {
+   "id": "p08",
+   "dit": "Premier exemple : résoudre trois iks moins six égal à zéro. On ajoute six des deux côtés, il reste trois iks égal à six. On divise par trois : iks égal à deux. L'ensemble solution est le singleton contenant deux.",
+   "texte": "3x − 6 = 0 donne S = {2}.",
+   "ecran": "ex_simple"
+  },
+  {
+   "id": "p09",
+   "dit": "On vérifie toujours : trois fois deux moins six, c'est six moins six, donc zéro. L'égalité de départ est bien vérifiée, la solution est correcte. Ce réflexe de vérification coûte quelques secondes et évite la plupart des erreurs de signe.",
+   "texte": "Vérifié : 3 × 2 − 6 = 0.",
+   "ecran": "verification"
+  },
+  {
+   "id": "p10",
+   "dit": "Certaines équations demandent un travail préalable avant de ressembler à la forme générale. La méthode : développer et réduire chaque membre, regrouper les termes en iks dans un membre et les constantes dans l'autre, puis appliquer la solution générale.",
+   "texte": "Développer, regrouper, puis isoler.",
+   "ecran": "ramener"
+  },
+  {
+   "id": "p11",
+   "dit": "Exemple : résoudre deux facteur de iks moins trois, égal à cinq iks plus un. On développe : deux iks moins six égal à cinq iks plus un. On regroupe : deux iks moins cinq iks égal à un plus six. On réduit : moins trois iks égal à sept.",
+   "texte": "2(x − 3) = 5x + 1 devient −3x = 7.",
+   "ecran": "ex_par_1"
+  },
+  {
+   "id": "p12",
+   "dit": "On divise par moins trois : iks égal à moins sept tiers. Vérification : le membre de gauche donne deux fois moins seize tiers, soit moins trente-deux tiers, et le membre de droite donne moins trente-cinq tiers plus trois tiers, soit aussi moins trente-deux tiers. Les deux membres sont égaux.",
+   "texte": "x = −7/3, vérifié des deux côtés : −32/3.",
+   "ecran": "ex_par_2"
+  },
+  {
+   "id": "p13",
+   "dit": "Passons aux inéquations. Une inéquation est une inégalité contenant une inconnue, avec l'un des signes : strictement inférieur, strictement supérieur, inférieur ou égal, supérieur ou égal. Au premier degré, elle prend l'une des quatre formes de l'écran, toujours avec a non nul.",
+   "texte": "Inéquation : une inégalité avec une inconnue.",
+   "ecran": "ineq_def"
+  },
+  {
+   "id": "p14",
+   "dit": "Les règles ressemblent à celles des équations, avec un piège en plus. Ajouter ou soustraire un même nombre ne change pas le sens. Multiplier ou diviser par un nombre strictement positif conserve le sens. Mais multiplier ou diviser par un nombre strictement négatif inverse le sens de l'inégalité.",
+   "texte": "Le piège : un négatif inverse le sens.",
+   "ecran": "regles_ineq"
+  },
+  {
+   "id": "p15",
+   "dit": "Conséquence visible : l'ensemble des solutions d'une inéquation n'est plus un nombre unique, mais un intervalle, que l'on lit sur une droite graduée comme une demi-droite. La figure montre, sur un exemple, comment le crochet et la partie coloriée racontent quelles valeurs conviennent.",
+   "texte": "Les solutions forment une demi-droite.",
+   "ecran": "droite"
+  },
+  {
+   "id": "p16",
+   "dit": "Pour résoudre a iks plus bé strictement positif, tout dépend du signe de a. Si a est positif, iks reste strictement supérieur à moins bé sur a. Si a est négatif, la division inverse le sens : iks devient strictement inférieur à moins bé sur a.",
+   "texte": "Selon le signe de a, le sens bascule ou non.",
+   "ecran": "selon_signe"
+  },
+  {
+   "id": "p17",
+   "dit": "L'ensemble solution s'écrit donc comme un intervalle : de moins bé sur a jusqu'à plus l'infini quand a est positif, et de moins l'infini jusqu'à moins bé sur a quand a est négatif. Le crochet reste ouvert, car l'inégalité de départ est stricte.",
+   "texte": "S : un intervalle ouvert, d'un côté ou de l'autre.",
+   "ecran": "intervalles"
+  },
+  {
+   "id": "p18",
+   "dit": "Exemple complet : résoudre moins deux iks plus cinq inférieur ou égal à un. On soustrait cinq des deux côtés : moins deux iks inférieur ou égal à un moins cinq, c'est-à-dire moins quatre. Le terme en iks est isolé, reste la division délicate.",
+   "texte": "−2x + 5 ≤ 1 devient −2x ≤ −4.",
+   "ecran": "ex_ineq_1"
+  },
+  {
+   "id": "p19",
+   "dit": "On divise par moins deux, un nombre négatif : le sens s'inverse. Iks devient supérieur ou égal à moins quatre divisé par moins deux, c'est-à-dire deux. L'ensemble solution est l'intervalle fermé en deux et ouvert vers plus l'infini.",
+   "texte": "Division par −2 : sens inversé, S = [2 ; +∞[.",
+   "ecran": "ex_ineq_2"
+  },
+  {
+   "id": "p20",
+   "dit": "Dernière partie : traduire un problème. La méthode compte quatre étapes. Choisir l'inconnue et la nommer, traduire l'énoncé en une égalité ou une inégalité, résoudre, puis interpréter le résultat dans le contexte du problème. Sans la dernière étape, le travail reste inachevé.",
+   "texte": "Choisir, traduire, résoudre, interpréter.",
+   "ecran": "methode_pb"
+  },
+  {
+   "id": "p21",
+   "dit": "Le problème : un magasin propose un abonnement à vingt euros donnant droit à une réduction de trente pour cent sur tous les articles. À partir de quel montant d'achats l'abonnement devient-il rentable. Soit iks le montant des achats en euros : sans abonnement, on paie iks ; avec abonnement, on paie vingt plus zéro virgule sept iks, car on ne paie que soixante-dix pour cent du prix.",
+   "texte": "Sans : x. Avec : 20 + 0,7x.",
+   "ecran": "pb_enonce"
+  },
+  {
+   "id": "p22",
+   "dit": "L'abonnement est rentable quand payer avec coûte moins cher que payer sans : vingt plus zéro virgule sept iks strictement inférieur à iks. On regroupe : vingt strictement inférieur à zéro virgule trois iks, puis iks strictement supérieur à vingt divisé par zéro virgule trois, environ soixante-six virgule soixante-sept.",
+   "texte": "20 + 0,7x < x donne x > 66,67 environ.",
+   "ecran": "pb_resolution"
+  },
+  {
+   "id": "p23",
+   "dit": "Interprétation : l'abonnement devient rentable au-delà d'environ soixante-six euros soixante-sept d'achats, hors abonnement. En dessous de ce seuil, mieux vaut payer plein tarif ; au-dessus, chaque achat supplémentaire fait gagner de l'argent.",
+   "texte": "Rentable au-delà de 66,67 € d'achats environ.",
+   "ecran": "pb_conclusion"
+  },
+  {
+   "id": "p24",
+   "dit": "Le tableau récapitulatif du chapitre oppose proprement les deux objets. Une équation du premier degré : une unique solution. Une inéquation : un intervalle de solutions. Diviser par un négatif inverse le sens. Et dans tous les cas, on vérifie la solution trouvée.",
+   "texte": "Équation : un nombre. Inéquation : un intervalle.",
+   "ecran": "tableau"
+  },
+  {
+   "id": "p25",
+   "dit": "Récapitulons. Toute équation du premier degré se ramène à a iks plus bé égal à zéro et admet la solution unique moins bé sur a. Toute inéquation se résout avec les mêmes gestes, en inversant le sens quand on divise par un négatif, et sa réponse est un intervalle. Et un problème se traite en quatre étapes, jusqu'à l'interprétation.",
+   "texte": "Le premier degré en cinq réflexes.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Équations du premier degré : règles et résolution"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Inéquations du premier degré et problèmes",
+   "pont": {
+    "texte": "Partie 2 : inéquations et traduction de problèmes.",
+    "dit": "Partie deux : les inéquations du premier degré, puis la traduction d'un problème. Les gestes de résolution restent les mêmes, mais un piège nouveau apparaît : diviser par un nombre négatif inverse le sens de l'inégalité."
+   }
+  }
+ ]
+}

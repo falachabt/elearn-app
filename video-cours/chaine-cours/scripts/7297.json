@@ -1,0 +1,478 @@
+{
+ "cours": 7297,
+ "titre": "Limites et continuité : définitions, asymptotes et formes indéterminées",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Analyse",
+   "titre": "Limites et continuité : définitions, asymptotes et formes indéterminées",
+   "sous": "Limite en un point et à l'infini, continuité et théorème des valeurs intermédiaires, puis lever les indéterminations",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Observer f(x) quand x s'approche, sans forcément l'atteindre.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 150
+   }
+  },
+  "lim_finie": {
+   "type": "formule",
+   "kicker": "Limite finie en un point",
+   "tex": "\\lim_{x \\to a} f(x) = \\ell",
+   "note": "Tout intervalle autour de ℓ finit par contenir les f(x) proches de a"
+  },
+  "ex_finie": {
+   "type": "etape",
+   "kicker": "Exemple · limite finie",
+   "titre": "Un quotient qui se simplifie",
+   "tex": [
+    "\\frac{x^2 - 1}{x - 1} = x + 1 \\quad (x \\neq 1)",
+    "\\lim_{x \\to 1} f(x) = 2"
+   ]
+  },
+  "lim_inf_point": {
+   "type": "phrase",
+   "kicker": "Limite infinie en un point",
+   "texte": "f(x) dépasse toute borne près de a : asymptote verticale en vue.",
+   "anim": {
+    "nom": "hyperbole_fig",
+    "hauteur": 150
+   }
+  },
+  "gauche_droite": {
+   "type": "etape",
+   "kicker": "Limites à gauche et à droite",
+   "titre": "Approcher par chaque côté",
+   "tex": [
+    "x \\to a^- : x < a \\text{, à gauche}",
+    "x \\to a^+ : x > a \\text{, à droite}",
+    "\\text{limite en } a \\iff \\text{deux côtés égaux}"
+   ]
+  },
+  "ex_abs": {
+   "type": "etape",
+   "kicker": "Exemple · pas de limite",
+   "titre": "Valeur absolue de x sur x, en zéro",
+   "tex": [
+    "\\lim_{x \\to 0^-} \\tfrac{|x|}{x} = -1",
+    "\\lim_{x \\to 0^+} \\tfrac{|x|}{x} = 1",
+    "\\text{côtés différents : pas de limite en } 0"
+   ]
+  },
+  "lim_infini": {
+   "type": "phrase",
+   "kicker": "Limite à l'infini",
+   "texte": "x grandit sans borne : f(x) se stabilise ou grandit sans borne.",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_infini": {
+   "type": "etape",
+   "kicker": "Exemple · à l'infini",
+   "titre": "Deux comportements opposés",
+   "tex": [
+    "\\lim_{x \\to +\\infty} \\frac{2x + 1}{x} = 2",
+    "\\lim_{x \\to +\\infty} x^2 = +\\infty"
+   ]
+  },
+  "operations": {
+   "type": "etape",
+   "kicker": "Opérations sur les limites",
+   "titre": "Somme, produit, quotient, composition",
+   "tex": [
+    "\\text{règles usuelles : on conclut directement}",
+    "\\text{sauf quatre formes indéterminées}",
+    "\\infty - \\infty \\quad 0 \\times \\infty \\quad \\tfrac{\\infty}{\\infty} \\quad \\tfrac{0}{0}"
+   ]
+  },
+  "asymptotes": {
+   "type": "etape",
+   "kicker": "Asymptotes",
+   "titre": "La courbe épouse une droite",
+   "tex": [
+    "\\lim_{x \\to a} f(x) = \\pm\\infty \\Rightarrow x = a \\text{ verticale}",
+    "\\lim_{x \\to \\pm\\infty} f(x) = \\ell \\Rightarrow y = \\ell \\text{ horizontale}"
+   ]
+  },
+  "ex_asymptotes": {
+   "type": "etape",
+   "kicker": "Exemple · asymptotes",
+   "titre": "Un sur x moins deux, plus trois",
+   "tex": [
+    "f(x) = \\frac{1}{x - 2} + 3",
+    "x = 2 \\text{ verticale} \\qquad y = 3 \\text{ horizontale}"
+   ]
+  },
+  "continuite": {
+   "type": "formule",
+   "kicker": "Continuité en un point",
+   "tex": "\\lim_{x \\to a} f(x) = f(a)",
+   "note": "Trois conditions : définie en a, limite existante, limite égale à f(a)"
+  },
+  "ex_continuite": {
+   "type": "phrase",
+   "kicker": "Exemple · continuité",
+   "texte": "x² est continue partout : sa limite en a vaut a², sa valeur.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 120
+   }
+  },
+  "prolongement": {
+   "type": "etape",
+   "kicker": "Prolongement par continuité",
+   "titre": "Combler le trou en un point",
+   "tex": [
+    "f(x) = \\frac{\\sin x}{x} \\text{ non définie en } 0",
+    "\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1 \\Rightarrow f(0) = 1"
+   ]
+  },
+  "continu_intervalle": {
+   "type": "phrase",
+   "kicker": "Continuité sur un intervalle",
+   "texte": "Continue en tout point : polynômes, sin, cos, exp, ln sur leur domaine.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 120
+   }
+  },
+  "tvi": {
+   "type": "formule",
+   "kicker": "Théorème des valeurs intermédiaires",
+   "tex": "f(c) = k",
+   "note": "f continue sur a, b : toute valeur k entre f(a) et f(b) est atteinte"
+  },
+  "ex_tvi": {
+   "type": "etape",
+   "kicker": "Exemple résolu · existence",
+   "titre": "x au cube plus x moins un, sur zéro, un",
+   "tex": [
+    "f(0) = -1 < 0 \\qquad f(1) = 1 > 0",
+    "f \\text{ continue} \\Rightarrow \\exists c \\in ]0, 1[ \\text{, } f(c) = 0"
+   ]
+  },
+  "image_intervalle": {
+   "type": "formule",
+   "kicker": "Image d'un intervalle",
+   "tex": "f([a, b]) = [m, M]",
+   "note": "Continue sur a, b : l'image est l'intervalle entre minimum m et maximum M"
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Continuité et TVI : à retenir",
+   "etapes": [
+    "Limite en a : comparer gauche et droite",
+    "Infinie en a : asymptote verticale x = a",
+    "Finie à l'infini : asymptote horizontale",
+    "Continue en a : limite égale à f(a)",
+    "TVI : prouver qu'une solution existe"
+   ]
+  },
+  "fi_def": {
+   "type": "phrase",
+   "kicker": "Formes indéterminées",
+   "texte": "Quatre formes où le calcul brut ne conclut pas : transformer d'abord.",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 120
+   }
+  },
+  "cas_inf": {
+   "type": "phrase",
+   "kicker": "Cas infini sur infini · méthode",
+   "texte": "Fraction rationnelle : factoriser par la plus haute puissance.",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 120
+   }
+  },
+  "ex_inf": {
+   "type": "etape",
+   "kicker": "Exemple résolu · infini sur infini",
+   "titre": "Trois x carré moins cinq x, sur deux x carré",
+   "tex": [
+    "\\frac{3x^2 - 5x + 1}{2x^2 + x} = \\frac{3 - \\tfrac{5}{x} + \\tfrac{1}{x^2}}{2 + \\tfrac{1}{x}}",
+    "\\lim_{x \\to +\\infty} = \\tfrac{3}{2}"
+   ]
+  },
+  "regle_degres": {
+   "type": "etape",
+   "kicker": "Règle des degrés",
+   "titre": "Comparer numérateur et dénominateur",
+   "tex": [
+    "\\text{même degré : quotient des dominants}",
+    "\\text{numérateur plus fort : limite infinie}",
+    "\\text{dénominateur plus fort : limite zéro}"
+   ]
+  },
+  "cas_zero": {
+   "type": "phrase",
+   "kicker": "Cas zéro sur zéro · méthode",
+   "texte": "Zéro commun en a : le facteur x − a se cache des deux côtés.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 120
+   }
+  },
+  "ex_zero": {
+   "type": "etape",
+   "kicker": "Exemple résolu · zéro sur zéro",
+   "titre": "x carré moins quatre, en x égale deux",
+   "tex": [
+    "\\frac{x^2 - 4}{x^2 - 3x + 2} = \\frac{(x - 2)(x + 2)}{(x - 2)(x - 1)}",
+    "= \\frac{x + 2}{x - 1} \\xrightarrow[x \\to 2]{} \\tfrac{4}{1} = 4"
+   ]
+  },
+  "cas_conjugue": {
+   "type": "phrase",
+   "kicker": "Cas infini moins infini · méthode",
+   "texte": "Une racine dans une différence : multiplier par la quantité conjuguée.",
+   "anim": {
+    "nom": "hyperbole_fig",
+    "hauteur": 120
+   }
+  },
+  "ex_conjugue": {
+   "type": "etape",
+   "kicker": "Exemple résolu · quantité conjuguée",
+   "titre": "Racine de x carré plus x, moins x",
+   "tex": [
+    "\\sqrt{x^2 + x} - x = \\frac{x}{\\sqrt{x^2 + x} + x}",
+    "= \\frac{1}{\\sqrt{1 + \\tfrac{1}{x}} + 1} \\xrightarrow[x \\to +\\infty]{} \\tfrac{1}{2}"
+   ]
+  },
+  "cas_zero_inf": {
+   "type": "etape",
+   "kicker": "Cas zéro fois infini · méthode",
+   "titre": "Se ramener à un quotient connu",
+   "tex": [
+    "x \\ln \\tfrac{1}{x} \\text{, en } 0^+ \\text{, pose } t = \\tfrac{1}{x}",
+    "\\frac{\\ln t}{t} \\xrightarrow[t \\to +\\infty]{} 0 \\text{ (croissance comparée)}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Identifier la forme avant de conclure",
+    "Infini sur infini : terme dominant",
+    "Zéro sur zéro : factoriser, simplifier",
+    "Racine : quantité conjuguée, puis simplifier",
+    "Repasser à la limite, vérifier le signe"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours d'analyse consacré aux limites et à la continuité. Nous définissons la limite en un point et à l'infini, nous lisons les asymptotes, nous caractérisons les fonctions continues avec le théorème des valeurs intermédiaires, puis nous apprenons à lever les formes indéterminées.",
+   "texte": "Cours : limites, continuité, indéterminations.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "L'idée de départ est simple. On observe les valeurs d'une fonction quand la variable s'approche d'un point, sans forcément atteindre ce point. La limite décrit le comportement vers lequel ces valeurs se dirigent.",
+   "texte": "Observer f(x) quand x s'approche de a.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "On dit qu'une fonction admet une limite finie èle en a quand tout intervalle ouvert contenant èle finit par contenir toutes les valeurs de la fonction pour iks suffisamment proche de a, la fonction étant définie autour de a, sauf éventuellement en a lui-même.",
+   "texte": "Limite finie : f(x) se resserre autour de ℓ.",
+   "ecran": "lim_finie"
+  },
+  {
+   "id": "p04",
+   "dit": "Exemple. La fonction qui à iks associe iks carré moins un, divisé par iks moins un, n'est pas définie en un. Mais pour iks différent de un, elle se simplifie en iks plus un, donc sa limite en un vaut deux. La limite ne dépend pas de la valeur au point.",
+   "texte": "En 1 : simplifier, limite égale à 2.",
+   "ecran": "ex_finie"
+  },
+  {
+   "id": "p05",
+   "dit": "Une fonction admet une limite infinie en un point quand ses valeurs deviennent aussi grandes que l'on veut dès que iks est assez proche de ce point. C'est le cas de un sur iks en zéro à droite, qui tend vers plus l'infini, alors qu'à gauche elle tend vers moins l'infini.",
+   "texte": "1/x en 0 : +∞ à droite, −∞ à gauche.",
+   "ecran": "lim_inf_point"
+  },
+  {
+   "id": "p06",
+   "dit": "On distingue donc la limite à gauche, quand iks approche a en restant inférieur à a, et la limite à droite, quand iks reste supérieur à a. La limite en a existe exactement quand les deux limites latérales existent et sont égales.",
+   "texte": "Limite en a : gauche et droite égales.",
+   "ecran": "gauche_droite"
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple. La fonction valeur absolue de iks divisée par iks vaut moins un à gauche de zéro et plus un à droite de zéro. Les deux côtés ne s'accordent pas, donc cette fonction n'a pas de limite en zéro. Comparer les deux côtés est le premier réflexe en un point.",
+   "texte": "|x|/x : −1 à gauche, +1 à droite, pas de limite.",
+   "ecran": "ex_abs"
+  },
+  {
+   "id": "p08",
+   "dit": "À l'infini, deux comportements. Ou bien la fonction se rapproche d'une valeur finie èle quand iks devient grand, ou bien ses valeurs deviennent arbitrairement grandes. On étudie alors le comportement au loin, sans jamais atteindre un point précis.",
+   "texte": "À l'infini : se stabiliser ou exploser.",
+   "ecran": "lim_infini"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple. Le quotient de deux iks plus un par iks tend vers deux quand iks tend vers plus l'infini, car le un devient négligeable devant iks. À l'inverse, iks carré tend vers plus l'infini. Négliger le petit devant le grand est déjà une technique de limite.",
+   "texte": "(2x + 1)/x → 2, mais x² → +∞.",
+   "ecran": "ex_infini"
+  },
+  {
+   "id": "p10",
+   "dit": "Somme, produit, quotient et composition : les règles usuelles de calcul des limites s'appliquent presque toujours directement. Elles échouent seulement sur quatre formes, dites indéterminées : infini moins infini, zéro fois infini, infini sur infini, et zéro sur zéro, que la deuxième partie apprendra à lever.",
+   "texte": "Quatre formes où les règles usuelles échouent.",
+   "ecran": "operations"
+  },
+  {
+   "id": "p11",
+   "dit": "Les limites infinies se lisent sur le graphique comme des asymptotes. Si la limite en a est infinie, la droite verticale d'équation iks égale a est asymptote à la courbe. Si la limite à l'infini est une valeur finie èle, la droite horizontale d'équation i grec égale èle est asymptote.",
+   "texte": "Asymptotes : x = a verticale, y = ℓ horizontale.",
+   "ecran": "asymptotes"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple. Pour la fonction un sur iks moins deux, plus trois, la droite d'équation iks égale deux est asymptote verticale, et la droite d'équation i grec égale trois est asymptote horizontale, des deux côtés à l'infini. L'écriture de la fonction annonce déjà ses deux asymptotes.",
+   "texte": "1/(x − 2) + 3 : verticales x = 2, horizontale y = 3.",
+   "ecran": "ex_asymptotes"
+  },
+  {
+   "id": "p13",
+   "dit": "Une fonction est continue en a quand trois conditions sont réunies : elle est définie en a, sa limite en a existe, et cette limite est égale à sa valeur en a. Continuité signifie donc qu'il n'y a ni trou ni saut au point considéré.",
+   "texte": "Continue en a : limite égale à f(a).",
+   "ecran": "continuite"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple élémentaire. La fonction carré est continue en tout point a, car la limite de iks carré quand iks tend vers a vaut a carré, exactement sa valeur en a. Plus généralement, être continue en a équivaut à être continue à gauche et à droite en a.",
+   "texte": "x² continue partout : limite = a² = f(a).",
+   "ecran": "ex_continuite"
+  },
+  {
+   "id": "p15",
+   "dit": "Si une fonction n'est pas définie en a mais possède une limite finie èle en a, on peut la prolonger par continuité en posant sa valeur en a égale à èle. Ainsi sinus iks sur iks, non définie en zéro mais de limite un en zéro, se prolonge en posant la valeur un en zéro.",
+   "texte": "Prolongement : poser f(a) = limite en a.",
+   "ecran": "prolongement"
+  },
+  {
+   "id": "p16",
+   "dit": "Une fonction est continue sur un intervalle quand elle est continue en tout point de cet intervalle. Les fonctions usuelles le sont sur leur domaine : polynômes, fonctions rationnelles hors des zéros du dénominateur, racine carrée, sinus, cosinus, exponentielle et logarithme. Somme, produit, quotient et composition préservent la continuité.",
+   "texte": "Usuelles continues sur leur domaine.",
+   "ecran": "continu_intervalle"
+  },
+  {
+   "id": "p17",
+   "dit": "Le théorème des valeurs intermédiaires est l'outil central du chapitre. Si une fonction est continue sur un segment a bé, et si ka est compris entre ses valeurs aux bornes, alors il existe au moins un point cé du segment où la fonction prend exactement la valeur ka. La continuité interdit de sauter une valeur.",
+   "texte": "TVI : toute valeur intermédiaire est atteinte.",
+   "ecran": "tvi"
+  },
+  {
+   "id": "p18",
+   "dit": "Exemple d'existence. La fonction iks au cube plus iks moins un est continue sur le segment zéro un, elle vaut moins un en zéro et plus un en un. Le théorème garantit donc un point cé entre zéro et un où elle s'annule. On prouve qu'une solution existe, sans encore la calculer. Si la fonction était de plus strictement monotone, cette solution serait unique.",
+   "texte": "x³ + x − 1 : un zéro garanti entre 0 et 1.",
+   "ecran": "ex_tvi"
+  },
+  {
+   "id": "p19",
+   "dit": "Dernier théorème de cette partie. L'image d'un intervalle par une fonction continue est toujours un intervalle. Sur un segment a bé, cette image est exactement l'intervalle entre le minimum et le maximum de la fonction. Ainsi la fonction carré, sur le segment moins un deux, a pour image le segment zéro quatre.",
+   "texte": "Image continue d'un intervalle : un intervalle.",
+   "ecran": "image_intervalle"
+  },
+  {
+   "id": "p20",
+   "dit": "Retenons la première partie. En un point, comparer la gauche et la droite. Limite infinie, asymptote verticale ; limite finie au loin, asymptote horizontale. Continue veut dire limite égale à la valeur. Et le théorème des valeurs intermédiaires prouve l'existence de solutions.",
+   "texte": "Continuité et TVI : à retenir.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p21",
+   "dit": "Une forme indéterminée n'est pas une absence de limite. Elle signifie seulement que le calcul brut, terme à terme, ne permet pas de conclure. La limite existe peut-être, mais il faut d'abord transformer l'écriture de l'expression, puis repasser à la limite sur la forme simplifiée.",
+   "texte": "Indéterminée : transformer, pas abandonner.",
+   "ecran": "fi_def"
+  },
+  {
+   "id": "p22",
+   "dit": "Premier cas, infini sur infini, pour un quotient de polynômes à l'infini. La méthode consiste à factoriser le numérateur et le dénominateur par leur terme de plus haut degré : ce terme dominant écrase tous les autres, qui deviennent négligeables.",
+   "texte": "Infini sur infini : le terme dominant écrase.",
+   "ecran": "cas_inf"
+  },
+  {
+   "id": "p23",
+   "dit": "Exemple résolu. Pour le quotient de trois iks carré moins cinq iks plus un par deux iks carré plus iks, on factorise par iks carré en haut et en bas. Les termes en un sur iks et un sur iks carré tendent vers zéro, et il reste trois sur deux. La limite vaut donc trois demis.",
+   "texte": "Exemple ∞/∞ : limite égale à 3/2.",
+   "ecran": "ex_inf"
+  },
+  {
+   "id": "p24",
+   "dit": "La règle générale se lit sur les degrés. À l'infini, une fraction rationnelle a la limite de son quotient de termes de plus haut degré. Degrés égaux : limite finie, le quotient des dominants. Numérateur plus fort : limite infinie. Dénominateur plus fort : limite zéro.",
+   "texte": "Degrés : plus fort gagne, égalité donne le quotient.",
+   "ecran": "regle_degres"
+  },
+  {
+   "id": "p25",
+   "dit": "Deuxième cas, zéro sur zéro en un point a. Si le numérateur et le dénominateur s'annulent tous deux en a, c'est que iks moins a est un facteur commun caché. On factorise des deux côtés, on simplifie ce facteur, puis on repasse à la limite dans l'expression simplifiée.",
+   "texte": "Zéro sur zéro : factoriser par x − a.",
+   "ecran": "cas_zero"
+  },
+  {
+   "id": "p26",
+   "dit": "Exemple résolu. En iks égale deux, iks carré moins quatre et iks carré moins trois iks plus deux s'annulent tous les deux. On factorise : iks moins deux fois iks plus deux, sur iks moins deux fois iks moins un. Après simplification, il reste iks plus deux sur iks moins un, dont la limite en deux vaut quatre sur un, c'est-à-dire quatre.",
+   "texte": "Exemple 0/0 en 2 : limite égale à 4.",
+   "ecran": "ex_zero"
+  },
+  {
+   "id": "p27",
+   "dit": "Troisième cas, infini moins infini avec une racine carrée. On multiplie et on divise par la quantité conjuguée : l'identité remarquable fait disparaître la racine du numérateur, et la différence devient un quotient que l'on sait traiter.",
+   "texte": "Racine et différence : la quantité conjuguée.",
+   "ecran": "cas_conjugue"
+  },
+  {
+   "id": "p28",
+   "dit": "Exemple résolu. Racine de iks carré plus iks, moins iks. Après multiplication par la conjuguée, l'expression devient iks sur racine de iks carré plus iks, plus iks. On divise alors par iks en haut et en bas, ce qui donne un sur racine de un plus un sur iks, plus un, et la limite vaut un demi.",
+   "texte": "Exemple conjuguée : limite égale à 1/2.",
+   "ecran": "ex_conjugue"
+  },
+  {
+   "id": "p29",
+   "dit": "Quatrième cas, zéro fois infini. On se ramène à un quotient en écrivant un facteur comme un inverse. Ici, iks fois le logarithme de un sur iks, quand iks tend vers zéro à droite, devient, en posant té égal à un sur iks, le quotient du logarithme de té par té, qui tend vers zéro par croissance comparée. Le produit de départ tend donc lui aussi vers zéro.",
+   "texte": "0 × ∞ ramené à ln t / t, qui tend vers 0.",
+   "ecran": "cas_zero_inf"
+  },
+  {
+   "id": "p30",
+   "dit": "Pour conclure, gardez la démarche en quatre temps. Calculer terme à terme et repérer la forme. Identifier le type d'expression et choisir la transformation adaptée. Simplifier jusqu'à faire disparaître l'indétermination. Puis repasser à la limite et vérifier la cohérence du résultat, son signe et son caractère fini ou infini.",
+   "texte": "Démarche : repérer, transformer, conclure.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Limites en un point, à l'infini et asymptotes"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Continuité et théorème des valeurs intermédiaires",
+   "pont": {
+    "texte": "Partie 2 : continuité et valeurs intermédiaires.",
+    "dit": "Partie deux, la continuité. Une fonction continue ne saute aucune valeur, et le théorème des valeurs intermédiaires transforme cette idée en preuve d'existence de solutions."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Lever les formes indéterminées",
+   "pont": {
+    "texte": "Partie 3 : lever les quatre formes indéterminées.",
+    "dit": "Partie trois, lever les formes indéterminées. Quatre formes bloquent le calcul direct, et chacune a sa transformation : terme dominant, factorisation, quantité conjuguée, ou retour à un quotient connu."
+   }
+  }
+ ]
+}

@@ -1,0 +1,519 @@
+{
+ "cours": 6557,
+ "ecrans": {
+  "adiabatique": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "piston"
+   },
+   "kicker": "Transformation adiabatique réversible",
+   "note": "Aussi : T V^(γ−1) = cte et T P^((1−γ)/γ) = cte · γ = 5/3 monoatomique, 7/5 diatomique · Q = 0, donc W = ΔU · Réversible : ΔS = 0, transformation isentropique · Dans (P, V), courbe plus raide que l'isotherme",
+   "tex": "P V^{\\gamma} = \\text{cte} \\qquad \\gamma = \\frac{C_P}{C_V}",
+   "titre": "Aucun échange de chaleur",
+   "type": "formule"
+  },
+  "carnot": {
+   "kicker": "La limite de Carnot",
+   "note": "Cycle de Carnot : deux isothermes et deux adiabatiques réversibles · Ne dépend que des températures des sources, en kelvins · Toute machine réelle, irréversible, fait strictement moins · Réflexe : vérifier que tout rendement calculé reste sous Carnot",
+   "tex": "\\eta_{\\text{Carnot}} = 1 - \\frac{T_f}{T_c}",
+   "titre": "Le rendement maximal entre deux sources",
+   "type": "formule"
+  },
+  "delta_s": {
+   "kicker": "Calculer ΔS pour un gaz parfait",
+   "tex": [
+    "\\Delta S = n \\, c_v \\ln\\frac{T_f}{T_i} + n R \\ln\\frac{V_f}{V_i}",
+    "\\Delta S = n \\, c_p \\ln\\frac{T_f}{T_i} - n R \\ln\\frac{P_f}{P_i}"
+   ],
+   "titre": "Deux écritures au choix, selon les données",
+   "type": "etape"
+  },
+  "energie_interne": {
+   "kicker": "L'énergie interne du gaz parfait",
+   "note": "Loi de Joule : pour un gaz parfait, U ne dépend que de T · Monoatomique : C v,m = 3R/2 · Diatomique : C v,m = 5R/2 · À pression constante : Q p = n C p,m ΔT = ΔH, avec C p = C v + nR",
+   "tex": "\\Delta U = n \\, C_{v,m} \\, \\Delta T",
+   "titre": "Elle ne dépend que de la température",
+   "type": "formule"
+  },
+  "entropie": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "agitation"
+   },
+   "kicker": "Le second principe · l'entropie",
+   "note": "S extensive, en J/K, mesure du désordre · ΔS indépendant du chemin : calcul par un chemin réversible fictif · Inégalité de Clausius : ΔS ≥ ∫ δQ / T ext · Système isolé : ΔS ≥ 0, maximum à l'équilibre",
+   "tex": "dS = \\frac{\\delta Q_{\\text{rev}}}{T}",
+   "titre": "Une fonction d'état pour l'irréversibilité",
+   "type": "formule"
+  },
+  "entropie_creee": {
+   "etapes": [
+    "ΔS = S échangée + S créée, avec S créée ≥ 0",
+    "S échangée = ∫ δQ / T ext : positive, négative ou nulle",
+    "Réversible : S créée = 0 et ΔS = S échangée",
+    "Sur un cycle : ΔS = 0, mais S créée peut dépasser 0"
+   ],
+   "kicker": "Entropie échangée, entropie créée",
+   "titre": "Le bilan d'entropie",
+   "type": "recap"
+  },
+  "ex_cycle_1": {
+   "kicker": "Exemple corrigé · compression en deux étapes",
+   "tex": [
+    "T_A \\approx 301\\ \\text{K} \\qquad P_B = P_A \\left(\\frac{V_A}{V_B}\\right)^{\\gamma} \\approx 9{,}52 \\times 10^{5}\\ \\text{Pa}",
+    "T_B \\approx 572\\ \\text{K} \\qquad W_{AB} = \\Delta U_{AB} \\approx 5650\\ \\text{J}",
+    "T_C \\approx 60\\ \\text{K} \\qquad Q_{BC} = \\Delta U_{BC} \\approx -10650\\ \\text{J}"
+   ],
+   "titre": "Adiabatique réversible, puis refroidissement isochore",
+   "type": "etape"
+  },
+  "ex_cycle_2": {
+   "kicker": "Exemple corrigé · le retour isobare et le bilan",
+   "tex": [
+    "\\Delta U_{CA} \\approx 5000\\ \\text{J} \\qquad W_{CA} = -P_A \\, \\Delta V = -2000\\ \\text{J}",
+    "Q_{CA} = \\Delta U_{CA} - W_{CA} = 7000\\ \\text{J}",
+    "W_{\\text{cycle}} = +3650\\ \\text{J} \\qquad Q_{\\text{cycle}} = -3650\\ \\text{J} \\qquad \\Delta U_{\\text{cycle}} = 0"
+   ],
+   "titre": "Sur le cycle complet, l'énergie interne s'annule",
+   "type": "etape"
+  },
+  "ex_detentes_1": {
+   "kicker": "Exemple corrigé · trois détentes comparées",
+   "tex": [
+    "T_A \\approx 241\\ \\text{K} \\qquad V_B = 2 \\, V_A \\qquad P_A = 4{,}0 \\times 10^{5}\\ \\text{Pa}",
+    "\\text{Isotherme : } P_B = 2{,}0 \\times 10^{5}\\ \\text{Pa} \\qquad W \\approx -1386\\ \\text{J} \\qquad Q \\approx +1386\\ \\text{J}",
+    "\\text{Isobare : } T_B \\approx 481\\ \\text{K} \\qquad W = -2000\\ \\text{J}",
+    "Q \\approx +5000\\ \\text{J} \\qquad \\Delta U \\approx +3000\\ \\text{J}"
+   ],
+   "titre": "Même départ, volume doublé : isotherme et isobare",
+   "type": "etape"
+  },
+  "ex_detentes_2": {
+   "kicker": "Exemple corrigé · l'adiabatique et la synthèse",
+   "tex": [
+    "P_B \\approx 1{,}26 \\times 10^{5}\\ \\text{Pa} \\qquad T_B \\approx 152\\ \\text{K}",
+    "W = \\Delta U \\approx -1110\\ \\text{J} \\qquad Q = 0 \\qquad \\Delta S = 0",
+    "\\Delta S_{\\text{isotherme}} \\approx +5{,}8\\ \\text{J/K} \\qquad \\Delta S_{\\text{isobare}} \\approx +14{,}4\\ \\text{J/K}"
+   ],
+   "titre": "L'adiabatique refroidit, l'entropie départage",
+   "type": "etape"
+  },
+  "ex_pile": {
+   "kicker": "Exemple corrigé · le travail maximal d'une pile",
+   "tex": [
+    "\\Delta H = -200\\ \\text{kJ} \\qquad \\Delta S = -50\\ \\text{J/K} \\qquad T = 298\\ \\text{K}",
+    "\\Delta G = \\Delta H - T \\, \\Delta S = -185{,}1\\ \\text{kJ}",
+    "W_{\\text{élec, max}} = -\\Delta G = 185{,}1\\ \\text{kJ}"
+   ],
+   "titre": "Isotherme et isobare : c'est ΔG qui décide",
+   "type": "etape"
+  },
+  "ex_source": {
+   "kicker": "Exemple corrigé · machine et source chaude finie",
+   "tex": [
+    "\\Delta S_c = C \\ln\\frac{T_f}{T_c} \\approx -5{,}75 \\times 10^{3}\\ \\text{J/K}",
+    "\\Delta S_f = -\\Delta S_c \\approx +5{,}75 \\times 10^{3}\\ \\text{J/K}",
+    "W = C \\left[ (T_c - T_f) + T_f \\ln\\frac{T_f}{T_c} \\right] \\approx 2{,}74 \\times 10^{5}\\ \\text{J}"
+   ],
+   "titre": "Un moteur réversible qui épuise sa source chaude",
+   "type": "etape"
+  },
+  "ex_stirling": {
+   "kicker": "Exemple corrigé · le cycle de Stirling",
+   "tex": [
+    "W_{\\text{utile}} = 1729\\ \\text{J} \\qquad Q_c = Q_{BC} + Q_{CD} \\approx 7199\\ \\text{J}",
+    "\\eta = \\frac{1729}{7199} \\approx 24\\ \\%",
+    "\\eta_{\\text{Carnot}} = 1 - \\frac{300}{600} = 50\\ \\%"
+   ],
+   "titre": "Deux isothermes, deux isochores, sans régénérateur",
+   "type": "etape"
+  },
+  "gaz_parfait": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "agitation"
+   },
+   "kicker": "Le modèle du gaz parfait",
+   "note": "Molécules ponctuelles, sans interaction hors chocs élastiques · R = 8,314 J·mol⁻¹·K⁻¹ · Température absolue en kelvins : T = θ + 273,15 · À n fixé, deux variables indépendantes déterminent l'état",
+   "tex": "P V = n R T",
+   "titre": "L'équation d'état",
+   "type": "formule"
+  },
+  "gibbs": {
+   "kicker": "L'enthalpie libre de Gibbs",
+   "note": "Différentielle : dG = −S dT + V dP, variables naturelles T et P · À T et P constants : évolution spontanée si ΔG ≤ 0 · ΔG donne le travail utile maximal, hors forces de pression · Le réflexe des problèmes de pile et de chimie",
+   "tex": "G = H - T S \\qquad H = U + P V",
+   "titre": "Le potentiel à température et pression constantes",
+   "type": "formule"
+  },
+  "helmholtz": {
+   "kicker": "L'énergie libre de Helmholtz",
+   "note": "Différentielle : dF = −S dT − P dV, variables naturelles T et V · À T et V constants : évolution spontanée si ΔF ≤ 0, équilibre au minimum de F · En transformation réversible, ΔF égale le travail reçu",
+   "tex": "F = U - T S",
+   "titre": "Le potentiel à température et volume constants",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Ce cours rassemble toute la thermodynamique du programme : le gaz parfait et ses transformations, les deux principes et leurs bilans, l'entropie et l'irréversibilité, les potentiels thermodynamiques, et enfin les machines thermiques. Le fil rouge : une méthode de bilan rigoureuse, appliquée étape par étape.",
+   "type": "phrase"
+  },
+  "isobare": {
+   "kicker": "Transformation isobare réversible",
+   "note": "Chaleur à pression constante : Q p = n C p,m ΔT = ΔH · ΔU = n C v,m ΔT reste vrai dans tous les cas · ΔS = n c p ln(T f / T i)",
+   "tex": "W = -P \\, \\Delta V = -n R \\, \\Delta T",
+   "titre": "La pression ne bouge pas",
+   "type": "formule"
+  },
+  "isotherme": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "piston"
+   },
+   "kicker": "Transformation isotherme réversible",
+   "note": "Gaz parfait à T constante : ΔU = 0 · Donc Q = −W : la chaleur reçue compense le travail fourni · ΔS = n R ln(V f / V i)",
+   "tex": "W = -n R T \\, \\ln\\frac{V_f}{V_i}",
+   "titre": "La température ne bouge pas",
+   "type": "formule"
+  },
+  "joule": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "gaz"
+   },
+   "kicker": "Application · la détente de Joule-Gay-Lussac",
+   "note": "Parois adiabatiques et rigides : W = 0 et Q = 0, donc ΔU = 0 et T finale = T initiale · Le gaz forme un système isolé : ΔS > 0 signe l'irréversibilité · Aucun retour spontané possible dans le compartiment initial",
+   "tex": "\\Delta S = n R \\, \\ln\\left(1 + \\frac{V_2}{V_1}\\right) > 0",
+   "titre": "Détente libre dans le vide : irréversible",
+   "type": "formule"
+  },
+  "machines": {
+   "anim": {
+    "nom": "clapeyron_fig",
+    "hauteur": 200
+   },
+   "kicker": "Les machines thermiques",
+   "note": "Le travail net d'un cycle est l'aire du cycle dans le diagramme (P, V) · Sens horaire : machine motrice, le système fournit du travail · Sur un cycle : ΔU = 0, donc W du cycle = −(Q c + Q f) · Q c : chaleur reçue de la source chaude",
+   "tex": "\\eta = \\frac{W_{\\text{utile}}}{Q_c}",
+   "titre": "Convertir la chaleur en travail, en cycle",
+   "type": "formule"
+  },
+  "methode_bilan": {
+   "etapes": [
+    "Définir le système fermé et sa frontière",
+    "Lister les états initial et final (P, V, T)",
+    "Identifier la nature de la transformation",
+    "Écrire ΔU = W + Q, puis exprimer chaque terme",
+    "Résoudre avec P V = n R T, vérifier les signes"
+   ],
+   "kicker": "Méthode · bilan d'énergie",
+   "titre": "La démarche en cinq temps",
+   "type": "recap"
+  },
+  "potentiels": {
+   "kicker": "Les potentiels thermodynamiques",
+   "texte": "Manipuler l'entropie totale, système plus extérieur, est lourd. En combinant les deux principes, on fabrique des fonctions d'état du seul système, adaptées aux contraintes imposées de l'extérieur : température et volume constants, ou température et pression constants. Le travail utile fourni est alors majoré par la baisse du potentiel.",
+   "type": "phrase"
+  },
+  "premier_principe": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "transfert"
+   },
+   "kicker": "Le premier principe",
+   "note": "Système fermé · Convention : reçu = positif, cédé = négatif · U est une fonction d'état ; W et Q dépendent du chemin suivi · Sur un cycle : ΔU = 0, donc W + Q = 0",
+   "tex": "\\Delta U = W + Q",
+   "titre": "La conservation de l'énergie",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Gaz parfait : P V = n R T, U ne dépend que de T",
+    "Premier principe : ΔU = W + Q, reçu = positif",
+    "Transformations : isotherme, isobare, adiabatique",
+    "Entropie : ΔS par un chemin réversible, S créée ≥ 0",
+    "Machines : η toujours sous la limite de Carnot"
+   ],
+   "kicker": "À retenir",
+   "titre": "Thermodynamique : l'enchaînement complet",
+   "type": "recap"
+  },
+  "strategie": {
+   "etapes": [
+    "Lire activement : données, système, transformations",
+    "Définir le système, lister les hypothèses",
+    "Décrire chaque état (P, V, T) et chaque loi",
+    "Partir du principe général, puis spécialiser",
+    "Interpréter : signes, grandeur, limite de Carnot"
+   ],
+   "kicker": "Stratégie d'épreuve",
+   "titre": "La démarche des leçons, en cinq temps",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "gaz"
+   },
+   "kicker": "Concours Polytechnique L3",
+   "sous": "Gaz parfait, bilans d'énergie, entropie, potentiels et machines thermiques : les méthodes du concours",
+   "titre": "Thermodynamique",
+   "type": "titre"
+  },
+  "transformations": {
+   "etapes": [
+    "Isotherme (T constante) : P V = constante — Boyle-Mariotte",
+    "Isobare (P constante) : V / T = constante — loi de Charles",
+    "Isochore (V constant) : P / T = constante — Gay-Lussac",
+    "Dans le diagramme (P, V) : hyperbole, horizontale, verticale"
+   ],
+   "kicker": "Les transformations de base",
+   "titre": "Trois lois à reconnaître d'un coup d'œil",
+   "type": "recap",
+   "anim": {
+    "nom": "clapeyron_fig",
+    "hauteur": 130
+   }
+  },
+  "travail": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "piston"
+   },
+   "kicker": "Le travail des forces de pression",
+   "note": "Travail élémentaire réversible : δW = −P dV · Détente (ΔV > 0) : W < 0, le système fournit · Compression : W > 0, le système reçoit · Transformation irréversible : c'est la pression extérieure qui intervient",
+   "tex": "W = -\\int_{V_i}^{V_f} P \\, dV",
+   "titre": "Un travail qui se calcule par une intégrale",
+   "type": "formule"
+  }
+ },
+ "matiere": "Concours Polytechnique L3",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Gaz parfait, travail et premier principe"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : les trois transformations élémentaires en détail, chacune avec son travail, sa chaleur et son entropie, puis le second principe et la détente de Joule-Gay-Lussac.",
+    "texte": "Partie 2 : transformations élémentaires et entropie."
+   },
+   "sous_titre": "Transformations élémentaires et entropie"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : les potentiels thermodynamiques, qui condensent les deux principes en un critère d'équilibre, puis les machines thermiques et leurs rendements, jusqu'à la limite de Carnot.",
+    "texte": "Partie 3 : potentiels et machines thermiques."
+   },
+   "sous_titre": "Potentiels thermodynamiques et machines"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de préparation au concours Polytechnique, consacré à la thermodynamique : le gaz parfait, les deux principes, l'entropie, les potentiels et les machines thermiques, avec les méthodes et les exemples corrigés des épreuves.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Thermodynamique : les méthodes du concours."
+  },
+  {
+   "dit": "L'objectif est de transformer chaque énoncé en une succession d'étapes maîtrisées : définir le système, identifier la transformation, écrire le bilan, puis vérifier. Nous suivrons l'ordre du programme : d'abord le modèle du gaz parfait, puis les bilans d'énergie, l'entropie, les potentiels, et enfin les cycles des machines.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Un cours, une méthode : bilan, calcul, vérification."
+  },
+  {
+   "dit": "Le modèle du gaz parfait repose sur trois hypothèses : des molécules de volume propre négligeable, sans interaction entre elles en dehors de chocs parfaitement élastiques, et une énergie interne qui ne dépend que de la température. Il décrit bien un gaz réel dilué, loin de la condensation. Son équation d'état relie pression, volume, quantité de matière et température absolue.",
+   "ecran": "gaz_parfait",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Le gaz parfait : P V égal n R T."
+  },
+  {
+   "dit": "Trois transformations de base structurent tous les cycles. À température constante, l'isotherme suit la loi de Boyle-Mariotte : le produit de la pression par le volume reste constant. À pression constante, la loi de Charles : le volume divisé par la température est constant. À volume constant, la loi de Gay-Lussac : la pression divisée par la température est constante. Dans le diagramme pression-volume, retenez l'image : une hyperbole, une horizontale, une verticale.",
+   "ecran": "transformations",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Isotherme, isobare, isochore : trois lois, trois courbes."
+  },
+  {
+   "dit": "Le travail des forces de pression se calcule par une intégrale : moins l'intégrale de la pression le long du volume. Cette formule suppose une transformation réversible, où la pression extérieure égale celle du gaz. Le signe se lit sur le volume : en détente, le travail est négatif, le gaz en fournit ; en compression, il est positif, le gaz en reçoit.",
+   "ecran": "travail",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Le travail : moins l'intégrale de P dV."
+  },
+  {
+   "dit": "Le premier principe est la conservation de l'énergie pour un système fermé : la variation d'énergie interne égale le travail plus la chaleur reçus pendant la transformation. La convention de signe est cruciale : tout ce qui est reçu compte positivement, tout ce qui est cédé, négativement. Et l'énergie interne est une fonction d'état : sa variation ne dépend que des états extrêmes, alors que travail et chaleur dépendent du chemin suivi.",
+   "ecran": "premier_principe",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Premier principe : delta U égal W plus Q."
+  },
+  {
+   "dit": "Pour un gaz parfait, la loi de Joule simplifie tout : l'énergie interne ne dépend que de la température. Sa variation vaut donc toujours la quantité de matière fois la capacité thermique molaire à volume constant fois la variation de température, quelle que soit la transformation. Pour un gaz monoatomique, cette capacité vaut trois demis de R ; pour un diatomique, cinq demis de R. À pression constante, la chaleur échangée vaut la variation d'enthalpie.",
+   "ecran": "energie_interne",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Delta U : n C v delta T, pour toute transformation."
+  },
+  {
+   "dit": "Face à un bilan d'énergie, la démarche est toujours la même. Définissez le système fermé et sa frontière. Listez les variables d'état au départ et à l'arrivée. Identifiez la nature de la transformation, car elle choisit les formules. Écrivez le premier principe, puis exprimez chaque terme. Enfin, résolvez avec l'équation d'état, et vérifiez les signes et les unités : des joules pour toutes les énergies.",
+   "ecran": "methode_bilan",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "La méthode du bilan, en cinq temps."
+  },
+  {
+   "dit": "Exemple corrigé du cours : une mole de gaz diatomique, à un bar et vingt-cinq litres, est comprimée de façon adiabatique et réversible jusqu'au cinquième de son volume. La loi de Laplace donne une pression d'environ neuf virgule cinq fois dix puissance cinq pascals ; la température monte d'environ trois cent un à cinq cent soixante-douze kelvins, et le travail reçu vaut environ cinq mille six cent cinquante joules. Un refroidissement isochore ramène ensuite la pression à un bar : la température tombe à environ soixante kelvins, et le gaz cède environ dix mille six cent cinquante joules.",
+   "ecran": "ex_cycle_1",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Exemple : compression adiabatique, puis refroidissement isochore."
+  },
+  {
+   "dit": "Le retour à l'état initial se fait à pression constante : l'énergie interne augmente d'environ cinq mille joules, le travail vaut moins deux mille joules, donc la chaleur reçue vaut environ sept mille joules. Bilan du cycle complet : la variation d'énergie interne est nulle, comme il se doit pour une fonction d'état ; le gaz a reçu un travail net d'environ trois mille six cent cinquante joules, et cédé exactement la même quantité de chaleur. L'énergie se conserve.",
+   "ecran": "ex_cycle_2",
+   "id": "p10",
+   "pause_apres": 0.7,
+   "texte": "Sur le cycle : delta U nul, travail et chaleur opposés."
+  },
+  {
+   "dit": "En détente isotherme réversible, la pression varie comme l'inverse du volume, et l'intégration fait apparaître un logarithme : le travail est proportionnel à la température et au logarithme du rapport des volumes, final sur initial. Comme la température ne change pas, l'énergie interne ne varie pas : la chaleur reçue compense exactement le travail fourni. En isotherme de gaz parfait, retenir que la chaleur vaut moins le travail.",
+   "ecran": "isotherme",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Isotherme : un logarithme, et Q égal moins W."
+  },
+  {
+   "dit": "En transformation isobare, le travail est immédiat : moins la pression fois la variation de volume, soit moins la quantité de matière fois la constante des gaz fois la variation de température. La chaleur se calcule de deux façons qui se recoupent : par le premier principe, après le travail et l'énergie interne, ou directement comme la variation d'enthalpie.",
+   "ecran": "isobare",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Isobare : travail immédiat, chaleur par l'enthalpie."
+  },
+  {
+   "dit": "L'adiabatique réversible est la plus riche : sans aucun échange de chaleur, la loi de Laplace relie la pression et le volume, avec l'exposant gamma, rapport des capacités à pression et à volume constants. Gamma vaut cinq tiers pour un gaz monoatomique, sept cinquièmes pour un diatomique. Le premier principe donne alors un travail égal à la variation d'énergie interne. Et la transformation, réversible et sans chaleur, conserve l'entropie : on parle d'isentropique. Sa courbe est plus raide que celle de l'isotherme.",
+   "ecran": "adiabatique",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Adiabatique réversible : Laplace, et entropie constante."
+  },
+  {
+   "dit": "Comparons trois détentes réversibles d'une mole de gaz monoatomique, partie de quatre bars et cinq litres, dont le volume double. En isotherme, la pression tombe à deux bars : le travail fourni vaut environ mille trois cent quatre-vingt-six joules, intégralement compensés par la chaleur reçue. En isobare, il faut chauffer jusqu'à environ quatre cent quatre-vingt-un kelvins : le travail fourni monte à deux mille joules, et la chaleur reçue à environ cinq mille joules.",
+   "ecran": "ex_detentes_1",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Trois détentes comparées : isotherme et isobare."
+  },
+  {
+   "dit": "En adiabatique, au contraire, le gaz se refroidit jusqu'à environ cent cinquante-deux kelvins, la pression tombe à environ un virgule vingt-six bar, et le travail fourni, environ mille cent dix joules, est prélevé sur l'énergie interne. Les variations d'entropie départagent les trois chemins : plus cinq virgule huit joules par kelvin en isotherme, plus quatorze virgule quatre en isobare, et exactement zéro en adiabatique réversible.",
+   "ecran": "ex_detentes_2",
+   "id": "p15",
+   "pause_apres": 0.7,
+   "texte": "L'adiabatique refroidit ; l'entropie départage."
+  },
+  {
+   "dit": "Le second principe introduit l'entropie, fonction d'état extensive qui mesure le désordre moléculaire et l'irréversibilité. Sa définition est différentielle : la variation élémentaire d'entropie égale la chaleur reçue de manière réversible, divisée par la température. Pour une transformation réelle, même irréversible, on calcule sa variation en imaginant un chemin réversible quelconque entre les mêmes états. Et pour un système isolé, l'entropie ne peut qu'augmenter, jusqu'au maximum de l'équilibre.",
+   "ecran": "entropie",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "L'entropie : le juge de l'irréversibilité."
+  },
+  {
+   "dit": "Pour un gaz parfait, deux formules directes donnent la variation d'entropie entre deux états. Avec la température et le volume : la capacité à volume constant pèse le logarithme du rapport des températures, et la constante des gaz celui du rapport des volumes. Avec la température et la pression : la capacité à pression constante pour les températures, et la constante des gaz, en moins, pour le logarithme du rapport des pressions. Choisissez selon les données les plus simples, toujours en kelvins.",
+   "ecran": "delta_s",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Delta S du gaz parfait : deux formules directes."
+  },
+  {
+   "dit": "La détente de Joule-Gay-Lussac est le prototype de l'irréversibilité : un gaz, dans une enceinte adiabatique, se répand librement dans un compartiment vide voisin. Aucun travail, aucune chaleur : l'énergie interne ne varie pas, et pour un gaz parfait, la température non plus. Pourtant, l'entropie augmente, proportionnellement au logarithme du rapport des volumes. Le système est isolé : cette création d'entropie interdit tout retour spontané en arrière.",
+   "ecran": "joule",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Joule-Gay-Lussac : température constante, entropie en hausse."
+  },
+  {
+   "dit": "Le bilan d'entropie se décompose en deux contributions : l'entropie échangée avec l'extérieur, intégrale de la chaleur réelle divisée par la température de la source, et l'entropie créée par les irréversibilités internes : frottements, gradients de température, détentes libres. Cette entropie créée est toujours positive ou nulle : nulle si la transformation est réversible, strictement positive sinon. C'est elle qui quantifie ce qui est définitivement perdu.",
+   "ecran": "entropie_creee",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Entropie échangée plus entropie créée."
+  },
+  {
+   "dit": "Exemple avancé : un moteur réversible puise dans une source chaude de capacité thermique finie, qui refroidit de quatre cents à trois cents kelvins, pendant que la source froide reste à trois cents kelvins. L'entropie de la source chaude varie comme la capacité fois le logarithme du rapport des températures : environ moins cinq mille sept cent cinquante joules par kelvin. Le moteur étant réversible et cyclique, la source froide gagne exactement l'opposé. Le premier principe donne alors le travail total : environ deux virgule soixante-quatorze fois dix puissance cinq joules.",
+   "ecran": "ex_source",
+   "id": "p20",
+   "pause_apres": 0.7,
+   "texte": "Source finie : l'entropie mène au travail maximal."
+  },
+  {
+   "dit": "Pourquoi deux principes, quand un seul critère peut suffire ? En éliminant la chaleur entre le premier et le second principe, on obtient que le travail utile fourni par un système en contact avec un thermostat est majoré par une quantité qui ne dépend que des états du système : la baisse de l'énergie interne, corrigée par la température fois l'entropie. Cela motive deux fonctions d'état nouvelles : les potentiels thermodynamiques.",
+   "ecran": "potentiels",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Deux principes condensés en un seul critère."
+  },
+  {
+   "dit": "L'énergie libre de Helmholtz, F égale U moins T S, est le potentiel des situations à température et volume constants. Sa différentielle ne fait intervenir que la température et le volume. À température et volume fixés, un système évolue spontanément dans le sens qui diminue F, et l'équilibre est atteint au minimum de F. En transformation réversible, la variation de F égale exactement le travail reçu par le système.",
+   "ecran": "helmholtz",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Helmholtz : le potentiel à T et V constants."
+  },
+  {
+   "dit": "L'enthalpie libre de Gibbs, G égale H moins T S, joue le même rôle à température et pression constantes, les conditions ordinaires du laboratoire et de la chimie. Sa variation donne le travail utile maximal, hors forces de pression, que la transformation peut fournir. L'évolution spontanée diminue G, et l'équilibre le minimise. Retenez le réflexe : température et volume constants, pensez F ; température et pression constantes, pensez G.",
+   "ecran": "gibbs",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Gibbs : le potentiel à T et P constants."
+  },
+  {
+   "dit": "Application directe : une pile fonctionne à température et pression constantes. Son enthalpie diminue de deux cents kilojoules, son entropie de cinquante joules par kelvin, à deux cent quatre-vingt-dix-huit kelvins. La variation d'enthalpie libre combine les deux : environ moins cent quatre-vingt-cinq virgule un kilojoules. Le travail électrique maximal fourni est l'opposé : cent quatre-vingt-cinq virgule un kilojoules. L'écart avec l'enthalpie, environ quinze kilojoules, part en chaleur : il faut évacuer l'entropie.",
+   "ecran": "ex_pile",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "La pile : delta G donne le travail électrique maximal."
+  },
+  {
+   "dit": "Une machine thermique fait décrire un cycle à un fluide : une suite de transformations qui le ramène à son état de départ, pour pouvoir recommencer. Le travail net du cycle est l'aire enfermée dans le diagramme pression-volume ; parcouru dans le sens horaire, le cycle est moteur. Le rendement compare le travail utile fourni à la chaleur reçue de la source chaude : c'est l'efficacité de la conversion de la chaleur en travail.",
+   "ecran": "machines",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Machines thermiques : des cycles, une aire, un rendement."
+  },
+  {
+   "dit": "Le second principe plafonne ce rendement. Entre une source chaude et une source froide, le meilleur cycle possible est celui de Carnot : deux isothermes et deux adiabatiques réversibles. Son rendement vaut un moins le rapport de la température froide à la température chaude, en kelvins, et il ne dépend que des sources. Toute machine réelle, irréversible, fait strictement moins : c'est le contrôle de cohérence à appliquer à tout rendement calculé.",
+   "ecran": "carnot",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Carnot : la limite que rien ne dépasse."
+  },
+  {
+   "dit": "Le cycle de Stirling, deux isothermes et deux isochores, illustre cet écart. Pour une mole entre trois cents et six cents kelvins, le bilan donne un travail utile d'environ mille sept cent vingt-neuf joules, pour une chaleur reçue de la source chaude d'environ sept mille deux cents joules : le rendement vaut environ vingt-quatre pour cent. Le cycle de Carnot, entre les mêmes températures, vaudrait cinquante pour cent. Sans régénérateur pour recycler la chaleur des isochores, le Stirling reste loin de la limite.",
+   "ecran": "ex_stirling",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Stirling : vingt-quatre pour cent, contre cinquante pour Carnot."
+  },
+  {
+   "dit": "Devant un problème complet, gardez la démarche des leçons : lecture active de l'énoncé, en repérant données, systèmes et transformations ; choix du système et des hypothèses ; description de chaque état et de chaque loi ; calculs menés en travaillant avec les rapports de grandeurs ; interprétation physique du résultat ; et vérification finale par un bilan global ou un cas limite. C'est cette discipline, plus que la mémoire des formules, qui fait la différence le jour du concours.",
+   "ecran": "strategie",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "La stratégie : lire, cadrer, calculer, vérifier."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement complet : le gaz parfait et son équation d'état, le premier principe qui comptabilise travail et chaleur, les trois transformations qui construisent les cycles, l'entropie qui juge l'irréversibilité, les potentiels qui prédisent l'équilibre et le travail maximal, et les machines plafonnées par le rendement de Carnot. Chaque bilan se termine par le même contrôle : signes, unités, et sens physique.",
+   "ecran": "recap",
+   "id": "p29",
+   "pause_apres": 0.5,
+   "texte": "Thermodynamique : à retenir."
+  }
+ ],
+ "titre": "Thermodynamique"
+}

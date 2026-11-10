@@ -1,0 +1,332 @@
+{
+ "cours": 7287,
+ "ecrans": {
+  "eq_def": {
+   "kicker": "Volet 1 · Équations",
+   "note": "Résoudre : trouver toutes les valeurs de x qui rendent l'égalité vraie.",
+   "tex": "ax + b = 0 \\quad (a \\neq 0) \\qquad x = -\\frac{b}{a}",
+   "type": "formule"
+  },
+  "eq_ex": {
+   "kicker": "Volet 1 · Exemple résolu",
+   "tex": [
+    "3x - 5 = 7",
+    "3x = 12 \\qquad x = 4",
+    "S = \\{4\\}"
+   ],
+   "titre": "Résoudre 3x − 5 = 7",
+   "type": "etape"
+  },
+  "eq_regles": {
+   "kicker": "Volet 1 · Les règles de résolution",
+   "tex": [
+    "\\text{ajouter ou retrancher le même nombre}",
+    "\\text{multiplier ou diviser par un nombre } \\neq 0",
+    "\\text{jusqu'à isoler l'inconnue } x"
+   ],
+   "titre": "Transformer sans changer les solutions",
+   "type": "etape"
+  },
+  "fct_def": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Volet 2 · Fonctions",
+   "note": "Linéaire si b = 0 : f(x) = ax, droite par l'origine · b : ordonnée à l'origine.",
+   "tex": "f(x) = ax + b",
+   "type": "formule"
+  },
+  "fct_ex": {
+   "kicker": "Volet 2 · Exemple résolu",
+   "tex": [
+    "f(x) = 2x - 3",
+    "f(4) = 2 \\times 4 - 3 = 5",
+    "f(x) = 0 \\iff x = \\tfrac{3}{2}"
+   ],
+   "titre": "Image de 4 et antécédent de 0",
+   "type": "etape"
+  },
+  "fct_variation": {
+   "kicker": "Volet 2 · Le coefficient directeur",
+   "tex": [
+    "a > 0 \\quad \\Rightarrow \\quad \\text{fonction croissante}",
+    "a < 0 \\quad \\Rightarrow \\quad \\text{fonction décroissante}",
+    "a \\text{ : coefficient directeur}",
+    "b \\text{ : ordonnée à l'origine}"
+   ],
+   "titre": "Le signe de a donne le sens de variation",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Objectifs et organisation",
+   "texte": "Un chapitre de consolidation : chaque leçon est revue par sa fiche de synthèse, puis testée par un exemple résolu.",
+   "type": "phrase"
+  },
+  "methode": {
+   "etapes": [
+    "Une fiche par leçon : définitions et formules",
+    "Entraînement chronométré, sans le corrigé",
+    "Auto-évaluation : noter les erreurs récurrentes",
+    "Ne revoir que les leçons concernées"
+   ],
+   "kicker": "Méthode de préparation",
+   "type": "recap"
+  },
+  "pct_coef": {
+   "kicker": "Volet 4 · Pourcentages",
+   "tex": [
+    "\\text{augmenter de } t\\% : \\times \\left(1 + \\tfrac{t}{100}\\right)",
+    "\\text{diminuer de } t\\% : \\times \\left(1 - \\tfrac{t}{100}\\right)"
+   ],
+   "titre": "Les coefficients multiplicateurs",
+   "type": "etape"
+  },
+  "pct_def": {
+   "kicker": "Volet 4 · Proportionnalité",
+   "note": "k : coefficient de proportionnalité · quotients égaux entre les deux grandeurs.",
+   "tex": "\\frac{y}{x} = k",
+   "type": "formule"
+  },
+  "pct_ex": {
+   "kicker": "Volet 4 · Exemple résolu",
+   "tex": [
+    "80 \\times \\left(1 - \\tfrac{15}{100}\\right) = 80 \\times 0{,}85",
+    "= 68\\ \\text{euros}"
+   ],
+   "titre": "80 € avec 15 % de remise",
+   "type": "etape"
+  },
+  "pieges": {
+   "kicker": "Les pièges classiques",
+   "texte": "Trois pièges : diviser par zéro, médiane sans ranger la série, ajouter un pourcentage au lieu de multiplier par son coefficient.",
+   "type": "phrase"
+  },
+  "plan": {
+   "kicker": "Le plan en quatre volets",
+   "texte": "Équations, fonctions, statistiques, proportionnalité et pourcentages : le programme complet des révisions.",
+   "type": "phrase"
+  },
+  "recap_final": {
+   "etapes": [
+    "Équation : ax + b = 0, x = −b/a",
+    "Affine : f(x) = ax + b, a donne le sens",
+    "Moyenne : somme des valeurs ÷ nombre",
+    "Pourcentage : × (1 ± t/100)"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "stats_def": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "histogramme_fig"
+   },
+   "kicker": "Volet 3 · Statistiques",
+   "tex": [
+    "\\bar{x} = \\tfrac{x_1 + \\cdots + x_n}{n}",
+    "\\text{médiane : valeur centrale}",
+    "\\text{étendue} = x_{\\max} - x_{\\min}"
+   ],
+   "titre": "Moyenne, médiane, étendue",
+   "type": "etape"
+  },
+  "stats_ex": {
+   "kicker": "Volet 3 · Exemple résolu",
+   "tex": [
+    "\\bar{x} = \\tfrac{4+7+9+10+15}{5} = \\tfrac{45}{5} = 9",
+    "\\text{médiane} = 9 \\qquad \\text{étendue} = 15 - 4 = 11"
+   ],
+   "titre": "Série : 4, 7, 9, 10, 15",
+   "type": "etape"
+  },
+  "synth1": {
+   "kicker": "Synthèse · Exercice 1",
+   "tex": [
+    "f(x) = -3x + 6 \\qquad a = -3 < 0",
+    "\\text{décroissante sur } \\mathbb{R}",
+    "-3x + 6 = 0 \\iff x = 2 \\quad \\text{point } (2,\\,0)"
+   ],
+   "titre": "Variation et zéro de f",
+   "type": "etape"
+  },
+  "synth2": {
+   "kicker": "Synthèse · Exercice 2",
+   "tex": [
+    "\\bar{x} = \\tfrac{8+12+14+16}{4} = \\tfrac{50}{4} = 12{,}5",
+    "8 \\times 1{,}25 = 10",
+    "\\bar{x}' = \\tfrac{10+12+14+16}{4} = \\tfrac{52}{4} = 13"
+   ],
+   "titre": "Une note augmente de 25 %",
+   "type": "etape"
+  },
+  "synth3": {
+   "kicker": "Synthèse · Exercice 3",
+   "tex": [
+    "p(d) = 2d \\qquad \\text{fonction linéaire}",
+    "p(18) = 2 \\times 18 = 36\\ \\text{euros}"
+   ],
+   "titre": "Le prix du taxi",
+   "type": "etape"
+  },
+  "synth_intro": {
+   "kicker": "Exercices de synthèse",
+   "texte": "Trois exercices qui mélangent les notions, au format des évaluations finales : équations et fonctions, statistiques et pourcentages, proportionnalité et fonction linéaire.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Mathématique · Révisions finales",
+   "sous": "Quatre volets consolidés, trois exercices de synthèse, une méthode de préparation",
+   "titre": "Révisions finales : équations, fonctions, statistiques et pourcentages",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Équations, fonctions et statistiques"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : la proportionnalité et les pourcentages, puis les exercices de synthèse qui mélangent toutes les notions.",
+    "texte": "Partie 2 : proportionnalité, pourcentages et synthèse."
+   },
+   "sous_titre": "Proportionnalité, pourcentages et exercices de synthèse"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce chapitre final de révisions et de préparation aux évaluations. Aucune notion nouvelle au programme : nous consolidons l'année en quatre volets, les équations, les fonctions, les statistiques, puis la proportionnalité et les pourcentages, avant de nous entraîner sur des exercices de synthèse qui mélangent les notions, comme le jour de l'évaluation.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Révisions finales : quatre volets, puis la synthèse."
+  },
+  {
+   "dit": "La démarche est active : pour chaque leçon, nous revoyons d'abord la fiche de synthèse, avec les définitions et les propriétés, puis nous vérifions la compréhension par un exemple résolu pas à pas. Refaire les calculs en même temps que la vidéo est la meilleure façon de les retenir.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Consolider : une fiche, puis un exemple résolu."
+  },
+  {
+   "dit": "Voici le plan. Premier volet, les équations du premier degré et leurs règles de résolution. Deuxième volet, les fonctions linéaires et affines, leur coefficient directeur et leur sens de variation. Troisième volet, les statistiques : moyenne, médiane et étendue. Quatrième volet, la proportionnalité et les pourcentages, avant les exercices de synthèse et la méthode.",
+   "ecran": "plan",
+   "id": "p03",
+   "texte": "Quatre volets, trois exercices, une méthode."
+  },
+  {
+   "dit": "Premier volet : les équations. Une équation est une égalité qui contient une inconnue, notée ixe. La résoudre, c'est trouver toutes les valeurs de l'inconnue qui rendent l'égalité vraie. Pour une équation du premier degré, de la forme a ixe plus b égale zéro, avec a différent de zéro, il y a une unique solution : ixe égale moins b sur a.",
+   "ecran": "eq_def",
+   "id": "p04",
+   "texte": "Équation du premier degré : une unique solution."
+  },
+  {
+   "dit": "Deux règles permettent de transformer une équation sans changer ses solutions. On peut ajouter ou retrancher le même nombre aux deux membres de l'égalité. Et on peut multiplier ou diviser les deux membres par un même nombre, à condition qu'il soit différent de zéro. Toute la résolution consiste à appliquer ces règles jusqu'à isoler l'inconnue.",
+   "ecran": "eq_regles",
+   "id": "p05",
+   "texte": "Transformer les deux membres, isoler l'inconnue."
+  },
+  {
+   "dit": "Exemple résolu : résoudre trois ixe moins cinq égale sept. On ajoute cinq des deux côtés : trois ixe égale douze. On divise ensuite par trois : ixe égale quatre. L'ensemble des solutions contient donc un seul nombre, quatre. Pensez à vérifier : trois fois quatre, moins cinq, donne bien sept.",
+   "ecran": "eq_ex",
+   "id": "p06",
+   "texte": "3x − 5 = 7 : la solution est x = 4."
+  },
+  {
+   "dit": "Deuxième volet : les fonctions. Une fonction, notée f, associe à chaque nombre ixe de son ensemble de définition un unique nombre, noté f de ixe. Deux familles dominent l'année : la fonction linéaire, f de ixe égale a ixe, une droite qui passe par l'origine, et la fonction affine, f de ixe égale a ixe plus b, une droite dont l'ordonnée à l'origine vaut b.",
+   "ecran": "fct_def",
+   "id": "p07",
+   "texte": "Linéaire : f(x) = ax · affine : f(x) = ax + b."
+  },
+  {
+   "dit": "Dans les deux familles, le nombre a s'appelle le coefficient directeur, et il commande le sens de variation. Si a est strictement positif, la fonction est croissante : la droite monte. Si a est strictement négatif, la fonction est décroissante : la droite descend. Lire le signe de a, c'est donc déjà connaître l'allure complète de la droite.",
+   "ecran": "fct_variation",
+   "id": "p08",
+   "texte": "Le signe de a donne l'allure de la droite."
+  },
+  {
+   "dit": "Exemple résolu avec la fonction définie par f de ixe égale deux ixe moins trois. L'image de quatre vaut deux fois quatre, moins trois, soit cinq. Et résoudre f de ixe égale zéro revient à résoudre deux ixe moins trois égale zéro, ce qui donne ixe égale trois demis : c'est l'abscisse du point où la droite coupe l'axe des abscisses.",
+   "ecran": "fct_ex",
+   "id": "p09",
+   "texte": "f(4) = 5 et f(x) = 0 donne x = 3/2."
+  },
+  {
+   "dit": "Troisième volet : les statistiques. Trois indicateurs décrivent une série de valeurs. La moyenne : la somme de toutes les valeurs, divisée par leur nombre. La médiane : la valeur qui partage la série, rangée dans l'ordre croissant, en deux moitiés égales. Et l'étendue : la différence entre la plus grande et la plus petite valeur.",
+   "ecran": "stats_def",
+   "id": "p10",
+   "texte": "Moyenne, médiane, étendue : trois indicateurs."
+  },
+  {
+   "dit": "Exemple résolu sur la série quatre, sept, neuf, dix, quinze. La somme vaut quarante-cinq, et il y a cinq valeurs : la moyenne vaut donc neuf. La série est déjà rangée : la médiane est la troisième valeur, neuf également. L'étendue vaut quinze moins quatre, soit onze. Moyenne et médiane égales ici, mais ce n'est pas toujours le cas.",
+   "ecran": "stats_ex",
+   "id": "p11",
+   "texte": "Série 4, 7, 9, 10, 15 : moyenne 9, étendue 11."
+  },
+  {
+   "dit": "Quatrième volet : la proportionnalité et les pourcentages. Deux grandeurs sont proportionnelles quand leurs quotients sont égaux : le quotient de igrec par ixe est constant, c'est le coefficient de proportionnalité. Un pourcentage n'est alors qu'une proportion ramenée à cent, et les évolutions en pourcentage se traduisent par une simple multiplication.",
+   "ecran": "pct_def",
+   "id": "p12",
+   "texte": "Proportionnalité : des quotients égaux."
+  },
+  {
+   "dit": "Retenez les deux coefficients multiplicateurs. Augmenter une quantité de t pour cent, c'est la multiplier par un, plus t sur cent. La diminuer de t pour cent, c'est la multiplier par un, moins t sur cent. Une seule multiplication remplace le calcul de la variation puis l'addition : c'est plus rapide et plus sûr.",
+   "ecran": "pct_coef",
+   "id": "p13",
+   "texte": "± t % : une seule multiplication par le coefficient."
+  },
+  {
+   "dit": "Exemple résolu : un article coûte quatre-vingts euros, et une remise de quinze pour cent s'applique. Diminuer de quinze pour cent, c'est multiplier par un, moins quinze sur cent, soit zéro virgule quatre-vingt-cinq. Quatre-vingts fois zéro virgule quatre-vingt-cinq donne soixante-huit : le prix après remise est de soixante-huit euros.",
+   "ecran": "pct_ex",
+   "id": "p14",
+   "texte": "80 € moins 15 % : 68 €."
+  },
+  {
+   "dit": "Place maintenant aux exercices de synthèse : chacun combine deux leçons, comme dans les évaluations finales. Premier exercice, équations et fonctions. Deuxième exercice, statistiques et pourcentages. Troisième exercice, proportionnalité et fonction linéaire. Essayez de les chercher avant d'écouter le corrigé.",
+   "ecran": "synth_intro",
+   "id": "p15",
+   "texte": "Synthèse : chercher d'abord, corrigé ensuite."
+  },
+  {
+   "dit": "Premier exercice : la fonction définie par f de ixe égale moins trois ixe plus six. Son coefficient directeur vaut moins trois, un nombre négatif : la fonction est donc décroissante sur l'ensemble des nombres réels. Résoudre f de ixe égale zéro donne moins trois ixe plus six égale zéro, donc ixe égale deux. La droite coupe l'axe des abscisses au point de coordonnées deux et zéro.",
+   "ecran": "synth1",
+   "id": "p16",
+   "texte": "f(x) = −3x + 6 : décroissante, zéro en x = 2."
+  },
+  {
+   "dit": "Deuxième exercice : les notes d'un élève sont huit, douze, quatorze et seize. Leur somme vaut cinquante, et il y a quatre notes : la moyenne vaut douze virgule cinq. On augmente ensuite la note huit de vingt-cinq pour cent : huit fois un virgule vingt-cinq donne dix. La nouvelle somme vaut cinquante-deux, et la nouvelle moyenne treize. Une seule note qui progresse fait monter toute la moyenne.",
+   "ecran": "synth2",
+   "id": "p17",
+   "texte": "Moyenne 12,5, puis 13 après +25 % sur le 8."
+  },
+  {
+   "dit": "Troisième exercice : un taxi facture deux euros par kilomètre, sans frais fixes. Le prix est donc proportionnel à la distance : le prix p, en fonction de la distance d, vaut deux fois d. C'est une fonction linéaire, de coefficient deux. Pour un trajet de dix-huit kilomètres, le prix vaut deux fois dix-huit, soit trente-six euros.",
+   "ecran": "synth3",
+   "id": "p18",
+   "texte": "Taxi : p(d) = 2d, donc 36 € pour 18 km."
+  },
+  {
+   "dit": "Avant de conclure, trois pièges classiques à éviter le jour de l'évaluation. Ne divisez jamais par zéro, ni par un coefficient qui pourrait être nul. Pour une médiane, rangez toujours la série dans l'ordre avant de choisir la valeur centrale. Et pour un pourcentage, multipliez par le coefficient, sans jamais ajouter directement le pourcentage au prix de départ.",
+   "ecran": "pieges",
+   "id": "p19",
+   "texte": "Trois pièges à éviter le jour de l'évaluation."
+  },
+  {
+   "dit": "Voici la méthode de préparation en trois gestes. D'abord, une fiche par leçon : une page avec les définitions, les formules et un exemple type. Ensuite, un entraînement chronométré : refaire les exercices de synthèse sans regarder le corrigé, dans les conditions du jour j. Enfin, une auto-évaluation honnête : noter les erreurs qui reviennent, et ne revoir que les leçons concernées.",
+   "ecran": "methode",
+   "id": "p20",
+   "texte": "Fiche, entraînement chronométré, auto-évaluation."
+  },
+  {
+   "dit": "Pour finir, retenez les quatre formules clés de l'année. Équation du premier degré : ixe égale moins b sur a. Fonction affine : f de ixe égale a ixe plus b, et le signe de a donne le sens de variation. Moyenne : la somme des valeurs divisée par leur nombre. Pourcentage : multiplier par un, plus ou moins t sur cent. Maîtriser ces quatre blocs suffit pour aborder sereinement l'évaluation finale.",
+   "ecran": "recap_final",
+   "id": "p21",
+   "texte": "Quatre formules clés pour l'évaluation finale."
+  }
+ ],
+ "titre": "Révisions finales : équations, fonctions, statistiques et pourcentages"
+}

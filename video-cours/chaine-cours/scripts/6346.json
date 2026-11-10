@@ -1,0 +1,524 @@
+{
+ "cours": 6346,
+ "titre": "La géométrie moléculaire : la forme des molécules par VSEPR",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Géométrie moléculaire",
+   "titre": "La géométrie moléculaire : la forme des molécules par VSEPR",
+   "sous": "Compter les domaines, prévoir la forme, en déduire polarité et propriétés",
+   "anim": {
+    "nom": "vsepr_formes_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Pourquoi la forme compte",
+   "texte": "Une enzyme ne reconnaît son substrat que si leurs formes se complètent, comme une clé dans sa serrure."
+  },
+  "principe": {
+   "type": "formule",
+   "kicker": "Le principe VSEPR",
+   "tex": "\\text{forme des atomes} = \\text{forme des domaines} - \\text{effet des doublets libres}",
+   "note": "Gillespie et Nyholm, années 1950 : les paires se repoussent et s'écartent au maximum."
+  },
+  "definitions": {
+   "type": "etape",
+   "kicker": "Le vocabulaire : paires et domaines",
+   "titre": "Compter les domaines, pas seulement les atomes",
+   "tex": [
+    "\\text{paire liante (PEL) : partagée, elle forme la liaison}",
+    "\\text{paire libre (PENL) : non partagée, deux points sur l'atome}",
+    "\\text{domaine : une région occupée par une paire, liante ou non}",
+    "NH_3 \\text{ : } 3\\ \\text{PEL} + 1\\ \\text{PENL} = 4\\ \\text{domaines}"
+   ]
+  },
+  "hierarchie": {
+   "type": "etape",
+   "kicker": "La hiérarchie des répulsions",
+   "titre": "Toutes les répulsions ne se valent pas",
+   "tex": [
+    "\\text{libre–libre} > \\text{libre–liante} > \\text{liante–liante}",
+    "\\text{la paire libre, plus proche du noyau, prend plus de place}",
+    "\\text{conséquence : les angles entre liaisons se resserrent}"
+   ]
+  },
+  "deux_geometries": {
+   "type": "etape",
+   "kicker": "Deux géométries à distinguer",
+   "titre": "Les domaines d'abord, les atomes ensuite",
+   "tex": [
+    "\\text{géométrie électronique : tous les domaines, liants et libres}",
+    "\\text{géométrie moléculaire : les atomes seuls, la forme réelle}",
+    "CH_4 \\rightarrow NH_3 \\rightarrow H_2O \\text{ : même électronique, formes différentes}"
+   ]
+  },
+  "arrangements": {
+   "type": "etape",
+   "kicker": "Les arrangements fondamentaux",
+   "titre": "Le nombre de domaines fixe l'arrangement",
+   "tex": [
+    "2\\ \\text{domaines} : 180^\\circ \\qquad 3\\ \\text{domaines} : 120^\\circ",
+    "4\\ \\text{domaines} : \\text{tétraédrique},\\ 109{,}5^\\circ",
+    "5\\ \\text{domaines} : \\text{bipyramide},\\ 90^\\circ/120^\\circ",
+    "6\\ \\text{domaines} : \\text{octaédrique},\\ 90^\\circ"
+   ]
+  },
+  "lineaire": {
+   "type": "etape",
+   "kicker": "Forme 1 : linéaire, AX₂",
+   "titre": "Deux domaines, une droite",
+   "tex": [
+    "O = C = O",
+    "AX_2 \\text{ : } 2\\ \\text{liantes},\\ 0\\ \\text{libre} \\Rightarrow \\text{linéaire},\\ 180^\\circ",
+    "\\text{dipôles opposés : ils s'annulent}"
+   ]
+  },
+  "trigonale": {
+   "type": "etape",
+   "kicker": "Forme 2 : trigonale plane, AX₃",
+   "titre": "Trois domaines dans un plan",
+   "tex": [
+    "AX_3 \\text{ : } 3\\ \\text{liantes},\\ 0\\ \\text{libre} \\Rightarrow 120^\\circ",
+    "360^\\circ \\div 3 = 120^\\circ",
+    "BF_3 \\text{ : le bore, un cas d'octet incomplet}"
+   ]
+  },
+  "tetraedrique": {
+   "type": "etape",
+   "kicker": "Forme 3 : tétraédrique, AX₄",
+   "titre": "Quatre domaines, l'angle de référence",
+   "tex": [
+    "\\cos\\theta = -\\tfrac{1}{3} \\Rightarrow \\theta \\approx 109{,}47^\\circ",
+    "CH_4 \\text{ : } 4\\ \\text{liantes},\\ 0\\ \\text{libre}",
+    "\\text{la forme du diamant : chaque C lié à quatre C}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Les paires d'électrons se repoussent",
+    "Compter les domaines, liants et libres",
+    "PL–PL > PL–PEL > PEL–PEL",
+    "2 domaines : 180°, 3 : 120°, 4 : 109,5°",
+    "Deux géométries : électronique, moléculaire"
+   ]
+  },
+  "ammoniac": {
+   "type": "etape",
+   "kicker": "Le tétraèdre déformé : AX₃E",
+   "titre": "L'ammoniac, une pyramide à base triangulaire",
+   "tex": [
+    "N \\text{ : } 5 + 3 \\times 1 = 8\\ \\text{électrons} \\Rightarrow 4\\ \\text{paires}",
+    "AX_3E \\text{ : } 3\\ \\text{liantes} + 1\\ \\text{libre}",
+    "\\angle HNH = 107{,}3^\\circ \\qquad \\Delta\\theta = 109{,}5^\\circ - 107{,}3^\\circ = 2{,}2^\\circ"
+   ]
+  },
+  "eau": {
+   "type": "etape",
+   "kicker": "Le tétraèdre déformé : AX₂E₂",
+   "titre": "L'eau, une forme coudée",
+   "tex": [
+    "O \\text{ : } 6 + 2 \\times 1 = 8\\ \\text{électrons} \\Rightarrow 4\\ \\text{paires}",
+    "AX_2E_2 \\text{ : } 2\\ \\text{liantes} + 2\\ \\text{libres}",
+    "\\angle HOH = 104{,}5^\\circ \\qquad \\Delta\\theta = 5{,}0^\\circ"
+   ],
+   "anim": {
+    "nom": "compression_angles_fig",
+    "hauteur": 110
+   }
+  },
+  "groupe16": {
+   "type": "etape",
+   "kicker": "Plus loin : les hydrures du groupe 16",
+   "titre": "La compression grandit en descendant",
+   "tex": [
+    "H_2O : 104{,}5^\\circ \\qquad H_2S : 92{,}1^\\circ",
+    "H_2Se : 91{,}0^\\circ \\qquad H_2Te : 90{,}0^\\circ",
+    "OF_2 : 103{,}3^\\circ < H_2O \\text{ (le fluor tire les paires liantes)}"
+   ]
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "La méthode VSEPR en cinq pas",
+   "titre": "De la formule de Lewis à la forme",
+   "tex": [
+    "\\text{1. Lewis, 2. compter les paires sur l'atome central}",
+    "\\text{3. distinguer paires liantes et non liantes}",
+    "\\text{4. lire la forme dans le tableau}",
+    "\\text{5. ajuster l'angle selon les paires libres}"
+   ]
+  },
+  "dipole": {
+   "type": "formule",
+   "kicker": "Le moment dipolaire",
+   "tex": "\\vec{\\mu} = q \\cdot \\vec{d} \\qquad 1\\ \\text{D} = 3{,}336 \\times 10^{-30}\\ \\text{C}\\ \\text{m}",
+   "note": "Le debye honore Peter Debye, prix Nobel de chimie 1936."
+  },
+  "co2_h2o": {
+   "type": "etape",
+   "kicker": "La somme vectorielle décide",
+   "titre": "Des liaisons polaires, deux destins opposés",
+   "tex": [
+    "CO_2 \\text{ : } \\vec{\\mu}_1 + \\vec{\\mu}_2 = 0 \\Rightarrow \\text{apolaire}",
+    "H_2O \\text{ : } \\mu_{total} \\approx 2\\,\\mu_{OH} \\cos(\\theta/2) \\approx 1{,}85\\ \\text{D}",
+    "\\Delta\\chi_{C=O} = 1{,}0 \\qquad \\Delta\\chi_{O-H} = 1{,}4"
+   ],
+   "anim": {
+    "nom": "dipoles_co2_h2o_fig",
+    "hauteur": 110
+   }
+  },
+  "tableau_polarite": {
+   "type": "etape",
+   "kicker": "Le tableau de vérité de la polarité",
+   "titre": "Symétrie haute : annulation ; symétrie basse : somme",
+   "tex": [
+    "CH_4 \\text{ tétraédrique} : \\mu = 0 \\qquad CCl_4 \\text{ tétraédrique} : \\mu = 0",
+    "NH_3 \\text{ pyramidale} : \\mu = 1{,}47\\ \\text{D} \\qquad CHCl_3 : \\mu = 1{,}15\\ \\text{D}",
+    "HCl : \\mu = 1{,}08\\ \\text{D} \\qquad H_2S : \\mu = 0{,}97\\ \\text{D}"
+   ]
+  },
+  "isomeres": {
+   "type": "etape",
+   "kicker": "La géométrie crée la différence",
+   "titre": "Cis ou trans : la polarité change",
+   "tex": [
+    "\\text{cis-1,2-dichloroéthylène : les dipôles s'additionnent}",
+    "\\text{trans-1,2-dichloroéthylène : les dipôles s'annulent}",
+    "\\text{même formule brute, points d'ébullition différents}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "NH₃ : 107,3°, H₂O : 104,5°",
+    "Chaque doublet libre resserre l'angle",
+    "μ = q × d, somme vectorielle des liaisons",
+    "Symétrie parfaite : dipôles annulés",
+    "Symétrie brisée : molécule polaire"
+   ]
+  },
+  "forces": {
+   "type": "etape",
+   "kicker": "Les forces intermoléculaires",
+   "titre": "Trois forces, par ordre croissant",
+   "tex": [
+    "\\text{dispersion de London} < \\text{dipôle–dipôle} < \\text{liaison hydrogène}",
+    "\\text{London : toutes les molécules, dipôles instantanés}",
+    "\\text{dipôle–dipôle : molécules polaires seulement}",
+    "\\text{liaison H : le cas le plus fort}"
+   ]
+  },
+  "liaison_h": {
+   "type": "etape",
+   "kicker": "La liaison hydrogène",
+   "titre": "Un cas exceptionnellement fort",
+   "tex": [
+    "\\text{H lié à N, O ou F} + \\text{doublet libre d'un N, O ou F}",
+    "H_2O \\text{ : jusqu'à 4 liaisons H par molécule}",
+    "\\text{glace moins dense que l'eau : la vie sous la glace}"
+   ]
+  },
+  "hydrures": {
+   "type": "etape",
+   "kicker": "La chaîne causale à l'épreuve",
+   "titre": "Les points d'ébullition des hydrures",
+   "tex": [
+    "T_{\\text{éb}}(CH_4) = -161{,}5^\\circ C \\qquad T_{\\text{éb}}(NH_3) = -33{,}3^\\circ C",
+    "T_{\\text{éb}}(H_2O) = 100{,}0^\\circ C",
+    "\\text{l'anomalie de l'eau : les liaisons hydrogène}"
+   ]
+  },
+  "solubilite": {
+   "type": "etape",
+   "kicker": "Qui se ressemble s'assemble",
+   "titre": "La polarité choisit les solvants",
+   "tex": [
+    "\\text{eau : } \\varepsilon_r \\approx 80 \\text{, tension } 72\\ \\text{mN/m}",
+    "\\text{NaCl se dissout dans l'eau, pas dans l'hexane}",
+    "\\text{les graisses, apolaires, partent dans l'hexane}"
+   ]
+  },
+  "stereoisomeres": {
+   "type": "etape",
+   "kicker": "Applications : la stéréochimie",
+   "titre": "Deux images miroir, deux destins",
+   "tex": [
+    "\\text{carvone : un énantiomère sent le carvi, l'autre la menthe}",
+    "\\text{thalidomide : un isomère sédatif, l'autre tératogène}",
+    "\\text{contrôler la géométrie : efficacité et sécurité}"
+   ]
+  },
+  "alcene": {
+   "type": "etape",
+   "kicker": "Applications : la réactivité des alcènes",
+   "titre": "Une double liaison plane, deux côtés d'attaque",
+   "tex": [
+    "\\text{autour de C=C : 3 domaines, géométrie plane trigonale}",
+    "H^+ \\text{ attaque la double liaison par un côté ou l'autre}",
+    "\\text{produits images miroir : le mélange racémique}"
+   ]
+  },
+  "wilkinson": {
+   "type": "etape",
+   "kicker": "Applications : la catalyse",
+   "titre": "Le catalyseur de Wilkinson, plan carré",
+   "tex": [
+    "RhCl(PPh_3)_3 \\text{ : géométrie plane carrée autour de Rh}",
+    "\\text{des sites de coordination laissés accessibles}",
+    "\\text{l'alcène et } H_2 \\text{ s'y lient, sont activés, réagissent}"
+   ]
+  },
+  "diamant_graphite": {
+   "type": "etape",
+   "kicker": "Applications : deux carbones, deux mondes",
+   "titre": "Diamant contre graphite",
+   "tex": [
+    "\\text{diamant : } AX_4 \\text{ tétraédrique, réseau 3D, dur, isolant}",
+    "\\text{graphite : } AX_3 \\text{ trigonal plan, feuillets, mou, conducteur}",
+    "\\text{même atome, deux géométries, tout change}"
+   ],
+   "anim": {
+    "nom": "graphite_diamant_fig",
+    "hauteur": 110
+   }
+  },
+  "synthese_eau": {
+   "type": "phrase",
+   "kicker": "Synthèse : l'eau, de bout en bout",
+   "texte": "AX₂E₂ → coudée à 104,5° → polaire → liaisons hydrogène → le solvant de la vie."
+  },
+  "limites": {
+   "type": "phrase",
+   "kicker": "Les limites du modèle",
+   "texte": "VSEPR reste qualitatif : métaux de transition, effets stériques et octet étendu demandent des raffinements."
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Forme des domaines, puis forme des atomes",
+    "Les doublets libres resserrent les angles",
+    "Polarité : somme vectorielle des dipôles",
+    "Forces : London, dipôle-dipôle, liaison H",
+    "La forme explique les propriétés"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré à la géométrie moléculaire. Autour de nous, les molécules tournent, vibrent et s'assemblent selon des architectures précises, et cette forme invisible décide de presque toutes leurs propriétés : réactivité, point d'ébullition, solubilité, rôle biologique. Nous allons apprendre à prédire cette forme grâce à un outil élégant, la théorie VSEPR, qui repose sur une idée simple : les paires d'électrons se repoussent. Nous verrons d'abord le principe et les formes de base, puis comment les doublets libres déforment ces formes et créent la polarité, et enfin comment la forme commande les forces entre molécules et leurs applications, de la pharmacie aux matériaux.",
+   "texte": "VSEPR : la répulsion des paires d'électrons dessine les molécules.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Pourquoi la forme d'une molécule est-elle si importante ? Parce qu'elle gouverne ses propriétés. Une enzyme ne reconnaît son substrat que si leurs formes sont complémentaires, comme une clé dans une serrure. La forme règle aussi la façon dont les molécules s'empilent, donc leurs points de fusion et d'ébullition, et elle peut créer un pôle positif et un pôle négatif qui décideront de la solubilité. Pensez à l'eau : si sa géométrie était linéaire, serait-elle un si bon solvant ? Aurait-elle le même point d'ébullition ? La vie, telle que nous la connaissons, existerait-elle ? Tout ce cours répond à ces questions par un seul fil conducteur : la forme.",
+   "texte": "Forme complémentaire : la clé et la serrure des molécules.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Le cœur de la théorie VSEPR, développée par Ronald Gillespie et Ronald Nyholm dans les années cinquante, tient en une phrase : les paires d'électrons de la couche de valence d'un atome central se repoussent mutuellement, et elles s'arrangent dans l'espace pour maximiser leurs distances angulaires, donc minimiser cette répulsion. C'est, à l'échelle atomique, l'image de personnes qui cherchent à se tenir aussi loin que possible les unes des autres dans un ascenseur. Retenez la relation qui structure tout le cours : la géométrie moléculaire, celle des atomes, s'obtient en retirant de la géométrie des domaines l'effet des paires non liantes.",
+   "texte": "Les paires se repoussent : elles s'écartent au maximum.",
+   "ecran": "principe"
+  },
+  {
+   "id": "p04",
+   "dit": "Avant d'appliquer la théorie, fixons le vocabulaire, à partir de l'ammoniac. Une paire liante est un doublet d'électrons partagé entre deux atomes : elle forme la liaison covalente, dessinée par un tiret dans les formules de Lewis, et chaque liaison, simple, double ou triple, compte pour un seul domaine. Une paire non liante, ou paire libre, est un doublet qui appartient entièrement à un atome et ne participe à aucune liaison : on la dessine par deux points. Le concept central est le domaine : une région de l'espace occupée par une paire, liante ou non. Dans l'ammoniac, l'azote porte trois paires liantes et une paire libre, soit quatre domaines au total.",
+   "texte": "NH₃ : 3 paires liantes + 1 paire libre = 4 domaines.",
+   "ecran": "definitions"
+  },
+  {
+   "id": "p05",
+   "dit": "Toutes les répulsions ne sont pas égales, et c'est la clé de toutes les prédictions fines. La répulsion la plus forte oppose deux paires libres : deux nuages confinés sur le même atome se repoussent violemment. Vient ensuite la répulsion entre une paire libre et une paire liante, puis, la plus faible, celle entre deux paires liantes. Pourquoi ? Une paire libre est localisée plus près du noyau et occupe un volume plus grand, alors qu'une paire liante est partiellement tirée vers l'atome périphérique. Conséquence majeure : une paire libre prend plus de place et comprime les angles entre les liaisons restantes.",
+   "texte": "PL–PL > PL–PEL > PEL–PEL : la paire libre pousse le plus fort.",
+   "ecran": "hierarchie"
+  },
+  {
+   "id": "p06",
+   "dit": "Il faut toujours raisonner en deux étapes. D'abord, la géométrie électronique : la disposition de tous les domaines, paires liantes et paires libres, autour de l'atome central. Ensuite, la géométrie moléculaire : la disposition des atomes seuls, en ignorant les paires libres — c'est la forme réelle, celle qu'on observe. Observez la séquence méthane, ammoniac, eau : les trois ont une géométrie électronique tétraédrique, avec quatre domaines. Pourtant, leurs formes moléculaires et leurs angles sont radicalement différents. Toute la différence vient du nombre de paires libres : zéro, une, puis deux.",
+   "texte": "Même géométrie électronique, trois formes moléculaires.",
+   "ecran": "deux_geometries"
+  },
+  {
+   "id": "p07",
+   "dit": "Le nombre total de domaines autour de l'atome central détermine un arrangement de base, celui qui minimise la répulsion. Deux domaines se placent en ligne droite, à cent quatre-vingts degrés, comme deux ballons tenus par leurs extrémités. Trois domaines forment un triangle plan, à cent vingt degrés. Quatre domaines pointent vers les sommets d'un tétraèdre, à cent neuf degrés et demi : c'est l'arrangement le plus courant en chimie organique. Le tableau se prolonge : cinq domaines donnent une bipyramide trigonale, six domaines un octaèdre. Ces angles sont idéaux pour des domaines identiques ; les liaisons multiples et les paires libres les modifieront légèrement.",
+   "texte": "2 → 180°, 3 → 120°, 4 → 109,5°, 5 → bipyramide, 6 → octaèdre.",
+   "ecran": "arrangements"
+  },
+  {
+   "id": "p08",
+   "dit": "Première forme fondamentale : la géométrie linéaire, de formule générique A X deux, avec deux paires liantes et aucune paire libre. L'exemple emblématique est le dioxyde de carbone : l'atome central et les deux oxygènes sont parfaitement alignés, à cent quatre-vingts degrés. Cette géométrie survient lorsque l'atome central n'a aucune paire non liante. Retenez dès maintenant une conséquence qui deviendra centrale dans la deuxième partie : les molécules linéaires comme le dioxyde de carbone sont souvent apolaires, car leurs moments dipolaires, égaux et opposés, s'annulent.",
+   "texte": "CO₂ : O=C=O, 180°, dipôles annulés.",
+   "ecran": "lineaire"
+  },
+  {
+   "id": "p09",
+   "dit": "Deuxième forme : la géométrie trigonale plane, A X trois, trois paires liantes et aucune paire libre. Trois points placés à égale distance autour d'un centre forment un triangle équilatéral ; l'angle au centre vaut trois cent soixante degrés divisés par trois, soit cent vingt degrés. L'exemple classique est le trifluorure de bore. Notez la question qu'il soulève : le bore ne porte que six électrons de valence, moins que l'octet, et pourtant la molécule est stable. Cette déficience électronique fait du trifluorure de bore un acide de Lewis, avide d'électrons — nous retrouverons ce rôle des paires libres dans la réactivité.",
+   "texte": "BF₃ : trigonale plane, 120°, octet incomplet.",
+   "ecran": "trigonale"
+  },
+  {
+   "id": "p10",
+   "dit": "Troisième forme, la plus importante : la géométrie tétraédrique, A X quatre. Le méthane en est l'exemple universel. L'angle entre les liaisons se calcule exactement : placez les quatre hydrogènes aux sommets d'un tétraèdre régulier, le produit scalaire de deux vecteurs de liaison donne un cosinus égal à moins un tiers, soit un angle d'environ cent neuf virgule quarante-sept degrés, que l'on arrondit à cent neuf et demi. C'est l'angle de référence de tout ce cours. On retrouve cette même forme dans le diamant, où chaque carbone est lié à quatre autres carbones.",
+   "texte": "CH₄ : cos θ = −1/3, θ ≈ 109,5°.",
+   "ecran": "tetraedrique"
+  },
+  {
+   "id": "p11",
+   "dit": "Récapitulons cette première partie. Les paires d'électrons de la couche de valence se repoussent et s'écartent au maximum. On compte les domaines, liants et non liants, autour de l'atome central. La répulsion la plus forte oppose deux paires libres, la plus faible deux paires liantes. Deux domaines donnent une forme linéaire, trois une trigonale plane, quatre un tétraèdre. Et il faut toujours distinguer la géométrie des domaines de la géométrie réelle des atomes.",
+   "texte": "Le principe VSEPR et les formes de base.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p12",
+   "dit": "Étudions l'ammoniac en détail. L'azote possède cinq électrons de valence ; chaque hydrogène en apporte un : huit électrons, soit quatre paires. Trois sont liantes, une est libre : formule A X trois E. L'arrangement des domaines reste tétraédrique, mais la géométrie moléculaire, celle des atomes, est une pyramide à base triangulaire. La paire libre repousse les trois liaisons azote-hydrogène vers le bas et comprime leur angle : l'angle mesuré vaut cent sept virgule trois degrés, soit deux virgule deux degrés de moins que l'idéal tétraédrique. Cette petite compression a de grandes conséquences : elle expose la paire libre, parfaitement placée pour capter un proton, ce qui fait de l'ammoniac une base.",
+   "texte": "NH₃ : AX₃E, pyramide, 107,3° — comprimé de 2,2°.",
+   "ecran": "ammoniac"
+  },
+  {
+   "id": "p13",
+   "dit": "Passons à l'eau. L'oxygène compte six électrons de valence, plus un par hydrogène : huit électrons, quatre paires, dont deux liantes et deux libres — formule A X deux E deux. Les deux paires libres se repoussent avec la plus forte intensité et repoussent à leur tour les deux liaisons : la compression double par rapport à l'ammoniac. L'angle hydrogène-oxygène-hydrogène tombe à cent quatre virgule cinq degrés, cinq degrés sous l'idéal. La géométrie moléculaire est angulaire, ou coudée. Retenez la progression : zéro paire libre, cent neuf et demi ; une paire libre, cent sept ; deux paires libres, cent quatre et demi. Chaque doublet libre resserre l'angle.",
+   "texte": "H₂O : AX₂E₂, coudée, 104,5° — comprimée de 5,0°.",
+   "ecran": "eau"
+  },
+  {
+   "id": "p14",
+   "dit": "Le modèle se vérifie sur toute une famille. Descendons le groupe seize : l'eau affiche cent quatre virgule cinq degrés, le sulfure d'hydrogène quatre-vingt-douze virgule un, le séléniure d'hydrogène quatre-vingt-onze, le tellurure d'hydrogène quatre-vingt-dix. La compression augmente alors que l'atome central grossit : en descendant, l'électronégativité diminue, les paires liantes sont moins retenues par le centre et se laissent davantage repousser par les paires libres. Autre cas fin : le difluorure d'oxygène, à cent trois virgule trois degrés, est plus fermé que l'eau, car le fluor, très électronégatif, attire les paires liantes et les rétrécit près de l'oxygène, laissant les paires libres comprimer encore plus.",
+   "texte": "H₂O 104,5° → H₂Te 90,0° : la compression grandit.",
+   "ecran": "groupe16"
+  },
+  {
+   "id": "p15",
+   "dit": "Vous disposez maintenant d'un algorithme complet pour prédire n'importe quelle géométrie simple. Premier pas : dessiner la structure de Lewis de la molécule. Deuxième pas : compter le nombre total de paires d'électrons autour de l'atome central. Troisième pas : distinguer les paires liantes des paires non liantes. Quatrième pas : utiliser le tableau des géométries pour trouver la forme correspondante. Cinquième pas : ajuster l'angle en tenant compte de la compression exercée par les paires libres. Cinq pas, et la forme d'une molécule n'a plus de secret. La suite du cours montre ce que cette forme entraîne : la polarité.",
+   "texte": "Lewis → compter → distinguer → forme → angle ajusté.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p16",
+   "dit": "Faisons le lien entre la forme et les charges. Dans une liaison entre deux atomes différents, les électrons ne sont pas partagés également : l'atome le plus électronégatif attire le nuage électronique et devient partiellement négatif, l'autre partiellement positif. Cette séparation de charge crée un dipôle, quantifié par le moment dipolaire, noté mu : le produit de la charge partielle par la distance entre les charges. C'est un vecteur, avec une direction et un sens, et son unité est le debye, du nom de Peter Debye, prix Nobel de chimie en mille neuf cent trente-six. Chaque liaison polarisée possède son propre moment ; celui de la molécule entière est leur somme vectorielle.",
+   "texte": "μ = q × d : un vecteur, en debyes (D).",
+   "ecran": "dipole"
+  },
+  {
+   "id": "p17",
+   "dit": "Voici le cas emblématique, à retenir pour tout examen. Le dioxyde de carbone : géométrie linéaire, chaque liaison carbone-oxygène fortement polaire, mais les deux moments dipolaires, égaux et opposés, s'annulent exactement. La molécule est apolaire, malgré des liaisons très polaires. L'eau, au contraire : géométrie coudée, les deux moments des liaisons oxygène-hydrogène forment un angle de cent quatre virgule cinq degrés et ne peuvent pas s'annuler ; ils s'additionnent, pour un moment total d'environ un virgule quatre-vingt-cinq debye. La symétrie parfaite annule la polarité locale ; la symétrie brisée la révèle.",
+   "texte": "CO₂ : μ = 0 ; H₂O : μ ≈ 1,85 D.",
+   "ecran": "co2_h2o"
+  },
+  {
+   "id": "p18",
+   "dit": "Généralisons avec le tableau de synthèse du chapitre. Le méthane et le tétrachlorure de carbone, tétraédriques et parfaitement symétriques, ont un moment total nul : apolaires. L'ammoniac, pyramidal, est polaire avec un virgule quarante-sept debye. Le chloroforme, tétraédrique mais à symétrie brisée — trois chlores et un hydrogène — est polaire lui aussi. Pour les diatomiques, tout dépend de la différence d'électronégativité : le chlorure d'hydrogène est polaire, le dioxygène et le diazote, formés d'atomes identiques, sont apolaires. Et notez le sulfure d'hydrogène, coudé comme l'eau mais bien moins polaire, car le soufre est moins électronégatif que l'oxygène.",
+   "texte": "Symétrie haute → μ = 0 ; symétrie brisée → molécule polaire.",
+   "ecran": "tableau_polarite"
+  },
+  {
+   "id": "p19",
+   "dit": "La géométrie peut même créer des différences de polarité entre molécules de même formule brute. Prenez les dichloroéthylènes. Dans l'isomère cis, les deux chlores sont du même côté de la double liaison : les moments dipolaires s'additionnent, la molécule est polaire. Dans l'isomère trans, les chlores sont opposés : les moments s'annulent, la molécule est apolaire. Le troisième isomère, avec les deux chlores sur le même carbone, est polaire par asymétrie. Conséquence mesurable au laboratoire : ces isomères n'ont pas les mêmes points d'ébullition. La forme seule, sans changer un seul atome, change les propriétés.",
+   "texte": "Cis : polaire. Trans : apolaire. Même formule brute.",
+   "ecran": "isomeres"
+  },
+  {
+   "id": "p20",
+   "dit": "Récapitulons. Une paire libre comprime les angles : cent sept virgule trois degrés pour l'ammoniac, cent quatre virgule cinq pour l'eau. Le moment dipolaire d'une liaison est le produit de la charge par la distance, et le moment d'une molécule est la somme vectorielle des moments de ses liaisons. Une symétrie parfaite annule ces vecteurs : la molécule est apolaire. Une symétrie brisée les laisse s'additionner : la molécule est polaire.",
+   "texte": "Compression, dipôles et somme vectorielle.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p21",
+   "dit": "Une fois la polarité connue, on peut prédire les forces intermoléculaires, ces attractions entre molécules, bien plus faibles que les liaisons, mais responsables des points de fusion et d'ébullition, de la viscosité et de la tension superficielle. Elles se rangent en trois familles d'intensité croissante. D'abord les forces de dispersion de London, présentes dans toutes les molécules : le mouvement aléatoire des électrons crée des dipôles instantanés qui en induisent chez les voisines ; elles croissent avec la masse molaire et la surface de contact, ce qui explique que les halogènes passent du gaz au solide en descendant le groupe. Ensuite les interactions dipôle-dipôle, réservées aux molécules polaires. Enfin la liaison hydrogène, la plus forte des trois.",
+   "texte": "London < dipôle–dipôle < liaison hydrogène.",
+   "ecran": "forces"
+  },
+  {
+   "id": "p22",
+   "dit": "La liaison hydrogène est un cas exceptionnellement fort d'interaction dipôle-dipôle. Sa condition est précise : un hydrogène lié à un atome très électronégatif et petit — azote, oxygène ou fluor — interagissant avec le doublet non liant d'un autre atome du même trio. Dans l'eau, chaque molécule peut former jusqu'à quatre liaisons hydrogène. C'est leur géométrie ouverte et ordonnée qui rend la glace moins dense que l'eau liquide : la glace flotte, un phénomène rare qui permet à la vie aquatique de survivre sous la surface gelée en hiver. Ces mêmes liaisons structurent la double hélice de l'ADN et le repliement des protéines.",
+   "texte": "H lié à N, O, F + doublet libre : la plus forte des forces.",
+   "ecran": "liaison_h"
+  },
+  {
+   "id": "p23",
+   "dit": "Assemblons toute la chaîne sur les hydrures de la deuxième période : méthane, ammoniac, eau et fluorure d'hydrogène. Première étape, la géométrie : tétraédrique, pyramidale, coudée, linéaire. Deuxième étape, la polarité : seul le méthane, symétrique, est apolaire. Troisième étape, les forces : l'ammoniac, l'eau et le fluorure d'hydrogène forment des liaisons hydrogène. Résultat sur les points d'ébullition : le méthane bout à moins cent soixante et un degrés et demi, l'ammoniac à moins trente-trois degrés, mais l'eau à cent degrés, une anomalie spectaculaire pour une molécule si petite. Tout part de la forme coudée imposée par les deux doublets libres.",
+   "texte": "CH₄ : −161,5 °C ; NH₃ : −33,3 °C ; H₂O : 100 °C.",
+   "ecran": "hydrures"
+  },
+  {
+   "id": "p24",
+   "dit": "La polarité gouverne aussi la solubilité, selon le principe : qui se ressemble s'assemble. Les solvants polaires dissolvent bien les solutés polaires ou ioniques ; les solvants apolaires dissolvent les solutés apolaires. Le sel se dissout dans l'eau mais pas dans l'hexane ; les graisses, apolaires, font l'inverse. L'eau doit son pouvoir exceptionnel à sa constante diélectrique d'environ quatre-vingts, qui écrante les forces électrostatiques, et sa tension superficielle élevée, soixante-douze millinewtons par mètre, vient de la cohésion entre ses molécules polaires. En biologie, les membranes cellulaires appliquent ce principe : des têtes polaires tournées vers l'eau, des queues apolaires à l'intérieur.",
+   "texte": "Polaire dans polaire, apolaire dans apolaire.",
+   "ecran": "solubilite"
+  },
+  {
+   "id": "p25",
+   "dit": "Première application, en chimie organique : les stéréoisomères, des molécules de même formule et même connectivité, mais d'arrangement spatial différent. La carvone existe en deux formes images miroir : l'une sent le carvi, l'autre la menthe verte, car elles se lient différemment aux récepteurs olfactifs de notre nez — c'est la géométrie qui code l'odeur. Le cas du thalidomide est tragique : dans les années cinquante et soixante, l'un des isomères avait l'effet sédatif recherché, l'autre provoquait de graves malformations congénitales. La leçon est définitive : en pharmacie, contrôler la géométrie exacte d'une molécule n'est pas un détail, c'est une question d'efficacité et de sécurité.",
+   "texte": "Carvone : carvi ou menthe, selon la forme miroir.",
+   "ecran": "stereoisomeres"
+  },
+  {
+   "id": "p26",
+   "dit": "La géométrie décide aussi du déroulement des réactions. Autour de chaque carbone d'une double liaison, on compte trois domaines électroniques : la géométrie est plane et trigonale, et tous les atomes liés sont dans le même plan. Lors de l'addition d'un halogénure d'hydrogène sur un alcène comme le but-deux-ène, le proton peut attaquer ce plan par un côté ou par l'autre. Selon le côté attaqué, on obtient deux produits images miroir l'un de l'autre, en mélange racémique. Et les enzymes poussent cette logique à l'extrême : leurs sites actifs, de forme précise, ne reconnaissent qu'une seule géométrie de substrat, comme une clé dans sa serrure.",
+   "texte": "C=C plan : l'attaque des deux côtés donne un racémique.",
+   "ecran": "alcene"
+  },
+  {
+   "id": "p27",
+   "dit": "En chimie de coordination, la forme du catalyseur fait la réaction. Le catalyseur de Wilkinson, un complexe de rhodium portant un chlorure et trois groupements phosphine, catalyse l'hydrogénation des alcènes. Sa géométrie autour du rhodium est plane carrée, prédite par l'extension de ces raisonnements aux complexes métalliques. Cette forme laisse des sites de coordination accessibles : l'alcène et le dihydrogène viennent s'y lier temporairement, y sont activés, puis réagissent entre eux. Une géométrie tétraédrique, plus fermée, serait bien moins efficace pour ce mécanisme précis.",
+   "texte": "RhCl(PPh₃)₃ : plan carré, sites libres pour réagir.",
+   "ecran": "wilkinson"
+  },
+  {
+   "id": "p28",
+   "dit": "Dernier contraste, spectaculaire : le diamant et le graphite sont deux formes du même élément, le carbone. Dans le diamant, chaque carbone est au centre d'un tétraèdre, lié à quatre voisins : un réseau covalent tridimensionnel rigide — le matériau est dur, transparent, isolant, utilisé pour les outils de coupe et les bijoux. Dans le graphite, chaque carbone est trigonal plan, lié à trois voisins dans des feuillets hexagonaux empilés, tenus par des interactions faibles : le matériau est mou, noir, conducteur dans le plan — mines de crayon, électrodes, lubrifiants. La différence entre le matériau le plus dur et un matériau friable tient entièrement à la géométrie des liaisons.",
+   "texte": "Diamant AX₄ : dur. Graphite AX₃ : mou et conducteur.",
+   "ecran": "diamant_graphite"
+  },
+  {
+   "id": "p29",
+   "dit": "Terminons en revisitant l'eau de bout en bout, car elle résume tout le cours. Prédiction VSEPR : A X deux E deux, quatre domaines, une géométrie électronique tétraédrique et une géométrie moléculaire coudée, à cent quatre virgule cinq degrés. Cette asymétrie, combinée à des liaisons polarisées, donne une molécule polaire au moment dipolaire net. De là découlent les liaisons hydrogène, exceptionnellement fortes pour une si petite molécule, puis ses propriétés anormales : point d'ébullition élevé, tension superficielle, pouvoir solvant. En biologie, l'eau hydrate les protéines et leur donne leur forme active, et elle forme le milieu de toutes les réactions biochimiques. Une simple forme coudée, et la vie devient possible.",
+   "texte": "104,5° : l'angle qui rend la vie possible.",
+   "ecran": "synthese_eau"
+  },
+  {
+   "id": "p30",
+   "dit": "Soyons honnêtes sur les limites du modèle. La théorie VSEPR est qualitative plutôt que quantitative ; elle énonce le quoi plus qu'elle n'explique le pourquoi énergétique, qui relève de la théorie des orbitales moléculaires. Elle est moins précise pour les molécules contenant des métaux de transition, et elle peine lorsque l'encombrement des gros atomes ou des effets électroniques fins dominent. Elle doit aussi être étendue pour les atomes des périodes trois et suivantes, qui dépassent l'octet, comme le tétrafluorure de soufre, de formule A X quatre E. Malgré cela, elle reste l'outil le plus utilisé au monde pour visualiser rapidement la structure d'une molécule, des étudiants aux chercheurs.",
+   "texte": "Un modèle simple, puissant, mais qualitatif.",
+   "ecran": "limites"
+  },
+  {
+   "id": "p31",
+   "dit": "Pour conclure ce cours : comptez les domaines autour de l'atome central, en distinguant paires liantes et doublets libres. Lisez la géométrie des domaines, puis la forme réelle des atomes, en corrigeant les angles que les doublets libres resserrent. Décidez alors de la polarité par la somme vectorielle des dipôles de liaison. Enfin, déduisez les forces intermoléculaires et les propriétés : ébullition, solubilité, réactivité, applications. La géométrie moléculaire est le pont indispensable entre une formule chimique abstraite et les propriétés tangibles qui définissent la matière et la vie elle-même.",
+   "texte": "La géométrie moléculaire, de bout en bout.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le principe de répulsion et les formes de base"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Les doublets libres déforment, la forme crée la polarité",
+   "pont": {
+    "texte": "Partie 2 : les doublets libres déforment, la forme crée la polarité.",
+    "dit": "Partie deux : les déformations et la polarité. Nous allons voir comment les paires non liantes compriment les angles, degré par degré, dans l'ammoniac et dans l'eau, puis comment la forme obtenue décide si une molécule est polaire ou apolaire, par la somme vectorielle des moments dipolaires."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Forces intermoléculaires et applications",
+   "pont": {
+    "texte": "Partie 3 : forces entre molécules et applications.",
+    "dit": "Partie trois : des formes aux propriétés. Nous suivrons la chaîne causale complète : la géométrie crée la polarité, la polarité gouverne les forces entre molécules, et ces forces expliquent les points d'ébullition, la solubilité et les applications, de la pharmacie aux matériaux."
+   }
+  }
+ ]
+}

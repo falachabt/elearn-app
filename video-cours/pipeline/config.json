@@ -1,0 +1,39 @@
+{
+  "format": {
+    "cours": {
+      "largeur": 1920,
+      "hauteur": 1080,
+      "gabarit": "lecon-16x9.html"
+    },
+    "reseaux": {
+      "largeur": 1080,
+      "hauteur": 1920,
+      "gabarit": "lecon.html",
+      "activee": true
+    },
+    "fps": 25
+  },
+  "voix": {
+    "defaut": "femme",
+    "modeles": {
+      "femme": {
+        "ref": "/tmp/claude-0/-home-user/2a8747d7-c961-5564-a85d-267864cfc895/scratchpad/vc/ref-femme-4s.wav",
+        "ref_texte": "Bonjour à tous, aujourd hui nous allons apprendre à résoudre une équation du second degré."
+      }
+    },
+    "vitesse": 0.92,
+    "etapes_diffusion": 16,
+    "moteur": "omnivoice (k2-fsa/OmniVoice, CPU ou GPU)"
+  },
+  "rythme": {
+    "debut_s": 0.5,
+    "pause_phrase_s": 0.7,
+    "pause_etape_s": 1.1,
+    "pause_formule_s": 1.0
+  },
+  "extrait_reseaux": {
+    "duree_s": 22
+  },
+  "statut_initial": "a_relire",
+  "sortie": "sorties"
+}

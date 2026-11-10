@@ -1,0 +1,465 @@
+{
+ "cours": 5902,
+ "ecrans": {
+  "absolue": {
+   "kicker": "Composition colinéaire",
+   "note": "Même direction, même sens : 80 + 5 = 85 km/h vers l'est · en marchant vers l'arrière : 80 − 5 = 75 km/h",
+   "tex": "\\vec{v}_{\\text{absolue}} = \\vec{v}_{\\text{propre}} + \\vec{v}_{\\text{entraînement}}",
+   "titre": "La vitesse absolue",
+   "type": "formule"
+  },
+  "acceleration": {
+   "kicker": "L'accélération",
+   "note": "Pour l'exemple précédent : a = (0, 2, 0), constante — seule la composante verticale de la vitesse change",
+   "tex": "\\vec{a}(t) = \\dfrac{d\\vec{v}(t)}{dt} = \\dfrac{d^2\\vec{r}(t)}{dt^2}",
+   "titre": "La dérivée de la vitesse",
+   "type": "formule"
+  },
+  "addition": {
+   "kicker": "Addition de vecteurs",
+   "note": "Méthode graphique : les vecteurs se placent bout à bout, ou forment un parallélogramme dont la résultante est la diagonale",
+   "tex": "\\vec{R} = \\vec{A} + \\vec{B} \\qquad \\vec{A} - \\vec{B} = \\vec{A} + (-\\vec{B})",
+   "titre": "La résultante, bout à bout",
+   "type": "formule",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 280
+   }
+  },
+  "applications": {
+   "etapes": [
+    "Navigation maritime : le capitaine corrige son cap pour compenser le courant",
+    "Aviation : le pilote compense la dérive due au vent pour garder sa destination",
+    "Pluie oblique : chute verticale, vent et déplacement de l'observateur se composent"
+   ],
+   "kicker": "Applications",
+   "type": "recap"
+  },
+  "avion": {
+   "kicker": "Exemple",
+   "tex": [
+    "\\|\\vec{v}_{\\text{résultante}}\\| = \\sqrt{200^2 + 50^2} \\approx 206\\ \\text{km/h}",
+    "\\tan\\theta = \\dfrac{50}{200} = 0{,}25"
+   ],
+   "titre": "L'avion dans le vent latéral",
+   "type": "etape"
+  },
+  "avion_res": {
+   "kicker": "Exemple · résultat",
+   "note": "La résultante penche du côté de la vitesse qui s'ajoute : ici, vers le nord",
+   "tex": "\\theta \\approx 14^\\circ\\ \\text{au nord de l'est}",
+   "titre": "Dévié par le vent",
+   "type": "formule"
+  },
+  "ballon": {
+   "kicker": "Défi final",
+   "tex": [
+    "v_{\\text{montée}} = 5\\ \\text{m/s}",
+    "v_{\\text{vent}} = 10\\ \\text{m/s}",
+    "\\|\\vec{v}\\| = \\sqrt{5^2 + 10^2} = \\sqrt{125}"
+   ],
+   "titre": "Le ballon-sonde dans le vent",
+   "type": "etape"
+  },
+  "ballon_res": {
+   "kicker": "Défi final · résultat",
+   "note": "θ : angle de la résultante avec la verticale",
+   "tex": "\\|\\vec{v}\\| \\approx 11{,}2\\ \\text{m/s} \\qquad \\tan\\theta = \\dfrac{10}{5} = 2 \\;\\Rightarrow\\; \\theta \\approx 63^\\circ",
+   "titre": "Il monte en dérivant vers l'est",
+   "type": "formule"
+  },
+  "composantes": {
+   "kicker": "Méthode analytique",
+   "tex": [
+    "\\vec{A} + \\vec{B} = (A_x + B_x,\\; A_y + B_y)",
+    "\\|\\vec{R}\\| = \\sqrt{R_x^2 + R_y^2}"
+   ],
+   "titre": "Additionner les composantes",
+   "type": "etape"
+  },
+  "entrainement": {
+   "kicker": "Vitesse d'entraînement",
+   "texte": "Le train roule à 80 km/h vers l'est, le passager marche à 5 km/h vers l'avant : sa vitesse propre se mesure par rapport au train, la vitesse d'entraînement est celle du train par rapport au sol.",
+   "type": "phrase",
+   "anim": {
+    "nom": "referentiel",
+    "hauteur": 280
+   }
+  },
+  "ex_bateau": {
+   "kicker": "Exemple",
+   "tex": [
+    "\\vec{v}_{\\text{bateau}} = (5,\\; 0)\\ \\text{m/s}",
+    "\\vec{v}_{\\text{rivière}} = (0,\\; 2)\\ \\text{m/s}",
+    "\\vec{v}_{\\text{résultante}} = (5 + 0,\\; 0 + 2) = (5,\\; 2)\\ \\text{m/s}"
+   ],
+   "titre": "Le bateau et la rivière, en composantes",
+   "type": "etape"
+  },
+  "ex_bateau_res": {
+   "kicker": "Exemple · résultat",
+   "note": "La direction s'obtient par l'arc tangente du rapport des composantes",
+   "tex": "\\|\\vec{v}_{\\text{résultante}}\\| = \\sqrt{5^2 + 2^2} = \\sqrt{29} \\approx 5{,}4\\ \\text{m/s}",
+   "titre": "La vitesse du bateau par rapport à la rive",
+   "type": "formule"
+  },
+  "ex_loi": {
+   "kicker": "Exemple",
+   "tex": [
+    "\\vec{r}(t) = (2t,\\; t^2,\\; 0)",
+    "v_x(t) = 2",
+    "v_y(t) = 2t",
+    "v_z(t) = 0"
+   ],
+   "titre": "Un point matériel suit une loi horaire",
+   "type": "etape"
+  },
+  "ex_nageur": {
+   "kicker": "Exercice du cours",
+   "tex": [
+    "\\text{largeur de la rivière : } 50\\ \\text{m}",
+    "v_{\\text{nageur/eau}} = 2\\ \\text{m/s}",
+    "v_{\\text{eau/rive}} = 1\\ \\text{m/s}"
+   ],
+   "titre": "Le nageur et le courant",
+   "type": "etape"
+  },
+  "ex_nageur_res": {
+   "kicker": "Exercice · résultat",
+   "note": "Par rapport à la rive, la vitesse du nageur vaut (1, 2) : la résultante penche vers l'aval",
+   "tex": "t = \\dfrac{50}{2} = 25\\ \\text{s} \\qquad \\text{dérive} = 1 \\times 25 = 25\\ \\text{m}",
+   "titre": "Traversée et dérive",
+   "type": "formule"
+  },
+  "ex_vitesse": {
+   "kicker": "Exemple · résultat",
+   "tex": "\\vec{v}(1) = (2,\\; 2,\\; 0) \\qquad \\|\\vec{v}(1)\\| = \\sqrt{8} \\approx 2{,}8\\ \\text{m/s}",
+   "titre": "La vitesse à une seconde",
+   "type": "formule"
+  },
+  "generale": {
+   "kicker": "Changement de référentiel",
+   "note": "A, B, C : trois référentiels — les indices se chaînent, B disparaît au milieu · la somme est vectorielle : directions et sens comptent",
+   "tex": "\\vec{v}_{A/C} = \\vec{v}_{A/B} + \\vec{v}_{B/C}",
+   "titre": "La relation de composition",
+   "type": "formule"
+  },
+  "mecanique": {
+   "kicker": "La mécanique",
+   "texte": "La mécanique est la science du mouvement. La cinématique le décrit, sans chercher ses causes ; la dynamique l'explique par les forces.",
+   "type": "phrase"
+  },
+  "methode": {
+   "etapes": [
+    "Dessiner le schéma : les vecteurs vitesses, en direction et en longueur",
+    "Choisir le référentiel et les axes",
+    "Décomposer chaque vitesse en composantes",
+    "Additionner les composantes séparément",
+    "Calculer la norme par Pythagore et la direction par la trigonométrie"
+   ],
+   "kicker": "La méthode, en cinq gestes",
+   "type": "recap"
+  },
+  "mru": {
+   "etapes": [
+    "Mouvement rectiligne uniforme : vitesse constante, accélération nulle",
+    "Mouvement rectiligne uniformément accéléré : accélération constante, vitesse qui varie linéairement avec le temps",
+    "Dans les deux cas, la trajectoire est une droite"
+   ],
+   "kicker": "Deux mouvements droits",
+   "type": "recap"
+  },
+  "notions": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "orbite"
+   },
+   "etapes": [
+    "Position : la localisation de l'objet dans un repère, à un instant donné",
+    "Déplacement : position finale moins position initiale — un tour complet de piste donne un déplacement nul",
+    "Vitesse : rapidité et direction du déplacement — une grandeur vectorielle, en mètres par seconde"
+   ],
+   "kicker": "Notions fondamentales",
+   "type": "recap"
+  },
+  "position": {
+   "kicker": "Repère et vecteur position",
+   "note": "Repère : une origine O et trois axes orthogonaux · le point matériel est un objet de dimensions négligeables devant les distances parcourues",
+   "tex": "\\vec{r}(t) = \\left( x(t),\\; y(t),\\; z(t) \\right)",
+   "titre": "Localiser le point matériel",
+   "type": "formule"
+  },
+  "recap": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "orbite"
+   },
+   "etapes": [
+    "Toute vitesse se décrit dans un référentiel : on le précise toujours",
+    "Vitesse et accélération sont les dérivées de la position, puis de la vitesse",
+    "Composer des vitesses = additionner des vecteurs, composante par composante ; Pythagore donne la norme",
+    "Relation générale : v A/C = v A/B + v B/C — la vitesse absolue est la propre plus l'entraînement"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "referentiel": {
+   "kicker": "Le référentiel",
+   "texte": "Le même passager est immobile vu du train, et en mouvement vu du quai : toute description d'un mouvement commence par le choix du référentiel.",
+   "type": "phrase",
+   "anim": {
+    "nom": "referentiel",
+    "hauteur": 280
+   }
+  },
+  "titre": {
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 250
+   },
+   "kicker": "Physique · Terminale",
+   "sous": "Décrire le mouvement, puis additionner les vitesses comme des vecteurs",
+   "titre": "Composition des vitesses",
+   "type": "titre"
+  },
+  "trajectoire": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "orbite"
+   },
+   "kicker": "Trajectoire courbe",
+   "texte": "Sur une courbe, la vitesse change de direction en permanence : à chaque instant, elle reste tangente à la trajectoire.",
+   "type": "phrase"
+  },
+  "vecteur": {
+   "kicker": "L'outil : le vecteur",
+   "texte": "Un vecteur possède une direction, un sens et une norme. Dessinée, la vitesse est une flèche : sa longueur donne la norme, sa pointe donne le sens.",
+   "type": "phrase",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 280
+   }
+  },
+  "vitesse_vec": {
+   "kicker": "La vitesse",
+   "note": "Composantes : v_x = dx/dt, v_y = dy/dt, v_z = dz/dt · la vitesse est tangente à la trajectoire",
+   "tex": "\\vec{v}(t) = \\dfrac{d\\vec{r}(t)}{dt}",
+   "titre": "La dérivée de la position",
+   "type": "formule"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Décrire le mouvement : position, vitesse, vecteurs"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : on passe à la pratique — composer des vitesses concrètes, du bateau sur la rivière à l'avion dans le vent, jusqu'au ballon-sonde final.",
+    "texte": "Partie 2 : composer les vitesses, méthode et applications."
+   },
+   "sous_titre": "Composer les vitesses : méthode et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré à la composition des vitesses : comment décrire un mouvement, puis comment additionner des vitesses qui ne vont pas dans la même direction.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Composition des vitesses : décrire, puis additionner."
+  },
+  {
+   "dit": "La mécanique est la science du mouvement des objets et des forces qui le gouvernent. Nous travaillerons surtout en cinématique : elle décrit comment un objet se déplace, sans se demander pourquoi. La dynamique, elle, explique le mouvement par les forces.",
+   "ecran": "mecanique",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "La cinématique décrit le mouvement, la dynamique l'explique."
+  },
+  {
+   "dit": "Trois notions décrivent un mouvement. La position localise l'objet dans un repère, à un instant donné. Le déplacement est la différence entre la position finale et la position initiale : faire un tour complet de piste donne un déplacement nul. La vitesse, enfin, mesure la rapidité du déplacement et sa direction.",
+   "ecran": "notions",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Position, déplacement, vitesse : les trois notions de base."
+  },
+  {
+   "dit": "Le mouvement dépend de l'observateur. Assis dans un train, le passager d'en face vous semble immobile ; pour quelqu'un resté sur le quai, il file à la vitesse du train. Décrire un mouvement exige donc de préciser d'abord le référentiel, le repère depuis lequel on observe.",
+   "ecran": "referentiel",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Sans référentiel précisé, pas de description du mouvement."
+  },
+  {
+   "dit": "Pour décrire le mouvement d'un point matériel, on choisit un repère : une origine O et trois axes. À chaque instant t, le vecteur position, noté r de t, relie l'origine au point ; ses composantes sont x de t, y de t et z de t.",
+   "ecran": "position",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Le vecteur position relie l'origine au point matériel."
+  },
+  {
+   "dit": "La vitesse est la dérivée du vecteur position par rapport au temps : v de t égale d r de t sur d t. C'est le vecteur tangent à la trajectoire à chaque instant. Composante par composante : v x est la dérivée de x, v y celle de y, v z celle de z.",
+   "ecran": "vitesse_vec",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "La vitesse : dérivée de la position, tangente à la trajectoire."
+  },
+  {
+   "dit": "Exemple du cours : un point se déplace selon la loi r de t égale deux t, t au carré, zéro — tout se passe dans un plan. Dérivons chaque composante : v x vaut deux, v y vaut deux t, v z vaut zéro.",
+   "ecran": "ex_loi",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Exemple : dériver une loi horaire, composante par composante."
+  },
+  {
+   "dit": "À l'instant t égale une seconde, la vitesse vaut donc deux, deux, zéro, et sa norme vaut racine de huit, environ deux virgule huit mètres par seconde.",
+   "ecran": "ex_vitesse",
+   "id": "p08",
+   "pause_apres": 0.7,
+   "texte": "La norme de la vitesse à une seconde : racine de huit."
+  },
+  {
+   "dit": "L'accélération décrit, elle, le changement de vitesse : a de t égale d v de t sur d t, c'est aussi la dérivée seconde de la position. Pour notre exemple, seule la composante v y change : l'accélération est constante et vaut zéro, deux, zéro.",
+   "ecran": "acceleration",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "L'accélération : dérivée de la vitesse, dérivée seconde de la position."
+  },
+  {
+   "dit": "Deux mouvements droits sont à connaître. Le mouvement rectiligne uniforme : vitesse constante, accélération nulle, trajectoire droite. Le mouvement rectiligne uniformément accéléré : accélération constante, et la vitesse varie linéairement avec le temps.",
+   "ecran": "mru",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Rectiligne uniforme ou uniformément accéléré : deux cas droits."
+  },
+  {
+   "dit": "Venons-en aux vecteurs, l'outil de la composition. Un vecteur possède une direction, un sens et une norme. La vitesse est un vecteur : on la dessine comme une flèche, dont la longueur est proportionnelle à la norme et dont la pointe indique le sens.",
+   "ecran": "vecteur",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "La vitesse est un vecteur : direction, sens, norme."
+  },
+  {
+   "dit": "Additionner deux vecteurs, c'est placer le second au bout du premier : la résultante R va de l'origine du premier à l'extrémité du second. Et soustraire B, c'est additionner son opposé, moins B.",
+   "ecran": "addition",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "La résultante joint l'origine du premier à l'extrémité du dernier."
+  },
+  {
+   "dit": "La méthode analytique décompose chaque vecteur en composantes : on additionne les abscisses entre elles et les ordonnées entre elles. La norme de la résultante s'obtient ensuite par le théorème de Pythagore.",
+   "ecran": "composantes",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "La méthode analytique : composante par composante, puis Pythagore."
+  },
+  {
+   "dit": "Application : un bateau avance à cinq mètres par seconde vers l'est, sur une rivière qui coule à deux mètres par seconde vers le nord. L'est sera l'axe des x, le nord celui des y : les composantes s'écrivent alors séparément.",
+   "ecran": "ex_bateau",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Exemple : le bateau et la rivière, en composantes."
+  },
+  {
+   "dit": "La norme de la résultante vaut racine de vingt-neuf, environ cinq virgule quatre mètres par seconde. Sa direction se calcule avec l'arc tangente du rapport des composantes.",
+   "ecran": "ex_bateau_res",
+   "id": "p15",
+   "pause_apres": 0.7,
+   "texte": "Résultat : environ cinq virgule quatre mètres par seconde."
+  },
+  {
+   "dit": "Premier cas particulier : le passager d'un train. Le train roule à quatre-vingts kilomètres par heure vers l'est ; le passager marche vers l'avant à cinq kilomètres par heure. Sa vitesse par rapport au train est sa vitesse propre ; celle du train par rapport au sol est la vitesse d'entraînement.",
+   "ecran": "entrainement",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Vitesse propre et vitesse d'entraînement : le cas du train."
+  },
+  {
+   "dit": "La vitesse absolue, par rapport au sol, est la somme vectorielle des deux. Même direction, même sens : quatre-vingts plus cinq, quatre-vingt-cinq kilomètres par heure vers l'est. En marchant vers l'arrière, on trouve soixante-quinze.",
+   "ecran": "absolue",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Quatre-vingt-cinq kilomètres par heure vers l'est, par rapport au sol."
+  },
+  {
+   "dit": "Deuxième cas : des vitesses perpendiculaires. Un avion vole à deux cents kilomètres par heure vers l'est, un vent souffle à cinquante kilomètres par heure vers le nord. Pythagore donne la norme de la résultante.",
+   "ecran": "avion",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Vitesses perpendiculaires : l'avion et le vent latéral."
+  },
+  {
+   "dit": "L'avion se déplace donc, par rapport au sol, à environ deux cent six kilomètres par heure, dévié de quatorze degrés au nord de l'est. Retenez le réflexe : vitesses perpendiculaires, théorème de Pythagore.",
+   "ecran": "avion_res",
+   "id": "p19",
+   "pause_apres": 0.7,
+   "texte": "Environ deux cent six kilomètres par heure, quatorze degrés au nord de l'est."
+  },
+  {
+   "dit": "Sur une trajectoire courbe, la vitesse change de direction à chaque instant : elle reste tangente à la trajectoire. Composer des vitesses le long d'une courbe demande alors une analyse instant par instant, souvent avec le calcul différentiel.",
+   "ecran": "trajectoire",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Sur une courbe, la vitesse est tangente à chaque instant."
+  },
+  {
+   "dit": "La méthode générale, valable pour des directions quelconques, tient en une relation : la vitesse de A par rapport à C égale la vitesse de A par rapport à B, plus la vitesse de B par rapport à C. Les indices se chaînent : B disparaît au milieu.",
+   "ecran": "generale",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "La relation générale de composition des vitesses."
+  },
+  {
+   "dit": "Pour résoudre un problème, suivez toujours la même méthode : dessinez le schéma des vecteurs, choisissez le référentiel et les axes, décomposez les vitesses en composantes, additionnez composante par composante, puis calculez la norme et la direction.",
+   "ecran": "methode",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Schéma, référentiel, composantes, somme, norme et direction."
+  },
+  {
+   "dit": "Exercice du cours : un nageur traverse une rivière de cinquante mètres de large, à deux mètres par seconde par rapport à l'eau, en visant droit vers la rive d'en face. Le courant coule à un mètre par seconde, le long de la rive.",
+   "ecran": "ex_nageur",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Exercice : le nageur vise la rive d'en face."
+  },
+  {
+   "dit": "La traversée dure cinquante divisé par deux, vingt-cinq secondes : seule la composante perpendiculaire à la rive compte pour traverser. Pendant ce temps, le courant l'emporte de un fois vingt-cinq, vingt-cinq mètres en aval.",
+   "ecran": "ex_nageur_res",
+   "id": "p24",
+   "pause_apres": 0.7,
+   "texte": "Vingt-cinq secondes de traversée, vingt-cinq mètres de dérive."
+  },
+  {
+   "dit": "Ces compositions sont partout. Le capitaine d'un bateau corrige son cap pour compenser le courant. Le pilote fait de même avec le vent. Et la pluie qui tombe en biais sur un coureur est la résultante de sa chute verticale, du vent et de la course.",
+   "ecran": "applications",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Navigation, aviation, pluie oblique : les applications."
+  },
+  {
+   "dit": "Dernier défi, celui du cours : un ballon-sonde s'élève verticalement à cinq mètres par seconde, pendant qu'un vent souffle à dix mètres par seconde vers l'est. Vitesses perpendiculaires : la résultante est l'hypoténuse du triangle.",
+   "ecran": "ballon",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Défi final : le ballon-sonde dans le vent."
+  },
+  {
+   "dit": "La résultante vaut racine de cent vingt-cinq, environ onze virgule deux mètres par seconde. Son angle avec la verticale a pour tangente dix sur cinq, deux : environ soixante-trois degrés. Le ballon monte donc en dérivant fortement vers l'est.",
+   "ecran": "ballon_res",
+   "id": "p27",
+   "pause_apres": 0.7,
+   "texte": "Environ onze virgule deux mètres par seconde, soixante-trois degrés de la verticale."
+  },
+  {
+   "dit": "Retenez l'essentiel : toute vitesse se décrit dans un référentiel ; les vitesses se composent comme des vecteurs, par leurs composantes ; et la relation de composition enchaîne les référentiels, de A vers C en passant par B.",
+   "ecran": "recap",
+   "id": "p28",
+   "pause_apres": 0.5,
+   "texte": "Composition des vitesses : l'essentiel à retenir."
+  }
+ ],
+ "titre": "Composition des vitesses"
+}

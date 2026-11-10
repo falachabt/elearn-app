@@ -28,7 +28,7 @@ jest.mock('expo-router', () => ({
     useEffect(f, [f]);
   },
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
 jest.mock('@/services/version', () => ({
   lireVersion: () => ({ version: '3.0.0', build: '1', canal: mockVersion.canal, miseAJour: null, publiee: null }),
@@ -77,8 +77,8 @@ describe.each(['fr', 'en'] as const)('H1, H3, H6 · profil (%s)', (langue) => {
     expect(screen.getAllByText(new RegExp(`^3e · `)).length).toBeGreaterThan(0);
     await fireEvent.press(screen.getByRole('button', { name: x.profil.reglagesLibelle }));
     expect(router.push).toHaveBeenCalledWith('/parametres');
-    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.profil.classe}`) }));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/classe', params: { modifier: '1' } });
+    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.profilChoix.monProfil}`) }));
+    expect(router.push).toHaveBeenCalledWith('/profil/choisir');
     await fireEvent.press(screen.getByRole('button', { name: `${x.moi.parent}. ${x.profil.parentAucun}` }));
     expect(router.push).toHaveBeenCalledWith('/profil/parent');
     await fireEvent.press(screen.getByRole('button', { name: x.profil.aide }));
@@ -154,14 +154,15 @@ describe.each(['fr', 'en'] as const)('H1, H3, H6 · profil (%s)', (langue) => {
   });
 });
 
-it('changer de classe depuis Moi : profil gardé terminé, mission du jour oubliée, retour', async () => {
+it('changer de classe depuis Moi : profil gardé terminé, mission du jour oubliée, retour à l’accueil', async () => {
   await act(() => changerLangue('fr'));
   mockParams = { modifier: '1' };
   await AsyncStorage.setItem('mission.jour', '{}');
   await monter(<ChoixClasse />);
   await fireEvent.press(await screen.findByText('Tle'));
   await fireEvent.press(screen.getByRole('button', { name: fr.classe.enregistrer }));
-  await waitFor(() => expect(router.back).toHaveBeenCalled());
+  await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/'));
+  expect(router.dismissAll).toHaveBeenCalled();
   expect(await lireProfil()).toEqual({ type: 'eleve', niveau: 'Tle', pays: 'CM', concours: null, termine: true });
   expect(await AsyncStorage.getItem('mission.jour')).toBeNull();
 });
@@ -171,9 +172,49 @@ it('changer de statut depuis Moi : élève vers concours', async () => {
   mockParams = { modifier: '1' };
   await monter(<ChoixClasse />);
   await fireEvent.press(await screen.findByText(fr.bienvenue.concours));
-  expect(screen.getByText(fr.classe.titreConcours)).toBeTruthy();
+  expect(screen.getByText(fr.classe.tonConcours)).toBeTruthy();
   await fireEvent.press(screen.getByRole('button', { name: fr.classe.enregistrer }));
   // Sans concours choisi, on passe d'abord par les deux étapes (filière, concours).
   await waitFor(() => expect(router.push).toHaveBeenCalledWith('/concours'));
   expect(await lireProfil()).toEqual({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: null, termine: true });
+});
+
+it('un compte sans nom mais connecté affiche son email et son profil, jamais "Invité"', async () => {
+  await act(() => changerLangue('fr'));
+  await AsyncStorage.clear();
+  mockSession.mockReturnValue({
+    statut: 'pret',
+    session: {
+      user: {
+        id: 'u3',
+        is_anonymous: false,
+        email: 'falacha@exemple.com',
+        user_metadata: {
+          reglages: {
+            profil: { type: 'eleve', niveau: '3e', pays: 'CM' },
+          },
+        },
+      },
+    },
+    erreur: null,
+  });
+
+  await monter(<EcranMoi />);
+  await waitFor(() => expect(screen.getByText('Falacha')).toBeTruthy());
+  expect(screen.queryByText('Invité')).toBeNull();
+  expect(screen.getAllByText(new RegExp(`^3e · `)).length).toBeGreaterThan(0);
+});
+
+describe('Moi en mode TOEIC', () => {
+  it('garde la même page : progression, lignes TOEIC, déconnexion avec confirmation', async () => {
+    await monter(<EcranMoi toeic />);
+    const x = fr;
+    await waitFor(() => expect(screen.getByText(x.certification.moiToeic.progressionEtiquette)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.certification.moiToeic.objectif}`) }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/objectif', params: { modifier: '1' } });
+    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.certification.moiToeic.temps}`) }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/temps', params: { modifier: '1' } });
+    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.certification.moiToeic.deconnexion}`) }));
+    expect(screen.getByText(x.certification.moiToeic.deconnexionTitre)).toBeTruthy();
+  });
 });

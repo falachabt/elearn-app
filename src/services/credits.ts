@@ -8,7 +8,7 @@ import { suivre } from './analytics';
 type Client = Pick<SupabaseClient, 'from' | 'rpc' | 'channel' | 'removeChannel'>;
 
 /** Actions payantes en crédits (M18). Les coûts viennent du serveur (credit_actions), jamais de l'app. */
-export type ActionCredit = 'quiz_explanation' | 'exercise_solution' | 'document_pdf' | 'exam_correction' | 'ai_question';
+export type ActionCredit = 'quiz_explanation' | 'exercise_solution' | 'document_pdf' | 'exam_correction' | 'ai_question' | 'cert_explanation' | 'cert_mock_mini_ten' | 'cert_mock_mini_twenty' | 'cert_mock_half' | 'cert_mock_full' | 'cert_mock_review' | 'course_video';
 
 export type Solde = {
   total: number;
@@ -88,12 +88,29 @@ export async function lireSolde(client: Client, appareil: string | null): Promis
 export type ReglagesCredits = { bienvenue: number; invite: number; recharge: number };
 
 /** Montants du back-office (bienvenue, invité, recharge du lundi) : lisibles sans compte, jamais écrits en dur dans les textes. */
+/**
+ * Ces montants changent rarement : on les garde en mémoire pendant une dizaine de minutes au lieu de les relire à chaque écran
+ * (issue #14, `credit_settings` relu une quarantaine de fois par jour pour un seul téléphone).
+ */
+const DUREE_CACHE_CONFIG_MS = 10 * 60 * 1000;
+let cacheReglages: { valeur: ReglagesCredits; date: number } | null = null;
+let cacheCouts: { valeur: Partial<Record<ActionCredit, number>>; date: number } | null = null;
+
+/** Vide le cache des montants (déconnexion, tests). */
+export function viderCacheCredits(): void {
+  cacheReglages = null;
+  cacheCouts = null;
+}
+
 export async function lireReglages(client: Client): Promise<ReglagesCredits> {
+  if (cacheReglages && Date.now() - cacheReglages.date < DUREE_CACHE_CONFIG_MS) return cacheReglages.valeur;
   const { data, error } = await client.from('credit_settings').select('welcome_amount, guest_amount, weekly_amount').limit(1).maybeSingle();
   if (error) throw error;
   const l = data as { welcome_amount: number; guest_amount: number; weekly_amount: number } | null;
   if (!l) throw new Error('réglages introuvables');
-  return { bienvenue: l.welcome_amount, invite: l.guest_amount, recharge: l.weekly_amount };
+  const valeur = { bienvenue: l.welcome_amount, invite: l.guest_amount, recharge: l.weekly_amount };
+  cacheReglages = { valeur, date: Date.now() };
+  return valeur;
 }
 
 /**
@@ -114,11 +131,31 @@ export async function lireBienvenueRecente(client: Client, depuis: string): Prom
   return l ? { id: String(l.id), montant: l.delta } : null;
 }
 
+/**
+ * Recharge hebdomadaire du lundi reçue depuis `depuis` (ISO) : identifiant de la ligne et montant.
+ */
+export async function lireRechargeRecente(client: Client, depuis: string): Promise<{ id: string; montant: number } | null> {
+  const { data, error } = await client
+    .from('credit_ledger')
+    .select('id, delta')
+    .eq('kind', 'weekly')
+    .gt('delta', 0)
+    .gte('created_at', depuis)
+    .order('created_at', { ascending: false })
+    .limit(1);
+  if (error) throw error;
+  const l = (data as { id: number | string; delta: number }[] | null)?.[0];
+  return l ? { id: String(l.id), montant: l.delta } : null;
+}
+
 /** Coût de chaque action active, pour afficher le prix avant d'agir (M18-07). */
 export async function lireCouts(client: Client): Promise<Partial<Record<ActionCredit, number>>> {
+  if (cacheCouts && Date.now() - cacheCouts.date < DUREE_CACHE_CONFIG_MS) return cacheCouts.valeur;
   const { data, error } = await client.from('credit_actions').select('code, cost');
   if (error) throw error;
-  return Object.fromEntries(((data ?? []) as { code: ActionCredit; cost: number }[]).map((l) => [l.code, l.cost]));
+  const valeur = Object.fromEntries(((data ?? []) as { code: ActionCredit; cost: number }[]).map((l) => [l.code, l.cost]));
+  cacheCouts = { valeur, date: Date.now() };
+  return valeur;
 }
 
 /**
@@ -153,6 +190,17 @@ export async function lireOuverts(client: Client, action: ActionCredit, refs: st
 /** Documents gratuits qu'il reste à l'élève (credit_settings.free_documents moins ceux déjà ouverts gratuitement). */
 export async function lireDocumentsGratuits(client: Client): Promise<number> {
   const { data, error } = await client.rpc('my_free_documents_left');
+  if (error) throw error;
+  return typeof data === 'number' ? data : 0;
+}
+
+/**
+ * Vidéos de cours gratuites de découverte encore disponibles (décision de Benny, 26/10/2026 : une seule,
+ * tous cours confondus, consommée dès l'ouverture). Le serveur compte : un élève qui a déjà regardé des
+ * vidéos avant l'arrivée des crédits a sa découverte déjà consommée.
+ */
+export async function lireVideosGratuites(client: Client): Promise<number> {
+  const { data, error } = await client.rpc('my_free_videos_left');
   if (error) throw error;
   return typeof data === 'number' ? data : 0;
 }

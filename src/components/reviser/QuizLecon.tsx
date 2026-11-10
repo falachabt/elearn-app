@@ -12,7 +12,7 @@ import type { QuestionTiree } from '@/services/miniTest';
 import { lireQuizLecon, marquerLue, quizReussi } from '@/services/reviser';
 import { enregistrerTempsActivite } from '@/services/activite';
 import { getSupabase } from '@/services/supabase';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -37,19 +37,31 @@ type Etat =
  * leçon (elle compte dans la progression) ; sinon, relire ou réessayer. Une leçon sans questions est validée d'office.
  */
 export function QuizLecon() {
+  useEffect(() => {
+    suivre('quiz_started', { type: 'lecon' });
+  }, []);
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { cours, lecon, suivante, matiere } = useLocalSearchParams<{ cours: string; lecon: string; suivante?: string; matiere?: string }>();
+  const { cours, lecon, suivante, matiere, provenance, planningJour } = useLocalSearchParams<{
+    cours: string;
+    lecon: string;
+    suivante?: string;
+    matiere?: string;
+    provenance?: string;
+    planningJour?: string;
+  }>();
   const [essai, setEssai] = useState(0);
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const pret = useSessionPrete();
+  const { session } = useSession();
+  const idUtilisateur = session?.user?.id;
 
   useEffect(() => {
     if (!pret) return;
     let actif = true;
     lireQuizLecon(getSupabase(), { cours: Number(cours), lecon: Number(lecon), vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') } })
       .then(async (questions) => {
-        if (!questions.length) await marquerLue(Number(lecon), Number(cours), getSupabase());
+        if (!questions.length) await marquerLue(Number(lecon), Number(cours), getSupabase(), undefined, idUtilisateur);
         if (actif) setEtat(questions.length ? { statut: 'quiz', questions } : { statut: 'vide' });
       })
       .catch(() => actif && setEtat({ statut: 'erreur' }));
@@ -58,7 +70,7 @@ export function QuizLecon() {
     };
     // Libellés Vrai/Faux figés au tirage.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cours, lecon, pret, essai]);
+  }, [cours, lecon, pret, essai, idUtilisateur]);
 
   // Au retour de « Refaire mes erreurs » : la correction de cette leçon a été mise à jour (score, grille, validation).
   const fini = etat.statut === 'fini';
@@ -79,7 +91,21 @@ export function QuizLecon() {
     }, [fini, lecon]),
   );
 
-  const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
+  const retourProgramme = () => {
+    if (planningJour) {
+      router.replace({ pathname: '/planning/jour', params: { jour: planningJour } });
+    } else {
+      router.replace('/planning/jour');
+    }
+  };
+
+  const retour = () => {
+    if (provenance === 'planning') {
+      retourProgramme();
+      return;
+    }
+    return router.canGoBack() ? router.back() : router.replace('/reviser');
+  };
 
   if (etat.statut === 'quiz') {
     return (
@@ -99,7 +125,7 @@ export function QuizLecon() {
             await enregistrerCorrection({ source: 'lecon', questions, reponses, contexte: { type: 'lecon', lecon: Number(lecon), cours: Number(cours) } });
             void noterActionConfiguration('quiz').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
             // Attendue : au retour sur le chapitre, la case de la leçon doit déjà être cochée. Un échec local ne bloque pas le score.
-            if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length }).catch(() => {});
+            if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length }, idUtilisateur).catch(() => {});
           } finally {
             // Quoi qu'il arrive aux écritures ci-dessus, le résultat s'affiche : jamais une page vide à la fin du quiz.
             setEtat({ statut: 'fini', score, total: questions.length, statuts: statutsDe({ questions, reponses }) });
@@ -119,8 +145,11 @@ export function QuizLecon() {
   const pied =
     etat.statut === 'chargement' ? undefined : (
       <View style={styles.pied}>
-        {valide && suivante ? <Bouton libelle={t('reviser.quizSuivante')} onPress={allerSuivante} retour /> : null}
-        {valide && !suivante ? <Bouton libelle={t('reviser.finChapitre')} onPress={() => void apresDerniereLecon(Number(cours), () => router.replace({ pathname: '/cours/fin', params: { cours: String(cours), matiere: matiere ?? '' } }), () => versListeChapitres(matiere))} retour /> : null}
+        {valide && provenance === 'planning' ? (
+          <Bouton libelle={t('planning.retourProgramme')} onPress={retourProgramme} retour />
+        ) : null}
+        {valide && provenance !== 'planning' && suivante ? <Bouton libelle={t('reviser.quizSuivante')} onPress={allerSuivante} retour /> : null}
+        {valide && provenance !== 'planning' && !suivante ? <Bouton libelle={t('reviser.finChapitre')} onPress={() => void apresDerniereLecon(Number(cours), () => router.replace({ pathname: '/cours/fin', params: { cours: String(cours), matiere: matiere ?? '' } }), () => versListeChapitres(matiere))} retour /> : null}
         {etat.statut === 'fini' && !reussi ? <Bouton libelle={t('reviser.quizReessayer')} onPress={reessayer} /> : null}
         <Bouton variante={valide ? 'secondaire' : etat.statut === 'fini' && !reussi ? 'secondaire' : undefined} libelle={t('reviser.quizRetour')} onPress={retour} />
       </View>

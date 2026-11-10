@@ -11,7 +11,7 @@ import { Appui } from './Appui';
 export function LigneLien({ icone, titre, detail, droite, onPress }: { icone: keyof typeof Ionicons.glyphMap; titre: string; detail?: string; /** Pastille à droite du titre (coût, « Déjà ouvert »). */ droite?: ReactNode; onPress: () => void }) {
   const { theme } = useTheme();
   return (
-    <Appui accessibilityRole="button" accessibilityLabel={detail ? `${titre}. ${detail}` : titre} onPress={onPress} rayon={rayon.l} ombre={3} decalage={2} couleurOmbre={theme.ombre}>
+    <Appui accessibilityRole="button" accessibilityLabel={detail ? `${titre}. ${detail}` : titre} suivi={titre} onPress={onPress} rayon={rayon.l} ombre={3} decalage={2} couleurOmbre={theme.ombre}>
       <View style={[styles.entree, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
         <Ionicons name={icone} size={22} color={theme.texte.principal} />
         <View style={styles.flex}>

@@ -160,7 +160,7 @@ export function categorieDe(type: string): CategorieReglage | null {
   if (['post_comment', 'post_reply', 'mention', 'post_like', 'profile_like'].includes(type)) return 'answers';
   if (type === 'poll_revealed') return 'polls';
   if (['credits_refilled', 'referral', 'reward', 'credits_low'].includes(type)) return 'credits';
-  if (type === 'study_reminder' || type === 'weekly_summary') return 'reminders';
+  if (['study_reminder', 'weekly_summary', 'study_plan_ready', 'study_plan_updated'].includes(type)) return 'reminders';
   if (type === 'marketing') return 'marketing';
   return null;
 }
@@ -176,8 +176,16 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
   const postId = typeof data?.post_id === 'string' && data.post_id ? data.post_id : null;
   const ecran = typeof data?.screen === 'string' && data.screen.startsWith('/') ? data.screen : null;
   const categorie = categorieDe(type);
+  // Passage de niveau XP : écran du barème et des paliers de niveau.
+  if (type === 'level_up' || data?.screen === '/xp') return { pathname: '/xp' };
   // Correction par photo prête : cette correction quand l'identifiant est là (`correction_id` du serveur, `photoId` d'un
   // rappel local), sinon l'historique des corrections.
+  // Correction d'un travail d'ancien sujet prête (#72) : la session corrigée, avec le sujet pour revenir à sa page.
+  if (type === 'photo_ready' && typeof data?.exam_attempt_id === 'string' && data.exam_attempt_id) {
+    const kind = data.paper_kind === 'document' ? 'document' : 'exam';
+    const ref = typeof data.paper_ref === 'string' ? data.paper_ref : '';
+    return { pathname: '/annales/session', params: { id: data.exam_attempt_id, kind, ref } };
+  }
   if (type === 'photo_ready') {
     const correction = [data?.correction_id, data?.photoId, data?.photo_id, data?.id].find((v): v is string => typeof v === 'string' && v !== '');
     return { pathname: '/photo', params: correction ? { id: correction } : { historique: '1' } };
@@ -189,11 +197,19 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
     const commande = typeof data?.order_id === 'string' && data.order_id ? data.order_id : null;
     return commande ? { pathname: '/paiements/[id]', params: { id: commande } } : { pathname: '/paiements' };
   }
+  // Fin de Pass (issue #124) : les offres. Le toucher ouvre en fait la feuille « recharger le Pass » (interception
+  // dans `suivreOuvertures` et dans la cloche) ; ceci n'est que le filet si la feuille ne peut pas s'ouvrir.
+  // Placée AVANT le repli `data.screen` : le serveur envoie encore `screen: '/paiements'`, qui menait à « Mes paiements ».
+  if (type === 'pass_ending') return { pathname: '/offres', params: { declencheur: 'recharge-pass' } };
   // Résumé du lundi : la page « Ma semaine » de la semaine concernée (même déjà vue), sinon de la semaine passée.
   if (type === 'weekly_summary') {
     const semaine = typeof data?.week_start === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(data.week_start) ? data.week_start : null;
     return { pathname: '/ma-semaine', params: { ...(semaine ? { semaine } : {}), source: origine } };
   }
+  // Planning d'études terminé : bilan récapitulatif
+  if (type === 'study_plan_completed' || type === 'study_plan_finished' || data?.screen === '/planning/termine') return { pathname: '/planning/termine', params: { source: origine } };
+  // Planning d'études prêt ou changé : l'écran du planning, avec l'origine du toucher pour la mesure.
+  if (type === 'study_plan_ready' || type === 'study_plan_updated') return { pathname: '/planning', params: { source: origine } };
   if ((categorie === 'answers' || categorie === 'polls') && postId) return { pathname: '/question', params: { id: postId } };
   if (ecran && ecran !== '/') return { pathname: ecran };
   if (categorie === 'answers' || categorie === 'polls') return { pathname: '/questions' };
@@ -201,8 +217,7 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
   // Recharge du lundi : même écran que le toucher d'un push local de recharge (Moi montre le solde).
   if (type === 'credits_refilled') return { pathname: '/moi' };
   if (categorie === 'credits') return { pathname: '/credits' };
-  // Fin de Pass : la page des paiements (retour vers Moi) ; résumé hebdomadaire : Moi.
-  if (type === 'pass_ending') return { pathname: '/paiements' };
+  // Résumé hebdomadaire : Moi.
   if (type === 'weekly_summary') return { pathname: '/moi' };
   return { pathname: '/' };
 }

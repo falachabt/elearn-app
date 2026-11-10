@@ -1,0 +1,383 @@
+{
+ "cours": 6818,
+ "ecrans": {
+  "antivirus": {
+   "kicker": "L'antivirus",
+   "tex": [
+    "\\text{détecte, neutralise, supprime}",
+    "\\text{virus, vers, chevaux de Troie}",
+    "\\text{rançongiciels}"
+   ],
+   "titre": "Détecter, neutraliser, supprimer",
+   "type": "etape"
+  },
+  "antivirus_fonc": {
+   "kicker": "Fonctionnement de l'antivirus",
+   "tex": [
+    "\\text{analyse en temps réel}",
+    "\\text{analyse programmée complète}",
+    "\\text{base de signatures à jour}"
+   ],
+   "titre": "Temps réel, complet, à jour",
+   "type": "etape"
+  },
+  "antivirus_lim": {
+   "kicker": "Limites de l'antivirus",
+   "tex": [
+    "\\text{ne protège pas contre tout}",
+    "\\text{hameçonnage, ingénierie sociale}",
+    "\\text{comportements prudents requis}"
+   ],
+   "titre": "Un outil, pas une armure",
+   "type": "etape"
+  },
+  "compte": {
+   "kicker": "Le compte utilisateur",
+   "tex": [
+    "\\text{ensemble d'identifiants}",
+    "\\text{identité numérique}",
+    "\\text{droits d'accès définis}"
+   ],
+   "titre": "Qui je suis, ce que je peux faire",
+   "type": "etape"
+  },
+  "compte_regles": {
+   "kicker": "Règles de gestion du compte",
+   "tex": [
+    "\\text{compte unique, mot de passe fort}",
+    "\\text{ne jamais partager son compte}",
+    "\\text{verrouiller sa session en partant}"
+   ],
+   "titre": "Unique, secret, verrouillé",
+   "type": "etape"
+  },
+  "dic": {
+   "kicker": "La triade DIC",
+   "tex": [
+    "\\text{D : disponibilité}",
+    "\\text{I : intégrité}",
+    "\\text{C : confidentialité}"
+   ],
+   "titre": "Trois piliers de la sécurité",
+   "type": "etape"
+  },
+  "ethique": {
+   "kicker": "L'éthique du numérique",
+   "tex": [
+    "\\text{réflexion sur les valeurs}",
+    "\\text{principes qui guident nos actions}",
+    "\\text{appliquée aux TIC}"
+   ],
+   "titre": "Valeurs et principes",
+   "type": "etape"
+  },
+  "ethique_principes": {
+   "kicker": "Principes fondamentaux",
+   "tex": [
+    "\\text{respecter autrui}",
+    "\\text{respecter la propriété intellectuelle}",
+    "\\text{loyauté et transparence}"
+   ],
+   "titre": "Respect, propriété, loyauté",
+   "type": "etape"
+  },
+  "ex_antivirus": {
+   "kicker": "Exemple : la pièce jointe facture.exe",
+   "tex": [
+    "\\text{message suspect reçu}",
+    "\\text{antivirus à jour : quarantaine}",
+    "\\text{message supprimé, machine protégée}"
+   ],
+   "titre": "Détecté avant exécution",
+   "type": "etape"
+  },
+  "ex_compte": {
+   "kicker": "Exemple : la salle informatique",
+   "tex": [
+    "\\text{élèves : compte standard}",
+    "\\text{professeur : administrateur}",
+    "\\text{pas d'installation, pas d'accès aux autres}"
+   ],
+   "titre": "Standard pour l'élève, admin pour le prof",
+   "type": "etape"
+  },
+  "ex_mdp": {
+   "kicker": "Exemple : un mot de passe reçu",
+   "tex": [
+    "\\text{ne pas l'utiliser}",
+    "\\text{ne pas le divulguer}",
+    "\\text{prévenir le camarade du risque}"
+   ],
+   "titre": "Ne pas utiliser, prévenir",
+   "type": "etape"
+  },
+  "ex_photo": {
+   "kicker": "Exemple : une photo de classe",
+   "tex": [
+    "\\text{accord de tous les élèves}",
+    "\\text{droit à l'image respecté}",
+    "\\text{confidentialité : amis uniquement}"
+   ],
+   "titre": "Accord, puis publication restreinte",
+   "type": "etape"
+  },
+  "ex_ralentit": {
+   "kicker": "Exemple : un ordinateur qui ralentit",
+   "tex": [
+    "\\text{1. vider le cache navigateur}",
+    "\\text{2. supprimer les logiciels inutilisés}",
+    "\\text{3. analyse antivirus, redémarrage}"
+   ],
+   "titre": "Quatre gestes de maintenance",
+   "type": "etape"
+  },
+  "ex_rancon": {
+   "kicker": "Exemple : un rançongiciel détecté",
+   "tex": [
+    "\\text{fichiers chiffrés par le rançongiciel}",
+    "\\text{intégrité et disponibilité atteintes}",
+    "\\text{restauration depuis la sauvegarde}"
+   ],
+   "titre": "Trois piliers rétablis",
+   "type": "etape"
+  },
+  "maintenance": {
+   "kicker": "Maintenance de premier niveau",
+   "tex": [
+    "\\text{mises à jour régulières}",
+    "\\text{nettoyage}",
+    "\\text{sauvegarde, contrôle antivirus}"
+   ],
+   "titre": "Opérations simples, poste préservé",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Éthique : respecter les valeurs et les droits de chacun dans le monde numérique.",
+    "Sécurité : protéger la confidentialité, l'intégrité et la disponibilité des données.",
+    "Maintenance : entretenir son poste pour garantir sa fiabilité.",
+    "Contrôle d'accès : limiter les droits via des comptes adaptés et l'antivirus."
+   ],
+   "kicker": "Synthèse : quatre piliers",
+   "type": "recap"
+  },
+  "responsabilite": {
+   "kicker": "Utilisation responsable des TIC",
+   "tex": [
+    "\\text{protéger ses données et celles des autres}",
+    "\\text{respecter la législation}",
+    "\\text{éviter les comportements à risque}"
+   ],
+   "titre": "Protéger, respecter, éviter",
+   "type": "etape"
+  },
+  "responsabilite_lois": {
+   "kicker": "Législation et risques",
+   "tex": [
+    "\\text{RGPD, droit à l'image}",
+    "\\text{droit d'auteur}",
+    "\\text{téléchargement illégal, données sensibles}"
+   ],
+   "titre": "Lois à respecter, risques à éviter",
+   "type": "etape"
+  },
+  "securite": {
+   "kicker": "La sécurité informatique",
+   "tex": [
+    "\\text{protéger systèmes et données}",
+    "\\text{trois piliers}",
+    "\\text{disponibilité, intégrité, confidentialité}"
+   ],
+   "titre": "Protéger systèmes et données",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Informatique · Citoyenneté numérique avancée",
+   "sous": "Éthique, sécurité, maintenance et contrôle d'accès : devenir acteur de sa propre sécurité numérique",
+   "titre": "Citoyenneté numérique avancée : éthique, sécurité, maintenance",
+   "type": "titre"
+  },
+  "verrou": {
+   "kicker": "Verrouiller sa session",
+   "note": "Contrôle, Alt, Suppr : le raccourci pour verrouiller sa session en quittant son poste",
+   "tex": "\\text{Ctrl} + \\text{Alt} + \\text{Suppr}",
+   "type": "formule"
+  },
+  "maintenance_ops": {
+   "kicker": "Les quatre opérations de maintenance",
+   "tex": [
+    "\\text{mises à jour}",
+    "\\text{nettoyage, sauvegarde}",
+    "\\text{contrôle antivirus}"
+   ],
+   "titre": "Mettre à jour, nettoyer, sauvegarder",
+   "type": "etape"
+  },
+  "conclusion": {
+   "kicker": "Conclusion",
+   "tex": [
+    "\\text{acteur de sa propre sécurité}",
+    "\\text{acteur de celle de la communauté}",
+    "\\text{chaque utilisateur}"
+   ],
+   "titre": "Acteur de sa sécurité",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Éthique, sécurité et responsabilité"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : la maintenance de premier niveau, le compte utilisateur et l'antivirus, avant la synthèse en quatre piliers.",
+    "texte": "Partie 2 : maintenance, comptes et antivirus."
+   },
+   "sous_titre": "Maintenance, comptes et antivirus"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de citoyenneté numérique avancée. Nous allons approfondir l'éthique du numérique, la sécurité informatique, l'utilisation responsable des technologies, puis la maintenance, le compte utilisateur et l'antivirus.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Éthique, sécurité, maintenance : le niveau avancé."
+  },
+  {
+   "dit": "Premier thème : l'éthique du numérique. L'éthique est la réflexion sur les valeurs et les principes qui guident nos actions. L'éthique du numérique applique cette réflexion aux usages des technologies de l'information et de la communication.",
+   "ecran": "ethique",
+   "id": "p02",
+   "texte": "Éthique : réfléchir aux valeurs qui guident nos actions."
+  },
+  {
+   "dit": "Principes fondamentaux : respecter autrui dans ses communications, ne pas usurper une identité, ne pas diffuser de fausses informations ; respecter la propriété intellectuelle, citer ses sources, ne pas plagier ; agir avec loyauté et transparence dans ses échanges numériques.",
+   "ecran": "ethique_principes",
+   "id": "p03",
+   "texte": "Respect d'autrui, propriété intellectuelle, loyauté."
+  },
+  {
+   "dit": "Exemple résolu : un élève reçoit le mot de passe d'un camarade. L'éthique du numérique impose de ne pas l'utiliser, de ne pas le divulguer, et de prévenir son camarade du risque encouru.",
+   "ecran": "ex_mdp",
+   "id": "p04",
+   "texte": "Mot de passe reçu : ne pas utiliser, prévenir."
+  },
+  {
+   "dit": "Deuxième thème : la sécurité informatique, avec la triade DIC. La sécurité informatique vise à protéger les systèmes et les données. Elle repose sur trois piliers : la disponibilité, l'intégrité et la confidentialité.",
+   "ecran": "dic",
+   "id": "p05",
+   "texte": "Triade DIC : disponibilité, intégrité, confidentialité."
+  },
+  {
+   "dit": "La sécurité informatique vise donc à protéger les systèmes et les données, et chacun des trois piliers peut être menacé séparément, comme le montre l'exemple qui suit.",
+   "ecran": "securite",
+   "id": "p06",
+   "texte": "Protéger les systèmes et les données."
+  },
+  {
+   "dit": "Exemple résolu : un antivirus détecte un rançongiciel qui chiffre vos fichiers. La confidentialité est maintenue, car il n'y a pas de fuite, mais l'intégrité est menacée, car les fichiers sont modifiés, et la disponibilité compromise, car les fichiers sont inaccessibles. L'antivirus restaure les fichiers depuis une sauvegarde : les trois piliers sont rétablis.",
+   "ecran": "ex_rancon",
+   "id": "p07",
+   "texte": "Rançongiciel : intégrité et disponibilité atteintes, puis rétablies."
+  },
+  {
+   "dit": "Troisième thème : l'utilisation responsable des technologies. Responsabilité signifie adopter des pratiques qui protègent ses données et celles des autres, respecter la législation, et éviter les comportements à risque.",
+   "ecran": "responsabilite",
+   "id": "p08",
+   "texte": "Responsable : protéger, respecter, éviter les risques."
+  },
+  {
+   "dit": "Côté législation, on respecte le règlement général sur la protection des données, le droit à l'image et le droit d'auteur. Côté risques à éviter : le téléchargement illégal et le partage de données sensibles.",
+   "ecran": "responsabilite_lois",
+   "id": "p09",
+   "texte": "RGPD, droit à l'image, droit d'auteur ; téléchargement illégal à éviter."
+  },
+  {
+   "dit": "Exemple résolu : avant de publier une photo de classe sur un réseau social, l'élève responsable vérifie que tous les élèves présents ont donné leur accord, au titre du droit à l'image, et règle les paramètres de confidentialité sur amis uniquement.",
+   "ecran": "ex_photo",
+   "id": "p10",
+   "texte": "Photo de classe : accord de tous, amis uniquement."
+  },
+  {
+   "dit": "Quatrième thème : la maintenance de premier niveau. Elle regroupe les opérations simples que tout utilisateur peut réaliser pour préserver le bon fonctionnement de son poste.",
+   "ecran": "maintenance",
+   "id": "p11",
+   "texte": "Maintenance de premier niveau : opérations simples."
+  },
+  {
+   "dit": "Ces opérations sont : les mises à jour, installer régulièrement les correctifs du système d'exploitation et des logiciels ; le nettoyage, vider les fichiers temporaires, désinstaller les logiciels inutilisés ; la sauvegarde, copier régulièrement ses données sur un support externe ou un cloud sécurisé ; et le contrôle antivirus, lancer des analyses périodiques.",
+   "ecran": "maintenance_ops",
+   "id": "p12",
+   "texte": "Mises à jour, nettoyage, sauvegarde, antivirus."
+  },
+  {
+   "dit": "Exemple résolu : un ordinateur ralentit. La maintenance de premier niveau consiste à vider le cache du navigateur, supprimer les logiciels non utilisés via le panneau de configuration, lancer une analyse antivirus complète, puis redémarrer le système.",
+   "ecran": "ex_ralentit",
+   "id": "p13",
+   "texte": "Ordinateur lent : cache, logiciels, antivirus, redémarrage."
+  },
+  {
+   "dit": "Cinquième thème : la limitation de l'accès aux données, par le compte utilisateur. Un compte utilisateur est un ensemble d'identifiants qui définit l'identité numérique d'une personne sur un système et détermine ses droits d'accès.",
+   "ecran": "compte",
+   "id": "p14",
+   "texte": "Compte utilisateur : identité numérique et droits."
+  },
+  {
+   "dit": "Règles de gestion : chaque utilisateur possède un compte unique avec un mot de passe fort ; ne jamais partager son compte ni ses identifiants ; verrouiller sa session en quittant son poste.",
+   "ecran": "compte_regles",
+   "id": "p15",
+   "texte": "Compte unique, secret, session verrouillée."
+  },
+  {
+   "dit": "Pour verrouiller sa session, on utilise le raccourci contrôle, Alt, Suppr.",
+   "ecran": "verrou",
+   "id": "p16",
+   "texte": "Verrouiller : contrôle, Alt, Suppr."
+  },
+  {
+   "dit": "Exemple résolu : dans une salle informatique, chaque élève dispose d'un compte standard. Seul le professeur possède le compte administrateur. Ainsi, un élève ne peut pas installer de logiciel, modifier les paramètres système, ni accéder aux fichiers des autres : la confidentialité et l'intégrité des données sont préservées.",
+   "ecran": "ex_compte",
+   "id": "p17",
+   "texte": "Salle informatique : standard pour l'élève, admin pour le prof."
+  },
+  {
+   "dit": "Sixième thème : l'antivirus, outil de protection essentiel. Un antivirus est un logiciel qui détecte, neutralise et supprime les programmes malveillants : virus, vers, chevaux de Troie, rançongiciels.",
+   "ecran": "antivirus",
+   "id": "p18",
+   "texte": "Antivirus : détecte, neutralise, supprime."
+  },
+  {
+   "dit": "Son fonctionnement repose sur trois mécanismes : l'analyse en temps réel des fichiers ouverts et téléchargés, l'analyse programmée complète du disque dur, et la mise à jour régulière de la base de signatures virales.",
+   "ecran": "antivirus_fonc",
+   "id": "p19",
+   "texte": "Temps réel, analyse complète, signatures à jour."
+  },
+  {
+   "dit": "Ses limites : l'antivirus ne protège pas contre tout, notamment pas contre l'hameçonnage ni l'ingénierie sociale. Il doit être complété par des comportements prudents : ne pas ouvrir de pièces jointes suspectes, ne pas cliquer sur des liens inconnus, vérifier l'authenticité des sites.",
+   "ecran": "antivirus_lim",
+   "id": "p20",
+   "texte": "Limites : hameçonnage et ingénierie sociale."
+  },
+  {
+   "dit": "Exemple résolu : un message reçu contient une pièce jointe nommée facture point exe. L'antivirus, à jour, détecte le fichier comme malveillant et le place en quarantaine avant toute exécution. L'utilisateur supprime le message : la machine est protégée.",
+   "ecran": "ex_antivirus",
+   "id": "p21",
+   "texte": "facture.exe : détecté, mis en quarantaine, supprimé."
+  },
+  {
+   "dit": "En synthèse, la citoyenneté numérique responsable repose sur quatre piliers complémentaires. Éthique : respecter les valeurs et les droits de chacun dans le monde numérique. Sécurité : protéger la confidentialité, l'intégrité et la disponibilité des données. Maintenance : entretenir son poste pour garantir sa fiabilité. Contrôle d'accès : limiter les droits via des comptes utilisateurs adaptés et des outils comme l'antivirus.",
+   "ecran": "recap",
+   "id": "p22",
+   "texte": "Quatre piliers : éthique, sécurité, maintenance, contrôle d'accès."
+  },
+  {
+   "dit": "Conclusion du module : chaque utilisateur est acteur de sa propre sécurité numérique et de celle de la communauté.",
+   "ecran": "conclusion",
+   "id": "p23",
+   "texte": "Chacun est acteur de sa sécurité et de celle de la communauté."
+  }
+ ],
+ "titre": "Citoyenneté numérique avancée : éthique, sécurité, maintenance"
+}

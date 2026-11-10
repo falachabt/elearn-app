@@ -1,0 +1,515 @@
+{
+ "cours": 6551,
+ "ecrans": {
+  "anneau": {
+   "kicker": "Exemple type · l'anneau chargé",
+   "tex": [
+    "\\lambda = \\dfrac{Q}{2\\pi R}",
+    "dq = \\dfrac{Q}{2\\pi} d\\theta \\qquad PM^2 = R^2 + z^2",
+    "dE_z = \\dfrac{1}{4\\pi\\varepsilon_0} \\dfrac{dq \\; z}{(R^2+z^2)^{3/2}}"
+   ],
+   "titre": "Le champ sur l'axe d'un anneau de rayon R",
+   "type": "etape"
+  },
+  "anneau_res": {
+   "kicker": "Exemple type · résultat",
+   "note": "En z = 0, au centre : champ nul · À grande distance : celui d'une charge ponctuelle Q · Sur l'axe, V(z) se dérive pour redonner ce champ",
+   "tex": "\\vec{E}(M) = \\dfrac{1}{4\\pi\\varepsilon_0} \\dfrac{Q z}{(R^2+z^2)^{3/2}} \\vec{e}_z",
+   "titre": "Le champ sur l'axe de l'anneau",
+   "type": "formule",
+   "anim": {
+    "nom": "anneau_fig",
+    "hauteur": 180
+   }
+  },
+  "champ": {
+   "kicker": "Le champ électrique",
+   "note": "Force sur une charge test placée en M : F = q E · Superposition : le champ total est la somme vectorielle des champs créés par chaque charge",
+   "tex": "\\vec{E}(M) = \\dfrac{1}{4\\pi\\varepsilon_0} \\dfrac{Q}{r^2} \\vec{u}_{OM}",
+   "titre": "Le champ créé par une charge ponctuelle",
+   "type": "formule",
+   "anim": {
+    "nom": "lignes_champ",
+    "hauteur": 260
+   }
+  },
+  "coulomb": {
+   "kicker": "La loi de Coulomb",
+   "note": "Charge quantifiée et conservée : e = 1,602 × 10⁻¹⁹ C · q₁q₂ > 0 : répulsion ; q₁q₂ < 0 : attraction · Actions réciproques : la force de 2 sur 1 est l'opposée",
+   "tex": "\\vec{F}_{1 \\to 2} = \\dfrac{1}{4\\pi\\varepsilon_0} \\dfrac{q_1 q_2}{r^2} \\vec{u}_{OM}",
+   "titre": "La force entre deux charges ponctuelles",
+   "type": "formule"
+  },
+  "cylindre": {
+   "kicker": "Problème mixte · le condensateur cylindrique",
+   "tex": [
+    "E(r) = \\dfrac{Q}{2\\pi\\varepsilon_0 L\\, r}",
+    "V_a - V_b = \\dfrac{Q}{2\\pi\\varepsilon_0 L} \\ln\\dfrac{b}{a}"
+   ],
+   "titre": "Du champ à la tension entre armatures",
+   "type": "etape"
+  },
+  "cylindre_res": {
+   "kicker": "Problème mixte · résultat",
+   "note": "La charge Q se simplifie : la capacité ne dépend que de la géométrie · Branché sur un générateur, ce condensateur se charge avec τ = (R + r) C",
+   "tex": "C = \\dfrac{2\\pi\\varepsilon_0 L}{\\ln(b/a)}",
+   "titre": "La capacité du condensateur cylindrique",
+   "type": "formule"
+  },
+  "energie": {
+   "kicker": "Bilan énergétique de la charge",
+   "tex": [
+    "W_g = E^2\\, C",
+    "U_{\\text{cond}} = \\dfrac{1}{2} C E^2 \\qquad W_J = \\dfrac{1}{2} C E^2",
+    "W_g = U_{\\text{cond}} + W_J"
+   ],
+   "titre": "La moitié de l'énergie part en chaleur",
+   "type": "etape"
+  },
+  "ex_circuits": {
+   "kicker": "Exemple corrigé · deux générateurs",
+   "tex": [
+    "E_1 = 12\\ \\text{V},\\ r_1 = 1\\ \\Omega \\qquad E_2 = 6\\ \\text{V},\\ r_2 = 2\\ \\Omega",
+    "R_1 = 5\\ \\Omega \\qquad R_2 = 10\\ \\Omega \\qquad R_3 = 3\\ \\Omega",
+    "I_1 = I_2 + I_3",
+    "6\\, I_1 + 10\\, I_3 = 12 \\qquad 5\\, I_2 - 10\\, I_3 = 6"
+   ],
+   "titre": "Les données et le système d'équations",
+   "type": "etape"
+  },
+  "ex_circuits_res": {
+   "kicker": "Exemple corrigé · résultat",
+   "tex": [
+    "I_3 = \\dfrac{6}{35} \\approx 0{,}17\\ \\text{A}",
+    "I_2 = \\dfrac{54}{35} \\approx 1{,}54\\ \\text{A}",
+    "I_1 = \\dfrac{12}{7} \\approx 1{,}71\\ \\text{A}"
+   ],
+   "titre": "Les trois courants du circuit",
+   "type": "etape"
+  },
+  "fil": {
+   "kicker": "Piège classique · le fil infini",
+   "note": "Surface de Gauss : cylindre coaxial de hauteur h, flux = E × 2π r h, charge intérieure λ h · En 1/r : signature d'une distribution linéique infinie ; en 1/r² pour une sphère",
+   "tex": "\\vec{E}(M) = \\dfrac{\\lambda}{2\\pi\\varepsilon_0 r} \\vec{e}_r",
+   "titre": "Le champ d'un fil infini chargé",
+   "type": "formule"
+  },
+  "gauss": {
+   "kicker": "Le théorème de Gauss",
+   "note": "Symétries fortes seulement : sphérique, cylindrique ou plane · Démarche : symétries, surface de Gauss, flux, charge intérieure, puis le champ",
+   "tex": "\\Phi = \\oint \\vec{E} \\cdot d\\vec{S} = \\dfrac{Q_{\\text{int}}}{\\varepsilon_0}",
+   "titre": "Le flux à travers une surface fermée",
+   "type": "formule",
+   "anim": {
+    "nom": "surface_gauss",
+    "hauteur": 260
+   }
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Ce cours recentre sur les concepts et les outils constamment sollicités au concours : d'un côté la charge, le champ et le potentiel, de l'autre les lois de Kirchhoff et le régime transitoire. Le fil rouge : la rigueur de la méthode.",
+   "type": "phrase"
+  },
+  "kirchhoff": {
+   "etapes": [
+    "Nommer et orienter chaque courant de branche",
+    "Nœuds : N − 1 équations indépendantes",
+    "Mailles indépendantes : B − N + 1",
+    "Résoudre le système, vérifier par les puissances",
+    "Courant négatif : sens réel opposé au sens choisi"
+   ],
+   "kicker": "Les lois de Kirchhoff",
+   "titre": "La méthode des nœuds et des mailles",
+   "type": "recap"
+  },
+  "methode": {
+   "etapes": [
+    "Analyser la configuration, choisir le repère",
+    "Écrire le champ élémentaire de chaque charge",
+    "Projeter, sommer composante par composante",
+    "Symétries : annuler ce qui peut l'être",
+    "Vérifier homogénéité et cas limites"
+   ],
+   "kicker": "Méthode · superposition",
+   "titre": "Calculer un champ : la démarche en cinq temps",
+   "type": "recap"
+  },
+  "plan": {
+   "kicker": "Application · le plan infini",
+   "tex": [
+    "\\vec{E}(z) = E(z)\\, \\vec{e}_z",
+    "\\Phi = 2\\, E\\, S \\qquad Q_{\\text{int}} = \\sigma S"
+   ],
+   "titre": "Les symétries imposent la direction du champ",
+   "type": "etape",
+   "anim": {
+    "nom": "plan_charge",
+    "hauteur": 240
+   }
+  },
+  "plan_res": {
+   "kicker": "Application · résultat",
+   "note": "Champ uniforme, indépendant de la distance au plan : un résultat à connaître par cœur · Potentiel affine en z, nul sur le plan si l'origine y est placée",
+   "tex": "E = \\dfrac{\\sigma}{2\\varepsilon_0}",
+   "titre": "Le champ d'un plan infini chargé",
+   "type": "formule",
+   "anim": {
+    "nom": "plan_charge",
+    "hauteur": 180
+   }
+  },
+  "potentiel": {
+   "kicker": "Le potentiel électrostatique",
+   "note": "Convention : V nul à l'infini · Le potentiel se somme algébriquement, sans projection · Anneau : V(z) = (1/4πε₀) · Q/√(R²+z²), et −dV/dz redonne E_z",
+   "tex": "\\vec{E} = -\\overrightarrow{\\text{grad}}\\, V \\qquad V(M) = \\dfrac{1}{4\\pi\\varepsilon_0} \\dfrac{Q}{r}",
+   "titre": "Un scalaire pour remplacer les vecteurs",
+   "type": "formule"
+  },
+  "rc_charge": {
+   "anim": {
+    "hauteur": 260,
+    "nom": "circuit_rc"
+   },
+   "kicker": "Régime transitoire · charge RC",
+   "tex": [
+    "E = R\\, i + u_C \\qquad i = C\\, \\dfrac{du_C}{dt}",
+    "RC\\, \\dfrac{du_C}{dt} + u_C = E \\qquad u_C(0) = 0"
+   ],
+   "titre": "L'équation différentielle de la charge",
+   "type": "etape"
+  },
+  "rc_charge_res": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "charge"
+   },
+   "kicker": "Régime transitoire · solution",
+   "note": "Exemple du cours : C = 1 µF, R = 10 kΩ, E = 5 V, donc τ = 10 ms · En régime permanent, le condensateur chargé équivaut à un circuit ouvert",
+   "tex": "u_C(t) = E \\left(1 - e^{-t/\\tau}\\right)",
+   "titre": "La tension croît vers celle du générateur",
+   "type": "formule"
+  },
+  "rc_decharge": {
+   "kicker": "Régime transitoire · décharge RC",
+   "tex": [
+    "u_C + R\\, i = 0",
+    "i = -C\\, \\dfrac{du_C}{dt}",
+    "\\dfrac{du_C}{dt} + \\dfrac{u_C}{RC} = 0 \\qquad \\tau = RC"
+   ],
+   "titre": "L'équation différentielle de la décharge",
+   "type": "etape"
+  },
+  "rc_decharge_res": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "decharge"
+   },
+   "kicker": "Régime transitoire · solution",
+   "note": "Décharge depuis la tension initiale E · Exemple du cours : 3 et 6 kΩ en parallèle donnent R éq = 2 kΩ ; avec C = 2 µF, τ = 4 ms",
+   "tex": "u_C(t) = E\\, e^{-t/\\tau}",
+   "titre": "Une exponentielle qui s'éteint",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Coulomb et superposition : le champ, somme vectorielle",
+    "Gauss : symétrie, surface, flux, charge, champ",
+    "Potentiel : E = −grad V, sommes algébriques",
+    "Kirchhoff : nœuds, mailles, bilan de puissance",
+    "RC : τ = RC, exponentielles, énergie moitié-moitié"
+   ],
+   "kicker": "À retenir",
+   "titre": "Électrostatique et circuits : l'enchaînement complet",
+   "type": "recap"
+  },
+  "segment": {
+   "kicker": "Intégration directe · le segment",
+   "tex": [
+    "dq = \\lambda\\, dx \\qquad r = \\sqrt{x^2 + y^2}",
+    "E_y = \\dfrac{1}{4\\pi\\varepsilon_0} \\dfrac{2\\lambda a}{y \\sqrt{a^2 + y^2}}"
+   ],
+   "titre": "Le champ sur la médiatrice d'un segment chargé",
+   "type": "etape"
+  },
+  "signe": {
+   "kicker": "Piège classique · le signe",
+   "note": "Le champ pointe toujours vers les potentiels décroissants · Condensateur plan : E = |V₁ − V₂| / d, uniforme entre les armatures",
+   "tex": "E_x = -\\dfrac{dV}{dx}",
+   "titre": "Du potentiel au champ, sans se tromper de sens",
+   "type": "formule",
+   "anim": {
+    "nom": "condensateur_plan",
+    "hauteur": 260
+   }
+  },
+  "strategie": {
+   "etapes": [
+    "Avant : symétries, schéma orienté, méthode justifiée",
+    "Pendant : signes, conventions, bon régime",
+    "Après : homogénéité et sens physique",
+    "Cas limites : infini, centre, temps long",
+    "Conclure en répondant à la question posée"
+   ],
+   "kicker": "Stratégie d'épreuve",
+   "titre": "Avant, pendant, après le calcul",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "nom": "lignes_champ",
+    "hauteur": 250
+   },
+   "kicker": "Concours Polytechnique L3",
+   "sous": "Charge, champ, potentiel, théorème de Gauss et lois de Kirchhoff : les méthodes du concours",
+   "titre": "Électrostatique et circuits électriques",
+   "type": "titre"
+  },
+  "wheatstone": {
+   "kicker": "Le pont de Wheatstone",
+   "note": "Équilibre : courant nul dans le galvanomètre, les deux points médians au même potentiel · Ici, équilibre pour R_x = 300 Ω · La résistance interne de la source ne change pas la condition",
+   "tex": "R_x = R_3 \\, \\dfrac{R_2}{R_1}",
+   "titre": "La condition d'équilibre du pont",
+   "type": "formule",
+   "anim": {
+    "nom": "wheatstone",
+    "hauteur": 240
+   }
+  },
+  "wheatstone_res": {
+   "kicker": "Le pont déséquilibré",
+   "tex": [
+    "302\\, I_a - 100\\, I_g = 9",
+    "480\\, I_b + 150\\, I_g = 0",
+    "I_g = \\dfrac{9}{664{,}4375} \\approx 13{,}5\\ \\text{mA}"
+   ],
+   "titre": "Le courant dans le galvanomètre",
+   "type": "etape",
+   "anim": {
+    "nom": "wheatstone",
+    "hauteur": 180
+   }
+  }
+ },
+ "matiere": "Concours Polytechnique L3",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Charge, champ, potentiel et théorème de Gauss"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : les pièges classiques de l'électrostatique, puis les circuits en régime permanent, avec les lois de Kirchhoff et un exemple entièrement corrigé.",
+    "texte": "Partie 2 : pièges classiques et circuits en régime permanent."
+   },
+   "sous_titre": "Pièges classiques et circuits en régime permanent"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : le régime transitoire R C, un problème mixte qui relie électrostatique et circuits, et le bilan d'énergie de la charge.",
+    "texte": "Partie 3 : transitoire RC, problème mixte et bilan d'énergie."
+   },
+   "sous_titre": "Régime transitoire RC et problèmes mixtes"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de préparation au concours Polytechnique, consacré à l'électrostatique et aux circuits électriques : les fondations, les méthodes et les pièges classiques des épreuves.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Électrostatique et circuits électriques : les méthodes du concours."
+  },
+  {
+   "dit": "L'objectif n'est pas de tout revoir, mais de recentrer sur les concepts et les outils sollicités en permanence. D'un côté la charge, le champ et le potentiel ; de l'autre les lois de Kirchhoff et le régime transitoire. Le fil rouge : la rigueur de la méthode, car c'est là que se joue la différence entre une bonne et une excellente copie.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Recentrer sur l'essentiel, avec la rigueur du concours."
+  },
+  {
+   "dit": "Tout commence avec la charge électrique, quantifiée et conservée : la charge élémentaire vaut environ un virgule six fois dix puissance moins dix-neuf coulombs. Entre deux charges ponctuelles au repos, la loi de Coulomb donne la force exercée par la première sur la seconde, le long de la droite qui les joint. Le signe du produit des charges décide : positif, elles se repoussent ; négatif, elles s'attirent.",
+   "ecran": "coulomb",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "La loi de Coulomb : le produit des charges décide du signe."
+  },
+  {
+   "dit": "Plutôt que de raisonner en action à distance, on décrit l'état électrique de l'espace par le champ électrique : la force subie par une charge test placée en un point vaut cette charge multipliée par le champ en ce point. Pour une charge ponctuelle, le champ décroît comme l'inverse du carré de la distance, et il est porté par le rayon qui part de la charge.",
+   "ecran": "champ",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Le champ électrique : l'état électrique de l'espace."
+  },
+  {
+   "dit": "Pour un système de plusieurs charges, le champ total est la somme vectorielle des champs créés par chacune : c'est le principe de superposition, votre outil principal. Avant tout calcul, analysez les symétries : un plan de symétrie contient le champ en ses points, et cette remarque peut diviser le travail par deux.",
+   "ecran": "methode",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Superposition : projeter, sommer, vérifier."
+  },
+  {
+   "dit": "Exemple type du concours : le champ sur l'axe d'un anneau chargé. La charge totale est répartie uniformément, chaque élément de l'anneau est à la même distance du point de l'axe, et par symétrie les composantes perpendiculaires à l'axe s'annulent deux à deux. Seule la composante le long de l'axe survit : c'est elle que l'on intègre.",
+   "ecran": "anneau",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "L'anneau chargé : la symétrie ne laisse que la composante axiale."
+  },
+  {
+   "dit": "L'intégration sur tout l'anneau donne un champ porté par l'axe, proportionnel à la charge fois la cote, divisé par la somme des carrés du rayon et de la cote, élevée à la puissance trois demis. Deux contrôles immédiats : au centre de l'anneau, le champ est nul ; très loin, on retrouve le champ d'une charge ponctuelle.",
+   "ecran": "anneau_res",
+   "id": "p07",
+   "pause_apres": 0.7,
+   "texte": "Résultat : un champ porté par l'axe, nul au centre."
+  },
+  {
+   "dit": "Travailler avec des vecteurs peut être lourd : le potentiel électrostatique, un simple scalaire, contient la même information en régime statique, et le champ s'en déduit par l'opposé du gradient. Surtout, le potentiel se somme algébriquement : on le calcule souvent d'abord, puis on dérive. Sur l'axe de l'anneau, dériver le potentiel redonne exactement le champ calculé par intégration directe.",
+   "ecran": "potentiel",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Le potentiel : calculer en scalaire, dériver pour le champ."
+  },
+  {
+   "dit": "Quand la symétrie est forte, sphérique, cylindrique ou plane, le théorème de Gauss court-circuite les intégrales : le flux du champ à travers une surface fermée vaut la charge contenue à l'intérieur, divisée par epsilon zéro. Toute la difficulté se déplace vers le choix de la surface : il faut que le champ y soit constant ou perpendiculaire.",
+   "ecran": "gauss",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Gauss : le flux vaut la charge intérieure sur epsilon zéro."
+  },
+  {
+   "dit": "Application immédiate : le plan infini uniformément chargé, de densité surfacique sigma. Les invariances imposent un champ perpendiculaire au plan, qui ne dépend que de la distance au plan. On choisit comme surface de Gauss un cylindre traversant le plan, dont les deux bases, de même aire, sont placées symétriquement de part et d'autre.",
+   "ecran": "plan",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Le plan infini : les symétries donnent la direction du champ."
+  },
+  {
+   "dit": "Le flux ne sort que par les deux bases : deux fois le champ fois l'aire. La charge enfermée vaut sigma fois cette aire. Le théorème de Gauss donne alors un champ uniforme, égal à sigma sur deux epsilon zéro, indépendant de la distance au plan. Le potentiel, lui, varie linéairement avec la distance.",
+   "ecran": "plan_res",
+   "id": "p11",
+   "pause_apres": 0.7,
+   "texte": "Résultat : un champ uniforme, sigma sur deux epsilon zéro."
+  },
+  {
+   "dit": "Quand la symétrie ne suffit plus, on revient à l'intégration directe. Pour un segment uniformément chargé, chaque élément porte une charge proportionnelle à sa longueur ; sur la médiatrice, les composantes horizontales de deux éléments symétriques s'annulent, et seule la composante verticale s'additionne. Le résultat fait intervenir la longueur du segment et la distance au point.",
+   "ecran": "segment",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Le segment chargé : intégrer la seule composante qui survit."
+  },
+  {
+   "dit": "Autre classique, et piège récurrent : le fil infini uniformément chargé. La symétrie est cylindrique, le cylindre de Gauss s'impose, et le champ décroît en un sur la distance, et non en un sur le carré de la distance. Confondre les deux géométries, fil et sphère, est une erreur classique des copies.",
+   "ecran": "fil",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Le fil infini : un champ en un sur r, pas en un sur r carré."
+  },
+  {
+   "dit": "Dernier piège d'électrostatique : le signe dans la relation entre champ et potentiel. Le champ pointe toujours dans le sens des potentiels décroissants. Entre les armatures d'un condensateur plan, le potentiel décroît linéairement de l'armature haute vers l'armature basse, et le module du champ vaut la différence de potentiel divisée par la distance des armatures.",
+   "ecran": "signe",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Le champ pointe vers les potentiels décroissants."
+  },
+  {
+   "dit": "Pour les circuits à plusieurs branches, la méthode repose sur les lois de Kirchhoff, appliquées sans improvisation. On nomme chaque courant et on lui choisit un sens arbitraire ; la loi des nœuds donne une équation de moins que le nombre de nœuds, et les mailles indépendantes complètent le système. Un courant calculé négatif a simplement un sens réel opposé au sens choisi.",
+   "ecran": "kirchhoff",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Kirchhoff : nommer, orienter, écrire, vérifier."
+  },
+  {
+   "dit": "Exemple entièrement corrigé du cours : deux générateurs réels et trois résistances, dont une branche centrale partagée. On note I un le courant de la branche du premier générateur, I deux celui de la branche du second, et I trois le courant de la branche centrale. La loi des nœuds relie les trois courants ; deux mailles indépendantes, parcourues de façon cohérente, fournissent les deux autres équations.",
+   "ecran": "ex_circuits",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Exemple : deux générateurs réels, trois résistances."
+  },
+  {
+   "dit": "La résolution donne I trois égal à six trente-cinquièmes d'ampère, environ zéro virgule dix-sept ampère ; I deux, cinquante-quatre trente-cinquièmes, environ un virgule cinquante-quatre ampères ; et I un, douze septièmes, environ un virgule soixante et onze ampères. Vérification puissante : la puissance fournie par les générateurs doit égaler la puissance dissipée dans toutes les résistances, internes comprises.",
+   "ecran": "ex_circuits_res",
+   "id": "p17",
+   "pause_apres": 0.7,
+   "texte": "Résultat : trois courants, et un bilan de puissance qui vérifie."
+  },
+  {
+   "dit": "Le pont de Wheatstone mesure une résistance inconnue par comparaison. À l'équilibre, aucun courant ne traverse le galvanomètre branché entre les deux points médians : ces points sont au même potentiel. Les rapports des résistances des deux branches sont alors égaux, ce qui livre l'inconnue. La résistance interne de la source n'intervient pas dans cette condition.",
+   "ecran": "wheatstone",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Wheatstone : à l'équilibre, les rapports de résistances sont égaux."
+  },
+  {
+   "dit": "Hors équilibre, on définit trois courants de maille et l'on écrit les trois équations correspondantes, en tenant compte des branches partagées. Avec les valeurs du cours, le courant du galvanomètre vaut environ treize virgule cinq milliampères. Et plus la résistance interne de la source augmente, plus ce courant de déséquilibre diminue : la mesure perd en sensibilité.",
+   "ecran": "wheatstone_res",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Déséquilibré : environ treize virgule cinq milliampères."
+  },
+  {
+   "dit": "Passons au régime transitoire. Un condensateur initialement chargé se décharge dans une résistance : la loi des mailles donne la somme de la tension du condensateur et de celle de la résistance égale à zéro, et le courant de décharge vaut moins la capacité fois la dérivée de la tension. On obtient une équation différentielle du premier ordre, gouvernée par la constante de temps tau, produit de la résistance par la capacité.",
+   "ecran": "rc_decharge",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "La décharge RC : une équation différentielle du premier ordre."
+  },
+  {
+   "dit": "La solution est une exponentielle décroissante : la tension part de sa valeur initiale et s'éteint avec la constante de temps tau. Dans l'exemple du cours, le condensateur se décharge dans deux résistances de trois et six kilo-ohms montées en parallèle, soit deux kilo-ohms équivalents ; avec deux microfarads, la constante de temps vaut quatre millisecondes. Oublier la résistance équivalente est l'erreur fréquente.",
+   "ecran": "rc_decharge_res",
+   "id": "p21",
+   "pause_apres": 0.7,
+   "texte": "Solution : une exponentielle, avec tau égal à quatre millisecondes dans l'exemple."
+  },
+  {
+   "dit": "En charge, le générateur impose sa tension dans la maille, et le courant vaut la capacité fois la dérivée de la tension. On retrouve la même équation différentielle, mais la condition initiale change : le condensateur est déchargé au départ, et sa tension ne peut pas sauter, elle est continue.",
+   "ecran": "rc_charge",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "La charge RC : même équation, autre condition initiale."
+  },
+  {
+   "dit": "La tension croît donc de zéro vers la tension du générateur, en un moins une exponentielle décroissante. Avec un microfarad et dix kilo-ohms, la constante de temps vaut dix millisecondes. Et une fois le régime permanent établi, plus aucun courant ne circule : le condensateur chargé se comporte comme un circuit ouvert.",
+   "ecran": "rc_charge_res",
+   "id": "p23",
+   "pause_apres": 0.7,
+   "texte": "Solution : la tension croît vers celle du générateur."
+  },
+  {
+   "dit": "Dernier exemple, qui mélange les deux mondes : la capacité d'un condensateur formé de deux cylindres coaxiaux. On suppose la charge sur l'armature interne ; le théorème de Gauss, avec un cylindre de Gauss coaxial, donne un champ radial en un sur la distance ; on intègre ensuite ce champ du cylindre intérieur vers le cylindre extérieur pour obtenir la tension.",
+   "ecran": "cylindre",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Le condensateur cylindrique : Gauss, puis l'intégration du champ."
+  },
+  {
+   "dit": "La capacité vaut deux pi epsilon zéro fois la longueur, divisé par le logarithme du rapport des rayons : la charge supposée s'est simplifiée, elle ne dépend que de la géométrie. Branché sur un générateur, ce condensateur se charge avec une constante de temps égale au produit de la capacité par la résistance totale, résistance interne comprise.",
+   "ecran": "cylindre_res",
+   "id": "p25",
+   "pause_apres": 0.7,
+   "texte": "Résultat : une capacité qui ne dépend que de la géométrie."
+  },
+  {
+   "dit": "Le bilan énergétique de cette charge réserve une surprise. Le générateur fournit au total le produit du carré de sa tension par la capacité. La moitié seulement est stockée dans le condensateur ; l'autre moitié est dissipée par effet Joule dans les résistances, quelle que soit leur valeur. L'énergie se conserve : fournie égale stockée plus dissipée.",
+   "ecran": "energie",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Bilan : la moitié de l'énergie fournie part en chaleur."
+  },
+  {
+   "dit": "Face à un énoncé, la stratégie gagnante tient en trois temps : avant de calculer, pendant le calcul, et après. C'est cette discipline, plus encore que les formules, qui transforme un savoir en points le jour du concours.",
+   "ecran": "strategie",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "La stratégie gagnante : discipliner chaque étape."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement complet : la charge crée le champ, le champ dérive du potentiel, le théorème de Gauss exploite les symétries, les lois de Kirchhoff organisent les circuits, et la constante de temps gouverne les régimes transitoires. Le tout, toujours, avec la vérification finale d'homogénéité et de sens physique.",
+   "ecran": "recap",
+   "id": "p28",
+   "pause_apres": 0.5,
+   "texte": "Électrostatique et circuits : à retenir."
+  }
+ ],
+ "titre": "Électrostatique et circuits électriques"
+}

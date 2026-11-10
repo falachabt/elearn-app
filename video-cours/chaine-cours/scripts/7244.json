@@ -1,0 +1,434 @@
+{
+ "cours": 7244,
+ "ecrans": {
+  "alignement": {
+   "kicker": "Alignement et parallélisme",
+   "tex": [
+    "A, B, C \\text{ alignés } \\iff",
+    "\\vec{AB}, \\vec{AC} \\text{ colinéaires}",
+    "(AB) \\parallel (CD) \\iff",
+    "\\vec{AB}, \\vec{CD} \\text{ colinéaires}"
+   ],
+   "titre": "Deux démonstrations en une notion",
+   "type": "etape"
+  },
+  "alignement_coord": {
+   "kicker": "Exemple : trois points alignés",
+   "tex": [
+    "\\overrightarrow{AB}\\begin{pmatrix} 2 \\\\ 4 \\end{pmatrix}, \\quad \\overrightarrow{AC}\\begin{pmatrix} 3 \\\\ 6 \\end{pmatrix}",
+    "2 \\times 6 - 4 \\times 3 = 0 : A, B, C \\text{ alignés}"
+   ],
+   "titre": "Le critère tranche sans figure",
+   "type": "etape"
+  },
+  "chasles": {
+   "kicker": "Relation de Chasles",
+   "note": "L'outil fondamental : on enchaîne deux déplacements.",
+   "tex": "\\vec{AB} + \\vec{BC} = \\vec{AC}",
+   "type": "formule"
+  },
+  "colinearite": {
+   "kicker": "Colinéarité",
+   "note": "k > 0 : même sens ; k < 0 : sens opposé.",
+   "tex": "\\vec{v} = k\\vec{u}",
+   "type": "formule"
+  },
+  "coord_AB": {
+   "kicker": "Coordonnées à partir de deux points",
+   "note": "Arrivée moins départ, coordonnée par coordonnée.",
+   "tex": "\\overrightarrow{AB}\\begin{pmatrix} x_B - x_A \\\\ y_B - y_A \\end{pmatrix}",
+   "type": "formule"
+  },
+  "coord_vecteur": {
+   "kicker": "Coordonnées d'un vecteur",
+   "note": "Décomposition unique sur les vecteurs i et j.",
+   "tex": "\\vec{u} = x\\vec{i} + y\\vec{j} \\iff \\vec{u}\\begin{pmatrix} x \\\\ y \\end{pmatrix}",
+   "type": "formule"
+  },
+  "critere": {
+   "kicker": "Critère de colinéarité",
+   "note": "Pour u(x, y) et v(x′, y′) dans un repère.",
+   "tex": "xy' - yx' = 0 \\iff \\vec{u}, \\vec{v} \\text{ colinéaires}",
+   "type": "formule"
+  },
+  "definition": {
+   "kicker": "Définition d'un vecteur",
+   "tex": [
+    "\\text{direction : la droite qui porte le vecteur}",
+    "\\text{sens : l'orientation choisie}",
+    "\\text{sur cette droite}",
+    "\\text{norme : la longueur du vecteur}"
+   ],
+   "titre": "Trois caractéristiques, une flèche",
+   "type": "etape"
+  },
+  "egalite": {
+   "kicker": "Égalité de deux vecteurs",
+   "tex": [
+    "\\vec{AB} = \\vec{CD} \\iff",
+    "ABDC \\text{ parallélogramme}",
+    "ABCD \\text{ parallélogramme } \\Rightarrow \\vec{AB} = \\vec{DC}",
+    "\\vec{AA} = \\vec{0} : \\text{ vecteur nul}"
+   ],
+   "titre": "Même direction, même sens, même norme",
+   "type": "etape"
+  },
+  "ex_AB": {
+   "kicker": "Exemple : coordonnées de AB",
+   "tex": [
+    "A(2, -1), \\; B(5, 3) : \\overrightarrow{AB}\\begin{pmatrix} 5 - 2 \\\\ 3 - (-1) \\end{pmatrix}",
+    "= \\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}"
+   ],
+   "titre": "Cinq moins deux, trois moins moins un",
+   "type": "etape"
+  },
+  "ex_chasles": {
+   "kicker": "Exemple : simplifier une somme",
+   "tex": [
+    "\\vec{AB} + \\vec{BC} = \\vec{AC} \\quad \\text{(Chasles)}",
+    "\\vec{AC} + \\vec{CD} = \\vec{AD} \\quad \\text{(Chasles)}",
+    "\\text{donc } \\vec{AB} + \\vec{BC} + \\vec{CD} = \\vec{AD}"
+   ],
+   "titre": "Deux Chasles, un seul vecteur",
+   "type": "etape"
+  },
+  "ex_colinearite": {
+   "kicker": "Exemple : trois points alignés",
+   "tex": [
+    "\\vec{AB} = 2\\vec{u}, \\quad \\vec{AC} = -3\\vec{u}",
+    "\\vec{AC} = -\\tfrac{3}{2}\\vec{AB}",
+    "\\text{donc } A, B, C \\text{ alignés}"
+   ],
+   "titre": "Un coefficient suffit",
+   "type": "etape"
+  },
+  "ex_critere": {
+   "kicker": "Exemple : le critère en action",
+   "tex": [
+    "\\vec{u}\\begin{pmatrix} 2 \\\\ 3 \\end{pmatrix}, \\quad \\vec{v}\\begin{pmatrix} 4 \\\\ 6 \\end{pmatrix}",
+    "2 \\times 6 - 3 \\times 4 = 12 - 12 = 0 \\quad \\text{et } \\vec{v} = 2\\vec{u}"
+   ],
+   "titre": "Douze moins douze égale zéro",
+   "type": "etape"
+  },
+  "ex_longueur": {
+   "kicker": "Exemple : le triplet trois, quatre, cinq",
+   "tex": [
+    "\\overrightarrow{AB}\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix} : AB = \\sqrt{3^2 + 4^2}",
+    "= \\sqrt{25} = 5"
+   ],
+   "titre": "Neuf plus seize, racine de vingt-cinq",
+   "type": "etape"
+  },
+  "ex_milieu": {
+   "kicker": "Exemple : le milieu calculé",
+   "tex": [
+    "A(2, -1), \\; B(5, 3) : I\\left(\\tfrac{2+5}{2}, \\tfrac{-1+3}{2}\\right)",
+    "= I(3{,}5, 1)"
+   ],
+   "titre": "Trois virgule cinq et un",
+   "type": "etape"
+  },
+  "ex_operations": {
+   "kicker": "Exemple : somme et double",
+   "tex": [
+    "\\vec{u}\\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix} + \\vec{v}\\begin{pmatrix} -1 \\\\ 2 \\end{pmatrix}",
+    "= \\begin{pmatrix} 2 \\\\ 6 \\end{pmatrix} \\qquad 2\\vec{u} = \\begin{pmatrix} 6 \\\\ 8 \\end{pmatrix}"
+   ],
+   "titre": "Deux et six, six et huit",
+   "type": "etape"
+  },
+  "longueur": {
+   "kicker": "Longueur d'un segment",
+   "note": "En repère orthonormé seulement : x et y sont les coordonnées de AB.",
+   "tex": "AB = \\sqrt{x^2 + y^2}",
+   "type": "formule"
+  },
+  "milieu": {
+   "kicker": "Vecteur et milieu",
+   "note": "Conséquence : IA + IB = vecteur nul.",
+   "tex": "\\vec{AI} = \\vec{IB} \\iff I \\text{ milieu de } [AB]",
+   "type": "formule"
+  },
+  "milieu_coord": {
+   "kicker": "Milieu d'un segment",
+   "note": "Le milieu : la moyenne des coordonnées des extrémités.",
+   "tex": "x_I = \\frac{x_A + x_B}{2} \\qquad y_I = \\frac{y_A + y_B}{2}",
+   "type": "formule"
+  },
+  "notation": {
+   "kicker": "Le vecteur AB",
+   "note": "Origine A, extrémité B ; direction : la droite (AB) ; sens : de A vers B.",
+   "tex": "\\vec{AB} \\qquad |\\vec{AB}| = AB",
+   "type": "formule"
+  },
+  "operations": {
+   "kicker": "Opérations sur les coordonnées",
+   "tex": [
+    "\\vec{u} + \\vec{v}\\begin{pmatrix} x + x' \\\\ y + y' \\end{pmatrix}",
+    "k\\vec{u}\\begin{pmatrix} kx \\\\ ky \\end{pmatrix} \\iff \\text{ mêmes coordonnées}"
+   ],
+   "titre": "Coordonnée par coordonnée",
+   "type": "etape"
+  },
+  "proprietes": {
+   "kicker": "Propriétés de l'addition",
+   "tex": [
+    "\\vec{u} + \\vec{v} = \\vec{v} + \\vec{u} \\quad \\text{(commutativité)}",
+    "(\\vec{u} + \\vec{v}) + \\vec{w} = \\vec{u} + (\\vec{v} + \\vec{w})",
+    "\\vec{u} + \\vec{0} = \\vec{u} \\quad \\text{(élément neutre)}",
+    "\\vec{u} + (-\\vec{u}) = \\vec{0}, \\quad -\\vec{AB} = \\vec{BA}"
+   ],
+   "titre": "Les règles familières des nombres",
+   "type": "etape"
+  },
+  "quadrilatere": {
+   "kicker": "Exemple : nature d'un quadrilatère",
+   "tex": [
+    "\\overrightarrow{AB}\\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix} = \\overrightarrow{DC}\\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix}",
+    "\\text{donc } ABCD \\text{ parallélogramme}"
+   ],
+   "titre": "Deux vecteurs égaux, un parallélogramme",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Un vecteur : direction, sens, norme",
+    "Chasles : AB + BC = AC",
+    "Milieu : AI = IB, IA + IB = 0",
+    "Colinéaires : v = k·u",
+    "Critère : xy′ − yx′ = 0"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "AB = (xB − xA, yB − yA)",
+    "Opérations coordonnée par coordonnée",
+    "Milieu : moyenne des coordonnées",
+    "Colinéarité : xy′ − yx′ = 0",
+    "Longueur : √(x² + y²), orthonormé"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "repere": {
+   "kicker": "Repère du plan",
+   "tex": [
+    "(O, \\vec{i}, \\vec{j}) : \\text{origine et deux axes gradués}",
+    "\\text{orthogonal : axes perpendiculaires}",
+    "\\text{orthonormé : perpendiculaires}",
+    "\\text{même unité}"
+   ],
+   "titre": "Une origine et deux axes",
+   "type": "etape"
+  },
+  "somme": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "vecteurs"
+   },
+   "kicker": "Somme de deux vecteurs",
+   "note": "Mettre bout à bout : la somme ferme le trajet.",
+   "tex": "\\vec{u} + \\vec{v}",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "vecteurs"
+   },
+   "kicker": "Mathématique · Les vecteurs du plan",
+   "sous": "Direction, sens, norme — puis les coordonnées qui transforment la géométrie en calculs",
+   "titre": "Les vecteurs du plan : flèches, sommes et coordonnées",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Vecteurs : définition, somme et colinéarité"
+  },
+  {
+   "debut": "p16",
+   "pont": {
+    "dit": "Partie deux : calculer avec les vecteurs. Nous poserons le repère du plan, puis nous lirons les coordonnées d'un vecteur à partir de deux points, et nous traduirons le milieu, l'alignement et les longueurs en calculs directs.",
+    "texte": "Partie 2 : repère, coordonnées, milieu, alignement, longueurs."
+   },
+   "sous_titre": "Coordonnées : calculer avec les vecteurs"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur les vecteurs du plan. Nous verrons d'abord ce qu'est un vecteur et comment additionner deux déplacements, puis le critère qui dit si deux vecteurs pointent dans la même direction, et enfin comment les coordonnées transforment la géométrie en calculs.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Direction, sens, norme : la flèche qui code un déplacement."
+  },
+  {
+   "dit": "Un vecteur est un objet mathématique défini par trois caractéristiques. D'abord sa direction, c'est-à-dire la droite qui le porte. Ensuite son sens, l'orientation choisie sur cette droite. Enfin sa norme, sa longueur.",
+   "ecran": "definition",
+   "id": "p02",
+   "texte": "Direction, sens, norme : les trois caractéristiques."
+  },
+  {
+   "dit": "On représente un vecteur par une flèche. Le vecteur AB est le vecteur d'origine A et d'extrémité B. Sa direction est celle de la droite AB, son sens va de A vers B, sa norme est la longueur AB.",
+   "ecran": "notation",
+   "id": "p03",
+   "texte": "AB : origine A, extrémité B, norme AB."
+  },
+  {
+   "dit": "Deux vecteurs sont égaux s'ils ont même direction, même sens et même norme. Ainsi, dire que le vecteur AB égale le vecteur CD, c'est dire que ABDC est un parallélogramme, en faisant bien attention à l'ordre des lettres. Le vecteur nul a une norme nulle : le vecteur AA est égal au vecteur nul.",
+   "ecran": "egalite",
+   "id": "p04",
+   "texte": "Égaux : même direction, même sens, même norme."
+  },
+  {
+   "dit": "La somme de deux vecteurs se construit en mettant bout à bout une flèche du premier puis une flèche du second. La flèche qui ferme le trajet est la somme cherchée.",
+   "ecran": "somme",
+   "id": "p05",
+   "texte": "Bout à bout : la somme ferme le trajet."
+  },
+  {
+   "dit": "L'outil fondamental du chapitre est la relation de Chasles. Pour trois points A, B et C, le vecteur AB plus le vecteur BC égale le vecteur AC. On enchaîne deux déplacements pour obtenir le déplacement total.",
+   "ecran": "chasles",
+   "id": "p06",
+   "texte": "Chasles : AB + BC = AC, l'enchaînement."
+  },
+  {
+   "dit": "Appliquons-la deux fois à la somme des vecteurs AB, BC et CD. D'abord AB plus BC donne AC, puis AC plus CD donne AD. La somme se réduit donc au seul vecteur AD.",
+   "ecran": "ex_chasles",
+   "id": "p07",
+   "texte": "AB + BC + CD = AD en deux Chasles."
+  },
+  {
+   "dit": "L'addition des vecteurs obéit aux mêmes règles que celle des nombres. Elle est commutative : on peut échanger l'ordre des termes. Elle est associative : on peut regrouper comme on veut. Le vecteur nul est l'élément neutre. Et chaque vecteur a un opposé, dont la somme avec lui donne le vecteur nul, avec l'égalité utile suivante : moins le vecteur AB égale le vecteur BA.",
+   "ecran": "proprietes",
+   "id": "p08",
+   "texte": "Commutativité, associativité, neutre, opposé."
+  },
+  {
+   "dit": "Le point I est le milieu du segment AB si et seulement si le vecteur AI égale le vecteur IB. La somme des vecteurs IA et IB vaut donc le vecteur nul, puisque le vecteur IA est l'opposé du vecteur IB.",
+   "ecran": "milieu",
+   "id": "p09",
+   "texte": "I milieu : AI = IB ; IA + IB = 0."
+  },
+  {
+   "dit": "Deux vecteurs sont colinéaires quand ils ont la même direction. Précisément, il existe un réel k tel que le vecteur v égale k fois le vecteur u. Si k est positif, les deux vecteurs ont le même sens, et si k est négatif, ils ont des sens opposés.",
+   "ecran": "colinearite",
+   "id": "p10",
+   "texte": "v = k·u : même direction, sens selon k."
+  },
+  {
+   "dit": "La colinéarité sert à démontrer : trois points A, B et C sont alignés si et seulement si les vecteurs AB et AC sont colinéaires, et deux droites AB et CD sont parallèles si et seulement si les vecteurs AB et CD sont colinéaires.",
+   "ecran": "alignement",
+   "id": "p11",
+   "texte": "Alignement et parallélisme par colinéarité."
+  },
+  {
+   "dit": "Premier exemple chiffré : le vecteur AB égale deux fois le vecteur u, et le vecteur AC moins trois fois le vecteur u. On en déduit que le vecteur AC égale moins trois demis du vecteur AB. Les deux vecteurs sont donc colinéaires, et les points A, B et C sont alignés.",
+   "ecran": "ex_colinearite",
+   "id": "p12",
+   "texte": "AC = −3/2 AB : A, B, C alignés."
+  },
+  {
+   "dit": "Si le vecteur u a pour coordonnées x et y, et le vecteur v x prime et y prime, alors ils sont colinéaires si et seulement si x fois y prime moins y fois x prime égale zéro.",
+   "ecran": "critere",
+   "id": "p13",
+   "texte": "Critère : xy′ − yx′ = 0."
+  },
+  {
+   "dit": "Vérifions-le sur un exemple. Le vecteur u a pour coordonnées deux et trois, le vecteur v quatre et six. Deux fois six moins trois fois quatre fait zéro. Les vecteurs sont donc colinéaires, et l'on voit que le vecteur v égale deux fois le vecteur u.",
+   "ecran": "ex_critere",
+   "id": "p14",
+   "texte": "2×6 − 3×4 = 0 : colinéaires, v = 2u."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Un vecteur : direction, sens, norme. Chasles transforme toute somme en un vecteur unique. Le milieu : AI égale IB. Et la colinéarité, détectée par le critère, prouve alignement ou parallélisme.",
+   "ecran": "recap1",
+   "id": "p15",
+   "texte": "L'essentiel de la partie 1."
+  },
+  {
+   "dit": "Un repère du plan est défini par un point origine O et deux axes gradués qui se coupent. On le note O, vecteur i, vecteur j, où i et j sont les vecteurs unitaires des deux axes. Il est orthogonal quand les axes sont perpendiculaires, orthonormé quand ils sont perpendiculaires et de même unité sur les deux axes. Tout point M y est repéré par un unique couple, son abscisse et son ordonnée.",
+   "ecran": "repere",
+   "id": "p16",
+   "texte": "Repère (O, i, j) : origine et deux axes."
+  },
+  {
+   "dit": "Tout vecteur u s'écrit de façon unique comme x fois le vecteur i plus y fois le vecteur j. Le couple x et y est son couple de coordonnées, noté en colonne.",
+   "ecran": "coord_vecteur",
+   "id": "p17",
+   "texte": "u = xi + yj : un vecteur, un couple."
+  },
+  {
+   "dit": "À partir de deux points, les coordonnées se lisent directement. Si A a pour coordonnées x indice A et y indice A, et B x indice B et y indice B, alors le vecteur AB a pour coordonnées x indice B moins x indice A, et y indice B moins y indice A. C'est l'arrivée moins le départ, coordonnée par coordonnée.",
+   "ecran": "coord_AB",
+   "id": "p18",
+   "texte": "AB : arrivée moins départ, coordonnée par coordonnée."
+  },
+  {
+   "dit": "Pour A de coordonnées deux et moins un, et B de coordonnées cinq et trois, le vecteur AB a pour coordonnées cinq moins deux, soit trois, et trois moins moins un, soit quatre. Le vecteur AB a donc pour coordonnées trois et quatre.",
+   "ecran": "ex_AB",
+   "id": "p19",
+   "texte": "A(2, −1), B(5, 3) : AB = (3, 4)."
+  },
+  {
+   "dit": "Les opérations se font coordonnée par coordonnée. La somme de deux vecteurs additionne leurs coordonnées une à une, et la multiplication par un réel k multiplie chaque coordonnée par k. Deux vecteurs sont égaux si et seulement s'ils ont les mêmes coordonnées, ce qui permet de traduire une égalité vectorielle par un système d'équations.",
+   "ecran": "operations",
+   "id": "p20",
+   "texte": "Somme et k·u, coordonnée par coordonnée."
+  },
+  {
+   "dit": "Pour le vecteur u de coordonnées trois et quatre et le vecteur v de coordonnées moins un et deux, la somme a pour coordonnées deux et six, et deux fois le vecteur u a pour coordonnées six et huit.",
+   "ecran": "ex_operations",
+   "id": "p21",
+   "texte": "u + v = (2, 6) ; 2u = (6, 8)."
+  },
+  {
+   "dit": "Le milieu, lui aussi, devient un calcul. Le milieu I du segment AB a pour abscisse la moyenne des abscisses de A et B, et pour ordonnée la moyenne de leurs ordonnées. C'est la traduction de l'égalité des vecteurs AI et IB, ou encore de l'égalité du vecteur AI avec la moitié du vecteur AB.",
+   "ecran": "milieu_coord",
+   "id": "p22",
+   "texte": "Milieu : moyenne des coordonnées."
+  },
+  {
+   "dit": "Pour A de coordonnées deux et moins un, et B de coordonnées cinq et trois, l'abscisse du milieu I vaut deux plus cinq divisé par deux, soit trois virgule cinq, et son ordonnée vaut moins un plus trois divisé par deux, soit un. Le milieu I a donc pour coordonnées trois virgule cinq et un.",
+   "ecran": "ex_milieu",
+   "id": "p23",
+   "texte": "I = (3,5 ; 1), le milieu calculé."
+  },
+  {
+   "dit": "Les coordonnées prouvent un alignement. Pour les points A de coordonnées un et deux, B de coordonnées trois et six, et C de coordonnées quatre et huit, le vecteur AB a pour coordonnées deux et quatre, le vecteur AC trois et six. Le critère donne deux fois six moins quatre fois trois, soit zéro. Les vecteurs sont colinéaires, donc les points sont alignés.",
+   "ecran": "alignement_coord",
+   "id": "p24",
+   "texte": "2×6 − 4×3 = 0 : A, B, C alignés."
+  },
+  {
+   "dit": "Elles prouvent aussi la nature d'un quadrilatère. Pour A de coordonnées zéro et zéro, B de coordonnées trois et un, C de coordonnées quatre et quatre, et D de coordonnées un et trois, le vecteur AB a pour coordonnées trois et un, et le vecteur DC les mêmes coordonnées. Les deux vecteurs sont égaux, donc ABCD est un parallélogramme.",
+   "ecran": "quadrilatere",
+   "id": "p25",
+   "texte": "AB = DC : ABCD est un parallélogramme."
+  },
+  {
+   "dit": "Dans un repère orthonormé, et seulement dans ce cas, la longueur AB se calcule à partir des coordonnées du vecteur : si le vecteur AB a pour coordonnées x et y, sa longueur égale la racine carrée de x au carré plus y au carré.",
+   "ecran": "longueur",
+   "id": "p26",
+   "texte": "AB = √(x² + y²), en orthonormé."
+  },
+  {
+   "dit": "Pour le vecteur AB de coordonnées trois et quatre, la longueur AB égale la racine carrée de trois au carré plus quatre au carré, soit la racine carrée de vingt-cinq, donc cinq. On retrouve le triplet trois, quatre, cinq.",
+   "ecran": "ex_longueur",
+   "id": "p27",
+   "texte": "√(9 + 16) = 5 : le triplet 3-4-5."
+  },
+  {
+   "dit": "Pour conclure : coordonnées d'un vecteur AB par l'arrivée moins le départ, opérations coordonnée par coordonnée, milieu par la moyenne des coordonnées, alignement et parallélisme par le critère de colinéarité, longueur par la racine carrée de la somme des carrés en repère orthonormé.",
+   "ecran": "recap_final",
+   "id": "p28",
+   "texte": "L'essentiel : coordonnées, milieu, longueur."
+  }
+ ],
+ "titre": "Les vecteurs du plan : flèches, sommes et coordonnées"
+}

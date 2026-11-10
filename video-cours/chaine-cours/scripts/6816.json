@@ -1,0 +1,514 @@
+{
+ "cours": 6816,
+ "ecrans": {
+  "abstraction": {
+   "kicker": "Définir : l'abstraction",
+   "tex": [
+    "\\text{caractéristiques essentielles}",
+    "\\text{détails superflus négligés}",
+    "\\text{modèle mental simplifié}"
+   ],
+   "titre": "L'essentiel, sans le superflu",
+   "type": "etape"
+  },
+  "analytique": {
+   "kicker": "Le raisonnement analytique",
+   "tex": [
+    "\\text{décomposer en sous-problèmes}",
+    "\\text{identifier données et opérations}",
+    "\\text{combiner vers la solution}"
+   ],
+   "titre": "Du général vers le particulier",
+   "type": "etape"
+  },
+  "carte": {
+   "kicker": "La carte mentale",
+   "tex": [
+    "\\text{centre : idée principale}",
+    "\\text{branches : grandes catégories}",
+    "\\text{sous-branches : détails}"
+   ],
+   "titre": "Centre, branches, sous-branches",
+   "type": "etape"
+  },
+  "carte_jeu": {
+   "kicker": "Exemple : la carte du jeu de course",
+   "tex": [
+    "\\text{centre : Jeu de course}",
+    "\\text{Voiture, Piste, Chronomètre}",
+    "\\text{vitesse, longueur, temps}"
+   ],
+   "titre": "La solution en un coup d'œil",
+   "type": "etape"
+  },
+  "donnee": {
+   "kicker": "La donnée",
+   "tex": [
+    "\\text{information brute, factuelle}",
+    "\\text{numérique, textuelle, logique}",
+    "\\text{les entrées du problème}"
+   ],
+   "titre": "Le point de départ",
+   "type": "etape"
+  },
+  "ex_aire": {
+   "kicker": "Exemple : l'aire d'un rectangle",
+   "note": "Longueur 8 centimètres, largeur 5 centimètres : sans ces données, le problème est insoluble",
+   "tex": "L = 8, \\quad l = 5",
+   "type": "formule"
+  },
+  "ex_gateau": {
+   "kicker": "Exemple : préparer un gâteau",
+   "tex": [
+    "\\text{1. mélanger les ingrédients}",
+    "\\text{2. verser dans un moule}",
+    "\\text{3. cuire au four}"
+   ],
+   "titre": "Un ordre impossible à inverser",
+   "type": "etape"
+  },
+  "ex_maison": {
+   "kicker": "Exemple : la maison en 3D",
+   "tex": [
+    "\\text{plan 2D : rectangle, triangle}",
+    "\\text{extrusion : profondeur z}",
+    "\\text{volume et prisme en 3D}"
+   ],
+   "titre": "Du plan au volume",
+   "type": "etape"
+  },
+  "ex_moyenne": {
+   "kicker": "Exemple complet : la moyenne",
+   "note": "Notes 12, 15 et 9 : somme 36, moyenne 12 ; l'addition doit précéder la division",
+   "tex": "S = 36, \\quad M = \\frac{S}{k} = 12",
+   "type": "formule"
+  },
+  "ex_prix": {
+   "kicker": "Exemple : prix réduit puis taxé",
+   "tex": [
+    "\\text{R = 9, prix réduit = 36}",
+    "\\text{taxe = 1,80}",
+    "\\text{prix final = 37,80}"
+   ],
+   "titre": "Quatre opérations enchaînées",
+   "type": "etape"
+  },
+  "ex_taux": {
+   "kicker": "Exemple : euros en dollars",
+   "note": "Taux de change 1,09 : un euro vaut un dollar et neuf cents ; le taux reste fixe pour la conversion",
+   "tex": "t = 1{,}09",
+   "type": "formule"
+  },
+  "f_prix": {
+   "kicker": "Les quatre opérations du prix",
+   "tex": [
+    "R = P \\times 0{,}20 = 9",
+    "P_r = P - R = 36",
+    "T = P_r \\times 0{,}05 = 1{,}80",
+    "P_f = P_r + T = 37{,}80"
+   ],
+   "titre": "Réduction, prix réduit, taxe, final",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "tex": [
+    "\\text{comprendre la situation}",
+    "\\text{identifier les éléments utiles}",
+    "\\text{organiser les actions dans l'ordre}"
+   ],
+   "titre": "Une démarche structurée",
+   "type": "etape"
+  },
+  "logique": {
+   "kicker": "Le raisonnement logique",
+   "tex": [
+    "\\text{enchaînement cohérent et rigoureux}",
+    "\\text{chaque étape découle de la précédente}",
+    "\\text{règles : si, alors, et, ou, non}"
+   ],
+   "titre": "Si les prémisses sont vraies, la solution est valide",
+   "type": "etape"
+  },
+  "motif": {
+   "kicker": "Le motif",
+   "tex": [
+    "\\text{schéma récurrent, structure type}",
+    "\\text{réutiliser une méthode connue}",
+    "\\text{au lieu de repartir de zéro}"
+   ],
+   "titre": "Reconnaître pour réutiliser",
+   "type": "etape"
+  },
+  "motif_pct": {
+   "kicker": "Motif : calculer un pourcentage",
+   "tex": [
+    "\\text{une remise}",
+    "\\text{un intérêt, une augmentation}",
+    "\\text{un seul motif, plusieurs cas}"
+   ],
+   "titre": "Remise, intérêt, salaire",
+   "type": "etape"
+  },
+  "objet": {
+   "kicker": "L'objet, unité d'abstraction",
+   "tex": [
+    "\\text{attributs : ce qui le caractérise}",
+    "\\text{comportements : ce qu'il peut faire}",
+    "\\text{objets et interactions}"
+   ],
+   "titre": "Propriétés et comportements",
+   "type": "etape"
+  },
+  "objet_jeu": {
+   "kicker": "Exemple : le jeu de course",
+   "tex": [
+    "\\text{voiture : vitesse, couleur, position}",
+    "\\text{piste : longueur}",
+    "\\text{chronomètre : temps écoulé}"
+   ],
+   "titre": "Trois objets suffisent",
+   "type": "etape"
+  },
+  "operation": {
+   "kicker": "L'opération",
+   "tex": [
+    "\\text{action sur les données}",
+    "\\text{addition, comparaison}",
+    "\\text{recherche}"
+   ],
+   "titre": "Transformer les données",
+   "type": "etape"
+  },
+  "ordonnancement": {
+   "kicker": "L'ordonnancement",
+   "tex": [
+    "\\text{ordre précis et obligatoire}",
+    "\\text{chaque résultat déjà obtenu}",
+    "\\text{la dernière action donne la solution}"
+   ],
+   "titre": "Trois règles d'ordre",
+   "type": "etape"
+  },
+  "parametre": {
+   "kicker": "Le paramètre",
+   "tex": [
+    "\\text{donnée particulière}",
+    "\\text{peut varier selon le contexte}",
+    "\\text{fixe pour une exécution donnée}"
+   ],
+   "titre": "Une valeur de référence",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Le raisonnement analytique décompose : données, paramètres, opérations.",
+    "Le raisonnement logique ordonne : chaque étape découle de la précédente.",
+    "L'abstraction modélise : objets, carte mentale, schéma 2D puis 3D.",
+    "Trois étapes : idée mentale, structure partagée, représentation concrète."
+   ],
+   "kicker": "Synthèse : la démarche complète",
+   "type": "recap"
+  },
+  "synthese4": {
+   "kicker": "La démarche en quatre étapes",
+   "tex": [
+    "\\text{1. données et paramètre}",
+    "\\text{2. sous-problèmes}",
+    "\\text{3. opérations}",
+    "\\text{4. ordre des opérations}"
+   ],
+   "titre": "Données, découpe, calcul, ordre",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Informatique · Raisonnement et abstraction",
+   "sous": "Données, paramètres, opérations : décomposer un problème, l'ordonner, puis le modéliser par abstraction",
+   "titre": "Raisonnement et abstraction : décomposer, ordonner, modéliser",
+   "type": "titre"
+  },
+  "visualisation": {
+   "kicker": "Visualisation",
+   "tex": [
+    "\\text{représentation concrète}",
+    "\\text{communiquer une idée}",
+    "\\text{modéliser une solution}"
+   ],
+   "titre": "Rendre l'abstraction visible",
+   "type": "etape"
+  },
+  "xy": {
+   "kicker": "2D et 3D",
+   "tex": [
+    "\\text{2D : axes x et y}",
+    "\\text{longueur et largeur}",
+    "\\text{3D : axes x, y et z, plus la profondeur}"
+   ],
+   "titre": "Le plan, puis le volume",
+   "type": "etape"
+  },
+  "f_prix2": {
+   "kicker": "Les quatre opérations du prix (suite)",
+   "tex": [
+    "R = P \\times 0{,}20 = 9",
+    "P_r = P - R = 36",
+    "T = P_r \\times 0{,}05 = 1{,}80",
+    "P_f = P_r + T = 37{,}80"
+   ],
+   "titre": "Réduction, prix réduit, taxe, final",
+   "type": "etape"
+  },
+  "ordonnancement_regles": {
+   "kicker": "L'ordonnancement (suite)",
+   "tex": [
+    "\\text{ordre précis et obligatoire}",
+    "\\text{chaque résultat déjà obtenu}",
+    "\\text{la dernière action donne la solution}"
+   ],
+   "titre": "Trois règles d'ordre",
+   "type": "etape"
+  },
+  "abstraction_modele": {
+   "kicker": "Définir : l'abstraction (suite)",
+   "tex": [
+    "\\text{caractéristiques essentielles}",
+    "\\text{détails superflus négligés}",
+    "\\text{modèle mental simplifié}"
+   ],
+   "titre": "L'essentiel, sans le superflu",
+   "type": "etape"
+  },
+  "carte_structure": {
+   "kicker": "La carte mentale (suite)",
+   "tex": [
+    "\\text{centre : idée principale}",
+    "\\text{branches : grandes catégories}",
+    "\\text{sous-branches : détails}"
+   ],
+   "titre": "Centre, branches, sous-branches",
+   "type": "etape"
+  },
+  "xyz": {
+   "kicker": "2D et 3D (suite)",
+   "tex": [
+    "\\text{2D : axes x et y}",
+    "\\text{longueur et largeur}",
+    "\\text{3D : axes x, y et z, plus la profondeur}"
+   ],
+   "titre": "Le plan, puis le volume",
+   "type": "etape"
+  }
+ },
+ "matiere": "Informatique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Données, opérations, raisonnement analytique et logique"
+  },
+  {
+   "debut": "p18",
+   "pont": {
+    "dit": "Partie deux : l'abstraction. Nous modéliserons un problème par ses objets, puis nous communiquerons la pensée par une carte mentale.",
+    "texte": "Partie 2 : abstraction et carte mentale."
+   },
+   "sous_titre": "Abstraction, objets et carte mentale"
+  },
+  {
+   "debut": "p25",
+   "pont": {
+    "dit": "Partie trois : représenter la solution en deux puis en trois dimensions, avant la démarche complète et la synthèse finale.",
+    "texte": "Partie 3 : représentation 2D et 3D."
+   },
+   "sous_titre": "Représentation 2D-3D et démarche complète"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur le raisonnement et l'abstraction. Résoudre un problème informatique ne relève pas du hasard : cela suit une démarche structurée, comprendre la situation, identifier les éléments utiles, puis organiser les actions dans un ordre pertinent.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Résoudre un problème : une démarche, pas du hasard."
+  },
+  {
+   "dit": "Trois gestes pour commencer : comprendre la situation, identifier les éléments utiles, puis organiser les actions dans un ordre pertinent. Ce module pose les bases de cette démarche.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Comprendre, identifier, organiser."
+  },
+  {
+   "dit": "Première notion : la donnée. Une donnée est une information brute, factuelle, qui sert de point de départ à un problème. Elle peut être numérique, comme x égale cinq, textuelle, comme le nom d'un élève, ou logique, vrai ou faux. Les données sont les entrées du problème.",
+   "ecran": "donnee",
+   "id": "p03",
+   "texte": "La donnée : information brute, point de départ."
+  },
+  {
+   "dit": "Exemple résolu : calculer l'aire d'un rectangle. Les données sont la longueur, L égale huit centimètres, et la largeur, l égale cinq centimètres. Sans ces données, le problème est insoluble.",
+   "ecran": "ex_aire",
+   "id": "p04",
+   "texte": "Aire du rectangle : longueur 8, largeur 5."
+  },
+  {
+   "dit": "Deuxième notion : le paramètre. Un paramètre est une donnée particulière qui peut varier selon le contexte, mais qui reste fixe pour une exécution donnée du problème. C'est une valeur de référence qui influence le résultat sans être modifiée par les opérations.",
+   "ecran": "parametre",
+   "id": "p05",
+   "texte": "Le paramètre : variable selon le contexte, fixe pendant l'exécution."
+  },
+  {
+   "dit": "Exemple résolu : convertir des euros en dollars. Le taux de change, t égale un virgule zéro neuf, soit un euro égale un dollar et neuf cents, est un paramètre. Il est fixé pour la conversion, quel que soit le montant à convertir.",
+   "ecran": "ex_taux",
+   "id": "p06",
+   "texte": "Taux 1,09 : un paramètre fixé pour la conversion."
+  },
+  {
+   "dit": "Troisième notion : l'opération. Une opération est une action mathématique ou logique appliquée aux données : addition, comparaison, recherche, et bien d'autres.",
+   "ecran": "operation",
+   "id": "p07",
+   "texte": "L'opération : une action appliquée aux données."
+  },
+  {
+   "dit": "Le raisonnement analytique est la démarche qui consiste à décomposer un problème complexe en sous-problèmes plus simples, à identifier les données et les opérations nécessaires, puis à les combiner pour aboutir à la solution. C'est une approche du général vers le particulier : on examine chaque composante du problème séparément.",
+   "ecran": "analytique",
+   "id": "p08",
+   "texte": "Analytique : décomposer, identifier, combiner."
+  },
+  {
+   "dit": "Exemple résolu : un magasin offre vingt pour cent de réduction sur un article à quarante-cinq euros, puis applique une taxe de cinq pour cent sur le prix réduit. Quel est le prix final ? Décomposons.",
+   "ecran": "f_prix",
+   "id": "p09",
+   "texte": "Article à 45 euros : réduction 20 %, taxe 5 %."
+  },
+  {
+   "dit": "Opération un : calculer la réduction, R égale P fois vingt sur cent, soit neuf euros. Opération deux : calculer le prix réduit, P indice r égale P moins R, soit trente-six euros. Opération trois : calculer la taxe, T égale P indice r fois cinq sur cent, soit un euro quatre-vingts. Opération quatre : calculer le prix final, P indice f égale P indice r plus T, soit trente-sept euros quatre-vingts.",
+   "ecran": "ex_prix",
+   "id": "p10",
+   "texte": "Réduction 9, prix réduit 36, taxe 1,80, final 37,80."
+  },
+  {
+   "dit": "Le problème est résolu en le découpant en quatre opérations simples, chacune utilisant le résultat de la précédente.",
+   "ecran": "f_prix2",
+   "id": "p11",
+   "texte": "Quatre opérations simples, chacune sur la précédente."
+  },
+  {
+   "dit": "Passons au raisonnement logique : ordonner une série d'actions. Le raisonnement logique est une démarche de résolution qui suit un enchaînement cohérent et rigoureux d'étapes, où chaque étape découle logiquement de la précédente. Il repose sur des règles précises, si, alors, et, ou, non, et garantit que la solution est valide si les prémisses sont vraies.",
+   "ecran": "logique",
+   "id": "p12",
+   "texte": "Logique : chaque étape découle de la précédente."
+  },
+  {
+   "dit": "Autre notion : le motif. Un motif est un schéma récurrent ou une structure type que l'on retrouve dans plusieurs problèmes. Identifier un motif permet de réutiliser une méthode déjà connue au lieu de repartir de zéro.",
+   "ecran": "motif",
+   "id": "p13",
+   "texte": "Le motif : un schéma récurrent à réutiliser."
+  },
+  {
+   "dit": "Exemple : le motif calculer un pourcentage se retrouve dans le calcul d'une remise, d'un intérêt ou d'une augmentation de salaire. Une fois ce motif maîtrisé, il s'applique à tous ces cas.",
+   "ecran": "motif_pct",
+   "id": "p14",
+   "texte": "Pourcentage : remise, intérêt, augmentation."
+  },
+  {
+   "dit": "L'ordonnancement consiste à organiser les actions dans un ordre précis et obligatoire. Certaines opérations dépendent du résultat d'opérations antérieures : leur ordre ne peut pas être modifié. Un ordonnancement correct garantit l'obtention du bon résultat.",
+   "ecran": "ordonnancement",
+   "id": "p15",
+   "texte": "Ordonnancement : un ordre précis et obligatoire."
+  },
+  {
+   "dit": "Trois règles d'ordonnancement : identifier la première action, celle qui ne dépend d'aucune autre ; vérifier que chaque action suivante utilise uniquement des résultats déjà obtenus ; s'assurer que la dernière action produit bien la solution attendue.",
+   "ecran": "ordonnancement_regles",
+   "id": "p16",
+   "texte": "Première action, résultats déjà obtenus, solution attendue."
+  },
+  {
+   "dit": "Exemple résolu : préparer un gâteau. Les actions ne peuvent pas être dans n'importe quel ordre : il faut d'abord mélanger les ingrédients, puis verser dans un moule, puis cuire au four. L'ordre cuire puis mélanger est impossible.",
+   "ecran": "ex_gateau",
+   "id": "p17",
+   "texte": "Gâteau : mélanger, verser, cuire — jamais l'inverse."
+  },
+  {
+   "dit": "Deuxième grand thème : l'abstraction. Dans le domaine de l'informatique et de la pensée computationnelle, l'abstraction est la capacité à isoler les caractéristiques essentielles d'un problème ou d'un objet, en négligeant les détails superflus. La visualisation est la représentation concrète de cette abstraction, permettant de communiquer une idée ou de modéliser une solution.",
+   "ecran": "abstraction",
+   "id": "p18",
+   "texte": "Abstraction : l'essentiel ; visualisation : le rendre concret."
+  },
+  {
+   "dit": "L'abstraction consiste à créer un modèle mental simplifié d'une situation réelle. On identifie les éléments pertinents, les objets, leurs propriétés, leurs actions, et on ignore le reste. Ce processus mental est la première étape de la résolution d'un problème informatique.",
+   "ecran": "abstraction_modele",
+   "id": "p19",
+   "texte": "Modèle mental simplifié : les éléments pertinents seulement."
+  },
+  {
+   "dit": "L'objet est l'unité d'abstraction : une entité possédant des attributs, ou propriétés, ce qui la caractérise, comme la couleur, la taille ou la forme, et des comportements, ou méthodes, ce qu'elle peut faire ou ce qu'on peut lui faire.",
+   "ecran": "objet",
+   "id": "p20",
+   "texte": "Objet : attributs et comportements."
+  },
+  {
+   "dit": "Exemple résolu : pour concevoir mentalement un jeu de course, on identifie les objets suivants : la voiture, attributs vitesse, couleur, position, comportements accélérer et freiner ; la piste, attribut longueur ; le chronomètre, attribut temps écoulé. On ne s'intéresse pas au design du moteur ni au type de carburant : ce sont des détails non pertinents pour la simulation. La solution mentale est l'ensemble de ces objets et de leurs interactions.",
+   "ecran": "objet_jeu",
+   "id": "p21",
+   "texte": "Jeu de course : voiture, piste, chronomètre."
+  },
+  {
+   "dit": "Deuxième étape : communiquer une pensée à travers une carte mentale. Une carte mentale, ou schéma heuristique, est un diagramme qui représente une idée centrale, à partir de laquelle rayonnent des branches portant des idées associées. Elle permet de structurer, mémoriser et communiquer une pensée de manière visuelle et hiérarchique.",
+   "ecran": "carte",
+   "id": "p22",
+   "texte": "Carte mentale : une idée centrale, des branches."
+  },
+  {
+   "dit": "Sa structure : au centre, l'idée principale ou le problème posé ; en branches principales, les grandes catégories ou solutions envisagées ; en sous-branches, les détails, attributs ou sous-étapes.",
+   "ecran": "carte_structure",
+   "id": "p23",
+   "texte": "Centre, branches principales, sous-branches."
+  },
+  {
+   "dit": "Exemple résolu : pour communiquer la solution du jeu de course, on place Jeu de course au centre. On trace une branche Voiture qui se subdivise en vitesse, position et accélérer. Une autre branche Piste se subdivise en longueur et tracé. Une branche Chronomètre se subdivise en temps. La carte mentale rend visible l'ensemble de la solution en un coup d'œil.",
+   "ecran": "carte_jeu",
+   "id": "p24",
+   "texte": "Carte du jeu : voiture, piste, chronomètre en branches."
+  },
+  {
+   "dit": "Troisième étape : représenter la solution à partir d'un schéma en deux dimensions et en trois dimensions. La représentation en deux dimensions est plane, définie par deux axes, x et y : elle ne montre que la longueur et la largeur. Exemples : un plan, un dessin sur une feuille, l'écran d'un ordinateur.",
+   "ecran": "xy",
+   "id": "p25",
+   "texte": "2D : axes x et y, longueur et largeur."
+  },
+  {
+   "dit": "La représentation en trois dimensions se situe dans l'espace, définie par trois axes, x, y et z : elle ajoute la profondeur à la longueur et la largeur. Exemples : une maquette numérique, un objet de réalité virtuelle.",
+   "ecran": "xyz",
+   "id": "p26",
+   "texte": "3D : axes x, y, z, plus la profondeur."
+  },
+  {
+   "dit": "Un schéma en deux dimensions est une abstraction simplifiée : vue de dessus, de face ou de côté. Un modèle en trois dimensions est une visualisation plus complète qui permet d'observer l'objet sous tous les angles. La conversion d'un plan en deux dimensions vers un volume en trois dimensions se fait par extrusion : on donne une profondeur aux formes planes.",
+   "ecran": "visualisation",
+   "id": "p27",
+   "texte": "Du plan 2D au volume 3D par extrusion."
+  },
+  {
+   "dit": "Exemple résolu : pour représenter une maison, on commence par un schéma en deux dimensions, le plan de la façade : un rectangle pour les murs, un triangle pour le toit. En ajoutant la profondeur, z, on extrude le rectangle pour obtenir un volume parallélépipédique et le triangle pour obtenir un prisme. Le résultat est un modèle en trois dimensions de la maison, visualisable sous tous les angles.",
+   "ecran": "ex_maison",
+   "id": "p28",
+   "texte": "Maison : rectangle et triangle extrudés en volume."
+  },
+  {
+   "dit": "Revenons à la démarche complète, avec un exemple résolu : calculer la moyenne d'un élève avec les notes n un égale douze, n deux égale quinze, n trois égale neuf. Données : trois notes. Paramètre : nombre de notes, k égale trois. Sous-problèmes : additionner les notes, puis diviser par le nombre de notes. Opérations : somme S égale n un plus n deux plus n trois, soit trente-six, puis moyenne M égale S sur k, soit trente-six sur trois, égale douze. Ordre : l'addition doit précéder la division, car il est impossible de diviser avant d'avoir additionné.",
+   "ecran": "ex_moyenne",
+   "id": "p29",
+   "texte": "Moyenne : 12, 15, 9 — somme 36, moyenne 12."
+  },
+  {
+   "dit": "En synthèse, la démarche complète suit quatre étapes : données et paramètre, sous-problèmes, opérations, puis ordre des opérations. Le raisonnement analytique permet de comprendre un problème en identifiant données, paramètres et opérations. Le raisonnement logique permet d'organiser ces opérations dans un ordre pertinent. Ensemble, ils constituent la base de toute résolution de problème en informatique et, plus largement, de toute pensée structurée.",
+   "ecran": "synthese4",
+   "id": "p30",
+   "texte": "Quatre étapes : données, découpe, calcul, ordre."
+  },
+  {
+   "dit": "Et les trois étapes de la démarche d'abstraction forment une progression : on passe de l'idée pure, mentale, à une structure partagée, la carte mentale, puis à une représentation concrète et manipulable, le schéma en deux dimensions et en trois dimensions. Cette démarche est au cœur de la modélisation numérique et de la conception d'objets ou de programmes informatiques.",
+   "ecran": "recap",
+   "id": "p31",
+   "texte": "Idée mentale, carte partagée, représentation concrète."
+  }
+ ],
+ "titre": "Raisonnement et abstraction : décomposer, ordonner, modéliser"
+}

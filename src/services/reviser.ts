@@ -5,9 +5,11 @@ import type { matiere as couleursMatieres } from '@/theme/theme';
 
 import { decoderContenu, normaliserBlocs, type Bloc } from './blocs';
 import { contenuHorsLigneValide } from './connectivite';
+import { ecrireContenu, ecrireContenus, lireContenu, lireContenus } from './stockageContenu';
 import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
 import { repriseInviteEnCours } from './repriseInvite';
+import { crediterXp } from './xp';
 
 type Client = Pick<SupabaseClient, 'rpc'>;
 
@@ -17,7 +19,7 @@ export type Lecon = { id: number; nom: string; minutes: number | null };
 export type ContenuLecon = { id: number; coursId: number; nom: string; blocs: Bloc[] };
 export type Fiche = { nom: string; blocs: Bloc[] };
 
-const CLE_COURS = (niveau: string, pays: string) => `reviser.cours.${niveau}.${pays.toUpperCase()}`;
+const CLE_COURS = (niveau: string, pays: string, serie?: string | null) => `reviser.cours.${niveau}.${pays.toUpperCase()}${serie ? `.${serie}` : ''}`;
 const CLE_LECONS = (cours: number) => `reviser.lecons.${cours}`;
 const CLE_LECON = (lecon: number) => `reviser.lecon.${lecon}`;
 const CLE_FICHE = (cours: number) => `reviser.fiche.${cours}`;
@@ -43,7 +45,9 @@ export function oublierCopiesEnMemoire() {
 async function relireEtGarder<T>(cle: string, lire: () => Promise<T>, maintenant: number): Promise<T> {
   const valeur = await lire();
   copiesEnMemoire.set(cle, { valeur, date: maintenant });
-  await AsyncStorage.multiSet([
+  // Les copies de contenu vivent dans les fichiers (stockageContenu), pas dans la base de réglages : un pack
+  // entier y a saturé AsyncStorage jusqu'à SQLITE_FULL (issue #74, retour terrain du 23 octobre 2026).
+  await ecrireContenus([
     [cle, JSON.stringify(valeur)],
     [CLE_DATE(cle), String(maintenant)],
   ]).catch(() => {});
@@ -52,6 +56,11 @@ async function relireEtGarder<T>(cle: string, lire: () => Promise<T>, maintenant
 
 /** Clés locales chargées pendant la session, quand le contenu est encore valable. */
 const localesEnMemoire = new Map<string, unknown>();
+
+/** Oublie la valeur gardée en mémoire pour une clé locale que l'appelant vient de réécrire. */
+export function oublierLocalEnMemoire(cle: string): void {
+  localesEnMemoire.delete(cle);
+}
 
 /**
  * Ce contenu local peut-il encore être servi ? Faux hors ligne au-delà de la durée de validité (issue #13).
@@ -79,7 +88,7 @@ export async function lireLocalHorsLigne<T>(cle: string, maintenant = Date.now()
   }
   if (localesEnMemoire.has(cle)) return localesEnMemoire.get(cle) as T;
   try {
-    const brut = await AsyncStorage.getItem(cle);
+    const brut = await lireContenu(cle);
     if (!brut) return null;
     const valeur = JSON.parse(brut) as T;
     localesEnMemoire.set(cle, valeur);
@@ -87,6 +96,16 @@ export async function lireLocalHorsLigne<T>(cle: string, maintenant = Date.now()
   } catch {
     return null;
   }
+}
+
+/**
+ * Range un contenu préparé pour le hors ligne (la porte d'écriture symétrique de `lireLocalHorsLigne`) :
+ * dans les fichiers, comme toutes les copies de contenu. La copie en mémoire de session est invalidée,
+ * pas alimentée : la prochaine lecture relira le fichier, comme elle relisait AsyncStorage avant la migration.
+ */
+export async function ecrireLocalHorsLigne(cle: string, valeur: unknown): Promise<void> {
+  localesEnMemoire.delete(cle);
+  await ecrireContenu(cle, JSON.stringify(valeur)).catch(() => {});
 }
 
 /**
@@ -102,10 +121,7 @@ export async function lireLocalHorsLigne<T>(cle: string, maintenant = Date.now()
 export async function avecCopie<T>(cle: string, lire: () => Promise<T>, maintenant = Date.now()): Promise<T> {
   let copie = copiesEnMemoire.get(cle);
   if (!copie) {
-    const [[, texte], [, date]] = await AsyncStorage.multiGet([cle, CLE_DATE(cle)]).catch(() => [
-      [cle, null],
-      [CLE_DATE(cle), null],
-    ]);
+    const [texte, date] = await lireContenus([cle, CLE_DATE(cle)]).catch(() => [null, null] as (string | null)[]);
     if (texte && date) {
       try {
         copie = { valeur: JSON.parse(texte), date: Number(date) };
@@ -179,19 +195,26 @@ export function nomCourt(nom: string): string {
   return nom.charAt(0).toUpperCase() + nom.slice(1).toLowerCase().replace(/ & /g, ' et ');
 }
 
-/** Ce que lit Réviser pour un profil : le programme du concours choisi, sinon celui de la classe. */
-export function programmeDu(profil: { type?: string | null; niveau?: string | null; pays?: string | null; concours?: { id: string } | null } | null) {
-  return { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM', concours: profil?.type === 'concours' ? (profil.concours?.id ?? null) : null };
+/** Ce que lit Réviser pour un profil : le programme du concours choisi, sinon celui de la classe (et de sa série). */
+export function programmeDu(
+  profil: { type?: string | null; niveau?: string | null; pays?: string | null; serie?: { id: string; nom?: string } | null; concours?: { id: string; sigle?: string; nom?: string } | null } | null,
+) {
+  return {
+    niveau: profil?.niveau ?? '3e',
+    pays: profil?.pays ?? 'CM',
+    ...(profil?.type !== 'concours' && profil?.serie?.id ? { serie: profil.serie.id } : {}),
+    concours: profil?.type === 'concours' ? (profil.concours?.id ?? null) : null,
+  };
 }
 
-export async function lireCours(client: Client, p: { niveau: string; pays: string; concours?: string | null }): Promise<Cours[]> {
+export async function lireCours(client: Client, p: { niveau: string; pays: string; serie?: string | null; concours?: string | null }): Promise<Cours[]> {
   // Un concours choisi se comporte comme une classe : son programme remplace celui de la classe.
-  const cle = p.concours ? `reviser.cours.concours.${p.concours}` : CLE_COURS(p.niveau, p.pays);
+  const cle = p.concours ? `reviser.cours.concours.${p.concours}` : CLE_COURS(p.niveau, p.pays, p.serie);
   return avecCopie(cle, async () => {
     type Ligne = { course_id: number; name: string; subject: string | null; lessons: number };
     const lignes = p.concours
       ? await rpc<Ligne>(client, 'contest_courses', { p_contest: p.concours })
-      : await rpc<Ligne>(client, 'revision_courses', { p_level: p.niveau, p_country: p.pays });
+      : await rpc<Ligne>(client, 'revision_courses', { p_level: p.niveau, p_country: p.pays, ...(p.serie ? { p_series: p.serie } : {}) });
     return lignes.map((l) => ({ id: l.course_id, nom: l.name.trim(), matiere: l.subject?.trim() || AUTRES, lecons: l.lessons }));
   });
 }
@@ -283,9 +306,19 @@ export function quizReussi(score: number, total: number): boolean {
  * Marque la leçon comme validée : elle compte alors dans la progression (questions réussies, ou leçon sans questions).
  * Enregistrée sur le téléphone tout de suite, puis envoyée au serveur sans bloquer quand un client est donné.
  */
-export async function marquerLue(lecon: number, cours: number, client?: ClientSynchro, resultat?: { score: number; total: number }): Promise<void> {
+export async function marquerLue(
+  lecon: number,
+  cours: number,
+  client?: ClientSynchro,
+  resultat?: { score: number; total: number },
+  userId?: string | null,
+): Promise<void> {
   const lues = await lireLues();
+  const premiereFois = lues[lecon] === undefined;
   if (lues[lecon] !== cours) await AsyncStorage.setItem(CLE_LUES, JSON.stringify({ ...lues, [lecon]: cours }));
+  if (premiereFois) {
+    void crediterXp(client as never, userId, 20, 'course', String(lecon));
+  }
   if (client) {
     void client.rpc('validate_lessons', { p_items: [{ lesson_id: lecon, course_id: cours, ...resultat }] }).then(
       () => undefined,

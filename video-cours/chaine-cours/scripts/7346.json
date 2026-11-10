@@ -1,0 +1,332 @@
+{
+ "cours": 7346,
+ "titre": "L'exponentielle et les fonctions puissances",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Exponentielle et puissances",
+   "titre": "L'exponentielle et les fonctions puissances",
+   "sous": "Une fonction égale à sa dérivée, puis les puissances à exposant réel",
+   "anim": {
+    "nom": "exp_croissante_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Prolonger les puissances entières à tous les exposants réels : voilà le programme.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 200
+   }
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "La fonction exponentielle · définition",
+   "tex": "f' = f, \\ f(0) = 1 \\Rightarrow f = \\exp, \\ e = \\exp(1)",
+   "note": "Unique fonction dérivable égale à sa dérivée et valant 1 en 0 ; e ≈ 2,718."
+  },
+  "propriete_fond": {
+   "type": "formule",
+   "kicker": "La propriété caractéristique",
+   "tex": "e^{a+b} = e^{a} \\times e^{b}",
+   "note": "Une somme dans l'exposant devient un produit : la clé de tous les calculs."
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Les propriétés algébriques",
+   "titre": "Tout découle de la propriété caractéristique",
+   "tex": [
+    "e^{a-b} = \\frac{e^{a}}{e^{b}}",
+    "e^{-a} = \\frac{1}{e^{a}} \\qquad e^{na} = \\left(e^{a}\\right)^{n}",
+    "e^{a} > 0 \\qquad e^{0} = 1"
+   ]
+  },
+  "ex_simplifier": {
+   "type": "etape",
+   "kicker": "Exemple · simplifier une expression",
+   "titre": "Ramener à une seule exponentielle",
+   "tex": [
+    "E = \\frac{e^{3x} \\cdot e^{-x}}{e^{x}}",
+    "E = e^{3x - x - x}",
+    "E = e^{x}"
+   ]
+  },
+  "limites": {
+   "type": "etape",
+   "kicker": "Limites de référence",
+   "titre": "Elle explose à droite, elle s'écrase à gauche",
+   "tex": [
+    "\\lim_{x \\to +\\infty} e^{x} = +\\infty \\qquad \\lim_{x \\to -\\infty} e^{x} = 0",
+    "\\lim_{x \\to +\\infty} \\tfrac{e^{x}}{x} = +\\infty \\qquad \\lim_{x \\to 0} \\tfrac{e^{x}-1}{x} = 1"
+   ]
+  },
+  "derivee_exp": {
+   "type": "etape",
+   "kicker": "Dériver une exponentielle composée",
+   "titre": "Ne jamais oublier le facteur venu de l'exposant",
+   "tex": [
+    "(e^{x})' = e^{x} \\qquad (e^{u})' = u' \\cdot e^{u}",
+    "f(x) = e^{2x+1} \\quad \\Rightarrow \\quad f'(x) = 2e^{2x+1}"
+   ]
+  },
+  "courbe_exp": {
+   "type": "etape",
+   "kicker": "Variations et courbe",
+   "titre": "Strictement croissante, toujours positive",
+   "tex": [
+    "e^{x} > 0 \\quad \\text{et} \\quad (e^{x})' = e^{x} > 0",
+    "(0\\,;\\,1) \\quad (1\\,;\\,e) \\quad \\text{asymptote } y = 0"
+   ],
+   "anim": {
+    "nom": "exp_croissante_fig",
+    "hauteur": 150
+   }
+  },
+  "equations": {
+   "type": "etape",
+   "kicker": "Équations exponentielles",
+   "titre": "Égaler les exponentielles, c'est égaler les exposants",
+   "tex": [
+    "e^{A} = e^{B} \\iff A = B",
+    "e^{A} < e^{B} \\iff A < B",
+    "e^{2x-1} = e^{x+3} \\iff 2x - 1 = x + 3",
+    "\\iff x = 4"
+   ]
+  },
+  "inequation": {
+   "type": "etape",
+   "kicker": "Inéquations exponentielles",
+   "titre": "La fonction conserve l'ordre",
+   "tex": [
+    "e^{3x} \\le e^{x+2} \\iff 3x \\le x + 2",
+    "2x \\le 2 \\iff x \\le 1",
+    "S = \\left]-\\infty\\,;\\,1\\right]"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "exp : f′ = f et f(0) = 1, e ≈ 2,718",
+    "e^(a+b) = e^a × e^b : la clé des calculs",
+    "Stricte croissance : e^A = e^B ⇔ A = B",
+    "Limites : +∞ en +∞, 0 en −∞"
+   ]
+  },
+  "puissance_def": {
+   "type": "formule",
+   "kicker": "Les fonctions puissances · définition",
+   "tex": "x^{a} = e^{a \\ln x}, \\qquad x > 0",
+   "note": "Pour a réel fixé, sur ]0 ; +∞[ : la puissance devient une exponentielle."
+  },
+  "ex_puissance": {
+   "type": "etape",
+   "kicker": "Exemple · une puissance fractionnaire",
+   "titre": "Huit puissance deux tiers",
+   "tex": [
+    "8^{2/3} = e^{\\tfrac{2}{3} \\ln 8} = \\left(8^{1/3}\\right)^{2}",
+    "8^{1/3} = 2 \\qquad 8^{2/3} = 2^{2} = 4"
+   ]
+  },
+  "derivee_puiss": {
+   "type": "etape",
+   "kicker": "Dérivée et variations des puissances",
+   "titre": "Le signe de l'exposant décide de tout",
+   "tex": [
+    "(x^{a})' = a\\,x^{a-1}",
+    "a > 0 : \\text{croissante} \\quad 0 \\to +\\infty",
+    "a < 0 : \\text{décroissante} \\quad +\\infty \\to 0",
+    "a = 0 : x^{0} = 1 \\quad \\text{constante}"
+   ]
+  },
+  "ex_racine": {
+   "type": "etape",
+   "kicker": "Exemple · la racine carrée",
+   "titre": "La racine, une puissance comme les autres",
+   "tex": [
+    "g(x) = x^{1/2} = \\sqrt{x}",
+    "g'(x) = \\tfrac{1}{2} x^{-1/2} = \\tfrac{1}{2\\sqrt{x}} > 0",
+    "\\lim_{x \\to 0^{+}} g(x) = 0 \\qquad \\lim_{x \\to +\\infty} g(x) = +\\infty"
+   ]
+  },
+  "positions": {
+   "type": "etape",
+   "kicker": "Comparer les courbes de puissances",
+   "titre": "Toutes se croisent en un, puis l'ordre s'inverse",
+   "tex": [
+    "]0\\,;\\,1[ : \\quad x^{2} < x < \\sqrt{x}",
+    "]1\\,;\\,+\\infty[ : \\quad \\sqrt{x} < x < x^{2}",
+    "\\text{toutes passent par } (1\\,;\\,1)"
+   ],
+   "anim": {
+    "nom": "puissances_fig",
+    "hauteur": 140
+   }
+  },
+  "cas_entiers": {
+   "type": "etape",
+   "kicker": "Exposants entiers négatifs et racines",
+   "titre": "Retrouver les puissances usuelles",
+   "tex": [
+    "x^{-n} = \\tfrac{1}{x^{n}} \\quad \\text{sur } \\mathbb{R}^{*}",
+    "x^{3} = 8 \\iff x = 8^{1/3} = e^{\\tfrac{1}{3} \\ln 8} = 2"
+   ]
+  },
+  "croissances": {
+   "type": "formule",
+   "kicker": "Croissances comparées",
+   "tex": "\\lim_{+\\infty} \\tfrac{e^{x}}{x^{a}} = +\\infty, \\quad \\lim_{+\\infty} \\tfrac{\\ln x}{x^{a}} = 0",
+   "note": "Pour a > 0 : l'exponentielle domine toute puissance, qui domine le logarithme."
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "x^a = e^(a ln x), définie pour x > 0",
+    "Dérivée : a·x^(a−1), signe de a",
+    "En 1, toutes les courbes se croisent",
+    "Exponentielle > puissance > logarithme",
+    "Toujours revenir à e^(a ln x)"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré à la fonction exponentielle et aux fonctions puissances. Nous définirons d'abord l'exponentielle, ses règles de calcul, ses limites, sa courbe et ses équations, puis nous prolongerons les puissances entières à tous les exposants réels.",
+   "texte": "L'exponentielle, puis les puissances à exposant réel.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "L'idée de départ est un prolongement : les puissances entières, carrés, cubes et inverses, deviennent des puissances à exposant réel quelconque. La fonction exponentielle est l'outil qui rend ce prolongement possible, et elle modélise aussi bien une croissance de population qu'une décroissance radioactive.",
+   "texte": "Prolonger les puissances : le fil rouge du cours.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Il existe une unique fonction dérivable sur l'ensemble des réels, égale à sa propre dérivée et valant un en zéro : c'est la fonction exponentielle, notée exp. Le nombre e est l'image de un par cette fonction ; il vaut environ deux virgule sept cent dix-huit. Être sa propre dérivée signifie que sa vitesse de croissance est, à chaque instant, exactement sa valeur.",
+   "texte": "Une seule fonction vérifie f′ = f et f(0) = 1 : exp.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "La propriété caractéristique transforme une somme en produit : l'exponentielle de a plus b est le produit de l'exponentielle de a par l'exponentielle de b. C'est elle qui fait de l'exponentielle le prolongement naturel des puissances, et c'est d'elle que découleront toutes les règles de calcul du chapitre.",
+   "texte": "e^(a+b) = e^a × e^b : la propriété caractéristique.",
+   "ecran": "propriete_fond"
+  },
+  {
+   "id": "p05",
+   "dit": "Les règles usuelles suivent aussitôt. L'exponentielle d'une différence est le quotient des exponentielles ; l'exponentielle de moins a est l'inverse de l'exponentielle de a ; et l'exponentielle de n fois a est la puissance n-ième de l'exponentielle de a. Enfin, une exponentielle est toujours strictement positive.",
+   "texte": "Quotient, inverse, puissance : les règles de calcul.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p06",
+   "dit": "Premier entraînement : simplifier le quotient de l'exponentielle de trois x, multipliée par l'exponentielle de moins x, le tout divisé par l'exponentielle de x. Les règles ramènent tout à une seule exponentielle : l'exposant devient trois x, moins x, moins x. Il reste simplement l'exponentielle de x.",
+   "texte": "Simplifier : additionner les exposants, un seul exp.",
+   "ecran": "ex_simplifier"
+  },
+  {
+   "id": "p07",
+   "dit": "Aux bornes, l'exponentielle explose d'un côté et s'écrase de l'autre : elle tend vers plus l'infini en plus l'infini, et vers zéro en moins l'infini, où l'axe des abscisses lui sert d'asymptote. Deux limites de référence complètent le tableau : l'exponentielle l'emporte sur x en plus l'infini, et le taux d'accroissement en zéro tend vers un.",
+   "texte": "Limites : +∞ à droite, 0 à gauche, asymptote y = 0.",
+   "ecran": "limites"
+  },
+  {
+   "id": "p08",
+   "dit": "Dériver une exponentielle composée demande un seul réflexe : la dérivée de l'exponentielle de u est la dérivée de u, multipliée par l'exponentielle de u. Pour la fonction qui envoie x sur l'exponentielle de deux x plus un, la dérivée de l'exposant vaut deux : la dérivée est donc deux fois l'exponentielle de deux x plus un.",
+   "texte": "(e^u)′ = u′ × e^u : le facteur u′ ne s'oublie jamais.",
+   "ecran": "derivee_exp"
+  },
+  {
+   "id": "p09",
+   "dit": "La courbe se lit d'un coup d'œil : la fonction est strictement positive, sa dérivée est elle-même, donc positive, et la fonction est strictement croissante sur tous les réels. Elle passe par le point de coordonnées zéro et un, puis par celui de coordonnées un et e, toujours au-dessus de l'axe des abscisses.",
+   "texte": "Croissante, positive, par (0 ; 1) et (1 ; e).",
+   "ecran": "courbe_exp"
+  },
+  {
+   "id": "p10",
+   "dit": "La stricte croissance donne l'équivalence fondamentale : deux exponentielles sont égales si et seulement si leurs exposants sont égaux, et l'ordre est conservé. Résoudre l'équation où l'exponentielle de deux x moins un égale l'exponentielle de x plus trois revient donc à égaler les exposants, ce qui donne x égale quatre.",
+   "texte": "e^A = e^B ⇔ A = B : on égalise les exposants.",
+   "ecran": "equations"
+  },
+  {
+   "id": "p11",
+   "dit": "Même geste pour les inéquations, puisque la fonction conserve l'ordre. L'inégalité entre l'exponentielle de trois x et l'exponentielle de x plus deux équivaut à trois x inférieur ou égal à x plus deux. On obtient deux x inférieur ou égal à deux, donc x inférieur ou égal à un : les solutions forment l'intervalle fermé en un et ouvert vers moins l'infini.",
+   "texte": "Inéquation : l'ordre passe aux exposants, x ≤ 1.",
+   "ecran": "inequation"
+  },
+  {
+   "id": "p12",
+   "dit": "Récapitulons cette première partie. L'exponentielle est l'unique fonction égale à sa dérivée et valant un en zéro ; sa propriété caractéristique transforme les sommes en produits et fonde toutes les règles de calcul ; strictement croissante, elle ramène équations et inéquations à des égalités et des inégalités sur les seuls exposants.",
+   "texte": "L'essentiel de la partie 1 : l'exponentielle.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p13",
+   "dit": "Passons aux fonctions puissances. Pour un réel a fixé, la fonction puissance d'exposant a est définie, pour x strictement positif, par x puissance a égale l'exponentielle de a fois le logarithme népérien de x. Cette écriture prolonge à tout exposant réel les puissances entières usuelles, avec lesquelles elle coïncide lorsque l'exposant est entier ; en particulier, la puissance un demi est la racine carrée, et la puissance un sur n est la racine n-ième.",
+   "texte": "x^a = e^(a ln x) : la définition à retenir.",
+   "ecran": "puissance_def"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple : calculer huit puissance deux tiers. Par définition, c'est l'exponentielle de deux tiers du logarithme de huit, c'est-à-dire la racine cubique de huit, le tout au carré. Or la racine cubique de huit vaut deux, puisque deux au cube fait huit : le résultat est deux au carré, c'est-à-dire quatre.",
+   "texte": "8^(2/3) = (racine cubique de 8)² = 4.",
+   "ecran": "ex_puissance"
+  },
+  {
+   "id": "p15",
+   "dit": "La fonction puissance est dérivable sur son domaine, et sa dérivée est a fois x puissance a moins un. Comme x puissance a moins un reste strictement positif pour x positif, le signe de la dérivée est exactement celui de a. Si a est positif, la fonction est strictement croissante, de zéro en zéro à plus l'infini en plus l'infini ; si a est négatif, elle est strictement décroissante, de plus l'infini à zéro ; si a est nul, elle est constante et vaut un partout.",
+   "texte": "(x^a)′ = a·x^(a−1) : tout suit le signe de a.",
+   "ecran": "derivee_puiss"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple complet : la fonction racine carrée, qui est la puissance un demi. Sa dérivée est un demi de x puissance moins un demi, c'est-à-dire un sur deux racine de x, toujours positive : la fonction est donc strictement croissante, elle part de zéro en zéro et tend vers plus l'infini en plus l'infini, comme toute puissance d'exposant positif.",
+   "texte": "√x = x^(1/2) : croissante, de 0 vers +∞.",
+   "ecran": "ex_racine"
+  },
+  {
+   "id": "p17",
+   "dit": "Toutes les courbes de puissances passent par le point de coordonnées un et un, puisque un à n'importe quelle puissance vaut un : c'est leur point de croisement obligé. De part et d'autre, l'ordre s'inverse complètement : entre zéro et un, le carré est sous la droite d'équation y égale x, elle-même sous la racine carrée ; après un, la racine carrée passe en dessous et le carré au-dessus. Attention donc à ne jamais généraliser une comparaison valable sur un intervalle à l'autre intervalle.",
+   "texte": "Entre 0 et 1 : x² < x < √x ; après 1, l'inverse.",
+   "ecran": "positions"
+  },
+  {
+   "id": "p18",
+   "dit": "Deux cas familiers pour finir les exemples. Un exposant entier négatif redonne un inverse : x puissance moins n est un sur x puissance n, prolongeable aux réels non nuls. Et résoudre x au cube égale huit sur les positifs revient à prendre la puissance un tiers : x est huit puissance un tiers, l'exponentielle d'un tiers du logarithme de huit, c'est-à-dire deux.",
+   "texte": "x³ = 8 se résout par la puissance 1/3 : x = 2.",
+   "ecran": "cas_entiers"
+  },
+  {
+   "id": "p19",
+   "dit": "Dernier résultat, celui des croissances comparées : en plus l'infini, l'exponentielle domine toute puissance, qui domine elle-même le logarithme. Concrètement, pour tout exposant a strictement positif, le quotient de l'exponentielle par x puissance a tend vers plus l'infini, et le quotient du logarithme par x puissance a tend vers zéro. Cette hiérarchie tranche la plupart des limites indéterminées où ces trois fonctions se rencontrent.",
+   "texte": "Exponentielle > puissance > logarithme, en +∞.",
+   "ecran": "croissances"
+  },
+  {
+   "id": "p20",
+   "dit": "Pour conclure : revenez toujours à l'écriture x puissance a égale l'exponentielle de a fois le logarithme de x. Elle donne instantanément la dérivée, le sens de variation et les limites, à partir du seul signe de l'exposant. Ajoutez la propriété caractéristique de l'exponentielle et sa stricte croissance : vous tenez les deux outils centraux de tout le chapitre.",
+   "texte": "À retenir : tout repasse par e^(a ln x).",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La fonction exponentielle : définition, calculs, équations"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Les fonctions puissances : définition, variations, comparaisons",
+   "pont": {
+    "texte": "Partie 2 : les fonctions puissances, de x^a = e^(a ln x) aux croissances comparées.",
+    "dit": "Partie deux : les fonctions puissances. Nous définirons x puissance a à l'aide de l'exponentielle et du logarithme, puis nous étudierons sa dérivée, ses variations, la position relative des courbes, et nous terminerons par les croissances comparées."
+   }
+  }
+ ]
+}

@@ -1,4 +1,4 @@
-import { BottomSheetBackdrop, BottomSheetFlatList, BottomSheetModal, BottomSheetView, type BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
+import { BottomSheetBackdrop, BottomSheetFlatList, BottomSheetModal, type BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
 import { router, useFocusEffect } from 'expo-router';
 import { Check, ChevronRight, X } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -8,20 +8,22 @@ import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring, w
 
 import type { CleTexte } from '@/i18n';
 import { useTraduction } from '@/i18n/useTraduction';
-import { lireProgressionAssistant, type ProgressionAssistant } from '@/services/assistantConfiguration';
+import { enregistrerCompletionAssistant, estAssistantMasque, lireProgressionAssistant, type ProgressionAssistant } from '@/services/assistantConfiguration';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
+import { Apparition } from '../Apparition';
 import { Appui } from '../Appui';
 import { useInvite } from '../FeuilleCompte';
 import { useFeedback } from '../useFeedback';
 
 type Etape = keyof ProgressionAssistant | 'compte';
 
-const ETAPES: Etape[] = ['compte', 'mission', 'lecon', 'quiz', 'exercice', 'correction', 'fil', 'parametres', 'horsLigne'];
+const ETAPES: Etape[] = ['compte', 'mission', 'planning', 'lecon', 'quiz', 'exercice', 'correction', 'fil', 'parametres', 'horsLigne'];
 const LIBELLES: Record<Etape, CleTexte> = {
   compte: 'configuration.etapes.compte',
   mission: 'configuration.etapes.mission',
+  planning: 'configuration.etapes.planning',
   lecon: 'configuration.etapes.lecon',
   quiz: 'configuration.etapes.quiz',
   exercice: 'configuration.etapes.exercice',
@@ -44,6 +46,7 @@ export function AssistantConfiguration() {
   const compteFait = !invite;
   const [progression, setProgression] = useState<ProgressionAssistant | null>(null);
   const [chargee, setChargee] = useState(false);
+  const [masque, setMasque] = useState(false);
   const [ouverte, setOuverte] = useState(false);
   const feuille = useRef<BottomSheetModal>(null);
   const presente = useRef(false);
@@ -51,6 +54,9 @@ export function AssistantConfiguration() {
 
   const actualiser = useCallback(() => {
     let actif = true;
+    void estAssistantMasque().then((m) => {
+      if (actif && m) setMasque(true);
+    });
     void lireProgressionAssistant().then((p) => {
       if (!actif) return;
       setProgression(p);
@@ -79,6 +85,12 @@ export function AssistantConfiguration() {
     () => ETAPES.filter((etape) => (etape === 'compte' ? compteFait : !!progression?.[etape])).length,
     [compteFait, progression],
   );
+
+  useEffect(() => {
+    if (chargee && faites === ETAPES.length) {
+      void enregistrerCompletionAssistant();
+    }
+  }, [chargee, faites]);
   const fermerFeuille = () => {
     presente.current = false;
     feuille.current?.dismiss();
@@ -104,6 +116,9 @@ export function AssistantConfiguration() {
       case 'mission':
         router.push({ pathname: '/parametres', params: { assistant: 'mission' } });
         break;
+      case 'planning':
+        router.push({ pathname: '/planning', params: { source: 'accueil' } });
+        break;
       case 'lecon':
         router.push({ pathname: '/reviser', params: { onglet: 'cours' } });
         break;
@@ -126,29 +141,30 @@ export function AssistantConfiguration() {
     }
   };
 
+  if (masque) return null;
+
   return (
-    <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
-      <View pointerEvents="box-none" style={styles.position}>
-        <Animated.View style={reduit ? undefined : animation}>
-          <Appui
-            accessibilityRole="button"
-            accessibilityLabel={t('configuration.ouvrir', { faits: faites, total: ETAPES.length })}
-            accessibilityHint={t('configuration.ouvrirAide')}
-            onPress={() => setOuverte(true)}
-            ombre={4}
-            decalage={3}
-            rayon={rayon.l}
-            couleurOmbre={theme.ombre}
-          >
-            <View style={[styles.bouton, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.bouton, { color: theme.texte.surCouleur }]}>{t('configuration.bouton')}</Text>
-              <View style={[styles.badge, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{`${faites}/${ETAPES.length}`}</Text>
-              </View>
+    <Apparition delai={80}>
+      <Animated.View style={[styles.conteneur, reduit ? undefined : animation]}>
+        <Appui
+          accessibilityRole="button"
+          accessibilityLabel={t('configuration.ouvrir', { faits: faites, total: ETAPES.length })}
+          accessibilityHint={t('configuration.ouvrirAide')}
+          onPress={() => setOuverte(true)}
+          ombre={4}
+          decalage={3}
+          rayon={rayon.l}
+          couleurOmbre={theme.ombre}
+          style={styles.conteneur}
+        >
+          <View style={[styles.bouton, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+            <Text style={[typo.bouton, { color: theme.texte.surCouleur }]}>{t('configuration.bouton')}</Text>
+            <View style={[styles.badge, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{`${faites}/${ETAPES.length}`}</Text>
             </View>
-          </Appui>
-        </Animated.View>
-      </View>
+          </View>
+        </Appui>
+      </Animated.View>
 
       <BottomSheetModal
         ref={feuille}
@@ -216,7 +232,7 @@ export function AssistantConfiguration() {
                       : <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{index + 1}</Text>}
                   </View>
                   <Text style={[typo.texteFort, styles.libelle, { color: theme.texte.principal }]}>{libelle}</Text>
-                  <ChevronRight size={20} color={theme.texte.secondaire} />
+                  <ChevronRight size={20} color={theme.texte.secondaire} style={styles.chevron} />
                 </View>
               </Appui>
             );
@@ -228,13 +244,13 @@ export function AssistantConfiguration() {
           showsVerticalScrollIndicator
         />
       </BottomSheetModal>
-    </View>
+    </Apparition>
   );
 }
 
 const styles = StyleSheet.create({
-  position: { position: 'absolute', alignItems: 'flex-end', right: espace[5], bottom: espace[5] },
-  bouton: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
+  conteneur: { width: '100%' },
+  bouton: { minHeight: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
   badge: { minWidth: 32, height: 28, paddingHorizontal: espace[2], alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
   feuille: { flex: 1, paddingHorizontal: espace[5], paddingBottom: espace[3], gap: espace[4] },
   entete: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3], paddingTop: espace[2], paddingBottom: espace[3] },
@@ -242,7 +258,8 @@ const styles = StyleSheet.create({
   fermer: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.pilule, alignItems: 'center', justifyContent: 'center' },
   liste: { flex: 1 },
   contenuListe: { gap: espace[3], paddingHorizontal: espace[5], paddingBottom: espace[3] },
-  ligne: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderRadius: rayon.l },
+  ligne: { minHeight: 64, flexDirection: 'row', alignItems: 'flex-start', gap: espace[3], padding: espace[3], borderRadius: rayon.l },
   numero: { width: 36, height: 36, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.pilule },
   libelle: { flex: 1 },
+  chevron: { alignSelf: 'center' },
 });

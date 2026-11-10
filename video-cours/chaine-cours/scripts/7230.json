@@ -1,0 +1,338 @@
+{
+ "cours": 7230,
+ "ecrans": {
+  "cachees": {
+   "kicker": "Règle 4 · Visible et caché",
+   "tex": [
+    "\\text{visible : trait plein}",
+    "\\text{caché : pointillés}"
+   ],
+   "titre": "Trait plein ou pointillés",
+   "type": "etape"
+  },
+  "coeff": {
+   "kicker": "Règle 3 · Le coefficient de réduction",
+   "note": "Avec k = 1/2, une profondeur de 2 cm devient 1 cm.",
+   "tex": "L_{\\text{dessin}} = k \\times L_{\\text{réelle}} \\qquad k = \\frac{1}{2} \\text{ ou } \\frac{2}{3}",
+   "type": "formule"
+  },
+  "cylindre_etape": {
+   "kicker": "Cylindre · Construction",
+   "tex": [
+    "R = 2 \\text{ cm} \\qquad h = 5 \\text{ cm}",
+    "\\text{décalage} = 5 \\times \\tfrac{1}{2} = 2{,}5 \\text{ cm}",
+    "\\text{génératrices} = 2{,}5 \\text{ cm}",
+    "\\text{arrière en pointillés}"
+   ],
+   "titre": "Rayon deux, hauteur cinq, coefficient un demi",
+   "type": "etape"
+  },
+  "cylindre_intro": {
+   "kicker": "Le cylindre de révolution",
+   "texte": "Deux bases circulaires parallèles, reliées par des génératrices.",
+   "type": "phrase"
+  },
+  "cylindre_remarque": {
+   "kicker": "Le point commun",
+   "texte": "Génératrices = fuyantes du cylindre : parallèles, même longueur.",
+   "type": "phrase"
+  },
+  "exemple_inverse": {
+   "kicker": "Exemple chiffré · Retrouver le réel",
+   "note": "Mesuré 2 cm, coefficient 1/2 : réel 4 cm.",
+   "tex": "L_{\\text{réelle}} = \\frac{L_{\\text{dessin}}}{k} = \\frac{2}{\\frac{1}{2}} = 4 \\text{ cm}",
+   "type": "formule"
+  },
+  "frontal": {
+   "kicker": "Règle 1 · Le plan frontal",
+   "note": "Longueurs et angles conservés, sans déformation.",
+   "tex": "\\text{face avant} = \\text{vraie grandeur}",
+   "type": "formule"
+  },
+  "fuyantes": {
+   "kicker": "Règle 2 · Les fuyantes",
+   "tex": [
+    "\\text{perpendiculaires au plan frontal}",
+    "\\text{parallèles entre elles}",
+    "\\text{angle constant : } 30^{\\circ} \\text{ ou } 45^{\\circ}"
+   ],
+   "titre": "Parallèles, de même longueur, même angle",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Un solide en trois dimensions, une feuille en deux : comment le dessiner sans le déformer ?",
+   "type": "phrase"
+  },
+  "lecture_etape": {
+   "kicker": "Lire une représentation · Méthode",
+   "tex": [
+    "\\text{1. plan frontal : faces non déformées}",
+    "\\text{2. fuyantes : parallèles et inclinées}",
+    "\\text{3. pointillés : arêtes cachées}",
+    "\\text{4. longueurs apparentes : méfiance}"
+   ],
+   "titre": "Quatre réflexes",
+   "type": "etape"
+  },
+  "lecture_intro": {
+   "kicker": "Lire une représentation",
+   "texte": "Quatre réflexes pour lire une figure sans se tromper.",
+   "type": "phrase"
+  },
+  "pave_arriere": {
+   "kicker": "Pavé droit · Étape 3",
+   "tex": [
+    "\\text{face arrière : } EFGH",
+    "\\text{fuyantes : } AE, BF, CG, DH",
+    "\\text{DH cachée : pointillés}"
+   ],
+   "titre": "Relier pour fermer le solide",
+   "type": "etape"
+  },
+  "pave_face": {
+   "kicker": "Pavé droit · Étape 1",
+   "tex": [
+    "AB = 4 \\text{ cm} \\qquad AD = 3 \\text{ cm}",
+    "\\text{rectangle } ABCD \\text{ de devant}"
+   ],
+   "titre": "La face avant, en vraie grandeur",
+   "type": "etape"
+  },
+  "pave_fuyante": {
+   "kicker": "Pavé droit · Étape 2",
+   "note": "Depuis chaque sommet : une fuyante de 1 cm.",
+   "tex": "2 \\times \\frac{1}{2} = 1 \\text{ cm} \\qquad \\text{à } 45^{\\circ}",
+   "type": "formule"
+  },
+  "pave_intro": {
+   "kicker": "Le pavé droit",
+   "texte": "Six faces, douze arêtes, huit sommets : le premier solide à construire.",
+   "type": "phrase"
+  },
+  "piege": {
+   "kicker": "Le piège classique",
+   "texte": "Mesurer une fuyante, ce n'est pas mesurer la longueur réelle.",
+   "type": "phrase"
+  },
+  "prisme_etape": {
+   "kicker": "Prisme triangulaire · Construction",
+   "tex": [
+    "\\text{triangle } ABC \\text{ en vraie grandeur}",
+    "\\text{fuyantes depuis } A, B, C \\text{ à } 45^{\\circ}",
+    "\\text{triangle arrière } A'B'C'",
+    "\\text{cachés en pointillés}"
+   ],
+   "titre": "Triangle devant, triangle derrière",
+   "type": "etape"
+  },
+  "prisme_intro": {
+   "kicker": "Le prisme droit",
+   "texte": "Deux bases superposables, reliées par des arêtes perpendiculaires.",
+   "type": "phrase"
+  },
+  "pyramide_etape": {
+   "kicker": "Pyramide · Construction",
+   "tex": [
+    "\\text{base carrée } ABCD \\text{, côté } 4 \\text{ cm}",
+    "\\text{sommet } S \\text{ au-dessus du centre}",
+    "\\text{arêtes } SA, SB, SC, SD",
+    "\\text{plein ou pointillés}"
+   ],
+   "titre": "Base carrée, sommet au-dessus du centre",
+   "type": "etape"
+  },
+  "pyramide_intro": {
+   "kicker": "La pyramide",
+   "texte": "Une base polygonale, un sommet : base carrée de 4 cm, hauteur de 5 cm.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Face avant en vraie grandeur, sans déformation",
+    "Fuyantes parallèles, même angle, réduites",
+    "Arêtes cachées en pointillés, visibles en plein",
+    "Pavé, cylindre, prisme, pyramide : mêmes règles",
+    "Longueur réelle = dessinée / coefficient"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "terminologie": {
+   "kicker": "Terminologie",
+   "tex": [
+    "\\text{plan frontal : face avant, non déformée}",
+    "\\text{fuyantes : arêtes vers l'arrière}",
+    "\\text{arêtes cachées : non visibles}"
+   ],
+   "titre": "Trois mots à fixer",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "pave_fig"
+   },
+   "kicker": "Mathématique · Géométrie dans l'espace",
+   "sous": "Dessiner un solide en trois dimensions sur une feuille plane",
+   "titre": "La perspective cavalière",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Règles, vocabulaire, pavé et cylindre"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : les autres solides et la lecture d'une figure. Nous construirons le prisme droit et la pyramide, puis nous apprendrons à lire une représentation en perspective cavalière et à retrouver une longueur réelle à partir du dessin.",
+    "texte": "Partie 2 : prisme, pyramide, lecture et longueur réelle."
+   },
+   "sous_titre": "Prisme, pyramide et lecture d'une figure"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de géométrie dans l'espace, consacré à la perspective cavalière, la technique qui permet de dessiner un solide en trois dimensions sur une feuille plane, tout en gardant ses propriétés essentielles.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "La perspective cavalière : le solide sur la feuille."
+  },
+  {
+   "dit": "Un solide a une longueur, une largeur et une hauteur, mais une feuille n'a que deux dimensions. La perspective cavalière résout ce problème : elle projette le solide sur le plan de la feuille en conservant ce qui permet de le reconnaître et de le mesurer.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Trois dimensions sur deux : projeter sans déformer."
+  },
+  {
+   "dit": "Première règle : les faces parallèles au plan frontal, c'est-à-dire la face que l'on regarde de face, sont dessinées en vraie grandeur. Leurs longueurs et leurs angles sont conservés, sans déformation.",
+   "ecran": "frontal",
+   "id": "p03",
+   "texte": "Règle un : la face avant ne se déforme pas."
+  },
+  {
+   "dit": "Deuxième règle : les arêtes fuyantes, celles qui sont perpendiculaires au plan frontal et qui donnent la profondeur, sont dessinées par des segments parallèles entre eux, de même longueur, et inclinés d'un même angle par rapport à l'horizontale, souvent trente ou quarante-cinq degrés.",
+   "ecran": "fuyantes",
+   "id": "p04",
+   "texte": "Règle deux : des fuyantes parallèles, même angle."
+  },
+  {
+   "dit": "Troisième règle : pour donner l'illusion de la profondeur, la longueur des fuyantes est réduite. On multiplie la longueur réelle par un coefficient de réduction, le plus souvent un demi ou deux tiers. Une profondeur réelle de deux centimètres devient donc un centimètre sur le dessin avec un coefficient un demi.",
+   "ecran": "coeff",
+   "id": "p05",
+   "texte": "Règle trois : réduire les fuyantes, coefficient un demi."
+  },
+  {
+   "dit": "Quatrième règle, celle de la lisibilité : les arêtes visibles sont tracées en traits pleins, et les arêtes cachées, celles que le point de vue masque, sont tracées en pointillés. Sans cette convention, on ne saurait plus quelles arêtes sont devant et lesquelles sont derrière.",
+   "ecran": "cachees",
+   "id": "p06",
+   "texte": "Règle quatre : plein devant, pointillés derrière."
+  },
+  {
+   "dit": "Fixons le vocabulaire, en trois mots. Le plan frontal est le plan de la face avant, celui qui n'est pas déformé. Les fuyantes sont les arêtes perpendiculaires à ce plan, celles qui fuient vers l'arrière. Les arêtes cachées sont celles que le point de vue ne laisse pas voir.",
+   "ecran": "terminologie",
+   "id": "p07",
+   "texte": "Plan frontal, fuyantes, arêtes cachées : le vocabulaire."
+  },
+  {
+   "dit": "Premier solide, le pavé droit : six faces rectangulaires, douze arêtes et huit sommets. Nous allons le construire pas à pas, avec des dimensions choisies : quatre centimètres de longueur, trois centimètres de hauteur et deux centimètres de profondeur.",
+   "ecran": "pave_intro",
+   "id": "p08",
+   "texte": "Le pavé droit : quatre, trois et deux centimètres."
+  },
+  {
+   "dit": "On commence par le rectangle de devant, en vraie grandeur : quatre centimètres de long sur trois centimètres de haut. C'est la face avant, non déformée.",
+   "ecran": "pave_face",
+   "id": "p09",
+   "texte": "Étape un : le rectangle de devant, en vraie grandeur."
+  },
+  {
+   "dit": "Depuis chaque sommet de ce rectangle, on trace une fuyante inclinée à quarante-cinq degrés. La profondeur réelle est de deux centimètres, et avec un coefficient un demi, chaque fuyante mesure un centimètre sur le dessin.",
+   "ecran": "pave_fuyante",
+   "id": "p10",
+   "texte": "Étape deux : fuyantes à quarante-cinq degrés, un centimètre."
+  },
+  {
+   "dit": "On relie ensuite les extrémités des fuyantes pour former la face arrière, identique à la face avant. Les quatre fuyantes sont les arêtes qui relient les deux faces, et l'arête située à l'arrière à gauche est cachée : on la trace en pointillés.",
+   "ecran": "pave_arriere",
+   "id": "p11",
+   "texte": "Étape trois : la face arrière, et le caché en pointillés."
+  },
+  {
+   "dit": "Deuxième solide, le cylindre de révolution : deux bases circulaires parallèles, reliées par des génératrices. Une génératrice est simplement un segment qui relie les deux bases, en suivant la hauteur du cylindre.",
+   "ecran": "cylindre_intro",
+   "id": "p12",
+   "texte": "Le cylindre : deux cercles, des génératrices parallèles."
+  },
+  {
+   "dit": "Voici la construction, avec un rayon de deux centimètres et une hauteur de cinq centimètres. On trace d'abord la base avant, un cercle de rayon deux centimètres en vraie grandeur. Puis on décale ce cercle vers l'arrière, dans la direction des fuyantes : avec un coefficient un demi, ce décalage vaut deux centimètres et demi sur le dessin. On relie enfin les deux cercles par deux génératrices parallèles, et la partie arrière du cercle de base, que l'on ne voit pas, est tracée en pointillés.",
+   "ecran": "cylindre_etape",
+   "id": "p13",
+   "texte": "Cylindre : cercle avant, décalage, génératrices."
+  },
+  {
+   "dit": "Remarquez le point commun avec le pavé : les génératrices jouent le rôle des fuyantes, parallèles et de même longueur, et les parties cachées passent en pointillés.",
+   "ecran": "cylindre_remarque",
+   "id": "p14",
+   "texte": "Même logique que le pavé, pour le cylindre."
+  },
+  {
+   "dit": "Le prisme droit possède deux bases polygonales superposables et parallèles, reliées par des arêtes perpendiculaires aux bases. Prenons un prisme à base triangulaire, le cas le plus simple à dessiner.",
+   "ecran": "prisme_intro",
+   "id": "p15",
+   "texte": "Le prisme droit : deux bases identiques, face à face."
+  },
+  {
+   "dit": "On trace d'abord le triangle de devant en vraie grandeur, puis les fuyantes depuis ses trois sommets, inclinées à quarante-cinq degrés et de longueur réduite. On relie leurs extrémités pour obtenir le triangle arrière. Selon le point de vue, une arête latérale et un côté du triangle arrière peuvent être cachés, et passent alors en pointillés.",
+   "ecran": "prisme_etape",
+   "id": "p16",
+   "texte": "Prisme : triangle devant, fuyantes, triangle derrière."
+  },
+  {
+   "dit": "La pyramide possède une base polygonale et un sommet relié à chaque sommet de la base. Prenons une pyramide à base carrée de quatre centimètres de côté et de cinq centimètres de hauteur.",
+   "ecran": "pyramide_intro",
+   "id": "p17",
+   "texte": "La pyramide : base carrée, un sommet au-dessus."
+  },
+  {
+   "dit": "On trace d'abord le carré de base, puis on place le sommet au-dessus du centre du carré, à une distance qui représente la hauteur. On relie ensuite le sommet à chaque sommet de la base. Chaque arête latérale est tracée en trait plein si elle est visible, en pointillés sinon.",
+   "ecran": "pyramide_etape",
+   "id": "p18",
+   "texte": "Pyramide : base, sommet au centre, arêtes latérales."
+  },
+  {
+   "dit": "Savoir dessiner, c'est bien, mais il faut aussi savoir lire une figure déjà tracée. Voici la méthode, en quatre réflexes.",
+   "ecran": "lecture_intro",
+   "id": "p19",
+   "texte": "Savoir lire : quatre réflexes, dans l'ordre."
+  },
+  {
+   "dit": "Premier réflexe : identifier le plan frontal, c'est-à-dire les faces non déformées. Deuxième réflexe : repérer les fuyantes, ces segments parallèles et inclinés. Troisième réflexe : distinguer les arêtes cachées en pointillés des arêtes visibles en traits pleins. Quatrième réflexe : ne jamais se fier aux longueurs apparentes des fuyantes, car elles sont réduites.",
+   "ecran": "lecture_etape",
+   "id": "p20",
+   "texte": "Lire : frontal, fuyantes, pointillés, méfiance."
+  },
+  {
+   "dit": "Exemple chiffré, dans l'autre sens. Sur une figure, un segment fuyant mesure deux centimètres sur le dessin, et le coefficient de réduction vaut un demi. La longueur réelle s'obtient en divisant la longueur dessinée par le coefficient : deux divisé par un demi égale quatre. La longueur réelle est donc de quatre centimètres, le double de ce que l'on mesure sur le dessin.",
+   "ecran": "exemple_inverse",
+   "id": "p21",
+   "texte": "Retrouver le réel : deux divisé par un demi, quatre."
+  },
+  {
+   "dit": "C'est le piège classique de la perspective cavalière : mesurer une fuyante sur le dessin et la prendre pour la longueur réelle. Il faut toujours reconstituer les dimensions réelles à partir des indications portées sur la figure, et non à partir des apparences.",
+   "ecran": "piege",
+   "id": "p22",
+   "texte": "Le piège : ne jamais prendre l'apparence pour le réel."
+  },
+  {
+   "dit": "Pour finir, retenez l'essentiel : la face avant reste en vraie grandeur, les fuyantes sont parallèles, inclinées d'un angle constant et de longueur réduite, et les arêtes cachées passent en pointillés. Avec ces règles, un pavé, un cylindre, un prisme ou une pyramide se dessinent et se lisent sans se tromper sur les dimensions.",
+   "ecran": "recap",
+   "id": "p23",
+   "texte": "Face avant vraie, fuyantes réduites, cachés en pointillés."
+  }
+ ],
+ "titre": "La perspective cavalière"
+}

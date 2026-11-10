@@ -1,0 +1,400 @@
+{
+ "cours": 6391,
+ "ecrans": {
+  "alerte": {
+   "kicker": "L'alerte précoce",
+   "tex": [
+    "\\text{ondes P : rapides, peu destructrices}",
+    "\\text{ondes S : lentes, destructrices}",
+    "\\text{quelques secondes gagnées}"
+   ],
+   "titre": "P prévient avant S",
+   "type": "etape"
+  },
+  "crise": {
+   "kicker": "Après le séisme",
+   "tex": [
+    "\\text{secours et soins}",
+    "\\text{abris}",
+    "\\text{reconstruction}"
+   ],
+   "titre": "Les phases de la réponse",
+   "type": "etape"
+  },
+  "ems": {
+   "kicker": "L'intensité, EMS-98",
+   "tex": [
+    "\\text{12 degrés, de I à XII}",
+    "\\text{maximale près de l'épicentre}",
+    "\\text{un séisme, beaucoup d'intensités}"
+   ],
+   "titre": "L'effet ressenti, en un lieu donné",
+   "type": "etape"
+  },
+  "epicentre": {
+   "kicker": "Foyer et épicentre",
+   "tex": [
+    "\\text{foyer : en profondeur}",
+    "\\text{épicentre : juste au-dessus}"
+   ],
+   "titre": "Deux points à ne pas confondre",
+   "type": "etape"
+  },
+  "faille_types": {
+   "kicker": "Trois mouvements de faille",
+   "tex": [
+    "\\text{normale : extension}",
+    "\\text{inverse : compression}",
+    "\\text{décrochement : cisaillement horizontal}"
+   ],
+   "titre": "Étirer, comprimer, cisailler",
+   "type": "etape"
+  },
+  "magnitude": {
+   "kicker": "La magnitude, logarithmique",
+   "note": "Richter, mille neuf cent trente-cinq : le logarithme de l'amplitude à cent kilomètres",
+   "tex": "M_L = \\log_{10} A",
+   "type": "formule"
+  },
+  "moment": {
+   "kicker": "La magnitude de moment",
+   "note": "L'étalon-or actuel : elle mesure la taille de la rupture, pas seulement l'amplitude",
+   "tex": "M_W",
+   "type": "formule"
+  },
+  "ondes": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "types_ondes"
+   },
+   "kicker": "Quatre ondes, deux familles",
+   "texte": "P et S en volume, Love et Rayleigh en surface.",
+   "type": "phrase"
+  },
+  "parasismique": {
+   "kicker": "Construire pour résister",
+   "tex": [
+    "\\text{isolation de base}",
+    "\\text{amortissement supplémentaire}",
+    "\\text{contreventement ductile}"
+   ],
+   "titre": "Isoler, amortir, contreventer",
+   "type": "etape"
+  },
+  "prediction": {
+   "kicker": "Peut-on prédire ?",
+   "texte": "Date, lieu, magnitude précis : la prédiction déterministe reste hors de portée.",
+   "type": "phrase"
+  },
+  "rebond": {
+   "kicker": "Le rebond élastique",
+   "tex": [
+    "\\text{énergie accumulée dans la croûte}",
+    "\\text{libérée sur une faille}",
+    "\\text{vibrations du sol}"
+   ],
+   "titre": "Une libération brutale d'énergie",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Rebond élastique : chargement, rupture, rebond",
+    "P, S, Love, Rayleigh : quatre ondes",
+    "Magnitude : l'énergie à la source",
+    "Intensité : l'effet ressenti, EMS-98",
+    "Risque : aléa, vulnérabilité, préparation"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "resilience": {
+   "kicker": "La résilience sismique",
+   "tex": [
+    "\\text{évaluer l'aléa}",
+    "\\text{construire parasismique}",
+    "\\text{alerter, préparer les communautés}"
+   ],
+   "titre": "Quatre piliers de gestion",
+   "type": "etape"
+  },
+  "risque": {
+   "kicker": "L'effet de site",
+   "tex": [
+    "\\text{sédiments meubles}",
+    "\\text{amplification jusqu'à} \\times 10",
+    "\\text{microzonation, normes adaptées}"
+   ],
+   "titre": "Le sol amplifie ou atténue",
+   "type": "etape"
+  },
+  "sismogramme": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "sismogramme"
+   },
+   "kicker": "Le sismogramme",
+   "texte": "P d'abord, S ensuite, puis le train des ondes de surface.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "sismogramme"
+   },
+   "kicker": "Biologie · Séismes",
+   "sous": "Causes, propagation et risques : du rebond élastique à la ville qui résiste",
+   "titre": "Séismes : causes, propagation et risques",
+   "type": "titre"
+  },
+  "tsunami": {
+   "kicker": "Les tsunamis",
+   "tex": [
+    "\\text{rupture sous-marine}",
+    "\\text{soulèvement du fond}",
+    "\\text{amplification côtière}"
+   ],
+   "titre": "Une vague née du fond marin",
+   "type": "etape"
+  },
+  "victimes": {
+   "kicker": "Un enjeu humain majeur",
+   "note": "Plus d'un virgule cinq million de morts au vingtième siècle",
+   "tex": "1{,}5\\,\\text{million}",
+   "type": "formule"
+  },
+  "rupture": {
+   "kicker": "La rupture",
+   "tex": [
+    "\\text{contrainte} > \\text{frottement}",
+    "\\text{rupture soudaine}",
+    "\\text{glissement, vibrations}"
+   ],
+   "titre": "La faille rompt et rebondit",
+   "type": "etape"
+  },
+  "repliques": {
+   "kicker": "Après le choc",
+   "tex": [
+    "\\text{rupture principale}",
+    "\\text{réajustement}",
+    "\\text{répliques, parfois des semaines}"
+   ],
+   "titre": "Le cycle sismique complet",
+   "type": "etape"
+  },
+  "destructrices": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "types_ondes"
+   },
+   "kicker": "Les grandes destructrices",
+   "texte": "Love et Rayleigh : les grandes destructrices.",
+   "type": "phrase"
+  },
+  "frontieres_seismes": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "plaques_fig"
+   },
+   "kicker": "Aux frontières des plaques",
+   "texte": "Aux frontières des plaques, les plus puissants.",
+   "type": "phrase"
+  },
+  "cascade": {
+   "kicker": "La cascade du désastre",
+   "tex": [
+    "\\text{secousse}",
+    "\\text{liquéfaction, glissements}",
+    "\\text{défaillances en chaîne}"
+   ],
+   "titre": "La catastrophe se construit",
+   "type": "etape"
+  },
+  "chargement": {
+   "kicker": "Chargement et accumulation",
+   "tex": [
+    "\\text{déformation lente et élastique}",
+    "\\text{faille coincée par le frottement}",
+    "\\text{énergie accumulée des décennies}"
+   ],
+   "titre": "Le bâton que l'on plie",
+   "type": "etape"
+  }
+ },
+ "matiere": "Biologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Cause, faille et ondes"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : mesurer le séisme, de la magnitude à l'intensité, puis les tsunamis et les destructions. Nous verrons pourquoi un même séisme a une seule magnitude mais beaucoup d'intensités.",
+    "texte": "Partie 2 : mesurer le séisme et ses destructions."
+   },
+   "sous_titre": "Mesurer le séisme et ses destructions"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : vivre avec la menace. Nous verrons les constructions parasismiques, les alertes précoces et les limites de la prédiction, puis la gestion de crise après le choc.",
+    "texte": "Partie 3 : vivre avec la menace."
+   },
+   "sous_titre": "Vivre avec la menace"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur les séismes, leurs causes, leur propagation et leurs risques. Imaginez que le sol sous vos pieds, symbole ultime de stabilité, se mette à onduler comme la surface d'un lac : en quelques secondes, l'ordre établi est bouleversé.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Le sol tremble : comprendre pour mieux résister."
+  },
+  {
+   "dit": "Un séisme est une libération soudaine et brutale d'énergie accumulée dans les roches de la croûte, qui se manifeste par des vibrations du sol. Cette énergie est libérée au niveau d'une faille, une fracture de la croûte le long de laquelle un mouvement relatif se produit.",
+   "ecran": "rebond",
+   "id": "p02",
+   "texte": "Une libération brutale d'énergie, sur une faille."
+  },
+  {
+   "dit": "Le modèle du rebond élastique l'explique par l'analogie du bâton que l'on plie : les forces tectoniques déforment lentement et élastiquement les roches de part et d'autre de la faille ; la faille, coincée par le frottement, empêche le mouvement, et l'énergie s'accumule pendant des décennies, voire des siècles.",
+   "ecran": "chargement",
+   "id": "p03",
+   "texte": "Chargée, bloquée, rompue : la faille rebondit."
+  },
+  {
+   "dit": "Quand la contrainte dépasse la résistance au frottement, la faille rompt soudainement, et les deux blocs rebondissent en glissant l'un par rapport à l'autre pour retrouver une position moins contrainte. C'est ce glissement soudain qui génère les vibrations du séisme.",
+   "ecran": "rupture",
+   "id": "p04",
+   "texte": "La rupture libère l'énergie accumulée."
+  },
+  {
+   "dit": "Deux mots à ne pas confondre : le foyer, point de la faille où commence la rupture, en profondeur, et l'épicentre, le point de la surface situé juste au-dessus du foyer. Les ondes rayonnent ensuite depuis le foyer dans toutes les directions.",
+   "ecran": "epicentre",
+   "id": "p05",
+   "texte": "Foyer en profondeur, épicentre juste au-dessus."
+  },
+  {
+   "dit": "Les failles bougent de trois façons fondamentales : normale, en extension de la croûte ; inverse, en compression ; décrochement, en cisaillement horizontal. Dans la réalité, les mouvements sont souvent obliques, combinant plusieurs de ces mécanismes.",
+   "ecran": "faille_types",
+   "id": "p06",
+   "texte": "Étirer, comprimer, cisailler : trois mouvements."
+  },
+  {
+   "dit": "Après la rupture principale, les roches se réajustent : des répliques se produisent pendant la phase post-sismique, parfois pendant des semaines. C'est le cycle sismique complet : chargement, rupture, rebond, puis réajustement.",
+   "ecran": "repliques",
+   "id": "p07",
+   "texte": "Après le choc : les répliques."
+  },
+  {
+   "dit": "L'énergie libérée voyage en quatre ondes. En volume : les ondes P, primaires, de compression, qui traversent tous les milieux, et les ondes S, secondaires, de cisaillement, qui ne traversent que les solides. En surface : les ondes de Love, nommées d'après Love en mille neuf cent onze, et les ondes de Rayleigh, d'après Lord Rayleigh en mille huit cent quatre-vingt-cinq.",
+   "ecran": "ondes",
+   "id": "p08",
+   "texte": "P et S en volume, Love et Rayleigh en surface."
+  },
+  {
+   "dit": "Les ondes de surface sont les grandes destructrices : les ondes de Love cisaillent horizontalement, les ondes de Rayleigh font onduler le sol verticalement. Ce sont elles qui dictent l'essentiel des normes de construction, pour éviter la résonance entre le bâtiment et le sol.",
+   "ecran": "destructrices",
+   "id": "p09",
+   "texte": "Love et Rayleigh : les grandes destructrices."
+  },
+  {
+   "dit": "Le sismogramme est la partition du séisme : on y lit l'arrivée des ondes P, puis celle des ondes S, puis le train des ondes de surface. L'écart entre les arrivées P et S donne la distance entre la station et l'épicentre, grâce à des courbes standardisées.",
+   "ecran": "sismogramme",
+   "id": "p10",
+   "texte": "P d'abord, S ensuite, puis le train des ondes de surface."
+  },
+  {
+   "dit": "Au vingtième siècle, les séismes ont causé la mort de plus d'un million et demi de personnes. Ce n'est donc pas une simple curiosité géologique, mais un défi majeur à l'interface entre science, technique et société.",
+   "ecran": "victimes",
+   "id": "p11",
+   "texte": "Plus de 1,5 million de morts au vingtième siècle."
+  },
+  {
+   "dit": "Les séismes les plus puissants naissent aux frontières des plaques, là où les mégathrusts des zones de subduction rompent sur des centaines de kilomètres. Comprendre la cause, c'est déjà comprendre où le risque est le plus grand.",
+   "ecran": "frontieres_seismes",
+   "id": "p12",
+   "texte": "Aux frontières des plaques, les plus puissants."
+  },
+  {
+   "dit": "Mesurer un séisme, c'est d'abord mesurer son énergie à la source : la magnitude. En mille neuf cent trente-cinq, Charles Richter propose une échelle logarithmique : la magnitude locale est le logarithme décimal de l'amplitude mesurée par un sismomètre standard, à cent kilomètres de l'épicentre.",
+   "ecran": "magnitude",
+   "id": "p13",
+   "texte": "Richter, 1935 : le logarithme de l'amplitude."
+  },
+  {
+   "dit": "Logarithmique veut dire que chaque degré de magnitude multiplie l'amplitude par dix, et l'énergie libérée croît encore plus vite. La magnitude de Richter sature pour les très grands séismes : on utilise alors la magnitude de moment, l'étalon-or actuel, qui mesure la taille de la rupture elle-même.",
+   "ecran": "moment",
+   "id": "p14",
+   "texte": "La magnitude de moment : l'étalon-or actuel."
+  },
+  {
+   "dit": "Ne confondez pas magnitude et intensité. La magnitude est unique, à la source. L'intensité, elle, mesure l'effet ressenti en un lieu donné : elle est maximale près de l'épicentre et décroît avec la distance. Un même séisme a donc une magnitude, mais une multitude d'intensités.",
+   "ecran": "ems",
+   "id": "p15",
+   "texte": "Une magnitude, une multitude d'intensités."
+  },
+  {
+   "dit": "En Europe, l'échelle de référence est l'EMS quatre-vingt-dix-huit, l'échelle macrosismique européenne, à douze degrés, de un à douze en chiffres romains, fondée sur les effets observés sur les personnes, les objets et les bâtiments, et calibrée par des enquêtes de terrain après le séisme.",
+   "ecran": "ems",
+   "id": "p16",
+   "texte": "EMS-98 : douze degrés, de I à XII."
+  },
+  {
+   "dit": "Les dégâts dépendent aussi du sol : c'est l'effet de site. Les zones construites sur des sédiments meubles, comme les remblais du front de mer, peuvent subir des amplifications atteignant un facteur dix par rapport aux zones rocheuses. C'est pourquoi la microzonation guide directement les normes de construction.",
+   "ecran": "risque",
+   "id": "p17",
+   "texte": "Sédiments meubles : amplification jusqu'à dix fois."
+  },
+  {
+   "dit": "Quand la rupture se produit sous l'océan, le soulèvement du fond marin peut engendrer un tsunami : une vague sismique qui traverse l'océan, puis s'amplifie en arrivant sur la côte. Le séisme de Tohoku, au Japon, en deux mille onze, de magnitude moment neuf, a montré à la fois les limites des défenses face à l'extrême et l'efficacité des constructions parasismiques, qui ont sauvé des milliers de vies.",
+   "ecran": "tsunami",
+   "id": "p18",
+   "texte": "Un mégathrust sous-marin soulève la mer."
+  },
+  {
+   "dit": "Les destructions ne s'arrêtent pas à la secousse : liquéfaction des sols, glissements, incendies, puis la cascade du désastre, où chaque défaillance en entraîne une autre. À l'inverse, les séismes en Haïti en deux mille dix et en Turquie-Syrie en deux mille vingt-trois ont tragiquement illustré comment la vulnérabilité des constructions transforme l'aléa en catastrophe.",
+   "ecran": "cascade",
+   "id": "p19",
+   "texte": "Secousse, cascade, vulnérabilité : la catastrophe se construit."
+  },
+  {
+   "dit": "Vivre avec la menace, c'est passer du fatalisme à la préparation proactive, autour de quatre piliers : évaluer l'aléa, construire parasismique, alerter tôt et préparer les communautés. Le risque n'est pas seulement l'aléa : il combine aléa, vulnérabilité et exposition.",
+   "ecran": "resilience",
+   "id": "p20",
+   "texte": "Du fatalisme à la préparation : quatre piliers."
+  },
+  {
+   "dit": "Construire pour résister, c'est la philosophie du pas d'effondrement : le bâtiment peut être endommagé, mais ne doit pas tuer. Trois techniques s'y emploient : l'isolation de base, qui découple le bâtiment du sol, l'amortissement supplémentaire, qui dissipe l'énergie, et le contreventement ductile, qui plie sans rompre.",
+   "ecran": "parasismique",
+   "id": "p21",
+   "texte": "Isoler, amortir, contreventer : construire pour résister."
+  },
+  {
+   "dit": "Les systèmes d'alerte précoce exploitent la différence de vitesse entre les ondes P, rapides et peu destructrices, et les ondes S, plus lentes et destructrices. Le système japonais, opérationnel depuis deux mille sept, donne ainsi parfois quelques secondes précieuses : assez pour arrêter un train, couper le gaz, se mettre à l'abri.",
+   "ecran": "alerte",
+   "id": "p22",
+   "texte": "Les ondes P rapides préviennent avant les ondes S."
+  },
+  {
+   "dit": "Mais la prédiction déterministe, date, lieu et magnitude précis, reste hors de portée : la complexité des systèmes de failles et les processus non linéaires rendent le système fondamentalement chaotique à court terme. On prévoit des probabilités, des aléas, pas le prochain séisme.",
+   "ecran": "prediction",
+   "id": "p23",
+   "texte": "Date, lieu, magnitude précis : hors de portée."
+  },
+  {
+   "dit": "Après le séisme viennent les phases de la réponse d'urgence : secours, soins, abris, puis reconstruction, avec des innovations comme les réseaux de capteurs citoyens et l'intelligence artificielle pour analyser les données. La sismologie du vingt et unième siècle est aussi participative, jusque sur Mars, où l'atterrisseur InSight a détecté plus de mille trois cents marsquakes entre deux mille dix-huit et deux mille vingt-deux.",
+   "ecran": "crise",
+   "id": "p24",
+   "texte": "Secours, répliques, reconstruction : la gestion de crise."
+  },
+  {
+   "dit": "Retenons l'essentiel : le rebond élastique charge puis rompt la faille ; quatre ondes propagent l'énergie, P, S, Love et Rayleigh ; la magnitude mesure l'énergie à la source, l'intensité l'effet ressenti ; et face à un risque que l'on ne peut prédire, on prépare : construire, alerter, éduquer.",
+   "ecran": "recap",
+   "id": "p25",
+   "texte": "Rebond, ondes, magnitude, intensité, préparation."
+  }
+ ],
+ "titre": "Séismes : causes, propagation et risques"
+}

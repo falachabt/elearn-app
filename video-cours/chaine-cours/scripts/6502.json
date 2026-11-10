@@ -1,0 +1,322 @@
+{
+ "cours": 6502,
+ "titre": "Limites et asymptotes : lire le comportement d'une fonction",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Limites et asymptotes",
+   "titre": "Limites et asymptotes : lire le comportement d'une fonction",
+   "sous": "En un point, à l'infini, et les droites que la courbe frôle sans cesse",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 250
+   }
+  },
+  "intuition": {
+   "type": "phrase",
+   "kicker": "La limite, une tendance",
+   "texte": "La limite décrit une tendance, pas forcément une valeur atteinte.",
+   "anim": {
+    "nom": "bande_epsilon_fonction_fig",
+    "hauteur": 170
+   }
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Limite en un point",
+   "tex": "\\lim_{x\\to a} f(x)=L",
+   "note": "Quand x s'approche de a, f(x) s'approche autant qu'on veut de L"
+  },
+  "deux_cotes": {
+   "type": "etape",
+   "kicker": "Limite à gauche, limite à droite",
+   "titre": "En un point, on arrive par deux côtés",
+   "tex": [
+    "\\lim_{x\\to a^-} f(x)=L^-",
+    "\\lim_{x\\to a^+} f(x)=L^+",
+    "L^-=L^+ \\iff \\text{ limite existe}"
+   ]
+  },
+  "infini": {
+   "type": "formule",
+   "kicker": "Limite à l'infini",
+   "tex": "\\lim_{x\\to +\\infty} f(x)=L",
+   "note": "L finie : asymptote horizontale y = L · L infinie : la courbe s'envole",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 150
+   }
+  },
+  "usuelles_inf": {
+   "type": "etape",
+   "kicker": "Limites usuelles à l'infini",
+   "titre": "Les puissances montent, l'inverse s'écrase",
+   "tex": [
+    "\\lim_{x\\to +\\infty} x^n=+\\infty",
+    "\\lim_{x\\to +\\infty} \\tfrac{1}{x}=0",
+    "\\lim_{x\\to +\\infty} \\sqrt{x}=+\\infty"
+   ]
+  },
+  "substitution": {
+   "type": "etape",
+   "kicker": "Premier réflexe : substituer",
+   "titre": "Si la fonction est sage au point, on remplace",
+   "tex": [
+    "\\lim_{x\\to 2} (x^2+1)=5",
+    "\\lim_{x\\to a} P(x)=P(a)",
+    "\\text{polynômes : substitution directe}"
+   ]
+  },
+  "forme_ind": {
+   "type": "etape",
+   "kicker": "Les formes indéterminées",
+   "titre": "Quatre écritures qui ne concluent rien",
+   "tex": [
+    "\\tfrac{0}{0},\\quad \\tfrac{\\infty}{\\infty}",
+    "\\infty-\\infty,\\quad 0\\times\\infty",
+    "\\text{il faut transformer l'écriture}"
+   ]
+  },
+  "factorisation": {
+   "type": "etape",
+   "kicker": "Outil un : factoriser et simplifier",
+   "titre": "Le trou se simplifie, la limite apparaît",
+   "tex": [
+    "\\lim_{x\\to 2} \\tfrac{x^2-4}{x-2}",
+    "=\\lim_{x\\to 2} (x+2)",
+    "=4"
+   ]
+  },
+  "conjuguee": {
+   "type": "etape",
+   "kicker": "Outil deux : la quantité conjuguée",
+   "titre": "Pour les racines, multiplier par la conjuguée",
+   "tex": [
+    "\\lim_{x\\to 3} \\tfrac{\\sqrt{x}-\\sqrt{3}}{x-3}",
+    "=\\lim_{x\\to 3} \\tfrac{1}{\\sqrt{x}+\\sqrt{3}}",
+    "=\\tfrac{1}{2\\sqrt{3}}"
+   ]
+  },
+  "dominant": {
+   "type": "etape",
+   "kicker": "Outil trois : le terme dominant",
+   "titre": "À l'infini, le plus fort décide",
+   "tex": [
+    "f(x)=\\tfrac{3x^2-2x+5}{\\sqrt{4x^4+1}}",
+    "\\sqrt{4x^4+1}\\sim 2x^2",
+    "f(x)\\sim \\tfrac{3x^2}{2x^2}=\\tfrac{3}{2}"
+   ]
+  },
+  "gendarmes": {
+   "type": "formule",
+   "kicker": "Le théorème des gendarmes",
+   "tex": "g(x)\\le f(x)\\le h(x)",
+   "note": "Si g et h tendent vers la même limite L, alors f aussi",
+   "anim": {
+    "nom": "gendarmes_fig",
+    "hauteur": 150
+   }
+  },
+  "asympt_vert": {
+   "type": "formule",
+   "kicker": "Asymptote verticale",
+   "tex": "\\lim_{x\\to a} f(x)=\\pm\\infty",
+   "note": "Droite x = a : la courbe s'y colle en s'envolant",
+   "anim": {
+    "nom": "hyperbole_fig",
+    "hauteur": 150
+   }
+  },
+  "asympt_horiz": {
+   "type": "formule",
+   "kicker": "Asymptote horizontale",
+   "tex": "\\lim_{x\\to \\pm\\infty} f(x)=L",
+   "note": "Droite y = L : la courbe s'en approche sans cesse à l'infini",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 150
+   }
+  },
+  "etude_complete": {
+   "type": "etape",
+   "kicker": "Étude complète : un exemple",
+   "titre": "Une rationnelle, ses deux asymptotes de comportement",
+   "tex": [
+    "f(x)=\\tfrac{x^2-1}{x-2}",
+    "\\lim_{x\\to 2^-} f(x)=-\\infty",
+    "\\lim_{x\\to 2^+} f(x)=+\\infty"
+   ]
+  },
+  "pas_limite": {
+   "type": "phrase",
+   "kicker": "Quand la limite n'existe pas",
+   "texte": "sin x oscille sans se fixer : aucune limite en l'infini.",
+   "anim": {
+    "nom": "sinusoide",
+    "hauteur": 170
+   }
+  },
+  "traverser": {
+   "type": "phrase",
+   "kicker": "Une asymptote peut se traverser",
+   "texte": "sin x sur x traverse son asymptote y = 0 en oscillant.",
+   "anim": {
+    "nom": "sinusoide",
+    "hauteur": 150
+   }
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "Méthode en cinq pas",
+   "titre": "Du domaine à la courbe, toujours dans le même ordre",
+   "tex": [
+    "\\text{un : domaine de définition}",
+    "\\text{deux : limites aux bornes}",
+    "\\text{trois : asymptotes éventuelles}",
+    "\\text{quatre : synthèse et allure}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Limite : tendance, à gauche et à droite",
+    "Substituer d'abord, transformer si blocage",
+    "Indéterminées : factoriser, conjuguer",
+    "Terme dominant : décider à l'infini",
+    "Asymptotes : verticale, horizontale"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux limites et au comportement asymptotique. La question centrale tient en une phrase : vers quoi tend une fonction, quand la variable s'approche d'un point sensible, ou quand elle part vers l'infini. Les asymptotes seront les droites qui racontent cette tendance sur le graphique.",
+   "texte": "Vers quoi tends-tu : la question de tout le cours.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Une limite ne dit pas toujours ce que vaut la fonction : elle dit vers quelle valeur ses images se resserrent quand on s'approche. On peut s'approcher aussi près que l'on veut de la valeur visée, sans jamais être obligé de l'atteindre.",
+   "texte": "La limite est une tendance, pas forcément une valeur atteinte.",
+   "ecran": "intuition"
+  },
+  {
+   "id": "p03",
+   "dit": "On note limite de f de x égale L quand x tend vers a. Traduction : dès que x est assez proche de a, f de x est aussi proche de L que l'on veut. C'est cette idée de proximité arbitraire qui fait toute la définition.",
+   "texte": "Quand x approche a, f(x) approche L.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "En un point, on peut arriver par la gauche ou par la droite, et les deux côtés ne racontent pas toujours la même histoire. La limite existe au point seulement si la limite à gauche et la limite à droite coïncident.",
+   "texte": "Limite à gauche, limite à droite : elles doivent coïncider.",
+   "ecran": "deux_cotes"
+  },
+  {
+   "id": "p05",
+   "dit": "À l'infini, la question change de décor : que deviennent les images quand x grandit sans borne. Si elles se stabilisent vers un nombre fini, la courbe possède une asymptote horizontale. Si elles s'envolent, la courbe part à l'infini.",
+   "texte": "À l'infini : stabilisation ou envol des images.",
+   "ecran": "infini"
+  },
+  {
+   "id": "p06",
+   "dit": "Retenez les limites usuelles à l'infini : les puissances de x partent vers l'infini, la racine aussi, mais un sur x s'écrase vers zéro. Ce sont ces briques qui construiront presque tous les calculs du cours.",
+   "texte": "Puissances → +∞ · 1/x → 0 · √x → +∞.",
+   "ecran": "usuelles_inf"
+  },
+  {
+   "id": "p07",
+   "dit": "Premier réflexe devant une limite en un point : substituer. Pour un polynôme, rien ne casse : on remplace simplement x par le point. Ainsi, la limite de x au carré plus un, quand x tend vers deux, vaut cinq, directement.",
+   "texte": "Substituer d'abord : les polynômes ne cassent jamais.",
+   "ecran": "substitution"
+  },
+  {
+   "id": "p08",
+   "dit": "Parfois, la substitution donne une forme indéterminée : zéro sur zéro, infini sur infini, infini moins infini, ou zéro fois infini. Ces écritures ne concluent rien : elles signalent seulement qu'il faut transformer l'expression avant de conclure.",
+   "texte": "0/0, ∞/∞, ∞−∞, 0×∞ : transformer avant de conclure.",
+   "ecran": "forme_ind"
+  },
+  {
+   "id": "p09",
+   "dit": "Premier outil : factoriser et simplifier. Pour x au carré moins quatre, sur x moins deux, la substitution donne zéro sur zéro. Mais le numérateur se factorise, le facteur commun se simplifie, et la limite apparaît : elle vaut quatre.",
+   "texte": "(x²−4)/(x−2) → 4 : factoriser révèle la limite.",
+   "ecran": "factorisation"
+  },
+  {
+   "id": "p10",
+   "dit": "Deuxième outil, pour les racines : la quantité conjuguée. On multiplie en haut et en bas par l'expression conjuguée, la racine disparaît du numérateur, et la simplification donne la limite : un sur deux racine de trois, pour l'exemple des leçons.",
+   "texte": "Racines bloquées : multiplier par la conjuguée.",
+   "ecran": "conjuguee"
+  },
+  {
+   "id": "p11",
+   "dit": "Troisième outil, à l'infini : le terme dominant. Dans l'exemple guidé des leçons, le dénominateur, racine de quatre x puissance quatre plus un, se comporte comme deux x au carré. Le quotient tend donc vers trois demis, des deux côtés.",
+   "texte": "Terme dominant : l'exemple guidé tend vers 3/2.",
+   "ecran": "dominant"
+  },
+  {
+   "id": "p12",
+   "dit": "Quand une fonction est coincée entre deux autres qui tendent vers la même limite, elle n'a pas le choix : elle tend vers cette limite aussi. C'est le théorème des gendarmes, l'outil des encadrements, très utile pour les fonctions oscillantes écrasées.",
+   "texte": "Encadrée des deux côtés : les gendarmes concluent.",
+   "ecran": "gendarmes"
+  },
+  {
+   "id": "p13",
+   "dit": "Passons aux asymptotes. Si, près d'un point, les images s'envolent vers l'infini, la droite verticale d'équation x égale a est une asymptote à la courbe. On la cherche là où la fonction n'est pas définie, typiquement aux zéros du dénominateur.",
+   "texte": "Limite infinie en a : asymptote verticale x = a.",
+   "ecran": "asympt_vert"
+  },
+  {
+   "id": "p14",
+   "dit": "Si, à l'infini, les images tendent vers un nombre fini L, la droite horizontale d'équation y égale L est une asymptote. L'exemple précédent, de limite trois demis, possède donc une asymptote horizontale des deux côtés de l'infini.",
+   "texte": "Limite finie à l'infini : asymptote horizontale y = L.",
+   "ecran": "asympt_horiz"
+  },
+  {
+   "id": "p15",
+   "dit": "Exemple complet des leçons : x au carré moins un, sur x moins deux. Près de deux, le numérateur vaut trois, le dénominateur change de signe : la limite à gauche est moins l'infini, celle de droite est plus l'infini. La droite x égale deux est une asymptote verticale.",
+   "texte": "(x²−1)/(x−2) : −∞ à gauche de 2, +∞ à droite.",
+   "ecran": "etude_complete"
+  },
+  {
+   "id": "p16",
+   "dit": "Toutes les fonctions n'ont pas de limite à l'infini : le sinus oscille éternellement entre moins un et un, sans jamais se fixer. Dire qu'une limite n'existe pas est donc aussi une conclusion légitime, à condition de la justifier par l'oscillation.",
+   "texte": "sin x : oscillation éternelle, aucune limite en l'infini.",
+   "ecran": "pas_limite"
+  },
+  {
+   "id": "p17",
+   "dit": "Dernier piège, signalé par les leçons : une courbe peut traverser son asymptote horizontale. Le quotient du sinus par x oscille autour de zéro en s'écrasant : son asymptote est bien la droite d'équation y égale zéro, même s'il la franchit sans cesse au début.",
+   "texte": "Une asymptote peut être traversée : sin x / x le prouve.",
+   "ecran": "traverser"
+  },
+  {
+   "id": "p18",
+   "dit": "La méthode de synthèse tient en quatre pas : déterminer le domaine, calculer les limites à toutes ses bornes, en déduire les asymptotes, puis dessiner l'allure générale. Cet ordre, appliqué calmement, suffit pour la plupart des études de ce niveau.",
+   "texte": "Domaine, limites aux bornes, asymptotes, allure.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p19",
+   "dit": "Récapitulons. Une limite est une tendance, lue à gauche et à droite en un point, ou aux deux infinis. On substitue d'abord, on transforme en cas de forme indéterminée, on décide à l'infini avec le terme dominant, et les asymptotes traduisent le résultat sur la courbe.",
+   "texte": "Tendance, transformation, asymptotes : la synthèse.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Notion de limite et outils de calcul"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Gendarmes, asymptotes et étude complète",
+   "pont": {
+    "texte": "Partie 2 : encadrer, puis lire les asymptotes.",
+    "dit": "Partie deux : des outils de calcul aux asymptotes. Nous commencerons par le théorème des gendarmes, qui conclut par encadrement, puis nous traduirons les limites en asymptotes verticales et horizontales, avant l'étude complète d'une fonction rationnelle et la méthode de synthèse."
+   }
+  }
+ ]
+}

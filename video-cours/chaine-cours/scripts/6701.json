@@ -1,0 +1,494 @@
+{
+  "cours": 6701,
+  "titre": "Angles et parallélisme, cercle circonscrit et positions de deux cercles",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Angles et cercles",
+      "titre": "Angles et parallélisme, cercle circonscrit et positions de deux cercles",
+      "sous": "Égalités d'angles et sécante, puis le cercle circonscrit et la rencontre de deux cercles",
+      "anim": {
+        "nom": "cercle_trigo_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Des angles qui se complètent ou s'égalent, puis des cercles qui passent par trois points ou se rencontrent.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 140
+      }
+    },
+    "complementaires": {
+      "type": "etape",
+      "kicker": "Complémentaires et supplémentaires",
+      "titre": "Deux sommes à ne pas confondre",
+      "tex": [
+        "\\alpha + \\beta = 90^\\circ\\ \\text{: complémentaires}",
+        "\\alpha + \\beta = 180^\\circ\\ \\text{: supplémentaires}"
+      ]
+    },
+    "ex_complement": {
+      "type": "etape",
+      "kicker": "Exemple · complément et supplément",
+      "titre": "Un angle de trente-cinq degrés",
+      "tex": [
+        "90^\\circ - 35^\\circ = 55^\\circ",
+        "180^\\circ - 35^\\circ = 145^\\circ"
+      ]
+    },
+    "opposes_def": {
+      "type": "phrase",
+      "kicker": "Angles opposés par le sommet",
+      "texte": "Même sommet, côtés dans le prolongement l'un de l'autre : deux droites sécantes en forment deux paires.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 140
+      }
+    },
+    "ex_opposes": {
+      "type": "etape",
+      "kicker": "Exemple · opposés par le sommet",
+      "titre": "Toujours la même mesure",
+      "tex": [
+        "\\hat{a} = \\hat{b}",
+        "\\hat{a} = 47^\\circ \\Rightarrow \\hat{b} = 47^\\circ"
+      ]
+    },
+    "secante_config": {
+      "type": "phrase",
+      "kicker": "Parallèles coupées par une sécante",
+      "texte": "Une sécante coupe deux droites parallèles : huit angles se forment, et tout le chapitre les compare.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 120
+      }
+    },
+    "alternes_internes_def": {
+      "type": "etape",
+      "kicker": "Angles alternes-internes",
+      "titre": "De part et d'autre, entre les droites",
+      "tex": [
+        "\\text{de part et d'autre de la sécante}",
+        "\\text{entre les deux droites}",
+        "\\text{à des sommets différents}"
+      ]
+    },
+    "alternes_internes_prop": {
+      "type": "etape",
+      "kicker": "Alternes-internes · les deux sens",
+      "titre": "Égalité et parallélisme liés",
+      "tex": [
+        "\\text{parallèles} \\Rightarrow \\text{alternes-internes égaux}",
+        "\\text{alternes-internes égaux} \\Rightarrow \\text{parallèles}"
+      ]
+    },
+    "ex_alternes_internes": {
+      "type": "etape",
+      "kicker": "Exemple · alternes-internes",
+      "titre": "Un angle de soixante-trois degrés",
+      "tex": [
+        "\\text{alternes-internes : } 63^\\circ \\text{ et } 63^\\circ"
+      ]
+    },
+    "alternes_externes": {
+      "type": "etape",
+      "kicker": "Angles alternes-externes",
+      "titre": "De part et d'autre, à l'extérieur",
+      "tex": [
+        "\\text{de part et d'autre de la sécante}",
+        "\\text{à l'extérieur des deux droites}",
+        "\\text{parallèles} \\Rightarrow \\text{égaux, et réciproque}"
+      ]
+    },
+    "ex_alternes_externes": {
+      "type": "etape",
+      "kicker": "Exemple · alternes-externes",
+      "titre": "Un angle de cent huit degrés",
+      "tex": [
+        "\\text{alternes-externes : } 108^\\circ \\text{ et } 108^\\circ"
+      ]
+    },
+    "correspondants": {
+      "type": "etape",
+      "kicker": "Angles correspondants",
+      "titre": "Du même côté de la sécante",
+      "tex": [
+        "\\text{du même côté de la sécante}",
+        "\\text{l'un dedans, l'autre dehors}",
+        "\\text{parallèles} \\Rightarrow \\text{égaux, et réciproque}"
+      ]
+    },
+    "ex_correspondants": {
+      "type": "etape",
+      "kicker": "Exemple · correspondants",
+      "titre": "Un angle de cinquante-deux degrés",
+      "tex": [
+        "\\text{correspondants : } 52^\\circ \\text{ et } 52^\\circ"
+      ]
+    },
+    "strategie": {
+      "type": "etape",
+      "kicker": "Stratégie de justification",
+      "titre": "Identifier, citer, conclure",
+      "tex": [
+        "\\text{égalité : identifier la configuration}",
+        "\\text{parallélisme : utiliser une réciproque}",
+        "\\text{montrer deux angles égaux, conclure}"
+      ]
+    },
+    "ex_complet": {
+      "type": "etape",
+      "kicker": "Exemple complet · justifier",
+      "titre": "Deux angles de soixante-quatorze degrés",
+      "tex": [
+        "\\text{alternes-internes égaux : } 74^\\circ",
+        "\\text{donc } (d_1) \\parallel (d_2)"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 · À retenir",
+      "etapes": [
+        "Complémentaires : somme 90°",
+        "Supplémentaires : somme 180°",
+        "Opposés par le sommet : égaux",
+        "Parallèles et sécante : angles égaux"
+      ]
+    },
+    "intro_cercles": {
+      "type": "phrase",
+      "kicker": "Le cercle circonscrit",
+      "texte": "Un cercle qui passe par les trois sommets d'un triangle : son centre se cache sur les médiatrices.",
+      "anim": {
+        "nom": "cercle_trigo_fig",
+        "hauteur": 140
+      }
+    },
+    "circonscrit_def": {
+      "type": "etape",
+      "kicker": "Cercle circonscrit · définition",
+      "titre": "Le point de concours des médiatrices",
+      "tex": [
+        "\\text{centre : intersection des médiatrices}",
+        "\\text{le cercle passe par } A, B \\text{ et } C"
+      ],
+      "anim": {
+        "nom": "mediatrice_exemple_fig",
+        "hauteur": 120
+      }
+    },
+    "circonscrit_prop": {
+      "type": "formule",
+      "kicker": "Le centre est équidistant",
+      "tex": "OA = OB = OC = R",
+      "note": "O : centre du cercle circonscrit · R : son rayon"
+    },
+    "circonscrit_construction": {
+      "type": "etape",
+      "kicker": "Construire le cercle circonscrit",
+      "titre": "Deux médiatrices suffisent",
+      "tex": [
+        "\\text{tracer les médiatrices de deux côtés}",
+        "\\text{leur intersection donne } O",
+        "\\text{tracer le cercle de centre } O"
+      ]
+    },
+    "ex_circonscrit": {
+      "type": "etape",
+      "kicker": "Exemple · construire le circonscrit",
+      "titre": "Un triangle de côtés cinq, six, quatre",
+      "tex": [
+        "AB = 5\\ \\text{cm},\\quad AC = 6\\ \\text{cm}",
+        "BC = 4\\ \\text{cm},\\quad R = OA"
+      ]
+    },
+    "rectangle_theoreme": {
+      "type": "etape",
+      "kicker": "Cas du triangle rectangle",
+      "titre": "L'hypoténuse devient diamètre",
+      "tex": [
+        "\\text{diamètre : l'hypoténuse}",
+        "\\text{centre : milieu de l'hypoténuse}"
+      ]
+    },
+    "rectangle_reciproque": {
+      "type": "phrase",
+      "kicker": "Réciproque · triangle rectangle",
+      "texte": "Un triangle inscrit dans un cercle, avec un côté pour diamètre, est forcément rectangle.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 140
+      }
+    },
+    "ex_rectangle": {
+      "type": "etape",
+      "kicker": "Exemple · triangle rectangle",
+      "titre": "Une hypoténuse de huit centimètres",
+      "tex": [
+        "R = \\tfrac{8}{2} = 4\\ \\text{cm}",
+        "O\\ \\text{milieu de } [EG]"
+      ]
+    },
+    "positions_intro": {
+      "type": "etape",
+      "kicker": "Positions de deux cercles",
+      "titre": "Trois nombres à comparer",
+      "tex": [
+        "d = O_1O_2",
+        "r_1 + r_2 \\qquad |r_1 - r_2|"
+      ]
+    },
+    "disjoints": {
+      "type": "etape",
+      "kicker": "Cercles disjoints · aucun point commun",
+      "titre": "Séparés, dedans, ou concentriques",
+      "tex": [
+        "d > r_1 + r_2\\ \\text{: extérieurs}",
+        "d < |r_1 - r_2|\\ \\text{: intérieurs}",
+        "d = 0\\ \\text{: concentriques}"
+      ]
+    },
+    "tangents": {
+      "type": "etape",
+      "kicker": "Cercles tangents · un point commun",
+      "titre": "Ils se touchent en un point",
+      "tex": [
+        "d = r_1 + r_2\\ \\text{: extérieurement}",
+        "d = |r_1 - r_2|\\ \\text{: intérieurement}"
+      ]
+    },
+    "secants": {
+      "type": "formule",
+      "kicker": "Cercles sécants · deux points communs",
+      "tex": "|r_1 - r_2| < d < r_1 + r_2",
+      "note": "Ni trop proches, ni trop éloignés : ils se croisent"
+    },
+    "ex_positions": {
+      "type": "etape",
+      "kicker": "Exemple · positions de deux cercles",
+      "titre": "Rayons cinq et trois, cinq distances",
+      "tex": [
+        "d = 9 : \\text{disjoints} \\qquad d = 8 : \\text{tangents ext.}",
+        "d = 6 : \\text{sécants} \\qquad d = 2 : \\text{tangents int.}",
+        "d = 1 : \\text{disjoints intérieurs}"
+      ]
+    },
+    "recap2": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Circonscrit : concours des médiatrices",
+        "Rectangle : centre milieu hypoténuse",
+        "Rayon : moitié de l'hypoténuse",
+        "Positions : comparer d aux rayons",
+        "Sécants : entre différence et somme"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de géométrie. Nous étudierons les égalités d'angles et le parallélisme, puis le cercle circonscrit à un triangle et les positions relatives de deux cercles.",
+      "texte": "Angles, cercle circonscrit, deux cercles",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Deux idées traversent tout le cours : comparer des angles pour prouver des parallélismes, et comparer des distances pour décider comment deux cercles se rencontrent. Commençons par le vocabulaire des angles.",
+      "texte": "Comparer angles et distances",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Deux angles sont complémentaires lorsque leur somme vaut quatre-vingt-dix degrés, c'est-à-dire un angle droit. Ils sont supplémentaires lorsque leur somme vaut cent quatre-vingts degrés, c'est-à-dire un angle plat. Chacun est alors le complément, ou le supplément, de l'autre.",
+      "texte": "90° ou 180° : deux sommes à distinguer",
+      "ecran": "complementaires"
+    },
+    {
+      "id": "p04",
+      "dit": "Exemple du cours : un angle mesure trente-cinq degrés. Son complément vaut quatre-vingt-dix moins trente-cinq, soit cinquante-cinq degrés. Son supplément vaut cent quatre-vingts moins trente-cinq, soit cent quarante-cinq degrés.",
+      "texte": "Exemple : 55° et 145°",
+      "ecran": "ex_complement"
+    },
+    {
+      "id": "p05",
+      "dit": "Deux angles sont opposés par le sommet lorsqu'ils ont le même sommet et que leurs côtés sont dans le prolongement l'un de l'autre. Deux droites sécantes forment ainsi deux paires d'angles opposés par le sommet.",
+      "texte": "Opposés par le sommet : même sommet",
+      "ecran": "opposes_def"
+    },
+    {
+      "id": "p06",
+      "dit": "Propriété fondamentale : deux angles opposés par le sommet ont toujours la même mesure. Si l'un vaut quarante-sept degrés, l'autre vaut aussi quarante-sept degrés.",
+      "texte": "Toujours égaux : 47° et 47°",
+      "ecran": "ex_opposes"
+    },
+    {
+      "id": "p07",
+      "dit": "Passons à la grande configuration du chapitre : une sécante coupe deux droites parallèles en deux points distincts. Huit angles se forment, et on les compare selon leur position par rapport à la sécante et par rapport aux deux droites.",
+      "texte": "Deux parallèles, une sécante, huit angles",
+      "ecran": "secante_config"
+    },
+    {
+      "id": "p08",
+      "dit": "Deux angles sont alternes-internes lorsqu'ils sont de part et d'autre de la sécante, entre les deux droites, donc dans la zone interne, et à des sommets différents. Le mot alterne dit le changement de côté, le mot interne dit la zone.",
+      "texte": "Alternes-internes : dedans, de part et d'autre",
+      "ecran": "alternes_internes_def"
+    },
+    {
+      "id": "p09",
+      "dit": "Si les deux droites sont parallèles, alors les angles alternes-internes sont égaux. Et réciproquement, si deux angles alternes-internes sont égaux, alors les deux droites sont parallèles. Ce double sens sert dans les deux types de questions.",
+      "texte": "Parallèles si et seulement si angles égaux",
+      "ecran": "alternes_internes_prop"
+    },
+    {
+      "id": "p10",
+      "dit": "Exemple du cours : deux droites parallèles sont coupées par une sécante, et un angle alterne-interne mesure soixante-trois degrés. L'autre angle alterne-interne mesure donc aussi soixante-trois degrés.",
+      "texte": "Exemple : 63° et 63°",
+      "ecran": "ex_alternes_internes"
+    },
+    {
+      "id": "p11",
+      "dit": "Les angles alternes-externes sont, eux aussi, de part et d'autre de la sécante, mais à l'extérieur des deux droites, et à des sommets différents. Même propriété : parallèles donnent des angles égaux, et des angles égaux donnent des droites parallèles.",
+      "texte": "Alternes-externes : dehors, de part et d'autre",
+      "ecran": "alternes_externes"
+    },
+    {
+      "id": "p12",
+      "dit": "Exemple du cours : deux droites parallèles sont coupées par une sécante, et un angle alterne-externe mesure cent huit degrés. L'autre angle alterne-externe mesure également cent huit degrés.",
+      "texte": "Exemple : 108° et 108°",
+      "ecran": "ex_alternes_externes"
+    },
+    {
+      "id": "p13",
+      "dit": "Les angles correspondants sont du même côté de la sécante, l'un à l'intérieur de la zone entre les deux droites et l'autre à l'extérieur, à des sommets différents. Là encore, le parallélisme et l'égalité des angles se répondent dans les deux sens.",
+      "texte": "Correspondants : du même côté",
+      "ecran": "correspondants"
+    },
+    {
+      "id": "p14",
+      "dit": "Exemple du cours : on sait que les deux droites sont parallèles et qu'un angle correspondant mesure cinquante-deux degrés. L'angle correspondant associé mesure donc aussi cinquante-deux degrés.",
+      "texte": "Exemple : 52° et 52°",
+      "ecran": "ex_correspondants"
+    },
+    {
+      "id": "p15",
+      "dit": "Voici la stratégie de justification. Pour prouver une égalité d'angles, on identifie la configuration et on cite la propriété directe. Pour prouver un parallélisme, on utilise une propriété réciproque : on montre que deux angles bien choisis sont égaux, puis on conclut.",
+      "texte": "Justifier : identifier, citer, conclure",
+      "ecran": "strategie"
+    },
+    {
+      "id": "p16",
+      "dit": "Exemple complet du cours : deux angles alternes-internes mesurent chacun soixante-quatorze degrés. Ils sont alternes-internes et égaux, donc, par la propriété réciproque, les deux droites sont parallèles. C'est exactement la rédaction attendue.",
+      "texte": "Exemple complet : parallèles prouvées",
+      "ecran": "ex_complet"
+    },
+    {
+      "id": "p17",
+      "dit": "Résumons cette première partie : complémentaires pour quatre-vingt-dix degrés, supplémentaires pour cent quatre-vingts, opposés par le sommet toujours égaux, et, avec des parallèles et une sécante, les alternes-internes, les alternes-externes et les correspondants sont égaux.",
+      "texte": "Partie 1 : l'essentiel à retenir",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p18",
+      "dit": "Changeons de figure : le cercle circonscrit à un triangle est le cercle qui passe par ses trois sommets. Son centre n'est pas au hasard, il se construit avec les médiatrices des côtés.",
+      "texte": "Le cercle par les trois sommets",
+      "ecran": "intro_cercles"
+    },
+    {
+      "id": "p19",
+      "dit": "Les trois médiatrices d'un triangle se coupent en un même point : c'est le centre du cercle circonscrit. Il suffit d'en tracer deux pour le trouver, leur intersection donne le centre.",
+      "texte": "Centre : intersection des médiatrices",
+      "ecran": "circonscrit_def"
+    },
+    {
+      "id": "p20",
+      "dit": "Ce centre possède une propriété fondamentale : il est à égale distance des trois sommets. Les trois distances du centre aux sommets sont égales, et cette distance commune est le rayon du cercle circonscrit.",
+      "texte": "OA = OB = OC = R",
+      "ecran": "circonscrit_prop"
+    },
+    {
+      "id": "p21",
+      "dit": "La construction tient en trois gestes : tracer les médiatrices de deux côtés du triangle, marquer leur point d'intersection, puis tracer le cercle de ce centre passant par un sommet. Il passera automatiquement par les deux autres.",
+      "texte": "Construction en trois gestes",
+      "ecran": "circonscrit_construction"
+    },
+    {
+      "id": "p22",
+      "dit": "Exemple du cours : un triangle a des côtés de cinq, six et quatre centimètres. On trace la médiatrice d'un premier côté et celle d'un deuxième côté, leur intersection donne le centre, et le cercle tracé de ce centre passe bien par les trois sommets.",
+      "texte": "Exemple : côtés de 5, 6 et 4 cm",
+      "ecran": "ex_circonscrit"
+    },
+    {
+      "id": "p23",
+      "dit": "Cas particulier à connaître par cœur : le cercle circonscrit à un triangle rectangle a pour diamètre son hypoténuse. Son centre est donc tout simplement le milieu de l'hypoténuse, et son rayon vaut la moitié de l'hypoténuse.",
+      "texte": "Triangle rectangle : diamètre égal hypoténuse",
+      "ecran": "rectangle_theoreme"
+    },
+    {
+      "id": "p24",
+      "dit": "La réciproque est tout aussi utile : si un triangle est inscrit dans un cercle et qu'un de ses côtés est un diamètre de ce cercle, alors ce triangle est rectangle, et ce côté est son hypoténuse.",
+      "texte": "Réciproque : diamètre donc angle droit",
+      "ecran": "rectangle_reciproque"
+    },
+    {
+      "id": "p25",
+      "dit": "Exemple du cours : un triangle est rectangle, et son hypoténuse mesure huit centimètres. Le cercle circonscrit a pour centre le milieu de l'hypoténuse et pour rayon huit divisé par deux, soit quatre centimètres. Il passe par les deux extrémités de l'hypoténuse et par le sommet de l'angle droit.",
+      "texte": "Exemple : un rayon de 4 cm",
+      "ecran": "ex_rectangle"
+    },
+    {
+      "id": "p26",
+      "dit": "Dernière partie du cours : deux cercles, de rayons différents ou non, peuvent se rencontrer de plusieurs façons. Tout se décide en comparant la distance des deux centres à la somme des rayons et à la différence des rayons.",
+      "texte": "Deux cercles : comparer trois nombres",
+      "ecran": "positions_intro"
+    },
+    {
+      "id": "p27",
+      "dit": "Premier cas : les cercles sont disjoints, sans aucun point commun. Soit la distance des centres dépasse la somme des rayons et ils sont séparés, soit elle est plus petite que la différence des rayons et l'un est à l'intérieur de l'autre, soit les centres coïncident et ils sont concentriques.",
+      "texte": "Disjoints : zéro point commun",
+      "ecran": "disjoints"
+    },
+    {
+      "id": "p28",
+      "dit": "Deuxième cas : les cercles sont tangents, ils se touchent en un seul point. Si la distance des centres égale la somme des rayons, ils sont tangents extérieurement ; si elle égale la différence des rayons, ils sont tangents intérieurement, l'un dedans, l'autre dehors.",
+      "texte": "Tangents : un seul point commun",
+      "ecran": "tangents"
+    },
+    {
+      "id": "p29",
+      "dit": "Troisième cas : les cercles sont sécants, ils se croisent en deux points distincts. Cela arrive exactement quand la distance des centres est strictement comprise entre la différence et la somme des rayons.",
+      "texte": "Sécants : deux points communs",
+      "ecran": "secants"
+    },
+    {
+      "id": "p30",
+      "dit": "Exemple complet du cours, avec des rayons de cinq et trois centimètres : la somme vaut huit, la différence vaut deux. Distance neuf : disjoints extérieurs. Distance huit : tangents extérieurement. Distance six : sécants. Distance deux : tangents intérieurement. Distance un : disjoints intérieurs.",
+      "texte": "Exemple : cinq distances, cinq positions",
+      "ecran": "ex_positions"
+    },
+    {
+      "id": "p31",
+      "dit": "Pour terminer, retenez le point de concours des médiatrices pour le cercle circonscrit, le milieu de l'hypoténuse pour le triangle rectangle, et la comparaison de la distance des centres avec la somme et la différence des rayons pour classer deux cercles.",
+      "texte": "Cercles : l'essentiel à retenir",
+      "ecran": "recap2"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Angles : égalités et parallélisme"
+    },
+    {
+      "debut": "p18",
+      "sous_titre": "Cercle circonscrit et positions de deux cercles",
+      "pont": {
+        "texte": "Partie 2 : le cercle circonscrit à un triangle, et les positions relatives de deux cercles.",
+        "dit": "Partie deux : les cercles. Après les angles et le parallélisme, voici le cercle circonscrit à un triangle, puis la rencontre de deux cercles."
+      }
+    }
+  ]
+}

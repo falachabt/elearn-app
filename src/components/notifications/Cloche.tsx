@@ -16,16 +16,18 @@ import { Appui } from '../Appui';
  * quand tout est lu. Même gabarit que les pastilles voisines (série, éclair) : la ligne de l'accueil garde sa hauteur. Un appui ouvre le centre de notifications. Pas de cloche pour un invité (aucune notification
  * liée à un compte).
  */
-export function Cloche() {
+export function Cloche({ pourInvite = false }: { pourInvite?: boolean }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { session } = useSession();
   const { nonLues } = useNotifications();
-  if (!session || session.user.is_anonymous) return null;
+  // L'accueil TOEIC la montre aussi à l'invité (décision de Benny, 17 octobre) : pourInvite.
+  const invite = !!session?.user.is_anonymous;
+  if (!session || (invite && !pourInvite)) return null;
 
   const libelle = nonLues === 0 ? t('notifications.clocheAucune') : nonLues === 1 ? t('notifications.clocheUne') : t('notifications.clocheNon', { n: nonLues });
   return (
-    <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={() => router.push('/notifications')} rayon={rayon.s} decalage={2} hitSlop={8} style={styles.zone}>
+    <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={() => router.push(invite ? '/compte/creer' : '/notifications')} rayon={rayon.s} decalage={2} hitSlop={8} style={styles.zone}>
       <View style={styles.relatif}>
         <View style={[styles.cloche, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <Bell size={14} strokeWidth={2.5} color={theme.texte.principal} />

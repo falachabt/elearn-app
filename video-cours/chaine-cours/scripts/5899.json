@@ -1,0 +1,526 @@
+{
+ "cours": 5899,
+ "titre": "Logique, rédaction et méthodes de démonstration",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Logique et démonstration",
+   "titre": "Logique, rédaction et méthodes de démonstration",
+   "sous": "Propositions et connecteurs, implication et équivalence, puis les grandes méthodes : direct, absurde, contraposée, cas et récurrence",
+   "anim": {
+    "nom": "table_verite",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Démontrer, c'est d'abord dire des choses qui ont un sens précis, puis enchaîner des étapes qui s'imposent : ce cours apprend les deux."
+  },
+  "proposition": {
+   "type": "formule",
+   "kicker": "La proposition",
+   "tex": "P \\in \\{V,\\ F\\}",
+   "note": "Déclarative et sans ambiguïté : vraie ou fausse, jamais les deux. Un ordre ou une question n'est pas une proposition."
+  },
+  "connecteurs": {
+   "type": "etape",
+   "kicker": "Les connecteurs logiques",
+   "titre": "Les verbes du langage logique",
+   "tex": [
+    "\\neg P \\qquad P \\land Q \\qquad P \\lor Q",
+    "P \\Rightarrow Q \\qquad P \\Leftrightarrow Q",
+    "\\text{négation, et, ou, implication, équivalence}"
+   ]
+  },
+  "pluie": {
+   "type": "etape",
+   "kicker": "Exemple · il pleut, le sol est mouillé",
+   "titre": "P : il pleut — Q : le sol est mouillé",
+   "tex": [
+    "\\neg P : \\text{ il ne pleut pas}",
+    "P \\land Q \\qquad P \\lor Q",
+    "P \\Rightarrow Q \\qquad P \\Leftrightarrow Q"
+   ]
+  },
+  "conjonction": {
+   "type": "etape",
+   "kicker": "Conjonction et disjonction",
+   "titre": "Le et exige les deux, le ou se contente d'un",
+   "tex": [
+    "P \\land Q \\text{ vrai} \\iff P \\text{ et } Q \\text{ vrais}",
+    "P \\lor Q \\text{ vrai} \\iff \\text{au moins un vrai}"
+   ],
+   "anim": {
+    "nom": "table_conjonction_fig",
+    "hauteur": 150
+   }
+  },
+  "implication": {
+   "type": "formule",
+   "kicker": "L'implication",
+   "tex": "P \\Rightarrow Q",
+   "note": "P : hypothèse, Q : conclusion. Un seul cas faux : P vraie et Q fausse.",
+   "anim": {
+    "nom": "table_verite",
+    "hauteur": 240
+   }
+  },
+  "equivalence": {
+   "type": "formule",
+   "kicker": "L'équivalence",
+   "tex": "P \\Leftrightarrow Q",
+   "note": "Même valeur de vérité : P implique Q, et Q implique P."
+  },
+  "montrer_equiv": {
+   "type": "etape",
+   "kicker": "Montrer une équivalence",
+   "titre": "Deux méthodes",
+   "tex": [
+    "\\text{par équivalences successives : transformer } P \\text{ en } Q",
+    "\\text{par double implication : } P \\Rightarrow Q",
+    "\\text{puis } Q \\Rightarrow P"
+   ]
+  },
+  "bezout": {
+   "type": "etape",
+   "kicker": "Exemple · le théorème de Bézout",
+   "titre": "Une équivalence par double implication",
+   "tex": [
+    "\\text{pgcd}(a, b) = 1 \\Leftrightarrow \\exists\\, (u, v) \\in \\mathbb{Z}^2,\\ au + bv = 1",
+    "\\text{sens direct : l'identité de Bézout donne } u, v",
+    "\\text{sens retour : } d \\mid a,\\ d \\mid b \\Rightarrow d \\mid 1 \\Rightarrow d = 1"
+   ]
+  },
+  "de_morgan": {
+   "type": "etape",
+   "kicker": "Les lois de De Morgan",
+   "titre": "Nier échange le et et le ou",
+   "tex": [
+    "\\neg (P \\land Q) \\equiv \\neg P \\lor \\neg Q",
+    "\\neg (P \\lor Q) \\equiv \\neg P \\land \\neg Q"
+   ],
+   "anim": {
+    "nom": "venn_morgan_fig",
+    "hauteur": 150
+   }
+  },
+  "de_morgan_ex": {
+   "type": "etape",
+   "kicker": "Exemple · simplifier avec De Morgan",
+   "titre": "Deux applications successives",
+   "tex": [
+    "\\neg \\big( (P \\lor Q) \\land R \\big) \\equiv \\neg (P \\lor Q) \\lor \\neg R",
+    "\\equiv (\\neg P \\land \\neg Q) \\lor \\neg R"
+   ]
+  },
+  "neg_implication": {
+   "type": "etape",
+   "kicker": "Nier une implication",
+   "titre": "Le piège classique, désamorcé par De Morgan",
+   "tex": [
+    "P \\Rightarrow Q \\equiv \\neg P \\lor Q",
+    "\\neg (P \\Rightarrow Q) \\equiv \\neg (\\neg P \\lor Q)",
+    "\\equiv P \\land \\neg Q"
+   ]
+  },
+  "redaction": {
+   "type": "etape",
+   "kicker": "Rédiger une démonstration",
+   "titre": "Trois réflexes de rédaction",
+   "tex": [
+    "\\text{introduire chaque objet : soit, pour tout}",
+    "\\text{annoncer la méthode : montrons, par récurrence, par l'absurde}",
+    "\\text{citer définitions et théorèmes avec leurs hypothèses}"
+   ]
+  },
+  "redaction_ex": {
+   "type": "etape",
+   "kicker": "Exemple rédigé · un encadrement",
+   "titre": "Soit x dans [0 ; 1] : montrer que √(1 − x²) est dans [0 ; 1]",
+   "tex": [
+    "0 \\leq x^2 \\leq 1 \\qquad \\text{(carrée croissante sur } \\mathbb{R}_+ \\text{)}",
+    "0 \\leq 1 - x^2 \\leq 1",
+    "0 \\leq \\sqrt{1 - x^2} \\leq 1 \\qquad \\text{(racine croissante sur } \\mathbb{R}_+ \\text{)}"
+   ]
+  },
+  "fonction": {
+   "type": "phrase",
+   "kicker": "Ne pas confondre fonction et expression",
+   "texte": "x/(x² + 1) est une expression, pas une fonction : la fonction s'écrit x ↦ x/(x² + 1), ou f : x ↦ x/(x² + 1).",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 180
+   }
+  },
+  "direct": {
+   "type": "etape",
+   "kicker": "Le raisonnement direct",
+   "titre": "Partir des hypothèses, arriver à la conclusion",
+   "tex": [
+    "\\text{hypothèses } P_1, \\dots, P_n",
+    "\\text{implications successives, chacune justifiée}",
+    "\\text{conclusion } Q"
+   ]
+  },
+  "direct_ex": {
+   "type": "etape",
+   "kicker": "Exemples directs · parités",
+   "titre": "Somme de deux pairs, carré d'un impair",
+   "tex": [
+    "a = 2k,\\ b = 2m \\Rightarrow a + b = 2(k + m)",
+    "n = 2k + 1",
+    "n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1",
+    "\\text{donc } a + b \\text{ pair et } n^2 \\text{ impair}"
+   ]
+  },
+  "absurde": {
+   "type": "etape",
+   "kicker": "Le raisonnement par l'absurde",
+   "titre": "Supposer le contraire, jusqu'à l'impossible",
+   "tex": [
+    "\\text{supposer la propriété fausse}",
+    "\\text{raisonner jusqu'à une contradiction}",
+    "\\text{conclure : la propriété est vraie}"
+   ]
+  },
+  "absurde_ex": {
+   "type": "etape",
+   "kicker": "Exemple · racine de deux est irrationnel",
+   "titre": "La contradiction tombe sur la parité",
+   "tex": [
+    "\\sqrt{2} = \\tfrac{p}{q},\\ \\text{pgcd}(p, q) = 1",
+    "p^2 = 2q^2 \\Rightarrow p \\text{ pair, } p = 2p'",
+    "q^2 = 2p'^2 \\Rightarrow q \\text{ pair}",
+    "\\text{contradiction : } 2 \\mid p \\text{ et } 2 \\mid q"
+   ]
+  },
+  "contraposee": {
+   "type": "formule",
+   "kicker": "Le raisonnement par contraposition",
+   "tex": "(P \\Rightarrow Q) \\Leftrightarrow (\\neg Q \\Rightarrow \\neg P)",
+   "note": "Nier les deux propositions et inverser leur ordre : la valeur de vérité ne change pas.",
+   "anim": {
+    "nom": "contraposee_fig",
+    "hauteur": 175
+   }
+  },
+  "contraposee_ex": {
+   "type": "etape",
+   "kicker": "Exemple · si n² est pair, alors n est pair",
+   "titre": "On prouve la contraposée : n impair donne n² impair",
+   "tex": [
+    "n \\text{ impair} : n = 2k + 1",
+    "n^2 = 2(2k^2 + 2k) + 1",
+    "\\text{donc } n^2 \\text{ impair, la contraposée est vraie}"
+   ]
+  },
+  "cas": {
+   "type": "etape",
+   "kicker": "La disjonction de cas",
+   "titre": "Tous les cas, un par un",
+   "tex": [
+    "\\text{découper les hypothèses en cas qui couvrent tout}",
+    "\\text{prouver la propriété dans chaque cas}",
+    "\\text{conclure : elle est vraie en général}"
+   ]
+  },
+  "cas_ex": {
+   "type": "etape",
+   "kicker": "Exemple · n² + n est toujours pair",
+   "titre": "Deux cas : n pair, n impair",
+   "tex": [
+    "n = 2k : n^2 + n = 2(2k^2 + k)",
+    "n = 2k + 1 : n^2 + n = 2(2k^2 + 3k + 1)",
+    "\\text{dans les deux cas, } n^2 + n \\text{ est pair}"
+   ]
+  },
+  "recurrence": {
+   "type": "etape",
+   "kicker": "La récurrence simple",
+   "titre": "Comme des dominos : le premier tombe, chacun entraîne le suivant",
+   "tex": [
+    "\\text{initialisation : } P_0 \\text{ vraie}",
+    "\\text{hérédité : } P_n \\Rightarrow P_{n+1}",
+    "\\text{conclusion : } P_n \\text{ vraie pour tout } n"
+   ],
+   "anim": {
+    "nom": "dominos_fig",
+    "hauteur": 130
+   }
+  },
+  "recurrence_ex": {
+   "type": "etape",
+   "kicker": "Exemple · encadrer une suite par récurrence",
+   "titre": "v₀ = 10 et vₙ₊₁ = √(vₙ + 6) : montrer que 3 ≤ vₙ ≤ 10",
+   "tex": [
+    "P_n : 3 \\leq v_n \\leq 10",
+    "\\text{initialisation : } v_0 = 10",
+    "\\text{HR : } 9 \\leq v_n + 6 \\leq 16",
+    "\\sqrt{9} \\leq v_{n+1} \\leq \\sqrt{16} \\Rightarrow 3 \\leq v_{n+1} \\leq 4 \\leq 10"
+   ]
+  },
+  "recurrence_double": {
+   "type": "etape",
+   "kicker": "La récurrence double",
+   "titre": "Quand le rang suivant dépend des deux précédents",
+   "tex": [
+    "\\text{initialisation : } P_0 \\text{ et } P_1 \\text{ vraies}",
+    "\\text{hérédité : } P_n \\text{ et } P_{n+1} \\Rightarrow P_{n+2}"
+   ]
+  },
+  "recurrence_double_ex": {
+   "type": "etape",
+   "kicker": "Exemple · une suite d'ordre deux",
+   "titre": "u₀ = 1, u₁ = 2 : montrer que uₙ = 2ⁿ",
+   "tex": [
+    "u_{n+2} = 5u_{n+1} - 6u_n",
+    "u_{n+2} = 5 \\times 2^{n+1} - 6 \\times 2^n",
+    "= 2^n (10 - 6) = 2^{n+2}"
+   ]
+  },
+  "recurrence_forte": {
+   "type": "etape",
+   "kicker": "La récurrence forte",
+   "titre": "S'appuyer sur tous les rangs précédents",
+   "tex": [
+    "\\text{initialisation : le premier rang}",
+    "\\text{hérédité : } P_0, \\dots, P_n \\Rightarrow P_{n+1}",
+    "\\text{exemple : tout entier } \\geq 2 \\text{ est un produit de premiers}"
+   ]
+  },
+  "choix": {
+   "type": "recap",
+   "kicker": "Choisir sa méthode",
+   "etapes": [
+    "Direct : partir des hypothèses",
+    "Absurde : supposer le contraire",
+    "Contraposée : nier et inverser",
+    "Cas : couvrir tous les cas",
+    "Récurrence : initialiser, transmettre"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Proposition : vraie ou fausse",
+    "Implication : fausse pour V puis F",
+    "Équivalence : double implication",
+    "De Morgan : nier échange et et ou",
+    "Rédiger : introduire, annoncer, citer"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Logique, rédaction et méthodes de démonstration.",
+   "dit": "Bienvenue dans ce cours de logique et de démonstration. Nous allons apprendre à construire des propositions précises, à les relier par des connecteurs, puis à prouver : par raisonnement direct, par l'absurde, par contraposition, par disjonction de cas et par récurrence."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "texte": "Dire juste, puis prouver : les deux gestes du cours.",
+   "dit": "Une démonstration réussie repose sur deux gestes. D'abord, dire des choses qui ont un sens précis : des propositions vraies ou fausses, sans ambiguïté. Ensuite, enchaîner des étapes dont chacune est justifiée. Ce cours construit ces deux gestes, dans cet ordre."
+  },
+  {
+   "id": "p03",
+   "ecran": "proposition",
+   "texte": "Une proposition : vraie ou fausse, jamais les deux.",
+   "dit": "Une proposition est un énoncé déclaratif qui peut être vrai ou faux, mais jamais les deux à la fois. Paris est la capitale de la France : proposition vraie. La Terre est plate : proposition fausse. En revanche, un ordre ou une question ne sont pas des propositions, car on ne peut pas dire s'ils sont vrais ou faux."
+  },
+  {
+   "id": "p04",
+   "ecran": "connecteurs",
+   "texte": "Cinq connecteurs : non, et, ou, implique, équivaut.",
+   "dit": "Pour construire des propositions complexes, on relie des propositions simples par des connecteurs logiques. La négation inverse la valeur de vérité. La conjonction, c'est le et. La disjonction, c'est le ou, au sens inclusif. L'implication se lit : si, alors. Et l'équivalence se lit : si et seulement si."
+  },
+  {
+   "id": "p05",
+   "ecran": "pluie",
+   "texte": "Il pleut, le sol est mouillé : cinq façons de relier.",
+   "dit": "Prenons pé pour il pleut, et ku pour le sol est mouillé. Non pé dit : il ne pleut pas. Pé et ku dit : il pleut et le sol est mouillé. Pé ou ku, pé implique ku, pé équivaut à ku : le même couple de propositions simples donne cinq propositions complexes, de sens très différents."
+  },
+  {
+   "id": "p06",
+   "ecran": "conjonction",
+   "texte": "Le et exige les deux, le ou se contente d'un seul.",
+   "dit": "Deux connecteurs à ne jamais confondre. Pé et ku n'est vrai que dans un seul cas : quand pé et ku sont tous les deux vrais. Pé ou ku, au contraire, est vrai dès qu'au moins l'un des deux est vrai, y compris quand les deux le sont : c'est le ou inclusif des mathématiques."
+  },
+  {
+   "id": "p07",
+   "ecran": "implication",
+   "texte": "L'implication : un seul cas faux, vrai puis faux.",
+   "dit": "L'implication pé implique ku fait de pé l'hypothèse et de ku la conclusion. Sa table de vérité tient en une phrase : elle n'est fausse que dans un seul cas, quand l'hypothèse est vraie et la conclusion fausse. Dans les trois autres cas, y compris quand l'hypothèse est fausse, l'implication est vraie."
+  },
+  {
+   "id": "p08",
+   "ecran": "equivalence",
+   "texte": "Équivalence : même valeur de vérité, deux sens.",
+   "dit": "Deux propositions sont équivalentes quand elles ont toujours la même valeur de vérité : pé est vraie si et seulement si ku est vraie. Concrètement, une équivalence cache deux implications : pé implique ku, et ku implique pé. C'est ce qui rendra sa démonstration particulière."
+  },
+  {
+   "id": "p09",
+   "ecran": "montrer_equiv",
+   "texte": "Équivalence : transformer, ou prouver les deux sens.",
+   "dit": "Pour montrer une équivalence, deux méthodes. La première : raisonner par équivalences successives, en transformant pé en ku par des étapes qui préservent toutes l'équivalence, comme on le fait en résolvant une équation. La seconde : la double implication, on prouve séparément chaque sens."
+  },
+  {
+   "id": "p10",
+   "ecran": "bezout",
+   "texte": "Bézout : une équivalence en double implication.",
+   "dit": "Exemple avec le théorème de Bézout : le plus grand commun diviseur de a et bé vaut un, si et seulement s'il existe deux entiers u et vé tels que a u plus bé vé vaut un. Dans un sens, c'est l'identité de Bézout qui fournit u et vé. Dans l'autre, tout diviseur commun à a et bé divise aussi leur combinaison, donc divise un : il vaut un."
+  },
+  {
+   "id": "p11",
+   "ecran": "de_morgan",
+   "texte": "De Morgan : nier un et donne un ou, et réciproquement.",
+   "dit": "Les lois de De Morgan disent comment nier une proposition composée. Nier pé et ku, c'est non pé ou non ku. Nier pé ou ku, c'est non pé et non ku. La négation traverse la parenthèse, nie chaque proposition, et échange le et et le ou. Retenez ce mécanisme : il servira dès l'écran suivant."
+  },
+  {
+   "id": "p12",
+   "ecran": "de_morgan_ex",
+   "texte": "Simplifier : De Morgan deux fois, de suite.",
+   "dit": "Application : simplifier la négation de : pé ou ku, le tout et erre. On applique d'abord De Morgan au et extérieur : la négation devient, négation de pé ou ku, ou bien non erre. Puis on applique De Morgan à l'intérieur : négation de pé ou ku devient non pé et non ku. Résultat : non pé et non ku, ou non erre."
+  },
+  {
+   "id": "p13",
+   "ecran": "neg_implication",
+   "texte": "Nier une implication : l'hypothèse vraie, la conclusion fausse.",
+   "dit": "Le piège classique : nier une implication. Une implication pé implique ku équivaut à non pé ou ku. Sa négation, par De Morgan, devient pé et non ku. Autrement dit, une implication est fausse exactement quand l'hypothèse est vraie et la conclusion fausse : on retrouve, par le calcul, la table de vérité de tout à l'heure."
+  },
+  {
+   "id": "p14",
+   "ecran": "redaction",
+   "texte": "Rédiger : introduire, annoncer, citer avec précision.",
+   "dit": "La logique ne suffit pas : il faut la rédiger. Trois réflexes. Introduire chaque objet dont on parle : soit un entier, pour tout réel, jamais de lettre surgie de nulle part. Annoncer ce que l'on fait : montrons que, démontrons par récurrence, par l'absurde. Et citer chaque définition ou théorème avec toutes ses hypothèses, sans en oublier une."
+  },
+  {
+   "id": "p15",
+   "ecran": "redaction_ex",
+   "texte": "Un encadrement rédigé : chaque étape est annoncée.",
+   "dit": "Exemple entièrement rédigé : pour tout iks entre zéro et un, la racine carrée de un moins iks carré reste entre zéro et un. On introduit iks. La fonction carrée est croissante sur les positifs : iks carré est entre zéro et un. Donc un moins iks carré aussi. La fonction racine carrée est croissante : on applique, et l'encadrement cherché tombe."
+  },
+  {
+   "id": "p16",
+   "ecran": "fonction",
+   "texte": "Une fonction n'est pas son expression.",
+   "dit": "Dernier point de rédaction, un classique des copies : distinguer une fonction de son expression. Écrire la fonction iks sur iks carré plus un est incorrect : cette fraction est une expression, pas une fonction. On écrit : la fonction qui à iks associe cette fraction, ou on la nomme : eff, qui à iks associe eff de iks."
+  },
+  {
+   "id": "p17",
+   "ecran": "direct",
+   "texte": "Raisonnement direct : des hypothèses à la conclusion.",
+   "dit": "Passons aux méthodes de démonstration, et d'abord la plus naturelle : le raisonnement direct. On part des hypothèses, et on avance vers la conclusion par une chaîne d'implications successives, chacune justifiée par une définition, un calcul ou un résultat déjà connu. C'est la méthode à essayer en premier."
+  },
+  {
+   "id": "p18",
+   "ecran": "direct_ex",
+   "texte": "Direct : la somme de deux pairs, le carré d'un impair.",
+   "dit": "Deux exemples directs sur les parités. Si a et bé sont pairs, ils s'écrivent deux ka et deux emme : leur somme vaut deux fois ka plus emme, elle est paire. Si enne est impair, il s'écrit deux ka plus un : son carré se développe en deux fois une quantité entière, plus un : il est impair. Dans les deux cas, on part de la définition et le calcul conclut."
+  },
+  {
+   "id": "p19",
+   "ecran": "absurde",
+   "texte": "L'absurde : le contraire mène à l'impossible.",
+   "dit": "Quand le direct semble bloqué, le raisonnement par l'absurde change de stratégie. Pour prouver qu'une propriété est vraie, on suppose qu'elle est fausse, et on raisonne jusqu'à obtenir une contradiction, quelque chose d'impossible. L'hypothèse de départ est donc intenable : la propriété est vraie."
+  },
+  {
+   "id": "p20",
+   "ecran": "absurde_ex",
+   "texte": "Racine de deux : la parité fait la contradiction.",
+   "dit": "L'exemple historique : racine carrée de deux est irrationnelle. Supposons le contraire : elle s'écrit pé sur ku, avec pé et ku premiers entre eux. Alors pé carré vaut deux ku carré : pé est pair, donc pé vaut deux pé prime. En remplaçant, ku carré vaut deux pé prime carré : ku est pair aussi. Mais pé et ku étaient premiers entre eux : contradiction, ils partagent le diviseur deux."
+  },
+  {
+   "id": "p21",
+   "ecran": "contraposee",
+   "texte": "Contraposée : nier, inverser, même vérité.",
+   "dit": "La contraposition exploite une équivalence vue en première partie : pé implique ku a exactement la même valeur de vérité que sa contraposée, non ku implique non pé. On a donc le droit de prouver la contraposée à la place de l'implication, quand ses négations sont plus simples à manipuler."
+  },
+  {
+   "id": "p22",
+   "ecran": "contraposee_ex",
+   "texte": "Si le carré est pair, l'entier est pair : par contraposée.",
+   "dit": "Exemple : montrer que si enne carré est pair, alors enne est pair. Directement, c'est malcommode. La contraposée dit : si enne est impair, alors enne carré est impair. Or c'est exactement le calcul direct fait plus tôt : enne vaut deux ka plus un, son carré vaut deux fois une quantité entière plus un, il est impair. La contraposée est vraie, donc l'implication de départ aussi."
+  },
+  {
+   "id": "p23",
+   "ecran": "cas",
+   "texte": "Disjonction de cas : chaque cas, puis la conclusion.",
+   "dit": "Parfois, les hypothèses se séparent naturellement en plusieurs scénarios : c'est le domaine de la disjonction de cas. On identifie tous les cas possibles, sans en oublier aucun, on démontre la propriété dans chacun d'eux, et comme elle est vraie dans tous les cas, elle est vraie en général."
+  },
+  {
+   "id": "p24",
+   "ecran": "cas_ex",
+   "texte": "n² + n est pair : vrai si n est pair, vrai s'il est impair.",
+   "dit": "Exemple : pour tout entier enne, enne carré plus enne est pair. Premier cas, enne est pair : il vaut deux ka, et le calcul donne deux fois une quantité entière. Deuxième cas, enne est impair : il vaut deux ka plus un, et le calcul donne encore deux fois une quantité entière. Les deux cas couvrent tous les entiers : la propriété est démontrée."
+  },
+  {
+   "id": "p25",
+   "ecran": "recurrence",
+   "texte": "Récurrence : initialisation, hérédité, conclusion.",
+   "dit": "La récurrence sert à prouver une propriété pour tous les entiers naturels. Imaginez des dominos alignés : pour qu'ils tombent tous, il suffit que le premier tombe, et que chaque domino fasse tomber le suivant. En mathématiques : l'initialisation vérifie le premier rang, l'hérédité montre que la propriété se transmet d'un rang au suivant."
+  },
+  {
+   "id": "p26",
+   "ecran": "recurrence_ex",
+   "texte": "Encadrer une suite : l'hérédité par les encadrements.",
+   "dit": "Exemple complet : une suite commence à dix, et chaque terme est la racine carrée du précédent plus six. Montrons qu'elle reste entre trois et dix. Initialisation : le premier terme vaut dix, l'encadrement est vrai. Hérédité : si un terme est entre trois et dix, le suivant plus six est entre neuf et seize, et sa racine carrée entre trois et quatre, donc entre trois et dix. Transmission prouvée, propriété vraie pour tout rang."
+  },
+  {
+   "id": "p27",
+   "ecran": "recurrence_double",
+   "texte": "Récurrence double : deux initialisations, un pas de deux.",
+   "dit": "Il arrive que le rang suivant dépende des deux rangs précédents, et non d'un seul : on utilise alors une récurrence double. L'initialisation vérifie deux rangs consécutifs, et l'hérédité montre que si deux rangs consécutifs possèdent la propriété, alors le rang d'après la possède aussi."
+  },
+  {
+   "id": "p28",
+   "ecran": "recurrence_double_ex",
+   "texte": "Récurrence double : 5 × 2ⁿ⁺¹ − 6 × 2ⁿ = 2ⁿ⁺².",
+   "dit": "Exemple : une suite commence par un, puis deux, et chaque terme vaut cinq fois le précédent moins six fois celui d'avant. Les deux premiers termes sont bien des puissances de deux. Pour l'hérédité, on remplace les deux termes par les puissances supposées : cinq fois deux puissance enne plus un, moins six fois deux puissance enne, donne quatre fois deux puissance enne, c'est-à-dire deux puissance enne plus deux."
+  },
+  {
+   "id": "p29",
+   "ecran": "recurrence_forte",
+   "texte": "Récurrence forte : tous les rangs précédents servent.",
+   "dit": "La récurrence forte va plus loin : pour prouver le rang suivant, on suppose la propriété vraie pour tous les rangs depuis le début. C'est elle qui démontre, par exemple, que tout entier supérieur ou égal à deux est un produit de nombres premiers : s'il n'est pas premier lui-même, il se scinde en deux entiers plus petits, auxquels l'hypothèse s'applique."
+  },
+  {
+   "id": "p30",
+   "ecran": "choix",
+   "texte": "Choisir sa méthode selon l'énoncé.",
+   "dit": "Devant un énoncé, choisissez la méthode selon sa forme. Une implication directe depuis les hypothèses : raisonnement direct. Une conclusion qui semble hors d'atteinte : absurde ou contraposée. Des hypothèses qui se séparent : disjonction de cas. Une propriété pour tous les entiers : récurrence, simple, double ou forte selon ce dont le rang suivant dépend."
+  },
+  {
+   "id": "p31",
+   "ecran": "recap",
+   "texte": "Logique et démonstration : à retenir.",
+   "dit": "Pour finir, retenez l'enchaînement du cours. Une proposition est vraie ou fausse. Les connecteurs les composent, l'implication n'est fausse que pour vrai puis faux, l'équivalence se prouve en double implication, et De Morgan nie les propositions composées. Côté méthodes : direct, absurde, contraposée, cas et récurrence. Et partout, la même rédaction : introduire, annoncer, justifier."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Propositions, connecteurs et lois de De Morgan"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Rédiger, puis prouver : direct, absurde et contraposée",
+   "pont": {
+    "texte": "Partie 2 : rédiger une démonstration, puis direct, absurde et contraposée.",
+    "dit": "Partie deux : rédiger, puis prouver. Avant les méthodes elles-mêmes, nous verrons comment écrire une démonstration qui se lit bien, puis trois premières méthodes : le raisonnement direct, l'absurde et la contraposition."
+   }
+  },
+  {
+   "debut": "p23",
+   "sous_titre": "Disjonction de cas et récurrence",
+   "pont": {
+    "texte": "Partie 3 : disjonction de cas et les trois récurrences.",
+    "dit": "Partie trois : traiter les cas, puis transmettre de rang en rang. Nous verrons la disjonction de cas, puis la récurrence sous ses trois formes : simple, double et forte."
+   }
+  }
+ ]
+}
