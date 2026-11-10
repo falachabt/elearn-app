@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, View, type PressableProps, type StyleProp, type 
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
 import { suivre } from '@/services/analytics';
+import { ombre as ombres } from '@/theme/theme';
 
 import { useFeedback } from './useFeedback';
 
@@ -26,6 +27,7 @@ const RESSORT = { damping: 14, stiffness: 600, mass: 0.6 } as const;
 export function Appui({ children, style, decalage = 3, ombre = 0, couleurOmbre, rayon = 0, retour, suivi, disabled, onPress, onPressIn, onPressOut, ...reste }: Props) {
   const { reduit, declencher } = useFeedback();
   const d = Math.max(0, decalage);
+  const profondeurOmbre = Math.min(ombre, ombres.m);
   const enfonce = useSharedValue(0);
   const anime = useAnimatedStyle(() => ({ transform: [{ translateX: enfonce.value * d }, { translateY: enfonce.value * d }] }));
   const vers = (v: number) => {
@@ -49,13 +51,13 @@ export function Appui({ children, style, decalage = 3, ombre = 0, couleurOmbre, 
         vers(0);
         onPressOut?.(e);
       }}
-      style={[{ paddingRight: ombre, paddingBottom: ombre }, style]}
+      style={[{ paddingRight: profondeurOmbre, paddingBottom: profondeurOmbre }, style]}
     >
       <View>
-        {ombre > 0 && (
+        {profondeurOmbre > 0 && (
           <View
             testID="appui-ombre"
-            style={[styles.ombre, { left: ombre, top: ombre, right: -ombre, bottom: -ombre, borderRadius: rayon, backgroundColor: couleurOmbre }]}
+            style={[styles.ombre, { left: profondeurOmbre, top: profondeurOmbre, right: -profondeurOmbre, bottom: -profondeurOmbre, borderRadius: rayon, backgroundColor: couleurOmbre }]}
           />
         )}
         <Animated.View testID="appui-corps" style={reduit ? undefined : anime}>

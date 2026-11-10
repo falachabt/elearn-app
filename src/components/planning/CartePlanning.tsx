@@ -11,6 +11,7 @@ import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
+import { Apparition } from '../Apparition';
 import { Appui } from '../Appui';
 import { Carte } from '../Carte';
 
@@ -72,14 +73,15 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
       : null;
 
   return (
-    <Appui
-      accessibilityRole="button"
-      accessibilityLabel={`${t('planning.carte.titre')}. ${sousTitre}`}
-      onPress={() => router.push(termine ? { pathname: '/planning/termine', params: { source: 'carte' } } : { pathname: '/planning', params: { source: 'accueil' } })}
-      decalage={4}
-      rayon={rayon.l}
-    >
-      <Carte style={styles.carte}>
+    <Apparition delai={60}>
+      <Appui
+        accessibilityRole="button"
+        accessibilityLabel={`${t('planning.carte.titre')}. ${sousTitre}`}
+        onPress={() => router.push(termine ? { pathname: '/planning/termine', params: { source: 'carte' } } : { pathname: '/planning', params: { source: 'accueil' } })}
+        decalage={4}
+        rayon={rayon.l}
+      >
+        <Carte style={styles.carte}>
         <View style={[styles.pastille, { borderColor: theme.bord.fort, backgroundColor: theme.marque.douce }]}>
           <CalendarCheck size={20} strokeWidth={2} color={theme.texte.principal} />
         </View>
@@ -109,8 +111,9 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
         <View style={styles.chevron}>
           <ChevronRight size={20} strokeWidth={2} color={theme.texte.secondaire} />
         </View>
-      </Carte>
-    </Appui>
+        </Carte>
+      </Appui>
+    </Apparition>
   );
 }
 

@@ -12,6 +12,7 @@ import { enregistrerCompletionAssistant, estAssistantMasque, lireProgressionAssi
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
+import { Apparition } from '../Apparition';
 import { Appui } from '../Appui';
 import { useInvite } from '../FeuilleCompte';
 import { useFeedback } from '../useFeedback';
@@ -143,7 +144,7 @@ export function AssistantConfiguration() {
   if (masque) return null;
 
   return (
-    <>
+    <Apparition delai={80}>
       <Animated.View style={[styles.conteneur, reduit ? undefined : animation]}>
         <Appui
           accessibilityRole="button"
@@ -243,7 +244,7 @@ export function AssistantConfiguration() {
           showsVerticalScrollIndicator
         />
       </BottomSheetModal>
-    </>
+    </Apparition>
   );
 }
 

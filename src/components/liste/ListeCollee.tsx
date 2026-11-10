@@ -40,6 +40,8 @@ type LigneProps = {
   bas?: ReactNode;
   /** Élément à droite ; sinon un chevron. */
   droite?: ReactNode;
+  /** Action interactive à droite, rendue hors du bouton de ligne. */
+  droiteAction?: ReactNode;
   fond?: string;
   /** Élément en cours : fond creux, comme la leçon à continuer. */
   enCours?: boolean;
@@ -48,26 +50,50 @@ type LigneProps = {
 };
 
 /** Une ligne du bloc collé : même contenu que CarteListe (titre 2 lignes max), sans son propre contour. */
-export function LigneGroupe({ titre, haut, sousTitre, gauche, bas, droite, fond, enCours, premier, onPress }: LigneProps) {
+export function LigneGroupe({ titre, haut, sousTitre, gauche, bas, droite, droiteAction, fond, enCours, premier, onPress }: LigneProps) {
   const { theme } = useTheme();
+  const styleLigne = [
+    styles.ligne,
+    !premier && { borderTopWidth: bord.fin, borderTopColor: theme.bord.doux },
+    { backgroundColor: fond ?? (enCours ? theme.fond.creux : theme.fond.surface) },
+  ];
+  const texte = (
+    <View style={styles.flex}>
+      {haut}
+      <Text numberOfLines={2} style={[typo.texteFort, styles.titre, { color: theme.texte.principal }]}>{titre}</Text>
+      {sousTitre ? <Text numberOfLines={1} style={[typo.legende, { color: theme.texte.secondaire }]}>{sousTitre}</Text> : null}
+      {bas}
+    </View>
+  );
+  const contenu = (
+    <>
+      {gauche}
+      {texte}
+    </>
+  );
+  if (droiteAction) {
+    return (
+      <View style={styleLigne}>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={sousTitre ? `${titre}. ${sousTitre}` : titre}
+          onPress={onPress}
+          style={styles.principal}
+        >
+          {contenu}
+        </Pressable>
+        <View style={styles.droite}>{droiteAction}</View>
+      </View>
+    );
+  }
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={sousTitre ? `${titre}. ${sousTitre}` : titre}
       onPress={onPress}
-      style={[
-        styles.ligne,
-        !premier && { borderTopWidth: bord.fin, borderTopColor: theme.bord.doux },
-        { backgroundColor: fond ?? (enCours ? theme.fond.creux : theme.fond.surface) },
-      ]}
+      style={styleLigne}
     >
-      {gauche}
-      <View style={styles.flex}>
-        {haut}
-        <Text numberOfLines={2} style={[typo.texteFort, styles.titre, { color: theme.texte.principal }]}>{titre}</Text>
-        {sousTitre ? <Text numberOfLines={1} style={[typo.legende, { color: theme.texte.secondaire }]}>{sousTitre}</Text> : null}
-        {bas}
-      </View>
+      {contenu}
       <View style={styles.droite}>{droite ?? <ChevronRight size={20} strokeWidth={2} color={theme.texte.secondaire} />}</View>
     </Pressable>
   );
@@ -84,6 +110,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   ligne: { minHeight: 70, flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[4] },
+  principal: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   flex: { flex: 1, gap: 2, justifyContent: 'center' },
   titre: { fontSize: 15, lineHeight: 20 },
   droite: { alignSelf: 'center' },

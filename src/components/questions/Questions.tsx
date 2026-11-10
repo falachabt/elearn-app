@@ -38,7 +38,7 @@ export function Questions() {
   const { exiger, feuille } = useCompteRequis();
   const [niveau, setNiveau] = useState<string | null>(null);
   const [matiere, setMatiere] = useState<string | null>(null);
-  const [classe, setClasse] = useState<Classe>('maClasse');
+  const [classe, setClasse] = useState<Classe>('toutes');
   const [resolues, setResolues] = useState(false);
   const [photo, setPhoto] = useState<string | null>(null);
   const [essai, setEssai] = useState(0);
@@ -113,8 +113,8 @@ export function Questions() {
           <View style={styles.flex}>
             <Onglets
               valeurs={[
-                { valeur: 'maClasse' as Classe, libelle: niveau ? t('questions.maClasse', { classe: niveau }) : t('questions.toutes') },
                 { valeur: 'toutes' as Classe, libelle: t('questions.toutesClasses') },
+                { valeur: 'maClasse' as Classe, libelle: niveau ? t('questions.maClasse', { classe: niveau }) : t('questions.toutes') },
               ]}
               valeur={classe}
               onChange={setClasse}

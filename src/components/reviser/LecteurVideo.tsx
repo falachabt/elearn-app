@@ -583,9 +583,8 @@ export function LecteurVideo() {
                       }
                       titre={v.titre}
                       sousTitre={gardee ? `${sousTitre} · ${t('videos.telechargee')}` : sousTitre}
-                      droite={
+                      droiteAction={
                         <View style={styles.actionsVideo}>
-                          {s?.terminee ? <Check size={20} strokeWidth={3} color={theme.marque.principale} /> : null}
                           {verrou ? (
                             <Lock size={19} strokeWidth={2.2} color={theme.texte.secondaire} />
                           ) : dlEnCours === v.id ? (
@@ -611,6 +610,7 @@ export function LecteurVideo() {
                           )}
                         </View>
                       }
+                      droite={s?.terminee ? <Check size={20} strokeWidth={3} color={theme.marque.principale} /> : undefined}
                       onPress={() => choisirVideo(v)}
                     />
                   );

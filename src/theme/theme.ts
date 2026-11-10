@@ -19,7 +19,7 @@ const p = palette;
 type Elargi<T> = { [K in keyof T]: T[K] extends string ? string : Elargi<T[K]> };
 
 const lightValeurs = {
-  fond: { app: p.papier[50], surface: p.papier[0], creux: p.papier[100], inverse: p.encre[1000] },
+  fond: { app: "#ffffff", surface: p.papier[0], creux: p.papier[100], inverse: p.encre[1000] },
   texte: { principal: p.encre[1000], secondaire: p.encre[500], inverse: p.papier[0], surCouleur: p.encre[1000], lien: p.emeraude[700] },
   bord: { fort: p.encre[1000], doux: p.encre[200] },
   ombre: p.encre[1000],
@@ -78,7 +78,7 @@ export const espace = { 0: 0, 1: 2, 2: 4, 3: 8, 4: 12, 5: 16, 6: 20, 7: 24, 8: 3
 export const rayon = { aucun: 0, s: 6, m: 10, l: 14, pilule: 999 } as const;
 export const bord = { fin: 1.5, normal: 2, epais: 3 } as const;
 // Ombres dures sans flou. Sur Android, `elevation` floute : dessiner l'ombre avec une vue décalée derrière l'élément.
-export const ombre = { s: 2, carte: 3, m: 4, l: 6 } as const; // carte = cartes de liste ; m = boutons
+export const ombre = { s: 1, carte: 1, m: 1, l: 1 } as const; // carte = cartes de liste ; m = boutons
 export const cibleMin = 48;
 
 // Polices (SIL OFL) à charger avec expo-font : ArchivoBlack_400Regular, SpaceGrotesk_400/500/700, SpaceMono_400/700.

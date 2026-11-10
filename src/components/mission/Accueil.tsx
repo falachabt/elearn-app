@@ -1,18 +1,15 @@
-import { lirePlanning, planningEstTermine, lirePlanningTermineVu, noterPlanningTermineVu } from '@/services/planning';
 import { Ionicons } from '@expo/vector-icons';
 import { Award, ChevronDown, GraduationCap, Trophy } from 'lucide-react-native';
 import { router, useFocusEffect } from 'expo-router';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { calculerSerie, chargerMission, jourLocal, lireAlerteSerie, lireDernierResultat, lireHistorique, noterAlerteSerie, type Mission, type ResultatMission , estMomentAlerteSerie } from '@/services/mission';
+import { calculerSerie, chargerMission, jourLocal, lireAlerteSerie, lireDernierResultat, lireHistorique, noterAlerteSerie, type Mission, type ResultatMission } from '@/services/mission';
 import { lireRythme } from '@/services/rythme';
 import { lireProfil, profilDepuisCompte, type Profil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
 import { doitRappelerCompte, noterRappelCompte } from '@/services/rappels';
-import { lireEtatHorsLigne } from '@/services/horsLigne';
-import { doitProposerHorsLigne, noterPropositionHorsLigne, variantePourStatut, type VarianteProposition } from '@/services/propositionHorsLigne';
 import { getSupabase } from '@/services/supabase';
 import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -24,7 +21,6 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
-import { Feuille } from '../Feuille';
 import { FeuilleCompte, useInvite } from '../FeuilleCompte';
 import { Cloche } from '../notifications/Cloche';
 import { CompteARebours } from '../accueil/CompteARebours';
@@ -56,14 +52,11 @@ export function titreMission(m: Mission | null): string | null {
  * Libellé court du profil affiché dans le sélecteur d'en-tête :
  * - élève : classe seule (ex. 3e, Tle) sans le pays
  * - concours : sigle seul (ex. ENS, Médecine) sans le pays
- * - certification : sigle court de l'examen, c'est-à-dire son code en capitales (ex. TOEIC) ;
- *   le nom complet vient de `cert_exams` et sert aux listes (A2), pas à la pastille.
+ * - certification : sigle court de l'examen en capitales (ex. TOEIC)
  */
 export function libelleProfil(profil: Profil | null): string {
   if (!profil) return '3e';
-  if (profil.type === 'certification') {
-    return (profil.exam ?? 'toeic').toUpperCase();
-  }
+  if (profil.type === 'certification') return (profil.exam ?? 'toeic').toUpperCase();
   if (profil.type === 'concours') {
     return (
       profil.concours?.sigle ??
@@ -83,10 +76,8 @@ export function libelleProfil(profil: Profil | null): string {
 
 /**
  * Sélecteur de classe, de programme ou de certification actuel : sous forme de menu select,
- * un appui ouvre la page de changement de parcours (`/profil/changer`, sur la famille active).
+ * un appui ouvre l'écran permettant de changer de parcours.
  * Même gabarit et hauteur que les pastilles voisines (série, éclair, cloche).
- * Monté sur l'accueil de chaque famille : élève et concours (écran `Accueil`) et
- * certification (`AccueilToeic`, à la place du titre « Accueil », demande de Benny du 25/10/2026).
  */
 export function SelecteurClasse({ profil }: { profil: Profil | null }) {
   const { t } = useTraduction();
@@ -136,17 +127,6 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
   const [rappelCompte, setRappelCompte] = useState(false);
   const [joues, setJoues] = useState<string[]>([]);
   const [feuilleSerie, setFeuilleSerie] = useState(false);
-  // Proposition de téléchargement hors ligne (issue #118) : variante affichée, ou null.
-  const [proposition, setProposition] = useState<VarianteProposition | null>(null);
-  // Miroirs des feuilles prioritaires : la proposition ne s'ouvre jamais par-dessus une autre feuille.
-  const feuilleSerieRef = useRef(false);
-  const rappelCompteRef = useRef(false);
-  useEffect(() => {
-    feuilleSerieRef.current = feuilleSerie;
-  }, [feuilleSerie]);
-  useEffect(() => {
-    rappelCompteRef.current = rappelCompte;
-  }, [rappelCompte]);
   const [serieEnDanger, setSerieEnDanger] = useState(false);
   // Prochaine échéance de la classe (issue #65) : null tant que la base n'a rien, ou pour un invité ou un concours.
   // Liée à la clé (classe, pays, session) qui l'a calculée : une valeur d'une autre classe ou session n'est jamais affichée.
@@ -229,29 +209,12 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           setJoues(historique);
           setEtat((e) => ({ ...e, serie, faite }));
         }
-        // Série en danger à l'ouverture (mission du jour pas faite) :
-        // Uniquement s'il reste au maximum 40% de la journée (environ après 14h24), une fois par jour.
-        const momentAlerte = estMomentAlerteSerie(maintenant ?? new Date());
-        if (actif && serie > 0 && !faite && momentAlerte && (await lireAlerteSerie()) !== jour) {
+        // Série en danger à l'ouverture (mission du jour pas faite) : feuille ouverte toute seule, une fois par jour.
+        if (actif && serie > 0 && !faite && (await lireAlerteSerie()) !== jour) {
           await noterAlerteSerie(jour);
           setSerieEnDanger(true);
           setFeuilleSerie(true);
         }
-        // Bilan automatique quand le planning est terminé :
-        if (actif && idUtilisateur && pret && pret !== 'hors-ligne') {
-          try {
-            const { planning: pl } = await lirePlanning(getSupabase(), idUtilisateur);
-            if (actif && pl && planningEstTermine(pl)) {
-              const dejaVu = await lirePlanningTermineVu(idUtilisateur);
-              if (actif && !dejaVu) {
-                await noterPlanningTermineVu(idUtilisateur);
-                router.push({ pathname: '/planning/termine', params: { source: 'auto' } });
-                return;
-              }
-            }
-          } catch {}
-        }
-
         if (!pret) return;
         // Tirée dès l'accueil : la mission est prête (et jouable hors ligne) avant le premier appui.
         const mission = await chargerMission(getSupabase(), {
@@ -273,54 +236,17 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
     }, [maintenant, t, pret, idUtilisateur]),
   );
 
-  // Proposition de téléchargement hors ligne (issue #118) : évaluée au focus, après les autres
-  // feuilles (série en danger et rappel de compte restent prioritaires). Déclencheurs : arrivée
-  // hors ligne sans contenu, ou mission du jour faite sans avoir téléchargé le programme.
-  const faiteActuelle = etat.faite;
-  useFocusEffect(
-    useCallback(() => {
-      if (!pret) return;
-      let actif = true;
-      void (async () => {
-        const [p, etatPack] = await Promise.all([lireProfil(), lireEtatHorsLigne()]);
-        if (!actif) return;
-        const declencheur = pret === 'hors-ligne' || faiteActuelle !== null;
-        const ok = await doitProposerHorsLigne(
-          { invite, profilTermine: !!p?.termine, statutPack: etatPack?.statut ?? null, declencheur },
-          maintenant,
-        );
-        if (!actif || !ok) return;
-        // Une feuille prioritaire a pu s'ouvrir pendant les lectures : on renonce pour cette fois,
-        // sans consommer la cadence.
-        if (feuilleSerieRef.current || rappelCompteRef.current) return;
-        const variante = variantePourStatut(etatPack?.statut ?? null);
-        if (!variante) return;
-        await noterPropositionHorsLigne(maintenant);
-        if (!actif) return;
-        suivre('offline_prompt_shown', { variante });
-        setProposition(variante);
-      })().catch(() => {});
-      return () => {
-        actif = false;
-      };
-    }, [pret, invite, maintenant, faiteActuelle]),
-  );
-
   const matieres = [...new Set(etat.mission?.questions.map((q) => q.libelleMatiere).filter((m): m is string => !!m) ?? [])].slice(0, 3);
   const surVert = theme.texte.surCouleur;
-  const dateCible = echeance?.dateCible ?? CIBLE_EXEMPLE;
-  const anneeCible = dateCible.getFullYear();
-  const nomBase = echeance?.libelle ?? 'BEPC';
-  const nomAvecAnnee = /\b20\d{2}\b/.test(nomBase) ? nomBase : `${nomBase} ${anneeCible}`;
   const elementCompteARebours =
     echeance || __DEV__ ? (
       <CompteARebours
         type={echeance?.type ?? 'examen'}
-        cible={dateCible}
+        cible={echeance?.dateCible ?? CIBLE_EXEMPLE}
         libelle={
           echeance
-            ? `${nomAvecAnnee} · ${dateCible.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}`
-            : `EXEMPLE · ${nomAvecAnnee}`
+            ? `${echeance.libelle} · ${echeance.dateCible.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}`
+            : 'EXEMPLE · BEPC'
         }
         estime={echeance ? echeance.statut === 'reprise' : true}
       />
@@ -426,6 +352,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           </View>
         </Appui>
       </Apparition>
+      
     </Ecran>
     <FeuilleSerie
       ouverte={feuilleSerie}
@@ -439,32 +366,6 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       }}
     />
     <FeuilleCompte raison={rappelCompte ? 'rappel' : null} onFermer={() => setRappelCompte(false)} onCompte={() => setRappelCompte(false)} />
-    <Feuille
-      ouverte={proposition !== null}
-      onFermer={() => setProposition(null)}
-      icone="cloud-download-outline"
-      titre={proposition === 'partiel' ? t('horsLigne.propositionTitrePartiel') : t('horsLigne.propositionTitre')}
-      texte={proposition === 'partiel' ? t('horsLigne.propositionTextePartiel') : t('horsLigne.propositionTexte')}
-      mention={t('horsLigne.propositionMention')}
-      actions={[
-        {
-          libelle: proposition === 'partiel' ? t('horsLigne.propositionBoutonPartiel') : t('horsLigne.propositionBouton'),
-          onPress: () => {
-            suivre('offline_prompt_answered', { choix: 'telecharger', variante: proposition ?? 'absent' });
-            setProposition(null);
-            router.push('/hors-ligne');
-          },
-        },
-        {
-          libelle: t('horsLigne.propositionPlusTard'),
-          variante: 'texte',
-          onPress: () => {
-            suivre('offline_prompt_answered', { choix: 'plus_tard', variante: proposition ?? 'absent' });
-            setProposition(null);
-          },
-        },
-      ]}
-    />
     </View>
   );
 }
@@ -500,9 +401,9 @@ const styles = StyleSheet.create({
     maxWidth: 160,
   },
   piedCompteARebours: {
-    paddingTop: 0,
-    paddingBottom: 0,
-    marginBottom: -espace[3],
-    gap: 0,
+  paddingTop: espace[4],
+  paddingBottom: 0,
+  marginBottom: -espace[4],
+  gap: 0,
   },
 });
