@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { useProfilCertification } from '@/components/certification/useProfilCertification';
 import { lireMemoireProfil, type MemoireProfil } from '@/services/changementProfil';
 import { lireProfil, type Profil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -39,6 +40,7 @@ function estOnglet(v: string | undefined): v is OngletParcours {
 export function PageChangementParcours() {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const certificationOuverte = useProfilCertification();
   const insets = useSafeAreaInsets();
   const params = useLocalSearchParams<{ onglet?: string; source?: string }>();
   const [profil, setProfil] = useState<Profil | null>(null);
@@ -54,12 +56,14 @@ export function PageChangementParcours() {
       if (!vivant) return;
       setProfil(p);
       setMemoire(m);
-      setOnglet(estOnglet(params.onglet) ? params.onglet : familleDe(p));
+      const famille = familleDe(p);
+      const demandeCertification = params.onglet === 'certification';
+      setOnglet(demandeCertification && !certificationOuverte ? 'secondaire' : estOnglet(params.onglet) ? params.onglet : famille === 'certification' && !certificationOuverte ? 'secondaire' : famille);
     });
     return () => {
       vivant = false;
     };
-  }, [params.onglet]);
+  }, [params.onglet, certificationOuverte]);
 
   if (!onglet) return <View style={[styles.page, { backgroundColor: theme.fond.app }]} />;
 
@@ -79,7 +83,7 @@ export function PageChangementParcours() {
             </Text>
           ) : null}
         </View>
-        <Onglets valeurs={ONGLETS.map((o) => ({ valeur: o, libelle: libelleOnglet(o) }))} valeur={onglet} onChange={setOnglet} marque={famille} />
+        <Onglets valeurs={ONGLETS.filter((o) => o !== 'certification' || certificationOuverte).map((o) => ({ valeur: o, libelle: libelleOnglet(o) }))} valeur={onglet} onChange={setOnglet} marque={famille === 'certification' && !certificationOuverte ? 'secondaire' : famille} />
       </View>
       <View style={styles.contenu}>
         {onglet === 'secondaire' ? (

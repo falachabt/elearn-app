@@ -12,6 +12,7 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { LogoToeic } from '../certification/LogoToeic';
 import { EnteteToeic, LigneChoix } from '../certification/ui';
+import { useProfilCertification } from '../certification/useProfilCertification';
 
 type Choix = 'secondaire' | 'concours' | 'certification';
 
@@ -23,6 +24,7 @@ type Choix = 'secondaire' | 'concours' | 'certification';
 export function ChoisirProfil() {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const certificationOuverte = useProfilCertification();
   const [actuel, setActuel] = useState<Choix | null>(null);
   const [choix, setChoix] = useState<Choix | null>(null);
 
@@ -40,7 +42,9 @@ export function ChoisirProfil() {
   }, []);
 
   const continuer = () => {
-    router.push({ pathname: '/profil/changer', params: { onglet: choix ?? actuel ?? 'secondaire', source: 'moi' } });
+    const demande = choix ?? actuel ?? 'secondaire';
+    const onglet = !certificationOuverte && demande === 'certification' ? 'secondaire' : demande;
+    router.push({ pathname: '/profil/changer', params: { onglet, source: 'moi' } });
   };
 
   const badge = (c: Choix) => (actuel === c ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('profilChoix.actuel')}</Text> : undefined);
@@ -53,7 +57,9 @@ export function ChoisirProfil() {
       <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('profilChoix.intro')}</Text>
       <LigneChoix icone={GraduationCap} titre={t('profilChoix.secondaire')} aide={t('profilChoix.secondaireAide')} radio actif={choix === 'secondaire'} droite={badge('secondaire')} onPress={() => setChoix('secondaire')} />
       <LigneChoix icone={Trophy} titre={t('profilChoix.concours')} aide={t('profilChoix.concoursAide')} radio actif={choix === 'concours'} droite={badge('concours')} onPress={() => setChoix('concours')} />
-      <LigneChoix visuel={<LogoToeic />} titre={t('profilChoix.toeic')} aide={t('profilChoix.toeicAide')} radio actif={choix === 'certification'} droite={badge('certification')} onPress={() => setChoix('certification')} />
+      {certificationOuverte ? (
+        <LigneChoix visuel={<LogoToeic />} titre={t('profilChoix.toeic')} aide={t('profilChoix.toeicAide')} radio actif={choix === 'certification'} droite={badge('certification')} onPress={() => setChoix('certification')} />
+      ) : null}
     </Ecran>
   );
 }

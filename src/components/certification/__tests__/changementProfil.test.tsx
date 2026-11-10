@@ -12,6 +12,8 @@ import { enregistrerProfil } from '@/services/profil';
 import { ChoisirProfil } from '../../profil/ChoisirProfil';
 import { monter } from './harnais';
 
+let mockCertificationOuverte = true;
+
 jest.mock('expo-router', () => ({
   router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), dismissAll: jest.fn(), canGoBack: jest.fn(() => true) },
   useFocusEffect: (cb: () => void | (() => void)) => {
@@ -21,12 +23,14 @@ jest.mock('expo-router', () => ({
   useLocalSearchParams: () => ({}),
 }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}), definirProprietesUtilisateur: jest.fn() }));
+jest.mock('@/components/certification/useProfilCertification', () => ({ useProfilCertification: () => mockCertificationOuverte }));
 jest.mock('expo-crypto', () => ({ randomUUID: () => 'uuid-profil' }));
 jest.mock('../../credits/CompteurCredits', () => ({ CompteurCredits: () => null }));
 jest.mock('../../../services/reglagesLocaux', () => ({ signalerModification: jest.fn(async () => {}) }));
 
 beforeEach(async () => {
   jest.clearAllMocks();
+  mockCertificationOuverte = true;
   await AsyncStorage.clear();
   await enregistrerProfil({ type: 'eleve', niveau: 'Tle', pays: 'CM', termine: true });
   definirApi(creerApiFausse({ revision: REVISION_TEST, carnet: MOTS_TEST, seance: SEANCE_TEST }).api);
@@ -35,6 +39,15 @@ beforeEach(async () => {
 // Issue #125 : P2 garde sa liste des trois parcours, mais « Continuer » ouvre la page de changement sur
 // l'onglet du parcours choisi — les anciennes feuilles de confirmation P4/P5 ont disparu.
 describe('P2 · choix du profil', () => {
+  it('masque le TOEIC et revient au secondaire quand le feature flag est fermé', async () => {
+    mockCertificationOuverte = false;
+    await monter(<ChoisirProfil />);
+    expect(await screen.findByText(x.profilChoix.secondaire)).toBeTruthy();
+    expect(screen.queryByText(x.profilChoix.toeic)).toBeNull();
+    fireEvent.press(await screen.findByRole('button', { name: x.profilChoix.continuer }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/profil/changer', params: { onglet: 'secondaire', source: 'moi' } });
+  });
+
   it('marque le profil actuel ; Continuer sur le TOEIC ouvre la page de changement, onglet certification, sans feuille', async () => {
     await monter(<ChoisirProfil />);
     expect(await screen.findByText(x.profilChoix.actuel)).toBeTruthy();
