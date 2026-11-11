@@ -16,8 +16,8 @@ describe('MentionsLegales', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it('builds the legal URLs from the configured site', () => {
-    expect(urlSite('cgu', 'https://elearnprepa.com/')).toBe('https://elearnprepa.com/fr/cgu');
-    expect(lienCgu()).toMatch(/^https:\/\/.+\/fr\/cgu$/);
+    expect(urlSite('cgu', 'https://elearnprepa.com/')).toBe('https://elearnprepa.com/cgu');
+    expect(lienCgu()).toBe('https://elearnprepa.com/cgu');
   });
 
   it.each(['fr', 'en'] as const)('opens the terms and the privacy policy from the sentence (%s)', async (langue) => {
@@ -28,6 +28,6 @@ describe('MentionsLegales', () => {
     expect(WebBrowser.openBrowserAsync).toHaveBeenCalledWith(lienCgu());
     expect(suivre).toHaveBeenCalledWith('legal_opened', { page: 'cgu' });
     await fireEvent.press(confidentialite);
-    expect(WebBrowser.openBrowserAsync).toHaveBeenLastCalledWith(expect.stringMatching(/\/fr\/confidentialite$/));
+    expect(WebBrowser.openBrowserAsync).toHaveBeenLastCalledWith(expect.stringMatching(/\/confidentialite$/));
   });
 });
