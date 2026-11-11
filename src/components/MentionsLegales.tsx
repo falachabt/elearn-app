@@ -6,12 +6,12 @@ import { suivre } from '@/services/analytics';
 import { useTheme } from '@/theme/ThemeProvider';
 import { typo } from '@/theme/theme';
 
-// Le nouveau site n'est publié qu'en aperçu Vercel (en français seulement) : EXPO_PUBLIC_SITE_URL passera sur
-// https://elearnprepa.com à sa mise en ligne.
-const SITE_APERCU = 'https://elearn-site-git-claude-project-threa-ca24b3-falachabts-projects.vercel.app';
+// Site officiel en ligne (AGENTS.md §6) : les pages légales vivent à la racine du domaine, sans préfixe
+// de langue (elearnprepa.com/cgu, elearnprepa.com/confidentialite). EXPO_PUBLIC_SITE_URL peut surcharger la base.
+const SITE_OFFICIEL = 'https://elearnprepa.com';
 
-export function urlSite(chemin: string, base = process.env.EXPO_PUBLIC_SITE_URL || SITE_APERCU) {
-  return `${base.replace(/\/$/, '')}/fr/${chemin}`;
+export function urlSite(chemin: string, base = process.env.EXPO_PUBLIC_SITE_URL || SITE_OFFICIEL) {
+  return `${base.replace(/\/$/, '')}/${chemin}`;
 }
 
 export const lienCgu = () => urlSite('cgu');
