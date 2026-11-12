@@ -91,8 +91,21 @@ it('affiche la page sans attendre l’estimation et présente les tailles par ca
   await act(async () => terminer(estimation()));
 
   expect(await vue.findByText(fr.horsLigne.ressourcesTaille.replace('{{n}}', '1').replace('{{taille}}', '250 Mo'))).toBeTruthy();
-  expect(vue.getByText(fr.horsLigne.consommeraInternet)).toBeTruthy();
+  expect(vue.queryByText(/connexion Internet \(Wi-Fi/)).toBeNull();
+  expect(vue.queryByText(/disponibles sur ton téléphone/)).toBeNull();
+  expect(vue.queryByText(/estimation est indicative/)).toBeNull();
+  expect(vue.getByText(fr.horsLigne.droitsPdf)).toBeTruthy();
   expect(mockEstimer).toHaveBeenCalledTimes(1);
+});
+
+it('avertit avant le lancement quand la place libre connue est inférieure au besoin', async () => {
+  mockEstimer.mockResolvedValue({ ...estimation(), espaceDisponible: 1024 });
+  const vue = await render(
+    <SafeAreaProvider initialMetrics={metriques}>
+      <ThemeProvider reglage="clair"><HorsLigne /></ThemeProvider>
+    </SafeAreaProvider>,
+  );
+  expect(await vue.findByText(/Pas assez de place pour ce pack/)).toBeTruthy();
 });
 
 it('décoche les PDF de plus de 200 Mo par défaut mais permet de les ajouter au téléchargement', async () => {

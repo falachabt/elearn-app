@@ -154,6 +154,8 @@ export function HorsLigne() {
   );
   const ressourcesChoisies = CATEGORIES_HORS_LIGNE.some((categorie) => selection[categorie] !== false && !!estimation?.estimationCategories[categorie].total);
   const pdfDecochesParDefaut = !!estimation && estimation.estimationCategories.pdf.octets > SEUIL_PDF_DEFAUT && selection.pdf === false;
+  // Même prédicat que le garde-fou de lancerTelechargement (services/horsLigne.ts) : place connue (> 0) et inférieure au besoin choisi.
+  const espaceCritique = !!estimation && !!estimationChoisie && estimation.espaceDisponible > 0 && estimationChoisie.estimationOctets > estimation.espaceDisponible;
 
   const pourcentage = useMemo(() => {
     if (!etat) return 0;
@@ -223,14 +225,13 @@ export function HorsLigne() {
               {pdfDecochesParDefaut ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('horsLigne.pdfLourd')}</Text> : null}
               <View style={[styles.total, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>
                 <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('horsLigne.estimationTaille', { taille: tailleLisible(estimationChoisie.estimationOctets) })}</Text>
-                <Text style={[typo.legende, { color: theme.texte.principal }]}>{t('horsLigne.consommeraInternet')}</Text>
               </View>
-              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
-                {estimation.espaceDisponible > 0
-                  ? t('horsLigne.espaceDisponible', { taille: tailleLisible(estimation.espaceDisponible) })
-                  : t('horsLigne.espaceInconnu')}
-              </Text>
-              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('horsLigne.estimationIndicative')}</Text>
+              {espaceCritique && estimationChoisie ? (
+                <Banniere
+                  ton="erreur"
+                  titre={t('horsLigne.espaceInsuffisant', { besoin: tailleLisible(estimationChoisie.estimationOctets), libre: tailleLisible(estimation.espaceDisponible) })}
+                />
+              ) : null}
               <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('horsLigne.droitsPdf')}</Text>
             </>
           ) : null}

@@ -405,7 +405,6 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       icone="cloud-download-outline"
       titre={proposition === 'partiel' ? t('horsLigne.propositionTitrePartiel') : t('horsLigne.propositionTitre')}
       texte={proposition === 'partiel' ? t('horsLigne.propositionTextePartiel') : t('horsLigne.propositionTexte')}
-      mention={t('horsLigne.propositionMention')}
       actions={[
         {
           libelle: proposition === 'partiel' ? t('horsLigne.propositionBoutonPartiel') : t('horsLigne.propositionBouton'),
