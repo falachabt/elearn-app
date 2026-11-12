@@ -89,7 +89,7 @@ export const BLOCS_BIENVENUE: BlocChat[] = [
   {
     type: 'texte',
     texte:
-      "Salut ! Je suis l'assistant de démonstration du labo. Choisis comment poser ta question — une photo, une question écrite, ou les deux — et je peux répondre avec des rendus interactifs à manipuler, directement dans la discussion.",
+      'Salut ! Filme un exercice ou pose-moi une question : je t’explique, et je te montre en interactif quand ça aide.',
   },
 ];
 

@@ -51,8 +51,11 @@ describe('GrapheFonction', () => {
 describe('ChatInteractif', () => {
   it('accueil, puis les deux suggestions insèrent leurs blocs interactifs dans le fil', async () => {
     await render(ecranChat);
-    expect(screen.getByText(/assistant de démonstration du labo/)).toBeTruthy();
+    expect(screen.getByText(/Filme un exercice ou pose-moi une question/)).toBeTruthy();
     expect(screen.getByText('Nouvelle question')).toBeTruthy();
+    expect(screen.getByText('Filme un exercice, je te donne la correction')).toBeTruthy();
+    expect(screen.getByText('Pose-moi directement une question')).toBeTruthy();
+    expect(screen.queryByText('Photo + question')).toBeNull();
 
     await fireEvent.press(screen.getByRole('button', { name: 'Montre-moi le pendule' }));
     expect(screen.getByText('Pendule simple')).toBeTruthy();
@@ -67,19 +70,40 @@ describe('ChatInteractif', () => {
 
   it('photo seule : le résultat reste la correction structurée du parcours actuel', async () => {
     await render(ecranChat);
-    await fireEvent.press(screen.getByRole('button', { name: 'Envoyer une photo' }));
+    await fireEvent.press(screen.getByRole('button', { name: 'Filme un exercice, je te donne la correction' }));
     expect(screen.getByText('Photo envoyée')).toBeTruthy();
     expect(screen.getByText(/À retenir : la période ne dépend que de la longueur/)).toBeTruthy();
     expect(screen.queryByText('Pendule simple')).toBeNull();
   });
 
-  it('le scénario photo + question affiche la photo envoyée puis l’animation générée', async () => {
+  it('mode mixte : la photo attachée depuis le composeur part avec la question écrite', async () => {
     await render(ecranChat);
-    await fireEvent.press(screen.getByRole('button', { name: 'Photo + question' }));
+    await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
+    expect(screen.getByText('Photo jointe')).toBeTruthy();
+    await fireEvent.changeText(screen.getByLabelText('Écris ta question…'), 'Explique-moi ce mouvement');
+    await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
     expect(screen.getByText('Photo envoyée')).toBeTruthy();
-    expect(screen.getByText('Explique-moi ce mouvement')).toBeTruthy();
     expect(screen.getByText(/je reconnais un pendule simple/)).toBeTruthy();
     expect(screen.getByText('Pendule simple')).toBeTruthy();
+    // La vignette a disparu du composeur après l'envoi.
+    expect(screen.queryByText('Photo jointe')).toBeNull();
+  });
+
+  it('mode mixte sans texte : la question par défaut accompagne la photo', async () => {
+    await render(ecranChat);
+    await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
+    await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
+    expect(screen.getByText('Photo envoyée')).toBeTruthy();
+    expect(screen.getByText('Explique-moi ce mouvement')).toBeTruthy();
+    expect(screen.getByText('Pendule simple')).toBeTruthy();
+  });
+
+  it('la photo attachée peut être retirée avant envoi', async () => {
+    await render(ecranChat);
+    await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
+    expect(screen.getByText('Photo jointe')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: 'Retirer la photo' }));
+    expect(screen.queryByText('Photo jointe')).toBeNull();
   });
 
   it('un message libre reçoit la réponse de démonstration', async () => {

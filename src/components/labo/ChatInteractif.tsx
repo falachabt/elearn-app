@@ -1,7 +1,8 @@
 import { router } from 'expo-router';
-import { Camera, MessageSquare, Send, Sparkles } from 'lucide-react-native';
+import { Camera, ImagePlus, MessageSquare, Send, X } from 'lucide-react-native';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import Svg, { Circle, Line } from 'react-native-svg';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { BLOCS_BIENVENUE, BLOCS_REPONSE_LIBRE, blocsReponseDemo, type BlocChat, type InviteDemo, type MessageChat } from '@/services/laboChat';
@@ -49,32 +50,47 @@ function MessageVu({ message }: { message: MessageChat }) {
   );
 }
 
-function LigneEntree({ icone, titre, aide, onPress }: { icone: ReactNode; titre: string; aide: string; onPress: () => void }) {
+/** Miniature de la photo attachée au composeur (même dessin que le bloc photo du fil, en petit). */
+function MiniatureJointe() {
+  const { theme } = useTheme();
+  const billeX = 120 + 92 * Math.sin((32 * Math.PI) / 180);
+  const billeY = 26 + 92 * Math.cos((32 * Math.PI) / 180);
+  return (
+    <View style={[styles.miniature, { backgroundColor: theme.accent.soleilTresDoux }]}>
+      <Svg width={46} height={29} viewBox="0 0 240 150">
+        <Line x1={56} y1={26} x2={184} y2={26} stroke={theme.bord.fort} strokeWidth={10} strokeLinecap="round" />
+        <Line x1={120} y1={26} x2={billeX} y2={billeY} stroke={theme.texte.secondaire} strokeWidth={5} />
+        <Circle cx={billeX} cy={billeY} r={26} fill={theme.marque.principale} stroke={theme.bord.fort} strokeWidth={5} />
+      </Svg>
+    </View>
+  );
+}
+
+function LigneEntree({ icone, titre, onPress }: { icone: ReactNode; titre: string; onPress: () => void }) {
   const { theme } = useTheme();
   return (
     <Appui accessibilityRole="button" accessibilityLabel={titre} onPress={onPress} rayon={rayon.m} ombre={2} decalage={2} couleurOmbre={theme.ombre}>
       <View style={[styles.entreeLigne, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
         <View style={[styles.entreeIcone, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>{icone}</View>
-        <View style={styles.flex}>
-          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
-          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{aide}</Text>
-        </View>
+        <Text style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{titre}</Text>
       </View>
     </Appui>
   );
 }
 
 /**
- * Écran du labo « chat interactif » : la future entrée multimodale de l'aide — au même endroit, l'élève envoie
- * une photo (parcours actuel, inchangé), pose une question écrite, ou joint les deux ; l'assistant (réponses de
- * démonstration locales, aucun appel réseau) répond par du texte et, quand c'est utile, un bloc interactif
- * (simulation, graphe). Réservé à la page développeur (la route applique la garde des outils de développement).
+ * Écran du labo « chat interactif » : la future entrée multimodale de l'aide — au même endroit, l'élève filme
+ * un exercice (parcours actuel, inchangé), pose une question écrite, ou joint une photo à sa question depuis le
+ * sélecteur du champ de saisie (mode mixte) ; l'assistant (réponses de démonstration locales, aucun appel réseau)
+ * répond par du texte et, quand c'est utile, un bloc interactif (simulation, graphe). Réservé à la page
+ * développeur (la route applique la garde des outils de développement).
  */
 export function ChatInteractif() {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const [messages, setMessages] = useState<MessageChat[]>([{ id: 0, auteur: 'ia', blocs: BLOCS_BIENVENUE }]);
   const [saisie, setSaisie] = useState('');
+  const [photoJointe, setPhotoJointe] = useState(false);
   const defileur = useRef<ScrollView>(null);
   const champRef = useRef<TextInput>(null);
   const idSuivant = useRef(1);
@@ -115,8 +131,27 @@ export function ChatInteractif() {
     ]);
   };
 
+  const peutEnvoyer = saisie.trim().length > 0 || photoJointe;
+
   const envoyer = () => {
     const texte = saisie.trim();
+    // Mode mixte : une photo est attachée au composeur, l'envoi part en photo + question (question écrite,
+    // ou la question par défaut de la démo si le champ est vide).
+    if (photoJointe) {
+      setSaisie('');
+      setPhotoJointe(false);
+      ajouter([
+        {
+          auteur: 'eleve',
+          blocs: [
+            { type: 'photo', sujet: 'pendule' },
+            { type: 'texte', texte: texte || t('labo.questionPhoto') },
+          ],
+        },
+        { auteur: 'ia', blocs: blocsReponseDemo('photo') },
+      ]);
+      return;
+    }
     if (!texte) return;
     setSaisie('');
     ajouter([
@@ -127,22 +162,38 @@ export function ChatInteractif() {
 
   const composeur = (
     <View style={[styles.barre, { backgroundColor: theme.fond.app }]}>
-      <TextInput
-        ref={champRef}
-        value={saisie}
-        onChangeText={setSaisie}
-        multiline
-        maxLength={500}
-        accessibilityLabel={t('labo.saisie')}
-        placeholder={t('labo.saisie')}
-        placeholderTextColor={theme.texte.secondaire}
-        style={[typo.texte, styles.champ, { color: theme.texte.principal, backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}
-      />
-      <Appui accessibilityRole="button" accessibilityLabel={t('labo.envoyer')} accessibilityState={{ disabled: !saisie.trim() }} disabled={!saisie.trim()} onPress={envoyer} decalage={0}>
-        <View style={[styles.rond, { borderColor: theme.bord.fort, backgroundColor: theme.marque.principale, opacity: saisie.trim() ? 1 : 0.4 }]}>
-          <Send size={20} strokeWidth={2} color={theme.texte.surCouleur} />
+      {photoJointe && (
+        <View style={[styles.vignette, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+          <MiniatureJointe />
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('labo.photoJointe')}</Text>
+          <Appui accessibilityRole="button" accessibilityLabel={t('labo.retirerPhoto')} onPress={() => setPhotoJointe(false)} decalage={0}>
+            <X size={16} strokeWidth={2.25} color={theme.texte.secondaire} />
+          </Appui>
         </View>
-      </Appui>
+      )}
+      <View style={styles.barreLigne}>
+        <Appui accessibilityRole="button" accessibilityLabel={t('labo.ajouterPhoto')} onPress={() => setPhotoJointe(true)} decalage={0}>
+          <View style={[styles.carre, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
+            <ImagePlus size={20} strokeWidth={2} color={theme.texte.principal} />
+          </View>
+        </Appui>
+        <TextInput
+          ref={champRef}
+          value={saisie}
+          onChangeText={setSaisie}
+          multiline
+          maxLength={500}
+          accessibilityLabel={t('labo.saisie')}
+          placeholder={t('labo.saisie')}
+          placeholderTextColor={theme.texte.secondaire}
+          style={[typo.texte, styles.champ, { color: theme.texte.principal, backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}
+        />
+        <Appui accessibilityRole="button" accessibilityLabel={t('labo.envoyer')} accessibilityState={{ disabled: !peutEnvoyer }} disabled={!peutEnvoyer} onPress={envoyer} decalage={0}>
+          <View style={[styles.rond, { borderColor: theme.bord.fort, backgroundColor: theme.marque.principale, opacity: peutEnvoyer ? 1 : 0.4 }]}>
+            <Send size={20} strokeWidth={2} color={theme.texte.surCouleur} />
+          </View>
+        </Appui>
+      </View>
     </View>
   );
 
@@ -167,19 +218,11 @@ export function ChatInteractif() {
           <LigneEntree
             icone={<Camera size={20} strokeWidth={2.25} color={theme.texte.principal} />}
             titre={t('labo.entreePhoto')}
-            aide={t('labo.entreePhotoAide')}
             onPress={choisirPhotoSeule}
-          />
-          <LigneEntree
-            icone={<Sparkles size={20} strokeWidth={2.25} color={theme.texte.principal} />}
-            titre={t('labo.entreePhotoQuestion')}
-            aide={t('labo.entreePhotoQuestionAide')}
-            onPress={() => choisirInvite('photo')}
           />
           <LigneEntree
             icone={<MessageSquare size={20} strokeWidth={2.25} color={theme.texte.principal} />}
             titre={t('labo.entreeQuestion')}
-            aide={t('labo.entreeQuestionAide')}
             onPress={() => champRef.current?.focus()}
           />
         </View>
@@ -215,7 +258,11 @@ const styles = StyleSheet.create({
   bulleEleve: { borderWidth: bord.normal, borderRadius: rayon.m, paddingHorizontal: espace[4], paddingVertical: espace[3] },
   invites: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
   puceInvite: { borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: espace[2] },
-  barre: { flexDirection: 'row', alignItems: 'flex-end', gap: espace[3], paddingHorizontal: espace[4], paddingVertical: espace[3] },
+  barre: { gap: espace[3], paddingHorizontal: espace[4], paddingVertical: espace[3] },
+  barreLigne: { flexDirection: 'row', alignItems: 'flex-end', gap: espace[3] },
+  vignette: { flexDirection: 'row', alignItems: 'center', gap: espace[2], alignSelf: 'flex-start', borderWidth: bord.normal, borderRadius: rayon.m, paddingHorizontal: espace[3], paddingVertical: espace[2] },
+  miniature: { borderRadius: rayon.s, overflow: 'hidden' },
   champ: { flex: 1, minHeight: cibleMin, maxHeight: 120, borderWidth: bord.normal, borderRadius: rayon.m, paddingHorizontal: espace[4], paddingVertical: espace[3], textAlignVertical: 'top' },
+  carre: { width: cibleMin, height: cibleMin, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   rond: { width: cibleMin, height: cibleMin, borderRadius: cibleMin / 2, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
 });
