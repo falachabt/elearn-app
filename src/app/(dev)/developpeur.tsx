@@ -157,6 +157,12 @@ export default function ParametresDeveloppeur() {
         />
       </View>
 
+      <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('dev.sectionLabo')}</Text>
+      <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('dev.laboAide')}</Text>
+      <View style={styles.lignes}>
+        <Bouton libelle={t('dev.laboChat')} variante="secondaire" onPress={() => router.push('/labo-chat')} />
+      </View>
+
       {message ? <Banniere ton="succes" titre={message} /> : null}
       <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('dev.rappelExpiration')}</Text>
     </Ecran>
