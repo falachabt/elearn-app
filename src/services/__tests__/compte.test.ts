@@ -10,6 +10,7 @@ import {
   connecterGoogle,
   creerCompteEmail,
   deconnecter,
+  estNouvelUtilisateur,
   lireRetourOAuth,
   validerCodeParrainage,
   validerEmail,
@@ -75,6 +76,17 @@ describe('validation', () => {
     expect(validerCodeParrainage('')).toBeNull();
     expect(validerCodeParrainage('abc123')).toBeNull();
     expect(validerCodeParrainage('a;b')).toBe('compte.erreurs.codeInvalide');
+  });
+});
+
+describe('estNouvelUtilisateur', () => {
+  it('reconnaît un compte créé à l’instant, pas un compte ancien ni une date illisible', () => {
+    const maintenant = Date.parse('2026-11-12T10:00:00.000Z');
+    expect(estNouvelUtilisateur({ created_at: '2026-11-12T09:59:30.000Z' }, maintenant)).toBe(true);
+    expect(estNouvelUtilisateur({ created_at: '2026-11-12T09:50:00.000Z' }, maintenant)).toBe(false);
+    expect(estNouvelUtilisateur({ created_at: '2024-01-01T00:00:00.000Z' }, maintenant)).toBe(false);
+    expect(estNouvelUtilisateur({ created_at: 'pas-une-date' }, maintenant)).toBe(false);
+    expect(estNouvelUtilisateur(null, maintenant)).toBe(false);
   });
 });
 
@@ -183,6 +195,31 @@ describe('Google', () => {
     await connecterGoogle(c, d);
     expect(c.auth.signInWithOAuth).toHaveBeenCalledWith({ provider: 'google', options: { redirectTo: 'https://app.elearnprepa.com/auth/callback', skipBrowserRedirect: false } });
     expect(c.auth.exchangeCodeForSession).toHaveBeenCalledWith('web1');
+  });
+
+  it('premier compte Google : compte_cree si l’utilisateur renvoyé vient d’être créé', async () => {
+    const nouvel = { access_token: 'n', user: { id: 'nouveau-google', is_anonymous: false, created_at: new Date().toISOString() } };
+    const c = faux(null, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: null } })
+        .mockResolvedValue({ data: { session: nouvel } }),
+    });
+    await connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=premier-google' }), 'abc123');
+    expect(suivre).toHaveBeenCalledWith('compte_cree', { methode: 'google', conversion_invite: false, avec_parrainage: true });
+    expect(suivre).toHaveBeenCalledWith('referral_signup', {});
+    expect(suivre).not.toHaveBeenCalledWith('connexion_reussie', { methode: 'google' });
+  });
+
+  it('compte Google ancien : connexion_reussie, pas compte_cree', async () => {
+    const ancien = { access_token: 'a', user: { id: 'ancien-google', is_anonymous: false, created_at: '2024-01-01T00:00:00.000Z' } };
+    const c = faux(null, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: null } })
+        .mockResolvedValue({ data: { session: ancien } }),
+    });
+    await connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=ancien-google' }));
+    expect(suivre).toHaveBeenCalledWith('connexion_reussie', { methode: 'google' });
+    expect(suivre).not.toHaveBeenCalledWith('compte_cree', expect.anything());
   });
 
   it('invité dont le compte Google existe déjà : signale le doublon sans ouvrir une seconde authentification', async () => {
@@ -307,6 +344,27 @@ describe('Apple', () => {
     const c = faux(null);
     await connecterApple(c, deps());
     expect(c.auth.signInWithIdToken).toHaveBeenCalledWith({ provider: 'apple', token: 'jwt', nonce: 'n1' });
+  });
+
+  it('premier compte Apple : compte_cree si l’utilisateur renvoyé vient d’être créé', async () => {
+    const nouvel = { id: 'nouvel-apple', is_anonymous: false, created_at: new Date().toISOString() };
+    const c = faux(null, {
+      signInWithIdToken: jest.fn().mockResolvedValue({ data: { user: nouvel, session: { user: nouvel } }, error: null }),
+    });
+    await connecterApple(c, deps(), 'abc123');
+    expect(suivre).toHaveBeenCalledWith('compte_cree', { methode: 'apple', conversion_invite: false, avec_parrainage: true });
+    expect(suivre).toHaveBeenCalledWith('referral_signup', {});
+    expect(suivre).not.toHaveBeenCalledWith('connexion_reussie', { methode: 'apple' });
+  });
+
+  it('compte Apple ancien : connexion_reussie, pas compte_cree', async () => {
+    const ancien = { id: 'ancien-apple', is_anonymous: false, created_at: '2024-01-01T00:00:00.000Z' };
+    const c = faux(null, {
+      signInWithIdToken: jest.fn().mockResolvedValue({ data: { user: ancien, session: { user: ancien } }, error: null }),
+    });
+    await connecterApple(c, deps());
+    expect(suivre).toHaveBeenCalledWith('connexion_reussie', { methode: 'apple' });
+    expect(suivre).not.toHaveBeenCalledWith('compte_cree', expect.anything());
   });
 
   it('indisponible (Android, web) : message dédié, aucun appel Supabase', async () => {

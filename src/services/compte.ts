@@ -70,6 +70,22 @@ export function cleErreur(erreur: unknown): CleTexte {
 
 export const estInvite = (user?: Pick<User, 'is_anonymous'> | null) => !!user?.is_anonymous;
 
+/** Fenêtre pendant laquelle un utilisateur qui vient d'apparaître est considéré comme nouvellement créé. */
+const DELAI_NOUVEL_UTILISATEUR_MS = 2 * 60 * 1000;
+
+/**
+ * Signal de création disponible après une connexion sociale : Supabase ne renvoie pas de drapeau « nouvel
+ * utilisateur », mais un compte créé par l'échange vient d'être daté dans `created_at`. La petite tolérance
+ * négative absorbe un décalage d'horloge entre l'appareil et le serveur.
+ */
+export function estNouvelUtilisateur(user?: Pick<User, 'created_at'> | null, maintenant = Date.now()): boolean {
+  if (!user?.created_at) return false;
+  const creation = Date.parse(user.created_at);
+  if (!Number.isFinite(creation)) return false;
+  const age = maintenant - creation;
+  return age >= -60 * 1000 && age <= DELAI_NOUVEL_UTILISATEUR_MS;
+}
+
 /** Borne une étape annexe : la connexion ne doit jamais rester suspendue à la reprise de progression invitée. */
 function avecDelai<T>(p: Promise<T>, ms: number, repli: T): Promise<T> {
   return new Promise<T>((resolve) => {
@@ -257,10 +273,12 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
     if (deps.pleinePage && codeParrainage) await conserverCode(codeParrainage, 'saisie').catch(() => null);
     await parcoursOAuth(client, fournisseur, deps, rattachement);
     let reprise = false;
+    let utilisateurConnecte: User | null = null;
     if (sessionInvite) {
       try {
         const { data: connexion } = await client.auth.getSession();
         if (connexion?.session) {
+          utilisateurConnecte = connexion.session.user;
           reprise = await confirmerBesoinReprise(client, sessionInvite.user.id, connexion.session.user.id);
         } else {
           await effacerRepriseInvite().catch(() => {});
@@ -277,7 +295,22 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
       if (avecCode) suivre('referral_signup', {});
     }
     else if (mode.rattacher) suivre('identite_rattachee', { methode: fournisseur });
-    else suivre('connexion_reussie', { methode: fournisseur });
+    else {
+      if (!utilisateurConnecte) {
+        try {
+          const { data: connexion } = await client.auth.getSession();
+          utilisateurConnecte = connexion.session?.user ?? null;
+        } catch {
+          utilisateurConnecte = null;
+        }
+      }
+      if (estNouvelUtilisateur(utilisateurConnecte)) {
+        suivre('compte_cree', { methode: fournisseur, conversion_invite: false, avec_parrainage: avecCode });
+        if (avecCode) suivre('referral_signup', {});
+      } else {
+        suivre('connexion_reussie', { methode: fournisseur });
+      }
+    }
     return reprise;
   } catch (e) {
     if (sessionInvite) await annulerOAuthRepriseInvite().catch(() => {});
@@ -409,8 +442,15 @@ export async function connecterApple(client: Client, deps: DepsApple, codeParrai
     }
   }
   try {
-    const { error } = mode.rattacher ? await client.auth.linkIdentity(identifiants) : await client.auth.signInWithIdToken(identifiants);
-    if (error) throw error;
+    let nouvelUtilisateur = false;
+    if (mode.rattacher) {
+      const { error } = await client.auth.linkIdentity(identifiants);
+      if (error) throw error;
+    } else {
+      const { data, error } = await client.auth.signInWithIdToken(identifiants);
+      if (error) throw error;
+      nouvelUtilisateur = estNouvelUtilisateur(data?.user);
+    }
     let reprise = false;
     if (sessionInvite) {
       try {
@@ -426,8 +466,15 @@ export async function connecterApple(client: Client, deps: DepsApple, codeParrai
         reprise = false;
       }
     }
-    await rattacherCode(client, codeParrainage);
-    suivre(mode.rattacher ? 'identite_rattachee' : 'connexion_reussie', { methode: 'apple' });
+    const avecParrainage = await rattacherCode(client, codeParrainage);
+    if (mode.rattacher) {
+      suivre('identite_rattachee', { methode: 'apple' });
+    } else if (nouvelUtilisateur) {
+      suivre('compte_cree', { methode: 'apple', conversion_invite: false, avec_parrainage: avecParrainage });
+      if (avecParrainage) suivre('referral_signup', {});
+    } else {
+      suivre('connexion_reussie', { methode: 'apple' });
+    }
     return reprise;
   } catch (e) {
     if (sessionInvite) await annulerOAuthRepriseInvite().catch(() => {});
