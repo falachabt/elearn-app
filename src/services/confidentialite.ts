@@ -1,6 +1,10 @@
 /**
  * Garde-fou de vie privée des évènements d'analytics : rien de ce qui identifie une personne ou révèle le contenu
  * d'une question ne doit partir vers PostHog, même par erreur d'un appelant ou dans un message d'exception.
+ *
+ * Exception décidée le 12/11/2026 : l'e-mail de la session peut être rattaché à la personne PostHog par la seule
+ * voie d'identification explicite d'`analytics.ts`. Ce module ne prévoit aucune exception : `assainir()` continue
+ * de retirer l'e-mail des évènements, des exceptions et de toutes les autres propriétés.
  */
 
 /** Propriétés retirées quel que soit leur contenu (comparées sans casse, sans tirets ni soulignés). */

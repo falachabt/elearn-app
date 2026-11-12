@@ -28,6 +28,12 @@ describe('confidentialité des évènements', () => {
     expect(propre).toEqual({ score: 4, imbrique: { ok: true }, liste: [{}, { valeur: 3 }] });
   });
 
+  it('ne prévoit aucune exception : même un $set d’identification passé à assainir est nettoyé', () => {
+    expect(assainir({ $set: { email: 'a@b.cd', invite: false, methode_connexion: 'apple' } })).toEqual({
+      $set: { invite: false, methode_connexion: 'apple' },
+    });
+  });
+
   it('masque les données personnelles dans les textes imbriqués et tronque les textes longs', () => {
     const propre = assainir({ message: `Échec pour a@b.cd ${'x'.repeat(500)}`, nested: { note: 'tel +33 6 12 34 56 78' } });
     expect(propre.message).not.toContain('a@b.cd');

@@ -14,7 +14,29 @@ export const CLE_IDENTITE = 'analytics.identite';
 type Stockage = { getItem(k: string): Promise<string | null>; setItem(k: string, v: string): Promise<void> };
 type Config = { cle?: string; hote?: string; stockage?: Stockage; reessais?: { nombre: number; delaiMs: number } };
 export type Propriete = string | number | boolean | null;
-type Identite = { id: string; invite: boolean };
+export type MethodeConnexion = 'email' | 'google' | 'apple' | 'facebook';
+export type ProprietesIdentification = {
+  invite: boolean;
+  email?: string | null;
+  methode?: MethodeConnexion | string | null;
+};
+type Identite = { id: string; invite: boolean; email?: string | null; methode?: MethodeConnexion | null };
+
+const METHODES_CONNEXION: ReadonlySet<string> = new Set(['email', 'google', 'apple', 'facebook']);
+const EMAIL_IDENTIFICATION = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+/** Normalise un fournisseur Supabase vers les seules méthodes suivies par l'application. */
+export function normaliserMethodeConnexion(fournisseur: unknown): MethodeConnexion | null {
+  if (typeof fournisseur !== 'string') return null;
+  const methode = fournisseur.trim().toLowerCase();
+  return METHODES_CONNEXION.has(methode) ? (methode as MethodeConnexion) : null;
+}
+
+function normaliserEmailIdentification(email: unknown): string | null {
+  if (typeof email !== 'string') return null;
+  const nettoye = email.trim();
+  return EMAIL_IDENTIFICATION.test(nettoye) ? nettoye : null;
+}
 
 let client: PostHog | null = null;
 let initialise = false;
@@ -22,6 +44,8 @@ let consentement = true;
 let ecranCourant: string | null = null;
 let identite: Identite | null = null;
 let proprietesEnvoyees: Record<string, Propriete> = {};
+// E-mail autorisé pour le seul évènement d'identification en cours d'émission (voir le garde-fou avant envoi).
+let emailIdentifyAutorise: string | null = null;
 // Évènements demandés avant que le consentement et l'identité mémorisés soient lus (quelques millisecondes au démarrage).
 let enAttente: (() => void)[] = [];
 let pret: Promise<void> = Promise.resolve();
@@ -31,6 +55,32 @@ function configDepuisEnv(): Config {
   // Accès statiques obligatoires : Expo remplace EXPO_PUBLIC_* au build.
   // EAS fournit EXPO_PUBLIC_POSTHOG_API_KEY (nom hérité de l'ancienne app) ; EXPO_PUBLIC_POSTHOG_KEY reste accepté.
   return { cle: process.env.EXPO_PUBLIC_POSTHOG_API_KEY || process.env.EXPO_PUBLIC_POSTHOG_KEY, hote: process.env.EXPO_PUBLIC_POSTHOG_HOST };
+}
+
+type EvenementPostHog = {
+  event?: string;
+  properties?: Record<string, unknown>;
+  $set?: Record<string, unknown>;
+  $set_once?: Record<string, unknown>;
+};
+
+function lireSetEvenement(evenement: EvenementPostHog): Record<string, unknown> | undefined {
+  if (evenement.$set && typeof evenement.$set === 'object') return evenement.$set;
+  const set = evenement.properties?.$set;
+  return set && typeof set === 'object' && !Array.isArray(set) ? (set as Record<string, unknown>) : undefined;
+}
+
+/**
+ * Consomme l'autorisation ponctuelle posée par `identifier()` : seul l'évènement `$identify` ou `$set` émis pendant
+ * cet appel peut conserver, dans son `$set`, l'e-mail exact de la session. Tout autre e-mail reste supprimé.
+ */
+function prendreEmailIdentifyAutorise(evenement: EvenementPostHog): string | null {
+  if (!emailIdentifyAutorise) return null;
+  if (evenement.event !== '$identify' && evenement.event !== '$set') return null;
+  if (lireSetEvenement(evenement)?.email !== emailIdentifyAutorise) return null;
+  const email = emailIdentifyAutorise;
+  emailIdentifyAutorise = null;
+  return email;
 }
 
 /**
@@ -64,11 +114,23 @@ export function initAnalytics(config: Config = configDepuisEnv()): boolean {
       // échecs d'envoi hors ligne, ce qui ferait grossir la file d'une exception à chaque tentative.
       errorTracking: { autocapture: { uncaughtExceptions: true, unhandledRejections: true, console: false } },
       // Dernier garde-fou : contexte commun à tous les évènements, puis nettoyage des données personnelles.
+      // Seule exception, décidée le 12/11/2026 : l'e-mail posé par `identifier()` dans le `$set` de son propre
+      // évènement. Le `$set` de premier niveau est nettoyé comme les propriétés pour fermer tout autre passage.
       before_send: (evenement) => {
         if (!evenement) return null;
+        const brut = evenement as EvenementPostHog;
         const reseau = lireConnectivite();
+        const emailAutorise = prendreEmailIdentifyAutorise(brut);
+        const proprietes = assainir(brut.properties ?? {});
+        if (brut.$set) brut.$set = assainir(brut.$set);
+        if (brut.$set_once) brut.$set_once = assainir(brut.$set_once);
+        if (emailAutorise) {
+          const set = { ...((proprietes.$set as Record<string, unknown> | undefined) ?? {}), email: emailAutorise };
+          proprietes.$set = set;
+          brut.$set = set;
+        }
         evenement.properties = {
-          ...assainir(evenement.properties ?? {}),
+          ...proprietes,
           ecran: ecranCourant,
           hors_ligne: !reseau.connecte || reseau.backend === false,
         };
@@ -175,19 +237,47 @@ async function ecrire(cle: string, valeur: string | null) {
 /**
  * Lie les événements à l'identifiant du compte (invité compris : un invité est un utilisateur anonyme du serveur).
  * Quand un invité devient un autre utilisateur (connexion Apple, Google, ancien compte), son historique est rattaché au
- * compte par un alias : un seul profil, avec tout le parcours d'avant la connexion. Aucune donnée personnelle n'est envoyée.
+ * compte par un alias : un seul profil, avec tout le parcours d'avant la connexion.
+ *
+ * Décision produit du 12/11/2026 : pour un compte, l'e-mail de la session Supabase et la méthode de connexion sont
+ * aussi posés comme propriétés de la personne, afin de pouvoir la retrouver dans PostHog. L'e-mail ne transite que
+ * par cette identification explicite : l'autorisation ponctuelle ci-dessous ne vaut que pour l'évènement émis par
+ * cet appel, et le garde-fou continue de le retirer de tous les évènements et autres propriétés.
  */
-export async function identifier(idUtilisateur: string, proprietes: { invite: boolean }): Promise<void> {
+export async function identifier(idUtilisateur: string, proprietes: ProprietesIdentification): Promise<void> {
   if (!client) return;
   await pret;
   if (!consentement) return;
+  const email = normaliserEmailIdentification(proprietes.email);
+  const methode = normaliserMethodeConnexion(proprietes.methode);
   const precedent = identite;
-  if (precedent && precedent.id === idUtilisateur && precedent.invite === proprietes.invite) return;
+  if (
+    precedent &&
+    precedent.id === idUtilisateur &&
+    precedent.invite === proprietes.invite &&
+    (precedent.email ?? null) === email &&
+    (precedent.methode ?? null) === methode
+  ) {
+    return;
+  }
   proteger(() => {
-    client?.identify(idUtilisateur, { invite: proprietes.invite });
+    const aIdentifier: Record<string, Propriete> = { invite: proprietes.invite };
+    if (email) aIdentifier.email = email;
+    if (methode) aIdentifier.methode_connexion = methode;
+    emailIdentifyAutorise = email;
+    try {
+      client?.identify(idUtilisateur, aIdentifier);
+    } finally {
+      emailIdentifyAutorise = null;
+    }
     if (precedent && precedent.id !== idUtilisateur && precedent.invite && !proprietes.invite) client?.alias(precedent.id);
   });
-  identite = { id: idUtilisateur, invite: proprietes.invite };
+  identite = {
+    id: idUtilisateur,
+    invite: proprietes.invite,
+    ...(email ? { email } : {}),
+    ...(methode ? { methode } : {}),
+  };
   proprietesEnvoyees = {};
   await ecrire(CLE_IDENTITE, JSON.stringify(identite));
 }
@@ -272,6 +362,7 @@ export function reinitialiserAnalyticsPourTests() {
   ecranCourant = null;
   identite = null;
   proprietesEnvoyees = {};
+  emailIdentifyAutorise = null;
   enAttente = [];
   pret = Promise.resolve();
   pretResolu = false;

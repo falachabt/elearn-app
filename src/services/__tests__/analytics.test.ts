@@ -117,13 +117,65 @@ describe('analytics', () => {
   });
 
   describe('identité', () => {
-    it('identifie sans e-mail, une seule fois par utilisateur', async () => {
+    it('identifie, une seule fois par utilisateur et par propriétés', async () => {
       await demarrer();
       await identifier('u1', { invite: true });
       await identifier('u1', { invite: true });
       expect(mockIdentify).toHaveBeenCalledTimes(1);
       expect(mockIdentify).toHaveBeenCalledWith('u1', { invite: true });
       expect(JSON.parse((await AsyncStorage.getItem(CLE_IDENTITE)) ?? '{}')).toEqual({ id: 'u1', invite: true });
+    });
+
+    it('rattache l’e-mail de session et la méthode de connexion à la personne', async () => {
+      await demarrer();
+      await identifier('u-apple', { invite: false, email: ' relais@privaterelay.appleid.com ', methode: 'apple' });
+      await identifier('u-apple', { invite: false, email: 'relais@privaterelay.appleid.com', methode: 'apple' });
+      expect(mockIdentify).toHaveBeenCalledTimes(1);
+      expect(mockIdentify).toHaveBeenCalledWith('u-apple', {
+        invite: false,
+        email: 'relais@privaterelay.appleid.com',
+        methode_connexion: 'apple',
+      });
+      expect(JSON.parse((await AsyncStorage.getItem(CLE_IDENTITE)) ?? '{}')).toEqual({
+        id: 'u-apple',
+        invite: false,
+        email: 'relais@privaterelay.appleid.com',
+        methode: 'apple',
+      });
+    });
+
+    it('réidentifie quand l’e-mail ou la méthode arrivent après un premier appel', async () => {
+      await demarrer();
+      await identifier('u1', { invite: false });
+      await identifier('u1', { invite: false, email: 'eleve@exemple.com', methode: 'google' });
+      expect(mockIdentify).toHaveBeenCalledTimes(2);
+      expect(mockIdentify).toHaveBeenLastCalledWith('u1', { invite: false, email: 'eleve@exemple.com', methode_connexion: 'google' });
+    });
+
+    it('ignore un e-mail mal formé et un fournisseur hors liste', async () => {
+      await demarrer();
+      await identifier('u1', { invite: false, email: 'pas-un-email', methode: 'github' });
+      expect(mockIdentify).toHaveBeenCalledWith('u1', { invite: false });
+    });
+
+    it('laisse passer l’e-mail du seul évènement émis par identifier, pas un $set ordinaire', async () => {
+      await demarrer();
+      type SortieBeforeSend = { properties: Record<string, unknown>; $set?: Record<string, unknown> };
+      const { before_send } = mockConstructeur.mock.calls[0][1] as {
+        before_send: (e: Record<string, unknown> | null) => SortieBeforeSend | null;
+      };
+      const pendantIdentify: { sortie: SortieBeforeSend | null } = { sortie: null };
+      mockIdentify.mockImplementationOnce(() => {
+        const set = { invite: false, email: 'relais@privaterelay.appleid.com', methode_connexion: 'apple' };
+        pendantIdentify.sortie = before_send({ event: '$identify', properties: { $set: set }, $set: set });
+      });
+      await identifier('u-apple', { invite: false, email: 'relais@privaterelay.appleid.com', methode: 'apple' });
+      expect(pendantIdentify.sortie?.properties.$set).toEqual({ invite: false, email: 'relais@privaterelay.appleid.com', methode_connexion: 'apple' });
+      expect(pendantIdentify.sortie?.$set).toEqual({ invite: false, email: 'relais@privaterelay.appleid.com', methode_connexion: 'apple' });
+
+      const ordinaire = before_send({ event: '$set', properties: { $set: { email: 'a@b.cd' } }, $set: { email: 'a@b.cd' } });
+      expect(ordinaire?.properties.$set).toEqual({});
+      expect(ordinaire?.$set).toEqual({});
     });
 
     it('invité qui crée un compte avec le même identifiant : pas d’alias, propriété mise à jour', async () => {
