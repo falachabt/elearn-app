@@ -19,19 +19,27 @@ const PIVOT_Y = 30;
 /** Longueur du fil dessinée (px) pour une longueur réelle : 0,2 m → 52 px, 3 m → 164 px. */
 const filPx = (longueurM: number) => 52 + ((longueurM - 0.2) / 2.8) * 112;
 
+type DepartPendule = { longueur?: number; amplitudeDeg?: number; pesanteur?: number };
+
+/** Valeur de départ d'un curseur : le paramètre reçu (du problème ou de la photo), plafonné dans ses bornes. */
+const depart = (valeur: number | undefined, min: number, max: number, defaut: number): number =>
+  Math.round(Math.min(max, Math.max(min, valeur ?? defaut)));
+
 /**
  * Bloc interactif « pendule simple » du labo : simulation SVG animée (aucun module natif, aucun réseau) et trois
  * curseurs — longueur, amplitude, pesanteur. Le curseur maison ne règle que des entiers : longueur et pesanteur
- * sont donc réglées en dixièmes (10 = 1,0 m ; 98 = 9,8 N/kg).
+ * sont donc réglées en dixièmes (10 = 1,0 m ; 98 = 9,8 N/kg). Les paramètres éventuels de la réponse de
+ * l'assistant (longueur en mètres, amplitude en degrés, pesanteur en N/kg) servent de valeurs de départ.
  */
-export function PenduleInteractif() {
+export function PenduleInteractif({ longueur: longueurRecue, amplitudeDeg, pesanteur: pesanteurRecue }: DepartPendule = {}) {
   const { theme } = useTheme();
   const { t } = useTraduction();
-  const [longueurDixiemes, setLongueurDixiemes] = useState(10);
-  const [amplitude, setAmplitude] = useState(30);
-  const [gDixiemes, setGDixiemes] = useState(98);
+  const amplitudeDepart = depart(amplitudeDeg, 5, 60, 30);
+  const [longueurDixiemes, setLongueurDixiemes] = useState(() => depart(longueurRecue === undefined ? undefined : longueurRecue * 10, 2, 30, 10));
+  const [amplitude, setAmplitude] = useState(amplitudeDepart);
+  const [gDixiemes, setGDixiemes] = useState(() => depart(pesanteurRecue === undefined ? undefined : pesanteurRecue * 10, 16, 250, 98));
   const [enMarche, setEnMarche] = useState(true);
-  const [angle, setAngle] = useState(30);
+  const [angle, setAngle] = useState(amplitudeDepart);
   const phase = useRef(0);
 
   const longueur = longueurDixiemes / 10;

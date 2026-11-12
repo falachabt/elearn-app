@@ -5,7 +5,9 @@ import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import Svg, { Circle, Line } from 'react-native-svg';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { demanderConversation } from '@/services/conversation';
 import { BLOCS_BIENVENUE, BLOCS_REPONSE_LIBRE, blocsReponseDemo, type BlocChat, type InviteDemo, type MessageChat } from '@/services/laboChat';
+import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
@@ -15,10 +17,11 @@ import { BoutonFermer } from '../arrivee/MiniTest';
 import { GrapheFonction } from './GrapheFonction';
 import { PenduleInteractif } from './PenduleInteractif';
 import { PhotoSimulee } from './PhotoSimulee';
+import { PHOTO_PENDULE_BASE64 } from './photoExemple';
 
 function BlocVu({ bloc }: { bloc: BlocChat }) {
   const { theme } = useTheme();
-  if (bloc.type === 'pendule') return <PenduleInteractif />;
+  if (bloc.type === 'pendule') return <PenduleInteractif longueur={bloc.longueur} amplitudeDeg={bloc.amplitudeDeg} pesanteur={bloc.pesanteur} />;
   if (bloc.type === 'fonction') return <GrapheFonction a={bloc.a} b={bloc.b} c={bloc.c} />;
   if (bloc.type === 'photo') return <PhotoSimulee />;
   return <Text style={[typo.texte, { color: theme.texte.principal }]}>{bloc.texte}</Text>;
@@ -81,9 +84,11 @@ function LigneEntree({ icone, titre, onPress }: { icone: ReactNode; titre: strin
 /**
  * Écran du labo « chat interactif » : la future entrée multimodale de l'aide — au même endroit, l'élève filme
  * un exercice (parcours actuel, inchangé), pose une question écrite, ou joint une photo à sa question depuis le
- * sélecteur du champ de saisie (mode mixte) ; l'assistant (réponses de démonstration locales, aucun appel réseau)
- * répond par du texte et, quand c'est utile, un bloc interactif (simulation, graphe). Réservé à la page
- * développeur (la route applique la garde des outils de développement).
+ * sélecteur du champ de saisie (mode mixte). Les questions écrites, les suggestions et le mode mixte appellent
+ * la fonction serveur « conversation » (Gemma 4) et affichent ses blocs ; si le moteur est injoignable, les
+ * réponses de démonstration locales prennent le relais, présentées comme un repli. L'entrée « photo seule »
+ * reste la vitrine du parcours photo actuel (correction structurée simulée). Réservé à la page développeur
+ * (la route applique la garde des outils de développement).
  */
 export function ChatInteractif() {
   const { theme } = useTheme();
@@ -91,6 +96,7 @@ export function ChatInteractif() {
   const [messages, setMessages] = useState<MessageChat[]>([{ id: 0, auteur: 'ia', blocs: BLOCS_BIENVENUE }]);
   const [saisie, setSaisie] = useState('');
   const [photoJointe, setPhotoJointe] = useState(false);
+  const [enAttente, setEnAttente] = useState(false);
   const defileur = useRef<ScrollView>(null);
   const champRef = useRef<TextInput>(null);
   const idSuivant = useRef(1);
@@ -104,6 +110,35 @@ export function ChatInteractif() {
     setMessages((m) => [...m, ...nouveaux.map((n) => ({ ...n, id: idSuivant.current++ }))]);
   };
 
+  const remplacer = (id: number, blocs: BlocChat[]) => {
+    setMessages((m) => m.map((msg) => (msg.id === id ? { ...msg, blocs } : msg)));
+  };
+
+  /**
+   * Pose une vraie question au moteur (fonction « conversation ») : un message « réflexion » tient la place de
+   * la réponse pendant l'appel, puis les blocs du moteur le remplacent. Moteur injoignable ou en échec : les
+   * blocs de démonstration fournis par `repliDemo`, précédés du libellé honnête de repli.
+   */
+  const poserQuestion = async (entree: { question?: string; image?: string }, repliDemo: () => BlocChat[]) => {
+    const id = idSuivant.current++;
+    setMessages((m) => [...m, { id, auteur: 'ia', blocs: [{ type: 'texte', texte: t('labo.reflexion') }] }]);
+    setEnAttente(true);
+    try {
+      const issue = await demanderConversation(getSupabase(), { question: entree.question ?? null, image: entree.image ?? null });
+      if (issue.type === 'fin') {
+        remplacer(id, issue.blocs);
+      } else if (issue.type === 'limite') {
+        remplacer(id, [{ type: 'texte', texte: t('labo.limite') }]);
+      } else {
+        remplacer(id, [{ type: 'texte', texte: t('labo.moteurInjoignable') }, ...repliDemo()]);
+      }
+    } catch {
+      remplacer(id, [{ type: 'texte', texte: t('labo.moteurInjoignable') }, ...repliDemo()]);
+    } finally {
+      setEnAttente(false);
+    }
+  };
+
   const choisirPhotoSeule = () => {
     ajouter([
       { auteur: 'eleve', blocs: [{ type: 'photo', sujet: 'pendule' }] },
@@ -113,30 +148,31 @@ export function ChatInteractif() {
 
   const choisirInvite = (invite: InviteDemo) => {
     if (invite === 'photo') {
+      const question = t('labo.questionPhoto');
       ajouter([
         {
           auteur: 'eleve',
           blocs: [
             { type: 'photo', sujet: 'pendule' },
-            { type: 'texte', texte: t('labo.questionPhoto') },
+            { type: 'texte', texte: question },
           ],
         },
-        { auteur: 'ia', blocs: blocsReponseDemo('photo') },
       ]);
+      void poserQuestion({ question, image: PHOTO_PENDULE_BASE64 }, () => blocsReponseDemo('photo'));
       return;
     }
-    ajouter([
-      { auteur: 'eleve', blocs: [{ type: 'texte', texte: t(invite === 'pendule' ? 'labo.invitePendule' : 'labo.inviteFonction') }] },
-      { auteur: 'ia', blocs: blocsReponseDemo(invite) },
-    ]);
+    const question = t(invite === 'pendule' ? 'labo.invitePendule' : 'labo.inviteFonction');
+    ajouter([{ auteur: 'eleve', blocs: [{ type: 'texte', texte: question }] }]);
+    void poserQuestion({ question }, () => blocsReponseDemo(invite));
   };
 
-  const peutEnvoyer = saisie.trim().length > 0 || photoJointe;
+  const peutEnvoyer = (saisie.trim().length > 0 || photoJointe) && !enAttente;
 
   const envoyer = () => {
     const texte = saisie.trim();
-    // Mode mixte : une photo est attachée au composeur, l'envoi part en photo + question (question écrite,
-    // ou la question par défaut de la démo si le champ est vide).
+    // Mode mixte : une photo est attachée au composeur, l'envoi part en photo + question au vrai moteur
+    // (question écrite, ou la question par défaut si le champ est vide). La photo du labo est simulée dans
+    // l'écran ; le moteur reçoit la vraie photo de pendule du banc d'essai (photoExemple).
     if (photoJointe) {
       setSaisie('');
       setPhotoJointe(false);
@@ -148,16 +184,14 @@ export function ChatInteractif() {
             { type: 'texte', texte: texte || t('labo.questionPhoto') },
           ],
         },
-        { auteur: 'ia', blocs: blocsReponseDemo('photo') },
       ]);
+      void poserQuestion({ question: texte || undefined, image: PHOTO_PENDULE_BASE64 }, () => blocsReponseDemo('photo'));
       return;
     }
     if (!texte) return;
     setSaisie('');
-    ajouter([
-      { auteur: 'eleve', blocs: [{ type: 'texte', texte }] },
-      { auteur: 'ia', blocs: BLOCS_REPONSE_LIBRE },
-    ]);
+    ajouter([{ auteur: 'eleve', blocs: [{ type: 'texte', texte }] }]);
+    void poserQuestion({ question: texte }, () => BLOCS_REPONSE_LIBRE);
   };
 
   const composeur = (

@@ -1,18 +1,19 @@
 /**
- * Labo « chat interactif » (prototype réservé à la page développeur) : forme des réponses qu'un assistant peut
- * renvoyer et réponses de démonstration produites localement, sans aucun appel réseau.
+ * Labo « chat interactif » (prototype réservé à la page développeur) : forme des réponses de l'assistant et
+ * réponses de démonstration locales, gardées comme repli visible quand le moteur est injoignable.
  *
  * Principe retenu : l'assistant renvoie des **données** (texte + blocs décrits par leurs paramètres), jamais du
  * code à exécuter. L'app interprète chaque bloc avec ses propres composants (design system, thèmes, hors ligne,
- * tests). Le catalogue de blocs grandit type par type ; ces fixtures ont exactement la forme que renverra la
- * future fonction serveur.
+ * tests). Les vraies réponses viennent de la fonction serveur « conversation » (voir services/conversation.ts) ;
+ * ces fixtures ont exactement la même forme.
  */
 
 export type BlocChat =
   | { type: 'texte'; texte: string }
   /** Photo envoyée par l'élève (dans la démo : dessin factice du sujet reconnu). */
   | { type: 'photo'; sujet: 'pendule' }
-  | { type: 'pendule' }
+  /** Simulation du pendule ; paramètres éventuels du problème ou de la photo, repris comme valeurs de départ des curseurs. */
+  | { type: 'pendule'; longueur?: number; amplitudeDeg?: number; pesanteur?: number }
   | { type: 'fonction'; a: number; b: number; c: number };
 
 export type MessageChat = { id: number; auteur: 'eleve' | 'ia'; blocs: BlocChat[] };
@@ -93,12 +94,12 @@ export const BLOCS_BIENVENUE: BlocChat[] = [
   },
 ];
 
-/** Réponse à un message libre : le prototype n'est pas encore branché à un modèle, il le dit. */
+/** Réponse à un message libre quand le moteur est injoignable : pas de réponse préparée, l'écran la présente comme un repli. */
 export const BLOCS_REPONSE_LIBRE: BlocChat[] = [
   {
     type: 'texte',
     texte:
-      "Mode démo : je ne suis pas encore branché à un vrai modèle, je sais seulement montrer les rendus préparés. Essaie les suggestions « Montre-moi le pendule » ou « Trace f(x) = 2x² + 3x + 4 » ci-dessous.",
+      "Je n'ai pas de réponse préparée pour cette question. Essaie les suggestions « Montre-moi le pendule » ou « Trace f(x) = 2x² + 3x + 4 » ci-dessous, ou repose ta question quand le moteur répondra.",
   },
 ];
 
