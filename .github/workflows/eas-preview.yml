@@ -6,13 +6,10 @@ name: Contrôles et EAS preview
 #   3. build Android de prévisualisation à la demande (Actions > Run workflow avec l'option build,
 #      ou un commit dont le message contient [build]).
 # Un commit dont le message contient [obligatoire] publie une mise à jour obligatoire.
-# Livraisons de production automatiques, uniquement sur la branche de développement
-# (claude/project-thread-kw792g) et uniquement sur un push, déclenchées par un marqueur
-# dans le message du commit de tête :
-#   - [build-prod] : builds de production Android (build puis envoi à Google Play, dans ce
-#                    fichier) et iOS (job ios_production ci-dessous).
-# La mise à jour OTA du canal « production » est réservée à la branche main : elle ne peut
-# pas être publiée depuis cette branche de développement.
+# Cette branche est la branche de développement : elle ne sert que la prévisualisation
+# (contrôles, mise à jour OTA du canal « preview », build de prévisualisation sur [build]).
+# Toute la production est réservée à la branche main : la mise à jour OTA du canal
+# « production » et les builds de production ne peuvent pas partir d'ici.
 # Sans marqueur, un push se limite aux contrôles et à l'OTA du canal « preview ».
 # Nécessite le secret de dépôt EXPO_TOKEN (jeton d'accès Expo).
 #
@@ -35,10 +32,6 @@ on:
     inputs:
       build:
         description: "Lancer aussi un build Android (APK) de prévisualisation"
-        type: boolean
-        default: false
-      ios_build:
-        description: "Build iOS production (EAS) puis envoi à App Store Connect — job séparé ios_production"
         type: boolean
         default: false
 
@@ -143,63 +136,3 @@ jobs:
       - name: Build Android de prévisualisation
         if: ${{ env.EXPO_TOKEN != '' && ((github.event_name == 'workflow_dispatch' && inputs.build) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[build]'))) }}
         run: eas build --platform android --profile preview --non-interactive --no-wait
-
-  # Job séparé : build Android du profil production chez EAS (certificats gérés par EAS),
-  # attente de la fin, puis envoi du dernier build à Google Play. La publication reste
-  # manuelle côté Play Console : la soumission alimente la piste production sans la publier.
-  # Déclencheur unique : un push sur la branche de développement dont le message du commit
-  # de tête contient [build-prod]. Mêmes étapes que le workflow android-production.yml.
-  android_production:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/claude/project-thread-kw792g' && contains(github.event.head_commit.message, '[build-prod]') }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 180
-    env:
-      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-      # Même hôte public des médias TOEIC que le workflow preview (valeur par défaut du code sinon).
-      EXPO_PUBLIC_CERT_MEDIA_BASE: ${{ vars.EXPO_PUBLIC_CERT_MEDIA_BASE || 'https://pub-b05c9f45ef884ab2aa345a5763751590.r2.dev' }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-      - name: Installer les dépendances (node_modules requis par EAS pour résoudre les plugins)
-        run: npm ci
-      - name: Build Android production (EAS, attente de la fin)
-        run: eas build --platform android --profile production --non-interactive
-      - name: Envoyer le dernier build Android à Google Play
-        run: eas submit --platform android --profile production --latest --non-interactive
-
-  # Job séparé : build iOS du profil production chez EAS (certificats et clé App Store
-  # Connect API gérés par EAS), attente de la fin, puis envoi du build à App Store Connect.
-  # Deux déclencheurs : lancement manuel avec l'option ios_build, ou push sur la branche de
-  # développement dont le message du commit de tête contient [build-prod]. Jamais sur une PR.
-  ios_production:
-    if: >-
-      (github.event_name == 'workflow_dispatch' && inputs.ios_build) ||
-      (github.event_name == 'push' && github.ref == 'refs/heads/claude/project-thread-kw792g' &&
-      contains(github.event.head_commit.message, '[build-prod]'))
-    runs-on: ubuntu-latest
-    timeout-minutes: 180
-    env:
-      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-      EXPO_PUBLIC_CERT_MEDIA_BASE: ${{ vars.EXPO_PUBLIC_CERT_MEDIA_BASE || 'https://pub-b05c9f45ef884ab2aa345a5763751590.r2.dev' }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci --no-audit --no-fund
-      - uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-      - name: Build iOS production (EAS, attente de la fin)
-        run: eas build --platform ios --profile production --non-interactive
-      - name: Envoyer le dernier build iOS à App Store Connect
-        run: eas submit --platform ios --profile production --latest --non-interactive
