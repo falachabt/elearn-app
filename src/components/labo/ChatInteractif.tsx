@@ -1,29 +1,30 @@
 import { router } from 'expo-router';
-import { Camera, ImagePlus, MessageSquare, Send, X } from 'lucide-react-native';
+import { Camera, Image as IconeImage, ImagePlus, MessageSquare, Send, X } from 'lucide-react-native';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-import Svg, { Circle, Line } from 'react-native-svg';
+import { Image, Linking, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { demanderConversation } from '@/services/conversation';
-import { BLOCS_BIENVENUE, BLOCS_REPONSE_LIBRE, blocsReponseDemo, type BlocChat, type InviteDemo, type MessageChat } from '@/services/laboChat';
+import { BLOCS_BIENVENUE, BLOCS_REPONSE_LIBRE, blocsReponseDemo, type BlocChat, type MessageChat } from '@/services/laboChat';
+import { choisirPhotoLabo, type PhotoChoisie, type SourcePhoto } from '@/services/laboPhoto';
 import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Ecran } from '../Ecran';
+import { Feuille } from '../Feuille';
 import { TexteFormules } from '../TexteFormules';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { GrapheFonction } from './GrapheFonction';
 import { PenduleInteractif } from './PenduleInteractif';
+import { PhotoEleve } from './PhotoEleve';
 import { PhotoSimulee } from './PhotoSimulee';
-import { PHOTO_PENDULE_BASE64 } from './photoExemple';
 
 function BlocVu({ bloc }: { bloc: BlocChat }) {
   if (bloc.type === 'pendule') return <PenduleInteractif longueur={bloc.longueur} amplitudeDeg={bloc.amplitudeDeg} pesanteur={bloc.pesanteur} />;
   if (bloc.type === 'fonction') return <GrapheFonction a={bloc.a} b={bloc.b} c={bloc.c} />;
-  if (bloc.type === 'photo') return <PhotoSimulee />;
+  if (bloc.type === 'photo') return bloc.uri ? <PhotoEleve uri={bloc.uri} /> : <PhotoSimulee />;
   // Même rendu que les corrections photo et les leçons : les formules $…$ sont dessinées (ou converties en texte
   // lisible selon le réglage), jamais affichées en LaTeX brut.
   return <TexteFormules texte={bloc.texte} />;
@@ -55,53 +56,29 @@ function MessageVu({ message }: { message: MessageChat }) {
   );
 }
 
-/** Miniature de la photo attachée au composeur (même dessin que le bloc photo du fil, en petit). */
-function MiniatureJointe() {
-  const { theme } = useTheme();
-  const billeX = 120 + 92 * Math.sin((32 * Math.PI) / 180);
-  const billeY = 26 + 92 * Math.cos((32 * Math.PI) / 180);
-  return (
-    <View style={[styles.miniature, { backgroundColor: theme.accent.soleilTresDoux }]}>
-      <Svg width={46} height={29} viewBox="0 0 240 150">
-        <Line x1={56} y1={26} x2={184} y2={26} stroke={theme.bord.fort} strokeWidth={10} strokeLinecap="round" />
-        <Line x1={120} y1={26} x2={billeX} y2={billeY} stroke={theme.texte.secondaire} strokeWidth={5} />
-        <Circle cx={billeX} cy={billeY} r={26} fill={theme.marque.principale} stroke={theme.bord.fort} strokeWidth={5} />
-      </Svg>
-    </View>
-  );
-}
-
-function LigneEntree({ icone, titre, onPress }: { icone: ReactNode; titre: string; onPress: () => void }) {
-  const { theme } = useTheme();
-  return (
-    <Appui accessibilityRole="button" accessibilityLabel={titre} onPress={onPress} rayon={rayon.m} ombre={2} decalage={2} couleurOmbre={theme.ombre}>
-      <View style={[styles.entreeLigne, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-        <View style={[styles.entreeIcone, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>{icone}</View>
-        <Text style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{titre}</Text>
-      </View>
-    </Appui>
-  );
-}
-
 /**
  * Écran du labo « chat interactif » : la future entrée multimodale de l'aide — au même endroit, l'élève filme
- * un exercice (parcours actuel, inchangé), pose une question écrite, ou joint une photo à sa question depuis le
- * sélecteur du champ de saisie (mode mixte). Les questions écrites, les suggestions et le mode mixte appellent
- * la fonction serveur « conversation » (Gemma 4) et affichent ses blocs ; si le moteur est injoignable, les
- * réponses de démonstration locales prennent le relais, présentées comme un repli. L'entrée « photo seule »
- * reste la vitrine du parcours photo actuel (correction structurée simulée). Réservé à la page développeur
- * (la route applique la garde des outils de développement).
+ * un exercice, pose une question écrite, ou joint une photo à sa question depuis le sélecteur du champ de
+ * saisie (mode mixte). Caméra et galerie sont les vrais flux de l'app (expo-image-picker, comme l'onglet
+ * photo) : la photo choisie s'affiche telle quelle dans le fil et part au moteur. Les questions écrites, les
+ * suggestions, la photo seule et le mode mixte appellent la fonction serveur « conversation » (Gemma 4) ;
+ * si le moteur est injoignable, les réponses de démonstration locales prennent le relais, présentées comme
+ * un repli. Réservé à la page développeur (la route applique la garde des outils de développement).
  */
 export function ChatInteractif() {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const [messages, setMessages] = useState<MessageChat[]>([{ id: 0, auteur: 'ia', blocs: BLOCS_BIENVENUE }]);
   const [saisie, setSaisie] = useState('');
-  const [photoJointe, setPhotoJointe] = useState(false);
+  const [photoJointe, setPhotoJointe] = useState<PhotoChoisie | null>(null);
+  const [choixOuvert, setChoixOuvert] = useState(false);
+  const [permissionOuverte, setPermissionOuverte] = useState(false);
   const [enAttente, setEnAttente] = useState(false);
   const defileur = useRef<ScrollView>(null);
   const champRef = useRef<TextInput>(null);
   const idSuivant = useRef(1);
+  /** D'où vient le choix de photo en cours : l'entrée « photo seule » envoie directement, le composeur attache. */
+  const origineChoix = useRef<'entree' | 'composeur'>('composeur');
 
   useEffect(() => {
     const minuteur = setTimeout(() => defileur.current?.scrollToEnd({ animated: true }), 80);
@@ -141,53 +118,57 @@ export function ChatInteractif() {
     }
   };
 
-  const choisirPhotoSeule = () => {
-    ajouter([
-      { auteur: 'eleve', blocs: [{ type: 'photo', sujet: 'pendule' }] },
-      { auteur: 'ia', blocs: blocsReponseDemo('photoSeule') },
-    ]);
+  /** Photo seule : la photo part au moteur sans question écrite (il répond sur ce qu'il voit). */
+  const envoyerPhotoSeule = (photo: PhotoChoisie) => {
+    ajouter([{ auteur: 'eleve', blocs: [{ type: 'photo', uri: photo.uri }] }]);
+    void poserQuestion({ image: photo.base64 }, () => blocsReponseDemo('photoSeule'));
   };
 
-  const choisirInvite = (invite: InviteDemo) => {
-    if (invite === 'photo') {
-      const question = t('labo.questionPhoto');
-      ajouter([
-        {
-          auteur: 'eleve',
-          blocs: [
-            { type: 'photo', sujet: 'pendule' },
-            { type: 'texte', texte: question },
-          ],
-        },
-      ]);
-      void poserQuestion({ question, image: PHOTO_PENDULE_BASE64 }, () => blocsReponseDemo('photo'));
+  /**
+   * Vrai sélecteur de l'app (caméra ou galerie, permission système) : la photo retenue est attachée au
+   * composeur (mode mixte) ou envoyée seule selon l'entrée utilisée. Annulation : rien ne change.
+   * Permission refusée : la feuille d'explication propose les réglages.
+   */
+  const prendrePhoto = async (source: SourcePhoto) => {
+    setChoixOuvert(false);
+    const issue = await choisirPhotoLabo(source);
+    if (issue.type === 'permission') {
+      setPermissionOuverte(true);
       return;
     }
+    if (issue.type !== 'photo') return;
+    if (origineChoix.current === 'entree') envoyerPhotoSeule(issue.photo);
+    else setPhotoJointe(issue.photo);
+  };
+
+  const ouvrirChoix = (origine: 'entree' | 'composeur') => {
+    origineChoix.current = origine;
+    setChoixOuvert(true);
+  };
+
+  const choisirInvite = (invite: 'pendule' | 'fonction') => {
     const question = t(invite === 'pendule' ? 'labo.invitePendule' : 'labo.inviteFonction');
     ajouter([{ auteur: 'eleve', blocs: [{ type: 'texte', texte: question }] }]);
     void poserQuestion({ question }, () => blocsReponseDemo(invite));
   };
 
-  const peutEnvoyer = (saisie.trim().length > 0 || photoJointe) && !enAttente;
+  const peutEnvoyer = (saisie.trim().length > 0 || photoJointe !== null) && !enAttente;
 
   const envoyer = () => {
     const texte = saisie.trim();
-    // Mode mixte : une photo est attachée au composeur, l'envoi part en photo + question au vrai moteur
-    // (question écrite, ou la question par défaut si le champ est vide). La photo du labo est simulée dans
-    // l'écran ; le moteur reçoit la vraie photo de pendule du banc d'essai (photoExemple).
+    // Mode mixte : la photo attachée au composeur part au vrai moteur avec la question écrite
+    // (ou seule si le champ est vide, le moteur répond alors sur ce qu'il voit).
     if (photoJointe) {
+      const photo = photoJointe;
       setSaisie('');
-      setPhotoJointe(false);
+      setPhotoJointe(null);
       ajouter([
         {
           auteur: 'eleve',
-          blocs: [
-            { type: 'photo', sujet: 'pendule' },
-            { type: 'texte', texte: texte || t('labo.questionPhoto') },
-          ],
+          blocs: [{ type: 'photo', uri: photo.uri }, ...(texte ? [{ type: 'texte', texte } as BlocChat] : [])],
         },
       ]);
-      void poserQuestion({ question: texte || undefined, image: PHOTO_PENDULE_BASE64 }, () => blocsReponseDemo('photo'));
+      void poserQuestion({ question: texte || undefined, image: photo.base64 }, () => blocsReponseDemo('photo'));
       return;
     }
     if (!texte) return;
@@ -200,15 +181,15 @@ export function ChatInteractif() {
     <View style={[styles.barre, { backgroundColor: theme.fond.app }]}>
       {photoJointe && (
         <View style={[styles.vignette, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-          <MiniatureJointe />
+          <Image source={{ uri: photoJointe.uri }} style={[styles.miniature, { borderColor: theme.bord.fort }]} accessibilityIgnoresInvertColors />
           <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('labo.photoJointe')}</Text>
-          <Appui accessibilityRole="button" accessibilityLabel={t('labo.retirerPhoto')} onPress={() => setPhotoJointe(false)} decalage={0}>
+          <Appui accessibilityRole="button" accessibilityLabel={t('labo.retirerPhoto')} onPress={() => setPhotoJointe(null)} decalage={0}>
             <X size={16} strokeWidth={2.25} color={theme.texte.secondaire} />
           </Appui>
         </View>
       )}
       <View style={styles.barreLigne}>
-        <Appui accessibilityRole="button" accessibilityLabel={t('labo.ajouterPhoto')} onPress={() => setPhotoJointe(true)} decalage={0}>
+        <Appui accessibilityRole="button" accessibilityLabel={t('labo.ajouterPhoto')} onPress={() => ouvrirChoix('composeur')} decalage={0}>
           <View style={[styles.carre, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
             <ImagePlus size={20} strokeWidth={2} color={theme.texte.principal} />
           </View>
@@ -234,52 +215,101 @@ export function ChatInteractif() {
   );
 
   return (
-    <Ecran
-      defilement={false}
-      retourHaut={false}
-      entete={<BoutonFermer icone="chevron-back" libelle={t('reglages.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/developpeur'))} />}
-      pied={composeur}
-      piedPleineLargeur
-      piedBordure
-    >
-      <ScrollView ref={defileur} style={styles.flex} contentContainerStyle={styles.contenu} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-        <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>
-          {t('labo.titre')}
-        </Text>
-        {messages.slice(0, 1).map((m) => (
-          <MessageVu key={m.id} message={m} />
-        ))}
-        <View style={[styles.entreeCarte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-          <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('labo.entreeTitre')}</Text>
-          <LigneEntree
-            icone={<Camera size={20} strokeWidth={2.25} color={theme.texte.principal} />}
-            titre={t('labo.entreePhoto')}
-            onPress={choisirPhotoSeule}
-          />
-          <LigneEntree
-            icone={<MessageSquare size={20} strokeWidth={2.25} color={theme.texte.principal} />}
-            titre={t('labo.entreeQuestion')}
-            onPress={() => champRef.current?.focus()}
-          />
-        </View>
-        {messages.slice(1).map((m) => (
-          <MessageVu key={m.id} message={m} />
-        ))}
-        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('labo.exemples')}</Text>
-        <View style={styles.invites}>
-          <Appui accessibilityRole="button" accessibilityLabel={t('labo.invitePendule')} onPress={() => choisirInvite('pendule')} rayon={rayon.pilule} ombre={2} decalage={2} couleurOmbre={theme.ombre}>
-            <View style={[styles.puceInvite, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>{t('labo.invitePendule')}</Text>
-            </View>
-          </Appui>
-          <Appui accessibilityRole="button" accessibilityLabel={t('labo.inviteFonction')} onPress={() => choisirInvite('fonction')} rayon={rayon.pilule} ombre={2} decalage={2} couleurOmbre={theme.ombre}>
-            <View style={[styles.puceInvite, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>{t('labo.inviteFonction')}</Text>
-            </View>
-          </Appui>
-        </View>
-      </ScrollView>
-    </Ecran>
+    <>
+      <Ecran
+        defilement={false}
+        retourHaut={false}
+        entete={<BoutonFermer icone="chevron-back" libelle={t('reglages.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/developpeur'))} />}
+        pied={composeur}
+        piedPleineLargeur
+        piedBordure
+      >
+        <ScrollView ref={defileur} style={styles.flex} contentContainerStyle={styles.contenu} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+          <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>
+            {t('labo.titre')}
+          </Text>
+          {messages.slice(0, 1).map((m) => (
+            <MessageVu key={m.id} message={m} />
+          ))}
+          <View style={[styles.entreeCarte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+            <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('labo.entreeTitre')}</Text>
+            <LigneEntree
+              icone={<Camera size={20} strokeWidth={2.25} color={theme.texte.principal} />}
+              titre={t('labo.entreePhoto')}
+              onPress={() => ouvrirChoix('entree')}
+            />
+            <LigneEntree
+              icone={<MessageSquare size={20} strokeWidth={2.25} color={theme.texte.principal} />}
+              titre={t('labo.entreeQuestion')}
+              onPress={() => champRef.current?.focus()}
+            />
+          </View>
+          {messages.slice(1).map((m) => (
+            <MessageVu key={m.id} message={m} />
+          ))}
+          <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('labo.exemples')}</Text>
+          <View style={styles.invites}>
+            <Appui accessibilityRole="button" accessibilityLabel={t('labo.invitePendule')} onPress={() => choisirInvite('pendule')} rayon={rayon.pilule} ombre={2} decalage={2} couleurOmbre={theme.ombre}>
+              <View style={[styles.puceInvite, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>{t('labo.invitePendule')}</Text>
+              </View>
+            </Appui>
+            <Appui accessibilityRole="button" accessibilityLabel={t('labo.inviteFonction')} onPress={() => choisirInvite('fonction')} rayon={rayon.pilule} ombre={2} decalage={2} couleurOmbre={theme.ombre}>
+              <View style={[styles.puceInvite, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>{t('labo.inviteFonction')}</Text>
+              </View>
+            </Appui>
+          </View>
+        </ScrollView>
+      </Ecran>
+      <Feuille
+        ouverte={choixOuvert}
+        onFermer={() => setChoixOuvert(false)}
+        icone="camera-outline"
+        titre={t('labo.ajouterPhoto')}
+        actions={[
+          {
+            libelle: t('labo.prendrePhoto'),
+            icone: <Camera size={18} strokeWidth={2.25} color={theme.texte.principal} />,
+            onPress: () => void prendrePhoto('camera'),
+          },
+          {
+            libelle: t('labo.choisirGalerie'),
+            variante: 'secondaire',
+            icone: <IconeImage size={18} strokeWidth={2.25} color={theme.texte.principal} />,
+            onPress: () => void prendrePhoto('bibliotheque'),
+          },
+        ]}
+      />
+      <Feuille
+        ouverte={permissionOuverte}
+        onFermer={() => setPermissionOuverte(false)}
+        icone="camera-outline"
+        titre={t('labo.permissionPhotoTitre')}
+        texte={t('labo.permissionPhotoTexte')}
+        actions={[
+          {
+            libelle: t('labo.ouvrirReglages'),
+            onPress: () => {
+              setPermissionOuverte(false);
+              void Linking.openSettings();
+            },
+          },
+        ]}
+      />
+    </>
+  );
+}
+
+function LigneEntree({ icone, titre, onPress }: { icone: ReactNode; titre: string; onPress: () => void }) {
+  const { theme } = useTheme();
+  return (
+    <Appui accessibilityRole="button" accessibilityLabel={titre} onPress={onPress} rayon={rayon.m} ombre={2} decalage={2} couleurOmbre={theme.ombre}>
+      <View style={[styles.entreeLigne, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+        <View style={[styles.entreeIcone, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>{icone}</View>
+        <Text style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{titre}</Text>
+      </View>
+    </Appui>
   );
 }
 
@@ -297,7 +327,7 @@ const styles = StyleSheet.create({
   barre: { gap: espace[3], paddingHorizontal: espace[4], paddingVertical: espace[3] },
   barreLigne: { flexDirection: 'row', alignItems: 'flex-end', gap: espace[3] },
   vignette: { flexDirection: 'row', alignItems: 'center', gap: espace[2], alignSelf: 'flex-start', borderWidth: bord.normal, borderRadius: rayon.m, paddingHorizontal: espace[3], paddingVertical: espace[2] },
-  miniature: { borderRadius: rayon.s, overflow: 'hidden' },
+  miniature: { width: 52, height: 36, borderRadius: rayon.s, borderWidth: bord.fin },
   champ: { flex: 1, minHeight: cibleMin, maxHeight: 120, borderWidth: bord.normal, borderRadius: rayon.m, paddingHorizontal: espace[4], paddingVertical: espace[3], textAlignVertical: 'top' },
   carre: { width: cibleMin, height: cibleMin, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   rond: { width: cibleMin, height: cibleMin, borderRadius: cibleMin / 2, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },

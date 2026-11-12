@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { demanderConversation } from '@/services/conversation';
+import { choisirPhotoLabo } from '@/services/laboPhoto';
 
 import { ChatInteractif } from '../ChatInteractif';
 import { GrapheFonction } from '../GrapheFonction';
@@ -14,8 +15,17 @@ jest.mock('expo-router', () => ({
 jest.mock('@/components/arrivee/MiniTest', () => ({ BoutonFermer: () => null }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@/services/conversation', () => ({ demanderConversation: jest.fn() }));
+jest.mock('@/services/laboPhoto', () => ({ choisirPhotoLabo: jest.fn() }));
 
 const moteur = demanderConversation as jest.Mock;
+const selecteur = choisirPhotoLabo as jest.Mock;
+
+/** Photo « choisie » par le sélecteur simulé : une vraie uri locale et ses octets JPEG préparés. */
+const PHOTO_TEST = { uri: 'file:///photo-eleve.jpg', base64: 'BASE64_PHOTO_TEST' };
+
+function selecteurNominal() {
+  selecteur.mockResolvedValue({ type: 'photo', photo: PHOTO_TEST });
+}
 
 /** Réponses du moteur simulées pour les tests d'écran : mêmes formes que la fonction « conversation ». */
 function moteurNominal() {
@@ -62,6 +72,7 @@ function moteurNominal() {
 
 beforeEach(() => {
   moteurNominal();
+  selecteurNominal();
 });
 
 const metriques = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 47, bottom: 34, left: 0, right: 0 } };
@@ -136,18 +147,61 @@ describe('ChatInteractif', () => {
     expect(await screen.findByText('f(x) = 2x² + 3x + 4')).toBeTruthy();
   });
 
-  it('photo seule : le résultat reste la correction structurée du parcours actuel', async () => {
+  it('photo seule : l’entrée ouvre le vrai sélecteur, la photo choisie part au moteur', async () => {
+    moteur.mockClear();
     await render(ecranChat);
     await fireEvent.press(screen.getByRole('button', { name: 'Filme un exercice, je te donne la correction' }));
-    expect(screen.getByText('Photo envoyée')).toBeTruthy();
+    // Le choix caméra / galerie s'ouvre (avant : l'entrée postait directement une photo simulée).
+    expect(await screen.findByRole('button', { name: 'Prendre une photo' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Choisir dans la galerie' })).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: 'Prendre une photo' }));
+    expect(selecteur).toHaveBeenCalledWith('camera');
+    // La vraie photo de l'élève est dans le fil, et le moteur répond sur ce qu'il y voit.
+    expect(await screen.findByText('Photo envoyée')).toBeTruthy();
+    expect(await screen.findByText(/je reconnais un pendule simple/)).toBeTruthy();
+    expect(screen.getByText('Pendule simple')).toBeTruthy();
+    // L'appel est parti avec les octets de la photo choisie, sans question écrite.
+    const appel = moteur.mock.calls.find((c) => c[1]?.image === PHOTO_TEST.base64);
+    expect(appel).toBeTruthy();
+    expect(appel[1].question ?? null).toBeNull();
+  });
+
+  it('photo seule, moteur injoignable : la correction de démonstration prend le relais, présentée comme un repli', async () => {
+    moteur.mockResolvedValue({ type: 'hors-ligne' });
+    await render(ecranChat);
+    await fireEvent.press(screen.getByRole('button', { name: 'Filme un exercice, je te donne la correction' }));
+    await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
+    expect(selecteur).toHaveBeenCalledWith('bibliotheque');
+    expect(await screen.findByText(/Moteur injoignable — réponse de démonstration/)).toBeTruthy();
     expect(screen.getByText(/À retenir : la période ne dépend que de la longueur/)).toBeTruthy();
-    expect(screen.queryByText('Pendule simple')).toBeNull();
+  });
+
+  it('sélecteur annulé : rien n’est attaché, rien n’est envoyé', async () => {
+    selecteur.mockResolvedValue({ type: 'annule' });
+    moteur.mockClear();
+    await render(ecranChat);
+    await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
+    await fireEvent.press(await screen.findByRole('button', { name: 'Prendre une photo' }));
+    expect(screen.queryByText('Photo jointe')).toBeNull();
+    expect(screen.queryByText('Photo envoyée')).toBeNull();
+    expect(moteur).not.toHaveBeenCalled();
+  });
+
+  it('permission refusée : la feuille d’explication s’affiche, rien n’est attaché', async () => {
+    selecteur.mockResolvedValue({ type: 'permission' });
+    await render(ecranChat);
+    await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
+    await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
+    expect(await screen.findByText('Photo inaccessible')).toBeTruthy();
+    expect(screen.getByText(/Autorise-le dans les réglages/)).toBeTruthy();
+    expect(screen.queryByText('Photo jointe')).toBeNull();
   });
 
   it('mode mixte : la photo attachée depuis le composeur part au moteur avec la question écrite', async () => {
     await render(ecranChat);
     await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
-    expect(screen.getByText('Photo jointe')).toBeTruthy();
+    await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
+    expect(await screen.findByText('Photo jointe')).toBeTruthy();
     await fireEvent.changeText(screen.getByLabelText('Écris ta question…'), 'Explique-moi ce mouvement');
     await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
     expect(screen.getByText('Photo envoyée')).toBeTruthy();
@@ -157,24 +211,30 @@ describe('ChatInteractif', () => {
     expect(screen.getByText('1,80 s')).toBeTruthy();
     // La vignette a disparu du composeur après l'envoi.
     expect(screen.queryByText('Photo jointe')).toBeNull();
-    // L'appel est bien parti en mode mixte (question + image).
-    const appelMixte = moteur.mock.calls.some((c) => typeof c[1]?.image === 'string' && c[1].image.length > 1000);
+    // L'appel est bien parti en mode mixte (question + octets de la photo choisie).
+    const appelMixte = moteur.mock.calls.some((c) => c[1]?.image === PHOTO_TEST.base64 && c[1]?.question === 'Explique-moi ce mouvement');
     expect(appelMixte).toBe(true);
   });
 
-  it('mode mixte sans texte : la question par défaut accompagne la photo', async () => {
+  it('mode mixte sans texte : la photo part seule au moteur, sans question inventée', async () => {
+    moteur.mockClear();
     await render(ecranChat);
     await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
+    await fireEvent.press(await screen.findByRole('button', { name: 'Prendre une photo' }));
+    expect(await screen.findByText('Photo jointe')).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
     expect(screen.getByText('Photo envoyée')).toBeTruthy();
-    expect(screen.getByText('Explique-moi ce mouvement')).toBeTruthy();
+    expect(screen.queryByText('Explique-moi ce mouvement')).toBeNull();
     expect(await screen.findByText('Pendule simple')).toBeTruthy();
+    const appel = moteur.mock.calls.find((c) => c[1]?.image === PHOTO_TEST.base64);
+    expect(appel[1].question ?? null).toBeNull();
   });
 
   it('la photo attachée peut être retirée avant envoi', async () => {
     await render(ecranChat);
     await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
-    expect(screen.getByText('Photo jointe')).toBeTruthy();
+    await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
+    expect(await screen.findByText('Photo jointe')).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: 'Retirer la photo' }));
     expect(screen.queryByText('Photo jointe')).toBeNull();
   });

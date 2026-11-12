@@ -10,8 +10,8 @@
 
 export type BlocChat =
   | { type: 'texte'; texte: string }
-  /** Photo envoyée par l'élève (dans la démo : dessin factice du sujet reconnu). */
-  | { type: 'photo'; sujet: 'pendule' }
+  /** Photo envoyée par l'élève : `uri` de la vraie photo choisie ; sans `uri`, le dessin de démonstration (repli). */
+  | { type: 'photo'; sujet?: 'pendule'; uri?: string }
   /** Simulation du pendule ; paramètres éventuels du problème ou de la photo, repris comme valeurs de départ des curseurs. */
   | { type: 'pendule'; longueur?: number; amplitudeDeg?: number; pesanteur?: number }
   | { type: 'fonction'; a: number; b: number; c: number };
