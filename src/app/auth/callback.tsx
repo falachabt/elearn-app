@@ -21,7 +21,7 @@ export default function RetourAuth() {
   const { t } = useTraduction();
   const { session } = useSession();
   const params = useLocalSearchParams<{ code?: string; error?: string; error_code?: string; error_description?: string; access_token?: string; refresh_token?: string }>();
-  const [destination, setDestination] = useState<'/moi' | '/compte/connexion' | null>(null);
+  const [destination, setDestination] = useState<'/' | '/compte/connexion' | null>(null);
 
   useEffect(() => {
     let actif = true;
@@ -29,10 +29,10 @@ export default function RetourAuth() {
     async function finaliser() {
       const client = getSupabase();
 
-      // 1. Si déjà connecté avec un vrai compte : direct /moi
+      // 1. Si déjà connecté avec un vrai compte : direct Accueil
       const { data: courante } = await client.auth.getSession().catch(() => ({ data: { session: null } }));
       if (courante.session && !courante.session.user.is_anonymous) {
-        if (actif) setDestination('/moi');
+        if (actif) setDestination('/');
         return;
       }
 
@@ -62,10 +62,10 @@ export default function RetourAuth() {
         const { error: err } = await echangerCodeOAuthUneFois(client, code);
         if (actif) {
           if (!err) {
-            setDestination('/moi');
+            setDestination('/');
           } else {
             const { data: apres } = await client.auth.getSession().catch(() => ({ data: { session: null } }));
-            setDestination(apres.session && !apres.session.user.is_anonymous ? '/moi' : '/compte/connexion');
+            setDestination(apres.session && !apres.session.user.is_anonymous ? '/' : '/compte/connexion');
           }
         }
         return;
@@ -74,7 +74,7 @@ export default function RetourAuth() {
       if (accessToken && refreshToken) {
         const { error: err } = await client.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
         if (actif) {
-          setDestination(!err ? '/moi' : '/compte/connexion');
+          setDestination(!err ? '/' : '/compte/connexion');
         }
         return;
       }
@@ -83,7 +83,7 @@ export default function RetourAuth() {
       const minuteur = setTimeout(async () => {
         if (!actif) return;
         const { data: s } = await client.auth.getSession().catch(() => ({ data: { session: null } }));
-        if (actif) setDestination(s.session && !s.session.user.is_anonymous ? '/moi' : '/compte/connexion');
+        if (actif) setDestination(s.session && !s.session.user.is_anonymous ? '/' : '/compte/connexion');
       }, 3000);
 
       return () => clearTimeout(minuteur);
@@ -96,7 +96,7 @@ export default function RetourAuth() {
     };
   }, [params.access_token, params.code, params.error, params.refresh_token]);
 
-  if (session && !session.user.is_anonymous) return <Redirect href="/moi" />;
+  if (session && !session.user.is_anonymous) return <Redirect href="/" />;
   if (destination) return <Redirect href={destination} />;
 
   return (

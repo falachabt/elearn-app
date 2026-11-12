@@ -111,13 +111,13 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
     expect(mockCreer).not.toHaveBeenCalled();
   });
 
-  it('crée le compte (conversion invité) avec le code saisi, le mémorise puis va sur Moi', async () => {
+  it('crée le compte (conversion invité) avec le code saisi, le mémorise puis va sur l’Accueil', async () => {
     await monter(<FormulaireCompte mode="creer" emailActif />);
     await fireEvent.changeText(screen.getByLabelText(x.email), 'amina@exemple.com');
     await fireEvent.changeText(screen.getByLabelText(x.mdp), 'motdepasse1');
     await fireEvent.changeText(screen.getByLabelText(x.code), 'abc123');
     await fireEvent.press(screen.getByRole('button', { name: x.creer }));
-    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/moi'));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/'));
     expect(mockCreer).toHaveBeenCalledWith({}, { email: 'amina@exemple.com', motDePasse: 'motdepasse1', codeParrainage: 'abc123' });
     expect(await lireProfil()).toMatchObject({ termine: true });
     expect(await AsyncStorage.getItem(CLE_PARRAINAGE)).toBeNull(); // code consommé

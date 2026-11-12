@@ -67,17 +67,17 @@ beforeEach(() => {
 });
 
 describe('RetourAuth (/auth/callback)', () => {
-  it('redirige vers /moi si session active non anonyme', async () => {
+  it('redirige vers l’Accueil si session active non anonyme', async () => {
     mockSession = { user: { is_anonymous: false } };
     const { getByText } = await render(<RetourAuth />);
-    expect(getByText('/moi')).toBeTruthy();
+    expect(getByText('/')).toBeTruthy();
   });
 
-  it('échange le code PKCE et redirige vers /moi', async () => {
+  it('échange le code PKCE et redirige vers l’Accueil', async () => {
     mockParams = { code: 'pkce-123' };
     const { getByText } = await render(<RetourAuth />);
     await waitFor(() => expect(mockExchange).toHaveBeenCalledWith(expect.anything(), 'pkce-123'));
-    await waitFor(() => expect(getByText('/moi')).toBeTruthy());
+    await waitFor(() => expect(getByText('/')).toBeTruthy());
   });
 
   it('redirige vers /compte/connexion en cas d’erreur dans l’URL', async () => {

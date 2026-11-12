@@ -100,7 +100,7 @@ export function FormulaireCompte({ mode, emailActif = CONNEXION_EMAIL }: { mode:
   const fini = async () => {
     await effacerCode();
     await terminerParcoursArrivee();
-    router.replace('/moi');
+    router.replace('/');
   };
 
   const soumettre = async () => {

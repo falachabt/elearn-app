@@ -55,7 +55,7 @@ function useRetourOAuthWeb() {
       if (r === 'rien') return;
       // Adresse nettoyée : le code ne doit pas rester dans l'historique ni être rejoué au rechargement.
       globalThis.history?.replaceState(null, '', globalThis.location.pathname === '/auth/callback' ? '/' : globalThis.location.pathname);
-      router.replace(r === 'session' ? '/moi' : '/compte/connexion');
+      router.replace(r === 'session' ? '/' : '/compte/connexion');
     });
   }, [router]);
 }
