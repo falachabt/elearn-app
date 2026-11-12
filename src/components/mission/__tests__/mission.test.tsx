@@ -383,7 +383,7 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify({ jour: '2026-10-01', score: 5, total: 5, dureeS: 90, serie: 1, graceUtilisee: false, chapitres: [] }));
     await monter(<FinMission />);
     await waitFor(() => expect(screen.getByText(x.rythme.introTitre)).toBeTruthy());
-    await fireEvent.press(screen.getByRole('button', { name: x.rythme.plusTard.replace('{{n}}', '20') }));
+    await fireEvent.press(screen.getByRole('button', { name: x.rythme.plusTard }));
     await waitFor(() => expect(screen.queryByText(x.rythme.introTitre)).toBeNull());
     expect(await AsyncStorage.getItem(CLE_RYTHME)).toBeNull();
   });

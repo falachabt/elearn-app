@@ -7,7 +7,7 @@ import { suivre } from '@/services/analytics';
 import { jourLocal, lireHistorique } from '@/services/mission';
 import { bornerTaille, enregistrerRythme, MINUTES_RYTHME, PAS_TAILLE, questionsPour, TAILLE_DEFAUT, TAILLE_MAX, TAILLE_MIN } from '@/services/rythme';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, palette, rayon, typeContenu, typo } from '@/theme/theme';
+import { bord, espace, ombre, palette, rayon, typeContenu, typo } from '@/theme/theme';
 
 import { Appui } from './Appui';
 import { Feuille } from './Feuille';
@@ -93,7 +93,7 @@ export function FeuilleRythme({ ouverte, onFermer, actuelle, source, onChoisi, i
         titre={t('rythme.introTitre')}
         actions={[
           { libelle: t('rythme.regler'), onPress: () => setEtape(2) },
-          { libelle: t('rythme.plusTard', { n: TAILLE_DEFAUT }), variante: 'texte', onPress: onFermer },
+          { libelle: t('rythme.plusTard'), variante: 'texte', onPress: onFermer },
         ]}
       >
         <LigneIntro fond={theme.marque.principale} icone={RefreshCw} texte={t('rythme.intro1')} />
@@ -188,7 +188,7 @@ function Semaine({ faits, maintenant }: { faits: readonly string[]; maintenant?:
             style={[
               styles.jour,
               { borderColor: theme.bord.fort, backgroundColor: estAuj ? theme.accent.soleil : fait ? theme.marque.principale : theme.fond.surface },
-              estAuj && { shadowColor: theme.ombre, shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1, shadowRadius: 0 },
+              estAuj && { shadowColor: theme.ombre, shadowOffset: { width: ombre.m, height: ombre.m }, shadowOpacity: 1, shadowRadius: 0 },
             ]}
           >
             <Text style={[styles.initiale, { color: estAuj || fait ? palette.encre[1000] : theme.texte.principal }]}>{initiale}</Text>
@@ -258,8 +258,8 @@ const styles = StyleSheet.create({
   points: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: espace[2] },
   point: { width: 8, height: 8, borderRadius: 4, borderWidth: 1.5 },
   pointActif: { width: 22, height: 8, borderRadius: 4 },
-  semaine: { flexDirection: 'row', justifyContent: 'center', gap: espace[2] },
-  jour: { width: 30, height: 38, borderRadius: 8, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center', gap: 1 },
+  semaine: { flexDirection: 'row', gap: espace[2] },
+  jour: { flex: 1, height: 38, borderRadius: 8, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center', gap: 1 },
   initiale: { fontFamily: 'SpaceMono-Bold', fontSize: 10, lineHeight: 12 },
   ligneIntro: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   pastille: { width: 30, height: 30, borderRadius: rayon.s, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },

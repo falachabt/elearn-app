@@ -97,6 +97,7 @@ export function FinMission() {
   return (
     <>
     <Ecran
+      piedBordure
       pied={
         <View style={styles.pied}>
           <SerieMission serie={r.serie} joues={joues} compact />
