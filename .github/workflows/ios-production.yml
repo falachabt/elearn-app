@@ -1,12 +1,15 @@
 name: Build iOS production (App Store)
 
-# Build iOS de production et envoi vers App Store Connect, à la demande uniquement.
+# Build iOS de production et envoi vers App Store Connect : à la demande, ou
+# automatiquement sur un push de main portant le marqueur [build-prod].
 # Le build lui-même tourne chez EAS (certificats et clé App Store Connect API gérés par EAS) ;
 # ce job ne fait que le déclencher avec le secret EXPO_TOKEN, l'attendre, puis soumettre
 # le dernier build à App Store Connect (étape « submit », désactivable).
-# Aucun déclenchement automatique : ni push, ni pull request.
+# Aucun déclenchement sur pull request : la production ne part que de main.
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       etape:
@@ -21,6 +24,10 @@ concurrency:
 
 jobs:
   ios:
+    # Lancement manuel (workflow_dispatch, input etape respecté), ou push sur main dont
+    # le message du commit de tête contient [build-prod] : dans ce cas le job construit
+    # puis envoie, comme etape = build-submit.
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[build-prod]')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
@@ -40,7 +47,7 @@ jobs:
       - name: Installer les dépendances (node_modules requis par EAS pour résoudre les plugins)
         run: npm ci
       - name: Build iOS production (EAS, attente de la fin)
-        if: ${{ inputs.etape == 'build-submit' }}
+        if: ${{ github.event_name == 'push' || inputs.etape == 'build-submit' }}
         run: eas build --platform ios --profile production --non-interactive
       - name: Envoyer le dernier build iOS à App Store Connect
         run: eas submit --platform ios --profile production --latest --non-interactive

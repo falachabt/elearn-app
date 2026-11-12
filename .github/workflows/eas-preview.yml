@@ -6,6 +6,10 @@ name: Contrôles et EAS preview
 #   3. build Android de prévisualisation à la demande (Actions > Run workflow avec l'option build,
 #      ou un commit dont le message contient [build]).
 # Un commit dont le message contient [obligatoire] publie une mise à jour obligatoire.
+# Production, uniquement depuis main : un push sur main dont le message du commit de
+# tête contient [ota-prod] publie en plus la mise à jour OTA du canal « production »
+# (étape dédiée du job, après les contrôles). Les builds de production partent des
+# workflows android-production.yml et ios-production.yml, eux aussi depuis main.
 # Nécessite le secret de dépôt EXPO_TOKEN (jeton d'accès Expo).
 #
 # Économie de minutes Actions :
@@ -124,6 +128,19 @@ jobs:
           export UPDATE_OBLIGATOIRE
           echo "UPDATE_OBLIGATOIRE=$UPDATE_OBLIGATOIRE"
           eas update --platform android --channel preview --environment preview --message "$(printf '%s' "$MESSAGE" | head -n1)" --non-interactive
+
+      # Publication OTA du canal « production » : uniquement sur un push de main dont le
+      # message du commit de tête contient [ota-prod]. Le code publié est donc celui de
+      # main, jamais celui d'une branche de développement. Même logique que l'OTA
+      # preview ci-dessus : message par variable d'environnement, [obligatoire] pris en
+      # compte, et barrière des contrôles déjà franchie plus haut dans le job.
+      - name: Publier la mise à jour OTA de production
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && env.EXPO_TOKEN != '' && contains(github.event.head_commit.message, '[ota-prod]') }}
+        run: |
+          if printf '%s' "$MESSAGE" | grep -qiF '[obligatoire]'; then UPDATE_OBLIGATOIRE=1; else UPDATE_OBLIGATOIRE=0; fi
+          export UPDATE_OBLIGATOIRE
+          echo "UPDATE_OBLIGATOIRE=$UPDATE_OBLIGATOIRE"
+          eas update --platform all --channel production --environment production --message "$(printf '%s' "$MESSAGE" | head -n1)" --non-interactive
 
       # Pas de build natif sans [build] (ou sans l'option du lancement manuel).
       - name: Build Android de prévisualisation
