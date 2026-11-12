@@ -38,9 +38,12 @@ function moteurNominal() {
         blocs: [
           { type: 'texte', texte: 'Voici le pendule simple.' },
           { type: 'pendule', longueur: 1, amplitudeDeg: 30, pesanteur: 9.8 },
-          { type: 'texte', texte: 'À retenir : plus le fil est long, plus la période augmente.' },
+          { type: 'texte', texte: 'À retenir : la période vaut $T = 2\\pi\\sqrt{\\dfrac{L}{g}}$ — plus le fil est long, plus elle augmente.' },
         ],
       };
+    }
+    if ((opts.question ?? '').includes('formule seule')) {
+      return { type: 'fin', repli: false, blocs: [{ type: 'texte', texte: '$E = mc^2$' }] };
     }
     if ((opts.question ?? '').includes('Trace')) {
       return {
@@ -192,6 +195,46 @@ describe('ChatInteractif', () => {
     await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
     expect(await screen.findByText(/Moteur injoignable — réponse de démonstration/)).toBeTruthy();
     expect(screen.getByText(/Je n'ai pas de réponse préparée pour cette question/)).toBeTruthy();
+  });
+
+  it('texte et formule mélangés : la formule est dessinée, aucun LaTeX brut affiché', async () => {
+    await render(ecranChat);
+    await fireEvent.press(screen.getByRole('button', { name: 'Montre-moi le pendule' }));
+    expect(await screen.findByText('Pendule simple')).toBeTruthy();
+    // La formule complexe de la réponse ($T = 2\pi\sqrt{\dfrac{L}{g}}$) est dessinée comme dans les corrections photo.
+    expect(screen.getAllByTestId('formule-morceau').length).toBeGreaterThan(0);
+    // Le texte autour reste affiché, et aucun « $ » ni LaTeX brut ne subsiste dans le fil.
+    expect(screen.queryAllByText(/augmente/)).not.toHaveLength(0);
+    expect(screen.queryAllByText(/\$/)).toHaveLength(0);
+    await fireEvent.press(screen.getByRole('button', { name: 'Pause' }));
+  });
+
+  it('formule seule : convertie en texte lisible, aucun « $ » affiché', async () => {
+    await render(ecranChat);
+    await fireEvent.changeText(screen.getByLabelText('Écris ta question…'), 'Donne-moi la formule seule');
+    await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
+    expect((await screen.findAllByText(/E = mc²/)).length).toBeGreaterThan(0);
+    expect(screen.queryAllByText(/\$/)).toHaveLength(0);
+    // Formule simple : elle reste en texte dans la ligne, pas de dessin.
+    expect(screen.queryAllByTestId('formule-morceau')).toHaveLength(0);
+  });
+
+  it('texte sans formule : affiché tel quel, sans dessin ni « $ »', async () => {
+    await render(ecranChat);
+    await fireEvent.changeText(screen.getByLabelText('Écris ta question…'), 'Explique-moi les fractions');
+    await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
+    expect(await screen.findByText('Réponse du moteur à ta question.')).toBeTruthy();
+    expect(screen.queryAllByTestId('formule-morceau')).toHaveLength(0);
+    expect(screen.queryAllByText(/\$/)).toHaveLength(0);
+  });
+
+  it('bulle élève : une formule écrite par l’élève est rendue, pas affichée en LaTeX brut', async () => {
+    await render(ecranChat);
+    await fireEvent.changeText(screen.getByLabelText('Écris ta question…'), 'Calcule $x^2$ pour x = 3');
+    await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
+    expect(await screen.findByText('Réponse du moteur à ta question.')).toBeTruthy();
+    expect(screen.queryAllByText(/x²/)).not.toHaveLength(0);
+    expect(screen.queryAllByText(/\$/)).toHaveLength(0);
   });
 
   it('limite de cadence atteinte : message dédié, pas de démo', async () => {

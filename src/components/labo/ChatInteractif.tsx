@@ -13,6 +13,7 @@ import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Ecran } from '../Ecran';
+import { TexteFormules } from '../TexteFormules';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { GrapheFonction } from './GrapheFonction';
 import { PenduleInteractif } from './PenduleInteractif';
@@ -20,11 +21,12 @@ import { PhotoSimulee } from './PhotoSimulee';
 import { PHOTO_PENDULE_BASE64 } from './photoExemple';
 
 function BlocVu({ bloc }: { bloc: BlocChat }) {
-  const { theme } = useTheme();
   if (bloc.type === 'pendule') return <PenduleInteractif longueur={bloc.longueur} amplitudeDeg={bloc.amplitudeDeg} pesanteur={bloc.pesanteur} />;
   if (bloc.type === 'fonction') return <GrapheFonction a={bloc.a} b={bloc.b} c={bloc.c} />;
   if (bloc.type === 'photo') return <PhotoSimulee />;
-  return <Text style={[typo.texte, { color: theme.texte.principal }]}>{bloc.texte}</Text>;
+  // Même rendu que les corrections photo et les leçons : les formules $…$ sont dessinées (ou converties en texte
+  // lisible selon le réglage), jamais affichées en LaTeX brut.
+  return <TexteFormules texte={bloc.texte} />;
 }
 
 function MessageVu({ message }: { message: MessageChat }) {
@@ -35,7 +37,7 @@ function MessageVu({ message }: { message: MessageChat }) {
         {message.blocs.map((bloc, i) =>
           bloc.type === 'texte' ? (
             <View key={i} style={[styles.bulleEleve, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.texte, { color: theme.texte.surCouleur }]}>{bloc.texte}</Text>
+              <TexteFormules texte={bloc.texte} surCouleur />
             </View>
           ) : (
             <BlocVu key={i} bloc={bloc} />
