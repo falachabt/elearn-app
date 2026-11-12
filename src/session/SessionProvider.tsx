@@ -2,7 +2,7 @@ import type { Session } from '@supabase/supabase-js';
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 
 import { assurerSessionInvite } from '@/services/session';
-import { identifier, reinitialiserIdentite } from '@/services/analytics';
+import { identifier, normaliserMethodeConnexion, reinitialiserIdentite, type MethodeConnexion } from '@/services/analytics';
 import { ecouterConnectivite } from '@/services/connectivite';
 import { restaurerHistorique } from '@/services/donneesLocales';
 import { enregistrerJetonPush } from '@/services/push';
@@ -24,6 +24,21 @@ type Etat =
 
 const ContexteSession = createContext<Etat>({ statut: 'chargement', session: null, erreur: null });
 
+/**
+ * Propriétés rattachées à la personne PostHog pour un compte : e-mail de la session Supabase (adresse relais Apple
+ * comprise) et fournisseur d'inscription normalisé. Un invité reste identifié par son seul statut, sans e-mail ni
+ * méthode : ce n'est pas encore un compte.
+ */
+function proprietesIdentification(user: Session['user']): { invite: boolean; email?: string; methode?: MethodeConnexion } {
+  const invite = user.is_anonymous ?? false;
+  if (invite) return { invite };
+  const proprietes: { invite: boolean; email?: string; methode?: MethodeConnexion } = { invite };
+  if (user.email) proprietes.email = user.email;
+  const methode = normaliserMethodeConnexion(user.app_metadata?.provider);
+  if (methode) proprietes.methode = methode;
+  return proprietes;
+}
+
 /** Ne bloque jamais l'affichage : les enfants sont toujours rendus, même en cas d'erreur. */
 export function SessionProvider({ children }: { children: ReactNode }) {
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement', session: null, erreur: null });
@@ -44,7 +59,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
             if (evenement === 'SIGNED_IN') await appliquerReglagesCompteSiPlusRecent(nouvelle.user).catch(() => {});
             if (!actif) return;
             setEtat({ statut: 'pret', session: nouvelle, erreur: null });
-            void identifier(nouvelle.user.id, { invite: nouvelle.user.is_anonymous ?? false });
+            void identifier(nouvelle.user.id, proprietesIdentification(nouvelle.user));
             if (evenement === 'SIGNED_IN') {
               setTimeout(() => {
                 if (repriseInviteEnCours()) return;
@@ -81,7 +96,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
           await appliquerReglagesCompteSiPlusRecent(session.user).catch(() => {});
           if (!actif) return;
           setEtat({ statut: 'pret', session, erreur: null });
-          void identifier(session.user.id, { invite: session.user.is_anonymous ?? false });
+          void identifier(session.user.id, proprietesIdentification(session.user));
           if (!reprise) {
             synchroniserReglages(client, session.user).catch(() => {});
             synchroniserCoches(client, session.user.id).catch(() => {});
@@ -110,7 +125,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
                   .then((s) => {
                     if (actif && s) {
                       setEtat({ statut: 'pret', session: s, erreur: null });
-                      void identifier(s.user.id, { invite: s.user.is_anonymous ?? false });
+                      void identifier(s.user.id, proprietesIdentification(s.user));
                     }
                   })
                   .catch(() => {});

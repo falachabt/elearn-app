@@ -13,6 +13,9 @@ jest.mock('@/services/analytics', () => ({
   identifier: jest.fn(() => Promise.resolve()),
   reinitialiserIdentite: jest.fn(() => Promise.resolve()),
   definirProprietesUtilisateur: jest.fn(),
+  normaliserMethodeConnexion: jest.fn((fournisseur: unknown) =>
+    typeof fournisseur === 'string' && ['email', 'google', 'apple', 'facebook'].includes(fournisseur) ? fournisseur : null,
+  ),
   suivre: jest.fn(),
 }));
 
@@ -47,14 +50,40 @@ describe('SessionProvider : identification de l’analytics', () => {
     expect(JSON.stringify((identifier as jest.Mock).mock.calls)).not.toContain('exemple.com');
   });
 
-  it('identifie le compte à la connexion', async () => {
+  it('identifie le compte à la connexion, avec son e-mail et son fournisseur', async () => {
     mockAssurer.mockResolvedValue({ user: { id: 'invite-1', is_anonymous: true } });
     await render(<SessionProvider><Sonde /></SessionProvider>);
     await waitFor(() => expect(rappel).toBeDefined());
     await act(async () => {
-      rappel?.('SIGNED_IN', { user: { id: 'compte-2', is_anonymous: false } });
+      rappel?.('SIGNED_IN', {
+        user: {
+          id: 'compte-2',
+          is_anonymous: false,
+          email: 'relais@privaterelay.appleid.com',
+          app_metadata: { provider: 'apple' },
+        },
+      });
     });
-    expect(identifier).toHaveBeenLastCalledWith('compte-2', { invite: false });
+    expect(identifier).toHaveBeenLastCalledWith('compte-2', {
+      invite: false,
+      email: 'relais@privaterelay.appleid.com',
+      methode: 'apple',
+    });
+  });
+
+  it('identifie le compte dès le démarrage avec les mêmes propriétés', async () => {
+    mockAssurer.mockResolvedValue({
+      user: {
+        id: 'compte-1',
+        is_anonymous: false,
+        email: 'eleve@exemple.com',
+        app_metadata: { provider: 'google' },
+      },
+    });
+    await render(<SessionProvider><Sonde /></SessionProvider>);
+    await waitFor(() =>
+      expect(identifier).toHaveBeenCalledWith('compte-1', { invite: false, email: 'eleve@exemple.com', methode: 'google' }),
+    );
   });
 
   it('à la déconnexion : remet l’identité à zéro avant de créer le nouvel invité', async () => {
