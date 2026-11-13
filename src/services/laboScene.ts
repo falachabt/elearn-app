@@ -691,3 +691,52 @@ export function analyserChemin(d: string): EchantillonneurChemin | null {
     },
   };
 }
+
+// ---------------------------------------------------------------------------
+// Lisibilité des couleurs de scène : le modèle compose sur fond clair ; en thème sombre, un trait ou un
+// texte sombre devient invisible sur le fond de la zone. Le moteur substitue l'encre du thème quand la
+// couleur de la scène est trop proche du fond réel (celui de la zone, ou le remplissage de la forme
+// pleine qui se trouve sous un texte). Les remplissages eux-mêmes ne sont jamais retouchés.
+// ---------------------------------------------------------------------------
+
+/** Luminance relative d'une couleur hexadécimale (#rgb ou #rrggbb) : 0 = noir, 1 = blanc. */
+export function luminanceCouleur(hex: string): number {
+  let h = hex.replace('#', '');
+  if (h.length === 3) h = h.split('').map((c) => c + c).join('');
+  const r = parseInt(h.slice(0, 2), 16) / 255;
+  const g = parseInt(h.slice(2, 4), 16) / 255;
+  const b = parseInt(h.slice(4, 6), 16) / 255;
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+/** Garde la couleur de la scène si elle se détache du fond, sinon retombe sur l'encre du thème. */
+export function couleurContrastee(couleur: string, fond: string, encre: string): string {
+  return Math.abs(luminanceCouleur(couleur) - luminanceCouleur(fond)) < 0.18 ? encre : couleur;
+}
+
+/**
+ * Remplissage de la forme pleine (rectangle ou cercle) la plus haute qui contient le point (x, y),
+ * pour juger le contraste d'un texte posé dessus ; undefined si le texte flotte sur le fond de la zone.
+ * La rotation des groupes est ignorée (approximation assumée : elle est rare sur les étiquettes).
+ */
+export function remplissageSous(elements: SceneElement[], x: number, y: number, portee: PorteeScene): string | undefined {
+  let trouve: string | undefined;
+  const visite = (liste: SceneElement[]) => {
+    for (const el of liste) {
+      if (el.type === 'rectangle' && el.remplissage) {
+        const rx = evaluerValeur(el.x, portee);
+        const ry = evaluerValeur(el.y, portee);
+        if (x >= rx && x <= rx + evaluerValeur(el.largeur, portee) && y >= ry && y <= ry + evaluerValeur(el.hauteur, portee)) trouve = el.remplissage;
+      } else if (el.type === 'cercle' && el.remplissage) {
+        const dx = x - evaluerValeur(el.cx, portee);
+        const dy = y - evaluerValeur(el.cy, portee);
+        const r = evaluerValeur(el.r, portee);
+        if (dx * dx + dy * dy <= r * r) trouve = el.remplissage;
+      } else if (el.type === 'groupe') {
+        visite(el.elements);
+      }
+    }
+  };
+  visite(elements);
+  return trouve;
+}

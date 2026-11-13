@@ -7,10 +7,12 @@ import { useTraduction } from '@/i18n/useTraduction';
 import {
   analyserChemin,
   contexteScene,
+  couleurContrastee,
   evaluerValeur,
   formaterValeurScene,
   pointsCourbe,
   pointsRessort,
+  remplissageSous,
   texteScene,
   type PorteeScene,
   type SceneChat,
@@ -75,7 +77,7 @@ export function SceneInteractif({ scene }: { scene: SceneChat }) {
       <View style={[styles.scene, { backgroundColor: theme.fond.creux, borderColor: theme.bord.doux }]}>
         <Svg width="100%" height={hauteurZone} viewBox={`0 0 ${scene.largeur} ${scene.hauteur}`}>
           {scene.elements.map((el, i) => (
-            <ElementScene key={i} el={el} portee={portee} sombre={sombre} encre={theme.texte.principal} secondaire={theme.texte.secondaire} />
+            <ElementScene key={i} el={el} portee={portee} encre={theme.texte.principal} secondaire={theme.texte.secondaire} fondZone={theme.fond.creux} tous={scene.elements} />
           ))}
         </Svg>
       </View>
@@ -142,63 +144,49 @@ export function SceneInteractif({ scene }: { scene: SceneChat }) {
   );
 }
 
-/** Luminance relative d'une couleur hexadécimale (0 = noir, 1 = blanc). */
-function luminance(hex: string): number {
-  let h = hex.replace('#', '');
-  if (h.length === 3) h = h.split('').map((c) => c + c).join('');
-  const r = parseInt(h.slice(0, 2), 16) / 255;
-  const g = parseInt(h.slice(2, 4), 16) / 255;
-  const b = parseInt(h.slice(4, 6), 16) / 255;
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-}
+type PropsElement = { el: SceneElement; portee: PorteeScene; encre: string; secondaire: string; fondZone: string; tous: SceneElement[] };
 
-/** Couleur d'un texte de scène rendue lisible sur le fond du thème (les scènes sont composées sur fond clair). */
-function couleurTexte(couleur: string | undefined, sombre: boolean, encre: string): string {
-  if (!couleur) return encre;
-  const lum = luminance(couleur);
-  if (sombre && lum < 0.3) return encre;
-  if (!sombre && lum > 0.92) return encre;
-  return couleur;
-}
-
-type PropsElement = { el: SceneElement; portee: PorteeScene; sombre: boolean; encre: string; secondaire: string };
-
-function ElementScene({ el, portee, sombre, encre, secondaire }: PropsElement): React.ReactNode {
+function ElementScene({ el, portee, encre, secondaire, fondZone, tous }: PropsElement): React.ReactNode {
   const E = (v: number | string) => evaluerValeur(v, portee);
+  // Traits : la couleur de la scène est gardée si elle se détache du fond de la zone, sinon encre du thème.
+  const trait = (couleur: string | undefined) => couleurContrastee(couleur ?? secondaire, fondZone, encre);
   switch (el.type) {
     case 'ligne':
       return (
-        <Line x1={E(el.x1)} y1={E(el.y1)} x2={E(el.x2)} y2={E(el.y2)} stroke={el.couleur ?? secondaire} strokeWidth={el.epaisseur ?? 2} strokeLinecap="round" />
+        <Line x1={E(el.x1)} y1={E(el.y1)} x2={E(el.x2)} y2={E(el.y2)} stroke={trait(el.couleur)} strokeWidth={el.epaisseur ?? 2} strokeLinecap="round" />
       );
     case 'cercle':
-      return <Circle cx={E(el.cx)} cy={E(el.cy)} r={Math.max(0, E(el.r))} fill={el.remplissage ?? 'none'} stroke={el.contour ?? el.couleur} strokeWidth={el.contour || el.couleur ? 1.5 : 0} />;
+      return <Circle cx={E(el.cx)} cy={E(el.cy)} r={Math.max(0, E(el.r))} fill={el.remplissage ?? 'none'} stroke={el.contour || el.couleur ? trait(el.contour ?? el.couleur) : undefined} strokeWidth={el.contour || el.couleur ? 1.5 : 0} />;
     case 'rectangle':
-      return <Rect x={E(el.x)} y={E(el.y)} width={Math.max(0, E(el.largeur))} height={Math.max(0, E(el.hauteur))} rx={3} fill={el.remplissage ?? 'none'} stroke={el.contour ?? el.couleur} strokeWidth={el.contour || el.couleur ? 1.5 : 0} />;
+      return <Rect x={E(el.x)} y={E(el.y)} width={Math.max(0, E(el.largeur))} height={Math.max(0, E(el.hauteur))} rx={3} fill={el.remplissage ?? 'none'} stroke={el.contour || el.couleur ? trait(el.contour ?? el.couleur) : undefined} strokeWidth={el.contour || el.couleur ? 1.5 : 0} />;
     case 'polygone':
       return (
         <Polygon
           points={el.points.map(([x, y]) => `${E(x)},${E(y)}`).join(' ')}
           fill={el.remplissage ?? 'none'}
-          stroke={el.contour ?? el.couleur ?? secondaire}
+          stroke={trait(el.contour ?? el.couleur)}
           strokeWidth={1.5}
         />
       );
-    case 'texte':
+    case 'texte': {
+      // Le fond réel du texte : la forme pleine sous lui s'il y en a une, sinon le fond de la zone.
+      const fondLocal = remplissageSous(tous, E(el.x), E(el.y), portee) ?? fondZone;
       return (
-        <TexteSvg x={E(el.x)} y={E(el.y)} fontSize={el.taille ?? 14} fill={couleurTexte(el.couleur, sombre, encre)} textAnchor={el.ancre ?? 'start'}>
+        <TexteSvg x={E(el.x)} y={E(el.y)} fontSize={el.taille ?? 14} fill={el.couleur ? couleurContrastee(el.couleur, fondLocal, encre) : encre} textAnchor={el.ancre ?? 'start'}>
           {texteScene(el.contenu, portee)}
         </TexteSvg>
       );
+    }
     case 'chemin':
-      return <CheminScene el={el} portee={portee} secondaire={secondaire} />;
+      return <CheminScene el={el} portee={portee} secondaire={secondaire} fondZone={fondZone} encre={encre} />;
     case 'courbe':
-      return <Polyline points={pointsCourbe(el, portee)} fill="none" stroke={el.couleur ?? '#2980b9'} strokeWidth={el.epaisseur ?? 2} />;
+      return <Polyline points={pointsCourbe(el, portee)} fill="none" stroke={trait(el.couleur ?? '#2980b9')} strokeWidth={el.epaisseur ?? 2} />;
     case 'ressort':
       return (
         <Polyline
           points={pointsRessort(E(el.x1), E(el.y1), E(el.x2), E(el.y2), el.spires ?? 9)}
           fill="none"
-          stroke={el.couleur ?? secondaire}
+          stroke={trait(el.couleur)}
           strokeWidth={2}
         />
       );
@@ -208,7 +196,7 @@ function ElementScene({ el, portee, sombre, encre, secondaire }: PropsElement): 
       return (
         <G transform={transform}>
           {el.elements.map((enfant, i) => (
-            <ElementScene key={i} el={enfant} portee={portee} sombre={sombre} encre={encre} secondaire={secondaire} />
+            <ElementScene key={i} el={enfant} portee={portee} encre={encre} secondaire={secondaire} fondZone={fondZone} tous={tous} />
           ))}
         </G>
       );
@@ -216,7 +204,7 @@ function ElementScene({ el, portee, sombre, encre, secondaire }: PropsElement): 
   }
 }
 
-function CheminScene({ el, portee, secondaire }: { el: Extract<SceneElement, { type: 'chemin' }>; portee: PorteeScene; secondaire: string }) {
+function CheminScene({ el, portee, secondaire, fondZone, encre }: { el: Extract<SceneElement, { type: 'chemin' }>; portee: PorteeScene; secondaire: string; fondZone: string; encre: string }) {
   const echantillonneur = useMemo(() => analyserChemin(el.d), [el.d]);
   const flux = el.flux;
   const points: { x: number; y: number }[] = [];
@@ -229,7 +217,7 @@ function CheminScene({ el, portee, secondaire }: { el: Extract<SceneElement, { t
   }
   return (
     <>
-      <Path d={el.d} fill={el.remplissage ?? 'none'} stroke={el.couleur ?? secondaire} strokeWidth={el.epaisseur ?? 2} />
+      <Path d={el.d} fill={el.remplissage ?? 'none'} stroke={couleurContrastee(el.couleur ?? secondaire, fondZone, encre)} strokeWidth={el.epaisseur ?? 2} />
       {points.map((p, i) => (
         <Circle key={i} cx={p.x} cy={p.y} r={flux!.rayon} fill={flux!.couleur ?? '#f39c12'} />
       ))}

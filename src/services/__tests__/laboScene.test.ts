@@ -2,13 +2,16 @@ import {
   analyserChemin,
   analyserExpression,
   contexteScene,
+  couleurContrastee,
   evaluerNoeud,
   evaluerValeur,
   pointsCourbe,
   pointsRessort,
+  remplissageSous,
   texteScene,
   validerScene,
   type SceneChat,
+  type SceneElement,
 } from '../laboScene';
 
 // Scènes RÉELLES produites par Gemma 4 sur le banc « génération libre » (13/11/2026) : la validation doit
@@ -231,5 +234,27 @@ describe('géométrie de rendu', () => {
     expect(evaluerValeur('1/0', {})).toBe(0);
     expect(evaluerValeur('inconnu + 1', {})).toBe(0);
     expect(evaluerValeur(42, {})).toBe(42);
+  });
+});
+
+describe('lisibilité des couleurs de scène', () => {
+  it('remplace un trait trop proche du fond par l’encre du thème (fil sombre sur zone sombre)', () => {
+    expect(couleurContrastee('#333333', '#2A2E2A', '#F6F1E4')).toBe('#F6F1E4');
+    expect(couleurContrastee('#333333', '#F6EEDA', '#0A0A0A')).toBe('#333333');
+    expect(couleurContrastee('#e74c3c', '#2A2E2A', '#F6F1E4')).toBe('#e74c3c');
+  });
+
+  it('trouve le remplissage de la forme pleine sous un point (étiquette sur une boîte)', () => {
+    const elements: SceneElement[] = [
+      { type: 'rectangle', x: 170, y: 250, largeur: 80, hauteur: 40, remplissage: '#ecf0f1' },
+      { type: 'cercle', cx: 60, cy: 60, r: 20, remplissage: '#e74c3c' },
+      { type: 'texte', x: 210, y: 275, contenu: 'Résistance' },
+    ];
+    const portee = contexteScene({ titre: 'T', largeur: 420, hauteur: 320, parametres: [], variables: [], elements: [], affichages: [] }, {}, 0);
+    expect(remplissageSous(elements, 210, 275, portee)).toBe('#ecf0f1');
+    expect(remplissageSous(elements, 60, 60, portee)).toBe('#e74c3c');
+    expect(remplissageSous(elements, 300, 60, portee)).toBeUndefined();
+    // Sur la boîte claire, le texte sombre d'origine reste le bon choix — même en thème sombre.
+    expect(couleurContrastee('#333333', remplissageSous(elements, 210, 275, portee)!, '#F6F1E4')).toBe('#333333');
   });
 });
