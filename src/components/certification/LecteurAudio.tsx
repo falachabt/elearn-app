@@ -1,17 +1,22 @@
 import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
-import { Pause, Play } from 'lucide-react-native';
+import { CircleAlert, Pause, Play } from 'lucide-react-native';
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { DUREE_VALIDITE_HORS_LIGNE_MS } from '@/services/connectivite';
 import { diagnosticAudio, etatInitial, formaterTemps, reduireLecteur, resumeStatut, type StatutNatif } from '@/services/certification/lecteur';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Bouton } from '../Bouton';
-import { BarreProgression } from './ui';
+import { useReseau } from '../reseau/useReseau';
+import { BarreProgression, EncadrePointille } from './ui';
+
+/** Durée de validité du contenu hors ligne, en jours (même règle que le reste de l'app, §16 bis). */
+const JOURS_VALIDITE = Math.round(DUREE_VALIDITE_HORS_LIGNE_MS / 86_400_000);
 
 /**
  * Arrêt de la piste jouée en dernier, quel que soit l'écran : un seul son à la fois. Une question qui passe à la suivante
@@ -40,6 +45,7 @@ type Props = {
 export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasser, onFin }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const { estEnLigne } = useReseau();
   const [etat, envoyer] = useReducer((e: typeof etatInitial, ev: Parameters<typeof reduireLecteur>[1]) => reduireLecteur(e, ev, !!unique), etatInitial);
   const lecteur = useRef<AudioPlayer | null>(null);
   const delai = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -123,6 +129,27 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
     }
   };
 
+  // X4 · Pack audio manquant (lot S1) : le son ne se charge pas et l'appareil est hors ligne. Même sortie que B8 :
+  // « Réessayer » relance la piste, « Continuer sans audio » passe la question (elle est rejouée plus tard).
+  if ((etat.phase === 'erreur' || !uri) && !estEnLigne) {
+    return (
+      <View accessibilityRole="alert" style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+        <View style={styles.centre}>
+          <View style={[styles.pastilleHorsLigne, { borderColor: theme.bord.fort, backgroundColor: theme.etat.alerteDoux }]}>
+            <CircleAlert size={14} color={theme.texte.principal} strokeWidth={2.25} />
+            <Text style={[typo.legende, { color: theme.texte.principal }]}>{t('certification.exercice.packHorsLigne')}</Text>
+          </View>
+          <Text accessibilityRole="header" style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.exercice.packTitre')}</Text>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.exercice.packManque')}</Text>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.exercice.packTexte')}</Text>
+          <EncadrePointille texte={t('certification.exercice.packPerime', { n: JOURS_VALIDITE })} />
+          <Bouton petit variante="secondaire" libelle={t('certification.exercice.packReessayer')} onPress={() => (uri ? demarrer(etat.position) : undefined)} desactive={!uri} />
+          <Bouton petit variante="texte" libelle={t('certification.exercice.packSansAudio')} onPress={onPasser} />
+        </View>
+      </View>
+    );
+  }
+
   // Pas de piste (question sans audio en base) : « audio indisponible » tout de suite, sans rien jouer.
   if (etat.phase === 'erreur' || !uri) {
     return (
@@ -190,4 +217,5 @@ const styles = StyleSheet.create({
   carte: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
   bouton: { width: cibleMin, height: cibleMin, borderRadius: cibleMin / 2, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   centre: { flex: 1, gap: espace[2] },
+  pastilleHorsLigne: { flexDirection: 'row', alignItems: 'center', gap: espace[1], alignSelf: 'flex-start', borderWidth: bord.fin, borderRadius: rayon.s, paddingHorizontal: espace[2], paddingVertical: 2 },
 });
