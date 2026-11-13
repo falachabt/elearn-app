@@ -15,11 +15,13 @@ import { Appui } from '../Appui';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { TexteFormules } from '../TexteFormules';
+import type { EtapeVisite } from '../Visite';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { GrapheFonction } from './GrapheFonction';
 import { PenduleInteractif } from './PenduleInteractif';
 import { PhotoEleve } from './PhotoEleve';
 import { PhotoSimulee } from './PhotoSimulee';
+import { useVisiteLabo } from './useVisiteLabo';
 
 function BlocVu({ bloc }: { bloc: BlocChat }) {
   if (bloc.type === 'pendule') return <PenduleInteractif longueur={bloc.longueur} amplitudeDeg={bloc.amplitudeDeg} pesanteur={bloc.pesanteur} />;
@@ -77,6 +79,12 @@ export function ChatInteractif() {
   const defileur = useRef<ScrollView>(null);
   const champRef = useRef<TextInput>(null);
   const idSuivant = useRef(1);
+  // Cibles de la visite guidée de première ouverture.
+  const refEntreePhoto = useRef<View>(null);
+  const refComposeur = useRef<View>(null);
+  const refBoutonPhoto = useRef<View>(null);
+  const refInvitePendule = useRef<View>(null);
+  const refInviteFonction = useRef<View>(null);
   /** D'où vient le choix de photo en cours : l'entrée « photo seule » envoie directement, le composeur attache. */
   const origineChoix = useRef<'entree' | 'composeur'>('composeur');
 
@@ -152,6 +160,21 @@ export function ChatInteractif() {
     void poserQuestion({ question }, () => blocsReponseDemo(invite));
   };
 
+  // Visite guidée de première ouverture : les trois façons de poser une question, puis les deux exemples de
+  // suggestions. Quand l'élève va au bout, l'exemple du pendule est lancé pour de vrai (démonstration dans le
+  // fil) et l'exemple de la fonction est pré-rempli dans le champ — à lui d'envoyer ou de le remplacer.
+  const construireEtapes = (): EtapeVisite[] => [
+    { id: 'photo', cible: refEntreePhoto, titre: t('labo.visitePhotoTitre'), description: t('labo.visitePhoto') },
+    { id: 'question', cible: refComposeur, titre: t('labo.visiteQuestionTitre'), description: t('labo.visiteQuestion') },
+    { id: 'mixte', cible: refBoutonPhoto, titre: t('labo.visiteMixteTitre'), description: t('labo.visiteMixte') },
+    { id: 'pendule', cible: refInvitePendule, titre: t('labo.visitePenduleTitre'), description: t('labo.visitePendule') },
+    { id: 'fonction', cible: refInviteFonction, titre: t('labo.visiteFonctionTitre'), description: t('labo.visiteFonction') },
+  ];
+  useVisiteLabo(construireEtapes, () => {
+    choisirInvite('pendule');
+    setSaisie(t('labo.inviteFonction'));
+  });
+
   const peutEnvoyer = (saisie.trim().length > 0 || photoJointe !== null) && !enAttente;
 
   const envoyer = () => {
@@ -188,12 +211,14 @@ export function ChatInteractif() {
           </Appui>
         </View>
       )}
-      <View style={styles.barreLigne}>
-        <Appui accessibilityRole="button" accessibilityLabel={t('labo.ajouterPhoto')} onPress={() => ouvrirChoix('composeur')} decalage={0}>
-          <View style={[styles.carre, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
-            <ImagePlus size={20} strokeWidth={2} color={theme.texte.principal} />
-          </View>
-        </Appui>
+      <View ref={refComposeur} collapsable={false} style={styles.barreLigne}>
+        <View ref={refBoutonPhoto} collapsable={false}>
+          <Appui accessibilityRole="button" accessibilityLabel={t('labo.ajouterPhoto')} onPress={() => ouvrirChoix('composeur')} decalage={0}>
+            <View style={[styles.carre, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
+              <ImagePlus size={20} strokeWidth={2} color={theme.texte.principal} />
+            </View>
+          </Appui>
+        </View>
         <TextInput
           ref={champRef}
           value={saisie}
@@ -233,11 +258,13 @@ export function ChatInteractif() {
           ))}
           <View style={[styles.entreeCarte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
             <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('labo.entreeTitre')}</Text>
-            <LigneEntree
-              icone={<Camera size={20} strokeWidth={2.25} color={theme.texte.principal} />}
-              titre={t('labo.entreePhoto')}
-              onPress={() => ouvrirChoix('entree')}
-            />
+            <View ref={refEntreePhoto} collapsable={false}>
+              <LigneEntree
+                icone={<Camera size={20} strokeWidth={2.25} color={theme.texte.principal} />}
+                titre={t('labo.entreePhoto')}
+                onPress={() => ouvrirChoix('entree')}
+              />
+            </View>
             <LigneEntree
               icone={<MessageSquare size={20} strokeWidth={2.25} color={theme.texte.principal} />}
               titre={t('labo.entreeQuestion')}
@@ -249,16 +276,20 @@ export function ChatInteractif() {
           ))}
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('labo.exemples')}</Text>
           <View style={styles.invites}>
-            <Appui accessibilityRole="button" accessibilityLabel={t('labo.invitePendule')} onPress={() => choisirInvite('pendule')} rayon={rayon.pilule} ombre={2} decalage={2} couleurOmbre={theme.ombre}>
-              <View style={[styles.puceInvite, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>{t('labo.invitePendule')}</Text>
-              </View>
-            </Appui>
-            <Appui accessibilityRole="button" accessibilityLabel={t('labo.inviteFonction')} onPress={() => choisirInvite('fonction')} rayon={rayon.pilule} ombre={2} decalage={2} couleurOmbre={theme.ombre}>
-              <View style={[styles.puceInvite, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>{t('labo.inviteFonction')}</Text>
-              </View>
-            </Appui>
+            <View ref={refInvitePendule} collapsable={false}>
+              <Appui accessibilityRole="button" accessibilityLabel={t('labo.invitePendule')} onPress={() => choisirInvite('pendule')} rayon={rayon.pilule} ombre={2} decalage={2} couleurOmbre={theme.ombre}>
+                <View style={[styles.puceInvite, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                  <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>{t('labo.invitePendule')}</Text>
+                </View>
+              </Appui>
+            </View>
+            <View ref={refInviteFonction} collapsable={false}>
+              <Appui accessibilityRole="button" accessibilityLabel={t('labo.inviteFonction')} onPress={() => choisirInvite('fonction')} rayon={rayon.pilule} ombre={2} decalage={2} couleurOmbre={theme.ombre}>
+                <View style={[styles.puceInvite, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                  <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>{t('labo.inviteFonction')}</Text>
+                </View>
+              </Appui>
+            </View>
           </View>
         </ScrollView>
       </Ecran>

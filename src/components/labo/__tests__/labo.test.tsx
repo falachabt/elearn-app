@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { demanderConversation } from '@/services/conversation';
@@ -16,6 +17,9 @@ jest.mock('@/components/arrivee/MiniTest', () => ({ BoutonFermer: () => null }))
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@/services/conversation', () => ({ demanderConversation: jest.fn() }));
 jest.mock('@/services/laboPhoto', () => ({ choisirPhotoLabo: jest.fn() }));
+
+const mockDemarrerVisite = jest.fn();
+jest.mock('@/components/Visite', () => ({ useVisite: () => ({ demarrer: mockDemarrerVisite }) }));
 
 const moteur = demanderConversation as jest.Mock;
 const selecteur = choisirPhotoLabo as jest.Mock;
@@ -303,5 +307,58 @@ describe('ChatInteractif', () => {
     await fireEvent.press(screen.getByRole('button', { name: 'Montre-moi le pendule' }));
     expect(await screen.findByText(/Trop de questions pour le moment/)).toBeTruthy();
     expect(screen.queryByText('Pendule simple')).toBeNull();
+  });
+});
+
+describe('ChatInteractif — visite guidée de première ouverture', () => {
+  beforeEach(async () => {
+    await AsyncStorage.clear();
+    mockDemarrerVisite.mockClear();
+  });
+
+  it('première ouverture : la visite démarre avec les 5 étapes (photo, question, mixte, pendule, fonction)', async () => {
+    await render(ecranChat);
+    await waitFor(() => expect(mockDemarrerVisite).toHaveBeenCalled(), { timeout: 5000 });
+    const [etapes] = mockDemarrerVisite.mock.calls[0];
+    expect(etapes.map((e: { id: string }) => e.id)).toEqual(['photo', 'question', 'mixte', 'pendule', 'fonction']);
+    expect(etapes[0].titre).toBe('Filme un exercice');
+    expect(etapes[2].titre).toBe('Photo + question');
+    expect(etapes[3].titre).toBe('Un exemple : le pendule');
+    expect(etapes[4].titre).toBe('Un autre exemple : une fonction');
+  });
+
+  it('visite menée au bout : le pendule est démontré pour de vrai, la fonction est pré-remplie sans être envoyée', async () => {
+    moteur.mockClear();
+    await render(ecranChat);
+    await waitFor(() => expect(mockDemarrerVisite).toHaveBeenCalled(), { timeout: 5000 });
+    const [, onFin] = mockDemarrerVisite.mock.calls[0];
+    onFin(true);
+    // Démonstration : la vraie suggestion pendule part au moteur et la simulation s'affiche dans le fil.
+    expect(await screen.findByText('Pendule simple')).toBeTruthy();
+    expect(moteur.mock.calls.some((c) => (c[1]?.question ?? '').includes('pendule'))).toBe(true);
+    // Passage de main : l'exemple de la fonction attend dans le champ, sans avoir été envoyé au moteur.
+    expect(screen.getByDisplayValue('Trace f(x) = 2x² + 3x + 4')).toBeTruthy();
+    expect(moteur.mock.calls.some((c) => (c[1]?.question ?? '').includes('Trace'))).toBe(false);
+    await waitFor(async () => expect(await AsyncStorage.getItem('labo.chat.visite.vue')).toBe('1'));
+    await fireEvent.press(screen.getByRole('button', { name: 'Pause' }));
+  });
+
+  it('visite passée : marquée vue, mais aucun exemple lancé ni pré-rempli', async () => {
+    moteur.mockClear();
+    await render(ecranChat);
+    await waitFor(() => expect(mockDemarrerVisite).toHaveBeenCalled(), { timeout: 5000 });
+    const [, onFin] = mockDemarrerVisite.mock.calls[0];
+    onFin(false);
+    await waitFor(async () => expect(await AsyncStorage.getItem('labo.chat.visite.vue')).toBe('1'));
+    expect(screen.queryByText('Pendule simple')).toBeNull();
+    expect(screen.queryByDisplayValue('Trace f(x) = 2x² + 3x + 4')).toBeNull();
+    expect(moteur).not.toHaveBeenCalled();
+  });
+
+  it('déjà vue : la visite ne redémarre pas', async () => {
+    await AsyncStorage.setItem('labo.chat.visite.vue', '1');
+    await render(ecranChat);
+    await new Promise((r) => setTimeout(r, 1300));
+    expect(mockDemarrerVisite).not.toHaveBeenCalled();
   });
 });
