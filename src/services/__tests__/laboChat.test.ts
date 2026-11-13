@@ -72,10 +72,13 @@ describe('laboChat — format et réponses de démonstration', () => {
     expect(blocs.map((b) => b.type)).toEqual(['texte', 'pendule', 'texte']);
   });
 
-  it('la démo photo seule reste une correction structurée (parcours actuel, aucun bloc interactif)', () => {
+  it('la démo photo seule est une correction structurée (rubriques de la correction photo, aucun bloc interactif)', () => {
     const blocs = blocsReponseDemo('photoSeule');
-    expect(blocs.every((b) => b.type === 'texte')).toBe(true);
-    expect(blocs.map((b) => (b.type === 'texte' ? b.texte : '')).join(' ')).toContain('À retenir');
+    expect(blocs.map((b) => b.type)).toEqual(['correction']);
+    const c = blocs[0];
+    expect(c.type === 'correction' && c.etapes.length).toBe(3);
+    expect(c.type === 'correction' && c.aRetenir).toContain('La période ne dépend que de la longueur');
+    expect(c.type === 'correction' && c.resultat).toContain('2{,}01');
   });
 
   it('la démo photo répond au pendule reconnu par le bloc interactif pendule', () => {

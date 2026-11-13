@@ -36,6 +36,39 @@ describe('conversation — blocsSurs', () => {
     expect(blocsSurs([{ type: 'texte', texte: 'Texte seul.' }, { type: 'fonction', a: 2 }]).map((b) => b.type)).toEqual(['texte']);
   });
 
+  it('garde une correction complète, étapes nettoyées', () => {
+    const blocs = blocsSurs([
+      {
+        type: 'correction',
+        enonce: 'Un pendule de 1 m est lâché. Calculer sa période.',
+        methode: 'On applique $T = 2\\pi\\sqrt{L/g}$.',
+        etapes: [
+          { titre: 'Calcul', detail: 'T ≈ 2,01 s.' },
+          { titre: ' ', detail: '' },
+        ],
+        resultat: 'T ≈ 2,01 s',
+        aRetenir: 'La période dépend de L.',
+      },
+    ]);
+    expect(blocs.map((b) => b.type)).toEqual(['correction']);
+    const c = blocs[0];
+    expect(c.type === 'correction' && c.etapes).toEqual([{ titre: 'Calcul', detail: 'T ≈ 2,01 s.' }]);
+    expect(c.type === 'correction' && c.aRetenir).toBe('La période dépend de L.');
+  });
+
+  it('une correction seule est exploitable, mais une correction incomplète ou doublée est supprimée', () => {
+    const incomplete = blocsSurs([{ type: 'correction', enonce: 'Énoncé.', methode: 'Méthode.', etapes: [], resultat: 'Résultat.' }]);
+    expect(incomplete).toEqual([]);
+    const complete = {
+      type: 'correction',
+      enonce: 'Énoncé.',
+      methode: 'Méthode.',
+      etapes: [{ titre: 'Étape', detail: 'Détail.' }],
+      resultat: 'Résultat.',
+    };
+    expect(blocsSurs([complete, complete]).map((b) => b.type)).toEqual(['correction']);
+  });
+
   it('renvoie vide sans bloc texte exploitable (réponse inexploitable pour l’écran)', () => {
     expect(blocsSurs([{ type: 'pendule', longueur: 1 }])).toEqual([]);
     expect(blocsSurs([{ type: 'texte', texte: '   ' }])).toEqual([]);

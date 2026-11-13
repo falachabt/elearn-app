@@ -4,13 +4,18 @@ import { fetch as fetchFlux } from 'expo/fetch';
 import type { BlocChat } from './laboChat';
 
 /**
- * Conversation (chat interactif) : envoi d'une question écrite — éventuellement accompagnée d'une photo — à la
- * fonction serveur « conversation » (flux NDJSON), qui fait répondre Gemma 4 en blocs typés (texte, pendule,
- * fonction). Même transport que la correction par photo (services/photo.ts). Aucune clé d'IA dans l'app : tout
- * passe par la fonction Edge.
+ * Conversation (chat interactif) : envoi d'une question écrite — éventuellement accompagnée de photos — à la
+ * fonction serveur « conversation » (flux NDJSON), qui fait répondre Gemma 4 en blocs typés (texte, correction
+ * structurée, pendule, fonction). Même transport que la correction par photo (services/photo.ts). Aucune clé
+ * d'IA dans l'app : tout passe par la fonction Edge.
  */
 
-export type EtapeConversation = 'analyse' | 'redaction';
+/**
+ * Étapes de progression émises par la fonction pendant le traitement, dans l'ordre où elles surviennent :
+ * avec photo — lecture, analyse, rédaction ; question écrite — réflexion, rédaction, et « visuel » juste avant
+ * la réponse quand elle contient un bloc interactif à préparer.
+ */
+export type EtapeConversation = 'lecture' | 'analyse' | 'reflexion' | 'redaction' | 'visuel';
 
 export type EvenementConversation =
   | { t: 'etape'; etape: EtapeConversation }
@@ -26,23 +31,43 @@ export type IssueConversation =
 const BORNES_PENDULE = { longueur: [0.2, 3], amplitudeDeg: [5, 60], pesanteur: [1.6, 25] } as const;
 
 const nombre = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? v : null);
+const chaine = (v: unknown, max: number): string => (typeof v === 'string' ? v.trim().slice(0, max) : '');
 const plafonner = (v: number, bornes: readonly [number, number]): number => Math.min(bornes[1], Math.max(bornes[0], v));
 
 /**
  * Blocs reçus → blocs sûrs pour l'écran. La fonction valide déjà côté serveur ; l'app revérifie par prudence :
  * types connus seulement, paramètres du pendule plafonnés dans les bornes des curseurs, au plus un bloc
- * interactif, et au moins un bloc texte (sinon la réponse est inexploitable).
+ * interactif, au plus une correction (rubriques et étapes bornées), et au moins un bloc texte ou une
+ * correction (sinon la réponse est inexploitable).
  */
 export function blocsSurs(bruts: unknown): BlocChat[] {
   if (!Array.isArray(bruts)) return [];
   const blocs: BlocChat[] = [];
   let interactif = false;
+  let correctionFaite = false;
   for (const brut of bruts) {
     if (!brut || typeof brut !== 'object') continue;
     const b = brut as Record<string, unknown>;
     if (b.type === 'texte') {
       const texte = typeof b.texte === 'string' ? b.texte.trim().slice(0, 2000) : '';
       if (texte) blocs.push({ type: 'texte', texte });
+    } else if (b.type === 'correction') {
+      if (correctionFaite) continue;
+      const enonce = chaine(b.enonce, 800);
+      const methode = chaine(b.methode, 1000);
+      const resultat = chaine(b.resultat, 800);
+      const aRetenir = chaine(b.aRetenir, 800);
+      const etapes = (Array.isArray(b.etapes) ? b.etapes.slice(0, 8) : [])
+        .map((e) => {
+          const o = (e ?? {}) as Record<string, unknown>;
+          return { titre: chaine(o.titre, 160), detail: chaine(o.detail, 1000) };
+        })
+        .filter((e) => e.titre || e.detail);
+      if (!enonce || !methode || !resultat || etapes.length === 0) continue;
+      correctionFaite = true;
+      const bloc: Extract<BlocChat, { type: 'correction' }> = { type: 'correction', enonce, methode, etapes, resultat };
+      if (aRetenir) bloc.aRetenir = aRetenir;
+      blocs.push(bloc);
     } else if (b.type === 'pendule') {
       if (interactif) continue;
       interactif = true;
@@ -65,7 +90,7 @@ export function blocsSurs(bruts: unknown): BlocChat[] {
     }
     if (blocs.length >= 8) break;
   }
-  return blocs.some((b) => b.type === 'texte') ? blocs : [];
+  return blocs.some((b) => b.type === 'texte' || b.type === 'correction') ? blocs : [];
 }
 
 /** Lignes NDJSON complètes du tampon → événements ; renvoie aussi le reste (ligne incomplète). */
@@ -87,8 +112,8 @@ export function lireLignesConversation(tampon: string): { evenements: EvenementC
 
 type Options = {
   question?: string | null;
-  /** Photo JPEG en base64 (mode mixte), sans préfixe data:. */
-  image?: string | null;
+  /** Photos JPEG en base64 (mode mixte : une ou plusieurs), sans préfixe data:. */
+  images?: string[] | null;
   surEtape?: (e: EtapeConversation) => void;
   signal?: AbortSignal;
 };
@@ -97,7 +122,7 @@ type Options = {
  * Pose la question à la fonction serveur et suit le flux. Sans session ou sans réseau : issue explicite, pour
  * que l'écran affiche son repli libellé plutôt qu'un échec silencieux.
  */
-export async function demanderConversation(client: SupabaseClient, { question, image, surEtape, signal }: Options): Promise<IssueConversation> {
+export async function demanderConversation(client: SupabaseClient, { question, images, surEtape, signal }: Options): Promise<IssueConversation> {
   const { data } = await client.auth.getSession();
   const jeton = data.session?.access_token;
   if (!jeton) return { type: 'erreur' };
@@ -108,7 +133,7 @@ export async function demanderConversation(client: SupabaseClient, { question, i
     reponse = await fetchFlux(url, {
       method: 'POST',
       headers: { Authorization: `Bearer ${jeton}`, apikey: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? '', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question: question ?? null, image: image ?? null }),
+      body: JSON.stringify({ question: question ?? null, images: images?.length ? images : null }),
       signal,
     });
   } catch (e) {

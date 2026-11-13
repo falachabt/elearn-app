@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react-nativ
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { demanderConversation } from '@/services/conversation';
-import { choisirPhotoLabo } from '@/services/laboPhoto';
+import { choisirPhotoLabo, preparerPhotoLabo } from '@/services/laboPhoto';
 
 import { ChatInteractif } from '../ChatInteractif';
 import { GrapheFonction } from '../GrapheFonction';
@@ -16,25 +16,32 @@ jest.mock('expo-router', () => ({
 jest.mock('@/components/arrivee/MiniTest', () => ({ BoutonFermer: () => null }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@/services/conversation', () => ({ demanderConversation: jest.fn() }));
-jest.mock('@/services/laboPhoto', () => ({ choisirPhotoLabo: jest.fn() }));
+jest.mock('@/services/laboPhoto', () => ({ choisirPhotoLabo: jest.fn(), preparerPhotoLabo: jest.fn(), NB_MAX_PHOTOS: 4 }));
 
 const mockDemarrerVisite = jest.fn();
 jest.mock('@/components/Visite', () => ({ useVisite: () => ({ demarrer: mockDemarrerVisite }) }));
 
 const moteur = demanderConversation as jest.Mock;
 const selecteur = choisirPhotoLabo as jest.Mock;
+const preparation = preparerPhotoLabo as jest.Mock;
 
-/** Photo « choisie » par le sélecteur simulé : une vraie uri locale et ses octets JPEG préparés. */
+/** Photo préparée par le recadrage simulé : une vraie uri locale et ses octets JPEG. */
 const PHOTO_TEST = { uri: 'file:///photo-eleve.jpg', base64: 'BASE64_PHOTO_TEST' };
 
 function selecteurNominal() {
-  selecteur.mockResolvedValue({ type: 'photo', photo: PHOTO_TEST });
+  selecteur.mockResolvedValue({ type: 'photo', photo: { uri: 'file:///brute.jpg', largeur: 1200, hauteur: 900 } });
+  preparation.mockResolvedValue(PHOTO_TEST);
+}
+
+/** Après le sélecteur, l'étape de recadrage s'affiche : on la valide pour obtenir la photo préparée. */
+async function validerRecadrage() {
+  await fireEvent.press(await screen.findByRole('button', { name: 'Utiliser la photo' }));
 }
 
 /** Réponses du moteur simulées pour les tests d'écran : mêmes formes que la fonction « conversation ». */
 function moteurNominal() {
-  moteur.mockImplementation(async (_client: unknown, opts: { question?: string | null; image?: string | null }) => {
-    if (opts.image) {
+  moteur.mockImplementation(async (_client: unknown, opts: { question?: string | null; images?: string[] | null }) => {
+    if (opts.images?.length) {
       return {
         type: 'fin',
         repli: false,
@@ -160,12 +167,14 @@ describe('ChatInteractif', () => {
     expect(screen.getByRole('button', { name: 'Choisir dans la galerie' })).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: 'Prendre une photo' }));
     expect(selecteur).toHaveBeenCalledWith('camera');
+    // Le recadrage s'affiche avant tout envoi : on le valide, la photo préparée part au moteur.
+    await validerRecadrage();
     // La vraie photo de l'élève est dans le fil, et le moteur répond sur ce qu'il y voit.
     expect(await screen.findByText('Photo envoyée')).toBeTruthy();
     expect(await screen.findByText(/je reconnais un pendule simple/)).toBeTruthy();
     expect(screen.getByText('Pendule simple')).toBeTruthy();
-    // L'appel est parti avec les octets de la photo choisie, sans question écrite.
-    const appel = moteur.mock.calls.find((c) => c[1]?.image === PHOTO_TEST.base64);
+    // L'appel est parti avec les octets de la photo recadrée, sans question écrite.
+    const appel = moteur.mock.calls.find((c) => c[1]?.images?.[0] === PHOTO_TEST.base64);
     expect(appel).toBeTruthy();
     expect(appel[1].question ?? null).toBeNull();
   });
@@ -176,17 +185,22 @@ describe('ChatInteractif', () => {
     await fireEvent.press(screen.getByRole('button', { name: 'Filme un exercice, je te donne la correction' }));
     await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
     expect(selecteur).toHaveBeenCalledWith('bibliotheque');
+    await validerRecadrage();
     expect(await screen.findByText(/Moteur injoignable — réponse de démonstration/)).toBeTruthy();
-    expect(screen.getByText(/À retenir : la période ne dépend que de la longueur/)).toBeTruthy();
+    // La démo est une correction structurée : mêmes rubriques que la correction par photo.
+    expect(screen.getByText('Méthode')).toBeTruthy();
+    expect(screen.getByText('À retenir')).toBeTruthy();
+    expect(screen.getByText(/La période ne dépend que de la longueur du fil/)).toBeTruthy();
   });
 
-  it('sélecteur annulé : rien n’est attaché, rien n’est envoyé', async () => {
+  it('sélecteur annulé : rien n’est attaché, rien n’est envoyé, pas de recadrage', async () => {
     selecteur.mockResolvedValue({ type: 'annule' });
     moteur.mockClear();
     await render(ecranChat);
     await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
     await fireEvent.press(await screen.findByRole('button', { name: 'Prendre une photo' }));
-    expect(screen.queryByText('Photo jointe')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Utiliser la photo' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Retirer la photo' })).toBeNull();
     expect(screen.queryByText('Photo envoyée')).toBeNull();
     expect(moteur).not.toHaveBeenCalled();
   });
@@ -198,14 +212,15 @@ describe('ChatInteractif', () => {
     await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
     expect(await screen.findByText('Photo inaccessible')).toBeTruthy();
     expect(screen.getByText(/Autorise-le dans les réglages/)).toBeTruthy();
-    expect(screen.queryByText('Photo jointe')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Retirer la photo' })).toBeNull();
   });
 
   it('mode mixte : la photo attachée depuis le composeur part au moteur avec la question écrite', async () => {
     await render(ecranChat);
     await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
     await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
-    expect(await screen.findByText('Photo jointe')).toBeTruthy();
+    await validerRecadrage();
+    expect(await screen.findByRole('button', { name: 'Retirer la photo' })).toBeTruthy();
     await fireEvent.changeText(screen.getByLabelText('Écris ta question…'), 'Explique-moi ce mouvement');
     await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
     expect(screen.getByText('Photo envoyée')).toBeTruthy();
@@ -214,9 +229,9 @@ describe('ChatInteractif', () => {
     // Le moteur a lu la photo : la simulation démarre sur les paramètres du montage (L = 0,8 m → 1,80 s).
     expect(screen.getByText('1,80 s')).toBeTruthy();
     // La vignette a disparu du composeur après l'envoi.
-    expect(screen.queryByText('Photo jointe')).toBeNull();
-    // L'appel est bien parti en mode mixte (question + octets de la photo choisie).
-    const appelMixte = moteur.mock.calls.some((c) => c[1]?.image === PHOTO_TEST.base64 && c[1]?.question === 'Explique-moi ce mouvement');
+    expect(screen.queryByRole('button', { name: 'Retirer la photo' })).toBeNull();
+    // L'appel est bien parti en mode mixte (question + octets de la photo recadrée).
+    const appelMixte = moteur.mock.calls.some((c) => c[1]?.images?.[0] === PHOTO_TEST.base64 && c[1]?.question === 'Explique-moi ce mouvement');
     expect(appelMixte).toBe(true);
   });
 
@@ -225,12 +240,13 @@ describe('ChatInteractif', () => {
     await render(ecranChat);
     await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
     await fireEvent.press(await screen.findByRole('button', { name: 'Prendre une photo' }));
-    expect(await screen.findByText('Photo jointe')).toBeTruthy();
+    await validerRecadrage();
+    expect(await screen.findByRole('button', { name: 'Retirer la photo' })).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
     expect(screen.getByText('Photo envoyée')).toBeTruthy();
     expect(screen.queryByText('Explique-moi ce mouvement')).toBeNull();
     expect(await screen.findByText('Pendule simple')).toBeTruthy();
-    const appel = moteur.mock.calls.find((c) => c[1]?.image === PHOTO_TEST.base64);
+    const appel = moteur.mock.calls.find((c) => c[1]?.images?.[0] === PHOTO_TEST.base64);
     expect(appel[1].question ?? null).toBeNull();
   });
 
@@ -238,9 +254,125 @@ describe('ChatInteractif', () => {
     await render(ecranChat);
     await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
     await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
-    expect(await screen.findByText('Photo jointe')).toBeTruthy();
+    await validerRecadrage();
+    expect(await screen.findByRole('button', { name: 'Retirer la photo' })).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: 'Retirer la photo' }));
-    expect(screen.queryByText('Photo jointe')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Retirer la photo' })).toBeNull();
+  });
+
+  it('mode mixte multi-photos : deux photos attachées partent ensemble au moteur', async () => {
+    moteur.mockClear();
+    await render(ecranChat);
+    await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
+    await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
+    await validerRecadrage();
+    expect(await screen.findAllByRole('button', { name: 'Retirer la photo' })).toHaveLength(1);
+    await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
+    await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
+    await validerRecadrage();
+    expect(await screen.findAllByRole('button', { name: 'Retirer la photo' })).toHaveLength(2);
+    await fireEvent.changeText(screen.getByLabelText('Écris ta question…'), 'Explique-moi ce mouvement');
+    await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
+    expect(await screen.findByText(/je reconnais un pendule simple/)).toBeTruthy();
+    const appel = moteur.mock.calls.find((c) => (c[1]?.images?.length ?? 0) === 2);
+    expect(appel).toBeTruthy();
+    expect(appel[1].images).toEqual([PHOTO_TEST.base64, PHOTO_TEST.base64]);
+    await fireEvent.press(screen.getByRole('button', { name: 'Pause' }));
+  });
+
+  it('mode mixte multi-photos : une photo retirée ne part pas', async () => {
+    moteur.mockClear();
+    await render(ecranChat);
+    await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
+    await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
+    await validerRecadrage();
+    await fireEvent.press(screen.getByRole('button', { name: 'Ajouter une photo' }));
+    await fireEvent.press(await screen.findByRole('button', { name: 'Choisir dans la galerie' }));
+    await validerRecadrage();
+    expect(await screen.findAllByRole('button', { name: 'Retirer la photo' })).toHaveLength(2);
+    await fireEvent.press(screen.getAllByRole('button', { name: 'Retirer la photo' })[0]);
+    expect(screen.getAllByRole('button', { name: 'Retirer la photo' })).toHaveLength(1);
+    await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
+    expect(await screen.findByText(/je reconnais un pendule simple/)).toBeTruthy();
+    const appels = moteur.mock.calls.filter((c) => (c[1]?.images?.length ?? 0) > 0);
+    expect(appels).toHaveLength(1);
+    expect(appels[0][1].images).toEqual([PHOTO_TEST.base64]);
+    await fireEvent.press(screen.getByRole('button', { name: 'Pause' }));
+  });
+
+  it('le panneau « Nouvelle question » disparaît dès le premier envoi', async () => {
+    await render(ecranChat);
+    expect(screen.getByText('Nouvelle question')).toBeTruthy();
+    await fireEvent.changeText(screen.getByLabelText('Écris ta question…'), 'Explique-moi les fractions');
+    await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
+    expect(await screen.findByText('Réponse du moteur à ta question.')).toBeTruthy();
+    expect(screen.queryByText('Nouvelle question')).toBeNull();
+    expect(screen.queryByText('Filme un exercice, je te donne la correction')).toBeNull();
+    expect(screen.queryByText('Pose-moi directement une question')).toBeNull();
+  });
+
+  it('étapes de chargement (question écrite) : elles défilent pendant l’attente et disparaissent à la réponse', async () => {
+    let resoudre: (v: unknown) => void = () => {};
+    moteur.mockImplementation((_c: unknown, opts: { surEtape?: (e: string) => void }) => {
+      opts.surEtape?.('redaction');
+      return new Promise((r) => {
+        resoudre = r as (v: unknown) => void;
+      });
+    });
+    await render(ecranChat);
+    await fireEvent.press(screen.getByRole('button', { name: 'Montre-moi le pendule' }));
+    expect(await screen.findByText('Réflexion')).toBeTruthy();
+    expect(screen.getByText('Rédaction de l’explication')).toBeTruthy();
+    resoudre({
+      type: 'fin',
+      repli: false,
+      blocs: [
+        { type: 'texte', texte: 'Voici le pendule simple.' },
+        { type: 'pendule', longueur: 1, amplitudeDeg: 30, pesanteur: 9.8 },
+      ],
+    });
+    expect(await screen.findByText('Pendule simple')).toBeTruthy();
+    expect(screen.queryByText('Réflexion')).toBeNull();
+    expect(screen.queryByText('Rédaction de l’explication')).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: 'Pause' }));
+  });
+
+  it('étapes de chargement (photo) puis correction structurée aux rubriques de la correction photo', async () => {
+    let resoudre: (v: unknown) => void = () => {};
+    moteur.mockImplementation((_c: unknown, opts: { surEtape?: (e: string) => void }) => {
+      opts.surEtape?.('lecture');
+      opts.surEtape?.('analyse');
+      return new Promise((r) => {
+        resoudre = r as (v: unknown) => void;
+      });
+    });
+    await render(ecranChat);
+    await fireEvent.press(screen.getByRole('button', { name: 'Filme un exercice, je te donne la correction' }));
+    await fireEvent.press(await screen.findByRole('button', { name: 'Prendre une photo' }));
+    await validerRecadrage();
+    expect(await screen.findByText('Envoi de la photo')).toBeTruthy();
+    expect(screen.getByText('Lecture de la photo')).toBeTruthy();
+    expect(screen.getByText('Analyse')).toBeTruthy();
+    expect(screen.getByText('Rédaction des étapes')).toBeTruthy();
+    resoudre({
+      type: 'fin',
+      repli: false,
+      blocs: [
+        {
+          type: 'correction',
+          enonce: 'Un pendule simple de longueur 1 m est lâché. Calculer sa période.',
+          methode: 'On applique la formule de la période du pendule simple.',
+          etapes: [{ titre: 'Calcul', detail: 'T ≈ 2,01 s.' }],
+          resultat: 'T ≈ 2,01 s',
+          aRetenir: 'La période dépend de la longueur du fil.',
+        },
+      ],
+    });
+    expect(await screen.findByText('Méthode')).toBeTruthy();
+    expect(screen.getByText('Résultat')).toBeTruthy();
+    expect(screen.getByText('À retenir')).toBeTruthy();
+    expect(screen.getByText(/La période dépend de la longueur du fil/)).toBeTruthy();
+    expect(screen.queryByText('Envoi de la photo')).toBeNull();
   });
 
   it('un message libre reçoit la réponse du moteur', async () => {

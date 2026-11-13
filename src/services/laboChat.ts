@@ -8,10 +8,18 @@
  * ces fixtures ont exactement la même forme.
  */
 
+/** Une étape de correction : titre court et détail (calcul ou raisonnement), comme dans la correction par photo. */
+export type EtapeCorrectionChat = { titre: string; detail: string };
+
 export type BlocChat =
   | { type: 'texte'; texte: string }
   /** Photo envoyée par l'élève : `uri` de la vraie photo choisie ; sans `uri`, le dessin de démonstration (repli). */
   | { type: 'photo'; sujet?: 'pendule'; uri?: string }
+  /**
+   * Correction structurée d'un exercice photographié : mêmes rubriques que la correction par photo de l'app
+   * (énoncé relu, méthode, étapes, résultat, à retenir), rendue par le même composant d'affichage.
+   */
+  | { type: 'correction'; enonce: string; methode: string; etapes: EtapeCorrectionChat[]; resultat: string; aRetenir?: string }
   /** Simulation du pendule ; paramètres éventuels du problème ou de la photo, repris comme valeurs de départ des curseurs. */
   | { type: 'pendule'; longueur?: number; amplitudeDeg?: number; pesanteur?: number }
   | { type: 'fonction'; a: number; b: number; c: number };
@@ -106,14 +114,21 @@ export const BLOCS_REPONSE_LIBRE: BlocChat[] = [
 /** Réponses de démonstration, une par suggestion. Même forme que les futures réponses du serveur. */
 export function blocsReponseDemo(invite: InviteDemo): BlocChat[] {
   if (invite === 'photoSeule') {
-    // Photo seule : c'est le résultat du parcours photo ACTUEL (correction structurée), inchangé — aucun bloc
-    // interactif ajouté. La démo le simule avec les mêmes rubriques que la vraie correction (énoncé, méthode,
-    // résultat, à retenir).
+    // Photo seule : la correction structurée, avec les rubriques de la correction par photo (énoncé, méthode,
+    // étapes, résultat, à retenir) — la démo la simule sous la même forme que la réponse du moteur.
     return [
-      { type: 'texte', texte: "Énoncé (lu sur ta photo) : un pendule simple de longueur L = 1 m est lâché depuis un angle de 30°. Calculer sa période d'oscillation." },
-      { type: 'texte', texte: 'Méthode : pour les petits angles, la période vaut T = 2π√(L/g), avec g = 9,8 N/kg.' },
-      { type: 'texte', texte: 'Résultat : T ≈ 2,01 s. La bille fait donc environ 30 oscillations par minute.' },
-      { type: 'texte', texte: 'À retenir : la période ne dépend que de la longueur du fil et de la pesanteur — ni de la masse, ni de l’amplitude (petits angles).' },
+      {
+        type: 'correction',
+        enonce: 'Un pendule simple de longueur $L = 1$ m est lâché depuis un angle de 30°. Calculer sa période d’oscillation.',
+        methode: 'Pour les petits angles, la période d’un pendule simple vaut $T = 2\\pi\\sqrt{\\frac{L}{g}}$, avec $g = 9{,}8$ N/kg.',
+        etapes: [
+          { titre: 'Identifier les données', detail: 'Longueur du fil : $L = 1$ m. Pesanteur : $g = 9{,}8$ N/kg.' },
+          { titre: 'Appliquer la formule', detail: '$T = 2\\pi\\sqrt{\\frac{1}{9{,}8}}$' },
+          { titre: 'Calculer', detail: '$T \\approx 2{,}01$ s : la bille fait donc environ 30 oscillations par minute.' },
+        ],
+        resultat: '$T \\approx 2{,}01$ s',
+        aRetenir: 'La période ne dépend que de la longueur du fil et de la pesanteur — ni de la masse, ni de l’amplitude (petits angles).',
+      },
     ];
   }
   if (invite === 'photo') {

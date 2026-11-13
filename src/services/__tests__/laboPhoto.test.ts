@@ -1,6 +1,6 @@
 import * as ImagePicker from 'expo-image-picker';
 
-import { choisirPhotoLabo } from '../laboPhoto';
+import { choisirPhotoLabo, preparerPhotoLabo } from '../laboPhoto';
 import { preparerImage } from '../photo';
 
 jest.mock('expo-image-picker', () => ({
@@ -26,19 +26,20 @@ beforeEach(() => {
 });
 
 describe('choisirPhotoLabo', () => {
-  it('caméra : permission accordée, photo prise → photo préparée (uri + base64)', async () => {
+  it('caméra : permission accordée, photo prise → photo brute (le recadrage vient ensuite, rien n’est préparé)', async () => {
     lanceCam.mockResolvedValue({ canceled: false, assets: [{ uri: 'file:///brute.jpg', width: 1200, height: 900 }] });
     const issue = await choisirPhotoLabo('camera');
-    expect(issue).toEqual({ type: 'photo', photo: { uri: 'file:///preparee.jpg', base64: 'JPEG_BASE64' } });
-    expect(prepare).toHaveBeenCalledWith('file:///brute.jpg', { x: 0, y: 0, largeur: 1, hauteur: 1 }, 1200, 900);
+    expect(issue).toEqual({ type: 'photo', photo: { uri: 'file:///brute.jpg', largeur: 1200, hauteur: 900 } });
+    expect(prepare).not.toHaveBeenCalled();
   });
 
-  it('galerie : la photo choisie est préparée de la même façon', async () => {
+  it('galerie : la photo choisie revient brute, avec ses dimensions', async () => {
     lanceBib.mockResolvedValue({ canceled: false, assets: [{ uri: 'file:///galerie.png', width: 800, height: 600 }] });
     const issue = await choisirPhotoLabo('bibliotheque');
-    expect(issue.type).toBe('photo');
+    expect(issue).toEqual({ type: 'photo', photo: { uri: 'file:///galerie.png', largeur: 800, hauteur: 600 } });
     expect(bib).toHaveBeenCalled();
     expect(lanceBib).toHaveBeenCalled();
+    expect(prepare).not.toHaveBeenCalled();
   });
 
   it('annulation du sélecteur : rien n’est attaché', async () => {
@@ -67,5 +68,14 @@ describe('choisirPhotoLabo', () => {
   it('résultat sans image exploitable : issue « erreur »', async () => {
     lanceCam.mockResolvedValue({ canceled: false, assets: [] });
     await expect(choisirPhotoLabo('camera')).resolves.toEqual({ type: 'erreur' });
+  });
+});
+
+describe('preparerPhotoLabo', () => {
+  it('recadre la photo brute avec le cadre de l’élève et renvoie la photo préparée (uri + base64)', async () => {
+    const cadre = { x: 0.1, y: 0.12, largeur: 0.7, hauteur: 0.66 };
+    const photo = await preparerPhotoLabo({ uri: 'file:///brute.jpg', largeur: 1200, hauteur: 900 }, cadre);
+    expect(prepare).toHaveBeenCalledWith('file:///brute.jpg', cadre, 1200, 900);
+    expect(photo).toEqual({ uri: 'file:///preparee.jpg', base64: 'JPEG_BASE64' });
   });
 });
