@@ -43,6 +43,8 @@ from selecteur_scenes import texte_inline  # noqa: E402
 REF_AUDIO = ICI / "voix" / "ref-homme-grave.wav"
 REF_TEXTE = "Pourquoi le ciel nous paraît-il bleu ? La lumière du Soleil semble blanche, mais elle est en réalité composée de toutes les couleurs de l'arc-en-ciel. En traversant l'atmosphère, elle rencontre des molécules d'air bien plus petites que sa longueur d'onde. Ces molécules diffusent surtout les courtes longueurs d'onde, c'est-à-dire le bleu et le violet : c'est la diffusion de Rayleigh. Plus une longueur d'onde est courte, plus elle est diffusée."
 VITESSE = 1.0
+REF_VICTORIA = ICI / "voix" / "reference-victoria-14s.wav"
+REF_TEXTE_VICTORIA = (ICI / "voix" / "reference-texte-victoria.txt").read_text(encoding="utf-8").strip()
 GABARIT = ICI / "gabarit"
 CHROME = os.environ.get("CHAINE_CHROME", "/opt/pw-browsers/chromium-1243/chrome-linux64/chrome")
 TYPES = {"titre", "formule", "etape", "lignes", "phrase", "recap"}
@@ -260,7 +262,18 @@ def voix(script, dossier):
     import soundfile as sf
     import torch
     modele = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
+    victoria = os.environ.get("CHAINE_VOIX", "victoria") == "victoria"
+    if victoria:
+        # Clone de Victoria (13 novembre 2026) : recette de omnivoice-victoria/generer.py.
+        import numpy as np
+        prompt = modele.create_voice_clone_prompt(ref_audio=str(REF_VICTORIA), ref_text=REF_TEXTE_VICTORIA)
     for p in manquants:
+        if victoria:
+            a = modele.generate(text=p["dit"], language="fr", voice_clone_prompt=prompt)
+            a = np.asarray(a[0] if isinstance(a, list) else a).squeeze()
+            sf.write(str(segs / f"{p['id']}.wav"), a, 24000)
+            print("voix", p["id"], flush=True)
+            continue
         cle_ecran = p["ecran"]
         if cle_ecran.startswith("titre-partie"):
             type_ecran = "titre"

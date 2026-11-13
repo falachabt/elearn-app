@@ -18,6 +18,12 @@ on:
         description: "Identifiant du cours (ex. 5908)"
         required: true
         type: string
+      destination:
+        description: "test = R2 sous test-victoria/ sans inscription en base (défaut) ; prod = remplace les vidéos en ligne (après accord de Benny)"
+        required: false
+        default: test
+        type: choice
+        options: [test, prod]
 
 env:
   CHAINE_SUPABASE_URL: https://yhznbitjlzeslvudbsil.supabase.co
@@ -125,11 +131,12 @@ jobs:
           ENDPOINT: https://9ae82bfac632f6d0ed7b452940e13abd.r2.cloudflarestorage.com
         run: |
           COURS="${{ inputs.cours }}"
-          BASE="s3://elearn-videos/cours/$COURS"
+          if [ "${{ inputs.destination }}" = "prod" ]; then DOSSIER="cours"; else DOSSIER="test-victoria/cours"; fi
+          BASE="s3://elearn-videos/$DOSSIER/$COURS"
           cd video-cours/chaine-cours
-          python3 - "$COURS" <<'PYEOF'
+          python3 - "$COURS" "$DOSSIER" <<'PYEOF'
           import json, subprocess, sys, pathlib
-          cours = sys.argv[1]
+          cours, dossier = sys.argv[1], sys.argv[2]
           script = json.loads(pathlib.Path(f"scripts/{cours}.json").read_text())
           sorties = pathlib.Path(f"sorties/{cours}")
           parties = []
@@ -141,7 +148,7 @@ jobs:
               parties.append({"numero": numero, "duree_s": round(duree, 1)})
           meta = {"cours": int(cours), "titre": script["titre"], "matiere": script["matiere"],
                   "parties": parties,
-                  "url_base": f"https://pub-1b81b49f770447bf8dde7a2a284e2c98.r2.dev/cours/{cours}"}
+                  "url_base": f"https://pub-1b81b49f770447bf8dde7a2a284e2c98.r2.dev/{dossier}/{cours}"}
           (sorties / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
           print("meta.json :", meta)
           PYEOF
@@ -177,6 +184,7 @@ jobs:
         # Après l'envoi R2 et la publication de l'artefact : un échec ici
         # ne doit pas faire échouer le rendu, l'inscription se rattrape
         # par un dispatch INSCRIRE (idempotent).
+        if: ${{ inputs.destination == 'prod' }}
         continue-on-error: true
         env:
           CHAINE_SUPABASE_KEY: ${{ secrets.CHAINE_SUPABASE_SERVICE_KEY }}
