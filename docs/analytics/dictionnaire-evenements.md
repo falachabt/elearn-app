@@ -200,7 +200,7 @@ Aucune donnée personnelle ni contenu de question : seulement des types, parties
 | `cert_mastery_viewed` | Maîtrise par partie affichée | `{ ecran: string }` |
 | `cert_stats_viewed` | Statistiques ouvertes | `{ periode: string }` |
 | `cert_stats_period_changed` | Période des statistiques changée | `{ periode: string }` |
-| `cert_error_reported` | Erreur de contenu signalée | `{ type: string }` |
+| `cert_error_reported` | Erreur de contenu signalée (X2) ; `type` est le type serveur (`reponse`, `audio`, `autre`) | `{ type: string }` |
 | `cert_audio_error` | Audio indisponible | `{ ecran: string; code: string }` |
 | `cert_start_error` | Démarrage d'un test ou du diagnostic en échec | `{ ecran: string; etape: 'profil' \| 'appel' \| 'stockage' \| 'inconnue'; motif: string (message d'erreur, 80 caractères max, sans donnée personnelle); code: string (empreinte courte affichée à l'élève) }` |
 | `cert_offline_answer_queued` | Réponses mises en file hors ligne | `{ nb: number }` |

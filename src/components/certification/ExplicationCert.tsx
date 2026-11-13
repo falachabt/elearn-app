@@ -7,6 +7,7 @@ import { useDepenseCredits } from '@/components/credits/useDepenseCredits';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { obtenirApi } from '@/services/certification/api';
+import { titreAffiche } from '@/services/certification/titre';
 import type { MotCle, QuestionServie, ResultatReponse } from '@/services/certification/types';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -58,6 +59,14 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
     if (!notion) return;
     setFeuille(false);
     router.push({ pathname: '/certification/notion/[id]', params: { id: notion.id, source: 'explication' } } as never);
+  };
+
+  /** X2 : point d'entrée discret sous la correction (le cahier ne le dessine pas, il le place en B9). */
+  const signaler = () => {
+    const params: Record<string, string> = { question: question.id, partie: String(question.part) };
+    if (question.number !== null) params.numero = String(question.number);
+    if (resultat.notion) params.notion = titreAffiche(resultat.notion.title);
+    router.push({ pathname: '/certification/signaler', params } as never);
   };
 
   const acheter = async () => {
@@ -161,6 +170,7 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
         </Appui>
       )}
       <Bouton libelle={libelleSuivante ?? (derniere ? t('certification.serie.terminer') : t('certification.serie.suivante'))} onPress={onSuivante} retour />
+      <Bouton variante="texte" libelle={t('certification.signaler.lien')} onPress={signaler} />
       <FeuilleExplication ouverte={feuille} cout={cout} onVoir={() => void acheter()} onPlusTard={() => setFeuille(false)} onRevoirNotion={revoirNotion} />
       {feuilles}
     </View>

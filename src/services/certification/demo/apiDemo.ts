@@ -592,5 +592,8 @@ export const apiDemo: CertApi = {
     await ecrire(s);
     return { status: 'granted' as const, montant: 0 };
   },
+  async signalerErreur() {
+    // Démo : rien à enregistrer, le signalement réussit toujours.
+  },
 };
 

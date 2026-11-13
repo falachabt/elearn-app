@@ -3,6 +3,7 @@ import type { LigneReglage } from './reglages';
 import { jourDe, type Jour } from './jours';
 import { titreAffiche } from './titre';
 import type { EtatMaitrise } from './certMaitrise';
+import type { TypeSignalement } from './signalement';
 import type { BlocServi, DefTest, DemarrageMini, ProgressionTest, TestFixe, TypeDefTest, TypeTestFixe, EtatGains, Examen, PeriodeStats, ResultatGain, Stats, TentativeListee, FinTentative, MotCarnetServi, MotsARevoir, NotionFiche, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatMot, ResultatReponse, Revision, SeanceServie, Tentative } from './types';
 
 /**
@@ -72,6 +73,8 @@ export interface CertApi {
   /** Gains de crédits TOEIC (G1) et réclamation d'un gain. */
   lireGains(exam: string, jourLocal: Jour): Promise<EtatGains>;
   reclamerGain(code: string, exam: string, jourLocal: Jour): Promise<ResultatGain>;
+  /** X2 · Signaler une erreur sur une question. Idempotent par `clientUuid` (un envoi rejoué n'écrit rien de plus). */
+  signalerErreur(questionId: string, type: TypeSignalement, clientUuid: string): Promise<void>;
 }
 
 /**
@@ -100,7 +103,7 @@ function verifier<T>(res: { data: T | null; error: { message: string } | null })
 }
 
 type Revisee = 'lireRevision' | 'lireCarnet' | 'composerSeance' | 'lireNotion' | 'ouvrirNotion' | 'envoyerResultatsMots' | 'terminerSeance';
-type Testee = 'demarrerMini' | 'listerTests' | 'demarrerTest' | 'listerDefsTests' | 'demarrerDefTest' | 'lireTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireProgressionTests' | 'lireStats' | 'lireGains' | 'reclamerGain';
+type Testee = 'demarrerMini' | 'listerTests' | 'demarrerTest' | 'listerDefsTests' | 'demarrerDefTest' | 'lireTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireProgressionTests' | 'lireStats' | 'lireGains' | 'reclamerGain' | 'signalerErreur';
 const baseServeur: Omit<CertApi, Revisee | Testee> = {
   async listerExamens() {
     const res = await getSupabase().from('cert_exams').select('code,name,subtitle,duration_min,question_count,goal_steps,sec_per_question,sort').order('sort', { ascending: false });
@@ -326,6 +329,10 @@ const testsServeur: Pick<CertApi, Testee> = {
     const res = await rpcAuthentifie('cert_claim_earn', { p_code: code, p_exam: exam, p_local_day: jourLocal });
     const j = verifier(res) as { status: ResultatGain['status']; amount?: number; weekly_total?: number; cap?: number };
     return { status: j.status, montant: j.amount, gagneSemaine: j.weekly_total, plafond: j.cap };
+  },
+  signalerErreur: async (questionId, type, clientUuid) => {
+    const res = await rpcAuthentifie('cert_report_error', { p_question: questionId, p_type: type, p_client_uuid: clientUuid });
+    verifier(res);
   },
 };
 

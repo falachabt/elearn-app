@@ -85,7 +85,7 @@ export const STATS_VIDE = (periode: Stats['periode']): Stats => ({
 export type Appels = {
   demarrer: number; terminer: number; plans: unknown[]; envois: number; series: unknown[]; mots: string[]; explications: string[];
   notionsOuvertes: { id: string; secondes: number }[]; resultatsMots: ResultatMot[][]; seances: unknown[]; compositions: { minutes: number; eviter: number | null }[];
-  minis: { partie: number | null; longueur: number }[]; abandons: { id: string; raison: string }[]; gainsReclames: string[]; stats: number[];
+  minis: { partie: number | null; longueur: number }[]; abandons: { id: string; raison: string }[]; gainsReclames: string[]; stats: number[]; signalements: { question: string; type: string; uuid: string }[];
 };
 
 /** API en mémoire : la bonne réponse est toujours l'option 0 ; les notions suivent la partie. */
@@ -101,7 +101,7 @@ export function creerApiFausse(options: {
   /** Série : les questions servies partagent un même groupe (conversation ou texte), comme les parties 3, 4, 6 et 7. */
   groupeSerie?: boolean;
 } = {}) {
-  const appels: Appels = { demarrer: 0, terminer: 0, plans: [], envois: 0, series: [], mots: [], explications: [], notionsOuvertes: [], resultatsMots: [], seances: [], compositions: [], minis: [], abandons: [], gainsReclames: [], stats: [] };
+  const appels: Appels = { demarrer: 0, terminer: 0, plans: [], envois: 0, series: [], mots: [], explications: [], notionsOuvertes: [], resultatsMots: [], seances: [], compositions: [], minis: [], abandons: [], gainsReclames: [], stats: [], signalements: [] };
   const minis = new Map<string, { part: number | null; length: number; questions: QuestionServie[] }>();
   let echecs = options.echecsTerminer ?? 0;
   let echecsEnvoi = options.echecsEnvoi ?? 0;
@@ -290,6 +290,9 @@ export function creerApiFausse(options: {
     async reclamerGain(code) {
       appels.gainsReclames.push(code);
       return options.reclamation ?? { status: 'granted', montant: 2, gagneSemaine: 2, plafond: 15 };
+    },
+    async signalerErreur(question, type, uuid) {
+      appels.signalements.push({ question, type, uuid });
     },
   };
   return { api, appels, questions };
