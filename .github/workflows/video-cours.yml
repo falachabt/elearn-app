@@ -4,6 +4,7 @@
 # Le script du cours (video-cours/chaine-cours/scripts/<id>.json) doit déjà
 # être commité sur la branche choisie : c'est la seule étape manuelle.
 #
+# Lancement par lots : cours = "LOT:<index début>:<index fin exclu>" (voir jobs plan et lot en bas).
 # Deux jobs :
 #  1. voix    — les phrases sont réparties entre 4 machines en parallèle
 #               (chacune génère ses clips OmniVoice, modèle mis en cache).
@@ -24,6 +25,11 @@ on:
         default: test
         type: choice
         options: [test, prod]
+      etapes:
+        description: "Lots : étapes de diffusion OmniVoice (vide = défaut ; 16 = ~2x plus rapide, à valider à l'oreille)"
+        required: false
+        default: ""
+        type: string
 
 env:
   CHAINE_SUPABASE_URL: https://yhznbitjlzeslvudbsil.supabase.co
@@ -33,7 +39,7 @@ env:
 jobs:
   voix:
     name: Voix (partie ${{ matrix.partie }})
-    if: ${{ inputs.cours != 'INDEX' && inputs.cours != 'INSCRIRE' && !startsWith(inputs.cours, 'EXTRAIRE') }}
+    if: ${{ inputs.cours != 'INDEX' && inputs.cours != 'INSCRIRE' && !startsWith(inputs.cours, 'EXTRAIRE') && !startsWith(inputs.cours, 'LOT') }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
     strategy:
@@ -70,7 +76,7 @@ jobs:
 
   montage:
     name: Montage et rendu
-    if: ${{ inputs.cours != 'INDEX' && inputs.cours != 'INSCRIRE' && !startsWith(inputs.cours, 'EXTRAIRE') }}
+    if: ${{ inputs.cours != 'INDEX' && inputs.cours != 'INSCRIRE' && !startsWith(inputs.cours, 'EXTRAIRE') && !startsWith(inputs.cours, 'LOT') }}
     needs: voix
     runs-on: ubuntu-latest
     timeout-minutes: 120
@@ -261,3 +267,74 @@ jobs:
         run: |
           cd video-cours/chaine-cours
           python inscrire_videos.py inscriptions/*.json
+
+  # --- Lots (re-rendu en masse, voix de Victoria) : cours = "LOT:<début>:<fin exclue>" ---
+  plan:
+    name: Plan des lots
+    if: ${{ startsWith(inputs.cours, 'LOT') }}
+    runs-on: ubuntu-latest
+    outputs:
+      lots: ${{ steps.p.outputs.lots }}
+      gros: ${{ steps.p.outputs.gros }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        run: |
+          cd video-cours/chaine-cours
+          IFS=: read -r _ DEBUT FIN <<< "${{ inputs.cours }}"
+          python3 planifier_lots.py "${DEBUT:-0}" "$FIN" > plan.json
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          d = json.load(open("plan.json"))
+          print("lots=" + json.dumps(d["lots"]))
+          print("gros=" + ",".join(d["gros"]))
+          PY
+          python3 -c "import json;d=json.load(open('plan.json'));print(len(d['lots']),'lots,',len(d['gros']),'gros (à lancer avec Vidéo de cours)')"
+
+  lot:
+    name: ${{ matrix.lot.nom }} (${{ matrix.lot.minutes }} min estimées)
+    needs: plan
+    if: ${{ startsWith(inputs.cours, 'LOT') && needs.plan.outputs.lots != '[]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        lot: ${{ fromJson(needs.plan.outputs.lots) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            video-cours/chaine-cours/requirements-voix.txt
+            video-cours/chaine-cours/requirements-rendu.txt
+      - name: Cache du modèle OmniVoice
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: omnivoice-k2-fsa-v1
+      - name: Cache Chromium (Playwright)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-1.64.1
+      - name: Installer dépendances, ffmpeg et Chromium
+        run: |
+          pip install -r video-cours/chaine-cours/requirements-voix.txt -r video-cours/chaine-cours/requirements-rendu.txt
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python -m playwright install --with-deps chromium
+      - name: Voix, rendu et envoi du lot
+        env:
+          HF_HUB_DISABLE_XET: "1"
+          CHAINE_SUPABASE_KEY: ${{ secrets.CHAINE_SUPABASE_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CHAINE_ETAPES: ${{ inputs.etapes }}
+        run: |
+          export CHAINE_LIMITE=$(( $(date +%s) + 5*3600 + 40*60 ))
+          export CHAINE_CHROME="$(ls -d ~/.cache/ms-playwright/chromium-*/chrome-linux64/chrome | head -1)"
+          cd video-cours/chaine-cours
+          python lancer.py lot "${{ matrix.lot.cours }}" "${{ inputs.destination }}"
