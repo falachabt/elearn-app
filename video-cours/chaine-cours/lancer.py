@@ -246,6 +246,25 @@ def valider(script):
         print("AUDIT VISUEL : tous les écrans ont un visuel ou une carte.")
 
 
+_MODELE = None
+
+
+def charger_modele():
+    """Charge OmniVoice (et le clone de Victoria) une seule fois par processus : un lot de cours le réutilise."""
+    global _MODELE
+    if _MODELE is None:
+        from omnivoice import OmniVoice
+        import torch
+        modele = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
+        victoria = os.environ.get("CHAINE_VOIX", "victoria") == "victoria"
+        prompt = None
+        if victoria:
+            # Clone de Victoria (13 novembre 2026) : recette de omnivoice-victoria/generer.py.
+            prompt = modele.create_voice_clone_prompt(ref_audio=str(REF_VICTORIA), ref_text=REF_TEXTE_VICTORIA)
+        _MODELE = (modele, prompt, victoria)
+    return _MODELE
+
+
 def voix(script, dossier):
     """Une génération OmniVoice par phrase, réglages du 16:9 validé. Reprise : les clips existants ne sont pas refaits.
     Les imports lourds (torch, OmniVoice) ne se font que s'il manque des clips : un poste
@@ -258,18 +277,14 @@ def voix(script, dossier):
           + (f" ({', '.join(p['id'] for p in manquants)})" if manquants else ""), flush=True)
     if not manquants:
         return
-    from omnivoice import OmniVoice
     import soundfile as sf
-    import torch
-    modele = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
-    victoria = os.environ.get("CHAINE_VOIX", "victoria") == "victoria"
+    modele, prompt, victoria = charger_modele()
     if victoria:
-        # Clone de Victoria (13 novembre 2026) : recette de omnivoice-victoria/generer.py.
         import numpy as np
-        prompt = modele.create_voice_clone_prompt(ref_audio=str(REF_VICTORIA), ref_text=REF_TEXTE_VICTORIA)
     for p in manquants:
         if victoria:
-            a = modele.generate(text=p["dit"], language="fr", voice_clone_prompt=prompt)
+            options = {"num_step": int(os.environ["CHAINE_ETAPES"])} if os.environ.get("CHAINE_ETAPES") else {}
+            a = modele.generate(text=p["dit"], language="fr", voice_clone_prompt=prompt, **options)
             a = np.asarray(a[0] if isinstance(a, list) else a).squeeze()
             sf.write(str(segs / f"{p['id']}.wav"), a, 24000)
             print("voix", p["id"], flush=True)
@@ -389,28 +404,7 @@ def vtt(rendu):
     return corps
 
 
-def dossier_travail(cours):
-    return pathlib.Path(os.environ.get("CHAINE_TRAVAIL", "/tmp/chaine-cours")) / str(cours)
-
-
-def main(argv):
-    if not argv:
-        sys.exit(__doc__)
-    if argv[0] == "extraire":
-        extraire(argv[1])
-        return
-    if argv[0] == "voix":
-        # Génère les voix d'une partie des phrases (travail réparti entre machines).
-        cours, partie, total = argv[1], int(argv[2]), int(argv[3])
-        script = json.loads((ICI / "scripts" / f"{cours}.json").read_text())
-        valider(script)
-        script["phrases"] = [p for i, p in enumerate(phrases_completes(script)) if i % total == partie]
-        travail = dossier_travail(cours)
-        travail.mkdir(parents=True, exist_ok=True)
-        voix(script, travail)
-        print(f"voix partie {partie}/{total} : {len(script['phrases'])} phrases traitées")
-        return
-    cours = argv[0]
+def produire(cours):
     script_fichier = ICI / "scripts" / f"{cours}.json"
     if not (sortie(cours) / "lecons.txt").exists():
         extraire(cours)
@@ -444,6 +438,54 @@ def main(argv):
         (final / f"sous-titres{suffixe}.vtt").write_text(vtt(pdir / "rendu.json"))
         shutil.copy(mp4, final / mp4.name)
         print(f"vidéo {final / mp4.name} ({duree} s de voix, {round(time.time() - debut)} s écoulées)")
+
+
+def lot(cours_ids, destination):
+    """Plusieurs cours à la suite dans un même processus (modèle chargé une fois).
+    Reprise : un cours déjà publié (meta.json présent sur R2) est sauté. Garde-fou de durée :
+    on ne démarre pas un cours dont l'estimation dépasse le temps restant avant CHAINE_LIMITE (epoch)."""
+    import publier
+    limite = float(os.environ.get("CHAINE_LIMITE", "0")) or None
+    for cours in cours_ids:
+        if publier.deja_publie(cours, destination):
+            print(f"lot : {cours} déjà publié, sauté", flush=True)
+            continue
+        script = json.loads((ICI / "scripts" / f"{cours}.json").read_text())
+        if limite and time.time() + estimer_duree(script) * 19 * 1.3 > limite:
+            print(f"lot : {cours} ne tient plus dans le temps restant, laissé au prochain lot", flush=True)
+            continue
+        produire(cours)
+        publier.encoder_derives(cours)
+        publier.envoyer(cours, destination)
+        shutil.rmtree(dossier_travail(cours), ignore_errors=True)
+        print(f"lot : {cours} publié ({destination})", flush=True)
+
+
+def dossier_travail(cours):
+    return pathlib.Path(os.environ.get("CHAINE_TRAVAIL", "/tmp/chaine-cours")) / str(cours)
+
+
+def main(argv):
+    if not argv:
+        sys.exit(__doc__)
+    if argv[0] == "extraire":
+        extraire(argv[1])
+        return
+    if argv[0] == "voix":
+        # Génère les voix d'une partie des phrases (travail réparti entre machines).
+        cours, partie, total = argv[1], int(argv[2]), int(argv[3])
+        script = json.loads((ICI / "scripts" / f"{cours}.json").read_text())
+        valider(script)
+        script["phrases"] = [p for i, p in enumerate(phrases_completes(script)) if i % total == partie]
+        travail = dossier_travail(cours)
+        travail.mkdir(parents=True, exist_ok=True)
+        voix(script, travail)
+        print(f"voix partie {partie}/{total} : {len(script['phrases'])} phrases traitées")
+        return
+    if argv[0] == "lot":
+        lot(argv[1].split(","), argv[2] if len(argv) > 2 else "test")
+        return
+    produire(argv[0])
 
 
 if __name__ == "__main__":
