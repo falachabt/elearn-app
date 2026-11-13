@@ -337,6 +337,37 @@ describe('ChatInteractif', () => {
     await fireEvent.press(screen.getByRole('button', { name: 'Pause' }));
   });
 
+  it('une réponse avec une scène libre la rend dans le fil (titre, affichage recalculé, curseur)', async () => {
+    moteur.mockResolvedValue({
+      type: 'fin',
+      repli: false,
+      blocs: [
+        { type: 'texte', texte: 'Voici un pendule que tu peux régler toi-même.' },
+        {
+          type: 'scene',
+          scene: {
+            titre: 'Pendule libre',
+            largeur: 420,
+            hauteur: 320,
+            parametres: [{ id: 'L', etiquette: 'Longueur (m)', min: 0.2, max: 1.5, pas: 0.05, defaut: 0.8 }],
+            variables: [{ id: 'T', expression: '2 * pi * sqrt(L / 9.81)' }],
+            elements: [{ type: 'cercle', cx: 210, cy: 150, r: 12, remplissage: '#e74c3c' }],
+            affichages: [{ etiquette: 'Période', expression: 'T', unite: 's', decimales: 2 }],
+          },
+        },
+      ],
+    });
+    await render(ecranChat);
+    await fireEvent.changeText(screen.getByLabelText('Écris ta question…'), 'Montre-moi un pendule réglable');
+    await fireEvent.press(screen.getByRole('button', { name: 'Envoyer' }));
+    expect(await screen.findByText('Pendule libre')).toBeTruthy();
+    expect(screen.getByText('Période')).toBeTruthy();
+    // Valeur recalculée par le moteur de rendu : T = 2π√(0,8/9,81) ≈ 1,79 s.
+    expect(screen.getByText('1,79 s')).toBeTruthy();
+    expect(screen.getByText('Longueur (m)')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: 'Pause' }));
+  });
+
   it('étapes de chargement (photo) puis correction structurée aux rubriques de la correction photo', async () => {
     let resoudre: (v: unknown) => void = () => {};
     moteur.mockImplementation((_c: unknown, opts: { surEtape?: (e: string) => void }) => {

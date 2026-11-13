@@ -2,6 +2,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { fetch as fetchFlux } from 'expo/fetch';
 
 import type { BlocChat } from './laboChat';
+import { validerScene } from './laboScene';
 
 /**
  * Conversation (chat interactif) : envoi d'une question écrite — éventuellement accompagnée de photos — à la
@@ -87,6 +88,13 @@ export function blocsSurs(bruts: unknown): BlocChat[] {
       if (a === null || a === 0 || bb === null || c === null) continue;
       interactif = true;
       blocs.push({ type: 'fonction', a, b: bb, c });
+    } else if (b.type === 'scene') {
+      if (interactif) continue;
+      // Scène libre : validation complète du contrat (schéma, expressions, contrôles numériques) avant rendu.
+      const scene = validerScene(b.scene);
+      if (!scene) continue;
+      interactif = true;
+      blocs.push({ type: 'scene', scene });
     }
     if (blocs.length >= 8) break;
   }

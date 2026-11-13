@@ -8,6 +8,8 @@
  * ces fixtures ont exactement la même forme.
  */
 
+import type { SceneChat } from './laboScene';
+
 /** Une étape de correction : titre court et détail (calcul ou raisonnement), comme dans la correction par photo. */
 export type EtapeCorrectionChat = { titre: string; detail: string };
 
@@ -22,7 +24,12 @@ export type BlocChat =
   | { type: 'correction'; enonce: string; methode: string; etapes: EtapeCorrectionChat[]; resultat: string; aRetenir?: string }
   /** Simulation du pendule ; paramètres éventuels du problème ou de la photo, repris comme valeurs de départ des curseurs. */
   | { type: 'pendule'; longueur?: number; amplitudeDeg?: number; pesanteur?: number }
-  | { type: 'fonction'; a: number; b: number; c: number };
+  | { type: 'fonction'; a: number; b: number; c: number }
+  /**
+   * Scène déclarative libre composée par le moteur (circuit, masse-ressort, molécule…) : une donnée validée
+   * par `validerScene`, rendue par le moteur natif du labo — aucun code exécuté, valeurs recalculées par l'app.
+   */
+  | { type: 'scene'; scene: SceneChat };
 
 export type MessageChat = { id: number; auteur: 'eleve' | 'ia'; blocs: BlocChat[] };
 

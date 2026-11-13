@@ -24,6 +24,7 @@ import { ChargementEtapes, type EtapeChargement } from './ChargementEtapes';
 import { CorrectionLabo } from './CorrectionLabo';
 import { GrapheFonction } from './GrapheFonction';
 import { PenduleInteractif } from './PenduleInteractif';
+import { SceneInteractif } from './SceneInteractif';
 import { PhotoEleve } from './PhotoEleve';
 import { PhotoSimulee } from './PhotoSimulee';
 import { useVisiteLabo } from './useVisiteLabo';
@@ -31,6 +32,7 @@ import { useVisiteLabo } from './useVisiteLabo';
 function BlocVu({ bloc }: { bloc: BlocChat }) {
   if (bloc.type === 'pendule') return <PenduleInteractif longueur={bloc.longueur} amplitudeDeg={bloc.amplitudeDeg} pesanteur={bloc.pesanteur} />;
   if (bloc.type === 'fonction') return <GrapheFonction a={bloc.a} b={bloc.b} c={bloc.c} />;
+  if (bloc.type === 'scene') return <SceneInteractif scene={bloc.scene} />;
   if (bloc.type === 'correction') return <CorrectionLabo bloc={bloc} />;
   if (bloc.type === 'photo') return bloc.uri ? <PhotoEleve uri={bloc.uri} /> : <PhotoSimulee />;
   // Même rendu que les corrections photo et les leçons : les formules $…$ sont dessinées (ou converties en texte

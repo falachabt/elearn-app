@@ -69,6 +69,29 @@ describe('conversation — blocsSurs', () => {
     expect(blocsSurs([complete, complete]).map((b) => b.type)).toEqual(['correction']);
   });
 
+  it('garde une scène libre valide (une seule, comme les autres blocs interactifs)', () => {
+    const scene = {
+      titre: 'Circuit simple', largeur: 420, hauteur: 320,
+      parametres: [{ id: 'U', etiquette: 'Tension (V)', min: 0, max: 12, pas: 0.5, defaut: 6 }],
+      variables: [{ id: 'I', expression: 'U / 50' }],
+      elements: [{ type: 'chemin', d: 'M 100 100 L 320 100 L 320 220 L 100 220 Z', flux: { vitesse: 'I * 50', nombre: 6, rayon: 2 } }],
+      affichages: [{ etiquette: 'Intensité', expression: 'I', unite: 'A', decimales: 2 }],
+    };
+    const blocs = blocsSurs([{ type: 'texte', texte: 'Voici le circuit.' }, { type: 'scene', scene }, { type: 'pendule' }]);
+    expect(blocs.map((b) => b.type)).toEqual(['texte', 'scene']);
+    const gardee = blocs[1];
+    expect(gardee.type === 'scene' && gardee.scene.titre).toBe('Circuit simple');
+  });
+
+  it('supprime une scène invalide (expression inconnue) sans perdre le texte', () => {
+    const scene = {
+      titre: 'Cassée', largeur: 420, hauteur: 320, parametres: [], variables: [],
+      elements: [{ type: 'cercle', cx: 'inconnu', cy: 10, r: 5 }], affichages: [],
+    };
+    const blocs = blocsSurs([{ type: 'texte', texte: 'Explication seule.' }, { type: 'scene', scene }]);
+    expect(blocs.map((b) => b.type)).toEqual(['texte']);
+  });
+
   it('renvoie vide sans bloc texte exploitable (réponse inexploitable pour l’écran)', () => {
     expect(blocsSurs([{ type: 'pendule', longueur: 1 }])).toEqual([]);
     expect(blocsSurs([{ type: 'texte', texte: '   ' }])).toEqual([]);
