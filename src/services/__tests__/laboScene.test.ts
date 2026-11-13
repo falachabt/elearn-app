@@ -142,10 +142,11 @@ describe('validerScene — rejets', () => {
     expect(validerScene(s)).toBeNull();
   });
 
-  it('variable non finie aux bornes d’un curseur (division par zéro possible)', () => {
+  it('variable non finie aux bornes d’un curseur (division par zéro possible), référencée par un élément', () => {
     const s = base();
     s.parametres.push({ id: 'd', etiquette: 'd', min: 0, max: 2, pas: 0.5, defaut: 1 });
     s.variables.push({ id: 'q', expression: '10 / d' });
+    s.elements.push({ type: 'ligne', x1: 0, y1: 0, x2: 10, y2: '100 - q' });
     expect(validerScene(s)).toBeNull();
   });
 
@@ -192,6 +193,67 @@ describe('validerScene — rejets', () => {
     s.parametres[0].defaut = 99;
     const v = validerScene(s);
     expect(v!.parametres[0].defaut).toBe(1.5);
+  });
+});
+
+describe('validerScene — normalisations (incident du 13/11/2026 : « il ne fait rien »)', () => {
+  // La scène du logarithme telle que Gemma la compose : variable « f = a*log(x) » et affichage « a*log(x) »
+  // — « x » n'existe que dans le champ « fonction » d'une courbe. L'ancienne validation rejetait TOUTE la
+  // scène ; la réponse partait en texte seul en promettant un graphique et un curseur absents.
+  const SCENE_LOG = {
+    titre: 'Fonction logarithme',
+    largeur: 420,
+    hauteur: 320,
+    parametres: [{ id: 'a', etiquette: 'Coefficient a', min: 0.5, max: 5, pas: 0.5, defaut: 2 }],
+    variables: [{ id: 'f', expression: 'a*log(x)' }],
+    elements: [
+      { type: 'ligne', x1: 40, y1: 280, x2: 400, y2: 280, couleur: '#BCBCBC' },
+      { type: 'courbe', fonction: 'a*log(x)', xmin: 0.1, xmax: 5, origine: [70, 200], echelle: [60, 30] },
+    ],
+    affichages: [{ etiquette: 'f(x)', expression: 'a*log(x)', decimales: 2 }],
+  };
+
+  it('la scène logarithme survit : variable et affichage en « x » abandonnés, courbe et curseur gardés', () => {
+    const scene = validerScene(JSON.parse(JSON.stringify(SCENE_LOG)));
+    expect(scene).not.toBeNull();
+    expect(scene!.variables).toEqual([]);
+    expect(scene!.affichages).toEqual([]);
+    expect(scene!.parametres.map((p) => p.id)).toEqual(['a']);
+    expect(scene!.elements.some((e) => e.type === 'courbe')).toBe(true);
+  });
+
+  it('le curseur survivant change RÉELLEMENT le dessin : la courbe se déforme entre a = 2 et a = 5', () => {
+    const scene = validerScene(JSON.parse(JSON.stringify(SCENE_LOG)))!;
+    const courbe = scene.elements.find((e) => e.type === 'courbe')!;
+    if (courbe.type !== 'courbe') throw new Error('courbe absente');
+    const a2 = pointsCourbe(courbe, contexteScene(scene, { a: 2 }, 0));
+    const a5 = pointsCourbe(courbe, contexteScene(scene, { a: 5 }, 0));
+    expect(a2).not.toBe('');
+    expect(a5).not.toBe(a2);
+  });
+
+  it('paramètre orphelin (curseur inerte) : retiré, les paramètres utiles restent', () => {
+    const s = JSON.parse(JSON.stringify(SCENE_CIRCUIT));
+    s.parametres.push({ id: 'Z', etiquette: 'Inutilisé', min: 0, max: 10, pas: 1, defaut: 5 });
+    const scene = validerScene(s);
+    expect(scene!.parametres.map((p) => p.id)).toEqual(['U', 'R']);
+  });
+
+  it('variable inexploitable mais RÉFÉRENCÉE par un élément : la scène reste rejetée', () => {
+    const s = JSON.parse(JSON.stringify(SCENE_LOG));
+    s.elements = [{ type: 'ligne', x1: 40, y1: '200 - 10 * f', x2: 400, y2: 280, couleur: '#BCBCBC' }];
+    s.affichages = [];
+    expect(validerScene(s)).toBeNull();
+  });
+
+  it('variable cassée non référencée : abandonnée avec son paramètre devenu orphelin', () => {
+    const s = JSON.parse(JSON.stringify(SCENE_PENDULE));
+    s.parametres.push({ id: 'd', etiquette: 'd', min: 0, max: 2, pas: 0.5, defaut: 1 });
+    s.variables.push({ id: 'q', expression: '10 / d' });
+    const scene = validerScene(s);
+    expect(scene).not.toBeNull();
+    expect(scene!.variables.some((v) => v.id === 'q')).toBe(false);
+    expect(scene!.parametres.some((p) => p.id === 'd')).toBe(false);
   });
 });
 

@@ -251,9 +251,12 @@ function expressionValide(source: string, autorises: Set<string>, temoin: Portee
 }
 
 /**
- * Valide et normalise une scène brute (JSON du modèle) ; renvoie null si quoi que ce soit sort du contrat :
- * schéma borné, expressions à identifiants déclarés seulement, valeurs finies aux réglages par défaut comme
- * aux bornes des curseurs, chemins limités aux commandes simples (M L H V C Q Z, absolues ou relatives).
+ * Valide et normalise une scène brute (JSON du modèle) ; renvoie null si le cœur de la scène sort du
+ * contrat : schéma borné, expressions à identifiants déclarés seulement, valeurs finies aux réglages par
+ * défaut comme aux bornes des curseurs, chemins limités aux commandes simples (M L H V C Q Z, absolues ou
+ * relatives). Normalisations (la scène survit, délestée de ce qui serait faux ou inerte) : une variable
+ * inexploitable et référencée par RIEN est abandonnée, un affichage inexploitable est abandonné, et un
+ * paramètre qu'aucune expression ne référence (curseur inerte) est retiré.
  */
 export function validerScene(brut: unknown): SceneChat | null {
   if (!brut || typeof brut !== 'object') return null;
@@ -298,16 +301,27 @@ export function validerScene(brut: unknown): SceneChat | null {
   }
 
   // Variables : expressions chaînées (une variable peut utiliser les précédentes), finies dans chaque témoin.
+  // Une variable dont l'EXPRESSION est inexploitable (le piège classique : « x » utilisé hors d'un élément
+  // courbe, par exemple « f = a*log(x) ») ne tue plus la scène d'office : elle est mise de côté. Si un
+  // élément ou un affichage la référence, sa propre validation échouera et la scène sera rejetée ; si rien
+  // ne la référence, elle est simplement abandonnée et la scène survit (incident du 13/11/2026 : les scènes
+  // du logarithme mouraient toutes sur ce point, et la réponse partait en texte seul sans aucun visuel).
   const variables: SceneVariable[] = [];
   const idsConnus = new Set<string>([...idsParams, 't']);
+  const idsRejetes = new Set<string>();
   for (const v of (Array.isArray(s.variables) ? s.variables : []).slice(0, 12)) {
     if (!v || typeof v !== 'object') return null;
     const o = v as Record<string, unknown>;
     const id = chaineBornee(o.id, 12);
     const expression = chaineBornee(o.expression, 200);
-    if (!IDENT.test(id) || RESERVES.has(id) || idsConnus.has(id) || !expression) return null;
+    if (!IDENT.test(id) || RESERVES.has(id) || idsConnus.has(id) || idsRejetes.has(id) || !expression) return null;
+    let valide = true;
     for (const temoin of porteesTemoins) {
-      if (!expressionValide(expression, idsConnus, temoin)) return null;
+      if (!expressionValide(expression, idsConnus, temoin)) { valide = false; break; }
+    }
+    if (!valide) {
+      idsRejetes.add(id);
+      continue;
     }
     variables.push({ id, expression });
     idsConnus.add(id);
@@ -454,7 +468,9 @@ export function validerScene(brut: unknown): SceneChat | null {
   const elements = validerElements(s.elements, 0);
   if (elements === null || elements.length === 0) return null;
 
-  // Affichages : expressions finies dans chaque témoin.
+  // Affichages : expressions finies dans chaque témoin. Un affichage inexploitable (par exemple « f(x) » =
+  // « a*log(x) », « x » n'existant pas hors courbe) est ABANDONNÉ, pas fatal : c'est un relevé décoratif,
+  // la scène reste juste sans lui (même incident du 13/11/2026).
   const affichages: SceneAffichage[] = [];
   for (const a of (Array.isArray(s.affichages) ? s.affichages : []).slice(0, 6)) {
     if (!a || typeof a !== 'object') return null;
@@ -462,7 +478,9 @@ export function validerScene(brut: unknown): SceneChat | null {
     const etiquette = chaineBornee(o.etiquette, 40);
     const expression = chaineBornee(o.expression, 200);
     if (!etiquette || !expression) return null;
-    for (const temoin of porteesTemoins) if (!expressionValide(expression, idsConnus, temoin)) return null;
+    let valide = true;
+    for (const temoin of porteesTemoins) if (!expressionValide(expression, idsConnus, temoin)) { valide = false; break; }
+    if (!valide) continue;
     const dec = nombreFini(o.decimales);
     const aff: SceneAffichage = { etiquette, expression, decimales: Math.min(4, Math.max(0, Math.round(dec ?? 2))) };
     const unite = chaineBornee(o.unite, 8);
@@ -470,7 +488,57 @@ export function validerScene(brut: unknown): SceneChat | null {
     affichages.push(aff);
   }
 
-  return { titre, largeur, hauteur, parametres, variables, elements, affichages };
+  // Paramètres réellement référencés : un curseur qui ne change RIEN (ni un élément, ni une variable
+  // conservée, ni un affichage conservé) est un faux bouton pour l'élève — le paramètre orphelin est
+  // retiré de la scène plutôt que d'être affiché inerte (retour de Benny du 13/11/2026 : « il ne fait rien »).
+  const utilises = new Set<string>();
+  const refsDe = (source: string) => {
+    try {
+      for (const id of analyserExpression(source).identifiants) utilises.add(id);
+    } catch { /* chaîne non expression (couleur, texte libre…) : déjà traitée par la validation */ }
+  };
+  const collecter = (liste: SceneElement[]) => {
+    const coord = (v: number | string | undefined) => {
+      if (typeof v === 'string') refsDe(v);
+    };
+    for (const el of liste) {
+      switch (el.type) {
+        case 'ligne':
+        case 'ressort':
+          coord(el.x1); coord(el.y1); coord(el.x2); coord(el.y2);
+          break;
+        case 'cercle':
+          coord(el.cx); coord(el.cy); coord(el.r);
+          break;
+        case 'rectangle':
+          coord(el.x); coord(el.y); coord(el.largeur); coord(el.hauteur);
+          break;
+        case 'polygone':
+          for (const [px, py] of el.points) { coord(px); coord(py); }
+          break;
+        case 'texte':
+          coord(el.x); coord(el.y);
+          for (const m of el.contenu.matchAll(/\{([A-Za-z_][A-Za-z0-9_]*)\}/g)) utilises.add(m[1]);
+          break;
+        case 'chemin':
+          if (el.flux) coord(el.flux.vitesse);
+          break;
+        case 'courbe':
+          refsDe(el.fonction); coord(el.xmin); coord(el.xmax);
+          break;
+        case 'groupe':
+          if (el.rotation) coord(el.rotation.angle);
+          collecter(el.elements);
+          break;
+      }
+    }
+  };
+  for (const v of variables) refsDe(v.expression);
+  collecter(elements);
+  for (const a of affichages) refsDe(a.expression);
+  const parametresUtiles = parametres.filter((p) => utilises.has(p.id));
+
+  return { titre, largeur, hauteur, parametres: parametresUtiles, variables, elements, affichages };
 }
 
 // ---------------------------------------------------------------------------
