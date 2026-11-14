@@ -41,6 +41,7 @@ jobs:
       essai: ${{ steps.r.outputs.essai }}
       forcer: ${{ steps.r.outputs.forcer }}
       etapes: ${{ steps.r.outputs.etapes }}
+      envoi: ${{ steps.r.outputs.envoi }}
     steps:
       - uses: actions/checkout@v4
       - id: r
@@ -54,6 +55,7 @@ jobs:
           if [ "${{ github.event_name }}" = "push" ]; then
             JOBS=$(sed -n 's/^JOBS=//p' toeic-audio/lancer.env); ESSAI=$(sed -n 's/^ESSAI=//p' toeic-audio/lancer.env)
             FORCER=$(sed -n 's/^FORCER=//p' toeic-audio/lancer.env); ETAPES=$(sed -n 's/^ETAPES=//p' toeic-audio/lancer.env)
+            ENVOI=$(sed -n 's/^ENVOI=//p' toeic-audio/lancer.env)
           else
             JOBS="$I_JOBS"; ESSAI="$I_ESSAI"; FORCER="$I_FORCER"; ETAPES="$I_ETAPES"
           fi
@@ -61,6 +63,8 @@ jobs:
           [[ -z "$ESSAI" || "$ESSAI" =~ ^[0-9]+$ ]] || { echo "essai invalide"; exit 1; }
           [[ -z "$ETAPES" || "$ETAPES" =~ ^[0-9]+$ ]] || { echo "etapes invalide"; exit 1; }
           [[ -z "$FORCER" || "$FORCER" =~ ^(true|false)$ ]] || { echo "forcer invalide"; exit 1; }
+          [[ -z "$ENVOI" || "$ENVOI" =~ ^(oui|non)$ ]] || { echo "envoi invalide"; exit 1; }
+          echo "envoi=${ENVOI:-oui}" >> "$GITHUB_OUTPUT"
           { echo "jobs=$JOBS"; echo "essai=$ESSAI"; echo "forcer=$FORCER"; echo "etapes=${ETAPES:-16}"; } >> "$GITHUB_OUTPUT"
       - id: p
         env:
@@ -119,6 +123,8 @@ jobs:
           [ -n "$ESSAI" ] && ARGS+=(--essai "$ESSAI")
           [ -n "$ETAPES" ] && ARGS+=(--etapes "$ETAPES")
           [ "$FORCER" = "true" ] && ARGS+=(--forcer)
+          # Écoute avant envoi : les mp3 restent dans l'artefact, rien ne part sur R2.
+          [ "${{ needs.plan.outputs.envoi }}" = "non" ] && ARGS+=(--sans-envoi --dossier sortie)
           python toeic-audio/generer.py "$JOBS" "${ARGS[@]}"
       - name: Résumé
         if: always()
@@ -140,5 +146,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: rapport-${{ needs.plan.outputs.jobs }}-${{ matrix.t.i }}sur${{ matrix.t.n }}
-          path: rapport/*.json
+          path: |
+            rapport/*.json
+            sortie/**/*.mp3
           if-no-files-found: ignore
