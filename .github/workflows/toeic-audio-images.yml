@@ -1,0 +1,23 @@
+# Mise en ligne des 24 photos de la Partie 1 des tests 4 à 7 (bucket elearnprepa-public uniquement).
+name: Images TOEIC Partie 1 (publier)
+
+on:
+  push:
+    branches: [claude/toeic-audio-run]
+    paths: [toeic-audio/images.env]
+
+permissions:
+  contents: read
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Envoyer les images
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_PUBLIC_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_PUBLIC_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: python3 toeic-audio/publier_images.py
