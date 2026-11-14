@@ -79,12 +79,16 @@ export function SeanceMots() {
     }
   };
 
-  /** QCM (v32) : le choix révèle la réponse (recto et verso), puis « Suivant » note la carte. */
-  const choisir = async (index: number) => {
-    if (!etat || etat.retourne || occupe.current) return;
+  /** QCM (v32) : un appui choisit une proposition, « Valider ma réponse » la révèle (recto et verso), puis « Suivant » note la carte. */
+  const choisir = (index: number) => {
+    if (!etat || etat.retourne) return;
+    setChoix({ carte: carteCourante(etat)?.id ?? '', index });
+  };
+
+  const valider = async () => {
+    if (!etat || etat.retourne || occupe.current || choix?.carte !== carteCourante(etat)?.id) return;
     occupe.current = true;
     try {
-      setChoix({ carte: carteCourante(etat)?.id ?? '', index });
       setEtat(await retournerCarte(etat));
     } finally {
       occupe.current = false;
@@ -137,22 +141,22 @@ export function SeanceMots() {
           <BarreProgression pourcent={(etat.index / total) * 100} libelle={t('certification.seanceMots.entete', { k: etat.index + 1, n: total })} />
           <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
             <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.seanceMots.choisis')}</Text>
-            <Text style={[typo.h1, { color: theme.texte.principal, textAlign: 'center' }]}>{carte.mot}</Text>
+            <Text accessibilityRole="header" style={[typo.h1, styles.mot, { color: theme.texte.principal }]}>{carte.mot}</Text>
           </View>
           <View style={styles.groupe}>
             {propositionsMot(carte, etat.cartes).map((p, i) => {
               const choisie = choix?.carte === carte.id && choix.index === i;
               const repondu = etat.retourne;
-              const fond = !repondu ? theme.fond.surface : p.juste ? theme.etat.succesDoux : choisie ? theme.etat.erreurDoux : theme.fond.surface;
+              const fond = !repondu ? (choisie ? theme.marque.douce : theme.fond.surface) : p.juste ? theme.etat.succesDoux : choisie ? theme.etat.erreurDoux : theme.fond.surface;
               const etiquetteReponse = !repondu ? null : p.juste ? t('certification.seanceMots.bonneReponse') : choisie ? t('certification.seanceMots.taReponse') : null;
               return (
                 <Appui
                   key={`${carte.id}-${i}`}
                   accessibilityRole="button"
                   accessibilityLabel={`${String.fromCharCode(65 + i)}. ${p.texte}`}
-                  accessibilityState={{ disabled: repondu }}
+                  accessibilityState={{ disabled: repondu, selected: choisie }}
                   disabled={repondu}
-                  onPress={() => void choisir(i)}
+                  onPress={() => choisir(i)}
                   decalage={repondu ? 0 : 2}
                   rayon={rayon.m}
                   retour={!repondu}
@@ -181,11 +185,16 @@ export function SeanceMots() {
             </Text>
           ) : null}
           {etat.enAttente.length > 0 ? <Banniere ton="info" titre={t('certification.seanceMots.attente')} /> : null}
-          <Bouton
-            libelle={t('certification.seanceMots.suivant')}
-            desactive={!etat.retourne || choix?.carte !== carte.id}
-            onPress={() => void noter(choix?.index === propositionsMot(carte, etat.cartes).findIndex((p) => p.juste))}
-          />
+          {!etat.retourne ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.seanceMots.reflechis')}</Text> : null}
+          {etat.retourne ? (
+            <Bouton
+              libelle={t('certification.seanceMots.suivant')}
+              desactive={choix?.carte !== carte.id}
+              onPress={() => void noter(choix?.index === propositionsMot(carte, etat.cartes).findIndex((p) => p.juste))}
+            />
+          ) : (
+            <Bouton libelle={t('certification.seanceMots.valider')} desactive={choix?.carte !== carte.id} onPress={() => void valider()} />
+          )}
         </View>
       ) : null}
       <FeuilleQuitter mots ouverte={quitter} onReprendre={() => setQuitter(false)} onQuitter={sortir} />
@@ -199,4 +208,6 @@ const styles = StyleSheet.create({
   option: { minHeight: 56, flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingHorizontal: espace[3], paddingVertical: espace[2], borderRadius: rayon.m },
   lettre: { width: 32, height: 32, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
   etiquette: { flexDirection: 'row', alignItems: 'center', gap: espace[1] },
+  // Le mot à deviner est le centre de l'écran (maquette V32-MOTS-QCM) : plus grand qu'un titre, sur une ligne ou deux, sans dépasser.
+  mot: { fontSize: 40, lineHeight: 46, textAlign: 'center', maxWidth: '100%' },
 });

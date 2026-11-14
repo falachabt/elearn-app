@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { fireEvent, screen, waitFor } from '@testing-library/react-native';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react-native';
 import { router } from 'expo-router';
-import { Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
@@ -10,10 +10,12 @@ import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
 import { LIGNES_SEED } from '@/services/certification/__tests__/fixtures';
 import { JOUR } from '@/services/certification/__tests__/fixturesRevision';
 import { ecrireMini, lancerMini, lireMini, repondreMini, type EtatMini } from '@/services/certification/miniTest';
+import { lireDetail } from '@/services/certification/detailTentative';
 import { lireReglages } from '@/services/certification/reglages';
 import type { FinTentative, TentativeListee } from '@/services/certification/types';
 import { enregistrerProfil } from '@/services/profil';
 import { ForcerSombre, useTheme } from '@/theme/ThemeProvider';
+import { themes } from '@/theme/theme';
 
 import { BilanMini } from '../BilanMini';
 import { MiniRevue } from '../MiniRevue';
@@ -600,6 +602,45 @@ describe('bilan des tests composés (définitions)', () => {
     expect(await lireMini()).toBeNull();
   });
 
+  it('maquette v34 : carte verte au nouveau meilleur score, « Refaire pour améliorer ma note » en première action', async () => {
+    await semerDef('reading', { kind: 'half_reading', estimated: true, score: 300, score_min: null, score_max: null }, 250);
+    await monter(<BilanMini />);
+    expect(await screen.findByText(t.tests.bilanDef.nouveau)).toBeTruthy();
+    expect(screen.getByText(t.tests.bilanDef.ancien.replace('{{score}}', '250'))).toBeTruthy();
+    const fond = StyleSheet.flatten(screen.getByTestId('bilan-carte').props.style).backgroundColor;
+    expect(fond).toBe(themes.light.marque.principale);
+    const boutons = screen.getAllByRole('button');
+    const ordre = [t.tests.detail.refaire, t.tests.detail.autre, t.tests.detail.voirNote, t.bilanMini.revoir, t.tests.bilanDef.retour];
+    const positions = ordre.map((libelle) => boutons.findIndex((b) => within(b).queryByText(libelle) !== null));
+    expect(positions.every((p: number) => p >= 0)).toBe(true);
+    expect(positions).toEqual([...positions].sort((a: number, b: number) => a - b));
+  });
+
+  it('mini-test par partie : le compte de bonnes réponses porte « sur n » et la partie, carte blanche sous le meilleur', async () => {
+    await semerDef('mini', { kind: 'mini', estimated: false, score: null, score_min: null, score_max: null }, 8, { '5': { answered: 10, correct: 4 } });
+    await monter(<BilanMini />);
+    expect(await screen.findByText(t.tests.bilanDef.tentative)).toBeTruthy();
+    expect(screen.getByText(/Ton meilleur reste 8 sur [0-9]+/)).toBeTruthy();
+  });
+
+  it('le bilan garde sur l’appareil le détail de la tentative (« Par notion », « Questions ratées » de sa page)', async () => {
+    const e = await semer({ partie: 5, reponses: 0 });
+    const q = e.tentative.questions[0]!;
+    const fin: FinTentative = {
+      status: 'finished', attempt_id: e.tentative.attempt_id, replay: false, kind: 'mini', estimated: false, score: null, score_min: null, score_max: null,
+      per_part: { '5': { answered: 1, correct: 0 } },
+      results: [{ question_id: q.id, client_uuid: 'c1', correct: false, skipped: true, correct_index: 0, trap: null, notion: { id: 'n1', code: 'n1', title: 'Forme du mot', family: 'grammaire' }, notions: [], transcript: null, replay: false }],
+    };
+    await ecrireMini({ ...e, termine: true, definition: { id: 'def-1', kind: 'mini', meilleurAvant: null }, fin });
+    await monter(<BilanMini />);
+    await screen.findByText(t.tests.bilanDef.tentative, {}, { timeout: 3000 }).catch(() => null);
+    await waitFor(async () => {
+      const d = await lireDetail(e.tentative.attempt_id);
+      expect(d?.ratees[0]?.position).toBe(1);
+      expect(d?.notions[0]?.titre).toBe('Forme du mot');
+    });
+  });
+
   it('test complet : le détail montre les sept parties', async () => {
     const perPart = {
       '1': { answered: 6, correct: 5 }, '2': { answered: 25, correct: 19 }, '3': { answered: 39, correct: 28 },
@@ -760,6 +801,27 @@ describe('revue de l’Examen terminé', () => {
     expect(await screen.findByText(t.revue.sansReponse)).toBeTruthy();
     expect(screen.getByText(t.revue.sansReponseAide.replace('{{n}}', '1'))).toBeTruthy();
     expect(screen.queryByText(t.exercice.grilleTienne)).toBeNull();
+  });
+
+  it('maquette M-REV : onglets « Toutes / Mes erreurs » et options « Ta réponse » / « Bonne réponse »', async () => {
+    let e = await semer({ partie: 5, reponses: 0 });
+    e = await repondreMini(e, 0, 100);
+    e = await repondreMini(e, 1, 100);
+    await ecrireMini({ ...e, termine: true });
+    await monter(<BilanMini />);
+    await fireEvent.press(await screen.findByText(t.bilanMini.revoir));
+    await monter(<MiniRevue />);
+    expect(await screen.findByRole('tab', { name: t.revue.toutes })).toBeTruthy();
+    expect(screen.getByRole('tab', { name: t.revue.toutes }).props.accessibilityState.selected).toBe(true);
+    // « Mes erreurs » saute la question juste et va à la première erreur.
+    await fireEvent.press(screen.getByText(t.revue.mesErreurs));
+    expect(await screen.findByText(t.revue.position.replace('{{n}}', '2').replace('{{total}}', String(e.tentative.questions.length)))).toBeTruthy();
+    // Une fois sur l'option, une fois dans la grille du corrigé.
+    expect(screen.getAllByText(t.revue.taReponse)).toHaveLength(2);
+    expect(screen.getAllByText(t.revue.bonneReponse)).toHaveLength(2);
+    // Suivante : la prochaine question fausse ou sans réponse (la 3), jamais la juste.
+    await fireEvent.press(screen.getByText(t.revue.suivante));
+    expect(await screen.findByText(t.revue.position.replace('{{n}}', '3').replace('{{total}}', String(e.tentative.questions.length)))).toBeTruthy();
   });
 
   it('sans test terminé : retour aux tests', async () => {

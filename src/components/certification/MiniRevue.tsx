@@ -2,6 +2,8 @@ import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Text } from 'react-native';
 
+import { Onglets } from '../Onglets';
+
 import { useTraduction } from '@/i18n/useTraduction';
 import { statutsDesQuestions } from '@/services/certification/bilanMini';
 import { indicesGroupe } from '@/services/certification/groupes';
@@ -39,6 +41,7 @@ export function MiniRevue({ lire = lireMini, retourFin = 'tests' }: Props = {}) 
   const { theme } = useTheme();
   const [etat, setEtat] = useState<EtatAffiche | null | 'chargement'>('chargement');
   const [curseur, setCurseur] = useState(0);
+  const [filtre, setFiltre] = useState<'toutes' | 'erreurs'>('toutes');
   const sortie = retourFin === 'resultat' ? '/certification/resultat' : '/tests';
 
   useEffect(() => {
@@ -73,20 +76,32 @@ export function MiniRevue({ lire = lireMini, retourFin = 'tests' }: Props = {}) 
   const dernierIdx = membresIdx[membresIdx.length - 1] ?? curseur;
   const derniere = dernierIdx + 1 >= questions.length;
   const titre = membres.length > 1 ? t('certification.revue.partie', { p: question.part, n: curseur + 1 }) : t('certification.revue.position', { n: curseur + 1, total: questions.length });
+  // « Mes erreurs » (maquette M-REV) : seules les questions fausses ou sans réponse se suivent ; la grille reste complète.
+  const estErreur = (i: number) => statuts[i] !== 'juste';
+  const prochaine = filtre === 'erreurs' ? questions.findIndex((_, i) => i > dernierIdx && estErreur(i)) : dernierIdx + 1;
+  const sansSuite = prochaine < 0 || prochaine >= questions.length;
+  const changerFiltre = (v: 'toutes' | 'erreurs') => {
+    setFiltre(v);
+    if (v === 'erreurs' && !estErreur(curseur)) {
+      const premiere = questions.findIndex((_, i) => estErreur(i));
+      if (premiere >= 0) setCurseur(premiere);
+    }
+  };
   const suivante = () => {
-    if (derniere) {
+    if (sansSuite) {
       if (retourFin === 'resultat') router.replace(sortie as never);
       else void effacerMini().then(() => router.replace(sortie as never));
       return;
     }
-    setCurseur(dernierIdx + 1);
+    setCurseur(prochaine);
   };
 
   return (
     <Ecran
       entete={<EnteteToeic titre={titre} onRetour={() => router.back()} />}
-      pied={<Bouton libelle={derniere ? t(retourFin === 'resultat' ? 'certification.revue.retourResultat' : 'certification.revue.terminer') : t('certification.revue.suivante')} onPress={suivante} retour />}
+      pied={<Bouton libelle={sansSuite ? t(retourFin === 'resultat' ? 'certification.revue.retourResultat' : 'certification.revue.terminer') : t('certification.revue.suivante')} onPress={suivante} retour />}
     >
+      <Onglets valeurs={[{ valeur: 'toutes', libelle: t('certification.revue.toutes') }, { valeur: 'erreurs', libelle: t('certification.revue.mesErreurs') }]} valeur={filtre} onChange={changerFiltre} />
       <GrilleQuestions statuts={statuts} actif={curseur} onChoisir={setCurseur} />
       <QuestionExercice
         key={membres[0]?.id ?? question.id}
@@ -95,6 +110,7 @@ export function MiniRevue({ lire = lireMini, retourFin = 'tests' }: Props = {}) 
         onChoix={() => {}}
         bonne={resultat?.correct_index ?? null}
         verrouille
+        motsRevue
         ecran="mini_revue"
         delaiEchecS={0}
         onPasser={() => {}}

@@ -89,15 +89,36 @@ describe('ST1 · Statistiques', () => {
     expect(screen.getByText(t.stats.serie.replace('{{n}}', '3'))).toBeTruthy();
     expect(screen.getByText('5')).toBeTruthy();
     expect(screen.getByLabelText(t.stats.graphique)).toBeTruthy();
-    expect(suivre).toHaveBeenCalledWith('cert_stats_viewed', { periode: 's7' });
+    expect(suivre).toHaveBeenCalledWith('cert_stats_viewed', { periode: 's0' });
     expect(suivre).toHaveBeenCalledWith('cert_mastery_viewed', { ecran: 'statistiques' });
+  });
+
+  it('« Tout » est l’onglet choisi par défaut (maquette v34)', async () => {
+    await monter(<StatistiquesToeic />);
+    await screen.findByText('690');
+    expect(screen.getByRole('tab', { name: t.stats.periodes.s0 }).props.accessibilityState.selected).toBe(true);
+    expect(screen.getByRole('tab', { name: t.stats.periodes.s7 }).props.accessibilityState.selected).toBe(false);
+    expect(fausse.appels.stats).toEqual([0]);
+  });
+
+  it('« Maîtrise de la catégorie » : une barre par famille quand la révision a des notions, rien sinon', async () => {
+    const notions = [
+      { id: 'n1', code: 'n1', titre: 'Présent continu', famille: 'grammaire', parties: [5], dureeMin: 3, fiche: true, reponses: 4, reussies: 4, etat: 'acquise', derniereOuverture: '2026-10-01' },
+      { id: 'n2', code: 'n2', titre: 'Faux ami', famille: 'piege', parties: [5], dureeMin: 3, fiche: true, reponses: 0, reussies: 0, etat: 'pas_commencee', derniereOuverture: null },
+    ] as never;
+    installer({ stats: STATS_OK(), revision: { notions, parties: [] } as never });
+    await monter(<StatistiquesToeic />);
+    await screen.findByText('690');
+    expect(await screen.findByText(t.stats.parCategorie)).toBeTruthy();
+    expect(screen.getByLabelText(t.stats.categorie.replace('{{famille}}', fr.certification.cours.familles.grammaire).replace('{{n}}', '100'))).toBeTruthy();
+    expect(screen.getByLabelText(t.stats.categorie.replace('{{famille}}', fr.certification.cours.familles.piege).replace('{{n}}', '0'))).toBeTruthy();
   });
 
   it('change de période : un seul appel par période et un évènement', async () => {
     await monter(<StatistiquesToeic />);
     await screen.findByText('690');
     await fireEvent.press(screen.getByText(t.stats.periodes.s30));
-    await waitFor(() => expect(fausse.appels.stats).toEqual([7, 30]));
+    await waitFor(() => expect(fausse.appels.stats).toEqual([0, 30]));
     expect(suivre).toHaveBeenCalledWith('cert_stats_period_changed', { periode: 's30' });
     await waitFor(() => expect(suivre).toHaveBeenCalledWith('cert_stats_viewed', { periode: 's30' }));
   });

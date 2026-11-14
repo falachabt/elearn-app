@@ -23,7 +23,7 @@ import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { stylePartie } from './partiesStyle';
 import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette, Tuile } from './ui';
-import { CarteTest, type ProprietesCarteTest } from './CarteTest';
+import { CarteTest, type ProprietesCarteTest, type StatutCarteTest } from './CarteTest';
 import { useChargement } from './useChargement';
 
 /**
@@ -120,6 +120,8 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
       detail: t('certification.tests.listes.tentatives', { n: suivi.fois }),
     };
   };
+  // Bouton de la carte (maquette v34) : « Voir les tentatives » quand un test est fait, « Commencer » sinon.
+  const avecAction = <T extends { statut: StatutCarteTest }>(o: T) => ({ ...o, action: o.statut === 'fait' ? t('certification.tests.voirTentatives') : t('certification.tests.commencer') });
   const scoreDemi = (kind: 'listening' | 'reading', p: ProgressionTest | undefined) => {
     const s = scoreBorne(kind, p?.meilleurScore ?? null, 100, total);
     return s ? { valeur: s.valeur, max: s.max } : undefined;
@@ -130,11 +132,11 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   return (
     <>
       <EtiquetteSection texte={t('certification.tests.etiquetteMini')} />
-      <CarteTest icone={Target} couleur={couleurs[1]!.couleur} titre={t('certification.tests.miniPartie')} sous={detail(detailMiniPartie, dixQ)} {...statutMini(minis.filter((x) => x.part !== null))} progression={avancement(defs?.mini) ?? undefined} onPress={() => router.push('/certification/choix-partie' as never)} />
-      <CarteTest icone={Layers} couleur={couleurs[5]!.couleur} titre={t('certification.tests.miniMixte')} sous={detail(t('certification.tests.detailMiniMixte'), vingtQ)} {...statutMini(minis.filter((x) => x.part === null))} progression={avancement(defs?.mixed) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mixed' } } as never)} />
+      <CarteTest icone={Target} couleur={couleurs[1]!.couleur} titre={t('certification.tests.miniPartie')} sous={detail(detailMiniPartie, dixQ)} {...avecAction(statutMini(minis.filter((x) => x.part !== null)))} progression={avancement(defs?.mini) ?? undefined} onPress={() => router.push('/certification/choix-partie' as never)} />
+      <CarteTest icone={Layers} couleur={couleurs[5]!.couleur} titre={t('certification.tests.miniMixte')} sous={detail(t('certification.tests.detailMiniMixte'), vingtQ)} {...avecAction(statutMini(minis.filter((x) => x.part === null)))} progression={avancement(defs?.mixed) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mixed' } } as never)} />
       <EtiquetteSection texte={t('certification.tests.etiquetteComplets')} />
-      <CarteTest icone={Headphones} couleur={couleurs[3]!.couleur} titre={t('certification.tests.demiEcoute')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...statutProgression(pEcoute)} score={scoreDemi('listening', pEcoute)} detail={detailDemi(pEcoute)} progression={avancement(defs?.listening) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'listening' } } as never)} />
-      <CarteTest icone={BookOpen} couleur={couleurs[4]!.couleur} titre={t('certification.tests.demiLecture')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...statutProgression(pLecture)} score={scoreDemi('reading', pLecture)} detail={detailDemi(pLecture)} progression={avancement(defs?.reading) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'reading' } } as never)} />
+      <CarteTest icone={Headphones} couleur={couleurs[3]!.couleur} titre={t('certification.tests.demiEcoute')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...avecAction(statutProgression(pEcoute))} score={scoreDemi('listening', pEcoute)} detail={detailDemi(pEcoute)} progression={avancement(defs?.listening) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'listening' } } as never)} />
+      <CarteTest icone={BookOpen} couleur={couleurs[4]!.couleur} titre={t('certification.tests.demiLecture')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...avecAction(statutProgression(pLecture))} score={scoreDemi('reading', pLecture)} detail={detailDemi(pLecture)} progression={avancement(defs?.reading) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'reading' } } as never)} />
       {/* Test complet : « Bientôt », désactivé (T6, décision de Benny) : aucun départ, aucune liste. */}
       <CarteTest icone={Trophy} couleur={theme.marque.forte} titre={t('certification.tests.complet')} sous={detail(t('certification.tests.detailComplet'), completQ)} statut="bientot" libelleStatut={t('certification.tests.statut.bientot')} />
       <CarteTest icone={NotebookPen} couleur={sombre ? theme.texte.principal : theme.fond.surface} titre={t('certification.tests.corrige')} sous={detail(t('certification.tests.detailCorrige'), corrigeQ)} statut="vide" libelleStatut="" />

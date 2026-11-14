@@ -28,7 +28,7 @@ const cle = (p: PeriodeStats) => `s${p}` as 's7' | 's30' | 's0';
  */
 export function StatistiquesToeic() {
   const { t } = useTraduction();
-  const [periode, setPeriode] = useState<PeriodeStats>(7);
+  const [periode, setPeriode] = useState<PeriodeStats>(0);
   const lire = useCallback(() => chargerPageStats(periode), [periode]);
   const { etat, recharger } = useChargement(lire);
   const vue = useRef<PeriodeStats | null>(null);

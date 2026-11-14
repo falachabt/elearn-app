@@ -117,6 +117,24 @@ describe('N1 · Accueil TOEIC', () => {
     expect(screen.queryByText(t.accueilToeic.compteEtiquette)).toBeNull();
   });
 
+  it('sans date de test : invitation en pointillés « Ajoute la date de ton examen » qui ouvre l’objectif (V30-ACCUEIL-SANS-DATE)', async () => {
+    await ecrirePlan({ exam: 'toeic', objectif: 800, minutes: 20 }, { effacerDate: true });
+    await monter(<AccueilToeic />);
+    expect(await screen.findByText(t.accueilToeic.sansDateTitre)).toBeTruthy();
+    expect(screen.getByText(t.accueilToeic.sansDateAide)).toBeTruthy();
+    await fireEvent.press(screen.getByText(t.accueilToeic.sansDateTitre));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/objectif', params: { modifier: '1' } });
+  });
+
+  it('avec la date du profil : « Test dans 42 jours », la date, la barre de la semaine et pas d’invitation', async () => {
+    await monter(<AccueilToeic />);
+    expect(await screen.findByText(t.accueilToeic.compteEtiquette)).toBeTruthy();
+    expect(screen.getByText(t.accueilToeic.compteJours.replace('{{n}}', '42'))).toBeTruthy();
+    expect(screen.getByText(t.accueilToeic.compteDate.replace('{{date}}', '27 novembre 2026'))).toBeTruthy();
+    expect(screen.getByLabelText(t.accueilToeic.planBarre)).toBeTruthy();
+    expect(screen.queryByText(t.accueilToeic.sansDateTitre)).toBeNull();
+  });
+
   it('« Commencer la séance » ouvre D2, « Continuer » une fois un bloc terminé', async () => {
     await monter(<AccueilToeic />);
     await fireEvent.press(await screen.findByText(t.accueilToeic.commencer));

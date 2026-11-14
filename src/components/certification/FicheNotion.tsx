@@ -14,7 +14,7 @@ import { chargerFiche, chargerRevision, lireFiche, morceauxMisEnValeur } from '@
 import { lireProfil } from '@/services/profil';
 import type { NotionFiche, NotionListee } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, rayon, typo } from '@/theme/theme';
+import { bord, corrige as corrigeCouleurs, espace, rayon, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
@@ -28,7 +28,8 @@ type Phase = { nom: 'chargement' } | { nom: 'erreur' } | { nom: 'expire' } | { n
 /** C5 · Fiche d'une notion : règle, exemples, piège, faux ami, trois questions d'ancrage, entraînement. */
 export function FicheNotion() {
   const { t } = useTraduction();
-  const { theme } = useTheme();
+  const { theme, sombre } = useTheme();
+  const jaune = sombre ? corrigeCouleurs.dark : corrigeCouleurs.light;
   const { id, source } = useLocalSearchParams<{ id: string; source?: string }>();
   const [phase, setPhase] = useState<Phase>({ nom: 'chargement' });
   /** État de maîtrise de la notion (liste des notions) : absent si la liste n'est pas lisible, la fiche s'affiche sans badge. */
@@ -135,25 +136,29 @@ export function FicheNotion() {
               </View>
             ) : null}
             {f.piege ? (
-              <View style={styles.groupe}>
-                <EtiquetteSection texte={t('certification.fiche.piege')} />
-                <View style={[styles.piege, { backgroundColor: theme.etat.alerteDoux, borderColor: theme.bord.fort }]}>
-                  <Text style={[typo.texte, { color: theme.texte.principal }]}>{f.piege}</Text>
-                </View>
+              // Maquette C5 : carte jaune « Piège TOEIC », le titre dans la carte (texte noir sur surface colorée).
+              <Carte testID="fiche-piege" style={{ backgroundColor: jaune.fond, gap: espace[1] }}>
+                <Text accessibilityRole="header" style={[typo.texteFort, { color: jaune.texte }]}>{t('certification.fiche.piege')}</Text>
+                <Text style={[typo.texte, { color: jaune.texte }]}>{f.piege}</Text>
+              </Carte>
+            ) : null}
+            {f.fauxAmi ? (
+              <View testID="fiche-faux-ami" style={[styles.pastille, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                <Text style={[typo.donnee, { color: theme.texte.principal }]}>{t('certification.fiche.fauxAmi', { texte: f.fauxAmi })}</Text>
               </View>
             ) : null}
-            {f.fauxAmi ? <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.fiche.fauxAmi', { texte: f.fauxAmi })}</Text> : null}
             {phase.fiche.ancrages.length ? (
               <View style={styles.groupe}>
-                <EtiquetteSection texte={t('certification.fiche.quizLiesTitre')} />
-                <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                  {suivi && quizLies(suivi) ? t('certification.fiche.quizLiesBilan', { r: quizLies(suivi)!.reussis, n: quizLies(suivi)!.total }) : t('certification.fiche.quizLiesAucun')}
-                </Text>
+                {/* Maquette C5 : « 3 questions d'ancrage », une ligne « Question n · 3 minutes » par question servie. */}
+                <EtiquetteSection texte={t('certification.fiche.ancrage', { n: phase.fiche.ancrages.length })} />
+                {suivi && quizLies(suivi) ? (
+                  <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.fiche.quizLiesBilan', { r: quizLies(suivi)!.reussis, n: quizLies(suivi)!.total })}</Text>
+                ) : null}
                 {phase.fiche.ancrages.map((_, i) => (
                   <LigneChoix
                     key={i}
                     icone={Target}
-                    titre={t('certification.fiche.quizLigne', { n: i + 1 })}
+                    titre={phase.fiche.dureeMin ? t('certification.fiche.ancrageLigne', { n: i + 1, minutes: phase.fiche.dureeMin }) : t('certification.fiche.ancrageLigneSans', { n: i + 1 })}
                     onPress={() => router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id, ancrage: '1' } } as never)}
                   />
                 ))}
@@ -168,5 +173,5 @@ export function FicheNotion() {
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
-  piege: { borderWidth: bord.normal, borderRadius: rayon.m, padding: espace[3] },
+  pastille: { alignSelf: 'flex-start', maxWidth: '100%', borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: espace[1] },
 });

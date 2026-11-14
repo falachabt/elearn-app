@@ -1,5 +1,5 @@
 import { router, useFocusEffect } from 'expo-router';
-import { RotateCcw } from 'lucide-react-native';
+import { CalendarDays, RotateCcw } from 'lucide-react-native';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -7,12 +7,12 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { lireProfil, type Profil } from '@/services/profil';
 import { chargerAccueil, type DonneesAccueil } from '@/services/certification/accueil';
-import { afficherJour } from '@/services/certification/format';
 import { avancement } from '@/services/certification/seanceJour';
 import { titreAffiche } from '@/services/certification/titre';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
+import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
@@ -78,8 +78,14 @@ export function AccueilToeic() {
   );
 }
 
+/** « 27 novembre 2026 » (maquette N1) : jour de l'examen en toutes lettres, dans la langue de l'app. */
+function dateLongue(jour: string, langue: string): string {
+  const [a, m, j] = jour.split('-').map(Number);
+  return new Date(a!, m! - 1, j!).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
 function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void }) {
-  const { t } = useTraduction();
+  const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const compte = d.plan?.dateTest && d.joursRestants !== null && d.joursRestants >= 0
     ? d.joursRestants === 0
@@ -134,14 +140,33 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
           <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
           <View style={styles.ligne}>
             <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
-            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: afficherJour(d.plan.dateTest) })}</Text>
+            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: dateLongue(d.plan.dateTest, langue) })}</Text>
           </View>
           <BarreProgression pourcent={progressionSemaine} libelle={t('certification.accueilToeic.planBarre')} />
           <Text style={[typo.petit, { color: theme.texte.principal }]}>{planSemaine}</Text>
         </Carte>
       ) : (
-        // Sans date de test, la phrase du plan reste seule (cahier N1, état sans date).
-        <Text style={[typo.petit, { color: theme.texte.principal }]}>{planSemaine}</Text>
+        // Sans date de test (maquette V30-ACCUEIL-SANS-DATE) : invitation en pointillés à ajouter la date, puis la phrase du plan.
+        <>
+          <Appui
+            accessibilityRole="button"
+            accessibilityLabel={`${t('certification.accueilToeic.sansDateTitre')}. ${t('certification.accueilToeic.sansDateAide')}`}
+            onPress={() => router.push({ pathname: '/certification/objectif', params: { modifier: '1' } } as never)}
+            decalage={0}
+            rayon={14}
+          >
+            <View style={[styles.invitation, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+              <View style={[styles.invitationIcone, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+                <CalendarDays size={20} color={theme.texte.principal} strokeWidth={2} />
+              </View>
+              <View style={styles.invitationTexte}>
+                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.accueilToeic.sansDateTitre')}</Text>
+                <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.sansDateAide')}</Text>
+              </View>
+            </View>
+          </Appui>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{planSemaine}</Text>
+        </>
       )}
       <View style={styles.grille}>
         <Tuile titre={t('certification.accueilToeic.score')} aide={d.score !== null ? t('certification.accueilToeic.scoreExact', { score: d.score }) : t('certification.accueilToeic.scorePas')} />
@@ -175,4 +200,7 @@ const styles = StyleSheet.create({
   ligne: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: espace[2] },
   pastille: { paddingHorizontal: espace[3], paddingVertical: espace[1], borderWidth: bord.normal, borderRadius: rayon.s },
   grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[2] },
+  invitation: { flexDirection: 'row', alignItems: 'center', gap: espace[3], minHeight: 78, padding: espace[3], borderWidth: bord.normal, borderStyle: 'dashed', borderRadius: 14 },
+  invitationIcone: { width: 40, height: 40, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
+  invitationTexte: { flex: 1, minWidth: 0, gap: 2 },
 });

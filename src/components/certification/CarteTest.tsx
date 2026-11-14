@@ -26,6 +26,8 @@ export type ProprietesCarteTest = {
   detail?: string;
   /** Avancement « x faits sur n » avec sa barre (D-57). */
   progression?: { faits: number; total: number };
+  /** Libellé du bouton d'action de la carte (maquette v34 : « Commencer », « Voir les tentatives »). */
+  action?: string;
   onPress?: () => void;
 };
 
@@ -34,7 +36,7 @@ export type ProprietesCarteTest = {
  * mots, le score en gros, l'avancement « x faits sur n » et le détail en petit. Même gabarit pour mini-tests, demi-tests,
  * test complet (désactivé « Bientôt ») et corrigé.
  */
-export function CarteTest({ icone: Icone, couleur, titre, sous, statut, libelleStatut, score, detail, progression, onPress }: ProprietesCarteTest) {
+export function CarteTest({ icone: Icone, couleur, titre, sous, statut, libelleStatut, score, detail, progression, action, onPress }: ProprietesCarteTest) {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const { Pastille, fond, texte } = pastilleDe(statut, theme);
@@ -70,6 +72,11 @@ export function CarteTest({ icone: Icone, couleur, titre, sous, statut, libelleS
         </View>
       ) : null}
       {detail ? <Text style={[typo.donnee, { color: theme.texte.secondaire }]}>{detail}</Text> : null}
+      {action && actif ? (
+        <View testID="carte-test-action" style={[styles.action, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{action}</Text>
+        </View>
+      ) : null}
     </View>
   );
   if (!actif) return contenu;
@@ -104,4 +111,5 @@ const styles = StyleSheet.create({
   texte: { flex: 1, minWidth: 0, gap: 2 },
   statut: { flexDirection: 'row', alignItems: 'center', gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1, alignSelf: 'flex-start' },
   progression: { gap: espace[2] },
+  action: { minHeight: 48, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center', paddingHorizontal: espace[4] },
 });

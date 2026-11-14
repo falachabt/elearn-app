@@ -28,6 +28,8 @@ type Props = {
   onPasser: () => void;
   /** Option cochée figée après validation. */
   verrouille?: boolean;
+  /** Revue d'un test (maquette M-REV) : les options disent « Ta réponse » et « Bonne réponse » au lieu de « Faux » et « Juste ». */
+  motsRevue?: boolean;
   /** Position de la question dans la séance (1 à total). Jamais le numéro d'origine dans la banque. */
   position?: number;
   /** Onglets des questions d'un groupe, affichés sous l'audio partagé. */
@@ -120,7 +122,7 @@ export const documentsDuPassage = (passage: GroupeServi['passage'] | undefined):
 export const afficherEnonce = (stem: string) => stem.replace(/-{3,}/g, '______');
 
 /** Disposition commune aux sept types de questions du TOEIC (B1 à B7). */
-export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, enteteGroupe, trouCourant, numerosTrous, trousRepondus }: Props) {
+export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, motsRevue, enteteGroupe, trouCourant, numerosTrous, trousRepondus }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [doc, setDoc] = useState(0);
@@ -223,6 +225,7 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
             etat={corrige ? (i === bonne ? 'bonne' : i === choix ? 'fausse' : 'neutre') : choix === i ? 'choisie' : 'neutre'}
             onPress={verrouille || corrige ? undefined : () => onChoix(i)}
             motCorrection={corrige}
+            mot={corrige && motsRevue ? (i === choix ? (i === bonne ? t('certification.exercice.juste') : t('certification.revue.taReponse')) : t('certification.revue.bonneReponse')) : undefined}
           />
         ))}
       </View>

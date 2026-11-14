@@ -82,4 +82,13 @@ describe('onglet Tests : gabarit large des cartes (maquette v36, v37)', () => {
     expect(screen.getAllByText(/^495 sur 495$/).length).toBeGreaterThan(0);
     expect(screen.queryByText(/705/)).toBeNull();
   });
+
+  it('chaque carte active porte son bouton : « Voir les tentatives » si fait, « Commencer » sinon (maquette v34)', async () => {
+    await monter(<TestsToeic />);
+    await screen.findByLabelText(t.avancementUn.replace('{{faits}}', '1').replace('{{total}}', '3'));
+    // Mini par partie, mini mixte, demi-test écoute, demi-test lecture : quatre boutons ; le test complet « Bientôt » n'en a pas.
+    expect(screen.getAllByTestId('carte-test-action')).toHaveLength(4);
+    expect(screen.getAllByText(t.voirTentatives).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(t.commencer).length).toBeGreaterThan(0);
+  });
 });

@@ -296,15 +296,15 @@ describe('barre du meilleur, repère objectif et bloc collé (maquette validée 
     expect(screen.getByLabelText(/au-dessus de ton objectif de 800/)).toBeTruthy();
   });
 
-  it('bloc collé unique : pas de contour par ligne, un trait fin entre les lignes', async () => {
+  it('une carte bordée par test (maquette v38), pas de bloc collé', async () => {
     mockParams = { kind: 'mixed' };
     installer(mixtes);
     await monter(<ListeTests />);
     expect(await screen.findByText('Mixte n° 1')).toBeTruthy();
-    // Avant : chaque ligne était une carte bordée (borderWidth 2). Dans le bloc, seule la première
-    // ligne n'a pas de séparateur ; les suivantes portent le trait fin du patron ListeCollee.
-    expect(styleDe('ligne-mixed-1').borderWidth).toBeUndefined();
-    expect(styleDe('ligne-mixed-1').borderTopWidth).toBeUndefined();
-    expect(styleDe('ligne-mixed-2').borderTopWidth).toBe(1.5);
+    // Maquette v38 : une carte bordée par test (contour de 2 px, coins arrondis), plus de bloc collé.
+    expect(styleDe('ligne-mixed-1').borderWidth).toBe(2);
+    expect(styleDe('ligne-mixed-2').borderWidth).toBe(2);
+    expect(styleDe('ligne-mixed-2').borderTopWidth).toBeUndefined();
+    expect(styleDe('ligne-mixed-1').borderRadius).toBeGreaterThan(0);
   });
 });

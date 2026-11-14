@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fireEvent, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
+import { StyleSheet } from 'react-native';
 
 import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
@@ -9,6 +10,7 @@ import { definirApi } from '@/services/certification/api';
 import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
 import { FICHE_TEST, JOUR, MOTS_TEST, REVISION_TEST } from '@/services/certification/__tests__/fixturesRevision';
 import { enregistrerProfil } from '@/services/profil';
+import { corrige } from '@/theme/theme';
 
 import { CarteMaitrise } from '../CarteMaitrise';
 import { FicheMot } from '../FicheMot';
@@ -177,11 +179,28 @@ describe('C5 · Fiche d’une notion', () => {
     await waitFor(() => expect(fausse.appels.notionsOuvertes[0]).toEqual({ id: 'n-prepo', secondes: 0 }));
   });
 
+  it('maquette C5 : carte jaune « Piège TOEIC », pastille « Faux ami » et « 3 questions d’ancrage »', async () => {
+    await monter(<FicheNotion />);
+    await screen.findByText(t.fiche.regle);
+    expect(StyleSheet.flatten(screen.getByTestId('fiche-piege').props.style).backgroundColor).toBe(corrige.light.fond);
+    expect(StyleSheet.flatten(screen.getByTestId('fiche-faux-ami').props.style).borderRadius).toBeGreaterThan(20);
+    expect(screen.getByText(t.fiche.ancrage.replace('{{n}}', '3'))).toBeTruthy();
+    expect(screen.queryByText(t.fiche.quizLiesTitre)).toBeNull();
+  });
+
+  it('sans question d’ancrage dans la donnée, aucune section d’ancrage', async () => {
+    installer({ fiche: { ...FICHE_TEST, ancrages: [] } });
+    await monter(<FicheNotion />);
+    await screen.findByText(t.fiche.regle);
+    expect(screen.queryByText(t.fiche.ancrage.replace('{{n}}', '0'))).toBeNull();
+    expect(screen.queryByText(t.fiche.ancrageLigne.replace('{{n}}', '1').replace('{{minutes}}', '3'))).toBeNull();
+  });
+
   it('lance l’entraînement de la notion, et les trois ancrages en mode ancrage', async () => {
     await monter(<FicheNotion />);
     await fireEvent.press(await screen.findByText(t.fiche.entrainer));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/serie', params: { notion: FICHE_TEST.id } });
-    await fireEvent.press(screen.getByText(t.fiche.quizLigne.replace('{{n}}', '1')));
+    await fireEvent.press(screen.getByText(t.fiche.ancrageLigne.replace('{{n}}', '1').replace('{{minutes}}', String(FICHE_TEST.dureeMin))));
     expect(router.push).toHaveBeenLastCalledWith({ pathname: '/certification/serie', params: { notion: FICHE_TEST.id, ancrage: '1' } });
   });
 
@@ -295,6 +314,7 @@ describe('C8 et C9 · Séance de mots', () => {
       ? propositions.find((p) => p.props.accessibilityLabel.endsWith(`. ${bonne}`))
       : propositions.find((p) => !p.props.accessibilityLabel.endsWith(`. ${bonne}`));
     await fireEvent.press(cible!);
+    await fireEvent.press(screen.getByText(t.seanceMots.valider));
     await fireEvent.press(screen.getByText(t.seanceMots.suivant));
   };
 
@@ -305,8 +325,26 @@ describe('C8 et C9 · Séance de mots', () => {
   it('ne note qu’après le choix du sens', async () => {
     await monter(<SeanceMots />);
     await screen.findAllByLabelText(/^[A-D]\. /);
-    expect(screen.getByText(t.seanceMots.suivant)).toBeDisabled();
+    expect(screen.getByText(t.seanceMots.valider)).toBeDisabled();
+    expect(screen.queryByText(t.seanceMots.suivant)).toBeNull();
     expect(fausse.appels.resultatsMots).toHaveLength(0);
+  });
+
+  it('maquette V32-MOTS-QCM : « Quel est le sens de » puis le mot en grand ; choisir ne révèle rien, « Valider ma réponse » révèle, puis « Suivant »', async () => {
+    await monter(<SeanceMots />);
+    const propositions = await screen.findAllByLabelText(/^[A-D]. /);
+    expect(screen.getByText(t.seanceMots.choisis)).toBeTruthy();
+    expect(screen.getByText(t.seanceMots.reflechis)).toBeTruthy();
+    const mot = MOTS_TEST.map((m) => screen.queryByText(m.mot)).find((x) => x !== null)!;
+    expect(StyleSheet.flatten(mot.props.style).fontSize).toBeGreaterThan(26);
+    await fireEvent.press(propositions[0]!);
+    // Choisi mais pas encore validé : aucune bonne réponse n'est montrée, « Valider » est actif.
+    expect(screen.queryByText(t.seanceMots.bonneReponse)).toBeNull();
+    expect(screen.getByText(t.seanceMots.valider)).not.toBeDisabled();
+    await fireEvent.press(screen.getByText(t.seanceMots.valider));
+    expect(await screen.findByText(t.seanceMots.bonneReponse)).toBeTruthy();
+    expect(screen.queryByText(t.seanceMots.valider)).toBeNull();
+    expect(screen.getByText(t.seanceMots.suivant)).not.toBeDisabled();
   });
 
   it('enchaîne les cartes échues, trace la boîte avant et après, puis ouvre la fin', async () => {

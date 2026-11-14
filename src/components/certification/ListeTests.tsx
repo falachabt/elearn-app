@@ -22,7 +22,6 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
-import { GroupeColle } from '../liste/ListeCollee';
 import { FeuilleCreditsInsuffisants, FeuilleErreurDemarrage } from './FeuillesDemarrageTest';
 import { stylePartie } from './partiesStyle';
 import { BarreProgression, BarreScoreObjectif, EnteteToeic, Squelette } from './ui';
@@ -182,11 +181,9 @@ export function ListeTests() {
               })()}
             </Text>
           </View>
-          {/* Les lignes vivent en un seul bloc collé (patron ListeCollee, comme les listes du
-              Secondaire) : un seul contour, un trait fin entre les lignes, la ligne conseillée en
-              fond soleil très doux — la bordure jaune individuelle des cartes séparées disparaît. */}
-          <GroupeColle>
-            {tests.map((test, index) => {
+          {/* Une carte par test (maquette v38 et v39) : gros score, meilleur et tentatives, la carte conseillée sur fond soleil très doux. */}
+          <View style={styles.cartes}>
+            {tests.map((test) => {
               const statut = statutLigne(test);
               const estConseille = conseille?.id === test.id;
               // Le test complet reste « Bientôt » : aucune ligne ne le lance (décision de Benny, maquette T6).
@@ -237,9 +234,8 @@ export function ListeTests() {
                   disabled={enCours !== null || type === 'full'}
                   onPress={() => (test.fini ? router.push({ pathname: '/certification/test-detail', params: { kind: type, id: test.id, ...(type === 'mini' && test.part ? { partie: String(test.part) } : {}) } } as never) : void lancer(test, exam, reglagesOk))}
                   style={[
-                    styles.ligneCollee,
-                    index > 0 ? { borderTopWidth: bord.fin, borderTopColor: theme.bord.doux } : null,
-                    { backgroundColor: estConseille ? theme.accent.soleilTresDoux : theme.fond.surface },
+                    styles.carteTest,
+                    { borderColor: estConseille ? theme.accent.soleil : theme.bord.fort, backgroundColor: estConseille ? theme.accent.soleilTresDoux : theme.fond.surface },
                   ]}
                 >
                   <View style={[styles.pastilleLigne, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
@@ -295,7 +291,7 @@ export function ListeTests() {
                 </Pressable>
               );
             })}
-          </GroupeColle>
+          </View>
           {/* Un démarrage refusé s'explique par une feuille du bas, jamais par un petit texte sous la
               liste que l'élève ne voit pas (mixtes non faits inertes au toucher, terrain du 27 octobre 2026). */}
           <FeuilleErreurDemarrage code={codeEchec} onFermer={() => setCodeEchec(null)} />
@@ -308,9 +304,9 @@ export function ListeTests() {
 }
 
 const styles = StyleSheet.create({
-  // Ligne du bloc collé : pas de contour propre (celui du GroupeColle), le séparateur fin est posé en ligne.
-  ligneCollee: { flexDirection: 'row', alignItems: 'flex-start', padding: espace[4], gap: espace[4] },
-  scoreNombre: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 15, lineHeight: 20 },
+  cartes: { gap: espace[3] },
+  carteTest: { flexDirection: 'row', alignItems: 'flex-start', padding: espace[4], gap: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
+  scoreNombre: { fontFamily: 'ArchivoBlack', fontSize: 28, lineHeight: 34 },
   pastilleLigne: { width: 34, height: 34, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   bandeau: { borderWidth: bord.normal, borderRadius: rayon.l, padding: espace[4], gap: espace[3] },

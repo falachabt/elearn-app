@@ -6,6 +6,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { scoresSections, statutsDesQuestions } from '@/services/certification/bilanMini';
 import { obtenirReglages } from '@/services/certification/etat';
+import { construireDetail, enregistrerDetail } from '@/services/certification/detailTentative';
 import { scoreBorne } from '@/services/certification/listesTests';
 import { lancerAutreTest } from '@/services/certification/passerAutreTest';
 import { effacerMini, lancerDefTest, lireMini, terminerMini, type EtatMini } from '@/services/certification/miniTest';
@@ -66,6 +67,13 @@ export function BilanMini() {
     signale.current = true;
     suivre('cert_mock_completed', { kind: fin.kind, score_min: fin.score_min, score_max: fin.score_max });
   }, [fin]);
+
+  // Détail de la tentative (« Par notion », « Questions ratées » de sa page) : gardé sur l'appareil dès le bilan.
+  const questionsFin = phase.nom === 'ok' ? phase.etat.tentative.questions : null;
+  useEffect(() => {
+    if (!fin || !questionsFin) return;
+    void enregistrerDetail(fin.attempt_id, construireDetail(questionsFin, fin.results));
+  }, [fin, questionsFin]);
 
   const sortir = async (vers: string) => {
     await effacerMini();
@@ -130,15 +138,16 @@ export function BilanMini() {
             {/* La revue se pousse par-dessus le bilan, comme dans la branche simple : l'état local (questions,
                 réponses, résultats) reste en place pour les allers-retours bilan ↔ revue. Il n'est effacé que
                 par les sorties définitives ci-dessous (sortir, ou un nouveau test lancé qui écrase l'état). */}
-            <Bouton libelle={t('certification.bilanMini.revoir')} onPress={() => router.push('/certification/mini-revue' as never)} retour />
-            <Bouton variante="secondaire" libelle={t('certification.tests.detail.refaire')} onPress={() => void refaire()} />
-            <Bouton variante="secondaire" libelle={t('certification.tests.detail.voirNote')} onPress={() => void sortir('/certification/tentatives')} />
+            {/* Maquette v34 : « Refaire pour améliorer ma note » est l'action verte, puis les sorties en blanc. */}
+            <Bouton libelle={t('certification.tests.detail.refaire')} onPress={() => void refaire()} retour />
             <Bouton variante="secondaire" libelle={t('certification.tests.detail.autre')} onPress={() => void autre()} />
-            <Bouton variante="texte" libelle={t('certification.tests.bilanDef.retour')} onPress={() => void sortir('/tests')} />
+            <Bouton variante="secondaire" libelle={t('certification.tests.detail.voirNote')} onPress={() => void sortir('/certification/tentatives')} />
+            <Bouton variante="secondaire" libelle={t('certification.bilanMini.revoir')} onPress={() => router.push('/certification/mini-revue' as never)} />
+            <Bouton variante="secondaire" libelle={t('certification.tests.bilanDef.retour')} onPress={() => void sortir('/tests')} />
           </View>
         }
       >
-        <BilanDefinition score={scoreAffiche} meilleurAvant={def.meilleurAvant} max={maxDef} perPart={fin.per_part} compte={def.kind === 'mini' ? { bonnes, total } : undefined} />
+        <BilanDefinition score={scoreAffiche} meilleurAvant={def.meilleurAvant} max={maxDef} perPart={fin.per_part} compte={def.kind === 'mini' ? { bonnes, total } : undefined} contexte={etat.partie !== null ? t('certification.tests.bilanDef.contextePartie', { partie: etat.partie }) : undefined} />
         {def.kind === 'mini' ? (
           <>
             {/* Variante mini-test par partie (écran 5 de la maquette « Fin de test ») : la grille des questions
