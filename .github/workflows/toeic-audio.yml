@@ -1,0 +1,116 @@
+# Audio TOEIC (OmniVoice, CPU) : génère les clips d'un fichier de jobs et les envoie sur R2 (bucket elearnprepa-public).
+# Aucune écriture en base : les chemins audio sont posés par la migration de contenu.
+# Un fichier dont l'estimation dépasse ~5 h de CPU est coupé en tranches parallèles (job « plan »).
+# Reprise : un clip déjà sur R2 avec une durée correcte est sauté ; « forcer » le régénère.
+name: Audio TOEIC
+
+on:
+  workflow_dispatch:
+    inputs:
+      jobs:
+        description: "Fichier de jobs (toeic-audio/jobs/<nom>.json) : p2_t2_t3, t4, t5, t6, t7"
+        default: p2_t2_t3
+        type: string
+      essai:
+        description: "Nombre de groupes à traiter (vide = tout ; 1 = essai)"
+        required: false
+        default: ""
+        type: string
+      forcer:
+        description: "Régénérer même si le clip est déjà sur R2"
+        default: false
+        type: boolean
+      etapes:
+        description: "Pas de diffusion OmniVoice (16 = valeur de la chaîne vidéo)"
+        required: false
+        default: "16"
+        type: string
+
+jobs:
+  plan:
+    name: Plan des tranches
+    runs-on: ubuntu-latest
+    outputs:
+      matrice: ${{ steps.p.outputs.matrice }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        env:
+          JOBS: ${{ inputs.jobs }}
+          ESSAI: ${{ inputs.essai }}
+        run: |
+          [[ "$JOBS" =~ ^[a-z0-9_]+$ ]] || { echo "nom de jobs invalide"; exit 1; }
+          [ -f "toeic-audio/jobs/$JOBS.json" ] || { echo "fichier de jobs introuvable"; exit 1; }
+          [[ -z "$ESSAI" || "$ESSAI" =~ ^[0-9]+$ ]] || { echo "essai invalide"; exit 1; }
+          ARGS=""
+          [ -n "$ESSAI" ] && ARGS="--essai $ESSAI"
+          python3 toeic-audio/generer.py "$JOBS" --plan $ARGS | tee plan.json
+          python3 -c "import json;print('matrice=' + json.dumps(json.load(open('plan.json'))['matrice']))" >> "$GITHUB_OUTPUT"
+
+  generer:
+    name: ${{ inputs.jobs }} tranche ${{ matrix.t.i }}/${{ matrix.t.n }}
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        t: ${{ fromJson(needs.plan.outputs.matrice) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: toeic-audio/requirements-voix.txt
+      - name: Cache du modèle OmniVoice
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: omnivoice-k2-fsa-v1
+      - name: Installer dépendances et ffmpeg
+        run: |
+          pip install -r toeic-audio/requirements-voix.txt
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Générer et envoyer sur R2
+        env:
+          HF_HUB_DISABLE_XET: "1"
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          JOBS: ${{ inputs.jobs }}
+          ESSAI: ${{ inputs.essai }}
+          FORCER: ${{ inputs.forcer }}
+          ETAPES: ${{ inputs.etapes }}
+          TRANCHE: ${{ matrix.t.i }}/${{ matrix.t.n }}
+        run: |
+          [[ "$JOBS" =~ ^[a-z0-9_]+$ ]] || { echo "nom de jobs invalide"; exit 1; }
+          [[ -z "$ETAPES" || "$ETAPES" =~ ^[0-9]+$ ]] || { echo "etapes invalide"; exit 1; }
+          [[ -z "$ESSAI" || "$ESSAI" =~ ^[0-9]+$ ]] || { echo "essai invalide"; exit 1; }
+          ARGS=(--tranche "$TRANCHE" --rapport "rapport/$JOBS-${{ matrix.t.i }}sur${{ matrix.t.n }}.json")
+          [ -n "$ESSAI" ] && ARGS+=(--essai "$ESSAI")
+          [ -n "$ETAPES" ] && ARGS+=(--etapes "$ETAPES")
+          [ "$FORCER" = "true" ] && ARGS+=(--forcer)
+          python toeic-audio/generer.py "$JOBS" "${ARGS[@]}"
+      - name: Résumé
+        if: always()
+        env:
+          JOBS: ${{ inputs.jobs }}
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import glob, json, collections
+          for f in sorted(glob.glob("rapport/*.json")):
+              r = json.load(open(f, encoding="utf-8"))
+              c = collections.Counter(x["statut"] for x in r)
+              print(f"### {f}\n{dict(c)}\n")
+              for x in r:
+                  if x["statut"] in ("echec", "erreur", "alerte"):
+                      print(f"- {x['ref']} : {x['statut']} {x.get('message', '')}")
+          PY
+      - name: Artefact du rapport
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport-${{ inputs.jobs }}-${{ matrix.t.i }}sur${{ matrix.t.n }}
+          path: rapport/*.json
+          if-no-files-found: ignore
