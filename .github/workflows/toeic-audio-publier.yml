@@ -1,0 +1,37 @@
+# Mise en ligne des clips audio TOEIC déjà générés (artefacts de lots « Audio TOEIC » faits sans envoi).
+# Évite de régénérer des heures d'audio : on télécharge les mp3 d'un ou plusieurs runs, on contrôle, puis on envoie sur
+# R2 (bucket elearnprepa-public uniquement). Aucune écriture en base : les chemins sont posés par la migration de contenu.
+name: Audio TOEIC (publier)
+
+on:
+  push:
+    branches: [claude/toeic-audio-run]
+    paths: [toeic-audio/publier.env]
+  workflow_dispatch:
+    inputs:
+      runs:
+        description: "Identifiants de runs Audio TOEIC, séparés par des espaces"
+        required: true
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Télécharger, contrôler et envoyer
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_PUBLIC_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_PUBLIC_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+          RUNS_ENTREE: ${{ inputs.runs }}
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then RUNS=$(sed -n 's/^RUNS=//p' toeic-audio/publier.env); else RUNS="$RUNS_ENTREE"; fi
+          [[ "$RUNS" =~ ^[0-9\ ]+$ ]] || { echo "runs invalides"; exit 1; }
+          python3 toeic-audio/publier.py $RUNS
