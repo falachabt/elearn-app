@@ -5,6 +5,11 @@
 name: Audio TOEIC
 
 on:
+  # Un workflow absent de main ne peut pas être lancé à la main : un push sur cette branche le lance aussi,
+  # avec les réglages de toeic-audio/lancer.env (sans OTA : la branche n'est pas suivie par EAS preview).
+  push:
+    branches: [claude/toeic-audio-run]
+    paths: [toeic-audio/lancer.env]
   workflow_dispatch:
     inputs:
       jobs:
@@ -32,12 +37,35 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrice: ${{ steps.p.outputs.matrice }}
+      jobs: ${{ steps.r.outputs.jobs }}
+      essai: ${{ steps.r.outputs.essai }}
+      forcer: ${{ steps.r.outputs.forcer }}
+      etapes: ${{ steps.r.outputs.etapes }}
     steps:
       - uses: actions/checkout@v4
+      - id: r
+        name: Réglages (entrées du lancement manuel, sinon toeic-audio/lancer.env)
+        env:
+          I_JOBS: ${{ inputs.jobs }}
+          I_ESSAI: ${{ inputs.essai }}
+          I_FORCER: ${{ inputs.forcer }}
+          I_ETAPES: ${{ inputs.etapes }}
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            JOBS=$(sed -n 's/^JOBS=//p' toeic-audio/lancer.env); ESSAI=$(sed -n 's/^ESSAI=//p' toeic-audio/lancer.env)
+            FORCER=$(sed -n 's/^FORCER=//p' toeic-audio/lancer.env); ETAPES=$(sed -n 's/^ETAPES=//p' toeic-audio/lancer.env)
+          else
+            JOBS="$I_JOBS"; ESSAI="$I_ESSAI"; FORCER="$I_FORCER"; ETAPES="$I_ETAPES"
+          fi
+          [[ "$JOBS" =~ ^[a-z0-9_]+$ ]] || { echo "nom de jobs invalide"; exit 1; }
+          [[ -z "$ESSAI" || "$ESSAI" =~ ^[0-9]+$ ]] || { echo "essai invalide"; exit 1; }
+          [[ -z "$ETAPES" || "$ETAPES" =~ ^[0-9]+$ ]] || { echo "etapes invalide"; exit 1; }
+          [[ -z "$FORCER" || "$FORCER" =~ ^(true|false)$ ]] || { echo "forcer invalide"; exit 1; }
+          { echo "jobs=$JOBS"; echo "essai=$ESSAI"; echo "forcer=$FORCER"; echo "etapes=${ETAPES:-16}"; } >> "$GITHUB_OUTPUT"
       - id: p
         env:
-          JOBS: ${{ inputs.jobs }}
-          ESSAI: ${{ inputs.essai }}
+          JOBS: ${{ steps.r.outputs.jobs }}
+          ESSAI: ${{ steps.r.outputs.essai }}
         run: |
           [[ "$JOBS" =~ ^[a-z0-9_]+$ ]] || { echo "nom de jobs invalide"; exit 1; }
           [ -f "toeic-audio/jobs/$JOBS.json" ] || { echo "fichier de jobs introuvable"; exit 1; }
@@ -48,7 +76,7 @@ jobs:
           python3 -c "import json;print('matrice=' + json.dumps(json.load(open('plan.json'))['matrice']))" >> "$GITHUB_OUTPUT"
 
   generer:
-    name: ${{ inputs.jobs }} tranche ${{ matrix.t.i }}/${{ matrix.t.n }}
+    name: ${{ needs.plan.outputs.jobs }} tranche ${{ matrix.t.i }}/${{ matrix.t.n }}
     needs: plan
     runs-on: ubuntu-latest
     timeout-minutes: 355
@@ -78,10 +106,10 @@ jobs:
           HF_HUB_DISABLE_XET: "1"
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          JOBS: ${{ inputs.jobs }}
-          ESSAI: ${{ inputs.essai }}
-          FORCER: ${{ inputs.forcer }}
-          ETAPES: ${{ inputs.etapes }}
+          JOBS: ${{ needs.plan.outputs.jobs }}
+          ESSAI: ${{ needs.plan.outputs.essai }}
+          FORCER: ${{ needs.plan.outputs.forcer }}
+          ETAPES: ${{ needs.plan.outputs.etapes }}
           TRANCHE: ${{ matrix.t.i }}/${{ matrix.t.n }}
         run: |
           [[ "$JOBS" =~ ^[a-z0-9_]+$ ]] || { echo "nom de jobs invalide"; exit 1; }
@@ -95,7 +123,7 @@ jobs:
       - name: Résumé
         if: always()
         env:
-          JOBS: ${{ inputs.jobs }}
+          JOBS: ${{ needs.plan.outputs.jobs }}
         run: |
           python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import glob, json, collections
@@ -111,6 +139,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: rapport-${{ inputs.jobs }}-${{ matrix.t.i }}sur${{ matrix.t.n }}
+          name: rapport-${{ needs.plan.outputs.jobs }}-${{ matrix.t.i }}sur${{ matrix.t.n }}
           path: rapport/*.json
           if-no-files-found: ignore
