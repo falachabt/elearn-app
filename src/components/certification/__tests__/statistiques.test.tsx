@@ -8,7 +8,7 @@ import { definirApi } from '@/services/certification/api';
 import { creerApiFausse, STATS_VIDE } from '@/services/certification/__tests__/apiFausse';
 import { JOUR } from '@/services/certification/__tests__/fixturesRevision';
 import { definirDernierContactPourTest } from '@/services/connectivite';
-import type { EtatGains, Stats } from '@/services/certification/types';
+import type { EtatGains, Stats, TentativeListee } from '@/services/certification/types';
 import { enregistrerProfil } from '@/services/profil';
 
 import { GagnerToeic } from '../GagnerToeic';
@@ -49,8 +49,10 @@ const STATS_OK = (periode: Stats['periode'] = 7): Stats => ({
 });
 
 let fausse: ReturnType<typeof creerApiFausse>;
+// Un diagnostic terminé par défaut : le score estimé ne s'affiche qu'à cette condition.
+const DIAGNOSTIC: TentativeListee = { id: 'diag', kind: 'diagnostic', part: null, length: 20, status: 'finished', score: 745, scoreMin: 700, scoreMax: 790, startedAt: '2026-10-01T10:00:00Z', finishedAt: '2026-10-01T10:30:00Z', perPart: null, timePerPart: null, creditsSpent: 0, refunded: false, questions: [] };
 const installer = (options: Parameters<typeof creerApiFausse>[0] = {}) => {
-  fausse = creerApiFausse(options);
+  fausse = creerApiFausse({ tentatives: [DIAGNOSTIC], ...options });
   definirApi(fausse.api);
 };
 

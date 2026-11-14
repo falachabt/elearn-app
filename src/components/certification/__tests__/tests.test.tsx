@@ -139,8 +139,10 @@ describe('T1 · onglet Tests', () => {
 
   it('les demi-tests et le test complet mènent à leur liste de tests', async () => {
     await monter(<TestsToeic />);
-    await fireEvent.press(await screen.findByText(t.tests.complet));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/liste-tests', params: { kind: 'full' } });
+    // Le test complet reste « Bientôt » : la carte est désactivée, rien ne s'ouvre.
+    await screen.findByText(t.tests.statut.bientot);
+    await fireEvent.press(screen.getByText(t.tests.complet));
+    expect(router.push).not.toHaveBeenCalled();
     await fireEvent.press(await screen.findByText(t.tests.demiEcoute));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/liste-tests', params: { kind: 'listening' } });
     await fireEvent.press(await screen.findByText(t.tests.demiLecture));
@@ -724,7 +726,8 @@ describe('T6 · test complet « Bientôt »', () => {
   it('sans test listé, le lancement reste grisé ; pas de lien hors maquette', async () => {
     mockParams = { kind: 'full' };
     await monter(<TestBientot />);
-    expect(await screen.findByText(t.tests.completTexte)).toBeTruthy();
+    expect(await screen.findByText(t.tests.bientotTexte)).toBeTruthy();
+    expect(screen.getByText(t.tests.bientotSousTitre)).toBeTruthy();
     expect(screen.getByRole('button', { name: t.tests.bientotLancer }).props.accessibilityState?.disabled).toBe(true);
     expect(screen.queryByText('Faire un mini-test')).toBeNull();
   });

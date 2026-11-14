@@ -1,4 +1,6 @@
+import { obtenirApi } from './api';
 import { compteursCarnet } from './revision';
+import type { EtapePlan, PlanFrise } from './planFrise';
 import { joursAvantTest, type Jour } from './jours';
 import type { MotCarnetServi, NotionListee } from './types';
 
@@ -33,4 +35,36 @@ export function planDeFormation(notions: NotionListee[], carnet: MotCarnetServi[
     notionsARepasser: aRepasser.slice(0, NOTIONS_A_REPRENDRE),
     coursAFaire: aFaire,
   };
+}
+
+/**
+ * Repli local de la frise : le plan n'existe côté serveur qu'une fois construit. On n'invente aucun calendrier : seul
+ * « Aujourd'hui » est rempli, avec ce que les données de l'appareil disent de la journée (mots à revoir, notions fragiles,
+ * mini-test).
+ */
+export function planFriseLocale(plan: PlanFormation, dateTest: Jour | null, aujourdhui: Jour, titres: { mots: string; mini: string }): PlanFrise {
+  const etapes: EtapePlan[] = [];
+  const ajouter = (e: Omit<EtapePlan, 'id' | 'position' | 'etat' | 'faitLe' | 'detail'>) =>
+    etapes.push({ id: `local-${etapes.length}`, position: etapes.length, etat: 'a_faire', faitLe: null, detail: null, ...e });
+  if (plan.motsARevoir > 0) ajouter({ type: 'rappel', uniteKind: 'words', uniteId: null, titre: titres.mots, minutes: null });
+  for (const n of plan.notionsARepasser) ajouter({ type: 'rappel', uniteKind: 'notion', uniteId: n.id, titre: n.titre, minutes: n.dureeMin });
+  ajouter({ type: 'mini_test', uniteKind: null, uniteId: null, titre: titres.mini, minutes: null });
+  return {
+    dateExamen: dateTest,
+    couverture: null,
+    jours: [{ jour: aujourdhui, minutes: etapes.reduce((s, e) => s + (e.minutes ?? 0), 0), jourTest: false, etapes }],
+    local: true,
+  };
+}
+
+/** Plan servi (construit au besoin), sinon le repli local : un échec réseau ou un plan vide ne casse jamais l'écran. */
+export async function chargerPlanFrise(exam: string, repli: () => PlanFrise | Promise<PlanFrise>): Promise<PlanFrise> {
+  const api = obtenirApi();
+  try {
+    const lu = (await api.lirePlanFormation(exam)) ?? (await api.construirePlanFormation(exam));
+    if (lu) return lu;
+  } catch {
+    // le plan local prend le relais
+  }
+  return repli();
 }

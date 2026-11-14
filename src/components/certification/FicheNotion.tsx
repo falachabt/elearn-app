@@ -7,10 +7,12 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { obtenirApi } from '@/services/certification/api';
 import { ErreurContenuExpire } from '@/services/certification/copie';
+import { etatContenu, quizLies } from '@/services/certification/etatsContenu';
 import { jourDe } from '@/services/certification/jours';
 import { titreAffiche } from '@/services/certification/titre';
-import { chargerFiche, lireFiche, morceauxMisEnValeur } from '@/services/certification/revision';
-import type { NotionFiche } from '@/services/certification/types';
+import { chargerFiche, chargerRevision, lireFiche, morceauxMisEnValeur } from '@/services/certification/revision';
+import { lireProfil } from '@/services/profil';
+import type { NotionFiche, NotionListee } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -18,6 +20,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
+import { PuceEtatContenu } from './PuceEtatContenu';
 import { EnteteToeic, EtiquetteSection, LigneChoix, Squelette } from './ui';
 
 type Phase = { nom: 'chargement' } | { nom: 'erreur' } | { nom: 'expire' } | { nom: 'ok'; fiche: NotionFiche };
@@ -28,6 +31,8 @@ export function FicheNotion() {
   const { theme } = useTheme();
   const { id, source } = useLocalSearchParams<{ id: string; source?: string }>();
   const [phase, setPhase] = useState<Phase>({ nom: 'chargement' });
+  /** État de maîtrise de la notion (liste des notions) : absent si la liste n'est pas lisible, la fiche s'affiche sans badge. */
+  const [suivi, setSuivi] = useState<NotionListee | null>(null);
 
   const charger = useCallback(() => {
     setPhase({ nom: 'chargement' });
@@ -39,6 +44,22 @@ export function FicheNotion() {
       })
       .catch((e: unknown) => setPhase(e instanceof ErreurContenuExpire ? { nom: 'expire' } : { nom: 'erreur' }));
   }, [id, source]);
+
+  useEffect(() => {
+    let actif = true;
+    void (async () => {
+      try {
+        const p = await lireProfil();
+        const r = await chargerRevision(p?.exam ?? 'toeic', jourDe(new Date()));
+        if (actif) setSuivi(r.valeur.notions.find((n) => n.id === id) ?? null);
+      } catch {
+        if (actif) setSuivi(null);
+      }
+    })();
+    return () => {
+      actif = false;
+    };
+  }, [id]);
 
   useEffect(() => {
     // Chargement initial de la fiche (copie locale puis serveur) : l'état de chargement est posé par `charger` lui-même.
@@ -61,7 +82,11 @@ export function FicheNotion() {
   const titre = phase.nom === 'ok' ? titreAffiche(phase.fiche.titre) : t('certification.cours.entete');
 
   return (
-    <Ecran insetBas={false} entete={<EnteteToeic titre={titre} onRetour={retour} />}>
+    <Ecran
+      insetBas={false}
+      entete={<EnteteToeic titre={titre} onRetour={retour} />}
+      pied={phase.nom === 'ok' ? <Bouton libelle={t('certification.fiche.entrainer')} onPress={() => router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id } } as never)} retour /> : undefined}
+    >
       {phase.nom === 'chargement' ? <Squelette lignes={4} /> : null}
       {phase.nom === 'erreur' ? (
         <View style={styles.groupe}>
@@ -80,6 +105,13 @@ export function FicheNotion() {
         const vide = !f.regle && f.exemples.length === 0 && !f.piege && !f.fauxAmi;
         return (
           <View style={styles.groupe}>
+            {suivi ? (
+              <Carte>
+                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
+                <PuceEtatContenu etat={etatContenu(suivi)} />
+                <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t(`certification.fiche.etatAide.${etatContenu(suivi)}`)}</Text>
+              </Carte>
+            ) : null}
             {vide ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.fiche.sansTexte')}</Text> : null}
             {f.regle ? (
               <View style={styles.groupe}>
@@ -113,18 +145,20 @@ export function FicheNotion() {
             {f.fauxAmi ? <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.fiche.fauxAmi', { texte: f.fauxAmi })}</Text> : null}
             {phase.fiche.ancrages.length ? (
               <View style={styles.groupe}>
-                <EtiquetteSection texte={t('certification.fiche.ancrage', { n: phase.fiche.ancrages.length })} />
+                <EtiquetteSection texte={t('certification.fiche.quizLiesTitre')} />
+                <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+                  {suivi && quizLies(suivi) ? t('certification.fiche.quizLiesBilan', { r: quizLies(suivi)!.reussis, n: quizLies(suivi)!.total }) : t('certification.fiche.quizLiesAucun')}
+                </Text>
                 {phase.fiche.ancrages.map((_, i) => (
                   <LigneChoix
                     key={i}
                     icone={Target}
-                    titre={t('certification.fiche.ancrageLigneSans', { n: i + 1 })}
+                    titre={t('certification.fiche.quizLigne', { n: i + 1 })}
                     onPress={() => router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id, ancrage: '1' } } as never)}
                   />
                 ))}
               </View>
             ) : null}
-            <Bouton libelle={t('certification.fiche.entrainer')} onPress={() => router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id } } as never)} />
           </View>
         );
       })() : null}

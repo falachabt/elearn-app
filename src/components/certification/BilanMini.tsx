@@ -6,6 +6,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { scoresSections, statutsDesQuestions } from '@/services/certification/bilanMini';
 import { obtenirReglages } from '@/services/certification/etat';
+import { scoreBorne } from '@/services/certification/listesTests';
 import { lancerAutreTest } from '@/services/certification/passerAutreTest';
 import { effacerMini, lancerDefTest, lireMini, terminerMini, type EtatMini } from '@/services/certification/miniTest';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -98,13 +99,14 @@ export function BilanMini() {
   const sections = scoresSections(fin.per_part);
   const statuts = statutsDesQuestions(etat.tentative.questions.map((q) => q.id), fin.results);
   const def = etat.definition;
-  // Échelle du score de la définition : totale pour le test complet et le mixte (score sur 990), moitié pour les
-  // demi-tests écoute et lecture (score de section sur 495).
-  const maxDef = def ? (def.kind === 'full' || def.kind === 'mixed' ? maxScore : maxScore === null ? null : maxScore / 2) : null;
+  // Échelle du score de la définition (D-55, D-58) : bonnes réponses sur les questions pour un mixte, moitié du total pour
+  // un demi-test, total pour le test complet ; jamais au-dessus de son maximum.
   // Score de la tentative : la valeur exacte du serveur quand elle existe. Demi-tests et test complet la portent
   // dans `score` et leur fourchette reste toujours vide ; le mixte porte son estimation ponctuelle dans `score`
   // aussi. La borne haute `score_max` n'est qu'un repli pour d'anciens `fin` sans `score` : ce n'est pas un score.
   const scoreTentative = fin.score ?? fin.score_max;
+  const maxDef = def ? scoreBorne(def.kind, scoreTentative ?? def.meilleurAvant, total, maxScore)?.max ?? null : null;
+  const scoreAffiche = scoreTentative !== null && maxDef !== null ? Math.min(scoreTentative, maxDef) : scoreTentative;
 
   if (def) {
     const refaire = async () => {
@@ -136,7 +138,7 @@ export function BilanMini() {
           </View>
         }
       >
-        <BilanDefinition score={scoreTentative} meilleurAvant={def.meilleurAvant} max={maxDef} perPart={fin.per_part} compte={def.kind === 'mini' ? { bonnes, total } : undefined} />
+        <BilanDefinition score={scoreAffiche} meilleurAvant={def.meilleurAvant} max={maxDef} perPart={fin.per_part} compte={def.kind === 'mini' ? { bonnes, total } : undefined} />
         {def.kind === 'mini' ? (
           <>
             {/* Variante mini-test par partie (écran 5 de la maquette « Fin de test ») : la grille des questions

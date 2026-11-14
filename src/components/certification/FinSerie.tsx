@@ -9,11 +9,13 @@ import { titreAffiche } from '@/services/certification/titre';
 import { ecrireSerie, effacerSerie, lireSerieEnCours, resumerSerie, type EtatSerie, type ResumeSerie } from '@/services/certification/serie';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
+import { RotateCcw } from 'lucide-react-native';
 
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
+import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
-import { EnteteToeic } from './ui';
+import { EnteteToeic, EtiquetteSection, LigneChoix } from './ui';
 
 /** B11 · Fin de série : score, rejeu espacé, notions touchées, mots ajoutés au carnet. */
 export function FinSerie() {
@@ -67,6 +69,13 @@ export function FinSerie() {
     return a === 1 ? t('certification.finSerie.rejeuDelaisUn', { b }) : t('certification.finSerie.rejeuDelais', { a, b });
   })();
 
+  const perimetre = (() => {
+    if (!etat || !resume) return null;
+    const { part, notion } = etat.perimetre;
+    const nomNotion = notion ? resume.notions.find((n) => n.id === notion)?.title : resume.notions.length === 1 ? resume.notions[0].title : undefined;
+    return [part ? t('certification.finSerie.perimetrePartie', { n: part }) : null, nomNotion ? titreAffiche(nomNotion) : null].filter(Boolean).join(' · ') || null;
+  })();
+
   return (
     <Ecran
       entete={<EnteteToeic titre={t('certification.finSerie.entete')} />}
@@ -79,28 +88,43 @@ export function FinSerie() {
     >
       {resume ? (
         <>
-          <View style={[styles.carte, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
-            <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{t('certification.finSerie.resultat')}</Text>
-            <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.surCouleur }]}>{t('certification.finSerie.score', { n: resume.bonnes, total: resume.total })}</Text>
-            <Text style={[typo.texte, { color: theme.texte.surCouleur }]}>
-              {resume.ratees === 0 ? t('certification.finSerie.aucuneRatee') : resume.ratees === 1 ? t('certification.finSerie.rateeUne') : t('certification.finSerie.ratees', { n: resume.ratees })}
+          <Carte style={styles.resultat}>
+            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.finSerie.resultat')}</Text>
+            <Text accessibilityRole="header" accessibilityLabel={t('certification.finSerie.resultatLabel', { n: resume.bonnes, total: resume.total })} style={[typo.h1, { color: theme.texte.principal }]}>
+              {t('certification.finSerie.score', { n: resume.bonnes, total: resume.total })}
             </Text>
-            {rejeu ? <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{rejeu}</Text> : null}
-          </View>
+            {perimetre ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{perimetre}</Text> : null}
+          </Carte>
+          {resume.ratees === 0 ? (
+            <Text style={[typo.texte, { color: theme.texte.principal }]}>{t('certification.finSerie.aucuneRatee')}</Text>
+          ) : (
+            <View style={styles.groupe}>
+              <EtiquetteSection texte={resume.delaisRejeu[0] === 1 || resume.delaisRejeu[0] === undefined ? t('certification.finSerie.rejeuDemain') : t('certification.finSerie.rejeuDans', { n: resume.delaisRejeu[0] })} />
+              <LigneChoix
+                icone={RotateCcw}
+                titre={resume.ratees === 1 ? t('certification.finSerie.rateeUne') : t('certification.finSerie.ratees', { n: resume.ratees })}
+                aide={rejeu ?? undefined}
+              />
+            </View>
+          )}
           {resume.notions.length > 0 ? (
             <View style={styles.groupe}>
-              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.finSerie.notions')}</Text>
-              {resume.notions.map((n) => (
-                <Text key={n.id} style={[typo.texte, { color: theme.texte.principal }]}>{titreAffiche(n.title)}</Text>
-              ))}
+              <EtiquetteSection texte={t('certification.finSerie.notions')} />
+              <View style={styles.puces}>
+                {resume.notions.map((n) => (
+                  <Puce key={n.id} texte={titreAffiche(n.title)} />
+                ))}
+              </View>
             </View>
           ) : null}
           {resume.mots.length > 0 ? (
             <View style={styles.groupe}>
-              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.finSerie.mots')}</Text>
-              {resume.mots.map((m) => (
-                <Text key={m.id} style={[typo.texte, { color: theme.texte.principal }]}>{m.word}</Text>
-              ))}
+              <EtiquetteSection texte={t('certification.finSerie.mots')} />
+              <View style={styles.puces}>
+                {resume.mots.map((m) => (
+                  <Puce key={m.id} texte={m.word} />
+                ))}
+              </View>
             </View>
           ) : null}
           {resume.enAttente > 0 ? <Banniere ton="info" titre={t('certification.finSerie.enAttente')} /> : null}
@@ -110,8 +134,21 @@ export function FinSerie() {
   );
 }
 
+/** Puce (maquette B11) : pilule bordée, texte mono gras. */
+function Puce({ texte }: { texte: string }) {
+  const { theme } = useTheme();
+  return (
+    <View style={[styles.puce, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+      <Text style={[typo.etiquette, styles.puceTexte, { color: theme.texte.principal }]}>{texte}</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
-  carte: { gap: espace[2], padding: espace[6], borderWidth: bord.normal, borderRadius: rayon.l },
-  groupe: { gap: espace[1] },
+  resultat: { alignItems: 'center', gap: espace[3], paddingVertical: espace[7] },
+  groupe: { gap: espace[3] },
+  puces: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
+  puce: { borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: espace[2] },
+  puceTexte: { textTransform: 'none' },
   pied: { gap: espace[2] },
 });

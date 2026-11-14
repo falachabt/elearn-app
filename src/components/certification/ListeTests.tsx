@@ -10,7 +10,7 @@ import { obtenirApi } from '@/services/certification/api';
 import { lirePlan, obtenirReglages } from '@/services/certification/etat';
 import { signalerErreurDemarrage } from '@/services/certification/erreurDemarrage';
 import { lancerDefTest, longueurMiniServie } from '@/services/certification/miniTest';
-import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE, PARTIES, meilleurDeSection, nombreFaits, numeroDansPartie, statutLigne, testConseille, testsDeLaPartie } from '@/services/certification/listesTests';
+import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE, PARTIES, meilleurDeSection, nombreFaits, numeroDansPartie, scoreBorne, statutLigne, testConseille, testsDeLaPartie } from '@/services/certification/listesTests';
 import type { Reglages } from '@/services/certification/reglages';
 import type { DefTest, TypeDefTest } from '@/services/certification/types';
 import { lireProfil } from '@/services/profil';
@@ -21,12 +21,11 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
-import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { GroupeColle } from '../liste/ListeCollee';
 import { FeuilleCreditsInsuffisants, FeuilleErreurDemarrage } from './FeuillesDemarrageTest';
 import { stylePartie } from './partiesStyle';
-import { BarreScoreObjectif, EnteteToeic, Squelette } from './ui';
+import { BarreProgression, BarreScoreObjectif, EnteteToeic, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
 const TYPES: TypeDefTest[] = ['listening', 'reading', 'full', 'mini', 'mixed'];
@@ -117,17 +116,33 @@ export function ListeTests() {
   const nombreQuestionsMini = tests.length > 0 && comptesMini.size === 1 ? tests[0]!.questions : longueurMiniServie(partie, reglagesOk);
   const libelleMini = type === 'mixed' ? t('certification.tests.detailMiniMixte') : t('certification.tests.detailMiniPartie', { n: nombreQuestionsMini });
   const meilleur = meilleurDeSection(tests);
+  const objectifMax = reglagesOk?.objectifMax ?? null;
+  // Un mixte garde l'ancienne échelle (score estimé sur le total) seulement si une de ses valeurs dépasse ses questions (D-55).
+  const mixteAncienneEchelle = type === 'mixed' && tests.some((x) => x.meilleurScoreMax !== null && x.meilleurScoreMax > x.questions);
+  const meilleurBorne = type === 'listening' || type === 'reading' || type === 'full' ? scoreBorne(type, meilleur, 0, objectifMax) : null;
   // Une moitié se lit sur la moitié du total (495 sur 990) ; le test complet se lit sur le total. Mini-tests et mixte : pas de section.
-  const sectionMax = reglagesOk && (type === 'listening' || type === 'reading' || type === 'full')
-    ? (type === 'full' ? reglagesOk.objectifMax : reglagesOk.objectifMax / 2)
-    : null;
-  const conseille = testConseille(tests);
+  const conseille = type === 'full' ? null : testConseille(tests);
   const parMini = type === 'mini' || type === 'mixed';
+  // Nom du test pour le bouton collant : « Partie 5 n° 3 », « Écoute n° 3 », « Mixte n° 2 ».
+  const nomLigne = (test: DefTest) => type === 'mini'
+    ? `${t('certification.tests.listes.choixPartie.partie', { partie: test.part ?? 0 })} ${t(CLE_NUMERO_LIGNE.mini, { numero: numeroDansPartie(tests, test) })}`
+    : t(CLE_NUMERO_LIGNE[type], { numero: test.numero });
   // Demi-test (écoute ou lecture) et test complet : coût du départ, comme pour les mini-tests.
   const coutListe = parMini ? coutMini : type === 'full' ? couts.cert_mock_full : (type === 'listening' || type === 'reading') ? couts.cert_mock_half : undefined;
 
   return (
-    <Ecran insetBas={false} entete={<EnteteToeic titre={t(CLE_TITRE_LISTE[type], { partie: partie ?? 0 })} onRetour={() => router.back()} />}>
+    <Ecran
+      insetBas={false}
+      entete={<EnteteToeic titre={t(CLE_TITRE_LISTE[type], { partie: partie ?? 0 })} onRetour={() => router.back()} />}
+      pied={etat.phase === 'ok' && conseille ? (
+        <Bouton
+          libelle={t(conseille.tentatives > 0 ? 'certification.tests.listes.reprendre' : 'certification.tests.listes.commencer', { nom: nomLigne(conseille) })}
+          desactive={enCours !== null}
+          onPress={() => void lancer(conseille, exam, reglagesOk)}
+          retour
+        />
+      ) : undefined}
+    >
       {banniere}
       {etat.phase === 'chargement' ? <Squelette lignes={4} /> : null}
       {etat.phase === 'erreur' ? (
@@ -135,29 +150,38 @@ export function ListeTests() {
       ) : null}
       {etat.phase === 'ok' ? (
         <>
-          <Carte style={{ gap: espace[2] }}>
+          {/* Bandeau récapitulatif (maquette v38 et v39) : couleur du type, texte noir, « Fait : x sur n » et sa barre (D-57). */}
+          <View style={[styles.bandeau, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
             <View style={styles.entete}>
-              <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
-                <Icone size={20} color={theme.texte.surCouleur} strokeWidth={2} />
+              <View style={[styles.pastille, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                <Icone size={20} color={theme.texte.principal} strokeWidth={2} />
               </View>
               <View style={styles.texte}>
-                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
+                <Text style={[typo.h3, { color: theme.texte.surCouleur }]}>{t(CLE_TITRE_LISTE[type], { partie: partie ?? 0 })}</Text>
+                <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>
                   {t('certification.tests.listes.fait', { faits: nombreFaits(tests), total: tests.length })}
-                </Text>
-                <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                  {(() => {
-                    // Coût du type (crédits hors Pass), lu dans la configuration serveur : mini, demi-test ou complet.
-                    const libelle = parMini
-                      ? libelleMini
-                      : meilleur === null || sectionMax === null
-                        ? t('certification.tests.listes.pasDeScore')
-                        : t('certification.tests.listes.meilleurSection', { score: meilleur, max: sectionMax });
-                    return coutListe === undefined || solde?.illimite ? libelle : t('certification.tests.avecCout', { detail: libelle, cout: cout(coutListe) });
-                  })()}
                 </Text>
               </View>
             </View>
-          </Carte>
+            {tests.length > 0 ? (
+              <BarreProgression
+                pourcent={(nombreFaits(tests) / tests.length) * 100}
+                libelle={t(nombreFaits(tests) <= 1 ? 'certification.tests.avancementUn' : 'certification.tests.avancement', { faits: nombreFaits(tests), total: tests.length })}
+                hauteur={8}
+              />
+            ) : null}
+            <Text style={[typo.donnee, { color: theme.texte.surCouleur }]}>
+              {(() => {
+                // Coût du type (crédits hors Pass), lu dans la configuration serveur : mini, demi-test ou complet.
+                const libelle = parMini
+                  ? libelleMini
+                  : meilleurBorne === null
+                    ? t('certification.tests.listes.pasDeScore')
+                    : t('certification.tests.listes.meilleurSection', { score: meilleurBorne.valeur, max: meilleurBorne.max });
+                return coutListe === undefined || solde?.illimite || type === 'full' ? libelle : t('certification.tests.avecCout', { detail: libelle, cout: cout(coutListe) });
+              })()}
+            </Text>
+          </View>
           {/* Les lignes vivent en un seul bloc collé (patron ListeCollee, comme les listes du
               Secondaire) : un seul contour, un trait fin entre les lignes, la ligne conseillée en
               fond soleil très doux — la bordure jaune individuelle des cartes séparées disparaît. */}
@@ -165,23 +189,26 @@ export function ListeTests() {
             {tests.map((test, index) => {
               const statut = statutLigne(test);
               const estConseille = conseille?.id === test.id;
-              const libelleStatut = t(`certification.tests.listes.statut.${statut}`);
+              // Le test complet reste « Bientôt » : aucune ligne ne le lance (décision de Benny, maquette T6).
+              const libelleStatut = type === 'full' ? t('certification.tests.statut.bientot') : t(`certification.tests.listes.statut.${statut}`);
               // Échelle de la barre du meilleur, par type : un mini se lit sur ses questions (un compte
               // de bonnes réponses) ; un mixte et un complet sur le total — le nombre de questions pris
               // pour échelle donnait « Meilleur : 550 sur 20 » (terrain du 27 octobre 2026) ; un
               // demi-test sur sa section, la moitié du total. Sans réglages, pas d'échelle connue :
               // la ligne garde alors son texte seul, sans barre.
-              const echelle = type === 'mini'
+              const echelle = type === 'mini' || (type === 'mixed' && !mixteAncienneEchelle)
                 ? test.questions
                 : reglagesOk
                   ? type === 'listening' || type === 'reading'
                     ? reglagesOk.objectifMax / 2
                     : reglagesOk.objectifMax
                   : null;
+              // Jamais au-dessus de son maximum : « 705 sur 495 » est ramené à 495.
+              const meilleurLigne = test.meilleurScoreMax === null || echelle === null ? test.meilleurScoreMax : Math.min(test.meilleurScoreMax, echelle);
               // Repère de l'objectif ramené à l'échelle de la barre (l'objectif est un score total,
               // donc sa moitié sur un demi-test) ; jamais sur un mini : un compte de questions ne se
               // compare pas à un score TOEIC.
-              const repere = echelle !== null && objectifTotal !== null && type !== 'mini'
+              const repere = echelle !== null && objectifTotal !== null && type !== 'mini' && !(type === 'mixed' && !mixteAncienneEchelle)
                 ? type === 'listening' || type === 'reading'
                   ? objectifTotal / 2
                   : objectifTotal
@@ -190,24 +217,24 @@ export function ListeTests() {
               // rapport à l'objectif total) : la carte visible, elle, ne porte aucun texte d'objectif.
               const libelleBarre = echelle === null
                 ? ''
-                : test.meilleurScoreMax === null
+                : meilleurLigne === null
                   ? repere !== null && objectifTotal !== null
                     ? t('certification.tests.listes.barreVideObjectif', { objectif: objectifTotal })
                     : t('certification.tests.listes.pasDeScoreLigne')
                   : repere === null || objectifTotal === null
-                    ? t('certification.tests.listes.meilleurSur', { score: test.meilleurScoreMax, max: echelle })
-                    : test.meilleurScoreMax > repere
-                      ? t('certification.tests.listes.barreAuDessus', { score: test.meilleurScoreMax, max: echelle, objectif: objectifTotal })
-                      : test.meilleurScoreMax < repere
-                        ? t('certification.tests.listes.barreEnDessous', { score: test.meilleurScoreMax, max: echelle, objectif: objectifTotal })
-                        : t('certification.tests.listes.barreObjectifAtteint', { score: test.meilleurScoreMax, max: echelle, objectif: objectifTotal });
+                    ? t('certification.tests.listes.meilleurSur', { score: meilleurLigne, max: echelle })
+                    : meilleurLigne > repere
+                      ? t('certification.tests.listes.barreAuDessus', { score: meilleurLigne, max: echelle, objectif: objectifTotal })
+                      : meilleurLigne < repere
+                        ? t('certification.tests.listes.barreEnDessous', { score: meilleurLigne, max: echelle, objectif: objectifTotal })
+                        : t('certification.tests.listes.barreObjectifAtteint', { score: meilleurLigne, max: echelle, objectif: objectifTotal });
               return (
                 <Pressable
                   key={test.id}
                   testID={`ligne-${test.kind}-${test.numero}`}
                   accessibilityRole="button"
                   accessibilityLabel={`${t(CLE_NUMERO_LIGNE[type], { numero: test.numero })}. ${libelleStatut}`}
-                  disabled={enCours !== null}
+                  disabled={enCours !== null || type === 'full'}
                   onPress={() => (test.fini ? router.push({ pathname: '/certification/test-detail', params: { kind: type, id: test.id, ...(type === 'mini' && test.part ? { partie: String(test.part) } : {}) } } as never) : void lancer(test, exam, reglagesOk))}
                   style={[
                     styles.ligneCollee,
@@ -225,16 +252,21 @@ export function ListeTests() {
                       </Text>
                       <Text style={[typo.legende, { color: theme.texte.principal }]}>{libelleStatut}</Text>
                     </View>
-                    {estConseille ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.tests.listes.conseille')}</Text> : null}
+                    {estConseille ? (
+                      <View style={[styles.conseille, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                        <Target size={12} color={theme.texte.surCouleur} strokeWidth={2} />
+                        <Text style={[typo.legende, { color: theme.texte.surCouleur }]}>{t('certification.tests.listes.conseille')}</Text>
+                      </View>
+                    ) : null}
                     {echelle !== null ? (
                       <>
                         {/* Le nombre reste écrit, en compact (« 980 sur 990 ») : jamais la barre seule. */}
                         <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                          {test.meilleurScoreMax === null ? t('certification.tests.listes.pasDeScoreLigne') : null}
-                          {test.meilleurScoreMax !== null ? <Text style={[styles.scoreNombre, { color: theme.texte.principal }]}>{test.meilleurScoreMax}</Text> : null}
-                          {test.meilleurScoreMax !== null ? ` ${t('certification.tests.listes.surMax', { max: echelle })}` : null}
+                          {meilleurLigne === null ? t('certification.tests.listes.pasDeScoreLigne') : null}
+                          {meilleurLigne !== null ? <Text style={[styles.scoreNombre, { color: theme.texte.principal }]}>{meilleurLigne}</Text> : null}
+                          {meilleurLigne !== null ? ` ${t('certification.tests.listes.surMax', { max: echelle })}` : null}
                         </Text>
-                        <BarreScoreObjectif valeur={test.meilleurScoreMax} max={echelle} objectif={repere} libelle={libelleBarre} />
+                        <BarreScoreObjectif valeur={meilleurLigne} max={echelle} objectif={repere} libelle={libelleBarre} />
                         {/* Tentatives et total réel du test sous la barre : le total, toujours — la
                             nouveauté (« questions nouvelles ») n'est plus présentée comme le nombre de
                             questions (décision de Benny du 25 octobre 2026) ; elle ne sert plus qu'à la
@@ -281,6 +313,8 @@ const styles = StyleSheet.create({
   scoreNombre: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 15, lineHeight: 20 },
   pastilleLigne: { width: 34, height: 34, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
+  bandeau: { borderWidth: bord.normal, borderRadius: rayon.l, padding: espace[4], gap: espace[3] },
+  conseille: { flexDirection: 'row', alignItems: 'center', gap: espace[2], alignSelf: 'flex-start', borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1 },
   pastille: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   texte: { flex: 1, minWidth: 0, gap: 2 },
   haut: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },

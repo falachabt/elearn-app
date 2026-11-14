@@ -181,7 +181,7 @@ describe('C5 · Fiche d’une notion', () => {
     await monter(<FicheNotion />);
     await fireEvent.press(await screen.findByText(t.fiche.entrainer));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/serie', params: { notion: FICHE_TEST.id } });
-    await fireEvent.press(screen.getByText(t.fiche.ancrageLigneSans.replace('{{n}}', '1')));
+    await fireEvent.press(screen.getByText(t.fiche.quizLigne.replace('{{n}}', '1')));
     expect(router.push).toHaveBeenLastCalledWith({ pathname: '/certification/serie', params: { notion: FICHE_TEST.id, ancrage: '1' } });
   });
 
@@ -255,12 +255,11 @@ describe('C4 · Cours (dans Réviser)', () => {
 });
 
 describe('N3 · Réviser, Parcours', () => {
-  it('ouvre la séance du jour, la carte de maîtrise et passe au carnet', async () => {
+  it('montre le plan local sans date et lance la mission depuis le bouton collé', async () => {
     await monter(<ReviserToeic />);
-    await fireEvent.press(await screen.findByLabelText(new RegExp(t.reviser.parcoursTitre)));
-    expect(router.push).toHaveBeenCalledWith('/certification/seance');
-    await fireEvent.press(screen.getByText(t.reviser.partiesTitre));
-    expect(router.push).toHaveBeenCalledWith('/certification/carte');
+    expect(await screen.findByText(t.monPlan.sansDateTitre)).toBeTruthy();
+    await fireEvent.press(screen.getByText(t.monPlan.commencerMission));
+    expect(router.push).toHaveBeenCalled();
   });
 });
 

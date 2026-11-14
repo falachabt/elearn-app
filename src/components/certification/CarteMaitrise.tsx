@@ -29,10 +29,15 @@ export function CarteMaitrise() {
   }, []);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser' as never));
+  const faibleCollant = etat.phase === 'ok' ? partieLaPlusFaible(etat.valeur.revision.parties) : null;
   const etiquette = (e: 'acquise' | 'en_progres' | 'fragile' | 'pas_commencee') => t(`certification.resultat.etats.${e}`);
 
   return (
-    <Ecran insetBas={false} entete={<EnteteToeic titre={t('certification.carteMaitrise.entete')} onRetour={retour} />}>
+    <Ecran
+      insetBas={false}
+      entete={<EnteteToeic titre={t('certification.carteMaitrise.entete')} onRetour={retour} />}
+      pied={faibleCollant === null ? undefined : <Bouton libelle={t('certification.carteMaitrise.voir', { n: faibleCollant })} onPress={() => router.push({ pathname: '/certification/partie', params: { n: String(faibleCollant) } } as never)} retour />}
+    >
       {etat.phase === 'chargement' ? <Squelette lignes={5} /> : null}
       {etat.phase === 'erreur' ? (
         <View style={styles.groupe}>
@@ -79,7 +84,6 @@ export function CarteMaitrise() {
               <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.carteMaitrise.fragile', { n: totaux.fragile })}</Text>
               <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.carteMaitrise.pasCommencee', { n: totaux.pas_commencee })}</Text>
             </View>
-            <Bouton variante="secondaire" libelle={t('certification.carteMaitrise.voir', { n: faible })} onPress={() => router.push({ pathname: '/certification/partie', params: { n: String(faible) } } as never)} />
           </View>
         );
       })() : null}

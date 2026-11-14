@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { screen } from '@testing-library/react-native';
 
+import { fr } from '@/i18n/fr';
 import { definirApi } from '@/services/certification/api';
 import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
 import { MOTS_TEST, REVISION_TEST, SEANCE_TEST } from '@/services/certification/__tests__/fixturesRevision';
@@ -62,7 +63,7 @@ describe('Onglets TOEIC avant diagnostic terminé', () => {
 
   it('Réviser : onglets Parcours, Parties, Cours, Carnet', async () => {
     await monter(<ReviserToeic />);
-    expect(await screen.findByText('Parties 1 à 7')).toBeTruthy();
-    expect(screen.getByText('Carnet de mots')).toBeTruthy();
+    expect(await screen.findByText(fr.certification.monPlan.aujourdhui)).toBeTruthy();
+    expect(screen.getByText(fr.certification.reviser.onglets.carnet)).toBeTruthy();
   });
 });

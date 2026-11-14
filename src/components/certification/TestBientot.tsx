@@ -15,7 +15,7 @@ import type { ProgressionTest, TestFixe, TypeTestFixe } from '@/services/certifi
 import { lireProfil } from '@/services/profil';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { espace, typo } from '@/theme/theme';
+import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
@@ -33,6 +33,7 @@ export function TestBientot() {
   const { cout } = useTextesCredits();
   const demiCout = couts.cert_mock_half;
   const completCout = couts.cert_mock_full;
+  const vingtCout = couts.cert_mock_mini_twenty;
   const suiviMoitie = (kind: 'half_listening' | 'half_reading') => (totalDemi === null ? undefined : progression?.find((p) => p.kind === kind));
   const avecCout = (base: string) => (demiCout === undefined ? base : `${base} · ${cout(demiCout)}`);
   const [test, setTest] = useState<TestFixe | null>(null);
@@ -91,7 +92,6 @@ export function TestBientot() {
   };
 
   const demi = kind === 'half';
-  const pret = !chargement && test !== null && !enCours;
 
   return (
     <Ecran
@@ -99,40 +99,58 @@ export function TestBientot() {
       pied={
         demi ? null : (
           <View style={styles.pied}>
-            <Bouton libelle={t('certification.tests.bientotLancer')} desactive={!pret} onPress={() => void lancer('full')} />
+            {/* Test complet : « Bientôt » (maquette T6), bouton désactivé, aucun départ. */}
+            <Bouton libelle={t('certification.tests.bientotLancer')} desactive onPress={() => {}} />
           </View>
         )
       }
     >
       {banniere}
-      <Carte style={{ gap: espace[2] }}>
-        <View style={styles.titre}>
-          <Clock size={20} color={theme.texte.principal} strokeWidth={2} />
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{demi ? t('certification.tests.demiTitre') : t('certification.tests.completTitre')}</Text>
-        </View>
-        <Text style={[typo.petit, { color: theme.texte.principal }]}>
-          {demi ? t('certification.tests.demiTexte') : t('certification.tests.completTexte')}
-        </Text>
-        {chargement ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.chargement')}</Text> : null}
-        {!chargement && test === null ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.indisponible')}</Text> : null}
-        {manque ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.creditsInsuffisants')}</Text> : null}
-        {codeEchec ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.mini.erreurCode', { code: codeEchec })}</Text> : null}
-      </Carte>
+      {demi ? (
+        <Carte style={{ gap: espace[2] }}>
+          <View style={styles.titre}>
+            <Clock size={20} color={theme.texte.principal} strokeWidth={2} />
+            <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('certification.tests.demiTitre')}</Text>
+          </View>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.demiTexte')}</Text>
+          {chargement ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.chargement')}</Text> : null}
+          {!chargement && test === null ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.indisponible')}</Text> : null}
+          {manque ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.creditsInsuffisants')}</Text> : null}
+          {codeEchec ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.mini.erreurCode', { code: codeEchec })}</Text> : null}
+        </Carte>
+      ) : (
+        <Carte style={{ gap: espace[3] }}>
+          <View style={[styles.pastille, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+            <Clock size={14} color={theme.texte.surCouleur} strokeWidth={2} />
+            <Text style={[typo.legende, { color: theme.texte.surCouleur }]}>{t('certification.tests.bientotTitre')}</Text>
+          </View>
+          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('certification.tests.bientotSousTitre')}</Text>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.bientotTexte')}</Text>
+        </Carte>
+      )}
       {demi ? (
         <>
           <LigneChoix icone={Layers} titre={t('certification.tests.ecouteTitre')} aide={avecSuivi(t, avecCout(t('certification.tests.ecouteAide')), suiviMoitie('half_listening'), totalDemi ?? 0)} onPress={() => void lancer('half_listening')} />
           <LigneChoix icone={Layers} titre={t('certification.tests.lectureTitre')} aide={avecSuivi(t, avecCout(t('certification.tests.lectureAide')), suiviMoitie('half_reading'), totalDemi ?? 0)} onPress={() => void lancer('half_reading')} />
         </>
       ) : (
-        <Carte style={{ gap: espace[2] }}>
-          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.ecouteAide')}</Text>
-          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.lectureAide')}</Text>
-          {completCout !== undefined ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{cout(completCout)}</Text> : null}
-        </Carte>
+        <>
+          <LigneChoix
+            icone={Layers}
+            titre={t('certification.tests.bientotMixteTitre')}
+            aide={vingtCout === undefined ? t('certification.tests.bientotMixteAide') : t('certification.tests.bientotMixteAideCout', { cout: cout(vingtCout) })}
+            onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mixed' } } as never)}
+          />
+          {completCout !== undefined ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.bientotCoutPrevu', { cout: cout(completCout) })}</Text> : null}
+        </>
       )}
       <Bouton variante="secondaire" libelle={t('certification.tests.voirTentatives')} onPress={() => router.push({ pathname: '/certification/tentatives', params: { kind: demi ? 'half' : 'full' } } as never)} />
     </Ecran>
   );
 }
 
-const styles = StyleSheet.create({ pied: { gap: espace[2] }, titre: { flexDirection: 'row', alignItems: 'center', gap: espace[2] } });
+const styles = StyleSheet.create({
+  pied: { gap: espace[2] },
+  titre: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  pastille: { flexDirection: 'row', alignItems: 'center', gap: espace[2], alignSelf: 'flex-start', borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1 },
+});

@@ -4,6 +4,7 @@ import { jourDe, type Jour } from './jours';
 import { titreAffiche } from './titre';
 import type { EtatMaitrise } from './certMaitrise';
 import type { TypeSignalement } from './signalement';
+import { lirePlanServeur, type PlanFrise } from './planFrise';
 import type { BlocServi, DefTest, DemarrageMini, ProgressionTest, TestFixe, TypeDefTest, TypeTestFixe, EtatGains, Examen, PeriodeStats, ResultatGain, Stats, TentativeListee, FinTentative, MotCarnetServi, MotsARevoir, NotionFiche, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatMot, ResultatReponse, Revision, SeanceServie, Tentative } from './types';
 
 /**
@@ -36,6 +37,10 @@ export interface CertApi {
   acheterExplication?(questionId: string): Promise<ExplicationAchetee>;
   /** Mots du carnet en boîte 1 (« à revoir ») et leur thème le plus fréquent. */
   motsARevoir(): Promise<MotsARevoir>;
+  /** Plan de formation construit (D-42) ; `null` tant que le serveur n'en a pas construit. */
+  lirePlanFormation(exam: string): Promise<PlanFrise | null>;
+  /** Construit (ou recalcule, idempotent) le plan puis le renvoie ; `null` si rien n'est planifiable. */
+  construirePlanFormation(exam: string): Promise<PlanFrise | null>;
   /** Notions avec état (F3) et maîtrise des sept parties (F4) : C2, C3, C4. */
   lireRevision(exam: string, jourLocal: Jour): Promise<Revision>;
   /** Carnet de l'élève (F5) : tous les mots, le filtrage se fait sur l'appareil. */
@@ -105,6 +110,16 @@ function verifier<T>(res: { data: T | null; error: { message: string } | null })
 type Revisee = 'lireRevision' | 'lireCarnet' | 'composerSeance' | 'lireNotion' | 'ouvrirNotion' | 'envoyerResultatsMots' | 'terminerSeance';
 type Testee = 'demarrerMini' | 'listerTests' | 'demarrerTest' | 'listerDefsTests' | 'demarrerDefTest' | 'lireTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireProgressionTests' | 'lireStats' | 'lireGains' | 'reclamerGain' | 'signalerErreur';
 const baseServeur: Omit<CertApi, Revisee | Testee> = {
+  async lirePlanFormation(exam) {
+    const res = await rpcAuthentifie('cert_plan_get', { p_exam: exam });
+    return lirePlanServeur(verifier(res));
+  },
+  async construirePlanFormation(exam) {
+    const res = await rpcAuthentifie('cert_plan_build', { p_exam: exam });
+    verifier(res);
+    const lu = await rpcAuthentifie('cert_plan_get', { p_exam: exam });
+    return lirePlanServeur(verifier(lu));
+  },
   async listerExamens() {
     const res = await getSupabase().from('cert_exams').select('code,name,subtitle,duration_min,question_count,goal_steps,sec_per_question,sort').order('sort', { ascending: false });
     return verifier(res) as Examen[];

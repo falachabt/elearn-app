@@ -8,7 +8,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { CertApi, ExplicationAchetee } from '../api';
 import { etatMaitrise } from '../certMaitrise';
-import { jourDe, jourPlus } from '../jours';
+import { jourDe, jourPlus, lundiDe } from '../jours';
+import type { EtapePlan, PlanFrise, TypeEtape } from '../planFrise';
 import { plageScore } from '../certScore';
 import { titreAffiche } from '../titre';
 import { lireReglages } from '../reglages';
@@ -254,7 +255,33 @@ function statsDemoFixes(periode: PeriodeStats, jour: Parameters<typeof jourPlus>
   };
 }
 
+/** Plan d'essai (Expo web) : un calendrier relatif à aujourd'hui, pour voir la frise sans serveur. */
+function planDemo(): PlanFrise {
+  const auj = jourDe(new Date());
+  const e = (id: string, position: number, type: TypeEtape, titre: string, minutes: number, etat: EtapePlan['etat'], extra: Partial<EtapePlan> = {}): EtapePlan => ({
+    id, position, type, uniteKind: null, uniteId: null, titre, detail: null, minutes, etat, faitLe: null, ...extra,
+  });
+  const notion = contenu.notions[0];
+  const jours: PlanFrise['jours'] = [
+    { jour: auj, minutes: 17, jourTest: false, etapes: [
+      e('a1', 0, 'rappel', notion.title, 3, 'reportee', { uniteKind: 'notion', uniteId: notion.id, detail: 'Grammaire' }),
+      e('a2', 1, 'mini_test', 'Mini-test partie 5', 10, 'en_cours', { detail: '10 questions' }),
+      e('a3', 2, 'decouverte', 'Faux amis', 4, 'a_faire', { uniteKind: 'words', detail: 'Vocabulaire' }),
+    ] },
+    { jour: jourPlus(auj, 1), minutes: 7, jourTest: false, etapes: [e('b1', 0, 'decouverte', contenu.notions[1]?.title ?? 'Voix passive', 3, 'a_faire', { uniteKind: 'notion', uniteId: contenu.notions[1]?.id ?? 'n', detail: 'Grammaire' }), e('b2', 1, 'pratique', 'Série sur la notion', 4, 'a_faire')] },
+    { jour: jourPlus(lundiDe(auj), 5), minutes: 120, jourTest: true, etapes: [e('c1', 0, 'test_complet', 'Test complet', 120, 'a_faire', { detail: 'Écoute et lecture' })] },
+    { jour: jourPlus(lundiDe(auj), 7), minutes: 6, jourTest: false, etapes: [e('d1', 0, 'decouverte', 'Méthode : photos', 6, 'a_faire')] },
+  ].filter((j) => j.jour >= auj);
+  return { dateExamen: jourPlus(auj, 70), couverture: { unites: 40, vues: 12, validees: 6, maitrisees: 2, pourcent: 34 }, jours, local: false };
+}
+
 export const apiDemo: CertApi = {
+  async lirePlanFormation() {
+    return planDemo();
+  },
+  async construirePlanFormation() {
+    return planDemo();
+  },
   async listerExamens() {
     return [EXAMEN];
   },
@@ -532,8 +559,8 @@ export const apiDemo: CertApi = {
       // Sans stockage lisible, on retombe sur l'état par défaut.
     }
     return [
-      { kind: 'half_listening', statut: 'pas_fait', tentatives: 0, dernierScore: null, meilleurScore: null, derniereDate: null, tentativeEnCours: false },
-      { kind: 'half_reading', statut: 'fait', tentatives: 3, dernierScore: 385, meilleurScore: 705, derniereDate: '2026-10-18', tentativeEnCours: false },
+      { kind: 'half_listening', statut: 'fait', tentatives: 2, dernierScore: 380, meilleurScore: 410, derniereDate: '2026-10-22', tentativeEnCours: false },
+      { kind: 'half_reading', statut: 'fait', tentatives: 3, dernierScore: 385, meilleurScore: 430, derniereDate: '2026-10-18', tentativeEnCours: false },
       { kind: 'full', statut: 'pas_fait', tentatives: 0, dernierScore: null, meilleurScore: null, derniereDate: null, tentativeEnCours: false },
     ];
   },

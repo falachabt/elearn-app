@@ -1,6 +1,7 @@
 import type { CertApi } from '../api';
 import type { Examen, FinTentative, QuestionServie, ReponseEnvoyee, ResultatReponse, Tentative } from '../types';
 import { LIGNES_SEED } from './fixtures';
+import type { PlanFrise } from '../planFrise';
 import type { DemarrageMini, EtatGains, MotCarnetServi, NotionFiche, Revision, ResultatGain, ResultatMot, SeanceServie, Stats, TentativeListee } from '../types';
 
 export const EXAMEN_TEST: Examen = {
@@ -85,7 +86,7 @@ export const STATS_VIDE = (periode: Stats['periode']): Stats => ({
 export type Appels = {
   demarrer: number; terminer: number; plans: unknown[]; envois: number; series: unknown[]; mots: string[]; explications: string[];
   notionsOuvertes: { id: string; secondes: number }[]; resultatsMots: ResultatMot[][]; seances: unknown[]; compositions: { minutes: number; eviter: number | null }[];
-  minis: { partie: number | null; longueur: number }[]; abandons: { id: string; raison: string }[]; gainsReclames: string[]; stats: number[]; signalements: { question: string; type: string; uuid: string }[];
+  minis: { partie: number | null; longueur: number }[]; abandons: { id: string; raison: string }[]; gainsReclames: string[]; stats: number[]; signalements: { question: string; type: string; uuid: string }[]; plansLus?: number; plansConstruits?: number;
 };
 
 /** API en mémoire : la bonne réponse est toujours l'option 0 ; les notions suivent la partie. */
@@ -100,6 +101,10 @@ export function creerApiFausse(options: {
   reglages?: Record<string, unknown>;
   /** Série : les questions servies partagent un même groupe (conversation ou texte), comme les parties 3, 4, 6 et 7. */
   groupeSerie?: boolean;
+  /** Plan servi par `cert_plan_get` : absent = pas encore construit (null), 'echec' = erreur réseau. */
+  plan?: PlanFrise | 'echec' | null;
+  /** Plan renvoyé par `cert_plan_build` quand `plan` est absent. */
+  planConstruit?: PlanFrise | null;
 } = {}) {
   const appels: Appels = { demarrer: 0, terminer: 0, plans: [], envois: 0, series: [], mots: [], explications: [], notionsOuvertes: [], resultatsMots: [], seances: [], compositions: [], minis: [], abandons: [], gainsReclames: [], stats: [], signalements: [] };
   const minis = new Map<string, { part: number | null; length: number; questions: QuestionServie[] }>();
@@ -202,6 +207,16 @@ export function creerApiFausse(options: {
     },
     async motsARevoir() {
       return options.mots ?? { total: 0, theme: null };
+    },
+    async lirePlanFormation() {
+      appels.plansLus = (appels.plansLus ?? 0) + 1;
+      if (options.plan === 'echec') throw new Error('réseau');
+      return options.plan ?? null;
+    },
+    async construirePlanFormation() {
+      appels.plansConstruits = (appels.plansConstruits ?? 0) + 1;
+      if (options.plan === 'echec') throw new Error('réseau');
+      return options.planConstruit ?? null;
     },
     async lireRevision() {
       if (options.revision === 'echec') throw new Error('réseau');

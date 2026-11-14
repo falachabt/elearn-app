@@ -86,3 +86,30 @@ export function synthesesParties(tests: DefTest[]): SynthesePartie[] {
   const conseillee = candidates.find((l) => l.nouvelles === meilleure)?.partie ?? null;
   return lignes.map(({ encore: _encore, ...l }) => ({ ...l, conseillee: l.partie === conseillee }));
 }
+
+/**
+ * Score affichable d'un test composé (cahier D-55, D-58) : toujours « x sur n », jamais au-dessus de son maximum.
+ * - mini par partie : bonnes réponses sur le nombre de questions du test ;
+ * - mixte : bonnes réponses sur ses questions (« 13 sur 20 »). Un ancien score estimé sur 990 (valeur au-dessus du
+ *   nombre de questions) reste lisible sur le total, sans inventer de « 13 sur 990 » ;
+ * - demi-test : score de section sur la moitié du total (495) ;
+ * - test complet : score sur le total (990).
+ * Une valeur au-dessus du maximum de sa section est ramenée à ce maximum : l'écran ne montre jamais « 705 sur 495 ».
+ * `objectifMax` est le score maximal de l'examen (990) ; `null` quand les réglages ne sont pas connus.
+ */
+export function scoreBorne(kind: TypeDefTest, score: number | null, questions: number, objectifMax: number | null): { valeur: number; max: number } | null {
+  if (score === null) return null;
+  let max: number | null;
+  if (kind === 'mini') max = questions;
+  else if (kind === 'mixed') max = score <= questions || objectifMax === null ? questions : objectifMax;
+  else if (kind === 'listening' || kind === 'reading') max = objectifMax === null ? null : objectifMax / 2;
+  else max = objectifMax;
+  if (max === null) return null;
+  return { valeur: Math.max(0, Math.min(score, max)), max };
+}
+
+/** Avancement « x faits sur n » d'un ensemble de tests du même type (D-57) ; `null` quand la liste n'est pas connue ou vide. */
+export function avancement(tests: DefTest[] | null | undefined): { faits: number; total: number } | null {
+  if (!tests || tests.length === 0) return null;
+  return { faits: nombreFaits(tests), total: tests.length };
+}

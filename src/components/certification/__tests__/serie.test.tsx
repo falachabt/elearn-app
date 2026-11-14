@@ -93,7 +93,7 @@ describe('B8 à B9 · Série', () => {
   it('bonne réponse : explication B9 avec badge, piège et mot clé ajoutable', async () => {
     await monter(<Serie />);
     await repondre('A');
-    expect(await screen.findByText(t.explication.badge)).toBeTruthy();
+    await fireEvent.press(await screen.findByText(t.explication.voirJustification));
     expect(screen.getByText(/Piège de la forme du mot/)).toBeTruthy();
     expect(suivre).toHaveBeenCalledWith('cert_exercise_answered', expect.objectContaining({ juste: true }));
     await fireEvent.press(screen.getByText(/^\+ word/));
@@ -103,9 +103,9 @@ describe('B8 à B9 · Série', () => {
   it('mauvaise réponse : indique la réponse de l’élève', async () => {
     await monter(<Serie />);
     await repondre('B');
-    await screen.findByText(t.explication.badge);
-    expect(screen.getByText(t.exercice.grilleTienne)).toBeTruthy();
-    expect(screen.getByText(/^B · /)).toBeTruthy();
+    await screen.findByText(t.explication.voirJustification);
+    expect(screen.getAllByText(t.exercice.faux).length).toBeGreaterThan(0);
+    expect(screen.getByText(t.exercice.juste)).toBeTruthy();
     expect(suivre).toHaveBeenCalledWith('cert_exercise_answered', expect.objectContaining({ juste: false }));
   });
 
@@ -113,6 +113,7 @@ describe('B8 à B9 · Série', () => {
     mockDepenser.mockResolvedValue({ statut: 'spent', cout: 1, solde: 11, contenu: { explanation: 'Parce que a.', trap: null } });
     await monter(<Serie />);
     await repondre('A');
+    await fireEvent.press(await screen.findByText(t.explication.voirJustification));
     await fireEvent.press(await screen.findByText(t.explication.detail, { exact: false }));
     expect(await screen.findByText(t.explication.plusTard)).toBeTruthy();
     await fireEvent.press(screen.getByText(t.explication.voir));
@@ -125,6 +126,7 @@ describe('B8 à B9 · Série', () => {
     mockDepenser.mockResolvedValue({ statut: 'unlimited', cout: 0, solde: 0, contenu: { explanation: 'Détail Pass.', trap: null } });
     await monter(<Serie />);
     await repondre('A');
+    await fireEvent.press(await screen.findByText(t.explication.voirJustification));
     await fireEvent.press(await screen.findByText(t.explication.detail, { exact: false }));
     expect(await screen.findByText('Détail Pass.', { exact: false })).toBeTruthy();
     expect(screen.queryByText(t.explication.voir)).toBeNull();
@@ -157,7 +159,7 @@ describe('B8 à B9 · Série', () => {
   it('thème sombre : l’explication s’affiche aussi', async () => {
     await monter(<Serie />, 'sombre');
     await repondre('A');
-    expect(await screen.findByText(t.explication.badge)).toBeTruthy();
+    expect(await screen.findByText(t.explication.voirJustification)).toBeTruthy();
   });
 });
 
@@ -170,11 +172,11 @@ describe('B8 · Groupe à validation unique (v28)', () => {
     await fireEvent.press(await screen.findByText(/^A\b/));
     await fireEvent.press(onglets[1]!);
     await fireEvent.press(await screen.findByText(/^A\b/));
-    expect(screen.queryByText(t.explication.badge)).toBeNull();
+    expect(screen.queryByText(t.explication.voirJustification)).toBeNull();
     await fireEvent.press(screen.getByText(t.exercice.validerN.replace('{{n}}', '2').replace('{{total}}', '3')));
     expect(await screen.findByText(t.exercice.pasToutRepondu)).toBeTruthy();
     await fireEvent.press(screen.getByText(t.exercice.validerQuandMeme.replace('{{n}}', '2').replace('{{total}}', '3')));
-    expect(await screen.findByText(t.explication.badge)).toBeTruthy();
+    expect(await screen.findByText(t.explication.voirJustification)).toBeTruthy();
     await fireEvent.press(screen.getByText(t.exercice.ongletSuivant));
     await fireEvent.press(screen.getByText(t.exercice.ongletSuivant));
     await fireEvent.press(screen.getByText(t.serie.terminer));
@@ -187,7 +189,7 @@ describe('B11 · Fin de série', () => {
     await monter(<Serie />);
     for (let i = 0; i < 3; i++) {
       await repondre(i === 0 ? 'B' : 'A');
-      await screen.findByText(t.explication.badge);
+      await screen.findByText(t.explication.voirJustification);
       const derniere = i === 2;
       await fireEvent.press(screen.getByText(derniere ? t.serie.terminer : t.serie.suivante));
       if (!derniere) await screen.findAllByText(/Question \d+/);

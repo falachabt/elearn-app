@@ -3,7 +3,7 @@ import { obtenirApi } from './api';
 import { obtenirReglages } from './etat';
 import { abandonnerMini, etatDeReprise, lireMini, type EtatMini } from './miniTest';
 import type { Reglages } from './reglages';
-import type { ProgressionTest, TentativeListee } from './types';
+import type { DefTest, ProgressionTest, TentativeListee, TypeDefTest } from './types';
 
 export type Reprise = { etat: EtatMini; statut: 'en_cours' | 'a_rendre' };
 
@@ -16,6 +16,8 @@ export type DonneesTests = {
   tentatives: TentativeListee[] | null;
   /** Suivi des tests faits (statut, dernier et meilleur score) ; `null` sans réseau. */
   progression: ProgressionTest[] | null;
+  /** Tests composés de chaque type (pour « x faits sur n », D-57) ; `null` quand aucune liste du serveur n'a répondu. */
+  defs: Partial<Record<TypeDefTest, DefTest[]>> | null;
   /** Test périmé abandonné au chargement : `rembourse` dit si le serveur a rendu les crédits. */
   abandonAuto: { rembourse: boolean } | null;
 };
@@ -48,6 +50,15 @@ export async function chargerTests(): Promise<DonneesTests> {
       }
     }
   }
-  const [tentatives, progression] = await Promise.all([obtenirApi().listerTentatives(exam).catch(() => null), obtenirApi().lireProgressionTests().catch(() => null)]);
-  return { exam, reglages, reprise, tentatives, progression, abandonAuto };
+  const types: TypeDefTest[] = ['mini', 'mixed', 'listening', 'reading', 'full'];
+  const [tentatives, progression, listes] = await Promise.all([
+    obtenirApi().listerTentatives(exam).catch(() => null),
+    obtenirApi().lireProgressionTests().catch(() => null),
+    Promise.all(types.map((type) => obtenirApi().listerDefsTests(exam, type).catch(() => null))),
+  ]);
+  // Une liste qui n'a pas répondu laisse son type sans barre d'avancement : aucun total n'est inventé.
+  const defs: DonneesTests['defs'] = listes.every((l) => l === null)
+    ? null
+    : Object.fromEntries(types.flatMap((type, i) => (listes[i] ? [[type, listes[i]]] : [])));
+  return { exam, reglages, reprise, tentatives, progression, defs, abandonAuto };
 }

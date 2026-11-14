@@ -126,7 +126,7 @@ export default function LayoutOnglets() {
             </TabTrigger>
             {barreToeic ? (
               <TabTrigger name="tests" href={"/tests" as never} asChild>
-                <Onglet libelle={t('onglets.tests')} icone="ribbon" central />
+                <Onglet libelle={t('onglets.tests')} icone="ribbon" central trophee />
               </TabTrigger>
             ) : (
               <TabTrigger name="photo" href="/photo" asChild>

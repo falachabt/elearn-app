@@ -470,7 +470,7 @@ describe('A6 · Diagnostic : consignes avant chaque partie (D-P1, D-P3)', () => 
     creerApiFausse();
     definirApi(creerApiFausse().api);
     await monter(<Diagnostic />);
-    expect(await screen.findByText(fr.certification.consignes.partie1.titre)).toBeTruthy();
+    expect(await screen.findByText(fr.certification.consignes.cartes.titrePartie.replace('{{n}}', '1').replace('{{nom}}', fr.certification.consignes.partie1.titre))).toBeTruthy();
     expect(screen.queryByText(entete(1), { exact: false })).toBeNull();
     fireEvent.press(screen.getByRole('button', { name: fr.certification.consignes.commencer.replace('{{n}}', '1') }));
     expect(await screen.findByText(entete(1), { exact: false })).toBeTruthy();

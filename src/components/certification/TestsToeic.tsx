@@ -10,7 +10,8 @@ import { minutesSecondes } from '@/services/certification/format';
 import { suiviDe, type SuiviTest } from '@/services/certification/suivi';
 import { abandonnerMini, longueursMiniServies, tempsRestantMs } from '@/services/certification/miniTest';
 import { chargerTests, derniereEstimation, testsFaits, type DonneesTests } from '@/services/certification/testsAccueil';
-import type { ProgressionTest } from '@/services/certification/types';
+import { avancement, scoreBorne } from '@/services/certification/listesTests';
+import type { ProgressionTest, TentativeListee } from '@/services/certification/types';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -82,12 +83,9 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   const total = donnees.reglages.objectifMax;
   const { theme, sombre } = useTheme();
   const minis = donnees.tentatives ?? [];
-  const suiviMiniPartie = suiviDe(minis.filter((x) => x.part !== null), 'mini');
-  const suiviMiniMixte = suiviDe(minis.filter((x) => x.part === null), 'mini');
   const progression = (kind: ProgressionTest['kind']) => donnees.progression?.find((p) => p.kind === kind);
   const pEcoute = progression('half_listening');
   const pLecture = progression('half_reading');
-  const pComplet = progression('full');
   const corrigeQ = couts.cert_mock_review;
   const detail = (base: string, c: number | undefined) => (c === undefined || pass ? base : t('certification.tests.avecCout', { detail: base, cout: cout(c) }));
   // La carte ne vise pas une partie : elle annonce les longueurs de base que le serveur sert selon les parties
@@ -108,24 +106,37 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
     if (s === 'fait') return { statut: 'fait', libelleStatut: t('certification.tests.statut.fait') };
     return { statut: 'vide', libelleStatut: t('certification.tests.statut.pasFait') };
   };
-  const statutMini = (suivi: SuiviTest): Pick<ProprietesCarteTest, 'statut' | 'libelleStatut' | 'score'> => {
-    const derniere = suivi.derniere;
-    if (!derniere) return { statut: 'vide', libelleStatut: t('certification.tests.statut.pasFait') };
-    // Un mini-test se lit en bonnes réponses sur le nombre de questions (« 8 sur 10 »), pas en score exact.
-    const bonnes = Object.values(derniere.perPart ?? {}).reduce((somme, p) => somme + p.correct, 0);
-    return { statut: 'fait', libelleStatut: t('certification.tests.statut.fait'), score: `${bonnes} sur ${derniere.length}` };
+  const statutMini = (liste: TentativeListee[]): Pick<ProprietesCarteTest, 'statut' | 'libelleStatut' | 'score' | 'detail'> => {
+    const suivi: SuiviTest = suiviDe(liste, 'mini');
+    if (!suivi.derniere) return { statut: 'vide', libelleStatut: t('certification.tests.statut.pasFait') };
+    // Un mini-test se lit en bonnes réponses sur le nombre de questions (« 8 sur 10 », D-58) : le meilleur des tentatives terminées.
+    const finies = liste.filter((x) => x.status === 'finished' && x.kind === 'mini');
+    const lecture = finies.map((x) => ({ bonnes: Object.values(x.perPart ?? {}).reduce((somme, p) => somme + p.correct, 0), max: x.length }));
+    const meilleur = lecture.reduce((m, x) => (x.max > 0 && (m === null || x.bonnes / x.max > m.bonnes / m.max) ? x : m), null as { bonnes: number; max: number } | null);
+    return {
+      statut: 'fait',
+      libelleStatut: t('certification.tests.statut.fait'),
+      score: meilleur ? { valeur: Math.min(meilleur.bonnes, meilleur.max), max: meilleur.max } : undefined,
+      detail: t('certification.tests.listes.tentatives', { n: suivi.fois }),
+    };
   };
-  const scoreSur = (p: ProgressionTest | undefined, total: number) => (p?.meilleurScore !== null && p?.meilleurScore !== undefined ? `${p.meilleurScore} sur ${total}` : undefined);
+  const scoreDemi = (kind: 'listening' | 'reading', p: ProgressionTest | undefined) => {
+    const s = scoreBorne(kind, p?.meilleurScore ?? null, 100, total);
+    return s ? { valeur: s.valeur, max: s.max } : undefined;
+  };
+  const detailDemi = (p: ProgressionTest | undefined) => (p && p.tentatives > 0 ? t('certification.tests.listes.tentatives', { n: p.tentatives }) : undefined);
+  const defs = donnees.defs;
 
   return (
     <>
       <EtiquetteSection texte={t('certification.tests.etiquetteMini')} />
-      <CarteTest icone={Target} couleur={couleurs[1]!.couleur} titre={t('certification.tests.miniPartie')} sous={detail(detailMiniPartie, dixQ)} {...statutMini(suiviMiniPartie)} onPress={() => router.push('/certification/choix-partie' as never)} />
-      <CarteTest icone={Layers} couleur={couleurs[5]!.couleur} titre={t('certification.tests.miniMixte')} sous={detail(t('certification.tests.detailMiniMixte'), vingtQ)} {...statutMini(suiviMiniMixte)} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mixed' } } as never)} />
+      <CarteTest icone={Target} couleur={couleurs[1]!.couleur} titre={t('certification.tests.miniPartie')} sous={detail(detailMiniPartie, dixQ)} {...statutMini(minis.filter((x) => x.part !== null))} progression={avancement(defs?.mini) ?? undefined} onPress={() => router.push('/certification/choix-partie' as never)} />
+      <CarteTest icone={Layers} couleur={couleurs[5]!.couleur} titre={t('certification.tests.miniMixte')} sous={detail(t('certification.tests.detailMiniMixte'), vingtQ)} {...statutMini(minis.filter((x) => x.part === null))} progression={avancement(defs?.mixed) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mixed' } } as never)} />
       <EtiquetteSection texte={t('certification.tests.etiquetteComplets')} />
-      <CarteTest icone={Headphones} couleur={couleurs[3]!.couleur} titre={t('certification.tests.demiEcoute')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...statutProgression(pEcoute)} score={scoreSur(pEcoute, total / 2)} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'listening' } } as never)} />
-      <CarteTest icone={BookOpen} couleur={couleurs[4]!.couleur} titre={t('certification.tests.demiLecture')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...statutProgression(pLecture)} score={scoreSur(pLecture, total / 2)} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'reading' } } as never)} />
-      <CarteTest icone={Trophy} couleur={theme.marque.forte} titre={t('certification.tests.complet')} sous={detail(t('certification.tests.detailComplet'), completQ)} {...statutProgression(pComplet)} score={scoreSur(pComplet, total)} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'full' } } as never)} />
+      <CarteTest icone={Headphones} couleur={couleurs[3]!.couleur} titre={t('certification.tests.demiEcoute')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...statutProgression(pEcoute)} score={scoreDemi('listening', pEcoute)} detail={detailDemi(pEcoute)} progression={avancement(defs?.listening) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'listening' } } as never)} />
+      <CarteTest icone={BookOpen} couleur={couleurs[4]!.couleur} titre={t('certification.tests.demiLecture')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...statutProgression(pLecture)} score={scoreDemi('reading', pLecture)} detail={detailDemi(pLecture)} progression={avancement(defs?.reading) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'reading' } } as never)} />
+      {/* Test complet : « Bientôt », désactivé (T6, décision de Benny) : aucun départ, aucune liste. */}
+      <CarteTest icone={Trophy} couleur={theme.marque.forte} titre={t('certification.tests.complet')} sous={detail(t('certification.tests.detailComplet'), completQ)} statut="bientot" libelleStatut={t('certification.tests.statut.bientot')} />
       <CarteTest icone={NotebookPen} couleur={sombre ? theme.texte.principal : theme.fond.surface} titre={t('certification.tests.corrige')} sous={detail(t('certification.tests.detailCorrige'), corrigeQ)} statut="vide" libelleStatut="" />
       <View style={styles.tuiles}>
         <Tuile

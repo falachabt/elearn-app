@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useGardeReseau } from '@/components/reseau/useGardeReseau';
 import { useTraduction } from '@/i18n/useTraduction';
 import { obtenirApi } from '@/services/certification/api';
-import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE, numeroDansPartie } from '@/services/certification/listesTests';
+import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE, numeroDansPartie, scoreBorne } from '@/services/certification/listesTests';
 import { lancerDefTest } from '@/services/certification/miniTest';
 import { lancerAutreTest } from '@/services/certification/passerAutreTest';
 import { signalerErreurDemarrage } from '@/services/certification/erreurDemarrage';
@@ -15,7 +15,8 @@ import { lireProfil } from '@/services/profil';
 import type { DefTest, TypeDefTest } from '@/services/certification/types';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { espace, typo } from '@/theme/theme';
+import { Check, Circle } from 'lucide-react-native';
+import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
@@ -50,16 +51,7 @@ export function DetailTest() {
   const { etat } = useChargement(async () => {
     const exam = (await lireProfil())?.exam ?? 'toeic';
     const [tests, reglages] = await Promise.all([obtenirApi().listerDefsTests(exam, type), obtenirReglages().catch(() => null)]);
-    // Échelle du score, comme au bilan de fin : le test complet et le mixte se lisent sur le total (990),
-    // un demi-test sur sa section (la moitié), un mini par partie n'a pas de score (un compte de bonnes réponses).
-    const max = reglages
-      ? type === 'full' || type === 'mixed'
-        ? reglages.objectifMax
-        : type === 'mini'
-          ? null
-          : reglages.objectifMax / 2
-      : null;
-    return { exam, max, tests, reglages, test: tests.find((x) => x.id === id) ?? null };
+    return { exam, tests, reglages, test: tests.find((x) => x.id === id) ?? null };
   });
 
   const autre = async () => {
@@ -107,13 +99,19 @@ export function DetailTest() {
 
   const test = etat.phase === 'ok' ? etat.valeur.test : null;
   const exam = etat.phase === 'ok' ? etat.valeur.exam : 'toeic';
-  const max = etat.phase === 'ok' ? etat.valeur.max : null;
   const reglagesOk = etat.phase === 'ok' ? etat.valeur.reglages : null;
   const tousTests = etat.phase === 'ok' ? etat.valeur.tests : [];
   // Numéro affiché : celui de la définition, sauf pour un mini, numéroté dans sa partie comme dans la liste.
   const numero = test ? (type === 'mini' ? numeroDansPartie(tousTests, test) : test.numero) : 1;
   const partieTitre = test?.part ?? (Number(partieParam) >= 1 && Number(partieParam) <= 7 ? Number(partieParam) : 0);
-  const titre = test ? t(CLE_NUMERO_LIGNE[type], { numero }) : t(CLE_TITRE_LISTE[type], { partie: partieTitre });
+  // « Partie 5 n° 1 » (maquette v39) pour un mini ; « Écoute n° 2 », « Mixte n° 1 » pour les autres.
+  const titre = test
+    ? type === 'mini'
+      ? `${t('certification.tests.listes.choixPartie.partie', { partie: partieTitre })} ${t(CLE_NUMERO_LIGNE.mini, { numero })}`
+      : t(CLE_NUMERO_LIGNE[type], { numero })
+    : t(CLE_TITRE_LISTE[type], { partie: partieTitre });
+  // Jamais au-dessus du maximum de son échelle (D-55, D-58) : « 8 sur 10 », « 410 sur 495 », « 13 sur 20 ».
+  const borne = test ? scoreBorne(type, test.meilleurScoreMax, test.questions, reglagesOk?.objectifMax ?? null) : null;
 
   return (
     <Ecran insetBas={false} entete={<EnteteToeic titre={titre} onRetour={() => router.back()} />}>
@@ -124,19 +122,25 @@ export function DetailTest() {
       ) : null}
       {test ? (
         <>
-          <Carte style={{ gap: espace[2] }}>
-            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t(CLE_TITRE_LISTE[type], { partie: test.part ?? 0 })}</Text>
-            <Text style={[typo.chiffreL, { color: theme.texte.principal }]}>
-              {test.meilleurScoreMax === null
-                ? t('certification.tests.listes.pasDeScore')
-                : type === 'mini'
-                  ? t('certification.tests.listes.meilleurSur', { score: test.meilleurScoreMax, max: test.questions })
-                  : t('certification.tests.detail.meilleur', { score: test.meilleurScoreMax, max: max ?? '' })}
-            </Text>
-            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-              {t('certification.tests.listes.tentatives', { n: test.tentatives })}
-              {test.derniereDate ? ` · ${t('certification.tests.detail.derniere', { date: new Date(test.derniereDate).toLocaleDateString('fr-FR') })}` : ''}
-            </Text>
+          <Carte style={{ gap: espace[3] }}>
+            <View style={styles.ligneStatut}>
+              <View style={[styles.statut, { borderColor: theme.bord.fort, backgroundColor: test.fini ? theme.accent.soleil : theme.fond.surface }]}>
+                {test.fini ? <Check size={12} color={theme.texte.surCouleur} strokeWidth={2} /> : <Circle size={12} color={theme.texte.principal} strokeWidth={2} />}
+                <Text style={[typo.legende, { color: test.fini ? theme.texte.surCouleur : theme.texte.principal }]}>
+                  {t(`certification.tests.listes.statut.${test.fini ? 'fait' : test.tentatives > 0 ? 'commence' : 'pas_fait'}`)}
+                </Text>
+              </View>
+              {test.derniereDate ? <Text style={[typo.donnee, { color: theme.texte.secondaire }]}>{new Date(test.derniereDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}</Text> : null}
+            </View>
+            {borne === null ? (
+              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.tests.listes.pasDeScore')}</Text>
+            ) : (
+              <Text style={[typo.chiffreL, { color: theme.texte.principal }]}>
+                {borne.valeur}
+                <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{` ${t('certification.tests.detail.meilleurSur', { max: borne.max })}`}</Text>
+              </Text>
+            )}
+            <Text style={[typo.donnee, { color: theme.texte.secondaire }]}>{t('certification.tests.listes.tentatives', { n: test.tentatives })}</Text>
           </Carte>
           <View style={styles.actions}>
             <Bouton libelle={t('certification.tests.detail.voirNote')} variante="secondaire" onPress={() => router.push('/certification/tentatives' as never)} />
@@ -148,6 +152,7 @@ export function DetailTest() {
               onPress={() => void autre()}
             />
           </View>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.detail.aide')}</Text>
           {/* Un démarrage refusé s'explique par une feuille du bas, pas par un petit texte sous les
               boutons (terrain du 27 octobre 2026 : boutons du détail d'un mixte perçus comme morts). */}
           <FeuilleErreurDemarrage code={codeEchec} onFermer={() => setCodeEchec(null)} />
@@ -163,5 +168,7 @@ export function DetailTest() {
 }
 
 const styles = StyleSheet.create({
-  actions: { gap: espace[2] },
+  actions: { gap: espace[3] },
+  ligneStatut: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  statut: { flexDirection: 'row', alignItems: 'center', gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1 },
 });

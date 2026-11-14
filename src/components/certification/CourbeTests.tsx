@@ -25,8 +25,9 @@ export function CourbeTests({ points }: { points: PointCourbe[] }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const dernier = points[points.length - 1];
-  const titre = dernier.type === 'depart' ? t('certification.stats.courbe.pasEncore') : t('certification.stats.courbe.dernier', { valeur: dernier.valeur });
-  const valeurs = points.map((p) => (p.type === 'depart' ? 0 : p.valeur));
+  const titre = dernier.type === 'depart' ? t('certification.stats.courbe.pasEncore') : t('certification.stats.courbe.dernier', { valeur: Math.min(dernier.valeur, ECHELLE.haut) });
+  // Jamais au-dessus de l'axe (0 à 990) : une valeur incohérente est ramenée au maximum.
+  const valeurs = points.map((p) => (p.type === 'depart' ? 0 : Math.max(0, Math.min(p.valeur, ECHELLE.haut))));
   const xDe = (i: number) => (points.length === 1 ? (GRAPHE.gauche + GRAPHE.droite) / 2 : GRAPHE.gauche + (i * (GRAPHE.droite - GRAPHE.gauche)) / (points.length - 1));
   const libelle = (p: PointCourbe) => (p.type === 'depart' ? t('certification.stats.courbe.depart') : p.type === 'diagnostic' ? t('certification.stats.courbe.diagnostic') : t('certification.stats.courbe.test', { n: p.numero }));
   const trace = valeurs.map((v, i) => `${xDe(i)},${yDe(v)}`).join(' ');
@@ -46,6 +47,7 @@ export function CourbeTests({ points }: { points: PointCourbe[] }) {
           <SvgText key={`l${i}`} x={xDe(i)} y={GRAPHE.hauteur - 2} fontSize={9} textAnchor="middle" fill={theme.texte.secondaire}>{libelle(p)}</SvgText>
         ))}
       </Svg>
+      <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.stats.courbeAide')}</Text>
       <View style={styles.legende}>
         <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.stats.cible', { score: ECHELLE.cible })}</Text>
       </View>

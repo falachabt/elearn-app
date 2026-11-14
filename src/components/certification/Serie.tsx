@@ -199,13 +199,24 @@ export function Serie() {
   const resultat = groupeValide && resultatVue ? resultatVue : null;
   const corrigee = groupeValide && !!reponseVue;
   const pluriel = membres.length > 1;
+  const derniere = derniereVue && dernierIndice + 1 >= total;
+  /** v31 : après validation, chaque onglet du groupe passe en vert (juste) ou en rouge (faux). */
+  const corrections: Record<string, boolean> | undefined = groupeValide
+    ? Object.fromEntries(membres.flatMap((m) => (etat.resultats[m.id] ? [[m.id, etat.resultats[m.id]!.correct] as const] : [])))
+    : undefined;
   const nbRepondues = membres.filter((m) => m.id in choixGroupe).length;
 
   return (
     <Ecran
       entete={<EnteteToeic titre={titre} onRetour={sortir} />}
       pied={
-        groupeValide ? undefined : (
+        groupeValide ? (
+          resultat ? (
+            <View style={styles.pied}>
+              <Bouton libelle={!derniereVue ? t('certification.exercice.ongletSuivant') : derniere ? t('certification.serie.terminer') : t('certification.serie.suivante')} onPress={() => void suivante()} retour />
+            </View>
+          ) : undefined
+        ) : (
           <View style={styles.pied}>
             {incomplet && !membres.every((m) => m.id in choixGroupe) ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
             <Bouton
@@ -246,7 +257,7 @@ export function Serie() {
         ecran="serie"
         position={Math.min(indiceVue + 1, total)}
         onPasser={() => void passer()}
-        enteteGroupe={pluriel ? <OngletsGroupe membres={membres} reponses={reponsesGroupe} selection={positionVue} onChoisir={choisirOnglet} /> : null}
+        enteteGroupe={pluriel ? <OngletsGroupe membres={membres} reponses={reponsesGroupe} selection={positionVue} onChoisir={choisirOnglet} corrections={corrections} /> : null}
         trouCourant={positionVue + 1}
         numerosTrous={numerosDuGroupe(membres)}
         trousRepondus={numerosDuGroupe(membres.filter((m) => (reponsesGroupe[m.id] ?? null) !== null))}
@@ -258,10 +269,7 @@ export function Serie() {
           resultat={resultat}
           choix={reponseVue?.chosen ?? null}
           motsAjoutes={etat.motsAjoutes}
-          derniere={derniereVue && dernierIndice + 1 >= total}
-          libelleSuivante={!derniereVue ? t('certification.exercice.ongletSuivant') : undefined}
           onAjouterMot={ajouterMot}
-          onSuivante={() => void suivante()}
         />
       ) : (
         <View style={styles.groupe}>

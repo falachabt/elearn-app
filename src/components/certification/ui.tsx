@@ -22,7 +22,7 @@ export function EnteteToeic({ titre, onRetour, droite, gauche }: { titre: string
     <View style={styles.entete}>
       {onRetour ? <BoutonFermer icone="chevron-back" libelle={t('certification.retour')} onPress={onRetour} /> : null}
       {gauche ?? (
-        <Text accessibilityRole="header" numberOfLines={1} style={[typo.h3, styles.titreEntete, { color: theme.texte.principal }]}>
+        <Text accessibilityRole="header" numberOfLines={2} style={[typo.h3, styles.titreEntete, { color: theme.texte.principal }]}>
           {titre}
         </Text>
       )}
@@ -88,7 +88,7 @@ export function LigneChoix({ icone: Icone, visuel, titre, aide, radio, actif, on
 }
 
 /** Barre de progression pleine largeur ; la valeur est aussi dite aux lecteurs d'écran. */
-export function BarreProgression({ pourcent, libelle, hauteur = 10 }: { pourcent: number; libelle?: string; hauteur?: number }) {
+export function BarreProgression({ pourcent, libelle, hauteur = 10, couleur }: { pourcent: number; libelle?: string; hauteur?: number; couleur?: string }) {
   const { theme } = useTheme();
   const p = Math.max(0, Math.min(100, pourcent));
   return (
@@ -98,7 +98,7 @@ export function BarreProgression({ pourcent, libelle, hauteur = 10 }: { pourcent
       accessibilityValue={{ min: 0, max: 100, now: Math.round(p) }}
       style={[styles.piste, { height: hauteur, backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}
     >
-      <View style={{ width: `${p}%`, height: '100%', backgroundColor: theme.marque.principale }} />
+      <View style={{ width: `${p}%`, height: '100%', backgroundColor: couleur ?? theme.marque.principale }} />
     </View>
   );
 }
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
   squelette: { gap: espace[3] },
   bloc: { height: 64, borderWidth: bord.fin, borderRadius: rayon.m },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[2] },
-  titreEntete: { flex: 1 },
+  titreEntete: { flex: 1, flexShrink: 1, minWidth: 0 },
   ligne: { minHeight: cibleMin + 16, flexDirection: 'row', alignItems: 'flex-start', gap: espace[4], padding: espace[4], borderRadius: rayon.l },
   droiteLigne: { alignSelf: 'center' },
   pastille: { width: 40, height: 40, borderRadius: rayon.s, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },

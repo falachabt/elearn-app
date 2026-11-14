@@ -37,7 +37,7 @@ export function TransitionPartie({ precedente, partie, questions, onCommencer }:
         <Text style={[typo.texte, { color: theme.texte.principal }]}>
           {t(`certification.consignes.partie${cle}.texte` as 'certification.consignes.partie1.texte')}
         </Text>
-        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.consignes.nombre', { n: questions })}</Text>
+        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{questions === 1 ? t('certification.consignes.nombreUne') : t('certification.consignes.nombre', { n: questions })}</Text>
       </View>
     </Ecran>
   );

@@ -37,7 +37,7 @@ export function ProgressionToeic() {
           {tuiles.map((tuile) => (
             <View key={tuile.titre} style={[styles.tuile, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
               <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{tuile.titre}</Text>
-              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{tuile.aide}</Text>
+              <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8} style={[typo.petit, { color: theme.texte.secondaire }]}>{tuile.aide}</Text>
             </View>
           ))}
         </View>
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
     flex: 1,
     minWidth: 0,
     gap: 2,
-    padding: espace[4],
+    paddingVertical: espace[4],
+    paddingHorizontal: espace[3],
     borderWidth: bord.normal,
     borderRadius: rayon.m,
     minHeight: 64,

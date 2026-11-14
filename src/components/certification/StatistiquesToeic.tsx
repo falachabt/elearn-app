@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { chargerPageStats, PERIODES, type DonneesStats } from '@/services/certification/stats';
+import { chargerDecompte, chargerPageStats, chargerResumeTests, PERIODES, type DonneesStats } from '@/services/certification/stats';
 import type { PeriodeStats } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -16,7 +16,7 @@ import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { chargerCourbe, CourbeTests } from './CourbeTests';
-import { EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, PastilleEtat, Squelette, Tuile } from './ui';
+import { BarreProgression, EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, PastilleEtat, Squelette, Tuile } from './ui';
 import { useChargement } from './useChargement';
 
 const cle = (p: PeriodeStats) => `s${p}` as 's7' | 's30' | 's0';
@@ -66,7 +66,14 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
   const { theme } = useTheme();
   const { stats, depuisCopie } = donnees;
   const courbe = useChargement(chargerCourbe);
+  const decompte = useChargement(chargerDecompte);
+  const resume = useChargement(chargerResumeTests);
   const avecDiagnostic = courbe.etat.phase === 'ok' && courbe.etat.valeur.some((p) => p.type === 'diagnostic');
+  // Le score estimé ne s'affiche que s'il existe ET que le diagnostic est fait : sans diagnostic, « Pas encore de score » seul
+  // (jamais « 660 » à côté de « Pas encore »). Tant que l'historique charge, aucun chiffre n'est annoncé ; s'il est illisible,
+  // le chiffre du serveur reste. Jamais au-dessus de l'échelle de l'examen.
+  const diagnosticConnu = courbe.etat.phase === 'ok' ? avecDiagnostic : courbe.etat.phase === 'erreur';
+  const valeurScore = diagnosticConnu && (courbe.etat.phase !== 'ok' || avecDiagnostic) && stats.score && stats.score.valeur !== null ? Math.min(stats.score.valeur, donnees.scoreMax) : null;
   const copie = depuisCopie && stats.calculeLe ? t('certification.stats.horsLigne', { date: new Date(stats.calculeLe).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' }) }) : null;
   const masteryVue = useRef(false);
   const aDesParties = stats.status === 'ok' || stats.status === 'first_week';
@@ -108,12 +115,47 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
       <Carte style={{ gap: espace[2] }}>
         <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.stats.score')}</Text>
         <Text style={[typo.h1, { color: theme.texte.principal }]}>
-          {stats.score && stats.score.valeur !== null ? String(stats.score.valeur) : t('certification.historique.pasEncore')}
+          {valeurScore !== null ? String(valeurScore) : t('certification.historique.pasEncore')}
         </Text>
-        {tendance ? <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{tendance}</Text> : null}
+        {valeurScore !== null && tendance ? <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{tendance}</Text> : null}
         {courbe.etat.phase === 'ok' ? <CourbeTests points={courbe.etat.valeur} /> : null}
         <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.stats.mention')}</Text>
       </Carte>
+      <View style={styles.tuiles}>
+        <Tuile
+          titre={resume.etat.phase === 'ok' && resume.etat.valeur?.meilleur ? t('certification.stats.sur', { valeur: resume.etat.valeur.meilleur.valeur, max: resume.etat.valeur.meilleur.max }) : t('certification.historique.pasEncore')}
+          aide={t('certification.stats.meilleurScore')}
+          pleineHauteur
+        />
+        <Tuile
+          titre={resume.etat.phase === 'ok' && resume.etat.valeur ? t('certification.stats.faitsSur', { faits: resume.etat.valeur.faits, total: resume.etat.valeur.total }) : '–'}
+          aide={t('certification.stats.testsFaits')}
+          onPress={() => router.push('/certification/historique' as never)}
+          pleineHauteur
+        />
+      </View>
+      {decompte.etat.phase === 'ok' && decompte.etat.valeur ? (
+        <>
+          <View style={styles.tuiles}>
+            <Tuile titre={String(decompte.etat.valeur.vus)} aide={t('certification.stats.vus')} pleineHauteur />
+            <Tuile titre={String(decompte.etat.valeur.valides)} aide={t('certification.stats.valides')} pleineHauteur />
+          </View>
+          <View style={styles.tuiles}>
+            <Tuile titre={String(decompte.etat.valeur.maitrises)} aide={t('certification.stats.maitrises')} pleineHauteur />
+            <Tuile titre={String(decompte.etat.valeur.aRevoir)} aide={t('certification.stats.aRevoir')} pleineHauteur />
+          </View>
+          <EtiquetteSection texte={t('certification.stats.parCategorie')} />
+          {decompte.etat.valeur.familles.map((f) => {
+            const libelle = t('certification.stats.categorie', { famille: t(`certification.cours.familles.${f.famille}`), n: f.pourcent });
+            return (
+              <View key={f.famille} style={styles.categorie}>
+                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{libelle}</Text>
+                <BarreProgression pourcent={f.pourcent} libelle={libelle} />
+              </View>
+            );
+          })}
+        </>
+      ) : null}
       <EtiquetteSection texte={t('certification.stats.maitrise')} />
       {stats.parties.map((p) => (
         <LigneChoix
@@ -151,4 +193,5 @@ const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
   tuiles: { flexDirection: 'row', gap: espace[3] },
   tuile: { flex: 1 },
+  categorie: { gap: espace[2] },
 });

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { etatContenu } from '@/services/certification/etatsContenu';
 import { chargerDonneesRevision, notionsDeLaPartie } from '@/services/certification/revision';
 import { titreAffiche } from '@/services/certification/titre';
 import type { NotionListee } from '@/services/certification/types';
@@ -13,7 +14,8 @@ import { espace, typo } from '@/theme/theme';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
-import { EnteteToeic, LigneChoix, PastilleEtat, Squelette } from './ui';
+import { PuceEtatContenu } from './PuceEtatContenu';
+import { EnteteToeic, LigneChoix, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
 /** C3 · Notions d'une partie, triées de la plus fragile à la plus solide ; une notion se choisit puis se révise ou s'entraîne. */
@@ -53,7 +55,7 @@ export function NotionsPartie() {
                 radio
                 actif={n.id === active.id}
                 onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: n.id, source: 'partie' } } as never)}
-                droite={<PastilleEtat etat={n.etat} libelle={t(`certification.resultat.etats.${n.etat}`)} />}
+                droite={<PuceEtatContenu etat={etatContenu(n)} />}
               />
             ))}
             <Bouton variante="secondaire" libelle={t('certification.notionsPartie.revoir')} desactive={!active.fiche} onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: active.id, source: 'partie' } } as never)} />

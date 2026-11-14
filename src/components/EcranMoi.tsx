@@ -19,7 +19,7 @@ import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
+import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from './Appui';
 import { Banniere } from './Banniere';
@@ -202,7 +202,9 @@ export function EcranMoi({ toeic = false }: { toeic?: boolean } = {}) {
             {solde ? t('profil.inviteCarteTexte', { n: solde.total }) : t('profil.inviteCarteSans')}
           </Text>
           <Bouton libelle={t('profil.creerCompte')} onPress={() => router.push('/compte/creer')} variante="secondaire" />
-          <Bouton petit variante="texte" libelle={t('profil.dejaCompte')} onPress={() => router.push('/compte/connexion')} />
+          <Appui accessibilityRole="button" onPress={() => router.push('/compte/connexion')} suivi={t('profil.dejaCompte')} style={styles.lienCarteJaune}>
+            <Text style={[typo.boutonPetit, styles.lienSouligne, { color: theme.texte.surCouleur }]}>{t('profil.dejaCompte')}</Text>
+          </Appui>
         </View>
       ) : avecPass ? (
         <Appui
@@ -314,6 +316,9 @@ const styles = StyleSheet.create({
   avatar: { width: 56, height: 56, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   photo: { width: '100%', height: '100%' },
   carteJaune: { gap: espace[3], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
+  // Lien « J'ai déjà un compte » sur la carte jaune : encre noire soulignée (le vert de lien est illisible sur jaune).
+  lienCarteJaune: { alignSelf: 'stretch', minHeight: cibleMin, alignItems: 'center', justifyContent: 'center' },
+  lienSouligne: { textDecorationLine: 'underline' },
   ligne: { flexDirection: 'row', alignItems: 'center' },
   // Séparateur en tirets au-dessus de « Se déconnecter » (maquette N2-2).
   pointille: { borderTopWidth: bord.normal, borderStyle: 'dashed' },

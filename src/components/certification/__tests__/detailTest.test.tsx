@@ -57,7 +57,7 @@ describe('détail d’un test fait : tous les types de la liste', () => {
     await monter(<DetailTest />);
     // Avant le correctif, le type « mini » était ramené à « listening » : la définition n’était pas
     // dans la liste chargée et l’écran affichait « Impossible de charger tes tests ».
-    expect(await screen.findByText('n° 2')).toBeTruthy();
+    expect(await screen.findByText('Partie 5 n° 2')).toBeTruthy();
     expect(screen.queryByText(fr.certification.tests.erreurTitre)).toBeNull();
     expect(screen.getByText(fr.certification.tests.detail.refaire)).toBeTruthy();
   });
@@ -67,14 +67,14 @@ describe('détail d’un test fait : tous les types de la liste', () => {
     await monter(<DetailTest />);
     expect(await screen.findByText('Mixte n° 1')).toBeTruthy();
     expect(screen.queryByText(fr.certification.tests.erreurTitre)).toBeNull();
-    expect(screen.getByText('Meilleur score : 520 sur 990')).toBeTruthy();
+    expect(screen.getByText('520 sur 990 · meilleur score')).toBeTruthy();
   });
 
   it('un demi-test d’écoute fini garde son échelle de section (495)', async () => {
     mockParams = { kind: 'listening', id: 'l1' };
     await monter(<DetailTest />);
     expect(await screen.findByText('Écoute n° 1')).toBeTruthy();
-    expect(screen.getByText('Meilleur score : 385 sur 495')).toBeTruthy();
+    expect(screen.getByText('385 sur 495 · meilleur score')).toBeTruthy();
   });
 });
 
