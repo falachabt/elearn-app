@@ -54,3 +54,4 @@ Branche de travail : `claude/project-thread-kw792g` (`elearn-app`). `git pull` a
 - Le dev TOEIC et l'agent contenu sont bloqués sur l'accès ElevenLabs et l'écriture R2 : Benny doit reconnecter les accès dans les réglages de l'environnement cloud. Ne pas toucher à ces zones en attendant.
 - Muse ne prend aucune zone TOEIC sans échange accepté par son propriétaire.
 - Quand une zone est libérée, la ligne passe à « libre » avec la date et le commit.
+- Accès R2 écriture elearnprepa-public configuré pour le CI (14 novembre 2026). Noms des secrets du dépôt elearn-app : R2_PUBLIC_ACCESS_KEY_ID, R2_PUBLIC_SECRET_ACCESS_KEY, R2_ACCOUNT_ID. Workflow audio (toeic-audio.yml) branché sur ces secrets ; workflow vidéo inchangé. Test ping validé puis fichier supprimé.
