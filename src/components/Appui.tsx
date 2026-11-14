@@ -27,7 +27,7 @@ const RESSORT = { damping: 14, stiffness: 600, mass: 0.6 } as const;
 export function Appui({ children, style, decalage = 3, ombre = 0, couleurOmbre, rayon = 0, retour, suivi, disabled, onPress, onPressIn, onPressOut, ...reste }: Props) {
   const { reduit, declencher } = useFeedback();
   const d = Math.max(0, decalage);
-  const profondeurOmbre = Math.min(ombre, ombres.l);
+  const profondeurOmbre = Math.min(ombre, ombres.m);
   const enfonce = useSharedValue(0);
   const anime = useAnimatedStyle(() => ({ transform: [{ translateX: enfonce.value * d }, { translateY: enfonce.value * d }] }));
   const vers = (v: number) => {
