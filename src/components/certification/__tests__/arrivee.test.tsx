@@ -56,27 +56,32 @@ beforeEach(async () => {
 afterEach(() => definirApi(null));
 
 describe('A1 · Bienvenue', () => {
-  it('AC-A1-1 : trois cartes dans l’ordre Élève, Concours, Certification', async () => {
+  const ligne = (titre: string, aide: string) => screen.getByRole('button', { name: `${titre}. ${aide}` });
+  it('AC-A1-1 : trois profils collés dans l’ordre Élève, Concours, TOEIC', async () => {
     await monter(<Bienvenue />);
-    const noms = [fr.bienvenue.eleve, fr.bienvenue.concours, t.carte].map((n) => screen.getByRole('button', { name: n }));
-    expect(noms).toHaveLength(3);
-    expect(screen.getByText(t.carteAide)).toBeTruthy();
+    const lignes = [
+      ligne(fr.bienvenue.eleve, fr.bienvenue.eleveAide),
+      ligne(fr.bienvenue.concours, fr.bienvenue.concoursAide),
+      ligne(fr.bienvenue.toeic, fr.bienvenue.toeicAide),
+    ];
+    expect(lignes).toHaveLength(3);
+    expect(screen.getByText(fr.bienvenue.sousTitre)).toBeTruthy();
   });
-  it('AC-A1-2 : les textes Élève et Concours restent ceux de fr.ts', async () => {
+  it('AC-A1-2 : l’accroche parle aux trois profils, sans exemple de maths', async () => {
     await monter(<Bienvenue />);
-    expect(screen.getByText(fr.bienvenue.eleveAide)).toBeTruthy();
-    expect(screen.getByText(fr.bienvenue.concoursAide)).toBeTruthy();
+    expect(screen.getByText(fr.bienvenue.titre)).toBeTruthy();
+    expect(screen.queryByText('2x + 3 = 11')).toBeNull();
   });
-  it('AC-A1-3 : drapeau faux, deux cartes seulement', async () => {
+  it('AC-A1-3 : drapeau faux, deux profils seulement', async () => {
     mockDrapeau = false;
     await monter(<Bienvenue />);
-    expect(screen.queryByRole('button', { name: t.carte })).toBeNull();
-    expect(screen.getByRole('button', { name: fr.bienvenue.eleve })).toBeTruthy();
-    expect(screen.getByRole('button', { name: fr.bienvenue.concours })).toBeTruthy();
+    expect(screen.queryByText(fr.bienvenue.toeic)).toBeNull();
+    expect(screen.getByText(fr.bienvenue.eleve)).toBeTruthy();
+    expect(screen.getByText(fr.bienvenue.concours)).toBeTruthy();
   });
-  it('AC-A1-4 : la carte ouvre A2 sans enregistrer de profil', async () => {
+  it('AC-A1-4 : le profil TOEIC ouvre A2 sans enregistrer de profil', async () => {
     await monter(<Bienvenue />);
-    await fireEvent.press(screen.getByRole('button', { name: t.carte }));
+    await fireEvent.press(ligne(fr.bienvenue.toeic, fr.bienvenue.toeicAide));
     expect(router.push).toHaveBeenCalledWith('/certification');
     expect(suivre).toHaveBeenCalledWith('onboarding_choice_made', { profil: 'certification' });
     expect(await lireProfil()).toBeNull();
@@ -84,10 +89,12 @@ describe('A1 · Bienvenue', () => {
 });
 
 describe('A2 · Choix de la certification', () => {
-  it('AC-A2-2 : « Continuer » est inactif tant que rien n’est choisi', async () => {
+  it('AC-A2-2 (révisé le 15/11/2026) : le TOEIC est sélectionné d’office et « Continuer » est actif', async () => {
     await monter(<ChoixCertification />);
-    await screen.findByText('TOEIC Listening and Reading');
-    expect(screen.getByRole('button', { name: t.continuer }).props.accessibilityState.disabled).toBe(true);
+    const ligne = await screen.findByRole('radio', { name: /TOEIC Listening and Reading/ });
+    await waitFor(() => expect(screen.getByRole('radio', { name: /TOEIC Listening and Reading/ }).props.accessibilityState.checked).toBe(true));
+    expect(ligne).toBeTruthy();
+    expect(screen.getByRole('button', { name: t.continuer }).props.accessibilityState.disabled).toBeFalsy();
   });
   it('affiche la ligne servie par le serveur : nom, sous-titre, durée et nombre de questions', async () => {
     await monter(<ChoixCertification />);

@@ -11,7 +11,7 @@ import { typo } from '@/theme/theme';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { LogoToeic } from '../certification/LogoToeic';
-import { EnteteToeic, LigneChoix } from '../certification/ui';
+import { EnteteToeic, LigneChoix, ListeChoix } from '../certification/ui';
 import { useProfilCertification } from '../certification/useProfilCertification';
 
 type Choix = 'secondaire' | 'concours' | 'certification';
@@ -55,11 +55,13 @@ export function ChoisirProfil() {
       pied={<Bouton libelle={t('profilChoix.continuer')} onPress={continuer} />}
     >
       <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('profilChoix.intro')}</Text>
+      <ListeChoix>
       <LigneChoix icone={GraduationCap} titre={t('profilChoix.secondaire')} aide={t('profilChoix.secondaireAide')} radio actif={choix === 'secondaire'} droite={badge('secondaire')} onPress={() => setChoix('secondaire')} />
       <LigneChoix icone={Trophy} titre={t('profilChoix.concours')} aide={t('profilChoix.concoursAide')} radio actif={choix === 'concours'} droite={badge('concours')} onPress={() => setChoix('concours')} />
       {certificationOuverte ? (
         <LigneChoix visuel={<LogoToeic />} titre={t('profilChoix.toeic')} aide={t('profilChoix.toeicAide')} radio actif={choix === 'certification'} droite={badge('certification')} onPress={() => setChoix('certification')} />
       ) : null}
+      </ListeChoix>
     </Ecran>
   );
 }

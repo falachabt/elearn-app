@@ -14,7 +14,7 @@ import { typo } from '@/theme/theme';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
-import { EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, Squelette } from './ui';
+import { EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
 type Donnees = { tentatives: TentativeListee[]; total: number; meilleur: number | null };
@@ -56,7 +56,7 @@ export function TentativesTest() {
           {etat.valeur.tentatives.length === 0 ? (
             <EncadrePointille texte={t('certification.tentatives.vide')} />
           ) : (
-            etat.valeur.tentatives.map((x) => (
+            <ListeChoix>{etat.valeur.tentatives.map((x) => (
               <LigneChoix
                 key={x.id}
                 icone={x.status === 'finished' ? Trophy : x.status === 'in_progress' ? Layers : RotateCcw}
@@ -70,7 +70,7 @@ export function TentativesTest() {
                   .join(' · ')}
                 onPress={() => router.push({ pathname: '/certification/tentative/[id]', params: { id: x.id } } as never)}
               />
-            ))
+            ))}</ListeChoix>
           )}
         </>
       ) : null}

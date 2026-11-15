@@ -18,7 +18,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { LogoToeic } from '../certification/LogoToeic';
-import { EncadrePointille, LigneChoix } from '../certification/ui';
+import { EncadrePointille, LigneChoix, ListeChoix } from '../certification/ui';
 import { FeuillePays } from '../pass/FeuillePays';
 import { BlocChangementProfil, type EtatChangement } from './BlocChangementProfil';
 
@@ -142,6 +142,7 @@ export function OngletCertification({ profil, onAnnulerAdoption }: { profil: Pro
             </View>
           ) : (
             <>
+              <ListeChoix>
               {examens.map((e) => (
                 <LigneChoix
                   key={e.code}
@@ -154,6 +155,7 @@ export function OngletCertification({ profil, onAnnulerAdoption }: { profil: Pro
                   droite={estCertification && profil.exam === e.code ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('profilChoix.actuel')}</Text> : undefined}
                 />
               ))}
+              </ListeChoix>
               <EncadrePointille texte={t('certification.choix.autresAVenir')} />
             </>
           )}

@@ -554,7 +554,8 @@ export const en: Textes = {
   },
   bienvenue: {
     marque: 'Elearn Prepa',
-    titre: 'Stuck on an exercise? We explain every step.',
+    titre: 'An exam to pass? We guide you step by step.',
+    sousTitre: 'Lessons, quizzes, corrected past papers and a revision plan built for you.',
     exempleEtiquette: 'Example',
     exempleTitre: '2x + 3 = 11',
     exempleTexte: 'Subtract 3 from both sides: 2x = 8, so x = 4.',
@@ -562,7 +563,9 @@ export const en: Textes = {
     eleve: 'I’m a student',
     eleveAide: 'From 6th grade to final year',
     concours: 'I’m preparing for a competitive exam',
-    concoursAide: 'ENS, medicine, engineering schools…',
+    concoursAide: 'Engineering schools, medicine, ENS…',
+    toeic: 'I’m preparing for the TOEIC',
+    toeicAide: 'English for university and work',
     dejaCompte: 'I already have an account',
   },
   classe: {

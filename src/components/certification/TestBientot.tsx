@@ -21,7 +21,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { avecSuivi } from './suiviLignes';
-import { EnteteToeic, LigneChoix } from './ui';
+import { EnteteToeic, LigneChoix, ListeChoix } from './ui';
 
 /** T5 · Demi-test (écoute ou lecture, 100 questions) et test complet (200 questions). Le serveur tire les questions et débite au lancement. */
 export function TestBientot() {
@@ -130,8 +130,10 @@ export function TestBientot() {
       )}
       {demi ? (
         <>
+          <ListeChoix>
           <LigneChoix icone={Layers} titre={t('certification.tests.ecouteTitre')} aide={avecSuivi(t, avecCout(t('certification.tests.ecouteAide')), suiviMoitie('half_listening'), totalDemi ?? 0)} onPress={() => void lancer('half_listening')} />
           <LigneChoix icone={Layers} titre={t('certification.tests.lectureTitre')} aide={avecSuivi(t, avecCout(t('certification.tests.lectureAide')), suiviMoitie('half_reading'), totalDemi ?? 0)} onPress={() => void lancer('half_reading')} />
+          </ListeChoix>
         </>
       ) : (
         <>

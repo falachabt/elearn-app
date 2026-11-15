@@ -15,7 +15,7 @@ import { espace, typo } from '@/theme/theme';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
-import { EncadrePointille, EnteteToeic, LigneChoix } from './ui';
+import { EncadrePointille, EnteteToeic, LigneChoix, ListeChoix } from './ui';
 
 type Params = { question?: string; partie?: string; numero?: string; notion?: string };
 
@@ -79,6 +79,7 @@ export function SignalerErreur() {
       ) : (
         <View style={styles.colonne}>
           <Text style={[typo.texte, { color: theme.texte.principal }]}>{t('certification.signaler.intro')}</Text>
+          <ListeChoix>
           {motifsPour(partie).map((m) => (
             <LigneChoix
               key={m}
@@ -93,6 +94,7 @@ export function SignalerErreur() {
               }}
             />
           ))}
+          </ListeChoix>
           <EncadrePointille texte={t('certification.signaler.confidentialite')} />
           {banniere}
           {etat === 'erreur' ? <Banniere ton="erreur" titre={t('certification.signaler.erreurTitre')} texte={t('certification.signaler.erreurTexte')} /> : null}

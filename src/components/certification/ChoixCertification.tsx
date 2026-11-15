@@ -19,7 +19,7 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { FeuillePays } from '../pass/FeuillePays';
 import { LogoToeic } from './LogoToeic';
-import { EncadrePointille, EnteteToeic, LigneChoix } from './ui';
+import { EncadrePointille, EnteteToeic, LigneChoix, ListeChoix } from './ui';
 
 function regionTelephone(): string | null {
   try {
@@ -47,6 +47,8 @@ export function ChoixCertification() {
     obtenirExamens()
       .then(({ examens: liste, depuisCache: cache }) => {
         setExamens(liste);
+        // Une seule certification livrée : le TOEIC est sélectionné d'office (retour de Benny du 15 novembre 2026).
+        setChoisi((actuel) => actuel ?? liste.find((e) => e.code === 'toeic')?.code ?? liste[0]?.code ?? null);
         setDepuisCache(cache);
       })
       .catch(() => setErreur(true));
@@ -99,6 +101,7 @@ export function ChoixCertification() {
         </View>
       ) : (
         <>
+          <ListeChoix>
           {examens.map((e) => (
             <LigneChoix
               key={e.code}
@@ -110,6 +113,7 @@ export function ChoixCertification() {
               onPress={() => setChoisi(e.code)}
             />
           ))}
+          </ListeChoix>
           {/* Décision de Benny (25/10/2026, issue #77) : l'encadré pointillé de la maquette est affiché en
               production, avec un simple texte d'attente — il remplace le critère AC-A2-6 d'origine (écart E-05). */}
           <EncadrePointille texte={t('certification.choix.autresAVenir')} />

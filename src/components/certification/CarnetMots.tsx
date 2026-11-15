@@ -14,7 +14,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Onglets } from '../Onglets';
-import { LigneChoix } from './ui';
+import { LigneChoix, ListeChoix } from './ui';
 
 const ETATS: readonly EtatMot[] = ['a_revoir', 'en_cours', 'connu'];
 
@@ -84,6 +84,7 @@ export function CarnetMots({ mots }: { mots: MotCarnetServi[] }) {
         </Carte>
       ) : null}
       {!recherche && trouves.length === 0 ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.carnet.videEtat')}</Text> : null}
+      <ListeChoix>
       {trouves.map((m) => (
         <LigneChoix
           key={m.id}
@@ -94,6 +95,7 @@ export function CarnetMots({ mots }: { mots: MotCarnetServi[] }) {
           onPress={() => router.push({ pathname: '/certification/mot/[id]', params: { id: m.id } } as never)}
         />
       ))}
+      </ListeChoix>
       <View style={styles.droite}>
         <Bouton variante="secondaire" libelle={recherche && trouves.length === 0 ? t('certification.carnet.ajouterMot', { mot: requete.trim() }) : t('certification.carnet.ajouter')} onPress={ajouter} />
       </View>

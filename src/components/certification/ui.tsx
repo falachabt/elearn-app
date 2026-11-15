@@ -1,5 +1,5 @@
 import { Check, ChevronRight, Circle, TrendingUp, TriangleAlert, type LucideIcon } from 'lucide-react-native';
-import { useEffect, useState, type ReactNode } from 'react';
+import { Children, cloneElement, isValidElement, useEffect, useState, type ReactElement, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import type { EtatMaitrise } from '@/services/certification/certMaitrise';
@@ -46,13 +46,32 @@ type LigneProps = {
   accessibilityLabel?: string;
   /** Remplace le chevron par un élément à droite (état de maîtrise, boîte du mot). */
   droite?: ReactNode;
+  /** Ligne d'un bloc collé (retouche du 15 novembre 2026) : sans contour propre, un trait fin au-dessus ; posé par `ListeChoix`. */
+  collee?: boolean;
+  premier?: boolean;
 };
 
+/**
+ * Plusieurs lignes de choix qui se suivent sans hiérarchie propre : un seul bloc collé (un contour, des traits fins),
+ * comme les listes du Secondaire. Les enfants sont des `LigneChoix`.
+ */
+export function ListeChoix({ children }: { children: ReactNode }) {
+  const lignes = Children.toArray(children).filter(isValidElement);
+  return (
+    <GroupeColle>
+      {lignes.map((l, i) => cloneElement(l as ReactElement<{ collee?: boolean; premier?: boolean }>, { collee: true, premier: i === 0 }))}
+    </GroupeColle>
+  );
+}
+
 /** Ligne de choix : pastille carrée avec icône Lucide, titre, aide, radio ou chevron (A2, A4, A5, A7). */
-export function LigneChoix({ icone: Icone, visuel, titre, aide, radio, actif, onPress, accessibilityLabel, droite }: LigneProps) {
+export function LigneChoix({ icone: Icone, visuel, titre, aide, radio, actif, onPress, accessibilityLabel, droite, collee, premier }: LigneProps) {
   const { theme } = useTheme();
+  const styleCadre = collee
+    ? [styles.ligne, { borderRadius: 0, backgroundColor: actif ? theme.fond.creux : theme.fond.surface }, !premier && { borderTopWidth: bord.fin, borderTopColor: theme.bord.doux }]
+    : [styles.ligne, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }];
   const contenu = (
-    <View style={[styles.ligne, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
+    <View style={styleCadre}>
       <View style={[styles.pastille, { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort }]}>
         {visuel ?? (Icone ? <Icone size={20} color={theme.texte.principal} strokeWidth={2} /> : null)}
       </View>
@@ -72,6 +91,18 @@ export function LigneChoix({ icone: Icone, visuel, titre, aide, radio, actif, on
     </View>
   );
   if (!onPress) return contenu;
+  if (collee) {
+    return (
+      <Pressable
+        accessibilityRole={radio ? 'radio' : 'button'}
+        accessibilityState={radio ? { checked: !!actif } : undefined}
+        accessibilityLabel={accessibilityLabel ?? (aide ? `${titre}. ${aide}` : titre)}
+        onPress={onPress}
+      >
+        {contenu}
+      </Pressable>
+    );
+  }
   return (
     <Appui
       accessibilityRole={radio ? 'radio' : 'button'}

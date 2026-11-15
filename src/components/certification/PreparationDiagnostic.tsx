@@ -9,7 +9,7 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Carte } from '../Carte';
 import { Etiquette } from '../Etiquette';
-import { EtiquetteSection, LigneChoix } from './ui';
+import { EtiquetteSection, LigneChoix, ListeChoix } from './ui';
 
 type Props = {
   /** Écran A5 (arrivée, plein écran) : ajoute « Ce que ça donne ». L'onglet S7 le retire pour tenir sous le bouton. */
@@ -66,8 +66,10 @@ export function PreparationDiagnostic({ complet = true }: Props) {
         </View>
       </Carte>
       <EtiquetteSection texte={t('certification.arrivee.contientTitre')} />
+      <ListeChoix>
       <LigneChoix icone={Play} titre={t('certification.arrivee.contientEcouteTitre')} aide={rep !== null ? t('certification.arrivee.contientEcouteAide', { n: rep.ecoute }) : t('certification.arrivee.contientEcouteAideLibre')} />
       <LigneChoix icone={BookOpen} titre={t('certification.arrivee.contientLectureTitre')} aide={rep !== null ? t('certification.arrivee.contientLectureAide', { n: rep.lecture }) : t('certification.arrivee.contientLectureAideLibre')} />
+      </ListeChoix>
       {complet ? (
         <Carte>
           <View style={styles.carte}>

@@ -14,7 +14,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { resultatTentative, titreTentative } from './HistoriqueTests';
-import { EnteteToeic, EtiquetteSection, LigneChoix, Squelette, Tuile } from './ui';
+import { EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, Squelette, Tuile } from './ui';
 import { useChargement } from './useChargement';
 
 /** T7 · Détail d'une tentative : score, temps et résultat par partie. */
@@ -72,26 +72,32 @@ export function DetailTentative() {
           {aNotions ? (
             <>
               <EtiquetteSection texte={t('certification.tentative.parNotion')} />
+              <ListeChoix>
               {detail!.notions.map((n) => {
                 const etatNotion = n.bonnes / n.total >= 0.75 ? 'acquise' : n.bonnes / n.total >= 0.5 ? 'en_progres' : 'fragile';
                 return <LigneChoix key={n.id} icone={Target} titre={n.titre} aide={t('certification.tentative.notionAide', { c: n.bonnes, n: n.total, etat: t(`certification.resultat.etats.${etatNotion}`).toLowerCase() })} />;
               })}
+              </ListeChoix>
             </>
           ) : null}
           {ratees.length > 0 ? (
             <>
               <EtiquetteSection texte={t('certification.tentative.ratees')} />
+              <ListeChoix>
               {ratees.map((r) => (
                 <LigneChoix key={r.id} icone={CircleAlert} titre={t('certification.tentative.questionN', { n: r.position })} aide={r.sansReponse ? t('certification.tentative.sansReponse') : r.notionTitre ?? t('certification.tentative.partieQuestion', { n: r.part })} />
               ))}
+              </ListeChoix>
             </>
           ) : null}
           {!aNotions && parties.length > 0 ? (
             <>
               <EtiquetteSection texte={t('certification.tentative.parPartie')} />
+              <ListeChoix>
               {parties.map(([p, v]) => (
                 <LigneChoix key={p} icone={Target} titre={t('certification.tentative.lignePartie', { n: p })} aide={t('certification.tentative.resultat', { c: v.correct, n: v.answered })} />
               ))}
+              </ListeChoix>
             </>
           ) : null}
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.tentative.mention')}</Text>

@@ -22,7 +22,7 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { FeuilleCompteRequis, FeuilleCreditsInsuffisants } from './FeuillesDemarrageTest';
-import { EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix } from './ui';
+import { EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix, ListeChoix } from './ui';
 
 type Choix = number | 'mixte' | null;
 /** Mode de l'épreuve (M-T2) : Examen (défaut, correction à la fin) ou Entraînement (correction après chaque question). */
@@ -154,8 +154,10 @@ export function ReglageMini() {
           })}
         />
       </View>
+      <ListeChoix>
       <LigneChoix icone={Clock} titre={t('certification.mini.temps')} aide={minutes === null ? undefined : t('certification.mini.tempsAide', { min: minutes, n: longueurAnnoncee })} />
       <LigneChoix icone={Wallet} titre={t('certification.mini.cout')} aide={lignesCout} />
+      </ListeChoix>
       <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.mini.aideCarte')}</Text>
       <FeuilleCompteRequis ouverte={compteRequis} onFermer={() => setCompteRequis(false)} />
       <FeuilleCreditsInsuffisants blocage={feuille} coutRepli={coutServeur ?? 0} onFermer={() => setFeuille(null)} />

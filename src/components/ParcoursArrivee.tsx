@@ -38,6 +38,7 @@ import { Ecran } from './Ecran';
 import { Etiquette } from './Etiquette';
 import { Feuille } from './Feuille';
 import { Logo } from './Logo';
+import { GroupeColle, LigneGroupe } from './liste/ListeCollee';
 import { useProfilCertification } from './certification/useProfilCertification';
 import { FeuillePays } from './pass/FeuillePays';
 import { useGardeReseau } from './reseau/useGardeReseau';
@@ -80,6 +81,13 @@ function ChoixCarte({ titre, aide, icone: Icone, visuel, couleurIcone, couleurFo
   );
 }
 
+function PastilleProfil({ children }: { children: ReactNode }) {
+  const { theme } = useTheme();
+  return (
+    <View style={[styles.icone, { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort }]}>{children}</View>
+  );
+}
+
 /** A1 · Bienvenue : aucun compte demandé, deux choix et un appui (M1-01). */
 export function Bienvenue() {
   const { t } = useTraduction();
@@ -95,50 +103,38 @@ export function Bienvenue() {
         <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('bienvenue.titre')}</Text>
       </Apparition>
       <Apparition delai={120}>
-        <Carte style={{ backgroundColor: theme.accent.soleil }}>
-          <View style={styles.groupe}>
-            <Etiquette texte={t('bienvenue.exempleEtiquette')} />
-            <Text style={[typo.h2, { color: theme.texte.principal }]}>{t('bienvenue.exempleTitre')}</Text>
-            <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('bienvenue.exempleTexte')}</Text>
-          </View>
-        </Carte>
+        <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('bienvenue.sousTitre')}</Text>
       </Apparition>
       <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('bienvenue.tuEs')}</Text>
       <Apparition delai={180}>
-        <ChoixCarte
-          icone={GraduationCap}
-          couleurIcone={theme.texte.principal}
-          couleurFondIcone={theme.accent.soleilTresDoux}
-          titre={t('bienvenue.eleve')}
-          aide={t('bienvenue.eleveAide')}
-          onPress={() => router.push({ pathname: '/classe', params: { type: 'eleve' } })}
-        />
-      </Apparition>
-      <Apparition delai={240}>
-        <ChoixCarte
-          icone={Trophy}
-          couleurIcone={theme.texte.principal}
-          couleurFondIcone={theme.accent.soleilTresDoux}
-          titre={t('bienvenue.concours')}
-          aide={t('bienvenue.concoursAide')}
-          onPress={() => router.push({ pathname: '/classe', params: { type: 'concours' } })}
-        />
-      </Apparition>
-      {certification ? (
-        <Apparition delai={300}>
-          <ChoixCarte
-            visuel={<LogoToeic />}
-            couleurIcone={theme.texte.principal}
-            couleurFondIcone={theme.accent.soleilTresDoux}
-            titre={t('certification.carte')}
-            aide={t('certification.carteAide')}
-            onPress={() => {
-              suivre('onboarding_choice_made', { profil: 'certification' });
-              router.push('/certification');
-            }}
+        {/* Les profils forment un seul bloc collé (retouche du 15 novembre 2026). */}
+        <GroupeColle>
+          <LigneGroupe
+            premier
+            gauche={<PastilleProfil><GraduationCap size={20} color={theme.texte.principal} strokeWidth={2} /></PastilleProfil>}
+            titre={t('bienvenue.eleve')}
+            sousTitre={t('bienvenue.eleveAide')}
+            onPress={() => router.push({ pathname: '/classe', params: { type: 'eleve' } })}
           />
-        </Apparition>
-      ) : null}
+          <LigneGroupe
+            gauche={<PastilleProfil><Trophy size={20} color={theme.texte.principal} strokeWidth={2} /></PastilleProfil>}
+            titre={t('bienvenue.concours')}
+            sousTitre={t('bienvenue.concoursAide')}
+            onPress={() => router.push({ pathname: '/classe', params: { type: 'concours' } })}
+          />
+          {certification ? (
+            <LigneGroupe
+              gauche={<PastilleProfil><LogoToeic /></PastilleProfil>}
+              titre={t('bienvenue.toeic')}
+              sousTitre={t('bienvenue.toeicAide')}
+              onPress={() => {
+                suivre('onboarding_choice_made', { profil: 'certification' });
+                router.push('/certification');
+              }}
+            />
+          ) : null}
+        </GroupeColle>
+      </Apparition>
       <Bouton variante="texte" libelle={t('bienvenue.dejaCompte')} onPress={() => router.push('/compte/connexion')} />
     </Ecran>
   );

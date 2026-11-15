@@ -555,7 +555,8 @@ export const fr = {
   },
   bienvenue: {
     marque: 'Elearn Prepa',
-    titre: 'Bloqué sur un exo ? On t’explique chaque étape.',
+    titre: 'Un examen à réussir ?\u00a0On te guide pas à pas.',
+    sousTitre: 'Cours, quiz, annales corrigées et un plan de révision sur mesure.',
     exempleEtiquette: 'Exemple',
     exempleTitre: '2x + 3 = 11',
     exempleTexte: 'On retire 3 des deux côtés : 2x = 8, donc x = 4.',
@@ -563,7 +564,9 @@ export const fr = {
     eleve: 'Je suis élève',
     eleveAide: 'De la 6e à la Terminale',
     concours: 'Je prépare un concours',
-    concoursAide: 'ENS, médecine, écoles d’ingénieurs…',
+    concoursAide: 'Écoles d’ingénieurs, médecine, ENS…',
+    toeic: 'Je prépare le TOEIC',
+    toeicAide: 'Anglais pour l’université et le travail',
     dejaCompte: 'J’ai déjà un compte',
   },
   classe: {

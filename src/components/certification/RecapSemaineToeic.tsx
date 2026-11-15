@@ -12,7 +12,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
-import { EnteteToeic, EtiquetteSection, LigneChoix, Squelette } from './ui';
+import { EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
 /** Récapitulatif TOEIC basé exclusivement sur les indicateurs serveur de la période glissante de 7 jours. */
@@ -73,7 +73,7 @@ export function RecapSemaineToeic() {
             <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.stats.mention')}</Text>
           </Carte>
           <EtiquetteSection texte={t('certification.recapSemaine.activite')} />
-          <View style={styles.groupe}>
+          <ListeChoix>
             <LigneChoix icone={MessagesSquare} titre={t('certification.recapSemaine.reponses')} aide={t('certification.recapSemaine.reponsesAide', { n: stats.reponsesTotal })} />
             <LigneChoix
               icone={CalendarDays}
@@ -88,7 +88,7 @@ export function RecapSemaineToeic() {
               titre={t('certification.recapSemaine.regularite')}
               aide={stats.joursSur7 === 1 ? t('certification.stats.joursUn') : t('certification.stats.jours', { n: stats.joursSur7 })}
             />
-          </View>
+          </ListeChoix>
           <Bouton variante="secondaire" libelle={t('certification.recapSemaine.toutesStats')} onPress={() => router.push('/statistiques')} />
         </>
       ) : null}

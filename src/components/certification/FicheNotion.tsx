@@ -22,7 +22,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { PuceEtatContenu } from './PuceEtatContenu';
-import { EnteteToeic, EtiquetteSection, LigneChoix, Squelette } from './ui';
+import { EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, Squelette } from './ui';
 
 type Phase = { nom: 'chargement' } | { nom: 'erreur' } | { nom: 'expire' } | { nom: 'ok'; fiche: NotionFiche };
 
@@ -157,6 +157,7 @@ export function FicheNotion() {
                 {suivi && quizLies(suivi) ? (
                   <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.fiche.quizLiesBilan', { r: quizLies(suivi)!.reussis, n: quizLies(suivi)!.total })}</Text>
                 ) : null}
+                <ListeChoix>
                 {phase.fiche.ancrages.map((_, i) => (
                   <LigneChoix
                     key={i}
@@ -165,6 +166,7 @@ export function FicheNotion() {
                     onPress={() => router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id, ancrage: '1' } } as never)}
                   />
                 ))}
+                </ListeChoix>
               </View>
             ) : null}
           </View>

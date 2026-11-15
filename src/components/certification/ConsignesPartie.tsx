@@ -8,7 +8,7 @@ import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
-import { EnteteToeic, EtiquetteSection } from './ui';
+import { EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix } from './ui';
 
 type Props = {
   partie: number;
@@ -73,11 +73,11 @@ export function ConsignesPartie({ partie, questions, onCommencer, onRetour }: Pr
       <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>
         {t('certification.consignes.cartes.titrePartie', { n, nom: t(`certification.consignes.partie${n as 1}.titre`) })}
       </Text>
-      <View style={styles.groupe}>
+      <ListeChoix>
         {cartes.map((c, i) => (
-          <CarteConsigne key={i} {...c} />
+          <LigneChoix key={i} icone={c.icone} titre={c.titre} aide={c.texte} />
         ))}
-      </View>
+      </ListeChoix>
     </Ecran>
   );
 }

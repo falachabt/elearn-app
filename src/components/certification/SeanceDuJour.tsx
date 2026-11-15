@@ -21,7 +21,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
-import { BarreProgression, EnteteToeic, LigneChoix, Squelette } from './ui';
+import { BarreProgression, EnteteToeic, LigneChoix, ListeChoix, Squelette } from './ui';
 
 type Phase = { nom: 'chargement' } | { nom: 'erreur' } | { nom: 'ok' };
 
@@ -121,11 +121,13 @@ export function SeanceDuJour() {
               <BarreProgression pourcent={(av.faits / av.total) * 100} libelle={av.total === 1 ? t('certification.seanceJour.avancementUn', { k: av.faits }) : t('certification.seanceJour.avancement', { k: av.faits, b: av.total })} />
               <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{av.total === 1 ? t('certification.seanceJour.avancementUn', { k: av.faits }) : t('certification.seanceJour.avancement', { k: av.faits, b: av.total })}</Text>
             </Carte>
+            <ListeChoix>
             {etat.seance.blocs.map((b, i) => {
               const fait = etat.termines.includes(i);
               const d = bloc(b);
               return <LigneChoix key={i} icone={fait ? Check : d.icone} titre={d.titre} aide={fait ? `${d.aide} · ${t('certification.seanceJour.fait')}` : d.aide} />;
             })}
+            </ListeChoix>
             {finie ? (
               <View style={styles.groupe}>
                 <Banniere ton="succes" titre={t('certification.seanceJour.terminee')} texte={etat.enregistree ? t('certification.seanceJour.termineeTexte') : t('certification.seanceJour.termineeNonEnvoyee')} />

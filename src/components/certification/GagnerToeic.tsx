@@ -16,7 +16,7 @@ import { espace, typo } from '@/theme/theme';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
-import { EnteteToeic, LigneChoix, PastilleEtat, Squelette } from './ui';
+import { EnteteToeic, LigneChoix, ListeChoix, PastilleEtat, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
 const ICONES = { session_done: Check, streak_7: RotateCcw, goal_reached: Target, mini_first: NotebookPen } as const;
@@ -77,9 +77,11 @@ export function GagnerToeic() {
         <>
           <Text style={[typo.texte, { color: theme.texte.principal }]}>{t('certification.gagner.intro', { plafond: etat.valeur.gains.plafond })}</Text>
           {message ? <Banniere ton={message.ton} titre={message.texte} /> : null}
+          <ListeChoix>
           {etat.valeur.gains.gains.map((g) => (
             <LigneGain key={g.code} gain={g} occupe={occupe === g.code} onReclamer={() => void reclamer(etat.valeur.exam, g.code)} />
           ))}
+          </ListeChoix>
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
             {t('certification.gagner.plafondLigne', { g: etat.valeur.gains.gagneSemaine, p: etat.valeur.gains.plafond })}
           </Text>
@@ -91,7 +93,7 @@ export function GagnerToeic() {
   );
 }
 
-function LigneGain({ gain, occupe, onReclamer }: { gain: GainListe; occupe: boolean; onReclamer: () => void }) {
+function LigneGain({ gain, occupe, onReclamer, collee, premier }: { gain: GainListe; occupe: boolean; onReclamer: () => void; collee?: boolean; premier?: boolean }) {
   const { t } = useTraduction();
   const cle = CLES[gain.code];
   const n = gain.montant;
@@ -106,6 +108,8 @@ function LigneGain({ gain, occupe, onReclamer }: { gain: GainListe; occupe: bool
   const atteint = gain.code !== 'streak_7' || (gain.progression ?? 0) >= (gain.cible ?? Infinity);
   return (
     <LigneChoix
+      collee={collee}
+      premier={premier}
       icone={ICONES[gain.code]}
       titre={t(`certification.gagner.${cle}`)}
       aide={aide}

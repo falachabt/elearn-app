@@ -16,7 +16,7 @@ import { bord, espace, typo } from '@/theme/theme';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
-import { BarreProgression, EnteteToeic, LigneChoix, PastilleEtat } from './ui';
+import { BarreProgression, EnteteToeic, LigneChoix, ListeChoix, PastilleEtat } from './ui';
 
 type Donnees = { score: string | null; lignes: LigneMaitrise[]; faibles: PointFaible[] };
 
@@ -91,6 +91,7 @@ export function ResultatDiagnostic() {
           {d.faibles.length > 0 ? (
             <>
               <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{d.faibles.length === 1 ? t('certification.resultat.aTravaillerUn') : t('certification.resultat.aTravailler', { n: d.faibles.length })}</Text>
+              <ListeChoix>
               {d.faibles.map((f, i) =>
                 f.genre === 'notion' ? (
                   <LigneChoix
@@ -108,6 +109,7 @@ export function ResultatDiagnostic() {
                   />
                 ),
               )}
+              </ListeChoix>
             </>
           ) : null}
         </>

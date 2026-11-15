@@ -11,7 +11,7 @@ import { espace, typo } from '@/theme/theme';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
-import { EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, Squelette, Tuile } from './ui';
+import { EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, Squelette, Tuile } from './ui';
 import { useChargement } from './useChargement';
 
 type Traduire = ReturnType<typeof useTraduction>['t'];
@@ -72,7 +72,7 @@ export function HistoriqueTests() {
           {etat.valeur.tentatives.length === 0 ? (
             <EncadrePointille texte={`${t('certification.historique.vide')} ${t('certification.historique.videAide')}`} />
           ) : (
-            etat.valeur.tentatives.map((x) => (
+            <ListeChoix>{etat.valeur.tentatives.map((x) => (
               <LigneChoix
                 key={x.id}
                 icone={iconeDe(x)}
@@ -80,7 +80,7 @@ export function HistoriqueTests() {
                 aide={jourCourt(x.startedAt)}
                 onPress={() => router.push({ pathname: '/certification/tentative/[id]', params: { id: x.id } } as never)}
               />
-            ))
+            ))}</ListeChoix>
           )}
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.historique.mention')}</Text>
         </>

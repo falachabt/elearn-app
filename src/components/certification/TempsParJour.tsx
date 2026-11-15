@@ -13,7 +13,7 @@ import { espace, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
-import { EnteteToeic, LigneChoix } from './ui';
+import { EnteteToeic, LigneChoix, ListeChoix } from './ui';
 
 /** Aides descriptives par durée (cahier §5.A) ; le libellé « Recommandé » est porté à part, par le réglage serveur. */
 const AIDES: Record<number, 'm10' | 'm30'> = { 10: 'm10', 30: 'm30' };
@@ -57,7 +57,7 @@ export function TempsParJour() {
     >
       {modifier ? null : <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.temps.etape')}</Text>}
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('certification.temps.titre')}</Text>
-      <View style={styles.liste}>
+      <ListeChoix>
         {(r?.seanceMinutesChoix ?? []).map((m) => {
           // « Recommandé pour ton objectif » suit le réglage serveur `session_minutes_recommended` (écart E-06 : la
           // recommandation est portée par le serveur) — pas le défaut servi, qui ne pilote que la présélection.
@@ -65,7 +65,7 @@ export function TempsParJour() {
           const aide = m === r?.seanceMinutesRecommande ? t('certification.temps.m20') : AIDES[m] ? t(`certification.temps.${AIDES[m]}`) : undefined;
           return <LigneChoix key={m} icone={Clock} radio actif={minutes === m} titre={t('certification.temps.minutes', { n: m })} aide={aide} onPress={() => setMinutes(m)} />;
         })}
-      </View>
+      </ListeChoix>
       <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.temps.aide')}</Text>
     </Ecran>
   );

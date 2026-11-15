@@ -16,7 +16,7 @@ import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { chargerCourbe, CourbeTests } from './CourbeTests';
-import { BarreProgression, EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, PastilleEtat, Squelette, Tuile } from './ui';
+import { BarreProgression, EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, PastilleEtat, Squelette, Tuile } from './ui';
 import { useChargement } from './useChargement';
 
 const cle = (p: PeriodeStats) => `s${p}` as 's7' | 's30' | 's0';
@@ -157,6 +157,7 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
         </>
       ) : null}
       <EtiquetteSection texte={t('certification.stats.maitrise')} />
+      <ListeChoix>
       {stats.parties.map((p) => (
         <LigneChoix
           key={p.partie}
@@ -167,9 +168,12 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
           onPress={() => router.push({ pathname: '/certification/partie', params: { n: String(p.partie) } } as never)}
         />
       ))}
+      </ListeChoix>
       <EtiquetteSection texte={t('certification.stats.temps')} />
+      <ListeChoix>
       <LigneChoix icone={Clock} titre={t('certification.stats.seances')} aide={t('certification.stats.seancesAide', { min: stats.minutesSeances })} />
       <LigneChoix icone={Clock} titre={t('certification.stats.lecture')} aide={t('certification.stats.lectureAide', { min: stats.minutesLecture })} />
+      </ListeChoix>
       <EtiquetteSection texte={t('certification.stats.regularite')} />
       <View style={styles.tuiles}>
         <Tuile titre={stats.joursSur7 === 1 ? t('certification.stats.joursUn') : t('certification.stats.jours', { n: stats.joursSur7 })} aide={stats.serieJours === 1 ? t('certification.stats.serieUn') : t('certification.stats.serie', { n: stats.serieJours })} />

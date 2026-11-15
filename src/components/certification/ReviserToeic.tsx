@@ -17,7 +17,7 @@ import { CarnetMots } from './CarnetMots';
 import { ContenuFrise, PiedFrise, useFrise } from './FriseParcours';
 import { ContinuerCours, CoursNotions } from './CoursNotions';
 import { stylePartie } from './partiesStyle';
-import { BarreProgression, EnteteToeic, EnteteCase, EtiquetteSection, GrilleCollee, LigneChoix, Squelette, type CaseGrille } from './ui';
+import { BarreProgression, EnteteCase, EnteteToeic, EtiquetteSection, GrilleCollee, LigneChoix, ListeChoix, Squelette, type CaseGrille } from './ui';
 import { useChargement } from './useChargement';
 
 type Onglet = 'parcours' | 'parties' | 'cours' | 'carnet';
@@ -114,9 +114,11 @@ function Contenu({ onglet, donnees, aller, famille, onFamille }: { onglet: Ongle
               };
             })}
           />
+          <ListeChoix>
           <LigneChoix icone={Target} titre={t('certification.reviser.carteTitre')} aide={t('certification.reviser.carteAide')} onPress={() => router.push('/certification/carte' as never)} />
           <LigneChoix icone={BookOpen} titre={t('certification.reviser.coursTitre')} aide={aideCours} onPress={() => aller('cours')} />
           <LigneChoix icone={NotebookPen} titre={t('certification.reviser.carnetTitre')} aide={aideCarnetCompte} onPress={() => aller('carnet')} />
+          </ListeChoix>
         </>
       ) : null}
       {onglet === 'cours' ? <CoursNotions notions={revision.notions} famille={famille} onFamille={onFamille} /> : null}

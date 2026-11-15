@@ -9,7 +9,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Feuille } from '../Feuille';
-import { LigneChoix } from './ui';
+import { LigneChoix, ListeChoix } from './ui';
 
 type Props = { ouverte: boolean; cout: number; onVoir: () => void; onPlusTard: () => void; onRevoirNotion: () => void };
 
@@ -42,6 +42,7 @@ export function FeuilleExplication({ ouverte, cout, onVoir, onPlusTard, onRevoir
         {solde ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{total === 1 ? t('certification.explication.soldeUn') : t('certification.explication.solde', { n: total })}</Text> : null}
         {solde && gagnes > 0 && date ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.explication.soldeGagnes', { e: gagnes, date })}</Text> : null}
       </View>
+      <ListeChoix>
       <LigneChoix
         icone={Wallet}
         titre={t('certification.explication.recharger')}
@@ -52,6 +53,7 @@ export function FeuilleExplication({ ouverte, cout, onVoir, onPlusTard, onRevoir
         }}
       />
       <LigneChoix icone={BookOpen} titre={t('certification.explication.revoirGratuit')} aide={t('certification.explication.revoirGratuitAide')} onPress={onRevoirNotion} />
+      </ListeChoix>
     </Feuille>
   );
 }
