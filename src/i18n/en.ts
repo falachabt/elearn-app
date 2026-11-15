@@ -3140,6 +3140,8 @@ export const en: Textes = {
       compteTitre: 'Create your account to continue',
       compteTexte: 'Tests are for accounts, to keep your score and balance.',
       compteBouton: 'Create my account',
+      compteFeuilleTitre: 'Create an account to take this test',
+      compteFeuilleTexte: 'Half tests and full tests are for accounts: your score and history are saved there. It is free and takes a minute.',
       insuffisantTitre: 'You need {{cout}}',
       insuffisantTexte: 'Your balance is too low for this test. Sessions, lessons and the word book stay free.',
       insuffisantSolde: 'Your balance: {{n}} credits.',

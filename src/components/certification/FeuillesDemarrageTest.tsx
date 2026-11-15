@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { Text } from 'react-native';
 
 import { useTextesCredits } from '@/components/credits/textes';
@@ -28,6 +29,23 @@ export function FeuilleErreurDemarrage({ code, onFermer }: { code: string | null
       texte={t('certification.mini.erreurTexte')}
       mention={code ? t('certification.mini.erreurCode', { code }) : undefined}
       actions={[{ libelle: t('certification.mini.plusTard'), onPress: onFermer, variante: 'texte' }]}
+    />
+  );
+}
+
+/** Test réservé aux comptes (invité) : la raison en feuille du bas, avec le bouton d'inscription (règle §21). */
+export function FeuilleCompteRequis({ ouverte, onFermer }: { ouverte: boolean; onFermer: () => void }) {
+  const { t } = useTraduction();
+  return (
+    <Feuille
+      ouverte={ouverte}
+      onFermer={onFermer}
+      titre={t('certification.mini.compteFeuilleTitre')}
+      texte={t('certification.mini.compteFeuilleTexte')}
+      actions={[
+        { libelle: t('certification.mini.compteBouton'), onPress: () => { onFermer(); router.push('/compte/creer'); } },
+        { libelle: t('certification.mini.plusTard'), onPress: onFermer, variante: 'texte' },
+      ]}
     />
   );
 }

@@ -21,7 +21,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
-import { FeuilleCreditsInsuffisants } from './FeuillesDemarrageTest';
+import { FeuilleCompteRequis, FeuilleCreditsInsuffisants } from './FeuillesDemarrageTest';
 import { EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix } from './ui';
 
 type Choix = number | 'mixte' | null;
@@ -135,12 +135,6 @@ export function ReglageMini() {
           {codeEchec ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.mini.erreurCode', { code: codeEchec })}</Text> : null}
         </View>
       ) : null}
-      {compteRequis ? (
-        <View style={styles.groupe}>
-          <Banniere ton="info" titre={t('certification.mini.compteTitre')} texte={t('certification.mini.compteTexte')} />
-          <Bouton variante="secondaire" libelle={t('certification.mini.compteBouton')} onPress={() => router.push('/compte/creer')} />
-        </View>
-      ) : null}
       <EtiquetteSection texte={t('certification.mini.modeTitre')} />
       <Onglets<ModeEpreuve> valeurs={[{ valeur: 'examen', libelle: t('certification.mini.modeExamen') }, { valeur: 'entrainement', libelle: t('certification.mini.modeEntrainement') }]} valeur={epreuve} onChange={setEpreuve} />
       <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.mini.modeAide')}</Text>
@@ -163,6 +157,7 @@ export function ReglageMini() {
       <LigneChoix icone={Clock} titre={t('certification.mini.temps')} aide={minutes === null ? undefined : t('certification.mini.tempsAide', { min: minutes, n: longueurAnnoncee })} />
       <LigneChoix icone={Wallet} titre={t('certification.mini.cout')} aide={lignesCout} />
       <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.mini.aideCarte')}</Text>
+      <FeuilleCompteRequis ouverte={compteRequis} onFermer={() => setCompteRequis(false)} />
       <FeuilleCreditsInsuffisants blocage={feuille} coutRepli={coutServeur ?? 0} onFermer={() => setFeuille(null)} />
     </Ecran>
   );

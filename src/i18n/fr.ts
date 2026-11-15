@@ -3142,6 +3142,8 @@ export const fr = {
       compteTitre: 'Crée ton compte pour continuer',
       compteTexte: 'Les tests sont réservés aux comptes, pour garder ton score et ton solde.',
       compteBouton: 'Créer mon compte',
+      compteFeuilleTitre: 'Crée un compte pour passer ce test',
+      compteFeuilleTexte: 'Les demi-tests et les tests complets sont réservés aux comptes : ton score et ton historique y sont enregistrés. C’est gratuit et ça prend une minute.',
       insuffisantTitre: 'Il te faut {{cout}}',
       insuffisantTexte: 'Ton solde est trop bas pour ce test. Les séances, le cours et le carnet restent gratuits.',
       insuffisantSolde: 'Ton solde : {{n}} crédits.',

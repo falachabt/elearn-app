@@ -9,7 +9,6 @@ import type { DefTest } from '@/services/certification/types';
 import { enregistrerProfil } from '@/services/profil';
 
 import { ListeTests } from '../ListeTests';
-import { TestBientot } from '../TestBientot';
 import { TestsToeic } from '../TestsToeic';
 import { monter } from './harnais';
 
@@ -52,33 +51,41 @@ beforeEach(async () => {
 });
 afterEach(() => definirApi(null));
 
-describe('test complet : « Bientôt », jamais lançable', () => {
-  it('onglet Tests : la carte porte « Bientôt » et ne mène nulle part', async () => {
+const m = fr.certification.mini;
+
+describe('test complet : actif, avec barre d\'avancement', () => {
+  it('onglet Tests : la carte n\'est plus « Bientôt », elle ouvre la liste des tests complets', async () => {
     await monter(<TestsToeic />);
-    expect(await screen.findByText(t.statut.bientot)).toBeTruthy();
-    fireEvent.press(screen.getByText(t.complet));
-    expect(router.push).not.toHaveBeenCalled();
-    expect(demarrer).not.toHaveBeenCalled();
+    fireEvent.press(await screen.findByText(t.complet));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/liste-tests', params: { kind: 'full' } });
+    expect(screen.queryByText(t.statut.bientot)).toBeNull();
   });
 
-  it('liste des tests complets : lignes « Bientôt », aucun départ, pas de bouton collant', async () => {
+  it('onglet Tests : barre « x faits sur n » sur la carte du test complet', async () => {
+    await monter(<TestsToeic />);
+    await screen.findByText(t.complet);
+    expect(screen.getAllByLabelText(t.avancementUn.replace('{{faits}}', '0').replace('{{total}}', '1')).length).toBeGreaterThan(0);
+  });
+
+  it('liste des tests complets : toucher une ligne lance le test', async () => {
+    demarrer.mockResolvedValue({ status: 'insufficient', tentative: null, cout: 15, solde: 3 });
     mockParams = { kind: 'full' };
     await monter(<ListeTests />);
-    const ligne = await screen.findByTestId('ligne-full-1');
-    expect(screen.getAllByText(t.statut.bientot).length).toBeGreaterThan(0);
-    fireEvent.press(ligne);
-    expect(demarrer).not.toHaveBeenCalled();
-    expect(router.replace).not.toHaveBeenCalled();
-    expect(screen.queryByText(/Commencer Test complet/)).toBeNull();
+    fireEvent.press(await screen.findByTestId('ligne-full-1'));
+    await screen.findByText(/15/);
+    expect(demarrer).toHaveBeenCalled();
+    expect(screen.queryByText(t.statut.bientot)).toBeNull();
   });
 
-  it('écran T6 : titre, texte et bouton désactivé', async () => {
+  it('invité : un test réservé aux comptes ouvre une feuille qui explique, au lieu de rediriger', async () => {
+    demarrer.mockResolvedValue({ status: 'account_required', tentative: null });
     mockParams = { kind: 'full' };
-    await monter(<TestBientot />);
-    expect(await screen.findByText(t.bientotSousTitre)).toBeTruthy();
-    expect(screen.getByText(t.bientotTexte)).toBeTruthy();
-    expect(screen.getByRole('button', { name: t.bientotLancer }).props.accessibilityState?.disabled).toBe(true);
-    fireEvent.press(screen.getByText(t.bientotLancer));
-    expect(demarrer).not.toHaveBeenCalled();
+    await monter(<ListeTests />);
+    fireEvent.press(await screen.findByTestId('ligne-full-1'));
+    expect(await screen.findByText(m.compteFeuilleTitre)).toBeTruthy();
+    expect(screen.getByText(m.compteFeuilleTexte)).toBeTruthy();
+    expect(router.push).not.toHaveBeenCalled();
+    fireEvent.press(screen.getByText(m.compteBouton));
+    expect(router.push).toHaveBeenCalledWith('/compte/creer');
   });
 });

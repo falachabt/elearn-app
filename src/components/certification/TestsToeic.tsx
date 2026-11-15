@@ -86,6 +86,7 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   const progression = (kind: ProgressionTest['kind']) => donnees.progression?.find((p) => p.kind === kind);
   const pEcoute = progression('half_listening');
   const pLecture = progression('half_reading');
+  const pComplet = progression('full');
   const corrigeQ = couts.cert_mock_review;
   const detail = (base: string, c: number | undefined) => (c === undefined || pass ? base : t('certification.tests.avecCout', { detail: base, cout: cout(c) }));
   // La carte ne vise pas une partie : elle annonce les longueurs de base que le serveur sert selon les parties
@@ -126,6 +127,10 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
     const s = scoreBorne(kind, p?.meilleurScore ?? null, 100, total);
     return s ? { valeur: s.valeur, max: s.max } : undefined;
   };
+  const scoreComplet = (p: ProgressionTest | undefined) => {
+    const s = scoreBorne('full', p?.meilleurScore ?? null, 0, total);
+    return s ? { valeur: s.valeur, max: s.max } : undefined;
+  };
   const detailDemi = (p: ProgressionTest | undefined) => (p && p.tentatives > 0 ? t('certification.tests.listes.tentatives', { n: p.tentatives }) : undefined);
   const defs = donnees.defs;
 
@@ -137,8 +142,8 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
       <EtiquetteSection texte={t('certification.tests.etiquetteComplets')} />
       <CarteTest icone={Headphones} couleur={couleurs[3]!.couleur} titre={t('certification.tests.demiEcoute')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...avecAction(statutProgression(pEcoute))} score={scoreDemi('listening', pEcoute)} detail={detailDemi(pEcoute)} progression={avancement(defs?.listening) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'listening' } } as never)} />
       <CarteTest icone={BookOpen} couleur={couleurs[4]!.couleur} titre={t('certification.tests.demiLecture')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...avecAction(statutProgression(pLecture))} score={scoreDemi('reading', pLecture)} detail={detailDemi(pLecture)} progression={avancement(defs?.reading) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'reading' } } as never)} />
-      {/* Test complet : « Bientôt », désactivé (T6, décision de Benny) : aucun départ, aucune liste. */}
-      <CarteTest icone={Trophy} couleur={theme.marque.forte} titre={t('certification.tests.complet')} sous={detail(t('certification.tests.detailComplet'), completQ)} statut="bientot" libelleStatut={t('certification.tests.statut.bientot')} />
+      {/* Test complet : actif depuis le 15 novembre 2026 (3 tests de 200 questions validés en base), même gabarit que les demi-tests. */}
+      <CarteTest icone={Trophy} couleur={theme.marque.forte} titre={t('certification.tests.complet')} sous={detail(t('certification.tests.detailComplet'), completQ)} {...avecAction(statutProgression(pComplet))} score={scoreComplet(pComplet)} detail={detailDemi(pComplet)} progression={avancement(defs?.full) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'full' } } as never)} />
       <CarteTest icone={NotebookPen} couleur={sombre ? theme.texte.principal : theme.fond.surface} titre={t('certification.tests.corrige')} sous={detail(t('certification.tests.detailCorrige'), corrigeQ)} statut="vide" libelleStatut="" />
       <View style={styles.tuiles}>
         <Tuile

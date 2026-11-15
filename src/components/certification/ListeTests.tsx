@@ -23,7 +23,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { GroupeColle } from '../liste/ListeCollee';
-import { FeuilleCreditsInsuffisants, FeuilleErreurDemarrage } from './FeuillesDemarrageTest';
+import { FeuilleCompteRequis, FeuilleCreditsInsuffisants, FeuilleErreurDemarrage } from './FeuillesDemarrageTest';
 import { stylePartie } from './partiesStyle';
 import { BarreProgression, BarreScoreObjectif, EnteteToeic, Squelette } from './ui';
 import { useChargement } from './useChargement';
@@ -60,6 +60,7 @@ export function ListeTests() {
   const { garde, banniere } = useGardeReseau();
   const [enCours, setEnCours] = useState<string | null>(null);
   const [codeEchec, setCodeEchec] = useState<string | null>(null);
+  const [compteRequis, setCompteRequis] = useState(false);
   const [insuffisant, setInsuffisant] = useState<{ cout: number | null; solde: number | null } | null>(null);
 
   useEffect(() => {
@@ -86,7 +87,7 @@ export function ListeTests() {
     try {
       const res = (await garde(() => lancerDefTest(exam, test.id, test.kind, test.meilleurScoreMax, test.part, reglages))) ?? null;
       if (!res) return;
-      if (res.statut === 'compte_requis') router.push('/compte/creer');
+      if (res.statut === 'compte_requis') setCompteRequis(true);
       else if (res.statut === 'insuffisant') setInsuffisant({ cout: res.cout, solde: res.solde });
       else {
         suivre('cert_mock_started', { kind: test.kind });
@@ -180,7 +181,7 @@ export function ListeTests() {
                   : meilleurBorne === null
                     ? t('certification.tests.listes.pasDeScore')
                     : t('certification.tests.listes.meilleurSection', { score: meilleurBorne.valeur, max: meilleurBorne.max });
-                return coutListe === undefined || solde?.illimite || type === 'full' ? libelle : t('certification.tests.avecCout', { detail: libelle, cout: cout(coutListe) });
+                return coutListe === undefined || solde?.illimite ? libelle : t('certification.tests.avecCout', { detail: libelle, cout: cout(coutListe) });
               })()}
             </Text>
           </View>
@@ -191,8 +192,7 @@ export function ListeTests() {
             {tests.map((test, index) => {
               const statut = statutLigne(test);
               const estConseille = conseille?.id === test.id;
-              // Le test complet reste « Bientôt » : aucune ligne ne le lance (décision de Benny, maquette T6).
-              const libelleStatut = type === 'full' ? t('certification.tests.statut.bientot') : t(`certification.tests.listes.statut.${statut}`);
+              const libelleStatut = t(`certification.tests.listes.statut.${statut}`);
               // Échelle de la barre du meilleur, par type : un mini se lit sur ses questions (un compte
               // de bonnes réponses) ; un mixte et un complet sur le total — le nombre de questions pris
               // pour échelle donnait « Meilleur : 550 sur 20 » (terrain du 27 octobre 2026) ; un
@@ -236,7 +236,7 @@ export function ListeTests() {
                   testID={`ligne-${test.kind}-${test.numero}`}
                   accessibilityRole="button"
                   accessibilityLabel={`${t(CLE_NUMERO_LIGNE[type], { numero: test.numero })}. ${libelleStatut}`}
-                  disabled={enCours !== null || type === 'full'}
+                  disabled={enCours !== null}
                   onPress={() => (test.fini ? router.push({ pathname: '/certification/test-detail', params: { kind: type, id: test.id, ...(type === 'mini' && test.part ? { partie: String(test.part) } : {}) } } as never) : void lancer(test, exam, reglagesOk))}
                   style={[
                     styles.ligneCollee,
@@ -301,6 +301,7 @@ export function ListeTests() {
           {/* Un démarrage refusé s'explique par une feuille du bas, jamais par un petit texte sous la
               liste que l'élève ne voit pas (mixtes non faits inertes au toucher, terrain du 27 octobre 2026). */}
           <FeuilleErreurDemarrage code={codeEchec} onFermer={() => setCodeEchec(null)} />
+          <FeuilleCompteRequis ouverte={compteRequis} onFermer={() => setCompteRequis(false)} />
           <FeuilleCreditsInsuffisants blocage={insuffisant} coutRepli={coutListe ?? 0} onFermer={() => setInsuffisant(null)} />
         </>
       ) : null}

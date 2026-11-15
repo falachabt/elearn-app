@@ -69,10 +69,10 @@ afterEach(() => definirApi(null));
 describe('onglet Tests : gabarit large des cartes (maquette v36, v37)', () => {
   it('chaque type affiche « x faits sur n » avec une barre de progression (D-57)', async () => {
     await monter(<TestsToeic />);
-    // Mini par partie : 1 fait sur 3 ; demi-test écoute : 1 sur 2 ; lecture : 0 sur 1 ; mixte : 0 sur 1.
+    // Mini par partie : 1 fait sur 3 ; demi-test écoute : 1 sur 2 ; lecture : 0 sur 1 ; mixte : 0 sur 1 ; test complet : 0 sur 1.
     expect(await screen.findByLabelText(t.avancementUn.replace('{{faits}}', '1').replace('{{total}}', '3'))).toBeTruthy();
     expect(screen.getByLabelText(t.avancementUn.replace('{{faits}}', '1').replace('{{total}}', '2'))).toBeTruthy();
-    expect(screen.getAllByLabelText(t.avancementUn.replace('{{faits}}', '0').replace('{{total}}', '1')).length).toBe(2);
+    expect(screen.getAllByLabelText(t.avancementUn.replace('{{faits}}', '0').replace('{{total}}', '1')).length).toBe(3);
   });
 
   it('le meilleur score se lit « 8 sur 10 » (D-58), jamais au-dessus de la section (705 devient 495)', async () => {
@@ -86,8 +86,8 @@ describe('onglet Tests : gabarit large des cartes (maquette v36, v37)', () => {
   it('chaque carte active porte son bouton : « Voir les tentatives » si fait, « Commencer » sinon (maquette v34)', async () => {
     await monter(<TestsToeic />);
     await screen.findByLabelText(t.avancementUn.replace('{{faits}}', '1').replace('{{total}}', '3'));
-    // Mini par partie, mini mixte, demi-test écoute, demi-test lecture : quatre boutons ; le test complet « Bientôt » n'en a pas.
-    expect(screen.getAllByTestId('carte-test-action')).toHaveLength(4);
+    // Mini par partie, mini mixte, demi-test écoute, demi-test lecture : cinq boutons avec le test complet, actif depuis le 15 novembre 2026.
+    expect(screen.getAllByTestId('carte-test-action')).toHaveLength(5);
     expect(screen.getAllByText(t.voirTentatives).length).toBeGreaterThan(0);
     expect(screen.getAllByText(t.commencer).length).toBeGreaterThan(0);
   });

@@ -141,10 +141,8 @@ describe('T1 · onglet Tests', () => {
 
   it('les demi-tests et le test complet mènent à leur liste de tests', async () => {
     await monter(<TestsToeic />);
-    // Le test complet reste « Bientôt » : la carte est désactivée, rien ne s'ouvre.
-    await screen.findByText(t.tests.statut.bientot);
-    await fireEvent.press(screen.getByText(t.tests.complet));
-    expect(router.push).not.toHaveBeenCalled();
+    await fireEvent.press(await screen.findByText(t.tests.complet));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/liste-tests', params: { kind: 'full' } });
     await fireEvent.press(await screen.findByText(t.tests.demiEcoute));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/liste-tests', params: { kind: 'listening' } });
     await fireEvent.press(await screen.findByText(t.tests.demiLecture));
@@ -359,7 +357,7 @@ describe('T2 · réglage d’un mini-test', () => {
     await monter(<ReglageMini />);
     await fireEvent.press(await screen.findByLabelText('Partie 5'));
     await fireEvent.press(screen.getByText(t.mini.commencer));
-    expect(await screen.findByText(t.mini.compteTitre)).toBeTruthy();
+    expect(await screen.findByText(t.mini.compteFeuilleTitre)).toBeTruthy();
     await fireEvent.press(screen.getByText(t.mini.compteBouton));
     expect(router.push).toHaveBeenCalledWith('/compte/creer');
   });

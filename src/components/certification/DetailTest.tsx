@@ -22,7 +22,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
-import { FeuilleCreditsInsuffisants, FeuilleErreurDemarrage } from './FeuillesDemarrageTest';
+import { FeuilleCompteRequis, FeuilleCreditsInsuffisants, FeuilleErreurDemarrage } from './FeuillesDemarrageTest';
 import { EnteteToeic, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
@@ -46,6 +46,7 @@ export function DetailTest() {
   const { couts } = useCredits();
   const [enCours, setEnCours] = useState(false);
   const [codeEchec, setCodeEchec] = useState<string | null>(null);
+  const [compteRequis, setCompteRequis] = useState(false);
   const [insuffisant, setInsuffisant] = useState<{ cout: number | null; solde: number | null } | null>(null);
 
   const { etat } = useChargement(async () => {
@@ -68,7 +69,7 @@ export function DetailTest() {
         return;
       }
       if (res.statut === 'demarre') router.replace('/certification/mini-test' as never);
-      else if (res.statut === 'compte_requis') router.push('/compte/creer');
+      else if (res.statut === 'compte_requis') setCompteRequis(true);
       else if (res.statut === 'insuffisant') setInsuffisant({ cout: res.cout, solde: res.solde });
     } catch (erreur) {
       // Avant ce correctif, l'échec du lancement remontait sans être attrapé : le bouton semblait
@@ -87,7 +88,7 @@ export function DetailTest() {
     try {
       const res = (await garde(() => lancerDefTest(exam, test.id, test.kind, test.meilleurScoreMax, test.part, reglages))) ?? null;
       if (!res) return;
-      if (res.statut === 'compte_requis') router.push('/compte/creer');
+      if (res.statut === 'compte_requis') setCompteRequis(true);
       else if (res.statut === 'insuffisant') setInsuffisant({ cout: res.cout, solde: res.solde });
       else router.replace('/certification/mini-test' as never);
     } catch (erreur) {
@@ -156,6 +157,7 @@ export function DetailTest() {
           {/* Un démarrage refusé s'explique par une feuille du bas, pas par un petit texte sous les
               boutons (terrain du 27 octobre 2026 : boutons du détail d'un mixte perçus comme morts). */}
           <FeuilleErreurDemarrage code={codeEchec} onFermer={() => setCodeEchec(null)} />
+          <FeuilleCompteRequis ouverte={compteRequis} onFermer={() => setCompteRequis(false)} />
           <FeuilleCreditsInsuffisants
             blocage={insuffisant}
             coutRepli={(type === 'mixed' ? couts.cert_mock_mini_twenty : type === 'mini' ? couts.cert_mock_mini_ten : type === 'full' ? couts.cert_mock_full : couts.cert_mock_half) ?? 0}
