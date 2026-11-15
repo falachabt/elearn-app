@@ -287,7 +287,7 @@ describe('Bascule des onglets selon le profil', () => {
 describe('S7 · Mon TOEIC avant diagnostic', () => {
   it('montre seulement la préparation et le bouton, sans cartes de séance, cours ni carnet', async () => {
     await monter(<AccueilToeic />);
-    expect(await screen.findByText(t.arrivee.contientTitre)).toBeTruthy();
+    expect(await screen.findByText(t.arrivee.contientEcouteTitre)).toBeTruthy();
     expect(screen.getByRole('button', { name: t.arrivee.commencer })).toBeTruthy();
     expect(screen.queryByText(t.accueilToeic.minutesCourtes.replace('{{minutes}}', '20'))).toBeNull();
     expect(screen.queryByText(t.accueilToeic.parties)).toBeNull();

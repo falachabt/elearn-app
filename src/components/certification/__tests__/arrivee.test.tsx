@@ -291,16 +291,17 @@ describe('A5 · Arrivée avant diagnostic', () => {
   it('AC-A5-1 : aucune valeur de performance, les repères et le contenu du diagnostic', async () => {
     await monter(<ArriveeToeic />);
     // Le compte vient du plan servi (diag_counts), pas du seuil de score : 21 questions, 9 écoute / 12 lecture.
-    expect(await screen.findByText(t.arrivee.repereQuestions.replace('{{n}}', '21'))).toBeTruthy();
-    expect(screen.getByText(t.arrivee.repereDuree)).toBeTruthy();
-    expect(screen.getByText(t.arrivee.repereGratuit)).toBeTruthy();
-    expect(screen.getByText(t.arrivee.intro)).toBeTruthy();
+    expect(await screen.findByText(t.arrivee.intro)).toBeTruthy();
+    // Retouche du 15/11/2026 : plus de bloc Questions / Durée / Prix, plus de phrase de règle.
+    expect(screen.queryByText(t.arrivee.repereQuestions.replace('{{n}}', '21'))).toBeNull();
+    expect(screen.queryByText(t.arrivee.repereDuree)).toBeNull();
+    expect(screen.queryByText(t.arrivee.repereGratuit)).toBeNull();
     expect(screen.getByText(t.arrivee.contientEcouteTitre)).toBeTruthy();
     expect(screen.getByText(t.arrivee.contientEcouteAide.replace('{{n}}', '9'))).toBeTruthy();
     expect(screen.getByText(t.arrivee.contientLectureTitre)).toBeTruthy();
     expect(screen.getByText(t.arrivee.contientLectureAide.replace('{{n}}', '12'))).toBeTruthy();
     expect(screen.getByText(t.arrivee.donneTexte)).toBeTruthy();
-    expect(screen.getByText(t.arrivee.regle)).toBeTruthy();
+    expect(screen.queryByText(t.arrivee.regle)).toBeNull();
     expect(screen.queryByText(/\d{3} à \d{3}/)).toBeNull();
   });
   it('AC-A5-2 : une seule action, plus de rangées Cours, Carnet ou Séance', async () => {
