@@ -9,7 +9,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { adopterProfil } from '@/services/changementProfil';
-import { filtrerConcoursAvance, lireConcoursFiliere, lireFilieres, valeursDistinctes, type ConcoursFiliere, type Filiere } from '@/services/concours';
+import { filtrerConcoursAvance, signalerConcoursChoisi, lireConcoursFiliere, lireFilieres, valeursDistinctes, type ConcoursFiliere, type Filiere } from '@/services/concours';
 import { CLE_MISSION } from '@/services/mission';
 import { drapeauPays, listerPays, nomPays } from '@/services/pays';
 import { enregistrerProfil, lireProfil, paysParDefaut, type ConcoursChoisi, type Profil } from '@/services/profil';
@@ -217,6 +217,7 @@ export function ChoixConcours({ dansPage = false, adoption = false, filierePrefi
     // La mission gardée pour aujourd'hui était tirée pour l'ancien programme.
     await AsyncStorage.removeItem(CLE_MISSION);
     suivre('contest_chosen', { filiere, concours: c.sigle });
+    void signalerConcoursChoisi(getSupabase(), c.id);
     if (router.canGoBack()) router.back();
     else router.replace('/');
   };

@@ -107,3 +107,12 @@ export function filtrerConcours(liste: readonly ConcoursFiliere[], recherche: st
   if (!q) return [...liste];
   return liste.filter((c) => plat([c.sigle, c.ecole, c.ville ?? '', c.nom].join(' ')).includes(q));
 }
+
+/** Enregistre le concours choisi côté serveur (nombre d'inscrits). Sans effet si le serveur ne l'a pas encore ou hors ligne. */
+export async function signalerConcoursChoisi(client: Client, concoursId: string): Promise<void> {
+  try {
+    await client.rpc('set_my_contest', { p_contest: concoursId });
+  } catch {
+    // Information de comptage seulement : le choix est déjà gardé dans le profil.
+  }
+}

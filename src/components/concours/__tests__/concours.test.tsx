@@ -60,6 +60,7 @@ it('filière puis concours : un appui ouvre la liste, la feuille de détail enre
   });
   expect(await AsyncStorage.getItem('mission.jour')).toBeNull();
   expect(suivre).toHaveBeenCalledWith('contest_chosen', { filiere: 'ingenieurs', concours: 'ENSPD' });
+  expect(mockRpc).toHaveBeenCalledWith('set_my_contest', { p_contest: 'c2' });
 });
 
 it('la recherche réduit la liste', async () => {
