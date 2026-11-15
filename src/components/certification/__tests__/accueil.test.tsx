@@ -81,14 +81,19 @@ describe('N1 · Accueil TOEIC', () => {
     // Accueil d'un élève qui a fini son diagnostic : c'est le seul cas où les cartes de séance s'affichent.
     await ecrireDiagnostic({ fin: { estimated: true, score: 700, score_min: 650, score_max: 730 } } as never);
   });
-  it('montre objectif, séance du jour (carte verte, notion en titre), mots à revoir et score', async () => {
+  it('montre objectif, séance du jour (carte verte, notion en titre) et le parcours du jour à la place des deux cartes du bas', async () => {
     await monter(<AccueilToeic />);
     expect(await screen.findByText(t.accueilToeic.compteJours.replace('{{n}}', '42'))).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.seanceTitre)).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.minutesCourtes.replace('{{minutes}}', '20'))).toBeTruthy();
-    expect(screen.getByText('Prépositions de temps')).toBeTruthy();
-    expect(screen.getAllByText(t.accueilToeic.motsN.replace('{{n}}', '2')).length).toBeGreaterThan(0);
-    expect(screen.getByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeTruthy();
+    expect(screen.getAllByText('Prépositions de temps').length).toBeGreaterThan(0);
+    // Retouche de novembre 2026 : plus de cartes « Score estimé » et « Mots à revoir », ni de phrase du plan sous le compteur.
+    expect(screen.queryByText(t.accueilToeic.score)).toBeNull();
+    expect(screen.queryByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeNull();
+    expect(screen.queryByText(/Ton plans*:/)).toBeNull();
+    // Parcours du jour : ligne « Aujourd’hui · date » puis les étapes du jour (repli local : mini-test).
+    expect(await screen.findByText(/^Aujourd’hui · /)).toBeTruthy();
+    expect((await screen.findAllByText(fr.certification.monPlan.miniLocal)).length).toBeGreaterThan(0);
     expect(screen.queryByText(t.accueilToeic.parties)).toBeNull();
   });
 
@@ -104,16 +109,19 @@ describe('N1 · Accueil TOEIC', () => {
     expect(router.push).toHaveBeenCalledWith('/profil/changer');
   });
 
-  it('la carte Test dans montre les séances faites de la semaine sur les séances prévues', async () => {
+  it('la carte Test dans garde le compteur et sa barre de la semaine, sans phrase sous le compteur', async () => {
     await AsyncStorage.setItem('cert.seancesFaites', JSON.stringify([{ clientUuid: 'x', jour: jourDe(new Date()) }]));
     await monter(<AccueilToeic />);
-    expect(await screen.findByText(t.accueilToeic.planSemaine.replace('{{prevues}}', '3').replace('{{faites}}', '1'))).toBeTruthy();
+    expect(await screen.findByText(t.accueilToeic.compteJours.replace('{{n}}', '42'))).toBeTruthy();
+    expect(screen.getByLabelText(t.accueilToeic.planBarre)).toBeTruthy();
+    expect(screen.queryByText(t.accueilToeic.planSemaine.replace('{{prevues}}', '3').replace('{{faites}}', '1'))).toBeNull();
   });
 
-  it('sans date de test, la phrase du plan reste visible hors de la carte', async () => {
+  it('sans date de test : pas de carte du compteur et pas de phrase du plan', async () => {
     await ecrirePlan({ exam: 'toeic', objectif: 800, minutes: 20 }, { effacerDate: true });
     await monter(<AccueilToeic />);
-    expect(await screen.findByText(t.accueilToeic.planSemaine.replace('{{prevues}}', '3').replace('{{faites}}', '0'))).toBeTruthy();
+    expect(await screen.findByText(t.accueilToeic.sansDateTitre)).toBeTruthy();
+    expect(screen.queryByText(t.accueilToeic.planSemaine.replace('{{prevues}}', '3').replace('{{faites}}', '0'))).toBeNull();
     expect(screen.queryByText(t.accueilToeic.compteEtiquette)).toBeNull();
   });
 
@@ -152,10 +160,11 @@ describe('N1 · Accueil TOEIC', () => {
     expect(screen.getByText(t.accueilToeic.serieAide.replace('{{partie}}', '5').replace('{{k}}', '6').replace('{{n}}', '10'))).toBeTruthy();
   });
 
-  it('affiche la fourchette du dernier diagnostic', async () => {
+  it('ne répète plus le score estimé sur l’accueil', async () => {
     await AsyncStorage.setItem('cert.diagnostic', JSON.stringify({ clientUuid: 'd', tentative: null, reponses: [], index: 0, termine: true, fin: { status: 'finished', attempt_id: 'a', kind: 'diagnostic', estimated: true, score: 700, score_min: 650, score_max: 730, per_part: {}, results: [], replay: false } }));
     await monter(<AccueilToeic />);
-    expect(await screen.findByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeTruthy();
+    expect(await screen.findByText(t.accueilToeic.compteJours.replace('{{n}}', '42'))).toBeTruthy();
+    expect(screen.queryByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeNull();
   });
 
   it('garde l’accueil lisible quand la séance ne peut pas être composée', async () => {

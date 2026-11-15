@@ -20,11 +20,12 @@ import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
 import { SelecteurClasse } from '../mission/Accueil';
 import { Cloche } from '../notifications/Cloche';
+import { ParcoursDuJour } from './FriseParcours';
 import { PreparationDiagnostic } from './PreparationDiagnostic';
-import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette, Tuile } from './ui';
+import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
-/** N1 · Accueil du profil TOEIC : objectif, séance du jour, score estimé, mots, reprise d'une série, accès rapides. */
+/** N1 · Accueil du profil TOEIC : séance du jour, compteur avant le test, parcours du jour, reprise d'une série. */
 export function AccueilToeic() {
   const { t } = useTraduction();
   const { etat, recharger } = useChargement(chargerAccueil);
@@ -99,8 +100,6 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
   const progressionSemaine = Math.min(100, (d.seancesSemaine.faites / Math.max(d.seancesSemaine.prevues, 1)) * 100);
   const partieSeance = seance?.seance.blocs.find((b) => b.type === 'serie')?.partie;
   const motsSeance = seance?.seance.blocs.find((b) => b.type === 'mots')?.nombre;
-  const planSemaine = t('certification.accueilToeic.planSemaine', { prevues: d.seancesSemaine.prevues, faites: d.seancesSemaine.faites });
-  const mots = d.motsAReviser === 1 ? t('certification.accueilToeic.motsUn') : t('certification.accueilToeic.motsN', { n: d.motsAReviser });
   const serie = d.serie;
   const aideSerie = serie
     ? serie.perimetre.rejeu
@@ -143,10 +142,9 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
             <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: dateLongue(d.plan.dateTest, langue) })}</Text>
           </View>
           <BarreProgression pourcent={progressionSemaine} libelle={t('certification.accueilToeic.planBarre')} />
-          <Text style={[typo.petit, { color: theme.texte.principal }]}>{planSemaine}</Text>
         </Carte>
       ) : (
-        // Sans date de test (maquette V30-ACCUEIL-SANS-DATE) : invitation en pointillés à ajouter la date, puis la phrase du plan.
+        // Sans date de test (maquette V30-ACCUEIL-SANS-DATE) : invitation en pointillés à ajouter la date.
         <>
           <Appui
             accessibilityRole="button"
@@ -165,13 +163,9 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
               </View>
             </View>
           </Appui>
-          <Text style={[typo.petit, { color: theme.texte.principal }]}>{planSemaine}</Text>
         </>
       )}
-      <View style={styles.grille}>
-        <Tuile titre={t('certification.accueilToeic.score')} aide={d.score !== null ? t('certification.accueilToeic.scoreExact', { score: d.score }) : t('certification.accueilToeic.scorePas')} />
-        <Tuile titre={t('certification.accueilToeic.mots')} aide={mots} onPress={() => aller('/reviser?onglet=carnet')} />
-      </View>
+      <ParcoursDuJour />
       {serie ? (
         <View style={styles.groupe}>
           <EtiquetteSection texte={t('certification.accueilToeic.reprendre')} />
@@ -199,7 +193,6 @@ const styles = StyleSheet.create({
   ligneBadges: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[2] },
   ligne: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: espace[2] },
   pastille: { paddingHorizontal: espace[3], paddingVertical: espace[1], borderWidth: bord.normal, borderRadius: rayon.s },
-  grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[2] },
   invitation: { flexDirection: 'row', alignItems: 'center', gap: espace[3], minHeight: 78, padding: espace[3], borderWidth: bord.normal, borderStyle: 'dashed', borderRadius: 14 },
   invitationIcone: { width: 40, height: 40, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   invitationTexte: { flex: 1, minWidth: 0, gap: 2 },

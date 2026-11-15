@@ -10,11 +10,10 @@ import type { FamilleNotion, NotionListee } from '@/services/certification/types
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
-import { Appui } from '../Appui';
 import { Bouton } from '../Bouton';
 import { Onglets } from '../Onglets';
 import { PuceEtatContenu } from './PuceEtatContenu';
-import { BarreProgression, EtiquetteSection, GrilleEgale } from './ui';
+import { BarreProgression, EnteteCase, EtiquetteSection, GrilleCollee, type CaseGrille } from './ui';
 
 const FAMILLES: readonly FamilleNotion[] = ['grammaire', 'vocabulaire', 'piege', 'methode'];
 
@@ -41,22 +40,28 @@ export function CoursNotions({ notions, famille, onFamille }: { notions: NotionL
       {groupes.map((g) => (
         <View key={g.partie} style={styles.colonne}>
           <EtiquetteSection texte={g.partie ? t('certification.cours.etiquette', { famille: t(`certification.cours.familles.${famille}`), n: g.partie }) : t('certification.cours.etiquetteSans', { famille: t(`certification.cours.familles.${famille}`) })} />
-          {/* Retour de Benny (22 octobre) : toutes les familles en grille de tuiles, pas seulement Grammaire. */}
-          <GrilleEgale
-            colonnes={2}
-            enfants={g.notions.map((n) => (
-              <Appui key={n.id} accessibilityRole="button" accessibilityLabel={`${titreAffiche(n.titre)}, ${t(`certification.cours.etats.${etatContenu(n)}`)}`} onPress={() => ouvrir(n.id)} decalage={2} rayon={rayon.m} retour style={styles.caseTuile}>
-                <View style={[styles.tuile, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                  <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
-                    <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
-                  </View>
+          {/* Retour de Benny (22 octobre) : toutes les familles en grille ; retouche de novembre : cartes collées, même hauteur, état en haut à droite. */}
+          <GrilleCollee
+            cases={g.notions.map((n): CaseGrille => ({
+              cle: n.id,
+              accessibilityLabel: `${titreAffiche(n.titre)}, ${t(`certification.cours.etats.${etatContenu(n)}`)}`,
+              onPress: () => ouvrir(n.id),
+              contenu: (
+                <>
+                  <EnteteCase
+                    pastille={
+                      <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
+                        <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
+                      </View>
+                    }
+                    etiquette={<PuceEtatContenu etat={etatContenu(n)} />}
+                  />
                   <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titreAffiche(n.titre)}</Text>
                   {n.dureeMin ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.cours.duree', { n: n.dureeMin })}</Text> : null}
-                  <PuceEtatContenu etat={etatContenu(n)} />
                   {quizLies(n) ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.cours.quizLies', { r: quizLies(n)!.reussis, n: quizLies(n)!.total })}</Text> : null}
-                </View>
-              </Appui>
-            ))}
+                </>
+              ),
+            }))}
           />
         </View>
       ))}
@@ -100,7 +105,5 @@ const styles = StyleSheet.create({
   jauge: { gap: espace[1] },
   jaugeEntete: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   colonne: { gap: espace[3] },
-  caseTuile: { flex: 1 },
-  tuile: { flex: 1, minHeight: 136, padding: espace[3], gap: espace[1], alignItems: 'flex-start', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.m },
-  pastille: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s, marginBottom: espace[1] },
+  pastille: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
 });

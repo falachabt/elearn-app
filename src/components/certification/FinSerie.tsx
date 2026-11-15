@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { obtenirReglages } from '@/services/certification/etat';
+import { cleSerie, marquerEtapeFaite } from '@/services/certification/planFaites';
 import { terminerBlocSuivant } from '@/services/certification/seanceJour';
 import { titreAffiche } from '@/services/certification/titre';
 import { ecrireSerie, effacerSerie, lireSerieEnCours, resumerSerie, type EtatSerie, type ResumeSerie } from '@/services/certification/serie';
@@ -15,7 +16,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
-import { EnteteToeic, EtiquetteSection, LigneChoix } from './ui';
+import { ConfirmationPlan, EnteteToeic, EtiquetteSection, LigneChoix } from './ui';
 
 /** B11 · Fin de série : score, rejeu espacé, notions touchées, mots ajoutés au carnet. */
 export function FinSerie() {
@@ -45,6 +46,8 @@ export function FinSerie() {
         await terminerBlocSuivant();
         await ecrireSerie({ ...e, blocClos: true });
       }
+      // La série est une étape du plan du jour (notion, partie ou rejeu) : elle reste dans la frise avec l'état « Fait ».
+      await marquerEtapeFaite(cleSerie(e.perimetre));
       if (!actif) return;
       setEtat(e);
       setResume(resumerSerie(e, { delaisRejeuJours: delais }));
@@ -95,6 +98,7 @@ export function FinSerie() {
             </Text>
             {perimetre ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{perimetre}</Text> : null}
           </Carte>
+          <ConfirmationPlan cle={cleSerie(etat!.perimetre)} />
           {resume.ratees === 0 ? (
             <Text style={[typo.texte, { color: theme.texte.principal }]}>{t('certification.finSerie.aucuneRatee')}</Text>
           ) : (

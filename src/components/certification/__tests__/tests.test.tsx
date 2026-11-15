@@ -803,7 +803,7 @@ describe('revue de l’Examen terminé', () => {
     expect(screen.queryByText(t.exercice.grilleTienne)).toBeNull();
   });
 
-  it('maquette M-REV : onglets « Toutes / Mes erreurs » et options « Ta réponse » / « Bonne réponse »', async () => {
+  it('maquette M-REV : onglets « Toutes / Mes erreurs » et option « Ta réponse » et coche sur la bonne réponse', async () => {
     let e = await semer({ partie: 5, reponses: 0 });
     e = await repondreMini(e, 0, 100);
     e = await repondreMini(e, 1, 100);
@@ -818,7 +818,9 @@ describe('revue de l’Examen terminé', () => {
     expect(await screen.findByText(t.revue.position.replace('{{n}}', '2').replace('{{total}}', String(e.tentative.questions.length)))).toBeTruthy();
     // Une fois sur l'option, une fois dans la grille du corrigé.
     expect(screen.getAllByText(t.revue.taReponse)).toHaveLength(2);
-    expect(screen.getAllByText(t.revue.bonneReponse)).toHaveLength(2);
+    // L’option correcte n’a plus de libellé « Bonne réponse » : une coche dans sa pastille ; il ne reste que la ligne de la grille du corrigé.
+    expect(screen.getAllByText(t.revue.bonneReponse)).toHaveLength(1);
+    expect(screen.getAllByTestId('marque-bonne').length).toBeGreaterThan(0);
     // Suivante : la prochaine question fausse ou sans réponse (la 3), jamais la juste.
     await fireEvent.press(screen.getByText(t.revue.suivante));
     expect(await screen.findByText(t.revue.position.replace('{{n}}', '3').replace('{{total}}', String(e.tentative.questions.length)))).toBeTruthy();

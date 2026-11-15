@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fireEvent, screen } from '@testing-library/react-native';
 import { router } from 'expo-router';
+import { StyleSheet } from 'react-native';
 
 import { fr } from '@/i18n/fr';
 import { definirApi } from '@/services/certification/api';
@@ -73,6 +74,20 @@ describe('choix de la partie (v39)', () => {
     expect(screen.getByTestId('partie-7')).toBeTruthy();
     expect(screen.getAllByText(t.choixPartie.pasEncore).length).toBeGreaterThan(0);
     expect(screen.getByTestId('mixte')).toBeTruthy();
+  });
+
+  it('retouche de novembre : cartes collées de même hauteur, étiquette d’état à droite, place « Conseillé » réservée pour chaque partie', async () => {
+    await monter(<ChoixPartie />);
+    await screen.findByTestId('partie-1');
+    await fireEvent(screen.getByTestId('partie-1-contenu'), 'layout', { nativeEvent: { layout: { x: 0, y: 0, width: 150, height: 118 } } });
+    await fireEvent(screen.getByTestId('partie-5-contenu'), 'layout', { nativeEvent: { layout: { x: 0, y: 0, width: 150, height: 158 } } });
+    for (const id of ['partie-1', 'partie-2', 'partie-5', 'partie-7', 'mixte']) expect(StyleSheet.flatten(screen.getByTestId(id).props.style).minHeight).toBe(190);
+    // Un seul bloc : aucune carte ne porte son propre contour.
+    expect(StyleSheet.flatten(screen.getByTestId('partie-1').props.style).borderWidth).toBeUndefined();
+    // Le badge « Conseillé » n’existe que sur la partie conseillée, mais sa place est réservée sur toutes les cartes de partie.
+    expect(screen.getAllByText(t.choixPartie.conseille)).toHaveLength(1);
+    // « Fait » (partie 5 : 1 test sur 3 commencé) est dans l’en-tête de carte, avec l’icône, pas sous le texte.
+    expect(screen.getAllByText(fr.certification.tests.statut.enCours).length).toBeGreaterThan(0);
   });
 
   it('l’intro annonce la fourchette servie : 10 ou 12 questions selon la partie (I-3)', async () => {

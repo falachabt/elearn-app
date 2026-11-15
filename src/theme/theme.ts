@@ -27,6 +27,8 @@ const lightValeurs = {
   accent: { soleil: p.soleil[400], soleilDoux: p.soleil[100], soleilTresDoux: p.soleil[50] },
   etat: {
     succes: p.emeraude[500], succesDoux: p.emeraude[100],
+    // Pastille pleine de la coche d'une option correcte (retouche de novembre 2026) : vert foncé, coche claire (contraste AA).
+    succesPlein: p.emeraude[800], succesPleinTexte: p.papier[0],
     alerte: p.orange[500], alerteDoux: p.orange[100],
     erreur: p.corail[500], erreurDoux: p.corail[100], erreurTexte: p.corail[700],
     info: p.bleu[500], infoDoux: p.bleu[100], infoTexte: p.bleu[700],
@@ -48,6 +50,7 @@ const dark: Theme = {
   accent: { soleil: p.soleil[400], soleilDoux: p.soleil[900], soleilTresDoux: p.soleil[900] },
   etat: {
     succes: p.emeraude[400], succesDoux: p.emeraude[950],
+    succesPlein: p.emeraude[700], succesPleinTexte: p.papier[0],
     alerte: p.orange[400], alerteDoux: p.orange[900],
     erreur: p.corail[400], erreurDoux: p.corail[900], erreurTexte: p.corail[300],
     info: p.bleu[400], infoDoux: p.bleu[900], infoTexte: p.bleu[300],

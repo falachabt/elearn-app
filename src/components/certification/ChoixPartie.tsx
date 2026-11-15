@@ -1,10 +1,8 @@
 import { router } from 'expo-router';
 import { Check, Circle, Layers, RotateCcw, Target } from 'lucide-react-native';
-import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Banniere } from '@/components/Banniere';
-import { Appui } from '@/components/Appui';
 import { Bouton } from '@/components/Bouton';
 import { Ecran } from '@/components/Ecran';
 import { useTraduction } from '@/i18n/useTraduction';
@@ -12,10 +10,10 @@ import { obtenirApi } from '@/services/certification/api';
 import { PARTIES, synthesesParties, testsDeLaPartie } from '@/services/certification/listesTests';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
+import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { stylePartie } from './partiesStyle';
-import { EnteteToeic, Squelette } from './ui';
+import { EnteteCase, EnteteToeic, GrilleCollee, Squelette, type CaseGrille } from './ui';
 import { useChargement } from './useChargement';
 
 /**
@@ -36,8 +34,8 @@ export function ChoixPartie() {
   const conseillee = parties.find((p) => p.conseillee && p.total > 0) ?? null;
   const ouvrir = (partie: number) => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mini', partie: String(partie) } } as never);
 
-  const cellules: ReactNode[] = etat.phase === 'ok' ? [
-    ...PARTIES.map((partie) => {
+  const cases: CaseGrille[] = etat.phase === 'ok' ? [
+    ...PARTIES.map((partie): CaseGrille => {
       const ligne = parties.find((p) => p.partie === partie)!;
       // Une partie sans test reste visible (P1 à P7) avec « Pas encore de test » : elle ne s'ouvre pas.
       const vide = ligne.total === 0;
@@ -53,71 +51,66 @@ export function ChoixPartie() {
       const libelleFaits = vide
         ? t('certification.tests.listes.choixPartie.pasEncore')
         : t('certification.tests.listes.choixPartie.faits', { faits: ligne.faits, total: ligne.total });
-      return (
-        <Appui
-          key={partie}
-          style={styles.cellule}
-          accessibilityRole="button"
-          accessibilityLabel={`${t('certification.tests.listes.choixPartie.partie', { partie })}. ${t(cle)}. ${libelleFaits}`}
-          disabled={vide}
-          onPress={() => ouvrir(partie)}
-          decalage={3}
-          ombre={ombre.carte}
-          couleurOmbre={theme.ombre}
-          rayon={rayon.m}
-        >
-          <View
-            testID={`partie-${partie}`}
-            style={[styles.carte, { backgroundColor: ligne.conseillee ? theme.accent.soleilTresDoux : theme.fond.surface, borderColor: theme.bord.fort }]}
-          >
-            <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
-              <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
+      return {
+        cle: String(partie),
+        testID: `partie-${partie}`,
+        fond: ligne.conseillee ? theme.accent.soleilTresDoux : undefined,
+        accessibilityLabel: `${t('certification.tests.listes.choixPartie.partie', { partie })}. ${t(cle)}. ${libelleFaits}`,
+        disabled: vide,
+        onPress: () => ouvrir(partie),
+        contenu: (
+          <>
+            <EnteteCase
+              pastille={
+                <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
+                  <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
+                </View>
+              }
+              etiquette={
+                !vide ? (
+                  <View style={[styles.statut, { borderColor: theme.bord.fort, backgroundColor: statut.fond }]}>
+                    <statut.Icone size={12} color={statut.texte} strokeWidth={2} />
+                    <Text style={[typo.legende, { color: statut.texte }]}>{statut.libelle}</Text>
+                  </View>
+                ) : undefined
+              }
+            />
+            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.tests.listes.choixPartie.partie', { partie })}</Text>
+            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t(cle)}</Text>
+            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{libelleFaits}</Text>
+            {/* Place du badge « Conseillé » réservée, même quand il est absent : toutes les cartes gardent la même hauteur. */}
+            <View style={styles.placeConseille}>
+              {ligne.conseillee ? (
+                <View style={[styles.statut, { borderColor: theme.bord.fort, backgroundColor: theme.accent.soleil }]}>
+                  <Target size={12} color={theme.texte.surCouleur} strokeWidth={2} />
+                  <Text style={[typo.legende, { color: theme.texte.surCouleur }]}>{t('certification.tests.listes.choixPartie.conseille')}</Text>
+                </View>
+              ) : null}
             </View>
-            <View style={styles.texte}>
-              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.tests.listes.choixPartie.partie', { partie })}</Text>
-              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t(cle)}</Text>
-              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{libelleFaits}</Text>
-            </View>
-            {!vide ? (
-              <View style={[styles.statut, { borderColor: theme.bord.fort, backgroundColor: statut.fond }]}>
-                <statut.Icone size={12} color={statut.texte} strokeWidth={2} />
-                <Text style={[typo.legende, { color: statut.texte }]}>{statut.libelle}</Text>
-              </View>
-            ) : null}
-            {ligne.conseillee ? (
-              <View style={[styles.statut, { borderColor: theme.bord.fort, backgroundColor: theme.accent.soleil }]}>
-                <Target size={12} color={theme.texte.surCouleur} strokeWidth={2} />
-                <Text style={[typo.legende, { color: theme.texte.surCouleur }]}>{t('certification.tests.listes.choixPartie.conseille')}</Text>
-              </View>
-            ) : null}
-          </View>
-        </Appui>
-      );
+          </>
+        ),
+      };
     }),
-    <Appui
-      key="mixte"
-      style={styles.cellule}
-      accessibilityRole="button"
-      accessibilityLabel={t('certification.tests.listes.choixPartie.mixte')}
-      onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mixed' } } as never)}
-      decalage={3}
-      ombre={ombre.carte}
-      couleurOmbre={theme.ombre}
-      rayon={rayon.m}
-    >
-      <View testID="mixte" style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-        <View style={[styles.pastille, { backgroundColor: styleDes[5]!.couleur, borderColor: theme.bord.fort }]}>
-          <Layers size={18} color={theme.texte.surCouleur} strokeWidth={2} />
-        </View>
-        <View style={styles.texte}>
+    {
+      cle: 'mixte',
+      testID: 'mixte',
+      accessibilityLabel: t('certification.tests.listes.choixPartie.mixte'),
+      onPress: () => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mixed' } } as never),
+      contenu: (
+        <>
+          <EnteteCase
+            pastille={
+              <View style={[styles.pastille, { backgroundColor: styleDes[5]!.couleur, borderColor: theme.bord.fort }]}>
+                <Layers size={18} color={theme.texte.surCouleur} strokeWidth={2} />
+              </View>
+            }
+          />
           <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.tests.listes.choixPartie.mixte')}</Text>
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.tests.listes.choixPartie.mixteSous')}</Text>
-        </View>
-      </View>
-    </Appui>,
+        </>
+      ),
+    },
   ] : [];
-  const rangees: ReactNode[][] = [];
-  for (let i = 0; i < cellules.length; i += 2) rangees.push(cellules.slice(i, i + 2));
 
   return (
     <Ecran
@@ -131,21 +124,13 @@ export function ChoixPartie() {
         <Banniere ton="erreur" titre={t('certification.tests.erreurTitre')} texte={t('certification.tests.erreurTexte')} />
       ) : null}
       {etat.phase === 'erreur' ? <Bouton libelle={t('certification.reessayer')} onPress={recharger} /> : null}
-      {rangees.map((rangee, i) => (
-        <View key={i} style={styles.rangee}>
-          {rangee}
-          {rangee.length === 1 ? <View style={styles.cellule} /> : null}
-        </View>
-      ))}
+      {cases.length > 0 ? <GrilleCollee cases={cases} /> : null}
     </Ecran>
   );
 }
 
 const styles = StyleSheet.create({
-  rangee: { flexDirection: 'row', gap: espace[3] },
-  cellule: { flex: 1, minWidth: 0 },
-  carte: { flex: 1, borderWidth: bord.normal, borderRadius: rayon.m, padding: espace[4], gap: espace[3], minHeight: 176, alignItems: 'flex-start' },
   pastille: { width: 34, height: 34, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
-  texte: { gap: 2, alignSelf: 'stretch' },
   statut: { flexDirection: 'row', alignItems: 'center', gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1, alignSelf: 'flex-start' },
+  placeConseille: { minHeight: 24, marginTop: espace[2], justifyContent: 'center' },
 });

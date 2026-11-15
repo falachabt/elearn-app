@@ -1,13 +1,15 @@
 import { Check, ChevronRight, Circle, TrendingUp, TriangleAlert, type LucideIcon } from 'lucide-react-native';
-import type { ReactNode } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState, type ReactNode } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import type { EtatMaitrise } from '@/services/certification/certMaitrise';
 import { useTraduction } from '@/i18n/useTraduction';
+import { etapeDansPlanDuJour } from '@/services/certification/planFaites';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
+import { GroupeColle } from '../liste/ListeCollee';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
 /**
@@ -118,11 +120,14 @@ export function BarreScoreObjectif({
   max,
   objectif,
   libelle,
+  bornes,
 }: {
   valeur: number | null;
   max: number;
   objectif?: number | null;
   libelle: string;
+  /** Repères verticaux de l'échelle (ex. 0, 200, 400…), tracés sur la barre et écrits dessous. */
+  bornes?: number[];
 }) {
   const { theme } = useTheme();
   const rempli = valeur === null || max <= 0 ? 0 : Math.max(0, Math.min(100, (valeur / max) * 100));
@@ -147,6 +152,16 @@ export function BarreScoreObjectif({
       >
         <View style={{ width: `${rempli}%`, height: '100%', backgroundColor: theme.marque.principale }} />
       </View>
+      {bornes && max > 0 ? bornes.filter((b) => b > 0 && b < max).map((b) => (
+        <View key={`borne-${b}`} testID="repere-borne" style={[styles.borne, { left: `${(b / max) * 100}%`, top: repere !== null ? 17 : 0, backgroundColor: theme.bord.fort }]} />
+      )) : null}
+      {bornes && max > 0 ? (
+        <View style={styles.bornesTexte}>
+          {bornes.filter((b) => b >= 0 && b <= max).map((b) => (
+            <Text key={`etiquette-${b}`} style={[typo.legende, styles.borneEtiquette, b === 0 ? { left: 0 } : { left: `${(b / max) * 100}%`, transform: [{ translateX: -10 }] }, { color: theme.texte.secondaire }]}>{b}</Text>
+          ))}
+        </View>
+      ) : null}
       {repere !== null ? (
         <View testID="repere-objectif" style={[styles.repere, { left: `${repere}%`, backgroundColor: theme.bord.fort }]} />
       ) : null}
@@ -234,6 +249,83 @@ export function GrilleEgale({ enfants, colonnes = 4 }: { enfants: ReactNode[]; c
   );
 }
 
+/** Une case de `GrilleCollee`. `contenu` est le corps de la carte ; la case est un bouton si `onPress` est fourni. */
+export type CaseGrille = { cle: string; contenu: ReactNode; onPress?: () => void; accessibilityLabel?: string; disabled?: boolean; fond?: string; testID?: string };
+
+/**
+ * Grille collée (retouches TOEIC de novembre 2026, option B) : toutes les cases dans UN seul bloc, séparées par des traits fins,
+ * et TOUTES de la même hauteur (celle de la plus haute, dans toute la grille et non ligne par ligne). Espace interne de 16 px.
+ */
+export function GrilleCollee({ cases, colonnes = 2 }: { cases: CaseGrille[]; colonnes?: number }) {
+  const { theme } = useTheme();
+  const [hauteur, setHauteur] = useState(0);
+  const lignes: CaseGrille[][] = [];
+  for (let i = 0; i < cases.length; i += colonnes) lignes.push(cases.slice(i, i + colonnes));
+  const mesure = (h: number) => setHauteur((actuelle) => (h > actuelle ? h : actuelle));
+  return (
+    <GroupeColle>
+      {lignes.map((ligne, i) => (
+        <View key={i} style={[styles.ligneCollee, i > 0 && { borderTopWidth: bord.fin, borderTopColor: theme.bord.doux }]}>
+          {Array.from({ length: colonnes }, (_, j) => {
+            const c = ligne[j];
+            const separe = j > 0 ? { borderLeftWidth: bord.fin, borderLeftColor: theme.bord.doux } : null;
+            if (!c) return <View key={`vide-${j}`} style={[styles.caseCollee, separe, { backgroundColor: theme.fond.surface }]} />;
+            return (
+              <Pressable
+                key={c.cle}
+                testID={c.testID}
+                accessibilityRole={c.onPress ? 'button' : undefined}
+                accessibilityLabel={c.accessibilityLabel}
+                disabled={c.disabled || !c.onPress}
+                onPress={c.onPress}
+                style={[styles.caseCollee, separe, { backgroundColor: c.fond ?? theme.fond.surface, minHeight: hauteur || undefined }]}
+              >
+                {/* Hauteur naturelle du contenu (sans l'étirement du minHeight) : la plus haute de la grille donne la hauteur commune. */}
+                <View testID={c.testID ? `${c.testID}-contenu` : undefined} onLayout={(e) => mesure(e.nativeEvent.layout.height + 2 * espace[5])} style={styles.contenuCase}>
+                  {c.contenu}
+                </View>
+              </Pressable>
+            );
+          })}
+        </View>
+      ))}
+    </GroupeColle>
+  );
+}
+
+/** En-tête d'une carte de grille : l'icône à gauche, l'étiquette d'état à droite (à l'opposé de l'icône). */
+export function EnteteCase({ pastille, etiquette }: { pastille: ReactNode; etiquette?: ReactNode }) {
+  return (
+    <View style={styles.enteteCase}>
+      {pastille}
+      {etiquette ? <View style={styles.etiquetteCase}>{etiquette}</View> : null}
+    </View>
+  );
+}
+
+/** Fin de séance : confirme que l'étape est validée dans le plan du jour (rien quand l'étape n'est pas au plan d'aujourd'hui). */
+export function ConfirmationPlan({ cle }: { cle: string | null }) {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+  const [dansPlan, setDansPlan] = useState(false);
+  useEffect(() => {
+    let actif = true;
+    void etapeDansPlanDuJour(cle).then((v) => {
+      if (actif) setDansPlan(v);
+    });
+    return () => {
+      actif = false;
+    };
+  }, [cle]);
+  if (!dansPlan) return null;
+  return (
+    <View accessibilityRole="text" style={styles.confirmationPlan}>
+      <Check size={16} color={theme.texte.principal} strokeWidth={2} />
+      <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.monPlan.validee')}</Text>
+    </View>
+  );
+}
+
 /** Squelette de chargement : quelques blocs neutres, sans texte (S1). */
 export function Squelette({ lignes = 3 }: { lignes?: number }) {
   const { theme } = useTheme();
@@ -254,6 +346,12 @@ const styles = StyleSheet.create({
   grilleEgale: { gap: espace[3] },
   ligneEgale: { flexDirection: 'row', gap: espace[3] },
   caseEgale: { flex: 1, minWidth: 0 },
+  ligneCollee: { flexDirection: 'row', alignItems: 'stretch' },
+  caseCollee: { flex: 1, minWidth: 0, padding: espace[5], justifyContent: 'flex-start' },
+  contenuCase: { gap: espace[1] },
+  enteteCase: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: espace[3], marginBottom: espace[3] },
+  etiquetteCase: { flexShrink: 1, alignItems: 'flex-end' },
+  confirmationPlan: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[2] },
   squelette: { gap: espace[3] },
   bloc: { height: 64, borderWidth: bord.fin, borderRadius: rayon.m },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[2], flexShrink: 1, minWidth: 0 },
@@ -267,6 +365,9 @@ const styles = StyleSheet.create({
   // BarreScoreObjectif : la zone porte la valeur du repère (au-dessus) et le repère (à cheval sur la piste).
   barreScore: { position: 'relative', width: '100%' },
   repereValeur: { position: 'absolute', top: 0, fontFamily: 'SpaceGrotesk-Bold', fontSize: 12, lineHeight: 15, transform: [{ translateX: -10 }] },
+  borne: { position: 'absolute', width: 2, height: 10, marginLeft: -1 },
+  bornesTexte: { height: 18, marginTop: espace[2], position: 'relative' },
+  borneEtiquette: { position: 'absolute', top: 0 },
   repere: { position: 'absolute', top: 13, width: 3, height: 18, borderRadius: 2, marginLeft: -1.5 },
   etat: { flexDirection: 'row', alignItems: 'center', gap: espace[1], borderWidth: bord.fin, borderRadius: rayon.s, paddingHorizontal: espace[2], paddingVertical: 2, alignSelf: 'flex-start' },
   pointille: { borderWidth: bord.normal, borderStyle: 'dashed', borderRadius: rayon.m, padding: espace[4] },

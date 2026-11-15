@@ -9,6 +9,7 @@ import { obtenirReglages } from '@/services/certification/etat';
 import { construireDetail, enregistrerDetail } from '@/services/certification/detailTentative';
 import { scoreBorne } from '@/services/certification/listesTests';
 import { lancerAutreTest } from '@/services/certification/passerAutreTest';
+import { marquerEtapeFaite } from '@/services/certification/planFaites';
 import { effacerMini, lancerDefTest, lireMini, terminerMini, type EtatMini } from '@/services/certification/miniTest';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -19,7 +20,7 @@ import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { BilanDefinition } from './BilanDefinition';
 import { GrilleQuestions } from './GrilleQuestions';
-import { EnteteToeic, Squelette } from './ui';
+import { ConfirmationPlan, EnteteToeic, Squelette } from './ui';
 
 type Phase = { nom: 'chargement' } | { nom: 'attente'; etat: EtatMini } | { nom: 'ok'; etat: EtatMini };
 
@@ -66,6 +67,8 @@ export function BilanMini() {
     if (!fin || signale.current) return;
     signale.current = true;
     suivre('cert_mock_completed', { kind: fin.kind, score_min: fin.score_min, score_max: fin.score_max });
+    // Le mini-test ou le test fait est l'étape correspondante du plan du jour.
+    void marquerEtapeFaite(fin.kind === 'mini' ? 'mini' : 'test');
   }, [fin]);
 
   // Détail de la tentative (« Par notion », « Questions ratées » de sa page) : gardé sur l'appareil dès le bilan.
@@ -148,6 +151,7 @@ export function BilanMini() {
         }
       >
         <BilanDefinition score={scoreAffiche} meilleurAvant={def.meilleurAvant} max={maxDef} perPart={fin.per_part} compte={def.kind === 'mini' ? { bonnes, total } : undefined} contexte={etat.partie !== null ? t('certification.tests.bilanDef.contextePartie', { partie: etat.partie }) : undefined} />
+        <ConfirmationPlan cle={def.kind === 'mini' ? 'mini' : 'test'} />
         {def.kind === 'mini' ? (
           <>
             {/* Variante mini-test par partie (écran 5 de la maquette « Fin de test ») : la grille des questions

@@ -225,7 +225,7 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
             etat={corrige ? (i === bonne ? 'bonne' : i === choix ? 'fausse' : 'neutre') : choix === i ? 'choisie' : 'neutre'}
             onPress={verrouille || corrige ? undefined : () => onChoix(i)}
             motCorrection={corrige}
-            mot={corrige && motsRevue ? (i === choix ? (i === bonne ? t('certification.exercice.juste') : t('certification.revue.taReponse')) : t('certification.revue.bonneReponse')) : undefined}
+            mot={corrige && motsRevue ? (i === choix ? (i === bonne ? t('certification.exercice.juste') : t('certification.revue.taReponse')) : undefined) : undefined}
           />
         ))}
       </View>

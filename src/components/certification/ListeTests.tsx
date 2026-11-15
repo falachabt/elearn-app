@@ -99,7 +99,9 @@ export function ListeTests() {
     }
   };
 
-  const { icone: Icone, couleur } = styleType(type, theme, sombre);
+  // Mini-tests d'une partie : chaque ligne reprend l'icône et la couleur propres à la partie (retouche de novembre 2026).
+  const stylePropre = type === 'mini' && partie !== null ? stylePartie(theme, sombre)[partie] : undefined;
+  const { icone: Icone, couleur } = stylePropre ?? styleType(type, theme, sombre);
   const { solde, couts } = useCredits();
   const { cout } = useTextesCredits();
   const coutMini = type === 'mixed' ? couts.cert_mock_mini_twenty : couts.cert_mock_mini_ten;

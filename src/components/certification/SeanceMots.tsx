@@ -148,12 +148,14 @@ export function SeanceMots() {
               const choisie = choix?.carte === carte.id && choix.index === i;
               const repondu = etat.retourne;
               const fond = !repondu ? (choisie ? theme.marque.douce : theme.fond.surface) : p.juste ? theme.etat.succesDoux : choisie ? theme.etat.erreurDoux : theme.fond.surface;
-              const etiquetteReponse = !repondu ? null : p.juste ? t('certification.seanceMots.bonneReponse') : choisie ? t('certification.seanceMots.taReponse') : null;
+              // L'option correcte n'a plus de libellé « Bonne réponse » : sa lettre devient une coche dans une pastille vert foncé.
+              const etiquetteReponse = !repondu || p.juste ? null : choisie ? t('certification.seanceMots.taReponse') : null;
+              const coche = repondu && p.juste;
               return (
                 <Appui
                   key={`${carte.id}-${i}`}
                   accessibilityRole="button"
-                  accessibilityLabel={`${String.fromCharCode(65 + i)}. ${p.texte}`}
+                  accessibilityLabel={`${String.fromCharCode(65 + i)}. ${p.texte}${coche ? `. ${t('certification.revue.bonneReponse')}` : ''}`}
                   accessibilityState={{ disabled: repondu, selected: choisie }}
                   disabled={repondu}
                   onPress={() => choisir(i)}
@@ -162,13 +164,19 @@ export function SeanceMots() {
                   retour={!repondu}
                 >
                   <View style={[styles.option, { backgroundColor: fond, borderColor: theme.bord.fort, borderWidth: choisie ? bord.epais : bord.normal }]}>
-                    <View style={[styles.lettre, { borderColor: theme.bord.fort }]}>
-                      <Text style={[typo.legende, { color: theme.texte.principal }]}>{String.fromCharCode(65 + i)}</Text>
-                    </View>
+                    {coche ? (
+                      <View testID="marque-bonne" style={[styles.lettre, { borderColor: theme.bord.fort, backgroundColor: theme.etat.succesPlein }]}>
+                        <Check size={18} color={theme.etat.succesPleinTexte} strokeWidth={3} />
+                      </View>
+                    ) : (
+                      <View style={[styles.lettre, { borderColor: theme.bord.fort }]}>
+                        <Text style={[typo.legende, { color: theme.texte.principal }]}>{String.fromCharCode(65 + i)}</Text>
+                      </View>
+                    )}
                     <Text style={[typo.texte, { color: theme.texte.principal, flex: 1 }]}>{p.texte}</Text>
                     {etiquetteReponse ? (
                       <View style={styles.etiquette}>
-                        {p.juste ? <Check size={16} color={theme.texte.principal} strokeWidth={2} /> : <X size={16} color={theme.texte.principal} strokeWidth={2} />}
+                        <X size={16} color={theme.texte.principal} strokeWidth={2} />
                         <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{etiquetteReponse}</Text>
                       </View>
                     ) : null}

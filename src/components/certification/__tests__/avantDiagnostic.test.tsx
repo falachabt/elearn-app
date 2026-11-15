@@ -47,12 +47,13 @@ describe('Onglets TOEIC avant diagnostic terminé', () => {
     expect(await screen.findByText(/Pas encore de statistiques/)).toBeTruthy();
   });
 
-  it('Moi : objectif visible et estimation « Pas encore estimé »', async () => {
+  it('Moi : score moyen « Pas encore estimé » et objectif visible, sans Visé / Écart', async () => {
     await monter(<ProgressionToeic />);
     expect((await screen.findAllByText('Pas encore estimé')).length).toBeGreaterThan(0);
-    expect(await screen.findByText('Écart')).toBeTruthy();
     expect(screen.getByText('Voir mes statistiques')).toBeTruthy();
-    expect(screen.getByText('Visé')).toBeTruthy();
+    expect(screen.getByText(/^Objectif /)).toBeTruthy();
+    expect(screen.queryByText('Écart')).toBeNull();
+    expect(screen.queryByText('Visé')).toBeNull();
   });
 
   it('Tests : mini-tests disponibles, score estimé « Pas encore »', async () => {
@@ -63,7 +64,7 @@ describe('Onglets TOEIC avant diagnostic terminé', () => {
 
   it('Réviser : onglets Parcours, Parties, Cours, Carnet', async () => {
     await monter(<ReviserToeic />);
-    expect(await screen.findByText(fr.certification.monPlan.aujourdhui)).toBeTruthy();
+    expect(await screen.findByText(/^Aujourd’hui · /)).toBeTruthy();
     expect(screen.getByText(fr.certification.reviser.onglets.carnet)).toBeTruthy();
   });
 });

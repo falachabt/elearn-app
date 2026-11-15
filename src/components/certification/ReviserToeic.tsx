@@ -9,7 +9,6 @@ import type { FamilleNotion } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
-import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
@@ -18,7 +17,7 @@ import { CarnetMots } from './CarnetMots';
 import { ContenuFrise, PiedFrise, useFrise } from './FriseParcours';
 import { ContinuerCours, CoursNotions } from './CoursNotions';
 import { stylePartie } from './partiesStyle';
-import { BarreProgression, EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix, Squelette } from './ui';
+import { BarreProgression, EnteteToeic, EnteteCase, EtiquetteSection, GrilleCollee, LigneChoix, Squelette, type CaseGrille } from './ui';
 import { useChargement } from './useChargement';
 
 type Onglet = 'parcours' | 'parties' | 'cours' | 'carnet';
@@ -89,32 +88,30 @@ function Contenu({ onglet, donnees, aller, famille, onFamille }: { onglet: Ongle
       {onglet === 'parties' ? (
         <>
           <EtiquetteSection texte={t('certification.reviser.etiquetteParties')} />
-          <GrilleEgale
-            colonnes={2}
-            enfants={[1, 2, 3, 4, 5, 6, 7].map((n) => {
+          <GrilleCollee
+            cases={[1, 2, 3, 4, 5, 6, 7].map((n): CaseGrille => {
               const { couleur, icone: Icone, cle } = stylePartie(theme, sombre)[n] ?? stylePartie(theme, sombre)[1]!;
               const pourcent = Math.round((revision.parties.find((x) => x.partie === n)?.m ?? 0) * 100);
-              return (
-                <Appui
-                  key={n}
-                  accessibilityRole="button"
-                  accessibilityLabel={`${t('certification.reviser.tuileLabel', { n })}, ${t(cle)}, ${t('certification.carteMaitrise.pourcent', { n: pourcent })}`}
-                  onPress={() => router.push({ pathname: '/certification/partie', params: { n: String(n) } } as never)}
-                  decalage={2}
-                  rayon={rayon.m}
-                  retour
-                >
-                  <View style={[styles.cube, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                    <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
-                      <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
-                    </View>
+              return {
+                cle: String(n),
+                accessibilityLabel: `${t('certification.reviser.tuileLabel', { n })}, ${t(cle)}, ${t('certification.carteMaitrise.pourcent', { n: pourcent })}`,
+                onPress: () => router.push({ pathname: '/certification/partie', params: { n: String(n) } } as never),
+                contenu: (
+                  <>
+                    <EnteteCase
+                      pastille={
+                        <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
+                          <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
+                        </View>
+                      }
+                    />
                     <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.reviser.tuile', { n })}</Text>
                     <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t(cle)}</Text>
                     <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.carteMaitrise.pourcent', { n: pourcent })}</Text>
                     <BarreProgression pourcent={pourcent} hauteur={6} />
-                  </View>
-                </Appui>
-              );
+                  </>
+                ),
+              };
             })}
           />
           <LigneChoix icone={Target} titre={t('certification.reviser.carteTitre')} aide={t('certification.reviser.carteAide')} onPress={() => router.push('/certification/carte' as never)} />
@@ -130,6 +127,5 @@ function Contenu({ onglet, donnees, aller, famille, onFamille }: { onglet: Ongle
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
-  cube: { minHeight: 136, padding: espace[3], gap: espace[1], alignItems: 'flex-start', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.m },
-  pastille: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s, marginBottom: espace[1] },
+  pastille: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
 });

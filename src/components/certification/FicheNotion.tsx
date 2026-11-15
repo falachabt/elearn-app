@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { marquerEtapeFaite } from '@/services/certification/planFaites';
 import { obtenirApi } from '@/services/certification/api';
 import { ErreurContenuExpire } from '@/services/certification/copie';
 import { etatContenu, quizLies } from '@/services/certification/etatsContenu';
@@ -42,6 +43,8 @@ export function FicheNotion() {
         setPhase({ nom: 'ok', fiche: valeur });
         suivre('cert_notion_opened', { notion: valeur.code, source: source ?? 'liste' });
         void obtenirApi().ouvrirNotion(id, 0, jourDe(new Date())).catch(() => undefined);
+        // Fiche lue : l'étape « découverte » ou « rappel » de cette notion est faite dans le plan du jour.
+        void marquerEtapeFaite(`fiche:${id}`);
       })
       .catch((e: unknown) => setPhase(e instanceof ErreurContenuExpire ? { nom: 'expire' } : { nom: 'erreur' }));
   }, [id, source]);

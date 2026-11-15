@@ -13,12 +13,15 @@ import { enregistrerProfil } from '@/services/profil';
 import { corrige } from '@/theme/theme';
 
 import { CarteMaitrise } from '../CarteMaitrise';
+import { stylePartie } from '../partiesStyle';
 import { FicheMot } from '../FicheMot';
 import { FicheNotion } from '../FicheNotion';
 import { FinSeanceMots } from '../FinSeanceMots';
 import { NotionsPartie } from '../NotionsPartie';
 import { ReviserToeic } from '../ReviserToeic';
 import { SeanceMots } from '../SeanceMots';
+import { themes } from '@/theme/theme';
+
 import { monter } from './harnais';
 
 const t = fr.certification;
@@ -120,10 +123,16 @@ describe('C3 · Notions d’une partie', () => {
 
   it('trie de la plus fragile à la plus solide et cible la plus fragile par défaut', async () => {
     await monter(<NotionsPartie />);
-    const lignes = await screen.findAllByRole('radio');
-    expect(lignes[0].props.accessibilityState).toEqual({ checked: true });
-    expect(lignes[1].props.accessibilityState).toEqual({ checked: false });
+    await screen.findAllByTestId('pastille-notion');
     expect(screen.getByText(t.notionsPartie.entrainer.replace('{{notion}}', 'Forme du mot'))).toBeTruthy();
+  });
+
+  it('retouche de novembre : lignes collées, chacune avec l’icône et la couleur propres à la partie', async () => {
+    mockParams = { n: '5' };
+    await monter(<NotionsPartie />);
+    const pastilles = await screen.findAllByTestId('pastille-notion');
+    expect(pastilles.length).toBeGreaterThan(0);
+    for (const p of pastilles) expect(StyleSheet.flatten(p.props.style).backgroundColor).toBe(stylePartie(themes.light, false)[5]!.couleur);
   });
 
   it('appuyer sur une carte ouvre la fiche de cette notion', async () => {
@@ -339,10 +348,12 @@ describe('C8 et C9 · Séance de mots', () => {
     expect(StyleSheet.flatten(mot.props.style).fontSize).toBeGreaterThan(26);
     await fireEvent.press(propositions[0]!);
     // Choisi mais pas encore validé : aucune bonne réponse n'est montrée, « Valider » est actif.
-    expect(screen.queryByText(t.seanceMots.bonneReponse)).toBeNull();
+    expect(screen.queryByTestId('marque-bonne')).toBeNull();
     expect(screen.getByText(t.seanceMots.valider)).not.toBeDisabled();
     await fireEvent.press(screen.getByText(t.seanceMots.valider));
-    expect(await screen.findByText(t.seanceMots.bonneReponse)).toBeTruthy();
+    // Option correcte : la lettre devient une coche dans une pastille, sans libellé « Bonne réponse » à droite.
+    expect(await screen.findByTestId('marque-bonne')).toBeTruthy();
+    expect(screen.queryByText(/BONNE RÉPONSE/i)).toBeNull();
     expect(screen.queryByText(t.seanceMots.valider)).toBeNull();
     expect(screen.getByText(t.seanceMots.suivant)).not.toBeDisabled();
   });

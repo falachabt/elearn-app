@@ -17,7 +17,9 @@ export function OptionReponse({ lettre, texte, etat = 'neutre', onPress, motCorr
   const { t } = useTraduction();
   const fond = etat === 'bonne' ? theme.etat.succesDoux : etat === 'fausse' ? theme.etat.erreurDoux : etat === 'choisie' ? theme.marque.douce : theme.fond.surface;
   const corrige = etat === 'bonne' || etat === 'fausse';
-  const plein = etat === 'bonne' ? theme.etat.succes : theme.etat.erreur;
+  // Option correcte : coche claire dans une pastille à fond vert foncé (retouche de novembre 2026), sans libellé « Bonne réponse ».
+  const plein = etat === 'bonne' ? theme.etat.succesPlein : theme.etat.erreur;
+  const encreMarque = etat === 'bonne' ? theme.etat.succesPleinTexte : theme.texte.surCouleur;
   return (
     <Pressable
       accessibilityRole="button"
@@ -35,7 +37,7 @@ export function OptionReponse({ lettre, texte, etat = 'neutre', onPress, motCorr
     >
       {corrige ? (
         <View testID={`marque-${etat}`} style={[styles.marque, { backgroundColor: plein, borderColor: theme.bord.fort }]}>
-          <Ionicons name={etat === 'bonne' ? 'checkmark' : 'close'} size={20} color={theme.texte.surCouleur} />
+          <Ionicons name={etat === 'bonne' ? 'checkmark' : 'close'} size={20} color={encreMarque} />
         </View>
       ) : (
         <View style={[styles.marque, { borderColor: theme.bord.fort }]}>

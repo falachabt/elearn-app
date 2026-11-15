@@ -112,7 +112,7 @@ export default function LayoutOnglets() {
         {/* Le bouton central déborde de la barre : le défilement de chaque onglet s'arrête au-dessus, sans rien cacher.
             Barre masquée (avant le diagnostic) : aucune réserve pour une barre absente, l'écran descend jusqu'à la
             zone sûre — le pied de l'accueil (bouton du diagnostic) se pose en bas de l'écran, pas au-dessus d'un vide. */}
-        <TabSlot style={[styles.ecran, { paddingBottom: barreMasquee ? bottom : DEPASSEMENT_CENTRAL + espace[3] }]} />
+        <TabSlot style={[styles.ecran, { paddingBottom: barreMasquee ? bottom : barreToeic ? espace[3] : DEPASSEMENT_CENTRAL + espace[3] }]} />
         {/* Hors ligne seulement : la barre fine se pose juste au-dessus de la tabbar (la pastille flotte au-dessus).
             Placé entre le contenu et la barre, donc dans le flux : aucune superposition avec les écrans. */}
         <EtatReseau />
@@ -126,7 +126,7 @@ export default function LayoutOnglets() {
             </TabTrigger>
             {barreToeic ? (
               <TabTrigger name="tests" href={"/tests" as never} asChild>
-                <Onglet libelle={t('onglets.tests')} icone="ribbon" central trophee />
+                <Onglet libelle={t('onglets.tests')} icone="ribbon" trophee />
               </TabTrigger>
             ) : (
               <TabTrigger name="photo" href="/photo" asChild>

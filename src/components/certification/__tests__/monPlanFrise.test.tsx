@@ -14,6 +14,7 @@ import { ReviserToeic } from '../ReviserToeic';
 import { monter } from './harnais';
 
 const t = fr.certification.monPlan;
+const LIGNE_AUJOURDHUI = /^Aujourd’hui · /;
 
 jest.mock('expo-router', () => ({
   router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => true) },
@@ -98,12 +99,14 @@ describe('Plan servi : lecture et organisation', () => {
 });
 
 describe('D3 · Mon plan en frise', () => {
-  it('affiche la date, la couverture, aujourd hui ouvert avec les statuts en mots', async () => {
+  it('affiche aujourd’hui en simple ligne de texte, sans bandeau de couverture, avec les statuts en mots', async () => {
     installer({ plan: plan() });
     await monter(<MonPlan />);
-    expect(await screen.findByText(/^Jusqu’au /)).toBeTruthy();
-    expect(screen.getByText(t.couverture.replace('{{vues}}', '12').replace('{{unites}}', '40').replace('{{validees}}', '6').replace('{{maitrisees}}', '2'))).toBeTruthy();
-    expect(screen.getByText(t.aujourdhui)).toBeTruthy();
+    expect(await screen.findByText(LIGNE_AUJOURDHUI)).toBeTruthy();
+    // Retouche de novembre 2026 : ni bandeau « Jusqu’au … », ni phrase de couverture ; la ligne du jour n’est pas un bouton.
+    expect(screen.queryByText(/^Jusqu’au /)).toBeNull();
+    expect(screen.queryByText(/Notions vues/)).toBeNull();
+    expect(screen.queryByRole('button', { name: /^Aujourd’hui/ })).toBeNull();
     expect(screen.getByText(t.statut.reportee)).toBeTruthy();
     expect(screen.getAllByText(t.statut.en_cours).length).toBeGreaterThan(0);
     // demain est replié : ses étapes ne sont pas dessinées
@@ -125,15 +128,17 @@ describe('D3 · Mon plan en frise', () => {
   it('construit le plan quand le serveur n en a pas encore', async () => {
     installer({ plan: null, planConstruit: plan() });
     await monter(<MonPlan />);
-    expect(await screen.findByText(t.aujourdhui)).toBeTruthy();
+    expect(await screen.findByText(LIGNE_AUJOURDHUI)).toBeTruthy();
     expect(fausse.appels.plansConstruits).toBe(1);
   });
 
   it('repli local quand l appel échoue', async () => {
     installer({ plan: 'echec' });
     await monter(<MonPlan />);
-    expect(await screen.findByText(t.local)).toBeTruthy();
-    expect(screen.getAllByText(t.miniLocal).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText(t.miniLocal)).length).toBeGreaterThan(0);
+    // Retouche de novembre 2026 : plus de phrase « Plan de cet appareil », ni de bandeau « Jusqu’au … ».
+    expect(screen.queryByText(/Plan de cet appareil/)).toBeNull();
+    expect(screen.queryByText(/^Jusqu’au /)).toBeNull();
   });
 
   it('sans date : invitation, pas de frise, mission du jour', async () => {
@@ -146,14 +151,15 @@ describe('D3 · Mon plan en frise', () => {
     expect(screen.getByText(t.commencerMission)).toBeTruthy();
   });
 
-  it('trop de contenu : couverture partielle dite, trois étapes puis le lien des étapes restantes', async () => {
+  it('trop de contenu : trois étapes puis le lien des étapes restantes (plus de bandeau de couverture)', async () => {
     const lourd = plan({
       couverture: { unites: 120, vues: 34, validees: 11, maitrisees: 4, pourcent: 78 },
       jours: [{ jour: AUJ, minutes: 20, jourTest: false, etapes: [1, 2, 3, 4, 5].map((i) => etape(`z${i}`, { position: i })) }, { jour: jourPlus(AUJ, 1), minutes: 6, jourTest: false, etapes: [etape('y')] }],
     });
     installer({ plan: lourd });
     await monter(<MonPlan />);
-    expect(await screen.findByText(t.couvertureLimitee.replace('{{pct}}', '78'))).toBeTruthy();
+    expect(await screen.findByText('Étape z1')).toBeTruthy();
+    expect(screen.queryByText(t.couvertureLimitee.replace('{{pct}}', '78'))).toBeNull();
     expect(screen.queryByText('Étape z5')).toBeNull();
     await fireEvent.press(screen.getByText(t.voirRestantes.replace('{{n}}', '3')));
     expect(screen.getByText('Étape z5')).toBeTruthy();
@@ -170,7 +176,7 @@ describe('D3 · Mon plan en frise', () => {
   it('thème sombre : même contenu', async () => {
     installer({ plan: plan() });
     await monter(<MonPlan />, 'sombre');
-    expect(await screen.findByText(t.aujourdhui)).toBeTruthy();
+    expect(await screen.findByText(LIGNE_AUJOURDHUI)).toBeTruthy();
   });
 });
 
@@ -178,7 +184,7 @@ describe('Réviser · Parcours en frise', () => {
   it('montre la frise à la place du menu de quatre lignes', async () => {
     installer({ plan: plan() });
     await monter(<ReviserToeic />);
-    expect(await screen.findByText(t.aujourdhui)).toBeTruthy();
+    expect(await screen.findByText(LIGNE_AUJOURDHUI)).toBeTruthy();
     expect(screen.queryByText(fr.certification.reviser.partiesTitre)).toBeNull();
   });
 });

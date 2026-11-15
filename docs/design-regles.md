@@ -63,3 +63,14 @@ Sources de vérité, dans cet ordre :
 3. Tokens du thème uniquement, contrastes AA, cibles de 48 px.
 4. Textes en français, tutoiement, espaces insécables.
 5. Le guide (ou Figma) est mis à jour, et ce document si une règle change.
+
+## 6. Grilles, listes et texte (retouches TOEIC de novembre 2026)
+
+Maquettes : `toeic/maquettes-retouches/` (description dans `docs/maquettes/toeic-retouches-nov.md`).
+
+- **Cartes d'une grille : toutes la même hauteur**, dans toute la grille et non ligne par ligne. La place du badge « Conseillé » est réservée même quand il est absent. Plus d'espace interne (16 px). L'étiquette d'état (Maîtrisé, Validé, En cours) est en haut à droite, à l'opposé de l'icône.
+- **Listes collées** : quand des éléments se suivent sans hiérarchie propre, ils forment un seul bloc (`GroupeColle` / `ListeCollee`) avec un seul contour, des séparateurs fins et les arrondis aux extrémités. Une grille peut aussi se coller (deux colonnes, séparateurs fins), la maquette B de « Choisis une partie » et des cours en est la référence ; la variante A garde des cartes séparées avec écart.
+- **Pas de texte superflu** : pas de phrase qui répète ce que l'écran montre déjà (plan de l'appareil, description sous un compteur, phrase « Score estimé… »), pas de petites cartes qui répètent le chiffre principal. Un seul chiffre bien en face, une seule barre avec repères.
+- **Icône et couleur propres à la partie** : tout écran qui liste des éléments d'une partie du TOEIC reprend l'icône et la couleur de cette partie (`partiesStyle.ts`).
+- **Option de réponse correcte** : pas de libellé « Bonne réponse » à droite. La lettre de l'option devient une coche dans sa pastille à fond vert foncé.
+- **Barre du bas** : les cinq onglets sont rendus de la même façon (alignement, taille d'icône, étiquette). L'onglet actif ne change que de couleur.

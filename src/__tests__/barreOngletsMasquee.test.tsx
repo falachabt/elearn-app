@@ -114,8 +114,8 @@ describe('Barre d’onglets masquée avant le diagnostic (issue #121)', () => {
     expect(affichageBarre()).toBeUndefined();
     expect(screen.getByText('onglets.tests')).toBeTruthy();
     expect(screen.getByText('onglets.statistiques')).toBeTruthy();
-    // Réserve normale : dépassement du bouton central (22) + espace[3] (8).
-    expect(reserveBasse()).toBe(30);
+    // Retouche de novembre 2026 : l'onglet Tests ne déborde plus de la barre, la réserve se réduit à espace[3] (8).
+    expect(reserveBasse()).toBe(8);
   });
 
   it('profil TOEIC, reconnexion : diagnostic restauré depuis le serveur → la barre complète apparaît', async () => {
@@ -130,7 +130,7 @@ describe('Barre d’onglets masquée avant le diagnostic (issue #121)', () => {
     await screen.findByTestId('barre-onglets');
     expect(mockRestaurerDiagnostic).toHaveBeenCalledWith('toeic');
     expect(affichageBarre()).toBeUndefined();
-    expect(reserveBasse()).toBe(30);
+    expect(reserveBasse()).toBe(8);
   });
 
   it('profil élève (non-TOEIC) : barre inchangée, diagnostic ou pas', async () => {
@@ -143,6 +143,7 @@ describe('Barre d’onglets masquée avant le diagnostic (issue #121)', () => {
     expect(affichageBarre()).toBeUndefined();
     expect(screen.getByText('onglets.photo')).toBeTruthy();
     expect(screen.getByText('onglets.questions')).toBeTruthy();
+    // Le bouton Photo central déborde toujours : dépassement (22) + espace[3] (8).
     expect(reserveBasse()).toBe(30);
   });
 });

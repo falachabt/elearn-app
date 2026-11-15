@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { obtenirReglages } from '@/services/certification/etat';
+import { marquerEtapeFaite } from '@/services/certification/planFaites';
 import { terminerBlocSuivant } from '@/services/certification/seanceJour';
 import { effacerSeanceMots, lireSeanceMots, resumerSeanceMots, type EtatSeanceMots, type ResumeSeanceMots } from '@/services/certification/seanceMots';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -12,7 +13,7 @@ import { espace, typo } from '@/theme/theme';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
-import { EnteteToeic, EtiquetteSection, Tuile } from './ui';
+import { ConfirmationPlan, EnteteToeic, EtiquetteSection, Tuile } from './ui';
 
 /** C9 · Fin d'une séance de mots : score, mots qui reviennent demain, répartition par boîte. */
 export function FinSeanceMots() {
@@ -30,6 +31,8 @@ export function FinSeanceMots() {
         router.replace('/reviser' as never);
         return;
       }
+      // La séance de mots est une étape du plan du jour : elle reste dans la frise avec l'état « Fait ».
+      await marquerEtapeFaite('mots');
       const r = await obtenirReglages().catch(() => null);
       if (!actif) return;
       setEtat(e);
@@ -60,6 +63,7 @@ export function FinSeanceMots() {
             <Text style={[typo.texte, { color: theme.texte.principal, textAlign: 'center' }]}>{demain}</Text>
           </View>
         </Carte>
+        <ConfirmationPlan cle="mots" />
         <EtiquetteSection texte={t('certification.finMots.boites')} />
         <View style={styles.grille}>
           {([1, 2, 3, 4] as const).map((n) => (

@@ -5,65 +5,53 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { chargerAccueil } from '@/services/certification/accueil';
 import { lirePlan } from '@/services/certification/etat';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, rayon, typo } from '@/theme/theme';
+import { espace, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
-import { BarreProgression } from './ui';
+import { BarreScoreObjectif } from './ui';
 import { useChargement } from './useChargement';
 
-/** « Progression vers ton objectif » : visé, estimé et écart, à la place de la carte XP de Moi (maquette TOEIC-N2). */
+/** Échelle du TOEIC et repères de la barre (retouche de novembre 2026, maquette TOEIC-N2 : même barre que dans les tests). */
+const SCORE_MAX = 990;
+const BORNES = [0, 200, 400, 600, 800];
+
+/**
+ * « Progression vers ton objectif » : un seul chiffre (le score moyen) et une barre avec repères verticaux vers l'objectif.
+ * Plus de petites cartes Visé / Estimé / Écart ni de phrase sur le score estimé : le chiffre et la barre disent tout.
+ */
 export function ProgressionToeic() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { etat } = useChargement(lirePlan);
   const accueil = useChargement(chargerAccueil);
   const score = accueil.etat.phase === 'ok' ? accueil.etat.valeur.score : null;
-  const plan = etat.phase === 'ok' ? etat.valeur : null;
-  const objectif = plan?.objectif ?? null;
-  // L'écart n'existe que si le score estimé et l'objectif sont connus : sinon pas de chiffre inventé.
-  const ecart = score !== null && objectif !== null ? score - objectif : null;
-  const pourcent = score !== null && objectif ? (score / objectif) * 100 : 0;
-  const tuiles = [
-    { titre: t('certification.moiToeic.progressionVise'), aide: objectif !== null ? String(objectif) : t('certification.moiToeic.objectifVide') },
-    { titre: t('certification.moiToeic.progressionEstime'), aide: score !== null ? t('certification.accueilToeic.scoreExact', { score }) : t('certification.moiToeic.progressionPas') },
-    { titre: t('certification.moiToeic.progressionEcart'), aide: ecart !== null ? t('certification.moiToeic.progressionEcartAide', { n: ecart }) : t('certification.moiToeic.progressionPas') },
-  ];
+  const objectif = etat.phase === 'ok' ? (etat.valeur?.objectif ?? null) : null;
   return (
     <Carte>
       <View style={styles.contenu}>
         <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.moiToeic.progressionEtiquette')}</Text>
-        <View style={styles.grille}>
-          {tuiles.map((tuile) => (
-            <View key={tuile.titre} style={[styles.tuile, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{tuile.titre}</Text>
-              <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8} style={[typo.petit, { color: theme.texte.secondaire }]}>{tuile.aide}</Text>
-            </View>
-          ))}
+        <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.moiToeic.scoreMoyen')}</Text>
+        <View style={styles.ligne}>
+          {score !== null ? (
+            <Text accessibilityRole="header" style={[typo.h1, styles.chiffre, { color: theme.texte.principal }]}>
+              {score}
+              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{` ${t('certification.tests.listes.surMax', { max: SCORE_MAX })}`}</Text>
+            </Text>
+          ) : (
+            <Text style={[typo.texteFort, { color: theme.texte.secondaire }]}>{t('certification.moiToeic.progressionPas')}</Text>
+          )}
+          {objectif !== null ? <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{t('certification.accueilToeic.objectif', { score: objectif })}</Text> : null}
         </View>
-        <BarreProgression pourcent={pourcent} libelle={t('certification.moiToeic.progressionEtiquette')} />
-        <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.moiToeic.progressionNote')}</Text>
+        <BarreScoreObjectif valeur={score} max={SCORE_MAX} objectif={objectif} bornes={BORNES} libelle={t('certification.moiToeic.progressionEtiquette')} />
         <Bouton petit variante="texte" libelle={t('certification.moiToeic.progressionStatistiques')} onPress={() => router.push('/statistiques')} />
       </View>
     </Carte>
   );
 }
 
-// Trois tuiles directes dans la rangée (pas d'enveloppe en pourcentage ni de rétrécissement) : sur téléphone la rangée
-// garde sa hauteur naturelle et les tuiles se partagent la largeur. minWidth 0 laisse le libellé passer à la ligne.
-// Espace vertical entre l'étiquette, les tuiles, la barre et la phrase : rien ne se touche.
 const styles = StyleSheet.create({
   contenu: { gap: espace[3] },
-  grille: { flexDirection: 'row', gap: espace[2], alignItems: 'stretch' },
-  tuile: {
-    flex: 1,
-    minWidth: 0,
-    gap: 2,
-    paddingVertical: espace[4],
-    paddingHorizontal: espace[3],
-    borderWidth: bord.normal,
-    borderRadius: rayon.m,
-    minHeight: 64,
-    justifyContent: 'center',
-  },
+  ligne: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: espace[3] },
+  chiffre: { fontSize: 40, lineHeight: 46 },
 });

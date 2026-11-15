@@ -5,7 +5,7 @@ import { Pressable, StyleSheet, Text, View, type PressableProps } from 'react-na
 
 import { declencherPhoto, useDeclencheurActif } from '@/services/obturateur';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, cibleMin, rayon, typo } from '@/theme/theme';
+import { bord, cibleMin, typo } from '@/theme/theme';
 
 type Icone = keyof typeof Ionicons.glyphMap;
 
@@ -15,7 +15,7 @@ type Props = PressableProps & {
   iconeActive?: Icone;
   isFocused?: boolean; // fourni par TabTrigger
   central?: boolean;
-  /** Bouton central en carré arrondi avec un trophée, intégré à la barre (onglet Tests du profil TOEIC, v34) : ne déborde pas. */
+  /** Onglet Tests du profil TOEIC : rendu comme les autres onglets (alignement, taille, étiquette, état actif par la couleur), icône trophée gardée (retouche de novembre 2026). */
   trophee?: boolean;
   /** Pastille de nouveautés (nombre) sur l'icône ; « 9+ » au-delà, rien à 0. */
   badge?: number;
@@ -45,17 +45,13 @@ export const Onglet = forwardRef<View, Props>(function Onglet(
       accessibilityState={{ selected: !!isFocused }}
       style={styles.onglet}
     >
-      {central && trophee ? (
-        <View style={[styles.trophee, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
-          <Trophy size={20} color={theme.texte.surCouleur} strokeWidth={2} />
-        </View>
-      ) : central ? (
+      {central ? (
         <View style={[styles.photo, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }, prise && styles.photoMasque]}>
           <Ionicons name={icone} size={26} color={theme.texte.surCouleur} />
         </View>
       ) : (
         <View>
-          <Ionicons name={isFocused && iconeActive ? iconeActive : icone} size={24} color={couleur} />
+          {trophee ? <Trophy size={24} color={couleur} strokeWidth={2} /> : <Ionicons name={isFocused && iconeActive ? iconeActive : icone} size={24} color={couleur} />}
           {badge ? (
             <View testID="onglet-badge" style={[styles.badge, { backgroundColor: theme.etat.erreur, borderColor: theme.bord.fort }]}>
               <Text style={[typo.boutonPetit, styles.badgeTexte, { color: theme.texte.surCouleur }]}>{badge > 9 ? '9+' : String(badge)}</Text>
@@ -77,6 +73,5 @@ const styles = StyleSheet.create({
   badgeTexte: { fontSize: 10, lineHeight: 12 },
   onglet: { flex: 1, minHeight: cibleMin + 8, alignItems: 'center', justifyContent: 'flex-end', paddingVertical: 6, gap: 2 },
   photoMasque: { opacity: 0 },
-  trophee: { width: 40, height: 32, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   photo: { width: 52, height: 52, borderRadius: 26, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center', marginTop: -DEPASSEMENT_CENTRAL },
 });

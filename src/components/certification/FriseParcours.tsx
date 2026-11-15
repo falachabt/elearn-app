@@ -11,6 +11,7 @@ import {
   estJourTest, etapeACommencer, organiserFrise, routeEtape,
   type EtapePlan, type EtatEtape, type JourPlan, type PlanFrise, type TypeEtape,
 } from '@/services/certification/planFrise';
+import { planAvecEtapesFaites } from '@/services/certification/planFaites';
 import { chargerDonneesRevision } from '@/services/certification/revision';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -18,7 +19,7 @@ import { bord, espace, ombre, rayon, typo, type Theme } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Bouton } from '../Bouton';
-import { EtiquetteSection } from './ui';
+import { EtiquetteSection, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
 export type DonneesFrise = { plan: PlanFrise; aujourdhui: Jour };
@@ -38,7 +39,8 @@ export function useFrise() {
         mini: t('certification.monPlan.miniLocal'),
       });
     });
-    return { plan: { ...plan, dateExamen: plan.dateExamen ?? dateLocale }, aujourdhui };
+    // Étapes faites sur l'appareil : elles restent dans la frise avec l'état « Fait » (jamais retirées).
+    return { plan: await planAvecEtapesFaites({ ...plan, dateExamen: plan.dateExamen ?? dateLocale }, exam, aujourdhui), aujourdhui };
   }, [t]);
   return useChargement(lire);
 }
@@ -218,6 +220,34 @@ export function CarteCouverture({ plan }: { plan: PlanFrise }) {
   );
 }
 
+/** « Aujourd'hui · dimanche 15 nov. » : simple ligne de texte discrète (ni carte, ni fond, ni gras) au-dessus de la frise du jour. */
+export function LigneAujourdhui({ jour }: { jour: Jour }) {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+  const dates = useDates();
+  return (
+    <Text accessibilityRole="header" style={[typo.petit, { color: theme.texte.secondaire }]}>
+      {t('certification.monPlan.aujourdhuiDate', { date: dates.jour(jour).toLowerCase() })}
+    </Text>
+  );
+}
+
+/** Parcours du jour de l'accueil TOEIC : ce qu'il y a à faire aujourd'hui, avec l'état de chaque étape. Rien quand le jour est vide. */
+export function ParcoursDuJour() {
+  const { etat } = useFrise();
+  if (etat.phase === 'chargement') return <Squelette lignes={2} />;
+  if (etat.phase === 'erreur') return null;
+  const { plan, aujourdhui } = etat.valeur;
+  const etapes = organiserFrise(plan, aujourdhui).aujourdhui.etapes;
+  if (etapes.length === 0) return null;
+  return (
+    <View style={styles.jour}>
+      <LigneAujourdhui jour={aujourdhui} />
+      <EtapesDuJour etapes={etapes} />
+    </View>
+  );
+}
+
 /** Nombre d'étapes d'aujourd'hui montrées tant que le contenu dépasse le temps disponible. */
 const ETAPES_VISIBLES = 3;
 
@@ -273,7 +303,7 @@ export function Frise({ plan, aujourdhui }: DonneesFrise) {
   return (
     <View style={styles.frise}>
       <View style={styles.jour}>
-        <EnteteJour titre={t('certification.monPlan.aujourdhui')} sous={dates.jour(aujourdhui)} ouvert onPress={() => ouvrirJour(aujourdhui)} />
+        <LigneAujourdhui jour={aujourdhui} />
         {visibles.length > 0 ? <EtapesDuJour etapes={visibles} /> : <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.monPlan.rienAujourdhui')}</Text>}
       </View>
       {trop && restantes > 0 ? (
@@ -342,19 +372,13 @@ export function SansDate({ plan, aujourdhui }: DonneesFrise) {
   );
 }
 
-/** Contenu du Parcours : carte de couverture puis frise, ou l'état sans date. */
+/** Contenu du Parcours : la frise seule (plus de bandeau de couverture ni de phrase sur le plan de l'appareil), ou l'état sans date. */
 export function ContenuFrise({ donnees }: { donnees: DonneesFrise }) {
-  const { t } = useTraduction();
-  const { theme } = useTheme();
   const { plan } = donnees;
   return (
     <View style={styles.frise}>
-      {plan.local ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.monPlan.local')}</Text> : null}
       {plan.dateExamen ? (
-        <>
-          <CarteCouverture plan={plan} />
-          <Frise {...donnees} />
-        </>
+        <Frise {...donnees} />
       ) : (
         <SansDate {...donnees} />
       )}
