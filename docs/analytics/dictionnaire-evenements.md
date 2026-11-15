@@ -119,6 +119,7 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `display_setting_changed` | Thème ou taille du texte modifié | `{ theme?: 'clair' \| 'sombre' \| 'systeme'; taille?: number; mode?: 'auto' \| 'manuel' }` |
 | `settings_opened` | Paramètres ouverts | `{ source: 'moi' }` |
 | `contest_chosen` | Concours choisi | `{ filiere: string; concours: string }` |
+| `suggestion_sent` | Demande d'un concours ou d'une certification absent de la liste, envoyée (le texte saisi n'est jamais dans l'évènement) | `{ genre: 'concours' \| 'certification'; pays: string }` |
 | `mission_goal_set` | Objectif de mission réglé | `{ minutes: number \| null; questions: number; origine: 'fin_mission' \| 'parametres' }` |
 | `account_prompt_shown` | Invitation à créer un compte affichée (paiement, parent, rappel, question) | `{ raison: 'paiement' \| 'parent' \| 'rappel' \| 'question' }` |
 | `account_prompt_dismissed` | Invitation à créer un compte fermée | `{ raison: 'paiement' \| 'parent' \| 'rappel' \| 'question' }` |

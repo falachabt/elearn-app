@@ -64,6 +64,7 @@ export type Evenements = {
   display_setting_changed: { theme?: 'clair' | 'sombre' | 'systeme'; taille?: number; mode?: 'auto' | 'manuel' };
   settings_opened: { source: 'moi' };
   contest_chosen: { filiere: string; concours: string };
+  suggestion_sent: { genre: 'concours' | 'certification'; pays: string };
   mission_goal_set: { minutes: number | null; questions: number; origine: 'fin_mission' | 'parametres' };
   account_prompt_shown: { raison: 'paiement' | 'parent' | 'rappel' | 'question' };
   account_prompt_dismissed: { raison: 'paiement' | 'parent' | 'rappel' | 'question' };

@@ -5,7 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
-import { filtrerConcours, type ConcoursFiliere } from '@/services/concours';
+import { filtrerConcours, filtrerConcoursAvance, valeursDistinctes, type ConcoursFiliere } from '@/services/concours';
 import { enregistrerProfil, lireProfil } from '@/services/profil';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
@@ -32,22 +32,24 @@ const monter = () => render(<SafeAreaProvider initialMetrics={metriques}><ThemeP
 beforeEach(async () => {
   jest.clearAllMocks();
   await AsyncStorage.clear();
-  mockRpc.mockImplementation(async (nom: string) => ({ data: nom === 'contest_track_list' ? FILIERES : CONCOURS, error: null }));
+  mockRpc.mockImplementation(async (nom: string) => {
+    if (nom === 'contest_track_list') return { data: FILIERES, error: null };
+    if (nom === 'track_contests') return { data: CONCOURS, error: null };
+    return { data: null, error: { message: 'function does not exist', code: '42883' } };
+  });
 });
 
-it('filière puis concours : le concours est enregistré dans le profil', async () => {
+it('filière puis concours : un appui ouvre la liste, la feuille de détail enregistre le concours', async () => {
   await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', termine: true });
   await AsyncStorage.setItem('mission.jour', '{}');
   await monter();
   await waitFor(() => expect(screen.getByText(fr.concours.filiereTitre)).toBeTruthy());
-  await fireEvent.press(screen.getByRole('radio', { name: /Médecine et santé/ }));
-  await fireEvent.press(screen.getByRole('radio', { name: /Écoles d’ingénieurs/ }));
-  await fireEvent.press(screen.getByRole('button', { name: fr.concours.suivant }));
-  await waitFor(() => expect(screen.getByText(fr.concours.concoursTitre)).toBeTruthy());
+  expect(screen.queryByRole('button', { name: 'Suivant' })).toBeNull();
+  await fireEvent.press(screen.getByText('Écoles d’ingénieurs'));
+  await waitFor(() => expect(screen.getByText('ENSPD · Douala')).toBeTruthy());
   expect(mockRpc).toHaveBeenCalledWith('track_contests', { p_track: 'ingenieurs' });
-  await waitFor(() => expect(screen.getByRole('radio', { name: /ENSPD · Douala/ })).toBeTruthy());
-  await fireEvent.press(screen.getByRole('radio', { name: /ENSPD · Douala/ }));
-  await fireEvent.press(screen.getByRole('button', { name: fr.concours.choisir.replace('{{sigle}}', 'ENSPD') }));
+  await fireEvent.press(screen.getByText('ENSPD · Douala'));
+  await fireEvent.press(await screen.findByText(fr.concours.detailChoisir));
   await waitFor(() => expect(router.back).toHaveBeenCalled());
   expect(await lireProfil()).toEqual({
     type: 'concours',
@@ -58,6 +60,23 @@ it('filière puis concours : le concours est enregistré dans le profil', async 
   });
   expect(await AsyncStorage.getItem('mission.jour')).toBeNull();
   expect(suivre).toHaveBeenCalledWith('contest_chosen', { filiere: 'ingenieurs', concours: 'ENSPD' });
+});
+
+it('la recherche réduit la liste', async () => {
+  await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', termine: true });
+  await monter();
+  await fireEvent.press(await screen.findByText('Écoles d’ingénieurs'));
+  await screen.findByText('ENSPD · Douala');
+  await fireEvent.changeText(screen.getByLabelText(fr.concours.chercher), 'yaounde');
+  await waitFor(() => expect(screen.queryByText('ENSPD · Douala')).toBeNull());
+  expect(screen.getByText('ENSPY · Yaoundé')).toBeTruthy();
+});
+
+it('filtres avancés : niveau et ville', () => {
+  const liste = CONCOURS.map((c) => ({ id: c.contest_id, sigle: c.sigle, nom: c.name, ville: c.city, ecole: c.school, cycle: c.cycle, date: null, sujets: c.papers, lecons: c.lessons })) as ConcoursFiliere[];
+  expect(filtrerConcoursAvance(liste, '', null, 'Douala').map((c) => c.sigle)).toEqual(['ENSPD']);
+  expect(filtrerConcoursAvance(liste, '', 'Second cycle', null)).toEqual([]);
+  expect(valeursDistinctes(liste, 'ville')).toEqual(['Douala', 'Yaoundé']);
 });
 
 it('recherche sans accents ni casse', () => {
