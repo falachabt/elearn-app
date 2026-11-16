@@ -1710,6 +1710,7 @@ export const fr = {
     inscritUn: '1 inscrit',
     detailSujets: 'sujets',
     detailInscrits: 'inscrits',
+    detailSite: 'Voir le site de l’école',
     detailDate: 'prochain concours',
     detailAide: 'Sujets corrigés, leçons du programme et mission du jour suivent ce concours. Tu peux changer depuis Moi.',
     detailChoisir: 'Choisir ce concours',

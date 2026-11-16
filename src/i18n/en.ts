@@ -1709,6 +1709,7 @@ export const en: Textes = {
     inscritUn: '1 enrolled',
     detailSujets: 'past papers',
     detailInscrits: 'enrolled',
+    detailSite: 'Visit the school’s website',
     detailDate: 'next exam',
     detailAide: 'Corrected papers, programme lessons and the daily mission follow this exam. You can change it from Me.',
     detailChoisir: 'Choose this exam',

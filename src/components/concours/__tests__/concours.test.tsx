@@ -49,6 +49,7 @@ it('filière puis concours : un appui ouvre la liste, la feuille de détail enre
   await waitFor(() => expect(screen.getByText('ENSPD · Douala')).toBeTruthy());
   expect(mockRpc).toHaveBeenCalledWith('track_contests', { p_track: 'ingenieurs' });
   await fireEvent.press(screen.getByText('ENSPD · Douala'));
+  expect(await screen.findAllByText('Premier cycle')).not.toHaveLength(0);
   await fireEvent.press(await screen.findByText(fr.concours.detailChoisir));
   await waitFor(() => expect(router.back).toHaveBeenCalled());
   expect(await lireProfil()).toEqual({

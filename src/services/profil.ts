@@ -5,7 +5,7 @@ import { signalerModification } from './reglagesLocaux';
 export const CLE_PROFIL = 'profil.arrivee';
 
 /** Concours précis choisi par un candidat : il se comporte comme une classe (programme, mission, annales). */
-export type ConcoursChoisi = { id: string; sigle: string; nom: string; ville?: string | null };
+export type ConcoursChoisi = { id: string; sigle: string; nom: string; ville?: string | null; /** Logo de l'école au moment du choix, pour la carte « Mon concours ». */ logo?: string | null };
 
 /** Série du lycée (2nde, 1re, Tle) choisie par l'élève : filtre ses cours, sa mission, ses annales et son planning. */
 export type SerieChoisie = { id: string; nom: string };

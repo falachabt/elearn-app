@@ -31,6 +31,7 @@ import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 import { Apparition } from './Apparition';
 import { Appui } from './Appui';
 import { LogoToeic } from './certification/LogoToeic';
+import { LogoEcole } from './concours/LogoEcole';
 import { BlocChangementProfil, type EtatChangement } from './profil/BlocChangementProfil';
 import { Bouton } from './Bouton';
 import { Carte } from './Carte';
@@ -437,6 +438,7 @@ export function ChoixClasseContenu({ typeInitial, modifier, dansPage = false, pr
       {concours ? (
         <Carte>
           <View style={styles.ligne}>
+            {monConcours ? <LogoEcole concours={monConcours} taille={48} /> : null}
             <View style={styles.choixTexte}>
               <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('concours.monConcours')}</Text>
               <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{monConcours ? [monConcours.sigle, monConcours.ville].filter(Boolean).join(' · ') : t('concours.aucun')}</Text>

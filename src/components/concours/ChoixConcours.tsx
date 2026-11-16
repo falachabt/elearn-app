@@ -4,7 +4,7 @@ import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { getLocales } from 'expo-localization';
 import { useEffect, useMemo, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
@@ -22,11 +22,13 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Champ } from '../Champ';
 import { Ecran } from '../Ecran';
+import { Etiquette } from '../Etiquette';
 import { Feuille } from '../Feuille';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { GroupeColle, LigneGroupe } from '../liste/ListeCollee';
 import { FeuillePays } from '../pass/FeuillePays';
 import { BlocChangementProfil, type EtatChangement } from '../profil/BlocChangementProfil';
+import { LogoEcole } from './LogoEcole';
 import { FeuilleProposition } from '../proposition/FeuilleProposition';
 
 /** Icône et couleur propres à chaque filière (retouche du 15 novembre 2026) ; couleurs du thème, texte toujours en encre dessus. */
@@ -55,32 +57,6 @@ function PastilleFiliere({ code }: { code: string }) {
   return (
     <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
       <Icone size={20} color={theme.texte.surCouleur} strokeWidth={2} />
-    </View>
-  );
-}
-
-/** Logo de l'école quand la base en a un, sinon ses initiales sur fond crème. */
-function LogoEcole({ concours, taille = 44 }: { concours: ConcoursFiliere; taille?: number }) {
-  const { theme } = useTheme();
-  const { t } = useTraduction();
-  const [erreur, setErreur] = useState(false);
-  const cadre = { width: taille, height: taille, borderRadius: taille / 2, borderColor: theme.bord.fort };
-  if (concours.logo && !erreur) {
-    return (
-      <View style={[styles.logo, cadre, { backgroundColor: '#FFFFFF' }]}>
-        <Image
-          source={{ uri: concours.logo }}
-          style={{ width: taille - 8, height: taille - 8 }}
-          contentFit="contain"
-          accessibilityLabel={t('concours.initialesLogo', { ecole: concours.sigle })}
-          onError={() => setErreur(true)}
-        />
-      </View>
-    );
-  }
-  return (
-    <View style={[styles.logo, cadre, { backgroundColor: theme.accent.soleilTresDoux }]}>
-      <Text style={[typo.legende, { color: theme.texte.surCouleur }]}>{concours.sigle.slice(0, 4).toUpperCase()}</Text>
     </View>
   );
 }
@@ -212,7 +188,8 @@ export function ChoixConcours({ dansPage = false, adoption = false, filierePrefi
 
   const valider = async (c: ConcoursFiliere) => {
     if (!filiere) return;
-    const { ecole: _e, cycle: _c, date: _d, sujets: _s, lecons: _l, logo: _g, inscrits: _i, ...concours } = c;
+    const { ecole: _e, cycle: _c, date: _d, sujets: _s, lecons: _l, inscrits: _i, site: _w, logo, ...reste } = c;
+    const concours = logo ? { ...reste, logo } : reste;
     await enregistrerProfil({ type: 'concours', niveau: filiere, pays, concours, termine: (await lireProfil())?.termine ?? false });
     // La mission gardée pour aujourd'hui était tirée pour l'ancien programme.
     await AsyncStorage.removeItem(CLE_MISSION);
@@ -225,7 +202,8 @@ export function ChoixConcours({ dansPage = false, adoption = false, filierePrefi
   /** Adoption inter-familles (page de changement, issue #125) : le profil quitté est gardé en mémoire, rien n'est effacé. */
   const confirmerAdoption = async () => {
     if (!choisi || !filiere) return;
-    const { ecole: _e, cycle: _c, date: _d, sujets: _s, lecons: _l, logo: _g, inscrits: _i, ...concours } = choisi;
+    const { ecole: _e, cycle: _c, date: _d, sujets: _s, lecons: _l, inscrits: _i, site: _w, logo, ...reste } = choisi;
+    const concours = logo ? { ...reste, logo } : reste;
     setEtatAdoption('charge');
     try {
       await adopterProfil({ type: 'concours', niveau: filiere, pays, concours: concours as ConcoursChoisi, termine: true });
@@ -333,10 +311,13 @@ export function ChoixConcours({ dansPage = false, adoption = false, filierePrefi
         <>
           {dansPage ? <Bouton petit variante="texte" libelle={t('concours.retourFilieres')} onPress={revenirFilieres} /> : null}
           {dansPage ? <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{nomFiliere}</Text> : null}
-          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-            {t('concours.sousTitreListe', { pays: nomDuPays, n: liste ? liste.length : '…' })}
-          </Text>
-          <Champ libelle={t('concours.chercher')} value={recherche} onChangeText={setRecherche} autoCorrect={false} />
+          <Champ
+            libelle={t('concours.chercher')}
+            libelleDroite={t('concours.sousTitreListe', { pays: nomDuPays, n: liste ? liste.length : '…' })}
+            value={recherche}
+            onChangeText={setRecherche}
+            autoCorrect={false}
+          />
           {liste && (cycles.length > 1 || villes.length > 1) ? (
             <View style={styles.puces}>
               {cycles.length > 1 ? <Puce libelle={cycle ?? t('concours.niveau')} actif={cycle !== null} onPress={() => setFeuilleFiltre('cycle')} onEffacer={() => setCycle(null)} /> : null}
@@ -352,8 +333,14 @@ export function ChoixConcours({ dansPage = false, adoption = false, filierePrefi
                   premier={i === 0}
                   gauche={<LogoEcole concours={c} />}
                   titre={[c.sigle, c.ville].filter(Boolean).join(' · ')}
-                  sousTitre={[c.cycle ?? c.nom, c.sujets ? t(c.sujets > 1 ? 'annales.sujets' : 'annales.sujet', { n: c.sujets }) : null].filter(Boolean).join(' · ')}
-                  bas={c.inscrits ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t(c.inscrits > 1 ? 'concours.inscrits' : 'concours.inscritUn', { n: c.inscrits })}</Text> : undefined}
+                  bas={
+                    <View style={styles.baseLigne}>
+                      {c.cycle ? <Etiquette texte={c.cycle} jaune /> : null}
+                      <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
+                        {[c.cycle ? null : c.nom, c.sujets ? t(c.sujets > 1 ? 'annales.sujets' : 'annales.sujet', { n: c.sujets }) : null, c.inscrits ? t(c.inscrits > 1 ? 'concours.inscrits' : 'concours.inscritUn', { n: c.inscrits }) : null].filter(Boolean).join(' · ')}
+                      </Text>
+                    </View>
+                  }
                   enCours={choisi?.id === c.id}
                   onPress={() => setDetail(c)}
                 />
@@ -414,7 +401,7 @@ export function ChoixConcours({ dansPage = false, adoption = false, filierePrefi
         ouverte={detail !== null}
         onFermer={() => setDetail(null)}
         titre={detail ? [detail.sigle, detail.ville].filter(Boolean).join(' · ') : ''}
-        texte={detail ? [detail.ecole, detail.cycle].filter(Boolean).join(' · ') : undefined}
+        texte={detail ? detail.ecole : undefined}
         actions={[
           { libelle: t('concours.detailChoisir'), onPress: () => detail && choisirDepuisDetail(detail) },
           { libelle: t('concours.detailFermer'), onPress: () => setDetail(null), variante: 'texte' },
@@ -422,6 +409,13 @@ export function ChoixConcours({ dansPage = false, adoption = false, filierePrefi
       >
         {detail ? (
           <>
+            <View style={styles.enteteDetail}>
+              <LogoEcole concours={detail} taille={72} />
+              <View style={styles.flex}>
+                {detail.cycle ? <Etiquette texte={detail.cycle} jaune /> : null}
+                {detail.ville ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{detail.ville}</Text> : null}
+              </View>
+            </View>
             <View style={styles.stats}>
               <View style={[styles.stat, { borderColor: theme.bord.doux }]}>
                 <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{detail.sujets}</Text>
@@ -440,6 +434,13 @@ export function ChoixConcours({ dansPage = false, adoption = false, filierePrefi
                 </View>
               ) : null}
             </View>
+            {detail.site ? (
+              <Bouton
+                variante="secondaire"
+                libelle={t('concours.detailSite')}
+                onPress={() => void Linking.openURL(detail.site as string).catch(() => undefined)}
+              />
+            ) : null}
             <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('concours.detailAide')}</Text>
           </>
         ) : null}
@@ -451,12 +452,13 @@ export function ChoixConcours({ dansPage = false, adoption = false, filierePrefi
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   pastille: { width: 40, height: 40, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
-  logo: { borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   lignePays: { flexDirection: 'row', alignItems: 'center', gap: espace[3], minHeight: 52, paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },
   drapeau: { width: 24, height: 16, borderRadius: 2 },
   puces: { flexDirection: 'row', gap: espace[3], flexWrap: 'wrap' },
   puce: { flexDirection: 'row', alignItems: 'center', gap: espace[2], minHeight: 36, paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.pilule },
   vide: { gap: espace[3], padding: espace[5], borderWidth: bord.normal, borderStyle: 'dashed', borderRadius: rayon.m },
   stats: { flexDirection: 'row', gap: espace[3] },
+  enteteDetail: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
+  baseLigne: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: espace[2], marginTop: espace[1] },
   stat: { flex: 1, gap: 2, padding: espace[3], borderWidth: bord.fin, borderRadius: rayon.m },
 });

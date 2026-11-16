@@ -15,6 +15,8 @@ export type ConcoursFiliere = ConcoursChoisi & {
   logo?: string | null;
   /** Nombre d'élèves qui préparent ce concours ; null quand le serveur ne le sert pas encore. */
   inscrits?: number | null;
+  /** Site de l'école, seulement s'il est renseigné en base et en https. */
+  site?: string | null;
 };
 
 /** Le serveur ne connaît pas encore la fonction (déploiement en retard) : on retombe sur l'ancienne, sans pays. */
@@ -43,7 +45,7 @@ export async function lireFilieres(client: Client, langue: 'fr' | 'en', pays?: s
 
 /** Concours ouverts d'une filière pour un pays (étape 2), avec logo et nombre d'inscrits quand le serveur les sert. */
 export async function lireConcoursFiliere(client: Client, filiere: string, pays?: string): Promise<ConcoursFiliere[]> {
-  type Ligne = { contest_id: string; sigle: string | null; school: string | null; name: string | null; cycle: string | null; city: string | null; next_date: string | null; papers: number; lessons: number; logo_url?: string | null; enrolled?: number | null };
+  type Ligne = { contest_id: string; sigle: string | null; school: string | null; name: string | null; cycle: string | null; city: string | null; next_date: string | null; papers: number; lessons: number; logo_url?: string | null; enrolled?: number | null; website?: string | null };
   let data: unknown;
   const v2 = pays ? await client.rpc('track_contests_v2', { p_track: filiere, p_country: pays.toUpperCase() }) : null;
   if (v2 && !v2.error) data = v2.data;
@@ -66,6 +68,7 @@ export async function lireConcoursFiliere(client: Client, filiere: string, pays?
     lecons: l.lessons,
     logo: l.logo_url ?? null,
     inscrits: l.enrolled ?? null,
+    site: /^https:\/\//i.test(l.website ?? '') ? (l.website as string).trim() : null,
   }));
 }
 

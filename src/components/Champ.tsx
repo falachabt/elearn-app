@@ -6,16 +6,23 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
 /** `prefixe` : élément collé à gauche du champ (indicatif téléphonique), aligné sur lui même quand l'erreur s'affiche. */
-type Props = TextInputProps & { libelle: string; erreur?: string; prefixe?: ReactNode };
+type Props = TextInputProps & { libelle: string; erreur?: string; prefixe?: ReactNode; /** Texte court aligné à droite du libellé (ex. « Cameroun · 20 »). */ libelleDroite?: string };
 
 /** Libellé toujours visible au-dessus du champ. L'erreur dit comment corriger. */
-export const Champ = forwardRef<TextInput, Props>(function Champ({ libelle, erreur, prefixe, style, onFocus, ...reste }, ref) {
+export const Champ = forwardRef<TextInput, Props>(function Champ({ libelle, erreur, prefixe, libelleDroite, style, onFocus, ...reste }, ref) {
   const { theme } = useTheme();
   const rendreVisible = useRendreVisible();
   const zone = useRef<View>(null);
   return (
     <View ref={zone} style={styles.zone}>
-      <Text style={[typo.petit, { color: theme.texte.principal }]}>{libelle}</Text>
+      {libelleDroite ? (
+        <View style={styles.entete}>
+          <Text style={[typo.petit, styles.flex, { color: theme.texte.principal }]}>{libelle}</Text>
+          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{libelleDroite}</Text>
+        </View>
+      ) : (
+        <Text style={[typo.petit, { color: theme.texte.principal }]}>{libelle}</Text>
+      )}
       <View style={styles.ligne}>
         {prefixe}
         <TextInput
@@ -44,6 +51,7 @@ export const Champ = forwardRef<TextInput, Props>(function Champ({ libelle, erre
 const styles = StyleSheet.create({
   zone: { gap: espace[2] },
   ligne: { flexDirection: 'row', alignItems: 'stretch', gap: espace[3] },
+  entete: { flexDirection: 'row', alignItems: 'baseline', gap: espace[3] },
   flex: { flex: 1 },
   champ: { minHeight: cibleMin, borderWidth: bord.normal, borderRadius: rayon.m, paddingHorizontal: espace[5] },
 });
