@@ -158,6 +158,62 @@ export async function repondreMini(etat: EtatMini, chosen: number | null, ms: nu
   return suivant;
 }
 
+/**
+ * Lecture en navigation libre (maquette validée le 16 novembre 2026) : dans un test complet ou une moitié lecture, les
+ * questions des parties 5 à 7 peuvent être revues et modifiées jusqu'à la fin. Les réponses restent sur l'appareil et
+ * partent d'un seul coup à la fin (`terminerMini`) : modifier une réponse ne touche donc jamais le serveur. Écoute : jamais libre.
+ */
+export function estLecture(etat: Pick<EtatMini, 'tentative'>, index: number): boolean {
+  const kind = etat.tentative.kind;
+  if (kind !== 'full' && kind !== 'half_reading') return false;
+  const q = etat.tentative.questions[index];
+  return q !== undefined && q.part >= 5;
+}
+
+/** Réponse donnée à une question : `undefined` si elle n'a jamais été vue, `null` si elle a été passée. */
+export const reponseDe = (etat: Pick<EtatMini, 'reponses'>, questionId: string): number | null | undefined =>
+  etat.reponses.find((r) => r.question_id === questionId)?.chosen;
+
+/** Enregistre ou remplace la réponse d'une question de Lecture, sans avancer. `chosen: null` = question passée. */
+export async function repondreLibre(etat: EtatMini, questionId: string, chosen: number | null, ms: number): Promise<EtatMini> {
+  if (etat.termine || etat.fin) return etat;
+  const position = etat.tentative.questions.findIndex((q) => q.id === questionId);
+  if (position < 0 || !estLecture(etat, position)) return etat;
+  const precedente = etat.reponses.find((r) => r.question_id === questionId);
+  const reponse: ReponseEnvoyee = {
+    question_id: questionId, client_uuid: precedente?.client_uuid ?? randomUUID(), chosen, ms: Math.max(0, Math.round(ms) + (precedente?.ms ?? 0)),
+    context: 'test', local_day: maintenant(), attempt_id: etat.tentative.attempt_id,
+  };
+  const reponses = precedente ? etat.reponses.map((r) => (r.question_id === questionId ? reponse : r)) : [...etat.reponses, reponse];
+  const suivant: EtatMini = { ...etat, reponses };
+  await ecrireMini(suivant);
+  return suivant;
+}
+
+/** Se place sur le groupe de questions qui contient `index` (Lecture seulement). */
+export async function allerALibre(etat: EtatMini, index: number): Promise<EtatMini> {
+  if (etat.termine || etat.fin || !estLecture(etat, index)) return etat;
+  let debut = index;
+  const groupe = etat.tentative.questions[index]?.group?.id;
+  while (groupe && debut > 0 && etat.tentative.questions[debut - 1]?.group?.id === groupe) debut--;
+  if (!estLecture(etat, debut)) return etat;
+  const suivant: EtatMini = { ...etat, index: debut };
+  await ecrireMini(suivant);
+  return suivant;
+}
+
+/** Nombre de questions de Lecture sans réponse (jamais vues ou passées). */
+export const nonRepondues = (etat: Pick<EtatMini, 'tentative' | 'reponses'>): number =>
+  etat.tentative.questions.filter((q, i) => estLecture(etat, i) && !etat.reponses.some((r) => r.question_id === q.id && r.chosen !== null)).length;
+
+/** « Terminer le test » : la fin locale, le bilan envoie les réponses ensuite. */
+export async function terminerLibre(etat: EtatMini): Promise<EtatMini> {
+  if (etat.fin) return etat;
+  const suivant: EtatMini = { ...etat, termine: true };
+  await ecrireMini(suivant);
+  return suivant;
+}
+
 /** Temps écoulé : on garde les réponses données, les autres ne sont pas envoyées. */
 export async function cloreParTemps(etat: EtatMini): Promise<EtatMini> {
   if (etat.termine || etat.fin) return etat;
