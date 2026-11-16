@@ -14,7 +14,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { resultatTentative, titreTentative } from './HistoriqueTests';
-import { EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, Squelette, Tuile } from './ui';
+import { EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, Squelette, TuilesCollees } from './ui';
 import { useChargement } from './useChargement';
 
 /** T7 · Détail d'une tentative : score, temps et résultat par partie. */
@@ -62,10 +62,12 @@ export function DetailTentative() {
       {etat.phase === 'ok' && !x ? <Banniere ton="info" titre={t('certification.tentative.absent')} /> : null}
       {x ? (
         <>
-          <View style={styles.tuiles}>
-            <Tuile titre={resultatTentative(t, x)} aide={t('certification.tentative.score')} />
-            {duree !== null ? <Tuile titre={t('certification.tentative.minutes', { min: duree })} aide={t('certification.tentative.temps')} /> : null}
-          </View>
+          <TuilesCollees
+            tuiles={[
+              { cle: 'score', titre: resultatTentative(t, x), aide: t('certification.tentative.score') },
+              ...(duree !== null ? [{ cle: 'temps', titre: t('certification.tentative.minutes', { min: duree }), aide: t('certification.tentative.temps') }] : []),
+            ]}
+          />
           {x.status === 'abandoned' || x.status === 'refunded' ? (
             <Carte><Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tentative.abandonne')}</Text></Carte>
           ) : null}
@@ -108,4 +110,4 @@ export function DetailTentative() {
   );
 }
 
-const styles = StyleSheet.create({ groupe: { gap: espace[3] }, tuiles: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] } });
+const styles = StyleSheet.create({ groupe: { gap: espace[3] } });

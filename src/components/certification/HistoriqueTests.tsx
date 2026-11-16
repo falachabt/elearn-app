@@ -11,7 +11,7 @@ import { espace, typo } from '@/theme/theme';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
-import { EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, Squelette, Tuile } from './ui';
+import { EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, Squelette, TuilesCollees } from './ui';
 import { useChargement } from './useChargement';
 
 type Traduire = ReturnType<typeof useTraduction>['t'];
@@ -58,16 +58,20 @@ export function HistoriqueTests() {
       ) : null}
       {etat.phase === 'ok' ? (
         <>
-          <View style={styles.tuiles}>
-            <Tuile
-              titre={etat.valeur.estimation ? t('certification.tests.scorePlage', { min: etat.valeur.estimation.min, max: etat.valeur.estimation.max, total: etat.valeur.scoreMax }) : t('certification.historique.pasEncore')}
-              aide={t('certification.historique.score')}
-            />
-            <Tuile
-              titre={etat.valeur.tendance === 'up' ? t('certification.historique.hausse') : etat.valeur.tendance === 'down' ? t('certification.historique.baisse') : etat.valeur.tendance === 'stable' ? t('certification.historique.stable') : t('certification.historique.pasEncore')}
-              aide={t('certification.historique.tendance')}
-            />
-          </View>
+          <TuilesCollees
+            tuiles={[
+              {
+                cle: 'score',
+                titre: etat.valeur.estimation ? t('certification.tests.scorePlage', { min: etat.valeur.estimation.min, max: etat.valeur.estimation.max, total: etat.valeur.scoreMax }) : t('certification.historique.pasEncore'),
+                aide: t('certification.historique.score'),
+              },
+              {
+                cle: 'tendance',
+                titre: etat.valeur.tendance === 'up' ? t('certification.historique.hausse') : etat.valeur.tendance === 'down' ? t('certification.historique.baisse') : etat.valeur.tendance === 'stable' ? t('certification.historique.stable') : t('certification.historique.pasEncore'),
+                aide: t('certification.historique.tendance'),
+              },
+            ]}
+          />
           <EtiquetteSection texte={t('certification.historique.faits')} />
           {etat.valeur.tentatives.length === 0 ? (
             <EncadrePointille texte={`${t('certification.historique.vide')} ${t('certification.historique.videAide')}`} />
@@ -89,4 +93,4 @@ export function HistoriqueTests() {
   );
 }
 
-const styles = StyleSheet.create({ groupe: { gap: espace[3] }, tuiles: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] } });
+const styles = StyleSheet.create({ groupe: { gap: espace[3] } });

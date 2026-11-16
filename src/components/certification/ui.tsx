@@ -326,6 +326,33 @@ export function GrilleCollee({ cases, colonnes = 2 }: { cases: CaseGrille[]; col
   );
 }
 
+/** Une tuile chiffrée de `TuilesCollees` : même contenu que `Tuile` (titre, aide), touchable si `onPress` est fourni. */
+export type DonneeTuile = { cle: string; titre: string; aide?: string; onPress?: () => void };
+
+/**
+ * Tuiles chiffrées (score, compteurs) collées en un seul bloc, comme `GrilleCollee` : un contour, des séparateurs fins, même
+ * hauteur partout. Remplace plusieurs `Tuile` voisines séparées par un écart. Une tuile isolée reste une `Tuile`.
+ */
+export function TuilesCollees({ tuiles, colonnes = 2 }: { tuiles: DonneeTuile[]; colonnes?: number }) {
+  const { theme } = useTheme();
+  return (
+    <GrilleCollee
+      colonnes={colonnes}
+      cases={tuiles.map((x) => ({
+        cle: x.cle,
+        onPress: x.onPress,
+        accessibilityLabel: x.aide ? `${x.titre}. ${x.aide}` : x.titre,
+        contenu: (
+          <>
+            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{x.titre}</Text>
+            {x.aide ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{x.aide}</Text> : null}
+          </>
+        ),
+      }))}
+    />
+  );
+}
+
 /** En-tête d'une carte de grille : l'icône à gauche, l'étiquette d'état à droite (à l'opposé de l'icône). */
 export function EnteteCase({ pastille, etiquette }: { pastille: ReactNode; etiquette?: ReactNode }) {
   return (

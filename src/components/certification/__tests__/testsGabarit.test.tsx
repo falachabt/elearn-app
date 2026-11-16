@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { screen } from '@testing-library/react-native';
+import { StyleSheet } from 'react-native';
 
 import { fr } from '@/i18n/fr';
 import { definirApi } from '@/services/certification/api';
@@ -81,6 +82,18 @@ describe('onglet Tests : gabarit large des cartes (maquette v36, v37)', () => {
     expect(screen.getAllByText(/^410 sur 495$/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/^495 sur 495$/).length).toBeGreaterThan(0);
     expect(screen.queryByText(/705/)).toBeNull();
+  });
+
+  it('les cartes se suivent en deux blocs collés (mini, puis demi-tests et test complet) : aucun contour propre, un trait fin entre elles', async () => {
+    await monter(<TestsToeic />);
+    await screen.findByLabelText(t.avancementUn.replace('{{faits}}', '1').replace('{{total}}', '3'));
+    const cartes = screen.getAllByTestId('carte-test').map((c) => StyleSheet.flatten(c.props.style));
+    expect(cartes).toHaveLength(6);
+    expect(cartes.every((s) => s.borderWidth === 0 && s.borderRadius === 0)).toBe(true);
+    // 2 cartes dans le premier bloc (1 trait), 4 dans le second (3 traits) : la première de chaque bloc n'a pas de trait.
+    expect(cartes.filter((s) => (s.borderTopWidth ?? 0) > 0)).toHaveLength(4);
+    expect(cartes[0]!.borderTopWidth).toBeUndefined();
+    expect(cartes[2]!.borderTopWidth).toBeUndefined();
   });
 
   it('chaque carte active porte son bouton : « Voir les tentatives » si fait, « Commencer » sinon (maquette v34)', async () => {

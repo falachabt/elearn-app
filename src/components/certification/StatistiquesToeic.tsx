@@ -16,7 +16,7 @@ import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { chargerCourbe, CourbeTests } from './CourbeTests';
-import { BarreProgression, EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, PastilleEtat, Squelette, Tuile } from './ui';
+import { BarreProgression, EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, PastilleEtat, Squelette, Tuile, TuilesCollees } from './ui';
 import { useChargement } from './useChargement';
 
 const cle = (p: PeriodeStats) => `s${p}` as 's7' | 's30' | 's0';
@@ -121,29 +121,31 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
         {courbe.etat.phase === 'ok' ? <CourbeTests points={courbe.etat.valeur} /> : null}
         <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.stats.mention')}</Text>
       </Carte>
-      <View style={styles.tuiles}>
-        <Tuile
-          titre={resume.etat.phase === 'ok' && resume.etat.valeur?.meilleur ? t('certification.stats.sur', { valeur: resume.etat.valeur.meilleur.valeur, max: resume.etat.valeur.meilleur.max }) : t('certification.historique.pasEncore')}
-          aide={t('certification.stats.meilleurScore')}
-          pleineHauteur
-        />
-        <Tuile
-          titre={resume.etat.phase === 'ok' && resume.etat.valeur ? t('certification.stats.faitsSur', { faits: resume.etat.valeur.faits, total: resume.etat.valeur.total }) : '–'}
-          aide={t('certification.stats.testsFaits')}
-          onPress={() => router.push('/certification/historique' as never)}
-          pleineHauteur
-        />
-      </View>
+      <TuilesCollees
+        tuiles={[
+          {
+            cle: 'meilleur',
+            titre: resume.etat.phase === 'ok' && resume.etat.valeur?.meilleur ? t('certification.stats.sur', { valeur: resume.etat.valeur.meilleur.valeur, max: resume.etat.valeur.meilleur.max }) : t('certification.historique.pasEncore'),
+            aide: t('certification.stats.meilleurScore'),
+          },
+          {
+            cle: 'faits',
+            titre: resume.etat.phase === 'ok' && resume.etat.valeur ? t('certification.stats.faitsSur', { faits: resume.etat.valeur.faits, total: resume.etat.valeur.total }) : '–',
+            aide: t('certification.stats.testsFaits'),
+            onPress: () => router.push('/certification/historique' as never),
+          },
+        ]}
+      />
       {decompte.etat.phase === 'ok' && decompte.etat.valeur ? (
         <>
-          <View style={styles.tuiles}>
-            <Tuile titre={String(decompte.etat.valeur.vus)} aide={t('certification.stats.vus')} pleineHauteur />
-            <Tuile titre={String(decompte.etat.valeur.valides)} aide={t('certification.stats.valides')} pleineHauteur />
-          </View>
-          <View style={styles.tuiles}>
-            <Tuile titre={String(decompte.etat.valeur.maitrises)} aide={t('certification.stats.maitrises')} pleineHauteur />
-            <Tuile titre={String(decompte.etat.valeur.aRevoir)} aide={t('certification.stats.aRevoir')} pleineHauteur />
-          </View>
+          <TuilesCollees
+            tuiles={[
+              { cle: 'vus', titre: String(decompte.etat.valeur.vus), aide: t('certification.stats.vus') },
+              { cle: 'valides', titre: String(decompte.etat.valeur.valides), aide: t('certification.stats.valides') },
+              { cle: 'maitrises', titre: String(decompte.etat.valeur.maitrises), aide: t('certification.stats.maitrises') },
+              { cle: 'aRevoir', titre: String(decompte.etat.valeur.aRevoir), aide: t('certification.stats.aRevoir') },
+            ]}
+          />
           <EtiquetteSection texte={t('certification.stats.parCategorie')} />
           {decompte.etat.valeur.familles.map((f) => {
             const libelle = t('certification.stats.categorie', { famille: t(`certification.cours.familles.${f.famille}`), n: f.pourcent });
@@ -179,15 +181,13 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
         <Tuile titre={stats.joursSur7 === 1 ? t('certification.stats.joursUn') : t('certification.stats.jours', { n: stats.joursSur7 })} aide={stats.serieJours === 1 ? t('certification.stats.serieUn') : t('certification.stats.serie', { n: stats.serieJours })} />
       </View>
       <EtiquetteSection texte={t('certification.stats.mots')} />
-      <View style={styles.tuiles}>
-        {/* Deux compteurs seulement, comme la maquette (« Connu » non dessiné, E-49) : même largeur pour les deux. */}
-        <View style={styles.tuile}>
-          <Tuile titre={String(stats.mots.aRevoir)} aide={t('certification.stats.motsRevoir')} onPress={() => router.push({ pathname: '/reviser', params: { onglet: 'carnet' } } as never)} />
-        </View>
-        <View style={styles.tuile}>
-          <Tuile titre={String(stats.mots.enCours)} aide={t('certification.stats.motsProgres')} />
-        </View>
-      </View>
+      {/* Deux compteurs seulement, comme la maquette (« Connu » non dessiné, E-49) : même largeur pour les deux. */}
+      <TuilesCollees
+        tuiles={[
+          { cle: 'motsRevoir', titre: String(stats.mots.aRevoir), aide: t('certification.stats.motsRevoir'), onPress: () => router.push({ pathname: '/reviser', params: { onglet: 'carnet' } } as never) },
+          { cle: 'motsProgres', titre: String(stats.mots.enCours), aide: t('certification.stats.motsProgres') },
+        ]}
+      />
       <LigneChoix icone={History} titre={t('certification.stats.historique')} onPress={() => router.push('/certification/historique' as never)} />
     </>
   );
@@ -196,6 +196,5 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
   tuiles: { flexDirection: 'row', gap: espace[3] },
-  tuile: { flex: 1 },
   categorie: { gap: espace[2] },
 });

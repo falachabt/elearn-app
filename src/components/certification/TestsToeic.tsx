@@ -22,8 +22,8 @@ import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { stylePartie } from './partiesStyle';
-import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette, Tuile } from './ui';
-import { CarteTest, type ProprietesCarteTest, type StatutCarteTest } from './CarteTest';
+import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette, TuilesCollees } from './ui';
+import { CarteTest, GroupeTests, type ProprietesCarteTest, type StatutCarteTest } from './CarteTest';
 import { useChargement } from './useChargement';
 
 /**
@@ -137,22 +137,29 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   return (
     <>
       <EtiquetteSection texte={t('certification.tests.etiquetteMini')} />
+      <GroupeTests>
       <CarteTest icone={Target} couleur={couleurs[1]!.couleur} titre={t('certification.tests.miniPartie')} sous={detail(detailMiniPartie, dixQ)} {...avecAction(statutMini(minis.filter((x) => x.part !== null)))} progression={avancement(defs?.mini) ?? undefined} onPress={() => router.push('/certification/choix-partie' as never)} />
       <CarteTest icone={Layers} couleur={couleurs[5]!.couleur} titre={t('certification.tests.miniMixte')} sous={detail(t('certification.tests.detailMiniMixte'), vingtQ)} {...avecAction(statutMini(minis.filter((x) => x.part === null)))} progression={avancement(defs?.mixed) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mixed' } } as never)} />
+      </GroupeTests>
       <EtiquetteSection texte={t('certification.tests.etiquetteComplets')} />
+      <GroupeTests>
       <CarteTest icone={Headphones} couleur={couleurs[3]!.couleur} titre={t('certification.tests.demiEcoute')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...avecAction(statutProgression(pEcoute))} score={scoreDemi('listening', pEcoute)} detail={detailDemi(pEcoute)} progression={avancement(defs?.listening) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'listening' } } as never)} />
       <CarteTest icone={BookOpen} couleur={couleurs[4]!.couleur} titre={t('certification.tests.demiLecture')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...avecAction(statutProgression(pLecture))} score={scoreDemi('reading', pLecture)} detail={detailDemi(pLecture)} progression={avancement(defs?.reading) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'reading' } } as never)} />
       {/* Test complet : actif depuis le 15 novembre 2026 (3 tests de 200 questions validés en base), même gabarit que les demi-tests. */}
       <CarteTest icone={Trophy} couleur={theme.marque.forte} titre={t('certification.tests.complet')} sous={detail(t('certification.tests.detailComplet'), completQ)} {...avecAction(statutProgression(pComplet))} score={scoreComplet(pComplet)} detail={detailDemi(pComplet)} progression={avancement(defs?.full) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'full' } } as never)} />
       <CarteTest icone={NotebookPen} couleur={sombre ? theme.texte.principal : theme.fond.surface} titre={t('certification.tests.corrige')} sous={detail(t('certification.tests.detailCorrige'), corrigeQ)} statut="vide" libelleStatut="" />
-      <View style={styles.tuiles}>
-        <Tuile
-          titre={estimation ? t('certification.tests.scorePlage', { min: estimation.min, max: estimation.max, total }) : t('certification.tests.scoreVide')}
-          aide={t('certification.tests.score')}
-          onPress={() => router.push('/certification/historique' as never)}
-        />
-        <Tuile titre={faits === null ? '–' : String(faits)} aide={t('certification.tests.faits')} onPress={() => router.push('/certification/historique' as never)} />
-      </View>
+      </GroupeTests>
+      <TuilesCollees
+        tuiles={[
+          {
+            cle: 'score',
+            titre: estimation ? t('certification.tests.scorePlage', { min: estimation.min, max: estimation.max, total }) : t('certification.tests.scoreVide'),
+            aide: t('certification.tests.score'),
+            onPress: () => router.push('/certification/historique' as never),
+          },
+          { cle: 'faits', titre: faits === null ? '–' : String(faits), aide: t('certification.tests.faits'), onPress: () => router.push('/certification/historique' as never) },
+        ]}
+      />
       {pass ? <Text style={[typo.petit, styles.centre]}>{t('certification.tests.inclus')}</Text> : null}
       <Bouton libelle={t('certification.tests.choisir')} onPress={() => router.push('/certification/mini' as never)} retour />
     </>
@@ -232,7 +239,6 @@ function Reprise({ donnees, onAbandon }: { donnees: DonneesTests; onAbandon: (re
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
-  tuiles: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
   centre: { textAlign: 'center' },
   pastilleReprise: { flexDirection: 'row', alignItems: 'center', gap: espace[1], alignSelf: 'flex-start', borderWidth: bord.fin, borderRadius: rayon.s, paddingHorizontal: espace[2], paddingVertical: 2 },
 });

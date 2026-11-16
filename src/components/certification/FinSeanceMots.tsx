@@ -13,7 +13,7 @@ import { espace, typo } from '@/theme/theme';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
-import { ConfirmationPlan, EnteteToeic, EtiquetteSection, Tuile } from './ui';
+import { ConfirmationPlan, EnteteToeic, EtiquetteSection, TuilesCollees } from './ui';
 
 /** C9 · Fin d'une séance de mots : score, mots qui reviennent demain, répartition par boîte. */
 export function FinSeanceMots() {
@@ -65,11 +65,12 @@ export function FinSeanceMots() {
         </Carte>
         <ConfirmationPlan cle="mots" />
         <EtiquetteSection texte={t('certification.finMots.boites')} />
-        <View style={styles.grille}>
-          {([1, 2, 3, 4] as const).map((n) => (
-            <Tuile key={n} titre={resume.boites[n] === 1 ? t('certification.finMots.boiteUn', { n, m: resume.boites[n] }) : t('certification.finMots.boite', { n, m: resume.boites[n] })} />
-          ))}
-        </View>
+        <TuilesCollees
+          tuiles={([1, 2, 3, 4] as const).map((n) => ({
+            cle: `boite-${n}`,
+            titre: resume.boites[n] === 1 ? t('certification.finMots.boiteUn', { n, m: resume.boites[n] }) : t('certification.finMots.boite', { n, m: resume.boites[n] }),
+          }))}
+        />
         <Bouton libelle={etat.origine === 'seance' ? t('certification.finMots.seance') : t('certification.finMots.retour')} onPress={() => void sortir()} />
       </View>
     </Ecran>
@@ -79,5 +80,4 @@ export function FinSeanceMots() {
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
   centre: { alignItems: 'center', gap: espace[2] },
-  grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[2] },
 });

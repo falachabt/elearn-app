@@ -1,7 +1,7 @@
 import { router } from 'expo-router';
 import { Award, BookOpen, CalendarClock, Check, ChevronDown, ChevronRight, Circle, ClipboardCheck, RotateCcw, RotateCw, Target, TriangleAlert, type LucideIcon } from 'lucide-react-native';
-import { useCallback, useState, type ReactNode } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Children, cloneElement, isValidElement, useCallback, useState, type ReactElement, type ReactNode } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lirePlan } from '@/services/certification/etat';
@@ -19,6 +19,7 @@ import { bord, espace, ombre, rayon, typo, type Theme } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Bouton } from '../Bouton';
+import { GroupeColle } from '../liste/ListeCollee';
 import { EtiquetteSection, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
@@ -169,12 +170,14 @@ export function EtapesDuJour({ etapes }: { etapes: EtapePlan[] }) {
 }
 
 /** Bandeau d'un jour : titre et sous-titre ; un jour replié montre les noms de ses étapes. */
-function EnteteJour({ titre, sous, noms, ouvert, onPress }: { titre: string; sous: string; noms?: string; ouvert?: boolean; onPress: () => void }) {
+function EnteteJour({ titre, sous, noms, ouvert, onPress, collee, premier }: { titre: string; sous: string; noms?: string; ouvert?: boolean; onPress: () => void; collee?: boolean; premier?: boolean }) {
   const { theme } = useTheme();
   const Chevron = ouvert ? ChevronDown : ChevronRight;
-  return (
-    <Appui accessibilityRole="button" accessibilityLabel={`${titre}. ${sous}`} onPress={onPress} decalage={2} rayon={rayon.m}>
-      <View style={[styles.enteteJour, { backgroundColor: ouvert ? theme.fond.creux : theme.fond.surface, borderColor: theme.bord.fort }]}>
+  const cadre = collee
+    ? [styles.enteteJour, styles.enteteCollee, { backgroundColor: theme.fond.surface }, !premier && { borderTopWidth: bord.fin, borderTopColor: theme.bord.doux }]
+    : [styles.enteteJour, { backgroundColor: ouvert ? theme.fond.creux : theme.fond.surface, borderColor: theme.bord.fort }];
+  const corps = (
+      <View style={cadre}>
         <View style={styles.enteteTexte}>
           <View style={styles.enteteLigne}>
             <Text style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{titre}</Text>
@@ -188,6 +191,17 @@ function EnteteJour({ titre, sous, noms, ouvert, onPress }: { titre: string; sou
         </View>
         <Chevron size={18} color={theme.texte.secondaire} strokeWidth={2} />
       </View>
+  );
+  if (collee) {
+    return (
+      <Pressable accessibilityRole="button" accessibilityLabel={`${titre}. ${sous}`} onPress={onPress}>
+        {corps}
+      </Pressable>
+    );
+  }
+  return (
+    <Appui accessibilityRole="button" accessibilityLabel={`${titre}. ${sous}`} onPress={onPress} decalage={2} rayon={rayon.m}>
+      {corps}
     </Appui>
   );
 }
@@ -255,7 +269,7 @@ function ouvrirJour(jour: Jour) {
   router.push({ pathname: '/certification/plan-jour', params: { jour } } as never);
 }
 
-function JourReplie({ j, titre }: { j: JourPlan; titre?: string }) {
+function JourReplie({ j, titre, collee, premier }: { j: JourPlan; titre?: string; collee?: boolean; premier?: boolean }) {
   const { t } = useTraduction();
   const dates = useDates();
   const date = dates.jour(j.jour);
@@ -272,6 +286,8 @@ function JourReplie({ j, titre }: { j: JourPlan; titre?: string }) {
       sous={[titre ? date : null, sous, !test ? nombre : null].filter(Boolean).join(' · ')}
       noms={j.etapes.map((e) => e.titre).join(', ') || undefined}
       onPress={() => ouvrirJour(j.jour)}
+      collee={collee}
+      premier={premier}
     />
   );
 }
@@ -280,7 +296,14 @@ function GroupeReplie({ titre, sous, ouvert, onBascule, children }: { titre: str
   return (
     <View style={styles.jour}>
       <EnteteJour titre={titre} sous={sous} ouvert={ouvert} onPress={onBascule} />
-      {ouvert ? <View style={styles.enfants}>{children}</View> : null}
+      {ouvert ? (
+        <View style={styles.enfants}>
+          {/* Les jours d'un groupe n'ont pas de hiérarchie propre : un seul bloc collé, un trait fin entre les lignes. */}
+          <GroupeColle>
+            {Children.toArray(children).filter(isValidElement).map((e, i) => cloneElement(e as ReactElement<{ collee?: boolean; premier?: boolean }>, { collee: true, premier: i === 0 }))}
+          </GroupeColle>
+        </View>
+      ) : null}
     </View>
   );
 }
@@ -389,13 +412,14 @@ export function ContenuFrise({ donnees }: { donnees: DonneesFrise }) {
 const styles = StyleSheet.create({
   frise: { gap: espace[4] },
   jour: { gap: espace[3] },
-  enfants: { gap: espace[3], paddingLeft: espace[4] },
+  enfants: { paddingLeft: espace[4] },
   flex: { flex: 1 },
   couverture: { gap: espace[2], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
   piste: { height: 10, borderWidth: bord.normal, borderRadius: rayon.s, overflow: 'hidden' },
   enteteJour: { flexDirection: 'row', alignItems: 'center', gap: espace[3], minHeight: 48, paddingVertical: espace[3], paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },
   enteteTexte: { flex: 1, minWidth: 0, gap: espace[1] },
   enteteLigne: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: espace[3], flexWrap: 'wrap' },
+  enteteCollee: { borderWidth: 0, borderRadius: 0 },
   etapes: { gap: espace[4] },
   etape: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3] },
   minutes: { width: 48, paddingTop: espace[4] },

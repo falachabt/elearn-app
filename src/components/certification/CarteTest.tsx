@@ -1,11 +1,13 @@
 import { Check, Circle, Clock, RotateCcw, TriangleAlert, type LucideIcon } from 'lucide-react-native';
-import { StyleSheet, Text, View } from 'react-native';
+import { Children, cloneElement, isValidElement, type ReactElement, type ReactNode } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
+import { GroupeColle } from '../liste/ListeCollee';
 import { BarreProgression } from './ui';
 
 export type StatutCarteTest = 'vide' | 'en_cours' | 'interrompu' | 'fait' | 'bientot';
@@ -29,21 +31,43 @@ export type ProprietesCarteTest = {
   /** Libellé du bouton d'action de la carte (maquette v34 : « Commencer », « Voir les tentatives »). */
   action?: string;
   onPress?: () => void;
+  /** Ligne d'un bloc collé (`GroupeTests`) : sans contour propre, un trait fin au-dessus de toutes sauf la première. */
+  collee?: boolean;
+  premier?: boolean;
 };
+
+/** Plusieurs tests qui se suivent : un seul bloc collé (un contour, des traits fins). Les enfants sont des `CarteTest`. */
+export function GroupeTests({ children }: { children: ReactNode }) {
+  const lignes = Children.toArray(children).filter(isValidElement);
+  return (
+    <GroupeColle>
+      {lignes.map((l, i) => cloneElement(l as ReactElement<{ collee?: boolean; premier?: boolean }>, { collee: true, premier: i === 0 }))}
+    </GroupeColle>
+  );
+}
 
 /**
  * Carte d'un test de l'onglet Tests (maquette v36 et v37, gabarit large) : une icône et une couleur par type, le statut en
  * mots, le score en gros, l'avancement « x faits sur n » et le détail en petit. Même gabarit pour mini-tests, demi-tests,
  * test complet (désactivé « Bientôt ») et corrigé.
  */
-export function CarteTest({ icone: Icone, couleur, titre, sous, statut, libelleStatut, score, detail, progression, action, onPress }: ProprietesCarteTest) {
+export function CarteTest({ icone: Icone, couleur, titre, sous, statut, libelleStatut, score, detail, progression, action, onPress, collee, premier }: ProprietesCarteTest) {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const { Pastille, fond, texte } = pastilleDe(statut, theme);
   const actif = !!onPress && statut !== 'bientot';
   const faits = progression ? t(progression.faits <= 1 ? 'certification.tests.avancementUn' : 'certification.tests.avancement', { faits: progression.faits, total: progression.total }) : null;
   const contenu = (
-    <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, opacity: statut === 'bientot' ? 0.75 : 1 }]}>
+    <View
+      testID="carte-test"
+      style={[
+        styles.carte,
+        collee
+          ? [styles.collee, { backgroundColor: theme.fond.surface }, !premier && { borderTopWidth: bord.fin, borderTopColor: theme.bord.doux }]
+          : { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort },
+        { opacity: statut === 'bientot' ? 0.75 : 1 },
+      ]}
+    >
       <View style={styles.haut}>
         <View style={[styles.icone, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
           <Icone size={22} color={theme.texte.surCouleur} strokeWidth={2} />
@@ -80,10 +104,18 @@ export function CarteTest({ icone: Icone, couleur, titre, sous, statut, libelleS
     </View>
   );
   if (!actif) return contenu;
+  const libelle = [titre, libelleStatut, score ? `${score.valeur} ${t('certification.tests.listes.surMax', { max: score.max })}` : null, faits, detail].filter(Boolean).join('. ');
+  if (collee) {
+    return (
+      <Pressable accessibilityRole="button" accessibilityLabel={libelle} onPress={onPress}>
+        {contenu}
+      </Pressable>
+    );
+  }
   return (
     <Appui
       accessibilityRole="button"
-      accessibilityLabel={[titre, libelleStatut, score ? `${score.valeur} ${t('certification.tests.listes.surMax', { max: score.max })}` : null, faits, detail].filter(Boolean).join('. ')}
+      accessibilityLabel={libelle}
       onPress={onPress}
       decalage={3}
       ombre={ombre.m}
@@ -106,6 +138,8 @@ function pastilleDe(statut: StatutCarteTest, theme: ReturnType<typeof useTheme>[
 
 const styles = StyleSheet.create({
   carte: { borderWidth: bord.normal, borderRadius: rayon.l, padding: espace[4], gap: espace[3] },
+  // Ligne d'un bloc collé : le contour et les arrondis sont ceux du GroupeColle.
+  collee: { borderWidth: 0, borderRadius: 0 },
   haut: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3] },
   icone: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   texte: { flex: 1, minWidth: 0, gap: 2 },
