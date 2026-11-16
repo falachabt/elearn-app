@@ -15,6 +15,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
+import { FeuilleProposition } from '../proposition/FeuilleProposition';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { LogoToeic } from '../certification/LogoToeic';
@@ -39,6 +40,7 @@ export function OngletCertification({ profil, onAnnulerAdoption }: { profil: Pro
   const [choisi, setChoisi] = useState<string | null>(estCertification ? profil.exam ?? null : null);
   const [pays, setPays] = useState<string>((profil.pays ?? 'CM').toUpperCase());
   const [feuille, setFeuille] = useState(false);
+  const [proposer, setProposer] = useState(false);
   const [adoption, setAdoption] = useState(false);
   const [etat, setEtat] = useState<EtatChangement>('repos');
   const listePays = useMemo(() => listerPays(langue, {}), [langue]);
@@ -156,7 +158,7 @@ export function OngletCertification({ profil, onAnnulerAdoption }: { profil: Pro
                 />
               ))}
               </ListeChoix>
-              <EncadrePointille texte={t('certification.choix.autresAVenir')} />
+              <EncadrePointille texte={t('certification.choix.proposer')} onPress={() => setProposer(true)} />
             </>
           )}
           <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.choix.pays')}</Text>
@@ -167,6 +169,7 @@ export function OngletCertification({ profil, onAnnulerAdoption }: { profil: Pro
             icone={drapeauPays(pays) ? <Image source={{ uri: drapeauPays(pays) as string }} style={styles.drapeau} contentFit="cover" accessibilityIgnoresInvertColors /> : undefined}
             onPress={() => setFeuille(true)}
           />
+          <FeuilleProposition ouverte={proposer} onFermer={() => setProposer(false)} genre="certification" pays={pays} nomPays={nomPays(pays, langue)} />
           <FeuillePays
             ouverte={feuille}
             pays={listePays}

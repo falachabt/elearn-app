@@ -220,12 +220,14 @@ export function PastilleEtat({ etat, libelle }: { etat: EtatMaitrise; libelle: s
 }
 
 /** Encadré en pointillés (état vide, mention). */
-export function EncadrePointille({ texte }: { texte: string }) {
+export function EncadrePointille({ texte, onPress }: { texte: string; onPress?: () => void }) {
   const { theme } = useTheme();
+  const contenu = <Text style={[typo.petit, { color: onPress ? theme.texte.lien : theme.texte.secondaire, textAlign: 'center' }]}>{texte}</Text>;
+  if (!onPress) return <View style={[styles.pointille, { borderColor: theme.bord.fort }]}>{contenu}</View>;
   return (
-    <View style={[styles.pointille, { borderColor: theme.bord.fort }]}>
-      <Text style={[typo.petit, { color: theme.texte.secondaire, textAlign: 'center' }]}>{texte}</Text>
-    </View>
+    <Pressable accessibilityRole="button" accessibilityLabel={texte} onPress={onPress} style={[styles.pointille, { borderColor: theme.bord.fort }]}>
+      {contenu}
+    </Pressable>
   );
 }
 

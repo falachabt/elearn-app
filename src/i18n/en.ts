@@ -2391,6 +2391,7 @@ export const en: Textes = {
       erreurTitre: 'Could not load the certifications',
       erreurTexte: 'Check your connection and try again.',
       horsLigne: 'Offline',
+      proposer: 'My certification isn’t listed',
       autresAVenir: 'More certifications coming soon.',
     },
     objectif: {

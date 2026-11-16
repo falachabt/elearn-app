@@ -15,6 +15,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
+import { FeuilleProposition } from '../proposition/FeuilleProposition';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { FeuillePays } from '../pass/FeuillePays';
@@ -39,6 +40,7 @@ export function ChoixCertification() {
   const [choisi, setChoisi] = useState<string | null>(null);
   const [pays, setPays] = useState<string>(() => paysParDefaut(regionTelephone()));
   const [feuille, setFeuille] = useState(false);
+  const [proposer, setProposer] = useState(false);
   const listePays = useMemo(() => listerPays(langue, {}), [langue]);
 
   const charger = useCallback(() => {
@@ -116,7 +118,7 @@ export function ChoixCertification() {
           </ListeChoix>
           {/* Décision de Benny (25/10/2026, issue #77) : l'encadré pointillé de la maquette est affiché en
               production, avec un simple texte d'attente — il remplace le critère AC-A2-6 d'origine (écart E-05). */}
-          <EncadrePointille texte={t('certification.choix.autresAVenir')} />
+          <EncadrePointille texte={t('certification.choix.proposer')} onPress={() => setProposer(true)} />
         </>
       )}
       <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.choix.pays')}</Text>
@@ -126,6 +128,7 @@ export function ChoixCertification() {
         onPress={() => setFeuille(true)}
         libelle={`${t('certification.choix.pays')} : ${nomPays(pays, langue)}`}
       />
+      <FeuilleProposition ouverte={proposer} onFermer={() => setProposer(false)} genre="certification" pays={pays} nomPays={nomPays(pays, langue)} />
       <FeuillePays
         ouverte={feuille}
         pays={listePays}
