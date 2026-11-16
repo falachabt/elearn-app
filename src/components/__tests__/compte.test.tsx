@@ -269,7 +269,7 @@ describe.each(['fr', 'en'] as const)('parcours d’arrivée (%s)', (langue) => {
 
   it('A1 : deux choix sans compte, « déjà un compte » mène à la connexion', async () => {
     await monter(<Bienvenue />);
-    await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Je suis élève' : 'I’m a student' }));
+    await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? /^Je suis élève/ : /^I’m a student/ }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/classe', params: { type: 'eleve' } });
     await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'J’ai déjà un compte' : 'I already have an account' }));
     expect(router.push).toHaveBeenCalledWith('/compte/connexion');
