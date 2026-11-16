@@ -56,10 +56,9 @@ describe('Onglets TOEIC avant diagnostic terminé', () => {
     expect(screen.queryByText('Visé')).toBeNull();
   });
 
-  it('Tests : mini-tests disponibles, score estimé « Pas encore »', async () => {
+  it('Tests : mini-tests disponibles', async () => {
     await monter(<TestsToeic />);
     expect(await screen.findByText('Mini-tests')).toBeTruthy();
-    expect(screen.getByText('Pas encore')).toBeTruthy();
   });
 
   it('Réviser : onglets Parcours, Parties, Cours, Carnet', async () => {

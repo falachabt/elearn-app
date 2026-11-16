@@ -123,11 +123,11 @@ describe('T1 · onglet Tests', () => {
     // Le statut du mini-test précède son détail (maquette v33) : 8 bonnes réponses sur 10, pour la partie 5 comme pour le mixte.
     // La carte des minis par partie annonce les longueurs servies selon les parties (réglage du seed) : 10 ou 12.
     expect(await screen.findByText(`${t.tests.detailMiniPartiePlage.replace('{{min}}', '10').replace('{{max}}', '12')} · ${fr.credits.coutUn} hors Pass`)).toBeTruthy();
-    expect(screen.getAllByText(t.tests.statut.fait).length).toBeGreaterThan(0);
-    expect(screen.getAllByText('8 sur 10').length).toBeGreaterThan(0);
+    expect(screen.getAllByLabelText(new RegExp(t.tests.statut.fait)).length).toBeGreaterThan(0);
+    expect(screen.getAllByText('8/10').length).toBeGreaterThan(0);
     expect(screen.getByText(`${t.tests.detailMiniMixte} · ${fr.credits.cout.replace('{{n}}', '2')} hors Pass`)).toBeTruthy();
-    expect(screen.getByText('650 à 730 sur 990')).toBeTruthy();
-    expect(screen.getByText('3')).toBeTruthy();
+    // La tuile de score (avec sa fourchette) est retirée : un seul score, calculé par nos règles, vit dans Statistiques.
+    expect(screen.queryByText('650 à 730 sur 990')).toBeNull();
     expect(suivre).toHaveBeenCalledWith('cert_tests_tab_viewed', {});
   });
 
@@ -135,7 +135,7 @@ describe('T1 · onglet Tests', () => {
     mockPass = true;
     await monter(<TestsToeic />);
     expect(await screen.findByText(t.tests.inclus)).toBeTruthy();
-    expect(screen.getAllByText(t.tests.statut.pasFait).length).toBeGreaterThan(0);
+    expect(screen.getAllByLabelText(new RegExp(t.tests.statut.pasFait)).length).toBeGreaterThan(0);
     expect(screen.getByText(t.tests.detailMiniPartiePlage.replace('{{min}}', '10').replace('{{max}}', '12'))).toBeTruthy();
   });
 
@@ -153,7 +153,6 @@ describe('T1 · onglet Tests', () => {
     installer({ tentatives: 'echec' });
     await monter(<TestsToeic />);
     expect(await screen.findByText(t.tests.choisir)).toBeTruthy();
-    expect(screen.getByText('–')).toBeTruthy();
     await fireEvent.press(screen.getByText(t.tests.choisir));
     expect(router.push).toHaveBeenCalledWith('/certification/mini');
   });

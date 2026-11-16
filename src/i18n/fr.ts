@@ -3347,6 +3347,16 @@ export const fr = {
       seancesAide: '{{n}} séances · {{min}} min',
       regularite: 'Jours actifs',
       toutesStats: 'Voir toutes les statistiques',
+      suivant: 'Suivant',
+      minutes: '{{n}} min',
+      titreScore: 'Ta semaine en un chiffre.',
+      titreJours: '{{n}} jours sur 7.',
+      titreActivite: 'Tu avances.',
+      renforcerSurtitre: 'À renforcer',
+      renforcerTitre: 'Quelques points à revoir.',
+      partieFragile: 'partie à consolider',
+      partiesFragiles: 'parties à consolider',
+      reflexe: 'Refaire une erreur aide plus à retenir que relire la fiche. Cinq minutes suffisent.',
     },
     stats: {
       courbe: {
@@ -3440,6 +3450,7 @@ export const fr = {
       erreurTexte: 'Le signalement n’est pas parti. Réessaie dans un moment.',
     },
     gagner: {
+      autresTitre: 'Autres façons de gagner',
       entete: 'Gagner des crédits',
       intro: 'Ces gains viennent de ton apprentissage. Plafond : {{plafond}} crédits par semaine.',
       sessionDone: 'Séance du jour terminée',

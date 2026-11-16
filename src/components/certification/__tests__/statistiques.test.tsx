@@ -192,16 +192,23 @@ describe('ST1 · Statistiques', () => {
 });
 
 describe('Rapport hebdomadaire TOEIC', () => {
-  it('utilise les données serveur des 7 derniers jours et ouvre les statistiques détaillées', async () => {
+  it('utilise les données serveur des 7 derniers jours : quatre cartes, un seul score, puis les statistiques détaillées', async () => {
     await monter(<RecapSemaineToeic />);
     expect(await screen.findByText(t.recapSemaine.entete)).toBeTruthy();
-    expect(screen.getByText('690')).toBeTruthy();
-    expect(screen.getByText(t.recapSemaine.reponsesAide.replace('{{n}}', '84'))).toBeTruthy();
-    expect(screen.getByText(t.recapSemaine.seancesAide.replace('{{n}}', '6').replace('{{min}}', '95'))).toBeTruthy();
-    expect(screen.getByText(t.stats.lectureAide.replace('{{min}}', '22'))).toBeTruthy();
+    // Carte 1 : le score en UN chiffre, jamais de fourchette.
+    expect(await screen.findByText('690')).toBeTruthy();
+    expect(screen.queryByText(/à 730/)).toBeNull();
+    await fireEvent.press(screen.getByText(t.recapSemaine.suivant));
+    // Carte 2 : jours actifs.
     expect(screen.getByText(t.stats.jours.replace('{{n}}', '4'))).toBeTruthy();
+    await fireEvent.press(screen.getByText(t.recapSemaine.suivant));
+    // Carte 3 : activité.
+    expect(screen.getByText('84')).toBeTruthy();
+    expect(screen.getByText(t.recapSemaine.minutes.replace('{{n}}', '22'))).toBeTruthy();
     expect(fausse.appels.stats).toEqual([7]);
-
+    await fireEvent.press(screen.getByText(t.recapSemaine.suivant));
+    // Carte 4 : partie fragile, puis les statistiques.
+    expect(screen.getByText(t.recapSemaine.partieFragile)).toBeTruthy();
     await fireEvent.press(screen.getByText(t.recapSemaine.toutesStats));
     expect(router.push).toHaveBeenCalledWith('/statistiques');
   });

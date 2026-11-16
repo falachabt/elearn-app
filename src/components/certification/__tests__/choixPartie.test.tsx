@@ -68,7 +68,10 @@ describe('choix de la partie (v39)', () => {
   it('liste P1 à P7 avec le fait, et « Conseillé » sur la partie qui a le plus de questions nouvelles', async () => {
     await monter(<ChoixPartie />);
     expect(await screen.findByText(t.choixPartie.partie.replace('{{partie}}', '1'))).toBeTruthy();
-    expect(screen.getByText(t.choixPartie.faits.replace('{{faits}}', '1').replace('{{total}}', '2'))).toBeTruthy();
+    // Le fait se lit sur une barre de progression (plus de pastille d’état ni de « Fait : x sur y »).
+    expect(screen.getByLabelText(t.choixPartie.faits.replace('{{faits}}', '1').replace('{{total}}', '2'))).toBeTruthy();
+    expect(screen.queryByText(fr.certification.tests.statut.enCours)).toBeNull();
+    expect(screen.queryByText(fr.certification.tests.statut.pasFait)).toBeNull();
     expect(screen.getByText(t.choixPartie.conseille)).toBeTruthy();
     // Une partie sans test reste affichée, avec « Pas encore de test », et ne s'ouvre pas.
     expect(screen.getByTestId('partie-7')).toBeTruthy();
@@ -86,8 +89,7 @@ describe('choix de la partie (v39)', () => {
     expect(StyleSheet.flatten(screen.getByTestId('partie-1').props.style).borderWidth).toBeUndefined();
     // Le badge « Conseillé » n’existe que sur la partie conseillée, mais sa place est réservée sur toutes les cartes de partie.
     expect(screen.getAllByText(t.choixPartie.conseille)).toHaveLength(1);
-    // « Fait » (partie 5 : 1 test sur 3 commencé) est dans l’en-tête de carte, avec l’icône, pas sous le texte.
-    expect(screen.getAllByText(fr.certification.tests.statut.enCours).length).toBeGreaterThan(0);
+    expect(screen.queryByText(fr.certification.tests.statut.enCours)).toBeNull();
   });
 
   it('l’intro annonce la fourchette servie : 10 ou 12 questions selon la partie (I-3)', async () => {
