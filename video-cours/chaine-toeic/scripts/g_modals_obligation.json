@@ -1,0 +1,48 @@
+{
+  "code": "g_modals_obligation", "titre": "Modals: must, have to, should, might", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 5 and 6", "titre": "Modal verbs", "sous": "must, have to, should, might",
+      "bulles": [{"qui": "A", "texte": "Do I need a badge?"}, {"qui": "B", "texte": "Yes, all visitors **must wear** one.", "etat": "ok"}]},
+    "sens": {"type": "structure", "kicker": "The meaning", "titre": "How strong is it?", "lignes": [
+      {"debut": "must / have to", "suite": "obligation", "exemple": "Visitors **must** sign in."},
+      {"debut": "should", "suite": "advice", "exemple": "You **should** book early."},
+      {"debut": "might / may", "suite": "possibility", "exemple": "The flight **might** be late."}]},
+    "forme": {"type": "dialogue", "kicker": "The form", "titre": "Modal + base verb", "bulles": [
+      {"qui": "A", "texte": "She must __to sign__ the form.", "etiquette": "WRONG: NO TO", "etat": "ko"},
+      {"qui": "A", "texte": "She must __signs__ the form.", "etiquette": "WRONG: NO S", "etat": "ko"},
+      {"qui": "A", "texte": "She must **sign** the form.", "etiquette": "CORRECT: BASE VERB", "etat": "ok"}]},
+    "piege": {"type": "dialogue", "kicker": "The big trap", "ton": "jaune", "titre": "must not is not the same as do not have to", "bulles": [
+      {"qui": "A", "texte": "You **must not** park here.", "etiquette": "FORBIDDEN", "etat": "ko"},
+      {"qui": "B", "texte": "You **do not have to** come.", "etiquette": "NOT NECESSARY: YOU CHOOSE", "etat": "ok"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "All employees must ------- their badges at the entrance.", "options": [
+      {"lettre": "A", "texte": "**show**", "etat": "ok", "raison": "must + base verb"},
+      {"lettre": "B", "texte": "to show", "etat": "ko", "raison": "No to after must"},
+      {"lettre": "C", "texte": "showing", "etat": "ko", "raison": "No -ing after must"},
+      {"lettre": "D", "texte": "shows", "etat": "ko", "raison": "No s after a modal"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "After a modal: the **base verb**, nothing else"},
+      {"texte": "**must** = obligation, **should** = advice, **might** = possibility"},
+      {"texte": "__must not__ = forbidden. __do not have to__ = not necessary"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Modal verbs: must, have to, should and might.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "sens", "texte": "A modal verb changes the meaning of the main verb. Must and have to express an obligation: visitors must sign in.", "dit": "A modal verb changes the meaning of the main verb. Must, and have to, express an obligation: visitors must sign in.", "vue": {"faibles": [1, 2]}},
+    {"id": "p03", "ecran": "sens", "texte": "Should gives advice: you should book early.", "dit": "Should, gives advice: you should book early.", "vue": {"faibles": [2]}},
+    {"id": "p04", "ecran": "sens", "texte": "Might and may express a possibility: the flight might be late.", "dit": "Might, and may, express a possibility: the flight might be late.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "forme", "texte": "The form is simple. After a modal, we use the base verb. No to.", "dit": "The form is simple. After a modal, we use the base verb. No to.", "vue": {"montre": 1}},
+    {"id": "p06", "ecran": "forme", "texte": "And no S, even with he or she.", "dit": "And no S, even with he, or she.", "vue": {"montre": 2}},
+    {"id": "p07", "ecran": "forme", "texte": "We say: she must sign the form.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "piege", "texte": "Now, the big trap. Must not means it is forbidden: you must not park here.", "dit": "Now, the big trap. Must not, means it is forbidden: you must not park here.", "vue": {"montre": 1}},
+    {"id": "p09", "ecran": "piege", "texte": "But do not have to means it is not necessary. You do not have to come: you can choose.", "dit": "But, do not have to, means it is not necessary. You do not have to come: you can choose.", "pause_apres": 1.0},
+    {"id": "p10", "ecran": "q", "texte": "Now, a TOEIC question. All employees must, blank, their badges at the entrance.", "vue": {"options": false}},
+    {"id": "p11", "ecran": "q", "texte": "A: show. B: to show. C: showing. D: shows.", "dit": "Answer A. show. Answer B. to show. Answer C. showing. Answer D. shows.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p12", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p13", "ecran": "q", "texte": "The word before the blank is must, a modal. After a modal, only the base verb is possible.", "dit": "The word before the blank is must, a modal. After a modal, only the base verb is possible.", "vue": {"juge": []}},
+    {"id": "p14", "ecran": "q", "texte": "So B, C and D are wrong.", "dit": "So B, C, and D are wrong.", "vue": {"juge": ["B", "C", "D"]}},
+    {"id": "p15", "ecran": "q", "texte": "A is correct: all employees must show their badges at the entrance.", "pause_apres": 1.0},
+    {"id": "p16", "ecran": "recap", "texte": "Three steps. One: after a modal, the base verb, nothing else.", "vue": {"jusqu": 1}},
+    {"id": "p17", "ecran": "recap", "texte": "Two: must is an obligation, should is advice, might is a possibility.", "dit": "Two: must, is an obligation. Should, is advice. Might, is a possibility.", "vue": {"jusqu": 2}},
+    {"id": "p18", "ecran": "recap", "texte": "Three: must not means forbidden. Do not have to means not necessary.", "dit": "Three: must not, means forbidden. Do not have to, means not necessary.", "pause_apres": 0.9},
+    {"id": "p19", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

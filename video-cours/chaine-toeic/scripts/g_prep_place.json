@@ -1,0 +1,52 @@
+{
+  "code": "g_prep_place", "titre": "Prepositions of place and movement", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 5", "titre": "Prepositions of place", "sous": "in, on, at, next to, across from, to, into",
+      "bulles": [{"qui": "A", "texte": "Where is the pharmacy?"}, {"qui": "B", "texte": "**Across from** the bank.", "etat": "ok"}]},
+    "inonat": {"type": "structure", "kicker": "in, on, at", "titre": "Inside, on a surface, at a point", "lignes": [
+      {"debut": "in", "suite": "inside a space", "exemple": "**in** the office, **in** Paris"},
+      {"debut": "on", "suite": "on a surface", "exemple": "**on** the desk, **on** the 2nd floor"},
+      {"debut": "at", "suite": "a point", "exemple": "**at** the entrance, **at** the airport"}]},
+    "photo": {"type": "photo", "kicker": "Useful in Part 1", "image": "t5_p1-1.jpg", "options": [
+      {"lettre": "1", "texte": "A woman is standing **behind** the counter.", "etat": "ok"},
+      {"lettre": "2", "texte": "A man is standing **in front of** the desk.", "etat": "ok"},
+      {"lettre": "3", "texte": "Flowers are **on** the counter.", "etat": "ok"}]},
+    "position": {"type": "structure", "kicker": "Position", "titre": "Where exactly?", "lignes": [
+      {"debut": "next to / beside", "suite": "at the side", "exemple": "**next to** the printer"},
+      {"debut": "across from", "suite": "facing", "exemple": "**across from** the bank"},
+      {"debut": "between", "suite": "two things", "exemple": "**between** the bank and the hotel"}]},
+    "mouvement": {"type": "structure", "kicker": "Movement", "titre": "A direction, not a position", "lignes": [
+      {"debut": "to", "suite": "destination", "exemple": "go **to** the station"},
+      {"debut": "into", "suite": "entering", "exemple": "walk **into** the room"},
+      {"debut": "through", "suite": "from side to side", "exemple": "drive **through** the tunnel"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "The conference room is ------- the **second floor**.", "options": [
+      {"lettre": "A", "texte": "in", "etat": "ko", "raison": "in + a closed space"},
+      {"lettre": "B", "texte": "**on**", "etat": "ok", "raison": "on + a floor"},
+      {"lettre": "C", "texte": "at", "etat": "ko", "raison": "at + a point"},
+      {"lettre": "D", "texte": "to", "etat": "ko", "raison": "Movement, not position"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "**in** a space, **on** a surface or a floor, **at** a point"},
+      {"texte": "Position or **movement**? to, into, through show movement"},
+      {"texte": "Learn the fixed ones: __on the second floor, at the airport__"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Prepositions of place and movement.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "inonat", "texte": "In means inside a space: in the office, in Paris.", "dit": "In, means inside a space: in the office, in Paris.", "vue": {"faibles": [1, 2]}},
+    {"id": "p03", "ecran": "inonat", "texte": "On means on a surface: on the desk, on the second floor.", "dit": "On, means on a surface: on the desk, on the second floor.", "vue": {"faibles": [2]}},
+    {"id": "p04", "ecran": "inonat", "texte": "At means a point: at the entrance, at the airport.", "dit": "At, means a point: at the entrance, at the airport.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "photo", "texte": "These words are very useful in Part 1. A woman is standing behind the counter.", "dit": "These words are very useful in Part one. A woman is standing behind the counter.", "vue": {"juge": ["1"]}},
+    {"id": "p06", "ecran": "photo", "texte": "A man is standing in front of the desk. Flowers are on the counter.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "position", "texte": "For a position: next to the printer, across from the bank, between the bank and the hotel.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "mouvement", "texte": "For movement, we use other words: go to the station, walk into the room, drive through the tunnel.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "q", "texte": "Now, a TOEIC question. The conference room is, blank, the second floor.", "vue": {"options": false}},
+    {"id": "p10", "ecran": "q", "texte": "A: in. B: on. C: at. D: to.", "dit": "Answer A. in. Answer B. on. Answer C. at. Answer D. to.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p11", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p12", "ecran": "q", "texte": "The room does not move. So to is wrong. And a floor is a surface.", "dit": "The room does not move. So, to, is wrong. And a floor is a surface.", "vue": {"juge": ["D"]}},
+    {"id": "p13", "ecran": "q", "texte": "With a floor, English always uses on. So in and at are wrong.", "dit": "With a floor, English always uses on. So in, and at, are wrong.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p14", "ecran": "q", "texte": "B is correct: the conference room is on the second floor.", "pause_apres": 1.0},
+    {"id": "p15", "ecran": "recap", "texte": "Three steps. One: in a space, on a surface or a floor, at a point.", "vue": {"jusqu": 1}},
+    {"id": "p16", "ecran": "recap", "texte": "Two: position, or movement? To, into and through show movement.", "vue": {"jusqu": 2}},
+    {"id": "p17", "ecran": "recap", "texte": "Three: learn the fixed ones: on the second floor, at the airport.", "pause_apres": 0.9},
+    {"id": "p18", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "code": "g_passive_voice", "titre": "The passive voice", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 4, 5 and 6", "titre": "The passive voice", "sous": "be + past participle",
+      "bulles": [{"qui": "A", "texte": "Who signed the contract?"}, {"qui": "B", "texte": "It **was signed** last week.", "etat": "ok"}]},
+    "idee": {"type": "dialogue", "kicker": "Active or passive?", "bulles": [
+      {"qui": "A", "texte": "The manager **signed** the contract.", "etiquette": "ACTIVE: THE SUBJECT ACTS"},
+      {"qui": "B", "texte": "The contract **was signed**.", "etiquette": "PASSIVE: THE SUBJECT RECEIVES THE ACTION", "etat": "ok"}]},
+    "forme": {"type": "structure", "kicker": "The form", "titre": "be changes, the participle stays", "lignes": [
+      {"debut": "Present", "suite": "are sent", "exemple": "The reports **are sent** every Friday."},
+      {"debut": "Past", "suite": "was signed", "exemple": "The contract **was signed** last week."},
+      {"debut": "Future", "suite": "will be opened", "exemple": "The office **will be opened** in June."}]},
+    "by": {"type": "dialogue", "kicker": "Who did it?", "bulles": [
+      {"qui": "B", "texte": "The contract was signed **by the manager**.", "etiquette": "BY + THE PERSON, ONLY IF IT MATTERS"}]},
+    "piege": {"type": "dialogue", "kicker": "The big trap", "ton": "jaune", "titre": "Look at what follows the blank", "bulles": [
+      {"qui": "A", "texte": "The team **booked** __the room__.", "etiquette": "AN OBJECT FOLLOWS: ACTIVE", "etat": "ok"},
+      {"qui": "A", "texte": "The room **was booked** __by the team__.", "etiquette": "NO OBJECT FOLLOWS: PASSIVE", "etat": "ok"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "All invoices ------- by the finance team every month.", "options": [
+      {"lettre": "A", "texte": "check", "etat": "ko", "raison": "Invoices cannot check"},
+      {"lettre": "B", "texte": "**are checked**", "etat": "ok", "raison": "be + participle, plural"},
+      {"lettre": "C", "texte": "is checked", "etat": "ko", "raison": "Singular, but invoices is plural"},
+      {"lettre": "D", "texte": "are checking", "etat": "ko", "raison": "Active: no object follows"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Does the subject **act**, or **receive** the action?"},
+      {"texte": "No object after the blank, or **by**: choose the passive"},
+      {"texte": "Check the tense and the number of __be__"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "The passive voice.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "In an active sentence, the subject acts: the manager signed the contract.", "vue": {"montre": 1}},
+    {"id": "p03", "ecran": "idee", "texte": "In a passive sentence, the subject receives the action: the contract was signed.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "forme", "texte": "We form the passive with be, and the past participle.", "vue": {"faibles": [0, 1, 2]}},
+    {"id": "p05", "ecran": "forme", "texte": "Only be changes with the tense. Present: the reports are sent every Friday.", "vue": {"faibles": [1, 2]}},
+    {"id": "p06", "ecran": "forme", "texte": "Past: the contract was signed last week. Future: the office will be opened in June.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "by", "texte": "If the person is important, we add by: the contract was signed by the manager.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "piege", "texte": "Now, the big trap. Look at what follows the blank.", "vue": {"montre": 0}},
+    {"id": "p09", "ecran": "piege", "texte": "The team booked the room. An object follows the verb, so the verb is active.", "vue": {"montre": 1}},
+    {"id": "p10", "ecran": "piege", "texte": "The room was booked by the team. No object follows, so the verb is passive.", "pause_apres": 1.0},
+    {"id": "p11", "ecran": "q", "texte": "Now, a TOEIC question from Part 5. All invoices, blank, by the finance team every month.", "dit": "Now, a TOEIC question from Part five. All invoices, blank, by the finance team every month.", "vue": {"options": false}},
+    {"id": "p12", "ecran": "q", "texte": "A: check. B: are checked. C: is checked. D: are checking.", "dit": "Answer A. check. Answer B. are checked. Answer C. is checked. Answer D. are checking.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p13", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p14", "ecran": "q", "texte": "Invoices cannot check anything. They receive the action. And you see the word by. So we need the passive.", "vue": {"juge": ["A", "D"]}},
+    {"id": "p15", "ecran": "q", "texte": "Invoices is plural, so is checked is wrong.", "dit": "Invoices is plural, so, is checked, is wrong.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p16", "ecran": "q", "texte": "B is correct: all invoices are checked by the finance team every month.", "pause_apres": 1.0},
+    {"id": "p17", "ecran": "recap", "texte": "Remember three steps. One: does the subject act, or receive the action?", "vue": {"jusqu": 1}},
+    {"id": "p18", "ecran": "recap", "texte": "Two: no object after the blank, or the word by: choose the passive.", "vue": {"jusqu": 2}},
+    {"id": "p19", "ecran": "recap", "texte": "Three: check the tense and the number of the verb be.", "pause_apres": 0.9},
+    {"id": "p20", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

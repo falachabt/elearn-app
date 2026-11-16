@@ -1,0 +1,48 @@
+{
+  "code": "g_tenses_past", "titre": "Past tenses", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 5", "titre": "Past tenses", "sous": "simple past, past continuous, past perfect",
+      "bulles": [{"qui": "A", "texte": "What happened?"}, {"qui": "B", "texte": "I **was working** when the power **went** out.", "etat": "ok"}]},
+    "trois": {"type": "structure", "kicker": "Three past tenses", "titre": "Each one has a job", "lignes": [
+      {"debut": "simple past", "suite": "finished action", "exemple": "She **signed** the contract."},
+      {"debut": "past continuous", "suite": "in progress", "exemple": "She **was reading** the contract."},
+      {"debut": "past perfect", "suite": "before another", "exemple": "She **had read** it before."}]},
+    "ex1": {"type": "dialogue", "kicker": "Two actions at the same moment", "bulles": [
+      {"qui": "A", "texte": "I **was working**", "etiquette": "LONG ACTION, IN PROGRESS"},
+      {"qui": "A", "texte": "when the power **went** out.", "etiquette": "SHORT ACTION THAT INTERRUPTS", "etat": "ok"}],
+      "aparte": {"texte": "was / were + verb-ing ... **when** + simple past"}},
+    "ex2": {"type": "dialogue", "kicker": "One action before another", "bulles": [
+      {"qui": "B", "texte": "When I arrived,", "etiquette": "SECOND ACTION: SIMPLE PAST"},
+      {"qui": "B", "texte": "the meeting **had already started**.", "etiquette": "FIRST ACTION: PAST PERFECT", "etat": "ok"}],
+      "aparte": {"texte": "had + past participle = earlier in the past"}},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "By the time Mr. Ito arrived, the train ------- .", "options": [
+      {"lettre": "A", "texte": "leaves", "etat": "ko", "raison": "Present"},
+      {"lettre": "B", "texte": "has left", "etat": "ko", "raison": "Linked to now, not to the past"},
+      {"lettre": "C", "texte": "**had left**", "etat": "ok", "raison": "Before another past action"},
+      {"lettre": "D", "texte": "was leaving", "etat": "ko", "raison": "In progress, not finished"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "**yesterday, last week, ago**: simple past"},
+      {"texte": "**while, when** + an interruption: past continuous"},
+      {"texte": "__by the time, before, already__ + past: past perfect"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Past tenses.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "trois", "texte": "English has three main past tenses. The simple past is for a finished action: she signed the contract.", "vue": {"faibles": [1, 2]}},
+    {"id": "p03", "ecran": "trois", "texte": "The past continuous is for an action in progress: she was reading the contract.", "vue": {"faibles": [2]}},
+    {"id": "p04", "ecran": "trois", "texte": "The past perfect is for an action before another past action: she had read it before.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "ex1", "texte": "Look at two actions at the same moment. I was working when the power went out.", "vue": {"aparte": false}},
+    {"id": "p06", "ecran": "ex1", "texte": "The long action is in the past continuous. The short action that interrupts is in the simple past.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "ex2", "texte": "Now, one action before another. When I arrived, the meeting had already started.", "vue": {"aparte": false}},
+    {"id": "p08", "ecran": "ex2", "texte": "The meeting started first. So we use had, plus the past participle.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "q", "texte": "Now, a TOEIC question. By the time Mr. Ito arrived, the train, blank.", "dit": "Now, a TOEIC question. By the time Mister Ito arrived, the train, blank.", "vue": {"options": false}},
+    {"id": "p10", "ecran": "q", "texte": "A: leaves. B: has left. C: had left. D: was leaving.", "dit": "Answer A. leaves. Answer B. has left. Answer C. had left. Answer D. was leaving.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p11", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p12", "ecran": "q", "texte": "By the time, with a verb in the past, tells you one action happened before another.", "dit": "By the time, with a verb in the past, tells you one action happened before another.", "vue": {"juge": []}},
+    {"id": "p13", "ecran": "q", "texte": "A is present. B links to now, not to the past. D is an action in progress.", "dit": "A is present. B links to now, not to the past. D is an action in progress.", "vue": {"juge": ["A", "B", "D"]}},
+    {"id": "p14", "ecran": "q", "texte": "C is correct: by the time Mr. Ito arrived, the train had left.", "dit": "C is correct: by the time Mister Ito arrived, the train had left.", "pause_apres": 1.0},
+    {"id": "p15", "ecran": "recap", "texte": "Three steps. One: yesterday, last week and ago go with the simple past.", "vue": {"jusqu": 1}},
+    {"id": "p16", "ecran": "recap", "texte": "Two: while, or when with an interruption, goes with the past continuous.", "vue": {"jusqu": 2}},
+    {"id": "p17", "ecran": "recap", "texte": "Three: by the time, before and already, with a past verb, go with the past perfect.", "pause_apres": 0.9},
+    {"id": "p18", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

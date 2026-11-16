@@ -1,0 +1,57 @@
+{
+  "code": "g_word_form", "titre": "Word forms", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 5 and 6", "titre": "Word forms", "sous": "Noun, adjective, adverb or verb?",
+      "bulles": [{"qui": "A", "texte": "success, successful, successfully, succeed?"}, {"qui": "B", "texte": "Look at the **position**.", "etat": "ok"}]},
+    "famille": {"type": "structure", "kicker": "One family, four forms", "titre": "Same meaning, different job", "lignes": [
+      {"debut": "success", "suite": "noun", "exemple": "a thing or an idea"},
+      {"debut": "successful", "suite": "adjective", "exemple": "describes a noun"},
+      {"debut": "successfully", "suite": "adverb", "exemple": "describes a verb"},
+      {"debut": "succeed", "suite": "verb", "exemple": "the action"}]},
+    "places": {"type": "structure", "kicker": "The position gives the form", "titre": "Look left and right of the blank", "lignes": [
+      {"debut": "a / the / our + ___", "suite": "noun", "exemple": "our **success**"},
+      {"debut": "a + ___ + noun", "suite": "adjective", "exemple": "a **successful** launch"},
+      {"debut": "verb + ___", "suite": "adverb", "exemple": "finished **successfully**"},
+      {"debut": "subject + ___", "suite": "verb", "exemple": "they **succeed**"}]},
+    "fins": {"type": "structure", "kicker": "Typical endings", "titre": "The ending helps you", "lignes": [
+      {"debut": "-tion, -ment, -ness", "suite": "noun", "exemple": "informa**tion**, pay**ment**"},
+      {"debut": "-ful, -ive, -al, -ous", "suite": "adjective", "exemple": "use**ful**, effect**ive**"},
+      {"debut": "-ly", "suite": "adverb", "exemple": "quick**ly**, careful**ly**"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "The team completed the project ------- .", "options": [
+      {"lettre": "A", "texte": "success", "etat": "ko", "raison": "Noun"},
+      {"lettre": "B", "texte": "successful", "etat": "ko", "raison": "Adjective: no noun after"},
+      {"lettre": "C", "texte": "**successfully**", "etat": "ok", "raison": "Adverb: describes completed"},
+      {"lettre": "D", "texte": "succeed", "etat": "ko", "raison": "Verb: there is one already"}]},
+    "piege": {"type": "dialogue", "kicker": "The trap", "ton": "jaune", "titre": "After be, use an adjective", "bulles": [
+      {"qui": "A", "texte": "The launch was __successfully__.", "etiquette": "WRONG", "etat": "ko"},
+      {"qui": "A", "texte": "The launch was **successful**.", "etiquette": "CORRECT: BE + ADJECTIVE", "etat": "ok"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Same word family in A, B, C, D? It is a **form** question"},
+      {"texte": "Do not translate. Look at the words **around the blank**"},
+      {"texte": "After a verb: adverb. After __be__: adjective"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Word forms: noun, adjective, adverb, or verb?", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "famille", "texte": "In Part 5, the four answers often come from the same family.", "dit": "In Part five, the four answers often come from the same family.", "vue": {"faibles": [0, 1, 2, 3]}},
+    {"id": "p03", "ecran": "famille", "texte": "Success is a noun. Successful is an adjective.", "dit": "Success, is a noun. Successful, is an adjective.", "vue": {"faibles": [2, 3]}},
+    {"id": "p04", "ecran": "famille", "texte": "Successfully is an adverb. Succeed is a verb.", "dit": "Successfully, is an adverb. Succeed, is a verb.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "places", "texte": "You do not need to translate. The position gives you the form.", "vue": {"faibles": [0, 1, 2, 3]}},
+    {"id": "p06", "ecran": "places", "texte": "After a, the, or our, you need a noun: our success.", "vue": {"faibles": [1, 2, 3]}},
+    {"id": "p07", "ecran": "places", "texte": "Before a noun, you need an adjective: a successful launch.", "vue": {"faibles": [2, 3]}},
+    {"id": "p08", "ecran": "places", "texte": "After a verb, you need an adverb: finished successfully. And after the subject, a verb: they succeed.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "fins", "texte": "The ending helps you too. Nouns often end in -tion or -ment: information, payment.", "dit": "The ending helps you too. Nouns often end like information, or payment.", "vue": {"faibles": [1, 2]}},
+    {"id": "p10", "ecran": "fins", "texte": "Adjectives often end like useful or effective. And adverbs end in -ly: quickly, carefully.", "dit": "Adjectives often end like useful, or effective. And adverbs end like quickly, or carefully.", "pause_apres": 1.0},
+    {"id": "p11", "ecran": "q", "texte": "Now, a TOEIC question. The team completed the project, blank.", "vue": {"options": false}},
+    {"id": "p12", "ecran": "q", "texte": "A: success. B: successful. C: successfully. D: succeed.", "dit": "Answer A. success. Answer B. successful. Answer C. successfully. Answer D. succeed.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p13", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p14", "ecran": "q", "texte": "The sentence is already complete: the team completed the project. It has a subject, a verb and an object.", "vue": {"juge": []}},
+    {"id": "p15", "ecran": "q", "texte": "So we cannot add a noun, or a second verb. And there is no noun after the blank for an adjective.", "vue": {"juge": ["A", "B", "D"]}},
+    {"id": "p16", "ecran": "q", "texte": "C is correct. The adverb successfully describes how the team completed the project.", "pause_apres": 1.0},
+    {"id": "p17", "ecran": "piege", "texte": "One trap. After the verb be, we use an adjective, not an adverb.", "vue": {"montre": 1}},
+    {"id": "p18", "ecran": "piege", "texte": "The launch was successful. Not successfully.", "pause_apres": 1.0},
+    {"id": "p19", "ecran": "recap", "texte": "Three steps. One: if the four answers are from the same family, it is a form question.", "vue": {"jusqu": 1}},
+    {"id": "p20", "ecran": "recap", "texte": "Two: do not translate. Look at the words around the blank.", "vue": {"jusqu": 2}},
+    {"id": "p21", "ecran": "recap", "texte": "Three: after a verb, an adverb. After be, an adjective.", "pause_apres": 0.9},
+    {"id": "p22", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

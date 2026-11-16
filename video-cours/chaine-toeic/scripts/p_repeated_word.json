@@ -1,0 +1,49 @@
+{
+  "code": "p_repeated_word", "titre": "The repeated word trap", "partie": "TOEIC · Part 2",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 2 and 3 · Trap", "titre": "The repeated word trap", "sous": "Same word, wrong answer",
+      "bulles": [{"qui": "A", "texte": "Where is the **meeting** room?"}, {"qui": "B", "texte": "The __meeting__ was long.", "etat": "ko"}]},
+    "idee": {"type": "recap", "kicker": "How the trap works", "titre": "Your ear loves familiar words", "etapes": [
+      {"texte": "A wrong answer **repeats a word** from the question"},
+      {"texte": "It sounds right, but it does **not answer** the question"},
+      {"texte": "The right answer often uses **different words**"}]},
+    "ex1": {"type": "dialogue", "kicker": "Example", "bulles": [
+      {"qui": "A", "texte": "**Where** is the meeting room?", "etiquette": "WHERE = A PLACE"},
+      {"qui": "B", "texte": "The __meeting__ was very long.", "etiquette": "REPEATS MEETING, NO PLACE", "etat": "ko"},
+      {"qui": "B", "texte": "**On the second floor**, next to the lift.", "etiquette": "A PLACE, NEW WORDS", "etat": "ok"}]},
+    "q": {"type": "question", "kicker": "TOEIC question", "entendu": "**When** will the new printer be delivered?", "options": [
+      {"lettre": "A", "texte": "Yes, the __printer__ is new.", "etat": "ko", "raison": "Repeats printer and new"},
+      {"lettre": "B", "texte": "The __delivery__ man is here.", "etat": "ko", "raison": "Sounds like delivered"},
+      {"lettre": "C", "texte": "**Tomorrow morning**, I think.", "etat": "ok", "raison": "A time, new words"}]},
+    "famille": {"type": "structure", "kicker": "Three kinds of repeated words", "titre": "Know them all", "lignes": [
+      {"debut": "the same word", "suite": "printer", "exemple": "Yes, the **printer** is new."},
+      {"debut": "the same family", "suite": "delivered", "exemple": "The **delivery** man is here."},
+      {"debut": "a similar sound", "suite": "copy", "exemple": "I would like some **coffee**."}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "First, decide **what the question wants**: a place, a time, a person"},
+      {"texte": "A repeated word is a **warning**, not a good sign"},
+      {"texte": "Choose the answer that __fits the question__, even with new words"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "The repeated word trap.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "In Part 2, a wrong answer often repeats a word from the question.", "dit": "In Part two, a wrong answer often repeats a word from the question.", "vue": {"jusqu": 1}},
+    {"id": "p03", "ecran": "idee", "texte": "It sounds right, because your ear loves familiar words. But it does not answer the question.", "vue": {"jusqu": 2}},
+    {"id": "p04", "ecran": "idee", "texte": "The right answer often uses different words.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "ex1", "texte": "Look at this example. Where is the meeting room? Where wants a place.", "dit": "Look at this example. Where is the meeting room? Where, wants a place.", "vue": {"montre": 1}},
+    {"id": "p06", "ecran": "ex1", "texte": "The meeting was very long. It repeats the word meeting, but there is no place.", "dit": "The meeting was very long. It repeats the word meeting, but there is no place.", "vue": {"montre": 2}},
+    {"id": "p07", "ecran": "ex1", "texte": "On the second floor, next to the lift. It is a place, with new words. This is the answer.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "q", "texte": "Now, a TOEIC question. You hear: When will the new printer be delivered?", "vue": {"options": false}},
+    {"id": "p09", "ecran": "q", "texte": "A: Yes, the printer is new. B: The delivery man is here. C: Tomorrow morning, I think.", "dit": "Answer A. Yes, the printer is new. Answer B. The delivery man is here. Answer C. Tomorrow morning, I think.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p10", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p11", "ecran": "q", "texte": "The question starts with when. You need a time.", "dit": "The question starts with, when. You need a time.", "vue": {"juge": []}},
+    {"id": "p12", "ecran": "q", "texte": "A repeats printer and new. But it gives no time.", "dit": "Answer A repeats printer, and new. But it gives no time.", "vue": {"juge": ["A"]}},
+    {"id": "p13", "ecran": "q", "texte": "B uses delivery, the same family as delivered. Again, no time.", "dit": "Answer B uses delivery, the same family as delivered. Again, no time.", "vue": {"juge": ["A", "B"]}},
+    {"id": "p14", "ecran": "q", "texte": "C is correct. Tomorrow morning is a time, and it repeats nothing.", "dit": "Answer C is correct. Tomorrow morning, is a time, and it repeats nothing.", "pause_apres": 1.0},
+    {"id": "p15", "ecran": "famille", "texte": "There are three kinds of repeated words. The same word. A word from the same family.", "vue": {"faibles": [2]}},
+    {"id": "p16", "ecran": "famille", "texte": "And a word with a similar sound, like copy and coffee.", "dit": "And a word with a similar sound, like copy, and coffee.", "pause_apres": 1.0},
+    {"id": "p17", "ecran": "recap", "texte": "Three steps. One: first, decide what the question wants.", "vue": {"jusqu": 1}},
+    {"id": "p18", "ecran": "recap", "texte": "Two: a repeated word is a warning, not a good sign.", "vue": {"jusqu": 2}},
+    {"id": "p19", "ecran": "recap", "texte": "Three: choose the answer that fits the question, even with new words.", "pause_apres": 0.9},
+    {"id": "p20", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

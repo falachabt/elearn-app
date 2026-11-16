@@ -1,0 +1,49 @@
+{
+  "code": "g_adj_adv", "titre": "Adjective or adverb?", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 5", "titre": "Adjective or adverb?", "sous": "careful or carefully",
+      "bulles": [{"qui": "A", "texte": "Is she a **careful** driver?"}, {"qui": "B", "texte": "Yes, she drives **carefully**.", "etat": "ok"}]},
+    "roles": {"type": "structure", "kicker": "Two jobs", "titre": "What does the word describe?", "lignes": [
+      {"debut": "adjective", "suite": "describes a noun", "exemple": "a **careful** driver"},
+      {"debut": "adverb", "suite": "describes a verb", "exemple": "she drives **carefully**"},
+      {"debut": "adverb", "suite": "describes an adjective", "exemple": "**highly** qualified staff"}]},
+    "places": {"type": "structure", "kicker": "Typical positions", "titre": "Where is the blank?", "lignes": [
+      {"debut": "a ___ noun", "suite": "adjective", "exemple": "a **quick** answer"},
+      {"debut": "be, seem, become ___", "suite": "adjective", "exemple": "The room is **quiet**."},
+      {"debut": "verb ___", "suite": "adverb", "exemple": "Sales rose **quickly**."},
+      {"debut": "___ + adjective", "suite": "adverb", "exemple": "**extremely** busy"}]},
+    "piege": {"type": "structure", "kicker": "The trap", "ton": "jaune", "titre": "Not every adverb ends in -ly", "lignes": [
+      {"debut": "hard", "suite": "adjective + adverb", "exemple": "She works **hard**. (hardly = almost not)"},
+      {"debut": "late", "suite": "adjective + adverb", "exemple": "He arrived **late**. (lately = recently)"},
+      {"debut": "friendly, costly", "suite": "adjectives!", "exemple": "a **friendly** team"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "The new assistant is ------- **qualified** for the position.", "options": [
+      {"lettre": "A", "texte": "high", "etat": "ko", "raison": "Adjective"},
+      {"lettre": "B", "texte": "**highly**", "etat": "ok", "raison": "Adverb before an adjective"},
+      {"lettre": "C", "texte": "height", "etat": "ko", "raison": "Noun"},
+      {"lettre": "D", "texte": "higher", "etat": "ko", "raison": "Comparative adjective"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Before a noun, or after **be**: adjective"},
+      {"texte": "With a verb, or before an adjective: **adverb**"},
+      {"texte": "__hard__ and __late__ are adverbs too. __friendly__ is an adjective"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Adjective or adverb?", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "roles", "texte": "An adjective describes a noun: a careful driver.", "vue": {"faibles": [1, 2]}},
+    {"id": "p03", "ecran": "roles", "texte": "An adverb describes a verb: she drives carefully.", "vue": {"faibles": [2]}},
+    {"id": "p04", "ecran": "roles", "texte": "An adverb can also describe an adjective: highly qualified staff.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "places", "texte": "Look at the position of the blank. Before a noun, or after be, seem and become: an adjective.", "dit": "Look at the position of the blank. Before a noun, or after be, seem, and become: an adjective.", "vue": {"faibles": [2, 3]}},
+    {"id": "p06", "ecran": "places", "texte": "With a verb, or before an adjective: an adverb. Sales rose quickly. Extremely busy.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "piege", "texte": "One trap. Not every adverb ends in -ly. Hard and late are adjectives and adverbs: she works hard.", "dit": "One trap. Not every adverb ends in L Y. Hard, and late, are adjectives and adverbs: she works hard.", "vue": {"faibles": [2]}},
+    {"id": "p08", "ecran": "piege", "texte": "And some words in -ly are adjectives: a friendly team.", "dit": "And some words ending in L Y are adjectives: a friendly team.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "q", "texte": "Now, a TOEIC question. The new assistant is, blank, qualified for the position.", "vue": {"options": false}},
+    {"id": "p10", "ecran": "q", "texte": "A: high. B: highly. C: height. D: higher.", "dit": "Answer A. high. Answer B. highly. Answer C. height. Answer D. higher.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p11", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p12", "ecran": "q", "texte": "After the blank, you see qualified, an adjective. Only an adverb can describe an adjective.", "vue": {"juge": []}},
+    {"id": "p13", "ecran": "q", "texte": "High and higher are adjectives. Height is a noun.", "dit": "High, and higher, are adjectives. Height, is a noun.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p14", "ecran": "q", "texte": "B is correct: the new assistant is highly qualified for the position.", "pause_apres": 1.0},
+    {"id": "p15", "ecran": "recap", "texte": "Three steps. One: before a noun, or after be, choose an adjective.", "vue": {"jusqu": 1}},
+    {"id": "p16", "ecran": "recap", "texte": "Two: with a verb, or before an adjective, choose an adverb.", "vue": {"jusqu": 2}},
+    {"id": "p17", "ecran": "recap", "texte": "Three: hard and late are adverbs too. And friendly is an adjective.", "pause_apres": 0.9},
+    {"id": "p18", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "code": "m_elimination", "titre": "Eliminating wrong answers", "partie": "TOEIC · Method",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 5, 6 and 7 · Method", "titre": "Eliminating wrong answers", "sous": "Four answers. Remove three.",
+      "bulles": [{"qui": "A", "texte": "I am not sure of the answer."}, {"qui": "B", "texte": "Then **remove** the wrong ones.", "etat": "ok"}]},
+    "idee": {"type": "recap", "kicker": "The key idea", "titre": "You do not need to know. You need to remove.", "etapes": [
+      {"texte": "Each wrong answer you remove **raises your chances**"},
+      {"texte": "4 answers: 25%. 3 answers: 33%. **2 answers: 50%**"},
+      {"texte": "There is **no penalty** for a wrong answer: always answer"}]},
+    "ordre": {"type": "recap", "kicker": "The method", "titre": "Three filters, in this order", "etapes": [
+      {"texte": "**Form**: is it the right type of word for the blank?"},
+      {"texte": "**Grammar**: does it agree with the subject and the tense?"},
+      {"texte": "**Meaning**: does the sentence make sense?"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "The new policy will be ------- next month.", "options": [
+      {"lettre": "A", "texte": "implement", "etat": "ko", "raison": "Form: base verb after be"},
+      {"lettre": "B", "texte": "implementation", "etat": "ko", "raison": "Meaning: a policy is not an implementation"},
+      {"lettre": "C", "texte": "**implemented**", "etat": "ok", "raison": "will be + past participle"},
+      {"lettre": "D", "texte": "implementing", "etat": "ko", "raison": "Grammar: no object follows"}]},
+    "temps": {"type": "recap", "kicker": "Manage your time", "titre": "Do not get stuck", "etapes": [
+      {"texte": "Part 5: about **20 seconds** per question"},
+      {"texte": "Two answers left? **Choose one** and move on"},
+      {"texte": "Never leave a blank on your answer sheet"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Remove by **form**, then **grammar**, then **meaning**"},
+      {"texte": "Two answers left is already a **50% chance**"},
+      {"texte": "__Always answer__: a blank is always wrong"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Eliminating wrong answers.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "In the reading section, you do not always know the answer. But you can remove the wrong ones.", "vue": {"jusqu": 0}},
+    {"id": "p03", "ecran": "idee", "texte": "Each wrong answer you remove raises your chances. With two answers left, you have a fifty percent chance.", "vue": {"jusqu": 2}},
+    {"id": "p04", "ecran": "idee", "texte": "And there is no penalty for a wrong answer. So always answer.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "ordre", "texte": "Use three filters, in this order. First, the form: is it the right type of word for the blank?", "vue": {"jusqu": 1}},
+    {"id": "p06", "ecran": "ordre", "texte": "Second, the grammar: does it agree with the subject and the tense?", "vue": {"jusqu": 2}},
+    {"id": "p07", "ecran": "ordre", "texte": "Third, the meaning: does the sentence make sense?", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "q", "texte": "Let's try with a TOEIC question. The new policy will be, blank, next month.", "vue": {"options": false}},
+    {"id": "p09", "ecran": "q", "texte": "A: implement. B: implementation. C: implemented. D: implementing.", "dit": "Answer A. implement. Answer B. implementation. Answer C. implemented. Answer D. implementing.", "vue": {"juge": []}, "pause_apres": 1.5},
+    {"id": "p10", "ecran": "q", "texte": "Filter one, the form. After will be, a base verb is impossible. Remove A.", "dit": "Filter one, the form. After, will be, a base verb is impossible. Remove A.", "vue": {"juge": ["A"]}},
+    {"id": "p11", "ecran": "q", "texte": "Filter two, the grammar. Implementing needs an object after it. There is none. Remove D.", "vue": {"juge": ["A", "D"]}},
+    {"id": "p12", "ecran": "q", "texte": "Filter three, the meaning. A policy is not an implementation. Remove B.", "vue": {"juge": ["A", "B", "D"]}},
+    {"id": "p13", "ecran": "q", "texte": "Only C is left: the new policy will be implemented next month.", "pause_apres": 1.0},
+    {"id": "p14", "ecran": "temps", "texte": "Manage your time. In Part 5, spend about twenty seconds per question.", "dit": "Manage your time. In Part five, spend about twenty seconds per question.", "vue": {"jusqu": 1}},
+    {"id": "p15", "ecran": "temps", "texte": "If two answers are left, choose one and move on. Never leave a blank.", "pause_apres": 1.0},
+    {"id": "p16", "ecran": "recap", "texte": "Three steps. One: remove by form, then grammar, then meaning.", "vue": {"jusqu": 1}},
+    {"id": "p17", "ecran": "recap", "texte": "Two: two answers left is already a fifty percent chance.", "vue": {"jusqu": 2}},
+    {"id": "p18", "ecran": "recap", "texte": "Three: always answer. A blank is always wrong.", "pause_apres": 0.9},
+    {"id": "p19", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

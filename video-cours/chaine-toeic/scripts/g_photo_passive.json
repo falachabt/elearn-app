@@ -1,0 +1,54 @@
+{
+  "code": "g_photo_passive", "titre": "Photos: passive and states", "partie": "TOEIC · Part 1",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 1", "titre": "Photos with no people", "sous": "The passive: is set, are being cleaned",
+      "bulles": [{"qui": "A", "texte": "There is nobody in the photo."}, {"qui": "B", "texte": "Then describe the **objects**.", "etat": "ok"}]},
+    "idee": {"type": "photo", "kicker": "When nobody acts, objects are the subject", "image": "t5_p1-6.jpg", "options": [
+      {"lettre": "1", "texte": "The tables **are set**.", "etat": "ok"},
+      {"lettre": "2", "texte": "The umbrellas **are closed**.", "etat": "ok"},
+      {"lettre": "3", "texte": "Chairs **are arranged** around the tables.", "etat": "ok"}]},
+    "formes": {"type": "structure", "kicker": "Two passive forms", "titre": "A state, or an action in progress?", "lignes": [
+      {"debut": "is / are + participle", "suite": "a state", "exemple": "The tables **are set**."},
+      {"debut": "is / are being + participle", "suite": "action now", "exemple": "The tables **are being set**."}]},
+    "piege": {"type": "dialogue", "kicker": "The big trap", "ton": "jaune", "titre": "being = somebody is doing it now", "bulles": [
+      {"qui": "A", "texte": "The tables are __being__ set.", "etiquette": "YOU MUST SEE A PERSON DOING IT", "etat": "ko"},
+      {"qui": "A", "texte": "The tables **are set**.", "etiquette": "THE RESULT: NOBODY NEEDED", "etat": "ok"}]},
+    "q": {"type": "photo", "kicker": "TOEIC question", "image": "t5_p1-5.jpg", "options": [
+      {"lettre": "A", "texte": "Clothes are __being folded__.", "etat": "ko", "raison": "Nobody is folding"},
+      {"lettre": "B", "texte": "A customer is __trying on__ a jacket.", "etat": "ko", "raison": "No customer in the photo"},
+      {"lettre": "C", "texte": "Clothes **are hanging** on racks.", "etat": "ok", "raison": "A state you can see"},
+      {"lettre": "D", "texte": "The shop is __being cleaned__.", "etat": "ko", "raison": "Nobody is cleaning"}]},
+    "mots": {"type": "structure", "kicker": "Useful states for Part 1", "titre": "Learn these descriptions", "lignes": [
+      {"debut": "is parked", "suite": "vehicles", "exemple": "A car **is parked** outside."},
+      {"debut": "are stacked", "suite": "boxes", "exemple": "Boxes **are stacked** on shelves."},
+      {"debut": "is filled with", "suite": "containers", "exemple": "The shelf **is filled with** books."},
+      {"debut": "are displayed", "suite": "products", "exemple": "Items **are displayed** in a window."}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "No people? Describe the **objects** and their **position**"},
+      {"texte": "**is set**, **is parked**, **are stacked**: states you can see"},
+      {"texte": "__being__ needs a person doing the action in the photo"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Photos with no people: the passive.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "Some Part 1 photos show no people, or people who do nothing. Then the objects are the subject.", "dit": "Some Part one photos show no people, or people who do nothing. Then, the objects are the subject.", "vue": {"options": false}},
+    {"id": "p03", "ecran": "idee", "texte": "The tables are set. The umbrellas are closed.", "vue": {"juge": ["1", "2"]}},
+    {"id": "p04", "ecran": "idee", "texte": "Chairs are arranged around the tables.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "formes", "texte": "There are two passive forms. Is or are, plus the past participle, describes a state: the tables are set.", "dit": "There are two passive forms. Is, or are, plus the past participle, describes a state: the tables are set.", "vue": {"faibles": [1]}},
+    {"id": "p06", "ecran": "formes", "texte": "With being, it is an action in progress: the tables are being set. Somebody is doing it now.", "dit": "With being, it is an action in progress: the tables are being set. Somebody is doing it now.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "piege", "texte": "This is the big trap. If you hear being, you must see a person doing the action.", "dit": "This is the big trap. If you hear, being, you must see a person doing the action.", "vue": {"montre": 1}},
+    {"id": "p08", "ecran": "piege", "texte": "If nobody is there, choose the state: the tables are set.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "q", "texte": "Now, a TOEIC question. Look at the photo.", "vue": {"options": false}, "pause_apres": 1.5},
+    {"id": "p10", "ecran": "q", "texte": "A: Clothes are being folded. B: A customer is trying on a jacket.", "dit": "Statement A. Clothes are being folded. Statement B. A customer is trying on a jacket.", "vue": {"juge": []}, "pause_apres": 0.5},
+    {"id": "p11", "ecran": "q", "texte": "C: Clothes are hanging on racks. D: The shop is being cleaned.", "dit": "Statement C. Clothes are hanging on racks. Statement D. The shop is being cleaned.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p12", "ecran": "q", "texte": "Which statement is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p13", "ecran": "q", "texte": "A and D use being. But nobody is folding, and nobody is cleaning.", "dit": "A and D use, being. But nobody is folding, and nobody is cleaning.", "vue": {"juge": ["A", "D"]}},
+    {"id": "p14", "ecran": "q", "texte": "B talks about a customer. There is no customer in the photo.", "vue": {"juge": ["A", "B", "D"]}},
+    {"id": "p15", "ecran": "q", "texte": "C is correct: clothes are hanging on racks. It is a state you can see.", "pause_apres": 1.0},
+    {"id": "p16", "ecran": "mots", "texte": "Learn these useful states. A car is parked. Boxes are stacked.", "vue": {"faibles": [2, 3]}},
+    {"id": "p17", "ecran": "mots", "texte": "The shelf is filled with books. Items are displayed in a window.", "pause_apres": 1.0},
+    {"id": "p18", "ecran": "recap", "texte": "Three steps. One: no people? Describe the objects and their position.", "vue": {"jusqu": 1}},
+    {"id": "p19", "ecran": "recap", "texte": "Two: is set, is parked, are stacked are states you can see.", "dit": "Two: is set, is parked, are stacked, are states you can see.", "vue": {"jusqu": 2}},
+    {"id": "p20", "ecran": "recap", "texte": "Three: being needs a person doing the action in the photo.", "dit": "Three: being, needs a person doing the action in the photo.", "pause_apres": 0.9},
+    {"id": "p21", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

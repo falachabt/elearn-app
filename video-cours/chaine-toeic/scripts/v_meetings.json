@@ -1,0 +1,49 @@
+{
+  "code": "v_meetings", "titre": "Meetings and projects vocabulary", "partie": "TOEIC · Vocabulary",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Vocabulary", "titre": "Meetings and projects", "sous": "agenda, postpone, deadline, approve",
+      "bulles": [{"qui": "A", "texte": "Is the meeting still at ten?"}, {"qui": "B", "texte": "No, it has been **postponed**.", "etat": "ok"}]},
+    "reunion": {"type": "structure", "vocab": true, "kicker": "In a meeting", "titre": "Before, during, after", "lignes": [
+      {"debut": "an agenda", "suite": "the list of topics", "exemple": "the first item on the **agenda**"},
+      {"debut": "attend", "suite": "be present at", "exemple": "**attend** the meeting"},
+      {"debut": "the minutes", "suite": "the written record", "exemple": "take **the minutes**"},
+      {"debut": "a handout", "suite": "a paper for everyone", "exemple": "pass out the **handouts**"}]},
+    "changer": {"type": "structure", "vocab": true, "kicker": "Changing a meeting", "titre": "Three verbs you will hear", "lignes": [
+      {"debut": "postpone", "suite": "move to a later date", "exemple": "**postponed** until Monday"},
+      {"debut": "reschedule", "suite": "choose a new time", "exemple": "**reschedule** for 3 p.m."},
+      {"debut": "cancel", "suite": "it will not happen", "exemple": "The meeting is **cancelled**."}]},
+    "projet": {"type": "structure", "vocab": true, "kicker": "In a project", "titre": "From the idea to the result", "lignes": [
+      {"debut": "a proposal", "suite": "a plan to discuss", "exemple": "submit a **proposal**"},
+      {"debut": "approve", "suite": "say yes officially", "exemple": "The board **approved** it."},
+      {"debut": "a deadline", "suite": "the final date", "exemple": "meet the **deadline**"},
+      {"debut": "on schedule", "suite": "not late", "exemple": "The work is **on schedule**."}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 3", "entendu": "Let's **move** the meeting to **Thursday**.", "options": [
+      {"lettre": "A", "texte": "The meeting is __cancelled__.", "etat": "ko", "raison": "It will still happen"},
+      {"lettre": "B", "texte": "The meeting is **postponed**.", "etat": "ok", "raison": "Moved to a later day"},
+      {"lettre": "C", "texte": "The client __approved__ the plan.", "etat": "ko", "raison": "Not said"},
+      {"lettre": "D", "texte": "The agenda is __too long__.", "etat": "ko", "raison": "Not said"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "**postpone** = later. **cancel** = never"},
+      {"texte": "The answer often uses a **synonym**: move, postpone"},
+      {"texte": "Learn the pairs: __attend a meeting, meet a deadline__"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Meetings and projects vocabulary.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "reunion", "texte": "In a meeting, the agenda is the list of topics. To attend means to be present.", "vue": {"faibles": [2, 3]}},
+    {"id": "p03", "ecran": "reunion", "texte": "The minutes are the written record of the meeting. And a handout is a paper for everyone.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "changer", "texte": "Three verbs change a meeting. Postpone means move it to a later date. Reschedule means choose a new time.", "dit": "Three verbs change a meeting. Postpone, means move it to a later date. Reschedule, means choose a new time.", "vue": {"faibles": [2]}},
+    {"id": "p05", "ecran": "changer", "texte": "And cancel means it will not happen.", "dit": "And cancel, means it will not happen.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "projet", "texte": "In a project, a proposal is a plan to discuss. To approve means to say yes officially.", "vue": {"faibles": [2, 3]}},
+    {"id": "p07", "ecran": "projet", "texte": "A deadline is the final date. And on schedule means not late.", "dit": "A deadline is the final date. And, on schedule, means not late.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "q", "texte": "Now, a TOEIC question from Part 3. A man says: The client cannot come today. Let's move the meeting to Thursday.", "dit": "Now, a TOEIC question from Part three. A man says: The client cannot come today. Let's move the meeting to Thursday.", "vue": {"options": false}},
+    {"id": "p09", "ecran": "q", "texte": "What will happen to the meeting? A: It is cancelled. B: It is postponed.", "dit": "What will happen to the meeting? Answer A. It is cancelled. Answer B. It is postponed.", "vue": {"juge": []}, "pause_apres": 0.5},
+    {"id": "p10", "ecran": "q", "texte": "C: The client approved the plan. D: The agenda is too long.", "dit": "Answer C. The client approved the plan. Answer D. The agenda is too long.", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p11", "ecran": "q", "texte": "The man says move the meeting to Thursday. The meeting will still happen. So it is not cancelled.", "dit": "The man says: move the meeting to Thursday. The meeting will still happen. So it is not cancelled.", "vue": {"juge": ["A"]}},
+    {"id": "p12", "ecran": "q", "texte": "C and D are not in the conversation.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p13", "ecran": "q", "texte": "B is correct. Move to a later day means postpone. The answer uses a synonym.", "dit": "B is correct. Move to a later day, means postpone. The answer uses a synonym.", "pause_apres": 1.0},
+    {"id": "p14", "ecran": "recap", "texte": "Remember. One: postpone means later. Cancel means never.", "dit": "Remember. One: postpone, means later. Cancel, means never.", "vue": {"jusqu": 1}},
+    {"id": "p15", "ecran": "recap", "texte": "Two: the answer often uses a synonym.", "vue": {"jusqu": 2}},
+    {"id": "p16", "ecran": "recap", "texte": "Three: learn the pairs: attend a meeting, meet a deadline.", "pause_apres": 0.9},
+    {"id": "p17", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

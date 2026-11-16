@@ -1,0 +1,55 @@
+{
+  "code": "v_office", "titre": "Office and email vocabulary", "partie": "TOEIC · Vocabulary",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Vocabulary", "titre": "Office and email words", "sous": "attach, forward, deadline, schedule",
+      "bulles": [{"qui": "A", "texte": "Could you **forward** me the **memo**?"}, {"qui": "B", "texte": "Sure, I'll **attach** it now.", "etat": "ok"}]},
+    "email": {"type": "structure", "kicker": "Email verbs", "titre": "What you do with an email", "lignes": [
+      {"debut": "attach", "suite": "add a file", "exemple": "Please **attach** the invoice."},
+      {"debut": "forward", "suite": "send it on", "exemple": "I will **forward** it to Ms. Lee."},
+      {"debut": "reply", "suite": "answer", "exemple": "Please **reply** by Friday."},
+      {"debut": "submit", "suite": "hand in", "exemple": "**Submit** the form online."}]},
+    "noms": {"type": "structure", "kicker": "Office nouns", "titre": "Things you find in every office", "lignes": [
+      {"debut": "a memo", "suite": "short note", "exemple": "a **memo** to all staff"},
+      {"debut": "a deadline", "suite": "final date", "exemple": "The **deadline** is Monday."},
+      {"debut": "a schedule", "suite": "plan of times", "exemple": "the meeting **schedule**"},
+      {"debut": "supplies", "suite": "paper, pens...", "exemple": "order office **supplies**"}]},
+    "paires": {"type": "structure", "kicker": "Words that go together", "titre": "Learn them as pairs", "lignes": [
+      {"debut": "meet", "suite": "a deadline", "exemple": "We **met the deadline**."},
+      {"debut": "attend", "suite": "a meeting", "exemple": "She will **attend the meeting**."},
+      {"debut": "place", "suite": "an order", "exemple": "He **placed an order**."}]},
+    "piege": {"type": "dialogue", "kicker": "The trap", "ton": "jaune", "titre": "Same sound, different word", "bulles": [
+      {"qui": "A", "texte": "We ordered new **stationery**.", "etiquette": "PAPER, PENS, ENVELOPES", "etat": "ok"},
+      {"qui": "B", "texte": "The car is **stationary**.", "etiquette": "NOT MOVING", "etat": "ko"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "Please ------- the signed contract to your email.", "options": [
+      {"lettre": "A", "texte": "attend", "etat": "ko", "raison": "attend a meeting"},
+      {"lettre": "B", "texte": "**attach**", "etat": "ok", "raison": "attach a file to an email"},
+      {"lettre": "C", "texte": "attract", "etat": "ko", "raison": "attract customers"},
+      {"lettre": "D", "texte": "attempt", "etat": "ko", "raison": "attempt = try"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Learn each word with its **partner**: meet a deadline"},
+      {"texte": "Read the words **around the blank**: contract, email"},
+      {"texte": "Be careful with words that __look alike__: attach, attend, attract"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Office and email vocabulary.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "email", "texte": "First, four email verbs. Attach means add a file: please attach the invoice.", "dit": "First, four email verbs. Attach, means add a file: please attach the invoice.", "vue": {"faibles": [1, 2, 3]}},
+    {"id": "p03", "ecran": "email", "texte": "Forward means send a message on to another person: I will forward it to Ms. Lee.", "dit": "Forward, means send a message on to another person: I will forward it to Miz Lee.", "vue": {"faibles": [2, 3]}},
+    {"id": "p04", "ecran": "email", "texte": "Reply means answer. And submit means hand in: submit the form online.", "dit": "Reply, means answer. And submit, means hand in: submit the form online.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "noms", "texte": "Now, four nouns. A memo is a short note to the staff. A deadline is the final date.", "vue": {"faibles": [2, 3]}},
+    {"id": "p06", "ecran": "noms", "texte": "A schedule is a plan of times. And supplies are paper, pens and other small things.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "paires", "texte": "In the TOEIC, words go together. Learn them as pairs: meet a deadline.", "vue": {"faibles": [1, 2]}},
+    {"id": "p08", "ecran": "paires", "texte": "Attend a meeting. Place an order.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "piege", "texte": "One trap: two words with the same sound. Stationery, with an E, means paper, pens and envelopes.", "dit": "One trap: two words with the same sound. Stationery, with an E, means paper, pens and envelopes.", "vue": {"montre": 1}},
+    {"id": "p10", "ecran": "piege", "texte": "Stationary, with an A, means not moving.", "dit": "Stationary, with an A, means not moving.", "pause_apres": 1.0},
+    {"id": "p11", "ecran": "q", "texte": "Now, a TOEIC question. Please, blank, the signed contract to your email.", "vue": {"options": false}},
+    {"id": "p12", "ecran": "q", "texte": "A: attend. B: attach. C: attract. D: attempt.", "dit": "Answer A. attend. Answer B. attach. Answer C. attract. Answer D. attempt.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p13", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p14", "ecran": "q", "texte": "The four words look alike. So read the words around the blank: contract, and email.", "vue": {"juge": []}},
+    {"id": "p15", "ecran": "q", "texte": "We attend a meeting, we attract customers, and attempt means try. They do not fit.", "dit": "We attend a meeting, we attract customers, and attempt, means try. They do not fit.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p16", "ecran": "q", "texte": "B is correct: please attach the signed contract to your email.", "pause_apres": 1.0},
+    {"id": "p17", "ecran": "recap", "texte": "Three steps. One: learn each word with its partner.", "vue": {"jusqu": 1}},
+    {"id": "p18", "ecran": "recap", "texte": "Two: read the words around the blank.", "vue": {"jusqu": 2}},
+    {"id": "p19", "ecran": "recap", "texte": "Three: be careful with words that look alike.", "pause_apres": 0.9},
+    {"id": "p20", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

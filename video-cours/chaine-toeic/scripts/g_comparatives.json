@@ -1,0 +1,46 @@
+{
+  "code": "g_comparatives", "titre": "Comparatives and superlatives", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 5", "titre": "Comparatives and superlatives", "sous": "cheaper than, the most expensive",
+      "bulles": [{"qui": "A", "texte": "Which printer should we buy?"}, {"qui": "B", "texte": "This one is **cheaper than** the others.", "etat": "ok"}]},
+    "comp": {"type": "structure", "kicker": "Comparative: two things", "titre": "-er than, or more ... than", "lignes": [
+      {"debut": "short adjective", "suite": "+ er than", "exemple": "cheap**er than**, fast**er than**"},
+      {"debut": "long adjective", "suite": "more ... than", "exemple": "**more** expensive **than**"},
+      {"debut": "irregular", "suite": "learn them", "exemple": "good, **better** / bad, **worse**"}]},
+    "sup": {"type": "structure", "kicker": "Superlative: one in a group", "titre": "the -est, or the most", "lignes": [
+      {"debut": "short adjective", "suite": "the + est", "exemple": "**the** cheap**est** option"},
+      {"debut": "long adjective", "suite": "the most", "exemple": "**the most** expensive model"},
+      {"debut": "irregular", "suite": "learn them", "exemple": "**the best**, **the worst**"}]},
+    "indices": {"type": "dialogue", "kicker": "The clues", "ton": "jaune", "titre": "One small word gives the answer", "bulles": [
+      {"qui": "A", "texte": "faster **than** the old model", "etiquette": "THAN = COMPARATIVE", "etat": "ok"},
+      {"qui": "B", "texte": "**the** fastest **in** the company", "etiquette": "THE ... IN / OF = SUPERLATIVE", "etat": "ok"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "The new software is ------- **than** the previous version.", "options": [
+      {"lettre": "A", "texte": "efficient", "etat": "ko", "raison": "No comparison"},
+      {"lettre": "B", "texte": "**more efficient**", "etat": "ok", "raison": "than = comparative"},
+      {"lettre": "C", "texte": "most efficient", "etat": "ko", "raison": "Superlative: no than"},
+      {"lettre": "D", "texte": "efficiently", "etat": "ko", "raison": "Adverb after is"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "See **than**: choose the comparative"},
+      {"texte": "See **the** before and **in / of** after: choose the superlative"},
+      {"texte": "Never __more__ with -er: not more cheaper"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Comparatives and superlatives.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "comp", "texte": "The comparative compares two things. For a short adjective, add -er and than: cheaper than.", "dit": "The comparative compares two things. For a short adjective, add E R, and than: cheaper than.", "vue": {"faibles": [1, 2]}},
+    {"id": "p03", "ecran": "comp", "texte": "For a long adjective, use more: more expensive than. And learn the irregular forms: better, worse.", "dit": "For a long adjective, use more: more expensive than. And learn the irregular forms: better, worse.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "sup", "texte": "The superlative shows one thing in a group. For a short adjective: the cheapest option.", "vue": {"faibles": [1, 2]}},
+    {"id": "p05", "ecran": "sup", "texte": "For a long adjective: the most expensive model. And the irregular forms: the best, the worst.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "indices", "texte": "In the TOEIC, one small word gives the answer. Than means comparative.", "dit": "In the TOEIC, one small word gives the answer. Than, means comparative.", "vue": {"montre": 1}},
+    {"id": "p07", "ecran": "indices", "texte": "The, before the blank, and in or of after it, mean superlative: the fastest in the company.", "dit": "The, before the blank, and in, or of, after it, mean superlative: the fastest in the company.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "q", "texte": "Now, a TOEIC question. The new software is, blank, than the previous version.", "vue": {"options": false}},
+    {"id": "p09", "ecran": "q", "texte": "A: efficient. B: more efficient. C: most efficient. D: efficiently.", "dit": "Answer A. efficient. Answer B. more efficient. Answer C. most efficient. Answer D. efficiently.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p10", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p11", "ecran": "q", "texte": "Look after the blank: than. It is a comparison between two versions.", "dit": "Look after the blank: than. It is a comparison between two versions.", "vue": {"juge": []}},
+    {"id": "p12", "ecran": "q", "texte": "So A, C and D are wrong.", "dit": "So A, C, and D are wrong.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p13", "ecran": "q", "texte": "B is correct: the new software is more efficient than the previous version.", "pause_apres": 1.0},
+    {"id": "p14", "ecran": "recap", "texte": "Three steps. One: if you see than, choose the comparative.", "vue": {"jusqu": 1}},
+    {"id": "p15", "ecran": "recap", "texte": "Two: if you see the before, and in or of after, choose the superlative.", "vue": {"jusqu": 2}},
+    {"id": "p16", "ecran": "recap", "texte": "Three: never more with -er. We do not say more cheaper.", "dit": "Three: never more with E R. We do not say, more cheaper.", "pause_apres": 0.9},
+    {"id": "p17", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

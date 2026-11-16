@@ -1,0 +1,45 @@
+{
+  "code": "g_subjunctive_like", "titre": "recommend, suggest, insist + base verb", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 5", "titre": "recommend, suggest, insist", "sous": "... that he be, that she attend",
+      "bulles": [{"qui": "A", "texte": "What did the manager say?"}, {"qui": "B", "texte": "She **recommended that** he **attend**.", "etat": "ok"}]},
+    "idee": {"type": "dialogue", "kicker": "A special structure", "bulles": [
+      {"qui": "A", "texte": "The manager **recommended that** he __attends__ the course.", "etiquette": "LOOKS RIGHT, BUT WRONG", "etat": "ko"},
+      {"qui": "A", "texte": "The manager **recommended that** he **attend** the course.", "etiquette": "CORRECT: BASE VERB, NO S", "etat": "ok"}]},
+    "verbes": {"type": "structure", "kicker": "The verbs", "titre": "Verbs of advice, request and order", "lignes": [
+      {"debut": "recommend, suggest", "suite": "that + base verb", "exemple": "suggest that she **call**"},
+      {"debut": "insist, demand", "suite": "that + base verb", "exemple": "insist that he **be** on time"},
+      {"debut": "request, require", "suite": "that + base verb", "exemple": "require that it **be** signed"}]},
+    "adjs": {"type": "structure", "kicker": "Also after some adjectives", "titre": "It is ... that + base verb", "lignes": [
+      {"debut": "It is important", "suite": "that + base verb", "exemple": "that everyone **arrive** early"},
+      {"debut": "It is essential", "suite": "that + base verb", "exemple": "that the form **be** complete"},
+      {"debut": "It is necessary", "suite": "that + base verb", "exemple": "that she **sign** today"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "The director **insisted that** the report ------- by Friday.", "options": [
+      {"lettre": "A", "texte": "is finished", "etat": "ko", "raison": "Present: not after insist that"},
+      {"lettre": "B", "texte": "**be finished**", "etat": "ok", "raison": "Base verb: be"},
+      {"lettre": "C", "texte": "was finished", "etat": "ko", "raison": "Past: not after insist that"},
+      {"lettre": "D", "texte": "finishing", "etat": "ko", "raison": "Not a full verb"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "See **recommend, suggest, insist, request, require + that**"},
+      {"texte": "The next verb is the **base form**: no s, no past"},
+      {"texte": "With be: __that it be done__, never is or was"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Recommend, suggest and insist, followed by a base verb.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "This is a special structure. The manager recommended that he attends the course. It looks right, but it is wrong.", "vue": {"montre": 1}},
+    {"id": "p03", "ecran": "idee", "texte": "After recommended that, we use the base verb, with no S: that he attend the course.", "dit": "After, recommended that, we use the base verb, with no S: that he attend the course.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "verbes", "texte": "It happens after verbs of advice, request and order: recommend and suggest.", "dit": "It happens after verbs of advice, request, and order: recommend, and suggest.", "vue": {"faibles": [1, 2]}},
+    {"id": "p05", "ecran": "verbes", "texte": "Insist and demand. Request and require. For example: insist that he be on time.", "dit": "Insist, and demand. Request, and require. For example: insist that he be on time.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "adjs", "texte": "It also happens after some adjectives. It is important that everyone arrive early. It is essential that the form be complete.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "q", "texte": "Now, a TOEIC question. The director insisted that the report, blank, by Friday.", "vue": {"options": false}},
+    {"id": "p08", "ecran": "q", "texte": "A: is finished. B: be finished. C: was finished. D: finishing.", "dit": "Answer A. is finished. Answer B. be finished. Answer C. was finished. Answer D. finishing.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p09", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p10", "ecran": "q", "texte": "You see insisted that. So the next verb must be a base form.", "dit": "You see, insisted that. So the next verb must be a base form.", "vue": {"juge": []}},
+    {"id": "p11", "ecran": "q", "texte": "Is and was are not base forms. And finishing is not a full verb.", "dit": "Is, and was, are not base forms. And finishing, is not a full verb.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p12", "ecran": "q", "texte": "B is correct: the director insisted that the report be finished by Friday.", "pause_apres": 1.0},
+    {"id": "p13", "ecran": "recap", "texte": "Three steps. One: look for recommend, suggest, insist, request or require, followed by that.", "vue": {"jusqu": 1}},
+    {"id": "p14", "ecran": "recap", "texte": "Two: the next verb is the base form. No S, no past.", "vue": {"jusqu": 2}},
+    {"id": "p15", "ecran": "recap", "texte": "Three: with the verb be, we say: that it be done.", "pause_apres": 0.9},
+    {"id": "p16", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

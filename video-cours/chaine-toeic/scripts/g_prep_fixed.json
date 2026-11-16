@@ -1,0 +1,49 @@
+{
+  "code": "g_prep_fixed", "titre": "Fixed prepositions", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 5", "titre": "Fixed prepositions", "sous": "depend on, interested in, responsible for",
+      "bulles": [{"qui": "A", "texte": "Who is **responsible for** the budget?"}, {"qui": "B", "texte": "It **depends on** the project.", "etat": "ok"}]},
+    "idee": {"type": "recap", "kicker": "The key idea", "titre": "No logic: learn them as one block", "etapes": [
+      {"texte": "Some verbs and adjectives **always take the same preposition**"},
+      {"texte": "You cannot guess it from your own language"},
+      {"texte": "Learn the pair, not the single word"}]},
+    "verbes": {"type": "structure", "kicker": "Verb + preposition", "titre": "The TOEIC favourites", "lignes": [
+      {"debut": "depend", "suite": "on", "exemple": "It **depends on** the price."},
+      {"debut": "apply", "suite": "for", "exemple": "She **applied for** the job."},
+      {"debut": "comply", "suite": "with", "exemple": "We **comply with** the rules."},
+      {"debut": "participate", "suite": "in", "exemple": "They **participated in** the survey."}]},
+    "adjs": {"type": "structure", "kicker": "Adjective + preposition", "titre": "The TOEIC favourites", "lignes": [
+      {"debut": "responsible", "suite": "for", "exemple": "**responsible for** sales"},
+      {"debut": "interested", "suite": "in", "exemple": "**interested in** the offer"},
+      {"debut": "familiar", "suite": "with", "exemple": "**familiar with** the software"},
+      {"debut": "eligible", "suite": "for", "exemple": "**eligible for** a refund"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "Ms. Park is **responsible** ------- training new staff.", "options": [
+      {"lettre": "A", "texte": "of", "etat": "ko", "raison": "Not with responsible"},
+      {"lettre": "B", "texte": "**for**", "etat": "ok", "raison": "responsible for"},
+      {"lettre": "C", "texte": "to", "etat": "ko", "raison": "Not before an activity"},
+      {"lettre": "D", "texte": "with", "etat": "ko", "raison": "Not with responsible"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Look at the word **just before** the blank"},
+      {"texte": "Ask: which preposition **always** follows this word?"},
+      {"texte": "After the preposition, the verb takes __-ing__"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Fixed prepositions.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "Some verbs and adjectives always take the same preposition.", "vue": {"jusqu": 1}},
+    {"id": "p03", "ecran": "idee", "texte": "There is no logic, and you cannot guess it from your own language. So learn the pair, not the single word.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "verbes", "texte": "Here are the favourite verbs of the TOEIC. Depend on. Apply for.", "vue": {"faibles": [2, 3]}},
+    {"id": "p05", "ecran": "verbes", "texte": "Comply with. Participate in.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "adjs", "texte": "And the favourite adjectives. Responsible for. Interested in.", "vue": {"faibles": [2, 3]}},
+    {"id": "p07", "ecran": "adjs", "texte": "Familiar with. Eligible for.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "q", "texte": "Now, a TOEIC question. Ms. Park is responsible, blank, training new staff.", "dit": "Now, a TOEIC question. Miz Park is responsible, blank, training new staff.", "vue": {"options": false}},
+    {"id": "p09", "ecran": "q", "texte": "A: of. B: for. C: to. D: with.", "dit": "Answer A. of. Answer B. for. Answer C. to. Answer D. with.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p10", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p11", "ecran": "q", "texte": "Look at the word just before the blank: responsible. It always takes for.", "dit": "Look at the word just before the blank: responsible. It always takes, for.", "vue": {"juge": []}},
+    {"id": "p12", "ecran": "q", "texte": "So A, C and D are wrong.", "dit": "So A, C, and D are wrong.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p13", "ecran": "q", "texte": "B is correct: Ms. Park is responsible for training new staff. And notice training: after a preposition, the verb takes -ing.", "dit": "B is correct: Miz Park is responsible for training new staff. And notice, training: after a preposition, the verb takes ing.", "pause_apres": 1.0},
+    {"id": "p14", "ecran": "recap", "texte": "Three steps. One: look at the word just before the blank.", "vue": {"jusqu": 1}},
+    {"id": "p15", "ecran": "recap", "texte": "Two: ask which preposition always follows this word.", "vue": {"jusqu": 2}},
+    {"id": "p16", "ecran": "recap", "texte": "Three: after the preposition, the verb takes -ing.", "dit": "Three: after the preposition, the verb takes ing.", "pause_apres": 0.9},
+    {"id": "p17", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

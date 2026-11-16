@@ -1,0 +1,46 @@
+{
+  "code": "g_future_tenses", "titre": "Future tenses", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 5", "titre": "Future tenses", "sous": "will, will be doing, will have done",
+      "bulles": [{"qui": "A", "texte": "Can I call you at three?"}, {"qui": "B", "texte": "No, I **will be flying** to Lagos.", "etat": "ok"}]},
+    "quatre": {"type": "structure", "kicker": "Four forms", "titre": "Each one has a job", "lignes": [
+      {"debut": "will + verb", "suite": "prediction", "exemple": "Sales **will rise** next year."},
+      {"debut": "be going to", "suite": "a plan", "exemple": "We **are going to hire** two people."},
+      {"debut": "will be + -ing", "suite": "in progress", "exemple": "At three, I **will be flying**."},
+      {"debut": "will have + done", "suite": "done by then", "exemple": "By June, we **will have finished**."}]},
+    "by": {"type": "dialogue", "kicker": "The clue", "ton": "jaune", "titre": "by + a future time = will have done", "bulles": [
+      {"qui": "A", "texte": "**By** next Friday, she **will have sent** all the invoices.", "etiquette": "FINISHED BEFORE A FUTURE MOMENT", "etat": "ok"}]},
+    "piege": {"type": "dialogue", "kicker": "The trap", "ton": "jaune", "titre": "No will after when, as soon as, before", "bulles": [
+      {"qui": "A", "texte": "I will call you when I __will arrive__.", "etiquette": "WRONG", "etat": "ko"},
+      {"qui": "A", "texte": "I will call you when I **arrive**.", "etiquette": "CORRECT: PRESENT AFTER WHEN", "etat": "ok"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "**By** the end of the year, the firm ------- three stores.", "options": [
+      {"lettre": "A", "texte": "opens", "etat": "ko", "raison": "Present"},
+      {"lettre": "B", "texte": "opened", "etat": "ko", "raison": "Past"},
+      {"lettre": "C", "texte": "is opening", "etat": "ko", "raison": "In progress, not finished"},
+      {"lettre": "D", "texte": "**will have opened**", "etat": "ok", "raison": "By + future time"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Find the **time expression** first"},
+      {"texte": "**by** + a future time: will have + participle"},
+      {"texte": "After __when, as soon as, before, until__: present, never will"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Future tenses.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "quatre", "texte": "Will, plus the verb, is for a prediction or a decision: sales will rise next year.", "dit": "Will, plus the verb, is for a prediction, or a decision: sales will rise next year.", "vue": {"faibles": [1, 2, 3]}},
+    {"id": "p03", "ecran": "quatre", "texte": "Be going to is for a plan: we are going to hire two people.", "dit": "Be going to, is for a plan: we are going to hire two people.", "vue": {"faibles": [2, 3]}},
+    {"id": "p04", "ecran": "quatre", "texte": "Will be, plus -ing, is for an action in progress at a future moment: at three, I will be flying.", "dit": "Will be, plus ing, is for an action in progress at a future moment: at three, I will be flying.", "vue": {"faibles": [3]}},
+    {"id": "p05", "ecran": "quatre", "texte": "Will have, plus the past participle, is for an action finished before a future moment: by June, we will have finished.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "by", "texte": "The clue is the word by, with a future time. By next Friday, she will have sent all the invoices.", "dit": "The clue is the word by, with a future time. By next Friday, she will have sent all the invoices.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "piege", "texte": "One trap. After when, as soon as and before, we do not use will.", "dit": "One trap. After when, as soon as, and before, we do not use will.", "vue": {"montre": 1}},
+    {"id": "p08", "ecran": "piege", "texte": "We use the present: I will call you when I arrive.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "q", "texte": "Now, a TOEIC question. By the end of the year, the firm, blank, three stores.", "vue": {"options": false}},
+    {"id": "p10", "ecran": "q", "texte": "A: opens. B: opened. C: is opening. D: will have opened.", "dit": "Answer A. opens. Answer B. opened. Answer C. is opening. Answer D. will have opened.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p11", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p12", "ecran": "q", "texte": "The time expression is: by the end of the year. It is a future moment, and the action is finished before it.", "vue": {"juge": []}},
+    {"id": "p13", "ecran": "q", "texte": "So the present, the past and the continuous are wrong.", "vue": {"juge": ["A", "B", "C"]}},
+    {"id": "p14", "ecran": "q", "texte": "D is correct: by the end of the year, the firm will have opened three stores.", "pause_apres": 1.0},
+    {"id": "p15", "ecran": "recap", "texte": "Three steps. One: find the time expression first.", "vue": {"jusqu": 1}},
+    {"id": "p16", "ecran": "recap", "texte": "Two: by, plus a future time, goes with will have and the past participle.", "vue": {"jusqu": 2}},
+    {"id": "p17", "ecran": "recap", "texte": "Three: after when, as soon as, before and until, use the present, never will.", "pause_apres": 0.9},
+    {"id": "p18", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "code": "v_finance", "titre": "Finance and payment vocabulary", "partie": "TOEIC · Vocabulary",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Vocabulary", "titre": "Finance and payment words", "sous": "invoice, refund, budget, due",
+      "bulles": [{"qui": "A", "texte": "Has the **invoice** been paid?"}, {"qui": "B", "texte": "Not yet. It is **due** on Friday.", "etat": "ok"}]},
+    "docs": {"type": "structure", "vocab": true, "kicker": "Documents", "titre": "Who pays whom?", "lignes": [
+      {"debut": "an invoice", "suite": "a request to pay", "exemple": "Please pay this **invoice**."},
+      {"debut": "a receipt", "suite": "proof of payment", "exemple": "Keep your **receipt**."},
+      {"debut": "a refund", "suite": "money back", "exemple": "I would like a **refund**."},
+      {"debut": "an estimate", "suite": "expected price", "exemple": "Send me an **estimate**."}]},
+    "argent": {"type": "structure", "vocab": true, "kicker": "Money in a company", "titre": "In and out", "lignes": [
+      {"debut": "revenue", "suite": "money coming in", "exemple": "**Revenue** rose by 10%."},
+      {"debut": "expenses", "suite": "money going out", "exemple": "travel **expenses**"},
+      {"debut": "profit", "suite": "what is left", "exemple": "a small **profit**"},
+      {"debut": "a budget", "suite": "a spending plan", "exemple": "over **budget**"}]},
+    "verbes": {"type": "structure", "vocab": true, "kicker": "Verbs and pairs", "titre": "Learn them together", "lignes": [
+      {"debut": "be due", "suite": "must be paid", "exemple": "The rent **is due** on the 1st."},
+      {"debut": "reimburse", "suite": "pay back", "exemple": "We will **reimburse** your costs."},
+      {"debut": "charge", "suite": "ask a price", "exemple": "They **charge** a fee."},
+      {"debut": "afford", "suite": "have enough", "exemple": "We cannot **afford** it."}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "Employees will be ------- for all travel expenses.", "options": [
+      {"lettre": "A", "texte": "charged", "etat": "ko", "raison": "Opposite: asked to pay"},
+      {"lettre": "B", "texte": "**reimbursed**", "etat": "ok", "raison": "Paid back for expenses"},
+      {"lettre": "C", "texte": "invoiced", "etat": "ko", "raison": "Sent a bill"},
+      {"lettre": "D", "texte": "afforded", "etat": "ko", "raison": "Wrong meaning"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "**invoice** before you pay, **receipt** after you pay"},
+      {"texte": "**revenue** comes in, **expenses** go out, **profit** is left"},
+      {"texte": "__reimburse__ = pay back. __charge__ = ask for money"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Finance and payment vocabulary.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "docs", "texte": "First, the documents. An invoice is a request to pay. A receipt is the proof that you paid.", "vue": {"faibles": [2, 3]}},
+    {"id": "p03", "ecran": "docs", "texte": "A refund is money that comes back to you. An estimate is the expected price.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "argent", "texte": "In a company, revenue is the money coming in. Expenses are the money going out.", "vue": {"faibles": [2, 3]}},
+    {"id": "p05", "ecran": "argent", "texte": "Profit is what is left. And a budget is a spending plan.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "verbes", "texte": "Now, four verbs. Be due means it must be paid: the rent is due on the first. Reimburse means pay back.", "dit": "Now, four verbs. Be due, means it must be paid: the rent is due on the first. Reimburse, means pay back.", "vue": {"faibles": [2, 3]}},
+    {"id": "p07", "ecran": "verbes", "texte": "Charge means ask a price. And afford means have enough money: we cannot afford it.", "dit": "Charge, means ask a price. And afford, means have enough money: we cannot afford it.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "q", "texte": "Now, a TOEIC question. Employees will be, blank, for all travel expenses.", "vue": {"options": false}},
+    {"id": "p09", "ecran": "q", "texte": "A: charged. B: reimbursed. C: invoiced. D: afforded.", "dit": "Answer A. charged. Answer B. reimbursed. Answer C. invoiced. Answer D. afforded.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p10", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p11", "ecran": "q", "texte": "Travel expenses are money the employees spent for the company. The company gives it back.", "vue": {"juge": []}},
+    {"id": "p12", "ecran": "q", "texte": "Charged and invoiced mean the employees must pay. That is the opposite.", "dit": "Charged, and invoiced, mean the employees must pay. That is the opposite.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p13", "ecran": "q", "texte": "B is correct: employees will be reimbursed for all travel expenses.", "pause_apres": 1.0},
+    {"id": "p14", "ecran": "recap", "texte": "Remember. One: an invoice before you pay, a receipt after you pay.", "vue": {"jusqu": 1}},
+    {"id": "p15", "ecran": "recap", "texte": "Two: revenue comes in, expenses go out, profit is left.", "vue": {"jusqu": 2}},
+    {"id": "p16", "ecran": "recap", "texte": "Three: reimburse means pay back. Charge means ask for money.", "dit": "Three: reimburse, means pay back. Charge, means ask for money.", "pause_apres": 0.9},
+    {"id": "p17", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "code": "g_gerund_infinitive", "titre": "Gerund or infinitive?", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 5", "titre": "Gerund or infinitive?", "sous": "enjoy working, decide to work",
+      "bulles": [{"qui": "A", "texte": "We **decided to hire** her."}, {"qui": "B", "texte": "Good. I **enjoy working** with her.", "etat": "ok"}]},
+    "idee": {"type": "recap", "kicker": "The key idea", "titre": "The first verb decides", "etapes": [
+      {"texte": "Some verbs are followed by **to + verb**"},
+      {"texte": "Some verbs are followed by **verb-ing**"}]},
+    "inf": {"type": "structure", "kicker": "Verb + to + verb", "titre": "Plans and decisions", "lignes": [
+      {"debut": "decide, plan, hope", "suite": "+ to + verb", "exemple": "We decided **to hire** her."},
+      {"debut": "agree, offer, refuse", "suite": "+ to + verb", "exemple": "He agreed **to sign**."},
+      {"debut": "want, need, expect", "suite": "+ to + verb", "exemple": "They expect **to finish** soon."}]},
+    "ger": {"type": "structure", "kicker": "Verb + verb-ing", "titre": "Activities and experiences", "lignes": [
+      {"debut": "enjoy, finish, avoid", "suite": "+ verb-ing", "exemple": "I enjoy **working** here."},
+      {"debut": "consider, suggest", "suite": "+ verb-ing", "exemple": "She suggested **waiting**."},
+      {"debut": "postpone, keep, mind", "suite": "+ verb-ing", "exemple": "They postponed **signing**."}]},
+    "prep": {"type": "dialogue", "kicker": "The trap", "ton": "jaune", "titre": "After a preposition: always verb-ing", "bulles": [
+      {"qui": "A", "texte": "I look forward to __meet__ you.", "etiquette": "WRONG", "etat": "ko"},
+      {"qui": "A", "texte": "I look forward to **meeting** you.", "etiquette": "CORRECT: HERE, TO IS A PREPOSITION", "etat": "ok"}],
+      "aparte": {"texte": "interested **in** working, before **leaving**, without **asking**"}},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "The manager **suggested** ------- the meeting until Monday.", "options": [
+      {"lettre": "A", "texte": "postpone", "etat": "ko", "raison": "Base form"},
+      {"lettre": "B", "texte": "to postpone", "etat": "ko", "raison": "Not after suggest"},
+      {"lettre": "C", "texte": "**postponing**", "etat": "ok", "raison": "suggest + verb-ing"},
+      {"lettre": "D", "texte": "postponed", "etat": "ko", "raison": "Past form"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Look at the verb **just before** the blank"},
+      {"texte": "decide, plan, agree, want: **to + verb**. enjoy, suggest, avoid, consider: **verb-ing**"},
+      {"texte": "After a __preposition__: always verb-ing"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Gerund or infinitive?", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "When two verbs follow each other, the first verb decides the form of the second.", "vue": {"jusqu": 0}},
+    {"id": "p03", "ecran": "idee", "texte": "Some verbs are followed by to plus the verb. Others are followed by the verb ending in -ing.", "dit": "Some verbs are followed by to, plus the verb. Others are followed by the verb ending in ing.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "inf", "texte": "Verbs about plans and decisions take to: decide, plan, hope. We decided to hire her.", "vue": {"faibles": [1, 2]}},
+    {"id": "p05", "ecran": "inf", "texte": "It is the same for agree, offer, refuse, want, need and expect. He agreed to sign.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "ger", "texte": "Other verbs take the -ing form: enjoy, finish, avoid. I enjoy working here.", "dit": "Other verbs take the ing form: enjoy, finish, avoid. I enjoy working here.", "vue": {"faibles": [1, 2]}},
+    {"id": "p07", "ecran": "ger", "texte": "Also consider, suggest, postpone, keep and mind. She suggested waiting.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "prep", "texte": "Now, the trap. After a preposition, the verb always takes -ing.", "dit": "Now, the trap. After a preposition, the verb always takes ing.", "vue": {"montre": 0, "aparte": false}},
+    {"id": "p09", "ecran": "prep", "texte": "In look forward to, the word to is a preposition. So we say: I look forward to meeting you.", "dit": "In, look forward to, the word to is a preposition. So we say: I look forward to meeting you.", "vue": {"aparte": false}},
+    {"id": "p10", "ecran": "prep", "texte": "It is the same after in, before and without: interested in working, before leaving, without asking.", "pause_apres": 1.0},
+    {"id": "p11", "ecran": "q", "texte": "Now, a TOEIC question. The manager suggested, blank, the meeting until Monday.", "vue": {"options": false}},
+    {"id": "p12", "ecran": "q", "texte": "A: postpone. B: to postpone. C: postponing. D: postponed.", "dit": "Answer A. postpone. Answer B. to postpone. Answer C. postponing. Answer D. postponed.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p13", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p14", "ecran": "q", "texte": "Look at the verb just before the blank: suggested. Suggest is followed by the -ing form.", "dit": "Look at the verb just before the blank: suggested. Suggest, is followed by the ing form.", "vue": {"juge": []}},
+    {"id": "p15", "ecran": "q", "texte": "So A, B and D are wrong.", "dit": "So A, B, and D are wrong.", "vue": {"juge": ["A", "B", "D"]}},
+    {"id": "p16", "ecran": "q", "texte": "C is correct: the manager suggested postponing the meeting until Monday.", "pause_apres": 1.0},
+    {"id": "p17", "ecran": "recap", "texte": "Three steps. One: look at the verb just before the blank.", "vue": {"jusqu": 1}},
+    {"id": "p18", "ecran": "recap", "texte": "Two: learn the two lists. Decide, plan, agree and want take to. Enjoy, suggest, avoid and consider take -ing.", "dit": "Two: learn the two lists. Decide, plan, agree, and want, take to. Enjoy, suggest, avoid, and consider, take ing.", "vue": {"jusqu": 2}},
+    {"id": "p19", "ecran": "recap", "texte": "Three: after a preposition, always the -ing form.", "dit": "Three: after a preposition, always the ing form.", "pause_apres": 0.9},
+    {"id": "p20", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

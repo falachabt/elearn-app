@@ -1,0 +1,48 @@
+{
+  "code": "g_relative_clauses", "titre": "Relative clauses", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 4, 5 and 6", "titre": "Relative clauses", "sous": "who, which, that, where, whose",
+      "bulles": [{"qui": "A", "texte": "Which engineer?"}, {"qui": "B", "texte": "The engineer **who** designed the bridge.", "etat": "ok"}]},
+    "idee": {"type": "dialogue", "kicker": "What is a relative clause?", "bulles": [
+      {"qui": "A", "texte": "The engineer **who designed the bridge** will speak.", "etiquette": "IT ADDS INFORMATION ABOUT A NOUN"}],
+      "aparte": {"texte": "The word before the blank decides the pronoun."}},
+    "pronoms": {"type": "structure", "kicker": "Which pronoun?", "titre": "Look at the noun before", "lignes": [
+      {"debut": "a person", "suite": "who", "exemple": "the manager **who** called"},
+      {"debut": "a thing", "suite": "which / that", "exemple": "the report **which** I sent"},
+      {"debut": "a place", "suite": "where", "exemple": "the office **where** I work"},
+      {"debut": "possession", "suite": "whose", "exemple": "the client **whose** order is late"}]},
+    "piege": {"type": "dialogue", "kicker": "The trap", "ton": "jaune", "titre": "After a comma: which, never that", "bulles": [
+      {"qui": "A", "texte": "The software, __that__ was updated, is faster.", "etiquette": "WRONG", "etat": "ko"},
+      {"qui": "A", "texte": "The software, **which** was updated, is faster.", "etiquette": "CORRECT", "etat": "ok"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "The **technician** ------- repaired the printer is here.", "options": [
+      {"lettre": "A", "texte": "which", "etat": "ko", "raison": "which = a thing"},
+      {"lettre": "B", "texte": "**who**", "etat": "ok", "raison": "technician = a person"},
+      {"lettre": "C", "texte": "where", "etat": "ko", "raison": "where = a place"},
+      {"lettre": "D", "texte": "whose", "etat": "ko", "raison": "whose + noun"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Look at the **noun before** the blank"},
+      {"texte": "Person: **who**. Thing: **which**. Place: **where**. Possession: **whose**"},
+      {"texte": "After a __comma__: which, never that"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Relative clauses.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "A relative clause adds information about a noun: the engineer who designed the bridge will speak.", "vue": {"aparte": false}},
+    {"id": "p03", "ecran": "idee", "texte": "In the TOEIC, the noun before the blank decides the pronoun.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "pronoms", "texte": "For a person, use who: the manager who called.", "dit": "For a person, use who: the manager who called.", "vue": {"faibles": [1, 2, 3]}},
+    {"id": "p05", "ecran": "pronoms", "texte": "For a thing, use which or that: the report which I sent.", "dit": "For a thing, use which, or that: the report which I sent.", "vue": {"faibles": [2, 3]}},
+    {"id": "p06", "ecran": "pronoms", "texte": "For a place, use where: the office where I work.", "vue": {"faibles": [3]}},
+    {"id": "p07", "ecran": "pronoms", "texte": "And for possession, use whose: the client whose order is late.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "piege", "texte": "One trap. After a comma, we use which, never that.", "dit": "One trap. After a comma, we use which, never that.", "vue": {"montre": 1}},
+    {"id": "p09", "ecran": "piege", "texte": "The software, which was updated, is faster.", "pause_apres": 1.0},
+    {"id": "p10", "ecran": "q", "texte": "Now, a TOEIC question. The technician, blank, repaired the printer is here.", "vue": {"options": false}},
+    {"id": "p11", "ecran": "q", "texte": "A: which. B: who. C: where. D: whose.", "dit": "Answer A. which. Answer B. who. Answer C. where. Answer D. whose.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p12", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p13", "ecran": "q", "texte": "Look at the noun before the blank: technician. It is a person.", "vue": {"juge": []}},
+    {"id": "p14", "ecran": "q", "texte": "Which is for a thing, and where is for a place. Whose needs a noun just after it.", "dit": "Which, is for a thing, and where, is for a place. Whose, needs a noun just after it.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p15", "ecran": "q", "texte": "B is correct: the technician who repaired the printer is here.", "pause_apres": 1.0},
+    {"id": "p16", "ecran": "recap", "texte": "Three steps. One: look at the noun before the blank.", "vue": {"jusqu": 1}},
+    {"id": "p17", "ecran": "recap", "texte": "Two: person, who. Thing, which. Place, where. Possession, whose.", "vue": {"jusqu": 2}},
+    {"id": "p18", "ecran": "recap", "texte": "Three: after a comma, which, never that.", "pause_apres": 0.9},
+    {"id": "p19", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

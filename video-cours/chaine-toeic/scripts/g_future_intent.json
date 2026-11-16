@@ -1,0 +1,48 @@
+{
+  "code": "g_future_intent", "titre": "Plans and intentions", "partie": "TOEIC · Parts 3 and 4",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 3 and 4", "titre": "Plans and intentions", "sous": "will, be going to, present continuous",
+      "bulles": [{"qui": "A", "texte": "The printer is broken."}, {"qui": "B", "texte": "I **will call** the technician.", "etat": "ok"}]},
+    "trois": {"type": "structure", "kicker": "Three ways to talk about the future", "titre": "What kind of future?", "lignes": [
+      {"debut": "will", "suite": "decision now", "exemple": "I **will call** the supplier."},
+      {"debut": "be going to", "suite": "a plan", "exemple": "We **are going to launch** in May."},
+      {"debut": "present continuous", "suite": "fixed date", "exemple": "The train **is leaving** at six."}]},
+    "ex1": {"type": "dialogue", "kicker": "Example", "bulles": [
+      {"qui": "A", "texte": "The printer is broken.", "etiquette": "A NEW PROBLEM"},
+      {"qui": "B", "texte": "I **will call** the technician.", "etiquette": "DECISION AT THIS MOMENT", "etat": "ok"},
+      {"qui": "A", "texte": "No need. Tom **is going to fix** it after lunch.", "etiquette": "ALREADY PLANNED", "etat": "ok"}]},
+    "indices": {"type": "structure", "kicker": "In a conversation", "titre": "Words that announce a plan", "lignes": [
+      {"debut": "I have decided to", "suite": "intention", "exemple": "**I have decided to** move."},
+      {"debut": "We are planning to", "suite": "intention", "exemple": "**We are planning to** hire."},
+      {"debut": "I am about to", "suite": "very soon", "exemple": "**I am about to** leave."}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 3", "entendu": "Woman: We **are going to move** the launch to **June**.", "options": [
+      {"lettre": "A", "texte": "The launch took place in __May__.", "etat": "ko", "raison": "Past, and wrong month"},
+      {"lettre": "B", "texte": "The launch **will be in June**.", "etat": "ok", "raison": "Same plan, other words"},
+      {"lettre": "C", "texte": "The launch is __cancelled__.", "etat": "ko", "raison": "Moved, not cancelled"},
+      {"lettre": "D", "texte": "She has __not decided__ yet.", "etat": "ko", "raison": "Going to = decided"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Listen for the **future form**: will, going to, is leaving"},
+      {"texte": "Catch the **time word**: tomorrow, next month, in June"},
+      {"texte": "The right answer says the __same plan__ in other words"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Plans and intentions.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "trois", "texte": "English has three common ways to talk about the future. Will is for a decision made now: I will call the supplier.", "dit": "English has three common ways to talk about the future. Will, is for a decision made now: I will call the supplier.", "vue": {"faibles": [1, 2]}},
+    {"id": "p03", "ecran": "trois", "texte": "Be going to is for a plan made before: we are going to launch in May.", "dit": "Be going to, is for a plan made before: we are going to launch in May.", "vue": {"faibles": [2]}},
+    {"id": "p04", "ecran": "trois", "texte": "And the present continuous is for an arrangement with a fixed date or time: the train is leaving at six.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "ex1", "texte": "Listen to this example. The printer is broken. I will call the technician. It is a decision at this moment.", "vue": {"montre": 2}},
+    {"id": "p06", "ecran": "ex1", "texte": "No need. Tom is going to fix it after lunch. That was already planned.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "indices", "texte": "In a conversation, some words announce a plan: I have decided to. We are planning to.", "vue": {"faibles": [2]}},
+    {"id": "p08", "ecran": "indices", "texte": "And I am about to means very soon.", "dit": "And, I am about to, means very soon.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "q", "texte": "Now, a TOEIC question from Part 3. A woman says: We are going to move the launch to June.", "dit": "Now, a TOEIC question from Part three. A woman says: We are going to move the launch to June.", "vue": {"options": false}},
+    {"id": "p10", "ecran": "q", "texte": "What does the woman say about the launch? A: It took place in May. B: It will be in June.", "dit": "What does the woman say about the launch? Answer A. It took place in May. Answer B. It will be in June.", "vue": {"juge": []}, "pause_apres": 0.5},
+    {"id": "p11", "ecran": "q", "texte": "C: It is cancelled. D: She has not decided yet.", "dit": "Answer C. It is cancelled. Answer D. She has not decided yet.", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p12", "ecran": "q", "texte": "Going to means the plan is decided. So D is wrong. And she moves the launch: she does not cancel it.", "dit": "Going to, means the plan is decided. So D is wrong. And she moves the launch: she does not cancel it.", "vue": {"juge": ["C", "D"]}},
+    {"id": "p13", "ecran": "q", "texte": "A is in the past, with the wrong month.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p14", "ecran": "q", "texte": "B is correct. It says the same plan in other words: the launch will be in June.", "pause_apres": 1.0},
+    {"id": "p15", "ecran": "recap", "texte": "Three steps. One: listen for the future form.", "vue": {"jusqu": 1}},
+    {"id": "p16", "ecran": "recap", "texte": "Two: catch the time word: tomorrow, next month, in June.", "vue": {"jusqu": 2}},
+    {"id": "p17", "ecran": "recap", "texte": "Three: the right answer says the same plan in other words.", "pause_apres": 0.9},
+    {"id": "p18", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

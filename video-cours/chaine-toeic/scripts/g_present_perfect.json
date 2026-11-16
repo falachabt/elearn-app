@@ -1,0 +1,54 @@
+{
+  "code": "g_present_perfect", "titre": "The present perfect", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 3, 4 and 5", "titre": "The present perfect", "sous": "have + past participle",
+      "bulles": [{"qui": "A", "texte": "**Have** you **sent** the invoice?"}, {"qui": "B", "texte": "Yes, I have already sent it.", "etat": "ok"}]},
+    "forme": {"type": "structure", "kicker": "The form", "titre": "have or has + past participle", "lignes": [
+      {"debut": "I have", "suite": "+ sent", "exemple": "I **have sent** the invoice."},
+      {"debut": "She has", "suite": "+ worked", "exemple": "She **has worked** here for years."},
+      {"debut": "He has never", "suite": "+ visited", "exemple": "He **has never visited** Paris."}]},
+    "usages": {"type": "recap", "kicker": "When do we use it?", "titre": "The past is linked to now", "etapes": [
+      {"texte": "A **result** now: I have **already** sent the invoice"},
+      {"texte": "It **continues**: she has worked here **for** five years"},
+      {"texte": "An **experience**: he has **never** visited Paris"}]},
+    "since": {"type": "structure", "kicker": "Since or for?", "titre": "Two words, two ideas", "lignes": [
+      {"debut": "since", "suite": "+ starting point", "exemple": "**since** Monday, **since** 2020"},
+      {"debut": "for", "suite": "+ duration", "exemple": "**for** three days, **for** five years"}]},
+    "piege": {"type": "dialogue", "kicker": "The big trap", "ton": "jaune", "titre": "A finished time = simple past", "bulles": [
+      {"qui": "A", "texte": "I __have seen__ him **yesterday**.", "etiquette": "WRONG", "etat": "ko"},
+      {"qui": "A", "texte": "I **saw** him **yesterday**.", "etiquette": "CORRECT", "etat": "ok"}],
+      "aparte": {"texte": "yesterday, last week, in 2019, two days ago"}},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "Ms. Tanaka ------- for the company **since** 2015.", "options": [
+      {"lettre": "A", "texte": "works", "etat": "ko", "raison": "Present: no link to 2015"},
+      {"lettre": "B", "texte": "worked", "etat": "ko", "raison": "Simple past: finished"},
+      {"lettre": "C", "texte": "**has worked**", "etat": "ok", "raison": "since + present perfect"},
+      {"lettre": "D", "texte": "is working", "etat": "ko", "raison": "Not with since"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Look for the **time word** in the sentence"},
+      {"texte": "**since, for, already, never, yet**: present perfect"},
+      {"texte": "__yesterday, last week, ago__: simple past"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "The present perfect.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "forme", "texte": "We form it with have, or has, and the past participle.", "vue": {"faibles": [1, 2]}},
+    {"id": "p03", "ecran": "forme", "texte": "I have sent the invoice. She has worked here for years. He has never visited Paris.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "usages", "texte": "The present perfect links the past to now. First, a result: I have already sent the invoice. It is done.", "vue": {"jusqu": 1}},
+    {"id": "p05", "ecran": "usages", "texte": "Second, an action that continues: she has worked here for five years, and she still works here.", "vue": {"jusqu": 2}},
+    {"id": "p06", "ecran": "usages", "texte": "Third, an experience in your life: he has never visited Paris.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "since", "texte": "Since goes with a starting point: since Monday, since 2020.", "dit": "Since, goes with a starting point: since Monday, since twenty twenty.", "vue": {"faibles": [1]}},
+    {"id": "p08", "ecran": "since", "texte": "For goes with a duration: for three days, for five years.", "dit": "For, goes with a duration: for three days, for five years.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "piege", "texte": "Now, the big trap. I have seen him yesterday is wrong.", "dit": "Now, the big trap. I have seen him yesterday, is wrong.", "vue": {"montre": 1, "aparte": false}},
+    {"id": "p10", "ecran": "piege", "texte": "Yesterday is a finished time. So we use the simple past: I saw him yesterday.", "vue": {"aparte": false}},
+    {"id": "p11", "ecran": "piege", "texte": "It is the same with last week, in 2019, or two days ago.", "dit": "It is the same with: last week, in twenty nineteen, or two days ago.", "pause_apres": 1.0},
+    {"id": "p12", "ecran": "q", "texte": "Now, a TOEIC question from Part 5. Ms. Tanaka, blank, for the company since 2015.", "dit": "Now, a TOEIC question from Part five. Miz Tanaka, blank, for the company since twenty fifteen.", "vue": {"options": false}},
+    {"id": "p13", "ecran": "q", "texte": "A: works. B: worked. C: has worked. D: is working.", "dit": "Answer A. works. Answer B. worked. Answer C. has worked. Answer D. is working.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p14", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p15", "ecran": "q", "texte": "Look at the time word: since 2015. It is a starting point, and the action continues today.", "dit": "Look at the time word: since twenty fifteen. It is a starting point, and the action continues today.", "vue": {"juge": []}},
+    {"id": "p16", "ecran": "q", "texte": "So A, B and D are wrong. They do not link the past to now.", "dit": "So A, B, and D are wrong. They do not link the past to now.", "vue": {"juge": ["A", "B", "D"]}},
+    {"id": "p17", "ecran": "q", "texte": "C is correct: Ms. Tanaka has worked for the company since 2015.", "dit": "C is correct: Miz Tanaka has worked for the company since twenty fifteen.", "pause_apres": 1.0},
+    {"id": "p18", "ecran": "recap", "texte": "Remember three steps. One: look for the time word in the sentence.", "vue": {"jusqu": 1}},
+    {"id": "p19", "ecran": "recap", "texte": "Two: since, for, already, never and yet go with the present perfect.", "vue": {"jusqu": 2}},
+    {"id": "p20", "ecran": "recap", "texte": "Three: yesterday, last week and ago go with the simple past.", "pause_apres": 0.9},
+    {"id": "p21", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

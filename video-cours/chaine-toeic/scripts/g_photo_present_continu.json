@@ -1,0 +1,53 @@
+{
+  "code": "g_photo_present_continu", "titre": "Describing a photo", "partie": "TOEIC · Part 1",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 1", "titre": "Describing a photo", "sous": "The present continuous: is or are + verb-ing",
+      "bulles": [{"qui": "A", "texte": "What do you see?"}, {"qui": "B", "texte": "A man **is driving** a forklift.", "etat": "ok"}]},
+    "part1": {"type": "photo", "kicker": "In Part 1, you see a photo and you hear", "image": "t4_p1-2.jpg", "options": [
+      {"lettre": "A", "texte": "statement A"}, {"lettre": "B", "texte": "statement B"},
+      {"lettre": "C", "texte": "statement C"}, {"lettre": "D", "texte": "statement D"}]},
+    "forme": {"type": "structure", "kicker": "The form", "titre": "An action happening now", "lignes": [
+      {"debut": "one person", "suite": "is + verb-ing", "exemple": "The man **is carrying** a box."},
+      {"debut": "two or more", "suite": "are + verb-ing", "exemple": "Two women **are sitting** at a table."}]},
+    "ex1": {"type": "photo", "kicker": "Example", "image": "t4_p1-2.jpg", "options": [
+      {"lettre": "1", "texte": "Who? **A man.** One person.", "etat": "ok"},
+      {"lettre": "2", "texte": "What action? **Driving.**", "etat": "ok"},
+      {"lettre": "3", "texte": "A man **is driving** a forklift.", "etat": "ok"}]},
+    "q": {"type": "photo", "kicker": "TOEIC question", "image": "t5_p1-2.jpg", "options": [
+      {"lettre": "A", "texte": "He is __opening__ a suitcase.", "etat": "ko", "raison": "Suitcases, but no opening"},
+      {"lettre": "B", "texte": "He **is pushing** a luggage cart.", "etat": "ok", "raison": "The action you see"},
+      {"lettre": "C", "texte": "He __pushes__ carts every day.", "etat": "ko", "raison": "A habit, not the photo"},
+      {"lettre": "D", "texte": "They __are waiting__ for the elevator.", "etat": "ko", "raison": "Nobody is waiting there"}]},
+    "piege": {"type": "dialogue", "kicker": "The trap", "ton": "jaune", "titre": "Simple present = a habit", "bulles": [
+      {"qui": "A", "texte": "The man __carries__ a box.", "etiquette": "A HABIT: NOT THE PHOTO", "etat": "ko"},
+      {"qui": "A", "texte": "The man **is carrying** a box.", "etiquette": "NOW: THE PHOTO", "etat": "ok"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Before the audio: **who** is in the photo, and what **action**?"},
+      {"texte": "One person: **is**. Two or more: **are**."},
+      {"texte": "The right answer says __only what you can see__"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Describing a photo with the present continuous.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "part1", "texte": "In Part 1 of the TOEIC, you see a photo, and you hear four statements.", "dit": "In Part one of the TOEIC, you see a photo, and you hear four statements.", "vue": {"juge": []}},
+    {"id": "p03", "ecran": "part1", "texte": "Only one statement describes the photo correctly.", "vue": {"juge": []}, "pause_apres": 0.9},
+    {"id": "p04", "ecran": "forme", "texte": "A photo shows an action happening now. So we use the present continuous.", "vue": {"faibles": [0, 1]}},
+    {"id": "p05", "ecran": "forme", "texte": "For one person: is, plus the verb ending in -ing. The man is carrying a box.", "dit": "For one person: is, plus the verb ending in ing. The man is carrying a box.", "vue": {"faibles": [1]}},
+    {"id": "p06", "ecran": "forme", "texte": "For two or more people: are. Two women are sitting at a table.", "dit": "For two or more people: are. Two women are sitting at a table.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "ex1", "texte": "Look at this photo. First question: who? A man. One person.", "vue": {"juge": ["1"]}},
+    {"id": "p08", "ecran": "ex1", "texte": "Second question: what action? He is driving.", "vue": {"juge": ["1", "2"]}},
+    {"id": "p09", "ecran": "ex1", "texte": "So the description is: a man is driving a forklift.", "pause_apres": 1.0},
+    {"id": "p10", "ecran": "q", "texte": "Now, a TOEIC question. Look at the photo for a few seconds.", "vue": {"options": false}, "pause_apres": 1.5},
+    {"id": "p11", "ecran": "q", "texte": "A: He is opening a suitcase. B: He is pushing a luggage cart.", "dit": "Statement A. He is opening a suitcase. Statement B. He is pushing a luggage cart.", "vue": {"juge": []}, "pause_apres": 0.5},
+    {"id": "p12", "ecran": "q", "texte": "C: He pushes carts every day. D: They are waiting for the elevator.", "dit": "Statement C. He pushes carts every day. Statement D. They are waiting for the elevator.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p13", "ecran": "q", "texte": "Which statement is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p14", "ecran": "q", "texte": "A is wrong. You see suitcases, but the man is not opening one.", "vue": {"juge": ["A"]}},
+    {"id": "p15", "ecran": "q", "texte": "C uses the simple present. It talks about a habit. You cannot see every day in a photo.", "dit": "C uses the simple present. It talks about a habit. You cannot see, every day, in a photo.", "vue": {"juge": ["A", "C"]}},
+    {"id": "p16", "ecran": "q", "texte": "D is wrong. There is an elevator, but nobody is waiting for it.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p17", "ecran": "q", "texte": "B is correct: he is pushing a luggage cart. It is the action you see.", "pause_apres": 1.0},
+    {"id": "p18", "ecran": "piege", "texte": "Remember the trap. The simple present describes a habit, not the photo.", "pause_apres": 1.0},
+    {"id": "p19", "ecran": "recap", "texte": "Three steps. One: before the audio, ask who is in the photo, and what action.", "vue": {"jusqu": 1}},
+    {"id": "p20", "ecran": "recap", "texte": "Two: one person, is. Two or more, are.", "vue": {"jusqu": 2}},
+    {"id": "p21", "ecran": "recap", "texte": "Three: the right answer says only what you can see.", "pause_apres": 0.9},
+    {"id": "p22", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

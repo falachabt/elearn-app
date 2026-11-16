@@ -47,7 +47,7 @@ VITESSE = 0.88  # 0,95 au pilote : jugé un peu rapide pour un élève
 ETAPES = int(os.environ.get("CHAINE_ETAPES", "16"))
 LEAD = 0.4
 DECALAGE_ECRAN = 0.15
-TYPES = {"titre", "structure", "dialogue", "question", "recap"}
+TYPES = {"titre", "structure", "dialogue", "question", "photo", "recap"}
 CARACTERES_PAR_SECONDE = 14.0  # anglais posé à 0,95 : estimation avant génération
 
 
@@ -96,7 +96,7 @@ def appliquer_vues(script):
     """Écriture compacte : un écran est décrit une fois dans son état final, et chaque phrase dit
     ce qu'elle en montre par un champ `vue`. La phrase reçoit alors son propre écran dérivé.
       dialogue  : {"montre": n}            n premières bulles ; {"aparte": false} masque l'aparté
-      question  : {"options": false}       question seule ; {"juge": ["A", "C"]} verdicts déjà rendus
+      question, photo : {"options": false} question (ou photo) seule ; {"juge": ["A", "C"]} verdicts déjà rendus
                                            (les autres options restent neutres, sans raison ni surlignage)
       recap     : {"jusqu": n}             les points après le n-ième sont estompés et sans surlignage
       structure : {"faibles": [i, ...]}    lignes estompées (index à partir de 0)
@@ -114,7 +114,7 @@ def appliquer_vues(script):
                 e["bulles"] = e["bulles"][:vue["montre"]]
             if vue.get("aparte") is False:
                 e.pop("aparte", None)
-        elif e["type"] == "question":
+        elif e["type"] in ("question", "photo"):
             if vue.get("options") is False:
                 e["options"] = [{"lettre": o["lettre"], "texte": "", "etat": "cache"} for o in e["options"]]
             else:
@@ -182,6 +182,8 @@ def voix(code):
 def preparer_gabarit(dossier, donnees):
     shutil.copy(GABARIT, dossier / "toeic-16x9.html")
     shutil.copy(LOGO, dossier / "logo-symbole.svg")
+    if (ICI / "images").exists():
+        shutil.copytree(ICI / "images", dossier / "images", dirs_exist_ok=True)
     if not (dossier / "fontsource").exists():
         shutil.copytree(POLICES, dossier / "fontsource")
     (dossier / "rendu.js").write_text("window.DONNEES = " + json.dumps(donnees, ensure_ascii=False) + ";",

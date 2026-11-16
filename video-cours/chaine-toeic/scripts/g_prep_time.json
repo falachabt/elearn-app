@@ -1,0 +1,48 @@
+{
+  "code": "g_prep_time", "titre": "Prepositions of time", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 5 and 6", "titre": "Prepositions of time", "sous": "in, on, at, by, until, for, since",
+      "bulles": [{"qui": "A", "texte": "When is the meeting?"}, {"qui": "B", "texte": "**On** Monday, **at** nine.", "etat": "ok"}]},
+    "inonat": {"type": "structure", "kicker": "in, on, at", "titre": "From big to small", "lignes": [
+      {"debut": "in", "suite": "month, year, season", "exemple": "**in** May, **in** 2026, **in** the morning"},
+      {"debut": "on", "suite": "day, date", "exemple": "**on** Monday, **on** June 3rd"},
+      {"debut": "at", "suite": "exact time", "exemple": "**at** nine, **at** noon, **at** night"}]},
+    "byuntil": {"type": "dialogue", "kicker": "by or until?", "ton": "jaune", "titre": "The classic TOEIC trap", "bulles": [
+      {"qui": "A", "texte": "Send the report **by** Friday.", "etiquette": "A DEADLINE: FRIDAY OR BEFORE", "etat": "ok"},
+      {"qui": "B", "texte": "The office is open **until** six.", "etiquette": "IT CONTINUES, THEN IT STOPS AT SIX", "etat": "ok"}]},
+    "forsince": {"type": "structure", "kicker": "for, since, during", "titre": "How long?", "lignes": [
+      {"debut": "for", "suite": "+ duration", "exemple": "**for** three days"},
+      {"debut": "since", "suite": "+ starting point", "exemple": "**since** Monday"},
+      {"debut": "during", "suite": "+ event", "exemple": "**during** the meeting"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "Please submit your expense report ------- Friday.", "options": [
+      {"lettre": "A", "texte": "until", "etat": "ko", "raison": "Submit is one moment"},
+      {"lettre": "B", "texte": "**by**", "etat": "ok", "raison": "A deadline"},
+      {"lettre": "C", "texte": "at", "etat": "ko", "raison": "at + exact time"},
+      {"lettre": "D", "texte": "in", "etat": "ko", "raison": "in + month or year"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "**in** May, **on** Monday, **at** nine"},
+      {"texte": "**by** = a deadline. **until** = it continues up to that time"},
+      {"texte": "**for** + duration, **since** + starting point"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Prepositions of time.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "inonat", "texte": "In, on and at go from big to small. In, for months, years and seasons: in May, in 2026.", "dit": "In, on, and at, go from big to small. In, for months, years and seasons: in May, in twenty twenty-six.", "vue": {"faibles": [1, 2]}},
+    {"id": "p03", "ecran": "inonat", "texte": "On, for days and dates: on Monday, on June 3rd.", "dit": "On, for days and dates: on Monday, on June third.", "vue": {"faibles": [2]}},
+    {"id": "p04", "ecran": "inonat", "texte": "At, for an exact time: at nine, at noon.", "dit": "At, for an exact time: at nine, at noon.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "byuntil", "texte": "Now, the classic trap: by, or until?", "vue": {"montre": 0}},
+    {"id": "p06", "ecran": "byuntil", "texte": "By gives a deadline. Send the report by Friday means: on Friday, or before.", "dit": "By, gives a deadline. Send the report by Friday, means: on Friday, or before.", "vue": {"montre": 1}},
+    {"id": "p07", "ecran": "byuntil", "texte": "Until means the action continues, and then stops. The office is open until six.", "dit": "Until, means the action continues, and then stops. The office is open until six.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "forsince", "texte": "For goes with a duration: for three days. Since goes with a starting point: since Monday.", "dit": "For, goes with a duration: for three days. Since, goes with a starting point: since Monday.", "vue": {"faibles": [2]}},
+    {"id": "p09", "ecran": "forsince", "texte": "And during goes with an event: during the meeting.", "dit": "And during, goes with an event: during the meeting.", "pause_apres": 1.0},
+    {"id": "p10", "ecran": "q", "texte": "Now, a TOEIC question. Please submit your expense report, blank, Friday.", "vue": {"options": false}},
+    {"id": "p11", "ecran": "q", "texte": "A: until. B: by. C: at. D: in.", "dit": "Answer A. until. Answer B. by. Answer C. at. Answer D. in.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p12", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p13", "ecran": "q", "texte": "At goes with an exact time, and in with a month or a year. Friday is a day. So C and D are wrong.", "dit": "At, goes with an exact time, and in, with a month or a year. Friday is a day. So C and D are wrong.", "vue": {"juge": ["C", "D"]}},
+    {"id": "p14", "ecran": "q", "texte": "Submit is one moment. It does not continue. So until is wrong.", "dit": "Submit, is one moment. It does not continue. So, until, is wrong.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p15", "ecran": "q", "texte": "B is correct. Friday is the deadline: submit your expense report by Friday.", "pause_apres": 1.0},
+    {"id": "p16", "ecran": "recap", "texte": "Remember. One: in May, on Monday, at nine.", "vue": {"jusqu": 1}},
+    {"id": "p17", "ecran": "recap", "texte": "Two: by is a deadline. Until means it continues up to that time.", "dit": "Two: by, is a deadline. Until, means it continues up to that time.", "vue": {"jusqu": 2}},
+    {"id": "p18", "ecran": "recap", "texte": "Three: for plus a duration, since plus a starting point.", "pause_apres": 0.9},
+    {"id": "p19", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

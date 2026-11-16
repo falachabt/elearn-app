@@ -1,0 +1,47 @@
+{
+  "code": "g_reported_speech", "titre": "Reported speech", "partie": "TOEIC · Parts 3 and 4",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 3 and 4", "titre": "Reported speech", "sous": "She said that ... He told me that ...",
+      "bulles": [{"qui": "A", "texte": "The meeting **is** on Monday."}, {"qui": "B", "texte": "She said the meeting **was** on Monday.", "etat": "ok"}]},
+    "recul": {"type": "structure", "kicker": "The verb moves back", "titre": "One step into the past", "lignes": [
+      {"debut": "is", "suite": "was", "exemple": "She said it **was** ready."},
+      {"debut": "will", "suite": "would", "exemple": "He said he **would** call."},
+      {"debut": "can", "suite": "could", "exemple": "They said they **could** come."},
+      {"debut": "sent", "suite": "had sent", "exemple": "She said she **had sent** it."}]},
+    "temps": {"type": "structure", "kicker": "Time words change too", "titre": "From the speaker to the reporter", "lignes": [
+      {"debut": "today", "suite": "that day", "exemple": "He said he was busy **that day**."},
+      {"debut": "tomorrow", "suite": "the next day", "exemple": "She would call **the next day**."},
+      {"debut": "yesterday", "suite": "the day before", "exemple": "It arrived **the day before**."}]},
+    "piege": {"type": "dialogue", "kicker": "The trap", "ton": "jaune", "titre": "say or tell?", "bulles": [
+      {"qui": "A", "texte": "She __said me__ the news.", "etiquette": "WRONG: SAY HAS NO PERSON", "etat": "ko"},
+      {"qui": "A", "texte": "She **told me** the news.", "etiquette": "TELL + A PERSON", "etat": "ok"},
+      {"qui": "A", "texte": "She **said** (that) she was late.", "etiquette": "SAY + THE WORDS", "etat": "ok"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 4", "entendu": "Message: \"I **will send** the contract **tomorrow**.\"", "options": [
+      {"lettre": "A", "texte": "He __sent__ the contract yesterday.", "etat": "ko", "raison": "Past: not done yet"},
+      {"lettre": "B", "texte": "He said he **would send** it **the next day**.", "etat": "ok", "raison": "will, would. tomorrow, the next day"},
+      {"lettre": "C", "texte": "He __will sign__ the contract.", "etat": "ko", "raison": "Send, not sign"},
+      {"lettre": "D", "texte": "He __cannot__ send the contract.", "etat": "ko", "raison": "He can and will"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "In reported speech, the verb **moves back**: will, would"},
+      {"texte": "**say** + the words. **tell** + a person"},
+      {"texte": "The right answer __rephrases__ the message, without the exact words"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Reported speech.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "recul", "texte": "When we report what someone said, the verb moves one step into the past. Is becomes was.", "dit": "When we report what someone said, the verb moves one step into the past. Is, becomes was.", "vue": {"faibles": [1, 2, 3]}},
+    {"id": "p03", "ecran": "recul", "texte": "Will becomes would. Can becomes could.", "dit": "Will, becomes would. Can, becomes could.", "vue": {"faibles": [3]}},
+    {"id": "p04", "ecran": "recul", "texte": "And the simple past becomes the past perfect: she said she had sent it.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "temps", "texte": "Time words change too. Today becomes that day. Tomorrow becomes the next day. Yesterday becomes the day before.", "dit": "Time words change too. Today, becomes that day. Tomorrow, becomes the next day. Yesterday, becomes the day before.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "piege", "texte": "One trap: say or tell? She said me the news is wrong.", "dit": "One trap: say, or tell? She said me the news, is wrong.", "vue": {"montre": 1}},
+    {"id": "p07", "ecran": "piege", "texte": "Tell takes a person: she told me the news. Say takes the words: she said she was late.", "dit": "Tell, takes a person: she told me the news. Say, takes the words: she said she was late.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "q", "texte": "Now, a TOEIC question from Part 4. You hear a message: I will send the contract tomorrow.", "dit": "Now, a TOEIC question from Part four. You hear a message: I will send the contract tomorrow.", "vue": {"options": false}},
+    {"id": "p09", "ecran": "q", "texte": "What does the speaker say? A: He sent the contract yesterday. B: He said he would send it the next day.", "dit": "What does the speaker say? Answer A. He sent the contract yesterday. Answer B. He said he would send it the next day.", "vue": {"juge": []}, "pause_apres": 0.5},
+    {"id": "p10", "ecran": "q", "texte": "C: He will sign the contract. D: He cannot send the contract.", "dit": "Answer C. He will sign the contract. Answer D. He cannot send the contract.", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p11", "ecran": "q", "texte": "A is in the past, but the contract is not sent yet. C changes send into sign. D says the opposite.", "dit": "A is in the past, but the contract is not sent yet. C changes send, into sign. D says the opposite.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p12", "ecran": "q", "texte": "B is correct. Will becomes would, and tomorrow becomes the next day.", "dit": "B is correct. Will, becomes would, and tomorrow, becomes the next day.", "pause_apres": 1.0},
+    {"id": "p13", "ecran": "recap", "texte": "Three steps. One: in reported speech, the verb moves back.", "vue": {"jusqu": 1}},
+    {"id": "p14", "ecran": "recap", "texte": "Two: say takes the words, tell takes a person.", "dit": "Two: say, takes the words. Tell, takes a person.", "vue": {"jusqu": 2}},
+    {"id": "p15", "ecran": "recap", "texte": "Three: the right answer rephrases the message, without the exact words.", "pause_apres": 0.9},
+    {"id": "p16", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

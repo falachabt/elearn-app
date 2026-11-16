@@ -1,0 +1,45 @@
+{
+  "code": "g_parallel", "titre": "Parallel structure", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 5 and 6", "titre": "Parallel structure", "sous": "In a list, every item has the same form",
+      "bulles": [{"qui": "A", "texte": "She likes reading, writing and __to travel__."}, {"qui": "B", "texte": "reading, writing and **travelling**.", "etat": "ok"}]},
+    "idee": {"type": "recap", "kicker": "The rule", "titre": "and, or, but link equal forms", "etapes": [
+      {"texte": "noun **and** noun: speed **and** accuracy"},
+      {"texte": "adjective **and** adjective: fast **and** reliable"},
+      {"texte": "verb-ing **and** verb-ing: planning **and** organizing"}]},
+    "ex1": {"type": "dialogue", "kicker": "Example", "titre": "Find the form of the other items", "bulles": [
+      {"qui": "A", "texte": "The job requires **planning**, **organizing** and __to lead__ a team.", "etiquette": "WRONG: THE THIRD ITEM IS DIFFERENT", "etat": "ko"},
+      {"qui": "A", "texte": "The job requires **planning**, **organizing** and **leading** a team.", "etiquette": "CORRECT: THREE -ING FORMS", "etat": "ok"}]},
+    "paires": {"type": "structure", "kicker": "Pairs that need parallel forms", "titre": "Two halves, same form", "lignes": [
+      {"debut": "both ... and", "suite": "same form", "exemple": "**both** fast **and** cheap"},
+      {"debut": "either ... or", "suite": "same form", "exemple": "**either** call **or** write"},
+      {"debut": "not only ... but also", "suite": "same form", "exemple": "**not only** quick **but also** safe"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "The product is **reliable**, **affordable** and ------- .", "options": [
+      {"lettre": "A", "texte": "efficiency", "etat": "ko", "raison": "Noun"},
+      {"lettre": "B", "texte": "efficiently", "etat": "ko", "raison": "Adverb"},
+      {"lettre": "C", "texte": "**efficient**", "etat": "ok", "raison": "Adjective, like the others"},
+      {"lettre": "D", "texte": "to be efficient", "etat": "ko", "raison": "Infinitive"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "See **and**, **or**, a comma list: think parallel"},
+      {"texte": "Find the **form** of the other items in the list"},
+      {"texte": "Choose the __same form__ for the blank"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Parallel structure.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "In English, the words and, or and but link equal forms. A noun with a noun: speed and accuracy.", "dit": "In English, the words and, or, and but, link equal forms. A noun with a noun: speed and accuracy.", "vue": {"jusqu": 1}},
+    {"id": "p03", "ecran": "idee", "texte": "An adjective with an adjective: fast and reliable. An -ing form with an -ing form: planning and organizing.", "dit": "An adjective with an adjective: fast and reliable. An ing form with an ing form: planning and organizing.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "ex1", "texte": "Look at this sentence. The job requires planning, organizing and to lead a team. The third item is different. It is wrong.", "dit": "Look at this sentence. The job requires planning, organizing, and to lead a team. The third item is different. It is wrong.", "vue": {"montre": 1}},
+    {"id": "p05", "ecran": "ex1", "texte": "The correct sentence has three -ing forms: planning, organizing and leading a team.", "dit": "The correct sentence has three ing forms: planning, organizing, and leading a team.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "paires", "texte": "Some pairs also need the same form on both sides: both and, either or, not only but also.", "dit": "Some pairs also need the same form on both sides: both, and. Either, or. Not only, but also.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "q", "texte": "Now, a TOEIC question. The product is reliable, affordable and, blank.", "dit": "Now, a TOEIC question. The product is reliable, affordable, and, blank.", "vue": {"options": false}},
+    {"id": "p08", "ecran": "q", "texte": "A: efficiency. B: efficiently. C: efficient. D: to be efficient.", "dit": "Answer A. efficiency. Answer B. efficiently. Answer C. efficient. Answer D. to be efficient.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p09", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p10", "ecran": "q", "texte": "Look at the other items: reliable and affordable. They are adjectives.", "dit": "Look at the other items: reliable, and affordable. They are adjectives.", "vue": {"juge": []}},
+    {"id": "p11", "ecran": "q", "texte": "So the blank needs an adjective too. A noun, an adverb and an infinitive are wrong.", "vue": {"juge": ["A", "B", "D"]}},
+    {"id": "p12", "ecran": "q", "texte": "C is correct: the product is reliable, affordable and efficient.", "pause_apres": 1.0},
+    {"id": "p13", "ecran": "recap", "texte": "Three steps. One: when you see and, or, or a list with commas, think parallel.", "dit": "Three steps. One: when you see and, or, or a list with commas, think parallel.", "vue": {"jusqu": 1}},
+    {"id": "p14", "ecran": "recap", "texte": "Two: find the form of the other items in the list.", "vue": {"jusqu": 2}},
+    {"id": "p15", "ecran": "recap", "texte": "Three: choose the same form for the blank.", "pause_apres": 0.9},
+    {"id": "p16", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

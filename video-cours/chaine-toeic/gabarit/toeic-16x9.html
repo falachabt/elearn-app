@@ -48,6 +48,10 @@ mark.j{background:var(--jaune)}
 .ligne .suite{font-size:40px;font-weight:700;background:var(--jaune);border:4px solid var(--encre);border-radius:10px;padding:4px 14px;justify-self:start}
 .ligne .ex{font-size:38px;font-weight:500;color:var(--muet)}
 .ligne.faible{opacity:.28}
+/* Variante vocabulaire : mot court, définition plus large */
+.lignes.vocab .ligne{grid-template-columns:400px 470px 1fr}
+.lignes.vocab .ligne .suite{font-size:36px}
+.lignes.vocab .ligne .ex{font-size:35px}
 
 /* Dialogue : bulles A (gauche) et B (droite), étiquette et verdict */
 .dialogue{display:flex;flex-direction:column;gap:20px}
@@ -88,6 +92,15 @@ mark.j{background:var(--jaune)}
 .option.ok .raison{background:var(--marque)}
 .option.cache{visibility:hidden}
 .option.attente .texte{color:var(--muet)}
+
+/* Photo (Part 1) : image à gauche, phrases entendues à droite */
+.photo{display:grid;grid-template-columns:820px 1fr;gap:30px;align-items:center}
+.photo img{width:820px;height:auto;max-height:600px;object-fit:cover;border:6px solid var(--encre);border-radius:16px;box-shadow:10px 10px 0 var(--encre);display:block}
+.photo .options{gap:12px}
+.photo .option{grid-template-columns:64px 1fr;column-gap:18px;row-gap:2px;font-size:36px;padding:8px 18px;line-height:1.15}
+.photo .option .lettre{width:60px;height:60px;font-size:32px}
+.photo .option .raison{grid-column:2;justify-self:start;font-size:23px;padding:1px 10px;border-width:3px;white-space:normal}
+.photo .option > span:empty{display:none}
 
 /* Récapitulatif */
 ol.etapes{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:18px;counter-reset:n}
@@ -145,7 +158,7 @@ function ecran(e) {
         `<div class="dialogue">${(e.bulles || []).map(bulle).join('')}</div></div>`;
     case 'structure':
       return `${kicker(e)}<div class="fonction"><h2>${esc(e.titre)}</h2>${e.sens ? `<span class="sens">${riche(e.sens)}</span>` : ''}</div>` +
-        `<div class="lignes">${e.lignes.map(l => `<div class="ligne ${l.faible ? 'faible' : ''}"><span class="debut">${esc(l.debut)}</span>` +
+        `<div class="lignes ${e.vocab ? 'vocab' : ''}">${e.lignes.map(l => `<div class="ligne ${l.faible ? 'faible' : ''}"><span class="debut">${esc(l.debut)}</span>` +
           `<span class="suite">${esc(l.suite)}</span><span class="ex">${riche(l.exemple || '')}</span></div>`).join('')}</div>`;
     case 'dialogue':
       return `${kicker(e)}${e.titre ? `<h2>${esc(e.titre)}</h2>` : ''}<div class="dialogue">${e.bulles.map(bulle).join('')}</div>` +
@@ -153,6 +166,8 @@ function ecran(e) {
     case 'question':
       return `${kicker(e)}<div class="ecoute"><span class="casque">${e.lu ? ICONES.texte : ICONES.casque}</span><span>${riche(e.lu || e.entendu)}</span></div>` +
         `<div class="options">${e.options.map(option).join('')}</div>`;
+    case 'photo':
+      return `${kicker(e)}<div class="photo"><img src="images/${esc(e.image)}" alt=""><div class="options">${e.options.map(option).join('')}</div></div>`;
     case 'recap':
       return `${kicker(e)}${e.titre ? `<h2>${esc(e.titre)}</h2>` : ''}<ol class="etapes">${e.etapes.map(x =>
         `<li class="${x.faible ? 'faible' : ''}"><span>${riche(x.texte || x)}</span></li>`).join('')}</ol>`;

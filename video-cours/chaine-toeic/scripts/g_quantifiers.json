@@ -1,0 +1,46 @@
+{
+  "code": "g_quantifiers", "titre": "Quantifiers", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 5", "titre": "Quantifiers", "sous": "much, many, few, little, each, every",
+      "bulles": [{"qui": "A", "texte": "How **many** chairs do we need?"}, {"qui": "B", "texte": "Only **a few**.", "etat": "ok"}]},
+    "deux": {"type": "structure", "kicker": "The key question", "titre": "Can you count the noun?", "lignes": [
+      {"debut": "You can count it", "suite": "plural noun", "exemple": "chairs, emails, employees"},
+      {"debut": "You cannot count it", "suite": "no plural", "exemple": "time, money, information"}]},
+    "table": {"type": "structure", "kicker": "Two families", "titre": "Choose the right family", "lignes": [
+      {"debut": "many / few / a few", "suite": "+ plural noun", "exemple": "**many** emails, **a few** chairs"},
+      {"debut": "much / little / a little", "suite": "+ uncountable", "exemple": "**much** time, **a little** money"},
+      {"debut": "a lot of / some", "suite": "both", "exemple": "**a lot of** emails, **a lot of** time"}]},
+    "each": {"type": "dialogue", "kicker": "The trap", "ton": "jaune", "titre": "each and every: singular noun, singular verb", "bulles": [
+      {"qui": "A", "texte": "Every __employees have__ a badge.", "etiquette": "WRONG", "etat": "ko"},
+      {"qui": "A", "texte": "**Every employee has** a badge.", "etiquette": "CORRECT", "etat": "ok"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "We did not receive ------- **information** about the delay.", "options": [
+      {"lettre": "A", "texte": "many", "etat": "ko", "raison": "many + plural noun"},
+      {"lettre": "B", "texte": "**much**", "etat": "ok", "raison": "information: uncountable"},
+      {"lettre": "C", "texte": "few", "etat": "ko", "raison": "few + plural noun"},
+      {"lettre": "D", "texte": "every", "etat": "ko", "raison": "every + countable singular"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Look at the **noun after** the blank: plural or uncountable?"},
+      {"texte": "**many, few** + plural. **much, little** + uncountable"},
+      {"texte": "__information, advice, equipment, furniture__: never plural"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Quantifiers: much, many, few and little.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "deux", "texte": "The key question is: can you count the noun? Chairs, emails, employees: yes.", "vue": {"faibles": [1]}},
+    {"id": "p03", "ecran": "deux", "texte": "Time, money, information: no. These nouns have no plural.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "table", "texte": "Many, few and a few go with a plural noun: many emails, a few chairs.", "dit": "Many, few, and a few, go with a plural noun: many emails, a few chairs.", "vue": {"faibles": [1, 2]}},
+    {"id": "p05", "ecran": "table", "texte": "Much, little and a little go with an uncountable noun: much time, a little money.", "dit": "Much, little, and a little, go with an uncountable noun: much time, a little money.", "vue": {"faibles": [2]}},
+    {"id": "p06", "ecran": "table", "texte": "A lot of and some go with both.", "dit": "A lot of, and some, go with both.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "each", "texte": "One trap. Each and every take a singular noun and a singular verb.", "dit": "One trap. Each, and every, take a singular noun, and a singular verb.", "vue": {"montre": 1}},
+    {"id": "p08", "ecran": "each", "texte": "We say: every employee has a badge.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "q", "texte": "Now, a TOEIC question. We did not receive, blank, information about the delay.", "vue": {"options": false}},
+    {"id": "p10", "ecran": "q", "texte": "A: many. B: much. C: few. D: every.", "dit": "Answer A. many. Answer B. much. Answer C. few. Answer D. every.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p11", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p12", "ecran": "q", "texte": "Look at the noun after the blank: information. You cannot count it. It never takes an S.", "vue": {"juge": []}},
+    {"id": "p13", "ecran": "q", "texte": "Many and few need a plural noun. Every needs a countable noun.", "dit": "Many, and few, need a plural noun. Every, needs a countable noun.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p14", "ecran": "q", "texte": "B is correct: we did not receive much information about the delay.", "pause_apres": 1.0},
+    {"id": "p15", "ecran": "recap", "texte": "Three steps. One: look at the noun after the blank. Is it plural, or uncountable?", "vue": {"jusqu": 1}},
+    {"id": "p16", "ecran": "recap", "texte": "Two: many and few with a plural. Much and little with an uncountable noun.", "vue": {"jusqu": 2}},
+    {"id": "p17", "ecran": "recap", "texte": "Three: information, advice, equipment and furniture are never plural.", "pause_apres": 0.9},
+    {"id": "p18", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

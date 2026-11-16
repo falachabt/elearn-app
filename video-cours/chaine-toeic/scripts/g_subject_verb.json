@@ -1,0 +1,46 @@
+{
+  "code": "g_subject_verb", "titre": "Subject-verb agreement", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 5", "titre": "Subject-verb agreement", "sous": "Find the real subject",
+      "bulles": [{"qui": "A", "texte": "The list of items __are__ long?"}, {"qui": "B", "texte": "No. The **list** ... **is** long.", "etat": "ok"}]},
+    "idee": {"type": "recap", "kicker": "The rule", "titre": "The verb agrees with the head noun", "etapes": [
+      {"texte": "Singular subject: **is, has, works**"},
+      {"texte": "Plural subject: **are, have, work**"},
+      {"texte": "The TOEIC hides the subject **far from the verb**"}]},
+    "ex1": {"type": "dialogue", "kicker": "Example", "titre": "Cross out the words in the middle", "bulles": [
+      {"qui": "A", "texte": "The **list** __of new items__ **is** on your desk.", "etiquette": "SUBJECT = LIST, SINGULAR", "etat": "ok"},
+      {"qui": "A", "texte": "The **managers** __in the Paris office__ **are** busy.", "etiquette": "SUBJECT = MANAGERS, PLURAL", "etat": "ok"}]},
+    "speciaux": {"type": "structure", "kicker": "Special subjects", "titre": "They look plural, but they are singular", "lignes": [
+      {"debut": "each / every", "suite": "singular", "exemple": "**Each** employee **has** a badge."},
+      {"debut": "everyone, nobody", "suite": "singular", "exemple": "**Everyone is** ready."},
+      {"debut": "news, information", "suite": "singular", "exemple": "The **information is** correct."}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "The **results** of the customer survey ------- very positive.", "options": [
+      {"lettre": "A", "texte": "is", "etat": "ko", "raison": "Singular: agrees with survey"},
+      {"lettre": "B", "texte": "**are**", "etat": "ok", "raison": "Plural: agrees with results"},
+      {"lettre": "C", "texte": "was", "etat": "ko", "raison": "Singular"},
+      {"lettre": "D", "texte": "being", "etat": "ko", "raison": "Not a full verb"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Find the **head noun**, at the start of the subject"},
+      {"texte": "Cross out **of ..., in ..., with ...** between subject and verb"},
+      {"texte": "__each, every, everyone, information__: always singular"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Subject-verb agreement.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "The rule is simple. A singular subject takes a singular verb. A plural subject takes a plural verb.", "vue": {"jusqu": 2}},
+    {"id": "p03", "ecran": "idee", "texte": "But the TOEIC hides the subject far from the verb.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "ex1", "texte": "The list of new items is on your desk. The subject is list, not items. So the verb is singular.", "dit": "The list of new items is on your desk. The subject is list, not items. So the verb is singular.", "vue": {"montre": 1}},
+    {"id": "p05", "ecran": "ex1", "texte": "The managers in the Paris office are busy. The subject is managers. So the verb is plural.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "speciaux", "texte": "Some subjects look plural, but they are singular. Each and every: each employee has a badge.", "dit": "Some subjects look plural, but they are singular. Each, and every: each employee has a badge.", "vue": {"faibles": [1, 2]}},
+    {"id": "p07", "ecran": "speciaux", "texte": "Everyone and nobody: everyone is ready. And news and information: the information is correct.", "dit": "Everyone, and nobody: everyone is ready. And news, and information: the information is correct.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "q", "texte": "Now, a TOEIC question. The results of the customer survey, blank, very positive.", "vue": {"options": false}},
+    {"id": "p09", "ecran": "q", "texte": "A: is. B: are. C: was. D: being.", "dit": "Answer A. is. Answer B. are. Answer C. was. Answer D. being.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p10", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p11", "ecran": "q", "texte": "The word just before the blank is survey, singular. That is the trap. The real subject is results.", "vue": {"juge": []}},
+    {"id": "p12", "ecran": "q", "texte": "Results is plural. So is and was are wrong. And being is not a full verb.", "dit": "Results is plural. So, is, and was, are wrong. And being, is not a full verb.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p13", "ecran": "q", "texte": "B is correct: the results of the customer survey are very positive.", "pause_apres": 1.0},
+    {"id": "p14", "ecran": "recap", "texte": "Three steps. One: find the head noun, at the start of the subject.", "vue": {"jusqu": 1}},
+    {"id": "p15", "ecran": "recap", "texte": "Two: cross out the words between the subject and the verb.", "vue": {"jusqu": 2}},
+    {"id": "p16", "ecran": "recap", "texte": "Three: each, every, everyone and information are always singular.", "pause_apres": 0.9},
+    {"id": "p17", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

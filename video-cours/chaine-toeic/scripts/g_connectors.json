@@ -1,0 +1,49 @@
+{
+  "code": "g_connectors", "titre": "Connectors", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 5, 6 and 7", "titre": "Connectors", "sous": "although, despite, unless, in case",
+      "bulles": [{"qui": "A", "texte": "Was the launch a success?"}, {"qui": "B", "texte": "Yes, **although** it rained all day.", "etat": "ok"}]},
+    "sens": {"type": "structure", "kicker": "The meaning", "titre": "What is the link between the two ideas?", "lignes": [
+      {"debut": "although, despite", "suite": "contrast", "exemple": "**Although** it rained, we went."},
+      {"debut": "because, due to", "suite": "reason", "exemple": "Late **because of** the traffic."},
+      {"debut": "unless", "suite": "if ... not", "exemple": "**Unless** you call, I will wait."},
+      {"debut": "in case", "suite": "precaution", "exemple": "Take a map **in case** you get lost."}]},
+    "forme": {"type": "dialogue", "kicker": "The big trap", "ton": "jaune", "titre": "Same meaning, different grammar", "bulles": [
+      {"qui": "A", "texte": "**Although** __the weather was bad__, we went.", "etiquette": "ALTHOUGH + SUBJECT + VERB", "etat": "ok"},
+      {"qui": "A", "texte": "**Despite** __the bad weather__, we went.", "etiquette": "DESPITE + NOUN", "etat": "ok"}]},
+    "paires": {"type": "structure", "kicker": "Pairs to know", "titre": "Clause or noun after the blank?", "lignes": [
+      {"debut": "although", "suite": "+ clause", "exemple": "despite / in spite of **+ noun**"},
+      {"debut": "because", "suite": "+ clause", "exemple": "because of / due to **+ noun**"},
+      {"debut": "while", "suite": "+ clause", "exemple": "during **+ noun**"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "------- the delay, the project was finished on time.", "options": [
+      {"lettre": "A", "texte": "Although", "etat": "ko", "raison": "Needs subject + verb"},
+      {"lettre": "B", "texte": "**Despite**", "etat": "ok", "raison": "Contrast + noun"},
+      {"lettre": "C", "texte": "Because", "etat": "ko", "raison": "Needs subject + verb"},
+      {"lettre": "D", "texte": "Unless", "etat": "ko", "raison": "Needs subject + verb"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Find the **link**: contrast, reason, or condition?"},
+      {"texte": "Look after the blank: a **clause**, or only a **noun**?"},
+      {"texte": "__although, because, while__ + clause. __despite, because of, during__ + noun"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Connectors.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "sens", "texte": "A connector links two ideas. Although and despite show a contrast: although it rained, we went.", "dit": "A connector links two ideas. Although, and despite, show a contrast: although it rained, we went.", "vue": {"faibles": [1, 2, 3]}},
+    {"id": "p03", "ecran": "sens", "texte": "Because and due to give a reason.", "dit": "Because, and due to, give a reason.", "vue": {"faibles": [2, 3]}},
+    {"id": "p04", "ecran": "sens", "texte": "Unless means if not: unless you call, I will wait. And in case is a precaution.", "dit": "Unless, means if not: unless you call, I will wait. And, in case, is a precaution.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "forme", "texte": "Now, the big trap. Two connectors can have the same meaning, but a different grammar.", "vue": {"montre": 0}},
+    {"id": "p06", "ecran": "forme", "texte": "Although is followed by a subject and a verb: although the weather was bad.", "dit": "Although, is followed by a subject and a verb: although the weather was bad.", "vue": {"montre": 1}},
+    {"id": "p07", "ecran": "forme", "texte": "Despite is followed by a noun only: despite the bad weather.", "dit": "Despite, is followed by a noun only: despite the bad weather.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "paires", "texte": "Learn these pairs. Although, because and while take a clause.", "dit": "Learn these pairs. Although, because, and while, take a clause.", "vue": {"faibles": []}},
+    {"id": "p09", "ecran": "paires", "texte": "Despite, because of and during take a noun.", "dit": "Despite, because of, and during, take a noun.", "pause_apres": 1.0},
+    {"id": "p10", "ecran": "q", "texte": "Now, a TOEIC question. Blank, the delay, the project was finished on time.", "vue": {"options": false}},
+    {"id": "p11", "ecran": "q", "texte": "A: Although. B: Despite. C: Because. D: Unless.", "dit": "Answer A. Although. Answer B. Despite. Answer C. Because. Answer D. Unless.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p12", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p13", "ecran": "q", "texte": "Look after the blank: the delay. It is only a noun. There is no verb.", "vue": {"juge": []}},
+    {"id": "p14", "ecran": "q", "texte": "Although, because and unless all need a subject and a verb. So they are wrong.", "dit": "Although, because, and unless, all need a subject and a verb. So they are wrong.", "vue": {"juge": ["A", "C", "D"]}},
+    {"id": "p15", "ecran": "q", "texte": "B is correct: despite the delay, the project was finished on time.", "pause_apres": 1.0},
+    {"id": "p16", "ecran": "recap", "texte": "Three steps. One: find the link: contrast, reason, or condition?", "vue": {"jusqu": 1}},
+    {"id": "p17", "ecran": "recap", "texte": "Two: look after the blank. Is it a clause, or only a noun?", "vue": {"jusqu": 2}},
+    {"id": "p18", "ecran": "recap", "texte": "Three: although, because and while take a clause. Despite, because of and during take a noun.", "pause_apres": 0.9},
+    {"id": "p19", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

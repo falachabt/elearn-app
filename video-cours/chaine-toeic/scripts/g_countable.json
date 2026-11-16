@@ -1,0 +1,47 @@
+{
+  "code": "g_countable", "titre": "Countable nouns and articles", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 5 and 6", "titre": "Countable nouns and articles", "sous": "a, an, the, or nothing",
+      "bulles": [{"qui": "A", "texte": "I need __an information__."}, {"qui": "B", "texte": "You need **some information**.", "etat": "ok"}]},
+    "deux": {"type": "structure", "kicker": "Two kinds of nouns", "titre": "Countable or uncountable?", "lignes": [
+      {"debut": "countable", "suite": "a / an, plural", "exemple": "**a** report, two report**s**"},
+      {"debut": "uncountable", "suite": "no a, no plural", "exemple": "advice, equipment, luggage"}]},
+    "liste": {"type": "structure", "kicker": "The TOEIC list", "titre": "Uncountable in English", "lignes": [
+      {"debut": "information", "suite": "a piece of", "exemple": "**a piece of** information"},
+      {"debut": "advice", "suite": "a piece of", "exemple": "**some** advice"},
+      {"debut": "equipment", "suite": "a piece of", "exemple": "new **equipment**"},
+      {"debut": "furniture, luggage", "suite": "some", "exemple": "office **furniture**"}]},
+    "articles": {"type": "structure", "kicker": "Articles", "titre": "a, an, or the?", "lignes": [
+      {"debut": "a / an", "suite": "one, not specific", "exemple": "We hired **a** new manager."},
+      {"debut": "the", "suite": "specific, known", "exemple": "**The** manager starts Monday."},
+      {"debut": "no article", "suite": "in general", "exemple": "**Customers** like fast service."}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "The store sells office ------- at low prices.", "options": [
+      {"lettre": "A", "texte": "a furniture", "etat": "ko", "raison": "No a: uncountable"},
+      {"lettre": "B", "texte": "furnitures", "etat": "ko", "raison": "No plural"},
+      {"lettre": "C", "texte": "**furniture**", "etat": "ok", "raison": "Uncountable: no a, no s"},
+      {"lettre": "D", "texte": "furnish", "etat": "ko", "raison": "A verb"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "**information, advice, equipment, furniture, luggage**: uncountable"},
+      {"texte": "Uncountable: no **a**, no **s**, singular verb"},
+      {"texte": "__a__ = one of many. __the__ = the one we know"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Countable nouns and articles.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "deux", "texte": "English has two kinds of nouns. Countable nouns take a or an, and they have a plural: a report, two reports.", "dit": "English has two kinds of nouns. Countable nouns take a, or an, and they have a plural: a report, two reports.", "vue": {"faibles": [1]}},
+    {"id": "p03", "ecran": "deux", "texte": "Uncountable nouns have no a, and no plural: advice, equipment, luggage.", "dit": "Uncountable nouns have no a, and no plural: advice, equipment, luggage.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "liste", "texte": "Here is the TOEIC list. Information and advice are uncountable. We say: some advice, a piece of information.", "dit": "Here is the TOEIC list. Information, and advice, are uncountable. We say: some advice, a piece of information.", "vue": {"faibles": [2, 3]}},
+    {"id": "p05", "ecran": "liste", "texte": "Equipment, furniture and luggage are uncountable too.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "articles", "texte": "Now, the articles. A or an means one, not a specific one: we hired a new manager.", "dit": "Now, the articles. A, or an, means one, not a specific one: we hired a new manager.", "vue": {"faibles": [1, 2]}},
+    {"id": "p07", "ecran": "articles", "texte": "The means a specific one that we know: the manager starts Monday.", "dit": "The, means a specific one that we know: the manager starts Monday.", "vue": {"faibles": [2]}},
+    {"id": "p08", "ecran": "articles", "texte": "And for things in general, no article: customers like fast service.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "q", "texte": "Now, a TOEIC question. The store sells office, blank, at low prices.", "vue": {"options": false}},
+    {"id": "p10", "ecran": "q", "texte": "A: a furniture. B: furnitures. C: furniture. D: furnish.", "dit": "Answer A. a furniture. Answer B. furnitures, with an S. Answer C. furniture. Answer D. furnish.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p11", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p12", "ecran": "q", "texte": "Furniture is uncountable. So it takes no a, and no S. And furnish is a verb.", "dit": "Furniture is uncountable. So it takes no a, and no S. And furnish, is a verb.", "vue": {"juge": ["A", "B", "D"]}},
+    {"id": "p13", "ecran": "q", "texte": "C is correct: the store sells office furniture at low prices.", "pause_apres": 1.0},
+    {"id": "p14", "ecran": "recap", "texte": "Three steps. One: learn the list: information, advice, equipment, furniture, luggage.", "vue": {"jusqu": 1}},
+    {"id": "p15", "ecran": "recap", "texte": "Two: an uncountable noun takes no a, no S, and a singular verb.", "vue": {"jusqu": 2}},
+    {"id": "p16", "ecran": "recap", "texte": "Three: a means one of many. The means the one we know.", "dit": "Three: a, means one of many. The, means the one we know.", "pause_apres": 0.9},
+    {"id": "p17", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "code": "g_conditionals", "titre": "Conditionals: types 1 and 2", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Parts 3, 4 and 5", "titre": "Conditionals: types 1 and 2", "sous": "If + present, will. If + past, would.",
+      "bulles": [{"qui": "A", "texte": "**If** the train **is** late?"}, {"qui": "B", "texte": "We **will take** a taxi.", "etat": "ok"}]},
+    "types": {"type": "structure", "kicker": "Two types", "titre": "Real or imaginary?", "lignes": [
+      {"debut": "Type 1: possible", "suite": "If + present", "exemple": "then **will** + verb"},
+      {"debut": "Type 2: imaginary", "suite": "If + past", "exemple": "then **would** + verb"}]},
+    "ex1": {"type": "dialogue", "kicker": "Type 1 · a real possibility", "bulles": [
+      {"qui": "A", "texte": "**If** the train **is** late,", "etiquette": "IF + PRESENT"},
+      {"qui": "A", "texte": "we **will take** a taxi.", "etiquette": "WILL + VERB", "etat": "ok"}],
+      "aparte": {"texte": "It can really happen today."}},
+    "ex2": {"type": "dialogue", "kicker": "Type 2 · an imaginary situation", "bulles": [
+      {"qui": "B", "texte": "**If** I **had** more time,", "etiquette": "IF + PAST"},
+      {"qui": "B", "texte": "I **would learn** Spanish.", "etiquette": "WOULD + VERB", "etat": "ok"}],
+      "aparte": {"texte": "But I do not have more time."}},
+    "piege": {"type": "dialogue", "kicker": "The big trap", "ton": "jaune", "titre": "Never will or would after if", "bulles": [
+      {"qui": "A", "texte": "If the train __will be__ late, ...", "etiquette": "WRONG", "etat": "ko"},
+      {"qui": "A", "texte": "If the train **is** late, ...", "etiquette": "CORRECT", "etat": "ok"}]},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "If the client ------- the offer, we **will sign** on Friday.", "options": [
+      {"lettre": "A", "texte": "**accepts**", "etat": "ok", "raison": "If + present, will"},
+      {"lettre": "B", "texte": "will accept", "etat": "ko", "raison": "No will after if"},
+      {"lettre": "C", "texte": "accepted", "etat": "ko", "raison": "Past goes with would"},
+      {"lettre": "D", "texte": "accepting", "etat": "ko", "raison": "Not a full verb"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Find the verb in the **other half** of the sentence"},
+      {"texte": "**will** goes with if + present, **would** with if + past"},
+      {"texte": "Never __will__ or __would__ just after if"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Conditionals: types one and two.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "types", "texte": "A conditional sentence has two halves: the condition with if, and the result.", "vue": {"faibles": [0, 1]}},
+    {"id": "p03", "ecran": "types", "texte": "Type one is a real possibility: if plus present, then will.", "vue": {"faibles": [1]}},
+    {"id": "p04", "ecran": "types", "texte": "Type two is an imaginary situation: if plus past, then would.", "pause_apres": 1.0},
+    {"id": "p05", "ecran": "ex1", "texte": "Type one. If the train is late, we will take a taxi.", "vue": {"aparte": false}},
+    {"id": "p06", "ecran": "ex1", "texte": "It can really happen today. So we use the present after if, and will in the result.", "pause_apres": 1.0},
+    {"id": "p07", "ecran": "ex2", "texte": "Type two. If I had more time, I would learn Spanish.", "vue": {"aparte": false}},
+    {"id": "p08", "ecran": "ex2", "texte": "But I do not have more time. It is only an idea. So we use the past after if, and would in the result.", "pause_apres": 1.0},
+    {"id": "p09", "ecran": "piege", "texte": "Now, the big trap. We never put will or would just after if.", "dit": "Now, the big trap. We never put will, or would, just after if.", "vue": {"montre": 1}},
+    {"id": "p10", "ecran": "piege", "texte": "If the train will be late is wrong. We say: if the train is late.", "dit": "If the train will be late, is wrong. We say: if the train is late.", "pause_apres": 1.0},
+    {"id": "p11", "ecran": "q", "texte": "Now, a TOEIC question from Part 5. If the client, blank, the offer, we will sign on Friday.", "dit": "Now, a TOEIC question from Part five. If the client, blank, the offer, we will sign on Friday.", "vue": {"options": false}},
+    {"id": "p12", "ecran": "q", "texte": "A: accepts. B: will accept. C: accepted. D: accepting.", "dit": "Answer A. accepts. Answer B. will accept. Answer C. accepted. Answer D. accepting.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p13", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p14", "ecran": "q", "texte": "Look at the other half of the sentence: we will sign. Will tells you it is type one.", "dit": "Look at the other half of the sentence: we will sign. Will, tells you it is type one.", "vue": {"juge": []}},
+    {"id": "p15", "ecran": "q", "texte": "B is wrong: no will after if. C is wrong: the past goes with would.", "vue": {"juge": ["B", "C"]}},
+    {"id": "p16", "ecran": "q", "texte": "D is not a full verb. So A is correct: if the client accepts the offer, we will sign on Friday.", "pause_apres": 1.0},
+    {"id": "p17", "ecran": "recap", "texte": "Remember three steps. One: find the verb in the other half of the sentence.", "vue": {"jusqu": 1}},
+    {"id": "p18", "ecran": "recap", "texte": "Two: will goes with if plus present. Would goes with if plus past.", "vue": {"jusqu": 2}},
+    {"id": "p19", "ecran": "recap", "texte": "Three: never will or would just after if.", "pause_apres": 0.9},
+    {"id": "p20", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

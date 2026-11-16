@@ -1,0 +1,46 @@
+{
+  "code": "g_conditional_hypothetical", "titre": "Conditionals 2 and 3", "partie": "TOEIC · Part 5",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 5", "titre": "Conditionals 2 and 3", "sous": "Imaginary situations and regrets",
+      "bulles": [{"qui": "A", "texte": "We missed the deadline."}, {"qui": "B", "texte": "**If** we **had started** earlier, we **would have finished**.", "etat": "ok"}]},
+    "deux": {"type": "structure", "kicker": "Two types", "titre": "Imaginary now, or imaginary past?", "lignes": [
+      {"debut": "Type 2: now", "suite": "If + past", "exemple": "**would** + verb"},
+      {"debut": "Type 3: past", "suite": "If + had done", "exemple": "**would have** + participle"}]},
+    "ex2": {"type": "dialogue", "kicker": "Type 2 · imaginary present", "bulles": [
+      {"qui": "A", "texte": "**If** we **had** a bigger budget,", "etiquette": "IF + PAST"},
+      {"qui": "A", "texte": "we **would hire** more staff.", "etiquette": "WOULD + VERB", "etat": "ok"}],
+      "aparte": {"texte": "But we do not have a bigger budget now."}},
+    "ex3": {"type": "dialogue", "kicker": "Type 3 · a regret about the past", "bulles": [
+      {"qui": "B", "texte": "**If** we **had started** earlier,", "etiquette": "IF + HAD + PARTICIPLE"},
+      {"qui": "B", "texte": "we **would have finished** on time.", "etiquette": "WOULD HAVE + PARTICIPLE", "etat": "ok"}],
+      "aparte": {"texte": "But we did not start earlier. It is too late."}},
+    "q": {"type": "question", "kicker": "TOEIC question · Part 5", "lu": "If she **had known** about the delay, she ------- a taxi.", "options": [
+      {"lettre": "A", "texte": "will take", "etat": "ko", "raison": "Type 1"},
+      {"lettre": "B", "texte": "would take", "etat": "ko", "raison": "Type 2: goes with if + past"},
+      {"lettre": "C", "texte": "**would have taken**", "etat": "ok", "raison": "had known = type 3"},
+      {"lettre": "D", "texte": "had taken", "etat": "ko", "raison": "No would"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Read the **if half** first"},
+      {"texte": "if + past: **would + verb**. if + had done: **would have done**"},
+      {"texte": "Formal English: __If I were you__, not if I was you"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Conditionals two and three.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "deux", "texte": "These two types talk about situations that are not real. Type two is imaginary now: if plus past, then would.", "vue": {"faibles": [1]}},
+    {"id": "p03", "ecran": "deux", "texte": "Type three is imaginary in the past: if plus had done, then would have done.", "pause_apres": 1.0},
+    {"id": "p04", "ecran": "ex2", "texte": "Type two. If we had a bigger budget, we would hire more staff.", "vue": {"aparte": false}},
+    {"id": "p05", "ecran": "ex2", "texte": "But we do not have a bigger budget now. It is only an idea.", "pause_apres": 1.0},
+    {"id": "p06", "ecran": "ex3", "texte": "Type three. If we had started earlier, we would have finished on time.", "vue": {"aparte": false}},
+    {"id": "p07", "ecran": "ex3", "texte": "But we did not start earlier. It is a regret. It is too late.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "q", "texte": "Now, a TOEIC question. If she had known about the delay, she, blank, a taxi.", "vue": {"options": false}},
+    {"id": "p09", "ecran": "q", "texte": "A: will take. B: would take. C: would have taken. D: had taken.", "dit": "Answer A. will take. Answer B. would take. Answer C. would have taken. Answer D. had taken.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p10", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p11", "ecran": "q", "texte": "Read the if half first: if she had known. Had, plus a participle, means type three.", "dit": "Read the if half first: if she had known. Had, plus a participle, means type three.", "vue": {"juge": []}},
+    {"id": "p12", "ecran": "q", "texte": "Will take is type one. Would take is type two. And D has no would.", "dit": "Will take, is type one. Would take, is type two. And D has no would.", "vue": {"juge": ["A", "B", "D"]}},
+    {"id": "p13", "ecran": "q", "texte": "C is correct: if she had known about the delay, she would have taken a taxi.", "pause_apres": 1.0},
+    {"id": "p14", "ecran": "recap", "texte": "Three steps. One: read the if half first.", "vue": {"jusqu": 1}},
+    {"id": "p15", "ecran": "recap", "texte": "Two: if plus past, would plus verb. If plus had done, would have done.", "vue": {"jusqu": 2}},
+    {"id": "p16", "ecran": "recap", "texte": "Three: in formal English, we say: if I were you.", "pause_apres": 0.9},
+    {"id": "p17", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}
