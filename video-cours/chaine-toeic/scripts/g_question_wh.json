@@ -1,0 +1,63 @@
+{
+  "code": "g_question_wh",
+  "titre": "Question words",
+  "partie": "TOEIC · Part 2",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 2", "titre": "Question words", "sous": "Who, When, Where, Why, How",
+      "bulles": [{"qui": "A", "texte": "**When** does the store open?"}, {"qui": "B", "texte": "At nine.", "etat": "ok"}]},
+    "idee": {"type": "recap", "kicker": "The key idea", "titre": "The first word tells you the answer", "etapes": [
+      {"texte": "Listen to the **first word** of the question"},
+      {"texte": "It tells you the **type of answer** you need"}]},
+    "mots": {"type": "structure", "kicker": "Question words", "titre": "Each word wants one type of answer", "lignes": [
+      {"debut": "Who", "suite": "a person", "exemple": "**Ms. Lee**, the manager."},
+      {"debut": "When", "suite": "a time", "exemple": "**At nine.** On Monday."},
+      {"debut": "Where", "suite": "a place", "exemple": "**In room 4.** Downstairs."},
+      {"debut": "Why", "suite": "a reason", "exemple": "**Because** it was late."}]},
+    "how": {"type": "structure", "kicker": "Question words", "titre": "How changes with the next word", "lignes": [
+      {"debut": "How", "suite": "a way", "exemple": "**By train.** By email."},
+      {"debut": "How long", "suite": "a duration", "exemple": "**About an hour.**"},
+      {"debut": "How much", "suite": "a price", "exemple": "**Twenty dollars.**"},
+      {"debut": "How often", "suite": "a frequency", "exemple": "**Twice a week.**"}]},
+    "ex1": {"type": "dialogue", "kicker": "Example 1", "bulles": [
+      {"qui": "A", "texte": "**How long** will the meeting take?", "etiquette": "DURATION"},
+      {"qui": "B", "texte": "**About an hour.**", "etiquette": "A DURATION", "etat": "ok"},
+      {"qui": "B", "texte": "__In the conference room.__", "etiquette": "A PLACE", "etat": "ko"}]},
+    "q": {"type": "question", "kicker": "TOEIC question", "entendu": "**Where** did you put the invoices?", "options": [
+      {"lettre": "A", "texte": "__Yesterday__ afternoon.", "etat": "ko", "raison": "A time, not a place"},
+      {"lettre": "B", "texte": "**On your desk.**", "etat": "ok", "raison": "A place"},
+      {"lettre": "C", "texte": "__Yes__, I did.", "etat": "ko", "raison": "Never yes or no"}]},
+    "piege": {"type": "dialogue", "kicker": "The trap", "ton": "jaune", "bulles": [
+      {"qui": "A", "texte": "**Why** is the office closed?", "etiquette": "REASON"},
+      {"qui": "B", "texte": "__At noon.__", "etiquette": "A TIME", "etat": "ko"},
+      {"qui": "B", "texte": "**It's a public holiday.**", "etiquette": "A REASON, WITHOUT BECAUSE", "etat": "ok"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "Catch the **first word**: who, when, where, why, how"},
+      {"texte": "Decide the **type of answer** before you listen to A, B, C"},
+      {"texte": "Never choose __Yes__ or __No__ for these questions"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Question words: who, when, where, why and how.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "In Part 2, the first word of the question is the most important word.", "vue": {"jusqu": 1}},
+    {"id": "p03", "ecran": "idee", "texte": "It tells you the type of answer you need.", "pause_apres": 0.9},
+    {"id": "p04", "ecran": "mots", "texte": "Who wants a person. When wants a time.", "dit": "Who, wants a person. When, wants a time.", "vue": {"faibles": [2, 3]}},
+    {"id": "p05", "ecran": "mots", "texte": "Where wants a place. Why wants a reason.", "dit": "Where, wants a place. Why, wants a reason.", "pause_apres": 0.9},
+    {"id": "p06", "ecran": "how", "texte": "How wants a way of doing something: by train, by email.", "dit": "How, wants a way of doing something: by train, by email.", "vue": {"faibles": [1, 2, 3]}},
+    {"id": "p07", "ecran": "how", "texte": "But listen to the next word. How long wants a duration. How much wants a price. How often wants a frequency.", "dit": "But listen to the next word. How long, wants a duration. How much, wants a price. How often, wants a frequency.", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "ex1", "texte": "Look at this example. How long will the meeting take?", "vue": {"montre": 1}},
+    {"id": "p09", "ecran": "ex1", "texte": "How long wants a duration. So: About an hour.", "dit": "How long, wants a duration. So: About an hour.", "vue": {"montre": 2}},
+    {"id": "p10", "ecran": "ex1", "texte": "In the conference room is a place. It answers where, not how long.", "dit": "In the conference room, is a place. It answers where, not how long.", "pause_apres": 1.0},
+    {"id": "p11", "ecran": "q", "texte": "Now, a TOEIC question. You hear: Where did you put the invoices?", "vue": {"options": false}},
+    {"id": "p12", "ecran": "q", "texte": "A: Yesterday afternoon. B: On your desk. C: Yes, I did.", "dit": "Answer A. Yesterday afternoon. Answer B. On your desk. Answer C. Yes, I did.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p13", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p14", "ecran": "q", "texte": "The first word is where. You need a place.", "dit": "The first word is, where. You need a place.", "vue": {"juge": []}},
+    {"id": "p15", "ecran": "q", "texte": "A is a time. It answers when.", "dit": "Answer A is a time. It answers, when.", "vue": {"juge": ["A"]}},
+    {"id": "p16", "ecran": "q", "texte": "C says yes. But you can never answer a where question with yes or no.", "dit": "Answer C says yes. But you can never answer a where question with yes, or no.", "vue": {"juge": ["A", "C"]}},
+    {"id": "p17", "ecran": "q", "texte": "B is correct. On your desk is a place.", "dit": "Answer B is correct. On your desk, is a place.", "pause_apres": 1.0},
+    {"id": "p18", "ecran": "piege", "texte": "One trap. Why is the office closed? At noon is a time, so it is wrong.", "dit": "One trap. Why is the office closed? At noon, is a time, so it is wrong.", "vue": {"montre": 2}},
+    {"id": "p19", "ecran": "piege", "texte": "The correct answer gives a reason, but often without the word because: It's a public holiday.", "pause_apres": 1.0},
+    {"id": "p20", "ecran": "recap", "texte": "Remember three steps. One: catch the first word.", "vue": {"jusqu": 1}},
+    {"id": "p21", "ecran": "recap", "texte": "Two: decide the type of answer before you listen to the three answers.", "vue": {"jusqu": 2}},
+    {"id": "p22", "ecran": "recap", "texte": "Three: never choose yes or no for these questions.", "pause_apres": 0.9},
+    {"id": "p23", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

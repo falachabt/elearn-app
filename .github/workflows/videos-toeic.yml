@@ -1,0 +1,120 @@
+# Vidéos explicatives TOEIC (en anglais), une par notion : voix OmniVoice sur CPU, capture Chromium, montage ffmpeg,
+# envoi sur R2 (bucket elearnprepa-public, dossier toeic/videos/<code>/). Aucune écriture en base, aucune OTA.
+# Reprise : une notion dont meta.json est déjà sur R2 est sautée, sauf si « forcer » est coché.
+name: Vidéos TOEIC
+
+on:
+  push:
+    branches: [claude/videos-toeic]
+    paths:
+      - "video-cours/chaine-toeic/**"
+      - ".github/workflows/videos-toeic.yml"
+  workflow_dispatch:
+    inputs:
+      codes:
+        description: "Codes de notions séparés par des virgules (vide = tous les scripts)"
+        required: false
+        default: ""
+        type: string
+      forcer:
+        description: "Refaire même si la vidéo est déjà sur R2"
+        default: false
+        type: boolean
+
+concurrency:
+  group: videos-toeic
+  cancel-in-progress: false
+
+env:
+  BASE_PUBLIQUE: https://pub-b05c9f45ef884ab2aa345a5763751590.r2.dev
+
+jobs:
+  plan:
+    name: Notions à produire
+    runs-on: ubuntu-latest
+    outputs:
+      matrice: ${{ steps.p.outputs.matrice }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        env:
+          CODES: ${{ inputs.codes }}
+          FORCER: ${{ inputs.forcer }}
+        run: |
+          [[ -z "$CODES" || "$CODES" =~ ^[a-z0-9_,]+$ ]] || { echo "codes invalides"; exit 1; }
+          if [ -n "$CODES" ]; then
+            LISTE=$(echo "$CODES" | tr ',' '\n')
+          else
+            LISTE=$(ls video-cours/chaine-toeic/scripts/*.json | xargs -n1 basename | sed 's/\.json$//')
+          fi
+          A_FAIRE=()
+          for c in $LISTE; do
+            [ -f "video-cours/chaine-toeic/scripts/$c.json" ] || { echo "script absent : $c"; exit 1; }
+            if [ "$FORCER" != "true" ] && curl -sfI "$BASE_PUBLIQUE/toeic/videos/$c/meta.json" > /dev/null; then
+              echo "déjà publié : $c"
+            else
+              A_FAIRE+=("$c")
+            fi
+          done
+          python3 -c "import json,sys; print('matrice=' + json.dumps(sys.argv[1:]))" "${A_FAIRE[@]}" >> "$GITHUB_OUTPUT"
+          echo "à produire : ${A_FAIRE[*]}" >> "$GITHUB_STEP_SUMMARY"
+
+  video:
+    name: ${{ matrix.code }}
+    needs: plan
+    if: needs.plan.outputs.matrice != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        code: ${{ fromJson(needs.plan.outputs.matrice) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: toeic-audio/requirements-voix.txt
+      - name: Cache du modèle OmniVoice
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: omnivoice-k2-fsa-v1
+      - name: Installer dépendances et ffmpeg
+        run: |
+          pip install -r toeic-audio/requirements-voix.txt
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Voix
+        env:
+          HF_HUB_DISABLE_XET: "1"
+          CHAINE_TRAVAIL: ${{ runner.temp }}/chaine-toeic
+          CODE: ${{ matrix.code }}
+        run: python video-cours/chaine-toeic/lancer_toeic.py voix "$CODE"
+      - name: Montage
+        env:
+          CHAINE_TRAVAIL: ${{ runner.temp }}/chaine-toeic
+          CHAINE_SANS_BAC: "1"
+          CODE: ${{ matrix.code }}
+        run: |
+          export CHAINE_CHROME="$(command -v google-chrome)"
+          python video-cours/chaine-toeic/lancer_toeic.py monter "$CODE"
+      - name: Envoi sur R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_PUBLIC_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_PUBLIC_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2_ENDPOINT: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+          CODE: ${{ matrix.code }}
+        run: python video-cours/chaine-toeic/lancer_toeic.py publier "$CODE"
+      - name: Artefact de secours
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-toeic-${{ matrix.code }}
+          path: |
+            video-cours/chaine-toeic/sorties/${{ matrix.code }}/notion-*-720.mp4
+            video-cours/chaine-toeic/sorties/${{ matrix.code }}/miniature.jpg
+          retention-days: 14
+          if-no-files-found: ignore

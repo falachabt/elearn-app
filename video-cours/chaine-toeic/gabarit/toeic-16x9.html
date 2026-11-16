@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Gabarit 16:9 des vidéos explicatives TOEIC (en anglais). Même design que lecon-16x9.html (néo-brutal doux),
+     sans KaTeX : écrans de dialogue, de structure de phrase, de question TOEIC décortiquée et de récapitulatif.
+     Les données viennent de rendu.js (window.DONNEES) ; l'écran affiché est ?i=<index du sous-titre>. -->
+<style>
+@font-face{font-family:"Archivo Black";src:url(fontsource/archivo-black/files/archivo-black-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-weight:500;src:url(fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-weight:700;src:url(fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2) format("woff2")}
+:root{--fond:#FFF7E3;--encre:#0A0A0A;--carte:#FFFFFF;--marque:#10B981;--vert-doux:#C9F2E1;--jaune:#FFD83D;--jaune-doux:#FFF1B8;--corail:#FF8A7A;--corail-doux:#FFD9D2;--bleu:#9CC4FF;--orange:#FFB86B;--muet:#5B5B55}
+*{box-sizing:border-box}
+html,body{margin:0;width:1920px;height:1080px;background:var(--fond)}
+#cadre{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--fond);color:var(--encre);font-family:"Space Grotesk",sans-serif}
+header{position:absolute;top:34px;left:96px;right:96px;display:flex;align-items:center;gap:20px}
+header img{width:60px;height:60px;border:5px solid var(--encre);border-radius:14px;background:var(--marque);padding:7px}
+header .marque{font-family:"Archivo Black";font-size:32px;letter-spacing:-.5px}
+header .partie{margin-left:auto;font-weight:700;font-size:26px;border:4px solid var(--encre);border-radius:10px;padding:4px 16px;background:var(--carte)}
+#progres{position:absolute;top:112px;left:96px;right:96px;height:14px;border:4px solid var(--encre);border-radius:10px;background:var(--carte);overflow:hidden}
+#progres div{height:100%;width:0;background:var(--marque)}
+#scene{position:absolute;top:150px;left:96px;right:96px;height:726px;display:flex;flex-direction:column;justify-content:center;gap:22px}
+#sous{position:absolute;left:96px;right:96px;bottom:24px;min-height:150px;display:flex;align-items:center;background:var(--jaune);border:6px solid var(--encre);border-radius:16px;box-shadow:10px 10px 0 var(--encre);padding:20px 40px;font-size:42px;font-weight:700;line-height:1.25}
+#cadre.deborde{outline:14px solid #E11D48;outline-offset:-14px}
+
+.kicker{display:inline-block;align-self:flex-start;font-weight:700;font-size:30px;border:4px solid var(--encre);border-radius:10px;padding:6px 18px;background:var(--marque)}
+.kicker.jaune{background:var(--jaune)}
+.kicker.corail{background:var(--corail)}
+h1{font-family:"Archivo Black";font-weight:400;font-size:104px;line-height:1.02;margin:0;letter-spacing:-1.5px}
+h2{font-family:"Archivo Black";font-weight:400;font-size:60px;line-height:1.08;margin:0;letter-spacing:-1px}
+.sous-titre{font-size:42px;margin:0;color:var(--muet);font-weight:500}
+mark{background:var(--marque);color:var(--encre);border-radius:8px;padding:0 10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+mark.j{background:var(--jaune)}
+.carte{background:var(--carte);border:6px solid var(--encre);border-radius:16px;box-shadow:10px 10px 0 var(--encre);padding:26px 36px}
+.puces{display:flex;gap:18px;flex-wrap:wrap}
+.puce{font-weight:700;font-size:40px;border:5px solid var(--encre);border-radius:12px;padding:10px 24px;background:var(--carte);box-shadow:6px 6px 0 var(--encre)}
+
+/* Titre : deux colonnes, la figure signature (deux bulles) à droite */
+.titre{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
+.titre .col{display:flex;flex-direction:column;gap:24px}
+
+/* Structure de phrase : étiquette de fonction + lignes « début | suite | exemple » */
+.fonction{display:flex;align-items:center;gap:22px}
+.fonction .sens{font-size:44px;font-weight:700}
+.lignes{display:flex;flex-direction:column;gap:16px}
+.ligne{display:grid;grid-template-columns:660px 300px 1fr;align-items:center;gap:22px;background:var(--carte);border:6px solid var(--encre);border-radius:16px;box-shadow:8px 8px 0 var(--encre);padding:16px 28px}
+.ligne .debut{font-family:"Archivo Black";font-size:52px;letter-spacing:-.5px}
+.ligne .suite{font-size:40px;font-weight:700;background:var(--jaune);border:4px solid var(--encre);border-radius:10px;padding:4px 14px;justify-self:start}
+.ligne .ex{font-size:38px;font-weight:500;color:var(--muet)}
+.ligne.faible{opacity:.28}
+
+/* Dialogue : bulles A (gauche) et B (droite), étiquette et verdict */
+.dialogue{display:flex;flex-direction:column;gap:20px}
+.rang{display:flex;align-items:flex-start;gap:22px}
+.rang.b{flex-direction:row-reverse}
+.avatar{flex:0 0 96px;width:96px;height:96px;border:5px solid var(--encre);border-radius:14px;background:var(--bleu);display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.rang.b .avatar{background:var(--orange)}
+.avatar svg{width:78px;height:78px}
+.bulle{position:relative;max-width:1180px;background:var(--carte);border:6px solid var(--encre);border-radius:18px;box-shadow:8px 8px 0 var(--encre);padding:18px 30px;font-size:54px;font-weight:700;line-height:1.18}
+.bulle.ok{background:var(--vert-doux)}
+.bulle.ko{background:var(--corail-doux)}
+.bulle .etiq{position:absolute;top:-26px;left:24px;font-size:26px;font-weight:700;border:4px solid var(--encre);border-radius:10px;padding:2px 14px;background:var(--jaune);white-space:nowrap}
+.rang.b .bulle .etiq{left:auto;right:24px}
+.bulle.ok .etiq{background:var(--marque)}
+.bulle.ko .etiq{background:var(--corail)}
+.bulle .sens{display:block;font-size:34px;font-weight:500;color:var(--muet);margin-top:4px}
+.rang.avec-etiq{margin-top:18px}
+.aparte{align-self:center;display:flex;align-items:center;gap:20px;font-size:44px;font-weight:700;background:var(--jaune-doux);border:5px solid var(--encre);border-radius:14px;padding:12px 28px}
+.aparte .barre{text-decoration:line-through;text-decoration-thickness:5px;color:var(--muet)}
+.aparte svg{width:52px;height:52px;flex:0 0 52px}
+
+/* Question TOEIC décortiquée */
+.ecoute{display:flex;align-items:center;gap:22px;background:var(--carte);border:6px solid var(--encre);border-radius:16px;box-shadow:8px 8px 0 var(--encre);padding:16px 28px;font-size:52px;font-weight:700}
+.ecoute .casque{flex:0 0 84px;width:84px;height:84px;border:5px solid var(--encre);border-radius:14px;background:var(--bleu);display:flex;align-items:center;justify-content:center}
+.ecoute .casque svg{width:52px;height:52px}
+.options{display:flex;flex-direction:column;gap:14px}
+.option{display:grid;grid-template-columns:84px 1fr auto;align-items:center;gap:22px;background:var(--carte);border:6px solid var(--encre);border-radius:16px;box-shadow:8px 8px 0 var(--encre);padding:12px 24px;font-size:46px;font-weight:700}
+.option .lettre{width:76px;height:76px;border:5px solid var(--encre);border-radius:12px;background:var(--jaune);font-family:"Archivo Black";font-size:40px;display:flex;align-items:center;justify-content:center}
+.option .lettre svg{width:46px;height:46px}
+.option .raison{font-size:30px;font-weight:700;border:4px solid var(--encre);border-radius:10px;padding:4px 14px;white-space:nowrap}
+.option.ko{background:var(--corail-doux)}
+.option.ko .lettre{background:var(--corail)}
+.option.ko .raison{background:var(--corail)}
+.option.ko .texte{text-decoration:line-through;text-decoration-thickness:4px;text-decoration-color:rgba(10,10,10,.45)}
+.option.ok{background:var(--vert-doux)}
+.option.ok .lettre{background:#0B7A55}
+.option.ok .lettre svg{stroke:#fff}
+.option.ok .raison{background:var(--marque)}
+.option.cache{visibility:hidden}
+.option.attente .texte{color:var(--muet)}
+
+/* Récapitulatif */
+ol.etapes{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:18px;counter-reset:n}
+ol.etapes li{counter-increment:n;display:flex;align-items:center;gap:26px;font-size:46px;font-weight:700;background:var(--carte);border:6px solid var(--encre);border-radius:14px;box-shadow:8px 8px 0 var(--encre);padding:20px 28px}
+ol.etapes li::before{content:counter(n);font-family:"Archivo Black";flex:0 0 68px;height:68px;line-height:60px;text-align:center;border:5px solid var(--encre);border-radius:12px;background:var(--jaune)}
+ol.etapes li.faible{opacity:.28}
+</style>
+</head>
+<body>
+<div id="cadre">
+  <header>
+    <img src="logo-symbole.svg" alt="">
+    <span class="marque">Elearn Prépa</span>
+    <span class="partie" id="partie"></span>
+  </header>
+  <div id="progres"><div id="barre"></div></div>
+  <main id="scene"></main>
+  <div id="sous"></div>
+</div>
+<script src="rendu.js"></script>
+<script>
+const D = window.DONNEES;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// **mot** : surligné vert (la structure à repérer) ; __mot__ : surligné jaune (le piège, le mot répété).
+const riche = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>').replace(/__(.+?)__/g, '<mark class="j">$1</mark>');
+const ICONES = {
+  coche: '<svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+  croix: '<svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+  casque: '<svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>',
+  fleche: '<svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+  texte: '<svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7zM14 2v5h6M16 13H8M16 17H8M10 9H8"/></svg>',
+  personne: '<svg viewBox="0 0 24 24" fill="#0A0A0A"><circle cx="12" cy="8.2" r="4.6"/><path d="M2.5 24c0-6 4.2-9.6 9.5-9.6s9.5 3.6 9.5 9.6z"/></svg>',
+};
+const kicker = e => `<span class="kicker ${e.ton || ''}">${esc(e.kicker)}</span>`;
+
+function bulle(b) {
+  const classes = ['rang', b.qui === 'B' ? 'b' : 'a', b.etiquette ? 'avec-etiq' : ''].join(' ');
+  return `<div class="${classes}"><div class="avatar">${ICONES.personne}</div>` +
+    `<div class="bulle ${b.etat || ''}">${b.etiquette ? `<span class="etiq">${esc(b.etiquette)}</span>` : ''}${riche(b.texte)}` +
+    `${b.sens ? `<span class="sens">${riche(b.sens)}</span>` : ''}</div></div>`;
+}
+
+function option(o) {
+  const etat = o.etat || 'attente';
+  const lettre = etat === 'ok' ? ICONES.coche : etat === 'ko' ? ICONES.croix : esc(o.lettre);
+  return `<div class="option ${etat}"><span class="lettre">${lettre}</span><span class="texte">${riche(o.texte)}</span>` +
+    `${o.raison ? `<span class="raison">${esc(o.raison)}</span>` : '<span></span>'}</div>`;
+}
+
+function ecran(e) {
+  switch (e.type) {
+    case 'titre':
+      return `<div class="titre"><div class="col">${kicker(e)}<h1>${esc(e.titre)}</h1><p class="sous-titre">${esc(e.sous)}</p>` +
+        `${e.puces ? `<div class="puces">${e.puces.map(p => `<span class="puce">${esc(p)}</span>`).join('')}</div>` : ''}</div>` +
+        `<div class="dialogue">${(e.bulles || []).map(bulle).join('')}</div></div>`;
+    case 'structure':
+      return `${kicker(e)}<div class="fonction"><h2>${esc(e.titre)}</h2>${e.sens ? `<span class="sens">${riche(e.sens)}</span>` : ''}</div>` +
+        `<div class="lignes">${e.lignes.map(l => `<div class="ligne ${l.faible ? 'faible' : ''}"><span class="debut">${esc(l.debut)}</span>` +
+          `<span class="suite">${esc(l.suite)}</span><span class="ex">${riche(l.exemple || '')}</span></div>`).join('')}</div>`;
+    case 'dialogue':
+      return `${kicker(e)}${e.titre ? `<h2>${esc(e.titre)}</h2>` : ''}<div class="dialogue">${e.bulles.map(bulle).join('')}</div>` +
+        `${e.aparte ? `<div class="aparte">${e.aparte.barre ? `<span class="barre">${esc(e.aparte.barre)}</span>${ICONES.fleche}` : ''}<span>${riche(e.aparte.texte)}</span></div>` : ''}`;
+    case 'question':
+      return `${kicker(e)}<div class="ecoute"><span class="casque">${e.lu ? ICONES.texte : ICONES.casque}</span><span>${riche(e.lu || e.entendu)}</span></div>` +
+        `<div class="options">${e.options.map(option).join('')}</div>`;
+    case 'recap':
+      return `${kicker(e)}${e.titre ? `<h2>${esc(e.titre)}</h2>` : ''}<ol class="etapes">${e.etapes.map(x =>
+        `<li class="${x.faible ? 'faible' : ''}"><span>${riche(x.texte || x)}</span></li>`).join('')}</ol>`;
+    default:
+      throw new Error('écran inconnu : ' + e.type);
+  }
+}
+
+const i = Number(new URLSearchParams(location.search).get('i') || 0);
+const c = D.sous_titres[i];
+document.getElementById('partie').textContent = D.partie;
+document.getElementById('scene').innerHTML = ecran(D.ecrans[c.ecran]);
+document.getElementById('sous').innerHTML = riche(c.texte);
+document.getElementById('barre').style.width = ((i + 1) / D.sous_titres.length * 100) + '%';
+document.fonts.ready.then(() => {
+  // Débordement : un enfant de la scène dépasse la zone, ou la scène touche la bande jaune. Cadre rouge + titre.
+  const scene = document.getElementById('scene').getBoundingClientRect();
+  const bande = document.getElementById('sous').getBoundingClientRect();
+  let deborde = false;
+  for (const el of document.querySelectorAll('#scene > *')) {
+    const r = el.getBoundingClientRect();
+    if (r.top < scene.top - 1 || r.bottom > bande.top - 8 || r.right > scene.right + 12) deborde = true;
+  }
+  for (const el of document.querySelectorAll('.ligne, .option, .bulle, .ecoute')) {
+    if (el.scrollWidth > el.clientWidth + 2) deborde = true;
+  }
+  if (deborde) document.getElementById('cadre').classList.add('deborde');
+  document.title = deborde ? 'DEBORDE' : 'OK';
+});
+</script>
+</body>
+</html>

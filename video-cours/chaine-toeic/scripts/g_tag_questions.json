@@ -1,0 +1,55 @@
+{
+  "code": "g_tag_questions", "titre": "Tag questions", "partie": "TOEIC · Part 2",
+  "ecrans": {
+    "titre": {"type": "titre", "kicker": "TOEIC · Part 2", "titre": "Tag questions", "sous": "isn't it? did you? aren't you?",
+      "bulles": [{"qui": "A", "texte": "The report is ready, **isn't it?**"}, {"qui": "B", "texte": "Yes, I finished it.", "etat": "ok"}]},
+    "idee": {"type": "recap", "kicker": "What is a tag question?", "titre": "A sentence + a small question", "etapes": [
+      {"texte": "The speaker **thinks** something is true"},
+      {"texte": "The small question asks you to **confirm**"}]},
+    "forme": {"type": "structure", "kicker": "The form", "titre": "The tag is the opposite", "lignes": [
+      {"debut": "It is ready,", "suite": "isn't it?", "exemple": "positive, then **negative**"},
+      {"debut": "You didn't call,", "suite": "did you?", "exemple": "negative, then **positive**"},
+      {"debut": "She can come,", "suite": "can't she?", "exemple": "same verb: **can**"}]},
+    "ex1": {"type": "dialogue", "kicker": "Example 1", "bulles": [
+      {"qui": "A", "texte": "The report is ready, **isn't it?**", "etiquette": "PLEASE CONFIRM"},
+      {"qui": "B", "texte": "**Yes**, I finished it this morning.", "etiquette": "CONFIRMS + DETAIL", "etat": "ok"},
+      {"qui": "B", "texte": "**Not yet.** I need one more hour.", "etiquette": "CORRECTS + DETAIL", "etat": "ok"}]},
+    "q": {"type": "question", "kicker": "TOEIC question", "entendu": "You didn't call the client, **did you?**", "options": [
+      {"lettre": "A", "texte": "__At the office.__", "etat": "ko", "raison": "A place: another topic"},
+      {"lettre": "B", "texte": "**No, not yet.** I'll do it now.", "etat": "ok", "raison": "Confirms + detail"},
+      {"lettre": "C", "texte": "The __client__ is from Japan.", "etat": "ko", "raison": "Repeats a word only"}]},
+    "piege": {"type": "dialogue", "kicker": "The trap", "ton": "jaune", "bulles": [
+      {"qui": "A", "texte": "You didn't call the client, **did you?**", "etiquette": "NEGATIVE SENTENCE"},
+      {"qui": "B", "texte": "**No**, I didn't.", "etiquette": "NO = YOU ARE RIGHT, I DID NOT CALL", "etat": "ok"},
+      {"qui": "B", "texte": "**Yes**, I did.", "etiquette": "YES = I CALLED", "etat": "ok"}]},
+    "recap": {"type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+      {"texte": "A tag question asks you to **confirm**"},
+      {"texte": "The answer is **yes or no**, often with a detail"},
+      {"texte": "Answer the __fact__, not the form of the question"}]}
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Tag questions.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "idee", "texte": "A tag question is a sentence, with a small question at the end.", "vue": {"jusqu": 0}},
+    {"id": "p03", "ecran": "idee", "texte": "The speaker thinks something is true.", "vue": {"jusqu": 1}},
+    {"id": "p04", "ecran": "idee", "texte": "And the small question asks you to confirm.", "pause_apres": 0.9},
+    {"id": "p05", "ecran": "forme", "texte": "The tag is the opposite of the sentence. It is ready, isn't it?", "vue": {"faibles": [1, 2]}},
+    {"id": "p06", "ecran": "forme", "texte": "You didn't call, did you? Negative sentence, positive tag.", "vue": {"faibles": [2]}},
+    {"id": "p07", "ecran": "forme", "texte": "And the tag uses the same verb: She can come, can't she?", "pause_apres": 1.0},
+    {"id": "p08", "ecran": "ex1", "texte": "Look at this example. The report is ready, isn't it?", "vue": {"montre": 1}},
+    {"id": "p09", "ecran": "ex1", "texte": "A good answer confirms, and adds a detail: Yes, I finished it this morning.", "vue": {"montre": 2}},
+    {"id": "p10", "ecran": "ex1", "texte": "Or it corrects the speaker: Not yet. I need one more hour.", "pause_apres": 1.0},
+    {"id": "p11", "ecran": "q", "texte": "Now, a TOEIC question. You hear: You didn't call the client, did you?", "vue": {"options": false}},
+    {"id": "p12", "ecran": "q", "texte": "A: At the office. B: No, not yet. I'll do it now. C: The client is from Japan.", "dit": "Answer A. At the office. Answer B. No, not yet. I'll do it now. Answer C. The client is from Japan.", "vue": {"juge": []}, "pause_apres": 0.6},
+    {"id": "p13", "ecran": "q", "texte": "Which answer is correct?", "vue": {"juge": []}, "pause_apres": 2.0},
+    {"id": "p14", "ecran": "q", "texte": "A is a place. It talks about another topic.", "dit": "Answer A is a place. It talks about another topic.", "vue": {"juge": ["A"]}},
+    {"id": "p15", "ecran": "q", "texte": "C repeats the word client, but it does not confirm anything.", "dit": "Answer C repeats the word client, but it does not confirm anything.", "vue": {"juge": ["A", "C"]}},
+    {"id": "p16", "ecran": "q", "texte": "B is correct. It confirms, and it adds a detail.", "dit": "Answer B is correct. It confirms, and it adds a detail.", "pause_apres": 1.0},
+    {"id": "p17", "ecran": "piege", "texte": "Be careful with negative sentences. You didn't call the client, did you?", "vue": {"montre": 1}},
+    {"id": "p18", "ecran": "piege", "texte": "In English, No means: you are right, I did not call.", "dit": "In English, No, means: you are right, I did not call.", "vue": {"montre": 2}},
+    {"id": "p19", "ecran": "piege", "texte": "And Yes means: I called. Answer the fact, not the form of the question.", "dit": "And Yes, means: I called. Answer the fact, not the form of the question.", "pause_apres": 1.0},
+    {"id": "p20", "ecran": "recap", "texte": "Remember three steps. One: a tag question asks you to confirm.", "vue": {"jusqu": 1}},
+    {"id": "p21", "ecran": "recap", "texte": "Two: the answer is yes or no, often with a detail.", "vue": {"jusqu": 2}},
+    {"id": "p22", "ecran": "recap", "texte": "Three: answer the fact, not the form of the question.", "pause_apres": 0.9},
+    {"id": "p23", "ecran": "recap", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}

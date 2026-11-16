@@ -1,0 +1,193 @@
+{
+  "code": "g_polite_requests",
+  "titre": "Polite requests and offers",
+  "partie": "TOEIC · Part 2",
+  "ecrans": {
+    "titre": {
+      "type": "titre", "kicker": "TOEIC · Part 2 and Part 3", "titre": "Polite requests and offers",
+      "sous": "Could you, Would you mind, Shall I",
+      "bulles": [
+        {"qui": "A", "texte": "**Could you** send me the file?"},
+        {"qui": "B", "texte": "Sure, I'll do it now.", "etat": "ok"}
+      ]
+    },
+    "part2": {
+      "type": "question", "kicker": "In Part 2, you hear", "entendu": "1 question",
+      "options": [
+        {"lettre": "A", "texte": "answer A"},
+        {"lettre": "B", "texte": "answer B"},
+        {"lettre": "C", "texte": "answer C"}
+      ]
+    },
+    "fonctions": {
+      "type": "recap", "kicker": "Often, it is not a real question", "titre": "What does the speaker want?",
+      "etapes": [
+        {"texte": "A **request**: please do something for me"},
+        {"texte": "An **offer**: I can do something for you"}
+      ]
+    },
+    "demande": {
+      "type": "structure", "kicker": "Request", "titre": "You want the other person to act", "lignes": [
+        {"debut": "Could you", "suite": "+ verb", "exemple": "Could you **send** the file?"},
+        {"debut": "Would you", "suite": "+ verb", "exemple": "Would you **close** the door?"},
+        {"debut": "Would you mind", "suite": "+ verb-ing", "exemple": "Would you mind **sending** it?"}
+      ]
+    },
+    "forme": {
+      "type": "structure", "kicker": "Request", "ton": "jaune", "titre": "Be careful with the form", "lignes": [
+        {"debut": "Could you", "suite": "+ verb", "exemple": "Could you **send** the file?"},
+        {"debut": "Would you", "suite": "+ verb", "exemple": "Would you **close** the door?", "faible": true},
+        {"debut": "Would you mind", "suite": "+ verb-ing", "exemple": "Would you mind **sending** it?"}
+      ]
+    },
+    "offre": {
+      "type": "structure", "kicker": "Offer", "titre": "You propose to act", "lignes": [
+        {"debut": "Shall I", "suite": "+ verb", "exemple": "Shall I **book** the room?"},
+        {"debut": "Do you want me to", "suite": "+ verb", "exemple": "Do you want me to **call** him?"},
+        {"debut": "Would you like me to", "suite": "+ verb", "exemple": "Would you like me to **help**?"}
+      ]
+    },
+    "ex1": {
+      "type": "dialogue", "kicker": "Example 1", "bulles": [
+        {"qui": "A", "texte": "**Could you** send me the file?", "etiquette": "REQUEST"}
+      ]
+    },
+    "ex1sens": {
+      "type": "dialogue", "kicker": "Example 1", "bulles": [
+        {"qui": "A", "texte": "**Could you** send me the file?", "etiquette": "REQUEST"}
+      ],
+      "aparte": {"barre": "Are you able to send it?", "texte": "Please send it."}
+    },
+    "ex1oui": {
+      "type": "dialogue", "kicker": "Example 1", "bulles": [
+        {"qui": "A", "texte": "**Could you** send me the file?", "etiquette": "REQUEST"},
+        {"qui": "B", "texte": "**Sure**, I'll do it now.", "etiquette": "ACCEPTS", "etat": "ok"}
+      ]
+    },
+    "ex1non": {
+      "type": "dialogue", "kicker": "Example 1", "bulles": [
+        {"qui": "A", "texte": "**Could you** send me the file?", "etiquette": "REQUEST"},
+        {"qui": "B", "texte": "**Sure**, I'll do it now.", "etiquette": "ACCEPTS", "etat": "ok"},
+        {"qui": "B", "texte": "**I'm afraid I can't.** I'm in a meeting.", "etiquette": "REFUSES POLITELY", "etat": "ok"}
+      ]
+    },
+    "q0": {
+      "type": "question", "kicker": "TOEIC question", "entendu": "**Could you** send me the sales report?",
+      "options": [
+        {"lettre": "A", "texte": "", "etat": "cache"},
+        {"lettre": "B", "texte": "", "etat": "cache"},
+        {"lettre": "C", "texte": "", "etat": "cache"}
+      ]
+    },
+    "q1": {
+      "type": "question", "kicker": "TOEIC question", "entendu": "**Could you** send me the sales report?",
+      "options": [
+        {"lettre": "A", "texte": "It was sent in March."},
+        {"lettre": "B", "texte": "Sure, I'll email it right away."},
+        {"lettre": "C", "texte": "The sales were very good."}
+      ]
+    },
+    "qA": {
+      "type": "question", "kicker": "TOEIC question", "entendu": "**Could you** send me the sales report?",
+      "options": [
+        {"lettre": "A", "texte": "It was __sent__ in March.", "etat": "ko", "raison": "Information, not an answer"},
+        {"lettre": "B", "texte": "Sure, I'll email it right away."},
+        {"lettre": "C", "texte": "The sales were very good."}
+      ]
+    },
+    "qC": {
+      "type": "question", "kicker": "TOEIC question", "entendu": "**Could you** send me the sales report?",
+      "options": [
+        {"lettre": "A", "texte": "It was __sent__ in March.", "etat": "ko", "raison": "Information, not an answer"},
+        {"lettre": "B", "texte": "Sure, I'll email it right away."},
+        {"lettre": "C", "texte": "The __sales__ were very good.", "etat": "ko", "raison": "Repeats a word only"}
+      ]
+    },
+    "qB": {
+      "type": "question", "kicker": "TOEIC question", "entendu": "**Could you** send me the sales report?",
+      "options": [
+        {"lettre": "A", "texte": "It was __sent__ in March.", "etat": "ko", "raison": "Information, not an answer"},
+        {"lettre": "B", "texte": "**Sure**, I'll **email it** right away.", "etat": "ok", "raison": "Accepts + action"},
+        {"lettre": "C", "texte": "The __sales__ were very good.", "etat": "ko", "raison": "Repeats a word only"}
+      ]
+    },
+    "mind": {
+      "type": "dialogue", "kicker": "The big trap", "ton": "jaune", "bulles": [
+        {"qui": "A", "texte": "**Would you mind** opening the window?", "etiquette": "REQUEST", "sens": "= Is it a problem for you?"}
+      ]
+    },
+    "mindoui": {
+      "type": "dialogue", "kicker": "The big trap", "ton": "jaune", "bulles": [
+        {"qui": "A", "texte": "**Would you mind** opening the window?", "etiquette": "REQUEST", "sens": "= Is it a problem for you?"},
+        {"qui": "B", "texte": "**Not at all.**", "etiquette": "MEANS YES, I WILL", "etat": "ok", "sens": "No, of course not."}
+      ]
+    },
+    "mindnon": {
+      "type": "dialogue", "kicker": "The big trap", "ton": "jaune", "bulles": [
+        {"qui": "A", "texte": "**Would you mind** opening the window?", "etiquette": "REQUEST", "sens": "= Is it a problem for you?"},
+        {"qui": "B", "texte": "**Not at all.**", "etiquette": "MEANS YES, I WILL", "etat": "ok", "sens": "No, of course not."},
+        {"qui": "B", "texte": "__Yes__, I do mind.", "etiquette": "MEANS NO, I REFUSE", "etat": "ko"}
+      ]
+    },
+    "ex2": {
+      "type": "dialogue", "kicker": "Example 2", "bulles": [
+        {"qui": "A", "texte": "**Shall I** book the room?", "etiquette": "OFFER"}
+      ]
+    },
+    "ex2rep": {
+      "type": "dialogue", "kicker": "Example 2", "bulles": [
+        {"qui": "A", "texte": "**Shall I** book the room?", "etiquette": "OFFER"},
+        {"qui": "B", "texte": "**Yes, please.**", "etiquette": "ACCEPTS", "etat": "ok"},
+        {"qui": "B", "texte": "**No, thanks.** I've already done it.", "etiquette": "DECLINES", "etat": "ok"}
+      ]
+    },
+    "recap1": {
+      "type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+        {"texte": "Find the function: **request** or **offer**?"},
+        {"texte": "Choose the answer that accepts or refuses", "faible": true},
+        {"texte": "A repeated word is often a trap", "faible": true}
+      ]
+    },
+    "recap2": {
+      "type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+        {"texte": "Find the function: **request** or **offer**?"},
+        {"texte": "Choose the answer that **accepts** or **refuses**"},
+        {"texte": "A repeated word is often a trap", "faible": true}
+      ]
+    },
+    "recap3": {
+      "type": "recap", "kicker": "Remember", "titre": "Three steps for the test", "etapes": [
+        {"texte": "Find the function: **request** or **offer**?"},
+        {"texte": "Choose the answer that **accepts** or **refuses**"},
+        {"texte": "A __repeated word__ is often a trap"}
+      ]
+    }
+  },
+  "phrases": [
+    {"id": "p01", "ecran": "titre", "texte": "Polite requests and offers.", "dit": "Polite requests and offers.", "pause_apres": 0.9},
+    {"id": "p02", "ecran": "part2", "texte": "In Part 2 of the TOEIC, you hear one question and three answers.", "dit": "In Part two of the TOEIC, you hear one question, and three answers.", "pause_apres": 0.7},
+    {"id": "p03", "ecran": "fonctions", "texte": "But very often, it is not a real question. It is a request, or an offer.", "dit": "But very often, it is not a real question. It is a request, or an offer.", "pause_apres": 0.9},
+    {"id": "p04", "ecran": "demande", "texte": "To ask someone to do something, we say: Could you, Would you, or Would you mind.", "dit": "To ask someone to do something, we say: Could you. Would you. Or, Would you mind.", "pause_apres": 0.8},
+    {"id": "p05", "ecran": "forme", "texte": "Be careful. After Could you, we say send. After Would you mind, we say sending.", "dit": "Be careful with the form. After Could you, we say: send. After Would you mind, we say: sending.", "pause_apres": 0.9},
+    {"id": "p06", "ecran": "offre", "texte": "To offer your help, we say: Shall I, or Do you want me to.", "dit": "To offer your help, we say: Shall I. Or, Do you want me to.", "pause_apres": 0.9},
+    {"id": "p07", "ecran": "ex1", "texte": "Let's look at an example. A man says: Could you send me the file?", "dit": "Let's look at an example. A man says: Could you send me the file?", "pause_apres": 0.7},
+    {"id": "p08", "ecran": "ex1sens", "texte": "He is not asking if you are able to do it. He wants you to do it.", "dit": "He is not asking if you are able to do it. He wants you to do it.", "pause_apres": 0.8},
+    {"id": "p09", "ecran": "ex1oui", "texte": "So a good answer accepts: Sure, I'll do it now.", "dit": "So, a good answer accepts: Sure, I'll do it now.", "pause_apres": 0.7},
+    {"id": "p10", "ecran": "ex1non", "texte": "Or it refuses politely: I'm afraid I can't. I'm in a meeting.", "dit": "Or, it refuses politely: I'm afraid I can't. I'm in a meeting.", "pause_apres": 1.0},
+    {"id": "p11", "ecran": "q0", "texte": "Now, a TOEIC question. You hear: Could you send me the sales report?", "dit": "Now, a TOEIC question. You hear: Could you send me the sales report?", "pause_apres": 0.7},
+    {"id": "p12", "ecran": "q1", "texte": "A: It was sent in March. B: Sure, I'll email it right away. C: The sales were very good.", "dit": "Answer A. It was sent in March. Answer B. Sure, I'll email it right away. Answer C. The sales were very good.", "pause_apres": 0.6},
+    {"id": "p13", "ecran": "q1", "texte": "Which answer is correct?", "dit": "Which answer is correct?", "pause_apres": 2.0},
+    {"id": "p14", "ecran": "qA", "texte": "A repeats the word sent, but it only gives information. It does not accept or refuse.", "dit": "Answer A repeats the word sent, but it only gives information. It does not accept, and it does not refuse.", "pause_apres": 0.7},
+    {"id": "p15", "ecran": "qC", "texte": "C repeats the word sales, but it does not answer the request.", "dit": "Answer C repeats the word sales, but it does not answer the request.", "pause_apres": 0.7},
+    {"id": "p16", "ecran": "qB", "texte": "B is correct. Sure accepts the request, and email it is the action.", "dit": "Answer B is correct. Sure accepts the request, and, email it, is the action.", "pause_apres": 1.0},
+    {"id": "p17", "ecran": "mind", "texte": "Now, the big trap: Would you mind. It means: is it a problem for you?", "dit": "Now, the big trap: Would you mind. Would you mind opening the window? It means: is it a problem for you?", "pause_apres": 0.8},
+    {"id": "p18", "ecran": "mindoui", "texte": "So, to say yes, you answer: Not at all. Or: No, of course not.", "dit": "So, to say yes, you answer: Not at all. Or: No, of course not.", "pause_apres": 0.8},
+    {"id": "p19", "ecran": "mindnon", "texte": "If you answer Yes, you are refusing.", "dit": "If you answer Yes, you are refusing.", "pause_apres": 1.0},
+    {"id": "p20", "ecran": "ex2", "texte": "Last example, an offer: Shall I book the room?", "dit": "Last example, an offer: Shall I book the room?", "pause_apres": 0.7},
+    {"id": "p21", "ecran": "ex2rep", "texte": "You accept: Yes, please. Or you decline: No, thanks. I've already done it.", "dit": "You accept: Yes, please. Or you decline: No, thanks. I've already done it.", "pause_apres": 1.0},
+    {"id": "p22", "ecran": "recap1", "texte": "Remember three steps. One: find the function. Is it a request, or an offer?", "dit": "Remember three steps. One: find the function. Is it a request, or an offer?", "pause_apres": 0.7},
+    {"id": "p23", "ecran": "recap2", "texte": "Two: choose the answer that accepts or refuses.", "dit": "Two: choose the answer that accepts, or refuses.", "pause_apres": 0.7},
+    {"id": "p24", "ecran": "recap3", "texte": "Three: a repeated word is often a trap.", "dit": "Three: a repeated word is often a trap.", "pause_apres": 0.9},
+    {"id": "p25", "ecran": "recap3", "texte": "Now practise with the questions below.", "dit": "Now, practise with the questions below.", "pause_apres": 0.6}
+  ]
+}
