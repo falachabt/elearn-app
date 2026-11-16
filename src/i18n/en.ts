@@ -3013,6 +3013,21 @@ export const en: Textes = {
       erreur: 'Attempts do not load',
       erreurTexte: 'Check your connection, then try again.',
     },
+    lancementComplet: {
+      entete: 'Full test',
+      resume: '200 questions · 2 h. Listening (45 minutes) then Reading (75 minutes) follow each other with no break.',
+      chronoTitre: 'Exact timer',
+      chronoAide: 'It keeps running when the app is in the background',
+      audioTitre: 'Audio played once',
+      audioAide: 'No replay in Listening',
+      scoreTitre: 'An estimated score',
+      scoreAide: 'Computed with our rules, not an official score',
+      coutTitre: 'Cost of the test',
+      coutAide: 'Included with the Pass.',
+      coutValeur: '{{n}} credits',
+      commencer: 'Start the test',
+      plusTard: 'Later',
+    },
     tests: {
       entete: 'Tests',
       bilanDef: {

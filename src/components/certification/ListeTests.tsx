@@ -81,6 +81,11 @@ export function ListeTests() {
 
   const lancer = async (test: DefTest, exam: string, reglages: Pick<Reglages, 'miniMinutesPour10'> | null) => {
     if (enCours) return;
+    // Test complet : on passe d'abord par l'écran de lancement (règles et coût), le débit n'a lieu qu'à « Commencer ».
+    if (test.kind === 'full') {
+      router.push({ pathname: '/certification/lancement-complet', params: { id: test.id, numero: String(test.numero) } } as never);
+      return;
+    }
     setEnCours(test.id);
     setCodeEchec(null);
     setInsuffisant(null);

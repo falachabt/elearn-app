@@ -8,6 +8,7 @@ import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
 import type { DefTest } from '@/services/certification/types';
 import { enregistrerProfil } from '@/services/profil';
 
+import { LancementTestComplet } from '../LancementTestComplet';
 import { ListeTests } from '../ListeTests';
 import { TestsToeic } from '../TestsToeic';
 import { monter } from './harnais';
@@ -67,25 +68,43 @@ describe('test complet : actif, avec barre d\'avancement', () => {
     expect(screen.getAllByLabelText(t.avancementUn.replace('{{faits}}', '0').replace('{{total}}', '1')).length).toBeGreaterThan(0);
   });
 
-  it('liste des tests complets : toucher une ligne lance le test', async () => {
-    demarrer.mockResolvedValue({ status: 'insufficient', tentative: null, cout: 15, solde: 3 });
+  it('liste des tests complets : toucher une ligne ouvre l\u2019\u00e9cran de lancement, sans d\u00e9bit', async () => {
     mockParams = { kind: 'full' };
     await monter(<ListeTests />);
     fireEvent.press(await screen.findByTestId('ligne-full-1'));
-    await screen.findByText(/15/);
-    expect(demarrer).toHaveBeenCalled();
-    expect(screen.queryByText(t.statut.bientot)).toBeNull();
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/lancement-complet', params: { id: 'f1', numero: '1' } });
+    expect(demarrer).not.toHaveBeenCalled();
+  });
+});
+
+describe('lancement du test complet', () => {
+  beforeEach(() => {
+    mockParams = { id: 'f1', numero: '1' };
   });
 
-  it('invité : un test réservé aux comptes ouvre une feuille qui explique, au lieu de rediriger', async () => {
+  it('montre les r\u00e8gles et le co\u00fbt lu du serveur, \u00ab Plus tard \u00bb ne d\u00e9bite rien', async () => {
+    await monter(<LancementTestComplet />);
+    expect(await screen.findByText(fr.certification.lancementComplet.chronoTitre)).toBeTruthy();
+    expect(screen.getByText(fr.certification.lancementComplet.audioTitre)).toBeTruthy();
+    expect(screen.getByText('15 cr\u00e9dits')).toBeTruthy();
+    fireEvent.press(screen.getByText(fr.certification.lancementComplet.plusTard));
+    expect(router.back).toHaveBeenCalled();
+    expect(demarrer).not.toHaveBeenCalled();
+  });
+
+  it('\u00ab Commencer le test \u00bb sans cr\u00e9dits suffisants ouvre la feuille et ne lance rien', async () => {
+    demarrer.mockResolvedValue({ status: 'insufficient', tentative: null, cout: 15, solde: 3 });
+    await monter(<LancementTestComplet />);
+    fireEvent.press(await screen.findByText(fr.certification.lancementComplet.commencer));
+    await screen.findAllByText(/15/);
+    expect(demarrer).toHaveBeenCalledTimes(1);
+    expect(router.replace).not.toHaveBeenCalled();
+  });
+
+  it('invit\u00e9 : la feuille \u00ab Cr\u00e9e un compte \u00bb s\u2019ouvre', async () => {
     demarrer.mockResolvedValue({ status: 'account_required', tentative: null });
-    mockParams = { kind: 'full' };
-    await monter(<ListeTests />);
-    fireEvent.press(await screen.findByTestId('ligne-full-1'));
+    await monter(<LancementTestComplet />);
+    fireEvent.press(await screen.findByText(fr.certification.lancementComplet.commencer));
     expect(await screen.findByText(m.compteFeuilleTitre)).toBeTruthy();
-    expect(screen.getByText(m.compteFeuilleTexte)).toBeTruthy();
-    expect(router.push).not.toHaveBeenCalled();
-    fireEvent.press(screen.getByText(m.compteBouton));
-    expect(router.push).toHaveBeenCalledWith('/compte/creer');
   });
 });

@@ -68,7 +68,8 @@ export function DetailTest() {
         if (!horsLigne) router.replace({ pathname: '/certification/liste-tests', params: { kind: type } } as never);
         return;
       }
-      if (res.statut === 'demarre') router.replace('/certification/mini-test' as never);
+      if (res.statut === 'ecran_lancement') router.replace({ pathname: '/certification/lancement-complet', params: { id: res.id, numero: String(res.numero) } } as never);
+      else if (res.statut === 'demarre') router.replace('/certification/mini-test' as never);
       else if (res.statut === 'compte_requis') setCompteRequis(true);
       else if (res.statut === 'insuffisant') setInsuffisant({ cout: res.cout, solde: res.solde });
     } catch (erreur) {
@@ -82,6 +83,10 @@ export function DetailTest() {
   };
   const refaire = async (test: DefTest, exam: string, reglages: Reglages | null) => {
     if (enCours) return;
+    if (test.kind === 'full') {
+      router.push({ pathname: '/certification/lancement-complet', params: { id: test.id, numero: String(test.numero) } } as never);
+      return;
+    }
     setEnCours(true);
     setCodeEchec(null);
     setInsuffisant(null);

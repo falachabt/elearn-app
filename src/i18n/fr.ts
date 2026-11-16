@@ -3014,6 +3014,21 @@ export const fr = {
       erreur: 'Les tentatives ne se chargent pas',
       erreurTexte: 'Vérifie ta connexion, puis réessaie.',
     },
+    lancementComplet: {
+      entete: 'Test complet',
+      resume: '200 questions · 2 h. L’écoute (45 minutes) puis la lecture (75 minutes) s’enchaînent sans pause.',
+      chronoTitre: 'Chronomètre exact',
+      chronoAide: 'Il tourne aussi quand l’appli est en arrière-plan',
+      audioTitre: 'Audio joué une seule fois',
+      audioAide: 'Pas de réécoute en Listening',
+      scoreTitre: 'Un score estimé',
+      scoreAide: 'Calculé avec nos règles, pas un score officiel',
+      coutTitre: 'Coût du test',
+      coutAide: 'Avec le Pass, c’est inclus.',
+      coutValeur: '{{n}} crédits',
+      commencer: 'Commencer le test',
+      plusTard: 'Plus tard',
+    },
     tests: {
       entete: 'Tests',
       bilanDef: {

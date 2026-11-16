@@ -123,13 +123,18 @@ export function BilanMini() {
     const refaire = async () => {
       const exam = etat.exam;
       const meilleur = Math.max(def.meilleurAvant ?? 0, scoreTentative ?? 0) || null;
+      if (def.kind === 'full') {
+        router.replace({ pathname: '/certification/lancement-complet', params: { id: def.id } } as never);
+        return;
+      }
       const res = await lancerDefTest(exam, def.id, def.kind, meilleur);
       if (res.statut === 'demarre') router.replace('/certification/mini-test' as never);
       else if (res.statut === 'compte_requis') router.push('/compte/creer');
     };
     const autre = async () => {
       const res = await lancerAutreTest(etat.exam, def.kind);
-      if (res?.statut === 'demarre') router.replace('/certification/mini-test' as never);
+      if (res?.statut === 'ecran_lancement') router.replace({ pathname: '/certification/lancement-complet', params: { id: res.id, numero: String(res.numero) } } as never);
+      else if (res?.statut === 'demarre') router.replace('/certification/mini-test' as never);
       else if (res?.statut === 'compte_requis') router.push('/compte/creer');
       else await sortir(`/certification/liste-tests?kind=${def.kind}`);
     };
