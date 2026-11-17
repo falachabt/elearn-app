@@ -277,8 +277,8 @@ export function LigneAujourdhui({ jour }: { jour: Jour }) {
 }
 
 /** Parcours du jour de l'accueil TOEIC : ce qu'il y a à faire aujourd'hui, avec l'état de chaque étape. Rien quand le jour est vide. */
-export function ParcoursDuJour() {
-  const { etat } = useFrise();
+export function ParcoursDuJour({ frise }: { frise: ReturnType<typeof useFrise> }) {
+  const { etat } = frise;
   if (etat.phase === 'chargement') return <Squelette lignes={2} />;
   if (etat.phase === 'erreur') return null;
   const { plan, aujourdhui } = etat.valeur;

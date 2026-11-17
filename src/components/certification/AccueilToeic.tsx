@@ -7,8 +7,6 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { lireProfil, type Profil } from '@/services/profil';
 import { chargerAccueil, type DonneesAccueil } from '@/services/certification/accueil';
-import { avancement } from '@/services/certification/seanceJour';
-import { titreAffiche } from '@/services/certification/titre';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -20,7 +18,7 @@ import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
 import { SelecteurClasse } from '../mission/Accueil';
 import { Cloche } from '../notifications/Cloche';
-import { ParcoursDuJour } from './FriseParcours';
+import { ParcoursDuJour, PiedFrise, useFrise } from './FriseParcours';
 import { PreparationDiagnostic } from './PreparationDiagnostic';
 import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette } from './ui';
 import { useChargement } from './useChargement';
@@ -29,6 +27,7 @@ import { useChargement } from './useChargement';
 export function AccueilToeic() {
   const { t } = useTraduction();
   const { etat, recharger } = useChargement(chargerAccueil);
+  const frise = useFrise();
   // Chip changeur de profil en haut à gauche, comme sur les accueils élève et concours
   // (demande de Benny du 25/10/2026) : le profil local donne le libellé (l'examen en cours).
   // Relu à chaque retour sur l'onglet : le retour de `/profil/changer` met le chip à jour.
@@ -65,7 +64,7 @@ export function AccueilToeic() {
           }
         />
       }
-      pied={avantDiagnostic ? <Bouton libelle={t('certification.arrivee.commencer')} onPress={commencerDiagnostic} /> : undefined}
+      pied={avantDiagnostic ? <Bouton libelle={t('certification.arrivee.commencer')} onPress={commencerDiagnostic} /> : etat.phase === 'ok' && frise.etat.phase === 'ok' ? <PiedFrise donnees={frise.etat.valeur} /> : undefined}
     >
       {etat.phase === 'chargement' ? <Squelette lignes={5} /> : null}
       {etat.phase === 'erreur' ? (
@@ -74,7 +73,7 @@ export function AccueilToeic() {
           <Bouton libelle={t('certification.reessayer')} onPress={recharger} />
         </View>
       ) : null}
-      {etat.phase === 'ok' ? <Contenu d={etat.valeur} recharger={recharger} /> : null}
+      {etat.phase === 'ok' ? <Contenu d={etat.valeur} recharger={recharger} frise={frise} /> : null}
     </Ecran>
   );
 }
@@ -85,7 +84,7 @@ function dateLongue(jour: string, langue: string): string {
   return new Date(a!, m! - 1, j!).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
-function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void }) {
+function Contenu({ d, recharger, frise }: { d: DonneesAccueil; recharger: () => void; frise: ReturnType<typeof useFrise> }) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const compte = d.plan?.dateTest && d.joursRestants !== null && d.joursRestants >= 0
@@ -95,11 +94,7 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
         ? t('certification.accueilToeic.compteJour')
         : t('certification.accueilToeic.compteJours', { n: d.joursRestants })
     : null;
-  const seance = d.seance;
-  const commencee = !!seance && avancement(seance).faits > 0;
   const progressionSemaine = Math.min(100, (d.seancesSemaine.faites / Math.max(d.seancesSemaine.prevues, 1)) * 100);
-  const partieSeance = seance?.seance.blocs.find((b) => b.type === 'serie')?.partie;
-  const motsSeance = seance?.seance.blocs.find((b) => b.type === 'mots')?.nombre;
   const serie = d.serie;
   const aideSerie = serie
     ? serie.perimetre.rejeu
@@ -108,32 +103,12 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
         ? t('certification.accueilToeic.serieAide', { partie: serie.perimetre.part, k: serie.index, n: serie.questions.length })
         : t('certification.accueilToeic.serieAideSansPartie', { k: serie.index, n: serie.questions.length })
     : '';
-  const aller = (chemin: string) => router.push(chemin as never);
 
   if (!d.diagnosticFait) return <PreparationDiagnostic complet={false} />;
 
   return (
     <View style={styles.groupe}>
       {d.revision.depuisCopie ? <Banniere ton="info" titre={t('certification.reviser.copie')} /> : null}
-      {seance ? (
-        // Carte verte comme la mission du jour du secondaire : le bouton reste à l'intérieur (maquette TOEIC-N1).
-        <Carte style={{ backgroundColor: theme.marque.principale, gap: espace[2] }}>
-          <View style={styles.ligneBadges}>
-            <Pastille texte={t('certification.accueilToeic.seanceTitre')} />
-            <Pastille texte={t('certification.accueilToeic.minutesCourtes', { minutes: seance.seance.minutes })} />
-          </View>
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.surCouleur }]}>{seance.seance.pourquoi.notion ? titreAffiche(seance.seance.pourquoi.notion) : t('certification.accueilToeic.seanceTitre')}</Text>
-          {partieSeance !== undefined || motsSeance !== undefined ? (
-            <View style={styles.ligneBadges}>
-              {partieSeance !== undefined ? <Pastille texte={t('certification.diagnostic.partie', { n: partieSeance })} /> : null}
-              {motsSeance !== undefined ? <Pastille texte={t('certification.accueilToeic.motsN', { n: motsSeance })} /> : null}
-            </View>
-          ) : null}
-          <Bouton variante="secondaire" libelle={commencee ? t('certification.accueilToeic.continuer') : t('certification.accueilToeic.commencer')} onPress={() => aller('/certification/seance')} />
-        </Carte>
-      ) : d.seanceErreur ? (
-        <Banniere ton="alerte" titre={t('certification.accueilToeic.erreurTitre')} texte={t('certification.accueilToeic.erreurTexte')} />
-      ) : null}
       {compte && d.plan?.dateTest ? (
         <Carte style={{ gap: espace[3] }}>
           <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
@@ -165,24 +140,13 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
           </Appui>
         </>
       )}
-      <ParcoursDuJour />
+      <ParcoursDuJour frise={frise} />
       {serie ? (
         <View style={styles.groupe}>
           <EtiquetteSection texte={t('certification.accueilToeic.reprendre')} />
           <LigneChoix icone={RotateCcw} titre={t('certification.accueilToeic.serieInterrompue')} aide={aideSerie} onPress={() => router.push({ pathname: '/certification/serie', params: { ...(serie.perimetre.part ? { part: String(serie.perimetre.part) } : {}), ...(serie.perimetre.notion ? { notion: serie.perimetre.notion } : {}), ...(serie.perimetre.rejeu ? { rejeu: '1' } : {}), ...(serie.origine ? { origine: serie.origine } : {}) } } as never)} />
         </View>
       ) : null}
-      {!seance && d.seanceErreur ? <Bouton variante="secondaire" libelle={t('certification.reessayer')} onPress={recharger} /> : null}
-    </View>
-  );
-}
-
-/** Étiquette de la carte verte (maquette TOEIC-N1 : badges « Partie 5 », « 6 mots »). */
-function Pastille({ texte }: { texte: string }) {
-  const { theme } = useTheme();
-  return (
-    <View style={[styles.pastille, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-      <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{texte}</Text>
     </View>
   );
 }

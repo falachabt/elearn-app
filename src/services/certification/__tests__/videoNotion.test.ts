@@ -35,6 +35,21 @@ describe('vidéo explicative d’une notion', () => {
     expect(f).toHaveBeenCalledTimes(1);
   });
 
+  it('404 puis publication : la vidéo apparaît après quelques minutes, sans relancer l’app', async () => {
+    const maintenant = jest.spyOn(Date, 'now');
+    maintenant.mockReturnValue(1_000_000);
+    global.fetch = jest.fn(async () => reponse(404)) as unknown as typeof fetch;
+    expect(await chargerVideoNotion('demo_photos')).toBeNull();
+    const f = jest.fn(async () => reponse(200, { duree: 85 }));
+    global.fetch = f as unknown as typeof fetch;
+    maintenant.mockReturnValue(1_000_000 + 60_000);
+    expect(await chargerVideoNotion('demo_photos')).toBeNull();
+    expect(f).not.toHaveBeenCalled();
+    maintenant.mockReturnValue(1_000_000 + 4 * 60_000);
+    expect((await chargerVideoNotion('demo_photos'))?.dureeS).toBe(85);
+    maintenant.mockRestore();
+  });
+
   it('hors ligne : aucune vidéo, et l’échec n’est pas mémorisé', async () => {
     global.fetch = jest.fn(async () => {
       throw new Error('réseau');
