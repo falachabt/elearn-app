@@ -101,7 +101,7 @@ describe('Étapes du plan du jour faites sur l’appareil', () => {
     definirApi(creerApiFausse({ plan: 'echec', revision: REVISION_TEST, carnet: MOTS_TEST }).api);
     const vue = await monter(<MonPlan />);
     expect(await screen.findByText(t.monPlan.motsLocal)).toBeTruthy();
-    expect(screen.queryByText(t.monPlan.statut.fait)).toBeNull();
+    expect(screen.queryByText(/fait le/)).toBeNull();
     vue.unmount();
 
     await AsyncStorage.setItem('cert.seanceMots', JSON.stringify({
@@ -116,6 +116,6 @@ describe('Étapes du plan du jour faites sur l’appareil', () => {
     definirApi(creerApiFausse({ plan: 'echec', revision: REVISION_TEST, carnet: MOTS_TEST.map((m) => ({ ...m, boite: 4, prochaineRevue: '2099-01-01' })) }).api);
     await monter(<MonPlan />);
     expect(await screen.findByText(t.monPlan.motsLocal)).toBeTruthy();
-    await waitFor(() => expect(screen.getAllByText(new RegExp(`^${t.monPlan.statut.fait}`)).length).toBeGreaterThan(0));
+    await waitFor(() => expect(screen.getAllByText(/fait le/).length).toBeGreaterThan(0));
   });
 });

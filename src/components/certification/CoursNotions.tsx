@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Layers, Lightbulb, NotebookPen, TriangleAlert, type LucideIcon } from 'lucide-react-native';
+import { Check, Layers, Lightbulb, NotebookPen, TriangleAlert, type LucideIcon } from 'lucide-react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -12,8 +12,8 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Onglets } from '../Onglets';
-import { PuceEtatContenu } from './PuceEtatContenu';
-import { BarreProgression, EnteteCase, EtiquetteSection, GrilleCollee, type CaseGrille } from './ui';
+import { GroupeColle, LigneGroupe } from '../liste/ListeCollee';
+import { BarreProgression, EtiquetteSection } from './ui';
 
 const FAMILLES: readonly FamilleNotion[] = ['grammaire', 'vocabulaire', 'piege', 'methode'];
 
@@ -30,7 +30,7 @@ export function CoursNotions({ notions, famille, onFamille }: { notions: NotionL
   const { t } = useTraduction();
   const { theme } = useTheme();
   const groupes = coursDeLaFamille(notions, famille);
-  const { couleur, icone: Icone } = identiteFamille(theme)[famille];
+  const { couleur } = identiteFamille(theme)[famille];
   const ouvrir = (id: string) => router.push({ pathname: '/certification/notion/[id]', params: { id, source: 'liste' } } as never);
   return (
     <View style={styles.colonne}>
@@ -40,29 +40,26 @@ export function CoursNotions({ notions, famille, onFamille }: { notions: NotionL
       {groupes.map((g) => (
         <View key={g.partie} style={styles.colonne}>
           <EtiquetteSection texte={g.partie ? t('certification.cours.etiquette', { famille: t(`certification.cours.familles.${famille}`), n: g.partie }) : t('certification.cours.etiquetteSans', { famille: t(`certification.cours.familles.${famille}`) })} />
-          {/* Retour de Benny (22 octobre) : toutes les familles en grille ; retouche de novembre : cartes collées, même hauteur, état en haut à droite. */}
-          <GrilleCollee
-            cases={g.notions.map((n): CaseGrille => ({
-              cle: n.id,
-              accessibilityLabel: `${titreAffiche(n.titre)}, ${t(`certification.cours.etats.${etatContenu(n)}`)}`,
-              onPress: () => ouvrir(n.id),
-              contenu: (
-                <>
-                  <EnteteCase
-                    pastille={
-                      <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
-                        <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
-                      </View>
-                    }
-                    etiquette={<PuceEtatContenu etat={etatContenu(n)} />}
-                  />
-                  <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titreAffiche(n.titre)}</Text>
-                  {n.dureeMin ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.cours.duree', { n: n.dureeMin })}</Text> : null}
-                  {quizLies(n) ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.cours.quizLies', { r: quizLies(n)!.reussis, n: quizLies(n)!.total })}</Text> : null}
-                </>
-              ),
-            }))}
-          />
+          {/* Retouche du 16 novembre (option A) : liste collée sur une colonne, titre, durée et une fine barre ; plus de pastille d'état ni de fraction. */}
+          <GroupeColle>
+            {g.notions.map((n, i) => {
+              const etat = etatContenu(n);
+              const q = quizLies(n);
+              const fait = etat === 'maitrise' || etat === 'valide';
+              const pourcent = fait ? 100 : q && q.total > 0 ? (q.reussis / q.total) * 100 : 0;
+              return (
+                <LigneGroupe
+                  key={n.id}
+                  premier={i === 0}
+                  titre={titreAffiche(n.titre)}
+                  sousTitre={n.dureeMin ? t('certification.cours.duree', { n: n.dureeMin }) : undefined}
+                  bas={<BarreProgression pourcent={pourcent} hauteur={8} libelle={t(`certification.cours.etats.${etat}`)} />}
+                  droite={fait ? <View style={[styles.coche, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}><Check size={12} color={theme.texte.surCouleur} strokeWidth={3} /></View> : undefined}
+                  onPress={() => ouvrir(n.id)}
+                />
+              );
+            })}
+          </GroupeColle>
         </View>
       ))}
     </View>
@@ -105,5 +102,5 @@ const styles = StyleSheet.create({
   jauge: { gap: espace[1] },
   jaugeEntete: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   colonne: { gap: espace[3] },
-  pastille: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
+  coche: { width: 22, height: 22, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.pilule },
 });

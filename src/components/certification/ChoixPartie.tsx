@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Check, Circle, Layers, RotateCcw, Target } from 'lucide-react-native';
+import { Layers, Target } from 'lucide-react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Banniere } from '@/components/Banniere';
@@ -7,13 +7,13 @@ import { Bouton } from '@/components/Bouton';
 import { Ecran } from '@/components/Ecran';
 import { useTraduction } from '@/i18n/useTraduction';
 import { obtenirApi } from '@/services/certification/api';
-import { PARTIES, synthesesParties, testsDeLaPartie } from '@/services/certification/listesTests';
+import { PARTIES, synthesesParties } from '@/services/certification/listesTests';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { stylePartie } from './partiesStyle';
-import { EnteteCase, EnteteToeic, GrilleCollee, Squelette, type CaseGrille } from './ui';
+import { BarreProgression, EnteteCase, EnteteToeic, GrilleCollee, Squelette, type CaseGrille } from './ui';
 import { useChargement } from './useChargement';
 
 /**
@@ -40,14 +40,6 @@ export function ChoixPartie() {
       // Une partie sans test reste visible (P1 à P7) avec « Pas encore de test » : elle ne s'ouvre pas.
       const vide = ligne.total === 0;
       const { couleur, icone: Icone, cle } = styleDes[partie]!;
-      const deLaPartie = testsDeLaPartie(tests, partie);
-      const toutFait = !vide && ligne.faits === ligne.total;
-      const commence = !vide && !toutFait && deLaPartie.some((x) => x.tentatives > 0);
-      const statut = toutFait
-        ? { Icone: Check, libelle: t('certification.tests.statut.fait'), fond: theme.accent.soleil, texte: theme.texte.surCouleur }
-        : commence
-          ? { Icone: RotateCcw, libelle: t('certification.tests.statut.enCours'), fond: theme.marque.principale, texte: theme.texte.surCouleur }
-          : { Icone: Circle, libelle: t('certification.tests.statut.pasFait'), fond: theme.fond.surface, texte: theme.texte.principal };
       const libelleFaits = vide
         ? t('certification.tests.listes.choixPartie.pasEncore')
         : t('certification.tests.listes.choixPartie.faits', { faits: ligne.faits, total: ligne.total });
@@ -66,18 +58,16 @@ export function ChoixPartie() {
                   <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
                 </View>
               }
-              etiquette={
-                !vide ? (
-                  <View style={[styles.statut, { borderColor: theme.bord.fort, backgroundColor: statut.fond }]}>
-                    <statut.Icone size={12} color={statut.texte} strokeWidth={2} />
-                    <Text style={[typo.legende, { color: statut.texte }]}>{statut.libelle}</Text>
-                  </View>
-                ) : undefined
-              }
             />
             <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.tests.listes.choixPartie.partie', { partie })}</Text>
             <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t(cle)}</Text>
-            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{libelleFaits}</Text>
+            {vide ? (
+              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{libelleFaits}</Text>
+            ) : (
+              <View style={styles.barre}>
+                <BarreProgression pourcent={(ligne.faits / ligne.total) * 100} hauteur={8} libelle={libelleFaits} />
+              </View>
+            )}
             {/* Place du badge « Conseillé » réservée, même quand il est absent : toutes les cartes gardent la même hauteur. */}
             <View style={styles.placeConseille}>
               {ligne.conseillee ? (
@@ -132,5 +122,6 @@ export function ChoixPartie() {
 const styles = StyleSheet.create({
   pastille: { width: 34, height: 34, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   statut: { flexDirection: 'row', alignItems: 'center', gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1, alignSelf: 'flex-start' },
+  barre: { marginTop: espace[2] },
   placeConseille: { minHeight: 24, marginTop: espace[2], justifyContent: 'center' },
 });

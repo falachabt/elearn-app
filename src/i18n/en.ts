@@ -3355,6 +3355,16 @@ export const en: Textes = {
       seancesAide: '{{n}} sessions · {{min}} min',
       regularite: 'Active days',
       toutesStats: 'See all statistics',
+      suivant: 'Next',
+      minutes: '{{n}} min',
+      titreScore: 'Your week in one number.',
+      titreJours: '{{n}} days out of 7.',
+      titreActivite: 'You are moving forward.',
+      renforcerSurtitre: 'To strengthen',
+      renforcerTitre: 'A few points to review.',
+      partieFragile: 'part to consolidate',
+      partiesFragiles: 'parts to consolidate',
+      reflexe: 'Redoing a mistake helps you remember more than rereading the sheet. Five minutes is enough.',
     },
     stats: {
       courbe: {
@@ -3448,6 +3458,7 @@ export const en: Textes = {
       erreurTexte: 'The report did not go through. Try again in a moment.',
     },
     gagner: {
+      autresTitre: 'Other ways to earn',
       entete: 'Earn credits',
       intro: 'These gains come from your learning. Cap: {{plafond}} credits per week.',
       sessionDone: 'Daily session completed',

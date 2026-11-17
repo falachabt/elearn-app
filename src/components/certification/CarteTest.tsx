@@ -1,4 +1,4 @@
-import { Check, Circle, Clock, RotateCcw, TriangleAlert, type LucideIcon } from 'lucide-react-native';
+import { Check, ChevronRight, Circle, Clock, RotateCcw, TriangleAlert, type LucideIcon } from 'lucide-react-native';
 import { Children, cloneElement, isValidElement, type ReactElement, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -57,6 +57,37 @@ export function CarteTest({ icone: Icone, couleur, titre, sous, statut, libelleS
   const { Pastille, fond, texte } = pastilleDe(statut, theme);
   const actif = !!onPress && statut !== 'bientot';
   const faits = progression ? t(progression.faits <= 1 ? 'certification.tests.avancementUn' : 'certification.tests.avancement', { faits: progression.faits, total: progression.total }) : null;
+  if (collee) {
+    // Ligne compacte (retouche du 16 novembre) : icône, nom, détail, fine barre « faits sur n » et dernier score à droite.
+    const ligne = (
+      <View
+        testID="carte-test"
+        style={[styles.ligne, { backgroundColor: theme.fond.surface, opacity: statut === 'bientot' ? 0.75 : 1 }, !premier && { borderTopWidth: bord.fin, borderTopColor: theme.bord.doux }]}
+      >
+        <View style={[styles.iconeL, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
+          <Icone size={20} color={theme.texte.surCouleur} strokeWidth={2} />
+        </View>
+        <View style={styles.texte}>
+          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
+          <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{sous}</Text>
+          {progression && faits ? <BarreProgression pourcent={(progression.faits / progression.total) * 100} libelle={faits} hauteur={8} /> : null}
+        </View>
+        {score ? (
+          <View style={styles.score}>
+            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{`${score.valeur}/${score.max}`}</Text>
+          </View>
+        ) : null}
+        {actif ? <ChevronRight size={20} strokeWidth={2} color={theme.texte.secondaire} /> : null}
+      </View>
+    );
+    if (!actif) return ligne;
+    const libelleL = [titre, libelleStatut, score ? `${score.valeur} ${t('certification.tests.listes.surMax', { max: score.max })}` : null, faits, detail].filter(Boolean).join('. ');
+    return (
+      <Pressable accessibilityRole="button" accessibilityLabel={libelleL} onPress={onPress}>
+        {ligne}
+      </Pressable>
+    );
+  }
   const contenu = (
     <View
       testID="carte-test"
@@ -145,5 +176,8 @@ const styles = StyleSheet.create({
   texte: { flex: 1, minWidth: 0, gap: 2 },
   statut: { flexDirection: 'row', alignItems: 'center', gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1, alignSelf: 'flex-start' },
   progression: { gap: espace[2] },
+  ligne: { minHeight: 70, flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[4] },
+  iconeL: { width: 40, height: 40, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
+  score: { alignItems: 'flex-end' },
   action: { minHeight: 48, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center', paddingHorizontal: espace[4] },
 });

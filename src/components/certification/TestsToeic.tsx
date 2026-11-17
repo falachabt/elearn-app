@@ -9,7 +9,7 @@ import { suivre } from '@/services/analytics';
 import { minutesSecondes } from '@/services/certification/format';
 import { suiviDe, type SuiviTest } from '@/services/certification/suivi';
 import { abandonnerMini, longueursMiniServies, tempsRestantMs } from '@/services/certification/miniTest';
-import { chargerTests, derniereEstimation, testsFaits, type DonneesTests } from '@/services/certification/testsAccueil';
+import { chargerTests, type DonneesTests } from '@/services/certification/testsAccueil';
 import { avancement, scoreBorne } from '@/services/certification/listesTests';
 import type { ProgressionTest, TentativeListee } from '@/services/certification/types';
 import { useCredits } from '@/session/CreditsProvider';
@@ -22,7 +22,7 @@ import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { stylePartie } from './partiesStyle';
-import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette, TuilesCollees } from './ui';
+import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette } from './ui';
 import { CarteTest, GroupeTests, type ProprietesCarteTest, type StatutCarteTest } from './CarteTest';
 import { useChargement } from './useChargement';
 
@@ -95,8 +95,6 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   const detailMiniPartie = longueursMini.length > 1
     ? t('certification.tests.detailMiniPartiePlage', { min: longueursMini[0]!, max: longueursMini[longueursMini.length - 1]! })
     : t('certification.tests.detailMiniPartie', { n: longueursMini[0] ?? 10 });
-  const estimation = donnees.tentatives ? derniereEstimation(donnees.tentatives) : null;
-  const faits = donnees.tentatives ? testsFaits(donnees.tentatives) : null;
   const couleurs = stylePartie(theme, sombre);
 
   // Statut en mots (maquette v37) : jamais la couleur seule.
@@ -149,17 +147,6 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
       <CarteTest icone={Trophy} couleur={theme.marque.forte} titre={t('certification.tests.complet')} sous={detail(t('certification.tests.detailComplet'), completQ)} {...avecAction(statutProgression(pComplet))} score={scoreComplet(pComplet)} detail={detailDemi(pComplet)} progression={avancement(defs?.full) ?? undefined} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'full' } } as never)} />
       <CarteTest icone={NotebookPen} couleur={sombre ? theme.texte.principal : theme.fond.surface} titre={t('certification.tests.corrige')} sous={detail(t('certification.tests.detailCorrige'), corrigeQ)} statut="vide" libelleStatut="" />
       </GroupeTests>
-      <TuilesCollees
-        tuiles={[
-          {
-            cle: 'score',
-            titre: estimation ? t('certification.tests.scorePlage', { min: estimation.min, max: estimation.max, total }) : t('certification.tests.scoreVide'),
-            aide: t('certification.tests.score'),
-            onPress: () => router.push('/certification/historique' as never),
-          },
-          { cle: 'faits', titre: faits === null ? '–' : String(faits), aide: t('certification.tests.faits'), onPress: () => router.push('/certification/historique' as never) },
-        ]}
-      />
       {pass ? <Text style={[typo.petit, styles.centre]}>{t('certification.tests.inclus')}</Text> : null}
       <Bouton libelle={t('certification.tests.choisir')} onPress={() => router.push('/certification/mini' as never)} retour />
     </>

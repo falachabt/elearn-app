@@ -97,62 +97,49 @@ function styleType(theme: Theme, type: TypeEtape) {
   return { fond: theme.fond.creux, texte: theme.texte.principal };
 }
 
-function PastilleStatut({ etat, faitLe }: { etat: EtatEtape; faitLe: Jour | null }) {
+/**
+ * Une étape de la frise (option A de Benny, 16 novembre 2026) : un rail vertical, un repère par étape et du texte simple.
+ * Faite : coche verte, rail vert. En cours (la prochaine à lancer) : la seule carte, fond jaune doux. À venir : discrète.
+ * L'état reste dit en mots aux lecteurs d'écran, jamais par la couleur seule.
+ */
+export function EtapeLigne({ etape, dernier, rang, courante }: { etape: EtapePlan; dernier: boolean; rang: number; courante: boolean }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const dates = useDates();
-  const { fond, texte, Icone } =
-    etat === 'fait' ? { fond: theme.accent.soleil, texte: theme.texte.surCouleur, Icone: Check }
-    : etat === 'en_cours' ? { fond: theme.marque.douce, texte: theme.texte.principal, Icone: RotateCw }
-    : etat === 'reportee' ? { fond: theme.etat.erreurDoux, texte: theme.texte.principal, Icone: CalendarClock }
-    : etat === 'ratee' ? { fond: theme.etat.erreurDoux, texte: theme.texte.principal, Icone: TriangleAlert }
-    : { fond: theme.fond.surface, texte: theme.texte.principal, Icone: Circle };
-  const libelle = etat === 'fait' && faitLe ? t('certification.monPlan.faitLe', { date: dates.court(faitLe) }) : t(`certification.monPlan.statut.${etat}`);
-  return (
-    <View style={[styles.pastilleStatut, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
-      <Icone size={12} color={texte} strokeWidth={2} />
-      <Text style={[typo.etiquette, { color: texte }]}>{libelle}</Text>
+  const fait = etape.etat === 'fait';
+  const detail = [t(`certification.monPlan.type.${etape.type}`), etape.minutes ? t('certification.monPlan.minutes', { n: etape.minutes }) : null, etape.detail, fait && etape.faitLe ? t('certification.monPlan.faitLe', { date: dates.court(etape.faitLe) }).toLowerCase() : null, etape.etat === 'reportee' || etape.etat === 'ratee' || etape.etat === 'en_cours' ? t(`certification.monPlan.statut.${etape.etat}`).toLowerCase() : null].filter(Boolean).join(' · ');
+  const statut = fait && etape.faitLe ? t('certification.monPlan.faitLe', { date: dates.court(etape.faitLe) }) : t(`certification.monPlan.statut.${etape.etat}`);
+  const noeud = (
+    <View
+      style={[
+        styles.noeud,
+        courante && styles.noeudCourant,
+        { backgroundColor: fait ? theme.marque.principale : courante ? theme.accent.soleil : theme.fond.surface, borderColor: theme.bord.fort },
+      ]}
+    >
+      {fait ? <Check size={12} color={theme.texte.surCouleur} strokeWidth={3} /> : <Text style={[typo.legende, { color: courante ? theme.texte.surCouleur : theme.texte.principal }]}>{rang}</Text>}
     </View>
   );
-}
-
-/** Une étape de la frise : minutes, repère sur le fil, carte avec type, titre, détail et statut en mots. */
-export function EtapeLigne({ etape, dernier }: { etape: EtapePlan; dernier: boolean }) {
-  const { t } = useTraduction();
-  const { theme } = useTheme();
-  const Icone = ICONES[etape.type];
-  const { fond, texte } = styleType(theme, etape.type);
-  const sous = [t(`certification.monPlan.type.${etape.type}`), etape.detail].filter(Boolean).join(' · ');
-  const statut = t(`certification.monPlan.statut.${etape.etat}`);
   return (
     <View style={styles.etape}>
-      <Text style={[typo.donnee, styles.minutes, { color: theme.texte.secondaire }]}>{etape.minutes ? t('certification.monPlan.minutes', { n: etape.minutes }) : ''}</Text>
       <View style={styles.fil}>
-        <View style={[styles.trait, { backgroundColor: theme.bord.doux, bottom: dernier ? '50%' : -espace[4] }]} />
-        <View style={[styles.point, { backgroundColor: fond, borderColor: theme.bord.fort }]} />
+        {dernier ? null : <View style={[styles.trait, { backgroundColor: fait ? theme.marque.principale : theme.bord.doux }]} />}
+        {noeud}
       </View>
       <Appui
         style={styles.carteZone}
         accessibilityRole="button"
-        accessibilityLabel={`${etape.titre}. ${sous}. ${statut}`}
+        accessibilityLabel={`${etape.titre}. ${detail}. ${statut}`}
         onPress={() => ouvrirEtape(etape)}
-        decalage={3}
-        ombre={ombre.s}
+        decalage={courante ? 3 : 0}
+        ombre={courante ? ombre.s : undefined}
         couleurOmbre={theme.ombre}
         rayon={rayon.m}
         retour
       >
-        <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-          <View style={styles.carteHaut}>
-            <View style={[styles.pastille, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
-              <Icone size={18} color={texte} strokeWidth={2} />
-            </View>
-            <View style={styles.carteTexte}>
-              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{etape.titre}</Text>
-              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{sous}</Text>
-            </View>
-          </View>
-          <PastilleStatut etat={etape.etat} faitLe={etape.faitLe} />
+        <View style={[styles.carte, courante && { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort, borderWidth: bord.normal }, !dernier && !courante && styles.carteBas]}>
+          <Text style={[typo.texteFort, { color: courante || fait ? theme.texte.principal : theme.texte.secondaire, fontWeight: courante || fait ? undefined : '600' }]}>{etape.titre}</Text>
+          <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{detail}</Text>
         </View>
       </Appui>
     </View>
@@ -160,10 +147,13 @@ export function EtapeLigne({ etape, dernier }: { etape: EtapePlan; dernier: bool
 }
 
 export function EtapesDuJour({ etapes }: { etapes: EtapePlan[] }) {
+  // Les étapes faites passent en tête, la prochaine à lancer est mise en avant.
+  const ordre = [...etapes.filter((e) => e.etat === 'fait'), ...etapes.filter((e) => e.etat !== 'fait')];
+  const courante = (etapes.find((e) => e.etat === 'en_cours') ?? etapes.find((e) => e.etat !== 'fait'))?.id ?? null;
   return (
     <View style={styles.etapes}>
-      {etapes.map((e, i) => (
-        <EtapeLigne key={e.id} etape={e} dernier={i === etapes.length - 1} />
+      {ordre.map((e, i) => (
+        <EtapeLigne key={e.id} etape={e} dernier={i === ordre.length - 1} rang={i + 1} courante={e.id === courante} />
       ))}
     </View>
   );
@@ -420,18 +410,15 @@ const styles = StyleSheet.create({
   enteteTexte: { flex: 1, minWidth: 0, gap: espace[1] },
   enteteLigne: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: espace[3], flexWrap: 'wrap' },
   enteteCollee: { borderWidth: 0, borderRadius: 0 },
-  etapes: { gap: espace[4] },
-  etape: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3] },
-  minutes: { width: 48, paddingTop: espace[4] },
-  fil: { width: 20, alignSelf: 'stretch', alignItems: 'center' },
-  trait: { position: 'absolute', top: 0, width: 2 },
-  point: { width: 14, height: 14, marginTop: espace[5], borderWidth: bord.normal, borderRadius: rayon.pilule },
+  etapes: { gap: 0 },
+  etape: { flexDirection: 'row', alignItems: 'stretch', gap: espace[4] },
+  fil: { width: 28, alignItems: 'center' },
+  trait: { position: 'absolute', top: 28, bottom: 0, width: 2 },
+  noeud: { width: 26, height: 26, marginTop: espace[1], alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.pilule },
+  noeudCourant: { width: 30, height: 30, marginTop: 0 },
   carteZone: { flex: 1, minWidth: 0 },
-  carte: { gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'flex-start' },
-  carteHaut: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[4], alignSelf: 'stretch' },
-  carteTexte: { flex: 1, minWidth: 0 },
-  pastille: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
-  pastilleStatut: { flexDirection: 'row', alignItems: 'center', gap: espace[2], paddingHorizontal: espace[3], paddingVertical: espace[1], borderWidth: bord.normal, borderRadius: rayon.pilule },
+  carte: { gap: 2, padding: espace[1], paddingBottom: espace[5], borderRadius: rayon.m },
+  carteBas: {},
   lienZone: { alignSelf: 'center', minHeight: 48, justifyContent: 'center' },
   lien: { textDecorationLine: 'underline' },
   pointille: { gap: espace[3], padding: espace[5], borderWidth: bord.normal, borderStyle: 'dashed', borderRadius: rayon.l },

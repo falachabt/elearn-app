@@ -1,15 +1,19 @@
 import { router } from 'expo-router';
-import { Check, NotebookPen, RotateCcw, Target } from 'lucide-react-native';
-import { useCallback, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { Check, Globe, NotebookPen, RotateCcw, Target } from 'lucide-react-native';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { ACTIONS_QUOTIDIENNES, executerActionQuotidienne, lireEtatActionsQuotidiennes, lireEtatLocal, type ActionQuotidienne, type EtatActionsQuotidiennes } from '@/services/actionsCredits';
 import { obtenirReglages } from '@/services/certification/etat';
 import { lireGains, reclamerGain } from '@/services/certification/gains';
 import { lireProfil } from '@/services/profil';
 import type { CodeGain, EtatGains, GainListe, ResultatGain } from '@/services/certification/types';
+import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
+import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -82,6 +86,7 @@ export function GagnerToeic() {
             <LigneGain key={g.code} gain={g} occupe={occupe === g.code} onReclamer={() => void reclamer(etat.valeur.exam, g.code)} />
           ))}
           </ListeChoix>
+          <ActionsReseaux />
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
             {t('certification.gagner.plafondLigne', { g: etat.valeur.gains.gagneSemaine, p: etat.valeur.gains.plafond })}
           </Text>
@@ -90,6 +95,75 @@ export function GagnerToeic() {
         </>
       ) : null}
     </Ecran>
+  );
+}
+
+const ACTIONS_VISITE: readonly ActionQuotidienne[] = ['site_web', 'facebook', 'instagram'];
+
+/**
+ * Les mêmes actions du jour que dans le secondaire (visiter le site, Facebook, Instagram), avec leurs crédits : la logique
+ * est celle de `actionsCredits` (le serveur décide si l'action est déjà réclamée), seule la présentation est ici.
+ */
+function ActionsReseaux() {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+  const { rafraichir } = useCredits();
+  const { session } = useSession();
+  const [faites, setFaites] = useState<EtatActionsQuotidiennes>({ site_web: false, facebook: false, instagram: false, parrainage: false });
+  const [enCours, setEnCours] = useState<ActionQuotidienne | null>(null);
+  const utilisateurId = session?.user?.id;
+
+  const charger = useCallback(async () => {
+    try {
+      if (utilisateurId) setFaites(await lireEtatLocal(new Date(), utilisateurId));
+      setFaites(await lireEtatActionsQuotidiennes(new Date(), { client: getSupabase(), utilisateurId }));
+    } catch {
+      // On garde ce qui est affiché.
+    }
+  }, [utilisateurId]);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    void charger();
+  }, [charger]);
+
+  const executer = async (action: ActionQuotidienne) => {
+    setEnCours(action);
+    try {
+      await executerActionQuotidienne(action, {
+        client: getSupabase(),
+        utilisateurId,
+        onSucces: () => { void rafraichir(); void charger(); },
+        onDejaFait: () => void charger(),
+      });
+    } finally {
+      setEnCours(null);
+    }
+  };
+  return (
+    <View style={styles.groupe}>
+      <Text accessibilityRole="header" style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.gagner.autresTitre')}</Text>
+      <ListeChoix>
+        {ACTIONS_VISITE.map((a) => {
+          const fait = faites[a];
+          return (
+            <LigneChoix
+              key={a}
+              icone={Globe}
+              visuel={a === 'site_web' ? undefined : <Ionicons name={a === 'facebook' ? 'logo-facebook' : 'logo-instagram'} size={20} color={theme.texte.principal} />}
+              titre={t(`credits.actionsLabels.${a}` as never)}
+              aide={t(`credits.actionsSousTitres.${a}` as never)}
+              droite={
+                fait ? (
+                  <PastilleEtat etat="acquise" libelle={t('credits.actionFait')} />
+                ) : (
+                  <Bouton petit variante="secondaire" libelle={t('credits.actionGagner', { gain: ACTIONS_QUOTIDIENNES[a].gain })} desactive={enCours === a} onPress={() => void executer(a)} />
+                )
+              }
+            />
+          );
+        })}
+      </ListeChoix>
+    </View>
   );
 }
 

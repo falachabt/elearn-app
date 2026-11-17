@@ -107,8 +107,8 @@ describe('D3 · Mon plan en frise', () => {
     expect(screen.queryByText(/^Jusqu’au /)).toBeNull();
     expect(screen.queryByText(/Notions vues/)).toBeNull();
     expect(screen.queryByRole('button', { name: /^Aujourd’hui/ })).toBeNull();
-    expect(screen.getByText(t.statut.reportee)).toBeTruthy();
-    expect(screen.getAllByText(t.statut.en_cours).length).toBeGreaterThan(0);
+    expect(screen.getByText(new RegExp(t.statut.reportee.toLowerCase()))).toBeTruthy();
+    expect(screen.getAllByText(new RegExp(t.statut.en_cours.toLowerCase())).length).toBeGreaterThan(0);
     // demain est replié : ses étapes ne sont pas dessinées
     expect(screen.queryByText('Étape c')).toBeNull();
     expect(screen.getByLabelText(new RegExp(`^${t.demain}\\.`))).toBeTruthy();

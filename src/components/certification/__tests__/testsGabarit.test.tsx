@@ -76,11 +76,11 @@ describe('onglet Tests : gabarit large des cartes (maquette v36, v37)', () => {
     expect(screen.getAllByLabelText(t.avancementUn.replace('{{faits}}', '0').replace('{{total}}', '1')).length).toBe(3);
   });
 
-  it('le meilleur score se lit « 8 sur 10 » (D-58), jamais au-dessus de la section (705 devient 495)', async () => {
+  it('le meilleur score se lit « 8/10 » à droite de la ligne (D-58), jamais au-dessus de la section (705 devient 495)', async () => {
     await monter(<TestsToeic />);
-    expect((await screen.findAllByText(/^8 sur 10$/)).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/^410 sur 495$/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/^495 sur 495$/).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText(/^8\/10$/)).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/^410\/495$/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/^495\/495$/).length).toBeGreaterThan(0);
     expect(screen.queryByText(/705/)).toBeNull();
   });
 
@@ -89,19 +89,19 @@ describe('onglet Tests : gabarit large des cartes (maquette v36, v37)', () => {
     await screen.findByLabelText(t.avancementUn.replace('{{faits}}', '1').replace('{{total}}', '3'));
     const cartes = screen.getAllByTestId('carte-test').map((c) => StyleSheet.flatten(c.props.style));
     expect(cartes).toHaveLength(6);
-    expect(cartes.every((s) => s.borderWidth === 0 && s.borderRadius === 0)).toBe(true);
+    expect(cartes.every((s) => !s.borderWidth && !s.borderRadius)).toBe(true);
     // 2 cartes dans le premier bloc (1 trait), 4 dans le second (3 traits) : la première de chaque bloc n'a pas de trait.
     expect(cartes.filter((s) => (s.borderTopWidth ?? 0) > 0)).toHaveLength(4);
     expect(cartes[0]!.borderTopWidth).toBeUndefined();
     expect(cartes[2]!.borderTopWidth).toBeUndefined();
   });
 
-  it('chaque carte active porte son bouton : « Voir les tentatives » si fait, « Commencer » sinon (maquette v34)', async () => {
+  it('retouche du 16 novembre : plus de bouton ni de pastille d’état dans les lignes, le statut reste dit aux lecteurs d’écran', async () => {
     await monter(<TestsToeic />);
     await screen.findByLabelText(t.avancementUn.replace('{{faits}}', '1').replace('{{total}}', '3'));
-    // Mini par partie, mini mixte, demi-test écoute, demi-test lecture : cinq boutons avec le test complet, actif depuis le 15 novembre 2026.
-    expect(screen.getAllByTestId('carte-test-action')).toHaveLength(5);
-    expect(screen.getAllByText(t.voirTentatives).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(t.commencer).length).toBeGreaterThan(0);
+    expect(screen.queryAllByTestId('carte-test-action')).toHaveLength(0);
+    expect(screen.queryByText(t.voirTentatives)).toBeNull();
+    expect(screen.queryByText(t.commencer)).toBeNull();
+    expect(screen.getAllByRole('button', { name: new RegExp(fr.certification.tests.statut.fait) }).length).toBeGreaterThan(0);
   });
 });
