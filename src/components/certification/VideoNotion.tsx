@@ -3,7 +3,7 @@ import { useFocusEffect } from 'expo-router';
 import { createVideoPlayer, VideoView, type VideoPlayer } from 'expo-video';
 import { Play } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { formaterDuree } from '@/services/videos';
@@ -11,7 +11,6 @@ import type { VideoNotion as Video } from '@/services/certification/videoNotion'
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
-import { Appui } from '../Appui';
 import { EtiquetteSection } from './ui';
 
 type Props = {
@@ -85,20 +84,17 @@ export function VideoNotion({ video, titre, onLancee, onTerminee }: Props) {
         {lecteur ? (
           <VideoView player={lecteur} style={styles.media} nativeControls contentFit="contain" fullscreenOptions={{ enable: true }} />
         ) : (
-          <Appui
-            suivi="cert_video_play"
+          <Pressable
             accessibilityRole="button"
             accessibilityLabel={t('certification.fiche.video.lire', { titre })}
             onPress={lancer}
-            style={styles.media}
+            style={styles.lecture}
           >
-            {video.miniature ? <Image source={{ uri: video.miniature }} style={StyleSheet.absoluteFill} contentFit="cover" accessible={false} /> : <View style={[StyleSheet.absoluteFill, styles.fondCreme]} />}
-            <View style={styles.centre}>
+              {video.miniature ? <Image source={{ uri: video.miniature }} style={StyleSheet.absoluteFill} contentFit="cover" accessible={false} /> : <View style={[StyleSheet.absoluteFill, styles.fondCreme]} />}
               <View style={[styles.bouton, { borderColor: palette.encre[1000], backgroundColor: theme.marque.principale }]}>
                 <Play size={26} color={palette.encre[1000]} fill={palette.encre[1000]} strokeWidth={2} />
               </View>
-            </View>
-          </Appui>
+          </Pressable>
         )}
       </View>
       <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
@@ -112,8 +108,8 @@ export function VideoNotion({ video, titre, onLancee, onTerminee }: Props) {
 const styles = StyleSheet.create({
   groupe: { gap: espace[2] },
   cadre: { borderWidth: bord.normal, borderRadius: rayon.m, overflow: 'hidden', aspectRatio: 16 / 9, backgroundColor: palette.papier[50] },
-  media: { flex: 1 },
+  media: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
+  lecture: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   fondCreme: { backgroundColor: palette.papier[50] },
-  centre: { ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center' },
   bouton: { width: 56, height: 56, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
 });
