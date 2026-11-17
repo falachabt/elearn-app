@@ -2781,6 +2781,11 @@ export const fr = {
         lireFiche: 'Lire la fiche',
         masquerFiche: 'Masquer la fiche',
         ficheAide: 'Règle, exemples et piège',
+        pause: 'Pause',
+        lecture: 'Lecture',
+        pleinEcran: 'Plein écran',
+        progression: 'Progression de la vidéo',
+        progressionTexte: '{{temps}} secondes sur {{total}}',
       },
     },
     carnet: {

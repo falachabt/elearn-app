@@ -2780,6 +2780,11 @@ export const en: Textes = {
         lireFiche: 'Read the sheet',
         masquerFiche: 'Hide the sheet',
         ficheAide: 'Rule, examples and trap',
+        pause: 'Pause',
+        lecture: 'Play',
+        pleinEcran: 'Full screen',
+        progression: 'Video progress',
+        progressionTexte: '{{temps}} seconds of {{total}}',
       },
     },
     carnet: {

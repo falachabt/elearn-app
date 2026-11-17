@@ -133,7 +133,7 @@ export function FicheNotion() {
         ) : null;
         const vide = !f.regle && f.exemples.length === 0 && !f.piege && !f.fauxAmi;
         return (
-          <View style={styles.groupe}>
+          <View style={video ? styles.groupeVideo : styles.groupe}>
             {video ? (
               <>
                 <VideoNotion
@@ -143,7 +143,7 @@ export function FicheNotion() {
                   onTerminee={() => suivre('cert_video_completed', { notion: phase.fiche.code })}
                 />
                 {suivi ? carteEtat : null}
-                <LigneChoix
+                <View style={styles.ficheLigne}><LigneChoix
                   icone={BookOpen}
                   titre={ficheOuverte ? t('certification.fiche.video.masquerFiche') : t('certification.fiche.video.lireFiche')}
                   aide={t('certification.fiche.video.ficheAide')}
@@ -152,7 +152,7 @@ export function FicheNotion() {
                     suivre('cert_notion_sheet_toggled', { notion: phase.fiche.code, ouverte: !ficheOuverte });
                     setFicheOuverte(!ficheOuverte);
                   }}
-                />
+                /></View>
               </>
             ) : null}
             {!video && suivi ? carteEtat : null}
@@ -220,5 +220,7 @@ export function FicheNotion() {
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
+  groupeVideo: { gap: espace[6] },
+  ficheLigne: { marginTop: -espace[2] },
   pastille: { alignSelf: 'flex-start', maxWidth: '100%', borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: espace[1] },
 });
