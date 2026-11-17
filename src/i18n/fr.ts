@@ -2773,6 +2773,15 @@ export const fr = {
       expireAide: 'Connecte-toi pour le rafraîchir. Tu peux relire le début, sans les exercices.',
       actualiser: 'Actualiser',
       relire: 'Relire le début',
+      video: {
+        etiquette: 'EXPLICATION EN VIDÉO',
+        lire: 'Lancer la vidéo : {{titre}}',
+        aide: 'Vidéo en anglais, sous-titrée',
+        aideDuree: 'Vidéo en anglais, sous-titrée · {{duree}}',
+        lireFiche: 'Lire la fiche',
+        masquerFiche: 'Masquer la fiche',
+        ficheAide: 'Règle, exemples et piège',
+      },
     },
     carnet: {
       entete: 'Carnet de mots',
