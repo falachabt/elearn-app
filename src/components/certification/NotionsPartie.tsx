@@ -61,11 +61,11 @@ export function NotionsPartie() {
                     </View>
                   }
                   droite={<PuceEtatContenu etat={etatContenu(n)} />}
-                  onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: n.id, source: 'partie' } } as never)}
+                  onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: n.id, source: 'partie', partie: String(partie) } } as never)}
                 />
               ))}
             </GroupeColle>
-            <Bouton variante="secondaire" libelle={t('certification.notionsPartie.revoir')} desactive={!active.fiche} onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: active.id, source: 'partie' } } as never)} />
+            <Bouton variante="secondaire" libelle={t('certification.notionsPartie.revoir')} desactive={!active.fiche} onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: active.id, source: 'partie', partie: String(partie) } } as never)} />
             <Bouton libelle={t('certification.notionsPartie.entrainer', { notion: titreAffiche(active.titre) })} onPress={() => router.push({ pathname: '/certification/serie', params: { notion: active.id } } as never)} />
           </View>
         );

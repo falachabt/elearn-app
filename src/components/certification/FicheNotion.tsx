@@ -33,7 +33,9 @@ export function FicheNotion() {
   const { t } = useTraduction();
   const { theme, sombre } = useTheme();
   const jaune = sombre ? corrigeCouleurs.dark : corrigeCouleurs.light;
-  const { id, source } = useLocalSearchParams<{ id: string; source?: string }>();
+  const { id, source, partie } = useLocalSearchParams<{ id: string; source?: string; partie?: string }>();
+  /** Partie d'où l'on vient (liste des notions d'une partie) : l'entraînement reste dans cette partie. */
+  const partieOrigine = Number(partie);
   const [phase, setPhase] = useState<Phase>({ nom: 'chargement' });
   /** État de maîtrise de la notion (liste des notions) : absent si la liste n'est pas lisible, la fiche s'affiche sans badge. */
   const [suivi, setSuivi] = useState<NotionListee | null>(null);
@@ -106,7 +108,7 @@ export function FicheNotion() {
     <Ecran
       insetBas={false}
       entete={<EnteteToeic titre={titre} onRetour={retour} />}
-      pied={phase.nom === 'ok' ? <Bouton libelle={t('certification.fiche.entrainer')} onPress={() => router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id } } as never)} retour /> : undefined}
+      pied={phase.nom === 'ok' ? <Bouton libelle={t('certification.fiche.entrainer')} onPress={() => router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id, ...(partieOrigine >= 1 && partieOrigine <= 7 ? { part: String(partieOrigine) } : {}) } } as never)} retour /> : undefined}
     >
       {phase.nom === 'chargement' ? <Squelette lignes={4} /> : null}
       {phase.nom === 'erreur' ? (
@@ -143,7 +145,7 @@ export function FicheNotion() {
                   onTerminee={() => suivre('cert_video_completed', { notion: phase.fiche.code })}
                   onEntrainer={() => {
                     suivre('cert_video_practice_clicked', { notion: phase.fiche.code });
-                    router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id } } as never);
+                    router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id, ...(partieOrigine >= 1 && partieOrigine <= 7 ? { part: String(partieOrigine) } : {}) } } as never);
                   }}
                   onRevoir={() => suivre('cert_video_replayed', { notion: phase.fiche.code })}
                 />

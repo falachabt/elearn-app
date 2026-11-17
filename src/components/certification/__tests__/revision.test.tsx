@@ -139,7 +139,7 @@ describe('C3 · Notions d’une partie', () => {
   it('appuyer sur une carte ouvre la fiche de cette notion', async () => {
     await monter(<NotionsPartie />);
     await fireEvent.press(await screen.findByText('Temps du passé'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/notion/[id]', params: { id: 'n-passe', source: 'partie' } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/notion/[id]', params: { id: 'n-passe', source: 'partie', partie: '5' } });
   });
 
   it('lance la série de la notion choisie par défaut', async () => {
@@ -151,7 +151,7 @@ describe('C3 · Notions d’une partie', () => {
   it('ouvre la fiche de la notion choisie', async () => {
     await monter(<NotionsPartie />);
     await fireEvent.press(await screen.findByText(t.notionsPartie.revoir));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/notion/[id]', params: { id: 'n-forme', source: 'partie' } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/notion/[id]', params: { id: 'n-forme', source: 'partie', partie: '5' } });
   });
 
   it('affiche les décomptes bruts et « 0 question faite » pour une notion pas commencée', async () => {
@@ -204,6 +204,13 @@ describe('C5 · Fiche d’une notion', () => {
     await screen.findByText(t.fiche.regle);
     expect(screen.queryByText(t.fiche.ancrage.replace('{{n}}', '0'))).toBeNull();
     expect(screen.queryByText(t.fiche.ancrageLigne.replace('{{n}}', '1').replace('{{minutes}}', '3'))).toBeNull();
+  });
+
+  it('depuis les notions d’une partie, l’entraînement reste dans cette partie', async () => {
+    mockParams = { id: 'n-prepo', source: 'partie', partie: '7' };
+    await monter(<FicheNotion />);
+    await fireEvent.press(await screen.findByText(t.fiche.entrainer));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/serie', params: { notion: FICHE_TEST.id, part: '7' } });
   });
 
   it('lance l’entraînement de la notion, et les trois ancrages en mode ancrage', async () => {
