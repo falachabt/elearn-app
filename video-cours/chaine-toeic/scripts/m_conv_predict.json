@@ -1,0 +1,246 @@
+{
+ "code": "m_conv_predict",
+ "titre": "Predict before you listen",
+ "partie": "TOEIC · Part 3",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 3 · Method",
+   "titre": "Predict before you listen",
+   "sous": "Read the questions first",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Read the **questions** first."
+    },
+    {
+     "qui": "B",
+     "texte": "Then I know what to **listen** for.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The method",
+   "titre": "Use the seconds before the audio",
+   "etapes": [
+    {
+     "texte": "**Read** the three questions and the options"
+    },
+    {
+     "texte": "Underline **who**, **where**, **why**"
+    },
+    {
+     "texte": "Guess the **topic** of the talk"
+    }
+   ]
+  },
+  "types": {
+   "type": "structure",
+   "kicker": "Question types",
+   "titre": "What to listen for",
+   "lignes": [
+    {
+     "debut": "Who",
+     "suite": "a job or a name",
+     "exemple": "the **manager**"
+    },
+    {
+     "debut": "Where",
+     "suite": "a place",
+     "exemple": "at the **airport**"
+    },
+    {
+     "debut": "Why",
+     "suite": "a reason",
+     "exemple": "because of a **delay**"
+    },
+    {
+     "debut": "What next",
+     "suite": "a plan",
+     "exemple": "will **call** the client"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 3",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "At a hotel",
+     "etat": "ko",
+     "raison": "No sign of hotel"
+    },
+    {
+     "lettre": "B",
+     "texte": "At an airport",
+     "etat": "ok",
+     "raison": "Flight and gate"
+    },
+    {
+     "lettre": "C",
+     "texte": "At a bank",
+     "etat": "ko",
+     "raison": "No sign of bank"
+    }
+   ],
+   "entendu": "**Where** are the speakers? Flight delayed. Go to gate twelve."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Read the **questions** first"
+    },
+    {
+     "texte": "Find **who**, **where**, **why**"
+    },
+    {
+     "texte": "Listen for the **clues**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Predict before you listen.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "Before the audio, read the three questions and the options.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Find who, where, and why.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "Then guess the topic of the talk.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "types",
+   "texte": "Who asks for a job. Where asks for a place.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "types",
+   "texte": "Why asks for a reason. What next asks for a plan.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: Where are the speakers? Flight delayed. Go to gate twelve.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: At a hotel. B: At an airport. C: At a bank.",
+   "dit": "Answer A. At a hotel. Answer B. At an airport. Answer C. At a bank.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Listen for the clues: flight, delayed, gate.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "A is wrong. There is no hotel word.",
+   "vue": {
+    "juge": [
+     "A"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. There is no bank word.",
+   "vue": {
+    "juge": [
+     "A",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "B is correct. Flight and gate show an airport.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: read the questions first.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: find who, where, and why.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: then listen for the clues.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

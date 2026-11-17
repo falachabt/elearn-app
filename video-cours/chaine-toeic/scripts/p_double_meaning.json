@@ -1,0 +1,264 @@
+{
+ "code": "p_double_meaning",
+ "titre": "Words with two meanings",
+ "partie": "TOEIC · Part 5",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Parts 5 and 7 · Trap",
+   "titre": "Words with two meanings",
+   "sous": "book, charge, issue, party",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Please **book** the room."
+    },
+    {
+     "qui": "B",
+     "texte": "Do you mean **reserve** it?",
+     "etat": "ok"
+    }
+   ]
+  },
+  "mots": {
+   "type": "structure",
+   "kicker": "Same word, two jobs",
+   "titre": "The sentence decides",
+   "lignes": [
+    {
+     "debut": "book",
+     "suite": "read, reserve",
+     "exemple": "**Book** a table."
+    },
+    {
+     "debut": "charge",
+     "suite": "price, fill",
+     "exemple": "A small **charge**."
+    },
+    {
+     "debut": "issue",
+     "suite": "problem, give",
+     "exemple": "An **issue**."
+    },
+    {
+     "debut": "party",
+     "suite": "event, side",
+     "exemple": "A **party**."
+    }
+   ]
+  },
+  "regle": {
+   "type": "recap",
+   "kicker": "The rule",
+   "titre": "Never decide on one meaning",
+   "etapes": [
+    {
+     "texte": "Read the **whole sentence**"
+    },
+    {
+     "texte": "Look at the **words around** it"
+    },
+    {
+     "texte": "Then choose the **meaning that fits**"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 5",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "charge",
+     "etat": "ok",
+     "raison": "Ask a price"
+    },
+    {
+     "lettre": "B",
+     "texte": "book",
+     "etat": "ko",
+     "raison": "Reserve"
+    },
+    {
+     "lettre": "C",
+     "texte": "issue",
+     "etat": "ko",
+     "raison": "Give out"
+    },
+    {
+     "lettre": "D",
+     "texte": "party",
+     "etat": "ko",
+     "raison": "A noun"
+    }
+   ],
+   "lu": "The hotel does not ------- extra for breakfast."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Many words have **two meanings**"
+    },
+    {
+     "texte": "The **words around** show which one"
+    },
+    {
+     "texte": "Read the **whole sentence**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Words with two meanings.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "mots",
+   "texte": "Book can be a thing to read, or mean reserve. Charge can be a price, or mean fill a battery.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "mots",
+   "texte": "Issue can be a problem, or mean give out. Party can be an event, or one side of a contract.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "regle",
+   "texte": "Read the whole sentence.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "regle",
+   "texte": "Look at the words around the word.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "regle",
+   "texte": "Then choose the meaning that fits.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. The hotel does not blank extra for breakfast.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: charge. B: book. C: issue. D: party.",
+   "dit": "Answer A. charge. Answer B. book. Answer C. issue. Answer D. party.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Extra for breakfast is a price. So the verb means ask a price.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "B is wrong. Book means reserve here.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. Issue does not fit with extra.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "D is wrong. Party is a noun.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "A is correct. The hotel does not charge extra for breakfast.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: many words have two meanings.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: the words around show which one is used.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: always read the whole sentence.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

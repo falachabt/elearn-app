@@ -1,0 +1,264 @@
+{
+ "code": "p_time_signal",
+ "titre": "Time signals",
+ "partie": "TOEIC · Part 5",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 5 · Trap",
+   "titre": "Time signals",
+   "sous": "yesterday, since, already, next week",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "He **has worked** here since 2020."
+    },
+    {
+     "qui": "B",
+     "texte": "And he **left** last year?",
+     "etat": "ko"
+    }
+   ]
+  },
+  "signaux": {
+   "type": "structure",
+   "kicker": "Look at the time word",
+   "titre": "It tells you the tense",
+   "lignes": [
+    {
+     "debut": "yesterday",
+     "suite": "past",
+     "exemple": "We **met** **yesterday**."
+    },
+    {
+     "debut": "since, for",
+     "suite": "perfect",
+     "exemple": "Here **since** May."
+    },
+    {
+     "debut": "tomorrow",
+     "suite": "future",
+     "exemple": "It starts **tomorrow**."
+    },
+    {
+     "debut": "every day",
+     "suite": "present",
+     "exemple": "**Every day**."
+    }
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "The method",
+   "titre": "Find the signal first",
+   "etapes": [
+    {
+     "texte": "Read the sentence **and look for a time word**"
+    },
+    {
+     "texte": "Match it to **one tense**"
+    },
+    {
+     "texte": "Then remove the **wrong forms**"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 5",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "launched",
+     "etat": "ok",
+     "raison": "Past with last week"
+    },
+    {
+     "lettre": "B",
+     "texte": "launches",
+     "etat": "ko",
+     "raison": "Present"
+    },
+    {
+     "lettre": "C",
+     "texte": "will launch",
+     "etat": "ko",
+     "raison": "Future"
+    },
+    {
+     "lettre": "D",
+     "texte": "has launched",
+     "etat": "ko",
+     "raison": "Not with last week"
+    }
+   ],
+   "lu": "The company ------- its new website last week."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "The **time word** gives the tense"
+    },
+    {
+     "texte": "**last week** is past, **since** is present perfect"
+    },
+    {
+     "texte": "Look at it **before** the options"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Time signals.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "signaux",
+   "texte": "Yesterday and last week: simple past. Since, for, already: present perfect.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "signaux",
+   "texte": "Next week and tomorrow: future. Every day and usually: simple present.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "methode",
+   "texte": "Read the sentence, and look for a time word.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "methode",
+   "texte": "Match it to one tense.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "methode",
+   "texte": "Then remove the wrong forms.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. The company blank its new website last week.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: launched. B: launches. C: will launch. D: has launched.",
+   "dit": "Answer A. launched. Answer B. launches. Answer C. will launch. Answer D. has launched.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Last week is a finished time. We need the simple past.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "B is wrong. Launches is the present.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. Will launch is the future.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "D is wrong. Has launched does not go with last week.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "A is correct. The company launched its new website last week.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: the time word gives you the tense.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: last week is the past, and since goes with the present perfect.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: look at the time word before you read the options.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

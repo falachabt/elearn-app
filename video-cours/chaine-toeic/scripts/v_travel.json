@@ -1,0 +1,272 @@
+{
+ "code": "v_travel",
+ "titre": "Travel and bookings",
+ "partie": "TOEIC · Vocabulary",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Vocabulary",
+   "titre": "Travel and bookings",
+   "sous": "book, flight, delay, itinerary",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Is the **flight** on time?"
+    },
+    {
+     "qui": "B",
+     "texte": "No, there is a **delay**.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "s1": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "Planning a trip",
+   "titre": "Before you go",
+   "lignes": [
+    {
+     "debut": "book",
+     "suite": "reserve in advance",
+     "exemple": "Please **book** a room."
+    },
+    {
+     "debut": "an itinerary",
+     "suite": "the plan of a trip",
+     "exemple": "Here is your **itinerary**."
+    },
+    {
+     "debut": "a fare",
+     "suite": "the price of a ticket",
+     "exemple": "The **fare** is low."
+    },
+    {
+     "debut": "a passenger",
+     "suite": "a person who travels",
+     "exemple": "Each **passenger** needs a pass."
+    }
+   ]
+  },
+  "s2": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "At the airport",
+   "titre": "When you travel",
+   "lignes": [
+    {
+     "debut": "a delay",
+     "suite": "a late departure",
+     "exemple": "There is a **delay**."
+    },
+    {
+     "debut": "board",
+     "suite": "get on a plane",
+     "exemple": "Please **board** now."
+    },
+    {
+     "debut": "a gate",
+     "suite": "the exit to the plane",
+     "exemple": "Go to **gate** 12."
+    },
+    {
+     "debut": "luggage",
+     "suite": "your bags",
+     "exemple": "Check your **luggage**."
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 5",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "passengers",
+     "etat": "ok",
+     "raison": "The people who travel"
+    },
+    {
+     "lettre": "B",
+     "texte": "passages",
+     "etat": "ko",
+     "raison": "Sounds similar"
+    },
+    {
+     "lettre": "C",
+     "texte": "passing",
+     "etat": "ko",
+     "raison": "Wrong form"
+    },
+    {
+     "lettre": "D",
+     "texte": "passed",
+     "etat": "ko",
+     "raison": "Wrong form"
+    }
+   ],
+   "lu": "All ------- must show a passport at the gate."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "**book** before you go, an **itinerary** is the plan"
+    },
+    {
+     "texte": "A **fare** is a price, a **delay** is a late departure"
+    },
+    {
+     "texte": "A **passenger** travels, **luggage** is the bags"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Travel and bookings.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "s1",
+   "texte": "First. Book means reserve in advance. An itinerary means the plan of a trip.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "s1",
+   "texte": "A fare means the price of a ticket. A passenger means a person who travels.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "s2",
+   "texte": "Next. A delay means a late departure. Board means get on a plane.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "s2",
+   "texte": "A gate means the exit to the plane. Luggage means your bags.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p06",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. All blank must show a passport at the gate.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "A: passengers. B: passages. C: passing. D: passed.",
+   "dit": "Answer A. passengers. Answer B. passages. Answer C. passing. Answer D. passed.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "We need a noun for the people who travel by plane.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "B is wrong. A passage is a path, or a part of a text.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "C is wrong. Passing is a verb form. We need a noun.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "D is wrong. Passed is a verb form too.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "A is correct. All passengers must show a passport at the gate.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: book means reserve, and an itinerary is the plan of the trip.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: a fare is a price, and a delay is a late departure.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: a passenger travels, and luggage is your bags.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

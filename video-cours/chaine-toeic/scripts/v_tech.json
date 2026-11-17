@@ -1,0 +1,272 @@
+{
+ "code": "v_tech",
+ "titre": "Technology and computers",
+ "partie": "TOEIC · Vocabulary",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Vocabulary",
+   "titre": "Technology and computers",
+   "sous": "install, update, network, password",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The **network** is down again."
+    },
+    {
+     "qui": "B",
+     "texte": "Try to **restart** your computer.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "s1": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "Everyday tools",
+   "titre": "What you use",
+   "lignes": [
+    {
+     "debut": "a password",
+     "suite": "a secret code",
+     "exemple": "Change your **password**."
+    },
+    {
+     "debut": "a network",
+     "suite": "linked computers",
+     "exemple": "The **network** is slow."
+    },
+    {
+     "debut": "a file",
+     "suite": "a saved document",
+     "exemple": "Open the **file**."
+    },
+    {
+     "debut": "a device",
+     "suite": "a phone or a tablet",
+     "exemple": "Use your own **device**."
+    }
+   ]
+  },
+  "s2": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "Actions",
+   "titre": "What you do",
+   "lignes": [
+    {
+     "debut": "install",
+     "suite": "put a program on a computer",
+     "exemple": "**Install** the program."
+    },
+    {
+     "debut": "update",
+     "suite": "make newer",
+     "exemple": "Please **update** the app."
+    },
+    {
+     "debut": "back up",
+     "suite": "save a second copy",
+     "exemple": "**Back up** your data."
+    },
+    {
+     "debut": "malfunction",
+     "suite": "stop working well",
+     "exemple": "The printer will **malfunction**."
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 5",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "install",
+     "etat": "ok",
+     "raison": "Put it on the computer"
+    },
+    {
+     "lettre": "B",
+     "texte": "installation",
+     "etat": "ko",
+     "raison": "A noun, not a verb"
+    },
+    {
+     "lettre": "C",
+     "texte": "installed",
+     "etat": "ko",
+     "raison": "Wrong form after please"
+    },
+    {
+     "lettre": "D",
+     "texte": "installing",
+     "etat": "ko",
+     "raison": "Wrong form after please"
+    }
+   ],
+   "lu": "Please ------- the new software before Friday."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "A **password** protects, a **network** links computers"
+    },
+    {
+     "texte": "**install** puts a program on, **update** makes it newer"
+    },
+    {
+     "texte": "**back up** means save a copy"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Technology and computers.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "s1",
+   "texte": "First. A password means a secret code. A network means linked computers.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "s1",
+   "texte": "A file means a saved document. A device means a phone or a tablet.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "s2",
+   "texte": "Next. Install means put a program on a computer. Update means make newer.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "s2",
+   "texte": "Back up means save a second copy. Malfunction means stop working well.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p06",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. Please blank the new software before Friday.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "A: install. B: installation. C: installed. D: installing.",
+   "dit": "Answer A. install. Answer B. installation. Answer C. installed. Answer D. installing.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "After please, we need the base verb.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "B is wrong. Installation is a noun.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "C is wrong. Installed is a past form.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "D is wrong. Installing is an ing form.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "A is correct. Please install the new software before Friday.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: a password is a secret code, and a network links computers.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: install means put a program on a computer, and update means make it newer.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: back up means save a second copy. Malfunction means stop working well.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

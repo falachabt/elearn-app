@@ -1,0 +1,252 @@
+{
+ "code": "p_negation",
+ "titre": "Negation and opposites",
+ "partie": "TOEIC · Parts 2 and 3",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Parts 3 and 4 · Trap",
+   "titre": "Negation and opposites",
+   "sous": "not, never, unless, until",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The store is **not** open **until** nine."
+    },
+    {
+     "qui": "B",
+     "texte": "So it is **closed** now?",
+     "etat": "ok"
+    }
+   ]
+  },
+  "mots": {
+   "type": "structure",
+   "kicker": "Small words, big change",
+   "titre": "They reverse the meaning",
+   "lignes": [
+    {
+     "debut": "not, never",
+     "suite": "the opposite",
+     "exemple": "He is **not** coming."
+    },
+    {
+     "debut": "unless",
+     "suite": "if not",
+     "exemple": "Call **unless** you can come."
+    },
+    {
+     "debut": "until",
+     "suite": "up to a time",
+     "exemple": "Wait **until** noon."
+    },
+    {
+     "debut": "hardly, barely",
+     "suite": "almost not",
+     "exemple": "She **hardly** speaks."
+    }
+   ]
+  },
+  "ex": {
+   "type": "dialogue",
+   "kicker": "Example",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Are you **coming** to the party?"
+    },
+    {
+     "qui": "B",
+     "texte": "I can **not** come.",
+     "etat": "ko",
+     "etiquette": "TAKE THE MEANING: NO"
+    },
+    {
+     "qui": "B",
+     "texte": "**Unless** I work late, **yes**.",
+     "etat": "ok",
+     "etiquette": "IF NOT WORK: YES"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 2",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "It will **not** work **until** Monday.",
+     "etat": "ok",
+     "raison": "So: not now"
+    },
+    {
+     "lettre": "B",
+     "texte": "Yes, I **printed** the file.",
+     "etat": "ko",
+     "raison": "Different word"
+    },
+    {
+     "lettre": "C",
+     "texte": "It is on the **second** floor.",
+     "etat": "ko",
+     "raison": "A place"
+    }
+   ],
+   "entendu": "Is the **printer** working now?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Do not miss **not**, **never**, **unless**"
+    },
+    {
+     "texte": "**until** gives a limit in time"
+    },
+    {
+     "texte": "Say the **meaning** in your head"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Negation and opposites.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "mots",
+   "texte": "Not and never give the opposite. Unless means if not.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "mots",
+   "texte": "Until means up to a time. Hardly and barely mean almost not.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "ex",
+   "texte": "Are you coming to the party? Listen carefully to the small words.",
+   "vue": {
+    "montre": 1
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "ex",
+   "texte": "I can not come. The answer is no.",
+   "vue": {
+    "montre": 2
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "ex",
+   "texte": "Unless I work late, yes. It means: if I do not work late, I will come.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: Is the printer working now?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: It will not work until Monday.. B: Yes, I printed the file.. C: It is on the second floor..",
+   "dit": "Answer A. It will not work until Monday.. Answer B. Yes, I printed the file.. Answer C. It is on the second floor..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "The question needs yes or no, or a similar answer.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "B is wrong. It sounds like printer, but it does not answer.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. A place does not answer a yes or no question.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "A is correct. It will not work until Monday. So the answer is no.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: do not miss the words not, never, and unless.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: until gives a limit in time.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: say the real meaning in your head before you choose.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

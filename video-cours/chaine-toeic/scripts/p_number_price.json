@@ -1,0 +1,246 @@
+{
+ "code": "p_number_price",
+ "titre": "Numbers, dates and prices",
+ "partie": "TOEIC · Parts 3 and 4",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Parts 3 and 4 · Trap",
+   "titre": "Numbers, dates and prices",
+   "sous": "Thirteen or thirty? Fifteen or fifty?",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The price is **fifty** dollars."
+    },
+    {
+     "qui": "B",
+     "texte": "**Fifteen** or fifty?",
+     "etat": "ko"
+    }
+   ]
+  },
+  "paires": {
+   "type": "structure",
+   "kicker": "Close sounds",
+   "titre": "Listen to the stress",
+   "lignes": [
+    {
+     "debut": "13 / 30",
+     "suite": "13 or 30",
+     "exemple": "**Thir**ty, thir**teen**"
+    },
+    {
+     "debut": "15 / 50",
+     "suite": "15 or 50",
+     "exemple": "**Fif**ty, fif**teen**"
+    },
+    {
+     "debut": "14 / 40",
+     "suite": "14 or 40",
+     "exemple": "**For**ty, four**teen**"
+    },
+    {
+     "debut": "2:15 / 2:50",
+     "suite": "2:15 or 2:50",
+     "exemple": "Check the **minutes**"
+    }
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "Method",
+   "titre": "Note it, then compare",
+   "etapes": [
+    {
+     "texte": "**Write** the number as you hear it"
+    },
+    {
+     "texte": "Watch for **changes**: not Monday, but Tuesday"
+    },
+    {
+     "texte": "Check the **price** against the **options**"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 2",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "$13",
+     "etat": "ko",
+     "raison": "Teen, not thirty"
+    },
+    {
+     "lettre": "B",
+     "texte": "$30",
+     "etat": "ok",
+     "raison": "Thirty"
+    },
+    {
+     "lettre": "C",
+     "texte": "$300",
+     "etat": "ko",
+     "raison": "Too high"
+    }
+   ],
+   "entendu": "How much is the **conference fee** now?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "**teen** ends strong, **ty** ends light"
+    },
+    {
+     "texte": "Watch the **change**: was, but now"
+    },
+    {
+     "texte": "**Write** every number"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Numbers, dates and prices.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "paires",
+   "texte": "Thirteen and thirty. Fifteen and fifty. In the teens, the end is strong.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "paires",
+   "texte": "Fourteen and forty. Two fifteen and two fifty. Always check the exact number.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "methode",
+   "texte": "Write the number as you hear it.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "methode",
+   "texte": "Watch for changes: not Monday, but Tuesday.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "methode",
+   "texte": "Then check the number against the options.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: How much is the conference fee now?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: $13. B: $30. C: $300.",
+   "dit": "Answer A. $13. Answer B. $30. Answer C. $300.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "You hear: the fee was fifty, but now it is thirty dollars.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "A is wrong. Thirteen is the wrong number. The stress is on thirty.",
+   "vue": {
+    "juge": [
+     "A"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. Three hundred is not mentioned.",
+   "vue": {
+    "juge": [
+     "A",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "B is correct. The fee is now thirty dollars.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: teen numbers end strong, and ty numbers end light.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: watch for a change: was fifty, but now thirty.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: write every number you hear.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

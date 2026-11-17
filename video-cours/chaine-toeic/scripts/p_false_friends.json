@@ -1,0 +1,264 @@
+{
+ "code": "p_false_friends",
+ "titre": "False friends",
+ "partie": "TOEIC · Part 5",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 5 · Trap",
+   "titre": "False friends",
+   "sous": "actually, eventually, library, sensible",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "I will go to the **library**."
+    },
+    {
+     "qui": "B",
+     "texte": "You mean the **bookshop**?",
+     "etat": "ok"
+    }
+   ]
+  },
+  "amis": {
+   "type": "structure",
+   "kicker": "Not what French suggests",
+   "titre": "Four words to watch",
+   "lignes": [
+    {
+     "debut": "actually",
+     "suite": "in fact",
+     "exemple": "**Actually**, I prefer tea."
+    },
+    {
+     "debut": "eventually",
+     "suite": "in the end",
+     "exemple": "**Eventually**, he left."
+    },
+    {
+     "debut": "library",
+     "suite": "book place",
+     "exemple": "The **library** is open."
+    },
+    {
+     "debut": "sensible",
+     "suite": "reasonable",
+     "exemple": "A **sensible** choice."
+    }
+   ]
+  },
+  "regle": {
+   "type": "recap",
+   "kicker": "The rule",
+   "titre": "A word that looks French",
+   "etapes": [
+    {
+     "texte": "A familiar look **is not** a meaning"
+    },
+    {
+     "texte": "If the sentence feels strange, **check the meaning**"
+    },
+    {
+     "texte": "Learn these false friends **by heart**"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 5",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "eventually",
+     "etat": "ok",
+     "raison": "In the end"
+    },
+    {
+     "lettre": "B",
+     "texte": "actually",
+     "etat": "ko",
+     "raison": "In fact"
+    },
+    {
+     "lettre": "C",
+     "texte": "currently",
+     "etat": "ko",
+     "raison": "At this time"
+    },
+    {
+     "lettre": "D",
+     "texte": "possibly",
+     "etat": "ko",
+     "raison": "Perhaps"
+    }
+   ],
+   "lu": "The project was late, but it was ------- finished in May."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "**actually** is in fact, **eventually** is in the end"
+    },
+    {
+     "texte": "A **library** is for books, **sensible** is reasonable"
+    },
+    {
+     "texte": "Check the **meaning**, not the look"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "False friends.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "amis",
+   "texte": "Actually means in fact. Eventually means in the end.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "amis",
+   "texte": "A library is for books, not a shop. Sensible means reasonable.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "regle",
+   "texte": "A familiar look is not a meaning.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "regle",
+   "texte": "If the sentence feels strange, check the meaning.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "regle",
+   "texte": "And learn the false friends by heart.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. The project was late, but it was blank finished in May.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: eventually. B: actually. C: currently. D: possibly.",
+   "dit": "Answer A. eventually. Answer B. actually. Answer C. currently. Answer D. possibly.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "The project was late. So we need a word that means in the end.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "B is wrong. Actually means in fact. It does not show time.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. Currently means now. The sentence is in the past.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "D is wrong. Possibly means perhaps.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "A is correct. The project was eventually finished in May.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: actually means in fact, and eventually means in the end.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: a library is for books, and sensible means reasonable.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: check the meaning, not the look of the word.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

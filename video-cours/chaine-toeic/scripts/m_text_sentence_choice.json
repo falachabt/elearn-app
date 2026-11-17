@@ -1,0 +1,264 @@
+{
+ "code": "m_text_sentence_choice",
+ "titre": "Choose the sentence that fits",
+ "partie": "TOEIC · Part 6",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 6 · Method",
+   "titre": "Choose the sentence that fits",
+   "sous": "Look before and after the gap",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The **gap** is between two sentences."
+    },
+    {
+     "qui": "B",
+     "texte": "Then read both **sides**.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The method",
+   "titre": "Read around the blank",
+   "etapes": [
+    {
+     "texte": "Read the sentence **before** the gap"
+    },
+    {
+     "texte": "Read the sentence **after** the gap"
+    },
+    {
+     "texte": "Find the **link** between them"
+    }
+   ]
+  },
+  "liens": {
+   "type": "structure",
+   "kicker": "Link clues",
+   "titre": "What connects two sentences",
+   "lignes": [
+    {
+     "debut": "this, that",
+     "suite": "points back",
+     "exemple": "**This** change helps."
+    },
+    {
+     "debut": "However",
+     "suite": "contrast",
+     "exemple": "**However**, it costs more."
+    },
+    {
+     "debut": "Also",
+     "suite": "adds an idea",
+     "exemple": "**Also**, staff can work late."
+    },
+    {
+     "debut": "The same noun",
+     "suite": "same topic",
+     "exemple": "the **offer**"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 6",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "There is a car park.",
+     "etat": "ko",
+     "raison": "Another topic"
+    },
+    {
+     "lettre": "B",
+     "texte": "This is why.",
+     "etat": "ko",
+     "raison": "Unclear link"
+    },
+    {
+     "lettre": "C",
+     "texte": "The move takes two days.",
+     "etat": "ok",
+     "raison": "Links move and pack"
+    },
+    {
+     "lettre": "D",
+     "texte": "Many like to travel.",
+     "etat": "ko",
+     "raison": "Off topic"
+    }
+   ],
+   "lu": "The office moves in May. ------- Staff must pack."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Read **before** and **after** the gap"
+    },
+    {
+     "texte": "Look for **link words**"
+    },
+    {
+     "texte": "The sentence must **continue the idea**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Choose the sentence that fits.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "Read the sentence before the gap.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Then read the sentence after the gap.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "Find the link between them.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "liens",
+   "texte": "This and that point back to a thing. However shows a contrast.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "liens",
+   "texte": "Also adds an idea. The same noun shows the same topic.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. The office moves in May. blank Staff must pack.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: There is a car park.. B: This is why.. C: The move takes two days.. D: Many like to travel..",
+   "dit": "Answer A. There is a car park.. Answer B. This is why.. Answer C. The move takes two days.. Answer D. Many like to travel..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Before the gap: the office moves. After the gap: pack your desks. We need the move.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "A is wrong. The car park is another topic.",
+   "vue": {
+    "juge": [
+     "A"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "B is wrong. This has no clear thing to point to.",
+   "vue": {
+    "juge": [
+     "A",
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "D is wrong. Travel is off topic.",
+   "vue": {
+    "juge": [
+     "A",
+     "B",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "C is correct. The move will take two days, linking the move and the packing.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: read before and after the gap.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: look for link words.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: the sentence must continue the idea.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

@@ -1,0 +1,246 @@
+{
+ "code": "m_qr_responses",
+ "titre": "Indirect answers",
+ "partie": "TOEIC · Part 2",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 2 · Method",
+   "titre": "Indirect answers",
+   "sous": "The answer does not say yes or no",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Is the report **ready**?"
+    },
+    {
+     "qui": "B",
+     "texte": "I am **finishing** it now.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The key idea",
+   "titre": "The best answer is often indirect",
+   "etapes": [
+    {
+     "texte": "Many correct answers do **not** say yes or no"
+    },
+    {
+     "texte": "They give a **reason**, or a **fact**"
+    },
+    {
+     "texte": "They **imply** the answer"
+    }
+   ]
+  },
+  "ex": {
+   "type": "dialogue",
+   "kicker": "Example",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Did you **finish** the report?"
+    },
+    {
+     "qui": "B",
+     "texte": "The **printer** was broken.",
+     "etat": "ok",
+     "etiquette": "NO, AND THE REASON"
+    },
+    {
+     "qui": "B",
+     "texte": "**Yes**, I like the printer.",
+     "etat": "ko",
+     "etiquette": "DOES NOT FIT"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 2",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "I have a **client visit** that day.",
+     "etat": "ok",
+     "raison": "Implies no"
+    },
+    {
+     "lettre": "B",
+     "texte": "The **meeting room** is on the left.",
+     "etat": "ko",
+     "raison": "Repeats meeting, no link"
+    },
+    {
+     "lettre": "C",
+     "texte": "Yes, it was a **good meeting**.",
+     "etat": "ko",
+     "raison": "Past, not Monday"
+    }
+   ],
+   "entendu": "Can you **attend** the meeting on Monday?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "An answer can be **indirect**"
+    },
+    {
+     "texte": "A **reason** can mean no"
+    },
+    {
+     "texte": "Choose the answer that **fits the question**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Indirect answers.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "In Part 2, many correct answers do not say yes or no.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "They give a reason, or a fact.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "The answer is implied.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "ex",
+   "texte": "Did you finish the report?",
+   "vue": {
+    "montre": 1
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "ex",
+   "texte": "The printer was broken. It does not say no, but it explains why. This is a good answer.",
+   "vue": {
+    "montre": 2
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "ex",
+   "texte": "Yes, I like the printer. It does not fit the question.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: Can you attend the meeting on Monday?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "A: I have a client visit that day.. B: The meeting room is on the left.. C: Yes, it was a good meeting..",
+   "dit": "Answer A. I have a client visit that day.. Answer B. The meeting room is on the left.. Answer C. Yes, it was a good meeting..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "Think: is the answer yes, no, or something else with a reason?",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "B is wrong. It repeats meeting but does not answer.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "C is wrong. It talks about a past meeting.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "A is correct. A client visit means I cannot attend.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: an answer can be indirect.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: a reason can mean no.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: choose the answer that fits the question, even without yes or no.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

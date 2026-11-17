@@ -1,0 +1,263 @@
+{
+ "code": "m_photo_method",
+ "titre": "Describe a photo in three steps",
+ "partie": "TOEIC · Part 1",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 1 · Method",
+   "titre": "Describe a photo in three steps",
+   "sous": "Who, what, where",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "What do you **see**?"
+    },
+    {
+     "qui": "B",
+     "texte": "A woman **hands** a card to a man.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "etapes": {
+   "type": "recap",
+   "kicker": "The method",
+   "titre": "Three questions before the audio",
+   "etapes": [
+    {
+     "texte": "**Who** is in the photo, and how many?"
+    },
+    {
+     "texte": "**What** are they doing right now?"
+    },
+    {
+     "texte": "**Where** are they, and what objects are there?"
+    }
+   ]
+  },
+  "regle": {
+   "type": "structure",
+   "kicker": "The filter",
+   "titre": "Keep only what you can see",
+   "lignes": [
+    {
+     "debut": "see it",
+     "suite": "keep",
+     "exemple": "A woman **is smiling**."
+    },
+    {
+     "debut": "guess it",
+     "suite": "remove",
+     "exemple": "She **is happy** at work."
+    },
+    {
+     "debut": "maybe",
+     "suite": "remove",
+     "exemple": "They **are friends**."
+    },
+    {
+     "debut": "now",
+     "suite": "keep",
+     "exemple": "**is handing** a card"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 1",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "A woman **hands** a card to a man.",
+     "etat": "ok",
+     "raison": "You can see it"
+    },
+    {
+     "lettre": "B",
+     "texte": "They are **signing** papers.",
+     "etat": "ko",
+     "raison": "No contract"
+    },
+    {
+     "lettre": "C",
+     "texte": "Guests **carry** bags upstairs.",
+     "etat": "ko",
+     "raison": "No stairs"
+    },
+    {
+     "lettre": "D",
+     "texte": "A man **cleans** the desk.",
+     "etat": "ko",
+     "raison": "Nobody cleans"
+    }
+   ],
+   "entendu": "Photo: a hotel desk. Which is correct?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Ask **who**, **what**, **where**"
+    },
+    {
+     "texte": "Keep only what you **see**"
+    },
+    {
+     "texte": "The right answer is an **action now**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Describe a photo in three steps.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "etapes",
+   "texte": "Before the audio, ask three questions. One: who is in the photo, and how many?",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "etapes",
+   "texte": "Two: what are they doing right now?",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "etapes",
+   "texte": "Three: where are they, and what objects can you see?",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "regle",
+   "texte": "Keep what you can see. Remove what you guess. An opinion is a trap.",
+   "vue": {
+    "faibles": [
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "regle",
+   "texte": "And look for an action happening now, with is or are, and verb ing.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: Photo: a hotel desk. Which is correct?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: A woman hands a card to a man.. B: They are signing papers.. C: Guests carry bags upstairs.. D: A man cleans the desk..",
+   "dit": "Answer A. A woman hands a card to a man.. Answer B. They are signing papers.. Answer C. Guests carry bags upstairs.. Answer D. A man cleans the desk..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Check who, what and where. A woman and a man, a hand-over, a hotel desk.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "B is wrong. There is no contract in the photo.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. Nobody carries luggage upstairs.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "D is wrong. Nobody is cleaning.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "A is correct. A woman is handing a card to a man.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: ask three questions: who, what, and where.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: keep only what you can see in the photo.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: the right answer describes an action happening now.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

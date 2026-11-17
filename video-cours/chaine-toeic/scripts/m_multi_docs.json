@@ -1,0 +1,264 @@
+{
+ "code": "m_multi_docs",
+ "titre": "Two linked documents",
+ "partie": "TOEIC · Part 7",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 7 · Method",
+   "titre": "Two linked documents",
+   "sous": "Match the clues between texts",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The email gives the **date**."
+    },
+    {
+     "qui": "B",
+     "texte": "And the schedule gives the **room**.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The method",
+   "titre": "One answer, two sources",
+   "etapes": [
+    {
+     "texte": "Read the **question**: it needs both texts"
+    },
+    {
+     "texte": "Find a **link**: a name, a date, a number"
+    },
+    {
+     "texte": "Take one fact from **each** text"
+    }
+   ]
+  },
+  "liens": {
+   "type": "structure",
+   "kicker": "Typical pairs",
+   "titre": "Each text gives a clue",
+   "lignes": [
+    {
+     "debut": "email",
+     "suite": "date",
+     "exemple": "**Monday**"
+    },
+    {
+     "debut": "ad",
+     "suite": "price",
+     "exemple": "**$30**"
+    },
+    {
+     "debut": "invoice",
+     "suite": "amount",
+     "exemple": "**$120**"
+    },
+    {
+     "debut": "notice",
+     "suite": "rule",
+     "exemple": "**by May 3**"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 7",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "Room 4",
+     "etat": "ko",
+     "raison": "Not in the documents"
+    },
+    {
+     "lettre": "B",
+     "texte": "Room 5",
+     "etat": "ok",
+     "raison": "From the schedule"
+    },
+    {
+     "lettre": "C",
+     "texte": "On Monday",
+     "etat": "ko",
+     "raison": "Wrong day"
+    },
+    {
+     "lettre": "D",
+     "texte": "At 5 p.m.",
+     "etat": "ko",
+     "raison": "Wrong time"
+    }
+   ],
+   "lu": "Email: Tuesday. Schedule: Room 5. Where is it?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Some answers need **two texts**"
+    },
+    {
+     "texte": "Find the **link**: name, date, number"
+    },
+    {
+     "texte": "Take one fact from **each**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Two linked documents.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "Some questions need two documents. Read the question first.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Find a link between the texts: a name, a date, or a number.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "Then take one fact from each text.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "liens",
+   "texte": "An email gives a date. An ad gives a price.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "liens",
+   "texte": "An invoice gives an amount. A notice gives a rule. Combine the clues.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. Email: Tuesday. Schedule: Room 5. Where is it?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: Room 4. B: Room 5. C: On Monday. D: At 5 p.m..",
+   "dit": "Answer A. Room 4. Answer B. Room 5. Answer C. On Monday. Answer D. At 5 p.m..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Tuesday comes from the email. The room comes from the schedule.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "A is wrong. Room 4 is not in the documents.",
+   "vue": {
+    "juge": [
+     "A"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. The workshop is on Tuesday.",
+   "vue": {
+    "juge": [
+     "A",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "D is wrong. The time is 2 p.m.",
+   "vue": {
+    "juge": [
+     "A",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "B is correct. The schedule says Room 5 on Tuesday.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: some answers need two texts.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: find the link: a name, a date, or a number.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: take one fact from each text.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

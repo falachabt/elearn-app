@@ -1,0 +1,264 @@
+{
+ "code": "m_skim_main",
+ "titre": "Skimming for the main idea",
+ "partie": "TOEIC · Part 7",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 7 · Method",
+   "titre": "Skimming for the main idea",
+   "sous": "The big picture in ten seconds",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "What is this text **about**?"
+    },
+    {
+     "qui": "B",
+     "texte": "Look at the **title** first.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The method",
+   "titre": "Read only the key places",
+   "etapes": [
+    {
+     "texte": "Read the **title** or the subject line"
+    },
+    {
+     "texte": "Read the **first** sentence"
+    },
+    {
+     "texte": "Read the **last** sentence"
+    }
+   ]
+  },
+  "types": {
+   "type": "structure",
+   "kicker": "Text types",
+   "titre": "The form tells the purpose",
+   "lignes": [
+    {
+     "debut": "email",
+     "suite": "ask or inform",
+     "exemple": "Subject: **delay**"
+    },
+    {
+     "debut": "notice",
+     "suite": "give a rule",
+     "exemple": "**Please** do not park"
+    },
+    {
+     "debut": "ad",
+     "suite": "sell",
+     "exemple": "**Sale** this week"
+    },
+    {
+     "debut": "article",
+     "suite": "explain news",
+     "exemple": "A company **opens**"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 7",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "Announce a price rise",
+     "etat": "ok",
+     "raison": "Matches the subject"
+    },
+    {
+     "lettre": "B",
+     "texte": "Invite to a sale",
+     "etat": "ko",
+     "raison": "Opposite"
+    },
+    {
+     "lettre": "C",
+     "texte": "Ask for feedback",
+     "etat": "ko",
+     "raison": "Not mentioned"
+    },
+    {
+     "lettre": "D",
+     "texte": "Open a new shop",
+     "etat": "ko",
+     "raison": "Not mentioned"
+    }
+   ],
+   "lu": "Subject: Price change. Fees rise 5% on June 1. Purpose?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Read the **title** and the **first** line"
+    },
+    {
+     "texte": "Read the **last** sentence"
+    },
+    {
+     "texte": "Do **not** read every detail"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Skimming for the main idea.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "To find the main idea, read only the key places. First, the title or the subject line.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Then the first sentence of the text.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "And the last sentence.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "types",
+   "texte": "An email asks or informs. A notice gives a rule.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "types",
+   "texte": "An ad sells. An article explains news.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. Subject: Price change. Fees rise 5% on June 1. Purpose?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: Announce a price rise. B: Invite to a sale. C: Ask for feedback. D: Open a new shop.",
+   "dit": "Answer A. Announce a price rise. Answer B. Invite to a sale. Answer C. Ask for feedback. Answer D. Open a new shop.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "The subject says price change, and the text says fees will rise.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "B is wrong. A sale lowers prices. Here, prices rise.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. There is no request for feedback.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "D is wrong. No new shop is mentioned.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "A is correct. The email announces a price increase.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: read the title and the first line.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: read the last sentence.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: do not read every detail yet.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

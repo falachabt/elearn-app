@@ -1,0 +1,246 @@
+{
+ "code": "p_partial",
+ "titre": "The half-right answer",
+ "partie": "TOEIC · Parts 2 and 3",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 2 · Trap",
+   "titre": "The half-right answer",
+   "sous": "It looks good, but it is not enough",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Is the report **ready**?"
+    },
+    {
+     "qui": "B",
+     "texte": "I am **writing** it now.",
+     "etat": "ko"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "How the trap works",
+   "titre": "Right topic, wrong answer",
+   "etapes": [
+    {
+     "texte": "The answer is **about the same topic**"
+    },
+    {
+     "texte": "But it does not give what the question **asks for**"
+    },
+    {
+     "texte": "It answers a **different** question"
+    }
+   ]
+  },
+  "ex": {
+   "type": "dialogue",
+   "kicker": "Example",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "**When** is the meeting?"
+    },
+    {
+     "qui": "B",
+     "texte": "It is in the **big room**.",
+     "etat": "ko",
+     "etiquette": "A PLACE, NOT A TIME"
+    },
+    {
+     "qui": "B",
+     "texte": "At **three** o'clock.",
+     "etat": "ok",
+     "etiquette": "A TIME"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 2",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "The session starts at **nine**.",
+     "etat": "ko",
+     "raison": "A time, not a person"
+    },
+    {
+     "lettre": "B",
+     "texte": "**Ms. Lopez** from the head office.",
+     "etat": "ok",
+     "raison": "A person"
+    },
+    {
+     "lettre": "C",
+     "texte": "In the **conference room**.",
+     "etat": "ko",
+     "raison": "A place, not a person"
+    }
+   ],
+   "entendu": "**Who** is leading the training session?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "First, find **what is asked**: who, when, where"
+    },
+    {
+     "texte": "Same topic does **not** mean right answer"
+    },
+    {
+     "texte": "Choose the answer that gives **that information**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "The half-right answer.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "A half-right answer talks about the same topic.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "But it does not give what the question asks for.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "It answers a different question.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "ex",
+   "texte": "Look at this example. When is the meeting? When asks for a time.",
+   "vue": {
+    "montre": 1
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "ex",
+   "texte": "It is in the big room. It is about the meeting, but it gives a place, not a time.",
+   "vue": {
+    "montre": 2
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "ex",
+   "texte": "At three o'clock. This is a time. This is the answer.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: Who is leading the training session?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "A: The session starts at nine.. B: Ms. Lopez from the head office.. C: In the conference room..",
+   "dit": "Answer A. The session starts at nine.. Answer B. Ms. Lopez from the head office.. Answer C. In the conference room..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "Who asks for a person.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "A is wrong. It talks about the session, but it gives a time.",
+   "vue": {
+    "juge": [
+     "A"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "C is wrong. It talks about the session, but it gives a place.",
+   "vue": {
+    "juge": [
+     "A",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "B is correct. Ms. Lopez is a person.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: first, find what the question asks for: who, when, or where.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: the same topic does not mean the right answer.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: choose the answer that gives that information.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

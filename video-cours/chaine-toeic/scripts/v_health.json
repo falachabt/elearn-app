@@ -1,0 +1,272 @@
+{
+ "code": "v_health",
+ "titre": "Health and insurance",
+ "partie": "TOEIC · Vocabulary",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Vocabulary",
+   "titre": "Health and insurance",
+   "sous": "appointment, prescription, coverage, symptom",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "I need an **appointment** with the doctor."
+    },
+    {
+     "qui": "B",
+     "texte": "Is it for a check-up?",
+     "etat": "ok"
+    }
+   ]
+  },
+  "s1": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "At the clinic",
+   "titre": "Seeing a doctor",
+   "lignes": [
+    {
+     "debut": "an appointment",
+     "suite": "a fixed time to meet",
+     "exemple": "Book an **appointment**."
+    },
+    {
+     "debut": "a symptom",
+     "suite": "a sign of illness",
+     "exemple": "A cough is a **symptom**."
+    },
+    {
+     "debut": "a prescription",
+     "suite": "a doctor's written order",
+     "exemple": "Take your **prescription**."
+    },
+    {
+     "debut": "a pharmacy",
+     "suite": "a shop for medicine",
+     "exemple": "The **pharmacy** is open."
+    }
+   ]
+  },
+  "s2": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "Insurance",
+   "titre": "Paying for care",
+   "lignes": [
+    {
+     "debut": "coverage",
+     "suite": "what insurance pays for",
+     "exemple": "The **coverage** includes tests."
+    },
+    {
+     "debut": "a claim",
+     "suite": "a request for payment",
+     "exemple": "File a **claim** today."
+    },
+    {
+     "debut": "a premium",
+     "suite": "the regular insurance fee",
+     "exemple": "The **premium** is monthly."
+    },
+    {
+     "debut": "eligible",
+     "suite": "allowed to receive",
+     "exemple": "Staff are **eligible**."
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 5",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "coverage",
+     "etat": "ok",
+     "raison": "What insurance pays for"
+    },
+    {
+     "lettre": "B",
+     "texte": "cover",
+     "etat": "ko",
+     "raison": "Wrong form"
+    },
+    {
+     "lettre": "C",
+     "texte": "covering",
+     "etat": "ko",
+     "raison": "Wrong form"
+    },
+    {
+     "lettre": "D",
+     "texte": "covered",
+     "etat": "ko",
+     "raison": "Wrong form"
+    }
+   ],
+   "lu": "Your health plan provides full ------- for dental care."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "An **appointment** is a time, a **prescription** is an order"
+    },
+    {
+     "texte": "A **symptom** is a sign of illness"
+    },
+    {
+     "texte": "**coverage** is what insurance pays"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Health and insurance.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "s1",
+   "texte": "First. An appointment means a fixed time to meet. A symptom means a sign of illness.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "s1",
+   "texte": "A prescription means a doctor's written order. A pharmacy means a shop for medicine.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "s2",
+   "texte": "Next. Coverage means what insurance pays for. A claim means a request for payment.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "s2",
+   "texte": "A premium means the regular insurance fee. Eligible means allowed to receive.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p06",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. Your health plan provides full blank for dental care.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "A: coverage. B: cover. C: covering. D: covered.",
+   "dit": "Answer A. coverage. Answer B. cover. Answer C. covering. Answer D. covered.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "We need a noun after full. It means what the insurance pays for.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "B is wrong. Cover is mostly a verb, or a lid.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "C is wrong. Covering is a verb form.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "D is wrong. Covered is a verb form.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "A is correct. Your plan provides full coverage for dental care.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: an appointment is a fixed time, and a prescription is a doctor's order.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: a symptom is a sign of illness.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: coverage is what insurance pays for. A claim is a request for payment.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

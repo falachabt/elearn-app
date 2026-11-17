@@ -1,0 +1,272 @@
+{
+ "code": "v_collocations",
+ "titre": "Common collocations",
+ "partie": "TOEIC · Vocabulary",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Vocabulary",
+   "titre": "Common collocations",
+   "sous": "make a decision, take a break, meet a deadline",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Did you **meet** the **deadline**?"
+    },
+    {
+     "qui": "B",
+     "texte": "Yes, we **made** a big effort.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "s1": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "Verb and noun",
+   "titre": "Words that go together",
+   "lignes": [
+    {
+     "debut": "make",
+     "suite": "a decision, an effort",
+     "exemple": "We must **make** a **decision**."
+    },
+    {
+     "debut": "take",
+     "suite": "a break, a seat",
+     "exemple": "Please **take** a **seat**."
+    },
+    {
+     "debut": "meet",
+     "suite": "a deadline, a goal",
+     "exemple": "We **met** the **deadline**."
+    },
+    {
+     "debut": "hold",
+     "suite": "a meeting, a party",
+     "exemple": "**Hold** a **meeting**."
+    }
+   ]
+  },
+  "s2": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "More pairs",
+   "titre": "Do not translate word by word",
+   "lignes": [
+    {
+     "debut": "reach",
+     "suite": "an agreement",
+     "exemple": "They **reached** an **agreement**."
+    },
+    {
+     "debut": "pay",
+     "suite": "attention, a bill",
+     "exemple": "**Pay** **attention**."
+    },
+    {
+     "debut": "give",
+     "suite": "a talk, advice",
+     "exemple": "She **gave** a **talk**."
+    },
+    {
+     "debut": "run",
+     "suite": "a business, a test",
+     "exemple": "He **runs** a **business**."
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 5",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "reached",
+     "etat": "ok",
+     "raison": "Reach goes with agreement"
+    },
+    {
+     "lettre": "B",
+     "texte": "gained",
+     "etat": "ko",
+     "raison": "Wrong verb"
+    },
+    {
+     "lettre": "C",
+     "texte": "caught",
+     "etat": "ko",
+     "raison": "Wrong verb"
+    },
+    {
+     "lettre": "D",
+     "texte": "arrived",
+     "etat": "ko",
+     "raison": "Needs at, not an object"
+    }
+   ],
+   "lu": "The two companies finally ------- an agreement last week."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Learn the **pairs**: make a decision, take a break"
+    },
+    {
+     "texte": "**meet** a deadline, **hold** a meeting"
+    },
+    {
+     "texte": "**reach** an agreement, **pay** attention"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Common collocations.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "s1",
+   "texte": "First. Make goes with a decision, an effort. Take goes with a break, a seat.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "s1",
+   "texte": "Meet goes with a deadline, a goal. Hold goes with a meeting, a party.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "s2",
+   "texte": "Next. Reach goes with an agreement. Pay goes with attention, a bill.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "s2",
+   "texte": "Give goes with a talk, advice. Run goes with a business, a test.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p06",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. The two companies finally blank an agreement last week.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "A: reached. B: gained. C: caught. D: arrived.",
+   "dit": "Answer A. reached. Answer B. gained. Answer C. caught. Answer D. arrived.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "We need the verb that goes with the word agreement.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "B is wrong. Gained does not go with agreement.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "C is wrong. Caught does not go with agreement.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "D is wrong. Arrived needs at or in. It takes no object.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "A is correct. We say reach an agreement.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: learn the pairs. Make a decision. Take a break.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: meet a deadline, and hold a meeting.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: reach an agreement, and pay attention. Do not translate word by word.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

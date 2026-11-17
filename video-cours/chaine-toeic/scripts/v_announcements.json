@@ -1,0 +1,272 @@
+{
+ "code": "v_announcements",
+ "titre": "Announcements and instructions",
+ "partie": "TOEIC · Vocabulary",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Vocabulary",
+   "titre": "Announcements and instructions",
+   "sous": "please note, be advised, effective, remind",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "**Attention**, please."
+    },
+    {
+     "qui": "B",
+     "texte": "The store will **close** early today.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "s1": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "Opening words",
+   "titre": "How an announcement starts",
+   "lignes": [
+    {
+     "debut": "attention",
+     "suite": "a call to listen",
+     "exemple": "**Attention**, all passengers."
+    },
+    {
+     "debut": "please note",
+     "suite": "an important fact",
+     "exemple": "**Please note** the new hours."
+    },
+    {
+     "debut": "be advised",
+     "suite": "you are informed",
+     "exemple": "**Be advised** of a delay."
+    },
+    {
+     "debut": "a reminder",
+     "suite": "a note to not forget",
+     "exemple": "This is a **reminder**."
+    }
+   ]
+  },
+  "s2": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "Time and rules",
+   "titre": "Details that matter",
+   "lignes": [
+    {
+     "debut": "effective",
+     "suite": "starting on a date",
+     "exemple": "**Effective** May 1, the fee rises."
+    },
+    {
+     "debut": "until further notice",
+     "suite": "for an unknown time",
+     "exemple": "Closed **until further notice**."
+    },
+    {
+     "debut": "in advance",
+     "suite": "before the time",
+     "exemple": "Book **in advance**."
+    },
+    {
+     "debut": "must",
+     "suite": "is required",
+     "exemple": "Visitors **must** sign in."
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 5",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "Effective",
+     "etat": "ok",
+     "raison": "Starting on a date"
+    },
+    {
+     "lettre": "B",
+     "texte": "Effect",
+     "etat": "ko",
+     "raison": "A noun"
+    },
+    {
+     "lettre": "C",
+     "texte": "Effectively",
+     "etat": "ko",
+     "raison": "An adverb"
+    },
+    {
+     "lettre": "D",
+     "texte": "Effecting",
+     "etat": "ko",
+     "raison": "Wrong form"
+    }
+   ],
+   "lu": "------- May 1, all employees must use the new entrance."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "**Please note** and **be advised** start a message"
+    },
+    {
+     "texte": "**effective** gives the start date"
+    },
+    {
+     "texte": "Listen for the **time** and the **rule**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Announcements and instructions.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "s1",
+   "texte": "First. Attention means a call to listen. Please note means an important fact.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "s1",
+   "texte": "Be advised means you are informed. A reminder means a note to not forget.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "s2",
+   "texte": "Next. Effective means starting on a date. Until further notice means for an unknown time.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "s2",
+   "texte": "In advance means before the time. Must means is required.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p06",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. blank May 1, all employees must use the new entrance.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "A: Effective. B: Effect. C: Effectively. D: Effecting.",
+   "dit": "Answer A. Effective. Answer B. Effect. Answer C. Effectively. Answer D. Effecting.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "We need a word that means starting on this date.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "B is wrong. Effect is a noun, and it does not fit before a date.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "C is wrong. Effectively is an adverb meaning in a good way.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "D is wrong. Effecting is a verb form.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "A is correct. Effective May 1, all employees must use the new entrance.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: please note, and be advised, start an announcement.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: effective means starting on a date.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: listen for the time, and the rule. Until further notice means for an unknown time.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

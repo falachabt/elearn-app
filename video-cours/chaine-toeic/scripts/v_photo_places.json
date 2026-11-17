@@ -1,0 +1,272 @@
+{
+ "code": "v_photo_places",
+ "titre": "Places and objects in photos",
+ "partie": "TOEIC · Vocabulary",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Vocabulary",
+   "titre": "Places and objects in photos",
+   "sous": "counter, shelf, platform, dock",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "What can you see?"
+    },
+    {
+     "qui": "B",
+     "texte": "A **shelf** and a **counter**.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "s1": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "In a shop",
+   "titre": "Part 1 places",
+   "lignes": [
+    {
+     "debut": "a counter",
+     "suite": "a long table for service",
+     "exemple": "A clerk stands at the **counter**."
+    },
+    {
+     "debut": "a shelf",
+     "suite": "a flat board on a wall",
+     "exemple": "Books are on a **shelf**."
+    },
+    {
+     "debut": "an aisle",
+     "suite": "a path between shelves",
+     "exemple": "An **aisle** is empty."
+    },
+    {
+     "debut": "a cart",
+     "suite": "a small vehicle to push",
+     "exemple": "A **cart** is full."
+    }
+   ]
+  },
+  "s2": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "Outdoors and transport",
+   "titre": "More places",
+   "lignes": [
+    {
+     "debut": "a platform",
+     "suite": "the place to wait for a train",
+     "exemple": "People wait on a **platform**."
+    },
+    {
+     "debut": "a dock",
+     "suite": "where ships stop",
+     "exemple": "A ship is at the **dock**."
+    },
+    {
+     "debut": "a railing",
+     "suite": "a bar for safety",
+     "exemple": "A **railing** runs along the path."
+    },
+    {
+     "debut": "a pedestrian",
+     "suite": "a person who walks",
+     "exemple": "A **pedestrian** crosses the road."
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 5",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "shelf",
+     "etat": "ok",
+     "raison": "A flat board for books"
+    },
+    {
+     "lettre": "B",
+     "texte": "aisle",
+     "etat": "ko",
+     "raison": "A path"
+    },
+    {
+     "lettre": "C",
+     "texte": "platform",
+     "etat": "ko",
+     "raison": "For trains"
+    },
+    {
+     "lettre": "D",
+     "texte": "railing",
+     "etat": "ko",
+     "raison": "A safety bar"
+    }
+   ],
+   "lu": "Several books are lined up on a ------- near the window."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Learn the places before the test"
+    },
+    {
+     "texte": "**platform**, **dock**: transport places"
+    },
+    {
+     "texte": "The **photo** gives the word"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Places and objects in photos.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "s1",
+   "texte": "First. A counter means a long table for service. A shelf means a flat board on a wall.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "s1",
+   "texte": "An aisle means a path between shelves. A cart means a small vehicle to push.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "s2",
+   "texte": "Next. A platform means the place to wait for a train. A dock means where ships stop.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "s2",
+   "texte": "A railing means a bar for safety. A pedestrian means a person who walks.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p06",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. Several books are lined up on a blank near the window.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "A: shelf. B: aisle. C: platform. D: railing.",
+   "dit": "Answer A. shelf. Answer B. aisle. Answer C. platform. Answer D. railing.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Books are lined up on a flat board.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "B is wrong. An aisle is a path between shelves.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "C is wrong. A platform is where you wait for a train.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "D is wrong. A railing is a bar for safety.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "A is correct. Books are lined up on a shelf near the window.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: learn the places before the test: counter, shelf, aisle, cart.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: platform and dock are transport places.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: in Part 1, look at the photo, and name what you see.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

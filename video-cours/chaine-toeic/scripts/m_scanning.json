@@ -1,0 +1,264 @@
+{
+ "code": "m_scanning",
+ "titre": "Scanning",
+ "partie": "TOEIC · Part 7",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 7 · Method",
+   "titre": "Scanning",
+   "sous": "Find one fact, fast",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "What time is the **check-in**?"
+    },
+    {
+     "qui": "B",
+     "texte": "Let me **scan** for the time.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The method",
+   "titre": "Do not read everything",
+   "etapes": [
+    {
+     "texte": "Read the **question** first"
+    },
+    {
+     "texte": "Find the **key word**: a name, a number, a date"
+    },
+    {
+     "texte": "**Scan** the text for it, then read around it"
+    }
+   ]
+  },
+  "cles": {
+   "type": "structure",
+   "kicker": "Key words",
+   "titre": "Look for the shape of the answer",
+   "lignes": [
+    {
+     "debut": "a time",
+     "suite": "time",
+     "exemple": "at **9:30 am**"
+    },
+    {
+     "debut": "a price",
+     "suite": "dollars",
+     "exemple": "only **$45**"
+    },
+    {
+     "debut": "a date",
+     "suite": "month, day",
+     "exemple": "on **March 12**"
+    },
+    {
+     "debut": "a name",
+     "suite": "capitals",
+     "exemple": "**Ms. Lopez**"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 7",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "7 a.m.",
+     "etat": "ko",
+     "raison": "Opening time"
+    },
+    {
+     "lettre": "B",
+     "texte": "9 p.m.",
+     "etat": "ok",
+     "raison": "Closing time"
+    },
+    {
+     "lettre": "C",
+     "texte": "On Sunday",
+     "etat": "ko",
+     "raison": "About parking"
+    },
+    {
+     "lettre": "D",
+     "texte": "At noon",
+     "etat": "ko",
+     "raison": "Not in the text"
+    }
+   ],
+   "lu": "Pool hours: 7 a.m. to 9 p.m. When does it close?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Read the **question** first"
+    },
+    {
+     "texte": "Find the **key word** in the text"
+    },
+    {
+     "texte": "Read **around** it, then answer"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Scanning.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "Do not read the whole text. Read the question first.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Find the key word: a name, a number, or a date.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "Scan the text for it, then read around it.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "cles",
+   "texte": "A time has numbers and am or pm. A price has a dollar sign.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "cles",
+   "texte": "A date has a month and a number. A name starts with a capital letter.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. Pool hours: 7 a.m. to 9 p.m. When does it close?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: 7 a.m.. B: 9 p.m.. C: On Sunday. D: At noon.",
+   "dit": "Answer A. 7 a.m.. Answer B. 9 p.m.. Answer C. On Sunday. Answer D. At noon.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "The question asks for closing time. Scan for close.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "A is wrong. 7 a.m. is the opening time.",
+   "vue": {
+    "juge": [
+     "A"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. Sunday is about parking.",
+   "vue": {
+    "juge": [
+     "A",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "D is wrong. Noon is not in the text.",
+   "vue": {
+    "juge": [
+     "A",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "B is correct. The pool closes at 9 p.m.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: read the question first.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: find the key word in the text.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: read around it, then answer.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

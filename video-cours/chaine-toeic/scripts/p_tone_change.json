@@ -1,0 +1,244 @@
+{
+ "code": "p_tone_change",
+ "titre": "Change of subject",
+ "partie": "TOEIC · Part 3",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 3 · Trap",
+   "titre": "Change of subject",
+   "sous": "The talk moves on. Follow it.",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "About the **budget**..."
+    },
+    {
+     "qui": "B",
+     "texte": "Wait, first the **schedule**.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "How the trap works",
+   "titre": "The topic changes in the middle",
+   "etapes": [
+    {
+     "texte": "Speakers often **start** on one topic"
+    },
+    {
+     "texte": "Then they **move** to another"
+    },
+    {
+     "texte": "The question asks about **the last one**"
+    }
+   ]
+  },
+  "ex": {
+   "type": "dialogue",
+   "kicker": "Example",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "I will send the **budget** today."
+    },
+    {
+     "qui": "B",
+     "texte": "Fine. But the **client** has changed the date.",
+     "etat": "ok"
+    },
+    {
+     "qui": "A",
+     "texte": "Then we move the **meeting** to Friday.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 2",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "Send the budget.",
+     "etat": "ko",
+     "raison": "The first topic"
+    },
+    {
+     "lettre": "B",
+     "texte": "Meet the client.",
+     "etat": "ko",
+     "raison": "The change"
+    },
+    {
+     "lettre": "C",
+     "texte": "Hold the meeting.",
+     "etat": "ok",
+     "raison": "The final decision"
+    }
+   ],
+   "entendu": "What will the speakers do **on Friday**?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Speakers often **change topic**"
+    },
+    {
+     "texte": "The **last decision** counts"
+    },
+    {
+     "texte": "Wait before you **choose**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Change of subject.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "In Part 3, speakers often start on one topic.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Then they move to another topic.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "The question usually asks about the last one.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "ex",
+   "texte": "Look at this example. First, the budget.",
+   "vue": {
+    "montre": 1
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "ex",
+   "texte": "Then the client changes the date. The topic is moving.",
+   "vue": {
+    "montre": 2
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "ex",
+   "texte": "In the end: the meeting moves to Friday. That is the key information.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: What will the speakers do on Friday?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "A: Send the budget.. B: Meet the client.. C: Hold the meeting..",
+   "dit": "Answer A. Send the budget.. Answer B. Meet the client.. Answer C. Hold the meeting..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "Listen for the final decision, not the first topic.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "A is wrong. The budget is the first topic.",
+   "vue": {
+    "juge": [
+     "A"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "B is wrong. The client changed the date, but they do not meet him.",
+   "vue": {
+    "juge": [
+     "A",
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "C is correct. They move the meeting to Friday.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: speakers often change topic during a conversation.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: the last decision is usually the answer.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: wait until the end before you choose.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

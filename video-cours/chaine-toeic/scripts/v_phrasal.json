@@ -1,0 +1,272 @@
+{
+ "code": "v_phrasal",
+ "titre": "Office phrasal verbs",
+ "partie": "TOEIC · Vocabulary",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Vocabulary",
+   "titre": "Office phrasal verbs",
+   "sous": "set up, fill out, look into, carry out",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Can you **fill out** this form?"
+    },
+    {
+     "qui": "B",
+     "texte": "Sure, then I will **hand it in**.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "s1": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "Paperwork",
+   "titre": "Forms and files",
+   "lignes": [
+    {
+     "debut": "fill out",
+     "suite": "complete a form",
+     "exemple": "**Fill out** the form."
+    },
+    {
+     "debut": "hand in",
+     "suite": "give to someone",
+     "exemple": "**Hand in** your report."
+    },
+    {
+     "debut": "sign up",
+     "suite": "register",
+     "exemple": "**Sign up** for the course."
+    },
+    {
+     "debut": "look over",
+     "suite": "check quickly",
+     "exemple": "**Look over** the contract."
+    }
+   ]
+  },
+  "s2": {
+   "type": "structure",
+   "vocab": true,
+   "kicker": "Work and meetings",
+   "titre": "Plans and actions",
+   "lignes": [
+    {
+     "debut": "set up",
+     "suite": "arrange or install",
+     "exemple": "We will **set up** a meeting."
+    },
+    {
+     "debut": "look into",
+     "suite": "investigate",
+     "exemple": "We will **look into** it."
+    },
+    {
+     "debut": "carry out",
+     "suite": "do a task",
+     "exemple": "**Carry out** a survey."
+    },
+    {
+     "debut": "call off",
+     "suite": "cancel",
+     "exemple": "They **called off** the event."
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 5",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "look into",
+     "etat": "ok",
+     "raison": "Investigate"
+    },
+    {
+     "lettre": "B",
+     "texte": "look after",
+     "etat": "ko",
+     "raison": "Take care of"
+    },
+    {
+     "lettre": "C",
+     "texte": "look for",
+     "etat": "ko",
+     "raison": "Search for"
+    },
+    {
+     "lettre": "D",
+     "texte": "look up",
+     "etat": "ko",
+     "raison": "Search in a book"
+    }
+   ],
+   "lu": "The manager will ------- the complaint and reply tomorrow."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "**fill out** a form, **hand in** a report"
+    },
+    {
+     "texte": "**set up** means arrange, **call off** means cancel"
+    },
+    {
+     "texte": "**look into** means investigate"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Office phrasal verbs.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "s1",
+   "texte": "First. Fill out means complete a form. Hand in means give to someone.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "s1",
+   "texte": "Sign up means register. Look over means check quickly.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p04",
+   "ecran": "s2",
+   "texte": "Next. Set up means arrange or install. Look into means investigate.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p05",
+   "ecran": "s2",
+   "texte": "Carry out means do a task. Call off means cancel.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p06",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. The manager will blank the complaint and reply tomorrow.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "A: look into. B: look after. C: look for. D: look up.",
+   "dit": "Answer A. look into. Answer B. look after. Answer C. look for. Answer D. look up.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "The manager will investigate the problem, then reply.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "B is wrong. Look after means take care of, like a child.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "C is wrong. Look for means search for something lost.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "D is wrong. Look up means search in a book or online.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "A is correct. The manager will look into the complaint and reply tomorrow.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: fill out means complete a form, and hand in means give to someone.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: set up means arrange, and call off means cancel.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: look into means investigate. The preposition changes the meaning.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

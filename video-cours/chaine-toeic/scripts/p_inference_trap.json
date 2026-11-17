@@ -1,0 +1,264 @@
+{
+ "code": "p_inference_trap",
+ "titre": "Claims that are too strong",
+ "partie": "TOEIC · Part 7",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 7 · Trap",
+   "titre": "Claims that are too strong",
+   "sous": "always, never, all, only",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The text says the store opens **early**."
+    },
+    {
+     "qui": "B",
+     "texte": "Not **always**.",
+     "etat": "ko"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "How the trap works",
+   "titre": "A strong word is a warning",
+   "etapes": [
+    {
+     "texte": "A wrong option uses **always**, **never**, **all**, **only**"
+    },
+    {
+     "texte": "The text says **some** or **often**"
+    },
+    {
+     "texte": "It is **too strong** for the text"
+    }
+   ]
+  },
+  "ex": {
+   "type": "dialogue",
+   "kicker": "Example",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Text: the shop is **often** busy."
+    },
+    {
+     "qui": "B",
+     "texte": "The shop is **always** busy.",
+     "etat": "ko",
+     "etiquette": "TOO STRONG"
+    },
+    {
+     "qui": "B",
+     "texte": "The shop is **sometimes** busy.",
+     "etat": "ok",
+     "etiquette": "ABOUT RIGHT"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 7",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "It closes every weekend.",
+     "etat": "ko",
+     "raison": "Too strong"
+    },
+    {
+     "lettre": "B",
+     "texte": "It may close on a few weekends.",
+     "etat": "ok",
+     "raison": "Matches some"
+    },
+    {
+     "lettre": "C",
+     "texte": "It never opens at weekends.",
+     "etat": "ko",
+     "raison": "Too strong"
+    },
+    {
+     "lettre": "D",
+     "texte": "It is closed all year.",
+     "etat": "ko",
+     "raison": "Too strong"
+    }
+   ],
+   "lu": "The gym will close for repairs on some weekends."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "**always**, **never**, **all**, **only** are warnings"
+    },
+    {
+     "texte": "The text says **some**, **often**"
+    },
+    {
+     "texte": "Match the **strength** of the text"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Claims that are too strong.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "In Part 7, a wrong option often uses a strong word: always, never, all, or only.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "The text says some, or often.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "So the option is too strong for the text.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "ex",
+   "texte": "Look at this example. The text says the shop is often busy at noon.",
+   "vue": {
+    "montre": 1
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "ex",
+   "texte": "The shop is always busy. Always is too strong. The text says often.",
+   "vue": {
+    "montre": 2
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "ex",
+   "texte": "The shop is sometimes busy. This is close. This is the answer.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. The gym will close for repairs on some weekends.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "A: It closes every weekend.. B: It may close on a few weekends.. C: It never opens at weekends.. D: It is closed all year..",
+   "dit": "Answer A. It closes every weekend.. Answer B. It may close on a few weekends.. Answer C. It never opens at weekends.. Answer D. It is closed all year..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "The text says some weekends. We need an answer with the same strength.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "A is wrong. Every weekend is too strong. The text says some.",
+   "vue": {
+    "juge": [
+     "A"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "C is wrong. Never is too strong.",
+   "vue": {
+    "juge": [
+     "A",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "D is wrong. All year is much too strong.",
+   "vue": {
+    "juge": [
+     "A",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "q",
+   "texte": "B is correct. It says a few weekends, like the text.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Remember. One: always, never, all, and only are warnings.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Two: the text usually says some, or often.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Three: choose the answer with the same strength as the text.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p19",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

@@ -1,0 +1,246 @@
+{
+ "code": "p_sound_similar",
+ "titre": "Words that sound alike",
+ "partie": "TOEIC · Part 2",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Parts 1 and 2 · Trap",
+   "titre": "Words that sound alike",
+   "sous": "Copy, coffee. Right, write.",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Can you **copy** this?"
+    },
+    {
+     "qui": "B",
+     "texte": "Yes, I like **coffee**.",
+     "etat": "ko"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "How the trap works",
+   "titre": "Same sound, different word",
+   "etapes": [
+    {
+     "texte": "The wrong answer has a word that **sounds like** one in the question"
+    },
+    {
+     "texte": "Your ear hears the sound, not the **meaning**"
+    },
+    {
+     "texte": "Always ask: does it **answer** the question?"
+    }
+   ]
+  },
+  "paires": {
+   "type": "structure",
+   "kicker": "Pairs to know",
+   "titre": "Close in sound, far in meaning",
+   "lignes": [
+    {
+     "debut": "copy / coffee",
+     "suite": "copy, drink",
+     "exemple": "Some **coffee**."
+    },
+    {
+     "debut": "late / light",
+     "suite": "time, lamp",
+     "exemple": "Switch on the **light**."
+    },
+    {
+     "debut": "write / right",
+     "suite": "pen, correct",
+     "exemple": "**Right**, thank you."
+    },
+    {
+     "debut": "sale / sail",
+     "suite": "shop, boat",
+     "exemple": "A **sale** today."
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 2",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "I would like some **coffee**.",
+     "etat": "ko",
+     "raison": "Sounds like copy, no place"
+    },
+    {
+     "lettre": "B",
+     "texte": "The machine is **in the next room**.",
+     "etat": "ok",
+     "raison": "A place"
+    },
+    {
+     "lettre": "C",
+     "texte": "Yes, it is a good **report**.",
+     "etat": "ko",
+     "raison": "Repeats report, no place"
+    }
+   ],
+   "entendu": "**Where** can I make a copy of this report?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "The wrong answer **sounds like** the question"
+    },
+    {
+     "texte": "Listen for the **meaning**, not the sound"
+    },
+    {
+     "texte": "Does it **answer** the question?"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Words that sound alike.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "In Part 2, a wrong answer can use a word that sounds like a word in the question.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Your ear hears the sound, and forgets the meaning.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "So always ask: does this answer the question?",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "paires",
+   "texte": "Copy and coffee. Late and light.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "paires",
+   "texte": "Write and right. Sale and sail. Similar sounds, different meanings.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: Where can I make a copy of this report?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: I would like some coffee.. B: The machine is in the next room.. C: Yes, it is a good report..",
+   "dit": "Answer A. I would like some coffee.. Answer B. The machine is in the next room.. Answer C. Yes, it is a good report..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "The question starts with where. We need a place.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "A is wrong. Coffee sounds like copy. But it is a drink, not a place.",
+   "vue": {
+    "juge": [
+     "A"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. It repeats the word report, and gives no place.",
+   "vue": {
+    "juge": [
+     "A",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "B is correct. The machine is in the next room. It is a place.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: a wrong answer often sounds like a word in the question.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: listen for the meaning, not only the sound.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: check that the answer really answers the question.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}
