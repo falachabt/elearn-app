@@ -19,6 +19,7 @@ import { FeuilleProposition } from '../proposition/FeuilleProposition';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { FeuillePays } from '../pass/FeuillePays';
+import { FeuilleChoixRequis } from './FeuillesDemarrageTest';
 import { LogoToeic } from './LogoToeic';
 import { EncadrePointille, EnteteToeic, LigneChoix, ListeChoix } from './ui';
 
@@ -38,6 +39,7 @@ export function ChoixCertification() {
   const [depuisCache, setDepuisCache] = useState(false);
   const [erreur, setErreur] = useState(false);
   const [choisi, setChoisi] = useState<string | null>(null);
+  const [choixRequis, setChoixRequis] = useState(false);
   const [pays, setPays] = useState<string>(() => paysParDefaut(regionTelephone()));
   const [feuille, setFeuille] = useState(false);
   const [proposer, setProposer] = useState(false);
@@ -68,7 +70,10 @@ export function ChoixCertification() {
   }, [charger]);
 
   const continuer = async () => {
-    if (!choisi) return;
+    if (!choisi) {
+      setChoixRequis(true);
+      return;
+    }
     await enregistrerProfil({ type: 'certification', exam: choisi, pays, termine: false });
     suivre('cert_exam_chosen', { examen: choisi });
     router.push('/certification/objectif');
@@ -81,7 +86,7 @@ export function ChoixCertification() {
       entete={<EnteteToeic titre={t('certification.choix.entete')} onRetour={retour} />}
       pied={
         <View style={styles.pied}>
-          <Bouton libelle={t('certification.continuer')} desactive={!choisi} onPress={continuer} retour />
+          <Bouton libelle={t('certification.continuer')} onPress={continuer} retour />
           <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('certification.marqueExamen')}</Text>
         </View>
       }
@@ -129,6 +134,7 @@ export function ChoixCertification() {
         libelle={`${t('certification.choix.pays')} : ${nomPays(pays, langue)}`}
       />
       <FeuilleProposition ouverte={proposer} onFermer={() => setProposer(false)} genre="certification" pays={pays} nomPays={nomPays(pays, langue)} />
+      <FeuilleChoixRequis type="examen" ouverte={choixRequis} onFermer={() => setChoixRequis(false)} />
       <FeuillePays
         ouverte={feuille}
         pays={listePays}

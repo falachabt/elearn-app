@@ -236,10 +236,13 @@ describe('T3 · reprise d’un test interrompu', () => {
 });
 
 describe('T2 · réglage d’un mini-test', () => {
-  it('le bouton attend un choix ; une partie 1 à 4 n’offre que 10 questions ; le coût suit la longueur', async () => {
+  it('le bouton reste actif sans choix et ouvre la feuille « Choisis une partie » ; une partie 1 à 4 n’offre que 10 questions ; le coût suit la longueur', async () => {
     await monter(<ReglageMini />);
     await screen.findByText(t.mini.commencer);
-    expect(screen.getByRole('button', { name: t.mini.commencer }).props.accessibilityState?.disabled ?? true).toBeTruthy();
+    expect(screen.getByRole('button', { name: t.mini.commencer }).props.accessibilityState?.disabled ?? false).toBeFalsy();
+    await fireEvent.press(screen.getByRole('button', { name: t.mini.commencer }));
+    expect(await screen.findByText(fr.certification.choixRequis.partieTitre)).toBeTruthy();
+    await fireEvent.press(screen.getByText(fr.certification.choixRequis.bouton));
     await fireEvent.press(screen.getByLabelText('Partie 2'));
     expect(screen.getByLabelText(t.mini.longueurLabel.replace('{{n}}', '20')).props.accessibilityState.disabled).toBe(true);
     expect(screen.getByText(fr.credits.coutUn)).toBeTruthy();

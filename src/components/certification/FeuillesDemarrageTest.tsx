@@ -86,3 +86,18 @@ export function FeuilleCreditsInsuffisants({
     />
   );
 }
+
+/** Un choix manque : le bouton reste actif (vert), l'appui ouvre cette feuille qui dit quoi choisir. Rien ne s'écrit. */
+export function FeuilleChoixRequis({ type, ouverte, onFermer }: { type: 'partie' | 'examen'; ouverte: boolean; onFermer: () => void }) {
+  const { t } = useTraduction();
+  return (
+    <Feuille
+      ouverte={ouverte}
+      onFermer={onFermer}
+      icone="hand-left-outline"
+      titre={t(`certification.choixRequis.${type}Titre`)}
+      texte={t(`certification.choixRequis.${type}Texte`)}
+      actions={[{ libelle: t('certification.choixRequis.bouton'), onPress: onFermer }]}
+    />
+  );
+}

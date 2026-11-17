@@ -194,7 +194,7 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
 }
 
 const styles = StyleSheet.create({
-  groupe: { gap: espace[3] },
-  tuiles: { flexDirection: 'row', gap: espace[3] },
+  groupe: { gap: espace[4] },
+  tuiles: { flexDirection: 'row', gap: espace[4] },
   categorie: { gap: espace[2] },
 });
