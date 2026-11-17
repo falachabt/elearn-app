@@ -1,4 +1,5 @@
 import { urlMedia } from './media';
+import { chargerDonneesRevision } from './revision';
 
 /** Vidéo explicative d'une notion TOEIC (en anglais, sous-titrée dans l'image), servie depuis R2 : `toeic/videos/<code>/`. */
 export type VideoNotion = {
@@ -52,4 +53,24 @@ export async function chargerVideoNotion(code: string): Promise<VideoNotion | nu
   } finally {
     clearTimeout(minuteur);
   }
+}
+
+let codes: Promise<Map<string, string>> | null = null;
+
+/** Code d'une notion (nom du dossier vidéo) d'après son identifiant, lu dans la liste des notions. Null si inconnue. */
+export async function codeDeNotion(id: string): Promise<string | null> {
+  if (!codes) {
+    codes = chargerDonneesRevision()
+      .then((d) => new Map(d.revision.notions.map((n) => [n.id, n.code] as const)))
+      .catch(() => {
+        codes = null;
+        return new Map<string, string>();
+      });
+  }
+  return (await codes).get(id) ?? null;
+}
+
+/** Pour les tests. */
+export function oublierCodesNotions(): void {
+  codes = null;
 }
