@@ -139,7 +139,7 @@ export function BilanMini() {
       else await sortir(`/certification/liste-tests?kind=${def.kind}`);
     };
     return (
-      <Ecran
+      <Ecran piedBordure
         entete={<EnteteToeic titre={t('certification.bilanMini.entete')} />}
         pied={
           <View style={styles.groupe}>
@@ -170,7 +170,7 @@ export function BilanMini() {
   }
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.bilanMini.entete')} />}
       pied={
         <View style={styles.groupe}>

@@ -50,7 +50,7 @@ export function AccueilToeic() {
     router.push('/certification/diagnostic');
   };
   return (
-    <Ecran
+    <Ecran piedBordure
       insetBas={false}
       entete={
         <EnteteToeic

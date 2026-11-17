@@ -73,7 +73,7 @@ export function SignalerErreur() {
     );
 
   return (
-    <Ecran entete={<EnteteToeic titre={t('certification.signaler.titre')} onRetour={() => router.back()} />} pied={pied}>
+    <Ecran piedBordure entete={<EnteteToeic titre={t('certification.signaler.titre')} onRetour={() => router.back()} />} pied={pied}>
       {etat === 'envoye' ? (
         <Banniere ton="succes" titre={t('certification.signaler.merciTitre')} texte={t('certification.signaler.merciTexte')} />
       ) : (

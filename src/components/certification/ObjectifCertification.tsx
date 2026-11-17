@@ -84,7 +84,7 @@ export function ObjectifCertification() {
   };
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.objectif.entete')} onRetour={() => router.back()} />}
       pied={
         <View style={styles.pied}>

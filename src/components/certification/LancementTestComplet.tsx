@@ -59,7 +59,7 @@ export function LancementTestComplet() {
   };
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.lancementComplet.entete')} onRetour={() => router.back()} />}
       pied={
         <View style={styles.pied}>

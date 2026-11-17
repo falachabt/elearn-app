@@ -11,10 +11,11 @@ import { coursDeLaFamille } from '@/services/certification/revision';
 import { titreAffiche } from '@/services/certification/titre';
 import type { FamilleNotion, NotionListee } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, ombre, palette, rayon, typo } from '@/theme/theme';
+import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Appui } from '../Appui';
+import { GroupeColle, LigneGroupe } from '../liste/ListeCollee';
 import { BarreProgression, EtiquetteSection } from './ui';
 
 const FAMILLES: readonly FamilleNotion[] = ['grammaire', 'vocabulaire', 'piege', 'methode'];
@@ -79,7 +80,8 @@ function MiniatureCours({ video, fait }: { video: VideoNotion; fait: boolean }) 
   );
 }
 
-function CarteCours({ n }: { n: NotionListee }) {
+/** Ligne d'un cours dans la liste collée de sa partie : miniature vidéo à gauche, titre, durée ; plus de barre ni de coche répétées. */
+function LigneCours({ n, premier }: { n: NotionListee; premier: boolean }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const video = useVideoCours(n.code);
@@ -88,25 +90,15 @@ function CarteCours({ n }: { n: NotionListee }) {
   const titre = titreAffiche(n.titre);
   const duree = n.dureeMin ? t('certification.cours.duree', { n: n.dureeMin }) : undefined;
   return (
-    <Appui
-      accessibilityRole="button"
-      accessibilityLabel={[titre, duree, t(`certification.cours.etats.${etat}`)].filter(Boolean).join('. ')}
+    <LigneGroupe
+      premier={premier}
+      titre={titre}
+      sousTitre={duree}
+      libelleA11y={[titre, duree, t(`certification.cours.etats.${etat}`)].filter(Boolean).join('. ')}
+      gauche={video ? <MiniatureCours video={video} fait={fait} /> : undefined}
+      droite={fait && !video ? <Check size={18} color={theme.marque.principale} strokeWidth={3} /> : <View />}
       onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: n.id, source: 'liste' } } as never)}
-      decalage={3}
-      ombre={ombre.s}
-      couleurOmbre={theme.ombre}
-      rayon={rayon.m}
-      retour
-    >
-      <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-        {video ? <MiniatureCours video={video} fait={fait} /> : null}
-        <View style={styles.texte}>
-          <Text style={[typo.texteFort, { color: theme.texte.principal }]} numberOfLines={2}>{titre}</Text>
-          {duree ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{duree}</Text> : null}
-        </View>
-        {fait && !video ? <Check size={18} color={theme.marque.principale} strokeWidth={3} /> : null}
-      </View>
-    </Appui>
+    />
   );
 }
 
@@ -124,7 +116,10 @@ export function CoursNotions({ notions, famille, onFamille }: { notions: NotionL
       {groupes.map((g) => (
         <View key={g.partie} style={styles.partie}>
           <EtiquetteSection texte={g.partie ? t('certification.cours.etiquette', { famille: t(`certification.cours.familles.${famille}`), n: g.partie }) : t('certification.cours.etiquetteSans', { famille: t(`certification.cours.familles.${famille}`) })} />
-          {g.notions.map((n) => <CarteCours key={n.id} n={n} />)}
+          {/* Règle de Benny (17 novembre) : une liste est toujours une liste collée (un contour, filets fins), un bloc par partie. */}
+          <GroupeColle>
+            {g.notions.map((n, i) => <LigneCours key={n.id} n={n} premier={i === 0} />)}
+          </GroupeColle>
         </View>
       ))}
     </View>

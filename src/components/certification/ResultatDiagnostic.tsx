@@ -58,7 +58,7 @@ export function ResultatDiagnostic() {
   };
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.resultat.entete')} />}
       pied={
         <View style={styles.pied}>

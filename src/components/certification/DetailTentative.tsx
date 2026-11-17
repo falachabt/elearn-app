@@ -37,7 +37,7 @@ export function DetailTentative() {
   const duree = x ? dureeMinutes(x) : null;
   const parties = x?.perPart ? Object.entries(x.perPart).sort((a, b) => Number(a[0]) - Number(b[0])) : [];
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={x ? titreTentative(t, x) : t('certification.tentative.entete')} onRetour={() => router.back()} />}
       pied={ratees.length > 0 || notionARevoir ? (
         <View style={styles.groupe}>

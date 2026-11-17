@@ -38,7 +38,7 @@ export function ReviserToeic() {
   const frise = useFrise();
 
   return (
-    <Ecran insetBas={false} entete={<EnteteToeic titre={t('certification.reviser.entete')} />} pied={onglet === 'cours' && etat.phase === 'ok' ? <ContinuerCours notions={etat.valeur.revision.notions} famille={famille} /> : onglet === 'parcours' && frise.etat.phase === 'ok' ? <PiedFrise donnees={frise.etat.valeur} /> : undefined}>
+    <Ecran piedBordure insetBas={false} entete={<EnteteToeic titre={t('certification.reviser.entete')} />} pied={onglet === 'cours' && etat.phase === 'ok' ? <ContinuerCours notions={etat.valeur.revision.notions} famille={famille} /> : onglet === 'parcours' && frise.etat.phase === 'ok' ? <PiedFrise donnees={frise.etat.valeur} /> : undefined}>
       <Onglets
         valeurs={ONGLETS.map((o) => ({ valeur: o, libelle: t(`certification.reviser.onglets.${o}`) }))}
         valeur={onglet}

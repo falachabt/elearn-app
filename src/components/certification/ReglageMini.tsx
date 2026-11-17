@@ -124,7 +124,7 @@ export function ReglageMini() {
   };
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.mini.entete')} onRetour={() => router.back()} />}
       pied={<Bouton libelle={t('certification.mini.commencer')} desactive={enCours || dejaUn} onPress={() => void commencer()} retour />}
     >

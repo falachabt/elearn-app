@@ -14,7 +14,7 @@ export function MonPlan() {
   const { t } = useTraduction();
   const { etat, recharger } = useFrise();
   return (
-    <Ecran
+    <Ecran piedBordure
       insetBas={false}
       entete={<EnteteToeic titre={t('certification.monPlan.entete')} onRetour={() => router.back()} />}
       pied={etat.phase === 'ok' ? <PiedFrise donnees={etat.valeur} /> : undefined}

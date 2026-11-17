@@ -29,7 +29,7 @@ export function ArriveeToeic() {
   };
 
   return (
-    <Ecran entete={<EnteteToeic titre={t('certification.arrivee.entete')} />} pied={<Bouton libelle={t(reprise ? 'certification.arrivee.reprendre' : 'certification.arrivee.commencer')} onPress={commencer} retour />}>
+    <Ecran piedBordure entete={<EnteteToeic titre={t('certification.arrivee.entete')} />} pied={<Bouton libelle={t(reprise ? 'certification.arrivee.reprendre' : 'certification.arrivee.commencer')} onPress={commencer} retour />}>
       <PreparationDiagnostic />
     </Ecran>
   );

@@ -139,7 +139,7 @@ export function ListeTests() {
   const coutListe = parMini ? coutMini : type === 'full' ? couts.cert_mock_full : (type === 'listening' || type === 'reading') ? couts.cert_mock_half : undefined;
 
   return (
-    <Ecran
+    <Ecran piedBordure
       insetBas={false}
       entete={<EnteteToeic titre={t(CLE_TITRE_LISTE[type], { partie: partie ?? 0 })} onRetour={() => router.back()} />}
       pied={etat.phase === 'ok' && conseille ? (

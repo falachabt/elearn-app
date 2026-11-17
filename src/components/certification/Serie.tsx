@@ -207,7 +207,7 @@ export function Serie() {
   const nbRepondues = membres.filter((m) => m.id in choixGroupe).length;
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={titre} onRetour={sortir} />}
       pied={
         groupeValide ? (

@@ -40,6 +40,8 @@ export function FicheNotion() {
   /** Vidéo explicative (maquette C5v) : absente ou hors ligne, la fiche s'affiche dépliée comme avant. */
   const [video, setVideo] = useState<VideoDeNotion | null>(null);
   const [ficheOuverte, setFicheOuverte] = useState(false);
+  /** Vrai quand la recherche de la vidéo est terminée (trouvée ou non) : avant, on ne sait pas encore s'il faut attendre la fin de la vidéo. */
+  const [videoCherchee, setVideoCherchee] = useState(false);
 
   const charger = useCallback(() => {
     setPhase({ nom: 'chargement' });
@@ -48,8 +50,7 @@ export function FicheNotion() {
         setPhase({ nom: 'ok', fiche: valeur });
         suivre('cert_notion_opened', { notion: valeur.code, source: source ?? 'liste' });
         void obtenirApi().ouvrirNotion(id, 0, jourDe(new Date())).catch(() => undefined);
-        // Fiche lue : l'étape « découverte » ou « rappel » de cette notion est faite dans le plan du jour.
-        void marquerEtapeFaite(`fiche:${id}`);
+        // L'étape du plan n'est PAS cochée à l'ouverture : voir plus bas (fin de la vidéo, ou fiche sans vidéo).
       })
       .catch((e: unknown) => setPhase(e instanceof ErreurContenuExpire ? { nom: 'expire' } : { nom: 'erreur' }));
   }, [id, source]);
@@ -75,12 +76,20 @@ export function FicheNotion() {
     if (!codeNotion) return;
     let actif = true;
     void chargerVideoNotion(codeNotion).then((v) => {
-      if (actif) setVideo(v);
+      if (!actif) return;
+      setVideo(v);
+      setVideoCherchee(true);
     });
     return () => {
       actif = false;
     };
   }, [codeNotion]);
+
+  // Bug du 17 novembre (Benny) : l'étape était cochée dès l'ouverture de la fiche, sans regarder la vidéo. Une notion avec vidéo
+  // n'est faite qu'à la fin réelle de la vidéo (onTerminee) ; sans vidéo, la fiche lue (ouverte) suffit, comme avant.
+  useEffect(() => {
+    if (codeNotion && videoCherchee && !video) void marquerEtapeFaite(`fiche:${id}`);
+  }, [codeNotion, videoCherchee, video, id]);
 
   useEffect(() => {
     // Chargement initial de la fiche (copie locale puis serveur) : l'état de chargement est posé par `charger` lui-même.
@@ -103,7 +112,7 @@ export function FicheNotion() {
   const titre = phase.nom === 'ok' ? titreAffiche(phase.fiche.titre) : t('certification.cours.entete');
 
   return (
-    <Ecran
+    <Ecran piedBordure
       insetBas={false}
       entete={<EnteteToeic titre={titre} onRetour={retour} />}
       pied={phase.nom === 'ok' ? <Bouton libelle={t('certification.fiche.entrainer')} onPress={() => router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id } } as never)} retour /> : undefined}
@@ -140,7 +149,10 @@ export function FicheNotion() {
                   video={video}
                   titre={titre}
                   onLancee={() => suivre('cert_video_started', { notion: phase.fiche.code })}
-                  onTerminee={() => suivre('cert_video_completed', { notion: phase.fiche.code })}
+                  onTerminee={() => {
+                    suivre('cert_video_completed', { notion: phase.fiche.code });
+                    void marquerEtapeFaite(`fiche:${id}`);
+                  }}
                   onEntrainer={() => {
                     suivre('cert_video_practice_clicked', { notion: phase.fiche.code });
                     router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id } } as never);

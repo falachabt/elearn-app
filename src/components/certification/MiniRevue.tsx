@@ -97,7 +97,7 @@ export function MiniRevue({ lire = lireMini, retourFin = 'tests' }: Props = {}) 
   };
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={titre} onRetour={() => router.back()} />}
       pied={<Bouton libelle={sansSuite ? t(retourFin === 'resultat' ? 'certification.revue.retourResultat' : 'certification.revue.terminer') : t('certification.revue.suivante')} onPress={suivante} retour />}
     >

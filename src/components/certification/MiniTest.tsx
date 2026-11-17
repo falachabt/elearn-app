@@ -233,7 +233,7 @@ export function MiniTest() {
     const precedente = etat.index > premierLecture ? (indicesGroupe(questions, etat.index - 1)[0] ?? etat.index - 1) : null;
     const sans = nonRepondues(etat);
     return (
-      <Ecran
+      <Ecran piedBordure
         entete={enteteExamen}
         pied={
           <View style={styles.groupe}>
@@ -285,7 +285,7 @@ export function MiniTest() {
   }
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={enteteExamen}
       pied={
         <Bouton
