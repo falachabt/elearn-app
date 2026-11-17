@@ -51,7 +51,7 @@ export function TempsParJour() {
   };
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.temps.entete')} onRetour={() => router.back()} />}
       pied={<Bouton libelle={modifier ? t('certification.enregistrer') : t('certification.temps.commencer')} desactive={!minutes} onPress={commencer} retour />}
     >

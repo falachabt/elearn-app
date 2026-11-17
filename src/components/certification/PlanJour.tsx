@@ -25,7 +25,7 @@ export function PlanJour() {
   const jourPlan = donnees?.plan.jours.find((x) => x.jour === jour) ?? null;
   const suivante = jourPlan ? etapeACommencer(jourPlan) : null;
   return (
-    <Ecran
+    <Ecran piedBordure
       insetBas={false}
       entete={<EnteteToeic titre={titre} onRetour={() => router.back()} />}
       pied={suivante ? <Bouton libelle={t('certification.monPlan.commencer')} onPress={() => ouvrirEtape(suivante)} /> : undefined}

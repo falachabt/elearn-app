@@ -6,6 +6,7 @@ import { suivre } from '@/services/analytics';
 import { definirApi } from '@/services/certification/api';
 import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
 import { FICHE_TEST, JOUR, MOTS_TEST, REVISION_TEST } from '@/services/certification/__tests__/fixturesRevision';
+import { CLE_PLAN_FAITES } from '@/services/certification/planFaites';
 import { chargerVideoNotion } from '@/services/certification/videoNotion';
 import { enregistrerProfil } from '@/services/profil';
 
@@ -175,5 +176,32 @@ describe('C5v · Fiche de notion avec vidéo', () => {
     await act(async () => unmount());
     expect(mockLecteur.pause).toHaveBeenCalled();
     expect(mockLecteur.release).toHaveBeenCalled();
+  });
+});
+
+describe('Étape du plan : validée à la fin réelle de la vidéo (bug du 17 novembre)', () => {
+  const faites = async () => {
+    const brut = await AsyncStorage.getItem(CLE_PLAN_FAITES);
+    return brut ? (JSON.parse(brut) as { cles: string[] }).cles : [];
+  };
+
+  it('ouvrir la fiche ou lancer la vidéo ne coche pas l’étape ; la fin de la vidéo la coche', async () => {
+    (chargerVideoNotion as jest.Mock).mockResolvedValue(VIDEO);
+    await monter(<FicheNotion />);
+    await fireEvent.press(await screen.findByRole('button', { name: /^Lancer la vidéo/ }));
+    await act(async () => {
+      mockEcouteurs.playingChange({ isPlaying: true });
+    });
+    expect(await faites()).not.toContain('fiche:n-prepo');
+    await act(async () => {
+      mockEcouteurs.playToEnd();
+    });
+    await waitFor(async () => expect(await faites()).toContain('fiche:n-prepo'));
+  });
+
+  it('une notion sans vidéo reste validée à l’ouverture de la fiche', async () => {
+    (chargerVideoNotion as jest.Mock).mockResolvedValue(null);
+    await monter(<FicheNotion />);
+    await waitFor(async () => expect(await faites()).toContain('fiche:n-prepo'));
   });
 });

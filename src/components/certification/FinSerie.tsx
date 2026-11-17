@@ -80,7 +80,7 @@ export function FinSerie() {
   })();
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.finSerie.entete')} />}
       pied={
         <View style={styles.pied}>

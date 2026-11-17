@@ -82,7 +82,7 @@ export function ChoixCertification() {
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/bienvenue'));
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.choix.entete')} onRetour={retour} />}
       pied={
         <View style={styles.pied}>

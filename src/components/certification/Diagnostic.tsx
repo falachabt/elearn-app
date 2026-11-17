@@ -193,7 +193,7 @@ export function Diagnostic() {
   }
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.diagnostic.entete', { n: Math.min(faites + 1, total), total })} onRetour={sortir} />}
       pied={
         <View style={styles.pied}>

@@ -94,7 +94,7 @@ export function TestBientot() {
   const demi = kind === 'half';
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={demi ? t('certification.tests.demi') : t('certification.tests.bientotEntete')} onRetour={() => router.back()} />}
       pied={
         demi ? null : (

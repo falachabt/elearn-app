@@ -25,7 +25,7 @@ export function TransitionPartie({ precedente, partie, questions, onCommencer }:
   const { theme } = useTheme();
   const cle = partie as 1 | 2 | 3 | 4 | 5 | 6 | 7;
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.examen.transition', { precedente, n: partie })} />}
       pied={<Bouton libelle={t('certification.consignes.commencer', { n: partie })} onPress={onCommencer} retour />}
     >

@@ -46,11 +46,13 @@ type LigneProps = {
   /** Élément en cours : fond creux, comme la leçon à continuer. */
   enCours?: boolean;
   premier?: boolean;
+  /** Libellé lu par les lecteurs d'écran, quand il doit dire plus que le titre et le sous-titre (état d'un cours). */
+  libelleA11y?: string;
   onPress: () => void;
 };
 
 /** Une ligne du bloc collé : même contenu que CarteListe (titre 2 lignes max), sans son propre contour. */
-export function LigneGroupe({ titre, haut, sousTitre, gauche, bas, droite, droiteAction, fond, enCours, premier, onPress }: LigneProps) {
+export function LigneGroupe({ titre, haut, sousTitre, gauche, bas, droite, droiteAction, fond, enCours, premier, libelleA11y, onPress }: LigneProps) {
   const { theme } = useTheme();
   const styleLigne = [
     styles.ligne,
@@ -76,7 +78,7 @@ export function LigneGroupe({ titre, haut, sousTitre, gauche, bas, droite, droit
       <View style={styleLigne}>
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel={sousTitre ? `${titre}. ${sousTitre}` : titre}
+          accessibilityLabel={libelleA11y ?? (sousTitre ? `${titre}. ${sousTitre}` : titre)}
           onPress={onPress}
           style={styles.principal}
         >
@@ -89,7 +91,7 @@ export function LigneGroupe({ titre, haut, sousTitre, gauche, bas, droite, droit
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={sousTitre ? `${titre}. ${sousTitre}` : titre}
+      accessibilityLabel={libelleA11y ?? (sousTitre ? `${titre}. ${sousTitre}` : titre)}
       onPress={onPress}
       style={styleLigne}
     >

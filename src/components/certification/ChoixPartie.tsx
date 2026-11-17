@@ -103,7 +103,7 @@ export function ChoixPartie() {
   ] : [];
 
   return (
-    <Ecran
+    <Ecran piedBordure
       insetBas={false}
       entete={<EnteteToeic titre={t('certification.tests.listes.choixPartie.titre')} onRetour={() => router.back()} />}
       pied={conseillee ? <Bouton libelle={t('certification.tests.listes.choixPartie.ouvrir', { partie: conseillee.partie })} onPress={() => ouvrir(conseillee.partie)} retour /> : undefined}

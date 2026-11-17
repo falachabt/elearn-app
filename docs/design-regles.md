@@ -74,3 +74,6 @@ Maquettes : `toeic/maquettes-retouches/` (description dans `docs/maquettes/toeic
 - **Icône et couleur propres à la partie** : tout écran qui liste des éléments d'une partie du TOEIC reprend l'icône et la couleur de cette partie (`partiesStyle.ts`).
 - **Option de réponse correcte** : pas de libellé « Bonne réponse » à droite. La lettre de l'option devient une coche dans sa pastille à fond vert foncé.
 - **Barre du bas** : les cinq onglets sont rendus de la même façon (alignement, taille d'icône, étiquette). L'onglet actif ne change que de couleur.
+- **Toute liste est une liste collée** (rappel de Benny, 17 novembre 2026, dicté « listes coulées ») : un seul contour, des filets fins, arrondis aux extrémités, un bloc `GroupeColle` par sous-groupe (par exemple un par « Partie » dans Réviser > Cours). Jamais une pile de cartes séparées pour une liste ; la miniature vidéo va à gauche de la ligne, sans barre ni coche répétées.
+- **Pied de page collant** : toujours une bordure en haut (`piedBordure` de `Ecran`), pour qu'on le reconnaisse comme un pied de page, surtout clavier ouvert.
+

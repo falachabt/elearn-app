@@ -66,7 +66,7 @@ export function FinDiagnostic() {
   };
 
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.diagnostic.termineEntete')} />}
       pied={<Bouton libelle={t('certification.diagnostic.voirResultat')} desactive={!etat || envoi} onPress={voir} retour />}
     >

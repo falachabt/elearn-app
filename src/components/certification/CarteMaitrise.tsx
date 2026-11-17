@@ -32,7 +32,7 @@ export function CarteMaitrise() {
   const etiquette = (e: 'acquise' | 'en_progres' | 'fragile' | 'pas_commencee') => t(`certification.resultat.etats.${e}`);
 
   return (
-    <Ecran
+    <Ecran piedBordure
       insetBas={false}
       entete={<EnteteToeic titre={t('certification.carteMaitrise.entete')} onRetour={retour} />}
       pied={faibleCollant === null ? undefined : <Bouton libelle={t('certification.carteMaitrise.voir', { n: faibleCollant })} onPress={() => router.push({ pathname: '/certification/partie', params: { n: String(faibleCollant) } } as never)} retour />}

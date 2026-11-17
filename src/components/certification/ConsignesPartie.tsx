@@ -61,7 +61,7 @@ export function ConsignesPartie({ partie, questions, onCommencer, onRetour }: Pr
     { icone: NotebookPen, titre: t('certification.consignes.cartes.diagnostic'), texte: questions === 1 ? t('certification.consignes.cartes.nombreUne') : t('certification.consignes.cartes.nombre', { n: questions }) },
   ];
   return (
-    <Ecran
+    <Ecran piedBordure
       entete={<EnteteToeic titre={t('certification.consignes.cartes.entete')} onRetour={onRetour} />}
       pied={
         <View style={styles.pied}>
