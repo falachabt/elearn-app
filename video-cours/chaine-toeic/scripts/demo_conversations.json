@@ -1,0 +1,246 @@
+{
+ "code": "demo_conversations",
+ "titre": "Understand a conversation",
+ "partie": "TOEIC · Part 3",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 3 · Method",
+   "titre": "Understand a conversation",
+   "sous": "Topic, problem, solution",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The shipment is **late**."
+    },
+    {
+     "qui": "B",
+     "texte": "I will **call** the supplier.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "While you listen",
+   "titre": "Note three things",
+   "etapes": [
+    {
+     "texte": "The **topic** of the talk"
+    },
+    {
+     "texte": "The **problem**"
+    },
+    {
+     "texte": "The **solution** or the next step"
+    }
+   ]
+  },
+  "types": {
+   "type": "structure",
+   "kicker": "Frequent questions",
+   "titre": "Know what the question asks",
+   "lignes": [
+    {
+     "debut": "Next",
+     "suite": "a plan",
+     "exemple": "will **call**"
+    },
+    {
+     "debut": "Place",
+     "suite": "where",
+     "exemple": "the **depot**"
+    },
+    {
+     "debut": "Problem",
+     "suite": "what is wrong",
+     "exemple": "it is **late**"
+    },
+    {
+     "debut": "Reason",
+     "suite": "why",
+     "exemple": "**traffic**"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 3",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "Call the supplier",
+     "etat": "ok",
+     "raison": "She says so"
+    },
+    {
+     "lettre": "B",
+     "texte": "Cancel the order",
+     "etat": "ko",
+     "raison": "Not mentioned"
+    },
+    {
+     "lettre": "C",
+     "texte": "Visit the warehouse",
+     "etat": "ko",
+     "raison": "Not mentioned"
+    }
+   ],
+   "entendu": "Man: The shipment is late. Woman: I will call the supplier. What will the woman do?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Note **topic**, **problem**, **solution**"
+    },
+    {
+     "texte": "Read the **question type** first"
+    },
+    {
+     "texte": "A **next action** uses will or going to"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Understand a conversation.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "While you listen, note three things.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "The topic of the talk, and the problem.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "And the solution, or the next step.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "types",
+   "texte": "Next asks for a plan. Place asks where.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "types",
+   "texte": "Problem asks what is wrong. Reason asks why.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: Man: The shipment is late. Woman: I will call the supplier. What will the woman do?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: Call the supplier. B: Cancel the order. C: Visit the warehouse.",
+   "dit": "Answer A. Call the supplier. Answer B. Cancel the order. Answer C. Visit the warehouse.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Look for what she says she will do.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "B is wrong. Nobody cancels.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. No visit is mentioned.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "A is correct. She will call the supplier.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: note the topic, the problem, and the solution.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: read the question type first.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: a next action often uses will or going to.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

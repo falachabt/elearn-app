@@ -1,0 +1,246 @@
+{
+ "code": "demo_passages",
+ "titre": "Reading passages",
+ "partie": "TOEIC · Part 7",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 7 · Method",
+   "titre": "Reading passages",
+   "sous": "Question first, then the text",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Read the **question** first."
+    },
+    {
+     "qui": "B",
+     "texte": "Then **scan** the text.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The method",
+   "titre": "Know what to look for",
+   "etapes": [
+    {
+     "texte": "Read the **question** first"
+    },
+    {
+     "texte": "Find the **purpose** of the text: email, notice, article"
+    },
+    {
+     "texte": "Look for **precise facts**: dates, amounts, names"
+    }
+   ]
+  },
+  "pieges": {
+   "type": "dialogue",
+   "kicker": "Two traps",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The sale ends **Friday**."
+    },
+    {
+     "qui": "B",
+     "texte": "The sale **ends** this week.",
+     "etat": "ok",
+     "etiquette": "PARAPHRASE"
+    },
+    {
+     "qui": "B",
+     "texte": "The sale **starts** Friday.",
+     "etat": "ko",
+     "etiquette": "HALF TRUE"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 7",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "At 9 p.m.",
+     "etat": "ok",
+     "raison": "Same fact"
+    },
+    {
+     "lettre": "B",
+     "texte": "At 7 a.m.",
+     "etat": "ko",
+     "raison": "Not in the text"
+    },
+    {
+     "lettre": "C",
+     "texte": "On Sunday",
+     "etat": "ko",
+     "raison": "Not in the text"
+    }
+   ],
+   "lu": "Notice: The pool closes at 9 p.m. daily. When does the pool close?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Read the **question** first"
+    },
+    {
+     "texte": "Look for **paraphrases**"
+    },
+    {
+     "texte": "An option **half true** is false"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Reading passages.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "Read the question first, so you know what to look for.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Find the purpose of the text: an email, a notice, or an article.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "Then look for precise facts: dates, amounts, and names.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "pieges",
+   "texte": "The text says the sale ends Friday.",
+   "vue": {
+    "montre": 1
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "pieges",
+   "texte": "The sale ends this week. It says the same thing in other words.",
+   "vue": {
+    "montre": 2
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "pieges",
+   "texte": "The sale starts Friday. One word changes the meaning.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. Notice: The pool closes at 9 p.m. daily. When does the pool close?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "A: At 9 p.m.. B: At 7 a.m.. C: On Sunday.",
+   "dit": "Answer A. At 9 p.m.. Answer B. At 7 a.m.. Answer C. On Sunday.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "Find the fact about closing.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "B is wrong. The text does not say 7 a.m.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "C is wrong. The text does not say Sunday.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "A is correct. The pool closes at 9 p.m.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: read the question first.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: look for paraphrases: the meaning, not the same word.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: an option that is true for only a part of the text is false.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

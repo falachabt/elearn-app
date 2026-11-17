@@ -1,0 +1,246 @@
+{
+ "code": "demo_exposes",
+ "titre": "Understand a talk",
+ "partie": "TOEIC · Part 4",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 4 · Method",
+   "titre": "Understand a talk",
+   "sous": "One speaker, one message",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "**Please note** that the building closes early."
+    },
+    {
+     "qui": "B",
+     "texte": "That is the **key** message.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The structure",
+   "titre": "A talk has an order",
+   "etapes": [
+    {
+     "texte": "The start gives the **topic**"
+    },
+    {
+     "texte": "The middle gives **details**: times, places"
+    },
+    {
+     "texte": "The end gives the **instruction**"
+    }
+   ]
+  },
+  "signaux": {
+   "type": "structure",
+   "kicker": "Signal words",
+   "titre": "They announce what matters",
+   "lignes": [
+    {
+     "debut": "first",
+     "suite": "a step",
+     "exemple": "**First**, sign in"
+    },
+    {
+     "debut": "however",
+     "suite": "a change",
+     "exemple": "**However**, it is closed"
+    },
+    {
+     "debut": "please note",
+     "suite": "an instruction",
+     "exemple": "**Please note** the new time"
+    },
+    {
+     "debut": "finally",
+     "suite": "the last point",
+     "exemple": "**Finally**, thank you"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 4",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "The closing time",
+     "etat": "ok",
+     "raison": "After please note"
+    },
+    {
+     "lettre": "B",
+     "texte": "The opening time",
+     "etat": "ko",
+     "raison": "Not said"
+    },
+    {
+     "lettre": "C",
+     "texte": "The parking price",
+     "etat": "ko",
+     "raison": "Not said"
+    }
+   ],
+   "entendu": "Please note that the building will close at 6 p.m. today. What should listeners remember?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "The **start** gives the topic"
+    },
+    {
+     "texte": "Catch the **signal words**"
+    },
+    {
+     "texte": "The **end** gives the instruction"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Understand a talk.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "A talk has an order. The start gives the topic.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "The middle gives details, like times and places.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "The end gives the instruction.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "signaux",
+   "texte": "First marks a step. However marks a change.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "signaux",
+   "texte": "Please note marks an instruction. Finally marks the last point.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: Please note that the building will close at 6 p.m. today. What should listeners remember?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: The closing time. B: The opening time. C: The parking price.",
+   "dit": "Answer A. The closing time. Answer B. The opening time. Answer C. The parking price.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Please note introduces the important instruction.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "B is wrong. No opening time is given.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. No parking price is given.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "A is correct. The building closes at 6 p.m.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: the start gives the topic.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: catch the signal words.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: the end gives the instruction.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

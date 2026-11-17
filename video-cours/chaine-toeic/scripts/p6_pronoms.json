@@ -1,0 +1,264 @@
+{
+ "code": "p6_pronoms",
+ "titre": "Pronouns in a text",
+ "partie": "TOEIC · Part 6",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 6 · Trap",
+   "titre": "Pronouns in a text",
+   "sous": "Find what it replaces",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The manager approved the plan."
+    },
+    {
+     "qui": "B",
+     "texte": "**It** will start in May.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The trap",
+   "titre": "A pronoun replaces a noun",
+   "etapes": [
+    {
+     "texte": "**It** replaces a singular noun"
+    },
+    {
+     "texte": "**They** replaces a plural noun"
+    },
+    {
+     "texte": "**This** or **that** replaces a whole idea"
+    }
+   ]
+  },
+  "ex": {
+   "type": "dialogue",
+   "kicker": "Example",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Our staff were **trained** last week."
+    },
+    {
+     "qui": "B",
+     "texte": "**They** now use the software.",
+     "etat": "ok",
+     "etiquette": "PLURAL"
+    },
+    {
+     "qui": "B",
+     "texte": "**It** now uses the software.",
+     "etat": "ko",
+     "etiquette": "WRONG NUMBER"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 6",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "It",
+     "etat": "ko",
+     "raison": "Singular"
+    },
+    {
+     "lettre": "B",
+     "texte": "They",
+     "etat": "ok",
+     "raison": "Two shops"
+    },
+    {
+     "lettre": "C",
+     "texte": "This",
+     "etat": "ko",
+     "raison": "An idea"
+    },
+    {
+     "lettre": "D",
+     "texte": "He",
+     "etat": "ko",
+     "raison": "A person"
+    }
+   ],
+   "lu": "Two shops opened. ------- are central."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Find the **noun** it replaces"
+    },
+    {
+     "texte": "Check **singular** or **plural**"
+    },
+    {
+     "texte": "This or that means an **idea**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Pronouns in a text.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "A pronoun replaces a noun from the paragraph before.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "It replaces a singular noun. They replaces a plural noun.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "This or that replaces a whole idea.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "ex",
+   "texte": "Our staff were trained last week.",
+   "vue": {
+    "montre": 1
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "ex",
+   "texte": "They now use the software. Staff is plural here.",
+   "vue": {
+    "montre": 2
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "ex",
+   "texte": "It now uses the software. The number does not match.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. Two shops opened. blank are central.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "A: It. B: They. C: This. D: He.",
+   "dit": "Answer A. It. Answer B. They. Answer C. This. Answer D. He.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "Find the noun first: two shops. It is plural.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "A is wrong. It is singular.",
+   "vue": {
+    "juge": [
+     "A"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "C is wrong. This replaces an idea, not shops.",
+   "vue": {
+    "juge": [
+     "A",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "D is wrong. He is a person.",
+   "vue": {
+    "juge": [
+     "A",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "q",
+   "texte": "B is correct. They replaces two shops.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Remember. One: find the noun the pronoun replaces.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Two: check singular or plural.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Three: this or that replaces a whole idea.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p19",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

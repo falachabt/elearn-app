@@ -1,0 +1,246 @@
+{
+ "code": "demo_question_reponse",
+ "titre": "Question and answer",
+ "partie": "TOEIC · Part 2",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 2 · Method",
+   "titre": "Question and answer",
+   "sous": "The answer gives information",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "**Where** is the printer?"
+    },
+    {
+     "qui": "B",
+     "texte": "**Next to** the kitchen.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The key idea",
+   "titre": "Listen to the whole question",
+   "etapes": [
+    {
+     "texte": "Hear the **question word**: where, when, who, why"
+    },
+    {
+     "texte": "The answer gives **information**: a place, a time, a person, a reason"
+    },
+    {
+     "texte": "Do **not** wait for the same words"
+    }
+   ]
+  },
+  "ex": {
+   "type": "dialogue",
+   "kicker": "Example",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "**Where** is the printer?"
+    },
+    {
+     "qui": "B",
+     "texte": "**Next to** the kitchen.",
+     "etat": "ok",
+     "etiquette": "A PLACE"
+    },
+    {
+     "qui": "B",
+     "texte": "The **printer** is new.",
+     "etat": "ko",
+     "etiquette": "REPEATS A WORD"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 2",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "At **nine** o'clock.",
+     "etat": "ok",
+     "raison": "A time"
+    },
+    {
+     "lettre": "B",
+     "texte": "The **store** is on Main Street.",
+     "etat": "ko",
+     "raison": "Repeats store"
+    },
+    {
+     "lettre": "C",
+     "texte": "I like that **shop**.",
+     "etat": "ko",
+     "raison": "No time"
+    }
+   ],
+   "entendu": "**When** does the store open?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Hear the **question word**"
+    },
+    {
+     "texte": "Choose the answer with the **right information**"
+    },
+    {
+     "texte": "An answer that **repeats a word** is often wrong"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Question and answer.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "Listen to the whole question. Hear the question word: where, when, who, or why.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "A good answer gives information: a place, a time, a person, or a reason.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "Do not wait for the same words.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "ex",
+   "texte": "Where is the printer?",
+   "vue": {
+    "montre": 1
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "ex",
+   "texte": "Next to the kitchen. It gives a place. It answers the question.",
+   "vue": {
+    "montre": 2
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "ex",
+   "texte": "The printer is new. It repeats a word, but gives no place.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: When does the store open?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "A: At nine o'clock.. B: The store is on Main Street.. C: I like that shop..",
+   "dit": "Answer A. At nine o'clock.. Answer B. The store is on Main Street.. Answer C. I like that shop..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "When asks for a time.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "B is wrong. It gives a place, not a time.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "C is wrong. It gives an opinion, not a time.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "A is correct. At nine o'clock is a time.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: hear the question word.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: choose the answer with the right information.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: an answer that repeats a word is often wrong.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

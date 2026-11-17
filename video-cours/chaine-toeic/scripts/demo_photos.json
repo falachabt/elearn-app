@@ -1,0 +1,248 @@
+{
+ "code": "demo_photos",
+ "titre": "Describe a photo",
+ "partie": "TOEIC · Part 1",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 1 · Method",
+   "titre": "Describe a photo",
+   "sous": "Trust your eyes",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "What can you **see**?"
+    },
+    {
+     "qui": "B",
+     "texte": "Only what is **there**.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "Before the audio",
+   "titre": "You have a few seconds",
+   "etapes": [
+    {
+     "texte": "Find the **people** and the **objects**"
+    },
+    {
+     "texte": "Find the **place**"
+    },
+    {
+     "texte": "Find the **action** happening now"
+    }
+   ]
+  },
+  "pieges": {
+   "type": "dialogue",
+   "kicker": "Three traps",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "A man is **loading** boxes into a van.",
+     "etat": "ok",
+     "etiquette": "I SEE IT"
+    },
+    {
+     "qui": "B",
+     "texte": "A man is **driving** the van.",
+     "etat": "ko",
+     "etiquette": "ACTION ABSENT"
+    },
+    {
+     "qui": "B",
+     "texte": "A woman is **opening** a window.",
+     "etat": "ko",
+     "etiquette": "NOT VISIBLE"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 1",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "Several people are **sitting** at a table.",
+     "etat": "ok",
+     "raison": "Exactly what you see"
+    },
+    {
+     "lettre": "B",
+     "texte": "They are **cooking** dinner.",
+     "etat": "ko",
+     "raison": "No cooking"
+    },
+    {
+     "lettre": "C",
+     "texte": "A waiter **carries** plates.",
+     "etat": "ko",
+     "raison": "No waiter"
+    }
+   ],
+   "entendu": "Photo: people sit at a table. Which is correct?"
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Look at **people**, **objects**, **place**"
+    },
+    {
+     "texte": "Wrong options: **absent** action or object"
+    },
+    {
+     "texte": "Keep the sentence that is **exact**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Describe a photo.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "You have a few seconds before the audio. Use them to look.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Find the people, the objects, and the place.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "Then find the action happening now.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "pieges",
+   "texte": "Photo: a man puts boxes in a van. This sentence matches exactly.",
+   "vue": {
+    "montre": 1
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "pieges",
+   "texte": "Driving the van is an action that is absent from the photo.",
+   "vue": {
+    "montre": 2
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "pieges",
+   "texte": "The woman and the window are not in the photo.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. You hear: Photo: people sit at a table. Which is correct?",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "A: Several people are sitting at a table.. B: They are cooking dinner.. C: A waiter carries plates..",
+   "dit": "Answer A. Several people are sitting at a table.. Answer B. They are cooking dinner.. Answer C. A waiter carries plates..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "Keep the sentence that describes exactly what you see.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "B is wrong. Nobody is cooking.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "C is wrong. There is no waiter.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "A is correct. People are sitting at a table.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: look at the people, the objects, and the place.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: wrong options talk about an absent action or an object you cannot see.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: keep the sentence that describes exactly what you see.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

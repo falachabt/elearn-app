@@ -1,0 +1,246 @@
+{
+ "code": "demo_textes",
+ "titre": "Complete a text",
+ "partie": "TOEIC · Part 6",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 6 · Method",
+   "titre": "Complete a text",
+   "sous": "The text guides you",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The text has **four** gaps."
+    },
+    {
+     "qui": "B",
+     "texte": "Read **around** each gap.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The method",
+   "titre": "Read the whole paragraph",
+   "etapes": [
+    {
+     "texte": "Read the paragraph **before** the gap"
+    },
+    {
+     "texte": "Read the paragraph **after** it"
+    },
+    {
+     "texte": "Choose the answer that **fits the meaning**"
+    }
+   ]
+  },
+  "liens": {
+   "type": "structure",
+   "kicker": "Link clues",
+   "titre": "A sentence can repeat something",
+   "lignes": [
+    {
+     "debut": "a noun",
+     "suite": "same name",
+     "exemple": "the **offer**"
+    },
+    {
+     "debut": "a pronoun",
+     "suite": "it, they",
+     "exemple": "**They** start soon"
+    },
+    {
+     "debut": "a date",
+     "suite": "same time",
+     "exemple": "**in May**"
+    },
+    {
+     "debut": "a link word",
+     "suite": "however",
+     "exemple": "**However**, it is late"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 6",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "The move takes two days.",
+     "etat": "ok",
+     "raison": "Links move and pack"
+    },
+    {
+     "lettre": "B",
+     "texte": "Many people travel.",
+     "etat": "ko",
+     "raison": "Off topic"
+    },
+    {
+     "lettre": "C",
+     "texte": "The car park is full.",
+     "etat": "ko",
+     "raison": "Off topic"
+    }
+   ],
+   "lu": "Our office moves in May. ------- Please pack your desks."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Read **before** and **after**"
+    },
+    {
+     "texte": "Look for the **repeated** name or pronoun"
+    },
+    {
+     "texte": "Check the **next** sentence"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Complete a text.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "Read the whole paragraph, not only the sentence.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Read before the gap and after it.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "Choose the answer that fits the meaning.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "liens",
+   "texte": "A noun and a pronoun can repeat something from the text.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "liens",
+   "texte": "A date and a link word show how the idea goes on.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. Our office moves in May. blank Please pack your desks.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: The move takes two days.. B: Many people travel.. C: The car park is full..",
+   "dit": "Answer A. The move takes two days.. Answer B. Many people travel.. Answer C. The car park is full..",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Before the gap: a move. After the gap: pack. We need a link.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "B is wrong. Travel is off topic.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. The car park is off topic.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "A is correct. The move connects to the packing.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p14",
+   "ecran": "recap",
+   "texte": "Remember. One: read before and after the gap.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Two: look for the repeated name or pronoun.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Three: check that your choice fits the next sentence.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

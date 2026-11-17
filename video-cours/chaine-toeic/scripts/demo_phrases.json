@@ -1,0 +1,264 @@
+{
+ "code": "demo_phrases",
+ "titre": "Complete the sentence",
+ "partie": "TOEIC · Part 5",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 5 · Method",
+   "titre": "Complete the sentence",
+   "sous": "Look at the word after the gap",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The manager ------- the report."
+    },
+    {
+     "qui": "B",
+     "texte": "What **form** fits?",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The method",
+   "titre": "Read around the blank",
+   "etapes": [
+    {
+     "texte": "Look at the **word after** the gap"
+    },
+    {
+     "texte": "Check the **subject** and the time"
+    },
+    {
+     "texte": "Choose the **form** that fits"
+    }
+   ]
+  },
+  "formes": {
+   "type": "structure",
+   "kicker": "What to check",
+   "titre": "Three kinds of gap",
+   "lignes": [
+    {
+     "debut": "verb",
+     "suite": "tense",
+     "exemple": "will **sign** on Friday"
+    },
+    {
+     "debut": "noun or adjective",
+     "suite": "word form",
+     "exemple": "a **useful** tool"
+    },
+    {
+     "debut": "preposition",
+     "suite": "fixed pair",
+     "exemple": "responsible **for**"
+    },
+    {
+     "debut": "time word",
+     "suite": "tense clue",
+     "exemple": "by **Friday**"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 5",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "will sign",
+     "etat": "ok",
+     "raison": "Future: by Friday"
+    },
+    {
+     "lettre": "B",
+     "texte": "signed last",
+     "etat": "ko",
+     "raison": "Wrong form"
+    },
+    {
+     "lettre": "C",
+     "texte": "signing",
+     "etat": "ko",
+     "raison": "Not a full verb"
+    },
+    {
+     "lettre": "D",
+     "texte": "is sign",
+     "etat": "ko",
+     "raison": "Wrong form"
+    }
+   ],
+   "lu": "The manager ------- the report by Friday."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Look **after** the gap"
+    },
+    {
+     "texte": "Check **subject** and **time**"
+    },
+    {
+     "texte": "Learn **fixed pairs**: responsible for"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Complete the sentence.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "Read around the blank. First, look at the word after the gap.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Then check the subject and the time.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "Then choose the form that fits.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "formes",
+   "texte": "A verb gap asks for the right tense. A noun or adjective gap asks for the word form.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "formes",
+   "texte": "A preposition gap often needs a fixed pair. A time word gives the tense.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. The manager blank the report by Friday.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: will sign. B: signed last. C: signing. D: is sign.",
+   "dit": "Answer A. will sign. Answer B. signed last. Answer C. signing. Answer D. is sign.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "By Friday points to the future.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "B is wrong. It is not a correct form here.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. It is not a complete verb.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "D is wrong. Is sign is not correct.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "A is correct. By Friday points to the future: will sign.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: look at the word after the gap.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: check the subject and the time.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: learn the fixed pairs, like responsible for.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

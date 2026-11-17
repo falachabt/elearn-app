@@ -1,0 +1,264 @@
+{
+ "code": "p6_mots_de_liaison",
+ "titre": "Link words",
+ "partie": "TOEIC · Part 6",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 6 · Trap",
+   "titre": "Link words",
+   "sous": "However, therefore, moreover",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The prices went **up**."
+    },
+    {
+     "qui": "B",
+     "texte": "**However**, demand stayed high.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The trap",
+   "titre": "A link word shows a relation",
+   "etapes": [
+    {
+     "texte": "**Opposition**: however, but"
+    },
+    {
+     "texte": "**Result**: therefore, as a result"
+    },
+    {
+     "texte": "**Addition**: moreover, in addition"
+    }
+   ]
+  },
+  "ex": {
+   "type": "dialogue",
+   "kicker": "Example",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "The factory **closed**."
+    },
+    {
+     "qui": "B",
+     "texte": "**Therefore**, staff moved.",
+     "etat": "ok",
+     "etiquette": "RESULT"
+    },
+    {
+     "qui": "B",
+     "texte": "**However**, staff moved.",
+     "etat": "ko",
+     "etiquette": "NO CONTRAST"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 6",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "However",
+     "etat": "ko",
+     "raison": "Wrong relation"
+    },
+    {
+     "lettre": "B",
+     "texte": "Moreover",
+     "etat": "ok",
+     "raison": "Adds an idea"
+    },
+    {
+     "lettre": "C",
+     "texte": "Therefore",
+     "etat": "ko",
+     "raison": "Not a result"
+    },
+    {
+     "lettre": "D",
+     "texte": "Instead",
+     "etat": "ko",
+     "raison": "Not an opposite"
+    }
+   ],
+   "lu": "Sales rose in May. ------- costs also went up."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Find the **relation** between the sentences"
+    },
+    {
+     "texte": "**Opposition**, **result**, **addition**"
+    },
+    {
+     "texte": "Then pick the **link word**"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Link words.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "A link word shows how two sentences are related.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Opposition: however, but. Result: therefore, as a result.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "Addition: moreover, in addition.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "ex",
+   "texte": "The factory closed.",
+   "vue": {
+    "montre": 1
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "ex",
+   "texte": "Therefore, staff moved. It is a result.",
+   "vue": {
+    "montre": 2
+   }
+  },
+  {
+   "id": "p07",
+   "ecran": "ex",
+   "texte": "However, staff moved. There is no contrast, so it does not fit.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. Sales rose in May. blank costs also went up.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "A: However. B: Moreover. C: Therefore. D: Instead.",
+   "dit": "Answer A. However. Answer B. Moreover. Answer C. Therefore. Answer D. Instead.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "Both sentences give news. The second adds to the first.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "A is wrong. However shows a contrast.",
+   "vue": {
+    "juge": [
+     "A"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "C is wrong. Costs are not a result of sales.",
+   "vue": {
+    "juge": [
+     "A",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "D is wrong. Instead does not fit.",
+   "vue": {
+    "juge": [
+     "A",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p15",
+   "ecran": "q",
+   "texte": "B is correct. Moreover adds an idea.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Remember. One: find the relation between the two sentences.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Two: decide: opposition, result, or addition.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Three: then pick the matching link word.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p19",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}

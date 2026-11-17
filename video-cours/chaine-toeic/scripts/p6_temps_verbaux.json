@@ -1,0 +1,264 @@
+{
+ "code": "p6_temps_verbaux",
+ "titre": "Verb tenses in a text",
+ "partie": "TOEIC · Part 6",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "TOEIC · Part 6 · Trap",
+   "titre": "Verb tenses in a text",
+   "sous": "Find the time clue",
+   "bulles": [
+    {
+     "qui": "A",
+     "texte": "Since the merger, sales ------- risen."
+    },
+    {
+     "qui": "B",
+     "texte": "**have** risen.",
+     "etat": "ok"
+    }
+   ]
+  },
+  "idee": {
+   "type": "recap",
+   "kicker": "The trap",
+   "titre": "The tense depends on the paragraph",
+   "etapes": [
+    {
+     "texte": "Look for a **date** or a time marker"
+    },
+    {
+     "texte": "Check if the action is **finished**"
+    },
+    {
+     "texte": "Read the paragraph **before and after**"
+    }
+   ]
+  },
+  "reperes": {
+   "type": "structure",
+   "kicker": "Time clues",
+   "titre": "A clue points to a tense",
+   "lignes": [
+    {
+     "debut": "next month",
+     "suite": "future",
+     "exemple": "will **launch**"
+    },
+    {
+     "debut": "since",
+     "suite": "present perfect",
+     "exemple": "have **risen**"
+    },
+    {
+     "debut": "last year",
+     "suite": "past",
+     "exemple": "**opened**"
+    },
+    {
+     "debut": "already",
+     "suite": "finished",
+     "exemple": "has **ended**"
+    }
+   ]
+  },
+  "q": {
+   "type": "question",
+   "kicker": "TOEIC question · Part 6",
+   "options": [
+    {
+     "lettre": "A",
+     "texte": "will be launched",
+     "etat": "ok",
+     "raison": "Next month: future"
+    },
+    {
+     "lettre": "B",
+     "texte": "was launched",
+     "etat": "ko",
+     "raison": "Past"
+    },
+    {
+     "lettre": "C",
+     "texte": "launches last",
+     "etat": "ko",
+     "raison": "Wrong form"
+    },
+    {
+     "lettre": "D",
+     "texte": "has launched",
+     "etat": "ko",
+     "raison": "Wrong clue"
+    }
+   ],
+   "lu": "The new system ------- next month."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Remember",
+   "titre": "Three steps for the test",
+   "etapes": [
+    {
+     "texte": "Find the **time clue**"
+    },
+    {
+     "texte": "Check if it is **finished**"
+    },
+    {
+     "texte": "Read the **paragraph** around"
+    }
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Verb tenses in a text.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "idee",
+   "texte": "In Part 6, the tense depends on the paragraph.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p03",
+   "ecran": "idee",
+   "texte": "Look for a date or a time marker, and check if the action is finished.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p04",
+   "ecran": "idee",
+   "texte": "Read the paragraph before and after the gap.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p05",
+   "ecran": "reperes",
+   "texte": "Next month points to the future. Since points to the present perfect.",
+   "vue": {
+    "faibles": [
+     2,
+     3
+    ]
+   }
+  },
+  {
+   "id": "p06",
+   "ecran": "reperes",
+   "texte": "Last year points to the past. Already shows a finished action.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p07",
+   "ecran": "q",
+   "texte": "Now, a TOEIC question. The new system blank next month.",
+   "vue": {
+    "options": false
+   }
+  },
+  {
+   "id": "p08",
+   "ecran": "q",
+   "texte": "A: will be launched. B: was launched. C: launches last. D: has launched.",
+   "dit": "Answer A. will be launched. Answer B. was launched. Answer C. launches last. Answer D. has launched.",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "q",
+   "texte": "Which answer is correct?",
+   "vue": {
+    "juge": []
+   },
+   "pause_apres": 2.0
+  },
+  {
+   "id": "p10",
+   "ecran": "q",
+   "texte": "Next month points to the future.",
+   "vue": {
+    "juge": []
+   }
+  },
+  {
+   "id": "p11",
+   "ecran": "q",
+   "texte": "B is wrong. Was launched is the past.",
+   "vue": {
+    "juge": [
+     "B"
+    ]
+   }
+  },
+  {
+   "id": "p12",
+   "ecran": "q",
+   "texte": "C is wrong. It is not a correct form.",
+   "vue": {
+    "juge": [
+     "B",
+     "C"
+    ]
+   }
+  },
+  {
+   "id": "p13",
+   "ecran": "q",
+   "texte": "D is wrong. Has launched does not fit next month.",
+   "vue": {
+    "juge": [
+     "B",
+     "C",
+     "D"
+    ]
+   }
+  },
+  {
+   "id": "p14",
+   "ecran": "q",
+   "texte": "A is correct. Next month means the future.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "recap",
+   "texte": "Remember. One: find the time clue.",
+   "vue": {
+    "jusqu": 1
+   }
+  },
+  {
+   "id": "p16",
+   "ecran": "recap",
+   "texte": "Two: check if the action is finished.",
+   "vue": {
+    "jusqu": 2
+   }
+  },
+  {
+   "id": "p17",
+   "ecran": "recap",
+   "texte": "Three: read the paragraph around the gap.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p18",
+   "ecran": "recap",
+   "texte": "Now practise with the questions below.",
+   "dit": "Now, practise with the questions below.",
+   "pause_apres": 0.6
+  }
+ ]
+}
