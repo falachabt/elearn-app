@@ -40,6 +40,7 @@ jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesU
 let mockCompteur = 0;
 jest.mock('expo-crypto', () => ({ randomUUID: () => `uuid-${++mockCompteur}` }));
 jest.mock('expo-audio', () => ({ createAudioPlayer: jest.fn() }));
+jest.mock('expo-video', () => ({ createVideoPlayer: jest.fn(), VideoView: () => null }));
 jest.mock('@gorhom/bottom-sheet', () => {
   const { forwardRef } = jest.requireActual<typeof import('react')>('react');
   const passe = forwardRef(function Feuille({ children }: { children?: React.ReactNode }, _ref: unknown) {

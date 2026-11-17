@@ -1,5 +1,5 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import { Target } from 'lucide-react-native';
+import { BookOpen, ChevronDown, ChevronUp, Target } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -11,6 +11,7 @@ import { ErreurContenuExpire } from '@/services/certification/copie';
 import { etatContenu, quizLies } from '@/services/certification/etatsContenu';
 import { jourDe } from '@/services/certification/jours';
 import { titreAffiche } from '@/services/certification/titre';
+import { chargerVideoNotion, type VideoNotion as VideoDeNotion } from '@/services/certification/videoNotion';
 import { chargerFiche, chargerRevision, lireFiche, morceauxMisEnValeur } from '@/services/certification/revision';
 import { lireProfil } from '@/services/profil';
 import type { NotionFiche, NotionListee } from '@/services/certification/types';
@@ -22,6 +23,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { PuceEtatContenu } from './PuceEtatContenu';
+import { VideoNotion } from './VideoNotion';
 import { EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, Squelette } from './ui';
 
 type Phase = { nom: 'chargement' } | { nom: 'erreur' } | { nom: 'expire' } | { nom: 'ok'; fiche: NotionFiche };
@@ -35,6 +37,9 @@ export function FicheNotion() {
   const [phase, setPhase] = useState<Phase>({ nom: 'chargement' });
   /** État de maîtrise de la notion (liste des notions) : absent si la liste n'est pas lisible, la fiche s'affiche sans badge. */
   const [suivi, setSuivi] = useState<NotionListee | null>(null);
+  /** Vidéo explicative (maquette C5v) : absente ou hors ligne, la fiche s'affiche dépliée comme avant. */
+  const [video, setVideo] = useState<VideoDeNotion | null>(null);
+  const [ficheOuverte, setFicheOuverte] = useState(false);
 
   const charger = useCallback(() => {
     setPhase({ nom: 'chargement' });
@@ -64,6 +69,18 @@ export function FicheNotion() {
       actif = false;
     };
   }, [id]);
+
+  const codeNotion = phase.nom === 'ok' ? phase.fiche.code : null;
+  useEffect(() => {
+    if (!codeNotion) return;
+    let actif = true;
+    void chargerVideoNotion(codeNotion).then((v) => {
+      if (actif) setVideo(v);
+    });
+    return () => {
+      actif = false;
+    };
+  }, [codeNotion]);
 
   useEffect(() => {
     // Chargement initial de la fiche (copie locale puis serveur) : l'état de chargement est posé par `charger` lui-même.
@@ -106,16 +123,40 @@ export function FicheNotion() {
       ) : null}
       {phase.nom === 'ok' ? (() => {
         const f = lireFiche(phase.fiche.markdown);
+        const texteVisible = !video || ficheOuverte;
+        const carteEtat = suivi ? (
+          <Carte>
+            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
+            <PuceEtatContenu etat={etatContenu(suivi)} />
+            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t(`certification.fiche.etatAide.${etatContenu(suivi)}`)}</Text>
+          </Carte>
+        ) : null;
         const vide = !f.regle && f.exemples.length === 0 && !f.piege && !f.fauxAmi;
         return (
           <View style={styles.groupe}>
-            {suivi ? (
-              <Carte>
-                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
-                <PuceEtatContenu etat={etatContenu(suivi)} />
-                <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t(`certification.fiche.etatAide.${etatContenu(suivi)}`)}</Text>
-              </Carte>
+            {video ? (
+              <>
+                <VideoNotion
+                  video={video}
+                  titre={titre}
+                  onLancee={() => suivre('cert_video_started', { notion: phase.fiche.code })}
+                  onTerminee={() => suivre('cert_video_completed', { notion: phase.fiche.code })}
+                />
+                {suivi ? carteEtat : null}
+                <LigneChoix
+                  icone={BookOpen}
+                  titre={ficheOuverte ? t('certification.fiche.video.masquerFiche') : t('certification.fiche.video.lireFiche')}
+                  aide={t('certification.fiche.video.ficheAide')}
+                  droite={ficheOuverte ? <ChevronUp size={20} color={theme.texte.principal} strokeWidth={2} /> : <ChevronDown size={20} color={theme.texte.principal} strokeWidth={2} />}
+                  onPress={() => {
+                    suivre('cert_notion_sheet_toggled', { notion: phase.fiche.code, ouverte: !ficheOuverte });
+                    setFicheOuverte(!ficheOuverte);
+                  }}
+                />
+              </>
             ) : null}
+            {!video && suivi ? carteEtat : null}
+            {texteVisible ? <>
             {vide ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.fiche.sansTexte')}</Text> : null}
             {f.regle ? (
               <View style={styles.groupe}>
@@ -169,6 +210,7 @@ export function FicheNotion() {
                 </ListeChoix>
               </View>
             ) : null}
+            </> : null}
           </View>
         );
       })() : null}

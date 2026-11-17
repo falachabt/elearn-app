@@ -2772,6 +2772,15 @@ export const en: Textes = {
       expireAide: 'Connect to refresh it. You can reread the start, without the exercises.',
       actualiser: 'Refresh',
       relire: 'Reread the start',
+      video: {
+        etiquette: 'VIDEO EXPLANATION',
+        lire: 'Play the video: {{titre}}',
+        aide: 'Video in English, subtitled',
+        aideDuree: 'Video in English, subtitled · {{duree}}',
+        lireFiche: 'Read the sheet',
+        masquerFiche: 'Hide the sheet',
+        ficheAide: 'Rule, examples and trap',
+      },
     },
     carnet: {
       entete: 'Word notebook',

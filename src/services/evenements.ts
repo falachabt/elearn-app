@@ -148,6 +148,9 @@ export type Evenements = {
   cert_exercise_answered: { type: string; partie: number; juste: boolean | null };
   cert_why_missed: { raison: string };
   cert_notion_opened: { notion: string; source: string };
+  cert_video_started: { notion: string };
+  cert_video_completed: { notion: string };
+  cert_notion_sheet_toggled: { notion: string; ouverte: boolean };
   cert_word_state_changed: { mot: string; boite_avant: number; boite_apres: number };
   cert_session_started: { composition: string };
   cert_session_completed: { composition: string };
