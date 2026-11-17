@@ -1,0 +1,112 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>TOEIC-C5v v3 · lecteur de la fiche</title>
+<style>
+@font-face{font-family:SG;src:url(../../../assets/fonts/SpaceGrotesk-Regular.ttf);font-weight:400}
+@font-face{font-family:SG;src:url(../../../assets/fonts/SpaceGrotesk-Medium.ttf);font-weight:500}
+@font-face{font-family:SG;src:url(../../../assets/fonts/SpaceGrotesk-Bold.ttf);font-weight:700}
+@font-face{font-family:AB;src:url(../../../assets/fonts/ArchivoBlack.ttf)}
+@font-face{font-family:SM;src:url(../../../assets/fonts/SpaceMono-Bold.ttf);font-weight:700}
+:root{--ink:#0A0A0A;--em:#10B981;--em8:#065F46;--sun:#FFD83D;--sun50:#FFF7E3;--g:#5C5C5C;--line:#D9D0BA}
+*{box-sizing:border-box;margin:0}
+body{font-family:SG;background:#EDE6D3;width:1960px;padding:36px 44px 40px;color:var(--ink)}
+h1{font-family:AB;font-size:28px;margin-bottom:6px}
+.sub{font-size:16px;color:#3D3D3D;margin-bottom:26px;max-width:1500px;line-height:1.4}
+.row{display:flex;gap:30px}
+.col{width:420px}
+.num{display:inline-flex;width:30px;height:30px;border:2px solid var(--ink);border-radius:8px;background:var(--sun);font-family:AB;font-size:15px;align-items:center;justify-content:center;margin-right:10px}
+.tt{font-family:AB;font-size:18px;margin-bottom:6px;display:flex;align-items:center}
+.d{font-size:14px;line-height:1.35;color:#3D3D3D;min-height:100px;margin-bottom:12px}
+.phone{width:380px;height:810px;border:3px solid var(--ink);border-radius:30px;overflow:hidden;position:relative;box-shadow:8px 8px 0 var(--ink);background:#fff;display:flex;flex-direction:column}
+.dark .phone{background:#141614}
+.sb{height:26px;background:var(--em);flex:none}
+.dark .sb{background:#047857}
+.hd{display:flex;align-items:center;gap:12px;padding:14px 20px 0}
+.back{width:42px;height:42px;border:2px solid var(--ink);border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
+.dark .back{border-color:#EDE6D3}
+.hd b{font-family:SG;font-weight:700;font-size:18px;line-height:24px}
+.dark{color:#F6F1E4}
+.body{padding:18px 20px 0;display:flex;flex-direction:column;flex:1;overflow:hidden}
+.lab{font-family:SM;font-size:12px;letter-spacing:.8px;color:var(--g);margin-bottom:8px}
+.dark .lab{color:#9E998C}
+/* lecteur */
+.lect{border:2px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--sun50)}
+.dark .lect{border-color:#EDE6D3}
+.pic{aspect-ratio:16/9;background-size:cover;position:relative}
+.bar{height:46px;background:var(--ink);display:flex;align-items:center;gap:10px;padding:0 10px;color:#F6F1E4}
+.pp{width:32px;height:32px;border:2px solid var(--ink);border-radius:8px;background:var(--em);display:flex;align-items:center;justify-content:center;flex:none}
+.trk{flex:1;height:6px;border-radius:3px;background:#3A3F3A;position:relative}
+.trk i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--em)}
+.trk u{position:absolute;top:-5px;width:16px;height:16px;border:2px solid var(--ink);border-radius:50%;background:#fff;margin-left:-8px}
+.tm{font-family:SM;font-size:11px;color:#F6F1E4;flex:none}
+.fs{width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex:none}
+.cap{margin-top:12px}
+.cap b{font-weight:700;font-size:16px;line-height:24px;display:block}
+.cap span{font-weight:500;font-size:14px;color:var(--g)}
+.dark .cap span{color:#9E998C}
+.card{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:16px;box-shadow:0 3px 0 var(--ink)}
+.dark .card{background:#1F221F;border-color:#EDE6D3;box-shadow:0 3px 0 #0A0A0A}
+.card b{font-weight:700;font-size:16px;line-height:24px;display:block;margin-bottom:8px}
+.pill{display:inline-flex;gap:6px;align-items:center;border:2px solid var(--ink);border-radius:99px;background:var(--sun);padding:2px 10px;font-weight:700;font-size:13px;color:var(--ink);margin-bottom:8px}
+.card p{font-weight:500;font-size:14px;line-height:20px;color:var(--g)}
+.dark .card p{color:#9E998C}
+.row2{display:flex;align-items:center;gap:12px}
+.ic{width:42px;height:42px;border:2px solid var(--ink);border-radius:10px;background:#FFF7E3;display:flex;align-items:center;justify-content:center;flex:none}
+.dark .ic{background:#3D3514;border-color:#EDE6D3}
+.row2 .t{flex:1}.row2 .t b{display:block;font-weight:700;font-size:16px;line-height:22px;margin:0}.row2 .t span{font-weight:500;font-size:14px;color:var(--g)}
+.dark .row2 .t span{color:#9E998C}
+.gap20{height:20px;flex:none}.gap16{height:16px;flex:none}
+.foot{margin-top:auto;padding:0 20px 24px}
+.cta{height:56px;border:2px solid var(--ink);border-radius:10px;background:var(--em);font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 var(--ink);color:var(--ink)}
+.dark .cta{background:#34D399}
+.reg{font-family:SM;font-size:12px;letter-spacing:.8px;color:var(--g);margin:20px 0 8px}
+.ex{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:12px 16px;font-size:16px;margin-bottom:8px}
+.cote{position:absolute;right:-6px}
+.notes{display:flex;gap:30px;margin-top:34px}
+.n{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:14px 18px;font-size:14px;line-height:1.45;flex:1}
+.n h3{font-family:AB;font-size:15px;margin-bottom:6px}
+.sp{position:absolute;left:0;right:0;border-top:2px dashed #FF5A4F;opacity:.0}
+
+.tl{display:flex;flex-direction:column}
+.st{display:flex;gap:12px}
+.rail{width:30px;flex:none;display:flex;flex-direction:column;align-items:center}
+.nd{width:30px;height:30px;border:2px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;background:#fff;flex:none}
+.dark .nd{background:#1F221F;border-color:#EDE6D3}
+.nd.ok{background:var(--em)}.nd.cur{background:var(--sun);color:#0A0A0A}.mp .phone{height:300px}.mp .foot{display:none}
+.tr{width:2px;flex:1;background:var(--em);min-height:10px}
+.tr.g{background:#D9D0BA}
+.st .tx{flex:1;padding:0 0 22px;min-width:0}
+.st .tx b{display:block;font-weight:700;font-size:16px;line-height:22px}
+.st .tx small{display:block;font-weight:500;font-size:12px;color:var(--g);margin-top:2px;line-height:16px}
+.dark .st .tx small{color:#9E998C}
+.vig{margin-top:10px;display:flex;gap:10px;align-items:center}
+.vig .im{width:128px;aspect-ratio:16/9;border:2px solid var(--ink);border-radius:8px;background-size:cover;position:relative;overflow:hidden;flex:none}
+.dark .vig .im{border-color:#EDE6D3}
+.vig .pl{position:absolute;left:6px;bottom:6px;width:24px;height:24px;border:2px solid var(--ink);border-radius:6px;background:var(--em);display:flex;align-items:center;justify-content:center}
+.vig .du{position:absolute;right:5px;bottom:5px;background:var(--ink);color:#F6F1E4;font-family:SM;font-size:10px;padding:1px 5px;border-radius:4px}
+.vig span{font-size:12px;font-weight:500;color:var(--g);line-height:16px}
+.dark .vig span{color:#9E998C}
+.cc{border:2px solid var(--ink);border-radius:10px;background:#FFF7D6;padding:14px 16px;box-shadow:0 3px 0 var(--ink);margin-bottom:22px}
+.dark .cc{background:#3D3514;border-color:#EDE6D3;box-shadow:0 3px 0 #0A0A0A}
+.cc b{display:block;font-weight:700;font-size:16px;line-height:22px}
+.cc small{display:block;font-weight:500;font-size:13px;color:#3D3D3D;margin-top:2px}
+.dark .cc small{color:#CFC8B4}
+.avant img{width:100%;display:block}
+.ph2{border:3px solid var(--ink);border-radius:30px;overflow:hidden;box-shadow:8px 8px 0 var(--ink);width:380px;height:810px;background:#fff}
+.ph2 img{width:100%;height:100%;object-fit:cover;object-position:top}
+</style>
+<body>
+<h1>Parcours : miniature de la vidéo sous chaque étape, et carte du mini-test réparée</h1>
+<p class="sub">Base : la capture réelle de l'onglet Réviser, Parcours (colonne 1) et la capture de ton téléphone pour la carte jaune. Ce qui change : chaque étape qui a une vidéo (rappels et découvertes) montre sous son texte une petite image de la vidéo avec un signe de lecture et la durée ; l'appui ouvre la notion, comme l'étape. Les étapes sans vidéo (mini-test, test complet) n'en ont pas. La carte jaune du mini-test reprend le même aspect que les autres cartes : 16 px de marge intérieure, coins arrondis, et « Mini-test » n'est plus écrit deux fois (le détail devient « 10 min · 10 questions »).</p>
+<div class="row">
+<div class="col"><div class="tt"><span class="num">1</span>Avant : capture réelle</div><div class="d">Le Parcours tel qu'il est, sans aperçu des vidéos.</div><div class="ph2"><img src="reel-parcours.png"></div></div>
+<div class="col"><div class="tt"><span class="num">2</span>Après : clair</div><div class="d">Miniature de 128 px de large (16/9), signe de lecture vert en bas à gauche, durée en bas à droite, mention « Vidéo en anglais ». 16 px entre le texte et l'image.</div><div class=""><div class="phone"><div class="sb"></div><div class="body" style="padding-top:16px"><div style="font-weight:700;font-size:18px;margin-bottom:14px">Réviser</div>
+<div style="border:2px solid var(--ink);border-radius:10px;display:flex;font-weight:700;font-size:13px;margin-bottom:14px;overflow:hidden"><div style="background:var(--ink);color:#fff;flex:1;padding:9px;text-align:center">Parcours</div><div style="flex:1;text-align:center;padding:9px">Parties</div><div style="flex:1;text-align:center;padding:9px">Cours</div><div style="flex:1;text-align:center;padding:9px">Carnet</div></div>
+<div style="font-size:13px;color:var(--g);margin-bottom:12px">Aujourd’hui · mardi 17 nov.</div><div class="tl"><div class="st"><div class="rail"><div class="nd ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="3.2"><path d="M5 12l5 5 9-10"/></svg></div><div class="tr "></div></div><div class="tx"><b>Accord sujet-verbe avec sujets complexes</b><small>Rappel · 3 min · fait le 17 nov.</small><div class="vig"><div class="im" style="background-image:url(mini.jpg)"><div class="pl"><svg width="11" height="11" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M6 3l15 9-15 9z"/></svg></div><div class="du">1:25</div></div><span>Vidéo en anglais</span></div></div></div><div class="st"><div class="rail"><div class="nd ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="3.2"><path d="M5 12l5 5 9-10"/></svg></div><div class="tr "></div></div><div class="tx"><b>Comprendre une conversation</b><small>Rappel · 3 min · fait le 17 nov.</small><div class="vig"><div class="im" style="background-image:url(mini.jpg)"><div class="pl"><svg width="11" height="11" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M6 3l15 9-15 9z"/></svg></div><div class="du">1:12</div></div><span>Vidéo en anglais</span></div></div></div><div class="st"><div class="rail"><div class="nd cur">3</div><div class="tr g"></div></div><div class="tx"><b>Demandes et propositions polies : would, could, can</b><small>Rappel · 3 min</small><div class="vig"><div class="im" style="background-image:url(mini.jpg)"><div class="pl"><svg width="11" height="11" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M6 3l15 9-15 9z"/></svg></div><div class="du">1:38</div></div><span>Vidéo en anglais</span></div></div></div><div class="st"><div class="rail"><div class="nd ">4</div></div><div class="tx"><b>Mini-test partie 5</b><small>10 min · 10 questions</small></div></div></div></div>
+<div class="foot"><div class="cta">Commencer · demandes polies</div></div></div></div></div>
+<div class="col"><div class="tt"><span class="num">3</span>Après : sombre</div><div class="d">Mêmes tailles. La miniature garde son fond crème, le bord est clair.</div><div class="dark"><div class="phone"><div class="sb"></div><div class="body" style="padding-top:16px"><div style="font-weight:700;font-size:18px;margin-bottom:14px">Réviser</div>
+<div style="border:2px solid var(--ink);border-radius:10px;display:flex;font-weight:700;font-size:13px;margin-bottom:14px;overflow:hidden"><div style="background:var(--ink);color:#fff;flex:1;padding:9px;text-align:center">Parcours</div><div style="flex:1;text-align:center;padding:9px">Parties</div><div style="flex:1;text-align:center;padding:9px">Cours</div><div style="flex:1;text-align:center;padding:9px">Carnet</div></div>
+<div style="font-size:13px;color:var(--g);margin-bottom:12px">Aujourd’hui · mardi 17 nov.</div><div class="tl"><div class="st"><div class="rail"><div class="nd ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="3.2"><path d="M5 12l5 5 9-10"/></svg></div><div class="tr "></div></div><div class="tx"><b>Accord sujet-verbe avec sujets complexes</b><small>Rappel · 3 min · fait le 17 nov.</small><div class="vig"><div class="im" style="background-image:url(mini.jpg)"><div class="pl"><svg width="11" height="11" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M6 3l15 9-15 9z"/></svg></div><div class="du">1:25</div></div><span>Vidéo en anglais</span></div></div></div><div class="st"><div class="rail"><div class="nd ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="3.2"><path d="M5 12l5 5 9-10"/></svg></div><div class="tr "></div></div><div class="tx"><b>Comprendre une conversation</b><small>Rappel · 3 min · fait le 17 nov.</small><div class="vig"><div class="im" style="background-image:url(mini.jpg)"><div class="pl"><svg width="11" height="11" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M6 3l15 9-15 9z"/></svg></div><div class="du">1:12</div></div><span>Vidéo en anglais</span></div></div></div><div class="st"><div class="rail"><div class="nd cur">3</div><div class="tr g"></div></div><div class="tx"><b>Demandes et propositions polies : would, could, can</b><small>Rappel · 3 min</small><div class="vig"><div class="im" style="background-image:url(mini.jpg)"><div class="pl"><svg width="11" height="11" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M6 3l15 9-15 9z"/></svg></div><div class="du">1:38</div></div><span>Vidéo en anglais</span></div></div></div><div class="st"><div class="rail"><div class="nd ">4</div></div><div class="tx"><b>Mini-test partie 5</b><small>10 min · 10 questions</small></div></div></div></div>
+<div class="foot"><div class="cta">Commencer · demandes polies</div></div></div></div></div>
+<div class="col"><div class="tt"><span class="num">4</span>Carte du mini-test, clair</div><div class="d">Corrigée : marge 16 px, coins de 10 px, un seul « Mini-test ».</div><div class="mp"><div class="phone"><div class="sb"></div><div class="body" style="padding-top:16px"><div style="font-weight:700;font-size:18px;margin-bottom:14px">Réviser</div><div style="font-size:13px;color:var(--g);margin-bottom:12px">Aujourd’hui · mardi 17 nov.</div>
+<div class="st"><div class="rail"><div class="nd cur">4</div></div><div style="flex:1"><div class="cc"><b>Mini-test partie 5</b><small>10 min · 10 questions · en cours</small></div></div></div></div></div></div><div class="tt" style="margin-top:20px"><span class="num">5</span>Sombre</div><div class="dark mp"><div class="phone"><div class="sb"></div><div class="body" style="padding-top:16px"><div style="font-weight:700;font-size:18px;margin-bottom:14px">Réviser</div><div style="font-size:13px;color:var(--g);margin-bottom:12px">Aujourd’hui · mardi 17 nov.</div>
+<div class="st"><div class="rail"><div class="nd cur">4</div></div><div style="flex:1"><div class="cc"><b>Mini-test partie 5</b><small>10 min · 10 questions · en cours</small></div></div></div></div></div></div></div>
+</div></body></html>
