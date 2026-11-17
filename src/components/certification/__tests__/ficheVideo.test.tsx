@@ -35,6 +35,10 @@ const mockLecteur = {
   play: jest.fn(),
   pause: jest.fn(),
   release: jest.fn(),
+  playing: false,
+  duration: 140,
+  currentTime: 0,
+  timeUpdateEventInterval: 0,
 };
 jest.mock('expo-video', () => ({
   createVideoPlayer: jest.fn(() => mockLecteur),
@@ -98,6 +102,61 @@ describe('C5v · Fiche de notion avec vidéo', () => {
       mockEcouteurs.playToEnd();
     });
     expect(suivre).toHaveBeenCalledWith('cert_video_completed', { notion: 'prepo' });
+  });
+
+  it('maquette v3 : barre de contrôle sous l’image, lecture et pause, progression, temps et plein écran', async () => {
+    (chargerVideoNotion as jest.Mock).mockResolvedValue(VIDEO);
+    await monter(<FicheNotion />);
+    // Avant la lecture : bouton de la barre, temps 0:00 / 2:20 (durée du fichier meta), plein écran et piste présents.
+    expect(await screen.findByText('0:00 / 2:20')).toBeTruthy();
+    expect(screen.getByRole('button', { name: t.fiche.video.pleinEcran })).toBeTruthy();
+    expect(screen.getByTestId('video-notion-piste')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: /^Lancer la vidéo/ }));
+    // Pendant la lecture : le bouton devient « Pause » et le temps avance.
+    await act(async () => {
+      mockLecteur.playing = true;
+      mockEcouteurs.playingChange({ isPlaying: true });
+      mockEcouteurs.timeUpdate({ currentTime: 42 });
+    });
+    expect(screen.getByText('0:42 / 2:20')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: t.fiche.video.pause }));
+    expect(mockLecteur.pause).toHaveBeenCalled();
+    await act(async () => {
+      mockLecteur.playing = false;
+      mockEcouteurs.playingChange({ isPlaying: false });
+    });
+    expect(screen.getByRole('button', { name: t.fiche.video.lecture })).toBeTruthy();
+    // La piste se touche : action d’accessibilité « avancer de 5 secondes ».
+    const piste = screen.getByTestId('video-notion-piste');
+    await act(async () => {
+      piste.props.onAccessibilityAction({ nativeEvent: { actionName: 'increment' } });
+    });
+    expect(mockLecteur.currentTime).toBe(47);
+  });
+
+  it('maquette v6 : à la fin de la vidéo, « M’entraîner » ouvre la série de la notion et « Revoir » relance à 0:00 ; les deux sont suivis', async () => {
+    (chargerVideoNotion as jest.Mock).mockResolvedValue(VIDEO);
+    const { router } = jest.requireMock('expo-router') as { router: { push: jest.Mock } };
+    await monter(<FicheNotion />);
+    expect(screen.queryByTestId('video-notion-fin')).toBeNull();
+    await fireEvent.press(await screen.findByRole('button', { name: /^Lancer la vidéo/ }));
+    await act(async () => {
+      mockEcouteurs.playingChange({ isPlaying: true });
+      mockEcouteurs.playToEnd();
+    });
+    expect(screen.getByTestId('video-notion-fin')).toBeTruthy();
+    expect(suivre).toHaveBeenCalledWith('cert_video_completed', { notion: 'prepo' });
+    // La barre propose aussi la relecture.
+    expect(screen.getAllByRole('button', { name: t.fiche.video.revoir }).length).toBeGreaterThan(0);
+    await fireEvent.press(screen.getAllByText(t.fiche.video.entrainer)[0]);
+    expect(suivre).toHaveBeenCalledWith('cert_video_practice_clicked', { notion: 'prepo' });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/serie', params: { notion: 'n-prepo' } });
+    mockLecteur.play.mockClear();
+    await fireEvent.press(screen.getByText(t.fiche.video.revoir));
+    expect(suivre).toHaveBeenCalledWith('cert_video_replayed', { notion: 'prepo' });
+    expect(mockLecteur.currentTime).toBe(0);
+    expect(mockLecteur.play).toHaveBeenCalled();
+    expect(screen.queryByTestId('video-notion-fin')).toBeNull();
   });
 
   it('maquette 4 : notion sans vidéo, la fiche reste dépliée, sans bloc vide ni « Lire la fiche »', async () => {

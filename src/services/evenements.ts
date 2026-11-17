@@ -150,6 +150,8 @@ export type Evenements = {
   cert_notion_opened: { notion: string; source: string };
   cert_video_started: { notion: string };
   cert_video_completed: { notion: string };
+  cert_video_practice_clicked: { notion: string };
+  cert_video_replayed: { notion: string };
   cert_notion_sheet_toggled: { notion: string; ouverte: boolean };
   cert_word_state_changed: { mot: string; boite_avant: number; boite_apres: number };
   cert_session_started: { composition: string };

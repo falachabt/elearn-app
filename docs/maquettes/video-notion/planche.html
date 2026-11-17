@@ -1,0 +1,137 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>TOEIC-C5v v3 · lecteur de la fiche</title>
+<style>
+@font-face{font-family:SG;src:url(../../../assets/fonts/SpaceGrotesk-Regular.ttf);font-weight:400}
+@font-face{font-family:SG;src:url(../../../assets/fonts/SpaceGrotesk-Medium.ttf);font-weight:500}
+@font-face{font-family:SG;src:url(../../../assets/fonts/SpaceGrotesk-Bold.ttf);font-weight:700}
+@font-face{font-family:AB;src:url(../../../assets/fonts/ArchivoBlack.ttf)}
+@font-face{font-family:SM;src:url(../../../assets/fonts/SpaceMono-Bold.ttf);font-weight:700}
+:root{--ink:#0A0A0A;--em:#10B981;--em8:#065F46;--sun:#FFD83D;--sun50:#FFF7E3;--g:#5C5C5C;--line:#D9D0BA}
+*{box-sizing:border-box;margin:0}
+body{font-family:SG;background:#EDE6D3;width:1900px;padding:36px 44px 40px;color:var(--ink)}
+h1{font-family:AB;font-size:28px;margin-bottom:6px}
+.sub{font-size:16px;color:#3D3D3D;margin-bottom:26px;max-width:1500px;line-height:1.4}
+.row{display:flex;gap:30px}
+.col{width:420px}
+.num{display:inline-flex;width:30px;height:30px;border:2px solid var(--ink);border-radius:8px;background:var(--sun);font-family:AB;font-size:15px;align-items:center;justify-content:center;margin-right:10px}
+.tt{font-family:AB;font-size:18px;margin-bottom:6px;display:flex;align-items:center}
+.d{font-size:14px;line-height:1.35;color:#3D3D3D;min-height:100px;margin-bottom:12px}
+.phone{width:380px;height:810px;border:3px solid var(--ink);border-radius:30px;overflow:hidden;position:relative;box-shadow:8px 8px 0 var(--ink);background:#fff;display:flex;flex-direction:column}
+.dark .phone{background:#141614}
+.sb{height:26px;background:var(--em);flex:none}
+.dark .sb{background:#047857}
+.hd{display:flex;align-items:center;gap:12px;padding:14px 20px 0}
+.back{width:42px;height:42px;border:2px solid var(--ink);border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
+.dark .back{border-color:#EDE6D3}
+.hd b{font-family:SG;font-weight:700;font-size:18px;line-height:24px}
+.dark{color:#F6F1E4}
+.body{padding:18px 20px 0;display:flex;flex-direction:column;flex:1;overflow:hidden}
+.lab{font-family:SM;font-size:12px;letter-spacing:.8px;color:var(--g);margin-bottom:8px}
+.dark .lab{color:#9E998C}
+/* lecteur */
+.lect{border:2px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--sun50)}
+.dark .lect{border-color:#EDE6D3}
+.pic{aspect-ratio:16/9;background-size:cover;position:relative}
+.bar{height:46px;background:var(--ink);display:flex;align-items:center;gap:10px;padding:0 10px;color:#F6F1E4}
+.pp{width:32px;height:32px;border:2px solid var(--ink);border-radius:8px;background:var(--em);display:flex;align-items:center;justify-content:center;flex:none}
+.trk{flex:1;height:6px;border-radius:3px;background:#3A3F3A;position:relative}
+.trk i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--em)}
+.trk u{position:absolute;top:-5px;width:16px;height:16px;border:2px solid var(--ink);border-radius:50%;background:#fff;margin-left:-8px}
+.tm{font-family:SM;font-size:11px;color:#F6F1E4;flex:none}
+.fs{width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex:none}
+.cap{margin-top:12px}
+.cap b{font-weight:700;font-size:16px;line-height:24px;display:block}
+.cap span{font-weight:500;font-size:14px;color:var(--g)}
+.dark .cap span{color:#9E998C}
+.card{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:16px;box-shadow:0 3px 0 var(--ink)}
+.dark .card{background:#1F221F;border-color:#EDE6D3;box-shadow:0 3px 0 #0A0A0A}
+.card b{font-weight:700;font-size:16px;line-height:24px;display:block;margin-bottom:8px}
+.pill{display:inline-flex;gap:6px;align-items:center;border:2px solid var(--ink);border-radius:99px;background:var(--sun);padding:2px 10px;font-weight:700;font-size:13px;color:var(--ink);margin-bottom:8px}
+.card p{font-weight:500;font-size:14px;line-height:20px;color:var(--g)}
+.dark .card p{color:#9E998C}
+.row2{display:flex;align-items:center;gap:12px}
+.ic{width:42px;height:42px;border:2px solid var(--ink);border-radius:10px;background:#FFF7E3;display:flex;align-items:center;justify-content:center;flex:none}
+.dark .ic{background:#3D3514;border-color:#EDE6D3}
+.row2 .t{flex:1}.row2 .t b{display:block;font-weight:700;font-size:16px;line-height:22px;margin:0}.row2 .t span{font-weight:500;font-size:14px;color:var(--g)}
+.dark .row2 .t span{color:#9E998C}
+.gap20{height:20px;flex:none}.gap16{height:16px;flex:none}
+.foot{margin-top:auto;padding:0 20px 24px}
+.cta{height:56px;border:2px solid var(--ink);border-radius:10px;background:var(--em);font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 var(--ink);color:var(--ink)}
+.dark .cta{background:#34D399}
+.reg{font-family:SM;font-size:12px;letter-spacing:.8px;color:var(--g);margin:20px 0 8px}
+.ex{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:12px 16px;font-size:16px;margin-bottom:8px}
+.cote{position:absolute;right:-6px}
+.notes{display:flex;gap:30px;margin-top:34px}
+.n{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:14px 18px;font-size:14px;line-height:1.45;flex:1}
+.n h3{font-family:AB;font-size:15px;margin-bottom:6px}
+.sp{position:absolute;left:0;right:0;border-top:2px dashed #FF5A4F;opacity:.0}
+</style>
+<body>
+<h1>TOEIC-C5v · v3 : le lecteur de la fiche de notion avec sa barre de contrôle</h1>
+<p class="sub">Base : la capture réelle de la fiche (vidéo, carte d'état, « Lire la fiche », « M'entraîner »). Ce qui change : le gros bouton qui cachait la première image disparaît, une barre de contrôle (lecture, progression, temps, plein écran) est collée sous l'image, et les blocs respirent (20 px entre la vidéo, la carte d'état et « Lire la fiche », au lieu de 8 px). Le texte, les couleurs et le bouton fixe en bas ne changent pas.</p>
+<div class="row">
+
+<div class="col"><div class="tt"><span class="num">1</span>Fermée : image visible</div>
+<div class="d">L'image de titre de la vidéo est entière, sans bouton dessus. La barre noire sous l'image porte le bouton lecture (vert, 32 px, zone tactile 48 px), la piste, « 0:00 / 1:25 » et le plein écran. Toucher l'image lance aussi la lecture.</div>
+<div class="phone"><div class="sb"></div>
+<div class="hd"><div class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></div><b>Lieux et objets sur les photos</b></div>
+<div class="body"><div class="lab" style="margin-top:6px">EXPLICATION EN VIDÉO</div>
+<div class="lect"><div class="pic" style="background-image:url(mini.jpg)"></div>
+<div class="bar"><div class="pp"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M6 3l15 9-15 9z"/></svg></div><div class="trk"><i style="width:0"></i><u style="left:0"></u></div><span class="tm">0:00 / 1:25</span><div class="fs"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F6F1E4" stroke-width="2.2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></div></div></div>
+<div class="cap"><b>Lieux et objets sur les photos</b><span>Vidéo en anglais, sous-titrée · 1:25</span></div>
+<div class="gap20"></div>
+<div class="card"><b>Lieux et objets sur les photos</b><div class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.2"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.500-8"/></svg>MAÎTRISÉ</div><p>Tu maîtrises cette notion. Un quiz de temps en temps suffit.</p></div>
+<div class="gap16"></div>
+<div class="card row2"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.2"><path d="M2 5h7a3 3 0 013 3v12a2 2 0 00-2-2H2zM22 5h-7a3 3 0 00-3 3v12a2 2 0 012-2h8z"/></svg></div><div class="t"><b>Lire la fiche</b><span>Règle, exemples et piège</span></div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
+</div><div class="foot"><div class="cta">M’entraîner sur cette notion</div></div></div></div>
+
+<div class="col"><div class="tt"><span class="num">2</span>En lecture</div>
+<div class="d">Le bouton devient « pause ». La progression se remplit, le temps avance. Un appui sur l'image met en pause. Le plein écran passe en paysage avec les mêmes contrôles. En pause, le bouton redevient « lecture ».</div>
+<div class="phone"><div class="sb"></div>
+<div class="hd"><div class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></div><b>Lieux et objets sur les photos</b></div>
+<div class="body"><div class="lab" style="margin-top:6px">EXPLICATION EN VIDÉO</div>
+<div class="lect"><div class="pic" style="background-image:url(frame42.jpg)"></div>
+<div class="bar"><div class="pp"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg></div><div class="trk"><i style="width:49%"></i><u style="left:49%"></u></div><span class="tm">0:42 / 1:25</span><div class="fs"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F6F1E4" stroke-width="2.2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></div></div></div>
+<div class="cap"><b>Lieux et objets sur les photos</b><span>Vidéo en anglais, sous-titrée · 1:25</span></div>
+<div class="gap20"></div>
+<div class="card"><b>Lieux et objets sur les photos</b><div class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.2"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.500-8"/></svg>MAÎTRISÉ</div><p>Tu maîtrises cette notion. Un quiz de temps en temps suffit.</p></div>
+<div class="gap16"></div>
+<div class="card row2"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.2"><path d="M2 5h7a3 3 0 013 3v12a2 2 0 00-2-2H2zM22 5h-7a3 3 0 00-3 3v12a2 2 0 012-2h8z"/></svg></div><div class="t"><b>Lire la fiche</b><span>Règle, exemples et piège</span></div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
+</div><div class="foot"><div class="cta">M’entraîner sur cette notion</div></div></div></div>
+
+<div class="col"><div class="tt"><span class="num">3</span>Fiche dépliée</div>
+<div class="d">Un appui sur « Lire la fiche » déplie le texte, 20 px plus bas. La vidéo reste en haut et peut continuer. La carte d.état reste dans la page, juste au-dessus (elle défile hors de la capture). Le libellé devient « Masquer la fiche ».</div>
+<div class="phone"><div class="sb"></div>
+<div class="hd"><div class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></div><b>Lieux et objets sur les photos</b></div>
+<div class="body"><div class="lab" style="margin-top:6px">EXPLICATION EN VIDÉO</div>
+<div class="lect"><div class="pic" style="background-image:url(frame42.jpg)"></div>
+<div class="bar"><div class="pp"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M6 3l15 9-15 9z"/></svg></div><div class="trk"><i style="width:49%"></i><u style="left:49%"></u></div><span class="tm">0:42 / 1:25</span><div class="fs"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F6F1E4" stroke-width="2.2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></div></div></div>
+<div class="cap"><b>Lieux et objets sur les photos</b><span>Vidéo en anglais, sous-titrée · 1:25</span></div>
+<div class="gap20"></div>
+<div class="card row2"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.2"><path d="M2 5h7a3 3 0 013 3v12a2 2 0 00-2-2H2zM22 5h-7a3 3 0 00-3 3v12a2 2 0 012-2h8z"/></svg></div><div class="t"><b>Masquer la fiche</b><span>Règle, exemples et piège</span></div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 15l6-6 6 6"/></svg></div>
+<div class="reg">RÈGLE</div>
+<div class="card"><p style="font-size:16px;line-height:24px;color:#0A0A0A">Pour décrire une photo, on nomme d'abord le lieu, puis les objets : « There is a shelf near the counter. »</p></div>
+<div class="reg">EXEMPLES</div>
+<div class="ex">Books are on the shelf.</div>
+</div><div class="foot"><div class="cta">M’entraîner sur cette notion</div></div></div></div>
+
+<div class="col dark"><div class="tt" style="color:#0A0A0A"><span class="num">4</span>Thème sombre</div>
+<div class="d" style="color:#3D3D3D">Même écran en sombre : la barre du lecteur reste noire, l'image reste crème (la vidéo garde son fond), la carte et les lignes prennent les couleurs du thème sombre.</div>
+<div class="phone"><div class="sb"></div>
+<div class="hd"><div class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></div><b>Lieux et objets sur les photos</b></div>
+<div class="body"><div class="lab" style="margin-top:6px">EXPLICATION EN VIDÉO</div>
+<div class="lect"><div class="pic" style="background-image:url(mini.jpg)"></div>
+<div class="bar" style="background:#0A0A0A"><div class="pp" style="background:#34D399"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M6 3l15 9-15 9z"/></svg></div><div class="trk"><i style="width:0;background:#34D399"></i><u style="left:0"></u></div><span class="tm">0:00 / 1:25</span><div class="fs"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F6F1E4" stroke-width="2.2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></div></div></div>
+<div class="cap"><b>Lieux et objets sur les photos</b><span>Vidéo en anglais, sous-titrée · 1:25</span></div>
+<div class="gap20"></div>
+<div class="card"><b>Lieux et objets sur les photos</b><div class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.2"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.500-8"/></svg>MAÎTRISÉ</div><p>Tu maîtrises cette notion. Un quiz de temps en temps suffit.</p></div>
+<div class="gap16"></div>
+<div class="card row2"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F6F1E4" stroke-width="2.2"><path d="M2 5h7a3 3 0 013 3v12a2 2 0 00-2-2H2zM22 5h-7a3 3 0 00-3 3v12a2 2 0 012-2h8z"/></svg></div><div class="t"><b>Lire la fiche</b><span>Règle, exemples et piège</span></div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
+</div><div class="foot"><div class="cta">M’entraîner sur cette notion</div></div></div></div>
+</div>
+<div class="notes">
+<div class="n"><h3>Ce qui change</h3>Plus de gros bouton sur l'image. Barre de contrôle sous l'image : lecture ou pause, piste de progression qu'on peut toucher pour avancer, temps écoulé sur durée, plein écran. Le lecteur natif et ses contrôles par défaut ne sont plus utilisés.</div>
+<div class="n"><h3>Espacements</h3>Légende collée à la vidéo (12 px). 20 px entre le lecteur et la carte d'état, 16 px entre la carte d'état et « Lire la fiche », 16 px de marge intérieure dans les cartes. Avant : 8 px partout.</div>
+<div class="n"><h3>Accessibilité</h3>Zones tactiles de 48 px pour lecture et plein écran, étiquettes « Lecture », « Pause », « Plein écran », la progression se lit « 42 secondes sur 85 ». Texte noir sur le vert, icône et mot sur la carte d'état.</div>
+<div class="n"><h3>Inchangé</h3>Titre, texte « Vidéo en anglais, sous-titrée », carte d'état, ligne « Lire la fiche », bouton « M'entraîner » fixe en bas, comportement sans vidéo ou hors ligne (fiche dépliée).</div>
+</div>
+</body></html>

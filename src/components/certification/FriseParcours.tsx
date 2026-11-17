@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
-import { Award, BookOpen, CalendarClock, Check, ChevronDown, ChevronRight, Circle, ClipboardCheck, RotateCcw, RotateCw, Target, TriangleAlert, type LucideIcon } from 'lucide-react-native';
-import { Children, cloneElement, isValidElement, useCallback, useState, type ReactElement, type ReactNode } from 'react';
+import { Award, BookOpen, Play, CalendarClock, Check, ChevronDown, ChevronRight, Circle, ClipboardCheck, RotateCcw, RotateCw, Target, TriangleAlert, type LucideIcon } from 'lucide-react-native';
+import { Children, cloneElement, isValidElement, useCallback, useEffect, useState, type ReactElement, type ReactNode } from 'react';
+import { Image } from 'expo-image';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -11,11 +12,13 @@ import {
   estJourTest, etapeACommencer, organiserFrise, routeEtape,
   type EtapePlan, type EtatEtape, type JourPlan, type PlanFrise, type TypeEtape,
 } from '@/services/certification/planFrise';
+import { chargerVideoNotion, codeDeNotion, type VideoNotion } from '@/services/certification/videoNotion';
+import { formaterDuree } from '@/services/videos';
 import { planAvecEtapesFaites } from '@/services/certification/planFaites';
 import { chargerDonneesRevision } from '@/services/certification/revision';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, ombre, rayon, typo, type Theme } from '@/theme/theme';
+import { bord, espace, ombre, palette, rayon, typo, type Theme } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Bouton } from '../Bouton';
@@ -102,12 +105,48 @@ function styleType(theme: Theme, type: TypeEtape) {
  * Faite : coche verte, rail vert. En cours (la prochaine à lancer) : la seule carte, fond jaune doux. À venir : discrète.
  * L'état reste dit en mots aux lecteurs d'écran, jamais par la couleur seule.
  */
+
+/** Vidéo de la notion d'une étape (rappel, découverte) : null pour un test, des mots, hors ligne ou sans vidéo. */
+function useVideoEtape(etape: EtapePlan): VideoNotion | null {
+  const [trouvee, setTrouvee] = useState<{ id: string; video: VideoNotion | null } | null>(null);
+  const id = etape.uniteKind === 'notion' && etape.type !== 'pratique' ? etape.uniteId : null;
+  useEffect(() => {
+    if (!id) return;
+    let vivant = true;
+    void codeDeNotion(id)
+      .then((code) => (code ? chargerVideoNotion(code) : null))
+      .then((video) => {
+        if (vivant) setTrouvee({ id, video });
+      });
+    return () => {
+      vivant = false;
+    };
+  }, [id]);
+  return id && trouvee?.id === id ? trouvee.video : null;
+}
+
+/** Maquette C5v v4 : petite image de la vidéo sous le texte de l'étape, signe de lecture et durée. L'appui ouvre la notion. */
+function VignetteVideo({ video }: { video: VideoNotion }) {
+  const { theme } = useTheme();
+  return (
+    <View testID="etape-video" style={[styles.vignette, { borderColor: theme.bord.fort }]}>
+      {video.miniature ? <Image source={{ uri: video.miniature }} style={styles.vignetteImage} contentFit="cover" accessible={false} /> : null}
+      <View style={[styles.vignetteLecture, { backgroundColor: theme.marque.principale }]}>
+        <Play size={12} color={palette.encre[1000]} fill={palette.encre[1000]} strokeWidth={2} />
+      </View>
+      {video.dureeS ? <Text style={styles.vignetteDuree}>{formaterDuree(video.dureeS)}</Text> : null}
+    </View>
+  );
+}
+
 export function EtapeLigne({ etape, dernier, rang, courante }: { etape: EtapePlan; dernier: boolean; rang: number; courante: boolean }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const dates = useDates();
+  const video = useVideoEtape(etape);
   const fait = etape.etat === 'fait';
-  const detail = [t(`certification.monPlan.type.${etape.type}`), etape.minutes ? t('certification.monPlan.minutes', { n: etape.minutes }) : null, etape.detail, fait && etape.faitLe ? t('certification.monPlan.faitLe', { date: dates.court(etape.faitLe) }).toLowerCase() : null, etape.etat === 'reportee' || etape.etat === 'ratee' || etape.etat === 'en_cours' ? t(`certification.monPlan.statut.${etape.etat}`).toLowerCase() : null].filter(Boolean).join(' · ');
+  const typeLibelle = t(`certification.monPlan.type.${etape.type}`);
+  const detail = [etape.titre.trim().toLowerCase().startsWith(typeLibelle.toLowerCase()) ? null : typeLibelle, etape.minutes ? t('certification.monPlan.minutes', { n: etape.minutes }) : null, etape.detail, fait && etape.faitLe ? t('certification.monPlan.faitLe', { date: dates.court(etape.faitLe) }).toLowerCase() : null, etape.etat === 'reportee' || etape.etat === 'ratee' || etape.etat === 'en_cours' ? t(`certification.monPlan.statut.${etape.etat}`).toLowerCase() : null].filter(Boolean).join(' · ');
   const statut = fait && etape.faitLe ? t('certification.monPlan.faitLe', { date: dates.court(etape.faitLe) }) : t(`certification.monPlan.statut.${etape.etat}`);
   const noeud = (
     <View
@@ -137,9 +176,10 @@ export function EtapeLigne({ etape, dernier, rang, courante }: { etape: EtapePla
         rayon={rayon.m}
         retour
       >
-        <View style={[styles.carte, courante && { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort, borderWidth: bord.normal }, !dernier && !courante && styles.carteBas]}>
+        <View style={[styles.carte, courante && [styles.carteCourante, { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort, borderWidth: bord.normal }], !dernier && !courante && styles.carteBas]}>
           <Text style={[typo.texteFort, { color: courante || fait ? theme.texte.principal : theme.texte.secondaire, fontWeight: courante || fait ? undefined : '600' }]}>{etape.titre}</Text>
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{detail}</Text>
+          {video ? <VignetteVideo video={video} /> : null}
         </View>
       </Appui>
     </View>
@@ -237,8 +277,8 @@ export function LigneAujourdhui({ jour }: { jour: Jour }) {
 }
 
 /** Parcours du jour de l'accueil TOEIC : ce qu'il y a à faire aujourd'hui, avec l'état de chaque étape. Rien quand le jour est vide. */
-export function ParcoursDuJour() {
-  const { etat } = useFrise();
+export function ParcoursDuJour({ frise }: { frise: ReturnType<typeof useFrise> }) {
+  const { etat } = frise;
   if (etat.phase === 'chargement') return <Squelette lignes={2} />;
   if (etat.phase === 'erreur') return null;
   const { plan, aujourdhui } = etat.valeur;
@@ -419,6 +459,11 @@ const styles = StyleSheet.create({
   carteZone: { flex: 1, minWidth: 0 },
   carte: { gap: 2, padding: espace[1], paddingBottom: espace[5], borderRadius: rayon.m },
   carteBas: {},
+  carteCourante: { padding: espace[5], paddingBottom: espace[5], overflow: 'hidden' },
+  vignette: { marginTop: espace[4], width: 128, aspectRatio: 16 / 9, borderWidth: bord.normal, borderRadius: rayon.s, overflow: 'hidden', backgroundColor: palette.papier[50] },
+  vignetteImage: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
+  vignetteLecture: { position: 'absolute', left: 6, bottom: 6, width: 24, height: 24, borderWidth: bord.normal, borderColor: palette.encre[1000], borderRadius: rayon.s, alignItems: 'center', justifyContent: 'center' },
+  vignetteDuree: { position: 'absolute', right: 5, bottom: 5, backgroundColor: palette.encre[1000], color: palette.papier[50], fontFamily: 'SpaceMono-Regular', fontSize: 10, paddingHorizontal: 5, paddingVertical: 1, borderRadius: 4, overflow: 'hidden' },
   lienZone: { alignSelf: 'center', minHeight: 48, justifyContent: 'center' },
   lien: { textDecorationLine: 'underline' },
   pointille: { gap: espace[3], padding: espace[5], borderWidth: bord.normal, borderStyle: 'dashed', borderRadius: rayon.l },

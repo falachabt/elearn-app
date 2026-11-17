@@ -197,6 +197,8 @@ Aucune donnée personnelle ni contenu de question : seulement des types, parties
 | `cert_notion_opened` | Fiche de notion ouverte | `{ notion: string; source: string }` |
 | `cert_video_started` | Vidéo explicative d'une notion lancée (une fois par ouverture de la fiche) | `{ notion: string }` |
 | `cert_video_completed` | Vidéo explicative d'une notion regardée jusqu'au bout | `{ notion: string }` |
+| `cert_video_practice_clicked` | « M'entraîner sur cette notion » touché sur l'écran de fin de la vidéo | `{ notion: string }` |
+| `cert_video_replayed` | « Revoir la vidéo » touché sur l'écran de fin | `{ notion: string }` |
 | `cert_notion_sheet_toggled` | Texte de la fiche déplié ou replié derrière la vidéo (« Lire la fiche ») | `{ notion: string; ouverte: boolean }` |
 | `cert_word_state_changed` | Un mot change de boîte | `{ mot: string; boite_avant: number; boite_apres: number }` |
 | `cert_session_started` | Séance du jour lancée | `{ composition: string }` |

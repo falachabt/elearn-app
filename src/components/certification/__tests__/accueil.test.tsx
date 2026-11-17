@@ -81,12 +81,11 @@ describe('N1 · Accueil TOEIC', () => {
     // Accueil d'un élève qui a fini son diagnostic : c'est le seul cas où les cartes de séance s'affichent.
     await ecrireDiagnostic({ fin: { estimated: true, score: 700, score_min: 650, score_max: 730 } } as never);
   });
-  it('montre objectif, séance du jour (carte verte, notion en titre) et le parcours du jour à la place des deux cartes du bas', async () => {
+  it('montre le compteur et le parcours du jour, sans carte verte « Séance du jour » (maquette N1 v5 : une seule porte pour aujourd’hui)', async () => {
     await monter(<AccueilToeic />);
     expect(await screen.findByText(t.accueilToeic.compteJours.replace('{{n}}', '42'))).toBeTruthy();
-    expect(screen.getByText(t.accueilToeic.seanceTitre)).toBeTruthy();
-    expect(screen.getByText(t.accueilToeic.minutesCourtes.replace('{{minutes}}', '20'))).toBeTruthy();
-    expect(screen.getAllByText('Prépositions de temps').length).toBeGreaterThan(0);
+    expect(screen.queryByText(t.accueilToeic.seanceTitre)).toBeNull();
+    expect(screen.queryByText(t.accueilToeic.minutesCourtes.replace('{{minutes}}', '20'))).toBeNull();
     // Retouche de novembre 2026 : plus de cartes « Score estimé » et « Mots à revoir », ni de phrase du plan sous le compteur.
     expect(screen.queryByText(t.accueilToeic.score)).toBeNull();
     expect(screen.queryByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeNull();
@@ -143,14 +142,11 @@ describe('N1 · Accueil TOEIC', () => {
     expect(screen.queryByText(t.accueilToeic.sansDateTitre)).toBeNull();
   });
 
-  it('« Commencer la séance » ouvre D2, « Continuer » une fois un bloc terminé', async () => {
+  it('le bouton fixe en bas lance l’étape en cours du parcours du jour', async () => {
     await monter(<AccueilToeic />);
-    await fireEvent.press(await screen.findByText(t.accueilToeic.commencer));
-    expect(router.push).toHaveBeenCalledWith('/certification/seance');
-    const etat = await lireSeanceJour();
-    await terminerBloc(etat!, 0);
-    await monter(<AccueilToeic />);
-    expect((await screen.findAllByText(t.accueilToeic.continuer)).length).toBeGreaterThan(0);
+    await screen.findByText(/^Aujourd’hui · /);
+    await fireEvent.press(await screen.findByText(/^Commencer · /));
+    expect(router.push).toHaveBeenCalled();
   });
 
   it('propose de reprendre une série interrompue', async () => {
@@ -167,11 +163,11 @@ describe('N1 · Accueil TOEIC', () => {
     expect(screen.queryByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeNull();
   });
 
-  it('garde l’accueil lisible quand la séance ne peut pas être composée', async () => {
+  it('garde l’accueil lisible quand la séance ne peut pas être composée : le parcours du jour reste là', async () => {
     installer({ seance: 'echec' });
     await monter(<AccueilToeic />);
-    expect(await screen.findByText(t.accueilToeic.erreurTitre)).toBeTruthy();
-    expect(screen.getByText(t.accueilToeic.mots)).toBeTruthy();
+    expect(await screen.findByText(/^Aujourd’hui · /)).toBeTruthy();
+    expect(screen.queryByText(t.accueilToeic.erreurTitre)).toBeNull();
   });
 
   it('propose de réessayer quand tout échoue', async () => {
