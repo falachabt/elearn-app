@@ -1,9 +1,9 @@
 import { Image } from 'expo-image';
 import { createVideoPlayer, VideoView, type VideoPlayer } from 'expo-video';
-import { Check, Download, Lock, Pause, Play, SkipBack, SkipForward, Trash2 } from 'lucide-react-native';
+import { Check, Download, Lock, Trash2 } from 'lucide-react-native';
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, PanResponder, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { Banniere } from '@/components/Banniere';
@@ -17,6 +17,7 @@ import { BoutonFermer } from '@/components/arrivee/MiniTest';
 import { peutVoir } from '@/services/credits';
 import { lireEntrainement, lireProgresChapitres, type Compteur, type ProgresChapitre } from '@/services/entrainement';
 import { enregistrerTempsActivite } from '@/services/activite';
+import { suivre } from '@/services/analytics';
 import { getSupabase } from '@/services/supabase';
 import {
   formaterDuree,
@@ -37,6 +38,9 @@ import {
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
+
+import { BarreVideo } from '@/components/video/BarreVideo';
+import { FinVideo } from '@/components/video/FinVideo';
 
 import { BlocEntrainement, GroupeColle, LigneGroupe } from './BlocEntrainement';
 
@@ -161,6 +165,10 @@ export function LecteurVideo() {
   const [positionAffichee, setPositionAffichee] = useState(0);
   const [dureeAffichee, setDureeAffichee] = useState(0);
   const [enLectureAffichee, setEnLectureAffichee] = useState(false);
+  const [pleinEcran, setPleinEcran] = useState(false);
+  const vueRef = useRef<VideoView | null>(null);
+  /** Id de la partie dont la fin est affichée (écran de fin sur l'image) ; vide dès que la lecture reprend ou qu'on change de partie. */
+  const [finId, setFinId] = useState<string | null>(null);
   const dernierEnregistrementRef = useRef(0);
   const couranteRef = useRef<VideoCours | null>(null);
   const suivisRef = useRef<SuivisVideos>({});
@@ -233,6 +241,7 @@ export function LecteurVideo() {
       }),
       p.addListener('playingChange', ({ isPlaying }) => {
         setEnLectureAffichee(isPlaying);
+        if (isPlaying) setFinId(null);
         if (isPlaying) {
           if (segmentDebut.current === null) {
             segmentDebut.current = Date.now();
@@ -253,21 +262,16 @@ export function LecteurVideo() {
             [v.id]: { positionS: v.dureeS ?? avant[v.id]?.positionS ?? 0, dureeS: v.dureeS, terminee: true, quand: Date.now(), cours: v.cours },
           }));
         });
-        // Enchaînement : la partie suivante est chargée, sans lecture automatique (l'élève appuie sur lecture).
-        setVideos((liste) => {
-          if (!liste) return liste;
-          const i = liste.findIndex((x) => x.id === v.id);
-          const suivante = i >= 0 ? liste[i + 1] : undefined;
-          if (suivante) setCouranteId(suivante.id);
-          return liste;
-        });
+        // Fin de partie : l'écran de fin propose le quiz, la partie suivante ou de revoir (aucun enchaînement automatique).
+        setFinId(v.id);
+        suivre('course_video_completed', { cours: String(coursId) });
       }),
     ];
     return () => {
       abonnements.forEach((a) => a.remove());
       p.release();
     };
-  }, [lecteur, sauvegarder, fermerSegment]);
+  }, [lecteur, sauvegarder, fermerSegment, coursId]);
 
   // Chargement : les vidéos du cours, le suivi local et les compteurs d'entraînement du pied.
   useEffect(() => {
@@ -397,6 +401,14 @@ export function LecteurVideo() {
     p.currentTime = cible;
     setPositionAffichee(cible);
   }, []);
+  const revoirPartie = useCallback(() => {
+    const p = lecteurRef.current;
+    p.currentTime = 0;
+    setPositionAffichee(0);
+    setFinId(null);
+    suivre('course_video_replayed', { cours: String(coursId) });
+    p.play();
+  }, [coursId]);
   const terminees = videos ? videos.filter((v) => suivis[v.id]?.terminee).length : 0;
   // Bloquée = le parcours a refusé ET l'accès n'est toujours pas établi par ailleurs (déblocage appris
   // depuis, copie téléchargée entre-temps) : l'état posé par l'effet se relit donc toujours frais.
@@ -465,59 +477,51 @@ export function LecteurVideo() {
           ) : (
           <View style={styles.blocLecteur}>
             <View style={[styles.cadreVideo, { borderColor: theme.bord.fort }]}>
-              <VideoView player={lecteur} style={styles.video} nativeControls contentFit="contain" fullscreenOptions={{ enable: true }} />
-            </View>
-            {/* Contrôles maison (retour de Benny, 26/10/2026) : le lecteur intégré ne permettait ni de
-                déplacer le temps de lecture ni de passer à la partie suivante. Rangée en trois zones :
-                temps à gauche, précédent / lecture-pause / suivant CENTRÉS, zone vide à droite qui
-                équilibre la rangée. Barre déplaçable pleine largeur juste en dessous.
-                En plein écran, les contrôles natifs de VideoView prennent le relais. */}
-            <View style={styles.controles}>
-              <View style={styles.zoneTemps}>
-                <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
-                  {formaterDuree(positionAffichee)} / {formaterDuree(dureeAffichee || courante.dureeS || 0)}
-                </Text>
+              <View style={styles.video}>
+                <Pressable accessible={false} onPress={basculerLecture} style={styles.media}>
+                  <VideoView
+                    ref={vueRef}
+                    player={lecteur}
+                    style={styles.media}
+                    nativeControls={pleinEcran}
+                    contentFit="contain"
+                    fullscreenOptions={{ enable: true }}
+                    onFullscreenEnter={() => setPleinEcran(true)}
+                    onFullscreenExit={() => setPleinEcran(false)}
+                    pointerEvents="none"
+                  />
+                </Pressable>
+                {finId === courante.id ? (
+                  <FinVideo
+                    testID="lecteur-video-fin"
+                    etiquette={t('videos.finPartie', { n: courante.numero })}
+                    principal={entrainement ? { libelle: t('videos.finQuiz'), onPress: () => { suivre('course_video_end_quiz_clicked', { cours: String(coursId) }); router.push({ pathname: '/entrainement/chapitre', params: { cours: String(coursId), nom: nom ?? '', ...(matiere ? { matiere } : {}) } }); } } : undefined}
+                    secondaire={suivante ? { libelle: t('videos.finSuivante'), onPress: () => { suivre('course_video_end_next_clicked', { cours: String(coursId) }); choisirVideo(suivante); } } : undefined}
+                    revoir={{ libelle: t('videos.finRevoir'), onPress: revoirPartie }}
+                  />
+                ) : null}
               </View>
-              <View style={styles.zoneBoutons}>
-                <Pressable
-                  accessibilityRole="button"
-                  accessibilityLabel={t('videos.precedente')}
-                  accessibilityState={{ disabled: !precedente }}
-                  disabled={!precedente}
-                  hitSlop={6}
-                  onPress={() => precedente && choisirVideo(precedente)}
-                  style={[styles.boutonControle, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }, !precedente && styles.boutonDesactive]}
-                >
-                  <SkipBack size={20} strokeWidth={2.4} color={theme.texte.principal} />
-                </Pressable>
-                <Pressable
-                  accessibilityRole="button"
-                  accessibilityLabel={enLectureAffichee ? t('videos.pause') : t('videos.lecture')}
-                  hitSlop={6}
-                  onPress={basculerLecture}
-                  style={[styles.boutonLecture, { borderColor: theme.bord.fort, backgroundColor: theme.marque.principale }]}
-                >
-                  {enLectureAffichee ? (
-                    <Pause size={22} strokeWidth={2.4} color={theme.texte.surCouleur} fill={theme.texte.surCouleur} />
-                  ) : (
-                    <Play size={22} strokeWidth={2.4} color={theme.texte.surCouleur} fill={theme.texte.surCouleur} />
-                  )}
-                </Pressable>
-                <Pressable
-                  accessibilityRole="button"
-                  accessibilityLabel={t('videos.suivante')}
-                  accessibilityState={{ disabled: !suivante }}
-                  disabled={!suivante}
-                  hitSlop={6}
-                  onPress={() => suivante && choisirVideo(suivante)}
-                  style={[styles.boutonControle, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }, !suivante && styles.boutonDesactive]}
-                >
-                  <SkipForward size={20} strokeWidth={2.4} color={theme.texte.principal} />
-                </Pressable>
-              </View>
-              <View style={styles.zoneTemps} />
+              {/* Barre unique, comme pour les vidéos TOEIC (retour de Benny, 17/11/2026) : précédent, lecture, suivant, progression, temps, plein écran. */}
+              <BarreVideo
+                position={positionAffichee}
+                duree={dureeAffichee || courante.dureeS || 0}
+                enLecture={enLectureAffichee}
+                terminee={finId === courante.id}
+                onBasculer={finId === courante.id ? revoirPartie : basculerLecture}
+                onChercher={chercher}
+                onPleinEcran={() => {
+                  try {
+                    void vueRef.current?.enterFullscreen();
+                  } catch {
+                    // Plein écran indisponible : sans effet.
+                  }
+                }}
+                avecNavigation
+                onPrecedente={precedente ? () => choisirVideo(precedente) : null}
+                onSuivante={suivante ? () => choisirVideo(suivante) : null}
+                libelles={{ lecture: t('videos.lecture'), pause: t('videos.pause'), revoir: t('videos.finRevoir'), pleinEcran: t('videos.pleinEcran'), progression: t('videos.positionLecture'), precedente: t('videos.precedente'), suivante: t('videos.suivante') }}
+              />
             </View>
-            <BarreRecherche position={positionAffichee} duree={dureeAffichee || courante.dureeS || 0} onChercher={chercher} libelle={t('videos.positionLecture')} />
           </View>
           )}
           {/* Zone épurée (retour de Benny, 26/10/2026) : étiquette + titre suffisent — la ligne de
@@ -624,60 +628,6 @@ export function LecteurVideo() {
   );
 }
 
-/* eslint-disable react-hooks/refs -- le geste ne lit la ref que dans ses rappels, jamais pendant le rendu (même patron que certification/Curseur) */
-/**
- * Barre de progression déplaçable des contrôles maison : appui ou glisser pour chercher dans la
- * vidéo — la recherche suit le doigt en direct (scrub), comme le Curseur de la certification.
- * Accessible : rôle « adjustable », les actions increment/decrement déplacent de 10 s.
- */
-function BarreRecherche({ position, duree, onChercher, libelle }: { position: number; duree: number; onChercher: (secondes: number) => void; libelle: string }) {
-  const { theme } = useTheme();
-  const ref = useRef({ largeur: 0, duree, onChercher });
-  useEffect(() => {
-    ref.current = { largeur: ref.current.largeur, duree, onChercher };
-  });
-
-  const depuisX = (x: number) => {
-    const { largeur: l, duree: d, onChercher: oc } = ref.current;
-    if (l <= 0 || d <= 0) return;
-    oc(Math.max(0, Math.min(1, x / l)) * d);
-  };
-  const geste = useMemo(
-    () =>
-      PanResponder.create({
-        onStartShouldSetPanResponder: () => true,
-        onMoveShouldSetPanResponder: () => true,
-        onPanResponderGrant: (e) => depuisX(e.nativeEvent.locationX),
-        onPanResponderMove: (e) => depuisX(e.nativeEvent.locationX),
-      }),
-    [],
-  );
-
-  const ratio = duree > 0 ? Math.max(0, Math.min(1, position / duree)) : 0;
-  return (
-    <View
-      {...geste.panHandlers}
-      onLayout={(e) => {
-        ref.current.largeur = e.nativeEvent.layout.width;
-      }}
-      style={styles.barreZone}
-      accessibilityRole="adjustable"
-      accessibilityLabel={libelle}
-      accessibilityValue={{ min: 0, max: Math.max(0, Math.round(duree)), now: Math.round(position) }}
-      accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
-      onAccessibilityAction={(e) => {
-        if (e.nativeEvent.actionName === 'increment') onChercher(position + 10);
-        if (e.nativeEvent.actionName === 'decrement') onChercher(position - 10);
-      }}
-    >
-      <View pointerEvents="none" style={[styles.barreFond, { backgroundColor: theme.fond.creux }]}>
-        <View style={[styles.barrePlein, { width: `${Math.round(ratio * 100)}%`, backgroundColor: theme.marque.principale }]} />
-      </View>
-      <View pointerEvents="none" style={[styles.barrePouce, { left: `${Math.round(ratio * 100)}%`, backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]} />
-    </View>
-  );
-}
-/* eslint-enable react-hooks/refs */
 
 const styles = StyleSheet.create({
   // Pied « limite collé » à la barre d'onglets (retour de Benny, 26/10/2026) : le conteneur d'onglets
@@ -710,6 +660,7 @@ const styles = StyleSheet.create({
   boutonDebloquer: { borderWidth: bord.normal, borderRadius: rayon.s, paddingHorizontal: espace[4], paddingVertical: espace[2] },
   badgeVerrouMini: { position: 'absolute', left: '50%', top: '50%', marginLeft: -11, marginTop: -11, width: 22, height: 22, borderRadius: 11, backgroundColor: 'rgba(10,10,10,0.72)', alignItems: 'center', justifyContent: 'center' },
   video: { width: '100%', aspectRatio: 16 / 9 },
+  media: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
   infos: { gap: espace[1] },
   lignePlaylist: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: espace[3] },
   actionsVideo: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },

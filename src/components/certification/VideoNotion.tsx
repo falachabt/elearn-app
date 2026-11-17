@@ -11,6 +11,7 @@ import type { VideoNotion as Video } from '@/services/certification/videoNotion'
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
+import { FinVideo } from '../video/FinVideo';
 import { EtiquetteSection } from './ui';
 
 type Props = {
@@ -159,16 +160,12 @@ export function VideoNotion({ video, titre, onLancee, onTerminee, onEntrainer, o
             )}
           </Pressable>
           {terminee ? (
-            <View testID="video-notion-fin" style={styles.fin}>
-              <Text style={styles.finEtiquette}>{t('certification.fiche.video.terminee')}</Text>
-              <Pressable accessibilityRole="button" onPress={onEntrainer} style={[styles.finPrincipal, { backgroundColor: theme.marque.principale }]}>
-                <Text style={styles.finPrincipalTexte}>{t('certification.fiche.video.entrainer')}</Text>
-              </Pressable>
-              <Pressable accessibilityRole="button" onPress={revoir} style={styles.finSecondaire}>
-                <RotateCcw size={16} color={palette.papier[50]} strokeWidth={2.4} />
-                <Text style={styles.finSecondaireTexte}>{t('certification.fiche.video.revoir')}</Text>
-              </Pressable>
-            </View>
+            <FinVideo
+              testID="video-notion-fin"
+              etiquette={t('certification.fiche.video.terminee')}
+              principal={{ libelle: t('certification.fiche.video.entrainer'), onPress: onEntrainer }}
+              revoir={{ libelle: t('certification.fiche.video.revoir'), onPress: revoir }}
+            />
           ) : null}
         </View>
         <View style={styles.barre}>

@@ -784,6 +784,11 @@ export const fr = {
     quizRetour: 'Retour à la leçon',
   },
   videos: {
+    finPartie: 'Fin de la partie {{n}}',
+    finQuiz: 'Faire le quiz du cours',
+    finSuivante: 'Partie suivante',
+    finRevoir: 'Revoir la vidéo',
+    pleinEcran: 'Plein écran',
     etiquette: 'Vidéos du cours · {{n}} / {{total}}',
     partie: 'Partie {{n}}',
     enCours: 'En cours',
@@ -3189,6 +3194,13 @@ export const fr = {
       lectureTitre: 'Lecture',
       lectureAide: 'Parties 5 à 7 · 100 questions · 75 min',
           },
+    choixRequis: {
+      partieTitre: 'Choisis une partie',
+      partieTexte: 'Dis-nous sur quelle partie du TOEIC tu veux t\'entraîner : P1 à P7, ou Mixte pour toutes les parties.',
+      examenTitre: 'Choisis une certification',
+      examenTexte: 'Touche la certification que tu prépares, puis continue.',
+      bouton: 'D\'accord, je choisis',
+    },
     mini: {
       modeTitre: 'Mode',
       modeExamen: 'Examen',

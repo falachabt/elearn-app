@@ -783,6 +783,11 @@ export const en: Textes = {
     quizRetour: 'Back to the lesson',
   },
   videos: {
+    finPartie: 'Part {{n}} finished',
+    finQuiz: 'Take the course quiz',
+    finSuivante: 'Next part',
+    finRevoir: 'Watch again',
+    pleinEcran: 'Full screen',
     etiquette: 'Course videos · {{n}} / {{total}}',
     partie: 'Part {{n}}',
     enCours: 'In progress',
@@ -3187,6 +3192,13 @@ export const en: Textes = {
       ecouteAide: 'Parts 1 to 4 · 100 questions · 45 min',
       lectureTitre: 'Reading',
       lectureAide: 'Parts 5 to 7 · 100 questions · 75 min',
+    },
+    choixRequis: {
+      partieTitre: 'Pick a part',
+      partieTexte: 'Tell us which part of the TOEIC you want to practice: P1 to P7, or Mixed for all parts.',
+      examenTitre: 'Pick a certification',
+      examenTexte: 'Tap the certification you are preparing, then continue.',
+      bouton: 'OK, I will pick',
     },
     mini: {
       modeTitre: 'Mode',

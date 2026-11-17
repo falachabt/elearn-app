@@ -317,7 +317,7 @@ export function ListeTests() {
 
 const styles = StyleSheet.create({
   // Ligne du bloc collé : pas de contour propre (celui du GroupeColle), le séparateur fin est posé en ligne.
-  ligneCollee: { flexDirection: 'row', alignItems: 'flex-start', padding: espace[4], gap: espace[4] },
+  ligneCollee: { flexDirection: 'row', alignItems: 'flex-start', padding: espace[5], gap: espace[4] },
   scoreNombre: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 15, lineHeight: 20 },
   pastilleLigne: { width: 34, height: 34, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },

@@ -61,10 +61,10 @@ describe('Cours · grille', () => {
   it.each(['clair', 'sombre'] as const)('affiche jauge, cinq états lus sur la barre et bouton Continuer (%s)', async (theme) => {
     await monter(<Cours notions={NOTIONS} />, theme);
     const e = fr.certification.cours.etats;
-    for (const mot of [e.non_vu, e.vu, e.valide, e.maitrise, e.a_revoir]) expect(screen.getAllByLabelText(mot).length).toBeGreaterThan(0);
+    for (const mot of [e.non_vu, e.vu, e.valide, e.maitrise, e.a_revoir]) expect(screen.getAllByLabelText(new RegExp(`\\. ${mot}$`)).length).toBeGreaterThan(0);
     expect(screen.getByText(fr.certification.cours.maitriseCategorie)).toBeTruthy();
     expect(screen.getByText(fr.certification.cours.maitrisePourcent.replace('{{n}}', '40'))).toBeTruthy();
-    // Plus de fraction « Quiz liés » ni de pastille d’état : une barre par ligne, l’état est dit aux lecteurs d’écran.
+    // Plus de fraction « Quiz liés » ni de pastille d’état : une carte par cours, l’état est dit aux lecteurs d’écran.
     expect(screen.queryByText(fr.certification.cours.quizLies.replace('{{r}}', '2').replace('{{n}}', '4'))).toBeNull();
     await fireEvent.press(screen.getByText(fr.certification.cours.continuer.replace('{{categorie}}', fr.certification.cours.familles.grammaire)));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/notion/[id]', params: { id: 'n5', source: 'continuer' } });

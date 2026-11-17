@@ -36,7 +36,7 @@ export function DetailParties({ perPart }: { perPart: Record<string, { answered:
 }
 
 const styles = StyleSheet.create({
-  bloc: { gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: 14 },
+  bloc: { gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: 14 },
   ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   libelle: { width: 30 },
   barre: { flex: 1 },

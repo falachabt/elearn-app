@@ -21,7 +21,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
-import { FeuilleCompteRequis, FeuilleCreditsInsuffisants } from './FeuillesDemarrageTest';
+import { FeuilleChoixRequis, FeuilleCompteRequis, FeuilleCreditsInsuffisants } from './FeuillesDemarrageTest';
 import { EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix, ListeChoix } from './ui';
 
 type Choix = number | 'mixte' | null;
@@ -46,6 +46,7 @@ export function ReglageMini() {
   const [codeEchec, setCodeEchec] = useState<string | null>(null);
   const enVolRef = useRef(false);
   const [compteRequis, setCompteRequis] = useState(false);
+  const [choixRequis, setChoixRequis] = useState(false);
   const [feuille, setFeuille] = useState<{ cout: number | null; solde: number | null } | null>(null);
 
   useEffect(() => {
@@ -78,7 +79,12 @@ export function ReglageMini() {
 
   const commencer = async () => {
     // Garde synchrone : deux appuis dans la même image ne partent pas deux fois (l'état `enCours` arrive trop tard).
-    if (choix === null || !reglages || enCours || enVolRef.current) return;
+    // Aucune partie choisie : le bouton reste vert, la feuille dit de choisir (rien n'est lancé ni écrit).
+    if (choix === null) {
+      setChoixRequis(true);
+      return;
+    }
+    if (!reglages || enCours || enVolRef.current) return;
     enVolRef.current = true;
     setEchec(false);
     setCodeEchec(null);
@@ -120,7 +126,7 @@ export function ReglageMini() {
   return (
     <Ecran
       entete={<EnteteToeic titre={t('certification.mini.entete')} onRetour={() => router.back()} />}
-      pied={<Bouton libelle={t('certification.mini.commencer')} desactive={choix === null || !reglages || enCours || dejaUn} onPress={() => void commencer()} retour />}
+      pied={<Bouton libelle={t('certification.mini.commencer')} desactive={enCours || dejaUn} onPress={() => void commencer()} retour />}
     >
       {dejaUn ? (
         <View style={styles.groupe}>
@@ -159,6 +165,7 @@ export function ReglageMini() {
       <LigneChoix icone={Wallet} titre={t('certification.mini.cout')} aide={lignesCout} />
       </ListeChoix>
       <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.mini.aideCarte')}</Text>
+      <FeuilleChoixRequis type="partie" ouverte={choixRequis} onFermer={() => setChoixRequis(false)} />
       <FeuilleCompteRequis ouverte={compteRequis} onFermer={() => setCompteRequis(false)} />
       <FeuilleCreditsInsuffisants blocage={feuille} coutRepli={coutServeur ?? 0} onFermer={() => setFeuille(null)} />
     </Ecran>

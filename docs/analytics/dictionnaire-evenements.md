@@ -199,6 +199,10 @@ Aucune donnée personnelle ni contenu de question : seulement des types, parties
 | `cert_video_completed` | Vidéo explicative d'une notion regardée jusqu'au bout | `{ notion: string }` |
 | `cert_video_practice_clicked` | « M'entraîner sur cette notion » touché sur l'écran de fin de la vidéo | `{ notion: string }` |
 | `cert_video_replayed` | « Revoir la vidéo » touché sur l'écran de fin | `{ notion: string }` |
+| `course_video_completed` | Une partie de cours (secondaire, concours) est lue jusqu'au bout | `{ cours: string }` |
+| `course_video_end_quiz_clicked` | « Faire le quiz du cours » touché sur l'écran de fin | `{ cours: string }` |
+| `course_video_end_next_clicked` | « Partie suivante » touché sur l'écran de fin | `{ cours: string }` |
+| `course_video_replayed` | « Revoir la vidéo » touché sur l'écran de fin d'une partie | `{ cours: string }` |
 | `cert_notion_sheet_toggled` | Texte de la fiche déplié ou replié derrière la vidéo (« Lire la fiche ») | `{ notion: string; ouverte: boolean }` |
 | `cert_word_state_changed` | Un mot change de boîte | `{ mot: string; boite_avant: number; boite_apres: number }` |
 | `cert_session_started` | Séance du jour lancée | `{ composition: string }` |
