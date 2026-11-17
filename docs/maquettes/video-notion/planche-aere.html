@@ -1,0 +1,139 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Réviser Cours aéré</title>
+<style>
+@font-face{font-family:SG;src:url(../../../assets/fonts/SpaceGrotesk-Regular.ttf);font-weight:400}
+@font-face{font-family:SG;src:url(../../../assets/fonts/SpaceGrotesk-Medium.ttf);font-weight:500}
+@font-face{font-family:SG;src:url(../../../assets/fonts/SpaceGrotesk-Bold.ttf);font-weight:700}
+@font-face{font-family:AB;src:url(../../../assets/fonts/ArchivoBlack.ttf)}
+@font-face{font-family:SM;src:url(../../../assets/fonts/SpaceMono-Bold.ttf);font-weight:700}
+:root{--ink:#0A0A0A;--em:#10B981;--em8:#065F46;--sun:#FFD83D;--sun50:#FFF7E3;--g:#5C5C5C;--line:#D9D0BA}
+*{box-sizing:border-box;margin:0}
+body{font-family:SG;background:#EDE6D3;width:1960px;padding:36px 44px 40px;color:var(--ink)}
+h1{font-family:AB;font-size:28px;margin-bottom:6px}
+.sub{font-size:16px;color:#3D3D3D;margin-bottom:26px;max-width:1500px;line-height:1.4}
+.row{display:flex;gap:30px}
+.col{width:420px}
+.num{display:inline-flex;width:30px;height:30px;border:2px solid var(--ink);border-radius:8px;background:var(--sun);font-family:AB;font-size:15px;align-items:center;justify-content:center;margin-right:10px}
+.tt{font-family:AB;font-size:18px;margin-bottom:6px;display:flex;align-items:center}
+.d{font-size:14px;line-height:1.35;color:#3D3D3D;min-height:100px;margin-bottom:12px}
+.phone{width:380px;height:810px;border:3px solid var(--ink);border-radius:30px;overflow:hidden;position:relative;box-shadow:8px 8px 0 var(--ink);background:#fff;display:flex;flex-direction:column}
+.dark .phone{background:#141614}
+.sb{height:26px;background:var(--em);flex:none}
+.dark .sb{background:#047857}
+.hd{display:flex;align-items:center;gap:12px;padding:14px 20px 0}
+.back{width:42px;height:42px;border:2px solid var(--ink);border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
+.dark .back{border-color:#EDE6D3}
+.hd b{font-family:SG;font-weight:700;font-size:18px;line-height:24px}
+.dark{color:#F6F1E4}
+.body{padding:18px 20px 0;display:flex;flex-direction:column;flex:1;overflow:hidden}
+.lab{font-family:SM;font-size:12px;letter-spacing:.8px;color:var(--g);margin-bottom:8px}
+.dark .lab{color:#9E998C}
+/* lecteur */
+.lect{border:2px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--sun50)}
+.dark .lect{border-color:#EDE6D3}
+.pic{aspect-ratio:16/9;background-size:cover;position:relative}
+.bar{height:46px;background:var(--ink);display:flex;align-items:center;gap:10px;padding:0 10px;color:#F6F1E4}
+.pp{width:32px;height:32px;border:2px solid var(--ink);border-radius:8px;background:var(--em);display:flex;align-items:center;justify-content:center;flex:none}
+.trk{flex:1;height:6px;border-radius:3px;background:#3A3F3A;position:relative}
+.trk i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--em)}
+.trk u{position:absolute;top:-5px;width:16px;height:16px;border:2px solid var(--ink);border-radius:50%;background:#fff;margin-left:-8px}
+.tm{font-family:SM;font-size:11px;color:#F6F1E4;flex:none}
+.fs{width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex:none}
+.cap{margin-top:12px}
+.cap b{font-weight:700;font-size:16px;line-height:24px;display:block}
+.cap span{font-weight:500;font-size:14px;color:var(--g)}
+.dark .cap span{color:#9E998C}
+.card{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:16px;box-shadow:0 3px 0 var(--ink)}
+.dark .card{background:#1F221F;border-color:#EDE6D3;box-shadow:0 3px 0 #0A0A0A}
+.card b{font-weight:700;font-size:16px;line-height:24px;display:block;margin-bottom:8px}
+.pill{display:inline-flex;gap:6px;align-items:center;border:2px solid var(--ink);border-radius:99px;background:var(--sun);padding:2px 10px;font-weight:700;font-size:13px;color:var(--ink);margin-bottom:8px}
+.card p{font-weight:500;font-size:14px;line-height:20px;color:var(--g)}
+.dark .card p{color:#9E998C}
+.row2{display:flex;align-items:center;gap:12px}
+.ic{width:42px;height:42px;border:2px solid var(--ink);border-radius:10px;background:#FFF7E3;display:flex;align-items:center;justify-content:center;flex:none}
+.dark .ic{background:#3D3514;border-color:#EDE6D3}
+.row2 .t{flex:1}.row2 .t b{display:block;font-weight:700;font-size:16px;line-height:22px;margin:0}.row2 .t span{font-weight:500;font-size:14px;color:var(--g)}
+.dark .row2 .t span{color:#9E998C}
+.gap20{height:20px;flex:none}.gap16{height:16px;flex:none}
+.foot{margin-top:auto;padding:0 20px 24px}
+.cta{height:56px;border:2px solid var(--ink);border-radius:10px;background:var(--em);font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 var(--ink);color:var(--ink)}
+.dark .cta{background:#34D399}
+.reg{font-family:SM;font-size:12px;letter-spacing:.8px;color:var(--g);margin:20px 0 8px}
+.ex{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:12px 16px;font-size:16px;margin-bottom:8px}
+.cote{position:absolute;right:-6px}
+.notes{display:flex;gap:30px;margin-top:34px}
+.n{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:14px 18px;font-size:14px;line-height:1.45;flex:1}
+.n h3{font-family:AB;font-size:15px;margin-bottom:6px}
+.sp{position:absolute;left:0;right:0;border-top:2px dashed #FF5A4F;opacity:.0}
+
+.tl{display:flex;flex-direction:column}
+.st{display:flex;gap:12px}
+.rail{width:30px;flex:none;display:flex;flex-direction:column;align-items:center}
+.nd{width:30px;height:30px;border:2px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;background:#fff;flex:none}
+.dark .nd{background:#1F221F;border-color:#EDE6D3}
+.nd.ok{background:var(--em)}.nd.cur{background:var(--sun);color:#0A0A0A}.mp .phone{height:300px}.mp .foot{display:none}
+.tr{width:2px;flex:1;background:var(--em);min-height:10px}
+.tr.g{background:#D9D0BA}
+.st .tx{flex:1;padding:0 0 22px;min-width:0}
+.st .tx b{display:block;font-weight:700;font-size:16px;line-height:22px}
+.st .tx small{display:block;font-weight:500;font-size:12px;color:var(--g);margin-top:2px;line-height:16px}
+.dark .st .tx small{color:#9E998C}
+.vig{margin-top:10px;display:flex;gap:10px;align-items:center}
+.vig .im{width:128px;aspect-ratio:16/9;border:2px solid var(--ink);border-radius:8px;background-size:cover;position:relative;overflow:hidden;flex:none}
+.dark .vig .im{border-color:#EDE6D3}
+.vig .pl{position:absolute;left:6px;bottom:6px;width:24px;height:24px;border:2px solid var(--ink);border-radius:6px;background:var(--em);display:flex;align-items:center;justify-content:center}
+.vig .du{position:absolute;right:5px;bottom:5px;background:var(--ink);color:#F6F1E4;font-family:SM;font-size:10px;padding:1px 5px;border-radius:4px}
+.vig span{font-size:12px;font-weight:500;color:var(--g);line-height:16px}
+.dark .vig span{color:#9E998C}
+.cc{border:2px solid var(--ink);border-radius:10px;background:#FFF7D6;padding:14px 16px;box-shadow:0 3px 0 var(--ink);margin-bottom:22px}
+.dark .cc{background:#3D3514;border-color:#EDE6D3;box-shadow:0 3px 0 #0A0A0A}
+.cc b{display:block;font-weight:700;font-size:16px;line-height:22px}
+.cc small{display:block;font-weight:500;font-size:13px;color:#3D3D3D;margin-top:2px}
+.dark .cc small{color:#CFC8B4}
+.avant img{width:100%;display:block}
+.ph2{border:3px solid var(--ink);border-radius:30px;overflow:hidden;box-shadow:8px 8px 0 var(--ink);width:380px;height:810px;background:#fff}
+.ph2 img{width:100%;height:100%;object-fit:cover;object-position:top}
+.chip{border:2px solid var(--ink);border-radius:10px;padding:6px 12px;font-weight:700;font-size:14px;display:inline-flex;gap:6px;align-items:center;background:#fff}
+.dark .chip{background:#1F221F;border-color:#EDE6D3}
+.top{display:flex;justify-content:space-between;margin-bottom:16px}
+.jn{border:2px solid var(--ink);border-radius:14px;background:#fff;padding:16px;margin-bottom:20px;box-shadow:0 3px 0 var(--ink)}
+.dark .jn{background:#1F221F;border-color:#EDE6D3;box-shadow:0 3px 0 #0A0A0A}
+.jn small{font-family:SM;font-size:12px;letter-spacing:.8px;color:var(--g)}
+.jn .r{display:flex;justify-content:space-between;align-items:baseline;margin:6px 0 12px}
+.jn .r b{font-family:AB;font-size:26px}.jn .r span{font-size:13px;color:var(--g)}
+.jn .bar2{height:12px;border:2px solid var(--ink);border-radius:8px;background:#FFF1D0}
+.dark .jn .bar2{border-color:#EDE6D3;background:#2A2D2A}
+.ph2 img{object-position:top}
+.badge{display:inline-block;font-family:AB;font-size:12px;background:#FF5A4F;color:#fff;border-radius:6px;padding:2px 8px;margin-left:8px}
+
+.ov{position:absolute;inset:0;background:rgba(10,10,10,.78);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px}
+.ov .k{font-family:SM;font-size:11px;letter-spacing:.8px;color:#F6F1E4}
+.ov .b1{width:100%;height:44px;border:2px solid #0A0A0A;border-radius:10px;background:var(--em);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#0A0A0A;box-shadow:0 3px 0 #0A0A0A}
+.dark .ov .b1{background:#34D399}
+.ov .b2{height:36px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:#F6F1E4}
+
+.b3{height:30px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:13px;color:#F6F1E4}
+.ov .b1s{width:100%;height:40px;border:2px solid #F6F1E4;border-radius:10px;background:transparent;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#F6F1E4}
+.sk{width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex:none}
+.list{margin-top:18px;border:2px solid var(--ink);border-radius:10px;background:#fff;overflow:hidden}
+.dark .list{background:#1F221F;border-color:#EDE6D3}
+.li{display:flex;gap:10px;align-items:center;padding:12px 14px;border-bottom:1.5px solid #E4DCC8;font-weight:700;font-size:14px}
+.dark .li{border-color:#3A3F3A}.li:last-child{border:0}
+.li i{font-style:normal;font-family:SM;font-size:11px;color:var(--g);margin-left:auto}
+
+.tabs{display:flex;border:2px solid var(--ink);border-radius:10px;overflow:hidden;font-weight:700;font-size:13px}
+.tabs span{flex:1;text-align:center;padding:10px 0}.tabs .on{background:var(--ink);color:#fff}
+.chips{display:flex;gap:8px;margin:14px 0 0}.chip{border:2px solid var(--ink);border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;background:#fff}.chip.on{background:var(--em)}
+.sel{border:2px solid var(--ink);border-radius:10px;padding:10px 14px;font-weight:700;font-size:15px;display:flex;justify-content:space-between;margin-top:14px}
+.ma{display:flex;justify-content:space-between;align-items:center;margin-top:16px;font-family:SM;font-size:11px;color:var(--g)}
+.ma i{display:block;flex:1;height:4px;background:var(--line);margin:0 10px;border-radius:2px;position:relative}.ma i b{position:absolute;left:0;top:0;bottom:0;width:83%;background:var(--em);border-radius:2px}
+.pt{font-family:SM;font-size:11px;letter-spacing:.8px;color:var(--g);margin:22px 0 10px;display:flex;justify-content:space-between}
+.cd{border:2px solid var(--ink);border-radius:12px;display:flex;gap:12px;padding:10px;margin-bottom:12px;align-items:center;box-shadow:3px 3px 0 var(--ink);background:#fff}
+.th{width:84px;height:48px;border-radius:6px;background:var(--sun50);border:2px solid var(--ink);flex:none;position:relative;display:flex;align-items:center;justify-content:center}
+.th s{position:absolute;right:-6px;bottom:-6px;width:20px;height:20px;border-radius:50%;background:var(--em);border:2px solid var(--ink);color:var(--ink);font-size:11px;text-align:center;line-height:16px;text-decoration:none;font-weight:700}
+.cd b{font-size:14px;line-height:1.25;display:block}.cd small{font-size:12px;color:var(--g)}
+.rw{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:center}
+.rw b{font-size:15px;line-height:1.25;display:block}.rw small{font-size:12px;color:var(--g)}
+.sec{display:flex;justify-content:space-between;font-weight:700;font-size:14px;padding:16px 0 4px}
+.cta{margin-top:auto;margin-bottom:16px;background:var(--em);border:2px solid var(--ink);border-radius:12px;padding:14px;text-align:center;font-weight:700;box-shadow:3px 3px 0 var(--ink);color:var(--ink)}
+.note{margin-top:26px;font-size:15px;line-height:1.5;max-width:1500px}
+</style><body><h1>Réviser &gt; Cours : deux options plus aérées</h1><p class="sub">Ce qui rend l'écran touffu : deux rangées d'onglets noires empilées, une barre de maîtrise épaisse, des cartes collées avec une barre pleine et une coche sur chaque ligne. Les deux options enlèvent les doublons (barre et coche disent la même chose), gardent la miniature vidéo et donnent 12 à 16 px entre les blocs. Écran reconstruit d'après ta capture.</p><div class="row"><div class="col"><div class="tt"><span class="num">0</span>Aujourd'hui</div><div class="d">Deux niveaux d'onglets pleins, barre de maîtrise, barre + coche sur chaque cours.</div><div class="phone"><div class="sb"></div><div class="body" style="padding-top:14px"><b style="font-size:22px;margin-bottom:14px">Réviser</b><div class="tabs"><span>Parcours</span><span>Parties</span><span class="on">Cours</span><span>Carnet</span></div><div class="tabs" style="margin-top:14px"><span class="on">Grammaire</span><span>Vocabulaire</span><span>Pièges</span><span>Méthode</span></div><div class="ma" style="margin-top:10px">MAÎTRISE DE LA CATÉGORIE<i><b></b></i>83 %</div><div class="pt" style="margin-top:12px">GRAMMAIRE · PARTIE 1</div><div style="border:2px solid var(--ink);border-radius:12px;padding:12px 14px;font-weight:700;font-size:14px">Décrire une photo au présent continu<br><small style="font-weight:400;color:var(--g)">3 minutes</small><div style="height:6px;background:var(--em);border-radius:3px;margin-top:6px"></div></div></div></div></div><div class="col"><div class="tt"><span class="num">A</span>Cartes séparées (recommandée)</div><div class="d">Un seul niveau d'onglets, catégories en pastilles légères. Chaque cours est une carte avec miniature vidéo ; la coche devient un petit badge sur la miniature, plus de barre par ligne.</div><div class="phone"><div class="sb"></div><div class="body" style="padding-top:14px"><b style="font-size:22px;margin-bottom:14px">Réviser</b><div class="tabs"><span>Parcours</span><span>Parties</span><span class="on">Cours</span><span>Carnet</span></div><div class="chips"><span class="chip on">Grammaire</span><span class="chip">Vocabulaire</span><span class="chip">Pièges</span></div><div class="ma">Maîtrise 83 %<i><b></b></i></div><div class="pt">PARTIE 1<span>2 cours</span></div><div class="cd"><div class="th"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" fill="#0A0A0A"/></svg><s>✓</s></div><div><b>Décrire une photo au présent continu</b><small>3 min · Vidéo</small></div></div><div class="cd"><div class="th"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" fill="#0A0A0A"/></svg><s>✓</s></div><div><b>Voix passive et états</b><small>3 min · Vidéo</small></div></div><div class="pt">PARTIE 2<span>3 cours</span></div><div class="cd"><div class="th"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" fill="#0A0A0A"/></svg><s>✓</s></div><div><b>Mots interrogatifs : who, when, where, how</b><small>3 min · Vidéo</small></div></div><div class="cd"><div class="th"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" fill="#0A0A0A"/></svg></div><div><b>Questions tag et questions fermées</b><small>3 min · Vidéo</small></div></div><div class="cta">Continuer · Grammaire</div></div></div></div><div class="col"><div class="tt"><span class="num">B</span>Liste calme</div><div class="d">Catégorie choisie dans un menu, parties repliables (la première ouverte), lignes sans cadre séparées par un filet fin. Le plus léger, mais cache les cours des autres parties.</div><div class="phone"><div class="sb"></div><div class="body" style="padding-top:14px"><b style="font-size:22px;margin-bottom:14px">Réviser</b><div class="tabs"><span>Parcours</span><span>Parties</span><span class="on">Cours</span><span>Carnet</span></div><div class="sel">Grammaire<span>▾</span></div><div class="sec"><span>Partie 1 · 2 cours</span><span>⌃</span></div><div class="rw"><div class="th"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" fill="#0A0A0A"/></svg></div><div style="flex:1"><b>Décrire une photo au présent continu</b><small>3 min</small></div><span style="color:var(--em8);font-weight:700">✓</span></div><div class="rw"><div class="th"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" fill="#0A0A0A"/></svg></div><div style="flex:1"><b>Voix passive et états</b><small>3 min</small></div><span style="color:var(--em8);font-weight:700">✓</span></div><div class="sec"><span>Partie 2 · 3 cours</span><span>⌄</span></div><div class="sec" style="color:var(--g)"><span>Partie 3 · 2 cours</span><span>⌄</span></div><div class="cta">Continuer · Grammaire</div></div></div></div></div><p class="note"><b>Même principe pour les autres écrans :</b> Tests (une icône et une couleur par type, 16 px entre les lignes, un seul chiffre par ligne), Parties (grille à 2 colonnes avec 16 px d'écart, étiquette d'état en haut à droite), Moi (3 blocs au lieu de 6, le reste dans Réglages), Statistiques vide (une seule carte, pas de chiffres à zéro). Dis-moi A ou B pour Cours, et quels autres écrans tu veux que j'aère.</p></body></html>
