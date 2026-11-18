@@ -1,7 +1,7 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { BookOpen, NotebookPen, Target } from 'lucide-react-native';
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { type NativeScrollEvent, type NativeSyntheticEvent, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { chargerDonneesRevision, compteursCarnet, nombreDeFiches, type DonneesRevision } from '@/services/certification/revision';
@@ -14,7 +14,7 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { CarnetMots } from './CarnetMots';
-import { ContenuChronologie, PiedFrise, useFrise } from './FriseParcours';
+import { ContenuChronologie, PiedFrise, TRANCHE_JOURS, useFrise } from './FriseParcours';
 import { ContinuerCours, CoursNotions } from './CoursNotions';
 import { stylePartie } from './partiesStyle';
 import { BarreProgression, EnteteCase, EnteteToeic, EtiquetteSection, GrilleCollee, LigneChoix, ListeChoix, Squelette, type CaseGrille } from './ui';
@@ -36,15 +36,21 @@ export function ReviserToeic() {
   const [famille, setFamille] = useState<FamilleNotion>('grammaire');
   const { etat, recharger } = useChargement(chargerDonneesRevision);
   const frise = useFrise();
+  // Tranches de jours du parcours : une nouvelle tranche quand on approche du bas de l'écran (défilement infini).
+  const [charges, setCharges] = useState(TRANCHE_JOURS);
+  const enDescendant = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const { contentOffset, layoutMeasurement, contentSize } = e.nativeEvent;
+    if (contentOffset.y + layoutMeasurement.height >= contentSize.height - 400) setCharges((c) => c + TRANCHE_JOURS);
+  };
 
   return (
-    <Ecran piedBordure insetBas={false} entete={<EnteteToeic titre={t('certification.reviser.entete')} />} pied={onglet === 'cours' && etat.phase === 'ok' ? <ContinuerCours notions={etat.valeur.revision.notions} famille={famille} /> : onglet === 'parcours' && frise.etat.phase === 'ok' ? <PiedFrise donnees={frise.etat.valeur} /> : undefined}>
+    <Ecran piedBordure insetBas={false} onScroll={onglet === 'parcours' ? enDescendant : undefined} entete={<EnteteToeic titre={t('certification.reviser.entete')} />} pied={onglet === 'cours' && etat.phase === 'ok' ? <ContinuerCours notions={etat.valeur.revision.notions} famille={famille} /> : onglet === 'parcours' && frise.etat.phase === 'ok' ? <PiedFrise donnees={frise.etat.valeur} /> : undefined}>
       <Onglets
         valeurs={ONGLETS.map((o) => ({ valeur: o, libelle: t(`certification.reviser.onglets.${o}`) }))}
         valeur={onglet}
         onChange={setChoisi}
       />
-      {onglet === 'parcours' ? <ParcoursFrise frise={frise} /> : null}
+      {onglet === 'parcours' ? <ParcoursFrise frise={frise} charges={charges} onPlus={() => setCharges((c) => c + TRANCHE_JOURS)} /> : null}
       {onglet !== 'parcours' && etat.phase === 'chargement' ? <Squelette lignes={4} /> : null}
       {onglet !== 'parcours' && etat.phase === 'erreur' ? (
         <View style={styles.groupe}>
@@ -58,7 +64,7 @@ export function ReviserToeic() {
 }
 
 /** Onglet Parcours : la frise du plan de formation, avec ses propres états (squelette, erreur, vide, sans date). */
-function ParcoursFrise({ frise }: { frise: ReturnType<typeof useFrise> }) {
+function ParcoursFrise({ frise, charges, onPlus }: { frise: ReturnType<typeof useFrise>; charges: number; onPlus: () => void }) {
   const { t } = useTraduction();
   const { etat, recharger } = frise;
   if (etat.phase === 'chargement') return <Squelette lignes={4} />;
@@ -70,7 +76,7 @@ function ParcoursFrise({ frise }: { frise: ReturnType<typeof useFrise> }) {
       </View>
     );
   }
-  return <ContenuChronologie donnees={etat.valeur} />;
+  return <ContenuChronologie donnees={etat.valeur} charges={charges} onPlus={onPlus} />;
 }
 
 function Contenu({ onglet, donnees, aller, famille, onFamille }: { onglet: Onglet; donnees: DonneesRevision; aller: (o: Onglet) => void; famille: FamilleNotion; onFamille: (f: FamilleNotion) => void }) {

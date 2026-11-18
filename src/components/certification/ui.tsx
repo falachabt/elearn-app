@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
   confirmationPlan: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[2] },
   squelette: { gap: espace[3] },
   bloc: { height: 64, borderWidth: bord.fin, borderRadius: rayon.m },
-  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[2], flexShrink: 1, minWidth: 0 },
+  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[2], flexGrow: 1, flexShrink: 1, minWidth: 0 },
   titreEntete: { flex: 1, flexShrink: 1, minWidth: 0 },
   ligne: { minHeight: cibleMin + 16, flexDirection: 'row', alignItems: 'flex-start', gap: espace[4], padding: espace[4], borderRadius: rayon.l },
   droiteLigne: { alignSelf: 'center' },
