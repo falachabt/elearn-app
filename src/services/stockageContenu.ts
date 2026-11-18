@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Directory, File, Paths } from 'expo-file-system';
+import { Platform } from 'react-native';
 
 /**
  * Stockage des CONTENUS téléchargés (cours, leçons, fiches, quiz, exercices, mission, contenus de crédits) :
@@ -13,7 +14,12 @@ import { Directory, File, Paths } from 'expo-file-system';
  * Migration en douceur : la lecture retombe sur l'ancienne copie AsyncStorage quand le fichier n'existe pas encore,
  * et chaque écriture supprime l'ancienne copie — la base se vide au fil des usages, sans perdre un contenu déjà là.
  * Les petites données (session, réglages, progression de l'élève, état du téléchargement) restent dans AsyncStorage.
+ *
+ * Sur le web (issue #137), `Paths.document` lève (`this.validatePath is not a function`) : il n'y a pas de dossier
+ * privé. Les contenus y restent dans AsyncStorage (le stockage du navigateur), sans toucher à `expo-file-system`.
  */
+
+const surWeb = () => Platform.OS === 'web';
 
 const dossier = () => new Directory(Paths.document, 'contenus');
 
@@ -33,6 +39,7 @@ function fichierPour(cle: string): File {
 
 /** Lit un contenu : le fichier d'abord ; à défaut, l'ancienne copie AsyncStorage des versions précédentes. */
 export async function lireContenu(cle: string): Promise<string | null> {
+  if (surWeb()) return AsyncStorage.getItem(cle).catch(() => null);
   try {
     const f = fichierPour(cle);
     if (f.exists) return await f.text();
@@ -44,6 +51,7 @@ export async function lireContenu(cle: string): Promise<string | null> {
 
 /** Écrit un contenu dans les fichiers, puis retire son ancienne copie AsyncStorage s'il y en avait une. */
 export async function ecrireContenu(cle: string, valeur: string): Promise<void> {
+  if (surWeb()) return AsyncStorage.setItem(cle, valeur);
   await fichierPour(cle).write(valeur);
   await AsyncStorage.removeItem(cle).catch(() => {});
 }
@@ -60,6 +68,7 @@ export async function ecrireContenus(paires: readonly (readonly [string, string]
 
 /** Supprime un contenu des deux stockages. */
 export async function supprimerContenu(cle: string): Promise<void> {
+  if (surWeb()) return AsyncStorage.removeItem(cle).catch(() => {});
   try {
     const f = fichierPour(cle);
     if (f.exists) f.delete();
@@ -71,6 +80,8 @@ export async function supprimerContenu(cle: string): Promise<void> {
 
 /** Vide tout le stockage de contenus (effacement des données locales) : le dossier entier part. */
 export async function viderContenus(): Promise<void> {
+  // Web : les contenus sont des clés AsyncStorage, déjà effacées avec les autres par `effacerDonneesLocales`.
+  if (surWeb()) return;
   try {
     const d = dossier();
     if (d.exists) d.delete();
