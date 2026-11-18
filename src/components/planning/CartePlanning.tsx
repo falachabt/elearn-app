@@ -14,6 +14,9 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 import { Apparition } from '../Apparition';
 import { Appui } from '../Appui';
 import { Carte } from '../Carte';
+import { construireParcours } from '@/services/parcoursSecondaire';
+
+const OUVRIR_PARCOURS = { pathname: '/reviser', params: { onglet: 'parcours' } } as const;
 
 /**
  * Carte « Mon planning » de l'accueil (spec `docs/maquettes/planning-etudes.md` §1) : la séance du jour, ou « Choisis ton
@@ -72,12 +75,51 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
       ? Math.round((progression.faits / progression.total) * 100)
       : null;
 
+  const parcours = planning.statut === 'ready' ? construireParcours(planning, aujourdhui, lues, acquises) : null;
+  const seanceEnCours = !!seance && !termine && !seanceTerminee(seance, lues, acquises) && !!parcours && parcours.totalAujourdhui > 0;
+
+  if (parcours && seanceEnCours) {
+    const faits = parcours.faitsAujourdhui;
+    const total = parcours.totalAujourdhui;
+    const courante = parcours.groupes.find((g) => g.type === 'aujourdhui')?.etapes.find((e) => e.etat === 'courante');
+    const titre = faits > 0 && courante?.rang ? t('parcours.accueilContinuer', { n: courante.rang }) : t('parcours.accueilFaire');
+    return (
+      <Apparition delai={60}>
+        <View style={styles.bloc}>
+          {parcours.aRefaire > 0 ? (
+            <Appui accessibilityRole="button" accessibilityLabel={`${t('parcours.accueilARefaire')}. ${parcours.aRefaire === 1 ? t('parcours.accueilARefaireUn') : t('parcours.accueilARefaireTexte', { n: parcours.aRefaire })}`} onPress={() => router.push(OUVRIR_PARCOURS)} decalage={3} rayon={rayon.l}>
+              <View testID="accueil-a-reprendre" style={[styles.reprendre, { backgroundColor: theme.etat.erreurDoux, borderColor: theme.bord.fort }]}>
+                <Text style={[typo.etiquette, { color: theme.etat.erreurTexte }]}>{t('parcours.accueilARefaire')}</Text>
+                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{parcours.aRefaire === 1 ? t('parcours.accueilARefaireUn') : t('parcours.accueilARefaireTexte', { n: parcours.aRefaire })}</Text>
+              </View>
+            </Appui>
+          ) : null}
+          <Appui accessibilityRole="button" accessibilityLabel={`${t('parcours.accueilTitre')}. ${titre}. ${t('parcours.accueilProgression', { faits, total })}`} onPress={() => router.push(OUVRIR_PARCOURS)} decalage={4} rayon={rayon.l}>
+            <View testID="accueil-programme-du-jour" style={[styles.programme, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('parcours.accueilTitre')}</Text>
+              <Text style={[typo.h3, { color: theme.texte.surCouleur }]}>{titre}</Text>
+              <View
+                testID="carte-planning-progression"
+                accessibilityRole="progressbar"
+                accessibilityValue={{ min: 0, max: 100, now: Math.round((faits / total) * 100) }}
+                style={[styles.piste, styles.pisteProgramme, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}
+              >
+                <View style={[styles.remplissage, { width: `${Math.round((faits / total) * 100)}%`, backgroundColor: theme.texte.surCouleur }]} />
+              </View>
+              <Text style={[typo.legende, { color: theme.texte.surCouleur }]}>{t('parcours.accueilProgression', { faits, total })}</Text>
+            </View>
+          </Appui>
+        </View>
+      </Apparition>
+    );
+  }
+
   return (
     <Apparition delai={60}>
       <Appui
         accessibilityRole="button"
         accessibilityLabel={`${t('planning.carte.titre')}. ${sousTitre}`}
-        onPress={() => router.push(termine ? { pathname: '/planning/termine', params: { source: 'carte' } } : { pathname: '/planning', params: { source: 'accueil' } })}
+        onPress={() => router.push(termine ? { pathname: '/planning/termine', params: { source: 'carte' } } : OUVRIR_PARCOURS)}
         decalage={4}
         rayon={rayon.l}
       >
@@ -118,6 +160,10 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
 }
 
 const styles = StyleSheet.create({
+  bloc: { gap: espace[3] },
+  reprendre: { borderWidth: bord.normal, borderRadius: rayon.l, paddingVertical: espace[3], paddingHorizontal: espace[4], gap: 2 },
+  programme: { borderWidth: bord.normal, borderRadius: rayon.l, padding: espace[4], gap: espace[2] },
+  pisteProgramme: { marginTop: espace[1] },
   carte: {
     flexDirection: 'row',
     alignItems: 'flex-start',

@@ -1151,7 +1151,10 @@ function PlanningPret({
 export function Planning() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const params = useLocalSearchParams<{ source?: string }>();
+  const params = useLocalSearchParams<{ source?: string; ajuster?: string }>();
+  // « Ajuster » (onglet Parcours de Réviser) rouvre l'assistant avec les réglages actuels ; sinon le planning prêt s'affiche dans Réviser.
+  const ajusterDemande = params.ajuster === '1';
+  const ajusterOuvert = useRef(false);
   const utilisateur = useSessionPrete();
   const [etat, setEtat] = useState<Etat>({ type: 'chargement' });
   const [profil, setProfil] = useState<Profil | null>(null);
@@ -1195,7 +1198,10 @@ export function Planning() {
         if (!actif) return;
         if (planning.statut === 'ready') {
           void noterActionConfiguration('planning').catch(() => {});
-          return setEtat({ type: 'pret', planning, copie });
+          if (ajusterDemande && !ajusterOuvert.current) return setEtat({ type: 'pret', planning, copie });
+          // Le planning prêt vit dans Réviser > Parcours : cet écran ne sert plus qu'à le préparer ou l'ajuster.
+          router.replace({ pathname: '/reviser', params: { onglet: 'parcours' } });
+          return;
         }
         if (planning.statut === 'preparing') return setEtat({ type: 'preparation' });
         if (planning.statut === 'no_target' || !p?.niveau || !p.pays) return setEtat({ type: 'sansEcheance' });
@@ -1220,7 +1226,7 @@ export function Planning() {
     return () => {
       actif = false;
     };
-  }, [utilisateur]);
+  }, [utilisateur, ajusterDemande]);
   useFocusEffect(useCallback(() => charger(), [charger]));
 
   const fermer = useCallback(() => {
@@ -1270,6 +1276,17 @@ export function Planning() {
       etapeInitiale: 1,
     });
   }, [etat]);
+
+  useEffect(() => {
+    if (ajusterDemande && !ajusterOuvert.current && etat.type === 'pret' && etat.planning.cible && !etat.copie) {
+      ajusterOuvert.current = true;
+      changer();
+    } else if (ajusterDemande && !ajusterOuvert.current && etat.type === 'pret') {
+      // Hors ligne ou sans date cible : rien à ajuster, retour dans Réviser.
+      ajusterOuvert.current = true;
+      router.replace({ pathname: '/reviser', params: { onglet: 'parcours' } });
+    }
+  }, [ajusterDemande, etat, changer]);
 
   const reessayer = () => {
     setEtat({ type: 'chargement' });

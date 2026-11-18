@@ -131,3 +131,11 @@ Exigences à satisfaire : HTTPS, type `application/json`, **sans redirection**, 
 `/.well-known/*` **avant** le fallback. `elearn-site` (le site Next.js) n'a aucun dossier `.well-known`.
 
 **Hébergement : pris en charge par Benny, ne pas y toucher depuis le code.**
+
+## 8. Anciennes pages du planning à supprimer (18 novembre 2026)
+Le programme du secondaire vit maintenant dans Réviser > Parcours (`src/components/reviser/ParcoursSecondaire.tsx`). Gardées pour l'instant, à retirer ensuite (code mort, sans toucher aux données) :
+- `src/app/planning/jour.tsx` et `PlanningJour` : encore la route de retour après un quiz, une leçon ou un exercice (`LeconLecteur`, `QuizLecon`, `QuizLibre`, `ExerciceLibre`, `EcranResultats`) ; rediriger ces retours vers `/reviser?onglet=parcours` d'abord.
+- `src/app/planning/termine.tsx` et `PlanningTermine` : bilan de fin de séance, encore ouvert depuis l'accueil.
+- Vues `PlanningPret`, `Aujourdhui`, `Semaine` dans `Planning.tsx` : plus affichées (redirection vers Parcours), l'assistant de préparation reste.
+- Règle de validation : un quiz compte comme fait à partir de 80 % dans Parcours, mais `elementFait` accepte tout score : à aligner.
+Elles utilisent déjà les jetons du thème (fond blanc via `Ecran`).

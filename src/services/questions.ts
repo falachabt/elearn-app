@@ -99,8 +99,36 @@ export function erreurTexte(texte: string): 'trop_court' | 'trop_long' | null {
   return n < LONGUEUR_MIN ? 'trop_court' : n > LONGUEUR_MAX ? 'trop_long' : null;
 }
 
-/** Publie une question. Les numéros de téléphone sont masqués côté serveur (M7-05). */
-export async function poserQuestion(client: ClientPoster, q: { texte: string; matiere?: string | null; classe?: string | null; photos?: string[] }): Promise<string> {
+/** Publications récentes (clé = contenu de la question) : une même question envoyée deux fois de suite ne crée qu'une ligne. */
+const publications = new Map<string, { promesse: Promise<string>; fin: number }>();
+const FENETRE_DOUBLON_MS = 15_000;
+
+/** Efface la mémoire des publications récentes (tests). */
+export function oublierPublications(): void {
+  publications.clear();
+}
+
+/**
+ * Publie une question. Les numéros de téléphone sont masqués côté serveur (M7-05).
+ * Garde-fou unique du service : si la même question (même texte, matière, classe, photos) est déjà en vol ou vient d'être
+ * publiée depuis moins de 15 s, on rend le même identifiant au lieu d'insérer une deuxième ligne. Il couvre le double appui,
+ * un écran monté deux fois et le renvoi après une réponse perdue, ce que le drapeau de l'écran ne voit pas.
+ */
+export function poserQuestion(client: ClientPoster, q: { texte: string; matiere?: string | null; classe?: string | null; photos?: string[] }): Promise<string> {
+  const cle = JSON.stringify([q.texte.trim(), q.matiere ?? null, q.classe ?? null, q.photos ?? []]);
+  const maintenant = Date.now();
+  const connue = publications.get(cle);
+  if (connue && maintenant < connue.fin) return connue.promesse;
+  const promesse = insererQuestion(client, q);
+  publications.set(cle, { promesse, fin: maintenant + FENETRE_DOUBLON_MS });
+  // Un échec ne bloque pas le renvoi : la question n'a pas été créée.
+  promesse.catch(() => {
+    if (publications.get(cle)?.promesse === promesse) publications.delete(cle);
+  });
+  return promesse;
+}
+
+async function insererQuestion(client: ClientPoster, q: { texte: string; matiere?: string | null; classe?: string | null; photos?: string[] }): Promise<string> {
   // Une photo seule suffit (G2) ; sans photo, le texte doit être valide.
   const erreur = q.photos?.length && !q.texte.trim() ? null : erreurTexte(q.texte);
   if (erreur) throw new Error(erreur);
@@ -243,9 +271,26 @@ export async function lireSorties(questionId: string): Promise<Sortie[]> {
   return (await lireToutesSorties()).filter((s) => s.questionId === questionId);
 }
 
-export async function ajouterSortie(s: Omit<Sortie, 'cle' | 'statut'>): Promise<Sortie> {
-  const sortie: Sortie = { ...s, cle: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, statut: 'envoi' };
-  await ecrireSorties([...(await lireToutesSorties()), sortie]);
+/** Réponses créées depuis moins de 5 s (clé = contenu) : un double appui ne met qu'une réponse en file. */
+const sortiesRecentes = new Map<string, { sortie: Promise<Sortie>; fin: number }>();
+const FENETRE_SORTIE_MS = 5000;
+
+export function oublierSortiesRecentes(): void {
+  sortiesRecentes.clear();
+}
+
+export function ajouterSortie(s: Omit<Sortie, 'cle' | 'statut'>): Promise<Sortie> {
+  const empreinte = JSON.stringify([s.questionId, s.texte.trim(), s.parentId, s.photo]);
+  const maintenant = Date.now();
+  const connue = sortiesRecentes.get(empreinte);
+  // Vérification synchrone, avant tout await : deux appels simultanés partagent la même réponse.
+  if (connue && maintenant < connue.fin) return connue.sortie;
+  const sortie = (async () => {
+    const nouvelle: Sortie = { ...s, cle: `${maintenant}-${Math.random().toString(36).slice(2, 8)}`, statut: 'envoi' };
+    await ecrireSorties([...(await lireToutesSorties()), nouvelle]);
+    return nouvelle;
+  })();
+  sortiesRecentes.set(empreinte, { sortie, fin: maintenant + FENETRE_SORTIE_MS });
   return sortie;
 }
 

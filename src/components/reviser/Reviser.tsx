@@ -22,6 +22,7 @@ import { Onglets } from '../Onglets';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Squelettes } from '../liste/Squelettes';
 import { couleursTuiles } from './couleurs';
+import { ContenuParcours, PiedParcours, useParcoursSecondaire } from './ParcoursSecondaire';
 import { IconeMatiere } from './IconeMatiere';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; matieres: Matiere[]; lues: Record<string, number>; cle: string };
@@ -61,24 +62,27 @@ function Tuile({ m, vu, fond, onPress }: { m: Matiere; vu: number; fond: string;
   );
 }
 
-type Onglet = 'cours' | 'entrainement' | 'annales';
+type Onglet = 'parcours' | 'cours' | 'entrainement' | 'annales';
 
-const LIBELLES = { cours: 'annales.ongletCours', entrainement: 'entrainement.onglet', annales: 'annales.onglet' } as const;
+const LIBELLES = { parcours: 'reviser.ongletParcours', cours: 'annales.ongletCours', entrainement: 'entrainement.onglet', annales: 'annales.onglet' } as const;
 
 /** D1 · Réviser (M5-01) : les matières de la classe en couleur, avec la part déjà lue ; l'entraînement libre (M5-09) et les annales (M6-01) à côté. */
 export function Reviser() {
   const { t } = useTraduction();
   const { onglet: ongletParam } = useLocalSearchParams<{ onglet?: string }>();
   const { theme } = useTheme();
-  const [onglet, setOnglet] = useState<Onglet>(() => ongletParam === 'entrainement' ? 'entrainement' : 'cours');
+  // Parcours est le premier onglet, mais Réviser s'ouvre sur Cours, sauf quand l'élève arrive du bloc « programme » de l'accueil.
+  const ongletInitial: Onglet = ongletParam === 'entrainement' ? 'entrainement' : ongletParam === 'parcours' ? 'parcours' : 'cours';
+  const [onglet, setOnglet] = useState<Onglet>(ongletInitial);
   // Un onglet visité reste monté (caché) : y revenir ne redessine rien, ni ne relance son chargement.
-  const [vus, setVus] = useState<ReadonlySet<Onglet>>(() => new Set<Onglet>(['cours', ...(ongletParam === 'entrainement' ? ['entrainement' as const] : [])]));
+  const [vus, setVus] = useState<ReadonlySet<Onglet>>(() => new Set<Onglet>(['cours', ...(ongletInitial !== 'cours' ? [ongletInitial] : [])]));
   const choisir = useCallback((o: Onglet) => {
     if (ongletParam) router.setParams({ onglet: '' });
     setOnglet(o);
     setVus((v) => (v.has(o) ? v : new Set([...v, o])));
   }, [ongletParam]);
-  const ongletVisible: Onglet = ongletParam === 'cours' || ongletParam === 'entrainement' ? ongletParam : onglet;
+  const ongletVisible: Onglet = ongletParam === 'cours' || ongletParam === 'entrainement' || ongletParam === 'parcours' ? ongletParam : onglet;
+  const parcours = useParcoursSecondaire(ongletVisible === 'parcours');
   const [etat, setEtat] = useEtatMemorise<Etat>('reviser', { statut: 'chargement' });
   const pret = useSessionPrete();
 
@@ -103,13 +107,16 @@ export function Reviser() {
   };
 
   return (
-    <Ecran insetBas={false}>
+    <Ecran insetBas={false} piedBordure={ongletVisible === 'parcours'} pied={ongletVisible === 'parcours' ? <PiedParcours etat={parcours.etat} /> : undefined}>
       <View style={styles.entete}>
         <Text accessibilityRole="header" style={[typo.h1, styles.titre, { color: theme.texte.principal }]}>{t('reviser.titre')}</Text>
         <CompteurCredits />
         <Cloche />
       </View>
-      <Onglets valeurs={(['cours', 'entrainement', 'annales'] as const).map((o) => ({ valeur: o, libelle: t(LIBELLES[o]) }))} valeur={ongletVisible} onChange={choisir} />
+      <Onglets valeurs={(['parcours', 'cours', 'entrainement', 'annales'] as const).map((o) => ({ valeur: o, libelle: t(LIBELLES[o]) }))} valeur={ongletVisible} onChange={choisir} />
+      <Panneau actif={ongletVisible === 'parcours'} monte={vus.has('parcours') || ongletVisible === 'parcours'}>
+        <ContenuParcours etat={parcours.etat} onRecharger={parcours.recharger} />
+      </Panneau>
       <Panneau actif={ongletVisible === 'annales'} monte={vus.has('annales')}>
         <Annales />
       </Panneau>

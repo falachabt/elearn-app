@@ -57,7 +57,7 @@ const CLES_DETAIL = {
 const jourValide = (v: unknown): string | null => (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : null);
 
 /** Ouvre la tâche : leçon, quiz, exercice ou dossier d'annales correspondant, sinon l'onglet Réviser. */
-function ouvrir(e: ElementSeance, jour?: string | null) {
+export function ouvrir(e: ElementSeance, jour?: string | null) {
   suivre('planning_task_opened', { genre: e.genre });
   const planningParams = jour ? { provenance: 'planning', planningJour: jour } : { provenance: 'planning' };
   if (e.genre === 'lecon') {

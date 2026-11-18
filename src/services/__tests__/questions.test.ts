@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { abonnerNouvelles, actualiserNouvelles, choixFaux, lireNouvelles, lireSondage, marquerVues, pourcentage, texteBadge, voterSondage, ajouterSortie, appliquerVote, contientNumero, envoyerSortie, envoyerSortiesEnAttente, lireSorties, masquerNumeros, parentPourReponse, choisirMeilleure, curseurSuivant, erreurTexte, fil, ilYa, lireReponses, voter, type Reponse, lireCopieFil, lireFil, poserQuestion, signaler, TAILLE_PAGE, versQuestion } from '../questions';
+import { abonnerNouvelles, actualiserNouvelles, choixFaux, lireNouvelles, lireSondage, marquerVues, pourcentage, texteBadge, voterSondage, ajouterSortie, appliquerVote, contientNumero, envoyerSortie, envoyerSortiesEnAttente, lireSorties, masquerNumeros, parentPourReponse, choisirMeilleure, curseurSuivant, erreurTexte, fil, ilYa, lireReponses, voter, type Reponse, lireCopieFil, lireFil, poserQuestion, oublierPublications, oublierSortiesRecentes, signaler, TAILLE_PAGE, versQuestion } from '../questions';
 
 const ligne = (id: string, p: Record<string, unknown> = {}) => ({
   id, author_id: 'u1', author_name: 'Awa', has_ai: true, content: `Question ${id}`, media_urls: null, subject: 'Maths', class_level: '3e',
@@ -8,7 +8,11 @@ const ligne = (id: string, p: Record<string, unknown> = {}) => ({
 });
 const clientRpc = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
-beforeEach(() => AsyncStorage.clear());
+beforeEach(() => {
+  oublierPublications();
+  oublierSortiesRecentes();
+  return AsyncStorage.clear();
+});
 
 describe('questions', () => {
   it('convertit une ligne', () => {
@@ -135,6 +139,53 @@ describe('questions', () => {
     const single = jest.fn(async () => ({ data: { id: 'p2' }, error: null }));
     const c = { from: jest.fn(() => ({ insert: jest.fn(() => ({ select: () => ({ single }) })) })) };
     expect(await poserQuestion(c as never, { texte: '', matiere: 'Maths', photos: ['https://x/y.jpg'] })).toBe('p2');
+  });
+});
+
+describe('pas de question en double', () => {
+  const faux = () => {
+    const single = jest.fn(async () => ({ data: { id: 'p1' }, error: null }));
+    const insert = jest.fn(() => ({ select: () => ({ single }) }));
+    return { insert, client: { from: jest.fn(() => ({ insert })) } as never };
+  };
+  const q = { texte: 'Comment résoudre x² = 4 ?', matiere: 'Maths', classe: '3e' };
+
+  it('deux envois quasi simultanés (deux écrans) ne font qu’une insertion', async () => {
+    const { insert, client } = faux();
+    const [a, b] = await Promise.all([poserQuestion(client, q), poserQuestion(client, q)]);
+    expect(a).toBe('p1');
+    expect(b).toBe('p1');
+    expect(insert).toHaveBeenCalledTimes(1);
+  });
+
+  it('un renvoi juste après la publication rend la même question', async () => {
+    const { insert, client } = faux();
+    await poserQuestion(client, q);
+    expect(await poserQuestion(client, q)).toBe('p1');
+    expect(insert).toHaveBeenCalledTimes(1);
+  });
+
+  it('une question différente est bien publiée', async () => {
+    const { insert, client } = faux();
+    await poserQuestion(client, q);
+    await poserQuestion(client, { ...q, texte: 'Autre question tout à fait différente' });
+    expect(insert).toHaveBeenCalledTimes(2);
+  });
+
+  it('deux réponses identiques créées en même temps ne font qu’une réponse en file', async () => {
+    const r = { questionId: 'q1', texte: 'Bac 2017', parentId: null, photo: null };
+    const [a, b] = await Promise.all([ajouterSortie(r), ajouterSortie(r)]);
+    expect(b.cle).toBe(a.cle);
+    expect(await lireSorties('q1')).toHaveLength(1);
+  });
+
+  it('après un échec, on peut renvoyer', async () => {
+    const single = jest.fn().mockResolvedValueOnce({ data: null, error: new Error('réseau') }).mockResolvedValueOnce({ data: { id: 'p2' }, error: null });
+    const insert = jest.fn(() => ({ select: () => ({ single }) }));
+    const client = { from: jest.fn(() => ({ insert })) } as never;
+    await expect(poserQuestion(client, q)).rejects.toThrow('réseau');
+    expect(await poserQuestion(client, q)).toBe('p2');
+    expect(insert).toHaveBeenCalledTimes(2);
   });
 });
 
