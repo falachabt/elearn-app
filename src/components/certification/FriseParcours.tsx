@@ -444,16 +444,24 @@ export function ContenuFrise({ donnees }: { donnees: DonneesFrise }) {
  * Les jours passés avec une étape non faite sont marqués « Non validé · à refaire » ; les jours à venir sont en aperçu.
  * Défilement dans l'écran. L'accueil, lui, reste limité au morceau du jour (ParcoursDuJour).
  */
+/** Jours chargés d'un coup, puis par tranches (demande de Benny : ne pas tout afficher du premier coup). */
+const TRANCHE_JOURS = 21;
+
 export function ContenuChronologie({ donnees }: { donnees: DonneesFrise }) {
   const { plan, aujourdhui } = donnees;
   const { t } = useTraduction();
   const { theme } = useTheme();
   const dates = useDates();
+  const [charges, setCharges] = useState(TRANCHE_JOURS);
   if (!plan.dateExamen) return <SansDate {...donnees} />;
   const jours = [...plan.jours].sort((a, b) => (a.jour < b.jour ? -1 : a.jour > b.jour ? 1 : 0));
+  // La première tranche part de la semaine passée, pour voir les jours non validés.
+  const depart = Math.max(0, jours.findIndex((j) => j.jour >= aujourdhui) - 7);
+  const visibles = jours.slice(depart, depart + charges);
+  const restants = jours.length - (depart + visibles.length);
   return (
     <View style={styles.frise}>
-      {jours.map((j) => {
+      {visibles.map((j) => {
         const passe = j.jour < aujourdhui;
         const nonValide = passe && j.etapes.some((e) => e.etat !== 'fait');
         return (
@@ -470,6 +478,11 @@ export function ContenuChronologie({ donnees }: { donnees: DonneesFrise }) {
           </View>
         );
       })}
+      {restants > 0 ? (
+        <Appui accessibilityRole="button" onPress={() => setCharges((c) => c + TRANCHE_JOURS)} decalage={0} rayon={rayon.s} style={styles.lienZone}>
+          <Text style={[typo.petit, styles.lien, { color: theme.texte.lien }]}>{t('certification.monPlan.jourSuivants', { n: Math.min(restants, TRANCHE_JOURS) })}</Text>
+        </Appui>
+      ) : null}
     </View>
   );
 }
