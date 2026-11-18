@@ -2959,6 +2959,9 @@ export const en: Textes = {
       seance: 'Daily session',
     },
     accueilToeic: {
+      objectifFixer: 'Set a goal',
+      anneauLabel: 'Average score {{score}} out of 990, goal {{objectif}}',
+      anneauSansScore: 'No score yet, goal {{objectif}}',
       compteEtiquette: 'Test in',
       sansDateTitre: 'Add your exam date',
       sansDateAide: 'To see the countdown',

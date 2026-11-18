@@ -18,6 +18,7 @@ import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
 import { SelecteurClasse } from '../mission/Accueil';
 import { Cloche } from '../notifications/Cloche';
+import { AnneauObjectif } from './AnneauObjectif';
 import { ParcoursDuJour, PiedFrise, useFrise } from './FriseParcours';
 import { PreparationDiagnostic } from './PreparationDiagnostic';
 import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette } from './ui';
@@ -110,14 +111,36 @@ function Contenu({ d, recharger, frise }: { d: DonneesAccueil; recharger: () => 
     <View style={styles.groupe}>
       {d.revision.depuisCopie ? <Banniere ton="info" titre={t('certification.reviser.copie')} /> : null}
       {compte && d.plan?.dateTest ? (
-        <Carte style={{ gap: espace[3] }}>
-          <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
-          <View style={styles.ligne}>
-            <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
-            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: dateLongue(d.plan.dateTest, langue) })}</Text>
-          </View>
-          <BarreProgression pourcent={progressionSemaine} libelle={t('certification.accueilToeic.planBarre')} />
-        </Carte>
+        <View style={styles.grille}>
+          <Carte style={[styles.grilleGauche, { gap: espace[3] }]}>
+            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
+            <View style={styles.colonne}>
+              <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
+              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: dateLongue(d.plan.dateTest, langue) })}</Text>
+            </View>
+            <BarreProgression pourcent={progressionSemaine} libelle={t('certification.accueilToeic.planBarre')} />
+          </Carte>
+          <Carte style={[styles.grilleDroite, { gap: espace[2] }]}>
+            {d.plan.objectif !== null ? (
+              <>
+                <AnneauObjectif score={d.score} objectif={d.plan.objectif} />
+                <Text style={[typo.petit, { color: theme.texte.secondaire, textAlign: 'center' }]}>{t('certification.accueilToeic.objectif', { score: d.plan.objectif })}</Text>
+              </>
+            ) : (
+              <Appui
+                accessibilityRole="button"
+                accessibilityLabel={t('certification.accueilToeic.objectifFixer')}
+                onPress={() => router.push({ pathname: '/certification/objectif', params: { modifier: '1' } } as never)}
+                decalage={0}
+                rayon={48}
+              >
+                <View style={[styles.anneauVide, { borderColor: theme.bord.fort }]}>
+                  <Text style={[typo.petit, { color: theme.texte.secondaire, textAlign: 'center' }]}>{t('certification.accueilToeic.objectifFixer')}</Text>
+                </View>
+              </Appui>
+            )}
+          </Carte>
+        </View>
       ) : (
         // Sans date de test (maquette V30-ACCUEIL-SANS-DATE) : invitation en pointillés à ajouter la date.
         <>
@@ -153,6 +176,11 @@ function Contenu({ d, recharger, frise }: { d: DonneesAccueil; recharger: () => 
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
+  grille: { flexDirection: 'row', gap: espace[3], alignItems: 'stretch' },
+  grilleGauche: { flex: 3, minWidth: 0, justifyContent: 'space-between' },
+  grilleDroite: { flex: 2, minWidth: 0, alignItems: 'center', justifyContent: 'center' },
+  colonne: { gap: 2 },
+  anneauVide: { width: 96, height: 96, borderRadius: 48, borderWidth: bord.normal, borderStyle: 'dashed', alignItems: 'center', justifyContent: 'center', padding: espace[2] },
   droite: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
   ligneBadges: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[2] },
   ligne: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: espace[2] },

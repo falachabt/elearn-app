@@ -2960,6 +2960,9 @@ export const fr = {
       seance: 'Séance du jour',
     },
     accueilToeic: {
+      objectifFixer: 'Fixer un objectif',
+      anneauLabel: 'Score moyen {{score}} sur 990, objectif {{objectif}}',
+      anneauSansScore: 'Pas encore de score, objectif {{objectif}}',
       entete: 'Accueil',
       compteEtiquette: 'Test dans',
       sansDateTitre: 'Ajoute la date de ton examen',
