@@ -1,4 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Paths } from 'expo-file-system';
+import { Platform } from 'react-native';
 
 import { ecrireContenu, ecrireContenus, lireContenu, lireContenus, nomFichierContenu, supprimerContenu, viderContenus } from '../stockageContenu';
 
@@ -100,4 +102,47 @@ it('vider supprime tous les fichiers de contenus', async () => {
   await viderContenus();
   expect(mockFichiers.size).toBe(0);
   expect(await lireContenu('a.1')).toBeNull();
+});
+
+describe('web (issue #137) : pas de dossier privé, les contenus restent dans AsyncStorage', () => {
+  const osNatif = Platform.OS;
+  const documentNatif = Object.getOwnPropertyDescriptor(Paths, 'document')!;
+
+  beforeEach(() => {
+    Object.defineProperty(Platform, 'OS', { value: 'web', configurable: true });
+    // Comme `expo-file-system` sur le web : lire `Paths.document` lève.
+    Object.defineProperty(Paths, 'document', {
+      configurable: true,
+      get() {
+        throw new TypeError('this.validatePath is not a function');
+      },
+    });
+  });
+
+  afterEach(() => {
+    Object.defineProperty(Platform, 'OS', { value: osNatif, configurable: true });
+    Object.defineProperty(Paths, 'document', documentNatif);
+  });
+
+  it('écrire puis lire passe par AsyncStorage, sans lever', async () => {
+    await ecrireContenu('mission.du.jour', '{"jour":"2026-11-18"}');
+    expect(await AsyncStorage.getItem('mission.du.jour')).toBe('{"jour":"2026-11-18"}');
+    expect(await lireContenu('mission.du.jour')).toBe('{"jour":"2026-11-18"}');
+    expect(mockFichiers.size).toBe(0);
+  });
+
+  it('écritures et lectures par lot', async () => {
+    await ecrireContenus([
+      ['reviser.cours.Tle.CM', '[1,2]'],
+      ['reviser.cours.Tle.CM@v2', '12345'],
+    ]);
+    expect(await lireContenus(['reviser.cours.Tle.CM', 'reviser.cours.Tle.CM@v2', 'absente'])).toEqual(['[1,2]', '12345', null]);
+  });
+
+  it('supprimer retire la clé ; vider ne lève pas', async () => {
+    await ecrireContenu('credits.cache.x', '{"v":1}');
+    await supprimerContenu('credits.cache.x');
+    expect(await lireContenu('credits.cache.x')).toBeNull();
+    await expect(viderContenus()).resolves.toBeUndefined();
+  });
 });

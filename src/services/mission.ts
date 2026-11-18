@@ -123,7 +123,8 @@ export async function chargerMission(
     // Pas gardée : au prochain affichage, on retente le serveur.
     return { jour, source: 'locale', questions: tirerMiniTest(p.niveau) };
   }
-  await ecrireContenu(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille, ...(p.serie ? { serie: p.serie } : {}), concours: p.concours ?? null }));
+  // Une copie impossible à garder ne doit pas jeter la mission que le serveur vient d'envoyer (issue #137).
+  await ecrireContenu(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille, ...(p.serie ? { serie: p.serie } : {}), concours: p.concours ?? null })).catch(() => {});
   return mission;
 }
 

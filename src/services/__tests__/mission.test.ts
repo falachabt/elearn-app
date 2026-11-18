@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { suivre } from '../analytics';
+import * as stockageContenu from '../stockageContenu';
 import { calculerSerie, chargerMission, envoyerPassages, lirePassagesLocaux, CLE_MISSION, convertir, coursRates, jourLocal, lireDernierResultat, lireErreurs, lireHistorique, terminerMission, type LigneMission } from '../mission';
 
 jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
@@ -106,6 +107,15 @@ describe('chargerMission', () => {
     const c = clientFaux({ data: [ligne(1), ligne(2), ligne(3)] });
     await chargerMission(c as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01' });
     expect(c.rpc).toHaveBeenCalledTimes(1);
+  });
+
+  it('issue #137 : une copie impossible à garder ne fait pas perdre la mission du serveur', async () => {
+    const ecrire = jest.spyOn(stockageContenu, 'ecrireContenu').mockRejectedValueOnce(new TypeError('this.validatePath is not a function'));
+    const m = await chargerMission(clientFaux({ data: [ligne(1), ligne(2), ligne(3)] }) as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01' });
+    expect(ecrire).toHaveBeenCalled();
+    expect(m).toMatchObject({ source: 'serveur', jour: '2026-10-01' });
+    expect(m.questions).toHaveLength(3);
+    ecrire.mockRestore();
   });
 });
 
