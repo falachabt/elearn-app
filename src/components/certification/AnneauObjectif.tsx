@@ -36,8 +36,8 @@ export function AnneauObjectif({
   const centre = taille / 2;
   const circonference = 2 * Math.PI * rayon;
   const couleur = e.couleur === 'vert' ? theme.marque.principale : e.couleur === 'orange' ? theme.etat.alerte : theme.etat.erreur;
-  const debut = pointDe(e.tiret, centre, rayon - epaisseur / 2 - 6);
-  const fin = pointDe(e.tiret, centre, rayon + epaisseur / 2 + 6);
+  const debut = pointDe(e.tiret, centre, rayon - epaisseur / 2 - 2);
+  const fin = pointDe(e.tiret, centre, rayon + epaisseur / 2 + 2);
   const libelle = e.sansScore
     ? `Pas encore de score, objectif ${objectif}`
     : `Score moyen ${score} sur 990, objectif ${objectif}`;

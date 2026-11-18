@@ -191,7 +191,8 @@ const styles = StyleSheet.create({
   grille: { flexDirection: 'row', gap: espace[3], alignItems: 'stretch' },
   grilleGauche: { flex: 3, minWidth: 0 },
   // Même hauteur pour les deux cartes de la grille (demande de Benny) : la plus haute fixe la hauteur.
-  carteGrille: { minHeight: 136 },
+  // Hauteur fixe commune aux deux cartes : le cercle et la carte « Test dans » finissent à la même ligne (retour de Benny, 18/11).
+  carteGrille: { height: 168 },
   grilleDroite: { flex: 2, minWidth: 0 },
   colonne: { gap: 2 },
   anneauVide: { width: 96, height: 96, borderRadius: 48, borderWidth: bord.normal, borderStyle: 'dashed', alignItems: 'center', justifyContent: 'center', padding: espace[2] },
