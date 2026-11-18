@@ -59,11 +59,14 @@ export function AccueilToeic() {
       entete={
         <EnteteToeic
           titre={t('certification.accueilToeic.entete')}
-          gauche={profil ? <SelecteurClasse profil={profil} /> : <View />}
-          droite={
-            <View style={styles.droite}>
-              <Cloche pourInvite />
-              <CompteurCredits />
+          gauche={
+            // Une seule zone pleine largeur : sélecteur à gauche, cloche et crédits à droite (space-between, aussi sur web).
+            <View style={styles.barre}>
+              {profil ? <SelecteurClasse profil={profil} /> : <View />}
+              <View style={styles.droite}>
+                <Cloche pourInvite />
+                <CompteurCredits />
+              </View>
             </View>
           }
         />
@@ -193,7 +196,8 @@ const styles = StyleSheet.create({
   colonne: { gap: 2 },
   anneauVide: { width: 96, height: 96, borderRadius: 48, borderWidth: bord.normal, borderStyle: 'dashed', alignItems: 'center', justifyContent: 'center', padding: espace[2] },
   // marginLeft auto : la cloche et les crédits restent à droite, même quand l'en-tête est étroit (web).
-  droite: { flexDirection: 'row', alignItems: 'center', gap: espace[2], marginLeft: 'auto' },
+  barre: { flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: espace[2] },
+  droite: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
   ligneBadges: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[2] },
   ligne: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: espace[2] },
   pastille: { paddingHorizontal: espace[3], paddingVertical: espace[1], borderWidth: bord.normal, borderRadius: rayon.s },
