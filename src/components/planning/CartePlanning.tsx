@@ -95,18 +95,18 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
             </Appui>
           ) : null}
           <Appui accessibilityRole="button" accessibilityLabel={`${t('parcours.accueilTitre')}. ${titre}. ${t('parcours.accueilProgression', { faits, total })}`} onPress={() => router.push(OUVRIR_PARCOURS)} decalage={4} rayon={rayon.l}>
-            <View testID="accueil-programme-du-jour" style={[styles.programme, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('parcours.accueilTitre')}</Text>
-              <Text style={[typo.h3, { color: theme.texte.surCouleur }]}>{titre}</Text>
+            <View testID="accueil-programme-du-jour" style={[styles.programme, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{t('parcours.accueilTitre')}</Text>
+              <Text style={[typo.h3, { color: theme.texte.principal }]}>{titre}</Text>
               <View
                 testID="carte-planning-progression"
                 accessibilityRole="progressbar"
                 accessibilityValue={{ min: 0, max: 100, now: Math.round((faits / total) * 100) }}
-                style={[styles.piste, styles.pisteProgramme, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}
+                style={[styles.piste, styles.pisteProgramme, { borderColor: theme.bord.fort, backgroundColor: theme.fond.creux }]}
               >
-                <View style={[styles.remplissage, { width: `${Math.round((faits / total) * 100)}%`, backgroundColor: theme.texte.surCouleur }]} />
+                <View style={[styles.remplissage, { width: `${Math.round((faits / total) * 100)}%`, backgroundColor: theme.marque.principale }]} />
               </View>
-              <Text style={[typo.legende, { color: theme.texte.surCouleur }]}>{t('parcours.accueilProgression', { faits, total })}</Text>
+              <Text style={[typo.legende, { color: theme.texte.principal }]}>{t('parcours.accueilProgression', { faits, total })}</Text>
             </View>
           </Appui>
         </View>

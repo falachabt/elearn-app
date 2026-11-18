@@ -66,10 +66,10 @@ describe('construireParcours', () => {
     expect(p.courante).toBeNull();
   });
 
-  it('limite l’aperçu à trois jours et ignore les jours de repos', () => {
+  it('montre les prochains jours de séance, sans les jours de repos, au-delà de la semaine', () => {
     const jours = [jour(AUJ, [lecon(1)]), jour('2026-11-18', [lecon(2)]), jour('2026-11-19', []), jour('2026-11-20', [lecon(3)]), jour('2026-11-21', [lecon(4)]), jour('2026-11-22', [lecon(5)])];
     const p = construireParcours(planningDe(jours), AUJ);
-    expect(p.groupes.filter((g) => g.type === 'apercu').map((g) => g.jour)).toEqual(['2026-11-18', '2026-11-20', '2026-11-21']);
+    expect(p.groupes.filter((g) => g.type === 'apercu').map((g) => g.jour)).toEqual(['2026-11-18', '2026-11-20', '2026-11-21', '2026-11-22']);
   });
 
   it('sans séance aujourd’hui (repos) : aucun groupe du jour, le bouton vise la prochaine séance', () => {

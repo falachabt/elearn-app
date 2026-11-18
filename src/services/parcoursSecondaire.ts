@@ -38,7 +38,7 @@ export type Parcours = {
 };
 
 const JOURS_PASSES_MAX = 3;
-const JOURS_APERCU_MAX = 3;
+const JOURS_APERCU_MAX = 14;
 
 function etatElement(e: ElementSeance, lues: LeconsValidees, acquises: AcquisesEntrainement, seanceFaite: boolean): { etat: 'fait' | 'ratee' | 'a_faire'; score?: number } {
   if (e.genre === 'quiz') {

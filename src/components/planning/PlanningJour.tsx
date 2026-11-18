@@ -174,7 +174,7 @@ export function PlanningJour() {
     if (jour) {
       suivre('planning_session_returned', { jour });
     }
-    router.replace('/planning');
+    router.replace({ pathname: '/reviser', params: { onglet: 'parcours' } });
   }, [jour]);
 
   useEffect(() => {

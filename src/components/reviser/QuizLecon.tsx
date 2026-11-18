@@ -93,9 +93,9 @@ export function QuizLecon() {
 
   const retourProgramme = () => {
     if (planningJour) {
-      router.replace({ pathname: '/planning/jour', params: { jour: planningJour } });
+      router.replace({ pathname: '/reviser', params: { onglet: 'parcours' } });
     } else {
-      router.replace('/planning/jour');
+      router.replace({ pathname: '/reviser', params: { onglet: 'parcours' } });
     }
   };
 

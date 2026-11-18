@@ -94,14 +94,14 @@ export function LeconLecteur() {
   const retour = () => {
     if (provenance === 'planning') {
       if (planningJour) {
-        router.replace({ pathname: '/planning/jour', params: { jour: planningJour } });
+        router.replace({ pathname: '/reviser', params: { onglet: 'parcours' } });
         return;
       }
       if (router.canGoBack()) {
         router.back();
         return;
       }
-      router.replace('/planning');
+      router.replace({ pathname: '/reviser', params: { onglet: 'parcours' } });
       return;
     }
     if (router.canGoBack()) router.back();

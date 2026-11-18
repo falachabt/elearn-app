@@ -203,7 +203,7 @@ describe.each(['clair', 'sombre'] as const)('Page d’une séance (%s)', (reglag
     await monter(reglage);
     await screen.findByText(t.jourAbsent);
     await fireEvent.press(screen.getByText(t.retourPlanning));
-    expect(router.replace).toHaveBeenCalledWith('/planning');
+    expect(router.replace).toHaveBeenCalledWith({ pathname: '/reviser', params: { onglet: 'parcours' } });
   });
 
   it('hors ligne avec une copie : la séance se termine sur l’appareil et la coche part dans la file (issue #74)', async () => {
@@ -234,6 +234,6 @@ describe.each(['clair', 'sombre'] as const)('Page d’une séance (%s)', (reglag
     await monter(reglage);
     await screen.findByText('Définition');
     await fireEvent.press(screen.getByRole('button', { name: t.retour }));
-    expect(router.replace).toHaveBeenCalledWith('/planning');
+    expect(router.replace).toHaveBeenCalledWith({ pathname: '/reviser', params: { onglet: 'parcours' } });
   });
 });
