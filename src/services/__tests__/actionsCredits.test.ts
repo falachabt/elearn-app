@@ -9,6 +9,7 @@ import {
   executerActionQuotidienne,
   jourServeur,
   lireEtatActionsQuotidiennes,
+  oublierActionsServeur,
   reclamerActionServeur,
 } from '../actionsCredits';
 
@@ -36,6 +37,7 @@ jest.mock('../rappels', () => ({
 
 beforeEach(async () => {
   await AsyncStorage.clear();
+  oublierActionsServeur();
   jest.clearAllMocks();
 });
 
@@ -167,6 +169,51 @@ describe('actions du jour : le serveur fait foi', () => {
     expect(await aDesActionsDisponibles({ illimite: false } as never, jour, { client, utilisateurId: 'u1' })).toBe(false);
     const { client: partiel } = clientServeur({ reclamees: ['site_web'] });
     expect(await aDesActionsDisponibles({ illimite: false } as never, jour, { client: partiel, utilisateurId: 'u2' })).toBe(true);
+  });
+
+  it('le point « actions disponibles » ne relit pas le serveur à chaque nouveau solde', async () => {
+    const { client, from } = clientServeur({ reclamees: ['site_web'] });
+    for (let i = 0; i < 5; i++) {
+      expect(await aDesActionsDisponibles({ illimite: false, total: i } as never, jour, { client, utilisateurId: 'u1' })).toBe(true);
+    }
+    expect(from).toHaveBeenCalledTimes(1);
+  });
+
+  it('lectures simultanées des compteurs : une seule requête', async () => {
+    const { client, from } = clientServeur({ reclamees: [] });
+    await Promise.all([1, 2, 3].map(() => aDesActionsDisponibles({ illimite: false } as never, jour, { client, utilisateurId: 'u1' })));
+    expect(from).toHaveBeenCalledTimes(1);
+  });
+
+  it('la mémoire vaut pour un élève et un jour serveur', async () => {
+    const { client, from } = clientServeur({ reclamees: [] });
+    await aDesActionsDisponibles({ illimite: false } as never, jour, { client, utilisateurId: 'u1' });
+    await aDesActionsDisponibles({ illimite: false } as never, jour, { client, utilisateurId: 'u2' });
+    await aDesActionsDisponibles({ illimite: false } as never, new Date('2026-10-07T10:00:00Z'), { client, utilisateurId: 'u1' });
+    expect(from).toHaveBeenCalledTimes(3);
+  });
+
+  it('un échec de lecture n’est pas gardé : la lecture suivante réessaie', async () => {
+    const enPanne = clientServeur({ erreurLecture: true });
+    expect(await aDesActionsDisponibles({ illimite: false } as never, jour, { client: enPanne.client, utilisateurId: 'u1' })).toBe(true);
+    const { client, from } = clientServeur({ reclamees: ['site_web', 'facebook', 'instagram'] });
+    expect(await aDesActionsDisponibles({ illimite: false } as never, jour, { client, utilisateurId: 'u1' })).toBe(false);
+    expect(from).toHaveBeenCalledTimes(1);
+  });
+
+  it('une action réclamée après la lecture éteint le point sans relire le serveur', async () => {
+    const { client, from } = clientServeur({ reclamees: ['site_web', 'facebook'] });
+    expect(await aDesActionsDisponibles({ illimite: false } as never, jour, { client, utilisateurId: 'u1' })).toBe(true);
+    await enregistrerActionQuotidienne('instagram', jour, 'u1');
+    expect(await aDesActionsDisponibles({ illimite: false } as never, jour, { client, utilisateurId: 'u1' })).toBe(false);
+    expect(from).toHaveBeenCalledTimes(1);
+  });
+
+  it('la page des actions relit toujours le serveur', async () => {
+    const { client, from } = clientServeur({ reclamees: [] });
+    await aDesActionsDisponibles({ illimite: false } as never, jour, { client, utilisateurId: 'u1' });
+    await lireEtatActionsQuotidiennes(jour, { client, utilisateurId: 'u1' });
+    expect(from).toHaveBeenCalledTimes(2);
   });
 
   it('réclamer : crédité, déjà réclamé ou erreur', async () => {
