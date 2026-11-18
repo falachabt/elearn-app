@@ -1,5 +1,6 @@
 import type { CertApi } from '../api';
 import type { Examen, FinTentative, QuestionServie, ReponseEnvoyee, ResultatReponse, Tentative } from '../types';
+import type { DetailDeTentative } from '../detailTentative';
 import { LIGNES_SEED } from './fixtures';
 import type { PlanFrise } from '../planFrise';
 import type { DemarrageMini, EtatGains, MotCarnetServi, NotionFiche, Revision, ResultatGain, ResultatMot, SeanceServie, Stats, TentativeListee } from '../types';
@@ -86,7 +87,7 @@ export const STATS_VIDE = (periode: Stats['periode']): Stats => ({
 export type Appels = {
   demarrer: number; terminer: number; plans: unknown[]; envois: number; series: unknown[]; mots: string[]; explications: string[];
   notionsOuvertes: { id: string; secondes: number }[]; resultatsMots: ResultatMot[][]; seances: unknown[]; compositions: { minutes: number; eviter: number | null }[];
-  minis: { partie: number | null; longueur: number }[]; abandons: { id: string; raison: string }[]; gainsReclames: string[]; stats: number[]; signalements: { question: string; type: string; uuid: string }[]; plansLus?: number; plansConstruits?: number;
+  minis: { partie: number | null; longueur: number }[]; abandons: { id: string; raison: string }[]; gainsReclames: string[]; stats: number[]; signalements: { question: string; type: string; uuid: string }[]; details: string[]; plansLus?: number; plansConstruits?: number;
 };
 
 /** API en mémoire : la bonne réponse est toujours l'option 0 ; les notions suivent la partie. */
@@ -97,6 +98,8 @@ export function creerApiFausse(options: {
   /** Tentatives relues par identifiant (`lireTentative`), par exemple le diagnostic terminé d'un compte reconnecté. */
   tentativeParId?: Record<string, Tentative>;
   abandon?: { rembourse: boolean };
+  /** Détail servi par `cert_attempt_detail`, par tentative ; 'echec' = erreur réseau ; absent = erreur (autre version du serveur). */
+  detailTentative?: Record<string, DetailDeTentative> | 'echec';
   /** Surcharges de réglages `cert_settings` (par clé), fusionnées dans les lignes du seed. */
   reglages?: Record<string, unknown>;
   /** Série : les questions servies partagent un même groupe (conversation ou texte), comme les parties 3, 4, 6 et 7. */
@@ -106,7 +109,7 @@ export function creerApiFausse(options: {
   /** Plan renvoyé par `cert_plan_build` quand `plan` est absent. */
   planConstruit?: PlanFrise | null;
 } = {}) {
-  const appels: Appels = { demarrer: 0, terminer: 0, plans: [], envois: 0, series: [], mots: [], explications: [], notionsOuvertes: [], resultatsMots: [], seances: [], compositions: [], minis: [], abandons: [], gainsReclames: [], stats: [], signalements: [] };
+  const appels: Appels = { demarrer: 0, terminer: 0, plans: [], envois: 0, series: [], mots: [], explications: [], notionsOuvertes: [], resultatsMots: [], seances: [], compositions: [], minis: [], abandons: [], gainsReclames: [], stats: [], signalements: [], details: [] };
   const minis = new Map<string, { part: number | null; length: number; questions: QuestionServie[] }>();
   let echecs = options.echecsTerminer ?? 0;
   let echecsEnvoi = options.echecsEnvoi ?? 0;
@@ -277,6 +280,12 @@ export function creerApiFausse(options: {
       const m = minis.get(id);
       if (!m) throw new Error('tentative introuvable');
       return { attempt_id: id, kind: 'mini', part: m.part, length: m.questions.length, status: 'in_progress', started_at: new Date().toISOString(), credits_spent: 1, questions: m.questions, replay: false };
+    },
+    async lireDetailTentative(id) {
+      appels.details.push(id);
+      const d = options.detailTentative;
+      if (!d || d === 'echec' || !d[id]) throw new Error('détail indisponible');
+      return d[id]!;
     },
     async abandonnerTentative(id, raison) {
       appels.abandons.push({ id, raison });

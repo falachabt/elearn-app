@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { obtenirApi } from '@/services/certification/api';
 import { lireDetail, type DetailDeTentative } from '@/services/certification/detailTentative';
 import { chargerTentative, dureeMinutes } from '@/services/certification/historique';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -17,6 +18,20 @@ import { resultatTentative, titreTentative } from './HistoriqueTests';
 import { EnteteToeic, EtiquetteSection, LigneChoix, ListeChoix, Squelette, TuilesCollees } from './ui';
 import { useChargement } from './useChargement';
 
+/**
+ * Le serveur d'abord, pour que le détail suive le compte sur tous les appareils ; hors ligne ou en erreur, le détail
+ * gardé sur l'appareil au moment du bilan (ou `null`, et l'écran garde son affichage par partie).
+ */
+export async function detailDeTentative(id: string, questions: string[]): Promise<DetailDeTentative | null> {
+  try {
+    const d = await obtenirApi().lireDetailTentative(id, questions);
+    if (d.notions.length > 0 || d.ratees.length > 0) return d;
+  } catch {
+    // Hors ligne ou serveur sans la fonction : repli ci-dessous.
+  }
+  return lireDetail(id);
+}
+
 /** T7 · Détail d'une tentative : score, temps et résultat par partie. */
 export function DetailTentative() {
   const { t } = useTraduction();
@@ -24,7 +39,7 @@ export function DetailTentative() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const lire = useCallback(async () => {
     const tentative = await chargerTentative(String(id));
-    return { tentative, detail: tentative ? await lireDetail(tentative.id) : null };
+    return { tentative, detail: tentative ? await detailDeTentative(tentative.id, tentative.questions) : null };
   }, [id]);
   const { etat, recharger } = useChargement(lire);
   const x = etat.phase === 'ok' ? etat.valeur.tentative : null;

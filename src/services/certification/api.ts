@@ -1,6 +1,7 @@
 import { getSupabase } from '../supabase';
 import type { LigneReglage } from './reglages';
 import { jourDe, type Jour } from './jours';
+import type { DetailDeTentative } from './detailTentative';
 import { titreAffiche } from './titre';
 import type { EtatMaitrise } from './certMaitrise';
 import type { TypeSignalement } from './signalement';
@@ -69,6 +70,8 @@ export interface CertApi {
   lireTentative(tentativeId: string): Promise<Tentative>;
   /** Abandon : rembourse dans la fenêtre prévue par les réglages. */
   abandonnerTentative(tentativeId: string, raison: 'user' | 'expired'): Promise<{ statut: Tentative['status']; rembourse: boolean; solde: number | null }>;
+  /** Détail d'une tentative terminée (T7) : réussite par notion et questions ratées, lu au serveur (suit le compte). `questions` = identifiants du test, pour retrouver la position. */
+  lireDetailTentative(tentativeId: string, questions: string[]): Promise<DetailDeTentative>;
   /** Historique des tentatives (T4), plus récentes d'abord. */
   listerTentatives(exam: string): Promise<TentativeListee[]>;
   /** Suivi des tests faits (demi-tests, test complet) : statut, nombre, dernier et meilleur score (propriétaire seul ; un seul appel, tous examens confondus). */
@@ -107,8 +110,29 @@ function verifier<T>(res: { data: T | null; error: { message: string } | null })
   return res.data as T;
 }
 
+type DetailServeur = {
+  notions?: { notion_id: string; title: string; correct: number; total: number }[];
+  missed?: { question_id: string; part: number; number: number; notion_id: string | null }[];
+} | null;
+
+/** Traduit la réponse de `cert_attempt_detail` dans la forme du détail gardé sur l'appareil. */
+export function detailDepuisServeur(j: DetailServeur, questions: string[]): DetailDeTentative {
+  const notions = (j?.notions ?? []).map((n) => ({ id: n.notion_id, titre: titreAffiche(n.title), bonnes: n.correct, total: n.total }));
+  notions.sort((a, b) => a.bonnes / a.total - b.bonnes / b.total || a.titre.localeCompare(b.titre));
+  const titres = new Map(notions.map((n) => [n.id, n.titre]));
+  const ratees = (j?.missed ?? []).map((m) => {
+    const rang = questions.indexOf(m.question_id);
+    return {
+      id: m.question_id, position: rang >= 0 ? rang + 1 : m.number, part: m.part, notionId: m.notion_id,
+      notionTitre: m.notion_id ? titres.get(m.notion_id) ?? null : null, sansReponse: false,
+    };
+  });
+  ratees.sort((a, b) => a.position - b.position);
+  return { notions, ratees };
+}
+
 type Revisee = 'lireRevision' | 'lireCarnet' | 'composerSeance' | 'lireNotion' | 'ouvrirNotion' | 'envoyerResultatsMots' | 'terminerSeance';
-type Testee = 'demarrerMini' | 'listerTests' | 'demarrerTest' | 'listerDefsTests' | 'demarrerDefTest' | 'lireTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireProgressionTests' | 'lireStats' | 'lireGains' | 'reclamerGain' | 'signalerErreur';
+type Testee = 'demarrerMini' | 'listerTests' | 'demarrerTest' | 'listerDefsTests' | 'demarrerDefTest' | 'lireTentative' | 'lireDetailTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireProgressionTests' | 'lireStats' | 'lireGains' | 'reclamerGain' | 'signalerErreur';
 const baseServeur: Omit<CertApi, Revisee | Testee> = {
   async lirePlanFormation(exam) {
     const res = await rpcAuthentifie('cert_plan_get', { p_exam: exam });
@@ -281,6 +305,10 @@ const testsServeur: Pick<CertApi, Testee> = {
     const res = await rpcAuthentifie('cert_attempt_abandon', { p_attempt: tentativeId, p_reason: raison });
     const j = verifier(res) as { status: Tentative['status']; refunded: boolean; balance?: number };
     return { statut: j.status, rembourse: !!j.refunded, solde: j.balance ?? null };
+  },
+  lireDetailTentative: async (tentativeId, questions) => {
+    const res = await rpcAuthentifie('cert_attempt_detail', { p_attempt: tentativeId });
+    return detailDepuisServeur(verifier(res), questions);
   },
   listerTentatives: async (exam) => {
     const res = await getSupabase()

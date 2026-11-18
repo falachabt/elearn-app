@@ -543,6 +543,10 @@ export const apiDemo: CertApi = {
     if (!e) throw new Error('tentative introuvable');
     return e.tentative;
   },
+  async lireDetailTentative() {
+    // Pas de serveur en démonstration : l'écran retombe sur le détail gardé sur l'appareil.
+    throw new Error('détail indisponible en démonstration');
+  },
   async abandonnerTentative(id) {
     const s = await lire();
     const e = Object.values(s.tentatives).find((x) => x.tentative.attempt_id === id);
