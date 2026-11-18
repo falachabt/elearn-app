@@ -197,7 +197,8 @@ const styles = StyleSheet.create({
   grilleDroite: { flex: 2, minWidth: 0 },
   colonne: { gap: 2 },
   anneauVide: { width: 96, height: 96, borderRadius: 48, borderWidth: bord.normal, borderStyle: 'dashed', alignItems: 'center', justifyContent: 'center', padding: espace[2] },
-  droite: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  // marginLeft auto : la cloche et les crédits restent à droite, même quand l'en-tête est étroit (web).
+  droite: { flexDirection: 'row', alignItems: 'center', gap: espace[2], marginLeft: 'auto' },
   ligneBadges: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[2] },
   ligne: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: espace[2] },
   pastille: { paddingHorizontal: espace[3], paddingVertical: espace[1], borderWidth: bord.normal, borderRadius: rayon.s },
