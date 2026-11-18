@@ -7,6 +7,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { lireProfil, type Profil } from '@/services/profil';
 import { chargerAccueil, type DonneesAccueil } from '@/services/certification/accueil';
+import { chargerPageStats } from '@/services/certification/stats';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -28,6 +29,8 @@ import { useChargement } from './useChargement';
 export function AccueilToeic() {
   const { t } = useTraduction();
   const { etat, recharger } = useChargement(chargerAccueil);
+  // Le cercle lit le même score que l'écran Statistiques (période « Tout »), pas le score du diagnostic.
+  const statistiques = useChargement(chargerScoreAccueil);
   const frise = useFrise();
   // Chip changeur de profil en haut à gauche, comme sur les accueils élève et concours
   // (demande de Benny du 25/10/2026) : le profil local donne le libellé (l'examen en cours).
@@ -74,7 +77,7 @@ export function AccueilToeic() {
           <Bouton libelle={t('certification.reessayer')} onPress={recharger} />
         </View>
       ) : null}
-      {etat.phase === 'ok' ? <Contenu d={etat.valeur} recharger={recharger} frise={frise} /> : null}
+      {etat.phase === 'ok' ? <Contenu d={etat.valeur} recharger={recharger} frise={frise} score={statistiques.etat.phase === 'ok' ? statistiques.etat.valeur : null} /> : null}
     </Ecran>
   );
 }
@@ -85,7 +88,14 @@ function dateLongue(jour: string, langue: string): string {
   return new Date(a!, m! - 1, j!).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
-function Contenu({ d, recharger, frise }: { d: DonneesAccueil; recharger: () => void; frise: ReturnType<typeof useFrise> }) {
+/** Score estimé de la page Statistiques (période « Tout »), plafonné à l'échelle de l'examen ; `null` sans estimation. */
+async function chargerScoreAccueil(): Promise<number | null> {
+  const r = await chargerPageStats(0);
+  const valeur = r.stats.score?.valeur ?? null;
+  return valeur === null ? null : Math.min(valeur, r.scoreMax);
+}
+
+function Contenu({ d, recharger, frise, score }: { d: DonneesAccueil; recharger: () => void; frise: ReturnType<typeof useFrise>; score: number | null }) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const compte = d.plan?.dateTest && d.joursRestants !== null && d.joursRestants >= 0
@@ -112,18 +122,21 @@ function Contenu({ d, recharger, frise }: { d: DonneesAccueil; recharger: () => 
       {d.revision.depuisCopie ? <Banniere ton="info" titre={t('certification.reviser.copie')} /> : null}
       {compte && d.plan?.dateTest ? (
         <View style={styles.grille}>
-          <Carte style={[styles.grilleGauche, { gap: espace[3] }]}>
+          <View style={styles.grilleGauche}>
+            <Carte style={{ gap: espace[3], flex: 1 }}>
             <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
             <View style={styles.colonne}>
               <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
               <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: dateLongue(d.plan.dateTest, langue) })}</Text>
             </View>
             <BarreProgression pourcent={progressionSemaine} libelle={t('certification.accueilToeic.planBarre')} />
-          </Carte>
-          <Carte style={[styles.grilleDroite, { gap: espace[2] }]}>
+            </Carte>
+          </View>
+          <View style={styles.grilleDroite}>
+            <Carte style={{ gap: espace[2], flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             {d.plan.objectif !== null ? (
               <>
-                <AnneauObjectif score={d.score} objectif={d.plan.objectif} />
+                <AnneauObjectif score={score} objectif={d.plan.objectif} taille={120} />
                 <Text style={[typo.petit, { color: theme.texte.secondaire, textAlign: 'center' }]}>{t('certification.accueilToeic.objectif', { score: d.plan.objectif })}</Text>
               </>
             ) : (
@@ -139,7 +152,8 @@ function Contenu({ d, recharger, frise }: { d: DonneesAccueil; recharger: () => 
                 </View>
               </Appui>
             )}
-          </Carte>
+            </Carte>
+          </View>
         </View>
       ) : (
         // Sans date de test (maquette V30-ACCUEIL-SANS-DATE) : invitation en pointillés à ajouter la date.
@@ -177,8 +191,8 @@ function Contenu({ d, recharger, frise }: { d: DonneesAccueil; recharger: () => 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
   grille: { flexDirection: 'row', gap: espace[3], alignItems: 'stretch' },
-  grilleGauche: { flex: 3, minWidth: 0, justifyContent: 'space-between' },
-  grilleDroite: { flex: 2, minWidth: 0, alignItems: 'center', justifyContent: 'center' },
+  grilleGauche: { flex: 3, minWidth: 0 },
+  grilleDroite: { flex: 2, minWidth: 0 },
   colonne: { gap: 2 },
   anneauVide: { width: 96, height: 96, borderRadius: 48, borderWidth: bord.normal, borderStyle: 'dashed', alignItems: 'center', justifyContent: 'center', padding: espace[2] },
   droite: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
