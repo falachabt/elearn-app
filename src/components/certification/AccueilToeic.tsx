@@ -77,7 +77,7 @@ export function AccueilToeic() {
           <Bouton libelle={t('certification.reessayer')} onPress={recharger} />
         </View>
       ) : null}
-      {etat.phase === 'ok' ? <Contenu d={etat.valeur} recharger={recharger} frise={frise} score={statistiques.etat.phase === 'ok' ? statistiques.etat.valeur : null} /> : null}
+      {etat.phase === 'ok' ? <Contenu d={etat.valeur} recharger={recharger} frise={frise} score={(statistiques.etat.phase === 'ok' ? statistiques.etat.valeur : null) ?? etat.valeur.score} /> : null}
     </Ecran>
   );
 }
@@ -120,21 +120,38 @@ function Contenu({ d, recharger, frise, score }: { d: DonneesAccueil; recharger:
   return (
     <View style={styles.groupe}>
       {d.revision.depuisCopie ? <Banniere ton="info" titre={t('certification.reviser.copie')} /> : null}
-      {compte && d.plan?.dateTest ? (
-        <View style={styles.grille}>
-          <View style={styles.grilleGauche}>
+      {/* La carte à deux colonnes reste toujours là : sans date ou sans objectif, elle invite à les fixer (jamais masquée). */}
+      <View style={styles.grille}>
+        <View style={styles.grilleGauche}>
+          <Appui
+            accessibilityRole="button"
+            accessibilityLabel={d.plan?.dateTest ? undefined : `${t('certification.accueilToeic.sansDateTitre')}. ${t('certification.accueilToeic.sansDateAide')}`}
+            onPress={d.plan?.dateTest ? undefined : () => router.push({ pathname: '/certification/objectif', params: { modifier: '1' } } as never)}
+            decalage={0}
+            rayon={14}
+          >
             <Carte style={[styles.carteGrille, { gap: espace[3], justifyContent: 'space-between' }]}>
-            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
-            <View style={styles.colonne}>
-              <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
-              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: dateLongue(d.plan.dateTest, langue) })}</Text>
-            </View>
-            <BarreProgression pourcent={progressionSemaine} libelle={t('certification.accueilToeic.planBarre')} />
+              <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
+              {compte && d.plan?.dateTest ? (
+                <>
+                  <View style={styles.colonne}>
+                    <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
+                    <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: dateLongue(d.plan.dateTest, langue) })}</Text>
+                  </View>
+                  <BarreProgression pourcent={progressionSemaine} libelle={t('certification.accueilToeic.planBarre')} />
+                </>
+              ) : (
+                <View style={styles.colonne}>
+                  <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('certification.accueilToeic.sansDateTitre')}</Text>
+                  <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.sansDateAide')}</Text>
+                </View>
+              )}
             </Carte>
-          </View>
-          <View style={styles.grilleDroite}>
-            <Carte style={[styles.carteGrille, { gap: espace[2], alignItems: 'center', justifyContent: 'center' }]}>
-            {d.plan.objectif !== null ? (
+          </Appui>
+        </View>
+        <View style={styles.grilleDroite}>
+          <Carte style={[styles.carteGrille, { gap: espace[2], alignItems: 'center', justifyContent: 'center' }]}>
+            {d.plan?.objectif != null ? (
               <>
                 <AnneauObjectif score={score} objectif={d.plan.objectif} taille={84} />
                 <Text style={[typo.petit, { color: theme.texte.secondaire, textAlign: 'center' }]}>{t('certification.accueilToeic.objectif', { score: d.plan.objectif })}</Text>
@@ -152,31 +169,9 @@ function Contenu({ d, recharger, frise, score }: { d: DonneesAccueil; recharger:
                 </View>
               </Appui>
             )}
-            </Carte>
-          </View>
+          </Carte>
         </View>
-      ) : (
-        // Sans date de test (maquette V30-ACCUEIL-SANS-DATE) : invitation en pointillés à ajouter la date.
-        <>
-          <Appui
-            accessibilityRole="button"
-            accessibilityLabel={`${t('certification.accueilToeic.sansDateTitre')}. ${t('certification.accueilToeic.sansDateAide')}`}
-            onPress={() => router.push({ pathname: '/certification/objectif', params: { modifier: '1' } } as never)}
-            decalage={0}
-            rayon={14}
-          >
-            <View style={[styles.invitation, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-              <View style={[styles.invitationIcone, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
-                <CalendarDays size={20} color={theme.texte.principal} strokeWidth={2} />
-              </View>
-              <View style={styles.invitationTexte}>
-                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.accueilToeic.sansDateTitre')}</Text>
-                <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.sansDateAide')}</Text>
-              </View>
-            </View>
-          </Appui>
-        </>
-      )}
+      </View>
       <ParcoursDuJour frise={frise} />
       {serie ? (
         <View style={styles.groupe}>

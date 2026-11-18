@@ -116,12 +116,13 @@ describe('N1 · Accueil TOEIC', () => {
     expect(screen.queryByText(t.accueilToeic.planSemaine.replace('{{prevues}}', '3').replace('{{faites}}', '1'))).toBeNull();
   });
 
-  it('sans date de test : pas de carte du compteur et pas de phrase du plan', async () => {
+  it('sans date de test : la carte reste avec « Fixe ta date », sans phrase du plan', async () => {
     await ecrirePlan({ exam: 'toeic', objectif: 800, minutes: 20 }, { effacerDate: true });
     await monter(<AccueilToeic />);
     expect(await screen.findByText(t.accueilToeic.sansDateTitre)).toBeTruthy();
     expect(screen.queryByText(t.accueilToeic.planSemaine.replace('{{prevues}}', '3').replace('{{faites}}', '0'))).toBeNull();
-    expect(screen.queryByText(t.accueilToeic.compteEtiquette)).toBeNull();
+    // Demande de Benny (18/11) : la carte à deux colonnes reste visible, avec « Fixe ta date » à gauche.
+    expect(screen.getByText(t.accueilToeic.compteEtiquette)).toBeTruthy();
   });
 
   it('sans date de test : invitation en pointillés « Ajoute la date de ton examen » qui ouvre l’objectif (V30-ACCUEIL-SANS-DATE)', async () => {

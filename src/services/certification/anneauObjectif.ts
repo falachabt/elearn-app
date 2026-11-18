@@ -10,7 +10,12 @@ export type EtatAnneau = {
   atteint: boolean;
   /** Pas encore de score estimé : pas de remplissage, pas de chiffre au centre. */
   sansScore: boolean;
+  /** Rouge sous 75 % de l'objectif, orange de 75 % à moins de 100 %, vert à 100 % et au-delà (demande de Benny, 18/11). */
+  couleur: 'rouge' | 'orange' | 'vert';
 };
+
+/** Seuil du passage du rouge à l'orange, en part de l'objectif. */
+export const SEUIL_ORANGE = 0.75;
 
 const borne = (v: number): number => Math.min(1, Math.max(0, v));
 
@@ -20,11 +25,8 @@ const borne = (v: number): number => Math.min(1, Math.max(0, v));
  */
 export function etatAnneau(score: number | null, objectif: number): EtatAnneau {
   const tiret = borne(objectif / ECHELLE_ANNEAU);
-  if (score === null) return { remplissage: 0, tiret, atteint: false, sansScore: true };
-  return {
-    remplissage: borne(score / ECHELLE_ANNEAU),
-    tiret,
-    atteint: score >= objectif,
-    sansScore: false,
-  };
+  if (score === null) return { remplissage: 0, tiret, atteint: false, sansScore: true, couleur: 'rouge' };
+  const atteint = score >= objectif;
+  const couleur = atteint ? 'vert' : score >= objectif * SEUIL_ORANGE ? 'orange' : 'rouge';
+  return { remplissage: borne(score / ECHELLE_ANNEAU), tiret, atteint, sansScore: false, couleur };
 }
