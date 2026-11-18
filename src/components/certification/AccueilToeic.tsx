@@ -136,7 +136,7 @@ function Contenu({ d, recharger, frise, score }: { d: DonneesAccueil; recharger:
             <Carte style={[styles.carteGrille, { gap: espace[2], alignItems: 'center', justifyContent: 'center' }]}>
             {d.plan.objectif !== null ? (
               <>
-                <AnneauObjectif score={score} objectif={d.plan.objectif} taille={120} />
+                <AnneauObjectif score={score} objectif={d.plan.objectif} taille={96} />
                 <Text style={[typo.petit, { color: theme.texte.secondaire, textAlign: 'center' }]}>{t('certification.accueilToeic.objectif', { score: d.plan.objectif })}</Text>
               </>
             ) : (
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
   grille: { flexDirection: 'row', gap: espace[3], alignItems: 'stretch' },
   grilleGauche: { flex: 3, minWidth: 0 },
   // Même hauteur pour les deux cartes de la grille (demande de Benny) : la plus haute fixe la hauteur.
-  carteGrille: { minHeight: 200 },
+  carteGrille: { minHeight: 160 },
   grilleDroite: { flex: 2, minWidth: 0 },
   colonne: { gap: 2 },
   anneauVide: { width: 96, height: 96, borderRadius: 48, borderWidth: bord.normal, borderStyle: 'dashed', alignItems: 'center', justifyContent: 'center', padding: espace[2] },
