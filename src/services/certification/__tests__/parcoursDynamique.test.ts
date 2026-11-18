@@ -107,3 +107,33 @@ describe('composition de la journée', () => {
     expect(etapes.find((e) => e.type === 'revue_semaine')).toEqual({ type: 'revue_semaine', questions: 1 });
   });
 });
+
+import { etatPratique, etatTest, pratiqueValidee, testValide } from '../parcoursDynamique';
+
+describe('validation (seuil 80 %)', () => {
+  it('pratique : 4 justes sur 5 valident, 3 sur 5 non', () => {
+    expect(pratiqueValidee(4, 5, 5)).toBe(true);
+    expect(pratiqueValidee(3, 5, 5)).toBe(false);
+  });
+
+  it('pratique : 3 questions sur 10 ne valident rien, même toutes justes', () => {
+    expect(pratiqueValidee(3, 3, 10)).toBe(false);
+    expect(pratiqueValidee(8, 10, 10)).toBe(true);
+  });
+
+  it('test : objectif 800 donne un seuil de 640 sur 990', () => {
+    expect(testValide(640, 800)).toBe(true);
+    expect(testValide(639, 800)).toBe(false);
+    expect(testValide(700, 0)).toBe(false);
+  });
+
+  it('états : à faire, validé ou à refaire (rouge)', () => {
+    expect(etatPratique(0, 0, 5)).toBe('a_faire');
+    expect(etatPratique(3, 3, 5)).toBe('a_faire');
+    expect(etatPratique(5, 4, 5)).toBe('validee');
+    expect(etatPratique(5, 2, 5)).toBe('a_refaire');
+    expect(etatTest(null, 800)).toBe('a_faire');
+    expect(etatTest(600, 800)).toBe('a_refaire');
+    expect(etatTest(660, 800)).toBe('validee');
+  });
+});

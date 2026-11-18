@@ -114,3 +114,34 @@ export function composerJournee(e: EntreeJour): EtapeJour[] {
   if (miniTestDu(e.dernierMiniTest, e.aujourdhui)) etapes.push({ type: 'mini_test' });
   return etapes;
 }
+
+/** Seuil de validation validé par Benny (17 novembre 2026) : 80 % de l'objectif, ou 80 % des questions prévues. */
+export const SEUIL_VALIDATION = 0.8;
+
+/**
+ * Pratique après une leçon : validée seulement si toutes les questions prévues sont faites ET qu'au moins 80 % sont justes
+ * (5 questions : 4 justes minimum). « 3 questions sur 10 » ne valide rien.
+ */
+export function pratiqueValidee(justes: number, faites: number, prevues: number): boolean {
+  if (prevues <= 0 || faites < prevues) return false;
+  return justes >= Math.ceil(SEUIL_VALIDATION * prevues);
+}
+
+/** Test (mini-test ou test complet) : validé si le score atteint 80 % de l'objectif fixé (objectif 800 : seuil 640). */
+export function testValide(score: number, objectif: number): boolean {
+  if (objectif <= 0) return false;
+  return score >= Math.ceil(SEUIL_VALIDATION * objectif);
+}
+
+/** État affiché sur la timeline : rien fait, validé, ou fait mais à refaire (rouge). */
+export type EtatValidation = 'a_faire' | 'validee' | 'a_refaire';
+
+export function etatPratique(faites: number, justes: number, prevues: number): EtatValidation {
+  if (faites === 0) return 'a_faire';
+  return pratiqueValidee(justes, faites, prevues) ? 'validee' : faites < prevues ? 'a_faire' : 'a_refaire';
+}
+
+export function etatTest(score: number | null, objectif: number): EtatValidation {
+  if (score === null) return 'a_faire';
+  return testValide(score, objectif) ? 'validee' : 'a_refaire';
+}
