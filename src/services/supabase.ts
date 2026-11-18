@@ -30,6 +30,35 @@ function erreurReseauSimulee(): TypeError {
 }
 
 /**
+ * Fausse requête renvoyée quand la simulation « hors ligne » est active : **chaînable** comme un constructeur
+ * Supabase (`.select().eq().maybeSingle()`…), et qui ne rejette qu'à l'`await`.
+ *
+ * Une promesse rejetée dès la première méthode casserait la chaîne deux fois : la méthode suivante n'existe pas sur
+ * une promesse (TypeError, attrapé par l'appelant), et le rejet d'origine reste sans gestionnaire — capturé comme
+ * « unhandled rejection » par le SDK d'erreurs. Ici, aucune promesse n'existe avant l'`await` : rien ne flotte, et
+ * le `catch` de l'appelant reçoit l'erreur réseau simulée, comme lors d'une vraie coupure.
+ */
+function requeteHorsLigne(): PromiseLike<never> {
+  const erreur = erreurReseauSimulee();
+  // Le rejet est construit à la demande et aussitôt rattaché à un gestionnaire : jamais de promesse orpheline.
+  const terminaisons: Record<string, (...args: never[]) => Promise<never>> = {
+    then: (onFulfilled, onRejected) => Promise.reject(erreur).then(onFulfilled, onRejected),
+    catch: (onRejected) => Promise.reject(erreur).catch(onRejected),
+    finally: (onFinally) => Promise.reject(erreur).finally(onFinally),
+  };
+  const proxy: unknown = new Proxy(
+    {},
+    {
+      get(_cible, prop) {
+        // `then`, `catch`, `finally` terminent la chaîne ; toute autre méthode (select, eq, maybeSingle…) la prolonge.
+        return terminaisons[prop as string] ?? (() => proxy);
+      },
+    },
+  );
+  return proxy as PromiseLike<never>;
+}
+
+/**
  * Intercepte les lectures serveur quand la simulation « hors ligne » est active (page Paramètres développeur). C'est
  * ici, sur le client partagé, et pas dans chaque service : une seule porte, impossible à contourner par un nouvel
  * appel.
@@ -38,15 +67,14 @@ function erreurReseauSimulee(): TypeError {
  * Les opérations d'authentification (`signIn`, `signUp`, `getSession`) restent inchangées, pour ne pas déconnecter
  * l'élève pendant un test. La sonde réseau n'utilise pas ce client : elle a sa propre coupure dans `sonder()`.
  *
- * La coupure est **réelle** : l'appel renvoie une promesse rejetée avec une erreur réseau, si bien que chaque écran
- * retombe sur son repli hors ligne (cache local ou bandeau « vérifie ta connexion »), exactement comme lors d'une
- * vraie perte de réseau.
+ * La coupure est **réelle** : l'appel rejette avec une erreur réseau à l'`await`, si bien que chaque écran retombe
+ * sur son repli hors ligne (cache local ou bandeau « vérifie ta connexion »), exactement comme lors d'une vraie
+ * perte de réseau.
  */
 function envelopperPourSimulation(base: SupabaseClient): SupabaseClient {
-  // Renvoie une promesse rejetée quand la simulation est active, `null` sinon. C'est une promesse rejetée et non un
-  // `throw` : un `throw` synchrone dans un `rpc` contournerait le `await`/`catch` de l'appelant.
-  const rejetSiHorsLigne = (): Promise<never> | null =>
-    simulationHorsLigneActive() ? Promise.reject(erreurReseauSimulee()) : null;
+  // Renvoie la fausse requête hors ligne quand la simulation est active, `null` sinon. Pas un `throw` synchrone : il
+  // contournerait le `await`/`catch` de l'appelant. Pas une promesse rejetée immédiate non plus : voir requeteHorsLigne.
+  const rejetSiHorsLigne = (): PromiseLike<never> | null => (simulationHorsLigneActive() ? requeteHorsLigne() : null);
 
   // Toute réponse serveur réussie rafraîchit le « dernier contact » (via `signalerSucces`) : une preuve aussi directe
   // qu'une sonde. C'est ce qui permet à un téléchargement fraîchement terminé de ne pas être jugé « expiré » dès qu'on
@@ -81,7 +109,7 @@ function envelopperPourSimulation(base: SupabaseClient): SupabaseClient {
   });
 }
 
-function envelopperRequete<T>(constructeur: T, rejet: () => Promise<never> | null, signaler: <R>(p: Promise<R>) => Promise<R>): T {
+function envelopperRequete<T>(constructeur: T, rejet: () => PromiseLike<never> | null, signaler: <R>(p: Promise<R>) => Promise<R>): T {
   return new Proxy(constructeur as object, {
     get(cible, prop, receveur) {
       const valeur = Reflect.get(cible, prop, receveur);
