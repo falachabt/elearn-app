@@ -140,7 +140,7 @@ export function ListeTests() {
 
   return (
     <Ecran piedBordure
-      insetBas={false}
+      // Écran poussé sans barre d'onglets : le pied respecte la barre système (retour de Benny, 18/11).
       entete={<EnteteToeic titre={t(CLE_TITRE_LISTE[type], { partie: partie ?? 0 })} onRetour={() => router.back()} />}
       pied={etat.phase === 'ok' && conseille ? (
         <Bouton

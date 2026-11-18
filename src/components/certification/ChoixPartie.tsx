@@ -104,7 +104,7 @@ export function ChoixPartie() {
 
   return (
     <Ecran piedBordure
-      insetBas={false}
+      // Écran poussé sans barre d'onglets : le pied respecte la barre système (retour de Benny, 18/11).
       entete={<EnteteToeic titre={t('certification.tests.listes.choixPartie.titre')} onRetour={() => router.back()} />}
       pied={conseillee ? <Bouton libelle={t('certification.tests.listes.choixPartie.ouvrir', { partie: conseillee.partie })} onPress={() => ouvrir(conseillee.partie)} retour /> : undefined}
     >
