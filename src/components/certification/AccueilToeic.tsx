@@ -123,7 +123,7 @@ function Contenu({ d, recharger, frise, score }: { d: DonneesAccueil; recharger:
       {compte && d.plan?.dateTest ? (
         <View style={styles.grille}>
           <View style={styles.grilleGauche}>
-            <Carte style={{ gap: espace[3], flex: 1 }}>
+            <Carte style={[styles.carteGrille, { gap: espace[3], justifyContent: 'space-between' }]}>
             <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
             <View style={styles.colonne}>
               <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
@@ -133,7 +133,7 @@ function Contenu({ d, recharger, frise, score }: { d: DonneesAccueil; recharger:
             </Carte>
           </View>
           <View style={styles.grilleDroite}>
-            <Carte style={{ gap: espace[2], flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Carte style={[styles.carteGrille, { gap: espace[2], alignItems: 'center', justifyContent: 'center' }]}>
             {d.plan.objectif !== null ? (
               <>
                 <AnneauObjectif score={score} objectif={d.plan.objectif} taille={120} />
@@ -192,6 +192,8 @@ const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
   grille: { flexDirection: 'row', gap: espace[3], alignItems: 'stretch' },
   grilleGauche: { flex: 3, minWidth: 0 },
+  // Même hauteur pour les deux cartes de la grille (demande de Benny) : la plus haute fixe la hauteur.
+  carteGrille: { minHeight: 200 },
   grilleDroite: { flex: 2, minWidth: 0 },
   colonne: { gap: 2 },
   anneauVide: { width: 96, height: 96, borderRadius: 48, borderWidth: bord.normal, borderStyle: 'dashed', alignItems: 'center', justifyContent: 'center', padding: espace[2] },
