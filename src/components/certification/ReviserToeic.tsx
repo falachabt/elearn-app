@@ -14,7 +14,7 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { CarnetMots } from './CarnetMots';
-import { ContenuFrise, PiedFrise, useFrise } from './FriseParcours';
+import { ContenuChronologie, PiedFrise, useFrise } from './FriseParcours';
 import { ContinuerCours, CoursNotions } from './CoursNotions';
 import { stylePartie } from './partiesStyle';
 import { BarreProgression, EnteteCase, EnteteToeic, EtiquetteSection, GrilleCollee, LigneChoix, ListeChoix, Squelette, type CaseGrille } from './ui';
@@ -70,7 +70,7 @@ function ParcoursFrise({ frise }: { frise: ReturnType<typeof useFrise> }) {
       </View>
     );
   }
-  return <ContenuFrise donnees={etat.valeur} />;
+  return <ContenuChronologie donnees={etat.valeur} />;
 }
 
 function Contenu({ onglet, donnees, aller, famille, onFamille }: { onglet: Onglet; donnees: DonneesRevision; aller: (o: Onglet) => void; famille: FamilleNotion; onFamille: (f: FamilleNotion) => void }) {

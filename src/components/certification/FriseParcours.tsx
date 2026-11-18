@@ -439,6 +439,41 @@ export function ContenuFrise({ donnees }: { donnees: DonneesFrise }) {
   );
 }
 
+/**
+ * Réviser > Parcours (demande de Benny, 18/11) : la frise numérotée de tous les jours connus du plan, du premier au test.
+ * Les jours passés avec une étape non faite sont marqués « Non validé · à refaire » ; les jours à venir sont en aperçu.
+ * Défilement dans l'écran. L'accueil, lui, reste limité au morceau du jour (ParcoursDuJour).
+ */
+export function ContenuChronologie({ donnees }: { donnees: DonneesFrise }) {
+  const { plan, aujourdhui } = donnees;
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+  const dates = useDates();
+  if (!plan.dateExamen) return <SansDate {...donnees} />;
+  const jours = [...plan.jours].sort((a, b) => (a.jour < b.jour ? -1 : a.jour > b.jour ? 1 : 0));
+  return (
+    <View style={styles.frise}>
+      {jours.map((j) => {
+        const passe = j.jour < aujourdhui;
+        const nonValide = passe && j.etapes.some((e) => e.etat !== 'fait');
+        return (
+          <View key={j.jour} style={styles.jour}>
+            <View style={styles.enteteLigne}>
+              {j.jour === aujourdhui ? (
+                <LigneAujourdhui jour={j.jour} />
+              ) : (
+                <Text style={[typo.petit, { color: passe ? theme.texte.secondaire : theme.texte.principal }]}>{dates.jour(j.jour)}</Text>
+              )}
+              {nonValide ? <Text style={[typo.legende, { color: theme.etat.erreur }]}>{t('certification.monPlan.nonValideARefaire')}</Text> : null}
+            </View>
+            {j.etapes.length > 0 ? <EtapesDuJour etapes={j.etapes} /> : null}
+          </View>
+        );
+      })}
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   frise: { gap: espace[4] },
   jour: { gap: espace[3] },

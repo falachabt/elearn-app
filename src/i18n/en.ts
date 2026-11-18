@@ -2860,6 +2860,7 @@ export const en: Textes = {
       introuvable: 'This word is no longer in your notebook.',
     },
     monPlan: {
+      nonValideARefaire: 'Not validated · to redo',
       lien: 'What comes back this week, until the test date',
       jusquAu: 'Until {{date}}',
       couvert: '{{pct}}% covered',

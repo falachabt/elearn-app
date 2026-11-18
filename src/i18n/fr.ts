@@ -2861,6 +2861,7 @@ export const fr = {
       introuvable: 'Ce mot n’est plus dans ton carnet.',
     },
     monPlan: {
+      nonValideARefaire: 'Non validé · à refaire',
       lien: 'Ce qui revient cette semaine, jusqu’à la date de test',
       jusquAu: 'Jusqu’au {{date}}',
       couvert: '{{pct}} % couvert',
