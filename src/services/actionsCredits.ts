@@ -88,19 +88,49 @@ export async function lireActionsReclameesServeur(client: Client, maintenant = n
 }
 
 /**
+ * Dernière lecture serveur réussie, par élève et pour le jour serveur. Le compteur de crédits (accueil, Réviser, Moi)
+ * relance son effet à chaque nouveau solde : sans cette mémoire, chaque changement de solde relisait la table.
+ * Une réclamation faite ici est déjà gardée sur le téléphone, donc la mémoire n'a pas besoin d'être vidée après.
+ */
+const reclameesMemo = new Map<string, { jour: string; lecture: Promise<ActionQuotidienne[]> }>();
+
+/** Vide la mémoire des lectures serveur (déconnexion, tests). */
+export function oublierActionsServeur(): void {
+  reclameesMemo.clear();
+}
+
+function lireReclamees(client: Client, utilisateurId: string, maintenant: Date, memoire: boolean): Promise<ActionQuotidienne[]> {
+  const jour = jourServeur(maintenant);
+  const connu = reclameesMemo.get(utilisateurId);
+  if (memoire && connu?.jour === jour) return connu.lecture;
+  const lecture = Promise.race([
+    lireActionsReclameesServeur(client, maintenant),
+    new Promise<never>((_, rejeter) => setTimeout(() => rejeter(new Error('delai')), DELAI_SERVEUR_MS)),
+  ]);
+  reclameesMemo.set(utilisateurId, { jour, lecture });
+  // Un échec ne reste pas en mémoire : la prochaine lecture réessaie le serveur.
+  lecture.catch(() => {
+    if (reclameesMemo.get(utilisateurId)?.lecture === lecture) reclameesMemo.delete(utilisateurId);
+  });
+  return lecture;
+}
+
+/**
  * Renvoie l'état des actions effectuées pour le jour courant (true = accomplie aujourd'hui). Avec un compte connecté,
  * le serveur fait foi : une action déjà réclamée l'est aussi après une déconnexion, sur un autre téléphone ou après
- * un effacement des données. Hors ligne, on garde ce que le téléphone sait.
+ * un effacement des données. Hors ligne, on garde ce que le téléphone sait. `memoire` reprend la dernière lecture
+ * serveur du jour au lieu de relire la table (badge du compteur) ; sans elle, le serveur est relu (page des actions).
  */
-export async function lireEtatActionsQuotidiennes(maintenant = new Date(), source: SourceServeur = {}): Promise<EtatActionsQuotidiennes> {
+export async function lireEtatActionsQuotidiennes(
+  maintenant = new Date(),
+  source: SourceServeur = {},
+  { memoire = false }: { memoire?: boolean } = {},
+): Promise<EtatActionsQuotidiennes> {
   const local = await lireEtatLocal(maintenant, source.utilisateurId);
   if (!source.utilisateurId) return local;
   try {
     // Sans client donné, celui de l'app : s'il n'est pas configuré, on reste sur l'état du téléphone.
-    const reclamees = await Promise.race([
-      lireActionsReclameesServeur(source.client ?? getSupabase(), maintenant),
-      new Promise<never>((_, rejeter) => setTimeout(() => rejeter(new Error('delai')), DELAI_SERVEUR_MS)),
-    ]);
+    const reclamees = await lireReclamees(source.client ?? getSupabase(), source.utilisateurId, maintenant, memoire);
     if (reclamees.every((a) => local[a])) return local;
     const fusion = { ...local };
     for (const a of reclamees) fusion[a] = true;
@@ -125,7 +155,7 @@ export async function enregistrerActionQuotidienne(action: ActionQuotidienne, ma
  */
 export async function aDesActionsDisponibles(solde: Solde | null, maintenant = new Date(), source: SourceServeur = {}): Promise<boolean> {
   if (solde?.illimite) return false;
-  const etat = await lireEtatActionsQuotidiennes(maintenant, source);
+  const etat = await lireEtatActionsQuotidiennes(maintenant, source, { memoire: true });
   return !etat.site_web || !etat.facebook || !etat.instagram;
 }
 
