@@ -35,7 +35,8 @@ import {
   type VideoCours,
   type VideoTelechargee,
 } from '@/services/videos';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
+import { validerLeconsParVideo } from '@/services/progressionVideo';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -59,6 +60,14 @@ export function LecteurVideo() {
   const { cours, video, nom, matiere } = useLocalSearchParams<{ cours: string; video?: string; nom?: string; matiere?: string }>();
   const coursId = Number(cours);
   const pret = useSessionPrete();
+  const { session } = useSession();
+  const idUtilisateur = session?.user?.id;
+  const videosRef = useRef<VideoCours[] | null>(null);
+  const idUtilisateurRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    idUtilisateurRef.current = idUtilisateur;
+  }, [idUtilisateur]);
+  const pleinEcranRef = useRef(false);
   const [videos, setVideos] = useState<VideoCours[] | null>(null);
   const [suivis, setSuivis] = useState<SuivisVideos>({});
   const [couranteId, setCouranteId] = useState<string | null>(video ?? null);
@@ -256,7 +265,17 @@ export function LecteurVideo() {
         fermerSegment();
         const v = couranteRef.current;
         if (!v) return;
+        // En plein écran, les actions de fin (posées sur l'image) seraient cachées : on en sort pour les montrer.
+        if (pleinEcranRef.current) {
+          try {
+            void vueRef.current?.exitFullscreen();
+          } catch {
+            // Sortie du plein écran impossible : sans effet.
+          }
+        }
         void marquerTerminee(v.id, v.cours, v.dureeS).then(() => {
+          // Vidéo regardée jusqu'au bout : elle compte dans la progression des leçons du cours.
+          if (videosRef.current) void validerLeconsParVideo(getSupabase(), v.cours, videosRef.current, idUtilisateurRef.current);
           setSuivis((avant) => ({
             ...avant,
             [v.id]: { positionS: v.dureeS ?? avant[v.id]?.positionS ?? 0, dureeS: v.dureeS, terminee: true, quand: Date.now(), cours: v.cours },
@@ -283,6 +302,7 @@ export function LecteurVideo() {
         const [v, s] = await Promise.all([lireVideos(getSupabase(), coursId), synchroniserSuivis(getSupabase())]);
         if (!actif) return;
         setVideos(v);
+        videosRef.current = v;
         setSuivis(s);
         rafraichirTelechargees();
         setCouranteId((avant) => avant ?? v[0]?.id ?? null);
@@ -486,8 +506,8 @@ export function LecteurVideo() {
                     nativeControls={pleinEcran}
                     contentFit="contain"
                     fullscreenOptions={{ enable: true }}
-                    onFullscreenEnter={() => setPleinEcran(true)}
-                    onFullscreenExit={() => setPleinEcran(false)}
+                    onFullscreenEnter={() => { pleinEcranRef.current = true; setPleinEcran(true); }}
+                    onFullscreenExit={() => { pleinEcranRef.current = false; setPleinEcran(false); }}
                     pointerEvents="none"
                   />
                 </Pressable>

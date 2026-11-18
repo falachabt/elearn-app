@@ -43,6 +43,7 @@ export function VideoNotion({ video, titre, onLancee, onTerminee, onEntrainer, o
   const [terminee, setTerminee] = useState(false);
   const lecteurRef = useRef<VideoPlayer | null>(null);
   const vueRef = useRef<VideoView | null>(null);
+  const pleinEcranRef = useRef(false);
   const debutee = useRef(false);
 
   const lancer = useCallback(() => {
@@ -56,6 +57,14 @@ export function VideoNotion({ video, titre, onLancee, onTerminee, onEntrainer, o
     p.addListener('playToEnd', () => {
       setEnLecture(false);
       setTerminee(true);
+      // En plein écran, l'écran de fin posé sur l'image serait caché : on en sort pour le montrer.
+      if (pleinEcranRef.current) {
+        try {
+          void vueRef.current?.exitFullscreen();
+        } catch {
+          // Sortie du plein écran impossible : sans effet.
+        }
+      }
       onTerminee();
     });
     p.addListener('playingChange', (e: { isPlaying: boolean }) => {
@@ -149,8 +158,8 @@ export function VideoNotion({ video, titre, onLancee, onTerminee, onEntrainer, o
                 nativeControls={pleinEcran}
                 contentFit="contain"
                 fullscreenOptions={{ enable: true }}
-                onFullscreenEnter={() => setPleinEcran(true)}
-                onFullscreenExit={() => setPleinEcran(false)}
+                onFullscreenEnter={() => { pleinEcranRef.current = true; setPleinEcran(true); }}
+                onFullscreenExit={() => { pleinEcranRef.current = false; setPleinEcran(false); }}
                 pointerEvents="none"
               />
             ) : video.miniature ? (
