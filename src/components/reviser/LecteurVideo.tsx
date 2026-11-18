@@ -166,6 +166,9 @@ export function LecteurVideo() {
   const suivisRef = useRef<SuivisVideos>({});
   const repriseFaite = useRef<string | null>(null);
   const sourceRef = useRef<string | null>(null);
+  // Vrai dès que le lecteur natif est libéré : toute lecture ou commande lèverait alors
+  // (« shared object that was already released » sur Android, NotFoundException sur iOS).
+  const libereRef = useRef(false);
   useEffect(() => {
     couranteRef.current = courante;
   }, [courante]);
@@ -175,7 +178,7 @@ export function LecteurVideo() {
 
   const sauvegarder = useCallback(() => {
     const v = couranteRef.current;
-    if (!v) return;
+    if (!v || libereRef.current) return;
     // Avant la reprise effective (le lecteur n'est pas encore calé sur la position sauvegardée), ses
     // premiers événements annoncent 0 : les écrire écraserait la position à reprendre. On ne sauvegarde
     // un retour sous les 3 premières secondes que si rien de plus avancé n'est déjà connu.
@@ -208,7 +211,34 @@ export function LecteurVideo() {
     segmentTitre.current = null;
   }, [fermerSegment, matiere]);
 
-  // Branchement des événements du lecteur (une seule fois) et libération en fin de vie.
+  // Fermeture ordonnée (en quittant l'écran, et toujours AVANT la libération du lecteur) : position,
+  // temps visionné, synchro serveur, pause. Un échec de lecture du lecteur ne saute pas les étapes
+  // suivantes : le temps visionné et la synchro partent quand même.
+  const quitter = useCallback(() => {
+    if (libereRef.current) return;
+    try {
+      sauvegarder();
+    } catch {
+      // Lecteur indisponible : la dernière position enregistrée reste valable.
+    }
+    viderTempsLu();
+    // La position fraîche part au serveur (au retour du réseau, la synchro suivante la poussera).
+    void synchroniserSuivis(getSupabase());
+    try {
+      lecteur.pause();
+    } catch {
+      // Lecteur indisponible.
+    }
+  }, [lecteur, sauvegarder, viderTempsLu]);
+  const quitterRef = useRef(quitter);
+  useEffect(() => {
+    quitterRef.current = quitter;
+  });
+
+  // Branchement des événements du lecteur (une seule fois) et libération en fin de vie. Cet effet est
+  // déclaré avant useFocusEffect : au démontage, React exécute SON nettoyage en premier. La fermeture
+  // ordonnée se fait donc ici, avant release() ; le nettoyage de focus qui suit trouve le lecteur libéré
+  // et ne fait plus rien.
   useEffect(() => {
     const p = lecteur;
     const abonnements = [
@@ -265,6 +295,8 @@ export function LecteurVideo() {
     ];
     return () => {
       abonnements.forEach((a) => a.remove());
+      quitterRef.current();
+      libereRef.current = true;
       p.release();
     };
   }, [lecteur, sauvegarder, fermerSegment]);
@@ -335,7 +367,7 @@ export function LecteurVideo() {
     // verrouillée ne se lit pas, même en connaissant son adresse.
     if (!videoLocale(courante.id) && !acces.ouverts.has(courante.id) && !accesSession.has(courante.id)) return;
     const uri = videoLocale(courante.id) ?? courante.url;
-    if (sourceRef.current === uri) return;
+    if (sourceRef.current === uri || libereRef.current) return;
     viderTempsLu();
     sourceRef.current = uri;
     repriseFaite.current = null;
@@ -349,21 +381,9 @@ export function LecteurVideo() {
   }, [courante, coursId, lecteur, viderTempsLu, acces.ouverts, accesSession]);
 
   // En quittant l'écran (autre onglet, retour) : on sauvegarde et on met en pause.
-  useFocusEffect(
-    useCallback(() => {
-      return () => {
-        sauvegarder();
-        viderTempsLu();
-        // La position fraîche part au serveur (au retour du réseau, la synchro suivante la poussera).
-        void synchroniserSuivis(getSupabase());
-        try {
-          lecteur.pause();
-        } catch {
-          // Lecteur déjà libéré.
-        }
-      };
-    }, [lecteur, sauvegarder, viderTempsLu]),
-  );
+  // Au démontage, la fermeture a déjà eu lieu avant release() (voir l'effet du lecteur) : quitter()
+  // ne fait alors plus rien.
+  useFocusEffect(useCallback(() => quitter, [quitter]));
 
   // Retour : DÉPILER vers l'écran d'origine (page du cours, accueil « Reprendre », Mes vidéos), comme
   // LecteurPdf. L'ancien code faisait router.navigate vers le chapitre : chaque aller-retour EMPLILAIT
@@ -388,10 +408,12 @@ export function LecteurVideo() {
   const precedente = indiceCourante > 0 ? videos![indiceCourante - 1] : null;
   const suivante = videos && indiceCourante >= 0 && indiceCourante < videos.length - 1 ? videos[indiceCourante + 1] : null;
   const basculerLecture = useCallback(() => {
+    if (libereRef.current) return;
     if (enLectureAffichee) lecteur.pause();
     else lecteur.play();
   }, [enLectureAffichee, lecteur]);
   const chercher = useCallback((secondes: number) => {
+    if (libereRef.current) return;
     const p = lecteurRef.current;
     const cible = Math.max(0, Math.min(secondes, p.duration || secondes));
     p.currentTime = cible;
