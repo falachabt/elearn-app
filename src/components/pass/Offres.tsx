@@ -7,7 +7,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { acheterPass, achatIntegreDisponible, attendreAcces, configurerAchats, lirePrixApple, type PrixApple } from '@/services/achatsIntegres';
-import { estFcfa, formaterMontant, lireAcces, lireOffres, PRIX_REPETITEUR, type Acces, type CodeOffre, type Offre } from '@/services/pass';
+import { formaterMontant, lireAcces, lireOffres, type Acces, type CodeOffre, type Offre } from '@/services/pass';
 import { paiementPossible } from '@/services/plateforme';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
@@ -97,7 +97,7 @@ async function chargerOffres(): Promise<Etat> {
   }
 }
 
-/** E1 · Offres (M8-01) : repère répétiteur, gratuit / semaine / mois / concours, payer ou envoyer à son parent. */
+/** E1 · Offres (M8-01) : gratuit / semaine / mois / concours, payer ou envoyer à son parent. */
 export function Offres() {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
@@ -226,12 +226,6 @@ export function Offres() {
 
       {etat.statut === 'pret' && offres.length ? (
         <>
-          {mm && estFcfa(devise) ? (
-            <View style={[styles.repere, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
-              <Ionicons name="person-outline" size={18} color={theme.texte.principal} />
-              <Text style={[typo.petit, styles.texte, { color: theme.texte.principal }]}>{t('offres.repere', { prix: formaterMontant(PRIX_REPETITEUR, devise) })}</Text>
-            </View>
-          ) : null}
           {mm ? (
             <CodePromo etat={promo} offre={choisie?.code ?? 'month'} surChoisirOffre={() => {}} resume={promo.applique ? t('paiement.promo.sousPassPayants', { rabais: promo.applique.type === 'pct' ? `-${promo.applique.valeur} %` : `-${formaterMontant(promo.applique.valeur, promo.applique.devise)}` }) : undefined} />
           ) : null}
@@ -269,7 +263,6 @@ const styles = StyleSheet.create({
   radio: { width: 22, height: 22, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   texte: { flex: 1, gap: espace[1] },
   titre: { flexDirection: 'row', alignItems: 'center', gap: espace[3], flexWrap: 'wrap' },
-  repere: { flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },
   centre: { textAlign: 'center' },
   prix: { alignItems: 'flex-end' },
   barre: { textDecorationLine: 'line-through' },

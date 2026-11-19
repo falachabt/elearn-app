@@ -8,9 +8,6 @@ export type CodeOffre = 'week' | 'month' | 'contest';
 export type Offre = { code: CodeOffre; montant: number; devise: string; recommandee: boolean; dureeJours: number | null; finSaison: string | null; converti?: boolean };
 export type Acces = { offre: CodeOffre; fin: string; source: string } | null;
 
-/** Repère affiché en haut des offres (M8-01) : un répétiteur à la maison, par mois. */
-export const PRIX_REPETITEUR = 20000;
-
 type LigneOffre = {
   product_code: CodeOffre;
   amount: number;

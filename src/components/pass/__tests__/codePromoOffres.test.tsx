@@ -108,11 +108,12 @@ beforeEach(async () => {
 });
 
 describe('code promo sur la liste des Pass (E1)', () => {
-  it('départ : le lien est sous le bandeau répétiteur, avant les cartes ; les prix sont normaux', async () => {
+  it('départ : le lien est avant les cartes ; les prix sont normaux', async () => {
     await monter(<Offres />);
     expect(await screen.findByRole('button', { name: p.lien })).toBeTruthy();
     expect(screen.getAllByRole('radio').length).toBe(4);
     expect(screen.getByLabelText(/Pass mois, 2.500 FCFA/)).toBeTruthy();
+    expect(screen.queryByText(/répétiteur/)).toBeNull();
     const arbre = JSON.stringify(screen.toJSON());
     expect(arbre.indexOf(p.lien)).toBeLessThan(arbre.indexOf(fr.offres.gratuitAide));
   });

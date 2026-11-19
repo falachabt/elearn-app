@@ -1216,7 +1216,6 @@ export const en: Textes = {
   offres: {
     titre: 'Choose your pass',
     fermer: 'Close',
-    repere: 'Cheaper than a home tutor (≈ {{prix}} a month), and there every evening.',
     gratuit: 'Free',
     gratuitAide: '3 corrections/day · missions · 1 paper per exam',
     week: 'Week pass',

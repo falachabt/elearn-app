@@ -1217,7 +1217,6 @@ export const fr = {
   offres: {
     titre: 'Choisis ton pass',
     fermer: 'Fermer',
-    repere: 'Moins cher qu’un répétiteur (≈ {{prix}} par mois), et là tous les soirs.',
     gratuit: 'Gratuit',
     gratuitAide: '3 corrections/jour · missions · 1 sujet par concours',
     week: 'Pass semaine',
