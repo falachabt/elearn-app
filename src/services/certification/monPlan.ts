@@ -1,7 +1,7 @@
 import { obtenirApi } from './api';
 import { compteursCarnet } from './revision';
-import type { EtapePlan, PlanFrise } from './planFrise';
-import { joursAvantTest, type Jour } from './jours';
+import type { EtapePlan, JourPlan, PlanFrise } from './planFrise';
+import { jourPlus, joursAvantTest, type Jour } from './jours';
 import type { MotCarnetServi, NotionListee } from './types';
 
 /** Notions à reprendre en premier : fragiles, puis en progrès (au plus trois affichées). */
@@ -55,6 +55,48 @@ export function planFriseLocale(plan: PlanFormation, dateTest: Jour | null, aujo
     jours: [{ jour: aujourdhui, minutes: etapes.reduce((s, e) => s + (e.minutes ?? 0), 0), jourTest: false, etapes }],
     local: true,
   };
+}
+
+/**
+ * Plan complet calculé sur l'appareil quand le serveur n'a rien à servir : même règle que `cert_plan_build` (chaque notion
+ * non acquise, répartie du jour à la veille du test, par paquets réguliers). `null` sans date de test future.
+ */
+export function planLocalComplet(notions: NotionListee[], dateTest: Jour | null, aujourdhui: Jour, miniTitre: string): PlanFrise | null {
+  const jours = dateTest ? joursAvantTest(dateTest, aujourdhui) : null;
+  if (!dateTest || jours === null || jours < 1) return null;
+  const aPlacer = notions
+    .filter((n) => n.etat !== 'acquise')
+    .sort((a, b) => a.famille.localeCompare(b.famille) || a.code.localeCompare(b.code));
+  if (aPlacer.length === 0) return null;
+  const parJour = Math.ceil(aPlacer.length / jours);
+  const par = new Map<string, EtapePlan[]>();
+  aPlacer.forEach((n, rang) => {
+    const jour = jourPlus(aujourdhui, Math.floor(rang / parJour));
+    const liste = par.get(jour) ?? [];
+    liste.push({
+      id: `local-${n.id}`,
+      position: rang % parJour,
+      type: n.etat === 'fragile' || n.etat === 'en_progres' ? 'rappel' : 'decouverte',
+      uniteKind: 'notion',
+      uniteId: n.id,
+      titre: n.titre,
+      detail: null,
+      minutes: n.dureeMin,
+      etat: 'a_faire',
+      faitLe: null,
+    });
+    par.set(jour, liste);
+  });
+  // Le mini-test du jour reste comme dans le repli : il ouvre la journée d'aujourd'hui.
+  const duJour = par.get(aujourdhui) ?? [];
+  par.set(aujourdhui, [
+    { id: 'local-mini', position: -1, type: 'mini_test', uniteKind: null, uniteId: null, titre: miniTitre, detail: null, minutes: null, etat: 'a_faire', faitLe: null },
+    ...duJour,
+  ]);
+  const journees: JourPlan[] = [...par.entries()]
+    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+    .map(([jour, etapes]) => ({ jour, minutes: etapes.reduce((s, e) => s + (e.minutes ?? 0), 0), jourTest: false, etapes }));
+  return { dateExamen: dateTest, couverture: null, jours: journees, local: true };
 }
 
 /** Plan servi (construit au besoin), sinon le repli local : un échec réseau ou un plan vide ne casse jamais l'écran. */
