@@ -7,7 +7,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { lirePlan } from '@/services/certification/etat';
 import { jourDe, type Jour } from '@/services/certification/jours';
-import { chargerPlanFrise, planDeFormation, planFriseLocale } from '@/services/certification/monPlan';
+import { chargerPlanFrise, planDeFormation, planFriseLocale, planLocalComplet } from '@/services/certification/monPlan';
 import {
   estJourTest, etapeACommencer, organiserFrise, routeEtape,
   type EtapePlan, type EtatEtape, type JourPlan, type PlanFrise, type TypeEtape,
@@ -38,6 +38,9 @@ export function useFrise() {
     const dateLocale = (await lirePlan())?.dateTest ?? null;
     const plan = await chargerPlanFrise(exam, async () => {
       const d = await chargerDonneesRevision();
+      // Sans plan serveur, le parcours complet se calcule sur l'appareil jusqu'à la date du test.
+      const complet = planLocalComplet(d.revision.notions, dateLocale, aujourdhui, t('certification.monPlan.miniLocal'));
+      if (complet) return complet;
       return planFriseLocale(planDeFormation(d.revision.notions, d.carnet, dateLocale, aujourdhui), dateLocale, aujourdhui, {
         mots: t('certification.monPlan.motsLocal'),
         mini: t('certification.monPlan.miniLocal'),
