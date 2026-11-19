@@ -1,8 +1,9 @@
 import { router } from 'expo-router';
 import { Award, BookOpen, Play, CalendarClock, Check, ChevronDown, ChevronRight, Circle, ClipboardCheck, RotateCcw, RotateCw, Target, TriangleAlert, type LucideIcon } from 'lucide-react-native';
-import { Children, cloneElement, isValidElement, useCallback, useEffect, useState, type ReactElement, type ReactNode } from 'react';
+import { Children, cloneElement, isValidElement, useCallback, useEffect, useRef, useState, type ReactElement, type ReactNode } from 'react';
 import { Image } from 'expo-image';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lirePlan } from '@/services/certification/etat';
@@ -21,6 +22,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, palette, rayon, typo, type Theme } from '@/theme/theme';
 
 import { Appui } from '../Appui';
+import { useRendreVisible } from '../Ecran';
 import { Bouton } from '../Bouton';
 import { GroupeColle } from '../liste/ListeCollee';
 import { EtiquetteSection, Squelette } from './ui';
@@ -189,14 +191,14 @@ export function EtapeLigne({ etape, dernier, rang, courante }: { etape: EtapePla
   );
 }
 
-export function EtapesDuJour({ etapes }: { etapes: EtapePlan[] }) {
-  // Les étapes faites passent en tête, la prochaine à lancer est mise en avant.
+export function EtapesDuJour({ etapes, actif = true, premierRang = 1 }: { etapes: EtapePlan[]; actif?: boolean; premierRang?: number }) {
+  // Les étapes faites passent en tête, la prochaine à lancer est mise en avant (seulement pour le jour actif).
   const ordre = [...etapes.filter((e) => e.etat === 'fait'), ...etapes.filter((e) => e.etat !== 'fait')];
-  const courante = (etapes.find((e) => e.etat === 'en_cours') ?? etapes.find((e) => e.etat !== 'fait'))?.id ?? null;
+  const courante = actif ? ((etapes.find((e) => e.etat === 'en_cours') ?? etapes.find((e) => e.etat !== 'fait'))?.id ?? null) : null;
   return (
     <View style={styles.etapes}>
       {ordre.map((e, i) => (
-        <EtapeLigne key={e.id} etape={e} dernier={i === ordre.length - 1} rang={i + 1} courante={e.id === courante} />
+        <EtapeLigne key={e.id} etape={e} dernier={i === ordre.length - 1} rang={premierRang + i} courante={e.id === courante} />
       ))}
     </View>
   );
@@ -455,19 +457,32 @@ export function ContenuChronologie({ donnees, charges = TRANCHE_JOURS, onPlus }:
   const { t } = useTraduction();
   const { theme } = useTheme();
   const dates = useDates();
+  // Défilement jusqu'à la section du jour actif à l'ouverture (avant tout retour anticipé : ordre des hooks).
+  const rendreVisible = useRendreVisible();
+  const ancre = useRef<View>(null);
+  useEffect(() => {
+    if (ancre.current) rendreVisible?.(ancre.current);
+  }, [plan, rendreVisible]);
   if (!plan.dateExamen) return <SansDate {...donnees} />;
   const jours = [...plan.jours].sort((a, b) => (a.jour < b.jour ? -1 : a.jour > b.jour ? 1 : 0));
   // La première tranche part de la semaine passée, pour voir les jours non validés.
   const depart = Math.max(0, jours.findIndex((j) => j.jour >= aujourdhui) - 7);
   const visibles = jours.slice(depart, depart + charges);
   const restants = jours.length - (depart + visibles.length);
+  // Numérotation continue sur tout le parcours : 1, 2, 3… puis la suite d'un jour à l'autre.
+  const rangs = new Map<string, number>();
+  let compte = 0;
+  for (const j of jours) {
+    rangs.set(j.jour, compte + 1);
+    compte += j.etapes.length;
+  }
   return (
     <View style={styles.frise}>
       {visibles.map((j) => {
         const passe = j.jour < aujourdhui;
         const nonValide = passe && j.etapes.some((e) => e.etat !== 'fait');
         return (
-          <View key={j.jour} style={styles.jour}>
+          <View key={j.jour} ref={j.jour === aujourdhui ? ancre : undefined} style={styles.jour}>
             <View style={styles.enteteLigne}>
               {j.jour === aujourdhui ? (
                 <LigneAujourdhui jour={j.jour} />
@@ -476,7 +491,7 @@ export function ContenuChronologie({ donnees, charges = TRANCHE_JOURS, onPlus }:
               )}
               {nonValide ? <Text style={[typo.legende, { color: theme.etat.erreur }]}>{t('certification.monPlan.nonValideARefaire')}</Text> : null}
             </View>
-            {j.etapes.length > 0 ? <EtapesDuJour etapes={j.etapes} /> : null}
+            {j.etapes.length > 0 ? <EtapesDuJour etapes={j.etapes} actif={j.jour === aujourdhui} premierRang={rangs.get(j.jour) ?? 1} /> : null}
           </View>
         );
       })}

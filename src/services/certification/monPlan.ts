@@ -68,7 +68,8 @@ export function planLocalComplet(notions: NotionListee[], dateTest: Jour | null,
     .filter((n) => n.etat !== 'acquise')
     .sort((a, b) => a.famille.localeCompare(b.famille) || a.code.localeCompare(b.code));
   if (aPlacer.length === 0) return null;
-  const parJour = Math.ceil(aPlacer.length / jours);
+  // Au moins trois étapes par jour, comme aujourd'hui ; le parcours s'arrête avant la date du test si le contenu tient plus tôt.
+  const parJour = Math.max(3, Math.ceil(aPlacer.length / jours));
   const par = new Map<string, EtapePlan[]>();
   aPlacer.forEach((n, rang) => {
     const jour = jourPlus(aujourdhui, Math.floor(rang / parJour));
