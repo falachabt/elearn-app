@@ -2893,7 +2893,7 @@ export const en: Textes = {
       motsLocal: 'Words to review',
       miniLocal: 'Mini-test',
       jourIntrouvable: 'This day is no longer in your plan.',
-      type: { decouverte: 'Discovery', rappel: 'Recall', pratique: 'Practice', mini_test: 'Mini-test', test_complet: 'Full test' },
+      type: { decouverte: 'Discovery', rappel: 'Recall', pratique: 'Practice', quiz_lecon: 'Lesson quiz', mini_test: 'Mini-test', demi_test: 'Half written test', test_mixte: 'Mixed test', test_complet: 'Full test' },
       statut: { a_faire: 'To do', en_cours: 'In progress', fait: 'Done', reportee: 'Moved', ratee: 'Missed, to review' },
       faitLe: 'Done on {{date}}',
       entete: 'My plan',

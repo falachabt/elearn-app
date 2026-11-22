@@ -2894,7 +2894,7 @@ export const fr = {
       motsLocal: 'Mots à revoir',
       miniLocal: 'Mini-test',
       jourIntrouvable: 'Ce jour n’est plus dans ton plan.',
-      type: { decouverte: 'Découverte', rappel: 'Rappel', pratique: 'Pratique', mini_test: 'Mini-test', test_complet: 'Test complet' },
+      type: { decouverte: 'Découverte', rappel: 'Rappel', pratique: 'Pratique', quiz_lecon: 'Quiz de leçon', mini_test: 'Mini-test', demi_test: 'Demi-test écrit', test_mixte: 'Test mixte', test_complet: 'Test complet' },
       statut: { a_faire: 'À faire', en_cours: 'En cours', fait: 'Fait', reportee: 'Reportée', ratee: 'Ratée, à revoir' },
       faitLe: 'Fait le {{date}}',
       entete: 'Mon plan',

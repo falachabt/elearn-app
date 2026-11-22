@@ -4,7 +4,7 @@ import { jourPlus, lundiDe, type Jour } from './jours';
  * Plan de formation servi par `cert_plan_get(p_exam)` (cahier v1.32, D-42 à D-44) : une frise de jours, chacun avec ses
  * étapes. Ici, la forme utilisée par les écrans et la lecture tolérante de la réponse du serveur.
  */
-export type TypeEtape = 'decouverte' | 'rappel' | 'pratique' | 'mini_test' | 'test_complet';
+export type TypeEtape = 'decouverte' | 'rappel' | 'pratique' | 'quiz_lecon' | 'mini_test' | 'demi_test' | 'test_mixte' | 'test_complet';
 export type EtatEtape = 'a_faire' | 'en_cours' | 'fait' | 'reportee' | 'ratee';
 
 export type EtapePlan = {

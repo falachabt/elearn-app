@@ -41,7 +41,13 @@ export function useFrise() {
     const plan = await chargerPlanFrise(exam, async () => {
       const d = await chargerDonneesRevision();
       // Sans plan serveur, le parcours complet se calcule sur l'appareil jusqu'à la date du test.
-      const complet = planLocalComplet(d.revision.notions, dateLocale, aujourdhui, t('certification.monPlan.miniLocal'));
+      const complet = planLocalComplet(d.revision.notions, dateLocale, aujourdhui, {
+        mini: t('certification.monPlan.miniLocal'),
+        demi: t('certification.monPlan.type.demi_test'),
+        mixte: t('certification.monPlan.type.test_mixte'),
+        complet: t('certification.monPlan.type.test_complet'),
+        quiz: t('certification.monPlan.type.quiz_lecon'),
+      });
       if (complet) return complet;
       return planFriseLocale(planDeFormation(d.revision.notions, d.carnet, dateLocale, aujourdhui), dateLocale, aujourdhui, {
         mots: t('certification.monPlan.motsLocal'),
@@ -95,7 +101,7 @@ function useDates() {
   };
 }
 
-const ICONES: Record<TypeEtape, LucideIcon> = { decouverte: BookOpen, rappel: RotateCcw, pratique: Target, mini_test: ClipboardCheck, test_complet: Award };
+const ICONES: Record<TypeEtape, LucideIcon> = { decouverte: BookOpen, rappel: RotateCcw, pratique: Target, quiz_lecon: ClipboardCheck, mini_test: ClipboardCheck, demi_test: Target, test_mixte: Target, test_complet: Award };
 
 /** Fond de la pastille de type et couleur de l'icône dessus (texte noir sur surface colorée, jamais de blanc). */
 function styleType(theme: Theme, type: TypeEtape) {
