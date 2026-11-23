@@ -92,7 +92,9 @@ describe('Plan servi : lecture et organisation', () => {
 
   it('chaque type d étape ouvre sa destination', () => {
     expect(routeEtape(etape('x', { type: 'mini_test' }))).toBe('/certification/mini');
-    expect(routeEtape(etape('x', { type: 'test_complet' }))).toBe('/tests');
+    expect(routeEtape(etape('x', { type: 'test_complet' }))).toEqual({ pathname: '/certification/liste-tests', params: { kind: 'full' } });
+    expect(routeEtape(etape('x', { type: 'demi_test' }))).toEqual({ pathname: '/certification/liste-tests', params: { kind: 'reading' } });
+    expect(routeEtape(etape('x', { type: 'test_mixte' }))).toEqual({ pathname: '/certification/liste-tests', params: { kind: 'mixed' } });
     expect(routeEtape(etape('x', { type: 'decouverte', uniteId: 'n1' }))).toEqual({ pathname: '/certification/notion/[id]', params: { id: 'n1', source: 'liste' } });
     expect(routeEtape(etape('x', { type: 'rappel', uniteKind: 'words', uniteId: null }))).toMatchObject({ pathname: '/certification/mots-seance' });
   });

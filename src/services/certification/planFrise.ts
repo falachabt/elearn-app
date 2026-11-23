@@ -182,7 +182,10 @@ export function etapeACommencer(jour: JourPlan): EtapePlan | null {
 /** Destination d'une étape : ouvre l'unité (notion, mots, série) ou l'épreuve prévue. */
 export function routeEtape(e: EtapePlan): { pathname: string; params?: Record<string, string> } | string {
   if (e.type === 'mini_test') return '/certification/mini';
-  if (e.type === 'test_complet') return '/tests';
+  // Tests de la banque (cert_test_list_get) : la liste numérotée du type, le test conseillé en tête.
+  if (e.type === 'demi_test') return { pathname: '/certification/liste-tests', params: { kind: 'reading' } };
+  if (e.type === 'test_mixte') return { pathname: '/certification/liste-tests', params: { kind: 'mixed' } };
+  if (e.type === 'test_complet') return { pathname: '/certification/liste-tests', params: { kind: 'full' } };
   if (e.uniteKind === 'words' || e.uniteKind === 'word_list' || e.uniteKind === 'vocabulary') {
     return { pathname: '/certification/mots-seance', params: { origine: 'carnet' } };
   }
