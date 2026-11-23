@@ -5,7 +5,19 @@ import { Platform } from 'react-native';
 
 import { suivre } from './analytics';
 
-type Client = Pick<SupabaseClient, 'from' | 'rpc' | 'channel' | 'removeChannel'>;
+type Client = Pick<SupabaseClient, 'from' | 'rpc' | 'channel' | 'removeChannel' | 'auth'>;
+
+/**
+ * Pas de session active : le solde ne se lit pas, `my_credits` exige un élève connecté et refuse le rôle
+ * anonyme (erreur 42501 « permission denied »). Cas attendu au démarrage ou juste après une déconnexion :
+ * les appelants l'ignorent et gardent le dernier solde connu, ce n'est pas une panne.
+ */
+export class ErreurSansSession extends Error {
+  constructor() {
+    super('session absente');
+    this.name = 'ErreurSansSession';
+  }
+}
 
 /** Actions payantes en crédits (M18). Les coûts viennent du serveur (credit_actions), jamais de l'app. */
 export type ActionCredit = 'quiz_explanation' | 'exercise_solution' | 'document_pdf' | 'exam_correction' | 'ai_question' | 'cert_explanation' | 'cert_mock_mini_ten' | 'cert_mock_mini_twenty' | 'cert_mock_half' | 'cert_mock_full' | 'cert_mock_review' | 'course_video';
@@ -68,8 +80,16 @@ type LigneSolde = {
 
 /** Solde de l'élève connecté. Le serveur fait la recharge du lundi et le bonus de bienvenue au passage. */
 export async function lireSolde(client: Client, appareil: string | null): Promise<Solde> {
+  // Sans session active, l'appel partirait avec le rôle anonyme et le serveur le refuserait (42501) :
+  // on s'arrête avant, avec une erreur que les appelants savent ignorer.
+  const { data: etatSession } = await client.auth.getSession();
+  if (!etatSession.session) throw new ErreurSansSession();
   const { data, error } = await client.rpc('my_credits', { p_device: appareil });
-  if (error) throw error;
+  if (error) {
+    // Session perdue entre le contrôle et l'appel : même cas attendu, même traitement silencieux.
+    if ((error as { code?: string }).code === '42501') throw new ErreurSansSession();
+    throw error;
+  }
   const l = (data as LigneSolde[] | null)?.[0];
   if (!l) throw new Error('solde introuvable');
   return {

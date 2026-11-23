@@ -3,7 +3,7 @@ import * as Application from 'expo-application';
 import { Platform } from 'react-native';
 
 import { suivre } from '../analytics';
-import { appliquerTempsReel, CLE_APPAREIL, delaiJusqua, depenser, identifiantAppareil, lireCouts, lireSemaine, lireSolde, peutVoir, suivreSolde } from '../credits';
+import { appliquerTempsReel, CLE_APPAREIL, delaiJusqua, depenser, ErreurSansSession, identifiantAppareil, lireCouts, lireSemaine, lireSolde, peutVoir, suivreSolde } from '../credits';
 
 jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('expo-application', () => ({ getAndroidId: jest.fn(), getIosIdForVendorAsync: jest.fn() }));
@@ -20,11 +20,12 @@ const ligneSolde = {
   next_reward_expiry: '2026-10-20T10:00:00Z',
 };
 
-function clientFaux(rpc: { data?: unknown; error?: unknown } = {}) {
+function clientFaux(rpc: { data?: unknown; error?: unknown; sansSession?: boolean } = {}) {
   const canal = { on: jest.fn(), subscribe: jest.fn() };
   canal.on.mockReturnValue(canal);
   canal.subscribe.mockReturnValue(canal);
   return {
+    auth: { getSession: jest.fn(async () => ({ data: { session: rpc.sansSession ? null : { user: { id: 'u1' } } }, error: null })) },
     rpc: jest.fn(async () => ({ data: rpc.data ?? null, error: rpc.error ?? null })),
     from: jest.fn(() => ({ select: jest.fn(async () => ({ data: [{ code: 'quiz_explanation', cost: 1 }, { code: 'exam_correction', cost: 5 }], error: null })) })),
     channel: jest.fn(() => canal),
@@ -58,6 +59,17 @@ describe('crédits', () => {
 
   it('remonte l’erreur du serveur', async () => {
     await expect(lireSolde(clientFaux({ error: new Error('x') }) as never, null)).rejects.toThrow('x');
+  });
+
+  it('sans session : aucun appel serveur, erreur silencieuse dédiée', async () => {
+    const c = clientFaux({ sansSession: true });
+    await expect(lireSolde(c as never, null)).rejects.toBeInstanceOf(ErreurSansSession);
+    expect(c.rpc).not.toHaveBeenCalled();
+  });
+
+  it('permission refusée par le serveur (42501) : convertie en erreur sans session', async () => {
+    const refus = Object.assign(new Error('permission denied for function my_credits'), { code: '42501' });
+    await expect(lireSolde(clientFaux({ error: refus }) as never, null)).rejects.toBeInstanceOf(ErreurSansSession);
   });
 
   it('lit les coûts du serveur', async () => {
