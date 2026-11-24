@@ -47,6 +47,7 @@ export function useFrise() {
         mixte: t('certification.monPlan.type.test_mixte'),
         complet: t('certification.monPlan.type.test_complet'),
         quiz: t('certification.monPlan.type.quiz_lecon'),
+        pratique: t('certification.monPlan.type.pratique'),
       });
       if (complet) return complet;
       return planFriseLocale(planDeFormation(d.revision.notions, d.carnet, dateLocale, aujourdhui), dateLocale, aujourdhui, {

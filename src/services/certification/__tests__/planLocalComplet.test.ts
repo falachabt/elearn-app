@@ -15,7 +15,7 @@ const notion = (i: number, etat: NotionListee['etat'] = 'pas_commencee'): Notion
   derniereOuverture: null,
 });
 
-const T = { mini: 'Mini', demi: 'Demi', mixte: 'Mixte', complet: 'Complet', quiz: 'Quiz' };
+const T = { mini: 'Mini', demi: 'Demi', mixte: 'Mixte', complet: 'Complet', quiz: 'Quiz', pratique: 'Pratique' };
 
 describe('planLocalComplet', () => {
   const aujourdhui = '2026-11-19';
@@ -44,5 +44,20 @@ describe('planLocalComplet', () => {
     expect(planLocalComplet([notion(1)], null, aujourdhui, T)).toBeNull();
     expect(planLocalComplet([notion(1)], aujourdhui, aujourdhui, T)).toBeNull();
     expect(planLocalComplet([notion(1, 'acquise')], '2026-12-30', aujourdhui, T)).toBeNull();
+  });
+});
+
+describe('pratique après chaque leçon', () => {
+  it('chaque leçon est suivie de sa pratique sur la même notion', () => {
+    const notions = Array.from({ length: 6 }, (_, i) => notion(i));
+    const plan = planLocalComplet(notions, '2026-11-24', '2026-11-19', T);
+    const etapes = plan!.jours.flatMap((j) => j.etapes);
+    const lecons = etapes.filter((e) => e.type === 'decouverte' || e.type === 'rappel');
+    expect(lecons.length).toBeGreaterThan(0);
+    for (const l of lecons) {
+      const i = etapes.indexOf(l);
+      expect(etapes[i + 1]?.type).toBe('quiz_lecon');
+      expect(etapes[i + 2]).toMatchObject({ type: 'pratique', uniteKind: 'notion', uniteId: l.uniteId });
+    }
   });
 });

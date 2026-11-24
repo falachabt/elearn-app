@@ -115,7 +115,6 @@ export function FicheNotion() {
 
   return (
     <Ecran piedBordure
-      insetBas={false}
       entete={<EnteteToeic titre={titre} onRetour={retour} />}
       pied={phase.nom === 'ok' ? <Bouton libelle={t('certification.fiche.entrainer')} onPress={() => router.push({ pathname: '/certification/serie', params: { notion: phase.fiche.id, ...(partieOrigine >= 1 && partieOrigine <= 7 ? { part: String(partieOrigine) } : {}) } } as never)} retour /> : undefined}
     >

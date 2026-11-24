@@ -58,7 +58,7 @@ export function planFriseLocale(plan: PlanFormation, dateTest: Jour | null, aujo
 }
 
 /** Titres des étapes de test (libellés déjà traduits par l'appelant). */
-export type TitresEtapes = { mini: string; demi: string; mixte: string; complet: string; quiz: string };
+export type TitresEtapes = { mini: string; demi: string; mixte: string; complet: string; quiz: string; pratique: string };
 
 /**
  * Motif d'une semaine (7 jours à partir d'aujourd'hui), sans répétition d'un jour à l'autre :
@@ -93,6 +93,8 @@ export function planLocalComplet(notions: NotionListee[], dateTest: Jour | null,
       for (const notion of file.splice(0, n)) {
         ajouter({ type: aRevoir.includes(notion) ? 'rappel' : 'decouverte', uniteKind: 'notion', uniteId: notion.id, titre: notion.titre, minutes: notion.dureeMin });
         ajouter({ type: 'quiz_lecon', uniteKind: 'notion', uniteId: notion.id, titre: `${titres.quiz} · ${notion.titre}`, minutes: null });
+        // Chaque leçon est suivie de sa pratique : s'entraîner sur cette notion précise.
+        ajouter({ type: 'pratique', uniteKind: 'notion', uniteId: notion.id, titre: `${titres.pratique} · ${notion.titre}`, minutes: null });
       }
     };
     const testMoyen = () => {
