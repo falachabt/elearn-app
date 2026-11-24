@@ -92,8 +92,7 @@ export function planLocalComplet(notions: NotionListee[], dateTest: Jour | null,
     const lecons = (n: number) => {
       for (const notion of file.splice(0, n)) {
         ajouter({ type: aRevoir.includes(notion) ? 'rappel' : 'decouverte', uniteKind: 'notion', uniteId: notion.id, titre: notion.titre, minutes: notion.dureeMin });
-        ajouter({ type: 'quiz_lecon', uniteKind: 'notion', uniteId: notion.id, titre: `${titres.quiz} · ${notion.titre}`, minutes: null });
-        // Chaque leçon est suivie de sa pratique : s'entraîner sur cette notion précise.
+        // Une seule étape d'entraînement après la vidéo : s'entraîner sur cette notion précise (pas de doublon).
         ajouter({ type: 'pratique', uniteKind: 'notion', uniteId: notion.id, titre: `${titres.pratique} · ${notion.titre}`, minutes: null });
       }
     };

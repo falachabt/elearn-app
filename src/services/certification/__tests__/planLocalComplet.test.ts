@@ -48,7 +48,7 @@ describe('planLocalComplet', () => {
 });
 
 describe('pratique après chaque leçon', () => {
-  it('chaque leçon est suivie de sa pratique sur la même notion', () => {
+  it('chaque leçon est suivie d une seule pratique sur la même notion', () => {
     const notions = Array.from({ length: 6 }, (_, i) => notion(i));
     const plan = planLocalComplet(notions, '2026-11-24', '2026-11-19', T);
     const etapes = plan!.jours.flatMap((j) => j.etapes);
@@ -56,8 +56,8 @@ describe('pratique après chaque leçon', () => {
     expect(lecons.length).toBeGreaterThan(0);
     for (const l of lecons) {
       const i = etapes.indexOf(l);
-      expect(etapes[i + 1]?.type).toBe('quiz_lecon');
-      expect(etapes[i + 2]).toMatchObject({ type: 'pratique', uniteKind: 'notion', uniteId: l.uniteId });
+      expect(etapes[i + 1]).toMatchObject({ type: 'pratique', uniteKind: 'notion', uniteId: l.uniteId });
+      expect(etapes.filter((e) => e.uniteId === l.uniteId && e.type !== 'decouverte' && e.type !== 'rappel')).toHaveLength(1);
     }
   });
 });
